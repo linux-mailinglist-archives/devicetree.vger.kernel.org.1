@@ -1,155 +1,105 @@
-Return-Path: <devicetree+bounces-6706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49A037BC822
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 16:01:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 330AA7BC87E
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 17:03:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BDA71C20A0A
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 14:01:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3189E1C20951
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 15:03:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FE1627ED3;
-	Sat,  7 Oct 2023 14:01:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cV+6uvnb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3109728E27;
+	Sat,  7 Oct 2023 15:03:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E516827733
-	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 14:01:11 +0000 (UTC)
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30BD9C5;
-	Sat,  7 Oct 2023 07:01:09 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-32167a4adaaso2707501f8f.1;
-        Sat, 07 Oct 2023 07:01:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696687267; x=1697292067; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MWjelm02UwHQeFfJRYeGKYAqi5E/N/b99cz5nFc0Cp0=;
-        b=cV+6uvnbQ8BtUogi27xDSZ478Vh9MsO+5KABKTKjpVw7InaswoPpxemFkEBoGIqxHp
-         /GkTz0Ru6Qbmwpd59OQktVtXvqVHk9Vsb1njOLWS+f3IBW5cI4rOXrjTbIBEnMfO2xxX
-         s865164rODtSmcuN2bv25aLdFcbSlqGuedxgOZOLzcBAb7sgjKNZfBcEk/t9eMHRqSuk
-         NQleetLda8zZw7So+zQ7wjG4KSLzci+AFOte7MRRcNwRM7YI0pqjuuaMhogpkknVwTEk
-         mSOS9zumn2UGr3cAer0I65+71qEZVXgo5KRL90koxZ96xhRPKp+Yd9Ry6rSg1e3hLPxO
-         ZMlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696687267; x=1697292067;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MWjelm02UwHQeFfJRYeGKYAqi5E/N/b99cz5nFc0Cp0=;
-        b=pUrhI9/Ubf6boDUlWW93UkrDt6rFgNLn39hBMgci8YNZUeNBpD5p2idLC/8VhIeihT
-         GtAlCG+EsUG3bcu0CZlcAB3Tl5ZsFTnaiaW0ISR3Rk39NvSvF97mt5Yoa7R0i5d7LS6y
-         xtyW9MPTvvMIYIlvDGKMjQ1SPqm4AtKaLK87dSacT0EBiHvyNc+SKJrw8puoZOZfdRlU
-         D3JomCf2JABKcilLCotlhIzyDuW9WMrtbcVT6W6G+B+kGGHorRjSN+j5t9dLCdY6SuHe
-         3s+yU3PR/530lEmelbiBEjZcrQwciGpjJMkJdnosdqS7kKvGEa1RxNnRQJa9odP7SvF/
-         vAeA==
-X-Gm-Message-State: AOJu0YyPKfkwFbETVOXlNvcqGiSEoVJmbFvaLR2KLg5eoLKLObKT0LA2
-	VZgAeLXyib5i3D2FBk1T7Gw=
-X-Google-Smtp-Source: AGHT+IGZ0NQ8IIxs8Y9r9no4/Wi61xyYKIjIooHZrkFtqfgEySaKP3SYREGDsFHBHsb06pFTotav4A==
-X-Received: by 2002:adf:e90a:0:b0:321:6fb0:9a8b with SMTP id f10-20020adfe90a000000b003216fb09a8bmr9548205wrm.70.1696687267534;
-        Sat, 07 Oct 2023 07:01:07 -0700 (PDT)
-Received: from david-ryuzu.fritz.box ([77.22.112.104])
-        by smtp.googlemail.com with ESMTPSA id q8-20020a05600000c800b0032415213a6fsm4332043wrx.87.2023.10.07.07.01.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Oct 2023 07:01:07 -0700 (PDT)
-From: David Wronek <davidwronek@gmail.com>
-To: Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Avri Altman <avri.altman@wdc.com>,
-	Bart Van Assche <bvanassche@acm.org>,
-	Joe Mason <buddyjojo06@outlook.com>
-Cc: cros-qcom-dts-watchers@chromium.org,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	linux-scsi@vger.kernel.org,
-	hexdump0815@googlemail.com,
-	~postmarketos/upstreaming@lists.sr.ht,
-	phone-devel@vger.kernel.org,
-	David Wronek <davidwronek@gmail.com>
-Subject: [PATCH 7/7] arm64: dts: qcom: Add support for Xiaomi Redmi Note 9S
-Date: Sat,  7 Oct 2023 15:58:31 +0200
-Message-ID: <20231007140053.1731245-8-davidwronek@gmail.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231007140053.1731245-1-davidwronek@gmail.com>
-References: <20231007140053.1731245-1-davidwronek@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97EAE171C2
+	for <devicetree@vger.kernel.org>; Sat,  7 Oct 2023 15:03:43 +0000 (UTC)
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DB58B9;
+	Sat,  7 Oct 2023 08:03:42 -0700 (PDT)
+Received: from p5dc58360.dip0.t-ipconnect.de ([93.197.131.96] helo=aktux)
+	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <andreas@kemnade.info>)
+	id 1qp8q5-004cjc-Ky; Sat, 07 Oct 2023 17:03:33 +0200
+Date: Tue, 12 Sep 2023 20:56:47 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, lee@kernel.org,
+ bcousson@baylibre.com, tony@atomide.com, mturquette@baylibre.com,
+ sboyd@kernel.org, linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+ linux-clk@vger.kernel.org
+Subject: Re: [PATCH v3 4/5] clk: twl: add clock driver for TWL6032
+Message-ID: <20230912205647.4be3b753@aktux>
+In-Reply-To: <a9b646c7-2c02-8a69-a4c8-7e981a630eef@wanadoo.fr>
+References: <20230911221346.1484543-1-andreas@kemnade.info>
+	<20230911221346.1484543-5-andreas@kemnade.info>
+	<a9b646c7-2c02-8a69-a4c8-7e981a630eef@wanadoo.fr>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=1.5 required=5.0 tests=BAYES_00,DATE_IN_PAST_96_XX,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Joe Mason <buddyjojo06@outlook.com>
+On Tue, 12 Sep 2023 19:15:54 +0200
+Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
 
-Add a device tree for the Xiaomi Redmi Note 9S (curtana) phone, based on
-sm7125-xiaomi-common.dtsi.
+> Le 12/09/2023 =C3=A0 00:13, Andreas Kemnade a =C3=A9crit=C2=A0:
+> > The TWL6032 has some clock outputs which are controlled like
+> > fixed-voltage regulators, in some drivers for these chips
+> > found in the wild, just the regulator api is abused for controlling
+> > them, so simply use something similar to the regulator functions.
+> > Due to a lack of hardware available for testing, leave out the
+> > TWL6030-specific part of those functions.
+> >=20
+> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> > ---
+> >   drivers/clk/Kconfig   |   9 ++
+> >   drivers/clk/Makefile  |   1 +
+> >   drivers/clk/clk-twl.c | 197 ++++++++++++++++++++++++++++++++++++++++++
+> >   3 files changed, 207 insertions(+)
+> >   create mode 100644 drivers/clk/clk-twl.c
+> >  =20
+>=20
+> ...
+>=20
+> > +static int twl_clks_probe(struct platform_device *pdev)
+> > +{
+> > +	struct clk_hw_onecell_data *clk_data;
+> > +	const struct twl_clks_data *hw_data;
+> > +
+> > +	struct twl_clock_info *cinfo;
+> > +	int ret;
+> > +	int i;
+> > +	int count;
+> > +
+> > +	hw_data =3D twl6032_clks;
+> > +	for (count =3D 0; hw_data[count].init.name; count++)
+> > +		; =20
+>=20
+> Nit: does removing the /* sentinel */ and using=20
+> ARRAY_SIZE(twl_clks_data) would make sense and be simpler?
+>=20
+well, I would like to have it prepared for different arrays
+passed in some device data in the future, so I am choosing that
+approach.
 
-Signed-off-by: Joe Mason <buddyjojo06@outlook.com>
-Signed-off-by: David Wronek <davidwronek@gmail.com>
----
- arch/arm64/boot/dts/qcom/Makefile                |  1 +
- .../boot/dts/qcom/sm7125-xiaomi-curtana.dts      | 16 ++++++++++++++++
- 2 files changed, 17 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sm7125-xiaomi-curtana.dts
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index d6cb840b7050..57974fb0c580 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -207,6 +207,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-sony-xperia-seine-pdx201.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-xiaomi-laurel-sprout.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm6350-sony-xperia-lena-pdx213.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm6375-sony-xperia-murray-pdx225.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sm7125-xiaomi-curtana.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm7125-xiaomi-joyeuse.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm7225-fairphone-fp4.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-hdk.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sm7125-xiaomi-curtana.dts b/arch/arm64/boot/dts/qcom/sm7125-xiaomi-curtana.dts
-new file mode 100644
-index 000000000000..12f517a8492c
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sm7125-xiaomi-curtana.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2023, Joe Mason <buddyjojo06@outlook.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "sm7125-xiaomi-common.dtsi"
-+
-+/ {
-+	model = "Xiaomi Redmi Note 9S";
-+	compatible = "xiaomi,curtana", "qcom,sm7125";
-+
-+	/* required for bootloader to select correct board */
-+	qcom,board-id = <0x20022 1>;
-+};
--- 
-2.42.0
-
+Regards,
+Andreas
 
