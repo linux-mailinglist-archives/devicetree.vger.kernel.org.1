@@ -1,296 +1,570 @@
-Return-Path: <devicetree+bounces-1518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F8307A6EC2
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 00:38:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44E657A6ECB
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 00:44:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3725E1C208EC
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 22:38:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 480771C20CB3
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 22:44:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1C073D69;
-	Tue, 19 Sep 2023 22:38:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CFD518639;
+	Tue, 19 Sep 2023 22:44:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D88DC33D5
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 22:38:40 +0000 (UTC)
-Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 411A8C0
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 15:38:38 -0700 (PDT)
-Received: by mail-il1-x12a.google.com with SMTP id e9e14a558f8ab-34fcc39fae1so46235ab.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 15:38:38 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 358A6749C
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 22:44:08 +0000 (UTC)
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7FBDD8;
+	Tue, 19 Sep 2023 15:44:04 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-50098cc8967so10088057e87.1;
+        Tue, 19 Sep 2023 15:44:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1695163117; x=1695767917; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1695163443; x=1695768243; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=F5vguMBSrJ46d+8saXwRY5s42Zof/+IY2r1kBZ0z3nA=;
-        b=N839YDhyjtUrPhcaduqvlXDDrl+7lkpgPvLVTFv0552O/Ptwt0pdTBVcqCBAvWi0n8
-         tuxf134FHlHjC5wl2160QFTPeFN0UwQ1d7Vk2uF+6VzTOh4LxGmLB9eezufuJHis3ilI
-         7Y99ry3fQ8eUAkh0IbydE4CwfHFIfL9jigLDPGrPptLeZYnRrnS1RVM7RHMvrszzsh9u
-         eegyIZC5olHxZTGrXv+d+ANSql1qGgi0t+BVPvnFhvzts/3TTfgStsJvd73SondtHB5U
-         AFIKWqXZiws8oJ6SKnO90zoIA/FAaLeq3b48VpGtZj2HeniLhvxLq6/kHCWWELXEmT4d
-         Carg==
+        bh=tpO83YeRKs36G7wDLGtdKkeTJjMUq7Z3/in/MBit8+s=;
+        b=MlnlCPErpOc/A/rXthsdu4M/G3KUaxz//jbd24P98P77OJ+DRf+YYjd96BMKlGWhV4
+         V/aooXrUud+vNk1TWnBGDkCxuudZ6LryGX1PbT0GjAB5moS8Vo6WulF8xTcs4omaJHn4
+         9DSbU+494TtPW5MGlRPxd/9tH21zxeRsa/j/GzE+6PthkM8GRtq98RL6RnPLLbUARBLL
+         dLkDihYXvioZCUVVjesFVSiBiDOyM3x0W8+SB5xDVHVq6zKsft1dtG8H2lc5wQGXQ7cW
+         RvM2Jjsv7xSkMkhUhOp3VdtiO7FRUcLku9q5otgGvw7H263CXPxB3d/Ai78sXv0f4bKF
+         tOWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695163117; x=1695767917;
+        d=1e100.net; s=20230601; t=1695163443; x=1695768243;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=F5vguMBSrJ46d+8saXwRY5s42Zof/+IY2r1kBZ0z3nA=;
-        b=ONlMJSFVE7H6eR2g2IM5kEpLAMEapQ1L//PIYk0s6pphYQlscfzXEAqWKBVcqT2Cny
-         rDAsB6d08WKutCY8R7l4/78GHaJI19YmGLfBcuot/0evFmubt85KwUZS+uEO1+Y9B7c1
-         c7n/U2oUC/cC5xzOIJ6xt98ehv09Os4Y8FIp0pULWaECwTck9mRO0IjjzJl0ZDJ7GvVi
-         67OIjNsjUXy3bo5aEaLoJ+BMG6FQxZEB42NEwHmFqkg5rZpE/NuRkPgLREoJQRnqyXvo
-         lzZ1oUBKIjSB0uhOB/H7g/CaeIgz19KSP1tvkiVjQBiTsgm22ceFCCQ56pJbpPhLDsM6
-         g5Cw==
-X-Gm-Message-State: AOJu0YyZIZ13A2bPuXViF34eiWVWiZHYfW0qgfJoLC62BQ1VpJHpT1jc
-	C7pjTiaHfH16CPFMtBBhKE2yj+/qHqLc5RocvoBl
-X-Google-Smtp-Source: AGHT+IG9PXLyW1jlJ/gUL7qIkx0sRnnaGmM0DGAJNIwl57QJHVSrJehms1paVo9SNa9dT4k0vAVcexutgaNzu+ezAAo=
-X-Received: by 2002:a05:6e02:1a0a:b0:34c:b203:e3d0 with SMTP id
- s10-20020a056e021a0a00b0034cb203e3d0mr40601ild.3.1695163117444; Tue, 19 Sep
- 2023 15:38:37 -0700 (PDT)
+        bh=tpO83YeRKs36G7wDLGtdKkeTJjMUq7Z3/in/MBit8+s=;
+        b=lrhQdQAiZAKmVKWtTntPo989RkYVpYLpTCB8v4S+riw+NdaNAov4volL+V8OPanb1T
+         OUOF8mPKqnnVD12mulVimst1KKecpoXoMarEyTc3W/MyBMMlpcVWm7WtV9Ss32QshzWp
+         iqk2X97BYaBnveJh2UB0UD3a6gntrUJqMWY2SsvadQ4A8gYeJaxTfKw61gS++gJrBrcV
+         eYMuuFg3WIGOCGWj+ZODSTtzXtxW1WUO4zTG/jjDlYnh1VWydeZS1BTpCCk4CKjXyj5z
+         J0Rkmc2wezLLwFDqg7mKOaK0UkMsKNbRygVgi3hRaHIMm3QZY42Zd4KVAM2qrh1UeSzC
+         gExw==
+X-Gm-Message-State: AOJu0YxHXyH6wJxygFYTeSpQ0uvjJ6BhaNdQcpdYZHW4/86Yj9H/bd2H
+	4JiNvwYMvBC/A+6oCzxf1/13EAt2ZBBEg4Ryx1Y=
+X-Google-Smtp-Source: AGHT+IHFNi9yBdsDUb53zJ4emuJ6OU6dqoa2VtYATaMkMyUi7VYePvlHlQaqICmvjMcfe9WMmgytxHrWsmyRdo+hSFY=
+X-Received: by 2002:a19:8c08:0:b0:500:97e4:587e with SMTP id
+ o8-20020a198c08000000b0050097e4587emr783598lfd.44.1695163442608; Tue, 19 Sep
+ 2023 15:44:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230911125936.10648-1-yunfei.dong@mediatek.com>
- <20230911125936.10648-12-yunfei.dong@mediatek.com> <d02953725e7ae17e75bff235acfd30327d0fe9ac.camel@collabora.com>
-In-Reply-To: <d02953725e7ae17e75bff235acfd30327d0fe9ac.camel@collabora.com>
-From: Jeffrey Kardatzke <jkardatzke@google.com>
-Date: Tue, 19 Sep 2023 15:38:26 -0700
-Message-ID: <CA+ddPcOFksu6JzXZf0QOFeRDAyX=m0k+t8zwg2DbVmAkweobyg@mail.gmail.com>
-Subject: Re: [PATCH 11/14] media: medkatek: vcodec: covert secure fd to secure handle
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-Cc: Yunfei Dong <yunfei.dong@mediatek.com>, 
-	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>, 
-	Chen-Yu Tsai <wenst@chromium.org>, Hsin-Yi Wang <hsinyi@chromium.org>, 
-	Fritz Koenig <frkoenig@chromium.org>, Daniel Vetter <daniel@ffwll.ch>, 
-	Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230918080314.11959-1-jagathjog1996@gmail.com>
+ <20230918080314.11959-3-jagathjog1996@gmail.com> <ZQggiuLyLGq/ekMS@smile.fi.intel.com>
+In-Reply-To: <ZQggiuLyLGq/ekMS@smile.fi.intel.com>
+From: Jagath Jog J <jagathjog1996@gmail.com>
+Date: Wed, 20 Sep 2023 04:13:51 +0530
+Message-ID: <CAM+2EuKXW+FsgY6rp=ugU03owJS6ReeWUNWOcMKiUfomiY_a2Q@mail.gmail.com>
+Subject: Re: [RFC 2/2] iio: imu: Add driver for BMI323 IMU
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-	USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
-	autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, Sep 19, 2023 at 12:43=E2=80=AFPM Nicolas Dufresne
-<nicolas.dufresne@collabora.com> wrote:
+Hi Andy,
+
+Thank you for reviewing.
+
+On Mon, Sep 18, 2023 at 3:34=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
 >
-> Le lundi 11 septembre 2023 =C3=A0 20:59 +0800, Yunfei Dong a =C3=A9crit :
-> > User driver will fill or parse data in optee-os with secure handle,
-> > need to covert secure fd to secure handle in kernel.
+> On Mon, Sep 18, 2023 at 01:33:14PM +0530, Jagath Jog J wrote:
+> > The Bosch BMI323 is a 6-axis low-power IMU that provide measurements fo=
+r
+> > acceleration, angular rate, and temperature. This sensor includes
+> > motion-triggered interrupt features, such as a step counter, tap detect=
+ion,
+> > and activity/inactivity interrupt capabilities.
 > >
-> > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> > ---
-> >  .../vcodec/decoder/mtk_vcodec_dec_drv.c       |  1 +
-> >  .../vcodec/decoder/mtk_vcodec_dec_stateless.c | 54 ++++++++++++++++++-
-> >  drivers/media/v4l2-core/v4l2-ctrls-defs.c     |  5 ++
-> >  include/uapi/linux/v4l2-controls.h            |  4 ++
-> >  4 files changed, 62 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_=
-dec_drv.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_d=
-rv.c
-> > index 0a89ce452ac3..64e006820f43 100644
-> > --- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv=
-.c
-> > +++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv=
-.c
-> > @@ -571,3 +571,4 @@ module_platform_driver(mtk_vcodec_dec_driver);
-> >
-> >  MODULE_LICENSE("GPL v2");
-> >  MODULE_DESCRIPTION("Mediatek video codec V4L2 decoder driver");
-> > +MODULE_IMPORT_NS(DMA_BUF);
-> > diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_=
-dec_stateless.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec=
-_dec_stateless.c
-> > index 2ea517883a86..d2b09ce9f1cf 100644
-> > --- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta=
-teless.c
-> > +++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_sta=
-teless.c
-> > @@ -426,6 +426,46 @@ static int mtk_vcodec_get_pic_info(struct mtk_vcod=
-ec_dec_ctx *ctx)
-> >       return ret;
-> >  }
-> >
-> > +static int mtk_dma_contig_get_secure_handle(struct mtk_vcodec_dec_ctx =
-*ctx, int fd)
+> > The driver supports various functionalities, including data ready, FIFO
+> > data handling, and events such as tap detection, step counting, and
+> > activity interrupts
+>
+> Missing period.
+>
+> ...
+>
+> > +#include <linux/regmap.h>
+> > +#include <linux/bits.h>
+>
+> Ordered?
+>
+> Missing units.h.
+
+Sure I will correct these in the next series.
+Please note that I omitted certain portions of your reviews
+while responding, and I fully agree with the comments that
+I didn't address. I intend to make the necessary corrections
+in the next series.
+....
+
+> > +struct bmi323_data {
+>
+> > +     u32 odrns[2];
+> > +     u32 odrhz[2];
+>
+>
+> > +     __le16 steps_count[2];
+> > +};
+>
+> I'm wondering if these 2:s anyhow semantically the same? Shouldn't a defi=
+nition
+> be used instead of magic number?
+
+The arrays odrns[] and odrhz[] are used to store the ODR in nanoseconds and
+frequency for both the accelerometer and gyro. Instead of the magic number =
+2,
+I will define an enum. For steps_count[] array is of size 2 words and
+I will define
+a separate macro.
+
+> ...
+>
+> > +static int bmi323_write_ext_reg(struct bmi323_data *data, unsigned int=
+ ext_addr,
+> > +                             unsigned int ext_data)
 > > +{
-> > +     int secure_handle =3D 0;
-> > +     struct dma_buf *buf;
-> > +     struct dma_buf_attachment *dba;
-> > +     struct sg_table *sgt;
-> > +     struct device *dev =3D &ctx->dev->plat_dev->dev;
+> > +     int ret, feature_status;
 > > +
-> > +     buf =3D dma_buf_get(fd);
-> > +     if (IS_ERR(buf)) {
-> > +             mtk_v4l2_vdec_err(ctx, "dma_buf_get fail fd:%d", fd);
-> > +             return 0;
-> > +     }
-> > +
-> > +     dba =3D dma_buf_attach(buf, dev);
-> > +     if (IS_ERR(dba)) {
-> > +             mtk_v4l2_vdec_err(ctx, "dma_buf_attach fail fd:%d", fd);
-> > +             goto err_attach;
-> > +     }
-> > +
-> > +     sgt =3D dma_buf_map_attachment(dba, DMA_BIDIRECTIONAL);
-> > +     if (IS_ERR(sgt)) {
-> > +             mtk_v4l2_vdec_err(ctx, "dma_buf_map_attachment fail fd:%d=
-", fd);
-> > +             goto err_map;
-> > +     }
-> > +     secure_handle =3D sg_dma_address(sgt->sgl);
+> > +     mutex_lock(&data->mutex);
 >
-> Does it mean if your secure dmabuf is passed to a driver that didn't know=
- it was
-> secure it will pick the handle as a memory address and program the HW wit=
-h it ?
-> That seems unsafe, the handle should be stored in a dedicated place and m=
-apping
-> should either fail, or provide a dummy buffer.
+> You can start using cleanup.h, it will reduce your code by a few percents=
+!
+> But the point is it makes it less error prone and less verbose.
+>
+> Ditto for the entire code base.
 
-Since the secure dmabufs don't support any mmap/cpu access to them and
-return -EPERM in those cases; wouldn't that prevent misuse of them in
-other places? (so the mmap operation and CPU access will fail, but
-getting the SG list from the dmabuf succeeds)
+Sure, thanks for pointing this I will go through cleanup.h.
+If required I will get back with some questions.
 
 >
+> > +     ret =3D regmap_read(data->regmap, BMI323_FEAT_DATA_STATUS,
+> > +                       &feature_status);
+> > +     if (ret)
+> > +             goto unlock_out;
 > > +
-> > +     dma_buf_unmap_attachment(dba, sgt, DMA_BIDIRECTIONAL);
-> > +     dma_buf_detach(buf, dba);
-> > +     dma_buf_put(buf);
+> > +     if (!FIELD_GET(BMI323_FEAT_DATA_TX_RDY_MSK, feature_status)) {
+> > +             ret =3D -EBUSY;
+> > +             goto unlock_out;
+> > +     }
 > > +
-> > +     return secure_handle;
-> > +err_map:
-> > +     dma_buf_detach(buf, dba);
-> > +err_attach:
-> > +     dma_buf_put(buf);
+> > +     ret =3D regmap_write(data->regmap, BMI323_FEAT_DATA_ADDR, ext_add=
+r);
+> > +     if (ret)
+> > +             goto unlock_out;
+> > +
+> > +     ret =3D regmap_write(data->regmap, BMI323_FEAT_DATA_TX, ext_data)=
+;
+> > +
+> > +unlock_out:
+> > +     mutex_unlock(&data->mutex);
+> > +     return ret;
+> > +}
+> ...
+>
+>         unsigned int state_value =3D GENMASK();
+>
+> > +     switch (dir) {
+> > +     case IIO_EV_DIR_RISING:
+> > +             msk =3D BMI323_FEAT_IO0_XYZ_MOTION_MSK;
+> > +             raw =3D 512;
+> > +             config =3D BMI323_ANYMO1_REG;
+> > +             irq_msk =3D BMI323_MOTION_MSK;
+> > +             set_mask_bits(&irq_field_val, BMI323_MOTION_MSK,
+> > +                           FIELD_PREP(BMI323_MOTION_MSK, motion_irq));
+> > +             set_mask_bits(&field_value, BMI323_FEAT_IO0_XYZ_MOTION_MS=
+K,
+> > +                           FIELD_PREP(BMI323_FEAT_IO0_XYZ_MOTION_MSK,
+> > +                                      state ? 7 : 0));
+>
+> state_value
+
+Sorry I didn't get this, I am updating field_value based on state value.
+What is the purpose of state_value?
+
+>
+> > +             break;
+> > +     case IIO_EV_DIR_FALLING:
+> > +             msk =3D BMI323_FEAT_IO0_XYZ_NOMOTION_MSK;
+> > +             raw =3D 0;
+> > +             config =3D BMI323_NOMO1_REG;
+> > +             irq_msk =3D BMI323_NOMOTION_MSK;
+> > +             set_mask_bits(&irq_field_val, BMI323_NOMOTION_MSK,
+> > +                           FIELD_PREP(BMI323_NOMOTION_MSK, motion_irq)=
+);
+> > +             set_mask_bits(&field_value, BMI323_FEAT_IO0_XYZ_NOMOTION_=
+MSK,
+> > +                           FIELD_PREP(BMI323_FEAT_IO0_XYZ_NOMOTION_MSK=
+,
+> > +                                      state ? 7 : 0));
+>
+> Ditto.
+>
+> > +             break;
+> > +     default:
+> > +             return -EINVAL;
+> > +     }
+>
+> ...
+>
+> > +static ssize_t in_accel_gesture_tap_max_dur_show(struct device *dev,
+> > +                                              struct device_attribute =
+*attr,
+> > +                                              char *buf)
+> > +{
+> > +     struct iio_dev *indio_dev =3D dev_to_iio_dev(dev);
+> > +     struct bmi323_data *data =3D iio_priv(indio_dev);
+> > +     unsigned int reg_value, raw;
+> > +     int ret, val[2];
+>
+> Why val is int (i.e. not unsigned)?
+
+iio_format_value() expects int* so I used int.
+
+>
+> > +     ret =3D bmi323_read_ext_reg(data, BMI323_TAP2_REG, &reg_value);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     raw =3D FIELD_GET(BMI323_TAP2_MAX_DUR_MSK, reg_value);
+>
+> > +     val[0] =3D raw / BMI323_MAX_GES_DUR_SCALE;
+> > +     val[1] =3D BMI323_RAW_TO_MICRO(raw, BMI323_MAX_GES_DUR_SCALE);
+>
+> > +     return iio_format_value(buf, IIO_VAL_INT_PLUS_MICRO, 2, val);
+>
+> ARRAY_SIZE()
+Okay, I will use ARRAY_SIZE() instead of number.
+
+>
+> > +static const struct attribute_group bmi323_event_attribute_group =3D {
+> > +     .attrs =3D bmi323_event_attributes,
+> > +};
+>
+> ATTRIBUTE_GROUPS() ?
+
+Okay, I will use ATTRIBUTE_GROUPS.
+
+>
+> ...
+>
+> > +     state =3D data->state =3D=3D BMI323_BUFFER_FIFO ? true : false;
+>
+> =3D=3D already results in boolean type.
+
+Sure I will directly assign the result of comparison.
+state =3D (data->state =3D=3D BMI323_BUFFER_FIFO);
+
+> ...
+>
+> > +     int ret, raw;
+>
+> Why raw is signed?
+
+I don't have a specific reason for this; however, since it
+stores register value, it should be unsigned. I will make
+this correction in the next series
+
+>
+> > +     for (raw =3D 0; raw < ARRAY_SIZE(bmi323_accel_gyro_avrg); raw++)
+> > +             if (avg =3D=3D bmi323_accel_gyro_avrg[raw])
+> > +                     break;
+>
+> > +     if (raw >=3D ARRAY_SIZE(bmi323_accel_gyro_avrg))
+>
+> When is the > part true?
+>
+> > +             return -EINVAL;
+>
+
+I missed this, > is not possible, I should have used while() here
+also, I will correct this in the next series.
+
+
+> > +     ret =3D bmi323_feature_engine_events(data, BMI323_FEAT_IO0_STP_CN=
+T_MSK,
+> > +                                        val ? 1 : 0);
+>
+> Ternary here...
+>
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     set_mask_bits(&data->feature_events, BMI323_FEAT_IO0_STP_CNT_MSK,
+> > +                   FIELD_PREP(BMI323_FEAT_IO0_STP_CNT_MSK, val ? 1 : 0=
+));
+>
+> ...and here are dups.
+
+Is the ternary operator not permitted to use?
+
+>
+> > +     return ret;
+>
+> Can it be not 0 here?
+>
+> ...
+>
+> > +static int bmi323_get_temp_data(struct bmi323_data *data, int *val)
+> > +{
+> > +     unsigned int value;
+>
+> Why it's not defined as __le16 to begin with?
+
+To match the regmap_read() val parameter I used unsigned int*.
+
+Note: each sensor register values are 16 bit wide
+and regmap is configured with .val_bits =3D 16.
+
+> > +
+> > +     ret =3D bmi323_get_error_status(data);
+> > +     if (ret)
+> > +             return -EINVAL;
+> > +
+> > +     ret =3D regmap_read(data->regmap, BMI323_TEMP_REG, &value);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     *val =3D sign_extend32(le16_to_cpup((const __le16 *)&value), 15);
+>
+> No, simply no castings here.
+>
+> > +     return IIO_VAL_INT;
+> > +}
+>
+> ...
+>
+> > +     if (bmi323_acc_gyro_odr[odr_index][0] <=3D 25)
+>
+> Why not positive check: if (... > 25) ... else ...?
+>
+> > +             mode =3D ACC_GYRO_MODE_DUTYCYCLE;
+> > +     else
+> > +             mode =3D ACC_GYRO_MODE_CONTINOUS;
+
+Sure, this can also be used. I will update this
+
+>
+> ...
+>
+> > +     int odr_raw, ret;
+>
+> Why odr_raw is signed?
+
+In the below conditions, I am checking for -ve value so
+odr_raw is signed.
+
+>
+> > +
+> > +     odr_raw =3D ARRAY_SIZE(bmi323_acc_gyro_odr);
+> > +
+> > +     while (odr_raw--)
+> > +             if (odr =3D=3D bmi323_acc_gyro_odr[odr_raw][0] &&
+> > +                 uodr =3D=3D bmi323_acc_gyro_odr[odr_raw][1])
+> > +                     break;
+> > +     if (odr_raw < 0)
+> > +             return -EINVAL;
+>
+> In one case in the code you used for-loop, here is while-loop. Maybe a bi=
+t of
+> consistency?
+
+Sure, for other case, I will use a while loop instead of a for loop.
+
+>
+> > +     fwnode =3D dev_fwnode(data->dev);
+> > +     if (!fwnode)
+> > +             return -ENODEV;
+> > +
+> > +     irq =3D fwnode_irq_get_byname(fwnode, "INT1");
+> > +     if (irq > 0) {
+> > +             irq_pin =3D BMI323_IRQ_INT1;
+> > +     } else {
+> > +             irq =3D fwnode_irq_get_byname(fwnode, "INT2");
+> > +             if (irq <=3D 0)
+>
+> When can it be =3D=3D 0?
+
+Right, fwnode_irq_get_byname won't return 0, I will correct this
+in the next series.
+
+>
+> > +     if (en) {
+>
+> > +             ret =3D regmap_write(data->regmap, BMI323_FEAT_IO2_REG,
+> > +                                0x012c);
+> > +             if (ret)
+> > +                     return ret;
+> > +
+> > +             ret =3D regmap_write(data->regmap, BMI323_FEAT_IO_STATUS_=
+REG,
+> > +                                BMI323_FEAT_IO_STATUS_MSK);
+> > +             if (ret)
+> > +                     return ret;
+> > +
+> > +             ret =3D regmap_write(data->regmap, BMI323_FEAT_CTRL_REG,
+> > +                                BMI323_FEAT_ENG_EN_MSK);
+> > +             if (ret)
+> > +                     return ret;
+>
+> > +             i =3D 5;
+> > +             do {
+> > +                     ret =3D regmap_read(data->regmap, BMI323_FEAT_IO1=
+_REG,
+> > +                                       &feature_status);
+> > +                     if (ret)
+> > +                             return ret;
+> > +
+> > +                     i--;
+> > +                     mdelay(2);
+> > +             } while (feature_status !=3D 0x01 && i);
+>
+> NIH regmap_read_poll_timeout().
+
+Okay.
+
+>
+> > +             if (feature_status !=3D 0x01) {
+> > +                     dev_err(data->dev, "Failed to enable feature engi=
+ne\n");
+> > +                     return -EINVAL;
+> > +             }
+> > +
+> > +             return ret;
+>
+> > +     } else {
+>
+> Redundant. But here it's okay to leave (I can understand the justificatio=
+n).
+>
+> > +             return regmap_write(data->regmap, BMI323_FEAT_CTRL_REG, 0=
+);
+> > +     }
+>
+> ...
+>
+> > +     if ((val & 0xFF) !=3D BMI323_CHIP_ID_VAL) {
+>
+> GENMASK() ? (BIT(x) - 1) ? A defined constant?
+>
+> > +             dev_err(data->dev, "Chip ID mismatch\n");
+> > +             return -EINVAL;
+>
+> Why not dev_err_probe() in this entire function?
+
+Okay I will make use of dev_err_probe() here and in all
+probe paths.
+
+>
+> > +     ret =3D devm_add_action_or_reset(data->dev, bmi323_disable, data)=
+;
+> > +     if (ret)
+> > +             return ret;
 > > +
 > > +     return 0;
-> > +}
-> > +
-> >  static int mtk_vdec_s_ctrl(struct v4l2_ctrl *ctrl)
-> >  {
-> >       struct mtk_vcodec_dec_ctx *ctx =3D ctrl_to_dec_ctx(ctrl);
-> > @@ -436,7 +476,7 @@ static int mtk_vdec_s_ctrl(struct v4l2_ctrl *ctrl)
-> >       struct v4l2_ctrl *hdr_ctrl;
-> >       const struct mtk_vcodec_dec_pdata *dec_pdata =3D ctx->dev->vdec_p=
-data;
-> >       const struct mtk_video_fmt *fmt;
-> > -     int i =3D 0, ret =3D 0;
-> > +     int i =3D 0, ret =3D 0, sec_fd;
-> >
-> >       hdr_ctrl =3D ctrl;
-> >       if (!hdr_ctrl || !hdr_ctrl->p_new.p)
-> > @@ -489,6 +529,12 @@ static int mtk_vdec_s_ctrl(struct v4l2_ctrl *ctrl)
-> >                       return -EINVAL;
-> >               }
-> >               break;
-> > +     case V4L2_CID_MPEG_MTK_GET_SECURE_HANDLE:
-> > +             sec_fd =3D ctrl->val;
-> > +
-> > +             ctrl->val =3D mtk_dma_contig_get_secure_handle(ctx, ctrl-=
->val);
-> > +             mtk_v4l2_vdec_dbg(3, ctx, "get secure handle: %d =3D> 0x%=
-x", sec_fd, ctrl->val);
-> > +             break;
-> >       default:
-> >               mtk_v4l2_vdec_dbg(3, ctx, "Not supported to set ctrl id: =
-0x%x\n", hdr_ctrl->id);
-> >               return ret;
-> > @@ -525,8 +571,9 @@ static const struct v4l2_ctrl_ops mtk_vcodec_dec_ct=
-rl_ops =3D {
-> >  static int mtk_vcodec_dec_ctrls_setup(struct mtk_vcodec_dec_ctx *ctx)
-> >  {
-> >       unsigned int i;
-> > +     struct v4l2_ctrl *ctrl;
-> >
-> > -     v4l2_ctrl_handler_init(&ctx->ctrl_hdl, NUM_CTRLS);
-> > +     v4l2_ctrl_handler_init(&ctx->ctrl_hdl, NUM_CTRLS + 1);
-> >       if (ctx->ctrl_hdl.error) {
-> >               mtk_v4l2_vdec_err(ctx, "v4l2_ctrl_handler_init failed\n")=
-;
-> >               return ctx->ctrl_hdl.error;
-> > @@ -543,6 +590,9 @@ static int mtk_vcodec_dec_ctrls_setup(struct mtk_vc=
-odec_dec_ctx *ctx)
-> >               }
-> >       }
-> >
-> > +     ctrl =3D v4l2_ctrl_new_std(&ctx->ctrl_hdl, &mtk_vcodec_dec_ctrl_o=
-ps,
-> > +                              V4L2_CID_MPEG_MTK_GET_SECURE_HANDLE, 0, =
-65535, 1, 0);
-> > +
-> >       v4l2_ctrl_handler_setup(&ctx->ctrl_hdl);
-> >
-> >       return 0;
-> > diff --git a/drivers/media/v4l2-core/v4l2-ctrls-defs.c b/drivers/media/=
-v4l2-core/v4l2-ctrls-defs.c
-> > index 8696eb1cdd61..d8cf01f76aab 100644
-> > --- a/drivers/media/v4l2-core/v4l2-ctrls-defs.c
-> > +++ b/drivers/media/v4l2-core/v4l2-ctrls-defs.c
-> > @@ -1041,6 +1041,7 @@ const char *v4l2_ctrl_get_name(u32 id)
-> >       case V4L2_CID_MPEG_VIDEO_HEVC_SIZE_OF_LENGTH_FIELD:     return "H=
-EVC Size of Length Field";
-> >       case V4L2_CID_MPEG_VIDEO_REF_NUMBER_FOR_PFRAMES:        return "R=
-eference Frames for a P-Frame";
-> >       case V4L2_CID_MPEG_VIDEO_PREPEND_SPSPPS_TO_IDR:         return "P=
-repend SPS and PPS to IDR";
-> > +     case V4L2_CID_MPEG_MTK_GET_SECURE_HANDLE:               return "M=
-ediaTek Decoder get secure handle";
-> >
-> >       /* AV1 controls */
-> >       case V4L2_CID_MPEG_VIDEO_AV1_PROFILE:                   return "A=
-V1 Profile";
-> > @@ -1437,6 +1438,10 @@ void v4l2_ctrl_fill(u32 id, const char **name, e=
-num v4l2_ctrl_type *type,
-> >       case V4L2_CID_MPEG_VIDEO_VPX_NUM_REF_FRAMES:
-> >               *type =3D V4L2_CTRL_TYPE_INTEGER_MENU;
-> >               break;
-> > +     case V4L2_CID_MPEG_MTK_GET_SECURE_HANDLE:
-> > +             *type =3D V4L2_CTRL_TYPE_INTEGER;
-> > +             *flags |=3D V4L2_CTRL_FLAG_WRITE_ONLY;
-> > +             break;
-> >       case V4L2_CID_USER_CLASS:
-> >       case V4L2_CID_CAMERA_CLASS:
-> >       case V4L2_CID_CODEC_CLASS:
-> > diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4=
-l2-controls.h
-> > index c3604a0a3e30..7b3694985366 100644
-> > --- a/include/uapi/linux/v4l2-controls.h
-> > +++ b/include/uapi/linux/v4l2-controls.h
-> > @@ -954,6 +954,10 @@ enum v4l2_mpeg_mfc51_video_force_frame_type {
-> >  #define V4L2_CID_MPEG_MFC51_VIDEO_H264_ADAPTIVE_RC_STATIC            (=
-V4L2_CID_CODEC_MFC51_BASE+53)
-> >  #define V4L2_CID_MPEG_MFC51_VIDEO_H264_NUM_REF_PIC_FOR_P             (=
-V4L2_CID_CODEC_MFC51_BASE+54)
-> >
-> > +/*  MPEG-class control IDs specific to the MediaTek Decoder driver as =
-defined by V4L2 */
-> > +#define V4L2_CID_MPEG_MTK_BASE                       (V4L2_CTRL_CLASS_=
-CODEC | 0x2000)
-> > +#define V4L2_CID_MPEG_MTK_GET_SECURE_HANDLE  (V4L2_CID_MPEG_MTK_BASE+8=
-)
-> > +
-> >  /*  Camera class control IDs */
-> >
-> >  #define V4L2_CID_CAMERA_CLASS_BASE   (V4L2_CTRL_CLASS_CAMERA | 0x900)
 >
+>         return devm_...
+>
+> ...
+>
+> > +     regmap =3D dev_get_regmap(dev, NULL);
+> > +     if (!regmap) {
+> > +             dev_err(dev, "No regmap\n");
+> > +             return -EINVAL;
+>
+> Why not dev_err_probe()?
+
+There was no int return value from dev_get_regmap(),
+I think I can use -EINVAL for err in dev_err_probe as well.
+
+>
+> > +     }
+>
+>
+> > +static int bmi323_regmap_i2c_write(void *context, const void *data,
+> > +                                size_t count)
+> > +{
+> > +     struct device *dev =3D context;
+> > +     struct i2c_client *i2c =3D to_i2c_client(dev);
+> > +     int ret;
+> > +     u8 reg;
+> > +
+> > +     reg =3D *(u8 *)data;
+> > +     ret =3D i2c_smbus_write_i2c_block_data(i2c, reg, count - 1,
+> > +                                          data + sizeof(u8));
+> > +
+> > +     return ret;
+> > +}
+>
+> Hmm... Don't we have a better approach for these? regmap doesn't provide =
+SMBus
+> accessors?
+
+Custom implementation is required for the 'read' operation, while
+'write' can utilize the regmap SMBus accessors. Is it okay to have
+only custom read while write uses the SMBus accessor?
+
+>
+> > +static int bmi323_regmap_spi_read(void *context, const void *reg_buf,
+> > +                               size_t reg_size, void *val_buf,
+> > +                               size_t val_size)
+> > +{
+> > +     struct spi_device *spi =3D context;
+> > +     u8 reg, *buff =3D NULL;
+> > +     int ret;
+> > +
+> > +     buff =3D kmalloc(val_size + BMI323_SPI_DUMMY, GFP_KERNEL);
+ >
+> As per i2c part.
+>
+> > +     if (!buff)
+> > +             return -ENOMEM;
+> > +
+> > +     reg =3D *(u8 *)reg_buf | 0x80;
+>
+> Doesn't regmap configuration provide a way to set this?
+
+Okay, I will make use of regmap .read_flag_mask member.
+I will update this in the next series.
+
+>
+> > +     ret =3D spi_write_then_read(spi, &reg, sizeof(reg), buff,
+> > +                               val_size + BMI323_SPI_DUMMY);
+> > +     if (ret) {
+> > +             kfree(buff);
+> > +             return ret;
+> > +     }
+> > +
+> > +     memcpy(val_buf, buff + BMI323_SPI_DUMMY, val_size);
+> > +     kfree(buff);
+> > +
+> > +     return ret;
+> > +}
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
+
+Thank you
+Jagath
 
