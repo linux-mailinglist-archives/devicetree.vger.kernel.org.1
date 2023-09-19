@@ -1,195 +1,353 @@
-Return-Path: <devicetree+bounces-1384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B36B17A608E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 13:04:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D23997A60B7
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 13:09:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CCE381C20CC0
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 11:04:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECF421C20B36
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 11:09:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A755D3589B;
-	Tue, 19 Sep 2023 11:04:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 636F4358A4;
+	Tue, 19 Sep 2023 11:09:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 338202E639;
-	Tue, 19 Sep 2023 11:04:18 +0000 (UTC)
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74BBDF1;
-	Tue, 19 Sep 2023 04:04:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1695121457; x=1726657457;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=arkAckDr8mJsbg0QIqMsRpUXUTv6QgMYmV/MndpEw3U=;
-  b=Rpw/CyzZ1q3iNv2OQ7NaWTCpjKWDnKltvVuWZ7F/Cx9bbrsW9LxDLda7
-   6zZ+npBJdm2BqPW7srWOMc9Log28Pm1K0Y0LQAiONVVLnZOcwhtG2PNnP
-   6VVWW7zoUI9rjyor7ykSctg1KYiiBEh+32UwNgcoL+B1VJ1CgsQ5JAcCz
-   5RdZy762fRHW458sxj+EXzVEA+3en/9YsSetynOPpWqy6PEKLfb59HJxR
-   BFQ9fX+/v0umVzTa8bsOmlTcs0Tq/ketRgtP/xZfJc+0pHrSXPEeEh+gY
-   taWlkPH5jFLyaqAbeqJhPAbwHrqYcBdWWIpvmsQsQCeMREN/L8p9XMC6p
-   Q==;
-X-CSE-ConnectionGUID: vtOFWOyzTPyiBV2RmBldog==
-X-CSE-MsgGUID: g44qaf36QCOuCQXNxsxlLg==
-X-ThreatScanner-Verdict: Negative
-X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; 
-   d="scan'208";a="5291359"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 19 Sep 2023 04:04:16 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 19 Sep 2023 04:04:16 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Tue, 19 Sep 2023 04:04:16 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bCCqpKNIeZB6omTKNhO1V0Tl22h4HtIFjSIMZO1VC+t3EPGfxUGnq+p8rimf48aZPIXJTcDl5bLqiWLveldB0a2Kp/gIoTvguZTtxFSOXnbzPZa++cWaMF++DLY5uxPwx6HmG957UyGeD91/hQ3uxfZeX8Pv77G4tt4D42HPVCXklncWyTIxK9Qdxx3LQNtHTVeGFDC3TfYT+CrVRGNYN+M4Nv/O48kgyb0N4ebUQHHxjuJjEL/b3vEdQmWgtLg8bE2+FE++0hoRUaCEQq1NbYInPlkG63BuXAqpbAM/KIKRy7iq7/tFDEHPLRBkO9MiF7Bl0DI+Qy5xiHi8j212AA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=arkAckDr8mJsbg0QIqMsRpUXUTv6QgMYmV/MndpEw3U=;
- b=QlQbMozwRjVyZoQ9W+vnkfqG+kcVRF7a1lp2asgiByixWG3APYQuxBmTyYlt2Q76EVn65AHHA65l6ut+rmMqu/bBzOmdriEYqZcROfanBp0a8hLQbyPZ1Oka2GeErGNf+OMLQohWUp/DSS7lzYiz4HweQV8mRCFiJCI6avIgR5Ywt6v6Tva8rSakaeSaK3ZNtaqX/xu/ut9oFcCL3PqbT56LoWnKdG2M3a1r9zqLpslhJXwooxwLltvZJWJ2hHsL8dNNyunOpu/lvXXMQa1Sa9Ic8UDwcCn9jfFicTY0UJCTDG0DMFmF4h8LWShzgn/Zj3nY2qxSLF1u53dOhBP9sw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=arkAckDr8mJsbg0QIqMsRpUXUTv6QgMYmV/MndpEw3U=;
- b=X9Jz6qqVj3gX5x3PTFS2H/19czzscpq0xWcj0ndIbQmCHgdPL6FbAZMw2GauA4Gmm0gNlKalPY9koPPIPRujyZvdopD1MI86A7/OwMRDl6y65JKRvxtKoGZtPOofRVB9KQFYdRbZuTdoniNk7XDH5VXSc91oX4dFASzDAb34msE=
-Received: from DM6PR11MB3532.namprd11.prod.outlook.com (2603:10b6:5:70::25) by
- PH8PR11MB6778.namprd11.prod.outlook.com (2603:10b6:510:1c9::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.28; Tue, 19 Sep
- 2023 11:04:14 +0000
-Received: from DM6PR11MB3532.namprd11.prod.outlook.com
- ([fe80::6352:54f7:6c42:69ef]) by DM6PR11MB3532.namprd11.prod.outlook.com
- ([fe80::6352:54f7:6c42:69ef%6]) with mapi id 15.20.6792.026; Tue, 19 Sep 2023
- 11:04:14 +0000
-From: <Parthiban.Veerasooran@microchip.com>
-To: <andrew@lunn.ch>
-CC: <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-	<pabeni@redhat.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-	<Steen.Hegelund@microchip.com>, <rdunlap@infradead.org>, <horms@kernel.org>,
-	<casper.casan@gmail.com>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-doc@vger.kernel.org>, <Horatiu.Vultur@microchip.com>,
-	<Woojung.Huh@microchip.com>, <Nicolas.Ferre@microchip.com>,
-	<UNGLinuxDriver@microchip.com>, <Thorsten.Kummermehr@microchip.com>
-Subject: Re: [RFC PATCH net-next 2/6] net: ethernet: add mac-phy interrupt
- support with reset complete handling
-Thread-Topic: [RFC PATCH net-next 2/6] net: ethernet: add mac-phy interrupt
- support with reset complete handling
-Thread-Index: AQHZ4mEM4q/YL0tg8UaR0849XBWWbrASgTgAgASnrwCAAOOqgIAKALiA
-Date: Tue, 19 Sep 2023 11:04:14 +0000
-Message-ID: <f725ba58-e94b-5df7-2efe-70b18382ba2d@microchip.com>
-References: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
- <20230908142919.14849-3-Parthiban.Veerasooran@microchip.com>
- <28dce908-3a87-48c8-b181-d859697c0152@lunn.ch>
- <2db21ee1-17ba-b7ca-bcfb-110c0f66ef93@microchip.com>
- <489f7f63-a542-45cf-80ec-f8d3cb7aa686@lunn.ch>
-In-Reply-To: <489f7f63-a542-45cf-80ec-f8d3cb7aa686@lunn.ch>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM6PR11MB3532:EE_|PH8PR11MB6778:EE_
-x-ms-office365-filtering-correlation-id: 07b1ba2c-f398-478b-4291-08dbb90028fa
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: zpWykulbx3yqU1mn9aZ/8pNOvmcqqye7f4SvjHhXOZwk1rmfyhGm3gJwuhKnewEemAxkagoAZmpinf5IncUJWiCs48wFK2YiXIMOtNdMPUFxv087cp9h8U5Q4K2Gs80HAOfafYvR5m7pqpjUyjKNUpzfA2BgKv92+QFrBJRAfVC7DyrpIAa8F5M5fSzEvDf2p5ybdgiXr9TDHMlw9fxwaJgFNut6uZCZ94qidQrrHwSRAo5C8l7pA0rPpVvNW3Z+1Vjuk+qboblEtTOv2hDtsm2sM2J1tAQg6BVf9Gk5hP/0iH5nfLvfKAGTtjVoXCzU+oO7PKR75esvxCcEv02isgnrjHcsIg0+mmWmxYsZzT2jbLQkgxTuq4VijEKgmfsfZzN+xHrrNRpzjeuVjpZqZxMPA9LTKvvZ/3kcgfqbG32+gcVbuRFGTWBtd01rHsu+ngbT9Md0b5nuZ1whw5AGZ7XzxvcIGJTbQjLpkuZjwI5v/GtRFXSBYYSDBgNdv0N8AR9AAyUmVEL+MESCwlKO7F7lMnduRjkh8gIAHAp1V524Rh81VO7EgXKtwGy9WQLLgnRtl9pne1NDB1qQm70to2ST4wH6L/Olb+YM/aV+Hr9jEYFOYCmmY7yihBJwOYRX3b3YOS2N81ET48O9lcyHs5qAyhlNMGczDGqWadC9Xnr3AU6fmtTYG5h1ABy7+xji
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3532.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(136003)(396003)(39860400002)(346002)(376002)(451199024)(1800799009)(186009)(31686004)(36756003)(5660300002)(83380400001)(86362001)(31696002)(4744005)(4326008)(8936002)(8676002)(41300700001)(6506007)(6486002)(71200400001)(53546011)(107886003)(26005)(2616005)(6512007)(7416002)(122000001)(66946007)(478600001)(2906002)(76116006)(38100700002)(38070700005)(6916009)(316002)(66476007)(91956017)(66556008)(66446008)(54906003)(64756008)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UGhZSk5BZjJPNDZtRDBCdXhsemxncENUeEZYMlJMamEzRHppVEk4K3l1eklF?=
- =?utf-8?B?WFNTQ05URU9aVXdIVjdETHBRTnFxUGIySmg1NjFMYWVhK0dGa2RmV0VUa3VI?=
- =?utf-8?B?OXAyYlN1Zmo4V0VESG8xQi9YczEwNmVVbkh1ODk0Z3A4NVZKQzVjTmMxUjJX?=
- =?utf-8?B?NkN5VGlPQjVqMHV6UGI1aEg2bmJBdUlFUTl0ZHB4RTkxLzhVb3lqTHArRnpK?=
- =?utf-8?B?ZE0yUERWeXBHWkkvcWs1OURaVElFUG82a254M3VSdVBSdk5qVmR2ekx6TGtK?=
- =?utf-8?B?WTl3bmlBaUxiTXdmbXErSWFkRng0bWVMdHAveWF5cFhndlhQcFdqVHZpZ2Vr?=
- =?utf-8?B?M0o0RWE2ZWFmREl0MVNsa2xqaithcUwvS0tTdStqckI1ZU1pZEEvVHB1amh0?=
- =?utf-8?B?N0oyQ1ZMZHFNRUhybXZZUUk3ZXRyNjlzRkNmelg2V3k4am9GdmM5dVlCMWZO?=
- =?utf-8?B?WTdXS0lUTjRYd2ljMUR3MEsxTGhmaGN2QWRQYnhhM0dqRitkaGxpWDJvcFRP?=
- =?utf-8?B?Vjd0QWlYMXluTlNGNmRHZUdZMURNbDZPK3E3ZjByM0lidUdoWmpTbU1WZjRS?=
- =?utf-8?B?OHRvVlVRMjdIMDVUVWdZVG52c1N6SE1JK0QzSmZIMHJCcmlqZCs3UW16UjVY?=
- =?utf-8?B?REtGa2xiaExOR29uYmNPclhoK09oemp3emNTK3E2NGI2RnJzUW1IdTdQS1dt?=
- =?utf-8?B?M0c2c1AwdU1KOFdDa1E0VEN3N09tMlVlbTZwc25XV05TQ3JGSlA2YVFPRmdE?=
- =?utf-8?B?cXJ1dU5EMFVnYmxlM3F2ajFXYkVZMWZlckRLQVBYd0M3cXJ1MWhQcHhYVWN6?=
- =?utf-8?B?ckY0bGhPaU1VM1MvcHNnYzM5WEhEVjdYcXZ3cGo2WEdEV3Rocnhsc1hEajFI?=
- =?utf-8?B?VVZDYW4rS1BvZkllU1VPNTh2S002WTQrbCt2aHZTV3JkdFUzQWZubTFrc0Nr?=
- =?utf-8?B?TUN6Y3o3STNFSTllZFJsbVoyU2dMOWdCOS8xWFc3RU5WZ1Qxby93UnA5WUFr?=
- =?utf-8?B?dVRGL05sQ3NuYm5ydXUzWDFrNGZodDBLMzdQQ3lmdDhDaFdPY0d4ZDVmSHZl?=
- =?utf-8?B?WFZySTI0eW9ldXhzbjFkREx6OHJpOWNBVU9WVmdEaHdoTkdmSGF2a3B0N0dv?=
- =?utf-8?B?VnlyNkRKd3dRRXc2cHFiakFtc3RscUROTnkvUlNKOWFJWVVpNUZmaUppc1Nr?=
- =?utf-8?B?UnBPdllMWUtabmZrRXl2MVVhU0hkWDlmQTdqeU01OVJHZE9udnlPblNpQWxP?=
- =?utf-8?B?NGhrV3M2N1Q0WFJRR0dsRE91b2QrcS9VRytnZ29HaUtSMXkzY3lKd05aVTNz?=
- =?utf-8?B?Q1NqZlNxeWx3R0wrS0plWkR0RXRnL0dzTFJPMS9WOW9VcTNGSUE3akRPbGFZ?=
- =?utf-8?B?eGJKell1ZVdoMmdBTUptNGE3OUV1aWIrdGJ0RTgydWtuM3l1Y20xUWdkbXRE?=
- =?utf-8?B?bFVZRWVRV0pyMkNUdUFiOUk2NjRiRndqUjJUT2JYc1NRa1RpYk5NQ3E1VWpk?=
- =?utf-8?B?em82UnFDckI0RkVyN0NlamlTbnVaeTRTRmZzZTlVK1dEcG9idWE1M1RjbVZr?=
- =?utf-8?B?MUZJOSt4TFRGT2pVQWkwZGRKaHVZN2xKSGdiSW1nM3F5OHgraGFZbkF0STlH?=
- =?utf-8?B?MVR1VHlldjI2dzBvSXJRb2sxSjBWT0tZQlNSL1hocm1JUWlsTmNGU2VERUJO?=
- =?utf-8?B?VVlKRHpGUEdPQlp6TXlnS0pMd2xSQUpZT0tIQUp3V3BtVVZPVjhvTEZxeVRs?=
- =?utf-8?B?OXZXNE9McHlJVlpuWGtvSEI3OXY1Z05waGJwNDRRa0hGb0VyU01KeXdrZGlR?=
- =?utf-8?B?Qjl1YW1vZGl0T2xDVFA4cmFQN2x1eFhRdjdES2dVc2VQdzFFK2RDTlo0amhL?=
- =?utf-8?B?OWh3eVVZZmp5L3NadUlPWWNCZXNTZUJibWUwb2RySWRZZ211Q2RHeEhudVZK?=
- =?utf-8?B?NWtHL0NFd2Y2TjJybnlWS0FxZitQc1F3dUJTc3BCUWluREMvQnJSem05VXVL?=
- =?utf-8?B?QVpGNEVsZkZhUUxYUytrZVBmeG9GVkI2M2ZLMHY1MXVBOTJxTWEzWWMzZ0pD?=
- =?utf-8?B?Wndya1VWSTZqekQxSThteFhrbE1CWW1NKzJVaUlqRmFpQjduU2UvMEJ2RUdn?=
- =?utf-8?B?YStmRFRiaW16MExqRzFnbWl1MWdVQURjdkc1bTd4WkN6MC9VclRaK2t2QjQz?=
- =?utf-8?B?RlE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <74EBA55D8BDBD647B25B346D5E4DA69C@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AE51339AD
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 11:09:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93E1CC433C7;
+	Tue, 19 Sep 2023 11:09:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695121759;
+	bh=DzI+RDUO22bcs7FJ9u5LUITO8dijTvNa+EqysJiAUvc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lOx7kiQynxIVdqtM7Dd5TgU4xVa8a5forX6Nl3CB1tJLZeeZyvkJNBWBUVOYqJfGX
+	 MhgTWHu+2iB33xSd2JTNydY8zhkl7Sm/AaB5+thGE2bHiU1AVmLcoAyXMDBrZB1vgU
+	 +mzivljNmERBTo0tsI/4h4Xdl/+G1i+3+wwFFA7LRFXs+3GpTuiFWtJXDVSFoY1lpj
+	 VHYKrWcinZLfI9bz57ArA5s8VkWm8xWruccF3Co+377qvHUNQ1+01dT/lgzja+Ap+P
+	 1UTyniiHyqVpEO63QrBV4VvDo9BIjkpDCZysMJyUiWFccg7ZFW33FijiPXXioh+3p/
+	 PK2cDUIvvrfcA==
+Date: Tue, 19 Sep 2023 12:09:13 +0100
+From: Conor Dooley <conor@kernel.org>
+To: yang tylor <tylor_yang@himax.corp-partner.google.com>
+Cc: dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jikos@kernel.org, benjamin.tissoires@redhat.com,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	poyuan_chang@himax.corp-partner.google.com, jingliang@chromium.org,
+	hbarnor@chromium.org
+Subject: Re: [PATCH V2 1/2] dt-bindings: input: Introduce Himax HID-over-SPI
+ device
+Message-ID: <20230919-cc4646dbfb953bd34e05658c@fedora>
+References: <20230919024943.3088916-1-tylor_yang@himax.corp-partner.google.com>
+ <20230919024943.3088916-2-tylor_yang@himax.corp-partner.google.com>
+ <20230919-70b2f1e368a8face73468dfa@fedora>
+ <CAGD2q_anfBP78jck6AbMNtgAggjOgaB3P6dkmq9tONHP45adFA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3532.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 07b1ba2c-f398-478b-4291-08dbb90028fa
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Sep 2023 11:04:14.1678
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Tqt8PvtiPZAuXZMZZzS8FlwWpB7/uxtO2n/3eRUBK0hqy8mDT08PITrexp00/LDRImnk/5f7zmayv3JVjVcBsX3hXahx3GTq1N145X9Bj8Zj2jdqf7EPjwEnQQ7ZEzms
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6778
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="mGSUTedGx3oXLB+X"
+Content-Disposition: inline
+In-Reply-To: <CAGD2q_anfBP78jck6AbMNtgAggjOgaB3P6dkmq9tONHP45adFA@mail.gmail.com>
 
-SGkgQW5kcmV3LA0KDQpPbiAxMy8wOS8yMyA3OjQ5IGFtLCBBbmRyZXcgTHVubiB3cm90ZToNCj4g
-RVhURVJOQUwgRU1BSUw6IERvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVu
-bGVzcyB5b3Uga25vdyB0aGUgY29udGVudCBpcyBzYWZlDQo+IA0KPj4gT2suIElmIEkgdW5kZXJz
-dGFuZCBjb3JyZWN0bHksIEkgaGF2ZSB0byB1c2UgZGV2bV9yZXF1ZXN0X3RocmVhZGVkX2lycSgp
-DQo+PiBpbnN0ZWFkIG9mIGRldm1fcmVxdWVzdF9pcnEoKSBhbmQgbGV0IHRoZSB0aHJlYWQgaGFu
-ZGxlciByZWdpc3RlcmVkIHdpdGgNCj4+IHRoZSBkZXZtX3JlcXVlc3RfdGhyZWFkZWRfaXJxKCkg
-ZnVuY3Rpb24gdG8gcGVyZm9ybSBpbnRlcnJ1cHQgYWN0aXZpdHkNCj4+IGRpcmVjdGx5Pw0KPiAN
-Cj4gWWVzLiBJJ3ZlIG5vdCBsb29rZWQgYXQgYWxsIHRoZSBwYXRjaGVzIHlldCwgYnV0IGlmIHRo
-ZSB3b3JrIHF1ZXVlIGlzDQo+IG5vdCB1c2VkIGZvciBhbnl0aGluZyBlbHNlLCB5b3Ugc2hvdWxk
-IGJlIGFibGUgdG8gcmVtb3ZlIGl0LCBhbmQgbGV0DQo+IHRoZSBJUlEgY29yZSBoYW5kbGUgYWxs
-IHRoZSB0aHJlYWRpbmcgZm9yIHlvdS4NClN1cmUsIHdpbGwgaW1wbGVtZW50IGl0LiBUaGFua3Mu
-DQoNCkJlc3QgUmVnYXJkcywNClBhcnRoaWJhbiBWDQo+IA0KPiAgICAgIEFuZHJldw0KPiANCg0K
+
+--mGSUTedGx3oXLB+X
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Sep 19, 2023 at 05:31:29PM +0800, yang tylor wrote:
+> Hi Conor,
+>=20
+> > > Additional optional arguments:
+> > > ic-det-delay-ms and ic-resume-delay-ms are using to solve runtime
+> > > conditions.
+>=20
+> > Runtime conditions? Aren't th=D1=94se properties of the panel & therefo=
+re
+> > fixed? If they were runtime conditions, then setting them statically in
+> > your DT is not going to work, right?
+>=20
+> Because each platform's display driver ready time is different. TP part
+> need to avoid this timing by measuring the waveform of LCD reset pin
+> low period and TP probe timing. For example, if LCD rst pin low from
+> timestamp 100 to 800, TP driver probe at 600. TP probe will fail. Then
+> user should set ic-det-delay-ms bigger than 200, to avoid LCD rst low
+> timing. As you can see, the timing needs to be measured at runtime to
+> decide how long it should be. Then, if the condition is not changed, the
+> value could keep the same.
+
+That sounds to me like something you would test once for a given
+platform and then the values are static. If you are actually changing it
+at *runtime*, how is doing it through DT suitable? Does your firmware do
+the tests & then set the values in DT dynamically?
+
+>=20
+> > It looks like you deleted all of the properties from the previous
+> > submission of these changes. I don't really understand that, it kinda
+> > feels just like appeasement, as you must have needed those properties
+> > to do the firmware loading etc. How are you filling the gap those
+> > properties have left, when you still only have a single compatible
+> > string in th=E3=84=9Fs binding? Is there a way to do runtime detection =
+of which
+> > chip you're dealing with that you are now using?
+>=20
+> After reviewing, I found the properties could go to IC driver settings :
+> "himax,heatmap_16bits" because it depends on IC's ability;
+
+How do you detect the IC's abilities?
+
+> Some
+> could remove and use default values: "himax,fw_size",
+> "himax,boot_time_fw_upgrade". "himax,fw_size" has a default value in
+> IC settings, and likely won't change in this IC.
+
+Okay.
+
+> The behavior of "himax,boot_time_fw_upgrade" seems not stable and
+> should be removed. "himax,fw_in_flash", I use the kernel config for
+> user to select.
+
+That seems like a bad idea, we want to be able to build one kernel that
+works for all hardware at the same time.
+
+> "himax,pid" could be remove and use default firmware name
+> "himax_i2chid.bin" to load. It was added because users may desire to
+> choose a special name like "himax_i2chid_{pid}.bin" instead of the default
+> one.
+> It also could be replaced with newly added "himax",id-gpios" which is sti=
+ll
+> experimental.
+
+Also, pleae don't top post, but instead reply in-line with my comments,
+as I have done here.
+
+> Btw, I encounter an error of patch [2/2], which says:
+> BOUNCE linux-input@vger.kernel.org: Message too long (>100000 chars)
+> and the patch didn't appear at patchwork.kernel.org. What should I do to
+> deal with this problem?
+
+No idea. Maybe try to split it into multiple patches?
+The other option is to also cc patches@lists.linux.dev as that has some
+higher capacities, but that's not going to be a silver bullet.
+
+Thanks,
+Conor.
+>=20
+>=20
+> Thanks,
+> Tylor
+>=20
+>=20
+> On Tue, Sep 19, 2023 at 4:41=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
+rote:
+>=20
+> > Hey,
+> >
+> >
+> > On Tue, Sep 19, 2023 at 10:49:42AM +0800, Tylor Yang wrote:
+> > > The Himax HID-over-SPI framework support for Himax touchscreen ICs
+> > > that report HID packet through SPI bus. The driver core need reset
+> > >  pin to meet reset timing spec. of IC. An interrupt pin to disable
+> > > and enable interrupt when suspend/resume. An optional power control
+> > > pin if target board needed. Panel id pins for identify panel is also
+> > > an option.
+> > >
+> > > Additional optional arguments:
+> > > ic-det-delay-ms and ic-resume-delay-ms are using to solve runtime
+> > > conditions.
+> >
+> > Runtime conditions? Aren't th=D1=94se properties of the panel & therefo=
+re
+> > fixed? If they were runtime conditions, then setting them statically in
+> > your DT is not going to work, right?
+> >
+> > >
+> > > This patch also add maintainer of this driver.
+> > >
+> > > Signed-off-by: Tylor Yang <tylor_yang@himax.corp-partner.google.com>
+> >
+> > It looks like you deleted all of the properties from the previous
+> > submission of these changes. I don't really understand that, it kinda
+> > feels just like appeasement, as you must have needed those properties
+> > to do the firmware loading etc. How are you filling the gap those
+> > properties have left, when you still only have a single compatible
+> > string in th=E3=84=9Fs binding? Is there a way to do runtime detection =
+of which
+> > chip you're dealing with that you are now using?
+> >
+> > Confused,
+> > Conor.
+> >
+> > > ---
+> > >  .../bindings/input/himax,hid-over-spi.yaml    | 109 ++++++++++++++++=
+++
+> > >  MAINTAINERS                                   |   6 +
+> > >  2 files changed, 115 insertions(+)
+> > >  create mode 100644
+> > Documentation/devicetree/bindings/input/himax,hid-over-spi.yaml
+> > >
+> > > diff --git
+> > a/Documentation/devicetree/bindings/input/himax,hid-over-spi.yaml
+> > b/Documentation/devicetree/bindings/input/himax,hid-over-spi.yaml
+> > > new file mode 100644
+> > > index 000000000000..3ee3a89842ac
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/input/himax,hid-over-spi.yaml
+> > > @@ -0,0 +1,109 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/input/himax,hid-over-spi.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Himax TDDI devices using SPI to send HID packets
+> > > +
+> > > +maintainers:
+> > > +  - Tylor Yang <tylor_yang@himax.corp-partner.google.com>
+> > > +
+> > > +description: |
+> > > +  Support the Himax TDDI devices which using SPI interface to acquire
+> > > +  HID packets from the device. The device needs to be initialized us=
+ing
+> > > +  Himax protocol before it start sending HID packets.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: himax,hid-over-spi
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  '#address-cells':
+> > > +    const: 1
+> > > +
+> > > +  '#size-cells':
+> > > +    const: 0
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  himax,rst-gpio:
+> > > +    maxItems: 1
+> > > +    description: Reset device, active low signal.
+> > > +
+> > > +  himax,irq-gpio:
+> > > +    maxItems: 1
+> > > +    description: Interrupt request, active low signal.
+> > > +
+> > > +  himax,3v3-gpio:
+> > > +    maxItems: 1
+> > > +    description: GPIO to control 3.3V power supply.
+> > > +
+> > > +  himax,id-gpios:
+> > > +    maxItems: 8
+> > > +    description: GPIOs to read physical Panel ID. Optional.
+> > > +
+> > > +  spi-cpha: true
+> > > +  spi-cpol: true
+> > > +
+> > > +  himax,ic-det-delay-ms:
+> > > +    description:
+> > > +      Due to TDDI properties, the TPIC detection timing must after t=
+he
+> > > +      display panel initialized. This property is used to specify the
+> > > +      delay time when TPIC detection and display panel initialization
+> > > +      timing are overlapped. How much milliseconds to delay before T=
+PIC
+> > > +      detection start.
+> > > +
+> > > +  himax,ic-resume-delay-ms:
+> > > +    description:
+> > > +      Due to TDDI properties, the TPIC resume timing must after the
+> > > +      display panel resumed. This property is used to specify the
+> > > +      delay time when TPIC resume and display panel resume
+> > > +      timing are overlapped. How much milliseconds to delay before T=
+PIC
+> > > +      resume start.
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - interrupts
+> > > +  - himax,rst-gpio
+> > > +  - himax,irq-gpio
+> > > +
+> > > +unevaluatedProperties: false
+> > > +
+> > > +allOf:
+> > > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > > +    #include <dt-bindings/gpio/gpio.h>
+> > > +
+> > > +    spi {
+> > > +        #address-cells =3D <1>;
+> > > +        #size-cells =3D <0>;
+> > > +
+> > > +        touchscreen@0 {
+> > > +            compatible =3D "himax,hid-over-spi";
+> > > +            #address-cells =3D <1>;
+> > > +            #size-cells =3D <0>;
+> > > +            reg =3D <0x0>;
+> > > +            interrupt-parent =3D <&gpio1>;
+> > > +            interrupts =3D <7 IRQ_TYPE_LEVEL_LOW>;
+> > > +            pinctrl-0 =3D <&touch_pins>;
+> > > +            pinctrl-names =3D "default";
+> > > +
+> > > +            spi-max-frequency =3D <12500000>;
+> > > +            spi-cpha;
+> > > +            spi-cpol;
+> > > +
+> > > +            himax,rst-gpio =3D <&gpio1 8 GPIO_ACTIVE_LOW>;
+> > > +            himax,irq-gpio =3D <&gpio1 7 GPIO_ACTIVE_LOW>;
+> > > +            himax,3v3-gpio =3D <&gpio1 6 GPIO_ACTIVE_HIGH>;
+> > > +            himax,ic-det-delay-ms =3D <500>;
+> > > +            himax,ic-resume-delay-ms =3D <100>;
+> > > +        };
+> > > +    };
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > index bf0f54c24f81..452701261bec 100644
+> > > --- a/MAINTAINERS
+> > > +++ b/MAINTAINERS
+> > > @@ -9323,6 +9323,12 @@ L:     linux-kernel@vger.kernel.org
+> > >  S:   Maintained
+> > >  F:   drivers/misc/hisi_hikey_usb.c
+> > >
+> > > +HIMAX HID OVER SPI TOUCHSCREEN SUPPORT
+> > > +M:   Tylor Yang <tylor_yang@himax.corp-partner.google.com>
+> > > +L:   linux-input@vger.kernel.org
+> > > +S:   Supported
+> > > +F:   Documentation/devicetree/bindings/input/himax,hid-over-spi.yaml
+> > > +
+> > >  HIMAX HX83112B TOUCHSCREEN SUPPORT
+> > >  M:   Job Noorman <job@noorman.info>
+> > >  L:   linux-input@vger.kernel.org
+> > > --
+> > > 2.25.1
+> > >
+> >
+
+--mGSUTedGx3oXLB+X
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQmBVgAKCRB4tDGHoIJi
+0rn5AQDRibrglmMoz8/uRgj0h4r/kCkTWkrAGD414U3qKp6A6QD/RVO3uWiOlSop
+sDln48YqSbDYIRdromOLhK6PvsZ0sAU=
+=wDQ7
+-----END PGP SIGNATURE-----
+
+--mGSUTedGx3oXLB+X--
 
