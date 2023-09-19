@@ -1,192 +1,1035 @@
-Return-Path: <devicetree+bounces-1402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6E5D7A60F6
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 13:14:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAFF87A610C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 13:18:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 714DA281D49
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 11:14:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 969BE281DC4
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 11:18:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D76D038BAD;
-	Tue, 19 Sep 2023 11:14:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41EC738BA9;
+	Tue, 19 Sep 2023 11:18:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FDBB38BA9;
-	Tue, 19 Sep 2023 11:14:26 +0000 (UTC)
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD8582D7E;
-	Tue, 19 Sep 2023 04:13:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1695122036; x=1726658036;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=nvYREegptLbLU9C96sEDqoWc7+it5HIqTU+CP//ycYQ=;
-  b=DzmPqGceN/IFX37im1hNjFpCO4uOZ3S/WDkVU/Xs+MdlIw6Y0COigyEs
-   s/B5yVF9cmSEiTsrV/PBJtDgFd6fRBWqfMjsmdFEJUXmOrD5SAk9cK7re
-   XnIgi/coflj6xOcCCan+JrkJ1OyQHgNo3/3X+IWcJ8Yii40EZTlYqLOTb
-   QB35VasKaQ5ZzeHwbG05GnIZWl+2/yJ8m/IrImXJtof0ZkPHPN6aP00kV
-   L5Wcj2Rj0E2MuWMvvsD6Drjc2EcSVvubtHLwnxaeq0TxoSGhdTxkWYIrN
-   t+xtJ+nAQORPcUjwdJ0pDNGYKYE903xFOLhK9jhQtBAE3nF4nY2nz/NkP
-   w==;
-X-CSE-ConnectionGUID: fFPnucd/SCK8IEWNYATfjg==
-X-CSE-MsgGUID: flZEG7qAQNisRDmsLPDaAA==
-X-ThreatScanner-Verdict: Negative
-X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; 
-   d="scan'208";a="172412939"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 19 Sep 2023 04:13:49 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 19 Sep 2023 04:13:18 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Tue, 19 Sep 2023 04:13:18 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TltWFwo7esIzrf2DxnUElG84t8nm10wuazsoxw+BnSymmJNq6lxwfgIdtwmDp82MQgiRFp9/WqyIIbaSzjDZXhBziGV6tCrBgYoXQShHkIdmjV4G0k3mh8pQmSu5dvAAD7tmcq7xm4C/AAVnfVyv8ypAkwayOlhmsBOqL4FxZ47Y8pFHXUeupZLWHzQzolkmH5wzhUAAHtiAWGhWBYa/W15isnxQuqiR6pHIbOb+3Rky/Grff7dVcTIInIh5P2CLX7Dhls0/RiWOE4qGN7QNV7Z/YGRQFfd1ERyCcjssZJTX/8i5zCqYALHvZaaHesk4jdO5u9DlZUu5/uopwSK/eA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nvYREegptLbLU9C96sEDqoWc7+it5HIqTU+CP//ycYQ=;
- b=AYdkOKJiPDLacQCIk1ww2UdfhC4Aj2/v4M2LalPisScSJs5mw26x8iLorscl3sMryWGeX69LMC7Vociv7lbrX0MaCCIRQLZaV7oZczQbyw6wh7GGcNpkatJdmreLoI3l+sbsaoQNw7IOdw7VruRwboNChNiy+/HZuo0gN6b6Eh8J4U9In8e6cAkYLbdFkCwsynJr2yHLXrc2bzdyB4bDh41K9ul59in5uzXcAdCFIUUj0wFIXqO72fizbCU7U5MNb4B+WWb+cQU3VRwwhY1YVLPv3Ofh+yVZXpouKRuSRIe6VudgjdAJLN7GKpLrxQyB5ZGxu7TT1CmBOkKe5fXU+g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nvYREegptLbLU9C96sEDqoWc7+it5HIqTU+CP//ycYQ=;
- b=Ab3wBtdcGYKR2U6kxBg4Pp7xloK1JPuFovNp8wCF67Ls+YdtAehQqk28U3iJaT1VVKUAMcIf3tGNa/kRZ8f2mXvxTRn5P6gdZtlNzmk8RVCegSe18NkxtT8PZC4945gSgW35ScWIe3xvOIXDzHLymBD5lykcUmGAyxsZBhOy9pg=
-Received: from DM6PR11MB3532.namprd11.prod.outlook.com (2603:10b6:5:70::25) by
- PH8PR11MB6610.namprd11.prod.outlook.com (2603:10b6:510:1cd::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.31; Tue, 19 Sep
- 2023 11:13:13 +0000
-Received: from DM6PR11MB3532.namprd11.prod.outlook.com
- ([fe80::6352:54f7:6c42:69ef]) by DM6PR11MB3532.namprd11.prod.outlook.com
- ([fe80::6352:54f7:6c42:69ef%6]) with mapi id 15.20.6792.026; Tue, 19 Sep 2023
- 11:13:13 +0000
-From: <Parthiban.Veerasooran@microchip.com>
-To: <andrew@lunn.ch>
-CC: <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-	<pabeni@redhat.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-	<Steen.Hegelund@microchip.com>, <rdunlap@infradead.org>, <horms@kernel.org>,
-	<casper.casan@gmail.com>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-doc@vger.kernel.org>, <Horatiu.Vultur@microchip.com>,
-	<Woojung.Huh@microchip.com>, <Nicolas.Ferre@microchip.com>,
-	<UNGLinuxDriver@microchip.com>, <Thorsten.Kummermehr@microchip.com>
-Subject: Re: [RFC PATCH net-next 1/6] net: ethernet: implement OPEN Alliance
- control transaction interface
-Thread-Topic: [RFC PATCH net-next 1/6] net: ethernet: implement OPEN Alliance
- control transaction interface
-Thread-Index: AQHZ4mEB+nwP90vbvEyYqcmk7ntkibAYC/aAgAoD1gA=
-Date: Tue, 19 Sep 2023 11:13:13 +0000
-Message-ID: <9615b403-52c1-f24f-382f-8eea3ddfcf04@microchip.com>
-References: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
- <20230908142919.14849-2-Parthiban.Veerasooran@microchip.com>
- <8d53ca8d-bcf6-4673-a8ff-b621d700576e@lunn.ch>
-In-Reply-To: <8d53ca8d-bcf6-4673-a8ff-b621d700576e@lunn.ch>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM6PR11MB3532:EE_|PH8PR11MB6610:EE_
-x-ms-office365-filtering-correlation-id: b3d1db76-f967-4051-a637-08dbb9016a55
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: /LOrD6N/HE6zFYkRVdPinKP21L3B2BAAk7P3CW+eRI49e27+hS4qvzxbt7AF2GKKbK9lvOvhtXMCsig+XPFERv9p4tMaUfqn9IiYERx94bteSI9W8lBU9SD9/K6DJ/INKqW0qwQ3xi0sJHEkACqOif0Whd/qKKb5zYP2Mk7lRJdNvtA8MQ2riMm7Gv3PL7Dr0iu8m2UWp0NdVpme9j/sQhuuK2gOLrHt93mk1+fwyOkPnPASqN42BhIqtzsG7IddQexS3dr9welFpNeybAWQBderV8Z+Doo7xQe2Ijhfe2GIsK6qroxYprRb/swQgfqWPpUs4CdN2RUBbOg7AasceiCCJqDyMqiIyCSOziR6ikbgZuAEN0Nyo/o8p4V9JAozyiNRR7kxy8IDteMlfHq8Gt5MYB9qtZBIJG+2jUMXRJPvalkqkb40aCXQLIIIgHjRFzw7RGoRP4IT5C1SlF8hmx+aMLhgwVwKnHPPpBK3/+KGNatq+/rlc1h9Chd1RRSmH03rwyBslI8qUUVT9epDYtP+QCBpgFt/h5Cjcjfiwp4amjfPTHb9xs2mHvmEN9Irxvuri1XDq/2rqYjXe/Gj+b5U4vmLgJT1RP5J9kd7tfcNuBHR7O9q4gjxtofjrlnWw6xqqM9Ou88K2OJg8FLd9p/prEBLcmGb1UhwJi095DfpkrBMCPGLUd0BO+clQwqJ
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3532.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(39860400002)(136003)(376002)(396003)(346002)(451199024)(186009)(1800799009)(53546011)(31686004)(4744005)(2906002)(7416002)(8936002)(4326008)(41300700001)(5660300002)(66446008)(54906003)(76116006)(91956017)(66556008)(36756003)(64756008)(107886003)(66946007)(8676002)(66476007)(6916009)(316002)(122000001)(478600001)(71200400001)(6486002)(26005)(38100700002)(6506007)(83380400001)(31696002)(38070700005)(2616005)(6512007)(86362001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?YXd5MUpjN3B1cXowUzdzK1AzTTlrd05IOVA4clVKZ01nUEdnL3p3MXlwTG96?=
- =?utf-8?B?K1FyL3hDVklXbkpmNEZTa0RiT3lDUDZ1eHU5V0s2UGtYR0RoZVNUNTV0SUJ5?=
- =?utf-8?B?ZG5IcWlUUmMxY1kzRi9XWTJ2WnBVbng5Y3dHV0RlZmlsSDhRbDJZdVpEdDBX?=
- =?utf-8?B?TW1sTkZQNzdyVElMZjJhN0VBS1NzaTc2VUJ3d3B0cU1kWnNvdUhxVU81MC9o?=
- =?utf-8?B?YjdXeUMxYXJlZ2hRdHo2RzFUV3gwbFM4aldpVjFmM1JQYVpPdUNmUGxIL0or?=
- =?utf-8?B?SVo4b3hTOWRCMUhSNVo2VklxYUlKekt3OSt5NVNDOWV4MDVoMGMxTHRnenIy?=
- =?utf-8?B?anNyNlRtL0tsY055V3gzSmsrR1E1VDRwQXZCQzJ4aTUrVjZIODIwaHVFMmlG?=
- =?utf-8?B?THYxcExUaWdLSVIxVFZCV0ExbEo0TTg5bU1uS0N5L0JwY3pDYlY2azRmMmo1?=
- =?utf-8?B?YU9pcFdFUlpYdVlGZmd1MlFmc0xib1k3ZFQ0azJTbGRjcEJyeC9DWmVWQXNL?=
- =?utf-8?B?bVFpR3JwM1VlQkhrZ1VpM1JDa2NTMmM2UTFUNmRmczNsU0pXdWNoaFRoVnRD?=
- =?utf-8?B?cUZNQjhCZy9CY1E2YytabWVvV291SlNjUkdyNDRnS1dUaytrV2RhZDh5blJD?=
- =?utf-8?B?SCt3Y2htUEZVejF2c1RzNkcxKy9UdjFmaXlybnd6cnRUMndYeXRhaEE0Rkpm?=
- =?utf-8?B?V2Uzd080TFkvb3paKzFGNnk1SXVVODUvNkhVTXBGSXpXWExSY1JDT3BlNGsw?=
- =?utf-8?B?OHlTVzhTL3Q0cmxHRXpEaThrRzVCdnpvZEk5K2dKSG1hNFNQTFVFNWhXSmZH?=
- =?utf-8?B?UlBDRVltbXRPdllkOVBINFNZT0h6N0o5OGp6c0pMTUltQzNGb1U5Uk5PZFFy?=
- =?utf-8?B?d1dmcEJURWtabVZ4enFRQjRMWkFXQ0ZhbDNLWGpSakp5OU9YTVN1YVRnaVd6?=
- =?utf-8?B?aUVTVE1jN080UlZVTm5GRi92ZmtLa2lFTGkxYTY3c28vWmxmVXNVTHhRZmFN?=
- =?utf-8?B?S2VwZFE4cllucndlTnNDNVNPL3ZKMnZ3K2ZwMDd2NjR0amFLdDRXY3puN0pR?=
- =?utf-8?B?a1dNZjZweDZRdnpsSFNmQ0o4V0d0Ty9lVWlGY2J0L3JyMFZjZHBTNXVFZWJL?=
- =?utf-8?B?TnNiU1lTMGZtb0dHY201YTA2cEVLWU95bkJwME5sQUg3SzVETVE5aXNyTXBu?=
- =?utf-8?B?ZjZUb2g2aUppMWVGRkxEd0FOVDVlQ2w4UlVneVNsalRoMkhQSlFXR0lhbFFr?=
- =?utf-8?B?SDh3MkZvV0tmeXp3VWxzczA4ZUNnUHRXa1N5akp4Um1rVHJtYXdoSDViWFp3?=
- =?utf-8?B?ZldCTVdUelIwTTkwQWdwQ3M4Zit2TFhFWk1mL2d4WGZVeW8vUWpoa0tkYzNs?=
- =?utf-8?B?K3F6OXpwODV4Y2kwVmFIaWR3dWl2eThLNU1EdVZ5MUZsZDZPWUNwclNoWTBw?=
- =?utf-8?B?UjltZHBONFdYV0d5ZWYyTWg5SlIycmN3K0pZWDlmZHpQUjkzMDdjUHh5UHE0?=
- =?utf-8?B?QSttU3lxa2lVTFJiNEFBR1BCbFV2R0FUTWtrRUllQ0NWeUgrb0JhUUhsbnh1?=
- =?utf-8?B?SHlFNi8xNnk2b2xlYm5DZkVsdzJ1d1BPTnl4Q0RkVEMvaXd1MmU3TUx3dVN0?=
- =?utf-8?B?bUd2c0NjZDFsdnE4cDhMOTR6OWFMa2tNSWdFL2VGNGlubjJ6dzhBQ2FhaXFl?=
- =?utf-8?B?aTdZNHowN0hObHBidWNSYzZPaUc1NlVCZHErdHRta3hSdUlBZG5qc0xQL1Vi?=
- =?utf-8?B?Qzd5b3hUdVJhazZubFJoQ2hqb241QXltUnNtVlRPaWdlaHhlMS9xQU1McWJP?=
- =?utf-8?B?N3lEbHFNRW1RMm9PYkwrRFJGRG1Tdm1WS0xhRGJVWlhCSVRFY2dpY0pKWGhv?=
- =?utf-8?B?eWdlRXpEMGdVMWlkc1o2UlhtdzlGOHpVdS9xWVJtMFBXMTNVRDd6c3hFeExB?=
- =?utf-8?B?d0FSS2wzajR0ejU1V3JIYVlybkNaMk91UkxUMU0rTzBoTzY3YWwwOEZ5eEZp?=
- =?utf-8?B?N2dmaFJCMFZpUVBMVmFpTUN6cGRQUitrSXV5eUJKSEdzWGFQWTBBY25vemMz?=
- =?utf-8?B?bUEzbWh5WnpNUURjbHc2RE9UWWFtcHBhVGdFNW9QQjN1b092eHE3a0RhQVFU?=
- =?utf-8?B?eUlVLzE2Z3pFd1ZLeDlwQnBYOHdRK2g1TDE3TW5LTUhrc3JFUEZIdm14Q1Qr?=
- =?utf-8?B?WXc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <D67B64EA4A16E34BA54D786030351F0D@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AD19882E
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 11:18:10 +0000 (UTC)
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CC10B8;
+	Tue, 19 Sep 2023 04:18:05 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by ex01.ufhost.com (Postfix) with ESMTP id 6576A24E052;
+	Tue, 19 Sep 2023 19:17:56 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 19 Sep
+ 2023 19:17:56 +0800
+Received: from [192.168.125.57] (113.72.144.67) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 19 Sep
+ 2023 19:17:55 +0800
+Message-ID: <c49e556a-194b-e9e4-ce56-cd96085e708e@starfivetech.com>
+Date: Tue, 19 Sep 2023 19:17:54 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3532.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b3d1db76-f967-4051-a637-08dbb9016a55
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Sep 2023 11:13:13.2819
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6Zm47iGeyvjiA3w6z0q9vA/y5me6oHTZhX/d751BmpxWnUe7ZYEeamj3DFJK21IYUa3FU668vZqMz9N70VLuTShD6ZjgXTIMZ1Xh00WMW3m8gN5Ji3p5dERobquc8Pu7
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6610
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v6 18/19] PCI: starfive: Add JH7110 PCIe controller
+Content-Language: en-US
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>, Daire McNamara
+	<daire.mcnamara@microchip.com>, Conor Dooley <conor@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>,
+	=?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, Mason Huo
+	<mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>
+References: <20230915102243.59775-1-minda.chen@starfivetech.com>
+ <20230915102243.59775-19-minda.chen@starfivetech.com>
+ <CAJM55Z_V7Zyni=hj8RLYb_Q0AbJ+8XNo6ABq2-=2_jD0KO1nFQ@mail.gmail.com>
+From: Minda Chen <minda.chen@starfivetech.com>
+In-Reply-To: <CAJM55Z_V7Zyni=hj8RLYb_Q0AbJ+8XNo6ABq2-=2_jD0KO1nFQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.144.67]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-SGkgQW5kcmV3LA0KDQpPbiAxMy8wOS8yMyA3OjQ2IGFtLCBBbmRyZXcgTHVubiB3cm90ZToNCj4g
-RVhURVJOQUwgRU1BSUw6IERvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVu
-bGVzcyB5b3Uga25vdyB0aGUgY29udGVudCBpcyBzYWZlDQo+IA0KPj4gK3N0cnVjdCBvYV90YzYg
-ew0KPj4gKyAgICAgc3RydWN0IHNwaV9kZXZpY2UgKnNwaTsNCj4+ICsgICAgIGJvb2wgY3RybF9w
-cm90Ow0KPj4gK307DQo+IA0KPiBTaG91bGQgdGhpcyBiZSBjb25zaWRlcmVkIGFuIG9wYXF1ZSBz
-dHJ1Y3R1cmUgd2hpY2ggdGhlIE1BQyBkcml2ZXINCj4gc2hvdWxkIG5vdCBhY2Nlc3MgdGhlIG1l
-bWJlcnM/DQo+IA0KPiBJIGRvbid0IHNlZSBhbnl0aGluZyBzZXR0aW5nIGN0cmxfcHJvdCBoZXJl
-LiBEb2VzIGl0IG5lZWQgYSBzZXR0ZXIgYW5kDQo+IGEgZ2V0dGVyPw0KQWggb2ssIGl0IGlzIHN1
-cHBvc2VkIHRvIGJlIGRvbmUgaW4gdGhlIG9hX3RjNl9pbml0KCkgZnVuY3Rpb24uIFNvbWVob3cg
-DQptaXNzZWQgaXQuIFdpbGwgY29ycmVjdCBpdCBpbiB0aGUgbmV4dCB2ZXJzaW9uLg0KDQpCZXN0
-IFJlZ2FyZHMsDQpQYXJ0aGliYW4gVg0KPiANCj4gICAgICAgICAgQW5kcmV3DQoNCg==
+
+
+On 2023/9/18 6:13, Emil Renner Berthing wrote:
+> Minda Chen wrote:
+>> Add StarFive JH7110 SoC PCIe controller platform
+>> driver codes, and add host init/deinit to pcie-plda-host.c
+>>
+>> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+>> Co-developed-by: Kevin Xie <kevin.xie@starfivetech.com>
+>> Reviewed-by: Mason Huo <mason.huo@starfivetech.com>
+>> ---
+>>  MAINTAINERS                                  |   7 +
+>>  drivers/pci/controller/plda/Kconfig          |  12 +
+>>  drivers/pci/controller/plda/Makefile         |   1 +
+>>  drivers/pci/controller/plda/pcie-plda-host.c | 121 ++++-
+>>  drivers/pci/controller/plda/pcie-plda.h      |  91 +++-
+>>  drivers/pci/controller/plda/pcie-starfive.c  | 461 +++++++++++++++++++
+>>  6 files changed, 688 insertions(+), 5 deletions(-)
+>>  create mode 100644 drivers/pci/controller/plda/pcie-starfive.c
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index ebdb65e195ee..4632cd411a3d 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -16679,6 +16679,13 @@ S:	Maintained
+>>  F:	Documentation/devicetree/bindings/pci/socionext,uniphier-pcie*
+>>  F:	drivers/pci/controller/dwc/pcie-uniphier*
+>>
+>> +PCIE DRIVER FOR STARFIVE JH71x0
+>> +M:	Kevin Xie <kevin.xie@starfivetech.com>
+>> +L:	linux-pci@vger.kernel.org
+>> +S:	Maintained
+>> +F:	Documentation/devicetree/bindings/pci/starfive*
+>> +F:	drivers/pci/controller/plda/pcie-starfive.c
+>> +
+>>  PCIE DRIVER FOR ST SPEAR13XX
+>>  M:	Pratyush Anand <pratyush.anand@gmail.com>
+>>  L:	linux-pci@vger.kernel.org
+>> diff --git a/drivers/pci/controller/plda/Kconfig b/drivers/pci/controller/plda/Kconfig
+>> index e54a82ee94f5..8de661730aa5 100644
+>> --- a/drivers/pci/controller/plda/Kconfig
+>> +++ b/drivers/pci/controller/plda/Kconfig
+>> @@ -15,4 +15,16 @@ config PCIE_MICROCHIP_HOST
+>>  	  Say Y here if you want kernel to support the Microchip AXI PCIe
+>>  	  Host Bridge driver.
+>>
+>> +config PCIE_STARFIVE_HOST
+>> +	tristate "StarFive PCIe host controller"
+>> +	depends on OF && PCI_MSI
+>> +	select PCIE_PLDA_HOST
+>> +	help
+>> +	  Say Y here if you want to support the StarFive PCIe controller
+>> +	  in host mode. StarFive PCIe controller uses PLDA PCIe
+>> +	  core.
+>> +	  If you choose to build this driver as module it will
+>> +	  be dynamically linked and module will be called
+>> +	  pcie-starfive.ko
+>> +
+>>  endmenu
+>> diff --git a/drivers/pci/controller/plda/Makefile b/drivers/pci/controller/plda/Makefile
+>> index 4340ab007f44..0ac6851bed48 100644
+>> --- a/drivers/pci/controller/plda/Makefile
+>> +++ b/drivers/pci/controller/plda/Makefile
+>> @@ -1,3 +1,4 @@
+>>  # SPDX-License-Identifier: GPL-2.0
+>>  obj-$(CONFIG_PCIE_PLDA_HOST) += pcie-plda-host.o
+>>  obj-$(CONFIG_PCIE_MICROCHIP_HOST) += pcie-microchip-host.o
+>> +obj-$(CONFIG_PCIE_STARFIVE_HOST) += pcie-starfive.o
+>> diff --git a/drivers/pci/controller/plda/pcie-plda-host.c b/drivers/pci/controller/plda/pcie-plda-host.c
+>> index 26e6cfd2eaba..8b32df477ad8 100644
+>> --- a/drivers/pci/controller/plda/pcie-plda-host.c
+>> +++ b/drivers/pci/controller/plda/pcie-plda-host.c
+>> @@ -20,6 +20,15 @@
+>>
+>>  #include "pcie-plda.h"
+>>
+>> +void __iomem *plda_pcie_map_bus(struct pci_bus *bus, unsigned int devfn,
+>> +				int where)
+>> +{
+>> +	struct plda_pcie_rp *pcie = bus->sysdata;
+>> +
+>> +	return pcie->config_base + PCIE_ECAM_OFFSET(bus->number, devfn, where);
+>> +}
+>> +EXPORT_SYMBOL_GPL(plda_pcie_map_bus);
+>> +
+>>  static void plda_handle_msi(struct irq_desc *desc)
+>>  {
+>>  	struct plda_pcie_rp *port = irq_desc_get_handler_data(desc);
+>> @@ -370,6 +379,12 @@ static const struct plda_event_ops plda_event_ops = {
+>>  	.get_events = plda_get_events,
+>>  };
+>>
+>> +static const struct plda_event plda_default_event = {
+>> +	.event_ops		= &plda_event_ops,
+>> +	.intx_event		= EVENT_PM_MSI_INT_INTX,
+>> +	.msi_event		= EVENT_PM_MSI_INT_MSI
+>> +};
+>> +
+>>  static int plda_pcie_init_irq_domains(struct plda_pcie_rp *port,
+>>  				      const struct irq_domain_ops *ops)
+>>  {
+>> @@ -416,7 +431,6 @@ int plda_init_interrupts(struct platform_device *pdev,
+>>  			 const struct plda_event *event)
+>>  {
+>>  	struct device *dev = &pdev->dev;
+>> -	int irq;
+>>  	int i, intx_irq, msi_irq, event_irq;
+>>  	int ret;
+>>  	const struct irq_domain_ops *irq_dom_ops;
+>> @@ -434,8 +448,8 @@ int plda_init_interrupts(struct platform_device *pdev,
+>>  		return ret;
+>>  	}
+>>
+>> -	irq = platform_get_irq(pdev, 0);
+>> -	if (irq < 0)
+>> +	port->irq = platform_get_irq(pdev, 0);
+>> +	if (port->irq < 0)
+>>  		return -ENODEV;
+> 
+> Here you're dropping the local variable irq and just use port->irq directly..
+> 
+>>
+>>  	port->event_ops = event->event_ops;
+>> @@ -465,6 +479,7 @@ int plda_init_interrupts(struct platform_device *pdev,
+>>  		dev_err(dev, "failed to map INTx interrupt\n");
+>>  		return -ENXIO;
+>>  	}
+>> +	port->intx_irq = intx_irq;
+> 
+> ..but for intx_irq..
+> 
+>>
+>>  	/* Plug the INTx chained handler */
+>>  	irq_set_chained_handler_and_data(intx_irq, plda_handle_intx, port);
+>> @@ -473,12 +488,13 @@ int plda_init_interrupts(struct platform_device *pdev,
+>>  				     event->msi_event);
+>>  	if (!msi_irq)
+>>  		return -ENXIO;
+>> +	port->msi_irq = msi_irq;
+> 
+> ..and msi_irq you're keeping the local variable. I think you should drop
+> the local variables here too, or at least do the same for all of them.
+> 
+OK, remove all the local variables is better.
+>>
+>>  	/* Plug the MSI chained handler */
+>>  	irq_set_chained_handler_and_data(msi_irq, plda_handle_msi, port);
+>>
+>>  	/* Plug the main event chained handler */
+>> -	irq_set_chained_handler_and_data(irq, plda_handle_event, port);
+>> +	irq_set_chained_handler_and_data(port->irq, plda_handle_event, port);
+>>
+>>  	return 0;
+>>  }
+>> @@ -544,3 +560,100 @@ int plda_pcie_setup_iomems(struct pci_host_bridge *bridge,
+>>  	return 0;
+>>  }
+>>  EXPORT_SYMBOL_GPL(plda_pcie_setup_iomems);
+>> +
+>> +static void plda_pcie_irq_domain_deinit(struct plda_pcie_rp *pcie)
+>> +{
+>> +	irq_set_chained_handler_and_data(pcie->irq, NULL, NULL);
+>> +	irq_set_chained_handler_and_data(pcie->msi_irq, NULL, NULL);
+>> +	irq_set_chained_handler_and_data(pcie->intx_irq, NULL, NULL);
+>> +
+>> +	irq_domain_remove(pcie->msi.msi_domain);
+>> +	irq_domain_remove(pcie->msi.dev_domain);
+>> +
+>> +	irq_domain_remove(pcie->intx_domain);
+>> +	irq_domain_remove(pcie->event_domain);
+>> +}
+>> +
+>> +int plda_pcie_host_init(struct plda_pcie_rp *port, struct pci_ops *ops)
+>> +{
+>> +	struct resource *cfg_res;
+>> +	struct device *dev = port->dev;
+>> +	int ret;
+>> +	struct pci_host_bridge *bridge;
+>> +	struct platform_device *pdev = to_platform_device(dev);
+> 
+> This looks weird. Please order initialized variables first and maybe even do
+> reverse christmas tree order. Eg. longeist lines first.
+> 
+OK, The same with other places.
+>> +
+>> +	port->bridge_addr =
+>> +		devm_platform_ioremap_resource_byname(pdev, "apb");
+>> +
+>> +	if (IS_ERR(port->bridge_addr))
+>> +		return dev_err_probe(dev, PTR_ERR(port->bridge_addr),
+>> +				     "failed to map reg memory\n");
+>> +
+>> +	cfg_res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "cfg");
+>> +	if (!cfg_res)
+>> +		return dev_err_probe(dev, -ENODEV,
+>> +				     "failed to get config memory\n");
+>> +
+>> +	port->config_base = devm_ioremap_resource(dev, cfg_res);
+>> +	if (IS_ERR(port->config_base))
+>> +		return dev_err_probe(dev, PTR_ERR(port->config_base),
+>> +				     "failed to map config memory\n");
+>> +
+>> +	port->phy = devm_phy_optional_get(dev, NULL);
+>> +	if (IS_ERR(port->phy))
+>> +		return dev_err_probe(dev, PTR_ERR(port->phy),
+>> +				     "failed to get pcie phy\n");
+>> +
+>> +	bridge = devm_pci_alloc_host_bridge(dev, 0);
+>> +	if (!bridge)
+>> +		return dev_err_probe(dev, -ENOMEM,
+>> +				     "failed to alloc bridge\n");
+>> +
+>> +	if (port->host_ops && port->host_ops->host_init) {
+>> +		ret = port->host_ops->host_init(port);
+>> +		if (ret)
+>> +			return ret;
+>> +	}
+>> +
+>> +	port->bridge = bridge;
+>> +	plda_pcie_setup_window(port->bridge_addr, 0, cfg_res->start, 0,
+>> +			       resource_size(cfg_res));
+>> +	plda_pcie_setup_iomems(bridge, port);
+>> +	plda_set_default_msi(&port->msi);
+>> +	ret = plda_init_interrupts(pdev, port, &plda_default_event);
+>> +	if (ret)
+>> +		goto err_host;
+>> +
+>> +	/* Set default bus ops */
+>> +	bridge->ops = ops;
+>> +	bridge->sysdata = port;
+>> +
+>> +	ret = pci_host_probe(bridge);
+>> +	if (ret < 0) {
+>> +		dev_err(dev, "failed to pci host probe: %d\n", ret);
+> 
+> I think you mean:
+> 
+> dev_err_probe(dev, ret, "failed to probe pci host\n");
+> 
+I check with dev_err_probe, It is better than dev_err, I will replace this.
+>> +		goto err_probe;
+>> +	}
+>> +
+>> +	return ret;
+>> +
+>> +err_probe:
+>> +	plda_pcie_irq_domain_deinit(port);
+>> +err_host:
+>> +	if (port->host_ops && port->host_ops->host_deinit)
+>> +		port->host_ops->host_deinit(port);
+>> +
+>> +	return ret;
+>> +}
+>> +EXPORT_SYMBOL_GPL(plda_pcie_host_init);
+>> +
+>> +void plda_pcie_host_deinit(struct plda_pcie_rp *port)
+>> +{
+>> +	pci_stop_root_bus(port->bridge->bus);
+>> +	pci_remove_root_bus(port->bridge->bus);
+>> +
+>> +	plda_pcie_irq_domain_deinit(port);
+>> +
+>> +	if (port->host_ops && port->host_ops->host_deinit)
+>> +		port->host_ops->host_deinit(port);
+>> +}
+>> +EXPORT_SYMBOL_GPL(plda_pcie_host_deinit);
+>> diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/controller/plda/pcie-plda.h
+>> index b7420598a326..e571047d7944 100644
+>> --- a/drivers/pci/controller/plda/pcie-plda.h
+>> +++ b/drivers/pci/controller/plda/pcie-plda.h
+>> @@ -6,14 +6,24 @@
+>>  #ifndef _PCIE_PLDA_H
+>>  #define _PCIE_PLDA_H
+>>
+>> +#include <linux/phy/phy.h>
+>> +
+>>  /* Number of MSI IRQs */
+>>  #define PLDA_MAX_NUM_MSI_IRQS			32
+>>
+>>  /* PCIe Bridge Phy Regs */
+>> +#define GEN_SETTINGS				0x80
+>> +#define  RP_ENABLE				1
+>> +#define PCIE_PCI_IDS_DW1			0x9c
+>> +#define  IDS_CLASS_CODE_SHIFT			16
+>>  #define PCIE_PCI_IRQ_DW0			0xa8
+>>  #define  MSIX_CAP_MASK				BIT(31)
+>>  #define  NUM_MSI_MSGS_MASK			GENMASK(6, 4)
+>>  #define  NUM_MSI_MSGS_SHIFT			4
+>> +#define PCI_MISC				0xb4
+>> +#define  PHY_FUNCTION_DIS			BIT(15)
+>> +#define PCIE_WINROM				0xfc
+>> +#define  PREF_MEM_WIN_64_SUPPORT		BIT(3)
+>>
+>>  #define IMASK_LOCAL				0x180
+>>  #define  DMA_END_ENGINE_0_MASK			0x00000000u
+>> @@ -64,6 +74,8 @@
+>>  #define ISTATUS_HOST				0x18c
+>>  #define IMSI_ADDR				0x190
+>>  #define ISTATUS_MSI				0x194
+>> +#define PMSG_SUPPORT_RX				0x3f0
+>> +#define  PMSG_LTR_SUPPORT			BIT(2)
+>>
+>>  /* PCIe Master table init defines */
+>>  #define ATR0_PCIE_WIN0_SRCADDR_PARAM		0x600u
+>> @@ -85,6 +97,8 @@
+>>  #define  PCIE_TX_RX_INTERFACE			0x00000000u
+>>  #define  PCIE_CONFIG_INTERFACE			0x00000001u
+>>
+>> +#define CONFIG_SPACE_ADDR			0x1000u
+>> +
+>>  #define ATR_ENTRY_SIZE				32
+>>
+>>  #define EVENT_A_ATR_EVT_POST_ERR		0
+>> @@ -134,6 +148,11 @@ struct plda_event_ops {
+>>  	u32 (*get_events)(struct plda_pcie_rp *pcie);
+>>  };
+>>
+>> +struct plda_pcie_host_ops {
+>> +	int (*host_init)(struct plda_pcie_rp *pcie);
+>> +	void (*host_deinit)(struct plda_pcie_rp *pcie);
+>> +};
+>> +
+>>  struct plda_msi {
+>>  	struct mutex lock;		/* Protect used bitmap */
+>>  	struct irq_domain *msi_domain;
+>> @@ -145,12 +164,19 @@ struct plda_msi {
+>>
+>>  struct plda_pcie_rp {
+>>  	struct device *dev;
+>> +	struct pci_host_bridge *bridge;
+>>  	struct irq_domain *intx_domain;
+>>  	struct irq_domain *event_domain;
+>>  	raw_spinlock_t lock;
+>>  	struct plda_msi msi;
+>>  	const struct plda_event_ops *event_ops;
+>> +	const struct plda_pcie_host_ops *host_ops;
+>> +	struct phy *phy;
+>>  	void __iomem *bridge_addr;
+>> +	void __iomem *config_base;
+>> +	int irq;
+>> +	int msi_irq;
+>> +	int intx_irq;
+>>  	int num_events;
+>>  };
+>>
+>> @@ -163,6 +189,7 @@ struct plda_event {
+>>  	int msi_event;
+>>  };
+>>
+>> +void __iomem *plda_pcie_map_bus(struct pci_bus *bus, unsigned int devfn, int where);
+>>  int plda_init_interrupts(struct platform_device *pdev,
+>>  			 struct plda_pcie_rp *port,
+>>  			 const struct plda_event *event);
+>> @@ -171,4 +198,66 @@ void plda_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
+>>  			    size_t size);
+>>  int plda_pcie_setup_iomems(struct pci_host_bridge *bridge,
+>>  			   struct plda_pcie_rp *port);
+>> -#endif
+>> +int plda_pcie_host_init(struct plda_pcie_rp *pcie, struct pci_ops *ops);
+>> +void plda_pcie_host_deinit(struct plda_pcie_rp *pcie);
+>> +
+>> +static inline void plda_set_default_msi(struct plda_msi *msi)
+>> +{
+>> +	msi->vector_phy = IMSI_ADDR;
+>> +	msi->num_vectors = PLDA_MAX_NUM_MSI_IRQS;
+>> +}
+>> +
+>> +static inline void plda_pcie_enable_root_port(struct plda_pcie_rp *plda)
+>> +{
+>> +	u32 value;
+>> +
+>> +	value = readl_relaxed(plda->bridge_addr + GEN_SETTINGS);
+>> +	value |= RP_ENABLE;
+>> +	writel_relaxed(value, plda->bridge_addr + GEN_SETTINGS);
+>> +}
+>> +
+>> +static inline void plda_pcie_set_standard_class(struct plda_pcie_rp *plda)
+>> +{
+>> +	u32 value;
+>> +
+>> +	value = readl_relaxed(plda->bridge_addr + PCIE_PCI_IDS_DW1);
+>> +	value &= 0xff;
+>> +	value |= (PCI_CLASS_BRIDGE_PCI << IDS_CLASS_CODE_SHIFT);
+> 
+> This looks suspicious. You're clearing the lower 8 bits, but setting
+> bits 16 and up. Also the parentheses are not strictly necessary.
+> 
+I will add comments to this.
+>> +	writel_relaxed(value, plda->bridge_addr + PCIE_PCI_IDS_DW1);
+>> +}
+>> +
+>> +static inline void plda_pcie_set_pref_win_64bit(struct plda_pcie_rp *plda)
+>> +{
+>> +	u32 value;
+>> +
+>> +	value = readl_relaxed(plda->bridge_addr + PCIE_WINROM);
+>> +	value |= PREF_MEM_WIN_64_SUPPORT;
+>> +	writel_relaxed(value, plda->bridge_addr + PCIE_WINROM);
+>> +}
+>> +
+>> +static inline void plda_pcie_disable_ltr(struct plda_pcie_rp *plda)
+>> +{
+>> +	u32 value;
+>> +
+>> +	value = readl_relaxed(plda->bridge_addr + PMSG_SUPPORT_RX);
+>> +	value &= ~PMSG_LTR_SUPPORT;
+>> +	writel_relaxed(value, plda->bridge_addr + PMSG_SUPPORT_RX);
+>> +}
+>> +
+>> +static inline void plda_pcie_disable_func(struct plda_pcie_rp *plda)
+>> +{
+>> +	u32 value;
+>> +
+>> +	value = readl_relaxed(plda->bridge_addr + PCI_MISC);
+>> +	value |= PHY_FUNCTION_DIS;
+>> +	writel_relaxed(value, plda->bridge_addr + PCI_MISC);
+>> +}
+>> +
+>> +static inline void plda_pcie_write_rc_bar(struct plda_pcie_rp *plda, u64 val)
+>> +{
+>> +	void __iomem *addr = plda->bridge_addr + CONFIG_SPACE_ADDR;
+>> +
+>> +	writel_relaxed(val & 0xffffffff, addr + PCI_BASE_ADDRESS_0);
+>> +	writel_relaxed(val >> 32, addr + PCI_BASE_ADDRESS_1);
+> 
+> Consider using lower_32_bits(val) and upper_32_bits(val) here.
+> 
+>> +}
+>> +#endif /* _PCIE_PLDA_H */
+>> diff --git a/drivers/pci/controller/plda/pcie-starfive.c b/drivers/pci/controller/plda/pcie-starfive.c
+>> new file mode 100644
+>> index 000000000000..42099fef0d7d
+>> --- /dev/null
+>> +++ b/drivers/pci/controller/plda/pcie-starfive.c
+>> @@ -0,0 +1,461 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/*
+>> + * PCIe host controller driver for StarFive JH7110 Soc.
+>> + *
+>> + * Copyright (C) 2023 StarFive Technology Co., Ltd.
+>> + */
+>> +
+>> +#include <linux/bitfield.h>
+>> +#include <linux/clk.h>
+>> +#include <linux/delay.h>
+>> +#include <linux/gpio/consumer.h>
+>> +#include <linux/interrupt.h>
+>> +#include <linux/kernel.h>
+>> +#include <linux/mfd/syscon.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of_address.h>
+>> +#include <linux/of_irq.h>
+>> +#include <linux/of_pci.h>
+>> +#include <linux/pci.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/pm_runtime.h>
+>> +#include <linux/regmap.h>
+>> +#include <linux/reset.h>
+>> +#include "../../pci.h"
+>> +
+>> +#include "pcie-plda.h"
+>> +
+>> +#define PCIE_FUNC_NUM			4
+>> +
+>> +/* system control */
+>> +#define STG_SYSCON_PCIE0_BASE			0x48
+>> +#define STG_SYSCON_PCIE1_BASE			0x1f8
+>> +
+>> +#define STG_SYSCON_ARFUNC_OFFSET		0x78
+>> +#define STG_SYSCON_AXI4_SLVL_ARFUNC_MASK	 GENMASK(22, 8)
+>> +#define STG_SYSCON_AXI4_SLVL_PHY_ARFUNC(x)	 FIELD_PREP(GENMASK(20, 17), x)
+>> +#define STG_SYSCON_AWFUNC_OFFSET		0x7c
+>> +#define STG_SYSCON_AXI4_SLVL_AWFUNC_MASK	 GENMASK(14, 0)
+>> +#define STG_SYSCON_AXI4_SLVL_PHY_AWFUNC(x)	 FIELD_PREP(GENMASK(12, 9), x)
+>> +#define STG_SYSCON_CLKREQ			 BIT(22)
+>> +#define STG_SYSCON_CKREF_SRC_MASK		 GENMASK(19, 18)
+>> +#define STG_SYSCON_RP_NEP_OFFSET		0xe8
+>> +#define STG_SYSCON_K_RP_NEP			 BIT(8)
+>> +#define STG_SYSCON_LNKSTA_OFFSET		0x170
+>> +#define DATA_LINK_ACTIVE			 BIT(5)
+>> +
+>> +/* Parameters for the waiting for link up routine */
+>> +#define LINK_WAIT_MAX_RETRIES	10
+>> +#define LINK_WAIT_USLEEP_MIN	90000
+>> +#define LINK_WAIT_USLEEP_MAX	100000
+>> +
+>> +struct starfive_jh7110_pcie {
+>> +	struct plda_pcie_rp plda;
+>> +	struct reset_control *resets;
+>> +	struct clk_bulk_data *clks;
+>> +	struct regmap *reg_syscon;
+>> +	struct gpio_desc *power_gpio;
+>> +	struct gpio_desc *reset_gpio;
+>> +
+>> +	u32 stg_arfun;
+>> +	u32 stg_awfun;
+>> +	u32 stg_rp_nep;
+>> +	u32 stg_lnksta;
+>> +
+>> +	int num_clks;
+>> +};
+>> +
+>> +/*
+>> + * The BAR0/1 of bridge should be hidden during enumeration to
+>> + * avoid the sizing and resource allocation by PCIe core.
+>> + */
+>> +static bool starfive_pcie_hide_rc_bar(struct pci_bus *bus, unsigned int  devfn,
+>> +				      int offset)
+>> +{
+>> +	if (pci_is_root_bus(bus) && !devfn &&
+>> +	    (offset == PCI_BASE_ADDRESS_0 || offset == PCI_BASE_ADDRESS_1))
+>> +		return true;
+>> +
+>> +	return false;
+>> +}
+>> +
+>> +static int starfive_pcie_config_write(struct pci_bus *bus, unsigned int devfn,
+>> +				      int where, int size, u32 value)
+>> +{
+>> +	if (starfive_pcie_hide_rc_bar(bus, devfn, where))
+>> +		return PCIBIOS_BAD_REGISTER_NUMBER;
+>> +
+>> +	return pci_generic_config_write(bus, devfn, where, size, value);
+>> +}
+>> +
+>> +static int starfive_pcie_config_read(struct pci_bus *bus, unsigned int devfn,
+>> +				     int where, int size, u32 *value)
+>> +{
+>> +	if (starfive_pcie_hide_rc_bar(bus, devfn, where))
+>> +		return PCIBIOS_BAD_REGISTER_NUMBER;
+>> +
+>> +	return pci_generic_config_read(bus, devfn, where, size, value);
+>> +}
+>> +
+>> +static int starfive_pcie_parse_dt(struct starfive_jh7110_pcie *pcie, struct device *dev)
+>> +{
+>> +	int domain_nr, stg_pcie_base;
+>> +
+>> +	pcie->num_clks = devm_clk_bulk_get_all(dev, &pcie->clks);
+>> +	if (pcie->num_clks < 0)
+>> +		return dev_err_probe(dev, -ENODEV,
+>> +			"failed to get pcie clocks\n");
+>> +
+>> +	pcie->resets = devm_reset_control_array_get_exclusive(dev);
+>> +	if (IS_ERR(pcie->resets))
+>> +		return dev_err_probe(dev, PTR_ERR(pcie->resets),
+>> +			"failed to get pcie resets");
+>> +
+>> +	pcie->reg_syscon =
+>> +		syscon_regmap_lookup_by_phandle(dev->of_node,
+>> +						"starfive,stg-syscon");
+>> +
+>> +	if (IS_ERR(pcie->reg_syscon))
+>> +		return dev_err_probe(dev, PTR_ERR(pcie->reg_syscon),
+>> +			"failed to parse starfive,stg-syscon\n");
+>> +
+>> +	domain_nr = of_get_pci_domain_nr(dev->of_node);
+>> +
+>> +	if (domain_nr < 0 || domain_nr > 1)
+>> +		return dev_err_probe(dev, -ENODEV,
+>> +			"failed to get valid pcie id\n");
+>> +
+>> +	if (domain_nr == 0)
+>> +		stg_pcie_base = STG_SYSCON_PCIE0_BASE;
+>> +	else
+>> +		stg_pcie_base = STG_SYSCON_PCIE1_BASE;
+> 
+> It seems you only need the domain_nr for the determining this offset into the
+> stg_syscon. Since this is already specific to the JH7110 SoC, wouldn't it be
+> safer to match on the 0x2b000000/0x2c000000 or 0x940000000/0x9c0000000
+> address of the peripheral instead?
+> 
+Maybe this codes not just bind to JH7110 SoC. 
+>> +
+>> +	pcie->stg_arfun = stg_pcie_base + STG_SYSCON_ARFUNC_OFFSET;
+>> +	pcie->stg_awfun = stg_pcie_base + STG_SYSCON_AWFUNC_OFFSET;
+>> +	pcie->stg_rp_nep = stg_pcie_base + STG_SYSCON_RP_NEP_OFFSET;
+>> +	pcie->stg_lnksta = stg_pcie_base + STG_SYSCON_LNKSTA_OFFSET;
+> 
+> These offsets are all the same for both pcie0 and pcie1 so why do you need a
+> variable for each? Eg. why not just
+> 
+> if (domain_nr == 0)
+> 	pcie->stg_base = STG_SYSCON_PCIE0_BASE;
+> else
+> 	pcie->stg_base = STG_SYSCON_PCIE1_BASE;
+> 
+> ..and then add add those static offsets where needed?
+> 
+OK. I will try to modify this.
+>> +
+>> +	pcie->reset_gpio = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
+>> +	if (IS_ERR(pcie->reset_gpio)) {
+>> +		dev_warn(dev, "failed to get perst-gpio\n");
+> 
+> Why is this a warn when you actually error out? I think you mean
+> 
+> return dev_err_probe(dev, PTR_ERR(pcie->reset_gpio, "failed to get
+> reset GPIO\n");
+> 
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	pcie->power_gpio = devm_gpiod_get_optional(dev, "enable", GPIOD_OUT_LOW);
+>> +	if (IS_ERR(pcie->power_gpio)) {
+>> +		dev_warn(dev, "failed to get power-gpio\n");
+>> +		return -EINVAL;
+> 
+> return dev_err_probe(dev, PTR_ERR(pcie->power_gpio), "failed to get
+> power GPIO\n");
+> 
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static struct pci_ops starfive_pcie_ops = {
+>> +	.map_bus	= plda_pcie_map_bus,
+>> +	.read           = starfive_pcie_config_read,
+>> +	.write          = starfive_pcie_config_write,
+>> +};
+>> +
+>> +static int starfive_pcie_clk_rst_init(struct starfive_jh7110_pcie *pcie)
+>> +{
+>> +	int ret;
+>> +	struct device *dev = pcie->plda.dev;
+> 
+> Again, please order initialized variables first.
+> 
+>> +
+>> +	ret = clk_bulk_prepare_enable(pcie->num_clks, pcie->clks);
+>> +	if (ret) {
+>> +		dev_err(dev, "failed to enable clocks\n");
+>> +		return ret;
+> 
+> return dev_err_probe(dev, ret, "failed to enable clocks\n");
+> 
+>> +	}
+>> +
+>> +	ret = reset_control_deassert(pcie->resets);
+>> +	if (ret) {
+>> +		clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
+>> +		dev_err(dev, "failed to resets\n");
+> 
+> I think you mean
+> return dev_err_probe(dev, ret, "failed to deassert resets\n");
+> 
+>> +	}
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static void starfive_pcie_clk_rst_deinit(struct starfive_jh7110_pcie *pcie)
+>> +{
+>> +	reset_control_assert(pcie->resets);
+>> +	clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
+>> +}
+>> +
+>> +static bool starfive_pcie_link_up(struct plda_pcie_rp *plda)
+>> +{
+>> +	struct starfive_jh7110_pcie *pcie =
+>> +		container_of(plda, struct starfive_jh7110_pcie, plda);
+>> +	struct device *dev = pcie->plda.dev;
+> 
+> This is only used once below, so just use pcie->plda.dev directly there.
+> 
+OK, thanks
+>> +	int ret;
+>> +	u32 stg_reg_val;
+>> +
+>> +	ret = regmap_read(pcie->reg_syscon, pcie->stg_lnksta, &stg_reg_val);
+>> +	if (ret) {
+>> +		dev_err(dev, "failed to read link status\n");
+>> +		return false;
+>> +	}
+>> +
+>> +	if (stg_reg_val & DATA_LINK_ACTIVE)
+>> +		return true;
+>> +
+>> +	return false;
+> 
+> These last 4 lines is just "return stg_reg_val & DATA_LINK_ACTIVE;" right?
+> 
+OK
+>> +}
+>> +
+>> +static int starfive_pcie_host_wait_for_link(struct starfive_jh7110_pcie *pcie)
+>> +{
+>> +	struct device *dev = pcie->plda.dev;
+> 
+> Only used once, just inline.
+> 
+>> +	int retries;
+>> +
+>> +	/* Check if the link is up or not */
+>> +	for (retries = 0; retries < LINK_WAIT_MAX_RETRIES; retries++) {
+>> +		if (starfive_pcie_link_up(&pcie->plda)) {
+>> +			dev_info(dev, "port link up\n");
+>> +			return 0;
+>> +		}
+>> +		usleep_range(LINK_WAIT_USLEEP_MIN, LINK_WAIT_USLEEP_MAX);
+>> +	}
+>> +
+>> +	return -ETIMEDOUT;
+>> +}
+>> +
+>> +static int starfive_pcie_enable_phy(struct device *dev, struct plda_pcie_rp *pcie)
+>> +{
+>> +	int ret;
+>> +
+>> +	if (!pcie->phy)
+>> +		return 0;
+>> +
+>> +	ret = phy_init(pcie->phy);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret,
+>> +			"failed to initialize pcie phy\n");
+>> +
+>> +	ret = phy_set_mode(pcie->phy, PHY_MODE_PCIE);
+>> +	if (ret) {
+>> +		dev_err(dev, "failed to set pcie mode\n");
+>> +		goto err_phy_on;
+>> +	}
+>> +
+>> +	ret = phy_power_on(pcie->phy);
+>> +	if (ret) {
+>> +		dev_err(dev, "failed to power on pcie phy\n");
+>> +		goto err_phy_on;
+>> +	}
+>> +
+>> +	return 0;
+>> +
+>> +err_phy_on:
+>> +	phy_exit(pcie->phy);
+>> +	return ret;
+>> +}
+>> +
+>> +static void starfive_pcie_disable_phy(struct plda_pcie_rp *pcie)
+>> +{
+>> +	phy_power_off(pcie->phy);
+>> +	phy_exit(pcie->phy);
+>> +}
+>> +
+>> +static void starfive_pcie_host_deinit(struct plda_pcie_rp *plda)
+>> +{
+>> +	struct starfive_jh7110_pcie *pcie =
+>> +		container_of(plda, struct starfive_jh7110_pcie, plda);
+>> +
+>> +	starfive_pcie_clk_rst_deinit(pcie);
+>> +	if (pcie->power_gpio)
+>> +		gpiod_set_value_cansleep(pcie->power_gpio, 0);
+>> +	starfive_pcie_disable_phy(plda);
+>> +}
+>> +
+>> +static int starfive_pcie_host_init(struct plda_pcie_rp *plda)
+>> +{
+>> +	int i;
+>> +	struct starfive_jh7110_pcie *pcie =
+>> +		container_of(plda, struct starfive_jh7110_pcie, plda);
+>> +	struct device *dev = plda->dev;
+>> +	int ret;
+> 
+> Weird ordering again.
+> 
+>> +
+>> +	ret = starfive_pcie_enable_phy(dev, plda);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	regmap_update_bits(pcie->reg_syscon, pcie->stg_rp_nep,
+>> +			   STG_SYSCON_K_RP_NEP, STG_SYSCON_K_RP_NEP);
+>> +
+>> +	regmap_update_bits(pcie->reg_syscon, pcie->stg_awfun,
+>> +			   STG_SYSCON_CKREF_SRC_MASK,
+>> +			   FIELD_PREP(STG_SYSCON_CKREF_SRC_MASK, 2));
+>> +
+>> +	regmap_update_bits(pcie->reg_syscon, pcie->stg_awfun,
+>> +			   STG_SYSCON_CLKREQ, STG_SYSCON_CLKREQ);
+>> +
+>> +	ret = starfive_pcie_clk_rst_init(pcie);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	if (pcie->power_gpio)
+>> +		gpiod_set_value_cansleep(pcie->power_gpio, 1);
+>> +
+>> +	if (pcie->reset_gpio)
+>> +		gpiod_set_value_cansleep(pcie->reset_gpio, 1);
+>> +
+>> +	/* Disable physical functions except #0 */
+>> +	for (i = 1; i < PCIE_FUNC_NUM; i++) {
+>> +		regmap_update_bits(pcie->reg_syscon,
+>> +				   pcie->stg_arfun,
+>> +				   STG_SYSCON_AXI4_SLVL_ARFUNC_MASK,
+>> +				   STG_SYSCON_AXI4_SLVL_PHY_ARFUNC(i));
+>> +
+>> +		regmap_update_bits(pcie->reg_syscon,
+>> +				   pcie->stg_awfun,
+>> +				   STG_SYSCON_AXI4_SLVL_AWFUNC_MASK,
+>> +				   STG_SYSCON_AXI4_SLVL_PHY_AWFUNC(i));
+>> +
+>> +		plda_pcie_disable_func(plda);
+>> +	}
+>> +
+>> +	regmap_update_bits(pcie->reg_syscon, pcie->stg_arfun,
+>> +			   STG_SYSCON_AXI4_SLVL_ARFUNC_MASK, 0);
+>> +	regmap_update_bits(pcie->reg_syscon, pcie->stg_awfun,
+>> +			   STG_SYSCON_AXI4_SLVL_AWFUNC_MASK, 0);
+>> +
+>> +	plda_pcie_enable_root_port(plda);
+>> +	plda_pcie_write_rc_bar(plda, 0);
+>> +
+>> +	/* PCIe PCI Standard Configuration Identification Settings. */
+>> +	plda_pcie_set_standard_class(plda);
+>> +
+>> +	/*
+>> +	 * The LTR message forwarding of PCIe Message Reception was set by core
+>> +	 * as default, but the forward id & addr are also need to be reset.
+>> +	 * If we do not disable LTR message forwarding here, or set a legal
+>> +	 * forwarding address, the kernel will get stuck after this driver probe.
+>> +	 * To workaround, disable the LTR message forwarding support on
+>> +	 * PCIe Message Reception.
+>> +	 */
+>> +	plda_pcie_disable_ltr(plda);
+>> +
+>> +	/* Prefetchable memory window 64-bit addressing support */
+>> +	plda_pcie_set_pref_win_64bit(plda);
+>> +
+>> +	/* Ensure that PERST has been asserted for at least 100 ms,
+>> +	 * the sleep value is T_PVPERL from PCIe CEM spec r2.0 (Table 2-4)
+>> +	 */
+>> +	msleep(100);
+>> +	if (pcie->reset_gpio)
+>> +		gpiod_set_value_cansleep(pcie->reset_gpio, 0);
+>> +
+>> +	/* As the requirement in PCIe base spec r6.0, system (<=5GT/s) must
+>> +	 * wait a minimum of 100 ms following exit from a conventional reset
+>> +	 * before sending a configuration request to the device.
+>> +	 */
+>> +	msleep(100);
+>> +
+>> +	if (starfive_pcie_host_wait_for_link(pcie))
+>> +		dev_info(dev, "port link down\n");
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static const struct plda_pcie_host_ops sf_host_ops = {
+>> +	.host_init = starfive_pcie_host_init,
+>> +	.host_deinit = starfive_pcie_host_deinit,
+>> +};
+>> +
+>> +static int starfive_pcie_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	struct starfive_jh7110_pcie *pcie;
+>> +	struct plda_pcie_rp *plda;
+>> +	int ret;
+>> +
+>> +	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
+>> +	if (!pcie)
+>> +		return -ENOMEM;
+>> +
+>> +	plda = &pcie->plda;
+>> +	plda->dev = dev;
+>> +
+>> +	ret = starfive_pcie_parse_dt(pcie, dev);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	plda->host_ops = &sf_host_ops;
+>> +	plda->num_events = NUM_PLDA_EVENTS;
+>> +	ret = plda_pcie_host_init(&pcie->plda, &starfive_pcie_ops);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	pm_runtime_enable(&pdev->dev);
+>> +	pm_runtime_get_sync(&pdev->dev);
+>> +	platform_set_drvdata(pdev, pcie);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void starfive_pcie_remove(struct platform_device *pdev)
+>> +{
+>> +	struct starfive_jh7110_pcie *pcie = platform_get_drvdata(pdev);
+>> +
+>> +	plda_pcie_host_deinit(&pcie->plda);
+>> +	platform_set_drvdata(pdev, NULL);
+>> +}
+>> +
+>> +static int starfive_pcie_suspend_noirq(struct device *dev)
+>> +{
+>> +	struct starfive_jh7110_pcie *pcie = dev_get_drvdata(dev);
+>> +
+>> +	if (!pcie)
+>> +		return 0;
+>> +
+>> +	clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
+>> +	starfive_pcie_disable_phy(&pcie->plda);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int starfive_pcie_resume_noirq(struct device *dev)
+>> +{
+>> +	struct starfive_jh7110_pcie *pcie = dev_get_drvdata(dev);
+>> +	int ret;
+>> +
+>> +	ret = starfive_pcie_enable_phy(dev, &pcie->plda);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = clk_bulk_prepare_enable(pcie->num_clks, pcie->clks);
+>> +	if (ret) {
+>> +		dev_err(dev, "failed to enable clocks\n");
+>> +		starfive_pcie_disable_phy(&pcie->plda);
+>> +		return ret;
+>> +	}
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static const struct dev_pm_ops starfive_pcie_pm_ops = {
+>> +	NOIRQ_SYSTEM_SLEEP_PM_OPS(starfive_pcie_suspend_noirq,
+>> +				  starfive_pcie_resume_noirq)
+>> +};
+>> +
+>> +static const struct of_device_id starfive_pcie_of_match[] = {
+>> +	{ .compatible = "starfive,jh7110-pcie"},
+> 
+> Missing space before }
+> 
+>> +	{ /* sentinel */ }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, starfive_pcie_of_match);
+>> +
+>> +static struct platform_driver starfive_pcie_driver = {
+>> +	.driver = {
+>> +		.name = "pcie-starfive",
+>> +		.of_match_table = of_match_ptr(starfive_pcie_of_match),
+>> +#ifdef CONFIG_PM_SLEEP
+>> +		.pm = &starfive_pcie_pm_ops,
+>> +#endif
+> 
+> This can be just .pm = pm_sleep_ptr(&starfive_pcie_pm_ops),
+> 
+OK
+>> +	},
+>> +	.probe = starfive_pcie_probe,
+>> +	.remove_new = starfive_pcie_remove,
+>> +};
+>> +module_platform_driver(starfive_pcie_driver);
+>> +
+>> +MODULE_DESCRIPTION("StarFive JH7110 PCIe host driver");
+>> +MODULE_LICENSE("GPL v2");
+>> --
+>> 2.17.1
 
