@@ -1,223 +1,203 @@
-Return-Path: <devicetree+bounces-1461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96D247A668A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 16:23:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACE2F7A66B3
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 16:29:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9A672821D7
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 14:23:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 604E7281E12
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 14:28:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFFE618650;
-	Tue, 19 Sep 2023 14:23:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCC2C18650;
+	Tue, 19 Sep 2023 14:28:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D111F3715D
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 14:23:32 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6DBF183
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 07:23:29 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1qibdB-0002Ps-MM; Tue, 19 Sep 2023 16:23:13 +0200
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1qibdA-007TfL-DJ; Tue, 19 Sep 2023 16:23:12 +0200
-Received: from mfe by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1qibdA-009fzF-AF; Tue, 19 Sep 2023 16:23:12 +0200
-Date: Tue, 19 Sep 2023 16:23:12 +0200
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Stefan Agner <stefan@agner.ch>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>, linux-gpio@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 4/6] gpio: vf610: add i.MX8ULP of_device_id entry
-Message-ID: <20230919142312.erbn64n52y4f5vl5@pengutronix.de>
-References: <20230918-vf610-gpio-v3-0-ada82a17adc5@nxp.com>
- <20230918-vf610-gpio-v3-4-ada82a17adc5@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DCBD1FAA
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 14:28:55 +0000 (UTC)
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6E6083;
+	Tue, 19 Sep 2023 07:28:53 -0700 (PDT)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-59c0442a359so47404967b3.0;
+        Tue, 19 Sep 2023 07:28:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695133733; x=1695738533;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XNgTqTzP+DNN14ddNBvAXkG8Xk8uIXpLMonsvHM2PZ8=;
+        b=iKvOUPDGVN5qjIjNiyP6eBzuk1pQLw67QOLK6Q42YivxG5kLD4e7BdaRXCg5mqrtRr
+         CDCTCuN0LRWigD7WzRjuB+/W+jLCBoX1nGlP+ybwbzcHlCeYnUB80YJ/LtcHUaYtTc2H
+         xEWSUX3m2/O9YX4Fum/O1MsBRzXpF1F3ERX81B2zu8NaIxeKqgRJkQ5x2KzQ6cznghm9
+         ylSHkJUqRI3/VcG1hd+sU0MXhuV/budotCyzNxLU/Wbq94kq9PkU/MirJ3JHjloUeMBy
+         YVjN1/ERqDsegkVSxjGxXqU6Fa/Q7Shd2D7FvhUlrk1+LNNkXJ2eEDmc/nhgg+h5Q1e0
+         IidQ==
+X-Gm-Message-State: AOJu0Yw4zMXuJdrlypW2EWHUtg/KGEQNBA9YJ6YzF+V59n4/Nksm4qNr
+	RUTuwbwqKZDK2rRj+6+v5yzrvPGsG4va6w==
+X-Google-Smtp-Source: AGHT+IFd8EGQV1UhOdqlmUWGRB6s1pdn+29TFWdHxxHXO28ng5ZIz0O5zlg6xBijGR3h8GufKae4Bg==
+X-Received: by 2002:a81:4e84:0:b0:581:2887:22be with SMTP id c126-20020a814e84000000b00581288722bemr12982128ywb.37.1695133732650;
+        Tue, 19 Sep 2023 07:28:52 -0700 (PDT)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id w135-20020a81498d000000b00577139f85dfsm3181704ywa.22.2023.09.19.07.28.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Sep 2023 07:28:52 -0700 (PDT)
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-d81adf0d57fso4762935276.1;
+        Tue, 19 Sep 2023 07:28:51 -0700 (PDT)
+X-Received: by 2002:a25:ac84:0:b0:d7b:9bd7:f280 with SMTP id
+ x4-20020a25ac84000000b00d7b9bd7f280mr12340757ybi.0.1695133731633; Tue, 19 Sep
+ 2023 07:28:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230918-vf610-gpio-v3-4-ada82a17adc5@nxp.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+References: <cover.1694767208.git.geert+renesas@glider.be>
+In-Reply-To: <cover.1694767208.git.geert+renesas@glider.be>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 19 Sep 2023 16:28:40 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWfBTKdXvZutg4LvWqBjuz-X=ZjzX0LKPqD=JxYuLoPRw@mail.gmail.com>
+Message-ID: <CAMuHMdWfBTKdXvZutg4LvWqBjuz-X=ZjzX0LKPqD=JxYuLoPRw@mail.gmail.com>
+Subject: [GIT PULL] drm: renesas: shmobile: Atomic conversion + DT support
+ (was: Re: [PATCH v4 00/41] drm: renesas: shmobile: Atomic conversion + DT support)
+To: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Magnus Damm <magnus.damm@gmail.com>, 
+	DRI Development <dri-devel@lists.freedesktop.org>, 
+	Linux-Renesas <linux-renesas-soc@vger.kernel.org>, 
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	Linux Media Mailing List <linux-media@vger.kernel.org>, 
+	Linux Fbdev development list <linux-fbdev@vger.kernel.org>, Linux-sh list <linux-sh@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Peng,
+Hi David, Daniel,
 
-please see my notes below.
+The following changes since commit 0663e1da5ba8e6459e3555ac12c62741668c0d30:
 
-On 23-09-18, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> i.MX8ULP GPIO supports similar feature as i.MX7ULP GPIO, but i.MX8ULP is
-> not compatible with i.MX7ULP per binding doc. i.MX8ULP only has one
-> register base, not two base.
-> 
-> Add a new of_device_id entry for i.MX8ULP. But to make the driver could
-> also support old bindings, check the compatible string first, before
-> check the device data.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/gpio/gpio-vf610.c | 55 +++++++++++++++++++++++++++++++++++++++++------
->  1 file changed, 49 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpio/gpio-vf610.c b/drivers/gpio/gpio-vf610.c
-> index dbc7ba0ee72c..ef2455093708 100644
-> --- a/drivers/gpio/gpio-vf610.c
-> +++ b/drivers/gpio/gpio-vf610.c
-> @@ -25,6 +25,7 @@
->  struct fsl_gpio_soc_data {
->  	/* SoCs has a Port Data Direction Register (PDDR) */
->  	bool have_paddr;
-> +	bool is_imx8ulp;
+  drm/dp_mst: Tune down error message during payload addition
+(2023-09-18 16:38:21 +0300)
 
-I would invert the logic:
+are available in the Git repository at:
 
-	bool have_dual_base;
+  git://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git
+tags/shmob-drm-atomic-dt-tag1
 
->  };
->  
->  struct vf610_gpio_port {
-> @@ -60,13 +61,22 @@ struct vf610_gpio_port {
->  #define PORT_INT_EITHER_EDGE	0xb
->  #define PORT_INT_LOGIC_ONE	0xc
->  
-> +#define IMX8ULP_GPIO_BASE_OFF	0x40
-> +#define IMX8ULP_BASE_OFF	0x80
-> +
+for you to fetch changes up to bfea0fa9052aa8d235b24957eb84d9ff20cb87b7:
 
-static const struct fsl_gpio_soc_data vf610_data = {
-	.have_dual_base = true,
-};
+  drm: renesas: shmobile: Add DT support (2023-09-19 15:58:04 +0200)
 
-static const struct fsl_gpio_soc_data imx_data = {
-	.have_paddr = true,
-	.have_dual_base = true,
-};
+----------------------------------------------------------------
+drm: renesas: shmobile: Atomic conversion + DT support
 
-static const struct fsl_gpio_soc_data imx8ulp_data = {
-	.have_paddr = true,
-};
+Currently, there are two drivers for the LCD controller on Renesas
+SuperH-based and ARM-based SH-Mobile and R-Mobile SoCs:
+  1. sh_mobile_lcdcfb, using the fbdev framework,
+  2. shmob_drm, using the DRM framework.
+However, only the former driver is used, as all platform support
+integrates the former.  None of these drivers support DT-based systems.
 
-This also introduces .data pointer for the vf610 case and we could drop
-the 'port->sdata' guard from the
-'if (port->sdata && port->sdata->paddr)' pattern. This of course would
-be an additional patch.
+Convert the SH-Mobile DRM driver to atomic modesetting, and add DT
+support, complemented by the customary set of fixes and improvements.
 
-> +
->  static const struct of_device_id vf610_gpio_dt_ids[] = {
->  	{ .compatible = "fsl,vf610-gpio",	.data = NULL, },
->  	{ .compatible = "fsl,imx7ulp-gpio",	.data = &imx_data, },
-> +	{ .compatible = "fsl,imx8ulp-gpio",	.data = &imx8ulp_data, },
->  	{ /* sentinel */ }
->  };
->  
-> @@ -255,6 +265,42 @@ static void vf610_gpio_disable_clk(void *data)
->  	clk_disable_unprepare(data);
->  }
->  
-> +static int vf610_gpio_map_base(struct platform_device *pdev, struct vf610_gpio_port *port)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	bool dual_base;
-> +
-> +	/* support old compatible strings */
-> +	if (device_is_compatible(dev, "fsl,imx7ulp-gpio") &&
-> +	    (device_is_compatible(dev, "fsl,imx93-gpio") ||
-> +	    (device_is_compatible(dev, "fsl,imx8ulp-gpio")))) {
-> +		dual_base = true;
+Link: https://lore.kernel.org/r/cover.1694767208.git.geert+renesas@glider.be/
 
-Move this part into probe() (see below) and drop the rest.
+This PR is based on today's drm-misc/for-linux-next, to avoid a
+conflict with commit 775b0669e19f2e4a ("drm/shmobile: Convert to
+platform remove callback returning void") in drm-misc/for-linux-next
+.
+Thanks for pulling!
+----------------------------------------------------------------
+Geert Uytterhoeven (36):
+      MAINTAINER: Create entry for Renesas SH-Mobile DRM drivers
+      dt-bindings: display: Add Renesas SH-Mobile LCDC bindings
+      media: uapi: Add MEDIA_BUS_FMT_RGB666_2X9_BE format
+      drm: renesas: shmobile: Fix overlay plane disable
+      drm: renesas: shmobile: Fix ARGB32 overlay format typo
+      drm: renesas: shmobile: Correct encoder/connector types
+      drm: renesas: shmobile: Add support for Runtime PM
+      drm: renesas: shmobile: Restore indentation of shmob_drm_setup_clocks()
+      drm: renesas: shmobile: Use %p4cc to print fourcc code
+      drm: renesas: shmobile: Add missing YCbCr formats
+      drm: renesas: shmobile: Improve shmob_drm_format_info table
+      drm: renesas: shmobile: Improve error handling
+      drm: renesas: shmobile: Convert to use devm_request_irq()
+      drm: renesas: shmobile: Remove custom plane destroy callback
+      drm: renesas: shmobile: Use drmm_universal_plane_alloc()
+      drm: renesas: shmobile: Embed drm_device in shmob_drm_device
+      drm: renesas: shmobile: Convert container helpers to static
+inline functions
+      drm: renesas: shmobile: Replace .dev_private with container_of()
+      drm: renesas: shmobile: Use media bus formats in platform data
+      drm: renesas: shmobile: Move interface handling to connector setup
+      drm: renesas: shmobile: Unify plane allocation
+      drm: renesas: shmobile: Rename shmob_drm_crtc.crtc
+      drm: renesas: shmobile: Rename shmob_drm_connector.connector
+      drm: renesas: shmobile: Rename shmob_drm_plane.plane
+      drm: renesas: shmobile: Use drm_crtc_handle_vblank()
+      drm: renesas: shmobile: Move shmob_drm_crtc_finish_page_flip()
+      drm: renesas: shmobile: Wait for page flip when turning CRTC off
+      drm: renesas: shmobile: Turn vblank on/off when enabling/disabling CRTC
+      drm: renesas: shmobile: Shutdown the display on remove
+      drm: renesas: shmobile: Cleanup encoder
+      drm: renesas: shmobile: Atomic conversion part 1
+      drm: renesas: shmobile: Atomic conversion part 2
+      drm: renesas: shmobile: Use suspend/resume helpers
+      drm: renesas: shmobile: Remove internal CRTC state tracking
+      drm: renesas: shmobile: Atomic conversion part 3
+      drm: renesas: shmobile: Add DT support
 
-> +	} else if (port->sdata && port->sdata->is_imx8ulp) {
-> +		dual_base = false;
-> +	} else {
-> +		dual_base = true;
-> +	};
-> +
-> +	if (dual_base) {
+Laurent Pinchart (5):
+      drm: renesas: shmobile: Remove backlight support
+      drm: renesas: shmobile: Don't set display info width and height twice
+      drm: renesas: shmobile: Rename input clocks
+      drm: renesas: shmobile: Remove support for SYS panels
+      drm: renesas: shmobile: Use struct videomode in platform data
 
-	if (port->sdata-have_dual_base) {
+ .../bindings/display/renesas,shmobile-lcdc.yaml    | 130 +++++
+ .../userspace-api/media/v4l/subdev-formats.rst     |  72 +++
+ MAINTAINERS                                        |  13 +-
+ drivers/gpu/drm/renesas/shmobile/Kconfig           |   3 +-
+ drivers/gpu/drm/renesas/shmobile/Makefile          |   3 +-
+ .../gpu/drm/renesas/shmobile/shmob_drm_backlight.c |  82 ---
+ .../gpu/drm/renesas/shmobile/shmob_drm_backlight.h |  19 -
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.c  | 650 +++++++++------------
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.h  |  27 +-
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c   | 179 +++---
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.h   |  18 +-
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_kms.c   |  77 ++-
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_kms.h   |   9 +-
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_plane.c | 326 ++++++-----
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_plane.h |   5 +-
+ include/linux/platform_data/shmob_drm.h            |  57 +-
+ include/uapi/linux/media-bus-format.h              |   3 +-
+ 17 files changed, 860 insertions(+), 813 deletions(-)
+ create mode 100644
+Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml
+ delete mode 100644 drivers/gpu/drm/renesas/shmobile/shmob_drm_backlight.c
+ delete mode 100644 drivers/gpu/drm/renesas/shmobile/shmob_drm_backlight.h
 
-> +		port->base = devm_platform_ioremap_resource(pdev, 0);
-> +		if (IS_ERR(port->base))
-> +			return PTR_ERR(port->base);
-> +
-> +		port->gpio_base = devm_platform_ioremap_resource(pdev, 1);
-> +		if (IS_ERR(port->gpio_base))
-> +			return PTR_ERR(port->gpio_base);
-> +	} else {
-> +		port->base = devm_platform_ioremap_resource(pdev, 0);
-> +		if (IS_ERR(port->base))
-> +			return PTR_ERR(port->base);
-> +
-> +		port->gpio_base = port->base + IMX8ULP_GPIO_BASE_OFF;
-> +		port->base = port->base + IMX8ULP_BASE_OFF;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int vf610_gpio_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
-> @@ -269,13 +315,10 @@ static int vf610_gpio_probe(struct platform_device *pdev)
->  		return -ENOMEM;
->  
->  	port->sdata = of_device_get_match_data(dev);
+Gr{oetje,eeting}s,
 
-	/* Handle old device-tree bindings */
-	if (device_is_compatible(dev, "fsl,imx7ulp-gpio") &&
-	    (device_is_compatible(dev, "fsl,imx93-gpio") ||
-	    (device_is_compatible(dev, "fsl,imx8ulp-gpio"))))
-		port->sdata->have_dual_base = true;
+                        Geert
 
-> -	port->base = devm_platform_ioremap_resource(pdev, 0);
-> -	if (IS_ERR(port->base))
-> -		return PTR_ERR(port->base);
->  
-> -	port->gpio_base = devm_platform_ioremap_resource(pdev, 1);
-> -	if (IS_ERR(port->gpio_base))
-> -		return PTR_ERR(port->gpio_base);
-> +	ret = vf610_gpio_map_base(pdev, port);
-> +	if (ret)
-> +		return ret;
->  
->  	port->irq = platform_get_irq(pdev, 0);
->  	if (port->irq < 0)
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Regards,
-  Marco
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
