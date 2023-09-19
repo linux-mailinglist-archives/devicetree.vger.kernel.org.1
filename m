@@ -1,49 +1,55 @@
-Return-Path: <devicetree+bounces-1524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F40C7A6EEF
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 01:03:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A2C67A6EF1
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 01:03:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A4C62817C6
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 23:03:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34D03281817
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 23:03:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF51836AE2;
-	Tue, 19 Sep 2023 23:03:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0E7E36B10;
+	Tue, 19 Sep 2023 23:03:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0E2746A1
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 23:03:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E845CC4339A;
-	Tue, 19 Sep 2023 23:03:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E12E846A1
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 23:03:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B91BCC433CC;
+	Tue, 19 Sep 2023 23:03:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695164619;
-	bh=ZlM9v8YkTIu5gldl3i0xrKYWR8j2pPgJLuQ7gGbLUGQ=;
+	s=k20201202; t=1695164620;
+	bh=qF4/9d6eVhS5IiOnbMCUg5Jo8SdxsHnh1wZSpqLGTW8=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=cu1FMNLyu9IZ/4HXEKLQDug2OSpMYKvqR1p+ZlT7vXPQYe3oBK94azEXeD+Yw8iSN
-	 znGuy1jXWzEfM9QInckBrRCrOdo3LrfIiEqgHs/uRO8hW71CjDnmfgKyRqRMqAq/vM
-	 TYjrw9JDvyP69olobBAHr/vts9CR17MvylbOnspE0nq4YJlpVyYZo2HquiOJFeeWpa
-	 2IPmtxgj2BWZxGmhGPR/tKudb45SNKqI4aqEZ7XUcjgye0YJ3AjPd5RLQN0TFs6/4z
-	 wUa/ceTU47XhZjRvxyPL+IcceK9pCu67LOiOkRdf6XbVoGR/LbHf9XXAOy/9ns/2iu
-	 76yc9+MflfmAg==
+	b=ABhdGUDFY+QyKtk1C0f9DweY+iaYrvY8dNhfiCe8Py42wGqb3sfEGSXTy9IVnI7wd
+	 MDlitU6QzJ0d8sJTD1ima1nSr3L1OHjtRAde8u/kACUhfeCq8hvjjWQ0FjbLpFYmb+
+	 NIK1lD3aeld3GB0qMA/2spgadAwuuksiRPozEd38ls0U+uqmGacFI1nOzOkLoooJpc
+	 T1uJJnYC7AP+lCRdc2ib2yyHZBcrLVqth4FBzOd1IuPq48av0pTpVuu2C+dlTcWTYw
+	 Dg+cpjbagYV75OXcV6LuvdCehOM0HHFKaDAl1Gr/iszyZOWmmJncvWgZj3cqvHyPCn
+	 9CW2Vu5JtMfUg==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Andy Gross <agross@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	cros-qcom-dts-watchers@chromium.org,
+	Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc8180x: switch UFS QMP PHY to new style of bindings
-Date: Tue, 19 Sep 2023 16:07:30 -0700
-Message-ID: <169516486002.787935.6971009810772569919.b4-ty@kernel.org>
+Subject: Re: (subset) [PATCH 0/3] Clean up LPASS_LPI probe
+Date: Tue, 19 Sep 2023 16:07:31 -0700
+Message-ID: <169516485983.787935.11341835418351027559.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230731111158.3998107-1-dmitry.baryshkov@linaro.org>
-References: <20230731111158.3998107-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230714-topic-lpass_lpi_cleanup-v1-0-dc18b5bd14f7@linaro.org>
+References: <20230714-topic-lpass_lpi_cleanup-v1-0-dc18b5bd14f7@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,16 +60,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Mon, 31 Jul 2023 14:11:58 +0300, Dmitry Baryshkov wrote:
-> Change the UFS QMP PHY to use newer style of QMP PHY bindings (single
-> resource region, no per-PHY subnodes).
+On Fri, 14 Jul 2023 14:40:45 +0200, Konrad Dybcio wrote:
+> Some SoCs (like SM6115 or SC7280 with various firmwares) expect a single
+> clock for the LPASS pinctrl.
 > 
+> This serires addresses that by simplifying the probe code and relying
+> on bindings to sanction the correct number of clocks. That allows us to
+> shoot down another downstream-ism.
 > 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sc8180x: switch UFS QMP PHY to new style of bindings
-      commit: 916b5916f228a9f83a22ad91ad8c5bf788a456d7
+[3/3] arm64: dts: qcom: sc7280: Remove qcom,adsp-bypass-mode
+      commit: 274926cc4ced14f4e61204c0cd23fd099daa9b16
 
 Best regards,
 -- 
