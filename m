@@ -1,203 +1,164 @@
-Return-Path: <devicetree+bounces-1462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACE2F7A66B3
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 16:29:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6A087A66C2
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 16:33:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 604E7281E12
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 14:28:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA90D1C20E3E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 14:33:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCC2C18650;
-	Tue, 19 Sep 2023 14:28:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F192AB34;
+	Tue, 19 Sep 2023 14:32:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DCBD1FAA
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 14:28:55 +0000 (UTC)
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6E6083;
-	Tue, 19 Sep 2023 07:28:53 -0700 (PDT)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-59c0442a359so47404967b3.0;
-        Tue, 19 Sep 2023 07:28:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695133733; x=1695738533;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XNgTqTzP+DNN14ddNBvAXkG8Xk8uIXpLMonsvHM2PZ8=;
-        b=iKvOUPDGVN5qjIjNiyP6eBzuk1pQLw67QOLK6Q42YivxG5kLD4e7BdaRXCg5mqrtRr
-         CDCTCuN0LRWigD7WzRjuB+/W+jLCBoX1nGlP+ybwbzcHlCeYnUB80YJ/LtcHUaYtTc2H
-         xEWSUX3m2/O9YX4Fum/O1MsBRzXpF1F3ERX81B2zu8NaIxeKqgRJkQ5x2KzQ6cznghm9
-         ylSHkJUqRI3/VcG1hd+sU0MXhuV/budotCyzNxLU/Wbq94kq9PkU/MirJ3JHjloUeMBy
-         YVjN1/ERqDsegkVSxjGxXqU6Fa/Q7Shd2D7FvhUlrk1+LNNkXJ2eEDmc/nhgg+h5Q1e0
-         IidQ==
-X-Gm-Message-State: AOJu0Yw4zMXuJdrlypW2EWHUtg/KGEQNBA9YJ6YzF+V59n4/Nksm4qNr
-	RUTuwbwqKZDK2rRj+6+v5yzrvPGsG4va6w==
-X-Google-Smtp-Source: AGHT+IFd8EGQV1UhOdqlmUWGRB6s1pdn+29TFWdHxxHXO28ng5ZIz0O5zlg6xBijGR3h8GufKae4Bg==
-X-Received: by 2002:a81:4e84:0:b0:581:2887:22be with SMTP id c126-20020a814e84000000b00581288722bemr12982128ywb.37.1695133732650;
-        Tue, 19 Sep 2023 07:28:52 -0700 (PDT)
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
-        by smtp.gmail.com with ESMTPSA id w135-20020a81498d000000b00577139f85dfsm3181704ywa.22.2023.09.19.07.28.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Sep 2023 07:28:52 -0700 (PDT)
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-d81adf0d57fso4762935276.1;
-        Tue, 19 Sep 2023 07:28:51 -0700 (PDT)
-X-Received: by 2002:a25:ac84:0:b0:d7b:9bd7:f280 with SMTP id
- x4-20020a25ac84000000b00d7b9bd7f280mr12340757ybi.0.1695133731633; Tue, 19 Sep
- 2023 07:28:51 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38D0374C8
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 14:32:56 +0000 (UTC)
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1C0483;
+	Tue, 19 Sep 2023 07:32:54 -0700 (PDT)
+Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.201])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4RqkXj1xPXz67ZCr;
+	Tue, 19 Sep 2023 22:28:05 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Tue, 19 Sep
+ 2023 15:32:52 +0100
+Date: Tue, 19 Sep 2023 15:32:51 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+CC: Christophe JAILLET <christophe.jaillet@wanadoo.fr>, <ak@it-klinger.de>,
+	<andriy.shevchenko@linux.intel.com>, <ang.iglesiasg@gmail.com>,
+	<bbara93@gmail.com>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	<jic23@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>, <lars@metafoo.de>,
+	<linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<matti.vaittinen@fi.rohmeurope.com>, <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 2/3] iio: pressure: Support ROHM BU1390
+Message-ID: <20230919153251.000024d3@Huawei.com>
+In-Reply-To: <7ec2ac97-8ee3-186b-ef25-ceb5ec57751a@gmail.com>
+References: <cover.1694760170.git.mazziesaccount@gmail.com>
+	<f378a401cec4fb0b9287b52ab159f00dd77569a6.1694760170.git.mazziesaccount@gmail.com>
+	<cdc9a8f8-fbd5-1eb3-7bac-1e6e5893bc9b@wanadoo.fr>
+	<7ec2ac97-8ee3-186b-ef25-ceb5ec57751a@gmail.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1694767208.git.geert+renesas@glider.be>
-In-Reply-To: <cover.1694767208.git.geert+renesas@glider.be>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 19 Sep 2023 16:28:40 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWfBTKdXvZutg4LvWqBjuz-X=ZjzX0LKPqD=JxYuLoPRw@mail.gmail.com>
-Message-ID: <CAMuHMdWfBTKdXvZutg4LvWqBjuz-X=ZjzX0LKPqD=JxYuLoPRw@mail.gmail.com>
-Subject: [GIT PULL] drm: renesas: shmobile: Atomic conversion + DT support
- (was: Re: [PATCH v4 00/41] drm: renesas: shmobile: Atomic conversion + DT support)
-To: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Magnus Damm <magnus.damm@gmail.com>, 
-	DRI Development <dri-devel@lists.freedesktop.org>, 
-	Linux-Renesas <linux-renesas-soc@vger.kernel.org>, 
-	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	Linux Media Mailing List <linux-media@vger.kernel.org>, 
-	Linux Fbdev development list <linux-fbdev@vger.kernel.org>, Linux-sh list <linux-sh@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+X-Originating-IP: [10.202.227.76]
+X-ClientProxiedBy: lhrpeml100002.china.huawei.com (7.191.160.241) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi David, Daniel,
 
-The following changes since commit 0663e1da5ba8e6459e3555ac12c62741668c0d30:
+> >> +static int bm1390_read_raw(struct iio_dev *idev,
+> >> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 struct iio_chan_spec const=
+ *chan,
+> >> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 int *val, int *val2, long =
+mask)
+> >> +{
+> >> +=A0=A0=A0 struct bm1390_data *data =3D iio_priv(idev);
+> >> +=A0=A0=A0 int ret;
+> >> +
+> >> +=A0=A0=A0 switch (mask) {
+> >> +=A0=A0=A0 case IIO_CHAN_INFO_SCALE:
+> >> +=A0=A0=A0=A0=A0=A0=A0 if (chan->type =3D=3D IIO_TEMP) {
+> >> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 *val =3D 31;
+> >> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 *val2 =3D 250000;
+> >> +
+> >> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return IIO_VAL_INT_PLUS_MICRO;
+> >> +=A0=A0=A0=A0=A0=A0=A0 } else if (chan->type =3D=3D IIO_PRESSURE) {
+> >> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 *val =3D 0;
+> >> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /*
+> >> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 * pressure in hPa is register va=
+lue divided by 2048.
+> >> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 * This means kPa is 1/20480 time=
+s the register value,
+> >> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 * which equals to 48828.125 * 10=
+ ^ -9
+> >> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 * This is 48828.125 nano kPa.
+> >> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 *
+> >> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 * When we scale this using IIO_V=
+AL_INT_PLUS_NANO we
+> >> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 * get 48828 - which means we los=
+e some accuracy. Well,
+> >> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 * let's try to live with that.
+> >> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 */
+> >> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 *val2 =3D 48828;
+> >> +
+> >> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return IIO_VAL_INT_PLUS_NANO;
+> >> +=A0=A0=A0=A0=A0=A0=A0 }
+> >> +
+> >> +=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;
+> >> +=A0=A0=A0 case IIO_CHAN_INFO_RAW:
+> >> +=A0=A0=A0=A0=A0=A0=A0 ret =3D iio_device_claim_direct_mode(idev);
+> >> +=A0=A0=A0=A0=A0=A0=A0 if (ret)
+> >> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return ret;
+> >> +
+> >> +=A0=A0=A0=A0=A0=A0=A0 ret =3D bm1390_read_data(data, chan, val, val2);
+> >> +=A0=A0=A0=A0=A0=A0=A0 iio_device_release_direct_mode(idev);
+> >> +=A0=A0=A0=A0=A0=A0=A0 if (ret)
+> >> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return ret;
+> >> +
+> >> +=A0=A0=A0=A0=A0=A0=A0 return IIO_VAL_INT;
+> >> +=A0=A0=A0 default:
+> >> +=A0=A0=A0=A0=A0=A0=A0 return -EINVAL; =20
+> >=20
+> > Certainly useless, but should we break and return -EINVAL after the=20
+> > switch, so that it is more explicit that bm1390_read_raw() always=20
+> > returns a value? =20
+>=20
+> I think there is also opposite opinions on this. For my eyes the return=20
+> at the end of the function would also be clearer - but I think I have=20
+> been asked to drop the useless return when I've been working with other=20
+> sensors in IIO domain :) My personal preference would definitely be:
+>=20
+> int ret;
+>=20
+> switch (foo)
+> {
+> case BAR:
+> 	ret =3D func1();
+> 	if (ret)
+> 		break;
+>=20
+> 	ret =3D func2();
+> 	if (ret)
+> 		break;
+>=20
+> ...
+> 	break;
+>=20
+> case BAZ:
+> 	ret =3D -EINVAL;
+> 	break;
+> }
+>=20
+> return ret;
+>=20
+> - but I've learned to think this is not the IIO preference.
 
-  drm/dp_mst: Tune down error message during payload addition
-(2023-09-18 16:38:21 +0300)
+Some static analyzers get confused (probably when there is a little
+bit more going on after the function) by that and moan that some
+cases are not considered in the switch.  I got annoyed enough with the
+noise they were generating to advocate always having explicit defaults.
 
-are available in the Git repository at:
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git
-tags/shmob-drm-atomic-dt-tag1
+>=20
+>=20
 
-for you to fetch changes up to bfea0fa9052aa8d235b24957eb84d9ff20cb87b7:
-
-  drm: renesas: shmobile: Add DT support (2023-09-19 15:58:04 +0200)
-
-----------------------------------------------------------------
-drm: renesas: shmobile: Atomic conversion + DT support
-
-Currently, there are two drivers for the LCD controller on Renesas
-SuperH-based and ARM-based SH-Mobile and R-Mobile SoCs:
-  1. sh_mobile_lcdcfb, using the fbdev framework,
-  2. shmob_drm, using the DRM framework.
-However, only the former driver is used, as all platform support
-integrates the former.  None of these drivers support DT-based systems.
-
-Convert the SH-Mobile DRM driver to atomic modesetting, and add DT
-support, complemented by the customary set of fixes and improvements.
-
-Link: https://lore.kernel.org/r/cover.1694767208.git.geert+renesas@glider.be/
-
-This PR is based on today's drm-misc/for-linux-next, to avoid a
-conflict with commit 775b0669e19f2e4a ("drm/shmobile: Convert to
-platform remove callback returning void") in drm-misc/for-linux-next
-.
-Thanks for pulling!
-----------------------------------------------------------------
-Geert Uytterhoeven (36):
-      MAINTAINER: Create entry for Renesas SH-Mobile DRM drivers
-      dt-bindings: display: Add Renesas SH-Mobile LCDC bindings
-      media: uapi: Add MEDIA_BUS_FMT_RGB666_2X9_BE format
-      drm: renesas: shmobile: Fix overlay plane disable
-      drm: renesas: shmobile: Fix ARGB32 overlay format typo
-      drm: renesas: shmobile: Correct encoder/connector types
-      drm: renesas: shmobile: Add support for Runtime PM
-      drm: renesas: shmobile: Restore indentation of shmob_drm_setup_clocks()
-      drm: renesas: shmobile: Use %p4cc to print fourcc code
-      drm: renesas: shmobile: Add missing YCbCr formats
-      drm: renesas: shmobile: Improve shmob_drm_format_info table
-      drm: renesas: shmobile: Improve error handling
-      drm: renesas: shmobile: Convert to use devm_request_irq()
-      drm: renesas: shmobile: Remove custom plane destroy callback
-      drm: renesas: shmobile: Use drmm_universal_plane_alloc()
-      drm: renesas: shmobile: Embed drm_device in shmob_drm_device
-      drm: renesas: shmobile: Convert container helpers to static
-inline functions
-      drm: renesas: shmobile: Replace .dev_private with container_of()
-      drm: renesas: shmobile: Use media bus formats in platform data
-      drm: renesas: shmobile: Move interface handling to connector setup
-      drm: renesas: shmobile: Unify plane allocation
-      drm: renesas: shmobile: Rename shmob_drm_crtc.crtc
-      drm: renesas: shmobile: Rename shmob_drm_connector.connector
-      drm: renesas: shmobile: Rename shmob_drm_plane.plane
-      drm: renesas: shmobile: Use drm_crtc_handle_vblank()
-      drm: renesas: shmobile: Move shmob_drm_crtc_finish_page_flip()
-      drm: renesas: shmobile: Wait for page flip when turning CRTC off
-      drm: renesas: shmobile: Turn vblank on/off when enabling/disabling CRTC
-      drm: renesas: shmobile: Shutdown the display on remove
-      drm: renesas: shmobile: Cleanup encoder
-      drm: renesas: shmobile: Atomic conversion part 1
-      drm: renesas: shmobile: Atomic conversion part 2
-      drm: renesas: shmobile: Use suspend/resume helpers
-      drm: renesas: shmobile: Remove internal CRTC state tracking
-      drm: renesas: shmobile: Atomic conversion part 3
-      drm: renesas: shmobile: Add DT support
-
-Laurent Pinchart (5):
-      drm: renesas: shmobile: Remove backlight support
-      drm: renesas: shmobile: Don't set display info width and height twice
-      drm: renesas: shmobile: Rename input clocks
-      drm: renesas: shmobile: Remove support for SYS panels
-      drm: renesas: shmobile: Use struct videomode in platform data
-
- .../bindings/display/renesas,shmobile-lcdc.yaml    | 130 +++++
- .../userspace-api/media/v4l/subdev-formats.rst     |  72 +++
- MAINTAINERS                                        |  13 +-
- drivers/gpu/drm/renesas/shmobile/Kconfig           |   3 +-
- drivers/gpu/drm/renesas/shmobile/Makefile          |   3 +-
- .../gpu/drm/renesas/shmobile/shmob_drm_backlight.c |  82 ---
- .../gpu/drm/renesas/shmobile/shmob_drm_backlight.h |  19 -
- drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.c  | 650 +++++++++------------
- drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.h  |  27 +-
- drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c   | 179 +++---
- drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.h   |  18 +-
- drivers/gpu/drm/renesas/shmobile/shmob_drm_kms.c   |  77 ++-
- drivers/gpu/drm/renesas/shmobile/shmob_drm_kms.h   |   9 +-
- drivers/gpu/drm/renesas/shmobile/shmob_drm_plane.c | 326 ++++++-----
- drivers/gpu/drm/renesas/shmobile/shmob_drm_plane.h |   5 +-
- include/linux/platform_data/shmob_drm.h            |  57 +-
- include/uapi/linux/media-bus-format.h              |   3 +-
- 17 files changed, 860 insertions(+), 813 deletions(-)
- create mode 100644
-Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml
- delete mode 100644 drivers/gpu/drm/renesas/shmobile/shmob_drm_backlight.c
- delete mode 100644 drivers/gpu/drm/renesas/shmobile/shmob_drm_backlight.h
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
