@@ -1,124 +1,165 @@
-Return-Path: <devicetree+bounces-1279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9618E7A5ACC
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 09:23:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6D7A7A5AD6
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 09:26:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0C771C20A3D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 07:23:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EFEB282199
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 07:26:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2251328A4;
-	Tue, 19 Sep 2023 07:23:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81D5B34CF5;
+	Tue, 19 Sep 2023 07:26:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7D8B341AB
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 07:23:12 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DAE5114;
-	Tue, 19 Sep 2023 00:23:11 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38J5TApo011746;
-	Tue, 19 Sep 2023 07:23:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=1axQKYzgGNibBdr5sOU/LQTgOxZZBZlrX9xQ+g6prr0=;
- b=lYxw6qcn1EzxQ0LRQtpBv0NjrVwFunrTpcPjtPVjUDsTL1Y+HtxFEICtaMAys6bJVfsJ
- 5M6sG6tqWBjn6YY3zqEkjYXSgb3c58Q3AMkn0TZalVvl0mmbWyllVx6btf3/NpF+vMa3
- r/ncwwYABiZCa/qhqRw/Az1Qujf/tqN+mu8i/0SuizQwlmLwXmCSstFqSoaL4yH2X8XJ
- V33yPw1Wf3+X8K9DNIVtQ5+BHFwJL3BigaBSjj87OdXQsoaU09hYjzTmy9gCGGrPZ9yx
- +uo7vOoK9xb4vmQgGAqApMVWULo7vNTXIl0dNyR/DXHKg6D2ETCmUZjiuWgOGnrokyO0 WA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t6trqh9bk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Sep 2023 07:23:06 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38J7N5da031608
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Sep 2023 07:23:05 GMT
-Received: from [10.201.203.60] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 19 Sep
- 2023 00:23:00 -0700
-Message-ID: <1f09339e-b3b5-874c-4874-199e8c7ae890@quicinc.com>
-Date: Tue, 19 Sep 2023 12:52:56 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 791F3BA20
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 07:26:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEFCAC433C8;
+	Tue, 19 Sep 2023 07:26:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695108384;
+	bh=gLB2LWQsL+RnhIlkyrF0yKDNcGb+VOI9qal/BFZlPEg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HEDnQ7zouNLjQw/nlWyJKVD7wXY3F1UWETP5qKs+LT3XGfmVydv+EQNE3X24gb5Ya
+	 VLEaX2YwX3IUMfMUcPsGLZT1UpemkdgDJ71q5hTRYFfv4h7rTPg+GwroVCJAZ+NdM0
+	 M1w1G7jFEO2TS2o3CtwznapuY8DHDhuO3riT1QmxnA90ZF8zHLgnmpwGs/bzdOQVs1
+	 W9g8nMqCkdBQq9DmHUpzshVTO8SZsF2KISxsLDEd70Xo5DrFQJWsB2QkkdTDsUyzbB
+	 hRMaGixDmipxvo+esdqKJmcKT635FGG9q2bEMmDBtCI9Wa43dzb5sXWNEPv5CWNLEN
+	 jNkzpKQzt9d9g==
+Date: Tue, 19 Sep 2023 08:26:18 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Paolo Bonzini <pbonzini@redhat.com>,
+	Atish Patra <atishp@atishpatra.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Shuah Khan <shuah@kernel.org>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Mayuresh Chitale <mchitale@ventanamicro.com>,
+	devicetree@vger.kernel.org, kvm@vger.kernel.org,
+	kvm-riscv@lists.infradead.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH 1/7] RISC-V: Detect XVentanaCondOps from ISA string
+Message-ID: <20230919-bbcb3627b6d9d0238c5ba351@fedora>
+References: <20230919035343.1399389-1-apatel@ventanamicro.com>
+ <20230919035343.1399389-2-apatel@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH V2 1/4] dt-bindings: thermal: qcom-tsens: Add ipq5018
- compatible
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <srinivas.kandagatla@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <thara.gopinath@gmail.com>, <rafael@kernel.org>,
-        <daniel.lezcano@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <dmitry.baryshkov@linaro.org>
-References: <20230915121504.806672-1-quic_srichara@quicinc.com>
- <20230915121504.806672-2-quic_srichara@quicinc.com>
- <03b0cafa-49c7-8838-b116-927c9649cbd3@linaro.org>
- <f5aee51d-0345-1294-a85b-ea96ed937685@linaro.org>
-From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <f5aee51d-0345-1294-a85b-ea96ed937685@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: HAT-kVeSbg6KpHgw7vELdsYJF40YIKBI
-X-Proofpoint-ORIG-GUID: HAT-kVeSbg6KpHgw7vELdsYJF40YIKBI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-19_01,2023-09-18_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- impostorscore=0 clxscore=1015 lowpriorityscore=0 malwarescore=0
- mlxlogscore=537 priorityscore=1501 phishscore=0 bulkscore=0 spamscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309190060
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="mv1aC61H7/X3v0PV"
+Content-Disposition: inline
+In-Reply-To: <20230919035343.1399389-2-apatel@ventanamicro.com>
 
 
+--mv1aC61H7/X3v0PV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 9/15/2023 6:15 PM, Krzysztof Kozlowski wrote:
-> On 15/09/2023 14:43, Krzysztof Kozlowski wrote:
->> On 15/09/2023 14:15, Sricharan Ramabadhran wrote:
->>> IPQ5018 has tsens v1.0 block with 4 sensors and 1 interrupt.
->>>
->>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>> ---
->>>   [v2] Sorted the compatible and removed example
->>>
->>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> No, unreviewed. Your driver says it is not compatible with
-> qcom,tsens-v1. This does not look right :/
-> 
+Hey Anup,
 
-  Yes it is V1 IP, but since there is no RPM, to enable the IP/SENSORS
-  have to do those steps after calling init_common. Similar reason
-  added a new feat as well in patch #2 as well. Hence for this,
-  new compatible was required.
+On Tue, Sep 19, 2023 at 09:23:37AM +0530, Anup Patel wrote:
+> The Veyron-V1 CPU supports custom conditional arithmetic and
+> conditional-select/move operations referred to as XVentanaCondOps
+> extension. In fact, QEMU RISC-V also has support for emulating
+> XVentanaCondOps extension.
+>=20
+> Let us detect XVentanaCondOps extension from ISA string available
+> through DT or ACPI.
+>=20
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> ---
+>  Documentation/devicetree/bindings/riscv/extensions.yaml | 7 +++++++
+>  arch/riscv/include/asm/hwcap.h                          | 1 +
+>  arch/riscv/kernel/cpufeature.c                          | 1 +
+>  3 files changed, 9 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
+cumentation/devicetree/bindings/riscv/extensions.yaml
+> index 36ff6749fbba..cad8ef68eca7 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -171,6 +171,13 @@ properties:
+>              memory types as ratified in the 20191213 version of the priv=
+ileged
+>              ISA specification.
+> =20
+> +        - const: xventanacondops
+> +          description: |
+> +            The Ventana specific XVentanaCondOps extension for condition=
+al
+> +            arithmetic and conditional-select/move operations defined by=
+ the
+> +            Ventana custom extensions specification v1.0.1 (or higher) at
+> +            https://github.com/ventanamicro/ventana-custom-extensions/re=
+leases.
+> +
 
-Regards,
-  Sricharan
+For this and the next patch, the binding change needs to be split out
+=66rom the code. checkpatch should've complained about it.
+
+>          - const: zba
+>            description: |
+>              The standard Zba bit-manipulation extension for address gene=
+ration
+> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwca=
+p.h
+> index 0f520f7d058a..b7efe9e2fa89 100644
+> --- a/arch/riscv/include/asm/hwcap.h
+> +++ b/arch/riscv/include/asm/hwcap.h
+> @@ -59,6 +59,7 @@
+>  #define RISCV_ISA_EXT_ZIFENCEI		41
+>  #define RISCV_ISA_EXT_ZIHPM		42
+>  #define RISCV_ISA_EXT_SMSTATEEN		43
+> +#define RISCV_ISA_EXT_XVENTANACONDOPS	44
+> =20
+>  #define RISCV_ISA_EXT_MAX		64
+> =20
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
+e.c
+> index 3755a8c2a9de..3a31d34fe709 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -182,6 +182,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] =3D {
+>  	__RISCV_ISA_EXT_DATA(svinval, RISCV_ISA_EXT_SVINVAL),
+>  	__RISCV_ISA_EXT_DATA(svnapot, RISCV_ISA_EXT_SVNAPOT),
+>  	__RISCV_ISA_EXT_DATA(svpbmt, RISCV_ISA_EXT_SVPBMT),
+> +	__RISCV_ISA_EXT_DATA(xventanacondops, RISCV_ISA_EXT_XVENTANACONDOPS),
+
+I've been banging on for a bit about people doing weird stuff to detect
+their vendor extensions, so nice to see it being done properly :)
+
+
+Cheers,
+Conor.
+
+>  };
+> =20
+>  const size_t riscv_isa_ext_count =3D ARRAY_SIZE(riscv_isa_ext);
+> --=20
+> 2.34.1
+>=20
+
+--mv1aC61H7/X3v0PV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQlNFgAKCRB4tDGHoIJi
+0iUpAP9ne9DXece3u0b+dxZu1b95uYLQpbdCMoKSL3or2S8VVgEAsKUDIbvWz1ST
+t926imSxSSeZ0HhKMpZpxZLwWWHhjA8=
+=gljK
+-----END PGP SIGNATURE-----
+
+--mv1aC61H7/X3v0PV--
 
