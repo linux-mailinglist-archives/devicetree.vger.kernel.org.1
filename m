@@ -1,142 +1,132 @@
-Return-Path: <devicetree+bounces-1283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FCAF7A5AE5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 09:28:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D33E7A5AEE
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 09:31:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 413E51C20C51
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 07:28:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47AC61C20C93
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 07:31:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CAE0358A5;
-	Tue, 19 Sep 2023 07:28:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDD9A358A6;
+	Tue, 19 Sep 2023 07:31:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2D2F328A4
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 07:28:46 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AC8D116;
-	Tue, 19 Sep 2023 00:28:45 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38J6Anl1007820;
-	Tue, 19 Sep 2023 07:28:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Z1930RYNMY8QCWBZ8oDZEVFEgbvg9qin0zy01lwYogE=;
- b=HrW1lxRPWnqDOrUUHo9OQDiPSNwb/z23YVx3EkQwBgKwHoZulxl1mtDzEVVgqqfnQem+
- 8GQuMsu4YBUIZ53AIvqgGBPFEnTrQ4vKtZ4GM4C248Eo32BjToYGnFQPDHBFtFSpWp6L
- FR0y1DPx+fIxtI29QvH2UZy00CvGiWF4HPb5Q9DbTHXYx2dVmZG4nSgpxi+JMynWwTX/
- UAOv6+egqblf7ALqGfQHDtbzVpVlWl1Nsz/fYkIO4/vOFKUuYNwItVBnppp9vfYQdqBs
- /9T2NJRWuL359AbrRTWVoXaMwqZcsnUeZFsIdRqbg9HY5guSpOSE8n0h4+3aHGfhRizj iA== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t746g09p6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Sep 2023 07:28:41 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38J7SeY8024765
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Sep 2023 07:28:40 GMT
-Received: from [10.201.203.60] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 19 Sep
- 2023 00:28:35 -0700
-Message-ID: <b40c6439-ab73-d796-589e-ffee21cedfc9@quicinc.com>
-Date: Tue, 19 Sep 2023 12:58:32 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6D31328A4
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 07:31:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6539C433C8;
+	Tue, 19 Sep 2023 07:31:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695108699;
+	bh=c8Jda3J+RhTWA4ijuCRZYSHme2R9CMRcX025MvqhKWM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UWKb7fqgAsdPyITs/ng3rd6kRyzAEvbEg0CsfVTkaem2KV+R8S+vnc5Pw1SmiaXxV
+	 IckberZW3K1GtRiC+8vAsQ81c6T2vmVkVIbMcN0POV024F2AOQ+8I1XS+sbRdZoE7Y
+	 1G5vwtR10gIpigpW0BvThdnGBCbrD4ywTgDmK5awI93ZQVZSh+Qm0vSB8Sy/Hue6JU
+	 byoGujV8JGMBIPS2uy221+6Vrv2KjHrutiYo4rg/bye/5qjeS0mYTdxiFh0CH71e5R
+	 QIsUJyCh3UzdF151UJSrKbwBapmj5pAI7LORymIxi3Wf5Vhhzotw2YHJdFJN4smXEu
+	 KfXcMaHVz1b2w==
+Date: Tue, 19 Sep 2023 09:31:36 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Benjamin Bara <bbara93@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	NXP Linux Team <linux-imx@nxp.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Russell King <linux@armlinux.org.uk>, 
+	Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, Frank Oltmanns <frank@oltmanns.dev>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	Benjamin Bara <benjamin.bara@skidata.com>, Adam Ford <aford173@gmail.com>, 
+	Lucas Stach <l.stach@pengutronix.de>
+Subject: Re: [PATCH 00/13] imx8mp: first clock propagation attempt (for LVDS)
+Message-ID: <7at35ykai5lyeaci3xvklrfk4xg4hn3jnw4fz3egqobjvnglbz@cv45l3mrhtct>
+References: <20230918-imx8mp-dtsi-v1-0-1d008b3237c0@skidata.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH V2 4/4] arm64: dts: qcom: ipq5018: Add tsens node
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <srinivas.kandagatla@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <thara.gopinath@gmail.com>, <rafael@kernel.org>,
-        <daniel.lezcano@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <dmitry.baryshkov@linaro.org>
-References: <20230915121504.806672-1-quic_srichara@quicinc.com>
- <20230915121504.806672-5-quic_srichara@quicinc.com>
- <b0fe17e4-e4d8-02af-4e09-06b3930b38fe@linaro.org>
-From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <b0fe17e4-e4d8-02af-4e09-06b3930b38fe@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 4dS0KCBHHqGuPoBNX3_ebDk0AdslBfDu
-X-Proofpoint-GUID: 4dS0KCBHHqGuPoBNX3_ebDk0AdslBfDu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-19_01,2023-09-18_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
- lowpriorityscore=0 malwarescore=0 priorityscore=1501 bulkscore=0
- spamscore=0 mlxlogscore=999 impostorscore=0 adultscore=0 suspectscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309190061
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="rra6xzzb3zzwrtqx"
+Content-Disposition: inline
+In-Reply-To: <20230918-imx8mp-dtsi-v1-0-1d008b3237c0@skidata.com>
 
 
+--rra6xzzb3zzwrtqx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 9/15/2023 6:16 PM, Krzysztof Kozlowski wrote:
-> On 15/09/2023 14:15, Sricharan Ramabadhran wrote:
->> IPQ5018 has tsens V1.0 IP with 4 sensors.
->> There is no RPM, so tsens has to be manually enabled. Adding the tsens
->> and nvmem node and IPQ5018 has 4 thermal sensors (zones). With the
->> critical temperature being 120'C and action is to reboot. Adding all
->> the 4 zones here.
->>
->> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->> ---
->>   [v2] Fixed node names, order and added qfprom cells for points
->>        seperately to use the calibrate_common and squashed thermal_zone
->>        nodes here
->>
->>   arch/arm64/boot/dts/qcom/ipq5018.dtsi | 169 ++++++++++++++++++++++++++
->>   1 file changed, 169 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
->> index 9f13d2dcdfd5..d53aea5342e2 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
->> @@ -93,6 +93,117 @@ soc: soc@0 {
->>   		#size-cells = <1>;
->>   		ranges = <0 0 0 0xffffffff>;
->>   
->> +		qfprom: qfprom@a0000 {
->> +			#address-cells = <1>;
->> +			#size-cells = <1>;
->> +			compatible = "qcom,ipq5018-qfprom", "qcom,qfprom";
-> 
-> This is a friendly reminder during the review process.
-> 
-> It seems my previous comments were not fully addressed. Maybe my
-> feedback got lost between the quotes, maybe you just forgot to apply it.
-> Please go back to the previous discussion and either implement all
-> requested changes or keep discussing them.
-> 
+Hi,
 
-  oops, moved the compatible to first, but missed it on posting version.
-  Will fix it in V3.
+On Mon, Sep 18, 2023 at 12:39:56AM +0200, Benjamin Bara wrote:
+> Target of this series is to dynamically set the rate of video_pll1 to
+> the required LVDS clock rate(s), which are configured by the panel, and
+> the lvds-bridge respectively.
+>=20
+> Some background:
+> The LVDS panel requires two clocks: the crtc clock and the lvds clock.
+> The lvds rate is always 7x the crtc rate. On the imx8mp, these are
+> assigned to media_disp2_pix and media_ldb, which are both
+> clk-composite-8m. The rates are set by drm_client_modeset_commit() (and
+> later by fsl_ldb_atomic_enable()), and the fsl-ldb driver, first crtc,
+> then lvds. The parent is typically assigned to video_pll1, which is a
+> clk-pll14xx (pll1443x).
+>=20
+> The main problem:
+> As the clk-composite-8m currently doesn't support CLK_SET_RATE_PARENT,
+> the crtc rate is not propagated to video_pll1, and therefore must be
+> assigned in the device-tree manually.
+>=20
+> The idea:
+> Enable CLK_SET_RATE_PARENT, at least for media_disp2_pix and media_ldb.
+> When this is done, ensure that the pll1443x can be re-configured,
+> meaning it ensures that an already configured rate (crtc rate) is still
+> supported when a second child requires a different rate (lvds rate). As
+> the children have divider, the current approach is straight forward by
+> calculating the LCM of the required rates. During the rate change of the
+> PLL, it must ensure that all children still have the configured rate at
+> the end (and maybe also bypass the clock while doing so?). This is done
+> by implementing a notifier function for the clk-composite-8m. The tricky
+> part is now to find out if the rate change was intentional or not. This
+> is done by adding the "change trigger" to the notify data. In our case,
+> we now can infer if we aren't the change trigger, we need to keep the
+> existing rate after the PLL's rate change. We keep the existing rate by
+> modifying the new_rate of the clock's core, as we are quite late in an
+> already ongoing clock change process.
 
-Regards,
-  Sricharan
+So just like the discussion we had on the Allwinner stuff, I don't think
+you can cover it completely within the framework. If we take a step
+backward, I guess what you want is that you have multiple clocks,
+feeding multiple displays at varying clock rates depending on the
+resolution, and the parent needs to accomodate all of them, right?
+
+Could you share the clock tree and the capability of each clocks (range
+of the multipliers / dividers mostly)?
+
+I'm wondering if we couldn't set the parent clock to a fairly high rate
+that would be high enough for each child to reach whatever rate it needs
+to have without the need for CLK_SET_RATE_PARENT.
+
+Maxime
+
+--rra6xzzb3zzwrtqx
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZQlOWAAKCRDj7w1vZxhR
+xeBiAP4jttHKIfgVxUcdg4EmJxBQdy3Fu1rxc1KHBNTMdjPJaAEA9bFwNcsUbV6n
++2VSHcZbhMSCH+91fdbGdVwx08U2rAo=
+=VMgi
+-----END PGP SIGNATURE-----
+
+--rra6xzzb3zzwrtqx--
 
