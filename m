@@ -1,216 +1,259 @@
-Return-Path: <devicetree+bounces-1450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB7F57A647D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 15:11:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06C327A64C6
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 15:22:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6A251C209AD
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 13:11:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D34551C20A04
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 13:21:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2665720E1;
-	Tue, 19 Sep 2023 13:11:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EC2936AE3;
+	Tue, 19 Sep 2023 13:21:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 531A537C88
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 13:11:01 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id B5891F4;
-	Tue, 19 Sep 2023 06:10:59 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C873D1FB;
-	Tue, 19 Sep 2023 06:11:36 -0700 (PDT)
-Received: from [192.168.1.3] (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E002F3F59C;
-	Tue, 19 Sep 2023 06:10:57 -0700 (PDT)
-Message-ID: <55a57c4c-e846-1f94-9067-75f03b3618e7@arm.com>
-Date: Tue, 19 Sep 2023 14:10:57 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64E4E1863B;
+	Tue, 19 Sep 2023 13:21:50 +0000 (UTC)
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC1B0F9;
+	Tue, 19 Sep 2023 06:21:47 -0700 (PDT)
+Received: from wsk (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: lukma@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 714F986A63;
+	Tue, 19 Sep 2023 15:21:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1695129705;
+	bh=HakaOJT9Ay+e2U9NkAP5DQlXMu7UmHCgYHGIGfiN5lw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=aV6M9f1yQYiTfTfVXp1hfaf/SJMNC1Oul2LykKwnfI5cx0mVZUWGKQnEU+Yn09LS7
+	 OTjyIC+8s8rRpYZBvWjs6ix+H5QtjYdEdha/AlL6yNwskLU4eGon2gamBQmr8LPrqW
+	 I3lR9RkYA2F/xJDw4Us2iT7qu/HNa1Z12YzISuBpIfJadVdsYdYGyC/gpUPfafj6AT
+	 VBfPplKibnLyd16f/C0nEas7hCkorqz2xCGv0y2XwNvTmsLm/XB9zg1Jj9SXNsJYPJ
+	 Ci2+OAoffkgVEE5Dm8vJe5NWXUBPTp+UtgyFQ0Sbw6lBTMBszoa+JtiG4Vr9ea6lS9
+	 PliEXxzwo8oAw==
+Date: Tue, 19 Sep 2023 15:21:37 +0200
+From: Lukasz Majewski <lukma@denx.de>
+To: <Parthiban.Veerasooran@microchip.com>
+Cc: <andrew@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
+ <kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
+ <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+ <corbet@lwn.net>, <Steen.Hegelund@microchip.com>, <rdunlap@infradead.org>,
+ <horms@kernel.org>, <casper.casan@gmail.com>, <netdev@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-doc@vger.kernel.org>, <Horatiu.Vultur@microchip.com>,
+ <Woojung.Huh@microchip.com>, <Nicolas.Ferre@microchip.com>,
+ <UNGLinuxDriver@microchip.com>, <Thorsten.Kummermehr@microchip.com>
+Subject: Re: [RFC PATCH net-next 2/6] net: ethernet: add mac-phy interrupt
+ support with reset complete handling
+Message-ID: <20230919152137.2d1cfb5c@wsk>
+In-Reply-To: <852a61a5-8c15-1b5a-bea0-2f0d936722df@microchip.com>
+References: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
+	<20230908142919.14849-3-Parthiban.Veerasooran@microchip.com>
+	<027d8f7b-6932-4d9d-b2f9-5369806a79a3@lunn.ch>
+	<852a61a5-8c15-1b5a-bea0-2f0d936722df@microchip.com>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [EXT] Re: [RFC PATCH v3 0/8] Coresight for Kernel panic and
- watchdog reset
-Content-Language: en-US
-To: Linu Cherian <lcherian@marvell.com>,
- "suzuki.poulose@arm.com" <suzuki.poulose@arm.com>,
- "mike.leach@linaro.org" <mike.leach@linaro.org>,
- "leo.yan@linaro.org" <leo.yan@linaro.org>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "coresight@lists.linaro.org" <coresight@lists.linaro.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Sunil Kovvuri Goutham <sgoutham@marvell.com>,
- George Cherian <gcherian@marvell.com>
-References: <20230904050548.28047-1-lcherian@marvell.com>
- <fafd728b-1489-4856-ced3-6759fbda2c6f@arm.com>
- <PH0PR18MB50021C74B2EC3C8795715ADBCEFAA@PH0PR18MB5002.namprd18.prod.outlook.com>
-From: James Clark <james.clark@arm.com>
-In-Reply-To: <PH0PR18MB50021C74B2EC3C8795715ADBCEFAA@PH0PR18MB5002.namprd18.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-	RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; boundary="Sig_/qQnP1voX2Z88kBlC9I3wV7k";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+--Sig_/qQnP1voX2Z88kBlC9I3wV7k
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Parthiban,
+
+> On 13/09/23 8:09 am, Andrew Lunn wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you
+> > know the content is safe=20
+> >> +static int oa_tc6_sw_reset(struct oa_tc6 *tc6)
+> >> +{
+> >> +     long timeleft;
+> >> +     u32 regval;
+> >> +     int ret;
+> >> +
+> >> +     /* Perform software reset with both protected and
+> >> unprotected control
+> >> +      * commands because the driver doesn't know the current
+> >> status of the
+> >> +      * MAC-PHY.
+> >> +      */
+> >> +     regval =3D SW_RESET;
+> >> +     reinit_completion(&tc6->rst_complete);
+> >> +     ret =3D oa_tc6_perform_ctrl(tc6, OA_TC6_RESET, &regval, 1,
+> >> true, false);
+> >> +     if (ret) {
+> >> +             dev_err(&tc6->spi->dev, "RESET register write
+> >> failed\n");
+> >> +             return ret;
+> >> +     }
+> >> +
+> >> +     ret =3D oa_tc6_perform_ctrl(tc6, OA_TC6_RESET, &regval, 1,
+> >> true, true);
+> >> +     if (ret) {
+> >> +             dev_err(&tc6->spi->dev, "RESET register write
+> >> failed\n");
+> >> +             return ret;
+> >> +     }
+> >> +     timeleft =3D
+> >> wait_for_completion_interruptible_timeout(&tc6->rst_complete,
+> >> +
+> >> msecs_to_jiffies(1));
+> >> +     if (timeleft <=3D 0) {
+> >> +             dev_err(&tc6->spi->dev, "MAC-PHY reset failed\n");
+> >> +             return -ENODEV;
+> >> +     } =20
+> >=20
+> > This seems a bit messy and complex. I assume reset is performed once
+> > during probe, and never again? So i wonder if it would be cleaner to
+> > actually just poll for the reset to complete? You can then remove
+> > all this completion code, and the interrupt handler gets simpler? =20
+> Ok the spec says the below, that's why I implemented like this.
+>=20
+> 9.2.8.8 RESETC
+> Reset Complete. This bit is set when the MAC-PHY reset is complete
+> and ready for configuration. When it is set, it will generate a
+> non-maskable interrupt assertion on IRQn to alert the SPI host.
+> Additionally, setting of the RESETC bit shall also set EXST =3D 1 in
+> the receive data footer until this bit is cleared by action of the
+> SPI host writing a =E2=80=981=E2=80=99.
+
+If you don't mind - I would like to ask some extra questions:
+
+1. Could you share which silicon revision of LAN8651 (rev 1 =3D B0 or rev
+2 =3D B1) are your using?
+
+2. Do you use 10k Ohm pull up resistor between VDD and the IRQ_N line?
+
+3. Are you using any standard development board with LAN865x device?
+Could you share how do you connect reset and irq lines and which CPU do
+you use?
+
+Thanks in advance for your help.
 
 
-On 19/09/2023 12:39, Linu Cherian wrote:
-> Hi James,
-> 
->> -----Original Message-----
->> From: James Clark <james.clark@arm.com>
->> Sent: Friday, September 15, 2023 7:20 PM
->> To: Linu Cherian <lcherian@marvell.com>; suzuki.poulose@arm.com;
->> mike.leach@linaro.org; leo.yan@linaro.org
->> Cc: linux-arm-kernel@lists.infradead.org; coresight@lists.linaro.org; linux-
->> kernel@vger.kernel.org; robh+dt@kernel.org;
->> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
->> devicetree@vger.kernel.org; Sunil Kovvuri Goutham
->> <sgoutham@marvell.com>; George Cherian <gcherian@marvell.com>
->> Subject: [EXT] Re: [RFC PATCH v3 0/8] Coresight for Kernel panic and
->> watchdog reset
->>
->> External Email
->>
->> ----------------------------------------------------------------------
->>
->>
->> On 04/09/2023 06:05, Linu Cherian wrote:
->>> This RFC v3 patch series is rebased on v6.5-rc7 and is dependent on
->>> the below two patches.
->> [...]
->>>
->>> Steps for reading trace data captured in previous boot
->>> ++++++++++++++++++++++++++++++++++++++++++++++++++++++
->>> 1. cd /sys/bus/coresight/devices/tmc_etrXX/
->>>
->>> 2. Change to special mode called, read_prevboot.
->>>
->>>    #echo 1 > read_prevboot
->>>
->>> 3. Dump trace buffer data to a file,
->>>
->>>    #dd if=/dev/tmc_etrXX of=~/cstrace.bin
->>
->> Hi Linu,
->>
->> I left this comment on V2, but I tested it again and get the same result.
->> Instead of linking it I'll just re-paste it here:
->>
->> I made a reserved region, but when I run this command I get "Unable to
->> handle kernel paging request at virtual address 001f1921ed10ffae".
->>
->> Is there an extra step involved if there was no trace captured from a previous
->> panic? I thought I'd just be able to read out uninitialised data. Or is it the
->> uninitialised metadata that's causing this issue?
->>
->> Also that's without KASAN or lockdep turned on. If I have a kernel with either
->> of those things I get a different warning for each one. I expect the lockdep
->> one would happen even in the working scenario though?
-> 
-> Somehow I missed this comment on V2.
-> 
-> I retried the above steps on my board and I do not see issues either with KASAN OR lockdep enabled configs.
-> Please see logs below. 
-> 
-> a. Lockdep enabled config
-> ~# cd /sys/bus/coresight/devices/tmc_etr0
-> tmc_etr0# echo 1 > read_prevboot
-> tmc_etr0# dd if=/dev/tmc_etr0 of=~/cstrace.bin
-> 12324+1 records in
-> 12324+1 records out
-> 6310032 bytes (6.3 MB, 6.0 MiB) copied, 0.122883 s, 51.3 MB/s
-> 
-> # zcat /proc/config.gz | grep LOCKDEP
-> CONFIG_LOCKDEP_SUPPORT=y
-> CONFIG_LOCKDEP=y
-> CONFIG_LOCKDEP_BITS=15
-> CONFIG_LOCKDEP_CHAINS_BITS=16
-> CONFIG_LOCKDEP_STACK_TRACE_BITS=19
-> CONFIG_LOCKDEP_STACK_TRACE_HASH_BITS=14
-> CONFIG_LOCKDEP_CIRCULAR_QUEUE_BITS=12
-> # CONFIG_DEBUG_LOCKDEP is not set
-> 
-> b. KASAN enabled config
-> # cd /sys/bus/coresight/devices/tmc_etr0/
-> tmc_etr0# ls
-> buf_mode_preferred   connections  power          trigger_cntr
-> buf_modes_available  enable_sink  read_prevboot  uevent
-> buffer_size          mgmt         subsystem      waiting_for_supplier
-> tmc_etr0# echo 1 > read_prevboot
-> tmc_etr0# dd if=/dev/tmc_etr0 of=~/cstrace.bin
-> 12324+1 records in
-> 12324+1 records out
-> 6310032 bytes (6.3 MB, 6.0 MiB) copied, 0.0940671 s, 67.1 MB/s
-> 
-> ~# zcat /proc/config.gz | grep -i kasan
-> CONFIG_KASAN_SHADOW_OFFSET=0xdfff800000000000
-> CONFIG_HAVE_ARCH_KASAN=y
-> CONFIG_HAVE_ARCH_KASAN_SW_TAGS=y
-> CONFIG_HAVE_ARCH_KASAN_HW_TAGS=y
-> CONFIG_HAVE_ARCH_KASAN_VMALLOC=y
-> CONFIG_CC_HAS_KASAN_GENERIC=y
-> CONFIG_CC_HAS_KASAN_SW_TAGS=y
-> CONFIG_KASAN=y
-> CONFIG_KASAN_GENERIC=y
-> # CONFIG_KASAN_SW_TAGS is not set
-> # CONFIG_KASAN_HW_TAGS is not set
-> CONFIG_KASAN_OUTLINE=y
-> # CONFIG_KASAN_INLINE is not set
-> CONFIG_KASAN_STACK=y
-> CONFIG_KASAN_VMALLOC=y
-> # CONFIG_KASAN_MODULE_TEST is not set
-> 
-> 
-> But then I am able to trigger kernel crash with bad metadata(corrupted rwp and rrp) with below stack trace.
-> 
-> [  107.442991]  __arch_copy_to_user+0x180/0x240
-> [  107.447254]  vfs_read+0xc8/0x2a8
-> [  107.450476]  ksys_read+0x74/0x110
-> [  107.453783]  __arm64_sys_read+0x24/0x38
-> [  107.457611]  invoke_syscall.constprop.0+0x58/0xf8
-> [  107.462309]  do_el0_svc+0x6c/0x158
-> [  107.465704]  el0_svc+0x54/0x1c0
-> [  107.468839]  el0t_64_sync_handler+0x100/0x130
-> [  107.473188]  el0t_64_sync+0x190/0x198
-> [  107.476843] Code: d503201f d503201f d503201f d503201f (a8c12027)
-> 
-> Does your stack trace looks similar ? Then its very likely due to bad metadata.
-> If not, kindly please share yours.
-> 
-> For example, if we have bad values for rwp and rrp, offset can get messed up resulting in above crash.
-> Will add more validation checks while setting up the prevboot buffer,  so as to avoid processing with bogus metadata values
-> in the next patch version.
-> 
-> Thanks James for trying this out.
-> 
->
 
-I think it must be bad metadata because I didn't try it with a previous
-crash saved yet. I suppose we do need some kind of validation then if
-it's possible for bad metadata to cause a crash.
+>=20
+> Yes, I agree that the reset is performed once in the beginning. So I=20
+> will poll for the completion and remove this block in the next
+> revision.
+> >  =20
+> >> +     /* Register MAC-PHY interrupt service routine */
+> >> +     ret =3D devm_request_irq(&spi->dev, spi->irq, macphy_irq, 0,
+> >> "macphy int",
+> >> +                            tc6);
+> >> +     if ((ret !=3D -ENOTCONN) && ret < 0) {
+> >> +             dev_err(&spi->dev, "Error attaching macphy irq
+> >> %d\n", ret);
+> >> +             goto err_macphy_irq;
+> >> +     } =20
+> >=20
+> > Why is -ENOTCONN special? A comment would be good here. =20
+> Ah, it is a mistake. I supposed to use,
+>=20
+> if (ret)
+>=20
+> I will correct it in the next version.
+> >  =20
+> >> -void oa_tc6_deinit(struct oa_tc6 *tc6)
+> >> +int oa_tc6_deinit(struct oa_tc6 *tc6)
+> >>   {
+> >> -     kfree(tc6);
+> >> +     int ret;
+> >> +
+> >> +     devm_free_irq(&tc6->spi->dev, tc6->spi->irq, tc6);
+> >> +     ret =3D kthread_stop(tc6->tc6_task);
+> >> +     if (!ret)
+> >> +             kfree(tc6);
+> >> +     return ret;
+> >>   } =20
+> >=20
+> > What is the MAC driver supposed to do if this fails?
+> >=20
+> > But this problem probably goes away once you use a threaded
+> > interrupt handler. =20
+> Yes, I agree. Will do that.
+> >  =20
+> > w> +/* Open Alliance TC6 Standard Control and Status Registers */
+> >> +#define OA_TC6_RESET 0x0003          /* Reset Control and Status
+> >> Register */ +#define OA_TC6_STS0  0x0008          /* Status
+> >> Register #0 */ =20
+> >=20
+> > Please use the same name as the standard. It use STATUS0, so
+> > OA_TC6_STATUS0. Please make sure all your defines follow the
+> > standard. =20
+> Yes sure.
+> >  =20
+> >> +
+> >> +/* RESET register field */
+> >> +#define SW_RESET     BIT(0)          /* Software Reset */ =20
+> >=20
+> > It is pretty normal to put #defines for a register members after the
+> > #define for the register itself:
+> >=20
+> > #define OA_TC6_RESET    0x0003          /* Reset Control and Status
+> > Register */ #define OA_TC6_RESET_SWRESET    BIT(0)
+> >=20
+> > #define OA_TC6_STATUS0  0x0008          /* Status Register #0 */
+> > #define OA_TC6_STATUS0_RESETC           BIT(6)          /* Reset
+> > Complete */
+> >=20
+> > The naming like this also helps avoid mixups. =20
+> Ok, I will follow this in the next version.
+>=20
+> Best Regards,
+> Parthiban V
+> >=20
+> >      Andrew
+> >  =20
+>=20
 
-I will try after filling in the metadata and see if that was the issue.
-> 
->>
->>>
->>> 4. Reset back to normal mode
->>>
->>>    #echo 0 > read_prevboot
->>>
+
+
+
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/qQnP1voX2Z88kBlC9I3wV7k
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmUJoGEACgkQAR8vZIA0
+zr0uQAgA0xMyrDzGa5fGdxadtqyUyfG5sBGsBmqm44N0+h+lg/DcdsUrn+nhRum3
+52rIg9c2BYJ7AclrBc+cECjeaYyJPt1ZOnTMaSvSgJCWtlwsS5NkE766nmb1I9C2
++3PS3CzlKhZLYsnHouoTI5/edJoD1bJDSFggKuk2cfaqMkA6BUnvInefFMdO59wA
+ySoS+wNfhbMWhvN4w7Nfn/fT3beqRt2Lj+mG8I5q4ax8WqApVNjT7CuGJTgL8z69
+rVsZMHeeXsbl+FQJlcSyWICFAYZ4Z+8A1StNqatNFAIGkQ0bbYalmM91O57Gxl3d
+am40I8ceuyUsO7lfHrPaUREhp2Xn3w==
+=C025
+-----END PGP SIGNATURE-----
+
+--Sig_/qQnP1voX2Z88kBlC9I3wV7k--
 
