@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-1365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39DAF7A6010
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 12:48:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A09E77A6012
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 12:48:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5683B1C20CA0
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 10:48:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B246E1C20D53
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 10:48:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96ADD31A67;
-	Tue, 19 Sep 2023 10:47:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 197193588D;
+	Tue, 19 Sep 2023 10:47:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D5FD1E511
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 10:47:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EC6F1D6AF
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 10:47:54 +0000 (UTC)
 Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41AB9CCE
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 03:47:48 -0700 (PDT)
-Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1bdf4752c3cso39800065ad.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 03:47:48 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCDEECD5
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 03:47:50 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1c453379020so21266035ad.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 03:47:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1695120467; x=1695725267; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1695120470; x=1695725270; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dgL7bVCmTeXSAUxRJPsWW6VflSxwxTKu8gD+M41yTns=;
-        b=FhvzI2NSK1EAajnK3SXAcuVLKuQ5B8vpp14VRnZPEOmRzKnSsG95ONvPnYDYM9jAAL
-         QHsIeL7xjureJleYDlwJ+U7oY/Jq9WmlUtxUoM2qWgk3AKWwcZYVY5XKgOTgyVh9gXoB
-         WB8lS8jZjNDz4z+SjaQO+tWLpc/iSnw9b2WE0=
+        bh=Tf1PJ0q6TPVMk350o6dx+lktk/58er+x6Zb73ZYfynQ=;
+        b=Q/ggL1H9YqY9EGTcsvmkUi8w7Awtqozat/PxD3Z7TgY4A4eHnKXxQPKFhzUCAmH7sg
+         9C74koxkR4tM1dtbVaLc0r8xRBUWtjm6I4iNOk15+6i1N/sJiMYreu5NxFHVh4NlcLgM
+         E5agIEjVhaiZBOUmogv4LzAxNQ2Pt6IdrZf/M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695120467; x=1695725267;
+        d=1e100.net; s=20230601; t=1695120470; x=1695725270;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=dgL7bVCmTeXSAUxRJPsWW6VflSxwxTKu8gD+M41yTns=;
-        b=pAtXFYQh+kuUN8ZqVVezYZOxaxKTQj5r/9DK9cKh86GUZ6fz+8sbPUW26aMaDRRwUW
-         t0/Kq3bdmCDXFGnBWPxccs7fJwugwwglIJxjbekXLNVUJ/5JdFOYCeWoaDw10fVTRy77
-         8oqUWrq4x2x1Zu55cM+tfCnL94gBo5Z+OVO3nZO9Cw6IAhoRAnXKrDTuR9jNhSzF3jLA
-         ifKnOtfJqWZHMrQPeledKBXqAh2J+itn/8/6v1CztAgW1tX0my8lnHFxBunaFVljgZUb
-         sQEKJsn66mbqlwNvbHdj77Z5xjswb/e2eoM9Pn8u511ASRQK9I+ad0GUIhF95CFyQ+sc
-         34LQ==
-X-Gm-Message-State: AOJu0YzjU01MkbLBFpprzjGkK30HVkr3E0Zx6382M8Co6BcdjtNeurZ0
-	40dsBg6NedJkeeplczgPOWvArQ==
-X-Google-Smtp-Source: AGHT+IFplgVxrIR06V2bVySXAOitXyoTokakgA3Y/GdbyCeDXtXSoOdxb5QtMFQuHjFRcC1bH76SvA==
-X-Received: by 2002:a17:902:db0b:b0:1c4:5c05:c3c9 with SMTP id m11-20020a170902db0b00b001c45c05c3c9mr7490890plx.56.1695120467676;
-        Tue, 19 Sep 2023 03:47:47 -0700 (PDT)
+        bh=Tf1PJ0q6TPVMk350o6dx+lktk/58er+x6Zb73ZYfynQ=;
+        b=Es8C6nQWAygPaikTP2/Sh7EZt6uQ2wWPUr49Vutt9mY9blKU0gXqSb8vudYwqvmo7d
+         HeSFJKALFH7zJzoHz7W49imyFUhovz5AGQz6RO+NM+79k35YLb1Ah2uQp9YO/Zh6Gx0l
+         tQ4OacF5QETzGPvynnNcWQMkP7USzdnXEka6W1ytnPdzlUyibM44KlSRgH/8xGIHAtRX
+         k2sey/zqgB5aR4VML3JTnvL2gJ5o1UUgiPwe4fYO319NZtbZoHHh9IjlPPLEbk33cuxU
+         q3XPzjGZOOoUSHVmbIAaph60ga8xaeGLMbh/Vy2D7OyjwuFsBm9D/z7SzHmInSgrqvTk
+         2kOw==
+X-Gm-Message-State: AOJu0Ywb8C+Rri4ExOevKi2+KgbK2RAhsD2+dYyc+B9vXvAnrr3t04F+
+	C9dQc2tK0Ai4B++x6WXUFfgBKw==
+X-Google-Smtp-Source: AGHT+IEPQpYEmvz+rkUsRQyZUYWzWGPrXaM3U8K+FD9IZLsKj7Dw7GTNVpixJ9Se0TkvURz5KQTX8g==
+X-Received: by 2002:a17:903:41c4:b0:1c0:bcbc:d5d with SMTP id u4-20020a17090341c400b001c0bcbc0d5dmr12153313ple.61.1695120470286;
+        Tue, 19 Sep 2023 03:47:50 -0700 (PDT)
 Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:40a:900d:e731:5a43])
-        by smtp.gmail.com with ESMTPSA id c10-20020a170902d48a00b001bc445e249asm6719578plg.124.2023.09.19.03.47.45
+        by smtp.gmail.com with ESMTPSA id c10-20020a170902d48a00b001bc445e249asm6719578plg.124.2023.09.19.03.47.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Sep 2023 03:47:47 -0700 (PDT)
+        Tue, 19 Sep 2023 03:47:49 -0700 (PDT)
 From: Chen-Yu Tsai <wenst@chromium.org>
 To: Lee Jones <lee@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
@@ -67,9 +67,9 @@ Cc: Chen-Yu Tsai <wenst@chromium.org>,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org
-Subject: [PATCH v3 09/12] regulator: mt6358: Make MT6366 vcn18 LDO configurable
-Date: Tue, 19 Sep 2023 18:43:52 +0800
-Message-ID: <20230919104357.3971512-10-wenst@chromium.org>
+Subject: [PATCH v3 10/12] regulator: mt6358: Add missing regulators for MT6366
+Date: Tue, 19 Sep 2023 18:43:53 +0800
+Message-ID: <20230919104357.3971512-11-wenst@chromium.org>
 X-Mailer: git-send-email 2.42.0.459.ge4e396fd5e-goog
 In-Reply-To: <20230919104357.3971512-1-wenst@chromium.org>
 References: <20230919104357.3971512-1-wenst@chromium.org>
@@ -87,13 +87,15 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The VCN18 regulator on the MT6366 (only) actually has a wide
-configurable range of voltages, even though its name suggests a fixed
-output voltage.
+When support for the MT6366 PMIC regulators was added, it was assumed
+that it had the same functionality as MT6358. In reality there are
+differences. A few regulators have different ranges, or were renamed
+and repurposed, or removed altogether.
 
-Convert it from a fixed LDO to a configurable LDO. Its range of settings
-is the same as the VM18 regulator, which is missing and will be added in
-a subsequent patch.
+Add the 3 regulators that were missing from the original submission.
+These are added for completeness. VSRAM_CORE is not used in existing
+projects. VM18 and VMDDR feed DRAM related consumers, and are not used
+in-kernel.
 
 Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 ---
@@ -102,20 +104,21 @@ Changes since v2:
 
 Angelo's reviewed-by was dropped.
 
- drivers/regulator/mt6358-regulator.c | 24 +++++++++++++++++++++++-
- 1 file changed, 23 insertions(+), 1 deletion(-)
+ drivers/regulator/mt6358-regulator.c       | 20 ++++++++++++++++++++
+ include/linux/mfd/mt6358/registers.h       | 17 +++++++++++++++++
+ include/linux/regulator/mt6358-regulator.h |  3 +++
+ 3 files changed, 40 insertions(+)
 
 diff --git a/drivers/regulator/mt6358-regulator.c b/drivers/regulator/mt6358-regulator.c
-index 7122ad43be6e..fdd4710d57d8 100644
+index fdd4710d57d8..4e7891e514b6 100644
 --- a/drivers/regulator/mt6358-regulator.c
 +++ b/drivers/regulator/mt6358-regulator.c
-@@ -325,6 +325,27 @@ static const struct linear_range vldo28_ranges[] = {
+@@ -325,6 +325,20 @@ static const struct linear_range vldo28_ranges[] = {
  	REGULATOR_LINEAR_RANGE(3000000, 0, 10, 10000),
  };
  
-+static const unsigned int mt6366_vcn18_vm18_selectors[] = {
-+	0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-+static const struct linear_range mt6366_vcn18_vm18_ranges[] = {
++static const unsigned int mt6366_vmddr_selectors[] = { 0, 1, 2, 3, 4, 5, 6, 7, 9, 12 };
++static const struct linear_range mt6366_vmddr_ranges[] = {
 +	REGULATOR_LINEAR_RANGE(600000, 0, 10, 10000),
 +	REGULATOR_LINEAR_RANGE(700000, 0, 10, 10000),
 +	REGULATOR_LINEAR_RANGE(800000, 0, 10, 10000),
@@ -124,36 +127,73 @@ index 7122ad43be6e..fdd4710d57d8 100644
 +	REGULATOR_LINEAR_RANGE(1100000, 0, 10, 10000),
 +	REGULATOR_LINEAR_RANGE(1200000, 0, 10, 10000),
 +	REGULATOR_LINEAR_RANGE(1300000, 0, 10, 10000),
-+	REGULATOR_LINEAR_RANGE(1400000, 0, 10, 10000),
 +	REGULATOR_LINEAR_RANGE(1500000, 0, 10, 10000),
-+	REGULATOR_LINEAR_RANGE(1600000, 0, 10, 10000),
-+	REGULATOR_LINEAR_RANGE(1700000, 0, 10, 10000),
 +	REGULATOR_LINEAR_RANGE(1800000, 0, 10, 10000),
-+	REGULATOR_LINEAR_RANGE(1900000, 0, 10, 10000),
-+	REGULATOR_LINEAR_RANGE(2000000, 0, 10, 10000),
-+	REGULATOR_LINEAR_RANGE(2100000, 0, 10, 10000),
 +};
 +
- static unsigned int mt6358_map_mode(unsigned int mode)
- {
- 	return mode == MT6397_BUCK_MODE_AUTO ?
-@@ -553,7 +574,6 @@ static const struct mt6358_regulator_info mt6366_regulators[] = {
- 			 MT6358_LDO_VRF12_CON0, 0, 1200000),
- 	MT6366_REG_FIXED("vio18", VIO18,
- 			 MT6358_LDO_VIO18_CON0, 0, 1800000),
--	MT6366_REG_FIXED("vcn18", VCN18, MT6358_LDO_VCN18_CON0, 0, 1800000),
- 	MT6366_REG_FIXED("vfe28", VFE28, MT6358_LDO_VFE28_CON0, 0, 2800000),
- 	MT6366_REG_FIXED("vcn28", VCN28, MT6358_LDO_VCN28_CON0, 0, 2800000),
- 	MT6366_REG_FIXED("vxo22", VXO22, MT6358_LDO_VXO22_CON0, 0, 2200000),
-@@ -586,6 +606,8 @@ static const struct mt6358_regulator_info mt6366_regulators[] = {
- 		   MT6358_LDO_VMC_CON0, 0, MT6358_VMC_ANA_CON0, 0xf00),
- 	MT6366_LDO("vsim2", VSIM2, vsim,
+ static const unsigned int mt6366_vcn18_vm18_selectors[] = {
+ 	0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+ static const struct linear_range mt6366_vcn18_vm18_ranges[] = {
+@@ -608,6 +622,10 @@ static const struct mt6358_regulator_info mt6366_regulators[] = {
  		   MT6358_LDO_VSIM2_CON0, 0, MT6358_VSIM2_ANA_CON0, 0xf00),
-+	MT6366_LDO("vcn18", VCN18, mt6366_vcn18_vm18,
-+		   MT6358_LDO_VCN18_CON0, 0, MT6358_VCN18_ANA_CON0, 0xf00),
+ 	MT6366_LDO("vcn18", VCN18, mt6366_vcn18_vm18,
+ 		   MT6358_LDO_VCN18_CON0, 0, MT6358_VCN18_ANA_CON0, 0xf00),
++	MT6366_LDO("vm18", VM18, mt6366_vcn18_vm18,
++		   MT6358_LDO_VM18_CON0, 0, MT6358_VM18_ANA_CON0, 0xf00),
++	MT6366_LDO("vmddr", VMDDR, mt6366_vmddr,
++		   MT6358_LDO_VMDDR_CON0, 0, MT6358_VMDDR_ANA_CON0, 0xf00),
  	MT6366_LDO1("vsram-proc11", VSRAM_PROC11, 500000, 1293750, 6250,
  		    MT6358_LDO_VSRAM_PROC11_DBG0, 0x7f00, MT6358_LDO_VSRAM_CON0, 0x7f),
  	MT6366_LDO1("vsram-others", VSRAM_OTHERS, 500000, 1293750, 6250,
+@@ -616,6 +634,8 @@ static const struct mt6358_regulator_info mt6366_regulators[] = {
+ 		    MT6358_LDO_VSRAM_GPU_DBG0, 0x7f00, MT6358_LDO_VSRAM_CON3, 0x7f),
+ 	MT6366_LDO1("vsram-proc12", VSRAM_PROC12, 500000, 1293750, 6250,
+ 		    MT6358_LDO_VSRAM_PROC12_DBG0, 0x7f00, MT6358_LDO_VSRAM_CON1, 0x7f),
++	MT6366_LDO1("vsram-core", VSRAM_CORE, 500000, 1293750, 6250,
++		    MT6358_LDO_VSRAM_CORE_DBG0, 0x7f00, MT6358_LDO_VSRAM_CON5, 0x7f),
+ };
+ 
+ static int mt6358_sync_vcn33_setting(struct device *dev)
+diff --git a/include/linux/mfd/mt6358/registers.h b/include/linux/mfd/mt6358/registers.h
+index 5ea2590be710..d83e87298ac4 100644
+--- a/include/linux/mfd/mt6358/registers.h
++++ b/include/linux/mfd/mt6358/registers.h
+@@ -294,4 +294,21 @@
+ #define MT6358_AUD_TOP_INT_CON0               0x2228
+ #define MT6358_AUD_TOP_INT_STATUS0            0x2234
+ 
++/*
++ * MT6366 has no VCAM*, but has other regulators in its place. The names
++ * keep the MT6358 prefix for ease of use in the regulator driver.
++ */
++#define MT6358_LDO_VSRAM_CON5                 0x1bf8
++#define MT6358_LDO_VM18_CON0                  MT6358_LDO_VCAMA1_CON0
++#define MT6358_LDO_VM18_CON1                  MT6358_LDO_VCAMA1_CON1
++#define MT6358_LDO_VM18_CON2                  MT6358_LDO_VCAMA1_CON2
++#define MT6358_LDO_VMDDR_CON0                 MT6358_LDO_VCAMA2_CON0
++#define MT6358_LDO_VMDDR_CON1                 MT6358_LDO_VCAMA2_CON1
++#define MT6358_LDO_VMDDR_CON2                 MT6358_LDO_VCAMA2_CON2
++#define MT6358_LDO_VSRAM_CORE_CON0            MT6358_LDO_VCAMD_CON0
++#define MT6358_LDO_VSRAM_CORE_DBG0            0x1cb6
++#define MT6358_LDO_VSRAM_CORE_DBG1            0x1cb8
++#define MT6358_VM18_ANA_CON0                  MT6358_VCAMA1_ANA_CON0
++#define MT6358_VMDDR_ANA_CON0                 MT6358_VCAMD_ANA_CON0
++
+ #endif /* __MFD_MT6358_REGISTERS_H__ */
+diff --git a/include/linux/regulator/mt6358-regulator.h b/include/linux/regulator/mt6358-regulator.h
+index c71a6a9fce7a..562386f9b80e 100644
+--- a/include/linux/regulator/mt6358-regulator.h
++++ b/include/linux/regulator/mt6358-regulator.h
+@@ -86,6 +86,9 @@ enum {
+ 	MT6366_ID_VMC,
+ 	MT6366_ID_VAUD28,
+ 	MT6366_ID_VSIM2,
++	MT6366_ID_VM18,
++	MT6366_ID_VMDDR,
++	MT6366_ID_VSRAM_CORE,
+ 	MT6366_ID_RG_MAX,
+ };
+ 
 -- 
 2.42.0.459.ge4e396fd5e-goog
 
