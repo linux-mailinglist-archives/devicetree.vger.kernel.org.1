@@ -1,146 +1,168 @@
-Return-Path: <devicetree+bounces-1261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8BAA7A592A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 07:07:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E5D37A592F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 07:08:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AA891C209D1
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 05:07:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39A8A1C20980
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 05:08:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C87F328DB;
-	Tue, 19 Sep 2023 05:07:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F016334185;
+	Tue, 19 Sep 2023 05:08:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A192928E1D
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 05:07:41 +0000 (UTC)
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68A02FD
-	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 22:07:39 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-500bbe3ef0eso6181386e87.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 22:07:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1695100057; x=1695704857; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3q8O8tWvnLQBFm13Z0K7FvFC/W1hQRUqZ5JIYPkfrQ4=;
-        b=dV91rxTw/MLnB+Ine8ZmNXwK/oeYUIEZye/fSGnee46HIURUKElX/qZzwFtgWAEtc3
-         b/L6bnCSMgPTLgIEgrGitLqvoHzf1WZ7yyFN4lhfw2sbCe7vYiLwugUEjSYtkS5gFWgu
-         xVm39ur227FrjLx4HaNSKFrFCTfmkvsUoxox0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695100057; x=1695704857;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3q8O8tWvnLQBFm13Z0K7FvFC/W1hQRUqZ5JIYPkfrQ4=;
-        b=NXoOkrrlNV6jJzn3ammIOnbSmZrviF4tP+Fho2ONbBunTCLB0vdp5pFYA1VN7EBhXM
-         EQpXRdvM/xi4g8fR9UcJTcZKRnqTR9pa5CBsRobpS3N58WKTupcj6IWKH7EosP8b6LgA
-         vAmsgueQvD27LKGywqCjjUid09ylZFTqJEIMzgvgvhTj9xDKsDU0l4v/nqb+kX2LAx8p
-         LXP3Kp3Fn0ub8B2sixPL3U5UkQiVrVwvOn04Sm1rddfISiNQGKls42cotmPXPtAx15cN
-         c5HS0oLnFct5Qr2eivraXIV7CHQvpR88kfy4XRrHwLJPaGuafKKFxjc+KgEfoFWY1PTn
-         Y1/w==
-X-Gm-Message-State: AOJu0YzQDEHGHX9cXKzyUlSq+ZtzF+TitpseHoxUsP9PGlUfePGs5B97
-	0AGzp7/VeJMMfdrowN58UfVeJDdUIYnYnmcfv1wdNA==
-X-Google-Smtp-Source: AGHT+IG7rNmlTgr6mtc+pEDDwj3hVW1OJN/J2y44JelHkWF7gUusMiA1KDRGT3JZU/TTjFtk7VjNvQSjnr+5NJPaqPw=
-X-Received: by 2002:a05:6512:3b06:b0:4fe:8ba8:1a8b with SMTP id
- f6-20020a0565123b0600b004fe8ba81a8bmr650772lfv.7.1695100057325; Mon, 18 Sep
- 2023 22:07:37 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4600A110B
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 05:08:42 +0000 (UTC)
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E778FF
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 22:08:40 -0700 (PDT)
+Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20230919050836epoutp03e65154b65154ef5a3820312c66a0e070~GNJMuFjYP3015630156epoutp03V
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 05:08:36 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20230919050836epoutp03e65154b65154ef5a3820312c66a0e070~GNJMuFjYP3015630156epoutp03V
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1695100116;
+	bh=MOWzOcLyGe3ASu3GVGlOZqaHzTzcWNGNyO93peZAlvo=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=uL8WZvHE6OgTum7k/RGhu97K6VR+ehXMVRdt2U+vQBJTMNx+a5HPKhO63aTaS3u2L
+	 j6xjKeNlvDU+gJv61eLXgxs9fcFF8n7ZqGyg4bL5KkuyGNen1ahgQedqfY+iiXwBfE
+	 LA7EpapMxL4dBuE3nBr+2wCigmJzP/ux1xfS2uE4=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+	epcas1p3.samsung.com (KnoxPortal) with ESMTP id
+	20230919050835epcas1p3b32b45a0d2ebdbdb1ee492ab0b72de68~GNJL8wfZT1572715727epcas1p3c;
+	Tue, 19 Sep 2023 05:08:35 +0000 (GMT)
+Received: from epsmgec1p1.samsung.com (unknown [182.195.36.133]) by
+	epsnrtp2.localdomain (Postfix) with ESMTP id 4RqV7624lcz4x9Q1; Tue, 19 Sep
+	2023 05:08:34 +0000 (GMT)
+Received: from epcas1p2.samsung.com ( [182.195.41.46]) by
+	epsmgec1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	1A.95.08657.2DC29056; Tue, 19 Sep 2023 14:08:34 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas1p4.samsung.com (KnoxPortal) with ESMTPA id
+	20230919050833epcas1p4b5ea1035d03df587f072f45233663261~GNJKKKS9E2757527575epcas1p4r;
+	Tue, 19 Sep 2023 05:08:33 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20230919050833epsmtrp1be15abd8ed4a45de199d0c83a0fb9dee~GNJKJa4Gr0049500495epsmtrp1k;
+	Tue, 19 Sep 2023 05:08:33 +0000 (GMT)
+X-AuditID: b6c32a33-4e9ff700000021d1-a2-65092cd23513
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	6A.EA.08788.1DC29056; Tue, 19 Sep 2023 14:08:33 +0900 (KST)
+Received: from kson001 (unknown [10.102.7.58]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20230919050833epsmtip1100c84b749de8162a481ba74f101605c~GNJJ2DC-21075910759epsmtip1T;
+	Tue, 19 Sep 2023 05:08:33 +0000 (GMT)
+From: "Kwanghoon Son" <k.son@samsung.com>
+To: "'Conor Dooley'" <conor@kernel.org>
+Cc: <p.zabel@pengutronix.de>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<jszhang@kernel.org>, <guoren@kernel.org>, <wefu@redhat.com>,
+	<paul.walmsley@sifive.com>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
+	<inki.dae@samsung.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+In-Reply-To: 
+Subject: RE: [PATCH v3 1/3] dt-bindings: reset: Document th1520 reset
+ control
+Date: Tue, 19 Sep 2023 14:08:32 +0900
+Message-ID: <005301d9eab7$5688c920$039a5b60$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <ZQH2dG+l/dONUsyi@p14s> <20230918103141.126271-1-laura.nao@collabora.com>
- <CAGXv+5Esi=G0xgkP=+Bhf39Xs3gMN1PBzarxKBKduOjgwDijAA@mail.gmail.com> <ZQj2lSl47qZQv8fX@p14s>
-In-Reply-To: <ZQj2lSl47qZQv8fX@p14s>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Tue, 19 Sep 2023 13:07:26 +0800
-Message-ID: <CAGXv+5Gj5rERcX6uxVUUq8beM4k4ogXnuh_86piyGw1oVrbyvg@mail.gmail.com>
-Subject: Re: [PATCH v17 00/14] Add support for MT8195 SCP 2nd core
-To: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: Laura Nao <laura.nao@collabora.com>, tinghan.shen@mediatek.com, 
-	angelogioacchino.delregno@collabora.com, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com, andersson@kernel.org, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	linux-remoteproc@vger.kernel.org, matthias.bgg@gmail.com, robh+dt@kernel.org, 
-	kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: ko
+Thread-Index: AQGA88MHphYB2H/uDBHue9ViU8X2awGBaA+GAbT+P64CTt+43rCnIi0wgAA4BwA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Te1BUZRztu/fu3bvUym1d6wsZXa44DhSwK7vLXYSkhFxxNczRppqRbnDd
+	RfY1e5ce9gcyCAMMuWhpsouDWC1BDQwrD1MWpxUIpagBih5UlpCsEMSrUVFql4vFf+f85pz5
+	nfM9CFQyiIcROWY7azMzRgoPwVqvRMXG9D8lYuXvjIrplgWnkP7U24fQdSfrcbq6s09Aj3kL
+	MPrErxUYXdjdiNPHxn5D6YGLVTjdOnsUp3/+pQej/QPlKF3sDKWLvJ1C+ujl97CUUO2E349p
+	r5TMCbWe+lJcO/xdO649/2G+1nFfrp3q+BbXHmuuB9r+wiGhdtazLiPk5dwkA8tkszYZa86y
+	ZOeY9cnUzr2Z2zJVarkiRqGhEyiZmTGxyVSqLiPmuRxjoAQle50x5gVGGQzHUXFPJ9kseXZW
+	ZrBw9mSKtWYbrSprLMeYuDyzPtbM2hMVcvlmVUD4aq6hfdyFW+cFb9bW1uJHgBsrAyICkko4
+	23FfWAZCCAl5AcDi3904T2YAvDRYiQZVEvJvAMtc+ANHR/m1ZYcXwAa3H+HJDQA9x4NEROBk
+	FKzpWwBBLCU3wWHfOBoUoeRdBF6qagrYCUJEimHF4pagZjX5PGw5PS4IYozcCOd95UteMamB
+	85/zWcXko/Bq5cgSRsn1sO3PKpRPJIN3Rt0Cfi6FrtJilN+7G3aOdIDgXkjeJqDjGxfgDamw
+	qb5ZwOPV8NYXzUIeh0G/o3gZ58Kuae9yZTsccp5b1sfDyx+9iwTzo4GSjRfj+HEE/GzhDOAz
+	rIKT8+WCoAQGKpYUS3i4Hv5Y+gavXgO/HJ3GKwDlXFHMuaKYc0UZ5/+7zgKsHjzGWjmTns1S
+	WBX/3XWWxeQBS887Ov4CGKhejPUBhAA+AAmUkoorFTgrEWczbx1mbZZMW56R5XxAFTjq42jY
+	mixL4H+Y7ZkKpUauVG+OV9IKtYJ6XBxR4cqWkHrGzuayrJW1PfAhhCjsCCIP16UgPQOr9oOz
+	WPNCw75n/wmbPrU13ii47ol+21rQ7ulOsJ8qj7yO7BmCU+yGxj0TXcPrXhkoiI275d4rYrxr
+	dz6kSxp3hCe/Xy1tek1XtDFux9BPIelsyu2p1gPYB73eQw3CnvTIJ8XbinQ1fxw8sT/pk8SI
+	me+Vz4TWpUyX3NStVb7wtVOzY+s9R2TCSGdcr7ntDvQMh284M1nD9d5Ln1Dnz4193HKTelF9
+	cnK366WZfrTNcJeQ1k7vqig8p/mLmsk9PIjOp6q6VPiB7VL84U1zW64t3sAio75KS8upbkhr
+	rPN370Ke+MH0yL6DCdE+uyVRNbnQcEhlSryamq8XnKcwzsAoolEbx/wLGYlwaWcEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrHIsWRmVeSWpSXmKPExsWy7bCSnO5FHc5Ug7vHNS22/p7FbrFm7zkm
+	i5VTV7FZzD9yjtXixd5GFotJ9yewWDQfW89m0ffiIbPF5V1z2Cy2fW5hs7h77wSLxcvLPcwW
+	bbP4LVr3HmG3aNk/hcWB3+PNy5csHoc7vrB7bFrVyeZx59oeNo/NS+o9+v8aeLzfd5XNo2/L
+	KkaPS83X2T0+b5IL4IrisklJzcksSy3St0vgytjzejZbwVfWiuXLl7M1MC5j6WLk5JAQMJHY
+	13OKvYuRi0NIYDejxP23H1khEqISHZcbGbsYOYBsYYnDh4shah4ySnw+tQ+smU1AU2Lhud+M
+	ILaIgLrEnUOvmUGKmAW6mCV2vNzBBJIQEnjMKLG+RQ9kEKcAr8SEf9YgYWEBX4kNl48xg9gs
+	AqoSXw/1gM3hFbCU+HoQ4jheAUGJkzOfsIC0MgvoSbRtBCthFpCX2P52DjPEmQoSP58uY4WI
+	i0jM7mxjhjjHT+LIk32MExiFZyGZNAth0iwkk2Yh6V7AyLKKUTK1oDg3PbfYsMAoL7Vcrzgx
+	t7g0L10vOT93EyM4irW0djDuWfVB7xAjEwfjIUYJDmYlEd6ZhmypQrwpiZVVqUX58UWlOanF
+	hxilOViUxHm/ve5NERJITyxJzU5NLUgtgskycXBKNTC1sT2dbGbyTdNxR0r08qjrdhPbfvWI
+	PZdJ9UosVd4fM/lCpckbH87M32HZdscX7S7xDOYMPR+wxizw98FAlp9nL27fsuAQk8bMeRM+
+	Zb1PqbBd/042lf+bwvZ80SgPwz2bo7v5zJ5WbDjLkrKtclqqbkKnwhf/2epLbYPPucXyqG+9
+	HqJ9p/beMi8zThOVCPUPzHNkl5zziBfceUvvzll72dTjfku2P9M7vNfkvNmtBa9DY/ZUS+XZ
+	Ln5xnD9yTazI5xhf3pS2GY+4b5kKrrBu1GG111/zRHbV1ZeT1xgwbpfJvPRx+9OEPoevzQcm
+	sHy7w/lI4ta1D9oLHvWppJv/fJqbGKx/NqZ3C5/NOjslluKMREMt5qLiRACIP9urUQMAAA==
+X-CMS-MailID: 20230919050833epcas1p4b5ea1035d03df587f072f45233663261
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20230918045134epcas1p1b80b338b66512a976c3783cd0e51da50
+References: <20230918045125.4000083-1-k.son@samsung.com>
+	<CGME20230918045134epcas1p1b80b338b66512a976c3783cd0e51da50@epcas1p1.samsung.com>
+	<20230918045125.4000083-2-k.son@samsung.com>
+	<20230918-4ef7f52da269f3a7e4023bb3@fedora> 
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, Sep 19, 2023 at 9:17=E2=80=AFAM Mathieu Poirier
-<mathieu.poirier@linaro.org> wrote:
->
-> On Mon, Sep 18, 2023 at 06:44:25PM +0800, Chen-Yu Tsai wrote:
-> > On Mon, Sep 18, 2023 at 6:32=E2=80=AFPM Laura Nao <laura.nao@collabora.=
-com> wrote:
-> > >
-> > > > Other than patch 2 and 14, I have applied this set.  The remaining =
-patches will
-> > > > have to be resent to Matthias.
-> > >
-> > > > Thanks,
-> > > > Mathieu
-> > >
-> > > Hello,
-> > >
-> > > With patch 2 missing, the SCP is not probed correctly anymore on asur=
-ada (MT8192) and kukui (MT8183). The mtk-scp driver relies on the existence=
- of the `cros-ec-rpmsg` node in the dt to determine if the SCP is single or=
- multicore. Without patch 2 the driver wrongly assumes the SCP on MT8192 an=
-d MT8183 are multicore, leading to the following errors during initializati=
-on:
-> > >
-> > > 10696 04:33:59.126671  <3>[   15.465714] platform 10500000.scp:cros-e=
-c: invalid resource (null)
-> > > 10697 04:33:59.142855  <3>[   15.478560] platform 10500000.scp:cros-e=
-c: Failed to parse and map sram memory
-> > > 10698 04:33:59.149650  <3>[   15.486121] mtk-scp 10500000.scp: Failed=
- to initialize core 0 rproc
-> > >
-> > > The issue was caught by KernelCI, complete logs can be found here:
-> > > - asurada: https://storage.kernelci.org/next/master/next-20230914/arm=
-64/defconfig+arm64-chromebook+videodec/gcc-10/lab-collabora/baseline-nfs-mt=
-8192-asurada-spherion-r0.html
-> > > - kukui: https://storage.kernelci.org/next/master/next-20230914/arm64=
-/defconfig+arm64-chromebook+videodec/gcc-10/lab-collabora/baseline-nfs-mt81=
-83-kukui-jacuzzi-juniper-sku16.html
-> > >
-> > > Reporting the issue so that patch 2 and 14 can be resent and merged s=
-oon.
+> > > +      - const: thead,th1520-reset
+> > > +      - const: syscon
 > >
-> > This being a backward incompatible DT binding change, maybe we should r=
-evert
-> > the node name change. Or, the driver could simply count the number of c=
-hild
-> > nodes that have the "mediatek,rpmsg-name" property, which is required.
+> > iDumb question perhaps, but why is this a syscon?
+> 
+> This is good point.
+> In fact, I took it from the vendor kernel, and I tried to keep it as same as I could.
+> Vendor also followed drivers/reset/reset-imx7.c
+> As Rob said, if don't need it, I'll change it.
+> 
+> Regards,
+> Kwang.
+> 
+I have investigated vendor kernels, but it is still not sure reset information.
+I thought this is about sys_reg, but without datasheet, can't tell.
+Therefore, should be stopped patch for a while until knows better comes out.
+
+Kwang.
+
+> > Cheers,
+> > Conor.
 > >
->
-> You have a point.  Can someone send a patch that makes this patchset back=
-ward
-> compatible?  Please do so as quickly as possible to that it can go in the=
- next
-> merge window with the rest of this feature.  Otherwize I'll have to back =
-out the
-> whole thing.
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  '#reset-cells':
+> > > +    const: 1
 
-I sent out a patch [1] implementing my proposed change.
 
-ChenYu
-
-[1] https://lore.kernel.org/linux-remoteproc/20230919050305.3817347-1-wenst=
-@chromium.org/
 
