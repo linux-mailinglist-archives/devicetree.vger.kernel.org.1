@@ -1,147 +1,205 @@
-Return-Path: <devicetree+bounces-1485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB36D7A6921
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 18:46:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDD9B7A6959
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 19:04:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA5B71C20964
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 16:46:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ACAE41C20963
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 17:04:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DE303399C;
-	Tue, 19 Sep 2023 16:46:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rZd3z/e6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1F6936AE5;
+	Tue, 19 Sep 2023 17:04:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 830AC8814
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 16:46:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E16DC433C7;
-	Tue, 19 Sep 2023 16:46:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695141982;
-	bh=oQBTHZEBTOvXdSVkdIA/zgv1qFEEOofNEvBKr5+eM1A=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2306347B4
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 17:04:20 +0000 (UTC)
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C972AC6;
+	Tue, 19 Sep 2023 10:04:18 -0700 (PDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id F1C0940E01A3;
+	Tue, 19 Sep 2023 17:04:16 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+	header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id 8f2kTUen3yuZ; Tue, 19 Sep 2023 17:04:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+	t=1695143055; bh=TWv82/E/BzG4ZGu/xS9Td8QEmZ5DKUE9zxfZM73OmPs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rZd3z/e6yMneQVmt+zvjNYwc+UJ8MIJ4tDk8BYAe9zSSN9LBCTuj7Rf3LNE1AHqJk
-	 Ur3cXcNEEqb/+izOs428MAfFoL3gK9Q1+4bQxiJpgRFpHUdl18Bol8Qj9J8o1BCG0J
-	 eQSIZFntIb+E4JaknXOSCkpB6FR4vFAaNpLc0uBgw+kiRSZsFlkt/n0sP4vXY0kivJ
-	 5BcO22Uy5kuOBURNDs5dbe77F+vCPPGLN7Nya9z/bWJi8DCxt8YVk2f8+/1AVtaP2L
-	 F9GOzuKEH18NvdhkJQVs9JY+WvDIDztVjrl6Fglok1E8k+GSn9DfGtWXFJZPAuFNrD
-	 PlBoDcpNrD4kQ==
-Received: (nullmailer pid 4078623 invoked by uid 1000);
-	Tue, 19 Sep 2023 16:46:14 -0000
-Date: Tue, 19 Sep 2023 11:46:14 -0500
-From: Rob Herring <robh@kernel.org>
-To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
-Cc: Jassi Brar <jassisinghbrar@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Conor Dooley <conor+dt@kernel.org>, Jason-ch Chen <jason-ch.chen@mediatek.com>, Johnson Wang <johnson.wang@mediatek.com>, Elvis Wang <Elvis.Wang@mediatek.com>, Singo Chang <singo.chang@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>, Shawn Sung <shawn.sung@mediatek.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, dri-devel@lists.freedesktop.org, Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH 01/15] dt-bindings: mailbox: Add property for CMDQ secure
- driver
-Message-ID: <20230919164614.GA4059766-robh@kernel.org>
-References: <20230918192204.32263-1-jason-jh.lin@mediatek.com>
- <20230918192204.32263-2-jason-jh.lin@mediatek.com>
+	b=JlKyZenxwhY1+GfWX9y+2NQOiSinQYn10oRFHhppE12jTP5L8VJbA36tTuHD773Va
+	 USmhB3e7Qq7umteBBV+98nJ0CBOcOUokC2obw/3G7yW/yLSLV86BVQQZae41lCLdVk
+	 2PF5ZVbXUVRy0188ZJ58Zn1mkM8SFY25PL9Y5YUPHib7v4I0nRDP1HEyDL9RECvPI0
+	 ARLYmZ6lPfbQNCM7i0zXOMbXTrJLlWqTtGkmmOwY//MK3wIp9EwND/caQchGU8+yWq
+	 JkLR++I3wVN+urlP/RmxmB4FlWVL6yyF/F+80t7o6GSMceaMRjmnLGtIpUtp+QRsiQ
+	 ZQuyPqEbRgW2c3fobGT3i86AxOZZlIvZMr8hyIqEPT0UuEy/dGfaUaq3F+03vDhdvX
+	 azzCmYUlLhKUXrdgJdkDAExFX+8LXvuYQJXYrQmDioBroTKephXoxYwHiLRLyt9iXc
+	 j4VYMfV6yiYBm9WRf+2mkfjfMmH9rjvIdwsxzI1ohXsDHO6cHkxpCom0eUp7aKILOd
+	 PYNwi06x3gCbrHG0YOuopsU3H59oJlpJp0YR/gQkBYLTWMf6oWfvUwwD/sKgU80j95
+	 yLcY+D7cFz5a20LxDFYYflM9fweq6eUJOCoS+DMkkaTFOQ2x9b6tv1i9KAdsUCSGT9
+	 0sOmiHxZYP5ahyEdBp6q8bMk=
+Received: from zn.tnic (pd953036a.dip0.t-ipconnect.de [217.83.3.106])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
+	(No client certificate requested)
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id EB90240E00F4;
+	Tue, 19 Sep 2023 17:04:01 +0000 (UTC)
+Date: Tue, 19 Sep 2023 19:03:56 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+Cc: linux-edac@vger.kernel.org, git@amd.com, devicetree@vger.kernel.org,
+	sai.krishna.potthuri@amd.com, krzysztof.kozlowski@linaro.org,
+	robh+dt@kernel.org, conor+dt@kernel.org, tony.luck@intel.com,
+	james.morse@arm.com, mchehab@kernel.org, rric@kernel.org,
+	michal.simek@amd.com
+Subject: Re: [PATCH v8 2/2] EDAC/versal: Add a Xilinx Versal memory
+ controller driver
+Message-ID: <20230919165927.GEZQnTb9gr5X13sJuD@fat_crate.local>
+References: <20230804121924.18615-1-shubhrajyoti.datta@amd.com>
+ <20230804121924.18615-3-shubhrajyoti.datta@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230918192204.32263-2-jason-jh.lin@mediatek.com>
+In-Reply-To: <20230804121924.18615-3-shubhrajyoti.datta@amd.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Tue, Sep 19, 2023 at 03:21:50AM +0800, Jason-JH.Lin wrote:
-> Add mboxes to define a GCE loopping thread as a secure irq handler.
-> Add mediatek,event to define a GCE software event siganl as a secure
-> irq.
-> 
-> These 2 properties are required for CMDQ secure driver.
-> 
-> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-> ---
->  .../mailbox/mediatek,gce-mailbox.yaml         | 30 +++++++++++++++----
->  1 file changed, 24 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
-> index cef9d7601398..5c9aebe83d2d 100644
-> --- a/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
-> +++ b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
-> @@ -49,6 +49,21 @@ properties:
->      items:
->        - const: gce
->  
-> +  mboxes:
-> +    description:
-> +      A mailbox channel used as a secure irq handler in normal world.
-> +      Using mailbox to communicate with GCE to setup looping thread,
-> +      it should have this property and a phandle, mailbox specifiers.
+On Fri, Aug 04, 2023 at 05:49:24PM +0530, Shubhrajyoti Datta wrote:
+> +config EDAC_VERSAL
+> +	tristate "Xilinx Versal DDR Memory Controller"
+> +	depends on ARCH_ZYNQMP || COMPILE_TEST
+> +	help
+> +	  Support for error detection and correction on the Xilinx Versal DDR
+> +	  memory controller.
+> +
+> +	  Report both single bit errors (CE) and double bit errors (UE).
+> +	  Support injecting both correctable and uncorrectable errors for debug
+> +	  purpose using sysfs entries.
 
-All cases of 'mboxes' have a phandle and specifiers. No need to repeat 
-that here.
+          Report both single bit errors (CE) and double bit errors (UE).
+          Support injecting both correctable and uncorrectable errors
+          for debugging purposes.
 
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
 
-Already has a type definition too. You need to define how many entries 
-and what each entry is if more than one. IOW, the same thing as clocks, 
-resets, interrupts, etc.
+> +/**
+> + * struct ecc_error_info - ECC error log information.
+> + * @burstpos:		Burst position.
+> + * @lrank:		Logical Rank number.
+> + * @rank:		Rank number.
+> + * @group:		Group number.
+> + * @bank:		Bank number.
+> + * @col:		Column number.
+> + * @row:		Row number.
+> + * @rowhi:		Row number higher bits.
+> + * @i:			ECC error info.
+> + */
+> +union ecc_error_info {
+> +	struct {
+> +		u64 burstpos:3;
+> +		u64 lrank:3;
+> +		u64 rank:2;
+> +		u64 group:2;
+> +		u64 bank:2;
+> +		u64 col:10;
+> +		u64 row:10;
+> +		u32 rowhi;
+> +	};
+> +	u64 i;
+> +};
+
+I missed this the last time but, if this is supposed to be a union of
+sizeof(u64), why aren't you doing this:
+
+union ecc_error_info {
+        struct {
+                u32 burstpos:3;
+                u32 lrank:3;
+                u32 rank:2;
+                u32 group:2;
+                u32 bank:2;
+                u32 col:10;
+                u32 row:10;
+                u32 rowhi;
+        };
+        u64 i;
+} __packed;
+
+i.e., the struct should have two u32's - the first one is the bitfield
+and the second one is rowhi and the "overloaded" one is the u64 i.
+
+And also it should be packed even though this shouldn't be needed in
+this case but still.
+
+Ditto for the other unions.
 
 > +
-> +  mediatek,gce-events:
+> +union edac_info {
+> +	struct {
+> +		u32 row0:6;
+> +		u32 row1:6;
+> +		u32 row2:6;
+> +		u32 row3:6;
+> +		u32 row4:6;
+> +		u32 reserved:2;
+> +	};
+> +	struct {
+> +		u32 col1:6;
+> +		u32 col2:6;
+> +		u32 col3:6;
+> +		u32 col4:6;
+> +		u32 col5:6;
+> +		u32 reservedcol:2;
+> +	};
+> +	u32 i;
+> +};
 
-This is used all over. It really needs a single definition which is then 
-referenced by the users.
+...
 
-> +    description:
-> +      The event id which is mapping to a software event signal to gce.
-> +      It is used as a secure irq for every secure gce threads.
-> +      The event id is defined in the gce header
-> +      include/dt-bindings/mailbox/mediatek,<chip>-gce.h of each chips.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +	/* Unlock the PCSR registers */
+> +	writel(PCSR_UNLOCK_VAL, ddrmc_base + XDDR_PCSR_OFFSET);
 > +
->  required:
->    - compatible
->    - "#mbox-cells"
-> @@ -71,20 +86,23 @@ additionalProperties: false
->  
->  examples:
->    - |
-> -    #include <dt-bindings/clock/mt8173-clk.h>
-> +    #include <dt-bindings/clock/mediatek,mt8188-clk.h>
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->      #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/mailbox/mediatek,mt8188-gce.h>
->  
->      soc {
->          #address-cells = <2>;
->          #size-cells = <2>;
->  
-> -        gce: mailbox@10212000 {
-> -            compatible = "mediatek,mt8173-gce";
-> -            reg = <0 0x10212000 0 0x1000>;
-> -            interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_LOW>;
-> +        gce0: mailbox@10320000 {
-> +            compatible = "mediatek,mt8188-gce";
+> +	writel(0, ddrmc_base + ECCR0_CERR_STAT_OFFSET);
+> +	writel(0, ddrmc_base + ECCR1_CERR_STAT_OFFSET);
+> +	writel(0, ddrmc_base + ECCR0_UERR_STAT_OFFSET);
+> +	writel(0, ddrmc_base + ECCR1_UERR_STAT_OFFSET);
+> +
+> +	/* Lock the PCSR registers */
+> +	writel(1, ddrmc_base + XDDR_PCSR_OFFSET);
 
-Are these new properties only for mt8188? If so, then you need a schema 
-saying that. If not, then this is an unnecessary change to the example.
+I still don't know what this locking and unlocking is all about and why
+it is needed...
 
-> +            reg = <0 0x10320000 0 0x4000>;
-> +            interrupts = <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH 0>;
->              #mbox-cells = <2>;
-> -            clocks = <&infracfg CLK_INFRA_GCE>;
-> +            clocks = <&infracfg_ao CLK_INFRA_AO_GCE>;
->              clock-names = "gce";
-> +            mboxes = <&gce0 15 CMDQ_THR_PRIO_1>;
+Btw, you must always make sure your stuff builds:
 
-The provider is also a consumer?
+drivers/edac/versal_edac.c: In function 'mc_remove':
+drivers/edac/versal_edac.c:1035:9: error: implicit declaration of function 'disable_intr'; did you mean 'disable_irq'? [-Werror=implicit-function-declaration]
+ 1035 |         disable_intr(priv);
+      |         ^~~~~~~~~~~~
+      |         disable_irq
 
-> +            mediatek,gce-events = <CMDQ_SYNC_TOKEN_SECURE_THR_EOF>;
->          };
->      };
-> -- 
-> 2.18.0
-> 
+
+Otherwise it looks to me like you haven't tested it and if that is the
+case, I'll simply ignore it.
+
+So make sure you build-test and test your stuff before submitting.
+
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
 
