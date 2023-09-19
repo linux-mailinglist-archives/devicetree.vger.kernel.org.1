@@ -1,163 +1,114 @@
-Return-Path: <devicetree+bounces-1290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 875147A5BBB
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 09:56:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 601C27A5C3F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 10:15:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1E8E1C20998
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 07:56:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1562A282549
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 08:15:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C11938DC9;
-	Tue, 19 Sep 2023 07:56:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FBE63D381;
+	Tue, 19 Sep 2023 08:14:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A859E79CF
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 07:56:36 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20811100;
-	Tue, 19 Sep 2023 00:56:35 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4EC9E2CF;
-	Tue, 19 Sep 2023 09:54:57 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1695110097;
-	bh=s3DFbRHL5Uw5SFTtFMVJ56NX7qIx57dK2xMZGJgyHb8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ciPVGy8W/ShWTxFYQVWOTALkChnpfVn/JcxOEXrsHuCp+4QNKmpvxdIHjLNHwe6ud
-	 f64D86jTv9RRg/zNsQMy+oIjZmd/YVXjWPeZatjf0oJQm4Uytk2GkCAh76RL6gAUfV
-	 z9rgK1o9k2Ez2n1rjEnr8StRhnQthel00SwwKKb8=
-Date: Tue, 19 Sep 2023 10:56:46 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Michal Simek <michal.simek@amd.com>
-Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
-	git@xilinx.com, Ashok Reddy Soma <ashok.reddy.soma@xilinx.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Manikanta Guntupalli <manikanta.guntupalli@amd.com>,
-	Parth Gajjar <parth.gajjar@amd.com>,
-	Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
-	Rob Herring <robh+dt@kernel.org>, Tanmay Shah <tanmay.shah@amd.com>,
-	Vishal Sagar <vishal.sagar@amd.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/6] arm64: xilinx: Do not use '_' in DT node names
-Message-ID: <20230919075646.GB27722@pendragon.ideasonboard.com>
-References: <cover.1695040866.git.michal.simek@amd.com>
- <5137958580c85a35cf6aadd1c33a2f6bcf81a9e5.1695040866.git.michal.simek@amd.com>
- <20230918145616.GA16823@pendragon.ideasonboard.com>
- <3a11c2e6-2086-4b06-9b8c-177cfba06034@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6A1E30F96
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 08:14:56 +0000 (UTC)
+X-Greylist: delayed 315 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 19 Sep 2023 01:14:55 PDT
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 729F3FB
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 01:14:55 -0700 (PDT)
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 92A261A06A7;
+	Tue, 19 Sep 2023 10:09:38 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 655B61A06AE;
+	Tue, 19 Sep 2023 10:09:38 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 652221820F57;
+	Tue, 19 Sep 2023 16:09:36 +0800 (+08)
+From: Shengjiu Wang <shengjiu.wang@nxp.com>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	linux-imx@nxp.com,
+	marex@denx.de,
+	peng.fan@nxp.com,
+	alexander.stein@ew.tq-group.com,
+	laurent.pinchart@ideasonboard.com,
+	aford173@gmail.com,
+	l.stach@pengutronix.de,
+	Frank.Li@nxp.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	shengjiu.wang@gmail.com
+Subject: [PATCH] arm64: dts: imx8mp: assign parent clock and rate for audio clocks
+Date: Tue, 19 Sep 2023 15:32:55 +0800
+Message-Id: <1695108775-22924-1-git-send-email-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <3a11c2e6-2086-4b06-9b8c-177cfba06034@amd.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
-On Tue, Sep 19, 2023 at 09:47:52AM +0200, Michal Simek wrote:
-> 
-> 
-> On 9/18/23 16:56, Laurent Pinchart wrote:
-> > Hi Michal,
-> > 
-> > Thank you for the patch.
-> > 
-> > On Mon, Sep 18, 2023 at 02:41:12PM +0200, Michal Simek wrote:
-> >> Character '_' not recommended in node name. Use '-' instead.
-> >> Pretty much run seds below for node names.
-> >> s/zynqmp_ipi/zynqmp-ipi/
-> >> s/nvmem_firmware/nvmem-firmware/
-> >> s/soc_revision/soc-revision/
-> >> s/si5335_/si5335-/
-> >>
-> >> Signed-off-by: Michal Simek <michal.simek@amd.com>
-> > 
-> > The si5335 nodes may be better named after the clock name instead of the
-> > component type, but that's nitpicking.
-> 
-> I don't know what's the guidance on this. fixed-clock.yaml is using generic 
-> "clock" name. I have no problem to do it if this is recommended way to go.
-> 
-> 
-> >> ---
-> >>
-> >>   arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts | 4 ++--
-> >>   arch/arm64/boot/dts/xilinx/zynqmp.dtsi            | 6 +++---
-> >>   2 files changed, 5 insertions(+), 5 deletions(-)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
-> >> index d0091d3cb764..52f998c22538 100644
-> >> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
-> >> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
-> >> @@ -123,13 +123,13 @@ ina226 {
-> >>   		io-channels = <&u35 0>, <&u35 1>, <&u35 2>, <&u35 3>;
-> >>   	};
-> >>   
-> >> -	si5335_0: si5335_0 { /* clk0_usb - u23 */
-> >> +	si5335_0: si5335-0 { /* clk0_usb - u23 */
-> >>   		compatible = "fixed-clock";
-> >>   		#clock-cells = <0>;
-> >>   		clock-frequency = <26000000>;
-> >>   	};
-> >>   
-> >> -	si5335_1: si5335_1 { /* clk1_dp - u23 */
-> >> +	si5335_1: si5335-1 { /* clk1_dp - u23 */
-> >>   		compatible = "fixed-clock";
-> >>   		#clock-cells = <0>;
-> >>   		clock-frequency = <27000000>;
-> >> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> >> index b61fc99cd911..e50e95cbe817 100644
-> >> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> >> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> >> @@ -129,7 +129,7 @@ rproc_1_fw_image: memory@3ef00000 {
-> >>   		};
-> >>   	};
-> >>   
-> >> -	zynqmp_ipi: zynqmp_ipi {
-> >> +	zynqmp_ipi: zynqmp-ipi {
-> >>   		bootph-all;
-> >>   		compatible = "xlnx,zynqmp-ipi-mailbox";
-> >>   		interrupt-parent = <&gic>;
-> >> @@ -194,12 +194,12 @@ zynqmp_power: zynqmp-power {
-> >>   				mbox-names = "tx", "rx";
-> >>   			};
-> >>   
-> >> -			nvmem_firmware {
-> >> +			nvmem-firmware {
-> >>   				compatible = "xlnx,zynqmp-nvmem-fw";
-> >>   				#address-cells = <1>;
-> >>   				#size-cells = <1>;
-> >>   
-> >> -				soc_revision: soc_revision@0 {
-> >> +				soc_revision: soc-revision@0 {
-> > 
-> > Unless I'm mistaken, this will change the userspace API, as it changes
-> > the nvmem cell name. Is it an issue ?
-> 
-> Based on
-> https://docs.kernel.org/driver-api/nvmem.html#userspace-binary-interface
-> 
-> The only interface to user space is via nvmem file which has all of them 
-> together. And reference to this node is the same if used inside kernel itself.
-> That's why I think there is no change in connection to user space API from nvmem 
-> side. Of course entry is listed differently if you parse DT names.
+Assign parent clock for audio AHB and AXI clocks, and assign
+clock rate for audio PLL1 and PLL2.
 
-Ah my bad. It should be fine then, as long as nobody in the kernel calls
-nvmem_cell_get("soc_revision"), which I didn't find any occurrence of.
+Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi | 16 +++++++++++++---
+ 1 file changed, 13 insertions(+), 3 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+index 6f2f50e1639c..8a8a2c4aff9f 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+@@ -734,16 +734,26 @@ clk: clock-controller@30380000 {
+ 						  <&clk IMX8MP_CLK_A53_CORE>,
+ 						  <&clk IMX8MP_CLK_NOC>,
+ 						  <&clk IMX8MP_CLK_NOC_IO>,
+-						  <&clk IMX8MP_CLK_GIC>;
++						  <&clk IMX8MP_CLK_GIC>,
++						  <&clk IMX8MP_CLK_AUDIO_AHB>,
++						  <&clk IMX8MP_CLK_AUDIO_AXI_SRC>,
++						  <&clk IMX8MP_AUDIO_PLL1>,
++						  <&clk IMX8MP_AUDIO_PLL2>;
+ 				assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>,
+ 							 <&clk IMX8MP_ARM_PLL_OUT>,
+ 							 <&clk IMX8MP_SYS_PLL2_1000M>,
+ 							 <&clk IMX8MP_SYS_PLL1_800M>,
+-							 <&clk IMX8MP_SYS_PLL2_500M>;
++							 <&clk IMX8MP_SYS_PLL2_500M>,
++							 <&clk IMX8MP_SYS_PLL1_800M>,
++							 <&clk IMX8MP_SYS_PLL1_800M>;
+ 				assigned-clock-rates = <0>, <0>,
+ 						       <1000000000>,
+ 						       <800000000>,
+-						       <500000000>;
++						       <500000000>,
++						       <400000000>,
++						       <800000000>,
++						       <393216000>,
++						       <361267200>;
+ 			};
+ 
+ 			src: reset-controller@30390000 {
 -- 
-Regards,
+2.34.1
 
-Laurent Pinchart
 
