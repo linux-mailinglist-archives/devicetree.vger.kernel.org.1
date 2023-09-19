@@ -1,112 +1,176 @@
-Return-Path: <devicetree+bounces-1286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D712D7A5B5C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 09:40:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 499257A5B90
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 09:49:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE75E1C20C31
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 07:40:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 036A02819AC
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 07:49:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 882CC38BB4;
-	Tue, 19 Sep 2023 07:40:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2DA238BD0;
+	Tue, 19 Sep 2023 07:49:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81F94A3B
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 07:40:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84182C433C8;
-	Tue, 19 Sep 2023 07:40:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695109201;
-	bh=K/CCEQLfGgec2HfKP4kI3szqGJXJsj/NkOCSY7wCACM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FIWCsBhc7S6fqc6ADy3uTx3eaAdpdcYTDmt4/1DV/E4ACTcJ7tj8JzAoAFE/wH4jw
-	 GKpjxyhTUeUHrKIxynBEbDemlIddXqOs1i+sR4BY0pNEYaqrx4TAdnElujazcOdXnk
-	 Ffd7zDNRf/M34tzX0ZXMYWhCExs4DqhV+b2nDYEjaA65wh377k07HVdJcAzuvyySnO
-	 VpFIWU0Q6ZSgJQrAzsFDql1FfQncAO5n4whiMcYOmfZf6dBcujtBXoDh7wAgllqasr
-	 MJqNYkAGrMRWPr3xTcCQTnrr2117okVg9aoUXPooayvkJXkbdMG2NjVSUtWadwfC5e
-	 TtKo0pMJ3Snyg==
-Date: Tue, 19 Sep 2023 09:39:58 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Benjamin Bara <bbara93@gmail.com>
-Cc: Frank Oltmanns <frank@oltmanns.dev>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	NXP Linux Team <linux-imx@nxp.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Russell King <linux@armlinux.org.uk>, 
-	Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Benjamin Bara <benjamin.bara@skidata.com>, Adam Ford <aford173@gmail.com>, 
-	Lucas Stach <l.stach@pengutronix.de>
-Subject: Re: [PATCH 00/13] imx8mp: first clock propagation attempt (for LVDS)
-Message-ID: <z363tfhxt3h2rfe3vguwruelggoazdpdsojrjhebon6s6ejs2g@cxgxizho2jxp>
-References: <20230918-imx8mp-dtsi-v1-0-1d008b3237c0@skidata.com>
- <87fs3bbdjb.fsf@oltmanns.dev>
- <CAJpcXm7nrLzbDmNVCACy3ycBnhWY7HxWhCwroOCF-+GfMT_A9w@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DE20358A5;
+	Tue, 19 Sep 2023 07:49:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1FE0100;
+	Tue, 19 Sep 2023 00:49:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1695109750; x=1726645750;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=DOwKPK2ZKm9AIg5bJUx80+sSzuoUpgRbbL5MT+RoMqY=;
+  b=WY3pkREBIBJIoyxc6lqnIlf8FXS2Z7plwCtvzDb5M08N8ChiTxnYyOig
+   7YxRbwz2ue5zhqNiOBmp6HJvs+suhZ2dARxof9SjcK5gMEDQz73zVKg1i
+   ecALcJMeGJBytnX6f2eiUzaDxrSQRCRj8vjUsNecrRs+99/WdQC/dEXnp
+   opU5x4SfUJwzvh0lFeAg0Oa8Nr4eyXV7Yx+3QWokxHAU7zX4pQK/LfpkR
+   phThf7TjEWtTshDJ9Ysn13Ydw/jUxZjta/Tyk/fX3jbGaSFTYseFsAtRJ
+   Q0kiJUHPCk4/1Cftx1BbZNqa3DuXv+merh0rYyRt8VChNHG5E7S1+raIS
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="466207116"
+X-IronPort-AV: E=Sophos;i="6.02,158,1688454000"; 
+   d="scan'208";a="466207116"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Sep 2023 00:49:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="775449486"
+X-IronPort-AV: E=Sophos;i="6.02,158,1688454000"; 
+   d="scan'208";a="775449486"
+Received: from lkp-server02.sh.intel.com (HELO 9ef86b2655e5) ([10.239.97.151])
+  by orsmga008.jf.intel.com with ESMTP; 19 Sep 2023 00:49:05 -0700
+Received: from kbuild by 9ef86b2655e5 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qiVTh-00074k-2W;
+	Tue, 19 Sep 2023 07:49:01 +0000
+Date: Tue, 19 Sep 2023 15:45:41 +0800
+From: kernel test robot <lkp@intel.com>
+To: Tomer Maimon <tmaimon77@gmail.com>, peter.chen@kernel.org,
+	gregkh@linuxfoundation.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, xu.yang_2@nxp.com,
+	peng.fan@nxp.com, avifishman70@gmail.com, tali.perry1@gmail.com,
+	joel@jms.id.au, venture@google.com, yuenn@google.com,
+	benjaminfair@google.com, j.neuschaefer@gmx.net
+Cc: oe-kbuild-all@lists.linux.dev, openbmc@lists.ozlabs.org,
+	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Tomer Maimon <tmaimon77@gmail.com>
+Subject: Re: [PATCH v1 2/2] usb: chipidea: Add support for NPCM
+Message-ID: <202309191545.dZXS2Y2p-lkp@intel.com>
+References: <20230918165958.2659-3-tmaimon77@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="24bhmfbcnblmpqxn"
-Content-Disposition: inline
-In-Reply-To: <CAJpcXm7nrLzbDmNVCACy3ycBnhWY7HxWhCwroOCF-+GfMT_A9w@mail.gmail.com>
-
-
---24bhmfbcnblmpqxn
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230918165958.2659-3-tmaimon77@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Mon, Sep 18, 2023 at 08:05:48PM +0200, Benjamin Bara wrote:
-> Hi Frank!
->=20
-> On Mon, 18 Sept 2023 at 19:24, Frank Oltmanns <frank@oltmanns.dev> wrote:
-> > On 2023-09-18 at 00:39:56 +0200, Benjamin Bara <bbara93@gmail.com> wrot=
-e:
-> > Thank you very much for including me in the discussion. If I understood
-> > Maxime correctly, your proposal is close to what he was suggesting in
-> > the discussion you referenced. Unfortunately, it doesn't cover the
-> > rounding aspect (which you also mentioned in your cover letter and the
-> > description for clk_detect_unintended_rate_changes in patch 7. I've been
-> > pondering the last three weeks how to find a good solution to this
-> > problem, but so far haven't found any.
->=20
-> I think if we stick to the idea of always enforcing the exact "typical
-> rate", we cannot avoid physically impossible cases. IMHO, it might make
-> sense to add a set_rate() function with a "timing_entry" (e.g. used by
-> display_timing.h[1]) to the clock API, which gives a suggestion but also
-> defines the "real" boundaries. This would provide a shared parent PLL
-> more freedom to provide a satisfying rate for all its children.
+Hi Tomer,
 
-It's definitely something we should do, and I've wanted to do that for a
-while.
+kernel test robot noticed the following build errors:
 
-The clock rate is not the only thing we can change though. The usual
-trick is to modify the blanking areas to come up with a rate that
-matches what the hardware can provide without modifying the framerate.
+[auto build test ERROR on usb/usb-testing]
+[also build test ERROR on usb/usb-next usb/usb-linus linus/master v6.6-rc2 next-20230918]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-It belongs more in a KMS helper
+url:    https://github.com/intel-lab-lkp/linux/commits/Tomer-Maimon/dt-binding-usb-ci-hdrc-usb2-document-Nuvoton-NPCM-supprt/20230919-010147
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
+patch link:    https://lore.kernel.org/r/20230918165958.2659-3-tmaimon77%40gmail.com
+patch subject: [PATCH v1 2/2] usb: chipidea: Add support for NPCM
+config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20230919/202309191545.dZXS2Y2p-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230919/202309191545.dZXS2Y2p-lkp@intel.com/reproduce)
 
-Maxime
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202309191545.dZXS2Y2p-lkp@intel.com/
 
---24bhmfbcnblmpqxn
-Content-Type: application/pgp-signature; name="signature.asc"
+All errors (new ones prefixed by >>):
 
------BEGIN PGP SIGNATURE-----
+   drivers/usb/chipidea/ci_hdrc_npcm.c: In function 'npcm_udc_probe':
+>> drivers/usb/chipidea/ci_hdrc_npcm.c:68:17: error: 'CI_HDRC_FORCE_VBUS_ACTIVE_ALWAYS' undeclared (first use in this function)
+      68 |                 CI_HDRC_FORCE_VBUS_ACTIVE_ALWAYS;
+         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/usb/chipidea/ci_hdrc_npcm.c:68:17: note: each undeclared identifier is reported only once for each function it appears in
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZQlQTgAKCRDj7w1vZxhR
-xSZrAQCXDBYBR1qegeYM/FX3JRolA9OAusZu69+JCObLx9va1wEAvh7wvzcpJ5z7
-D8FLajZsctnmmyoJ2o/3IGxHtUP/ows=
-=D/La
------END PGP SIGNATURE-----
 
---24bhmfbcnblmpqxn--
+vim +/CI_HDRC_FORCE_VBUS_ACTIVE_ALWAYS +68 drivers/usb/chipidea/ci_hdrc_npcm.c
+
+    39	
+    40	static int npcm_udc_probe(struct platform_device *pdev)
+    41	{
+    42		int ret;
+    43		unsigned int args[3];
+    44		struct regmap *gcr_regmap;
+    45		struct npcm_udc_data *ci;
+    46		struct platform_device *plat_ci;
+    47		struct device *dev = &pdev->dev;
+    48		struct device_node *np = dev->of_node;
+    49	
+    50		ci = devm_kzalloc(&pdev->dev, sizeof(*ci), GFP_KERNEL);
+    51		if (!ci)
+    52			return -ENOMEM;
+    53		platform_set_drvdata(pdev, ci);
+    54	
+    55		ci->core_clk = devm_clk_get_optional(dev, NULL);
+    56		if (IS_ERR(ci->core_clk))
+    57			return PTR_ERR(ci->core_clk);
+    58	
+    59		ret = clk_prepare_enable(ci->core_clk);
+    60		if (ret) {
+    61			dev_err(dev, "failed to enable the clock: %d\n", ret);
+    62			return ret;
+    63		}
+    64	
+    65		ci->pdata.name = dev_name(dev);
+    66		ci->pdata.capoffset = DEF_CAPOFFSET;
+    67		ci->pdata.flags	= CI_HDRC_REQUIRES_ALIGNED_DMA |
+  > 68			CI_HDRC_FORCE_VBUS_ACTIVE_ALWAYS;
+    69		ci->pdata.phy_mode = USBPHY_INTERFACE_MODE_UTMI;
+    70		ci->pdata.notify_event = npcm_udc_notify_event;
+    71	
+    72		gcr_regmap = syscon_regmap_lookup_by_phandle_args(np, "nuvoton,sysgcr",
+    73								  3, args);
+    74		if (!IS_ERR(gcr_regmap))
+    75			regmap_update_bits(gcr_regmap, args[0], args[1], args[2]);
+    76	
+    77		plat_ci = ci_hdrc_add_device(dev, pdev->resource, pdev->num_resources,
+    78					     &ci->pdata);
+    79		if (IS_ERR(plat_ci)) {
+    80			ret = PTR_ERR(plat_ci);
+    81			dev_err(dev, "failed to register HDRC NPCM device: %d\n", ret);
+    82			goto clk_err;
+    83		}
+    84	
+    85		pm_runtime_no_callbacks(dev);
+    86		pm_runtime_enable(dev);
+    87	
+    88		return 0;
+    89	
+    90	clk_err:
+    91		clk_disable_unprepare(ci->core_clk);
+    92		return ret;
+    93	}
+    94	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
