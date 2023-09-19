@@ -1,174 +1,146 @@
-Return-Path: <devicetree+bounces-1495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B444F7A6A8C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 20:17:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB6457A6AAC
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 20:25:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 690041C2099A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 18:17:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6A501C2097A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 18:25:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 002742E642;
-	Tue, 19 Sep 2023 18:17:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A93D37140;
+	Tue, 19 Sep 2023 18:25:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E122227718
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 18:17:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57882C433C7;
-	Tue, 19 Sep 2023 18:17:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695147445;
-	bh=9FOIOMjuXWZZMZl0MaBnALuWtI8U/oLy+w1/i6LR79s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TIpPVkzEHywAfBLYCt1PKj0q8enbxL0kMbj10QyKj2tMi9bogm3khvdZX1vZHx6t1
-	 nEZb7tURdTFnlk+CTvq3XEq+qsftzViqW5GDj4zhZ+rMVhF1/hNhyMfr3rg0lE46Y6
-	 TmGWEX+BNOKHI8frwBDXeZmRsQha3QdBsn5mpi2FCf1x9X1V6efeFhp9SHghAvxd+y
-	 kWEVCfsX78aUMmf3yxul90xnL1T9Bs8IcE6DitOL5hlLR9ESmt9HIkwwbhgOgU9DZ0
-	 zPlQRX3anZ3Vzvpr9aL8pQfz+MRQGqMDzEkWijpX+B40XA9YK4Gakda+ugS+CcT6yg
-	 +FjRtB40HNJlg==
-Received: (nullmailer pid 4178543 invoked by uid 1000);
-	Tue, 19 Sep 2023 18:17:23 -0000
-Date: Tue, 19 Sep 2023 13:17:23 -0500
-From: Rob Herring <robh@kernel.org>
-To: Tylor Yang <tylor_yang@himax.corp-partner.google.com>
-Cc: dmitry.torokhov@gmail.com, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jikos@kernel.org, benjamin.tissoires@redhat.com, linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, poyuan_chang@himax.corp-partner.google.com, jingliang@chromium.org, hbarnor@chromium.org
-Subject: Re: [PATCH V2 1/2] dt-bindings: input: Introduce Himax HID-over-SPI
- device
-Message-ID: <20230919181723.GA4169859-robh@kernel.org>
-References: <20230919024943.3088916-1-tylor_yang@himax.corp-partner.google.com>
- <20230919024943.3088916-2-tylor_yang@himax.corp-partner.google.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 861DC882A
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 18:25:48 +0000 (UTC)
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA0F1BC;
+	Tue, 19 Sep 2023 11:25:46 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2b974031aeaso98782121fa.0;
+        Tue, 19 Sep 2023 11:25:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695147945; x=1695752745; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ohVVUXRSTVuwmwAI3dwryx4B5iagEHAMRt/He7o75f4=;
+        b=jp0GFkljx52gWiKUgBj/a11EURcrOvQSgg3Ix4W0DnsxRQNJpPDjRwN9R3LhpdH8CN
+         elAcK6HIqwwXxU/1tY2ZWSDUQAUrNbnf8fsXmdX1V/2bj25ccJZnq6zcCjguUQu1onHH
+         eHjtaDO+Ze23sBSv64Dt0oO/n7o7FhjtnYO3CILIUP/iorXBpPrvhKNHFzFdg+isczXE
+         UKo+Roo7otsQ7MCPD63OtqIBiqHA5s0Od+BA6JoEFDa8rBygmnd9RPj9UM/87lBn3Xop
+         gEYuxo2d0nObkSfUGoDN6Lds/DJ/u/sqf+uh6OXAapl+ICx08H8jfow94k4Gk+fprvEU
+         r9OQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695147945; x=1695752745;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ohVVUXRSTVuwmwAI3dwryx4B5iagEHAMRt/He7o75f4=;
+        b=RL/7jsHIoG1xQIgYFOrGAG4nZTtvwflxi9L5x+g8VuIZlaR5BZlH70NCxcNjt8+1pH
+         2xmtKRsIyqxQsV1Brr+JG2Za8+q9SHB8gWWn4zNfAnB7e+YGnXHyk78O+aJ5WOXpyiyO
+         y3KOJGVui2HK20u2B5URkNE0xoI7btXiXplDJaPrAK+8ahWT3kkWyHJZ8Ryx58jU9y0e
+         z1WQ2MYz+YP9jWf20KBvpX+/WZhiaXeiorRhaWyN6S0vOmRqMFRGnxd4R8F03FtAjTLd
+         kXDASnYi00ZcGFUE8GkR7vjo0GfaYVWU8CROROwaDo74MUSGzci8LvPKuEFUdzWJb8fn
+         /UcA==
+X-Gm-Message-State: AOJu0Yy5Qo9puFD+T5RD5lbnBLRlKD7IAZOl9wj6RBTWa/kIg2LpWX04
+	j8aBEGLlxk4TikOOmQHF7saYRU/dTbXujXaZ
+X-Google-Smtp-Source: AGHT+IHS2kHXLsSi9+Qc6kPfDaaUR2ud2Y+VIWJcZzSIwgpvpy69kUc/3cPfs//vca3zpn1ZEjnE9A==
+X-Received: by 2002:a05:6512:3da7:b0:502:fd1a:9fa0 with SMTP id k39-20020a0565123da700b00502fd1a9fa0mr515169lfv.53.1695147944529;
+        Tue, 19 Sep 2023 11:25:44 -0700 (PDT)
+Received: from [10.0.0.42] (host-85-29-92-32.kaisa-laajakaista.fi. [85.29.92.32])
+        by smtp.gmail.com with ESMTPSA id m30-20020a056512015e00b004fbad09317csm2370415lfo.189.2023.09.19.11.25.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Sep 2023 11:25:44 -0700 (PDT)
+Message-ID: <7d58d52d-2087-45af-b29e-2515b63ead13@gmail.com>
+Date: Tue, 19 Sep 2023 21:25:42 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230919024943.3088916-2-tylor_yang@himax.corp-partner.google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] ASoC: ti: omap-mcbsp: Ignore errors for getting
+ fck_src
+Content-Language: en-US
+To: Andreas Kemnade <andreas@kemnade.info>, bcousson@baylibre.com,
+ tony@atomide.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
+ perex@perex.cz, tiwai@suse.com, jarkko.nikula@bitmer.com,
+ dmitry.torokhov@gmail.com, linux-omap@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ alsa-devel@alsa-project.org
+References: <20230705190324.355282-1-andreas@kemnade.info>
+ <20230705190324.355282-2-andreas@kemnade.info>
+From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
+In-Reply-To: <20230705190324.355282-2-andreas@kemnade.info>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Tue, Sep 19, 2023 at 10:49:42AM +0800, Tylor Yang wrote:
-> The Himax HID-over-SPI framework support for Himax touchscreen ICs
-> that report HID packet through SPI bus. The driver core need reset
->  pin to meet reset timing spec. of IC. An interrupt pin to disable
-> and enable interrupt when suspend/resume. An optional power control
-> pin if target board needed. Panel id pins for identify panel is also
-> an option.
-> 
-> Additional optional arguments:
-> ic-det-delay-ms and ic-resume-delay-ms are using to solve runtime
-> conditions.
-> 
-> This patch also add maintainer of this driver.
-> 
-> Signed-off-by: Tylor Yang <tylor_yang@himax.corp-partner.google.com>
+
+
+On 7/5/23 22:03, Andreas Kemnade wrote:
+> Commit 349355ce3a05 ("ARM: OMAP2+: Drop legacy platform data for omap4 mcbsp")
+> dropped prcm_fck for omap4,
+
+it also dropped the pad_fck for that matter.
+
+> so the clk_src might not be >available making the
+> clk_get(src) fail.
+
+Wow, so OMAP4 audio is pretty broken if would ever need to select FCLK?
+By default we don't on OMAP4, but this is astonishing.
+
+> In such cases, rely on the devicetree to assign
+> the correct parent.
+
+You cannot rely on DT to dynamically select the FCLK parent for
+different use cases.
+The dai_set_dai_sysclk() cannot select between internal or external
+source of the reference clock and DT cannot handle this.
+If one sampling frequency is available with pad_fck while other is only
+possible with internal clock then this is no longer possible.
+
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 > ---
->  .../bindings/input/himax,hid-over-spi.yaml    | 109 ++++++++++++++++++
->  MAINTAINERS                                   |   6 +
->  2 files changed, 115 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/himax,hid-over-spi.yaml
+>  sound/soc/ti/omap-mcbsp.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/input/himax,hid-over-spi.yaml b/Documentation/devicetree/bindings/input/himax,hid-over-spi.yaml
-> new file mode 100644
-> index 000000000000..3ee3a89842ac
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/himax,hid-over-spi.yaml
-> @@ -0,0 +1,109 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/himax,hid-over-spi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Himax TDDI devices using SPI to send HID packets
-> +
-> +maintainers:
-> +  - Tylor Yang <tylor_yang@himax.corp-partner.google.com>
-> +
-> +description: |
-> +  Support the Himax TDDI devices which using SPI interface to acquire
-> +  HID packets from the device. The device needs to be initialized using
-> +  Himax protocol before it start sending HID packets.
-> +
-> +properties:
-> +  compatible:
-> +    const: himax,hid-over-spi
+> diff --git a/sound/soc/ti/omap-mcbsp.c b/sound/soc/ti/omap-mcbsp.c
+> index 21fa7b9787997..f9fe96b61852b 100644
+> --- a/sound/soc/ti/omap-mcbsp.c
+> +++ b/sound/soc/ti/omap-mcbsp.c
+> @@ -70,8 +70,8 @@ static int omap2_mcbsp_set_clks_src(struct omap_mcbsp *mcbsp, u8 fck_src_id)
+>  
+>  	fck_src = clk_get(mcbsp->dev, src);
+>  	if (IS_ERR(fck_src)) {
+> -		dev_err(mcbsp->dev, "CLKS: could not clk_get() %s\n", src);
+> -		return -EINVAL;
+> +		dev_info(mcbsp->dev, "CLKS: could not clk_get() %s\n", src);
+> +		return 0;
 
-Doesn't look like a specific device. Compatibles are generally based on 
-part numbers.
+I would rather have some clock alias for OMAP4/5 to provide the clocks
+that we need for the fclk.
+If we did not got the clock we needed to select we cannot say that all
+is good, carry on.
+Normally the machine driver does this and it thinks that we switched
+clocks while we did not and the clocking is all wrong now.
 
-'over-spi' is redundant as the parent would be a spi controller.
+>  	}
+>  
+>  	pm_runtime_put_sync(mcbsp->dev);
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-
-These are for child nodes, but you don't have any.
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  himax,rst-gpio:
-> +    maxItems: 1
-> +    description: Reset device, active low signal.
-
-Use standard reset-gpios.
-
-(-gpio is deprecated)
-
-> +
-> +  himax,irq-gpio:
-> +    maxItems: 1
-> +    description: Interrupt request, active low signal.
-
-You have the interrupt already, why do you need this?
-
-> +
-> +  himax,3v3-gpio:
-> +    maxItems: 1
-> +    description: GPIO to control 3.3V power supply.
-
-This should be a regulator supply. Then use gpio-regulator if it happens 
-to be GPIO controlled.
-
-> +
-> +  himax,id-gpios:
-> +    maxItems: 8
-> +    description: GPIOs to read physical Panel ID. Optional.
-> +
-> +  spi-cpha: true
-> +  spi-cpol: true
-> +
-> +  himax,ic-det-delay-ms:
-> +    description:
-> +      Due to TDDI properties, the TPIC detection timing must after the
-> +      display panel initialized. This property is used to specify the
-> +      delay time when TPIC detection and display panel initialization
-> +      timing are overlapped. How much milliseconds to delay before TPIC
-> +      detection start.
-> +
-> +  himax,ic-resume-delay-ms:
-> +    description:
-> +      Due to TDDI properties, the TPIC resume timing must after the
-> +      display panel resumed. This property is used to specify the
-> +      delay time when TPIC resume and display panel resume
-> +      timing are overlapped. How much milliseconds to delay before TPIC
-> +      resume start.
-
-These should be implied by the compatible. Unless they are board 
-specific and not device specific.
-
-Rob
+-- 
+Péter
 
