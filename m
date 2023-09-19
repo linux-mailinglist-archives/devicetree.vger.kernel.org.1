@@ -1,64 +1,52 @@
-Return-Path: <devicetree+bounces-1348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31C317A5F9C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 12:32:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B20687A5FCA
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 12:39:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF128281C99
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 10:32:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C6232814BE
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 10:39:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A18DD3D398;
-	Tue, 19 Sep 2023 10:31:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF9D615BC;
+	Tue, 19 Sep 2023 10:39:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EDE32E642
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 10:31:41 +0000 (UTC)
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 805B8119
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 03:31:39 -0700 (PDT)
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38J4RRCb031661;
-	Tue, 19 Sep 2023 05:31:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	PODMain02222019; bh=Owv3MGKxi43WD2sBuhitoE9k62iaoJnCTY7E9ZslEyc=; b=
-	q+X/DsTjY0qdwFjSHgLivZRNEuPSlguJo7x6uRQ6ECsiu4QPFfqWrjtklP82gsIX
-	5p2zdlpZRVoLCdmCE96G71TIFLzBKQ0TRYvAyssYwS6Op2QIbbO1HDdp+WmP3gra
-	oOWAUfqTUr2L/yS8tJWv7wn8C/RT61jKlerAwbPfclECAp/Dkg5j2Rko0hsP8TNf
-	xzH/n8z5LO998/leyKpNkthpRugIG2n2UCHObDUGpHwAsXx0svpk1rHDiKKdgoiu
-	VovEjXiNNlwGYBnD2xPaJ2f2Aanv9kI+hJ6zlZJbUH3r/U22iffUFxz5FAAPYWeb
-	51Tm6AQQhfBiqI1zYhxNzw==
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3t59ry3p1h-3
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Sep 2023 05:31:20 -0500 (CDT)
-Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.37; Tue, 19 Sep
- 2023 11:31:16 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.37 via Frontend
- Transport; Tue, 19 Sep 2023 11:31:16 +0100
-Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
-	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 97D92357E;
-	Tue, 19 Sep 2023 10:31:16 +0000 (UTC)
-From: Charles Keepax <ckeepax@opensource.cirrus.com>
-To: <broonie@kernel.org>
-CC: <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <patches@opensource.cirrus.com>
-Subject: [PATCH 5/5] ASoC: cs42l43: Extend timeout on bias sense timeout
-Date: Tue, 19 Sep 2023 11:31:16 +0100
-Message-ID: <20230919103116.580305-6-ckeepax@opensource.cirrus.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230919103116.580305-1-ckeepax@opensource.cirrus.com>
-References: <20230919103116.580305-1-ckeepax@opensource.cirrus.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 657A915BE
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 10:39:24 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id C726E187;
+	Tue, 19 Sep 2023 03:39:20 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A241B1FB;
+	Tue, 19 Sep 2023 03:39:57 -0700 (PDT)
+Received: from donnerap.arm.com (donnerap.manchester.arm.com [10.32.101.50])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 52A253F67D;
+	Tue, 19 Sep 2023 03:39:18 -0700 (PDT)
+From: Andre Przywara <andre.przywara@arm.com>
+To: Lee Jones <lee@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Icenowy Zheng <uwu@icenowy.me>,
+	Mark Brown <broonie@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Shengyu Qu <wiagn233@outlook.com>,
+	Martin Botka <martin.botka1@gmail.com>,
+	Matthew Croughan <matthew.croughan@nix.how>,
+	linux-sunxi@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] mfd: axp20x: improve support without interrupts
+Date: Tue, 19 Sep 2023 11:39:11 +0100
+Message-Id: <20230919103913.463156-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,41 +54,63 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-GUID: TBnGqPNena2gfzHQHpLl-HTcDJpprhtk
-X-Proofpoint-ORIG-GUID: TBnGqPNena2gfzHQHpLl-HTcDJpprhtk
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-For very slow removals the current bias sense timeout is sometimes too
-short and unclamps the mic bias before the jack removal is properly
-detected by the tip detect, causing a pop. As bias sense should be
-tuned to deliver very few false positives, increase the timeout fairly
-dramatically to cover all but the most exaggerated removals.
+This is a more of a re-send, rebased on top of v6.6-rc2, with the tags
+added, and adding back the binding patch, since this seems to have fallen
+through the cracks somehow.
+Changelog below.
+------------------------------
 
-Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
----
- sound/soc/codecs/cs42l43-jack.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Every AXP PMIC we support sports an IRQ pin, that signals certain events
+to the SoC. For some of the chip's functionality an interrupt is crucial
+for operation (for instance a power key event), but for the basic
+regulator features for instance the interrupt does not add much.
 
-diff --git a/sound/soc/codecs/cs42l43-jack.c b/sound/soc/codecs/cs42l43-jack.c
-index 66923cf2fdaff..861f9ee671cdf 100644
---- a/sound/soc/codecs/cs42l43-jack.c
-+++ b/sound/soc/codecs/cs42l43-jack.c
-@@ -290,7 +290,7 @@ irqreturn_t cs42l43_bias_detect_clamp(int irq, void *data)
- 	struct cs42l43_codec *priv = data;
- 
- 	queue_delayed_work(system_wq, &priv->bias_sense_timeout,
--			   msecs_to_jiffies(250));
-+			   msecs_to_jiffies(1000));
- 
- 	return IRQ_HANDLED;
- }
+Recently we started seeing boards with smaller PMICs, that don't bother
+to connect the IRQ line to anything. So far we handled this as a special
+case for the AXP305, but there are more examples now that justify a more
+general solution.
+
+Patch 1/2 adds more PMICs to the list of chips for which the interrupts
+DT property is optional: this is needed to correctly describe some newer
+boards without the IRQ pin connected.
+Ideally we would make this optional for every PMIC, but it is unclear
+whether this is a good idea: many older the "bigger" PMICs have multiple
+MFD devices that require an interrupt, so not having interrupt
+functionality might not be feasible for their operation. Also so far all
+boards with those PMICs connect the IRQ pin, so there is no immediate
+need for such a relaxation.
+
+Patch 2/2 then generalises the "no interrupt specified" case in the MFD
+driver, as this was special cased for two PMIC models so far. This
+allows boards with an AXP313a to not specify an IRQ line: there are
+actually multiple boards relying on this out there.
+
+Cheers,
+Andre
+
+Changelog v3 ... v2:
+- rebased on top of v6.6-rc2
+- add back binding patch
+- tags added
+
+Changelog v2 ... v1:
+- drop reordering approach, use separate cell lists instead
+
+Andre Przywara (2):
+  dt-bindings: mfd: x-powers,axp152: make interrupt optional for more
+    chips
+  mfd: axp20x: Generalise handling without interrupt
+
+ .../bindings/mfd/x-powers,axp152.yaml         |  5 ++-
+ drivers/mfd/axp20x.c                          | 44 ++++++++++---------
+ 2 files changed, 28 insertions(+), 21 deletions(-)
+
 -- 
-2.39.2
+2.25.1
 
 
