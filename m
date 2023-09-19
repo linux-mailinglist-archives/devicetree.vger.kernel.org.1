@@ -1,217 +1,130 @@
-Return-Path: <devicetree+bounces-1276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE51D7A5A86
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 09:07:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14A1E7A5AC4
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 09:22:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D522281C81
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 07:07:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BD141C20C31
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 07:22:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81EE5358A9;
-	Tue, 19 Sep 2023 07:07:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7013C28699;
+	Tue, 19 Sep 2023 07:22:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C4178471
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 07:07:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5A10C433C8;
-	Tue, 19 Sep 2023 07:07:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68AAEBA20
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 07:22:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D791C433C7;
+	Tue, 19 Sep 2023 07:22:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695107249;
-	bh=hk6MTSg2w6vRJMTSQbUVxxO4PouQtMWRgz7EPaXFfhY=;
+	s=k20201202; t=1695108131;
+	bh=qgeDAcm+eFxaDNpoHATRJfJ3GIVR3JDf6CwlvDJ9Hdg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tByPkdImFal9VUGiAJG0v4DB3+eTkbIARCBO22fNE8S1MiU529opNX4DXDb0heUly
-	 Yh1TS4hWzdTuvqhECYgg9KWuDdZg+l6JwaPE9oYe6wknLybJS4VhG89ACI8ueE7bWP
-	 tTpsUX0+ur4zhpcRkBeO1IIZ9AuQ+cYfTi64h1qVX+2vFEeaWck178Fp1+9SX9Q/cZ
-	 jFVeyxw3/qlWxeP14c/iejtQwFFL8tahguPeaAwwjBvGc3WkDXhYSXJ/YWORlYrkwW
-	 8h0EHIbU7MBl0fKmRh2c44YF4o/xnuxOHhhdHweIRtiv659jM/Z+RbDNjWvfdoADgL
-	 jiI5H94H1WASQ==
-Received: from johan by xi.lan with local (Exim 4.96)
-	(envelope-from <johan@kernel.org>)
-	id 1qiUph-0006Wl-3B;
-	Tue, 19 Sep 2023 09:07:42 +0200
-Date: Tue, 19 Sep 2023 09:07:41 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Doug Anderson <dianders@chromium.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-	linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Maxime Ripard <mripard@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	LinusW <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH] HID: i2c-hid: fix handling of unpopulated devices
-Message-ID: <ZQlIveJVdvyV2Ygy@hovoldconsulting.com>
-References: <20230918125851.310-1-johan+linaro@kernel.org>
- <CAD=FV=Wfwvp-SbGrdO5VJcjG42njkApJPB7wnY-YYa1_-O0JWQ@mail.gmail.com>
+	b=V4HyzUmM6NZAHCqsSdBwChfVQ9vb+mbJnDvnR1AuafUhWBK8agKMQvyTxRy1AIaar
+	 gWEnVH7b3opi/SyBv31tCeKJtVRXoxV7GNKllD9WtdJqrPUFa4AmeRfWm/jHoiUmcj
+	 soxIOiH5yp8+OubvyaWdJ6jYlZU5/QoiN5dPoalPvuvjt41lPrON9UeGK5FOJ5OYcd
+	 NfQhpcKP6bDENs58VVUHADVmfMP3x80uKq27SEXBERvfWOjixPeaUltAlMF3B33+k1
+	 DLelCMWw0ML+BbJBMDX2QawLBZPtqeIIBBvoQ1C+lZbjarSQrs9ZTAjqqzjBNczJ+d
+	 uqYXLYWaJ4d3A==
+Date: Tue, 19 Sep 2023 09:22:09 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Benjamin Bara <bbara93@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	NXP Linux Team <linux-imx@nxp.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Russell King <linux@armlinux.org.uk>, 
+	Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, Frank Oltmanns <frank@oltmanns.dev>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	Benjamin Bara <benjamin.bara@skidata.com>
+Subject: Re: [PATCH 07/13] clk: detect unintended rate changes
+Message-ID: <izjejcqxv5jpnwpgdzuiibvhajw5vy26hpjlknefuepjboppkg@ywkvxiup4xqg>
+References: <20230918-imx8mp-dtsi-v1-0-1d008b3237c0@skidata.com>
+ <20230918-imx8mp-dtsi-v1-7-1d008b3237c0@skidata.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3pz4fjkoxsas7y5a"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=Wfwvp-SbGrdO5VJcjG42njkApJPB7wnY-YYa1_-O0JWQ@mail.gmail.com>
+In-Reply-To: <20230918-imx8mp-dtsi-v1-7-1d008b3237c0@skidata.com>
 
-On Mon, Sep 18, 2023 at 08:00:15AM -0700, Doug Anderson wrote:
-> On Mon, Sep 18, 2023 at 6:00 AM Johan Hovold <johan+linaro@kernel.org> wrote:
-> > A recent commit reordered probe so that the interrupt line is now
-> > requested before making sure that the device exists.
-> >
-> > This breaks machines like the Lenovo ThinkPad X13s which rely on the
-> > HID driver to probe second-source devices and only register the variant
-> > that is actually populated. Specifically, the interrupt line may now
-> > already be (temporarily) claimed when doing asynchronous probing of the
-> > touchpad:
-> >
-> >         genirq: Flags mismatch irq 191. 00082008 (hid-over-i2c) vs. 00082008 (hid-over-i2c)
-> >         i2c_hid_of 21-0015: Could not register for hid-over-i2c interrupt, irq = 191, ret = -16
-> >         i2c_hid_of: probe of 21-0015 failed with error -16
-> >
-> > Fix this by restoring the old behaviour of first making sure the device
-> > exists before requesting the interrupt line.
 
-> Ugh, sorry for the regression. :( It actually turns out that I've been
-> digging into this same issue on a different device (see
-> mt8173-elm-hana). I hadn't realized that it was a regression caused by
-> my recent change, though.
-> 
-> I haven't yet reviewed your change in detail, but to me it seems like
-> at most a short term fix. Specifically, I think the way that this has
-> been working has been partially via hacks and partially via luck. Let
-> me explain...
-> 
-> Currently, to make this work the `sc8280xp-lenovo-thinkpad-x13s.dts`
-> file has a hack in it. You can see that the `tpad_default` pinctrl
-> entry has been moved up to the i2c bus level even though it doesn't
-> belong there (it should be in each trackpad). This is because,
-> otherwise, you would have run into similar type problems as the device
-> core would have failed to claim the pin for one of the devices.
+--3pz4fjkoxsas7y5a
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Ḯ'm well aware of that and it was mentioned in the commit message for
-4367d763698c ("arm64: dts: qcom: sc8280xp-x13s: enable alternate
-touchpad") as well as discussed briefly with Rob here:
+Hi,
 
-	https://lore.kernel.org/all/Y3teH14YduOQQkNn@hovoldconsulting.com/
+On Mon, Sep 18, 2023 at 12:40:03AM +0200, Benjamin Bara wrote:
+> From: Benjamin Bara <benjamin.bara@skidata.com>
+>=20
+> As we now keep track of the clocks which are allowed to change - namely
+> the ones which are along the ancestor line between the rate trigger and
+> the top-most changed clock
 
-> Currently, we're getting a bit lucky with
-> `sc8280xp-lenovo-thinkpad-x13s.dts` that there are no other shared
-> resources between the two devices besides the interrupt. Specifically
-> a number of trackpads / touchscreens also have a "reset" GPIO that
-> needs to be power sequenced properly in order to talk to the
-> touchscreen. In this case we'll be stuck again because both instances
-> would need to grab the "reset" GPIO before being able to confirm if
-> the device is there.
+I'm not sure that the fact that only a clock between the clock
+triggering the rate change and the top-most changed clock was allowed to
+change has ever been a thing.
 
-Right, this will only work for fairly simple cases, but we do have a few
-of those in tree since some years back.
+This puts a fairly big pressure on the tree propagation code, and
+whether or not that can be done is completely context-dependent.
 
-> This is an old problem. The first I remember running into it was back
-> in 2015 on rk3288-veryron-minnie. We had a downstream hack to make
-> this work with -EPROBE_DEFER. https://crrev.com/c/266224. By the time
-> we shipped, though, we decided not to do the 2nd sourcing. After that
-> I always NAKed HW designs like this, but I guess that didn't help with
-> Mediatek hardware I wasn't involved with. :( ...and, of course, it
-> didn't help with devices that aren't Chromebooks like the Thinkpad
-> X13S.
-> 
-> FWIW: as a short term solution, we ended up forcing synchronous probe
-> in <https://crrev.com/c/4857566>. This has some pretty serious boot
-> time implications, but it's also very simple.
-> 
-> 
-> I'm actively working on coming up with a better solution here. My
-> current thought is that that maybe we want to do:
-> 
-> 1. Undo the hack in the device tree and have each "2nd source" have
-> its own pinctrl entry.
-> 
-> 2. In core pinctrl / device probing code detect the pinctrl conflict
-> and only probe one of the devices at a time.
-> 
-> ...that sounds like a nice/elegant solution and I'm trying to make it
-> work, though it does have some downsides. Namely:
-> 
-> a) It requires "dts" changes to work. Namely we've got to undo the
-> hack that pushed the pinctrl up to the controller level (or, in the
-> case of mt8173-elm-hana, that just totally skipped the "pinctrl" entry
-> altogether). Unfortunately those same "dts" changes will actually make
-> things _worse_ if you don't have the code change. :(
+Devices like UART, I2C or audio devices are rate change sensitive, and
+yet usually have internal dividers to accomodate for their parent rate
+so don't usually care as long as they are notified.
 
-Right, a proper solution will likely require an updated DT.
+Similarly, all the non-rate-sensitive devices (like pretty much all
+bus/registers clocks) don't care at all about what the rate is, so that
+requirement is making a rate change going through less likely, without a
+particular reason only for a handful of devices (display in this case).
 
-> b) It only handles the case where the resources shared by 2nd sourcing
-> are expressed by pinctrl. In a practical sense this seems to be most
-> cases, but conceivably you could imagine running into this situation
-> with a non-pin-related shared resource.
+Also, this rules out any child of a clock from being allowed to change?
+That looks wild to me :)
 
-Indeed.
+> we can run through the subtree of changes and look for unexpected
+> ones.
 
-> c) To solve this in the core, we have to make sure we properly handle
-> (without hanging/failing) multiple partially-conflicting devices and
-> devices that might acquire resources in arbitrary orders.
-> 
-> Though the above solution detecting the pinctrl conflicts sounds
-> appealing and I'm currently working on prototyping it, I'm still not
-> 100% convinced. I'm worried about the above downsides.
+Again, I'm not sure we can say that those changes were unexpected. They
+very much were expected to change to the CCF so far.
 
-Yes, I agree that we'd need to take a broader look at this and not just
-focus on the immediate pinctrl issue.
- 
-> Personally, I feel like we could add information to the device tree
-> that would help us out. The question is: is this an abuse of device
-> tree for something that Linux ought to be able to figure out on its
-> own, or is it OK? To make it concrete, I was thinking about something
-> like this:
-> 
-> / {
->   tp_ex_group: trackpad-exclusion-group {
->     members = <&tp1>, <&tp2>, <&tp3>;
->   };
-> };
-> 
-> &i2c_bus {
->   tp1: trackpad@10 {
->     ...
->     mutual-exclusion-group = <&tp_ex_group>;
->   };
->   tp2: trackpad@20 {
->     ...
->     mutual-exclusion-group = <&tp_ex_group>;
->   };
->   tp3: trackpad@30 {
->     ...
->     mutual-exclusion-group = <&tp_ex_group>;
->   };
-> };
-> 
-> Then the device core would know not to probe devices in the same
-> "mutual-exclusion-group" at the same time.
-> 
-> If DT folks are OK with the "mutual-exclusion-group" idea then I'll
-> probably backburner my attempt to make this work on the pinctrl level
-> and go with that.
+> Shared parents must set their rate in a way, that all
+> consumer-configured rates are respected.
 
-I expressed something along these lines in the thread above:
+Again, that entirely depends on the context: the clock tree topology,
+the devices involved, what their drivers support, etc. I'm sure it's
+true in your case, but I'm not sure we can make that a generic
+statement.
 
-	It seems we'd need some way to describe the devices as mutually
-	exclusive...
+> As this is sometimes not possible and clocks sometime doesn't require
+> the *exact* rate, we might have to find a way to find out if it is
+> *exact enough*. Then we could fix it in the core.
 
-but given that we had prior art for handling simple cases and due to
-lack of time, I left it on the ever-growing todo list.
+And "exact enough" entirely depends on the context again, so really, I'm
+not sure we can (and should!) fix that at the framework level.
 
-But regardless of what a long-term proper solution to this may look
-like, we need to fix the regression in 6.6-rc1 by restoring the old
-behaviour.
+Maxime
 
-Johan
+--3pz4fjkoxsas7y5a
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZQlMIQAKCRDj7w1vZxhR
+xc6LAQCWG43IJjPcdV6NAx1M8x90MI1vXcM3D6N8NzmrVpQnJQD9EeUCxENPJjhD
+Hv0cIlQ3XenPhpGlG2OclHNzNRlYhw4=
+=HI+3
+-----END PGP SIGNATURE-----
+
+--3pz4fjkoxsas7y5a--
 
