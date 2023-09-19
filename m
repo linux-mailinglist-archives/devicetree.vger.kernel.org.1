@@ -1,177 +1,123 @@
-Return-Path: <devicetree+bounces-1327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAD887A5EF6
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 12:00:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC6167A5F20
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 12:12:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DA39281FAE
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 10:00:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D161281CDD
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 10:12:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA55D110B;
-	Tue, 19 Sep 2023 10:00:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95ACB2E645;
+	Tue, 19 Sep 2023 10:12:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62696538C
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 10:00:01 +0000 (UTC)
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EC1F9E;
-	Tue, 19 Sep 2023 03:00:00 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id 41be03b00d2f7-53fbf2c42bfso4499003a12.3;
-        Tue, 19 Sep 2023 03:00:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695117600; x=1695722400; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wjWijmchQBLdKzLnayUJX/ewjoWaI+9Ghlb5Rr9/x3k=;
-        b=jUgjDy2muSdTysszr0Gj4QuqINvOReZhK7xmamLiTFE5wG2ZxexFJEXIx+GHqqtDrX
-         G0j/m8ypDt1MBYNDMgYX23u9O8Mi24g64hKuNtyojcgCAT1UD6/NKRwHeHuM8kGKts1r
-         Z0OtSR0FegVtcQM0wvb9kYZouyqs5sfhKmiJVHwpIMP3S08LOXypr0ezUApdSkUPqPl1
-         Qa62URSnxZFpAMnQ78ob4IQvywH5Xm92HsfoaWO0SjWyxEVoXEU2Gkvd7UjhNW7R/tNM
-         sLM4y1yLYw1N2defTWvgBBHzyrnb7sFOlkD6lnFd/zbpA9QZDiGDhTONHO47EVkxqUwK
-         Swxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695117600; x=1695722400;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wjWijmchQBLdKzLnayUJX/ewjoWaI+9Ghlb5Rr9/x3k=;
-        b=hgmLVXSLMTNJfAv1lTEXN51wzG3XFUYx2pO1+QTfnoPmHusEMwaTGh5mZpnV777ZVI
-         16JlxcDv5Ic3WX82UOGXxERBMjjTqOF2vjQTdTQTp1Mwol8zIjybrq3kpyr99zhKWhdn
-         43FZ+wpSHfbrfRPg2Q37ylM4Pd2o5a9yicixpL/HGy/4Ts4nzcnMsSwg8O2d+qzxU75f
-         WAaojcXbdMuqaf3ED7FapQswJWy63sbCJQgmS1Vs+FppWD8MCUhnkhrXxL6kIFxtRD9p
-         luesGoBpX74lrLkmou/jpCVVGsElLIROiB1OiGSfldNRASlDc40nZHSK+atx8caoG04o
-         iGag==
-X-Gm-Message-State: AOJu0Yy07wKnwNKyvjrDvaoEG2vLgxSUy8LwkImszwqgyhDSWqg50FAq
-	AZ5Pi+2Stw3xl80/rc6UtKnZV5noExXW+KhFlAY=
-X-Google-Smtp-Source: AGHT+IEnsQg8X0JeKZ6zrmk09NlOSOsSeqkPbKFpD2GuDgbkgyhb8u0Bpatqn01FSWHg8wXKMxGD+C2KU7fVdqGStvE=
-X-Received: by 2002:a05:6a20:2594:b0:151:b96f:88b4 with SMTP id
- k20-20020a056a20259400b00151b96f88b4mr12768707pzd.23.1695117599552; Tue, 19
- Sep 2023 02:59:59 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B23B110B
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 10:12:15 +0000 (UTC)
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D19B9F0;
+	Tue, 19 Sep 2023 03:12:12 -0700 (PDT)
+X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 38JABwsfE3430194, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
+	by rtits2.realtek.com.tw (8.15.2/2.92/5.92) with ESMTPS id 38JABwsfE3430194
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 19 Sep 2023 18:11:58 +0800
+Received: from RTEXMBS02.realtek.com.tw (172.21.6.95) by
+ RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.32; Tue, 19 Sep 2023 18:11:59 +0800
+Received: from RTEXH36505.realtek.com.tw (172.21.6.25) by
+ RTEXMBS02.realtek.com.tw (172.21.6.95) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Tue, 19 Sep 2023 18:11:58 +0800
+Received: from localhost.localdomain (172.21.252.101) by
+ RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server id
+ 15.1.2375.32 via Frontend Transport; Tue, 19 Sep 2023 18:11:58 +0800
+From: Tzuyi Chang <tychang@realtek.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Tzuyi Chang <tychang@realtek.com>
+Subject: [PATCH v3 0/7] Add pinctrl driver support for Realtek DHC SoCs
+Date: Tue, 19 Sep 2023 18:11:10 +0800
+Message-ID: <20230919101117.4097-1-tychang@realtek.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <1695108775-22924-1-git-send-email-shengjiu.wang@nxp.com> <8ce3f7e172a747100366ebd14d3bd74fe549ae10.camel@pengutronix.de>
-In-Reply-To: <8ce3f7e172a747100366ebd14d3bd74fe549ae10.camel@pengutronix.de>
-From: Shengjiu Wang <shengjiu.wang@gmail.com>
-Date: Tue, 19 Sep 2023 17:59:48 +0800
-Message-ID: <CAA+D8AM5Lp_vRBVgWXBQ2DFxf1AUG5702rrYrSgvn994GAaFAw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp: assign parent clock and rate for
- audio clocks
-To: Lucas Stach <l.stach@pengutronix.de>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org, 
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
-	linux-imx@nxp.com, marex@denx.de, peng.fan@nxp.com, 
-	alexander.stein@ew.tq-group.com, laurent.pinchart@ideasonboard.com, 
-	aford173@gmail.com, Frank.Li@nxp.com, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-KSE-ServerInfo: RTEXMBS02.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, Sep 19, 2023 at 4:20=E2=80=AFPM Lucas Stach <l.stach@pengutronix.de=
-> wrote:
->
-> Hi Shengjiu,
->
-> Am Dienstag, dem 19.09.2023 um 15:32 +0800 schrieb Shengjiu Wang:
-> > Assign parent clock for audio AHB and AXI clocks, and assign
-> > clock rate for audio PLL1 and PLL2.
-> >
-> Please don't do this. Configuring all those clocks in the clock
-> controller is a pain to override if the board uses the PLLs in any
-> other way than the reference design.
->
-> The audio AXI and AHB clocks are already properly configured with Adams
-> patch [1], so there is no need for the changes in this patch.
->
-> Please set up the audio PLLs in the board DT in peripheral nodes that
-> are actually using those clocks.
->
-> Regards,
-> Lucas
->
-> [1] https://lore.kernel.org/all/20230819105002.132750-1-aford173@gmail.co=
-m/
+These patches add the bindings and the pinctrl drivers for Realtek
+DHC(Digital Home Center) RTD SoCs(RTD1619B, RTD1319D and RTD1315E).
 
-For this patch, it changes the AXI clock to 600M.  But the parent clock
-is 800M,  so the result AXI clock is 400M actually, the 800M can't be divid=
-ed
-to 600MHz.
+Change log:
+v2 -> v3:
+1. Use regmap_update_bits instead of rtd_pinctrl_update_bits.
+2. Remove if/then condition under the patternProperties "-pins$".
+v1 -> v2:
+1. Rename realtek,pdriver, realtek,ndriver and realtek,dcycle
+2. Remove the wildcard in the compatible strings
+3. Add the description for RTD1315E, RTD1319D and RTD1315E
+4. Add the description for P-MOS and N-MOS driving strength
 
-Best regards
-Wang shengjiu
+Tzuyi Chang (7):
+  pinctrl: realtek: Add common pinctrl driver for Realtek DHC RTD SoCs
+  pinctrl: realtek: Add pinctrl driver for RTD1315E
+  pinctrl: realtek: Add pinctrl driver for RTD1319D
+  pinctrl: realtek: Add pinctrl driver for RTD1619B
+  dt-bindings: pinctrl: realtek: add RTD1315E pinctrl binding
+  dt-bindings: pinctrl: realtek: add RTD1319D pinctrl binding
+  dt-bindings: pinctrl: realtek: add RTD1619B pinctrl binding
 
+ .../pinctrl/realtek,rtd1315e-pinctrl.yaml     |  188 ++
+ .../pinctrl/realtek,rtd1319d-pinctrl.yaml     |  187 ++
+ .../pinctrl/realtek,rtd1619b-pinctrl.yaml     |  186 ++
+ drivers/pinctrl/Kconfig                       |    1 +
+ drivers/pinctrl/Makefile                      |    1 +
+ drivers/pinctrl/realtek/Kconfig               |   23 +
+ drivers/pinctrl/realtek/Makefile              |    6 +
+ drivers/pinctrl/realtek/pinctrl-rtd.c         |  580 ++++++
+ drivers/pinctrl/realtek/pinctrl-rtd.h         |  124 ++
+ drivers/pinctrl/realtek/pinctrl-rtd1315e.c    | 1439 +++++++++++++++
+ drivers/pinctrl/realtek/pinctrl-rtd1319d.c    | 1609 +++++++++++++++++
+ drivers/pinctrl/realtek/pinctrl-rtd1619b.c    | 1601 ++++++++++++++++
+ 12 files changed, 5945 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/realtek,rtd1315e-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/realtek,rtd1319d-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/realtek,rtd1619b-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/realtek/Kconfig
+ create mode 100644 drivers/pinctrl/realtek/Makefile
+ create mode 100644 drivers/pinctrl/realtek/pinctrl-rtd.c
+ create mode 100644 drivers/pinctrl/realtek/pinctrl-rtd.h
+ create mode 100644 drivers/pinctrl/realtek/pinctrl-rtd1315e.c
+ create mode 100644 drivers/pinctrl/realtek/pinctrl-rtd1319d.c
+ create mode 100644 drivers/pinctrl/realtek/pinctrl-rtd1619b.c
 
+-- 
+2.42.0
 
->
-> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > ---
-> >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 16 +++++++++++++---
-> >  1 file changed, 13 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boo=
-t/dts/freescale/imx8mp.dtsi
-> > index 6f2f50e1639c..8a8a2c4aff9f 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > @@ -734,16 +734,26 @@ clk: clock-controller@30380000 {
-> >                                                 <&clk IMX8MP_CLK_A53_CO=
-RE>,
-> >                                                 <&clk IMX8MP_CLK_NOC>,
-> >                                                 <&clk IMX8MP_CLK_NOC_IO=
->,
-> > -                                               <&clk IMX8MP_CLK_GIC>;
-> > +                                               <&clk IMX8MP_CLK_GIC>,
-> > +                                               <&clk IMX8MP_CLK_AUDIO_=
-AHB>,
-> > +                                               <&clk IMX8MP_CLK_AUDIO_=
-AXI_SRC>,
-> > +                                               <&clk IMX8MP_AUDIO_PLL1=
->,
-> > +                                               <&clk IMX8MP_AUDIO_PLL2=
->;
-> >                               assigned-clock-parents =3D <&clk IMX8MP_S=
-YS_PLL1_800M>,
-> >                                                        <&clk IMX8MP_ARM=
-_PLL_OUT>,
-> >                                                        <&clk IMX8MP_SYS=
-_PLL2_1000M>,
-> >                                                        <&clk IMX8MP_SYS=
-_PLL1_800M>,
-> > -                                                      <&clk IMX8MP_SYS=
-_PLL2_500M>;
-> > +                                                      <&clk IMX8MP_SYS=
-_PLL2_500M>,
-> > +                                                      <&clk IMX8MP_SYS=
-_PLL1_800M>,
-> > +                                                      <&clk IMX8MP_SYS=
-_PLL1_800M>;
-> >                               assigned-clock-rates =3D <0>, <0>,
-> >                                                      <1000000000>,
-> >                                                      <800000000>,
-> > -                                                    <500000000>;
-> > +                                                    <500000000>,
-> > +                                                    <400000000>,
-> > +                                                    <800000000>,
-> > +                                                    <393216000>,
-> > +                                                    <361267200>;
-> >                       };
-> >
-> >                       src: reset-controller@30390000 {
->
 
