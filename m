@@ -1,192 +1,209 @@
-Return-Path: <devicetree+bounces-1355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0D1E7A5FD6
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 12:40:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F1337A5FFC
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 12:47:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 787E1281586
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 10:40:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 733C11C20BD3
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 10:47:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8312115BE;
-	Tue, 19 Sep 2023 10:40:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2D53EAE1;
+	Tue, 19 Sep 2023 10:47:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3D7115A6;
-	Tue, 19 Sep 2023 10:40:51 +0000 (UTC)
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3CD4F1;
-	Tue, 19 Sep 2023 03:40:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1695120050; x=1726656050;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=IuzJ3dzqBkF/cX6Jv2sY55P1WiNZppmpR/ZeBys/+OA=;
-  b=WhkWlP9gkMDdkJC7YC06nj3K2yVBGy8og5X4Fb3nBwaSjrh+vwZOVjpn
-   3epi0L8IWP1QjSOO0IVcveQ9oBzF+ct5YAUm0nwX3zduYC0rAytsF0uoL
-   6iH1vHH3q4uMHJdBTnW7s705xbApG8CaV3KjNiaEdiVkUhKJzWhbdc1JT
-   Myt4Tfa/eGxdqm332+mrKkWMSJLVIqrBy4GKVs8DJS7ZEdJqSuhSP2rUz
-   BKr6WCenpUfJLzf1RBXFjNAyijD93gTo6boF4+/PyS/IiUdCjd0SKHkt/
-   L0D8xCvySJzWyJwHEBkn9LwH51KHDkf0dTrnxtKl2bThSubjCONBwU9C8
-   Q==;
-X-CSE-ConnectionGUID: tSiqpPf2RgqyJav8aPHQuA==
-X-CSE-MsgGUID: 7iJG/98mSYWasM506l01vA==
-X-ThreatScanner-Verdict: Negative
-X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; 
-   d="scan'208";a="235942377"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 19 Sep 2023 03:40:49 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 19 Sep 2023 03:40:49 -0700
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Tue, 19 Sep 2023 03:40:48 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MYef9RieXnQqCUeHH6+6asMs+IQkKWElNJdz8sE7X8GkbugEMLX4a60vWuMofkPk7OVxHKCoazYpdtgK9oTQ9Lcjf3Sfpuu6QLYL/xqh/wID5M58f3VUO4SclC5vfVYhHgpbINb8n/VNf3PZ+rS19GjXX7Q2kgVp0nVgZOGeWwB+ftTWfwoTlMx/cALd4cgKpF47JxDTlqeItQ21oBzNP0MgzbF0ALrPvK0ttxunhQUtjgUPuZD5H9FbvfhvTcwI5NbS4ExYduSCgWigNYZImNqDDyDW8GHw/CzacNTmXFpveDqUbyZVivglx79rnXk6qTotzVU9+TPtiinlsfx5fQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IuzJ3dzqBkF/cX6Jv2sY55P1WiNZppmpR/ZeBys/+OA=;
- b=cP+rmzY0nxluaLvMDop8TWrBXxZs39cMAikIyaopezYsdkbeoLDkMAOpQYDOhEJNpJ6QpYLx/lkxjDRypnhCh9n88n8PuQ3eseNl+hG2+BB3rIT3TGjWhjEFdJzE0f7A24kF9q+Z5Dtj84KEacrSVeAdD91bxrwkXeXA3xU83JZPhfj8rNuc3DLv/4GYXkRm5EVtoU2/AEgqSKjvvB9wd5xqE1ON+hCX3NKG4Yu2O2h7/il7NMSSvX9UZud2JkV2ZqgCj8S6YEbtvPJ46UVLqzaNdt6KxLLsuoX3NwZOejtJW8mtcBn6jmHTlDQyA9qse6T+/HjedAWpuzh028570A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F3ED18622
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 10:47:26 +0000 (UTC)
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40C3E131
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 03:47:24 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1c43166b7e5so37263235ad.3
+        for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 03:47:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IuzJ3dzqBkF/cX6Jv2sY55P1WiNZppmpR/ZeBys/+OA=;
- b=VmHkG916RJt5dQnCK+CTG8KSLUGedqKC+3/XTKqzLaKEje1vpvrNoDNjyb40FDTW4dpepoCEzO159Y6u+jiphDfyhqkjjgq6jBx2XFUeUuwzf3ypUzRTtz7M4hGpz8DTcG7nhpeD1nAiz73Qf+HHGcuOrRPKvk2ZxAtE9qXDcQA=
-Received: from DM6PR11MB3532.namprd11.prod.outlook.com (2603:10b6:5:70::25) by
- PH7PR11MB7100.namprd11.prod.outlook.com (2603:10b6:510:20f::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6792.28; Tue, 19 Sep 2023 10:40:46 +0000
-Received: from DM6PR11MB3532.namprd11.prod.outlook.com
- ([fe80::6352:54f7:6c42:69ef]) by DM6PR11MB3532.namprd11.prod.outlook.com
- ([fe80::6352:54f7:6c42:69ef%6]) with mapi id 15.20.6792.026; Tue, 19 Sep 2023
- 10:40:46 +0000
-From: <Parthiban.Veerasooran@microchip.com>
-To: <andrew@lunn.ch>
-CC: <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-	<pabeni@redhat.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-	<Steen.Hegelund@microchip.com>, <rdunlap@infradead.org>, <horms@kernel.org>,
-	<casper.casan@gmail.com>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-doc@vger.kernel.org>, <Horatiu.Vultur@microchip.com>,
-	<Woojung.Huh@microchip.com>, <Nicolas.Ferre@microchip.com>,
-	<UNGLinuxDriver@microchip.com>, <Thorsten.Kummermehr@microchip.com>
-Subject: Re: [RFC PATCH net-next 6/6] microchip: lan865x: add device-tree
- support for Microchip's LAN865X MACPHY
-Thread-Topic: [RFC PATCH net-next 6/6] microchip: lan865x: add device-tree
- support for Microchip's LAN865X MACPHY
-Thread-Index: AQHZ4mE4qGiJRc4rzEqgohxfx8uHBLAZm7UAgAhrBYA=
-Date: Tue, 19 Sep 2023 10:40:45 +0000
-Message-ID: <e7a5cc9c-1ee1-053d-1372-9ba2300565d1@microchip.com>
-References: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
- <20230908142919.14849-7-Parthiban.Veerasooran@microchip.com>
- <961a1aa5-a07e-4d0f-b3f7-9e168ad6492f@lunn.ch>
-In-Reply-To: <961a1aa5-a07e-4d0f-b3f7-9e168ad6492f@lunn.ch>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM6PR11MB3532:EE_|PH7PR11MB7100:EE_
-x-ms-office365-filtering-correlation-id: 3df38a8b-7d4c-4b1b-4b9f-08dbb8fce144
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: BppvjbiEq9YAj7eXm8MDLoH5hedArWjfzxZ2Tj4O8/nAbQ0pPzcX+wFkMWN5m5N7wpJ2zPSJ3gr+Vzq5lt75XHUdTk/2whlHlaKktf72ik8ro+jlcl7SyeVYfs/JloAjMwRl2hy5j7zvHYgFrMfvkTh8+du9t0CcCZh4bXLF9gkjBu4rPCv7pbWamF/oHN9pkG6KNy/VVNoUHkJP2UlJX5mKwgxyhABZZ+To+NW2JhUc2HFvTP4XJCNnyw1gNTFnuIzmIFzI+UKGY4j21QzxJ92ssWDcZ6LjSWMzMK20qoJBakIUw3LZ6P/TTcbt7cByfkd4siaS3J/3QYXgVeo6ulph5db9cah6sI12o/qH39BI3ASobTtEzg6TdcxNrT1v2Pf893WzAwDA0uM58HPdlQl+KoIrB98NRs5QQuNv7IQpyC57fn8Tgql12stFfDgkaYx+KvAqegp9fycZwHnUTv/zw3BUHPip9i3clxWA2U9Xk4fuZ+6d9v/QGpH50gOBEMMXZ0O3iHzW56u1IKrBRfcC712+jHIL9JPMIE4cRmyTLiuixtoZ1SaWHNtGSreOEKeaFiBCsDNWTPF2EopaCoYP0cgF/2W33Ck2tsfAssRk9IxD6xVQIMNEL9IAAFJbOJEuCBUGvQW8NkSm48vbVXuv5ZJ/lQemujNdJzEoRhHWY1lZvmJhBNzq03AXspav
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3532.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(346002)(39860400002)(376002)(136003)(396003)(451199024)(1800799009)(186009)(31686004)(36756003)(5660300002)(86362001)(31696002)(4744005)(4326008)(8936002)(8676002)(41300700001)(7416002)(6506007)(6486002)(71200400001)(53546011)(107886003)(26005)(2616005)(6512007)(122000001)(66946007)(478600001)(2906002)(76116006)(38100700002)(38070700005)(6916009)(316002)(66476007)(91956017)(66556008)(66446008)(54906003)(64756008)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?QTgxUkN4aVJrTXFMcUlvL0V0NDFtQU5QUHhxWUhGNzBEYnUxNjVqL1FGcHVo?=
- =?utf-8?B?YnB3QjJPQkpwYit2QnVBVHE0WHNDUXhySkxTb3o3ajZkWS9ubmNuSGsrMU4z?=
- =?utf-8?B?S3gxYUpOZTFmQ2duSXRtK3k0VXE3YVpycHdoT0k5d3JRWndIYjE5ZThCeEcz?=
- =?utf-8?B?eDVKYzNBWmdmeWVyYWM1ZkhFMHFFaUtNUUx5eTBsTVhqYU5DZldjaGZtZ3No?=
- =?utf-8?B?Q3NIK2RWZWY0a21YdXAxS0hURjhZcTVsS3EweTNJSk96NjFmMi9scm9RM3VD?=
- =?utf-8?B?UUI5a2gyeVptSE5Pa0dRZTRyWmwrUnpLWjI4VnFqbGd4dHdiY2JCaFZucUJa?=
- =?utf-8?B?SUl1cUNrQmNTZWJ3aE5PLzdXUDFhN3NTcndSUW96dVhKaWNTdWdvaStGNDV1?=
- =?utf-8?B?YVFxUE5LemVzblB3ZFFuS2FMK2ZSYlpOVDdLZDAvY09FWDBwMlZuY2NNRWxS?=
- =?utf-8?B?dEhaNFlPRHYyaTFuREZlcC96cExnSStETElCd1ZpU3B0ZzA4dEh5eFUreTEr?=
- =?utf-8?B?cFVwZ3N3eTJCQ1RkckNMM0x0VDVKbklaSHBnbEVXTXRTUVhtSExLSFVuS0tY?=
- =?utf-8?B?UGI1dlRsNGVPVVpkY2E5VUI3ZGg1OFExb3pqS3ZubFZ0R0FvSkFQaUJ2cUpK?=
- =?utf-8?B?aU40VXE4d1ZQOW5mRlB4MjBQNVYvUFZMd0cwM0R3L0VnN2F2SGNyenBWSFhW?=
- =?utf-8?B?TU8vVkF4b0k1ZFNtYVNjVUtzSUZTSTFnTmNqQVNCQ2hiYWRNK0x5alZ2NzUy?=
- =?utf-8?B?Qzg1T2RnUjdUYWY5UXNTL1NCT0JDajBmS09qMlNjMDJxWHpMelVzMUZHVFVG?=
- =?utf-8?B?bVNVZk9BeklpODBZdlNTVWtJRzVFU0JNaVgwOE85aTFvdExGKzA2dElabDlL?=
- =?utf-8?B?MTRHc1UyckZkdXNZZTUrdlNEek5GUTQ3MHd4cVdRYTBVeUtGcU56bW44MGpt?=
- =?utf-8?B?R0liYW5ad3dSQmpyclhQcG14SW1sREl1ajFjYm56RytmL2xJY3NHWnZuUTd5?=
- =?utf-8?B?T3dEd2JTWjJFOHlWNGZyMmh5VlpWUm0xVGIzOHZEM2NITkxFTkdSazl1Szlz?=
- =?utf-8?B?SW1hZUg2SDVuVCtNSFZHejVFbURRVEoxUFVxNStYRjdXY1kzQkdBZ2ozSmVO?=
- =?utf-8?B?T202QWFUNW16SW0rakZ1Ymx0ZC9aYkY4YTdTUmJYZkxIaHJWMnlJbnhLRUZw?=
- =?utf-8?B?R25KS3FFa0xPQXpJVWpLbzBPY3c0Ujg5T3JEV2Rsd3hvaHdJZyszbzNKV1U0?=
- =?utf-8?B?R0dGVHR5UXo5WER1M1Y0bEVuU3E1UFNCa2lZRnBMVFdDTjVUei9XYUxRYjJt?=
- =?utf-8?B?ZkNjYnI3Vm8rZHZ5b2drSzB1MThtcExQUllrdy8vakJUUWJwWXlzczVjWUxC?=
- =?utf-8?B?L1JCQWwrL1Q2anhDZ0pqenFnZmswUFY2Z0EzYjVuNGplWnZwbjA3ZFpHU1dp?=
- =?utf-8?B?MTZVRnpWcUhIcXc2clRHNVB6U29SbU1yeHk2VmVoeVQxYVF4bVNCN2cvU1hB?=
- =?utf-8?B?WEpLRlJNcC91Ym1URWF4ZCtSWWp1dDN2M1RBb0VUR3p2NDlOcFF0RjVDUnpn?=
- =?utf-8?B?OGhUOERJZ2hVQy8wWmlTYnpHNHJXM1haa01YS0ZEdUpSSWNmWStPamUwRW90?=
- =?utf-8?B?NS9YVmlxbW1Tc21WdTgvVkgvRVkwT0JuZWh6UEFpWS80MnJXR242V3VHMmVM?=
- =?utf-8?B?ZjAxVkFJanYxT2dLN2NQeWRxQjBHRk00eEplc09BL0Jja3BSaFlXNm92S1Zm?=
- =?utf-8?B?VXFyRjhHYzcvM3pJQ3BpRDNIbi9ZcWZ4WUhLUjl1MWh1bTRIUDJnTjJSbFZZ?=
- =?utf-8?B?U1dRUkNBOWtPWHQxVElldnFhaEpLZjR6N0hzdTd6RGM3Z2RlRmFVQ3lqYjk4?=
- =?utf-8?B?eTA0elJ1WHVPTW1tbXBPdnI4NDFxVG9qZ0JZZ1NBQnNWcGVpNTFVMXlYMTRQ?=
- =?utf-8?B?VW1JaEhIMGRFSGVKd0d1WUVXOGhxWVV6ekw5VndyN3JKZ1BNaG1vOWhYNjVo?=
- =?utf-8?B?TFFEcFVlYW1sNitmNTVFdElReEFNT1hGNHFac3JpUHRkMW0vVWZwa0dsUDVO?=
- =?utf-8?B?cklmZ2Q5a3VQNnlJeTg3QjZKZnJEaHRpMW81TzU3RHdUc0RRMnRQYVBhSDRR?=
- =?utf-8?B?MlJkTEJaQnBrUFlzcGZ0bFFHUG1hVXlHUUtTeWgwcU5GcTNiTU1JTEo3MG0y?=
- =?utf-8?B?cnc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <7DEC3148F26ECB46A55C6C310DCB8032@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=chromium.org; s=google; t=1695120443; x=1695725243; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KWGm7rEFBvHLc7sisUwhAvmPpqKlBaLPdqOGIMWnd7E=;
+        b=GPuzohc9sFRM0MUxJUoItB0ckY/DcakzLlLj+CC9tzDL25jshfTEGEJcFKR5KogljP
+         RovGyY5un9eRd5itglcshCFnZXVWSeF+67yfM2SVhK1yHZJV0DXZyR1R3Kn/huHsEEZ1
+         Fq8hiK3tUzOTxGYCp8FMntoUhNxiWhRrCULGE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695120443; x=1695725243;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KWGm7rEFBvHLc7sisUwhAvmPpqKlBaLPdqOGIMWnd7E=;
+        b=OtFAK9biX5A46vBiCumbx1bHN+YjNg7n+tnvXc8arTyMt/+rSTkVJRo83omBYlQWXT
+         iuqPL2oPr2O0+EsmC5XEKh6U1HowYmBp+i0YEJA5CBpht2E76MD1Fk2UBUnkg5ME5LBt
+         ynREj8qO1C6rCK0QkwEdSIBWI0DTPJfVDhoxk/A+zv3TaH+mV3uVw1MsJUMloJvWFAtN
+         2oDsSIjVyd3eh70oE4iTIoF+Da2p65+zox64X6ms2SMJ+CrUGdYQZ8csh2UH4xDHQsBH
+         Ywk8Ck2K8E3kxE2ln5kzNPKHbANSuLxvDGY2QePUZJFk3uQh/2W9cdHGDstkRWEb12OV
+         MKzw==
+X-Gm-Message-State: AOJu0YxTyYDzlY1QpI5qNfszC21F37fmRZ+BXNSVHAXpzDYq4BL59NgL
+	I88vryUGAQuLr+gcJraE+X6iYg==
+X-Google-Smtp-Source: AGHT+IGi1Aeqtw4GFcstj89ewGDN7GqUr/PGJ3DhkAfwr8aE99yDTv1Dd8EIte2UBmPkwW10M7f49g==
+X-Received: by 2002:a17:903:1103:b0:1b9:e241:ad26 with SMTP id n3-20020a170903110300b001b9e241ad26mr14863164plh.9.1695120443688;
+        Tue, 19 Sep 2023 03:47:23 -0700 (PDT)
+Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:40a:900d:e731:5a43])
+        by smtp.gmail.com with ESMTPSA id c10-20020a170902d48a00b001bc445e249asm6719578plg.124.2023.09.19.03.47.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Sep 2023 03:47:23 -0700 (PDT)
+From: Chen-Yu Tsai <wenst@chromium.org>
+To: Lee Jones <lee@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Mark Brown <broonie@kernel.org>
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
+	Zhiyong Tao <zhiyong.tao@mediatek.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v3 00/12] regulator: mt6366: Split out of MT6358 and cleanup
+Date: Tue, 19 Sep 2023 18:43:43 +0800
+Message-ID: <20230919104357.3971512-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.42.0.459.ge4e396fd5e-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3532.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3df38a8b-7d4c-4b1b-4b9f-08dbb8fce144
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Sep 2023 10:40:45.3530
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: gqbG8Av4Ua0uQBonOfAOMiB4AqNip7hePNwy6PJw893JeW8Lb9Ep+VhUlwoiCP+KJjHrNL/2Gdx9ObTHhHa4k+MoY921jTJ12RwviYMRy1V7keNAFd7Ta/JIlxznlhuJ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7100
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-	RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
-	autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-SGkgQW5kcmV3LA0KDQpPbiAxNC8wOS8yMyA3OjM3IGFtLCBBbmRyZXcgTHVubiB3cm90ZToNCj4g
-RVhURVJOQUwgRU1BSUw6IERvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVu
-bGVzcyB5b3Uga25vdyB0aGUgY29udGVudCBpcyBzYWZlDQo+IA0KPj4gKyAgb2EtY2h1bmstc2l6
-ZTogdHJ1ZQ0KPj4gKyAgb2EtdHgtY3V0LXRocm91Z2g6IHRydWUNCj4+ICsgIG9hLXJ4LWN1dC10
-aHJvdWdoOiB0cnVlDQo+PiArICBvYS1wcm90ZWN0ZWQ6IHRydWUNCj4gDQo+IFBsZWFzZSBzcGxp
-dCB0aGlzIHVwIGludG8gcHJvcGVydGllcyBhbGwgT0EgVEM2IGRldmljZXMgYXJlIGV4cGVjdGVk
-DQo+IHRvIHVzZSwgYW5kIHRob3NlIHNwZWNpZmljIHRvIHRoZSBMQU44NjV4LiBQdXQgdGhlIGdl
-bmVyaWMgcHJvcGVydGllcw0KPiBpbnRvIGEgLnlhbWwgZmlsZSwgd2hpY2ggeW91IHRoZW4gaW5o
-ZXJpdCBpbnRvIHRoZSBkZXZpY2Ugc3BlY2lmaWMNCj4geWFtbCBmaWxlLg0KPiANCj4gQWxzbywg
-TEFOODY1eCBzcGVjaWZpYyBwcm9wZXJ0aWVzIHNob3VsZCBoYXZlIGEgdmVuZG9yIHByZWZpeC4N
-ClN1cmUsIHdpbGwgZG8gYm90aC4NCg0KQmVzdCBSZWdhcmRzLA0KUGFydGhpYmFuIFYNCj4gDQo+
-ICAgICAgICAgIEFuZHJldw0KDQo=
+Hi everyone,
+
+This is v3 of my MT6366 PMIC split-out-of-MT6358 cleanup series. The two
+PMICs are mostly identical, except for the regulator bits. The MT6366 is
+missing the VCAM* (camera related) LDOs, but in their place has a few
+other ones. This thus requires a separate compatible to handle the
+differences.
+
+Changes since v2:
+- Merged "mfd: mt6358: Add registers for MT6366 specific regulators"
+  into "regulator: mt6358: Add missing regulators for MT6366", as
+  suggested by Krzysztof.
+- Reworked the bindings so that all the regulators are commonly defined,
+  then filtered out by compatible, like every other binding does.
+- Added some missing end-of-string matches to the LDO patterns
+- Added patches to reuse the MT6397 regulator binding macros
+  - regulator: dt-bindings: mt6358: Add regulator-allowed-modes property
+  - regulator: mt6358: Use mt6397-regulator.h binding header for buck mode macros
+- Dropped "regulator-coupled-with" and "regulator-coupled-max-spread"
+  properties from the DT binding example. They don't make much sense
+  without the coupled regulator.
+- Fixed up selector values in pickable linear ranges
+
+Changes since v1:
+- Switched to using MT6358 compatible as fallback compatible
+  Differences are detected through chip ID register
+- MT6366 regulator binding merged with MT6358 one instead of having two
+  separate ones
+- Added patches
+  - regulator: dt-bindings: mt6358: Convert to DT schema     
+  - regulator: dt-bindings: mt6358: Add regulator supplies   
+  - regulator: mt6358: Add supply names for MT6358 regulators
+  - arm64: dts: mediatek: mt8183-kukui: Add PMIC regulator supplies
+  These bring MT6358 regulators to the same completeness level as MT6366
+- Dropped patch "mfd: mt6397: Split MediaTek MT6366 PMIC out of MT6358"
+- Dropped patch "soc: mediatek: pwrap: add support for MT6366 PMIC"
+
+This depends on my previous "regulator: mt6358: Remove bogus regulators
+and improvements" series [1] and patch "regulator: mt6358: return error
+for get/set mode op on linear range LDO" [2] patch. These are still in
+flight, but I think posting this earlier would help get reviews underway.
+
+Patch 1 add a compatible string for the MT6366 PMIC, with a fallback to
+the MT6358 one. This should go through the MFD tree. There are no build
+time dependencies.
+
+Patch 2 converts the existing MT6358 regulator DT binding to DT schema.
+
+Patch 3 adds the "regulator-allowed-mode" property to the MT6358
+regulator binding.
+
+Patch 4 adds regulator supply properties to the MT6358 regulator
+binding.
+
+Patch 5 adds MT6366 regulators to the MT6358 regulator binding. This was
+previously done by Zhiyong Tao [3] from MediaTek as a separate binding
+file. I cleaned up the patch based on previous review comments, simplified
+the regulator names, and added regulator supplies. Bogus regulators were
+also dropped, like what was done for the MT6358 [1]. In v2 this was
+merged with the MT6358 binding, now converted to DT schema.
+
+Patch 6 makes the MT6358 regulator driver use the mt6397-regulator.h
+binding header for the operating mode macros.
+
+Patch 7 adds support for the regulator supplies to the MT6358 regulator
+driver.
+
+Patch 8 simplifies the MT6366 regulator names to match the new names
+specified in the binding.
+
+Patch 9 makes the MT6366 VCN18 LDO regulator configurable. This is one
+of the differences between the MT6358 and MT6366.
+
+Patch 10 adds regulators that were missing from the originally proposed
+binding and driver. This includes MFD header changes and needs an ack
+from Lee.
+
+Patch 11 adds regulator supply names to the MT6366 regulators
+
+Patch 12 adds regulator supplies to MT8183 Kukui boards.
+
+Patch 1 should go through the mfd tree. Patches 3 through 11 should go
+through the regulator tree after Lee acks patch 10. Patch 12 should go
+through the MediaTek tree.
+
+[1] https://lore.kernel.org/linux-arm-kernel/20230913082919.1631287-1-wenst@chromium.org/
+[2] https://lore.kernel.org/linux-arm-kernel/20230919083647.3909889-1-wenst@chromium.org/
+[3] https://lore.kernel.org/linux-arm-kernel/20220823123745.14061-1-zhiyong.tao@mediatek.com/
+
+Chen-Yu Tsai (11):
+  dt-bindings: mfd: mt6397: Split out compatible for MediaTek MT6366
+    PMIC
+  regulator: dt-bindings: mt6358: Convert to DT schema
+  regulator: dt-bindings: mt6358: Add regulator-allowed-modes property
+  regulator: dt-bindings: mt6358: Add regulator supplies
+  regulator: mt6358: Use mt6397-regulator.h binding header for buck mode
+    macros
+  regulator: mt6358: Add supply names for MT6358 regulators
+  regulator: mt6358: fix and drop type prefix in MT6366 regulator node
+    names
+  regulator: mt6358: Make MT6366 vcn18 LDO configurable
+  regulator: mt6358: Add missing regulators for MT6366
+  regulator: mt6358: Add supply names for MT6366 regulators
+  arm64: dts: mediatek: mt8183-kukui: Add PMIC regulator supplies
+
+Zhiyong Tao (1):
+  regulator: dt-bindings: mt6358: Add MT6366 PMIC
+
+ .../devicetree/bindings/mfd/mt6397.txt        |   4 +-
+ .../regulator/mediatek,mt6358-regulator.yaml  | 247 ++++++++++++
+ .../bindings/regulator/mt6358-regulator.txt   | 350 ------------------
+ .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |  28 ++
+ drivers/regulator/mt6358-regulator.c          | 250 +++++++------
+ include/linux/mfd/mt6358/registers.h          |  17 +
+ include/linux/regulator/mt6358-regulator.h    |   3 +
+ 7 files changed, 440 insertions(+), 459 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6358-regulator.yaml
+ delete mode 100644 Documentation/devicetree/bindings/regulator/mt6358-regulator.txt
+
+-- 
+2.42.0.459.ge4e396fd5e-goog
+
 
