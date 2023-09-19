@@ -1,111 +1,318 @@
-Return-Path: <devicetree+bounces-1509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 629C97A6BF9
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 22:02:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 197DB7A6C1B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 22:09:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 266A8280D31
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 20:02:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA517281405
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 20:09:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6A06347C6;
-	Tue, 19 Sep 2023 20:02:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F2D9347CC;
+	Tue, 19 Sep 2023 20:09:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 479F11863B
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 20:02:34 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AFC49C;
-	Tue, 19 Sep 2023 13:02:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1695153753; x=1726689753;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=nnkcHJoKa+TopEBsm/t7nStp61sWfB59HZAe0jK6KQQ=;
-  b=Iw678Az/ZU46qcY1jU8pL8O4eA0KLJC5v6+LOAsYqHkmnVIzrIdc4lRH
-   ugHHShg1ZNk/FxVnDOWzmZTM2x3QrCoJHCc4YjoAdp94eRvPHTe9GYwCk
-   0gqnr90X0a36t4ucfba64JgZghWEu2RNQl3LwClsEMWXG4JjsHjC1ZgCP
-   3f/nR4E6eOl7Ar2V+rxtTpZdJi66XcNn+fRI4Mam/aBfvGS1XJTJKkrEg
-   L7l6wf3iruonlkJ8oZ8OqtoVGBKqz9NyCkFc1tmSDhnzNpe14PpYTu5Pz
-   00hW37lCATUZPcTK8HZt0+ihtgk0TTqOEkwXjQ7RRuVEC3XrhX4azSp3j
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="410971225"
-X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; 
-   d="scan'208";a="410971225"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Sep 2023 13:02:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="1077115879"
-X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; 
-   d="scan'208";a="1077115879"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Sep 2023 13:02:29 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC0)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1qigvR-0000000Ezza-4Amk;
-	Tue, 19 Sep 2023 23:02:25 +0300
-Date: Tue, 19 Sep 2023 23:02:25 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-	Rob Herring <robh@kernel.org>, linux-acpi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>, Russell King <linux@armlinux.org.uk>,
-	Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v1 1/1] amba: bus: balance firmware node reference
- counting
-Message-ID: <ZQn+UVgBTgFco6hT@smile.fi.intel.com>
-References: <20230824162654.2890992-1-andriy.shevchenko@linux.intel.com>
- <ZQn+IMMuPpwwZGPp@smile.fi.intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E9891863B
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 20:09:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD448C433C7;
+	Tue, 19 Sep 2023 20:09:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695154178;
+	bh=FNVxPQJYr8MGjYiR3OTqCQUWjoyGVbh3+o5wbD/5/Oo=;
+	h=From:To:Cc:Subject:Date:From;
+	b=kW/cXRy/ERILUTE2Xlx40q8HHGOjpKWXtl5rWAofkxPPzWTNeG7Abs8zffXM1voUH
+	 vjh3HQnJvcBhXgy+q06ykvdvhUzZ7uEAtCGbyMsFoAj3hS3/dLrqHv8z5kB+3fwZ0l
+	 hgHkg3yTwcxG+L8QkJ8Mcn4aD1VwdWTIW64oNNABxXz2nc308yT9vGCEnTwUqd3Fj2
+	 Q4D6rMUp4wT3uWr21PGp1Tbwp9k4Ut0Ubbo6Nn7JG6UR/j8TCDspgaUKnElLph9zpl
+	 Ayt+l5VDStCugUnoJExYEgf6midsmtOHMoYS0VIqflS+y4JP/k1+c4qPsvv3PczsVt
+	 ZsNbucvytR3lg==
+Received: (nullmailer pid 137500 invoked by uid 1000);
+	Tue, 19 Sep 2023 20:09:35 -0000
+From: Rob Herring <robh@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: mfd: armltd: Move Arm board syscon's to separate schema
+Date: Tue, 19 Sep 2023 15:09:21 -0500
+Message-Id: <20230919200930.137164-1-robh@kernel.org>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZQn+IMMuPpwwZGPp@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Transfer-Encoding: 8bit
 
-On Tue, Sep 19, 2023 at 11:01:37PM +0300, Andy Shevchenko wrote:
-> On Thu, Aug 24, 2023 at 07:26:54PM +0300, Andy Shevchenko wrote:
-> > Currently the ACPI code doesn't bump the reference count of
-> > the firmware node, while OF counter part does. Not that it's
-> > a problem right now, since ACPI doesn't really use the reference
-> > counting for firmware nodes, it still makes sense to make code
-> > robust against any changes done there. For this,
-> >  - switch ACPI case to use device_set_node() to be unified with OF
-> >  - move reference counting to amba_device_add()
-> >  - switch to use firmware nodes instead of OF ones
-> > 
-> > In the result we will have reference counting done in the same module
-> > for all callers independently on the nature of firmware node behind.
-> 
-> Any comment on this? I would like to have this applied so I can do something
-> similar to the platform driver code.
+The Arm Ltd board bindings are a bit unusual in that they define child
+nodes for various syscon's. The schemas are also incomplete as they lack
+constraints on having additional properties and some properties are
+missing. As the bindings for the different platforms only vary by
+compatibles, combine them into a single schema doc.
 
-Ah, I see, I missed LKP run on this, I'll send a v2 perhaps later on this week.
+Add the "arm,im-pd1-syscon" compatible which was not documented. Add
+"ranges", "#address-cells", and "#size-cells properties which were
+missing.
 
+With this, fix the error exposed in the register-bit-led binding.
+
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/arm/arm,integrator.yaml          | 39 -----------
+ .../devicetree/bindings/arm/arm,realview.yaml | 37 ----------
+ .../bindings/arm/arm,versatile.yaml           | 40 +++--------
+ .../bindings/leds/register-bit-led.yaml       |  2 +-
+ .../mfd/arm,dev-platforms-syscon.yaml         | 67 +++++++++++++++++++
+ 5 files changed, 76 insertions(+), 109 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/arm,dev-platforms-syscon.yaml
+
+diff --git a/Documentation/devicetree/bindings/arm/arm,integrator.yaml b/Documentation/devicetree/bindings/arm/arm,integrator.yaml
+index 98ff5698ae1f..1bdbd1b7ee38 100644
+--- a/Documentation/devicetree/bindings/arm/arm,integrator.yaml
++++ b/Documentation/devicetree/bindings/arm/arm,integrator.yaml
+@@ -40,45 +40,6 @@ properties:
+         items:
+           - const: arm,integrator-sp
+ 
+-  core-module@10000000:
+-    type: object
+-    description: the root node in the Integrator platforms must contain
+-      a core module child node. They are always at physical address
+-      0x10000000 in all the Integrator variants.
+-    properties:
+-      compatible:
+-        items:
+-          - const: arm,core-module-integrator
+-          - const: syscon
+-          - const: simple-mfd
+-      reg:
+-        maxItems: 1
+-
+-    required:
+-      - compatible
+-      - reg
+-
+-patternProperties:
+-  "^syscon@[0-9a-f]+$":
+-    description: All Integrator boards must provide a system controller as a
+-      node in the root of the device tree.
+-    type: object
+-    properties:
+-      compatible:
+-        items:
+-          - enum:
+-              - arm,integrator-ap-syscon
+-              - arm,integrator-cp-syscon
+-              - arm,integrator-sp-syscon
+-          - const: syscon
+-      reg:
+-        maxItems: 1
+-
+-    required:
+-      - compatible
+-      - reg
+-
+-
+ required:
+   - compatible
+   - core-module@10000000
+diff --git a/Documentation/devicetree/bindings/arm/arm,realview.yaml b/Documentation/devicetree/bindings/arm/arm,realview.yaml
+index 8d3ed2e4ed31..d1bdee98f9af 100644
+--- a/Documentation/devicetree/bindings/arm/arm,realview.yaml
++++ b/Documentation/devicetree/bindings/arm/arm,realview.yaml
+@@ -75,43 +75,6 @@ properties:
+         type: object
+         description: All RealView boards must provide a syscon system controller
+           node inside the soc node.
+-        properties:
+-          compatible:
+-            oneOf:
+-              - items:
+-                  - const: arm,realview-eb11mp-revb-syscon
+-                  - const: arm,realview-eb-syscon
+-                  - const: syscon
+-                  - const: simple-mfd
+-              - items:
+-                  - const: arm,realview-eb11mp-revc-syscon
+-                  - const: arm,realview-eb-syscon
+-                  - const: syscon
+-                  - const: simple-mfd
+-              - items:
+-                  - const: arm,realview-eb-syscon
+-                  - const: syscon
+-                  - const: simple-mfd
+-              - items:
+-                  - const: arm,realview-pb1176-syscon
+-                  - const: syscon
+-                  - const: simple-mfd
+-              - items:
+-                  - const: arm,realview-pb11mp-syscon
+-                  - const: syscon
+-                  - const: simple-mfd
+-              - items:
+-                  - const: arm,realview-pba8-syscon
+-                  - const: syscon
+-                  - const: simple-mfd
+-              - items:
+-                  - const: arm,realview-pbx-syscon
+-                  - const: syscon
+-                  - const: simple-mfd
+-
+-        required:
+-          - compatible
+-          - reg
+ 
+     required:
+       - compatible
+diff --git a/Documentation/devicetree/bindings/arm/arm,versatile.yaml b/Documentation/devicetree/bindings/arm/arm,versatile.yaml
+index 13e52ba92060..7a3caf6af200 100644
+--- a/Documentation/devicetree/bindings/arm/arm,versatile.yaml
++++ b/Documentation/devicetree/bindings/arm/arm,versatile.yaml
+@@ -14,6 +14,14 @@ description: |+
+   with various pluggable interface boards, in essence the Versatile PB version
+   is a superset of the Versatile AB version.
+ 
++  The root node in the Versatile platforms must contain a core module child
++  node. They are always at physical address 0x10000000 in all the Versatile
++  variants.
++
++  When fitted with the IB2 Interface Board, the Versatile AB will present an
++  optional system controller node which controls the extra peripherals on the
++  interface board.
++
+ properties:
+   $nodename:
+     const: '/'
+@@ -32,38 +40,6 @@ properties:
+         items:
+           - const: arm,versatile-pb
+ 
+-  core-module@10000000:
+-    type: object
+-    description: the root node in the Versatile platforms must contain
+-      a core module child node. They are always at physical address
+-      0x10000000 in all the Versatile variants.
+-    properties:
+-      compatible:
+-        items:
+-          - const: arm,core-module-versatile
+-          - const: syscon
+-          - const: simple-mfd
+-      reg:
+-        maxItems: 1
+-
+-    required:
+-      - compatible
+-      - reg
+-
+-patternProperties:
+-  "^syscon@[0-9a-f]+$":
+-    type: object
+-    description: When fitted with the IB2 Interface Board, the Versatile
+-      AB will present an optional system controller node which controls the
+-      extra peripherals on the interface board.
+-    properties:
+-      compatible:
+-        contains:
+-          const: arm,versatile-ib2-syscon
+-    required:
+-      - compatible
+-      - reg
+-
+ required:
+   - compatible
+   - core-module@10000000
+diff --git a/Documentation/devicetree/bindings/leds/register-bit-led.yaml b/Documentation/devicetree/bindings/leds/register-bit-led.yaml
+index ed26ec19ecbd..20930d327ae9 100644
+--- a/Documentation/devicetree/bindings/leds/register-bit-led.yaml
++++ b/Documentation/devicetree/bindings/leds/register-bit-led.yaml
+@@ -60,7 +60,7 @@ examples:
+   - |
+ 
+     syscon@10000000 {
+-        compatible = "arm,realview-pb1176-syscon", "syscon";
++        compatible = "arm,realview-pb1176-syscon", "syscon", "simple-mfd";
+         reg = <0x10000000 0x1000>;
+         #address-cells = <1>;
+         #size-cells = <1>;
+diff --git a/Documentation/devicetree/bindings/mfd/arm,dev-platforms-syscon.yaml b/Documentation/devicetree/bindings/mfd/arm,dev-platforms-syscon.yaml
+new file mode 100644
+index 000000000000..46b164ae0831
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/arm,dev-platforms-syscon.yaml
+@@ -0,0 +1,67 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/arm,dev-platforms-syscon.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Arm Ltd Developer Platforms System Controllers
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description:
++  The Arm Ltd Integrator, Realview, and Versatile families of developer
++  platforms are contain various system controller blocks. Often these blocks
++  are part of a daughterboard or motherboard module.
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - arm,integrator-ap-syscon
++              - arm,integrator-cp-syscon
++              - arm,integrator-sp-syscon
++              - arm,im-pd1-syscon
++          - const: syscon
++      - items:
++          - enum:
++              - arm,core-module-integrator
++              - arm,integrator-ap-syscon
++              - arm,integrator-cp-syscon
++              - arm,integrator-sp-syscon
++              - arm,realview-eb-syscon
++              - arm,realview-pb1176-syscon
++              - arm,realview-pb11mp-syscon
++              - arm,realview-pba8-syscon
++              - arm,realview-pbx-syscon
++              - arm,versatile-ib2-syscon
++          - const: syscon
++          - const: simple-mfd
++      - items:
++          - enum:
++              - arm,realview-eb11mp-revb-syscon
++              - arm,realview-eb11mp-revc-syscon
++          - const: arm,realview-eb-syscon
++          - const: syscon
++          - const: simple-mfd
++
++  reg:
++    maxItems: 1
++
++  ranges: true
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties:
++  type: object
++
++...
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.40.1
 
 
