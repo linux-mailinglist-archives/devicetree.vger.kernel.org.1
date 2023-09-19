@@ -1,133 +1,107 @@
-Return-Path: <devicetree+bounces-1477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B37307A6833
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 17:37:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C86BE7A6850
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 17:47:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0DD91C20975
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 15:37:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DCD71C20933
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 15:47:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DE1636AE1;
-	Tue, 19 Sep 2023 15:37:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01BC8374E6;
+	Tue, 19 Sep 2023 15:47:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FB1F20B25
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 15:37:06 +0000 (UTC)
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37E2893;
-	Tue, 19 Sep 2023 08:37:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
-	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-	bh=EkcxN4mrbXMsLJAdxtwy2oz0sxfaSLg8LzPbTnf3zFY=; b=TKCfAHHBTyWO6i9uVdTVGjl/vG
-	TRawhS42WqVqO9/EHxjVJqRbac7xfR16bAwkoZQMyoYCO9/TUJc7TQ8bQEcz70UkRVVPlSL5ORXgZ
-	gnPmxAuBOtb/Y6eTmgTCC3WQFcXox8mvke9JavA4wjj440A/hstNLx7GnrVqJuVgs/1jEKWrEHWgq
-	Y/oIZEnUkILeiP48yAfQWCvbLVZVBNdhz5z11ogs1lxhZuMaewL5CMAi9VTv4X4OFqwbA6g8QZNYp
-	E/r3aEtLVq2p9xLL8wQq7JKIf0mP+foHdFuGPSMDTZBX/petlohpJ0s+TkRIb18OQI1hkdw5CV+Hj
-	t/2fr9Og==;
-Received: from [2601:1c2:980:9ec0::9fed]
-	by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
-	id 1qicmS-000m50-2W;
-	Tue, 19 Sep 2023 15:36:52 +0000
-Message-ID: <c7604f6c-4da7-47c4-abe9-e626b3efc665@infradead.org>
-Date: Tue, 19 Sep 2023 08:36:50 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0AEF3717C
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 15:47:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CDF3C433C8;
+	Tue, 19 Sep 2023 15:40:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695138004;
+	bh=zVHvJy2Slswg3L45hTjce+NG6qwVPGQ5aOsEUWPT+Ag=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gCKOYmlh5SRGBD8lTY2kM8Yt3i9CGsLiDUgfqIjC1nmcBzUSNm3VTUuILIT9w28Vo
+	 J/GXYKBGoZOVheZp5bwQVTeuqsF8LLqpT1JsH60W76MdKY8Jc9cg4m9QkX3quhHSt1
+	 1cxaR/1+4tPKD4aKEXWjhn1H3+x23vhL7bSar5ZKDIu/UrGKoxJEFOK0D76zXB+xJ9
+	 4b88y+JY4lTJugx8RGU2t4t0DbaTJF2hmdQCclTDELEQyqJYyXxeqjiN03Ds0W1J3d
+	 CODUVgn4UnViPPDehzmHb2FsMSpFjtVvxyf5BYgJsFT4vO/c6ffXyn8T5c55ONmzLA
+	 7nc8PFK4O2bjw==
+Received: from johan by xi.lan with local (Exim 4.96)
+	(envelope-from <johan@kernel.org>)
+	id 1qicpm-0000wV-1l;
+	Tue, 19 Sep 2023 17:40:18 +0200
+Date: Tue, 19 Sep 2023 17:40:18 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Sasha Levin <sashal@kernel.org>
+Cc: linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>, agross@kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH AUTOSEL 6.5 30/36] arm64: dts: qcom: sc8280xp-x13s: Add
+ camera activity LED
+Message-ID: <ZQnA4o7G4A3YC-pe@hovoldconsulting.com>
+References: <20230908192848.3462476-1-sashal@kernel.org>
+ <20230908192848.3462476-30-sashal@kernel.org>
+ <ZP60ngCV3hhNZiX5@hovoldconsulting.com>
+ <ZQjEEt7sB2M5EO53@sashalap>
+ <ZQk8aJx268Soy4yH@hovoldconsulting.com>
+ <ZQmc7hznPpIh6iwP@sashalap>
+ <ZQmh-DaBTwMuOLHe@hovoldconsulting.com>
+ <ZQm5woD5zwRIG9cf@sashalap>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] soc: loongson: loongson2_pm: Add dependency for
- INPUT
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-To: Binbin Zhou <zhoubinbin@loongson.cn>, Binbin Zhou
- <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>,
- Yinbo Zhu <zhuyinbo@loongson.cn>, Arnd Bergmann <arnd@arndb.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn,
- soc@kernel.org, devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
- Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
-References: <cover.1693623752.git.zhoubinbin@loongson.cn>
- <16a37f6ad3cc9417b6638c2cd532d88c79468eb1.1693623752.git.zhoubinbin@loongson.cn>
- <885eab85-2c11-cf20-9187-55cd647fbe9f@infradead.org>
-In-Reply-To: <885eab85-2c11-cf20-9187-55cd647fbe9f@infradead.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZQm5woD5zwRIG9cf@sashalap>
 
-Hi--
+On Tue, Sep 19, 2023 at 11:09:54AM -0400, Sasha Levin wrote:
+> On Tue, Sep 19, 2023 at 03:28:24PM +0200, Johan Hovold wrote:
+> >On Tue, Sep 19, 2023 at 09:06:54AM -0400, Sasha Levin wrote:
+> >> On Tue, Sep 19, 2023 at 08:15:04AM +0200, Johan Hovold wrote:
 
-On 9/2/23 08:43, Randy Dunlap wrote:
+> >> >Call it what you will, but please drop it. Otherwise by that logic you'd
+> >> >need to backport all devicetree patches (as well as most driver changes)
+> >> >since they ultimately aim at enabling hardware.
+> >>
+> >> Not all, only ones that re-use existing kernel driver but enable it for
+> >> new hardware (i.e. adding a new pci-id/usb-id/dts entries).
+> >
+> >Again, that's basically all our device-tree patches. And that can break
+> >in all sorts of ways. So again, please drop. This does not belong in
+> >stable.
 > 
+> This is part of the criteria we use to select patches, yes? If you have
+> an objection around this particular patch then please let me know, or if
+> you have an objection around hardware enablement patches in stable then
+> we can have a bigger discussion around that one.
 > 
-> On 9/2/23 01:47, Binbin Zhou wrote:
->> Since commit 67694c076bd7 ("soc: loongson2_pm: add power management
->> support"), the Loongson-2K PM driver was added, but it didn't update the
->> Kconfig entry for the INPUT dependency, leading to build errors:
->>
->> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld:
->> drivers/soc/loongson/loongson2_pm.o: in function `loongson2_power_button_init':
->> /work/lnx/next/linux-next-20230825/LOONG64/../drivers/soc/loongson/loongson2_pm.c:101:(.text+0x350): undefined reference to `input_allocate_device'
->> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld:
->> /work/lnx/next/linux-next-20230825/LOONG64/../drivers/soc/loongson/loongson2_pm.c:109:(.text+0x3dc): undefined reference to `input_set_capability'
->> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld:
->> /work/lnx/next/linux-next-20230825/LOONG64/../drivers/soc/loongson/loongson2_pm.c:111:(.text+0x3e4): undefined reference to `input_register_device'
->> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld:
->> /work/lnx/next/linux-next-20230825/LOONG64/../drivers/soc/loongson/loongson2_pm.c:125:(.text+0x3fc): undefined reference to `input_free_device'
->> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld: drivers/soc/loongson/loongson2_pm.o: in function `input_report_key':
->> /work/lnx/next/linux-next-20230825/LOONG64/../include/linux/input.h:425:(.text+0x58c): undefined reference to `input_event'
->>
->> Also, since this driver can only be built-in, it fails to link when the
->> INPUT is in a loadable module, so we should update the Kconfig entry to
->> depend on INPUT=y.
->>
->> Fixes: 67694c076bd7 ("soc: loongson2_pm: add power management support")
->> Reported-by: Randy Dunlap <rdunlap@infradead.org>
->> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> 
-> Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
-> Tested-by: Randy Dunlap <rdunlap@infradead.org>
-> 
-> Thanks.
+> However, just dropping this one for no particular reasonisn't the right
+> approach: we've been using this selection criteria for quite a few years
+> now.
 
-What's the status of this patch?
-linux-next builds are still failing without this patch.
+This patch makes zero sense to backport. It's a place holder for a
+camera led that we may one day need. No one marked it for stable, no
+one wants it in stable, no one needs it in stable, yet you repeatedly
+refuse to drop it and keep wasting my time.
 
-Thanks.
+Backports, and especially your autosel ones, always come with a risk.
+And here there is ZERO upsides to that. Next time the feature you try to
+retroactively enable may not be as trivial and could cause real
+regressions.
 
-> 
->> ---
->>  drivers/soc/loongson/Kconfig | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/soc/loongson/Kconfig b/drivers/soc/loongson/Kconfig
->> index 314e13bb3e01..368344943a93 100644
->> --- a/drivers/soc/loongson/Kconfig
->> +++ b/drivers/soc/loongson/Kconfig
->> @@ -20,6 +20,7 @@ config LOONGSON2_GUTS
->>  config LOONGSON2_PM
->>  	bool "Loongson-2 SoC Power Management Controller Driver"
->>  	depends on LOONGARCH && OF
->> +	depends on INPUT=y
->>  	help
->>  	  The Loongson-2's power management controller was ACPI, supports ACPI
->>  	  S2Idle (Suspend To Idle), ACPI S3 (Suspend To RAM), ACPI S4 (Suspend To
-> 
+We're on our knees dealing with development and review of stuff that
+people do want and need. And you keep pushing silly things like and
+spamming us with backports that no one asked for. I'm just baffled.
 
--- 
-~Randy
+Johan
 
