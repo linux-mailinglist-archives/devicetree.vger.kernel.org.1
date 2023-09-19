@@ -1,111 +1,223 @@
-Return-Path: <devicetree+bounces-1460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E725B7A6688
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 16:23:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96D247A668A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 16:23:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B32F41C20A5D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 14:23:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9A672821D7
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 14:23:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25B2653A1;
-	Tue, 19 Sep 2023 14:23:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFFE618650;
+	Tue, 19 Sep 2023 14:23:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC7C93715D
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 14:23:29 +0000 (UTC)
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 322E91B9
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 07:23:27 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-99c93638322so1244173566b.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 07:23:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1695133405; x=1695738205; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7/FEvYyM2EeHOdSQPD/GJAyv/Ms6P3+0S37WW9XjZPo=;
-        b=WYEvT1QC6WNNf3Ei4n+pj8mRM6nVsIfcU5IqY0MOfOxD3yIcE5XyQPDPVGzXfUa6WP
-         4z/bG6tg8ECF/lDBTj9uQCCOsc9Tb/NLzBszpyxVVLtxDw0FGXM9/gt/WF0ph1lI5/nY
-         bKuVLIR4zIIn4bNI+xM5ejfeI8QfYiAmO7tUk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695133405; x=1695738205;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7/FEvYyM2EeHOdSQPD/GJAyv/Ms6P3+0S37WW9XjZPo=;
-        b=AtPU9NOdBXMSFT2O4lHzbvrZqUS4VE1s1L4wcbPnA22V95o+Vg1xgf47cbJgoiVzpE
-         8C022hc93e/phLUUFn+TYbcnjUdHsr2qrjR3OJ1B5qDZYnMrPH+gcr92ytye4m+69H4+
-         A/p1pf56C5XKw14Zx+qjkqbnRfDYhlRdVrlEg0oBOlrRLtRs3IkXVu+jj0OAPM+LDYBx
-         ayYOZ7XjLIyCgmYfFxS2hr8A8kpL+b7A7/qJYcsRhRAuo+QmyH5MntSazcqIV/kkN8sV
-         +DmWlTfflFTdOY1qVVts9Jr8oWv5NsHAoGnMsllBSSges8OaTEEOQXIk56bmZC+1coLD
-         BVkQ==
-X-Gm-Message-State: AOJu0YxL0HX0gxfyIi9FnrxY8Q9wucp2cUmmaezKDswu88fkSHNSsH2k
-	LP6a5zedgZJ+0dq6WwwzavzveLlG974svxV6WXAbjt3H
-X-Google-Smtp-Source: AGHT+IG2NvAz7xoyQEzdKCNhvycWz/vc5pHryTPZJJRmn4EJB8lh7M1QNESIfsOzK8YBxlOTbF5o9w==
-X-Received: by 2002:a17:907:a056:b0:9a5:a543:2744 with SMTP id gz22-20020a170907a05600b009a5a5432744mr3630872ejc.33.1695133405066;
-        Tue, 19 Sep 2023 07:23:25 -0700 (PDT)
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com. [209.85.208.44])
-        by smtp.gmail.com with ESMTPSA id qq7-20020a17090720c700b009920a690cd9sm7829236ejb.59.2023.09.19.07.23.24
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Sep 2023 07:23:24 -0700 (PDT)
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-52fa364f276so11642a12.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 07:23:24 -0700 (PDT)
-X-Received: by 2002:a05:600c:3d0b:b0:3fe:f32f:c57f with SMTP id
- bh11-20020a05600c3d0b00b003fef32fc57fmr110023wmb.0.1695132919977; Tue, 19 Sep
- 2023 07:15:19 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D111F3715D
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 14:23:32 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6DBF183
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 07:23:29 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1qibdB-0002Ps-MM; Tue, 19 Sep 2023 16:23:13 +0200
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1qibdA-007TfL-DJ; Tue, 19 Sep 2023 16:23:12 +0200
+Received: from mfe by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1qibdA-009fzF-AF; Tue, 19 Sep 2023 16:23:12 +0200
+Date: Tue, 19 Sep 2023 16:23:12 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Stefan Agner <stefan@agner.ch>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>, linux-gpio@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 4/6] gpio: vf610: add i.MX8ULP of_device_id entry
+Message-ID: <20230919142312.erbn64n52y4f5vl5@pengutronix.de>
+References: <20230918-vf610-gpio-v3-0-ada82a17adc5@nxp.com>
+ <20230918-vf610-gpio-v3-4-ada82a17adc5@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230919-fp5-initial-v2-0-14bb7cedadf5@fairphone.com> <20230919-fp5-initial-v2-2-14bb7cedadf5@fairphone.com>
-In-Reply-To: <20230919-fp5-initial-v2-2-14bb7cedadf5@fairphone.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Tue, 19 Sep 2023 07:15:02 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UmW8QwcT=YN8VSffuds2ib5zYPr6O2oQ=kUJkKa=5Bmw@mail.gmail.com>
-Message-ID: <CAD=FV=UmW8QwcT=YN8VSffuds2ib5zYPr6O2oQ=kUJkKa=5Bmw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/7] nvmem: qfprom: Mark core clk as optional
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: cros-qcom-dts-watchers@chromium.org, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230918-vf610-gpio-v3-4-ada82a17adc5@nxp.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
 	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi,
+Hi Peng,
 
-On Tue, Sep 19, 2023 at 5:46=E2=80=AFAM Luca Weiss <luca.weiss@fairphone.co=
-m> wrote:
->
-> On some platforms like sc7280 on non-ChromeOS devices the core clock
-> cannot be touched by Linux so we cannot provide it. Mark it as optional
-> as accessing qfprom for reading works without it but we still prohibit
-> writing if we cannot provide the clock.
->
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+please see my notes below.
+
+On 23-09-18, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> i.MX8ULP GPIO supports similar feature as i.MX7ULP GPIO, but i.MX8ULP is
+> not compatible with i.MX7ULP per binding doc. i.MX8ULP only has one
+> register base, not two base.
+> 
+> Add a new of_device_id entry for i.MX8ULP. But to make the driver could
+> also support old bindings, check the compatible string first, before
+> check the device data.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->  drivers/nvmem/qfprom.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+>  drivers/gpio/gpio-vf610.c | 55 +++++++++++++++++++++++++++++++++++++++++------
+>  1 file changed, 49 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpio/gpio-vf610.c b/drivers/gpio/gpio-vf610.c
+> index dbc7ba0ee72c..ef2455093708 100644
+> --- a/drivers/gpio/gpio-vf610.c
+> +++ b/drivers/gpio/gpio-vf610.c
+> @@ -25,6 +25,7 @@
+>  struct fsl_gpio_soc_data {
+>  	/* SoCs has a Port Data Direction Register (PDDR) */
+>  	bool have_paddr;
+> +	bool is_imx8ulp;
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+I would invert the logic:
+
+	bool have_dual_base;
+
+>  };
+>  
+>  struct vf610_gpio_port {
+> @@ -60,13 +61,22 @@ struct vf610_gpio_port {
+>  #define PORT_INT_EITHER_EDGE	0xb
+>  #define PORT_INT_LOGIC_ONE	0xc
+>  
+> +#define IMX8ULP_GPIO_BASE_OFF	0x40
+> +#define IMX8ULP_BASE_OFF	0x80
+> +
+
+static const struct fsl_gpio_soc_data vf610_data = {
+	.have_dual_base = true,
+};
+
+static const struct fsl_gpio_soc_data imx_data = {
+	.have_paddr = true,
+	.have_dual_base = true,
+};
+
+static const struct fsl_gpio_soc_data imx8ulp_data = {
+	.have_paddr = true,
+};
+
+This also introduces .data pointer for the vf610 case and we could drop
+the 'port->sdata' guard from the
+'if (port->sdata && port->sdata->paddr)' pattern. This of course would
+be an additional patch.
+
+> +
+>  static const struct of_device_id vf610_gpio_dt_ids[] = {
+>  	{ .compatible = "fsl,vf610-gpio",	.data = NULL, },
+>  	{ .compatible = "fsl,imx7ulp-gpio",	.data = &imx_data, },
+> +	{ .compatible = "fsl,imx8ulp-gpio",	.data = &imx8ulp_data, },
+>  	{ /* sentinel */ }
+>  };
+>  
+> @@ -255,6 +265,42 @@ static void vf610_gpio_disable_clk(void *data)
+>  	clk_disable_unprepare(data);
+>  }
+>  
+> +static int vf610_gpio_map_base(struct platform_device *pdev, struct vf610_gpio_port *port)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	bool dual_base;
+> +
+> +	/* support old compatible strings */
+> +	if (device_is_compatible(dev, "fsl,imx7ulp-gpio") &&
+> +	    (device_is_compatible(dev, "fsl,imx93-gpio") ||
+> +	    (device_is_compatible(dev, "fsl,imx8ulp-gpio")))) {
+> +		dual_base = true;
+
+Move this part into probe() (see below) and drop the rest.
+
+> +	} else if (port->sdata && port->sdata->is_imx8ulp) {
+> +		dual_base = false;
+> +	} else {
+> +		dual_base = true;
+> +	};
+> +
+> +	if (dual_base) {
+
+	if (port->sdata-have_dual_base) {
+
+> +		port->base = devm_platform_ioremap_resource(pdev, 0);
+> +		if (IS_ERR(port->base))
+> +			return PTR_ERR(port->base);
+> +
+> +		port->gpio_base = devm_platform_ioremap_resource(pdev, 1);
+> +		if (IS_ERR(port->gpio_base))
+> +			return PTR_ERR(port->gpio_base);
+> +	} else {
+> +		port->base = devm_platform_ioremap_resource(pdev, 0);
+> +		if (IS_ERR(port->base))
+> +			return PTR_ERR(port->base);
+> +
+> +		port->gpio_base = port->base + IMX8ULP_GPIO_BASE_OFF;
+> +		port->base = port->base + IMX8ULP_BASE_OFF;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int vf610_gpio_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+> @@ -269,13 +315,10 @@ static int vf610_gpio_probe(struct platform_device *pdev)
+>  		return -ENOMEM;
+>  
+>  	port->sdata = of_device_get_match_data(dev);
+
+	/* Handle old device-tree bindings */
+	if (device_is_compatible(dev, "fsl,imx7ulp-gpio") &&
+	    (device_is_compatible(dev, "fsl,imx93-gpio") ||
+	    (device_is_compatible(dev, "fsl,imx8ulp-gpio"))))
+		port->sdata->have_dual_base = true;
+
+> -	port->base = devm_platform_ioremap_resource(pdev, 0);
+> -	if (IS_ERR(port->base))
+> -		return PTR_ERR(port->base);
+>  
+> -	port->gpio_base = devm_platform_ioremap_resource(pdev, 1);
+> -	if (IS_ERR(port->gpio_base))
+> -		return PTR_ERR(port->gpio_base);
+> +	ret = vf610_gpio_map_base(pdev, port);
+> +	if (ret)
+> +		return ret;
+>  
+>  	port->irq = platform_get_irq(pdev, 0);
+>  	if (port->irq < 0)
+
+Regards,
+  Marco
 
