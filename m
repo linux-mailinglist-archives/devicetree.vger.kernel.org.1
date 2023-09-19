@@ -1,100 +1,131 @@
-Return-Path: <devicetree+bounces-1453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E96A7A64DF
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 15:28:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39A1E7A64F1
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 15:32:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D3681C209C0
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 13:28:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7B312815B2
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 13:32:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F22FE339A3;
-	Tue, 19 Sep 2023 13:28:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 812C836AE4;
+	Tue, 19 Sep 2023 13:32:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED64E5252
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 13:28:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F1D5C433C7;
-	Tue, 19 Sep 2023 13:28:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695130091;
-	bh=cgpCq/1XRr4sA5/czdd3pzytIQeVY1Qabe8rnlGEetw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EZjTyyCK7kjl9OdIIvMyX53DBnuWzFFOhBDgIdiJtyxuhujEYoXg9ve+t2tYwYOzA
-	 EPi7jftAKCpfzMLJcCVDyD2mueiG46cV4RwmEzU5LK6wPBCW1uiWiMdQqarD5qbP5j
-	 zlYkfTCUh2JqIP7pZyFDuysIB+RFwj9obLB27hSqB8e5oduWO1gbk1q0eCQP/vq8Ak
-	 CowtUWCoslS+GrxT2gzjd8+fi8bpmgBLI/XTMd0wlyT9UZvb2cGvioLPunxwwOMMCW
-	 QGxbKkXPJDRwB38s7q+MhX6N8FMXblCRoc/okCswY/8pqHpyr8L5ez9bP8YNtfnclE
-	 PXWxnTlB9jJrA==
-Received: from johan by xi.lan with local (Exim 4.96)
-	(envelope-from <johan@kernel.org>)
-	id 1qiam8-00006U-1U;
-	Tue, 19 Sep 2023 15:28:25 +0200
-Date: Tue, 19 Sep 2023 15:28:24 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Sasha Levin <sashal@kernel.org>
-Cc: linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>, agross@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH AUTOSEL 6.5 30/36] arm64: dts: qcom: sc8280xp-x13s: Add
- camera activity LED
-Message-ID: <ZQmh-DaBTwMuOLHe@hovoldconsulting.com>
-References: <20230908192848.3462476-1-sashal@kernel.org>
- <20230908192848.3462476-30-sashal@kernel.org>
- <ZP60ngCV3hhNZiX5@hovoldconsulting.com>
- <ZQjEEt7sB2M5EO53@sashalap>
- <ZQk8aJx268Soy4yH@hovoldconsulting.com>
- <ZQmc7hznPpIh6iwP@sashalap>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 978015252;
+	Tue, 19 Sep 2023 13:32:11 +0000 (UTC)
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C70CBF1;
+	Tue, 19 Sep 2023 06:32:09 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2bfea381255so53166721fa.3;
+        Tue, 19 Sep 2023 06:32:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695130328; x=1695735128; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=WwVxMLRoTi4jmpcZHwksJ5/u+vVpQogOzA/iWOhcTMI=;
+        b=i9BAQ1DZX0UwPvG1Ehm33GL9JoC/+lwxfzLJcZx7K92wigATq3oTuxutJExc4z81/2
+         1KDbsKLOO6X2bRH7HFbuDTCU22CVPtFLrakSmjXfc98q7KcaX/7d/5PexmX1MUedvWaX
+         61LmVNSVo/gHF1wtxGb91tfqfq7EPoysb30vjPcSPknwNWQQySTkSMd0Ez45RgNikZLV
+         10CV0VBcwm21r7DEMPVkHuBfgbcNPyDSPmuziEmif+7O1OVZeZ5YW/D6hDQTJmJCLXD0
+         zqNxKErDELIYf1TCLXg10Wl99gB9KYG36i9MW1jiYxZwMQIopY4ztBROy5s6IG+9E+kl
+         /Jsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695130328; x=1695735128;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WwVxMLRoTi4jmpcZHwksJ5/u+vVpQogOzA/iWOhcTMI=;
+        b=IJ9aNX7Eot3pogeJZPxbuJk87OQmtPfuaT0ZCmbSK4KwNc46mrv1ItViqDkrEB32CU
+         ftI0vOiHHZFWCblVr4d5KglRSEUPlscFpD0bSLOil1gJwQykgvPQFud8gkQscmtE07OW
+         L7/OMf5qT21Yu7M/vJpd/KHtmbAK4Hf+GqpZc+Xb8A9emxPnnBxmhCK8Hc9BgBqSR3OE
+         Nv42kqBs1akXSPQlKLhmCNa9ln/0Njvqjmn77oBSeYh8+dl22fOkD9MUd3J7k+ktclxy
+         WraCRNl2l89DXaQWQYDskvOkKwjM4h7Q3H62WjiDs9pQVI84JTJrhK1Uz3N7b/vPnMXf
+         gPZA==
+X-Gm-Message-State: AOJu0YzFGClp07KiZXpxDWrD2umnjVoq6e00mKWEvA2wPLkNLELIIxWh
+	msoZ9at91OvsaglLllDCjEmpo3LHh0nH2niuWB+O9ym6
+X-Google-Smtp-Source: AGHT+IFsPbd3Z94I5V4mZLsZ0dcHcT44w/wtHVfCTyguyHRWhbnJq6iM8o/Htimw94qJ7HPxPLBgx9cHBwiGaoMkjBc=
+X-Received: by 2002:a05:651c:1a1f:b0:2c0:2a6e:7869 with SMTP id
+ by31-20020a05651c1a1f00b002c02a6e7869mr1667667ljb.44.1695130327566; Tue, 19
+ Sep 2023 06:32:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZQmc7hznPpIh6iwP@sashalap>
+References: <20230918165958.2659-1-tmaimon77@gmail.com> <20230918165958.2659-2-tmaimon77@gmail.com>
+ <b7a337f2-a810-d14c-e7cd-15e33a9ecb5d@linaro.org> <CAP6Zq1gSJYsNUuD-bexFW_1VpAUuF_WZkicNzZms6hVdo9LnMQ@mail.gmail.com>
+ <e0d42d13-b307-9915-97c8-948261b39ce1@linaro.org>
+In-Reply-To: <e0d42d13-b307-9915-97c8-948261b39ce1@linaro.org>
+From: Tomer Maimon <tmaimon77@gmail.com>
+Date: Tue, 19 Sep 2023 16:31:56 +0300
+Message-ID: <CAP6Zq1g0=-h0PFg2a8bqao+XjdNHoxGMdYSRRPAnfY_6WdemAw@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] dt-binding: usb: ci-hdrc-usb2: document Nuvoton
+ NPCM supprt
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: peter.chen@kernel.org, gregkh@linuxfoundation.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, xu.yang_2@nxp.com, peng.fan@nxp.com, 
+	avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au, 
+	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
+	j.neuschaefer@gmx.net, openbmc@lists.ozlabs.org, linux-usb@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Tue, Sep 19, 2023 at 09:06:54AM -0400, Sasha Levin wrote:
-> On Tue, Sep 19, 2023 at 08:15:04AM +0200, Johan Hovold wrote:
-> >On Mon, Sep 18, 2023 at 05:41:38PM -0400, Sasha Levin wrote:
-> >> On Mon, Sep 11, 2023 at 08:33:02AM +0200, Johan Hovold wrote:
-> >> >On Fri, Sep 08, 2023 at 03:28:41PM -0400, Sasha Levin wrote:
-> >> >> From: Konrad Dybcio <konrad.dybcio@linaro.org>
-> >> >>
-> >> >> [ Upstream commit 1c63dd1c5fdafa8854526d7d60d2b741c813678d ]
-> >> >>
-> >> >> Disappointigly, the camera activity LED is implemented in software.
-> >> >> Hook it up as a gpio-led and (until we have camera *and* a "camera on"
-> >> >> LED trigger) configure it as a panic indicator.
-> >> >>
-> >> >> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> >> >> Link: https://lore.kernel.org/r/20230805-topic-x13s_cam_led-v1-1-443d752158c4@linaro.org
-> >> >> Signed-off-by: Bjorn Andersson <andersson@kernel.org>
-> >> >> Signed-off-by: Sasha Levin <sashal@kernel.org>
-> >> >
-> >> >This is a new feature if anything, not a fix. Please drop from all
-> >> >autosel queues.
+On Tue, 19 Sept 2023 at 15:39, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 19/09/2023 07:14, Tomer Maimon wrote:
+> >>>            - nvidia,tegra20-ehci
+> >>>            - nvidia,tegra20-udc
+> >>>            - nvidia,tegra30-ehci
+> >>> @@ -325,6 +326,20 @@ properties:
+> >>>      type: boolean
+> >>>      deprecated: true
+> >>>
+> >>> +  nuvoton,sysgcr:
+> >>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> >>> +    items:
+> >>> +      - items:
+> >>> +          - description: phandle to syscon that configures usb phy mux.
+> >>> +          - description: offset of usb phy mux selection.
+> >>> +          - description: mask usb phy mux selection.
+> >>> +          - description: value usb phy mux selection.
+> >>> +    description:
+> >>> +      A phandle to syscon with three arguments that configure usb phy mux.
+> >>> +      The argument one is the offset of usb phy mux selection, the argument two
+> >>> +      is the mask usb phy mux selection, the argument three is the mask usb phy
+> >>> +      mux selection.
 > >>
-> >> Not a feature, but hardware enablement.
-> >
-> >Call it what you will, but please drop it. Otherwise by that logic you'd
-> >need to backport all devicetree patches (as well as most driver changes)
-> >since they ultimately aim at enabling hardware.
-> 
-> Not all, only ones that re-use existing kernel driver but enable it for
-> new hardware (i.e. adding a new pci-id/usb-id/dts entries).
+> >> Sorry, you miss phy driver. Don't use syscon instead of proper hardware
+> >> devices.
+> > Sorry the role of nuvoton,sysgcr property is to handle a mux between
+> > the different devices and not the handle the phy itself, handle the
+> > mux done in the GCR.
+> > Should we move the nuvoton,sysgcr description to another place in the
+> > ci-hdrc-usb2.yaml
+> > or
+> > Should we use a different driver to handle the mux and call it from
+> > the ci-hdrc-npcm driver, If yes which driver should we use?
+>
+> What is an "usb phy mux"?
+We have USB phy that could be connected to USB host (different driver)
+or it can be connected to the UDC driver(ChipIdea)
+> Best regards,
+> Krzysztof
+>
 
-Again, that's basically all our device-tree patches. And that can break
-in all sorts of ways. So again, please drop. This does not belong in
-stable.
+Best regards,
 
-Johan
+Tomer
 
