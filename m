@@ -1,76 +1,95 @@
-Return-Path: <devicetree+bounces-1468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFF567A67AD
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 17:12:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C64A7A67B5
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 17:12:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB8A41C20912
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 15:12:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47E8D281472
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 15:12:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4FED3B7A2;
-	Tue, 19 Sep 2023 15:11:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68D3E3B7A5;
+	Tue, 19 Sep 2023 15:12:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC4743B782
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 15:11:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D2A6C433C9;
-	Tue, 19 Sep 2023 15:11:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695136318;
-	bh=oQZE1gehH3m0aVjeQGpGI4UwdSKpfNlvVo6HbrBGos8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=reXUN8Lm8OVwp1i9vVCCdg0A4xWglEaEmg5enV0gEccKgXxgpGgJGycPY0fPtD9B7
-	 EbMZUIURD8pz5Sc1D9oLVMO/zRWGTapGT0nCXTAR4U4sbpRl72Gkm1Ua47gH2syuwj
-	 yp+zAtUz3ECBZ02khlQ+Xs8MsTRrrrcgbiXXOr59t9JwZlIAEkSQRk/6aVsiSyp40I
-	 zCermNUTlAmjX0M/tJ9jukn3nFG3vb1xA3em/zHCiRCHGrmMAKTCzocD+ZwIsijb87
-	 PLdrrhhd0cMrMpI+vlshjMgj1bM4yJDJyO1nDe9ma58fzYnjaTkKfNoy3jObZW67RQ
-	 R7w0hVRuC9TIA==
-From: Lee Jones <lee@kernel.org>
-To: devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, linux-arm-msm@vger.kernel.org, 
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
- linux-iio@vger.kernel.org, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- linux-input@vger.kernel.org, Pavel Machek <pavel@ucw.cz>, 
- linux-leds@vger.kernel.org, Satya Priya <quic_c_skakit@quicinc.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230827132525.951475-3-dmitry.baryshkov@linaro.org>
-References: <20230827132525.951475-1-dmitry.baryshkov@linaro.org>
- <20230827132525.951475-3-dmitry.baryshkov@linaro.org>
-Subject: Re: (subset) [PATCH v5 02/37] dt-bindings: mfd: qcom-pm8xxx: add
- missing child nodes
-Message-Id: <169513631509.3259165.15493970676059884239.b4-ty@kernel.org>
-Date: Tue, 19 Sep 2023 16:11:55 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B33B3B782
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 15:12:44 +0000 (UTC)
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2C6CF1
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 08:12:42 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id 3f1490d57ef6-d81b42a3108so4734929276.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 08:12:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695136362; x=1695741162; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=RwBFLBCefbsy21c4npTbAU6eApQw+jfQJ+Mmxu8RhRA=;
+        b=bPEnTuJcF4lDHZmR3vRaBKtKbtTG2Yfj3cVbo0Wq7d5IaoDzIAKJDzUM5Xki5vzkY0
+         FdOjCa89MFz6pfx6oixsBsXeIfVGtS1V1jAKEAW9ODR/MgoEHkL3WNrTPN3kiY0BSxZl
+         amMu/mC1tglsxOKbPhFBNBaNBZcU52g/il/v3OHlt5EGp+pCrfdT0oKsggJIz3YIL19C
+         npLepS0/V9w54eOQKknN4ZNhANpVCJaWwSF2a4E6go7ygBnx4kUGhSDJ5rBJKHitZvUM
+         rpVAqmAT9m7gV1lIwwmxURZc85ZVpusyIAJ0G/NLdu+xvrzXNQZR3PFlHbUXeVILetfa
+         mRaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695136362; x=1695741162;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RwBFLBCefbsy21c4npTbAU6eApQw+jfQJ+Mmxu8RhRA=;
+        b=ZmO2gYL4mJdIv8ARaQ2xBvt06jam77GAIBDCSDYJ/TsQ3xwYuxol9svNh3Eoc/ql2V
+         1EJT+Uuh76gCrac/YaRko3hRWECMqX4oNsGaa2688QbRuQrdVoOLSjoGXmfKt8lSDSc3
+         UE9VopowPe9yVIn+FQNusLcVqBdoe5OvwiRTtuzox0lL+ctazhr6KxjLCe3cTDfAGgoT
+         w5ebSuvnCC50CSixO3ld4xB3O3/r6fulPefBcJIbSEOUNyM5ROiY6dQaG9hdQ3z5yp4P
+         /Vl7kZP+EVCpULU/fkbIi3dN4Q+6bkyc/h7jr9hN2yeeBlHTlpm3b0zDOcerlMbiODpl
+         sZqw==
+X-Gm-Message-State: AOJu0YzoH1X2tZ486XvvDxZhWd3LHab1xpQ4nsWS2pbqQxavd1g/GpCy
+	USZiyFxXC5NYVuM2GP7HrYqX/PQf1KJ8W32a0lVPmg==
+X-Google-Smtp-Source: AGHT+IGSY0KfKzL/8laxx9lvgeIq6kZxzBsZt5dq8iJrSTHyFpS5ghMNwzig2inkSJFiqO0qXFR1oOfDMzboG7t3tJc=
+X-Received: by 2002:a5b:c48:0:b0:d81:cb92:337c with SMTP id
+ d8-20020a5b0c48000000b00d81cb92337cmr10601197ybr.54.1695136361868; Tue, 19
+ Sep 2023 08:12:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.12.2
+References: <20230918205037.25658-1-quic_nitirawa@quicinc.com> <20230918205037.25658-3-quic_nitirawa@quicinc.com>
+In-Reply-To: <20230918205037.25658-3-quic_nitirawa@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 19 Sep 2023 18:12:30 +0300
+Message-ID: <CAA8EJprAxUhipHS1+BRRVo8o6gubNRJk12msMgOraDjFBo8rVQ@mail.gmail.com>
+Subject: Re: [PATCH V4 2/2] phy: qcom-qmp-ufs: Add Phy Configuration support
+ for SC7280
+To: Nitin Rawat <quic_nitirawa@quicinc.com>
+Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, 
+	vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Manish Pandey <quic_mapa@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Sun, 27 Aug 2023 16:24:50 +0300, Dmitry Baryshkov wrote:
-> Add gpio, keypad, led, mpps, pwrkey, vibrator and xoadc as possible
-> child nodes of qcom,pm8xxx, referencing existint schema files.
-> 
-> 
+On Mon, 18 Sept 2023 at 23:51, Nitin Rawat <quic_nitirawa@quicinc.com> wrote:
+>
+> Add SC7280 specific register layout and table configs.
+>
+> Co-developed-by: Manish Pandey <quic_mapa@quicinc.com>
+> Signed-off-by: Manish Pandey <quic_mapa@quicinc.com>
+> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
 
-Applied, thanks!
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-[02/37] dt-bindings: mfd: qcom-pm8xxx: add missing child nodes
-        commit: 2c09766cb133ee4d57d19f56c6a0035b0d9eb034
-
---
-Lee Jones [李琼斯]
-
+-- 
+With best wishes
+Dmitry
 
