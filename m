@@ -1,353 +1,217 @@
-Return-Path: <devicetree+bounces-1385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D23997A60B7
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 13:09:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 727107A60CC
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 13:13:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECF421C20B36
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 11:09:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67ED51C20C39
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 11:13:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 636F4358A4;
-	Tue, 19 Sep 2023 11:09:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A994738DF6;
+	Tue, 19 Sep 2023 11:12:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AE51339AD
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 11:09:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93E1CC433C7;
-	Tue, 19 Sep 2023 11:09:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695121759;
-	bh=DzI+RDUO22bcs7FJ9u5LUITO8dijTvNa+EqysJiAUvc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lOx7kiQynxIVdqtM7Dd5TgU4xVa8a5forX6Nl3CB1tJLZeeZyvkJNBWBUVOYqJfGX
-	 MhgTWHu+2iB33xSd2JTNydY8zhkl7Sm/AaB5+thGE2bHiU1AVmLcoAyXMDBrZB1vgU
-	 +mzivljNmERBTo0tsI/4h4Xdl/+G1i+3+wwFFA7LRFXs+3GpTuiFWtJXDVSFoY1lpj
-	 VHYKrWcinZLfI9bz57ArA5s8VkWm8xWruccF3Co+377qvHUNQ1+01dT/lgzja+Ap+P
-	 1UTyniiHyqVpEO63QrBV4VvDo9BIjkpDCZysMJyUiWFccg7ZFW33FijiPXXioh+3p/
-	 PK2cDUIvvrfcA==
-Date: Tue, 19 Sep 2023 12:09:13 +0100
-From: Conor Dooley <conor@kernel.org>
-To: yang tylor <tylor_yang@himax.corp-partner.google.com>
-Cc: dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jikos@kernel.org, benjamin.tissoires@redhat.com,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	poyuan_chang@himax.corp-partner.google.com, jingliang@chromium.org,
-	hbarnor@chromium.org
-Subject: Re: [PATCH V2 1/2] dt-bindings: input: Introduce Himax HID-over-SPI
- device
-Message-ID: <20230919-cc4646dbfb953bd34e05658c@fedora>
-References: <20230919024943.3088916-1-tylor_yang@himax.corp-partner.google.com>
- <20230919024943.3088916-2-tylor_yang@himax.corp-partner.google.com>
- <20230919-70b2f1e368a8face73468dfa@fedora>
- <CAGD2q_anfBP78jck6AbMNtgAggjOgaB3P6dkmq9tONHP45adFA@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F18CA38BAB
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 11:12:52 +0000 (UTC)
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C193F1;
+	Tue, 19 Sep 2023 04:12:49 -0700 (PDT)
+X-UUID: 7294f6b056dd11ee8051498923ad61e6-20230919
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=1jvjjzw4AS24CCKpJjJwLW1RVXK5JBfjv7SdIIaHTYk=;
+	b=Ll/hZYKGEYRpDHzoj0DNx6kCiGoDrpJPwoFM1hpeJWT+tHXJYWKPeK/C7MKmQxzHZXZS4Y+8I2gSeDbLRmzK1bM3XDo3c5Gu3EKWDIOy5f4dt7sr8MMYDY8ay2p6LdAucrJB6quPDG1osuYskDa8bNiSMjC5+qisyD+yPYGP+98=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.32,REQID:510aed20-c586-44aa-96b1-228c9ec68769,IP:0,U
+	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:5f78ec9,CLOUDID:63581e14-4929-4845-9571-38c601e9c3c9,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: 7294f6b056dd11ee8051498923ad61e6-20230919
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+	(envelope-from <yi-de.wu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 954853373; Tue, 19 Sep 2023 19:12:40 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Tue, 19 Sep 2023 19:12:39 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Tue, 19 Sep 2023 19:12:39 +0800
+From: Yi-De Wu <yi-de.wu@mediatek.com>
+To: Yingshiuan Pan <yingshiuan.pan@mediatek.com>, Ze-Yu Wang
+	<ze-yu.wang@mediatek.com>, Yi-De Wu <yi-de.wu@mediatek.com>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+CC: Arnd Bergmann <arnd@arndb.de>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	David Bradil <dbrazdil@google.com>, Trilok Soni <quic_tsoni@quicinc.com>,
+	Jade Shih <jades.shih@mediatek.com>, Ivan Tseng <ivan.tseng@mediatek.com>, My
+ Chuang <my.chuang@mediatek.com>, Kevenny Hsieh <kevenny.hsieh@mediatek.com>,
+	Willix Yeh <chi-shen.yeh@mediatek.com>
+Subject: [PATCH v6 00/15] GenieZone hypervisor drivers
+Date: Tue, 19 Sep 2023 19:11:55 +0800
+Message-ID: <20230919111210.19615-1-yi-de.wu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mGSUTedGx3oXLB+X"
-Content-Disposition: inline
-In-Reply-To: <CAGD2q_anfBP78jck6AbMNtgAggjOgaB3P6dkmq9tONHP45adFA@mail.gmail.com>
+Content-Type: text/plain
+X-MTK: N
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,
+	SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=no
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
+
+This series is based on linux-next, tag: next-20230919.
+
+GenieZone hypervisor(gzvm) is a type-1 hypervisor that supports various virtual
+machine types and provides security features such as TEE-like scenarios and
+secure boot. It can create guest VMs for security use cases and has
+virtualization capabilities for both platform and interrupt. Although the
+hypervisor can be booted independently, it requires the assistance of GenieZone
+hypervisor kernel driver(gzvm-ko) to leverage the ability of Linux kernel for
+vCPU scheduling, memory management, inter-VM communication and virtio backend
+support.
+
+Changes in v6:
+- Rebase based on kernel 6.6-rc1
+- Keep dt solution and leave the reasons in the commit message
+- Remove arch/arm64/include/uapi/asm/gzvm_arch.h due to simplicity
+- Remove resampler in drivers/virt/geniezone/gzvm_irqfd.c due to defeature for
+  now
+- Remove PPI in arch/arm64/geniezone/vgic.c
+- Refactor vm related components into 3 smaller patches, namely adding vm
+  support, setting user memory region and checking vm capability 
+- Refactor vcpu and vm component to remove unnecessary ARM prefix 
+- Add demand paging to fix crash on destroying memory page, acclerate on booting
+  and support ballooning deflate
+- Add memory pin/unpin memory mechanism to support protected VM
+- Add block-based demand paging for performance concern
+- Response to reviewers and fix coding style accordingly
+
+Changes in v5:
+https://lore.kernel.org/all/20230727080005.14474-1-yi-de.wu@mediatek.com/
+- Add dt solution back for device initialization
+- Add GZVM_EXIT_GZ reason for gzvm_vcpu_run()
+- Add patch for guest page fault handler
+- Add patch for supporitng pin/unpin memory
+- Remove unused enum members, namely GZVM_FUNC_GET_REGS and GZVM_FUNC_SET_REGS
+- Use dev_debug() for debugging when platform device is available, and use
+  pr_debug() otherwise
+- Response to reviewers and fix bugs accordingly
 
 
---mGSUTedGx3oXLB+X
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes in v4:
+https://lore.kernel.org/lkml/20230609085214.31071-1-yi-de.wu@mediatek.com/
+- Add macro to set VM as protected without triggering pvmfw in AVF.
+- Add support to pass dtb config to hypervisor.
+- Add support for virtual timer.
+- Add UAPI to pass memory region metadata to hypervisor.
+- Define our own macros for ARM's interrupt number
+- Elaborate more on GenieZone hyperivsor in documentation
+- Fix coding style.
+- Implement our own module for coverting ipa to pa
+- Modify the way of initializing device from dt to a more discoverable way
+- Move refactoring changes into indepedent patches.
 
-On Tue, Sep 19, 2023 at 05:31:29PM +0800, yang tylor wrote:
-> Hi Conor,
->=20
-> > > Additional optional arguments:
-> > > ic-det-delay-ms and ic-resume-delay-ms are using to solve runtime
-> > > conditions.
->=20
-> > Runtime conditions? Aren't th=D1=94se properties of the panel & therefo=
-re
-> > fixed? If they were runtime conditions, then setting them statically in
-> > your DT is not going to work, right?
->=20
-> Because each platform's display driver ready time is different. TP part
-> need to avoid this timing by measuring the waveform of LCD reset pin
-> low period and TP probe timing. For example, if LCD rst pin low from
-> timestamp 100 to 800, TP driver probe at 600. TP probe will fail. Then
-> user should set ic-det-delay-ms bigger than 200, to avoid LCD rst low
-> timing. As you can see, the timing needs to be measured at runtime to
-> decide how long it should be. Then, if the condition is not changed, the
-> value could keep the same.
+Changes in v3:
+https://lore.kernel.org/all/20230512080405.12043-1-yi-de.wu@mediatek.com/
+- Refactor: separate arch/arm64/geniezone/gzvm_arch.c into vm.c/vcpu.c/vgic.c
+- Remove redundant functions
+- Fix reviewer's comments
 
-That sounds to me like something you would test once for a given
-platform and then the values are static. If you are actually changing it
-at *runtime*, how is doing it through DT suitable? Does your firmware do
-the tests & then set the values in DT dynamically?
+Changes in v2:
+https://lore.kernel.org/all/20230428103622.18291-1-yi-de.wu@mediatek.com/
+- Refactor: move to drivers/virt/geniezone
+- Refactor: decouple arch-dependent and arch-independent
+- Check pending signal before entering guest context
+- Fix reviewer's comments
 
->=20
-> > It looks like you deleted all of the properties from the previous
-> > submission of these changes. I don't really understand that, it kinda
-> > feels just like appeasement, as you must have needed those properties
-> > to do the firmware loading etc. How are you filling the gap those
-> > properties have left, when you still only have a single compatible
-> > string in th=E3=84=9Fs binding? Is there a way to do runtime detection =
-of which
-> > chip you're dealing with that you are now using?
->=20
-> After reviewing, I found the properties could go to IC driver settings :
-> "himax,heatmap_16bits" because it depends on IC's ability;
+Initial Commit in v1:
+https://lore.kernel.org/all/20230413090735.4182-1-yi-de.wu@mediatek.com/
 
-How do you detect the IC's abilities?
+Yi-De Wu (15):
+  docs: geniezone: Introduce GenieZone hypervisor
+  dt-bindings: hypervisor: Add MediaTek GenieZone hypervisor
+  virt: geniezone: Add GenieZone hypervisor driver
+  virt: geniezone: Add vm support
+  virt: geniezone: Add set_user_memory_region for vm
+  virt: geniezone: Add vm capability check
+  virt: geniezone: Add vcpu support
+  virt: geniezone: Add irqchip support for virtual interrupt injection
+  virt: geniezone: Add irqfd support
+  virt: geniezone: Add ioeventfd support
+  virt: geniezone: Add memory region support
+  virt: geniezone: Add dtb config support
+  virt: geniezone: Add demand paging support
+  virt: geniezone: Add memory pin/unpin support
+  virt: geniezone: Add block-based demand paging support
 
-> Some
-> could remove and use default values: "himax,fw_size",
-> "himax,boot_time_fw_upgrade". "himax,fw_size" has a default value in
-> IC settings, and likely won't change in this IC.
+ .../hypervisor/mediatek,geniezone-hyp.yaml    |  31 ++
+ Documentation/virt/geniezone/introduction.rst |  86 ++++
+ Documentation/virt/index.rst                  |   1 +
+ MAINTAINERS                                   |  11 +
+ arch/arm64/Kbuild                             |   1 +
+ arch/arm64/geniezone/Makefile                 |   9 +
+ arch/arm64/geniezone/gzvm_arch_common.h       | 114 +++++
+ arch/arm64/geniezone/vcpu.c                   |  80 +++
+ arch/arm64/geniezone/vgic.c                   |  50 ++
+ arch/arm64/geniezone/vm.c                     | 380 ++++++++++++++
+ drivers/virt/Kconfig                          |   2 +
+ drivers/virt/geniezone/Kconfig                |  16 +
+ drivers/virt/geniezone/Makefile               |  12 +
+ drivers/virt/geniezone/gzvm_common.h          |  12 +
+ drivers/virt/geniezone/gzvm_exception.c       |  67 +++
+ drivers/virt/geniezone/gzvm_ioeventfd.c       | 276 +++++++++++
+ drivers/virt/geniezone/gzvm_irqfd.c           | 382 ++++++++++++++
+ drivers/virt/geniezone/gzvm_main.c            | 147 ++++++
+ drivers/virt/geniezone/gzvm_mmu.c             | 277 +++++++++++
+ drivers/virt/geniezone/gzvm_vcpu.c            | 281 +++++++++++
+ drivers/virt/geniezone/gzvm_vm.c              | 468 ++++++++++++++++++
+ include/linux/gzvm_drv.h                      | 204 ++++++++
+ include/uapi/linux/gzvm.h                     | 395 +++++++++++++++
+ 23 files changed, 3302 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hypervisor/mediatek,geniezone-hyp.yaml
+ create mode 100644 Documentation/virt/geniezone/introduction.rst
+ create mode 100644 arch/arm64/geniezone/Makefile
+ create mode 100644 arch/arm64/geniezone/gzvm_arch_common.h
+ create mode 100644 arch/arm64/geniezone/vcpu.c
+ create mode 100644 arch/arm64/geniezone/vgic.c
+ create mode 100644 arch/arm64/geniezone/vm.c
+ create mode 100644 drivers/virt/geniezone/Kconfig
+ create mode 100644 drivers/virt/geniezone/Makefile
+ create mode 100644 drivers/virt/geniezone/gzvm_common.h
+ create mode 100644 drivers/virt/geniezone/gzvm_exception.c
+ create mode 100644 drivers/virt/geniezone/gzvm_ioeventfd.c
+ create mode 100644 drivers/virt/geniezone/gzvm_irqfd.c
+ create mode 100644 drivers/virt/geniezone/gzvm_main.c
+ create mode 100644 drivers/virt/geniezone/gzvm_mmu.c
+ create mode 100644 drivers/virt/geniezone/gzvm_vcpu.c
+ create mode 100644 drivers/virt/geniezone/gzvm_vm.c
+ create mode 100644 include/linux/gzvm_drv.h
+ create mode 100644 include/uapi/linux/gzvm.h
 
-Okay.
+-- 
+2.18.0
 
-> The behavior of "himax,boot_time_fw_upgrade" seems not stable and
-> should be removed. "himax,fw_in_flash", I use the kernel config for
-> user to select.
-
-That seems like a bad idea, we want to be able to build one kernel that
-works for all hardware at the same time.
-
-> "himax,pid" could be remove and use default firmware name
-> "himax_i2chid.bin" to load. It was added because users may desire to
-> choose a special name like "himax_i2chid_{pid}.bin" instead of the default
-> one.
-> It also could be replaced with newly added "himax",id-gpios" which is sti=
-ll
-> experimental.
-
-Also, pleae don't top post, but instead reply in-line with my comments,
-as I have done here.
-
-> Btw, I encounter an error of patch [2/2], which says:
-> BOUNCE linux-input@vger.kernel.org: Message too long (>100000 chars)
-> and the patch didn't appear at patchwork.kernel.org. What should I do to
-> deal with this problem?
-
-No idea. Maybe try to split it into multiple patches?
-The other option is to also cc patches@lists.linux.dev as that has some
-higher capacities, but that's not going to be a silver bullet.
-
-Thanks,
-Conor.
->=20
->=20
-> Thanks,
-> Tylor
->=20
->=20
-> On Tue, Sep 19, 2023 at 4:41=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
-rote:
->=20
-> > Hey,
-> >
-> >
-> > On Tue, Sep 19, 2023 at 10:49:42AM +0800, Tylor Yang wrote:
-> > > The Himax HID-over-SPI framework support for Himax touchscreen ICs
-> > > that report HID packet through SPI bus. The driver core need reset
-> > >  pin to meet reset timing spec. of IC. An interrupt pin to disable
-> > > and enable interrupt when suspend/resume. An optional power control
-> > > pin if target board needed. Panel id pins for identify panel is also
-> > > an option.
-> > >
-> > > Additional optional arguments:
-> > > ic-det-delay-ms and ic-resume-delay-ms are using to solve runtime
-> > > conditions.
-> >
-> > Runtime conditions? Aren't th=D1=94se properties of the panel & therefo=
-re
-> > fixed? If they were runtime conditions, then setting them statically in
-> > your DT is not going to work, right?
-> >
-> > >
-> > > This patch also add maintainer of this driver.
-> > >
-> > > Signed-off-by: Tylor Yang <tylor_yang@himax.corp-partner.google.com>
-> >
-> > It looks like you deleted all of the properties from the previous
-> > submission of these changes. I don't really understand that, it kinda
-> > feels just like appeasement, as you must have needed those properties
-> > to do the firmware loading etc. How are you filling the gap those
-> > properties have left, when you still only have a single compatible
-> > string in th=E3=84=9Fs binding? Is there a way to do runtime detection =
-of which
-> > chip you're dealing with that you are now using?
-> >
-> > Confused,
-> > Conor.
-> >
-> > > ---
-> > >  .../bindings/input/himax,hid-over-spi.yaml    | 109 ++++++++++++++++=
-++
-> > >  MAINTAINERS                                   |   6 +
-> > >  2 files changed, 115 insertions(+)
-> > >  create mode 100644
-> > Documentation/devicetree/bindings/input/himax,hid-over-spi.yaml
-> > >
-> > > diff --git
-> > a/Documentation/devicetree/bindings/input/himax,hid-over-spi.yaml
-> > b/Documentation/devicetree/bindings/input/himax,hid-over-spi.yaml
-> > > new file mode 100644
-> > > index 000000000000..3ee3a89842ac
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/input/himax,hid-over-spi.yaml
-> > > @@ -0,0 +1,109 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/input/himax,hid-over-spi.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Himax TDDI devices using SPI to send HID packets
-> > > +
-> > > +maintainers:
-> > > +  - Tylor Yang <tylor_yang@himax.corp-partner.google.com>
-> > > +
-> > > +description: |
-> > > +  Support the Himax TDDI devices which using SPI interface to acquire
-> > > +  HID packets from the device. The device needs to be initialized us=
-ing
-> > > +  Himax protocol before it start sending HID packets.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: himax,hid-over-spi
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  '#address-cells':
-> > > +    const: 1
-> > > +
-> > > +  '#size-cells':
-> > > +    const: 0
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  himax,rst-gpio:
-> > > +    maxItems: 1
-> > > +    description: Reset device, active low signal.
-> > > +
-> > > +  himax,irq-gpio:
-> > > +    maxItems: 1
-> > > +    description: Interrupt request, active low signal.
-> > > +
-> > > +  himax,3v3-gpio:
-> > > +    maxItems: 1
-> > > +    description: GPIO to control 3.3V power supply.
-> > > +
-> > > +  himax,id-gpios:
-> > > +    maxItems: 8
-> > > +    description: GPIOs to read physical Panel ID. Optional.
-> > > +
-> > > +  spi-cpha: true
-> > > +  spi-cpol: true
-> > > +
-> > > +  himax,ic-det-delay-ms:
-> > > +    description:
-> > > +      Due to TDDI properties, the TPIC detection timing must after t=
-he
-> > > +      display panel initialized. This property is used to specify the
-> > > +      delay time when TPIC detection and display panel initialization
-> > > +      timing are overlapped. How much milliseconds to delay before T=
-PIC
-> > > +      detection start.
-> > > +
-> > > +  himax,ic-resume-delay-ms:
-> > > +    description:
-> > > +      Due to TDDI properties, the TPIC resume timing must after the
-> > > +      display panel resumed. This property is used to specify the
-> > > +      delay time when TPIC resume and display panel resume
-> > > +      timing are overlapped. How much milliseconds to delay before T=
-PIC
-> > > +      resume start.
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - interrupts
-> > > +  - himax,rst-gpio
-> > > +  - himax,irq-gpio
-> > > +
-> > > +unevaluatedProperties: false
-> > > +
-> > > +allOf:
-> > > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > > +    #include <dt-bindings/gpio/gpio.h>
-> > > +
-> > > +    spi {
-> > > +        #address-cells =3D <1>;
-> > > +        #size-cells =3D <0>;
-> > > +
-> > > +        touchscreen@0 {
-> > > +            compatible =3D "himax,hid-over-spi";
-> > > +            #address-cells =3D <1>;
-> > > +            #size-cells =3D <0>;
-> > > +            reg =3D <0x0>;
-> > > +            interrupt-parent =3D <&gpio1>;
-> > > +            interrupts =3D <7 IRQ_TYPE_LEVEL_LOW>;
-> > > +            pinctrl-0 =3D <&touch_pins>;
-> > > +            pinctrl-names =3D "default";
-> > > +
-> > > +            spi-max-frequency =3D <12500000>;
-> > > +            spi-cpha;
-> > > +            spi-cpol;
-> > > +
-> > > +            himax,rst-gpio =3D <&gpio1 8 GPIO_ACTIVE_LOW>;
-> > > +            himax,irq-gpio =3D <&gpio1 7 GPIO_ACTIVE_LOW>;
-> > > +            himax,3v3-gpio =3D <&gpio1 6 GPIO_ACTIVE_HIGH>;
-> > > +            himax,ic-det-delay-ms =3D <500>;
-> > > +            himax,ic-resume-delay-ms =3D <100>;
-> > > +        };
-> > > +    };
-> > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > index bf0f54c24f81..452701261bec 100644
-> > > --- a/MAINTAINERS
-> > > +++ b/MAINTAINERS
-> > > @@ -9323,6 +9323,12 @@ L:     linux-kernel@vger.kernel.org
-> > >  S:   Maintained
-> > >  F:   drivers/misc/hisi_hikey_usb.c
-> > >
-> > > +HIMAX HID OVER SPI TOUCHSCREEN SUPPORT
-> > > +M:   Tylor Yang <tylor_yang@himax.corp-partner.google.com>
-> > > +L:   linux-input@vger.kernel.org
-> > > +S:   Supported
-> > > +F:   Documentation/devicetree/bindings/input/himax,hid-over-spi.yaml
-> > > +
-> > >  HIMAX HX83112B TOUCHSCREEN SUPPORT
-> > >  M:   Job Noorman <job@noorman.info>
-> > >  L:   linux-input@vger.kernel.org
-> > > --
-> > > 2.25.1
-> > >
-> >
-
---mGSUTedGx3oXLB+X
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQmBVgAKCRB4tDGHoIJi
-0rn5AQDRibrglmMoz8/uRgj0h4r/kCkTWkrAGD414U3qKp6A6QD/RVO3uWiOlSop
-sDln48YqSbDYIRdromOLhK6PvsZ0sAU=
-=wDQ7
------END PGP SIGNATURE-----
-
---mGSUTedGx3oXLB+X--
 
