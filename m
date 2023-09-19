@@ -1,95 +1,121 @@
-Return-Path: <devicetree+bounces-1469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C64A7A67B5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 17:12:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6550A7A67BA
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 17:13:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47E8D281472
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 15:12:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D6891C20908
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 15:13:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68D3E3B7A5;
-	Tue, 19 Sep 2023 15:12:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75D9C3B7A7;
+	Tue, 19 Sep 2023 15:13:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B33B3B782
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 15:12:44 +0000 (UTC)
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2C6CF1
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 08:12:42 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id 3f1490d57ef6-d81b42a3108so4734929276.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 08:12:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695136362; x=1695741162; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=RwBFLBCefbsy21c4npTbAU6eApQw+jfQJ+Mmxu8RhRA=;
-        b=bPEnTuJcF4lDHZmR3vRaBKtKbtTG2Yfj3cVbo0Wq7d5IaoDzIAKJDzUM5Xki5vzkY0
-         FdOjCa89MFz6pfx6oixsBsXeIfVGtS1V1jAKEAW9ODR/MgoEHkL3WNrTPN3kiY0BSxZl
-         amMu/mC1tglsxOKbPhFBNBaNBZcU52g/il/v3OHlt5EGp+pCrfdT0oKsggJIz3YIL19C
-         npLepS0/V9w54eOQKknN4ZNhANpVCJaWwSF2a4E6go7ygBnx4kUGhSDJ5rBJKHitZvUM
-         rpVAqmAT9m7gV1lIwwmxURZc85ZVpusyIAJ0G/NLdu+xvrzXNQZR3PFlHbUXeVILetfa
-         mRaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695136362; x=1695741162;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RwBFLBCefbsy21c4npTbAU6eApQw+jfQJ+Mmxu8RhRA=;
-        b=ZmO2gYL4mJdIv8ARaQ2xBvt06jam77GAIBDCSDYJ/TsQ3xwYuxol9svNh3Eoc/ql2V
-         1EJT+Uuh76gCrac/YaRko3hRWECMqX4oNsGaa2688QbRuQrdVoOLSjoGXmfKt8lSDSc3
-         UE9VopowPe9yVIn+FQNusLcVqBdoe5OvwiRTtuzox0lL+ctazhr6KxjLCe3cTDfAGgoT
-         w5ebSuvnCC50CSixO3ld4xB3O3/r6fulPefBcJIbSEOUNyM5ROiY6dQaG9hdQ3z5yp4P
-         /Vl7kZP+EVCpULU/fkbIi3dN4Q+6bkyc/h7jr9hN2yeeBlHTlpm3b0zDOcerlMbiODpl
-         sZqw==
-X-Gm-Message-State: AOJu0YzoH1X2tZ486XvvDxZhWd3LHab1xpQ4nsWS2pbqQxavd1g/GpCy
-	USZiyFxXC5NYVuM2GP7HrYqX/PQf1KJ8W32a0lVPmg==
-X-Google-Smtp-Source: AGHT+IGSY0KfKzL/8laxx9lvgeIq6kZxzBsZt5dq8iJrSTHyFpS5ghMNwzig2inkSJFiqO0qXFR1oOfDMzboG7t3tJc=
-X-Received: by 2002:a5b:c48:0:b0:d81:cb92:337c with SMTP id
- d8-20020a5b0c48000000b00d81cb92337cmr10601197ybr.54.1695136361868; Tue, 19
- Sep 2023 08:12:41 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C760F3B793;
+	Tue, 19 Sep 2023 15:13:41 +0000 (UTC)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ABC394;
+	Tue, 19 Sep 2023 08:13:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=XYVo0DIlVrsGyb15YB580Gp7jA08wMao19ef99+f2co=; b=51K66dbVjhEQD1mTpJSuIag79U
+	zndzKI2iEruUJ/3n8QYNfH8NLcaB8qykpb/y9TnDc2CPLOIFbcM9gHjvIFzuejWZVJ8GNGgdaspv2
+	xepuIuKyu8Adx9j15wU8aJtu46n9h2wm1I0aXrO2v5nRVxXspBk2+2qESEJcHhctlerk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1qicPn-006vKZ-CJ; Tue, 19 Sep 2023 17:13:27 +0200
+Date: Tue, 19 Sep 2023 17:13:27 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Parthiban.Veerasooran@microchip.com
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	corbet@lwn.net, Steen.Hegelund@microchip.com, rdunlap@infradead.org,
+	horms@kernel.org, casper.casan@gmail.com, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, Horatiu.Vultur@microchip.com,
+	Woojung.Huh@microchip.com, Nicolas.Ferre@microchip.com,
+	UNGLinuxDriver@microchip.com, Thorsten.Kummermehr@microchip.com
+Subject: Re: [RFC PATCH net-next 1/6] net: ethernet: implement OPEN Alliance
+ control transaction interface
+Message-ID: <deff3e64-a10f-4d07-9651-502442a86987@lunn.ch>
+References: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
+ <20230908142919.14849-2-Parthiban.Veerasooran@microchip.com>
+ <f23997c1-7507-41c6-8bb3-47d6a353beb8@lunn.ch>
+ <14c089d7-4d34-9cd5-7f77-55c80815e003@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230918205037.25658-1-quic_nitirawa@quicinc.com> <20230918205037.25658-3-quic_nitirawa@quicinc.com>
-In-Reply-To: <20230918205037.25658-3-quic_nitirawa@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 19 Sep 2023 18:12:30 +0300
-Message-ID: <CAA8EJprAxUhipHS1+BRRVo8o6gubNRJk12msMgOraDjFBo8rVQ@mail.gmail.com>
-Subject: Re: [PATCH V4 2/2] phy: qcom-qmp-ufs: Add Phy Configuration support
- for SC7280
-To: Nitin Rawat <quic_nitirawa@quicinc.com>
-Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, 
-	vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Manish Pandey <quic_mapa@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <14c089d7-4d34-9cd5-7f77-55c80815e003@microchip.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, 18 Sept 2023 at 23:51, Nitin Rawat <quic_nitirawa@quicinc.com> wrote:
->
-> Add SC7280 specific register layout and table configs.
->
-> Co-developed-by: Manish Pandey <quic_mapa@quicinc.com>
-> Signed-off-by: Manish Pandey <quic_mapa@quicinc.com>
-> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+> >> +static void oa_tc6_prepare_ctrl_buf(struct oa_tc6 *tc6, u32 addr, u32 val[],
+> >> +                                 u8 len, bool wnr, u8 *buf, bool ctrl_prot)
+> >> +{
+> >> +     u32 hdr;
+> >> +
+> >> +     /* Prepare the control header with the required details */
+> >> +     hdr = FIELD_PREP(CTRL_HDR_DNC, 0) |
+> >> +           FIELD_PREP(CTRL_HDR_WNR, wnr) |
+> >> +           FIELD_PREP(CTRL_HDR_AID, 0) |
+> >> +           FIELD_PREP(CTRL_HDR_MMS, addr >> 16) |
+> >> +           FIELD_PREP(CTRL_HDR_ADDR, addr) |
+> >> +           FIELD_PREP(CTRL_HDR_LEN, len - 1);
+> >> +     hdr |= FIELD_PREP(CTRL_HDR_P, oa_tc6_get_parity(hdr));
+> >> +     *(u32 *)buf = cpu_to_be32(hdr);
+> >> +
+> >> +     if (wnr) {
+> > 
+> > What does wnr mean? Maybe give it a more meaningful name, unless it is
+> > actually something in the standard. Kerneldoc would also help.
+> Ah, it is "write not read". Shall I name it as "write_not_read" ?
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+You might want to describe the high level concept as well in this
+file. What i _think_ this is about is that SPI is sort of a full
+duplex bus. While you are sending data to the SPI device, the device
+could also be sending a data to the CPU? And 'write not read' here
+means ignore what we receive from the device?
 
--- 
-With best wishes
-Dmitry
+> Ok, as per OA spec, up to 128 consecutive registers read or write can be 
+> possible. So the maximum possible size would be 1032. As you suggested 
+> will allocate this size of memory in the startup.
+
+Yes, 1032 bytes it not huge, so allocate it once and keep it for the
+lifetime of the device.
+
+> >> +void oa_tc6_deinit(struct oa_tc6 *tc6)
+> >> +{
+> >> +     kfree(tc6);
+> >> +}
+> >> +EXPORT_SYMBOL_GPL(oa_tc6_deinit);
+> > 
+> > Maybe consider a devm_ API to make the MAC driver simpler.
+> Sorry I don't get your point. Could you please explain bit more?
+
+At least at this stage in the patch series, all you are doing is
+allocating memory. You add more code later, which might invalidate my
+point. But if all you are doing is allocating memory, you could use
+devm_kmalloc(). The driver core will then take care of releasing the
+memory when the driver is unloaded, or probe fails. That makes cleanup
+simpler and memory leaks less likely. There are a lot of devm_
+helpers, see if you can use them.
+
+	Andrew
 
