@@ -1,329 +1,157 @@
-Return-Path: <devicetree+bounces-1542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DA237A6FA4
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 01:47:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 005CD7A6FB7
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 01:57:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49EBE281629
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 23:47:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 931992815BD
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 23:57:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62C2A38DC5;
-	Tue, 19 Sep 2023 23:47:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58DE038DDD;
+	Tue, 19 Sep 2023 23:57:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A05DE30FA7
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 23:47:23 +0000 (UTC)
-Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 994CFAB
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 16:47:19 -0700 (PDT)
-Received: by mail-il1-x12c.google.com with SMTP id e9e14a558f8ab-34fcc39fae1so53595ab.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 16:47:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1695167239; x=1695772039; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7LJF4TQQlvwx4ojH6z1jq1dM6I4h5d3t3AXqcpM3/xU=;
-        b=f6Rby23axHUdQpgZwRHacrjGldF6HN9WriTSNI3oZdAgmVO9Crz7ImhBlaLf+edNYm
-         TscL4rURR3DhlY8QTNjRGXtQ8D0ghwQSiWmJ0m0VUN+/P55tAm3afT34LtV/AVbHzlgA
-         GEl3ne9U9bbEZ/cf8Br0cWVTfxUA3WbKuE5U0/A99GwZE4St4cuBNGF3Pi8T4R3Buk67
-         vf0NWiVM/2NOjb1klF48/bNiVUq4TNjuepfEmO76IK5zpetk8ZqRp2NtQtbqqQz7taY5
-         JrprMCdazMKG+5ByEHdByis840lXnKkZ7v6Pcz0SDYn15x2aulZzr7YOjxahLXjTaSWh
-         jJYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695167239; x=1695772039;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7LJF4TQQlvwx4ojH6z1jq1dM6I4h5d3t3AXqcpM3/xU=;
-        b=e+eA459PGU8P3J+3igbhYOg58RyJqOiB+FsA12kK94XCjV2gLvSVumcbgM/wNbAxsr
-         WSo598W2SzKKdhp2hE1/3/Tdctcf6ZOto5DFpEC10Z+aIXB2dUWVXM54egLMdJ7rPKsu
-         TsTfjdy8+MmUNaPbscBeshRwOCGyzKEvGgdhRZK0EJIwZJsMzIWNbAhUyzHYZpqlkUkY
-         ZO2o/HF6yjiCOIGFeZBf7Rdj1c4VSe3rUV4cbOROUNP1Cgtcgrj6R1+3ceWyYZbjD8LY
-         89U9deMfb8PrT806eCwxJZIiB4TC02rPGSd2fGZdeKS8lwEuiozp5GEG5Lywe1jJj+Q+
-         q6jA==
-X-Gm-Message-State: AOJu0Yzo0UARL3vt/ZLAOa3FaCLO4PxEqAuqFkZILCxidKyaG16H3RT1
-	wykYm1l2HXi/gejuxdVFB6a5sdSeqOLs2c1nBvTG
-X-Google-Smtp-Source: AGHT+IGd+oxQSxw85Bd0zjhKfrnCmqrGPjS7bL32Al57eH/zbnuOVcqZXrWXgoYT+h6WDLt9al1FrU7dkwKZqspXE6Q=
-X-Received: by 2002:a05:6e02:1c4b:b0:349:2d91:e1a2 with SMTP id
- d11-20020a056e021c4b00b003492d91e1a2mr60657ilg.5.1695167238808; Tue, 19 Sep
- 2023 16:47:18 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC57830FA7
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 23:57:21 +0000 (UTC)
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2112.outbound.protection.outlook.com [40.107.113.112])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7911095;
+	Tue, 19 Sep 2023 16:57:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gDKCa56J34Y4KwwBvvabveZfbaccPb+l6J/4BCHLwJL4KkFvnBkgTRRBz7ueU03bRoQJOzRuV5lNIsUMcAa40hnzHEfn4RmN29iVm8YEtms+fG2JyCOuw6Mb0yyv+gv2GKsbQlGPM7N0NjTZspnHPDMjfKkfRdNAtlLytstHkt4F4BvYqg3QPs39JtcdLhlug1FokgVZlSh3wtAkeFjmTdONHXKEDdmMbWAvbWeMM9MD6EjK8z18MW7iRfGn1kpA5ymbT4dgXVEMilmz5cKNYl7bRM5TxapsQCieNs5MT0bZyjKZyIMrv/f2/R8Xz9Yo6xySY8r9BJTshel4kH79/w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wmU441Kj8sCAwn/cyIlUMCtYMcKdGyQMJXeFCjgnCC4=;
+ b=TusJZKRNCbhvd9G+xeU0Q0YvEC+RzRbwe2c+F8UABDXVkriFojlNIJKGGm2XJ+ecU8ly36MxvFKZ+tsZYZrrCsg2OiHcV54FefXiQMsNqbGQnzPt4bnlY4lZILHaS+FIWMM1sNCDBzeAAKCJNb4naM5CIPYY3ofwU8xOPEh9yKVNNlxEFy16mSgR46o+oT0kiHibeZvyAMHgMz1+WxdGGtWhj8n0pUHlPY+RnUdBjUbpenGJ0ABEM5Q7JYWtXYcj4wZPQrHw6Jd11bEo9vuzO5aXVICY2g1c9LaWSPHBw+IGMjSvdawurWyEguk6Dku4iIbfvMNLcV8c6Z05AEsP/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wmU441Kj8sCAwn/cyIlUMCtYMcKdGyQMJXeFCjgnCC4=;
+ b=C9y+mNLSAdbGrx99MY1t1MrBNm2dV+pz8I4q7vhHu0Zkj0sCNuQ/Xpo+gcEFWeIznK4zwZ4U/8GPn3TCd5cb5p/9JLRpYORRJUx54Xo5Zib1jZCwPZ/fyq4TEw9AiN9ouhmRWpSbpixajX2kOTkf4TuQ4zSJdaiLKqzpPMvmt4o=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com (2603:1096:604:194::10)
+ by TY3PR01MB10534.jpnprd01.prod.outlook.com (2603:1096:400:316::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.28; Tue, 19 Sep
+ 2023 23:57:14 +0000
+Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com
+ ([fe80::8c08:d94c:8e54:9b5d]) by OS3PR01MB8426.jpnprd01.prod.outlook.com
+ ([fe80::8c08:d94c:8e54:9b5d%6]) with mapi id 15.20.6813.018; Tue, 19 Sep 2023
+ 23:57:14 +0000
+Message-ID: <87r0mtyawc.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: renesas: use multi Component for ULCB/KF
+In-Reply-To: <CAMuHMdVZYqfzVxockGmCjBW6dZNs-b2WyYMwLbGhAsL9iXK1ZQ@mail.gmail.com>
+References: <CAMuHMdW_d_juuo01gbD81aHJ=bs8k3jXeiP7kkOzQDVxHcbzoQ@mail.gmail.com>
+	<87y1h36k35.wl-kuninori.morimoto.gx@renesas.com>
+	<CAMuHMdVZYqfzVxockGmCjBW6dZNs-b2WyYMwLbGhAsL9iXK1ZQ@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Tue, 19 Sep 2023 23:57:13 +0000
+X-ClientProxiedBy: TYWP286CA0019.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:262::6) To OS3PR01MB8426.jpnprd01.prod.outlook.com
+ (2603:1096:604:194::10)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230911125936.10648-1-yunfei.dong@mediatek.com>
- <20230911125936.10648-12-yunfei.dong@mediatek.com> <d02953725e7ae17e75bff235acfd30327d0fe9ac.camel@collabora.com>
- <CA+ddPcOFksu6JzXZf0QOFeRDAyX=m0k+t8zwg2DbVmAkweobyg@mail.gmail.com> <1d19be1f21d579b529231882d761554d758db5b4.camel@collabora.com>
-In-Reply-To: <1d19be1f21d579b529231882d761554d758db5b4.camel@collabora.com>
-From: Jeffrey Kardatzke <jkardatzke@google.com>
-Date: Tue, 19 Sep 2023 16:47:03 -0700
-Message-ID: <CA+ddPcNSa_nW8Gtjck6bdWKHwN6OoASwwEYadR_9Z7eg=Su2rA@mail.gmail.com>
-Subject: Re: [PATCH 11/14] media: medkatek: vcodec: covert secure fd to secure handle
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-Cc: Yunfei Dong <yunfei.dong@mediatek.com>, 
-	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>, 
-	Chen-Yu Tsai <wenst@chromium.org>, Hsin-Yi Wang <hsinyi@chromium.org>, 
-	Fritz Koenig <frkoenig@chromium.org>, Daniel Vetter <daniel@ffwll.ch>, 
-	Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-	USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OS3PR01MB8426:EE_|TY3PR01MB10534:EE_
+X-MS-Office365-Filtering-Correlation-Id: a1174419-e6e6-47b1-0ff4-08dbb96c2591
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	vd+WoQjAuOJQ63P5NJmespN3sqx3YnoRWJelVVEojdpmsO+7eg1tXk0W4j+bDNj2E7jtVnE/TvfyntJhPhXLT9H0fW8eDSwgu50fo/sRYSeorwok+eWbG1BNlxxolvPEC9w2q8pcMT116OnhSbwCmoPXIsEUAZaWXL7rbs2Frf0w5O/nGWml7Rbe6AKcQvfjULqRK4sLs2OcNnOOmbN3y2A+i7qOc1WO71HzXcRhvwMeuO3xB40Rtj1PRhCDuIBzrP7Sc5d+eLn2HcOOGFQL2UJ60oA1mCEko+jDJ9LxfEf3TpSN4jafD/asiGHqdgW79POuY8yDtEcEqOuMqUOJDRz2S3gF0iO3/ddsxyGYZqsnM90bbLQhW6lUo6aLdHDsjdVHnxznOwY4GZ0OkWC2SldVu6p9I0vXhUnNb3dohR55Lm/9LzQJCUBl094R2iLEov6g4DJ8MV6KKF7LoXNqR9zfcOrIU0+25vn9TAjD+bCsG9krPy6mOAvCFpxnjtzqbXP9xBWDEqX7yTrrVLBIw43RiaJn59r/HFl2bfwMMk/Fg/qWNZK04JThwv1Pbt3r3RNkI2k1aSnyLSygxIuATiSg1kvnLjVMePMi4LdT1CjlzphnqCv/y1D0lHSZUbsr
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB8426.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(39860400002)(366004)(346002)(136003)(376002)(186009)(1800799009)(451199024)(6486002)(52116002)(6506007)(6512007)(478600001)(83380400001)(2616005)(26005)(2906002)(4744005)(66556008)(316002)(66946007)(54906003)(66476007)(4326008)(5660300002)(8676002)(8936002)(41300700001)(6916009)(86362001)(36756003)(38100700002)(38350700002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?gbY5WJk+T6ce7+r6Vwomo0lVzwL5TOB410i6omfjyBK9HdWGFtOZDf7ysODb?=
+ =?us-ascii?Q?/Q1bEOGQ7PJ0QhWy1NA+OZOQqYbN7cXakYt7e19FddpCi2L2P0dsKzUoYjXO?=
+ =?us-ascii?Q?0VtnID12U4gKpaWYzyHoMiFu2XaTqL6iFajEb0Wv7445mvsDlobcbtQQEYhT?=
+ =?us-ascii?Q?tYbNmD8vhUya4XEXINZKHtmw0JIxY5QX4P1j1kdHGD7iveZTZtaWbLZv0AuX?=
+ =?us-ascii?Q?ofsZadocTYA3NWQ7bCcCif4A5PYtwc+KHfjF4/beLyn1T3x/oQNA3Yy097Dx?=
+ =?us-ascii?Q?vlRUpvdq33LUDtE+/EfSyUQ8q5jNDlQtZI79xWjcaN2gL49UHYq4u9McpB9R?=
+ =?us-ascii?Q?QDKqOFZg4vfr5SHkuu1r/QiPe+jeYHJqP/+hY5Uyx7zmtBPnkt2Tq3pWgXnl?=
+ =?us-ascii?Q?ez7fjWPhuvXFtN21HUuM/yIj4zPVYtUYhO43sn/bppR8RGnkYUNDYGf3fdbC?=
+ =?us-ascii?Q?5qeL1n1TWxbNHNznpnCWceM9tZdJNluKvkMgvmVoRPg1mb0PZJBNxB++O4ga?=
+ =?us-ascii?Q?EjuMuf+Jz6KdRZb5xCJJ8b9YV0xQZ7fRx41LDIETOUIn3wNLhW6CCND6U3J5?=
+ =?us-ascii?Q?1AttpIJpK/KZC212cZjfR9fz7+w23SLslh8S1ujbRITfTMz6P89ZBKhPd+8l?=
+ =?us-ascii?Q?tx4g5ruhRmEb2NWsDn/6966qlnlCIWbdS+X/yMW3Ab+R1S4aW3v/spFgZoNo?=
+ =?us-ascii?Q?hCGBXrjR7eGnqg7P8z1E0pdeePCxm7XqU6H+TOT9QmPeyiZDWSMXOyXECTKI?=
+ =?us-ascii?Q?s/jBcupY+U9NgqpivluvrKXFjzudbgQWNMCreGQxKEP8ODdycnEyqOfVeJTn?=
+ =?us-ascii?Q?h0dgeFLUqZrk6rbcJo0t3Z+3m4BDnK/ZOOVC+O7DhxfBvmorQlzVeqJg+nUL?=
+ =?us-ascii?Q?0czR6KjnyaRIMlboHr03oxsCZP6lGc3pYRcM8DQrV0JESQTXtNskiPddygTb?=
+ =?us-ascii?Q?KY59TQWIsSgEGDNkz83hnmcGaUSd35qk5njsD9S0r3ovS898tbse2QmwXv+w?=
+ =?us-ascii?Q?8McVld5l3sB4+9rBoqL/myNTF0ECod4fsrj2cramHVRU4ZhiVDI7ZrA0LqGW?=
+ =?us-ascii?Q?ONdW2/1CvIaadaNucAPdAaGqAQZfylXgmM133y/fRksE0+AYUBfGAqj3u1mZ?=
+ =?us-ascii?Q?iqHyUpJs2389b08/f2MmTfVdNymyMfx8rjcJZlZYA3nfdPPWEBT5XiX9qck8?=
+ =?us-ascii?Q?graGMsM8rKOVyMBQn8hzRoTEzUiEGuyeh8cupLbwNYnl29bYUIWviy7M8LsZ?=
+ =?us-ascii?Q?ZTd4KJHw0Yt65Ur4JHkRK/Dk8hLC5wtesm6+yHgNe8hXYSekgT/B9tM/HheP?=
+ =?us-ascii?Q?qkaonjWueYovNR/SYcVo64KuUwh/pbln/dHtW/3ChNkDgXCgfvaruAzY6oc5?=
+ =?us-ascii?Q?Hy+JtJTAeVHzFVFz/uZM/rdDALJyjo6yhS63v1vlCPcaZVOmNss19UGYfeoY?=
+ =?us-ascii?Q?NjcILFHqf5XxBsr2ueO08JXbckk8KY4zrVd0DoM5sesbDfcREsBwxomO2msK?=
+ =?us-ascii?Q?FdNfelFWgkUtEeQHDUTa5j6YWIis+pc6ePDRaSLaOxjrdB7YtEI1rJGkzGGK?=
+ =?us-ascii?Q?MApsGqeryDRWzL47aYvNgk+WvLloibNTEK//IMfWsHN3MqyonRIF83dbA78V?=
+ =?us-ascii?Q?aUKZBMZaagwub+6bC2q9NlM=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a1174419-e6e6-47b1-0ff4-08dbb96c2591
+X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB8426.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2023 23:57:14.2459
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hCpaHzEGN6oMetxm+UMju1Qbz4+ZHZz1IFRigrDj3cVVboY7+FhtdIJqqtUh5iwaqECO8iahtogxAsKYpEKeH9Qa6Z7AxdgEAOWP2YVvMMybuIyZ2t/vX9Jzsu3qRnho
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY3PR01MB10534
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-I do agree having a cleaner mechanism for this is better. So ideally
-this control is dropped from v4l2 and it becomes another ioctl in
-dma-heap instead so there's a uAPI for it. Then for the driver usages
-of sg_dma_address to get secure handles, those could be converted into
-dma-buf heap kernel APIs so they're not trying to reuse the dma_addr.
 
-On Tue, Sep 19, 2023 at 4:03=E2=80=AFPM Nicolas Dufresne
-<nicolas.dufresne@collabora.com> wrote:
->
-> Le mardi 19 septembre 2023 =C3=A0 15:38 -0700, Jeffrey Kardatzke a =C3=A9=
-crit :
-> > On Tue, Sep 19, 2023 at 12:43=E2=80=AFPM Nicolas Dufresne
-> > <nicolas.dufresne@collabora.com> wrote:
-> > >
-> > > Le lundi 11 septembre 2023 =C3=A0 20:59 +0800, Yunfei Dong a =C3=A9cr=
-it :
-> > > > User driver will fill or parse data in optee-os with secure handle,
-> > > > need to covert secure fd to secure handle in kernel.
-> > > >
-> > > > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> > > > ---
-> > > >  .../vcodec/decoder/mtk_vcodec_dec_drv.c       |  1 +
-> > > >  .../vcodec/decoder/mtk_vcodec_dec_stateless.c | 54 +++++++++++++++=
-+++-
-> > > >  drivers/media/v4l2-core/v4l2-ctrls-defs.c     |  5 ++
-> > > >  include/uapi/linux/v4l2-controls.h            |  4 ++
-> > > >  4 files changed, 62 insertions(+), 2 deletions(-)
-> > > >
-> > > > diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vco=
-dec_dec_drv.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_d=
-ec_drv.c
-> > > > index 0a89ce452ac3..64e006820f43 100644
-> > > > --- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec=
-_drv.c
-> > > > +++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec=
-_drv.c
-> > > > @@ -571,3 +571,4 @@ module_platform_driver(mtk_vcodec_dec_driver);
-> > > >
-> > > >  MODULE_LICENSE("GPL v2");
-> > > >  MODULE_DESCRIPTION("Mediatek video codec V4L2 decoder driver");
-> > > > +MODULE_IMPORT_NS(DMA_BUF);
-> > > > diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vco=
-dec_dec_stateless.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vc=
-odec_dec_stateless.c
-> > > > index 2ea517883a86..d2b09ce9f1cf 100644
-> > > > --- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec=
-_stateless.c
-> > > > +++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec=
-_stateless.c
-> > > > @@ -426,6 +426,46 @@ static int mtk_vcodec_get_pic_info(struct mtk_=
-vcodec_dec_ctx *ctx)
-> > > >       return ret;
-> > > >  }
-> > > >
-> > > > +static int mtk_dma_contig_get_secure_handle(struct mtk_vcodec_dec_=
-ctx *ctx, int fd)
-> > > > +{
-> > > > +     int secure_handle =3D 0;
-> > > > +     struct dma_buf *buf;
-> > > > +     struct dma_buf_attachment *dba;
-> > > > +     struct sg_table *sgt;
-> > > > +     struct device *dev =3D &ctx->dev->plat_dev->dev;
-> > > > +
-> > > > +     buf =3D dma_buf_get(fd);
-> > > > +     if (IS_ERR(buf)) {
-> > > > +             mtk_v4l2_vdec_err(ctx, "dma_buf_get fail fd:%d", fd);
-> > > > +             return 0;
-> > > > +     }
-> > > > +
-> > > > +     dba =3D dma_buf_attach(buf, dev);
-> > > > +     if (IS_ERR(dba)) {
-> > > > +             mtk_v4l2_vdec_err(ctx, "dma_buf_attach fail fd:%d", f=
-d);
-> > > > +             goto err_attach;
-> > > > +     }
-> > > > +
-> > > > +     sgt =3D dma_buf_map_attachment(dba, DMA_BIDIRECTIONAL);
-> > > > +     if (IS_ERR(sgt)) {
-> > > > +             mtk_v4l2_vdec_err(ctx, "dma_buf_map_attachment fail f=
-d:%d", fd);
-> > > > +             goto err_map;
-> > > > +     }
-> > > > +     secure_handle =3D sg_dma_address(sgt->sgl);
-> > >
-> > > Does it mean if your secure dmabuf is passed to a driver that didn't =
-know it was
-> > > secure it will pick the handle as a memory address and program the HW=
- with it ?
-> > > That seems unsafe, the handle should be stored in a dedicated place a=
-nd mapping
-> > > should either fail, or provide a dummy buffer.
-> >
-> > Since the secure dmabufs don't support any mmap/cpu access to them and
-> > return -EPERM in those cases; wouldn't that prevent misuse of them in
-> > other places? (so the mmap operation and CPU access will fail, but
-> > getting the SG list from the dmabuf succeeds)
->
-> My impression is that if userspace can pass this FD to a driver without t=
-elling
-> the driver it is secure memory, the driver may potentially crash trying t=
-o use
-> the handle as an memory address.
->
-> In my opinion, sg_dma_address() should return addresses, like its name st=
-ate. If
-> you want to get something else, you should find another way to obtain it.
->
-> Nicolas
->
-> >
-> > >
-> > > > +
-> > > > +     dma_buf_unmap_attachment(dba, sgt, DMA_BIDIRECTIONAL);
-> > > > +     dma_buf_detach(buf, dba);
-> > > > +     dma_buf_put(buf);
-> > > > +
-> > > > +     return secure_handle;
-> > > > +err_map:
-> > > > +     dma_buf_detach(buf, dba);
-> > > > +err_attach:
-> > > > +     dma_buf_put(buf);
-> > > > +
-> > > > +     return 0;
-> > > > +}
-> > > > +
-> > > >  static int mtk_vdec_s_ctrl(struct v4l2_ctrl *ctrl)
-> > > >  {
-> > > >       struct mtk_vcodec_dec_ctx *ctx =3D ctrl_to_dec_ctx(ctrl);
-> > > > @@ -436,7 +476,7 @@ static int mtk_vdec_s_ctrl(struct v4l2_ctrl *ct=
-rl)
-> > > >       struct v4l2_ctrl *hdr_ctrl;
-> > > >       const struct mtk_vcodec_dec_pdata *dec_pdata =3D ctx->dev->vd=
-ec_pdata;
-> > > >       const struct mtk_video_fmt *fmt;
-> > > > -     int i =3D 0, ret =3D 0;
-> > > > +     int i =3D 0, ret =3D 0, sec_fd;
-> > > >
-> > > >       hdr_ctrl =3D ctrl;
-> > > >       if (!hdr_ctrl || !hdr_ctrl->p_new.p)
-> > > > @@ -489,6 +529,12 @@ static int mtk_vdec_s_ctrl(struct v4l2_ctrl *c=
-trl)
-> > > >                       return -EINVAL;
-> > > >               }
-> > > >               break;
-> > > > +     case V4L2_CID_MPEG_MTK_GET_SECURE_HANDLE:
-> > > > +             sec_fd =3D ctrl->val;
-> > > > +
-> > > > +             ctrl->val =3D mtk_dma_contig_get_secure_handle(ctx, c=
-trl->val);
-> > > > +             mtk_v4l2_vdec_dbg(3, ctx, "get secure handle: %d =3D>=
- 0x%x", sec_fd, ctrl->val);
-> > > > +             break;
-> > > >       default:
-> > > >               mtk_v4l2_vdec_dbg(3, ctx, "Not supported to set ctrl =
-id: 0x%x\n", hdr_ctrl->id);
-> > > >               return ret;
-> > > > @@ -525,8 +571,9 @@ static const struct v4l2_ctrl_ops mtk_vcodec_de=
-c_ctrl_ops =3D {
-> > > >  static int mtk_vcodec_dec_ctrls_setup(struct mtk_vcodec_dec_ctx *c=
-tx)
-> > > >  {
-> > > >       unsigned int i;
-> > > > +     struct v4l2_ctrl *ctrl;
-> > > >
-> > > > -     v4l2_ctrl_handler_init(&ctx->ctrl_hdl, NUM_CTRLS);
-> > > > +     v4l2_ctrl_handler_init(&ctx->ctrl_hdl, NUM_CTRLS + 1);
-> > > >       if (ctx->ctrl_hdl.error) {
-> > > >               mtk_v4l2_vdec_err(ctx, "v4l2_ctrl_handler_init failed=
-\n");
-> > > >               return ctx->ctrl_hdl.error;
-> > > > @@ -543,6 +590,9 @@ static int mtk_vcodec_dec_ctrls_setup(struct mt=
-k_vcodec_dec_ctx *ctx)
-> > > >               }
-> > > >       }
-> > > >
-> > > > +     ctrl =3D v4l2_ctrl_new_std(&ctx->ctrl_hdl, &mtk_vcodec_dec_ct=
-rl_ops,
-> > > > +                              V4L2_CID_MPEG_MTK_GET_SECURE_HANDLE,=
- 0, 65535, 1, 0);
-> > > > +
-> > > >       v4l2_ctrl_handler_setup(&ctx->ctrl_hdl);
-> > > >
-> > > >       return 0;
-> > > > diff --git a/drivers/media/v4l2-core/v4l2-ctrls-defs.c b/drivers/me=
-dia/v4l2-core/v4l2-ctrls-defs.c
-> > > > index 8696eb1cdd61..d8cf01f76aab 100644
-> > > > --- a/drivers/media/v4l2-core/v4l2-ctrls-defs.c
-> > > > +++ b/drivers/media/v4l2-core/v4l2-ctrls-defs.c
-> > > > @@ -1041,6 +1041,7 @@ const char *v4l2_ctrl_get_name(u32 id)
-> > > >       case V4L2_CID_MPEG_VIDEO_HEVC_SIZE_OF_LENGTH_FIELD:     retur=
-n "HEVC Size of Length Field";
-> > > >       case V4L2_CID_MPEG_VIDEO_REF_NUMBER_FOR_PFRAMES:        retur=
-n "Reference Frames for a P-Frame";
-> > > >       case V4L2_CID_MPEG_VIDEO_PREPEND_SPSPPS_TO_IDR:         retur=
-n "Prepend SPS and PPS to IDR";
-> > > > +     case V4L2_CID_MPEG_MTK_GET_SECURE_HANDLE:               retur=
-n "MediaTek Decoder get secure handle";
-> > > >
-> > > >       /* AV1 controls */
-> > > >       case V4L2_CID_MPEG_VIDEO_AV1_PROFILE:                   retur=
-n "AV1 Profile";
-> > > > @@ -1437,6 +1438,10 @@ void v4l2_ctrl_fill(u32 id, const char **nam=
-e, enum v4l2_ctrl_type *type,
-> > > >       case V4L2_CID_MPEG_VIDEO_VPX_NUM_REF_FRAMES:
-> > > >               *type =3D V4L2_CTRL_TYPE_INTEGER_MENU;
-> > > >               break;
-> > > > +     case V4L2_CID_MPEG_MTK_GET_SECURE_HANDLE:
-> > > > +             *type =3D V4L2_CTRL_TYPE_INTEGER;
-> > > > +             *flags |=3D V4L2_CTRL_FLAG_WRITE_ONLY;
-> > > > +             break;
-> > > >       case V4L2_CID_USER_CLASS:
-> > > >       case V4L2_CID_CAMERA_CLASS:
-> > > >       case V4L2_CID_CODEC_CLASS:
-> > > > diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linu=
-x/v4l2-controls.h
-> > > > index c3604a0a3e30..7b3694985366 100644
-> > > > --- a/include/uapi/linux/v4l2-controls.h
-> > > > +++ b/include/uapi/linux/v4l2-controls.h
-> > > > @@ -954,6 +954,10 @@ enum v4l2_mpeg_mfc51_video_force_frame_type {
-> > > >  #define V4L2_CID_MPEG_MFC51_VIDEO_H264_ADAPTIVE_RC_STATIC         =
-   (V4L2_CID_CODEC_MFC51_BASE+53)
-> > > >  #define V4L2_CID_MPEG_MFC51_VIDEO_H264_NUM_REF_PIC_FOR_P          =
-   (V4L2_CID_CODEC_MFC51_BASE+54)
-> > > >
-> > > > +/*  MPEG-class control IDs specific to the MediaTek Decoder driver=
- as defined by V4L2 */
-> > > > +#define V4L2_CID_MPEG_MTK_BASE                       (V4L2_CTRL_CL=
-ASS_CODEC | 0x2000)
-> > > > +#define V4L2_CID_MPEG_MTK_GET_SECURE_HANDLE  (V4L2_CID_MPEG_MTK_BA=
-SE+8)
-> > > > +
-> > > >  /*  Camera class control IDs */
-> > > >
-> > > >  #define V4L2_CID_CAMERA_CLASS_BASE   (V4L2_CTRL_CLASS_CAMERA | 0x9=
-00)
-> > >
->
+Hi Geert
+
+> I think you misunderstood: ulcb-kf-audio-graph-card-mix+split.dtsi
+> is the only file that has "ports@1", but does not have the corresponding
+> "#address-cells = <1>;" and "#size-cells = <0>;" right before it.
+
+Oh, I see. Thank you for pointing it !
+
+> Can't you use "ports@0" instead of "ports" in the base DTS?
+> When there can be multiple subnodes, we usually use unit addresses
+> for all of them.
+
+Hmm... I could do it...
+(I don't remember detail, but I got some warning when I did it before...)
+
+I will post v2 patch.
+
+
+Thank you for your help !!
+
+Best regards
+---
+Kuninori Morimoto
 
