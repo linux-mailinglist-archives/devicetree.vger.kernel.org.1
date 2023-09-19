@@ -1,143 +1,119 @@
-Return-Path: <devicetree+bounces-1218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 018D87A5689
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 02:23:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 392727A56DD
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 03:14:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADD652819B8
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 00:23:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DDFFB281741
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 01:14:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74370A3B;
-	Tue, 19 Sep 2023 00:23:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B52DC15BA;
+	Tue, 19 Sep 2023 01:14:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17E7E180;
-	Tue, 19 Sep 2023 00:23:48 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05C6C107;
-	Mon, 18 Sep 2023 17:23:45 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38INSgM7019894;
-	Tue, 19 Sep 2023 00:23:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=ZzAyxflayBdGB5NOfX/tkFpQl2JCuDSFOECx7lyWW4w=;
- b=hLuqgdvLPsiVtXcgftB/4FfYgoInPmmD2++eoGa0tCWFhUg+QJSixCv4nEb4WIPOTyu2
- IElYIgXhGufTorMRnwuJlMLGY/UZ832/zaGSaZoa17feqRCjq7FD7O8K9qp6pu2c6yt1
- uX+HoTq9w+l2OVjbsciJITOFqMcBK3I0Uu2Z4aiy93Z9wilmqiaJk+XPli2vi2h2+O30
- UdK/Qs9Pu+e6sKrRd/gK+rWw7EpM9TRwl+1Q68Y2rn6KvvfS0v5/pGcmZZ3ya73SJOuy
- /SDBeyN5wmcjYKmXcUGrqUO2JpQ6bPIdsKtjuXrIkXjQvGaMmuXT2zAVSGJ1Lng3GS9H xQ== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t53ybc9f6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Sep 2023 00:23:22 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38J0NLYE009462
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Sep 2023 00:23:21 GMT
-Received: from [10.110.39.29] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Mon, 18 Sep
- 2023 17:23:20 -0700
-Message-ID: <f77aa92d-b71c-b6f7-bce2-35fa0c3011c0@quicinc.com>
-Date: Mon, 18 Sep 2023 17:23:16 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55A0D163
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 01:14:24 +0000 (UTC)
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70D48107
+	for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 18:14:22 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-530ea522f5eso2363626a12.3
+        for <devicetree@vger.kernel.org>; Mon, 18 Sep 2023 18:14:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695086061; x=1695690861; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=WA9SbgZBS2d7r+giDCDiM8qHprOh9fflcSF1kPyE+mg=;
+        b=pswLHVvlgTZ1IqDTrGOFKJiR7w6FPdj0K/ABHP+vyyrdQwBJS/hJIDYWW9RSzVzww+
+         AXsUAsEmOtBoEYZ/dC2Nb2c1FpTja42VSHwSae+UniBCQtVOnqTxquktI2pqh+tPiNdq
+         mA/TXnqVqigK65u83uFk1LAjNVLT2nW7pz+Iwmzpvl0l4KM67uf8daOmTfo0/bjqHg0K
+         /D0orZRZt1LFxhb1sblDPRolPPMrTlSHP1Egstww/6sMnZF0FcaBEivcj7UteHO3pJG9
+         F0UtJ6g1VYjVzF9e/hMIX5gSpT3T/DVY1mOW9oLYJXWiur03bIJ9lQisesGQ7j9qm3me
+         I+Cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695086061; x=1695690861;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WA9SbgZBS2d7r+giDCDiM8qHprOh9fflcSF1kPyE+mg=;
+        b=rI0Ab4QlrLOnYR5zVLYfizLyGmnYpf6ToxFE+68hqCHk6JAjthWdl0xLpIo/nND3Ke
+         iRPuGX5Xwjq28ZEaURuCdRa/2tr7uXc9uNeSk+V62+SZZE7B9z6xyABcAuoQBAifHX3X
+         fdt+VxZ8RMCx5Aoa8aN+lHyjl+tHVqi3KEgLLZmRaWGypMCtVwo5OHyp0dQfHJjN69SW
+         6J0BnQ67ULgXgw4q+r3UiX6LMibAKrSRlZ4CTchoBiTZgC7ssMqOGBXMwZ3fG6lrGGW7
+         oYiVKq6hb+OYPsJIEqRTjI4E5lmIq7KG/sfUISBpHJ+zYpJP0hMZxlpsm2Yqyj4UDwf7
+         oYTQ==
+X-Gm-Message-State: AOJu0YwB2KS31y5K8S02OvzeEfJJEA3Q/Wh2ktNxYgQxORtviBZvrWle
+	XRvTZON3tzP1Xl74n8lzyF/BfQ==
+X-Google-Smtp-Source: AGHT+IFc4395RdOi+9dnmD35OMMHJNoIlb+eoF7osT1BHi2cs5ABN5XhkVj3C/6cd39Dibx5sALVhw==
+X-Received: by 2002:a17:907:2c64:b0:9a2:139:f45d with SMTP id ib4-20020a1709072c6400b009a20139f45dmr8175665ejc.43.1695086060930;
+        Mon, 18 Sep 2023 18:14:20 -0700 (PDT)
+Received: from p14s (static-212-193-78-212.thenetworkfactory.nl. [212.78.193.212])
+        by smtp.gmail.com with ESMTPSA id z10-20020a170906714a00b00991e2b5a27dsm6987169ejj.37.2023.09.18.18.14.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Sep 2023 18:14:20 -0700 (PDT)
+Date: Mon, 18 Sep 2023 19:14:17 -0600
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Laura Nao <laura.nao@collabora.com>
+Cc: Project_Global_Chrome_Upstream_Group@mediatek.com, andersson@kernel.org,
+	angelogioacchino.delregno@collabora.com, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-remoteproc@vger.kernel.org, matthias.bgg@gmail.com,
+	robh+dt@kernel.org, tinghan.shen@mediatek.com, kernel@collabora.com
+Subject: Re: [PATCH v17 00/14] Add support for MT8195 SCP 2nd core
+Message-ID: <ZQj16b1NvkDlij+H@p14s>
+References: <ZQH2dG+l/dONUsyi@p14s>
+ <20230918103141.126271-1-laura.nao@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v6 13/33] dt-bindings: usb: dwc3: Add
- snps,num-hc-interrupters definition
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-CC: Konrad Dybcio <konrad.dybcio@linaro.org>, <mathias.nyman@intel.com>,
-        <gregkh@linuxfoundation.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <perex@perex.cz>, <tiwai@suse.com>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <srinivas.kandagatla@linaro.org>, <bgoswami@quicinc.com>,
-        <Thinh.Nguyen@synopsys.com>, <linux-kernel@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20230916001026.315-1-quic_wcheng@quicinc.com>
- <20230916001026.315-14-quic_wcheng@quicinc.com>
- <6e66d821-1275-4830-a898-bb82c333dcc5@linaro.org>
- <ef3731af-5b58-3dcb-9a6f-7e8755a13895@quicinc.com>
- <20230918201919.GA1694628-robh@kernel.org>
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <20230918201919.GA1694628-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9MWiJGmzLM4Bj6yRSS5de11vRTYHJIHr
-X-Proofpoint-ORIG-GUID: 9MWiJGmzLM4Bj6yRSS5de11vRTYHJIHr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-18_11,2023-09-18_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
- suspectscore=0 adultscore=0 phishscore=0 clxscore=1015 bulkscore=0
- impostorscore=0 malwarescore=0 priorityscore=1501 mlxlogscore=599
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309190001
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230918103141.126271-1-laura.nao@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Rob,
-
-On 9/18/2023 1:19 PM, Rob Herring wrote:
-> On Fri, Sep 15, 2023 at 05:43:45PM -0700, Wesley Cheng wrote:
->> Hi Konrad,
->>
->> On 9/15/2023 5:35 PM, Konrad Dybcio wrote:
->>> On 16.09.2023 02:10, Wesley Cheng wrote:
->>>> Add a new definition for specifying how many XHCI secondary interrupters
->>>> can be allocated.  XHCI in general can potentially support up to 1024
->>>> interrupters, which some uses may want to limit depending on how many
->>>> users utilize the interrupters.
->>>>
->>>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
->>>> ---
->>> Any reason for a DWC3-specific property? Why not just
->>> use the XHCI-common one from patch 14 and error out if
->>> a value of more than 8 is found?
->>>
+On Mon, Sep 18, 2023 at 12:31:41PM +0200, Laura Nao wrote:
+> > Other than patch 2 and 14, I have applied this set.  The remaining patches will
+> > have to be resent to Matthias.
 > 
-> I'm pretty sure I said use the common one already...
+> > Thanks,
+> > Mathieu
 > 
-
-Yes, you mentioned that in the last rev.
-
->>
->> Not every XHCI plat user is going to be DWC3.  In case DWC3 is used, the
->> DWC3 host driver is the one that populates and adds the XHCI plat device (no
->> separate device node for XHCI), so that requires the DWC3 host to also
->> populate properties for the XHCI device. (dwc3_host_init())
+> Hello,
 > 
-> This binding references usb-xhci.yaml already, so any property from
-> there is allowed. Linux needs to handle that regardless of what the
-> driver structure/division looks like.
+> With patch 2 missing, the SCP is not probed correctly anymore on asurada (MT8192) and kukui (MT8183). The mtk-scp driver relies on the existence of the `cros-ec-rpmsg` node in the dt to determine if the SCP is single or multicore. Without patch 2 the driver wrongly assumes the SCP on MT8192 and MT8183 are multicore, leading to the following errors during initialization:   
 > 
+> 10696 04:33:59.126671  <3>[   15.465714] platform 10500000.scp:cros-ec: invalid resource (null)
+> 10697 04:33:59.142855  <3>[   15.478560] platform 10500000.scp:cros-ec: Failed to parse and map sram memory
+> 10698 04:33:59.149650  <3>[   15.486121] mtk-scp 10500000.scp: Failed to initialize core 0 rproc
+> 
+> The issue was caught by KernelCI, complete logs can be found here:
+> - asurada: https://storage.kernelci.org/next/master/next-20230914/arm64/defconfig+arm64-chromebook+videodec/gcc-10/lab-collabora/baseline-nfs-mt8192-asurada-spherion-r0.html
+> - kukui: https://storage.kernelci.org/next/master/next-20230914/arm64/defconfig+arm64-chromebook+videodec/gcc-10/lab-collabora/baseline-nfs-mt8183-kukui-jacuzzi-juniper-sku16.html
+> 
+> Reporting the issue so that patch 2 and 14 can be resent and merged soon.
+>
 
-Ok, understood.  I will remove the need to have another DWC3 property 
-and just use the XHCI one directly.  Checks are already in place in the 
-DWC3 parser to limit the interrupters if it exceeds 8.
+Apologies for the trouble here, the error is mine.
 
-Thanks
-Wesley Cheng
+I have applied and pushed patch 02 - please confirm that things are working as
+expected now.  Matthias will need to either ack patch 14 or pick it up himself.
+
+
+> Best,
+> 
+> Laura
+> 
 
