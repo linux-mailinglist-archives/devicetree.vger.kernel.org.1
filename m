@@ -1,90 +1,92 @@
-Return-Path: <devicetree+bounces-1446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED2F57A6419
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 14:58:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6280F7A645C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 15:07:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 195CD1C2098F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 12:58:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61C3C1C2097D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 13:06:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B95DB1FA1;
-	Tue, 19 Sep 2023 12:58:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA0738473;
+	Tue, 19 Sep 2023 13:06:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C56C37CA6;
-	Tue, 19 Sep 2023 12:58:41 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9413F3;
-	Tue, 19 Sep 2023 05:58:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=6pJg57Rcm0bmG3CDzyP2i9I6PKCyoCY99pTc1UrpBC8=; b=bZh8QSHyXJjGveMP/Dkg4hr+hR
-	KOM1GS26Sr/9iplc+88NCDHXRHqKbCRO6pbQPLx2EGjjgycmX8CDMoo7Zf9wZ1DDABIu2TeGYOByQ
-	f0JEpxvknIcw6dPbKvpLgPdC0W7+fSGaOZU9X/Jwu/c55ONcBRBSdWyqOb9TciWeZTC8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1qiaJB-006uaR-El; Tue, 19 Sep 2023 14:58:29 +0200
-Date: Tue, 19 Sep 2023 14:58:29 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Parthiban.Veerasooran@microchip.com
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	corbet@lwn.net, Steen.Hegelund@microchip.com, rdunlap@infradead.org,
-	horms@kernel.org, casper.casan@gmail.com, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, Horatiu.Vultur@microchip.com,
-	Woojung.Huh@microchip.com, Nicolas.Ferre@microchip.com,
-	UNGLinuxDriver@microchip.com, Thorsten.Kummermehr@microchip.com
-Subject: Re: [RFC PATCH net-next 1/6] net: ethernet: implement OPEN Alliance
- control transaction interface
-Message-ID: <4c1d0d38-c459-4722-bead-7660d85f4925@lunn.ch>
-References: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
- <20230908142919.14849-2-Parthiban.Veerasooran@microchip.com>
- <8d53ca8d-bcf6-4673-a8ff-b621d700576e@lunn.ch>
- <9615b403-52c1-f24f-382f-8eea3ddfcf04@microchip.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3B30468A
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 13:06:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48A92C433C7;
+	Tue, 19 Sep 2023 13:06:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695128816;
+	bh=6Qa47r/Zbx9YEPRJ4mkWJb11B2aEBnhEFWx6OEp2SzA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fuLbiLAFSAbqq51ee4Y5Rx3a2PhLZWWVl+QMae4Twlf3+LKoTP834b0n8OFlOW1cV
+	 irWRA4Q907wSKtCFzkxz1aoD8jkVDdbhZVtogJRwYoEKB10yZU3Srw4Kn6/SJzo3pM
+	 8yZkk//5/h4567BSFLXg3kLUJAkvSBM+MNgN4IX+b8KJuXE8M2XWLQlzwbYFTxRA2Z
+	 Y/bWIHNHtgnDxxE/D0qIQ5d8801YcYQS9oWO86QhXeB+W3yfyw3sAaafeX3ICKVFpb
+	 ZE2UjONgibkb2/MoXSA0euby2DD00i55Ec6uF7xyxqm9LkwdG3EOJYeodQxAJgbe1b
+	 eQa9NpQUq5wgA==
+Date: Tue, 19 Sep 2023 09:06:54 -0400
+From: Sasha Levin <sashal@kernel.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>, agross@kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH AUTOSEL 6.5 30/36] arm64: dts: qcom: sc8280xp-x13s: Add
+ camera activity LED
+Message-ID: <ZQmc7hznPpIh6iwP@sashalap>
+References: <20230908192848.3462476-1-sashal@kernel.org>
+ <20230908192848.3462476-30-sashal@kernel.org>
+ <ZP60ngCV3hhNZiX5@hovoldconsulting.com>
+ <ZQjEEt7sB2M5EO53@sashalap>
+ <ZQk8aJx268Soy4yH@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <9615b403-52c1-f24f-382f-8eea3ddfcf04@microchip.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+In-Reply-To: <ZQk8aJx268Soy4yH@hovoldconsulting.com>
 
-On Tue, Sep 19, 2023 at 11:13:13AM +0000, Parthiban.Veerasooran@microchip.com wrote:
-> Hi Andrew,
-> 
-> On 13/09/23 7:46 am, Andrew Lunn wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> > 
-> >> +struct oa_tc6 {
-> >> +     struct spi_device *spi;
-> >> +     bool ctrl_prot;
-> >> +};
-> > 
-> > Should this be considered an opaque structure which the MAC driver
-> > should not access the members?
+On Tue, Sep 19, 2023 at 08:15:04AM +0200, Johan Hovold wrote:
+>On Mon, Sep 18, 2023 at 05:41:38PM -0400, Sasha Levin wrote:
+>> On Mon, Sep 11, 2023 at 08:33:02AM +0200, Johan Hovold wrote:
+>> >On Fri, Sep 08, 2023 at 03:28:41PM -0400, Sasha Levin wrote:
+>> >> From: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> >>
+>> >> [ Upstream commit 1c63dd1c5fdafa8854526d7d60d2b741c813678d ]
+>> >>
+>> >> Disappointigly, the camera activity LED is implemented in software.
+>> >> Hook it up as a gpio-led and (until we have camera *and* a "camera on"
+>> >> LED trigger) configure it as a panic indicator.
+>> >>
+>> >> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> >> Link: https://lore.kernel.org/r/20230805-topic-x13s_cam_led-v1-1-443d752158c4@linaro.org
+>> >> Signed-off-by: Bjorn Andersson <andersson@kernel.org>
+>> >> Signed-off-by: Sasha Levin <sashal@kernel.org>
+>> >
+>> >This is a new feature if anything, not a fix. Please drop from all
+>> >autosel queues.
+>>
+>> Not a feature, but hardware enablement.
+>
+>Call it what you will, but please drop it. Otherwise by that logic you'd
+>need to backport all devicetree patches (as well as most driver changes)
+>since they ultimately aim at enabling hardware.
 
-Opaque vs not opaque is an important design decision. If the MAC
-driver is allowed to directly access this structure, you should
-document the locking concept. If the MAC is not supposed to access it
-directly, only uses getters/setters, that also needs documenting, and
-maybe even make it a void * in the MAC driver.
+Not all, only ones that re-use existing kernel driver but enable it for
+new hardware (i.e. adding a new pci-id/usb-id/dts entries).
 
-      Andrew
+-- 
+Thanks,
+Sasha
 
