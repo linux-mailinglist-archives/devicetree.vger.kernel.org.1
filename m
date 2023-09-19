@@ -1,183 +1,104 @@
-Return-Path: <devicetree+bounces-1409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C5F07A61C9
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 13:56:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 550E37A61E4
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 14:00:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 217172817B3
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 11:56:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EF96281447
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 12:00:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D25CB36B00;
-	Tue, 19 Sep 2023 11:56:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2043831A65;
+	Tue, 19 Sep 2023 12:00:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53C1A15BE
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 11:56:05 +0000 (UTC)
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2137.outbound.protection.outlook.com [40.107.114.137])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2905FE3;
-	Tue, 19 Sep 2023 04:56:01 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SqWn3kNVhrUK5PQcQtnFbFXaHdB6Bed53qm/n1kOUwZM6d/MwC6dLF3qJNYzPj9sIdhqiiGyCkqENYGWOwd007eofUMxlJWjJ+z9aI+dmoHzXd5wfo6jX4cCB5LQ4M+NwKzu4gD8/84ngHbYD7vQqKCXlm5vPvGQfITxEkz1wO5GrceV0PkeTVQYVoQA8ethew2WXfdaJUdlNK+gME8QOVscb/hqbcL48ffrzLgFYnIqYVePnbG8rbN/c+IbbT9Af/JRwdg7mBVTZpD1flpgR/xAQXrGHbKIsPjXGPSCE4WF5Bq54+eAd6QKh7NkdeXlRIdXlXiYgS+oV9b5CizkTQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NRIa5sF/etZklbPUmUv6K3lBDJFiyP0ARx3tKLYXmZA=;
- b=K8bI8k/EaTO/N8mnYQr2OHImAcDGIfOlMcZWrzFZvNwMckJw4KNU2ubJ2CnhVPSpGgJh4qpTloLzMH6UfzUx48YK0kebnv3Za1650P+f3pcKuFW9z3nKgHn4MLhhqBrHy74J0LbXzwLm7nqrtQgg+m1fhrKr+qpbQeFZIXN27Yue6kfiIup3+j1ykKZUCyHIwy4MSNg6LC6MjibkSmcdMlJzCLkDYYv7yWpCVEuMgaGaVeHvXtuevLzS3bxlNpcrlewct2VuvXeZ2caxVBytAg9ksFK+rwWWoBBhJLjsPnYXtnAvGCFhiCpwz71KM6rPW/g4QUHY+bZyWhxwifKohQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NRIa5sF/etZklbPUmUv6K3lBDJFiyP0ARx3tKLYXmZA=;
- b=K/pICyrgDm+qsBxOJn87boyBFJlbeR5Uw6UHsdT8rQRlT2uB4O1IhFThY/HeorVUKyLEYSzdVmYWrjAFiVaNHkRcVdn5jckz6YifkMuwR9LVl3nls4c4jCK1La6tQ+WljHNhOWtiI8RD7EuIbtWn9zZbPW5XCs0OHdvIBSzOOdo=
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- (2603:1096:404:8028::13) by OS0PR01MB5700.jpnprd01.prod.outlook.com
- (2603:1096:604:bd::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.28; Tue, 19 Sep
- 2023 11:55:56 +0000
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::e5cd:66a0:248f:1d30]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::e5cd:66a0:248f:1d30%4]) with mapi id 15.20.6792.026; Tue, 19 Sep 2023
- 11:55:56 +0000
-From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-CC: "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-	"gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-	"lpieralisi@kernel.org" <lpieralisi@kernel.org>, "robh+dt@kernel.org"
-	<robh+dt@kernel.org>, "kw@linux.com" <kw@linux.com>,
-	"manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
-	"bhelgaas@google.com" <bhelgaas@google.com>, "kishon@kernel.org"
-	<kishon@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "marek.vasut+renesas@gmail.com"
-	<marek.vasut+renesas@gmail.com>, "fancer.lancer@gmail.com"
-	<fancer.lancer@gmail.com>, "linux-pci@vger.kernel.org"
-	<linux-pci@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
-	<linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v20 04/19] PCI: designware-ep: Add INTx IRQs support
-Thread-Topic: [PATCH v20 04/19] PCI: designware-ep: Add INTx IRQs support
-Thread-Index:
- AQHZ1zcOdRSM/H58w0WCrYWL3XR2drAZhliAgACMtyCAAnRgAIAFWa0wgAA7nYCAABUF4A==
-Date: Tue, 19 Sep 2023 11:55:56 +0000
-Message-ID:
- <TYBPR01MB534141F4F7B419BFE473D9B5D8FAA@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-References:
- <TYBPR01MB5341FBF030A8A4F35CA74B62D8FAA@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <20230919103933.GA226055@bhelgaas>
-In-Reply-To: <20230919103933.GA226055@bhelgaas>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|OS0PR01MB5700:EE_
-x-ms-office365-filtering-correlation-id: 61bebe7b-e05a-4df5-9284-08dbb9076218
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- 0h15TPlpL5gLTGF6lCGJuGFTLeD5H18UStqJSWArCQlyek7Qf8f5BnETknm3d343f291vh1Joo1K5vXDzwYcIv7+MdBx6qEtFWrtOaxFrqrFdt6YaY4RLs4Lt9AxBuuQGnzUbOx8/iwxTNk0JSPQ6D2A+Udb1eGbdjMDbGJz0jrj+cQNQFAPKI9jfZhfNQO4jd3pfWmh2EDG4UFpvbBydQF+CJ4O0fvpYKdq9bZkLuciyjot3BXe7hSVkkGqL9HemUMlMjsjEcRixF6d0Pg1nE02GRpREe1wiJTjqim6OYGj5pZlzVTE5ATSBljCEWCjaTRmsjCfFBO2BNs9VDu318G95chUPEZ1qpwGcKaHvg1q/jwICOjskVDTjAa9joWGF3POd5RjKO7cPdpWGf9l/XIG+3CCAI+KGA6lD2z3ybp1w7XBSYDKWphp1Zw6VSpZpcbYfrkgpv3LUADNgtTLj8flEwUY1Bbt9HSO4dPojXBBpPWKC9/0z8FPEiFgaQ3gUCx3ZLkl6uL2rsAuey4l3AfQZJYXE+4+yLpGWsbbWu80VJlnlDsifZ9kkJagTjcmj2kV5n4Prxg9qS1i5ZMPy3FYaDM62sjO0pB1GL4aybRJ6G1vBGxFWNF7jAV6O+/Q
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(366004)(396003)(346002)(136003)(376002)(186009)(1800799009)(451199024)(6506007)(7696005)(9686003)(478600001)(71200400001)(83380400001)(26005)(2906002)(7416002)(64756008)(66446008)(66476007)(66556008)(66946007)(76116006)(54906003)(316002)(6916009)(4326008)(8676002)(52536014)(5660300002)(8936002)(41300700001)(86362001)(33656002)(122000001)(38070700005)(38100700002)(55016003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?Ha2Ci6+qDKZBiTAhHiUO2YBzFpo/I73TkFeqvP65m8TmqHKFpaSeSqeR6Mno?=
- =?us-ascii?Q?w18vy1ISJEk3SqoMNFtk82FVEs5tSn8E0SWnSswiAbMyQniTns+kdSY5K6HJ?=
- =?us-ascii?Q?wPwHxLOfJ0MY3ZBi1JDl7jOLbD0GBp0eFPYEFsqnyS5EG6U9p8+oUydEb2oS?=
- =?us-ascii?Q?33bdL42yLvwxXar1EG4wc+nN4dVscXrIyI8E09miUwLCfIwU1I0fAUR8+Oen?=
- =?us-ascii?Q?g1HpHze6f5et9VxZF4ng/58eop0ok+1DhtD3NMJW420xrj+uZK2Pu3bQBJBx?=
- =?us-ascii?Q?aevT6kTckvOAyVTByuzvUfHDD4FOltspE42uoQhbVLVuQhpViqIpOpdEoP8w?=
- =?us-ascii?Q?fX/FRA6KRRvr6FZsqGEmDx6c5IfVtjkiLWTtdsqa5AjqIuHgDBWkI3KkRqax?=
- =?us-ascii?Q?TIgfgY7j2/z7lP+EJR4A6yasX48e3O1Egx1P/8c1inV9KfFWn9FslTVMCBs1?=
- =?us-ascii?Q?Mpr8xl5EVuHbKw9dG30h2/GoxjlYSn1BgR/WC+wxQ3J632fzKwYgKgQWhSjr?=
- =?us-ascii?Q?zeTte8P6BmzRyDGZySpZ8EmsroCO/Yoy6scQKi6ia3rM9QIcNWamCqs9dK7Y?=
- =?us-ascii?Q?7Bw8WAxT/MK3D1jPW2p7GLMWCZBHwMTqqTpYMmOiQFYAqHPi0+89RjF7bd4u?=
- =?us-ascii?Q?UoHtEbwDtYeA5AIMHaZbT661mBciybT0Ia78M4AF024dGqipNmNWMTPFM2xJ?=
- =?us-ascii?Q?/Ffl5n7KyP7xjiKFa6+6/yycpcVoVqVRFxeC8OC9plA+SPDqH/Nar/el4hnB?=
- =?us-ascii?Q?/YUjEo1loB+l9Nemze2s3XP+efmcK5WviZCaQzbFp1s8550Nq8Yqpzk95WtC?=
- =?us-ascii?Q?w622LfPqGZ+69AP6JXhhll78QR8t1UVyoh8w4fjyAdH8KjiVzdapfSZANrYf?=
- =?us-ascii?Q?nIFHFUQp0/pkizaHkrDvrpM1TgbeAfEJ9mqLKoO6K0DOIx5D4IiETuogKXcE?=
- =?us-ascii?Q?ilryGs5CUpm0e++U1jsak3WStLAvHnjGwfNURx2/X2n82OUk9oArxGAB++Cc?=
- =?us-ascii?Q?c8+QM0KGZPuya47e0h8HvRNe5dlChhJcI5jwIqQwmeCCMlD3jxovHxKkzGYI?=
- =?us-ascii?Q?TIkEqtu3GXTsignUuds8BZBn84/si0APid/sW6e/INL5zjnxVjyvF8hs+K+O?=
- =?us-ascii?Q?2GklIuQZ7z+foPcQD93mTGPbIRpeIIAvFbpEIMMa7r2v2meqoOU1NnwTkAhC?=
- =?us-ascii?Q?ruqK2BgxJWc5WhiTI8jXDTwAJPNXT5BWCWMr40fJScYA4fO57C5lSzYp7PCV?=
- =?us-ascii?Q?OuUEDlCBuvKCrzfZdjPU+5rovlV/D0Z+nKZoN0f6L6hNs56Ut4rMVxvlJYRZ?=
- =?us-ascii?Q?A1viHG6FfujCejLG3iJMb9iCy9ULZ9vRHEBd2v4QV2vNZoCR06zYfQmC7y9i?=
- =?us-ascii?Q?t7HfRqYtxL9dyvOtc4gBleIioNw4SBP/jWVgqYPak1uyPGQAsWrzt6ko3Ysj?=
- =?us-ascii?Q?TT3rZQrU7+8A/dfHV+rDOg5GjGKhFEA+yXko/z8WC4uvWD0TqjOpDCUYMd8o?=
- =?us-ascii?Q?yVo8yFVcx1GxBm54QfIwu/a0ZbUeDhfk9ThaywtidLAKTDBxKs4PrYqjkBn+?=
- =?us-ascii?Q?4Dm+2Jdt7YxhG4QsJrXlLLHI7DFGkvSJxxmtSJtsTuWxktX9/bIReofcNCU5?=
- =?us-ascii?Q?pQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 897361865B
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 12:00:00 +0000 (UTC)
+Received: from mx.kernkonzept.com (serv1.kernkonzept.com [IPv6:2a01:4f8:1c1c:b490::2])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48EEDF2;
+	Tue, 19 Sep 2023 04:59:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kernkonzept.com; s=mx1; h=Cc:To:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Message-Id:Date:Subject:From:References:In-Reply-To:Reply-To:
+	Content-ID:Content-Description;
+	bh=r3y4yFqUc5uIgQTTYbbXZv7CmCGCkwuSZZhi0rb2wK0=; b=pd76GLmVDxBF1mZweUcfDH4CSH
+	DGa1R/y5nINulcIPDuIvhrDMrULp6ogSh8NLdqIMFP9J8AlsvFlHUJlDzfoqtLgCh+EbjO/MEjT9L
+	L5/vVBWD50WxL+5s4lruIK1MVKtM5RlNxVJ7DlR34rbVak9dfIsWfiwHyq6TCwNjJFLsY8fpbA1tj
+	E60nCsW4KeMSVnRwivOrdLR3RrGsr/7syzPmfbvSV+ofUfocJS/oPDdxsvBLg6F0mt/6ngrvpmFv9
+	MHiJR2RGhhRHWtHpvmTclUMIRWfrmE0dZ6L0NmbbDRSQXsjOjuZfJqW+b+XOrH0gNUSSMnVJTzOAc
+	yE4QUqdQ==;
+Received: from [10.22.3.24] (helo=serv1.dd1.int.kernkonzept.com)
+	by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.96)
+	id 1qiZOT-004b4T-2k;
+	Tue, 19 Sep 2023 13:59:53 +0200
+From: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Subject: [PATCH v2 0/4] spi: qup: Allow scaling power domains and
+ interconnect
+Date: Tue, 19 Sep 2023 13:59:47 +0200
+Message-Id: <20230919-spi-qup-dvfs-v2-0-1bac2e9ab8db@kernkonzept.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 61bebe7b-e05a-4df5-9284-08dbb9076218
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Sep 2023 11:55:56.4215
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RjUeYT7WlEb1selCLm4D/Dm2nBTisdFsRLORnAibJ5pviV12634j+loLnfkM5ba/mDElfqRHaz6vFTG7p17lvp7xZ6DC6kjEC1/IPeGd9R/zsN0kDDdoGX07GKXTG0FV
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS0PR01MB5700
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADONCWUC/3XMQQ6CMBCF4auQWTumLTGCK+9hWJQyyITYlhYbl
+ fTuVvYu/5e8b4NIgSnCpdogUOLIzpZQhwrMpO2dkIfSoISqRSsVRs+4PD0OaYx4lqNp9ImE6SW
+ Uiw808mvnbl3piePqwnvXk/ytf6AkUWBNdaO1aI3qh+tMwc7OfsivR+Me0OWcv/JTvQOuAAAA
+To: Mark Brown <broonie@kernel.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Stephan Gerhold <stephan.gerhold@kernkonzept.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.3
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hello Bjorn,
+Make it possible to scale performance states of the power domain and
+interconnect of the SPI QUP controller in relation to the selected SPI
+speed / core clock. This is done separately by:
 
-> From: Bjorn Helgaas, Sent: Tuesday, September 19, 2023 7:40 PM
->=20
-> On Tue, Sep 19, 2023 at 07:22:48AM +0000, Yoshihiro Shimoda wrote:
-> > > From: Bjorn Helgaas, Sent: Saturday, September 16, 2023 6:24 AM
-> > > On Thu, Sep 14, 2023 at 07:56:21AM +0000, Yoshihiro Shimoda wrote:
-> > > ...
->=20
-> > > > The following patches are not needed if INTx support should be drop=
-ped:
-> > > >
-> > > > eb185e1e628a PCI: designware-ep: Add INTx IRQs support
-> > > > 5d0e51f85b23 PCI: dwc: Add outbound MSG TLPs support
-> > > > 4758bef61cc2 PCI: dwc: Change arguments of dw_pcie_prog_outbound_at=
-u()
-> > > > 44938b13046b PCI: Add INTx Mechanism Messages macros
-> > >
-> > > Since INTx support isn't mandatory at this time, I think we should
-> > > drop these patches for now.  If/when somebody definitely needs INTx
-> > > support, we can resurrect them, and then we'll have more clarity on
-> > > how it should work and we'll be better able to test it.
-> >
-> > I got it.
-> >
-> > In this case, should I submit the patch series as v21?
->=20
-> I think it will be simpler if you post a v21 that includes squashing
-> the R-Car drivers together as well as dropping these INTx patches.
+  - Parsing the OPP table from the device tree for performance state
+    votes of the power domain
+  - Voting for the necessary bandwidth on the interconnect path to DRAM
 
-Thank you for your reply! I'll make such a patch series.
+Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+---
+Changes in v2:
+- Vote for bandwidth only when DMA is used and not with PIO
+- Add review tags from Krzysztof and Konrad
+- Link to v1: https://lore.kernel.org/r/20230912-spi-qup-dvfs-v1-0-3e38aa09c2bd@kernkonzept.com
+
+---
+Stephan Gerhold (4):
+      spi: dt-bindings: qup: Document power-domains and OPP
+      spi: qup: Parse OPP table for DVFS support
+      spi: dt-bindings: qup: Document interconnects
+      spi: qup: Vote for interconnect bandwidth to DRAM
+
+ .../devicetree/bindings/spi/qcom,spi-qup.yaml      | 13 ++++++
+ drivers/spi/spi-qup.c                              | 50 +++++++++++++++++++++-
+ 2 files changed, 62 insertions(+), 1 deletion(-)
+---
+base-commit: baaa2957b0c6feb4ff7806b5d8e0039bd80acbdf
+change-id: 20230912-spi-qup-dvfs-71fc8a5e0cb1
 
 Best regards,
-Yoshihiro Shimoda
+-- 
+Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Kernkonzept GmbH at Dresden, Germany, HRB 31129, CEO Dr.-Ing. Michael Hohmuth
 
-> Bjorn
 
