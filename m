@@ -1,109 +1,76 @@
-Return-Path: <devicetree+bounces-1467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86F2F7A679B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 17:09:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFF567A67AD
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 17:12:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B23ED1C2096B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 15:09:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB8A41C20912
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 15:12:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F7023B79B;
-	Tue, 19 Sep 2023 15:09:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4FED3B7A2;
+	Tue, 19 Sep 2023 15:11:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB263B782
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 15:09:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2014C433C8;
-	Tue, 19 Sep 2023 15:09:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC4743B782
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 15:11:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D2A6C433C9;
+	Tue, 19 Sep 2023 15:11:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695136196;
-	bh=lzPcxfCap55Dxo+6HC5drOWps2iDeLT2c0Yt2wUaUyE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XyIoIYQw5QkJmMJ3CfKfg5P2JB3FtwWC7umWODkwtVO11Ya2bqYxzOt3vfcRJtZdd
-	 ONOEqK2jpzooHLUO7wRK+HGL0isQuQ6tF08A9u3pdweXiEUCGUdUAFoiINlxDCstlY
-	 BHScbVF2ij1bMlL0mFC+Vp7H5WX6Q++SoGeQiXSiYBRvSfTWAGRMQZ81Su9EAxTHFC
-	 Zq/Xjv6xxaIgx4OS4B1WD4a9S/nlJnb3oSkuWYX2x/xn6XfFyI39tS5PXr3xKTpX6P
-	 8IEJFvm4dXs0hM/k05SiGWjEHyAvNThQPM5acLaQFcfeasPlpQhp2IncxkRo9ChQet
-	 9Pk9xW1ZYiLSw==
-Date: Tue, 19 Sep 2023 11:09:54 -0400
-From: Sasha Levin <sashal@kernel.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>, agross@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH AUTOSEL 6.5 30/36] arm64: dts: qcom: sc8280xp-x13s: Add
- camera activity LED
-Message-ID: <ZQm5woD5zwRIG9cf@sashalap>
-References: <20230908192848.3462476-1-sashal@kernel.org>
- <20230908192848.3462476-30-sashal@kernel.org>
- <ZP60ngCV3hhNZiX5@hovoldconsulting.com>
- <ZQjEEt7sB2M5EO53@sashalap>
- <ZQk8aJx268Soy4yH@hovoldconsulting.com>
- <ZQmc7hznPpIh6iwP@sashalap>
- <ZQmh-DaBTwMuOLHe@hovoldconsulting.com>
+	s=k20201202; t=1695136318;
+	bh=oQZE1gehH3m0aVjeQGpGI4UwdSKpfNlvVo6HbrBGos8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=reXUN8Lm8OVwp1i9vVCCdg0A4xWglEaEmg5enV0gEccKgXxgpGgJGycPY0fPtD9B7
+	 EbMZUIURD8pz5Sc1D9oLVMO/zRWGTapGT0nCXTAR4U4sbpRl72Gkm1Ua47gH2syuwj
+	 yp+zAtUz3ECBZ02khlQ+Xs8MsTRrrrcgbiXXOr59t9JwZlIAEkSQRk/6aVsiSyp40I
+	 zCermNUTlAmjX0M/tJ9jukn3nFG3vb1xA3em/zHCiRCHGrmMAKTCzocD+ZwIsijb87
+	 PLdrrhhd0cMrMpI+vlshjMgj1bM4yJDJyO1nDe9ma58fzYnjaTkKfNoy3jObZW67RQ
+	 R7w0hVRuC9TIA==
+From: Lee Jones <lee@kernel.org>
+To: devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, linux-arm-msm@vger.kernel.org, 
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+ linux-iio@vger.kernel.org, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ linux-input@vger.kernel.org, Pavel Machek <pavel@ucw.cz>, 
+ linux-leds@vger.kernel.org, Satya Priya <quic_c_skakit@quicinc.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230827132525.951475-3-dmitry.baryshkov@linaro.org>
+References: <20230827132525.951475-1-dmitry.baryshkov@linaro.org>
+ <20230827132525.951475-3-dmitry.baryshkov@linaro.org>
+Subject: Re: (subset) [PATCH v5 02/37] dt-bindings: mfd: qcom-pm8xxx: add
+ missing child nodes
+Message-Id: <169513631509.3259165.15493970676059884239.b4-ty@kernel.org>
+Date: Tue, 19 Sep 2023 16:11:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <ZQmh-DaBTwMuOLHe@hovoldconsulting.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.12.2
 
-On Tue, Sep 19, 2023 at 03:28:24PM +0200, Johan Hovold wrote:
->On Tue, Sep 19, 2023 at 09:06:54AM -0400, Sasha Levin wrote:
->> On Tue, Sep 19, 2023 at 08:15:04AM +0200, Johan Hovold wrote:
->> >On Mon, Sep 18, 2023 at 05:41:38PM -0400, Sasha Levin wrote:
->> >> On Mon, Sep 11, 2023 at 08:33:02AM +0200, Johan Hovold wrote:
->> >> >On Fri, Sep 08, 2023 at 03:28:41PM -0400, Sasha Levin wrote:
->> >> >> From: Konrad Dybcio <konrad.dybcio@linaro.org>
->> >> >>
->> >> >> [ Upstream commit 1c63dd1c5fdafa8854526d7d60d2b741c813678d ]
->> >> >>
->> >> >> Disappointigly, the camera activity LED is implemented in software.
->> >> >> Hook it up as a gpio-led and (until we have camera *and* a "camera on"
->> >> >> LED trigger) configure it as a panic indicator.
->> >> >>
->> >> >> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> >> >> Link: https://lore.kernel.org/r/20230805-topic-x13s_cam_led-v1-1-443d752158c4@linaro.org
->> >> >> Signed-off-by: Bjorn Andersson <andersson@kernel.org>
->> >> >> Signed-off-by: Sasha Levin <sashal@kernel.org>
->> >> >
->> >> >This is a new feature if anything, not a fix. Please drop from all
->> >> >autosel queues.
->> >>
->> >> Not a feature, but hardware enablement.
->> >
->> >Call it what you will, but please drop it. Otherwise by that logic you'd
->> >need to backport all devicetree patches (as well as most driver changes)
->> >since they ultimately aim at enabling hardware.
->>
->> Not all, only ones that re-use existing kernel driver but enable it for
->> new hardware (i.e. adding a new pci-id/usb-id/dts entries).
->
->Again, that's basically all our device-tree patches. And that can break
->in all sorts of ways. So again, please drop. This does not belong in
->stable.
+On Sun, 27 Aug 2023 16:24:50 +0300, Dmitry Baryshkov wrote:
+> Add gpio, keypad, led, mpps, pwrkey, vibrator and xoadc as possible
+> child nodes of qcom,pm8xxx, referencing existint schema files.
+> 
+> 
 
-This is part of the criteria we use to select patches, yes? If you have
-an objection around this particular patch then please let me know, or if
-you have an objection around hardware enablement patches in stable then
-we can have a bigger discussion around that one.
+Applied, thanks!
 
-However, just dropping this one for no particular reasonisn't the right
-approach: we've been using this selection criteria for quite a few years
-now.
+[02/37] dt-bindings: mfd: qcom-pm8xxx: add missing child nodes
+        commit: 2c09766cb133ee4d57d19f56c6a0035b0d9eb034
 
--- 
-Thanks,
-Sasha
+--
+Lee Jones [李琼斯]
+
 
