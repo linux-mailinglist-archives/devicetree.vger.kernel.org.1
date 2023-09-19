@@ -1,120 +1,215 @@
-Return-Path: <devicetree+bounces-1488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A04657A6983
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 19:20:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72D737A699B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 19:27:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5AA56280D59
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 17:20:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F4511C208C5
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 17:27:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CC033717A;
-	Tue, 19 Sep 2023 17:20:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCCB0374FF;
+	Tue, 19 Sep 2023 17:27:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8899E347B2;
-	Tue, 19 Sep 2023 17:20:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E75A0C433C9;
-	Tue, 19 Sep 2023 17:20:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695144027;
-	bh=R4vqRyHRoQtIzZFJgZHfD0lN9R4xtpTt66srcRemzwk=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=Dsr9DOH05hMsrKhTamix1dMOYKHukxNIZskrLgSBppCLZymlWg0c6tkhI6u/hIiVI
-	 78ZaMUCGZX91kJk8eHmJDFSos2oR7k6GSaModEtgaH6dcjbSfKAqXzHKUZyMoIVBxF
-	 1K9T+SZ7CZLCB7xIoc0cEhxc9Dlnt40frst6yKLzBsdcQxBT+mG8AuEYIyRgLseaRj
-	 c9t8LOu/eflESPmFltEGm37cMMvxZEjmZ0bpdy9Sjazh1dtL/BsDczuqxMgUlaTLVq
-	 4wHJpPpmc+WuyAk/pDHaBb7obKQkeNdm5iGGuBwRXGY6SwTMqTPZPoGf/ULl6YH8Zw
-	 AOUXww5usSAog==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id C99E8E1F670;
-	Tue, 19 Sep 2023 17:20:26 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D4F3374DF;
+	Tue, 19 Sep 2023 17:27:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 682EE9F;
+	Tue, 19 Sep 2023 10:27:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1695144426; x=1726680426;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=/GfKecIDbouGTE7n4315amFnYOI3c0tRqeNu43t9cFw=;
+  b=Cm9dyKwXGdwFPawE+t8KoqNWXi4KrTIsqC8eGmVjqET3QPgOPTHlRJ6B
+   8bfMK1Wzkq+kXKBT8kH+7Wu/JaKH1JrsJvBlUsWqOnI+Nza/dUMrOw0qH
+   70k4m0cgeu3+GNJ/AEeZwDIZFtSClHYsuUfqlyfn/0psoS2KnZTYddQk/
+   KwEi+omLlWFLyNVLu4wx2Xjvt3EjEVtihylxD7Uv/pz0S5LfN1SO2jtc8
+   XEkRvDdZvj1ZWT6mgGUphr450FEMD0WhXpjQmyP6bmvn5ZsRdJynhfPkM
+   +rHCa6i+8RcWxNN+1ZAyDfT3qoONsB3z5/s4lS1POAlsGrrSJCrtGpgwC
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="410936065"
+X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; 
+   d="scan'208";a="410936065"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Sep 2023 10:27:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="746316089"
+X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; 
+   d="scan'208";a="746316089"
+Received: from lkp-server02.sh.intel.com (HELO 9ef86b2655e5) ([10.239.97.151])
+  by orsmga002.jf.intel.com with ESMTP; 19 Sep 2023 10:27:00 -0700
+Received: from kbuild by 9ef86b2655e5 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qieV0-0007jz-15;
+	Tue, 19 Sep 2023 17:26:58 +0000
+Date: Wed, 20 Sep 2023 01:26:33 +0800
+From: kernel test robot <lkp@intel.com>
+To: Krishna Kurapati <quic_kriskura@quicinc.com>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Felipe Balbi <balbi@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Johan Hovold <johan@kernel.org>,
+	Mathias Nyman <mathias.nyman@intel.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
+	quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
+	ahalaney@redhat.com, quic_shazhuss@quicinc.com,
+	Harsh Agarwal <quic_harshq@quicinc.com>,
+	Krishna Kurapati <quic_kriskura@quicinc.com>
+Subject: Re: [PATCH v11 06/13] usb: dwc3: core: Refactor PHY logic to support
+ Multiport Controller
+Message-ID: <202309200156.CxQ3yaLY-lkp@intel.com>
+References: <20230828133033.11988-7-quic_kriskura@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2 net-next 00/17] Add WED support for MT7988 chipset
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <169514402682.28201.16892377425355269294.git-patchwork-notify@kernel.org>
-Date: Tue, 19 Sep 2023 17:20:26 +0000
-References: <cover.1695032290.git.lorenzo@kernel.org>
-In-Reply-To: <cover.1695032290.git.lorenzo@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: netdev@vger.kernel.org, lorenzo.bianconi@redhat.com, nbd@nbd.name,
- john@phrozen.org, sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- daniel@makrotopia.org, linux-mediatek@lists.infradead.org,
- sujuan.chen@mediatek.com, horms@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230828133033.11988-7-quic_kriskura@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-Hello:
+Hi Krishna,
 
-This series was applied to netdev/net-next.git (main)
-by Paolo Abeni <pabeni@redhat.com>:
+kernel test robot noticed the following build warnings:
 
-On Mon, 18 Sep 2023 12:29:02 +0200 you wrote:
-> Similar to MT7622 and MT7986, introduce Wireless Ethernet Dispatcher (WED)
-> support for MT7988 chipset in order to offload to the hw packet engine traffic
-> received from LAN/WAN device to WLAN nic (MT7996E).
-> Add WED RX support in order to offload traffic received by WLAN nic to the
-> wired interfaces (LAN/WAN).
-> 
-> Changes since v1:
-> - introduce mtk_wed_soc_data data structure to contain per-SoC definitions
-> - get rid of buf pointer in mtk_wed_hwrro_buffer_alloc()
-> - rebase on top of net-next
-> 
-> [...]
+[auto build test WARNING on usb/usb-testing]
+[also build test WARNING on usb/usb-next usb/usb-linus robh/for-next pza/reset/next linus/master v6.6-rc2 next-20230919]
+[cannot apply to pza/imx-drm/next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Here is the summary with links:
-  - [v2,net-next,01/17] dt-bindings: soc: mediatek: mt7986-wo-ccif: add binding for MT7988 SoC
-    https://git.kernel.org/netdev/net-next/c/4518b25c63d4
-  - [v2,net-next,02/17] dt-bindings: arm: mediatek: mt7622-wed: add WED binding for MT7988 SoC
-    https://git.kernel.org/netdev/net-next/c/f881f2732448
-  - [v2,net-next,03/17] net: ethernet: mtk_wed: introduce versioning utility routines
-    https://git.kernel.org/netdev/net-next/c/d274d523c71c
-  - [v2,net-next,04/17] net: ethernet: mtk_wed: do not configure rx offload if not supported
-    https://git.kernel.org/netdev/net-next/c/7d5a72733b21
-  - [v2,net-next,05/17] net: ethernet: mtk_wed: rename mtk_rxbm_desc in mtk_wed_bm_desc
-    https://git.kernel.org/netdev/net-next/c/bafd764a8baa
-  - [v2,net-next,06/17] net: ethernet: mtk_wed: introduce mtk_wed_buf structure
-    https://git.kernel.org/netdev/net-next/c/ff0ea57fa30e
-  - [v2,net-next,07/17] net: ethernet: mtk_wed: move mem_region array out of mtk_wed_mcu_load_firmware
-    https://git.kernel.org/netdev/net-next/c/c6d961aeaa77
-  - [v2,net-next,08/17] net: ethernet: mtk_wed: make memory region optional
-    https://git.kernel.org/netdev/net-next/c/71e2135967f4
-  - [v2,net-next,09/17] net: ethernet: mtk_wed: fix EXT_INT_STATUS_RX_FBUF definitions for MT7986 SoC
-    https://git.kernel.org/netdev/net-next/c/c80471ba74b7
-  - [v2,net-next,10/17] net: ethernet: mtk_wed: add mtk_wed_soc_data structure
-    https://git.kernel.org/netdev/net-next/c/9ae7eca9f901
-  - [v2,net-next,11/17] net: ethernet: mtk_wed: introduce WED support for MT7988
-    https://git.kernel.org/netdev/net-next/c/e2f64db13aa1
-  - [v2,net-next,12/17] net: ethernet: mtk_wed: refactor mtk_wed_check_wfdma_rx_fill routine
-    https://git.kernel.org/netdev/net-next/c/96ddb4d0bf2e
-  - [v2,net-next,13/17] net: ethernet: mtk_wed: introduce partial AMSDU offload support for MT7988
-    https://git.kernel.org/netdev/net-next/c/b230812b9dda
-  - [v2,net-next,14/17] net: ethernet: mtk_wed: introduce hw_rro support for MT7988
-    https://git.kernel.org/netdev/net-next/c/6757d345dd7d
-  - [v2,net-next,15/17] net: ethernet: mtk_wed: debugfs: move wed_v2 specific regs out of regs array
-    https://git.kernel.org/netdev/net-next/c/4b7e02bb6375
-  - [v2,net-next,16/17] net: ethernet: mtk_wed: debugfs: add WED 3.0 debugfs entries
-    https://git.kernel.org/netdev/net-next/c/3f3de094e834
-  - [v2,net-next,17/17] net: ethernet: mtk_wed: add wed 3.0 reset support
-    https://git.kernel.org/netdev/net-next/c/1543b8ff02f0
+url:    https://github.com/intel-lab-lkp/linux/commits/Krishna-Kurapati/dt-bindings-usb-qcom-dwc3-Add-bindings-for-SC8280-Multiport/20230828-214326
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
+patch link:    https://lore.kernel.org/r/20230828133033.11988-7-quic_kriskura%40quicinc.com
+patch subject: [PATCH v11 06/13] usb: dwc3: core: Refactor PHY logic to support Multiport Controller
+config: x86_64-randconfig-011-20230902 (https://download.01.org/0day-ci/archive/20230920/202309200156.CxQ3yaLY-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230920/202309200156.CxQ3yaLY-lkp@intel.com/reproduce)
 
-You are awesome, thank you!
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202309200156.CxQ3yaLY-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/usb/dwc3/core.c: In function 'dwc3_core_get_phy':
+>> drivers/usb/dwc3/core.c:1375:53: warning: '%d' directive writing between 1 and 3 bytes into a region of size 2 [-Wformat-overflow=]
+    1375 |                         sprintf(phy_name, "usb2-port%d", i);
+         |                                                     ^~
+   drivers/usb/dwc3/core.c:1375:43: note: directive argument in the range [0, 254]
+    1375 |                         sprintf(phy_name, "usb2-port%d", i);
+         |                                           ^~~~~~~~~~~~~
+   drivers/usb/dwc3/core.c:1375:25: note: 'sprintf' output between 11 and 13 bytes into a destination of size 11
+    1375 |                         sprintf(phy_name, "usb2-port%d", i);
+         |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/usb/dwc3/core.c:1390:53: warning: '%d' directive writing between 1 and 3 bytes into a region of size 2 [-Wformat-overflow=]
+    1390 |                         sprintf(phy_name, "usb3-port%d", i);
+         |                                                     ^~
+   drivers/usb/dwc3/core.c:1390:43: note: directive argument in the range [0, 254]
+    1390 |                         sprintf(phy_name, "usb3-port%d", i);
+         |                                           ^~~~~~~~~~~~~
+   drivers/usb/dwc3/core.c:1390:25: note: 'sprintf' output between 11 and 13 bytes into a destination of size 11
+    1390 |                         sprintf(phy_name, "usb3-port%d", i);
+         |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+vim +1375 drivers/usb/dwc3/core.c
+
+  1338	
+  1339	static int dwc3_core_get_phy(struct dwc3 *dwc)
+  1340	{
+  1341		struct device		*dev = dwc->dev;
+  1342		struct device_node	*node = dev->of_node;
+  1343		char phy_name[11];
+  1344		int ret;
+  1345		int i;
+  1346	
+  1347		if (node) {
+  1348			dwc->usb2_phy = devm_usb_get_phy_by_phandle(dev, "usb-phy", 0);
+  1349			dwc->usb3_phy = devm_usb_get_phy_by_phandle(dev, "usb-phy", 1);
+  1350		} else {
+  1351			dwc->usb2_phy = devm_usb_get_phy(dev, USB_PHY_TYPE_USB2);
+  1352			dwc->usb3_phy = devm_usb_get_phy(dev, USB_PHY_TYPE_USB3);
+  1353		}
+  1354	
+  1355		if (IS_ERR(dwc->usb2_phy)) {
+  1356			ret = PTR_ERR(dwc->usb2_phy);
+  1357			if (ret == -ENXIO || ret == -ENODEV)
+  1358				dwc->usb2_phy = NULL;
+  1359			else
+  1360				return dev_err_probe(dev, ret, "no usb2 phy configured\n");
+  1361		}
+  1362	
+  1363		if (IS_ERR(dwc->usb3_phy)) {
+  1364			ret = PTR_ERR(dwc->usb3_phy);
+  1365			if (ret == -ENXIO || ret == -ENODEV)
+  1366				dwc->usb3_phy = NULL;
+  1367			else
+  1368				return dev_err_probe(dev, ret, "no usb3 phy configured\n");
+  1369		}
+  1370	
+  1371		for (i = 0; i < dwc->num_usb2_ports; i++) {
+  1372			if (dwc->num_usb2_ports == 1)
+  1373				sprintf(phy_name, "usb2-phy");
+  1374			else
+> 1375				sprintf(phy_name, "usb2-port%d", i);
+  1376	
+  1377			dwc->usb2_generic_phy[i] = devm_phy_get(dev, phy_name);
+  1378			if (IS_ERR(dwc->usb2_generic_phy[i])) {
+  1379				ret = PTR_ERR(dwc->usb2_generic_phy[i]);
+  1380				if (ret == -ENOSYS || ret == -ENODEV)
+  1381					dwc->usb2_generic_phy[i] = NULL;
+  1382				else
+  1383					return dev_err_probe(dev, ret,
+  1384						"failed to lookup phy %s\n", phy_name);
+  1385			}
+  1386	
+  1387			if (dwc->num_usb2_ports == 1)
+  1388				sprintf(phy_name, "usb3-phy");
+  1389			else
+  1390				sprintf(phy_name, "usb3-port%d", i);
+  1391	
+  1392			dwc->usb3_generic_phy[i] = devm_phy_get(dev, phy_name);
+  1393			if (IS_ERR(dwc->usb3_generic_phy[i])) {
+  1394				ret = PTR_ERR(dwc->usb3_generic_phy[i]);
+  1395				if (ret == -ENOSYS || ret == -ENODEV)
+  1396					dwc->usb3_generic_phy[i] = NULL;
+  1397				else
+  1398					return dev_err_probe(dev, ret,
+  1399						"failed to lookup phy %s\n", phy_name);
+  1400			}
+  1401		}
+  1402	
+  1403		return 0;
+  1404	}
+  1405	
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
