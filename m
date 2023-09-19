@@ -1,121 +1,196 @@
-Return-Path: <devicetree+bounces-1470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6550A7A67BA
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 17:13:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF3667A6800
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 17:25:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D6891C20908
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 15:13:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D6A51C209E9
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 15:25:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75D9C3B7A7;
-	Tue, 19 Sep 2023 15:13:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FE5337142;
+	Tue, 19 Sep 2023 15:25:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C760F3B793;
-	Tue, 19 Sep 2023 15:13:41 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ABC394;
-	Tue, 19 Sep 2023 08:13:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=XYVo0DIlVrsGyb15YB580Gp7jA08wMao19ef99+f2co=; b=51K66dbVjhEQD1mTpJSuIag79U
-	zndzKI2iEruUJ/3n8QYNfH8NLcaB8qykpb/y9TnDc2CPLOIFbcM9gHjvIFzuejWZVJ8GNGgdaspv2
-	xepuIuKyu8Adx9j15wU8aJtu46n9h2wm1I0aXrO2v5nRVxXspBk2+2qESEJcHhctlerk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1qicPn-006vKZ-CJ; Tue, 19 Sep 2023 17:13:27 +0200
-Date: Tue, 19 Sep 2023 17:13:27 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Parthiban.Veerasooran@microchip.com
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	corbet@lwn.net, Steen.Hegelund@microchip.com, rdunlap@infradead.org,
-	horms@kernel.org, casper.casan@gmail.com, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, Horatiu.Vultur@microchip.com,
-	Woojung.Huh@microchip.com, Nicolas.Ferre@microchip.com,
-	UNGLinuxDriver@microchip.com, Thorsten.Kummermehr@microchip.com
-Subject: Re: [RFC PATCH net-next 1/6] net: ethernet: implement OPEN Alliance
- control transaction interface
-Message-ID: <deff3e64-a10f-4d07-9651-502442a86987@lunn.ch>
-References: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
- <20230908142919.14849-2-Parthiban.Veerasooran@microchip.com>
- <f23997c1-7507-41c6-8bb3-47d6a353beb8@lunn.ch>
- <14c089d7-4d34-9cd5-7f77-55c80815e003@microchip.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49905210EB
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 15:24:55 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE1AEE60;
+	Tue, 19 Sep 2023 08:24:17 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A7479B53;
+	Tue, 19 Sep 2023 17:22:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1695136959;
+	bh=9vIyKWF61Oki0ViP0MM9OtlYNdPRel3PPjwYgBK9PgM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fxBxJ7GxeYlxsv1O+e8OcB0xbaq3uqYvHMy6CJ+TAxNH9W/dGWlrG+m/XoCY3m6z6
+	 QH/kgnB92SDfVDlD79tXdPCTTTNCgerQ8jVda95uBOVKtQVkPsKmtQuPAwhTeAbQXP
+	 BBt/QdZG/1mxqJrUUV1gCD1fW4Gj21NPLG2qfhvI=
+Date: Tue, 19 Sep 2023 18:24:28 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	DRI Development <dri-devel@lists.freedesktop.org>,
+	Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	Linux Media Mailing List <linux-media@vger.kernel.org>,
+	Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+	Linux-sh list <linux-sh@vger.kernel.org>
+Subject: Re: [GIT PULL] drm: renesas: shmobile: Atomic conversion + DT
+ support (was: Re: [PATCH v4 00/41] drm: renesas: shmobile: Atomic conversion
+ + DT support)
+Message-ID: <20230919152428.GB18426@pendragon.ideasonboard.com>
+References: <cover.1694767208.git.geert+renesas@glider.be>
+ <CAMuHMdWfBTKdXvZutg4LvWqBjuz-X=ZjzX0LKPqD=JxYuLoPRw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <14c089d7-4d34-9cd5-7f77-55c80815e003@microchip.com>
+In-Reply-To: <CAMuHMdWfBTKdXvZutg4LvWqBjuz-X=ZjzX0LKPqD=JxYuLoPRw@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-> >> +static void oa_tc6_prepare_ctrl_buf(struct oa_tc6 *tc6, u32 addr, u32 val[],
-> >> +                                 u8 len, bool wnr, u8 *buf, bool ctrl_prot)
-> >> +{
-> >> +     u32 hdr;
-> >> +
-> >> +     /* Prepare the control header with the required details */
-> >> +     hdr = FIELD_PREP(CTRL_HDR_DNC, 0) |
-> >> +           FIELD_PREP(CTRL_HDR_WNR, wnr) |
-> >> +           FIELD_PREP(CTRL_HDR_AID, 0) |
-> >> +           FIELD_PREP(CTRL_HDR_MMS, addr >> 16) |
-> >> +           FIELD_PREP(CTRL_HDR_ADDR, addr) |
-> >> +           FIELD_PREP(CTRL_HDR_LEN, len - 1);
-> >> +     hdr |= FIELD_PREP(CTRL_HDR_P, oa_tc6_get_parity(hdr));
-> >> +     *(u32 *)buf = cpu_to_be32(hdr);
-> >> +
-> >> +     if (wnr) {
-> > 
-> > What does wnr mean? Maybe give it a more meaningful name, unless it is
-> > actually something in the standard. Kerneldoc would also help.
-> Ah, it is "write not read". Shall I name it as "write_not_read" ?
+On Tue, Sep 19, 2023 at 04:28:40PM +0200, Geert Uytterhoeven wrote:
+> Hi David, Daniel,
+> 
+> The following changes since commit 0663e1da5ba8e6459e3555ac12c62741668c0d30:
+> 
+>   drm/dp_mst: Tune down error message during payload addition
+> (2023-09-18 16:38:21 +0300)
+> 
+> are available in the Git repository at:
+> 
+>   git://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git
+> tags/shmob-drm-atomic-dt-tag1
+> 
+> for you to fetch changes up to bfea0fa9052aa8d235b24957eb84d9ff20cb87b7:
+> 
+>   drm: renesas: shmobile: Add DT support (2023-09-19 15:58:04 +0200)
+> 
+> ----------------------------------------------------------------
+> drm: renesas: shmobile: Atomic conversion + DT support
+> 
+> Currently, there are two drivers for the LCD controller on Renesas
+> SuperH-based and ARM-based SH-Mobile and R-Mobile SoCs:
+>   1. sh_mobile_lcdcfb, using the fbdev framework,
+>   2. shmob_drm, using the DRM framework.
+> However, only the former driver is used, as all platform support
+> integrates the former.  None of these drivers support DT-based systems.
+> 
+> Convert the SH-Mobile DRM driver to atomic modesetting, and add DT
+> support, complemented by the customary set of fixes and improvements.
+> 
+> Link: https://lore.kernel.org/r/cover.1694767208.git.geert+renesas@glider.be/
+> 
+> This PR is based on today's drm-misc/for-linux-next, to avoid a
+> conflict with commit 775b0669e19f2e4a ("drm/shmobile: Convert to
+> platform remove callback returning void") in drm-misc/for-linux-next
+> .
+> Thanks for pulling!
+> ----------------------------------------------------------------
+> Geert Uytterhoeven (36):
+>       MAINTAINER: Create entry for Renesas SH-Mobile DRM drivers
 
-You might want to describe the high level concept as well in this
-file. What i _think_ this is about is that SPI is sort of a full
-duplex bus. While you are sending data to the SPI device, the device
-could also be sending a data to the CPU? And 'write not read' here
-means ignore what we receive from the device?
+I'm technically listed as the maintainer for this driver until Geert
+takes over, so for this pull request,
 
-> Ok, as per OA spec, up to 128 consecutive registers read or write can be 
-> possible. So the maximum possible size would be 1032. As you suggested 
-> will allocate this size of memory in the startup.
+Acked-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-Yes, 1032 bytes it not huge, so allocate it once and keep it for the
-lifetime of the device.
+And after that, shmobile won't need my ack to merge further changes :-)
 
-> >> +void oa_tc6_deinit(struct oa_tc6 *tc6)
-> >> +{
-> >> +     kfree(tc6);
-> >> +}
-> >> +EXPORT_SYMBOL_GPL(oa_tc6_deinit);
-> > 
-> > Maybe consider a devm_ API to make the MAC driver simpler.
-> Sorry I don't get your point. Could you please explain bit more?
+This is very nice work Geert. I'm looking forward to dropping the
+sh_mobile_lcdcfb driver.
 
-At least at this stage in the patch series, all you are doing is
-allocating memory. You add more code later, which might invalidate my
-point. But if all you are doing is allocating memory, you could use
-devm_kmalloc(). The driver core will then take care of releasing the
-memory when the driver is unloaded, or probe fails. That makes cleanup
-simpler and memory leaks less likely. There are a lot of devm_
-helpers, see if you can use them.
+>       dt-bindings: display: Add Renesas SH-Mobile LCDC bindings
+>       media: uapi: Add MEDIA_BUS_FMT_RGB666_2X9_BE format
+>       drm: renesas: shmobile: Fix overlay plane disable
+>       drm: renesas: shmobile: Fix ARGB32 overlay format typo
+>       drm: renesas: shmobile: Correct encoder/connector types
+>       drm: renesas: shmobile: Add support for Runtime PM
+>       drm: renesas: shmobile: Restore indentation of shmob_drm_setup_clocks()
+>       drm: renesas: shmobile: Use %p4cc to print fourcc code
+>       drm: renesas: shmobile: Add missing YCbCr formats
+>       drm: renesas: shmobile: Improve shmob_drm_format_info table
+>       drm: renesas: shmobile: Improve error handling
+>       drm: renesas: shmobile: Convert to use devm_request_irq()
+>       drm: renesas: shmobile: Remove custom plane destroy callback
+>       drm: renesas: shmobile: Use drmm_universal_plane_alloc()
+>       drm: renesas: shmobile: Embed drm_device in shmob_drm_device
+>       drm: renesas: shmobile: Convert container helpers to static inline functions
+>       drm: renesas: shmobile: Replace .dev_private with container_of()
+>       drm: renesas: shmobile: Use media bus formats in platform data
+>       drm: renesas: shmobile: Move interface handling to connector setup
+>       drm: renesas: shmobile: Unify plane allocation
+>       drm: renesas: shmobile: Rename shmob_drm_crtc.crtc
+>       drm: renesas: shmobile: Rename shmob_drm_connector.connector
+>       drm: renesas: shmobile: Rename shmob_drm_plane.plane
+>       drm: renesas: shmobile: Use drm_crtc_handle_vblank()
+>       drm: renesas: shmobile: Move shmob_drm_crtc_finish_page_flip()
+>       drm: renesas: shmobile: Wait for page flip when turning CRTC off
+>       drm: renesas: shmobile: Turn vblank on/off when enabling/disabling CRTC
+>       drm: renesas: shmobile: Shutdown the display on remove
+>       drm: renesas: shmobile: Cleanup encoder
+>       drm: renesas: shmobile: Atomic conversion part 1
+>       drm: renesas: shmobile: Atomic conversion part 2
+>       drm: renesas: shmobile: Use suspend/resume helpers
+>       drm: renesas: shmobile: Remove internal CRTC state tracking
+>       drm: renesas: shmobile: Atomic conversion part 3
+>       drm: renesas: shmobile: Add DT support
+> 
+> Laurent Pinchart (5):
+>       drm: renesas: shmobile: Remove backlight support
+>       drm: renesas: shmobile: Don't set display info width and height twice
+>       drm: renesas: shmobile: Rename input clocks
+>       drm: renesas: shmobile: Remove support for SYS panels
+>       drm: renesas: shmobile: Use struct videomode in platform data
+> 
+>  .../bindings/display/renesas,shmobile-lcdc.yaml    | 130 +++++
+>  .../userspace-api/media/v4l/subdev-formats.rst     |  72 +++
+>  MAINTAINERS                                        |  13 +-
+>  drivers/gpu/drm/renesas/shmobile/Kconfig           |   3 +-
+>  drivers/gpu/drm/renesas/shmobile/Makefile          |   3 +-
+>  .../gpu/drm/renesas/shmobile/shmob_drm_backlight.c |  82 ---
+>  .../gpu/drm/renesas/shmobile/shmob_drm_backlight.h |  19 -
+>  drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.c  | 650 +++++++++------------
+>  drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.h  |  27 +-
+>  drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c   | 179 +++---
+>  drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.h   |  18 +-
+>  drivers/gpu/drm/renesas/shmobile/shmob_drm_kms.c   |  77 ++-
+>  drivers/gpu/drm/renesas/shmobile/shmob_drm_kms.h   |   9 +-
+>  drivers/gpu/drm/renesas/shmobile/shmob_drm_plane.c | 326 ++++++-----
+>  drivers/gpu/drm/renesas/shmobile/shmob_drm_plane.h |   5 +-
+>  include/linux/platform_data/shmob_drm.h            |  57 +-
+>  include/uapi/linux/media-bus-format.h              |   3 +-
+>  17 files changed, 860 insertions(+), 813 deletions(-)
+>  create mode 100644
+> Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml
+>  delete mode 100644 drivers/gpu/drm/renesas/shmobile/shmob_drm_backlight.c
+>  delete mode 100644 drivers/gpu/drm/renesas/shmobile/shmob_drm_backlight.h
 
-	Andrew
+-- 
+Regards,
+
+Laurent Pinchart
 
