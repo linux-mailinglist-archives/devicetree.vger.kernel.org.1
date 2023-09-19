@@ -1,257 +1,110 @@
-Return-Path: <devicetree+bounces-1301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A19C7A5CC6
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 10:41:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F28E7A5CD5
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 10:46:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AF8A1C20A14
-	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 08:41:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09DFF282126
+	for <lists+devicetree@lfdr.de>; Tue, 19 Sep 2023 08:45:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C27538DC0;
-	Tue, 19 Sep 2023 08:41:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2110358AB;
+	Tue, 19 Sep 2023 08:45:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 117D2358AB
-	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 08:41:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02ADBC433C7;
-	Tue, 19 Sep 2023 08:41:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695112905;
-	bh=BBsNoLkA1x6+4JknYCY/ruIajgLvHtdCkuqOJ/G8IiU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DPCmGmJAFTq5h2xCDNsmktlgWSKX//F6Nxk+rMLZc06o3apFYrBEqfE3Mj7WL1dsI
-	 e1ca2AujpdS20MNHqUbnR09blv2lLqfaEXjBLmhnF1TnMiYeClTeqrBr3POnrBcOQN
-	 8CpyKklYpYrHs2BiG1nWguclwoyv6momRAk28krM1Eu75yWXAJsxXQbMJ7eQFGuwAK
-	 plLJm5VJ+De1LxOsaVSoWRnOhveLf46qGuflFkjxEecOv8BP0hRL8sWp7B7rnbn1RY
-	 aVHk8S9isydyM/FOUHpnUGaBult6IiUd9Y56SOZPNehkx5bcQU/ZPaG3YodKnVttXk
-	 W3PeMUH09Yi4w==
-Date: Tue, 19 Sep 2023 09:41:40 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Tylor Yang <tylor_yang@himax.corp-partner.google.com>
-Cc: dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jikos@kernel.org, benjamin.tissoires@redhat.com,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99C50538C
+	for <devicetree@vger.kernel.org>; Tue, 19 Sep 2023 08:45:55 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1C6EE6;
+	Tue, 19 Sep 2023 01:45:53 -0700 (PDT)
+Received: from localhost.localdomain (unknown [IPv6:2001:b07:646b:e2:e4be:399f:af39:e0db])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laura.nao)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 6BA5B66057B6;
+	Tue, 19 Sep 2023 09:45:51 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1695113152;
+	bh=I9ktfih0sa6jgd7LQe4oO4cl3jZWiRbZxvF64WAFJ64=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=RnSgsG0+DeUNMB3HhUK/2fjxJJ/to9uV0+mEMUbGxMgn5t2b+Jh3bS9wdQkSguM8l
+	 ohclYn0BDKntkCsksU5VNp/OCyBcOUlJ2MPDv7MBUMD16oIKBPwNrILw+uvt444RH3
+	 XQRnP47sg5J8VHIFkFttZycmSSIpx72Y8evt9ijx6gU3lg7EKxSXWKIFzNDCtYe+H1
+	 ehb8qIyrmYO+LdfigxTeLaMFEHmVtBfmwx/TOx2mT66QKZ9depLeU79TUt7TqYkJ46
+	 652Es9yZyca6ibAYkQSY6Gl/QyqyDdv/QUxJne9hUM77KVxC1o36VWQjpW7e/VvZmK
+	 qMZJ1H6JNd23g==
+From: Laura Nao <laura.nao@collabora.com>
+To: mathieu.poirier@linaro.org
+Cc: Project_Global_Chrome_Upstream_Group@mediatek.com,
+	andersson@kernel.org,
+	angelogioacchino.delregno@collabora.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	kernel@collabora.com,
+	krzysztof.kozlowski+dt@linaro.org,
+	laura.nao@collabora.com,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	poyuan_chang@himax.corp-partner.google.com, jingliang@chromium.org,
-	hbarnor@chromium.org
-Subject: Re: [PATCH V2 1/2] dt-bindings: input: Introduce Himax HID-over-SPI
- device
-Message-ID: <20230919-70b2f1e368a8face73468dfa@fedora>
-References: <20230919024943.3088916-1-tylor_yang@himax.corp-partner.google.com>
- <20230919024943.3088916-2-tylor_yang@himax.corp-partner.google.com>
+	linux-mediatek@lists.infradead.org,
+	linux-remoteproc@vger.kernel.org,
+	matthias.bgg@gmail.com,
+	robh+dt@kernel.org,
+	tinghan.shen@mediatek.com
+Subject: Re: [PATCH v17 00/14] Add support for MT8195 SCP 2nd core
+Date: Tue, 19 Sep 2023 10:45:52 +0200
+Message-Id: <20230919084552.260918-1-laura.nao@collabora.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <ZQj16b1NvkDlij+H@p14s>
+References: <ZQj16b1NvkDlij+H@p14s>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="vzc2Yp5yLtnT6svH"
-Content-Disposition: inline
-In-Reply-To: <20230919024943.3088916-2-tylor_yang@himax.corp-partner.google.com>
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+On 9/19/23 03:14, Mathieu Poirier wrote:
+> On Mon, Sep 18, 2023 at 12:31:41PM +0200, Laura Nao wrote:
+>>> Other than patch 2 and 14, I have applied this set.  The remaining patches will
+>>> have to be resent to Matthias.
+>>
+>>> Thanks,
+>>> Mathieu
+>>
+>> Hello,
+>>
+>> With patch 2 missing, the SCP is not probed correctly anymore on asurada (MT8192) and kukui (MT8183). The mtk-scp driver relies on the existence of the `cros-ec-rpmsg` node in the dt to determine if the SCP is single or multicore. Without patch 2 the driver wrongly assumes the SCP on MT8192 and MT8183 are multicore, leading to the following errors during initialization:
+>>
+>> 10696 04:33:59.126671  <3>[   15.465714] platform 10500000.scp:cros-ec: invalid resource (null)
+>> 10697 04:33:59.142855  <3>[   15.478560] platform 10500000.scp:cros-ec: Failed to parse and map sram memory
+>> 10698 04:33:59.149650  <3>[   15.486121] mtk-scp 10500000.scp: Failed to initialize core 0 rproc
+>>
+>> The issue was caught by KernelCI, complete logs can be found here:
+>> - asurada: https://storage.kernelci.org/next/master/next-20230914/arm64/defconfig+arm64-chromebook+videodec/gcc-10/lab-collabora/baseline-nfs-mt8192-asurada-spherion-r0.html
+>> - kukui: https://storage.kernelci.org/next/master/next-20230914/arm64/defconfig+arm64-chromebook+videodec/gcc-10/lab-collabora/baseline-nfs-mt8183-kukui-jacuzzi-juniper-sku16.html
+>>
+>> Reporting the issue so that patch 2 and 14 can be resent and merged soon.
+>>
+> 
+> Apologies for the trouble here, the error is mine.
+> 
+> I have applied and pushed patch 02 - please confirm that things are working as
+> expected now.  Matthias will need to either ack patch 14 or pick it up himself.
+> 
+> 
 
---vzc2Yp5yLtnT6svH
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I confirm SCP is probed correctly on MT8192 (spherion) and MT8183 (juniper) on the remoteproc tree (for-next branch) now.
+Thank you!
 
-Hey,
-
-
-On Tue, Sep 19, 2023 at 10:49:42AM +0800, Tylor Yang wrote:
-> The Himax HID-over-SPI framework support for Himax touchscreen ICs
-> that report HID packet through SPI bus. The driver core need reset
->  pin to meet reset timing spec. of IC. An interrupt pin to disable
-> and enable interrupt when suspend/resume. An optional power control
-> pin if target board needed. Panel id pins for identify panel is also
-> an option.
->=20
-> Additional optional arguments:
-> ic-det-delay-ms and ic-resume-delay-ms are using to solve runtime
-> conditions.
-
-Runtime conditions? Aren't th=D1=94se properties of the panel & therefore
-fixed? If they were runtime conditions, then setting them statically in
-your DT is not going to work, right?
-
->=20
-> This patch also add maintainer of this driver.
->=20
-> Signed-off-by: Tylor Yang <tylor_yang@himax.corp-partner.google.com>
-
-It looks like you deleted all of the properties from the previous
-submission of these changes. I don't really understand that, it kinda
-feels just like appeasement, as you must have needed those properties
-to do the firmware loading etc. How are you filling the gap those
-properties have left, when you still only have a single compatible
-string in th=E3=84=9Fs binding? Is there a way to do runtime detection of w=
-hich
-chip you're dealing with that you are now using?
-
-Confused,
-Conor.
-
-> ---
->  .../bindings/input/himax,hid-over-spi.yaml    | 109 ++++++++++++++++++
->  MAINTAINERS                                   |   6 +
->  2 files changed, 115 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/himax,hid-ove=
-r-spi.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/input/himax,hid-over-spi.y=
-aml b/Documentation/devicetree/bindings/input/himax,hid-over-spi.yaml
-> new file mode 100644
-> index 000000000000..3ee3a89842ac
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/himax,hid-over-spi.yaml
-> @@ -0,0 +1,109 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/himax,hid-over-spi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Himax TDDI devices using SPI to send HID packets
-> +
-> +maintainers:
-> +  - Tylor Yang <tylor_yang@himax.corp-partner.google.com>
-> +
-> +description: |
-> +  Support the Himax TDDI devices which using SPI interface to acquire
-> +  HID packets from the device. The device needs to be initialized using
-> +  Himax protocol before it start sending HID packets.
-> +
-> +properties:
-> +  compatible:
-> +    const: himax,hid-over-spi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  himax,rst-gpio:
-> +    maxItems: 1
-> +    description: Reset device, active low signal.
-> +
-> +  himax,irq-gpio:
-> +    maxItems: 1
-> +    description: Interrupt request, active low signal.
-> +
-> +  himax,3v3-gpio:
-> +    maxItems: 1
-> +    description: GPIO to control 3.3V power supply.
-> +
-> +  himax,id-gpios:
-> +    maxItems: 8
-> +    description: GPIOs to read physical Panel ID. Optional.
-> +
-> +  spi-cpha: true
-> +  spi-cpol: true
-> +
-> +  himax,ic-det-delay-ms:
-> +    description:
-> +      Due to TDDI properties, the TPIC detection timing must after the
-> +      display panel initialized. This property is used to specify the
-> +      delay time when TPIC detection and display panel initialization
-> +      timing are overlapped. How much milliseconds to delay before TPIC
-> +      detection start.
-> +
-> +  himax,ic-resume-delay-ms:
-> +    description:
-> +      Due to TDDI properties, the TPIC resume timing must after the
-> +      display panel resumed. This property is used to specify the
-> +      delay time when TPIC resume and display panel resume
-> +      timing are overlapped. How much milliseconds to delay before TPIC
-> +      resume start.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - himax,rst-gpio
-> +  - himax,irq-gpio
-> +
-> +unevaluatedProperties: false
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    spi {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        touchscreen@0 {
-> +            compatible =3D "himax,hid-over-spi";
-> +            #address-cells =3D <1>;
-> +            #size-cells =3D <0>;
-> +            reg =3D <0x0>;
-> +            interrupt-parent =3D <&gpio1>;
-> +            interrupts =3D <7 IRQ_TYPE_LEVEL_LOW>;
-> +            pinctrl-0 =3D <&touch_pins>;
-> +            pinctrl-names =3D "default";
-> +
-> +            spi-max-frequency =3D <12500000>;
-> +            spi-cpha;
-> +            spi-cpol;
-> +
-> +            himax,rst-gpio =3D <&gpio1 8 GPIO_ACTIVE_LOW>;
-> +            himax,irq-gpio =3D <&gpio1 7 GPIO_ACTIVE_LOW>;
-> +            himax,3v3-gpio =3D <&gpio1 6 GPIO_ACTIVE_HIGH>;
-> +            himax,ic-det-delay-ms =3D <500>;
-> +            himax,ic-resume-delay-ms =3D <100>;
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index bf0f54c24f81..452701261bec 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -9323,6 +9323,12 @@ L:	linux-kernel@vger.kernel.org
->  S:	Maintained
->  F:	drivers/misc/hisi_hikey_usb.c
-> =20
-> +HIMAX HID OVER SPI TOUCHSCREEN SUPPORT
-> +M:	Tylor Yang <tylor_yang@himax.corp-partner.google.com>
-> +L:	linux-input@vger.kernel.org
-> +S:	Supported
-> +F:	Documentation/devicetree/bindings/input/himax,hid-over-spi.yaml
-> +
->  HIMAX HX83112B TOUCHSCREEN SUPPORT
->  M:	Job Noorman <job@noorman.info>
->  L:	linux-input@vger.kernel.org
-> --=20
-> 2.25.1
->=20
-
---vzc2Yp5yLtnT6svH
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQlewAAKCRB4tDGHoIJi
-0sCkAQCmK/j743qPQvSHIVKE7x17P9IyD50CEsb1DDt1ebobdwEAgf+/saDzEIP9
-ptyc+eK9vn63fIMTZahGbUfHEXTH3gE=
-=ZlbN
------END PGP SIGNATURE-----
-
---vzc2Yp5yLtnT6svH--
 
