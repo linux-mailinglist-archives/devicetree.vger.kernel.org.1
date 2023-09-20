@@ -1,171 +1,79 @@
-Return-Path: <devicetree+bounces-1775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77A297A83BF
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 15:46:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7D237A83C7
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 15:47:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F6321C20ABC
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 13:46:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 933EA281DBA
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 13:47:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7319538DDD;
-	Wed, 20 Sep 2023 13:46:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2E8438DDF;
+	Wed, 20 Sep 2023 13:46:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FE1C36AEE
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 13:46:11 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E69BD7;
-	Wed, 20 Sep 2023 06:46:09 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id BAF4B66071F1;
-	Wed, 20 Sep 2023 14:46:06 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1695217567;
-	bh=lgCLhSgqYXiCQOsoRyh80+UifQuGl+xnEfv3AbTIkHs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ekLM8GwFSzEQXn88ANZmrr+Hi8sx5bO0pJMQ31aROgmbFzB2+rEKbuwbxmNxOiBns
-	 6Mvzke16k+NIVsZmqAsESvRju+F4oc4gzsur/sBjxPqVz+8Zg4LhqNBbZM8I/IuAMs
-	 uq/+7L0p7jy1LICwHBpImFHk8CumKIRr9VYlL2Vn2YIoYk++ZrMgWUiNSZu038EY6p
-	 uHUCXTbiLe+PCX+8UYgB4ijCR6jmBTiRphaH5uVr2oY8LOQeCBOZSW0asoZFQaCsWg
-	 lQjmVlob55NL2oVoXq0ie8gKd9Uf8OwkmwGXlnadi1wus9tW54n++VRo5d/rxf5vLk
-	 j4zRc/rUH+j+g==
-Message-ID: <dbd818a2-8290-68c7-a624-4939731b8a1a@collabora.com>
-Date: Wed, 20 Sep 2023 15:46:04 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD47836AEE;
+	Wed, 20 Sep 2023 13:46:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD4EEC433C8;
+	Wed, 20 Sep 2023 13:46:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695217619;
+	bh=dBGRbuxNukRXbCtz9In2yhS+++hVLMIGSxm4jlSnasQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=iEXiZ1gLIj8peOlIiFkmdudyE9LimPVizJ8NyJju2ik/EzRelagdoufjErmi3qyeC
+	 AIZlYEAaC7g3e/qfkbsJKIIDvNJL8Rki9gUbaWYW+CSniJB5xAtyKshieDbA5wp7KB
+	 /kDTeCHq6CJYGhNvb+Z5UaXnuQIZ7IYo6jKq7O8WqmZ6Y5rH5FGpa2Nhx9MzcA+eEA
+	 N/210o4x99na7cQ1hrD4RuoJA2nEuIozlwZBgD5zW/HgOySgGshctgmGDOqngyToKB
+	 OhA2PYcBJHWlo47p9UBPo4lNfSnR5DmK1jMfzkTjW/ltAKYPHlD6QEGWYHNbnPnArJ
+	 pXiVr+to2h15A==
+From: Lee Jones <lee@kernel.org>
+To: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Keguang Zhang <keguang.zhang@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ "David S . Miller" <davem@davemloft.net>, 
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+ Paolo Abeni <pabeni@redhat.com>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Jose Abreu <joabreu@synopsys.com>, 
+ Serge Semin <Sergey.Semin@baikalelectronics.ru>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230914114435.481900-2-keguang.zhang@gmail.com>
+References: <20230914114435.481900-1-keguang.zhang@gmail.com>
+ <20230914114435.481900-2-keguang.zhang@gmail.com>
+Subject: Re: (subset) [PATCH v5 1/3] dt-bindings: mfd: syscon: Add
+ compatibles for Loongson-1 syscon
+Message-Id: <169521761559.3446293.1897507502065442678.b4-ty@kernel.org>
+Date: Wed, 20 Sep 2023 14:46:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v2 3/3] dt-bindings: hwinfo: Add mtk-socinfo driver
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- William-tw Lin <william-tw.lin@mediatek.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Kevin Hilman <khilman@kernel.org>
-Cc: Project_Global_Chrome_Upstream_Group@mediatek.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20230915152607.18116-1-william-tw.lin@mediatek.com>
- <20230915152607.18116-4-william-tw.lin@mediatek.com>
- <3e7bc476-ffc7-fb07-8e64-246427da736c@linaro.org>
- <9acc8d99-e3db-3df8-4051-21d95450b28d@collabora.com>
- <fad9eb3c-49f9-5ece-b51a-aaff4d8888ad@linaro.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <fad9eb3c-49f9-5ece-b51a-aaff4d8888ad@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.12.2
 
-Il 18/09/23 13:59, Krzysztof Kozlowski ha scritto:
-> On 18/09/2023 10:47, AngeloGioacchino Del Regno wrote:
->> Il 17/09/23 10:26, Krzysztof Kozlowski ha scritto:
->>> On 15/09/2023 17:26, William-tw Lin wrote:
->>>> dt-binding documentation for mtk-socinfo driver.
->>>
->>> Here and in subject, drop driver and instead descrbe hardware.
->>>
->>>> mtk-socinfo driver provides SoC-related information.
->>>> Such information includes manufacturer information, SoC name,
->>>> SoC segment name, and SoC marketing name.
->>>>
->>>> Signed-off-by: William-tw Lin <william-tw.lin@mediatek.com>
->>>> ---
->>>>    .../bindings/hwinfo/mtk-socinfo.yaml          | 48 +++++++++++++++++++
->>>>    1 file changed, 48 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/hwinfo/mtk-socinfo.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/hwinfo/mtk-socinfo.yaml b/Documentation/devicetree/bindings/hwinfo/mtk-socinfo.yaml
->>>> new file mode 100644
->>>> index 000000000000..74f03f1dc404
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/hwinfo/mtk-socinfo.yaml
->>>
->>> Nothing improved.
->>>
->>> This is a friendly reminder during the review process.
->>>
->>> It seems my previous comments were not fully addressed. Maybe my
->>> feedback got lost between the quotes, maybe you just forgot to apply it.
->>> Please go back to the previous discussion and either implement all
->>> requested changes or keep discussing them.
->>>
->>> Thank you.
->>>
->>>> @@ -0,0 +1,48 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/hwinfo/mtk-socinfo.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: MediaTek SoC ChipID
->>>> +
->>>> +maintainers:
->>>> +  - William Lin <william-tw.lin@mediatek.com>
->>>> +  - Matthias Brugger <matthias.bgg@gmail.com>
->>>> +  - Kevin Hilman <khilman@kernel.org>
->>>> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>> +
->>>> +description:
->>>> +  MediaTek SoCs store various product information in eFuses, including
->>>> +  Chip ID and Revision fields, usable to identify the manufacturer,
->>>> +  SoC version, plus segment and marketing names.
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: mediatek,socinfo
->>>
->>> What happened to compatibles? No, this is just wrong and no explained.
->>> You ignored other comments as well. Really, that's not the way to go.
->>>
->>
->> Practically, having different compatibles for each SoC is not needed, as
->> the only thing that changes between SoCs is the eFuse(s) that you read to
->> get the information - and that's all.
+On Thu, 14 Sep 2023 19:44:33 +0800, Keguang Zhang wrote:
+> Add Loongson LS1B and LS1C compatibles for system controller.
 > 
-> 
-> And how do you guarantee that no future SoC will have any difference?
-> How can you even predict it?
 > 
 
-You're right, it's too much long sighted and at some point in the future this
-assumption will be *inevitably* wrong.
+Applied, thanks!
 
-Thanks,
-Angelo
+[1/3] dt-bindings: mfd: syscon: Add compatibles for Loongson-1 syscon
+      commit: d6e3854f720f13bad60c086d3cb4ea2c1958214a
 
->>
->> So ... we either use this driver with devicetree, giving it the right eFuses
-> 
-> I am talking about bindings, no driver.
-> 
->> to read from, or we duplicate the mtk-efuse driver, or we statically assign
->> the eFuses in the driver itself and we set compatibles like
->> "mediatek,mt8195-socinfo" to select that... ideas?
-> 
-> Device specific compatibles followed by fallback, just like for every
-> other review coming from me.
->  > Best regards,
-> Krzysztof
-> 
+--
+Lee Jones [李琼斯]
 
 
