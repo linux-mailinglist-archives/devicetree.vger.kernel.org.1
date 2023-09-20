@@ -1,35 +1,35 @@
-Return-Path: <devicetree+bounces-1594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE25A7A7157
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 05:56:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DE587A7158
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 05:56:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68C74281B01
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 03:56:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 969DA1C20A47
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 03:56:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9ECC3FDD;
-	Wed, 20 Sep 2023 03:55:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2B9423B5;
+	Wed, 20 Sep 2023 03:55:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC3053D67
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 03:55:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54165C43391;
-	Wed, 20 Sep 2023 03:55:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D21BD440D
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 03:55:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4751C433CC;
+	Wed, 20 Sep 2023 03:55:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695182106;
-	bh=lS5QsmDIxhnq9nnMl0m5YDi8EJfraAZLdVal/TChSgk=;
+	s=k20201202; t=1695182107;
+	bh=e4y/mviqWLNNV87tif/yuXvY21+y6KzTGk+ud2D3wfw=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=u1N+lYm2wHIv1+kaGxqIxTjWvBrSQCbc7lvBtAU8v19pGhlQKARoXyPKwwgtKNd9c
-	 CtXrVQmDqCEcmnHxA2H7qqHjYC57KzO8nUI7/XeonRZDs+1qF+WzTRH/4rLqKTrzG4
-	 vP3VskkLscHSpqg1T1KHT57OOSjS5II8SL7woyd1ii4B8l6JsbjL7XGTMKMYv/lEl3
-	 M67R/Bt3f7Zsic7xWBxyaBMZ/fKVyqWWR2UJ8Zc0MnhGqhoa2tj7GkHKjgP5CMwKNi
-	 cbEnPcAJ8Z0V87AdIaPJbO+QNoXpu3egquiLkr+zRpasLLnL+SfT/o32Ols1ICJMau
-	 qLkPtFNH67lCg==
+	b=FQl9iFZVm+SED8NPXtzqOx0pG5v9JHSSeRLEm5ZFkOo9TjXwnNNlr2DmR7tr8Ts9h
+	 hxVE9ep9Gke7kPLLSYZGETkwBplE+nwJVWiKn9aeeH2k27TcJ6DPvJGMuoY3kNy2/S
+	 ECwDJI1J5uA3CXmiTq16/14zS05EIAuODfvm5e98Yzlfba5aQBO87YqD2WpeuOsPpo
+	 6RCYjNDFmzEw7ABuKV1gyUvZX08OM08p9SGXzRKA+8OrRpfBAKZoBMv9Zv78eW5Pro
+	 pbqYbyX0wOcvjQSiA2tJ8Q2Pzc4unkTU32VQLKURUiJoktdOi4q1OUaiz9smtstyT7
+	 hfuZkwJ3EW/hA==
 From: Bjorn Andersson <andersson@kernel.org>
 To: agross@kernel.org,
 	konrad.dybcio@linaro.org,
@@ -39,21 +39,18 @@ To: agross@kernel.org,
 	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	ohad@wizery.com,
-	baolin.wang@linux.alibaba.com,
-	linux-remoteproc@vger.kernel.org,
 	Vignesh Viswanathan <quic_viswanat@quicinc.com>
 Cc: quic_kathirav@quicinc.com,
 	quic_anusha@quicinc.com,
 	quic_sjaganat@quicinc.com,
 	quic_srichara@quicinc.com,
 	quic_varada@quicinc.com
-Subject: Re: (subset) [PATCH v2 0/2] Fix tcsr_mutex register for IPQ6018
-Date: Tue, 19 Sep 2023 20:58:57 -0700
-Message-ID: <169518233725.1055386.8371009743953920681.b4-ty@kernel.org>
+Subject: Re: (subset) [PATCH v2 0/4] Fix SMEM hwlock index for IPQ platforms
+Date: Tue, 19 Sep 2023 20:58:58 -0700
+Message-ID: <169518233723.1055386.4715738884321034745.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230905095535.1263113-1-quic_viswanat@quicinc.com>
-References: <20230905095535.1263113-1-quic_viswanat@quicinc.com>
+In-Reply-To: <20230904172516.479866-1-quic_viswanat@quicinc.com>
+References: <20230904172516.479866-1-quic_viswanat@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,23 +61,28 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Tue, 05 Sep 2023 15:25:33 +0530, Vignesh Viswanathan wrote:
-> IPQ6018 has 32 tcsr_mutex hwlock registers of 0x1000 size each.
-> The compatible string qcom,ipq6018-tcsr-mutex is mapped to
-> of_msm8226_tcsr_mutex which has 32 locks configured with stride of 0x80
-> and doesn't match the HW present in IPQ6018.
+On Mon, 04 Sep 2023 22:55:11 +0530, Vignesh Viswanathan wrote:
+> SMEM uses lock index 3 of the TCSR Mutex hwlock for allocations
+> in SMEM region shared by the Host and FW.
 > 
-> This series fixes the following:
->  1. Fix the tcsr_mutex register size to 0x20000 in IPQ6018 DTSI.
->  2. Remove IPQ6018 specific compatible in hwspinlock driver so that it
->     falls back to pick of_tcsr_mutex data.
+> Fix the SMEM hwlock index to 3 for IPQ5332, IPQ6018, IPQ8074 and IPQ9574.
+> 
+> Vignesh Viswanathan (4):
+>   arm64: dts: qcom: ipq5332: Fix hwlock index for SMEM
+>   arm64: dts: qcom: ipq6018: Fix hwlock index for SMEM
+>   arm64: dts: qcom: ipq8074: Fix hwlock index for SMEM
+>   arm64: dts: qcom: ipq9574: Fix hwlock index for SMEM
 > 
 > [...]
 
 Applied, thanks!
 
-[1/2] arm64: dts: qcom: ipq6018: Fix tcsr_mutex register size
-      commit: 72fc3d58b87b0d622039c6299b89024fbb7b420f
+[1/4] arm64: dts: qcom: ipq5332: Fix hwlock index for SMEM
+      commit: d08afd80158399a081b478a19902364e3dd0f84c
+[2/4] arm64: dts: qcom: ipq6018: Fix hwlock index for SMEM
+      commit: 95d97b111e1e184b0c8656137033ed64f2cf21e4
+[4/4] arm64: dts: qcom: ipq9574: Fix hwlock index for SMEM
+      commit: 5fe8508e2bc8eb4208b0434b6c1ca306c1519ade
 
 Best regards,
 -- 
