@@ -1,65 +1,61 @@
-Return-Path: <devicetree+bounces-1889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DDFC7A8BA8
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 20:26:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D97C7A8C16
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 20:54:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA91B2818E5
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 18:26:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 106C32815C0
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 18:54:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0AAA3CD0B;
-	Wed, 20 Sep 2023 18:26:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CA7219C;
+	Wed, 20 Sep 2023 18:54:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4D4D3CCED;
-	Wed, 20 Sep 2023 18:26:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2158C433C8;
-	Wed, 20 Sep 2023 18:26:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BBD717D8
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 18:54:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26676C433C9;
+	Wed, 20 Sep 2023 18:54:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695234366;
-	bh=PE75NYjmQVobATPo4V3+LF6HiqjEzfsGddCxmXSEr60=;
+	s=k20201202; t=1695236054;
+	bh=otb5DM/4dhf30T5dFnYMnw7MyuNEWEkpWHoB3snPXyU=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=L6Yfo7agYCmjL+bWnB39wMEUypQbfAQ+kp2viYl3yEKNfeBr9baIHqzEsMpLGFy7h
-	 moJaQl8Yje2nySFn0EPczEP1fyAWAUjrEjG5+XzAUpYavn6vN1aQcQZmF/eqzHs4MI
-	 Zq4/0SEnqxe3TNX3DesxNQw40lsUthpzJFhBKL0FWHBQlTXUFRawo1FjTInU6//KRF
-	 w5YDgPaQlDNgPDfQopiQ8EKeJHRGm4iTnA3Xjkh5VcaGr6cQHOEuGfWfOqacs7nAkf
-	 QxAxqaom6O8iXr2P9oyhVJuLchXqlSqie6/Pk7qeb/szK/LQXIkdtWXpaVX0faWbqE
-	 LwgebLp7L1qDw==
+	b=MhubmkO7L0v45tnu09+stzCUT/fNV/OtFtzPV8j8YSjueRocNpa4Y3ESgPVAOXvOb
+	 1XOf05kQpaHXhFl35oTfA4t7OSxaZbp1AoFT9CdbISs4nE7qFCOe2egbldrJATe6aA
+	 WODXdTYMuURkoptVMo/Wz32NwkD0woOBrjK4V5uV8INwzP572JZ5b6fbkfyCnZqByb
+	 YJqe01YJbHtGa1IE2uCsWmtnsaCCYPXm6D4r4BmDklrmvyVjl5G3nRsX3+gAxMSyIp
+	 XSZj2zQLjSq8mPfS5ADNfbP7DkEEVL1N65qkwvM94O83yU6uvv+wcDW/hOBW6a/Cbn
+	 zvZ6c8BAuqPHQ==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Andy Gross <agross@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
+To: cros-qcom-dts-watchers@chromium.org,
+	Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Joerg Roedel <joro@8bytes.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
-	Alexey Minnekhanov <alexeymin@postmarketos.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Luca Weiss <luca.weiss@fairphone.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org,
 	linux-arm-msm@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	iommu@lists.linux.dev,
-	linux-usb@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-pm@vger.kernel.org,
 	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: (subset) [PATCH v2 00/14] Clean up RPM bus clocks remnants
-Date: Wed, 20 Sep 2023 11:30:12 -0700
-Message-ID: <169523460861.3191956.15228997966255141519.b4-ty@kernel.org>
+Subject: Re: (subset) [PATCH v2 0/7] Initial support for the Fairphone 5 smartphone
+Date: Wed, 20 Sep 2023 11:58:20 -0700
+Message-ID: <169523629862.3360741.11240206637939402551.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230721-topic-rpm_clk_cleanup-v2-0-1e506593b1bd@linaro.org>
-References: <20230721-topic-rpm_clk_cleanup-v2-0-1e506593b1bd@linaro.org>
+In-Reply-To: <20230919-fp5-initial-v2-0-14bb7cedadf5@fairphone.com>
+References: <20230919-fp5-initial-v2-0-14bb7cedadf5@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,24 +66,29 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Tue, 12 Sep 2023 15:31:38 +0200, Konrad Dybcio wrote:
-> After the recent cleanups ([1], [2]) some in-tree abusers that directly
-> accessed the RPM bus clocks, effectively circumventing and working
-> against the efforts of the interconnect framework, were found.
+On Tue, 19 Sep 2023 14:45:54 +0200, Luca Weiss wrote:
+> Add support to boot up mainline kernel on the QCM6490-based Fairphone 5
+> smartphone.
 > 
-> Patches 1-5 drop deprecated references and the rest attempt to stop
-> direct bus clock abuses.
+> These patches only cover a part of the functionality brought up on
+> mainline so far, with the rest needing larger dts and driver changes or
+> depend on patches that are not yet merged. I will work on sending those
+> once these base patches here have settled.
 > 
 > [...]
 
 Applied, thanks!
 
-[08/14] dt-bindings: remoteproc: qcom,adsp: Remove AGGRE2 clock
-        commit: c4c5b47958529bc1de10260df0c583710853b516
-[09/14] dt-bindings: remoteproc: qcom,msm8996-mss-pil: Remove PNoC clock
-        commit: e7781901449cbcff129d80a5d9021e9e96084ec4
-[10/14] remoteproc: qcom: q6v5-mss: Remove PNoC clock from 8996 MSS
-        commit: e1592981c51bac38ea2041b642777b3ba30606a8
+[1/7] arm64: dts: qcom: sc7280: Mark some nodes as 'reserved'
+      commit: 6da24ba932082bae110feb917a64bb54637fa7c0
+[3/7] arm64: dts: qcom: pm7250b: make SID configurable
+      commit: 8e2d56f64572e0432c355093a7601bde29677490
+[4/7] arm64: dts: qcom: pm8350c: Add flash led node
+      commit: bfd4412a023b2a3a2f858f2ffc13705aaeef5737
+[6/7] dt-bindings: arm: qcom: Add QCM6490 Fairphone 5
+      commit: 4b1a16d776b474345b12f834de1fd42bca226d90
+[7/7] arm64: dts: qcom: qcm6490: Add device-tree for Fairphone 5
+      commit: eee9602ad6498eee9ddab1b7eb6aede288f0b934
 
 Best regards,
 -- 
