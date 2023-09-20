@@ -1,100 +1,135 @@
-Return-Path: <devicetree+bounces-1685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1CC47A75FE
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 10:37:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6DB97A7605
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 10:37:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1719B1C20DD5
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 08:37:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0494E1C209AE
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 08:37:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CAF28C00;
-	Wed, 20 Sep 2023 08:37:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82794C8DE;
+	Wed, 20 Sep 2023 08:37:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DC875393
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 08:37:02 +0000 (UTC)
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2957A1
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 01:37:00 -0700 (PDT)
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-	by mx0b-001ae601.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38K7981o027268;
-	Wed, 20 Sep 2023 03:36:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=PODMain02222019; bh=Jyhl8Y3oyKx0h61
-	XhFzFxdqJ/5lcrhBpmC44A35uauo=; b=if5DCWGCmdPJwH1e6vLubzJLxpPLorJ
-	HHEQqU8u2HKeJFlKUp/oGO9nDSTuSeyD/4xKrX2s3h0g21lnCeuGEVZZVFd8tZHB
-	9Hv00LXIZG4LVMdWiS7wp3//4j+wWO6DL/p7vVCI5rEGIOF5oQGfFltKotmXhOrc
-	Wg9j+2T+o4EQDVVUYmdJ2vx43YO9h1QeGQLFficEtxBhBoeYmITQpV4NlJ+2G/XU
-	QvCDF2CZ62EAMKnW+gvt5nUxSguvnZvsIUnqf24xU30XfrFpWYyuYUlYvUxT+Ekx
-	T5JCarzkVst47mj8rLeFw5wfFS+yv8E6sycBI3FuZ3IU9PA7oQaz7LQ==
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3t58shv53w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 20 Sep 2023 03:36:49 -0500 (CDT)
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.37; Wed, 20 Sep
- 2023 09:36:47 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1118.37 via Frontend Transport; Wed, 20 Sep 2023 09:36:47 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id C65882A1;
-	Wed, 20 Sep 2023 08:36:47 +0000 (UTC)
-Date: Wed, 20 Sep 2023 08:36:47 +0000
-From: Charles Keepax <ckeepax@opensource.cirrus.com>
-To: Rob Herring <robh@kernel.org>
-CC: <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <krzysztof.kozlowski+dt@linaro.org>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <patches@opensource.cirrus.com>
-Subject: Re: [PATCH 1/5] dt-bindings: ASoC: cirrus,cs42l43: Update a couple
- of default values
-Message-ID: <20230920083647.GD103419@ediswmail.ad.cirrus.com>
-References: <20230919103116.580305-1-ckeepax@opensource.cirrus.com>
- <20230919103116.580305-2-ckeepax@opensource.cirrus.com>
- <20230919192302.GA51154-robh@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B8E85393
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 08:37:50 +0000 (UTC)
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BA218F;
+	Wed, 20 Sep 2023 01:37:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1695199068; x=1726735068;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+ubhK+ohsrm/rVYz4hePic08sMvDAPezKqgxUkBOSE4=;
+  b=ktnI+oe/YGQdztK5m+MQWjL265YVWnR+euYFPDx4BubqG40I3qqQV6bT
+   BNN0n0Rw1C/BTA4hjrCT+NcntaXcTEVAurR9q4VZ0WvNo1vjvQhoD+b5Q
+   EhT/pgQ/AYNWHQhooeVSE1ggQL7wgGA/G1XaiYC6N+COkLAUn1Buc6QnV
+   F6YPVg/0FRw7dzDovGOX2D6U7YN/mR9c6lxi4YdQdaeNqXMW4hchi1Y9c
+   o7siIspYiI5/n7pp7Mr0lV/iGCxjLP65CzIAhIlCiL8IYbH3yqPudgpTU
+   s2269ztN4UBdCmyIYLeBpKP0ZKcFQjbCZA8xg0s0yQOPjKvW0rboNbIgX
+   Q==;
+X-CSE-ConnectionGUID: WjP0000pQd28t1EnxNpDvg==
+X-CSE-MsgGUID: ZLmgIhqLQDq6kpTwpBgavw==
+X-ThreatScanner-Verdict: Negative
+X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; 
+   d="asc'?scan'208";a="5615763"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 20 Sep 2023 01:37:47 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 20 Sep 2023 01:37:46 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Wed, 20 Sep 2023 01:37:43 -0700
+Date: Wed, 20 Sep 2023 09:37:26 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Chen Wang <unicornxw@gmail.com>
+CC: <aou@eecs.berkeley.edu>, <chao.wei@sophgo.com>, <conor@kernel.org>,
+	<devicetree@vger.kernel.org>, <emil.renner.berthing@canonical.com>,
+	<guoren@kernel.org>, <jszhang@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <linux-kernel@vger.kernel.org>,
+	<linux-riscv@lists.infradead.org>, <palmer@dabbelt.com>,
+	<paul.walmsley@sifive.com>, <robh+dt@kernel.org>,
+	<xiaoguang.xing@sophgo.com>, Chen Wang <wangchen20@iscas.ac.cn>
+Subject: Re: [PATCH v2 04/11] dt-bindings: riscv: Add T-HEAD C920 compatibles
+Message-ID: <20230920-borax-swipe-dbf4aa8ed4e2@wendy>
+References: <cover.1695189879.git.wangchen20@iscas.ac.cn>
+ <c5061fbe8ef9c4971cd45de7b5d8408dc1b848b4.1695189879.git.wangchen20@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="BiR7UZp5nLCqNrq7"
 Content-Disposition: inline
-In-Reply-To: <20230919192302.GA51154-robh@kernel.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-GUID: Ah6d-omvyVXmVaEwUDIeH2zF7LmXg4xL
-X-Proofpoint-ORIG-GUID: Ah6d-omvyVXmVaEwUDIeH2zF7LmXg4xL
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <c5061fbe8ef9c4971cd45de7b5d8408dc1b848b4.1695189879.git.wangchen20@iscas.ac.cn>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, Sep 19, 2023 at 02:23:02PM -0500, Rob Herring wrote:
-> On Tue, Sep 19, 2023 at 11:31:12AM +0100, Charles Keepax wrote:
-> > The bias sense is being enabled by default in the driver, and the
-> > default detect time is being dropped slightly. Update the binding
-> > document to match.
-> 
-> That's not really a compatible change. If I wrote my DT expecting bias 
-> sense was disabled by default then the OS changes behavior, my 
-> platform behavior would change. Maybe that doesn't matter here? IDK. 
-> It's on you if this breaks anyone, so:
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
-> 
+--BiR7UZp5nLCqNrq7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Yeah I appreciate that, but this should be fine, the part is very
-very new. The only systems using the part are still in development.
+On Wed, Sep 20, 2023 at 02:38:08PM +0800, Chen Wang wrote:
+> The C920 is RISC-V CPU cores from T-HEAD Semiconductor.
+> Notably, the C920 core is used in the SOPHGO SG2042 SoC.
+>=20
+> Acked-by: Xiaoguang Xing <xiaoguang.xing@sophgo.com>
+> Signed-off-by: Chen Wang <wangchen20@iscas.ac.cn>
+
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
 Thanks,
-Charles
+Conor.
+
+> ---
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Document=
+ation/devicetree/bindings/riscv/cpus.yaml
+> index 38c0b5213736..185a0191bad6 100644
+> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> @@ -47,6 +47,7 @@ properties:
+>                - sifive,u74-mc
+>                - thead,c906
+>                - thead,c910
+> +              - thead,c920
+>            - const: riscv
+>        - items:
+>            - enum:
+> --=20
+> 2.25.1
+>=20
+
+--BiR7UZp5nLCqNrq7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQqvRgAKCRB4tDGHoIJi
+0s4+AQC6Ty5DsHJBz4+NX28nmY1bLvz9GbBkvEyXpaBaCnRxLwEAjZQNYITGCtsr
+MOaERg3cYcLTGM30m/i2J4lYLmSsiwA=
+=wDzS
+-----END PGP SIGNATURE-----
+
+--BiR7UZp5nLCqNrq7--
 
