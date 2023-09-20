@@ -1,98 +1,148 @@
-Return-Path: <devicetree+bounces-1871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 605BB7A8A4F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 19:11:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E23757A8A85
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 19:24:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A8C9281E68
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 17:11:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D123281AF1
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 17:24:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C16B8450F7;
-	Wed, 20 Sep 2023 17:10:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BD3C1A5A6;
+	Wed, 20 Sep 2023 17:24:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF5793D399
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 17:10:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09614C433C9;
-	Wed, 20 Sep 2023 17:10:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695229827;
-	bh=3DI+rP4GUZdEpq6Mx+GyUnkKuBAxvddDZMe26L5pzv0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=cDteWq/Zl71f0bIOEjfc7emTrMVhYb56O+f/uiuL9VB6Epz+Urtxofo7EUxPjKvHN
-	 gguExDsyqiaDEmQhZTJ6vVgdqEb+BM5eC6+4QYv1kpjqYmrUf/XC7QRFzcDP7HYhtp
-	 J4ZHkBa4FjPrOkHg/p7BM3QCQpMnXXvr2hKp003uHE/oZPKJxXfXtZ3FJ8azOHxBUx
-	 xHGYez4KJm3YGjP+hZkA77t2p7bTc+IodRbCDOSSmgS9L0pIvlKZTb8KQuuy/eNhzm
-	 2Q2K4LuiSGcZaS+sqaIQrAID7taYdd2l7E7ZyM9UohOI9i7WrF8+iX2dsCZdp1vrb7
-	 aDyNs22CQXxQg==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Stephan Gerhold <stephan@gerhold.net>
-Cc: Andy Gross <agross@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Subject: Re: [PATCH 0/9] arm64: dts: qcom: msm8916/39: Reserve firmware memory dynamically
-Date: Wed, 20 Sep 2023 10:14:13 -0700
-Message-ID: <169523004970.2665018.7388281323259797805.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230911-msm8916-rmem-v1-0-b7089ec3e3a1@gerhold.net>
-References: <20230911-msm8916-rmem-v1-0-b7089ec3e3a1@gerhold.net>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F10779EE
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 17:24:16 +0000 (UTC)
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C07B9F7;
+	Wed, 20 Sep 2023 10:24:09 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-50336768615so200559e87.0;
+        Wed, 20 Sep 2023 10:24:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695230647; x=1695835447; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AfiikMIrYn39kPmf1XpzwzyflnoDFSxd0c5KM6+tLH4=;
+        b=W4Mq0WbOB9vEqBJPMnnHQYpL+G399iQMigLVgovqCSrecdsyJLWiDyPDjsfPH4MiXs
+         gD37S5yMTUsoIBcDoOeGSRCZo751aTaxCfZYM8/jaYqh9K4N1ZyLdLbQ/LZzDXvtHLHs
+         jq9yWVUctT4XZSUHX61bs6Bi0dJmNNKqpMxEQfAI/69/AQB+E8+llzwOwex2AS2/uvKh
+         9BkDghiT8nyYWgtyrAm3hb/hjonfDW2aoly4QIqyqro9lpJ7Tf4bOC1iLS52hQuP4NyK
+         gMpWM10XS0waqwUv/oPt0twoZEgXHksYAmFhZ57EFsTBp/CS74HxtDkQ19uTywlIMrPM
+         XNDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695230647; x=1695835447;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AfiikMIrYn39kPmf1XpzwzyflnoDFSxd0c5KM6+tLH4=;
+        b=adP/3iPNLF++tJVBRsAZIbUhSVVuJSJL04vjz9IitK3+yrt8XtHWVFc3O6KLjkVzUB
+         PkhbxSOvii65FOWXnq53xxYmI4JgMvWz9q7SCM8m0e/Tf3b5rbayCAqOupg2hiJJ7AUW
+         u7IeHgHFXAJMMYW8DslWH4GyuyKVhwqxnvkKAMFmPx/kJijyDpa2UkhDJ/RQtfuBu3BT
+         GQPqnMfHK9jbwFiA92OsMBPO0KvkdOwWLjTWGW6P1NXICgx53sb2zuqkHwM05QePWQcT
+         utrME2EJ5v48k9lWVryXhzb0QIpfvMKgECZXLPUl1gOa1OAIDwIVCITFI9/l4ZyCMx3B
+         fpHw==
+X-Gm-Message-State: AOJu0YweQhA/8pSN4nqawP8ZjkJuWKza1CWItuOy2FHNvOosEx0ej5P3
+	GUmwLcL/KnLjZ5WrJUTpprc=
+X-Google-Smtp-Source: AGHT+IECCauuhP3vTBGBf/lQVx6tED+vbCi8sf5TYDpauGNNEOX3HDVGDsKjG3Bi3kURlLtbgevGPA==
+X-Received: by 2002:a05:651c:235:b0:2b9:b27c:f727 with SMTP id z21-20020a05651c023500b002b9b27cf727mr2797044ljn.8.1695230646850;
+        Wed, 20 Sep 2023 10:24:06 -0700 (PDT)
+Received: from [10.0.0.42] (host-85-29-92-32.kaisa-laajakaista.fi. [85.29.92.32])
+        by smtp.gmail.com with ESMTPSA id v8-20020a2ea448000000b002c128e45245sm107170ljn.23.2023.09.20.10.24.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Sep 2023 10:24:06 -0700 (PDT)
+Message-ID: <68b74422-d53e-4147-bbb5-ffc04443f969@gmail.com>
+Date: Wed, 20 Sep 2023 20:24:05 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] ASoC: ti: omap-mcbsp: Ignore errors for getting
+ fck_src
+To: Andreas Kemnade <andreas@kemnade.info>, Tony Lindgren <tony@atomide.com>
+Cc: bcousson@baylibre.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, lgirdwood@gmail.com,
+ broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
+ jarkko.nikula@bitmer.com, dmitry.torokhov@gmail.com,
+ linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
+References: <20230705190324.355282-1-andreas@kemnade.info>
+ <20230705190324.355282-2-andreas@kemnade.info>
+ <7d58d52d-2087-45af-b29e-2515b63ead13@gmail.com>
+ <20230920063353.GQ5285@atomide.com> <20230920165204.0fbc0ff3@aktux>
+Content-Language: en-US
+From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
+In-Reply-To: <20230920165204.0fbc0ff3@aktux>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+Hi,
 
-On Mon, 11 Sep 2023 19:41:42 +0200, Stephan Gerhold wrote:
-> Refactor the MSM8916 and MSM8939 device trees to make use of dynamic
-> memory reservations for the firmware regions, rather than hardcoding
-> fixed addresses for each device. This allows to keep most of the
-> definitions in the SoC.dtsi while defining the board-specific
-> properties (such as firmware size) separately for each device.
+On 9/20/23 17:52, Andreas Kemnade wrote:
+> Hi,
 > 
-> The main motivation for this patch set is to simplify enabling the
-> modem on the various MSM8916/39 devices. The modem firmware size
-> differs on almost each device, which requires redefining *all* of
-> the firmware reservations with newly calculated addresses to make
-> room for the larger modem firmware. I've explained this in detail
-> in a previous RFC:
-> https://lore.kernel.org/linux-arm-msm/20230510-dt-resv-bottom-up-v1-4-3bf68873dbed@gerhold.net/
+> On Wed, 20 Sep 2023 09:33:53 +0300
+> Tony Lindgren <tony@atomide.com> wrote:
 > 
-> [...]
+>> Hi,
+>>
+>> * Péter Ujfalusi <peter.ujfalusi@gmail.com> [230919 18:25]:
+>>>
+>>>
+>>> On 7/5/23 22:03, Andreas Kemnade wrote:  
+>>>> Commit 349355ce3a05 ("ARM: OMAP2+: Drop legacy platform data for omap4 mcbsp")
+>>>> dropped prcm_fck for omap4,  
+>>
+>> The prcm_fck should be there in the dts for each mcbsp interconnect targe
+>> module as "fck" alias and get's enabled/disabled when the mcbsp driver
+>> calls runtime PM.
+>>
+>> So maybe the description should explain that things broke as the aliases
+>> for prcm_fck and pad_ck no longer get added.
+>>
+>>> it also dropped the pad_fck for that matter.  
+>>
+>> OK so an alias is needed for that too.
+>>
+>> That's the MCPDM_CLKCTRL pad_clks_ck alias, right? Seems like the
+>> pad_clks_ck should be claimed by the mcpdm and mcbsp drivers if they are
+>> used? I guess it would be for some external device use case?
+>>
+>>>> so the clk_src might not be >available making the
+>>>> clk_get(src) fail.  
+>>>
+>>> Wow, so OMAP4 audio is pretty broken if would ever need to select FCLK?
+>>> By default we don't on OMAP4, but this is astonishing.  
+>>
+>> So sounds like we just got lucky because of -ENOSUCHUSERS? The mcbsp works
+>> for me, not sure how come I'm not seeing this issue, does it now only work
+>> for the default clock source?
+>>
+> Well, I did not run into any problems (besides of no sound output)
+> as long as I tried to use the codec side as bitclock/frameclock-master and
+> that is what droid4 does...
 
-Applied, thanks!
+Looks like only omap3 pandora is using external clock source for McBSP,
+most OMAP4/5 devices tend to use McPDM and in most cases the McBSP is
+not the clock provider, so the clocking does not matter.
 
-[1/9] arm64: dts: qcom: msm8916: Disable venus by default
-      commit: 29589248420766cd492e6db0632d6f59ec216e92
-[2/9] arm64: dts: qcom: msm8916/39: Disable GPU by default
-      commit: 0ce5bb825d54c904b217cc7f1131e084e02ed037
-[3/9] arm64: dts: qcom: msm8916-ufi: Drop gps_mem for now
-      commit: 40eb256e5fd1fd49813a27a252b7f45ccca89fde
-[4/9] arm64: dts: qcom: msm8916: Reserve firmware memory dynamically
-      commit: 0ed3d82862e8451cc2b14ddb1b064e72ba3e5a60
-[5/9] arm64: dts: qcom: msm8916: Reserve MBA memory dynamically
-      commit: b4f3a410061bf5a8cc148c9435479da580abf85b
-[6/9] arm64: dts: qcom: msm8939: Reserve firmware memory dynamically
-      commit: b22bef3dbc3a67a796f82f49a6df9e413211cb40
-[7/9] arm64: dts: qcom: msm8916/39: Disable unneeded firmware reservations
-      commit: 0ece6438a8c0492a7df036d57ac299500a25cb70
-[8/9] arm64: dts: qcom: msm8916/39: Move mpss_mem size to boards
-      commit: 35efa1be51bd6db067d7380b34538b17b9f250a8
-[9/9] arm64: dts: qcom: msm8916/39: Fix venus memory size
-      commit: e3c6386c6a5d0187f103fc9bf39850ac15c01690
+It is going to cause issues on new boards, but those are unlikely to
+surface.
 
-Best regards,
 -- 
-Bjorn Andersson <andersson@kernel.org>
+Péter
 
