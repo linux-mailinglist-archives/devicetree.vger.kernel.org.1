@@ -1,158 +1,122 @@
-Return-Path: <devicetree+bounces-1828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 273D17A8839
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 17:25:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56A4C7A8844
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 17:27:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D66C3282665
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 15:25:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1161528266D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 15:27:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CCF53B7BE;
-	Wed, 20 Sep 2023 15:25:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 442283C680;
+	Wed, 20 Sep 2023 15:27:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4555D3B2A4;
-	Wed, 20 Sep 2023 15:25:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB690C433C8;
-	Wed, 20 Sep 2023 15:25:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695223546;
-	bh=84if6Rt9sb+lMTCfxVLo8MgoC3NPhilBQ/XZ/msXQ0Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WRMM6LkbqVxZHgOxKUk6odzdzhWDBIsEkU7VQsMn6HA3FGvfa220uRNNesUZucYyg
-	 Rp17+LhuklSWjjQvITGBawPJOh/+nA9maYOpJQ2HSwo7yTYmiCKzRaMNzxCbwukWK6
-	 qEF7BBCBfHB7dcr83yjRsVHMOd64T+q+DxxmLNyo0Euv5S7Yfp87yIea8PIEsI6XkB
-	 DenQ99cRM30vad1K6qF8tFBFLnba4/IJQ4BbUNqP+a+gEz9PXCzk2NW0T+bAG2oCtn
-	 69ac8Yt8Q740eBMBU1ZQqHRNgz47aF2+G+g62Yd0ZBTmYdNKUBbmShl639QC521TCT
-	 LT8g4oJ4zWkxg==
-Date: Wed, 20 Sep 2023 16:25:42 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Gokhan Celik <gokhan.celik@analog.com>
-Cc: outreachy@lists.linux.dev, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] regulator: dt-bindings: Add ADI MAX77503 support
-Message-ID: <20230920-84ed9120f304012067f0d390@fedora>
-References: <cover.1695155379.git.gokhan.celik@analog.com>
- <5ce9482e53587d9250ecaa07d0908b987081b4e9.1695155379.git.gokhan.celik@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01D8F3B7BD
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 15:27:29 +0000 (UTC)
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02EF68F
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 08:27:27 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-532eb2a1bf8so1347427a12.0
+        for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 08:27:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695223645; x=1695828445; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Wo1mQgPnJiiGHC8PMNJRnSxUKypGW2RCDzAOKloAhdw=;
+        b=jeOKyuyQaTgpnVtDVGM9VO9jEFgYw5yZ2JrWiHc27MWVmawKVtqaTVjpu77sSojiJH
+         +sY+WCH7yjeewUX2ceOAsTawz0QK1zxRa8NYhuKh4TxFfHcvf8kCpUnUiIu3wmyRw2Hm
+         Eu1EEMs2wotqkwpO4lwUR+yxsGP51+TnOjey1ZEbNNLfRl/OaExkozzL9utX3DrtWPPj
+         GNP5gQIphhdnbGTp60/OEaU2v24ow/K/uZ3M98Y6JJyNaqNzGJAP5DsUUwnsxj3/6Oum
+         DXti3HqJWI+puCaF6OAOWwF1DcLpS8Le2Dsm+yZEZGjRwzmFRJ0Riw+rLV6DrNiSQmtR
+         Y1YA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695223645; x=1695828445;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Wo1mQgPnJiiGHC8PMNJRnSxUKypGW2RCDzAOKloAhdw=;
+        b=mJ+kwLz2Zj04ThCaHscGPEMPCsfZMW2YE5GN4u2R59V8O0y+HYbSdIpMqGDxM+8Ki3
+         jAMAASikGUi8TuovQvalVNFnbdQkCWACoggKkKVh5kNlXD/tWsUjP6iNgU3hNtIH9Iqa
+         RSy7lL3XoalL7Jp5Gnew6NOihpChQj/3ZkaUAl0j67uNGNRWm7XJgBGZe6ntz3+AcFuV
+         veVNHE5LUcWEWGvon9SuNoagvR1czVaE8nObUFEbUqS8AIl3lU9IQVqu5NPn6xXGdQJ3
+         vlJedmFANS1krVyb/qyYsnJs+UZsydlxwA6RZWnEn1NgT88vDe12w/aJCVMzZkBPMyEX
+         tT9A==
+X-Gm-Message-State: AOJu0Yydqbb5uV0cHvlQYcfI6WIO3VOXtIOFb+WGEi7o88bEF34/uW2D
+	D0HFGmcOGWxurwXGd60+Nh3GpocYJfm0h1ggqbtoiQ==
+X-Google-Smtp-Source: AGHT+IFf0OsflsAqCBJwnxqg2qtNncrbiWYuEiolcloSW2fAScdAB9FF4DRU/tmMk/elGeW9Xz6lxg==
+X-Received: by 2002:aa7:c0c6:0:b0:530:b75d:7a83 with SMTP id j6-20020aa7c0c6000000b00530b75d7a83mr2482123edp.21.1695223645347;
+        Wed, 20 Sep 2023 08:27:25 -0700 (PDT)
+Received: from [172.25.81.108] ([217.67.225.27])
+        by smtp.gmail.com with ESMTPSA id ew9-20020a056402538900b00532eba07773sm1422496edb.25.2023.09.20.08.27.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Sep 2023 08:27:24 -0700 (PDT)
+Message-ID: <9f5f663f-3ab2-3599-8f94-96d1fde0b6b7@linaro.org>
+Date: Wed, 20 Sep 2023 17:27:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ou1Mt6OWPM9UBPMp"
-Content-Disposition: inline
-In-Reply-To: <5ce9482e53587d9250ecaa07d0908b987081b4e9.1695155379.git.gokhan.celik@analog.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 2/3] arm64: dts: freescale: tqma9352-mba93xxla: add
+ 'chassis-type' property
+To: Shawn Guo <shawnguo@kernel.org>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20230811085401.3856778-1-alexander.stein@ew.tq-group.com>
+ <20230811085401.3856778-3-alexander.stein@ew.tq-group.com>
+ <20230920152023.GG11740@T480>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230920152023.GG11740@T480>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+On 20/09/2023 17:20, Shawn Guo wrote:
+> On Fri, Aug 11, 2023 at 10:54:00AM +0200, Alexander Stein wrote:
+>> Add the chassis-type property to tqma9352-mba93xxla.
+>>
+>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+>> ---
+>>  arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts
+>> index f06139bdff97..f0d0bf84f6ba 100644
+>> --- a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts
+>> +++ b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts
+>> @@ -18,6 +18,7 @@ /{
+>>  	model = "TQ-Systems i.MX93 TQMa93xxLA on MBa93xxLA SBC";
+>>  	compatible = "tq,imx93-tqma9352-mba93xxla",
+>>  		     "tq,imx93-tqma9352", "fsl,imx93";
+>> +	chassis-type = "embedded";
+> 
+> Rob, Krzysztof,
+> 
+> Do we have binding doc somewhere for this property?
 
---ou1Mt6OWPM9UBPMp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yes, it is a standard property, described in dtschema.
 
-On Tue, Sep 19, 2023 at 11:45:22PM +0300, Gokhan Celik wrote:
-> Add ADI MAX77503 buck converter devicetree document.
->=20
-> Signed-off-by: Gokhan Celik <gokhan.celik@analog.com>
+Best regards,
+Krzysztof
 
-Other than Mark's comment, this seems fine to me. W/ that to his
-satisfaction,=20
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-Conor.
-
-> ---
->  .../regulator/adi,max77503-regulator.yaml     | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/adi,max77=
-503-regulator.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/regulator/adi,max77503-reg=
-ulator.yaml b/Documentation/devicetree/bindings/regulator/adi,max77503-regu=
-lator.yaml
-> new file mode 100644
-> index 000000000000..128e04ae3f4d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/adi,max77503-regulator.=
-yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (c) 2023 Analog Devices, Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/adi,max77503-regulator.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices MAX77503 Buck Converter
-> +
-> +maintainers:
-> +  - Gokhan Celik <Gokhan.Celik@analog.com>
-> +
-> +description: |
-> +  The Analog Devices MAX77503 is a single channel 14V input, 1.5A=20
-> +  high-efficiency buck converter. This converter has 94% efficiency
-> +  for 2-Cell/3-Cell battery applications.
-> +
-> +allOf:
-> +  - $ref: regulator.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,max77503
-> +
-> +  reg:
-> +    description: I2C address of the device
-> +    items:
-> +      - enum: [0x1e, 0x24, 0x37]
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - regulator-min-microvolt
-> +  - regulator-max-microvolt
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        regulator@1e {
-> +            compatible =3D "adi,max77503";
-> +            reg =3D <0x1e>;
-> +
-> +            regulator-min-microvolt =3D <800000>;
-> +            regulator-max-microvolt =3D <5000000>;
-> +        };
-> +    };
-> +
-> --=20
-> 2.34.1
->=20
-
---ou1Mt6OWPM9UBPMp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQsO8wAKCRB4tDGHoIJi
-0tyYAQCJxMcDy+fikeaoO+6jOx5wjXyy908NVat3LeWdpb/TvAEAmbrmH+5qlBYF
-yWONjlrdSzj+KY+xOXuYPIy/X/Ccxg4=
-=vn73
------END PGP SIGNATURE-----
-
---ou1Mt6OWPM9UBPMp--
 
