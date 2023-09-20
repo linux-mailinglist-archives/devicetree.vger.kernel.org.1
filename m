@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-1677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69B837A75B4
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 10:21:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C6B47A75C3
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 10:23:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74AFB1C20A00
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 08:21:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E313A2819B3
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 08:23:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D60DFF9FB;
-	Wed, 20 Sep 2023 08:21:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 068F2FBE1;
+	Wed, 20 Sep 2023 08:23:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 441C2DDCF
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 08:21:27 +0000 (UTC)
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01A3092;
-	Wed, 20 Sep 2023 01:21:26 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDCBADDCF
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 08:23:41 +0000 (UTC)
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A9BB99;
+	Wed, 20 Sep 2023 01:23:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1695198087; x=1726734087;
+  t=1695198219; x=1726734219;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=KE0nQg/amugrY0hU6X8yP1M4clGfXyQXmS4LTPcsBBU=;
-  b=L0cxBYUztq/3GlSMhhJ1+qkpnThfqD6BWVAbQyqyflBP7OoPJq9tYyYR
-   DeKpRH10HVCrPyCGjWX5kD9h0CI/lGbffcoGAqxqScXD/g7e5M1IZ4buQ
-   HB0kjrU6hy+yj25RIEf982Cih+ONCBx836r6ociXgfdaZ7U+0HIxTQWef
-   9Go1ROzAHXjOABtkIzHEED3UrzOoCVOaUVaOigoBLHkVHCX8egjYcztsW
-   5R2tGuDRHF3QRiMTrsf2UPMjB8a5Eo4Hh22mv4nGYHb4tA8YBjc7qWqHB
-   mONUZda1yv7xGIZGxJgm5pIqE2j2GtvJ3gvIkpkZl+NGEpgBqdk/WHWcb
-   A==;
-X-CSE-ConnectionGUID: WxPtBgV6QO2kh+eUWKaMkQ==
-X-CSE-MsgGUID: xay10pjUQbOVRdsaCZWxXA==
+  bh=h8v+kPqS+HjJo2h9d2NO6MN5S7urQThJPL5oA0y2o4A=;
+  b=QpLHrG2IuObaFFzi4IJld2IH3EzVoGsEQGEOIKFQutleXaZSiH6zLq/X
+   5QtF65BMCCU98jH+mAPSHmFQvUNRyR3v5bhXkTwBvrMYTtZeGxIHH7ZJi
+   dQUXctD1EygwVjMDfqOzahe3vRhKavWuVM0w7537vSL4TDXJg2mDHOMzF
+   N7lVt23UJHFhdmO4xvmtt2i1wISwoZSlrME6cIZCYnBh1l18+ppxFBiP+
+   V6we0TWRO7E+zS6nQW1sA/3KYHqGSEUepNJDtz59oIJ6fOJIqkbN4v4YM
+   CoAkzHnzMMZXPEKRTGKil5cxjCbzEvqMwq/7Qbp5eSrbq0Eyfm0iuHt6T
+   Q==;
+X-CSE-ConnectionGUID: 447RiIfjRayIHUjMe4w4Kg==
+X-CSE-MsgGUID: AttvSdqhTIu+lS3BC2Ba3A==
 X-ThreatScanner-Verdict: Negative
 X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; 
-   d="asc'?scan'208";a="5608330"
+   d="asc'?scan'208";a="5613544"
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 20 Sep 2023 01:21:26 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 20 Sep 2023 01:23:38 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 20 Sep 2023 01:21:26 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
+ 15.1.2507.21; Wed, 20 Sep 2023 01:23:01 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Wed, 20 Sep 2023 01:21:23 -0700
-Date: Wed, 20 Sep 2023 09:21:06 +0100
+ Transport; Wed, 20 Sep 2023 01:22:58 -0700
+Date: Wed, 20 Sep 2023 09:22:41 +0100
 From: Conor Dooley <conor.dooley@microchip.com>
 To: Chen Wang <unicornxw@gmail.com>
 CC: <aou@eecs.berkeley.edu>, <chao.wei@sophgo.com>, <conor@kernel.org>,
@@ -61,10 +61,10 @@ CC: <aou@eecs.berkeley.edu>, <chao.wei@sophgo.com>, <conor@kernel.org>,
 	<linux-riscv@lists.infradead.org>, <palmer@dabbelt.com>,
 	<paul.walmsley@sifive.com>, <robh+dt@kernel.org>,
 	<xiaoguang.xing@sophgo.com>, Chen Wang <wangchen20@iscas.ac.cn>
-Subject: Re: [PATCH v2 01/11] riscv: Add SOPHGO SOC family Kconfig support
-Message-ID: <20230920-flashily-ibuprofen-bceba1e6e8a2@wendy>
+Subject: Re: [PATCH v2 02/11] dt-bindings: vendor-prefixes: add milkv/sophgo
+Message-ID: <20230920-unable-impish-373fd26b7d16@wendy>
 References: <cover.1695189879.git.wangchen20@iscas.ac.cn>
- <2c6db3d2db0d27d4b2b8364e0c03be3da292101e.1695189879.git.wangchen20@iscas.ac.cn>
+ <dbd7d823a73d8a9484efcd55f6616f5392daf608.1695189879.git.wangchen20@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,9 +72,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="xGlxnrW2N4qY4U7g"
+	protocol="application/pgp-signature"; boundary="SwIF3I7rfx1hXsx3"
 Content-Disposition: inline
-In-Reply-To: <2c6db3d2db0d27d4b2b8364e0c03be3da292101e.1695189879.git.wangchen20@iscas.ac.cn>
+In-Reply-To: <dbd7d823a73d8a9484efcd55f6616f5392daf608.1695189879.git.wangchen20@iscas.ac.cn>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
@@ -82,23 +82,71 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
---xGlxnrW2N4qY4U7g
+--SwIF3I7rfx1hXsx3
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+Yo,
+
+On Wed, Sep 20, 2023 at 02:37:28PM +0800, Chen Wang wrote:
+> Add new vendor strings to dt bindings.
+> These new vendor strings are used by
+> - Sophgo SG2042 SoC [1]
+> - Milk-V Pioneer board [2], which uses SG2042 chip.
+>=20
+> [1]: https://en.sophgo.com/product/introduce/sg2042.html
+> [2]: https://milkv.io/pioneer
+
+If you resend, make these link tags please. Otherwise,
 Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
+Thanks,
+Conor.
 
---xGlxnrW2N4qY4U7g
+> Acked-by: Xiaoguang Xing <xiaoguang.xing@sophgo.com>
+> Signed-off-by: Chen Wang <wangchen20@iscas.ac.cn>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
+umentation/devicetree/bindings/vendor-prefixes.yaml
+> index 573578db9509..fcca9e070a9a 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -863,6 +863,8 @@ patternProperties:
+>      description: MikroElektronika d.o.o.
+>    "^mikrotik,.*":
+>      description: MikroTik
+> +  "^milkv,.*":
+> +    description: MilkV Technology Co., Ltd
+>    "^miniand,.*":
+>      description: Miniand Tech
+>    "^minix,.*":
+> @@ -1273,6 +1275,8 @@ patternProperties:
+>      description: Solomon Systech Limited
+>    "^sony,.*":
+>      description: Sony Corporation
+> +  "^sophgo,.*":
+> +    description: Sophgo Technology Inc.
+>    "^sourceparts,.*":
+>      description: Source Parts Inc.
+>    "^spansion,.*":
+> --=20
+> 2.25.1
+>=20
+
+--SwIF3I7rfx1hXsx3
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQqrcQAKCRB4tDGHoIJi
-0jESAP9r4e9cXEo8FMKa8sqvXhsg+g1Gkbdl1d/rDCx9LELHLAEA3hby1qa9SSEB
-uVRcU35a6phce/xbF5nvjV1B9LxDxAk=
-=Bija
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQqr0QAKCRB4tDGHoIJi
+0uyKAPsHIRY81qzmFLxN6FMUw75lAg98PudIOjgADw5xJjpEIAD/cyrHv5LAaY6t
+yPmwkTQt4gexHGLZEQIyIf/v7yfSnwc=
+=W+PQ
 -----END PGP SIGNATURE-----
 
---xGlxnrW2N4qY4U7g--
+--SwIF3I7rfx1hXsx3--
 
