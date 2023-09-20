@@ -1,53 +1,55 @@
-Return-Path: <devicetree+bounces-1859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C2067A8A20
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 19:10:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 926C57A8A24
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 19:10:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBD952819F1
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 17:10:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E1CC281C3F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 17:10:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45BF63E49F;
-	Wed, 20 Sep 2023 17:10:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 668623FB0A;
+	Wed, 20 Sep 2023 17:10:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 352E23D399
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 17:10:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33C01C433CA;
-	Wed, 20 Sep 2023 17:10:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55BBE3D399
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 17:10:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39327C433C7;
+	Wed, 20 Sep 2023 17:10:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695229810;
-	bh=bB0qjLN3xu5fQIW9naPhTUwyRS4e4yTiLxdyWnBr1FM=;
+	s=k20201202; t=1695229811;
+	bh=KP9IcaiHNhAMnTzX+ZBEk7bOQS90xvHRMfHmkZfCs4A=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=JOI+g9FUzO2kYK0xRnWTKznj1kBkZ1EwHnucg1uwQMzzb4zy8AUMIZ1mMkDbzvWEH
-	 NMg98QzVe+3k/okbzfrIG1S2TqqXr36Yhwu8D40vys7/gOikX1rnwqn64r0mobbwsE
-	 38+PIozAsPvGCDw3UjdUONdCQgXXlLQPIMYF7bpJB05j+85710wpEvOsGyLeuu6bTr
-	 dpnMQ1+BXJLFzjvGPrrpJL426D+yDVAm8tU72dMISJWXir+vCw9Ou2Si8iTxxEBcD/
-	 dQEQlTidWHSrOVmv3zM0RqfuC56JH+sF91OXb2U8K1wSdGpry+AnBVGniE+ZCAO8Te
-	 KitgXm6KnXpHA==
+	b=TCqQckW883n+AiYIVWcDftPSvpKx/VWm7ewtENRzz0zuS5sDra2vBGnEvaZgFm4TR
+	 gnx3+8a6r/OkibNQ3e+bKDtWIYkzSf28XiHYDt89dUNQXPrnjsNhV5VQqg5WzErGxT
+	 agqWwyxrcYMXBFk0cxXSd0NfQWrWd/Ge8NDl+45zrVeroX5uFG21/fTLqLbY5aggLZ
+	 5l4NT0bTshCLqahbqt9GAuxrDxbCQbtI6sD5jD5YhG6Y/IQwV8E6vnW8IGwmYGTwh/
+	 p3EdqihTR3tRrszNH3/RJ9EjU4NhnHha2m3BOyk537AIfY/uO9/REWg5yYYKksXn46
+	 sRrBKEzUDFdGg==
 From: Bjorn Andersson <andersson@kernel.org>
-To: agross@kernel.org,
-	konrad.dybcio@linaro.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	robimarko@gmail.com,
-	quic_gurus@quicinc.com,
-	Danila Tikhonov <danila@jiaxyga.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: firmware: document Qualcomm SM7150 SCM
-Date: Wed, 20 Sep 2023 10:13:58 -0700
-Message-ID: <169523004955.2665018.14207587632973139123.b4-ty@kernel.org>
+To: Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>,
+	Johan Hovold <johan@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: (subset) [PATCH v3 00/18] phy: qcom-qmp-pcie: convert to newer style of bindings
+Date: Wed, 20 Sep 2023 10:13:59 -0700
+Message-ID: <169523004940.2665018.6127381308126268052.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230913194418.30272-1-danila@jiaxyga.com>
-References: <20230913194418.30272-1-danila@jiaxyga.com>
+In-Reply-To: <20230820142035.89903-1-dmitry.baryshkov@linaro.org>
+References: <20230820142035.89903-1-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,15 +60,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Wed, 13 Sep 2023 22:44:18 +0300, Danila Tikhonov wrote:
-> Document the compatible for Qualcomm SM7150 SCM.
+On Sun, 20 Aug 2023 17:20:17 +0300, Dmitry Baryshkov wrote:
+> Reviewing several patchsets for newer platforms made it clear that
+> having two styles of QMP PHY bindings causes confusion. Despite binding
+> documents having notes telling that old bindings should be used for
+> older platforms, it is too easy to attempt adding new platform with
+> older QMP PHY binding. Thus let's have just a single documented style of
+> bindings.
 > 
-> 
+> [...]
 
 Applied, thanks!
 
-[1/1] dt-bindings: firmware: document Qualcomm SM7150 SCM
-      commit: eb3da369ccd07c0e3d65cd9cd31ca44f9f709673
+[18/18] ARM: dts: qcom-sdx55: switch PCIe QMP PHY to new style of bindings
+        commit: bb56cff4ac0347fe5adb57659ceab338da7f8559
 
 Best regards,
 -- 
