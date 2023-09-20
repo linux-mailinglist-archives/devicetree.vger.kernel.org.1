@@ -1,72 +1,111 @@
-Return-Path: <devicetree+bounces-1703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D9677A781D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 11:55:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA3B67A7837
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 11:57:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07BA52814B5
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 09:55:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 852082814A5
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 09:57:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26925156D3;
-	Wed, 20 Sep 2023 09:55:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C5EC156D6;
+	Wed, 20 Sep 2023 09:57:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 176BC11709
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 09:55:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F105C433C7;
-	Wed, 20 Sep 2023 09:55:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695203754;
-	bh=ymi9AhxzEGfr3xbpAVk8Lsx1Ioa9TTKYbM7aBR7wfxo=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=NZWdErQoXneCkYIehhA1X+hogrP2+g2oIViQnRRtEPRMgqRnVWkKXqithvecSM0yR
-	 wk7zP2cUa8ZHH0qNcWdZGvvoNVFD/ilQn18YFePP6kHy1mfGaCUegA3oQ0Bd5m2AcI
-	 LQBqlxyopnMbfp/KoAhtHzWsl1GSWA0Vu2DMB9amPZO6dDuUoWhZZH711hBokJg/12
-	 iQ8pkR1xCeJMY3gJhdlSNZvbQnRXY8g/r3N+VKfvzPV6H96iSEKeR8lj6T2IGkx9sq
-	 2GneXG8YO4+lzz9kimJyGYRWd/JA2TnpFXAzaLsoWW0NjG8ChLamJjcTDfaqUclY12
-	 4TLTHJkbhYKOg==
-From: Lee Jones <lee@kernel.org>
-To: Chanwoo Choi <cw00.choi@samsung.com>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230905075558.21219-1-krzysztof.kozlowski@linaro.org>
-References: <20230905075558.21219-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: (subset) [PATCH] dt-bindings: mfd: Revert "dt-bindings: mfd:
- maxim,max77693: Add USB connector"
-Message-Id: <169520375325.3364278.14078224668543411816.b4-ty@kernel.org>
-Date: Wed, 20 Sep 2023 10:55:53 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67BD111709
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 09:57:28 +0000 (UTC)
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2138EAD;
+	Wed, 20 Sep 2023 02:57:25 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id EE52EE0008;
+	Wed, 20 Sep 2023 09:57:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1695203844;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=oUsRvVYool5nt9xgnn92j9nopNb++VbByZ1Kaap2nIg=;
+	b=E3pRhS5NBxfZbSzNWar21eA3FnXkLGUDdoUURYFbxMagc2zONjrDloRRNvJapFW/BMsbNZ
+	gnOM2aKVaYfC1G84CdZNSjkVyKqvteWPxz8NKK9gY1/uZurYrSH0RBOMVWjb0rmRtQDXPy
+	aj9T56Zbvxo83PTQtAUbxrjSH85ijgdYHb+gOCTBiib+xtBnLq2bc5R5ZTxjnNLWXX0el2
+	+zkzVzrv21LuSqTItm95tLyX/4aaujLsKKaGaemjuy0oY0A74FKHQbYZI5QO03Z2uXz3kr
+	V/cCheVykayLSkOSfjdX1FmJs9t/Dd799yKMmtMN6UQc/rB6WCH+b2n3C7zomw==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Robert Marko <robert.marko@sartura.hr>, andrew@lunn.ch,
+ sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: luka.perkov@sartura.hr, Robert Marko <robert.marko@sartura.hr>
+Subject: Re: [PATCH 1/2] arm64: dts: marvell: uDPU: rename the SFP GPIO
+ properties
+In-Reply-To: <20230914094550.1519097-1-robert.marko@sartura.hr>
+References: <20230914094550.1519097-1-robert.marko@sartura.hr>
+Date: Wed, 20 Sep 2023 11:57:23 +0200
+Message-ID: <878r91f9q4.fsf@BL-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.12.2
+Content-Type: text/plain
+X-GND-Sasl: gregory.clement@bootlin.com
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Tue, 05 Sep 2023 09:55:58 +0200, Krzysztof Kozlowski wrote:
-> This reverts commit da7ee30ae6662f016f28a9ef090b2132b3c0fb48.
-> 
-> Commit da7ee30ae666 ("dt-bindings: mfd: maxim,max77693: Add USB
-> connector") was an earlier version of my patch adding the connector,
-> later superseded by commit 789c9ce9b46f ("dt-bindings: mfd:
-> maxim,max77693: Add USB connector").
-> 
-> [...]
+Robert Marko <robert.marko@sartura.hr> writes:
 
-Applied, thanks!
+> Rename the GPIO related SFP properties to include the preffered -gpios
+> suffix as defined in the SFP schema.
+>
+> This fixes the following warning:
+> arch/arm64/boot/dts/marvell/armada-3720-eDPU.dtb: sfp-eth1: 'los-gpio', 'mod-def0-gpio', 'tx-disable-gpio', 'tx-fault-gpio' do not match any of the regexes: 'pinctrl-[0-9]+'
+> from schema $id: http://devicetree.org/schemas/net/sff,sfp.yaml#
+>
 
-[1/1] dt-bindings: mfd: Revert "dt-bindings: mfd: maxim,max77693: Add USB connector"
-      commit: c7f5bd9f3aa04a5d0ced8c8f7835bead62380fa6
+Applied on mvebu/dt64
 
---
-Lee Jones [李琼斯]
+Thanks,
 
+Gregory
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> ---
+>  arch/arm64/boot/dts/marvell/armada-3720-uDPU.dtsi | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dtsi b/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dtsi
+> index 3f79923376fb..3a9b6907185d 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dtsi
+> @@ -61,10 +61,10 @@ led-alarm2 {
+>  	sfp_eth1: sfp-eth1 {
+>  		compatible = "sff,sfp";
+>  		i2c-bus = <&i2c1>;
+> -		los-gpio = <&gpiosb 7 GPIO_ACTIVE_HIGH>;
+> -		mod-def0-gpio = <&gpiosb 8 GPIO_ACTIVE_LOW>;
+> -		tx-disable-gpio = <&gpiosb 9 GPIO_ACTIVE_HIGH>;
+> -		tx-fault-gpio = <&gpiosb 10 GPIO_ACTIVE_HIGH>;
+> +		los-gpios = <&gpiosb 7 GPIO_ACTIVE_HIGH>;
+> +		mod-def0-gpios = <&gpiosb 8 GPIO_ACTIVE_LOW>;
+> +		tx-disable-gpios = <&gpiosb 9 GPIO_ACTIVE_HIGH>;
+> +		tx-fault-gpios = <&gpiosb 10 GPIO_ACTIVE_HIGH>;
+>  		maximum-power-milliwatt = <3000>;
+>  	};
+>  };
+> -- 
+> 2.41.0
+>
+
+-- 
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
 
