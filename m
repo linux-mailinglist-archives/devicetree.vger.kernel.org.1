@@ -1,62 +1,50 @@
-Return-Path: <devicetree+bounces-1873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58B637A8A51
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 19:11:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 169667A8A56
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 19:12:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12AD7281AC8
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 17:11:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6373281C31
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 17:12:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDE453FB16;
-	Wed, 20 Sep 2023 17:10:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E5061A582;
+	Wed, 20 Sep 2023 17:12:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93B5F3FB0C
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 17:10:40 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DC64CE
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 10:10:29 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <l.stach@pengutronix.de>)
-	id 1qj0iK-0008V7-Nd; Wed, 20 Sep 2023 19:10:12 +0200
-Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-	(envelope-from <l.stach@pengutronix.de>)
-	id 1qj0iH-007jQu-Me; Wed, 20 Sep 2023 19:10:09 +0200
-From: Lucas Stach <l.stach@pengutronix.de>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Liu Ying <victor.liu@nxp.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Adam Ford <aford173@gmail.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Richard Leitner <richard.leitner@skidata.com>,
-	linux-arm-kernel@lists.infradead.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CC9F1A580
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 17:12:08 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DEAF130;
+	Wed, 20 Sep 2023 10:11:46 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7D12211A9;
+	Wed, 20 Sep 2023 19:10:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1695229807;
+	bh=qokP3+5LpbWRpdJmY5ukz9h+3AKRRyW90W1dlQD20dE=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=Wc5Vw5C8m4oPoWhphjpDtKFSkDoHiaiplvJeEzbv0E1Km22HcHh/kOz2tjVWYGopR
+	 F8ZpslRCy9V922SHsQQfpBUC6z7iXOJmUmVGV6X6x13a0PZ5lQrm/4s2M8Pc0MDXUt
+	 x4lyhPKOUXGy9oB2e5zUAReAvad0+0EMcJ3kGtts=
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: linux-media@vger.kernel.org
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	Sakari Ailus <sakari.ailus@iki.fi>,
 	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	patchwork-lst@pengutronix.de,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Sandor Yu <sandor.yu@nxp.com>
-Subject: [PATCH v3 2/2] drm/bridge: imx: add driver for HDMI TX Parallel Video Interface
-Date: Wed, 20 Sep 2023 19:10:09 +0200
-Message-Id: <20230920171009.3193296-2-l.stach@pengutronix.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230920171009.3193296-1-l.stach@pengutronix.de>
-References: <20230920171009.3193296-1-l.stach@pengutronix.de>
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH v4 1/2] media: dt-bindings: media: i2c: Add MT9M114 camera sensor binding
+Date: Wed, 20 Sep 2023 20:11:53 +0300
+Message-ID: <20230920171155.7648-2-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230920171155.7648-1-laurent.pinchart@ideasonboard.com>
+References: <20230920171155.7648-1-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,275 +52,178 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-This IP block is found in the HDMI subsystem of the i.MX8MP SoC. It has a
-full timing generator and can switch between different video sources. On
-the i.MX8MP however the only supported source is the LCDIF. The block
-just needs to be powered up and told about the polarity of the video
-sync signals to act in bypass mode.
+Add device tree binding for the onsemi MT9M114 CMOS camera sensor.
 
-Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
-Tested-by: Marek Vasut <marex@denx.de> (v1)
-Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
-Tested-by: Richard Leitner <richard.leitner@skidata.com> (v2)
-Tested-by: Frieder Schrempf <frieder.schrempf@kontron.de> (v2)
+Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- drivers/gpu/drm/bridge/imx/Kconfig           |   7 +
- drivers/gpu/drm/bridge/imx/Makefile          |   1 +
- drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c | 206 +++++++++++++++++++
- 3 files changed, 214 insertions(+)
- create mode 100644 drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
+Changes since v3:
 
-diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridge/imx/Kconfig
-index 9fae28db6aa7..3a4e663d922a 100644
---- a/drivers/gpu/drm/bridge/imx/Kconfig
-+++ b/drivers/gpu/drm/bridge/imx/Kconfig
-@@ -3,6 +3,13 @@ if ARCH_MXC || COMPILE_TEST
- config DRM_IMX_LDB_HELPER
- 	tristate
- 
-+config DRM_IMX8MP_HDMI_PVI
-+	tristate "Freescale i.MX8MP HDMI PVI bridge support"
-+	depends on OF
-+	help
-+	  Choose this to enable support for the internal HDMI TX Parallel
-+	  Video Interface found on the Freescale i.MX8MP SoC.
-+
- config DRM_IMX8QM_LDB
- 	tristate "Freescale i.MX8QM LVDS display bridge"
- 	depends on OF
-diff --git a/drivers/gpu/drm/bridge/imx/Makefile b/drivers/gpu/drm/bridge/imx/Makefile
-index 8e2ebf3399a1..be9b4f9adb50 100644
---- a/drivers/gpu/drm/bridge/imx/Makefile
-+++ b/drivers/gpu/drm/bridge/imx/Makefile
-@@ -1,4 +1,5 @@
- obj-$(CONFIG_DRM_IMX_LDB_HELPER) += imx-ldb-helper.o
-+obj-$(CONFIG_DRM_IMX8MP_HDMI_PVI) += imx8mp-hdmi-pvi.o
- obj-$(CONFIG_DRM_IMX8QM_LDB) += imx8qm-ldb.o
- obj-$(CONFIG_DRM_IMX8QXP_LDB) += imx8qxp-ldb.o
- obj-$(CONFIG_DRM_IMX8QXP_PIXEL_COMBINER) += imx8qxp-pixel-combiner.o
-diff --git a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
+- Fix typo in MAINTAINERS
+
+Changes since v2:
+
+- Use media bus type defines
+- Add link-frequencies
+
+Changes since v1:
+
+- Use graph schema
+- Drop unneeded properties
+- Rename ON Semiconductor to onsemi
+---
+ .../bindings/media/i2c/onnn,mt9m114.yaml      | 114 ++++++++++++++++++
+ MAINTAINERS                                   |   7 ++
+ 2 files changed, 121 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
 new file mode 100644
-index 000000000000..5ccd70c98187
+index 000000000000..f6b87892068a
 --- /dev/null
-+++ b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
-@@ -0,0 +1,206 @@
-+// SPDX-License-Identifier: GPL-2.0+
++++ b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
+@@ -0,0 +1,114 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/onnn,mt9m114.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/*
-+ * Copyright (C) 2022 Pengutronix, Lucas Stach <kernel@pengutronix.de>
-+ */
++title: onsemi 1/6-inch 720p CMOS Digital Image Sensor
 +
-+#include <drm/drm_atomic_helper.h>
-+#include <drm/drm_bridge.h>
-+#include <drm/drm_crtc.h>
-+#include <linux/bitfield.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/of_graph.h>
-+#include <linux/pm_runtime.h>
++maintainers:
++  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 +
-+#define HTX_PVI_CTRL			0x0
-+#define  PVI_CTRL_OP_VSYNC_POL		BIT(18)
-+#define  PVI_CTRL_OP_HSYNC_POL		BIT(17)
-+#define  PVI_CTRL_OP_DE_POL		BIT(16)
-+#define  PVI_CTRL_INP_VSYNC_POL		BIT(14)
-+#define  PVI_CTRL_INP_HSYNC_POL		BIT(13)
-+#define  PVI_CTRL_INP_DE_POL		BIT(12)
-+#define  PVI_CTRL_MODE_MASK		GENMASK(2, 1)
-+#define  PVI_CTRL_MODE_LCDIF		2
-+#define  PVI_CTRL_EN			BIT(0)
++description: |-
++  The onsemi MT9M114 is a 1/6-inch 720p (1.26 Mp) CMOS digital image sensor
++  with an active pixel-array size of 1296H x 976V. It is programmable through
++  an I2C interface and outputs image data over a 8-bit parallel or 1-lane MIPI
++  CSI-2 connection.
 +
-+struct imx8mp_hdmi_pvi {
-+	struct drm_bridge	bridge;
-+	struct device		*dev;
-+	struct drm_bridge	*next_bridge;
-+	void __iomem		*regs;
-+};
++properties:
++  compatible:
++    const: onnn,mt9m114
 +
-+static inline struct imx8mp_hdmi_pvi *
-+to_imx8mp_hdmi_pvi(struct drm_bridge *bridge)
-+{
-+	return container_of(bridge, struct imx8mp_hdmi_pvi, bridge);
-+}
++  reg:
++    description: I2C device address
++    enum:
++      - 0x48
++      - 0x5d
 +
-+static int imx8mp_hdmi_pvi_bridge_attach(struct drm_bridge *bridge,
-+					 enum drm_bridge_attach_flags flags)
-+{
-+	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
++  clocks:
++    description: EXTCLK clock signal
++    maxItems: 1
 +
-+	return drm_bridge_attach(bridge->encoder, pvi->next_bridge,
-+				 bridge, flags);
-+}
++  vdd-supply:
++    description:
++      Core digital voltage supply, 1.8V
 +
-+static void imx8mp_hdmi_pvi_bridge_enable(struct drm_bridge *bridge,
-+					  struct drm_bridge_state *bridge_state)
-+{
-+	struct drm_atomic_state *state = bridge_state->base.state;
-+	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
-+	struct drm_connector_state *conn_state;
-+	const struct drm_display_mode *mode;
-+	struct drm_crtc_state *crtc_state;
-+	struct drm_connector *connector;
-+	u32 bus_flags, val;
++  vddio-supply:
++    description:
++      I/O digital voltage supply, 1.8V or 2.8V
 +
-+	connector = drm_atomic_get_new_connector_for_encoder(state, bridge->encoder);
-+	conn_state = drm_atomic_get_new_connector_state(state, connector);
-+	crtc_state = drm_atomic_get_new_crtc_state(state, conn_state->crtc);
++  vaa-supply:
++    description:
++      Analog voltage supply, 2.8V
 +
-+	if (WARN_ON(pm_runtime_resume_and_get(pvi->dev)))
-+		return;
++  reset-gpios:
++    description: |-
++      Reference to the GPIO connected to the RESET_BAR pin, if any (active
++      low).
 +
-+	mode = &crtc_state->adjusted_mode;
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
 +
-+	val = FIELD_PREP(PVI_CTRL_MODE_MASK, PVI_CTRL_MODE_LCDIF) | PVI_CTRL_EN;
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        additionalProperties: false
 +
-+	if (mode->flags & DRM_MODE_FLAG_PVSYNC)
-+		val |= PVI_CTRL_OP_VSYNC_POL | PVI_CTRL_INP_VSYNC_POL;
++        properties:
++          bus-type:
++            enum: [4, 5, 6]
 +
-+	if (mode->flags & DRM_MODE_FLAG_PHSYNC)
-+		val |= PVI_CTRL_OP_HSYNC_POL | PVI_CTRL_INP_HSYNC_POL;
++          link-frequencies: true
++          remote-endpoint: true
 +
-+	if (pvi->next_bridge->timings)
-+		bus_flags = pvi->next_bridge->timings->input_bus_flags;
-+	else if (bridge_state)
-+		bus_flags = bridge_state->input_bus_cfg.flags;
++          # The number and mapping of lanes (for CSI-2), and the bus width and
++          # signal polarities (for parallel and BT.656) are fixed and must not
++          # be specified.
 +
-+	if (bus_flags & DRM_BUS_FLAG_DE_HIGH)
-+		val |= PVI_CTRL_OP_DE_POL | PVI_CTRL_INP_DE_POL;
++        required:
++          - bus-type
++          - link-frequencies
 +
-+	writel(val, pvi->regs + HTX_PVI_CTRL);
-+}
++required:
++  - compatible
++  - reg
++  - clocks
++  - vdd-supply
++  - vddio-supply
++  - vaa-supply
++  - port
 +
-+static void imx8mp_hdmi_pvi_bridge_disable(struct drm_bridge *bridge,
-+					   struct drm_bridge_state *bridge_state)
-+{
-+	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
++additionalProperties: false
 +
-+	writel(0x0, pvi->regs + HTX_PVI_CTRL);
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/media/video-interfaces.h>
 +
-+	pm_runtime_put(pvi->dev);
-+}
++    i2c0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
 +
-+static u32 *
-+imx8mp_hdmi_pvi_bridge_get_input_bus_fmts(struct drm_bridge *bridge,
-+					  struct drm_bridge_state *bridge_state,
-+					  struct drm_crtc_state *crtc_state,
-+					  struct drm_connector_state *conn_state,
-+					  u32 output_fmt,
-+					  unsigned int *num_input_fmts)
-+{
-+	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
-+	struct drm_bridge *next_bridge = pvi->next_bridge;
-+	struct drm_bridge_state *next_state;
++        sensor@48 {
++            compatible = "onnn,mt9m114";
++            reg = <0x48>;
 +
-+	if (!next_bridge->funcs->atomic_get_input_bus_fmts)
-+		return 0;
++            clocks = <&clk24m 0>;
 +
-+	next_state = drm_atomic_get_new_bridge_state(crtc_state->state,
-+						     next_bridge);
++            reset-gpios = <&gpio5 21 GPIO_ACTIVE_LOW>;
 +
-+	return next_bridge->funcs->atomic_get_input_bus_fmts(next_bridge,
-+							     next_state,
-+							     crtc_state,
-+							     conn_state,
-+							     output_fmt,
-+							     num_input_fmts);
-+}
++            vddio-supply = <&reg_cam_1v8>;
++            vdd-supply = <&reg_cam_1v8>;
++            vaa-supply = <&reg_2p8v>;
 +
-+static const struct drm_bridge_funcs imx_hdmi_pvi_bridge_funcs = {
-+	.attach		= imx8mp_hdmi_pvi_bridge_attach,
-+	.atomic_enable	= imx8mp_hdmi_pvi_bridge_enable,
-+	.atomic_disable	= imx8mp_hdmi_pvi_bridge_disable,
-+	.atomic_get_input_bus_fmts = imx8mp_hdmi_pvi_bridge_get_input_bus_fmts,
-+	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
-+	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
-+	.atomic_reset = drm_atomic_helper_bridge_reset,
-+};
++            port {
++                endpoint {
++                    bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
++                    link-frequencies = /bits/ 64 <384000000>;
++                    remote-endpoint = <&mipi_csi_in>;
++                };
++            };
++        };
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 90f13281d297..52a60e7c3461 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -14539,6 +14539,13 @@ L:	linux-mtd@lists.infradead.org
+ S:	Maintained
+ F:	drivers/mtd/devices/docg3*
+ 
++MT9M114 ONSEMI SENSOR DRIVER
++M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
++L:	linux-media@vger.kernel.org
++S:	Maintained
++T:	git git://linuxtv.org/media_tree.git
++F:	Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
 +
-+static int imx8mp_hdmi_pvi_probe(struct platform_device *pdev)
-+{
-+	struct device_node *remote;
-+	struct imx8mp_hdmi_pvi *pvi;
-+
-+	pvi = devm_kzalloc(&pdev->dev, sizeof(*pvi), GFP_KERNEL);
-+	if (!pvi)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, pvi);
-+	pvi->dev = &pdev->dev;
-+
-+	pvi->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(pvi->regs))
-+		return PTR_ERR(pvi->regs);
-+
-+	/* Get the next bridge in the pipeline. */
-+	remote = of_graph_get_remote_node(pdev->dev.of_node, 1, -1);
-+	if (!remote)
-+		return -EINVAL;
-+
-+	pvi->next_bridge = of_drm_find_bridge(remote);
-+	of_node_put(remote);
-+
-+	if (!pvi->next_bridge)
-+		return dev_err_probe(&pdev->dev, -EPROBE_DEFER,
-+				     "could not find next bridge\n");
-+
-+	/* Register the bridge. */
-+	pvi->bridge.funcs = &imx_hdmi_pvi_bridge_funcs;
-+	pvi->bridge.of_node = pdev->dev.of_node;
-+	pvi->bridge.timings = pvi->next_bridge->timings;
-+
-+	drm_bridge_add(&pvi->bridge);
-+
-+	pm_runtime_enable(&pdev->dev);
-+
-+	return 0;
-+}
-+
-+static int imx8mp_hdmi_pvi_remove(struct platform_device *pdev)
-+{
-+	struct imx8mp_hdmi_pvi *pvi = platform_get_drvdata(pdev);
-+
-+	pm_runtime_disable(&pdev->dev);
-+
-+	drm_bridge_remove(&pvi->bridge);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id imx8mp_hdmi_pvi_match[] = {
-+	{
-+		.compatible = "fsl,imx8mp-hdmi-pvi",
-+	}, {
-+		/* sentinel */
-+	}
-+};
-+MODULE_DEVICE_TABLE(of, imx8mp_hdmi_pvi_match);
-+
-+static struct platform_driver imx8mp_hdmi_pvi_driver = {
-+	.probe	= imx8mp_hdmi_pvi_probe,
-+	.remove	= imx8mp_hdmi_pvi_remove,
-+	.driver		= {
-+		.name = "imx-hdmi-pvi",
-+		.of_match_table	= imx8mp_hdmi_pvi_match,
-+	},
-+};
-+module_platform_driver(imx8mp_hdmi_pvi_driver);
-+
-+MODULE_DESCRIPTION("i.MX8MP HDMI TX Parallel Video Interface bridge driver");
-+MODULE_LICENSE("GPL");
+ MT9P031 APTINA CAMERA SENSOR
+ M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+ L:	linux-media@vger.kernel.org
 -- 
-2.39.2
+Regards,
+
+Laurent Pinchart
 
 
