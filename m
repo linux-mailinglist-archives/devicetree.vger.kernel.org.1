@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-1906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 936337A8D68
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 21:59:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36FC27A8D6A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 22:00:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FAF11C20AEC
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 19:59:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CABD6B20953
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 20:00:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3E64450EF;
-	Wed, 20 Sep 2023 19:58:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FC9F450F9;
+	Wed, 20 Sep 2023 19:58:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59122405EE
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 19:58:32 +0000 (UTC)
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60F2F186;
-	Wed, 20 Sep 2023 12:58:28 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-501bd6f7d11so432794e87.1;
-        Wed, 20 Sep 2023 12:58:28 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B447B405EE
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 19:58:36 +0000 (UTC)
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD6BA1A6;
+	Wed, 20 Sep 2023 12:58:31 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-5041cc983f9so395558e87.3;
+        Wed, 20 Sep 2023 12:58:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695239906; x=1695844706; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1695239910; x=1695844710; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=y6ukW6/8Y8yO1kJa0bwaWXWRXX5ogFwdYSjCmCsjJ8M=;
-        b=m8dtA+9bIa+bStAKppt7pRQFqncaZmcxEIeXLjcqdEMIJmWsnfy/s4g/7Pvy2wbkb0
-         gddG14fZ7suZsU24KlmzP//QONJFS0j+7jNTDPDrqtO0KTnIm/QccPqWQ7UCRutsZ549
-         dyy4dBauw6ds6asiMXt2+cPHkZQp5ObAIuzNm3DmqVrEJ1QYCHcMjih2NI91Gq8Wxrk2
-         MQRJ94QwvnTPHYHZEcM4Sy3X4b4TQXaaS30FvgZ6aO46spsQIq84EUNA6G2Rq/men2f4
-         SGDOJI4UjHjF+hoVXpOvXv0vjzd3k4uGpc2P5jSwc7yv/VSWf0falZZpjdKaBGxQq39J
-         WyXQ==
+        bh=5gQNVrm7iIcbZwXELuXpCO4/Kc8sgd3nqGULmM7glBg=;
+        b=Ci6+SbDwOE2ZU6hIgAJ48qiFD/STDWEHZKo8LWxMdYRLpYiRlLv11j2GE9s5TRwSig
+         Abg6ebqON65fSTCBtRIpnoRO5g6iFeteuzZWOYDjLk8GMrojcq79muzbqu7FMPXVDFvf
+         NxvgyVkz9bETjtL/nK9yYNYbt4WqByu3K/UWAmdIe1VqgSfJvCvvES87oSrMEA3r0Fsa
+         WdTfDnpqX2cEZlbVDcLqdDAnTkPTEOKjzQoUXhQejc9qAmaXi4DSsYsPezkm60E6WPPm
+         hTk16Bsw/KrYayRPRUTy34BWcCV1LXcx/ZrX7Jf+O55SreBiZt02oQXSuJT+8XzOZ5hC
+         n6ZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695239906; x=1695844706;
+        d=1e100.net; s=20230601; t=1695239910; x=1695844710;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=y6ukW6/8Y8yO1kJa0bwaWXWRXX5ogFwdYSjCmCsjJ8M=;
-        b=Pjd43C2mn7UfBS14NlucC2QLkJw5ozLqr7GuFG0lMMVIrnsFf4Vn4qtWImxV4akmPu
-         BppYzjGfzeUWNk06kn/AlCAH/lOMYGAyKMJYncOOmrAAzhITumuD+7CWJEg0rs6l3Eot
-         pA856+JCPJqCuIczPefw7QJ+/Hp6pjoAAx8t9jqIG1TXeGolKy5le+jyvwaaKgXM9Xrz
-         Z1KtnZ0le2wpJ3ZvgKf7phfpGORwsdEehS+vJAWAwz+spYN1I4+7fVY9iufXMVKlWN5/
-         nSrDp4aV56+W5i1rA+xhnX5u14tY9mebvT2aIQ6VyWb4VDaAOIgMznrVqix5yeNej1eN
-         oupA==
-X-Gm-Message-State: AOJu0YyFtYrHp6z68vN3JeOi93KlHIbuQPziojyBN4KnimyuKA7TfMoh
-	AKkmEPR/tVitYseEqAieneQ=
-X-Google-Smtp-Source: AGHT+IGwLdoxpsfWKq8k9fjW8bXC2QJ7TzGGKHjEsBvNx8QGU4LeSumexX+UlBAQzaicykI7hYqTKw==
-X-Received: by 2002:a05:6512:3692:b0:503:72c:50cb with SMTP id d18-20020a056512369200b00503072c50cbmr3166877lfs.6.1695239906176;
-        Wed, 20 Sep 2023 12:58:26 -0700 (PDT)
-Received: from localhost ([178.176.85.149])
-        by smtp.gmail.com with ESMTPSA id b1-20020ac25e81000000b004fe2f085d5csm417803lfq.299.2023.09.20.12.58.24
+        bh=5gQNVrm7iIcbZwXELuXpCO4/Kc8sgd3nqGULmM7glBg=;
+        b=YVFitUTQ/WkdSKotUnD4ncl0t2bTLeM8Csfxo/ci7i8r/tQdzIlRLNQH6kXSRaYJ4y
+         odvpgJ49Q6sJKJILbsJwmiReEl+Nm6qSsk1m8jTj15WQrIWL66Vmxk8SaDm27JrrPNRN
+         lPbq+mwtegUcKJSso4VM/EXtAXObi6oq2wDQIFzx8ID9FrG4Fcnp0BtfY6Ay8trAxYSP
+         eJkNoWp4YD/oJzty4AptcjGNH6W7XUIP8WeQ/wKibC03i7oO7WMJj8SF4HREkGz6DvVR
+         Jr6Y1xtQqlHSvm8lwIbjrnt8KB/D3ZUsuEqxgKeOPBfe93YJDnqrGJE9+2Cb77i13m/3
+         UFxQ==
+X-Gm-Message-State: AOJu0YzXJsqZDn+Hy+bF5i+q4mWbTDyTfOl7RJTY0jouS1jluZoiFDrN
+	zzud6/AqTqnKT724FJGQGB0=
+X-Google-Smtp-Source: AGHT+IFTZA+isPECDl01It/LKg4pFSJa6ZcL9RzJNGot72/yXPzDyakTQXl62QQorYr+n6ys1foImw==
+X-Received: by 2002:ac2:4d08:0:b0:503:525:243b with SMTP id r8-20020ac24d08000000b005030525243bmr2663869lfi.58.1695239909866;
+        Wed, 20 Sep 2023 12:58:29 -0700 (PDT)
+Received: from localhost ([83.149.21.189])
+        by smtp.gmail.com with ESMTPSA id d8-20020ac244c8000000b005033891f3c0sm568023lfm.246.2023.09.20.12.58.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Sep 2023 12:58:25 -0700 (PDT)
+        Wed, 20 Sep 2023 12:58:29 -0700 (PDT)
 From: Serge Semin <fancer.lancer@gmail.com>
 To: Michal Simek <michal.simek@amd.com>,
 	Alexander Stein <alexander.stein@ew.tq-group.com>,
@@ -77,9 +77,9 @@ Cc: Serge Semin <fancer.lancer@gmail.com>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-edac@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 12/13] EDAC/synopsys: Drop vendor-specific arch dependency
-Date: Wed, 20 Sep 2023 22:56:43 +0300
-Message-ID: <20230920195720.32047-13-fancer.lancer@gmail.com>
+Subject: [PATCH v4 13/13] EDAC/synopsys: Add BT1 DDRC support
+Date: Wed, 20 Sep 2023 22:56:44 +0300
+Message-ID: <20230920195720.32047-14-fancer.lancer@gmail.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230920195720.32047-1-fancer.lancer@gmail.com>
 References: <20230920195720.32047-1-fancer.lancer@gmail.com>
@@ -90,34 +90,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-DW uMCTL2 DDRC EDAC driver is no longer specific to particular DDRC
-versions. It's generic in the most of the aspects now. So permit setting
-its kernel config independently from the ZynqMP/IntelFPAG/MXC platforms.
+Baikal-T1 SoC is equipped with the DW uMCTl2 DDRC v2.61a with 32-bit
+DQ-bus accepting DDR2/DDR3 SDRAMs of up to 2 ranks, 1:2 HIF/SDRAM clocks
+rate ratio, HIF interface burst length of 8 Full DQ-bus words, 40-bit
+System/Application address width and 128-bits data width, 3 System address
+regions with block size 256MB. There is SEC/DED ECC capability with Scrub
+(RMW) and Scrubber features.
+
+Since the Baikal-T1 DDR controller supports Sideband ECC add the
+controller support to the DW uMCTL2 DDRC EDAC driver. The most of the
+parameters listed above will be autodetected except HIF burst length and
+SAR block size, which will be set by means of the Baikal-T1-specific
+initialization method. The controller compatible string "baikal,bt1-ddrc"
+will be used to attach the driver to the kernel device. It's chosen in
+accordance with the just updated DT-bindings.
 
 Signed-off-by: Serge Semin <fancer.lancer@gmail.com>
----
- drivers/edac/Kconfig | 1 -
- 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
-index eaac35c27e5c..ebf7deee7fa6 100644
---- a/drivers/edac/Kconfig
-+++ b/drivers/edac/Kconfig
-@@ -487,7 +487,6 @@ config EDAC_ARMADA_XP
+---
+
+Changelog v4:
+- Explicitly set snps_ddrc_info.dq_width for Baikal-T1 DDRC for better
+  maintainability.
+- Explicitly set sys_app_map.minsize to SZ_256M instead of using a helper
+  macro DDR_MIN_SARSIZE.
+---
+ drivers/edac/synopsys_edac.c | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+diff --git a/drivers/edac/synopsys_edac.c b/drivers/edac/synopsys_edac.c
+index e589aa9f7876..04cde79eb3f6 100644
+--- a/drivers/edac/synopsys_edac.c
++++ b/drivers/edac/synopsys_edac.c
+@@ -1349,6 +1349,21 @@ static int zynqmp_init_plat(struct snps_edac_priv *priv)
+ 	return 0;
+ }
  
- config EDAC_SYNOPSYS
- 	tristate "Synopsys DDR Memory Controller"
--	depends on ARCH_ZYNQMP || ARCH_INTEL_SOCFPGA || ARCH_MXC
- 	help
- 	  Support for error detection and correction on the Synopsys DDR
- 	  memory controller.
++/*
++ * bt1_init_plat - Baikal-T1-specific platform initialization.
++ * @priv:	DDR memory controller private data.
++ *
++ * Return: always zero.
++ */
++static int bt1_init_plat(struct snps_edac_priv *priv)
++{
++	priv->info.dq_width = SNPS_DQ_32;
++	priv->info.hif_burst_len = SNPS_DDR_BL8;
++	priv->sys_app_map.minsize = SZ_256M;
++
++	return 0;
++}
++
+ /**
+  * snps_get_dtype - Return the controller memory width.
+  * @mstr:	Master CSR value.
+@@ -2476,6 +2491,7 @@ static int snps_mc_remove(struct platform_device *pdev)
+ 
+ static const struct of_device_id snps_edac_match[] = {
+ 	{ .compatible = "xlnx,zynqmp-ddrc-2.40a", .data = zynqmp_init_plat },
++	{ .compatible = "baikal,bt1-ddrc", .data = bt1_init_plat },
+ 	{ .compatible = "snps,ddrc-3.80a" },
+ 	{ }
+ };
 -- 
 2.41.0
 
