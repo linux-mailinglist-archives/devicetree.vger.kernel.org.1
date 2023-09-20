@@ -1,55 +1,51 @@
-Return-Path: <devicetree+bounces-1585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 494D57A7140
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 05:55:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EEAC7A7142
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 05:55:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 767F91C20A70
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 03:55:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28D5C2815D6
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 03:55:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D03D1FC1;
-	Wed, 20 Sep 2023 03:54:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A84E4258B;
+	Wed, 20 Sep 2023 03:54:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E52D23A8
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 03:54:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55DBEC433CD;
-	Wed, 20 Sep 2023 03:54:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97D6723A8
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 03:54:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76EA9C433C7;
+	Wed, 20 Sep 2023 03:54:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695182097;
-	bh=UlorBZR7jwpwSkHXqDVO2Qf0PvrylOVR+7VJ/cpsXZs=;
+	s=k20201202; t=1695182098;
+	bh=Zp4mN7NTiwPryycNsAtJzWVJqvydvecVdj4/IOxVxTc=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=kAtNUK+6no9nEmb2ndarCfuP+BGAIRzWL5JU5/TlZgyef43ijLWVUk6Ml81OgOmG2
-	 elLAcCbqq1KunSuSW0J/e2g/NNwob06iWvN6Z5U752Gi1HyPIPXV77ky48JV7zWr6X
-	 MsVhSpSE8O3CwVIyVL8JIAzGTxnctxY2jSpYjQfhfNXkzhDxcOcsKVBxgqxyypxF1H
-	 1fl/nSa8R9Z20JSvNSTpVH8Dxz4atuSDyW0fBwM58vxfJCiRwn9Qpo5e0Mw3B3m5WJ
-	 /xsSEYvvYY8Hexk72Dvww68WJ34nM8HR+oiz6k1zqIzEwrun/2qf/IOsczcqyiIe6P
-	 FF+VgggKnKqog==
+	b=eh5JOuoLxpDRJL59oyIaJ6JiynCvflICUodvvWhJ+YSnsoaZLWCJVq72zP7rmfyyp
+	 pCu/EIfA8WX7XZMxxDtSPc35lwsQYkZe572V+cjpZsXBXo00LflMdgU/oj7HwKYRJU
+	 Vxdp3/+v3ZmupZ7/xiuyH0F4+6ja8QNWmZXx6mEpq82lWphAoaQUAVco8R6/qc59am
+	 sQD1VJ6IAUFKHKmaDlJud0V2bxMQv4xhC0GkjuSFsLDNeIWpSNvO+VtIOnOja4xHBk
+	 byD4inO5SPn/d4IC8Z+CdbA8kQVUzM73qKCjEHzw9wSnJJxPXZLyRhchz67G0OroDu
+	 3pq8X1tK/QQyQ==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Andy Gross <agross@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Andr=C3=A9=20Apitzsch?= <git@apitzsch.eu>
-Cc: linux-arm-msm@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Stephan Gerhold <stephan@gerhold.net>,
-	phone-devel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 0/2] arm64: dts: qcom: msm8939-longcheer-l9100: Add initial dts
-Date: Tue, 19 Sep 2023 20:58:48 -0700
-Message-ID: <169518233718.1055386.6163446408058250462.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/3] SDM845 Xperia GPIO names
+Date: Tue, 19 Sep 2023 20:58:49 -0700
+Message-ID: <169518233716.1055386.14298183520088830517.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230827-bq_m5-v4-0-f8435fb8f955@apitzsch.eu>
-References: <20230827-bq_m5-v4-0-f8435fb8f955@apitzsch.eu>
+In-Reply-To: <20230824-topic-tama_gpio-v1-0-014e9d198dce@linaro.org>
+References: <20230824-topic-tama_gpio-v1-0-014e9d198dce@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,29 +56,22 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Sun, 27 Aug 2023 10:47:58 +0200, André Apitzsch wrote:
-> This dts adds support for BQ Aquaris M5 (Longcheer L9100) released in
-> 2015.
+On Thu, 24 Aug 2023 11:58:51 +0200, Konrad Dybcio wrote:
+> Sony provides the actual GPIO line names for most of the pins.
+> Use them!
 > 
-> Add a device tree with initial support for:
+> (and prepare camera GPIO regulators as a bonus)
 > 
-> - GPIO keys
-> - Hall sensor
-> - SDHCI
-> - WCNSS (BT/WIFI)
-> - Accelerometer/Magnetometer
-> - Vibrator
-> - Touchscreen
-> - Front flash
 > 
-> [...]
 
 Applied, thanks!
 
-[1/2] dt-bindings: arm: qcom: Add BQ Aquaris M5
-      commit: 9905205541d2020e45da5ffe9787b4a2e53cc199
-[2/2] arm64: dts: qcom: msm8939-longcheer-l9100: Add initial device tree
-      commit: 27da4fd325c371e1ddbb4fc46629e2caf8f73f07
+[1/3] arm64: dts: qcom: sdm845-tama: Add GPIO line names for TLMM
+      commit: ed92c9c8964c713bbdd610cf616cd10a5b4b9045
+[2/3] arm64: dts: qcom: sdm845-tama: Add GPIO line names for PMIC GPIOs
+      commit: cb1e322cb3f126f19859627a6aeae928caf1f26a
+[3/3] arm64: dts: qcom: sdm845-tama: Add camera GPIO regulators
+      commit: 714a1cf29d7015f87df28333d8f702e8398aa176
 
 Best regards,
 -- 
