@@ -1,78 +1,83 @@
-Return-Path: <devicetree+bounces-1560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A96A7A7060
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 04:27:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15A9A7A7068
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 04:28:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F45F28154E
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 02:27:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1415C1C20803
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 02:28:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7A2717FF;
-	Wed, 20 Sep 2023 02:27:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FD05A49;
+	Wed, 20 Sep 2023 02:28:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B253F1FA2
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 02:27:12 +0000 (UTC)
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FEA8D8;
-	Tue, 19 Sep 2023 19:27:07 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-68cbbff84f6so294508b3a.1;
-        Tue, 19 Sep 2023 19:27:07 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBE601857
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 02:28:43 +0000 (UTC)
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3B6BC6;
+	Tue, 19 Sep 2023 19:28:41 -0700 (PDT)
+Received: by mail-pg1-x52d.google.com with SMTP id 41be03b00d2f7-565e395e7a6so3734352a12.0;
+        Tue, 19 Sep 2023 19:28:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695176827; x=1695781627; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BLcMCPJ7w7rydudoSATGBt+HfEby4lVvVHKQKV8c7iI=;
-        b=gXWOxNCz4fSd4ZiLG8j+S3SOVXBn9ezYVPy8VPY+Qf4kCfaMWYajmkYiseCf3NpSBi
-         N4GusBmkO75WXRNs1J01OpzUiTC5v4aapzqD3qjRgpmyD5+kjMrSeoSi0cKr8LSfpp5L
-         7dv7ANKfNPu2MzXGPXTtmHd5bIEGcOSpguAxvy22oOvDRoPNrNQjYTAhgSrC59kS5mkN
-         KqhB7ihTV1H60HHNR9vaCj7lhCcR+Uim80HcvnUSiRSzt/THDwdc5SkCWPuEH8YkaJtH
-         sgYl8AC7kETRoPIl5nln26pqw9oSJPZDs9/DW9/hE+RzJT7yxjLNtcKn0xwp8ZwrZexS
-         mnLg==
+        d=gmail.com; s=20230601; t=1695176921; x=1695781721; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VfzrZwHFhCid05Dh4cuoZwqnMh3jue5FZMC0tshYFgs=;
+        b=ShytoypHx5w1yO+FAoQvCV9S2YQ8S669J5momARMpnUFn4TyPi6Y9G73k9vuBcegP1
+         lyagB04QVDl3mWPqDGdRZwINYfndYZLmgURmwOywlhIDItOQiHhZtlVyCruZRlzRAwL+
+         FTrawzETBnTWjMJvABYXPw7xGO7hQMbLUS12t5HMASShjRgocaCxCpoIEnNQLk71418N
+         mSsKNPFCSyT9huTDFIc63geSxXBvJPGt73achD+piNiEOgjkMieAwzJBUN9qR/71E0MA
+         oBcbgJx/kVozx0FdCHk2lB3thm0SfrJCvLQ9J2GoHIa28/T/qY+WTXpXuu+r5awL4jb+
+         SHqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695176827; x=1695781627;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BLcMCPJ7w7rydudoSATGBt+HfEby4lVvVHKQKV8c7iI=;
-        b=M99Mn1F1dEtyWrnqoKG8NmTCw+RJBzwzYmjQk9vJuPKL4nBdQEzhNpv1xdlCN73sAi
-         G0K7nu2IzoW79SjhB4KWAfEhbWjdJ+P4BGptWdcSbbTQXbNTMN3vLSHaWscKAgaHFa6J
-         E481w9o7aIP2IZCyxx1T7aL+UGhykj15Mx6+pufKohySHAKR9Gl2DjltIJoF3p8JTHt1
-         HwePcT4b7okSteDLy9UQWkXv0jzM2jhLGqZBzyxke+uGtILZOPtvSiCefNM/EZtnEqvM
-         cH0ObMWMAenW4X0ipOlQqBJWdels/WGsVT6OUUgxBVqyNpqpF6tWLFilPiqkxqyIFLlX
-         7WVQ==
-X-Gm-Message-State: AOJu0Yw/Mg/4f8D2lWtCFAQxCF/vmkRQUKWPRkboTOPtCOjqUrTuIzjw
-	dkOszPRn2HPv2d3e3VlQevLvc8u/muc=
-X-Google-Smtp-Source: AGHT+IGF4KqeypFAoTyheBrWSkuBDGk94ZbXgJNyDnCMsdgDBM/qjf64pscUrPsZAUMUsa90xy68Cg==
-X-Received: by 2002:a05:6a21:6da0:b0:159:d4f5:d59 with SMTP id wl32-20020a056a216da000b00159d4f50d59mr1738120pzb.12.1695176826623;
-        Tue, 19 Sep 2023 19:27:06 -0700 (PDT)
-Received: from octofox.hsd1.ca.comcast.net ([2601:646:a201:19d0:9ca3:318f:421e:68cb])
-        by smtp.gmail.com with ESMTPSA id p15-20020a62ab0f000000b0067aea93af40sm9224757pff.2.2023.09.19.19.27.05
+        d=1e100.net; s=20230601; t=1695176921; x=1695781721;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VfzrZwHFhCid05Dh4cuoZwqnMh3jue5FZMC0tshYFgs=;
+        b=Npe+xe6T30rYI6XN++ny+X0ky6N5n/TBKz8vr6naMATQhUvwlHzFyy6Hr0CDOI9BXn
+         5UYnzQUoCona/li9o/vZhwCPgXM+sasSyz8xUcf/z5od9aFtUpKwWNsDTiEp+kzlre7/
+         K+5ADIYHMkAFJ7ZJSpROC2NmKJP6W8eoK5TYRJYF/CT8R7XdPBnvRTGqqqPF0lGt9n75
+         wQtdzoyigiWvz8kbAwaOtGNxcIPSeBE5bc/S5SRRGwN2MxwgUDMG1LL2gg2YDRCbAK3X
+         qtRKwgVcBQdNkEr5r+PcUgga847XyjCuNZPhjmPVHzw1yDSgMPDTWMOrAhP8H3JiPZxn
+         DBNw==
+X-Gm-Message-State: AOJu0YzCC3BlPBxvxn7pV0ojVKHi8Ex6mEnJ9ThNIIC84sgdpsJJnJ/W
+	ten+dty78tTAYMDTqs0hWS4=
+X-Google-Smtp-Source: AGHT+IHsiJb0fC73yoiY8bzXP7vKeDQwDZb7m4fTMvKi3+K3yXz1jBn5VBLizhJMzRXVG6WE0NfKSw==
+X-Received: by 2002:a05:6a20:552a:b0:14d:6309:fc92 with SMTP id ko42-20020a056a20552a00b0014d6309fc92mr1120474pzb.46.1695176920911;
+        Tue, 19 Sep 2023 19:28:40 -0700 (PDT)
+Received: from hcdev-d520mt2.. (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id n9-20020a170903110900b001bc930d4517sm10610009plh.42.2023.09.19.19.28.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Sep 2023 19:27:06 -0700 (PDT)
-From: Max Filippov <jcmvbkbc@gmail.com>
-To: linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Max Filippov <jcmvbkbc@gmail.com>
-Subject: [PATCH v2 5/5] drivers/tty/serial: add ESP32S3 ACM device driver
-Date: Tue, 19 Sep 2023 19:26:44 -0700
-Message-Id: <20230920022644.2712651-6-jcmvbkbc@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230920022644.2712651-1-jcmvbkbc@gmail.com>
-References: <20230920022644.2712651-1-jcmvbkbc@gmail.com>
+        Tue, 19 Sep 2023 19:28:40 -0700 (PDT)
+From: Marvin Lin <milkfafa@gmail.com>
+To: mchehab@kernel.org,
+	hverkuil-cisco@xs4all.nl,
+	avifishman70@gmail.com,
+	tmaimon77@gmail.com,
+	tali.perry1@gmail.com,
+	venture@google.com,
+	yuenn@google.com,
+	benjaminfair@google.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	andrzej.p@collabora.com
+Cc: devicetree@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	openbmc@lists.ozlabs.org,
+	kwliu@nuvoton.com,
+	kflin@nuvoton.com,
+	Marvin Lin <milkfafa@gmail.com>
+Subject: [PATCH v15 0/7] Support Nuvoton NPCM Video Capture/Encode Engine
+Date: Wed, 20 Sep 2023 10:28:05 +0800
+Message-Id: <20230920022812.601800-1-milkfafa@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,557 +85,231 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	FROM_LOCAL_NOVOWEL,HK_RANDOM_ENVFROM,HK_RANDOM_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add driver for the ACM  controller of the Espressif ESP32S3 Soc.
-Hardware specification is available at the following URL:
+This patch series add DTS node, dt-bindings document and drivers for Video
+Capture/Differentiation Engine (VCD) and Encoding Compression Engine (ECE)
+present on Nuvoton NPCM SoCs.
 
-  https://www.espressif.com/sites/default/files/documentation/esp32-s3_technical_reference_manual_en.pdf
-  (Chapter 33 USB Serial/JTAG Controller)
+As described in the datasheet NPCM750D_DS_Rev_1.0, the VCD can capture a
+frame from digital video input and compare two frames in memory, and then
+the ECE can compress the frame data into HEXTILE format which is defined
+in Remote Framebuffer Protocol (RFC 6143, chapter 7.7.4. Hextile Encoding).
 
-Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
+The output of v4l2-compliance:
+v4l2-compliance 1.23.0-4996, 64 bits, 64-bit time_t
+v4l2-compliance SHA: 9431e4b26b48 2023-02-13 14:51:47
 
----
-Changes v1->v2:
-- redefine register fields using BIT and GENMASK
-- drop _MASK suffix from register field definitions
-- drop *_SHIFT definitions where possible
-- split register reads/writes and bitwise operations into multiple lines
-- use u8 instead of unsigned char in internal functions
-- add timeout to esp32_acm_put_char_sync
-- use uart_port_tx_limited in esp32_acm_transmit_buffer
-- use IRQ_RETVAL in esp32_acm_int
-- drop esp32s3_acm_console_putchar and esp32s3_acm_earlycon_putchar
-- turn num_read into unsigned int in esp32_acm_earlycon_read
-- drop MODULE_DESCRIPTION
+Compliance test for npcm-video device /dev/video0:
 
- drivers/tty/serial/Kconfig       |  14 +
- drivers/tty/serial/Makefile      |   1 +
- drivers/tty/serial/esp32_acm.c   | 458 +++++++++++++++++++++++++++++++
- include/uapi/linux/serial_core.h |   3 +
- 4 files changed, 476 insertions(+)
- create mode 100644 drivers/tty/serial/esp32_acm.c
+Driver Info:
+        Driver name      : npcm-video
+        Card type        : NPCM Video Engine
+        Bus info         : platform:npcm-video
+        Driver version   : 6.1.12
+        Capabilities     : 0x84200001
+                Video Capture
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04200001
+                Video Capture
+                Streaming
+                Extended Pix Format
 
-diff --git a/drivers/tty/serial/Kconfig b/drivers/tty/serial/Kconfig
-index d9ca6b268f01..85807db8f7ce 100644
---- a/drivers/tty/serial/Kconfig
-+++ b/drivers/tty/serial/Kconfig
-@@ -1591,6 +1591,20 @@ config SERIAL_ESP32
- 	    earlycon=esp32s3uart,mmio32,0x60000000,115200n8,40000000
- 	    earlycon=esp32uart,mmio32,0x3ff40000,115200n8
- 
-+config SERIAL_ESP32_ACM
-+	tristate "Espressif ESP32 USB ACM support"
-+	depends on XTENSA_PLATFORM_ESP32 || (COMPILE_TEST && OF)
-+	select SERIAL_CORE
-+	select SERIAL_CORE_CONSOLE
-+	select SERIAL_EARLYCON
-+	help
-+	  Driver for the CDC ACM controllers of the Espressif ESP32S3 SoCs
-+	  that share separate USB controller with the JTAG adapter.
-+	  The device name used for this controller is ttyACM.
-+	  When earlycon option is enabled the following kernel command line
-+	  snippet may be used:
-+	    earlycon=esp32s3acm,mmio32,0x60038000
-+
- endmenu
- 
- config SERIAL_MCTRL_GPIO
-diff --git a/drivers/tty/serial/Makefile b/drivers/tty/serial/Makefile
-index 7b73137df7f3..970a292ca418 100644
---- a/drivers/tty/serial/Makefile
-+++ b/drivers/tty/serial/Makefile
-@@ -89,6 +89,7 @@ obj-$(CONFIG_SERIAL_SIFIVE)	+= sifive.o
- obj-$(CONFIG_SERIAL_LITEUART) += liteuart.o
- obj-$(CONFIG_SERIAL_SUNPLUS)	+= sunplus-uart.o
- obj-$(CONFIG_SERIAL_ESP32)	+= esp32_uart.o
-+obj-$(CONFIG_SERIAL_ESP32_ACM)	+= esp32_acm.o
- 
- # GPIOLIB helpers for modem control lines
- obj-$(CONFIG_SERIAL_MCTRL_GPIO)	+= serial_mctrl_gpio.o
-diff --git a/drivers/tty/serial/esp32_acm.c b/drivers/tty/serial/esp32_acm.c
-new file mode 100644
-index 000000000000..9a940cbdfa55
---- /dev/null
-+++ b/drivers/tty/serial/esp32_acm.c
-@@ -0,0 +1,458 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/console.h>
-+#include <linux/delay.h>
-+#include <linux/io.h>
-+#include <linux/irq.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/serial_core.h>
-+#include <linux/slab.h>
-+#include <linux/tty_flip.h>
-+#include <asm/serial.h>
-+
-+#define DRIVER_NAME	"esp32s3-acm"
-+#define DEV_NAME	"ttyACM"
-+#define UART_NR		4
-+
-+#define ESP32S3_ACM_TX_FIFO_SIZE	64
-+
-+#define USB_SERIAL_JTAG_EP1_REG		0x00
-+#define USB_SERIAL_JTAG_EP1_CONF_REG	0x04
-+#define USB_SERIAL_JTAG_WR_DONE				BIT(0)
-+#define USB_SERIAL_JTAG_SERIAL_IN_EP_DATA_FREE		BIT(1)
-+#define USB_SERIAL_JTAG_INT_ST_REG	0x0c
-+#define USB_SERIAL_JTAG_SERIAL_OUT_RECV_PKT_INT_ST	BIT(2)
-+#define USB_SERIAL_JTAG_SERIAL_IN_EMPTY_INT_ST		BIT(3)
-+#define USB_SERIAL_JTAG_INT_ENA_REG	0x10
-+#define USB_SERIAL_JTAG_SERIAL_OUT_RECV_PKT_INT_ENA	BIT(2)
-+#define USB_SERIAL_JTAG_SERIAL_IN_EMPTY_INT_ENA		BIT(3)
-+#define USB_SERIAL_JTAG_INT_CLR_REG	0x14
-+#define USB_SERIAL_JTAG_IN_EP1_ST_REG	0x2c
-+#define USB_SERIAL_JTAG_IN_EP1_WR_ADDR			GENMASK(8, 2)
-+#define USB_SERIAL_JTAG_OUT_EP1_ST_REG	0x3c
-+#define USB_SERIAL_JTAG_OUT_EP1_REC_DATA_CNT		GENMASK(22, 16)
-+
-+static const struct of_device_id esp32s3_acm_dt_ids[] = {
-+	{
-+		.compatible = "esp,esp32s3-acm",
-+	}, { /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, esp32s3_acm_dt_ids);
-+
-+static struct uart_port *esp32s3_acm_ports[UART_NR];
-+
-+static void esp32s3_acm_write(struct uart_port *port, unsigned long reg, u32 v)
-+{
-+	writel(v, port->membase + reg);
-+}
-+
-+static u32 esp32s3_acm_read(struct uart_port *port, unsigned long reg)
-+{
-+	return readl(port->membase + reg);
-+}
-+
-+static u32 esp32s3_acm_tx_fifo_free(struct uart_port *port)
-+{
-+	u32 status = esp32s3_acm_read(port, USB_SERIAL_JTAG_EP1_CONF_REG);
-+
-+	return status & USB_SERIAL_JTAG_SERIAL_IN_EP_DATA_FREE;
-+}
-+
-+static u32 esp32s3_acm_tx_fifo_cnt(struct uart_port *port)
-+{
-+	u32 status = esp32s3_acm_read(port, USB_SERIAL_JTAG_IN_EP1_ST_REG);
-+
-+	return FIELD_GET(USB_SERIAL_JTAG_IN_EP1_WR_ADDR, status);
-+}
-+
-+static u32 esp32s3_acm_rx_fifo_cnt(struct uart_port *port)
-+{
-+	u32 status = esp32s3_acm_read(port, USB_SERIAL_JTAG_OUT_EP1_ST_REG);
-+
-+	return FIELD_GET(USB_SERIAL_JTAG_OUT_EP1_REC_DATA_CNT, status);
-+}
-+
-+/* return TIOCSER_TEMT when transmitter is not busy */
-+static unsigned int esp32s3_acm_tx_empty(struct uart_port *port)
-+{
-+	return esp32s3_acm_tx_fifo_cnt(port) == 0 ? TIOCSER_TEMT : 0;
-+}
-+
-+static void esp32s3_acm_set_mctrl(struct uart_port *port, unsigned int mctrl)
-+{
-+}
-+
-+static unsigned int esp32s3_acm_get_mctrl(struct uart_port *port)
-+{
-+	return TIOCM_CAR;
-+}
-+
-+static void esp32s3_acm_stop_tx(struct uart_port *port)
-+{
-+	u32 int_ena;
-+
-+	int_ena = esp32s3_acm_read(port, USB_SERIAL_JTAG_INT_ENA_REG);
-+	int_ena &= ~USB_SERIAL_JTAG_SERIAL_IN_EMPTY_INT_ENA;
-+	esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_ENA_REG, int_ena);
-+}
-+
-+static void esp32s3_acm_rxint(struct uart_port *port)
-+{
-+	struct tty_port *tty_port = &port->state->port;
-+	u32 rx_fifo_cnt = esp32s3_acm_rx_fifo_cnt(port);
-+	unsigned long flags;
-+	u32 i;
-+
-+	if (!rx_fifo_cnt)
-+		return;
-+
-+	spin_lock_irqsave(&port->lock, flags);
-+
-+	for (i = 0; i < rx_fifo_cnt; ++i) {
-+		u32 rx = esp32s3_acm_read(port, USB_SERIAL_JTAG_EP1_REG);
-+
-+		++port->icount.rx;
-+		tty_insert_flip_char(tty_port, rx, TTY_NORMAL);
-+	}
-+	spin_unlock_irqrestore(&port->lock, flags);
-+
-+	tty_flip_buffer_push(tty_port);
-+}
-+
-+static void esp32s3_acm_push(struct uart_port *port)
-+{
-+	if (esp32s3_acm_tx_fifo_free(port))
-+		esp32s3_acm_write(port, USB_SERIAL_JTAG_EP1_CONF_REG,
-+				  USB_SERIAL_JTAG_WR_DONE);
-+}
-+
-+static void esp32s3_acm_put_char(struct uart_port *port, u8 c)
-+{
-+	esp32s3_acm_write(port, USB_SERIAL_JTAG_EP1_REG, c);
-+}
-+
-+static void esp32s3_acm_put_char_sync(struct uart_port *port, u8 c)
-+{
-+	unsigned long timeout;
-+
-+	timeout = jiffies + msecs_to_jiffies(1000);
-+	while (!esp32s3_acm_tx_fifo_free(port)) {
-+		if (time_after(jiffies, timeout)) {
-+			dev_warn(port->dev, "timeout waiting for TX FIFO\n");
-+			return;
-+		}
-+		cpu_relax();
-+	}
-+	esp32s3_acm_put_char(port, c);
-+	esp32s3_acm_push(port);
-+}
-+
-+static void esp32s3_acm_transmit_buffer(struct uart_port *port)
-+{
-+	if (esp32s3_acm_tx_fifo_free(port)) {
-+		u32 tx_fifo_used = esp32s3_acm_tx_fifo_cnt(port);
-+		unsigned int pending;
-+		u8 ch;
-+
-+		pending = uart_port_tx_limited(port, ch,
-+					       ESP32S3_ACM_TX_FIFO_SIZE - tx_fifo_used,
-+					       true, esp32s3_acm_put_char(port, ch),
-+					       ({}));
-+		if (pending) {
-+			u32 int_ena;
-+
-+			int_ena = esp32s3_acm_read(port, USB_SERIAL_JTAG_INT_ENA_REG);
-+			int_ena |= USB_SERIAL_JTAG_SERIAL_IN_EMPTY_INT_ENA;
-+			esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_ENA_REG, int_ena);
-+		}
-+		esp32s3_acm_push(port);
-+	}
-+}
-+
-+static void esp32s3_acm_txint(struct uart_port *port)
-+{
-+	esp32s3_acm_transmit_buffer(port);
-+}
-+
-+static irqreturn_t esp32s3_acm_int(int irq, void *dev_id)
-+{
-+	struct uart_port *port = dev_id;
-+	u32 status;
-+
-+	status = esp32s3_acm_read(port, USB_SERIAL_JTAG_INT_ST_REG);
-+	esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_CLR_REG, status);
-+
-+	if (status & USB_SERIAL_JTAG_SERIAL_OUT_RECV_PKT_INT_ST)
-+		esp32s3_acm_rxint(port);
-+	if (status & USB_SERIAL_JTAG_SERIAL_IN_EMPTY_INT_ST)
-+		esp32s3_acm_txint(port);
-+
-+	return IRQ_RETVAL(status);
-+}
-+
-+static void esp32s3_acm_start_tx(struct uart_port *port)
-+{
-+	esp32s3_acm_transmit_buffer(port);
-+}
-+
-+static void esp32s3_acm_stop_rx(struct uart_port *port)
-+{
-+	u32 int_ena;
-+
-+	int_ena = esp32s3_acm_read(port, USB_SERIAL_JTAG_INT_ENA_REG);
-+	int_ena &= ~USB_SERIAL_JTAG_SERIAL_OUT_RECV_PKT_INT_ENA;
-+	esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_ENA_REG, int_ena);
-+}
-+
-+static int esp32s3_acm_startup(struct uart_port *port)
-+{
-+	int ret;
-+
-+	ret = devm_request_irq(port->dev, port->irq, esp32s3_acm_int, 0,
-+			       DRIVER_NAME, port);
-+	if (ret)
-+		return ret;
-+	esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_ENA_REG,
-+			  USB_SERIAL_JTAG_SERIAL_OUT_RECV_PKT_INT_ENA);
-+	return 0;
-+}
-+
-+static void esp32s3_acm_shutdown(struct uart_port *port)
-+{
-+	esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_ENA_REG, 0);
-+	devm_free_irq(port->dev, port->irq, port);
-+}
-+
-+static void esp32s3_acm_set_termios(struct uart_port *port,
-+				    struct ktermios *termios,
-+				    const struct ktermios *old)
-+{
-+}
-+
-+static const char *esp32s3_acm_type(struct uart_port *port)
-+{
-+	return "ESP32S3 ACM";
-+}
-+
-+/* configure/auto-configure the port */
-+static void esp32s3_acm_config_port(struct uart_port *port, int flags)
-+{
-+	if (flags & UART_CONFIG_TYPE)
-+		port->type = PORT_ESP32ACM;
-+}
-+
-+#ifdef CONFIG_CONSOLE_POLL
-+static void esp32s3_acm_poll_put_char(struct uart_port *port, unsigned char c)
-+{
-+	esp32s3_acm_put_char_sync(port, c);
-+}
-+
-+static int esp32s3_acm_poll_get_char(struct uart_port *port)
-+{
-+	if (esp32s3_acm_rx_fifo_cnt(port))
-+		return esp32s3_acm_read(port, USB_SERIAL_JTAG_EP1_REG);
-+	else
-+		return NO_POLL_CHAR;
-+}
-+#endif
-+
-+static const struct uart_ops esp32s3_acm_pops = {
-+	.tx_empty	= esp32s3_acm_tx_empty,
-+	.set_mctrl	= esp32s3_acm_set_mctrl,
-+	.get_mctrl	= esp32s3_acm_get_mctrl,
-+	.stop_tx	= esp32s3_acm_stop_tx,
-+	.start_tx	= esp32s3_acm_start_tx,
-+	.stop_rx	= esp32s3_acm_stop_rx,
-+	.startup	= esp32s3_acm_startup,
-+	.shutdown	= esp32s3_acm_shutdown,
-+	.set_termios	= esp32s3_acm_set_termios,
-+	.type		= esp32s3_acm_type,
-+	.config_port	= esp32s3_acm_config_port,
-+#ifdef CONFIG_CONSOLE_POLL
-+	.poll_put_char	= esp32s3_acm_poll_put_char,
-+	.poll_get_char	= esp32s3_acm_poll_get_char,
-+#endif
-+};
-+
-+static void esp32s3_acm_string_write(struct uart_port *port, const char *s,
-+				     unsigned int count)
-+{
-+	uart_console_write(port, s, count, esp32s3_acm_put_char_sync);
-+}
-+
-+static void
-+esp32s3_acm_console_write(struct console *co, const char *s, unsigned int count)
-+{
-+	struct uart_port *port = esp32s3_acm_ports[co->index];
-+	unsigned long flags;
-+	bool locked = true;
-+
-+	if (port->sysrq)
-+		locked = false;
-+	else if (oops_in_progress)
-+		locked = spin_trylock_irqsave(&port->lock, flags);
-+	else
-+		spin_lock_irqsave(&port->lock, flags);
-+
-+	esp32s3_acm_string_write(port, s, count);
-+
-+	if (locked)
-+		spin_unlock_irqrestore(&port->lock, flags);
-+}
-+
-+static struct uart_driver esp32s3_acm_reg;
-+static struct console esp32s3_acm_console = {
-+	.name		= DEV_NAME,
-+	.write		= esp32s3_acm_console_write,
-+	.device		= uart_console_device,
-+	.flags		= CON_PRINTBUFFER,
-+	.index		= -1,
-+	.data		= &esp32s3_acm_reg,
-+};
-+
-+static void esp32s3_acm_earlycon_write(struct console *con, const char *s,
-+				      unsigned int n)
-+{
-+	struct earlycon_device *dev = con->data;
-+
-+	uart_console_write(&dev->port, s, n, esp32s3_acm_put_char_sync);
-+}
-+
-+#ifdef CONFIG_CONSOLE_POLL
-+static int esp32s3_acm_earlycon_read(struct console *con, char *s, unsigned int n)
-+{
-+	struct earlycon_device *dev = con->data;
-+	unsigned int num_read = 0;
-+
-+	while (num_read < n) {
-+		int c = esp32s3_acm_poll_get_char(&dev->port);
-+
-+		if (c == NO_POLL_CHAR)
-+			break;
-+		s[num_read++] = c;
-+	}
-+	return num_read;
-+}
-+#endif
-+
-+static int __init esp32s3_acm_early_console_setup(struct earlycon_device *device,
-+						   const char *options)
-+{
-+	if (!device->port.membase)
-+		return -ENODEV;
-+
-+	device->con->write = esp32s3_acm_earlycon_write;
-+#ifdef CONFIG_CONSOLE_POLL
-+	device->con->read = esp32s3_acm_earlycon_read;
-+#endif
-+	return 0;
-+}
-+
-+OF_EARLYCON_DECLARE(esp32s3acm, "esp,esp32s3-acm",
-+		    esp32s3_acm_early_console_setup);
-+
-+static struct uart_driver esp32s3_acm_reg = {
-+	.owner		= THIS_MODULE,
-+	.driver_name	= DRIVER_NAME,
-+	.dev_name	= DEV_NAME,
-+	.nr		= ARRAY_SIZE(esp32s3_acm_ports),
-+	.cons		= &esp32s3_acm_console,
-+};
-+
-+static int esp32s3_acm_probe(struct platform_device *pdev)
-+{
-+	struct device_node *np = pdev->dev.of_node;
-+	struct uart_port *port;
-+	struct resource *res;
-+	int ret;
-+
-+	port = devm_kzalloc(&pdev->dev, sizeof(*port), GFP_KERNEL);
-+	if (!port)
-+		return -ENOMEM;
-+
-+	ret = of_alias_get_id(np, "serial");
-+	if (ret < 0) {
-+		dev_err(&pdev->dev, "failed to get alias id, errno %d\n", ret);
-+		return ret;
-+	}
-+	if (ret >= UART_NR) {
-+		dev_err(&pdev->dev, "driver limited to %d serial ports\n",
-+			UART_NR);
-+		return -ENOMEM;
-+	}
-+
-+	port->line = ret;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	if (!res)
-+		return -ENODEV;
-+
-+	port->mapbase = res->start;
-+	port->membase = devm_ioremap_resource(&pdev->dev, res);
-+	if (IS_ERR(port->membase))
-+		return PTR_ERR(port->membase);
-+
-+	port->dev = &pdev->dev;
-+	port->type = PORT_ESP32ACM;
-+	port->iotype = UPIO_MEM;
-+	port->irq = platform_get_irq(pdev, 0);
-+	port->ops = &esp32s3_acm_pops;
-+	port->flags = UPF_BOOT_AUTOCONF;
-+	port->has_sysrq = 1;
-+	port->fifosize = ESP32S3_ACM_TX_FIFO_SIZE;
-+
-+	esp32s3_acm_ports[port->line] = port;
-+
-+	platform_set_drvdata(pdev, port);
-+
-+	return uart_add_one_port(&esp32s3_acm_reg, port);
-+}
-+
-+static int esp32s3_acm_remove(struct platform_device *pdev)
-+{
-+	struct uart_port *port = platform_get_drvdata(pdev);
-+
-+	uart_remove_one_port(&esp32s3_acm_reg, port);
-+	return 0;
-+}
-+
-+
-+static struct platform_driver esp32s3_acm_driver = {
-+	.probe		= esp32s3_acm_probe,
-+	.remove		= esp32s3_acm_remove,
-+	.driver		= {
-+		.name	= DRIVER_NAME,
-+		.of_match_table	= esp32s3_acm_dt_ids,
-+	},
-+};
-+
-+static int __init esp32s3_acm_init(void)
-+{
-+	int ret;
-+
-+	ret = uart_register_driver(&esp32s3_acm_reg);
-+	if (ret)
-+		return ret;
-+
-+	ret = platform_driver_register(&esp32s3_acm_driver);
-+	if (ret)
-+		uart_unregister_driver(&esp32s3_acm_reg);
-+
-+	return ret;
-+}
-+
-+static void __exit esp32s3_acm_exit(void)
-+{
-+	platform_driver_unregister(&esp32s3_acm_driver);
-+	uart_unregister_driver(&esp32s3_acm_reg);
-+}
-+
-+module_init(esp32s3_acm_init);
-+module_exit(esp32s3_acm_exit);
-+
-+MODULE_AUTHOR("Max Filippov <jcmvbkbc@gmail.com>");
-+MODULE_LICENSE("GPL");
-diff --git a/include/uapi/linux/serial_core.h b/include/uapi/linux/serial_core.h
-index ff076d6be159..1045bf096837 100644
---- a/include/uapi/linux/serial_core.h
-+++ b/include/uapi/linux/serial_core.h
-@@ -248,4 +248,7 @@
- /* Espressif ESP32 UART */
- #define PORT_ESP32UART	124
- 
-+/* Espressif ESP32 ACM */
-+#define PORT_ESP32ACM	125
-+
- #endif /* _UAPILINUX_SERIAL_CORE_H */
+Required ioctls:
+        test VIDIOC_QUERYCAP: OK
+        test invalid ioctls: OK
+
+Allow for multiple opens:
+        test second /dev/video0 open: OK
+        test VIDIOC_QUERYCAP: OK
+        test VIDIOC_G/S_PRIORITY: OK
+        test for unlimited opens: OK
+
+Debug ioctls:
+        test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 1 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK
+        test VIDIOC_DV_TIMINGS_CAP: OK
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls (Input 0):
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+                warn: v4l2-test-controls.cpp(1139): V4L2_CID_DV_RX_POWER_PRESENT not found for input 0
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 1 Private Controls: 2
+
+Format ioctls (Input 0):
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK
+        test VIDIOC_TRY_FMT: OK
+        test VIDIOC_S_FMT: OK
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK (Not Supported)
+
+Codec ioctls (Input 0):
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls (Input 0):
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+        test VIDIOC_EXPBUF: OK
+        test Requests: OK (Not Supported)
+
+Total for npcm-video device /dev/video0: 45, Succeeded: 45, Failed: 0, Warnings: 1
+
+Changes in v15:
+  - Drop VOLATILE flag from V4L2_CID_NPCM_RECT_COUNT control and update
+    value by v4l2_ctrl_s_ctrl.
+  - Add more explanations in comment/document for V4L2_CID_NPCM_RECT_COUNT.
+
+Changes in v14:
+  - Modify the flow of setting resolution and queue setup
+  - Correct the control type (TYPE_MENU) of selecting between two modes.
+  - Let ECE could be optional (only supports PIX_FMT_RGB565 if ECE is not
+    enabled in DT).
+
+Changes in v13:
+  - Modify the flow for capturing next frame
+  - Modify the behavior of resolution change interrupt
+  - Move GFXI dt-bindings document to
+    Documentation/devicetree/bindings/soc/nuvoton/nuvoton,gfxi.yaml
+
+Changes in v12:
+  - Modify the flow for detecting resolution change and raise
+    V4L2_EVENT_SOURCE_CHANGE event.
+  - Add V4L2_PIX_FMT_RGB565 format support.
+
+Changes in v11:
+  - Replace "u8/u16/u32" with "unsigned int" for generic local variables.
+  - Correct subsystem prefixes, drop redundant words in commit subject, and
+    add more information in commit message.
+
+Changes in v10:
+  - drivers/media/platform/nuvoton/npcm-video.c
+    * Let short functions to be inline function.
+    * Correct return type of some functions, and properly handle return
+      value by callers.
+    * Correct the timing of removing rect_list and the flow of FIFO overrun
+      case in irq.
+    * Adjust line breaks, indentations, and style of variable declarations.
+
+Changes in v9:
+  - Change ECE node name to "video-codec".
+  - Drop redundant "bindings for" in commit subject of patch 2/7.
+  - Refine the format of VCD/ECE dt-binding document.
+
+Changes in v8:
+  - Let VCD/ECE to be 2 separate nodes and update dt-binding documents.
+  - Move register definitions out to a local header file.
+  - Driver refinements (add error handling for memory allocation, remove
+    unnecessary condition check and introduce "goto"s to handle similar
+    error recovery paths).
+  - Correct properties and typo in GFXI dt-binding document.
+
+Changes in v7:
+  - Add uapi documents for driver-specific controls.
+  - Implement driver-specific controls for switching capture mode and
+    getting the count of compressed HEXTILE rectangles.
+  - Drop unnecessary "enum_framesizes" and "enum_frameintervals" functions.
+  - Include the output of v4l2-compliance in cover letter.
+
+Changes in v6:
+  - Support NPCM845 and add compatible "nuvoton,npcm845-video".
+  - Correct pixel format to V4L2_PIX_FMT_HEXTILE which is newly added in
+    this patch series.
+
+Changes in v5:
+  - Simplify function prefix "nuvoton_" to "npcm_".
+  - Increase VCD_BUSY_TIMEOUT_US and ECE_POLL_TIMEOUT_US to 300ms to
+    prevent polling timeout when ECC is enabled or system is busy.
+
+Changes in v4:
+  - Fix compile warning reported by kernel test robot.
+
+Changes in v3:
+  - Add video driver entry in MAINTAINERS.
+  - Change config name to CONFIG_VIDEO_NPCM_VCD_ECE.
+  - Reduce the waiting time after resetting the VCD/ECE module.
+  - Correct data types of some variables.
+
+Changes in v2:
+  - Add Hextile document and locate with vendor formats.
+
+Marvin Lin (7):
+  ARM: dts: nuvoton: Add node for NPCM VCD and ECE engine
+  media: dt-bindings: nuvoton: Add NPCM VCD and ECE engine
+  dt-bindings: soc: nuvoton: Add NPCM GFXI
+  media: v4l: Add HEXTILE compressed format
+  media: v4l2-ctrls: Add user control base for Nuvoton NPCM controls
+  media: uapi: Add controls for NPCM video driver
+  media: nuvoton: Add driver for NPCM video capture and encoding engine
+
+ .../bindings/media/nuvoton,npcm-ece.yaml      |   43 +
+ .../bindings/media/nuvoton,npcm-vcd.yaml      |   72 +
+ .../bindings/soc/nuvoton/nuvoton,gfxi.yaml    |   39 +
+ .../userspace-api/media/drivers/index.rst     |    1 +
+ .../media/drivers/npcm-video.rst              |   66 +
+ .../media/v4l/pixfmt-reserved.rst             |    7 +
+ MAINTAINERS                                   |   12 +
+ .../dts/nuvoton/nuvoton-common-npcm7xx.dtsi   |   23 +
+ drivers/media/platform/Kconfig                |    1 +
+ drivers/media/platform/Makefile               |    1 +
+ drivers/media/platform/nuvoton/Kconfig        |   15 +
+ drivers/media/platform/nuvoton/Makefile       |    2 +
+ drivers/media/platform/nuvoton/npcm-regs.h    |  152 ++
+ drivers/media/platform/nuvoton/npcm-video.c   | 1830 +++++++++++++++++
+ drivers/media/v4l2-core/v4l2-ioctl.c          |    1 +
+ include/uapi/linux/npcm-video.h               |   41 +
+ include/uapi/linux/v4l2-controls.h            |    6 +
+ include/uapi/linux/videodev2.h                |    1 +
+ 18 files changed, 2313 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/nuvoton,npcm-ece.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/nuvoton,npcm-vcd.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/nuvoton/nuvoton,gfxi.yaml
+ create mode 100644 Documentation/userspace-api/media/drivers/npcm-video.rst
+ create mode 100644 drivers/media/platform/nuvoton/Kconfig
+ create mode 100644 drivers/media/platform/nuvoton/Makefile
+ create mode 100644 drivers/media/platform/nuvoton/npcm-regs.h
+ create mode 100644 drivers/media/platform/nuvoton/npcm-video.c
+ create mode 100644 include/uapi/linux/npcm-video.h
+
 -- 
-2.30.2
+2.34.1
 
 
