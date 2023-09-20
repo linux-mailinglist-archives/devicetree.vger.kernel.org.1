@@ -1,223 +1,117 @@
-Return-Path: <devicetree+bounces-1794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CD9F7A8633
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 16:08:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D12D7A8673
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 16:24:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC84C281C68
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 14:08:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53A531C20A5D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 14:24:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A70723AC3F;
-	Wed, 20 Sep 2023 14:08:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0360A3B29B;
+	Wed, 20 Sep 2023 14:24:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33AAD36B04
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 14:08:33 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12FD9AD;
-	Wed, 20 Sep 2023 07:08:32 -0700 (PDT)
-Received: from nicolas-tpx395.localdomain (unknown [IPv6:2606:6d00:15:bae9::7a9])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id D08F06607243;
-	Wed, 20 Sep 2023 15:08:28 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1695218910;
-	bh=OVi2+NsVBKyZ5/S8nnWLJaBO7/r+oTXhkjecJHc4TdE=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=O7mf/pBo5KBvGr41uVDtoSVde30LviXmg2OwLYTI966fmx8yLst7NW4unL0LAqFQr
-	 Qo+9qHZUeXyawoL4r2lD53Cyiye09l0h0/+KPuGqHf2jfli5v6tDXTd4y884QRuweP
-	 4fZ1RouBK0HNDbp/X+g/ydBDEnAbdjxzTAnVcxVpmjCtujPg578aHzkfhFOGTX4AGH
-	 Kn70ONzZdtsYzKisSn33PGHuNWvfeENlntWWVqirso0eWOU9Jdmzoc0iS/dvvJgvi3
-	 I7+RLwHT2/NA3My2rDlP9yxTv55huscJNI2XXXpOAwcxUogh1VMZ3uDegirF8SX+US
-	 8Jj4MxO9gq5Tw==
-Message-ID: <179e88f04257f21b6b723e935231de70415b3301.camel@collabora.com>
-Subject: Re: [PATCH v12 1/7] media: v4l2: Add ignore_streaming flag
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Hans Verkuil <hverkuil@xs4all.nl>, Sebastian Fricke
- <sebastian.fricke@collabora.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>,  Nas Chung <nas.chung@chipsnmedia.com>, Sascha Hauer
- <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Philipp Zabel
- <p.zabel@pengutronix.de>, Jackson Lee <jackson.lee@chipsnmedia.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, NXP Linux Team
- <linux-imx@nxp.com>,  Conor Dooley <conor+dt@kernel.org>, Pengutronix
- Kernel Team <kernel@pengutronix.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Robert
- Beckett <bob.beckett@collabora.com>, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org,  kernel@collabora.com, Tomasz Figa
- <tfiga@chromium.org>
-Date: Wed, 20 Sep 2023 10:08:19 -0400
-In-Reply-To: <a3c61e5a-e5cb-43d5-a3dc-80806f8da672@xs4all.nl>
-References: 
-	<20230915-wave5_v12_on_media_master-v12-0-92fc66cd685d@collabora.com>
-	 <20230915-wave5_v12_on_media_master-v12-1-92fc66cd685d@collabora.com>
-	 <a3c61e5a-e5cb-43d5-a3dc-80806f8da672@xs4all.nl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD6A36B04
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 14:24:36 +0000 (UTC)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25709EA
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 07:24:33 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9aa2c6f0806so906745166b.3
+        for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 07:24:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695219871; x=1695824671; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CNbD5JZlT85L92cZjusJkHp4jtK/JZ5bz82Z9IIMDbo=;
+        b=jIE/8psk4CmBDHStB71z+WVxaf2b18lsxtGcXwjhAqusN5SJ6rnp/lusEio7gTE8KQ
+         4QD8JIBzeEka05rgShfU99gul/qai2hJADGxdH8tE15IW9ZRbHeBihgs22wUPKZ1qiPM
+         J9p5eu68R4o1uNFafB+yDfZ79b50WiGNs/PqGVDkbbiGmgAv4KszyaMm+vVjZYx8r0aw
+         MTkKMdrXEH7kpYkqcGfT5l1MQ7qjED2OC/bvX/ZTE0dWQuYpNdlFlGJ5+/kfRyXFpV1R
+         A0peqV0bwpnt7TlSIDN9qgVhvlGq92Jbh+lrHiwaoEdnuWfIUTMWz3mgz1/jD66jo254
+         SWEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695219871; x=1695824671;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CNbD5JZlT85L92cZjusJkHp4jtK/JZ5bz82Z9IIMDbo=;
+        b=EDJaqsdM/og69MY0nX13kCkI+YH69qGcNWT5yTGEO56fW3unLKWgBlXqg5kBInu6VZ
+         bIrb8gTxcGoIv5CbjkfNEijEOPpzwZzFqQi79GPHdUCWx9enP+V3nPpctEe4WoK4s7kc
+         PHKKLbrg7uVSKC1+V8Uft90pHQMmvVQl8BLurawpOcem0DhVqmHuewvhcZWn57tOjtcR
+         9FePWZ+0om/65In465tcHWT+aoVe2zJ9WvbPDtAXk1UyHowqBJr4MJVff7Z8pyORo2Yz
+         EBkaADon6tK3OIqULYcCHnqoCoy+7SW8oGEL+kwykWYeY1uwDBBeY3Il090gmSzhs7Un
+         2n4Q==
+X-Gm-Message-State: AOJu0YyDXDvFPcK46ycRmWR2nGFD4BDc6aM8aqkyP7/nvyxO5ner7sdk
+	LNwnnnyoYNrJn6DY2NJehqxPLQ==
+X-Google-Smtp-Source: AGHT+IEWeR4ibVo/0lBYIQnbCIzA4Q1ZL7a5w7fDqs/tLyxpyOxPFsZtH1PIFFFFdedlS+oRgvhRMw==
+X-Received: by 2002:a17:906:225b:b0:9ae:541e:7310 with SMTP id 27-20020a170906225b00b009ae541e7310mr477368ejr.33.1695219871576;
+        Wed, 20 Sep 2023 07:24:31 -0700 (PDT)
+Received: from [172.20.86.172] (static-212-193-78-212.thenetworkfactory.nl. [212.78.193.212])
+        by smtp.gmail.com with ESMTPSA id lg13-20020a170906f88d00b009ad88839665sm9435005ejb.70.2023.09.20.07.24.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Sep 2023 07:24:31 -0700 (PDT)
+Message-ID: <4b20d3bb-d2d2-0864-013f-104e26ae558c@linaro.org>
+Date: Wed, 20 Sep 2023 16:24:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v1 2/5] PCI: qcom-ep: Add support for SA8775P SoC
+Content-Language: en-US
+To: Mrinmay Sarkar <quic_msarkar@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, mani@kernel.org
+Cc: quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
+ quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
+ quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
+ quic_parass@quicinc.com, Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+ Rob Herring <robh@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Vinod Koul <vkoul@kernel.org>, linux-pci@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, mhi@lists.linux.dev,
+ linux-phy@lists.infradead.org
+References: <1695218113-31198-1-git-send-email-quic_msarkar@quicinc.com>
+ <1695218113-31198-3-git-send-email-quic_msarkar@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <1695218113-31198-3-git-send-email-quic_msarkar@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-cc Tomasz Figa
 
-Le mercredi 20 septembre 2023 =C3=A0 14:59 +0200, Hans Verkuil a =C3=A9crit=
-=C2=A0:
-> On 15/09/2023 23:11, Sebastian Fricke wrote:
-> > Add a new flag to the `struct v4l2_m2m_dev` to toggle whether a queue
-> > must be streaming in order to allow queuing jobs to the ready queue.
-> > Currently, both queues (CAPTURE & OUTPUT) must be streaming in order to
-> > allow adding new jobs. This behavior limits the usability of M2M for
-> > some drivers, as these have to be able, to perform analysis of the
->=20
-> able, to -> able to
->=20
-> > sequence to ensure, that userspace prepares the CAPTURE queue correctly=
-.
->=20
-> ensure, that -> ensure that
->=20
-> >=20
-> > Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
-> > Signed-off-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> > ---
-> >  include/media/v4l2-mem2mem.h | 17 +++++++++++++++++
-> >  1 file changed, 17 insertions(+)
-> >=20
-> > diff --git a/include/media/v4l2-mem2mem.h b/include/media/v4l2-mem2mem.=
-h
-> > index d6c8eb2b5201..97a48e61e358 100644
-> > --- a/include/media/v4l2-mem2mem.h
-> > +++ b/include/media/v4l2-mem2mem.h
-> > @@ -57,6 +57,16 @@ struct v4l2_m2m_dev;
-> >   * @rdy_spinlock: spin lock to protect the struct usage
-> >   * @num_rdy:	number of buffers ready to be processed
-> >   * @buffered:	is the queue buffered?
-> > + * @ignore_streaming: Dictates whether the queue must be streaming for=
- a job to
-> > + *		      be queued.
-> > + *		      This is useful, for example, when the driver requires to
-> > + *		      initialize the sequence with a firmware, where only a
-> > + *		      queued OUTPUT queue buffer and STREAMON on the OUTPUT
-> > + *		      queue is required to perform the anlysis of the bitstream
-> > + *		      header.
-> > + *		      This means the driver is responsible for implementing the
-> > + *		      job_ready callback correctly to make sure that requirements
-> > + *		      for actual decoding are met.
->=20
-> This is a bad description and field name.
 
-I wonder what's your opinion about the buffered one then :-D
+On 9/20/23 15:55, Mrinmay Sarkar wrote:
+> Add support for SA8775P SoC to the Qualcomm PCIe Endpoint Controller
+> driver.
+> 
+> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+> ---
+This compatible does not bring anything new to the table
+on its own. Please create a fallback compatible, document it
+in the bindings and use that. See [1] and [2] for example.
 
->=20
-> Basically what this field does is that, if true, the streaming state of t=
-he
-> capture queue is ignored. So just call it that: ignore_cap_streaming.
->=20
-> And explain that, if true, job_ready() will be called even if the capture
-> queue is not streaming, and that that can be used to allow hardware to
-> analyze the bitstream header that arrives on the OUTPUT queue.
+Konrad
 
-Ack.
+[1] 
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml?h=next-20230920
 
->=20
-> Also, doesn't this field belong to struct v4l2_m2m_ctx? It makes no sense
-> for the output queue, this is really a configuration for the m2m context =
-as
-> a whole.
-
-Unless we come up with a completely new type of M2M that can behave like a =
-gap
-filler (like a video rate m2m), it indeed makes no sense for output. I'm ju=
-st
-illustrating that this is true "now" but someone can come up with valid
-expectation. So I agree with you, we can move it up in the hierarchy.
-
-Recently over IRC and other threads, Tomasz raised a concern that CODECs wh=
-ere
-introducing too much complexity into M2M. And I believe buffered (which is
-barely documented) and this mechanism was being pointed.
-
-My take on that is that adding boolean configuration is what introduce
-complexity, and we can fix it by doing less in the m2m. After this discussi=
-on, I
-came with the idea that we should remove buffered and ignore_streaming. For
-drivers that don't implement job_ready, this logic would be moved inside th=
-e
-default implementation. We can then add a helper to check the common condit=
-ions.
-
-The alternative suggested by Tomasz, was to layer two ops. We'd have a
-device_ready() ops and its default implementation would include the check w=
-e
-have and would call job_ready(). Personally, I'd rather remove then add, bu=
-t I
-understadt the reasoning and would be fine committing to that instead.
-
-I'd like your feedback on this proposal. If this is something we want, I'll=
- do
-this prior to V13, otherwise we will address your comments and fix the adde=
-d
-mechanism. I think though that we agree that for decoders, this is nice add=
-ition
-to not have to trigger work manually from vb2 ops.
-
-regards,
-Nicolas
-
->=20
-> >   *
-> >   * Queue for buffers ready to be processed as soon as this
-> >   * instance receives access to the device.
-> > @@ -69,6 +79,7 @@ struct v4l2_m2m_queue_ctx {
-> >  	spinlock_t		rdy_spinlock;
-> >  	u8			num_rdy;
-> >  	bool			buffered;
-> > +	bool			ignore_streaming;
-> >  };
-> > =20
-> >  /**
-> > @@ -564,6 +575,12 @@ static inline void v4l2_m2m_set_dst_buffered(struc=
-t v4l2_m2m_ctx *m2m_ctx,
-> >  	m2m_ctx->cap_q_ctx.buffered =3D buffered;
-> >  }
-> > =20
-> > +static inline void v4l2_m2m_set_dst_ignore_streaming(struct v4l2_m2m_c=
-tx *m2m_ctx,
-> > +						     bool ignore_streaming)
-> > +{
-> > +	m2m_ctx->cap_q_ctx.ignore_streaming =3D ignore_streaming;
-> > +}
-> > +
->=20
-> I think this is overkill, esp. when the field is moved to m2m_ctx. Just c=
-learly
-> document that drivers can set this.
->=20
-> Regards,
->=20
-> 	Hans
->=20
-> >  /**
-> >   * v4l2_m2m_ctx_release() - release m2m context
-> >   *
-> >=20
->=20
-
+[2] 
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/pm7550ba.dtsi?h=next-20230920#n65
 
