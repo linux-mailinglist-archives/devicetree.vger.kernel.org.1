@@ -1,138 +1,143 @@
-Return-Path: <devicetree+bounces-1693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A32A57A76ED
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 11:12:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 449977A7700
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 11:14:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E29F2817BA
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 09:12:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0ACD2816CD
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 09:14:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5BA811735;
-	Wed, 20 Sep 2023 09:11:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0ACD1172B;
+	Wed, 20 Sep 2023 09:14:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93B7E4420;
-	Wed, 20 Sep 2023 09:11:58 +0000 (UTC)
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85CC11AA;
-	Wed, 20 Sep 2023 02:11:56 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2bffc55af02so54650011fa.2;
-        Wed, 20 Sep 2023 02:11:56 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FB483D63
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 09:14:44 +0000 (UTC)
+Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0217091;
+	Wed, 20 Sep 2023 02:14:42 -0700 (PDT)
+Received: by mail-vs1-xe35.google.com with SMTP id ada2fe7eead31-4527ba546d2so1146321137.2;
+        Wed, 20 Sep 2023 02:14:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695201114; x=1695805914; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=p1x4ulOTEjSOQ+Fhe0wwtsVsIHWMLD1pUZs5tuTFtbg=;
-        b=mGJ1giGJV4Jh7vsCvgHWeReRdciXSRc5v9zT3ROSY03Z3SfWat+3f+pmesxXk0JIXi
-         7j4tu39VsFsZytYq0jhrnZF80zPiPFUfi2GQhedCQlp1jcZ0jN917b4G4PczpB8FQzro
-         nefpqh/tADvyOOYqgB+TbGCyitVWEHctNTpYkUPm0fWo7Prn6RzT4Yi8YYPlJk2ne6JL
-         xv+yirbCe/3m7ubTiV5GoTk4b5YmWYqgnsal/VgxNkwnkSmMiUwlYQemXQs76k05QLTs
-         asoH5+Nol8TQw2XqumyuPmVl3mjQCyaWrsCtkC0xQEYP/I41Yd0uSzQOgY7x9yssvviM
-         cVXw==
+        d=gmail.com; s=20230601; t=1695201281; x=1695806081; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7mF6CeWKLwBn15UINCBFcbVA7YfC1Xb7XUsRVvGCQiA=;
+        b=lVHFkwJipBehCTfoV99RYRBWBmepqzW67fyWhzhMR1hyD3b4u6/BZAwm5cLgWDpns2
+         JOHHG18FYyJq9K+1YyiJzl5BHyTFGidCJG4iBC2PLuMUiyRFheaEMQj96mZNcUy/lBxi
+         So2pQlZHMuB7TbremK2/Xh+fxTLJQNrFMS9ymIeHTi7k5MoBPjS0VhepHK5Qgn8ZHWXf
+         ZGN2gYUQMmd3MUjX+VxXCIoPGD5a0l2Yxo4AHbZz7+oQpx6u5A+Vm2djkIIqbdT929SR
+         WfhyFHwP/6+AhlZ322ooRXYhlgUsCgLqooYuS0x3mNWl0FB2DxvbJsJPXr8jBjWlZwCg
+         t6aQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695201114; x=1695805914;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=p1x4ulOTEjSOQ+Fhe0wwtsVsIHWMLD1pUZs5tuTFtbg=;
-        b=IQsLsCI6Bc2siSC3va5TQUb/oF7AiNBMS7tXf+ajQDlwtSntoOhEgVjaj2ASdu1HIE
-         Q2z8JfE0KZVYMeXC6Vb7ZwAiSMWR82dYsAxaC7e3FdO00rwK2pqc1GuJAz22fPvgBQZM
-         S+7yybl7crfnYnjNgCkKd1QIZJjv10uirn5aJENdJ+Yrf6gE9sTzUSkCU83moaIQnqCK
-         zMD9vjFBQfPj6BDbIFNpVl6qufcAdfrAraE9zW19UmRx+IVT4BErY3/Di8uweaOKO0Lo
-         frmqXY2Dv4rYDPFkzwm5nnZ13teNMLh/TvoGngeOzHceWwcYsCowqvyibD1J0QWvaZOc
-         g6pA==
-X-Gm-Message-State: AOJu0YzSNrtZReQHFoUrGPHy5JEBUfXFKLjBaomkFWPGFbI//lPWNlx8
-	9sb4EuDqOMC+MokgEj3G2OxZ7sMVng2VMHuVKCA=
-X-Google-Smtp-Source: AGHT+IFlh2NMaNjIOP8F/dYh1vzEh1bzqCv3IbyFy9N9OxrC9YilV6QuzTIVZeKPc31ouZElzHmBQXyCZ6wUhyRpZKo=
-X-Received: by 2002:a2e:9b86:0:b0:2bf:fb49:6619 with SMTP id
- z6-20020a2e9b86000000b002bffb496619mr1513872lji.23.1695201114215; Wed, 20 Sep
- 2023 02:11:54 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1695201281; x=1695806081;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7mF6CeWKLwBn15UINCBFcbVA7YfC1Xb7XUsRVvGCQiA=;
+        b=PvMlduzrRCDebndut/BpTCt5nbPoPMX2tUJI/0yjrehGY2F1UGAQoecEIhl3rQpVGB
+         8WwXm7u2dYNQ5CU9imPy+r9AYGpc7v8q/H65qRYdxOHVv/PHg4LWg9nnPz2Crjlix/QJ
+         AnJ9T7U8J6/MPcnPcMMpwyHFDIH51xsItNMU5Zqj4HgESuLDHY9MKH2IO/blZoV5lllK
+         5K01YEhsFJp4S5wPj20sTYGtaCMa/fX5ONLe9pzecAUZA9Oe5cg+OAnl9jTK0ekKXOub
+         veFXdBnXxb1673BQjIvtjJ4/SEytUr6WvRk/VujXBAK5nthYve9uuteurdWtNK38C4Wg
+         YMvQ==
+X-Gm-Message-State: AOJu0YzkQ3KAq+v4oJ5D/zzl9dskTamPIZ3/ngceiEjJ5U2tGDuTkY7G
+	tnmy/BWxppTvgKKOG4PCQhpZLsZMbBn6x92tYr4=
+X-Google-Smtp-Source: AGHT+IGxzQADeWT6kYJOJKC8HUxl0HRk5ruso9MvtCd8ytX6mRPXAwEeqntPJQ9v3bijs8zJu0D+of8PjYf6VROe+40=
+X-Received: by 2002:a67:ebc1:0:b0:452:6fc1:a3e5 with SMTP id
+ y1-20020a67ebc1000000b004526fc1a3e5mr1782743vso.1.1695201280888; Wed, 20 Sep
+ 2023 02:14:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230918165958.2659-1-tmaimon77@gmail.com> <20230918165958.2659-2-tmaimon77@gmail.com>
- <b7a337f2-a810-d14c-e7cd-15e33a9ecb5d@linaro.org> <CAP6Zq1gSJYsNUuD-bexFW_1VpAUuF_WZkicNzZms6hVdo9LnMQ@mail.gmail.com>
- <e0d42d13-b307-9915-97c8-948261b39ce1@linaro.org> <CAP6Zq1g0=-h0PFg2a8bqao+XjdNHoxGMdYSRRPAnfY_6WdemAw@mail.gmail.com>
- <20230919162837.GA4051010-robh@kernel.org>
-In-Reply-To: <20230919162837.GA4051010-robh@kernel.org>
-From: Tomer Maimon <tmaimon77@gmail.com>
-Date: Wed, 20 Sep 2023 12:11:42 +0300
-Message-ID: <CAP6Zq1hJPPAtKw8auC22wViHGQHTi0SufPJoBiqYtGWomnNUYQ@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] dt-binding: usb: ci-hdrc-usb2: document Nuvoton
- NPCM supprt
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, peter.chen@kernel.org, 
-	gregkh@linuxfoundation.org, krzysztof.kozlowski+dt@linaro.org, 
-	xu.yang_2@nxp.com, peng.fan@nxp.com, avifishman70@gmail.com, 
-	tali.perry1@gmail.com, joel@jms.id.au, venture@google.com, yuenn@google.com, 
-	benjaminfair@google.com, j.neuschaefer@gmx.net, openbmc@lists.ozlabs.org, 
-	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
+References: <cover.1695189879.git.wangchen20@iscas.ac.cn> <dbd7d823a73d8a9484efcd55f6616f5392daf608.1695189879.git.wangchen20@iscas.ac.cn>
+ <20230920-unable-impish-373fd26b7d16@wendy>
+In-Reply-To: <20230920-unable-impish-373fd26b7d16@wendy>
+From: Chen Wang <unicornxw@gmail.com>
+Date: Wed, 20 Sep 2023 17:14:29 +0800
+Message-ID: <CAHAQgRAj74HJ2j_Rt+hGxps9T3E1z9c+s61aa-dneWgPmnD2cw@mail.gmail.com>
+Subject: Re: [PATCH v2 02/11] dt-bindings: vendor-prefixes: add milkv/sophgo
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: aou@eecs.berkeley.edu, chao.wei@sophgo.com, conor@kernel.org, 
+	devicetree@vger.kernel.org, emil.renner.berthing@canonical.com, 
+	guoren@kernel.org, jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org, 
+	xiaoguang.xing@sophgo.com, Chen Wang <wangchen20@iscas.ac.cn>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Thanks Rob,
+Regards,
 
-I will check drivers/usb/roles
+unicornx
 
-On Tue, 19 Sept 2023 at 19:28, Rob Herring <robh@kernel.org> wrote:
+Conor Dooley <conor.dooley@microchip.com> =E4=BA=8E2023=E5=B9=B49=E6=9C=882=
+0=E6=97=A5=E5=91=A8=E4=B8=89 16:23=E5=86=99=E9=81=93=EF=BC=9A
 >
-> On Tue, Sep 19, 2023 at 04:31:56PM +0300, Tomer Maimon wrote:
-> > On Tue, 19 Sept 2023 at 15:39, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> > >
-> > > On 19/09/2023 07:14, Tomer Maimon wrote:
-> > > >>>            - nvidia,tegra20-ehci
-> > > >>>            - nvidia,tegra20-udc
-> > > >>>            - nvidia,tegra30-ehci
-> > > >>> @@ -325,6 +326,20 @@ properties:
-> > > >>>      type: boolean
-> > > >>>      deprecated: true
-> > > >>>
-> > > >>> +  nuvoton,sysgcr:
-> > > >>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > > >>> +    items:
-> > > >>> +      - items:
-> > > >>> +          - description: phandle to syscon that configures usb phy mux.
-> > > >>> +          - description: offset of usb phy mux selection.
-> > > >>> +          - description: mask usb phy mux selection.
-> > > >>> +          - description: value usb phy mux selection.
-> > > >>> +    description:
-> > > >>> +      A phandle to syscon with three arguments that configure usb phy mux.
-> > > >>> +      The argument one is the offset of usb phy mux selection, the argument two
-> > > >>> +      is the mask usb phy mux selection, the argument three is the mask usb phy
-> > > >>> +      mux selection.
-> > > >>
-> > > >> Sorry, you miss phy driver. Don't use syscon instead of proper hardware
-> > > >> devices.
-> > > > Sorry the role of nuvoton,sysgcr property is to handle a mux between
-> > > > the different devices and not the handle the phy itself, handle the
-> > > > mux done in the GCR.
-> > > > Should we move the nuvoton,sysgcr description to another place in the
-> > > > ci-hdrc-usb2.yaml
-> > > > or
-> > > > Should we use a different driver to handle the mux and call it from
-> > > > the ci-hdrc-npcm driver, If yes which driver should we use?
-> > >
-> > > What is an "usb phy mux"?
-> > We have USB phy that could be connected to USB host (different driver)
-> > or it can be connected to the UDC driver(ChipIdea)
+> Yo,
 >
-> Isn't that just role switching? There is a driver framework for that in
-> drivers/usb/roles/. Though it doesn't seem widely used yet.
+> On Wed, Sep 20, 2023 at 02:37:28PM +0800, Chen Wang wrote:
+> > Add new vendor strings to dt bindings.
+> > These new vendor strings are used by
+> > - Sophgo SG2042 SoC [1]
+> > - Milk-V Pioneer board [2], which uses SG2042 chip.
+> >
+> > [1]: https://en.sophgo.com/product/introduce/sg2042.html
+> > [2]: https://milkv.io/pioneer
 >
-> Rob
+> If you resend, make these link tags please. Otherwise,
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>
+Sure, I will correct them in next revision. Thanks.
+
+> Thanks,
+> Conor.
+>
+> > Acked-by: Xiaoguang Xing <xiaoguang.xing@sophgo.com>
+> > Signed-off-by: Chen Wang <wangchen20@iscas.ac.cn>
+> > ---
+> >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/D=
+ocumentation/devicetree/bindings/vendor-prefixes.yaml
+> > index 573578db9509..fcca9e070a9a 100644
+> > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > @@ -863,6 +863,8 @@ patternProperties:
+> >      description: MikroElektronika d.o.o.
+> >    "^mikrotik,.*":
+> >      description: MikroTik
+> > +  "^milkv,.*":
+> > +    description: MilkV Technology Co., Ltd
+> >    "^miniand,.*":
+> >      description: Miniand Tech
+> >    "^minix,.*":
+> > @@ -1273,6 +1275,8 @@ patternProperties:
+> >      description: Solomon Systech Limited
+> >    "^sony,.*":
+> >      description: Sony Corporation
+> > +  "^sophgo,.*":
+> > +    description: Sophgo Technology Inc.
+> >    "^sourceparts,.*":
+> >      description: Source Parts Inc.
+> >    "^spansion,.*":
+> > --
+> > 2.25.1
+> >
 
