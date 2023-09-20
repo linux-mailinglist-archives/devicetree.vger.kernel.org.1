@@ -1,197 +1,427 @@
-Return-Path: <devicetree+bounces-1682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 939337A75E6
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 10:30:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA3D17A75F2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 10:35:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4957E2810C4
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 08:30:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78B79281DFC
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 08:35:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E20A11188;
-	Wed, 20 Sep 2023 08:29:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BB023FF5;
+	Wed, 20 Sep 2023 08:35:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 498E4F9E5
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 08:29:56 +0000 (UTC)
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E5DEAD;
-	Wed, 20 Sep 2023 01:29:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1695198594; x=1726734594;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=nyMKVu9vod9tNMEmwyx3gSYtbDoMLOt3M1Rr2sZH2zY=;
-  b=eYLnF6ovjLIMSPqZOu2PnzOsgWiUhplgygDvvMwuHw+Pcr6tUenUmkKp
-   kRjOq45QRe4he10QF9S3OyrJMYoJUd6tZjNM9C+KrI1DiMY93nXRkq5/F
-   z+aRl5B7w5TwtodpDnN9rYs6NnhvDGRGjKC3oUpN8fQ8L+gdLcX08uLvx
-   fruKa1764LiwcGXSFvmYVjFxg29jeVF9wOzeE8q1BHAx4DXONOHZXU8sC
-   Dxk+z+694QjnPRiQGZK7l94V/4DPHNO+dH+1VkvRgLPtfKkwsV86JeYW2
-   jLj3nYpTI2ppkPERAxtEL98l8jGMMjOJc0uSu3QwuW9YmpS/+4F05V89Q
-   w==;
-X-CSE-ConnectionGUID: uwDtgCTUQZG+cAIvzWJn1g==
-X-CSE-MsgGUID: DsTy1ZruSpOnLkBUCMULjg==
-X-ThreatScanner-Verdict: Negative
-X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; 
-   d="asc'?scan'208";a="5614623"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 20 Sep 2023 01:29:54 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 20 Sep 2023 01:29:11 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Wed, 20 Sep 2023 01:29:08 -0700
-Date: Wed, 20 Sep 2023 09:28:51 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Chen Wang <unicornxw@gmail.com>
-CC: <aou@eecs.berkeley.edu>, <chao.wei@sophgo.com>, <conor@kernel.org>,
-	<devicetree@vger.kernel.org>, <emil.renner.berthing@canonical.com>,
-	<guoren@kernel.org>, <jszhang@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <linux-kernel@vger.kernel.org>,
-	<linux-riscv@lists.infradead.org>, <palmer@dabbelt.com>,
-	<paul.walmsley@sifive.com>, <robh+dt@kernel.org>,
-	<xiaoguang.xing@sophgo.com>, Chen Wang <wangchen20@iscas.ac.cn>
-Subject: Re: [PATCH v2 03/11] dt-bindings: riscv: add sophgo sg2042 bindings
-Message-ID: <20230920-arrival-bonanza-e335686420f4@wendy>
-References: <cover.1695189879.git.wangchen20@iscas.ac.cn>
- <c6aea83bb1df563b1f2a66c5f230c3861aed1e15.1695189879.git.wangchen20@iscas.ac.cn>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E46563D64
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 08:35:05 +0000 (UTC)
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3062490;
+	Wed, 20 Sep 2023 01:35:04 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id d2e1a72fcca58-690d9cda925so581603b3a.3;
+        Wed, 20 Sep 2023 01:35:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695198903; x=1695803703; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=l4Cw5RLtuR6MUi2AqwYhrHqkcuj+VYMHVRI2Q7Xa0oU=;
+        b=KoObuXuXfMPfOkTjHLkeQ0deSZd3Dall/2IRCD7bWiPl8gIe2p3xOuFWYcgOsuongT
+         t9kYBw0ts7TSzaZSHHk7eUuUNDWSpXEEgSjMlAi5D6V1zXWQTuZxTBroR8u/td3L/1ML
+         /uNe+e19QpuK4uMdbHDqmv4tp3cQUVmko8oZMjBXy2huTl9gIGheaKQlSdRld9UwRGLU
+         SRYdxORnBBcap2rlRNt/dzqPeD0jpMcUaAihMjHly+Dh2iGCRnbwq88dw07ZJ9qSKr4T
+         B3VCe0RDsFunlAWwvEQOIAbxQHu82ZUQ6E2/NqbsM2oSIB5dXJjdMxQkMlLNhGTvf/HZ
+         ft7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695198903; x=1695803703;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=l4Cw5RLtuR6MUi2AqwYhrHqkcuj+VYMHVRI2Q7Xa0oU=;
+        b=rteA/R6db/FNu09ra/Kdx1mVb1FefQi4i2FlhZEud2LvF/TSdTwk3wLTGmEF+IA9Eh
+         T0FcRAuQ6Ab6bm33PHOCy8lH7iKHTseEIIW7EaPUvO2qsYjH4tV++zEfQnSyg+izr51r
+         1H9pdoMhu0iyXqpAU/gUqXi7zZW6lRAeSf+yL2gjtVldDjsPJVePsJd+vm9khsuEfECp
+         /qWlfLHY/LRYiMZIFwvUICSAuhn3ZkNIZjjsuoHYgZo30A0Ma6JwciwYd6YOvcFhHmpi
+         Qsx7QF7I4nI8k1tFmbnRrqGOGhC3ZgPLOHFZd/5aTu7vtbCvkI2igLoNSr4nlhpO1dEa
+         qa8w==
+X-Gm-Message-State: AOJu0YxfCF1C53NkyjzigieWp7Q6cjSJapRQPmwJ4PqGz5edN3avX2Uv
+	iwAUKdNHEarcUCzNnOTkLrquZ/L0VsAgA5dpdlc=
+X-Google-Smtp-Source: AGHT+IFNYidjkC/qGx/wpQ3x0z7DxI0RKhFDK9yrPa/crVomNjqCqBzC6vfCS6gGH/RZanEuKHna7434p0fViXzViYs=
+X-Received: by 2002:a05:6a20:6a06:b0:159:b7ba:74bd with SMTP id
+ p6-20020a056a206a0600b00159b7ba74bdmr1955661pzk.50.1695198903513; Wed, 20 Sep
+ 2023 01:35:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="BSKPLc4VDpVkP4tV"
-Content-Disposition: inline
-In-Reply-To: <c6aea83bb1df563b1f2a66c5f230c3861aed1e15.1695189879.git.wangchen20@iscas.ac.cn>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <20230920022644.2712651-1-jcmvbkbc@gmail.com> <20230920022644.2712651-4-jcmvbkbc@gmail.com>
+ <553a8dbd-08b9-488a-a024-f89697908b41@kernel.org>
+In-Reply-To: <553a8dbd-08b9-488a-a024-f89697908b41@kernel.org>
+From: Max Filippov <jcmvbkbc@gmail.com>
+Date: Wed, 20 Sep 2023 01:34:51 -0700
+Message-ID: <CAMo8Bf+_3Gv67iPfVd7JAG6Zw1WKr-9VRciaASRkHiRhXQkpRQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/5] drivers/tty/serial: add driver for the ESP32 UART
+To: Jiri Slaby <jirislaby@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+	devicetree@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	FROM_LOCAL_NOVOWEL,HK_RANDOM_ENVFROM,HK_RANDOM_FROM,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
---BSKPLc4VDpVkP4tV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, Sep 20, 2023 at 12:22=E2=80=AFAM Jiri Slaby <jirislaby@kernel.org> =
+wrote:
+>
+> On 20. 09. 23, 4:26, Max Filippov wrote:
+> > Add driver for the UART controllers of the Espressif ESP32 and ESP32S3
+> > SoCs. Hardware specification is available at the following URLs:
+> ...
+> > +static void esp32_uart_rxint(struct uart_port *port)
+> > +{
+> > +     struct tty_port *tty_port =3D &port->state->port;
+> > +     u32 rx_fifo_cnt =3D esp32_uart_rx_fifo_cnt(port);
+> > +     unsigned long flags;
+> > +     u32 i;
+> > +
+> > +     if (!rx_fifo_cnt)
+> > +             return;
+> > +
+> > +     spin_lock_irqsave(&port->lock, flags);
+> > +
+> > +     for (i =3D 0; i < rx_fifo_cnt; ++i) {
+> > +             u32 rx =3D esp32_uart_read(port, UART_FIFO_REG);
+> > +             u32 brk =3D 0;
+> > +
+> > +             ++port->icount.rx;
+>
+> Should yuou increment this only in case of insert_flip_char()?
 
-Yo,
+I don't know. Does port->icount.rx have clearly defined semantics?
+I've looked through multiple other serial drivers and there's a lot of
+examples of similar pattern.
 
-On Wed, Sep 20, 2023 at 02:37:51PM +0800, Chen Wang wrote:
-> Add DT binding documentation for the Sophgo SG2042 Soc [1] and the
-> Milk-V Pioneer board [2].
->=20
-> [1]: https://en.sophgo.com/product/introduce/sg2042.html
-> [2]: https://milkv.io/pioneer
+> > +             if (!rx) {
+> > +                     brk =3D esp32_uart_read(port, UART_INT_ST_REG) &
+> > +                             UART_BRK_DET_INT;
+> > +             }
+> > +             if (brk) {
+> > +                     esp32_uart_write(port, UART_INT_CLR_REG, brk);
+> > +                     ++port->icount.brk;
+> > +                     uart_handle_break(port);
+> > +             } else {
+> > +                     if (uart_handle_sysrq_char(port, (unsigned char)r=
+x))
+> > +                             continue;
+> > +                     tty_insert_flip_char(tty_port, rx, TTY_NORMAL);
+> > +             }
+>
+> This is heavy. Is it equivalent to:
+> if (!rx && esp32_uart_read(port, UART_INT_ST_REG) &
+>      UART_BRK_DET_INT) {
+>    esp32_uart_write(port, UART_INT_CLR_REG, brk);
+>    ++port->icount.brk;
+>    uart_handle_break(port);
+>    continue;
+> }
+>
+> if (uart_handle_sysrq_char(port, (unsigned char)rx))
+>    continue;
+>
+> tty_insert_flip_char(tty_port, rx, TTY_NORMAL);
+>
+> ?
 
-Again, link tags please.
+It is equivalent, but I find the version that I used somewhat easier to rea=
+d.
+Maybe this:
 
-> Acked-by: Chao Wei <chao.wei@sophgo.com>
-> Acked-by: Xiaoguang Xing <xiaoguang.xing@sophgo.com>
-> Signed-off-by: Chen Wang <wangchen20@iscas.ac.cn>
-> ---
->  .../devicetree/bindings/riscv/sophgo.yaml     | 28 +++++++++++++++++++
->  MAINTAINERS                                   |  7 +++++
->  2 files changed, 35 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/riscv/sophgo.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/riscv/sophgo.yaml b/Docume=
-ntation/devicetree/bindings/riscv/sophgo.yaml
-> new file mode 100644
-> index 000000000000..82468ae915db
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/riscv/sophgo.yaml
-> @@ -0,0 +1,28 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/riscv/sophgo.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sophgo SoC-based boards
-> +
-> +maintainers:
-> +  - Chao Wei <chao.wei@sophgo.com>
-> +  - Xiaoguang Xing <xiaoguang.xing@sophgo.com>
-> +
-> +description:
-> +  Sophgo SoC-based boards
-> +
-> +properties:
-> +  $nodename:
-> +    const: '/'
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - milkv,pioneer
-> +          - const: sophgo,sg2042
-> +
-> +additionalProperties: true
-> +
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 90f13281d297..b74d505003e2 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -20063,6 +20063,13 @@ F:	drivers/char/sonypi.c
->  F:	drivers/platform/x86/sony-laptop.c
->  F:	include/linux/sony-laptop.h
-> =20
-> +SOPHGO DEVICETREES
-> +M:	Xiaoguang Xing <xiaoguang.xing@sophgo.com>
-> +M:	Chao Wei <chao.wei@sophgo.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/riscv/sophgo.yaml
+               if (!rx &&
+                   (esp32_uart_read(port, UART_INT_ST_REG) &
+UART_BRK_DET_INT)) {
+                       esp32_uart_write(port, UART_INT_CLR_REG, brk);
+                       ++port->icount.brk;
+                       uart_handle_break(port);
+               } else {
+                       if (uart_handle_sysrq_char(port, (unsigned char)rx))
+                               continue;
+                       tty_insert_flip_char(tty_port, rx, TTY_NORMAL);
+               }
 
-> +F:	arch/riscv/boot/dts/sophgo/
+?
 
-Firstly, this directory does not exist at the time of this patch, so it
-should not be added here, but rather at the time that you create it.
+> > +     }
+> > +     spin_unlock_irqrestore(&port->lock, flags);
+> > +
+> > +     tty_flip_buffer_push(tty_port);
+> > +}
+> ...
+> > +static void esp32_uart_put_char_sync(struct uart_port *port, u8 c)
+> > +{
+> > +     unsigned long timeout;
+> > +
+> > +     timeout =3D jiffies + msecs_to_jiffies(1000);
+>
+> I.e. plus HZ?
 
-Secondly, are Xiaoguang Xing and Chao Wei going to monitor the lists &
-apply patches for these files? If so, you should add a git tree here
-that they will apply patches to & add to linux-next. Also, I'd really
-like to see some on-list signs of life from these people, otherwise
-I'd rather see your name here instead of theirs.
+Yes, ok.
 
-If they don't intend reviewing/testing/applying patches, I can do it as
-a last resort but I would rather that someone who specifically cares for
-this hardware does it.
+> > +     while (esp32_uart_tx_fifo_cnt(port) >=3D ESP32_UART_TX_FIFO_SIZE)=
+ {
+> > +             if (time_after(jiffies, timeout)) {
+> > +                     dev_warn(port->dev, "timeout waiting for TX FIFO\=
+n");
+> > +                     return;
+> > +             }
+> > +             cpu_relax();
+> > +     }
+> > +     esp32_uart_put_char(port, c);
+> > +}
+> > +
+> > +static void esp32_uart_transmit_buffer(struct uart_port *port)
+> > +{
+> > +     u32 tx_fifo_used =3D esp32_uart_tx_fifo_cnt(port);
+> > +
+> > +     if (tx_fifo_used < ESP32_UART_TX_FIFO_SIZE) {
+>
+> Invert the condition and return here?
 
-Thanks,
-Conor.
+Ok.
 
-> +
->  SOUND
->  M:	Jaroslav Kysela <perex@perex.cz>
->  M:	Takashi Iwai <tiwai@suse.com>
-> --=20
-> 2.25.1
->=20
+> > +             unsigned int pending;
+> > +             u8 ch;
+> > +
+> > +             pending =3D uart_port_tx_limited(port, ch,
+> > +                                            ESP32_UART_TX_FIFO_SIZE - =
+tx_fifo_used,
+> > +                                            true, esp32_uart_put_char(=
+port, ch),
+> > +                                            ({}));
+> > +             if (pending) {
+> > +                     u32 int_ena;
+> > +
+> > +                     int_ena =3D esp32_uart_read(port, UART_INT_ENA_RE=
+G);
+> > +                     int_ena |=3D UART_TXFIFO_EMPTY_INT;
+> > +                     esp32_uart_write(port, UART_INT_ENA_REG, int_ena)=
+;
+> > +             }
+> > +     }
+> > +}
+>
+>
+> > +static irqreturn_t esp32_uart_int(int irq, void *dev_id)
+> > +{
+> > +     struct uart_port *port =3D dev_id;
+> > +     u32 status;
+> > +
+> > +     status =3D esp32_uart_read(port, UART_INT_ST_REG);
+> > +
+> > +     if (status & (UART_RXFIFO_FULL_INT | UART_BRK_DET_INT))
+> > +             esp32_uart_rxint(port);
+> > +     if (status & UART_TXFIFO_EMPTY_INT)
+> > +             esp32_uart_txint(port);
+> > +
+> > +     esp32_uart_write(port, UART_INT_CLR_REG, status);
+>
+> \n here please.
 
---BSKPLc4VDpVkP4tV
-Content-Type: application/pgp-signature; name="signature.asc"
+Ok
 
------BEGIN PGP SIGNATURE-----
+> > +     return IRQ_RETVAL(status);
+> > +}
+>
+> > +static int esp32_uart_startup(struct uart_port *port)
+> > +{
+> > +     int ret =3D 0;
+> > +     unsigned long flags;
+> > +     struct esp32_port *sport =3D container_of(port, struct esp32_port=
+, port);
+> > +
+> > +     ret =3D clk_prepare_enable(sport->clk);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     ret =3D devm_request_irq(port->dev, port->irq, esp32_uart_int, 0,
+> > +                            DRIVER_NAME, port);
+> > +     if (ret) {
+> > +             clk_disable_unprepare(sport->clk);
+> > +             return ret;
+> > +     }
+> > +
+> > +     spin_lock_irqsave(&port->lock, flags);
+> > +     esp32_uart_write(port, UART_CONF1_REG,
+> > +                      (1 << UART_RXFIFO_FULL_THRHD_SHIFT) |
+>
+> BIT() ?
+>
+> > +                      (1 << port_variant(port)->txfifo_empty_thrhd_shi=
+ft));
+>
+> And here?
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQqtQwAKCRB4tDGHoIJi
-0kX5AQC4Zna3sLu7uodE0Rg/tTR8wp1R00Rc2DIyQwE7eP7W9AD/e7Tbt/dZgoiG
-JeTq2cnENLxGBlOD25GciTqNY1C4XQ8=
-=T5sB
------END PGP SIGNATURE-----
+These are not logically bits, in both cases I put value 1 into
+multiple-bit fields.
 
---BSKPLc4VDpVkP4tV--
+> > +     esp32_uart_write(port, UART_INT_CLR_REG, UART_RXFIFO_FULL_INT | U=
+ART_BRK_DET_INT);
+> > +     esp32_uart_write(port, UART_INT_ENA_REG, UART_RXFIFO_FULL_INT | U=
+ART_BRK_DET_INT);
+> > +     spin_unlock_irqrestore(&port->lock, flags);
+> > +
+> > +     pr_debug("%s, conf1 =3D %08x, int_st =3D %08x, status =3D %08x\n"=
+,
+> > +              __func__,
+> > +              esp32_uart_read(port, UART_CONF1_REG),
+> > +              esp32_uart_read(port, UART_INT_ST_REG),
+> > +              esp32_uart_read(port, UART_STATUS_REG));
+>
+> \n here. Is this debug printout somehow useful?
+
+I'll drop it.
+
+> > +     return ret;
+> > +}
+> > +
+> > +static void esp32_uart_shutdown(struct uart_port *port)
+> > +{
+> > +     struct esp32_port *sport =3D container_of(port, struct esp32_port=
+, port);
+> > +
+> > +     esp32_uart_write(port, UART_INT_ENA_REG, 0);
+> > +     devm_free_irq(port->dev, port->irq, port);
+>
+> I wonder why to use devm_ after all?
+
+I'll switch to non-devm_ version.
+
+> > +     clk_disable_unprepare(sport->clk);
+> > +}
+> > +
+> > +static bool esp32_uart_set_baud(struct uart_port *port, u32 baud)
+> > +{
+> > +     u32 div =3D port->uartclk / baud;
+> > +     u32 frag =3D (port->uartclk * 16) / baud - div * 16;
+> > +
+> > +     if (div <=3D port_variant(port)->clkdiv_mask) {
+> > +             esp32_uart_write(port, UART_CLKDIV_REG,
+> > +                              div | FIELD_PREP(UART_CLKDIV_FRAG, frag)=
+);
+> > +             return true;
+> > +     }
+>
+> \n
+
+Ok.
+
+> > +     return false;
+> > +}
+> ...
+> > +static int __init esp32s3_uart_early_console_setup(struct earlycon_dev=
+ice *device,
+> > +                                                const char *options)
+> > +{
+> > +     device->port.private_data =3D (void *)&esp32s3_variant;
+>
+> No need to cast, right?
+
+private_data is void *, esp32s3_variant is a constant.
+
+> \n
+
+Ok.
+
+> > +     return esp32xx_uart_early_console_setup(device, options);
+> > +}
+> ...
+> > +static int esp32_uart_probe(struct platform_device *pdev)
+> > +{
+> > +     struct device_node *np =3D pdev->dev.of_node;
+> > +     static const struct of_device_id *match;
+> > +     struct uart_port *port;
+> > +     struct esp32_port *sport;
+> > +     struct resource *res;
+> > +     int ret;
+> > +
+> > +     match =3D of_match_device(esp32_uart_dt_ids, &pdev->dev);
+> > +     if (!match)
+> > +             return -ENODEV;
+> > +
+> > +     sport =3D devm_kzalloc(&pdev->dev, sizeof(*sport), GFP_KERNEL);
+> > +     if (!sport)
+> > +             return -ENOMEM;
+> > +
+> > +     port =3D &sport->port;
+> > +
+> > +     ret =3D of_alias_get_id(np, "serial");
+> > +     if (ret < 0) {
+> > +             dev_err(&pdev->dev, "failed to get alias id, errno %d\n",=
+ ret);
+> > +             return ret;
+> > +     }
+> > +     if (ret >=3D UART_NR) {
+> > +             dev_err(&pdev->dev, "driver limited to %d serial ports\n"=
+, UART_NR);
+> > +             return -ENOMEM;
+> > +     }
+> > +
+> > +     port->line =3D ret;
+> > +
+> > +     res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> > +     if (!res)
+> > +             return -ENODEV;
+> > +
+> > +     port->mapbase =3D res->start;
+> > +     port->membase =3D devm_ioremap_resource(&pdev->dev, res);
+> > +     if (IS_ERR(port->membase))
+> > +             return PTR_ERR(port->membase);
+> > +
+> > +     sport->clk =3D devm_clk_get(&pdev->dev, NULL);
+> > +     if (IS_ERR(sport->clk))
+> > +             return PTR_ERR(sport->clk);
+> > +
+> > +     port->uartclk =3D clk_get_rate(sport->clk);
+> > +     port->dev =3D &pdev->dev;
+> > +     port->type =3D PORT_ESP32UART;
+> > +     port->iotype =3D UPIO_MEM;
+> > +     port->irq =3D platform_get_irq(pdev, 0);
+> > +     port->ops =3D &esp32_uart_pops;
+> > +     port->flags =3D UPF_BOOT_AUTOCONF;
+> > +     port->has_sysrq =3D 1;
+> > +     port->fifosize =3D ESP32_UART_TX_FIFO_SIZE;
+> > +     port->private_data =3D (void *)match->data;
+>
+> No need to cast.
+
+This is again a const cast.
+
+> > +
+> > +     esp32_uart_ports[port->line] =3D sport;
+> > +
+> > +     platform_set_drvdata(pdev, port);
+> > +
+> > +     return uart_add_one_port(&esp32_uart_reg, port);
+> > +}
+>
+> regards,
+> --
+> js
+> suse labs
+>
+
+
+--=20
+Thanks.
+-- Max
 
