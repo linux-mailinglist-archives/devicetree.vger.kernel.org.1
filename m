@@ -1,163 +1,120 @@
-Return-Path: <devicetree+bounces-1911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AA1F7A8EA9
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 23:43:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED8A37A8EB1
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 23:50:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D51BB20582
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 21:43:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E3A9EB208D5
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 21:50:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D58D8405D1;
-	Wed, 20 Sep 2023 21:43:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75E843E483;
+	Wed, 20 Sep 2023 21:50:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ABED1A5B6
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 21:43:05 +0000 (UTC)
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2055.outbound.protection.outlook.com [40.107.105.55])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7ECC9E;
-	Wed, 20 Sep 2023 14:43:03 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZoB6q/FgMtpUtJEOfJovegNyGnzUkOWj6T1LUjUX/TVPjNDjUagthbpGL62zfAYGE2T7n5Zk+iUxaN8HepYLaIMzm0caqDQCet6m7T9wX7uSciDCukwnDMXfn3r06bcwrfQSCORlzyh24VP3VrM7VC8CvIsl1pQvxMKh5yc3gDeN59RrdNUgXplABLJWyiyJJu+LHtNX9B2jSLeRKMGLR221JliOHR4U1GrF47sZXux3AOvf4eJ02JAZ4lZqOEal5opsSvhgl7Snu18zq8bxxjc0On9+otfG7GC9tJmbM8wiA2gxmbEgNzK71bkGd6/7qH91ehvPEb0XMHFDdzIrZg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FavoNDOxrg0VjL88ARTrB1Z0fYYaeF10CNTXCxFi19Y=;
- b=ZUfdeY+jt1L0oCJQM9WSrOJNttYoofA1pumi/gJua5XCGFfRVkzoN/BZ33yswQ11KChablg6RSMX+VU36z/Sj1fCQdB9NfLwlG2WPer9qrFY0p2S1YRClZkXA+fDMqWEWWN/lg77KfbMVQIu62FMUrgc1k+xrR9vkk85Tfqg6yNL60wP3C00bd0P0Sfn5OYrfovZesmVTl4SKn6tV+7Ot+o8z3l2SwqQrCAmq/tSCiA4Muzwu4DRMdi+IGGo32Ly0WNwpNR3uZWuiF0EyIwGS7uMPfdkGgA8CjbCYQbW2FDx9A2aBN6z6TsRDgwcAnvn3s73V6ZIZSLV2QErMmOF1g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FavoNDOxrg0VjL88ARTrB1Z0fYYaeF10CNTXCxFi19Y=;
- b=KTH27IUKbQUzvFPcrpkWEzBGGUE31qAfUbs3y9YfsL+ynY75DefmS9GJ14TTK0ba5g5+8j2E7jpKx3gyszhpkA0x1TNvY2a0HbjzzxMKhP/J/4c3GqBavqpPedOqCVhNxiEjPgUSEplhJ47wIF3BtL5//Edj922NA+YHjP+c0VE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
- by AM7PR04MB7158.eurprd04.prod.outlook.com (2603:10a6:20b:120::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.19; Wed, 20 Sep
- 2023 21:43:01 +0000
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::1774:e25f:f99:aca2]) by AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::1774:e25f:f99:aca2%4]) with mapi id 15.20.6792.026; Wed, 20 Sep 2023
- 21:43:01 +0000
-Date: Wed, 20 Sep 2023 17:42:50 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: festevam@gmail.com
-Cc: clin@suse.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	eagle.zhou@nxp.com, imx@lists.linux.dev, joy.zou@nxp.com,
-	kernel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
-	leoyang.li@nxp.com, linux-arm-kernel@lists.infradead.org,
-	linux-imx@nxp.com, linux-kernel@vger.kernel.org,
-	pierre.gondois@arm.com, robh+dt@kernel.org, s.hauer@pengutronix.de,
-	shawnguo@kernel.org, shenwei.wang@nxp.com, sherry.sun@nxp.com
-Subject: Re: [PATCH v3 0/3] arm: dts: imx93: add edmav3 support
-Message-ID: <ZQtnWvTXlI5i7u4G@lizhi-Precision-Tower-5810>
-References: <20230824165753.2953431-1-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230824165753.2953431-1-Frank.Li@nxp.com>
-X-ClientProxiedBy: BYAPR11CA0092.namprd11.prod.outlook.com
- (2603:10b6:a03:f4::33) To AM6PR04MB4838.eurprd04.prod.outlook.com
- (2603:10a6:20b:4::16)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE38E41A80
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 21:50:05 +0000 (UTC)
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CF71AF;
+	Wed, 20 Sep 2023 14:50:04 -0700 (PDT)
+Received: by mail-yb1-xb33.google.com with SMTP id 3f1490d57ef6-d818d4230f6so445898276.1;
+        Wed, 20 Sep 2023 14:50:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695246603; x=1695851403; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=mQx5kR2+x3nFQSDzEdoMYbuPwtfcLZH/PujwlS1E1J4=;
+        b=VwyLHEt/Fwp1D47qNTR04FQ2IIgDQxbiPd+HRyVuxm6+3ofcKR2nt4jjTjk8ehSE4E
+         HRAIFmMNHAKfTofrZynzFXSWzoeh2CQbKz9ryaVbrEK0uH2wZc1NzTFGxjz2Ev65MKKZ
+         lSbCtNZO/o+Gra0ADeJNl8hxycPCSxSB66a/Xsy7KnBk5pKC/awUvYNRpmUQymmllzxn
+         8MK5wvLDBOjGUsedgHhflpXeVGPhfFPOwOFK7AaZK4AbzLmW2CuDm9ldVtIXmlwe5tne
+         9+Jd9cdptA8t035KkWmIjh208QWhYZsiO7+yUFlQHoWcpszW3C7KhYLlTbzvWCN6OmSF
+         0KtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695246603; x=1695851403;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mQx5kR2+x3nFQSDzEdoMYbuPwtfcLZH/PujwlS1E1J4=;
+        b=nAGq6lZojNDDkGCMKCi45sAEuiXlvSUwVMMUifcLh61PIsWj4SF/mP9BcjAWDbHuQA
+         bR/3oOE6Jy3TwmjjwTzTjw8RLCzj40tD/JFyjqfBhqUsWvKeXCbz3A5l0xDjIfSdnD/0
+         m5qN2LSiOXzf0kwNLQrRJa5hpRj6rziOUzMs7Y8QaLK8YMhewvx3018jqhVTK9aEjKGo
+         r55XwmenP6LDqk+byJHioeN3HOiuIaVZODKJV23rehOJ+dOdPC1pUfmZZve1wUV8LqNk
+         uiF5LgUhesvXwgrA08m12XJd2rdIZ6F9Gv4q50+WLtG4tQG+fUZEL0Ly1Rx97GhNKJod
+         VtoA==
+X-Gm-Message-State: AOJu0YxRTTxs1Z60TsHmZAjS51Bj4K2hL88zu+4bS5izDu7Cac16VuG3
+	r6W31zgcfqG9//pqnFLmJic=
+X-Google-Smtp-Source: AGHT+IEygTwYLySY4BjNw/ewyPAQ2Qpy7n0akNiWnZACj9K8CWmE4Xt6icWC72UevDMvuVkVSNlvvw==
+X-Received: by 2002:a25:3787:0:b0:d3a:28bb:2c95 with SMTP id e129-20020a253787000000b00d3a28bb2c95mr3716281yba.22.1695246603281;
+        Wed, 20 Sep 2023 14:50:03 -0700 (PDT)
+Received: from localhost ([2607:fea8:529e:7800::efbe])
+        by smtp.gmail.com with ESMTPSA id a125-20020a254d83000000b00d7bb3c4893fsm34541ybb.8.2023.09.20.14.50.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Sep 2023 14:50:02 -0700 (PDT)
+Date: Wed, 20 Sep 2023 17:49:58 -0400
+From: Richard Acayan <mailingradian@gmail.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Georgi Djakov <djakov@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Sibi Sankar <quic_sibis@quicinc.com>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] SDM670 CPU frequency scaling: dtschema fixes
+Message-ID: <ZQtpBtX-tN4Hg3uh@radian>
+References: <20230816230412.76862-6-mailingradian@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|AM7PR04MB7158:EE_
-X-MS-Office365-Filtering-Correlation-Id: 841a0404-820a-473f-8be5-08dbba228ff2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	qnA/ZGrayBGmcloeAhPJK7BoLjn+y7srI7OpsVETT0Cd+rOHi/IYs0Sw7Lf4MJ7cvfwH/FyVXLKpwQ72L/G9XZ4JbE80RnjEdWh2bIzfrSicbsz3bWzWQYoA9guEKXO7dON1edN1TYZa0agFVwwhQtvtyX+8Nv2DgD6X+JDSso+a/YVE1DN87AJvDViUefEEtt3YJkAIpcrnzoNFvPF8d6CNKcH9HepIiRLCZ4eFGtf1djTHbEkCto3pbWLB+QL2xRY4TyquxX/yXi4pG/b/+8E7F/CnQ44zUnMCjALYPqsE0W9EWb9TRhDkxDFP/pL+NNQt/gbj7S+sBZpjlA2nrvRFMd4yX7G56hewKxCy6FsCQt1g0Xtp+X/PlYNBGCidHlpoULfgwpctY+uLqwMYXqfIg8Om/y/bFfk+Y1uujtxv3OfKpy2oVw5A34bw5LOUwFePKRIERc9ippDRUfQAH2XNIxJ/JdfOtdsqC9PVh+neKlfWRxqBlER/z5KSexLrNSKO0YazR4QH7SUfO25W5g5WslNsebFNvhWB5fSossGrQRwQXlXKB2IX6jbuqb8pRIH4/2zBIxpYxd7Q2iofV1bmIf3fN3UV0mtfLf2zFkQ=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(136003)(366004)(39860400002)(396003)(376002)(346002)(1800799009)(186009)(451199024)(9686003)(6486002)(52116002)(6666004)(478600001)(6512007)(6506007)(8936002)(8676002)(66476007)(66946007)(66556008)(966005)(316002)(6916009)(5660300002)(38350700002)(86362001)(38100700002)(4326008)(4744005)(7416002)(2906002)(26005)(41300700001)(33716001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?74CNDYydMJrOkcvYx2k+6t5q49Wq2yANNbC20t3htJl3mf3lB1z/meMB2icC?=
- =?us-ascii?Q?89oHjiKWSqEcIl96U6Rxa8aPYL/C1/SeRFxFFUSoEPIwSfTkI1u8T32OA5UF?=
- =?us-ascii?Q?dNX5dHf5hZjbo+1hAJDixm7K1pd1MIHgJWkHedsZCuQSGCxTjZeFiRBRnC78?=
- =?us-ascii?Q?sGYwOJB52wMFMl1CHX6fB31u7l87Z29nxqVkvCOPVe59XjY63ushrtxDyqtu?=
- =?us-ascii?Q?mjKuEKZiq8A5Wl16l0xtsZ9PTEabCAPVKxwtlljnIVASFhHDZ4wGtKDo+HoM?=
- =?us-ascii?Q?ny4m2tbNHWg0a/vNUXNmyltJVDEZyFFPhfdHE+erFPF80ydV52Ck/ezI7eHJ?=
- =?us-ascii?Q?cWR5+rkb82sSbU5YMoJFDvWNUoDKxWdnF65M12hm86UgIT8eKU3J6hv5W1vM?=
- =?us-ascii?Q?nDCVFGGWjusc1832rEx9CN4O9PZMUhxxE5DcyL7VxZzHtWhRr/Nqngpg5aWO?=
- =?us-ascii?Q?fE1n8u1Vsl9nFp64vGADDusI3QtAb97Xmmfj+6ypDC06mi9hxjubXpmWQqzR?=
- =?us-ascii?Q?c7vVmPIS6ercTfi06dPImajlc62isCi3bESTQ8QSih6olBgB2mqZsCB2vBBz?=
- =?us-ascii?Q?r/rFOHiFWISrkv5Z/k56M9i1P+WNRXRasxN0tukauZ20oADkXEnYw9JogJvJ?=
- =?us-ascii?Q?NhM65jmlQgN+vElVBQe8RMr7YQbNCd7lE8eOztHMiTEU6Ce0R2VxtuG1vRNh?=
- =?us-ascii?Q?nHrN56JsqqCGkC0HSkGINZNQm5jpBQEP+uN0NtCK2JR+0IgP7rUJET4kf+uX?=
- =?us-ascii?Q?u3p4JPKih3QMbPd3CHGtYCCoyuHjnWbBz85SWNAHBEadaDNL5gUiFvASOy6j?=
- =?us-ascii?Q?ztsqURj0aUaCgpAUMCrlA9VfGxOy1l19jsoNCHjZT2qxO3mng/XaHX9etwCx?=
- =?us-ascii?Q?DD6R7zs0gSqfpNr+oHMGq421FfLQdzfuX7+4U4nNFnHrvMlyWgqDwAOBA6mP?=
- =?us-ascii?Q?QGUExZwdv9jYmlSVNkoniVUVMCn8O6VffwmixYLkO7PZLF5sM0n98vRLZbP2?=
- =?us-ascii?Q?507fh1XJbh4h5Y4K6DfTeCRGMF4dh5nu0ukfCNBu/USBIa2oIuidgSnl+2i6?=
- =?us-ascii?Q?bjMy9iGU/7q+LQtiyXRErewaGIWjtXOpGFuMMZJ2NF5SC/dHaxDibFP7rF9i?=
- =?us-ascii?Q?/MJLer2CqRwzSsS7utv3vXSBjCb+b7A9+/WBDPRImL7j/Hw4xSTctJ8ePjeN?=
- =?us-ascii?Q?wqTSY+xlexOgZM4Jg/KCX65W4B9HrSwipo4Kt82G8Z75EoBiLg8YowcCrg5w?=
- =?us-ascii?Q?VrHfp/ZrDVqBNGYF2F+WIeXnmgTALHDQDji7GYN4SMNt/MZ6r9sXjJ0XXe61?=
- =?us-ascii?Q?1XUDplg57ICZPYEar2+bibSWZdPkzR0bTqxmWkDpTwfYECjf9K4QWhSCFxtx?=
- =?us-ascii?Q?/Qnhzh39h92hFsAjL+t1Xe3VEIG+PNRqQHdrTSSymxf55NU+qmaqYzr7x63x?=
- =?us-ascii?Q?NyIYH18j2kH2kj3+zhhj4bZrfw2kPLSrlKRl+nJYD5Nrg4DyJZUXz/knu7yF?=
- =?us-ascii?Q?b0DiSqOyasy8OHeIYdxwyDlKpacvcI3KL6QVkdvZ+I4aM5RYaYiYZ8Yo+LjU?=
- =?us-ascii?Q?eaOl7IK9gObLwdKdHfyoMXnrF/EpsiH9Kj5TdARF?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 841a0404-820a-473f-8be5-08dbba228ff2
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2023 21:43:01.1862
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EocrU1TrPuFmgTCy8MXD1gpCCQrf8kx96GbOt/51woYjE+ARMTsYDodmaaPxIYLx71wYr0Zc1ajaiotBRHXykQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7158
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230816230412.76862-6-mailingradian@gmail.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLY,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Thu, Aug 24, 2023 at 12:57:50PM -0400, Frank Li wrote:
-> edmav3 patch already accepted.
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git/log/?h=next
-> 
-> Add dts part for imx93
-> 
-> Change from v2 to v3
-> - fixed Krzysztof's comments
-> - drop unused fsl,edma-axi
+On Wed, Aug 16, 2023 at 07:04:14PM -0400, Richard Acayan wrote:
+> Changes since v1 (20230815223108.306018-5-mailingradian@gmail.com):
+>  - add compatible to allOf area (2/3)
+>  - change subject line (Acked-by tag retained) (1/3)
+>  - add fixes tag (2/3)
+>
+> This adds appropriate compatible strings to pass bindings checks.
+>
+> Patch 1/3 is preserved from a previous series, as it was not applied to
+> linux-next yet and I wasn't notified that it was applied anywhere else:
+> https://lore.kernel.org/linux-arm-msm/20230724214209.208699-7-mailingradian@gmail.com/
+>
+> Richard Acayan (3):
+>   dt-bindings: interconnect: OSM L3: add SDM670 compatible
+>   dt-bindings: cpufreq: cpufreq-qcom-hw: add SDM670 compatible
+>   arm64: dts: qcom: sdm670: add specific cpufreq compatible
 
-@shawn:
-	ping?
+Hi, just a reminder that this series is here, and patches 2-3 are stale.
 
-Frank
+Would it help to send them separately?
 
-> 
-> Change from v1 to v2
-> - Enable UART1 also, lpuart driver will disable dma when it is console
-> 
-> Frank Li (3):
->   arm64: dts: imx93: add edma1 and edma2
->   arm64: dts: imx93: add dma support for lpuart[1..8]
->   arm64: dts: imx93-evk: add uart5
-> 
->  .../boot/dts/freescale/imx93-11x11-evk.dts    |  15 ++
->  arch/arm64/boot/dts/freescale/imx93.dtsi      | 130 ++++++++++++++++++
->  2 files changed, 145 insertions(+)
-> 
+>
+>  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml  | 2 ++
+>  Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml | 1 +
+>  arch/arm64/boot/dts/qcom/sdm670.dtsi                            | 2 +-
+>  3 files changed, 4 insertions(+), 1 deletion(-)
+>
 > -- 
-> 2.34.1
-> 
+> 2.41.0
+>
 
