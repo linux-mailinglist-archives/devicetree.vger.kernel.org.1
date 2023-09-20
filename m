@@ -1,126 +1,93 @@
-Return-Path: <devicetree+bounces-1785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F2DB7A8433
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 15:56:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BA577A8435
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 15:56:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69F941C20C22
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 13:56:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C96E3281F5F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 13:56:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80E3C3AC14;
-	Wed, 20 Sep 2023 13:56:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AFB03AC1F;
+	Wed, 20 Sep 2023 13:56:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF0C83AC0C
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 13:56:24 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06336E4;
-	Wed, 20 Sep 2023 06:56:21 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38KDuBZa039452;
-	Wed, 20 Sep 2023 08:56:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1695218171;
-	bh=m8KgHngVmiI/7GBOu/bwjxQ6OOHwyl5qa2i1mbM36xE=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=tEPYFUlh9wt7q5WoWNNmSUnEsKkrDooopKQmqUoS4IKX5U72BxLmc1kvpGe4Ru9Y2
-	 CeWx8921YElb90aKdVydNTIo9oplHKn26L8uv49eXsIedP0Ra2XHxEol1fF/wxEFVL
-	 fdgsm7EAuI2lOky9zIUeDIrUVvjfOR1iEe2rs5oE=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38KDuB1S020463
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 20 Sep 2023 08:56:11 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 20
- Sep 2023 08:56:10 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 20 Sep 2023 08:56:10 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38KDuAso003398;
-	Wed, 20 Sep 2023 08:56:10 -0500
-Date: Wed, 20 Sep 2023 08:56:10 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Aradhya Bhatia <a-bhatia1@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List
-	<linux-kernel@vger.kernel.org>,
-        Linux ARM Kernel List
-	<linux-arm-kernel@lists.infradead.org>,
-        Devarsh Thakkar <devarsht@ti.com>, Jai Luthra <j-luthra@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: Fix HDMI Audio overlay in Makefile
-Message-ID: <20230920135610.njestouho5cemdtv@sprint>
-References: <20230914194139.23132-1-a-bhatia1@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A546A3AC0C
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 13:56:30 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DA17EB
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 06:56:29 -0700 (PDT)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: bbrezillon)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id B10F366071F1;
+	Wed, 20 Sep 2023 14:56:27 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1695218188;
+	bh=+7S4NMiv+np81ToK3JyeIZNiCivkP3XpM4WJFaNSwmo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=MrdMhU5PgEMu5SqCLcujP0bdYtf0CnePgScpro5cDowAF1qFxYa1rl2T3J0Ulk457
+	 cTOFVpvjr3tr0wXrPtFKuhLM8oUMRb1IoMl95ivjeBNw+h8F7qIbthUsWJCIwZygTA
+	 tOkSuHUdPXUnN3WdSSDUhoMZrwLx/VCQjv/Lnj/UYDcm8IIwChXOtF7raqPA6pXzZ3
+	 E5l8A2zDltv2aRcDds256TYNTq3OEin7JK7hNSWWvxIpzbVIUh9m29S6m4PAtQ3jlE
+	 cZcAphZt9pWL/C5rZSpNPQox2sdLX3IK6UhAJirVloXfiIrpTggYckvR9d/bvYbQEY
+	 B6J6HDEgy93AQ==
+Date: Wed, 20 Sep 2023 15:56:24 +0200
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Liviu Dudau <Liviu.Dudau@arm.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ dri-devel@lists.freedesktop.org, Conor Dooley <conor+dt@kernel.org>,
+ Nicolas Boichat <drinkcat@chromium.org>, Daniel Stone
+ <daniels@collabora.com>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Steven Price <steven.price@arm.com>,
+ devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+ =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>, "Marty E .
+ Plummer" <hanetzer@startmail.com>, Robin Murphy <robin.murphy@arm.com>,
+ Faith Ekstrand <faith.ekstrand@collabora.com>
+Subject: Re: [PATCH v2 14/15] dt-bindings: gpu: mali-valhall-csf: Add
+ initial bindings for panthor driver
+Message-ID: <20230920155624.1934eb34@collabora.com>
+In-Reply-To: <ZQr2cTMz1-PsOMRP@e110455-lin.cambridge.arm.com>
+References: <20230809165330.2451699-1-boris.brezillon@collabora.com>
+	<20230809165330.2451699-15-boris.brezillon@collabora.com>
+	<3517f2e9-d9d7-5bf8-1905-62f52d68c512@linaro.org>
+	<ZQr2cTMz1-PsOMRP@e110455-lin.cambridge.arm.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230914194139.23132-1-a-bhatia1@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 01:11-20230915, Aradhya Bhatia wrote:
-> Apply HDMI audio overlay to AM625 and AM62-LP SK-EVMs DT binaries,
-> instead of leaving it in a floating state.
-> 
-> Fixes: b50ccab9e07c ("arm64: dts: ti: am62x-sk: Add overlay for HDMI audio")
-> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+On Wed, 20 Sep 2023 14:41:05 +0100
+Liviu Dudau <Liviu.Dudau@arm.com> wrote:
 
-Can you acknowledge Rob for the report and provide appropriate tags?
-> ---
->  arch/arm64/boot/dts/ti/Makefile | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+> > 
+> > Please describe also power domains - constrains and names.  
 > 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index e7b8e2e7f083..77aa44c9663b 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -9,6 +9,8 @@
->  # alphabetically.
->  
->  # Boards with AM62x SoC
-> +k3-am625-sk-hdmi-audio-dtbs := k3-am625-sk.dtb k3-am62x-sk-hdmi-audio.dtbo
-> +k3-am62-lp-sk-hdmi-audio-dtbs := k3-am62-lp-sk.dtb k3-am62x-sk-hdmi-audio.dtbo
->  dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am625-phyboard-lyra-rdk.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am625-sk.dtb
-> @@ -19,7 +21,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dahlia.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dev.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-yavia.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk.dtb
-> -dtb-$(CONFIG_ARCH_K3) += k3-am62x-sk-hdmi-audio.dtbo
-> +dtb-$(CONFIG_ARCH_K3) += k3-am625-sk-hdmi-audio.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk-hdmi-audio.dtb
->  
->  # Boards with AM62Ax SoC
->  dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk.dtb
-> -- 
-> 2.40.1
-> 
+> I'm not sure the power domains and how to handle them have been
+> entirely settled for Rockchip, hence why they were not included. Will
+> check with Collabora to see if they have anything to add here,
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+On rk3588, it's just one power domain feeding all GPU blocks.
+
+> but
+> for non-Rockchip platforms (like Juno with FPGAs) the constraints
+> are going to be different.
 
