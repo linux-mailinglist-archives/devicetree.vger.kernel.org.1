@@ -1,144 +1,93 @@
-Return-Path: <devicetree+bounces-1576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 636F87A711A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 05:45:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8D077A7121
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 05:51:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EE10281FF7
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 03:45:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1FA72819C7
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 03:51:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0199C1FDF;
-	Wed, 20 Sep 2023 03:45:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1FF923A8;
+	Wed, 20 Sep 2023 03:51:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF9B81FC1;
-	Wed, 20 Sep 2023 03:45:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B905CC433C7;
-	Wed, 20 Sep 2023 03:45:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695181509;
-	bh=dGJWqegoej4rPxoaGwuYh4Ve04vulyDF+4O2d33gaY4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vNqDXkl7idWewutiGjoujhKSU/t6v3soDqhANYFRDRFCxp5LxdWGAjpk4unVBqYdC
-	 Bcty+yUX43iVrdXIRUgqgD416o3wWQl5Y3XEt8EcNXtam66Dkgkx5Bg5dVTq4N5r7e
-	 O2YEEJbwwO6phzJw4TxhANdaMjyl8iXnjZrM5j1ArCms1kb9917BxV2GtbsP7tMcXG
-	 wwQboetFsdW00Bfm4G2BGAdhIM8duIU0QiBimQ6mc56rK8QW8fbF9FxrE35vZ5z1Iv
-	 PHO0spaUgivQDjie1ZDgGx5cDpiuzKPiwf5fn1tpu2fOrYH4ehT0xo/i2EeB9r0eLs
-	 zPrKgmkSlEijg==
-Date: Tue, 19 Sep 2023 20:49:16 -0700
-From: Bjorn Andersson <andersson@kernel.org>
-To: Tengfei Fan <quic_tengfan@quicinc.com>
-Cc: will@kernel.org, robin.murphy@arm.com, joro@8bytes.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	agross@kernel.org, konrad.dybcio@linaro.org, catalin.marinas@arm.com, 
-	geert+renesas@glider.be, arnd@arndb.de, neil.armstrong@linaro.org, 
-	nfraprado@collabora.com, rafal@milecki.pl, peng.fan@nxp.com, 
-	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, quic_tsoni@quicinc.com, 
-	quic_shashim@quicinc.com, quic_kaushalk@quicinc.com, quic_tdas@quicinc.com, 
-	quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com, kernel@quicinc.com, 
-	Ajit Pandey <quic_ajipan@quicinc.com>
-Subject: Re: [PATCH v2 5/8] arm64: dts: qcom: sm4450: Add apps_rsc and cmd_db
- node
-Message-ID: <kk3xwrq6d7jpkoti2b4lg4hwqfoyqilvf7cp3tuccfmhdj57rf@hicfde4whvzm>
-References: <20230915021509.25773-1-quic_tengfan@quicinc.com>
- <20230915021509.25773-7-quic_tengfan@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19A2F1FDF
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 03:51:10 +0000 (UTC)
+Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8C9C3AC;
+	Tue, 19 Sep 2023 20:51:07 -0700 (PDT)
+X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
+Received: from 192.168.10.46
+	by mg.richtek.com with MailGates ESMTPS Server V6.0(1978098:0:AUTH_RELAY)
+	(envelope-from <cy_huang@richtek.com>)
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Wed, 20 Sep 2023 11:50:36 +0800 (CST)
+Received: from ex4.rt.l (192.168.10.47) by ex3.rt.l (192.168.10.46) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.25; Wed, 20 Sep
+ 2023 11:50:35 +0800
+Received: from linuxcarl2.richtek.com (192.168.10.154) by ex4.rt.l
+ (192.168.10.45) with Microsoft SMTP Server id 15.2.1118.25 via Frontend
+ Transport; Wed, 20 Sep 2023 11:50:35 +0800
+From: <cy_huang@richtek.com>
+To: Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+CC: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Pierre-Louis
+ Bossart <pierre-louis.bossart@linux.intel.com>, ChiYuan Huang
+	<cy_huang@richtek.com>, Allen Lin <allen_lin@richtek.com>,
+	<alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/2] ASoC: Add rtq9128 audio amplifier
+Date: Wed, 20 Sep 2023 11:50:32 +0800
+Message-ID: <1695181834-5809-1-git-send-email-cy_huang@richtek.com>
+X-Mailer: git-send-email 1.8.3.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230915021509.25773-7-quic_tengfan@quicinc.com>
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Fri, Sep 15, 2023 at 10:15:06AM +0800, Tengfei Fan wrote:
-> From: Ajit Pandey <quic_ajipan@quicinc.com>
-> 
-> Add apps_rsc node and cmd_db memory region for sm4450.
-> 
-> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
-> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm4450.dtsi | 34 ++++++++++++++++++++++++++++
->  1 file changed, 34 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm4450.dtsi b/arch/arm64/boot/dts/qcom/sm4450.dtsi
-> index c4e5b33f5169..0d1d39197d77 100644
-> --- a/arch/arm64/boot/dts/qcom/sm4450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm4450.dtsi
-> @@ -5,6 +5,7 @@
->  
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/soc/qcom,rpmh-rsc.h>
->  
->  / {
->  	interrupt-parent = <&intc>;
-> @@ -328,6 +329,18 @@
->  		};
->  	};
->  
-> +	reserved_memory: reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		aop_cmd_db_mem: cmd-db@80860000 {
-> +			compatible = "qcom,cmd-db";
-> +			reg = <0x0 0x80860000 0x0 0x20000>;
-> +			no-map;
-> +		};
-> +	};
-> +
->  	soc: soc@0 {
->  		#address-cells = <2>;
->  		#size-cells = <2>;
-> @@ -335,6 +348,27 @@
->  		dma-ranges = <0 0 0 0 0x10 0>;
->  		compatible = "simple-bus";
->  
-> +		apps_rsc: rsc@17a00000 {
-> +			compatible = "qcom,rpmh-rsc";
-> +			reg = <0 0x17a00000 0 0x10000>,
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-As your later patch shows, and Krzysztof pointed out, the sort order is
-wrong here (sort nodes under /soc by address).
+This patch series adds Richtek rtq9128 automotive audio amplifier
+support. It can deliver up to 4x75W into 4Ohm speaker from a 25V
+supply in automotive applications.
 
-> +			      <0 0x17a10000 0 0x10000>,
-> +			      <0 0x17a20000 0 0x10000>;
-> +			reg-names = "drv-0", "drv-1", "drv-2";
-> +			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
-> +			label = "apps_rsc";
-> +			qcom,tcs-offset = <0xd00>;
-> +			qcom,drv-id = <2>;
-> +			qcom,tcs-config = <ACTIVE_TCS    2>, <SLEEP_TCS     3>,
-> +					  <WAKE_TCS      3>, <CONTROL_TCS   0>;
+Change log
+v3
+- Add Reviewed-by tag for dt binding patch
+- Refine the source code by reviewer's comments
+  detail changes listed in the patch
+- Add DVDD undervoltage threshold selection from HW guy's suggestion
 
-Please confirm that you indeed want 0 CONTROL_TCSs.
+v2
+- dt document fix listed in patch extra comment
 
-Thanks,
-Bjorn
+ChiYuan Huang (2):
+  ASoC: dt-bindings: Add Richtek rtq9128 audio amplifier
+  ASoC: codecs: Add Richtek rtq9128 audio amplifier support
 
-> +			power-domains = <&CLUSTER_PD>;
-> +
-> +			apps_bcm_voter: bcm-voter {
-> +				compatible = "qcom,bcm-voter";
-> +			};
-> +		};
-> +
->  		tcsr_mutex: hwlock@1f40000 {
->  			compatible = "qcom,tcsr-mutex";
->  			reg = <0x0 0x01f40000 0x0 0x40000>;
-> -- 
-> 2.17.1
-> 
+ .../bindings/sound/richtek,rtq9128.yaml       |  54 ++
+ sound/soc/codecs/Kconfig                      |  15 +
+ sound/soc/codecs/Makefile                     |   2 +
+ sound/soc/codecs/rtq9128.c                    | 766 ++++++++++++++++++
+ 4 files changed, 837 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/richtek,rtq9128.yaml
+ create mode 100644 sound/soc/codecs/rtq9128.c
+
+-- 
+2.34.1
+
 
