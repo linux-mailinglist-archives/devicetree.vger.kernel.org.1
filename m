@@ -1,121 +1,145 @@
-Return-Path: <devicetree+bounces-1665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AFAE7A74ED
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 09:54:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14AA97A751E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 10:01:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05481281DB1
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 07:54:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D52BB1C20922
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 08:01:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C537C8D6;
-	Wed, 20 Sep 2023 07:54:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71533C8E3;
+	Wed, 20 Sep 2023 08:01:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DB968C0A
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 07:54:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 918F2C433C9;
-	Wed, 20 Sep 2023 07:54:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695196448;
-	bh=K8AxAQOT8+MI8bjoZz6VFx9HFGUcrIa/mTpDzepHRqQ=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Qcrm7xRpOB1M/xx+Jt3nveIAcPj6dRcCA65n0mOocvxjwjQLs9wPuKZ3ebG5vyifa
-	 v3p32tX71Wn7Gz9KCLZm/AN/+uZxedlA6ZTiXaWKacbFKRtWaQk4abA7QdNDAz0iec
-	 lKauU63ofbazoNbJxqzU63qtvBAY55qWZOaaG8bTipkKRmnF48TnlNdR9bdqCMmtdO
-	 Pf+tLup5Th4rEWdWM2cEC5gRGWxLmmmqcKQXXVjOsImsrF64/hK1Qzz3Hv5QMGX2Wl
-	 bj9gf49Gsm0/61faQnGFu321cew5dcncmH1VfKo/nkE7V+oETghdZVqJWvoZQS5qoF
-	 APwzFyesWst2g==
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2b95d5ee18dso108381471fa.1;
-        Wed, 20 Sep 2023 00:54:08 -0700 (PDT)
-X-Gm-Message-State: AOJu0YwUJTh6oTITiwRXQIJH6CArGr5r0/jNjrhJo4cR9brXMb2pLKYr
-	8p7ztfBk6QAIYqmM+mOI+OANFLqb1+6adYj34Eg=
-X-Google-Smtp-Source: AGHT+IGbON4qUvKyn9SpbtgKFzXwyHZKLVPKIdLZul8MBdsq+dCsBfr2RGFZYdhev89kclP9xbz7mSdJOX7f6FJRyOo=
-X-Received: by 2002:a05:651c:1034:b0:2bc:d8cb:5a13 with SMTP id
- w20-20020a05651c103400b002bcd8cb5a13mr1419793ljm.42.1695196446802; Wed, 20
- Sep 2023 00:54:06 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70F461C26
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 08:01:03 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 514459D;
+	Wed, 20 Sep 2023 01:01:00 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 4D36766028F5;
+	Wed, 20 Sep 2023 09:00:58 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1695196858;
+	bh=PsIofxIPZNjYZmIKPLLXiYlycMUtqIzWITre7uRwShk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UfP3WtYgSXYxgzyyDcqokruv6kxMz2WhLkLxTKLYFi/4J3N2j1k+PRH+DhiX4ysiX
+	 QXjww+1y1DOE5Y3C/xYAfeudfxwC+f7tjyJfeGMWNyC9w2XfF56Wyc6DsQONoEAXKQ
+	 xAEZbxt3+n9j2hBa9n/dPD4XTaBwmwfcYP5d+jG+JEKIsjnWAu5w3ttGyGT7/Twp6+
+	 RX90spJ54bO667w96pVKjBrJa+nS4fhbXug66JmleygAzjXiuLdrtYhThBH1rVBDBD
+	 rbfNJ0ij6VwhFJn3omnzkf7RjRnBM21PzMtuyrq66kmcyHUs/VW2kjZN4TEIOVl0YZ
+	 MKZO/XdpPikjw==
+Message-ID: <a068c2d1-6ddf-2090-b6e7-f6135a5e1af1@collabora.com>
+Date: Wed, 20 Sep 2023 10:00:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1695189879.git.wangchen20@iscas.ac.cn> <888d57a2d5e62affb8e29e0098402e428facd969.1695189879.git.wangchen20@iscas.ac.cn>
-In-Reply-To: <888d57a2d5e62affb8e29e0098402e428facd969.1695189879.git.wangchen20@iscas.ac.cn>
-From: Guo Ren <guoren@kernel.org>
-Date: Wed, 20 Sep 2023 15:53:53 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTR7xzGvQeewuhRLHE2yjH8zeDMj4qfE4_W-yb71-Zx6Zg@mail.gmail.com>
-Message-ID: <CAJF2gTR7xzGvQeewuhRLHE2yjH8zeDMj4qfE4_W-yb71-Zx6Zg@mail.gmail.com>
-Subject: Re: [PATCH v2 08/11] serial: 8250_dw: Add Sophgo SG2042 support
-To: Chen Wang <unicornxw@gmail.com>
-Cc: aou@eecs.berkeley.edu, chao.wei@sophgo.com, conor@kernel.org, 
-	devicetree@vger.kernel.org, emil.renner.berthing@canonical.com, 
-	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org, 
-	xiaoguang.xing@sophgo.com, Chen Wang <wangchen20@iscas.ac.cn>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v3 05/12] regulator: dt-bindings: mt6358: Add MT6366 PMIC
+To: Rob Herring <robh@kernel.org>, Chen-Yu Tsai <wenst@chromium.org>
+Cc: Lee Jones <lee@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Zhiyong Tao <zhiyong.tao@mediatek.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20230919104357.3971512-1-wenst@chromium.org>
+ <20230919104357.3971512-6-wenst@chromium.org>
+ <20230919195752.GA85007-robh@kernel.org>
+Content-Language: en-US
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230919195752.GA85007-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Wed, Sep 20, 2023 at 2:40=E2=80=AFPM Chen Wang <unicornxw@gmail.com> wro=
-te:
->
-> From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
->
-> Add quirk to skip setting the input clock rate for the uarts on the
-> Sophgo SG2042 SoC similar to the StarFive JH7100.
->
-> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> Signed-off-by: Chen Wang <wangchen20@iscas.ac.cn>
-> ---
->  drivers/tty/serial/8250/8250_dw.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/=
-8250_dw.c
-> index f4cafca1a7da..6c344877a07f 100644
-> --- a/drivers/tty/serial/8250/8250_dw.c
-> +++ b/drivers/tty/serial/8250/8250_dw.c
-> @@ -770,7 +770,7 @@ static const struct dw8250_platform_data dw8250_renes=
-as_rzn1_data =3D {
->         .quirks =3D DW_UART_QUIRK_IS_DMA_FC,
->  };
->
-> -static const struct dw8250_platform_data dw8250_starfive_jh7100_data =3D=
- {
-> +static const struct dw8250_platform_data dw8250_skip_set_rate_data =3D {
->         .usr_reg =3D DW_UART_USR,
->         .quirks =3D DW_UART_QUIRK_SKIP_SET_RATE,
->  };
-> @@ -780,7 +780,8 @@ static const struct of_device_id dw8250_of_match[] =
-=3D {
->         { .compatible =3D "cavium,octeon-3860-uart", .data =3D &dw8250_oc=
-teon_3860_data },
->         { .compatible =3D "marvell,armada-38x-uart", .data =3D &dw8250_ar=
-mada_38x_data },
->         { .compatible =3D "renesas,rzn1-uart", .data =3D &dw8250_renesas_=
-rzn1_data },
-> -       { .compatible =3D "starfive,jh7100-uart", .data =3D &dw8250_starf=
-ive_jh7100_data },
-> +       { .compatible =3D "sophgo,sg2042-uart", .data =3D &dw8250_skip_se=
-t_rate_data },
-> +       { .compatible =3D "starfive,jh7100-uart", .data =3D &dw8250_skip_=
-set_rate_data },
-Why shall we touch the jh7100 stuff in this patch?
+Il 19/09/23 21:57, Rob Herring ha scritto:
+> On Tue, Sep 19, 2023 at 06:43:48PM +0800, Chen-Yu Tsai wrote:
+>> From: Zhiyong Tao <zhiyong.tao@mediatek.com>
+>>
+>> The MediaTek MT6366 PMIC is similar to the MT6358 PMIC. It is designed
+>> to be paired with the MediaTek MT8186 SoC. It has 9 buck regulators and
+>> 29 LDO regulators, not counting ones that feed internally and basically
+>> have no controls. The regulators are named after their intended usage
+>> for the SoC and system design, thus not named generically as ldoX or
+>> dcdcX, but as vcn33 or vgpu.
+>>
+>> The differences compared to the MT6358 are minimal:
+>> - Regulators removed: VCAMA1, VCAMA2, VCAMD, VCAMIO, VLDO28
+>> - Regulators added: VM18, VMDDR, VSRAM_CORE
+>>
+>> Add a binding document describing all the regulators and their supplies.
+>>
+>> Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
+>> [wens@chromium.org: major rework and added commit message]
+>> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+>> ---
+>> Changes since v2:
+>> - Merged all the propertyPatterns together; the if-then sections now
+>>    only block out invalid properties
+>>
+>> Changes since v1:
+>> - Replaced underscores in supply names to hyphens
+>> - Merged with MT6358 regulator binding
+>> - Added MT6358 fallback compatible to MT6366 regulator
+>>
+>> Changes since Zhiyong's last version (v4) [1]:
+>> - simplified regulator names
+>> - added descriptions to regulators
+>> - removed bogus regulators (*_sshub)
+>> - merged vcn33-wifi and vcn33-bt as vcn33
+>> - added missing regulators (vm18, vmddr, vsram-core)
+>> - cut down examples to a handful of cases and made them complete
+>> - expanded commit message a lot
+>>
+>> [1] https://lore.kernel.org/linux-arm-kernel/20220823123745.14061-1-zhiyong.tao@mediatek.com/
+>>
+>>   .../regulator/mediatek,mt6358-regulator.yaml  | 120 +++++++++++++++---
+>>   1 file changed, 104 insertions(+), 16 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6358-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6358-regulator.yaml
+>> index c5f336318ec2..05e381899d08 100644
+>> --- a/Documentation/devicetree/bindings/regulator/mediatek,mt6358-regulator.yaml
+>> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6358-regulator.yaml
+>> @@ -16,14 +16,18 @@ description:
+>>   
+>>   properties:
+>>     compatible:
+>> -    const: mediatek,mt6358-regulator
+>> +    oneOf:
+>> +      - const: mediatek,mt6358-regulator
+>> +      - items:
+>> +          - const: mediatek,mt6366-regulator
+>> +          - const: mediatek,mt6358-regulator
+> 
+> Would the mt6366 regulator driver(s) function with the mt6358 driver
+> unchanged? If not, then not really much point in having the fallback.
+> 
 
->         { /* Sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(of, dw8250_of_match);
-> --
-> 2.25.1
->
+It would, because there's chip id verification inside and would still
+automatically select the right regulator info, even if there's no mt6366
+specific compatible.
 
+Cheers,
+Angelo
 
---=20
-Best Regards
- Guo Ren
 
