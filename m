@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-1831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56A4C7A8844
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 17:27:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A4397A8866
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 17:31:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1161528266D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 15:27:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03BC72824CA
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 15:31:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 442283C680;
-	Wed, 20 Sep 2023 15:27:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B35D3C684;
+	Wed, 20 Sep 2023 15:31:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01D8F3B7BD
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 15:27:29 +0000 (UTC)
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02EF68F
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 08:27:27 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-532eb2a1bf8so1347427a12.0
-        for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 08:27:26 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEAD729A1
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 15:31:17 +0000 (UTC)
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CB6099
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 08:31:16 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-52bcb8b199aso8762433a12.3
+        for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 08:31:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695223645; x=1695828445; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1695223874; x=1695828674; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Wo1mQgPnJiiGHC8PMNJRnSxUKypGW2RCDzAOKloAhdw=;
-        b=jeOKyuyQaTgpnVtDVGM9VO9jEFgYw5yZ2JrWiHc27MWVmawKVtqaTVjpu77sSojiJH
-         +sY+WCH7yjeewUX2ceOAsTawz0QK1zxRa8NYhuKh4TxFfHcvf8kCpUnUiIu3wmyRw2Hm
-         Eu1EEMs2wotqkwpO4lwUR+yxsGP51+TnOjey1ZEbNNLfRl/OaExkozzL9utX3DrtWPPj
-         GNP5gQIphhdnbGTp60/OEaU2v24ow/K/uZ3M98Y6JJyNaqNzGJAP5DsUUwnsxj3/6Oum
-         DXti3HqJWI+puCaF6OAOWwF1DcLpS8Le2Dsm+yZEZGjRwzmFRJ0Riw+rLV6DrNiSQmtR
-         Y1YA==
+        bh=ybFgEpWZ1M1MITqAxxwPHlJhDui5BwB2PGcw3ZpdJCI=;
+        b=DTTiSx225Zu5jMH7TwugY9QIIEgAIEOs3mdvFW/U9g9YxBvbS8flaXO30Y/9ak87My
+         o8gOOv47nQiaDwsQ6Uf6z+yYEBrdpugr1oetaC9fv8GvusGxckIE6zdKFV2NO8ib0v+3
+         d8pkbiKBWSn3sX4JE67gaHoqx8+aNzyrMTJ9ef22feyWUiVHq25oK78Emuriyv2ifCJx
+         vWAlhivsB91r8h4RNL9i7RnJ30qgiZuvVFunhN4ERc1urtXftjammckPKcD/bdbJbSVs
+         OxwqqmDoSweF9x4/e/Qz596Yp7XcKPdUcMvekoyo/TYst5oJ/ptbRbifhQ2e73Y7KcrG
+         m2kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695223645; x=1695828445;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1695223874; x=1695828674;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Wo1mQgPnJiiGHC8PMNJRnSxUKypGW2RCDzAOKloAhdw=;
-        b=mJ+kwLz2Zj04ThCaHscGPEMPCsfZMW2YE5GN4u2R59V8O0y+HYbSdIpMqGDxM+8Ki3
-         jAMAASikGUi8TuovQvalVNFnbdQkCWACoggKkKVh5kNlXD/tWsUjP6iNgU3hNtIH9Iqa
-         RSy7lL3XoalL7Jp5Gnew6NOihpChQj/3ZkaUAl0j67uNGNRWm7XJgBGZe6ntz3+AcFuV
-         veVNHE5LUcWEWGvon9SuNoagvR1czVaE8nObUFEbUqS8AIl3lU9IQVqu5NPn6xXGdQJ3
-         vlJedmFANS1krVyb/qyYsnJs+UZsydlxwA6RZWnEn1NgT88vDe12w/aJCVMzZkBPMyEX
-         tT9A==
-X-Gm-Message-State: AOJu0Yydqbb5uV0cHvlQYcfI6WIO3VOXtIOFb+WGEi7o88bEF34/uW2D
-	D0HFGmcOGWxurwXGd60+Nh3GpocYJfm0h1ggqbtoiQ==
-X-Google-Smtp-Source: AGHT+IFf0OsflsAqCBJwnxqg2qtNncrbiWYuEiolcloSW2fAScdAB9FF4DRU/tmMk/elGeW9Xz6lxg==
-X-Received: by 2002:aa7:c0c6:0:b0:530:b75d:7a83 with SMTP id j6-20020aa7c0c6000000b00530b75d7a83mr2482123edp.21.1695223645347;
-        Wed, 20 Sep 2023 08:27:25 -0700 (PDT)
+        bh=ybFgEpWZ1M1MITqAxxwPHlJhDui5BwB2PGcw3ZpdJCI=;
+        b=TJ+XokLUL6CR+MlHQtGG3GKJhjOJRXkG41bMW9jqNTsl3OZMc5vsOmxvmtnM14kb+2
+         TsVJp7+Uuh2ctrc4P+ElgeM962XPb/WCn8wTrXCdaRhWsugbk7vP1ojiYVKy9aYqgYRP
+         8TLsF1NfprC1U2WA8AXTkWlpnn6TXLXiF6DYgXXpc72OGouqfskCXHneKh/SFT6cZUuU
+         EFJPBRSpeYfj5nH6CsqXqVsyNCiMhRMiTVw4hs2QMe3QMw7MRPgxcCh5p/jNNFx2ZzA1
+         8ZhOaT4GMJ/tKN7ZkMO48mzpm0+frU61q9EEQ+d2VSbG6hf2Y9Md+pmnSIsx615YbLf5
+         Votg==
+X-Gm-Message-State: AOJu0YyHbSklmFrrj0YyJDDu9mdrpy04WuT7MnwMA4JxuIsHFFI9/iLY
+	5nYNIQ6X5shl8h9gWAz0ZtqrWw==
+X-Google-Smtp-Source: AGHT+IFY+e3lRmc+q5LcbEbsI0vU40fn7Akg/ai3v4QIQisIdccOEQ5kCjYcyjjZ6WzIvSbSeufJGA==
+X-Received: by 2002:a05:6402:34c3:b0:532:edda:3bb8 with SMTP id w3-20020a05640234c300b00532edda3bb8mr3151207edc.16.1695223874642;
+        Wed, 20 Sep 2023 08:31:14 -0700 (PDT)
 Received: from [172.25.81.108] ([217.67.225.27])
-        by smtp.gmail.com with ESMTPSA id ew9-20020a056402538900b00532eba07773sm1422496edb.25.2023.09.20.08.27.24
+        by smtp.gmail.com with ESMTPSA id ee17-20020a056402291100b005308fa6ef7fsm7575358edb.16.2023.09.20.08.31.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Sep 2023 08:27:24 -0700 (PDT)
-Message-ID: <9f5f663f-3ab2-3599-8f94-96d1fde0b6b7@linaro.org>
-Date: Wed, 20 Sep 2023 17:27:23 +0200
+        Wed, 20 Sep 2023 08:31:10 -0700 (PDT)
+Message-ID: <7288339e-7d8f-6c12-5072-cab53d542dab@linaro.org>
+Date: Wed, 20 Sep 2023 17:31:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,55 +66,131 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.1
-Subject: Re: [PATCH 2/3] arm64: dts: freescale: tqma9352-mba93xxla: add
- 'chassis-type' property
-To: Shawn Guo <shawnguo@kernel.org>,
- Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20230811085401.3856778-1-alexander.stein@ew.tq-group.com>
- <20230811085401.3856778-3-alexander.stein@ew.tq-group.com>
- <20230920152023.GG11740@T480>
+Subject: Re: [PATCH v2 14/15] dt-bindings: gpu: mali-valhall-csf: Add initial
+ bindings for panthor driver
 Content-Language: en-US
+To: Liviu Dudau <Liviu.Dudau@arm.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Nicolas Boichat <drinkcat@chromium.org>,
+ Daniel Stone <daniels@collabora.com>, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Steven Price <steven.price@arm.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ "Marty E . Plummer" <hanetzer@startmail.com>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Faith Ekstrand <faith.ekstrand@collabora.com>
+References: <20230809165330.2451699-1-boris.brezillon@collabora.com>
+ <20230809165330.2451699-15-boris.brezillon@collabora.com>
+ <3517f2e9-d9d7-5bf8-1905-62f52d68c512@linaro.org>
+ <ZQr2cTMz1-PsOMRP@e110455-lin.cambridge.arm.com>
+ <ed4cb30d-2eec-580f-0b4a-1b108a745a9a@linaro.org>
+ <ZQsA4DTuWjNwRiOk@e110455-lin.cambridge.arm.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230920152023.GG11740@T480>
+In-Reply-To: <ZQsA4DTuWjNwRiOk@e110455-lin.cambridge.arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 20/09/2023 17:20, Shawn Guo wrote:
-> On Fri, Aug 11, 2023 at 10:54:00AM +0200, Alexander Stein wrote:
->> Add the chassis-type property to tqma9352-mba93xxla.
+On 20/09/2023 16:25, Liviu Dudau wrote:
+> On Wed, Sep 20, 2023 at 03:51:36PM +0200, Krzysztof Kozlowski wrote:
+>> On 20/09/2023 15:41, Liviu Dudau wrote:
+>>>>> +properties:
+>>>>> +  $nodename:
+>>>>> +    pattern: '^gpu@[a-f0-9]+$'
+>>>>> +
+>>>>> +  compatible:
+>>>>> +    oneOf:
+>>>>
+>>>> Drop oneOf.
+>>>
+>>> The idea was to allow for future compatible strings to be added later, but
+>>> I guess we can re-introduce the oneOf entry later. Will remove it.
 >>
->> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
->> ---
->>  arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts | 1 +
->>  1 file changed, 1 insertion(+)
+>> If you already predict that new list will be added (so new fallback
+>> compatible!), then it's fine.
 >>
->> diff --git a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts
->> index f06139bdff97..f0d0bf84f6ba 100644
->> --- a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts
->> +++ b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts
->> @@ -18,6 +18,7 @@ /{
->>  	model = "TQ-Systems i.MX93 TQMa93xxLA on MBa93xxLA SBC";
->>  	compatible = "tq,imx93-tqma9352-mba93xxla",
->>  		     "tq,imx93-tqma9352", "fsl,imx93";
->> +	chassis-type = "embedded";
+>>>
+>>>>
+>>>>> +      - items:
+>>>>> +          - enum:
+>>>>> +              - rockchip,rk3588-mali
+>>>>> +          - const: arm,mali-valhall-csf   # Mali Valhall GPU model/revision is fully discoverable
+>>>>> +
+>>>>> +  reg:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  interrupts:
+>>>>> +    items:
+>>>>> +      - description: Job interrupt
+>>>>> +      - description: MMU interrupt
+>>>>> +      - description: GPU interrupt
+>>>>> +
+>>>>> +  interrupt-names:
+>>>>> +    items:
+>>>>> +      - const: job
+>>>>> +      - const: mmu
+>>>>> +      - const: gpu
+>>>>> +
+>>>>> +  clocks:
+>>>>> +    minItems: 1
+>>>>> +    maxItems: 3
+>>>>> +
+>>>>> +  clock-names:
+>>>>> +    minItems: 1
+>>>>> +    items:
+>>>>> +      - const: core
+>>>>> +      - const: coregroup
+>>>>> +      - const: stacks
+>>>>> +
+>>>>> +  mali-supply: true
+>>>>> +
+>>>>> +  sram-supply: true
+>>>>> +
+>>>>> +  operating-points-v2: true
+>>>>
+>>>> Missing opp-table.
+>>>
+>>> This is the main topic I want to clarify. See further down for the main comment,
+>>> but I would like to understand what you are asking here. To copy the schema
+>>> from bindings/opp/opp-v2.yaml and bindings/opp/opp-v2-base.yaml?
+>>
+>> No, "opp-table" property.
+>> git grep "opp-table:"
 > 
-> Rob, Krzysztof,
+> You mean adding
 > 
-> Do we have binding doc somewhere for this property?
+>      opp-table:
+>        type: object
+> 
+> as property? What's the difference between opp-table: true (like in
+> 'display/msm/dp-controller.yaml') and 'opp-table: type: object' like in other
 
-Yes, it is a standard property, described in dtschema.
+There is no opp-table: true. Nowhere.
+
+...
+
+>>>
+>>>>
+>>>>> +    };
+>>>>> +
+>>>>> +    gpu_opp_table: opp-table {
+>>>>
+>>>> Opp table should be inside the device node.
+>>>
+>>> I cannot find any device tree that supports your suggested usage. Most (all?) of
+>>
+>> Really? All Qcom have it embedded.
+> 
+> The arm,mali-* ones seem to have them outside the gpu node. See "arm,mali-midgard.yaml"
+
+You said you cannot find any, so I pointed out that's not true.
 
 Best regards,
 Krzysztof
