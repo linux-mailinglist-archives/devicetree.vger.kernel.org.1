@@ -1,36 +1,36 @@
-Return-Path: <devicetree+bounces-1918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 663057A8F77
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 00:33:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 649AF7A8F76
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 00:33:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20351282075
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 22:33:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA652B20D0F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 22:33:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CAB03F4AD;
-	Wed, 20 Sep 2023 22:33:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A33F3F4A6;
+	Wed, 20 Sep 2023 22:33:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C6D523CF
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 22:33:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E143C433CC;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74E8923CF;
 	Wed, 20 Sep 2023 22:33:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A37B8C433C8;
+	Wed, 20 Sep 2023 22:33:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695249189;
-	bh=SBThQbOMOMdYmyDrdiY4+dScgD2UaJ6Jd/k2Lspawco=;
+	s=k20201202; t=1695249187;
+	bh=fD0+k5jlOk1+esg3/yex9x7rq8+uB1F3iOO9pGrNP/s=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=uOk2QfJTBwQDO+Hv2Hn3QAXr/yVpQ9Mklh4At1SracF88uIUlVaZVZnpQeAz3F2wX
-	 HFKXu5ZOvVj49fbD/n++FrtR3JQ8t7AF5+9QV75HrhB3oH9TxnXg9WCiNEFZvZL97I
-	 MIYKOXv1zU4lqw/sHcXBderrAwdQYWLq3aF3p4mWzJiAAx6kLVbR/gezIT1iEfTdi6
-	 oAKIRAipLXWtar8tSCbX/2Cc5iyTAK9hQbJZ9iQtWpZfUhelilA2K1PU5ygLkZMhbC
-	 svL8G+8aLdHXeAogiW1WUhZUzs3ZNmX8K/xEFe97mzaYHU8/oOhcvXBbCI2GMsSBYF
-	 xlBz+uD+KMzSw==
-Received: (nullmailer pid 3103973 invoked by uid 1000);
+	b=RA5ATx83odooP+9SP/UgBA1oYQcTYqVM4GNzxLoXO1G3fs5He+/F+GAMcCWiNU17+
+	 xbzN20OmmydQR57UyPUQGY7Gb4jgVLSsV0Z5ogh/glvb3zVPIxKYA4lFW1/VodWX7h
+	 CkP6FsgfGqEOqxszM4+IZi5XrUUSJ8diOzeqdmKppXUC7xdc4lcuLG5DoUoTgIi/YO
+	 qxKs5BukW3rRyeFIARX4zgWj9BtipWBo/ARex/Ja72UipSfFtC9Q1oNvslXahyNqNd
+	 6+82TL4XL7nutjHDfJLOc18120/E/g4T0JwLL8Fp5bjI1IyagwNBrWXq1kKBYPYU4R
+	 e33l1IE/OW7Dw==
+Received: (nullmailer pid 3103970 invoked by uid 1000);
 	Wed, 20 Sep 2023 22:33:04 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -41,38 +41,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: Rob Herring <robh@kernel.org>
-To: Lucas Stach <l.stach@pengutronix.de>
-Cc: Jernej Skrabec <jernej.skrabec@gmail.com>, Robert Foss <rfoss@kernel.org>, Luca Ceresoli <luca.ceresoli@bootlin.com>, Andrzej Hajda <andrzej.hajda@intel.com>, Jonas Karlman <jonas@kwiboo.se>, patchwork-lst@pengutronix.de, devicetree@vger.kernel.org, Frieder Schrempf <frieder.schrempf@kontron.de>, Sandor Yu <sandor.yu@nxp.com>, Adam Ford <aford173@gmail.com>, Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Richard Leitner <richard.leitner@skidata.com>, linux-arm-kernel@lists.infradead.org, Rob Herring <robh+dt@kernel.org>, NXP Linux Team <linux-imx@nxp.com>, Neil Armstrong <neil.armstrong@linaro.org>, Pengutronix Kernel Team <kernel@pengutronix.de>
-In-Reply-To: <20230920171009.3193296-1-l.stach@pengutronix.de>
-References: <20230920171009.3193296-1-l.stach@pengutronix.de>
-Message-Id: <169524918454.3103954.3587892243903347971.robh@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: imx: add binding for
- i.MX8MP HDMI PVI
+To: David Lechner <dlechner@baylibre.com>
+Cc: linux-iio@vger.kernel.org, Axel Haslam <ahaslam@baylibre.com>, devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>, =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, Conor Dooley <conor+dt@kernel.org>, Philip Molloy <pmolloy@baylibre.com>, Apelete Seketeli <aseketeli@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org, Michael Hennerich <Michael.Hennerich@analog.com>
+In-Reply-To: <20230920170253.203395-2-dlechner@baylibre.com>
+References: <20230920170253.203395-1-dlechner@baylibre.com>
+ <20230920170253.203395-2-dlechner@baylibre.com>
+Message-Id: <169524918396.3103912.5071083113284747603.robh@kernel.org>
+Subject: Re: [PATCH 1/4] dt-bindings: iio: resolver: add devicetree
+ bindings for ad2s1210
 Date: Wed, 20 Sep 2023 17:33:04 -0500
 
 
-On Wed, 20 Sep 2023 19:10:08 +0200, Lucas Stach wrote:
-> Add binding for the i.MX8MP HDMI parallel video interface block.
+On Wed, 20 Sep 2023 12:02:50 -0500, David Lechner wrote:
+> This adds new DeviceTree bindings for the Analog Devices, Inc. AD2S1210
+> resolver-to-digital converter.
 > 
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> Signed-off-by: Apelete Seketeli <aseketeli@baylibre.com>
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
 > ---
->  .../display/imx/fsl,imx8mp-hdmi-pvi.yaml      | 80 +++++++++++++++++++
->  1 file changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.yaml
+>  .../bindings/iio/resolver/adi,ad2s1210.yaml   | 150 ++++++++++++++++++
+>  1 file changed, 150 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/resolver/adi,ad2s1210.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
+./Documentation/devicetree/bindings/iio/resolver/adi,ad2s1210.yaml:102:12: [error] string value is redundantly quoted with any quotes (quoted-strings)
+./Documentation/devicetree/bindings/iio/resolver/adi,ad2s1210.yaml:102:22: [error] string value is redundantly quoted with any quotes (quoted-strings)
+./Documentation/devicetree/bindings/iio/resolver/adi,ad2s1210.yaml:102:34: [error] string value is redundantly quoted with any quotes (quoted-strings)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.example.dtb: display-bridge@32fc4000: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/display/imx/fsl,imx8mp-hdmi-pvi.yaml#
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230920171009.3193296-1-l.stach@pengutronix.de
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230920170253.203395-2-dlechner@baylibre.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
