@@ -1,190 +1,128 @@
-Return-Path: <devicetree+bounces-1674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 232187A759A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 10:17:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E6017A75A2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 10:19:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8AB52818FD
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 08:17:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A6C71C20A13
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 08:18:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A25F9F5;
-	Wed, 20 Sep 2023 08:17:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4782F9F6;
+	Wed, 20 Sep 2023 08:18:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E84AC8E0
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 08:17:53 +0000 (UTC)
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C784292;
-	Wed, 20 Sep 2023 01:17:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1695197871; x=1726733871;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=uscGBvmgvNEc+s+JZQTVBQ0oYKPyV4d4IvX6BfOqdrY=;
-  b=oYvOOBsnJ7l/6dtoQPgDfdTDdDnRAVOg5gm756PHaPjEVSR9Il09AisN
-   v9ircF4GyXEXqTbJwBbTRgLgZFtpw25My42wnVKKG4v/pCwUoiYJHJXHZ
-   u8nGwgFReQRWJq3809ZbRwt4KItQmJ7+VlfJGSTw174A+49T3haMlYJaO
-   j4R35XRf0XUD2yzobqk6lj5/A9N1sYM1tb01z3Mu6+MS6rDrVvzesBWQT
-   VbcbUHK1axmEKCTdyfwDvzhwJYtHQ+imW2ylWfeLvppml5r5uoAdcFidv
-   ND8pvlFm4PIbP5b/kxAvnDzDicBaawEBK+mhJrxINwEq5or3Wb2ioI69/
-   A==;
-X-CSE-ConnectionGUID: G6ieCjkyQ2aMLIcShOg63A==
-X-CSE-MsgGUID: fFvmlZASSraejIWgrHECZg==
-X-ThreatScanner-Verdict: Negative
-X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; 
-   d="asc'?scan'208";a="5607864"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 20 Sep 2023 01:17:39 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 20 Sep 2023 01:17:13 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Wed, 20 Sep 2023 01:17:10 -0700
-Date: Wed, 20 Sep 2023 09:16:53 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Chen Wang <unicornxw@gmail.com>
-CC: <aou@eecs.berkeley.edu>, <chao.wei@sophgo.com>, <conor@kernel.org>,
-	<devicetree@vger.kernel.org>, <emil.renner.berthing@canonical.com>,
-	<guoren@kernel.org>, <jszhang@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <linux-kernel@vger.kernel.org>,
-	<linux-riscv@lists.infradead.org>, <palmer@dabbelt.com>,
-	<paul.walmsley@sifive.com>, <robh+dt@kernel.org>,
-	<xiaoguang.xing@sophgo.com>, Chen Wang <wangchen20@iscas.ac.cn>
-Subject: Re: [PATCH v2 10/11] riscv: dts: sophgo: add Milk-V Pioneer board
- device tree
-Message-ID: <20230920-papyrus-corned-e121fb9dd7b1@wendy>
-References: <cover.1695189879.git.wangchen20@iscas.ac.cn>
- <e9ff83e4fac9a9ebd217ef10e5f8d3260342102b.1695189879.git.wangchen20@iscas.ac.cn>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 256EAC8E0
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 08:18:54 +0000 (UTC)
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 797D4129
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 01:18:52 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-404539209ffso68733185e9.0
+        for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 01:18:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1695197931; x=1695802731; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=LqBFN5FLB49lnK/5qmtGVnKUxCOh5CXzqPeEzI92Gus=;
+        b=H/Q66Ri5aVz8NB1wAKAM3VNIBTPApCowNWaRlZopnkcBTDnIRvtVsrcvEApkM14cGJ
+         K45ugsy/hyZMkcGKsxou6GqsGyszxX9AzfdO+Mog2ljcczoiGRU6Ofu2a+5b2bODg771
+         CCLQEp3BtZ2eEcKT2yAEyQSPUOTeVXvhIzubmnj8JlxvZ9r8CuZdaNjHQodVs1hd7wuV
+         +wHxfqt15K7ckzrhC+EGWhnk4LYd5QiIO5q7TsbvcoI6XoYyzZjDsYT6iN/mmNXbQxWu
+         CNu0GzpTkQsH8Vjb/wkQI1Jxe7v2Yf2Q2D34wkIwmOsBGBqvKDzgrr8BGWH1QcIWWLpF
+         RTDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695197931; x=1695802731;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LqBFN5FLB49lnK/5qmtGVnKUxCOh5CXzqPeEzI92Gus=;
+        b=J4dRNVd51gF81QFYSlylZoyDaC5qhQCqVQMb+ZTgha6O5oiys4WvaCV87qtHsjenmN
+         Czc+d/6FhMyPKh8nTuitJz5Tzkd414TLCtlIukjJ6bvFnurlidlgjhAn8EZg0NHuoIdV
+         tGe2yTlRrlT5T7RkhDNUa9NiSzJIAhsUUqtRfZ6m66GhWlIrGTuI37jOzRXynNRwRxNv
+         XnQPeijTHN3a//Y8HcqlLnIduVb3utGnB5/663nc/iOP3KaUnPk7vM8NIFhwmmm0P50N
+         m+LQ0yPQKmyv4KQdrB2NUcc0RftwjxfF7e6Z38ZIhyq8kxwTE63fWOHUItzgyhthMc8s
+         XPRg==
+X-Gm-Message-State: AOJu0Yz66/dI83kQphx60VgxwTlXmqRFZRX8YVLGEW1XnnzVJqkOags0
+	OhXrGhLfaI72UeNgYghdIJySiw==
+X-Google-Smtp-Source: AGHT+IEL6XDWeA1RRkJT2O9NGVoH7Skvq4BGuzq8l9Y1wg1d+Qpftyi3lW7iMmOUd4m4gogg1F9R8g==
+X-Received: by 2002:a05:600c:ace:b0:401:b53e:6c40 with SMTP id c14-20020a05600c0ace00b00401b53e6c40mr1791966wmr.10.1695197930897;
+        Wed, 20 Sep 2023 01:18:50 -0700 (PDT)
+Received: from localhost (cst2-173-16.cust.vodafone.cz. [31.30.173.16])
+        by smtp.gmail.com with ESMTPSA id c26-20020a05600c0ada00b00400268671c6sm1250996wmr.13.2023.09.20.01.18.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Sep 2023 01:18:50 -0700 (PDT)
+Date: Wed, 20 Sep 2023 10:18:49 +0200
+From: Andrew Jones <ajones@ventanamicro.com>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Paolo Bonzini <pbonzini@redhat.com>, 
+	Atish Patra <atishp@atishpatra.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Conor Dooley <conor@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Shuah Khan <shuah@kernel.org>, Mayuresh Chitale <mchitale@ventanamicro.com>, 
+	devicetree@vger.kernel.org, kvm@vger.kernel.org, kvm-riscv@lists.infradead.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH 7/7] KVM: riscv: selftests: Add condops extensions to
+ get-reg-list test
+Message-ID: <20230920-d30b398a99804418792264c3@orel>
+References: <20230919035343.1399389-1-apatel@ventanamicro.com>
+ <20230919035343.1399389-8-apatel@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="DKUtOVTQQHokYjGs"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <e9ff83e4fac9a9ebd217ef10e5f8d3260342102b.1695189879.git.wangchen20@iscas.ac.cn>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230919035343.1399389-8-apatel@ventanamicro.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
---DKUtOVTQQHokYjGs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hey,
-
-On Wed, Sep 20, 2023 at 02:40:53PM +0800, Chen Wang wrote:
-> Milk-V Pioneer [1] is a developer motherboard based on SOPHON
-> SG2042 in a standard mATX form factor.
-
-> It is a good
-> choice for RISC-V developers and hardware pioneers to
-> experience the cutting edge technology of RISC-V.
-
-I'd rather we didn't put advertising into commit messages.
-
-> Currently only support booting into console with only uart
-> enabled, other features will be added soon later.
->=20
-> [1]: https://milkv.io/pioneer
-
-Make this a link tag please
-
-Link: https://milkv.io/pioneer [1]
-> Acked-by: Xiaoguang Xing <xiaoguang.xing@sophgo.com>
-> Signed-off-by: Chen Wang <wangchen20@iscas.ac.cn>
+On Tue, Sep 19, 2023 at 09:23:43AM +0530, Anup Patel wrote:
+> We have a new conditional operations related ISA extensions so let us add
+> these extensions to get-reg-list test.
+> 
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 > ---
->  arch/riscv/boot/dts/Makefile                  |  1 +
->  arch/riscv/boot/dts/sophgo/Makefile           |  3 +++
->  .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  | 19 +++++++++++++++++++
->  3 files changed, 23 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/sophgo/Makefile
->  create mode 100644 arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
->=20
-> diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
-> index f60a280abb15..94788486f13e 100644
-> --- a/arch/riscv/boot/dts/Makefile
-> +++ b/arch/riscv/boot/dts/Makefile
-> @@ -6,5 +6,6 @@ subdir-y +=3D renesas
->  subdir-y +=3D sifive
->  subdir-y +=3D starfive
->  subdir-y +=3D thead
-> +subdir-y +=3D sophgo
+>  tools/testing/selftests/kvm/riscv/get-reg-list.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/tools/testing/selftests/kvm/riscv/get-reg-list.c b/tools/testing/selftests/kvm/riscv/get-reg-list.c
+> index 9f464c7996c6..4ad4bf87fa78 100644
+> --- a/tools/testing/selftests/kvm/riscv/get-reg-list.c
+> +++ b/tools/testing/selftests/kvm/riscv/get-reg-list.c
+> @@ -50,6 +50,8 @@ bool filter_reg(__u64 reg)
+>  	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZIFENCEI:
+>  	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZIHPM:
+>  	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_SMSTATEEN:
+> +	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_XVENTANACONDOPS:
+> +	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZICOND:
+>  		return true;
+>  	/* AIA registers are always available when Ssaia can't be disabled */
+>  	case KVM_REG_RISCV_CSR | KVM_REG_RISCV_CSR_AIA | KVM_REG_RISCV_CSR_AIA_REG(siselect):
+> @@ -360,6 +362,8 @@ static const char *isa_ext_id_to_str(__u64 id)
+>  		"KVM_RISCV_ISA_EXT_ZIFENCEI",
+>  		"KVM_RISCV_ISA_EXT_ZIHPM",
+>  		"KVM_RISCV_ISA_EXT_SMSTATEEN",
+> +		"KVM_RISCV_ISA_EXT_XVENTANACONDOPS",
+> +		"KVM_RISCV_ISA_EXT_ZICOND",
+>  	};
+>  
+>  	if (reg_off >= ARRAY_SIZE(kvm_isa_ext_reg_name)) {
+> -- 
+> 2.34.1
+>
 
-Alphanumerical order please.
+Don't we want to add test configs for these?
 
 Thanks,
-Conor.
-
-> =20
->  obj-$(CONFIG_BUILTIN_DTB) :=3D $(addsuffix /, $(subdir-y))
-> diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/so=
-phgo/Makefile
-> new file mode 100644
-> index 000000000000..5a471b19df22
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/sophgo/Makefile
-> @@ -0,0 +1,3 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +dtb-$(CONFIG_ARCH_SOPHGO) +=3D sg2042-milkv-pioneer.dtb
-> +
-> diff --git a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts b/arch/r=
-iscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-> new file mode 100644
-> index 000000000000..d6e8c0285d1e
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-> @@ -0,0 +1,19 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * Copyright (C) 2022 Sophgo Technology Inc. All rights reserved.
-> + */
-> +
-> +#include "sg2042.dtsi"
-> +
-> +/ {
-> +	model =3D "Milk-V Pioneer";
-> +	compatible =3D "milkv,pioneer", "sophgo,sg2042";
-> +
-> +	chosen: chosen {
-> +		stdout-path =3D "serial0";
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	status =3D "okay";
-> +};
-> --=20
-> 2.25.1
->=20
-
---DKUtOVTQQHokYjGs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQqqagAKCRB4tDGHoIJi
-0kvOAP9pT8N0unm3d9107Xii5Hc5v6uDLVvVjIg3qUcN0aE6swD/ZyuhzMbHo9vI
-DVlBtRVexx2a45InVtBHxBpRyfyUrQ0=
-=pTAC
------END PGP SIGNATURE-----
-
---DKUtOVTQQHokYjGs--
+drew
 
