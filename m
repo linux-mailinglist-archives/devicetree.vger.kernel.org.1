@@ -1,83 +1,68 @@
-Return-Path: <devicetree+bounces-1634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 096DE7A7339
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 08:54:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7119B7A7355
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 08:56:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DDA92819FA
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 06:54:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A45F281857
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 06:56:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 953C75669;
-	Wed, 20 Sep 2023 06:53:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A24753AA;
+	Wed, 20 Sep 2023 06:56:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3925C53AA
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 06:53:56 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7ED092;
-	Tue, 19 Sep 2023 23:53:54 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38K6rR4K056956;
-	Wed, 20 Sep 2023 01:53:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1695192807;
-	bh=vlqRL+AKyD7un6uI2p8NliupoFl8GxtG647gtWnU+oU=;
-	h=From:To:CC:Subject:In-Reply-To:References:Date;
-	b=RHmAtXcNgSNBC2kZHuWoD6qLhgousfDLoLU4gsF4XrqRGHeigW7ZBP9sHwFfuW1Cr
-	 7qj6ULZyXIUJp91biwvg4WWkMsN8Pu2eZwpc0rCZHyV3uCkMdk9lfJgeKiM6HqKeeK
-	 Qgfj2YqJqrqSqpHFmbpATnXdkHycrz//QvTwcrxI=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38K6rRaH005175
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 20 Sep 2023 01:53:27 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 20
- Sep 2023 01:53:27 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 20 Sep 2023 01:53:26 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38K6rQ5U113227;
-	Wed, 20 Sep 2023 01:53:26 -0500
-From: Kamlesh Gurudasani <kamlesh@ti.com>
-To: Eric Biggers <ebiggers@kernel.org>
-CC: Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 147F57497
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 06:56:24 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CBDFB9;
+	Tue, 19 Sep 2023 23:56:23 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38K5Xj9E031930;
+	Wed, 20 Sep 2023 06:55:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=7iPDP/ZoUc8lyMA54RW98h4BCJPDSL9UdqmNcIRYmMA=;
+ b=lwmL3xERJadRy4uf6TQJIhjnknBx68QhEjiqYVW1YQfo2ej0XzQvk06GZTB1zA1iJhfu
+ YPciFcLf+BakjFmBUaZaHLXFI/HCLmt5xApD9SOWOCwSxopzGsgfevTV9hC8vgWklBKP
+ +6uRdrsl61pVszp4zid1Gn1Xw1Jo2JdZcTGqoX4S9PkZqIgPibTxNO1HKqblV8NVANQA
+ qaREgvDB8VsF/9mLYCE70oVc+AkwPsbtb8cuJC/LnfZ2lZ9guJy8Qqb6QkzKTRGklQlN
+ +7ub61XgpXZneXBUaz2VY2N+0XrWPH1DVQDvnxBDVNZDo69jraGsBLR7zOfBDl8SsBXy Tw== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t78upje40-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Sep 2023 06:55:37 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38K6taLi013223
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Sep 2023 06:55:36 GMT
+Received: from tengfan2-gv.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Tue, 19 Sep 2023 23:55:28 -0700
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+To: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <tglx@linutronix.de>, <maz@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>
+CC: <geert+renesas@glider.be>, <arnd@arndb.de>, <neil.armstrong@linaro.org>,
+        <nfraprado@collabora.com>, <rafal@milecki.pl>, <peng.fan@nxp.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-Subject: Re: [EXTERNAL] Re: [EXTERNAL] Re: [PATCH v2 0/6] Add support for
- Texas Instruments MCRC64 engine
-In-Reply-To: <87zg28d9z4.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
-References: <20230719-mcrc-upstream-v2-0-4152b987e4c2@ti.com>
- <20230812030116.GF971@sol.localdomain>
- <87h6owen39.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
- <20230822051710.GC1661@sol.localdomain>
- <87zg28d9z4.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
-Date: Wed, 20 Sep 2023 12:23:25 +0530
-Message-ID: <87a5thgwt6.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
+        <quic_tsoni@quicinc.com>, <quic_shashim@quicinc.com>,
+        <quic_kaushalk@quicinc.com>, <quic_tdas@quicinc.com>,
+        <quic_tingweiz@quicinc.com>, <quic_aiquny@quicinc.com>,
+        <quic_ajipan@quicinc.com>, <kernel@quicinc.com>,
+        Tengfei Fan
+	<quic_tengfan@quicinc.com>
+Subject: [PATCH v3 0/5] soc: qcom: Add uart console support for SM4450
+Date: Wed, 20 Sep 2023 14:54:54 +0800
+Message-ID: <20230920065459.12738-1-quic_tengfan@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,75 +70,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: tgVgZ3a3OHr-BC95eNaJmTRvobUcRq0x
+X-Proofpoint-ORIG-GUID: tgVgZ3a3OHr-BC95eNaJmTRvobUcRq0x
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-20_02,2023-09-19_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 phishscore=0 mlxscore=0 mlxlogscore=580 suspectscore=0
+ spamscore=0 clxscore=1015 adultscore=0 priorityscore=1501 bulkscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2309200055
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Kamlesh Gurudasani <kamlesh@ti.com> writes:
-...
+This series add base description of UART, TLMM, RPMHCC, GCC and RPMh PD
+nodes which helps SM4450 boot to shell with console on boards with this
+SoC.
 
-> Hi Eric, thanks for your detailed and valuable inputs.
->
-> As per your suggestion, we did some profiling. 
->
-> Use case is to calculate crc32/crc64 for file input from user space.
->
-> Instead of directly implementing PMULL based CRC64, we made first comparison between 
-> Case 1.
-> CRC32 (splice() + kernel space SW driver) 
-> https://gist.github.com/ti-kamlesh/5be75dbde292e122135ddf795fad9f21
->
-> Case 2.
-> CRC32(mmap() + userspace armv8 crc32 instruction implementation)
-> (tried read() as well to get contents of file, but that lost to mmap() so not mentioning number here)
-> https://gist.github.com/ti-kamlesh/002df094dd522422c6cb62069e15c40d
->
-> Case 3.
-> CRC64 (splice() + MCRC64 HW)
-> https://gist.github.com/ti-kamlesh/98b1fc36c9a7c3defcc2dced4136b8a0
->
->
-> Overall, overhead of userspace + af_alg + driver in (Case 1) and
-> ( Case 3) is ~0.025s, which is constant for any file size.
-> This is calculated using real time to calculate crc  -
-> driver time (time spend inside init() + update() +final()) = overhead ~0.025s    
->
->
->
-> +-------------------+-----------------------------+-----------------------+------------------------+------------------------+
-> |                   |                             |                       |                        |                        |
-> | File size         | 120mb(ideal size for us)    | 20mb                  | 15mb                   | 5mb                    |
-> +===================+=============================+=======================+========================+========================+
-> |                   |                             |                       |                        |                        |
-> | CRC32 (Case 1)    | Driver time 0.155s          | Driver time 0.0325s   | Driver time 0.019s     | Driver time 0.0062s    |
-> |                   |    real time 0.18s          |    real time 0.06s    |    real time 0.04s     |    real time 0.03s     |
-> |                   |    overhead 0.025s          |    overhead 0.025s    |    overhead 0.021s     |    overhead ~0.023s    |
-> +-------------------+-----------------------------+-----------------------+------------------------+------------------------+
-> |                   |                             |                       |                        |                        |
-> | CRC32 (Case 2)    | Real time 0.30s             | Real time 0.05s       | Real time 0.04s        | Real time 0.02s        |
-> +-------------------+-----------------------------+-----------------------+------------------------+------------------------+
-> |                   |                             |                       |                        |                        |
-> | CRC64 (Case 3)    | Driver time   0.385s        | Driver time 0.0665s   | Driver time 0.0515s    | Driver time 0.019s     |
-> |                   |    real time 0.41s          |    real time 0.09s    |    real time 0.08s     |    real time 0.04s     |
-> |                   |    overhead 0.025s          |    overhead 0.025s    |    overhead ~0.025s    |    overhead ~0.021s    |
-> +-------------------+-----------------------------+-----------------------+------------------------+------------------------+
->
-> Here, if we consider similar numbers for crc64 PMULL implementation as
-> crc32 (case 2) , we save good number of cpu cycles using mcrc64
-> in case of files bigger than 5-10mb as most of the time is being spent in HW offload.
->
-> Regards,
-> Kamlesh
+Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+---
+This patch series depends on below patch series:
+"[PATCH v2 0/4] clk: qcom: Add support for GCC and RPMHCC on SM4450"
+https://lore.kernel.org/linux-arm-msm/20230909123431.1725728-1-quic_ajipan@quicinc.com/
+"[PATCH v3 0/2] pinctl: qcom: Add SM4450 pinctrl driver"
+https://lore.kernel.org/linux-arm-msm/20230920064739.12562-1-quic_tengfan@quicinc.com/
 
-Hi Eric,
+v2 -> v3:
+  - fix dtbs_check warning
+  - remove interconnect, iommu, scm and tcsr related code
+  - rearrangement dt node
+  - remove smmu, scm and tcsr related documentation update
+  - enable CONFIG_SM_GCC_4450 in defconfig related patch
 
-Please let me know if above numbers make sense to you and I should send
-next revision.
+v1 -> v2:
+  - setting "qcom,rpmh-rsc" compatible to the first property
+  - keep order by unit address
+  - move tlmm node into soc node
+  - update arm,smmu.yaml
+  - add enable pinctrl and interconnect defconfig patches
+  - remove blank line
+  - redo dtbs_check check
 
-Regards,
-Kamlesh
+previous discussion here:
+[1] v2: https://lore.kernel.org/linux-arm-msm/20230915021509.25773-1-quic_tengfan@quicinc.com
+[2] v2: https://lore.kernel.org/linux-arm-msm/20230908065847.28382-1-quic_tengfan@quicinc.com
+
+Ajit Pandey (1):
+  arm64: dts: qcom: sm4450: Add apps_rsc and cmd_db node
+
+Tengfei Fan (4):
+  dt-bindings: interrupt-controller: qcom,pdc: document qcom,sm4450-pdc
+  arm64: dts: qcom: sm4450: Add RPMH and Global clock
+  arm64: dts: qcom: add uart console support for SM4450
+  arm64: defconfig: enable clock controller and pinctrl for SM4450
+
+ .../interrupt-controller/qcom,pdc.yaml        |   1 +
+ arch/arm64/boot/dts/qcom/sm4450-qrd.dts       |  18 ++-
+ arch/arm64/boot/dts/qcom/sm4450.dtsi          | 106 ++++++++++++++++++
+ arch/arm64/configs/defconfig                  |   2 +
+ 4 files changed, 125 insertions(+), 2 deletions(-)
+
+
+base-commit: dfa449a58323de195773cf928d99db4130702bf7
+-- 
+2.17.1
+
 
