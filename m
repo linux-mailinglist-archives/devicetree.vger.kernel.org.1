@@ -1,108 +1,199 @@
-Return-Path: <devicetree+bounces-1804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D46A7A8792
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 16:52:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A16627A87DA
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 17:07:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 237A8282103
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 14:52:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42B3C28276F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 15:07:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F4DB3B29F;
-	Wed, 20 Sep 2023 14:52:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 736A03B2BA;
+	Wed, 20 Sep 2023 15:06:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D48D1428E
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 14:52:36 +0000 (UTC)
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56C70A9;
-	Wed, 20 Sep 2023 07:52:34 -0700 (PDT)
-Received: from pd9e2f2b6.dip0.t-ipconnect.de ([217.226.242.182] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <andreas@kemnade.info>)
-	id 1qiyYh-0040UG-5J; Wed, 20 Sep 2023 16:52:06 +0200
-Date: Wed, 20 Sep 2023 16:52:04 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Tony Lindgren <tony@atomide.com>
-Cc: =?UTF-8?B?UMOpdGVy?= Ujfalusi <peter.ujfalusi@gmail.com>,
- bcousson@baylibre.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
- jarkko.nikula@bitmer.com, dmitry.torokhov@gmail.com,
- linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
-Subject: Re: [PATCH 1/3] ASoC: ti: omap-mcbsp: Ignore errors for getting
- fck_src
-Message-ID: <20230920165204.0fbc0ff3@aktux>
-In-Reply-To: <20230920063353.GQ5285@atomide.com>
-References: <20230705190324.355282-1-andreas@kemnade.info>
-	<20230705190324.355282-2-andreas@kemnade.info>
-	<7d58d52d-2087-45af-b29e-2515b63ead13@gmail.com>
-	<20230920063353.GQ5285@atomide.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9A0D29A1;
+	Wed, 20 Sep 2023 15:06:57 +0000 (UTC)
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E931A9;
+	Wed, 20 Sep 2023 08:06:54 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-40476ce8b2fso65545695e9.3;
+        Wed, 20 Sep 2023 08:06:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695222412; x=1695827212; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=d6jLYbx3Kj5iFhIPdJC/nxya3IqybFyHBYSnhy8+7io=;
+        b=QZbz8USREBV6dalkNErnBfi5z/kxZmaUoBebU4jslK+h5vufDWgU4lKO483LPk9Nsp
+         mJ05CaphJ0ioLgvIFMHZqXy3TJ9t+YQLU6N/65ysU4Pc13Oz4MBSLGFLLwHu+55/J3P0
+         Ro11S2+UIrY1bMhnExgh4oCvU9byBzHk4p1XWAZLgq65iWkGCIc3/1EbU8blQYrPdqDa
+         XUhGiqppqYyBzFgeioqjxxkhjLfTMVwSUSuMqVF6Xtbfi26w5fU4DpyQxc3kFfD72Q3r
+         KcpPXJpe1S13/OWQmjWLVU1cnCq77fbYP5xw8WiDwqWeoTyMdBam831Hs11MfDwdYIWg
+         cqqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695222412; x=1695827212;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=d6jLYbx3Kj5iFhIPdJC/nxya3IqybFyHBYSnhy8+7io=;
+        b=pGAZrOtZJY8oSl128iZHbg5EG83CiVZVv/8C+KO1WDvRJWwsy9ImSfMJ34er66mvmz
+         uCTzT1/MCPKfwvNDBNROXq3/mWHMJU/qg3zcacC3/GM1BWhAQnsRPb/TRNNBZ5EM5LM4
+         q64/2tzzWaHjiuWMxWh0L3ZSA4ezvpV6tBibwM66biwC1Lti800FeaWv4hh5/2VknL9k
+         QzbsacW8ywgNzQoSPG+QCwxdaz1/l/2Xqh5fIVtpVwo/lZ2ZaQGAIq13nEdYh1aQLiYd
+         iUz5RzP8HmDegk3RkS+xcH6UYWUjJ4d+7X006w7nvbPi+WU3tOE40F2hzfhgg1MLHTLd
+         q0jA==
+X-Gm-Message-State: AOJu0Yxkp+TKJXPgUYD0vZoY2cJeGQ4tJgrGwSfBnvus9R6rPqrU/8rb
+	vZtDZK8hKOTrC7ky7jHEDJM=
+X-Google-Smtp-Source: AGHT+IH1kWTSrDgbrwmPQg1oibF+aJRlO1ZejFw1vlQjaI++hCBcrB4dpbZDa9yVx19qWBXrXRY8Qg==
+X-Received: by 2002:a1c:740f:0:b0:401:daf2:2735 with SMTP id p15-20020a1c740f000000b00401daf22735mr2570020wmc.31.1695222412127;
+        Wed, 20 Sep 2023 08:06:52 -0700 (PDT)
+Received: from primary ([212.34.23.120])
+        by smtp.gmail.com with ESMTPSA id y20-20020a1c4b14000000b003feee8d8011sm2197473wma.41.2023.09.20.08.06.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Sep 2023 08:06:51 -0700 (PDT)
+Date: Wed, 20 Sep 2023 10:53:23 -0400
+From: Abdel Alkuor <alkuor@gmail.com>
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, bryan.odonoghue@linaro.org,
+	gregkh@linuxfoundation.org, robh+dt@kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	conor+dt@kernel.org, linux-kernel@vger.kernel.org,
+	abdelalkuor@geotab.com
+Subject: Re: [PATCH v5 10/15] USB: typec: Add port registration for tps25750
+Message-ID: <ZQsHY/53tk0KJYUK@primary>
+References: <20230917152639.21443-1-alkuor@gmail.com>
+ <20230917152639.21443-11-alkuor@gmail.com>
+ <ZQhJZ82nRCD797lA@kuha.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,T_SPF_HELO_TEMPERROR,T_SPF_TEMPERROR
-	autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZQhJZ82nRCD797lA@kuha.fi.intel.com>
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi,
+On Mon, Sep 18, 2023 at 03:58:15PM +0300, Heikki Krogerus wrote:
+> On Sun, Sep 17, 2023 at 11:26:34AM -0400, Abdel Alkuor wrote:
+> > From: Abdel Alkuor <abdelalkuor@geotab.com>
+> > 
+> > TPS25750 doesn't have system configuration register to get dr/pr of the
+> > current applied binary configuration.
+> > 
+> > Get data role from the device node and power role from PD status register.
+> > 
+> > Signed-off-by: Abdel Alkuor <abdelalkuor@geotab.com>
+> > ---
+> >  drivers/usb/typec/tipd/core.c     | 61 ++++++++++++++++++++++++++++++-
+> >  drivers/usb/typec/tipd/tps6598x.h | 10 +++++
+> >  2 files changed, 70 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
+> > index 8218d88a4a06..a97fda68cb54 100644
+> > --- a/drivers/usb/typec/tipd/core.c
+> > +++ b/drivers/usb/typec/tipd/core.c
+> > @@ -39,6 +39,7 @@
+> >  #define TPS_REG_CTRL_CONF		0x29
+> >  #define TPS_REG_BOOT_STATUS		0x2D
+> >  #define TPS_REG_POWER_STATUS		0x3f
+> > +#define TPS_REG_PD_STATUS		0x40
+> >  #define TPS_REG_RX_IDENTITY_SOP		0x48
+> >  #define TPS_REG_DATA_STATUS		0x5f
+> >  
+> > @@ -1028,6 +1029,60 @@ tps6598x_register_port(struct tps6598x *tps, struct fwnode_handle *fwnode)
+> >  	return 0;
+> >  }
+> >  
+> > +static int
+> > +tps25750_register_port(struct tps6598x *tps, struct fwnode_handle *fwnode)
+> > +{
+> > +	struct typec_capability typec_cap = { };
+> > +	const char *data_role;
+> > +	u8 pd_status;
+> > +	int ret;
+> > +
+> > +	ret = tps6598x_read8(tps, TPS_REG_PD_STATUS, &pd_status);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = fwnode_property_read_string(fwnode, "data-role", &data_role);
+> > +	if (ret) {
+> > +		dev_err(tps->dev, "data-role not found: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	ret = typec_find_port_data_role(data_role);
+> > +	if (ret < 0) {
+> > +		dev_err(tps->dev, "unknown data-role: %s\n", data_role);
+> > +		return ret;
+> > +	}
+> > +
+> > +	typec_cap.data = ret;
+> > +	typec_cap.revision = USB_TYPEC_REV_1_3;
+> > +	typec_cap.pd_revision = 0x300;
+> > +	typec_cap.driver_data = tps;
+> > +	typec_cap.ops = &tps6598x_ops;
+> > +	typec_cap.fwnode = fwnode;
+> > +	typec_cap.prefer_role = TYPEC_NO_PREFERRED_ROLE;
+> > +
+> > +	switch (TPS_PD_STATUS_PORT_TYPE(pd_status)) {
+> > +	case TPS_PD_STATUS_PORT_TYPE_SINK_SOURCE:
+> > +	case TPS_PD_STATUS_PORT_TYPE_SOURCE_SINK:
+> > +		typec_cap.type = TYPEC_PORT_DRP;
+> > +		break;
+> > +	case TPS_PD_STATUS_PORT_TYPE_SINK:
+> > +		typec_cap.type = TYPEC_PORT_SNK;
+> > +		break;
+> > +	case TPS_PD_STATUS_PORT_TYPE_SOURCE:
+> > +		typec_cap.type = TYPEC_PORT_SRC;
+> > +		break;
+> > +	default:
+> > +		return -ENODEV;
+> > +	}
+> > +
+> > +	tps->port = typec_register_port(tps->dev, &typec_cap);
+> > +	if (IS_ERR(tps->port))
+> > +		return PTR_ERR(tps->port);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >  static int tps6598x_probe(struct i2c_client *client)
+> >  {
+> >  	irq_handler_t irq_handler = tps6598x_interrupt;
+> > @@ -1124,7 +1179,11 @@ static int tps6598x_probe(struct i2c_client *client)
+> >  	if (ret)
+> >  		goto err_role_put;
+> >  
+> > -	ret = tps6598x_register_port(tps, fwnode);
+> > +	if (np && of_device_is_compatible(np, "ti,tps25750"))
+> 
+> Why aren't you using is_tps25750 here?
+Ops, I missed that. Will be fixed in v6.
+> 
+> > +		ret = tps25750_register_port(tps, fwnode);
+> > +	else
+> > +		ret = tps6598x_register_port(tps, fwnode);
+> > +
+> >  	if (ret)
+> >  		goto err_role_put;
+> 
+> thanks,
+> 
+> -- 
+> heikki
 
-On Wed, 20 Sep 2023 09:33:53 +0300
-Tony Lindgren <tony@atomide.com> wrote:
-
-> Hi,
->=20
-> * P=C3=A9ter Ujfalusi <peter.ujfalusi@gmail.com> [230919 18:25]:
-> >=20
-> >=20
-> > On 7/5/23 22:03, Andreas Kemnade wrote: =20
-> > > Commit 349355ce3a05 ("ARM: OMAP2+: Drop legacy platform data for omap=
-4 mcbsp")
-> > > dropped prcm_fck for omap4, =20
->=20
-> The prcm_fck should be there in the dts for each mcbsp interconnect targe
-> module as "fck" alias and get's enabled/disabled when the mcbsp driver
-> calls runtime PM.
->=20
-> So maybe the description should explain that things broke as the aliases
-> for prcm_fck and pad_ck no longer get added.
->=20
-> > it also dropped the pad_fck for that matter. =20
->=20
-> OK so an alias is needed for that too.
->=20
-> That's the MCPDM_CLKCTRL pad_clks_ck alias, right? Seems like the
-> pad_clks_ck should be claimed by the mcpdm and mcbsp drivers if they are
-> used? I guess it would be for some external device use case?
->=20
-> > > so the clk_src might not be >available making the
-> > > clk_get(src) fail. =20
-> >=20
-> > Wow, so OMAP4 audio is pretty broken if would ever need to select FCLK?
-> > By default we don't on OMAP4, but this is astonishing. =20
->=20
-> So sounds like we just got lucky because of -ENOSUCHUSERS? The mcbsp works
-> for me, not sure how come I'm not seeing this issue, does it now only work
-> for the default clock source?
->=20
-Well, I did not run into any problems (besides of no sound output)
-as long as I tried to use the codec side as bitclock/frameclock-master and
-that is what droid4 does...
-
-Regards,
-Andreas
+Thanks,
+Abdel
 
