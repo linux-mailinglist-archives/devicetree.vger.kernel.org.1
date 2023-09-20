@@ -1,123 +1,177 @@
-Return-Path: <devicetree+bounces-1662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03EE17A74D2
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 09:50:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 518E77A74D7
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 09:50:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F002E1C20C3E
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 07:50:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77CDA1C20B71
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 07:50:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B1D48838;
-	Wed, 20 Sep 2023 07:50:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12343C8C6;
+	Wed, 20 Sep 2023 07:50:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43A748837
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 07:50:18 +0000 (UTC)
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1E13185
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 00:50:14 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-31f71b25a99so6423931f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 00:50:14 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C1DA8484
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 07:50:49 +0000 (UTC)
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4118A133;
+	Wed, 20 Sep 2023 00:50:46 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-3200257b9a3so3468875f8f.3;
+        Wed, 20 Sep 2023 00:50:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1695196213; x=1695801013; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=v7CkeCjzvtAvF0BFc3WkolXtUPqkPIzEOcb2KkTPFs0=;
-        b=Elt+kzVC7E2IH0bp6reU6j/ZHuNUhA+qTEhn3dH9kd7dAAFz06uWdp01/UJUXuySeE
-         b5nA7ae92GreyupW3kXnq5YbNu9o9NJhAD2adh9gFiMXPwUo081zAJAUpvfIqGFFAYto
-         FgaJpAkvBZwgYkiPB8+CN0q+26+vemKFTIzcrcUnct4o4KvhBm5h6idG6fO1UxzgPx43
-         AcfNNkqwjyIhb9PRxURyr6udIBY3665zvrpycU89TbQ9/+DeWaWjC/ItBLU0GBoR9LEt
-         JLH/rrIBuUYrl+3t9FkBSZ1akwCXwtyfYTmC8fm6oL0gBIL4xmHGOWzgDY8hHAeE2x6K
-         c06Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695196213; x=1695801013;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1695196244; x=1695801044; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=v7CkeCjzvtAvF0BFc3WkolXtUPqkPIzEOcb2KkTPFs0=;
-        b=jTCbd2dAbPVAI+58fY6peNs1HXaIFS/WMYW5iA5qux7lunBzmgBGtWq1xpFzhgXrqz
-         Bk0u56Bjku7dPBMvPkKR949xJRa7Y+1DQMW3AJhuU3B00dPVIP0LgC+ORBwNoHBbJq7+
-         igF1vAatuO3CseE8h7kWz8Vc8o8Z2bEgJZKsTt6xqG3SuOMSyHXiohhPl1xdhMX2tYWP
-         LV0jVSUsDf2iyQ42g74y6d49vDUvUnXqWlJTvmjY/FnydWD17z4l9/abdwfq9dluGFGg
-         sECYjlDrn4G44nMp+oFV+PfBwJni1aurnKBZZjRYcjOfWrpeeWUGmmnQRmVg5obzzjOk
-         gHVA==
-X-Gm-Message-State: AOJu0YxnrZ/lWb2kw/RB0nUZZn0jHy704hPd+Ajmnf4UYfFcI+n4G3PM
-	xdOx0Y8BmbxabPr996ZFOREloA==
-X-Google-Smtp-Source: AGHT+IGw1VBQZO24lqLlXFGTfo8W9hy1BjDwhuuXt9Rrtc78ra8pQJSm+b20JrGdyY74TJahcGWzCA==
-X-Received: by 2002:adf:d0c8:0:b0:31f:d8b3:ea06 with SMTP id z8-20020adfd0c8000000b0031fd8b3ea06mr1576992wrh.0.1695196213173;
-        Wed, 20 Sep 2023 00:50:13 -0700 (PDT)
-Received: from localhost (cst2-173-16.cust.vodafone.cz. [31.30.173.16])
-        by smtp.gmail.com with ESMTPSA id z8-20020a056000110800b0031f9bdb79dasm17647528wrw.61.2023.09.20.00.50.12
+        bh=HlzHTfHgS7DIEzzPJ69/Nl7roPtenVnlUobepr30yTw=;
+        b=Zs1iswTQLjB/GmsDbSOxzXEo87i7En0Js0LHm7sNaVT7xKV7Pu+e+uDuNM5ImHjmRz
+         baHQ8R5HaY3R74+i1nCtMMz1FrCQJfe5pI79om0GkmR+iF569HsQbV2bvXQOc/AtidQ9
+         XdiDHiRUDtWPV2SId57XTABdBfiBtyldp4NpkvSidNaI5FF3UVEjWk+L/jBLsF981WWH
+         T8lB0HKgI0tcRYX83oSHt0+qevUDAHKQJw28SIumuFXm/fV0aJbWfYtZigIjqAe+oW4L
+         rMSYuZMdZ998QUdWOV9IYx6H0HT1K2yZZ+/n2qwNuU5F8cbAnOMhp/HjVq6caV1b+uAe
+         i2pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695196244; x=1695801044;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HlzHTfHgS7DIEzzPJ69/Nl7roPtenVnlUobepr30yTw=;
+        b=NTXPxXUHUC26qYq1JqbZyQv6zICllCp/G9Ti060bkZoo6HpjdtI1tGezUiQS3VAgor
+         CbWvqJ3lSosn8aQ8QHaFbY6aZQ+/MYXKfofTn5N6dnwEKgKDOGWiQVz0AWfR14fmqqHE
+         NKQD73/hFHy6gGWg5kITnqC6hCKv25EQUNeOuojXoF7O8HZdZzUwFCaWVivZl2bwjXjg
+         ElPG4WKJC/9VABAyf4N7bOLop8Muy0X/i4B8+gInTh0UX77oz1SQfw7EP0eJBQ4J4+ew
+         yj65t59uMHsyyRIkUuf8Fk25t1FNDFPjR3uuSs2nP3Vmg6eWGnNqrgnhaSnb4U1ohPvr
+         2OKA==
+X-Gm-Message-State: AOJu0YytzUtyr8BQqVbRn75ljKlFzEtoyBujoaATY+xvaTlRKu70Wv79
+	D/YxRUMjSkEMKumwXJrgZ9s=
+X-Google-Smtp-Source: AGHT+IEEmHXQCsShaamGnvoU38VzYpHCM+Fifd+ZtlaDpeigN7nlVyFwbMp3MQeBupf+fI/pxclJFg==
+X-Received: by 2002:adf:ee88:0:b0:314:1b36:f440 with SMTP id b8-20020adfee88000000b003141b36f440mr1457739wro.70.1695196244358;
+        Wed, 20 Sep 2023 00:50:44 -0700 (PDT)
+Received: from PCBABN.skidata.net ([91.230.2.244])
+        by smtp.gmail.com with ESMTPSA id q11-20020adff50b000000b0031c71693449sm17768372wro.1.2023.09.20.00.50.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Sep 2023 00:50:12 -0700 (PDT)
-Date: Wed, 20 Sep 2023 09:50:12 +0200
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Paolo Bonzini <pbonzini@redhat.com>, 
-	Atish Patra <atishp@atishpatra.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Conor Dooley <conor@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Shuah Khan <shuah@kernel.org>, Mayuresh Chitale <mchitale@ventanamicro.com>, 
-	devicetree@vger.kernel.org, kvm@vger.kernel.org, kvm-riscv@lists.infradead.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH 5/7] KVM: riscv: selftests: Add senvcfg register to
- get-reg-list test
-Message-ID: <20230920-a6e56a81b36f95d115efceff@orel>
-References: <20230919035343.1399389-1-apatel@ventanamicro.com>
- <20230919035343.1399389-6-apatel@ventanamicro.com>
+        Wed, 20 Sep 2023 00:50:44 -0700 (PDT)
+From: Benjamin Bara <bbara93@gmail.com>
+To: mripard@kernel.org
+Cc: abelvesa@kernel.org,
+	bbara93@gmail.com,
+	benjamin.bara@skidata.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	festevam@gmail.com,
+	frank@oltmanns.dev,
+	kernel@pengutronix.de,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-imx@nxp.com,
+	linux-kernel@vger.kernel.org,
+	linux@armlinux.org.uk,
+	mturquette@baylibre.com,
+	peng.fan@nxp.com,
+	robh+dt@kernel.org,
+	s.hauer@pengutronix.de,
+	sboyd@kernel.org,
+	shawnguo@kernel.org
+Subject: Re: [PATCH 05/13] clk: keep track of the trigger of an ongoing clk_set_rate
+Date: Wed, 20 Sep 2023 09:50:37 +0200
+Message-Id: <20230920075037.1737982-1-bbara93@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <gyx5a6sacm6xens4jmxqynehloumsxyft35u6nd445qsv5345l@553vkj27ywef>
+References: <gyx5a6sacm6xens4jmxqynehloumsxyft35u6nd445qsv5345l@553vkj27ywef>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230919035343.1399389-6-apatel@ventanamicro.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, Sep 19, 2023 at 09:23:41AM +0530, Anup Patel wrote:
-> We have a new senvcfg register in the general CSR ONE_REG interface
-> so let us add it to get-reg-list test.
-> 
-> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> ---
->  tools/testing/selftests/kvm/riscv/get-reg-list.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/tools/testing/selftests/kvm/riscv/get-reg-list.c b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-> index 85907c86b835..0928c35470ae 100644
-> --- a/tools/testing/selftests/kvm/riscv/get-reg-list.c
-> +++ b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-> @@ -209,6 +209,8 @@ static const char *general_csr_id_to_str(__u64 reg_off)
->  		return RISCV_CSR_GENERAL(satp);
->  	case KVM_REG_RISCV_CSR_REG(scounteren):
->  		return RISCV_CSR_GENERAL(scounteren);
-> +	case KVM_REG_RISCV_CSR_REG(senvcfg):
-> +		return RISCV_CSR_GENERAL(senvcfg);
->  	}
->  
->  	TEST_FAIL("Unknown general csr reg: 0x%llx", reg_off);
-> @@ -532,6 +534,7 @@ static __u64 base_regs[] = {
->  	KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_CSR | KVM_REG_RISCV_CSR_GENERAL | KVM_REG_RISCV_CSR_REG(sip),
->  	KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_CSR | KVM_REG_RISCV_CSR_GENERAL | KVM_REG_RISCV_CSR_REG(satp),
->  	KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_CSR | KVM_REG_RISCV_CSR_GENERAL | KVM_REG_RISCV_CSR_REG(scounteren),
-> +	KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_CSR | KVM_REG_RISCV_CSR_GENERAL | KVM_REG_RISCV_CSR_REG(senvcfg),
->  	KVM_REG_RISCV | KVM_REG_SIZE_U64 | KVM_REG_RISCV_TIMER | KVM_REG_RISCV_TIMER_REG(frequency),
->  	KVM_REG_RISCV | KVM_REG_SIZE_U64 | KVM_REG_RISCV_TIMER | KVM_REG_RISCV_TIMER_REG(time),
->  	KVM_REG_RISCV | KVM_REG_SIZE_U64 | KVM_REG_RISCV_TIMER | KVM_REG_RISCV_TIMER_REG(compare),
-> -- 
-> 2.34.1
->
+Hi!
 
-Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
+On Tue, 19 Sept 2023 at 09:06, Maxime Ripard <mripard@kernel.org> wrote:
+> On Mon, Sep 18, 2023 at 12:40:01AM +0200, Benjamin Bara wrote:
+> > From: Benjamin Bara <benjamin.bara@skidata.com>
+> >
+> > When we keep track of the rate change trigger, we can easily check if an
+> > affected clock is affiliated with the trigger. Additionally, the trigger
+> > is added to the notify data, so that drivers can implement workarounds
+> > that might be necessary if a shared parent changes.
+> >
+> > Signed-off-by: Benjamin Bara <benjamin.bara@skidata.com>
+> > ---
+> >  drivers/clk/clk.c   | 12 ++++++++++++
+> >  include/linux/clk.h |  2 ++
+> >  2 files changed, 14 insertions(+)
+> >
+> > diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+> > index 4954d31899ce..8f4f92547768 100644
+> > --- a/drivers/clk/clk.c
+> > +++ b/drivers/clk/clk.c
+> > @@ -33,6 +33,9 @@ static struct task_struct *enable_owner;
+> >  static int prepare_refcnt;
+> >  static int enable_refcnt;
+> >
+> > +/* responsible for ongoing rate change, protected by prepare_lock */
+> > +static struct clk *rate_trigger_clk;
+> > +
+> >  static HLIST_HEAD(clk_root_list);
+> >  static HLIST_HEAD(clk_orphan_list);
+> >  static LIST_HEAD(clk_notifier_list);
+> > @@ -1742,6 +1745,7 @@ static int __clk_notify(struct clk_core *core, unsigned long msg,
+> >
+> >       cnd.old_rate = old_rate;
+> >       cnd.new_rate = new_rate;
+> > +     cnd.trigger = rate_trigger_clk ? : core->parent->hw->clk;
+> >
+> >       list_for_each_entry(cn, &clk_notifier_list, node) {
+> >               if (cn->clk->core == core) {
+> > @@ -2513,6 +2517,8 @@ int clk_set_rate(struct clk *clk, unsigned long rate)
+> >       /* prevent racing with updates to the clock topology */
+> >       clk_prepare_lock();
+> >
+> > +     rate_trigger_clk = clk;
+> > +
+>
+> So I don't think that interacts very well with the clk_hw_set_rate
+> function you introduced. It looks like you only consider the initial
+> clock here so you wouldn't update rate_trigger_clk on a clk_hw_set_rate
+> call, but that creates some inconsistencies:
+>
+>   - If we call clk_hw_set_rate outside of the set_rate path (but in
+>     .init for example), then we end up with a notifier without a trigger
+>     clock set.
+>
+>   - More generally, depending on the path we're currently in, a call to
+>     clk_hw_set_rate will notify a clock in different ways which is a bit
+>     weird to me. The trigger clock can also be any clock, parent or
+>     child, at any level, which definitely complicates things at the
+>     driver level.
+>
+> The rate propagation is top-down, so could be get away with just setting
+> the parent clock that triggered the notification?
+
+As I mentioned in the other response, this implementation seems to be
+just a hack to get additional context in the notifier. I think that's
+also a problem Frank had in his approach. Inside the notifier, it's not
+clear what to do with the incoming change. Because it could be either
+"intended", meaning a sub-clock of the current clock has triggered the
+change, or "unintended" (e.g. a sibling has triggered the change, but
+the subtree beyond the current clock still requires the old rate, and
+therefore the clock needs to adapt). Therefore I think if we use
+req_rate here, we might be able to achieve the same thing in a better
+way.
+
+Thanks!
 
