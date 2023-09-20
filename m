@@ -1,353 +1,161 @@
-Return-Path: <devicetree+bounces-1908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD01D7A8E09
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 22:57:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 636DF7A8E20
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 23:01:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C6D52810C6
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 20:57:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 253411C20445
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 21:01:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09B571865E;
-	Wed, 20 Sep 2023 20:57:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4AC831A90;
+	Wed, 20 Sep 2023 21:01:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B641C41ABD
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 20:57:30 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 688E3C2
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 13:57:28 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7C9698C1;
-	Wed, 20 Sep 2023 22:55:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1695243347;
-	bh=z6N9CvJjIZruwOxk9WxBuXmd5Sfk5damI8NfgyS8fHo=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C54341AB9
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 21:01:07 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62D18D3;
+	Wed, 20 Sep 2023 14:01:04 -0700 (PDT)
+Received: from notapiano (unknown [185.213.155.222])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 4A88D6607243;
+	Wed, 20 Sep 2023 22:01:01 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1695243662;
+	bh=Rtz3erKyUOgKqZM9Fh/lnQavTB+Wa5RuboyAzdxYPLg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cihD9CRmaW9EH7FvEQx0/c7qAsUP6CyEWCJLUknDaZUJNRkcOqCh1pd1Y4b818ly8
-	 PCFrClpWOverjbRIQdjsAqMuoVnyly1DzgAPVNhGDksJ7Fi9cQOtXKpS1u7pQiHTDC
-	 KNKk5B1ib6jS3I0wVEVMCUUaf+Evpm7RPGx2yd50=
-Date: Wed, 20 Sep 2023 23:57:36 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Lucas Stach <l.stach@pengutronix.de>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Liu Ying <victor.liu@nxp.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Adam Ford <aford173@gmail.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Richard Leitner <richard.leitner@skidata.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, patchwork-lst@pengutronix.de,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>, Sandor Yu <sandor.yu@nxp.com>
-Subject: Re: [PATCH v3 2/2] drm/bridge: imx: add driver for HDMI TX Parallel
- Video Interface
-Message-ID: <20230920205736.GB7723@pendragon.ideasonboard.com>
-References: <20230920171009.3193296-1-l.stach@pengutronix.de>
- <20230920171009.3193296-2-l.stach@pengutronix.de>
+	b=EjtNw7g2/rRrUYorNvkEqpKPwq+RWcONPEdiiyLA/JzNV4qLkpq1ko4v9iaU9EwSz
+	 UT0TDFmRA07pEn24u2Wyb37LLo2PqvxnpDLaLjhUPoghKY5cKOQtMyogxRe3dDqV0q
+	 gROtD6w1u4K2iV1be/a2j/ptDKVwQzqhWF30lr1iMR1yvf1SLDLmkyTeLeurVIn+CR
+	 Tx3ihWbL2GL6Qe5ZQi+LFsKhmcoX4V5WQI9KmRvR5rFWXhUzsUvEOUjorwg/zbrKsh
+	 Ca5fLcRW/meo/Z5i74tx+xE3mJ37WPHtDwKMzW5gYsOGI6RV1WnzOMihTDT26wnl2o
+	 2UejAn5V85png==
+Date: Wed, 20 Sep 2023 17:00:56 -0400
+From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Frank Rowand <frowand.list@gmail.com>, Shuah Khan <shuah@kernel.org>,
+	Mark Brown <broonie@kernel.org>, kernelci@lists.linux.dev,
+	kernel@collabora.com, Guenter Roeck <groeck@chromium.org>,
+	Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v3 0/3] Add a test to catch unprobed Devicetree devices
+Message-ID: <368a1fc3-02d7-49f2-a881-f39259f8c186@notapiano>
+References: <20230828211424.2964562-1-nfraprado@collabora.com>
+ <97c368a1-9c76-490a-848e-eacd6411e810@notapiano>
+ <20230920195629.GA2784994-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230920171009.3193296-2-l.stach@pengutronix.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230920195629.GA2784994-robh@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Lucas,
-
-Thank you for the patch.
-
-On Wed, Sep 20, 2023 at 07:10:09PM +0200, Lucas Stach wrote:
-> This IP block is found in the HDMI subsystem of the i.MX8MP SoC. It has a
-> full timing generator and can switch between different video sources. On
-> the i.MX8MP however the only supported source is the LCDIF. The block
-> just needs to be powered up and told about the polarity of the video
-> sync signals to act in bypass mode.
+On Wed, Sep 20, 2023 at 02:56:29PM -0500, Rob Herring wrote:
+> On Wed, Sep 20, 2023 at 10:03:06AM -0400, Nícolas F. R. A. Prado wrote:
+> > On Mon, Aug 28, 2023 at 05:13:09PM -0400, Nícolas F. R. A. Prado wrote:
+> > > 
+> > > Regressions that cause a device to no longer be probed by a driver can
+> > > have a big impact on the platform's functionality, and despite being
+> > > relatively common there isn't currently any generic test to detect them.
+> > > As an example, bootrr [1] does test for device probe, but it requires
+> > > defining the expected probed devices for each platform.
+> > > 
+> > > Given that the Devicetree already provides a static description of
+> > > devices on the system, it is a good basis for building such a test on
+> > > top.
+> > > 
+> > > This series introduces a test to catch regressions that prevent devices
+> > > from probing.
+> > > 
+> > > Patches 1 and 2 extend the existing dt-extract-compatibles to be able to
+> > > output only the compatibles that can be expected to match a Devicetree
+> > > node to a driver. Patch 2 adds a kselftest that walks over the
+> > > Devicetree nodes on the current platform and compares the compatibles to
+> > > the ones on the list, and on an ignore list, to point out devices that
+> > > failed to be probed.
+> > > 
+> > > A compatible list is needed because not all compatibles that can show up
+> > > in a Devicetree node can be used to match to a driver, for example the
+> > > code for that compatible might use "OF_DECLARE" type macros and avoid
+> > > the driver framework, or the node might be controlled by a driver that
+> > > was bound to a different node.
+> > > 
+> > > An ignore list is needed for the few cases where it's common for a
+> > > driver to match a device but not probe, like for the "simple-mfd"
+> > > compatible, where the driver only probes if that compatible is the
+> > > node's first compatible.
+> > > 
+> > > The reason for parsing the kernel source instead of relying on
+> > > information exposed by the kernel at runtime (say, looking at modaliases
+> > > or introducing some other mechanism), is to be able to catch issues
+> > > where a config was renamed or a driver moved across configs, and the
+> > > .config used by the kernel not updated accordingly. We need to parse the
+> > > source to find all compatibles present in the kernel independent of the
+> > > current config being run.
+> > > 
+> > > [1] https://github.com/kernelci/bootrr
+> > > 
+> > > Changes in v3:
+> > > - Added DT selftest path to MAINTAINERS
+> > > - Enabled device probe test for nodes with 'status = "ok"'
+> > > - Added pass/fail/skip totals to end of test output
+> > > 
+> > > Changes in v2:
+> > > - Extended dt-extract-compatibles script to be able to extract driver
+> > >   matching compatibles, instead of adding a new one in Coccinelle
+> > > - Made kselftest output in the KTAP format
+> > > 
+> > > Nícolas F. R. A. Prado (3):
+> > >   dt: dt-extract-compatibles: Handle cfile arguments in generator
+> > >     function
+> > >   dt: dt-extract-compatibles: Add flag for driver matching compatibles
+> > >   kselftest: Add new test for detecting unprobed Devicetree devices
+> > > 
+> > >  MAINTAINERS                                   |  1 +
+> > >  scripts/dtc/dt-extract-compatibles            | 74 +++++++++++++----
+> > >  tools/testing/selftests/Makefile              |  1 +
+> > >  tools/testing/selftests/dt/.gitignore         |  1 +
+> > >  tools/testing/selftests/dt/Makefile           | 21 +++++
+> > >  .../selftests/dt/compatible_ignore_list       |  1 +
+> > >  tools/testing/selftests/dt/ktap_helpers.sh    | 70 ++++++++++++++++
+> > >  .../selftests/dt/test_unprobed_devices.sh     | 83 +++++++++++++++++++
+> > >  8 files changed, 236 insertions(+), 16 deletions(-)
+> > >  create mode 100644 tools/testing/selftests/dt/.gitignore
+> > >  create mode 100644 tools/testing/selftests/dt/Makefile
+> > >  create mode 100644 tools/testing/selftests/dt/compatible_ignore_list
+> > >  create mode 100644 tools/testing/selftests/dt/ktap_helpers.sh
+> > >  create mode 100755 tools/testing/selftests/dt/test_unprobed_devices.sh
+> > 
+> > Hi Rob,
+> > 
+> > gentle ping on this series.
+> > 
+> > I take it you'll be merging this through your tree, so I've added Shuah's R-b
+> > that she supplied on v2 for the kselftest patch.
 > 
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
-> Tested-by: Marek Vasut <marex@denx.de> (v1)
-> Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
-> Tested-by: Richard Leitner <richard.leitner@skidata.com> (v2)
-> Tested-by: Frieder Schrempf <frieder.schrempf@kontron.de> (v2)
-> ---
->  drivers/gpu/drm/bridge/imx/Kconfig           |   7 +
->  drivers/gpu/drm/bridge/imx/Makefile          |   1 +
->  drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c | 206 +++++++++++++++++++
->  3 files changed, 214 insertions(+)
->  create mode 100644 drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
+> Sorry, now applied.
 > 
-> diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridge/imx/Kconfig
-> index 9fae28db6aa7..3a4e663d922a 100644
-> --- a/drivers/gpu/drm/bridge/imx/Kconfig
-> +++ b/drivers/gpu/drm/bridge/imx/Kconfig
-> @@ -3,6 +3,13 @@ if ARCH_MXC || COMPILE_TEST
->  config DRM_IMX_LDB_HELPER
->  	tristate
->  
-> +config DRM_IMX8MP_HDMI_PVI
-> +	tristate "Freescale i.MX8MP HDMI PVI bridge support"
-> +	depends on OF
-> +	help
-> +	  Choose this to enable support for the internal HDMI TX Parallel
-> +	  Video Interface found on the Freescale i.MX8MP SoC.
-> +
->  config DRM_IMX8QM_LDB
->  	tristate "Freescale i.MX8QM LVDS display bridge"
->  	depends on OF
-> diff --git a/drivers/gpu/drm/bridge/imx/Makefile b/drivers/gpu/drm/bridge/imx/Makefile
-> index 8e2ebf3399a1..be9b4f9adb50 100644
-> --- a/drivers/gpu/drm/bridge/imx/Makefile
-> +++ b/drivers/gpu/drm/bridge/imx/Makefile
-> @@ -1,4 +1,5 @@
->  obj-$(CONFIG_DRM_IMX_LDB_HELPER) += imx-ldb-helper.o
-> +obj-$(CONFIG_DRM_IMX8MP_HDMI_PVI) += imx8mp-hdmi-pvi.o
->  obj-$(CONFIG_DRM_IMX8QM_LDB) += imx8qm-ldb.o
->  obj-$(CONFIG_DRM_IMX8QXP_LDB) += imx8qxp-ldb.o
->  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_COMBINER) += imx8qxp-pixel-combiner.o
-> diff --git a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
-> new file mode 100644
-> index 000000000000..5ccd70c98187
-> --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
-> @@ -0,0 +1,206 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +
-> +/*
-> + * Copyright (C) 2022 Pengutronix, Lucas Stach <kernel@pengutronix.de>
-> + */
-> +
-> +#include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_bridge.h>
-> +#include <drm/drm_crtc.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of_graph.h>
-> +#include <linux/pm_runtime.h>
-> +
-> +#define HTX_PVI_CTRL			0x0
-> +#define  PVI_CTRL_OP_VSYNC_POL		BIT(18)
-> +#define  PVI_CTRL_OP_HSYNC_POL		BIT(17)
-> +#define  PVI_CTRL_OP_DE_POL		BIT(16)
-> +#define  PVI_CTRL_INP_VSYNC_POL		BIT(14)
-> +#define  PVI_CTRL_INP_HSYNC_POL		BIT(13)
-> +#define  PVI_CTRL_INP_DE_POL		BIT(12)
-> +#define  PVI_CTRL_MODE_MASK		GENMASK(2, 1)
-> +#define  PVI_CTRL_MODE_LCDIF		2
-> +#define  PVI_CTRL_EN			BIT(0)
-> +
-> +struct imx8mp_hdmi_pvi {
-> +	struct drm_bridge	bridge;
-> +	struct device		*dev;
-> +	struct drm_bridge	*next_bridge;
-> +	void __iomem		*regs;
-> +};
-> +
-> +static inline struct imx8mp_hdmi_pvi *
-> +to_imx8mp_hdmi_pvi(struct drm_bridge *bridge)
-> +{
-> +	return container_of(bridge, struct imx8mp_hdmi_pvi, bridge);
-> +}
-> +
-> +static int imx8mp_hdmi_pvi_bridge_attach(struct drm_bridge *bridge,
-> +					 enum drm_bridge_attach_flags flags)
-> +{
-> +	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
-> +
-> +	return drm_bridge_attach(bridge->encoder, pvi->next_bridge,
-> +				 bridge, flags);
-> +}
-> +
-> +static void imx8mp_hdmi_pvi_bridge_enable(struct drm_bridge *bridge,
-> +					  struct drm_bridge_state *bridge_state)
-> +{
-> +	struct drm_atomic_state *state = bridge_state->base.state;
-> +	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
-> +	struct drm_connector_state *conn_state;
-> +	const struct drm_display_mode *mode;
-> +	struct drm_crtc_state *crtc_state;
-> +	struct drm_connector *connector;
-> +	u32 bus_flags, val;
-> +
-> +	connector = drm_atomic_get_new_connector_for_encoder(state, bridge->encoder);
-> +	conn_state = drm_atomic_get_new_connector_state(state, connector);
-> +	crtc_state = drm_atomic_get_new_crtc_state(state, conn_state->crtc);
-> +
-> +	if (WARN_ON(pm_runtime_resume_and_get(pvi->dev)))
-> +		return;
-> +
-> +	mode = &crtc_state->adjusted_mode;
-> +
-> +	val = FIELD_PREP(PVI_CTRL_MODE_MASK, PVI_CTRL_MODE_LCDIF) | PVI_CTRL_EN;
-> +
-> +	if (mode->flags & DRM_MODE_FLAG_PVSYNC)
-> +		val |= PVI_CTRL_OP_VSYNC_POL | PVI_CTRL_INP_VSYNC_POL;
-> +
-> +	if (mode->flags & DRM_MODE_FLAG_PHSYNC)
-> +		val |= PVI_CTRL_OP_HSYNC_POL | PVI_CTRL_INP_HSYNC_POL;
-> +
-> +	if (pvi->next_bridge->timings)
-> +		bus_flags = pvi->next_bridge->timings->input_bus_flags;
-> +	else if (bridge_state)
-> +		bus_flags = bridge_state->input_bus_cfg.flags;
-> +
-> +	if (bus_flags & DRM_BUS_FLAG_DE_HIGH)
-> +		val |= PVI_CTRL_OP_DE_POL | PVI_CTRL_INP_DE_POL;
-> +
-> +	writel(val, pvi->regs + HTX_PVI_CTRL);
-> +}
-> +
-> +static void imx8mp_hdmi_pvi_bridge_disable(struct drm_bridge *bridge,
-> +					   struct drm_bridge_state *bridge_state)
-> +{
-> +	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
-> +
-> +	writel(0x0, pvi->regs + HTX_PVI_CTRL);
-> +
-> +	pm_runtime_put(pvi->dev);
-> +}
-> +
-> +static u32 *
-> +imx8mp_hdmi_pvi_bridge_get_input_bus_fmts(struct drm_bridge *bridge,
-> +					  struct drm_bridge_state *bridge_state,
-> +					  struct drm_crtc_state *crtc_state,
-> +					  struct drm_connector_state *conn_state,
-> +					  u32 output_fmt,
-> +					  unsigned int *num_input_fmts)
-> +{
-> +	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
-> +	struct drm_bridge *next_bridge = pvi->next_bridge;
-> +	struct drm_bridge_state *next_state;
-> +
-> +	if (!next_bridge->funcs->atomic_get_input_bus_fmts)
-> +		return 0;
-> +
-> +	next_state = drm_atomic_get_new_bridge_state(crtc_state->state,
-> +						     next_bridge);
-> +
-> +	return next_bridge->funcs->atomic_get_input_bus_fmts(next_bridge,
-> +							     next_state,
-> +							     crtc_state,
-> +							     conn_state,
-> +							     output_fmt,
-> +							     num_input_fmts);
-> +}
-> +
-> +static const struct drm_bridge_funcs imx_hdmi_pvi_bridge_funcs = {
-> +	.attach		= imx8mp_hdmi_pvi_bridge_attach,
-> +	.atomic_enable	= imx8mp_hdmi_pvi_bridge_enable,
-> +	.atomic_disable	= imx8mp_hdmi_pvi_bridge_disable,
-> +	.atomic_get_input_bus_fmts = imx8mp_hdmi_pvi_bridge_get_input_bus_fmts,
-> +	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
-> +	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
-> +	.atomic_reset = drm_atomic_helper_bridge_reset,
-> +};
-> +
-> +static int imx8mp_hdmi_pvi_probe(struct platform_device *pdev)
-> +{
-> +	struct device_node *remote;
-> +	struct imx8mp_hdmi_pvi *pvi;
-> +
-> +	pvi = devm_kzalloc(&pdev->dev, sizeof(*pvi), GFP_KERNEL);
-> +	if (!pvi)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, pvi);
-> +	pvi->dev = &pdev->dev;
-> +
-> +	pvi->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(pvi->regs))
-> +		return PTR_ERR(pvi->regs);
-> +
-> +	/* Get the next bridge in the pipeline. */
-> +	remote = of_graph_get_remote_node(pdev->dev.of_node, 1, -1);
-> +	if (!remote)
-> +		return -EINVAL;
-> +
-> +	pvi->next_bridge = of_drm_find_bridge(remote);
-> +	of_node_put(remote);
-> +
-> +	if (!pvi->next_bridge)
-> +		return dev_err_probe(&pdev->dev, -EPROBE_DEFER,
-> +				     "could not find next bridge\n");
-> +
-> +	/* Register the bridge. */
-> +	pvi->bridge.funcs = &imx_hdmi_pvi_bridge_funcs;
-> +	pvi->bridge.of_node = pdev->dev.of_node;
-> +	pvi->bridge.timings = pvi->next_bridge->timings;
-> +
-> +	drm_bridge_add(&pvi->bridge);
-> +
-> +	pm_runtime_enable(&pdev->dev);
+> If you send something before or in the merge window, it is best to 
+> rebase and resend after rc1 comes out.
 
-I would move this just before drm_bridge_add(). In theory, as soon as
-the bridge is added, it could get used, so it's a good practice to
-initialize everything before adding it.
+Ah didn't know about that, will keep it in mind for the future, thanks!
 
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx8mp_hdmi_pvi_remove(struct platform_device *pdev)
-> +{
-> +	struct imx8mp_hdmi_pvi *pvi = platform_get_drvdata(pdev);
-> +
-> +	pm_runtime_disable(&pdev->dev);
-> +
-> +	drm_bridge_remove(&pvi->bridge);
-
-And here you could flip the two as well for consistency.
-
-With these minor changes,
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id imx8mp_hdmi_pvi_match[] = {
-> +	{
-> +		.compatible = "fsl,imx8mp-hdmi-pvi",
-> +	}, {
-> +		/* sentinel */
-> +	}
-> +};
-> +MODULE_DEVICE_TABLE(of, imx8mp_hdmi_pvi_match);
-> +
-> +static struct platform_driver imx8mp_hdmi_pvi_driver = {
-> +	.probe	= imx8mp_hdmi_pvi_probe,
-> +	.remove	= imx8mp_hdmi_pvi_remove,
-> +	.driver		= {
-> +		.name = "imx-hdmi-pvi",
-> +		.of_match_table	= imx8mp_hdmi_pvi_match,
-> +	},
-> +};
-> +module_platform_driver(imx8mp_hdmi_pvi_driver);
-> +
-> +MODULE_DESCRIPTION("i.MX8MP HDMI TX Parallel Video Interface bridge driver");
-> +MODULE_LICENSE("GPL");
-
--- 
-Regards,
-
-Laurent Pinchart
+Nícolas
 
