@@ -1,103 +1,162 @@
-Return-Path: <devicetree+bounces-1920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F74C7A8FC2
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 01:13:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F33A77A8FE8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 01:40:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A0562818D4
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 23:13:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED7DC1C20D50
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 23:40:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D66023F4B7;
-	Wed, 20 Sep 2023 23:13:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A8C33F4DA;
+	Wed, 20 Sep 2023 23:39:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C230A15AF6
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 23:13:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55F65C433C7;
-	Wed, 20 Sep 2023 23:13:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695251592;
-	bh=ZEI4SVLYeit9sUP9UceEuIC9X68j7JR0VvUzYcFHvME=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=PFGN6D4oIABqPzWAYWdJodphvnoW5Z5oqIO32HPOb7Wsww0jfjDnaFqG2xzrMI7Yo
-	 HmT8BRQIVzz1PORN9IjaZhI7rVALAXByEMUe+IrqHXyru02mmYXsSdnJp+2LtGOs7r
-	 t/ENeLheHudxN6Ws/TTjM7Rnp6HpHoAmt2fUBKiotYVlt+opqAc8GmDugLCj2SE9M1
-	 jFeziWFi1brvoYzlcSPospd02P0p2U+yq5dMqD3N1NdANo9vqV3zAWxFdRqHLp6YM1
-	 Zrqup/gPAbqHwVuog1N8ZcgHmT4iC5aLe0n1ZQuS/IdVhn0akN5zYdliqkE9BZAHBd
-	 p5X1QbATOLGPw==
-Received: (nullmailer pid 3189600 invoked by uid 1000);
-	Wed, 20 Sep 2023 23:13:10 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9EA33F4CC
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 23:39:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19677C9;
+	Wed, 20 Sep 2023 16:39:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1695253196; x=1726789196;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7rBWAZNkXl0XliJjOhwzouxtCGTxulwG6PXP2zaxTVY=;
+  b=CLgMyj7h76D86x8McOwXOOn+SPDEaPb4rzmYQ+KPP0KyVUy/jXHiv0ZV
+   xIKF4G2QsjJuSmSdbgh9mJOpp2N1V/Dl5vFQzyvtOKTmBeaHiVMWUSyWQ
+   2+GBgwA2OQr5CqgiHoNkpmQVxFt0TkjmIsCx+Zijlb9yoFs4zneMxfraH
+   PMLLiy2a3aHNsfKbyHKCXgkGfTSk34zgbwpVL68bvmgvqpKhe2IxYSNwW
+   t6qG9QDvqDMHCzm2DLK+RWyS3vZlltgSHBRJbqVfGqo/0rBswaunMm1pB
+   yl0gUrHKEKdSie9jG1dBTKhorKZw780k1NPY7DlctHmGTZBrzXmwDprB3
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="384209308"
+X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; 
+   d="scan'208";a="384209308"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Sep 2023 16:35:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="750146565"
+X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; 
+   d="scan'208";a="750146565"
+Received: from lkp-server02.sh.intel.com (HELO 9ef86b2655e5) ([10.239.97.151])
+  by fmsmga007.fm.intel.com with ESMTP; 20 Sep 2023 16:35:26 -0700
+Received: from kbuild by 9ef86b2655e5 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qj6j6-0009GO-30;
+	Wed, 20 Sep 2023 23:35:24 +0000
+Date: Thu, 21 Sep 2023 07:35:03 +0800
+From: kernel test robot <lkp@intel.com>
+To: David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-staging@lists.linux.dev
+Cc: oe-kbuild-all@lists.linux.dev, David Lechner <dlechner@baylibre.com>,
+	linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Axel Haslam <ahaslam@baylibre.com>,
+	Philip Molloy <pmolloy@baylibre.com>
+Subject: Re: [PATCH 4/4] iio: resolver: add new driver for AD2S1210
+Message-ID: <202309210740.YRdN185w-lkp@intel.com>
+References: <20230920170253.203395-5-dlechner@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Hugo Villeneuve <hugo@hugovil.com>
-Cc: jirislaby@kernel.org, conor+dt@kernel.org, gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org, robh+dt@kernel.org, hvilleneuve@dimonoff.com
-In-Reply-To: <20230920152015.1376838-5-hugo@hugovil.com>
-References: <20230920152015.1376838-1-hugo@hugovil.com>
- <20230920152015.1376838-5-hugo@hugovil.com>
-Message-Id: <169525159032.3189577.8595445478621843850.robh@kernel.org>
-Subject: Re: [PATCH 4/4] dt-bindings: sc16is7xx: convert to YAML
-Date: Wed, 20 Sep 2023 18:13:10 -0500
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230920170253.203395-5-dlechner@baylibre.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
+
+Hi David,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on jic23-iio/togreg]
+[also build test WARNING on linus/master v6.6-rc2 next-20230920]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/David-Lechner/dt-bindings-iio-resolver-add-devicetree-bindings-for-ad2s1210/20230921-010529
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20230920170253.203395-5-dlechner%40baylibre.com
+patch subject: [PATCH 4/4] iio: resolver: add new driver for AD2S1210
+config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230921/202309210740.YRdN185w-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230921/202309210740.YRdN185w-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202309210740.YRdN185w-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/iio/resolver/ad2s1210.c:113: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+    * Writes the given data to the given register address.
+   drivers/iio/resolver/ad2s1210.c:151: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+    * Reads value from one of the registers.
+   drivers/iio/resolver/ad2s1210.c:201: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+    * Sets the excitation frequency and performs software reset.
 
 
-On Wed, 20 Sep 2023 11:20:15 -0400, Hugo Villeneuve wrote:
-> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> 
-> Convert binding from text format to YAML.
-> 
-> Additions to original text binding:
->   - add rs485 reference.
-> 
-> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> ---
->  .../bindings/serial/nxp,sc16is7xx.txt         | 118 ----------------
->  .../bindings/serial/nxp,sc16is7xx.yaml        | 126 ++++++++++++++++++
->  2 files changed, 126 insertions(+), 118 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
->  create mode 100644 Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
-> 
+vim +113 drivers/iio/resolver/ad2s1210.c
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+   111	
+   112	/**
+ > 113	 * Writes the given data to the given register address.
+   114	 *
+   115	 * If the mode is configurable, the device will first be placed in
+   116	 * configuration mode.
+   117	 */
+   118	static int ad2s1210_regmap_reg_write(void *context, unsigned int reg,
+   119					     unsigned int val)
+   120	{
+   121		struct ad2s1210_state *st = context;
+   122		struct spi_transfer xfers[] = {
+   123			{
+   124				.len = 1,
+   125				.rx_buf = &st->rx[0],
+   126				.tx_buf = &st->tx[0],
+   127				.cs_change = 1,
+   128			}, {
+   129				.len = 1,
+   130				.rx_buf = &st->rx[1],
+   131				.tx_buf = &st->tx[1],
+   132			},
+   133		};
+   134		int ret;
+   135	
+   136		/* values can only be 7 bits, the MSB indicates an address */
+   137		if (val & ~0x7F)
+   138			return -EINVAL;
+   139	
+   140		st->tx[0] = reg;
+   141		st->tx[1] = val;
+   142	
+   143		ret = ad2s1210_set_mode(st, AD2S1210_MODE_CONFIG);
+   144		if (ret < 0)
+   145			return ret;
+   146	
+   147		return spi_sync_transfer(st->sdev, xfers, ARRAY_SIZE(xfers));
+   148	}
+   149	
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/serial/nxp,sc16is7xx.example.dts:27.13-26: Warning (reg_format): /example-0/serial@51:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
-Documentation/devicetree/bindings/serial/nxp,sc16is7xx.example.dts:37.13-26: Warning (reg_format): /example-0/serial@53:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
-Documentation/devicetree/bindings/serial/nxp,sc16is7xx.example.dts:48.13-26: Warning (reg_format): /example-0/serial@54:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
-Documentation/devicetree/bindings/serial/nxp,sc16is7xx.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/serial/nxp,sc16is7xx.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/serial/nxp,sc16is7xx.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/serial/nxp,sc16is7xx.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/serial/nxp,sc16is7xx.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230920152015.1376838-5-hugo@hugovil.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
