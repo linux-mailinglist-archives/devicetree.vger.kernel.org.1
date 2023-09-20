@@ -1,165 +1,353 @@
-Return-Path: <devicetree+bounces-1907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36FC27A8D6A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 22:00:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD01D7A8E09
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 22:57:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CABD6B20953
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 20:00:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C6D52810C6
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 20:57:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FC9F450F9;
-	Wed, 20 Sep 2023 19:58:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09B571865E;
+	Wed, 20 Sep 2023 20:57:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B447B405EE
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 19:58:36 +0000 (UTC)
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD6BA1A6;
-	Wed, 20 Sep 2023 12:58:31 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-5041cc983f9so395558e87.3;
-        Wed, 20 Sep 2023 12:58:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695239910; x=1695844710; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5gQNVrm7iIcbZwXELuXpCO4/Kc8sgd3nqGULmM7glBg=;
-        b=Ci6+SbDwOE2ZU6hIgAJ48qiFD/STDWEHZKo8LWxMdYRLpYiRlLv11j2GE9s5TRwSig
-         Abg6ebqON65fSTCBtRIpnoRO5g6iFeteuzZWOYDjLk8GMrojcq79muzbqu7FMPXVDFvf
-         NxvgyVkz9bETjtL/nK9yYNYbt4WqByu3K/UWAmdIe1VqgSfJvCvvES87oSrMEA3r0Fsa
-         WdTfDnpqX2cEZlbVDcLqdDAnTkPTEOKjzQoUXhQejc9qAmaXi4DSsYsPezkm60E6WPPm
-         hTk16Bsw/KrYayRPRUTy34BWcCV1LXcx/ZrX7Jf+O55SreBiZt02oQXSuJT+8XzOZ5hC
-         n6ZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695239910; x=1695844710;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5gQNVrm7iIcbZwXELuXpCO4/Kc8sgd3nqGULmM7glBg=;
-        b=YVFitUTQ/WkdSKotUnD4ncl0t2bTLeM8Csfxo/ci7i8r/tQdzIlRLNQH6kXSRaYJ4y
-         odvpgJ49Q6sJKJILbsJwmiReEl+Nm6qSsk1m8jTj15WQrIWL66Vmxk8SaDm27JrrPNRN
-         lPbq+mwtegUcKJSso4VM/EXtAXObi6oq2wDQIFzx8ID9FrG4Fcnp0BtfY6Ay8trAxYSP
-         eJkNoWp4YD/oJzty4AptcjGNH6W7XUIP8WeQ/wKibC03i7oO7WMJj8SF4HREkGz6DvVR
-         Jr6Y1xtQqlHSvm8lwIbjrnt8KB/D3ZUsuEqxgKeOPBfe93YJDnqrGJE9+2Cb77i13m/3
-         UFxQ==
-X-Gm-Message-State: AOJu0YzXJsqZDn+Hy+bF5i+q4mWbTDyTfOl7RJTY0jouS1jluZoiFDrN
-	zzud6/AqTqnKT724FJGQGB0=
-X-Google-Smtp-Source: AGHT+IFTZA+isPECDl01It/LKg4pFSJa6ZcL9RzJNGot72/yXPzDyakTQXl62QQorYr+n6ys1foImw==
-X-Received: by 2002:ac2:4d08:0:b0:503:525:243b with SMTP id r8-20020ac24d08000000b005030525243bmr2663869lfi.58.1695239909866;
-        Wed, 20 Sep 2023 12:58:29 -0700 (PDT)
-Received: from localhost ([83.149.21.189])
-        by smtp.gmail.com with ESMTPSA id d8-20020ac244c8000000b005033891f3c0sm568023lfm.246.2023.09.20.12.58.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Sep 2023 12:58:29 -0700 (PDT)
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Michal Simek <michal.simek@amd.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Borislav Petkov <bp@alien8.de>,
-	Tony Luck <tony.luck@intel.com>,
-	James Morse <james.morse@arm.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Robert Richter <rric@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Serge Semin <fancer.lancer@gmail.com>,
-	Punnaiah Choudary Kalluri <punnaiah.choudary.kalluri@xilinx.com>,
-	Dinh Nguyen <dinguyen@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-edac@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 13/13] EDAC/synopsys: Add BT1 DDRC support
-Date: Wed, 20 Sep 2023 22:56:44 +0300
-Message-ID: <20230920195720.32047-14-fancer.lancer@gmail.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230920195720.32047-1-fancer.lancer@gmail.com>
-References: <20230920195720.32047-1-fancer.lancer@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B641C41ABD
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 20:57:30 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 688E3C2
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 13:57:28 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7C9698C1;
+	Wed, 20 Sep 2023 22:55:47 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1695243347;
+	bh=z6N9CvJjIZruwOxk9WxBuXmd5Sfk5damI8NfgyS8fHo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cihD9CRmaW9EH7FvEQx0/c7qAsUP6CyEWCJLUknDaZUJNRkcOqCh1pd1Y4b818ly8
+	 PCFrClpWOverjbRIQdjsAqMuoVnyly1DzgAPVNhGDksJ7Fi9cQOtXKpS1u7pQiHTDC
+	 KNKk5B1ib6jS3I0wVEVMCUUaf+Evpm7RPGx2yd50=
+Date: Wed, 20 Sep 2023 23:57:36 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Lucas Stach <l.stach@pengutronix.de>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Liu Ying <victor.liu@nxp.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Adam Ford <aford173@gmail.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Richard Leitner <richard.leitner@skidata.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, patchwork-lst@pengutronix.de,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>, Sandor Yu <sandor.yu@nxp.com>
+Subject: Re: [PATCH v3 2/2] drm/bridge: imx: add driver for HDMI TX Parallel
+ Video Interface
+Message-ID: <20230920205736.GB7723@pendragon.ideasonboard.com>
+References: <20230920171009.3193296-1-l.stach@pengutronix.de>
+ <20230920171009.3193296-2-l.stach@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230920171009.3193296-2-l.stach@pengutronix.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Baikal-T1 SoC is equipped with the DW uMCTl2 DDRC v2.61a with 32-bit
-DQ-bus accepting DDR2/DDR3 SDRAMs of up to 2 ranks, 1:2 HIF/SDRAM clocks
-rate ratio, HIF interface burst length of 8 Full DQ-bus words, 40-bit
-System/Application address width and 128-bits data width, 3 System address
-regions with block size 256MB. There is SEC/DED ECC capability with Scrub
-(RMW) and Scrubber features.
+Hi Lucas,
 
-Since the Baikal-T1 DDR controller supports Sideband ECC add the
-controller support to the DW uMCTL2 DDRC EDAC driver. The most of the
-parameters listed above will be autodetected except HIF burst length and
-SAR block size, which will be set by means of the Baikal-T1-specific
-initialization method. The controller compatible string "baikal,bt1-ddrc"
-will be used to attach the driver to the kernel device. It's chosen in
-accordance with the just updated DT-bindings.
+Thank you for the patch.
 
-Signed-off-by: Serge Semin <fancer.lancer@gmail.com>
+On Wed, Sep 20, 2023 at 07:10:09PM +0200, Lucas Stach wrote:
+> This IP block is found in the HDMI subsystem of the i.MX8MP SoC. It has a
+> full timing generator and can switch between different video sources. On
+> the i.MX8MP however the only supported source is the LCDIF. The block
+> just needs to be powered up and told about the polarity of the video
+> sync signals to act in bypass mode.
+> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
+> Tested-by: Marek Vasut <marex@denx.de> (v1)
+> Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
+> Tested-by: Richard Leitner <richard.leitner@skidata.com> (v2)
+> Tested-by: Frieder Schrempf <frieder.schrempf@kontron.de> (v2)
+> ---
+>  drivers/gpu/drm/bridge/imx/Kconfig           |   7 +
+>  drivers/gpu/drm/bridge/imx/Makefile          |   1 +
+>  drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c | 206 +++++++++++++++++++
+>  3 files changed, 214 insertions(+)
+>  create mode 100644 drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
+> 
+> diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridge/imx/Kconfig
+> index 9fae28db6aa7..3a4e663d922a 100644
+> --- a/drivers/gpu/drm/bridge/imx/Kconfig
+> +++ b/drivers/gpu/drm/bridge/imx/Kconfig
+> @@ -3,6 +3,13 @@ if ARCH_MXC || COMPILE_TEST
+>  config DRM_IMX_LDB_HELPER
+>  	tristate
+>  
+> +config DRM_IMX8MP_HDMI_PVI
+> +	tristate "Freescale i.MX8MP HDMI PVI bridge support"
+> +	depends on OF
+> +	help
+> +	  Choose this to enable support for the internal HDMI TX Parallel
+> +	  Video Interface found on the Freescale i.MX8MP SoC.
+> +
+>  config DRM_IMX8QM_LDB
+>  	tristate "Freescale i.MX8QM LVDS display bridge"
+>  	depends on OF
+> diff --git a/drivers/gpu/drm/bridge/imx/Makefile b/drivers/gpu/drm/bridge/imx/Makefile
+> index 8e2ebf3399a1..be9b4f9adb50 100644
+> --- a/drivers/gpu/drm/bridge/imx/Makefile
+> +++ b/drivers/gpu/drm/bridge/imx/Makefile
+> @@ -1,4 +1,5 @@
+>  obj-$(CONFIG_DRM_IMX_LDB_HELPER) += imx-ldb-helper.o
+> +obj-$(CONFIG_DRM_IMX8MP_HDMI_PVI) += imx8mp-hdmi-pvi.o
+>  obj-$(CONFIG_DRM_IMX8QM_LDB) += imx8qm-ldb.o
+>  obj-$(CONFIG_DRM_IMX8QXP_LDB) += imx8qxp-ldb.o
+>  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_COMBINER) += imx8qxp-pixel-combiner.o
+> diff --git a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
+> new file mode 100644
+> index 000000000000..5ccd70c98187
+> --- /dev/null
+> +++ b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
+> @@ -0,0 +1,206 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +
+> +/*
+> + * Copyright (C) 2022 Pengutronix, Lucas Stach <kernel@pengutronix.de>
+> + */
+> +
+> +#include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_bridge.h>
+> +#include <drm/drm_crtc.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/of_graph.h>
+> +#include <linux/pm_runtime.h>
+> +
+> +#define HTX_PVI_CTRL			0x0
+> +#define  PVI_CTRL_OP_VSYNC_POL		BIT(18)
+> +#define  PVI_CTRL_OP_HSYNC_POL		BIT(17)
+> +#define  PVI_CTRL_OP_DE_POL		BIT(16)
+> +#define  PVI_CTRL_INP_VSYNC_POL		BIT(14)
+> +#define  PVI_CTRL_INP_HSYNC_POL		BIT(13)
+> +#define  PVI_CTRL_INP_DE_POL		BIT(12)
+> +#define  PVI_CTRL_MODE_MASK		GENMASK(2, 1)
+> +#define  PVI_CTRL_MODE_LCDIF		2
+> +#define  PVI_CTRL_EN			BIT(0)
+> +
+> +struct imx8mp_hdmi_pvi {
+> +	struct drm_bridge	bridge;
+> +	struct device		*dev;
+> +	struct drm_bridge	*next_bridge;
+> +	void __iomem		*regs;
+> +};
+> +
+> +static inline struct imx8mp_hdmi_pvi *
+> +to_imx8mp_hdmi_pvi(struct drm_bridge *bridge)
+> +{
+> +	return container_of(bridge, struct imx8mp_hdmi_pvi, bridge);
+> +}
+> +
+> +static int imx8mp_hdmi_pvi_bridge_attach(struct drm_bridge *bridge,
+> +					 enum drm_bridge_attach_flags flags)
+> +{
+> +	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
+> +
+> +	return drm_bridge_attach(bridge->encoder, pvi->next_bridge,
+> +				 bridge, flags);
+> +}
+> +
+> +static void imx8mp_hdmi_pvi_bridge_enable(struct drm_bridge *bridge,
+> +					  struct drm_bridge_state *bridge_state)
+> +{
+> +	struct drm_atomic_state *state = bridge_state->base.state;
+> +	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
+> +	struct drm_connector_state *conn_state;
+> +	const struct drm_display_mode *mode;
+> +	struct drm_crtc_state *crtc_state;
+> +	struct drm_connector *connector;
+> +	u32 bus_flags, val;
+> +
+> +	connector = drm_atomic_get_new_connector_for_encoder(state, bridge->encoder);
+> +	conn_state = drm_atomic_get_new_connector_state(state, connector);
+> +	crtc_state = drm_atomic_get_new_crtc_state(state, conn_state->crtc);
+> +
+> +	if (WARN_ON(pm_runtime_resume_and_get(pvi->dev)))
+> +		return;
+> +
+> +	mode = &crtc_state->adjusted_mode;
+> +
+> +	val = FIELD_PREP(PVI_CTRL_MODE_MASK, PVI_CTRL_MODE_LCDIF) | PVI_CTRL_EN;
+> +
+> +	if (mode->flags & DRM_MODE_FLAG_PVSYNC)
+> +		val |= PVI_CTRL_OP_VSYNC_POL | PVI_CTRL_INP_VSYNC_POL;
+> +
+> +	if (mode->flags & DRM_MODE_FLAG_PHSYNC)
+> +		val |= PVI_CTRL_OP_HSYNC_POL | PVI_CTRL_INP_HSYNC_POL;
+> +
+> +	if (pvi->next_bridge->timings)
+> +		bus_flags = pvi->next_bridge->timings->input_bus_flags;
+> +	else if (bridge_state)
+> +		bus_flags = bridge_state->input_bus_cfg.flags;
+> +
+> +	if (bus_flags & DRM_BUS_FLAG_DE_HIGH)
+> +		val |= PVI_CTRL_OP_DE_POL | PVI_CTRL_INP_DE_POL;
+> +
+> +	writel(val, pvi->regs + HTX_PVI_CTRL);
+> +}
+> +
+> +static void imx8mp_hdmi_pvi_bridge_disable(struct drm_bridge *bridge,
+> +					   struct drm_bridge_state *bridge_state)
+> +{
+> +	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
+> +
+> +	writel(0x0, pvi->regs + HTX_PVI_CTRL);
+> +
+> +	pm_runtime_put(pvi->dev);
+> +}
+> +
+> +static u32 *
+> +imx8mp_hdmi_pvi_bridge_get_input_bus_fmts(struct drm_bridge *bridge,
+> +					  struct drm_bridge_state *bridge_state,
+> +					  struct drm_crtc_state *crtc_state,
+> +					  struct drm_connector_state *conn_state,
+> +					  u32 output_fmt,
+> +					  unsigned int *num_input_fmts)
+> +{
+> +	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
+> +	struct drm_bridge *next_bridge = pvi->next_bridge;
+> +	struct drm_bridge_state *next_state;
+> +
+> +	if (!next_bridge->funcs->atomic_get_input_bus_fmts)
+> +		return 0;
+> +
+> +	next_state = drm_atomic_get_new_bridge_state(crtc_state->state,
+> +						     next_bridge);
+> +
+> +	return next_bridge->funcs->atomic_get_input_bus_fmts(next_bridge,
+> +							     next_state,
+> +							     crtc_state,
+> +							     conn_state,
+> +							     output_fmt,
+> +							     num_input_fmts);
+> +}
+> +
+> +static const struct drm_bridge_funcs imx_hdmi_pvi_bridge_funcs = {
+> +	.attach		= imx8mp_hdmi_pvi_bridge_attach,
+> +	.atomic_enable	= imx8mp_hdmi_pvi_bridge_enable,
+> +	.atomic_disable	= imx8mp_hdmi_pvi_bridge_disable,
+> +	.atomic_get_input_bus_fmts = imx8mp_hdmi_pvi_bridge_get_input_bus_fmts,
+> +	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
+> +	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
+> +	.atomic_reset = drm_atomic_helper_bridge_reset,
+> +};
+> +
+> +static int imx8mp_hdmi_pvi_probe(struct platform_device *pdev)
+> +{
+> +	struct device_node *remote;
+> +	struct imx8mp_hdmi_pvi *pvi;
+> +
+> +	pvi = devm_kzalloc(&pdev->dev, sizeof(*pvi), GFP_KERNEL);
+> +	if (!pvi)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, pvi);
+> +	pvi->dev = &pdev->dev;
+> +
+> +	pvi->regs = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(pvi->regs))
+> +		return PTR_ERR(pvi->regs);
+> +
+> +	/* Get the next bridge in the pipeline. */
+> +	remote = of_graph_get_remote_node(pdev->dev.of_node, 1, -1);
+> +	if (!remote)
+> +		return -EINVAL;
+> +
+> +	pvi->next_bridge = of_drm_find_bridge(remote);
+> +	of_node_put(remote);
+> +
+> +	if (!pvi->next_bridge)
+> +		return dev_err_probe(&pdev->dev, -EPROBE_DEFER,
+> +				     "could not find next bridge\n");
+> +
+> +	/* Register the bridge. */
+> +	pvi->bridge.funcs = &imx_hdmi_pvi_bridge_funcs;
+> +	pvi->bridge.of_node = pdev->dev.of_node;
+> +	pvi->bridge.timings = pvi->next_bridge->timings;
+> +
+> +	drm_bridge_add(&pvi->bridge);
+> +
+> +	pm_runtime_enable(&pdev->dev);
 
----
+I would move this just before drm_bridge_add(). In theory, as soon as
+the bridge is added, it could get used, so it's a good practice to
+initialize everything before adding it.
 
-Changelog v4:
-- Explicitly set snps_ddrc_info.dq_width for Baikal-T1 DDRC for better
-  maintainability.
-- Explicitly set sys_app_map.minsize to SZ_256M instead of using a helper
-  macro DDR_MIN_SARSIZE.
----
- drivers/edac/synopsys_edac.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+> +
+> +	return 0;
+> +}
+> +
+> +static int imx8mp_hdmi_pvi_remove(struct platform_device *pdev)
+> +{
+> +	struct imx8mp_hdmi_pvi *pvi = platform_get_drvdata(pdev);
+> +
+> +	pm_runtime_disable(&pdev->dev);
+> +
+> +	drm_bridge_remove(&pvi->bridge);
 
-diff --git a/drivers/edac/synopsys_edac.c b/drivers/edac/synopsys_edac.c
-index e589aa9f7876..04cde79eb3f6 100644
---- a/drivers/edac/synopsys_edac.c
-+++ b/drivers/edac/synopsys_edac.c
-@@ -1349,6 +1349,21 @@ static int zynqmp_init_plat(struct snps_edac_priv *priv)
- 	return 0;
- }
- 
-+/*
-+ * bt1_init_plat - Baikal-T1-specific platform initialization.
-+ * @priv:	DDR memory controller private data.
-+ *
-+ * Return: always zero.
-+ */
-+static int bt1_init_plat(struct snps_edac_priv *priv)
-+{
-+	priv->info.dq_width = SNPS_DQ_32;
-+	priv->info.hif_burst_len = SNPS_DDR_BL8;
-+	priv->sys_app_map.minsize = SZ_256M;
-+
-+	return 0;
-+}
-+
- /**
-  * snps_get_dtype - Return the controller memory width.
-  * @mstr:	Master CSR value.
-@@ -2476,6 +2491,7 @@ static int snps_mc_remove(struct platform_device *pdev)
- 
- static const struct of_device_id snps_edac_match[] = {
- 	{ .compatible = "xlnx,zynqmp-ddrc-2.40a", .data = zynqmp_init_plat },
-+	{ .compatible = "baikal,bt1-ddrc", .data = bt1_init_plat },
- 	{ .compatible = "snps,ddrc-3.80a" },
- 	{ }
- };
+And here you could flip the two as well for consistency.
+
+With these minor changes,
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id imx8mp_hdmi_pvi_match[] = {
+> +	{
+> +		.compatible = "fsl,imx8mp-hdmi-pvi",
+> +	}, {
+> +		/* sentinel */
+> +	}
+> +};
+> +MODULE_DEVICE_TABLE(of, imx8mp_hdmi_pvi_match);
+> +
+> +static struct platform_driver imx8mp_hdmi_pvi_driver = {
+> +	.probe	= imx8mp_hdmi_pvi_probe,
+> +	.remove	= imx8mp_hdmi_pvi_remove,
+> +	.driver		= {
+> +		.name = "imx-hdmi-pvi",
+> +		.of_match_table	= imx8mp_hdmi_pvi_match,
+> +	},
+> +};
+> +module_platform_driver(imx8mp_hdmi_pvi_driver);
+> +
+> +MODULE_DESCRIPTION("i.MX8MP HDMI TX Parallel Video Interface bridge driver");
+> +MODULE_LICENSE("GPL");
+
 -- 
-2.41.0
+Regards,
 
+Laurent Pinchart
 
