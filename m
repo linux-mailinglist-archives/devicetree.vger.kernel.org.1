@@ -1,203 +1,158 @@
-Return-Path: <devicetree+bounces-1830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 360EA7A8841
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 17:26:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 273D17A8839
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 17:25:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A9801C20F1D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 15:26:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D66C3282665
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 15:25:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2590E3C683;
-	Wed, 20 Sep 2023 15:26:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CCF53B7BE;
+	Wed, 20 Sep 2023 15:25:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A7FD3B7BD
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 15:26:02 +0000 (UTC)
-Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C72F5E6;
-	Wed, 20 Sep 2023 08:25:59 -0700 (PDT)
-Received: from pps.filterd (m0148664.ppops.net [127.0.0.1])
-	by mx0b-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38KENZWg006347;
-	Wed, 20 Sep 2023 15:25:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : subject :
- date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=pps0720;
- bh=lOoOGMnwkRpp5qXSLiS7UajBL6zMDJfdCCiJrzbi1J4=;
- b=n8SwJIWqBsGbdqctGgxZfbZxjilRyJVclmRNLr5/p7/QAvOStS8CPnsCzMNqbwrjtp6k
- f8pEO2GcLO4yrWrU+mkIKs/pZs+l9yV+NKjzf17DY3fQg6Kjgs/bE9JedkFgcPPELot7
- /O0HK8VHDiRnRmskWT40arQS7HR+CnI+YbX7j6FTSwLDYP+0bBh6+/h4WzIRXkIDF3G9
- tMe8j3v7/XQf+xyjZbhkJ/vADyVPr3LQTtb2jVpkVnObAGyaV2kLVNhWA0Wduhy5pXK1
- tZOP59YpVpsGuo1nFazJCaKE9MHZB6u6exKxe6rVMBf9+4We0NiO3ikViBzNFxTcedZz xQ== 
-Received: from p1lg14879.it.hpe.com ([16.230.97.200])
-	by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3t82f1rjvn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 20 Sep 2023 15:25:50 +0000
-Received: from p1lg14885.dc01.its.hpecorp.net (unknown [10.119.18.236])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by p1lg14879.it.hpe.com (Postfix) with ESMTPS id 844711319C;
-	Wed, 20 Sep 2023 15:25:49 +0000 (UTC)
-Received: from hpe.com (unknown [16.231.227.39])
-	by p1lg14885.dc01.its.hpecorp.net (Postfix) with ESMTP id F25FE80B25E;
-	Wed, 20 Sep 2023 15:25:48 +0000 (UTC)
-From: charles.kearney@hpe.com
-To: charles.kearney@hpe.com, verdun@hpe.com, nick.hawkins@hpe.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/1] ARM: dts: hpe: BUG: Correct GXP register ranges
-Date: Wed, 20 Sep 2023 15:25:14 +0000
-Message-Id: <20230920152514.3889174-2-charles.kearney@hpe.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230920152514.3889174-1-charles.kearney@hpe.com>
-References: <20230920152514.3889174-1-charles.kearney@hpe.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4555D3B2A4;
+	Wed, 20 Sep 2023 15:25:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB690C433C8;
+	Wed, 20 Sep 2023 15:25:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695223546;
+	bh=84if6Rt9sb+lMTCfxVLo8MgoC3NPhilBQ/XZ/msXQ0Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WRMM6LkbqVxZHgOxKUk6odzdzhWDBIsEkU7VQsMn6HA3FGvfa220uRNNesUZucYyg
+	 Rp17+LhuklSWjjQvITGBawPJOh/+nA9maYOpJQ2HSwo7yTYmiCKzRaMNzxCbwukWK6
+	 qEF7BBCBfHB7dcr83yjRsVHMOd64T+q+DxxmLNyo0Euv5S7Yfp87yIea8PIEsI6XkB
+	 DenQ99cRM30vad1K6qF8tFBFLnba4/IJQ4BbUNqP+a+gEz9PXCzk2NW0T+bAG2oCtn
+	 69ac8Yt8Q740eBMBU1ZQqHRNgz47aF2+G+g62Yd0ZBTmYdNKUBbmShl639QC521TCT
+	 LT8g4oJ4zWkxg==
+Date: Wed, 20 Sep 2023 16:25:42 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Gokhan Celik <gokhan.celik@analog.com>
+Cc: outreachy@lists.linux.dev, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] regulator: dt-bindings: Add ADI MAX77503 support
+Message-ID: <20230920-84ed9120f304012067f0d390@fedora>
+References: <cover.1695155379.git.gokhan.celik@analog.com>
+ <5ce9482e53587d9250ecaa07d0908b987081b4e9.1695155379.git.gokhan.celik@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: 2YqVdXtsdpy_jwTkpEwZCR89H0Um7C1d
-X-Proofpoint-ORIG-GUID: 2YqVdXtsdpy_jwTkpEwZCR89H0Um7C1d
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-20_05,2023-09-20_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- lowpriorityscore=0 suspectscore=0 spamscore=0 adultscore=0 mlxlogscore=622
- malwarescore=0 impostorscore=0 clxscore=1015 bulkscore=0 mlxscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309200125
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ou1Mt6OWPM9UBPMp"
+Content-Disposition: inline
+In-Reply-To: <5ce9482e53587d9250ecaa07d0908b987081b4e9.1695155379.git.gokhan.celik@analog.com>
 
-From: Charles Kearney <charles.kearney@hpe.com>
 
-Bug fix to correct memory ranges on GXP to include host registers. This 
-corrects a issue where the host interrupt controller is not available.
+--ou1Mt6OWPM9UBPMp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Fixes: 53658de4fadb ARM: dts: Introduce HPE GXP Device tree
+On Tue, Sep 19, 2023 at 11:45:22PM +0300, Gokhan Celik wrote:
+> Add ADI MAX77503 buck converter devicetree document.
+>=20
+> Signed-off-by: Gokhan Celik <gokhan.celik@analog.com>
 
-Signed-off-by: Charles Kearney <charles.kearney@hpe.com>
+Other than Mark's comment, this seems fine to me. W/ that to his
+satisfaction,=20
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
----
-V2: 
- *added Fixes tag
- *removed irrelevant comment line
- *fixed range alignment
----
- arch/arm/boot/dts/hpe/hpe-gxp.dtsi | 37 +++++++++++++++---------------
- 1 file changed, 19 insertions(+), 18 deletions(-)
+Thanks,
+Conor.
 
-diff --git a/arch/arm/boot/dts/hpe/hpe-gxp.dtsi b/arch/arm/boot/dts/hpe/hpe-gxp.dtsi
-index cf735b3c4f35..5de5ec4d833c 100644
---- a/arch/arm/boot/dts/hpe/hpe-gxp.dtsi
-+++ b/arch/arm/boot/dts/hpe/hpe-gxp.dtsi
-@@ -52,73 +52,74 @@ L2: cache-controller@b0040000 {
- 			cache-level = <2>;
- 		};
- 
--		ahb@c0000000 {
-+		ahb@80000000 {
- 			compatible = "simple-bus";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
--			ranges = <0x0 0xc0000000 0x30000000>;
- 			dma-ranges;
-+			ranges = <0x00000000 0x80000000 0x20000000>,
-+					 <0x40000000 0xc0000000 0x3fff0000>;
- 
--			vic0: interrupt-controller@eff0000 {
-+			vic0: interrupt-controller@4eff0000 {
- 				compatible = "arm,pl192-vic";
--				reg = <0xeff0000 0x1000>;
-+				reg = <0x4eff0000 0x1000>;
- 				interrupt-controller;
- 				#interrupt-cells = <1>;
- 			};
- 
--			vic1: interrupt-controller@80f00000 {
-+			vic1: interrupt-controller@f00000 {
- 				compatible = "arm,pl192-vic";
--				reg = <0x80f00000 0x1000>;
-+				reg = <0xf00000 0x1000>;
- 				interrupt-controller;
- 				#interrupt-cells = <1>;
- 			};
- 
--			uarta: serial@e0 {
-+			uarta: serial@400000e0 {
- 				compatible = "ns16550a";
--				reg = <0xe0 0x8>;
-+				reg = <0x400000e0 0x8>;
- 				interrupts = <17>;
- 				interrupt-parent = <&vic0>;
- 				clock-frequency = <1846153>;
- 				reg-shift = <0>;
- 			};
- 
--			uartb: serial@e8 {
-+			uartb: serial@400000e8 {
- 				compatible = "ns16550a";
--				reg = <0xe8 0x8>;
-+				reg = <0x400000e8 0x8>;
- 				interrupts = <18>;
- 				interrupt-parent = <&vic0>;
- 				clock-frequency = <1846153>;
- 				reg-shift = <0>;
- 			};
- 
--			uartc: serial@f0 {
-+			uartc: serial@400000f0 {
- 				compatible = "ns16550a";
--				reg = <0xf0 0x8>;
-+				reg = <0x400000f0 0x8>;
- 				interrupts = <19>;
- 				interrupt-parent = <&vic0>;
- 				clock-frequency = <1846153>;
- 				reg-shift = <0>;
- 			};
- 
--			usb0: usb@efe0000 {
-+			usb0: usb@4efe0000 {
- 				compatible = "hpe,gxp-ehci", "generic-ehci";
--				reg = <0xefe0000 0x100>;
-+				reg = <0x4efe0000 0x100>;
- 				interrupts = <7>;
- 				interrupt-parent = <&vic0>;
- 			};
- 
--			st: timer@80 {
-+			st: timer@40000080 {
- 				compatible = "hpe,gxp-timer";
--				reg = <0x80 0x16>;
-+				reg = <0x40000080 0x16>;
- 				interrupts = <0>;
- 				interrupt-parent = <&vic0>;
- 				clocks = <&iopclk>;
- 				clock-names = "iop";
- 			};
- 
--			usb1: usb@efe0100 {
-+			usb1: usb@4efe0100 {
- 				compatible = "hpe,gxp-ohci", "generic-ohci";
--				reg = <0xefe0100 0x110>;
-+				reg = <0x4efe0100 0x110>;
- 				interrupts = <6>;
- 				interrupt-parent = <&vic0>;
- 			};
--- 
-2.25.1
+> ---
+>  .../regulator/adi,max77503-regulator.yaml     | 53 +++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/adi,max77=
+503-regulator.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/regulator/adi,max77503-reg=
+ulator.yaml b/Documentation/devicetree/bindings/regulator/adi,max77503-regu=
+lator.yaml
+> new file mode 100644
+> index 000000000000..128e04ae3f4d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/adi,max77503-regulator.=
+yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright (c) 2023 Analog Devices, Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/adi,max77503-regulator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices MAX77503 Buck Converter
+> +
+> +maintainers:
+> +  - Gokhan Celik <Gokhan.Celik@analog.com>
+> +
+> +description: |
+> +  The Analog Devices MAX77503 is a single channel 14V input, 1.5A=20
+> +  high-efficiency buck converter. This converter has 94% efficiency
+> +  for 2-Cell/3-Cell battery applications.
+> +
+> +allOf:
+> +  - $ref: regulator.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,max77503
+> +
+> +  reg:
+> +    description: I2C address of the device
+> +    items:
+> +      - enum: [0x1e, 0x24, 0x37]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - regulator-min-microvolt
+> +  - regulator-max-microvolt
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        regulator@1e {
+> +            compatible =3D "adi,max77503";
+> +            reg =3D <0x1e>;
+> +
+> +            regulator-min-microvolt =3D <800000>;
+> +            regulator-max-microvolt =3D <5000000>;
+> +        };
+> +    };
+> +
+> --=20
+> 2.34.1
+>=20
 
+--ou1Mt6OWPM9UBPMp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQsO8wAKCRB4tDGHoIJi
+0tyYAQCJxMcDy+fikeaoO+6jOx5wjXyy908NVat3LeWdpb/TvAEAmbrmH+5qlBYF
+yWONjlrdSzj+KY+xOXuYPIy/X/Ccxg4=
+=vn73
+-----END PGP SIGNATURE-----
+
+--ou1Mt6OWPM9UBPMp--
 
