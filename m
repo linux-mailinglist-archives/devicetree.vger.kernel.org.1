@@ -1,129 +1,164 @@
-Return-Path: <devicetree+bounces-1710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 837577A78B8
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 12:10:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC6C07A78DC
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 12:15:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96B8C1C20842
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 10:10:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C39061C209A2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 10:15:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3AC3156EB;
-	Wed, 20 Sep 2023 10:08:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C783156FC;
+	Wed, 20 Sep 2023 10:15:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44B6D14F9D
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 10:08:39 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9990B9;
-	Wed, 20 Sep 2023 03:08:33 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38KA8ONP111098;
-	Wed, 20 Sep 2023 05:08:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1695204504;
-	bh=KNiXL8yltTjYYUIgIVFgkURrsbSpcF7matGKWF6iaAI=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=oNS7fIajLjiI7NKdaa6Ot2fGSRYAT6rsZLqm31RLuEE84hAdekFKsY7wUmZx9maio
-	 YZHb4vDZ+tuKhvJ1RLiTq3sEvl6q6CplYh2X+OxY9+s5ZqFfgzcORyc8Fl4XjZr7e4
-	 0z7eKq2+NVD6XFP8cqmqH1dQw+XH8Wa1KJf/4B8s=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38KA8OPV042246
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 20 Sep 2023 05:08:24 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 20
- Sep 2023 05:08:23 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 20 Sep 2023 05:08:23 -0500
-Received: from [10.249.141.75] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38KA8JPx098358;
-	Wed, 20 Sep 2023 05:08:19 -0500
-Message-ID: <524cb54d-c82e-d580-2cd3-17c5f1fc1e03@ti.com>
-Date: Wed, 20 Sep 2023 15:38:18 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A33514F9D
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 10:15:03 +0000 (UTC)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 869AE94
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 03:15:00 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-991c786369cso917963466b.1
+        for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 03:15:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695204899; x=1695809699; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9mZqf86pDWOD/601uuBDOEbjatLYGf0C2OZfOrIlKtE=;
+        b=kmXu4C8kZ0hGAg1DeVAt7O2XiyWjG3Z16TRyluuSySQJ0sxmuLRTdOJAdK4BRBevyc
+         gNLxDRSGpe1I7ERvpHUzNMVEbsNiKM0qPb8Ut4MNdHp+bZEpFas9FvGpGLqBmcYoetmm
+         DrZom8VzBqvSWRTMxf0iJgTfaj0vQ1oEc9HmJ3d1FB1rbQKz6Oz7adGx5iSJF9SCd67H
+         tkYKRLN+XdPL+BKkNvkzWr4GExQiluuBItwNmocJaIxHQis2vn3oxtSK/lHRvfe0g2BJ
+         XV2NrCpEWa3gQwfMU12DO5Mb5yHATdwk+TvW5C4/T2dWWRh0i5sPYkBiVmK5sXvLpjwJ
+         gw+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695204899; x=1695809699;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9mZqf86pDWOD/601uuBDOEbjatLYGf0C2OZfOrIlKtE=;
+        b=Px3T448rPtYB2IJCBrAjuqCAdy1Vib/k3KCeeEyFkb0usp6bfov/qbRUCo1oMnhEeB
+         BqQjF1ruzt9vzWXIcoRysHdQvgh8jZNiijmsRs/3TbnTy8tSNTPATGGqX1nA2suwiLY0
+         hmOHOikTb6vbkdRbbPw2eqaGe/GcrShFIu4I+dP4GXTaHl5y4JbJAyadnZMuUtPk1Aw9
+         90u3Um8YKbUUf1oi+8SCr+Lw+H3VlXL/PLqRB6mZpP1sDD67vvMPH5+g5FM1E5vFql9p
+         KOwZa/7nmuu8TzavHTtc44YHSWlIm5Dc97Vlaw+kcoCXMopVWXqqruLNZ47L5AYLBass
+         ba9A==
+X-Gm-Message-State: AOJu0YwEvCBfHKm3iVk302Yxr7qQwbrUmG3LyOES7eukSDrhCXvfkOiI
+	vUnnel5ehrvZpi3H/gQexacw/g==
+X-Google-Smtp-Source: AGHT+IErDzQjZ+K58/UpSu8O8qdmGRhWMWecc+OmIf04JHEc3evawqV8aeI1xjeHIg0cpLMPHURYYw==
+X-Received: by 2002:a17:907:a0c6:b0:9a1:688f:cf2d with SMTP id hw6-20020a170907a0c600b009a1688fcf2dmr1475764ejc.39.1695204898449;
+        Wed, 20 Sep 2023 03:14:58 -0700 (PDT)
+Received: from [172.20.86.172] (static-212-193-78-212.thenetworkfactory.nl. [212.78.193.212])
+        by smtp.gmail.com with ESMTPSA id re20-20020a170906d8d400b0099bc8bd9066sm9199112ejb.150.2023.09.20.03.14.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Sep 2023 03:14:58 -0700 (PDT)
+Message-ID: <479ce1da-10e5-589d-cb98-e7fef98c5543@linaro.org>
+Date: Wed, 20 Sep 2023 12:14:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.1
-Subject: Re: [PATCH v3] arm64: dts: ti: k3-j721s2-main: Enable support for
- SDR104 speed mode
-To: Bhavya Kapoor <b-kapoor@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>
-References: <20230920094130.20279-1-b-kapoor@ti.com>
+Subject: Re: [PATCH v3 2/5] arm64: dts: qcom: sm4450: Add apps_rsc and cmd_db
+ node
 Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20230920094130.20279-1-b-kapoor@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, tglx@linutronix.de, maz@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ catalin.marinas@arm.com, will@kernel.org
+Cc: geert+renesas@glider.be, arnd@arndb.de, neil.armstrong@linaro.org,
+ nfraprado@collabora.com, rafal@milecki.pl, peng.fan@nxp.com,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ quic_tsoni@quicinc.com, quic_shashim@quicinc.com, quic_kaushalk@quicinc.com,
+ quic_tdas@quicinc.com, quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com,
+ quic_ajipan@quicinc.com, kernel@quicinc.com
+References: <20230920065459.12738-1-quic_tengfan@quicinc.com>
+ <20230920065459.12738-3-quic_tengfan@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230920065459.12738-3-quic_tengfan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 
-On 9/20/2023 3:11 PM, Bhavya Kapoor wrote:
-> According to TRM for J721S2, SDR104 speed mode is supported by the SoC
-> but its capabilities were masked in device tree. Remove sdhci-caps-mask
-> to enable support for SDR104 speed mode for SD card in J721S2 SoC. Also
-> add itap delay select value for DDR50 High Speed Mode.
->
-> [+] Refer to : section 12.3.6.1.1 MMCSD Features, in J721S2 TRM
-> - https://www.ti.com/lit/zip/spruj28
->
-> Fixes: b8545f9d3a54 ("arm64: dts: ti: Add initial support for J721S2 SoC")
-> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
-> Reviewed-by: Udit Kumar <u-kumar1@ti.com>
+
+On 9/20/23 08:54, Tengfei Fan wrote:
+> From: Ajit Pandey <quic_ajipan@quicinc.com>
+> 
+> Add apps_rsc node and cmd_db memory region for sm4450.
+> 
+> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
 > ---
->
-> Changelog v2->v3:
->   - Add Itap Delay Select value for DDR50 SD High Speed Mode
->
-> Link to v2 patch : https://lore.kernel.org/all/20230412121415.860447-1-b-kapoor@ti.com/
->
->   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 3 +--
->   1 file changed, 1 insertion(+), 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> index 084f8f5b6699..a5ab301b14f1 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> @@ -766,11 +766,10 @@ main_sdhci1: mmc@4fb0000 {
->   		ti,itap-del-sel-sd-hs = <0x0>;
->   		ti,itap-del-sel-sdr12 = <0x0>;
->   		ti,itap-del-sel-sdr25 = <0x0>;
-> +		ti,itap-del-sel-ddr50 = <0x2>;
-
-Please elaborate , why we need itap delay
-
-As per v2 
-https://lore.kernel.org/all/d85fbd74-6470-f664-2eb6-ee02b8135b23@ti.com/
-
-there should not be any change in tap delay
-
-
->   		ti,clkbuf-sel = <0x7>;
->   		ti,trm-icp = <0x8>;
->   		dma-coherent;
-> -		/* Masking support for SDR104 capability */
-> -		sdhci-caps-mask = <0x00000003 0x00000000>;
->   		status = "disabled";
+>   arch/arm64/boot/dts/qcom/sm4450.dtsi | 35 ++++++++++++++++++++++++++++
+>   1 file changed, 35 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm4450.dtsi b/arch/arm64/boot/dts/qcom/sm4450.dtsi
+> index c4e5b33f5169..3d9d3b5e9510 100644
+> --- a/arch/arm64/boot/dts/qcom/sm4450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm4450.dtsi
+> @@ -5,6 +5,7 @@
+>   
+>   #include <dt-bindings/gpio/gpio.h>
+>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/soc/qcom,rpmh-rsc.h>
+>   
+>   / {
+>   	interrupt-parent = <&intc>;
+> @@ -328,6 +329,18 @@
+>   		};
 >   	};
 >   
+> +	reserved_memory: reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		aop_cmd_db_mem: cmd-db@80860000 {
+> +			compatible = "qcom,cmd-db";
+> +			reg = <0x0 0x80860000 0x0 0x20000>;
+> +			no-map;
+> +		};
+> +	};
+> +
+>   	soc: soc@0 {
+>   		#address-cells = <2>;
+>   		#size-cells = <2>;
+> @@ -419,6 +432,28 @@
+>   				status = "disabled";
+>   			};
+>   		};
+> +
+> +		apps_rsc: rsc@17a00000 {
+> +			compatible = "qcom,rpmh-rsc";
+> +			reg = <0 0x17a00000 0 0x10000>,
+> +			      <0 0x17a10000 0 0x10000>,
+> +			      <0 0x17a20000 0 0x10000>;
+0x0 for consistency
+
+> +			reg-names = "drv-0", "drv-1", "drv-2";
+> +			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
+> +			label = "apps_rsc";
+> +			qcom,tcs-offset = <0xd00>;
+> +			qcom,drv-id = <2>;
+> +			qcom,tcs-config = <ACTIVE_TCS    2>, <SLEEP_TCS     3>,
+> +					  <WAKE_TCS      3>, <CONTROL_TCS   0>;
+You haven't addressed Bjorn's comment about the number of
+CONTROL_TCSes, are you sure 0 is correct?
+
+Konrad
 
