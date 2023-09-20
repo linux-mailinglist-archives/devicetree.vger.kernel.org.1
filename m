@@ -1,161 +1,210 @@
-Return-Path: <devicetree+bounces-1909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 636DF7A8E20
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 23:01:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C8437A8E9C
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 23:40:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 253411C20445
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 21:01:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2DEB21C2011E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 21:40:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4AC831A90;
-	Wed, 20 Sep 2023 21:01:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 392AD405D0;
+	Wed, 20 Sep 2023 21:40:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C54341AB9
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 21:01:07 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62D18D3;
-	Wed, 20 Sep 2023 14:01:04 -0700 (PDT)
-Received: from notapiano (unknown [185.213.155.222])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 4A88D6607243;
-	Wed, 20 Sep 2023 22:01:01 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1695243662;
-	bh=Rtz3erKyUOgKqZM9Fh/lnQavTB+Wa5RuboyAzdxYPLg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EjtNw7g2/rRrUYorNvkEqpKPwq+RWcONPEdiiyLA/JzNV4qLkpq1ko4v9iaU9EwSz
-	 UT0TDFmRA07pEn24u2Wyb37LLo2PqvxnpDLaLjhUPoghKY5cKOQtMyogxRe3dDqV0q
-	 gROtD6w1u4K2iV1be/a2j/ptDKVwQzqhWF30lr1iMR1yvf1SLDLmkyTeLeurVIn+CR
-	 Tx3ihWbL2GL6Qe5ZQi+LFsKhmcoX4V5WQI9KmRvR5rFWXhUzsUvEOUjorwg/zbrKsh
-	 Ca5fLcRW/meo/Z5i74tx+xE3mJ37WPHtDwKMzW5gYsOGI6RV1WnzOMihTDT26wnl2o
-	 2UejAn5V85png==
-Date: Wed, 20 Sep 2023 17:00:56 -0400
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>, Shuah Khan <shuah@kernel.org>,
-	Mark Brown <broonie@kernel.org>, kernelci@lists.linux.dev,
-	kernel@collabora.com, Guenter Roeck <groeck@chromium.org>,
-	Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v3 0/3] Add a test to catch unprobed Devicetree devices
-Message-ID: <368a1fc3-02d7-49f2-a881-f39259f8c186@notapiano>
-References: <20230828211424.2964562-1-nfraprado@collabora.com>
- <97c368a1-9c76-490a-848e-eacd6411e810@notapiano>
- <20230920195629.GA2784994-robh@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 800151A5B6
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 21:40:04 +0000 (UTC)
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2051.outbound.protection.outlook.com [40.107.105.51])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A82429E;
+	Wed, 20 Sep 2023 14:40:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HJrK9watHPJKQxUgMDkDJS4IisTVunYzotyfLGD1vh1qAFibEunaspld9GroxjzTSYqTMK151VOLTZYOxi9hccITPD9BEsm6Rn/Jo3I1oXfOOG9N7uEUr/ZPi9DsytrYiVtCQVRp54MriHFqj5YwXsLYlgf+aYeCuZUglqSSQ1kZPVJhVmmtG0QtQ/Izd9ldAZjGISsER1gi8Pm+JYVMcCVHYpF6JoMXcdAnJAWdQ6AERGiLPeK+D1oi6vyHM4erw8VbDwfk7tV44tIWhQvjVz/A+Wghf/NvjEVLd+r0zj+mKU208gaxMIGotlojtHKQnhnHiioWC/3De6u14GZkAw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tq/C/pID4iz4Jjz4P79msRy2xU9IP5O4y5A1YZr1GTo=;
+ b=dtG5OConzbm22sgmeffby/bTJXlSSjBPtsz9uszgVn1evRAwS2nn5Id+NfNZ2E/l+EWry6MlVr6/grv3xDJz/IuQsOxm/I0kud2syVv4jwlxiElvWEJS8TMopaOmml5XXTpQb9eJJ3LVFQFS8i7Y5l+Mm6F6g5Wmq+Dz2xMAIrNSdAchx6MIKy0va0zRJ61UiWS4YX7110KjaiBm7k+nVPINbwngU9GvyD2OkHuOYmSFO0klZqUz8q3LwvDXZvNKg4snwlVhvmu62OtIUugYqQlNhLgD6TrAhnNxfimg1w8EfAo5U6hJVOQPSYMCPLpgm1kNizK6TewUC3/KwuH+KA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tq/C/pID4iz4Jjz4P79msRy2xU9IP5O4y5A1YZr1GTo=;
+ b=snn1fR2Ue7leH2pNkv8T0KXBPoRQnMk968e0WhRM3oOP0kckG3iydOKjc33Yi/GmTA3dxbJP20ufykEOuAcg2ArpYnTTmbxXDeBCllm6y50CwYIW6lqwH0dhOgMur7CYhtWUrDXmrj/4syyrdqvlX41OGLqERwwHeZjZIZcsHcg=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
+ by AM7PR04MB7158.eurprd04.prod.outlook.com (2603:10a6:20b:120::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.19; Wed, 20 Sep
+ 2023 21:40:00 +0000
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::1774:e25f:f99:aca2]) by AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::1774:e25f:f99:aca2%4]) with mapi id 15.20.6792.026; Wed, 20 Sep 2023
+ 21:40:00 +0000
+Date: Wed, 20 Sep 2023 17:39:48 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: manivannan.sadhasivam@linaro.org
+Cc: aisheng.dong@nxp.com, bhelgaas@google.com, devicetree@vger.kernel.org,
+	festevam@gmail.com, imx@lists.linux.dev, jdmason@kudzu.us,
+	kernel@pengutronix.de, kishon@kernel.org, kw@linux.com,
+	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	lorenzo.pieralisi@arm.com, lpieralisi@kernel.org, maz@kernel.org,
+	s.hauer@pengutronix.de, shawnguo@kernel.org, tglx@linutronix.de
+Subject: Re: [PATCH v2 0/5] Add RC-to-EP doorbell with platform MSI controller
+Message-ID: <ZQtmpL2vCMgR+Upu@lizhi-Precision-Tower-5810>
+References: <20230911220920.1817033-1-Frank.Li@nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230911220920.1817033-1-Frank.Li@nxp.com>
+X-ClientProxiedBy: BY5PR13CA0005.namprd13.prod.outlook.com
+ (2603:10b6:a03:180::18) To AM6PR04MB4838.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230920195629.GA2784994-robh@kernel.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|AM7PR04MB7158:EE_
+X-MS-Office365-Filtering-Correlation-Id: a0919d92-ae04-4342-15be-08dbba2223f3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	wQ3i3PvbcZ15FUEfL9nUVfUmvxgA4DCz19PyurFkz7NTSmRkjnKV/YnNkiAJpRoSr+tV9m9qAGhezv/K1z0F/L0z+85L6bHR5M5Yw/mJDmTOzogwNJnAoRT2AFp9mUOm9ZpzieB+V9CXLsSP5vnx00eSoyzn6kOfK71rY1yZxnsbs4LmMw/xmJaXZQKWTF6FWFB7bOH6MvNJRzPG0BK9/ky1lZ/77MSPN1i9abS866oyRcSWTA8j3HWJlHt1G1ypIcIb+8aXO/Fd7AI+3px8qQzyw3r6fGmICJ8AXauxQZfOdGKupPMgHHzDRtA5TIC8of53B7kYPZ+N1lAvBmWp3A0jGNxxn+TnKzxBPEwPTKDqecK59tz0xcIOqON4uWukQtQrsm+UMdJQgmhuDXSiFK9hbbRJ0v2PKX//6Ew6bxnPUmr777slKk4gjkO6/A/VlAV1JddF7EHz82JfecsGDwke1fVVOGGOcY3Ftu19SMrTiTZUEvF2lqHLyu+2BEppkE0/tRQh9ctJ2e1JBo5YXZwxwvXF2SR85Mzl+gLMWZXeUbhDl2GndPN5VnmPBNX7/tyaA7K5rsIIXHEfXulj/Z1HCVjh33yj+1drYLHedYdf7tTkmWpvKypC9m5qaOQH
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(136003)(366004)(39860400002)(396003)(376002)(346002)(1800799009)(186009)(451199024)(9686003)(6486002)(52116002)(6666004)(478600001)(6512007)(6506007)(83380400001)(8936002)(8676002)(66476007)(66946007)(66556008)(966005)(316002)(6916009)(5660300002)(38350700002)(86362001)(38100700002)(4326008)(7416002)(2906002)(26005)(41300700001)(33716001)(67856001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?K2FtaHpEdjRYWVZ4TjZxeVlYMUdaRjkxdG40RC9KUEJxMDhyeUhSVCtrSlYz?=
+ =?utf-8?B?OXdHR1BINlhUM3RpR1Zna0lLOUUwa1c0RlZ6V25Kay9zalBJR2ZTaXhlUVdB?=
+ =?utf-8?B?MVlYTUQ5K0RmRlMrbEYySXZhQmQzZmJCME8xZTlPSlJJdU9BSDFRVzlJdTZC?=
+ =?utf-8?B?M0QxNUtraldTK2JVWkFPcExwVzlmV3VTVkNCdTVmUDF4N3RUV01nR3B2dHE2?=
+ =?utf-8?B?VnN3Q1JQV0hHS29iNFdIYXVpRGRPMUtSUnlEZEZFSHNpWll3MzVpRkNVdlV4?=
+ =?utf-8?B?TWJpbGRUT2FhTVJmT1VhU2pySmJtOWVBMHBDcTR6MTd3bW01a2duWGNmMlZQ?=
+ =?utf-8?B?WUtZZldvaGU5NmpIYVBidUQ4SkszYm9HWnNYOHpEV2lCOGhrbjZJOXlHcVZo?=
+ =?utf-8?B?UE1NLzB5MmVLZ0lsNWNHK1NPbXd4WXdkK1pVRXZ1aW84VnlvRXB5WEc5U0pk?=
+ =?utf-8?B?T1NvczVYbGRhSm4za2RPb2FPTEdXK1VQNjkxSDNYWWQ2ZjVIWm5rNXNuTHB2?=
+ =?utf-8?B?eTZEaExVNEFyNC9TUWJxbVNtVVZZUFRFNXFmbXdJUDBTL0ZxSkNSc2JTbk9n?=
+ =?utf-8?B?L0QvbkFZZkZDU2NUNTRRek9xempLZlRuKzYyZjBHN1QrUjV4SGZuZm9OTmQ1?=
+ =?utf-8?B?NlJwZHVlRW9ycnNWRlc4QWpsN09MSHE1UDlhbzZ3SmV3TDlicGY1K2pSVkdI?=
+ =?utf-8?B?dUtUYXo1NDQxOFBHTlY0UXZ3eVdyU2pFMkFxU1FSYVRUTkxMNW1YdHlxY3l4?=
+ =?utf-8?B?UThJeTdXa2hEQkZ5cWVhYllGVDNQTFRldWxlYmd1VG4xdmVaU0JIK0s5V1dG?=
+ =?utf-8?B?dDJhaEZ6NFgrTG02cWVialNyOHhxSlpLc3Z2OEpJMFEyS0lIaFFvUklaMlc2?=
+ =?utf-8?B?UnozWlJUemJzZy9vc0hZckg4UU5LV3hvZHUrTVh6aiszTnZya1ZtNjBrdmpl?=
+ =?utf-8?B?WXRDR2xoOUNuVWNqM2c4VmVKdE1xb0hLODkwNHRGbSs4endvaVhnaHQ4Wkhz?=
+ =?utf-8?B?YTVSWkFpN0JnTXJhcmRzSUhVTGZ0S2prK1R1ckE1WkpHZmlDK1RwbEExQ1Z2?=
+ =?utf-8?B?dWMrd0VSWEFyaHc4dnlVc0ZDSXF3NTlUZWpDRVBBOE11a25wa1NyQXlQUGZ1?=
+ =?utf-8?B?TUQ2VkRxTVlJVGQ1dW5VMlNjaUsxdVl6L0dtOEg0R2NFeGh2bENrSGhlUEVj?=
+ =?utf-8?B?VjJOcm01REN5NysrWkVYcWhTOHFPMjVnRFpnWUdhdTNMSHVKenJGMnp4dXhV?=
+ =?utf-8?B?T1NiOGJoUngrSlRHQmYycGRTYnZ4L0F3RGUwQkoxNFJyU1VrekdMMk1QK0My?=
+ =?utf-8?B?TzNQSjdnVFZCNW1oMVJ5Q0t4TFpSeFV3UzZXL1lvVHF6WllyNFo0bGpmMmdH?=
+ =?utf-8?B?cFl4ZmpMNktmWCtJR2lzT3cwSEs1YXdlNGYrUmErOURocHZIZzdldFNRSUJi?=
+ =?utf-8?B?MmhtZ0ZYSjBoVzBZeVNxamF0bDI3RlJMNEVCRDhJY2lIS0FZbkJCN0ltZFIv?=
+ =?utf-8?B?YVZTemhtK3U4TFhHSWVnMlNQUmMxdjRta25UTjZLR2pOd1djVGJ4cXJweHNJ?=
+ =?utf-8?B?YlkxQ1NiNlV6ZGhvN2IyODBUNForOWttYnlMckthdkdZU1lZRU9SSVNnRDZV?=
+ =?utf-8?B?M0dmZ1ZNdVFKL3AvNFJsWDEvL2NWTUhYMm9ETFBySStQZmNaZnRPYWRrcnlF?=
+ =?utf-8?B?di9GZExjRHFVWDlhbkErYmJ1emNwSENXZ01iREkvMlBJYnoyUmNXTFBtcFlo?=
+ =?utf-8?B?VUxmbmZ3d2dQWDJZNlBxQ1U4SlFldHNMS01xaFBnZGpNWnNHQTAzN2U2QVBX?=
+ =?utf-8?B?U051R3NmT3F4ZlVZUWl2NlF0U2NyMTZDeWNCaU9QTmdSd3FqaGpvdDBnbkNa?=
+ =?utf-8?B?Q1BONEVsSHBQQndEbTdES0o5aHBOQXRmYmxnZFFFWHk2ajJXWll0K0UzMlk2?=
+ =?utf-8?B?dmJqVDQ1dUJzOFpWNW9pWHRzQ3JCWjBsbzk1L2NEQ2RSYlQ0dVZLN3ZpbUxS?=
+ =?utf-8?B?VHordFFDWG16Q3ppS3kxMTlMZm1GRVNTVTJsQXU3SEErZlZMUWd4V05tTERk?=
+ =?utf-8?B?d1gvcVFOcUpoVVVpd0psN3ZtZmpKeXRHRzcxT0R5SDgvSHNsaGxtSFVXQi9v?=
+ =?utf-8?Q?ieAPog6kYVOrELXZgXlAk5zhT?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a0919d92-ae04-4342-15be-08dbba2223f3
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2023 21:39:59.9282
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: kIpEl9sd4DYMFSr/kvSHIs/5sA73Gr1yXHUBPVUbBOaqPA6oetlOr6yzB0BPBhH86VJLM0k+izstLqgOaFl3FQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7158
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, Sep 20, 2023 at 02:56:29PM -0500, Rob Herring wrote:
-> On Wed, Sep 20, 2023 at 10:03:06AM -0400, N�colas F. R. A. Prado wrote:
-> > On Mon, Aug 28, 2023 at 05:13:09PM -0400, N�colas F. R. A. Prado wrote:
-> > > 
-> > > Regressions that cause a device to no longer be probed by a driver can
-> > > have a big impact on the platform's functionality, and despite being
-> > > relatively common there isn't currently any generic test to detect them.
-> > > As an example, bootrr [1] does test for device probe, but it requires
-> > > defining the expected probed devices for each platform.
-> > > 
-> > > Given that the Devicetree already provides a static description of
-> > > devices on the system, it is a good basis for building such a test on
-> > > top.
-> > > 
-> > > This series introduces a test to catch regressions that prevent devices
-> > > from probing.
-> > > 
-> > > Patches 1 and 2 extend the existing dt-extract-compatibles to be able to
-> > > output only the compatibles that can be expected to match a Devicetree
-> > > node to a driver. Patch 2 adds a kselftest that walks over the
-> > > Devicetree nodes on the current platform and compares the compatibles to
-> > > the ones on the list, and on an ignore list, to point out devices that
-> > > failed to be probed.
-> > > 
-> > > A compatible list is needed because not all compatibles that can show up
-> > > in a Devicetree node can be used to match to a driver, for example the
-> > > code for that compatible might use "OF_DECLARE" type macros and avoid
-> > > the driver framework, or the node might be controlled by a driver that
-> > > was bound to a different node.
-> > > 
-> > > An ignore list is needed for the few cases where it's common for a
-> > > driver to match a device but not probe, like for the "simple-mfd"
-> > > compatible, where the driver only probes if that compatible is the
-> > > node's first compatible.
-> > > 
-> > > The reason for parsing the kernel source instead of relying on
-> > > information exposed by the kernel at runtime (say, looking at modaliases
-> > > or introducing some other mechanism), is to be able to catch issues
-> > > where a config was renamed or a driver moved across configs, and the
-> > > .config used by the kernel not updated accordingly. We need to parse the
-> > > source to find all compatibles present in the kernel independent of the
-> > > current config being run.
-> > > 
-> > > [1] https://github.com/kernelci/bootrr
-> > > 
-> > > Changes in v3:
-> > > - Added DT selftest path to MAINTAINERS
-> > > - Enabled device probe test for nodes with 'status = "ok"'
-> > > - Added pass/fail/skip totals to end of test output
-> > > 
-> > > Changes in v2:
-> > > - Extended dt-extract-compatibles script to be able to extract driver
-> > >   matching compatibles, instead of adding a new one in Coccinelle
-> > > - Made kselftest output in the KTAP format
-> > > 
-> > > N�colas F. R. A. Prado (3):
-> > >   dt: dt-extract-compatibles: Handle cfile arguments in generator
-> > >     function
-> > >   dt: dt-extract-compatibles: Add flag for driver matching compatibles
-> > >   kselftest: Add new test for detecting unprobed Devicetree devices
-> > > 
-> > >  MAINTAINERS                                   |  1 +
-> > >  scripts/dtc/dt-extract-compatibles            | 74 +++++++++++++----
-> > >  tools/testing/selftests/Makefile              |  1 +
-> > >  tools/testing/selftests/dt/.gitignore         |  1 +
-> > >  tools/testing/selftests/dt/Makefile           | 21 +++++
-> > >  .../selftests/dt/compatible_ignore_list       |  1 +
-> > >  tools/testing/selftests/dt/ktap_helpers.sh    | 70 ++++++++++++++++
-> > >  .../selftests/dt/test_unprobed_devices.sh     | 83 +++++++++++++++++++
-> > >  8 files changed, 236 insertions(+), 16 deletions(-)
-> > >  create mode 100644 tools/testing/selftests/dt/.gitignore
-> > >  create mode 100644 tools/testing/selftests/dt/Makefile
-> > >  create mode 100644 tools/testing/selftests/dt/compatible_ignore_list
-> > >  create mode 100644 tools/testing/selftests/dt/ktap_helpers.sh
-> > >  create mode 100755 tools/testing/selftests/dt/test_unprobed_devices.sh
-> > 
-> > Hi Rob,
-> > 
-> > gentle ping on this series.
-> > 
-> > I take it you'll be merging this through your tree, so I've added Shuah's R-b
-> > that she supplied on v2 for the kselftest patch.
-> 
-> Sorry, now applied.
-> 
-> If you send something before or in the merge window, it is best to 
-> rebase and resend after rc1 comes out.
+On Mon, Sep 11, 2023 at 06:09:15PM -0400, Frank Li wrote:
+> ┌────────────┐   ┌───────────────────────────────────┐   ┌────────────────┐
+> │            │   │                                   │   │                │
+> │            │   │ PCI Endpoint                      │   │ PCI Host       │
+> │            │   │                                   │   │                │
+> │            │◄──┤ 1.platform_msi_domain_alloc_irqs()│   │                │
+> │            │   │                                   │   │                │
+> │ MSI        ├──►│ 2.write_msi_msg()                 ├──►├─BAR<n>         │
+> │ Controller │   │   update doorbell register address│   │                │
+> │            │   │   for BAR                         │   │                │
+> │            │   │                                   │   │ 3. Write BAR<n>│
+> │            │◄──┼───────────────────────────────────┼───┤                │
+> │            │   │                                   │   │                │
+> │            ├──►│ 4.Irq Handle                      │   │                │
+> │            │   │                                   │   │                │
+> │            │   │                                   │   │                │
+> └────────────┘   └───────────────────────────────────┘   └────────────────┘
 
-Ah didn't know about that, will keep it in mind for the future, thanks!
+@mani:
+	Do you have chance to review this patch again?
 
-N�colas
+Frank
+
+> 
+> This patches based on old https://lore.kernel.org/imx/20221124055036.1630573-1-Frank.Li@nxp.com/
+> 
+> Original patch only target to vntb driver. But actually it is common
+> method.
+> 
+> This patches add new API to pci-epf-core, so any EP driver can use it.
+> 
+> The key point is comments from Thomas Gleixner, who suggest use new
+> PCI/IMS. But arm platform change still not be merged yet.
+> 
+> git://git.kernel.org/pub/scm/linux/kernel/git/tglx/devel.git devmsi-v2-arm
+> 
+> So I still use existed method implement RC to EP doorbell.
+> 
+> If Thomas Gleixner want to continue work on devmsi-v2-arm, I can help test
+> and update this patch.
+> 
+> Change from v1 to v2
+> - Add missed patch for endpont/pci-epf-test.c
+> - Move alloc and free to epc driver from epf.
+> - Provide general help function for EPC driver to alloc platform msi irq.
+> - Fixed manivannan's comments.
+> 
+> Frank Li (5):
+>   PCI: endpoint: Add RC-to-EP doorbell support using platform MSI
+>     controller
+>   PCI: dwc: add doorbell support by use MSI controller
+>   PCI: endpoint: pci-epf-test: add doorbell test
+>   misc: pci_endpoint_test: Add doorbell test case
+>   tools: PCI: Add 'B' option for test doorbell
+> 
+>  drivers/misc/pci_endpoint_test.c              |  48 +++++
+>  .../pci/controller/dwc/pcie-designware-ep.c   |   2 +
+>  drivers/pci/endpoint/functions/pci-epf-test.c |  59 +++++-
+>  drivers/pci/endpoint/pci-epc-core.c           | 192 ++++++++++++++++++
+>  drivers/pci/endpoint/pci-epf-core.c           |  44 ++++
+>  include/linux/pci-epc.h                       |   6 +
+>  include/linux/pci-epf.h                       |   7 +
+>  include/uapi/linux/pcitest.h                  |   1 +
+>  tools/pci/pcitest.c                           |  16 +-
+>  9 files changed, 373 insertions(+), 2 deletions(-)
+> 
+> -- 
+> 2.34.1
+> 
 
