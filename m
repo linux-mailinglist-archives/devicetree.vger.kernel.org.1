@@ -1,27 +1,27 @@
-Return-Path: <devicetree+bounces-1757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34E867A826B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 14:59:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 917587A828E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 15:02:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3CC92819DF
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 12:59:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B79F281DD5
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 13:02:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FED5339AF;
-	Wed, 20 Sep 2023 12:59:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22B4E341AB;
+	Wed, 20 Sep 2023 13:02:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7083A15AE5
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 12:59:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E2A9C433C9;
-	Wed, 20 Sep 2023 12:59:06 +0000 (UTC)
-Message-ID: <a3c61e5a-e5cb-43d5-a3dc-80806f8da672@xs4all.nl>
-Date: Wed, 20 Sep 2023 14:59:05 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 121B631A68
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 13:02:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 282D5C433C8;
+	Wed, 20 Sep 2023 13:02:45 +0000 (UTC)
+Message-ID: <2e1aebf4-090a-4966-bbe0-a6c41d9f97ba@xs4all.nl>
+Date: Wed, 20 Sep 2023 15:02:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -29,7 +29,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 1/7] media: v4l2: Add ignore_streaming flag
+Subject: Re: [PATCH v12 7/7] media: chips-media: wave5: Add wave5 driver to
+ maintainers file
 Content-Language: en-US, nl
 To: Sebastian Fricke <sebastian.fricke@collabora.com>,
  Mauro Carvalho Chehab <mchehab@kernel.org>,
@@ -46,7 +47,7 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, kernel@collabora.com,
  Nicolas Dufresne <nicolas.dufresne@collabora.com>
 References: <20230915-wave5_v12_on_media_master-v12-0-92fc66cd685d@collabora.com>
- <20230915-wave5_v12_on_media_master-v12-1-92fc66cd685d@collabora.com>
+ <20230915-wave5_v12_on_media_master-v12-7-92fc66cd685d@collabora.com>
 From: Hans Verkuil <hverkuil@xs4all.nl>
 Autocrypt: addr=hverkuil@xs4all.nl; keydata=
  xsFNBFQ84W0BEAC7EF1iL4s3tY8cRTVkJT/297h0Hz0ypA+ByVM4CdU9sN6ua/YoFlr9k0K4
@@ -91,94 +92,52 @@ Autocrypt: addr=hverkuil@xs4all.nl; keydata=
  gYmkrmv0duG1FStpY+IIQn1TOkuXrciTVfZY1cZD0aVxwlxXBnUNZZNslldvXFtndxR0SFat
  sflovhDxKyhFwXOP0Rv8H378/+14TaykknRBIKEc0+lcr+EMOSUR5eg4aURb8Gc3Uc7fgQ6q
  UssTXzHPyj1hAyDpfu8DzAwlh4kKFTodxSsKAjI45SLjadSc94/5Gy8645Y1KgBzBPTH7Q==
-In-Reply-To: <20230915-wave5_v12_on_media_master-v12-1-92fc66cd685d@collabora.com>
+In-Reply-To: <20230915-wave5_v12_on_media_master-v12-7-92fc66cd685d@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 15/09/2023 23:11, Sebastian Fricke wrote:
-> Add a new flag to the `struct v4l2_m2m_dev` to toggle whether a queue
-> must be streaming in order to allow queuing jobs to the ready queue.
-> Currently, both queues (CAPTURE & OUTPUT) must be streaming in order to
-> allow adding new jobs. This behavior limits the usability of M2M for
-> some drivers, as these have to be able, to perform analysis of the
-
-able, to -> able to
-
-> sequence to ensure, that userspace prepares the CAPTURE queue correctly.
-
-ensure, that -> ensure that
-
+> From: Robert Beckett <bob.beckett@collabora.com>
 > 
+> Add the Chips&Media wave5 encoder/decoder driver to the maintainers file
+> 
+> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
 > Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
-> Signed-off-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
 > ---
->  include/media/v4l2-mem2mem.h | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
+>  MAINTAINERS | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> diff --git a/include/media/v4l2-mem2mem.h b/include/media/v4l2-mem2mem.h
-> index d6c8eb2b5201..97a48e61e358 100644
-> --- a/include/media/v4l2-mem2mem.h
-> +++ b/include/media/v4l2-mem2mem.h
-> @@ -57,6 +57,16 @@ struct v4l2_m2m_dev;
->   * @rdy_spinlock: spin lock to protect the struct usage
->   * @num_rdy:	number of buffers ready to be processed
->   * @buffered:	is the queue buffered?
-> + * @ignore_streaming: Dictates whether the queue must be streaming for a job to
-> + *		      be queued.
-> + *		      This is useful, for example, when the driver requires to
-> + *		      initialize the sequence with a firmware, where only a
-> + *		      queued OUTPUT queue buffer and STREAMON on the OUTPUT
-> + *		      queue is required to perform the anlysis of the bitstream
-> + *		      header.
-> + *		      This means the driver is responsible for implementing the
-> + *		      job_ready callback correctly to make sure that requirements
-> + *		      for actual decoding are met.
-
-This is a bad description and field name.
-
-Basically what this field does is that, if true, the streaming state of the
-capture queue is ignored. So just call it that: ignore_cap_streaming.
-
-And explain that, if true, job_ready() will be called even if the capture
-queue is not streaming, and that that can be used to allow hardware to
-analyze the bitstream header that arrives on the OUTPUT queue.
-
-Also, doesn't this field belong to struct v4l2_m2m_ctx? It makes no sense
-for the output queue, this is really a configuration for the m2m context as
-a whole.
-
->   *
->   * Queue for buffers ready to be processed as soon as this
->   * instance receives access to the device.
-> @@ -69,6 +79,7 @@ struct v4l2_m2m_queue_ctx {
->  	spinlock_t		rdy_spinlock;
->  	u8			num_rdy;
->  	bool			buffered;
-> +	bool			ignore_streaming;
->  };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 063a11791bbf..b6a592c14caa 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -23206,6 +23206,14 @@ F:	include/linux/watchdog.h
+>  F:	include/trace/events/watchdog.h
+>  F:	include/uapi/linux/watchdog.h
 >  
->  /**
-> @@ -564,6 +575,12 @@ static inline void v4l2_m2m_set_dst_buffered(struct v4l2_m2m_ctx *m2m_ctx,
->  	m2m_ctx->cap_q_ctx.buffered = buffered;
->  }
->  
-> +static inline void v4l2_m2m_set_dst_ignore_streaming(struct v4l2_m2m_ctx *m2m_ctx,
-> +						     bool ignore_streaming)
-> +{
-> +	m2m_ctx->cap_q_ctx.ignore_streaming = ignore_streaming;
-> +}
-> +
+> +WAVE5 VPU CODEC DRIVER
+> +M:	Nas Chung <nas.chung@chipsnmedia.com>
+> +M:	Jackson Lee <jackson.lee@chipsnmedia.com>
 
-I think this is overkill, esp. when the field is moved to m2m_ctx. Just clearly
-document that drivers can set this.
+Hmm, is this right? Shouldn't Sebastian be added here? Or is it really
+intended that once this driver is merged, any maintenance will be done
+by Chips&Media people?
+
+Just checking if this is intended.
 
 Regards,
 
 	Hans
 
->  /**
->   * v4l2_m2m_ctx_release() - release m2m context
->   *
+> +L:	linux-media@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/media/cnm,wave5.yaml
+> +F:	drivers/media/platform/chips-media/wave5/
+> +
+>  WHISKEYCOVE PMIC GPIO DRIVER
+>  M:	Kuppuswamy Sathyanarayanan <sathyanarayanan.kuppuswamy@linux.intel.com>
+>  L:	linux-gpio@vger.kernel.org
 > 
 
 
