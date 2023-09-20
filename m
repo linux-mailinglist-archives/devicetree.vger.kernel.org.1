@@ -1,87 +1,324 @@
-Return-Path: <devicetree+bounces-1771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA9EF7A838B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 15:37:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 569837A83A5
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 15:41:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1116E1C209B2
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 13:37:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3EF121C208B8
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 13:41:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3A0537CB3;
-	Wed, 20 Sep 2023 13:37:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7759C37CBB;
+	Wed, 20 Sep 2023 13:41:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D875328C2;
-	Wed, 20 Sep 2023 13:37:28 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E400AD;
-	Wed, 20 Sep 2023 06:37:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=NYgPqWlLR9OmoskXgzlKZX5/4oCw4XqQIUHPbq6Tcs0=; b=fNRPN8813hhOtl2h7GqhhE1rLz
-	M7f3uLQvFM+ALO1BlDF93jgOzYIKyUAHK6baOwoPHd00yiPSI17Hosp4W/E7ig21g2wyADu7otOZB
-	/yeX9BkKYB34voDMVHNkC+D+cjSorK/NEsaVmLc5PjhaPXPYPXHVxUteWvrB+qdgiZLs=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1qixO5-0070hz-Le; Wed, 20 Sep 2023 15:37:05 +0200
-Date: Wed, 20 Sep 2023 15:37:05 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Parthiban.Veerasooran@microchip.com
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	corbet@lwn.net, Steen.Hegelund@microchip.com, rdunlap@infradead.org,
-	horms@kernel.org, casper.casan@gmail.com, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, Horatiu.Vultur@microchip.com,
-	Woojung.Huh@microchip.com, Nicolas.Ferre@microchip.com,
-	UNGLinuxDriver@microchip.com, Thorsten.Kummermehr@microchip.com,
-	Ciprian.Regus@analog.com, jtm@lopingdog.com
-Subject: Re: [RFC PATCH net-next 1/6] net: ethernet: implement OPEN Alliance
- control transaction interface
-Message-ID: <52685909-ec92-41b0-957f-25da8a9be9eb@lunn.ch>
-References: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
- <20230908142919.14849-2-Parthiban.Veerasooran@microchip.com>
- <f23997c1-7507-41c6-8bb3-47d6a353beb8@lunn.ch>
- <14c089d7-4d34-9cd5-7f77-55c80815e003@microchip.com>
- <deff3e64-a10f-4d07-9651-502442a86987@lunn.ch>
- <cf23ed3c-d1cb-61fd-a305-e2787ef70cb1@microchip.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62D3328C2
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 13:41:17 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8D084A9
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 06:41:15 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 12AC81FB
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 06:41:52 -0700 (PDT)
+Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id AFAC03F67D
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 06:41:14 -0700 (PDT)
+Date: Wed, 20 Sep 2023 14:41:05 +0100
+From: Liviu Dudau <Liviu.Dudau@arm.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Boris Brezillon <boris.brezillon@collabora.com>,
+	dri-devel@lists.freedesktop.org, Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Boichat <drinkcat@chromium.org>,
+	Daniel Stone <daniels@collabora.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Steven Price <steven.price@arm.com>, devicetree@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
+	=?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
+	"Marty E . Plummer" <hanetzer@startmail.com>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Faith Ekstrand <faith.ekstrand@collabora.com>
+Subject: Re: [PATCH v2 14/15] dt-bindings: gpu: mali-valhall-csf: Add initial
+ bindings for panthor driver
+Message-ID: <ZQr2cTMz1-PsOMRP@e110455-lin.cambridge.arm.com>
+References: <20230809165330.2451699-1-boris.brezillon@collabora.com>
+ <20230809165330.2451699-15-boris.brezillon@collabora.com>
+ <3517f2e9-d9d7-5bf8-1905-62f52d68c512@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <cf23ed3c-d1cb-61fd-a305-e2787ef70cb1@microchip.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3517f2e9-d9d7-5bf8-1905-62f52d68c512@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-> Ah ok, I think there is a misunderstanding here. This is related to OPEN 
-> Alliance protocol. Control transactions consist of one or more control 
-> commands. Control commands are used by the SPI host to read and write 
-> registers within the MAC-PHY. Each control commands are composed of a 
-> 32-bit control command header followed by register data. WNR (write not 
-> read) bit in the control command header indicates if data is to be 
-> written to registers (when set) or read from registers (when clear). so 
-> basically it indicates the type of the control command on the registers.
+Hi Krzysztof,
 
-OK, so this clearly indicates the names are bad and documentation is
-missing if i got this completely wrong. Adding kerneldoc to these
-functions should help.
+Thanks for taking the time to review this patch. I'm about to update it
+to address your comments and I need some clarifications from you.
 
-	Andrew
+On Sun, Aug 20, 2023 at 10:01:25AM +0200, Krzysztof Kozlowski wrote:
+> On 09/08/2023 18:53, Boris Brezillon wrote:
+> > From: Liviu Dudau <liviu.dudau@arm.com>
+> > 
+> > Arm has introduced a new v10 GPU architecture that replaces the Job Manager
+> > interface with a new Command Stream Frontend. It adds firmware driven
+> > command stream queues that can be used by kernel and user space to submit
+> > jobs to the GPU.
+> > 
+> > Add the initial schema for the device tree that is based on support for
+> > RK3588 SoC. The minimum number of clocks is one for the IP, but on Rockchip
+> > platforms they will tend to expose the semi-independent clocks for better
+> > power management.
+> 
+> A nit, subject: drop second/last, redundant "bindings for". The
+> "dt-bindings" prefix is already stating that these are bindings.
+> 
+> Also drop "driver" form the subject. Bindings are for hardware, not drivers.
 
+Not exactly true as the 'compatible' string is for the driver, but I understand
+your point.
+
+> 
+> > 
+> > v2:
+> > - New commit
+> > 
+> > Signed-off-by: Liviu Dudau <liviu.dudau@arm.com>
+> 
+> SoB chain is incomplete.
+> 
+> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Conor Dooley <conor+dt@kernel.org>
+> > Cc: devicetree@vger.kernel.org
+> > ---
+> >  .../bindings/gpu/arm,mali-valhall-csf.yaml    | 148 ++++++++++++++++++
+> >  1 file changed, 148 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> > new file mode 100644
+> > index 000000000000..2b9f77aa0b7a
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> > @@ -0,0 +1,148 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/gpu/arm,mali-valhall-csf.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: ARM Mali Valhall GPU
+> > +
+> > +maintainers:
+> > +  - Liviu Dudau <liviu.dudau@arm.com>
+> > +  - Boris Brezillon <boris.brezillon@collabora.com>
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: '^gpu@[a-f0-9]+$'
+> > +
+> > +  compatible:
+> > +    oneOf:
+> 
+> Drop oneOf.
+
+The idea was to allow for future compatible strings to be added later, but
+I guess we can re-introduce the oneOf entry later. Will remove it.
+
+> 
+> > +      - items:
+> > +          - enum:
+> > +              - rockchip,rk3588-mali
+> > +          - const: arm,mali-valhall-csf   # Mali Valhall GPU model/revision is fully discoverable
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    items:
+> > +      - description: Job interrupt
+> > +      - description: MMU interrupt
+> > +      - description: GPU interrupt
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: job
+> > +      - const: mmu
+> > +      - const: gpu
+> > +
+> > +  clocks:
+> > +    minItems: 1
+> > +    maxItems: 3
+> > +
+> > +  clock-names:
+> > +    minItems: 1
+> > +    items:
+> > +      - const: core
+> > +      - const: coregroup
+> > +      - const: stacks
+> > +
+> > +  mali-supply: true
+> > +
+> > +  sram-supply: true
+> > +
+> > +  operating-points-v2: true
+> 
+> Missing opp-table.
+
+This is the main topic I want to clarify. See further down for the main comment,
+but I would like to understand what you are asking here. To copy the schema
+from bindings/opp/opp-v2.yaml and bindings/opp/opp-v2-base.yaml?
+
+> 
+> > +
+> > +  power-domains:
+> > +    minItems: 1
+> > +    maxItems: 5
+> > +
+> > +  power-domain-names:
+> > +    minItems: 1
+> > +    maxItems: 5
+> > +
+> > +  "#cooling-cells":
+> > +    const: 2
+> > +
+> > +  dynamic-power-coefficient:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      A u32 value that represents the running time dynamic
+> > +      power coefficient in units of uW/MHz/V^2. The
+> > +      coefficient can either be calculated from power
+> > +      measurements or derived by analysis.
+> > +
+> > +      The dynamic power consumption of the GPU is
+> > +      proportional to the square of the Voltage (V) and
+> > +      the clock frequency (f). The coefficient is used to
+> > +      calculate the dynamic power as below -
+> > +
+> > +      Pdyn = dynamic-power-coefficient * V^2 * f
+> > +
+> > +      where voltage is in V, frequency is in MHz.
+> > +
+> > +  dma-coherent: true
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - interrupt-names
+> > +  - clocks
+> > +  - mali-supply
+> > +
+> > +additionalProperties: false
+> > +
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: rockchip,rk3588-mali
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          minItems: 3
+> > +        clock-names:
+> > +          items:
+> > +            - const: core
+> > +            - const: coregroup
+> > +            - const: stacks
+> 
+> This duplicates top-level. Just minItems: 3.
+
+Will remove the duplicated names.
+
+> 
+> Please describe also power domains - constrains and names.
+
+I'm not sure the power domains and how to handle them have been
+entirely settled for Rockchip, hence why they were not included. Will
+check with Collabora to see if they have anything to add here, but
+for non-Rockchip platforms (like Juno with FPGAs) the constraints
+are going to be different.
+
+> 
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/power/rk3588-power.h>
+> > +
+> > +    gpu: gpu@fb000000 {
+> > +        compatible = "rockchip,rk3588-mali", "arm,mali-valhall-csf";
+> > +        reg = <0xfb000000 0x200000>;
+> > +        interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH 0>,
+> > +                     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH 0>,
+> > +                     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH 0>;
+> > +        interrupt-names = "job", "mmu", "gpu";
+> > +        clock-names = "core", "coregroup", "stacks";
+> > +        clocks = <&cru CLK_GPU>, <&cru CLK_GPU_COREGROUP>,
+> > +                 <&cru CLK_GPU_STACKS>;
+> > +        power-domains = <&power RK3588_PD_GPU>;
+> > +        operating-points-v2 = <&gpu_opp_table>;
+> > +        mali-supply = <&vdd_gpu_s0>;
+> > +        sram-supply = <&vdd_gpu_mem_s0>;
+> > +        status = "disabled";
+> 
+> Drop status.
+
+Will do.
+
+> 
+> > +    };
+> > +
+> > +    gpu_opp_table: opp-table {
+> 
+> Opp table should be inside the device node.
+
+I cannot find any device tree that supports your suggested usage. Most (all?) of
+the device trees that I can find have the opp table as a separate node from
+the gpu and make use of the 'operating-points-v2 = <&opp_node_name>' reference
+in the board fragment. To me that makes more sense as different boards can have
+different operating points and is no reason to make them sub-nodes of the gpu.
+
+> 
+> > +        compatible = "operating-points-v2";
+> > +        opp-300000000 {
+> > +            opp-hz = /bits/ 64 <300000000>;
+> > +            opp-microvolt = <675000 675000 850000>;
+> > +        };
+> 
+> Best regards,
+> Krzysztof
+> 
+
+Thanks again for your review!
+
+Best regards,
+Liviu
+
+-- 
+====================
+| I would like to |
+| fix the world,  |
+| but they're not |
+| giving me the   |
+ \ source code!  /
+  ---------------
+    ¯\_(ツ)_/¯
 
