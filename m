@@ -1,228 +1,223 @@
-Return-Path: <devicetree+bounces-1792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F056A7A8621
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 16:04:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CD9F7A8633
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 16:08:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A753E28200E
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 14:04:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC84C281C68
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 14:08:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3D833AC3E;
-	Wed, 20 Sep 2023 14:04:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A70723AC3F;
+	Wed, 20 Sep 2023 14:08:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E80336B12
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 14:04:28 +0000 (UTC)
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE1B3D3
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 07:04:23 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-99bdcade7fbso892205466b.1
-        for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 07:04:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pqrs.dk; s=google; t=1695218662; x=1695823462; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DWkKzE4Z8RDrXV6wrMgsXOyr17/u+hWk6l6i8+o41y0=;
-        b=em1W+8KZ7dIQwzWp4QilMrTesB48Ctsb8uT+hL5orBSxzDl3RB5HJufz5LZakFrgy9
-         8T/Wh/LmWd6u5dvakkoRPSGxjb0purb5EpKQVpuRpFi5BLm8Vtw96MAWbTXTnHqr0Ryh
-         bwjyQpxGbPZXmCRD2lseQfoHWNwTUf3iCZ2JPbWdOXulESyftR4gyCXSyjZu2Sw56VuP
-         N0cQHUAbOW9l6kDCJkGQktxD9FPrSKwu+i905nEZrs1mmp6bprgAJCcH6lY3XZLSWqNE
-         tFYkORTzglmOoPlNUa78gV2b6DttAL2j5vMe6wMrF7U8gbKJUGkLT2wAVqQ4HT0POpNN
-         M26g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695218662; x=1695823462;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DWkKzE4Z8RDrXV6wrMgsXOyr17/u+hWk6l6i8+o41y0=;
-        b=RxqqCfsggAgvBVk9qJd+gc9/euBgTAe6JSZRXWUqTvv4blQR+T41Xa6qRpz2gewIUd
-         mDWZvzijNQ4Cp1ZqjVeLAr0jrFIgLd1HY6BC9V5xTxYn/as0an5tJSmayrR0wkX5wShM
-         j7xtwOU5HCG8p1puGaS69dWmGwVfmEQMjx3Raq3dPmvK2wzhkX3gV0TgR+K7VKxyOLkM
-         5qoEnIjnRZJiol25X/txgHZdo/udSQcBeQe90QaGVFmevl9fGMY4CfbhWEMKysLlOMtx
-         Nx1Y5hECgwWeoLgAbjVKAafIoIXZ/PJ9FFOXF8RaSouexWOtnwOczX3xUTVH1+Ua0Lf7
-         /eCQ==
-X-Gm-Message-State: AOJu0Ywt0ikkRWdb6rTYXVBT7Ipu+FKsXBzglwXUkrc+6Yentg+rVd7N
-	UM3dpeNEfJPQ9eY75hIpgKlkFw==
-X-Google-Smtp-Source: AGHT+IGGYIonhOllcmSBOA3CcwrxlwNHhrbXgSUw/s/q//Q2xEV7PvwsVsb+kstHH91b0JAySyBCdw==
-X-Received: by 2002:a17:906:5386:b0:9a1:be50:ae61 with SMTP id g6-20020a170906538600b009a1be50ae61mr2179267ejo.69.1695218661856;
-        Wed, 20 Sep 2023 07:04:21 -0700 (PDT)
-Received: from capella.localdomain ([193.89.194.60])
-        by smtp.gmail.com with ESMTPSA id c26-20020a170906341a00b00993470682e5sm9397761ejb.32.2023.09.20.07.04.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Sep 2023 07:04:21 -0700 (PDT)
-From: =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alvin@pqrs.dk>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?=A0ipraga?= <alsi@bang-olufsen.dk>
-Cc: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rabeeh Khoury <rabeeh@solid-run.com>,
-	Jacob Siverskog <jacob@teenage.engineering>,
-	Sergej Sawazki <sergej@taudac.com>,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] clk: si5351: allow PLLs to be adjusted without reset
-Date: Wed, 20 Sep 2023 15:09:55 +0200
-Message-ID: <20230920140343.2329225-4-alvin@pqrs.dk>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230920140343.2329225-1-alvin@pqrs.dk>
-References: <20230920140343.2329225-1-alvin@pqrs.dk>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33AAD36B04
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 14:08:33 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12FD9AD;
+	Wed, 20 Sep 2023 07:08:32 -0700 (PDT)
+Received: from nicolas-tpx395.localdomain (unknown [IPv6:2606:6d00:15:bae9::7a9])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id D08F06607243;
+	Wed, 20 Sep 2023 15:08:28 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1695218910;
+	bh=OVi2+NsVBKyZ5/S8nnWLJaBO7/r+oTXhkjecJHc4TdE=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=O7mf/pBo5KBvGr41uVDtoSVde30LviXmg2OwLYTI966fmx8yLst7NW4unL0LAqFQr
+	 Qo+9qHZUeXyawoL4r2lD53Cyiye09l0h0/+KPuGqHf2jfli5v6tDXTd4y884QRuweP
+	 4fZ1RouBK0HNDbp/X+g/ydBDEnAbdjxzTAnVcxVpmjCtujPg578aHzkfhFOGTX4AGH
+	 Kn70ONzZdtsYzKisSn33PGHuNWvfeENlntWWVqirso0eWOU9Jdmzoc0iS/dvvJgvi3
+	 I7+RLwHT2/NA3My2rDlP9yxTv55huscJNI2XXXpOAwcxUogh1VMZ3uDegirF8SX+US
+	 8Jj4MxO9gq5Tw==
+Message-ID: <179e88f04257f21b6b723e935231de70415b3301.camel@collabora.com>
+Subject: Re: [PATCH v12 1/7] media: v4l2: Add ignore_streaming flag
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Hans Verkuil <hverkuil@xs4all.nl>, Sebastian Fricke
+ <sebastian.fricke@collabora.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>,  Nas Chung <nas.chung@chipsnmedia.com>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Jackson Lee <jackson.lee@chipsnmedia.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, NXP Linux Team
+ <linux-imx@nxp.com>,  Conor Dooley <conor+dt@kernel.org>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Robert
+ Beckett <bob.beckett@collabora.com>, linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org,  kernel@collabora.com, Tomasz Figa
+ <tfiga@chromium.org>
+Date: Wed, 20 Sep 2023 10:08:19 -0400
+In-Reply-To: <a3c61e5a-e5cb-43d5-a3dc-80806f8da672@xs4all.nl>
+References: 
+	<20230915-wave5_v12_on_media_master-v12-0-92fc66cd685d@collabora.com>
+	 <20230915-wave5_v12_on_media_master-v12-1-92fc66cd685d@collabora.com>
+	 <a3c61e5a-e5cb-43d5-a3dc-80806f8da672@xs4all.nl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Alvin Šipraga <alsi@bang-olufsen.dk>
+cc Tomasz Figa
 
-Introduce a new PLL reset mode flag which controls whether or not to
-reset a PLL after adjusting its rate. The mode can be configured through
-platform data or device tree.
+Le mercredi 20 septembre 2023 =C3=A0 14:59 +0200, Hans Verkuil a =C3=A9crit=
+=C2=A0:
+> On 15/09/2023 23:11, Sebastian Fricke wrote:
+> > Add a new flag to the `struct v4l2_m2m_dev` to toggle whether a queue
+> > must be streaming in order to allow queuing jobs to the ready queue.
+> > Currently, both queues (CAPTURE & OUTPUT) must be streaming in order to
+> > allow adding new jobs. This behavior limits the usability of M2M for
+> > some drivers, as these have to be able, to perform analysis of the
+>=20
+> able, to -> able to
+>=20
+> > sequence to ensure, that userspace prepares the CAPTURE queue correctly=
+.
+>=20
+> ensure, that -> ensure that
+>=20
+> >=20
+> > Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
+> > Signed-off-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+> > ---
+> >  include/media/v4l2-mem2mem.h | 17 +++++++++++++++++
+> >  1 file changed, 17 insertions(+)
+> >=20
+> > diff --git a/include/media/v4l2-mem2mem.h b/include/media/v4l2-mem2mem.=
+h
+> > index d6c8eb2b5201..97a48e61e358 100644
+> > --- a/include/media/v4l2-mem2mem.h
+> > +++ b/include/media/v4l2-mem2mem.h
+> > @@ -57,6 +57,16 @@ struct v4l2_m2m_dev;
+> >   * @rdy_spinlock: spin lock to protect the struct usage
+> >   * @num_rdy:	number of buffers ready to be processed
+> >   * @buffered:	is the queue buffered?
+> > + * @ignore_streaming: Dictates whether the queue must be streaming for=
+ a job to
+> > + *		      be queued.
+> > + *		      This is useful, for example, when the driver requires to
+> > + *		      initialize the sequence with a firmware, where only a
+> > + *		      queued OUTPUT queue buffer and STREAMON on the OUTPUT
+> > + *		      queue is required to perform the anlysis of the bitstream
+> > + *		      header.
+> > + *		      This means the driver is responsible for implementing the
+> > + *		      job_ready callback correctly to make sure that requirements
+> > + *		      for actual decoding are met.
+>=20
+> This is a bad description and field name.
 
-Since commit 6dc669a22c77 ("clk: si5351: Add PLL soft reset"), the
-driver unconditionally resets a PLL whenever its rate is adjusted.
-The rationale was that a PLL reset was required to get three outputs
-working at the same time. Before this change, the driver never reset the
-PLLs.
+I wonder what's your opinion about the buffered one then :-D
 
-Commit b26ff127c52c ("clk: si5351: Apply PLL soft reset before enabling
-the outputs") subsequently introduced an option to reset the PLL when
-enabling a clock output that sourced it. Here, the rationale was that
-this is required to get a deterministic phase relationship between
-multiple output clocks.
+>=20
+> Basically what this field does is that, if true, the streaming state of t=
+he
+> capture queue is ignored. So just call it that: ignore_cap_streaming.
+>=20
+> And explain that, if true, job_ready() will be called even if the capture
+> queue is not streaming, and that that can be used to allow hardware to
+> analyze the bitstream header that arrives on the OUTPUT queue.
 
-This clearly shows that it is useful to reset the PLLs in applications
-where multiple clock outputs are used. However, the Si5351 also allows
-for glitch-free rate adjustment of its PLLs if one avoids resetting the
-PLL. In our audio application where a single Si5351 clock output is used
-to supply a runtime adjustable bit clock, this unconditional PLL reset
-behaviour introduces unwanted glitches in the clock output.
+Ack.
 
-It would appear that the problem being solved in the former commit
-may be solved by using the optional device tree property introduced in
-the latter commit, obviating the need for an unconditional PLL reset
-after rate adjustment. But it's not OK to break the default behaviour of
-the driver, and it cannot be assumed that all device trees are using the
-property introduced in the latter commit. Hence, the new behaviour is
-made opt-in.
+>=20
+> Also, doesn't this field belong to struct v4l2_m2m_ctx? It makes no sense
+> for the output queue, this is really a configuration for the m2m context =
+as
+> a whole.
 
-Cc: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Cc: Rabeeh Khoury <rabeeh@solid-run.com>
-Cc: Jacob Siverskog <jacob@teenage.engineering>
-Cc: Sergej Sawazki <sergej@taudac.com>
-Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
----
- drivers/clk/clk-si5351.c             | 47 ++++++++++++++++++++++++++--
- include/linux/platform_data/si5351.h |  2 ++
- 2 files changed, 46 insertions(+), 3 deletions(-)
+Unless we come up with a completely new type of M2M that can behave like a =
+gap
+filler (like a video rate m2m), it indeed makes no sense for output. I'm ju=
+st
+illustrating that this is true "now" but someone can come up with valid
+expectation. So I agree with you, we can move it up in the hierarchy.
 
-diff --git a/drivers/clk/clk-si5351.c b/drivers/clk/clk-si5351.c
-index 00fb9b09e030..95d7afb8cfc6 100644
---- a/drivers/clk/clk-si5351.c
-+++ b/drivers/clk/clk-si5351.c
-@@ -506,6 +506,8 @@ static int si5351_pll_set_rate(struct clk_hw *hw, unsigned long rate,
- {
- 	struct si5351_hw_data *hwdata =
- 		container_of(hw, struct si5351_hw_data, hw);
-+	struct si5351_platform_data *pdata =
-+		hwdata->drvdata->client->dev.platform_data;
- 	u8 reg = (hwdata->num == 0) ? SI5351_PLLA_PARAMETERS :
- 		SI5351_PLLB_PARAMETERS;
- 
-@@ -518,9 +520,10 @@ static int si5351_pll_set_rate(struct clk_hw *hw, unsigned long rate,
- 		(hwdata->params.p2 == 0) ? SI5351_CLK_INTEGER_MODE : 0);
- 
- 	/* Do a pll soft reset on the affected pll */
--	si5351_reg_write(hwdata->drvdata, SI5351_PLL_RESET,
--			 hwdata->num == 0 ? SI5351_PLL_RESET_A :
--					    SI5351_PLL_RESET_B);
-+	if (pdata->pll_reset[hwdata->num])
-+		si5351_reg_write(hwdata->drvdata, SI5351_PLL_RESET,
-+				 hwdata->num == 0 ? SI5351_PLL_RESET_A :
-+						    SI5351_PLL_RESET_B);
- 
- 	dev_dbg(&hwdata->drvdata->client->dev,
- 		"%s - %s: p1 = %lu, p2 = %lu, p3 = %lu, parent_rate = %lu, rate = %lu\n",
-@@ -1222,6 +1225,44 @@ static int si5351_dt_parse(struct i2c_client *client,
- 		}
- 	}
- 
-+	/*
-+	 * Parse PLL reset mode. For compatibility with older device trees, the
-+	 * default is to always reset a PLL after setting its rate.
-+	 */
-+	pdata->pll_reset[0] = true;
-+	pdata->pll_reset[1] = true;
-+
-+	of_property_for_each_u32(np, "silabs,pll-reset-mode", prop, p, num) {
-+		if (num >= 2) {
-+			dev_err(&client->dev,
-+				"invalid pll %d on pll-reset-mode prop\n", num);
-+			return -EINVAL;
-+		}
-+
-+		p = of_prop_next_u32(prop, p, &val);
-+		if (!p) {
-+			dev_err(&client->dev,
-+				"missing pll-reset-mode for pll %d\n", num);
-+			return -EINVAL;
-+		}
-+
-+		switch (val) {
-+		case 0:
-+			/* Reset PLL whenever its rate is adjusted */
-+			pdata->pll_reset[num] = true;
-+			break;
-+		case 1:
-+			/* Don't reset PLL whenever its rate is adjusted */
-+			pdata->pll_reset[num] = false;
-+			break;
-+		default:
-+			dev_err(&client->dev,
-+				"invalid pll-reset-mode %d for pll %d\n", val,
-+				num);
-+			return -EINVAL;
-+		}
-+	}
-+
- 	/* per clkout properties */
- 	for_each_child_of_node(np, child) {
- 		if (of_property_read_u32(child, "reg", &num)) {
-diff --git a/include/linux/platform_data/si5351.h b/include/linux/platform_data/si5351.h
-index c71a2dd66143..5f412a615532 100644
---- a/include/linux/platform_data/si5351.h
-+++ b/include/linux/platform_data/si5351.h
-@@ -105,10 +105,12 @@ struct si5351_clkout_config {
-  * @clk_xtal: xtal input clock
-  * @clk_clkin: clkin input clock
-  * @pll_src: array of pll source clock setting
-+ * @pll_reset: array indicating if plls should be reset after setting the rate
-  * @clkout: array of clkout configuration
-  */
- struct si5351_platform_data {
- 	enum si5351_pll_src pll_src[2];
-+	bool pll_reset[2];
- 	struct si5351_clkout_config clkout[8];
- };
- 
--- 
-2.41.0
+Recently over IRC and other threads, Tomasz raised a concern that CODECs wh=
+ere
+introducing too much complexity into M2M. And I believe buffered (which is
+barely documented) and this mechanism was being pointed.
+
+My take on that is that adding boolean configuration is what introduce
+complexity, and we can fix it by doing less in the m2m. After this discussi=
+on, I
+came with the idea that we should remove buffered and ignore_streaming. For
+drivers that don't implement job_ready, this logic would be moved inside th=
+e
+default implementation. We can then add a helper to check the common condit=
+ions.
+
+The alternative suggested by Tomasz, was to layer two ops. We'd have a
+device_ready() ops and its default implementation would include the check w=
+e
+have and would call job_ready(). Personally, I'd rather remove then add, bu=
+t I
+understadt the reasoning and would be fine committing to that instead.
+
+I'd like your feedback on this proposal. If this is something we want, I'll=
+ do
+this prior to V13, otherwise we will address your comments and fix the adde=
+d
+mechanism. I think though that we agree that for decoders, this is nice add=
+ition
+to not have to trigger work manually from vb2 ops.
+
+regards,
+Nicolas
+
+>=20
+> >   *
+> >   * Queue for buffers ready to be processed as soon as this
+> >   * instance receives access to the device.
+> > @@ -69,6 +79,7 @@ struct v4l2_m2m_queue_ctx {
+> >  	spinlock_t		rdy_spinlock;
+> >  	u8			num_rdy;
+> >  	bool			buffered;
+> > +	bool			ignore_streaming;
+> >  };
+> > =20
+> >  /**
+> > @@ -564,6 +575,12 @@ static inline void v4l2_m2m_set_dst_buffered(struc=
+t v4l2_m2m_ctx *m2m_ctx,
+> >  	m2m_ctx->cap_q_ctx.buffered =3D buffered;
+> >  }
+> > =20
+> > +static inline void v4l2_m2m_set_dst_ignore_streaming(struct v4l2_m2m_c=
+tx *m2m_ctx,
+> > +						     bool ignore_streaming)
+> > +{
+> > +	m2m_ctx->cap_q_ctx.ignore_streaming =3D ignore_streaming;
+> > +}
+> > +
+>=20
+> I think this is overkill, esp. when the field is moved to m2m_ctx. Just c=
+learly
+> document that drivers can set this.
+>=20
+> Regards,
+>=20
+> 	Hans
+>=20
+> >  /**
+> >   * v4l2_m2m_ctx_release() - release m2m context
+> >   *
+> >=20
+>=20
 
 
