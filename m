@@ -1,180 +1,142 @@
-Return-Path: <devicetree+bounces-1892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 911F27A8C45
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 21:08:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BD687A8D36
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 21:56:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C7C6281B30
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 19:08:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD70B281322
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 19:56:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73C093C6B3;
-	Wed, 20 Sep 2023 19:07:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44DEC405EA;
+	Wed, 20 Sep 2023 19:56:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD1A01A59F
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 19:07:15 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83C1CC2
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 12:07:13 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 62AAC162B;
-	Wed, 20 Sep 2023 21:05:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1695236734;
-	bh=nIN4ODLXTC3iWFw61+LrgOMSqFQkIHidww3vZ0ZCDTc=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27925405E4;
+	Wed, 20 Sep 2023 19:56:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3492C433C9;
+	Wed, 20 Sep 2023 19:56:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695239791;
+	bh=hql+kAlfoekBXt3vTaUlDPCPrQsmIUz1/+7V8SFb+1I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kpgCRJ0SZxeuyr/O2lu4M1N+cqBVErg/C3DKUEaFoDdAf/5DJiyg8DGqxolkpj4jo
-	 s7ASeLJKBx1ulJViTA1Kod40HXk3WUmJ1XuvBkTR9h54HrwCl49kAGnRh+FMozMEdj
-	 UoNTk/wX/w+QbOLkvLlYoSYWjb1w+veIdYO0weCA=
-Date: Wed, 20 Sep 2023 22:07:23 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Lucas Stach <l.stach@pengutronix.de>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Liu Ying <victor.liu@nxp.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Adam Ford <aford173@gmail.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Richard Leitner <richard.leitner@skidata.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, patchwork-lst@pengutronix.de,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>, Sandor Yu <sandor.yu@nxp.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: imx: add binding for
- i.MX8MP HDMI PVI
-Message-ID: <20230920190723.GA7723@pendragon.ideasonboard.com>
-References: <20230920171009.3193296-1-l.stach@pengutronix.de>
+	b=mh0SXSCxI277x52AMsLpiUAKi4OdbN74SkXCBJ1erB5G8Q0U2erESV4xVcreGe11C
+	 tcD53cdu3OKl0FXCrQ8Z74MgPvufYKrCm2YDaM+dGTQlluoWt3+4N/vi1R8ArBeLdO
+	 ls5lfikybrVorW2FfJniAfC61bNdClvNxrJ2DMPOGFZOVsUWmDGFcNd7sh7ueaze6X
+	 naMurG4DY98f98wj3qaet6ZTTU685zfen0JwbYjmajv48va87B4Yzzr8e92YcoUYOM
+	 w7Oo+YettRVEEFb4TGfNjyc58RZkr2ptyRjdIdIPeq7Cnc+IaywoU85brGfJ32D2kj
+	 01FyucPY3x0yQ==
+Received: (nullmailer pid 2823556 invoked by uid 1000);
+	Wed, 20 Sep 2023 19:56:29 -0000
+Date: Wed, 20 Sep 2023 14:56:29 -0500
+From: Rob Herring <robh@kernel.org>
+To: =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado <nfraprado@collabora.com>
+Cc: Frank Rowand <frowand.list@gmail.com>, Shuah Khan <shuah@kernel.org>, Mark Brown <broonie@kernel.org>, kernelci@lists.linux.dev, kernel@collabora.com, Guenter Roeck <groeck@chromium.org>, Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v3 0/3] Add a test to catch unprobed Devicetree devices
+Message-ID: <20230920195629.GA2784994-robh@kernel.org>
+References: <20230828211424.2964562-1-nfraprado@collabora.com>
+ <97c368a1-9c76-490a-848e-eacd6411e810@notapiano>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230920171009.3193296-1-l.stach@pengutronix.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <97c368a1-9c76-490a-848e-eacd6411e810@notapiano>
 
-Hi Lucas,
-
-Thank you for the patch.
-
-On Wed, Sep 20, 2023 at 07:10:08PM +0200, Lucas Stach wrote:
-> Add binding for the i.MX8MP HDMI parallel video interface block.
+On Wed, Sep 20, 2023 at 10:03:06AM -0400, Nícolas F. R. A. Prado wrote:
+> On Mon, Aug 28, 2023 at 05:13:09PM -0400, Nícolas F. R. A. Prado wrote:
+> > 
+> > Regressions that cause a device to no longer be probed by a driver can
+> > have a big impact on the platform's functionality, and despite being
+> > relatively common there isn't currently any generic test to detect them.
+> > As an example, bootrr [1] does test for device probe, but it requires
+> > defining the expected probed devices for each platform.
+> > 
+> > Given that the Devicetree already provides a static description of
+> > devices on the system, it is a good basis for building such a test on
+> > top.
+> > 
+> > This series introduces a test to catch regressions that prevent devices
+> > from probing.
+> > 
+> > Patches 1 and 2 extend the existing dt-extract-compatibles to be able to
+> > output only the compatibles that can be expected to match a Devicetree
+> > node to a driver. Patch 2 adds a kselftest that walks over the
+> > Devicetree nodes on the current platform and compares the compatibles to
+> > the ones on the list, and on an ignore list, to point out devices that
+> > failed to be probed.
+> > 
+> > A compatible list is needed because not all compatibles that can show up
+> > in a Devicetree node can be used to match to a driver, for example the
+> > code for that compatible might use "OF_DECLARE" type macros and avoid
+> > the driver framework, or the node might be controlled by a driver that
+> > was bound to a different node.
+> > 
+> > An ignore list is needed for the few cases where it's common for a
+> > driver to match a device but not probe, like for the "simple-mfd"
+> > compatible, where the driver only probes if that compatible is the
+> > node's first compatible.
+> > 
+> > The reason for parsing the kernel source instead of relying on
+> > information exposed by the kernel at runtime (say, looking at modaliases
+> > or introducing some other mechanism), is to be able to catch issues
+> > where a config was renamed or a driver moved across configs, and the
+> > .config used by the kernel not updated accordingly. We need to parse the
+> > source to find all compatibles present in the kernel independent of the
+> > current config being run.
+> > 
+> > [1] https://github.com/kernelci/bootrr
+> > 
+> > Changes in v3:
+> > - Added DT selftest path to MAINTAINERS
+> > - Enabled device probe test for nodes with 'status = "ok"'
+> > - Added pass/fail/skip totals to end of test output
+> > 
+> > Changes in v2:
+> > - Extended dt-extract-compatibles script to be able to extract driver
+> >   matching compatibles, instead of adding a new one in Coccinelle
+> > - Made kselftest output in the KTAP format
+> > 
+> > Nícolas F. R. A. Prado (3):
+> >   dt: dt-extract-compatibles: Handle cfile arguments in generator
+> >     function
+> >   dt: dt-extract-compatibles: Add flag for driver matching compatibles
+> >   kselftest: Add new test for detecting unprobed Devicetree devices
+> > 
+> >  MAINTAINERS                                   |  1 +
+> >  scripts/dtc/dt-extract-compatibles            | 74 +++++++++++++----
+> >  tools/testing/selftests/Makefile              |  1 +
+> >  tools/testing/selftests/dt/.gitignore         |  1 +
+> >  tools/testing/selftests/dt/Makefile           | 21 +++++
+> >  .../selftests/dt/compatible_ignore_list       |  1 +
+> >  tools/testing/selftests/dt/ktap_helpers.sh    | 70 ++++++++++++++++
+> >  .../selftests/dt/test_unprobed_devices.sh     | 83 +++++++++++++++++++
+> >  8 files changed, 236 insertions(+), 16 deletions(-)
+> >  create mode 100644 tools/testing/selftests/dt/.gitignore
+> >  create mode 100644 tools/testing/selftests/dt/Makefile
+> >  create mode 100644 tools/testing/selftests/dt/compatible_ignore_list
+> >  create mode 100644 tools/testing/selftests/dt/ktap_helpers.sh
+> >  create mode 100755 tools/testing/selftests/dt/test_unprobed_devices.sh
 > 
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> ---
->  .../display/imx/fsl,imx8mp-hdmi-pvi.yaml      | 80 +++++++++++++++++++
->  1 file changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.yaml
+> Hi Rob,
 > 
-> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.yaml
-> new file mode 100644
-> index 000000000000..12855bb3ed4c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.yaml
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/imx/fsl,imx8mp-hdmi-pvi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX8MP HDMI Parallel Video Interface
-> +
-> +maintainers:
-> +  - Lucas Stach <l.stach@pengutronix.de>
-> +
-> +description: |
-> +  The HDMI parallel video interface is a timing and sync generator block in the
-> +  i.MX8MP SoC, that sits between the video source and the HDMI TX controller.
-> +
-> +properties:
-> +  compatible:
-> +    const: fsl,imx8mp-hdmi-pvi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Input from the LCDIF controller.
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Output to the HDMI TX controller.
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
+> gentle ping on this series.
+> 
+> I take it you'll be merging this through your tree, so I've added Shuah's R-b
+> that she supplied on v2 for the kselftest patch.
 
-The interrupts property is missing above. With this fixed,
+Sorry, now applied.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+If you send something before or in the merge window, it is best to 
+rebase and resend after rc1 comes out.
 
-> +  - power-domains
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/power/imx8mp-power.h>
-> +
-> +    display-bridge@32fc4000 {
-> +        compatible = "fsl,imx8mp-hdmi-pvi";
-> +        reg = <0x32fc4000 0x40>;
-> +        interrupts = <12 IRQ_TYPE_LEVEL_HIGH>;
-> +        power-domains = <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_PVI>;
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@0 {
-> +                reg = <0>;
-> +                pvi_from_lcdif3: endpoint {
-> +                    remote-endpoint = <&lcdif3_to_pvi>;
-> +                };
-> +            };
-> +
-> +            port@1 {
-> +                reg = <1>;
-> +                pvi_to_hdmi_tx: endpoint {
-> +                    remote-endpoint = <&hdmi_tx_from_pvi>;
-> +                };
-> +            };
-> +        };
-> +    };
-
--- 
-Regards,
-
-Laurent Pinchart
+Rob
 
