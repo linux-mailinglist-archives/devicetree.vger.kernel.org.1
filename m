@@ -1,151 +1,115 @@
-Return-Path: <devicetree+bounces-1790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41D997A8617
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 16:03:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3665F7A8636
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 16:09:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06BE0281FA2
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 14:03:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52EF31C20A91
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 14:09:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1B7F3AC38;
-	Wed, 20 Sep 2023 14:03:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0DF13B285;
+	Wed, 20 Sep 2023 14:09:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4037936B12
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 14:03:16 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BC8BB9;
-	Wed, 20 Sep 2023 07:03:13 -0700 (PDT)
-Received: from notapiano (unknown [IPv6:2600:4041:5b1a:cd00:524d:e95d:1a9c:492a])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 8A6936607201;
-	Wed, 20 Sep 2023 15:03:10 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1695218591;
-	bh=0As1l5pUnNWGSkzZabr2JsNuZssFSpilRQkjdz8AJ1k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=igMB+AMiayEFp612LIiv/IJGUNWjv/yfNcI67RWl3fmXUEAusqwBRIlxTDEnn2i74
-	 okinKpYzPipz6KpaHM6vvNcdzoEXqnTJ2BgQiVicY1/H3HXJHGjSAysNjpxU7HhdCs
-	 F5ZGEAKOmET+xH7LYlgwLFAJMwlcvTf/KRpwxU2fn4JmBJ5QOlVGdMJrEJoPX7bOvB
-	 twcnEEonoCMblVmogccUDxSIVxOChfpO4MI6qbNxW0kQh0YGDbPdJRKLlZxhsddiz6
-	 ZMNqYv8Rg1RsUg86xJu1pzQnOcJAVnrGWtuFpq4W0DC1i2LZFeNKUErHFMEZd6klRr
-	 Efc5V3eD7jPiw==
-Date: Wed, 20 Sep 2023 10:03:06 -0400
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
-	Shuah Khan <shuah@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, kernelci@lists.linux.dev,
-	kernel@collabora.com, Guenter Roeck <groeck@chromium.org>,
-	Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v3 0/3] Add a test to catch unprobed Devicetree devices
-Message-ID: <97c368a1-9c76-490a-848e-eacd6411e810@notapiano>
-References: <20230828211424.2964562-1-nfraprado@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7D0836B04
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 14:09:32 +0000 (UTC)
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 459D4AC
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 07:09:30 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-31dd10c2b8bso6512948f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 07:09:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pqrs.dk; s=google; t=1695218968; x=1695823768; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hwi8Aua8Y+P9FZKHN1BFMedplZvBD6+gBTVYLrMGWT8=;
+        b=GhIFimmdd2HdFZnoyN5oFy/44IXbB3IONGmyOE66lrl1c7iOdTs5Gk8ygMw+HTHrAh
+         QPyH12aH2pfzJDgtKlMdBvf/oQU7iaTtFWap4klWX2e5xKpT6RpYkF5VEr9j5nYi1wnF
+         H5ApV3uHudXutpQ/b4bnSnhtoGrZeQZrVWSD/IluDO02Az5zxN9OJSk015UMu4oqU66g
+         hM3r0Ycg/k6Hns5uEa7uprYtxZHI2mTSxipk3USqUPbdS61eJYCKxC3BU621QkM7pfOX
+         rgSR3pT58zN0CGVPwtPfkqulmOZXzK+OU6l+Ds9myZPxUDU4UfqwGegVaAwc41aLloY4
+         +MKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695218968; x=1695823768;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hwi8Aua8Y+P9FZKHN1BFMedplZvBD6+gBTVYLrMGWT8=;
+        b=l3PypoNV1JSv28sbcBQyJb39NIbZks5le0Osb3nrYM58DOdSWUVc0gOMV1Kwb5uLnw
+         XZ+Z4acjpUWf5Ss2BW3UDemRCPFUXZJf7OlayiOBUwfRv5GO1NBxiLrt5sX86FLUi7Ty
+         J+TDicVVm5TyU9mgS6CIQhP2bRUc1ju0Drlj+Ncbq+G0B06DnTY/9wz/abjoI11ZszOk
+         eGwM6WOYGpJO9fkhrJBmonhHnk3YTAolLKbSTlbeGz6InSp9wGj9/hy5dra2vCqAJqPR
+         OM7RwHUadj//MoEJpBk0Xelpzp7GJ7XVneen9USrcvVCxleQEdW+Kx7ZElfgoKs6Yzux
+         FpEg==
+X-Gm-Message-State: AOJu0Yw1AgS1KfNmQA0nqavni53Y1MXs9umPB42GyRjGQl9+m0HLtF6/
+	HS5gsv3eQDelr/KmkPYue8c27vak9Yd/N03qBIhAJQ==
+X-Google-Smtp-Source: AGHT+IHTJNOjPaxtCMEhcXl924Qdc/tQizDwoWDkol3TLylbsbucUit0glZlNiGcAG4UP+pOmxG/Xg==
+X-Received: by 2002:a5d:60c5:0:b0:31f:dc60:13b5 with SMTP id x5-20020a5d60c5000000b0031fdc6013b5mr2391311wrt.25.1695218654230;
+        Wed, 20 Sep 2023 07:04:14 -0700 (PDT)
+Received: from capella.localdomain ([193.89.194.60])
+        by smtp.gmail.com with ESMTPSA id c26-20020a170906341a00b00993470682e5sm9397761ejb.32.2023.09.20.07.04.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Sep 2023 07:04:13 -0700 (PDT)
+From: =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alvin@pqrs.dk>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?UTF-8?q?=A0ipraga?= <alsi@bang-olufsen.dk>
+Cc: linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] clk: si5351: add option to adjust PLL without glitches
+Date: Wed, 20 Sep 2023 15:09:52 +0200
+Message-ID: <20230920140343.2329225-1-alvin@pqrs.dk>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230828211424.2964562-1-nfraprado@collabora.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Aug 28, 2023 at 05:13:09PM -0400, Nícolas F. R. A. Prado wrote:
-> 
-> Regressions that cause a device to no longer be probed by a driver can
-> have a big impact on the platform's functionality, and despite being
-> relatively common there isn't currently any generic test to detect them.
-> As an example, bootrr [1] does test for device probe, but it requires
-> defining the expected probed devices for each platform.
-> 
-> Given that the Devicetree already provides a static description of
-> devices on the system, it is a good basis for building such a test on
-> top.
-> 
-> This series introduces a test to catch regressions that prevent devices
-> from probing.
-> 
-> Patches 1 and 2 extend the existing dt-extract-compatibles to be able to
-> output only the compatibles that can be expected to match a Devicetree
-> node to a driver. Patch 2 adds a kselftest that walks over the
-> Devicetree nodes on the current platform and compares the compatibles to
-> the ones on the list, and on an ignore list, to point out devices that
-> failed to be probed.
-> 
-> A compatible list is needed because not all compatibles that can show up
-> in a Devicetree node can be used to match to a driver, for example the
-> code for that compatible might use "OF_DECLARE" type macros and avoid
-> the driver framework, or the node might be controlled by a driver that
-> was bound to a different node.
-> 
-> An ignore list is needed for the few cases where it's common for a
-> driver to match a device but not probe, like for the "simple-mfd"
-> compatible, where the driver only probes if that compatible is the
-> node's first compatible.
-> 
-> The reason for parsing the kernel source instead of relying on
-> information exposed by the kernel at runtime (say, looking at modaliases
-> or introducing some other mechanism), is to be able to catch issues
-> where a config was renamed or a driver moved across configs, and the
-> .config used by the kernel not updated accordingly. We need to parse the
-> source to find all compatibles present in the kernel independent of the
-> current config being run.
-> 
-> [1] https://github.com/kernelci/bootrr
-> 
-> Changes in v3:
-> - Added DT selftest path to MAINTAINERS
-> - Enabled device probe test for nodes with 'status = "ok"'
-> - Added pass/fail/skip totals to end of test output
-> 
-> Changes in v2:
-> - Extended dt-extract-compatibles script to be able to extract driver
->   matching compatibles, instead of adding a new one in Coccinelle
-> - Made kselftest output in the KTAP format
-> 
-> Nícolas F. R. A. Prado (3):
->   dt: dt-extract-compatibles: Handle cfile arguments in generator
->     function
->   dt: dt-extract-compatibles: Add flag for driver matching compatibles
->   kselftest: Add new test for detecting unprobed Devicetree devices
-> 
->  MAINTAINERS                                   |  1 +
->  scripts/dtc/dt-extract-compatibles            | 74 +++++++++++++----
->  tools/testing/selftests/Makefile              |  1 +
->  tools/testing/selftests/dt/.gitignore         |  1 +
->  tools/testing/selftests/dt/Makefile           | 21 +++++
->  .../selftests/dt/compatible_ignore_list       |  1 +
->  tools/testing/selftests/dt/ktap_helpers.sh    | 70 ++++++++++++++++
->  .../selftests/dt/test_unprobed_devices.sh     | 83 +++++++++++++++++++
->  8 files changed, 236 insertions(+), 16 deletions(-)
->  create mode 100644 tools/testing/selftests/dt/.gitignore
->  create mode 100644 tools/testing/selftests/dt/Makefile
->  create mode 100644 tools/testing/selftests/dt/compatible_ignore_list
->  create mode 100644 tools/testing/selftests/dt/ktap_helpers.sh
->  create mode 100755 tools/testing/selftests/dt/test_unprobed_devices.sh
+From: Alvin Å ipraga <alsi@bang-olufsen.dk>
 
-Hi Rob,
+This series intends to address a problem I had when using the Si5351A as
+a runtime adjustable audio bit clock. The basic issue is that the driver
+in its current form unconditionally resets the PLL whenever adjusting
+its rate. But this reset causes an unwanted ~1.4 ms LOW signal glitch in
+the clock output.
 
-gentle ping on this series.
+As a remedy, a new property is added to control the reset behaviour of
+the PLLs more precisely. In the process I also converted the bindings to
+YAML.
 
-I take it you'll be merging this through your tree, so I've added Shuah's R-b
-that she supplied on v2 for the kselftest patch.
+Alvin Å ipraga (3):
+  dt-bindings: clock: si5351: convert to yaml
+  dt-bindings: clock: si5351: add PLL reset mode property
+  clk: si5351: allow PLLs to be adjusted without reset
 
-Thanks,
-Nícolas
+ .../bindings/clock/silabs,si5351.txt          | 126 --------
+ .../bindings/clock/silabs,si5351.yaml         | 270 ++++++++++++++++++
+ drivers/clk/clk-si5351.c                      |  47 ++-
+ include/linux/platform_data/si5351.h          |   2 +
+ 4 files changed, 316 insertions(+), 129 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/silabs,si5351.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/silabs,si5351.yaml
+
+-- 
+2.41.0
+
 
