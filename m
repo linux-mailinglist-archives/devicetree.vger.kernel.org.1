@@ -1,143 +1,71 @@
-Return-Path: <devicetree+bounces-1694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 449977A7700
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 11:14:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D1B87A770D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 11:19:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0ACD2816CD
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 09:14:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B88E62817B9
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 09:19:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0ACD1172B;
-	Wed, 20 Sep 2023 09:14:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E40C11738;
+	Wed, 20 Sep 2023 09:19:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FB483D63
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 09:14:44 +0000 (UTC)
-Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0217091;
-	Wed, 20 Sep 2023 02:14:42 -0700 (PDT)
-Received: by mail-vs1-xe35.google.com with SMTP id ada2fe7eead31-4527ba546d2so1146321137.2;
-        Wed, 20 Sep 2023 02:14:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695201281; x=1695806081; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7mF6CeWKLwBn15UINCBFcbVA7YfC1Xb7XUsRVvGCQiA=;
-        b=lVHFkwJipBehCTfoV99RYRBWBmepqzW67fyWhzhMR1hyD3b4u6/BZAwm5cLgWDpns2
-         JOHHG18FYyJq9K+1YyiJzl5BHyTFGidCJG4iBC2PLuMUiyRFheaEMQj96mZNcUy/lBxi
-         So2pQlZHMuB7TbremK2/Xh+fxTLJQNrFMS9ymIeHTi7k5MoBPjS0VhepHK5Qgn8ZHWXf
-         ZGN2gYUQMmd3MUjX+VxXCIoPGD5a0l2Yxo4AHbZz7+oQpx6u5A+Vm2djkIIqbdT929SR
-         WfhyFHwP/6+AhlZ322ooRXYhlgUsCgLqooYuS0x3mNWl0FB2DxvbJsJPXr8jBjWlZwCg
-         t6aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695201281; x=1695806081;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7mF6CeWKLwBn15UINCBFcbVA7YfC1Xb7XUsRVvGCQiA=;
-        b=PvMlduzrRCDebndut/BpTCt5nbPoPMX2tUJI/0yjrehGY2F1UGAQoecEIhl3rQpVGB
-         8WwXm7u2dYNQ5CU9imPy+r9AYGpc7v8q/H65qRYdxOHVv/PHg4LWg9nnPz2Crjlix/QJ
-         AnJ9T7U8J6/MPcnPcMMpwyHFDIH51xsItNMU5Zqj4HgESuLDHY9MKH2IO/blZoV5lllK
-         5K01YEhsFJp4S5wPj20sTYGtaCMa/fX5ONLe9pzecAUZA9Oe5cg+OAnl9jTK0ekKXOub
-         veFXdBnXxb1673BQjIvtjJ4/SEytUr6WvRk/VujXBAK5nthYve9uuteurdWtNK38C4Wg
-         YMvQ==
-X-Gm-Message-State: AOJu0YzkQ3KAq+v4oJ5D/zzl9dskTamPIZ3/ngceiEjJ5U2tGDuTkY7G
-	tnmy/BWxppTvgKKOG4PCQhpZLsZMbBn6x92tYr4=
-X-Google-Smtp-Source: AGHT+IGxzQADeWT6kYJOJKC8HUxl0HRk5ruso9MvtCd8ytX6mRPXAwEeqntPJQ9v3bijs8zJu0D+of8PjYf6VROe+40=
-X-Received: by 2002:a67:ebc1:0:b0:452:6fc1:a3e5 with SMTP id
- y1-20020a67ebc1000000b004526fc1a3e5mr1782743vso.1.1695201280888; Wed, 20 Sep
- 2023 02:14:40 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C3443D63
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 09:19:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8352C433C8;
+	Wed, 20 Sep 2023 09:19:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695201553;
+	bh=9xBbxr+swRhwwQgmUTAanBRHI1SK4zTTAg4FJYXKK24=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Gwkcc8Xu5Nso+9thrscxOksnORUUzS6emX7ckBzzFxMBJUbeQsViBBg7tKz0IYHBe
+	 3xSxW2DGNqUJQpjF34PagKy3hH3cKXS78UuR5ptd4VCnObq9SqHDuIxPy+Rdng4Y8U
+	 Lsa1zPhYc55ZxPPTPJvLhF2jeJpl1avLsLfAKmcWhXsFzkWH0jL36nGGUl1sEEY/+4
+	 /mAqv7azDV4eECtV/HS7JZ3Vojf9HTNzYKJ6Wsze4zOdZsNnJp8tTK3pFSL0fRR7bm
+	 3tz3QRf/bFwz7LAEhAKqddoHPGQ8rnZNUgR8j6Sxe2+xa21kBRLRk4ffV1QcMgJ6vO
+	 3GIDT/6cj8Mfw==
+From: Lee Jones <lee@kernel.org>
+To: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, 
+ lee@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+ conor+dt@kernel.org, sboyd@kernel.org, luca.weiss@fairphone.com, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230816115151.501736-2-bryan.odonoghue@linaro.org>
+References: <20230816115151.501736-1-bryan.odonoghue@linaro.org>
+ <20230816115151.501736-2-bryan.odonoghue@linaro.org>
+Subject: Re: (subset) [PATCH v9 1/7] dt-bindings: mfd: qcom,spmi-pmic: Add
+ typec to SPMI device types
+Message-Id: <169520155063.3348589.10688565387981596667.b4-ty@kernel.org>
+Date: Wed, 20 Sep 2023 10:19:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1695189879.git.wangchen20@iscas.ac.cn> <dbd7d823a73d8a9484efcd55f6616f5392daf608.1695189879.git.wangchen20@iscas.ac.cn>
- <20230920-unable-impish-373fd26b7d16@wendy>
-In-Reply-To: <20230920-unable-impish-373fd26b7d16@wendy>
-From: Chen Wang <unicornxw@gmail.com>
-Date: Wed, 20 Sep 2023 17:14:29 +0800
-Message-ID: <CAHAQgRAj74HJ2j_Rt+hGxps9T3E1z9c+s61aa-dneWgPmnD2cw@mail.gmail.com>
-Subject: Re: [PATCH v2 02/11] dt-bindings: vendor-prefixes: add milkv/sophgo
-To: Conor Dooley <conor.dooley@microchip.com>
-Cc: aou@eecs.berkeley.edu, chao.wei@sophgo.com, conor@kernel.org, 
-	devicetree@vger.kernel.org, emil.renner.berthing@canonical.com, 
-	guoren@kernel.org, jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org, 
-	xiaoguang.xing@sophgo.com, Chen Wang <wangchen20@iscas.ac.cn>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.12.2
 
-Regards,
+On Wed, 16 Aug 2023 12:51:45 +0100, Bryan O'Donoghue wrote:
+> Add the PMIC Type-C port driver to the list of devices.
+> 
+> 
 
-unicornx
+Applied, thanks!
 
-Conor Dooley <conor.dooley@microchip.com> =E4=BA=8E2023=E5=B9=B49=E6=9C=882=
-0=E6=97=A5=E5=91=A8=E4=B8=89 16:23=E5=86=99=E9=81=93=EF=BC=9A
->
-> Yo,
->
-> On Wed, Sep 20, 2023 at 02:37:28PM +0800, Chen Wang wrote:
-> > Add new vendor strings to dt bindings.
-> > These new vendor strings are used by
-> > - Sophgo SG2042 SoC [1]
-> > - Milk-V Pioneer board [2], which uses SG2042 chip.
-> >
-> > [1]: https://en.sophgo.com/product/introduce/sg2042.html
-> > [2]: https://milkv.io/pioneer
->
-> If you resend, make these link tags please. Otherwise,
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->
-Sure, I will correct them in next revision. Thanks.
+[1/7] dt-bindings: mfd: qcom,spmi-pmic: Add typec to SPMI device types
+      commit: 852355e98e45ec7f9adf06de92bba063424aa7cb
 
-> Thanks,
-> Conor.
->
-> > Acked-by: Xiaoguang Xing <xiaoguang.xing@sophgo.com>
-> > Signed-off-by: Chen Wang <wangchen20@iscas.ac.cn>
-> > ---
-> >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/D=
-ocumentation/devicetree/bindings/vendor-prefixes.yaml
-> > index 573578db9509..fcca9e070a9a 100644
-> > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > @@ -863,6 +863,8 @@ patternProperties:
-> >      description: MikroElektronika d.o.o.
-> >    "^mikrotik,.*":
-> >      description: MikroTik
-> > +  "^milkv,.*":
-> > +    description: MilkV Technology Co., Ltd
-> >    "^miniand,.*":
-> >      description: Miniand Tech
-> >    "^minix,.*":
-> > @@ -1273,6 +1275,8 @@ patternProperties:
-> >      description: Solomon Systech Limited
-> >    "^sony,.*":
-> >      description: Sony Corporation
-> > +  "^sophgo,.*":
-> > +    description: Sophgo Technology Inc.
-> >    "^sourceparts,.*":
-> >      description: Source Parts Inc.
-> >    "^spansion,.*":
-> > --
-> > 2.25.1
-> >
+--
+Lee Jones [李琼斯]
+
 
