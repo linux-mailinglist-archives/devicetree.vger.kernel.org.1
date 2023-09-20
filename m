@@ -1,229 +1,75 @@
-Return-Path: <devicetree+bounces-1874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 169667A8A56
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 19:12:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 485037A8A10
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 19:10:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6373281C31
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 17:12:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50AB11C20B5A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 17:10:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E5061A582;
-	Wed, 20 Sep 2023 17:12:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 884BE3E495;
+	Wed, 20 Sep 2023 17:10:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CC9F1A580
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 17:12:08 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DEAF130;
-	Wed, 20 Sep 2023 10:11:46 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7D12211A9;
-	Wed, 20 Sep 2023 19:10:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1695229807;
-	bh=qokP3+5LpbWRpdJmY5ukz9h+3AKRRyW90W1dlQD20dE=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 732013D399
+	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 17:10:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2144BC433C8;
+	Wed, 20 Sep 2023 17:10:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695229807;
+	bh=4/QpFdXXat5YYWLWJXquh/jNvMlFGIeOXDZXtyrqkL0=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Wc5Vw5C8m4oPoWhphjpDtKFSkDoHiaiplvJeEzbv0E1Km22HcHh/kOz2tjVWYGopR
-	 F8ZpslRCy9V922SHsQQfpBUC6z7iXOJmUmVGV6X6x13a0PZ5lQrm/4s2M8Pc0MDXUt
-	 x4lyhPKOUXGy9oB2e5zUAReAvad0+0EMcJ3kGtts=
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: linux-media@vger.kernel.org
-Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	Sakari Ailus <sakari.ailus@iki.fi>,
-	devicetree@vger.kernel.org,
+	b=FNXtXmMEtJ33lUPlF8cl/BbOYVSD5+rxt7WgqlwIDrVGwixMgEXspGeBc3Mnr33IO
+	 u7A1bjSASIYByr+Egg8GcA4fNFpNinYK5nJTPVNqJocdKevxQcJe05xMR7TZsHT/IW
+	 xL2SrHt/d6nyNx0LJt60N8yZJnGvhJzWiXJMWJ1OLvHDGPcj4ie3qArha+xSotz+3a
+	 0/w74WSiubSuA/LhhVpfEcQzNsaGhEGleoO6hUXc3MznIl5D9sehkBTJF6Ru/J5nWi
+	 hjz74eSVWuguXSAHuvtTLYTToQWH+Oj6eHZUO3xJzkEaMNhKWhqYSnocDS5vs+HEay
+	 8f4ahemZqTqBQ==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S . Miller" <davem@davemloft.net>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH v4 1/2] media: dt-bindings: media: i2c: Add MT9M114 camera sensor binding
-Date: Wed, 20 Sep 2023 20:11:53 +0300
-Message-ID: <20230920171155.7648-2-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230920171155.7648-1-laurent.pinchart@ideasonboard.com>
-References: <20230920171155.7648-1-laurent.pinchart@ideasonboard.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org,
+	linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH 1/2] dt-bindings: crypto: ice: document the sa8775p inline crypto engine
+Date: Wed, 20 Sep 2023 10:13:55 -0700
+Message-ID: <169523004971.2665018.5457570667421710137.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20230913153529.32777-1-bartosz.golaszewski@linaro.org>
+References: <20230913153529.32777-1-bartosz.golaszewski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
-Add device tree binding for the onsemi MT9M114 CMOS camera sensor.
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-Changes since v3:
+On Wed, 13 Sep 2023 17:35:28 +0200, Bartosz Golaszewski wrote:
+> Add the compatible string for QCom ICE on sa8775p SoCs.
+> 
+> 
 
-- Fix typo in MAINTAINERS
+Applied, thanks!
 
-Changes since v2:
+[2/2] arm64: dts: qcom: sa8775p: enable the inline crypto engine
+      commit: 96272ba7103d4518e2d0f17daf6fe0008fc6e12c
 
-- Use media bus type defines
-- Add link-frequencies
-
-Changes since v1:
-
-- Use graph schema
-- Drop unneeded properties
-- Rename ON Semiconductor to onsemi
----
- .../bindings/media/i2c/onnn,mt9m114.yaml      | 114 ++++++++++++++++++
- MAINTAINERS                                   |   7 ++
- 2 files changed, 121 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-
-diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-new file mode 100644
-index 000000000000..f6b87892068a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-@@ -0,0 +1,114 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/onnn,mt9m114.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: onsemi 1/6-inch 720p CMOS Digital Image Sensor
-+
-+maintainers:
-+  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-+
-+description: |-
-+  The onsemi MT9M114 is a 1/6-inch 720p (1.26 Mp) CMOS digital image sensor
-+  with an active pixel-array size of 1296H x 976V. It is programmable through
-+  an I2C interface and outputs image data over a 8-bit parallel or 1-lane MIPI
-+  CSI-2 connection.
-+
-+properties:
-+  compatible:
-+    const: onnn,mt9m114
-+
-+  reg:
-+    description: I2C device address
-+    enum:
-+      - 0x48
-+      - 0x5d
-+
-+  clocks:
-+    description: EXTCLK clock signal
-+    maxItems: 1
-+
-+  vdd-supply:
-+    description:
-+      Core digital voltage supply, 1.8V
-+
-+  vddio-supply:
-+    description:
-+      I/O digital voltage supply, 1.8V or 2.8V
-+
-+  vaa-supply:
-+    description:
-+      Analog voltage supply, 2.8V
-+
-+  reset-gpios:
-+    description: |-
-+      Reference to the GPIO connected to the RESET_BAR pin, if any (active
-+      low).
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        additionalProperties: false
-+
-+        properties:
-+          bus-type:
-+            enum: [4, 5, 6]
-+
-+          link-frequencies: true
-+          remote-endpoint: true
-+
-+          # The number and mapping of lanes (for CSI-2), and the bus width and
-+          # signal polarities (for parallel and BT.656) are fixed and must not
-+          # be specified.
-+
-+        required:
-+          - bus-type
-+          - link-frequencies
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - vdd-supply
-+  - vddio-supply
-+  - vaa-supply
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/media/video-interfaces.h>
-+
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        sensor@48 {
-+            compatible = "onnn,mt9m114";
-+            reg = <0x48>;
-+
-+            clocks = <&clk24m 0>;
-+
-+            reset-gpios = <&gpio5 21 GPIO_ACTIVE_LOW>;
-+
-+            vddio-supply = <&reg_cam_1v8>;
-+            vdd-supply = <&reg_cam_1v8>;
-+            vaa-supply = <&reg_2p8v>;
-+
-+            port {
-+                endpoint {
-+                    bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
-+                    link-frequencies = /bits/ 64 <384000000>;
-+                    remote-endpoint = <&mipi_csi_in>;
-+                };
-+            };
-+        };
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 90f13281d297..52a60e7c3461 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14539,6 +14539,13 @@ L:	linux-mtd@lists.infradead.org
- S:	Maintained
- F:	drivers/mtd/devices/docg3*
- 
-+MT9M114 ONSEMI SENSOR DRIVER
-+M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+T:	git git://linuxtv.org/media_tree.git
-+F:	Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-+
- MT9P031 APTINA CAMERA SENSOR
- M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
- L:	linux-media@vger.kernel.org
+Best regards,
 -- 
-Regards,
-
-Laurent Pinchart
-
+Bjorn Andersson <andersson@kernel.org>
 
