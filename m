@@ -1,91 +1,165 @@
-Return-Path: <devicetree+bounces-2259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 625847AA560
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 00:56:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0226E7AA5A7
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 01:30:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 147E3281C44
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 22:56:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 622A7282DEF
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 23:30:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 946902033D;
-	Thu, 21 Sep 2023 22:56:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4234A2940D;
+	Thu, 21 Sep 2023 23:30:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BFFF168B3
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 22:56:49 +0000 (UTC)
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B76ACEF;
-	Thu, 21 Sep 2023 15:56:45 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id 98e67ed59e1d1-27474f0f483so195847a91.0;
-        Thu, 21 Sep 2023 15:56:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695337005; x=1695941805; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4zCeZx485dzIdLOwHMiftTCXeqlVFvIXzm9Bah+eei4=;
-        b=SJItNGJtpe3sagY9924sjG+hiPPiHvDWjVm/p95TEgEasuGfE6oKSngjIs8TA+++of
-         a8fMyb3hdnlPoz70ViZpbBByWbaX9PQ1oSle0c30ovR4vbXaJFxGCX8S4FxhF8qgrjlC
-         xZwvDQs4kRln/o195i0uQbaq4av6DQmPk5cLeqETOpyBmOxhb2zuklOw/0J/pM5LedKS
-         NtvdfVkEx01RM8ahWFpJDvKptYtNMpfZfziguarQ4W352ykM8fQ21ZZp958Hl/neYTRa
-         GKapXPZBuRhZDe4jGnDCkx8pQlF1qKGjzMUjeAvW5Exr3OcCLgyqacgvx9NBZDF1jGfV
-         UKkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695337005; x=1695941805;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4zCeZx485dzIdLOwHMiftTCXeqlVFvIXzm9Bah+eei4=;
-        b=fuymh3NAEyTzSiHOSHze50dg2g5GMmOrijzYgkR7gbABIlZrxuRP8h+/WJm3qCxcjQ
-         yvpVyOMix6eEja0CL9dqSFDDafx3sR3ip/GtdE7Qsz/QHThz4GFP5OHRsYDCteUZMBvf
-         FkatN0tf8QLkTSNRJIl0/3gIpK3fgyj+HnR7Vd2YNoZhCwD9gy/715HmJWAnu7eNg9kp
-         oG8vZVZs391q541g/LzSTC6MUIZI9W0YOV6eRGB2JhRqGlo5uE+K8YVM6oB18oGksMaF
-         mGgl9/TLRSpCLeaW5hyBelma5C4gzfnXO06sUMNHIcaN4T/8dAFkEHwbTmRhVSJDy1+p
-         4FJA==
-X-Gm-Message-State: AOJu0Yydf42jFaWLQjRwyHRqW9CCCr6gab5+1Bp6/mnS8tIFtv5P1KoE
-	ryf5maJo2Og0AKK1VrC9kED5pV6k703YnADjKO4=
-X-Google-Smtp-Source: AGHT+IFlKgN/dwPJXZuDsc/8j9JD3kD9aIEkIBM4E3L9qNXtU9titNsVtfqZzZSzPga/oQH9zuZWSzxHhdGnDW1+Ol0=
-X-Received: by 2002:a17:90a:6f61:b0:26d:4ade:fcf0 with SMTP id
- d88-20020a17090a6f6100b0026d4adefcf0mr6460502pjk.4.1695337004654; Thu, 21 Sep
- 2023 15:56:44 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4B1029408;
+	Thu, 21 Sep 2023 23:30:42 +0000 (UTC)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B7B18F;
+	Thu, 21 Sep 2023 16:30:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=cTXKwjxtldkfqXx+SXk/6A/UnwSLoK4UrexStTF47tk=; b=mA
+	PFKnKwZNfEAUXq9Vl812F9mSnn7XT/oV04Fnon/LzgqN7yAlSl68OROHuZmgfman10e1tUw/f6Vja
+	DparwyGO4juYkofrJrC+UuUpDENXJroLSr7l2FzDTqmPrfhVx9duW7bJj+I3ArMyUEzZSC3ViUseA
+	8C2rW8sML3oYYds=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1qjT7L-0078ta-H8; Fri, 22 Sep 2023 01:29:55 +0200
+Date: Fri, 22 Sep 2023 01:29:55 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc: Rob Herring <robh@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	George McCollister <george.mccollister@gmail.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Kurt Kanzenbach <kurt@linutronix.de>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	UNGLinuxDriver@microchip.com,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
+	Marcin Wojtas <mw@semihalf.com>,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	Lars Povlsen <lars.povlsen@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Landen Chao <Landen.Chao@mediatek.com>,
+	DENG Qingfang <dqfext@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@microchip.com>,
+	Marek Vasut <marex@denx.de>,
+	Claudiu Manoil <claudiu.manoil@nxp.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	John Crispin <john@phrozen.org>,
+	Madalin Bucur <madalin.bucur@nxp.com>,
+	Ioana Ciornei <ioana.ciornei@nxp.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Oleksij Rempel <linux@rempel-privat.de>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Grygorii Strashko <grygorii.strashko@ti.com>,
+	Sekhar Nori <nsekhar@ti.com>,
+	Shyam Pandey <radhey.shyam.pandey@xilinx.com>,
+	mithat.guner@xeront.com, erkin.bozoglu@xeront.com,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH net-next v2 07/10] dt-bindings: net: enforce phylink
+ bindings on certain ethernet controllers
+Message-ID: <8935d431-be0c-43e0-a908-f7dff2048f7c@lunn.ch>
+References: <20230916110902.234273-1-arinc.unal@arinc9.com>
+ <20230916110902.234273-8-arinc.unal@arinc9.com>
+ <20230918181319.GA1445647-robh@kernel.org>
+ <16710cf9-8911-4fed-8e2d-b19b581446c1@arinc9.com>
+ <a8d49992-4fa8-4a9f-b954-79011a3040a8@lunn.ch>
+ <85cc3b27-417e-4cf4-9f77-347a338c9d67@arinc9.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230921192729.71259-1-marex@denx.de>
-In-Reply-To: <20230921192729.71259-1-marex@denx.de>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Thu, 21 Sep 2023 19:56:32 -0300
-Message-ID: <CAOMZO5A2JOwnuRycKVSQQU04a6VGHgP-52PHXJ-x_Smwtx_G5Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: serial: imx: Document wakeup-source property
-To: Marek Vasut <marex@denx.de>
-Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, NXP Linux Team <linux-imx@nxp.com>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <85cc3b27-417e-4cf4-9f77-347a338c9d67@arinc9.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Thu, Sep 21, 2023 at 4:27=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
->
-> The i.MX UART can be used as a wake-up source, document the 'wakeup-sourc=
-e'
-> property as allowed property.
->
-> Signed-off-by: Marek Vasut <marex@denx.de>
+On Thu, Sep 21, 2023 at 09:21:40PM +0300, Arınç ÜNAL wrote:
+> On 21.09.2023 16:00, Andrew Lunn wrote:
+> > > - Link descriptions must be required on ethernet controllers. We don't care
+> > >    whether some Linux driver can or cannot find the PHY or set up a fixed
+> > >    link without looking at the devicetree.
+> > 
+> > That can lead to future surprises, and breakage.
+> > 
+> > Something which is not used is not tested, and so sometimes wrong, and
+> > nobody knows. Say the driver is extended to a new device and actually
+> > does need to use this never before used information. You then find it
+> > is wrong, and you get a regression.
+> > 
+> > We have had issues like this before. There are four rgmii phy-link
+> > modes. We have had PHY drivers which ignored one of those modes, it
+> > silently accepted it, but did not change the hardware to actually use
+> > that mode. The PHY continues to use its reset defaults or strapping,
+> > and it worked. A lot of device trees ended up using this mode. And it
+> > was not the same as reset defaults/strapping.
+> > 
+> > And then somebody needed that fourth mode, and made it actually
+> > work. And all those boards wrongly using that mode broke.
+> > 
+> > The lesson i learned from that episode is that anything in device tree
+> > must actually be used and tested.
+> 
+> It looks like the root cause here was the lack of dt-bindings to
+> only allow the phy-mode values the hardware supports.
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+That would not help. The hardware supported all 4 RGMII modes. So
+listing all four in the dt-binding would be correct. But the driver
+for the hardware had a bug, and so silently ignored one of the
+modes. That then masked the bugs in board DT files.
+
+> What I see here is the driver change should've been tested on all
+> different hardware the driver controls then the improper describing
+> of hardware on the devicetree source file addressed.
+
+Which is what did happen. But it took a while to find all those broken
+boards.  For a period of time, we had regressions.
+
+Bugs happen. It is a fact of life. But we want those bugs to be easy
+to find as possible. If we force DT writers to add properties which
+the driver never uses, they are going to be bugs in those
+properties. And those bugs are not going to be easy to find, and quite
+likely, they will only be found a long time after they are added. We
+should not be adding unused properties and bugs just to keep a yaml
+checker happy.
+
+	Andrew
+
 
