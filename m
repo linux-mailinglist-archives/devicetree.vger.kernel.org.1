@@ -1,194 +1,188 @@
-Return-Path: <devicetree+bounces-2014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAF657A979C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:26:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 301477A9870
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:44:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C25F4B207EA
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 17:26:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E427B20B4E
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 17:44:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C092F171A9;
-	Thu, 21 Sep 2023 17:05:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D2781641F;
+	Thu, 21 Sep 2023 17:22:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31453171AE
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:05:39 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DD2E869B
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:05:31 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qjKBp-0003Gb-Ij; Thu, 21 Sep 2023 15:57:57 +0200
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qjKBo-007wRQ-7M; Thu, 21 Sep 2023 15:57:56 +0200
-Received: from sha by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qjKBo-00Ao2Z-3V; Thu, 21 Sep 2023 15:57:56 +0200
-Date: Thu, 21 Sep 2023 15:57:56 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Saravana Kannan <saravanak@google.com>
-Cc: Chen-Yu Tsai <wens@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-rockchip@lists.infradead.org,
-	Heiko Stuebner <heiko@sntech.de>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	kernel@pengutronix.de,
-	Quentin Schulz <quentin.schulz@theobroma-systems.com>,
-	Michael Riesch <michael.riesch@wolfvision.net>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C60614F9A
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:22:21 +0000 (UTC)
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 127A3469A4
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:14:31 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-405361bb9f7so7840875e9.2
+        for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:14:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695316469; x=1695921269; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=y5XZRvh5FJ3F9RXkqi8NbBrwtIOGm1RUjmAFGYn0SWM=;
+        b=mtpv5L4l+87TIaIzrP4SMppNXNwAVzuvWIgdz4jv5ACW7IKEkyP8EfX7qZ4wv2DfbV
+         WXDw/eJ/9vUd8ZZuQQkXJXYs+6t01gGUcKVPheTnmBF/v1y4aYPqpelET9dxPJjGQfFL
+         RDE7E2nlbvmdGEclfj2a9eIRCNN4THKyHJHwAfHaZkPuz425h7aPvgeZlpTqlC74R5pV
+         2BNNe6qmvKfyIR9V1ZMHzS8mbs6HyDnECW3helfPpjOhZZAxKcKf0rnP+hS/0ThJHpyn
+         kaPAaNuiPpI4PpGY1TXyFaemZh4jGJhQTEUtjx3IxKCmlVaIXAQe1pB86UdxEIXEp2eK
+         JXBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695316469; x=1695921269;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=y5XZRvh5FJ3F9RXkqi8NbBrwtIOGm1RUjmAFGYn0SWM=;
+        b=CUuaES+JpbuguqBhJAlKBy0ZYH3qgFt5rbI7VUmi8YgzLaOyI4B8e6tTImEPNTd+/H
+         3e+AIYEq+VQTgAn6c6sO8+CeZCN4weQ4RlGDyV8tQhoXhQRU1ARXWS9mKo6by5Zfg5Wx
+         wRviNvhHucuEQUYpC3WneEV1ApHI1KeAkf5wtMQqcXXwMPPk7MZr4GaSeMp3NuBB80D3
+         w95XFysaB5kTBQ+29l4WpwnxhcL1Ezzc9wlrG/vGxyLZXncJRLgMaAjKiOKjUZSkFH/M
+         juDqA5pFEs1JlLI3OAqImvr3P/ZTJ/6k3ZNG+HAJZTEm/QFk9tSBa/6RhvU/omch03Yn
+         sNzQ==
+X-Gm-Message-State: AOJu0YzQAMfOgCQKcFqIwe8mdp8r4N32/cUzm4pScmctOTzFgczWB2T7
+	iIXoLQunReqiKw0Ww7kLalHYUgndwQzEmk56aD6r2RaD
+X-Google-Smtp-Source: AGHT+IGc8rbAltPbhW/F+K8m0uCBqxxkmZHh/AgenqhR08Wj+pATxjfsKZe5oZaKwcnGW1CIGp0mkQ==
+X-Received: by 2002:adf:fd4f:0:b0:317:636b:fcb1 with SMTP id h15-20020adffd4f000000b00317636bfcb1mr5633352wrs.27.1695306151764;
+        Thu, 21 Sep 2023 07:22:31 -0700 (PDT)
+Received: from localhost.localdomain (abordeaux-655-1-129-86.w90-5.abo.wanadoo.fr. [90.5.10.86])
+        by smtp.gmail.com with ESMTPSA id n11-20020a5d4c4b000000b0031fbbe347ebsm1901426wrt.22.2023.09.21.07.22.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Sep 2023 07:22:31 -0700 (PDT)
+From: David Lechner <dlechner@baylibre.com>
+To: linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-staging@lists.linux.dev
+Cc: linux-kernel@vger.kernel.org,
+	Jonathan Cameron <jic23@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 1/3] pinctrl: rockchip: add support for io-domain
- dependency
-Message-ID: <20230921135756.GT637806@pengutronix.de>
-References: <20230904115816.1237684-1-s.hauer@pengutronix.de>
- <20230904115816.1237684-2-s.hauer@pengutronix.de>
- <CACRpkdYxRdToUM3JcEeNK_K87D5WDzzSLvVEbtqqdQEhz3k_Ow@mail.gmail.com>
- <CAGb2v65G-8EECNjqnpKCxqAD5nATAb0S7AA_WMiGXYOR1avrvg@mail.gmail.com>
- <20230913065843.GF637806@pengutronix.de>
- <CAGETcx8rO=aykjb6=5k0wpOyscqokNwSL6w-AHnodY7pNXyzGQ@mail.gmail.com>
- <20230915065120.GQ637806@pengutronix.de>
- <CAGETcx-stUfkVmkwGhj7iBWfCRsY5uZ=CxJdX9pPY6OO6oGUhg@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Axel Haslam <ahaslam@baylibre.com>,
+	Philip Molloy <pmolloy@baylibre.com>,
+	David Lechner <dlechner@baylibre.com>
+Subject: [PATCH 1/2] staging: iio: resolver: ad2s1210: add phase_lock_range attributes
+Date: Thu, 21 Sep 2023 09:19:28 -0500
+Message-Id: <20230921141947.57784-3-dlechner@baylibre.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230921141947.57784-1-dlechner@baylibre.com>
+References: <20230921141947.57784-1-dlechner@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAGETcx-stUfkVmkwGhj7iBWfCRsY5uZ=CxJdX9pPY6OO6oGUhg@mail.gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Wed, Sep 20, 2023 at 03:00:28PM -0700, Saravana Kannan wrote:
-> On Thu, Sep 14, 2023 at 11:51 PM Sascha Hauer <s.hauer@pengutronix.de> wrote:
-> >
-> > On Wed, Sep 13, 2023 at 01:48:12PM -0700, Saravana Kannan wrote:
-> > > On Tue, Sep 12, 2023 at 11:58 PM Sascha Hauer <s.hauer@pengutronix.de> wrote:
-> > > >
-> > > > On Wed, Sep 13, 2023 at 12:37:54PM +0800, Chen-Yu Tsai wrote:
-> > > > > On Tue, Sep 12, 2023 at 4:07 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> > > > > >
-> > > > > > Top posting to bring Saravana Kannan into this discussion.
-> > > > > >
-> > > > > > This looks like a big hack to me, Saravana has been working
-> > > > > > tirelessly to make the device tree probe order "sort itself out"
-> > > > > > and I am pretty sure this issue needs to be fixed at the DT
-> > > > > > core level and not in a driver.
-> > > > >
-> > > > > We could merge all the IO domain stuff into the pinctrl node/driver,
-> > > > > like is done for Allwinner? Maybe that would simplify things a bit?
-> > > >
-> > > > I thought about this as well. On Rockchip the pinctrl driver and the IO
-> > > > domain driver even work on the same register space, so putting these
-> > > > into a single node/driver would even feel more natural than what we have
-> > > > now.
-> > >
-> > > Then we should try to do this and fix any issues blocking us.
-> > >
-> > > > However, with that the pinctrl node would get the supplies that the IO
-> > > > domain node now has and we would never get into the probe of the pinctrl
-> > > > driver due to the circular dependencies.
-> > >
-> > > From a fw_devlink perspective, the circular dependency shouldn't be a
-> > > problem. It's smart enough to recognize all cycle possibilities (since
-> > > 6.3) and not enforce ordering between nodes in a cycle.
-> > >
-> > > So, this is really only a matter of pinctrl not trying to do
-> > > regulator_get() in its probe function. You need to do the
-> > > regulator_get() when the pins that depend on the io-domain are
-> > > requested. And if the regulator isn't ready yet, return -EPROBE_DEFER?
-> >
-> > That's basically what my series does already, I return -EPROBE_DEFER
-> > from the pinctrl driver when a pin is requested and the IO domain is not
-> > yet ready.
-> >
-> > >
-> > > Is there something that prevents us from doing that?
-> >
-> > No. We could do that, but it wouldn't buy us anthing. I am glad to hear
-> > that fw_devlink can break the circular dependencies. With this we could
-> > add the supplies to the pinctrl node and the pinctrl driver would still
-> > be probed.
-> >
-> > With the IO domain supplies added to the pinctrl node our binding would
-> > be cleaner, but still we would have to defer probe of many requested
-> > pins until finally the I2C driver providing access to the PMIC comes
-> > along. We also still need a "Do not defer probe for these pins" property
-> > in the pingrp needed for the I2C driver.
-> 
-> Sorry about the slow reply. Been a bit busy.
-> 
-> Oh, this is not true though. With the example binding I gave,
-> fw_devlink will automatically defer the probe of devices that depend
-> on pins that need an iodomain/regulator.
-> 
-> pinctrl {
->     compatible = "rockchip,rk3568-pinctrl";
->     i2c0 {
->                 /omit-if-no-ref/
->                 i2c0_xfer: i2c0-xfer {
->                         rockchip,pins =
->                                 /* i2c0_scl */
->                                 <0 RK_PB1 1 &pcfg_pull_none_smt>,
->                                 /* i2c0_sda */
->                                 <0 RK_PB2 1 &pcfg_pull_none_smt>;
->                 };
->     }
->     ...
->     ...
->     pinctrl-io {
->         compatible = "rockchip,rk3568-pinctrl-io";
->         pmuio1-supply = <&vcc3v3_pmu>;
->         cam {
->             ....
->         }
->         ....
->         ....
-> }
-> 
-> consumerA {
->    pinctrl-0 = <&cam>;
-> }
-> 
-> With this model above, there are no cycles anymore.
+This adds new phase_lock_range and phase_lock_range_available attributes
+to the ad2s1210 resolver driver. These attributes allow the user to set
+the phase lock range bit in the control register to modify the behavior
+of the resolver to digital converter.
 
-The cycles are gone because you skipped the problematic case in your
-example.
+Signed-off-by: David Lechner <dlechner@baylibre.com>
+---
+ drivers/staging/iio/resolver/ad2s1210.c | 58 +++++++++++++++++++++++++
+ 1 file changed, 58 insertions(+)
 
-Replace consumerA in your example with the I2C node providing access to
-the PMIC which provides &vcc3v3_pmu and then you have the cycles back.
-
-The I2C master device needs the IO domain which needs a regulator
-provided by a client on the very same I2C master. The cycles are
-actually there in hardware, you can't define them away ;)
-
-Sascha
-
-
+diff --git a/drivers/staging/iio/resolver/ad2s1210.c b/drivers/staging/iio/resolver/ad2s1210.c
+index 71f0913b7e2e..f5b8b290e860 100644
+--- a/drivers/staging/iio/resolver/ad2s1210.c
++++ b/drivers/staging/iio/resolver/ad2s1210.c
+@@ -259,6 +259,60 @@ static ssize_t excitation_frequency_store(struct device *dev,
+ 	return ret;
+ }
+ 
++static ssize_t phase_lock_range_show(struct device *dev,
++				     struct device_attribute *attr,
++				     char *buf)
++{
++	struct ad2s1210_state *st = iio_priv(dev_to_iio_dev(dev));
++	int ret;
++
++	mutex_lock(&st->lock);
++	ret = regmap_test_bits(st->regmap, AD2S1210_REG_CONTROL,
++			       AD2S1210_PHASE_LOCK_RANGE_44);
++	if (ret < 0)
++		goto error_ret;
++
++	ret = sprintf(buf, "%d\n", ret ? 44 : 360);
++
++error_ret:
++	mutex_unlock(&st->lock);
++	return ret;
++}
++
++static ssize_t phase_lock_range_store(struct device *dev,
++				      struct device_attribute *attr,
++				      const char *buf, size_t len)
++{
++	struct ad2s1210_state *st = iio_priv(dev_to_iio_dev(dev));
++	u16 udata;
++	int ret;
++
++	ret = kstrtou16(buf, 10, &udata);
++	if (ret < 0 || (udata != 44 && udata != 360))
++		return -EINVAL;
++
++	mutex_lock(&st->lock);
++
++	ret = regmap_update_bits(st->regmap, AD2S1210_REG_CONTROL,
++				 AD2S1210_PHASE_LOCK_RANGE_44,
++				 udata == 44 ? AD2S1210_PHASE_LOCK_RANGE_44 : 0);
++	if (ret < 0)
++		goto error_ret;
++
++	ret = len;
++
++error_ret:
++	mutex_unlock(&st->lock);
++	return ret;
++}
++
++static ssize_t phase_lock_range_available_show(struct device *dev,
++					       struct device_attribute *attr,
++					       char *buf)
++{
++	return sprintf(buf, "44 360\n");
++}
++
+ /* read the fault register since last sample */
+ static ssize_t ad2s1210_show_fault(struct device *dev,
+ 				   struct device_attribute *attr, char *buf)
+@@ -506,6 +560,8 @@ static int ad2s1210_write_raw(struct iio_dev *indio_dev,
+ }
+ 
+ static IIO_DEVICE_ATTR_RW(excitation_frequency, 0);
++static IIO_DEVICE_ATTR_RW(phase_lock_range, 0);
++static IIO_DEVICE_ATTR_RO(phase_lock_range_available, 0);
+ static IIO_DEVICE_ATTR(fault, 0644,
+ 		       ad2s1210_show_fault, ad2s1210_clear_fault, 0);
+ 
+@@ -552,6 +608,8 @@ static const struct iio_chan_spec ad2s1210_channels[] = {
+ 
+ static struct attribute *ad2s1210_attributes[] = {
+ 	&iio_dev_attr_excitation_frequency.dev_attr.attr,
++	&iio_dev_attr_phase_lock_range.dev_attr.attr,
++	&iio_dev_attr_phase_lock_range_available.dev_attr.attr,
+ 	&iio_dev_attr_fault.dev_attr.attr,
+ 	&iio_dev_attr_los_thrd.dev_attr.attr,
+ 	&iio_dev_attr_dos_ovr_thrd.dev_attr.attr,
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.34.1
+
 
