@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-2136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42A297A9BA9
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 21:03:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 074FE7A9A9A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 20:46:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0EF5282559
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:03:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B605728223F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 18:46:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A2AE29433;
-	Thu, 21 Sep 2023 17:49:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8241182BD;
+	Thu, 21 Sep 2023 17:49:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD7447C93
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:49:40 +0000 (UTC)
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5819E81FDC
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:36:27 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-9a21b6d105cso148976666b.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:36:27 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 021D018046
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:49:10 +0000 (UTC)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0EE18DEC4
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:44:05 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-5042f391153so1088431e87.1
+        for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:44:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695317785; x=1695922585; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2dbJ671h4+Zrpefl6Lm2RwGWdFjdR10s5YR4gHySBBk=;
-        b=LLq21Id5ADDYhlpd6gwKQW49sGpcPa8nvZpcUNug9AtapvDR+ffbemM9PWpiHMhJnB
-         zHLQSw+9vk9EWPst4p6Bmq9lVS+Yxl0m4AGxiDZwpZzxspI1RKYDwc9TAqPQ5JAii0kt
-         kPiFpj1oHeg65iOaLNfnyxs2Zat1TrFHeYiwyKM4hm1C0+uzwpymhzMrxdGjv2SzDwRd
-         P2OamJuy/9zLNmflgDIGUHo6QKK9ckm5p8lkqEbtGOrwpbyHtcZjFdB7Sa3j6n4ITVwZ
-         Qvz8x05CE+j5Qn1DbqGVt4o28WQLNuBb66yRLsEnHHY+RBdR8Db2KpVeKEqNHov0RXvn
-         xzMQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695318244; x=1695923044; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SZXK6IdVBTSXcGTIHRUU/WhDyCqjH/rftizzn5sbxAE=;
+        b=MK1vFYW7YfRK5c3LHrKzJbZbb2FO/3kDrLZBzUm+pfUAmDM5tzIDke2o71XSXlidal
+         H4tX2WjzEL+x0CCuCa2nGR94JAXO2oWAItF/qnfezSEisjZ0IvXUZv4/68egZMGeHK/Q
+         n4TfJ0zKfrtfLLmWDRMuDqdSJDTq7njw/eruMxgTXiXprRPWdWb7gz0IyGWo/VNlvvv1
+         xp0WTZBNarcYMxAnfVOxmstr+BtE+S5+pAVQ6piZWhQNu0YCf1DnUdwknEHgtQZ0KOXS
+         QxvP14nXaoX2K0HPoiP+zcKtQrcw/74a0yVdalLlFlBfBZM5ERMwCpynZK5XHYNVj+xr
+         4ntw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695317785; x=1695922585;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2dbJ671h4+Zrpefl6Lm2RwGWdFjdR10s5YR4gHySBBk=;
-        b=cl9xqX1rZnOmIFJCQWEkstQyRAgjmMHXkfCalovtQJPVKoXBZqjxHZvZGT3SNSB1MA
-         1mMJtSPCRR923LujbzOu5x79pvQTIhCuoFJv1qt5tDCSxzWbdJIfAPMd8TutVwvYbfEf
-         SIHaCz0m0gz5kCCETfEl+Tg5MyJLsAsMnrCc/rl5HKzhgOF9AWzYlKGLvnlWazUsF5Sh
-         1rdVb/0uJ7bW7ddvQPah7hEeL+ItBu1lgyGwyd5J3t1FSXrTrYWKOc01Dp2ZfGkWIR1V
-         T3TzlKgd6fsIyGR0IVtlTD4CialuXpMYmKaUf2H1bhrNBbkbzA+ZnAq6jilVXXp8KdWl
-         PT1A==
-X-Gm-Message-State: AOJu0Yy3eqZwjrlf9JciEuo40G1mQubEPkWho5VuZpXMx3lc8j7ZNgBO
-	6nm0IwF27YpJ+4b5C3I/XIn46Rabt18k0eVCxy3zFshG
-X-Google-Smtp-Source: AGHT+IFl1Y1y2zMR1iNlW+1IiVeZ0qyN3wFDv4S8/6ruNMMK2i/+yZoG4piAY0plFw/WCYJXxcy+mQ==
-X-Received: by 2002:a05:600c:152:b0:404:2dbb:8943 with SMTP id w18-20020a05600c015200b004042dbb8943mr5711734wmm.2.1695307452618;
-        Thu, 21 Sep 2023 07:44:12 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1695318244; x=1695923044;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SZXK6IdVBTSXcGTIHRUU/WhDyCqjH/rftizzn5sbxAE=;
+        b=TgI1CuuZvtNuUKa0GRCGWxhNmCrpmTtoo3t0Hcb6dk3dosjK1RuNhi5XhvHiijf0VB
+         Zm7gsu90tvo3KficUuI8XyhAJ9PFdJ+Mvj+pv/PfPcTt+zoHvPG5J+Xu0qqPmXZhS+/y
+         9e9xiu3gmGMsy5nnR9Zdo2itbNoP0TViOOtmGETkkynw45+9kFsNj43gq46gcZXm4C1l
+         D0C40/yhN5+ALUFUlQyVa4aTyDxsTdgpUOZ/0G9BUOpIXZRJjSmvMuPLZs6r+SSQU/Ig
+         SL9B2L8eKvxFe3MstLfowMZF6PWP5w2ZlGUd140EGlGJxwf5JHmU3UDBkJtoimjWRlHu
+         f9UQ==
+X-Gm-Message-State: AOJu0Yyhy032HPoJpwIsLo0M5LGiQPq0GItHf4SQSIrCuyP9PTI4q/Dz
+	8kSchRBuuIIJLYQjbOFDw0bbIPir37MpZgJtNtYrhlTm
+X-Google-Smtp-Source: AGHT+IHMEHv2klXQ63wwzWGVjMOGX5bZqWdw2Z4sNl3hAMpsWXkSNUzWXIDheODJzKMZ7lJR41f9Ow==
+X-Received: by 2002:a5d:4dc2:0:b0:320:968:f3b0 with SMTP id f2-20020a5d4dc2000000b003200968f3b0mr6330695wru.35.1695307453560;
+        Thu, 21 Sep 2023 07:44:13 -0700 (PDT)
 Received: from localhost.localdomain (abordeaux-655-1-129-86.w90-5.abo.wanadoo.fr. [90.5.10.86])
-        by smtp.gmail.com with ESMTPSA id s17-20020a1cf211000000b003fe2a40d287sm2125515wmc.1.2023.09.21.07.44.11
+        by smtp.gmail.com with ESMTPSA id s17-20020a1cf211000000b003fe2a40d287sm2125515wmc.1.2023.09.21.07.44.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Sep 2023 07:44:12 -0700 (PDT)
+        Thu, 21 Sep 2023 07:44:13 -0700 (PDT)
 From: David Lechner <dlechner@baylibre.com>
 To: linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org,
@@ -68,11 +69,14 @@ Cc: linux-kernel@vger.kernel.org,
 	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
 	Axel Haslam <ahaslam@baylibre.com>,
 	Philip Molloy <pmolloy@baylibre.com>,
-	David Lechner <dlechner@baylibre.com>
-Subject: [PATCH v2 00/19] iio: resolver: move ad2s1210 out of staging
-Date: Thu, 21 Sep 2023 09:43:41 -0500
-Message-Id: <20230921144400.62380-1-dlechner@baylibre.com>
+	David Lechner <dlechner@baylibre.com>,
+	Apelete Seketeli <aseketeli@baylibre.com>
+Subject: [PATCH v2 01/19] dt-bindings: iio: resolver: add devicetree bindings for ad2s1210
+Date: Thu, 21 Sep 2023 09:43:42 -0500
+Message-Id: <20230921144400.62380-2-dlechner@baylibre.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230921144400.62380-1-dlechner@baylibre.com>
+References: <20230921144400.62380-1-dlechner@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,86 +85,184 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
 	autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Resending v2 with proper `PATCH v2` prefix.
+This adds new DeviceTree bindings for the Analog Devices, Inc. AD2S1210
+resolver-to-digital converter.
 
-Changes since v1:
-* Address initial device tree patch feedback
-* Drop "iio: sysfs: add IIO_DEVICE_ATTR_NAMED_RW macro" (related cleanups
-  also dropped for now, will address in a future series if needed)
-* Apply improvements as a series as patches to the staging driver. It is not
-  quite ready for the move out of staging patch yet.
+Co-developed-by: Apelete Seketeli <aseketeli@baylibre.com>
+Signed-off-by: Apelete Seketeli <aseketeli@baylibre.com>
+Signed-off-by: David Lechner <dlechner@baylibre.com>
+---
 
-This series has been tested on actual hardware using a EVAL-AD2S1210 evaluation
-board. (Note: not all device tree features have been implemented in the driver
-since the eval board doesn't support them out of the box. We plan to add them
-later if needed.)
+v2 changes:
+* Add Co-developed-by:
+* Remove extraneous quotes on strings
+* Remove extraneous pipe on some multi-line descriptions
 
-One thing left over from the staging driver that probably needs more attention
-still is the fault handling (both the fault threshold attributes and how
-userspace gets notified of fault conditions). We considered adding these as
-events, but the fault conditions are related to internal measurements in the
-chip that aren't available as channels.
-
-Since the chip is designed to read the fault register each time we read the
-data registers for one of the two channels it seems like faults should be
-associated with channels one way or another. Would it make sense to add extra
-channels for the internal signals that only have fault events (mostly with
-IIO_EV_TYPE_THRESH)? Or would it make sense to add a new "flags" channel type
-where the "raw" value is bit flags? Or something else?
-
-Here is the table of available faults for context. Sine/cosine inputs are
-internal signals.
-
-| Bit | Description
-+-----+------------
-| D7  |  Sine/cosine inputs clipped
-| D6  |  Sine/cosine inputs below LOS threshold
-| D5  |  Sine/cosine inputs exceed DOS overrange threshold
-| D4  |  Sine/cosine inputs exceed DOS mismatch threshold
-| D3  |  Tracking error exceeds LOT threshold
-| D2  |  Velocity exceeds maximum tracking rate
-| D1  |  Phase error exceeds phase lock range
-| D0  |  Configuration parity error
-
-David Lechner (19):
-  dt-bindings: iio: resolver: add devicetree bindings for ad2s1210
-  staging: iio: Documentation: document IIO resolver AD2S1210 sysfs
-    attributes
-  staging: iio: resolver: ad2s1210: fix ad2s1210_show_fault
-  staging: iio: resolver: ad2s1210: fix not restoring sample gpio in
-    channel read
-  staging: iio: resolver: ad2s1210: fix probe
-  staging: iio: resolver: ad2s1210: always use 16-bit value for raw read
-  staging: iio: resolver: ad2s1210: implement IIO_CHAN_INFO_SCALE
-  staging: iio: resolver: ad2s1210: use devicetree to get fclkin
-  staging: iio: resolver: ad2s1210: use regmap for config registers
-  staging: iio: resolver: ad2s1210: add debugfs reg access
-  staging: iio: resolver: ad2s1210: remove config attribute
-  staging: iio: resolver: ad2s1210: rework gpios
-  staging: iio: resolver: ad2s1210: implement hysteresis as channel attr
-  staging: iio: resolver: ad2s1210: refactor setting excitation
-    frequency
-  staging: iio: resolver: ad2s1210: read excitation frequency from
-    control register
-  staging: iio: resolver: ad2s1210: rename fexcit attribute
-  staging: iio: resolver: ad2s1210: convert resolution to devicetree
-    property
-  staging: iio: resolver: ad2s1210: add phase_lock_range attributes
-  staging: iio: resolver: ad2s1210: add triggered buffer support
-
- .../bindings/iio/resolver/adi,ad2s1210.yaml   | 150 +++
- .../sysfs-bus-iio-resolver-ad2s1210           | 109 ++
- drivers/staging/iio/resolver/Kconfig          |   1 +
- drivers/staging/iio/resolver/ad2s1210.c       | 948 +++++++++++-------
- 4 files changed, 857 insertions(+), 351 deletions(-)
+ .../bindings/iio/resolver/adi,ad2s1210.yaml   | 150 ++++++++++++++++++
+ 1 file changed, 150 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/iio/resolver/adi,ad2s1210.yaml
- create mode 100644 drivers/staging/iio/Documentation/sysfs-bus-iio-resolver-ad2s1210
 
+diff --git a/Documentation/devicetree/bindings/iio/resolver/adi,ad2s1210.yaml b/Documentation/devicetree/bindings/iio/resolver/adi,ad2s1210.yaml
+new file mode 100644
+index 000000000000..f55c9652cfb7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/resolver/adi,ad2s1210.yaml
+@@ -0,0 +1,150 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/resolver/adi,ad2s1210.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices AD2S1210 Resolver-to-Digital Converter
++
++maintainers:
++  - Michael Hennerich <michael.hennerich@analog.com>
++
++description: |
++  The AD2S1210 is a complete 10-bit to 16-bit resolution tracking
++  resolver-to-digital converter, integrating an on-board programmable
++  sinusoidal oscillator that provides sine wave excitation for
++  resolvers.
++
++  The AD2S1210 allows the user to read the angular position or the
++  angular velocity data directly from the parallel outputs or through
++  the serial interface.
++
++    A1  A0  Result
++     0   0  Normal mode - position output
++     0   1  Normal mode - velocity output
++     1   0  Reserved
++     1   1  Configuration mode
++
++  In normal mode, the resolution of the digital output is selected using
++  the RES0 and RES1 input pins. In configuration mode, the resolution is
++  selected by setting the RES0 and RES1 bits in the control register.
++
++  RES1  RES0  Resolution (Bits)
++     0     0  10
++     0     1  12
++     1     0  14
++     1     1  16
++
++  Note on SPI connections: The CS line on the AD2S1210 should hard-wired to
++  logic low and the WR/FSYNC line on the AD2S1210 should be connected to the
++  SPI CSn output of the SPI controller.
++
++  Datasheet:
++  https://www.analog.com/media/en/technical-documentation/data-sheets/ad2s1210.pdf
++
++properties:
++  compatible:
++    const: adi,ad2s1210
++
++  reg:
++    maxItems: 1
++
++  spi-max-frequency:
++    maximum: 25000000
++
++  spi-cpha: true
++
++  clocks:
++    maxItems: 1
++    description: External oscillator clock (CLKIN).
++
++  reset-gpios:
++    description:
++      GPIO connected to the /RESET pin. As the line needs to be low for the
++      reset to be active, it should be configured as GPIO_ACTIVE_LOW.
++    maxItems: 1
++
++  sample-gpios:
++    description:
++      GPIO connected to the /SAMPLE pin. As the line needs to be low to trigger
++      a sample, it should be configured as GPIO_ACTIVE_LOW.
++    maxItems: 1
++
++  mode-gpios:
++    description:
++      GPIO lines connected to the A0 and A1 pins. These pins select the data
++      transfer mode.
++    minItems: 2
++    maxItems: 2
++
++  resolution-gpios:
++    description:
++      GPIO lines connected to the RES0 and RES1 pins. These pins select the
++      resolution of the digital output. If omitted, it is assumed that the
++      RES0 and RES1 pins are hard-wired to match the assigned-resolution-bits
++      property.
++    minItems: 2
++    maxItems: 2
++
++  fault-gpios:
++    description:
++      GPIO lines connected to the LOT and DOS pins. These pins combined indicate
++      the type of fault present, if any. As these pins a pulled low to indicate
++      a fault condition, they should be configured as GPIO_ACTIVE_LOW.
++    minItems: 2
++    maxItems: 2
++
++  adi,fixed-mode:
++    description:
++      This is used to indicate the selected mode if A0 and A1 are hard-wired
++      instead of connected to GPIOS (i.e. mode-gpios is omitted).
++    $ref: /schemas/types.yaml#/definitions/string
++    enum: [config, velocity, position]
++
++  assigned-resolution-bits:
++    description:
++      Resolution of the digital output required by the application. This
++      determines the precision of the angle and/or the maximum speed that can
++      be measured. If resolution-gpios is omitted, it is assumed that RES0 and
++      RES1 are hard-wired to match this value.
++    enum: [10, 12, 14, 16]
++
++required:
++  - compatible
++  - reg
++  - spi-cpha
++  - clocks
++  - sample-gpios
++  - assigned-resolution-bits
++
++oneOf:
++  - required:
++      - mode-gpios
++  - required:
++      - adi,fixed-mode
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        resolver@0 {
++            compatible = "adi,ad2s1210";
++            reg = <0>;
++            spi-max-frequency = <20000000>;
++            spi-cpha;
++            clocks = <&ext_osc>;
++            sample-gpios = <&gpio0 90 GPIO_ACTIVE_LOW>;
++            mode-gpios = <&gpio0 86 0>, <&gpio0 87 0>;
++            resolution-gpios = <&gpio0 88 0>, <&gpio0 89 0>;
++            assigned-resolution-bits = <16>;
++        };
++    };
 -- 
 2.34.1
 
