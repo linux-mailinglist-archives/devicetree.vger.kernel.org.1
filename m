@@ -1,47 +1,53 @@
-Return-Path: <devicetree+bounces-1963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CEEA7A94EA
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 15:47:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE3887A94FE
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 16:00:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25D011C20503
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 13:47:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE066281BA0
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 14:00:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 564A5B66D;
-	Thu, 21 Sep 2023 13:47:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 632F7B671;
+	Thu, 21 Sep 2023 14:00:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42876B641
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 13:47:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8547CC4E687;
-	Thu, 21 Sep 2023 13:47:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F7FBB641
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 14:00:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E527C4E74E;
+	Thu, 21 Sep 2023 14:00:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695304054;
-	bh=Oo9AjLmvT40iXA2aHlcvjH+u91I2XspBDwHA99rab5U=;
+	s=k20201202; t=1695304834;
+	bh=HbA5iULXyLPFf2bFXoU3dpV8WI5kxu+YFc1N4jF1L2U=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B/nzU1poVexwNkd1uy8NYKF7nqNzSxBZguu99fbkUbbpOGB0M5SIkbkOKFB0tLFHK
-	 4u4LRILb6bb/hPssO9FbQR6ITa+eINX7rERGA+6Cm+/Gj80MA+4Exh1CEGWqwfVHIw
-	 TF8e19PDWWeOZsXJPl4Be7LrH+8OQstaf+zWw17Icr8pueLiaA+2Ej3awqB6c7juJ6
-	 dOZmyoJP7YtQKWwVuQFnrxB4DFhB5Uk7lIMntm6OTJc+PVGtrJD0x4Bde1AVh2BU28
-	 UrlntiPzMnfdfLtkDt2FL5PD5hbJIDFLdSf7nrXjg4A7Vg349CbDEHDgKKnuWPNq93
-	 j0lnhWD/kOxbQ==
-Date: Thu, 21 Sep 2023 14:47:30 +0100
+	b=Vw+SRjXWQEWTEo/iafrfQz8VkQqZ0QyOu2X1ObLsbb+33KbxHPtYkVAgNvlOdiyzA
+	 eBYjlMX+xp8eCOGuK6QUBHjlzhTyGcDh9FYMvRJiALBxwTN8NmTj64MAYaetVFn44B
+	 9fnzT97R/GeaRHgZ42Z8dFYu9xAoKkRrS5bBXA1D+TH+C44Ew3oZ+fVD5j+qRC6R7k
+	 VFwmV73p9uNrsucNeb16quOQ7gL4OmKlGUVp7abKhNZ+ZjF1vmcyo6xxVUDQ0C4gjn
+	 HdDs7o27OFH4YMjP4J7QmBiNH0RY7I85P+XSOmwNn/CdQV5oG0aLqQWZeCiuyFM7dI
+	 fxhvAj7FncohQ==
+Date: Thu, 21 Sep 2023 15:00:29 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Hugo Villeneuve <hugo@hugovil.com>
-Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	hvilleneuve@dimonoff.com, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: sc16is7xx: add vendor prefix to
- irda-mode-ports property
-Message-ID: <20230921-epidermis-labrador-3e51bb0b2cb9@spud>
-References: <20230920152015.1376838-1-hugo@hugovil.com>
- <20230920152015.1376838-4-hugo@hugovil.com>
+To: Chen Wang <unicornxw@gmail.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>, aou@eecs.berkeley.edu,
+	chao.wei@sophgo.com, devicetree@vger.kernel.org,
+	emil.renner.berthing@canonical.com, guoren@kernel.org,
+	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
+	xiaoguang.xing@sophgo.com, Chen Wang <wangchen20@iscas.ac.cn>
+Subject: Re: [PATCH v2 03/11] dt-bindings: riscv: add sophgo sg2042 bindings
+Message-ID: <20230921-slot-goal-c03ac4f0db90@spud>
+References: <cover.1695189879.git.wangchen20@iscas.ac.cn>
+ <c6aea83bb1df563b1f2a66c5f230c3861aed1e15.1695189879.git.wangchen20@iscas.ac.cn>
+ <20230920-arrival-bonanza-e335686420f4@wendy>
+ <CAHAQgRDh72FLQPOFzn2rhsWmOOaLUO0sKyJwJQBG0Z7qZN_YLw@mail.gmail.com>
+ <20230921-1ae70cfdbf983e011d5b6754@fedora>
+ <CAHAQgRBFje4mdhE3dZZH=HxED0bUauXBD4yNfQzEnpPSWG5HiA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,77 +55,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="dITO17on8mP4IvAa"
+	protocol="application/pgp-signature"; boundary="muk+u1lqGbjyw/DQ"
 Content-Disposition: inline
-In-Reply-To: <20230920152015.1376838-4-hugo@hugovil.com>
+In-Reply-To: <CAHAQgRBFje4mdhE3dZZH=HxED0bUauXBD4yNfQzEnpPSWG5HiA@mail.gmail.com>
 
 
---dITO17on8mP4IvAa
+--muk+u1lqGbjyw/DQ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Sep 20, 2023 at 11:20:14AM -0400, Hugo Villeneuve wrote:
-> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
->=20
-> The NXP-specific "irda-mode-ports" property lacks a proper vendor
-> prefix. Add "nxp," prefix to comply with DT best practises.
+On Thu, Sep 21, 2023 at 09:51:58PM +0800, Chen Wang wrote:
 
-Looks like you've made changes to the driver in a way both will work,
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Conor, do you want me to add you to the MAINTAINERS entry too?
 
-Cheers,
+Nope, no need. My existing maintainers entries should cover it.
+
+Thanks,
 Conor.
 
->=20
-> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> ---
->  .../devicetree/bindings/serial/nxp,sc16is7xx.txt          | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt b=
-/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
-> index 1a7e4bff0456..d89815c5c562 100644
-> --- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
-> +++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
-> @@ -21,8 +21,8 @@ Optional properties:
->    the second cell is used to specify the GPIO polarity:
->      0 =3D active high,
->      1 =3D active low.
-> -- irda-mode-ports: An array that lists the indices of the port that
-> -		   should operate in IrDA mode.
-> +- nxp,irda-mode-ports: An array that lists the indices of the port that
-> +		       should operate in IrDA mode.
->  - nxp,modem-control-line-ports: An array that lists the indices of the p=
-ort that
->  				should have shared GPIO lines configured as
->  				modem control lines.
-> @@ -80,8 +80,8 @@ Optional properties:
->    the second cell is used to specify the GPIO polarity:
->      0 =3D active high,
->      1 =3D active low.
-> -- irda-mode-ports: An array that lists the indices of the port that
-> -		   should operate in IrDA mode.
-> +- nxp,irda-mode-ports: An array that lists the indices of the port that
-> +		       should operate in IrDA mode.
->  - nxp,modem-control-line-ports: An array that lists the indices of the p=
-ort that
->  				should have shared GPIO lines configured as
->  				modem control lines.
-> --=20
-> 2.30.2
->=20
-
---dITO17on8mP4IvAa
+--muk+u1lqGbjyw/DQ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQxJcgAKCRB4tDGHoIJi
-0i60AQDkv6NAQfFJKu9ceTROjQsUq5KvzHpILZ/l5wPEFqql6wEA16WdTQeQYNUJ
-S1/xZghGAvjC+nLpApgENKAvRXOFJg4=
-=eS7q
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQxMfQAKCRB4tDGHoIJi
+0syUAP4h+gobTYujuawwrF9fvZg3Qn3BF9VaVT5NH2iBnApl5wD+POJWMSSetJWO
+NynHZ9xJ51y2szVWwB1MvQmuoRah3gk=
+=1ks/
 -----END PGP SIGNATURE-----
 
---dITO17on8mP4IvAa--
+--muk+u1lqGbjyw/DQ--
 
