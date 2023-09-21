@@ -1,82 +1,102 @@
-Return-Path: <devicetree+bounces-1976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A55C7A9545
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 16:31:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BD027A9552
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 16:35:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0397F281BC7
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 14:31:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB1A4281BB3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 14:35:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F01A0BE5F;
-	Thu, 21 Sep 2023 14:29:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B6EF199A0;
+	Thu, 21 Sep 2023 14:35:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1D12BA3A
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 14:29:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3CF6C4E764;
-	Thu, 21 Sep 2023 14:29:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BAF1138C
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 14:35:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B4EFC32781;
+	Thu, 21 Sep 2023 14:35:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695306586;
-	bh=HPNrgxZmgDrK/7v8w1qWsE4OijoieBpRZDKxz/upQ20=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=BtH1ChD9v3Lhaimr7O4iFGTSAiQZu4lSCYhz2K+x9Z7DmqGsODmZnFO/tEo9Exnqg
-	 XUwyIE3AqFA+nQy8qDyspp+6lU7AUcELyyug+/MvtklzQXMYaqklyBqyEZJ77MSuky
-	 Ux8t6gzVFuD1ZGdYO4lK8+01rMNheQ0tM1Q+R2S1fhB3vGirg63wf6bzm/2Rj6Amn/
-	 mIC6CrR/HVJWhV2tlZWo2R2QxmbJ7X3PLl3iPHUCJtkg/Tc+AWQtrRxh01+DRtPJN6
-	 66R9mxWdzrQs0mKX2s2AvYOImdFD0sj+55fMAxD9KMhUOkEO/K9uRsU9j4Cc/9ELRd
-	 h3AZ8hq1/2hfw==
+	s=k20201202; t=1695306914;
+	bh=Ashko9Vqxtf3QtmQTLjdXa1bJRP7FL+fu06wAfd3F7c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FRMShh9/zX9wUDM9v8+QIfE2SHrgP+e4G8jiMmiY532CnUx1xx/BPojQLknskBGaV
+	 /tZuyOapRtkzGcTUI++k8EOhvB2FjvEDZpcWizWGkS3m2Gs6GV3ltV2UBvht06CInz
+	 GEPoh/stnSW9Sd3S0EaxIKvqU8O+UtDXE9lw9Bv1en7UzL6Xd5AkJO4dNNPPwBxA4h
+	 FxPhfiyO87F4c1lg/byqQEeOfnnYRPJcGfXSs1NDe5kJZmEj15AmnMWMkJyV/DGTau
+	 X6ah1ms2I5mjEosoSOYhpAXbs9WmDccDu41kAk+yb9oQUdHgu85ZAT+o+VrHlv1HWM
+	 TqwKyW4jUw2MA==
+Date: Thu, 21 Sep 2023 16:35:11 +0200
 From: Vinod Koul <vkoul@kernel.org>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Abel Vesa <abel.vesa@linaro.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20230830-topic-eusb2_override-v2-0-7d8c893d93f6@linaro.org>
-References: <20230830-topic-eusb2_override-v2-0-7d8c893d93f6@linaro.org>
-Subject: Re: [PATCH v2 0/4] EUSB2 repeater init sequence override
-Message-Id: <169530658362.106263.16903519035871193100.b4-ty@kernel.org>
-Date: Thu, 21 Sep 2023 16:29:43 +0200
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Sandor Yu <Sandor.yu@nxp.com>, andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
+	daniel@ffwll.ch, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, festevam@gmail.com,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org, kernel@pengutronix.de,
+	linux-imx@nxp.com, oliver.brown@nxp.com,
+	alexander.stein@ew.tq-group.com, sam@ravnborg.org
+Subject: Re: [PATCH v8 2/7] phy: Add HDMI configuration options
+Message-ID: <ZQxUn3MEVuxU3h6I@matsya>
+References: <20230808083243.3113192-1-Sandor.yu@nxp.com>
+ <20230808083243.3113192-3-Sandor.yu@nxp.com>
+ <c485b64e-3c83-4616-b8d8-76c2c7d56b0e@linaro.org>
+ <ZOS+IQgFZYxN503B@matsya>
+ <CAA8EJpokkjw_Q36YMh4p6NR+r4JGgM7_b+_QXtbmcPr6GzA=ug@mail.gmail.com>
+ <ZQxMmtbqDTqgECnE@matsya>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZQxMmtbqDTqgECnE@matsya>
 
-
-On Wed, 13 Sep 2023 11:53:22 +0200, Konrad Dybcio wrote:
-> The EUSB2 repeater goes through a tuning sequence as part of its
-> initialization. This series ensures the tuning is "clean" and can be
-> overridden for devices that need it.
+On 21-09-23, 16:01, Vinod Koul wrote:
+> On 22-08-23, 20:22, Dmitry Baryshkov wrote:
+> > On 22/08/2023 16:54, Vinod Koul wrote:
+> > > On 17-08-23, 13:05, Dmitry Baryshkov wrote:
+> > >> On 08/08/2023 11:32, Sandor Yu wrote:
+> > >>> Allow HDMI PHYs to be configured through the generic
+> > >>> functions through a custom structure added to the generic union.
+> > >>>
+> > >>> The parameters added here are based on HDMI PHY
+> > >>> implementation practices.  The current set of parameters
+> > >>> should cover the potential users.
+> > >>>
+> > >>> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
+> > >>> ---
+> > >>>    include/linux/phy/phy-hdmi.h | 24 ++++++++++++++++++++++++
+> > >>>    include/linux/phy/phy.h      |  7 ++++++-
+> > >>>    2 files changed, 30 insertions(+), 1 deletion(-)
+> > >>>    create mode 100644 include/linux/phy/phy-hdmi.h
+> > >>
+> > >> I think this looks good now, thank you!
+> > >>
+> > >> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > >
+> > > Should this go thru drm or phy...?
+> > 
+> > I'd say, PHY, together with the other PHY patches. If you can merge
+> > them into an immutable branch, then it can also be merged into
+> > drm-misc (?) to provide the dependency between drm and phy parts.
 > 
-> 
+> phy/topic/hdmi should be pushed out in a bit for that
 
-Applied, thanks!
+Sorry we need the drm header, so best to merge thru drm tree:
 
-[1/4] dt-bindings: phy: qcom,snps-eusb2-repeater: Add magic tuning overrides
-      commit: 2da73b4e0cf1d9847483fe474ce27af987bfb614
-[2/4] phy: qualcomm: phy-qcom-eusb2-repeater: Use regmap_fields
-      commit: dcc8a942852f00845e75c49ca8a7a6865d6b669d
-[3/4] phy: qualcomm: phy-qcom-eusb2-repeater: Zero out untouched tuning regs
-      commit: af1c6ec341c3a1cc396784b2ce4619aec7be3e34
-[4/4] phy: qualcomm: phy-qcom-eusb2-repeater: Add tuning overrides
-      commit: 05733bd60f7aa4f260a2837574555bbd3b847cca
+Acked-by: Vinod Koul <vkoul@kernel.org>
 
-Best regards,
 -- 
 ~Vinod
-
-
 
