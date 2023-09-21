@@ -1,88 +1,192 @@
-Return-Path: <devicetree+bounces-2020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62B4A7A9801
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:29:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D656D7A9872
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:45:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E638282332
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 17:29:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A892CB21335
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 17:45:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1002DBA57;
-	Thu, 21 Sep 2023 17:08:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CFEC1641D;
+	Thu, 21 Sep 2023 17:22:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9072E9461
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:08:08 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id F1A4B3580;
-	Thu, 21 Sep 2023 10:07:37 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4EFB015A1;
-	Thu, 21 Sep 2023 04:11:52 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1E7DD3F5A1;
-	Thu, 21 Sep 2023 04:11:13 -0700 (PDT)
-Date: Thu, 21 Sep 2023 12:11:10 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Cristian Marussi <cristian.marussi@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Stephen Boyd <sboyd@kernel.org>, Nikunj Kela <nkela@quicinc.com>,
-	Prasad Sodagudi <psodagud@quicinc.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: Re: [PATCH v3 08/13] dt-bindings: arm: cpus: Add a power-domain-name
- for a performance-domain
-Message-ID: <20230921111110.tbffr5sik3ycw7gf@bogus>
-References: <20230825112633.236607-1-ulf.hansson@linaro.org>
- <20230825112633.236607-9-ulf.hansson@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F4C516402
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:22:21 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF5BD469A2;
+	Thu, 21 Sep 2023 10:14:31 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 6E5B766072AC;
+	Thu, 21 Sep 2023 12:17:10 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1695295031;
+	bh=5QZOgiLgPuj65gBIxllEBQ8UoAChCrqYN69GWaV+yPQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YIkKEXQn5t4jCUZXXcgaqsS6xgzmWls+xt48pRl4jotoNXPsxnwU8UlPasMZ765an
+	 paCIZCGBBoLI4DEJ39pIm/BPJa5zGDs7y7m9WKcShrDe4EOA4RNkvOxQNpinMY+Ktw
+	 MopSXw+sp9/afzvJNgoKPhm5XLMOad5TLwgwcpOdaIXyodmGRAtQYNKAifssIrrK/5
+	 ZGsptSM+8tnUHNHK1obP3UP/remTXxWWsSC2TytAPZMAjkot5qpiBZpPjIVztfajzd
+	 e/+RRAGceAq9iYKuU15E3FuXrbDtHqsSMIJEdwHWdRAdeVz7dIEkbqK0/5TIHlGEud
+	 60+XAyr3xGh9g==
+Message-ID: <fb716cdf-12eb-8d85-3b9d-b1d5e5aee212@collabora.com>
+Date: Thu, 21 Sep 2023 13:17:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230825112633.236607-9-ulf.hansson@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-	autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v2 4/4] thermal/drivers/mediatek/lvts_thermal: add mt7988
+ support
+To: Frank Wunderlich <linux@fw-web.de>, linux-mediatek@lists.infradead.org
+Cc: Frank Wunderlich <frank-w@public-files.de>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Amit Kucheria
+ <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20230920175001.47563-1-linux@fw-web.de>
+ <20230920175001.47563-5-linux@fw-web.de>
+ <eb6cc1dd-1df9-3b68-1f72-d536189c7b4d@collabora.com>
+ <F68F7C77-BB1E-4D9F-B760-9B35DE3693C5@fw-web.de>
+Content-Language: en-US
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <F68F7C77-BB1E-4D9F-B760-9B35DE3693C5@fw-web.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Fri, Aug 25, 2023 at 01:26:28PM +0200, Ulf Hansson wrote:
-> When an CPU's performance domain is managed through the SCMI firmware,
-> let's enable us describe this as a consumer of a power-domain provider,
-> which is the de-facto standard to use for performance domains. In this
-> case, let's specify a corresponding power-domain-name, to point out the
-> corresponding index for it.
+Il 21/09/23 12:39, Frank Wunderlich ha scritto:
+> Am 21. September 2023 09:54:35 MESZ schrieb AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>:
+>> Il 20/09/23 19:50, Frank Wunderlich ha scritto:
+>>> From: Frank Wunderlich <frank-w@public-files.de>
+>   
+>>> diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/mediatek/lvts_thermal.c
+>>> index c2669f405a94..8fd1dc5adb16 100644
+>>> --- a/drivers/thermal/mediatek/lvts_thermal.c
+>>> +++ b/drivers/thermal/mediatek/lvts_thermal.c
+>>> @@ -82,6 +82,8 @@
+>>>    #define LVTS_GOLDEN_TEMP_DEFAULT	50
+>>>    #define LVTS_COEFF_A_MT8195			-250460
+>>>    #define LVTS_COEFF_B_MT8195			250460
+>>> +#define LVTS_COEFF_A_MT7988			-204650
+>>> +#define LVTS_COEFF_B_MT7988			204650
+>>>      #define LVTS_MSR_IMMEDIATE_MODE		0
+>>>    #define LVTS_MSR_FILTERED_MODE		1
+>>> @@ -89,6 +91,7 @@
+>>>    #define LVTS_MSR_READ_TIMEOUT_US	400
+>>>    #define LVTS_MSR_READ_WAIT_US		(LVTS_MSR_READ_TIMEOUT_US / 2)
+>>>    +#define LVTS_HW_SHUTDOWN_MT7988		105000
+>>
+>> I would simply reuse the definition of LVTS_HW_SHUTDOWN_MT8195....
 > 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
-> ---
+> Hi angelo,
+> thanks for review.
 > 
-> Changes in v3:
-> 	- New patch.
+> Imho it should be separated...if someone thinks it needs to be changed later it will be changed not only for mt8195...a generic name can also cause problems if the next soc has different value.
+> 
 
-This patch and 10/13 are quite generic. I am happy to take it as part of
-this series but just thought of checking again if that is what you prefer ?
+Okay, I don't really have strong opinions against that anyway.
 
--- 
-Regards,
-Sudeep
+Cheers
+Angelo
+
+>>>    #define LVTS_HW_SHUTDOWN_MT8195		105000
+>>>      #define LVTS_MINIMUM_THRESHOLD		20000
+>>> @@ -1269,6 +1272,41 @@ static int lvts_remove(struct platform_device *pdev)
+>>>    	return 0;
+>>>    }
+>>>    +/*
+>>> + * LVTS MT7988
+>>> + */
+>>> +
+>>
+>> Please remove this big comment block, that's not needed.
+> 
+> Ok,i drop the comments (maybe except the wed one where the name in technical document (i used for constants) does not point to wed function.
+> 
+>>> +static const struct lvts_ctrl_data mt7988_lvts_ap_data_ctrl[] = {
+>>> +	{
+>>> +		.cal_offset = { 0x00, 0x04, 0x08, 0x0c }, //918,91C,920,924
+>>
+>> This 918,91c,etc comment is not necessary
+>>
+>>> +		.lvts_sensor = {
+>>> +			{ .dt_id = MT7988_CPU_0 }, // CPU 0,1
+>>
+>> If you want to retain those comments, you shall use the right style.
+>>
+>> { .dt_id = MT7988_CPU_0 }, /* CPU 0,1 */
+>> { .. } /* CPU 2,3 */
+>> { .. } /* Internal 2.5G PHY 1 */
+>>
+>> etc
+>>
+>>> +			{ .dt_id = MT7988_CPU_1 }, // CPU 2,3
+>>> +			{ .dt_id = MT7988_ETH2P5G_0 }, // internal 2.5G Phy 1
+>>> +			{ .dt_id = MT7988_ETH2P5G_1 }  // internal 2.5G Phy 2
+>>> +		},
+>>> +		.num_lvts_sensor = 4,
+>>> +		.offset = 0x0,
+>>> +		.hw_tshut_temp = LVTS_HW_SHUTDOWN_MT7988,
+>>> +	},
+>>> +	{
+>>> +		.cal_offset = { 0x14, 0x18, 0x1c, 0x20 }, //92C,930,934,938
+>>
+>> comment not needed
+>>
+>>> +		.lvts_sensor = {
+>>> +			{ .dt_id = MT7988_TOPS_0}, // TOPS > +			{ .dt_id = MT7988_TOPS_1}, // TOPS
+>>
+>> The dt_id definition already says "TOPS", this comment is not needed.
+>>
+>>> +			{ .dt_id = MT7988_ETHWARP_0}, // WED 1
+>>> +			{ .dt_id = MT7988_ETHWARP_1}  // WED 2
+>>
+>> Same comment about the format; /* WED 1 */
+>>
+>>> +		},
+>>> +		.num_lvts_sensor = 4,
+>>> +		.offset = 0x100,
+>>> +		.hw_tshut_temp = LVTS_HW_SHUTDOWN_MT7988,
+>>> +	}
+>>> +};
+>>> +
+>>> +/*
+>>> + * LVTS MT8195
+>>> + */
+>>
+>> Please also remove this big comment block, it's not needed.
+>>
+>> Apart from that, this patch looks good; v3 will be the golden one :-)
+>>
+>> Cheers,
+>> Angelo
+>>
+> 
+> regards Frank
+
+
+
 
