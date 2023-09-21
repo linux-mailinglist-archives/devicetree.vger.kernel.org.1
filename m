@@ -1,96 +1,188 @@
-Return-Path: <devicetree+bounces-1965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 255377A94FF
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 16:01:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC12F7A952F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 16:25:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2EE9281BAE
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 14:01:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 38E96B20A1E
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 14:25:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 070A1B673;
-	Thu, 21 Sep 2023 14:01:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D83DBA28;
+	Thu, 21 Sep 2023 14:25:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAAEFB641
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 14:01:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 338FDC4E74A;
-	Thu, 21 Sep 2023 14:01:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 689E3BA26;
+	Thu, 21 Sep 2023 14:25:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01E48C4E75C;
+	Thu, 21 Sep 2023 14:25:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695304861;
-	bh=fBOyl4wnZj0qgJkc8bc1nWtNS7FruFf11iwwBxp/N8Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XWV8ExU3oehstOxt6ss9ARdQ3g9ez+u6+VQS3HyjR5ECimrVni6bFZFstl0+/V0kw
-	 JpxRzExfIzPRzxjCdzv/dwZYuunuD7rRqne/9aQzuFb8xTgHxkdcU/Mpk++SgAM+WA
-	 ZDwqmGnB18k7KpGmtHgxu3t6Tx+DKqea37FrFud5B801Zq3BwF2aKzk8gcGfa5teC+
-	 hTwNlEJ+7HGWYQW4gdIsLidhqUypVI02ioF/spHiNPhbReMhpxAsOaOHYUTtgTDztn
-	 U6H9xDeXUUcCOYMwfzxb7Gb6HQRSiajHQ5awBJZH+bjOiP4068zL0P30B9/Pn2e/+H
-	 JEj6Y1JM6q45A==
-Date: Thu, 21 Sep 2023 16:00:58 +0200
-From: Vinod Koul <vkoul@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Sandor Yu <Sandor.yu@nxp.com>, andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com,
-	jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
-	daniel@ffwll.ch, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, festevam@gmail.com,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, kernel@pengutronix.de,
-	linux-imx@nxp.com, oliver.brown@nxp.com,
-	alexander.stein@ew.tq-group.com, sam@ravnborg.org
-Subject: Re: [PATCH v8 2/7] phy: Add HDMI configuration options
-Message-ID: <ZQxMmtbqDTqgECnE@matsya>
-References: <20230808083243.3113192-1-Sandor.yu@nxp.com>
- <20230808083243.3113192-3-Sandor.yu@nxp.com>
- <c485b64e-3c83-4616-b8d8-76c2c7d56b0e@linaro.org>
- <ZOS+IQgFZYxN503B@matsya>
- <CAA8EJpokkjw_Q36YMh4p6NR+r4JGgM7_b+_QXtbmcPr6GzA=ug@mail.gmail.com>
+	s=k20201202; t=1695306344;
+	bh=O/GSwqIMtF+fUfls/J78tZOTn7LuNjDRw/eKJTFzejI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=uUKLAogCghq5l3EvSi3Jwmr59oqKIzdo0IH4dHDGGUYaF8cctsx8br9e4KU3rycLc
+	 NxGng6yxbFW+r4cIeRy+x0zIn1Z6xAdNCERr1yfIx1vxP1mVyltPuOf/UUfDlJnc+z
+	 E8cpXxk6vg3kY+TWajKG8mbdtKtf6lAIODnCFnIXjlOM3DSdA1Pbww8K0vGLLJKGEA
+	 qpypkk1sO7Ffjmp1HDBc/XInLTcWO8QMW3o2sd4OzO6W0fIzKSnLAxMjadwPNAGNBe
+	 Wpjxjn67SBIiE1CHNY/cyV+KlpU9akX+9uLZi9ehxHkrqs3Tch8YBstV30aFx26H+a
+	 rFNvFox/kt6sQ==
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-50307759b65so1931211e87.0;
+        Thu, 21 Sep 2023 07:25:43 -0700 (PDT)
+X-Gm-Message-State: AOJu0YwbIYtVTPE37nBYg3VjQLgaogblgM7kHikwfpTCVnCvQU0/+xV7
+	E/GtcYFoB154o7L5xdiOsq29mEOJKHXuCZ5rpA==
+X-Google-Smtp-Source: AGHT+IHrmukbRoZ3s/8ATARI7VLoKjLFus0maTkXeK6qcvuGFFDUO9RS2h5qv7r6B2wWwqxbx9HdtE39hvBQhLCYW2Y=
+X-Received: by 2002:ac2:4d93:0:b0:500:a7c8:1847 with SMTP id
+ g19-20020ac24d93000000b00500a7c81847mr4429914lfe.66.1695306342159; Thu, 21
+ Sep 2023 07:25:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA8EJpokkjw_Q36YMh4p6NR+r4JGgM7_b+_QXtbmcPr6GzA=ug@mail.gmail.com>
+References: <20230907214012.74978-1-sjg@chromium.org>
+In-Reply-To: <20230907214012.74978-1-sjg@chromium.org>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 21 Sep 2023 09:25:29 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+WfWrZErmz4u3_-CoVAuxL21UndcRekfJ1e61ZMMBqRw@mail.gmail.com>
+Message-ID: <CAL_Jsq+WfWrZErmz4u3_-CoVAuxL21UndcRekfJ1e61ZMMBqRw@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] schemas: Add some common reserved-memory usages
+To: Simon Glass <sjg@chromium.org>
+Cc: devicetree@vger.kernel.org, Dhaval Sharma <dhaval@rivosinc.com>, 
+	Guo Dong <guo.dong@intel.com>, U-Boot Mailing List <u-boot@lists.denx.de>, 
+	Yunhui Cui <cuiyunhui@bytedance.com>, Chiu Chasel <chasel.chiu@intel.com>, 
+	Mark Rutland <mark.rutland@arm.com>, linux-acpi@vger.kernel.org, 
+	Maximilian Brune <maximilian.brune@9elements.com>, Ard Biesheuvel <ardb@kernel.org>, 
+	Tom Rini <trini@konsulko.com>, Lean Sheng Tan <sheng.tan@9elements.com>, 
+	Gua Guo <gua.guo@intel.com>, ron minnich <rminnich@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 22-08-23, 20:22, Dmitry Baryshkov wrote:
-> On 22/08/2023 16:54, Vinod Koul wrote:
-> > On 17-08-23, 13:05, Dmitry Baryshkov wrote:
-> >> On 08/08/2023 11:32, Sandor Yu wrote:
-> >>> Allow HDMI PHYs to be configured through the generic
-> >>> functions through a custom structure added to the generic union.
-> >>>
-> >>> The parameters added here are based on HDMI PHY
-> >>> implementation practices.  The current set of parameters
-> >>> should cover the potential users.
-> >>>
-> >>> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
-> >>> ---
-> >>>    include/linux/phy/phy-hdmi.h | 24 ++++++++++++++++++++++++
-> >>>    include/linux/phy/phy.h      |  7 ++++++-
-> >>>    2 files changed, 30 insertions(+), 1 deletion(-)
-> >>>    create mode 100644 include/linux/phy/phy-hdmi.h
-> >>
-> >> I think this looks good now, thank you!
-> >>
-> >> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> >
-> > Should this go thru drm or phy...?
-> 
-> I'd say, PHY, together with the other PHY patches. If you can merge
-> them into an immutable branch, then it can also be merged into
-> drm-misc (?) to provide the dependency between drm and phy parts.
+On Thu, Sep 7, 2023 at 4:40=E2=80=AFPM Simon Glass <sjg@chromium.org> wrote=
+:
+>
+> It is common to split firmware into 'Platform Init', which does the
+> initial hardware setup and a "Payload" which selects the OS to be booted.
+> Thus an handover interface is required between these two pieces.
+>
+> This aims to provide an small schema addition for the memory mapping
+> needed to keep these two pieces working together well.
+>
+> Signed-off-by: Simon Glass <sjg@chromium.org>
+> ---
+>
+> Changes in v6:
+> - Drop mention of UEFI
+> - Use compatible strings instead of node names
+>
+> Changes in v5:
+> - Drop the memory-map node (should have done that in v4)
+> - Tidy up schema a bit
+>
+> Changes in v4:
+> - Make use of the reserved-memory node instead of creating a new one
+>
+> Changes in v3:
+> - Reword commit message again
+> - cc a lot more people, from the FFI patch
+> - Split out the attributes into the /memory nodes
+>
+> Changes in v2:
+> - Reword commit message
+>
+>  .../reserved-memory/common-reserved.yaml      | 71 +++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+>  create mode 100644 dtschema/schemas/reserved-memory/common-reserved.yaml
+>
+> diff --git a/dtschema/schemas/reserved-memory/common-reserved.yaml b/dtsc=
+hema/schemas/reserved-memory/common-reserved.yaml
+> new file mode 100644
+> index 0000000..4889f59
+> --- /dev/null
+> +++ b/dtschema/schemas/reserved-memory/common-reserved.yaml
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/reserved-memory/common-reserved.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Common memory reservations
+> +
+> +description: |
+> +  Specifies that the reserved memory region can be used for the purpose
+> +  indicated by its compatible string.
+> +
+> +  Clients may reuse this reserved memory if they understand what it is f=
+or,
+> +  subject to the notes below.
+> +
+> +maintainers:
+> +  - Simon Glass <sjg@chromium.org>
+> +
+> +allOf:
+> +  - $ref: reserved-memory.yaml
+> +
+> +properties:
+> +  compatible:
+> +    description: |
+> +      This describes some common memory reservations:
+> +
+> +         acpi-reclaim: Contains ACPI tables; memory may be reclaimed whe=
+n the
+> +           tables are no-longer needed
 
-phy/topic/hdmi should be pushed out in a bit for that
+I think you are mixing 2 things with the name here. What the memory
+contains and what to do with it. You don't need the latter. The
+consumer of the region will know what to do with it if anything based
+on knowing what is in the region. For example, The DTB passed to the
+OS is typically in a reserved region (probably still /mem-reserve/
+though). The DTB may remain there forever or the OS could copy it
+somewhere else and free the reserved region. The Linux kernel does
+both depending on the arch. (Of course there is no "dtb" compatible
+because we have to pass the location of the dtb to even find the
+reserved regions in the first place.)
 
--- 
-~Vinod
+So the question here is whether just "acpi" (or "acpi-tables"?) would
+be explicit enough?
+
+> +         acpi-nvs: Contains ACPI Non-volatile-storage data; memory may b=
+e
+> +           reclaimed when the tables are no-longer needed
+
+No need to say anything about reclaiming.
+
+I know some ACPIisms (e.g. DSDT), but I don't know what NVS or
+"Non-volatile-storage data" is in an ACPI context.
+
+> +         boot-code: Contains code used for booting; memory may be reclai=
+med by
+> +           the OS when it is running
+> +         boot-code: Contains data used for booting; memory may be reclai=
+med by
+
+boot-data?
+
+> +           the OS when it is running
+
+I thought these were for stages before we get to OS?
+
+> +         runtime-code: Contains code used for interacting with the syste=
+m when
+> +           running; memory may be reclaimed if this code is not called
+> +         runtime-data: Contains data used for interacting with the syste=
+m when
+> +           running; memory may be reclaimed if the runtime code is not u=
+sed
+
+"boot" vs. "runtime" seem too vague. However, if these mean EFI boot
+time services and runtime services, then I understand exactly what
+they are. In that case dropping 'uefi,' was a mistake. But EFI has its
+own way to define these regions, right?
+
+Rob
 
