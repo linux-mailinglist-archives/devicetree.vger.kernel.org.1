@@ -1,268 +1,109 @@
-Return-Path: <devicetree+bounces-1954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43D227A9380
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 12:15:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F4347A939D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 12:41:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFC56281868
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 10:15:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E828028185A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 10:41:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 723FC9467;
-	Thu, 21 Sep 2023 10:15:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8FD28F56;
+	Thu, 21 Sep 2023 10:41:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 613189461
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:15:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 984F5C3278F;
-	Thu, 21 Sep 2023 10:15:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3A8B3D87
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:41:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 879F7C32799;
+	Thu, 21 Sep 2023 10:41:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695291338;
-	bh=jFAqRCOVnDBQwszMKppgpfrfYXgx2S1l2UVTVChzJ6o=;
+	s=k20201202; t=1695292873;
+	bh=l9YKq4Mo9HZomeyWWq8kJ2jlUSxpMR2JEf+l+sajQFQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FB4UmtJMfn+nsX5DZ3qo2JYzuPEw/NKKLuoRNU1w4rR862MDRN47bHTygae5k0amd
-	 oZFJeZk6psc3v49kSRgSuKWnb6qSVKyWIinaBQSDn8SnNX157QjRg+M7ghCNAs3yIU
-	 ddyCNZdvngVyPb/heuhDlL/snul1qeJW5/53Yr5XQMnxSg0nftB0P18lUPoG8WAeur
-	 RATGdFpyQDj/qc5sLQfrnbG7H8S0URXgZ05YATQsuMLKwjM6cQVpwfw2AHy0km/r03
-	 Eso5n0WarjMTlhsqZh/NdkDgeUkgZbhiyBsuJ+tCvNZQCrUQgDenOwzJfsS63ybdQ3
-	 Z28EfOHcPvUig==
-Date: Thu, 21 Sep 2023 11:15:32 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Chen Wang <unicornxw@gmail.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>, aou@eecs.berkeley.edu,
-	chao.wei@sophgo.com, devicetree@vger.kernel.org,
-	emil.renner.berthing@canonical.com, guoren@kernel.org,
-	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
-	xiaoguang.xing@sophgo.com, Chen Wang <wangchen20@iscas.ac.cn>,
-	Inochi Amaoto <inochiama@outlook.com>
-Subject: Re: [PATCH v2 09/11] riscv: dts: add initial SOPHGO SG2042 SoC
- device tree
-Message-ID: <20230921-d2db829b289c937081dc8a72@fedora>
-References: <cover.1695189879.git.wangchen20@iscas.ac.cn>
- <ffe6a61a8879232aea7b86ff8aee5d681c6bd287.1695189879.git.wangchen20@iscas.ac.cn>
- <20230920-financial-declared-7b4b4baae517@wendy>
- <CAHAQgRBmUtyz-U+1Fu9qdvyhMuSzg+o4MMbTV9duUXsoSoPqUQ@mail.gmail.com>
+	b=p1Bkwrc82xTjn6S9fkfu1yiZ4LfO5ofNvcMcNA8MIGtqd7F7tDfjdpUr1AOtmtnqi
+	 sFM5ci71SLHRYEDyPlMNnzy5g7ru0idAFa10yaEAHNKLaefUUbzbVuN++DOZQ2RDJm
+	 ZjSGkQcYMdLfnS/yo/WxfN0TbHiL6s7paewBypixzYOq6u2/tVx/LFQcwQgtjXDrhd
+	 yGt0IzyAEl93pdCUN9tY+qenaQWhYeIUkeNWjc9iBGrkghsLeTXRqBmmhHLyt+adjG
+	 cqXsqXx7dDdOhfJ12uftnOzE24YlAVl279KkYhuMIDU5d8w61ySkebprKCKjePIBvY
+	 lbZX56e425AvQ==
+Date: Thu, 21 Sep 2023 11:41:07 +0100
+From: Lee Jones <lee@kernel.org>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Mark Brown <broonie@kernel.org>,
+	Zhiyong Tao <zhiyong.tao@mediatek.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 02/11] mfd: mt6358: Add registers for MT6366 specific
+ regulators
+Message-ID: <20230921104107.GE3449785@google.com>
+References: <20230822084520.564937-1-wenst@chromium.org>
+ <20230822084520.564937-3-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="fmkZD3PJDOz3F1Rh"
-Content-Disposition: inline
-In-Reply-To: <CAHAQgRBmUtyz-U+1Fu9qdvyhMuSzg+o4MMbTV9duUXsoSoPqUQ@mail.gmail.com>
-
-
---fmkZD3PJDOz3F1Rh
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230822084520.564937-3-wenst@chromium.org>
 
-On Thu, Sep 21, 2023 at 05:56:28PM +0800, Chen Wang wrote:
-> Regards,
->=20
-> unicornx
->=20
-> Conor Dooley <conor.dooley@microchip.com> =E4=BA=8E2023=E5=B9=B49=E6=9C=
-=8820=E6=97=A5=E5=91=A8=E4=B8=89 16:58=E5=86=99=E9=81=93=EF=BC=9A
-> >
-> > Yo,
-> >
-> > On Wed, Sep 20, 2023 at 02:40:32PM +0800, Chen Wang wrote:
-> > > Milk-V Pioneer motherboard is powered by SOPHON's SG2042.
-> > >
-> > > SG2042 is server grade chip with high performance, low power
-> > > consumption and high data throughput.
-> > > Key features:
-> > > - 64 RISC-V cpu cores which implements IMAFDC
-> >
-> > That's not quite true though, is it?
->=20
-> The cpu cores of SG2042 is c902 from T-HEAD, it supports vector, but
-> it's v0.7, not official v1.0. If we declare it as supporting
-> v-extension, the latest kernel(since 6.5) will issue rvv1.0
-> instructions during booting and make c902 crash. So we have to remove
-> "v" from the capability of ISA to pass the booting of machine. You can
-> check the "riscv,isa =3D "rv64imafdc";" in DTS.
+On Tue, 22 Aug 2023, Chen-Yu Tsai wrote:
 
-I know all of this, not my first rodeo looking at stuff using T-Head
-cores ;)
-What I meant was, imafdc is only a subset of what is supported,
-there are other things like the T-Head bitmanip extensions too, right?
-I'm not asking for it to be listed in the devicetree (yet), just
-actually curious what else is on the c920 as I do not speak a language
-that allows me to read the documentation for the cpu that I have been
-able to find online.
+> The MT6366 PMIC, compared to the MT6358, does away with the VCAM*
+> regulators. Two regulators VM18 and VMDDR reuse their register space.
+> There's also a VSRAM type regulator VSRAM_CORE thats' split between
+> the VCAM* register space and other parts.
+> 
+> Add register address macros for these MT6366 specific regulators.
+> 
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> ---
+>  include/linux/mfd/mt6358/registers.h | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
 
-> > > - 4 cores per cluster, 16 clusters on chip
-> > > - ......
-> >
-> > What's a "....."? ;)
-> I just cited a description from TRM of SG2042 and it looks too long. I
-> will give a better description here and avoid using "......" in the
-> next revision.
->=20
-> >
-> > >
-> > > More info is available at [1].
-> > >
-> > > [1]: https://en.sophgo.com/product/introduce/sg2042.html
-> >
-> > Link: please.
-> >
-> > > Currently only support booting into console with only uart,
-> > > other features will be added soon later.
-> > >
-> > > Acked-by: Xiaoguang Xing <xiaoguang.xing@sophgo.com>
-> > > Signed-off-by: Xiaoguang Xing <xiaoguang.xing@sophgo.com>
-> > > Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> > > Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.c=
-om>
-> > > Signed-off-by: Chen Wang <wangchen20@iscas.ac.cn>
-> >
-> > There are 4 sign-offs here. Surely some of these should be
-> > co-developed-bys?
-> >
-> > > +             cpu0: cpu@0 {
-> > > +                     compatible =3D "thead,c920", "riscv";
-> > > +                     device_type =3D "cpu";
-> > > +                     riscv,isa =3D "rv64imafdc";
-> >
-> > Please also add riscv,isa-base & riscv,isa-extensions.
-> >
-> > > +                     reg =3D <0>;
-> > > +                     i-cache-block-size =3D <64>;
-> > > +                     i-cache-size =3D <65536>;
-> > > +                     i-cache-sets =3D <512>;
-> > > +                     d-cache-block-size =3D <64>;
-> > > +                     d-cache-size =3D <65536>;
-> > > +                     d-cache-sets =3D <512>;
-> > > +                     next-level-cache =3D <&l2_cache0>;
-> > > +                     mmu-type =3D "riscv,sv39";
-> > > +
-> > > +                     cpu0_intc: interrupt-controller {
-> > > +                             compatible =3D "riscv,cpu-intc";
-> > > +                             interrupt-controller;
-> > > +                             #interrupt-cells =3D <1>;
-> > > +                     };
-> > > +             };
-> >
-> > > diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot=
-/dts/sophgo/sg2042.dtsi
-> > > new file mode 100644
-> > > index 000000000000..747fd9764c95
-> > > --- /dev/null
-> > > +++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-> > > @@ -0,0 +1,439 @@
-> > > +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> >
-> > You should add () around the GPL-2.0 OR MIT.
-> >
-> > > +/*
-> > > + * Copyright (C) 2022 Sophgo Technology Inc. All rights reserved.
-> > > + */
-> > > +
-> > > +/dts-v1/;
-> > > +#include <dt-bindings/interrupt-controller/irq.h>
-> > > +
-> > > +#include "sg2042-cpus.dtsi"
-> > > +
-> > > +#define SOC_PERIPHERAL_IRQ(nr) (nr)
-> >
-> > Why? What does this do? Where was it copied from?
-> >
-> It should be unnecessary=EF=BC=8C I will remove it in the next revision.
->=20
-> > > +
-> > > +/ {
-> > > +     compatible =3D "sophgo,sg2042";
-> > > +     #address-cells =3D <2>;
-> > > +     #size-cells =3D <2>;
-> > > +     dma-noncoherent;
-> > > +
-> > > +     aliases {
-> > > +             serial0 =3D &uart0;
-> > > +     };
-> > > +
-> > > +     /* the mem node will be updated by ZSBL. */
-> >
-> > huh? So these are random numbers below? Either put something useful here
-> > or delete it please.
->=20
-> The memory for SG2042 is not fixed, the bootloader will detect memory
-> installed on board during booting and fill the actual address and size
-> in the memory node. The comment " /* the mem node will be updated by
-> ZSBL. */" is telling this.
+Acked-by: Lee Jones <lee@kernel.org>
 
-Yes, I read the comment!
+> diff --git a/include/linux/mfd/mt6358/registers.h b/include/linux/mfd/mt6358/registers.h
+> index 5ea2590be710..d83e87298ac4 100644
+> --- a/include/linux/mfd/mt6358/registers.h
+> +++ b/include/linux/mfd/mt6358/registers.h
+> @@ -294,4 +294,21 @@
+>  #define MT6358_AUD_TOP_INT_CON0               0x2228
+>  #define MT6358_AUD_TOP_INT_STATUS0            0x2234
+>  
+> +/*
+> + * MT6366 has no VCAM*, but has other regulators in its place. The names
+> + * keep the MT6358 prefix for ease of use in the regulator driver.
+> + */
+> +#define MT6358_LDO_VSRAM_CON5                 0x1bf8
+> +#define MT6358_LDO_VM18_CON0                  MT6358_LDO_VCAMA1_CON0
+> +#define MT6358_LDO_VM18_CON1                  MT6358_LDO_VCAMA1_CON1
+> +#define MT6358_LDO_VM18_CON2                  MT6358_LDO_VCAMA1_CON2
+> +#define MT6358_LDO_VMDDR_CON0                 MT6358_LDO_VCAMA2_CON0
+> +#define MT6358_LDO_VMDDR_CON1                 MT6358_LDO_VCAMA2_CON1
+> +#define MT6358_LDO_VMDDR_CON2                 MT6358_LDO_VCAMA2_CON2
+> +#define MT6358_LDO_VSRAM_CORE_CON0            MT6358_LDO_VCAMD_CON0
+> +#define MT6358_LDO_VSRAM_CORE_DBG0            0x1cb6
+> +#define MT6358_LDO_VSRAM_CORE_DBG1            0x1cb8
+> +#define MT6358_VM18_ANA_CON0                  MT6358_VCAMA1_ANA_CON0
+> +#define MT6358_VMDDR_ANA_CON0                 MT6358_VCAMD_ANA_CON0
+> +
+>  #endif /* __MFD_MT6358_REGISTERS_H__ */
+> -- 
+> 2.42.0.rc1.204.g551eb34607-goog
+> 
 
-> We write memory nodes like this to make them act just as placeholders
-> and the value is by default written as zero.
-
-Why knowingly add something that is wrong, rather than omitting them
-entirely?
-
-Thanks,
-Conor.
-
->=20
->=20
-> >
-> > > +     memory@0 {
-> > > +             device_type =3D "memory";
-> > > +             reg =3D <0x00000000 0x00000000 0x00000000 0x00000000>;
-> > > +     };
-> > > +
-> > > +     memory@1 {
-> > > +             device_type =3D "memory";
-> > > +             reg =3D <0x00000000 0x00000001 0x00000000 0x00000000>;
-> > > +     };
-> > > +
-> > > +     memory@2 {
-> > > +             device_type =3D "memory";
-> > > +             reg =3D <0x00000000 0x00000002 0x00000000 0x00000000>;
-> > > +     };
-> > > +
-> > > +     memory@3 {
-> > > +             device_type =3D "memory";
-> > > +             reg =3D <0x00000000 0x00000003 0x00000000 0x00000000>;
-> > > +     };
-> >
-> > > +     soc: soc {
-> > > +             compatible =3D "simple-bus";
-> > > +             #address-cells =3D <2>;
-> > > +             #size-cells =3D <2>;
-> > > +             ranges;
-> > > +
-> > > +             clint_mswi: interrupt-controller@7094000000 {
-> > > +                     compatible =3D "sophgo,sg2042-clint-mswi", "the=
-ad,c900-clint-mswi";
-> > > +                     reg =3D <0x00000070 0x94000000 0x00000000 0x000=
-04000>;
-> >
-> > & nak to this without further explanation!
-> >
-> > Thanks,
-> > Conor.
-> >
-
---fmkZD3PJDOz3F1Rh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQwXwQAKCRB4tDGHoIJi
-0jl6AQCO0iHjWqM9oAoOC3vM0RKXtmi36doTgL/y4uLTh6RcxgEApx827mJwlqM+
-T2Mfp1BE1i0rJvGerwlfpLGvc4y8Pws=
-=djLA
------END PGP SIGNATURE-----
-
---fmkZD3PJDOz3F1Rh--
+-- 
+Lee Jones [李琼斯]
 
