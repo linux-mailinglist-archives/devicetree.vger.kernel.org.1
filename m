@@ -1,717 +1,417 @@
-Return-Path: <devicetree+bounces-2137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F37F27A9C44
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 21:13:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AF727A9CCF
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 21:24:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A962D282B25
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:13:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6FA6E28418B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:22:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EFDB29437;
-	Thu, 21 Sep 2023 17:49:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A86669891;
+	Thu, 21 Sep 2023 18:35:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5234715486
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:49:40 +0000 (UTC)
-Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 916F981236;
-	Thu, 21 Sep 2023 10:36:21 -0700 (PDT)
-Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-59bebd5bdadso15573117b3.0;
-        Thu, 21 Sep 2023 10:36:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695317780; x=1695922580; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DNh6azN+DuyaIMJiQJXx/Pm0NzZZgmYg40bh+TXTkdo=;
-        b=GZyo4kQnW5vjwHHo/4bzPlMcN3YWEgJ7fRtMAwbovGbxuK9v9hHT8jPMcV7AOUexaH
-         uI/BK7HYP+huwsyKgKEUe77ZqJESKIXqdKnwdYJR1MgjQ+I27tghlhcOOvfjpiluFL6w
-         8Bjs6sQa1XbUA6d6sVag/i8QnLX00c6ogSQI/TAtYSwIF1h5tg/Cz3Qw9XKOlFXKJDid
-         DYEnL9RWA38TEbnqhnG01fCYk0eSHu9zU0oSWNtuSxh7TFAWps62qjDqG191VJnWg88G
-         UT+v6ISEWvNg3LlRIvbkt3HaD8tYq5plNv/leEg6U0Yc75dz0X5z1WA7EXjKi/AojwNF
-         sKXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695317780; x=1695922580;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DNh6azN+DuyaIMJiQJXx/Pm0NzZZgmYg40bh+TXTkdo=;
-        b=sUadToJ0bl586qmfMCrSa44bOg/CTf7qvXpy+Ju1v/XeTNKA9Qbz5ZKuuWlKGvu3UK
-         qS234UockEH1cABZyFub/nlV7nVGqIErGS7SzHQdaucX6E0GGwikgs1k6i1ItpFTgRM/
-         71hv0YheLXZM5EMKFDUqBJNYJegsA0jb90uiEzAZXSqapYzxRXLgCd7nzJE1MzCK/JFt
-         8n8c9/kcPGcqCBz1lJf7V3zs4NS+D8z/fP/7xRr6tyrRKwTARBB2bol8zl9E0nVI4IKh
-         R10N0JIGNYvxRfu/qssd87livL5SNLb1fMF7C3OC8gmO6bWkvJgr69GTMVhGi4NApZNR
-         rYeA==
-X-Gm-Message-State: AOJu0YxrxWXv9U93W6NIS4iox5e+lxXYxSOJ3OmlwGVwelh9qwC/QLmL
-	9FRaQpbmRb3Z8HXfxwFCP9cMrEkto+aLpObQ
-X-Google-Smtp-Source: AGHT+IGbZFYr6EDI0tsyFUtsEIbuhscoR94vqy2T2Ku7/2nu4/EmF38TF2ntGI8rgYMyR/sgsTW12Q==
-X-Received: by 2002:a5e:8a09:0:b0:792:82f8:7402 with SMTP id d9-20020a5e8a09000000b0079282f87402mr5378509iok.16.1695275818600;
-        Wed, 20 Sep 2023 22:56:58 -0700 (PDT)
-Received: from james-x399.localdomain (71-33-152-19.hlrn.qwest.net. [71.33.152.19])
-        by smtp.gmail.com with ESMTPSA id e7-20020a056638020700b0042ad887f705sm182745jaq.143.2023.09.20.22.56.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Sep 2023 22:56:58 -0700 (PDT)
-From: James Hilliard <james.hilliard1@gmail.com>
-To: devicetree@vger.kernel.org
-Cc: James Hilliard <james.hilliard1@gmail.com>,
-	Pierluigi Passaro <pierluigi.p@variscite.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Marek Vasut <marex@denx.de>,
-	Tim Harvey <tharvey@gateworks.com>,
-	Stefan Wahren <stefan.wahren@chargebyte.com>,
-	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-	Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	=?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>,
-	Li Yang <leoyang.li@nxp.com>,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v9 2/3] ARM: dts: imx6qdl: Add Variscite VAR-SOM-MX6 SoM support
-Date: Wed, 20 Sep 2023 23:56:07 -0600
-Message-Id: <20230921055611.1459374-2-james.hilliard1@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3628768626
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 18:35:08 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 160ACD4370;
+	Thu, 21 Sep 2023 11:24:53 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38L69gnb061752;
+	Thu, 21 Sep 2023 01:09:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1695276582;
+	bh=qjBEsABZNkwjXfEdsVonulbrZz/gxx7Ivh1lDpdEEe0=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=SBdHieB4vNlFleB4X63ubmlG8ZSSGEZDYZ0FA2XQiKMAdCxY7WqxP8ThfrLfCYcEy
+	 alszkx7vvyyVXipoYxqX9sN5qjeCKGPbLcoCP1wsX/Qrq9Uy4fF2fZwYXplybnN65o
+	 5nN+8xF4L8SyztVj1yT5hxUMGjmV+Gg/5J0Ga93M=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38L69gmu071956
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 21 Sep 2023 01:09:42 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 21
+ Sep 2023 01:09:41 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 21 Sep 2023 01:09:41 -0500
+Received: from lelv0854.itg.ti.com (lelv0854.itg.ti.com [10.181.64.140])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38L69fWl074483;
+	Thu, 21 Sep 2023 01:09:41 -0500
+Received: from localhost (danish-tpc.dhcp.ti.com [10.24.69.199])
+	by lelv0854.itg.ti.com (8.14.7/8.14.7) with ESMTP id 38L69el8029507;
+	Thu, 21 Sep 2023 01:09:41 -0500
+From: MD Danish Anwar <danishanwar@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+CC: <afd@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Tero
+ Kristo <kristo@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <r-gunasekaran@ti.com>, <danishanwar@ti.com>
+Subject: [PATCH v2 3/4] arm64: dts: ti: k3-am654-idk: Add ICSSG Ethernet ports
+Date: Thu, 21 Sep 2023 11:39:12 +0530
+Message-ID: <20230921060913.721336-4-danishanwar@ti.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230921055611.1459374-1-james.hilliard1@gmail.com>
-References: <20230921055611.1459374-1-james.hilliard1@gmail.com>
+In-Reply-To: <20230921060913.721336-1-danishanwar@ti.com>
+References: <20230921060913.721336-1-danishanwar@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-This patch adds support for the Variscite VAR_SOM-MX6 SoM with :
-- i.MX6 Quad or Dual Lite SoC
-- 256 – 4096 MB DDR3
-- 4-64 GB eMMC
-- 128 – 1024 MB SLC NAND
-- Camera Interface
-- HDMI+CEC interface
-- LVDS / DSI / Parallel RGB interfaces
-- Ethernet RGMII interface
-- On-SoM Wi-Fi/Bluetooth with WiLink wl183x SDIO Module
-- SD/MMC/SDIO interface
-- USB Host + USB OTG interface
-- I2C interfaces
-- SPI interfaces
-- PCI-Express 2.0 interface
-- on-SoM Audio Codec with HP/Line-In interfaces + DMIC interface
-- Digital Audio interface
-- S/PDIF interface
+The IDK application board has 4 Gigabit Ethernet ports.
 
-Product website : https://www.variscite.com/product/system-on-module-som/cortex-a9/var-som-mx6-cpu-freescale-imx6/
+This patch adds support for the 4 Gigabit Ethernet ports
+which are provided by ICSSG0 and ICSSG1.
+The IEP0 SYNC_OUT0 pins are used for PPS out on the IDK card.
 
-Support is handled with a SoM-centric dtsi exporting the default interfaces
-along the default pinmuxing to be enabled by the board dts file.
-
-This file is based on the one provided by Variscite on their own
-kernel, but adapted for mainline.
-
-Cc: Pierluigi Passaro <pierluigi.p@variscite.com>
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
-Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
 ---
- .../arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi | 569 ++++++++++++++++++
- 1 file changed, 569 insertions(+)
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi
+ arch/arm64/boot/dts/ti/Makefile          |   2 +
+ arch/arm64/boot/dts/ti/k3-am654-idk.dtso | 296 +++++++++++++++++++++++
+ 2 files changed, 298 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am654-idk.dtso
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi
+diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+index 85c91f5e832e..ff3f90bf0333 100644
+--- a/arch/arm64/boot/dts/ti/Makefile
++++ b/arch/arm64/boot/dts/ti/Makefile
+@@ -51,6 +51,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-m2.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am654-common-board.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
++dtb-$(CONFIG_ARCH_K3) += k3-am654-idk.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am654-gp-evm.dtb
+ 
+ # Boards with J7200 SoC
+@@ -79,3 +80,4 @@ DTC_FLAGS_k3-am62-lp-sk += -@
+ DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
+ DTC_FLAGS_k3-j721e-common-proc-board += -@
+ DTC_FLAGS_k3-j721s2-common-proc-board += -@
++DTC_FLAGS_k3-am654-common-board += -@
+diff --git a/arch/arm64/boot/dts/ti/k3-am654-idk.dtso b/arch/arm64/boot/dts/ti/k3-am654-idk.dtso
 new file mode 100644
-index 000000000000..a1ea33c4eeb7
+index 000000000000..7aa10827ed65
 --- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi
-@@ -0,0 +1,569 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Support for Variscite VAR-SOM-MX6 Module
++++ b/arch/arm64/boot/dts/ti/k3-am654-idk.dtso
+@@ -0,0 +1,296 @@
++// SPDX-License-Identifier: GPL-2.0
++/**
++ * DT overlay for IDK application board on AM654 EVM
 + *
-+ * Copyright 2011 Linaro Ltd.
-+ * Copyright 2012 Freescale Semiconductor, Inc.
-+ * Copyright (C) 2014-2016 Variscite, Ltd.
-+ * Author: Donio Ron <ron.d@variscite.com>
-+ * Copyright 2022 Bootlin
++ * Copyright (C) 2018-2023 Texas Instruments Incorporated - https://www.ti.com/
 + */
 +
 +/dts-v1/;
++/plugin/;
 +
-+#include "imx6q.dtsi"
-+#include <dt-bindings/clock/imx6qdl-clock.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/sound/fsl-imx-audmux.h>
++#include <dt-bindings/net/ti-dp83867.h>
++#include "k3-pinctrl.h"
 +
-+/ {
-+	model = "Variscite VAR-SOM-MX6 module";
-+	compatible = "variscite,var-som-imx6q", "fsl,imx6q";
-+
-+	chosen {
-+		stdout-path = &uart1;
++&{/} {
++	aliases {
++		ethernet3 = "/icssg0-eth/ethernet-ports/port@0";
++		ethernet4 = "/icssg0-eth/ethernet-ports/port@1";
++		ethernet5 = "/icssg1-eth/ethernet-ports/port@0";
++		ethernet6 = "/icssg1-eth/ethernet-ports/port@1";
 +	};
 +
-+	memory@10000000 {
-+		device_type = "memory";
-+		reg = <0x10000000 0x40000000>;
-+	};
-+
-+	reg_usb_otg_vbus: regulator-usb-otg-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "usb_otg_vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
-+	reg_usb_h1_vbus: regulator-usb-h1-vbud {
-+		compatible = "regulator-fixed";
-+		regulator-name = "usb_h1_vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
-+	reg_1p8v: regulator-1p8v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1P8V";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_3p3v: regulator-3p3v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3P3V";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_wl18xx_vmmc: regulator-wl18xx {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vwl1807";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		gpio = <&gpio7 8 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		startup-delay-us = <70000>;
-+	};
-+
-+	sound: sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "var-som-audio";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,bitclock-master = <&sound_codec>;
-+		simple-audio-card,frame-master = <&sound_codec>;
-+		simple-audio-card,widgets = "Headphone", "Headphone Jack",
-+					    "Line", "Line In", "Microphone", "Mic Jack";
-+		simple-audio-card,routing = "Headphone Jack", "HPLOUT",
-+					    "Headphone Jack", "HPROUT",
-+					    "LINE1L", "Line In",
-+					    "LINE1R", "Line In";
-+
-+		sound_cpu: simple-audio-card,cpu {
-+			sound-dai = <&ssi2>;
-+		};
-+
-+		sound_codec: simple-audio-card,codec {
-+			sound-dai = <&tlv320aic3106>;
-+			clocks = <&clks IMX6QDL_CLK_CKO>;
-+		};
-+	};
-+
-+	rfkill {
-+		compatible = "rfkill-gpio";
-+		name = "rfkill";
-+		radio-type = "bluetooth";
-+		shutdown-gpios = <&gpio6 18 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&audmux {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_audmux>;
-+	status = "okay";
-+
-+	mux-ssi2 {
-+		fsl,audmux-port = <1>;
-+		fsl,port-config = <
-+			(IMX_AUDMUX_V2_PTCR_SYN |
-+			IMX_AUDMUX_V2_PTCR_TFSDIR |
-+			IMX_AUDMUX_V2_PTCR_TFSEL(2) |
-+			IMX_AUDMUX_V2_PTCR_TCLKDIR |
-+			IMX_AUDMUX_V2_PTCR_TCSEL(2))
-+			IMX_AUDMUX_V2_PDCR_RXDSEL(2)
-+		>;
-+	};
-+
-+	mux-aud3 {
-+		fsl,audmux-port = <2>;
-+		fsl,port-config = <
-+			IMX_AUDMUX_V2_PTCR_SYN
-+			IMX_AUDMUX_V2_PDCR_RXDSEL(1)
-+		>;
-+	};
-+};
-+
-+&ecspi3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ecspi3>;
-+	cs-gpios = <&gpio4 24 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
-+&fec {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_enet>;
-+	phy-mode = "rgmii";
-+	phy-handle = <&rgmii_phy>;
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		rgmii_phy: ethernet-phy@7 {
-+			reg = <7>;
-+			reset-gpios = <&gpio1 25 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <10000>;
-+		};
-+	};
-+};
-+
-+&gpmi {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpmi_nand>;
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	status = "okay";
-+
-+	pmic@8 {
-+		compatible = "fsl,pfuze100";
-+		reg = <0x08>;
++	/* Dual Ethernet application node on PRU-ICSSG0 */
++	icssg0_eth: icssg0-eth {
++		compatible = "ti,am654-icssg-prueth";
 +		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pmic>;
++		pinctrl-0 = <&icssg0_rgmii_pins_default>;
++		sram = <&msmc_ram>;
++		ti,prus = <&pru0_0>, <&rtu0_0>, <&tx_pru0_0>, <&pru0_1>, <&rtu0_1>, <&tx_pru0_1>;
++		firmware-name = "ti-pruss/am65x-sr2-pru0-prueth-fw.elf",
++				"ti-pruss/am65x-sr2-rtu0-prueth-fw.elf",
++				"ti-pruss/am65x-sr2-txpru0-prueth-fw.elf",
++				"ti-pruss/am65x-sr2-pru1-prueth-fw.elf",
++				"ti-pruss/am65x-sr2-rtu1-prueth-fw.elf",
++				"ti-pruss/am65x-sr2-txpru1-prueth-fw.elf";
 +
-+		regulators {
-+			sw1a_reg: sw1ab {
-+				regulator-min-microvolt = <300000>;
-+				regulator-max-microvolt = <1875000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <6250>;
++		ti,pruss-gp-mux-sel = <2>,	/* MII mode */
++				      <2>,
++				      <2>,
++				      <2>,	/* MII mode */
++				      <2>,
++				      <2>;
++
++		ti,mii-g-rt = <&icssg0_mii_g_rt>;
++		ti,mii-rt = <&icssg0_mii_rt>;
++		ti,iep = <&icssg0_iep0>,  <&icssg0_iep1>;
++
++		interrupt-parent = <&icssg0_intc>;
++		interrupts = <24 0 2>, <25 1 3>;
++		interrupt-names = "tx_ts0", "tx_ts1";
++
++		dmas = <&main_udmap 0xc100>, /* egress slice 0 */
++		       <&main_udmap 0xc101>, /* egress slice 0 */
++		       <&main_udmap 0xc102>, /* egress slice 0 */
++		       <&main_udmap 0xc103>, /* egress slice 0 */
++		       <&main_udmap 0xc104>, /* egress slice 1 */
++		       <&main_udmap 0xc105>, /* egress slice 1 */
++		       <&main_udmap 0xc106>, /* egress slice 1 */
++		       <&main_udmap 0xc107>, /* egress slice 1 */
++
++		       <&main_udmap 0x4100>, /* ingress slice 0 */
++		       <&main_udmap 0x4101>, /* ingress slice 1 */
++		       <&main_udmap 0x4102>, /* mgmnt rsp slice 0 */
++		       <&main_udmap 0x4103>; /* mgmnt rsp slice 1 */
++		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
++			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
++			    "rx0", "rx1";
++
++		ethernet-ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			icssg0_emac0: port@0 {
++				reg = <0>;
++				phy-handle = <&icssg0_phy0>;
++				phy-mode = "rgmii-id";
++				ti,syscon-rgmii-delay = <&scm_conf 0x4100>;
++				/* Filled in by bootloader */
++				local-mac-address = [00 00 00 00 00 00];
 +			};
-+
-+			sw1c_reg: sw1c {
-+				regulator-min-microvolt = <300000>;
-+				regulator-max-microvolt = <1875000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <6250>;
-+			};
-+
-+			sw2_reg: sw2 {
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			sw3a_reg: sw3a {
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <3950000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			sw3b_reg: sw3b {
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <3950000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			sw4_reg: sw4 {
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <3950000>;
-+			};
-+
-+			snvs_reg: vsnvs {
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <3000000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			vref_reg: vrefddr {
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			vgen1_reg: vgen1 {
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <1550000>;
-+			};
-+
-+			vgen2_reg: vgen2 {
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <1550000>;
-+			};
-+
-+			vgen3_reg: vgen3 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vgen4_reg: vgen4 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vgen5_reg: vgen5 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			vgen6_reg: vgen6 {
-+				regulator-min-microvolt = <2800000>;
-+				regulator-max-microvolt = <2800000>;
-+				regulator-always-on;
-+				regulator-boot-on;
++			icssg0_emac1: port@1 {
++				reg = <1>;
++				phy-handle = <&icssg0_phy1>;
++				phy-mode = "rgmii-id";
++				ti,syscon-rgmii-delay = <&scm_conf 0x4104>;
++				/* Filled in by bootloader */
++				local-mac-address = [00 00 00 00 00 00];
 +			};
 +		};
 +	};
 +
-+	tlv320aic3106: audio-codec@1b {
-+		compatible = "ti,tlv320aic3106";
-+		reg = <0x1b>;
-+		#sound-dai-cells = <0>;
-+		DRVDD-supply = <&reg_3p3v>;
-+		AVDD-supply = <&reg_3p3v>;
-+		IOVDD-supply = <&reg_3p3v>;
-+		DVDD-supply = <&reg_1p8v>;
-+		ai3x-ocmv = <0>;
-+		reset-gpios = <&gpio4 5 GPIO_ACTIVE_LOW>;
-+		ai3x-gpio-func = <
-+			0 /* AIC3X_GPIO1_FUNC_DISABLED */
-+			5 /* AIC3X_GPIO2_FUNC_DIGITAL_MIC_INPUT */
++	/* Dual Ethernet application node on PRU-ICSSG1 */
++	icssg1_eth: icssg1-eth {
++		compatible = "ti,am654-icssg-prueth";
++		pinctrl-names = "default";
++		pinctrl-0 = <&icssg1_rgmii_pins_default>;
++		sram = <&msmc_ram>;
++		ti,prus = <&pru1_0>, <&rtu1_0>, <&tx_pru1_0>, <&pru1_1>, <&rtu1_1>, <&tx_pru1_1>;
++		firmware-name = "ti-pruss/am65x-sr2-pru0-prueth-fw.elf",
++				"ti-pruss/am65x-sr2-rtu0-prueth-fw.elf",
++				"ti-pruss/am65x-sr2-txpru0-prueth-fw.elf",
++				"ti-pruss/am65x-sr2-pru1-prueth-fw.elf",
++				"ti-pruss/am65x-sr2-rtu1-prueth-fw.elf",
++				"ti-pruss/am65x-sr2-txpru1-prueth-fw.elf";
++
++		ti,pruss-gp-mux-sel = <2>,	/* MII mode */
++				      <2>,
++				      <2>,
++				      <2>,	/* MII mode */
++				      <2>,
++				      <2>;
++
++		ti,mii-g-rt = <&icssg1_mii_g_rt>;
++		ti,mii-rt = <&icssg1_mii_rt>;
++		ti,iep = <&icssg1_iep0>,  <&icssg1_iep1>;
++
++		interrupt-parent = <&icssg1_intc>;
++		interrupts = <24 0 2>, <25 1 3>;
++		interrupt-names = "tx_ts0", "tx_ts1";
++
++		dmas = <&main_udmap 0xc200>, /* egress slice 0 */
++		       <&main_udmap 0xc201>, /* egress slice 0 */
++		       <&main_udmap 0xc202>, /* egress slice 0 */
++		       <&main_udmap 0xc203>, /* egress slice 0 */
++		       <&main_udmap 0xc204>, /* egress slice 1 */
++		       <&main_udmap 0xc205>, /* egress slice 1 */
++		       <&main_udmap 0xc206>, /* egress slice 1 */
++		       <&main_udmap 0xc207>, /* egress slice 1 */
++
++		       <&main_udmap 0x4200>, /* ingress slice 0 */
++		       <&main_udmap 0x4201>, /* ingress slice 1 */
++		       <&main_udmap 0x4202>, /* mgmnt rsp slice 0 */
++		       <&main_udmap 0x4203>; /* mgmnt rsp slice 1 */
++		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
++			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
++			    "rx0", "rx1";
++
++		ethernet-ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			icssg1_emac0: port@0 {
++				reg = <0>;
++				phy-handle = <&icssg1_phy0>;
++				phy-mode = "rgmii-id";
++				ti,syscon-rgmii-delay = <&scm_conf 0x4110>;
++				/* Filled in by bootloader */
++				local-mac-address = [00 00 00 00 00 00];
++			};
++			icssg1_emac1: port@1 {
++				reg = <1>;
++				phy-handle = <&icssg1_phy1>;
++				phy-mode = "rgmii-id";
++				ti,syscon-rgmii-delay = <&scm_conf 0x4114>;
++				/* Filled in by bootloader */
++				local-mac-address = [00 00 00 00 00 00];
++			};
++		};
++	};
++};
++
++&main_pmx0 {
++
++	icssg0_mdio_pins_default: icssg0-mdio-default-pins {
++		pinctrl-single,pins = <
++			AM65X_IOPAD(0x0294, PIN_INPUT, 0) /* (AE26) PRG0_MDIO0_MDIO */
++			AM65X_IOPAD(0x0298, PIN_OUTPUT, 0) /* (AE28) PRG0_MDIO0_MDC */
++		>;
++	};
++
++	icssg0_rgmii_pins_default: icssg0-rgmii-default-pins {
++		pinctrl-single,pins = <
++			AM65X_IOPAD(0x0244, PIN_INPUT, 2) /* (AB28) PRG0_PRU1_GPO0.PRG0_RGMII2_RD0 */
++			AM65X_IOPAD(0x0248, PIN_INPUT, 2) /* (AC28) PRG0_PRU1_GPO1.PRG0_RGMII2_RD1 */
++			AM65X_IOPAD(0x024c, PIN_INPUT, 2) /* (AC27) PRG0_PRU1_GPO2.PRG0_RGMII2_RD2 */
++			AM65X_IOPAD(0x0250, PIN_INPUT, 2) /* (AB26) PRG0_PRU1_GPO3.PRG0_RGMII2_RD3 */
++			AM65X_IOPAD(0x0274, PIN_OUTPUT, 2) /* (AC25) PRG0_PRU1_GPO12.PRG0_RGMII2_TD0 */
++			AM65X_IOPAD(0x0278, PIN_OUTPUT, 2) /* (AD25) PRG0_PRU1_GPO13.PRG0_RGMII2_TD1 */
++			AM65X_IOPAD(0x027c, PIN_OUTPUT, 2) /* (AD24) PRG0_PRU1_GPO14.PRG0_RGMII2_TD2 */
++			AM65X_IOPAD(0x0280, PIN_OUTPUT, 2) /* (AE27) PRG0_PRU1_GPO15.PRG0_RGMII2_TD3 */
++			AM65X_IOPAD(0x0284, PIN_INPUT, 2) /* (AC24) PRG0_PRU1_GPO16.PRG0_RGMII2_TXC */
++			AM65X_IOPAD(0x0270, PIN_OUTPUT, 2) /* (AB24) PRG0_PRU1_GPO11.PRG0_RGMII2_TX_CTL */
++			AM65X_IOPAD(0x025c, PIN_INPUT, 2) /* (AB27) PRG0_PRU1_GPO6.PRG0_RGMII2_RXC */
++			AM65X_IOPAD(0x0254, PIN_INPUT, 2) /* (AA25) PRG0_PRU1_GPO4.PRG0_RGMII2_RX_CTL */
++
++			AM65X_IOPAD(0x01f4, PIN_INPUT, 2) /* (V24) PRG0_PRU0_GPO0.PRG0_RGMII1_RD0 */
++			AM65X_IOPAD(0x01f8, PIN_INPUT, 2) /* (W25) PRG0_PRU0_GPO1.PRG0_RGMII1_RD1 */
++			AM65X_IOPAD(0x01fc, PIN_INPUT, 2) /* (W24) PRG0_PRU0_GPO2.PRG0_RGMII1_RD2 */
++			AM65X_IOPAD(0x0200, PIN_INPUT, 2) /* (AA27) PRG0_PRU0_GPO3.PRG0_RGMII1_RD3 */
++			AM65X_IOPAD(0x0224, PIN_OUTPUT, 2) /* (AD27) PRG0_PRU0_GPO12.PRG0_RGMII1_TD0 */
++			AM65X_IOPAD(0x0228, PIN_OUTPUT, 2) /* (AC26) PRG0_PRU0_GPO13.PRG0_RGMII1_TD1 */
++			AM65X_IOPAD(0x022c, PIN_OUTPUT, 2) /* (AD26) PRG0_PRU0_GPO14.PRG0_RGMII1_TD2 */
++			AM65X_IOPAD(0x0230, PIN_OUTPUT, 2) /* (AA24) PRG0_PRU0_GPO15.PRG0_RGMII1_TD3 */
++			AM65X_IOPAD(0x0234, PIN_INPUT, 2) /* (AD28) PRG0_PRU0_GPO16.PRG0_RGMII1_TXC */
++			AM65X_IOPAD(0x0220, PIN_OUTPUT, 2) /* (AB25) PRG0_PRU0_GPO11.PRG0_RGMII1_TX_CTL */
++			AM65X_IOPAD(0x020c, PIN_INPUT, 2) /* (Y25) PRG0_PRU0_GPO6.PRG0_RGMII1_RXC */
++			AM65X_IOPAD(0x0204, PIN_INPUT, 2) /* (Y24) PRG0_PRU0_GPO4.PRG0_RGMII1_RX_CTL */
++		>;
++	};
++
++	icssg0_iep0_pins_default: icssg0-iep0-default-pins {
++		pinctrl-single,pins = <
++			AM65X_IOPAD(0x0240, PIN_INPUT, 2) /* (U24) PRG0_PRU0_GPO19.PRG0_IEP0_EDC_SYNC_OUT0 */
++		>;
++	};
++
++	icssg1_mdio_pins_default: icssg1-mdio-default-pins {
++		pinctrl-single,pins = <
++			AM65X_IOPAD(0x0180, PIN_INPUT, 0) /* (AD18) PRG1_MDIO0_MDIO */
++			AM65X_IOPAD(0x0184, PIN_OUTPUT, 0) /* (AH18) PRG1_MDIO0_MDC */
++		>;
++	};
++
++	icssg1_rgmii_pins_default: icssg1-rgmii-default-pins {
++		pinctrl-single,pins = <
++			AM65X_IOPAD(0x0130, PIN_INPUT, 2) /* (AH24) PRG1_PRU1_GPO0.PRG1_RGMII2_RD0 */
++			AM65X_IOPAD(0x0134, PIN_INPUT, 2) /* (AH23) PRG1_PRU1_GPO1.PRG1_RGMII2_RD1 */
++			AM65X_IOPAD(0x0138, PIN_INPUT, 2) /* (AG21) PRG1_PRU1_GPO2.PRG1_RGMII2_RD2 */
++			AM65X_IOPAD(0x013c, PIN_INPUT, 2) /* (AH22) PRG1_PRU1_GPO3.PRG1_RGMII2_RD3 */
++			AM65X_IOPAD(0x0160, PIN_OUTPUT, 2) /* (AE20) PRG1_PRU1_GPO12.PRG1_RGMII2_TD0 */
++			AM65X_IOPAD(0x0164, PIN_OUTPUT, 2) /* (AF19) PRG1_PRU1_GPO13.PRG1_RGMII2_TD1 */
++			AM65X_IOPAD(0x0168, PIN_OUTPUT, 2) /* (AH19) PRG1_PRU1_GPO14.PRG1_RGMII2_TD2 */
++			AM65X_IOPAD(0x016c, PIN_OUTPUT, 2) /* (AG19) PRG1_PRU1_GPO15.PRG1_RGMII2_TD3 */
++			AM65X_IOPAD(0x0170, PIN_INPUT, 2) /* (AE19) PRG1_PRU1_GPO16.PRG1_RGMII2_TXC */
++			AM65X_IOPAD(0x015c, PIN_OUTPUT, 2) /* (AC20) PRG1_PRU1_GPO11.PRG1_RGMII2_TX_CTL */
++			AM65X_IOPAD(0x0148, PIN_INPUT, 2) /* (AG22) PRG1_PRU1_GPO6.PRG1_RGMII2_RXC */
++			AM65X_IOPAD(0x0140, PIN_INPUT, 2) /* (AE21) PRG1_PRU1_GPO4.PRG1_RGMII2_RX_CTL */
++
++			AM65X_IOPAD(0x00e0, PIN_INPUT, 2) /* (AE22) PRG1_PRU0_GPO0.PRG1_RGMII1_RD0 */
++			AM65X_IOPAD(0x00e4, PIN_INPUT, 2) /* (AG24) PRG1_PRU0_GPO1.PRG1_RGMII1_RD1 */
++			AM65X_IOPAD(0x00e8, PIN_INPUT, 2) /* (AF23) PRG1_PRU0_GPO2.PRG1_RGMII1_RD2 */
++			AM65X_IOPAD(0x00ec, PIN_INPUT, 2) /* (AD21) PRG1_PRU0_GPO3.PRG1_RGMII1_RD3 */
++			AM65X_IOPAD(0x0110, PIN_OUTPUT, 2) /* (AH20) PRG1_PRU0_GPO12.PRG1_RGMII1_TD0 */
++			AM65X_IOPAD(0x0114, PIN_OUTPUT, 2) /* (AH21) PRG1_PRU0_GPO13.PRG1_RGMII1_TD1 */
++			AM65X_IOPAD(0x0118, PIN_OUTPUT, 2) /* (AG20) PRG1_PRU0_GPO14.PRG1_RGMII1_TD2 */
++			AM65X_IOPAD(0x011c, PIN_OUTPUT, 2) /* (AD19) PRG1_PRU0_GPO15.PRG1_RGMII1_TD3 */
++			AM65X_IOPAD(0x0120, PIN_INPUT, 2) /* (AD20) PRG1_PRU0_GPO16.PRG1_RGMII1_TXC */
++			AM65X_IOPAD(0x010c, PIN_OUTPUT, 2) /* (AF21) PRG1_PRU0_GPO11.PRG1_RGMII1_TX_CTL */
++			AM65X_IOPAD(0x00f8, PIN_INPUT, 2) /* (AF22) PRG1_PRU0_GPO6.PRG1_RGMII1_RXC */
++			AM65X_IOPAD(0x00f0, PIN_INPUT, 2) /* (AG23) PRG1_PRU0_GPO4.PRG1_RGMII1_RX_CTL */
++		>;
++	};
++
++	icssg1_iep0_pins_default: icssg1-iep0-default-pins {
++		pinctrl-single,pins = <
++			AM65X_IOPAD(0x012c, PIN_INPUT, 2) /* (AG26) PRG1_PRU0_GPO19.PRG1_IEP0_EDC_SYNC_OUT0 */
 +		>;
 +	};
 +};
 +
-+&iomuxc {
++&icssg0_mdio {
++	status = "okay";
 +	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hog>;
-+
-+	pinctrl_audmux: audmuxgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_CSI0_DAT7__AUD3_RXD		0x130b0
-+			MX6QDL_PAD_CSI0_DAT4__AUD3_TXC		0x130b0
-+			MX6QDL_PAD_CSI0_DAT5__AUD3_TXD		0x110b0
-+			MX6QDL_PAD_CSI0_DAT6__AUD3_TXFS		0x130b0
-+			/* Audio Clock */
-+			MX6QDL_PAD_GPIO_0__CCM_CLKO1		0x130b0
-+		>;
-+	};
-+
-+	pinctrl_bt: btgrp {
-+		fsl,pins = <
-+			/* Bluetooth/wifi enable */
-+			MX6QDL_PAD_SD3_DAT6__GPIO6_IO18		0x1b0b1
-+			/* Wifi Slow Clock */
-+			MX6QDL_PAD_ENET_RXD0__OSC32K_32K_OUT	0x000b0
-+		>;
-+	};
-+
-+	pinctrl_ecspi3: ecspi3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_DISP0_DAT2__ECSPI3_MISO	0x100b1
-+			MX6QDL_PAD_DISP0_DAT1__ECSPI3_MOSI	0x100b1
-+			MX6QDL_PAD_DISP0_DAT0__ECSPI3_SCLK	0x100b1
-+		>;
-+	};
-+
-+	pinctrl_enet: enetgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_ENET_MDIO__ENET_MDIO		0x1b0b0
-+			MX6QDL_PAD_ENET_MDC__ENET_MDC		0x1b0b0
-+			MX6QDL_PAD_RGMII_TXC__RGMII_TXC		0x1b0b0
-+			MX6QDL_PAD_RGMII_TD0__RGMII_TD0		0x1b0b0
-+			MX6QDL_PAD_RGMII_TD1__RGMII_TD1		0x1b0b0
-+			MX6QDL_PAD_RGMII_TD2__RGMII_TD2		0x1b0b0
-+			MX6QDL_PAD_RGMII_TD3__RGMII_TD3		0x1b0b0
-+			MX6QDL_PAD_RGMII_TX_CTL__RGMII_TX_CTL	0x1b0b0
-+			MX6QDL_PAD_ENET_REF_CLK__ENET_TX_CLK	0x1b0b0
-+			MX6QDL_PAD_RGMII_RXC__RGMII_RXC		0x1b0b0
-+			MX6QDL_PAD_RGMII_RD0__RGMII_RD0		0x1b0b0
-+			MX6QDL_PAD_RGMII_RD1__RGMII_RD1		0x1b0b0
-+			MX6QDL_PAD_RGMII_RD2__RGMII_RD2		0x1b0b0
-+			MX6QDL_PAD_RGMII_RD3__RGMII_RD3		0x1b0b0
-+			MX6QDL_PAD_RGMII_RX_CTL__RGMII_RX_CTL	0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_enet_irq: enetirqgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_6__ENET_IRQ	0x000b1
-+		>;
-+	};
-+
-+	pinctrl_gpmi_nand: gpminandgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_NANDF_CLE__NAND_CLE		0xb0b1
-+			MX6QDL_PAD_NANDF_ALE__NAND_ALE		0xb0b1
-+			MX6QDL_PAD_NANDF_CS0__NAND_CE0_B	0xb0b1
-+			MX6QDL_PAD_NANDF_CS1__NAND_CE1_B	0xb0b1
-+			MX6QDL_PAD_NANDF_RB0__NAND_READY_B	0xb0b1
-+			MX6QDL_PAD_NANDF_D0__NAND_DATA00	0xb0b1
-+			MX6QDL_PAD_NANDF_D1__NAND_DATA01	0xb0b1
-+			MX6QDL_PAD_NANDF_D2__NAND_DATA02	0xb0b1
-+			MX6QDL_PAD_NANDF_D3__NAND_DATA03	0xb0b1
-+			MX6QDL_PAD_NANDF_D4__NAND_DATA04	0xb0b1
-+			MX6QDL_PAD_NANDF_D5__NAND_DATA05	0xb0b1
-+			MX6QDL_PAD_NANDF_D6__NAND_DATA06	0xb0b1
-+			MX6QDL_PAD_NANDF_D7__NAND_DATA07	0xb0b1
-+			MX6QDL_PAD_SD4_CMD__NAND_RE_B		0xb0b1
-+			MX6QDL_PAD_SD4_CLK__NAND_WE_B		0xb0b1
-+			MX6QDL_PAD_NANDF_WP_B__NAND_WP_B	0xb0b1
-+		>;
-+	};
-+
-+	pinctrl_hog: hoggrp {
-+		fsl,pins = <
-+			/* CTW6120 IRQ */
-+			MX6QDL_PAD_EIM_DA7__GPIO3_IO07		0xb0b1
-+			/* SDMMC2 CD/WP */
-+			MX6QDL_PAD_KEY_COL4__GPIO4_IO14		0x1b0b0
-+			MX6QDL_PAD_KEY_ROW4__GPIO4_IO15		0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_CSI0_DAT8__I2C1_SDA	0x4001b8b1
-+			MX6QDL_PAD_CSI0_DAT9__I2C1_SCL	0x4001b8b1
-+		>;
-+	};
-+
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_COL3__I2C2_SCL	0x4001b8b1
-+			MX6QDL_PAD_KEY_ROW3__I2C2_SDA	0x4001b8b1
-+		>;
-+	};
-+
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_5__I2C3_SCL	0x4001b8b1
-+			MX6QDL_PAD_GPIO_16__I2C3_SDA	0x4001b8b1
-+		>;
-+	};
-+
-+	pinctrl_pmic: pmicgrp {
-+		fsl,pins = <
-+			/* PMIC INT */
-+			MX6QDL_PAD_GPIO_17__GPIO7_IO12	0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_pwm2: pwm2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_DISP0_DAT9__PWM2_OUT	0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_CSI0_DAT10__UART1_TX_DATA 0x1b0b1
-+			MX6QDL_PAD_CSI0_DAT11__UART1_RX_DATA 0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD3_DAT4__UART2_RX_DATA	0x1b0b1
-+			MX6QDL_PAD_SD3_DAT5__UART2_TX_DATA	0x1b0b1
-+			MX6QDL_PAD_EIM_D28__UART2_CTS_B		0x1b0b1
-+			MX6QDL_PAD_EIM_D29__UART2_RTS_B		0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD3_CMD__SD3_CMD	0x17069
-+			MX6QDL_PAD_SD3_CLK__SD3_CLK	0x10069
-+			MX6QDL_PAD_SD3_DAT0__SD3_DATA0	0x17069
-+			MX6QDL_PAD_SD3_DAT1__SD3_DATA1	0x17069
-+			MX6QDL_PAD_SD3_DAT2__SD3_DATA2	0x17069
-+			MX6QDL_PAD_SD3_DAT3__SD3_DATA3	0x17069
-+			/* WL_EN */
-+			MX6QDL_PAD_SD3_DAT7__GPIO6_IO17 0x13059
-+			/* WL_IRQ */
-+			MX6QDL_PAD_SD3_RST__GPIO7_IO08  0x13059
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_100mhz: usdhc3grp100mhzgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD3_CMD__SD3_CMD	0x170B9
-+			MX6QDL_PAD_SD3_CLK__SD3_CLK	0x100B9
-+			MX6QDL_PAD_SD3_DAT0__SD3_DATA0	0x170B9
-+			MX6QDL_PAD_SD3_DAT1__SD3_DATA1	0x170B9
-+			MX6QDL_PAD_SD3_DAT3__SD3_DATA3	0x170B9
-+			MX6QDL_PAD_SD3_DAT3__SD3_DATA3	0x170B9
-+			/* WL_EN */
-+			MX6QDL_PAD_SD3_DAT7__GPIO6_IO17 0x130B9
-+			/* WL_IRQ */
-+			MX6QDL_PAD_SD3_RST__GPIO7_IO08  0x130B9
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_200mhz: usdhc3grp200mhzgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD3_CMD__SD3_CMD	0x170F9
-+			MX6QDL_PAD_SD3_CLK__SD3_CLK	0x100F9
-+			MX6QDL_PAD_SD3_DAT0__SD3_DATA0	0x170F9
-+			MX6QDL_PAD_SD3_DAT1__SD3_DATA1	0x170F9
-+			MX6QDL_PAD_SD3_DAT2__SD3_DATA2	0x170F9
-+			MX6QDL_PAD_SD3_DAT3__SD3_DATA3	0x170F9
-+			/* WL_EN */
-+			MX6QDL_PAD_SD3_DAT7__GPIO6_IO17 0x130F9
-+			/* WL_IRQ */
-+			MX6QDL_PAD_SD3_RST__GPIO7_IO08  0x130F9
-+		>;
-+	};
-+};
-+
-+&pwm2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm2>;
-+	status = "okay";
-+};
-+
-+&reg_arm {
-+	vin-supply = <&sw1a_reg>;
-+};
-+
-+&reg_pu {
-+	vin-supply = <&sw1c_reg>;
-+};
-+
-+&reg_soc {
-+	vin-supply = <&sw1c_reg>;
-+};
-+
-+&reg_vdd1p1 {
-+	vin-supply = <&vgen5_reg>;
-+};
-+
-+&reg_vdd2p5 {
-+	vin-supply = <&vgen5_reg>;
-+};
-+
-+&snvs_poweroff {
-+	status = "okay";
-+};
-+
-+&ssi2 {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2 &pinctrl_bt>;
-+	uart-has-rtscts;
-+	status = "okay";
-+};
-+
-+&usbh1 {
-+	vbus-supply = <&reg_usb_h1_vbus>;
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	vbus-supply = <&reg_usb_otg_vbus>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usbotg_var>;
-+	disable-over-current;
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&usbphy1 {
-+	fsl,tx-d-cal = <0x5>;
-+};
-+
-+&usbphy2 {
-+	fsl,tx-d-cal = <0x5>;
-+};
-+
-+&usdhc1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc1>;
-+	non-removable;
-+	keep-power-in-suspend;
-+	status = "okay";
-+};
-+
-+&usdhc3 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc3>;
-+	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
-+	bus-width = <4>;
-+	vmmc-supply = <&reg_wl18xx_vmmc>;
-+	non-removable;
-+	wakeup-source;
-+	keep-power-in-suspend;
-+	cap-power-off-card;
++	pinctrl-0 = <&icssg0_mdio_pins_default>;
 +	#address-cells = <1>;
 +	#size-cells = <0>;
-+	status = "okay";
 +
-+	wifi: wifi@2 {
-+		compatible = "ti,wl1835";
-+		reg = <2>;
-+		interrupt-parent = <&gpio6>;
-+		interrupts = <17 IRQ_TYPE_EDGE_RISING>;
-+		ref-clock-frequency = <38400000>;
++	icssg0_phy0: ethernet-phy@0 {
++		reg = <0>;
++		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
++		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
 +	};
++
++	icssg0_phy1: ethernet-phy@3 {
++		reg = <3>;
++		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
++		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++	};
++};
++
++&icssg0_iep0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&icssg0_iep0_pins_default>;
++};
++
++&icssg1_mdio {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&icssg1_mdio_pins_default>;
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	icssg1_phy0: ethernet-phy@0 {
++		reg = <0>;
++		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
++		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++	};
++
++	icssg1_phy1: ethernet-phy@3 {
++		reg = <3>;
++		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
++		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++	};
++};
++
++&icssg1_iep0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&icssg1_iep0_pins_default>;
 +};
 -- 
 2.34.1
