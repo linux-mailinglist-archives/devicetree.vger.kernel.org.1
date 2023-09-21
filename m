@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-1986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE1307A95E0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 18:56:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AFCC7A95E1
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 18:56:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4ADDCB209EB
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 16:56:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1046F1C209B2
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 16:56:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CCB8199CE;
-	Thu, 21 Sep 2023 16:56:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE584199CA;
+	Thu, 21 Sep 2023 16:56:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94910199CA
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 16:56:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF658199CD
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 16:56:38 +0000 (UTC)
 Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75FB0138;
-	Thu, 21 Sep 2023 09:56:22 -0700 (PDT)
-X-UUID: 78eb04c4584411eea33bb35ae8d461a2-20230921
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7899E11A;
+	Thu, 21 Sep 2023 09:56:24 -0700 (PDT)
+X-UUID: 7a5dfc26584411eea33bb35ae8d461a2-20230921
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=EWhNJUZu5Z/Tip7T2l6e0SxlNLO3our8/wpCQafOB/o=;
-	b=czp2U5KbJR90VgSzXGViGBJicUN151f1UClpbZSiA633cbEnaYK+/eqTfkdy7MbIUiH504yXIH/hM47zATMTNVPw5SvExsT5OUjphUcfN2rUP2NQ8DcFlwH+Tn+lAt+kREjVyudAUg/a9/t1jeMyD0iMMqj6zflOd+j+DxKWzjU=;
+	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=hSKenHqHk4SnkzETMsc5fhZOH0K/HS/Ef7FZfrvVwHQ=;
+	b=kZjkJeLvfbqrefsLKCKRMOgAXcrSIwJ4GTiSBvsWsEaZy5+0ok14mzF1Q7TFmOqwiB7e8e7OWBhEb1bB9WeZUEYXZvxpXwxGAPw83gZLq52J3C86w/Dz1d+niONkEWJTnGNd/EGkMuaJgmnH9qOOaYpTGaoi6mQlwjggC64su2M=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.32,REQID:c6fff9dd-2294-42f8-a04b-24298a7a65f4,IP:0,U
+X-CID-O-INFO: VERSION:1.1.32,REQID:329ca6ba-c8e0-4d44-9bf4-171847448450,IP:0,U
 	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
 	release,TS:0
-X-CID-META: VersionHash:5f78ec9,CLOUDID:fbad17bf-14cc-44ca-b657-2d2783296e72,B
+X-CID-META: VersionHash:5f78ec9,CLOUDID:308448c3-1e57-4345-9d31-31ad9818b39f,B
 	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
 	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
 	DKR:0,DKP:0,BRR:0,BRE:0
 X-CID-BVR: 0
 X-CID-BAS: 0,_,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 78eb04c4584411eea33bb35ae8d461a2-20230921
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
+X-UUID: 7a5dfc26584411eea33bb35ae8d461a2-20230921
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
 	(envelope-from <jason-ch.chen@mediatek.com>)
 	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 756191925; Thu, 21 Sep 2023 14:02:40 +0800
+	with ESMTP id 1910738219; Thu, 21 Sep 2023 14:02:42 +0800
 Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
  mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 21 Sep 2023 14:02:38 +0800
+ 15.2.1118.26; Thu, 21 Sep 2023 14:02:39 +0800
 Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
  mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Thu, 21 Sep 2023 14:02:38 +0800
+ 15.2.1118.26 via Frontend Transport; Thu, 21 Sep 2023 14:02:39 +0800
 From: Jason-ch Chen <jason-ch.chen@mediatek.com>
 To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
 	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
@@ -59,10 +59,12 @@ CC: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
 	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
 	jason-ch chen <Jason-ch.Chen@mediatek.com>
-Subject: [RESEND PATCH v4 0/4] Add basic node support for MediaTek MT8188 SoC
-Date: Thu, 21 Sep 2023 14:02:31 +0800
-Message-ID: <20230921060235.32478-1-jason-ch.chen@mediatek.com>
+Subject: [RESEND PATCH v4 1/4] dt-bindings: arm: Add compatible for MediaTek MT8188
+Date: Thu, 21 Sep 2023 14:02:32 +0800
+Message-ID: <20230921060235.32478-2-jason-ch.chen@mediatek.com>
 X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20230921060235.32478-1-jason-ch.chen@mediatek.com>
+References: <20230921060235.32478-1-jason-ch.chen@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,64 +73,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--0.917900-8.000000
-X-TMASE-MatchedRID: 4M8Lw78TDBC57gDVLy87eqDKPaVrGhelnF8rflXuiRWLYYF0ANN+FM79
-	PlJmAmXDw6u+ET+UDSLCsyZB1bKGqA9FV6kNYiPHcFEiuPxHjsVMkOX0UoduuZjk0EbtghtXRRZ
-	I1R6hQzaMENdLhjEPNHATsg8MODVIHxPMjOKY7A8LbigRnpKlKTpcQTtiHDgW3RMO1vCX2BONXw
-	kPEO+4GwmUKXRz5/kyHY8rUJbT9fBeEdd0tvLkfTSPadpOKohE/hInS/lBNZcc8kewVHD7dwXxZ
-	AfqSp37wZBgUyJVEbl6Fw8/PpTMRaVvmiAyeA2kc5MSfkiJFI5p3LlElBHTlw==
+X-TM-AS-Result: No-10--2.837000-8.000000
+X-TMASE-MatchedRID: EJLkrvRJ8yyQwm5+b+ZNPYv73wEu0Nx76SXuwUgGH0iyrCkM9r1bWjcG
+	i0cOVVas5o/rYvVL+ieAMuqetGVetnyef22ep6XYymsk/wUE4hqGRDOcbb3m4Luw5dWU7dCvgNK
+	kns7LOKC9USxFcx99f/60OdA7ebNUqFKsMxQGorMmEnqzIcoxxKJ6OktJMnOrCnixWeD50QygxO
+	MC6+LmfHQE0HbT5LEft/yYljnuhl10loENhqV3WW8X35fYYQgc
 X-TM-AS-User-Approved-Sender: No
 X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--0.917900-8.000000
+X-TMASE-Result: 10--2.837000-8.000000
 X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP: 10F5DF882A4120FA076CD7F133625259A899C92C29EB1633CA6B00F40409C17E2000:8
+X-TM-SNTS-SMTP: 27A434A44148FAA3416E3B66A234CD621AB5CEC755A9B9CC870ABB7FDF9075502000:8
 X-MTK: N
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
 	DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,
-	T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=unavailable
+	SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 From: jason-ch chen <Jason-ch.Chen@mediatek.com>
 
-MT8188 is a SoC based on 64bit ARMv8 architecture.
-It contains 6 CA55 and 2 CA78 cores.
-MT8188 share many HW IP with MT65xx series.
+This commit adds dt-binding documentation for the MediaTek MT8188
+reference board.
 
-This patchset was tested on MT8188 evaluation board to shell.
+Signed-off-by: jason-ch chen <Jason-ch.Chen@mediatek.com>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Based on tag: next-20230920, linux-next/master
-
-Changes in v4:
-- Explain the reason of modifying pwrap binding file, and correct the
-  subject
-- Fix reviewer's comments
-
-Changes in v3:
-- Remove the duplicated part of mt8188 in the pwrap yaml file
-- Fix reviewer's comments about coding style
-
-Changes in v2:
-- Add MT8188 PMIC Wrapper compatible to binding document
-- Fix reviewer's comments
-
-jason-ch chen (4):
-  dt-bindings: arm: Add compatible for MediaTek MT8188
-  dt-bindings: arm: mediatek: Add mt8188 pericfg compatible
-  dt-bindings: soc: mediatek: pwrap: Modify compatible for MT8188
-  arm64: dts: Add MediaTek MT8188 dts and evaluation board and Makefile
-
- .../devicetree/bindings/arm/mediatek.yaml     |   4 +
- .../arm/mediatek/mediatek,pericfg.yaml        |   1 +
- .../bindings/soc/mediatek/mediatek,pwrap.yaml |   6 +-
- arch/arm64/boot/dts/mediatek/Makefile         |   1 +
- arch/arm64/boot/dts/mediatek/mt8188-evb.dts   | 400 ++++++++
- arch/arm64/boot/dts/mediatek/mt8188.dtsi      | 951 ++++++++++++++++++
- 6 files changed, 1362 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-evb.dts
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8188.dtsi
-
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index ae12b1cab9fb..4f4910d7a1e9 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -163,6 +163,10 @@ properties:
+           - enum:
+               - mediatek,mt8186-evb
+           - const: mediatek,mt8186
++      - items:
++          - enum:
++              - mediatek,mt8188-evb
++          - const: mediatek,mt8188
+       - items:
+           - enum:
+               - mediatek,mt8192-evb
 -- 
 2.18.0
 
