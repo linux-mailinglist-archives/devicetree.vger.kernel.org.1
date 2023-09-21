@@ -1,54 +1,44 @@
-Return-Path: <devicetree+bounces-1939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFE657A92EF
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 11:07:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1519C7A92FB
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 11:14:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F47A28181F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 09:07:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B2911C20843
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 09:14:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCC2E8F60;
-	Thu, 21 Sep 2023 09:06:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C38808F64;
+	Thu, 21 Sep 2023 09:14:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7AFE8F55;
-	Thu, 21 Sep 2023 09:06:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53E57C197C4;
-	Thu, 21 Sep 2023 09:06:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B48488F55
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 09:14:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 351ECC32775;
+	Thu, 21 Sep 2023 09:14:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695287217;
-	bh=3tcJf+vo1lDEFwmLnpNMKtQhqnHVgNZwgjlJAK1przM=;
+	s=k20201202; t=1695287693;
+	bh=V/cgN3RT7XkFMIs1Ymp5jlRW/nHPyxxJMaOW3fL0f0U=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Y1h7QhGsb9DonuypEmBlwXwF+EvayA+OS4NyPwNnd7nQqdplyHkHkra1JyPgvEHW3
-	 YCRSWFhes//Be1zFN2FwO41IjRufTk/U8FaexIThieQIL/2w4Kt4EbJT6mP+B5Ucgt
-	 rYwmMguh0uXYuDK+y90Ao6taseaS2WcFIGi8KuI6QM1GSZRnXz8L/hYxIQNIB9PBE2
-	 k1wXfu1XGiiYy8q99ZKcwfZOzSJQZnGu877VZI0uIPwZ7sc649U6Ur760cWn6SCE9Q
-	 N4ew+jUSRB0e6O/11Bj8LvfeG6bFA18hruOP7gKiW9SGBvVggJIN/Vc/Q2BoJG6692
-	 ArCzwQqJVO1Rw==
-Date: Thu, 21 Sep 2023 10:06:51 +0100
+	b=qKYBetaKVrim8OhS0EPi4ZuEUv4Sfjh+u/lyZ0eJdLVOs5zcq/jTJ5vjJQjg6xlCP
+	 IVNJIMlCs0TF1oW8JmUDMrPTFuLRMO7pmm1RI5XnuVuwcwUYg9L4skG+17+F8Zg587
+	 YHfk3fPOduYIyea9LJqhmZqcGGH984kZH7OV3Jpmirg3O0zPjUh6JQi2wUjcggKagT
+	 Xpo8kr+iwRIFJp+Vz8CNprz6WIvp2gVQunDjc6HuCyxG3gqSZix8j/MzabD/pPRN7x
+	 QhsAmffAnDvQGPsJoB58HQUOoG/rsAgNpnaPYRjJXjjsoIyU2Zpkig/hFElEmWKZdY
+	 DrDfFRyDsPWyw==
+Date: Thu, 21 Sep 2023 10:14:49 +0100
 From: Conor Dooley <conor@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Axel Haslam <ahaslam@baylibre.com>,
-	Philip Molloy <pmolloy@baylibre.com>,
-	Apelete Seketeli <aseketeli@baylibre.com>
-Subject: Re: [PATCH 1/4] dt-bindings: iio: resolver: add devicetree bindings
- for ad2s1210
-Message-ID: <20230921-b304d3fd05b37a8588e101a2@fedora>
-References: <20230920170253.203395-1-dlechner@baylibre.com>
- <20230920170253.203395-2-dlechner@baylibre.com>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, linux-serial@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: serial: mxs: Fix compatible list
+Message-ID: <20230921-75ba68806e21c96531ea2d70@fedora>
+References: <20230921005258.184705-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,234 +46,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="owrJu3nfxN2zBqaa"
+	protocol="application/pgp-signature"; boundary="Y+pvPdlgTf4xkWu3"
 Content-Disposition: inline
-In-Reply-To: <20230920170253.203395-2-dlechner@baylibre.com>
+In-Reply-To: <20230921005258.184705-1-festevam@gmail.com>
 
 
---owrJu3nfxN2zBqaa
+--Y+pvPdlgTf4xkWu3
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
 Yo,
 
-On Wed, Sep 20, 2023 at 12:02:50PM -0500, David Lechner wrote:
-> This adds new DeviceTree bindings for the Analog Devices, Inc. AD2S1210
-> resolver-to-digital converter.
+On Wed, Sep 20, 2023 at 09:52:58PM -0300, Fabio Estevam wrote:
+> imx28.dtsi uses the following description:
 >=20
-> Signed-off-by: Apelete Seketeli <aseketeli@baylibre.com>
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-
-Missing a From: or co-developed-by?
-
-> ---
->  .../bindings/iio/resolver/adi,ad2s1210.yaml   | 150 ++++++++++++++++++
->  1 file changed, 150 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/resolver/adi,ad=
-2s1210.yaml
+> compatible =3D "fsl,imx28-auart", "fsl,imx23-auart";
 >=20
-> diff --git a/Documentation/devicetree/bindings/iio/resolver/adi,ad2s1210.=
-yaml b/Documentation/devicetree/bindings/iio/resolver/adi,ad2s1210.yaml
-> new file mode 100644
-> index 000000000000..cf6838710e52
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/resolver/adi,ad2s1210.yaml
-> @@ -0,0 +1,150 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/resolver/adi,ad2s1210.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD2S1210 Resolver-to-Digital Converter
-> +
-> +maintainers:
-> +  - Michael Hennerich <michael.hennerich@analog.com>
+> Make it valid so that the following schema warning could be avoided:
 
-Why's this a chap from analog, rather than the authors?
+Dumb question maybe, but it is not mentioned here - they are actually
+compatible devices, right? I see that they have some different match
+data in the driver (relating to some DMA erratum on the 23 seemingly),
+so it's not immediately obvious to me.
 
-> +description: |
-> +  The AD2S1210 is a complete 10-bit to 16-bit resolution tracking
-> +  resolver-to-digital converter, integrating an on-board programmable
-> +  sinusoidal oscillator that provides sine wave excitation for
-> +  resolvers.
-> +
-> +  The AD2S1210 allows the user to read the angular position or the
-> +  angular velocity data directly from the parallel outputs or through
-> +  the serial interface.
-> +
-> +    A1  A0  Result
-> +     0   0  Normal mode - position output
-> +     0   1  Normal mode - velocity output
-> +     1   0  Reserved
-> +     1   1  Configuration mode
-> +
-> +  In normal mode, the resolution of the digital output is selected using
-> +  the RES0 and RES1 input pins. In configuration mode, the resolution is
-> +  selected by setting the RES0 and RES1 bits in the control register.
-> +
-> +  RES1  RES0  Resolution (Bits)
-> +     0     0  10
-> +     0     1  12
-> +     1     0  14
-> +     1     1  16
-> +
-> +  Note on SPI connections: The CS line on the AD2S1210 should hard-wired=
- to
-> +  logic low and the WR/FSYNC line on the AD2S1210 should be connected to=
- the
-> +  SPI CSn output of the SPI controller.
-> +
-> +  Datasheet:
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
-2s1210.pdf
-> +
-> +properties:
-> +  compatible:
-> +    const: adi,ad2s1210
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 25000000
-> +
-> +  spi-cpha: true
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    description: External oscillator clock (CLKIN).
-> +
-> +  reset-gpios:
-> +    description:
-> +      GPIO connected to the /RESET pin. As the line needs to be low for =
-the
-> +      reset to be active, it should be configured as GPIO_ACTIVE_LOW.
-> +    maxItems: 1
-> +
-> +  sample-gpios:
-> +    description: |
-
-What do you need the pipe for here? Don't see some formatting requiring
-preservation. Ditto below.
-
-> +      GPIO connected to the /SAMPLE pin. As the line needs to be low to =
-trigger
-> +      a sample, it should be configured as GPIO_ACTIVE_LOW.
-> +    maxItems: 1
-> +
-> +  mode-gpios:
-> +    description: |
-> +      GPIO lines connected to the A0 and A1 pins. These pins select the =
-data
-> +      transfer mode.
-> +    minItems: 2
-> +    maxItems: 2
-> +
-> +  resolution-gpios:
-> +    description: |
-> +      GPIO lines connected to the RES0 and RES1 pins. These pins select =
-the
-> +      resolution of the digital output. If omitted, it is assumed that t=
-he
-> +      RES0 and RES1 pins are hard-wired to match the assigned-resolution=
--bits
-> +      property.
-> +    minItems: 2
-> +    maxItems: 2
-> +
-> +  fault-gpios:
-> +    description: |
-> +      GPIO lines connected to the LOT and DOS pins. These pins combined =
-indicate
-> +      the type of fault present, if any. As these pins a pulled low to i=
-ndicate
-> +      a fault condition, they should be configured as GPIO_ACTIVE_LOW.
-> +    minItems: 2
-> +    maxItems: 2
-> +
-> +  adi,fixed-mode:
-> +    description: |
-> +      This is used to indicate the selected mode if A0 and A1 are hard-w=
-ired
-> +      instead of connected to GPIOS (i.e. mode-gpios is omitted).
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum: ["config", "velocity", "position"]
-
-The bot is complaining about these "s not being needed.
-
-> +
-> +  assigned-resolution-bits:
-
-I figure the lack of a vendor prefix here is "inspired" by the same
-property for stm32?
-
-Cheers,
+Thanks,
 Conor.
 
-> +    description: |
-> +      Resolution of the digital output required by the application. This
-> +      determines the precision of the angle and/or the maximum speed tha=
-t can
-> +      be measured. If resolution-gpios is omitted, it is assumed that RE=
-S0 and
-> +      RES1 are hard-wired to match this value.
-> +    enum: [10, 12, 14, 16]
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - spi-cpha
-> +  - clocks
-> +  - sample-gpios
-> +  - assigned-resolution-bits
-> +
-> +oneOf:
-> +  - required:
-> +      - mode-gpios
-> +  - required:
-> +      - adi,fixed-mode
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    spi {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        resolver@0 {
-> +            compatible =3D "adi,ad2s1210";
-> +            reg =3D <0>;
-> +            spi-max-frequency =3D <20000000>;
-> +            spi-cpha;
-> +            clocks =3D <&ext_osc>;
-> +            sample-gpios =3D <&gpio0 90 GPIO_ACTIVE_LOW>;
-> +            mode-gpios =3D <&gpio0 86 0>, <&gpio0 87 0>;
-> +            resolution-gpios =3D <&gpio0 88 0>, <&gpio0 89 0>;
-> +            assigned-resolution-bits =3D <16>;
-> +        };
-> +    };
+>=20
+> imx28-apx4devkit.dtb: serial@8006a000: compatible: ['fsl,imx28-auart', 'f=
+sl,imx23-auart'] is too long
+> 	from schema $id: http://devicetree.org/schemas/serial/fsl-mxs-auart.yaml#
+>=20
+> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+> ---
+>  .../devicetree/bindings/serial/fsl-mxs-auart.yaml   | 13 ++++++++-----
+>  1 file changed, 8 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/serial/fsl-mxs-auart.yaml =
+b/Documentation/devicetree/bindings/serial/fsl-mxs-auart.yaml
+> index 6a400a5e6fc7..da032effffe6 100644
+> --- a/Documentation/devicetree/bindings/serial/fsl-mxs-auart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/fsl-mxs-auart.yaml
+> @@ -14,10 +14,13 @@ allOf:
+> =20
+>  properties:
+>    compatible:
+> -    enum:
+> -      - fsl,imx23-auart
+> -      - fsl,imx28-auart
+> -      - alphascale,asm9260-auart
+> +    oneOf:
+> +      - const: fsl,imx23-auart
+> +      - const: alphascale,asm9260-auart
+> +      - items:
+> +          - enum:
+> +              - fsl,imx28-auart
+> +          - const: fsl,imx23-auart
+> =20
+>    reg:
+>      maxItems: 1
+> @@ -82,7 +85,7 @@ examples:
+>      };
+> =20
+>      auart0: serial@8006a000 {
+> -        compatible =3D "fsl,imx28-auart";
+> +        compatible =3D "fsl,imx28-auart", "fsl,imx23-auart";
+>          reg =3D <0x8006a000 0x2000>;
+>          interrupts =3D <112>;
+>          dmas =3D <&dma_apbx 8>, <&dma_apbx 9>;
 > --=20
 > 2.34.1
 >=20
 
---owrJu3nfxN2zBqaa
+--Y+pvPdlgTf4xkWu3
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQwHpwAKCRB4tDGHoIJi
-0v70AP4zQgNZ3lhzq1mZCa5+hgoIiGQ+hdOzpkcM2jR3Z3nQGQD8CT9tbJPTw5AJ
-Wqrs2GhAyKCnRwkokriHEaHCPtVUeAE=
-=T7Wa
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQwJgQAKCRB4tDGHoIJi
+0qZUAQC7Brocu9TpVVd2JRe0wEe8C1p//0FVrMLbGA8l2KKCiAD/QafzhWc7oS82
+H4+WOu2tbpQsJlOpTbkK9HN/oEx+9gs=
+=9C3G
 -----END PGP SIGNATURE-----
 
---owrJu3nfxN2zBqaa--
+--Y+pvPdlgTf4xkWu3--
 
