@@ -1,74 +1,41 @@
-Return-Path: <devicetree+bounces-2001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C24D7A9695
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:11:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE9897A987B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:47:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1AFC1C20D62
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 17:11:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ACAA11C21106
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 17:47:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70EAE14F63;
-	Thu, 21 Sep 2023 17:03:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C56B5171B5;
+	Thu, 21 Sep 2023 17:22:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DFFE17FA
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:03:33 +0000 (UTC)
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A217CD0;
-	Thu, 21 Sep 2023 10:01:13 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38L5uxXN026704;
-	Thu, 21 Sep 2023 10:04:24 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	selector1; bh=+tmt8dbtTqSwHcdueUDhtt/63vObb0tlhOMDJTofgcc=; b=7E
-	sWR96nRMkwANBcO+iU4lBtxq8/NLnlYlLForqxgsbQ6FkLvmThjvAl4yAkDQNYPu
-	XBNUH2bYOsiEqL6pGp0IzGlOxPY8w3TbyE3h1kxZ00cqrqh3ccd2IdUkhF5Fyufw
-	ABlgUz/gfX/mrNt4ZfH7uzlqjcQ3OhN4OTwoviIqHYBI7TwW1JDPjLQU+bRWXldU
-	HoKxejVVJXGynNESISv5EnajSGcXqtQ7m2D4xjDol7t+j/iN0ix4grITf4coM0/T
-	RTvYQXFfn04LoE/K4ePKpX9cZpx0r+4++2eUILsLieNHflkRIYvxUe89ag6y+fhF
-	PpPllhTDE81p20RjX6VA==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3t53px31mr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Sep 2023 10:04:24 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 13BEA100057;
-	Thu, 21 Sep 2023 10:04:23 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0BC4C21863D;
-	Thu, 21 Sep 2023 10:04:23 +0200 (CEST)
-Received: from localhost (10.201.20.32) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 21 Sep
- 2023 10:04:22 +0200
-From: Gatien Chevallier <gatien.chevallier@foss.st.com>
-To: Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu
-	<herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC: Lionel Debieve <lionel.debieve@foss.st.com>,
-        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Gatien Chevallier <gatien.chevallier@foss.st.com>
-Subject: [PATCH v3 6/9] hwrng: stm32 - restrain RNG noise source clock
-Date: Thu, 21 Sep 2023 10:02:58 +0200
-Message-ID: <20230921080301.253563-7-gatien.chevallier@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230921080301.253563-1-gatien.chevallier@foss.st.com>
-References: <20230921080301.253563-1-gatien.chevallier@foss.st.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B1A416434
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:22:25 +0000 (UTC)
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09AB3400E0;
+	Thu, 21 Sep 2023 10:15:04 -0700 (PDT)
+Received: from rd02-sz.amlogic.software (10.28.11.83) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Thu, 21 Sep 2023
+ 16:34:57 +0800
+From: Huqiang Qin <huqiang.qin@amlogic.com>
+To: <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<neil.armstrong@linaro.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <brgl@bgdev.pl>, <andy@kernel.org>
+CC: <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, Huqiang Qin <huqiang.qin@amlogic.com>
+Subject: [PATCH V2 0/3] Add pinctrl driver support for Amlogic T7 SoCs
+Date: Thu, 21 Sep 2023 16:34:05 +0800
+Message-ID: <20230921083407.1167510-2-huqiang.qin@amlogic.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,118 +44,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.201.20.32]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-21_06,2023-09-20_01,2023-05-22_02
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.28.11.83]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-For NIST certification the noise source sampling may need to be
-restrained.
+This patch adds pinctrl driver support for Amloigc T7 SoC (A311D2)
 
-This change implements an algorithm that gets the rate of the RNG
-clock and apply the correct value in CLKDIV field in RNG_CR register
-to force the RNG clock rate to be "max_clock_rate" maximum.
+[PATCH 1/3]: 
+  V1 -> V2: Rename amlogic-t7-gpio.h to amlogic,t7-periphs-pinctrl.h
 
-As it is platform-specific, implement it as a compat data.
+[PATCH 2/3]:
+  V1 -> V2: Include header file changed to amlogic,t7-periphs-pinctrl.h
 
-Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
----
- drivers/char/hw_random/stm32-rng.c | 34 ++++++++++++++++++++++++++++--
- 1 file changed, 32 insertions(+), 2 deletions(-)
+[PATCH 3/3]:
+  V1 -> V2: Unchanged.
 
-diff --git a/drivers/char/hw_random/stm32-rng.c b/drivers/char/hw_random/stm32-rng.c
-index 9dac177d5286..819f062f454d 100644
---- a/drivers/char/hw_random/stm32-rng.c
-+++ b/drivers/char/hw_random/stm32-rng.c
-@@ -23,11 +23,13 @@
- #define RNG_CR_CONFIG1		GENMASK(11, 8)
- #define RNG_CR_NISTC		BIT(12)
- #define RNG_CR_CONFIG2		GENMASK(15, 13)
-+#define RNG_CR_CLKDIV_SHIFT	16
-+#define RNG_CR_CLKDIV		GENMASK(19, 16)
- #define RNG_CR_CONFIG3		GENMASK(25, 20)
- #define RNG_CR_CONDRST		BIT(30)
- #define RNG_CR_CONFLOCK		BIT(31)
- #define RNG_CR_ENTROPY_SRC_MASK	(RNG_CR_CONFIG1 | RNG_CR_NISTC | RNG_CR_CONFIG2 | RNG_CR_CONFIG3)
--#define RNG_CR_CONFIG_MASK	(RNG_CR_ENTROPY_SRC_MASK | RNG_CR_CED)
-+#define RNG_CR_CONFIG_MASK	(RNG_CR_ENTROPY_SRC_MASK | RNG_CR_CED | RNG_CR_CLKDIV)
- 
- #define RNG_SR			0x04
- #define RNG_SR_DRDY		BIT(0)
-@@ -46,6 +48,7 @@
- #define RNG_NB_RECOVER_TRIES	3
- 
- struct stm32_rng_data {
-+	uint	max_clock_rate;
- 	u32	cr;
- 	u32	nscr;
- 	u32	htcr;
-@@ -238,6 +241,28 @@ static int stm32_rng_read(struct hwrng *rng, void *data, size_t max, bool wait)
- 	return retval || !wait ? retval : -EIO;
- }
- 
-+static uint stm32_rng_clock_freq_restrain(struct hwrng *rng)
-+{
-+	struct stm32_rng_private *priv =
-+	    container_of(rng, struct stm32_rng_private, rng);
-+	unsigned long clock_rate = 0;
-+	uint clock_div = 0;
-+
-+	clock_rate = clk_get_rate(priv->clk);
-+
-+	/*
-+	 * Get the exponent to apply on the CLKDIV field in RNG_CR register
-+	 * No need to handle the case when clock-div > 0xF as it is physically
-+	 * impossible
-+	 */
-+	while ((clock_rate >> clock_div) > priv->data->max_clock_rate)
-+		clock_div++;
-+
-+	pr_debug("RNG clk rate : %lu\n", clk_get_rate(priv->clk) >> clock_div);
-+
-+	return clock_div;
-+}
-+
- static int stm32_rng_init(struct hwrng *rng)
- {
- 	struct stm32_rng_private *priv =
-@@ -259,8 +284,11 @@ static int stm32_rng_init(struct hwrng *rng)
- 	 * 0 is an invalid value as it disables all entropy sources.
- 	 */
- 	if (priv->data->has_cond_reset && priv->data->cr) {
-+		uint clock_div = stm32_rng_clock_freq_restrain(rng);
-+
- 		reg &= ~RNG_CR_CONFIG_MASK;
--		reg |= RNG_CR_CONDRST | (priv->data->cr & RNG_CR_ENTROPY_SRC_MASK);
-+		reg |= RNG_CR_CONDRST | (priv->data->cr & RNG_CR_ENTROPY_SRC_MASK) |
-+		       (clock_div << RNG_CR_CLKDIV_SHIFT);
- 		if (priv->ced)
- 			reg &= ~RNG_CR_CED;
- 		else
-@@ -360,6 +388,7 @@ static const struct dev_pm_ops stm32_rng_pm_ops = {
- 
- static const struct stm32_rng_data stm32mp13_rng_data = {
- 	.has_cond_reset = true,
-+	.max_clock_rate = 48000000,
- 	.cr = 0x00F00D00,
- 	.nscr = 0x2B5BB,
- 	.htcr = 0x969D,
-@@ -367,6 +396,7 @@ static const struct stm32_rng_data stm32mp13_rng_data = {
- 
- static const struct stm32_rng_data stm32_rng_data = {
- 	.has_cond_reset = false,
-+	.max_clock_rate = 3000000,
- };
- 
- static const struct of_device_id stm32_rng_match[] = {
+Huqiang Qin (3):
+  dt-bindings: pinctrl: Add compatibles for Amlogic T7 SoCs
+  pinctrl: Add driver support for Amlogic T7 SoCs
+  arm64: dts: Add pinctrl node for Amlogic T7 SoCs
+
+ .../pinctrl/amlogic,meson-pinctrl-a1.yaml     |    1 +
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   |   16 +
+ drivers/pinctrl/meson/Kconfig                 |    6 +
+ drivers/pinctrl/meson/Makefile                |    1 +
+ drivers/pinctrl/meson/pinctrl-amlogic-t7.c    | 1612 +++++++++++++++++
+ .../gpio/amlogic,t7-periphs-pinctrl.h         |  179 ++
+ 6 files changed, 1815 insertions(+)
+ create mode 100644 drivers/pinctrl/meson/pinctrl-amlogic-t7.c
+ create mode 100644 include/dt-bindings/gpio/amlogic,t7-periphs-pinctrl.h
+
+
+base-commit: e143016b56ecb0fcda5bb6026b0a25fe55274f56
 -- 
-2.25.1
+2.42.0
 
 
