@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-1971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8109F7A953C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 16:29:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A9197A953D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 16:30:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74C691C20A99
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 14:29:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D29A1C209F7
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 14:30:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9E51BA40;
-	Thu, 21 Sep 2023 14:29:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64376BA2F;
+	Thu, 21 Sep 2023 14:29:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8C2CBA26
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 14:29:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9743C4E758;
-	Thu, 21 Sep 2023 14:29:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55BF3BA26
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 14:29:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AF82C4E76A;
+	Thu, 21 Sep 2023 14:29:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695306566;
-	bh=i7yPeuk2Yj5yCsGwQ+SXnhbxyv502egxjv2oc9SFNmE=;
+	s=k20201202; t=1695306572;
+	bh=+i068JrUC9snrrF/aptxkD1gDc/gyHcWbhpnMhJEpI8=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=PCZ16C3C4Dbv8TEe8702mLOtUgACJfVB5x0outhchQVYNtesPJMUye/gHbkGDyXR+
-	 P5ZVpxRfVNMZBl8VLIC59dERUnVdSsBy/EMkIZ2dV/PMqV0TIBS45ofEPTHtbdezB3
-	 5Jb2qJZCTea3xOZ9eIwZtcTpH2hJyY0lrdE+r7M4k7Fykm0cGcI6l3ELkhtmOVuJ0T
-	 Qfvb0QTm2Az1/rQuYtFXs7JKSmXl5THRc86wn7o8tfQgOqI/zAd4SAquhHygZPS7yE
-	 CNPanpj9Q3Br/q8g+SLoDG/lxaw61miuswZ0ImVGlF6SQFjxW6RDK/wX0fv99xAJ2l
-	 WmgeNvrRlPWkQ==
+	b=KowGEjiCcgXvUWCBv0lqUoM9lhoukicU5tova2ahPaP7PLVe9Ad0a2ovAQFWB03/W
+	 Qfdg0KP/xrlWZu7OyKWgpb4zb0BwlR27vpfJxMd3eAoTHcslw7asAfx66vU7ceWNTP
+	 7TGS7pOLJbeqXxJjDeXOjVF6yWxUmkir5a2BOprqMnXwkdSdhaMTfmR2VY298pF0wy
+	 DpjVD/GpJtWZepTope+ERXAAhaLhLD5VimnE0dvxjzpjF0F9J3YnOAkJdNZ4Gla+Vs
+	 +9XhUhduxagNJ7xqTqIPeiQZ9YVU2amorBBoH+Luhs9K94JhPfT7eTxcXgqet13ixO
+	 d5WX8llkEEoyQ==
 From: Vinod Koul <vkoul@kernel.org>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>, Johan Hovold <johan@kernel.org>, 
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org
-In-Reply-To: <20230824211952.1397699-1-dmitry.baryshkov@linaro.org>
-References: <20230824211952.1397699-1-dmitry.baryshkov@linaro.org>
-Subject: Re: (subset) [PATCH v3 00/16] phy: qcom-qmp-usb: convert to newer
- style of bindings
-Message-Id: <169530656347.106263.14330882289989442266.b4-ty@kernel.org>
-Date: Thu, 21 Sep 2023 16:29:23 +0200
+To: andrzej.hajda@intel.com, neil.armstrong@linaro.org, 
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, 
+ jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch, 
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org, 
+ s.hauer@pengutronix.de, festevam@gmail.com, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
+ Sandor Yu <Sandor.yu@nxp.com>
+Cc: kernel@pengutronix.de, linux-imx@nxp.com, oliver.brown@nxp.com, 
+ alexander.stein@ew.tq-group.com, sam@ravnborg.org
+In-Reply-To: <cover.1694047629.git.Sandor.yu@nxp.com>
+References: <cover.1694047629.git.Sandor.yu@nxp.com>
+Subject: Re: (subset) [PATCH v9 0/7] Initial support Cadence
+ MHDP8501(HDMI/DP) for i.MX8MQ
+Message-Id: <169530656692.106263.15400414640520611543.b4-ty@kernel.org>
+Date: Thu, 21 Sep 2023 16:29:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,30 +58,26 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.12.3
 
 
-On Fri, 25 Aug 2023 00:19:36 +0300, Dmitry Baryshkov wrote:
-> Reviewing several patchsets for newer platforms made it clear that
-> having two styles of QMP PHY bindings causes confusion. Despite binding
-> documents having notes telling that old bindings should be used for
-> older platforms, it is too easy to attempt adding new platform with
-> older QMP PHY binding. Thus let's have just a single documented style of
-> bindings.
+On Thu, 07 Sep 2023 09:05:27 +0800, Sandor Yu wrote:
+> The patch set initial support Cadence MHDP8501(HDMI/DP) DRM bridge
+> drivers and Cadence HDP-TX PHY(HDMI/DP) drivers for Freescale i.MX8MQ.
+> 
+> The patch set compose of DRM bridge drivers and PHY drivers.
+> 
+> Both of them need the followed two patches to pass build.
+>   drm: bridge: Cadence: convert mailbox functions to macro functions
+>   phy: Add HDMI configuration options
 > 
 > [...]
 
 Applied, thanks!
 
-[01/16] dt-bindings: phy: migrate QMP USB PHY bindings to qcom,sc8280xp-qmp-usb3-uni-phy.yaml
-        commit: 15c83637402c3654dbc7aac368119c3809a119fa
-[02/16] phy: qcom-qmp-usb: simplify clock handling
-        commit: 7233090aba54d82a1ed64f125b32c3ac0b91803c
-[03/16] phy: qcom-qmp-usb: rework reset handling
-        commit: fcf63482f6a9d383f04e409bc50f00eecb74ae73
-[04/16] phy: qcom-qmp-usb: make QPHY_PCS_MISC_CLAMP_ENABLE access conditional
-        commit: 6e9402261e8c85ec386b473ce3738d6e9d3e5013
-[05/16] phy: qcom-qmp: move PCS MISC V4 registers to separate header
-        commit: dc32762214e4bb683bfb21dcb4ade10e27e11c6d
-[06/16] phy: qcom-qmp-usb: populate offsets configuration
-        commit: 2be22aae6b18326426443d6c0cc9ac6985183a89
+[2/7] phy: Add HDMI configuration options
+      commit: 7f90516edb5cbfa4108b92bb83cbc8ef35a4cccd
+[6/7] phy: freescale: Add DisplayPort PHY driver for i.MX8MQ
+      commit: a2717f1d7c64660679441c407b96103abb7c4a8c
+[7/7] phy: freescale: Add HDMI PHY driver for i.MX8MQ
+      commit: 8e36091a94d2d28e8dccb9bfda081b2e42e951ae
 
 Best regards,
 -- 
