@@ -1,165 +1,105 @@
-Return-Path: <devicetree+bounces-2126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF3EE7A9B4F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 20:57:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2C127A9C77
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 21:18:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A94631C20D54
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 18:57:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1020AB222EC
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:13:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEDD04735F;
-	Thu, 21 Sep 2023 17:49:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D80B5134AB;
+	Thu, 21 Sep 2023 17:49:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47F5E41233;
-	Thu, 21 Sep 2023 17:49:23 +0000 (UTC)
-Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 490A8880B5;
-	Thu, 21 Sep 2023 10:38:50 -0700 (PDT)
-Received: from relay9-d.mail.gandi.net (unknown [IPv6:2001:4b98:dc4:8::229])
-	by mslow1.mail.gandi.net (Postfix) with ESMTP id EAB5BC0A2F;
-	Thu, 21 Sep 2023 11:38:53 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 18E4AFF809;
-	Thu, 21 Sep 2023 11:38:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-	t=1695296310;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Jg1KwFh5lSvkfLStS1akS234BD88W219/y2jE+qO6JQ=;
-	b=FB+WZwNSKjLpXhOD9eu3aYO9S6xv7RKPVKfQqt6Yyak4R0XVc2bs16R2Ke/+V/3txgPjPr
-	wNyBzW42Tn7VAFs2jhEpLj1G9U6dnj08SGVZCzFzU+kN0/r6dBMoRCU2I1O3Q8xtwIolig
-	xJ1YEEOth0NiXYYwOeMIAC90CHeyPQYQTN1YQTfV6AKvrznfMYMqllejuEeIHK1xAQoq7D
-	B2wVQWekSUN/HVPKuTr+U8nV6amDRMGb5hUj07YiP5dfthswJzspcJcvSs0Fc397s1bG45
-	3KvHozxpJJGdRulhdH2AcaicpASeaoEDTfZJ6ynuWsTayDIRxLyeQVsxkaRHLg==
-Message-ID: <16710cf9-8911-4fed-8e2d-b19b581446c1@arinc9.com>
-Date: Thu, 21 Sep 2023 14:38:09 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D53A29403
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:49:46 +0000 (UTC)
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E8287F37D
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:35:35 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-32155a45957so1263564f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:35:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695317734; x=1695922534; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uEg9oi9fsFQj5N/t7+XiCLJ8W8KXemvDmRrScebryl0=;
+        b=wAX25j+EexOaB/OLdX0u27M37sh3VOSFK2UdcZdGMfF5kyScbWI8uRggD073WzzOzh
+         Okc9kFM7wAHKZXzfgP/7exy7WM0O8fSGtnO+8ZheSGm6SV7eNM2d8vVBYsQ3oNokAjZu
+         mrY6Bp5kGTWrYxFlh9pekSm0Tg8gTdagsCrtn/4DLLfHEB+oivrW2uEd/knD4GDm2ZU8
+         dIEMB21MnWdgGS+ety+k49Tuwav7p2CRYShacsWWb7fWWcub4dhU8SCNe/iSvsTvu3g9
+         DUNTFtJF4dCFzHsKuEFvqsv22Apy0Zn7Hi9DOlYROwmqT3AzC7sZg7HWvVCkdIxr9q0q
+         YqVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695317734; x=1695922534;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uEg9oi9fsFQj5N/t7+XiCLJ8W8KXemvDmRrScebryl0=;
+        b=JHt9GemvOVftc/3Pr5dZeJnc/FWw/6QjmW+dGhZoCh6zgmViUXfUlKHrvDlPa4cguD
+         J5cRgHEhYH4hKZM84NGr1y/0cFq6IPWxLndxPvmBvjOzl0iipgRZz9I6w58gdIh7SSA4
+         o7+ujC6b+TdmsL46HjzPk6n6jkhZ6jUw3KIc0G4ClmWf7xMCLFFACpzYDPM6saP03Arz
+         Na01eUbqJlO2UKnCmGSA44DLdzhCrLbz0kfDTnVSIAB6eCYoE4iWvGgwgzv/C01MOPrS
+         O4log9uC7PfmVka9Rlg8G2zn+YI1plxmc6+mtgJ8scmSO9ovDBCY5JzvhaMPHW6tPS46
+         eCSg==
+X-Gm-Message-State: AOJu0YwtzooAR5iv1uj4fxKPtOU+TDUv2/zf3KGi2N7jz5XoB/EQ/P3u
+	SbwHMqqzeVZXJ1vqIjWRtVJA5huxb+M/IGTEoyfPhg==
+X-Google-Smtp-Source: AGHT+IHQrrrIHyHEDSkfYu9SO7d0pvsOVdZ1oGCXmoscM6UKG4H7ogFMpzJNut6Kcge3kLh4skQepQ==
+X-Received: by 2002:a2e:86d6:0:b0:2bc:cc1a:139c with SMTP id n22-20020a2e86d6000000b002bccc1a139cmr4675996ljj.11.1695297522786;
+        Thu, 21 Sep 2023 04:58:42 -0700 (PDT)
+Received: from [172.20.24.238] (static-212-193-78-212.thenetworkfactory.nl. [212.78.193.212])
+        by smtp.gmail.com with ESMTPSA id h10-20020a17090634ca00b00997e00e78e6sm931391ejb.112.2023.09.21.04.58.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Sep 2023 04:58:41 -0700 (PDT)
+Message-ID: <707f3f85-d38d-f112-16a7-2c602c453298@linaro.org>
+Date: Thu, 21 Sep 2023 13:58:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 07/10] dt-bindings: net: enforce phylink
- bindings on certain ethernet controllers
-To: Rob Herring <robh@kernel.org>
-Cc: "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- George McCollister <george.mccollister@gmail.com>,
- Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
- Vladimir Oltean <olteanv@gmail.com>, Kurt Kanzenbach <kurt@linutronix.de>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com,
- Linus Walleij <linus.walleij@linaro.org>,
- =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
- =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
- Marcin Wojtas <mw@semihalf.com>,
- "Russell King (Oracle)" <linux@armlinux.org.uk>,
- Lars Povlsen <lars.povlsen@microchip.com>,
- Steen Hegelund <Steen.Hegelund@microchip.com>,
- Daniel Machon <daniel.machon@microchip.com>,
- Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
- Daniel Golle <daniel@makrotopia.org>, Landen Chao
- <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
- Sean Wang <sean.wang@mediatek.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Claudiu Beznea <claudiu.beznea@microchip.com>, Marek Vasut <marex@denx.de>,
- Claudiu Manoil <claudiu.manoil@nxp.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- John Crispin <john@phrozen.org>, Madalin Bucur <madalin.bucur@nxp.com>,
- Ioana Ciornei <ioana.ciornei@nxp.com>, Lorenzo Bianconi
- <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
- Horatiu Vultur <horatiu.vultur@microchip.com>,
- Oleksij Rempel <linux@rempel-privat.de>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>,
- Jose Abreu <joabreu@synopsys.com>,
- Grygorii Strashko <grygorii.strashko@ti.com>, Sekhar Nori <nsekhar@ti.com>,
- Shyam Pandey <radhey.shyam.pandey@xilinx.com>, mithat.guner@xeront.com,
- erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v3 2/5] dt-bindings: phy: qcom,qmp-usb: Add SDX75 USB3 PHY
+To: Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
+ kishon@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, gregkh@linuxfoundation.org, abel.vesa@linaro.org,
+ quic_wcheng@quicinc.com, dmitry.baryshkov@linaro.org
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-renesas-soc@vger.kernel.org
-References: <20230916110902.234273-1-arinc.unal@arinc9.com>
- <20230916110902.234273-8-arinc.unal@arinc9.com>
- <20230918181319.GA1445647-robh@kernel.org>
+ linux-usb@vger.kernel.org, kernel@quicinc.com
+References: <1695291692-18850-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1695291692-18850-3-git-send-email-quic_rohiagar@quicinc.com>
 Content-Language: en-US
-From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <20230918181319.GA1445647-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: arinc.unal@arinc9.com
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1695291692-18850-3-git-send-email-quic_rohiagar@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=1.4 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_NONE,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 18.09.2023 21:13, Rob Herring wrote:
-> On Sat, Sep 16, 2023 at 02:08:59PM +0300, Arınç ÜNAL wrote:
->> Phylink bindings are required for ethernet controllers that utilise
->> phylink_fwnode_phy_connect() directly or through phylink_of_phy_connect(),
->> and register OF-based only MDIO buses, if they register any.
+On 21/09/2023 12:21, Rohit Agarwal wrote:
+> Add dt-bindings for USB3 PHY found on Qualcomm SDX75.
 > 
-> What is phylink?
-> 
-> Don't describe/justify binding changes based on some Linux functions.
+> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+> ---
 
-I'd like to discuss the influence of the Linux drivers on the devicetree
-bindings. Before that let me clarify these "phylink" bindings. They are
-certain rules to properly describe the link of the ethernet controller. Any
-of the phy-handle, pcs-handle, sfp, and fixed-link properties describe the
-link. They are already defined on ethernet-controller.yaml, just not
-enforced.
 
-Why I called them phylink bindings, is because when phylink is used on the
-ethernet controller driver, only then we can be sure that the link
-descriptions on the ethernet controller are needed. Because, some drivers
-don't need the link descriptions on the ethernet controller as they can
-search a certain MDIO bus to find and connect a MAC to a PHY or set up a
-fixed link without looking at the devicetree.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I don't like this approach because, as you said, devicetree bindings should
-describe the hardware, not driver policies. So I propose that we don't let
-Linux drivers interfere with dt-bindings. To that extent:
+Best regards,
+Krzysztof
 
-- Link descriptions must be required on ethernet controllers. We don't care
-   whether some Linux driver can or cannot find the PHY or set up a fixed
-   link without looking at the devicetree.
-
-- The MDIO bus description on an ethernet controller describes that the
-   hardware comes with an MDIO bus. The MDIO property is optional not
-   because some Linux driver can find and map the PHYs to MACs without DT
-   descriptions but because the hardware doesn't have to use that or any
-   MDIO bus.
-
-Let's also talk about the elephant in the room: DSA bindings. Distributed
-Switch Architecture is a Linux subsystem, not a hardware property.
-Devicetree bindings are supposed to describe the hardware, yet we have
-bindings specifically for DSA so that the DSA driver can properly control
-the hardware.
-
-Although I see dsa.yaml and dsa-port.yaml mostly consist of describing an
-ethernet switch with CPU port(s), there're properties that are specific to
-DSA, such as dsa,member on dsa.yaml and dsa-tag-protocol and label on
-dsa-port.yaml.
-
-Depending on how I get responses, I will address my patches. Then I can
-further discuss the DSA bindings.
-
-Arınç
 
