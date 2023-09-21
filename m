@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-2037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DED367A9873
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:45:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7418F7A986B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:42:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 982EA28151E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 17:45:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A3B7EB21211
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 17:42:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7066168AB;
-	Thu, 21 Sep 2023 17:22:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 574E21170D;
+	Thu, 21 Sep 2023 17:22:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B328C16429
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:22:24 +0000 (UTC)
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B81D5400CC
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:15:01 -0700 (PDT)
-Received: by mail-lf1-x143.google.com with SMTP id 2adb3069b0e04-503f39d3236so2119535e87.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:15:01 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 822A5199D1
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:22:15 +0000 (UTC)
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2D9844F50
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:13:44 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b962c226ceso20222251fa.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:13:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695316500; x=1695921300; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695316422; x=1695921222; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dOWL8UFN0vGXrTIparX6s/KCVRR+pmZ6D/qH1lVsdWQ=;
-        b=YLEeSob7yFd6ajkEn25ASxPjfgKyomdcC0Jek+PTxRcTe3dtH+S87Wlw2Tqvw0cy9B
-         BWjZrSzSN/DSheO12BVTB+29/dAlKI5Hai5AkkIa7zuubcj4hgOJ7pOmoRMQk9QLXwnV
-         LUWNddQbF9X41slNxTleuPKbwu837rXXewTfuba8HODrOBlubAirFRJPf32YGyEmKNTt
-         srBOCZxhWfB44yYIVCsoiz6GrRH3/GDEGo44rFd3k/Mb1s1HVqsK+bdlIyLCUSB0zKW5
-         juHwCzeacA9oMa3pCbei3rXdY4US26G3uaXI5RJR+ES+ttNqTIFyh6nq5EQ1U+ypd3oz
-         oeBw==
+        bh=BurSNjw3LRUUcMvXtonPsGB5QUx7CZPo8/XQKc8tXvQ=;
+        b=kS0gxZZWT9VAdie0Z+kpja3iyDsnvECFkm3Fug8UPYVEn/Hvj9vLzDKigNBiu5vPNg
+         FjFHQhZWpQpgSM6J3kNfbbiJ6KDmCXRz3DW8sZ9u1nS8rMBDM3A1fj1o64qKiqzLtkTR
+         T2uu7sG9Ji4bhe/NvIkFhdzUrxKfq1SPdrJULicTRHB0ORhRdmrxKfI33t3O2DH9uQ24
+         2zCOi+2eRVQNWrgM4CHpHEL5I2UGFZw5sM2CRMFWU0D77kPVGJFOZeqdPAepMLHJAmuj
+         73KpUmN5MXpRFkJPxlujrAPV+kBfkzkbte4Q36gDV6TtpdJFKxO8SMw9C/mg8joQt+GV
+         az2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695316500; x=1695921300;
+        d=1e100.net; s=20230601; t=1695316422; x=1695921222;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=dOWL8UFN0vGXrTIparX6s/KCVRR+pmZ6D/qH1lVsdWQ=;
-        b=pQu0O1aZZCDcrLs5XOTQwUZ6z/w7vPd4siBejKo9GCqfZtBbiX4DD/34U8yEcEHJQL
-         B2/FebxtiDp2+eG3eX6lHblzvkWlui2OQdt5WmGtdKOJaku4gSBCfu7ju0uquW6h0/IO
-         pRJfDIuMXoBTacZCgFTPEsHT+0a9+aiooJXOYE2OcoxGjzYB50coqVVCYvT87G1rS+YU
-         So2kM0TtxYZObVt2LXsHYm40eONYBv4s7rVEsuhc5behicy7TfkcGObE/nkOSYYhtWp3
-         kBeRhkv/Te1kbO+KiBOLY2Etlw86yvrFC/QZ5WON0syzPLXNSb3CyZ/k6rI2ydtADLLX
-         LYjQ==
-X-Gm-Message-State: AOJu0YxIqY+moY2kXTG0X7ppg/77sMlvKs1g1la4AfMoaoaJXyheemhc
-	f5nSj5MEHlVlY9BrDXZN7IXAbzxn3dfttqIgwcYeHjMW/SM=
-X-Google-Smtp-Source: AGHT+IErr9vfLKcGbuaDz6p0WEc9gtQaWzHZCdYrnWpb8xs+8uWyyRU6Xrb3jaQvYbOOtHHu0seULw==
-X-Received: by 2002:a5d:6405:0:b0:319:6ec3:79c7 with SMTP id z5-20020a5d6405000000b003196ec379c7mr5205794wru.36.1695306152763;
-        Thu, 21 Sep 2023 07:22:32 -0700 (PDT)
+        bh=BurSNjw3LRUUcMvXtonPsGB5QUx7CZPo8/XQKc8tXvQ=;
+        b=pAn3jPNHfgJ/Cs+V3FPZeAjwJ56vV3q9U0DBtMT9oGA1N8xmbEvuuQ3R1ORWyxfq+H
+         lJvUw3g3M4vEa//OsKdFNWIU6xTdcWyRqZ47063xEolA3HIxsdUC/p02VOwGwDcKeZY3
+         LMaujObYBTzOW1IzIDC3UC3l+yJNChHq33yof641Yb4qT+k8/uqfmATL9UDg6ylSmM0P
+         iRTOU87L+IBbuFEUyaER7vOzoxIKS4ALagCbMR/7NIm+1+FzxEtQRxA2AapyIKmx2Nkj
+         eVqAhVzpDJMh282OBlc3jEULm7/ImYwDcz2OmCM96tfYeZJX00rfHDB7jxeZ9mjiGPrv
+         2rMw==
+X-Gm-Message-State: AOJu0Yzj0vseYdhtnflGmmZuR9Mh1dVW+TyXw2pFVTrddYWqkP2vd2Sx
+	m4Nqu8H4GhM0Xqt0tk4Wi2dNjXueLFg2nFKwJH6w91dC
+X-Google-Smtp-Source: AGHT+IHNEr10kFqru6shnxnQjCxmHgYq/iqV95+VoS8aS+sGpqc8B3o89A4hIe6FM7kiYkFbjggLAA==
+X-Received: by 2002:adf:f88f:0:b0:31d:3669:1c55 with SMTP id u15-20020adff88f000000b0031d36691c55mr5308299wrp.65.1695306153705;
+        Thu, 21 Sep 2023 07:22:33 -0700 (PDT)
 Received: from localhost.localdomain (abordeaux-655-1-129-86.w90-5.abo.wanadoo.fr. [90.5.10.86])
         by smtp.gmail.com with ESMTPSA id n11-20020a5d4c4b000000b0031fbbe347ebsm1901426wrt.22.2023.09.21.07.22.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Sep 2023 07:22:32 -0700 (PDT)
+        Thu, 21 Sep 2023 07:22:33 -0700 (PDT)
 From: David Lechner <dlechner@baylibre.com>
 To: linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org,
@@ -70,9 +70,9 @@ Cc: linux-kernel@vger.kernel.org,
 	Axel Haslam <ahaslam@baylibre.com>,
 	Philip Molloy <pmolloy@baylibre.com>,
 	David Lechner <dlechner@baylibre.com>
-Subject: [v2 02/19] staging: iio: Documentation: document IIO resolver AD2S1210 sysfs attributes
-Date: Thu, 21 Sep 2023 09:19:29 -0500
-Message-Id: <20230921141947.57784-4-dlechner@baylibre.com>
+Subject: [PATCH 2/2] staging: iio: resolver: ad2s1210: add triggered buffer support
+Date: Thu, 21 Sep 2023 09:19:30 -0500
+Message-Id: <20230921141947.57784-5-dlechner@baylibre.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230921141947.57784-1-dlechner@baylibre.com>
 References: <20230921141947.57784-1-dlechner@baylibre.com>
@@ -89,130 +89,149 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-This adds documentation for the device-specific sysfs attributes of the
-iio/resolver/ad2s1210 driver.
+This adds support for triggered buffers to the AD2S1210 resolver driver.
 
 Signed-off-by: David Lechner <dlechner@baylibre.com>
 ---
- .../sysfs-bus-iio-resolver-ad2s1210           | 109 ++++++++++++++++++
- 1 file changed, 109 insertions(+)
- create mode 100644 drivers/staging/iio/Documentation/sysfs-bus-iio-resolver-ad2s1210
+ drivers/staging/iio/resolver/ad2s1210.c | 84 ++++++++++++++++++++++++-
+ 1 file changed, 83 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/staging/iio/Documentation/sysfs-bus-iio-resolver-ad2s1210 b/drivers/staging/iio/Documentation/sysfs-bus-iio-resolver-ad2s1210
-new file mode 100644
-index 000000000000..32890c85168e
---- /dev/null
-+++ b/drivers/staging/iio/Documentation/sysfs-bus-iio-resolver-ad2s1210
-@@ -0,0 +1,109 @@
-+What:		/sys/bus/iio/devices/iio:deviceX/dos_mis_thrd
-+KernelVersion:  6.7
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Reading returns the current Degradation of Signal Mismatch
-+		Threshold value. Writing sets the value. Valid values are 0 (0V)
-+		to 127 (4.826V). To convert the value to volts, multiply by
-+		0.038.
+diff --git a/drivers/staging/iio/resolver/ad2s1210.c b/drivers/staging/iio/resolver/ad2s1210.c
+index f5b8b290e860..44a2ecaeeeff 100644
+--- a/drivers/staging/iio/resolver/ad2s1210.c
++++ b/drivers/staging/iio/resolver/ad2s1210.c
+@@ -19,8 +19,11 @@
+ #include <linux/sysfs.h>
+ #include <linux/types.h>
+ 
++#include <linux/iio/buffer.h>
+ #include <linux/iio/iio.h>
+ #include <linux/iio/sysfs.h>
++#include <linux/iio/trigger_consumer.h>
++#include <linux/iio/triggered_buffer.h>
+ 
+ #define DRV_NAME "ad2s1210"
+ 
+@@ -85,6 +88,12 @@ struct ad2s1210_state {
+ 	unsigned long fclkin;
+ 	/** The selected resolution */
+ 	enum ad2s1210_resolution resolution;
++	/** Scan buffer */
++	struct {
++		__be16 chan[2];
++		/* Ensure timestamp is naturally aligned. */
++		s64 timestamp __aligned(8);
++	} scan;
+ 	u8 rx[2] __aligned(IIO_DMA_MINALIGN);
+ 	u8 tx[2];
+ };
+@@ -592,18 +601,35 @@ static const struct iio_chan_spec ad2s1210_channels[] = {
+ 		.type = IIO_ANGL,
+ 		.indexed = 1,
+ 		.channel = 0,
++		.scan_index = 0,
++		.scan_type = {
++			.sign = 'u',
++			.realbits = 16,
++			.storagebits = 16,
++			.endianness = IIO_BE,
++		},
+ 		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+ 				      BIT(IIO_CHAN_INFO_SCALE) |
+ 				      BIT(IIO_CHAN_INFO_HYSTERESIS),
+ 		.info_mask_separate_available =
+ 					BIT(IIO_CHAN_INFO_HYSTERESIS),
++		.datasheet_name = "position",
+ 	}, {
+ 		.type = IIO_ANGL_VEL,
+ 		.indexed = 1,
+ 		.channel = 0,
++		.scan_index = 1,
++		.scan_type = {
++			.sign = 's',
++			.realbits = 16,
++			.storagebits = 16,
++			.endianness = IIO_BE,
++		},
+ 		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+ 				      BIT(IIO_CHAN_INFO_SCALE),
+-	}
++		.datasheet_name = "velocity",
++	},
++	IIO_CHAN_SOFT_TIMESTAMP(2),
+ };
+ 
+ static struct attribute *ad2s1210_attributes[] = {
+@@ -665,6 +691,55 @@ static int ad2s1210_debugfs_reg_access(struct iio_dev *indio_dev,
+ 	return ret;
+ }
+ 
++static irqreturn_t ad2s1210_trigger_handler(int irq, void *p)
++{
++	struct iio_poll_func *pf = p;
++	struct iio_dev *indio_dev = pf->indio_dev;
++	struct ad2s1210_state *st = iio_priv(indio_dev);
++	size_t chan = 0;
++	int ret;
 +
-+What:		/sys/bus/iio/devices/iio:deviceX/dos_ovr_thrd
-+KernelVersion:  6.7
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Reading returns the current Degradation of Signal Overrange
-+		Threshold value. Writing sets the value. Valid values are 0 (0V)
-+		to 127 (4.826V). To convert the value to volts, multiply by
-+		0.038.
++	mutex_lock(&st->lock);
 +
-+What:		/sys/bus/iio/devices/iio:deviceX/dos_rst_max_thrd
-+KernelVersion:  6.7
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Reading returns the current Degradation of Signal Reset Maximum
-+		Threshold value. Writing sets the value. Valid values are 0 (0V)
-+		to 127 (4.826V). To convert the value to volts, multiply by
-+		0.038.
++	memset(&st->scan, 0, sizeof(st->scan));
++	gpiod_set_value(st->sample_gpio, 1);
 +
-+What:		/sys/bus/iio/devices/iio:deviceX/dos_rst_min_thrd
-+KernelVersion:  6.7
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Reading returns the current Degradation of Signal Reset Minimum
-+		Threshold value. Writing sets the value. Valid values are 0 (0V)
-+		to 127 (4.826V). To convert the value to volts, multiply by
-+		0.038.
++	if (test_bit(0, indio_dev->active_scan_mask)) {
++		ret = ad2s1210_set_mode(st, MOD_POS);
++		if (ret < 0)
++			goto error_ret;
 +
-+What:		/sys/bus/iio/devices/iio:deviceX/fault
-+KernelVersion:  6.7
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Reading returns a hex value containing the fault bit flags.
++		/* REVIST: we can read 3 bytes here and also get fault flags */
++		ret = spi_read(st->sdev, st->rx, 2);
++		if (ret < 0)
++			goto error_ret;
 +
-+		Bit	Description
-+		---	-----------
-+		D7	Sine/cosine inputs clipped
-+		D6	Sine/cosine inputs below LOS threshold
-+		D5	Sine/cosine inputs exceed DOS overrange threshold
-+		D4	Sine/cosine inputs exceed DOS mismatch threshold
-+		D3	Tracking error exceeds LOT threshold
-+		D2	Velocity exceeds maximum tracking rate
-+		D1	Phase error exceeds phase lock range
-+		D0	Configuration parity error
++		memcpy(&st->scan.chan[chan++], st->rx, 2);
++	}
 +
-+		Writing any value will clear any fault conditions.
++	if (test_bit(1, indio_dev->active_scan_mask)) {
++		ret = ad2s1210_set_mode(st, MOD_VEL);
++		if (ret < 0)
++			goto error_ret;
 +
-+What:		/sys/bus/iio/devices/iio:deviceX/excitation_frequency
-+KernelVersion:  6.7
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Reading returns the current Excitation Frequency in Hz. Writing
-+		sets the Excitation Frequency and performs a software reset on
-+		the device to apply the change. Valid values are 2000 (2kHz) to
-+		20000 (20kHz).
++		/* REVIST: we can read 3 bytes here and also get fault flags */
++		ret = spi_read(st->sdev, st->rx, 2);
++		if (ret < 0)
++			goto error_ret;
 +
-+What:		/sys/bus/iio/devices/iio:deviceX/los_thrd
-+KernelVersion:  6.7
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Reading returns the current Loss of Signal Reset Threshold
-+		value. Writing sets the value. Valid values are 0 (0V) to
-+		127 (4.826V). To convert the value to volts, multiply by 0.038.
++		memcpy(&st->scan.chan[chan++], st->rx, 2);
++	}
 +
-+What:		/sys/bus/iio/devices/iio:deviceX/lot_high_thrd
-+KernelVersion:  6.7
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Reading returns the current Loss of Position Tracking Detection
-+		High Threshold value. Writing sets the value. Valid values are
-+		0 (0 deg) to 127 (9/18/45 deg). The interpretation of the value
-+		depends on the selected resolution. To convert the value to
-+		degrees, multiply by 0.35 for 10-bit resolution, multiply by
-+		0.14 for 12-bit resolution or multiply by 0.09 for 14 and 16-bit
-+		resolution.
++	iio_push_to_buffers_with_timestamp(indio_dev, &st->scan, pf->timestamp);
 +
-+What:		/sys/bus/iio/devices/iio:deviceX/lot_low_thrd
-+KernelVersion:  6.7
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Reading returns the current Loss of Position Tracking Detection
-+		Low Threshold value. Writing sets the value. Valid values are
-+		0 (0 deg) to 127 (9/18/45 deg). The interpretation of the value
-+		depends on the selected resolution. To convert the value to
-+		degrees, multiply by 0.35 for 10-bit resolution, multiply by
-+		0.14 for 12-bit resolution or multiply by 0.09 for 14 and 16-bit
-+		resolution.
++error_ret:
++	gpiod_set_value(st->sample_gpio, 0);
++	mutex_unlock(&st->lock);
++	iio_trigger_notify_done(indio_dev->trig);
 +
-+What:		/sys/bus/iio/devices/iio:deviceX/phase_lock_range
-+KernelVersion:  6.7
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Reading returns the current Phase lock range in degrees. Writing
-+		sets the value in the configuration register.
++	return IRQ_HANDLED;
++}
 +
-+What:		/sys/bus/iio/devices/iio:deviceX/phase_lock_range_available
-+KernelVersion:  6.7
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Reading returns the possible values for the phase_lock_range
-+		attribute, namely 44 and 360.
+ static const struct iio_info ad2s1210_info = {
+ 	.read_raw = ad2s1210_read_raw,
+ 	.read_avail = ad2s1210_read_avail,
+@@ -850,6 +925,13 @@ static int ad2s1210_probe(struct spi_device *spi)
+ 	indio_dev->num_channels = ARRAY_SIZE(ad2s1210_channels);
+ 	indio_dev->name = spi_get_device_id(spi)->name;
+ 
++	ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
++					      &iio_pollfunc_store_time,
++					      &ad2s1210_trigger_handler, NULL);
++	if (ret < 0)
++		return dev_err_probe(&spi->dev, ret,
++				     "iio triggered buffer setup failed\n");
++
+ 	return devm_iio_device_register(&spi->dev, indio_dev);
+ }
+ 
 -- 
 2.34.1
 
