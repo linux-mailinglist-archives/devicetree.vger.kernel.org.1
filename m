@@ -1,160 +1,505 @@
-Return-Path: <devicetree+bounces-2220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 388D57AA202
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 23:12:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66D9B7AA2A0
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 23:25:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C62BB20B58
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 21:11:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 1D65F281FF7
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 21:25:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B621019469;
-	Thu, 21 Sep 2023 21:11:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78B0A19470;
+	Thu, 21 Sep 2023 21:25:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E069E19467
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 21:11:46 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 645601FFD;
-	Thu, 21 Sep 2023 14:11:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1695330696; x=1726866696;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3+eI3UgLms590aA+oWQf7NdcqV5rfD94OQLXjXGtl2c=;
-  b=h9T4dD49rl0pcFqa3FiFUxodBFD679CGr3Kqn1JaamQzPBRRkLNOZvbx
-   tK248atdPqm8qyZqxILFA/HKIdgn+tthFb7xIN/eolpQYV/cMm9Djxr1X
-   us8WWNYrZqT13LtzIDKMMPkQOD8QelsU3YawgTq7y31g6K7iaXuUK73+c
-   120EJ2RlaUfgsUIn1NrIGTJYWCpz39UKN/xX/kIQcj5U9SXUQHXgUqMu9
-   R5yreM6dn6g8b+t0kmOsFc21UC0AORVA7NvudYZQp/+vIU8LeGrOYIu8K
-   t9zowhHgrBZh6BaLZSSdWr4+Wg3XUmUfAXtjO1s6eZ/FefdMGCDIBSDzh
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="447144823"
-X-IronPort-AV: E=Sophos;i="6.03,166,1694761200"; 
-   d="scan'208";a="447144823"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Sep 2023 14:11:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="870992745"
-X-IronPort-AV: E=Sophos;i="6.03,166,1694761200"; 
-   d="scan'208";a="870992745"
-Received: from lkp-server02.sh.intel.com (HELO b77866e22201) ([10.239.97.151])
-  by orsmga004.jf.intel.com with ESMTP; 21 Sep 2023 14:11:31 -0700
-Received: from kbuild by b77866e22201 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qjQxM-0000PY-2M;
-	Thu, 21 Sep 2023 21:11:28 +0000
-Date: Fri, 22 Sep 2023 05:11:22 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jon Hunter <jonathanh@nvidia.com>, Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8F2719445
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 21:25:02 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79017902F
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 14:24:59 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qjRA8-0002Zq-KA; Thu, 21 Sep 2023 23:24:40 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qjRA6-00816n-Gu; Thu, 21 Sep 2023 23:24:38 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qjRA6-003jKa-4g; Thu, 21 Sep 2023 23:24:38 +0200
+Date: Thu, 21 Sep 2023 23:24:38 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Aleksandr Shubin <privatesub2@gmail.com>
+Cc: linux-kernel@vger.kernel.org, Thierry Reding <thierry.reding@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-	Ninad Malwade <nmalwade@nvidia.com>,
-	Rajkumar Kasirajan <rkasirajan@nvidia.com>,
-	Jon Hunter <jonathanh@nvidia.com>
-Subject: Re: [PATCH V3 3/4] hwmon: ina3221: Add support for channel summation
- disable
-Message-ID: <202309220454.kCi2xD48-lkp@intel.com>
-References: <20230921130818.21247-4-jonathanh@nvidia.com>
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v6 2/3] pwm: Add Allwinner's D1/T113-S3/R329 SoCs PWM
+ support
+Message-ID: <20230921212438.dq66fcwgrgqrg57d@pengutronix.de>
+References: <20230824114038.891493-1-privatesub2@gmail.com>
+ <20230824114038.891493-3-privatesub2@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ird3aryfheitd4gg"
 Content-Disposition: inline
-In-Reply-To: <20230921130818.21247-4-jonathanh@nvidia.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+In-Reply-To: <20230824114038.891493-3-privatesub2@gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Jon,
 
-kernel test robot noticed the following build warnings:
+--ird3aryfheitd4gg
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[auto build test WARNING on groeck-staging/hwmon-next]
-[also build test WARNING on robh/for-next linus/master v6.6-rc2 next-20230921]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Hello Aleksandr,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jon-Hunter/dt-bindings-hwmon-ina3221-Add-ti-summation-disable/20230922-011119
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/20230921130818.21247-4-jonathanh%40nvidia.com
-patch subject: [PATCH V3 3/4] hwmon: ina3221: Add support for channel summation disable
-config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20230922/202309220454.kCi2xD48-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230922/202309220454.kCi2xD48-lkp@intel.com/reproduce)
+On Thu, Aug 24, 2023 at 02:40:26PM +0300, Aleksandr Shubin wrote:
+> Allwinner's D1, T113-S3 and R329 SoCs have a quite different PWM
+> controllers with ones supported by pwm-sun4i driver.
+>=20
+> This patch adds a PWM controller driver for Allwinner's D1,
+> T113-S3 and R329 SoCs. The main difference between these SoCs
+> is the number of channels defined by the DT property.
+>=20
+> Signed-off-by: Aleksandr Shubin <privatesub2@gmail.com>
+> ---
+>  drivers/pwm/Kconfig      |  10 ++
+>  drivers/pwm/Makefile     |   1 +
+>  drivers/pwm/pwm-sun20i.c | 328 +++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 339 insertions(+)
+>  create mode 100644 drivers/pwm/pwm-sun20i.c
+>=20
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 8df861b1f4a3..05c48a36969e 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -594,6 +594,16 @@ config PWM_SUN4I
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-sun4i.
+> =20
+> +config PWM_SUN20I
+> +	tristate "Allwinner D1/T113s/R329 PWM support"
+> +	depends on ARCH_SUNXI || COMPILE_TEST
+> +	depends on COMMON_CLK
+> +	help
+> +	  Generic PWM framework driver for Allwinner D1/T113s/R329 SoCs.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm-sun20i.
+> +
+>  config PWM_SUNPLUS
+>  	tristate "Sunplus PWM support"
+>  	depends on ARCH_SUNPLUS || COMPILE_TEST
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index 19899b912e00..cea872e22c78 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -55,6 +55,7 @@ obj-$(CONFIG_PWM_STM32)		+=3D pwm-stm32.o
+>  obj-$(CONFIG_PWM_STM32_LP)	+=3D pwm-stm32-lp.o
+>  obj-$(CONFIG_PWM_STMPE)		+=3D pwm-stmpe.o
+>  obj-$(CONFIG_PWM_SUN4I)		+=3D pwm-sun4i.o
+> +obj-$(CONFIG_PWM_SUN20I)	+=3D pwm-sun20i.o
+>  obj-$(CONFIG_PWM_SUNPLUS)	+=3D pwm-sunplus.o
+>  obj-$(CONFIG_PWM_TEGRA)		+=3D pwm-tegra.o
+>  obj-$(CONFIG_PWM_TIECAP)	+=3D pwm-tiecap.o
+> diff --git a/drivers/pwm/pwm-sun20i.c b/drivers/pwm/pwm-sun20i.c
+> new file mode 100644
+> index 000000000000..20e6b7b5b62e
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-sun20i.c
+> @@ -0,0 +1,328 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * PWM Controller Driver for sunxi platforms (D1, T113-S3 and R329)
+> + *
+> + * Limitations:
+> + * - When the parameters change, current running period will not be comp=
+leted
+> + *   and run new settings immediately.
+> + * - It output HIGH-Z state when PWM channel disabled.
+> + *
+> + * Copyright (c) 2023 Aleksandr Shubin <privatesub2@gmail.com>
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/clk.h>
+> +#include <linux/err.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/reset.h>
+> +
+> +#define PWM_CLK_CFG(chan)		(0x20 + (((chan) >> 1) * 0x4))
+> +#define PWM_CLK_CFG_SRC			GENMASK(8, 7)
+> +#define PWM_CLK_CFG_DIV_M		GENMASK(3, 0)
+> +
+> +#define PWM_CLK_GATE			0x40
+> +#define PWM_CLK_GATE_BYPASS(chan)	BIT((chan) - 16)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202309220454.kCi2xD48-lkp@intel.com/
+Really? With chan =3D=3D 0 this gives you BIT(-16).
 
-All warnings (new ones prefixed by >>):
+> +#define PWM_CLK_GATE_GATING(chan)	BIT(chan)
+> +
+> +#define PWM_ENABLE			0x80
+> +#define PWM_ENABLE_EN(chan)		BIT(chan)
+> +
+> +#define PWM_CTL(chan)			(0x100 + (chan) * 0x20)
+> +#define PWM_CTL_ACT_STA			BIT(8)
+> +#define PWM_CTL_PRESCAL_K		GENMASK(7, 0)
+> +
+> +#define PWM_PERIOD(chan)		(0x104 + (chan) * 0x20)
+> +#define PWM_PERIOD_ENTIRE_CYCLE		GENMASK(31, 16)
+> +#define PWM_PERIOD_ACT_CYCLE		GENMASK(15, 0)
+> +
+> +#define PWM_MAGIC			(255 * 65535 + 2 * 65534 + 1)
 
->> drivers/hwmon/ina3221.c:109: warning: Function parameter or member 'summation_disable' not described in 'ina3221_input'
->> drivers/hwmon/ina3221.c:134: warning: Function parameter or member 'debugfs' not described in 'ina3221_data'
->> drivers/hwmon/ina3221.c:134: warning: Function parameter or member 'summation_channel_control' not described in 'ina3221_data'
+A comment about PWM_MAGIC would be nice.
 
+I'd like to have these register defines prefixed with (say) SUN20I_,
+otherwise the names are too generic and likely overlap with other
+defines.
 
-vim +109 drivers/hwmon/ina3221.c
+> +struct sun20i_pwm_chip {
+> +	struct clk *clk_bus, *clk_hosc, *clk_apb0;
+> +	struct reset_control *rst;
+> +	struct pwm_chip chip;
+> +	void __iomem *base;
+> +	/* Mutex to protect pwm apply state */
+> +	struct mutex mutex;
+> +};
+> +
+> +static inline struct sun20i_pwm_chip *to_sun20i_pwm_chip(struct pwm_chip=
+ *chip)
+> +{
+> +	return container_of(chip, struct sun20i_pwm_chip, chip);
+> +}
+> +
+> +static inline u32 sun20i_pwm_readl(struct sun20i_pwm_chip *chip,
+> +				   unsigned long offset)
+> +{
+> +	return readl(chip->base + offset);
+> +}
+> +
+> +static inline void sun20i_pwm_writel(struct sun20i_pwm_chip *chip,
+> +				     u32 val, unsigned long offset)
+> +{
+> +	writel(val, chip->base + offset);
+> +}
+> +
+> +static int sun20i_pwm_get_state(struct pwm_chip *chip,
+> +				struct pwm_device *pwm,
+> +				struct pwm_state *state)
+> +{
+> +	struct sun20i_pwm_chip *sun20i_chip =3D to_sun20i_pwm_chip(chip);
+> +	u16 ent_cycle, act_cycle, prescal;
+> +	u64 clk_rate, tmp;
+> +	u8 div_id;
+> +	u32 val;
+> +
+> +	mutex_lock(&sun20i_chip->mutex);
+> +
+> +	val =3D sun20i_pwm_readl(sun20i_chip, PWM_CLK_CFG(pwm->hwpwm));
+> +	div_id =3D FIELD_GET(PWM_CLK_CFG_DIV_M, val);
+> +	if (FIELD_GET(PWM_CLK_CFG_SRC, val) =3D=3D 0)
+> +		clk_rate =3D clk_get_rate(sun20i_chip->clk_hosc);
+> +	else
+> +		clk_rate =3D clk_get_rate(sun20i_chip->clk_apb0);
+> +
+> +	val =3D sun20i_pwm_readl(sun20i_chip, PWM_CTL(pwm->hwpwm));
+> +	state->polarity =3D (PWM_CTL_ACT_STA & val) ? PWM_POLARITY_NORMAL : PWM=
+_POLARITY_INVERSED;
+> +
+> +	prescal =3D FIELD_GET(PWM_CTL_PRESCAL_K, val) + 1;
+> +
+> +	val =3D sun20i_pwm_readl(sun20i_chip, PWM_ENABLE);
+> +	state->enabled =3D (PWM_ENABLE_EN(pwm->hwpwm) & val) ? true : false;
+> +
+> +	val =3D sun20i_pwm_readl(sun20i_chip, PWM_PERIOD(pwm->hwpwm));
 
-7cb6dcff1956ec Andrew F. Davis 2016-06-10   97  
-a9e9dd9c6de5d8 Nicolin Chen    2018-10-01   98  /**
-a9e9dd9c6de5d8 Nicolin Chen    2018-10-01   99   * struct ina3221_input - channel input source specific information
-a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  100   * @label: label of channel input source
-a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  101   * @shunt_resistor: shunt resistor value of channel input source
-a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  102   * @disconnected: connection status of channel input source
-a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  103   */
-a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  104  struct ina3221_input {
-a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  105  	const char *label;
-a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  106  	int shunt_resistor;
-a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  107  	bool disconnected;
-ac0a832fd3617c Ninad Malwade   2023-09-21  108  	bool summation_disable;
-a9e9dd9c6de5d8 Nicolin Chen    2018-10-01 @109  };
-a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  110  
-7cb6dcff1956ec Andrew F. Davis 2016-06-10  111  /**
-7cb6dcff1956ec Andrew F. Davis 2016-06-10  112   * struct ina3221_data - device specific information
-323aeb0eb5d9a6 Nicolin Chen    2018-11-05  113   * @pm_dev: Device pointer for pm runtime
-7cb6dcff1956ec Andrew F. Davis 2016-06-10  114   * @regmap: Register map of the device
-7cb6dcff1956ec Andrew F. Davis 2016-06-10  115   * @fields: Register fields of the device
-a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  116   * @inputs: Array of channel input source specific structures
-87625b24986bc2 Nicolin Chen    2018-11-05  117   * @lock: mutex lock to serialize sysfs attribute accesses
-59d608e152e582 Nicolin Chen    2018-09-29  118   * @reg_config: Register value of INA3221_CONFIG
-2057bdfb7184e9 Nicolin Chen    2019-10-16  119   * @summation_shunt_resistor: equivalent shunt resistor value for summation
-43dece162de047 Nicolin Chen    2019-01-17  120   * @single_shot: running in single-shot operating mode
-7cb6dcff1956ec Andrew F. Davis 2016-06-10  121   */
-7cb6dcff1956ec Andrew F. Davis 2016-06-10  122  struct ina3221_data {
-323aeb0eb5d9a6 Nicolin Chen    2018-11-05  123  	struct device *pm_dev;
-7cb6dcff1956ec Andrew F. Davis 2016-06-10  124  	struct regmap *regmap;
-7cb6dcff1956ec Andrew F. Davis 2016-06-10  125  	struct regmap_field *fields[F_MAX_FIELDS];
-a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  126  	struct ina3221_input inputs[INA3221_NUM_CHANNELS];
-87625b24986bc2 Nicolin Chen    2018-11-05  127  	struct mutex lock;
-ac0a832fd3617c Ninad Malwade   2023-09-21  128  	struct dentry *debugfs;
-59d608e152e582 Nicolin Chen    2018-09-29  129  	u32 reg_config;
-2057bdfb7184e9 Nicolin Chen    2019-10-16  130  	int summation_shunt_resistor;
-ac0a832fd3617c Ninad Malwade   2023-09-21  131  	u32 summation_channel_control;
-43dece162de047 Nicolin Chen    2019-01-17  132  
-43dece162de047 Nicolin Chen    2019-01-17  133  	bool single_shot;
-7cb6dcff1956ec Andrew F. Davis 2016-06-10 @134  };
-7cb6dcff1956ec Andrew F. Davis 2016-06-10  135  
+You can release the lock already here (or even after PWM_ENABLE is
+read?)
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> +	act_cycle =3D FIELD_GET(PWM_PERIOD_ACT_CYCLE, val);
+> +	ent_cycle =3D FIELD_GET(PWM_PERIOD_ENTIRE_CYCLE, val);
+> +
+> +	/*
+> +	 * The duration of the active phase should not be longer
+> +	 * than the duration of the period
+> +	 */
+> +	if (act_cycle > ent_cycle)
+> +		act_cycle =3D ent_cycle;
+> +
+> +	tmp =3D ((u64)(act_cycle) * prescal << div_id) * NSEC_PER_SEC;
+
+act_cycle is a 16 bit value, prescal is <=3D 256 and div_id is <=3D 15. So
+the maximal value tmp has to hold is 0x1dcd47329b00000000. This doesn't
+fit into an u64. You need something like mul_u64_u64_div64_roundup here.
+
+> +	state->duty_cycle =3D DIV_ROUND_UP_ULL(tmp, clk_rate);
+> +	tmp =3D ((u64)(ent_cycle) * prescal << div_id) * NSEC_PER_SEC;
+> +	state->period =3D DIV_ROUND_UP_ULL(tmp, clk_rate);
+> +	mutex_unlock(&sun20i_chip->mutex);
+> +
+> +	return 0;
+> +}
+> +
+> +static int sun20i_pwm_apply(struct pwm_chip *chip, struct pwm_device *pw=
+m,
+> +			    const struct pwm_state *state)
+> +{
+> +	struct sun20i_pwm_chip *sun20i_chip =3D to_sun20i_pwm_chip(chip);
+> +	u32 clk_gate, clk_cfg, pwm_en, ctl, period;
+> +	u64 bus_rate, hosc_rate, clk_div, val;
+> +	u32 prescaler, div_m;
+> +	bool use_bus_clk;
+> +	int ret =3D 0;
+> +
+> +	mutex_lock(&sun20i_chip->mutex);
+> +
+> +	pwm_en =3D sun20i_pwm_readl(sun20i_chip, PWM_ENABLE);
+> +
+> +	if (state->enabled !=3D pwm->state.enabled)
+> +		clk_gate =3D sun20i_pwm_readl(sun20i_chip, PWM_CLK_GATE);
+> +
+> +	if (state->enabled !=3D pwm->state.enabled && !state->enabled) {
+> +		clk_gate &=3D ~PWM_CLK_GATE_GATING(pwm->hwpwm);
+> +		pwm_en &=3D ~PWM_ENABLE_EN(pwm->hwpwm);
+> +		sun20i_pwm_writel(sun20i_chip, pwm_en, PWM_ENABLE);
+> +		sun20i_pwm_writel(sun20i_chip, clk_gate, PWM_CLK_GATE);
+
+Does ENABLE configure if the output pin is driven?
+
+> +	}
+
+You can these to like:
+
+	if (state->enabled !=3D pwm->state.enabled) {
+		clk_gate =3D ...
+		if (!state->enabled) {
+			...
+		}
+	}
+
+> +
+> +	if (state->polarity !=3D pwm->state.polarity ||
+> +	    state->duty_cycle !=3D pwm->state.duty_cycle ||
+> +	    state->period !=3D pwm->state.period) {
+> +		ctl =3D sun20i_pwm_readl(sun20i_chip, PWM_CTL(pwm->hwpwm));
+> +		clk_cfg =3D sun20i_pwm_readl(sun20i_chip, PWM_CLK_CFG(pwm->hwpwm));
+> +		hosc_rate =3D clk_get_rate(sun20i_chip->clk_hosc);
+> +		bus_rate =3D clk_get_rate(sun20i_chip->clk_apb0);
+> +		if (pwm_en & PWM_ENABLE_EN(pwm->hwpwm ^ 1)) {
+> +			/* if the neighbor channel is enable, check period only */
+> +			use_bus_clk =3D FIELD_GET(PWM_CLK_CFG_SRC, clk_cfg) !=3D 0;
+> +			val =3D state->period * (use_bus_clk ? bus_rate : hosc_rate);
+
+This can overflow.
+
+> +			do_div(val, NSEC_PER_SEC);
+> +
+> +			div_m =3D FIELD_GET(PWM_CLK_CFG_DIV_M, clk_cfg);
+> +		} else {
+> +			/* check period and select clock source */
+> +			use_bus_clk =3D false;
+> +			val =3D state->period * hosc_rate;
+> +			do_div(val, NSEC_PER_SEC);
+> +			if (val <=3D 1) {
+> +				use_bus_clk =3D true;
+> +				val =3D state->period * bus_rate;
+> +				do_div(val, NSEC_PER_SEC);
+> +				if (val <=3D 1) {
+> +					ret =3D -EINVAL;
+> +					goto unlock_mutex;
+> +				}
+> +			}
+> +			div_m =3D fls(DIV_ROUND_DOWN_ULL(val, PWM_MAGIC));
+> +			if (div_m >=3D 9) {
+
+What is 9 here? Something like DIV_M_MAX? There are a few other
+constants that might deserve a name.
+
+> +				ret =3D -EINVAL;
+> +				goto unlock_mutex;
+> +			}
+> +
+> +			/* set up the CLK_DIV_M and clock CLK_SRC */
+> +			clk_cfg =3D FIELD_PREP(PWM_CLK_CFG_DIV_M, div_m);
+> +			clk_cfg |=3D FIELD_PREP(PWM_CLK_CFG_SRC, use_bus_clk);
+> +
+> +			sun20i_pwm_writel(sun20i_chip, clk_cfg, PWM_CLK_CFG(pwm->hwpwm));
+> +		}
+> +
+> +		/* calculate prescaler, PWM entire cycle */
+> +		clk_div =3D val >> div_m;
+> +		if (clk_div <=3D 65534) {
+> +			prescaler =3D 0;
+> +		} else {
+> +			prescaler =3D DIV_ROUND_UP_ULL(clk_div - 65534, 65535);
+
+This looks strange. The result is the same as
+DIV_ROUND_DOWN_ULL(clk_div, 65535) which by the way also does the right
+thing for clk_div <=3D 65534.
+
+> +			if (prescaler >=3D 256) {
+> +				ret =3D -EINVAL;
+> +				goto unlock_mutex;
+
+If this happens the requested period is too big, right? Please use
+
+	prescaler =3D 255;
+
+then and proceed. (The idea is to configure the biggest period that is
+not bigger than the requested period.)
+
+> +			}
+> +			do_div(clk_div, prescaler + 1);
+> +		}
+> +
+> +		period =3D FIELD_PREP(PWM_PERIOD_ENTIRE_CYCLE, clk_div);
+> +
+> +		/* set duty cycle */
+> +		val =3D state->duty_cycle * (use_bus_clk ? bus_rate : hosc_rate);
+> +		do_div(val, NSEC_PER_SEC);
+> +		clk_div =3D val >> div_m;
+> +		do_div(clk_div, prescaler + 1);
+> +
+> +		/*
+> +		 * The formula of the output period and the duty-cycle for PWM are as =
+follows.
+> +		 * T period =3D (PWM01_CLK / PWM0_PRESCALE_K)^-1 * (PPR0.PWM_ENTIRE_CY=
+CLE + 1)
+> +		 * T high-level =3D (PWM01_CLK / PWM0_PRESCALE_K)^-1 * PPR0.PWM_ACT_CY=
+CLE
+> +		 * Duty-cycle =3D T high-level / T period
+> +		 * In accordance with this formula, in order to set the duty-cycle to =
+100%,
+> +		 * it is necessary that PWM_ACT_CYCLE >=3D PWM_ENTIRE_CYCLE + 1
+> +		 */
+> +		if (state->duty_cycle =3D=3D state->period)
+> +			clk_div++;
+
+Can it happen, that clk_div gets too big here?
+
+> +		period |=3D FIELD_PREP(PWM_PERIOD_ACT_CYCLE, clk_div);
+
+It's a bit irritating (to me at least) that the variable "period" holds
+the configuration for the duty_cycle. Maybe call it "reg_period" or
+similar to not confuse it with state->period?
+
+> +		sun20i_pwm_writel(sun20i_chip, period, PWM_PERIOD(pwm->hwpwm));
+> +
+> +		ctl =3D FIELD_PREP(PWM_CTL_PRESCAL_K, prescaler);
+> +		if (state->polarity =3D=3D PWM_POLARITY_NORMAL)
+> +			ctl |=3D PWM_CTL_ACT_STA;
+> +
+> +		sun20i_pwm_writel(sun20i_chip, ctl, PWM_CTL(pwm->hwpwm));
+
+Is there a glitch if you switch polarity? i.e. after period is written a
+few lines above, a new period starts already and if you then invert
+PWM_CTL_ACT_STA, the output immediately switches polarity? If so that's
+something to mention in the Limitations section.
+
+> +	}
+> +[...]
+> +static int sun20i_pwm_probe(struct platform_device *pdev)
+> +{
+> +	struct sun20i_pwm_chip *sun20i_chip;
+> +	int ret;
+> +
+> +	sun20i_chip =3D devm_kzalloc(&pdev->dev, sizeof(*sun20i_chip), GFP_KERN=
+EL);
+> +	if (!sun20i_chip)
+> +		return -ENOMEM;
+> +
+> +	sun20i_chip->base =3D devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(sun20i_chip->base))
+> +		return PTR_ERR(sun20i_chip->base);
+> +
+> +	sun20i_chip->clk_bus =3D devm_clk_get_enabled(&pdev->dev, "bus");
+> +	if (IS_ERR(sun20i_chip->clk_bus))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(sun20i_chip->clk_bus),
+> +				     "failed to get bus clock\n");
+> +
+> +	sun20i_chip->clk_hosc =3D devm_clk_get_enabled(&pdev->dev, "hosc");
+> +	if (IS_ERR(sun20i_chip->clk_hosc))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(sun20i_chip->clk_hosc),
+> +				     "failed to get hosc clock\n");
+> +
+> +	sun20i_chip->clk_apb0 =3D devm_clk_get_enabled(&pdev->dev, "apb0");
+> +	if (IS_ERR(sun20i_chip->clk_apb0))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(sun20i_chip->clk_apb0),
+> +				     "failed to get apb0 clock\n");
+> +
+> +	sun20i_chip->rst =3D devm_reset_control_get_exclusive(&pdev->dev, NULL);
+> +	if (IS_ERR(sun20i_chip->rst))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(sun20i_chip->rst),
+> +				     "failed to get bus reset\n");
+> +
+> +	ret =3D of_property_read_u32(pdev->dev.of_node, "allwinner,pwm-channels=
+",
+> +				   &sun20i_chip->chip.npwm);
+> +	if (ret)
+> +		sun20i_chip->chip.npwm =3D 8;
+
+The register layout allows npwm <=3D 16 only, right? I suggest to add a
+check for that.
+
+> +	/* Deassert reset */
+> +	ret =3D reset_control_deassert(sun20i_chip->rst);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret, "failed to deassert reset\n");
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--ird3aryfheitd4gg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmUMtJUACgkQj4D7WH0S
+/k6azwgApTmUlNIYDGMXRNzNZSsgvR/Zfp6VrntxfPWuAllZmGSe6dr+QBl0W8Fc
+qzzMN4oo4qsDu14JtqV2ku4knKmq+ZEsCPCVt4FTfSdnfEOzYKuohuiFJJ9HPDBz
+0/d89Flu7df2VYlJKiFkWjl8zTFoNkG1/55HnGcOt9PkI8LnGiM8Qtfn70TrbL9L
+s2Ck20qI8u4vLxjWPdK9oe1QGN5Ed+QlLiHk8vJPoaaPeuHZBte9zKiIrg+NMCHz
+M54tvFtMmKmLUEPVTK3l7KqAVEBZ0WltjFcokCJQnEW171IlsmcQmFZuoah7ox56
+aM41r7POmJuHoxj7znYzM73IMfmW3Q==
+=8wCX
+-----END PGP SIGNATURE-----
+
+--ird3aryfheitd4gg--
 
