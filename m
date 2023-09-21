@@ -1,91 +1,139 @@
-Return-Path: <devicetree+bounces-1929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 145E47A90C2
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 04:00:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 141457A90F4
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 04:37:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E0051C20AC4
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 02:00:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B92F22817F4
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 02:37:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE32B15A4;
-	Thu, 21 Sep 2023 02:00:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8165B17C4;
+	Thu, 21 Sep 2023 02:37:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1B1B136A
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 02:00:45 +0000 (UTC)
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16E8ABB;
-	Wed, 20 Sep 2023 19:00:41 -0700 (PDT)
-X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 38L20TwjC2067081, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
-	by rtits2.realtek.com.tw (8.15.2/2.92/5.92) with ESMTPS id 38L20TwjC2067081
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 21 Sep 2023 10:00:30 +0800
-Received: from RTEXDAG01.realtek.com.tw (172.21.6.100) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.32; Thu, 21 Sep 2023 10:00:30 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXDAG01.realtek.com.tw (172.21.6.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Thu, 21 Sep 2023 10:00:29 +0800
-Received: from RTEXMBS04.realtek.com.tw ([fe80::7445:d92b:d0b3:f79c]) by
- RTEXMBS04.realtek.com.tw ([fe80::7445:d92b:d0b3:f79c%5]) with mapi id
- 15.01.2375.007; Thu, 21 Sep 2023 10:00:29 +0800
-From: =?utf-8?B?VFlfQ2hhbmdb5by15a2Q6YC4XQ==?= <tychang@realtek.com>
-To: Linus Walleij <linus.walleij@linaro.org>
-CC: Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v3 0/7] Add pinctrl driver support for Realtek DHC SoCs
-Thread-Topic: [PATCH v3 0/7] Add pinctrl driver support for Realtek DHC SoCs
-Thread-Index: AQHZ6uG6NRO6y7T0o0yihmgUFfWH/bAjCcYAgAAARoCAAXsAQA==
-Date: Thu, 21 Sep 2023 02:00:29 +0000
-Message-ID: <b160be5e1b1a4b589ca9bb383b104a23@realtek.com>
-References: <20230919101117.4097-1-tychang@realtek.com>
- <CACRpkdYtGhhNuBnP0MvMKiqP=wPsv=5K_ZBaWcgW3sssLrm2aQ@mail.gmail.com>
- <CACRpkda_EVEOP=LCjiBcSgPY7-mU9ENiOcw5taskL7TcwkMkCw@mail.gmail.com>
-In-Reply-To: <CACRpkda_EVEOP=LCjiBcSgPY7-mU9ENiOcw5taskL7TcwkMkCw@mail.gmail.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-x-originating-ip: [172.21.181.166]
-x-kse-serverinfo: RTEXDAG01.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DCFF625
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 02:37:51 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3E98DD;
+	Wed, 20 Sep 2023 19:37:49 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38L22tG8006520;
+	Thu, 21 Sep 2023 02:37:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : subject :
+ date : message-id : mime-version : content-type :
+ content-transfer-encoding : to : cc; s=qcppdkim1;
+ bh=IfFz9BrB4bkgqUsTjtG5Gh1B+KFWE47RWaA23PuDYKM=;
+ b=PjG+G+kH5DCJKcGOvaHRrKWxR8xigTkMhfmpTNzOPPWYvGkqJaatisGQshXBaUsHYZ8M
+ ev4JYSjnEYQ0LXrShUv+TBus8vb1Vxsgvm17TCG+nc+iHftl7Pl5Wzva6NwuYBh4giEH
+ bvkyNrVjxk92/TCrrGg3dhcrrhzYpYpSxpb3SdozF+o5LemwB7/ovK1xk2LkN2rzajQO
+ 8/Zmjb/4shzwOxBCQ+qmqaM0pHRMva/MVHMNXJ0nHah4Z0KL4yd0pe3Y8FgOY3rfXc2Y
+ Yypv4mCJDGOYndUnvzdhDt3n3Zr1zlktOKkhtLSTi4gXm0iboSX8z8TRO9ydhdIxVR8B 7Q== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t7r8w2nbn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Sep 2023 02:37:45 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38L2bihs009388
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Sep 2023 02:37:44 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Wed, 20 Sep 2023 19:37:43 -0700
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+Subject: [PATCH v3 0/3] soc: qcom: rmtfs: Support dynamic allocation
+Date: Wed, 20 Sep 2023 19:37:29 -0700
+Message-ID: <20230920-rmtfs-mem-guard-pages-v3-0-305b37219b78@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGmsC2UC/0WNwQrCMBBEf6Xk7JaYjUU9+R8ikibbNtIkNWlFK
+ P13Vy9eBt7Am1lFoeypiHO1ikwvX3yKDLirhB1M7Am8YxZKKpQnJSGHuSsQKEC/mOxgMj0VcOg
+ kOWlbiY1gtzWFoM0m2oHtuIwjl1Omzr9/Z9cbc5dTgHnIZP4XB+TERmOtpdZHhbCH5+LtvX0kn
+ nN0+ZKPtrYpiG37AL+sWUPBAAAA
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1695263863; l=1445;
+ i=quic_bjorande@quicinc.com; s=20230915; h=from:subject:message-id;
+ bh=hVXyDKVlFdGuI9dLXSkJSn9oxA0b2xMTPu+VuroV7Yw=;
+ b=pxG+lKUM41Ore1tkQRCk6f2SMLx6mXPzjWR6DvCQ761b97uOnYyzsS8J0fmsiqyY7ygvpO1dodF/
+ D8pJr/uyCmBoAC6hiiCpbjztql1vJ5SQV/CFK2HfOzVh+f/QWEat
+X-Developer-Key: i=quic_bjorande@quicinc.com; a=ed25519;
+ pk=VkhObtljigy9k0ZUIE1Mvr0Y+E1dgBEH9WoLQnUtbIM=
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: VViAIUONxjDXdtmjCnA9hs18-39ejrB_
+X-Proofpoint-ORIG-GUID: VViAIUONxjDXdtmjCnA9hs18-39ejrB_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-20_14,2023-09-20_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ mlxscore=0 suspectscore=0 bulkscore=0 mlxlogscore=608 adultscore=0
+ clxscore=1015 impostorscore=0 lowpriorityscore=0 priorityscore=1501
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2309210021
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-SGkgTGludXMsDQoNCj4NCj5PbiBXZWQsIFNlcCAyMCwgMjAyMyBhdCAxOjA44oCvUE0gTGludXMg
-V2FsbGVpaiA8bGludXMud2FsbGVpakBsaW5hcm8ub3JnPiB3cm90ZToNCj4NCj4+IEFsbCBwYXRj
-aGVzIGxvb2sgZ29vZCwgYmluZGluZ3MgYXJlIHJldmlld2VkIGJ5IFJvYiwgbXkgY29tbWVudHMN
-Cj4+IGFkZHJlc3NlZDogcGF0Y2hlcyBhcHBsaWVkIGZvciBrZXJuZWwgdjYuNiENCj4NCj5Tb3Jy
-eSwga2VybmVsIHY2LjcgYXQgdGhpcyBwb2ludCBvYnZpb3VzbHkuIEkgY2FuJ3Qga2VlcCBudW1i
-ZXJzIGluIG15IGhlYWQNCj5wcm9wZXJseSA6Lw0KPg0KPllvdXJzLA0KPkxpbnVzIFdhbGxlaWoN
-Cg0KSSBhcHByZWNpYXRlIGl0ISBUaGFuayB5b3UgZm9yIHRoZSByZXZpZXchDQoNClRoYW5rcywN
-ClR6dXlpIENoYW5nDQo=
+Some platforms have laxed requirements on the placement of the rmtfs
+memory region, introduce support for guard pages to allow the DeviceTree
+author to rely on the OS/Linux for placement of the region.
+
+Changes since v2:
+- Rewrote DeviceTree binding description, to avoid dictating the OS
+  behavior.
+- Adjusted addr and size before memremap(), to avoid mapping the guard
+  pages, and unnecessarily have to adjust the base pointer.
+
+Changes since v1:
+- Drop qcom,alloc-size in favour of using reserved-memory/size
+- Introduce explicit property to signal that guard pages should be
+  carved out from this region (rather than always do it in the dynamic
+  case).
+- Drop the dma_alloc_coherent() based approach and just add support for
+  the guard pages.
+- Added handling of failed reserved-memory allocation (patch 3)
+
+---
+Bjorn Andersson (3):
+      dt-bindings: reserved-memory: rmtfs: Allow guard pages
+      soc: qcom: rmtfs: Support discarding guard pages
+      soc: qcom: rtmfs: Handle reserved-memory allocation issues
+
+ .../devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml   | 11 +++++++++++
+ drivers/soc/qcom/rmtfs_mem.c                                  | 11 ++++++++++-
+ 2 files changed, 21 insertions(+), 1 deletion(-)
+---
+base-commit: 926f75c8a5ab70567eb4c2d82fbc96963313e564
+change-id: 20230920-rmtfs-mem-guard-pages-d3d0ed0cb036
+
+Best regards,
+-- 
+Bjorn Andersson <quic_bjorande@quicinc.com>
+
 
