@@ -1,165 +1,157 @@
-Return-Path: <devicetree+bounces-2260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0226E7AA5A7
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 01:30:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2EE57AA66E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 03:22:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 622A7282DEF
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 23:30:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 5A10928178B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 01:22:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4234A2940D;
-	Thu, 21 Sep 2023 23:30:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F01938C;
+	Fri, 22 Sep 2023 01:21:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4B1029408;
-	Thu, 21 Sep 2023 23:30:42 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B7B18F;
-	Thu, 21 Sep 2023 16:30:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=cTXKwjxtldkfqXx+SXk/6A/UnwSLoK4UrexStTF47tk=; b=mA
-	PFKnKwZNfEAUXq9Vl812F9mSnn7XT/oV04Fnon/LzgqN7yAlSl68OROHuZmgfman10e1tUw/f6Vja
-	DparwyGO4juYkofrJrC+UuUpDENXJroLSr7l2FzDTqmPrfhVx9duW7bJj+I3ArMyUEzZSC3ViUseA
-	8C2rW8sML3oYYds=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1qjT7L-0078ta-H8; Fri, 22 Sep 2023 01:29:55 +0200
-Date: Fri, 22 Sep 2023 01:29:55 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc: Rob Herring <robh@kernel.org>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	George McCollister <george.mccollister@gmail.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	Kurt Kanzenbach <kurt@linutronix.de>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	UNGLinuxDriver@microchip.com,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
-	Marcin Wojtas <mw@semihalf.com>,
-	"Russell King (Oracle)" <linux@armlinux.org.uk>,
-	Lars Povlsen <lars.povlsen@microchip.com>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Landen Chao <Landen.Chao@mediatek.com>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@microchip.com>,
-	Marek Vasut <marex@denx.de>,
-	Claudiu Manoil <claudiu.manoil@nxp.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	John Crispin <john@phrozen.org>,
-	Madalin Bucur <madalin.bucur@nxp.com>,
-	Ioana Ciornei <ioana.ciornei@nxp.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Oleksij Rempel <linux@rempel-privat.de>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Grygorii Strashko <grygorii.strashko@ti.com>,
-	Sekhar Nori <nsekhar@ti.com>,
-	Shyam Pandey <radhey.shyam.pandey@xilinx.com>,
-	mithat.guner@xeront.com, erkin.bozoglu@xeront.com,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH net-next v2 07/10] dt-bindings: net: enforce phylink
- bindings on certain ethernet controllers
-Message-ID: <8935d431-be0c-43e0-a908-f7dff2048f7c@lunn.ch>
-References: <20230916110902.234273-1-arinc.unal@arinc9.com>
- <20230916110902.234273-8-arinc.unal@arinc9.com>
- <20230918181319.GA1445647-robh@kernel.org>
- <16710cf9-8911-4fed-8e2d-b19b581446c1@arinc9.com>
- <a8d49992-4fa8-4a9f-b954-79011a3040a8@lunn.ch>
- <85cc3b27-417e-4cf4-9f77-347a338c9d67@arinc9.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E26A0377
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 01:21:57 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28807CE;
+	Thu, 21 Sep 2023 18:21:56 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38L69SBZ015460;
+	Thu, 21 Sep 2023 01:09:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1695276568;
+	bh=VJXrid2kPeeupJMKwSjbH7n+scpImlf2w0s3YRl2uVQ=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=bArd5Jm15c5+wH4z7oAtGjpBjoZO8HI7Mahh3Wc95vdEMtYPC3HF188vNhqMJ9eU6
+	 HzwJm86AVcxL4RluOTON6tSkxYTv0o9ymi1EgEKAmvovGaZMMfK/bHcClm+/lnwTEa
+	 xLuwruQ5FD6jlh825KuEhFMwM0sdSGoQZ23sAH6k=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38L69SWW031296
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 21 Sep 2023 01:09:28 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 21
+ Sep 2023 01:09:28 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 21 Sep 2023 01:09:28 -0500
+Received: from fllv0122.itg.ti.com (fllv0122.itg.ti.com [10.247.120.72])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38L69SSH098462;
+	Thu, 21 Sep 2023 01:09:28 -0500
+Received: from localhost (danish-tpc.dhcp.ti.com [10.24.69.199])
+	by fllv0122.itg.ti.com (8.14.7/8.14.7) with ESMTP id 38L69Rm1006999;
+	Thu, 21 Sep 2023 01:09:27 -0500
+From: MD Danish Anwar <danishanwar@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+CC: <afd@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Tero
+ Kristo <kristo@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <r-gunasekaran@ti.com>, <danishanwar@ti.com>
+Subject: [PATCH v2 1/4] arm64: dts: ti: k3-am65-main: Add ICSSG IEP nodes
+Date: Thu, 21 Sep 2023 11:39:10 +0530
+Message-ID: <20230921060913.721336-2-danishanwar@ti.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230921060913.721336-1-danishanwar@ti.com>
+References: <20230921060913.721336-1-danishanwar@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <85cc3b27-417e-4cf4-9f77-347a338c9d67@arinc9.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Thu, Sep 21, 2023 at 09:21:40PM +0300, Arınç ÜNAL wrote:
-> On 21.09.2023 16:00, Andrew Lunn wrote:
-> > > - Link descriptions must be required on ethernet controllers. We don't care
-> > >    whether some Linux driver can or cannot find the PHY or set up a fixed
-> > >    link without looking at the devicetree.
-> > 
-> > That can lead to future surprises, and breakage.
-> > 
-> > Something which is not used is not tested, and so sometimes wrong, and
-> > nobody knows. Say the driver is extended to a new device and actually
-> > does need to use this never before used information. You then find it
-> > is wrong, and you get a regression.
-> > 
-> > We have had issues like this before. There are four rgmii phy-link
-> > modes. We have had PHY drivers which ignored one of those modes, it
-> > silently accepted it, but did not change the hardware to actually use
-> > that mode. The PHY continues to use its reset defaults or strapping,
-> > and it worked. A lot of device trees ended up using this mode. And it
-> > was not the same as reset defaults/strapping.
-> > 
-> > And then somebody needed that fourth mode, and made it actually
-> > work. And all those boards wrongly using that mode broke.
-> > 
-> > The lesson i learned from that episode is that anything in device tree
-> > must actually be used and tested.
-> 
-> It looks like the root cause here was the lack of dt-bindings to
-> only allow the phy-mode values the hardware supports.
+The ICSSG IP on AM65x SoCs have two Industrial Ethernet Peripherals (IEPs)
+to manage/generate Industrial Ethernet functions such as time stamping.
+Each IEP sub-module is sourced from an internal clock mux that can be
+sourced from either of the IP instance's ICSSG_IEP_GCLK or ICSSG_ICLK.
+Add the IEP nodes for all the ICSSG instances.
 
-That would not help. The hardware supported all 4 RGMII modes. So
-listing all four in the dt-binding would be correct. But the driver
-for the hardware had a bug, and so silently ignored one of the
-modes. That then masked the bugs in board DT files.
+Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 36 ++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
 
-> What I see here is the driver change should've been tested on all
-> different hardware the driver controls then the improper describing
-> of hardware on the devicetree source file addressed.
-
-Which is what did happen. But it took a while to find all those broken
-boards.  For a period of time, we had regressions.
-
-Bugs happen. It is a fact of life. But we want those bugs to be easy
-to find as possible. If we force DT writers to add properties which
-the driver never uses, they are going to be bugs in those
-properties. And those bugs are not going to be easy to find, and quite
-likely, they will only be found a long time after they are added. We
-should not be adding unused properties and bugs just to keep a yaml
-checker happy.
-
-	Andrew
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+index bc460033a37a..fdb042d04ad9 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+@@ -1151,6 +1151,18 @@ icssg0_iepclk_mux: iepclk-mux@30 {
+ 			};
+ 		};
+ 
++		icssg0_iep0: iep@2e000 {
++			compatible = "ti,am654-icss-iep";
++			reg = <0x2e000 0x1000>;
++			clocks = <&icssg0_iepclk_mux>;
++		};
++
++		icssg0_iep1: iep@2f000 {
++			compatible = "ti,am654-icss-iep";
++			reg = <0x2f000 0x1000>;
++			clocks = <&icssg0_iepclk_mux>;
++		};
++
+ 		icssg0_mii_rt: mii-rt@32000 {
+ 			compatible = "ti,pruss-mii", "syscon";
+ 			reg = <0x32000 0x100>;
+@@ -1293,6 +1305,18 @@ icssg1_iepclk_mux: iepclk-mux@30 {
+ 			};
+ 		};
+ 
++		icssg1_iep0: iep@2e000 {
++			compatible = "ti,am654-icss-iep";
++			reg = <0x2e000 0x1000>;
++			clocks = <&icssg1_iepclk_mux>;
++		};
++
++		icssg1_iep1: iep@2f000 {
++			compatible = "ti,am654-icss-iep";
++			reg = <0x2f000 0x1000>;
++			clocks = <&icssg1_iepclk_mux>;
++		};
++
+ 		icssg1_mii_rt: mii-rt@32000 {
+ 			compatible = "ti,pruss-mii", "syscon";
+ 			reg = <0x32000 0x100>;
+@@ -1435,6 +1459,18 @@ icssg2_iepclk_mux: iepclk-mux@30 {
+ 			};
+ 		};
+ 
++		icssg2_iep0: iep@2e000 {
++			compatible = "ti,am654-icss-iep";
++			reg = <0x2e000 0x1000>;
++			clocks = <&icssg2_iepclk_mux>;
++		};
++
++		icssg2_iep1: iep@2f000 {
++			compatible = "ti,am654-icss-iep";
++			reg = <0x2f000 0x1000>;
++			clocks = <&icssg2_iepclk_mux>;
++		};
++
+ 		icssg2_mii_rt: mii-rt@32000 {
+ 			compatible = "ti,pruss-mii", "syscon";
+ 			reg = <0x32000 0x100>;
+-- 
+2.34.1
 
 
