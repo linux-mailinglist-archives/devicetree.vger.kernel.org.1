@@ -1,118 +1,179 @@
-Return-Path: <devicetree+bounces-2171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 556D87A9C56
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 21:15:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 084777A9CD7
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 21:24:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4170EB22D5B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:11:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A136C285678
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:22:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5EEE168C2;
-	Thu, 21 Sep 2023 18:20:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1D7668C3C;
+	Thu, 21 Sep 2023 18:35:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B57024E26F
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 18:20:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A5E5C433C7;
-	Thu, 21 Sep 2023 18:20:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695320410;
-	bh=F7FOmZJGIZea3PDFeMXSNL3wD06ectqhotbY/CYvQks=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gcrZlu1OoqwfasuSssDAxLOCRvqJmyVmQChzusvlYR8QPU7Zzl9UKSTMk3D9DZ7it
-	 MwoxrJ+pSxuduTRLsqGaciU8U/7IwTkj/okC+SktMnxUm6pBDNdXoBpRN9UbS2LYwx
-	 GUaJF0XjITZrbG8fDh0+gxRYAqerHh9UYlA6BIVoL0iteOZXgotzm9WR2oWUNanZqT
-	 JW2mryDuv01/LdooWc4APsPKALCXkNxADgfc7Hx/I2LnNXy18SJymxQCnsUeelAyx9
-	 32s3745804OphWhgnApJhk3blLfh4/BwkShCyTU1poJzkvUDWpnFBmYWMMhzvBiyDs
-	 FcoEr4BDF895A==
-Received: (nullmailer pid 762555 invoked by uid 1000);
-	Thu, 21 Sep 2023 18:20:07 -0000
-Date: Thu, 21 Sep 2023 13:20:07 -0500
-From: Rob Herring <robh@kernel.org>
-To: Alvin =?utf-8?Q?=C5=A0ipraga?= <alvin@pqrs.dk>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, =?utf-8?B?77+9aXByYWdh?= <alsi@bang-olufsen.dk>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Rabeeh Khoury <rabeeh@solid-run.com>, Jacob Siverskog <jacob@teenage.engineering>, Sergej Sawazki <sergej@taudac.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: clock: si5351: add PLL reset mode
- property
-Message-ID: <20230921182007.GA761604-robh@kernel.org>
-References: <20230920140343.2329225-1-alvin@pqrs.dk>
- <20230920140343.2329225-3-alvin@pqrs.dk>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6445668C23;
+	Thu, 21 Sep 2023 18:35:05 +0000 (UTC)
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7030BD2052;
+	Thu, 21 Sep 2023 11:22:06 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 8DB5DE0003;
+	Thu, 21 Sep 2023 18:21:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+	t=1695320525;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=j9iU/unn2B5Lg59HKhzCVV0eWDfanHflmRLaK3sdqHo=;
+	b=hIAvQ8dgDH08u0BdHXTRIonGAo3yKFcZMxt3uw1qDZt+5ypJM3sJ8rIIGEcwJHGsRoCaR2
+	nifRNtpjmn7gbCEdBRqJLjOFn75cZwYAcde/5iEG/trGreT3o1bM9iKxU+HgDHKAPKa+G6
+	Jih/l/+El0+VJyWic6ezaTZoSmTUD4vc8twqBfLOUADhLTcNE24hbSjRqw84uEROq3R32d
+	LRudTD7HMQ1tbNO1XwIXQtasht2CBb5tWbQ7fPTz5pMthOnuUlVdU1aMrNn9xUw2PbB83C
+	jw74tIo2/G4YcjHYlpb20jMeWYMc/0OX6IdrPVnzwLA259K7WqTosgU1i6+GRQ==
+Message-ID: <85cc3b27-417e-4cf4-9f77-347a338c9d67@arinc9.com>
+Date: Thu, 21 Sep 2023 21:21:40 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v2 07/10] dt-bindings: net: enforce phylink
+ bindings on certain ethernet controllers
+Content-Language: en-US
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Rob Herring <robh@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ George McCollister <george.mccollister@gmail.com>,
+ Florian Fainelli <f.fainelli@gmail.com>, Vladimir Oltean
+ <olteanv@gmail.com>, Kurt Kanzenbach <kurt@linutronix.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com,
+ Linus Walleij <linus.walleij@linaro.org>,
+ =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+ =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+ Marcin Wojtas <mw@semihalf.com>,
+ "Russell King (Oracle)" <linux@armlinux.org.uk>,
+ Lars Povlsen <lars.povlsen@microchip.com>,
+ Steen Hegelund <Steen.Hegelund@microchip.com>,
+ Daniel Machon <daniel.machon@microchip.com>,
+ Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+ Daniel Golle <daniel@makrotopia.org>, Landen Chao
+ <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
+ Sean Wang <sean.wang@mediatek.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@microchip.com>, Marek Vasut <marex@denx.de>,
+ Claudiu Manoil <claudiu.manoil@nxp.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ John Crispin <john@phrozen.org>, Madalin Bucur <madalin.bucur@nxp.com>,
+ Ioana Ciornei <ioana.ciornei@nxp.com>, Lorenzo Bianconi
+ <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>,
+ Oleksij Rempel <linux@rempel-privat.de>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Grygorii Strashko <grygorii.strashko@ti.com>, Sekhar Nori <nsekhar@ti.com>,
+ Shyam Pandey <radhey.shyam.pandey@xilinx.com>, mithat.guner@xeront.com,
+ erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-renesas-soc@vger.kernel.org
+References: <20230916110902.234273-1-arinc.unal@arinc9.com>
+ <20230916110902.234273-8-arinc.unal@arinc9.com>
+ <20230918181319.GA1445647-robh@kernel.org>
+ <16710cf9-8911-4fed-8e2d-b19b581446c1@arinc9.com>
+ <a8d49992-4fa8-4a9f-b954-79011a3040a8@lunn.ch>
+From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <a8d49992-4fa8-4a9f-b954-79011a3040a8@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230920140343.2329225-3-alvin@pqrs.dk>
+X-GND-Sasl: arinc.unal@arinc9.com
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Wed, Sep 20, 2023 at 03:09:54PM +0200, Alvin Šipraga wrote:
-> From: Alvin Šipraga <alsi@bang-olufsen.dk>
+On 21.09.2023 16:00, Andrew Lunn wrote:
+>> - Link descriptions must be required on ethernet controllers. We don't care
+>>    whether some Linux driver can or cannot find the PHY or set up a fixed
+>>    link without looking at the devicetree.
 > 
-> For applications where the PLL must be adjusted without glitches in the
-> clock output(s), a new silabs,pll-reset-mode property is added. It
-> can be used to specify whether or not the PLL should be reset after
-> adjustment. Resetting is known to cause glitches.
+> That can lead to future surprises, and breakage.
 > 
-> For compatibility with older device trees, it must be assumed that the
-> default PLL reset mode is to unconditionally reset after adjustment.
+> Something which is not used is not tested, and so sometimes wrong, and
+> nobody knows. Say the driver is extended to a new device and actually
+> does need to use this never before used information. You then find it
+> is wrong, and you get a regression.
 > 
-> Cc: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-> Cc: Rabeeh Khoury <rabeeh@solid-run.com>
-> Cc: Jacob Siverskog <jacob@teenage.engineering>
-> Cc: Sergej Sawazki <sergej@taudac.com>
-> Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
-> ---
->  .../bindings/clock/silabs,si5351.yaml         | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
+> We have had issues like this before. There are four rgmii phy-link
+> modes. We have had PHY drivers which ignored one of those modes, it
+> silently accepted it, but did not change the hardware to actually use
+> that mode. The PHY continues to use its reset defaults or strapping,
+> and it worked. A lot of device trees ended up using this mode. And it
+> was not the same as reset defaults/strapping.
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/silabs,si5351.yaml b/Documentation/devicetree/bindings/clock/silabs,si5351.yaml
-> index 3ca8d998c48c..b6692b323a66 100644
-> --- a/Documentation/devicetree/bindings/clock/silabs,si5351.yaml
-> +++ b/Documentation/devicetree/bindings/clock/silabs,si5351.yaml
-> @@ -50,6 +50,22 @@ properties:
->        Pair of <number source> for each PLL. Allows to overwrite clock source of
->        PLL A (number=0) or PLL B (number=1).
->  
-> +  silabs,pll-reset-mode:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +    minItems: 1
-> +    maxItems: 2
-> +    description: |
-> +      Pair of <number mode> for each PLL. Configures the reset mode for PLL A
-> +      (number=0) and/or PLL B (number=1). Mode can be one of:
-> +
-> +      0 - reset whenever PLL rate is adjusted (default mode)
-> +      1 - do not reset when PLL rate is adjusted
-> +
-> +      In mode 1, the PLL is only reset if the silabs,pll-reset is specified in
-> +      one of the clock output child nodes that also sources the PLL. This mode
-> +      may be preferable if output clocks are expected to be adjusted without
-> +      glitches.
+> And then somebody needed that fourth mode, and made it actually
+> work. And all those boards wrongly using that mode broke.
+> 
+> The lesson i learned from that episode is that anything in device tree
+> must actually be used and tested.
 
-Same comments as the other matrix property.
+It looks like the root cause here was the lack of dt-bindings to only allow
+the phy-mode values the hardware supports. What I see here is the driver
+change should've been tested on all different hardware the driver controls
+then the improper describing of hardware on the devicetree source file
+addressed.
 
-> +
->  patternProperties:
->    "^clkout@?[0-8]$":
->      type: object
-> @@ -205,6 +221,9 @@ examples:
->          /* Use XTAL input as source of PLL0 and PLL1 */
->          silabs,pll-source = <0 0>, <1 0>;
->  
-> +        /* Don't reset PLL1 on rate adjustment */
-> +        silabs,pll-reset-mode = <1 1>;
-> +
->          /*
->           * Overwrite CLK0 configuration with:
->           * - 8 mA output drive strength
-> -- 
-> 2.41.0
+If a devicetree change that ensures proper describing of hardware is found
+to break a driver in the future, then that exposes a bug on the driver and
+the driver will have to be fixed. I don't see this upholding writing
+dt-bindings that ensures proper describing of the hardware.
+
 > 
+>> Although I see dsa.yaml and dsa-port.yaml mostly consist of describing an
+>> ethernet switch with CPU port(s), there're properties that are specific to
+>> DSA, such as dsa,member on dsa.yaml and dsa-tag-protocol and label on
+>> dsa-port.yaml.
+> 
+> I would say dsa,member does describe the hardware. It provides two
+> bits of information:
+> 
+> Which cluster of switches does this switch belong to. You probably can
+> derive it using the DSA links between switches, which is also a
+> hardware property. But having it in device tree makes it simpler.
+> 
+> Which switch is this within a cluster. You need to be able to say:
+> Send this frame out Port X of switch Y. How does a switch know it is
+> Y? It could be strapping, which is clearly a hardware property.
+> 
+> dsa-tag-protocol is similar to phy-mode. It tells you the protocol
+> running between the CPU port and the SoC master interface. You often
+> can imply it, but again, it could be determined by strapping on the
+> switch.
+> 
+> label is an interesting one, and probably would not be accepted if it
+> was proposed now. But it has been around a long time. It also does
+> describe the hardware, it is what is printed on the case next to the
+> RJ45. To make the user experience simpler, we then try to make the
+> linux interface name match the label on the case.
+
+Looks like we can incorporate dsa.port and dsa-port.yaml into
+ethernet-switch.yaml and ethernet-switch-port.yaml with adjustments.
+
+Arınç
 
