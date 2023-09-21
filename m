@@ -1,115 +1,167 @@
-Return-Path: <devicetree+bounces-1934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A29D7A927A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 10:03:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B695A7A9283
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 10:11:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02A482816FA
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 08:03:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF5761C204FA
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 08:11:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF4FC8C1A;
-	Thu, 21 Sep 2023 08:03:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 872DC8F50;
+	Thu, 21 Sep 2023 08:11:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96C0E5CBD
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 08:03:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F9BDC116AA;
-	Thu, 21 Sep 2023 08:03:43 +0000 (UTC)
-Message-ID: <fb74f6b8-3139-4652-b36a-1de396d0ca23@xs4all.nl>
-Date: Thu, 21 Sep 2023 10:03:42 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 739A08F49;
+	Thu, 21 Sep 2023 08:11:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA915C116B1;
+	Thu, 21 Sep 2023 08:11:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695283900;
+	bh=Gewh+X/afwnYE29YDMBBSxcYouKp+J6pI9o/VDPi61s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OOA97oSA87QUXG8tkGzL4e+OSoo31vbKdlGVmS82Rki1F6e6aK/ISRu3oFg3WttHU
+	 hzASotkvmkEWgGL97btIXv1zY0ngfxmtdLZBbCPkYelDLUT7JFSaLbzD4C9di3BSRa
+	 15TTx1vPfe5HUOO2e6VENo6GqHKp4RgPcCW6zSDK69bYfQrPm02bNtZZapQMWRCw7b
+	 c5yYrG9EmjRXx3OWJ5D/VwlH3ZO4UVCOC7E/R9M6WC78qrfh1h9I4vP47H1w9YT55m
+	 9fy/q6WY3fczWq9OLQN+8Dqyxfk6PWf12G6xLK69kEifZm3iUQR1hZ7HflCin9DRbO
+	 NLGEIL3TcplMw==
+Date: Thu, 21 Sep 2023 10:11:32 +0200
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+Cc: agross@kernel.org, andersson@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	konrad.dybcio@linaro.org, mani@kernel.org,
+	quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
+	quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
+	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
+	quic_parass@quicinc.com, Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>, linux-pci@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, mhi@lists.linux.dev,
+	linux-phy@lists.infradead.org
+Subject: Re: [PATCH v1 1/5] dt-bindings: PCI: qcom-ep: Add support for
+ SA8775P SoC
+Message-ID: <20230921081132.GA2891@thinkpad>
+References: <1695218113-31198-1-git-send-email-quic_msarkar@quicinc.com>
+ <1695218113-31198-2-git-send-email-quic_msarkar@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v15 7/7] media: nuvoton: Add driver for NPCM video capture
- and encoding engine
-Content-Language: en-US, nl
-To: Marvin Lin <milkfafa@gmail.com>, mchehab@kernel.org,
- avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
- venture@google.com, yuenn@google.com, benjaminfair@google.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- andrzej.p@collabora.com
-Cc: devicetree@vger.kernel.org, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org, kwliu@nuvoton.com,
- kflin@nuvoton.com
-References: <20230920022812.601800-1-milkfafa@gmail.com>
- <20230920022812.601800-8-milkfafa@gmail.com>
-From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <20230920022812.601800-8-milkfafa@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1695218113-31198-2-git-send-email-quic_msarkar@quicinc.com>
 
-Hi Marvin,
-
-Just one small comment:
-
-On 20/09/2023 04:28, Marvin Lin wrote:
-> Add driver for Video Capture/Differentiation Engine (VCD) and Encoding
-> Compression Engine (ECE) present on Nuvoton NPCM SoCs. As described in
-> the datasheet NPCM750D_DS_Rev_1.0, the VCD can capture frames from
-> digital video input and compare two frames in memory, and then the ECE
-> can compress the frame data into HEXTILE format. This driver implements
-> V4L2 interfaces and provides user controls to support KVM feature, also
-> tested with VNC Viewer ver.6.22.826 and openbmc/obmc-ikvm.
+On Wed, Sep 20, 2023 at 07:25:08PM +0530, Mrinmay Sarkar wrote:
+> Add devicetree bindings support for SA8775P SoC.
+> Define reg and interrupt per platform.
 > 
-> Signed-off-by: Marvin Lin <milkfafa@gmail.com>
+> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
 > ---
->  MAINTAINERS                                 |   12 +
->  drivers/media/platform/Kconfig              |    1 +
->  drivers/media/platform/Makefile             |    1 +
->  drivers/media/platform/nuvoton/Kconfig      |   15 +
->  drivers/media/platform/nuvoton/Makefile     |    2 +
->  drivers/media/platform/nuvoton/npcm-regs.h  |  152 ++
->  drivers/media/platform/nuvoton/npcm-video.c | 1830 +++++++++++++++++++
->  7 files changed, 2013 insertions(+)
->  create mode 100644 drivers/media/platform/nuvoton/Kconfig
->  create mode 100644 drivers/media/platform/nuvoton/Makefile
->  create mode 100644 drivers/media/platform/nuvoton/npcm-regs.h
->  create mode 100644 drivers/media/platform/nuvoton/npcm-video.c
+>  .../devicetree/bindings/pci/qcom,pcie-ep.yaml      | 130 +++++++++++++++++----
+>  1 file changed, 108 insertions(+), 22 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> index a223ce0..e860e8f 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> @@ -13,6 +13,7 @@ properties:
+>    compatible:
+>      oneOf:
+>        - enum:
+> +          - qcom,sa8775p-pcie-ep
+>            - qcom,sdx55-pcie-ep
+>            - qcom,sm8450-pcie-ep
+>        - items:
+> @@ -20,29 +21,19 @@ properties:
+>            - const: qcom,sdx55-pcie-ep
+>  
+>    reg:
+> -    items:
+> -      - description: Qualcomm-specific PARF configuration registers
+> -      - description: DesignWare PCIe registers
+> -      - description: External local bus interface registers
+> -      - description: Address Translation Unit (ATU) registers
+> -      - description: Memory region used to map remote RC address space
+> -      - description: BAR memory region
+> +    minItems: 6
+> +    maxItems: 7
+>  
+>    reg-names:
+> -    items:
+> -      - const: parf
+> -      - const: dbi
+> -      - const: elbi
+> -      - const: atu
+> -      - const: addr_space
+> -      - const: mmio
+> +    minItems: 6
+> +    maxItems: 7
+>  
+>    clocks:
+> -    minItems: 7
+> +    minItems: 5
+>      maxItems: 8
+>  
+>    clock-names:
+> -    minItems: 7
+> +    minItems: 5
+>      maxItems: 8
+>  
+>    qcom,perst-regs:
+> @@ -57,14 +48,12 @@ properties:
+>            - description: Perst separation enable offset
+>  
+>    interrupts:
+> -    items:
+> -      - description: PCIe Global interrupt
+> -      - description: PCIe Doorbell interrupt
+> +    minItems: 2
+> +    maxItems: 3
+>  
+>    interrupt-names:
+> -    items:
+> -      - const: global
+> -      - const: doorbell
+> +    minItems: 2
+> +    maxItems: 3
+>  
+>    reset-gpios:
+>      description: GPIO used as PERST# input signal
+> @@ -122,6 +111,51 @@ allOf:
+>          compatible:
+>            contains:
+>              enum:
+> +              - qcom,sa8775p-pcie-ep
+> +    then:
+> +      properties:
+> +        reg:
+> +          items:
+> +            - description: Qualcomm-specific PARF configuration registers
+> +            - description: DesignWare PCIe registers
+> +            - description: External local bus interface registers
+> +            - description: Address Translation Unit (ATU) registers
+> +            - description: Memory region used to map remote RC address space
+> +            - description: BAR memory region
+> +            - description: DMA memory region
 
-<snip>
+It should be described as "DMA register space" or something, because this could
+be misinterpreted as memory region for doing DMA.
 
-> diff --git a/drivers/media/platform/nuvoton/npcm-video.c b/drivers/media/platform/nuvoton/npcm-video.c
-> new file mode 100644
-> index 000000000000..aabb6077a128
-> --- /dev/null
-> +++ b/drivers/media/platform/nuvoton/npcm-video.c
-> @@ -0,0 +1,1830 @@
+- Mani
 
-<snip>
-
-> +
-> +/*
-> + * This control value is set when a buffer is dequeued by userspace, i.e. in
-> + * npcm_video_buf_finish function.
-> + */
-> +static const struct v4l2_ctrl_config npcm_ctrl_rect_count = {
-> +	.id = V4L2_CID_NPCM_RECT_COUNT,
-> +	.name = "NPCM Compressed Hextile Rectangle Count",
-
-This name is too long, it should be max 31 characters. Dropping the "Compressed " part
-might be best, I think that word isn't needed.
-
-> +	.type = V4L2_CTRL_TYPE_INTEGER,
-> +	.min = 0,
-> +	.max = (MAX_WIDTH / RECT_W) * (MAX_HEIGHT / RECT_H),
-> +	.step = 1,
-> +	.def = 0,
-> +};
-
-With this fixed, and the sparse warnings fixed, it should be ready for merging.
-
-Regards,
-
-	Hans
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
