@@ -1,139 +1,119 @@
-Return-Path: <devicetree+bounces-2279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99F997AA6BF
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 03:51:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DE707AA6ED
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 04:13:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 0A5C62828C3
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 01:51:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id B635B28110E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 02:13:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 300B4659;
-	Fri, 22 Sep 2023 01:51:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21AC9377;
+	Fri, 22 Sep 2023 02:13:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 779EB17E2
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 01:51:16 +0000 (UTC)
-Received: from mail-vs1-xe2c.google.com (mail-vs1-xe2c.google.com [IPv6:2607:f8b0:4864:20::e2c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A30BF1
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 18:51:15 -0700 (PDT)
-Received: by mail-vs1-xe2c.google.com with SMTP id ada2fe7eead31-452962769bdso833335137.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 18:51:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695347474; x=1695952274; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cDyDoj9zqW3tb6f+dTciYYHXjkgtjjsfpMWk3ptqz4Y=;
-        b=B86e/X7aEhmN3y8sZ6vGfdHFqR0IyXE0fJdlDTD7NXyLuIZLeFGOxaKRchA1l17tvy
-         kE+1pvwAmmNuj05Zn/1VkWlK4nEu4k1ZUadus8KafP2s/ZM8RqGDerw0euCS/OTN09xX
-         gQXwUmlvfj7yfNnx2j5E9G3I63nD9UtaSHPkoViLZj3soT0Pld25HQXJkGtagynfogWd
-         gwpieKSDQ11zBdcBkxKDGBxM2Zn0HTvVIhiOlt0b1+keF5/UYDekqYfONFQhBJoMlKm2
-         MvKfotOnd0w/hmsWK+qAL6DlvU/27ecINjDth28+4Czc+Ni9ny4FA6vbTuI7PHglSJ0d
-         Skzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695347474; x=1695952274;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cDyDoj9zqW3tb6f+dTciYYHXjkgtjjsfpMWk3ptqz4Y=;
-        b=vJYzB/2QayK/TIqYPxAWEZWpuZjp1m+vUmuzArC5YHtcY71pTkOZDGJom0Jz+5kZhm
-         gVo4Y1WL73gDHAVuKJq81wifl88FV6dksJOn8DJR+2HTQ424WLpkl8JLUGWxBs9YwvYe
-         dX+UxLPTuGxz7MGr6hg/G8Q1n0pFolJdU/Cw9kmmMhnq0YGSH/wzMeoMau5xiiQ5WaPM
-         aPGJ3TWUb2s+pwY4Jcml7JAc7DCpmtinYS9E9A+zIH6goOFcSzEqt9eQcI0Uvd/ntUj1
-         QwdGuT5PvktttLlRWrgDh4S3/bemk930FoKXRv6tgA2kMbvBiUZDBw4+DjK1ZbbsK4Zf
-         3X5w==
-X-Gm-Message-State: AOJu0YxqOFYjIYOKhw3CYT8ZxBW4F4Xo6k5ynwZ9b+SJhhogYJFZOJC0
-	2Iy5eEAcwXpjqNtqoWMv44bwoA==
-X-Google-Smtp-Source: AGHT+IFXdS2JE5SAgxFGpk2JBdV0QiDMGOB+zNKqvG/7UuF33hvfFUA7v/UeS7e5AxcMQ4nkJcmsTQ==
-X-Received: by 2002:a67:b911:0:b0:452:5798:64b6 with SMTP id q17-20020a67b911000000b00452579864b6mr7136727vsn.29.1695347474300;
-        Thu, 21 Sep 2023 18:51:14 -0700 (PDT)
-Received: from [127.0.1.1] ([2601:1c2:1800:f680:fa26:6227:be1c:67f0])
-        by smtp.gmail.com with ESMTPSA id y10-20020a63b50a000000b0057412d84d25sm1973856pge.4.2023.09.21.18.51.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Sep 2023 18:51:14 -0700 (PDT)
-From: Drew Fustini <dfustini@baylibre.com>
-Date: Thu, 21 Sep 2023 18:49:53 -0700
-Subject: [PATCH 6/6] riscv: dts: thead: Enable LicheePi 4A eMMC controller
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62674394
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 02:13:15 +0000 (UTC)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00C32F1;
+	Thu, 21 Sep 2023 19:13:13 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38L69LUI047838;
+	Thu, 21 Sep 2023 01:09:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1695276561;
+	bh=pmYG5cm/y+qGZy4nPuldDmKlHD5ushSIKHFay+IFo1M=;
+	h=From:To:CC:Subject:Date;
+	b=t16nBLrbO2ce2PDfnztTnt924aJhLvsOADZE2+NkbUc7wQV4CCj6ejMqrODxqo+Eo
+	 0L38h3a5KGLyBdo06eMfkstaf8HmvrHXfhRgM+5Z1Cuq7Ac8lHV6aGUDSx/uB9Wnl0
+	 LlV+pSUAeli+4biU7Xk3mz3MwoKNzepPtCohyON8=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38L69LPP071809
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 21 Sep 2023 01:09:21 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 21
+ Sep 2023 01:09:21 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 21 Sep 2023 01:09:21 -0500
+Received: from fllv0122.itg.ti.com (fllv0122.itg.ti.com [10.247.120.72])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38L69LMe074230;
+	Thu, 21 Sep 2023 01:09:21 -0500
+Received: from localhost (danish-tpc.dhcp.ti.com [10.24.69.199])
+	by fllv0122.itg.ti.com (8.14.7/8.14.7) with ESMTP id 38L69KWU006985;
+	Thu, 21 Sep 2023 01:09:21 -0500
+From: MD Danish Anwar <danishanwar@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+CC: <afd@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Tero
+ Kristo <kristo@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <r-gunasekaran@ti.com>, <danishanwar@ti.com>
+Subject: [PATCH v2 0/4] Add AM65x ICSSG Ethernet support
+Date: Thu, 21 Sep 2023 11:39:09 +0530
+Message-ID: <20230921060913.721336-1-danishanwar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230921-th1520-mmc-v1-6-49f76c274fb3@baylibre.com>
-References: <20230921-th1520-mmc-v1-0-49f76c274fb3@baylibre.com>
-In-Reply-To: <20230921-th1520-mmc-v1-0-49f76c274fb3@baylibre.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, 
- Adrian Hunter <adrian.hunter@intel.com>, Guo Ren <guoren@kernel.org>, 
- Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Conor Dooley <conor@kernel.org>
-Cc: Robert Nelson <robertcnelson@beagleboard.org>, 
- Jason Kridner <jkridner@beagleboard.org>, Xi Ruoyao <xry111@xry111.site>, 
- Han Gao <gaohan@iscas.ac.cn>, Icenowy Zheng <uwu@icenowy.me>, 
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
- Drew Fustini <dfustini@baylibre.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1695347467; l=995;
- i=dfustini@baylibre.com; s=20230430; h=from:subject:message-id;
- bh=NVR/jz5zFITHdlX9LFGuP143Lx0/07lnI+f1VmxUhWc=;
- b=raxv8sdLi3NXEnuRTMoKuMBfYJblfB31JVKLCA7ZyLEQDTMFK0QMg4FBDAS1/RE2PwM8GeM9g
- 37Bq/mEBjXzC14O3M2KIDYrOlsISgPYO/PybYfDJ47mNjxkGGIw5rgl
-X-Developer-Key: i=dfustini@baylibre.com; a=ed25519;
- pk=p3GKE9XFmjhwAayAHG4U108yag7V8xQVd4zJLdW0g7g=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add properties to the emmc node and enable it and set the frequency for
-the sdhci clock.
+Hi All,
 
-Signed-off-by: Drew Fustini <dfustini@baylibre.com>
----
- arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+This series adds support for ICSSG ethernet on AM65x SR2.0. 
+This series also enables TI_ICSSG_PRUETH as loadable kernel module.
+This series is based on the latest next-20230921 linux-next.
 
-diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-index a802ab110429..3de8ae0a4384 100644
---- a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-@@ -29,6 +29,10 @@ &apb_clk {
- 	clock-frequency = <62500000>;
- };
- 
-+&sdhci_clk {
-+	clock-frequency = <198000000>;
-+};
-+
- &uart_sclk {
- 	clock-frequency = <100000000>;
- };
-@@ -36,3 +40,14 @@ &uart_sclk {
- &dmac0 {
- 	status = "okay";
- };
-+
-+&mmc0 {
-+	bus-width = <8>;
-+	max-frequency = <198000000>;
-+	mmc-hs400-1_8v;
-+	non-removable;
-+	no-sdio;
-+	no-sd;
-+	thead,phy-pull-up;
-+	status = "okay";
-+};
+This is the v2 of the series [v1]. This addresses comments made on v1.
 
+Changes from v1 to v2:
+*) Moved ICSSG2 nodes from k3-am654-base-board.dts to new overlay file
+   k3-am654-icssg2.dtso as asked by Andrew.
+*) Renamed k3-am654-base-board.dts to k3-am654-common-board.dts
+*) Added "Enable TI_ICSSG_PRUETH" patch to this series.
+
+[v1] https://lore.kernel.org/all/20230911071245.2173520-1-danishanwar@ti.com/
+
+Thanks and Regards,
+MD Danish Anwar
+
+MD Danish Anwar (4):
+  arm64: dts: ti: k3-am65-main: Add ICSSG IEP nodes
+  arm64: dts: ti: k3-am654-base-board: add ICSSG2 Ethernet support
+  arm64: dts: ti: k3-am654-idk: Add ICSSG Ethernet ports
+  arm64: defconfig: Enable TI_ICSSG_PRUETH
+
+ arch/arm64/boot/dts/ti/Makefile               |   6 +-
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  36 +++
+ ...se-board.dts => k3-am654-common-board.dts} |   0
+ arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso   | 145 +++++++++
+ arch/arm64/boot/dts/ti/k3-am654-idk.dtso      | 296 ++++++++++++++++++
+ arch/arm64/configs/defconfig                  |   1 +
+ 6 files changed, 483 insertions(+), 1 deletion(-)
+ rename arch/arm64/boot/dts/ti/{k3-am654-base-board.dts => k3-am654-common-board.dts} (100%)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am654-idk.dtso
+
+base-commit: 940fcc189c51032dd0282cbee4497542c982ac59
 -- 
 2.34.1
 
