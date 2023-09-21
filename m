@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-2123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A3FA7A9AFB
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 20:52:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79B407A99D7
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 20:28:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36543281BF2
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 18:52:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 300F3282ACB
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 18:28:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26DE941769;
-	Thu, 21 Sep 2023 17:49:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 884452030F;
+	Thu, 21 Sep 2023 17:26:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0328718C13
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:49:21 +0000 (UTC)
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6E358AE00
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:41:01 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-501eec0a373so2222309e87.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:41:01 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10D8320307
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:26:22 +0000 (UTC)
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78B714F937
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:25:38 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-3226b8de467so527861f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:25:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695318060; x=1695922860; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695317136; x=1695921936; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=NWszhBlTWMiwkXqgF1w4h8oNmYkV0xe9wPBMJvnXBgI=;
-        b=ukYMYz0SKzKMciQoT0N9vRWi7o/jBREDfUDln6qCPs4aT1nlsgmtNgkRvgvW/EYUZg
-         SASt0HTENlHOJiOINrcAeHpExxqjy7d1eCz51pM8UFIPrtWyXcK5s48aeNKPtT+UYpJ/
-         d59IylY2DdwbtO6Xz4z1c0puzyv+LBzJMGwPfulvF1Va5YXmni3jpROnpE6DJCp1j1YA
-         IU922/slm65La+QEP6BptiVnkzavkUk+VJx0rl4xbOQzC6b+/QnOxqa6cYnJrcWbQqhh
-         r+9nFvPRq+29DvA8E5tMsWcbABRJpsy0tWLS+ig44VUwlyyAqm+V2vUBIq8ZuS+oRczd
-         XDvA==
+        bh=x9YCZ78k5Zg5KKitr5PpHsZw/Rz0qYyLXQR2L135bIs=;
+        b=MIKU/6tDudLhC6f2MXaZEb4iIzDK4L+CflQuDZyrjFVvR9CdsQGKZJZkoartrgglzM
+         0yf0HC+yKHUYG5nohzLDrsxixSy8Djbj6EXnsBqbFguYRwqftznWuFJanOe2Svm9GNnv
+         GvWmqFwK2zC33NfZ5kzpsoPMX2wiifAVPMcZwQZRW1WJ8E/lrVIFMkyD1/vmdiEcSb6D
+         qMkmYRIlAPaZnqqBAfQNK26TgSS92fis+SlikTIFNhWewfQB29g4UJUG9aCLhWg85i1a
+         vaM8QGVTUqxyvrMMCFRhwVdSd1zrpKkXplYDPmi7bZEqi8yQQJOfjQQgnaSjJT2AHEw0
+         xI0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695318060; x=1695922860;
+        d=1e100.net; s=20230601; t=1695317136; x=1695921936;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NWszhBlTWMiwkXqgF1w4h8oNmYkV0xe9wPBMJvnXBgI=;
-        b=wE6Dd2lakLeCjXup3zNTTr4V0rkYvwMPUxi8MQu81Rp5Zt4z7I91MoXJ7K/PKu5FOa
-         df0cXvRxZE8Qqf+n7M6ugEnZwKK1xXYidYQFYXpbNDnuJkIhRqlbh3JPibc4Hp1ELZKh
-         czE8deE6STGHkksHnxKsmMHnmMe0WEkHyzrd4NbKmwdCkPIMmz1DmnBXy1+ZlDLBDr6C
-         vhp8ozBWh5msces7Un0C8u0321QPDqA0UwYDGTDozDQu3bBxt3sg/8VnDwZOoalP9Fh0
-         8kheCK3bdqkUvO2WeWBgrP7rxeMZ6fbc/kDNNYv9OR2Ga187DnAuX16tJ/SWVDxWV9nd
-         m56Q==
-X-Gm-Message-State: AOJu0YyZPFQkZ+/8NNjA7K/7xJuhyOgesUIuGOfHq75gcxzveDEGqD+i
-	6ZlRXpOCrN5fJ+egzM9uBKfFNIw+05u89UEvpWpJOsnX
-X-Google-Smtp-Source: AGHT+IEbn5IMsdjtBHEkcUJjQZ6PeFE6mcT6qeW6zrirIQz8hU6m6170Q4EKzy7+2zTNsR6rNCEY9w==
-X-Received: by 2002:a05:600c:ad4:b0:3f9:b430:199b with SMTP id c20-20020a05600c0ad400b003f9b430199bmr5382212wmr.15.1695307455234;
-        Thu, 21 Sep 2023 07:44:15 -0700 (PDT)
+        bh=x9YCZ78k5Zg5KKitr5PpHsZw/Rz0qYyLXQR2L135bIs=;
+        b=i9EbRcl6jBT8CnMHAuzEjsnXJ41CZobm+EDjJeHLKwG9p/PgbPnAvjx23UHiErjEgy
+         BicG8D7hrqlscf+wox5VEmQDYWPSJTd/0nobprzX+NGQ+hP5jF/MVdP7x/LujwVjSCDE
+         72Kt5l2y45U5BXuiY8vZOS7BozP3BxXKVEr7j6vNecEa3dSpip0q0PDZ4zdoqc1dDM5E
+         f5KaI9NRyIHffu1p4eOYnUxD5PWEma6Bv2hYXKdwRvBuWQmnXrG4OzU+rAwxda7/Y7d7
+         p/P1OZXcvMIk8vzNHM6OzXI+y+W9AgZVOFBjdIfgKWgQq+UvoZ7t6JFPsfHamgIvBd9u
+         JiFg==
+X-Gm-Message-State: AOJu0YyIX0gQwJ5QWiuWtvYneXqUOO+u2Dfb/OYMBnmaixew3SzRp9fW
+	WP47/8V3Fp6/go7usddQbBusRWmEfsCjWUJHwUJqQCvk
+X-Google-Smtp-Source: AGHT+IEpFrDSoMcGwkX92bs0KANrkQRic6vkb2g8vJmtLIHbFG/3F3REKUYxWKXB+6gaHaSm9uvZwA==
+X-Received: by 2002:a05:600c:ce:b0:401:d2cb:e6f2 with SMTP id u14-20020a05600c00ce00b00401d2cbe6f2mr5107214wmm.32.1695307456325;
+        Thu, 21 Sep 2023 07:44:16 -0700 (PDT)
 Received: from localhost.localdomain (abordeaux-655-1-129-86.w90-5.abo.wanadoo.fr. [90.5.10.86])
-        by smtp.gmail.com with ESMTPSA id s17-20020a1cf211000000b003fe2a40d287sm2125515wmc.1.2023.09.21.07.44.14
+        by smtp.gmail.com with ESMTPSA id s17-20020a1cf211000000b003fe2a40d287sm2125515wmc.1.2023.09.21.07.44.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Sep 2023 07:44:14 -0700 (PDT)
+        Thu, 21 Sep 2023 07:44:16 -0700 (PDT)
 From: David Lechner <dlechner@baylibre.com>
 To: linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org,
@@ -70,9 +70,9 @@ Cc: linux-kernel@vger.kernel.org,
 	Axel Haslam <ahaslam@baylibre.com>,
 	Philip Molloy <pmolloy@baylibre.com>,
 	David Lechner <dlechner@baylibre.com>
-Subject: [PATCH v2 03/19] staging: iio: resolver: ad2s1210: fix ad2s1210_show_fault
-Date: Thu, 21 Sep 2023 09:43:44 -0500
-Message-Id: <20230921144400.62380-4-dlechner@baylibre.com>
+Subject: [PATCH v2 04/19] staging: iio: resolver: ad2s1210: fix not restoring sample gpio in channel read
+Date: Thu, 21 Sep 2023 09:43:45 -0500
+Message-Id: <20230921144400.62380-5-dlechner@baylibre.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230921144400.62380-1-dlechner@baylibre.com>
 References: <20230921144400.62380-1-dlechner@baylibre.com>
@@ -89,32 +89,31 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-When reading the fault attribute, an empty string was printed if the
-fault register value was non-zero.
-
-This is fixed by checking that the return value is less than zero
-instead of not zero.
-
-Also always print two hex digits while we are touching this line.
+In theory, this code path should not be reachable because of the
+previous switch statement. But just in case we should make sure we
+are restoring the SAMPLE gpio to its original state before returning
+in addition to releasing the mutex lock.
 
 Signed-off-by: David Lechner <dlechner@baylibre.com>
 ---
- drivers/staging/iio/resolver/ad2s1210.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/staging/iio/resolver/ad2s1210.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/staging/iio/resolver/ad2s1210.c b/drivers/staging/iio/resolver/ad2s1210.c
-index 06de5823eb8e..84743e31261a 100644
+index 84743e31261a..0bdd5a30d45d 100644
 --- a/drivers/staging/iio/resolver/ad2s1210.c
 +++ b/drivers/staging/iio/resolver/ad2s1210.c
-@@ -393,7 +393,7 @@ static ssize_t ad2s1210_show_fault(struct device *dev,
- 	ret = ad2s1210_config_read(st, AD2S1210_REG_FAULT);
- 	mutex_unlock(&st->lock);
+@@ -510,8 +510,8 @@ static int ad2s1210_read_raw(struct iio_dev *indio_dev,
+ 		ret = IIO_VAL_INT;
+ 		break;
+ 	default:
+-		mutex_unlock(&st->lock);
+-		return -EINVAL;
++		ret = -EINVAL;
++		break;
+ 	}
  
--	return ret ? ret : sprintf(buf, "0x%x\n", ret);
-+	return (ret < 0) ? ret : sprintf(buf, "0x%02x\n", ret);
- }
- 
- static ssize_t ad2s1210_clear_fault(struct device *dev,
+ error_ret:
 -- 
 2.34.1
 
