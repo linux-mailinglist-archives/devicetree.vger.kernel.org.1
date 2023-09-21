@@ -1,424 +1,221 @@
-Return-Path: <devicetree+bounces-2160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 213547A9C60
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 21:16:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 321757A9C29
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 21:11:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12F8E1C20CA4
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:16:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCB2028276B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:11:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034E54B21B;
-	Thu, 21 Sep 2023 18:11:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFBEE3F4B7;
+	Thu, 21 Sep 2023 18:10:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFFE44B20F
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 18:11:12 +0000 (UTC)
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BDBDA5449
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:58:44 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-1c465d59719so10388415ad.1
-        for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:58:44 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0424642C19
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 18:10:52 +0000 (UTC)
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CABDACD2D;
+	Thu, 21 Sep 2023 11:02:54 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id 41be03b00d2f7-578d78ffdbcso837585a12.2;
+        Thu, 21 Sep 2023 11:02:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695319124; x=1695923924; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1695319373; x=1695924173; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=AWPDtqrSNlFWJNGtTdELDc+gCPScA6mkjwfRNyPaAXw=;
-        b=FFyJwy28Msdtu418h0Qa9S+1SNoYBMqFC/gI/tPl89WrOC60jGQriL1k05/o7cJm8K
-         jEKT6Pmo38ezFUqZgLYr8JxlufbF3ufcDhyqNZnw0sXcHQM+xFnfVU/14W0UvkrMuAND
-         YpA62og3z10A/An7vbGFL9AwFqDERl4A6RG7wXXY2P2NsaRuGrAtFvqdx8POTZPU23Fz
-         +aA+kBusRKhDvO9mR7CNTyRIOQoop1xsbyrZCWsJFGBfSyjAkaFQZOqXWzOVnTvVbSFm
-         n45EPBR6RbiQLM0Rxsb/d3QFRlB4IG7N/q0RrK3en/dpplmxZy2tRtjJhV80Akk9zB7m
-         Kokg==
+        bh=g0QwFnxPqdBvVaar0AtuCTvYbRR1x/XZq77ioNk3ptM=;
+        b=WrNaQHTLQCiu3iXjRRVNEXCYU42RPcJHakh5k800hfOoPHqXe8ma3sK7HA9YqrrCKl
+         CR61D0qXxy5MQ/on3vGANPBZ/FP3CQmNd07CaSrDgkEB08xl2BltSIEXIrQdJ/M+9pqk
+         85EIs+K8SuVNZ5Ay2YknftXo3hvdAv0tIDQTeS1uKdKZ0igZojb5jvKFicQF8DN+sXYc
+         FVHuh6FHyJnuz3vvKVMAXeqq46Bvu7YyYzaNXiTTl92pXwwyBN7lJVX7NTWEYbKWKyRC
+         ex+19xnTqfVMEF/4NnISGLoS7I+1CV+UzilGkkdk8DeVTcM4ZBOozKbGhvIXRjPoCgTL
+         G5zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695319124; x=1695923924;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1695319373; x=1695924173;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=AWPDtqrSNlFWJNGtTdELDc+gCPScA6mkjwfRNyPaAXw=;
-        b=JfYorTpLI8ks/VojIygKsTCQf6BotnboMGB3L/U1f1ID3PouVsGojQOxeHeoO5+p20
-         Khsp3SQVUt/dC5Ituju8vCSzhcZ1jOGxjaNuIiRp7mofXB4f1e32bMbwn2E9RPdm6B14
-         iJgrln6JeaPQ9VuBwZuOui/uSF6OJ8V2pmh8oAewQvGCrmiLU9Qgbmt/aJG0taVqWv+F
-         EG7nEMq0TS1GKqgsvx8e2qY+eyBE1rzSoPoImAr0EJXgE1aU8FIDfNsFYj05KN7ZQs8+
-         pdLIqFvtryFj/p98Pi9RR672lqKVISvo09ED+6fDCUqnNgtW68axu5gpOEp0ul31XTg+
-         OzMA==
-X-Gm-Message-State: AOJu0YxQE1PuIlE5FdoAGSigDLB/i4VCg6rGKaGCB29jXW4XsQdo57Iv
-	LGKBYNIuvDNlVDvC2we0u9paVLmPloE=
-X-Google-Smtp-Source: AGHT+IFIQ0cd+5ISzxChSAfPX7Xz+I3Et8iJ6Jt8P7r8laYWNgd04ihFnTZgHCWed29ar0gd5C/wkg==
-X-Received: by 2002:a05:6870:b490:b0:1d7:876:c825 with SMTP id y16-20020a056870b49000b001d70876c825mr5730136oap.48.1695304304581;
-        Thu, 21 Sep 2023 06:51:44 -0700 (PDT)
-Received: from localhost.localdomain ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id z19-20020a056870e15300b001d7034bc222sm547064oaa.15.2023.09.21.06.51.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Sep 2023 06:51:44 -0700 (PDT)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-sunxi@lists.linux.dev
-Cc: devicetree@vger.kernel.org,
-	mripard@kernel.org,
-	uwu@icenowy.me,
-	samuel@sholland.org,
-	jernej.skrabec@gmail.com,
-	wens@csie.org,
-	conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	andre.przywara@arm.com,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH V5 4/4] ARM: dts: sunxi: add support for Anbernic RG-Nano
-Date: Thu, 21 Sep 2023 08:51:36 -0500
-Message-Id: <20230921135136.97491-5-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230921135136.97491-1-macroalpha82@gmail.com>
-References: <20230921135136.97491-1-macroalpha82@gmail.com>
+        bh=g0QwFnxPqdBvVaar0AtuCTvYbRR1x/XZq77ioNk3ptM=;
+        b=gXZN7p0NvzQNLy90cfYYq1+Pp/5Ulo6nX6tENfRjSIL+TcN5pEMqe+1pslIOOLOMpE
+         SY6s7Ki6SRm3HQbVTql5BHiufP6lbGQX8+hbVi2tGlVJcZIqjB5i781pCOhqNboxBouJ
+         cZT504DggDfkWTz78f9/OElQ87hH9M91y/yQYVO+9JK8XlN8HmAOrFlIz0x+QV5+lsZ3
+         pMjxAkvW0cuB7dvCX+/+JawUVCdH1qVaKDW0t7Ls0DUPBeSfMxJ1HQEKyGYLbGzR9Jbf
+         vayLRoBZiJy6mXKgxx0CHcaT2JZtAfWawMy2BXeUnBr5KcHv4FFbF/nl7aajglgTebSh
+         CAkg==
+X-Gm-Message-State: AOJu0YwzrbQrZ4qnn1ZfHdg1dj8nue6qkBQkONXx+vj8eIWDxf9UUebl
+	Sn/ZFLwC37xCPZ7ZMjmVpXKpVRD76sMXNU5o1Y8pDz/g
+X-Google-Smtp-Source: AGHT+IH57JUHuzOh+vpq91EaewPD02Z80+hZjRFdizwKopdaWk/DGZPX4W6wwSfiGD/Edr4Sx0iI4SOAXukTILHCsgE=
+X-Received: by 2002:a0c:b256:0:b0:655:71df:4c7d with SMTP id
+ k22-20020a0cb256000000b0065571df4c7dmr5367941qve.56.1695304329735; Thu, 21
+ Sep 2023 06:52:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+References: <cover.1695189879.git.wangchen20@iscas.ac.cn> <c6aea83bb1df563b1f2a66c5f230c3861aed1e15.1695189879.git.wangchen20@iscas.ac.cn>
+ <20230920-arrival-bonanza-e335686420f4@wendy> <CAHAQgRDh72FLQPOFzn2rhsWmOOaLUO0sKyJwJQBG0Z7qZN_YLw@mail.gmail.com>
+ <20230921-1ae70cfdbf983e011d5b6754@fedora>
+In-Reply-To: <20230921-1ae70cfdbf983e011d5b6754@fedora>
+From: Chen Wang <unicornxw@gmail.com>
+Date: Thu, 21 Sep 2023 21:51:58 +0800
+Message-ID: <CAHAQgRBFje4mdhE3dZZH=HxED0bUauXBD4yNfQzEnpPSWG5HiA@mail.gmail.com>
+Subject: Re: [PATCH v2 03/11] dt-bindings: riscv: add sophgo sg2042 bindings
+To: Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, aou@eecs.berkeley.edu, chao.wei@sophgo.com, 
+	devicetree@vger.kernel.org, emil.renner.berthing@canonical.com, 
+	guoren@kernel.org, jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org, 
+	xiaoguang.xing@sophgo.com, Chen Wang <wangchen20@iscas.ac.cn>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Chris Morgan <macromorgan@hotmail.com>
+Regards,
 
-The Anbernic RG-Nano is a small portable game device based on the
-Allwinner V3s SoC. It has GPIO buttons on the face and side for
-input, a single mono speaker, a 240x240 SPI controlled display, a USB-C
-OTG port, an SD card slot for booting, and 64MB of RAM included in the
-SoC. There does not appear to be a crystal feeding the internal RTC so
-it does not keep proper time (for me it ran 8 hours slow in a 24 hour
-period). External RTC works just fine.
+unicornx
 
-Working/Tested:
-- SDMMC
-- UART (for debugging)
-- Buttons
-- Charging/battery/PMIC
-- Speaker
-- RTC (external RTC)
-- USB
-- Display
+Conor Dooley <conor@kernel.org> =E4=BA=8E2023=E5=B9=B49=E6=9C=8821=E6=97=A5=
+=E5=91=A8=E5=9B=9B 20:18=E5=86=99=E9=81=93=EF=BC=9A
+>
+> On Thu, Sep 21, 2023 at 06:21:08PM +0800, Chen Wang wrote:
+> > Conor Dooley <conor.dooley@microchip.com> =E4=BA=8E2023=E5=B9=B49=E6=9C=
+=8820=E6=97=A5=E5=91=A8=E4=B8=89 16:29=E5=86=99=E9=81=93=EF=BC=9A
+> > > On Wed, Sep 20, 2023 at 02:37:51PM +0800, Chen Wang wrote:
+> > > > Add DT binding documentation for the Sophgo SG2042 Soc [1] and the
+> > > > Milk-V Pioneer board [2].
+> > > >
+> > > > [1]: https://en.sophgo.com/product/introduce/sg2042.html
+> > > > [2]: https://milkv.io/pioneer
+> > >
+> > > Again, link tags please.
+> > >
+> > > > Acked-by: Chao Wei <chao.wei@sophgo.com>
+> > > > Acked-by: Xiaoguang Xing <xiaoguang.xing@sophgo.com>
+> > > > Signed-off-by: Chen Wang <wangchen20@iscas.ac.cn>
+> > > > ---
+> > > >  .../devicetree/bindings/riscv/sophgo.yaml     | 28 +++++++++++++++=
+++++
+> > > >  MAINTAINERS                                   |  7 +++++
+> > > >  2 files changed, 35 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/riscv/sophgo.=
+yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/riscv/sophgo.yaml b/=
+Documentation/devicetree/bindings/riscv/sophgo.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..82468ae915db
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/riscv/sophgo.yaml
+> > > > @@ -0,0 +1,28 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/riscv/sophgo.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Sophgo SoC-based boards
+> > > > +
+> > > > +maintainers:
+> > > > +  - Chao Wei <chao.wei@sophgo.com>
+> > > > +  - Xiaoguang Xing <xiaoguang.xing@sophgo.com>
+> > > > +
+> > > > +description:
+> > > > +  Sophgo SoC-based boards
+> > > > +
+> > > > +properties:
+> > > > +  $nodename:
+> > > > +    const: '/'
+> > > > +  compatible:
+> > > > +    oneOf:
+> > > > +      - items:
+> > > > +          - enum:
+> > > > +              - milkv,pioneer
+> > > > +          - const: sophgo,sg2042
+> > > > +
+> > > > +additionalProperties: true
+> > > > +
+> > > > +...
+> > > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > > index 90f13281d297..b74d505003e2 100644
+> > > > --- a/MAINTAINERS
+> > > > +++ b/MAINTAINERS
+> > > > @@ -20063,6 +20063,13 @@ F:   drivers/char/sonypi.c
+> > > >  F:   drivers/platform/x86/sony-laptop.c
+> > > >  F:   include/linux/sony-laptop.h
+> > > >
+> > > > +SOPHGO DEVICETREES
+> > > > +M:   Xiaoguang Xing <xiaoguang.xing@sophgo.com>
+> > > > +M:   Chao Wei <chao.wei@sophgo.com>
+> > > > +S:   Maintained
+> > > > +F:   Documentation/devicetree/bindings/riscv/sophgo.yaml
+> > >
+> > > > +F:   arch/riscv/boot/dts/sophgo/
+> > >
+> > > Firstly, this directory does not exist at the time of this patch, so =
+it
+> > > should not be added here, but rather at the time that you create it.
+> > >
+> > > Secondly, are Xiaoguang Xing and Chao Wei going to monitor the lists =
+&
+> > > apply patches for these files? If so, you should add a git tree here
+> > > that they will apply patches to & add to linux-next. Also, I'd really
+> > > like to see some on-list signs of life from these people, otherwise
+> > > I'd rather see your name here instead of theirs.
+> > >
+> > > If they don't intend reviewing/testing/applying patches, I can do it =
+as
+> > > a last resort but I would rather that someone who specifically cares =
+for
+> > > this hardware does it.
+> >
+> > Please allow me to explain first. As a community volunteer, I actually
+> > had full discussions and testing with Sophgo people when submitting
+> > patches, so I added tag such "Acked-by: Xiaoguang Xing ..." to the
+> > signature part of most patches. Also if you think a formal email is
+> > required, I will talk them to send it.
+>
+> No, I'm okay with the acks that are on these patches. I just want to
+> make sure that those who are acking know why they are & am wondering why
+> your name is not there, seeing as you're the one who has submitted these
+> patches.
+>
+> > As for the issue of MAINTAINERS, I discussed it with the people from
+> > Sophgo. They (including me also) feel that we are not very familiar
+> > with the community process (especially as maintainer, and actually I
+> > modify the file MAINTAINERS is just to suppress warning information
+> > when running checkpatch.pl), so we sincerely hope to invite you, Mr.
+> > Conor,
+>
+> Oh god, there's no need to call me "Mr. Conor". Conor will do perfectly
+> fine!
+>
+> > to help us for a period of time on maintenance work, including
+> > checking relevant patches, merging and submitting PRs, we will learn
+> > together with you for a while, and then take over this part of the
+> > work when we become familiar with it. We know that you are also very
+> > busy at work, especially if you don't have the hardware at hand. I
+> > have the hardware here and I can take the responsibility to run
+> > testing. What do you think? I'm waiting for your reply. Thanks in
+> > advance.
+>
+> That seems fine to me. In that case, you should add yourself to the
+> MAINTAINERS entry.
+>
+> Thanks,
+> Conor.
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- arch/arm/boot/dts/allwinner/Makefile          |   1 +
- .../allwinner/sun8i-v3s-anbernic-rg-nano.dts  | 284 ++++++++++++++++++
- 2 files changed, 285 insertions(+)
- create mode 100644 arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
-
-diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts/allwinner/Makefile
-index eebb5a0c873a..2d26c3397f14 100644
---- a/arch/arm/boot/dts/allwinner/Makefile
-+++ b/arch/arm/boot/dts/allwinner/Makefile
-@@ -256,6 +256,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
- 	sun8i-t113s-mangopi-mq-r-t113.dtb \
- 	sun8i-t3-cqa3t-bv3.dtb \
- 	sun8i-v3-sl631-imx179.dtb \
-+	sun8i-v3s-anbernic-rg-nano.dtb \
- 	sun8i-v3s-licheepi-zero.dtb \
- 	sun8i-v3s-licheepi-zero-dock.dtb \
- 	sun8i-v40-bananapi-m2-berry.dtb
-diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts b/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
-new file mode 100644
-index 000000000000..1a4429dc57b1
---- /dev/null
-+++ b/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
-@@ -0,0 +1,284 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+#include <dt-bindings/input/linux-event-codes.h>
-+#include "sun8i-v3s.dtsi"
-+#include "sunxi-common-regulators.dtsi"
-+
-+/ {
-+	model = "Anbernic RG Nano";
-+	compatible = "anbernic,rg-nano", "allwinner,sun8i-v3s";
-+
-+	aliases {
-+		rtc0 = &pcf8563;
-+		rtc1 = &rtc;
-+		serial0 = &uart0;
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		brightness-levels = <0 1 2 3 8 14 21 32 46 60 80 100>;
-+		default-brightness-level = <11>;
-+		power-supply = <&reg_vcc5v0>;
-+		pwms = <&pwm 0 40000 1>;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	gpio_keys: gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		button-a {
-+			gpios = <&gpio_expander 12 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+			label = "BTN-A";
-+			linux,code = <BTN_EAST>;
-+		};
-+
-+		button-b {
-+			gpios = <&gpio_expander 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+			label = "BTN-B";
-+			linux,code = <BTN_SOUTH>;
-+		};
-+
-+		button-down {
-+			gpios = <&gpio_expander 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+			label = "DPAD-DOWN";
-+			linux,code = <BTN_DPAD_DOWN>;
-+		};
-+
-+		button-left {
-+			gpios = <&gpio_expander 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+			label = "DPAD-LEFT";
-+			linux,code = <BTN_DPAD_LEFT>;
-+		};
-+
-+		button-right {
-+			gpios = <&gpio_expander 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+			label = "DPAD-RIGHT";
-+			linux,code = <BTN_DPAD_RIGHT>;
-+		};
-+
-+		button-se {
-+			gpios = <&gpio_expander 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+			label = "BTN-SELECT";
-+			linux,code = <BTN_SELECT>;
-+		};
-+
-+		button-st {
-+			gpios = <&gpio_expander 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+			label = "BTN-START";
-+			linux,code = <BTN_START>;
-+		};
-+
-+		button-tl {
-+			gpios = <&gpio_expander 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+			label = "BTN-L";
-+			linux,code = <BTN_TL>;
-+		};
-+
-+		button-tr {
-+			gpios = <&gpio_expander 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+			label = "BTN-R";
-+			linux,code = <BTN_TR>;
-+		};
-+
-+		button-up {
-+			gpios = <&gpio_expander 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+			label = "DPAD-UP";
-+			linux,code = <BTN_DPAD_UP>;
-+		};
-+
-+		button-x {
-+			gpios = <&gpio_expander 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+			label = "BTN-X";
-+			linux,code = <BTN_NORTH>;
-+		};
-+
-+		button-y {
-+			gpios = <&gpio_expander 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+			label = "BTN-Y";
-+			linux,code = <BTN_WEST>;
-+		};
-+	};
-+};
-+
-+&codec {
-+	allwinner,audio-routing = "Speaker", "HP",
-+				  "MIC1", "Mic",
-+				  "Mic", "HBIAS";
-+	allwinner,pa-gpios = <&pio 5 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; /* PF6 */
-+	status = "okay";
-+};
-+
-+&ehci {
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+
-+	gpio_expander: gpio@20 {
-+		compatible = "nxp,pcal6416";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		#interrupt-cells = <2>;
-+		interrupt-controller;
-+		interrupt-parent = <&pio>;
-+		interrupts = <1 3 IRQ_TYPE_EDGE_BOTH>; /* PB3/EINT3 */
-+		vcc-supply = <&reg_vcc3v3>;
-+	};
-+
-+	axp209: pmic@34 {
-+		reg = <0x34>;
-+		interrupt-parent = <&pio>;
-+		interrupts = <1 5 IRQ_TYPE_EDGE_FALLING>; /* PB5/EINT5 */
-+	};
-+
-+	pcf8563: rtc@51 {
-+		compatible = "nxp,pcf8563";
-+		reg = <0x51>;
-+	};
-+};
-+
-+#include "axp209.dtsi"
-+
-+&battery_power_supply {
-+	status = "okay";
-+};
-+
-+&mmc0 {
-+	broken-cd;
-+	bus-width = <4>;
-+	disable-wp;
-+	vmmc-supply = <&reg_vcc3v3>;
-+	vqmmc-supply = <&reg_vcc3v3>;
-+	status = "okay";
-+};
-+
-+&ohci {
-+	status = "okay";
-+};
-+
-+&pio {
-+	vcc-pb-supply = <&reg_vcc3v3>;
-+	vcc-pc-supply = <&reg_vcc3v3>;
-+	vcc-pf-supply = <&reg_vcc3v3>;
-+	vcc-pg-supply = <&reg_vcc3v3>;
-+
-+	spi0_no_miso_pins: spi0-no-miso-pins {
-+		pins = "PC1", "PC2", "PC3";
-+		function = "spi0";
-+	};
-+};
-+
-+&pwm {
-+	pinctrl-0 = <&pwm0_pin>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+/* DCDC2 wired into vdd-cpu, vdd-sys, and vdd-ephy. */
-+&reg_dcdc2 {
-+	regulator-always-on;
-+	regulator-max-microvolt = <1250000>;
-+	regulator-min-microvolt = <1250000>;
-+	regulator-name = "vdd-cpu";
-+};
-+
-+/* DCDC3 wired into every 3.3v input that isn't the RTC. */
-+&reg_dcdc3 {
-+	regulator-always-on;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-min-microvolt = <3300000>;
-+	regulator-name = "vcc-io";
-+};
-+
-+/*
-+ * LDO1 wired into RTC, voltage is hard-wired at 3.3v and cannot be
-+ * software modified. Note that setting voltage here to 3.3v for accuracy
-+ * sake causes an issue with the driver that causes it to fail to probe
-+ * because of a voltage constraint in the driver.
-+ */
-+&reg_ldo1 {
-+	regulator-always-on;
-+	regulator-name = "vcc-rtc";
-+};
-+
-+/* LDO2 wired into VCC-PLL and audio codec. */
-+&reg_ldo2 {
-+	regulator-always-on;
-+	regulator-max-microvolt = <3000000>;
-+	regulator-min-microvolt = <3000000>;
-+	regulator-name = "vcc-pll";
-+};
-+
-+/* LDO3, LDO4, and LDO5 unused. */
-+&reg_ldo3 {
-+	status = "disabled";
-+};
-+
-+&reg_ldo4 {
-+	status = "disabled";
-+};
-+
-+/*
-+ * Force the driver to use internal oscillator by removing clocks
-+ * property.
-+ */
-+&rtc {
-+	/delete-property/ clocks;
-+};
-+
-+&spi0 {
-+	pinctrl-0 = <&spi0_no_miso_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	display@0 {
-+		compatible = "saef,sftc154b", "panel-mipi-dbi-spi";
-+		reg = <0>;
-+		backlight = <&backlight>;
-+		dc-gpios = <&pio 2 0 GPIO_ACTIVE_HIGH>; /* PC0 */
-+		reset-gpios = <&pio 1 2 GPIO_ACTIVE_HIGH>; /* PB2 */
-+		spi-max-frequency = <100000000>;
-+
-+		height-mm = <39>;
-+		width-mm = <39>;
-+
-+		/* Set hb-porch to compensate for non-visible area */
-+		panel-timing {
-+			hactive = <240>;
-+			vactive = <240>;
-+			hback-porch = <80>;
-+			vback-porch = <0>;
-+			clock-frequency = <0>;
-+			hfront-porch = <0>;
-+			hsync-len = <0>;
-+			vfront-porch = <0>;
-+			vsync-len = <0>;
-+		};
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-0 = <&uart0_pb_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&usb_otg {
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&usb_power_supply {
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	usb0_id_det-gpios = <&pio 6 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PG5 */
-+	status = "okay";
-+};
--- 
-2.34.1
-
+Conor, do you want me to add you to the MAINTAINERS entry too?
 
