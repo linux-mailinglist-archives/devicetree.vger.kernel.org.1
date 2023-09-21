@@ -1,149 +1,129 @@
-Return-Path: <devicetree+bounces-1944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E425F7A9347
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 11:48:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61FA17A935F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 11:57:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D185B20988
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 09:48:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70B4F1C208F5
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 09:57:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E49E945F;
-	Thu, 21 Sep 2023 09:48:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 220209465;
+	Thu, 21 Sep 2023 09:57:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 533CE944C;
-	Thu, 21 Sep 2023 09:48:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BD34C32783;
-	Thu, 21 Sep 2023 09:48:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EF7C9461;
+	Thu, 21 Sep 2023 09:57:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51795C32786;
+	Thu, 21 Sep 2023 09:57:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695289713;
-	bh=J91xLLYh3063mIz8vTCj0EDjswezy2qXl2KyxMg3RQI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fU057suNKQbihbsVL2RWa98mU6/opeEGInjY7XwbSg83INDcPahdBga23HxJVedq6
-	 1940hb8sDpd52ueZhRszkTZGjQTbKIVk45BC9C0Oiz4+XQSj4k7iZwPlFgY6B2Wg71
-	 6JhA70Ulb3ae4S/VLNazQq97Bv4IvAJzX9bqjQOi1hIRY5/L7HK1mo1T1fQCWIJ9Q7
-	 bpSlWHVeppCYURvyle4n7VWHn7jZX31tJIU3/sR3VXwGM7f3BNWLdsH7FZUP8jb/4D
-	 qYASDzCHLGqEop9vHSeG6kbvvHySj4zYKY2VnfAkaBRhm/eQwBHOejreG5Xor6mwtI
-	 UUo9yEKkxigmA==
-Date: Thu, 21 Sep 2023 11:48:23 +0200
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-Cc: agross@kernel.org, andersson@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	konrad.dybcio@linaro.org, quic_shazhuss@quicinc.com,
-	quic_nitegupt@quicinc.com, quic_ramkri@quicinc.com,
-	quic_nayiluri@quicinc.com, quic_krichai@quicinc.com,
-	quic_vbadigan@quicinc.com, quic_parass@quicinc.com,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, mhi@lists.linux.dev,
-	linux-phy@lists.infradead.org
-Subject: Re: [PATCH v1 5/5] arm64: dts: qcom: sa8775p: Add ep pcie0
- controller node
-Message-ID: <20230921094823.GE2891@thinkpad>
-References: <1695218113-31198-1-git-send-email-quic_msarkar@quicinc.com>
- <1695218113-31198-6-git-send-email-quic_msarkar@quicinc.com>
+	s=k20201202; t=1695290250;
+	bh=b4C6GKOi2llCc/51wf7ZCun/ppmLevoEf7O5GkvTEJ4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=rpG/WKZfSfFJ08BBtam5NSmxNuu17M8yOcCt5bH/LDlmkJO7/Ml2i2QQPYr7/R4J9
+	 S9N9pq/umvS/5oRYiOugpjIBhEasFLHrKnFjaRElGZ8CixJkXfpiJT/QSHILt0XdDG
+	 r6HKbiU8a+FPK+62kmkEH17FjrGhHHjkvfH5Ha+4CyU8rOCocs46V8/K3dmaBYzvE0
+	 afEeUFNQ5UjnPp1vscVaNiffgjTJ3DgHNqFfuQ1eA83koRortIZ84ilWTzEH4YuZna
+	 dqKwrErxVjg4kiKlUK2vcT+/iE1jwWxx/hvGGUCXFmuECD48AWTk00FU02lY9UbzEA
+	 KsaprLbvBm++Q==
+From: Conor Dooley <conor@kernel.org>
+To: linux-riscv@lists.infradead.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	devicetree@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	linux-renesas-soc@vger.kernel.org
+Subject: [RFC v1 0/6] riscv,isa-extensions additions
+Date: Thu, 21 Sep 2023 10:57:17 +0100
+Message-ID: <20230921095723.26456-1-conor@kernel.org>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1695218113-31198-6-git-send-email-quic_msarkar@quicinc.com>
 
-On Wed, Sep 20, 2023 at 07:25:12PM +0530, Mrinmay Sarkar wrote:
-> Add ep pcie dtsi node for pcie0 controller found on sa8775p platform.
-> 
+From: Conor Dooley <conor.dooley@microchip.com>
 
-It would be good to add more info in the commit message, like PCIe Gen, lane
-info, IP revision etc...
+I'm suffering from a hw failure on my main dev machine & relegated to a
+recently acquired & not really configured laptop for a bit, so hopefully
+nothing with this series goes awry.
 
-> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 45 +++++++++++++++++++++++++++++++++++
->  1 file changed, 45 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index 9f4f58e8..5571131 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -2600,4 +2600,49 @@
->  
->  		status = "disabled";
->  	};
-> +
-> +	pcie0_ep: pcie-ep@1c00000 {
-> +		compatible = "qcom,sa8775p-pcie-ep";
-> +		reg = <0x0 0x01c00000 0x0 0x3000>,
-> +		      <0x0 0x40000000 0x0 0xf20>,
-> +		      <0x0 0x40000f20 0x0 0xa8>,
-> +		      <0x0 0x40001000 0x0 0x4000>,
-> +		      <0x0 0x40200000 0x0 0x100000>,
-> +		      <0x0 0x01c03000 0x0 0x1000>,
-> +		      <0x0 0x40005000 0x0 0x2000>;
-> +		reg-names = "parf", "dbi", "elbi", "atu", "addr_space",
-> +			    "mmio", "dma";
-> +
-> +		clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
-> +			<&gcc GCC_PCIE_0_CFG_AHB_CLK>,
-> +			<&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
-> +			<&gcc GCC_PCIE_0_SLV_AXI_CLK>,
-> +			<&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>;
-> +
-> +		clock-names = "aux",
-> +			      "cfg",
-> +			      "bus_master",
-> +			      "bus_slave",
-> +			      "slave_q2a";
-> +
-> +		interrupts = <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 630 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +		interrupt-names = "global", "doorbell", "dma";
-> +
-> +		interconnects = <&pcie_anoc MASTER_PCIE_0 0 &mc_virt SLAVE_EBI1 0>,
-> +				<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_PCIE_0 0>;
-> +		interconnect-names = "pcie-mem", "cpu-pcie";
-> +
+I've had two (or more, dunnno) people ask me where the patches for the
+DTs were swapping them over, so here's what I had before the hw failure.
+I've marked this RFC as a result & I'd like to come back and revisit
+these patches once I'm out of this limited environment.
 
-Don't you need iommu property?
+The canaan stuff is absent here, mostly because I don't actually know
+what to do with it. They don't actually implement the same versions of
+the F stuff as everyone else (Stefan O'Rear pointed that out to me
+somewhere recently).
 
-> +		resets = <&gcc GCC_PCIE_0_BCR>;
-> +		reset-names = "core";
-> +		power-domains = <&gcc PCIE_0_GDSC>;
-> +		phys = <&pcie0_phy>;
-> +		phy-names = "pciephy";
-> +		max-link-speed = <3>;
+Cheers,
+Conor.
 
-Gen 3?
+CC: Rob Herring <robh+dt@kernel.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC: Conor Dooley <conor+dt@kernel.org>
+CC: Paul Walmsley <paul.walmsley@sifive.com>
+CC: Palmer Dabbelt <palmer@dabbelt.com>
+CC: Albert Ou <aou@eecs.berkeley.edu>
+CC: Chen-Yu Tsai <wens@csie.org>
+CC: Jernej Skrabec <jernej.skrabec@gmail.com>
+CC: Samuel Holland <samuel@sholland.org>
+CC: Daire McNamara <daire.mcnamara@microchip.com>
+CC: Geert Uytterhoeven <geert+renesas@glider.be>
+CC: Magnus Damm <magnus.damm@gmail.com>
+CC: Emil Renner Berthing <kernel@esmil.dk>
+CC: Jisheng Zhang <jszhang@kernel.org>
+CC: Guo Ren <guoren@kernel.org>
+CC: Fu Wei <wefu@redhat.com>
+CC: devicetree@vger.kernel.org
+CC: linux-riscv@lists.infradead.org
+CC: linux-sunxi@lists.linux.dev
+CC: linux-renesas-soc@vger.kernel.org
 
-> +		num-lanes = <2>;
+Conor Dooley (6):
+  riscv: dts: microchip: convert isa detection to new properties
+  riscv: dts: sifive: convert isa detection to new properties
+  riscv: dts: starfive: convert isa detection to new properties
+  riscv: dts: renesas: convert isa detection to new properties
+  riscv: dts: allwinner: convert isa detection to new properties
+  riscv: dts: thead: convert isa detection to new properties
 
-Only 2 lanes? Or the other one has 4 lanes?
-
-- Mani
-
-> +
-> +		status = "disabled";
-> +	};
->  };
-> -- 
-> 2.7.4
-> 
+ arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi |  3 +++
+ arch/riscv/boot/dts/microchip/mpfs.dtsi       | 15 +++++++++++++++
+ arch/riscv/boot/dts/renesas/r9a07g043f.dtsi   |  3 +++
+ arch/riscv/boot/dts/sifive/fu540-c000.dtsi    | 15 +++++++++++++++
+ arch/riscv/boot/dts/sifive/fu740-c000.dtsi    | 15 +++++++++++++++
+ arch/riscv/boot/dts/starfive/jh7100.dtsi      |  6 ++++++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      | 15 +++++++++++++++
+ arch/riscv/boot/dts/thead/th1520.dtsi         | 12 ++++++++++++
+ 8 files changed, 84 insertions(+)
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.41.0
+
 
