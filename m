@@ -1,226 +1,392 @@
-Return-Path: <devicetree+bounces-2007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78DA17A972F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:17:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EAC27A98DF
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:54:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E01CC1C20CF6
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 17:17:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B84B6B2131E
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 17:54:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C42816429;
-	Thu, 21 Sep 2023 17:05:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 241B7199D1;
+	Thu, 21 Sep 2023 17:22:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8B8316404
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:05:13 +0000 (UTC)
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DACD1711;
-	Thu, 21 Sep 2023 10:04:44 -0700 (PDT)
-X-UUID: 12320f1e584111eea33bb35ae8d461a2-20230921
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=z+jhFgoSQBfuy8fwJh8qvmYCf9YZUZhByGUBfi4c5nQ=;
-	b=sHVlz0+AzYNaovxu01/OMu+6ihRXF5Mxdcxcd+keufidqCEDKH/XIWXhB6evaoffmP2T8LpqiwAksfzVkitR1b1zHV1E9IJH3LNQr+qTys7QMP9yz3IfrJK+vItsqbepEEtYkN7WmtcnboX8wbcatBvhGyVwJBDsLBxvQpu07NM=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.32,REQID:2ee5fc8e-adbf-469f-99ef-c854a0fa63ec,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:5f78ec9,CLOUDID:f86617bf-14cc-44ca-b657-2d2783296e72,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 12320f1e584111eea33bb35ae8d461a2-20230921
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
-	(envelope-from <chun-jen.tseng@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 480200078; Thu, 21 Sep 2023 13:38:19 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 21 Sep 2023 13:38:18 +0800
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Thu, 21 Sep 2023 13:38:18 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hvmWRKCKXV61bNzL6e+FbtKYawOoain0XzxVsOS6YSq0Cgcv6fZTlATAMnx68FjLiwy+eWRvL0JknmWEwx+E+QBIdVQCRBCYyBbQ51Z9iqWGR+BjV47kA9bz+z3cluo4JU63yaZN02N/h75nEyhIKO7ipXGOUUU+jpzLqqjQVZ7DAZ1aot5OpRzdF5X04vK9K1chl5n5fr36XAUaQ7XgbMRT98c4dfQSndyW1z4/ydUthXhQKTd+XQUgy1rtlnrABtxhvqzDiPjWJAaoc8hbcJGCi7Tquh90LbZwtEcopSXeIjsJCVLPWn+SR8eF725gFF+YswYcI0iyfYB78lRAlw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=z+jhFgoSQBfuy8fwJh8qvmYCf9YZUZhByGUBfi4c5nQ=;
- b=iZd6S+0hLbQkKDB9wB9+gMsKNgFYAG2UV2Au7QxR0uB9h6a3wxEnhoo2S6hqXgNaDcL2EQBMHIwf3PlNpcNk/sDYZC3AAoa7C85z8x3zxYhdgAWeh0WZf/nOntb0BK+bsfn1VeFTO8WGNanOiyMKIH8t5gj6gJ46ibb1/EQ2CHIZ1rQNyaq6scLNiK9ZwzHFzRWKjhZoiU28ANkcWVv+yAzDSwp1lLN1OWUBDjbkDbSeYoL88Qntx5atSpX0PDRMO89aGG1U8+d+fnqs459OsvARH2qSGu3mhA/U0+8ykBryP/2pCKs9dL4/JpMrxaQoKlYDhYd0UCuPd8nd5crZpQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3601714F9A
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:22:36 +0000 (UTC)
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91B294BBE0;
+	Thu, 21 Sep 2023 10:16:32 -0700 (PDT)
+Received: by mail-qt1-x831.google.com with SMTP id d75a77b69052e-4122129390eso7528191cf.0;
+        Thu, 21 Sep 2023 10:16:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=z+jhFgoSQBfuy8fwJh8qvmYCf9YZUZhByGUBfi4c5nQ=;
- b=Ssq4BwPEwo9PKcB9X5X3WpRk80RgYussGL9rBY06nus6wOFczDMehAc1PIBWGGt6zIe5pHpBjrseKe0drLIhskFRYshEcIRv2st290HFU/+nKq4yEGR+SMpo7aONniDiKONUqoCcti53bYji8WWDlJlk+tgGYqTNq1fh3MRpiG4=
-Received: from PSAPR03MB5351.apcprd03.prod.outlook.com (2603:1096:301:40::11)
- by TYZPR03MB5728.apcprd03.prod.outlook.com (2603:1096:400:8b::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.20; Thu, 21 Sep
- 2023 05:38:16 +0000
-Received: from PSAPR03MB5351.apcprd03.prod.outlook.com
- ([fe80::fb21:1c1a:678:fbfd]) by PSAPR03MB5351.apcprd03.prod.outlook.com
- ([fe80::fb21:1c1a:678:fbfd%3]) with mapi id 15.20.6813.017; Thu, 21 Sep 2023
- 05:38:16 +0000
-From: =?utf-8?B?Q2h1bi1KZW4gVHNlbmcgKOabvuS/iuS7gSk=?=
-	<Chun-Jen.Tseng@mediatek.com>
-To: "fshao@chromium.org" <fshao@chromium.org>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"khilman@kernel.org" <khilman@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, =?utf-8?B?Um9nZXIgTHUgKOmZuOeRnuWCkSk=?=
-	<Roger.Lu@mediatek.com>, Project_Global_Chrome_Upstream_Group
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "matthias.bgg@gmail.com"
-	<matthias.bgg@gmail.com>, "angelogioacchino.delregno@collabora.com"
-	<angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v3 2/2] soc: mediatek: svs: add support for mt8188
-Thread-Topic: [PATCH v3 2/2] soc: mediatek: svs: add support for mt8188
-Thread-Index: AQHZ6pr4zcsq7puX3U6jyOm98/AG5LAh+ZsAgAAdVgCAAQ8DgIABoHiA
-Date: Thu, 21 Sep 2023 05:38:15 +0000
-Message-ID: <3ef9d7ea30d011e2bbb49d1c6d57ffdf14eb7e95.camel@mediatek.com>
-References: <20230919014439.5795-1-chun-jen.tseng@mediatek.com>
-	 <20230919014439.5795-3-chun-jen.tseng@mediatek.com>
-	 <0009f224-aac4-6681-fde5-cf1ead94c604@collabora.com>
-	 <acd2cba7db6d4e523f84fa4725e9bd6b596023ba.camel@mediatek.com>
-	 <CAC=S1ng5wkZa6LzASUNDW9miG_ev7FGhw_8Xumom4y0oy3QN0w@mail.gmail.com>
-In-Reply-To: <CAC=S1ng5wkZa6LzASUNDW9miG_ev7FGhw_8Xumom4y0oy3QN0w@mail.gmail.com>
-Accept-Language: zh-TW, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PSAPR03MB5351:EE_|TYZPR03MB5728:EE_
-x-ms-office365-filtering-correlation-id: 241202dd-6a93-4f8c-c079-08dbba64f443
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: /dyZbyrBtVVv9CAObFGj1w6nsEB/PQqhsqUW77M++MLNGxTFofkUlYcJYeWeq03n1AbU6WwyeMXg+d+bCUusaUKdqjvHpIiXSoXh5pDo5aWZc3c1DTbGXdCsauKNUk8QBRzB0fMUHrR5sAe7/Q/ZH6jGg8WsEbfn2CZM5gJYWz1bsFXxOh2aD+rmeGasNxpArC/i3JFZfGoTYG33CjOkMaLVZY6BpgfiTzsVmZ3+43TwmuPq9l2w0TwRijUpGnAZq3oVWdfw7wDhn3jGdWSDJBi6aOTzrsaEpdR7URJNlbYMXR4gwy+pP4kKruk2c7cYYoCBVyQAHafNYCyTr00k3A2clz9KC5RH2TQ9GMBwIlkGc5WpG87cJlUarzmHqS4K/bw8KPxC0VLzkQrKki9hgUO00t6rKWTTxUMR9DhmgTfiK/wMlQHhUdDRwv6bodb+qYbfuAEwYgzSDJSpGSzZBMZIjuBy1mqtdCM94BJHZW2ev4XzhVlxpvg5kvoVALiSp2fUj0nf8KlvS5aFB9IMbA8s1fA7qiLSJoSJYZldZPijZexlKIg32aRGpiylV7+aYY06L61SR0c6fFwwv71Mzsg8sCaSCcAEGbklbBzJPEjIzHDz90MxgOhFIy0MRPaFY7fsdDpZwHPLM/HxX487VVdQ11N+9sY7l4ErFdvV80Y=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PSAPR03MB5351.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(366004)(136003)(39860400002)(346002)(396003)(1800799009)(186009)(451199024)(66476007)(66446008)(41300700001)(64756008)(66556008)(316002)(66946007)(76116006)(8676002)(54906003)(4326008)(122000001)(6916009)(53546011)(6486002)(478600001)(6512007)(71200400001)(8936002)(83380400001)(6506007)(91956017)(26005)(2616005)(86362001)(2906002)(7416002)(5660300002)(38070700005)(38100700002)(85182001)(36756003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?d1N0alhSY0hOZ2l5UXVuMTdxTTBhU214dy84NmxqUDkzRXM4a3lOU3dFYTlD?=
- =?utf-8?B?Y09IYWZSMk1YZWpZUnptQUZVRnU0bnVQZkxCekJXU1QzWERSQ1F1R0s3eWNo?=
- =?utf-8?B?bTNGQUJHdGdQQ1d2Vm8xZzVIU0ZXZ3VrNDd0d2pOMzNvMjh2L3NsdGZPeVpT?=
- =?utf-8?B?ck5ZcHdYb1lneENjZ01CWldiU1JUeU0vQjdVcDlON2dhQmNSdDRWOStNN2ZZ?=
- =?utf-8?B?OHJCZmRWMUdqMUJXVGlZd0hTa096T0x6MjF5VlVFcW85aFlTc2FGYThrTjhD?=
- =?utf-8?B?N0tjRnF1eDJPKzlrdHlZdGhCVDBRT25leWR0bmpuYXcvY1FLeGtxVjBXcEVR?=
- =?utf-8?B?c0U3eldZazRhbDNNbDdzWWs4MkxiMjFwT0VneVZ0dUZtYzBOSTFBbXUxUVlF?=
- =?utf-8?B?SzZvQTQ0MWV4ajg0RjlLZDRWRlZpTENleDZ4eFQxeXI5S3BVZU9ZOHR5Qm5q?=
- =?utf-8?B?KzN1eUJoa1FsZExXZlluWkV4ZnltS0Izemt6YW5XM3JEMGRYTVhoTitvRWJ2?=
- =?utf-8?B?VTJEWi9qa3VnTWE0eTlldmtYUjZ3U09OQlhrcHI4UGFyVmZnMEhzbHlDSXVN?=
- =?utf-8?B?ZmJBYUpadC8xU2NaQ3lxdUFLMlRaTkhXZnowVkFKZkZ1Y1NoWHBpdGpqS1Z6?=
- =?utf-8?B?c0dPTmNnR1h2bC9IZFRnQkZENHIvWi81a3p0UFJObE9ZakVrOG13YjhkS0Ft?=
- =?utf-8?B?Q2FnV09hQkx5YU1DT1F6UnRsWGNxQUFIb1Yvamx5cUphVGhZbkdTK0V0V3Y5?=
- =?utf-8?B?cGU0YW5CUXhOVUxsVG9BTHA3cjFFTnlQU1JGZnNjazl1THNJK29pY2QzVjhM?=
- =?utf-8?B?YkVPalF4R1c1bW5KcHRRUGpDa0tNcU1RcUc3QVdHV3FsQXlXVHVNWUE5bE1j?=
- =?utf-8?B?N2NBa1BPRXpIWlVuZXc1dkl1VTdLODFiOWlMNnM1VW9WWmJMNENaS2E5TWt6?=
- =?utf-8?B?S21uWW1QTE5YMTgwdStyZHdmVXlpQkhFaUE3VVdQQnFXNnlsaXd1amJucmhr?=
- =?utf-8?B?cDRLaHF2Mlc0cEVzS2l5SzFxc3ZPQ1ZFaVRtOGxzTWgydkF5eHFYZ0VXOHVY?=
- =?utf-8?B?WUVKS1RXd09tM2NjMWFpMjBmZk9Cb05hMTBzV3ZEZ3EvV1ovelhlTjBHKytO?=
- =?utf-8?B?U0FjSTlzZFgvSGxRTjVSZ1FlUGFUbTBnYVpiTzNFRkpFWnpZTWNLSFRTVVZ4?=
- =?utf-8?B?eTd0MEhpcGZtalkyYVo0T3F2bmZXSEhDblNzZUsxWk9HVWtxNW9FU2dLNzVl?=
- =?utf-8?B?Mlh5RXVETHRJbUpyT2VoQjBnSFBrcnlnRHgzeXllWXJwRysvTW1hTitGVEdO?=
- =?utf-8?B?cXZIR3c2MUxvcWt2QndjTTlWc3VXMFg4SXRaMHFZdFcyVHE2T1ZGZ0tURHB5?=
- =?utf-8?B?bjVLODVaU2VSaEh0aWZhVXdMRno3K1RFWmpIZnY1UVo5dnRUZ0dTTDNzSENU?=
- =?utf-8?B?dEo5dlllcFY1TDZ1YXovZkVpWitSR1d4dTVoYzZWQ3ZWMldpK1RncXY3cjYy?=
- =?utf-8?B?N2VuOXlIL1Rwcm5oekE0Z2VZWlkzZTUvTTROWW9HeGh1SUF4U0w2dWVXMVZG?=
- =?utf-8?B?TXRiZTBxMlFWOVE2dTRhS0twTEdSMStYY1FpWTdPYUlFU0Nkb1hOL0txRGdT?=
- =?utf-8?B?bjNXVmhGSHZlcE9xUlB4UFpwN0hFT2NEcE91SlhoVENpT0RMV3NaNTFiQVUx?=
- =?utf-8?B?ZnM1VzdMQUVoSlpNdm5lVnkvYUtSMDBEcWJSNkNraXZCc3JwY0pZbTdKUVgz?=
- =?utf-8?B?TjZ4Z2UvZllXWTB3bEpqclJwZTYrWElHaWNQL3NJZkZGYXBXVXBteUpNc2NN?=
- =?utf-8?B?SWtWUWdrVmRpSi8rQUU0QXUzVFNhT081UGVBWnpEb1ZGNUNUcWxjTW5MbjVF?=
- =?utf-8?B?QUFoU3N6eXEwV1Rvdkx3c21IWlUvRnNzWHQvN1NrK2dCTExUaTZFaGtGc0tK?=
- =?utf-8?B?M2xReGpVQW5QMzFxMDRTREhDS0V1Y2VWSElqU25TSHNtbFNCNXVMU0R0N0Vk?=
- =?utf-8?B?elRwdDFWUEZoYWtCazNUa1FDL3ZucURaY1dWcGF5YkFqSXdCaFBIT2pOVzMz?=
- =?utf-8?B?c2p5d2dsODJCbzJEeHBHdTM0TjRlK0JiMWEzQmtLeFhLVW5YUDEyN0FIVHBU?=
- =?utf-8?B?dG4zamlWRWNHNExNV0xqYXQyN3VTY2VBeWJJckFSbG1SNmJqM1ZwaGE0STZO?=
- =?utf-8?Q?BIdYt4YgXyUDN0rkkKhs6mM=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <E78453CB1804B545B4EADC1035730275@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20230601; t=1695316591; x=1695921391; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iBjumh/08C/hAerf88ZhuYGamGHKoujdOesdPVpYjpA=;
+        b=Y9kykz+W2brKHdoI5J/lFbbcWKvCFLE/ZzSY28bH8DRCxbNxR+IK4D69iaTYsSgn0e
+         tyLQx3G90tXGnhNgqr9bq2uET/0jx/zNrmvuiH+avVoEnHtVrS4ThUR9BH5Nj0kr7alt
+         r3lfTgMqACDEzgnYjBdmnD9xO36A7tfnowHqtgs1ArWv+1134jPxSavDuaBeYVUTFM4A
+         hNUiKZEl6TXhGrGDQIrGQD6bxtIVGZnt4M6OaH1D4U17/UsW7EkeLGK4WKBnXZAc8fdc
+         oKHWScRdVidQrjM8r2EsJXwqNKNeu23G8NbAqH6AWeT9B8WitUzvXWwF2t2pOeS8Mi+A
+         aEHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695316591; x=1695921391;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iBjumh/08C/hAerf88ZhuYGamGHKoujdOesdPVpYjpA=;
+        b=c7BB5EMQSk98oc0c5VvMLMLNQNJbMYUZM2j8t4nXBRPEFVWgzIRy0ZOSRDWKB6lFPK
+         FDNdiqtJsRSB0PUGvb7zUz8dFqZfwrjuS05EW8DkLkEtGSd/iIWdEOMqRGIl/f2Tlp2n
+         wV0/hq43s4VookmIlAFlMnuExYuhlCE3F68kdXRpWSmcbcGoD1KMnlWJGGoYRNTmFH1m
+         J03iof68ySm5f45daffzB+vN2U8kTOyLs24hDMVvFdcRJivIoPMyaLd4tRFeE6mD6VyQ
+         Oh+tlvVJXubBZM1b6GIdsCNNUGZvAs3U8TKfgT97EBhuOsnSyMN16QEym6n1cVxdWS45
+         EShw==
+X-Gm-Message-State: AOJu0YwXD+oQJixJvktCJJcwj+hD/L60ptl5dIpwSdMEvQQGfn6Ud0VG
+	1LkBNkhQ4BOUG255/HEopOcaFlUTjgkrCvE3
+X-Google-Smtp-Source: AGHT+IH0vTdIaWjTgcAQ+ArFkTOmLvd1ObH+0cDmDEViVdaw4/9XeQlqSg7H2jub1rfnriE/s6qmcA==
+X-Received: by 2002:a05:6e02:b26:b0:34f:df0c:239d with SMTP id e6-20020a056e020b2600b0034fdf0c239dmr6213215ilu.15.1695275822896;
+        Wed, 20 Sep 2023 22:57:02 -0700 (PDT)
+Received: from james-x399.localdomain (71-33-152-19.hlrn.qwest.net. [71.33.152.19])
+        by smtp.gmail.com with ESMTPSA id e7-20020a056638020700b0042ad887f705sm182745jaq.143.2023.09.20.22.57.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Sep 2023 22:57:02 -0700 (PDT)
+From: James Hilliard <james.hilliard1@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: James Hilliard <james.hilliard1@gmail.com>,
+	Pierluigi Passaro <pierluigi.p@variscite.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Marek Vasut <marex@denx.de>,
+	Tim Harvey <tharvey@gateworks.com>,
+	Stefan Wahren <stefan.wahren@chargebyte.com>,
+	=?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>,
+	Philippe Schenker <philippe.schenker@toradex.com>,
+	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+	Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Li Yang <leoyang.li@nxp.com>,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v9 3/3] ARM: dts: imx6q: Add Variscite MX6 Custom board support
+Date: Wed, 20 Sep 2023 23:56:08 -0600
+Message-Id: <20230921055611.1459374-3-james.hilliard1@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230921055611.1459374-1-james.hilliard1@gmail.com>
+References: <20230921055611.1459374-1-james.hilliard1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PSAPR03MB5351.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 241202dd-6a93-4f8c-c079-08dbba64f443
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Sep 2023 05:38:16.0237
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Hf3D3F3E2js5uJEHFMSB/krIQ2Lb4UYqP943U+Dn43BEL2xiqdkQuIskFvgSmCTFs0D23060X0TGOrShnyaLmmaffxumet+vsOHUFvCqqM4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB5728
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--21.312600-8.000000
-X-TMASE-MatchedRID: Q8pJWSpPf0PUL3YCMmnG4ia1MaKuob8PCJpCCsn6HCHBnyal/eRn3gzR
-	CsGHURLuwpcJm2NYlPAF6GY0Fb6yCq8zqdV7d9lTmlaAItiONP1ai3lnXr67vgQCU+LQ7n5McDY
-	BtqUkx7xkrFkfWkEG0GaUgtPxhg/OLaseLy1WdxYS7luGt6tlhr4Vw8Fss5K+IFBEE5CFomLmc1
-	fhycWNwvVMhKhdtCQXiK4tTmf2YQMYkHOTosTds39NanCUA4VeWuFm7TqL4eHVrrSePZucEhG59
-	Y7tVhgxFiZzivkiLNnf/TNhJ52n1pH0YXYnbGoz0gVVXNgaM0qcIZLVZAQa0PxXvvKElGCjq7rF
-	UcuGp/G8QIu4z6HhEH7cGd19dSFd
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--21.312600-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	8AAE5079F760FC5E49FCD371F348A871907A94AFF41B97D364BB97F0A08962872000:8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-T24gV2VkLCAyMDIzLTA5LTIwIGF0IDEyOjQ3ICswODAwLCBGZWkgU2hhbyB3cm90ZToNCj4gIAkg
-DQo+IEV4dGVybmFsIGVtYWlsIDogUGxlYXNlIGRvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0
-dGFjaG1lbnRzIHVudGlsDQo+IHlvdSBoYXZlIHZlcmlmaWVkIHRoZSBzZW5kZXIgb3IgdGhlIGNv
-bnRlbnQuDQo+ICBIaSBNYXJrLA0KPiANCj4gT24gVHVlLCBTZXAgMTksIDIwMjMgYXQgODozOOKA
-r1BNIENodW4tSmVuIFRzZW5nICjmm77kv4rku4EpDQo+IDxDaHVuLUplbi5Uc2VuZ0BtZWRpYXRl
-ay5jb20+IHdyb3RlOg0KPiA+DQo+ID4gT24gVHVlLCAyMDIzLTA5LTE5IGF0IDEyOjUyICswMjAw
-LCBBbmdlbG9HaW9hY2NoaW5vIERlbCBSZWdubw0KPiB3cm90ZToNCj4gPiA+IElsIDE5LzA5LzIz
-IDAzOjQ0LCBNYXJrIFRzZW5nIGhhIHNjcml0dG86DQo+ID4gPiA+IE1UODE4OCBzdnMgZ3B1IHVz
-ZXMgMi1saW5lIGhpZ2ggYmFuayBhbmQgbG93IGJhbmsgdG8gb3B0aW1pemUNCj4gdGhlDQo+ID4g
-PiA+IHZvbHRhZ2Ugb2Ygb3BwIHRhYmxlIGZvciBoaWdoZXIgYW5kIGxvd2VyIGZyZXF1ZW5jeQ0K
-PiByZXNwZWN0aXZlbHkuDQo+ID4gPiA+DQo+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IE1hcmsgVHNl
-bmcgPGNodW4tamVuLnRzZW5nQG1lZGlhdGVrLmNvbT4NCj4gPiA+ID4gLS0tDQo+IDxzbmlwPg0K
-PiA+ID4gPiArDQo+ID4gPiA+ICsgICAvKiBGb3Igdm9sdGFnZSBiaW4gc3VwcG9ydCAqLw0KPiA+
-ID4NCj4gPiA+IEkgYWxyZWFkeSBhc2tlZCB5b3UgdG8gcGxlYXNlIHNlbmQgdGhlIHZvbHRhZ2Ug
-YmluIHN1cHBvcnQgYXMgYQ0KPiA+ID4gc2VwYXJhdGVkIGNvbW1pdA0KPiA+ID4gYmVjYXVzZSB0
-aGlzIGlzIGZvciAqYWxsIFNvQ3MqIGFuZCBub3Qgb25seSBmb3IgODE4OC4NCj4gPiA+DQo+ID4g
-PiBBZ2FpbiwgcGxlYXNlIHNlcGFyYXRlIHRoZSB2b2x0YWdlIGJpbiBzdXBwb3J0IGZyb20gdGhl
-IE1UODE4OA0KPiA+ID4gc3VwcG9ydC4NCj4gPiA+DQo+ID4gSGkgQW5nZWxvLA0KPiA+DQo+ID4g
-SSBoYXZlIGFscmVhZHkgY2hlY2tlZCAidm9sdGFnZSBiaW5zIHR1cm4gcG9pbnQiIHdpdGggREUs
-IGl0IGlzDQo+IHN1cHBvcnQNCj4gPiBmb3IgKmFsbCBTb0NzKiAsIG5vdCBvbmx5IGZvciBNVDgx
-ODguDQo+IA0KPiBJIHRoaW5rIEFuZ2VsbydzIHBvaW50IGlzIHRoYXQgeW91IHNob3VsZCBzZXBh
-cmF0ZSB0aGlzIHBhdGNoIGludG8NCj4gdHdvLCB3aGVyZToNCj4gLSAic29jOiBtZWRpYXRlazog
-c3ZzOiBBZGQgc3VwcG9ydCBmb3Igdm9sdGFnZSBiaW5zIiBjb250YWlucyBjaGFuZ2VzDQo+IG9u
-bHkgcmVsYXRlZCB0byB0aGUgIkZvciB2b2x0YWdlIGJpbiBzdXBwb3J0IiBwYXJ0Lg0KPiAtICJz
-b2M6IG1lZGlhdGVrOiBzdnM6IEFkZCBzdXBwb3J0IGZvciBNVDgxODggU29DIiBjb250YWlucyBj
-b2RlIHRoYXQNCj4gaXMgc3BlY2lmaWNhbGx5IGZvciBNVDgxODgsIGkuZS4gc3ZzX210ODE4OF9l
-ZnVzZV9wYXJzaW5nLA0KPiBzdnNfbXQ4MTg4X2JhbmtzIGV0Yy4NCj4gDQo+IEl0J2QgYmUgZWFz
-aWVyIGZvciBwZW9wbGUgdG8gcmV2aWV3LCBtYW5hZ2UgYW5kIGNoZXJyeS1waWNrIHBhdGNoZXMN
-Cj4gaWYNCj4geW91IGFkZCB0aGUgZ2VuZXJpYyBjaGFuZ2VzIGFwYXJ0IGZyb20gdGhlIHBsYXRm
-b3JtLXNwZWNpZmljIGNvZGUuDQo+IEZvciBleGFtcGxlLCBzb21lb25lIHdpbGwgYmUgYWJsZSB0
-byBzaW1wbHkgcGljayB1cCB0aGUgcGF0Y2ggZm9yDQo+IHZvbHRhZ2UgYmluIHN1cHBvcnQgc29s
-ZWx5IGlmIHRoZXkgYXJlIG5vdCBpbnRlcmVzdGVkIGluIE1UODE4OC4NCj4gDQo+IFJlZ2FyZHMs
-DQo+IEZlaQ0KPiA+DQo+ID4NCj4gPiA+IHNvYzogbWVkaWF0ZWs6IHN2czogQWRkIHN1cHBvcnQg
-Zm9yIHZvbHRhZ2UgYmlucw0KPiA+ID4gc29jOiBtZWRpYXRlazogc3ZzOiBBZGQgc3VwcG9ydCBm
-b3IgTVQ4MTg4IFNvQw0KPiA+ID4NCj4gPiA+IFJlZ2FyZHMsDQo+ID4gPiBBbmdlbG8NCg0KSGkg
-QW5nZWxvLA0KDQpJIGhhdmUgdXBkYXRlZCB2NCBwYXRjaCBhbmQgc2VwYXJhdGUgdGhlIHZvbHRh
-Z2UgYmluIHN1cHBvcnQgZnJvbSB0aGUNCk1UODE4OC4NCg0KQlJzLA0KDQpNYXJrIFRzZW5nDQoN
-Cj4gPiA+DQo=
+This patch adds support for the Variscite MX6 SoM Carrier Board.
+
+This Carrier-Board has the following :
+- LVDS interface for the VLCD-CAP-GLD-LVDS 7" LCD 800 x 480 touch display
+- HDMI Connector
+- USB Host + USB OTG Connector
+- 10/100/1000 Mbps Ethernet
+- miniPCI-Express slot
+- SD Card connector
+- Audio Headphone/Line In jack connectors
+- S-ATA
+- On-board DMIC
+- RS485 Header
+- CAN bus header
+- SPI header
+- Camera Interfaces header
+- OnBoard RTC with Coin Backup battery socket
+- RS232 Debug Header (IDC10)
+- RS232 DTE
+
+Product Page : https://www.variscite.com/product/single-board-computers/var-mx6customboard
+
+The dts file based on the ones provided by Variscite on their own
+kernel, but adapted for mainline.
+
+Cc: Pierluigi Passaro <pierluigi.p@variscite.com>
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
+Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+---
+ arch/arm/boot/dts/nxp/imx/Makefile            |   1 +
+ .../dts/nxp/imx/imx6q-var-mx6customboard.dts  | 231 ++++++++++++++++++
+ 2 files changed, 232 insertions(+)
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6q-var-mx6customboard.dts
+
+diff --git a/arch/arm/boot/dts/nxp/imx/Makefile b/arch/arm/boot/dts/nxp/imx/Makefile
+index 3629e343d322..258ec0e5b712 100644
+--- a/arch/arm/boot/dts/nxp/imx/Makefile
++++ b/arch/arm/boot/dts/nxp/imx/Makefile
+@@ -244,6 +244,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
+ 	imx6q-udoo.dtb \
+ 	imx6q-utilite-pro.dtb \
+ 	imx6q-var-dt6customboard.dtb \
++	imx6q-var-mx6customboard.dtb \
+ 	imx6q-vicut1.dtb \
+ 	imx6q-wandboard.dtb \
+ 	imx6q-wandboard-revb1.dtb \
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-var-mx6customboard.dts b/arch/arm/boot/dts/nxp/imx/imx6q-var-mx6customboard.dts
+new file mode 100644
+index 000000000000..46c1401a2454
+--- /dev/null
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-var-mx6customboard.dts
+@@ -0,0 +1,231 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Support for Variscite MX6 Carrier-board
++ *
++ * Copyright 2016 Variscite, Ltd. All Rights Reserved
++ * Copyright 2022 Bootlin
++ */
++
++/dts-v1/;
++
++#include "imx6qdl-var-som.dtsi"
++#include <dt-bindings/pwm/pwm.h>
++
++/ {
++	model = "Variscite i.MX6 QUAD/DUAL VAR-SOM-MX6 Custom Board";
++	compatible = "variscite,mx6customboard", "variscite,var-som-imx6q", "fsl,imx6q";
++
++	panel0: lvds-panel0 {
++		compatible =  "panel-lvds";
++		backlight = <&backlight_lvds>;
++		width-mm = <152>;
++		height-mm = <91>;
++		label = "etm070001adh6";
++		data-mapping = "jeida-18";
++
++		panel-timing {
++			clock-frequency = <32000000>;
++			hactive = <800>;
++			vactive = <480>;
++			hback-porch = <39>;
++			hfront-porch = <39>;
++			vback-porch = <29>;
++			vfront-porch = <13>;
++			hsync-len = <47>;
++			vsync-len = <2>;
++		};
++
++		port {
++			panel_in_lvds0: endpoint {
++				remote-endpoint = <&lvds0_out>;
++			};
++		};
++	};
++
++	panel1: lvds-panel1 {
++		compatible =  "panel-lvds";
++		width-mm = <152>;
++		height-mm = <91>;
++		data-mapping = "jeida-18";
++
++		panel-timing {
++			clock-frequency = <38251000>;
++			hactive = <800>;
++			vactive = <600>;
++			hback-porch = <112>;
++			hfront-porch = <32>;
++			vback-porch = <3>;
++			vfront-porch = <17>;
++			hsync-len = <80>;
++			vsync-len = <4>;
++		};
++
++		port {
++			panel_in_lvds1: endpoint {
++				remote-endpoint = <&lvds1_out>;
++			};
++		};
++	};
++
++	backlight_lvds: backlight-lvds {
++		compatible = "pwm-backlight";
++		pwms = <&pwm2 0 50000 0>;
++		brightness-levels = <0 4 8 16 32 64 128 248>;
++		default-brightness-level = <7>;
++		power-supply = <&reg_3p3v>;
++	};
++};
++
++&i2c3 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2c3>;
++	status = "okay";
++
++	touchscreen@24 {
++		compatible = "cypress,tt21000";
++		reg = <0x24>;
++		interrupt-parent = <&gpio3>;
++		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
++		reset-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
++		vdd-supply = <&reg_3p3v>;
++		touchscreen-size-x = <880>;
++		touchscreen-size-y = <1280>;
++	};
++
++	touchscreen@38 {
++		compatible = "edt,edt-ft5306";
++		reg = <0x38>;
++		interrupt-parent = <&gpio3>;
++		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
++		touchscreen-size-x = <1800>;
++		touchscreen-size-y = <1000>;
++	};
++};
++
++&iomuxc {
++	pinctrl_camera: cameragrp {
++		fsl,pins = <
++			MX6QDL_PAD_CSI0_DAT12__IPU1_CSI0_DATA12		0x1b0b0
++			MX6QDL_PAD_CSI0_DAT13__IPU1_CSI0_DATA13		0x1b0b0
++			MX6QDL_PAD_CSI0_DAT14__IPU1_CSI0_DATA14		0x1b0b0
++			MX6QDL_PAD_CSI0_DAT15__IPU1_CSI0_DATA15		0x1b0b0
++			MX6QDL_PAD_CSI0_DAT16__IPU1_CSI0_DATA16		0x1b0b0
++			MX6QDL_PAD_CSI0_DAT17__IPU1_CSI0_DATA17		0x1b0b0
++			MX6QDL_PAD_CSI0_DAT18__IPU1_CSI0_DATA18		0x1b0b0
++			MX6QDL_PAD_CSI0_DAT19__IPU1_CSI0_DATA19		0x1b0b0
++			MX6QDL_PAD_CSI0_DATA_EN__IPU1_CSI0_DATA_EN	0x1b0b0
++			MX6QDL_PAD_CSI0_PIXCLK__IPU1_CSI0_PIXCLK	0x1b0b0
++			MX6QDL_PAD_CSI0_MCLK__IPU1_CSI0_HSYNC		0x1b0b0
++			MX6QDL_PAD_CSI0_VSYNC__IPU1_CSI0_VSYNC		0x1b0b0
++		>;
++	};
++
++	pinctrl_flexcan1: flexcan1grp {
++		fsl,pins = <
++			MX6QDL_PAD_GPIO_7__FLEXCAN1_TX		0x1b0b0
++			MX6QDL_PAD_GPIO_8__FLEXCAN1_RX		0x1b0b0
++		>;
++	};
++
++	pinctrl_ipu1: ipu1grp {
++		fsl,pins = <
++			MX6QDL_PAD_DI0_DISP_CLK__IPU1_DI0_DISP_CLK	0x10
++			MX6QDL_PAD_DI0_PIN15__IPU1_DI0_PIN15		0x10
++			MX6QDL_PAD_DI0_PIN2__IPU1_DI0_PIN02		0x10
++			MX6QDL_PAD_DI0_PIN3__IPU1_DI0_PIN03		0x10
++			MX6QDL_PAD_DI0_PIN4__IPU1_DI0_PIN04		0x10
++			MX6QDL_PAD_DISP0_DAT0__IPU1_DISP0_DATA00	0x10
++			MX6QDL_PAD_DISP0_DAT1__IPU1_DISP0_DATA01	0x10
++			MX6QDL_PAD_DISP0_DAT2__IPU1_DISP0_DATA02	0x10
++			MX6QDL_PAD_DISP0_DAT3__IPU1_DISP0_DATA03	0x10
++			MX6QDL_PAD_DISP0_DAT4__IPU1_DISP0_DATA04	0x10
++			MX6QDL_PAD_DISP0_DAT5__IPU1_DISP0_DATA05	0x10
++			MX6QDL_PAD_DISP0_DAT6__IPU1_DISP0_DATA06	0x10
++			MX6QDL_PAD_DISP0_DAT7__IPU1_DISP0_DATA07	0x10
++			MX6QDL_PAD_DISP0_DAT8__IPU1_DISP0_DATA08	0x10
++			MX6QDL_PAD_DISP0_DAT9__IPU1_DISP0_DATA09	0x10
++			MX6QDL_PAD_DISP0_DAT10__IPU1_DISP0_DATA10	0x10
++			MX6QDL_PAD_DISP0_DAT11__IPU1_DISP0_DATA11	0x10
++			MX6QDL_PAD_DISP0_DAT12__IPU1_DISP0_DATA12	0x10
++			MX6QDL_PAD_DISP0_DAT13__IPU1_DISP0_DATA13	0x10
++			MX6QDL_PAD_DISP0_DAT14__IPU1_DISP0_DATA14	0x10
++			MX6QDL_PAD_DISP0_DAT15__IPU1_DISP0_DATA15	0x10
++			MX6QDL_PAD_DISP0_DAT16__IPU1_DISP0_DATA16	0x10
++			MX6QDL_PAD_DISP0_DAT17__IPU1_DISP0_DATA17	0x10
++			MX6QDL_PAD_DISP0_DAT18__IPU1_DISP0_DATA18	0x10
++			MX6QDL_PAD_DISP0_DAT19__IPU1_DISP0_DATA19	0x10
++			MX6QDL_PAD_DISP0_DAT20__IPU1_DISP0_DATA20	0x10
++			MX6QDL_PAD_DISP0_DAT21__IPU1_DISP0_DATA21	0x10
++			MX6QDL_PAD_DISP0_DAT22__IPU1_DISP0_DATA22	0x10
++			MX6QDL_PAD_DISP0_DAT23__IPU1_DISP0_DATA23	0x10
++		>;
++	};
++
++	pinctrl_usbotg_var: usbotggrp {
++		fsl,pins = <
++			MX6QDL_PAD_GPIO_4__GPIO1_IO04		0x17059
++		>;
++	};
++
++	pinctrl_usdhc1: usdhc1grp {
++		fsl,pins = <
++			MX6QDL_PAD_SD1_CMD__SD1_CMD		0x17071
++			MX6QDL_PAD_SD1_CLK__SD1_CLK		0x10071
++			MX6QDL_PAD_SD1_DAT0__SD1_DATA0		0x17071
++			MX6QDL_PAD_SD1_DAT1__SD1_DATA1		0x17071
++			MX6QDL_PAD_SD1_DAT2__SD1_DATA2		0x17071
++			MX6QDL_PAD_SD1_DAT3__SD1_DATA3		0x17071
++		>;
++	};
++
++	pinctrl_usdhc2: usdhc2grp {
++		fsl,pins = <
++			MX6QDL_PAD_SD2_CMD__SD2_CMD		0x17059
++			MX6QDL_PAD_SD2_CLK__SD2_CLK		0x10059
++			MX6QDL_PAD_SD2_DAT0__SD2_DATA0		0x17059
++			MX6QDL_PAD_SD2_DAT1__SD2_DATA1		0x17059
++			MX6QDL_PAD_SD2_DAT2__SD2_DATA2		0x17059
++			MX6QDL_PAD_SD2_DAT3__SD2_DATA3		0x17059
++		>;
++	};
++};
++
++&ldb {
++	status = "okay";
++
++	lvds-channel@0 {
++		fsl,data-mapping = "spwg";
++		fsl,data-width = <24>;
++		status = "okay";
++
++		port@4 {
++			reg = <4>;
++
++			lvds0_out: endpoint {
++				remote-endpoint = <&panel_in_lvds0>;
++			};
++		};
++	};
++
++	lvds-channel@1 {
++		fsl,data-mapping = "spwg";
++		fsl,data-width = <24>;
++		status = "okay";
++
++		port@4 {
++			reg = <4>;
++
++			lvds1_out: endpoint {
++				remote-endpoint = <&panel_in_lvds1>;
++			};
++		};
++	};
++};
++
++&usdhc2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_usdhc2>;
++	cd-gpios = <&gpio4 14 GPIO_ACTIVE_LOW>;
++	wp-gpios = <&gpio4 15 GPIO_ACTIVE_HIGH>;
++	status = "okay";
++};
+-- 
+2.34.1
+
 
