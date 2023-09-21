@@ -1,122 +1,166 @@
-Return-Path: <devicetree+bounces-2072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C7DF7A99B9
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 20:19:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 645417A99BC
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 20:20:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B46131C20FEF
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 18:19:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D234280CBF
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 18:20:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0CFA168B5;
-	Thu, 21 Sep 2023 17:23:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6309344463;
+	Thu, 21 Sep 2023 17:23:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A60D343AA8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1936C19443
 	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:23:07 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BDF429792;
-	Thu, 21 Sep 2023 10:11:45 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38LF9G9c053265;
-	Thu, 21 Sep 2023 10:09:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1695308956;
-	bh=oTNy2wHSxIaJqOc+yS1dO/7QvHpmd/SGTpHunhYERaU=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=uaVms098IiGUq4F+/3TXjTR/+/Vxl/3nUqx716SB/wJrgGXm+9za0VN5dP49Nyebs
-	 RK+QCOfkJqiMYcwDVPdha06I7sGsNK76c7U5KUVWTcy1/eAgc5czdxe6C4KjbtgVw1
-	 AIHDOZG9fBAP9975wbQj5TNp/MmAkOivENRP5UsA=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38LF9GFq020971
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 21 Sep 2023 10:09:16 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 21
- Sep 2023 10:09:16 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 21 Sep 2023 10:09:16 -0500
-Received: from [10.249.139.5] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38LF9CL8067245;
-	Thu, 21 Sep 2023 10:09:13 -0500
-Message-ID: <1a608e54-36a4-475a-ac21-906d4c9df475@ti.com>
-Date: Thu, 21 Sep 2023 20:39:12 +0530
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 810B4EAAD;
+	Thu, 21 Sep 2023 10:12:51 -0700 (PDT)
+Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-6c0f2addaefso697420a34.2;
+        Thu, 21 Sep 2023 10:12:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695316326; x=1695921126;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lG8p3Ox6WlwM/LHrd1QCAhLEOmdahvYhmsYqP/8b0wc=;
+        b=VlSPzDUTLsIuz61ycUst9lS8Fh6a+pbFlR/9BMK4YQhJZN2q9BN9Jio0J79JuSU+h9
+         k0qFaVFN734wtLCyInIo4ZifGL/Obgf/1yJe5XpE8uuDzpD/uSlpl28OSNA8mYheAmYa
+         R0KlpmPnleS+EjWRN91Gihz+Cn4w2ODCn/4cSTP4bH3fj23BtQQZ4hSv3qBCgj15mww0
+         Td0d6FVaxJMTgLCse2v9zJDpkyJFKE0LBqCj0eTDdjMYnyQPJcS+SHLSCFNEN4DkGIjd
+         A0pB+syEX25zgHu0gEJ/LJgeSLDPviNasStE1RWZDih/mOwqc+7wAfPTgEIXboQb3W/3
+         Htnw==
+X-Gm-Message-State: AOJu0YxB9YLXx2b6DHivFCfItGBovY21gXup6ioyKsuyEAwNaruS+a3P
+	Yj+5PZk3kcsm1PeA6kK6PAvNLNkhP8EN1/xH
+X-Google-Smtp-Source: AGHT+IHHuARKFOd7pddqiWIalhJPsy2DvLr+IambyCW+s67mH+5QSMK+mb3R6rVWvRgZIYebdxqgAw==
+X-Received: by 2002:a0d:dec3:0:b0:59b:52bd:4d2a with SMTP id h186-20020a0ddec3000000b0059b52bd4d2amr5184845ywe.23.1695309064435;
+        Thu, 21 Sep 2023 08:11:04 -0700 (PDT)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
+        by smtp.gmail.com with ESMTPSA id x2-20020a818702000000b005869ca8da8esm362694ywf.146.2023.09.21.08.11.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Sep 2023 08:11:04 -0700 (PDT)
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-d81d09d883dso1342258276.0;
+        Thu, 21 Sep 2023 08:11:03 -0700 (PDT)
+X-Received: by 2002:a5b:7c8:0:b0:d19:664:7425 with SMTP id t8-20020a5b07c8000000b00d1906647425mr5345303ybq.27.1695309063668;
+ Thu, 21 Sep 2023 08:11:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] arm64: dts: ti: k3-j721e-mcu-wakeup: Add MCU domain
- ESM instance
-Content-Language: en-US
-To: "Kumar, Udit" <u-kumar1@ti.com>, <robh+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>
-References: <20230920063029.3081579-1-n-francis@ti.com>
- <191d1260-48f0-2388-ab29-405222302cda@ti.com>
-From: Neha Malcom Francis <n-francis@ti.com>
-In-Reply-To: <191d1260-48f0-2388-ab29-405222302cda@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+References: <363186079b4269891073f620e3e2353cf7d2559a.1669988238.git.geert+renesas@glider.be>
+ <1503a3857107e3a4f34e0c7fb5dada39@walle.cc> <CAMuHMdXN+HJb=zGeG=3t=Pie9cVpnBLYuEb_qX6=oSxG8eTkAw@mail.gmail.com>
+ <20221205163306.GB2012644-robh@kernel.org> <CAMuHMdUcrh26MNYuiqiC0_FMkeHtq1YnJrZKHEV_WQm5Dgzoaw@mail.gmail.com>
+ <ee03d150-51cf-4e12-ae2c-9475a192fb6c@linaro.org>
+In-Reply-To: <ee03d150-51cf-4e12-ae2c-9475a192fb6c@linaro.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 21 Sep 2023 17:10:51 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdW_-0f8DOmEzYb28XABqU3oFL4KXf9M-qKVyyrE_Lo+jQ@mail.gmail.com>
+Message-ID: <CAMuHMdW_-0f8DOmEzYb28XABqU3oFL4KXf9M-qKVyyrE_Lo+jQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mtd: jedec,spi-nor: Document support for
+ more MT25QU parts
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Michael Walle <michael@walle.cc>, 
+	Tudor Ambarus <tudor.ambarus@microchip.com>, Pratyush Yadav <pratyush@kernel.org>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Udit
+Hi Tudor,
 
-On 21-Sep-23 4:29 PM, Kumar, Udit wrote:
-> 
-> On 9/20/2023 12:00 PM, Neha Malcom Francis wrote:
->> Currently J721E defines only the main_esm in DTS. Add node for mcu_esm
->> as well.
-> Could you please add some more description in commit message , why we 
-> need mcu_esm node.
+On Thu, Sep 21, 2023 at 4:45=E2=80=AFPM Tudor Ambarus <tudor.ambarus@linaro=
+.org> wrote:
+> Sorry for the delay, I just noticed this while cleaning the patchwork log=
+.
+> On 12/6/22 08:32, Geert Uytterhoeven wrote:
+> > On Mon, Dec 5, 2022 at 5:33 PM Rob Herring <robh@kernel.org> wrote:
+> >> On Fri, Dec 02, 2022 at 02:56:01PM +0100, Geert Uytterhoeven wrote:
+> >>> On Fri, Dec 2, 2022 at 2:50 PM Michael Walle <michael@walle.cc> wrote=
+:
+> >>>> Am 2022-12-02 14:37, schrieb Geert Uytterhoeven:
+> >>>>> Document support for the Micron MT25QU256A and MT25QU512A Serial NO=
+R
+> >>>>> FLASHes.
+> >>>>>
+> >>>>> Merge the new entries with the existing entry for MT25QU02G.
+> >>>>>
+> >>>>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> >>>>> ---
+> >>>>> mt25qu512a is already in active use, causing "make dtbs_check" erro=
+rs.
+> >>>>> mt25qu256a is supported by the Linux spi-nor driver, but there are =
+no
+> >>>>> upstream users yet.
+> >>>>
+> >>>> Is it encouraged to use the specific compatible with SPI-NOR flashes=
+?
+> >>>> As far as I know it isn't. The spi-nor subsys tries hard to identify
+> >>>> any flashes at runtime and any additional information in the device =
+tree
+> >>>> is used as a last resort (just for flashes which doesn't support the
+> >>>> read jedec id command yet). And usually boards have different source=
+s
+> >>>> for flash chips, so hardcoding a particular part in the device tree
+> >>>> doesn't make sense.
+> >>>
+> >>> Thanks, I am aware there have been pushbacks when trying to
+> >>> document more compatible values.
+> >>>
+> >>> IMHO either all or none of them should be documented.
+> >>> If device-specific compatible values are discouraged, the bindings
+> >>> should be updated to reflect that, and document a single compatible
+> >>> value ("jedec,spi-nor") only.
+> >>
+> >> That's already allowed, so there's your answer.
+> >
+> > It's indeed allowed, but the alternative is documented, too (for some
+> > values).
+> >
+> >> The caveat is don't be adding them later to your DT when you find an
+> >> issue and new quirk properties will probably be rejected.
+> >
+> > Adding them later to your DT when you find an issue makes no sense,
+> > as that breaks compatibility with older DTBs.
+>
+> We won't break compatibility with older DTBs if we use a list of
+> compatibles. First the vendor specific one which will use some quirks,
+> and if that's not available, have as second the generic jedec,spi-nor to
+> fallback to.
 
-Yes I will add that in, thanks for reviewing!
+Sure, you should use a list.
 
->> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 7 +++++++
->>   1 file changed, 7 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi 
->> b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
->> index 05d6ef127ba7..fa8af20c7818 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
->> @@ -671,4 +671,11 @@ wkup_vtm0: temperature-sensor@42040000 {
->>           power-domains = <&k3_pds 154 TI_SCI_PD_EXCLUSIVE>;
->>           #thermal-sensor-cells = <1>;
->>       };
->> +
->> +    mcu_esm: esm@40800000 {
->> +        compatible = "ti,j721e-esm";
->> +        reg = <0x00 0x40800000 0x00 0x1000>;
->> +        ti,esm-pins = <95>;
->> +        bootph-pre-ram;
->> +    };
->>   };
-> 
-> With that change
-> 
-> Reviewed-by: Udit Kumar <u-kumar1@ti.com>
-> 
-> 
+But the current recommended practice is to not have a list,
+but just "jedec,spi-nor" (using a list with a new FLASH part name
+causes checkpatch and dtbs_check warnings). Hence if you follow that
+recommendation, you will run into compatibility issues with older DTBs
+when you discover the quirk later, and decide to add it to the list.
 
-Thanking You
-Neha Malcom Francis
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
