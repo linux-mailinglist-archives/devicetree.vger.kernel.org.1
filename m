@@ -1,162 +1,116 @@
-Return-Path: <devicetree+bounces-1921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F33A77A8FE8
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 01:40:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2359C7A904F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 03:00:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED7DC1C20D50
-	for <lists+devicetree@lfdr.de>; Wed, 20 Sep 2023 23:40:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 226A51C2086B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 01:00:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A8C33F4DA;
-	Wed, 20 Sep 2023 23:39:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 500B8623;
+	Thu, 21 Sep 2023 01:00:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9EA33F4CC
-	for <devicetree@vger.kernel.org>; Wed, 20 Sep 2023 23:39:57 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19677C9;
-	Wed, 20 Sep 2023 16:39:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1695253196; x=1726789196;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7rBWAZNkXl0XliJjOhwzouxtCGTxulwG6PXP2zaxTVY=;
-  b=CLgMyj7h76D86x8McOwXOOn+SPDEaPb4rzmYQ+KPP0KyVUy/jXHiv0ZV
-   xIKF4G2QsjJuSmSdbgh9mJOpp2N1V/Dl5vFQzyvtOKTmBeaHiVMWUSyWQ
-   2+GBgwA2OQr5CqgiHoNkpmQVxFt0TkjmIsCx+Zijlb9yoFs4zneMxfraH
-   PMLLiy2a3aHNsfKbyHKCXgkGfTSk34zgbwpVL68bvmgvqpKhe2IxYSNwW
-   t6qG9QDvqDMHCzm2DLK+RWyS3vZlltgSHBRJbqVfGqo/0rBswaunMm1pB
-   yl0gUrHKEKdSie9jG1dBTKhorKZw780k1NPY7DlctHmGTZBrzXmwDprB3
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="384209308"
-X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; 
-   d="scan'208";a="384209308"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Sep 2023 16:35:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="750146565"
-X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; 
-   d="scan'208";a="750146565"
-Received: from lkp-server02.sh.intel.com (HELO 9ef86b2655e5) ([10.239.97.151])
-  by fmsmga007.fm.intel.com with ESMTP; 20 Sep 2023 16:35:26 -0700
-Received: from kbuild by 9ef86b2655e5 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qj6j6-0009GO-30;
-	Wed, 20 Sep 2023 23:35:24 +0000
-Date: Thu, 21 Sep 2023 07:35:03 +0800
-From: kernel test robot <lkp@intel.com>
-To: David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-staging@lists.linux.dev
-Cc: oe-kbuild-all@lists.linux.dev, David Lechner <dlechner@baylibre.com>,
-	linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Axel Haslam <ahaslam@baylibre.com>,
-	Philip Molloy <pmolloy@baylibre.com>
-Subject: Re: [PATCH 4/4] iio: resolver: add new driver for AD2S1210
-Message-ID: <202309210740.YRdN185w-lkp@intel.com>
-References: <20230920170253.203395-5-dlechner@baylibre.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B490622
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 01:00:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 111C1C433C8;
+	Thu, 21 Sep 2023 01:00:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695258032;
+	bh=Z3g98CN97Kp2tDtu7HOQ22hDAtgJ3k/nNvIb2l3ASxk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ouayZvHri60qbbevVV/QKzbmdAaWutHLOCQwtgtjWqsGL+TgDginCgWDh1oCbFUwr
+	 +qgSS0dnA2NRzqj2NBpG8SQd0RPXUg2FEtVYfK8GZ1yyWW9e1qtU426ZiEI+uHIony
+	 UvQ13+EzeFDyTbfjXT00ftbrdgU7kHnL8us0yKzbzhrpGVMeLX4V9McRrrRxemCY9P
+	 Y7SXBuJ7BJkxtuS6zYNcLU2houNa2q66HkZpSBSfLqO2cJ6GfOYqb20jjIOdfBdXmq
+	 6Pq+EWwb9xwqijLAv5icVyLGa1WMnMc5LNaWLA36W24Vzty8K9rMQqDnOzMjr+0nHJ
+	 vOD9ij632GtEg==
+Date: Thu, 21 Sep 2023 08:48:17 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: =?utf-8?B?5rGq6L6w?= <wangchen20@iscas.ac.cn>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
+	chao.wei@sophgo.com, conor@kernel.org, devicetree@vger.kernel.org,
+	emil.renner.berthing@canonical.com, guoren@kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	palmer@dabbelt.com, paul.walmsley@sifive.com,
+	xiaoguang.xing@sophgo.com
+Subject: Re: Re: [PATCH v2 03/11] dt-bindings: riscv: add sophgo sg2042
+ bindings
+Message-ID: <ZQuS0ZE0Y6Lot/UM@xhacker>
+References: <cover.1695189879.git.wangchen20@iscas.ac.cn>
+ <c6aea83bb1df563b1f2a66c5f230c3861aed1e15.1695189879.git.wangchen20@iscas.ac.cn>
+ <ec11eb6a-c37b-08bd-5997-8fc390fd58c8@linaro.org>
+ <3d2bba58.29898.18ab279a15c.Coremail.wangchen20@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230920170253.203395-5-dlechner@baylibre.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3d2bba58.29898.18ab279a15c.Coremail.wangchen20@iscas.ac.cn>
 
-Hi David,
+On Wed, Sep 20, 2023 at 08:03:50PM +0800, 汪辰 wrote:
+> Sorry, my mistake to forget adding the tag, will add in next revision.
 
-kernel test robot noticed the following build warnings:
+Hi Chen,
 
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on linus/master v6.6-rc2 next-20230920]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Soft remind: In mailist, top post should be avoided.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/David-Lechner/dt-bindings-iio-resolver-add-devicetree-bindings-for-ad2s1210/20230921-010529
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20230920170253.203395-5-dlechner%40baylibre.com
-patch subject: [PATCH 4/4] iio: resolver: add new driver for AD2S1210
-config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230921/202309210740.YRdN185w-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230921/202309210740.YRdN185w-lkp@intel.com/reproduce)
+> 
+> 
+> &gt; -----原始邮件-----
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202309210740.YRdN185w-lkp@intel.com/
+And it looks like your email client is wrong, I dunno how your reply
+looks in other people's email client, but it looks like html or
+rich text in mutt.
 
-All warnings (new ones prefixed by >>):
-
->> drivers/iio/resolver/ad2s1210.c:113: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    * Writes the given data to the given register address.
-   drivers/iio/resolver/ad2s1210.c:151: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    * Reads value from one of the registers.
-   drivers/iio/resolver/ad2s1210.c:201: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    * Sets the excitation frequency and performs software reset.
-
-
-vim +113 drivers/iio/resolver/ad2s1210.c
-
-   111	
-   112	/**
- > 113	 * Writes the given data to the given register address.
-   114	 *
-   115	 * If the mode is configurable, the device will first be placed in
-   116	 * configuration mode.
-   117	 */
-   118	static int ad2s1210_regmap_reg_write(void *context, unsigned int reg,
-   119					     unsigned int val)
-   120	{
-   121		struct ad2s1210_state *st = context;
-   122		struct spi_transfer xfers[] = {
-   123			{
-   124				.len = 1,
-   125				.rx_buf = &st->rx[0],
-   126				.tx_buf = &st->tx[0],
-   127				.cs_change = 1,
-   128			}, {
-   129				.len = 1,
-   130				.rx_buf = &st->rx[1],
-   131				.tx_buf = &st->tx[1],
-   132			},
-   133		};
-   134		int ret;
-   135	
-   136		/* values can only be 7 bits, the MSB indicates an address */
-   137		if (val & ~0x7F)
-   138			return -EINVAL;
-   139	
-   140		st->tx[0] = reg;
-   141		st->tx[1] = val;
-   142	
-   143		ret = ad2s1210_set_mode(st, AD2S1210_MODE_CONFIG);
-   144		if (ret < 0)
-   145			return ret;
-   146	
-   147		return spi_sync_transfer(st->sdev, xfers, ARRAY_SIZE(xfers));
-   148	}
-   149	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> &gt; 发件人: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+> &gt; 发送时间: 2023-09-20 19:55:30 (星期三)
+> &gt; 收件人: "Chen Wang" <unicornxw@gmail.com>, aou@eecs.berkeley.edu, chao.wei@sophgo.com, conor@kernel.org, devicetree@vger.kernel.org, emil.renner.berthing@canonical.com, guoren@kernel.org, jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org, xiaoguang.xing@sophgo.com
+> &gt; 抄送: "Chen Wang" <wangchen20@iscas.ac.cn>
+> &gt; 主题: Re: [PATCH v2 03/11] dt-bindings: riscv: add sophgo sg2042 bindings
+> &gt; 
+> &gt; On 20/09/2023 08:37, Chen Wang wrote:
+> &gt; &gt; Add DT binding documentation for the Sophgo SG2042 Soc [1] and the
+> &gt; &gt; Milk-V Pioneer board [2].
+> &gt; &gt; 
+> &gt; &gt; [1]: https://en.sophgo.com/product/introduce/sg2042.html
+> &gt; &gt; [2]: https://milkv.io/pioneer
+> &gt; 
+> &gt; This is a friendly reminder during the review process.
+> &gt; 
+> &gt; It looks like you received a tag and forgot to add it.
+> &gt; 
+> &gt; If you do not know the process, here is a short explanation:
+> &gt; Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+> &gt; versions, under or above your Signed-off-by tag. Tag is "received", when
+> &gt; provided in a message replied to you on the mailing list. Tools like b4
+> &gt; can help here. However, there's no need to repost patches *only* to add
+> &gt; the tags. The upstream maintainer will do that for tags received on the
+> &gt; version they apply.
+> &gt; 
+> &gt; https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+> &gt; 
+> &gt; If a tag was not added on purpose, please state why and what changed.
+> &gt; 
+> &gt; Best regards,
+> &gt; Krzysztof
+> 
+> 
+> ------------------------------
+> 
+> Best Regards 
+>  
+>  汪辰(Wang Chen) 
+> 
+> </wangchen20@iscas.ac.cn></unicornxw@gmail.com></krzysztof.kozlowski@linaro.org>
 
