@@ -1,116 +1,128 @@
-Return-Path: <devicetree+bounces-2078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5CD17A99C3
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 20:22:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB21D7A99B8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 20:19:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B7341C20BE3
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 18:21:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7C8D1C21046
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 18:19:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 837E945F4A;
-	Thu, 21 Sep 2023 17:23:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFF631947D;
+	Thu, 21 Sep 2023 17:23:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 034E745F44
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:23:43 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8886A199D;
-	Thu, 21 Sep 2023 10:23:15 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id D52BE66072BD;
-	Thu, 21 Sep 2023 08:55:48 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1695282949;
-	bh=WiT2aa8Rhk3aS7e7dZ1mtGJrKI4vTo0qji3osRdEPc4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Zhmj7ZlENxigYQSiBMNrhhDc3znNJb6e3KXnfU9zYJCvR6zs4dSBACc7Ck1CvAzbi
-	 6hQx5bcxvlG4do+a2qAwpSzXiNcQT5ZJGHgGDCPaCasLDRqMVVSXU8CUybcobIsyCJ
-	 2YlAo+iObbdEFviGeos7ADDrGmcuzZi5h5c6TLc8ZLdX0b/tmfuu+0mee7gIMv+7IW
-	 x6A7Kvc+NnFHqigaVBGfAFbQy5SEFsHdcQF0NCbJ+9w6pt3KXfwgrvg7y2bY8xSnQ+
-	 VHG6xP02c5eBfzU4n8qoi7LViqLAmfNcN7fhP09ASdjF7eCv2B+FZrzg1CTPTgryG4
-	 8wiGhfzQ8wxTQ==
-Message-ID: <31fbdae8-d41c-358b-c8ea-6ee31b158dfd@collabora.com>
-Date: Thu, 21 Sep 2023 09:55:46 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B42D19447
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:23:08 +0000 (UTC)
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82C03EAB0;
+	Thu, 21 Sep 2023 10:12:52 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38L52ATc018997;
+	Thu, 21 Sep 2023 10:03:11 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=xuMwQg6
+	e1Wn4J45HkR4xLWFNEWC3Wmj+tN4CFCgiioA=; b=3RU7hiF9MdRO82scr535kov
+	XC1NRnLK3FUrv3mJ27BqDj2OHtrrwiQrJhA28/zPMrdqcDf4GjF6UnEiZ0Cp0dRp
+	Da8fY3u9yXRrhz2V1BPoXZ7Pl7ew/jk8lYxBgzA2t1TClsvf19jbeGFxugYXmaMF
+	PiMbnNYptMRKijM0BHrScp+EAx5rhwoyw2msVUDVjCsGiX/KtbTCsQhdynO4Y8HP
+	x66iD3moQg0/ZXHUGV4qAl8FMqBoystoajnl/PCx9+EBsYIUc/TUj9Qnpe+1cUov
+	3BYqxa5RFCzsY0yyPhB/xO5SnJuu6fi1FOJ1W9YLwivECzjcAT/1ue6hzr25mBA=
+	=
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3t7ybkm004-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Sep 2023 10:03:11 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id EB06C100058;
+	Thu, 21 Sep 2023 10:03:07 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E0A0320FA2A;
+	Thu, 21 Sep 2023 10:03:07 +0200 (CEST)
+Received: from localhost (10.201.20.32) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 21 Sep
+ 2023 10:03:07 +0200
+From: Gatien Chevallier <gatien.chevallier@foss.st.com>
+To: Olivia Mackall <olivia@selenic.com>,
+        Herbert Xu
+	<herbert@gondor.apana.org.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC: Lionel Debieve <lionel.debieve@foss.st.com>,
+        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Gatien Chevallier <gatien.chevallier@foss.st.com>
+Subject: [PATCH v3 0/9] hwrng: stm32: support STM32MP13x platforms
+Date: Thu, 21 Sep 2023 10:02:52 +0200
+Message-ID: <20230921080301.253563-1-gatien.chevallier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v2 2/4] dt-bindings: thermal: mediatek: Add LVTS thermal
- sensors for mt7988
-Content-Language: en-US
-To: Frank Wunderlich <linux@fw-web.de>, linux-mediatek@lists.infradead.org
-Cc: Frank Wunderlich <frank-w@public-files.de>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Amit Kucheria
- <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20230920175001.47563-1-linux@fw-web.de>
- <20230920175001.47563-3-linux@fw-web.de>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230920175001.47563-3-linux@fw-web.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.201.20.32]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-21_06,2023-09-20_01,2023-05-22_02
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Il 20/09/23 19:49, Frank Wunderlich ha scritto:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> Add sensor constants for MT7988.
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+The STM32MP13x platforms have a RNG hardware block that supports
+customization, a conditional reset sequences that allows to
+recover from certain situations and a configuration locking
+mechanism.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+This series adds support for the mentionned features. Note that
+the hardware RNG can and should be managed in the secure world
+for this platform, hence the rng not being default enabled on
+the STM32MP135F-DK board.
 
-> ---
-> v2:
-> - new patch (moved from driver code to binding header)
-> - give sensors more meaningful names
-> ---
->   include/dt-bindings/thermal/mediatek,lvts-thermal.h | 9 +++++++++
->   1 file changed, 9 insertions(+)
-> 
-> diff --git a/include/dt-bindings/thermal/mediatek,lvts-thermal.h b/include/dt-bindings/thermal/mediatek,lvts-thermal.h
-> index 8fa5a46675c4..8c1fdc18cf34 100644
-> --- a/include/dt-bindings/thermal/mediatek,lvts-thermal.h
-> +++ b/include/dt-bindings/thermal/mediatek,lvts-thermal.h
-> @@ -7,6 +7,15 @@
->   #ifndef __MEDIATEK_LVTS_DT_H
->   #define __MEDIATEK_LVTS_DT_H
->   
-> +#define MT7988_CPU_0		0
-> +#define MT7988_CPU_1		1
-> +#define MT7988_ETH2P5G_0	2
-> +#define MT7988_ETH2P5G_1	3
-> +#define MT7988_TOPS_0		4
-> +#define MT7988_TOPS_1		5
-> +#define MT7988_ETHWARP_0	6
-> +#define MT7988_ETHWARP_1	7
-> +
->   #define MT8195_MCU_BIG_CPU0     0
->   #define MT8195_MCU_BIG_CPU1     1
->   #define MT8195_MCU_BIG_CPU2     2
+Changes in V2:
+	- Use pm_ptr() and add __maybe_unused on PM API
+	- Correct bug using WARN_ON
+
+Changes in V3:
+	- Squash of bindings patches
+	- st,rng-lock-conf property declaration rework
+	- Fix stm32_rng_pm_ops declaration in patch [5/9]
+
+Gatien Chevallier (9):
+  dt-bindings: rng: introduce new compatible for STM32MP13x
+  hwrng: stm32 - use devm_platform_get_and_ioremap_resource() API
+  hwrng: stm32 - implement STM32MP13x support
+  hwrng: stm32 - implement error concealment
+  hwrng: stm32 - rework error handling in stm32_rng_read()
+  hwrng: stm32 - restrain RNG noise source clock
+  hwrng: stm32 - support RNG configuration locking mechanism
+  hwrng: stm32 - rework power management sequences
+  ARM: dts: stm32: add RNG node for STM32MP13x platforms
+
+ .../devicetree/bindings/rng/st,stm32-rng.yaml |  20 +-
+ arch/arm/boot/dts/st/stm32mp131.dtsi          |   8 +
+ drivers/char/hw_random/stm32-rng.c            | 511 +++++++++++++++---
+ 3 files changed, 455 insertions(+), 84 deletions(-)
+
+-- 
+2.25.1
 
 
