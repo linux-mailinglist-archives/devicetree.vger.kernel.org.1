@@ -1,45 +1,45 @@
-Return-Path: <devicetree+bounces-2195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2D707A9B92
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 21:02:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D9997A9C01
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 21:05:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 30F51B21156
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:02:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35819B2169D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:04:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2138618C13;
-	Thu, 21 Sep 2023 18:57:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01F6F2031A;
+	Thu, 21 Sep 2023 18:57:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBD1613ACD
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 18:57:03 +0000 (UTC)
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.171])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2689C72428;
-	Thu, 21 Sep 2023 11:56:32 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A8F820311
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 18:57:12 +0000 (UTC)
+Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.84])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C553E6E446;
+	Thu, 21 Sep 2023 11:56:31 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; t=1695322581; cv=none;
     d=strato.com; s=strato-dkim-0002;
-    b=Af0kNSkUIApYMW7jR2nJgT9wxojCBucsRZBp+Vb6ZVML328uVEZl5KWVRsSKfOK6Zc
-    TuZaZ7ubvcx5LgLED7ZxSDLa2o14HsCHKdTwGxay3BRGmsSTRhZB1bzSg9E4Ob6gbKGl
-    kSt4dPhoLexNS2MokU41DLXr5Eseun8dMKPLp6WJXmQA/oZlA/TcmZqabs58esg7yhIw
-    0bRgk1nf29CR239HnCR2I7/S95AKmyAL6l9aVKlQBIfWnuIp16cSyA4jzTl4z99zWd9k
-    flBByvs4zVVBjG1zNXR1EygkEnO27rTG1OFlqm4lk0+UbgDMtvohp9MEgmY79/Cd8As2
-    y3iA==
+    b=ZH/ntUDBs6vUR28SchkmOUHzm3tf9X1Urlq+tMkoJXtu4JcPuwqvmDL4SDgEF+yuYf
+    CVgJVgp+eBVRn8CrFZukGt8+2MlJdrPG6nxyRm9SXf9Mzgu7y8N2IJWBPPSl5MGo7qri
+    U9H1AiNgmxqpW7h7iEgU7zI8SxmclPWcruEbod7wwke2MsR4CAzZ8q3Zz3+9dYtBvWsZ
+    qNrJRc1qI4tDNPqlWf6Jf0A6nNIoQhpvCqRzv1i2Mry0rH1LCF1BxNwweIaK9qhUX9Ov
+    iDiigmHnOTQPEKUKpqD/NZ8apDy12JS+MGsucHjESGJ064B/BMSa1dh46dJrv/Rbsumq
+    rE/g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1695322581;
     s=strato-dkim-0002; d=strato.com;
     h=Cc:To:In-Reply-To:References:Message-Id:Subject:Date:From:Cc:Date:
     From:Subject:Sender;
-    bh=k3VeNueovqwvAeOtbPbFknTbbRAKphS4vEK7X7L7wHQ=;
-    b=nkw01R8YKzWcEGXUkZE0Aa9OEk9EJm5Z4jWCK0bEHZwydEedD4cGi7vvqE/iRU4cDz
-    RGj61uvbMNM7faXDc4DHSbbXWCdnACI7fO+QMWQOHUvwXRksGIaaQIVXRsk29olAxWN0
-    gHYVdINPv20fMBF15pTPmb90oMpHHjbyN5W647pUYAh8/Ghvoee2UxSvKM7Fqy5k7WlD
-    WdUl/WIy4SMAvC7/x0WZK+/JJqTYZNhzhvBftdkRgKD1NHksRBe6eare4J8U/xXscjrK
-    3KWZfzf8ylgVdlWMtAuz2O5Ow1+MAn1dgJgaomLW4WToK2R2+n457HRlETluZlFpk3/1
-    CXEA==
+    bh=1DsvpJDBZTqVx22dib/2ldD2B4NWjnue07okTeP74I4=;
+    b=nLZ3E3u7xWxD7HILa/b+w2ZAD6aU5hy+T3ohCrOk6OaXyDiNlRjxIglwAnTmsXv5Iy
+    Jmel6eTGm1KSHkXh1IUv5GmtQBeSZMi3KXiI/KHJB00CcmeIbkDFkE6S2e48mVsZY31z
+    3GBNEWNAEzwmcxKBjZa0HEV8IMWaX6GPak7PD+/afoZvXDohx534VAelpdBUGEsNM5zI
+    U/gu6qXkN+toXc7almPefmwzGHy9+YSzl1pJ5ehTKlb+FAu+v/JA8rwYyDXpjVeMd85w
+    wjPxFYeAJyC5Mf4RWGggbxezGqVwyofGRiG163jRAVi0rhrUs7Ez/HkoJmaoMOE6q7qJ
+    Pnjw==
 ARC-Authentication-Results: i=1; strato.com;
     arc=none;
     dkim=none
@@ -48,30 +48,31 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1695322581;
     s=strato-dkim-0002; d=gerhold.net;
     h=Cc:To:In-Reply-To:References:Message-Id:Subject:Date:From:Cc:Date:
     From:Subject:Sender;
-    bh=k3VeNueovqwvAeOtbPbFknTbbRAKphS4vEK7X7L7wHQ=;
-    b=gRHNOThj80hRmZu8wjSMrj7VUOETuBnVzKvrP7QAvOraydeZbgqD76K+VC22QDJ+yj
-    IcAeLyRd30/dQgU6RdxGcG3n8GhGVbvwpid1atSfQxgWijC+fxEMP1H18bsTAOE2e/nB
-    6c030PQJ0WAV1jL5kt8ek2PNNPXap2UTdPt7wYiV3PdanLd1i6wRs1m7akt2Zn7TfrPp
-    ntNY5sFIawnqP6QGYKQ9wqAxHkSRTjKc6ypFIO7dLTbqysF23ecqwrqJJaqeW0Ohk9q2
-    z4v73x9kRnXC2hv8vZ8PYrthvxShZ6uvwfeb/ypXLzGaVWUzqWu8h0SwXaOdLGbZOcKz
-    GDgQ==
+    bh=1DsvpJDBZTqVx22dib/2ldD2B4NWjnue07okTeP74I4=;
+    b=gTFbcysihg1u1a9kVDoGjdeRxrIq9+tGHNUfyCI9QALIhFYwkwDV6LRKu3cZ/uSLKk
+    jrM0vrPM5KPfim6sQ4kAvIYo1ujSPgQTilxa6e85RclruZl61daL8BeiwvtbDpsHEuCS
+    qLkfelrrtc18mOkytXISO4ji13yUNSDD4RPVfmc5VCwJJxBHWVMOKOqBJWGmO+sVt57S
+    jkYqIwxoyXdXmAQoA131RVcjP36XR08Av/TeVEh64KdCAhwpw1af5Lwtn8ik9Z3ve3MW
+    y1cScCl4LmZMr7KsAMhFU1TjW5yoyL2FNBvSJJeMRYCxbdJkV0WY+Cttzmybkg78Qhro
+    25lA==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1695322581;
     s=strato-dkim-0003; d=gerhold.net;
     h=Cc:To:In-Reply-To:References:Message-Id:Subject:Date:From:Cc:Date:
     From:Subject:Sender;
-    bh=k3VeNueovqwvAeOtbPbFknTbbRAKphS4vEK7X7L7wHQ=;
-    b=6hjDRegVapE8eu7LZIqKREGbBd4zQ9AaSG6c2gICci7xyO7AxzmQrIoB8f+uwdZ0oB
-    craDQmTjPX36s3LNJsAg==
+    bh=1DsvpJDBZTqVx22dib/2ldD2B4NWjnue07okTeP74I4=;
+    b=s8oa36+LycA3OvNEDiSKDa/A9zYkz+aUttwSy3NerSWs/6cVhEaqLNuwwT30huIHLm
+    haiQgNU4gcMs7PUlxvDA==
 X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQjVd4CteZ/7jYgS+mLFY+H0JAn8u4p39TY="
 Received: from [192.168.244.3]
     by smtp.strato.de (RZmta 49.8.2 DYNA|AUTH)
-    with ESMTPSA id R04c57z8LIuKRRz
+    with ESMTPSA id R04c57z8LIuLRS0
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
 	(Client did not present a certificate);
-    Thu, 21 Sep 2023 20:56:20 +0200 (CEST)
+    Thu, 21 Sep 2023 20:56:21 +0200 (CEST)
 From: Stephan Gerhold <stephan@gerhold.net>
-Date: Thu, 21 Sep 2023 20:56:04 +0200
-Subject: [PATCH 1/3] arm64: dts: qcom: msm8916-samsung-gt5: Enable GPU
+Date: Thu, 21 Sep 2023 20:56:05 +0200
+Subject: [PATCH 2/3] arm64: dts: qcom: msm8939-longcheer-l9100: Enable
+ wcnss_mem
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,7 +81,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230921-msm8916-rmem-fixups-v1-1-34d2b6e721cf@gerhold.net>
+Message-Id: <20230921-msm8916-rmem-fixups-v1-2-34d2b6e721cf@gerhold.net>
 References: <20230921-msm8916-rmem-fixups-v1-0-34d2b6e721cf@gerhold.net>
 In-Reply-To: <20230921-msm8916-rmem-fixups-v1-0-34d2b6e721cf@gerhold.net>
 To: Bjorn Andersson <andersson@kernel.org>
@@ -97,48 +98,32 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Enable the GPU for the msm8916-samsung-gt58 and gt510 tablets now that
-they have display panels enabled in the device tree. This was missed
-when the GPU was disabled by default because the change was not applied
-yet.
+Enable &wcnss_mem for msm8939-longcheer-l9100. This is needed now to
+have WCNSS working. It was missed when &wcnss_mem was disabled by
+default because the patch with the msm8939-longcheer-l9100 device tree
+was not applied yet.
 
-Fixes: 0ce5bb825d54 ("arm64: dts: qcom: msm8916/39: Disable GPU by default")
+Fixes: 0ece6438a8c0 ("arm64: dts: qcom: msm8916/39: Disable unneeded firmware reservations")
 Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 ---
- arch/arm64/boot/dts/qcom/msm8916-samsung-gt510.dts | 4 ++++
- arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dts  | 4 ++++
- 2 files changed, 8 insertions(+)
+ arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-gt510.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-gt510.dts
-index 75c4854ecd64..c3f1acc55078 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-gt510.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-gt510.dts
-@@ -112,6 +112,10 @@ touchscreen@4a {
- 	};
+diff --git a/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
+index 6802714fda3f..a3357513037c 100644
+--- a/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
++++ b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
+@@ -247,6 +247,10 @@ &wcnss_iris {
+ 	compatible = "qcom,wcn3620";
  };
  
-+&gpu {
++&wcnss_mem {
 +	status = "okay";
 +};
 +
- &mdss {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dts
-index 11359bcc27b3..998625abd409 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dts
-@@ -64,6 +64,10 @@ touchscreen@20 {
- 	};
- };
- 
-+&gpu {
-+	status = "okay";
-+};
-+
- &mdss {
- 	status = "okay";
- };
+ &tlmm {
+ 	button_backlight_default: button-backlight-default-state {
+ 		pins = "gpio17";
 
 -- 
 2.42.0
