@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-2077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0ABD7A99C2
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 20:21:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6647D7A98F5
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 20:06:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4A7A1C20BD3
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 18:21:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4ACA61C2094C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 18:06:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F414645F43;
-	Thu, 21 Sep 2023 17:23:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C424A43A80;
+	Thu, 21 Sep 2023 17:22:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 375B745F41
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:23:42 +0000 (UTC)
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D35943C82;
-	Thu, 21 Sep 2023 10:23:08 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38L4qLBW018603;
-	Thu, 21 Sep 2023 10:05:35 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 736A8405DC
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:22:43 +0000 (UTC)
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87706566C4;
+	Thu, 21 Sep 2023 10:17:59 -0700 (PDT)
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38L4Je1t015083;
+	Thu, 21 Sep 2023 10:05:36 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
 	from:to:cc:subject:date:message-id:in-reply-to:references
 	:mime-version:content-transfer-encoding:content-type; s=
-	selector1; bh=iPObt+GKMgkLrcVfFX3vthY4eXePMRKgPaSzycZVy2A=; b=Zp
-	OOKEAgcsjAc+0NG7soHae7N4URDA19f14Ad1NUd9+gjTTf59izMLRsRWSFwPg3e5
-	4dVz09xVyT9jEIiJriAZHgvSEk6WSGSkffxdzfyx3MRKxgxsUndMhLOuiBo0Xzqu
-	PCJKmBNHcpTmLcQD5le4PFbe0ava4Lctg2+ifPkwO79jQoSViLDMqOcEwUPnCBtY
-	jJS+7a4zODG+sA/r1ex5/WzioXiSbZq28cVwzd7oTs4pihXR8SE37CCoP+kGHNUx
-	r2dIjatxpCT4JazK/SQvhdpfYQDltfEudDvpItn0QD/Nnawf4RQjBgrSn7CJ9Gb9
-	IwnUsw2S3Io52kIXaU2w==
+	selector1; bh=QNEkYKRW+zpzx0P74SNWmpxXLHw8AgBvEDWW0I7ar5k=; b=Zw
+	yVz//79e+avZKNxDBOz8g/d4IH9u+jyyl67CY5JD2Wo6kVFZnv0dGU/tcGjeLNGJ
+	WNX5WaWxlnFd2ERjRClBFxMWK1NPGMhzYIoWAqe/UGTeCxkIZjFstQ+C4RO5f0yX
+	yADihizDwBQ6KMqKcqM6UFBBBHRPP7u/SpdtGrcj/rjXjFeQpJEWV3xXbTVHa6Mw
+	Z/FMcgQgbS5NsWGXBz5BdJgdc5VYoKzQ9jJjg5exU60f8Ej2ST5siDKIISZNVL8x
+	OfilyWT4EWmQv0SnpHUmIJJ/khHnsRWmheVMRA2hBuxFt02ZoDa++q2xHNDRGWwW
+	F058HMBhF9aGADfVRbKw==
 Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3t7ybkm0ds-1
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3t7ybev09y-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
 	Thu, 21 Sep 2023 10:05:35 +0200 (MEST)
 Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id AADEB100057;
-	Thu, 21 Sep 2023 10:05:34 +0200 (CEST)
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 78A35100058;
+	Thu, 21 Sep 2023 10:05:35 +0200 (CEST)
 Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A147D21863C;
-	Thu, 21 Sep 2023 10:05:34 +0200 (CEST)
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 719E321863C;
+	Thu, 21 Sep 2023 10:05:35 +0200 (CEST)
 Received: from localhost (10.201.20.32) by SHFDAG1NODE1.st.com (10.75.129.69)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 21 Sep
- 2023 10:05:34 +0200
+ 2023 10:05:35 +0200
 From: Gatien Chevallier <gatien.chevallier@foss.st.com>
 To: Olivia Mackall <olivia@selenic.com>,
         Herbert Xu
@@ -63,9 +63,9 @@ CC: Lionel Debieve <lionel.debieve@foss.st.com>,
         <linux-stm32@st-md-mailman.stormreply.com>,
         <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
         Gatien Chevallier <gatien.chevallier@foss.st.com>
-Subject: [PATCH v3 8/9] hwrng: stm32 - rework power management sequences
-Date: Thu, 21 Sep 2023 10:03:00 +0200
-Message-ID: <20230921080301.253563-9-gatien.chevallier@foss.st.com>
+Subject: [PATCH v3 9/9] ARM: dts: stm32: add RNG node for STM32MP13x platforms
+Date: Thu, 21 Sep 2023 10:03:01 +0200
+Message-ID: <20230921080301.253563-10-gatien.chevallier@foss.st.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230921080301.253563-1-gatien.chevallier@foss.st.com>
 References: <20230921080301.253563-1-gatien.chevallier@foss.st.com>
@@ -89,184 +89,36 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Implement stm32_rng_suspend()/stm32_rng_resume() low-power APIs
-called when the hardware block context will be lost.
+The RNG on STM32MP13 offers upgrades like customization of its
+configuration and the conditional reset.
 
-There is no need to save the RNG_CR register in
-stm32_rng_runtime_suspend() as the context is not lost. Therefore,
-only enable/disable the RNG in the runtime sequences.
+The hardware RNG should be managed in the secure world for but it
+is supported on Linux. Therefore, is it not default enabled.
 
 Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
 ---
+ arch/arm/boot/dts/st/stm32mp131.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Changes in V2:
-	- Use pm_ptr() and add __maybe_unused to the pm API
-
-Changes in V3:
-	- Fix stm32_rng_pm_ops declaration
-
- drivers/char/hw_random/stm32-rng.c | 108 ++++++++++++++++++++++++++---
- 1 file changed, 97 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/char/hw_random/stm32-rng.c b/drivers/char/hw_random/stm32-rng.c
-index 4a602d666dad..41e1dbea5d2e 100644
---- a/drivers/char/hw_random/stm32-rng.c
-+++ b/drivers/char/hw_random/stm32-rng.c
-@@ -55,11 +55,25 @@ struct stm32_rng_data {
- 	bool	has_cond_reset;
- };
+diff --git a/arch/arm/boot/dts/st/stm32mp131.dtsi b/arch/arm/boot/dts/st/stm32mp131.dtsi
+index ac90fcbf0c09..39db82b782eb 100644
+--- a/arch/arm/boot/dts/st/stm32mp131.dtsi
++++ b/arch/arm/boot/dts/st/stm32mp131.dtsi
+@@ -1220,6 +1220,14 @@ mdma: dma-controller@58000000 {
+ 			dma-requests = <48>;
+ 		};
  
-+/**
-+ * struct stm32_rng_config - RNG configuration data
-+ *
-+ * @cr:			RNG configuration. 0 means default hardware RNG configuration
-+ * @nscr:		Noise sources control configuration.
-+ * @htcr:		Health tests configuration.
-+ */
-+struct stm32_rng_config {
-+	u32 cr;
-+	u32 nscr;
-+	u32 htcr;
-+};
++		rng: rng@54004000 {
++			compatible = "st,stm32mp13-rng";
++			reg = <0x54004000 0x400>;
++			clocks = <&rcc RNG1_K>;
++			resets = <&rcc RNG1_R>;
++			status = "disabled";
++		};
 +
- struct stm32_rng_private {
- 	struct hwrng rng;
- 	void __iomem *base;
- 	struct clk *clk;
- 	struct reset_control *rst;
-+	struct stm32_rng_config pm_conf;
- 	const struct stm32_rng_data *data;
- 	bool ced;
- 	bool lock_conf;
-@@ -355,11 +369,10 @@ static int stm32_rng_remove(struct platform_device *ofdev)
- 	return 0;
- }
- 
--#ifdef CONFIG_PM
--static int stm32_rng_runtime_suspend(struct device *dev)
-+static int __maybe_unused stm32_rng_runtime_suspend(struct device *dev)
- {
--	u32 reg;
- 	struct stm32_rng_private *priv = dev_get_drvdata(dev);
-+	u32 reg;
- 
- 	reg = readl_relaxed(priv->base + RNG_CR);
- 	reg &= ~RNG_CR_RNGEN;
-@@ -369,25 +382,98 @@ static int stm32_rng_runtime_suspend(struct device *dev)
- 	return 0;
- }
- 
--static int stm32_rng_runtime_resume(struct device *dev)
-+static int __maybe_unused stm32_rng_suspend(struct device *dev)
-+{
-+	struct stm32_rng_private *priv = dev_get_drvdata(dev);
-+
-+	if (priv->data->has_cond_reset) {
-+		priv->pm_conf.nscr = readl_relaxed(priv->base + RNG_NSCR);
-+		priv->pm_conf.htcr = readl_relaxed(priv->base + RNG_HTCR);
-+	}
-+
-+	/* Do not save that RNG is enabled as it will be handled at resume */
-+	priv->pm_conf.cr = readl_relaxed(priv->base + RNG_CR) & ~RNG_CR_RNGEN;
-+
-+	writel_relaxed(priv->pm_conf.cr, priv->base + RNG_CR);
-+
-+	clk_disable_unprepare(priv->clk);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused stm32_rng_runtime_resume(struct device *dev)
- {
--	u32 reg;
- 	struct stm32_rng_private *priv = dev_get_drvdata(dev);
-+	int err;
-+	u32 reg;
-+
-+	err = clk_prepare_enable(priv->clk);
-+	if (err)
-+		return err;
-+
-+	/* Clean error indications */
-+	writel_relaxed(0, priv->base + RNG_SR);
- 
--	clk_prepare_enable(priv->clk);
- 	reg = readl_relaxed(priv->base + RNG_CR);
- 	reg |= RNG_CR_RNGEN;
- 	writel_relaxed(reg, priv->base + RNG_CR);
- 
- 	return 0;
- }
--#endif
- 
--static const struct dev_pm_ops stm32_rng_pm_ops = {
-+static int __maybe_unused stm32_rng_resume(struct device *dev)
-+{
-+	struct stm32_rng_private *priv = dev_get_drvdata(dev);
-+	int err;
-+	u32 reg;
-+
-+	err = clk_prepare_enable(priv->clk);
-+	if (err)
-+		return err;
-+
-+	/* Clean error indications */
-+	writel_relaxed(0, priv->base + RNG_SR);
-+
-+	if (priv->data->has_cond_reset) {
-+		/*
-+		 * Correct configuration in bits [29:4] must be set in the same
-+		 * access that set RNG_CR_CONDRST bit. Else config setting is
-+		 * not taken into account. CONFIGLOCK bit must also be unset but
-+		 * it is not handled at the moment.
-+		 */
-+		writel_relaxed(priv->pm_conf.cr | RNG_CR_CONDRST, priv->base + RNG_CR);
-+
-+		writel_relaxed(priv->pm_conf.nscr, priv->base + RNG_NSCR);
-+		writel_relaxed(priv->pm_conf.htcr, priv->base + RNG_HTCR);
-+
-+		reg = readl_relaxed(priv->base + RNG_CR);
-+		reg |= RNG_CR_RNGEN;
-+		reg &= ~RNG_CR_CONDRST;
-+		writel_relaxed(reg, priv->base + RNG_CR);
-+
-+		err = readl_relaxed_poll_timeout_atomic(priv->base + RNG_CR, reg,
-+							reg & ~RNG_CR_CONDRST, 10, 100000);
-+
-+		if (err) {
-+			clk_disable_unprepare(priv->clk);
-+			dev_err((struct device *)priv->rng.priv,
-+				"%s: timeout:%x CR: %x!\n", __func__, err, reg);
-+			return -EINVAL;
-+		}
-+	} else {
-+		reg = priv->pm_conf.cr;
-+		reg |= RNG_CR_RNGEN;
-+		writel_relaxed(reg, priv->base + RNG_CR);
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct dev_pm_ops __maybe_unused stm32_rng_pm_ops = {
- 	SET_RUNTIME_PM_OPS(stm32_rng_runtime_suspend,
- 			   stm32_rng_runtime_resume, NULL)
--	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
--				pm_runtime_force_resume)
-+	SET_SYSTEM_SLEEP_PM_OPS(stm32_rng_suspend,
-+				stm32_rng_resume)
- };
- 
- static const struct stm32_rng_data stm32mp13_rng_data = {
-@@ -467,7 +553,7 @@ static int stm32_rng_probe(struct platform_device *ofdev)
- static struct platform_driver stm32_rng_driver = {
- 	.driver = {
- 		.name = "stm32-rng",
--		.pm = &stm32_rng_pm_ops,
-+		.pm = pm_ptr(&stm32_rng_pm_ops),
- 		.of_match_table = stm32_rng_match,
- 	},
- 	.probe = stm32_rng_probe,
+ 		fmc: memory-controller@58002000 {
+ 			compatible = "st,stm32mp1-fmc2-ebi";
+ 			reg = <0x58002000 0x1000>;
 -- 
 2.25.1
 
