@@ -1,140 +1,110 @@
-Return-Path: <devicetree+bounces-2243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AF537AA354
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 23:50:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C2517AA5CF
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 01:50:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id E20DF283EF5
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 21:50:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 4A9DF28357B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 23:50:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 846D83E484;
-	Thu, 21 Sep 2023 21:49:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1934F19467;
+	Thu, 21 Sep 2023 23:50:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BE662031B;
-	Thu, 21 Sep 2023 21:49:44 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9901410C6;
-	Thu, 21 Sep 2023 14:49:41 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38LJp8sC021537;
-	Thu, 21 Sep 2023 21:49:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=jt0oIgTyqjbTXFE8R+uBXHTwbnogDehsEUidVF5fLmc=;
- b=MepJ+upGMC1sdTcJTSVbHR4RoDqNx6wVoRzmygug+04KquPz9HEL7lRSToIR0rsC9fX9
- C5mY3pk8tiXTyL3cPecy9FBFpfIyZbVNdqhaEsS5EAa5gEDA74vaf836/dJWmBuGAn5I
- dGYJgPZTUcOFQeZTK4mpVPSgK/RA7NUj3WIxeGg6HdmFF2/CgJNiUsPT+SvvVzw+/wJE
- x1Y2U7iOjT9gXMVYRUsg8KztGRfaGldOab8l6JOFWLCX83DsgQ7X88s5mtzFhLsEsSqG
- ycmoHrGJlPxdHNCtlx01i+/mgnXYny9LvK+E1IYmkptE9OpvPMW7RYA1H/mJWlQ0wMN3 FA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t8u5n0bqa-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Sep 2023 21:49:18 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38LLn36L012662
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Sep 2023 21:49:03 GMT
-Received: from hu-wcheng-lv.qualcomm.com (10.49.16.6) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Thu, 21 Sep 2023 14:49:02 -0700
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-To: <mathias.nyman@intel.com>, <gregkh@linuxfoundation.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
-        <tiwai@suse.com>, <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <srinivas.kandagatla@linaro.org>, <bgoswami@quicinc.com>,
-        <Thinh.Nguyen@synopsys.com>
-CC: <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>
-Subject: [PATCH v7 33/33] ASoC: usb: Rediscover USB SND devices on USB port add
-Date: Thu, 21 Sep 2023 14:48:43 -0700
-Message-ID: <20230921214843.18450-34-quic_wcheng@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230921214843.18450-1-quic_wcheng@quicinc.com>
-References: <20230921214843.18450-1-quic_wcheng@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1710DC129
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 23:50:14 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6660F4;
+	Thu, 21 Sep 2023 16:50:12 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38LAxHq0097899;
+	Thu, 21 Sep 2023 05:59:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1695293957;
+	bh=gHp4ZffsmdrA/tW2/3jLHQZelFQvuLPsNHTniYPYF9o=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=AVJq07VSYG5KaE7iQc8rkGHsjeLgfHTyqAmA/YGzl5hdJyEVYNi/JomZB0vwvY7Iz
+	 T6YBk3wHgb5Nf31r7vOfNGKUY4bP3pKMV8EH/+T7A0l0GT9IZO3D3ni3zuPAeQiCi6
+	 wtvDhdheV/d2QVJAnjHMqdn1VaHkwuG1h76mGD3I=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38LAxHR3036269
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 21 Sep 2023 05:59:17 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 21
+ Sep 2023 05:59:16 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 21 Sep 2023 05:59:16 -0500
+Received: from [10.249.141.75] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38LAxBKV034017;
+	Thu, 21 Sep 2023 05:59:13 -0500
+Message-ID: <191d1260-48f0-2388-ab29-405222302cda@ti.com>
+Date: Thu, 21 Sep 2023 16:29:11 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Ge7Hcxdn640ava6jWa6SIXk8D6arxYXD
-X-Proofpoint-GUID: Ge7Hcxdn640ava6jWa6SIXk8D6arxYXD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-21_19,2023-09-21_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- priorityscore=1501 malwarescore=0 spamscore=0 bulkscore=0 impostorscore=0
- lowpriorityscore=0 mlxscore=0 clxscore=1015 adultscore=0 phishscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2309210189
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 1/1] arm64: dts: ti: k3-j721e-mcu-wakeup: Add MCU domain
+ ESM instance
+Content-Language: en-US
+To: Neha Malcom Francis <n-francis@ti.com>, <robh+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>
+References: <20230920063029.3081579-1-n-francis@ti.com>
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20230920063029.3081579-1-n-francis@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-In case the USB backend device has not been initialized/probed, USB SND
-device connections can still occur.  When the USB backend is eventually
-made available, previous USB SND device connections are not communicated to
-the USB backend.  Call snd_usb_rediscover_devices() to generate the connect
-callbacks for all USB SND devices connected.  This will allow for the USB
-backend to be updated with the current set of devices available.
 
-The chip array entries are all populated and removed while under the
-register_mutex, so going over potential race conditions:
+On 9/20/2023 12:00 PM, Neha Malcom Francis wrote:
+> Currently J721E defines only the main_esm in DTS. Add node for mcu_esm
+> as well.
+Could you please add some more description in commit message , why we 
+need mcu_esm node.
+> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 7 +++++++
+>   1 file changed, 7 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> index 05d6ef127ba7..fa8af20c7818 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> @@ -671,4 +671,11 @@ wkup_vtm0: temperature-sensor@42040000 {
+>   		power-domains = <&k3_pds 154 TI_SCI_PD_EXCLUSIVE>;
+>   		#thermal-sensor-cells = <1>;
+>   	};
+> +
+> +	mcu_esm: esm@40800000 {
+> +		compatible = "ti,j721e-esm";
+> +		reg = <0x00 0x40800000 0x00 0x1000>;
+> +		ti,esm-pins = <95>;
+> +		bootph-pre-ram;
+> +	};
+>   };
 
-Thread#1:
-  q6usb_component_probe()
-    --> snd_soc_usb_add_port()
-      --> snd_usb_rediscover_devices()
-        --> mutex_lock(register_mutex)
+With that change
 
-Thread#2
-  --> usb_audio_disconnect()
-    --> mutex_lock(register_mutex)
+Reviewed-by: Udit Kumar <u-kumar1@ti.com>
 
-So either thread#1 or thread#2 will complete first.  If
 
-Thread#1 completes before thread#2:
-  SOC USB will notify DPCM backend of the device connection.  Shortly
-  after, once thread#2 runs, we will get a disconnect event for the
-  connected device.
-
-Thread#2 completes before thread#1:
-  Then during snd_usb_rediscover_devices() it won't notify of any
-  connection for that particular chip index.
-
-Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
----
- sound/soc/soc-usb.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/sound/soc/soc-usb.c b/sound/soc/soc-usb.c
-index 619f9bfd6999..7df7f93cf5a2 100644
---- a/sound/soc/soc-usb.c
-+++ b/sound/soc/soc-usb.c
-@@ -115,6 +115,8 @@ struct snd_soc_usb *snd_soc_usb_add_port(struct device *dev, void *priv,
- 	list_add_tail(&usb->list, &usb_ctx_list);
- 	mutex_unlock(&ctx_mutex);
- 
-+	snd_usb_rediscover_devices();
-+
- 	return usb;
- }
- EXPORT_SYMBOL_GPL(snd_soc_usb_add_port);
 
