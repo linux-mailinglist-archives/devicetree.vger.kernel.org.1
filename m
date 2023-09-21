@@ -1,113 +1,268 @@
-Return-Path: <devicetree+bounces-1953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EC697A9377
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 12:11:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D227A9380
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 12:15:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F0FADB2098C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 10:11:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFC56281868
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 10:15:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 341CA9465;
-	Thu, 21 Sep 2023 10:11:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 723FC9467;
+	Thu, 21 Sep 2023 10:15:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B9D49461
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:11:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94BADC3278E;
-	Thu, 21 Sep 2023 10:11:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 613189461
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:15:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 984F5C3278F;
+	Thu, 21 Sep 2023 10:15:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695291104;
-	bh=AdutLBV21eG6/I5c7ck2kz5+kkufzxzMbnOhofwlRNc=;
+	s=k20201202; t=1695291338;
+	bh=jFAqRCOVnDBQwszMKppgpfrfYXgx2S1l2UVTVChzJ6o=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FWi/MotY0IkufMUjM3uKZhdm+J7+OHxVMKxpp9S4ULn+0QBoAqNetS57FJt/Z82Jj
-	 O4jZOEpZ3K3DMsxVN+AsCK9an9VanRO9LUCPf2MBL+cJpjENamWN9SyImsDiZcXI9M
-	 m/tL9UhfOGgSLpLh2gRs6oovaNH1q5HV9y/R/oWLEwq2s5zLxtdLlG9agn0VqQhJiG
-	 4zdLRFTvjZau67sD0cWB/t3ORDx8iPIqHJOL3U47iHQx+k5Fv7q0/+lvXkWbeAnYgD
-	 B8+L/gxKzFZDKtMqiOqOSatrbOTGqf6csrNnPMWYgsj50Ls9fgs4iFIk4auWYhyVOr
-	 x+I/nBQXLndPw==
-Date: Thu, 21 Sep 2023 12:11:39 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Marc Zyngier <maz@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Fang Xiang <fangxiang3@xiaomi.com>
-Subject: Re: [PATCH v2 0/2] irqchip/gic-v3: Enable non-coherent GIC designs
- probing
-Message-ID: <ZQwW286bqB8dE2XN@lpieralisi>
-References: <20230905104721.52199-1-lpieralisi@kernel.org>
- <20230906094139.16032-1-lpieralisi@kernel.org>
- <6f94c6d38f00031bf7c59e0cb8baf04c@kernel.org>
- <ZPhhMvyx8lChHE0v@lpieralisi>
+	b=FB4UmtJMfn+nsX5DZ3qo2JYzuPEw/NKKLuoRNU1w4rR862MDRN47bHTygae5k0amd
+	 oZFJeZk6psc3v49kSRgSuKWnb6qSVKyWIinaBQSDn8SnNX157QjRg+M7ghCNAs3yIU
+	 ddyCNZdvngVyPb/heuhDlL/snul1qeJW5/53Yr5XQMnxSg0nftB0P18lUPoG8WAeur
+	 RATGdFpyQDj/qc5sLQfrnbG7H8S0URXgZ05YATQsuMLKwjM6cQVpwfw2AHy0km/r03
+	 Eso5n0WarjMTlhsqZh/NdkDgeUkgZbhiyBsuJ+tCvNZQCrUQgDenOwzJfsS63ybdQ3
+	 Z28EfOHcPvUig==
+Date: Thu, 21 Sep 2023 11:15:32 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Chen Wang <unicornxw@gmail.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>, aou@eecs.berkeley.edu,
+	chao.wei@sophgo.com, devicetree@vger.kernel.org,
+	emil.renner.berthing@canonical.com, guoren@kernel.org,
+	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
+	xiaoguang.xing@sophgo.com, Chen Wang <wangchen20@iscas.ac.cn>,
+	Inochi Amaoto <inochiama@outlook.com>
+Subject: Re: [PATCH v2 09/11] riscv: dts: add initial SOPHGO SG2042 SoC
+ device tree
+Message-ID: <20230921-d2db829b289c937081dc8a72@fedora>
+References: <cover.1695189879.git.wangchen20@iscas.ac.cn>
+ <ffe6a61a8879232aea7b86ff8aee5d681c6bd287.1695189879.git.wangchen20@iscas.ac.cn>
+ <20230920-financial-declared-7b4b4baae517@wendy>
+ <CAHAQgRBmUtyz-U+1Fu9qdvyhMuSzg+o4MMbTV9duUXsoSoPqUQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fmkZD3PJDOz3F1Rh"
 Content-Disposition: inline
-In-Reply-To: <ZPhhMvyx8lChHE0v@lpieralisi>
+In-Reply-To: <CAHAQgRBmUtyz-U+1Fu9qdvyhMuSzg+o4MMbTV9duUXsoSoPqUQ@mail.gmail.com>
 
-On Wed, Sep 06, 2023 at 01:23:30PM +0200, Lorenzo Pieralisi wrote:
-> On Wed, Sep 06, 2023 at 10:52:01AM +0100, Marc Zyngier wrote:
-> > On 2023-09-06 10:41, Lorenzo Pieralisi wrote:
-> > > This series is v2 of a previous version[1].
-> > > 
-> > > v1 -> v2:
-> > > 	- Updated DT bindings as per feedback
-> > > 	- Updated patch[2] to use GIC quirks infrastructure
-> > > 
-> > > [1]
-> > > https://lore.kernel.org/all/20230905104721.52199-1-lpieralisi@kernel.org
-> > > 
-> > > Original cover letter
-> > > ---
-> > > The GICv3 architecture specifications provide a means for the
-> > > system programmer to set the shareability and cacheability
-> > > attributes the GIC components (redistributors and ITSes) use
-> > > to drive memory transactions.
-> > > 
-> > > Albeit the architecture give control over shareability/cacheability
-> > > memory transactions attributes (and barriers), it is allowed to
-> > > connect the GIC interconnect ports to non-coherent memory ports
-> > > on the interconnect, basically tying off shareability/cacheability
-> > > "wires" and de-facto making the redistributors and ITSes non-coherent
-> > > memory observers.
-> > > 
-> > > This series aims at starting a discussion over a possible solution
-> > > to this problem, by adding to the GIC device tree bindings the
-> > > standard dma-noncoherent property. The GIC driver uses the property
-> > > to force the redistributors and ITSes shareability attributes to
-> > > non-shareable, which consequently forces the driver to use CMOs
-> > > on GIC memory tables.
-> > > 
-> > > On ARM DT DMA is default non-coherent, so the GIC driver can't rely
-> > > on the generic DT dma-coherent/non-coherent property management layer
-> > > (of_dma_is_coherent()) which would default all GIC designs in the field
-> > > as non-coherent; it has to rely on ad-hoc dma-noncoherent property
-> > > handling.
-> > > 
-> > > When a consistent approach is agreed upon for DT an equivalent binding
-> > > will
-> > > be put forward for ACPI based systems.
-> > 
-> > What is the plan for this last point? I'd like to see at least
-> > a proposal before taking this series in.
-> 
-> Absolutely, I am starting a thread on related MADT changes, should not
-> take too long.
 
-Quick update, bindings filed, I will code against it but we should
-not merge anything till it is approved (could be missing v6.7 timeline).
+--fmkZD3PJDOz3F1Rh
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-https://bugzilla.tianocore.org/show_bug.cgi?id=4557
+On Thu, Sep 21, 2023 at 05:56:28PM +0800, Chen Wang wrote:
+> Regards,
+>=20
+> unicornx
+>=20
+> Conor Dooley <conor.dooley@microchip.com> =E4=BA=8E2023=E5=B9=B49=E6=9C=
+=8820=E6=97=A5=E5=91=A8=E4=B8=89 16:58=E5=86=99=E9=81=93=EF=BC=9A
+> >
+> > Yo,
+> >
+> > On Wed, Sep 20, 2023 at 02:40:32PM +0800, Chen Wang wrote:
+> > > Milk-V Pioneer motherboard is powered by SOPHON's SG2042.
+> > >
+> > > SG2042 is server grade chip with high performance, low power
+> > > consumption and high data throughput.
+> > > Key features:
+> > > - 64 RISC-V cpu cores which implements IMAFDC
+> >
+> > That's not quite true though, is it?
+>=20
+> The cpu cores of SG2042 is c902 from T-HEAD, it supports vector, but
+> it's v0.7, not official v1.0. If we declare it as supporting
+> v-extension, the latest kernel(since 6.5) will issue rvv1.0
+> instructions during booting and make c902 crash. So we have to remove
+> "v" from the capability of ISA to pass the booting of machine. You can
+> check the "riscv,isa =3D "rv64imafdc";" in DTS.
 
-Lorenzo
+I know all of this, not my first rodeo looking at stuff using T-Head
+cores ;)
+What I meant was, imafdc is only a subset of what is supported,
+there are other things like the T-Head bitmanip extensions too, right?
+I'm not asking for it to be listed in the devicetree (yet), just
+actually curious what else is on the c920 as I do not speak a language
+that allows me to read the documentation for the cpu that I have been
+able to find online.
+
+> > > - 4 cores per cluster, 16 clusters on chip
+> > > - ......
+> >
+> > What's a "....."? ;)
+> I just cited a description from TRM of SG2042 and it looks too long. I
+> will give a better description here and avoid using "......" in the
+> next revision.
+>=20
+> >
+> > >
+> > > More info is available at [1].
+> > >
+> > > [1]: https://en.sophgo.com/product/introduce/sg2042.html
+> >
+> > Link: please.
+> >
+> > > Currently only support booting into console with only uart,
+> > > other features will be added soon later.
+> > >
+> > > Acked-by: Xiaoguang Xing <xiaoguang.xing@sophgo.com>
+> > > Signed-off-by: Xiaoguang Xing <xiaoguang.xing@sophgo.com>
+> > > Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> > > Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.c=
+om>
+> > > Signed-off-by: Chen Wang <wangchen20@iscas.ac.cn>
+> >
+> > There are 4 sign-offs here. Surely some of these should be
+> > co-developed-bys?
+> >
+> > > +             cpu0: cpu@0 {
+> > > +                     compatible =3D "thead,c920", "riscv";
+> > > +                     device_type =3D "cpu";
+> > > +                     riscv,isa =3D "rv64imafdc";
+> >
+> > Please also add riscv,isa-base & riscv,isa-extensions.
+> >
+> > > +                     reg =3D <0>;
+> > > +                     i-cache-block-size =3D <64>;
+> > > +                     i-cache-size =3D <65536>;
+> > > +                     i-cache-sets =3D <512>;
+> > > +                     d-cache-block-size =3D <64>;
+> > > +                     d-cache-size =3D <65536>;
+> > > +                     d-cache-sets =3D <512>;
+> > > +                     next-level-cache =3D <&l2_cache0>;
+> > > +                     mmu-type =3D "riscv,sv39";
+> > > +
+> > > +                     cpu0_intc: interrupt-controller {
+> > > +                             compatible =3D "riscv,cpu-intc";
+> > > +                             interrupt-controller;
+> > > +                             #interrupt-cells =3D <1>;
+> > > +                     };
+> > > +             };
+> >
+> > > diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot=
+/dts/sophgo/sg2042.dtsi
+> > > new file mode 100644
+> > > index 000000000000..747fd9764c95
+> > > --- /dev/null
+> > > +++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
+> > > @@ -0,0 +1,439 @@
+> > > +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> >
+> > You should add () around the GPL-2.0 OR MIT.
+> >
+> > > +/*
+> > > + * Copyright (C) 2022 Sophgo Technology Inc. All rights reserved.
+> > > + */
+> > > +
+> > > +/dts-v1/;
+> > > +#include <dt-bindings/interrupt-controller/irq.h>
+> > > +
+> > > +#include "sg2042-cpus.dtsi"
+> > > +
+> > > +#define SOC_PERIPHERAL_IRQ(nr) (nr)
+> >
+> > Why? What does this do? Where was it copied from?
+> >
+> It should be unnecessary=EF=BC=8C I will remove it in the next revision.
+>=20
+> > > +
+> > > +/ {
+> > > +     compatible =3D "sophgo,sg2042";
+> > > +     #address-cells =3D <2>;
+> > > +     #size-cells =3D <2>;
+> > > +     dma-noncoherent;
+> > > +
+> > > +     aliases {
+> > > +             serial0 =3D &uart0;
+> > > +     };
+> > > +
+> > > +     /* the mem node will be updated by ZSBL. */
+> >
+> > huh? So these are random numbers below? Either put something useful here
+> > or delete it please.
+>=20
+> The memory for SG2042 is not fixed, the bootloader will detect memory
+> installed on board during booting and fill the actual address and size
+> in the memory node. The comment " /* the mem node will be updated by
+> ZSBL. */" is telling this.
+
+Yes, I read the comment!
+
+> We write memory nodes like this to make them act just as placeholders
+> and the value is by default written as zero.
+
+Why knowingly add something that is wrong, rather than omitting them
+entirely?
+
+Thanks,
+Conor.
+
+>=20
+>=20
+> >
+> > > +     memory@0 {
+> > > +             device_type =3D "memory";
+> > > +             reg =3D <0x00000000 0x00000000 0x00000000 0x00000000>;
+> > > +     };
+> > > +
+> > > +     memory@1 {
+> > > +             device_type =3D "memory";
+> > > +             reg =3D <0x00000000 0x00000001 0x00000000 0x00000000>;
+> > > +     };
+> > > +
+> > > +     memory@2 {
+> > > +             device_type =3D "memory";
+> > > +             reg =3D <0x00000000 0x00000002 0x00000000 0x00000000>;
+> > > +     };
+> > > +
+> > > +     memory@3 {
+> > > +             device_type =3D "memory";
+> > > +             reg =3D <0x00000000 0x00000003 0x00000000 0x00000000>;
+> > > +     };
+> >
+> > > +     soc: soc {
+> > > +             compatible =3D "simple-bus";
+> > > +             #address-cells =3D <2>;
+> > > +             #size-cells =3D <2>;
+> > > +             ranges;
+> > > +
+> > > +             clint_mswi: interrupt-controller@7094000000 {
+> > > +                     compatible =3D "sophgo,sg2042-clint-mswi", "the=
+ad,c900-clint-mswi";
+> > > +                     reg =3D <0x00000070 0x94000000 0x00000000 0x000=
+04000>;
+> >
+> > & nak to this without further explanation!
+> >
+> > Thanks,
+> > Conor.
+> >
+
+--fmkZD3PJDOz3F1Rh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQwXwQAKCRB4tDGHoIJi
+0jl6AQCO0iHjWqM9oAoOC3vM0RKXtmi36doTgL/y4uLTh6RcxgEApx827mJwlqM+
+T2Mfp1BE1i0rJvGerwlfpLGvc4y8Pws=
+=djLA
+-----END PGP SIGNATURE-----
+
+--fmkZD3PJDOz3F1Rh--
 
