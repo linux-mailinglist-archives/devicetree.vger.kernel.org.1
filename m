@@ -1,53 +1,57 @@
-Return-Path: <devicetree+bounces-1943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-1944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88C317A9329
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 11:37:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E425F7A9347
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 11:48:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90EAC1C208C9
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 09:37:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D185B20988
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 09:48:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3DFF9455;
-	Thu, 21 Sep 2023 09:36:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E49E945F;
+	Thu, 21 Sep 2023 09:48:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A078D944C
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 09:36:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7740CC4AF5D;
-	Thu, 21 Sep 2023 09:36:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 533CE944C;
+	Thu, 21 Sep 2023 09:48:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BD34C32783;
+	Thu, 21 Sep 2023 09:48:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695289018;
-	bh=dNEOlBkvsTEIQ7sDlpgOxIjaV/wTx53tOqsrSxNccPY=;
+	s=k20201202; t=1695289713;
+	bh=J91xLLYh3063mIz8vTCj0EDjswezy2qXl2KyxMg3RQI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KKe1e3A/+t7cy8i5x0gVpHox3H+UBnELoyDJ0jLD+FCQUOwlHa4OTsHka26jzP8dE
-	 lW1Uhty8xFED/Zq+Lx5dciCiEGi9oJIhS3VzkFzFf0G2Lr1WXJgLO65TLaiyHneA8z
-	 AcE+UIL0cMD0GyCqP3KJfEnWyYSnZsQs5YAJeebCuOB5yOXRGbppJJw2NA/9y8J7GX
-	 9+NxOyrr1l8tyFmDc6joN21Luf7Jp7ej6WUVRHeImywBg3I3HE/5aPmu31Yyz1XwnE
-	 te/EBz5euucputziqvfNo+WCHYjkqEb3cm+g0dAjaMRTUYuUdXTVybjhnp9LoY4ge+
-	 h4OpuRZFCVFrw==
-Date: Thu, 21 Sep 2023 17:24:57 +0800
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Conor Dooley <conor.dooley@microchip.com>
-Cc: Conor Dooley <conor@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Drew Fustini <dfustini@baylibre.com>
-Subject: Re: [PATCH v2] riscv: dts: thead: set dma-noncoherent to soc bus
-Message-ID: <ZQwL6fxi6IkUEIMc@xhacker>
-References: <20230912072232.2455-1-jszhang@kernel.org>
- <20230912-trailing-pampered-52738ec6f009@spud>
- <ZQHSLdPufI6CXApg@xhacker>
- <20230913-faster-spotted-9df41a0d7787@spud>
- <20230920-pesky-stalemate-88f5036b8084@wendy>
+	b=fU057suNKQbihbsVL2RWa98mU6/opeEGInjY7XwbSg83INDcPahdBga23HxJVedq6
+	 1940hb8sDpd52ueZhRszkTZGjQTbKIVk45BC9C0Oiz4+XQSj4k7iZwPlFgY6B2Wg71
+	 6JhA70Ulb3ae4S/VLNazQq97Bv4IvAJzX9bqjQOi1hIRY5/L7HK1mo1T1fQCWIJ9Q7
+	 bpSlWHVeppCYURvyle4n7VWHn7jZX31tJIU3/sR3VXwGM7f3BNWLdsH7FZUP8jb/4D
+	 qYASDzCHLGqEop9vHSeG6kbvvHySj4zYKY2VnfAkaBRhm/eQwBHOejreG5Xor6mwtI
+	 UUo9yEKkxigmA==
+Date: Thu, 21 Sep 2023 11:48:23 +0200
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+Cc: agross@kernel.org, andersson@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	konrad.dybcio@linaro.org, quic_shazhuss@quicinc.com,
+	quic_nitegupt@quicinc.com, quic_ramkri@quicinc.com,
+	quic_nayiluri@quicinc.com, quic_krichai@quicinc.com,
+	quic_vbadigan@quicinc.com, quic_parass@quicinc.com,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, mhi@lists.linux.dev,
+	linux-phy@lists.infradead.org
+Subject: Re: [PATCH v1 5/5] arm64: dts: qcom: sa8775p: Add ep pcie0
+ controller node
+Message-ID: <20230921094823.GE2891@thinkpad>
+References: <1695218113-31198-1-git-send-email-quic_msarkar@quicinc.com>
+ <1695218113-31198-6-git-send-email-quic_msarkar@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,53 +60,90 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230920-pesky-stalemate-88f5036b8084@wendy>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1695218113-31198-6-git-send-email-quic_msarkar@quicinc.com>
 
-On Wed, Sep 20, 2023 at 09:36:19AM +0100, Conor Dooley wrote:
-> Hey Jisheng,
+On Wed, Sep 20, 2023 at 07:25:12PM +0530, Mrinmay Sarkar wrote:
+> Add ep pcie dtsi node for pcie0 controller found on sa8775p platform.
 > 
-> On Wed, Sep 13, 2023 at 04:44:18PM +0100, Conor Dooley wrote:
-> > On Wed, Sep 13, 2023 at 11:15:57PM +0800, Jisheng Zhang wrote:
-> > > On Tue, Sep 12, 2023 at 05:27:31PM +0100, Conor Dooley wrote:
-> > > > On Tue, Sep 12, 2023 at 03:22:32PM +0800, Jisheng Zhang wrote:
-> > > > > riscv select ARCH_DMA_DEFAULT_COHERENT by default, and th1520 isn't
-> > > > > dma coherent, so set dma-noncoherent to reflect this fact.
-> > > > > 
-> > > > > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> > > > > Tested-by: Drew Fustini <dfustini@baylibre.com>
-> > > > > ---
-> > > > > 
-> > > > > Since v1:
-> > > > >  - rebase on v6.6-rc1
-> > > > >  - collect Tested-by tag
-> > > > 
-> > > > Does this mean you're expecting me to take this?
-> > > 
-> > > Hi Conor,
-> > > 
-> > > I think I will take this and send PR to soc people. The reason
-> > > I send v2 is the rebasing on new rc1 and v1 wasn't in linux-riscv
-> > > mailist due to typo;
-> > 
-> > Great, thanks. Please ask SFR to add your tree to linux-next.
 
-Hi Conor,
+It would be good to add more info in the commit message, like PCIe Gen, lane
+info, IP revision etc...
 
-I'm not sure how to do this. When MAINTAINERS patch is merged, send
-an email to Stephen Rothwell, are these steps correct?
-
+> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 45 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 45 insertions(+)
 > 
-> I lost my main x86 box over the weekend (looks like probably a dead
-> motherboard), so I may have missed a response to this.
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> index 9f4f58e8..5571131 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> @@ -2600,4 +2600,49 @@
+>  
+>  		status = "disabled";
+>  	};
+> +
+> +	pcie0_ep: pcie-ep@1c00000 {
+> +		compatible = "qcom,sa8775p-pcie-ep";
+> +		reg = <0x0 0x01c00000 0x0 0x3000>,
+> +		      <0x0 0x40000000 0x0 0xf20>,
+> +		      <0x0 0x40000f20 0x0 0xa8>,
+> +		      <0x0 0x40001000 0x0 0x4000>,
+> +		      <0x0 0x40200000 0x0 0x100000>,
+> +		      <0x0 0x01c03000 0x0 0x1000>,
+> +		      <0x0 0x40005000 0x0 0x2000>;
+> +		reg-names = "parf", "dbi", "elbi", "atu", "addr_space",
+> +			    "mmio", "dma";
+> +
+> +		clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
+> +			<&gcc GCC_PCIE_0_CFG_AHB_CLK>,
+> +			<&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
+> +			<&gcc GCC_PCIE_0_SLV_AXI_CLK>,
+> +			<&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>;
+> +
+> +		clock-names = "aux",
+> +			      "cfg",
+> +			      "bus_master",
+> +			      "bus_slave",
+> +			      "slave_q2a";
+> +
+> +		interrupts = <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 630 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +		interrupt-names = "global", "doorbell", "dma";
+> +
+> +		interconnects = <&pcie_anoc MASTER_PCIE_0 0 &mc_virt SLAVE_EBI1 0>,
+> +				<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_PCIE_0 0>;
+> +		interconnect-names = "pcie-mem", "cpu-pcie";
+> +
+
+Don't you need iommu property?
+
+> +		resets = <&gcc GCC_PCIE_0_BCR>;
+> +		reset-names = "core";
+> +		power-domains = <&gcc PCIE_0_GDSC>;
+> +		phys = <&pcie0_phy>;
+> +		phy-names = "pciephy";
+> +		max-link-speed = <3>;
+
+Gen 3?
+
+> +		num-lanes = <2>;
+
+Only 2 lanes? Or the other one has 4 lanes?
+
+- Mani
+
+> +
+> +		status = "disabled";
+> +	};
+>  };
+> -- 
+> 2.7.4
 > 
-> Did you see this email? Additionally, can you add that git tree to the
-> maintainers entry for the thead devicetrees?
 
-I just created a tree in
-git://git.kernel.org/pub/scm/linux/kernel/git/jszhang/linux.git
-
-But it needs time for cgit to take place. I will send a patch
-once it appears.
-
-Thanks
+-- 
+மணிவண்ணன் சதாசிவம்
 
