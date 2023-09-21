@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-2163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 458CD7A9C89
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 21:21:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E41637A9A1D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 20:36:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 501F6282AA6
-	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 19:19:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F9B02819C7
+	for <lists+devicetree@lfdr.de>; Thu, 21 Sep 2023 18:36:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D1554D8E1;
-	Thu, 21 Sep 2023 18:11:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CDF61775A;
+	Thu, 21 Sep 2023 17:31:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 389C64C86E
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 18:11:26 +0000 (UTC)
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A492197952
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:56:40 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4053c6f0d55so752565e9.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:56:40 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8D5117745
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 17:31:29 +0000 (UTC)
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 265F32139
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:28:15 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-52c88a03f99so1378050a12.2
+        for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 10:28:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695318997; x=1695923797; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695317291; x=1695922091; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lWgDNsrrXF5syWEsVgdKbxr1ASE09oFAZQly/Ty6i74=;
-        b=c44ek5sQ7UTCTg/PNMPdqv6AKZwqj0XQ77Y3sclPrDbCULLxqZCVzuOV3Shdmusx3Z
-         lkDJ1asf6YLnLTIvntTOPQTvrQ7HeiP+IiErOSK3+yXQUznHe0IptP+jO2uVpkM6MihS
-         GUb97zkZUPWjkf8myg1CtRU2hMktPsTOWzzeWeQ5je91klaZ5RNI4+Evot4ZeKFmaA4U
-         sZlQyXcllKslUctGEoWiKF04W7bRihW6HktLNlpZtr6euYkSzsQ9Xwm6Z85b3577LOCd
-         L+mFaatwjPuPJayuMnR8wZUfoUBE+9Xw2FWXlvAFy4SnSmID5YMFawnxnLHZHoBOaFML
-         +kMQ==
+        bh=FFHoFBATjyYAR3S3Kihiw7DM+oB505Wu13vuO5lq7BQ=;
+        b=Q84+tv745lTORb5KV9MKs9gj/6ozgMRg2OSyhC2WLn2i/caa/NRKTBmZy0UfTRZQje
+         3/QyWq8OSbHKl4jc+NmG+hR/MQ5SMdwQJyQ67ciNNi0wSHxqmpsPt+vCayPqQ+uxBXJM
+         ISLEhUBIxwzJz611dhZq0+WIfdowwLdMZpkZkWgs/oAa/AS4IhXkGkXTOXDOnPFqlMSu
+         M84uPZtqyvuNoVqsffxIHgR4yrxewuBhpIL7Pd0dqw+MmPoJBUsW3Qga3zmledhXnZ5U
+         KW6w4hYtoZxQrSkgGmXX6w0OBc7q1viTh05YcsGzYXYfr5e2c9NlhYT1YkKLR2UZ7EPo
+         qc0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695318997; x=1695923797;
+        d=1e100.net; s=20230601; t=1695317291; x=1695922091;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=lWgDNsrrXF5syWEsVgdKbxr1ASE09oFAZQly/Ty6i74=;
-        b=DeNRYwcxR4zpZ399wROiqY3TSQ4elDNaHUm7rx5Wm3AtwHRgyyhzI86g75NtLNk4bn
-         fzALQWhLWzrkR03xQDfADtrInN4l1McEYJX4KeByBsmOouBv8XKpvqmT20aonopuM7Z0
-         oAkcQTOKK2uXE7uspTZjvDasctI1kwE6dW/1jQ4ogTkE31C4hbMsO2H4dqn6Ezf7KTe3
-         dmmHAAmlkVZtFT4rR7vDLkyFrZaPcr9Yyi24vlofHIjTnfos3NtgKhlN44gT/srJzqMU
-         dSSboOfG3anpwSceWdMV37+xxDUnLIjJAByMWCBpCfPX7Oen72GTbT1rljPGqoN/rZk2
-         rzPA==
-X-Gm-Message-State: AOJu0YzHJrarhvEs36zKQN8pd6n++kEZCZc4nJALvviDcjIUSyyJY5gB
-	mxXJGygj9bDnF0HoZAa6K8lA0hOjdZ1szKAf4tGa+8f1
-X-Google-Smtp-Source: AGHT+IH9cj66Ps0WLbNpON2AlXKRfiUMaOxHt4FNCDCK4dpbBCjBwlo7F8l6CXuniG5eXJc7Yk/jUg==
-X-Received: by 2002:a1c:7718:0:b0:401:d803:6242 with SMTP id t24-20020a1c7718000000b00401d8036242mr5422512wmi.27.1695307464880;
-        Thu, 21 Sep 2023 07:44:24 -0700 (PDT)
+        bh=FFHoFBATjyYAR3S3Kihiw7DM+oB505Wu13vuO5lq7BQ=;
+        b=Rwamvkx36DXG3R2ORt+wqUQ0dwbiOTkVRytlgBiBXpADDM7U6SMOGolOxxI5uhS4eP
+         bZp9xNn0kGz1D0CdHoJ0UFhkLFpoHNKwwq1WnT9Cfnk0RIMHZTmbtSmGNwRJSFTkZl81
+         ltywyZCkpqliBm72pNUiHSlJFnJ3LZqqiG2ab4vNqKskhl0dywc4oAWl67pxbp/gpqxo
+         xHLqBvHkIOxGrRZA1QwKvSueaWJIAHeVsgM/6PKQmHeoeBpYa4FU8JkbWAAVXALutYCX
+         VTADxWGebbJBaJwenGf+Q1h/67n59K2U877rPLGJ9rM1a5UDDv30BSfW8fjSxv2q2kzi
+         WIoQ==
+X-Gm-Message-State: AOJu0YwQb3T30CRWKfzRt32OHB4ZDgDJhPpvbe/JwUg9Y5NuNRh9zjUu
+	UjsAJeKDlsPBARj3rt4uli/M/3WqABnts7KV9SpNlqyb
+X-Google-Smtp-Source: AGHT+IFyRSQ9sVI6svVzHUR3normBxbHxw1ADHwq9tPPMiHuaAAm+CM2HzCwtdqMZnvyJVaEdPWyUw==
+X-Received: by 2002:a7b:ce15:0:b0:401:daf2:273b with SMTP id m21-20020a7bce15000000b00401daf2273bmr5282558wmc.12.1695307465779;
+        Thu, 21 Sep 2023 07:44:25 -0700 (PDT)
 Received: from localhost.localdomain (abordeaux-655-1-129-86.w90-5.abo.wanadoo.fr. [90.5.10.86])
-        by smtp.gmail.com with ESMTPSA id s17-20020a1cf211000000b003fe2a40d287sm2125515wmc.1.2023.09.21.07.44.24
+        by smtp.gmail.com with ESMTPSA id s17-20020a1cf211000000b003fe2a40d287sm2125515wmc.1.2023.09.21.07.44.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Sep 2023 07:44:24 -0700 (PDT)
+        Thu, 21 Sep 2023 07:44:25 -0700 (PDT)
 From: David Lechner <dlechner@baylibre.com>
 To: linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org,
@@ -70,9 +70,9 @@ Cc: linux-kernel@vger.kernel.org,
 	Axel Haslam <ahaslam@baylibre.com>,
 	Philip Molloy <pmolloy@baylibre.com>,
 	David Lechner <dlechner@baylibre.com>
-Subject: [PATCH v2 14/19] staging: iio: resolver: ad2s1210: refactor setting excitation frequency
-Date: Thu, 21 Sep 2023 09:43:55 -0500
-Message-Id: <20230921144400.62380-15-dlechner@baylibre.com>
+Subject: [PATCH v2 15/19] staging: iio: resolver: ad2s1210: read excitation frequency from control register
+Date: Thu, 21 Sep 2023 09:43:56 -0500
+Message-Id: <20230921144400.62380-16-dlechner@baylibre.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230921144400.62380-1-dlechner@baylibre.com>
 References: <20230921144400.62380-1-dlechner@baylibre.com>
@@ -84,150 +84,65 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
 	autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-This combines the ad2s1210_update_frequency_control_word() and
-ad2s1210_soft_reset() functions into a single function since they
-both have to be called together.
-
-Also clean up a few things while touching this:
-- move AD2S1210_DEF_EXCIT macro with similar macros
-- remove unnecessary dev_err() calls
+This modifies the ad2s1210_show_fexcit() function to read the excitation
+frequency from the control register. This way we don't have to keep
+track of the value and don't risk returning a stale value.
 
 Signed-off-by: David Lechner <dlechner@baylibre.com>
 ---
- drivers/staging/iio/resolver/ad2s1210.c | 63 ++++++++++++-------------
- 1 file changed, 31 insertions(+), 32 deletions(-)
+ drivers/staging/iio/resolver/ad2s1210.c | 19 +++++++++++++++----
+ 1 file changed, 15 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/staging/iio/resolver/ad2s1210.c b/drivers/staging/iio/resolver/ad2s1210.c
-index fe413759deb9..f1ffee34ebbc 100644
+index f1ffee34ebbc..27294eff99ef 100644
 --- a/drivers/staging/iio/resolver/ad2s1210.c
 +++ b/drivers/staging/iio/resolver/ad2s1210.c
-@@ -53,12 +53,11 @@
- #define AD2S1210_MIN_CLKIN	6144000
- #define AD2S1210_MAX_CLKIN	10240000
- #define AD2S1210_MIN_EXCIT	2000
-+#define AD2S1210_DEF_EXCIT	10000
- #define AD2S1210_MAX_EXCIT	20000
- #define AD2S1210_MIN_FCW	0x4
- #define AD2S1210_MAX_FCW	0x50
+@@ -78,7 +78,6 @@ struct ad2s1210_state {
+ 	struct regmap *regmap;
+ 	/** The external oscillator frequency in Hz. */
+ 	unsigned long fclkin;
+-	unsigned int fexcit;
+ 	u8 resolution;
+ 	u8 rx[2] __aligned(IIO_DMA_MINALIGN);
+ 	u8 tx[2];
+@@ -202,8 +201,6 @@ static int ad2s1210_set_excitation_frequency(struct ad2s1210_state *st,
+ 	if (ret < 0)
+ 		return ret;
  
--#define AD2S1210_DEF_EXCIT	10000
+-	st->fexcit = fexcit;
 -
- enum ad2s1210_mode {
- 	MOD_POS = 0b00,
- 	MOD_VEL = 0b01,
-@@ -184,18 +183,29 @@ static int ad2s1210_regmap_reg_read(void *context, unsigned int reg,
- 	return 0;
+ 	/* software reset reinitializes the excitation frequency output */
+ 	return regmap_write(st->regmap, AD2S1210_REG_SOFT_RESET, 0);
  }
- 
--static inline
--int ad2s1210_update_frequency_control_word(struct ad2s1210_state *st)
-+/*
-+ * Sets the excitation frequency and performs software reset.
-+ *
-+ * Must be called with lock held.
-+ */
-+static int ad2s1210_set_excitation_frequency(struct ad2s1210_state *st,
-+					     u16 fexcit)
- {
--	unsigned char fcw;
-+	int ret;
-+	u8 fcw;
- 
--	fcw = (unsigned char)(st->fexcit * (1 << 15) / st->fclkin);
--	if (fcw < AD2S1210_MIN_FCW || fcw > AD2S1210_MAX_FCW) {
--		dev_err(&st->sdev->dev, "ad2s1210: FCW out of range\n");
-+	fcw = fexcit * (1 << 15) / st->fclkin;
-+	if (fcw < AD2S1210_MIN_FCW || fcw > AD2S1210_MAX_FCW)
- 		return -ERANGE;
--	}
- 
--	return regmap_write(st->regmap, AD2S1210_REG_EXCIT_FREQ, fcw);
-+	ret = regmap_write(st->regmap, AD2S1210_REG_EXCIT_FREQ, fcw);
-+	if (ret < 0)
-+		return ret;
-+
-+	st->fexcit = fexcit;
-+
-+	/* software reset reinitializes the excitation frequency output */
-+	return regmap_write(st->regmap, AD2S1210_REG_SOFT_RESET, 0);
- }
- 
- static int ad2s1210_set_resolution_gpios(struct ad2s1210_state *st,
-@@ -210,11 +220,6 @@ static int ad2s1210_set_resolution_gpios(struct ad2s1210_state *st,
- 				     bitmap);
- }
- 
--static inline int ad2s1210_soft_reset(struct ad2s1210_state *st)
--{
--	return regmap_write(st->regmap, AD2S1210_REG_SOFT_RESET, 0);
--}
--
- static ssize_t ad2s1210_show_fexcit(struct device *dev,
- 				    struct device_attribute *attr,
+@@ -225,8 +222,22 @@ static ssize_t ad2s1210_show_fexcit(struct device *dev,
  				    char *buf)
-@@ -229,27 +234,24 @@ static ssize_t ad2s1210_store_fexcit(struct device *dev,
- 				     const char *buf, size_t len)
  {
  	struct ad2s1210_state *st = iio_priv(dev_to_iio_dev(dev));
--	unsigned int fexcit;
++	unsigned int value;
 +	u16 fexcit;
- 	int ret;
++	int ret;
  
--	ret = kstrtouint(buf, 10, &fexcit);
--	if (ret < 0)
--		return ret;
--	if (fexcit < AD2S1210_MIN_EXCIT || fexcit > AD2S1210_MAX_EXCIT) {
--		dev_err(dev,
--			"ad2s1210: excitation frequency out of range\n");
-+	ret = kstrtou16(buf, 10, &fexcit);
-+	if (ret < 0 || fexcit < AD2S1210_MIN_EXCIT || fexcit > AD2S1210_MAX_EXCIT)
- 		return -EINVAL;
--	}
+-	return sprintf(buf, "%u\n", st->fexcit);
++	mutex_lock(&st->lock);
++	ret = regmap_read(st->regmap, AD2S1210_REG_EXCIT_FREQ, &value);
++	if (ret < 0)
++		goto error_ret;
 +
- 	mutex_lock(&st->lock);
--	st->fexcit = fexcit;
--	ret = ad2s1210_update_frequency_control_word(st);
-+	ret = ad2s1210_set_excitation_frequency(st, fexcit);
- 	if (ret < 0)
- 		goto error_ret;
--	ret = ad2s1210_soft_reset(st);
++	fexcit = value * st->fclkin / (1 << 15);
 +
-+	ret = len;
++	ret = sprintf(buf, "%u\n", fexcit);
 +
- error_ret:
- 	mutex_unlock(&st->lock);
- 
--	return ret < 0 ? ret : len;
++error_ret:
++	mutex_unlock(&st->lock);
 +	return ret;
  }
  
- static ssize_t ad2s1210_show_resolution(struct device *dev,
-@@ -624,10 +626,8 @@ static int ad2s1210_initial(struct ad2s1210_state *st)
- 	if (ret < 0)
- 		goto error_ret;
- 
--	ret = ad2s1210_update_frequency_control_word(st);
--	if (ret < 0)
--		goto error_ret;
--	ret = ad2s1210_soft_reset(st);
-+	ret = ad2s1210_set_excitation_frequency(st, AD2S1210_DEF_EXCIT);
-+
- error_ret:
- 	mutex_unlock(&st->lock);
- 	return ret;
-@@ -773,7 +773,6 @@ static int ad2s1210_probe(struct spi_device *spi)
- 	mutex_init(&st->lock);
- 	st->sdev = spi;
- 	st->resolution = 12;
--	st->fexcit = AD2S1210_DEF_EXCIT;
- 
- 	ret = ad2s1210_setup_clocks(st);
- 	if (ret < 0)
+ static ssize_t ad2s1210_store_fexcit(struct device *dev,
 -- 
 2.34.1
 
