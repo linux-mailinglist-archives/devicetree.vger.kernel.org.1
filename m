@@ -1,223 +1,204 @@
-Return-Path: <devicetree+bounces-2475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DD5B7AAF0C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 12:02:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 018F37AAF10
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 12:04:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 9B45C1C2086B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 10:02:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id 8B88C1F22831
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 10:04:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE3DE1EA7A;
-	Fri, 22 Sep 2023 10:02:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3A121E52C;
+	Fri, 22 Sep 2023 10:04:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF5EE1E521
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 10:02:54 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B2C98F;
-	Fri, 22 Sep 2023 03:02:52 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id C9E0FBC4;
-	Fri, 22 Sep 2023 12:01:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1695376873;
-	bh=7DJuGSBjgqiikfMDbfWTFQ2gWoEcSHou+PD8obXlPvI=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A28E5EAC7
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 10:04:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10B70C433C8;
+	Fri, 22 Sep 2023 10:04:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695377044;
+	bh=00l4c9MLUEW+59kbg7YWsJXOKjOKnRp0XSr7Fn0HoCw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=geogg32EiSJMnuKItsszIHdWEaGHkXxAJTvifpUVeklKEb9otTUsWW/Xd3P/kBzWo
-	 iOTBbLFJdxyIe9fv2Xp5w/esJ6KI/LD2fHt3TVKtXuOcKKVbdU+1VigqqaKksxFzjl
-	 ouZ0JzvpT7Klf3pTe27QSZvvNQGoNnYa1Aex2mfs=
-Date: Fri, 22 Sep 2023 13:03:03 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Alexander Gordeev <alexander.gordeev@opensynergy.com>
-Cc: virtio-dev@lists.oasis-open.org, linux-media@vger.kernel.org,
-	acourbot@chromium.org, alexlau@chromium.org, daniel@ffwll.ch,
-	dgreid@chromium.org, dstaessens@chromium.org, egranata@google.com,
-	fziglio@redhat.com, hverkuil@xs4all.nl, keiichiw@chromium.org,
-	kraxel@redhat.com, marcheu@chromium.org, posciak@chromium.org,
-	spice-devel@lists.freedesktop.org, stevensd@chromium.org,
-	tfiga@chromium.org, uril@redhat.com, devicetree@vger.kernel.org,
-	alex.bennee@linaro.org, aesteve@redhat.com,
-	Matti.Moell@opensynergy.com, andrew.gazizov@opensynergy.com,
-	daniel.almeida@collabora.com, cohuck@redhat.com, mwojtas@google.com,
-	mst@redhat.com, peter.griffin@linaro.org, bag@semihalf.com,
-	bgrzesik@google.com, hmazur@google.com, mikrawczyk@google.com,
-	srosek@google.com
-Subject: Re: Potential ways to describe virtio-video device capabilities
-Message-ID: <20230922100303.GF19112@pendragon.ideasonboard.com>
-References: <a9235fe7-7448-fa9f-ea52-fd27f4845bc4@opensynergy.com>
+	b=lA/pYDrRDHZSfmNX4Ei7dU7ZtbAmkYCwTJa2VK7mI5YtE+ojVthciYIvrkXN0N/2m
+	 /nnDuuGVMaofuKrunhKg4XU6hN84+nWXYDUHiUQByppufv0VoNTmkq0BNMxl0k/Ss2
+	 exoENwUQtXdwkx/aHqJ+tB5tlFnumLXp+PNrSdVd79x07JZq62iMu2YUJO/2kG7T2N
+	 TSBVt/DESKrfrKj+ojtkwmvyxx4thBcEvG0dZHMJNiSiFmdpZhMR0+9ve6beB7nt9d
+	 rWTL2JgHvklRIwhtmRu1PeH3ke9j5pFtbxCsconN/Ynv8B/jhWqqsUDxPpi2/ddtVG
+	 XYz4UZeDwxBog==
+Date: Fri, 22 Sep 2023 11:03:58 +0100
+From: Conor Dooley <conor@kernel.org>
+To: shravan chippa <shravan.chippa@microchip.com>
+Cc: green.wan@sifive.com, vkoul@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+	paul.walmsley@sifive.com, conor+dt@kernel.org, palmer@sifive.com,
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	nagasuresh.relli@microchip.com, praveen.kumar@microchip.com,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v1 3/3] dmaengine: sf-pdma: add mpfs-pdma compatible name
+Message-ID: <20230922-sappy-huddle-1484d64b27f3@spud>
+References: <20230922095039.74878-1-shravan.chippa@microchip.com>
+ <20230922095039.74878-4-shravan.chippa@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="afMx8rXFETmT0Tex"
 Content-Disposition: inline
-In-Reply-To: <a9235fe7-7448-fa9f-ea52-fd27f4845bc4@opensynergy.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+In-Reply-To: <20230922095039.74878-4-shravan.chippa@microchip.com>
 
-On Fri, Sep 22, 2023 at 07:07:34AM +0200, Alexander Gordeev wrote:
-> Hi,
-> 
-> I'm working on updating virtio-video draft v8 spec [1] and the 
-> virtio-video V4L2 driver [2]. One of the things, that I don't like in 
-> the current spec draft is sharing the device's capabilities with the 
-> guest VM. The main requirement is making these capabilities compatible 
-> with V4L2.
-> 
-> These capabilities could be pretty complex, see [3] and [4]:
-> 1. First there could be several coded video formats. Coded formats have 
-> their specific sets of supported controls.
-> 2. Then for each coded video formats there could be different sets of 
-> raw video formats, that could be used in combination with the selected 
-> encoded format for decoding/encoding.
-> 3. Then for each combination of the coded and raw format there could be 
-> different sets of supported resolutions.
-> 4. (Optional) for each coded format, raw format and resolution there 
-> could be different sets of supported frame rates/intervals.
-> 
-> In the future new formats, controls, flags, etc could be defined. Right 
-> now there is a rather static structure, see section 5.20.7.3.1 
-> (VIRTIO_VIDEO_CMD_DEVICE_QUERY_CAPS) in [5]. It looks too inflexible.
-> 
-> The V4L2 approach with many different ioctl's and complex querying logic 
-> doesn't fit well for virtio-video IMHO. syscall overhead is only a few 
-> hundred nanoseconds, so doing tens or hundreds of them is bearable in 
-> case of video. But a roundtrip over virtio may take hundreds of 
-> microseconds even in the local case. We at OpenSynergy already have 
-> setups where the real hardware is accessed over a network. Then it can 
-> take a millisecond. People already seem to agree, that this amount of 
-> overhead makes V4L2-style discovery process unbearable on a per stream 
-> basis. So all the relevant data has to be obtained during the device 
-> probing. This means, that in many cases there is a complex structure 
-> with all the data on the device side, and we just need to move it to the 
-> driver side. Moving it in one step seems easier to me and better because 
-> of the latency. Boot time matters too sometimes.
 
-No disagreement here. For what it's worth, I think V4L2 should also
-evolve and get a way to query capabilities with a single (or a very
-small number of) ioctl.
+--afMx8rXFETmT0Tex
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> One of the ideas is to replace the mentioned 
-> VIRTIO_VIDEO_CMD_DEVICE_QUERY_CAPS command response with a standalone 
-> Device Tree Blob. It looks the most promising to me right now. I guess, 
-> it may sound crazy to many people, but actually it fits into one of the 
-> device tree usage patterns outlined in [6]. This document is referenced 
-> in the kernel device tree documentation, so I assume it is correct.
+Hey Shravan,
 
-If we want to pass flexible structured data we need a binary format, and
-DT provides a binary format. Whether it's the best option or not, I
-don't know, but it doesn't seem too crazy to me.
+On Fri, Sep 22, 2023 at 03:20:39PM +0530, shravan chippa wrote:
+> From: Shravan Chippa <shravan.chippa@microchip.com>
+>=20
+> Sifive platform dma does not allow out-of-order transfers,
 
-> A simplified version could look like this, for example:
-> 
-> /dts-v1/;
-> 
-> / {
->      virtio-video {
->          compatible = "virtio,video";
-> 
->          virtio,video-caps {
->              h264 {
->                  profiles-mask = <0x3ffff>;
->                  levels-mask = <0xfffff>;
->                  num-resources-range = <1 32>;
->                  buffer-size = <0x100000>;
->                  bitrates-range = <100000 10000000>;
-> 
->                  yuv420 {
->                      plane-layout-mask = <0x3>;
->                      plane-align = <1>;
->                      stride-align-mask = <0x10>;
->                      widths-range-stepwise = <96 1920 8>;
->                      heights-range-stepwise = <96 1080 1>;
->                      num-resources-range = <4 50>;
->                  };
-> 
->                  nv12 {
->                      /* ... */
->                  };
-> 
->                  rgba {
->                      /* ... */
->                  };
->              };
-> 
->              hevc {
->                  /* ... */
->              };
-> 
->              vp8 {
->                  /* ... */
->              };
-> 
->              vp9 {
->                  /* ... */
->              };
->          };
->      };
-> };
-> 
-> Or maybe the resolutions could be defined separately and linked using 
-> phandles to avoid duplication because they are going to depend on the 
-> raw formats exclusively in most cases, I think.
-> 
-> There are many benefits IMO:
-> 
-> 1. Device tree can be used to describe arbitrary trees (and even 
-> arbitrary graphs with phandles). The underlying data structure is 
-> generic. It looks like it can fit very well here.
-> 2. There is a specification of the format [7]. I hope it could be 
-> referenced in the virtio spec, right?
-> 3. There is already DTS, DTC, libfdt and DTB parsing code in Linux. All 
-> of this can be reused. For example, at the moment we have a custom 
-> configuration file format and a big chunk of code to handle it in our 
-> virtio-video device. These could be replaced by DTS and calls to libfdt 
-> completely, I think. There is also an implementation in Rust [8].
+Can you remind me why we determined that this was the case?
+IOW, why could we not enable the out-of-order transfers and get a
+performance benefit for everyone? It's been a year or so (I think) and I
+have forgotten.
 
-How does libfdt fare when it comes to ease of use and performance ?
-License-wise it seems to be dual-licensed under the terms of the GPL v2
-and BSD-2, so it should be fine.
+Cheers,
+Conor.
 
-> 4. I think the standalone DTB could be integrated into a board DTB later 
-> reducing the amount of queries to zero. It is not going to make a big 
-> difference in latency though.
-> 
-> If device trees are used, then we'll need add a binding/schema to the 
-> kernel or to the dt-schema repo [9]. Maybe the schema could be 
-> referenced in the virtio-video spec instead of duplicating it? This 
-> would reduce the spec size.
-> 
-> I don't know if anybody has already done anything like this and I'm not 
-> sure if the device tree maintainers and other involved parties would 
-> approve it. That's why I'm starting this thread. Please share your 
-> opinions about the idea.
-> 
-> An alternative to using device trees would be inventing something 
-> similar and simpler (without phandles and strings) from scratch. That's 
-> fine too, but doesn't allow to reuse the tooling and also is going to 
-> make the virtio-video spec even bigger.
-> 
-> [1] https://lore.kernel.org/virtio-comment/20230629144915.597188-1-Alexander.Gordeev@opensynergy.com/
-> [2] https://lore.kernel.org/linux-media/20200218202753.652093-1-dmitry.sepp@opensynergy.com/
-> [3] https://docs.kernel.org/userspace-api/media/v4l/dev-decoder.html#querying-capabilities
-> [4] https://docs.kernel.org/userspace-api/media/v4l/dev-encoder.html#querying-capabilities
-> [5] https://drive.google.com/file/d/1uPg4kxThlNPBSiC4b5veyFz4OFGytU7v/view
-> [6] https://elinux.org/Device_Tree_Usage#Device_Specific_Data
-> [7] https://www.devicetree.org/specifications/
-> [8] https://github.com/rust-vmm/vm-fdt
-> [9] https://github.com/devicetree-org/dt-schema
+> buf out-of-order dma has a significant performance advantage.
+> Add a PolarFire SoC specific compatible and code to support
+> for out-of-order dma transfers
+>=20
+> Signed-off-by: Shravan Chippa <shravan.chippa@microchip.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  drivers/dma/sf-pdma/sf-pdma.c | 27 ++++++++++++++++++++++++---
+>  drivers/dma/sf-pdma/sf-pdma.h |  6 ++++++
+>  2 files changed, 30 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/drivers/dma/sf-pdma/sf-pdma.c b/drivers/dma/sf-pdma/sf-pdma.c
+> index c7558c9f9ac3..992a804166d5 100644
+> --- a/drivers/dma/sf-pdma/sf-pdma.c
+> +++ b/drivers/dma/sf-pdma/sf-pdma.c
+> @@ -21,6 +21,7 @@
+>  #include <linux/dma-mapping.h>
+>  #include <linux/of.h>
+>  #include <linux/of_dma.h>
+> +#include <linux/of_device.h>
+>  #include <linux/slab.h>
+> =20
+>  #include "sf-pdma.h"
+> @@ -66,7 +67,7 @@ static struct sf_pdma_desc *sf_pdma_alloc_desc(struct s=
+f_pdma_chan *chan)
+>  static void sf_pdma_fill_desc(struct sf_pdma_desc *desc,
+>  			      u64 dst, u64 src, u64 size)
+>  {
+> -	desc->xfer_type =3D PDMA_FULL_SPEED;
+> +	desc->xfer_type =3D  desc->chan->pdma->transfer_type;
+>  	desc->xfer_size =3D size;
+>  	desc->dst_addr =3D dst;
+>  	desc->src_addr =3D src;
+> @@ -520,6 +521,7 @@ static struct dma_chan *sf_pdma_of_xlate(struct of_ph=
+andle_args *dma_spec,
+> =20
+>  static int sf_pdma_probe(struct platform_device *pdev)
+>  {
+> +	const struct sf_pdma_driver_platdata *ddata;
+>  	struct sf_pdma *pdma;
+>  	int ret, n_chans;
+>  	const enum dma_slave_buswidth widths =3D
+> @@ -545,6 +547,14 @@ static int sf_pdma_probe(struct platform_device *pde=
+v)
+> =20
+>  	pdma->n_chans =3D n_chans;
+> =20
+> +	pdma->transfer_type =3D PDMA_FULL_SPEED;
+> +
+> +	ddata  =3D of_device_get_match_data(&pdev->dev);
+> +	if (ddata) {
+> +		if (ddata->quirks & NO_STRICT_ORDERING)
+> +			pdma->transfer_type &=3D ~(NO_STRICT_ORDERING);
+> +	}
+> +
+>  	pdma->membase =3D devm_platform_ioremap_resource(pdev, 0);
+>  	if (IS_ERR(pdma->membase))
+>  		return PTR_ERR(pdma->membase);
+> @@ -629,11 +639,22 @@ static int sf_pdma_remove(struct platform_device *p=
+dev)
+>  	return 0;
+>  }
+> =20
+> +static const struct sf_pdma_driver_platdata mpfs_pdma =3D {
+> +	.quirks =3D NO_STRICT_ORDERING,
+> +};
+> +
+>  static const struct of_device_id sf_pdma_dt_ids[] =3D {
+> -	{ .compatible =3D "sifive,fu540-c000-pdma" },
+> -	{ .compatible =3D "sifive,pdma0" },
+> +	{
+> +		.compatible =3D "sifive,fu540-c000-pdma",
+> +	}, {
+> +		.compatible =3D "sifive,pdma0",
+> +	}, {
+> +		.compatible =3D "microchip,mpfs-pdma",
+> +		.data	    =3D &mpfs_pdma,
+> +	},
+>  	{},
+>  };
+> +
+>  MODULE_DEVICE_TABLE(of, sf_pdma_dt_ids);
+> =20
+>  static struct platform_driver sf_pdma_driver =3D {
+> diff --git a/drivers/dma/sf-pdma/sf-pdma.h b/drivers/dma/sf-pdma/sf-pdma.h
+> index 5c398a83b491..3b16db4daa0b 100644
+> --- a/drivers/dma/sf-pdma/sf-pdma.h
+> +++ b/drivers/dma/sf-pdma/sf-pdma.h
+> @@ -49,6 +49,7 @@
+> =20
+>  /* Transfer Type */
+>  #define PDMA_FULL_SPEED					0xFF000008
+> +#define NO_STRICT_ORDERING				BIT(3)
+> =20
+>  /* Error Recovery */
+>  #define MAX_RETRY					1
+> @@ -112,8 +113,13 @@ struct sf_pdma {
+>  	struct dma_device       dma_dev;
+>  	void __iomem            *membase;
+>  	void __iomem            *mappedbase;
+> +	u32			transfer_type;
+>  	u32			n_chans;
+>  	struct sf_pdma_chan	chans[];
+>  };
+> =20
+> +struct sf_pdma_driver_platdata {
+> +	u32 quirks;
+> +};
+> +
+>  #endif /* _SF_PDMA_H */
+> --=20
+> 2.34.1
+>=20
 
--- 
-Regards,
+--afMx8rXFETmT0Tex
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Laurent Pinchart
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQ1mjgAKCRB4tDGHoIJi
+0v6AAQCQTGk6YdjvTBFnqNLC+TAUoVw03aK0hhSVZVJEqKEw3AD/ad9DjcZmYXma
+irUTJYGdDxiZ+ExA2hDsSKe1j8MOtws=
+=1YnB
+-----END PGP SIGNATURE-----
+
+--afMx8rXFETmT0Tex--
 
