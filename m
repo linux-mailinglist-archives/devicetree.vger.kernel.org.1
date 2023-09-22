@@ -1,140 +1,98 @@
-Return-Path: <devicetree+bounces-2332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A26BA7AA943
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 08:47:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46BFF7AA94B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 08:50:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 99536B20A8A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 06:47:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 1A5E91C20825
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 06:50:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12FE415AE0;
-	Fri, 22 Sep 2023 06:47:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFA1715AEB;
+	Fri, 22 Sep 2023 06:50:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94EFBEAC8
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 06:47:28 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1CD1CE
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 23:47:26 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qjZwR-0004KT-P2; Fri, 22 Sep 2023 08:47:07 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qjZwN-0086Rh-Ok; Fri, 22 Sep 2023 08:47:03 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qjZwN-003oy9-DY; Fri, 22 Sep 2023 08:47:03 +0200
-Date: Fri, 22 Sep 2023 08:47:04 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: John Watts <contact@jookia.org>
-Cc: Aleksandr Shubin <privatesub2@gmail.com>, linux-kernel@vger.kernel.org,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v6 0/3] Add support for Allwinner PWM on D1/T113s/R329
- SoCs
-Message-ID: <20230922064704.hlytxjyjo4rekjux@pengutronix.de>
-References: <20230824114038.891493-1-privatesub2@gmail.com>
- <ZPfn-0OAL7-3DCmt@titan>
- <20230921212736.nw6ctlimtrxfksbu@pengutronix.de>
- <ZQy3F_VtOL3XWcl0@titan>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F071EAC8
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 06:50:29 +0000 (UTC)
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0A1DCE;
+	Thu, 21 Sep 2023 23:50:22 -0700 (PDT)
+X-UUID: 4b4fcc18591411eea33bb35ae8d461a2-20230922
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=IcZFuJHms8LjHETDWtd+xVyjptA2CQ+H6Ajkbiz71kA=;
+	b=Lm7humURZGYsl6t9orWVnZpU/UURpxTU/SpZqmBbIzwd7KXO6OnIu5307t6gReizX4hM0EBkRcNRePoeljkQEa0TgQn5omI3wWxjjYRqvLKu1Rs7lpe40xhgy+ea37sRXpYrv0vFRx2TrH+SbJNaenWpKWTFCukl7khz8NeRkOQ=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.32,REQID:f6594bda-19a8-438a-b339-ecdea4e580e8,IP:0,U
+	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-5
+X-CID-META: VersionHash:5f78ec9,CLOUDID:eda054c3-1e57-4345-9d31-31ad9818b39f,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: 4b4fcc18591411eea33bb35ae8d461a2-20230922
+Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
+	(envelope-from <moudy.ho@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1398504240; Fri, 22 Sep 2023 14:50:19 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Fri, 22 Sep 2023 14:50:18 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Fri, 22 Sep 2023 14:50:18 +0800
+From: Moudy Ho <moudy.ho@mediatek.com>
+To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	Moudy Ho <moudy.ho@mediatek.com>
+Subject: [PATCH v6 0/2] Add support for MT8195 MDP3
+Date: Fri, 22 Sep 2023 14:50:15 +0800
+Message-ID: <20230922065017.10357-1-moudy.ho@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bww26scqrw5ezmb2"
-Content-Disposition: inline
-In-Reply-To: <ZQy3F_VtOL3XWcl0@titan>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK: N
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Changes since v5:
+- Rebase on v6.6-rc2
+- Add the required property - interrupts in components
+  AAL, COLOR and OVL.
 
---bww26scqrw5ezmb2
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-Hey John,
+The purpose of this patch is to separate the MDP3-related dtsi from
+the original mailing list mentioned below:
+https://lore.kernel.org/all/20230912075805.11432-2-moudy.ho@mediatek.com/
+Introducing more components for MDP3 in MT8195.
 
-On Fri, Sep 22, 2023 at 07:35:19AM +1000, John Watts wrote:
-> On Thu, Sep 21, 2023 at 11:27:36PM +0200, Uwe Kleine-K=F6nig wrote:
-> > Hi John,
-> >=20
-> > On Wed, Sep 06, 2023 at 12:46:19PM +1000, John Watts wrote:
-> > > On Thu, Aug 24, 2023 at 02:40:24PM +0300, Aleksandr Shubin wrote:
-> > > > This series adds support for PWM controller on new
-> > > > Allwinner's SoCs, such as D1, T113s and R329. The implemented driver
-> > > > provides basic functionality for control PWM channels.
-> > >=20
-> > > I have tested this patch and earlier versions successfully on a Mango=
- Pi MQ
-> > > Dual and verified it outputs a PWM signal.
-> >=20
-> > If you want that documented, the usual thing to do is to include a
-> > Tested-by: tag in your reply.
->=20
-> That's a good idea! I'll take a closer look under a scope and against the=
- data
-> sheet and give another tested-by then when I can. I'm not sure how close =
-that
-> gets to a reviewed-by but I don't have the experience in driver developme=
-nt to
-> know if something is off in the design.
+Moudy Ho (2):
+  arm64: dts: mediatek: mt8183: correct MDP3 DMA-related nodes
+  arm64: dts: mediatek: mt8195: add MDP3 nodes
 
-Tested-by has little to nothing to do with development or review. If you
-tested that patch and it worked for you, that's enough to give such a
-tag.
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi |   6 +-
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi | 388 +++++++++++++++++++++++
+ 2 files changed, 392 insertions(+), 2 deletions(-)
 
-Best regards
-Uwe
+-- 
+2.18.0
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---bww26scqrw5ezmb2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmUNOGcACgkQj4D7WH0S
-/k5rHwf/WlCqmSa7FGJOCv1iloPyW8uz1VP/sNtNI2shOtERwNwaZ4iocMFo/o8I
-LMITmzxh2ZgB34KBWh96Qy5i3BvvnU7Fzjy6t3OpR0+hjVCy7/LvgKtlA7q9VEb/
-tpenCJ38H4rWdTPUsX2OnWOeCfVIvc6Lh7HzUwX/01ekwVbni3MxczQ12CsV3/yC
-DIWTheVJrpQHYT9a7qNlzFDralW3MeJrthV04iWvoOpyLMvmx7d0vN5KwlWrMwb2
-bPqgcVOmHnUj3lYPjFVQh8cb4E4DGd0P1QNS8S4gfosRfcMkWq16ymwUVOgSB8+/
-w6DynP75YpVgCXDeg6SYfoL4HF1iTQ==
-=v75W
------END PGP SIGNATURE-----
-
---bww26scqrw5ezmb2--
 
