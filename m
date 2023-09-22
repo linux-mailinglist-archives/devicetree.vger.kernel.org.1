@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-2604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A97A7ABAA9
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 22:50:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BF677ABAAC
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 22:51:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id C43B9B208F1
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 20:50:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 00C8B281DE9
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 20:51:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9EE247341;
-	Fri, 22 Sep 2023 20:50:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3224647357;
+	Fri, 22 Sep 2023 20:51:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9940F45F63
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 20:50:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45085C433C7;
-	Fri, 22 Sep 2023 20:50:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23BA043AAB
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 20:51:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8C33C433C8;
+	Fri, 22 Sep 2023 20:51:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695415826;
-	bh=8rUQPVnfBZ8nP+opU6DTtF/9h/0Y3eo/+O/9HxRH5wE=;
+	s=k20201202; t=1695415898;
+	bh=GYskKyjo0FmpusJcMMZmSC6zPPr6TtDi/xqUdv7Hd9I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uV4w3zy8Ixj9BOX7Sc6mk0f8Opy6CAAoMdR0lguNgOWPqPzTpJjnJsObzg0NBlPpw
-	 5aA1K+y8AFcnFCTzfUwu1wxG4513oPJeNZ08bndBhLu7sbsttyltqabFz795u7fvwx
-	 MI70lspZm3m4M0IJ21M9YdjmKQZfmErXdH0sHN/lr+5lltm6iBu47CwaIdZmwE0MX4
-	 Ts/JYCPNuGsyJWe8z4d0mYZHlCcMRDBsNcqg9kAJLtO9JA2dhH8JVjIS5/11G5KcwL
-	 qYR0wCFoZ4vEJEp323lTJd8Krh2tsYFVPkl0OhYKBFzgj7V1QV6LErk7bHgfVye9X/
-	 hg1ez4SEp4jBg==
-Received: (nullmailer pid 3556203 invoked by uid 1000);
-	Fri, 22 Sep 2023 20:50:23 -0000
-Date: Fri, 22 Sep 2023 15:50:23 -0500
+	b=P/RjwNzWltM4aAsJn610JUMps6FyrMDPCJyZ72S/JOAKqgXdB9fgpRSarV3VFJFhQ
+	 S3qqIpr5wfIRAvx5Bu1cPr5faImWsAHeznwtfUP8UgTDuvsVeulHTQxcp+nKTwrhSY
+	 q5oXhZ1Th3+SOV5pWpYbTfjpGkQn9ibo7slndunaHwHH/twXYGXyZsu+odl9B1ti5+
+	 8NWa1OCoZwcS+5zdTf7r+aMqF5M8uyxG+MLyymx1/qOg2l7IdWevK+CiPra6fw0d1c
+	 R6HCqiy4qZA8RrmRWdO9QbqvEZVyHRqpd4EcYIdPgEbjQKSVSKSGU79iSS8MgytYP1
+	 snB1Ls5C3HFlw==
+Received: (nullmailer pid 3557889 invoked by uid 1000);
+	Fri, 22 Sep 2023 20:51:34 -0000
+Date: Fri, 22 Sep 2023 15:51:34 -0500
 From: Rob Herring <robh@kernel.org>
-To: Sricharan R <srichara@win-platform-upstream01.qualcomm.com>
-Cc: rafael@kernel.org, quic_srichara@quicinc.com, linux-kernel@vger.kernel.org, dmitry.baryshkov@linaro.org, linux-pm@vger.kernel.org, srinivas.kandagatla@linaro.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org, thara.gopinath@gmail.com, konrad.dybcio@linaro.org, devicetree@vger.kernel.org, krzysztof.kozlowski@linaro.org, linux-arm-msm@vger.kernel.org, agross@kernel.org, conor+dt@kernel.org, daniel.lezcano@linaro.org
-Subject: Re: [PATCH V3 1/4] dt-bindings: thermal: qcom-tsens: Add ipq5018
- compatible
-Message-ID: <169541580075.3555585.17615922669140216464.robh@kernel.org>
-References: <20230922115116.2748804-1-srichara@win-platform-upstream01.qualcomm.com>
- <20230922115116.2748804-2-srichara@win-platform-upstream01.qualcomm.com>
+To: wangweidong.a@awinic.com
+Cc: 13916275206@139.com, rf@opensource.cirrus.com, liweilei@awinic.com, lgirdwood@gmail.com, povik+lin@cutebit.org, ryans.lee@analog.com, perex@perex.cz, tiwai@suse.com, linus.walleij@linaro.org, yijiangtao@awinic.com, colin.i.king@gmail.com, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org, conor+dt@kernel.org, u.kleine-koenig@pengutronix.de, robh+dt@kernel.org, arnd@arndb.de, harshit.m.mogalapalli@oracle.com, yang.lee@linux.alibaba.com, ckeepax@opensource.cirrus.com, broonie@kernel.org, herve.codina@bootlin.com, linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org, trix@redhat.com, shumingf@realtek.com
+Subject: Re: [PATCH V4 1/7] ASoC: dt-bindings: awinic,aw88395: Add properties
+ for multiple PA support
+Message-ID: <169541589406.3557849.14317344918884630444.robh@kernel.org>
+References: <20230919105724.105624-1-wangweidong.a@awinic.com>
+ <20230919105724.105624-2-wangweidong.a@awinic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -47,20 +47,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230922115116.2748804-2-srichara@win-platform-upstream01.qualcomm.com>
+In-Reply-To: <20230919105724.105624-2-wangweidong.a@awinic.com>
 
 
-On Fri, 22 Sep 2023 17:21:13 +0530, Sricharan R wrote:
-> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+On Tue, 19 Sep 2023 18:57:18 +0800, wangweidong.a@awinic.com wrote:
+> From: Weidong Wang <wangweidong.a@awinic.com>
 > 
-> IPQ5018 has tsens v1.0 block with 4 sensors and 1 interrupt.
+> Add two properties, the "awinic,audio-channel" property and the
+> "awinic,sync-flag". The "awinic,audio-channel" is used to make
+> different PA load different configurations, the "awinic,sync-flag"
+> is used to synchronize the phases of multiple PA. These two properties
+> will be read by the corresponding driver, allowing multi-PA to
+> achieve better playback effect.
 > 
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
 > ---
->  [v3] Added the tsens-ipq5018 as  new binding without rpm
-> 
->  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+>  .../bindings/sound/awinic,aw88395.yaml           | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
