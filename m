@@ -1,121 +1,99 @@
-Return-Path: <devicetree+bounces-2559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E65CD7AB53F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 17:51:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3733D7AB55A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 18:00:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id B2BB11C20BB8
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 15:51:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id B0D301F23049
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 16:00:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AB4A41762;
-	Fri, 22 Sep 2023 15:51:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7C0F41755;
+	Fri, 22 Sep 2023 16:00:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08B4F200B3
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 15:51:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2DFEC433C8;
-	Fri, 22 Sep 2023 15:51:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8AC1171C0
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 16:00:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C434C433CC;
+	Fri, 22 Sep 2023 16:00:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695397868;
-	bh=3b+hYQ2/a1Tm4DZtb0TZrPYMb1hWdBmLeqVPuYi1b8A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qJkSamFKo5k3W7L6WowyYvGfhzsmI4tGVDDkVNqAok8EbAX0I93fKZjvYvlyIg+I6
-	 OcICjT7jOhmFm0LWxOUKDB/3mrrbFi18jJc1NPiF40QjakUUe01rRZIVjQ3WGvcZL+
-	 ngsEEEuryZqYi/rM0VbWmjY9nxkQFTIjw3ruszj2HjdvEciGVJtTedybe0bMO+C2Ce
-	 OikvuY6ojAcSyz8f4vT5AlUaZXWSH/0mx5lBNljVOZMekaYwtxdc8Gx/TKPhzHh/j5
-	 Ggvv0od3iGXviCLxNERVQEZvmbLMomI7KMUrXaTOC9yaWzAaucl/xyC9oxEVilQctz
-	 Qwpdpz7Eg2hFg==
-Date: Fri, 22 Sep 2023 16:51:02 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Moudy Ho <moudy.ho@mediatek.com>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 12/16] dt-bindings: display: mediatek: color: add
- compatible for MT8195
-Message-ID: <20230922-overhung-deception-e9b461ba0372@spud>
-References: <20230922072116.11009-1-moudy.ho@mediatek.com>
- <20230922072116.11009-13-moudy.ho@mediatek.com>
- <20230922-zebra-modify-87ff23c70bb3@spud>
+	s=k20201202; t=1695398452;
+	bh=xhaA32OBzVOM6nAoPy+gaX1FXQZKalbztmjU2PzXFPQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=ggzP0E0DGs0mibxseVl52HMOQX0aJ/KNk9DKc7+M5mWQt6G8GwUN+N8OLddQSnP00
+	 mikR3nt6qzuamVj4tB1KHTzXqXbEsUT/Nz515Nxo3qSeT7fKjiTlGV+kk0HNmJFUtn
+	 h+W4eEBKX5fqYVPKRizLnCPkmHHPyQtJQ6xKkd3wWuC0bCTDOy3b6JN+vOBXl9CaNg
+	 2YV/3iwkjSnGvmL+BVVAwuWLJK5K/irp+IYCF9eS/5Y5q1UI8irQKKjxh5S5z6MQ0k
+	 MYor0XI3CmqlTXmq/gGMHA+94sJ8DMPEG3JOhP7KuaKERhhij7Qm1mRu96NSNFR2EC
+	 Q1uK6f7ijoBtw==
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-50307acd445so3792965e87.0;
+        Fri, 22 Sep 2023 09:00:52 -0700 (PDT)
+X-Gm-Message-State: AOJu0Yzd8T+BXNFU7FQRkwSSJl3XLaSo+3irguQppBcxi/Cz5Z8Jfpml
+	iEt23VPL9kN9jJ55LW0tV2J0OuK2GWmns5hmjQ==
+X-Google-Smtp-Source: AGHT+IEEE/JvcGeQD4KCzLIPPO9coF/0Kd1GNltvU5JvL5xNpex4YSVmnWqzCk9JmegTSZU7ZxtuJs2nrUqxTkVlYi8=
+X-Received: by 2002:ac2:5041:0:b0:503:2623:7cfc with SMTP id
+ a1-20020ac25041000000b0050326237cfcmr6407321lfm.34.1695398450443; Fri, 22 Sep
+ 2023 09:00:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="69Rgp8WDZjRLhaqe"
-Content-Disposition: inline
-In-Reply-To: <20230922-zebra-modify-87ff23c70bb3@spud>
-
-
---69Rgp8WDZjRLhaqe
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20230921124459.1.I91ddcfacf9b234af5cc3eabea4b62edb31153317@changeid>
+In-Reply-To: <20230921124459.1.I91ddcfacf9b234af5cc3eabea4b62edb31153317@changeid>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 22 Sep 2023 11:00:38 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+WuYDU+yY98opTHr1PT-J9mFYJQBjVMnk+FSWLDUO33w@mail.gmail.com>
+Message-ID: <CAL_Jsq+WuYDU+yY98opTHr1PT-J9mFYJQBjVMnk+FSWLDUO33w@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mtd: Add a schema for binman
+To: Simon Glass <sjg@chromium.org>
+Cc: devicetree@vger.kernel.org, U-Boot Mailing List <u-boot@lists.denx.de>, 
+	linux-mtd@lists.infradead.org, Tom Rini <trini@konsulko.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 22, 2023 at 04:49:14PM +0100, Conor Dooley wrote:
-> On Fri, Sep 22, 2023 at 03:21:12PM +0800, Moudy Ho wrote:
-> > Add a compatible string for the COLOR block in MediaTek MT8195 that
-> > is controlled by MDP3.
-> >=20
-> > Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> > ---
-> >  .../devicetree/bindings/display/mediatek/mediatek,color.yaml     | 1 +
-> >  1 file changed, 1 insertion(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/display/mediatek/mediate=
-k,color.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-color.yaml
-> > index f21e44092043..b886ca0d89ea 100644
-> > --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,color=
-=2Eyaml
-> > +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,color=
-=2Eyaml
-> > @@ -26,6 +26,7 @@ properties:
-> >            - mediatek,mt2701-disp-color
-> >            - mediatek,mt8167-disp-color
-> >            - mediatek,mt8173-disp-color
-> > +          - mediatek,mt8195-mdp3-color
->=20
-> How come this one is a "mdp3" not a "disp"?
+On Thu, Sep 21, 2023 at 1:45=E2=80=AFPM Simon Glass <sjg@chromium.org> wrot=
+e:
+>
+> Binman[1] is a tool for creating firmware images. It allows you to
+> combine various binaries and place them in an output file.
+>
+> Binman uses a DT schema to describe an image, in enough detail that
+> it can be automatically built from component parts, disassembled,
+> replaced, listed, etc.
+>
+> Images are typically stored in flash, which is why this binding is
+> targeted at mtd. Previous discussion is at [2] [3].
+>
+> [1] https://u-boot.readthedocs.io/en/stable/develop/package/binman.html
+> [2] https://lore.kernel.org/u-boot/20230821180220.2724080-3-sjg@chromium.=
+org/
+> [3] https://www.spinics.net/lists/devicetree/msg626149.html
 
-I don't know what mdp3 means & googling gives me no answers. What's the
-"disp" one controlled by, since it isn't controlled by mdp3?
+You missed:
 
->=20
-> >        - items:
-> >            - enum:
-> >                - mediatek,mt7623-disp-color
-> > --=20
-> > 2.18.0
-> >=20
+https://github.com/devicetree-org/dt-schema/pull/110
 
+where I said: We certainly shouldn't duplicate the existing partitions
+bindings. What's missing from them (I assume we're mostly talking
+about "fixed-partitions" which has been around forever I think (before
+me))?
 
+To repeat, unless there is some reason binman partitions conflict with
+fixed-partitions, you need to start there and extend it. From what's
+posted here, it neither conflicts nor needs extending.
 
---69Rgp8WDZjRLhaqe
-Content-Type: application/pgp-signature; name="signature.asc"
+I did a bit more research. "fixed-partitions" as a compatible has
+"only" been around since 2015. Prior to that, it was implicit with
+just partition nodes with addresses (i.e. reg) and that dates back to
+2007. Looks like u-boot only supports the newer form and since 2021.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQ235gAKCRB4tDGHoIJi
-0lr8AP4pX5+R5I8aDBRKOjqDyPh+najy713mmV8eYHNfQMiT8wEAjkYfap6BkRMI
-5Jt5G7JZd61u4Y6qeP5GiKajIyK6kw4=
-=yqe5
------END PGP SIGNATURE-----
-
---69Rgp8WDZjRLhaqe--
+Rob
 
