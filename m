@@ -1,201 +1,123 @@
-Return-Path: <devicetree+bounces-2314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BBAB7AA8BC
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 08:07:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13F377AA8BD
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 08:08:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3A116282E68
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 06:07:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id BAEBB282E59
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 06:08:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F422D1548A;
-	Fri, 22 Sep 2023 06:07:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9C2715496;
+	Fri, 22 Sep 2023 06:08:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B9D17494
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 06:07:49 +0000 (UTC)
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53CE5CE;
-	Thu, 21 Sep 2023 23:07:47 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2b962c226ceso29195331fa.3;
-        Thu, 21 Sep 2023 23:07:47 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98B7D7494
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 06:08:04 +0000 (UTC)
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 665BD114
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 23:08:02 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2c131ddfeb8so20050621fa.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 23:08:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695362865; x=1695967665; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=O16ReikaJz2n49L73JXzIug6HnXyDxs6O9jZptprnXk=;
-        b=T2OFZogvEx1+va7QqEgFyvJvfUJUmavLDNCMHhdWiGisFKB/6OYUi08Yaq6FS/alIx
-         p1IOzXyUrel24dK/S/rDrIa/nCPaw5ldwXyBCYqxm/KG4tpkd2Xwb+x0QK0G+dRsU5AN
-         lZVcmgcJ108NkIr9tL1yfeSRltppVRl1kXL+E2QCkQbmuByYUOqYSIBm2zluR95daWg/
-         wGqAIfhDl5s1TBLhMQYsWJAbGoDk2CS22F8+RGqzd96mRTIN+Y1VyBQ47dpjvgsdIaJi
-         CPk+USx4vsWwcycW89RNU/6IzQ1xPOEIym/+ZGgxYiO1MAqO5af1jR3x91MgayC3+jXl
-         igFg==
+        d=linaro.org; s=google; t=1695362880; x=1695967680; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ATQufBNbcXFkZmil1MnT/r/hXYDjTU/4NuEdLcc8JTo=;
+        b=l699rsK9Phf4Xn4k4imcX9TnWvGgsMZP9SmLEPuHBjWtVHhXQflI8lgH3j61mxMuX0
+         w9Bc7x/dNAL4UlAPuHav/nk2T/7nPUZ8702ahwkvTSUqq7Vq/kUrcK58oynBqdrW5BkX
+         Sa8pbKlDOv8o1gP2RUQBVHqJQxSjkx/y/Kv4MXs0bde6GafrNzt7nk38IyNK+/yzW2DT
+         VyPVSgCydqFxVF8C945J5+hZV67O6keKn/6AHLADBVQjsuxd7CCTob1c50TH/bIW9hc1
+         W1c21TxL5GQpC4p7pdyXWM5isXcmfrKG+oJdpghFGlEpSQ9DtUa8q4I0qpptm74FOFiR
+         LRpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695362865; x=1695967665;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=O16ReikaJz2n49L73JXzIug6HnXyDxs6O9jZptprnXk=;
-        b=mvS09wdJEGI4cB88ZdLdOWwsqQy76+VRRXXRVk2pBCdC9jigHcqUbJYivC/fyzFFwf
-         s390amdf1pMd438QUHEdxEQIJ8+TyCFzMOIxLn/jSeCrePGoczZzMOufF5eVRZVZX4YZ
-         GSUoNQDSBIHtLJnYqBMA4Th+1DLiHrvD/4EZjX+yMtERgKvF/6Y4hv8g39jxZYZmQv6Q
-         ACq+w54pNu+qp0O2OymIqIGERarR3vL87BIpkKMzFzozNBrBUn6+5NEih5C4eAJZavvF
-         33uoNzLQSWFWSiaMnhcKzphQ+9GvJnSjfXA1ecp+6S/W5mJMgLTWQpe1WhlIw5O0Jz4S
-         Th+w==
-X-Gm-Message-State: AOJu0YzMpICMqCBxp4uQPL9z5kH2QrFEr0UyCStdiagZy77SaKpIA3QO
-	ygMrRGs+qWqPlNn885H2Sah5G0piLZ8=
-X-Google-Smtp-Source: AGHT+IHyfIlw8Dd5Q/GKHuqhMuOfqOJrSs8Vyn2Tu/pFSe3x3Js3uZof6ctt/pdhLA8xjwLhjETO5g==
-X-Received: by 2002:a2e:9f14:0:b0:2c0:e7c:bf74 with SMTP id u20-20020a2e9f14000000b002c00e7cbf74mr6738929ljk.12.1695362865255;
-        Thu, 21 Sep 2023 23:07:45 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16f8:1500::1? (dc78bmyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::1])
-        by smtp.gmail.com with ESMTPSA id l20-20020a05651c10d400b002c01ff8442fsm746007ljn.130.2023.09.21.23.07.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Sep 2023 23:07:44 -0700 (PDT)
-Message-ID: <a7ee4d4b-ae2c-32fe-e471-5bd67f2bddbf@gmail.com>
-Date: Fri, 22 Sep 2023 09:07:42 +0300
+        d=1e100.net; s=20230601; t=1695362880; x=1695967680;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ATQufBNbcXFkZmil1MnT/r/hXYDjTU/4NuEdLcc8JTo=;
+        b=phwz2advDOBQ8lJWoQR2VK5N+hS235vWHwoFgRTEQdl84zjA6DoiMTfT79ihLwH9wG
+         Z4/5j2yzSWZpNmHwy/yEfjm+7T31oWpEfaW7GgZcszjJvW5hpM2hLE2wWCGorXC/AbUp
+         OkLJSMg1n8xBPETzykm+CQ/L5pjLmjQbKRUmzyu5evwiUGtMfFuvgSUYmjZfNcX5aswW
+         InLTZZpp84MdptR9Dy+quCE4YABLEhY7rXbDHZlL+DwnTqM2w9y88+tR/FSfpwIqMnxf
+         +Vc3NCVIp/0fLNWcumMd6sVoRkvpMdbDSNAmOgUDhK4efJlPIj/mXEwhpHfNbHuU5wFo
+         p4oQ==
+X-Gm-Message-State: AOJu0Yw1fvwWbHadBBzXC+3eLF8Ra97PA42Q7KMLZ5v59F1pSmrZyBJ+
+	49HwglsMrsFR8814YRdaXmanFQ==
+X-Google-Smtp-Source: AGHT+IHeYRzOOUP72mWc4KIVtAc59HTLZGpwZ0ffTWvHbWpzrXNk2EqAvpcwHRxm3odwxvYxq99V7Q==
+X-Received: by 2002:a2e:8683:0:b0:2ba:6519:c50f with SMTP id l3-20020a2e8683000000b002ba6519c50fmr6372127lji.52.1695362880343;
+        Thu, 21 Sep 2023 23:08:00 -0700 (PDT)
+Received: from [192.168.1.2] (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
+        by smtp.gmail.com with ESMTPSA id w22-20020a05651c103600b002b9f4841913sm754329ljm.1.2023.09.21.23.07.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Sep 2023 23:07:59 -0700 (PDT)
+From: Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH v2 0/2] gpio: ixp4xx: Handle external clock output
+Date: Fri, 22 Sep 2023 08:07:55 +0200
+Message-Id: <20230922-ixp4xx-gpio-clocks-v2-0-0215ee10976d@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US, en-GB
-To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc: Christophe JAILLET <christophe.jaillet@wanadoo.fr>, ak@it-klinger.de,
- andriy.shevchenko@linux.intel.com, ang.iglesiasg@gmail.com,
- bbara93@gmail.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
- jic23@kernel.org, krzysztof.kozlowski+dt@linaro.org, lars@metafoo.de,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- matti.vaittinen@fi.rohmeurope.com, robh+dt@kernel.org
-References: <cover.1694760170.git.mazziesaccount@gmail.com>
- <f378a401cec4fb0b9287b52ab159f00dd77569a6.1694760170.git.mazziesaccount@gmail.com>
- <cdc9a8f8-fbd5-1eb3-7bac-1e6e5893bc9b@wanadoo.fr>
- <7ec2ac97-8ee3-186b-ef25-ceb5ec57751a@gmail.com>
- <20230919153251.000024d3@Huawei.com>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-Subject: Re: [PATCH v2 2/3] iio: pressure: Support ROHM BU1390
-In-Reply-To: <20230919153251.000024d3@Huawei.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADsvDWUC/32NQQqDMBBFryKz7hQdUzRdeY/iwqRJHComJEVSx
+ Ls39QBdvgf//R2SiWwS3Ksdotk4sV8L0KUCPU+rM8jPwkA1tbWkBjkHkTO6wB714vUrYWd6ol5
+ aoVQLZRiisZzP6GMsPHN6+/g5P7bmZ//mtgZrvHVCClJWCjENC69T9FcfHYzHcXwBVz0M7LUAA
+ AA=
+To: Linus Walleij <linusw@kernel.org>, Imre Kaloz <kaloz@openwrt.org>, 
+ Krzysztof Halasa <khalasa@piap.pl>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>, 
+ Rob Herring <robh@kernel.org>
+X-Mailer: b4 0.12.3
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 9/19/23 17:32, Jonathan Cameron wrote:
-> 
->>>> +static int bm1390_read_raw(struct iio_dev *idev,
->>>> +               struct iio_chan_spec const *chan,
->>>> +               int *val, int *val2, long mask)
->>>> +{
->>>> +    struct bm1390_data *data = iio_priv(idev);
->>>> +    int ret;
->>>> +
->>>> +    switch (mask) {
->>>> +    case IIO_CHAN_INFO_SCALE:
->>>> +        if (chan->type == IIO_TEMP) {
->>>> +            *val = 31;
->>>> +            *val2 = 250000;
->>>> +
->>>> +            return IIO_VAL_INT_PLUS_MICRO;
->>>> +        } else if (chan->type == IIO_PRESSURE) {
->>>> +            *val = 0;
->>>> +            /*
->>>> +             * pressure in hPa is register value divided by 2048.
->>>> +             * This means kPa is 1/20480 times the register value,
->>>> +             * which equals to 48828.125 * 10 ^ -9
->>>> +             * This is 48828.125 nano kPa.
->>>> +             *
->>>> +             * When we scale this using IIO_VAL_INT_PLUS_NANO we
->>>> +             * get 48828 - which means we lose some accuracy. Well,
->>>> +             * let's try to live with that.
->>>> +             */
->>>> +            *val2 = 48828;
->>>> +
->>>> +            return IIO_VAL_INT_PLUS_NANO;
->>>> +        }
->>>> +
->>>> +        return -EINVAL;
->>>> +    case IIO_CHAN_INFO_RAW:
->>>> +        ret = iio_device_claim_direct_mode(idev);
->>>> +        if (ret)
->>>> +            return ret;
->>>> +
->>>> +        ret = bm1390_read_data(data, chan, val, val2);
->>>> +        iio_device_release_direct_mode(idev);
->>>> +        if (ret)
->>>> +            return ret;
->>>> +
->>>> +        return IIO_VAL_INT;
->>>> +    default:
->>>> +        return -EINVAL;
->>>
->>> Certainly useless, but should we break and return -EINVAL after the
->>> switch, so that it is more explicit that bm1390_read_raw() always
->>> returns a value?
->>
->> I think there is also opposite opinions on this. For my eyes the return
->> at the end of the function would also be clearer - but I think I have
->> been asked to drop the useless return when I've been working with other
->> sensors in IIO domain :) My personal preference would definitely be:
->>
->> int ret;
->>
->> switch (foo)
->> {
->> case BAR:
->> 	ret = func1();
->> 	if (ret)
->> 		break;
->>
->> 	ret = func2();
->> 	if (ret)
->> 		break;
->>
->> ...
->> 	break;
->>
->> case BAZ:
->> 	ret = -EINVAL;
->> 	break;
->> }
->>
->> return ret;
->>
->> - but I've learned to think this is not the IIO preference.
-> 
-> Some static analyzers get confused (probably when there is a little
-> bit more going on after the function) by that and moan that some
-> cases are not considered in the switch.  I got annoyed enough with the
-> noise they were generating to advocate always having explicit defaults.
+The GPIO block on the very legacy IXP4xx GPIO can provide
+a generated clock output on GPIO 14 and GPIO 15. This
+provides a straight-forward solution with a flag for each
+clock output.
 
-Oh, yes. I see I omitted the default from the example - but this was not 
-what I tried to highlight ;) With a bit more thought I would've added:
+More complicated solutions are thinkable, but I deemed them
+overdesigned for this legacy SoC.
 
-default:
-	ret = -EINVAL;
-	break;
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+Changes in v2:
+- Fixed formatting pipe | in bindings
+- Fixed som blank lines in bindings
+- When we will just blank out the clock register settings,
+  don't spend time reading the initial value.
+- Link to v1: https://lore.kernel.org/r/20230921-ixp4xx-gpio-clocks-v1-0-574942bf944a@linaro.org
 
-As you probably guess, what I was after is that for a simple (not deeply 
-nested) cases like this, I would rather use a variable for return value 
-and a single point of exit at the end of the function - instead of 
-having returns in the switch-case. That'd suit better _my_ taste.
+---
+Linus Walleij (2):
+      gpio: Rewrite IXP4xx GPIO bindings in schema
+      gpio: ixp4xx: Handle clock output on pin 14 and 15
 
-Yours,
-	-- Matti
+ .../devicetree/bindings/gpio/intel,ixp4xx-gpio.txt | 38 -----------
+ .../bindings/gpio/intel,ixp4xx-gpio.yaml           | 73 ++++++++++++++++++++++
+ MAINTAINERS                                        |  2 +-
+ drivers/gpio/gpio-ixp4xx.c                         | 40 +++++++++++-
+ 4 files changed, 112 insertions(+), 41 deletions(-)
+---
+base-commit: 0bb80ecc33a8fb5a682236443c1e740d5c917d1d
+change-id: 20230921-ixp4xx-gpio-clocks-7e82289f4bb3
 
+Best regards,
 -- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
+Linus Walleij <linus.walleij@linaro.org>
 
 
