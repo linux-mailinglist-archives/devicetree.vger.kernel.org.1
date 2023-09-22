@@ -1,212 +1,186 @@
-Return-Path: <devicetree+bounces-2578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66F397AB723
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 19:23:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C59DA7AB7C3
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 19:36:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id E317C1F231B5
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 17:23:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id EBFBFB20A2D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 17:36:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ABE042C04;
-	Fri, 22 Sep 2023 17:23:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14AE743694;
+	Fri, 22 Sep 2023 17:36:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88EEA2943C
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 17:23:14 +0000 (UTC)
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A080A83;
-	Fri, 22 Sep 2023 10:23:12 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id 98e67ed59e1d1-2749ce1aa37so2902946a91.0;
-        Fri, 22 Sep 2023 10:23:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695403392; x=1696008192; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7Q8CChFA1gPR0oSMAjUHL0l/N1n5hJouJgvhk0SX0HM=;
-        b=ara8H0kTRfbjbRnD5NZdopeA2Ecn8R9+11A8lZGopMLn8jtS5R7Cs3RYtrYqpO5x2P
-         8PLOBHRViIq+KV/dEMznwQJd7YEJeXaNNoZUYb4P0lcYHHBX+PH1Bf7f3HfNaKCTA0Eo
-         c1XuA5y9eI89NZz3V2dvw0DtXxMa4W+87v/mSaBMQ5VGHcCeM+WO/5ubhMtsW8FjEpAw
-         AVjIxR08FZ97chRW7YRpXDhz2WDuArq89KbF4XvafVs62eD76i5Vz0WStkb1yS3JFmV5
-         O4jB/STcZLN0P9VnYHCclh73r4MzenkwfWPiy15/0Y/iIxsLNSFKWnyuBVCgMVmb18iU
-         7EdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695403392; x=1696008192;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7Q8CChFA1gPR0oSMAjUHL0l/N1n5hJouJgvhk0SX0HM=;
-        b=JtLkFEBESdx6719U39QT+WJgLqXwGL9sQALbEl48a1RBOKXovjQhQkxY8zW1wwFz/M
-         KuEuJVyC7oO+4TAqfFm1TUCzF9Jt/JrlKFmqAbP8b2czvxzc3SHhk27dzxonkSGuILZr
-         /x8mWzx9oZwGHCBWJCTMTmxzISsxT3BA/NeOhVrOL23q9sQtYpHd13FttcGJbinMrIa/
-         rrljeXI8esghljlrD/wL3EmKyU4uw5N2mJFqvQ0df/hUw3cp8JfEk/mcSqDGg5nMXuVO
-         07o2Wg4f1atpM49xeN3mlZBHgSwfhPMe5FsvB5DK5wL7lg/lPV/Pdq1hd/jva0VL7sa5
-         pO4w==
-X-Gm-Message-State: AOJu0Yza7aFCcpRGRqSW50jTOpHr8/MlmigNAEDs/h7pzGsVQ+DB+EXJ
-	uyyfAFmEAewyDTO1tTKA6ZIZJDEVR4c=
-X-Google-Smtp-Source: AGHT+IFKqNHWSe5J9acMcbHNulonofEyqJ5zlmXdE1wEO/aZhwCZU1j3TahVjUV/1V+3hFwkBQvtVw==
-X-Received: by 2002:a17:90a:be07:b0:273:e090:6096 with SMTP id a7-20020a17090abe0700b00273e0906096mr448684pjs.11.1695403391984;
-        Fri, 22 Sep 2023 10:23:11 -0700 (PDT)
-Received: from [192.168.31.134] ([122.172.81.240])
-        by smtp.gmail.com with ESMTPSA id 25-20020a17090a019900b0026b70d2a8a2sm3834224pjc.29.2023.09.22.10.23.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Sep 2023 10:23:11 -0700 (PDT)
-Message-ID: <c6f795f1-2832-c282-5819-f8f402a312bd@gmail.com>
-Date: Fri, 22 Sep 2023 22:53:06 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFC4D27709
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 17:36:12 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F379197
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 10:36:11 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qjk4U-00070h-DW; Fri, 22 Sep 2023 19:36:06 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qjk4S-008DaU-I5; Fri, 22 Sep 2023 19:36:04 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qjk4S-003xW5-7s; Fri, 22 Sep 2023 19:36:04 +0200
+Date: Fri, 22 Sep 2023 19:35:56 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Ben Dooks <ben.dooks@codethink.co.uk>
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Greentime Hu <greentime.hu@sifive.com>,
+	jarkko.nikula@linux.intel.com
+Subject: Re: [PATCH v9 3/6] pwm: dwc: add PWM bit unset in get_state call
+Message-ID: <20230922173556.qnn5hj5wkxnfckxm@pengutronix.de>
+References: <20230907161242.67190-1-ben.dooks@codethink.co.uk>
+ <20230907161242.67190-4-ben.dooks@codethink.co.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v2] ASoC: dt-bindings: tfa9879: Convert to dtschema
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20230921183313.54112-1-bragathemanick0908@gmail.com>
- <20230922-unmindful-anyplace-f1da73ab168c@spud>
-From: Bragatheswaran Manickavel <bragathemanick0908@gmail.com>
-In-Reply-To: <20230922-unmindful-anyplace-f1da73ab168c@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fpcebxxfb6nwe2en"
+Content-Disposition: inline
+In-Reply-To: <20230907161242.67190-4-ben.dooks@codethink.co.uk>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 
-On 22/09/23 20:56, Conor Dooley wrote:
-> On Fri, Sep 22, 2023 at 12:03:13AM +0530, Bragatheswaran Manickavel wrote:
->> Convert the tfa9879 audio CODEC bindings to DT schema
->> No error/warning seen when running make dt_binding_check
->>
->> Signed-off-by: Bragatheswaran Manickavel <bragathemanick0908@gmail.com>
->> Changes:
->> V1 -> V2: Fixed DT syntax errors and doc warning
-> These should be under the --- line, not above it.
-> Perhaps Mark will change it on application.
-> Otherwise,
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->
-> Thanks,
-> Conor.
+--fpcebxxfb6nwe2en
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hi Conor,
-Thanks for reviewing it.
-Do I need to send a new patch by addressing the above comments ?
+Hello,
 
->
->> ---
->>   .../bindings/sound/nxp,tfa9879.yaml           | 44 +++++++++++++++++++
->>   .../devicetree/bindings/sound/tfa9879.txt     | 23 ----------
->>   MAINTAINERS                                   |  2 +-
->>   3 files changed, 45 insertions(+), 24 deletions(-)
->>   create mode 100644 Documentation/devicetree/bindings/sound/nxp,tfa9879.yaml
->>   delete mode 100644 Documentation/devicetree/bindings/sound/tfa9879.txt
->>
->> diff --git a/Documentation/devicetree/bindings/sound/nxp,tfa9879.yaml b/Documentation/devicetree/bindings/sound/nxp,tfa9879.yaml
->> new file mode 100644
->> index 000000000000..df26248573ad
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/sound/nxp,tfa9879.yaml
->> @@ -0,0 +1,44 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/sound/nxp,tfa9879.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: NXP TFA9879 class-D audio amplifier
->> +
->> +maintainers:
->> +  - Peter Rosin <peda@axentia.se>
->> +
->> +allOf:
->> +  - $ref: dai-common.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: nxp,tfa9879
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  "#sound-dai-cells":
->> +    const: 0
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - '#sound-dai-cells'
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    i2c1 {
->> +       #address-cells = <1>;
->> +       #size-cells = <0>;
->> +       amplifier@6c {
->> +          compatible = "nxp,tfa9879";
->> +          reg = <0x6c>;
->> +          pinctrl-names = "default";
->> +          pinctrl-0 = <&pinctrl_i2c1>;
->> +          #sound-dai-cells = <0>;
->> +       };
->> +    };
->> diff --git a/Documentation/devicetree/bindings/sound/tfa9879.txt b/Documentation/devicetree/bindings/sound/tfa9879.txt
->> deleted file mode 100644
->> index 1620e6848436..000000000000
->> --- a/Documentation/devicetree/bindings/sound/tfa9879.txt
->> +++ /dev/null
->> @@ -1,23 +0,0 @@
->> -NXP TFA9879 class-D audio amplifier
->> -
->> -Required properties:
->> -
->> -- compatible : "nxp,tfa9879"
->> -
->> -- reg : the I2C address of the device
->> -
->> -- #sound-dai-cells : must be 0.
->> -
->> -Example:
->> -
->> -&i2c1 {
->> -	pinctrl-names = "default";
->> -	pinctrl-0 = <&pinctrl_i2c1>;
->> -
->> -	amp: amp@6c {
->> -		#sound-dai-cells = <0>;
->> -		compatible = "nxp,tfa9879";
->> -		reg = <0x6c>;
->> -	};
->> -};
->> -
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index a4c30221eb30..569303daf9b4 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -15476,7 +15476,7 @@ NXP TFA9879 DRIVER
->>   M:	Peter Rosin <peda@axentia.se>
->>   L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
->>   S:	Maintained
->> -F:	Documentation/devicetree/bindings/sound/tfa9879.txt
->> +F:	Documentation/devicetree/bindings/sound/nxp,tfa9879.yaml
->>   F:	sound/soc/codecs/tfa9879*
->>   
->>   NXP-NCI NFC DRIVER
->> -- 
->> 2.34.1
->>
+[dropping William Salmon and Jude Onyenegecha from Cc: as in the other
+mails before]
+
+I'd change the Subject to:
+
+	pwm: dwc: Support DWC_TIM_CTRL_PWM unset in .get_state()
+
+On Thu, Sep 07, 2023 at 05:12:39PM +0100, Ben Dooks wrote:
+> If we are not in PWM mode, then the output is technically a 50%
+> output based on a single timer instead of the high-low based on
+> the two counters. Add a check for the PWM mode in dwc_pwm_get_state()
+> and if DWC_TIM_CTRL_PWM is not set, then return a 50% cycle.
+>=20
+> This may only be an issue on initialisation, as the rest of the
+> code currently assumes we're always going to have the extended
+> PWM mode using two counters.
+>=20
+> Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
+> ---
+> v9:
+>  - fixed multi-line comment
+>  - put authour back to codethink email from sifive
+> v8:
+>  - fixed rename issues
+> v4:
+>  - fixed review comment on mulit-line calculations
+> ---
+>  drivers/pwm/pwm-dwc-core.c | 30 +++++++++++++++++++-----------
+>  1 file changed, 19 insertions(+), 11 deletions(-)
+>=20
+> diff --git a/drivers/pwm/pwm-dwc-core.c b/drivers/pwm/pwm-dwc-core.c
+> index 4b4b7b9e1d82..3fc281a78c9a 100644
+> --- a/drivers/pwm/pwm-dwc-core.c
+> +++ b/drivers/pwm/pwm-dwc-core.c
+> @@ -122,24 +122,32 @@ static int dwc_pwm_get_state(struct pwm_chip *chip,=
+ struct pwm_device *pwm,
+>  {
+>  	struct dwc_pwm *dwc =3D to_dwc_pwm(chip);
+>  	u64 duty, period;
+> +	u32 ctrl, ld, ld2;
+> =20
+>  	pm_runtime_get_sync(chip->dev);
+> =20
+> -	state->enabled =3D !!(dwc_pwm_readl(dwc,
+> -				DWC_TIM_CTRL(pwm->hwpwm)) & DWC_TIM_CTRL_EN);
+> +	ctrl =3D dwc_pwm_readl(dwc, DWC_TIM_CTRL(pwm->hwpwm));
+> +	ld =3D dwc_pwm_readl(dwc, DWC_TIM_LD_CNT(pwm->hwpwm));
+> +	ld2 =3D dwc_pwm_readl(dwc, DWC_TIM_LD_CNT2(pwm->hwpwm));
+> =20
+> -	duty =3D dwc_pwm_readl(dwc, DWC_TIM_LD_CNT(pwm->hwpwm));
+> -	duty +=3D 1;
+> -	duty *=3D dwc->clk_ns;
+> -	state->duty_cycle =3D duty;
+> +	state->enabled =3D !!(ctrl & DWC_TIM_CTRL_EN);
+> =20
+> -	period =3D dwc_pwm_readl(dwc, DWC_TIM_LD_CNT2(pwm->hwpwm));
+> -	period +=3D 1;
+> -	period *=3D dwc->clk_ns;
+> -	period +=3D duty;
+> -	state->period =3D period;
+> +	/*
+> +	 * If we're not in PWM, technically the output is a 50-50
+> +	 * based on the timer load-count only.
+> +	 */
+> +	if (ctrl & DWC_TIM_CTRL_PWM) {
+> +		duty =3D (ld + 1) * dwc->clk_ns;
+> +		period =3D (ld2 + 1)  * dwc->clk_ns;
+> +		period +=3D duty;
+> +	} else {
+> +		duty =3D (ld + 1) * dwc->clk_ns;
+> +		period =3D duty * 2;
+> +	}
+> =20
+>  	state->polarity =3D PWM_POLARITY_INVERSED;
+> +	state->period =3D period;
+> +	state->duty_cycle =3D duty;
+> =20
+>  	pm_runtime_put_sync(chip->dev);
+
+The change looks right,=20
+
+Reviewed-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+
+Do you intend to address the review feedback for the other patches in
+this series? It would be sad if you efforts didn't result in these
+improvements getting in.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--fpcebxxfb6nwe2en
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmUN0HYACgkQj4D7WH0S
+/k5dOgf/X6q96/fI3FL5Ezo70VF2IVoJaJX5gDkp0zMSkIuLe1RhSdyPY9GZZbv9
+aUUoAEJAtNkJoXUjq1fE9Qf6tzmBvKU9Z/LynKfRilCPw0PE18mEbDV2N0+adfwx
+TX8nlSdKb7q7VizW7fB+b480gdbp1WjhrPANiCUqe1bVr4Sp1YRzi3SN/3iAKPcZ
+WCvzUUv+ttRd/1Q0qRgwv4/7EOFQoh2rMNh0tujlUCF/uo8rMGwYTmc+9lrkgWRg
+FWH59XAYIMrodUKXDulIYq0W9ZAeEtsihsbF73Xdzz8I7sDOG7OK0MOt21CXhgGg
+sfUuF61ZtHpbgWNo4vOXzMs8Em5nkw==
+=z/3Y
+-----END PGP SIGNATURE-----
+
+--fpcebxxfb6nwe2en--
 
