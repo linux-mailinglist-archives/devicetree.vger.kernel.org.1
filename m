@@ -1,43 +1,44 @@
-Return-Path: <devicetree+bounces-2600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57C3B7ABA8F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 22:34:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A6AF7ABA99
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 22:46:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 4D0101C208E3
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 20:34:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 3ECEA1C208C4
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 20:46:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11E9641762;
-	Fri, 22 Sep 2023 20:34:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7672944491;
+	Fri, 22 Sep 2023 20:46:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0183F22F00
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 20:34:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72898C433C7;
-	Fri, 22 Sep 2023 20:34:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 662DD22F00
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 20:46:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94D09C433C8;
+	Fri, 22 Sep 2023 20:46:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695414844;
-	bh=fh2nzdkaUADt+b/Vyqr/huEqEK6lXWqUFIL1/jW11c0=;
+	s=k20201202; t=1695415615;
+	bh=eay6GwYQbfaEzmyzwcvObd/DgNe3CLNUVoO6E+d20yg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DH5lhYXNzlO+ew3BUXFcOyJVuqVlPYo3WqNuWFm/OHXzIDzy18hNBGYFi53/vn15p
-	 EQEdNv/92IRzaq6rcTmmpMlX9lnfyDQQbvla9PXqrOcISvvOwYuNjH6E7VFj3uAqNM
-	 s4ncS6i0SB3vS2RIAia7aFy9kfiLkpmlKpfmRFlVQjB2mG0/nvFHlcVGd1kkInVrS0
-	 DmlRMqsXq17SIS3ZsR1CAtfO7wk5+9XbLmbwxkK7tCKnetrEqjzJ0Zqzp4tcUOsL2v
-	 23DRjr7NCyLi1z8NlHNnD96ulbiEZgRB5hC1vsOA2EHwMdzkER3j1XUYdEc76pNAZC
-	 IWehZMuivn4Uw==
-Received: (nullmailer pid 3535433 invoked by uid 1000);
-	Fri, 22 Sep 2023 20:34:02 -0000
-Date: Fri, 22 Sep 2023 15:34:02 -0500
+	b=Yymq+uiS81ryk1wf6TWAs6DfaLd+Bub4d5HtHmprEtMX0a8w+jxgubF/KSPj+P+7d
+	 8bbgHPhfBPBLUYRskGRbyn76wZmedtoNQEJYyOfm5aHm56nkas6iWREe95iw670Mo7
+	 i5QGoAZCM+wxr8wKoWW5cwEiZwcXxi7hmrHW57Jx4eiQ3cCL85CowjnI2ZMMw0hpv2
+	 mHxnnn9LSOhu++DQ4l3PkB34imIAo5TyMjTpNYdP1u8FT2vmwXogCPUk4aSyLa8RKR
+	 zw3zY5qjWkB8RRHjp/pRbFGEfYEZBRbBH9Q3JgoaqtNItWc/06+Tj0vgdlGEghj4Pp
+	 xOTzmAGe48/LQ==
+Received: (nullmailer pid 3551557 invoked by uid 1000);
+	Fri, 22 Sep 2023 20:46:52 -0000
+Date: Fri, 22 Sep 2023 15:46:52 -0500
 From: Rob Herring <robh@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@sifive.com>, Paul Walmsley <paul.walmsley@sifive.com>, Conor Dooley <conor@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH] dt-bindings: riscv: cpus: Add missing
- additionalProperties on interrupt-controller node
-Message-ID: <169541483923.3535328.3111610827495188975.robh@kernel.org>
-References: <20230915201946.4184468-1-robh@kernel.org>
+To: Tengfei Fan <quic_tengfan@quicinc.com>
+Cc: devicetree@vger.kernel.org, will@kernel.org, quic_tdas@quicinc.com, rafal@milecki.pl, quic_tsoni@quicinc.com, linux-kernel@vger.kernel.org, kernel@quicinc.com, quic_shashim@quicinc.com, robh+dt@kernel.org, catalin.marinas@arm.com, linux-arm-kernel@lists.infradead.org, quic_aiquny@quicinc.com, andersson@kernel.org, geert+renesas@glider.be, agross@kernel.org, quic_kaushalk@quicinc.com, quic_tingweiz@quicinc.com, krzysztof.kozlowski+dt@linaro.org, nfraprado@collabora.com, arnd@arndb.de, maz@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, tglx@linutronix.de, konrad.dybcio@linaro.org, peng.fan@nxp.com, neil.armstrong@linaro.org
+Subject: Re: [PATCH v4 1/6] dt-bindings: interrupt-controller: qcom,pdc:
+ document qcom,sm4450-pdc
+Message-ID: <169541561121.3551501.7523205377363170934.robh@kernel.org>
+References: <20230922081026.2799-1-quic_tengfan@quicinc.com>
+ <20230922081026.2799-2-quic_tengfan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,16 +47,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230915201946.4184468-1-robh@kernel.org>
+In-Reply-To: <20230922081026.2799-2-quic_tengfan@quicinc.com>
 
 
-On Fri, 15 Sep 2023 15:19:36 -0500, Rob Herring wrote:
-> The "interrupt-controller" CPU child node is missing constraints on
-> extra properties. Add "additionalProperties: false" to fix this.
+On Fri, 22 Sep 2023 16:10:21 +0800, Tengfei Fan wrote:
+> Add SM4450 PDC, which will used in SM4450 DTS.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
 > ---
->  Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
+>  .../devicetree/bindings/interrupt-controller/qcom,pdc.yaml       | 1 +
 >  1 file changed, 1 insertion(+)
 > 
 
