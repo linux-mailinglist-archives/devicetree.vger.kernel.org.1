@@ -1,111 +1,146 @@
-Return-Path: <devicetree+bounces-2612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 120927ABAFC
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 23:18:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E18197ABAFF
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 23:19:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 7AD732821BE
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 21:18:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 92DB3282030
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 21:19:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0767A47374;
-	Fri, 22 Sep 2023 21:18:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6704736F;
+	Fri, 22 Sep 2023 21:19:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F3C94736A
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 21:18:45 +0000 (UTC)
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99C23F7
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 14:18:43 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-321fa040ae7so2129547f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 14:18:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695417522; x=1696022322; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MEdi9qDFyw1m665DHEA3QLEW4AqOxPcKWW4ONR8eOkk=;
-        b=AFhvGdFnxGAM2R244DL4yJ+bv1MvZSf+QDrt4nzNkE0RZQI9NcVm0X6L27C4HG3S9M
-         c3RCk8Ox+0ZXJaJb/Lckpio/kkei5YU4kgT+DYBew0s6EAx35l6/WiBJx5/pm19YRYV7
-         CvwywsgmHPBj0zaT6L4QMDzCGX3H44mgo3wfwHZgFDV0rQtizwzs2wFkZ3eUJdFFthna
-         gy5M3sVDpRwIb0IBfEvXhJv71siDpPJIDVH6Te24BEgnw31wRZw9bilSu0c7J5nUMbvr
-         I7zGAHbdDROjTKsRhGHpm9DhStOFggUjFluiWVfs/q1rs0ZdIA13TunouV4bQsLcnlfM
-         ZZhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695417522; x=1696022322;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MEdi9qDFyw1m665DHEA3QLEW4AqOxPcKWW4ONR8eOkk=;
-        b=rZFssPLNljL+nVy5PaMKrMeSl3sWoAizaRcfov/PVLRdgv+c+pMOC61s0pQm8i5RcE
-         SsszTBdAhwhMtXEXmZIZP25QsrtokyCSEJ4xq6nyPSjfkSTUvN0+4AEdRnUYQnd2f3YL
-         LtX01PLeaAukzbhehtAp7WEUleN2+gLEXbryu2LROhtXF3BmaJfmnQ5rcHhpDTCtDJt9
-         D6a5PnzQpboffnJSQNl7bhuXYIES6okUNTTwtSkPJ1M5XRnNyVxzXcKde++Xjy6Hi7zQ
-         RPOnSgdEs7x/5t/PufNcloDcKXrybrjIRCTNOkZnJpQHrPeuxl0vn027tMIkuW/PPGAH
-         EzJA==
-X-Gm-Message-State: AOJu0Yy8/6J+Xq3L/QtjP/aiyHMU6sMiDiEsjRK+Lie6EFXosrZjDu2a
-	gg0UoH1yCncgahzvXv8OApG6hg==
-X-Google-Smtp-Source: AGHT+IHekmObQTv534BOIvE3hAqUfgY5KuhvVKHzxJ8Cyq64hSzQKhTBB8dRZUsZ36XiI0zS8WXfXg==
-X-Received: by 2002:a5d:6701:0:b0:314:1416:3be3 with SMTP id o1-20020a5d6701000000b0031414163be3mr622806wru.70.1695417522041;
-        Fri, 22 Sep 2023 14:18:42 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id g7-20020a5d46c7000000b0031fbbe347e1sm5359934wrs.65.2023.09.22.14.18.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Sep 2023 14:18:41 -0700 (PDT)
-Message-ID: <b7a715aa-eb74-4909-8dae-88d063bee28b@linaro.org>
-Date: Fri, 22 Sep 2023 22:18:40 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3693247357;
+	Fri, 22 Sep 2023 21:19:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1E53C433C7;
+	Fri, 22 Sep 2023 21:19:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695417570;
+	bh=rlDmIZ16lCpt/RCUsrwNzelnSuUjNw1aayg6Ca0iX/g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gjwt6R7Zg0+Y8WSXMblHwFseA7oLIsphColkTz7gQt1TQ2jyG4XCwYioBzVJLa/0a
+	 avNkf6z6JX2k4rxFdyEmW2+spvc3EOO7IPATHekJ/+IEJuf2d2JMJUw3hvXUElWTzF
+	 1+H68lplj5ZGPdIWWP72YXPVHl91cDU5cL6pWFCR2/5hV3vACKQjcZ9DhzgwmrWr+E
+	 J5yMwYH4lQ6WFjmN0D2mENeV1xLxNITa2aSwRhrjwK7BGg1aPjc7GPywXjN23LWy8Z
+	 2WHi/IRbajloY9Ac0mjnpjUQ0oGOhZRsZklQLCtmmqxmda7qj3cvVex5R8Emzzw530
+	 EtaPLqTL3H4Dg==
+Received: (nullmailer pid 3635363 invoked by uid 1000);
+	Fri, 22 Sep 2023 21:19:27 -0000
+Date: Fri, 22 Sep 2023 16:19:27 -0500
+From: Rob Herring <robh@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Akinobu Mita <akinobu.mita@gmail.com>, Jose Vasconcellos <jvasco@verizon.net>, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] rtc: rtc7301: Rewrite bindings in schema
+Message-ID: <20230922211927.GA3633496-robh@kernel.org>
+References: <20230921-rtc-7301-regwidth-v1-0-1900556181bf@linaro.org>
+ <20230921-rtc-7301-regwidth-v1-1-1900556181bf@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: apq8016-sbc-d3-camera: Use more
- generic node names
-Content-Language: en-US
-To: Stephan Gerhold <stephan@gerhold.net>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: Andy Gross <agross@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20230922-apq8016-sbc-camera-dtso-v1-0-ce9451895ca1@gerhold.net>
- <20230922-apq8016-sbc-camera-dtso-v1-1-ce9451895ca1@gerhold.net>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230922-apq8016-sbc-camera-dtso-v1-1-ce9451895ca1@gerhold.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230921-rtc-7301-regwidth-v1-1-1900556181bf@linaro.org>
 
-On 22/09/2023 16:11, Stephan Gerhold wrote:
-> Add "regulator" to the node names of the fixed regulators, and drop the
-> "_rear" part of the camera node name since it is not part of the class
-> of the device (which is simply "camera").
+On Thu, Sep 21, 2023 at 10:27:42PM +0200, Linus Walleij wrote:
+> This rewrites the Epson RTC7301 bindings to use YAML schema,
+> and adds a property for "reg-io-width" as used in several
+> other bindings to account for different register strides.
 > 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
+>  .../devicetree/bindings/rtc/epson,rtc7301.txt      | 16 -------
+>  .../devicetree/bindings/rtc/epson,rtc7301.yaml     | 49 ++++++++++++++++++++++
+>  2 files changed, 49 insertions(+), 16 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/epson,rtc7301.txt b/Documentation/devicetree/bindings/rtc/epson,rtc7301.txt
+> deleted file mode 100644
+> index 5f9df3f1467c..000000000000
+> --- a/Documentation/devicetree/bindings/rtc/epson,rtc7301.txt
+> +++ /dev/null
+> @@ -1,16 +0,0 @@
+> -EPSON TOYOCOM RTC-7301SF/DG
+> -
+> -Required properties:
+> -
+> -- compatible: Should be "epson,rtc7301sf" or "epson,rtc7301dg"
+> -- reg: Specifies base physical address and size of the registers.
+> -- interrupts: A single interrupt specifier.
+> -
+> -Example:
+> -
+> -rtc: rtc@44a00000 {
+> -	compatible = "epson,rtc7301dg";
+> -	reg = <0x44a00000 0x10000>;
+> -	interrupt-parent = <&axi_intc_0>;
+> -	interrupts = <3 2>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/rtc/epson,rtc7301.yaml b/Documentation/devicetree/bindings/rtc/epson,rtc7301.yaml
+> new file mode 100644
+> index 000000000000..4bcf1716cab6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/epson,rtc7301.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/epson,rtc7301.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Epson Toyocom RTC-7301SF/DG
+> +
+> +description: The only difference between the two variants is the
+> +  packaging. The DG variant is a DIL package, and the SF variant
+> +  is a flat package.
+> +
+> +maintainers:
+> +  - Akinobu Mita <akinobu.mita@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - epson,rtc7301dg
+> +      - epson,rtc7301sf
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reg-io-width:
+> +    description:
+> +      The size (in bytes) of the IO accesses that should be performed
+> +      on the device.
+> +    enum: [1, 4]
 
->   &cci_i2c0 {
-> -	camera_rear@3b {
-> +	camera@3b {
->   		compatible = "ovti,ov5640";
->   		reg = <0x3b>;
+What's the default?
 
-You could consider a follow-up patch here along the lines of
-
-orientation = <2>
-
-to indicate the camera is External.
-
-This shows up with a pretty name in libcamera based applications then.
-
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    rtc: rtc@44a00000 {
+> +        compatible = "epson,rtc7301dg";
+> +        reg = <0x44a00000 0x10000>;
+> +        reg-io-width = <4>;
+> +        interrupt-parent = <&axi_intc_0>;
+> +        interrupts = <3 2>;
+> +    };
+> 
+> -- 
+> 2.41.0
+> 
 
