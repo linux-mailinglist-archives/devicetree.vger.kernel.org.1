@@ -1,114 +1,86 @@
-Return-Path: <devicetree+bounces-2461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 200C37AAE67
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 11:41:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C781B7AAE73
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 11:44:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id C0A691C20A00
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 09:41:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 8930B282A0C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 09:44:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E74771DDFF;
-	Fri, 22 Sep 2023 09:41:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 929E01E51F;
+	Fri, 22 Sep 2023 09:44:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18ADC1775C
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 09:41:20 +0000 (UTC)
-Received: from imap4.hz.codethink.co.uk (imap4.hz.codethink.co.uk [188.40.203.114])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DA1394;
-	Fri, 22 Sep 2023 02:41:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=codethink.co.uk; s=imap4-20230908; h=Content-Transfer-Encoding:Content-Type
-	:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
-	Sender:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=lu0ragu9njIWkwjYInfzfJMShGYH9itXl0arckB59I4=; b=AVK3i7Gnj8vrP3ODfaNSbz2/iT
-	5N97Ep3ypZjTKYMj/YOuCPzp1aR+ZtoydUkZ2cBWb9tG34RjTfBlDjMeNV1odS1j6F2GEkQ+VpcS7
-	WG7iunBRr5njaBq1AG069VWZtFakknKyAZUTzDghq9xkxcN37LDKioxDSBdENkiQhTKsJvbj4F0ty
-	8rwaVproLUfX+QCmlY3/2NUIgEYPJV77ZHnsftrsnUK39FUzOoQxYEyntAimHYTluJXWwX2sk5BlL
-	r1qFnUOX4vW9zdKS4zw3As2kyabk2A7mY7KHtaWjMVplRsG7Gcp6NQStaKOSHnnA+WV45VVbNeKE7
-	joMqH99A==;
-Received: from [134.238.52.102] (helo=[10.8.4.124])
-	by imap4.hz.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
-	id 1qjcep-00CYxl-Di; Fri, 22 Sep 2023 10:41:07 +0100
-Message-ID: <bcdc4623-a37e-455b-8f10-c539e2b04554@codethink.co.uk>
-Date: Fri, 22 Sep 2023 10:41:04 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8531E518
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 09:43:59 +0000 (UTC)
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD8D094;
+	Fri, 22 Sep 2023 02:43:57 -0700 (PDT)
+Received: from rd02-sz.amlogic.software (10.28.11.83) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Fri, 22 Sep 2023
+ 17:43:50 +0800
+From: Huqiang Qin <huqiang.qin@amlogic.com>
+To: <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<neil.armstrong@linaro.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <brgl@bgdev.pl>, <andy@kernel.org>
+CC: <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, Huqiang Qin <huqiang.qin@amlogic.com>
+Subject: [PATCH V3 0/3] Add pinctrl driver support for Amlogic T7 SoCs
+Date: Fri, 22 Sep 2023 17:43:39 +0800
+Message-ID: <20230922094342.637251-1-huqiang.qin@amlogic.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 08/11] serial: 8250_dw: Add Sophgo SG2042 support
-Content-Language: en-GB
-To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
- chao.wei@sophgo.com, conor@kernel.org, devicetree@vger.kernel.org,
- emil.renner.berthing@canonical.com, guoren@kernel.org, jszhang@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, palmer@dabbelt.com,
- paul.walmsley@sifive.com, robh+dt@kernel.org, xiaoguang.xing@sophgo.com
-Cc: Chen Wang <wangchen20@iscas.ac.cn>
-References: <cover.1695189879.git.wangchen20@iscas.ac.cn>
- <888d57a2d5e62affb8e29e0098402e428facd969.1695189879.git.wangchen20@iscas.ac.cn>
-From: Ben Dooks <ben.dooks@codethink.co.uk>
-Organization: Codethink Limited.
-In-Reply-To: <888d57a2d5e62affb8e29e0098402e428facd969.1695189879.git.wangchen20@iscas.ac.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.28.11.83]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 20/09/2023 07:40, Chen Wang wrote:
-> From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> 
-> Add quirk to skip setting the input clock rate for the uarts on the
-> Sophgo SG2042 SoC similar to the StarFive JH7100.
+This patch adds pinctrl driver support for Amloigc T7 SoC (A311D2)
 
-I'd love an actual explanation of why this is necessary here.
+[PATCH 1/3]: 
+  V1 -> V2: Rename amlogic-t7-gpio.h to amlogic,t7-periphs-pinctrl.h
+            Corrected indentation format.
+  V2 -> V3: Updated subject.
 
-> 
-> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> Signed-off-by: Chen Wang <wangchen20@iscas.ac.cn>
-> ---
->   drivers/tty/serial/8250/8250_dw.c | 5 +++--
->   1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/8250_dw.c
-> index f4cafca1a7da..6c344877a07f 100644
-> --- a/drivers/tty/serial/8250/8250_dw.c
-> +++ b/drivers/tty/serial/8250/8250_dw.c
-> @@ -770,7 +770,7 @@ static const struct dw8250_platform_data dw8250_renesas_rzn1_data = {
->   	.quirks = DW_UART_QUIRK_IS_DMA_FC,
->   };
->   
-> -static const struct dw8250_platform_data dw8250_starfive_jh7100_data = {
-> +static const struct dw8250_platform_data dw8250_skip_set_rate_data = {
->   	.usr_reg = DW_UART_USR,
->   	.quirks = DW_UART_QUIRK_SKIP_SET_RATE,
->   };
-> @@ -780,7 +780,8 @@ static const struct of_device_id dw8250_of_match[] = {
->   	{ .compatible = "cavium,octeon-3860-uart", .data = &dw8250_octeon_3860_data },
->   	{ .compatible = "marvell,armada-38x-uart", .data = &dw8250_armada_38x_data },
->   	{ .compatible = "renesas,rzn1-uart", .data = &dw8250_renesas_rzn1_data },
-> -	{ .compatible = "starfive,jh7100-uart", .data = &dw8250_starfive_jh7100_data },
-> +	{ .compatible = "sophgo,sg2042-uart", .data = &dw8250_skip_set_rate_data },
-> +	{ .compatible = "starfive,jh7100-uart", .data = &dw8250_skip_set_rate_data },
->   	{ /* Sentinel */ }
->   };
->   MODULE_DEVICE_TABLE(of, dw8250_of_match);
+[PATCH 2/3]:
+  V1 -> V2: Include header file changed to amlogic,t7-periphs-pinctrl.h
+  V2 -> V3: Removed redundant blank line.
 
+[PATCH 3/3]:
+  V1 -> V2: Unchanged.
+  V2 -> V3: Unchanged.
+
+Huqiang Qin (3):
+  dt-bindings: pinctrl: Add support for Amlogic T7 SoCs
+  pinctrl: Add driver support for Amlogic T7 SoCs
+  arm64: dts: Add pinctrl node for Amlogic T7 SoCs
+
+ .../pinctrl/amlogic,meson-pinctrl-a1.yaml     |    1 +
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   |   16 +
+ drivers/pinctrl/meson/Kconfig                 |    6 +
+ drivers/pinctrl/meson/Makefile                |    1 +
+ drivers/pinctrl/meson/pinctrl-amlogic-t7.c    | 1611 +++++++++++++++++
+ .../gpio/amlogic,t7-periphs-pinctrl.h         |  179 ++
+ 6 files changed, 1814 insertions(+)
+ create mode 100644 drivers/pinctrl/meson/pinctrl-amlogic-t7.c
+ create mode 100644 include/dt-bindings/gpio/amlogic,t7-periphs-pinctrl.h
+
+
+base-commit: e143016b56ecb0fcda5bb6026b0a25fe55274f56
 -- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
-
-https://www.codethink.co.uk/privacy.html
+2.42.0
 
 
