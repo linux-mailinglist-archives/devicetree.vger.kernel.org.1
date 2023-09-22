@@ -1,30 +1,30 @@
-Return-Path: <devicetree+bounces-2346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95CF97AA97E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 08:53:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 069507AA982
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 08:53:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 86F672830AA
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 06:53:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 23B75B20C05
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 06:53:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78184179B6;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98FF6179B8;
 	Fri, 22 Sep 2023 06:53:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DE3B171D7
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 06:53:44 +0000 (UTC)
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 50EF2197;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5766A17747
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 06:53:45 +0000 (UTC)
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id F0F6119B;
 	Thu, 21 Sep 2023 23:53:41 -0700 (PDT)
 X-IronPort-AV: E=Sophos;i="6.03,167,1694703600"; 
-   d="scan'208";a="180618018"
+   d="scan'208";a="176885442"
 Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 22 Sep 2023 15:53:39 +0900
+  by relmlie5.idc.renesas.com with ESMTP; 22 Sep 2023 15:53:39 +0900
 Received: from localhost.localdomain (unknown [10.166.15.32])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 32E14400F7A0;
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 5DD9A400F7A0;
 	Fri, 22 Sep 2023 15:53:39 +0900 (JST)
 From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 To: lpieralisi@kernel.org,
@@ -42,9 +42,9 @@ Cc: marek.vasut+renesas@gmail.com,
 	linux-renesas-soc@vger.kernel.org,
 	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
 	Serge Semin <fancer.lancer@gmail.com>
-Subject: [PATCH v21 07/16] PCI: dwc: Expose dw_pcie_write_dbi2() to module
-Date: Fri, 22 Sep 2023 15:53:22 +0900
-Message-Id: <20230922065331.3806925-8-yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v21 08/16] PCI: dwc: endpoint: Introduce .pre_init() and .deinit()
+Date: Fri, 22 Sep 2023 15:53:23 +0900
+Message-Id: <20230922065331.3806925-9-yoshihiro.shimoda.uh@renesas.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230922065331.3806925-1-yoshihiro.shimoda.uh@renesas.com>
 References: <20230922065331.3806925-1-yoshihiro.shimoda.uh@renesas.com>
@@ -61,36 +61,85 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Since no PCIe controller drivers call this, this change is not required
-for now. But, Renesas R-Car Gen4 PCIe controller driver will call this
-and if the controller driver is built as a kernel module, the following
-build error happens:
+Renesas R-Car Gen4 PCIe controllers require vendor-specific
+initialization before .init().
 
-  ERROR: modpost: "dw_pcie_write_dbi2" [drivers/pci/controller/dwc/pcie-rcar-gen4-host-drv.ko] undefined!
+To use dw->dbi and dw->num-lanes in the initialization code,
+introduce .pre_init() into struct dw_pcie_ep_ops. While at it,
+also introduce .deinit() to disable the controller by using
+vendor-specific de-initialization.
 
-So, expose dw_pcie_write_dbi2() for it.
+Note that the ep_init in the struct dw_pcie_ep_ops should be
+renamed to init later.
 
 [kwilczynski: commit log]
-Link: https://lore.kernel.org/linux-pci/20230825093219.2685912-12-yoshihiro.shimoda.uh@renesas.com
+Link: https://lore.kernel.org/linux-pci/20230825093219.2685912-13-yoshihiro.shimoda.uh@renesas.com
 Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 Signed-off-by: Krzysztof Wilczyński <kwilczynski@kernel.org>
 Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
 ---
- drivers/pci/controller/dwc/pcie-designware.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/pci/controller/dwc/pcie-designware-ep.c | 12 +++++++++++-
+ drivers/pci/controller/dwc/pcie-designware.h    |  2 ++
+ 2 files changed, 13 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-index 1f900be94556..250cf7f40b85 100644
---- a/drivers/pci/controller/dwc/pcie-designware.c
-+++ b/drivers/pci/controller/dwc/pcie-designware.c
-@@ -365,6 +365,7 @@ void dw_pcie_write_dbi2(struct dw_pcie *pci, u32 reg, size_t size, u32 val)
- 	if (ret)
- 		dev_err(pci->dev, "write DBI address failed\n");
- }
-+EXPORT_SYMBOL_GPL(dw_pcie_write_dbi2);
+diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
+index a8bcbc57ef86..d34a5e87ad18 100644
+--- a/drivers/pci/controller/dwc/pcie-designware-ep.c
++++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
+@@ -637,6 +637,9 @@ void dw_pcie_ep_exit(struct dw_pcie_ep *ep)
+ 			      epc->mem->window.page_size);
  
- static inline void __iomem *dw_pcie_select_atu(struct dw_pcie *pci, u32 dir,
- 					       u32 index)
+ 	pci_epc_mem_exit(epc);
++
++	if (ep->ops->deinit)
++		ep->ops->deinit(ep);
+ }
+ EXPORT_SYMBOL_GPL(dw_pcie_ep_exit);
+ 
+@@ -740,6 +743,9 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+ 	ep->phys_base = res->start;
+ 	ep->addr_size = resource_size(res);
+ 
++	if (ep->ops->pre_init)
++		ep->ops->pre_init(ep);
++
+ 	dw_pcie_version_detect(pci);
+ 
+ 	dw_pcie_iatu_detect(pci);
+@@ -794,7 +800,7 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+ 			       ep->page_size);
+ 	if (ret < 0) {
+ 		dev_err(dev, "Failed to initialize address space\n");
+-		return ret;
++		goto err_ep_deinit;
+ 	}
+ 
+ 	ep->msi_mem = pci_epc_mem_alloc_addr(epc, &ep->msi_mem_phys,
+@@ -831,6 +837,10 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+ err_exit_epc_mem:
+ 	pci_epc_mem_exit(epc);
+ 
++err_ep_deinit:
++	if (ep->ops->deinit)
++		ep->ops->deinit(ep);
++
+ 	return ret;
+ }
+ EXPORT_SYMBOL_GPL(dw_pcie_ep_init);
+diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+index e10f7e18b13a..8c637392ab08 100644
+--- a/drivers/pci/controller/dwc/pcie-designware.h
++++ b/drivers/pci/controller/dwc/pcie-designware.h
+@@ -330,7 +330,9 @@ struct dw_pcie_rp {
+ };
+ 
+ struct dw_pcie_ep_ops {
++	void	(*pre_init)(struct dw_pcie_ep *ep);
+ 	void	(*ep_init)(struct dw_pcie_ep *ep);
++	void	(*deinit)(struct dw_pcie_ep *ep);
+ 	int	(*raise_irq)(struct dw_pcie_ep *ep, u8 func_no,
+ 			     enum pci_epc_irq_type type, u16 interrupt_num);
+ 	const struct pci_epc_features* (*get_features)(struct dw_pcie_ep *ep);
 -- 
 2.25.1
 
