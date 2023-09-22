@@ -1,143 +1,131 @@
-Return-Path: <devicetree+bounces-2271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B66487AA682
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 03:28:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D2F87AA6A8
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 03:49:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id ED6AEB20957
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 01:28:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 11F7628220E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 01:49:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B184938C;
-	Fri, 22 Sep 2023 01:28:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C27F9391;
+	Fri, 22 Sep 2023 01:48:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 075A7377
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 01:28:41 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D35A8CF;
-	Thu, 21 Sep 2023 18:28:40 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38M1AUpI031994;
-	Fri, 22 Sep 2023 01:28:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=WN0AuIlO6OWJQbJExDLJ00O1apLzzc782qZ8sd/5w4Y=;
- b=CfroBfXPzklE1VHVTPAfGR4Q3JhD5WeATQL1ZPaovfRG8kPqq5AFjda1T6HuYbRUDKVN
- zV+yp7BOswItMztdGQpvpBuGibtNGrCjEXaFbHHxuvJpLiRl1ws2t57m58k0Sx97HIPq
- h66OWymfQjTdr+GU+Dyce3t7SlbV8z+yWz7PPiyy+qY0Mk6/UJJl7K8cTP7o1UEUsPpg
- XBf50TCm9iEc8eOoRadG7lq8nthTN2moOp7IlWREiFPaZWZIil4wW9VxfQSn/YLHLfMX
- UVi4sgbFaCpYt+85l2mxjGqTsivgR46INKzx6iLEQ+uL0DBMIIIg0V9S/deqXo2lefdE lA== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t8uknrkhx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Sep 2023 01:28:10 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38M1S9FG014287
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Sep 2023 01:28:09 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Thu, 21 Sep
- 2023 18:28:01 -0700
-Message-ID: <69ded869-4cdf-4b68-bcb6-8168d625d779@quicinc.com>
-Date: Fri, 22 Sep 2023 09:27:58 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE88E377
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 01:48:55 +0000 (UTC)
+Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A6A6F1;
+	Thu, 21 Sep 2023 18:48:51 -0700 (PDT)
+Received: by mail-qk1-x72f.google.com with SMTP id af79cd13be357-7740aa4b545so78423985a.3;
+        Thu, 21 Sep 2023 18:48:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695347330; x=1695952130; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=UiIUp0HnbqjxrLPRZup0L6ii6WvuXlyjebdFnom5owg=;
+        b=LSKA3XmhuLSK6NXr9w+DGISGJcSdDoevBLBc8c64uH0o1O85BxF45om9oN4glud79b
+         drqjd6jEr3JeAKm+FGSRJHl3VHV1WrJWR67WeBwuAjRX7iI5uGC/q2ZgCiLJvhoPRXgy
+         roSf3n7aEExRQt0mnqOr88w1ZKZH9wb4phCUKQ1AA7WbadnNsLciGXX+n333SORQ/vHh
+         xLHh1F9VjXHsU2xtWSiiBrGWoeVFDcoOSy3mfHtABJ4wkclSqIp4B4EjCuURjPuaLEIG
+         qDn1sy3/B8ISo0rgXWmjBokRQDri5EsXCKoIMairexqQLPd/+WTq7sZ4ziSo6hBylVCY
+         rOig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695347330; x=1695952130;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UiIUp0HnbqjxrLPRZup0L6ii6WvuXlyjebdFnom5owg=;
+        b=rXcVa7gP34Kwz3jDMsBdeNL9D/9qA+kpxkupfq23wyUU46M7i1wQLShlsJNGFSBH1F
+         bxp+535Cb1uTzdhV9Q6vVnyO+36hEBYJIinUgdeZ+Op/ibcnEKbf0G/K6zJmML551kDx
+         D2h7BfXNxMgOF87iTmzv176abQRD104DLW0YDlS0RTp++C4oojUcM9Cw20OoSOgDc4sm
+         0LULRXX0ddGSsTz2EbhGVy+mxNxWBng86eYfB6stOd3jRxhhxaJf08pJ9bFf6Oo4YRRa
+         YI4ZWMj188G/M393UurVms0l2u3FVLlPOW4Im++BBG+Gj8/R3r+rlEJ+UePhrkX0gwox
+         PjLA==
+X-Gm-Message-State: AOJu0YwfIZ96gLaOXM6xKy6atSR/RzyJz60VPxQ4exN9/aAuiphuEuCK
+	LKFubSQRn2xS0rMQO85uWlrXb7cDSEHXaoKbIWo=
+X-Google-Smtp-Source: AGHT+IG9+0LFH2o1wrTGPMeXClaqq89OO92QkLkFDzzSIfk8yDNld3wIXiH7/913d38LhvdxYw/3M/3o3o9M9xCMem4=
+X-Received: by 2002:a05:620a:795:b0:76d:9b15:de71 with SMTP id
+ 21-20020a05620a079500b0076d9b15de71mr6693484qka.31.1695347330529; Thu, 21 Sep
+ 2023 18:48:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/5] arm64: dts: qcom: sm4450: Add RPMH and Global
- clock
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <tglx@linutronix.de>, <maz@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <catalin.marinas@arm.com>, <will@kernel.org>
-CC: <geert+renesas@glider.be>, <arnd@arndb.de>, <neil.armstrong@linaro.org>,
-        <nfraprado@collabora.com>, <rafal@milecki.pl>, <peng.fan@nxp.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <quic_tsoni@quicinc.com>, <quic_shashim@quicinc.com>,
-        <quic_kaushalk@quicinc.com>, <quic_tdas@quicinc.com>,
-        <quic_tingweiz@quicinc.com>, <quic_aiquny@quicinc.com>,
-        <quic_ajipan@quicinc.com>, <kernel@quicinc.com>
-References: <20230920065459.12738-1-quic_tengfan@quicinc.com>
- <20230920065459.12738-4-quic_tengfan@quicinc.com>
- <21b8b019-42b8-6e47-e640-8bca28d2d784@linaro.org>
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <21b8b019-42b8-6e47-e640-8bca28d2d784@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: qupHyuvlROhrxNyBxkRCQr8r4gEpRAhF
-X-Proofpoint-ORIG-GUID: qupHyuvlROhrxNyBxkRCQr8r4gEpRAhF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-22_01,2023-09-21_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- bulkscore=0 adultscore=0 impostorscore=0 spamscore=0 lowpriorityscore=0
- mlxlogscore=927 priorityscore=1501 phishscore=0 mlxscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
- definitions=main-2309220011
+References: <cover.1695189879.git.wangchen20@iscas.ac.cn> <c6aea83bb1df563b1f2a66c5f230c3861aed1e15.1695189879.git.wangchen20@iscas.ac.cn>
+ <20230920-arrival-bonanza-e335686420f4@wendy>
+In-Reply-To: <20230920-arrival-bonanza-e335686420f4@wendy>
+From: Chen Wang <unicornxw@gmail.com>
+Date: Fri, 22 Sep 2023 09:48:39 +0800
+Message-ID: <CAHAQgRASRhpDBj3jNBkj+faJGjc5Ms_jX+hcurnrUKFO9Tn3Xg@mail.gmail.com>
+Subject: Re: [PATCH v2 03/11] dt-bindings: riscv: add sophgo sg2042 bindings
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: aou@eecs.berkeley.edu, chao.wei@sophgo.com, conor@kernel.org, 
+	devicetree@vger.kernel.org, emil.renner.berthing@canonical.com, 
+	guoren@kernel.org, jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org, 
+	xiaoguang.xing@sophgo.com, Chen Wang <wangchen20@iscas.ac.cn>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Regards,
+
+unicornx
 
 
-在 9/20/2023 6:00 PM, Konrad Dybcio 写道:
-> 
-> 
-> On 9/20/23 08:54, Tengfei Fan wrote:
->> Add device node for RPMH and Global clock controller on Qualcomm
->> SM4450 platform.
->>
->> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
->> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sm4450.dtsi | 23 +++++++++++++++++++++++
->>   1 file changed, 23 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm4450.dtsi 
->> b/arch/arm64/boot/dts/qcom/sm4450.dtsi
->> index 3d9d3b5e9510..c27f17a41699 100644
->> --- a/arch/arm64/boot/dts/qcom/sm4450.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm4450.dtsi
->> @@ -3,6 +3,8 @@
->>    * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights 
->> reserved.
->>    */
->> +#include <dt-bindings/clock/qcom,rpmh.h>
->> +#include <dt-bindings/clock/qcom,sm4450-gcc.h>
-> These should be sorted alphabetically.Yes, I will sort these alphabetically.
-> 
-> [...]
-> 
->> +            rpmhcc: clock-controller {
->> +                compatible = "qcom,sm4450-rpmh-clk";
->> +                #clock-cells = <1>;
->> +                clock-names = "xo";
->> +                clocks = <&xo_board>;
-> property
-> property-names
-> 
-> Konrad
-Hi Konrad,
-Sure, I will adjust these noeds.
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 90f13281d297..b74d505003e2 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -20063,6 +20063,13 @@ F:   drivers/char/sonypi.c
+> >  F:   drivers/platform/x86/sony-laptop.c
+> >  F:   include/linux/sony-laptop.h
+> >
+> > +SOPHGO DEVICETREES
+> > +M:   Xiaoguang Xing <xiaoguang.xing@sophgo.com>
+> > +M:   Chao Wei <chao.wei@sophgo.com>
+> > +S:   Maintained
+> > +F:   Documentation/devicetree/bindings/riscv/sophgo.yaml
+>
+> > +F:   arch/riscv/boot/dts/sophgo/
+>
+> Firstly, this directory does not exist at the time of this patch, so it
+> should not be added here, but rather at the time that you create it.
+>
+> Secondly, are Xiaoguang Xing and Chao Wei going to monitor the lists &
+> apply patches for these files? If so, you should add a git tree here
+> that they will apply patches to & add to linux-next. Also, I'd really
 
--- 
-Thx and BRs,
-Tengfei Fan
+Conor, FYI, regarding "add a git tree here that they will apply
+patches to & add to linux-next.", I will not add in this patchset. I
+plan to add this when we start to take the maintainece work. Let me
+know if any questions.
+
+> like to see some on-list signs of life from these people, otherwise
+> I'd rather see your name here instead of theirs.
+>
+> If they don't intend reviewing/testing/applying patches, I can do it as
+> a last resort but I would rather that someone who specifically cares for
+> this hardware does it.
+>
+> Thanks,
+> Conor.
+>
+> > +
+> >  SOUND
+> >  M:   Jaroslav Kysela <perex@perex.cz>
+> >  M:   Takashi Iwai <tiwai@suse.com>
+> > --
+> > 2.25.1
+> >
 
