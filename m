@@ -1,252 +1,117 @@
-Return-Path: <devicetree+bounces-2543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 121CD7AB42C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 16:54:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49B887AB474
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 17:10:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 84576281CAC
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 14:54:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id F0A4B281E1C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 15:10:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 503863D98B;
-	Fri, 22 Sep 2023 14:54:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1F533F4A5;
+	Fri, 22 Sep 2023 15:10:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 754BE3D984
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 14:54:36 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52A4F197;
-	Fri, 22 Sep 2023 07:54:34 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38MEs70k011093;
-	Fri, 22 Sep 2023 09:54:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1695394447;
-	bh=TZVMQayGRhHcaKx2mOAr28HaXotkI2jbH1a15cXDYfw=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=mJou6nPic9AcmKDZOFTbHstrerVOEeA7RSD6z44gvMb1V5PDtYtDsSQTHU0ot+XA0
-	 2xcOm3upGve647r+fg6AG78ej+gAybJjXdKATtklN+o+YlpINAzL6pWwEDvmsf1rZ8
-	 Q8NB/xnOjUVu7tO+v4G9lVKMnwnEHnK8Ae65Gn9s=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38MEs7MF026513
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 22 Sep 2023 09:54:07 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 22
- Sep 2023 09:54:06 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 22 Sep 2023 09:54:07 -0500
-Received: from [10.250.38.120] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38MEs6Yv005056;
-	Fri, 22 Sep 2023 09:54:06 -0500
-Message-ID: <d5a01d2c-56f7-707f-5b21-9ccb3eb00158@ti.com>
-Date: Fri, 22 Sep 2023 09:54:06 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51993171AA
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 15:10:05 +0000 (UTC)
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84167A1
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 08:10:03 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-50308217223so3670830e87.3
+        for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 08:10:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1695395401; x=1696000201; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=eBbLfmPpKzgVoeBpgucGlr3BpZFPgPf0mz1waJgwt2Q=;
+        b=nIP3ta1uztlrBe6zLQIA6D1mjtCNalCJs/yfLbJ/46/n/UYEkRy8wMHYVpA0o5LDax
+         VPPnYFh6V1RyDCWsH0JUJsDiFkXFg1emgmbGC5XTQdWJDVeNsnQhEgCm/2Y6FtM5uyLJ
+         hgVqaam0FuyLGwSPZvHAEOk+PsDmQxzuA8YnU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695395401; x=1696000201;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eBbLfmPpKzgVoeBpgucGlr3BpZFPgPf0mz1waJgwt2Q=;
+        b=K86fxkqPnF2vEF9TJd36LWQKFTJqmtGVtLqSV+W7W3qWX8OJe3jtyXt+Sngp4E+LIn
+         9YEi/hGPudXR4xw9TNSd1Pp7ro/0wkBDVYMIMvxI/ohtPmTdb3RwiemMbRAVBlmW/5rv
+         uCFmoizAVhS9GDxVE74PxhZPeqR0CkPIdLNVlkC6Ff68qCoJSw8yJLe6raIo+p306o56
+         MdH45UysdPYXc8LyogJZVmy/eFTaFndij/NJaZNKl3c085CbJcPqzQtlZDQaE7piYSq3
+         pgvNRFfYDpGA4ftX3BjJIubr6lrEHAmrPnmqQvgXV3cMlWXsUC2AT9MoAjqjMwGfQEId
+         gcGQ==
+X-Gm-Message-State: AOJu0YxOYZl0TNqnMxK/MYRuUac0UdUx3l0LSyntJ7jHRnLE3apo0slR
+	dKQby/o84c57fwnhq88oaWd3KRhgO2lhyh/rBHuo/A==
+X-Google-Smtp-Source: AGHT+IG0+FTwy7leUuJNc07mqM4ZpBxga4kMOkpvPH1KKuybgHujWbeNV789s9axdxdQeWXDb18UprYq/1LXcelxM4U=
+X-Received: by 2002:a05:6512:449:b0:4f8:77db:1d9e with SMTP id
+ y9-20020a056512044900b004f877db1d9emr7510046lfk.12.1695395401203; Fri, 22 Sep
+ 2023 08:10:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 2/2] arm64: dts: ti: am642-evm: Add overlay for NAND
- expansion card
-Content-Language: en-US
-To: Roger Quadros <rogerq@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Tony
- Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
-        <david@gibson.dropbear.id.au>
-CC: <vigneshr@ti.com>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <srk@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Siddharth
- Vadapalli <s-vadapalli@ti.com>
-References: <20230920133450.54226-1-rogerq@kernel.org>
- <20230920133450.54226-3-rogerq@kernel.org>
- <20230920135802.3ej2wcuaruqjidel@uncouth>
- <e8f26137-1284-4f45-a74d-a0a5f2aa2f93@kernel.org>
- <20230920164424.rrjvm6nvtv4ysyrw@unreal>
- <c7ec6ccd-37de-244d-0b3b-cb5d13bae539@ti.com>
- <6f2b38f8-1962-46f2-a095-b1eaf99ed407@kernel.org>
- <f79f521b-bfaf-27d2-f152-2f2f21d6f2b7@ti.com>
- <3eef2d49-d13e-40cf-a633-94b52948b065@kernel.org>
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <3eef2d49-d13e-40cf-a633-94b52948b065@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+References: <20230921124459.1.I91ddcfacf9b234af5cc3eabea4b62edb31153317@changeid>
+ <e045afaa-bc38-4fed-966e-a034e106c86c@gmail.com>
+In-Reply-To: <e045afaa-bc38-4fed-966e-a034e106c86c@gmail.com>
+From: Simon Glass <sjg@chromium.org>
+Date: Fri, 22 Sep 2023 09:09:50 -0600
+Message-ID: <CAPnjgZ2sN1bRKOFpDXXc0QfYsiHMxEFR8K+p=swLWs8ZCQBusw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mtd: Add a schema for binman
+To: Alper Nebi Yasak <alpernebiyasak@gmail.com>
+Cc: U-Boot Mailing List <u-boot@lists.denx.de>, linux-mtd@lists.infradead.org, 
+	Tom Rini <trini@konsulko.com>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dhruva Gole <d-gole@ti.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Richard Weinberger <richard@nod.at>, Rob Herring <robh+dt@kernel.org>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_IN_DEF_SPF_WL autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 9/22/23 4:03 AM, Roger Quadros wrote:
-> 
-> 
-> On 21/09/2023 20:23, Andrew Davis wrote:
->> On 9/21/23 6:37 AM, Roger Quadros wrote:
->>> On 20/09/2023 20:06, Andrew Davis wrote:
->>>> On 9/20/23 11:44 AM, Nishanth Menon wrote:
->>>>> On 18:18-20230920, Roger Quadros wrote:
->>>>>>
->>>>>>
->>>>>> On 20/09/2023 16:58, Nishanth Menon wrote:
->>>>>>> On 16:34-20230920, Roger Quadros wrote:
->>>>>>>> The NAND expansion card plugs in over the HSE (High Speed Expansion)
->>>>>>>> connector. Add support for it.
->>>>>>>>
->>>>>>>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
->>>>>>>> ---
->>>>>>>>     arch/arm64/boot/dts/ti/Makefile               |   1 +
->>>>>>>>     arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso | 140 ++++++++++++++++++
->>>>>>>>     2 files changed, 141 insertions(+)
->>>>>>>>     create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
->>>>>>>>
->>>>>>>> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
->>>>>>>> index 06d6f264f292..ece74085a6be 100644
->>>>>>>> --- a/arch/arm64/boot/dts/ti/Makefile
->>>>>>>> +++ b/arch/arm64/boot/dts/ti/Makefile
->>>>>>>> @@ -29,6 +29,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62p5-sk.dtb
->>>>>>>>       # Boards with AM64x SoC
->>>>>>>>     dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
->>>>>>>> +dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-nand.dtbo
->>>>>>>>     dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
->>>>>>>>     dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
->>>>>>>>     dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl.dtb
->>>>>>>
->>>>>>> Also see https://lore.kernel.org/all/20230911165610.GA1362932-robh@kernel.org/
->>>>>>>
->>>>>>> you may not get the dtbo installed when doing make dtbs_install
->>>>>>>
->>>>>>> [...]
->>>>>>>
->>>>>>
->>>>>> $ v8make dtbs_install INSTALL_DTBS_PATH=/tmp
->>>>>>      INSTALL /tmp/ti/k3-am625-beagleplay.dtb
->>>>>>      INSTALL /tmp/ti/k3-am625-phyboard-lyra-rdk.dtb
->>>>>>      INSTALL /tmp/ti/k3-am625-sk.dtb
->>>>>>      INSTALL /tmp/ti/k3-am625-verdin-nonwifi-dahlia.dtb
->>>>>>      INSTALL /tmp/ti/k3-am625-verdin-nonwifi-dev.dtb
->>>>>>      INSTALL /tmp/ti/k3-am625-verdin-nonwifi-yavia.dtb
->>>>>>      INSTALL /tmp/ti/k3-am625-verdin-wifi-dahlia.dtb
->>>>>>      INSTALL /tmp/ti/k3-am625-verdin-wifi-dev.dtb
->>>>>>      INSTALL /tmp/ti/k3-am625-verdin-wifi-yavia.dtb
->>>>>>      INSTALL /tmp/ti/k3-am62-lp-sk.dtb
->>>>>>      INSTALL /tmp/ti/k3-am62x-sk-hdmi-audio.dtbo
->>>>>>      INSTALL /tmp/ti/k3-am62a7-sk.dtb
->>>>>>      INSTALL /tmp/ti/k3-am62p5-sk.dtb
->>>>>>      INSTALL /tmp/ti/k3-am642-evm.dtb
->>>>>>      INSTALL /tmp/ti/k3-am642-evm-nand.dtbo
->>>>>> ^^^^
->>>>>>      INSTALL /tmp/ti/k3-am642-phyboard-electra-rdk.dtb
->>>>>>      INSTALL /tmp/ti/k3-am642-sk.dtb
->>>>>>
->>>>>>
->>>>>> What did I miss?
->>>>>
->>>>> I missed it, actually. See Rob's comment:
->>>>> https://lore.kernel.org/all/CAL_Jsq+GR3hP6hFvFn2z5aXvSXnh9butD3aKZ-y_XJgx0_YPTw@mail.gmail.com/
->>>>>
->>>>> Having orphan dtbo is apparently frowned upon
->>>>>
->>>>
->>>> And if you apply these overlays to the base DTB then it gets
->>>> symbols added automatically, no need for your patch [1/2] here.
->>>>
->>>
->>> Is this OK?
->>>
->>>      k3-am642-evm-nand-dtbs := k3-am642-evm.dtb k3-am642-evm-nand.dtbo
->>>      dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-nand.dtb
->>>
->>> So patch 1 is not required in this case but we have an
->>> extra dtb file which is not really required.
->>>
->>
->> While I agree we will end up with several pre-overlayed DTB files
->> that are arguably not required as they could be later built/applied,
->> until we find a better way to check at build time these overlays
->> need applied to something as a test.
->>
->>> I have 2 more issues to point out
->>>
->>> 1)
->>> With existing examples e.g. J7200 EVM
->>> wouldn't  k3-j7200-evm.dtb include the k3-j7200-evm-quad-port-eth-exp.dtbo?
->>> Is this what we really want?
->>>
->>> likewise for k3-j721e-evm.dtb and k3-am654-gp-evm.dtb
->>>
->>
->> Yes, that is the idea, the base-board.dtb is just the raw main board, but
->> the "EVM" when you buy it comes with the quad-port daughtercard attached.
->> That is what we consider the "EVM" and the DTB names match that.
->>
->>> 2)
->>> Another issue (unrelated to this change) is the below warning:
->>>
->>>      arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso:65.8-140.3: Warning (avoid_default_addr_size): /fragment@3/__overlay__: Relying on default #address-cells value
->>>      arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso:65.8-140.3: Warning (avoid_default_addr_size): /fragment@3/__overlay__: Relying on default #size-cells value
->>>
->>> This is because we use the 'ranges' property in the gpmc0 node
->>> and the compiler doesn't know the #address/size-cells of the
->>> parent node.
->>>
->>> Is there a trick to specify it in the dtso file?
->>>
->>
->> Hmm, seems like a tricky one. Do you really need to do the ranges here?
->> Could you use the default `ranges;` for gpmc0? Then do the range translation
->> down inside the nand node to keep the partition addresses sane.
-> 
-> GPMC has separate address spaces per chip select.
-> 
->  From Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml
->    ranges:
->      minItems: 1
->      description: |
->        Must be set up to reflect the memory layout with four
->        integer values for each chip-select line in use,
->        <cs-number> 0 <physical address of mapping> <size>
-> 
-> The ranges location in the device tree overlay is correct. The overlay is
-> meaningless without the base tree.
-> 
-> The correct solution would be to fix dtc so it doesn't print this warning
-> for DT overlays.
-> 
+Hi Alper,
 
-This may be too much and we would miss valid cases for this warning.
+On Fri, 22 Sept 2023 at 07:57, Alper Nebi Yasak
+<alpernebiyasak@gmail.com> wrote:
+>
+> On 2023-09-21 21:45 +03:00, Simon Glass wrote:
+> > Binman[1] is a tool for creating firmware images. It allows you to
+> > combine various binaries and place them in an output file.
+> >
+> > Binman uses a DT schema to describe an image, in enough detail that
+> > it can be automatically built from component parts, disassembled,
+> > replaced, listed, etc.
+> >
+> > Images are typically stored in flash, which is why this binding is
+> > targeted at mtd. Previous discussion is at [2] [3].
+> >
+> > [1] https://u-boot.readthedocs.io/en/stable/develop/package/binman.html
+> > [2] https://lore.kernel.org/u-boot/20230821180220.2724080-3-sjg@chromium.org/
+> > [3] https://www.spinics.net/lists/devicetree/msg626149.html
+> >
+> > Signed-off-by: Simon Glass <sjg@chromium.org>
+> > ---
+> >
+> >  .../bindings/mtd/partitions/binman.yaml       | 50 +++++++++++++++
+> >  .../bindings/mtd/partitions/binman/entry.yaml | 61 +++++++++++++++++++
+> >  .../bindings/mtd/partitions/partitions.yaml   |  1 +
+> >  MAINTAINERS                                   |  5 ++
+> >  4 files changed, 117 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/binman.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/binman/entry.yaml
+>
+> This doesn't match the schema in [2], but seems more like v1 of that. Is
+> that intentional?
 
-Maybe that is okay here, but we would need to add a warning/check
-when applying overlays for mismatch sizes, right now that seems to
-be missing.
+Yes. Based on discussions with Rob, the idea of setting a general
+format seems to be too ambitious, at least for now.
 
-Andrew
-
-> i.e.
-> 
-> diff --git a/scripts/dtc/checks.c b/scripts/dtc/checks.c
-> index 9f31d2607182..dcb0a6f6f3fb 100644
-> --- a/scripts/dtc/checks.c
-> +++ b/scripts/dtc/checks.c
-> @@ -1203,6 +1203,9 @@ static void check_avoid_default_addr_size(struct check *c, struct dt_info *dti,
->          if (!reg && !ranges)
->                  return;
->   
-> +       if (streq(node->name, "__overlay__"))
-> +               return;
-> +
->          if (node->parent->addr_cells == -1)
->                  FAIL(c, dti, node, "Relying on default #address-cells value");
-> 
-> 
+Regards,
+Simon
 
