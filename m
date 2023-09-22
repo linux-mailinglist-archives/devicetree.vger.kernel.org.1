@@ -1,180 +1,92 @@
-Return-Path: <devicetree+bounces-2537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F26C7AB34C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 16:14:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7617A7AB36A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 16:19:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 0BEEBB209EE
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 14:14:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 97164B209E8
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 14:19:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F018C3D976;
-	Fri, 22 Sep 2023 14:14:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 409F73D97A;
+	Fri, 22 Sep 2023 14:19:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBF2D27709
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 14:14:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5ABDAC43391;
-	Fri, 22 Sep 2023 14:14:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 254C927709;
+	Fri, 22 Sep 2023 14:19:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F660C433CD;
+	Fri, 22 Sep 2023 14:19:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695392071;
-	bh=T8rFOp5c/QzIwjzIQ5gCHFQ+RtWQM1Gbc96XZKpVHU4=;
+	s=k20201202; t=1695392341;
+	bh=12oCvWbL7GVkVaF2lDVNNaYc8c3U2x/MoFyMoNfWqd4=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=eK6VqpbwghzMdQi7kn4A4v1NS9ocmVHQZD5/dZTDQ40qJQonEckr5J8Ojdu1FOkLr
-	 Rds5wpig51H4u4nPPK9hUd5NOHDcc63SAsqq5GsXxi6L0rUX6lNVRfjAPgvbj4l828
-	 tLhVbGv4D6PEhZnKGv8aR6vuZeD2K4fG2qxaU7dVpH+5sk27kyHqDG11DlTbQ7f57I
-	 86C29NH3uzAeAOAynZMOEBYzU5WXEjeuPLiMVFPf0iwBPxw4DficlLmwfePDKfc1Wo
-	 enLtVffSfg4mk2dZNaupAKHUMV6lTTAH9k5y29xFqjZoPATR/OFdJ0sda/fgfmT+oe
-	 y0nZigc4EwANA==
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2c022ce8114so37445661fa.1;
-        Fri, 22 Sep 2023 07:14:31 -0700 (PDT)
-X-Gm-Message-State: AOJu0YwH+dC4DLLQdAmrJZOo8/yzXDIYv6bqgOi39+85VQfkMedFuI6G
-	bN1WB0h7oQ01aoURI02zlLlMHBtZSufrT9tZDQ==
-X-Google-Smtp-Source: AGHT+IHLg3zvq6lxP7QDJhcamQt8J+/HhjHmr80OQTyA6zn7ImZUA3UUttinPjYNRGBZK7/dvEUb04D//DX6nR71X1s=
-X-Received: by 2002:a2e:b1c7:0:b0:2c0:3429:8167 with SMTP id
- e7-20020a2eb1c7000000b002c034298167mr7423906lja.11.1695392069409; Fri, 22 Sep
- 2023 07:14:29 -0700 (PDT)
+	b=ael4AXfQLoALna5lsccFDiscjl2lrWYJmN0RiDUJWLHpMyuex8ErISlcT9vhQIQ4+
+	 ghf42W8cA1Vfbf8ehlhQnId0zEIF+9DNsj/A79HZwkUr5xaSXgDihT5bE+A4YB7Bvs
+	 eTxhWAw70+E1aSxjiTCjphPZOmQ8R73dii5bpX2q/cNVwAgVtLQFwSkXDujD7a89xa
+	 K8LtBhNFyDSUxXUTHBYLmhcR21fPD8v2ndMZd7a9SY4ecXWTNJBUuwRLCGY4+wvdnm
+	 303HVrfn5pfrEc0KUmhp9mrFZNt4svhUT91dgJFztlsxtVbUYYSP43wi/au/wgrDVy
+	 QI5lrYR66etkw==
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5042f391153so2656769e87.1;
+        Fri, 22 Sep 2023 07:19:01 -0700 (PDT)
+X-Gm-Message-State: AOJu0YxIa5o+u2Vp3412AGpcFvSxdIHpDeL+ZfZJ1SNNF8OcEOhpvug8
+	dRn/Q/y+5Aid+GImfGhDM/aax2OSQY5H6ofaZA==
+X-Google-Smtp-Source: AGHT+IEG+UVkd2jk9aYQtqYua03sdwlV3Cyq2FPbY/EeX2TU1i3epa418SxNV24CYkFC2r/E9vv86Hgd91/sZRSVRxg=
+X-Received: by 2002:a05:6512:33d0:b0:503:224f:9c55 with SMTP id
+ d16-20020a05651233d000b00503224f9c55mr1234508lfg.8.1695392339696; Fri, 22 Sep
+ 2023 07:18:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230921102420.RFC.1.I9dddd99ccdca175e3ceb1b9fa1827df0928c5101@changeid>
-In-Reply-To: <20230921102420.RFC.1.I9dddd99ccdca175e3ceb1b9fa1827df0928c5101@changeid>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Fri, 22 Sep 2023 09:14:15 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+noP32-m5xdUCLFPFBXLxX9Ys1BNFM+9sga6KYTmDzqQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+noP32-m5xdUCLFPFBXLxX9Ys1BNFM+9sga6KYTmDzqQ@mail.gmail.com>
-Subject: Re: [RFC PATCH] of: device: Support 2nd sources of probeable but
- undiscoverable devices
-To: Douglas Anderson <dianders@chromium.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, 
-	Benjamin Tissoires <benjamin.tissoires@redhat.com>, Chen-Yu Tsai <wenst@chromium.org>, 
-	linux-input@vger.kernel.org, Jiri Kosina <jikos@kernel.org>, 
-	Hsin-Yi Wang <hsinyi@chromium.org>, linux-gpio@vger.kernel.org, linus.walleij@linaro.org, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Johan Hovold <johan+linaro@kernel.org>, 
-	andriy.shevchenko@linux.intel.com, broonie@kernel.org, frowand.list@gmail.com, 
-	gregkh@linuxfoundation.org, hdegoede@redhat.com, james.clark@arm.com, 
-	james@equiv.tech, keescook@chromium.org, linux-kernel@vger.kernel.org, 
-	petr.tesarik.ext@huawei.com, rafael@kernel.org, tglx@linutronix.de
+References: <20230824162654.2890992-1-andriy.shevchenko@linux.intel.com>
+ <ZQn+IMMuPpwwZGPp@smile.fi.intel.com> <ZQn+UVgBTgFco6hT@smile.fi.intel.com>
+In-Reply-To: <ZQn+UVgBTgFco6hT@smile.fi.intel.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 22 Sep 2023 09:18:47 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJAjxoCctHd4Eo+Hq0SBvc0G3RaEbC4P_jPsPq0LZYHzQ@mail.gmail.com>
+Message-ID: <CAL_JsqJAjxoCctHd4Eo+Hq0SBvc0G3RaEbC4P_jPsPq0LZYHzQ@mail.gmail.com>
+Subject: Re: [PATCH v1 1/1] amba: bus: balance firmware node reference counting
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, linux-acpi@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Hanjun Guo <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, 
+	Russell King <linux@armlinux.org.uk>, Frank Rowand <frowand.list@gmail.com>, 
+	Peng Fan <peng.fan@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 21, 2023 at 12:26=E2=80=AFPM Douglas Anderson <dianders@chromiu=
-m.org> wrote:
+On Tue, Sep 19, 2023 at 3:02=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
 >
-> Support for multiple "equivalent" sources for components (also known
-> as second sourcing components) is a standard practice that helps keep
-> cost down and also makes sure that if one component is unavailable due
-> to a shortage that we don't need to stop production for the whole
-> product.
+> On Tue, Sep 19, 2023 at 11:01:37PM +0300, Andy Shevchenko wrote:
+> > On Thu, Aug 24, 2023 at 07:26:54PM +0300, Andy Shevchenko wrote:
+> > > Currently the ACPI code doesn't bump the reference count of
+> > > the firmware node, while OF counter part does. Not that it's
+> > > a problem right now, since ACPI doesn't really use the reference
+> > > counting for firmware nodes, it still makes sense to make code
+> > > robust against any changes done there. For this,
+> > >  - switch ACPI case to use device_set_node() to be unified with OF
+> > >  - move reference counting to amba_device_add()
+> > >  - switch to use firmware nodes instead of OF ones
+> > >
+> > > In the result we will have reference counting done in the same module
+> > > for all callers independently on the nature of firmware node behind.
+> >
+> > Any comment on this? I would like to have this applied so I can do some=
+thing
+> > similar to the platform driver code.
 >
-> Some components are very easy to second source. eMMC, for instance, is
-> fully discoverable and probable so you can stuff a wide variety of
-> similar eMMC chips on your board and things will work without a hitch.
->
-> Some components are more difficult to second source, specifically
-> because it's difficult for software to probe what component is present
-> on any given board. In cases like this software is provided
-> supplementary information to help it, like a GPIO strap or a SKU ID
-> programmed into an EEPROM. This helpful information can allow the
-> bootloader to select a different device tree. The various different
-> "SKUs" of different Chromebooks are examples of this.
->
-> Some components are somewhere in between. These in-between components
-> are the subject of this patch. Specifically, these components are
-> easily "probeable" but not easily "discoverable".
->
-> A good example of a probeable but undiscoverable device is an
-> i2c-connected touchscreen or trackpad. Two separate components may be
-> electrically compatible with each other and may have compatible power
-> sequencing requirements but may require different software. If
-> software is told about the different possible components (because it
-> can't discover them), it can safely probe them to figure out which
-> ones are present.
->
-> On systems using device tree, if we want to tell the OS about all of
-> the different components we need to list them all in the device
-> tree. This leads to a problem. The multiple sources for components
-> likely use the same resources (GPIOs, interrupts, regulators). If the
-> OS tries to probe all of these components at the same time then it
-> will detect a resource conflict and that's a fatal error.
->
-> The fact that Linux can't handle these probeable but undiscoverable
-> devices well has had a few consequences:
-> 1. In some cases, we've abandoned the idea of second sourcing
->    components for a given board, which increases cost / generates
->    manufacturing headaches.
-> 2. In some cases, we've been forced to add some sort of strapping /
->    EEPROM to indicate which component is present. This adds difficulty
->    to manufacturing / refurb processes.
-> 3. In some cases, we've managed to make things work by the skin of our
->    teeth through slightly hacky solutions. Specifically, if we remove
->    the "pinctrl" entry from the various options then it won't
->    conflict. Regulators inherently can have more than one consumer, so
->    as long as there are no GPIOs involved in power sequencing and
->    probing devices then things can work. This is how
->    "sc8280xp-lenovo-thinkpad-x13s" works and also how
->    "mt8173-elm-hana" works.
->
-> Let's attempt to do something better. Specifically, we'll allow
-> tagging nodes in the device tree as mutually exclusive from one
-> another. This says that only one of the components in this group is
-> present on any given board. To make it concrete, in my proposal this
-> looks like:
->
->   / {
->     tp_ex_group: trackpad-exclusion-group {
->     };
+> Ah, I see, I missed LKP run on this, I'll send a v2 perhaps later on this=
+ week.
 
-Interesting way to just get a unique identifier. But it could be any
-phandle not used by another group. So just point all the devices in a
-group to one of the devices in the group.
-
->   };
->
->   &i2c_bus {
->     tp1: trackpad@10 {
->       ...
->       mutual-exclusion-group =3D <&tp_ex_group>;
->     };
->     tp2: trackpad@20 {
->       ...
->       mutual-exclusion-group =3D <&tp_ex_group>;
->     };
->     tp3: trackpad@30 {
->       ...
->       mutual-exclusion-group =3D <&tp_ex_group>;
->     };
->   };
->
-> In Linux, we can make things work by simply only probing one of the
-> devices in the group at a time. We can make a mutex per group and
-> enforce locking that mutex around probe. If the first device that gets
-> the mutex fails to probe then it won't try again. If it succeeds then
-> it will acquire the shared resources and future devices (which we know
-> can't be present) will fail to get the shared resources. Future
-> patches could quiet down errors about failing to acquire shared
-> resources or failing to probe if a device is in a
-> mutual-exclusion-group.
-
-This seems like overkill to me. Do we really need groups and a mutex
-for each group? Worst case is what? 2-3 groups of 2-3 devices?
-Instead, what about extending "status" with another value
-("fail-needs-probe"? (fail-xxx is a documented value)). Currently, the
-kernel would just ignore nodes with that status. Then we can process
-those nodes separately 1-by-1. You may just have to change "status"
-via a changeset as there's already some support in some buses (I2C,
-SPI IIRC) for new devices showing up with overlays. I'm not really a
-fan of adding the probe mutex and would prefer if we can serialize
-this with just controlling "status". The challenge at that level is
-knowing if/when you have probed especially if we have to wait on
-modules to load. But if we must serialize with a mutex, with 1 group
-it could be a global mutex and a 1 bit flag in struct device instead.
+What's the relationship/dependency with this and the other patches
+dealing with refcounting? Did the AMBA one land?
 
 Rob
 
