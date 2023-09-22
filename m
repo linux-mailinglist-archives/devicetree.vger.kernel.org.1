@@ -1,145 +1,150 @@
-Return-Path: <devicetree+bounces-2415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D837AAB78
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 10:05:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53A767AAC0D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 10:11:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 8A4F62833A2
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 08:05:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 0238B283649
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 08:11:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A7EE1DDC3;
-	Fri, 22 Sep 2023 08:05:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4D3B1DDCE;
+	Fri, 22 Sep 2023 08:11:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5C361A721
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 08:05:54 +0000 (UTC)
-Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BA8BCE3;
-	Fri, 22 Sep 2023 01:05:53 -0700 (PDT)
-Received: from droid10-sz.amlogic.com (10.28.11.69) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Fri, 22 Sep 2023
- 16:05:49 +0800
-From: zelong dong <zelong.dong@amlogic.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, Sean Young <sean@mess.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Jerome Brunet <jbrunet@baylibre.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>
-CC: <linux-media@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<Qianggui.Song@amlogic.com>, <Yonghui.Yu@amlogic.com>,
-	<kelvin.zhang@amlogic.com>, Zelong Dong <zelong.dong@amlogic.com>
-Subject: [PATCH] arm64: dts: amlogic: Fix IR Controller register area for Meson-GX/AXG/G12 series SoCs
-Date: Fri, 22 Sep 2023 16:05:46 +0800
-Message-ID: <20230922080546.26442-1-zelong.dong@amlogic.com>
-X-Mailer: git-send-email 2.35.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE7C21DA5D
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 08:11:44 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30898A9;
+	Fri, 22 Sep 2023 01:11:43 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38M5MT1D025494;
+	Fri, 22 Sep 2023 08:11:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=6uYlX5IYxZoYeDr9ljzkBrhqLj6FcLpxy/K98TiwgNI=;
+ b=n1JBoGxzdwCz8CEMZZL7i35tQ5B//k6wq7FLwhu3lcNVQy9pXcO8adtdA/jWfvW9SQhO
+ X0argvouRZzX7MJUmtXVnSKU4/3uhUREzhJMXe1t2ICKQfEh/uz+lRMzDS9D41FcKoh4
+ wmdJ7ULNv9bcH7aQhaOMmwSDghj7HCl6p2l/tixG06ROL0k2eCqjFFWCvWlxRjInf4QE
+ sQcfwTNZSUzJncVf6iyYvp1jlF7FeKOoCrDdkthlgI0s32aIYu3laO7TFBaBAX5HunUh
+ nF9JWwaNTnPbdH+yuGJNHxJZmkKOme9BOmysfbbPqjpYTTC8pTcRlSfoEOZJ9lzJQAdM 5A== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t8u5n1c7v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 22 Sep 2023 08:11:09 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38M8B82j031955
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 22 Sep 2023 08:11:08 GMT
+Received: from tengfan2-gv.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Fri, 22 Sep 2023 01:10:56 -0700
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+To: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <tglx@linutronix.de>, <maz@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>
+CC: <geert+renesas@glider.be>, <arnd@arndb.de>, <neil.armstrong@linaro.org>,
+        <nfraprado@collabora.com>, <rafal@milecki.pl>, <peng.fan@nxp.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <quic_tsoni@quicinc.com>, <quic_shashim@quicinc.com>,
+        <quic_kaushalk@quicinc.com>, <quic_tdas@quicinc.com>,
+        <quic_tingweiz@quicinc.com>, <quic_aiquny@quicinc.com>,
+        <kernel@quicinc.com>, Tengfei Fan <quic_tengfan@quicinc.com>
+Subject: [PATCH v4 0/6] soc: qcom: Add uart console support for SM4450
+Date: Fri, 22 Sep 2023 16:10:20 +0800
+Message-ID: <20230922081026.2799-1-quic_tengfan@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.28.11.69]
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: GcvvbLXYa5CucNMiTAmDfHkJzmXQGE2u
+X-Proofpoint-GUID: GcvvbLXYa5CucNMiTAmDfHkJzmXQGE2u
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-22_06,2023-09-21_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=635
+ priorityscore=1501 malwarescore=0 spamscore=0 bulkscore=0 impostorscore=0
+ lowpriorityscore=0 mlxscore=0 clxscore=1015 adultscore=0 phishscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2309220067
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Zelong Dong <zelong.dong@amlogic.com>
+This series add base description of UART, TLMM, RPMHCC, GCC and RPMh PD
+nodes which helps SM4450 boot to shell with console on boards with this
+SoC.
 
-Amloic Meson-6 SoC only has one IR Controller, since then, there are 2 IR
-Controllers in every SoCs, one is Legacy IR Controller (same as Meson-6's one),
-the new one is Multi-Format IR Controller (abbreviated "MF-IR",
-which supports more than one IR Protocol). MF-IR was updated several times,
-so different SoCs could be got different register sizes.
-
-There are all IR Controller register areas from upstream's SoCs:
-                              Legacy IR             MF-IR
-Meson-6                  | <0xc8100480 0x20> |       NULL        |
-Meson-8/8B/8M2           | <0xc8100480 0x20> | <0xc8100580 0x30> |
-Meson-GXBB               | <0xc8100480 0x20> | <0xc8100580 0x44> |
-Meson-GXM/GXL  	         | <0xc8100480 0x20> | <0xc8100580 0x54> |
-Meson-AXG/G12A/G12B/SM1  | <0xff808000 0x20> | <0xff808040 0x58> |
-
-About Meson-IR driver, MF-IR was supported from Meson-8, which was distinguished
-by compatible string (of_device_is_compatible(node, "amlogic,meson6-ir")),
-and only one register (macro 'IR_DEC_REG2') was added because controller worked
-in raw decoder mode, later registers are unused, so we recommend that register
-size should be 0x24 if MF-IR is in use.
-
-There are 2 ways to fix.
-
-MF-IR is in use:
-  Meson-8/8B/8M2/GXBB/GXM/GXL: <0xc8100580 0x24>
-  Meson-AXG/G12A/G12B/SM1:     <0xff808040 0x24>
-
-Legacy IR is in use:
-  Meson-8/8B/8M2/GXBB/GXM/GXL: <0xc8100480 0x20>
-  Meson-AXG/G12A/G12B/SM1:     <0xff808000 0x20>
-
-Fixes: 2bfe8412c5388a ("arm64: dts: meson-g12a: Add IR nodes")
-Fixes: 7bd46a79aad549 ("ARM64: dts: meson-axg: enable IR controller")
-Fixes: c58d77855f0069 ("ARM64: dts: meson-gxbb: Add Infrared Remote Controller decoder")
-Link: https://lore.kernel.org/all/20160820095424.636-5-martin.blumenstingl@googlemail.com/
-Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 2 +-
- 3 files changed, 5 insertions(+), 5 deletions(-)
+This patch series depends on below patch series:
+"[PATCH v2 0/4] clk: qcom: Add support for GCC and RPMHCC on SM4450"
+https://lore.kernel.org/linux-arm-msm/20230909123431.1725728-1-quic_ajipan@quicinc.com/
+"[PATCH v4 0/2] pinctl: qcom: Add SM4450 pinctrl driver"
+https://lore.kernel.org/linux-arm-msm/20230920082102.5744-1-quic_tengfan@quicinc.com/
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index 768d0ed78dbe..dd8c58e74322 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -1705,9 +1705,9 @@ pwm_AO_ab: pwm@7000 {
- 				status = "disabled";
- 			};
- 
--			ir: ir@8000 {
-+			ir: ir@8040 {
- 				compatible = "amlogic,meson-gxbb-ir";
--				reg = <0x0 0x8000 0x0 0x20>;
-+				reg = <0x0 0x8040 0x0 0x24>;
- 				interrupts = <GIC_SPI 196 IRQ_TYPE_EDGE_RISING>;
- 				status = "disabled";
- 			};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index ff68b911b729..e12cea5fa889 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -2084,9 +2084,9 @@ pwm_AO_ab: pwm@7000 {
- 				status = "disabled";
- 			};
- 
--			ir: ir@8000 {
-+			ir: ir@8040 {
- 				compatible = "amlogic,meson-gxbb-ir";
--				reg = <0x0 0x8000 0x0 0x20>;
-+				reg = <0x0 0x8040 0x0 0x24>;
- 				interrupts = <GIC_SPI 196 IRQ_TYPE_EDGE_RISING>;
- 				status = "disabled";
- 			};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 2673f0dbafe7..0c04e34a0923 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -506,7 +506,7 @@ pwm_AO_ab: pwm@550 {
- 
- 			ir: ir@580 {
- 				compatible = "amlogic,meson-gx-ir", "amlogic,meson-gxbb-ir";
--				reg = <0x0 0x00580 0x0 0x40>;
-+				reg = <0x0 0x00580 0x0 0x24>;
- 				interrupts = <GIC_SPI 196 IRQ_TYPE_EDGE_RISING>;
- 				status = "disabled";
- 			};
+v3 -> v4:
+  - adjustment the sequence of property and property-names
+  - update 0 to 0x0 for reg params
+  - remove unrelated change
+  - separate SoC change and board change
+
+v2 -> v3:
+  - fix dtbs_check warning
+  - remove interconnect, iommu, scm and tcsr related code
+  - rearrangement dt node
+  - remove smmu, scm and tcsr related documentation update
+  - enable CONFIG_SM_GCC_4450 in defconfig related patch
+
+v1 -> v2:
+  - setting "qcom,rpmh-rsc" compatible to the first property
+  - keep order by unit address
+  - move tlmm node into soc node
+  - update arm,smmu.yaml
+  - add enable pinctrl and interconnect defconfig patches
+  - remove blank line
+  - redo dtbs_check check
+
+previous discussion here:
+[1] v3: https://lore.kernel.org/linux-arm-msm/20230920082102.5744-1-quic_tengfan@quicinc.com
+[2] v2: https://lore.kernel.org/linux-arm-msm/20230915021509.25773-1-quic_tengfan@quicinc.com
+[3] v1: https://lore.kernel.org/linux-arm-msm/20230908065847.28382-1-quic_tengfan@quicinc.com
+
+Ajit Pandey (1):
+  arm64: dts: qcom: sm4450: Add apps_rsc and cmd_db node
+
+Tengfei Fan (5):
+  dt-bindings: interrupt-controller: qcom,pdc: document qcom,sm4450-pdc
+  arm64: dts: qcom: sm4450: Add RPMH and Global clock
+  arm64: dts: qcom: add uart console support for SM4450
+  arm64: dts: qcom: sm4450-qrd: add QRD4450 uart support
+  arm64: defconfig: enable clock controller and pinctrl
+
+ .../interrupt-controller/qcom,pdc.yaml        |   1 +
+ arch/arm64/boot/dts/qcom/sm4450-qrd.dts       |  19 +++-
+ arch/arm64/boot/dts/qcom/sm4450.dtsi          | 107 ++++++++++++++++++
+ arch/arm64/configs/defconfig                  |   2 +
+ 4 files changed, 127 insertions(+), 2 deletions(-)
+
+
+base-commit: 940fcc189c51032dd0282cbee4497542c982ac59
 -- 
-2.35.1
+2.17.1
 
 
