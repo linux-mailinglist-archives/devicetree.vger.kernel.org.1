@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-2316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 708C17AA8BE
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 08:08:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCE707AA8BF
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 08:08:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id E30EB282EDE
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 06:08:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 945FF282FBD
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 06:08:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 919AB154A7;
-	Fri, 22 Sep 2023 06:08:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77C49156C5;
+	Fri, 22 Sep 2023 06:08:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 822D11548A
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 06:08:05 +0000 (UTC)
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F2111A2
-	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 23:08:03 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2bb9a063f26so27360201fa.2
-        for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 23:08:02 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E37297494
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 06:08:06 +0000 (UTC)
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15AA9195
+	for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 23:08:04 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2c01d22f332so37140681fa.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Sep 2023 23:08:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695362881; x=1695967681; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695362882; x=1695967682; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+/S5F/94lzE+JzXRkckvi7oOP9RR2RmQ+CAb+mf1D9Y=;
-        b=gEv9gZKGOqMDxliZreFetzCoAe7ewePqsldWF2XoGUEBuKHUgLjY788ekFCbgjCWGm
-         zHv5qCfnl7cBD2eIJmYMuu3Q/+0J+KNnGB5QQUCJgs+hx8E1ign+ikGCCRnfXs63M9Nv
-         bIr8BP3z0iDKRFu6E3JHh/osFbGvSJg0ohFJmC1akbwSHVmdy5kMNGH6dhUzOkM6f82I
-         LjdbUXUOXY5wZj8uslqOPy/Dv+KTfeZUwwJpQ2AaL5gK7LKANvTrnTlwGpt26kiY8PYh
-         mrezOgsFLqCbQP5PkP4x6YViJa0Tf80QfjPeI8roQ6nYJS/vlnhKYC+yLPQ5sD3yT2JP
-         Slcg==
+        bh=++yx9IJ8E+PZjoxMl1CLd/MzC41autPKHycVRiUyVKQ=;
+        b=kAGZjXawOM0jFxvzDMeN4Gf1lOh5pArQhwlW0pg0Vl8eJuiGHp+lAoB4ssqwVcDDud
+         Sa71j2BivE0xsoCw3Ncaw8LXu0nu+7w9fZNQkby+U9m0tgow8fY68iYxyWxpEzCqMpDI
+         ad8fJT7RklxvArYpubKDuNnhFClaTG2qoKf8alznWiZ4N5FaVQG5Pzk84VOWjkHjwRqF
+         f2k/QkpKju60QEAma438kQEE/5UdEbdfqRVXn5dZFlpZ7gXg7SQ85ok7EB/6KGzftmez
+         2sfSv61fQO9OQJ9jBtny/vbl4KdMVjryFpeJTtohA+OtuhmQrLk0xFP6z1Q7mlVqMgpQ
+         ApaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695362881; x=1695967681;
+        d=1e100.net; s=20230601; t=1695362882; x=1695967682;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+/S5F/94lzE+JzXRkckvi7oOP9RR2RmQ+CAb+mf1D9Y=;
-        b=rC5FuDwCMv9fQOYiigmQa1HKPc1CMIzgsK4TgT1aObXvve7awSbflDqfBEx9UsK8bY
-         2W2HgSJ3w23YNtI8TL2iEWOs1KJLLOW3ELEfhzW46elbx+l6HaH1sV1lTFCiKkMxDmm9
-         FWPupjJ17HcHRKlO5YaJPvkIoo+D6z+NUrMGYpnbVq5meQvg2H3TfiwAAuIZMQX9JdOa
-         AmqGbDxQaLYvLxtVuOrGNFInQpJLg2nd21RszRjY+ol6gPL8OC7BkuVQUwqVyLD8VPSi
-         ZnBJyPV+DcGZpyD6d7UDC/2PY9+72p99bUaNWegCN+9taVFsC3yfz4yjwfznaOejd0Jr
-         AbPw==
-X-Gm-Message-State: AOJu0YxKTkxHZuv/PkcYqoBo/n0HUn5GbKqP6yQYHu+hbl/WzM0UwxD1
-	7GyLLbmM2lRx3Pi5ciW0DGl7oQ==
-X-Google-Smtp-Source: AGHT+IHBp89OIbC4TGiKcIUQi24CkXikre13ErfJbelFpRJ1wSI42Wf8MoUBJiXAd/vbx7JP0ZYcRQ==
-X-Received: by 2002:a2e:8941:0:b0:2c0:7d6:570a with SMTP id b1-20020a2e8941000000b002c007d6570amr6912060ljk.33.1695362881301;
-        Thu, 21 Sep 2023 23:08:01 -0700 (PDT)
+        bh=++yx9IJ8E+PZjoxMl1CLd/MzC41autPKHycVRiUyVKQ=;
+        b=I/EfHnhD77vfA4a4MbkOTOJkoG0Iacz2guf/Gvm6AGh29pwWEjcSY628d+SriSOzYV
+         nO60cFjp2KrVmq9AykmDRthJottvSojzQBWdlSEsqf9wbjc+G/eMsa29m5o4aMDhi3x8
+         C/SHBjhQoLpgLBE6AhJGMC2sbsNTc5KAqR/QLsGfmNy/VtLXmwKsS9ysG46msuT50wMT
+         rhLHtIgGI3lnf6P9Xx09c519c765w5qxEYqzT5S4NRaRioC1OgUsydAdW5m/nH3CK8Kd
+         kneOqx839Q3Fecy4ahUWMTARgvxoACI8N0VR8bJIPH1RCD+ln9opf24rkWhVpxkfE6nN
+         VpQg==
+X-Gm-Message-State: AOJu0YzciIc8YTt0e+9UCsWTSmQcinF7plFiIzNGPvt738YYsxhwI53i
+	idtKaCr20JCne2FZD7bP9jxVEg==
+X-Google-Smtp-Source: AGHT+IGIsqnuMfAIqMdMUTMmXDu3vinQVWFl2mp4U9dRuQ5seLKSfpjjpbAD6W2oee/G5+2a7XRujQ==
+X-Received: by 2002:a2e:a4c4:0:b0:2bd:7bd:1a45 with SMTP id p4-20020a2ea4c4000000b002bd07bd1a45mr705519ljm.13.1695362882365;
+        Thu, 21 Sep 2023 23:08:02 -0700 (PDT)
 Received: from [192.168.1.2] (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
-        by smtp.gmail.com with ESMTPSA id w22-20020a05651c103600b002b9f4841913sm754329ljm.1.2023.09.21.23.08.00
+        by smtp.gmail.com with ESMTPSA id w22-20020a05651c103600b002b9f4841913sm754329ljm.1.2023.09.21.23.08.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Sep 2023 23:08:00 -0700 (PDT)
+        Thu, 21 Sep 2023 23:08:01 -0700 (PDT)
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 22 Sep 2023 08:07:56 +0200
-Subject: [PATCH v2 1/2] gpio: Rewrite IXP4xx GPIO bindings in schema
+Date: Fri, 22 Sep 2023 08:07:57 +0200
+Subject: [PATCH v2 2/2] gpio: ixp4xx: Handle clock output on pin 14 and 15
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,7 +65,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230922-ixp4xx-gpio-clocks-v2-1-0215ee10976d@linaro.org>
+Message-Id: <20230922-ixp4xx-gpio-clocks-v2-2-0215ee10976d@linaro.org>
 References: <20230922-ixp4xx-gpio-clocks-v2-0-0215ee10976d@linaro.org>
 In-Reply-To: <20230922-ixp4xx-gpio-clocks-v2-0-0215ee10976d@linaro.org>
 To: Linus Walleij <linusw@kernel.org>, Imre Kaloz <kaloz@openwrt.org>, 
@@ -74,164 +74,93 @@ To: Linus Walleij <linusw@kernel.org>, Imre Kaloz <kaloz@openwrt.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
  Conor Dooley <conor+dt@kernel.org>
 Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
- devicetree@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>, 
- Rob Herring <robh@kernel.org>
+ devicetree@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>
 X-Mailer: b4 0.12.3
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-This rewrites the IXP4xx GPIO bindings to use YAML schema,
-and adds two new properties to enable fixed clock output on
-pins 14 and 15.
+This makes it possible to provide basic clock output on pins
+14 and 15. The clocks are typically used by random electronics,
+not modeled in the device tree, so they just need to be provided
+on request.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- .../devicetree/bindings/gpio/intel,ixp4xx-gpio.txt | 38 -----------
- .../bindings/gpio/intel,ixp4xx-gpio.yaml           | 73 ++++++++++++++++++++++
- MAINTAINERS                                        |  2 +-
- 3 files changed, 74 insertions(+), 39 deletions(-)
+ drivers/gpio/gpio-ixp4xx.c | 40 ++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 38 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/gpio/intel,ixp4xx-gpio.txt b/Documentation/devicetree/bindings/gpio/intel,ixp4xx-gpio.txt
-deleted file mode 100644
-index 8dc41ed99685..000000000000
---- a/Documentation/devicetree/bindings/gpio/intel,ixp4xx-gpio.txt
-+++ /dev/null
-@@ -1,38 +0,0 @@
--Intel IXP4xx XScale Networking Processors GPIO
--
--This GPIO controller is found in the Intel IXP4xx processors.
--It supports 16 GPIO lines.
--
--The interrupt portions of the GPIO controller is hierarchical:
--the synchronous edge detector is part of the GPIO block, but the
--actual enabling/disabling of the interrupt line is done in the
--main IXP4xx interrupt controller which has a 1:1 mapping for
--the first 12 GPIO lines to 12 system interrupts.
--
--The remaining 4 GPIO lines can not be used for receiving
--interrupts.
--
--The interrupt parent of this GPIO controller must be the
--IXP4xx interrupt controller.
--
--Required properties:
--
--- compatible : Should be
--  "intel,ixp4xx-gpio"
--- reg : Should contain registers location and length
--- gpio-controller : marks this as a GPIO controller
--- #gpio-cells : Should be 2, see gpio/gpio.txt
--- interrupt-controller : marks this as an interrupt controller
--- #interrupt-cells : a standard two-cell interrupt, see
--  interrupt-controller/interrupts.txt
--
--Example:
--
--gpio0: gpio@c8004000 {
--	compatible = "intel,ixp4xx-gpio";
--	reg = <0xc8004000 0x1000>;
--	gpio-controller;
--	#gpio-cells = <2>;
--	interrupt-controller;
--	#interrupt-cells = <2>;
--};
-diff --git a/Documentation/devicetree/bindings/gpio/intel,ixp4xx-gpio.yaml b/Documentation/devicetree/bindings/gpio/intel,ixp4xx-gpio.yaml
-new file mode 100644
-index 000000000000..bfcb1f364c3a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/intel,ixp4xx-gpio.yaml
-@@ -0,0 +1,73 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/intel,ixp4xx-gpio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/gpio/gpio-ixp4xx.c b/drivers/gpio/gpio-ixp4xx.c
+index dde6cf3a5779..d69954d19144 100644
+--- a/drivers/gpio/gpio-ixp4xx.c
++++ b/drivers/gpio/gpio-ixp4xx.c
+@@ -38,6 +38,18 @@
+ #define IXP4XX_GPIO_STYLE_MASK		GENMASK(2, 0)
+ #define IXP4XX_GPIO_STYLE_SIZE		3
+ 
++/*
++ * Clock output control register defines.
++ */
++#define IXP4XX_GPCLK_CLK0DC_SHIFT	0
++#define IXP4XX_GPCLK_CLK0TC_SHIFT	4
++#define IXP4XX_GPCLK_CLK0_MASK		GENMASK(7, 0)
++#define IXP4XX_GPCLK_MUX14		BIT(8)
++#define IXP4XX_GPCLK_CLK1DC_SHIFT	16
++#define IXP4XX_GPCLK_CLK1TC_SHIFT	20
++#define IXP4XX_GPCLK_CLK1_MASK		GENMASK(23, 16)
++#define IXP4XX_GPCLK_MUX15		BIT(24)
 +
-+title: Intel IXP4xx XScale Networking Processors GPIO Controller
+ /**
+  * struct ixp4xx_gpio - IXP4 GPIO state container
+  * @dev: containing device for this instance
+@@ -202,6 +214,7 @@ static int ixp4xx_gpio_probe(struct platform_device *pdev)
+ 	struct ixp4xx_gpio *g;
+ 	struct gpio_irq_chip *girq;
+ 	struct device_node *irq_parent;
++	u32 val;
+ 	int ret;
+ 
+ 	g = devm_kzalloc(dev, sizeof(*g), GFP_KERNEL);
+@@ -227,11 +240,34 @@ static int ixp4xx_gpio_probe(struct platform_device *pdev)
+ 
+ 	/*
+ 	 * Make sure GPIO 14 and 15 are NOT used as clocks but GPIO on
+-	 * specific machines.
++	 * specific machines. For others, use the boot defaults as
++	 * starting point.
+ 	 */
+ 	if (of_machine_is_compatible("dlink,dsm-g600-a") ||
+ 	    of_machine_is_compatible("iom,nas-100d"))
+-		__raw_writel(0x0, g->base + IXP4XX_REG_GPCLK);
++		val = 0;
++	else
++		val = __raw_readl(g->base + IXP4XX_REG_GPCLK);
 +
-+description: |
-+  This GPIO controller is found in the Intel IXP4xx
-+  processors. It supports 16 GPIO lines.
-+  The interrupt portions of the GPIO controller is hierarchical.
-+  The synchronous edge detector is part of the GPIO block, but the
-+  actual enabling/disabling of the interrupt line is done in the
-+  main IXP4xx interrupt controller which has a 1-to-1 mapping for
-+  the first 12 GPIO lines to 12 system interrupts.
-+  The remaining 4 GPIO lines can not be used for receiving
-+  interrupts.
-+  The interrupt parent of this GPIO controller must be the
-+  IXP4xx interrupt controller.
-+  GPIO 14 and 15 can be used as clock outputs rather than GPIO,
-+  and this can be enabled by a special flag.
++	/*
++	 * Enable clock outputs with default timings of requested clock.
++	 * If you need control over TC and DC, add these to the device
++	 * tree bindings and use them here.
++	 */
++	if (of_property_read_bool(np, "intel,ixp4xx-gpio14-clkout")) {
++		val &= ~IXP4XX_GPCLK_CLK0_MASK;
++		val |= (0 << IXP4XX_GPCLK_CLK0DC_SHIFT);
++		val |= (1 << IXP4XX_GPCLK_CLK0TC_SHIFT);
++		val |= IXP4XX_GPCLK_MUX14;
++	}
 +
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+properties:
-+  compatible:
-+    const: intel,ixp4xx-gpio
-+
-+  reg:
-+    maxItems: 1
-+
-+  gpio-controller: true
-+
-+  "#gpio-cells":
-+    const: 2
-+
-+  interrupt-controller: true
-+
-+  "#interrupt-cells":
-+    const: 2
-+
-+  intel,ixp4xx-gpio14-clkout:
-+    description: If defined, enables clock output on GPIO 14
-+      instead of GPIO.
-+    type: boolean
-+
-+  intel,ixp4xx-gpio15-clkout:
-+    description: If defined, enables clock output on GPIO 15
-+      instead of GPIO.
-+    type: boolean
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#gpio-cells"
-+  - interrupt-controller
-+  - "#interrupt-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    gpio@c8004000 {
-+        compatible = "intel,ixp4xx-gpio";
-+        reg = <0xc8004000 0x1000>;
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+        interrupt-controller;
-+        #interrupt-cells = <2>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 90f13281d297..4e216887eb76 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2215,7 +2215,7 @@ M:	Krzysztof Halasa <khalasa@piap.pl>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
- F:	Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml
--F:	Documentation/devicetree/bindings/gpio/intel,ixp4xx-gpio.txt
-+F:	Documentation/devicetree/bindings/gpio/intel,ixp4xx-gpio.yaml
- F:	Documentation/devicetree/bindings/interrupt-controller/intel,ixp4xx-interrupt.yaml
- F:	Documentation/devicetree/bindings/memory-controllers/intel,ixp4xx-expansion*
- F:	Documentation/devicetree/bindings/timer/intel,ixp4xx-timer.yaml
++	if (of_property_read_bool(np, "intel,ixp4xx-gpio15-clkout")) {
++		val &= ~IXP4XX_GPCLK_CLK1_MASK;
++		val |= (0 << IXP4XX_GPCLK_CLK1DC_SHIFT);
++		val |= (1 << IXP4XX_GPCLK_CLK1TC_SHIFT);
++		val |= IXP4XX_GPCLK_MUX15;
++	}
++	__raw_writel(val, g->base + IXP4XX_REG_GPCLK);
+ 
+ 	/*
+ 	 * This is a very special big-endian ARM issue: when the IXP4xx is
 
 -- 
 2.41.0
