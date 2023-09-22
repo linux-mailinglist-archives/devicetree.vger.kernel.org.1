@@ -1,185 +1,124 @@
-Return-Path: <devicetree+bounces-2448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B9DF7AAD6D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 11:08:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EED4B7AAD82
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 11:14:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 080ED2822CB
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 09:08:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 5660EB20A84
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 09:14:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFBBAEAC4;
-	Fri, 22 Sep 2023 09:08:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 779BB171DE;
+	Fri, 22 Sep 2023 09:14:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B86A66109
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 09:08:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20F77C433C7;
-	Fri, 22 Sep 2023 09:08:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695373702;
-	bh=DneDTrMzqOYk2VqM6PWF9OdSV3o85kLkm4Bf5AanMMM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=K/bKC4EQSxuAx5IqqW3uzO9p47l/92Lgt/76oGEITKDOwIy5m6rDvIEpm5wRAoHBV
-	 ADtzZ5HdLw5GOA4YP27WQWQ4jRfP+3Qe6qEVIvirI/pZqbyowlNIyL4DZt+Xl0ekb0
-	 ihdZNVN54M/iXbAJK1OObmJEzGB1tT9UTuiELQu/jaCPt5l3wNt4MVrd8Q7qEJC1Nr
-	 nLNVk7YCoRA+fHaitIqWnnNNji+HjpANpwoPpJhQ8NNbkiVIrGK7vjMDMaJUgHNOCf
-	 gdxBizBLz+l90ePmO7+sO2WFa77ugxGdDVQz6h/LDlaNv9pSsjLCqT+OpdGUhJETvY
-	 joieJNy8SjwsA==
-Received: from johan by xi.lan with local (Exim 4.96)
-	(envelope-from <johan@kernel.org>)
-	id 1qjc9T-00054G-2n;
-	Fri, 22 Sep 2023 11:08:43 +0200
-Date: Fri, 22 Sep 2023 11:08:43 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Doug Anderson <dianders@chromium.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-	linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Maxime Ripard <mripard@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	LinusW <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH] HID: i2c-hid: fix handling of unpopulated devices
-Message-ID: <ZQ1Zm6ec9NuBvqpl@hovoldconsulting.com>
-References: <20230918125851.310-1-johan+linaro@kernel.org>
- <CAD=FV=Wfwvp-SbGrdO5VJcjG42njkApJPB7wnY-YYa1_-O0JWQ@mail.gmail.com>
- <ZQlIveJVdvyV2Ygy@hovoldconsulting.com>
- <CAD=FV=XBG7auVVyHn5uvahSZZxp5qBfp4+A9NwFqahdN6XrbZA@mail.gmail.com>
- <ZQqemN8P2VKgxhsV@hovoldconsulting.com>
- <CAD=FV=XK87TZuPy+d2r2g5QhowmghE-m9pGHe9-X7jnXAw9z1g@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24E3A441E
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 09:14:07 +0000 (UTC)
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CDD499;
+	Fri, 22 Sep 2023 02:14:06 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38M3QAYg003949;
+	Fri, 22 Sep 2023 11:13:55 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=8tru55dK21kkrZooBZ20jTZ5oFa3mpckA4DEAk2YLTw=; b=YN
+	Gcz8rEqiXT7ThAGppxSZ321Y8tLtvjLbVPPIdY8Ot9eDR0jpalZJB9EitfJLgom0
+	O9ooHfOf6TJAZR+9m9SyV7QUTHo6lVZuXWiBQ5B28g8UxJjw8/lEKdlLUDRvIywD
+	w6t9eSgQvrqj7XUKzm+xmijK9tGzNubL9e3H7BRzFGzwng2BQ5kTjDr3NhtdensG
+	H2/dp1M2L6nvx9ZZX/3zF/0d4YeS30/qY/sX3EN6gquvXVARMHnMEEqZhTWzJr/9
+	qHvmxEfQjRfcM181GTixXibqmP+zHID0XREB12k5OkCWFhnz3QwNs1AhQUNYdwGK
+	M+ds3Ur5LEghOXZKiU5w==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3t8tt7akx8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 22 Sep 2023 11:13:55 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D5289100051;
+	Fri, 22 Sep 2023 11:13:54 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C8837215BEA;
+	Fri, 22 Sep 2023 11:13:54 +0200 (CEST)
+Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 22 Sep
+ 2023 11:13:54 +0200
+Message-ID: <cb996f8a-16ad-96ec-11ed-993f494ef6b9@foss.st.com>
+Date: Fri, 22 Sep 2023 11:13:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=XK87TZuPy+d2r2g5QhowmghE-m9pGHe9-X7jnXAw9z1g@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] ARM: dts: stm32: stm32f7-pinctrl: don't use multiple
+ blank lines
+Content-Language: en-US
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        <linux-kernel@vger.kernel.org>
+CC: <linux-amarula@amarulasolutions.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        =?UTF-8?Q?Rapha=c3=abl_Gallais-Pou?=
+	<raphael.gallais-pou@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20230904180341.923038-1-dario.binacchi@amarulasolutions.com>
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230904180341.923038-1-dario.binacchi@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.21.122]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-22_07,2023-09-21_01,2023-05-22_02
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Wed, Sep 20, 2023 at 08:41:12AM -0700, Doug Anderson wrote:
-> On Wed, Sep 20, 2023 at 12:26 AM Johan Hovold <johan@kernel.org> wrote:
-> > On Tue, Sep 19, 2023 at 11:15:46AM -0700, Doug Anderson wrote:
-> > > On Tue, Sep 19, 2023 at 12:07 AM Johan Hovold <johan@kernel.org> wrote:
+Hi Dario
 
-> > As I alluded to in the commit message, you probably want to be able to
-> > support second-source touchscreen panel followers as well at some point
-> > and then deferring checking whether device is populated until the panel
-> > is powered on is not going to work.
+On 9/4/23 20:03, Dario Binacchi wrote:
+> The patch fixes the following warning:
 > 
-> Yeah, I've been pondering this too. I _think_ it would work OK-ish if
-> both devices probed and then only one of the two would actually make
-> the sub-HID devices. So you'd actually see both devices succeed at
-> probing but only one of them would actually be functional. It's a bit
-> ugly, though. :(  Maybe marginally better would be if we could figure
-> out how to have the device which fails to get its interrupt later
-> unbind itself, if that's possible...
+> arch/arm/dts/stm32f7-pinctrl.dtsi:380: check: Please don't use multiple blank lines
 > 
-> The only other thought I had would be to have the parent i2c bus
-> understand that it had children that were panel followers, which it
-> should be able to do by seeing the "panel" attribute in their device
-> tree. Then the i2c bus could itself register as a panel follower and
-> could wait to probe its children until they were powered on. This
-> could happen in the i2c core so we didn't have to add code like this
-> to all i2c bus drivers. ...and, if necessary, we could add this to
-> other busses like SPI. It feels a little awkward but could work.
-
-There may be other device on the bus that have nothing to do with
-panels, but I guess you mean that this would only apply to a subset of
-the children. In any case, this feels like a hack and layering
-violation.
-
-> > I skimmed the thread were you added this, but I'm not sure I saw any
-> > reason for why powering on the panel follower temporarily during probe
-> > would not work?
+> Fixes: ba287d1a0137 ("ARM: dts: stm32: add pin map for LTDC on stm32f7")
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 > 
-> My first instinct says we can't do this, but let's think about it...
+> ---
 > 
-> In general the "panel follower" API is designed to give all the
-> decision making about when to power things on and off to the panel
-> driver, which is controlled by DRM.
+>   arch/arm/boot/dts/st/stm32f7-pinctrl.dtsi | 1 -
+>   1 file changed, 1 deletion(-)
 > 
-> The reason for this is from experience I had when dealing with the
-> Samsung ATNA33XC20 panel that's on "sc7180-trogdor-homestar". The TCON
-> on that panel tended to die if you didn't sequence it just right.
-> Specifically, if you were sending pixels to the panel and then stopped
-> then you absolutely needed to power the panel off and on again. Folks
-> I talked to even claimed that the panel was working "to spec" since,
-> in the "Power Sequencing" section of the eDP spec it clearly shows
-> that you _must_ turn the panel off and on again after you stop giving
-> it bits. ...this is despite the fact that no other panel I've worked
-> with cares. ;-)
-> 
-> On homestar, since we didn't have the "panel follower" API, we ended
-> up adding cost to the hardware and putting the panel and touchscreens
-> on different power rails. However, I wanted to make sure that if we
-> ran into a similar situation in the future (or maybe if we were trying
-> to make hardware work that we didn't have control over) that we could
-> solve it.
-> 
-> The other reason for giving full control to the panel driver is just
-> how userspace usually works. Right now userspace tends to power off
-> panels if they're not used (like if a lid is closed on a laptop) but
-> doesn't necessarily power off the touchscreen. Thus if the touchscreen
-> has the ability to keep things powered on then we'd never get to a low
-> power state.
+> diff --git a/arch/arm/boot/dts/st/stm32f7-pinctrl.dtsi b/arch/arm/boot/dts/st/stm32f7-pinctrl.dtsi
+> index 65480a9f5cc4..842f2b17c4a8 100644
+> --- a/arch/arm/boot/dts/st/stm32f7-pinctrl.dtsi
+> +++ b/arch/arm/boot/dts/st/stm32f7-pinctrl.dtsi
+> @@ -376,7 +376,6 @@ pins2 {
+>   				};
+>   			};
+>   
+> -
+>   			ltdc_pins_a: ltdc-0 {
+>   				pins {
+>   					pinmux = <STM32_PINMUX('E', 4, AF14)>, /* LCD_B0 */
 
-Don't you need to keep the touchscreen powered to support wakeup events
-(e.g. when not closing the lid)?
 
-And if you close the lid with wakeup disabled, you should still be able
-to power down the touchscreen as part of suspend, right?
+Applied on stm32-next.
 
-> The above all explains why panel followers like the touchscreen
-> shouldn't be able to keep power on. However, you are specifically
-> suggesting that we just turn the power on temporarily during probe. As
-> I think about that, it might be possible? I guess you'd have to
-> temporarily block DRM from changing the state of the panel while the
-> touchscreen is probing. Then if the panel was off then you'd turn it
-> on briefly, do your probe, and then turn it off again. If the panel
-> was on then by blocking DRM you'd ensure that it stayed on. I'm not
-> sure how palatable that would be or if there are any other tricky
-> parts I'm not thinking about.
-
-As this would allow actually probing the touchscreen during probe(), as
-the driver model expects, this seems like a better approach then
-deferring probe and registration if it's at all doable.
-
-> > > Thinking that way, is there any reason you can't just move the
-> > > i2c_hid_init_irq() into __do_i2c_hid_core_initial_power_up()? You
-> > > could replace the call to enable_irq() with it and then remove the
-> > > `IRQF_NO_AUTOEN` flag? I think that would also solve the issue if you
-> > > wanted to use a 2nd source + the panel follower concept? Both devices
-> > > would probe, but only one of them would actually grab the interrupt
-> > > and only one of them would actually create real HID devices. We might
-> > > need to do some work to keep from trying again at every poweron of the
-> > > panel, but it would probably be workable? I think this would also be a
-> > > smaller change...
-> >
-> > That was my first idea as well, but conceptually it is more correct to
-> > request resources at probe time and not at some later point when you can
-> > no longer fail probe.
-> >
-> > You'd also need to handle the fact that the interrupt may never have
-> > been requested when remove() is called, which adds unnecessary
-> > complexity.
-> 
-> I don't think it's a lot of complexity, is it? Just an extra "if" statement...
-
-Well you'd need keep track of whether the interrupt has been requested
-or not (and manage serialisation) yourself for a start.
-
-But the main reason is still that requesting resources belongs in
-probe() and should not be deferred to some later random time where you
-cannot inform driver core of failures (e.g. for probe deferral if the
-interrupt controller is not yet available).
-
-Johan
+Thanks.
+Alex
 
