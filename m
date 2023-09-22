@@ -1,275 +1,106 @@
-Return-Path: <devicetree+bounces-2583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BBCA7AB903
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 20:20:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51EB97AB908
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 20:21:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id C39B22822A6
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 18:20:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id EEFAD1F23474
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 18:21:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 619AF45F4E;
-	Fri, 22 Sep 2023 18:20:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15ED145F53;
+	Fri, 22 Sep 2023 18:21:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C278542C11
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 18:20:02 +0000 (UTC)
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7D80AB
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 11:19:59 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id 3f1490d57ef6-d7ecdb99b7aso2950231276.3
-        for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 11:19:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1695406799; x=1696011599; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MJEfWMki53C0C9QhqoAya3sbRCJGrb7hvD0oAvB4tgE=;
-        b=jo/nEkb9Z1XQ9LOih9S5e/6NYnc5Dizk2QYspjhKTRl0SFKM9otRXR3AYmkSGOeo9K
-         bj2xXAEtGg/qBQ0KmT8rXMAV3X2/hJmlLt42SD3Wy48Aoh2X/XJ94QyRoFXG+0pgrJSP
-         JkDAygKFp5NG5INLK/VmJyzkMwZ7i2ErDnyNSMhQOzWmhXQIe/RW22vXggOCzv34KPtD
-         atBmx0SM8tDhBxxGyHqhdoOD/iXqXqq9bVU30AWr3IxvxnFwWoIT6Qt5m8E1iHzJMKHz
-         h85GfZzfT5b8P2ti6dp7KS2nB4dOBElySsZJ88DpVTKbmAbkRtyB+H5GYZuKjFe5axip
-         TqDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695406799; x=1696011599;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MJEfWMki53C0C9QhqoAya3sbRCJGrb7hvD0oAvB4tgE=;
-        b=iDZr686M+RMC8ocSW+9K2xHSGUqPvAih4ozS8oAT0H6vwd3EYacfsi05EoEPRCR2M4
-         P6DMF6wGokgwoVJVeC4lrrTIrRema5dALGafXzbg8cp5PFoA/BJ/fCdFWxqCleyIAR4t
-         qo+MU/wMR608KSHO5UrKJ+bPirxb1o2ouNZEK7ON3Cek6kaMubQJDrSSKGN0kGRzFlCq
-         9rr+xNATeK126+V+ElFg0Qut+HqwqAJjCFIhcs0zJLblHroHpDxz1g36iE4b3feQQPEe
-         f9CX1Dhr4hOqNPKektHRrxCBShW5qHTep6jJDukRFOcyUTVKXCIQoP+R3sRa1ysDqMUN
-         0i/Q==
-X-Gm-Message-State: AOJu0Yy4zzIWWX0cid+svJNFG6ab5+DE0f9IgNQGYi8nbTiW81NThtBX
-	YxepMeqEIz1FgpdgdU9aoNboQLDbU5r/eu98LNb93A==
-X-Google-Smtp-Source: AGHT+IEHQohIXqITSfor/S743Ge1pG10gsNJCzDT+XFRdZSUhjj6xBKLS9Ve3hl88Y+oLZXD7F7ZDyjyqF5lKzjIhh8=
-X-Received: by 2002:a25:9205:0:b0:d81:6344:540b with SMTP id
- b5-20020a259205000000b00d816344540bmr65049ybo.45.1695406798515; Fri, 22 Sep
- 2023 11:19:58 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 047C142C11
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 18:21:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96E29C433C7;
+	Fri, 22 Sep 2023 18:21:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695406880;
+	bh=SJcH9WWUC7b4icS4mYzsgIi5682dqbrCHyF82Gm43a4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=d8gs3/mY6Sf+oS/SUeaP2Jr42tQw1grzspJHmvAh0xv4/+drpEjIlsXppZcRi7KdK
+	 H1xlDY+5Jmqc350YgZ7s6/KjEMpRr+IuBZ72LbFd9JXI1PEgD+32dQcBfMFlOg6StE
+	 eJVTLbJwx0SQxQIYCQEBuN98pStC4Aw+jowy/I8t8vTk84nQXTJckh7RvlU2XicOa9
+	 6rfz7Ywp5RXslfiTwqe3jlbCfReheshhS0PhfbfYGj4+umuwO5qtaRnb/kF1jNEmuR
+	 3jRzhBYdCS86IkHBLADgzu6gsL2OujwgGAGNPW9myq2JtxWCGAFWKgliszWbwcFz8a
+	 byzboUiwmGsuw==
+Date: Fri, 22 Sep 2023 19:21:16 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Bragatheswaran Manickavel <bragathemanick0908@gmail.com>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] ASoC: dt-bindings: tfa9879: Convert to dtschema
+Message-ID: <20230922-scoreless-battalion-8b33e36066eb@spud>
+References: <20230921183313.54112-1-bragathemanick0908@gmail.com>
+ <20230922-unmindful-anyplace-f1da73ab168c@spud>
+ <c6f795f1-2832-c282-5819-f8f402a312bd@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230911023038.30649-1-yong.wu@mediatek.com> <20230911023038.30649-3-yong.wu@mediatek.com>
- <71c435a6-ba43-5d26-e658-f55bddbb8b98@amd.com>
-In-Reply-To: <71c435a6-ba43-5d26-e658-f55bddbb8b98@amd.com>
-From: "T.J. Mercier" <tjmercier@google.com>
-Date: Fri, 22 Sep 2023 11:19:46 -0700
-Message-ID: <CABdmKX1-5ujRRVQHNVMkoC4Ls0mruxE8GCXNavRLyywD7SobOw@mail.gmail.com>
-Subject: Re: [PATCH 2/9] dma-heap: Add proper kref handling on dma-buf heaps
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
-	John Stultz <jstultz@google.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	jianjiao.zeng@mediatek.com, kuohong.wang@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="rF2zpNVePdlmTHic"
+Content-Disposition: inline
+In-Reply-To: <c6f795f1-2832-c282-5819-f8f402a312bd@gmail.com>
+
+
+--rF2zpNVePdlmTHic
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-	USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
-On Mon, Sep 11, 2023 at 2:49=E2=80=AFAM Christian K=C3=B6nig
-<christian.koenig@amd.com> wrote:
->
-> Am 11.09.23 um 04:30 schrieb Yong Wu:
-> > From: John Stultz <jstultz@google.com>
-> >
-> > Add proper refcounting on the dma_heap structure.
-> > While existing heaps are built-in, we may eventually
-> > have heaps loaded from modules, and we'll need to be
-> > able to properly handle the references to the heaps
-> >
-> > Also moves minor tracking into the heap structure so
-> > we can properly free things.
->
-> This is completely unnecessary, see below.
->
-> >
-> > Signed-off-by: John Stultz <jstultz@google.com>
-> > Signed-off-by: T.J. Mercier <tjmercier@google.com>
-> > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> > [Yong: Just add comment for "minor" and "refcount"]
-> > ---
-> >   drivers/dma-buf/dma-heap.c | 38 ++++++++++++++++++++++++++++++++++---=
--
-> >   include/linux/dma-heap.h   |  6 ++++++
-> >   2 files changed, 40 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/dma-buf/dma-heap.c b/drivers/dma-buf/dma-heap.c
-> > index 51030f6c9d6e..dcc0e38c61fa 100644
-> > --- a/drivers/dma-buf/dma-heap.c
-> > +++ b/drivers/dma-buf/dma-heap.c
-> > @@ -11,6 +11,7 @@
-> >   #include <linux/dma-buf.h>
-> >   #include <linux/dma-heap.h>
-> >   #include <linux/err.h>
-> > +#include <linux/kref.h>
-> >   #include <linux/list.h>
-> >   #include <linux/nospec.h>
-> >   #include <linux/syscalls.h>
-> > @@ -30,6 +31,8 @@
-> >    * @heap_devt:              heap device node
-> >    * @list:           list head connecting to list of heaps
-> >    * @heap_cdev:              heap char device
-> > + * @minor:           heap device node minor number
-> > + * @refcount:                reference counter for this heap device
-> >    *
-> >    * Represents a heap of memory from which buffers can be made.
-> >    */
-> > @@ -40,6 +43,8 @@ struct dma_heap {
-> >       dev_t heap_devt;
-> >       struct list_head list;
-> >       struct cdev heap_cdev;
-> > +     int minor;
-> > +     struct kref refcount;
-> >   };
-> >
-> >   static LIST_HEAD(heap_list);
-> > @@ -205,7 +210,6 @@ struct dma_heap *dma_heap_add(const struct dma_heap=
-_export_info *exp_info)
-> >   {
-> >       struct dma_heap *heap, *h, *err_ret;
-> >       struct device *dev_ret;
-> > -     unsigned int minor;
-> >       int ret;
-> >
-> >       if (!exp_info->name || !strcmp(exp_info->name, "")) {
-> > @@ -222,12 +226,13 @@ struct dma_heap *dma_heap_add(const struct dma_he=
-ap_export_info *exp_info)
-> >       if (!heap)
-> >               return ERR_PTR(-ENOMEM);
-> >
-> > +     kref_init(&heap->refcount);
-> >       heap->name =3D exp_info->name;
-> >       heap->ops =3D exp_info->ops;
-> >       heap->priv =3D exp_info->priv;
-> >
-> >       /* Find unused minor number */
-> > -     ret =3D xa_alloc(&dma_heap_minors, &minor, heap,
-> > +     ret =3D xa_alloc(&dma_heap_minors, &heap->minor, heap,
-> >                      XA_LIMIT(0, NUM_HEAP_MINORS - 1), GFP_KERNEL);
-> >       if (ret < 0) {
-> >               pr_err("dma_heap: Unable to get minor number for heap\n")=
-;
-> > @@ -236,7 +241,7 @@ struct dma_heap *dma_heap_add(const struct dma_heap=
-_export_info *exp_info)
-> >       }
-> >
-> >       /* Create device */
-> > -     heap->heap_devt =3D MKDEV(MAJOR(dma_heap_devt), minor);
-> > +     heap->heap_devt =3D MKDEV(MAJOR(dma_heap_devt), heap->minor);
-> >
-> >       cdev_init(&heap->heap_cdev, &dma_heap_fops);
-> >       ret =3D cdev_add(&heap->heap_cdev, heap->heap_devt, 1);
-> > @@ -280,12 +285,37 @@ struct dma_heap *dma_heap_add(const struct dma_he=
-ap_export_info *exp_info)
-> >   err2:
-> >       cdev_del(&heap->heap_cdev);
-> >   err1:
-> > -     xa_erase(&dma_heap_minors, minor);
-> > +     xa_erase(&dma_heap_minors, heap->minor);
-> >   err0:
-> >       kfree(heap);
-> >       return err_ret;
-> >   }
-> >
-> > +static void dma_heap_release(struct kref *ref)
-> > +{
-> > +     struct dma_heap *heap =3D container_of(ref, struct dma_heap, refc=
-ount);
-> > +
-> > +     /* Note, we already holding the heap_list_lock here */
-> > +     list_del(&heap->list);
-> > +
-> > +     device_destroy(dma_heap_class, heap->heap_devt);
-> > +     cdev_del(&heap->heap_cdev);
-> > +     xa_erase(&dma_heap_minors, heap->minor);
->
-> You can just use MINOR(heap->heap_devt) here instead.
->
-Got it, thanks.
+On Fri, Sep 22, 2023 at 10:53:06PM +0530, Bragatheswaran Manickavel wrote:
+>=20
+> On 22/09/23 20:56, Conor Dooley wrote:
+> > On Fri, Sep 22, 2023 at 12:03:13AM +0530, Bragatheswaran Manickavel wro=
+te:
+> > > Convert the tfa9879 audio CODEC bindings to DT schema
+> > > No error/warning seen when running make dt_binding_check
+> > >=20
+> > > Signed-off-by: Bragatheswaran Manickavel <bragathemanick0908@gmail.co=
+m>
+> > > Changes:
+> > > V1 -> V2: Fixed DT syntax errors and doc warning
+> > These should be under the --- line, not above it.
+> > Perhaps Mark will change it on application.
+> > Otherwise,
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-> > +
-> > +     kfree(heap);
-> > +}
-> > +
-> > +void dma_heap_put(struct dma_heap *h)
-> > +{
-> > +     /*
-> > +      * Take the heap_list_lock now to avoid racing with code
-> > +      * scanning the list and then taking a kref.
-> > +      */
->
-> This is usually considered a bad idea since it makes the kref approach
-> superfluous.
->
-> There are multiple possibilities how handle this, the most common one is
-> to use kref_get_unless_zero() in your list traversal code and ignore the
-> entry when that fails.
->
-> Alternatively you could use kref_put_mutex() instead. This gives you the
-> same functionality as this here, but as far as I know it's normally only
-> used in a couple of special cases.
->
-Ok, I'll move this mutex acquisition to dma_heap_release so that it
-guards just the list_del, and change dma_heap_find to use
-kref_get_unless_zero. Thanks.
+> Thanks for reviewing it.
+> Do I need to send a new patch by addressing the above comments ?
 
-> > +     mutex_lock(&heap_list_lock);
-> > +     kref_put(&h->refcount, dma_heap_release);
-> > +     mutex_unlock(&heap_list_lock);
-> > +}
-> > +
-> >   static char *dma_heap_devnode(const struct device *dev, umode_t *mode=
-)
-> >   {
-> >       return kasprintf(GFP_KERNEL, "dma_heap/%s", dev_name(dev));
-> > diff --git a/include/linux/dma-heap.h b/include/linux/dma-heap.h
-> > index c7c29b724ad6..f3c678892c5c 100644
-> > --- a/include/linux/dma-heap.h
-> > +++ b/include/linux/dma-heap.h
-> > @@ -64,4 +64,10 @@ const char *dma_heap_get_name(struct dma_heap *heap)=
-;
-> >    */
-> >   struct dma_heap *dma_heap_add(const struct dma_heap_export_info *exp_=
-info);
-> >
-> > +/**
-> > + * dma_heap_put - drops a reference to a dmabuf heap, potentially free=
-ing it
-> > + * @heap: the heap whose reference count to decrement
-> > + */
->
-> Please don't add kerneldoc to the definition, add it to the
-> implementation of the function.
->
-Will fix.
+To be clear, it's the changelog, not the sign off, that needs to go
+under the ---. It'd look like:
 
+Signed-off-by: Bragatheswaran Manickavel <bragathemanick0908@gmail.com>
+---
+Changes:
+V1 -> V2: Fixed DT syntax errors and doc warning
 
+Mark often fixes these things when he applies patches, but sending a v2
+w/ the changelog fixed might make his life easier.
 
+Cheers,
+Conor.
 
-> Regards,
-> Christian.
->
-> > +void dma_heap_put(struct dma_heap *heap);
-> > +
-> >   #endif /* _DMA_HEAPS_H */
->
+--rF2zpNVePdlmTHic
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQ3bHAAKCRB4tDGHoIJi
+0o6LAP9Vq8grg9fJf5i45dQtQG833qk7XMbr9PXVfnfcitVhBgD/b/LHnihKc99a
+Ei0JpNNTNhBFWQLwjwosqqdeiWJJFgI=
+=xq4J
+-----END PGP SIGNATURE-----
+
+--rF2zpNVePdlmTHic--
 
