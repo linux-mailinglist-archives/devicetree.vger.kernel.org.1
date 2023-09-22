@@ -1,84 +1,44 @@
-Return-Path: <devicetree+bounces-2606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31DA47ABABB
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 22:58:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F27367ABACB
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 23:01:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id D6C42281F80
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 20:58:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id A6B02281F97
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 21:01:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C37A4735D;
-	Fri, 22 Sep 2023 20:58:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1841E4735E;
+	Fri, 22 Sep 2023 21:01:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F6C0436A3
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 20:58:43 +0000 (UTC)
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.166])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EA0CCA;
-	Fri, 22 Sep 2023 13:58:41 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1695416319; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=DM/h0Ssk0CSA9pBKpoZS8kdda7elTUspMXJEKVezdP4+6VL2SQyG/MWM6ynsZWhRn4
-    4XPLQwCXCZ75FwZ1OkdjZnAGPokgALuigmtutunaUUi1PGXkqhKVyT9kzjpz1iOEoy7G
-    oRtCuUb+joCKolPmNK6stMCosYadegI3vZgthJMZsoMB5dyLLQ8oq0fe7c9AIAENnBjP
-    P/XRpWItZsjuBGdz19CfVFApMrAtmVSl4RylrX1h/TkwEeignyNZpZ2YkK2ad/TjSdb0
-    x2TJapPf0uUWWVd18jJl8PtYwe8zz1GFQUkR9fXAxBbhzdkiRP9kBZnJdFlcpTmUZSDo
-    ep2g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1695416319;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=8tC0I6qpuuVb1JXq7RbaHdrmQDpUMmS81IG277Uq2N0=;
-    b=jvnqkqGH2Fs3yEBV4q27JdZ+3s2khgVp8QxjWfXsyqVH02bJvXxjklLRCOU91pgO4a
-    xmI1cGT4flHzQvN6Dg1yLkk8zz+uqcVmP8MGFx19CDkPBUGkvb3HB8HYTu1jYgBxMtfx
-    HrXHczkB7Xme2ffyqPesXeGiT48gqraO3Rk9fgPWCUpCQBRs5HYJk4AtS2pJOrtLdrPT
-    A91POIsH3CFHXSQ1uCQXmQifrLTTYIYUKcOyL3yONEW7L1g3qjgtAV7XLcHeXRbp2VKG
-    k4nXzMas0Pjxrlh6U313R6xGVz2Uec7qDZQ5k9xSo85Sd13LwCzozoMVSm8v4CpRgAdK
-    a30A==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1695416319;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=8tC0I6qpuuVb1JXq7RbaHdrmQDpUMmS81IG277Uq2N0=;
-    b=DYf1JNT65qQUFMsZ3QOoEtAk7L2p9XblVEHUl8wb6Cbjx7WcIs+AVCgDLD5CL56naA
-    TOjnpHHM42Y3fXgne9CjZL6nKE0xrmfbandZjAmd5tUBRqjlWASACKMXOR/9RZ4R0PQy
-    9Twece7okBc/HoTQ1fN3Lb5pn+peTuX3zBhVjr80HLUhCkpBt+MEWGk8J500+9H9x/uv
-    SbwlS36J95ZOxNaYAsQ4XVWWIA4zdoxDF+FoVpruqTjPGNZSSdcugScYmW6QWvy2eFgV
-    CF+diwNzXAgB76iZ1HSx6UmPZEF2dPLzzDOhzwxEpXfBIJ5FRg5crbiiRvWx/LsGG2lC
-    BhJw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1695416319;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=8tC0I6qpuuVb1JXq7RbaHdrmQDpUMmS81IG277Uq2N0=;
-    b=fYiHF2mPW1t2pD2tOWsZDlhu76pYSkEdvl1g26zOO2D3X1uK81wZQzvl+Rf+m/9kGe
-    xqQP/W8Zelefhj9MTpAQ==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4paA8Z/h"
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.8.2 DYNA|AUTH)
-    with ESMTPSA id R04c57z8MKwcV4V
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Fri, 22 Sep 2023 22:58:38 +0200 (CEST)
-Date: Fri, 22 Sep 2023 22:58:26 +0200
-From: Stephan Gerhold <stephan@gerhold.net>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] arm64: dts: qcom: apq8016-sbc-d3-camera: Convert to
- DT overlay
-Message-ID: <ZQ3_8njijHqat5eV@gerhold.net>
-References: <20230922-apq8016-sbc-camera-dtso-v1-0-ce9451895ca1@gerhold.net>
- <c835c404-33f3-4f5b-8a8a-819d4019e74b@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08665436A3
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 21:01:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 581D1C433C7;
+	Fri, 22 Sep 2023 21:01:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695416463;
+	bh=cMb9RHaHYirSsl0pOWbAp/xl0/Onqs/d5nqBt1IGi8g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=e0alFCzQ2NXYPvoMjyHuz/m0F8asW9XIvixH+zUm1vHTnNX9DrIn/m/V7lLGo1IQw
+	 51jvASV2i/YRq6wCyx9PlX7/Rhg/mximYUln7DQd8NCkeJcx52AanpwogFXggAuBz9
+	 pBD3XOs04sSaQ7lSvkv1ZRIjeaZyhDb06l0GGnE7h6rQvtjw4kPZgY1SWta7SuwwQW
+	 Vhm0GlzsB+Vt7D+fc4ER3quok9CNIz1lAbh/ixtyPZNDwKfZVxuLv50C6eMvgyI9m5
+	 gMcN5hHtIyouqQSj0+MlxARe0rgWrSLbyeE1U/I5uZdrp2vJLvuXgcNym7Am8NMnEv
+	 LoiP1MffRjxxQ==
+Received: (nullmailer pid 3568424 invoked by uid 1000);
+	Fri, 22 Sep 2023 21:01:01 -0000
+Date: Fri, 22 Sep 2023 16:01:01 -0500
+From: Rob Herring <robh@kernel.org>
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, Ninad Malwade <nmalwade@nvidia.com>, Thierry Reding <treding@nvidia.com>, Nicolin Chen <nicoleotsuka@gmail.com>
+Subject: Re: [PATCH V3 1/4] dt-bindings: hwmon: ina3221: Convert to
+ json-schema
+Message-ID: <20230922210101.GA3562325-robh@kernel.org>
+References: <20230921130818.21247-1-jonathanh@nvidia.com>
+ <20230921130818.21247-2-jonathanh@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,63 +47,203 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c835c404-33f3-4f5b-8a8a-819d4019e74b@linaro.org>
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+In-Reply-To: <20230921130818.21247-2-jonathanh@nvidia.com>
 
-On Fri, Sep 22, 2023 at 09:47:07PM +0100, Bryan O'Donoghue wrote:
-> On 22/09/2023 16:11, Stephan Gerhold wrote:
-> > Follow the example of the recently added apq8016-sbc-usb-host.dtso and
-> > convert apq8016-sbc-d3-camera-mezzanine.dts to a DT overlay that can be
-> > applied on top of the apq8016-sbc.dtb. This makes it more clear that
-> > this is not a special type of DB410c but just an addon board that can
-> > be added on top.
-> > 
-> > I also prepended a patch that cleans up the node names a bit.
-> > 
-> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> > ---
-> > Stephan Gerhold (2):
-> >        arm64: dts: qcom: apq8016-sbc-d3-camera: Use more generic node names
-> >        arm64: dts: qcom: apq8016-sbc-d3-camera: Convert to DT overlay
-> > 
-> >   arch/arm64/boot/dts/qcom/Makefile                    |  5 +++--
-> >   ...nine.dts => apq8016-sbc-d3-camera-mezzanine.dtso} | 20 ++++++++++++++------
-> >   2 files changed, 17 insertions(+), 8 deletions(-)
-> > ---
-> > base-commit: 7236e86ce5c8198b01c30933c2334d07d877cf48
-> > change-id: 20230922-apq8016-sbc-camera-dtso-f247bea40f99
-> > 
-> > Best regards,
+On Thu, Sep 21, 2023 at 02:08:15PM +0100, Jon Hunter wrote:
+> From: Ninad Malwade <nmalwade@nvidia.com>
 > 
-> db410c doesn't ship with a bootloader that is capable of applying a dtbo
-> though, so this conversion mandates an updated or chainloaded bootloader or
-> out-of-tree kernel patch to support.
+> Convert the TI INA3221 bindings from the free-form text format to
+> json-schema.
 > 
-> __adding__ is fine but, converting implies imposes a new requirement on the
-> bootchain.
+> Note that the INA3221 input channels default to enabled in the chip.
+> Unless channels are explicitly disabled in device-tree, input
+> channels will be enabled.
 > 
-> Perhaps a middle road solution is to
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> Signed-off-by: Ninad Malwade <nmalwade@nvidia.com>
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> ---
+>  .../devicetree/bindings/hwmon/ina3221.txt     | 54 ----------
+>  .../devicetree/bindings/hwmon/ti,ina3221.yaml | 98 +++++++++++++++++++
+>  2 files changed, 98 insertions(+), 54 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/hwmon/ina3221.txt
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
 > 
-> - Add, not convert a standalone dtbo or
-> - Add a dtbo that includes the mezzanine dts but amends it
-> 
-> Option 2 for preference but, I'm not sure the dts syntax can be meaningfully
-> made to do that.
-> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/ina3221.txt b/Documentation/devicetree/bindings/hwmon/ina3221.txt
+> deleted file mode 100644
+> index fa63b6171407..000000000000
+> --- a/Documentation/devicetree/bindings/hwmon/ina3221.txt
+> +++ /dev/null
+> @@ -1,54 +0,0 @@
+> -Texas Instruments INA3221 Device Tree Bindings
+> -
+> -1) ina3221 node
+> -  Required properties:
+> -  - compatible: Must be "ti,ina3221"
+> -  - reg: I2C address
+> -
+> -  Optional properties:
+> -  - ti,single-shot: This chip has two power modes: single-shot (chip takes one
+> -                    measurement and then shuts itself down) and continuous (
+> -                    chip takes continuous measurements). The continuous mode is
+> -                    more reliable and suitable for hardware monitor type device,
+> -                    but the single-shot mode is more power-friendly and useful
+> -                    for battery-powered device which cares power consumptions
+> -                    while still needs some measurements occasionally.
+> -                    If this property is present, the single-shot mode will be
+> -                    used, instead of the default continuous one for monitoring.
+> -
+> -  = The node contains optional child nodes for three channels =
+> -  = Each child node describes the information of input source =
+> -
+> -  - #address-cells: Required only if a child node is present. Must be 1.
+> -  - #size-cells: Required only if a child node is present. Must be 0.
+> -
+> -2) child nodes
+> -  Required properties:
+> -  - reg: Must be 0, 1 or 2, corresponding to IN1, IN2 or IN3 port of INA3221
+> -
+> -  Optional properties:
+> -  - label: Name of the input source
+> -  - shunt-resistor-micro-ohms: Shunt resistor value in micro-Ohm
+> -
+> -Example:
+> -
+> -ina3221@40 {
+> -	compatible = "ti,ina3221";
+> -	reg = <0x40>;
+> -	#address-cells = <1>;
+> -	#size-cells = <0>;
+> -
+> -	input@0 {
+> -		reg = <0x0>;
+> -		status = "disabled";
+> -	};
+> -	input@1 {
+> -		reg = <0x1>;
+> -		shunt-resistor-micro-ohms = <5000>;
+> -	};
+> -	input@2 {
+> -		reg = <0x2>;
+> -		label = "VDD_5V";
+> -		shunt-resistor-micro-ohms = <5000>;
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
+> new file mode 100644
+> index 000000000000..d0e64a72af5b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
+> @@ -0,0 +1,98 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/ti,ina3221.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments INA3221 Current and Voltage Monitor
+> +
+> +maintainers:
+> +  - Jean Delvare <jdelvare@suse.com>
+> +  - Guenter Roeck <linux@roeck-us.net>
 
-With these patches the apq8016-sbc-d3-camera-mezzanine.dtb is still
-magically built, by running fdtoverlay on apq8016-sbc.dtb and applying
-the dtbo. It's applied during the build process so you don't need a
-bootloader that supports DTBOs.
+This should be someone with the h/w. You or the original author Nicolin 
+(now Cc'ed)?
 
-There is literally *no change* for you in terms of usage. :-)
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,ina3221
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  ti,single-shot:
+> +    description: |
+> +      This chip has two power modes: single-shot (chip takes one measurement
+> +      and then shuts itself down) and continuous (chip takes continuous
+> +      measurements). The continuous mode is more reliable and suitable for
+> +      hardware monitor type device, but the single-shot mode is more power-
+> +      friendly and useful for battery-powered device which cares power
+> +      consumptions while still needs some measurements occasionally.
+> +
+> +      If this property is present, the single-shot mode will be used, instead
+> +      of the default continuous one for monitoring.
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +
+> +  "#address-cells":
+> +    description: Required only if a child node is present.
 
-Thanks,
-Stephan
+That's always the case. Drop
+
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    description: Required only if a child node is present.
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^input@[0-2]$":
+> +    description: The node contains optional child nodes for three channels.
+> +      Each child node describes the information of input source. Input channels
+> +      default to enabled in the chip. Unless channels are explicitly disabled
+> +      in device-tree, input channels will be enabled.
+> +    type: object
+> +    additionalProperties: false
+> +    properties:
+> +      reg:
+> +        description: Must be 0, 1 and 2, corresponding to the IN1, IN2 or IN3
+> +          ports of the INA3221, respectively.
+> +        enum: [ 0, 1, 2 ]
+> +
+> +      label:
+> +        description: name of the input source
+> +
+> +      shunt-resistor-micro-ohms:
+> +        description: shunt resistor value in micro-Ohm
+> +
+> +    required:
+> +      - reg
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        power-sensor@40 {
+> +            compatible = "ti,ina3221";
+> +            reg = <0x40>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            input@0 {
+> +                reg = <0x0>;
+> +                status = "disabled";
+
+Examples should be enabled.
+
+> +            };
+> +
+> +            input@1 {
+> +                reg = <0x1>;
+> +                shunt-resistor-micro-ohms = <5000>;
+> +            };
+> +
+> +            input@2 {
+> +                reg = <0x2>;
+> +                label = "VDD_5V";
+> +                shunt-resistor-micro-ohms = <5000>;
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.34.1
+> 
 
