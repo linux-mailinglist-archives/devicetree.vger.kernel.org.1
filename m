@@ -1,96 +1,127 @@
-Return-Path: <devicetree+bounces-2531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F30CB7AB28B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 15:09:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0303F7AB2E6
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 15:46:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 4D498B209F3
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 13:09:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id A0EFA2820FF
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 13:46:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 694402770A;
-	Fri, 22 Sep 2023 13:09:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E6C334CEC;
+	Fri, 22 Sep 2023 13:45:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE3651E52E
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 13:09:07 +0000 (UTC)
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CA35C6;
-	Fri, 22 Sep 2023 06:09:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
-	:Date:subject:date:message-id:reply-to;
-	bh=X/arGO0320WI56/NWzmZwBHeAxSFRsOgfojU/vo4uVM=; b=Z/PGexMNc+ltvpSub8seqze/eT
-	jmYU6PrUBtBeF3KABjNYyHMZhjufHwO8FE3z3JZbJ50OZKhv3cpVTbwHCjU0ooh9hLeSkSjtvdcka
-	gAyLkN19Vl6j62qos3uqeJj1YovdVPo0EhZbJp+Jbmk8Vl2i+vWxeRsuStoP0SDCPv3E=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:54448 helo=pettiford)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1qjfu0-00086W-9S; Fri, 22 Sep 2023 09:09:00 -0400
-Date: Fri, 22 Sep 2023 09:08:59 -0400
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- hvilleneuve@dimonoff.com, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org, devicetree@vger.kernel.org
-Message-Id: <20230922090859.d451f6d8f8e3b4e7a2364695@hugovil.com>
-In-Reply-To: <20230922-awning-repayment-e9f4ec55787d@spud>
-References: <20230920152015.1376838-1-hugo@hugovil.com>
-	<20230920152015.1376838-5-hugo@hugovil.com>
-	<20230921-decorated-patronize-45285045adbf@spud>
-	<20230921113040.2dafb3d50cfdd8727de42356@hugovil.com>
-	<20230922-awning-repayment-e9f4ec55787d@spud>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 762472AB4D;
+	Fri, 22 Sep 2023 13:45:57 +0000 (UTC)
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C98492;
+	Fri, 22 Sep 2023 06:45:53 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 6BC371BF20D;
+	Fri, 22 Sep 2023 13:45:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1695390352;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3d45HSdjEBrGWXzT/hFE6ZoKYqY81rYCMtjLk2B/bLE=;
+	b=biE04lp+7hE+NLdqozy2BgZPaAjb3vaTtdsBnKCNRXF0qN2XFtgDbT6n4cqLkcqbHptxLb
+	oeMOmF7eHyF3aNQjMyD5QaHQjivx7ot6sdz0fFd0QcreP+88erVcjSDntCACDudD3RcyQH
+	iK/3cWyQ7W7XAH8Riv34zdtaG/ZaF9U8gRbBkmmXP9wtu9Dpmv+8fBGDH2uHlFgTVuaf+D
+	vUEEo2o7OwBll3KiAvIkjzGSfu3326QoSexo+bH5ppzRDvkVMmXLebD7B12+Z2XnIyyhNX
+	ouCNBvOA0rABVPgSWhVwNkW32WK4XjYvnXpRZzPaNCdSCfw9y1M3ExfRT98Eow==
+Date: Fri, 22 Sep 2023 15:45:46 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, Randy Dunlap
+ <rdunlap@infradead.org>, Takashi Iwai <tiwai@suse.com>, Simon Horman
+ <horms@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Liam Girdwood
+ <lgirdwood@gmail.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-gpio@vger.kernel.org, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, netdev@vger.kernel.org, Fabio Estevam
+ <festevam@gmail.com>, Eric Dumazet <edumazet@google.com>, Andrew Lunn
+ <andrew@lunn.ch>, Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>, Nicolin Chen
+ <nicoleotsuka@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Mark Brown
+ <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ alsa-devel@alsa-project.org, Paolo Abeni <pabeni@redhat.com>, Lee Jones
+ <lee@kernel.org>, linux-kernel@vger.kernel.org, "David S. Miller"
+ <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, Xiubo Li
+ <Xiubo.Lee@gmail.com>, Rob Herring <robh+dt@kernel.org>, Shengjiu Wan g
+ <shengjiu.wang@gmail.com>, linuxppc-dev@lists.ozlabs.org,
+ devicetree@vger.kernel.org, Li Yang <leoyang.li@nxp.com>, Qiang Zhao
+ <qiang.zhao@nxp.com>
+Subject: Re: [PATCH v6 25/30] dt-bindings: net: Add the Lantiq PEF2256
+ E1/T1/J1 framer
+Message-ID: <20230922154546.4ca18b6f@bootlin.com>
+In-Reply-To: <169538601225.2919383.2942072541503354871.robh@kernel.org>
+References: <20230922075913.422435-1-herve.codina@bootlin.com>
+	<20230922075913.422435-26-herve.codina@bootlin.com>
+	<169538601225.2919383.2942072541503354871.robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [PATCH 4/4] dt-bindings: sc16is7xx: convert to YAML
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-On Fri, 22 Sep 2023 12:35:07 +0100
-Conor Dooley <conor@kernel.org> wrote:
+Hi Rob,
 
-> On Thu, Sep 21, 2023 at 11:30:40AM -0400, Hugo Villeneuve wrote:
-> > On Thu, 21 Sep 2023 14:45:06 +0100
-> > Conor Dooley <conor@kernel.org> wrote:
-> > > On Wed, Sep 20, 2023 at 11:20:15AM -0400, Hugo Villeneuve wrote:
-> 
-> > > > +  clocks:
-> > > > +    maxItems: 1
-> > > > +    description: Reference to the IC source clock.
-> > > 
-> > > You could probably drop this, if it only has one clock it's a bit
-> > > redundant.
+On Fri, 22 Sep 2023 07:33:32 -0500
+Rob Herring <robh@kernel.org> wrote:
+
+> On Fri, 22 Sep 2023 09:59:00 +0200, Herve Codina wrote:
+> > The Lantiq PEF2256 is a framer and line interface component designed to
+> > fulfill all required interfacing between an analog E1/T1/J1 line and the
+> > digital PCM system highway/H.100 bus.
 > > 
-> > I don't understand, because there is already a 'clocks' property in
-> > the examples (and also in my real board DTS file) and if I remove it
-> > here it will cause a warning:
-> > 
-> > serial@51: Unevaluated properties are not allowed ('clocks' was
-> > unexpected)
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+> > ---
+> >  .../bindings/net/lantiq,pef2256.yaml          | 214 ++++++++++++++++++
+> >  1 file changed, 214 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/net/lantiq,pef2256.yaml
+> >   
 > 
-> Sorry, I was talking about the description.
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/lantiq,pef2256.yaml: properties:lantiq,data-rate-bps: '$ref' should not be valid under {'const': '$ref'}
+> 	hint: Standard unit suffix properties don't need a type $ref
+> 	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+> 
 
-OK, makes sense. I will remove it.
+The '-bps' suffix was added recently in
+https://github.com/devicetree-org/dt-schema/
+commit 033d0b1 ("Add '-bps' as a standard unit suffix for bits per second")
 
-Hugo.
+This commit is not yet present in any dt-schema release.
 
+Should I update my patch (ie. removing $ref) right now even if this update will
+make the last dt-schema release not happy ?
+
+Regards,
+Hervé
+
+-- 
+Hervé Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
