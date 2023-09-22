@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-2529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FA207AB256
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 14:42:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BB5E7AB257
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 14:42:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 02125282384
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 12:42:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 0DBA3B20A99
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 12:42:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B658E22F0E;
-	Fri, 22 Sep 2023 12:42:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 922E522F17;
+	Fri, 22 Sep 2023 12:42:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2766168AA
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 12:42:40 +0000 (UTC)
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C56938F;
-	Fri, 22 Sep 2023 05:42:39 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1c4456d595cso3810185ad.1;
-        Fri, 22 Sep 2023 05:42:39 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA566168AA
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 12:42:44 +0000 (UTC)
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD0A18F;
+	Fri, 22 Sep 2023 05:42:42 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id d2e1a72fcca58-690f2719ab2so500635b3a.0;
+        Fri, 22 Sep 2023 05:42:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695386559; x=1695991359; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1695386562; x=1695991362; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nywMer+Mj3vum0HNAimi+OFLw1xlk4qhC7kYw/lyJjE=;
-        b=gt+an6bAPBVuPEVr2zjZc8396+cBGLJU3j2aiBNbfCYCCZjlhOs2BTBGvhACXTq2C3
-         ErDRQcKVRQaEu3JRYeX6svP6hiGTWSwm4qkP0sQEDyhPAokmplRsNB5q6PiEK6va29XJ
-         3+ZE76r40Wq8KGroLbKtJ3hgFmRwx5OqemIrNlNOBZMP9z9h1qb45NjloNpb+FcHghcC
-         JpXIEa6Qlp9SyTyxwixoviXhyNAqQx0UDSNcQ6F5FnH+P7zHI56e6MLPk7jzt9/YtR2X
-         2uF17D+Q0L4H5ZwOnpR0QD/Pp1j3L10xLx8H0QB5gD31WG+C9TfeSizoottrlScSGvu5
-         V/hQ==
+        bh=TzUmaJw00NtdO2a1fcJmH57EcGwwL4xYW2vDq8BiXSs=;
+        b=OQXB/WYBBZqdjTLkvkmEUkPKCzwQjpUSuQ41BQuHAi/0dHo5H07AOvuMmwf2fwtr8W
+         3GAEqK7emZJHpXdLsnmItGb6E1KB2dnj0SwcRPbN8O0N65ebkZyzsW3MYTaewI55NK/n
+         YfZlBhwW83E/2CeSCWivQVd8WMqamFN5FYFKbBZQfUek3s5byKN5aMvt0Fbnm7Knuvpp
+         JBvPTF5LTu6jJTmlxKTXUgBCsEXiGMIZn3cpzHpGvbq8TtT49TBEFrNntO5oVes2617U
+         2R+lE80+FZuJ7JmBHCMaXqX9k9txHxyptH3Pm9Vv/nChSe4Zr7ZHoSHdZzP8gvMT6eRs
+         4VkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695386559; x=1695991359;
+        d=1e100.net; s=20230601; t=1695386562; x=1695991362;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=nywMer+Mj3vum0HNAimi+OFLw1xlk4qhC7kYw/lyJjE=;
-        b=wMyAqK+TXv9fvStlcU9XMn7dxApHXyt+5Zs3Lir/iKTtBdYLcUK2mID0yqVsGZcnUH
-         7GT326nPcqIoetLWieiDLw2ipNi06HVJasE5Ia6X1tfx/XwiLWDxB8tgeVuhRXJJi55F
-         jiRyavXz4iqA72lqQh1zAMLAS3GuPZzP06s/5wWDv5hssSjJU1BH9tVGvx4fe86DzIKV
-         Darp2cFy20MXNiHVMlZerqqTIwt5cN0+jwWcn395qp6M0Z2ewhAc0NYscfV62EqwDXaH
-         s+8XEXlhROwF3vJzrx9dGSTiEO9JDHDMI/80+NXSmSq2A7sZCNN3ZgsNGPasY6lM1pZn
-         GPmw==
-X-Gm-Message-State: AOJu0YzcDdJR2mE/YWFWg+nRT8YnarjgJfGa2oX2EHjX73Tm7vbx3gw4
-	3rny6OLIbH7hq5iS+YNHBZU36E+Do0Y=
-X-Google-Smtp-Source: AGHT+IFZ4ZOOnJhg5/+HD4kDbMuvkgHPN0tgqhlRUeBRi9yf3KTQLliylVhvzNVngckGnyUvDK58yw==
-X-Received: by 2002:a17:903:2303:b0:1bb:d7d4:e2b with SMTP id d3-20020a170903230300b001bbd7d40e2bmr8422397plh.0.1695386559195;
-        Fri, 22 Sep 2023 05:42:39 -0700 (PDT)
+        bh=TzUmaJw00NtdO2a1fcJmH57EcGwwL4xYW2vDq8BiXSs=;
+        b=mAZAKDYhEXcoTXXDIz9yF0uFEzgUAaWbsuQWoqIDUVR0Ra7Xx+0KFZEj6nMtWUgclV
+         bjergPXzFVHNQttV4r4Fn6FwQEJ3EvI6bDN+RYQvGcCV6oLDGE3pmaUkwXQViKUIOXDa
+         2a3QLPXIKEhE823KCw/Vbva1uNu/t/KbzagQ8BXqypVJZ3zMixKwzexd2zAmXdYt0U3l
+         x96Tq0pd4njtpZFKQJM99lOh3JXBvj47X3GxTICywmXokqAnSdzrtcUs9rjvwgYN7NGZ
+         BbpH5bpnuiaOevJM2nK/JpZhtcSfqjq/fMivSP0ItXpArYjxRqCYGyoWHoiGp0k+3IQr
+         +Kgg==
+X-Gm-Message-State: AOJu0YzTkAr29FiiYkYDyS/yf3lFLPeZ1ykhKOC/0jw67XnXQcBCti/M
+	rvXdu1SqzTaRNX6hfN+q39cZfks4rY8=
+X-Google-Smtp-Source: AGHT+IEdnpNK8ETni0ksqyKm5iYjIu0JAeuxJbEVPQu18hMs0j1Do9t03OsCkKYF+OG3s1QWm5RbTQ==
+X-Received: by 2002:a05:6a20:394c:b0:13e:1d49:7249 with SMTP id r12-20020a056a20394c00b0013e1d497249mr7474116pzg.2.1695386562316;
+        Fri, 22 Sep 2023 05:42:42 -0700 (PDT)
 Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:2546:6c99:4de0:9123])
-        by smtp.gmail.com with ESMTPSA id jg13-20020a17090326cd00b001bba669a7eesm3368170plb.52.2023.09.22.05.42.36
+        by smtp.gmail.com with ESMTPSA id jg13-20020a17090326cd00b001bba669a7eesm3368170plb.52.2023.09.22.05.42.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Sep 2023 05:42:38 -0700 (PDT)
+        Fri, 22 Sep 2023 05:42:41 -0700 (PDT)
 From: Fabio Estevam <festevam@gmail.com>
 To: shawnguo@kernel.org
 Cc: thierry.reding@gmail.com,
@@ -63,11 +63,10 @@ Cc: thierry.reding@gmail.com,
 	robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
-	Fabio Estevam <festevam@denx.de>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v2 2/3] dt-bindings: pwm: mxs: Document the clocks property
-Date: Fri, 22 Sep 2023 09:42:28 -0300
-Message-Id: <20230922124229.359543-2-festevam@gmail.com>
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH v2 3/3] ARM: dts: mxs: Switch to #pwm-cells = <3>
+Date: Fri, 22 Sep 2023 09:42:29 -0300
+Message-Id: <20230922124229.359543-3-festevam@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230922124229.359543-1-festevam@gmail.com>
 References: <20230922124229.359543-1-festevam@gmail.com>
@@ -77,7 +76,6 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
@@ -88,50 +86,230 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 
 From: Fabio Estevam <festevam@denx.de>
 
-The 'clocks' property is mandatory for the PWM to operate.
+mxs-pwm.yaml documents that #pwm-cells should be 3.
 
-Document it.
+This is correct as the last cell may indicate the PWM polarity.
+
+Convert all mxs devicetree files to using #pwm-cells = <3> for
+consistency.
 
 Signed-off-by: Fabio Estevam <festevam@denx.de>
-Reviewed-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
 Changes since v1:
-- None. Only collected Uwe and Conor's acks.
+- Newly introduced. Change mxs DT's to use #pwm-cells = <3>. (Uwe)
 
- Documentation/devicetree/bindings/pwm/mxs-pwm.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+ arch/arm/boot/dts/nxp/mxs/imx23-evk.dts              | 2 +-
+ arch/arm/boot/dts/nxp/mxs/imx23-sansa.dts            | 2 +-
+ arch/arm/boot/dts/nxp/mxs/imx23-xfi3.dts             | 2 +-
+ arch/arm/boot/dts/nxp/mxs/imx23.dtsi                 | 2 +-
+ arch/arm/boot/dts/nxp/mxs/imx28-apf28dev.dts         | 2 +-
+ arch/arm/boot/dts/nxp/mxs/imx28-cfa10049.dts         | 2 +-
+ arch/arm/boot/dts/nxp/mxs/imx28-cfa10055.dts         | 2 +-
+ arch/arm/boot/dts/nxp/mxs/imx28-cfa10057.dts         | 2 +-
+ arch/arm/boot/dts/nxp/mxs/imx28-cfa10058.dts         | 2 +-
+ arch/arm/boot/dts/nxp/mxs/imx28-eukrea-mbmx28lc.dtsi | 2 +-
+ arch/arm/boot/dts/nxp/mxs/imx28-evk.dts              | 2 +-
+ arch/arm/boot/dts/nxp/mxs/imx28-m28cu3.dts           | 2 +-
+ arch/arm/boot/dts/nxp/mxs/imx28-m28evk.dts           | 2 +-
+ arch/arm/boot/dts/nxp/mxs/imx28-tx28.dts             | 2 +-
+ arch/arm/boot/dts/nxp/mxs/imx28.dtsi                 | 2 +-
+ 15 files changed, 15 insertions(+), 15 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pwm/mxs-pwm.yaml b/Documentation/devicetree/bindings/pwm/mxs-pwm.yaml
-index 655f008081d5..8f50e23ca8c9 100644
---- a/Documentation/devicetree/bindings/pwm/mxs-pwm.yaml
-+++ b/Documentation/devicetree/bindings/pwm/mxs-pwm.yaml
-@@ -25,6 +25,9 @@ properties:
-   reg:
-     maxItems: 1
+diff --git a/arch/arm/boot/dts/nxp/mxs/imx23-evk.dts b/arch/arm/boot/dts/nxp/mxs/imx23-evk.dts
+index 3b609d987d88..7365fe4581a3 100644
+--- a/arch/arm/boot/dts/nxp/mxs/imx23-evk.dts
++++ b/arch/arm/boot/dts/nxp/mxs/imx23-evk.dts
+@@ -137,7 +137,7 @@ usb0: usb@80080000 {
  
-+  clocks:
-+    maxItems: 1
-+
-   "#pwm-cells":
-     const: 3
+ 	backlight_display: backlight {
+ 		compatible = "pwm-backlight";
+-		pwms = <&pwm 2 5000000>;
++		pwms = <&pwm 2 5000000 0>;
+ 		brightness-levels = <0 4 8 16 32 64 128 255>;
+ 		default-brightness-level = <6>;
+ 	};
+diff --git a/arch/arm/boot/dts/nxp/mxs/imx23-sansa.dts b/arch/arm/boot/dts/nxp/mxs/imx23-sansa.dts
+index 46057d9bf555..636cf09a2b37 100644
+--- a/arch/arm/boot/dts/nxp/mxs/imx23-sansa.dts
++++ b/arch/arm/boot/dts/nxp/mxs/imx23-sansa.dts
+@@ -166,7 +166,7 @@ reg_vdd_tuner: regulator-vdd-tuner0 {
  
-@@ -35,6 +38,7 @@ properties:
- required:
-   - compatible
-   - reg
-+  - clocks
-   - fsl,pwm-number
+ 	backlight {
+ 		compatible = "pwm-backlight";
+-		pwms = <&pwm 2 5000000>;
++		pwms = <&pwm 2 5000000 0>;
+ 		brightness-levels = <0 4 8 16 32 64 128 255>;
+ 		default-brightness-level = <6>;
+ 	};
+diff --git a/arch/arm/boot/dts/nxp/mxs/imx23-xfi3.dts b/arch/arm/boot/dts/nxp/mxs/imx23-xfi3.dts
+index b1d8210f3ecc..28341d8315c2 100644
+--- a/arch/arm/boot/dts/nxp/mxs/imx23-xfi3.dts
++++ b/arch/arm/boot/dts/nxp/mxs/imx23-xfi3.dts
+@@ -153,7 +153,7 @@ reg_vddio_sd0: regulator-vddio-sd0 {
  
- additionalProperties: false
-@@ -44,6 +48,7 @@ examples:
-     pwm@80064000 {
-         compatible = "fsl,imx23-pwm";
-         reg = <0x80064000 0x2000>;
-+        clocks = <&clks 30>;
-         #pwm-cells = <3>;
-         fsl,pwm-number = <8>;
-     };
+ 	backlight {
+ 		compatible = "pwm-backlight";
+-		pwms = <&pwm 2 5000000>;
++		pwms = <&pwm 2 5000000 0>;
+ 		brightness-levels = <0 4 8 16 32 64 128 255>;
+ 		default-brightness-level = <6>;
+ 	};
+diff --git a/arch/arm/boot/dts/nxp/mxs/imx23.dtsi b/arch/arm/boot/dts/nxp/mxs/imx23.dtsi
+index 5eca942a52fd..2bb68fc954b9 100644
+--- a/arch/arm/boot/dts/nxp/mxs/imx23.dtsi
++++ b/arch/arm/boot/dts/nxp/mxs/imx23.dtsi
+@@ -561,7 +561,7 @@ pwm: pwm@80064000 {
+ 				compatible = "fsl,imx23-pwm";
+ 				reg = <0x80064000 0x2000>;
+ 				clocks = <&clks 30>;
+-				#pwm-cells = <2>;
++				#pwm-cells = <3>;
+ 				fsl,pwm-number = <5>;
+ 				status = "disabled";
+ 			};
+diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-apf28dev.dts b/arch/arm/boot/dts/nxp/mxs/imx28-apf28dev.dts
+index fd6fee63ad2f..6c87266eb135 100644
+--- a/arch/arm/boot/dts/nxp/mxs/imx28-apf28dev.dts
++++ b/arch/arm/boot/dts/nxp/mxs/imx28-apf28dev.dts
+@@ -39,7 +39,7 @@ user {
+ 	backlight {
+ 		compatible = "pwm-backlight";
+ 
+-		pwms = <&pwm 3 191000>;
++		pwms = <&pwm 3 191000 0>;
+ 		brightness-levels = <0 4 8 16 32 64 128 255>;
+ 		default-brightness-level = <6>;
+ 	};
+diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-cfa10049.dts b/arch/arm/boot/dts/nxp/mxs/imx28-cfa10049.dts
+index 953e3162d2d2..f0ce897b9d5c 100644
+--- a/arch/arm/boot/dts/nxp/mxs/imx28-cfa10049.dts
++++ b/arch/arm/boot/dts/nxp/mxs/imx28-cfa10049.dts
+@@ -173,7 +173,7 @@ rotary {
+ 
+ 	backlight {
+ 		compatible = "pwm-backlight";
+-		pwms = <&pwm 3 5000000>;
++		pwms = <&pwm 3 5000000 0>;
+ 		brightness-levels = <0 4 8 16 32 64 128 255>;
+ 		default-brightness-level = <6>;
+ 
+diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-cfa10055.dts b/arch/arm/boot/dts/nxp/mxs/imx28-cfa10055.dts
+index 70e225a99fbe..cb68edd6101b 100644
+--- a/arch/arm/boot/dts/nxp/mxs/imx28-cfa10055.dts
++++ b/arch/arm/boot/dts/nxp/mxs/imx28-cfa10055.dts
+@@ -39,7 +39,7 @@ hx8357: hx8357@0 {
+ 
+ 	backlight {
+ 		compatible = "pwm-backlight";
+-		pwms = <&pwm 3 5000000>;
++		pwms = <&pwm 3 5000000 0>;
+ 		brightness-levels = <0 4 8 16 32 64 128 255>;
+ 		default-brightness-level = <6>;
+ 	};
+diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-cfa10057.dts b/arch/arm/boot/dts/nxp/mxs/imx28-cfa10057.dts
+index 0be7356941ee..5875c3d7ba97 100644
+--- a/arch/arm/boot/dts/nxp/mxs/imx28-cfa10057.dts
++++ b/arch/arm/boot/dts/nxp/mxs/imx28-cfa10057.dts
+@@ -26,7 +26,7 @@ reg_usb1_vbus: regulator-0 {
+ 
+ 	backlight {
+ 		compatible = "pwm-backlight";
+-		pwms = <&pwm 4 5000000>;
++		pwms = <&pwm 4 5000000 0>;
+ 		brightness-levels = <0 4 8 16 32 64 128 255>;
+ 		default-brightness-level = <7>;
+ 	};
+diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-cfa10058.dts b/arch/arm/boot/dts/nxp/mxs/imx28-cfa10058.dts
+index aae0f1801461..b414e67ef379 100644
+--- a/arch/arm/boot/dts/nxp/mxs/imx28-cfa10058.dts
++++ b/arch/arm/boot/dts/nxp/mxs/imx28-cfa10058.dts
+@@ -26,7 +26,7 @@ reg_usb1_vbus: regulator-0 {
+ 
+ 	backlight {
+ 		compatible = "pwm-backlight";
+-		pwms = <&pwm 3 5000000>;
++		pwms = <&pwm 3 5000000 0>;
+ 		brightness-levels = <0 4 8 16 32 64 128 255>;
+ 		default-brightness-level = <6>;
+ 	};
+diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-eukrea-mbmx28lc.dtsi b/arch/arm/boot/dts/nxp/mxs/imx28-eukrea-mbmx28lc.dtsi
+index 6633cde305e5..652fc9e57a55 100644
+--- a/arch/arm/boot/dts/nxp/mxs/imx28-eukrea-mbmx28lc.dtsi
++++ b/arch/arm/boot/dts/nxp/mxs/imx28-eukrea-mbmx28lc.dtsi
+@@ -14,7 +14,7 @@ / {
+ 
+ 	backlight {
+ 		compatible = "pwm-backlight";
+-		pwms = <&pwm 4 1000000>;
++		pwms = <&pwm 4 1000000 0>;
+ 		brightness-levels = <0 25 50 75 100 125 150 175 200 225 255>;
+ 		default-brightness-level = <10>;
+ 	};
+diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-evk.dts b/arch/arm/boot/dts/nxp/mxs/imx28-evk.dts
+index 783abb82b2a8..9ebb7371e235 100644
+--- a/arch/arm/boot/dts/nxp/mxs/imx28-evk.dts
++++ b/arch/arm/boot/dts/nxp/mxs/imx28-evk.dts
+@@ -117,7 +117,7 @@ user {
+ 
+ 	backlight_display: backlight {
+ 		compatible = "pwm-backlight";
+-		pwms = <&pwm 2 5000000>;
++		pwms = <&pwm 2 5000000 0>;
+ 		brightness-levels = <0 4 8 16 32 64 128 255>;
+ 		default-brightness-level = <6>;
+ 	};
+diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-m28cu3.dts b/arch/arm/boot/dts/nxp/mxs/imx28-m28cu3.dts
+index 8241c2d159fa..34b4d3246db1 100644
+--- a/arch/arm/boot/dts/nxp/mxs/imx28-m28cu3.dts
++++ b/arch/arm/boot/dts/nxp/mxs/imx28-m28cu3.dts
+@@ -17,7 +17,7 @@ memory@40000000 {
+ 
+ 	backlight {
+ 		compatible = "pwm-backlight";
+-		pwms = <&pwm 3 5000000>;
++		pwms = <&pwm 3 5000000 0>;
+ 		brightness-levels = <0 4 8 16 32 64 128 255>;
+ 		default-brightness-level = <6>;
+ 	};
+diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-m28evk.dts b/arch/arm/boot/dts/nxp/mxs/imx28-m28evk.dts
+index 6bf26f386a5e..13070ca08cff 100644
+--- a/arch/arm/boot/dts/nxp/mxs/imx28-m28evk.dts
++++ b/arch/arm/boot/dts/nxp/mxs/imx28-m28evk.dts
+@@ -13,7 +13,7 @@ / {
+ 
+ 	backlight {
+ 		compatible = "pwm-backlight";
+-		pwms = <&pwm 4 5000000>;
++		pwms = <&pwm 4 5000000 0>;
+ 		brightness-levels = <0 4 8 16 32 64 128 255>;
+ 		default-brightness-level = <6>;
+ 	};
+diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-tx28.dts b/arch/arm/boot/dts/nxp/mxs/imx28-tx28.dts
+index 23ad7cd0a1de..0391ffd15866 100644
+--- a/arch/arm/boot/dts/nxp/mxs/imx28-tx28.dts
++++ b/arch/arm/boot/dts/nxp/mxs/imx28-tx28.dts
+@@ -131,7 +131,7 @@ user_led: user {
+ 
+ 	backlight {
+ 		compatible = "pwm-backlight";
+-		pwms = <&pwm 0 500000>;
++		pwms = <&pwm 0 500000 0>;
+ 		/*
+ 		 * a silly way to create a 1:1 relationship between the
+ 		 * PWM value and the actual duty cycle
+diff --git a/arch/arm/boot/dts/nxp/mxs/imx28.dtsi b/arch/arm/boot/dts/nxp/mxs/imx28.dtsi
+index 763adeb995ee..01ddd1ab5354 100644
+--- a/arch/arm/boot/dts/nxp/mxs/imx28.dtsi
++++ b/arch/arm/boot/dts/nxp/mxs/imx28.dtsi
+@@ -1185,7 +1185,7 @@ pwm: pwm@80064000 {
+ 				compatible = "fsl,imx28-pwm", "fsl,imx23-pwm";
+ 				reg = <0x80064000 0x2000>;
+ 				clocks = <&clks 44>;
+-				#pwm-cells = <2>;
++				#pwm-cells = <3>;
+ 				fsl,pwm-number = <8>;
+ 				status = "disabled";
+ 			};
 -- 
 2.34.1
 
