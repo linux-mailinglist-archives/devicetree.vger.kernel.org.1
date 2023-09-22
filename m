@@ -1,194 +1,213 @@
-Return-Path: <devicetree+bounces-2550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 262457AB4BA
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 17:26:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 958CF7AB4BC
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 17:27:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id CF9E4282034
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 15:26:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id 02BE81F22C28
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 15:27:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBAF13F4C6;
-	Fri, 22 Sep 2023 15:26:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E430405D8;
+	Fri, 22 Sep 2023 15:27:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9B811EA9A
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 15:26:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37F0DC433C7;
-	Fri, 22 Sep 2023 15:26:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695396398;
-	bh=/e95n957VSSzau8r32TVfXzofHLYFvaJGvqChcjB6MQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bmxG7KYJ8F47icbZRJ3TghPN09WpUGeQrxDNFm/B7DxhYb3/mbJH2kU2HoqHk9XIg
-	 j2xO4aaGqf7OjambklLI4AwTwS5vIPMH7ryW+QTiYsYag9UdTWIZFSfUlOtxCba3bf
-	 iZYaFPExTSHYTHDb2HhqeyVZ7O9ZFJar7IUseTA93NBZDZxdAoPkYWVc8HC+MAT9O4
-	 izdcnpC2witG2zDpm3dfop1Nb+3qA4PFhJ4kw4a53ztGKkXsgbGW9AbmHBrd4CU/Al
-	 rYazXAiVFCYIC6UpFaZdWenrEt1sMUhQYiRq2P/52Qs3FInoTaCP6kpTc5ucfKUZaA
-	 P0I3BS1bbOpWQ==
-Date: Fri, 22 Sep 2023 16:26:33 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Bragatheswaran Manickavel <bragathemanick0908@gmail.com>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] ASoC: dt-bindings: tfa9879: Convert to dtschema
-Message-ID: <20230922-unmindful-anyplace-f1da73ab168c@spud>
-References: <20230921183313.54112-1-bragathemanick0908@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AED41EA9A
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 15:27:00 +0000 (UTC)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85A9D100
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 08:26:58 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-5230a22cfd1so2712930a12.1
+        for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 08:26:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1695396417; x=1696001217; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ehhS94nOYDx67I5UrhN7dvh/Dlk6jqSDrmSSvlfrbig=;
+        b=FK+fR5P8nkt9huqrgibuOxwp4Wbtbmm0+PxAJ+FAtIAhsTpsnlOpR4Q2clSlOYaSID
+         6CpxIv3hDrOj2enX8lMzq1zSEzlZXJ4i+xOtDjsxrpD6k1X1JxI4Zq2nZmeJLaOaR/p2
+         f4KB7rTmdNNIvT+sjWq/oyPAlOk2f4Lst3BWw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695396417; x=1696001217;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ehhS94nOYDx67I5UrhN7dvh/Dlk6jqSDrmSSvlfrbig=;
+        b=PeP/GsxLldiMALfxypZ8KxcZUYSCcKeXttMIV+PsFOHtwC8OGdevKAXrzbP4mvQmj2
+         xwgpLtcwfTitUVOYBAT3V5xJXQckGwuVDwdOComMPpppObLNYGz+Ga8M+PVO5gyzWbmO
+         jP9NnBImIEetin39oeWH9d9kpVt0VkfZw3et8W3nsxXMGy34MBYNh7Au18DzufYw9GAZ
+         OeM4VAu53Jqp711utq1haucmPCwWrfrO3oj2SQzQYDJFWNqCOrqL4SYRHQGlHzZs637D
+         NBjAtknfyZGYVQnHkC+XOordJGBd73wQl30R/KAz66IqlODpLu7uaHp+yD7+DP9M6LYK
+         94aQ==
+X-Gm-Message-State: AOJu0YwiAALOZOxSp3IWoIyowj8bEg2rpU9Ol+/PCUCI9UMA4HBlL/hC
+	Bs4d5ajPec0ZpQQ7NNblI8ETrd0nLKLYSGcNQBRV+RDQU4SYbbx7HnQ=
+X-Google-Smtp-Source: AGHT+IFoGrL2e/v7oEth7xaYwVHjp41m5T5R1E9Jh7pwjgOEp/hjouucyihvUHkWO43wehoYyZSTEdxlA2dO6pUlS5M=
+X-Received: by 2002:aa7:cd18:0:b0:530:c880:9171 with SMTP id
+ b24-20020aa7cd18000000b00530c8809171mr8099822edw.27.1695396416625; Fri, 22
+ Sep 2023 08:26:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ZjgFBBOOD+mvPAQu"
-Content-Disposition: inline
-In-Reply-To: <20230921183313.54112-1-bragathemanick0908@gmail.com>
+References: <20230921124459.1.I91ddcfacf9b234af5cc3eabea4b62edb31153317@changeid>
+ <da77e965-2893-097a-b438-85787c43dcb0@linaro.org>
+In-Reply-To: <da77e965-2893-097a-b438-85787c43dcb0@linaro.org>
+From: Simon Glass <sjg@chromium.org>
+Date: Fri, 22 Sep 2023 09:26:38 -0600
+Message-ID: <CAPnjgZ2EyWxwCfUi6vHby4tYUfH0Dw6nfC7tOo-g4ahKhTMRjg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mtd: Add a schema for binman
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: devicetree@vger.kernel.org, U-Boot Mailing List <u-boot@lists.denx.de>, 
+	linux-mtd@lists.infradead.org, Tom Rini <trini@konsulko.com>, 
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Richard Weinberger <richard@nod.at>, Rob Herring <robh+dt@kernel.org>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_IN_DEF_SPF_WL autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+Hi Krzysztof,
 
---ZjgFBBOOD+mvPAQu
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, 22 Sept 2023 at 01:02, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 21/09/2023 20:45, Simon Glass wrote:
+> > Binman[1] is a tool for creating firmware images. It allows you to
+> > combine various binaries and place them in an output file.
+> >
+> > Binman uses a DT schema to describe an image, in enough detail that
+> > it can be automatically built from component parts, disassembled,
+> > replaced, listed, etc.
+> >
+> > Images are typically stored in flash, which is why this binding is
+> > targeted at mtd. Previous discussion is at [2] [3].
+> >
+> > [1] https://u-boot.readthedocs.io/en/stable/develop/package/binman.html
+> > [2] https://lore.kernel.org/u-boot/20230821180220.2724080-3-sjg@chromium.org/
+> > [3] https://www.spinics.net/lists/devicetree/msg626149.html
+> >
+> > Signed-off-by: Simon Glass <sjg@chromium.org>
+> > ---
+> >
+> >  .../bindings/mtd/partitions/binman.yaml       | 50 +++++++++++++++
+> >  .../bindings/mtd/partitions/binman/entry.yaml | 61 +++++++++++++++++++
+> >  .../bindings/mtd/partitions/partitions.yaml   |  1 +
+> >  MAINTAINERS                                   |  5 ++
+> >  4 files changed, 117 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/binman.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/binman/entry.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/mtd/partitions/binman.yaml b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
+> > new file mode 100644
+> > index 00000000000000..c792d5a37b700a
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
+> > @@ -0,0 +1,50 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +# Copyright 2023 Google LLC
+> > +
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mtd/partitions/binman.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Binman firmware layout
+> > +
+> > +maintainers:
+> > +  - Simon Glass <sjg@chromium.org>
+> > +
+> > +description: |
+> > +  The binman node provides a layout for firmware, used when packaging firmware
+> > +  from multiple projects. For now it just supports a very simple set of
+> > +  features, as a starting point for discussion.
+> > +
+> > +  Documentation for Binman is available at:
+> > +
+> > +  https://u-boot.readthedocs.io/en/latest/develop/package/binman.html
+> > +
+> > +  with the current image-description format at:
+> > +
+> > +  https://u-boot.readthedocs.io/en/latest/develop/package/binman.html#image-description-format
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: u-boot,binman
+> > +
+> > +required:
+> > +  - compatible
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    firmware {
+> > +      binman {
+> > +        compatible = "u-boot,binman";
+> > +
+> > +        u-boot {
+>
+> It does not look like you tested the bindings, at least after quick
+> look. Please run `make dt_binding_check` (see
+> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+> Maybe you need to update your dtschema and yamllint.
 
-On Fri, Sep 22, 2023 at 12:03:13AM +0530, Bragatheswaran Manickavel wrote:
-> Convert the tfa9879 audio CODEC bindings to DT schema
-> No error/warning seen when running make dt_binding_check
->=20
-> Signed-off-by: Bragatheswaran Manickavel <bragathemanick0908@gmail.com>
+Yes this came out of dt-schema and I assumed it was similar. I will rework it.
 
-> Changes:
-> V1 -> V2: Fixed DT syntax errors and doc warning
+>
+>
+> > +          size = <0xa0000>;
+> > +        };
+> > +
+> > +        atf-bl31 {
+> > +          offset = <0x100000>;
+> > +        };
+> > +      };
+> > +    };
+> > diff --git a/Documentation/devicetree/bindings/mtd/partitions/binman/entry.yaml b/Documentation/devicetree/bindings/mtd/partitions/binman/entry.yaml
+> > new file mode 100644
+> > index 00000000000000..8003eb4f1a994f
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mtd/partitions/binman/entry.yaml
+> > @@ -0,0 +1,61 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +# Copyright 2023 Google LLC
+> > +
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mtd/partitions/binman/entry.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Binman entry
+> > +
+> > +maintainers:
+> > +  - Simon Glass <sjg@chromium.org>
+> > +
+> > +description: |
+> > +  The entry node specifies a single entry in the firmware.
+> > +
+> > +  Entries have a specific type, such as "u-boot" or "atf-bl31". If the type
+> > +  is missing, the name is used as the type.
+> > +
+> > +  Note: This definition is intended to be hierarchical, so that entries can
+> > +  appear in other entries. Schema for that is TBD.
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: "^[-a-z]+(-[0-9]+)?$"
+>
+> Why do you need this?
 
-These should be under the --- line, not above it.
-Perhaps Mark will change it on application.
-Otherwise,
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-Conor.
-
-> ---
->  .../bindings/sound/nxp,tfa9879.yaml           | 44 +++++++++++++++++++
->  .../devicetree/bindings/sound/tfa9879.txt     | 23 ----------
->  MAINTAINERS                                   |  2 +-
->  3 files changed, 45 insertions(+), 24 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/nxp,tfa9879.y=
-aml
->  delete mode 100644 Documentation/devicetree/bindings/sound/tfa9879.txt
->=20
-> diff --git a/Documentation/devicetree/bindings/sound/nxp,tfa9879.yaml b/D=
-ocumentation/devicetree/bindings/sound/nxp,tfa9879.yaml
-> new file mode 100644
-> index 000000000000..df26248573ad
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/nxp,tfa9879.yaml
-> @@ -0,0 +1,44 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/nxp,tfa9879.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP TFA9879 class-D audio amplifier
-> +
-> +maintainers:
-> +  - Peter Rosin <peda@axentia.se>
-> +
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: nxp,tfa9879
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#sound-dai-cells":
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#sound-dai-cells'
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c1 {
-> +       #address-cells =3D <1>;
-> +       #size-cells =3D <0>;
-> +       amplifier@6c {
-> +          compatible =3D "nxp,tfa9879";
-> +          reg =3D <0x6c>;
-> +          pinctrl-names =3D "default";
-> +          pinctrl-0 =3D <&pinctrl_i2c1>;
-> +          #sound-dai-cells =3D <0>;
-> +       };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/sound/tfa9879.txt b/Docume=
-ntation/devicetree/bindings/sound/tfa9879.txt
-> deleted file mode 100644
-> index 1620e6848436..000000000000
-> --- a/Documentation/devicetree/bindings/sound/tfa9879.txt
-> +++ /dev/null
-> @@ -1,23 +0,0 @@
-> -NXP TFA9879 class-D audio amplifier
-> -
-> -Required properties:
-> -
-> -- compatible : "nxp,tfa9879"
-> -
-> -- reg : the I2C address of the device
-> -
-> -- #sound-dai-cells : must be 0.
-> -
-> -Example:
-> -
-> -&i2c1 {
-> -	pinctrl-names =3D "default";
-> -	pinctrl-0 =3D <&pinctrl_i2c1>;
-> -
-> -	amp: amp@6c {
-> -		#sound-dai-cells =3D <0>;
-> -		compatible =3D "nxp,tfa9879";
-> -		reg =3D <0x6c>;
-> -	};
-> -};
-> -
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index a4c30221eb30..569303daf9b4 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -15476,7 +15476,7 @@ NXP TFA9879 DRIVER
->  M:	Peter Rosin <peda@axentia.se>
->  L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
->  S:	Maintained
-> -F:	Documentation/devicetree/bindings/sound/tfa9879.txt
-> +F:	Documentation/devicetree/bindings/sound/nxp,tfa9879.yaml
->  F:	sound/soc/codecs/tfa9879*
-> =20
->  NXP-NCI NFC DRIVER
-> --=20
-> 2.34.1
->=20
-
---ZjgFBBOOD+mvPAQu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQ2yKQAKCRB4tDGHoIJi
-0j1ZAP9Vz1UUBT+BypwEeJgHHQOonvJy1uzvg5f3z8v4f7eM+QEA9H/4l4gdJhwg
-pUispOQJr3UQYzupkB89Zs3GtWW7XQY=
-=jxgL
------END PGP SIGNATURE-----
-
---ZjgFBBOOD+mvPAQu--
+It seemed to be needed in dt-schema. I will drop it.
+Regards,
+Simon
 
