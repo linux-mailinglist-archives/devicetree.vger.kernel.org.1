@@ -1,43 +1,45 @@
-Return-Path: <devicetree+bounces-2613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E18197ABAFF
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 23:19:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2139B7ABB05
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 23:22:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 92DB3282030
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 21:19:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id C2E38B20923
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 21:22:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6704736F;
-	Fri, 22 Sep 2023 21:19:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 555C647370;
+	Fri, 22 Sep 2023 21:22:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3693247357;
-	Fri, 22 Sep 2023 21:19:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1E53C433C7;
-	Fri, 22 Sep 2023 21:19:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C94D9CA5C;
+	Fri, 22 Sep 2023 21:22:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C73FFC433C8;
+	Fri, 22 Sep 2023 21:22:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695417570;
-	bh=rlDmIZ16lCpt/RCUsrwNzelnSuUjNw1aayg6Ca0iX/g=;
+	s=k20201202; t=1695417737;
+	bh=lmE8y4Naioq26myIwcGDskn3NlpSCo/s3ZeWn2dloK4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gjwt6R7Zg0+Y8WSXMblHwFseA7oLIsphColkTz7gQt1TQ2jyG4XCwYioBzVJLa/0a
-	 avNkf6z6JX2k4rxFdyEmW2+spvc3EOO7IPATHekJ/+IEJuf2d2JMJUw3hvXUElWTzF
-	 1+H68lplj5ZGPdIWWP72YXPVHl91cDU5cL6pWFCR2/5hV3vACKQjcZ9DhzgwmrWr+E
-	 J5yMwYH4lQ6WFjmN0D2mENeV1xLxNITa2aSwRhrjwK7BGg1aPjc7GPywXjN23LWy8Z
-	 2WHi/IRbajloY9Ac0mjnpjUQ0oGOhZRsZklQLCtmmqxmda7qj3cvVex5R8Emzzw530
-	 EtaPLqTL3H4Dg==
-Received: (nullmailer pid 3635363 invoked by uid 1000);
-	Fri, 22 Sep 2023 21:19:27 -0000
-Date: Fri, 22 Sep 2023 16:19:27 -0500
+	b=Nv4Cz9sw3ckJXfg8gZo7FWOFFfqKqYySpjfLY7cZhQEb3LyIpaBvywrHA5M7C21Gc
+	 mcsEqkC8cx13Dy8R/0X9lYJTpyRNr1qeElcsH00EHluLpOe3wRmDsUaEfIDdc00HgN
+	 YZ5dnQxIkGqFegnvjx8fmrE8SjNnqVDUNMtF6lnOb5ybGvy1egpqEP36TNfvlgqqAO
+	 kv5OnNDigOmYh5tnIGwghQpSuqDTEEDzwtyzW8MsyYi2xdU3YdARgKPEIx0roJsDT1
+	 QMAlycnsTsH07IM9iuVX100coPa5Ms77i08JVt5XAfgf3pojKcODfR7zRW+tGBrVPO
+	 6Cus0vP5Brspw==
+Received: (nullmailer pid 3638530 invoked by uid 1000);
+	Fri, 22 Sep 2023 21:22:12 -0000
+Date: Fri, 22 Sep 2023 16:22:12 -0500
 From: Rob Herring <robh@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Akinobu Mita <akinobu.mita@gmail.com>, Jose Vasconcellos <jvasco@verizon.net>, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] rtc: rtc7301: Rewrite bindings in schema
-Message-ID: <20230922211927.GA3633496-robh@kernel.org>
-References: <20230921-rtc-7301-regwidth-v1-0-1900556181bf@linaro.org>
- <20230921-rtc-7301-regwidth-v1-1-1900556181bf@linaro.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Lee Jones <lee@kernel.org>, alsa-devel@alsa-project.org, devicetree@vger.kernel.org, Christophe Leroy <christophe.leroy@csgroup.eu>, linuxppc-dev@lists.ozlabs.org, Eric Dumazet <edumazet@google.com>, Simon Horman <horms@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Jakub Kicinski <kuba@kernel.org>, Qiang Zhao <qiang.zhao@nxp.com>, Takashi Iwai <tiwai@suse.com>, linux-gpio@vger.kernel.org, Fabio Estevam <festevam@gmail.com>, Christophe JAILLET <christophe.jaillet@wanadoo.fr>, netdev@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Randy Dunlap <rdunlap@infradead.org>, Xiubo Li <Xiubo.Lee@gmail.com>, Mark Brown <broonie@kernel.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Liam Girdwood <lgirdwood@gmail.com>, Nicolin Chen <nicoleotsuka@gmail.com>, Rob Herring <robh+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, Li Yang <leoyang.li@nxp.com>, Paolo Abeni <pabeni@redhat.com>, linux-kernel@vger.kernel.org, "David S. Miller" <davem@davemloft.net>, Krzysztof K
+ ozlowski <krzysztof.kozlowski+dt@linaro.org>, Andrew Lunn <andrew@lunn.ch>, Jaroslav Kysela <perex@perex.cz>, Shengjiu Wang <shengjiu.wang@gmail.com>
+Subject: Re: [PATCH v6 08/30] dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc:
+ Add support for QMC HDLC
+Message-ID: <169541773236.3638470.1013241809358556101.robh@kernel.org>
+References: <20230922075913.422435-1-herve.codina@bootlin.com>
+ <20230922075913.422435-9-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,101 +48,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230921-rtc-7301-regwidth-v1-1-1900556181bf@linaro.org>
+In-Reply-To: <20230922075913.422435-9-herve.codina@bootlin.com>
 
-On Thu, Sep 21, 2023 at 10:27:42PM +0200, Linus Walleij wrote:
-> This rewrites the Epson RTC7301 bindings to use YAML schema,
-> and adds a property for "reg-io-width" as used in several
-> other bindings to account for different register strides.
+
+On Fri, 22 Sep 2023 09:58:43 +0200, Herve Codina wrote:
+> The QMC (QUICC mutichannel controller) is a controller present in some
+> PowerQUICC SoC such as MPC885.
+> The QMC HDLC uses the QMC controller to transfer HDLC data.
 > 
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Additionally, a framer can be connected to the QMC HDLC.
+> If present, this framer is the interface between the TDM bus used by the
+> QMC HDLC and the E1/T1 line.
+> The QMC HDLC can use this framer to get information about the E1/T1 line
+> and configure the E1/T1 line.
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 > ---
->  .../devicetree/bindings/rtc/epson,rtc7301.txt      | 16 -------
->  .../devicetree/bindings/rtc/epson,rtc7301.yaml     | 49 ++++++++++++++++++++++
->  2 files changed, 49 insertions(+), 16 deletions(-)
+>  .../soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml      | 24 +++++++++++++++++++
+>  1 file changed, 24 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/rtc/epson,rtc7301.txt b/Documentation/devicetree/bindings/rtc/epson,rtc7301.txt
-> deleted file mode 100644
-> index 5f9df3f1467c..000000000000
-> --- a/Documentation/devicetree/bindings/rtc/epson,rtc7301.txt
-> +++ /dev/null
-> @@ -1,16 +0,0 @@
-> -EPSON TOYOCOM RTC-7301SF/DG
-> -
-> -Required properties:
-> -
-> -- compatible: Should be "epson,rtc7301sf" or "epson,rtc7301dg"
-> -- reg: Specifies base physical address and size of the registers.
-> -- interrupts: A single interrupt specifier.
-> -
-> -Example:
-> -
-> -rtc: rtc@44a00000 {
-> -	compatible = "epson,rtc7301dg";
-> -	reg = <0x44a00000 0x10000>;
-> -	interrupt-parent = <&axi_intc_0>;
-> -	interrupts = <3 2>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/rtc/epson,rtc7301.yaml b/Documentation/devicetree/bindings/rtc/epson,rtc7301.yaml
-> new file mode 100644
-> index 000000000000..4bcf1716cab6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/epson,rtc7301.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/epson,rtc7301.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Epson Toyocom RTC-7301SF/DG
-> +
-> +description: The only difference between the two variants is the
-> +  packaging. The DG variant is a DIL package, and the SF variant
-> +  is a flat package.
-> +
-> +maintainers:
-> +  - Akinobu Mita <akinobu.mita@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - epson,rtc7301dg
-> +      - epson,rtc7301sf
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  reg-io-width:
-> +    description:
-> +      The size (in bytes) of the IO accesses that should be performed
-> +      on the device.
-> +    enum: [1, 4]
 
-What's the default?
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    rtc: rtc@44a00000 {
-> +        compatible = "epson,rtc7301dg";
-> +        reg = <0x44a00000 0x10000>;
-> +        reg-io-width = <4>;
-> +        interrupt-parent = <&axi_intc_0>;
-> +        interrupts = <3 2>;
-> +    };
-> 
-> -- 
-> 2.41.0
-> 
 
