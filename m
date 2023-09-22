@@ -1,334 +1,128 @@
-Return-Path: <devicetree+bounces-2356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80EB37AA9A6
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 09:04:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16F917AA9C7
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 09:10:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 29353282B60
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 07:04:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id F21D61C20832
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 07:10:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BB43171D7;
-	Fri, 22 Sep 2023 07:04:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 025CC17736;
+	Fri, 22 Sep 2023 07:10:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACA51168A2
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 07:04:30 +0000 (UTC)
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA430192
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 00:04:28 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9ada2e6e75fso230859466b.2
-        for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 00:04:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695366267; x=1695971067; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=d11MyHLSxPw+t8/RS5zpmIoRffEzNYMR6CarslWvWd4=;
-        b=Ox8VCF/aV5mfL2e8PbITPhEpdatTOcMa6+3NOAIpy9obiTX+b2hTuZQW3n68RRSdb3
-         UMvBNVq47ZQbJCuWZOpK7tjqF1yLlBZvQzPUobyRcm2mL3aD3vxPerqwrvStX8VYkUCY
-         cNjfYgElBjGD+4gFP7Y8YEvm8CBOVjKoyj6onJ5OugLYKBdq6HduMovw4vSN3jspuDyZ
-         oOBth7qdKZRRu94gcD1W3RbvXGFBdSFhHz+6jVlbUCpTdkvT0dPzspzSsWcY01RsjvRn
-         q8J6pTREYzEKqckBpK/XcIdHQ4ZjNRgp+7h72v8WrkPff5ncSG5Mgf/US1OMUmLichWD
-         /TfQ==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EA65154A7
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 07:10:48 +0000 (UTC)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75C1D1B1;
+	Fri, 22 Sep 2023 00:10:46 -0700 (PDT)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-59c268676a9so21465087b3.0;
+        Fri, 22 Sep 2023 00:10:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695366267; x=1695971067;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d11MyHLSxPw+t8/RS5zpmIoRffEzNYMR6CarslWvWd4=;
-        b=Tc6h1/qMA2662rFsKrwj8y9IpZO2V4lJUQs8Dy4QMZn4VCt4Kv3MC+DwFQpoZgX25L
-         hygXDGr/jSDV0MfpoD2Itb0LZ+4fhLCB/nEw9hsYOK8EcfPlM+DUf+UHpTs9YySPNvWK
-         PJjD8UnawoQJRWbQaxUR0NqwVJ5diSVG+dv+j7WUH2Hizla/mddG7c+QWQXBG4+peH9r
-         S3Zk8zfw5haGircGCEGeovXpbABWp1lRuWsJYJb3c0YASlU8CS961SrH8/GcpOsT4qRT
-         hJmfxtVCAcUsbWdxRy5zyg5hP5P6iKDtwxKnjSg0gNG73AcEyaZWv7e3J+6RoxjMZWOC
-         BOGg==
-X-Gm-Message-State: AOJu0YzeSHfzL8eX003QYFMfH/rsk3zS0bqbHqWw+R14AYqaSWSg15AM
-	Y/OavJeT3F/bUe2Q26GPhUyrEA==
-X-Google-Smtp-Source: AGHT+IHogO17PwLU2znvUyO9/8APZZX660ORod7y/QACP44i/hmpfok6sl1Snj+DJ7SMPw5CPZR9ng==
-X-Received: by 2002:a17:906:5386:b0:9a1:aea2:d18d with SMTP id g6-20020a170906538600b009a1aea2d18dmr6110360ejo.48.1695366267198;
-        Fri, 22 Sep 2023 00:04:27 -0700 (PDT)
-Received: from [10.41.192.245] ([77.241.232.19])
-        by smtp.gmail.com with ESMTPSA id cb8-20020a170906a44800b00988dbbd1f7esm2209898ejb.213.2023.09.22.00.04.26
+        d=1e100.net; s=20230601; t=1695366645; x=1695971445;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CNNKeiWdrHi1JK275O0aat5lgv03VJfdBdgbH4hvBr8=;
+        b=lWmOjxNZOh/6L+J7pcCl2Xfcmwt248UDdKpifleWVvria0pgd2kA/dmNzxBSGGo0+Y
+         cSYDyqIPSdCOZYLeqC8xIYTOi+/bQ7lURS6YwGL3OLueMN6Yc5laNpKwgdipRgxmkWMt
+         0NxYbXtToxof/36qzN0R7dmzeEcVUmKja9Atc2B0Lkdzh8DNE+8+Onu/XvZg6jB7NmhV
+         FM8/OtzgVddRD7Dva4i7PYgohhPOSX8deUmkhMoaZXKOOHV5kXkHwBFwqJ07rryUVF7e
+         C69qU3HdlTjLYWlbv7+J3hypVOrwG7cVfV4oT7oUsTr6C4OOMsDo8uflF9LaryXUM3op
+         ZsYQ==
+X-Gm-Message-State: AOJu0YxOpuEBzbUfuIlGLjaNRDmqhXbqBEuLmmMQ6oFlpzj+auEQ6EeF
+	7oIxjqxGcvxRc0Y6PpLPbymGTfc9ku6BgWTp
+X-Google-Smtp-Source: AGHT+IFs1eLn569V1EXSutqipTlXJSEjyz+aZXREadv4detSI2yd0qNhbRTsqEXGPzqefVZvN9QX3Q==
+X-Received: by 2002:a0d:df4e:0:b0:592:85ec:df15 with SMTP id i75-20020a0ddf4e000000b0059285ecdf15mr7034112ywe.11.1695366645221;
+        Fri, 22 Sep 2023 00:10:45 -0700 (PDT)
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
+        by smtp.gmail.com with ESMTPSA id a184-20020a0df1c1000000b00577269ba9e9sm749544ywf.86.2023.09.22.00.10.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Sep 2023 00:04:26 -0700 (PDT)
-Message-ID: <3ce5feac-df61-586c-f617-dac916541821@linaro.org>
-Date: Fri, 22 Sep 2023 09:03:54 +0200
+        Fri, 22 Sep 2023 00:10:44 -0700 (PDT)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-59c268676a9so21464857b3.0;
+        Fri, 22 Sep 2023 00:10:44 -0700 (PDT)
+X-Received: by 2002:a0d:c8c1:0:b0:59b:c6a4:15c7 with SMTP id
+ k184-20020a0dc8c1000000b0059bc6a415c7mr7945698ywd.46.1695366644065; Fri, 22
+ Sep 2023 00:10:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v1 1/1] ARM: dts: aspeed: yosemite4: Add i2c-mux/eeprom
- devices
-Content-Language: en-US
-To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@aj.id.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20230922064127.283625-1-Delphine_CC_Chiu@wiwynn.com>
- <20230922064127.283625-2-Delphine_CC_Chiu@wiwynn.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230922064127.283625-2-Delphine_CC_Chiu@wiwynn.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,WEIRD_QUOTING
+References: <363186079b4269891073f620e3e2353cf7d2559a.1669988238.git.geert+renesas@glider.be>
+ <1503a3857107e3a4f34e0c7fb5dada39@walle.cc> <CAMuHMdXN+HJb=zGeG=3t=Pie9cVpnBLYuEb_qX6=oSxG8eTkAw@mail.gmail.com>
+ <20221205163306.GB2012644-robh@kernel.org> <CAMuHMdUcrh26MNYuiqiC0_FMkeHtq1YnJrZKHEV_WQm5Dgzoaw@mail.gmail.com>
+ <ee03d150-51cf-4e12-ae2c-9475a192fb6c@linaro.org> <CAMuHMdW_-0f8DOmEzYb28XABqU3oFL4KXf9M-qKVyyrE_Lo+jQ@mail.gmail.com>
+ <d4d998cff934328f58cec767f93a59b5@walle.cc> <CAMuHMdUK=HvvjeTDefzX9sbY-vaRFVixcSvKVqDPgBpGVt2dQA@mail.gmail.com>
+In-Reply-To: <CAMuHMdUK=HvvjeTDefzX9sbY-vaRFVixcSvKVqDPgBpGVt2dQA@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 22 Sep 2023 09:10:31 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUKxJDPs3Ow8E-g2bLr7c7jREf5gSqWZ+o5aWbGj6uO=w@mail.gmail.com>
+Message-ID: <CAMuHMdUKxJDPs3Ow8E-g2bLr7c7jREf5gSqWZ+o5aWbGj6uO=w@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mtd: jedec,spi-nor: Document support for
+ more MT25QU parts
+To: Michael Walle <michael@walle.cc>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Tudor Ambarus <tudor.ambarus@microchip.com>, Pratyush Yadav <pratyush@kernel.org>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
 	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 22/09/2023 08:41, Delphine CC Chiu wrote:
-> Revise Yosemite 4 devicetree for i2c-mux and eeprom,
-> also the following changes:
+On Thu, Sep 21, 2023 at 7:01=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+> On Thu, Sep 21, 2023 at 6:01=E2=80=AFPM Michael Walle <michael@walle.cc> =
+wrote:
+> > >> We won't break compatibility with older DTBs if we use a list of
+> > >> compatibles. First the vendor specific one which will use some quirk=
+s,
+> > >> and if that's not available, have as second the generic jedec,spi-no=
+r
+> > >> to
+> > >> fallback to.
+> > >
+> > > Sure, you should use a list.
+> > >
+> > > But the current recommended practice is to not have a list,
+> > > but just "jedec,spi-nor" (using a list with a new FLASH part name
+> > > causes checkpatch and dtbs_check warnings). Hence if you follow that
+> > > recommendation, you will run into compatibility issues with older DTB=
+s
+> > > when you discover the quirk later, and decide to add it to the list.
+> >
+> > The SPI NOR flashes should be auto discoverable. Why do you need a
+> > compatible string? Quirks can be added to the flash_info database.
+>
+> This assumes you don't need the quirk before you can identify the part.
+> I'm not sure that is always the case.
 
-No. One change, one commit. This is absolutely unreviewable and
-unbisectable.
+Reminder where this is apparently not the case:
+https://lore.kernel.org/r/OS0PR01MB5922A4F16DE8923373AA5DD886F7A@OS0PR01MB5=
+922.jpnprd01.prod.outlook.com/
 
-> - Enable adc 15, tpm, wdt2
-> - Change spi-tx/rx-bus-width to duo mode
+Gr{oetje,eeting}s,
 
-Why?
+                        Geert
 
-> - Add device mp5023, pmbus for Flex power module
-> - Change ina230 to ina233, pca9846 to pca9546
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-Why?
-
-> - Set adc128d818 and max31790 config
-> - Add jtag1 and gpio0 config
-> 
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-> ---
-> Changelog:
->  v1 - Add gpio and eeprom devices
->     - Enable adc 15, tpm, wdt2
->     - Change spi-tx/rx-bus-width to duo mode
->     - Add device mp5023, pmbus for Flex power module
->     - Change ina230 to ina233, pca9846 to pca9546
->     - Set adc128d818 and max31790 config
->     - Add jtag1 and gpio0 config
->     - Separate binding dosument to corresponding driver patches
-> ---
->  .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 897 ++++++++++++++++--
->  1 file changed, 843 insertions(+), 54 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> index 64075cc41d92..894ee25c2654 100644
-> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> @@ -17,6 +17,25 @@ aliases {
->  		serial6 = &uart7;
->  		serial7 = &uart8;
->  		serial8 = &uart9;
-> +
-> +		i2c16 = &imux16;
-> +		i2c17 = &imux17;
-> +		i2c18 = &imux18;
-> +		i2c19 = &imux19;
-> +		i2c20 = &imux20;
-> +		i2c21 = &imux21;
-> +		i2c22 = &imux22;
-> +		i2c23 = &imux23;
-> +		i2c24 = &imux24;
-> +		i2c25 = &imux25;
-> +		i2c26 = &imux26;
-> +		i2c27 = &imux27;
-> +		i2c28 = &imux28;
-> +		i2c29 = &imux29;
-> +		i2c30 = &imux30;
-> +		i2c31 = &imux31;
-> +		i2c32 = &imux32;
-> +		i2c33 = &imux33;
->  	};
->  
->  	chosen {
-> @@ -32,7 +51,26 @@ iio-hwmon {
->  		compatible = "iio-hwmon";
->  		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
->  				<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
-> -				<&adc1 0>, <&adc1 1>;
-> +				<&adc1 0>, <&adc1 1>, <&adc1 7>;
-> +	};
-> +
-> +	spi_gpio: spi-gpio {
-> +		status = "okay";
-
-okay is  by default, why do you need it?
-
-> +		compatible = "spi-gpio";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		gpio-sck = <&gpio0 ASPEED_GPIO(X, 3) GPIO_ACTIVE_HIGH>;
-> +		gpio-mosi = <&gpio0 ASPEED_GPIO(X, 4) GPIO_ACTIVE_HIGH>;
-> +		gpio-miso = <&gpio0 ASPEED_GPIO(X, 5) GPIO_ACTIVE_HIGH>;
-> +		num-chipselects = <1>;
-> +		cs-gpios = <&gpio0 ASPEED_GPIO(X, 0) GPIO_ACTIVE_LOW>;
-> +
-> +		tpmdev@0 {
-> +			compatible = "tcg,tpm_tis-spi";
-> +			spi-max-frequency = <33000000>;
-> +			reg = <0>;
-> +		};
->  	};
->  };
->  
-
-...
-
->  
->  	power-sensor@43 {
-> -		compatible = "ti,ina230";
-> +		compatible = "ti,ina233";
->  		reg = <0x43>;
-> +		resistor-calibration = /bits/ 16 <0x0a00>;
-> +		current-lsb= /bits/ 16 <0x0001>;
->  	};
->  
->  	power-sensor@44 {
-> -		compatible = "ti,ina230";
-> +		compatible = "ti,ina233";
-
-Nope, you are doing why too many changes. One logical change, one patch.
-You must explain WHY you are doing this.
-
->  		reg = <0x44>;
-> +		resistor-calibration = /bits/ 16 <0x0a00>;
-> +		current-lsb= /bits/ 16 <0x0001>;
->  	};
->  
-
-
->  			adc@33 {
-> @@ -492,34 +1070,34 @@ gpio@61 {
->  			};
->  		};
->  
-> -		i2c@1 {
-> +		imux31: i2c@1 {
->  			#address-cells = <1>;
->  			#size-cells = <0>;
-> -			reg = <0>;
-> +			reg = <1>;
->  
->  			adc@1f {
->  				compatible = "ti,adc128d818";
->  				reg = <0x1f>;
-> -				ti,mode = /bits/ 8 <2>;
-> +				ti,mode = /bits/ 8 <1>;
->  			};
->  
->  			pwm@20{
-> -				compatible = "max31790";
-> +				compatible = "maxim,max31790";
-> +				pwm-as-tach = <4 5>;
->  				reg = <0x20>;
-> -				#address-cells = <1>;
-> -				#size-cells = <0>;
->  			};
->  
->  			gpio@22{
->  				compatible = "ti,tca6424";
->  				reg = <0x22>;
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
->  			};
->  
-> -			pwm@23{
-> -				compatible = "max31790";
-> -				reg = <0x23>;
-> -				#address-cells = <1>;
-> -				#size-cells = <0>;
-> +			pwm@2f{
-
-Missing space
-
-...
-
-> +&gpio0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_gpiu2_default &pinctrl_gpiu3_default
-> +		     &pinctrl_gpiu4_default &pinctrl_gpiu5_default
-> +		     &pinctrl_gpiu6_default>;
-> +	gpio-line-names =
-> +	/*A0-A7*/       "","","","","","","","",
-> +	/*B0-B7*/       "FLT_HSC_SERVER_SLOT8_N","AC_ON_OFF_BTN_CPLD_SLOT5_N",
-> +			"PWRGD_SLOT1_STBY","PWRGD_SLOT2_STBY",
-> +			"PWRGD_SLOT3_STBY","PWRGD_SLOT4_STBY","","",
-> +	/*C0-C7*/       "PRSNT_NIC3_N","","","","FM_NIC0_WAKE_N",
-> +			"FM_NIC1_WAKE_N","","RST_PCIE_SLOT2_N",
-> +	/*D0-D7*/       "","","","","","","","",
-> +	/*E0-E7*/       "PRSNT_NIC1_N","PRSNT_NIC2_N","","RST_PCIE_SLOT1_N",
-> +			"","","","",
-> +	/*F0-F7*/       "FM_RESBTN_SLOT1_BMC_N","FM_RESBTN_SLOT2_BMC_N",
-> +			"FM_RESBTN_SLOT3_BMC_N","FM_RESBTN_SLOT4_BMC_N",
-> +			"PRSNT_SB_SLOT1_N","PRSNT_SB_SLOT2_N",
-> +			"PRSNT_SB_SLOT3_N","PRSNT_SB_SLOT4_N",
-> +	/*G0-G7*/       "","","","","","","","",
-> +	/*H0-H7*/       "","","","","","","","",
-> +	/*I0-I7*/       "","","","","","ALT_MEDUSA_ADC_N",
-> +			"ALT_SMB_BMC_CPLD2_N",
-> +			"INT_SPIDER_ADC_R_N",
-> +	/*J0-J7*/       "","","","","","","","",
-> +	/*K0-K7*/       "","","","","","","","",
-> +	/*L0-L7*/       "","","","","","","ALT_MEDUSA_P12V_EFUSE_N","",
-> +	/*M0-M7*/       "EN_NIC0_POWER_BMC_R","EN_NIC1_POWER_BMC_R",
-> +			"INT_MEDUSA_IOEXP_TEMP_N","FLT_P12V_NIC0_N",
-> +			"INT_SMB_BMC_SLOT1_4_BMC_N",
-> +			"AC_ON_OFF_BTN_CPLD_SLOT6_N","","",
-> +	/*N0-N7*/       "FLT_HSC_SERVER_SLOT1_N","FLT_HSC_SERVER_SLOT2_N",
-> +			"FLT_HSC_SERVER_SLOT3_N","FLT_HSC_SERVER_SLOT4_N",
-> +			"FM_BMC_READY_R2","FLT_P12V_STBY_BMC_N","","",
-> +	/*O0-O7*/       "AC_ON_OFF_BTN_CPLD_SLOT8_N","RST_SMB_NIC1_R_N",
-> +			"RST_SMB_NIC2_R_N","RST_SMB_NIC3_R_N",
-> +			"FLT_P3V3_NIC2_N","FLT_P3V3_NIC3_N",
-> +			"","",
-> +	/*P0-P7*/       "ALT_SMB_BMC_CPLD1_N","'BTN_BMC_R2_N",
-> +			"EN_P3V_BAT_SCALED_R","PWRGD_P5V_USB_BMC",
-> +			"FM_BMC_RTCRST_R","RST_USB_HUB_R_N",
-> +			"FLAG_P5V_USB_BMC_N","",
-> +	/*Q0-Q7*/       "AC_ON_OFF_BTN_CPLD_SLOT1_N","AC_ON_OFF_BTN_CPLD_SLOT2_N",
-> +			"AC_ON_OFF_BTN_CPLD_SLOT3_N","AC_ON_OFF_BTN_CPLD_SLOT4_N",
-> +			"PRSNT_SB_SLOT5_N","PRSNT_SB_SLOT6_N",
-> +			"PRSNT_SB_SLOT7_N","PRSNT_SB_SLOT8_N",
-> +	/*R0-R7*/       "AC_ON_OFF_BTN_CPLD_SLOT7_N","INT_SMB_BMC_SLOT5_8_BMC_N",
-> +			"FM_PWRBRK_NIC_BMC_R2","RST_PCIE_SLOT4_N",
-> +			"RST_PCIE_SLOT5_N","RST_PCIE_SLOT6_N",
-> +			"RST_PCIE_SLOT7_N","RST_PCIE_SLOT8_N",
-> +	/*S0-S7*/       "FM_NIC2_WAKE_N","FM_NIC3_WAKE_N",
-> +			"EN_NIC3_POWER_BMC_R","SEL_BMC_JTAG_MUX_R",
-> +			"","ALT_P12V_AUX_N","FAST_PROCHOT_N",
-> +			"SPI_WP_DISABLE_STATUS_R_N",
-> +	/*T0-T7*/       "","","","","","","","",
-> +	/*U0-U7*/       "","","FLT_P3V3_NIC1_N","FLT_P12V_NIC1_N",
-> +			"FLT_P12V_NIC2_N","FLT_P12V_NIC3_N",
-> +			"FLT_P3V3_NIC0_N","",
-> +	/*V0-V7*/       "FM_RESBTN_SLOT5_BMC_N","FM_RESBTN_SLOT6_BMC_N",
-> +			"FM_RESBTN_SLOT7_BMC_N","FM_RESBTN_SLOT8_BMC_N",
-> +			"","","","",
-> +	/*W0-W7*/       "PRSNT_TPM_BMC_N","PRSNT_OCP_DEBUG_BMC_N","ALT_TEMP_BMC_N","ALT_RTC_BMC_N",
-> +			"","","","",
-> +	/*X0-X7*/       "","LT_HSC_SERVER_SLOT6_N","FLT_HSC_SERVER_SLOT7_N","","","",
-> +			"PWRGD_SLOT5_STBY","PWRGD_SLOT6_STBY",
-> +	/*Y0-Y7*/       "","","SPI_LOCK_REQ_BMC_N","PWRGD_SLOT7_STBY","","","EN_NIC2_POWER_BMC_R","",
-> +	/*Z0-Z7*/       "EN_P5V_USB_CPLD_R","'FLT_HSC_SERVER_SLOT5_N",
-> +			"PWRGD_SLOT8_STBY","","","","","";
-> +
-> +	pin_gpio_b4 {
-
-We have been here. No underscores in node names.
-
-Best regards,
-Krzysztof
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
