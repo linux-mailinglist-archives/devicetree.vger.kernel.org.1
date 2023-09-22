@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-2422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12FE27AAC10
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 10:12:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49E4B7AAC11
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 10:12:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id BA46D283715
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 08:12:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id EF9D4283810
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 08:12:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A1CE1DDCA;
-	Fri, 22 Sep 2023 08:12:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE6991DDCB;
+	Fri, 22 Sep 2023 08:12:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 365A61DA5D
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 08:11:58 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B68B19AB;
-	Fri, 22 Sep 2023 01:11:54 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38M7ohiW024023;
-	Fri, 22 Sep 2023 08:11:31 GMT
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E4541DA5D
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 08:12:09 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDA57172E;
+	Fri, 22 Sep 2023 01:12:07 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38M4pKNW021949;
+	Fri, 22 Sep 2023 08:11:38 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references : mime-version :
  content-type; s=qcppdkim1;
- bh=A94tWuodPcI9oNrKkKtAQGNKu2sI4M6PkvsyQjDksY8=;
- b=IZieK/0Ylne2goWEJ5XiYruMYVvFsRF99oO8PR5B5mBSl8MqYVRYtSh/s1eZJopRZrlJ
- PIRssqRoxKyXYWygR24wPsDWTXPlyGqSWEX8As58LaLovNZl0Tc92zaubQyZoaSlNeoI
- qB4pp5ycNubvUrodytAfqVgDUpVYQotJ8DarjLT5vPoyfPtg1ofyF2M5YBfIcUctQuMU
- yycPAse7B28LHboMy8XObLPMSBh2YATlunGVhOAGcygJWXTlPsaQRlMVJ7RG1zj3iKlQ
- cxhHQ3clsv2NWLAnBXmtuZqizHCwaUadoc58G8rGaNqda5NmnRf2kystmcWp1tBceQA5 hw== 
+ bh=PWOq3jmRIiq+uiTPsHXaiaeOPpH/u4Efbtd5jc4OIgE=;
+ b=QXqajviwa1nrZjnYT+1qI3zPINtiRQpGXOz0TaMWzPW7/vwk39u6D7QqzBIW0I8S6QlZ
+ 79e5GAp2XVK/SMiL5r9I8Na74f7UPnmc94SXslvOCtLAhrp/gLUOtGB7Mn4mpZ25aW11
+ nWQ8DP6kTQ+wB9fqb0MbtIk86G1w48k6Ur+aBokZjBltYEOGSGCioBphmVp/IHtB6Aq3
+ uN8xQrtlNNdtTxzB9Kagszw7i5wqpcwETb63zi+fKZbSiwLbkvdgomHZ/6mE01OAXVDu
+ 4XR4TcmtM2HvdR/RNIctvoUJTL4QAwjzJkEjA7fZPKXXsXnWyvSZ/X44NS50z0eVDJjp og== 
 Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t8uf2h813-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t8u5n1c8m-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Sep 2023 08:11:31 +0000
+	Fri, 22 Sep 2023 08:11:38 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38M8BTbm001098
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38M8BbNY001175
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Sep 2023 08:11:29 GMT
+	Fri, 22 Sep 2023 08:11:37 GMT
 Received: from tengfan2-gv.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Fri, 22 Sep 2023 01:11:15 -0700
+ 15.2.1118.36; Fri, 22 Sep 2023 01:11:21 -0700
 From: Tengfei Fan <quic_tengfan@quicinc.com>
 To: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
         <tglx@linutronix.de>, <maz@kernel.org>, <robh+dt@kernel.org>,
@@ -55,11 +55,10 @@ CC: <geert+renesas@glider.be>, <arnd@arndb.de>, <neil.armstrong@linaro.org>,
         <quic_tsoni@quicinc.com>, <quic_shashim@quicinc.com>,
         <quic_kaushalk@quicinc.com>, <quic_tdas@quicinc.com>,
         <quic_tingweiz@quicinc.com>, <quic_aiquny@quicinc.com>,
-        <kernel@quicinc.com>, Tengfei Fan <quic_tengfan@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>
-Subject: [PATCH v4 3/6] arm64: dts: qcom: sm4450: Add RPMH and Global clock
-Date: Fri, 22 Sep 2023 16:10:23 +0800
-Message-ID: <20230922081026.2799-4-quic_tengfan@quicinc.com>
+        <kernel@quicinc.com>, Tengfei Fan <quic_tengfan@quicinc.com>
+Subject: [PATCH v4 4/6] arm64: dts: qcom: add uart console support for SM4450
+Date: Fri, 22 Sep 2023 16:10:24 +0800
+Message-ID: <20230922081026.2799-5-quic_tengfan@quicinc.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20230922081026.2799-1-quic_tengfan@quicinc.com>
 References: <20230922081026.2799-1-quic_tengfan@quicinc.com>
@@ -75,79 +74,97 @@ X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: mugaZi4g_wlqpqWAWNjBOIrgV6dbM1Qe
-X-Proofpoint-ORIG-GUID: mugaZi4g_wlqpqWAWNjBOIrgV6dbM1Qe
+X-Proofpoint-ORIG-GUID: C3ajLOvBnjWxxThhHBaxjHRfL5JcAyl6
+X-Proofpoint-GUID: C3ajLOvBnjWxxThhHBaxjHRfL5JcAyl6
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2023-09-22_06,2023-09-21_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- priorityscore=1501 malwarescore=0 adultscore=0 mlxlogscore=853 mlxscore=0
- impostorscore=0 clxscore=1015 suspectscore=0 phishscore=0 bulkscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=918
+ priorityscore=1501 malwarescore=0 spamscore=0 bulkscore=0 impostorscore=0
+ lowpriorityscore=0 mlxscore=0 clxscore=1015 adultscore=0 phishscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.12.0-2309180000 definitions=main-2309220067
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add device node for RPMH and Global clock controller on Qualcomm
-SM4450 platform.
+Add base description of UART and TLMM nodes which helps SM4450
+boot to shell with console on boards with this SoC.
 
-Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
 Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
 ---
- arch/arm64/boot/dts/qcom/sm4450.dtsi | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ arch/arm64/boot/dts/qcom/sm4450.dtsi | 49 ++++++++++++++++++++++++++++
+ 1 file changed, 49 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm4450.dtsi b/arch/arm64/boot/dts/qcom/sm4450.dtsi
-index 5e09880f4218..5a8a54b0f6c1 100644
+index 5a8a54b0f6c1..3e7ae3bebbe0 100644
 --- a/arch/arm64/boot/dts/qcom/sm4450.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm4450.dtsi
-@@ -3,6 +3,8 @@
-  * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
-  */
+@@ -364,6 +364,29 @@
+ 				 <0>;
+ 		};
  
-+#include <dt-bindings/clock/qcom,rpmh.h>
-+#include <dt-bindings/clock/qcom,sm4450-gcc.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-@@ -348,6 +350,20 @@
- 		dma-ranges = <0 0 0 0 0x10 0>;
- 		compatible = "simple-bus";
- 
-+		gcc: clock-controller@100000 {
-+			compatible = "qcom,sm4450-gcc";
-+			reg = <0x0 0x00100000 0x0 0x1f4200>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <&sleep_clk>,
-+				 <0>,
-+				 <0>,
-+				 <0>,
-+				 <0>;
++		qupv3_id_0: geniqup@ac0000 {
++			compatible = "qcom,geni-se-qup";
++			reg = <0x0 0x00ac0000 0x0 0x2000>;
++			ranges;
++			clocks = <&gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
++				 <&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
++			clock-names = "m-ahb", "s-ahb";
++			#address-cells = <2>;
++			#size-cells = <2>;
++			status = "disabled";
++
++			uart7: serial@a88000 {
++				compatible = "qcom,geni-debug-uart";
++				reg = <0x0 0x00a88000 0x0 0x4000>;
++				clocks = <&gcc GCC_QUPV3_WRAP1_S2_CLK>;
++				clock-names = "se";
++				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
++				pinctrl-0 = <&qup_uart7_tx>, <&qup_uart7_rx>;
++				pinctrl-names = "default";
++				status = "disabled";
++			};
 +		};
 +
  		tcsr_mutex: hwlock@1f40000 {
  			compatible = "qcom,tcsr-mutex";
  			reg = <0x0 0x01f40000 0x0 0x40000>;
-@@ -452,6 +468,13 @@
- 			apps_bcm_voter: bcm-voter {
- 				compatible = "qcom,bcm-voter";
- 			};
-+
-+			rpmhcc: clock-controller {
-+				compatible = "qcom,sm4450-rpmh-clk";
-+				#clock-cells = <1>;
-+				clocks = <&xo_board>;
-+				clock-names = "xo";
-+			};
+@@ -380,6 +403,32 @@
+ 			interrupt-controller;
  		};
  
- 	};
++		tlmm: pinctrl@f100000 {
++			compatible = "qcom,sm4450-tlmm";
++			reg = <0x0 0x0f100000 0x0 0x300000>;
++			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
++			gpio-controller;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++			gpio-ranges = <&tlmm 0 0 137>;
++			wakeup-parent = <&pdc>;
++
++			qup_uart7_rx: qup-uart7-rx-state {
++				pins = "gpio23";
++				function = "qup1_se2_l2";
++				drive-strength = <2>;
++				bias-disable;
++			};
++
++			qup_uart7_tx: qup-uart7-tx-state {
++				pins = "gpio22";
++				function = "qup1_se2_l2";
++				drive-strength = <2>;
++				bias-disable;
++			};
++		};
++
+ 		intc: interrupt-controller@17200000 {
+ 			compatible = "arm,gic-v3";
+ 			reg = <0x0 0x17200000 0x0 0x10000>,     /* GICD */
 -- 
 2.17.1
 
