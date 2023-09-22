@@ -1,120 +1,107 @@
-Return-Path: <devicetree+bounces-2358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB9397AA9FA
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 09:21:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 199C17AAA3C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 09:28:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 5632328316A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 07:21:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 73FF5B20B6F
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 07:28:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4407618039;
-	Fri, 22 Sep 2023 07:21:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECE9F18AE9;
+	Fri, 22 Sep 2023 07:28:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD9B59CA44
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 07:21:32 +0000 (UTC)
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7EF519E;
-	Fri, 22 Sep 2023 00:21:25 -0700 (PDT)
-X-UUID: a1422ab8591811eea33bb35ae8d461a2-20230922
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=wPAZy6ESnioZH+kLVb+rHtDuQKaIt/qY8aIqjrMpNI8=;
-	b=abMw3/OluEkMml71zip8usveH/mS3rnrTEW4CREkdKCLx803z1ThElM50w8qdc7z3Qzgppy/ciS5GCESQYC7N6WQkAAKpvdaRgw1jSDx5NzYcWuSeM/2D7m+fRm8XK6d2pqGm0V1yyoGWH2QqfZNqAGHAu1fSWrlLw6F1SMp6F4=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.32,REQID:aff142e0-53b0-4731-a6bb-c22457bfaf7c,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:5f78ec9,CLOUDID:edff54c3-1e57-4345-9d31-31ad9818b39f,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: a1422ab8591811eea33bb35ae8d461a2-20230922
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-	(envelope-from <moudy.ho@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1341433875; Fri, 22 Sep 2023 15:21:21 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 22 Sep 2023 15:21:19 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Fri, 22 Sep 2023 15:21:19 +0800
-From: Moudy Ho <moudy.ho@mediatek.com>
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
-	<p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, Daniel Vetter
-	<daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Hans Verkuil
-	<hverkuil-cisco@xs4all.nl>
-CC: <dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-media@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, "Moudy
- Ho" <moudy.ho@mediatek.com>
-Subject: [PATCH v6 16/16] dt-bindings: display: mediatek: padding: add compatible for MT8195
-Date: Fri, 22 Sep 2023 15:21:16 +0800
-Message-ID: <20230922072116.11009-17-moudy.ho@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20230922072116.11009-1-moudy.ho@mediatek.com>
-References: <20230922072116.11009-1-moudy.ho@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADD4E15AC7
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 07:28:03 +0000 (UTC)
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B52F2180;
+	Fri, 22 Sep 2023 00:28:01 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38M3QAW4014025;
+	Fri, 22 Sep 2023 09:27:45 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=0bp+NRqfXUCXmXbjcCA67hlANJccbiq96hkutpc8qzk=; b=Uy
+	BO7y8X7Ny0Oo3Hl4YFrV2KyCU0z/yR0RYevIRGRs2hwXLBgAb97CKGEjcJbynK1a
+	yhowZJfMJzv/+YfEUnM0YlUzgs32UhfY1695rc510idhaEi+z3F20qZza9gWnY0x
+	MvvRGzMHkr9zAeA/MJ6phwNY5G4FqVE+n4wyyh1PQuwdwcoEnOJT3qRJ7I4rw7KB
+	YfIll2jUUQwfeBAVF0bRKqNNg4Q6GUestvkrfk3Phv+01NBTVaTJkBweC9l4cuKb
+	VfNhAmGCbJDXMPzdGft07iRSTdRL9EaKX2Ay271KgSOyM1EHd/9BGZg5EDeygub8
+	b4hjtGSXIlNNwY3vQTgw==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3t8tt7j2d1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 22 Sep 2023 09:27:45 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D5187100051;
+	Fri, 22 Sep 2023 09:27:44 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CC56F2105B2;
+	Fri, 22 Sep 2023 09:27:44 +0200 (CEST)
+Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 22 Sep
+ 2023 09:27:44 +0200
+Message-ID: <614e085b-3c71-a19b-c34b-610501c49aa1@foss.st.com>
+Date: Fri, 22 Sep 2023 09:27:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--0.605700-8.000000
-X-TMASE-MatchedRID: GIpmbigRs3YmeoNhEXvE7G2o1QHNgyqmTJDl9FKHbrmYBF1C0J2QPjQz
-	47GqDWjpxMujmXyGahWAMuqetGVetiVvu9chHp+mavP8b9lJtWr6C0ePs7A07UngwKs5Oejndfs
-	EYn95p1jMEhTpea+dDIkuQ3d6HWsPu1Ii4zlP1MS5oVd3QmEYa8O/L+lMgFvnZq/fVZQlgjNDSz
-	XF+Fvp08SXKPXaAS7AdmtRsRmKkASJZPT2ZDPuzPD2QfzMDLjhIh26TkmSN3fAvpLE+mvX8g==
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--0.605700-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	A2674B259BDA25597753A9CF5C6B203C700B88EA8905DFC3C85DC3BD0E88977D2000:8
-X-MTK: N
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED
-	autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 0/3] Add SD-card support on STM32MP25
+To: Yann Gautier <yann.gautier@foss.st.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: Maxime Coquelin <mcoquelin.stm32@gmail.com>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Christophe Kerello <christophe.kerello@foss.st.com>
+References: <20230904132212.157405-1-yann.gautier@foss.st.com>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230904132212.157405-1-yann.gautier@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.21.122]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-22_05,2023-09-21_01,2023-05-22_02
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add a compatible string for the PAD block in MediaTek MT8195 that
-is controlled by MDP3.
+Hi Yann
 
-Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
----
- .../bindings/display/mediatek/mediatek,padding.yaml           | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+On 9/4/23 15:22, Yann Gautier wrote:
+> Add sdmmc1 node in SoC DT file, then the pins used on STM32MP257F-EV1
+> board, and then the node in board file for SD-card support.
+> 
+> Yann Gautier (3):
+>    arm64: dts: st: add sdmmc1 node in stm32mp251 SoC file
+>    arm64: dts: st: add sdmmc1 pins for stm32mp25
+>    arm64: dts: st: add SD-card support on STM32MP257F-EV1 board
+> 
+>   arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi | 54 +++++++++++++++++++
+>   arch/arm64/boot/dts/st/stm32mp251.dtsi        | 13 +++++
+>   arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    | 22 ++++++++
+>   3 files changed, 89 insertions(+)
+> 
 
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
-index db24801ebc48..636b69133acc 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
-@@ -20,7 +20,9 @@ description:
- 
- properties:
-   compatible:
--    const: mediatek,mt8188-padding
-+    enum:
-+      - mediatek,mt8188-padding
-+      - mediatek,mt8195-mdp3-pad
- 
-   reg:
-     maxItems: 1
--- 
-2.18.0
+Series applied on stm32-next.
 
+Regards
+Alex
 
