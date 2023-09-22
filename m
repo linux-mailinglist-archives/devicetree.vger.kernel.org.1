@@ -1,130 +1,126 @@
-Return-Path: <devicetree+bounces-2337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A71D7AA957
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 08:52:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F26987AA972
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 08:53:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 1C3EC1C20845
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 06:52:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 4F824B20AF6
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 06:53:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69D3E15AF5;
-	Fri, 22 Sep 2023 06:52:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A258171A8;
+	Fri, 22 Sep 2023 06:53:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 231DC4433
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 06:52:08 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10837100;
-	Thu, 21 Sep 2023 23:52:07 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38M6F6qt017118;
-	Fri, 22 Sep 2023 06:52:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : from : subject : to : cc : references : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=QrFI+LL+qZNMwtBZMTKshk+weo88lynbxPxp1R/ewT8=;
- b=A+KcsVsNaNHIV9N6pkMc6P6JPsPXF46zcKzmIpN6ButECkRGXy1pzPX+nxlbqISFGZw4
- Vbhc0xNkaiKUbrxZB0+btcYLj5IxWkq710N1T63TqeQ9/iTU1e1bynDmfmCSnSqcsIyv
- lFrlq8JkCCGWLnUeNHLvvkpkm+4sFdaYn8DyAx6YKeVQcktspaSxVWCMsN6gMVVcbhue
- fBZKVp7fpU9JjtgJpq8yrl2eDkZHYKWynjXGmxxhJtZsfG32ddb+wyxA+UE3sS4P7wRV
- GRrgEvxSmVeBxheOIMg9WlQb2y6B1/VM9m6jhq0BkerOZkNyLVc4hW3PPeus2oHjWU48 mA== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t8u6ah5qf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Sep 2023 06:52:03 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38M6q2Bl025115
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Sep 2023 06:52:02 GMT
-Received: from [10.218.28.253] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 21 Sep
- 2023 23:51:58 -0700
-Message-ID: <23d0ef96-ca51-4fe0-b2e6-af0e188fbb6d@quicinc.com>
-Date: Fri, 22 Sep 2023 12:21:55 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D3B64433
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 06:53:40 +0000 (UTC)
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 35DBF100;
+	Thu, 21 Sep 2023 23:53:39 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="6.03,167,1694703600"; 
+   d="scan'208";a="176885430"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 22 Sep 2023 15:53:38 +0900
+Received: from localhost.localdomain (unknown [10.166.15.32])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 24F9D400F79C;
+	Fri, 22 Sep 2023 15:53:38 +0900 (JST)
+From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To: lpieralisi@kernel.org,
+	kw@linux.com,
+	robh@kernel.org,
+	bhelgaas@google.com,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	jingoohan1@gmail.com,
+	gustavo.pimentel@synopsys.com,
+	mani@kernel.org
+Cc: marek.vasut+renesas@gmail.com,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v21 00/16] PCI: dwc: rcar-gen4: Add R-Car Gen4 PCIe support
+Date: Fri, 22 Sep 2023 15:53:15 +0900
+Message-Id: <20230922065331.3806925-1-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Raghavendra Kakarla <quic_rkakarla@quicinc.com>
-Subject: Re: [PATCH] arm64: dts: qcom: Enable RPMh Sleep stats
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <quic_mkshah@quicinc.com>, <quic_lsrao@quicinc.com>
-References: <20230920052349.9907-1-quic_rkakarla@quicinc.com>
- <68fb2f4f-ba21-21b0-ddbe-aab92991ec44@linaro.org>
-Content-Language: en-US
-In-Reply-To: <68fb2f4f-ba21-21b0-ddbe-aab92991ec44@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: S08FMbPyEiKG-p_0sW-WmlnncyumFY46
-X-Proofpoint-ORIG-GUID: S08FMbPyEiKG-p_0sW-WmlnncyumFY46
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-22_04,2023-09-21_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
- mlxlogscore=730 priorityscore=1501 lowpriorityscore=0 spamscore=0
- suspectscore=0 clxscore=1015 malwarescore=0 mlxscore=0 adultscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2309220056
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Konrad,
+Add R-Car S4-8 (R-Car Gen4) PCIe controller for both host and endpoint modes.
+To support them, modify PCIe DesignWare common codes.
 
-Thank you for your review. will address your comments in next patch.
+Changes from v20 + squash patches:
+https://lore.kernel.org/linux-pci/20230825093219.2685912-1-yoshihiro.shimoda.uh@renesas.com/
+https://lore.kernel.org/linux-pci/20230901131711.2861283-1-yoshihiro.shimoda.uh@renesas.com/
+ - Based on the latest pci.git / next branch.
+ - Cherry-picked almost all patches from the pci.git / controller/rcar branch
+   for squashing.
+  - But, drop the following patches which are related to INTx.
+     eb185e1e628a PCI: designware-ep: Add INTx IRQs support
+     5d0e51f85b23 PCI: dwc: Add outbound MSG TLPs support
+     4758bef61cc2 PCI: dwc: Change arguments of dw_pcie_prog_outbound_atu()
+     44938b13046b PCI: Add INTx Mechanism Messages macros
+ - Add a new macro T_PVPERL in the patch 12/16.
+ - Merge pcie-rcar-gen4-{ep,host}-drv.c and pcie-rcar-gen4.h files into
+   pcie-rcar-gen4.c.
+ - Add CONFIG_PCIE_RCAR_GEN4_HOST config.
+ - Fix some comments.
+ - Change return type of rcar_gen4_pcie_speed_change().
+ - Add registers' full names as comments.
+ - Rename function names of rcar_gen4_{add,remove}_pcie_ep() to
+   rcar_gen4_{add,remove}_dw_pcie_ep() for consistency.
 
+Yoshihiro Shimoda (16):
+  PCI: dwc: endpoint: Add multiple PFs support for dbi2
+  PCI: dwc: Add dw_pcie_link_set_max_link_width()
+  PCI: dwc: Add missing PCI_EXP_LNKCAP_MLW handling
+  PCI: tegra194: Drop PCI_EXP_LNKSTA_NLW setting
+  PCI: dwc: Add EDMA_UNROLL capability flag
+  PCI: dwc: Expose dw_pcie_ep_exit() to module
+  PCI: dwc: Expose dw_pcie_write_dbi2() to module
+  PCI: dwc: endpoint: Introduce .pre_init() and .deinit()
+  dt-bindings: PCI: dwc: Update maxItems of reg and reg-names
+  dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Host
+  dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Endpoint
+  PCI: add T_PVPERL macro
+  PCI: dwc: rcar-gen4: Add R-Car Gen4 PCIe controller support
+  PCI: dwc: rcar-gen4: Add R-Car Gen4 PCIe Endpoint support
+  MAINTAINERS: Update PCI DRIVER FOR RENESAS R-CAR for R-Car Gen4
+  misc: pci_endpoint_test: Add Device ID for R-Car S4-8 PCIe controller
 
-Regards,
+ .../bindings/pci/rcar-gen4-pci-ep.yaml        | 115 ++++
+ .../bindings/pci/rcar-gen4-pci-host.yaml      | 127 +++++
+ .../bindings/pci/snps,dw-pcie-common.yaml     |   4 +-
+ .../bindings/pci/snps,dw-pcie-ep.yaml         |   4 +-
+ .../devicetree/bindings/pci/snps,dw-pcie.yaml |   4 +-
+ MAINTAINERS                                   |   1 +
+ drivers/misc/pci_endpoint_test.c              |   4 +
+ drivers/pci/controller/dwc/Kconfig            |  25 +
+ drivers/pci/controller/dwc/Makefile           |   1 +
+ .../pci/controller/dwc/pcie-designware-ep.c   |  45 +-
+ drivers/pci/controller/dwc/pcie-designware.c  | 102 ++--
+ drivers/pci/controller/dwc/pcie-designware.h  |   8 +-
+ drivers/pci/controller/dwc/pcie-rcar-gen4.c   | 510 ++++++++++++++++++
+ drivers/pci/controller/dwc/pcie-tegra194.c    |   6 -
+ drivers/pci/pci.h                             |   3 +
+ 15 files changed, 890 insertions(+), 69 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.c
 
-Raghavendra K.
+-- 
+2.25.1
 
-On 9/20/2023 3:15 PM, Konrad Dybcio wrote:
->
->
-> On 9/20/23 07:23, Raghavendra Kakarla wrote:
->> Add device node for Sleep stats driver which provides various
->> low power mode stats on sa8775p SoC.
->>
->> Signed-off-by: Raghavendra Kakarla <quic_rkakarla@quicinc.com>
->> ---
-> The subject must include the platform name
->>   arch/arm64/boot/dts/qcom/sa8775p.dtsi | 5 +++++
->>   1 file changed, 5 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi 
->> b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> index 9f4f58e831a4..23ae404da02e 100644
->> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> @@ -1912,6 +1912,11 @@
->>               #clock-cells = <0>;
->>           };
->>   +        sram@c3f0000 {
->> +            compatible = "qcom,rpmh-stats";
->> +            reg = <0x0c3f0000 0x400>;
-> Please test your patches before sending. This one has clearly
-> hasn't been.
->
-> Konrad
 
