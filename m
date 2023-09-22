@@ -1,128 +1,162 @@
-Return-Path: <devicetree+bounces-2357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16F917AA9C7
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 09:10:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 891867AAA0A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 09:21:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id F21D61C20832
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 07:10:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3B9C3283365
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 07:21:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 025CC17736;
-	Fri, 22 Sep 2023 07:10:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 725E919BD8;
+	Fri, 22 Sep 2023 07:21:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EA65154A7
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 07:10:48 +0000 (UTC)
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75C1D1B1;
-	Fri, 22 Sep 2023 00:10:46 -0700 (PDT)
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-59c268676a9so21465087b3.0;
-        Fri, 22 Sep 2023 00:10:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695366645; x=1695971445;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CNNKeiWdrHi1JK275O0aat5lgv03VJfdBdgbH4hvBr8=;
-        b=lWmOjxNZOh/6L+J7pcCl2Xfcmwt248UDdKpifleWVvria0pgd2kA/dmNzxBSGGo0+Y
-         cSYDyqIPSdCOZYLeqC8xIYTOi+/bQ7lURS6YwGL3OLueMN6Yc5laNpKwgdipRgxmkWMt
-         0NxYbXtToxof/36qzN0R7dmzeEcVUmKja9Atc2B0Lkdzh8DNE+8+Onu/XvZg6jB7NmhV
-         FM8/OtzgVddRD7Dva4i7PYgohhPOSX8deUmkhMoaZXKOOHV5kXkHwBFwqJ07rryUVF7e
-         C69qU3HdlTjLYWlbv7+J3hypVOrwG7cVfV4oT7oUsTr6C4OOMsDo8uflF9LaryXUM3op
-         ZsYQ==
-X-Gm-Message-State: AOJu0YxOpuEBzbUfuIlGLjaNRDmqhXbqBEuLmmMQ6oFlpzj+auEQ6EeF
-	7oIxjqxGcvxRc0Y6PpLPbymGTfc9ku6BgWTp
-X-Google-Smtp-Source: AGHT+IFs1eLn569V1EXSutqipTlXJSEjyz+aZXREadv4detSI2yd0qNhbRTsqEXGPzqefVZvN9QX3Q==
-X-Received: by 2002:a0d:df4e:0:b0:592:85ec:df15 with SMTP id i75-20020a0ddf4e000000b0059285ecdf15mr7034112ywe.11.1695366645221;
-        Fri, 22 Sep 2023 00:10:45 -0700 (PDT)
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
-        by smtp.gmail.com with ESMTPSA id a184-20020a0df1c1000000b00577269ba9e9sm749544ywf.86.2023.09.22.00.10.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Sep 2023 00:10:44 -0700 (PDT)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-59c268676a9so21464857b3.0;
-        Fri, 22 Sep 2023 00:10:44 -0700 (PDT)
-X-Received: by 2002:a0d:c8c1:0:b0:59b:c6a4:15c7 with SMTP id
- k184-20020a0dc8c1000000b0059bc6a415c7mr7945698ywd.46.1695366644065; Fri, 22
- Sep 2023 00:10:44 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90C9D18C2D
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 07:21:36 +0000 (UTC)
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C817198;
+	Fri, 22 Sep 2023 00:21:33 -0700 (PDT)
+X-UUID: a198456a591811ee8051498923ad61e6-20230922
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=GwRcQkIPa0RidP1cB9AF+xbKbSI3AyGl3ep1MeePw+8=;
+	b=hosr9nH5n6grvsKXfMxtFkKMHp7pIIfI+GvMcktLfyih7wkY2jGIpgXoP9c0YngFK3vJ0dIkIXaVlCv945fxwSBS799xEXFm0Wzd6KEW8czs5n+WzPY1u9wiiw027NDtgZeGMR0T3O+W9JdHkJ4+wgl3KhAQxSwaphRSEGeH7Ac=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.32,REQID:a5367575-aaa0-4c80-a5f4-576510034ad0,IP:0,U
+	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-5
+X-CID-META: VersionHash:5f78ec9,CLOUDID:f08a00f0-9a6e-4c39-b73e-f2bc08ca3dc5,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: a198456a591811ee8051498923ad61e6-20230922
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+	(envelope-from <moudy.ho@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1987355008; Fri, 22 Sep 2023 15:21:22 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Fri, 22 Sep 2023 15:21:17 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Fri, 22 Sep 2023 15:21:17 +0800
+From: Moudy Ho <moudy.ho@mediatek.com>
+To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, Daniel Vetter
+	<daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Hans Verkuil
+	<hverkuil-cisco@xs4all.nl>
+CC: <dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-media@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, "Moudy
+ Ho" <moudy.ho@mediatek.com>
+Subject: [PATCH v6 00/16] introduce more MDP3 components in MT8195
+Date: Fri, 22 Sep 2023 15:21:00 +0800
+Message-ID: <20230922072116.11009-1-moudy.ho@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <363186079b4269891073f620e3e2353cf7d2559a.1669988238.git.geert+renesas@glider.be>
- <1503a3857107e3a4f34e0c7fb5dada39@walle.cc> <CAMuHMdXN+HJb=zGeG=3t=Pie9cVpnBLYuEb_qX6=oSxG8eTkAw@mail.gmail.com>
- <20221205163306.GB2012644-robh@kernel.org> <CAMuHMdUcrh26MNYuiqiC0_FMkeHtq1YnJrZKHEV_WQm5Dgzoaw@mail.gmail.com>
- <ee03d150-51cf-4e12-ae2c-9475a192fb6c@linaro.org> <CAMuHMdW_-0f8DOmEzYb28XABqU3oFL4KXf9M-qKVyyrE_Lo+jQ@mail.gmail.com>
- <d4d998cff934328f58cec767f93a59b5@walle.cc> <CAMuHMdUK=HvvjeTDefzX9sbY-vaRFVixcSvKVqDPgBpGVt2dQA@mail.gmail.com>
-In-Reply-To: <CAMuHMdUK=HvvjeTDefzX9sbY-vaRFVixcSvKVqDPgBpGVt2dQA@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 22 Sep 2023 09:10:31 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUKxJDPs3Ow8E-g2bLr7c7jREf5gSqWZ+o5aWbGj6uO=w@mail.gmail.com>
-Message-ID: <CAMuHMdUKxJDPs3Ow8E-g2bLr7c7jREf5gSqWZ+o5aWbGj6uO=w@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mtd: jedec,spi-nor: Document support for
- more MT25QU parts
-To: Michael Walle <michael@walle.cc>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Tudor Ambarus <tudor.ambarus@microchip.com>, Pratyush Yadav <pratyush@kernel.org>, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--4.140900-8.000000
+X-TMASE-MatchedRID: jaDo7zRnnqvsAGjS6lxxKhlckvO1m+Jc0r/qCu/cY51GL0g1nVmkYT5R
+	eTebdoC/c3vVJixkSry06j7mNfWkLhHYera7K0OLqbg9uWhLYLdkbdIIs/tC0lyXWUkr/Kkslw+
+	39nTtEGwU+viiDxBlnQ9iGlH7LPmcxEEtnnH5KRfuykw7cfAoICoTaU3L23VCmyiLZetSf8mfop
+	0ytGwvXiq2rl3dzGQ1XFvBhI5Hg86LT+koH7+Zhsoux4uQ/X3YXTeh+jKjqu4/s5eHgEi4ZgLRb
+	yOHU4kkeFspb5rEQuvXssLCpakOsgqhzvteG/XZoVx+33HsKxN0BNB20+SxH7f8mJY57oZddJaB
+	DYald1lvF9+X2GEIHA==
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--4.140900-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP: A77D4AEDECC94738E90500CFA5460A673A2068746427C2A25D501AD49C0ED74E2000:8
+X-MTK: N
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,
+	SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=no
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Thu, Sep 21, 2023 at 7:01=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
-> On Thu, Sep 21, 2023 at 6:01=E2=80=AFPM Michael Walle <michael@walle.cc> =
-wrote:
-> > >> We won't break compatibility with older DTBs if we use a list of
-> > >> compatibles. First the vendor specific one which will use some quirk=
-s,
-> > >> and if that's not available, have as second the generic jedec,spi-no=
-r
-> > >> to
-> > >> fallback to.
-> > >
-> > > Sure, you should use a list.
-> > >
-> > > But the current recommended practice is to not have a list,
-> > > but just "jedec,spi-nor" (using a list with a new FLASH part name
-> > > causes checkpatch and dtbs_check warnings). Hence if you follow that
-> > > recommendation, you will run into compatibility issues with older DTB=
-s
-> > > when you discover the quirk later, and decide to add it to the list.
-> >
-> > The SPI NOR flashes should be auto discoverable. Why do you need a
-> > compatible string? Quirks can be added to the flash_info database.
->
-> This assumes you don't need the quirk before you can identify the part.
-> I'm not sure that is always the case.
+Changes since v5:
+- Rebase on v6.6-rc2.
+- Dependent dtsi files:
+  https://patchwork.kernel.org/project/linux-mediatek/list/?series=786511
+- Depends on:
+  Message ID = 20230911074233.31556-5-shawn.sung@mediatek.com
+- Split out common propertis for RDMA.
+- Split each component into independent patches.
 
-Reminder where this is apparently not the case:
-https://lore.kernel.org/r/OS0PR01MB5922A4F16DE8923373AA5DD886F7A@OS0PR01MB5=
-922.jpnprd01.prod.outlook.com/
+Changes since v4:
+- Rebase on v6.6-rc1
+- Organize identical hardware components into their respective files.
 
-Gr{oetje,eeting}s,
+Hi,
 
-                        Geert
+The purpose of this patch is to separate the MDP3-related bindings from
+the original mailing list mentioned below:
+https://lore.kernel.org/all/20230208092209.19472-1-moudy.ho@mediatek.com/
+Those binding files describe additional components that
+are present in the mt8195.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Moudy Ho (16):
+  dt-bindings: media: mediatek: mdp3: correct RDMA and WROT node with
+    generic names
+  dt-bindings: media: mediatek: mdp3: split out general properties
+  dt-bindings: media: mediatek: mdp3: include common properties
+  dt-bindings: media: mediatek: mdp3: rename to MT8183 RDMA
+  dt-bindings: media: mediatek: mdp3: add support MT8195 RDMA
+  dt-bindings: media: mediatek: mdp3: add component FG for MT8195
+  dt-bindings: media: mediatek: mdp3: add component HDR for MT8195
+  dt-bindings: media: mediatek: mdp3: add component STITCH for MT8195
+  dt-bindings: media: mediatek: mdp3: add component STITCH for MT8195
+  dt-bindings: media: mediatek: mdp3: add component TDSHP for MT8195
+  dt-bindings: display: mediatek: aal: add compatible for MT8195
+  dt-bindings: display: mediatek: color: add compatible for MT8195
+  dt-bindings: display: mediatek: merge: add compatible for MT8195
+  dt-bindings: display: mediatek: ovl: add compatible for MT8195
+  dt-bindings: display: mediatek: split: add compatible for MT8195
+  dt-bindings: display: mediatek: padding: add compatible for MT8195
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+ .../display/mediatek/mediatek,aal.yaml        |  1 +
+ .../display/mediatek/mediatek,color.yaml      |  1 +
+ .../display/mediatek/mediatek,merge.yaml      |  1 +
+ .../display/mediatek/mediatek,ovl.yaml        |  1 +
+ .../display/mediatek/mediatek,padding.yaml    |  4 +-
+ .../display/mediatek/mediatek,split.yaml      |  1 +
+ .../bindings/media/mediatek,mdp3-fg.yaml      | 61 +++++++++++++++++
+ .../bindings/media/mediatek,mdp3-hdr.yaml     | 60 +++++++++++++++++
+ .../media/mediatek,mdp3-rdma-8183.yaml        | 65 +++++++++++++++++++
+ .../media/mediatek,mdp3-rdma-8195.yaml        | 64 ++++++++++++++++++
+ ...ma.yaml => mediatek,mdp3-rdma-common.yaml} | 49 ++++----------
+ .../bindings/media/mediatek,mdp3-stitch.yaml  | 61 +++++++++++++++++
+ .../bindings/media/mediatek,mdp3-tcc.yaml     | 60 +++++++++++++++++
+ .../bindings/media/mediatek,mdp3-tdshp.yaml   | 61 +++++++++++++++++
+ .../bindings/media/mediatek,mdp3-wrot.yaml    | 23 ++++---
+ 15 files changed, 467 insertions(+), 46 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-fg.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-hdr.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-rdma-8183.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-rdma-8195.yaml
+ rename Documentation/devicetree/bindings/media/{mediatek,mdp3-rdma.yaml => mediatek,mdp3-rdma-common.yaml} (57%)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-stitch.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-tcc.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-tdshp.yaml
+
+-- 
+2.18.0
+
 
