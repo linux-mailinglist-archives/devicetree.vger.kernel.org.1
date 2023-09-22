@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-2389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2391-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3F737AAB12
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 09:59:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E23897AAB16
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 09:59:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id A637B282FDD
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 07:59:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 948972833B5
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 07:59:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EFD81A736;
-	Fri, 22 Sep 2023 07:59:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 575691A728;
+	Fri, 22 Sep 2023 07:59:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D522C1A5A8;
-	Fri, 22 Sep 2023 07:59:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AE421A72F;
+	Fri, 22 Sep 2023 07:59:48 +0000 (UTC)
 Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F12D0198;
-	Fri, 22 Sep 2023 00:59:41 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPA id DBA7A1BF209;
-	Fri, 22 Sep 2023 07:59:37 +0000 (UTC)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FF8019A;
+	Fri, 22 Sep 2023 00:59:45 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPA id D2D861BF206;
+	Fri, 22 Sep 2023 07:59:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1695369580;
+	t=1695369584;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=47AJJX9nKRaseqWZw0zOFwaVtfIj/ZlHaGyGR6Dcxfk=;
-	b=aVa/IbEhLcUVHtev73ra9qChSwDgiMaBWbUZQjrha8d9W2mM2x+NAui/0JyxwPIYoOAOk3
-	/CagIAQhbsRvIFYfYojZWl5ZsjMmGRSw+yZYTBePuef6MzbEpebbYKlmTW0jXEkG4JMtVM
-	MTQOO6Cj+s0U16KY1MBe92+Qj5W6KfbcqXNANtYOOLN3Xj4iza+IFbz6XeR4zwmrkxXxfZ
-	IfB468Y1LeUJVLIOlOSnqjrOJ+4fL2nD2zfM9s5GJ8HFQAsHqrUig4WgphKyyF1AAaVb2F
-	kz4xa1NEaT2CdfNeweAZDmh5ESlfLuO+IK3IjGPi9XkrGTqBgZKFBVehxbzEGQ==
+	bh=p22HMMIKMFQbh6/HiMaCltDimc7HD++LcS5qhfEDNEc=;
+	b=GArN93DC6ebpUcayIauic4k2/hoEj0gjXkRPPq8wqjroVH5E2GFc+0US01hZa3b3A2sN8t
+	ObxRu0gLctVJl+NamgiWsqyNwZm8z570Uoq3igB6jQofcPQ9iiwL1t0dah5h8VLYfj2NHb
+	8DBEf3pQ3u8Ma1ia042rcnZ3ItlgdyXeRbjQpFEYB3O11icDqu7CrlYgKFLZIDjElWAyX1
+	0KB5zNcd2RB49N4GvAFLbza/Yx0hxvwXeEZ2mvaE5HMbsmQU8HmO2FEh0z3xwMThFQ9krQ
+	5AeWz/llwvxLcZWzyid3P/ZVx1YZGW+njLgAl5D8Qrz4md2ngmcK3JAU/FRu9w==
 From: Herve Codina <herve.codina@bootlin.com>
 To: Herve Codina <herve.codina@bootlin.com>,
 	"David S. Miller" <davem@davemloft.net>,
@@ -66,10 +66,12 @@ Cc: netdev@vger.kernel.org,
 	alsa-devel@alsa-project.org,
 	Simon Horman <horms@kernel.org>,
 	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH v6 05/30] soc: fsl: cpm1: qmc: Remove inline function specifiers
-Date: Fri, 22 Sep 2023 09:58:40 +0200
-Message-ID: <20230922075913.422435-6-herve.codina@bootlin.com>
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v6 06/30] dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc: Fix example property name
+Date: Fri, 22 Sep 2023 09:58:41 +0200
+Message-ID: <20230922075913.422435-7-herve.codina@bootlin.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230922075913.422435-1-herve.codina@bootlin.com>
 References: <20230922075913.422435-1-herve.codina@bootlin.com>
@@ -88,68 +90,50 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The inline function specifier is present on some functions but it is
-better to let the compiler decide inlining or not these functions.
+The given example mentions the 'fsl,mode' property whereas the
+correct property name, the one described, is 'fsl,operational-mode'.
 
-Remove inline specifiers.
+Fix the example to use the correct property name.
 
-Fixes: 3178d58e0b97 ("soc: fsl: cpm1: Add support for QMC")
+Fixes: a9b121327c93 ("dt-bindings: soc: fsl: cpm_qe: Add QMC controller")
 Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-Suggested-by: Andrew Lunn <andrew@lunn.ch>
-Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
- drivers/soc/fsl/qe/qmc.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ .../bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml           | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/soc/fsl/qe/qmc.c b/drivers/soc/fsl/qe/qmc.c
-index 2d2a9d88ba6c..459e0bbd723d 100644
---- a/drivers/soc/fsl/qe/qmc.c
-+++ b/drivers/soc/fsl/qe/qmc.c
-@@ -218,37 +218,37 @@ struct qmc {
- 	struct qmc_chan *chans[64];
- };
- 
--static inline void qmc_write16(void __iomem *addr, u16 val)
-+static void qmc_write16(void __iomem *addr, u16 val)
- {
- 	iowrite16be(val, addr);
- }
- 
--static inline u16 qmc_read16(void __iomem *addr)
-+static u16 qmc_read16(void __iomem *addr)
- {
- 	return ioread16be(addr);
- }
- 
--static inline void qmc_setbits16(void __iomem *addr, u16 set)
-+static void qmc_setbits16(void __iomem *addr, u16 set)
- {
- 	qmc_write16(addr, qmc_read16(addr) | set);
- }
- 
--static inline void qmc_clrbits16(void __iomem *addr, u16 clr)
-+static void qmc_clrbits16(void __iomem *addr, u16 clr)
- {
- 	qmc_write16(addr, qmc_read16(addr) & ~clr);
- }
- 
--static inline void qmc_write32(void __iomem *addr, u32 val)
-+static void qmc_write32(void __iomem *addr, u32 val)
- {
- 	iowrite32be(val, addr);
- }
- 
--static inline u32 qmc_read32(void __iomem *addr)
-+static u32 qmc_read32(void __iomem *addr)
- {
- 	return ioread32be(addr);
- }
- 
--static inline void qmc_setbits32(void __iomem *addr, u32 set)
-+static void qmc_setbits32(void __iomem *addr, u32 set)
- {
- 	qmc_write32(addr, qmc_read32(addr) | set);
- }
+diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml
+index ec888f48cac8..450a0354cb1d 100644
+--- a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml
++++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml
+@@ -137,7 +137,7 @@ examples:
+         channel@16 {
+             /* Ch16 : First 4 even TS from all routed from TSA */
+             reg = <16>;
+-            fsl,mode = "transparent";
++            fsl,operational-mode = "transparent";
+             fsl,reverse-data;
+             fsl,tx-ts-mask = <0x00000000 0x000000aa>;
+             fsl,rx-ts-mask = <0x00000000 0x000000aa>;
+@@ -146,7 +146,7 @@ examples:
+         channel@17 {
+             /* Ch17 : First 4 odd TS from all routed from TSA */
+             reg = <17>;
+-            fsl,mode = "transparent";
++            fsl,operational-mode = "transparent";
+             fsl,reverse-data;
+             fsl,tx-ts-mask = <0x00000000 0x00000055>;
+             fsl,rx-ts-mask = <0x00000000 0x00000055>;
+@@ -155,7 +155,7 @@ examples:
+         channel@19 {
+             /* Ch19 : 8 TS (TS 8..15) from all routed from TSA */
+             reg = <19>;
+-            fsl,mode = "hdlc";
++            fsl,operational-mode = "hdlc";
+             fsl,tx-ts-mask = <0x00000000 0x0000ff00>;
+             fsl,rx-ts-mask = <0x00000000 0x0000ff00>;
+         };
 -- 
 2.41.0
 
