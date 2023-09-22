@@ -1,281 +1,112 @@
-Return-Path: <devicetree+bounces-2380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F23787AAA7C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 09:42:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE5AB7AAADD
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 09:55:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id 7024E1F2227C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 07:42:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id 6390D1F21B7C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 07:55:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56B0318C3A;
-	Fri, 22 Sep 2023 07:42:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3D7319BD9;
+	Fri, 22 Sep 2023 07:55:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44B6614F81
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 07:42:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89EB6C43395;
-	Fri, 22 Sep 2023 07:42:16 +0000 (UTC)
-Message-ID: <86729293-ad37-4f2e-bff7-c49d166e02df@xs4all.nl>
-Date: Fri, 22 Sep 2023 09:42:15 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AA8A18C2D
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 07:55:13 +0000 (UTC)
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D764F7
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 00:55:10 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9ae75ece209so41485866b.3
+        for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 00:55:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695369308; x=1695974108; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xo0lap6Lgs4aUClULX8HNoJkpzCnX/7Jsbfgdxnl/pY=;
+        b=U40KPtjDZ5oaO5BjIETV5ge09nMGO25IctNP7IsHQ1RRdgr+d5AWtS/eOxi9zPPo9P
+         pSaNJFh4AXorjtnS6ssNF8FgMJisx0AD5s/ZgRdBXjgsDAa2rQ4zUmM73IRTnk8e05v9
+         QoZFjnHJGlsfI2+Sg8EU/WiDfJ7znOgNPgg4msTJV2SUU99KxQEl3EtVMnJqfDzQ1sn4
+         SEdQYPehpYYUpnWyxBZSsYAUaXp5W7flb+1GDokdD84vpx+t2/1IhI1WOCuhFZ1z2rTm
+         u4EMBp1npo35emO8jl2kkmb6X/H1FiXtRNcH1obDEPaU0S9lmPQf2anXE6fI5+nfXc9V
+         w9tA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695369308; x=1695974108;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xo0lap6Lgs4aUClULX8HNoJkpzCnX/7Jsbfgdxnl/pY=;
+        b=UVX+nRiXNtmEGowu8RPlneRCR8Lwv4Emn/uTd90Db5spAOsHI0nLOwxtYu8X509Z8r
+         8OT/NhaBbS4KTTXnSrbh2KSEb3p5GbtUyrzApEPFx2HWi+Ci4hOdVZgJ/RvHLUNbAOKy
+         U668Nat+edH30iwWTfMaCW+YdKX3aQcuDBuLQxYIJAzCeWRolP4U8IeTh5O8f+E0WmSW
+         a92Hcz2PgXooRvLjJdTnZXNfEYioobtnm9D9JFNGLboTJN+2FiU31rAjTnCUdUS5tPjm
+         cFnfSJ1GwwIVNba61GbJRUUFEWvX+C10rkfI4pC0CRoyvatv+Bg9CZSvjMBzEd09Q+lt
+         qXRA==
+X-Gm-Message-State: AOJu0YwUYcCIni7vsk54mmb6LefrzpQpKHcyIYrfmmcEcS2loT1QwZuv
+	9rlPMS/hEoX8oisWClT4H+nlhYCRM2f36QImuLTVQZzlrnNodAqlh+BmxRI6
+X-Google-Smtp-Source: AGHT+IHSS1vKwEC9knLhqPNk1Y0RB0kqAke1ZsK8aoLkzIhsG+WewxcfwopOZUPCJajquFT5HL9JcQU2cuAIG7Q6jvU=
+X-Received: by 2002:a17:906:2009:b0:9a5:c49e:7145 with SMTP id
+ 9-20020a170906200900b009a5c49e7145mr6718209ejo.69.1695369308485; Fri, 22 Sep
+ 2023 00:55:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v16 0/7] Support Nuvoton NPCM Video Capture/Encode Engine
-Content-Language: en-US, nl
-To: Marvin Lin <milkfafa@gmail.com>, mchehab@kernel.org,
- avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
- venture@google.com, yuenn@google.com, benjaminfair@google.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- andrzej.p@collabora.com
-Cc: devicetree@vger.kernel.org, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org, kwliu@nuvoton.com,
- kflin@nuvoton.com
-References: <20230922062405.2571850-1-milkfafa@gmail.com>
-From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <20230922062405.2571850-1-milkfafa@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20230920170253.203395-1-dlechner@baylibre.com>
+ <20230920170253.203395-5-dlechner@baylibre.com> <20230921154514.GA383967-robh@kernel.org>
+In-Reply-To: <20230921154514.GA383967-robh@kernel.org>
+From: David Lechner <dlechner@baylibre.com>
+Date: Fri, 22 Sep 2023 09:54:57 +0200
+Message-ID: <CAMknhBEVLZYQieKPCCf8QHp7H06Vsdobg_7qGm+MsbL8Kg-VCQ@mail.gmail.com>
+Subject: Re: [PATCH 4/4] iio: resolver: add new driver for AD2S1210
+To: Rob Herring <robh@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	Jonathan Cameron <jic23@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Axel Haslam <ahaslam@baylibre.com>, Philip Molloy <pmolloy@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-Hi Marvin,
+On Thu, Sep 21, 2023 at 5:45=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Wed, Sep 20, 2023 at 12:02:53PM -0500, David Lechner wrote:
+> > This adds a new driver for Analog Devices, Inc. AD2S1210 resolver to
+> > digital converter. The driver is based on the staging driver with the
+> > following improvements:
+> >
 
-Thank you for all your work! I have pushed these patches to our staging branch
-and they should appear in kernel 6.8.
+...
 
-Note that dts patches do not go through the media subsystem, so whoever is in
-charge of that will have to pick that one up.
+> > - Use devicetree to specify resolution instead of sysfs attribute.
+>
+> Why? sysfs allows a user to change at run-time. DT is a firmware
+> change. What/who determines the resolution? Unless it's the hardware
+> design/designer, it probably doesn't belong in DT.
+>
 
-Regards,
+This one is a bit of a gray area since it could be either way. The chip
+has two input pins for selecting the resolution. If the hardware
+designer decides to connect these to gpios, then they could be changed
+at runtime. But if the hardware designer decides to hard-wire these pins
+then we need to supply this information via the devicetree.
 
-	Hans
-
-On 22/09/2023 08:23, Marvin Lin wrote:
-> This patch series add DTS node, dt-bindings document and drivers for Video
-> Capture/Differentiation Engine (VCD) and Encoding Compression Engine (ECE)
-> present on Nuvoton NPCM SoCs.
-> 
-> As described in the datasheet NPCM750D_DS_Rev_1.0, the VCD can capture a
-> frame from digital video input and compare two frames in memory, and then
-> the ECE can compress the frame data into HEXTILE format which is defined
-> in Remote Framebuffer Protocol (RFC 6143, chapter 7.7.4. Hextile Encoding).
-> 
-> The output of v4l2-compliance:
-> v4l2-compliance 1.23.0-4996, 64 bits, 64-bit time_t
-> v4l2-compliance SHA: 9431e4b26b48 2023-02-13 14:51:47
-> 
-> Compliance test for npcm-video device /dev/video0:
-> 
-> Driver Info:
->         Driver name      : npcm-video
->         Card type        : NPCM Video Engine
->         Bus info         : platform:npcm-video
->         Driver version   : 6.1.12
->         Capabilities     : 0x84200001
->                 Video Capture
->                 Streaming
->                 Extended Pix Format
->                 Device Capabilities
->         Device Caps      : 0x04200001
->                 Video Capture
->                 Streaming
->                 Extended Pix Format
-> 
-> Required ioctls:
->         test VIDIOC_QUERYCAP: OK
->         test invalid ioctls: OK
-> 
-> Allow for multiple opens:
->         test second /dev/video0 open: OK
->         test VIDIOC_QUERYCAP: OK
->         test VIDIOC_G/S_PRIORITY: OK
->         test for unlimited opens: OK
-> 
-> Debug ioctls:
->         test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
->         test VIDIOC_LOG_STATUS: OK (Not Supported)
-> 
-> Input ioctls:
->         test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
->         test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
->         test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
->         test VIDIOC_ENUMAUDIO: OK (Not Supported)
->         test VIDIOC_G/S/ENUMINPUT: OK
->         test VIDIOC_G/S_AUDIO: OK (Not Supported)
->         Inputs: 1 Audio Inputs: 0 Tuners: 0
-> 
-> Output ioctls:
->         test VIDIOC_G/S_MODULATOR: OK (Not Supported)
->         test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
->         test VIDIOC_ENUMAUDOUT: OK (Not Supported)
->         test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
->         test VIDIOC_G/S_AUDOUT: OK (Not Supported)
->         Outputs: 0 Audio Outputs: 0 Modulators: 0
-> 
-> Input/Output configuration ioctls:
->         test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
->         test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK
->         test VIDIOC_DV_TIMINGS_CAP: OK
->         test VIDIOC_G/S_EDID: OK (Not Supported)
-> 
-> Control ioctls (Input 0):
->         test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
->         test VIDIOC_QUERYCTRL: OK
->         test VIDIOC_G/S_CTRL: OK
->         test VIDIOC_G/S/TRY_EXT_CTRLS: OK
->                 warn: v4l2-test-controls.cpp(1139): V4L2_CID_DV_RX_POWER_PRESENT not found for input 0
->         test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
->         test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
->         Standard Controls: 1 Private Controls: 2
-> 
-> Format ioctls (Input 0):
->         test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
->         test VIDIOC_G/S_PARM: OK (Not Supported)
->         test VIDIOC_G_FBUF: OK (Not Supported)
->         test VIDIOC_G_FMT: OK
->         test VIDIOC_TRY_FMT: OK
->         test VIDIOC_S_FMT: OK
->         test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
->         test Cropping: OK (Not Supported)
->         test Composing: OK (Not Supported)
->         test Scaling: OK (Not Supported)
-> 
-> Codec ioctls (Input 0):
->         test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
->         test VIDIOC_G_ENC_INDEX: OK (Not Supported)
->         test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
-> 
-> Buffer ioctls (Input 0):
->         test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
->         test VIDIOC_EXPBUF: OK
->         test Requests: OK (Not Supported)
-> 
-> Total for npcm-video device /dev/video0: 45, Succeeded: 45, Failed: 0, Warnings: 1
-> 
-> Changes in v16:
->   - Fix sparse warnings.
->   - Shorten V4L2_CID_NPCM_RECT_COUNT control name.
-> 
-> Changes in v15:
->   - Drop VOLATILE flag from V4L2_CID_NPCM_RECT_COUNT control and update
->     value by v4l2_ctrl_s_ctrl.
->   - Add more explanations in comment/document for V4L2_CID_NPCM_RECT_COUNT.
-> 
-> Changes in v14:
->   - Modify the flow of setting resolution and queue setup
->   - Correct the control type (TYPE_MENU) of selecting between two modes.
->   - Let ECE could be optional (only supports PIX_FMT_RGB565 if ECE is not
->     enabled in DT).
-> 
-> Changes in v13:
->   - Modify the flow for capturing next frame
->   - Modify the behavior of resolution change interrupt
->   - Move GFXI dt-bindings document to
->     Documentation/devicetree/bindings/soc/nuvoton/nuvoton,gfxi.yaml
-> 
-> Changes in v12:
->   - Modify the flow for detecting resolution change and raise
->     V4L2_EVENT_SOURCE_CHANGE event.
->   - Add V4L2_PIX_FMT_RGB565 format support.
-> 
-> Changes in v11:
->   - Replace "u8/u16/u32" with "unsigned int" for generic local variables.
->   - Correct subsystem prefixes, drop redundant words in commit subject, and
->     add more information in commit message.
-> 
-> Changes in v10:
->   - drivers/media/platform/nuvoton/npcm-video.c
->     * Let short functions to be inline function.
->     * Correct return type of some functions, and properly handle return
->       value by callers.
->     * Correct the timing of removing rect_list and the flow of FIFO overrun
->       case in irq.
->     * Adjust line breaks, indentations, and style of variable declarations.
-> 
-> Changes in v9:
->   - Change ECE node name to "video-codec".
->   - Drop redundant "bindings for" in commit subject of patch 2/7.
->   - Refine the format of VCD/ECE dt-binding document.
-> 
-> Changes in v8:
->   - Let VCD/ECE to be 2 separate nodes and update dt-binding documents.
->   - Move register definitions out to a local header file.
->   - Driver refinements (add error handling for memory allocation, remove
->     unnecessary condition check and introduce "goto"s to handle similar
->     error recovery paths).
->   - Correct properties and typo in GFXI dt-binding document.
-> 
-> Changes in v7:
->   - Add uapi documents for driver-specific controls.
->   - Implement driver-specific controls for switching capture mode and
->     getting the count of compressed HEXTILE rectangles.
->   - Drop unnecessary "enum_framesizes" and "enum_frameintervals" functions.
->   - Include the output of v4l2-compliance in cover letter.
-> 
-> Changes in v6:
->   - Support NPCM845 and add compatible "nuvoton,npcm845-video".
->   - Correct pixel format to V4L2_PIX_FMT_HEXTILE which is newly added in
->     this patch series.
-> 
-> Changes in v5:
->   - Simplify function prefix "nuvoton_" to "npcm_".
->   - Increase VCD_BUSY_TIMEOUT_US and ECE_POLL_TIMEOUT_US to 300ms to
->     prevent polling timeout when ECC is enabled or system is busy.
-> 
-> Changes in v4:
->   - Fix compile warning reported by kernel test robot.
-> 
-> Changes in v3:
->   - Add video driver entry in MAINTAINERS.
->   - Change config name to CONFIG_VIDEO_NPCM_VCD_ECE.
->   - Reduce the waiting time after resetting the VCD/ECE module.
->   - Correct data types of some variables.
-> 
-> Changes in v2:
->   - Add Hextile document and locate with vendor formats.
-> 
-> Marvin Lin (7):
->   ARM: dts: nuvoton: Add node for NPCM VCD and ECE engine
->   media: dt-bindings: nuvoton: Add NPCM VCD and ECE engine
->   dt-bindings: soc: nuvoton: Add NPCM GFXI
->   media: v4l: Add HEXTILE compressed format
->   media: v4l2-ctrls: Add user control base for Nuvoton NPCM controls
->   media: uapi: Add controls for NPCM video driver
->   media: nuvoton: Add driver for NPCM video capture and encoding engine
-> 
->  .../bindings/media/nuvoton,npcm-ece.yaml      |   43 +
->  .../bindings/media/nuvoton,npcm-vcd.yaml      |   72 +
->  .../bindings/soc/nuvoton/nuvoton,gfxi.yaml    |   39 +
->  .../userspace-api/media/drivers/index.rst     |    1 +
->  .../media/drivers/npcm-video.rst              |   66 +
->  .../media/v4l/pixfmt-reserved.rst             |    7 +
->  MAINTAINERS                                   |   12 +
->  .../dts/nuvoton/nuvoton-common-npcm7xx.dtsi   |   23 +
->  drivers/media/platform/Kconfig                |    1 +
->  drivers/media/platform/Makefile               |    1 +
->  drivers/media/platform/nuvoton/Kconfig        |   15 +
->  drivers/media/platform/nuvoton/Makefile       |    2 +
->  drivers/media/platform/nuvoton/npcm-regs.h    |  152 ++
->  drivers/media/platform/nuvoton/npcm-video.c   | 1831 +++++++++++++++++
->  drivers/media/v4l2-core/v4l2-ioctl.c          |    1 +
->  include/uapi/linux/npcm-video.h               |   41 +
->  include/uapi/linux/v4l2-controls.h            |    6 +
->  include/uapi/linux/videodev2.h                |    1 +
->  18 files changed, 2314 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/nuvoton,npcm-ece.yaml
->  create mode 100644 Documentation/devicetree/bindings/media/nuvoton,npcm-vcd.yaml
->  create mode 100644 Documentation/devicetree/bindings/soc/nuvoton/nuvoton,gfxi.yaml
->  create mode 100644 Documentation/userspace-api/media/drivers/npcm-video.rst
->  create mode 100644 drivers/media/platform/nuvoton/Kconfig
->  create mode 100644 drivers/media/platform/nuvoton/Makefile
->  create mode 100644 drivers/media/platform/nuvoton/npcm-regs.h
->  create mode 100644 drivers/media/platform/nuvoton/npcm-video.c
->  create mode 100644 include/uapi/linux/npcm-video.h
-> 
-
+The choice of the resolution is determined by the physical requirements
+of the full system. This device measures rotational position and velocity.
+So the main reason to pick something less than the full 16-bit resolution i=
+s
+if the max rotational speed of whatever is connected is going to be greater
+than 125 revolutions per second (assuming 8.192 MHz clock).
 
