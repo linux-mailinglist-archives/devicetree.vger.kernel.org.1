@@ -1,111 +1,335 @@
-Return-Path: <devicetree+bounces-2512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 210A67AB112
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 13:41:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5CC97AB11B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 13:43:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 418BAB20C64
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 11:41:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 35ED6B20BEB
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 11:43:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F649200A4;
-	Fri, 22 Sep 2023 11:41:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 624301F95C;
+	Fri, 22 Sep 2023 11:43:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC1A0182B3
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 11:41:44 +0000 (UTC)
-Received: from xry111.site (xry111.site [89.208.246.23])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46061FB;
-	Fri, 22 Sep 2023 04:41:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xry111.site;
-	s=default; t=1695382902;
-	bh=9tS+t+9ne/achIv7oKXeD3phZJ7C1Jx1QC/gCOCkAJw=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=gF2j4UiOogzBDjYD8oxN34bmy2Sftbo+qN3LnAvHjAnvzN1+MgDs7xMhw8UaUvPfY
-	 1ajoom+NH/l6RGptV5B8xBFQdGoGY1ApU8cN08XLoxhIECZ8jUPlZ4NMP6Eh7fqKOh
-	 YIeRIyWmUAmLXdcNR82qk8nIsDbgmjGY3F088qbs=
-Received: from [127.0.0.1] (xry111.site [IPv6:2001:470:683e::1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-384) server-digest SHA384)
-	(Client did not present a certificate)
-	(Authenticated sender: xry111@xry111.site)
-	by xry111.site (Postfix) with ESMTPSA id 271226599B;
-	Fri, 22 Sep 2023 07:41:38 -0400 (EDT)
-Message-ID: <c1a4a7ab5c68c00dd8b3bb249c0371dbb8bcb929.camel@xry111.site>
-Subject: Re: [PATCH 0/6] RISC-V: Add eMMC support for TH1520 boards
-From: Xi Ruoyao <xry111@xry111.site>
-To: Drew Fustini <dfustini@baylibre.com>, Ulf Hansson
- <ulf.hansson@linaro.org>,  Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, Adrian Hunter
- <adrian.hunter@intel.com>, Guo Ren <guoren@kernel.org>, Fu Wei
- <wefu@redhat.com>,  Paul Walmsley <paul.walmsley@sifive.com>, Palmer
- Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,  Conor
- Dooley <conor@kernel.org>
-Cc: Robert Nelson <robertcnelson@beagleboard.org>, Jason Kridner
-	 <jkridner@beagleboard.org>, Han Gao <gaohan@iscas.ac.cn>, Icenowy Zheng
-	 <uwu@icenowy.me>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Date: Fri, 22 Sep 2023 19:41:37 +0800
-In-Reply-To: <20230921-th1520-mmc-v1-0-49f76c274fb3@baylibre.com>
-References: <20230921-th1520-mmc-v1-0-49f76c274fb3@baylibre.com>
-Autocrypt: addr=xry111@xry111.site; prefer-encrypt=mutual;
- keydata=mDMEYnkdPhYJKwYBBAHaRw8BAQdAsY+HvJs3EVKpwIu2gN89cQT/pnrbQtlvd6Yfq7egugi0HlhpIFJ1b3lhbyA8eHJ5MTExQHhyeTExMS5zaXRlPoiTBBMWCgA7FiEEkdD1djAfkk197dzorKrSDhnnEOMFAmJ5HT4CGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQrKrSDhnnEOPHFgD8D9vUToTd1MF5bng9uPJq5y3DfpcxDp+LD3joA3U2TmwA/jZtN9xLH7CGDHeClKZK/ZYELotWfJsqRcthOIGjsdAPuDgEYnkdPhIKKwYBBAGXVQEFAQEHQG+HnNiPZseiBkzYBHwq/nN638o0NPwgYwH70wlKMZhRAwEIB4h4BBgWCgAgFiEEkdD1djAfkk197dzorKrSDhnnEOMFAmJ5HT4CGwwACgkQrKrSDhnnEOPjXgD/euD64cxwqDIqckUaisT3VCst11RcnO5iRHm6meNIwj0BALLmWplyi7beKrOlqKfuZtCLbiAPywGfCNg8LOTt4iMD
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.0 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 489C91F954;
+	Fri, 22 Sep 2023 11:43:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D9C7C433C8;
+	Fri, 22 Sep 2023 11:43:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695382992;
+	bh=UL8TH12yxhaIMYvyUi/thvzlbWtFsgDinsXcxmzB5uA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Z5j69VsppTky9oLNhaaNt7S9yZ8FTOTxkyDyKDzfbrKb1yeXrzLzHjw8r4jZWPAmq
+	 dYVRdIMzUWVC1o3rmhaRK0EA/BAPl1F3QFP+S9wB0MB3kzjXvgGF4o8bo1OwA6G2Z/
+	 XSXjsseo7vWGeZtHEsaP2Tz7+/sFlQtAPUcQUeUP750ScNPcjB0qFk+PjPuTYU9/ze
+	 37p7LaL35yaXqVglDgrwxxRw/pL+S3UuJCCeH5lvZJtnp8oEn/mJRtyVQpOmB1n0zK
+	 y4BNOl6kjKD7UiIKjF5VFgV4zmZT3/JHPENsh+kdi5SAHJvcGtl+E/QfJ0xHGClrnT
+	 CL5dEyCIS9DSQ==
+Date: Fri, 22 Sep 2023 12:43:06 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Christophe Roullier <christophe.roullier@foss.st.com>
+Cc: "David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/7] dt-bindings: net: add STM32MP13 compatible in
+ documentation for stm32
+Message-ID: <20230922-surface-graduate-a269a700e5c5@spud>
+References: <20230921150622.599232-1-christophe.roullier@foss.st.com>
+ <20230921150622.599232-2-christophe.roullier@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="y7/hylnc6AQ95TsF"
+Content-Disposition: inline
+In-Reply-To: <20230921150622.599232-2-christophe.roullier@foss.st.com>
 
-On Thu, 2023-09-21 at 18:49 -0700, Drew Fustini wrote:
-> This series adds support for the eMMC on the BeagleV Ahead and the
-> Sipeed LicheePi 4A. This allows the kernel to boot with the rootfs on
-> eMMC.
+
+--y7/hylnc6AQ95TsF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Yo,
+
+On Thu, Sep 21, 2023 at 05:06:16PM +0200, Christophe Roullier wrote:
+> New STM32 SOC have 2 GMACs instances.
+> GMAC IP version is SNPS 4.20.
 >=20
-> I tested on top of v6.6-rc2 with this config [1]. I was able to boot
-> both the Ahead [2] and LPi4a [3] from eMMC. The following prerequisites
-> are required:
+> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
+> ---
+>  .../devicetree/bindings/net/stm32-dwmac.yaml  | 140 +++++++++++++++---
+>  1 file changed, 118 insertions(+), 22 deletions(-)
 >=20
-> =C2=A0 [PATCH v2] riscv: dts: thead: set dma-noncoherent to soc bus [4]
+> diff --git a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml b/Doc=
+umentation/devicetree/bindings/net/stm32-dwmac.yaml
+> index fc8c96b08d7d..75836916c38c 100644
+> --- a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+> @@ -22,15 +22,17 @@ select:
+>          enum:
+>            - st,stm32-dwmac
+>            - st,stm32mp1-dwmac
+> +          - st,stm32mp13-dwmac
+>    required:
+>      - compatible
+> =20
+> -allOf:
+> -  - $ref: snps,dwmac.yaml#
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+> +      - items:
+> +          - enum:
+> +              - st,stm32mp13-dwmac
+> +          - const: snps,dwmac-4.20a
+
+The enum just below this is also for the 4.20a, no? Why not just put
+this mp13 compatible into that enum?
+
+>        - items:
+>            - enum:
+>                - st,stm32mp1-dwmac
+> @@ -72,27 +74,69 @@ properties:
+>          - eth-ck
+>          - ptp_ref
+> =20
+> -  st,syscon:
+
+Please try to avoid defining properties inside if/then/else sections and
+only move the variable bits if possible.
+
+> -    $ref: /schemas/types.yaml#/definitions/phandle-array
+> -    items:
+> -      - items:
+> -          - description: phandle to the syscon node which encompases the=
+ glue register
+> -          - description: offset of the control register
+> +  phy-supply:
+> +    description: PHY regulator
+> +
+> +  st,ext-phyclk:
+>      description:
+> -      Should be phandle/offset pair. The phandle to the syscon node which
+> -      encompases the glue register, and the offset of the control regist=
+er
+> +      set this property in RMII mode when you have PHY without crystal 5=
+0MHz and want to
+> +      select RCC clock instead of ETH_REF_CLK. or in RGMII mode when you=
+ want to select
+> +      RCC clock instead of ETH_CLK125.
+> +    type: boolean
+> =20
+>    st,eth-clk-sel:
+> +    deprecated: true
+
+Why have these been marked as deprecated? That doesn't appear to be
+mention in the commit message & sounds like it should be a different
+commit.
+
+>      description:
+>        set this property in RGMII PHY when you want to select RCC clock i=
+nstead of ETH_CLK125.
+>      type: boolean
+> =20
+>    st,eth-ref-clk-sel:
+> +    deprecated: true
+
+Ditto.
+
+>      description:
+>        set this property in RMII mode when you have PHY without crystal 5=
+0MHz and want to
+>        select RCC clock instead of ETH_REF_CLK.
+>      type: boolean
+> =20
+> +allOf:
+> +  - $ref: snps,dwmac.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - st,stm32mp1-dwmac
+> +              - st,stm32-dwmac
+> +    then:
+> +      properties:
+> +        st,syscon:
+> +          $ref: /schemas/types.yaml#/definitions/phandle-array
+> +          items:
+> +            - items:
+> +                - description: phandle to the syscon node which encompas=
+es the glue register
+> +                - description: offset of the control register
+> +          description:
+> +            Should be phandle/offset pair. The phandle to the syscon nod=
+e which
+> +            encompases the glue register, and the offset of the control =
+register
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - st,stm32mp13-dwmac
+
+You've got 2 if/then sections containing tests for 3 compatibles. There
+are only 2 compatibles total right now & 3 with the patch, so it looks
+like you'd get away with if/then/else instead.
+
+> +    then:
+> +      properties:
+> +        st,syscon:
+> +          $ref: /schemas/types.yaml#/definitions/phandle-array
+> +          items:
+> +            - items:
+> +                - description: phandle to the syscon node which encompas=
+es the glue register
+> +                - description: offset of the control register
+> +                - description: field to set mask in register
+> +          description:
+> +            Should be phandle/offset pair. The phandle to the syscon nod=
+e which
+> +            encompases the glue register, the offset of the control regi=
+ster and
+> +            the mask to set bitfield in control register
+> +
+>  required:
+>    - compatible
+>    - clocks
+> @@ -112,24 +156,36 @@ examples:
+>             compatible =3D "st,stm32mp1-dwmac", "snps,dwmac-4.20a";
+
+I don't understand why this existing example is changing.
+
+Thanks,
+Conor.
+
+>             reg =3D <0x5800a000 0x2000>;
+>             reg-names =3D "stmmaceth";
+> -           interrupts =3D <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
+> -           interrupt-names =3D "macirq";
+> +           interrupts-extended =3D <&intc GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH=
+>,
+> +                                 <&exti 70 IRQ_TYPE_LEVEL_HIGH>;
+> +           interrupt-names =3D "macirq",
+> +                             "eth_wake_irq";
+>             clock-names =3D "stmmaceth",
+> -                     "mac-clk-tx",
+> -                     "mac-clk-rx",
+> -                     "ethstp",
+> -                     "eth-ck";
+> +                         "mac-clk-tx",
+> +                         "mac-clk-rx",
+> +                         "eth-ck",
+> +                         "ptp_ref",
+> +                         "ethstp";
+>             clocks =3D <&rcc ETHMAC>,
+> -                <&rcc ETHTX>,
+> -                <&rcc ETHRX>,
+> -                <&rcc ETHSTP>,
+> -                <&rcc ETHCK_K>;
+> +                    <&rcc ETHTX>,
+> +                    <&rcc ETHRX>,
+> +                    <&rcc ETHCK_K>,
+> +                    <&rcc ETHPTP_K>,
+> +                    <&rcc ETHSTP>;
+>             st,syscon =3D <&syscfg 0x4>;
+> +           snps,mixed-burst;
+>             snps,pbl =3D <2>;
+> +           snps,en-tx-lpi-clockgating;
+>             snps,axi-config =3D <&stmmac_axi_config_0>;
+>             snps,tso;
+>             phy-mode =3D "rgmii";
+> -       };
+> +
+> +           stmmac_axi_config_0: stmmac-axi-config {
+> +                                snps,wr_osr_lmt =3D <0x7>;
+> +                                snps,rd_osr_lmt =3D <0x7>;
+> +                                snps,blen =3D <0 0 0 0 16 8 4>;
+> +           };
+> +     };
+> =20
+>    - |
+>      //Example 2 (MCU example)
+> @@ -161,3 +217,43 @@ examples:
+>             snps,pbl =3D <8>;
+>             phy-mode =3D "mii";
+>         };
+> +
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/stm32mp1-clks.h>
+> +    #include <dt-bindings/reset/stm32mp1-resets.h>
+> +    #include <dt-bindings/mfd/stm32h7-rcc.h>
+> +    //Example 4
+> +     ethernet3: ethernet@5800a000 {
+> +           compatible =3D "st,stm32mp13-dwmac", "snps,dwmac-4.20a";
+> +           reg =3D <0x5800a000 0x2000>;
+> +           reg-names =3D "stmmaceth";
+> +           interrupts-extended =3D <&intc GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH=
+>,
+> +                                 <&exti 68 IRQ_TYPE_LEVEL_HIGH>;
+> +           interrupt-names =3D "macirq",
+> +                             "eth_wake_irq";
+> +           clock-names =3D "stmmaceth",
+> +                         "mac-clk-tx",
+> +                         "mac-clk-rx",
+> +                         "eth-ck",
+> +                         "ptp_ref",
+> +                         "ethstp";
+> +           clocks =3D <&rcc ETHMAC>,
+> +                    <&rcc ETHTX>,
+> +                    <&rcc ETHRX>,
+> +                    <&rcc ETHCK_K>,
+> +                    <&rcc ETHPTP_K>,
+> +                    <&rcc ETHSTP>;
+> +           st,syscon =3D <&syscfg 0x4 0xff0000>;
+> +           snps,mixed-burst;
+> +           snps,pbl =3D <2>;
+> +           snps,axi-config =3D <&stmmac_axi_config_1>;
+> +           snps,tso;
+> +           phy-mode =3D "rmii";
+> +
+> +           stmmac_axi_config_1: stmmac-axi-config {
+> +                                snps,wr_osr_lmt =3D <0x7>;
+> +                                snps,rd_osr_lmt =3D <0x7>;
+> +                                snps,blen =3D <0 0 0 0 16 8 4>;
+> +           };
+> +     };
+> --=20
+> 2.25.1
 >=20
-> I pushed a branch [5] with this patch series and the above patch for
-> those that find a git branch easier to test.
->=20
-> Please note that only the MMC controller connected to the eMMC device
-> is enabled in the device trees for these two boards. I did not yet
-> attempt to configure and use the microSD card slot. My preference is to
-> address that in a future patch series.
->=20
-> References:
-> [1] https://gist.github.com/pdp7/5fbdcf2a65eb1abdd3a29d519c19cdd2
-> [2] https://gist.github.com/pdp7/91a801a5f8d1070c53509eda9800ad78
-> [3] https://gist.github.com/pdp7/1445c3c991e88fd69c60165cef65726a
-> [4] https://lore.kernel.org/linux-riscv/20230912072232.2455-1-jszhang@ker=
-nel.org/
-> [5] https://github.com/pdp7/linux/tree/b4/th1520-mmc
 
-I've tested this branch and successfully booted a rootfs on Lichee Pi 4A
-eMMC with rootdelay=3D10.
+--y7/hylnc6AQ95TsF
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Curiously is there some way to make it work without rootdelay?
+-----BEGIN PGP SIGNATURE-----
 
-For everything except "Enable BeagleV Ahead eMMC controller":
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQ19ygAKCRB4tDGHoIJi
+0uJ2AQDYMHSxhPUAaxKOHWJ6DyhZftPWpUilt+MV/PUTA3814gEAqkENVdWxZsMn
+IiIRijrOe3RpmdB14TsJ6QPhUyr+mgg=
+=e7lu
+-----END PGP SIGNATURE-----
 
-Tested-by: Xi Ruoyao <xry111@xry111.site>
-
---=20
-Xi Ruoyao <xry111@xry111.site>
-School of Aerospace Science and Technology, Xidian University
+--y7/hylnc6AQ95TsF--
 
