@@ -1,233 +1,210 @@
-Return-Path: <devicetree+bounces-2495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFA387AB027
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 13:04:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C30187AB055
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 13:15:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 740F02824FB
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 11:04:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 715D12826CF
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 11:15:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B9461DDD0;
-	Fri, 22 Sep 2023 11:04:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BA101F16D;
+	Fri, 22 Sep 2023 11:15:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E990818B0C
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 11:04:29 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 581C8194
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 04:04:27 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qjdxK-0003K1-KQ; Fri, 22 Sep 2023 13:04:18 +0200
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qjdxJ-0088vQ-Ar; Fri, 22 Sep 2023 13:04:17 +0200
-Received: from sha by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1qjdxJ-00Awlj-3I; Fri, 22 Sep 2023 13:04:17 +0200
-Date: Fri, 22 Sep 2023 13:04:17 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Saravana Kannan <saravanak@google.com>
-Cc: Chen-Yu Tsai <wens@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-rockchip@lists.infradead.org,
-	Heiko Stuebner <heiko@sntech.de>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	kernel@pengutronix.de,
-	Quentin Schulz <quentin.schulz@theobroma-systems.com>,
-	Michael Riesch <michael.riesch@wolfvision.net>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8AD71F16B
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 11:15:07 +0000 (UTC)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B6D1AF;
+	Fri, 22 Sep 2023 04:15:06 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-5043120ffbcso2420894e87.2;
+        Fri, 22 Sep 2023 04:15:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695381304; x=1695986104; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=12f5yyT0VcPpXHLkpH7MFmQ/cCt4mwm5CuEcr3HwBqw=;
+        b=HCd2tLAm3gJbK09WMZivh7k3m9MrWocOE2xYG9S3LiIWV/xoMHdDTQYk72ioIvso98
+         YXHh02qNOI8ALYZgbvwkbiOB4b4dC7qLZCA3Qjn30vZ/HheyjvwtatgUdXto7vf23WTb
+         wV9LmgppYzT06cMcpMFuWoRhe8EqYzeCaXaaK2Lezkqe125yh36veH905bQo8i7K1yED
+         lhfJe4XiwSJzF6NpUUBw6hzR7JS9OS1tjXwTddlj4r/BfIE2KeGmRnFI7Sh/IXu6lMcz
+         jh5xyCt8fpkupC4P0kiR4mFYshUbmCkqLrdYb2JmIPYCc++fqAXwlKlOpaZW1qPkHgf9
+         zoIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695381304; x=1695986104;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=12f5yyT0VcPpXHLkpH7MFmQ/cCt4mwm5CuEcr3HwBqw=;
+        b=Xq16ot0VQXtJQaBovYEt1rA1xonZjLD3iQ1bTXoI0HB4FidpXBFSR1zBJ8xpRXpFK5
+         2UEb3V3jJj9BNb9m3WIuGKGoaA+CjVluIFQPy21pP1dUoncZCnsHFnM7TgEMrXu1W43q
+         FfucecRYi7+l3CNgtsYsqBPmAAUBXs24HDB0/ZdsBs3YoI6YcCNqx08FgnW4W3vAEwDT
+         KtDDNvAvMRI5Hx444JdLCgw86pVVWqooJqKFnKt83rv96lfOgNEifYj+dkGzoCnASq0r
+         N8/WdnpUTs8auof20JtHTJsjBlzp+IbtUlESa4w2yxhQJcfpgkxA9+4/Rm25CCUNholo
+         L3fQ==
+X-Gm-Message-State: AOJu0Yxsohpj/JXsHX46CWdPv1nZy3SfjZkztAVrTY4HijRKGYxz/727
+	dIFgJFzeHhn1zyBc5uwdDos=
+X-Google-Smtp-Source: AGHT+IGTsCyYllBO4l7k+xEQT18giXRjSmXex4cYTRopU2IrAJdzJXSNvDpxxwYoljSAmGj/H0Be7w==
+X-Received: by 2002:a19:8c14:0:b0:500:ac10:1641 with SMTP id o20-20020a198c14000000b00500ac101641mr7174543lfd.46.1695381301847;
+        Fri, 22 Sep 2023 04:15:01 -0700 (PDT)
+Received: from dc78bmyyyyyyyyyyyyyyt-3.rev.dnainternet.fi (dc78bmyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::1])
+        by smtp.gmail.com with ESMTPSA id c11-20020a19760b000000b0050338c5c1f3sm690352lff.14.2023.09.22.04.14.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Sep 2023 04:15:00 -0700 (PDT)
+Date: Fri, 22 Sep 2023 14:14:52 +0300
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 1/3] pinctrl: rockchip: add support for io-domain
- dependency
-Message-ID: <20230922110417.GV637806@pengutronix.de>
-References: <20230904115816.1237684-1-s.hauer@pengutronix.de>
- <20230904115816.1237684-2-s.hauer@pengutronix.de>
- <CACRpkdYxRdToUM3JcEeNK_K87D5WDzzSLvVEbtqqdQEhz3k_Ow@mail.gmail.com>
- <CAGb2v65G-8EECNjqnpKCxqAD5nATAb0S7AA_WMiGXYOR1avrvg@mail.gmail.com>
- <20230913065843.GF637806@pengutronix.de>
- <CAGETcx8rO=aykjb6=5k0wpOyscqokNwSL6w-AHnodY7pNXyzGQ@mail.gmail.com>
- <20230915065120.GQ637806@pengutronix.de>
- <CAGETcx-stUfkVmkwGhj7iBWfCRsY5uZ=CxJdX9pPY6OO6oGUhg@mail.gmail.com>
- <20230921135756.GT637806@pengutronix.de>
- <CAGETcx8Ora87tbjVek-2WZW1QqHp+uB63r4w73ekBByPUDdTpw@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Angel Iglesias <ang.iglesiasg@gmail.com>,
+	Andreas Klinger <ak@it-klinger.de>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Benjamin Bara <bbara93@gmail.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/6] Support ROHM BM1390 pressure sensor
+Message-ID: <cover.1695380366.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="GWs1Q0lOeljR7ll2"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAGETcx8Ora87tbjVek-2WZW1QqHp+uB63r4w73ekBByPUDdTpw@mail.gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Thu, Sep 21, 2023 at 01:49:21PM -0700, Saravana Kannan wrote:
-> On Thu, Sep 21, 2023 at 6:57 AM Sascha Hauer <s.hauer@pengutronix.de> wrote:
-> >
-> > On Wed, Sep 20, 2023 at 03:00:28PM -0700, Saravana Kannan wrote:
-> > > On Thu, Sep 14, 2023 at 11:51 PM Sascha Hauer <s.hauer@pengutronix.de> wrote:
-> > > >
-> > > > On Wed, Sep 13, 2023 at 01:48:12PM -0700, Saravana Kannan wrote:
-> > > > > On Tue, Sep 12, 2023 at 11:58 PM Sascha Hauer <s.hauer@pengutronix.de> wrote:
-> > > > > >
-> > > > > > On Wed, Sep 13, 2023 at 12:37:54PM +0800, Chen-Yu Tsai wrote:
-> > > > > > > On Tue, Sep 12, 2023 at 4:07 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> > > > > > > >
-> > > > > > > > Top posting to bring Saravana Kannan into this discussion.
-> > > > > > > >
-> > > > > > > > This looks like a big hack to me, Saravana has been working
-> > > > > > > > tirelessly to make the device tree probe order "sort itself out"
-> > > > > > > > and I am pretty sure this issue needs to be fixed at the DT
-> > > > > > > > core level and not in a driver.
-> > > > > > >
-> > > > > > > We could merge all the IO domain stuff into the pinctrl node/driver,
-> > > > > > > like is done for Allwinner? Maybe that would simplify things a bit?
-> > > > > >
-> > > > > > I thought about this as well. On Rockchip the pinctrl driver and the IO
-> > > > > > domain driver even work on the same register space, so putting these
-> > > > > > into a single node/driver would even feel more natural than what we have
-> > > > > > now.
-> > > > >
-> > > > > Then we should try to do this and fix any issues blocking us.
-> > > > >
-> > > > > > However, with that the pinctrl node would get the supplies that the IO
-> > > > > > domain node now has and we would never get into the probe of the pinctrl
-> > > > > > driver due to the circular dependencies.
-> > > > >
-> > > > > From a fw_devlink perspective, the circular dependency shouldn't be a
-> > > > > problem. It's smart enough to recognize all cycle possibilities (since
-> > > > > 6.3) and not enforce ordering between nodes in a cycle.
-> > > > >
-> > > > > So, this is really only a matter of pinctrl not trying to do
-> > > > > regulator_get() in its probe function. You need to do the
-> > > > > regulator_get() when the pins that depend on the io-domain are
-> > > > > requested. And if the regulator isn't ready yet, return -EPROBE_DEFER?
-> > > >
-> > > > That's basically what my series does already, I return -EPROBE_DEFER
-> > > > from the pinctrl driver when a pin is requested and the IO domain is not
-> > > > yet ready.
-> > > >
-> > > > >
-> > > > > Is there something that prevents us from doing that?
-> > > >
-> > > > No. We could do that, but it wouldn't buy us anthing. I am glad to hear
-> > > > that fw_devlink can break the circular dependencies. With this we could
-> > > > add the supplies to the pinctrl node and the pinctrl driver would still
-> > > > be probed.
-> > > >
-> > > > With the IO domain supplies added to the pinctrl node our binding would
-> > > > be cleaner, but still we would have to defer probe of many requested
-> > > > pins until finally the I2C driver providing access to the PMIC comes
-> > > > along. We also still need a "Do not defer probe for these pins" property
-> > > > in the pingrp needed for the I2C driver.
-> > >
-> > > Sorry about the slow reply. Been a bit busy.
-> > >
-> > > Oh, this is not true though. With the example binding I gave,
-> > > fw_devlink will automatically defer the probe of devices that depend
-> > > on pins that need an iodomain/regulator.
-> > >
-> > > pinctrl {
-> > >     compatible = "rockchip,rk3568-pinctrl";
-> > >     i2c0 {
-> > >                 /omit-if-no-ref/
-> > >                 i2c0_xfer: i2c0-xfer {
-> > >                         rockchip,pins =
-> > >                                 /* i2c0_scl */
-> > >                                 <0 RK_PB1 1 &pcfg_pull_none_smt>,
-> > >                                 /* i2c0_sda */
-> > >                                 <0 RK_PB2 1 &pcfg_pull_none_smt>;
-> > >                 };
-> > >     }
-> > >     ...
-> > >     ...
-> > >     pinctrl-io {
-> > >         compatible = "rockchip,rk3568-pinctrl-io";
-> > >         pmuio1-supply = <&vcc3v3_pmu>;
-> > >         cam {
-> > >             ....
-> > >         }
-> > >         ....
-> > >         ....
-> > > }
-> > >
-> > > consumerA {
-> > >    pinctrl-0 = <&cam>;
-> > > }
-> > >
-> > > With this model above, there are no cycles anymore.
-> >
-> > The cycles are gone because you skipped the problematic case in your
-> > example.
-> >
-> > Replace consumerA in your example with the I2C node providing access to
-> > the PMIC which provides &vcc3v3_pmu and then you have the cycles back.
-> 
-> When you are talking about the I2C node that's the bus master for the
-> PMIC providing the supply, wouldn't it be dependent on "i2c0_xfer"?
-> And not "cam"?
-> 
-> Otherwise there's a cyclic functional dependency in hardware that can
-> never be met? Because in that case, your changes would end up
-> deferring the I2C device probe too.
 
-Yes, that's exactly the problem. There is a functional dependency in
-hardware. This can only be resolved by assuming the hardware is already
-correctly configured to access the PMIC.
+--GWs1Q0lOeljR7ll2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> I'm basically asking to split out the pins that need IO domain to work
-> into a new subnode "pinctrl-io" of the main "pinctrl" device node.
-> 
-> > The I2C master device needs the IO domain which needs a regulator
-> > provided by a client on the very same I2C master. The cycles are
-> > actually there in hardware, you can't define them away ;)
-> 
-> Right, there can be a cyclic connection dependency in hardware and you
-> can't define them away. But clearly the I2C master doesn't need the IO
-> domain to work for the I2C to be initialized, right?
+ROHM BM1390 Pressure sensor (BM1390GLV-Z) can measure pressures ranging
+=66rom 300 hPa to 1300 hPa with configurable measurement averaging and an
+internal FIFO. The sensor does also provide temperature measurements
+although, according to the data sheet, sensor performs internal
+temperature compensation for the MEMS.
 
-No, not right. The I2C master indeed does need the IO domain to be
-correctly configured and the IO domain can only be configured correctly
-when we know the voltage the PMIC supplies to the IO domain.
+Sensor does also contain IIR filter implemented in HW. The data-sheet
+says the IIR filter can be configured to be "weak", "middle" or
+"strong". Some RMS noise figures are provided in data sheet but no
+accurate maths for the filter configurations is provided.
 
-> Otherwise, how
-> can the I2C hardware be initialized? It doesn't matter what OS we
-> have, that hardware can't work. So, what am I missing? We are clearly
-> not on the same page on some details.
+I actually asked if we can define 3db frequencies corresponding to these
+IIR filter settings - and I received values 0.452Hz, 0.167Hz, and 0.047Hz
+but I am not at all sure we understood each others with the HW
+colleagues... Hence, the IIR filter configuration is not supported by this
+driver and the filter is just configured to the "middle" setting.
+(at least for now)
 
-This works by configuring the IO domain with static values in the
-bootloader which knows the reset default PMIC voltage.
+It would also be possible to not use IIR filter but just do some simple
+averaging. I wonder if it would make sense to implement the OVERSAMPLING
+value setting so that if this value is written, IIR filter is disabled and
+number of samples to be averaged is set to value requested by
+OVERSAMPLING. The data-sheet has a mention that if IIR is used, the
+number of averaged samples must be set to a fixed value.
 
-Sascha
+The FIFO measurement mode (in sensor hardware) is only measuring the
+pressure and not the temperature. The driver measures temperature when
+FIFO is flushed and simply uses the same measured temperature value to
+all reported temperatures. This should not be a problem when temperature
+is not changing very rapidly (several degrees C / second) but allows users
+to get the temperature measurements from sensor without any additional
+logic.
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+This driver has received limited amount of testing this far. It's in a
+state 'works on my machine, for my use cases' - and all feedback is
+appreciated!
+
+Revision history:
+Major changes here, please see the head room of individual patches for
+more detailed list.
+v2 =3D> v3:
+	rebased on v6.6-rc2
+	added three IIO fixup patches so numbering of patches changed
+	dt-bindings/MAINTAINERS: No changes
+	bm1390 driver:
+	 - various cleanups and fixes
+	 - do not disable IRQ
+	 - fix temperature reading when FIFO is used
+	 - separate buffer and trigger initialization
+
+v1 =3D> v2:
+	rebased on v6.6-rc1
+	dt-bindings:
+	  - fix compatible in the example
+	sensor driver:
+	  - drop unnecessary write_raw callback
+	  - plenty of small improvements and fixes
+	MAINTAINERS:
+	  - No changes
+
+Matti Vaittinen (6):
+  tools: iio: iio_generic_buffer ensure alignment
+  iio: improve doc for available_scan_mask
+  iio: try searching for exact scan_mask
+  dt-bindings: Add ROHM BM1390 pressure sensor
+  iio: pressure: Support ROHM BU1390
+  MAINTAINERS: Add ROHM BM1390
+
+ .../bindings/iio/pressure/rohm,bm1390.yaml    |  52 +
+ MAINTAINERS                                   |   6 +
+ drivers/iio/industrialio-buffer.c             |  25 +-
+ drivers/iio/pressure/Kconfig                  |   9 +
+ drivers/iio/pressure/Makefile                 |   1 +
+ drivers/iio/pressure/rohm-bm1390.c            | 930 ++++++++++++++++++
+ include/linux/iio/iio.h                       |   4 +-
+ tools/iio/iio_generic_buffer.c                |  15 +-
+ 8 files changed, 1034 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/pressure/rohm,bm1=
+390.yaml
+ create mode 100644 drivers/iio/pressure/rohm-bm1390.c
+
+
+base-commit: ce9ecca0238b140b88f43859b211c9fdfd8e5b70
+--=20
+2.41.0
+
+
+--=20
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
+
+--GWs1Q0lOeljR7ll2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmUNdygACgkQeFA3/03a
+ocUr3AgAr4DSyXT3RXXG1SAtclZKpXISF6C1bGtCrCBsAKCPLTSrvI6q+GQJemz9
++49PimaiU4H0xqgkcveRIP5AYLcPIhh4tnVnbechXWlOLATvpm9wruryNRWoA/2m
+jDjyCbhuzDNyCkb/kCqh50EOPG8FFgWQ2UdscMyNYCpgghdupBM8bRWWJ2fy8oX9
+WBk3WH5tWunFkHi46Kd0KAN/dEi+7MzmqT8U0BYZYzb4UfHrre9lFlX787vn/vIG
+JIsQueodkrSLQnN/aIoMHKqNDjsTPn4KaFeVrrzrZkZ8AfkRIoqVP3ESU2iZ9Qay
+AD5mETRtGZ/smsQd1a+iUcGlOOlGfA==
+=+Mnu
+-----END PGP SIGNATURE-----
+
+--GWs1Q0lOeljR7ll2--
 
