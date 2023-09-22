@@ -1,171 +1,134 @@
-Return-Path: <devicetree+bounces-2541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C12207AB3F4
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 16:42:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D06027AB3F8
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 16:43:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 1814C1C20909
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 14:42:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id 6CFD61F22BBD
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 14:43:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE2522EE7;
-	Fri, 22 Sep 2023 14:42:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C5F422EFA;
+	Fri, 22 Sep 2023 14:43:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C252200A8
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 14:42:47 +0000 (UTC)
-Received: from mail-oo1-xc31.google.com (mail-oo1-xc31.google.com [IPv6:2607:f8b0:4864:20::c31])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 395B61AD;
-	Fri, 22 Sep 2023 07:42:45 -0700 (PDT)
-Received: by mail-oo1-xc31.google.com with SMTP id 006d021491bc7-57359e85e9bso1098881eaf.2;
-        Fri, 22 Sep 2023 07:42:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695393764; x=1695998564; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6nqMzhPbNr8RLZEXVHoQWk3F1U8K2ekWVPTnLuWZ6u0=;
-        b=GXxiQ8tD86aENwV4iVOaGzeMO5LpjcJJginTUnH3gGJKd+bKMFuszBHwgflpzEQomW
-         +mJn5a8t6IZb0uNXowf6lPh6R+t5cYv9gVu6j7dEKd1s7iTL3QLcllTwxJxMvN7EueFa
-         BH1NqbBb1O0ghFWPjQaNa1HNxT5tr2lWr0ri/eX4c6ah2c35ayUmf2EbGZO5fE9uyWQK
-         FJZw5/3ia4ttkOUrpYBpYWAewQoCFWTH+zwSdzlVjfqe8D7yz8I8+AZ7W/xLb5V3i4oA
-         0kGUmFj/bnxXSS9oEpfwI1PahVPG6RzowhE/NqBsAr9igYNWQtc6icUNB/BqfowD+wKY
-         c7uA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695393764; x=1695998564;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:sender
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6nqMzhPbNr8RLZEXVHoQWk3F1U8K2ekWVPTnLuWZ6u0=;
-        b=oBgyJqxRNVlRdC3l2sHZFd06kLGICTgf0FTSKLLECLFCpBfMyfks6YVCDbMOMT3bvX
-         m7cwa7yIR/njZ3jXLdl0ZDda5zb2P4DZuaEpMNNkhRgwNCdoXZoxqd7gJ87wg7g6KOXc
-         qjMZ3XUha8EUCr2n8UcBYstAciWw+A/gMyZqn9h0T5r8feBA7DaDjae0pkpxU/SCLo26
-         FqMMo+amSPWNqpRy+EYaoZyOP9ZCvZy86W5+nMIuxHjRXoKEbsvWMZZllaWjmtnfGDvS
-         nToqSMaxOMbWpSmzJAmEYkp7c5aG9NJ843VyoGHqvAZqNW8mqUBPVorJgfZTTP0xdllG
-         2hMQ==
-X-Gm-Message-State: AOJu0YwOB9KC2ot19p8ySEUUqCBqFfiwf7e/JgdZrIbkRD34K/GyqY38
-	CG7Jkm/QTRbWxJFSrNh6AlI=
-X-Google-Smtp-Source: AGHT+IErb4fP6iB04EKS9z5eo37yfXxKUQp6mTQIYz2oHpTlfaLWzbmrcgutHVeqXMhtd7KrJvHIwA==
-X-Received: by 2002:a05:6870:4395:b0:1d1:425b:8026 with SMTP id r21-20020a056870439500b001d1425b8026mr9267161oah.26.1695393764236;
-        Fri, 22 Sep 2023 07:42:44 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id b28-20020a63715c000000b00578b40a4903sm573936pgn.22.2023.09.22.07.42.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Sep 2023 07:42:43 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <ceea0b12-9165-a9f6-cbd1-b25c07c75efb@roeck-us.net>
-Date: Fri, 22 Sep 2023 07:42:42 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94040200A8
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 14:43:18 +0000 (UTC)
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1F96197;
+	Fri, 22 Sep 2023 07:43:16 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+	by mailout.nyi.internal (Postfix) with ESMTP id 67BD85C01A8;
+	Fri, 22 Sep 2023 10:43:14 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Fri, 22 Sep 2023 10:43:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to; s=fm1; t=
+	1695393794; x=1695480194; bh=cX3BFEpcSwAI2RdCFAWOh+RUcIcSLZQQw+L
+	ux7UIf5E=; b=byVnIw0riDP04n+Z8z/RKs8pC9p7MfrSAwZuzyK46OTg2vYywMC
+	LckrWBrRWrN7DcJrLn/kJslgl59T+X/O2gubjWaov4OBG1L20byPOAXry6H5Gg1c
+	msiJMw5AqV1TzmDf4uNENqnrbN4eoP90hnWFYq5OPtQZCBcgb1QQ1Z0VQ4SyH9dT
+	ZO/GhMFAIL57iljL8UmtNM9vTKGXx53iNfAqpQO38w0/xZbx9/dJTJeqqe89FZTF
+	oy/FcLL7fV1Gfdp6fGnRt2HId563GMip9XgDtSzHSSYH0WgW4nsKjkCFLxSF3DxS
+	ZUw1b/7w8dTtdR/SrFwoOlzCCKlYD77ASpA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
+	1695393794; x=1695480194; bh=cX3BFEpcSwAI2RdCFAWOh+RUcIcSLZQQw+L
+	ux7UIf5E=; b=anUc5YEGEsbPQOjR6H0SbIN+3S+WwzQhj8B2WuwNKGntAArp4q9
+	f13HbRek4d+QV9bWqHq/lxH3UnP581s0QHQSj6M0HUYdzNBRpFZ2LISDIPLYvw/0
+	JhFInQNt2xyukBUbbTT7hUanvvfos6DcQd7PkGpH1aOj2rWhgr4h9LPCk3V09dqg
+	NoFCVkZUHiflLWlVHfWUADJbGEXI8Ujy5+eKbzERP4BjiqJzLZxcgh5EDjhI28+w
+	tTesag4GeQF771BCKVEEr21DiNsoGtjorF8Z7SNqvlPxvb3dnbUobZW6WmlvPEFy
+	t0rspIHcmRk3OKmmrIVSD3wGxkO8XHAmbow==
+X-ME-Sender: <xms:AKgNZZY6RHRwuWC2y8pkz1-CRypBt8bojZXgsVALd2swGQeGiXmYtg>
+    <xme:AKgNZQbS7Su86Jlv4dX87tAoQ9pyimlOV1vhU7ZkQ0U2DnZHUVgRMz9xV7bemNhEr
+    blajbTDOfR-mBkBl68>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedrudekkedgiedtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
+    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
+    htthgvrhhnpefgkeeuleegieeghfduudeltdekfeffjeeuleehleefudettddtgfevueef
+    feeigeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
+    eptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:AKgNZb8o3CcQxKVCcRK_Rp3Xs0nd8JPIpwNLwvPjRL0YJWpJxOKiBw>
+    <xmx:AKgNZXpfUDyvsH_GXBRUjW7EqrsWFts73MM-cNleiI1Nt9WrVVauIw>
+    <xmx:AKgNZUoHvPDmZBhUSsw7yfkqr-zFl-vpZLMwG6Enwtu3I-89hzKmQA>
+    <xmx:AqgNZR5XzzbiNWX3fYcKTkSSxS6wDcyiBMw8FGsaxiYYlNBSBqkPpg>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 62A8CB60089; Fri, 22 Sep 2023 10:43:12 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-761-gece9e40c48-fm-20230913.001-gece9e40c
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>,
- Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>
-Cc: Rob Herring <robh+dt@kernel.org>, "patrick@stwcx.xyz"
- <patrick@stwcx.xyz>, Jean Delvare <jdelvare@suse.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20230915062926.2460502-1-Delphine_CC_Chiu@wiwynn.com>
- <20230915062926.2460502-3-Delphine_CC_Chiu@wiwynn.com>
- <20230915-quench-left-8fbc1ca3b1da@spud>
- <CAL_JsqKWRfT71k56uMUJtU_abzFuicW01OBo-iScYash4Jrd2w@mail.gmail.com>
- <TYZPR04MB58530C4CB0386DF02D29E216D6FFA@TYZPR04MB5853.apcprd04.prod.outlook.com>
- <20230922-washday-primer-af8dcf1cde7d@spud>
-From: Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v2 2/2] dt-bindings: hwmon: add MAX31790
-In-Reply-To: <20230922-washday-primer-af8dcf1cde7d@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Message-Id: <ea9ee2dd-b71a-4c97-a347-20536d7ad424@app.fastmail.com>
+In-Reply-To: 
+ <CAAhV-H73kp8zWJD7AKUvknmxow=f_cPBw9jctpmced6o_QCF6w@mail.gmail.com>
+References: <cover.1693623752.git.zhoubinbin@loongson.cn>
+ <16a37f6ad3cc9417b6638c2cd532d88c79468eb1.1693623752.git.zhoubinbin@loongson.cn>
+ <885eab85-2c11-cf20-9187-55cd647fbe9f@infradead.org>
+ <c7604f6c-4da7-47c4-abe9-e626b3efc665@infradead.org>
+ <20230919-9ce82588fccdd641574b468c@fedora>
+ <CAAhV-H73kp8zWJD7AKUvknmxow=f_cPBw9jctpmced6o_QCF6w@mail.gmail.com>
+Date: Fri, 22 Sep 2023 10:42:51 -0400
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Huacai Chen" <chenhuacai@kernel.org>, "Conor Dooley" <conor@kernel.org>
+Cc: "Randy Dunlap" <rdunlap@infradead.org>,
+ "Binbin Zhou" <zhoubinbin@loongson.cn>,
+ "Binbin Zhou" <zhoubb.aaron@gmail.com>,
+ "Huacai Chen" <chenhuacai@loongson.cn>, "Yinbo Zhu" <zhuyinbo@loongson.cn>,
+ "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, loongson-kernel@lists.loongnix.cn,
+ soc@kernel.org, devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+ "WANG Xuerui" <kernel@xen0n.name>, loongarch@lists.linux.dev
+Subject: Re: [PATCH v3 1/5] soc: loongson: loongson2_pm: Add dependency for INPUT
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+	RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 9/22/23 02:53, Conor Dooley wrote:
-> On Fri, Sep 22, 2023 at 02:33:06AM +0000, Delphine_CC_Chiu/WYHQ/Wiwynn wrote:
->>>> On Fri, Sep 15, 2023 at 02:29:24PM +0800, Delphine CC Chiu wrote:
-> 
->>>>> +  pwm-as-tach:
->>>>
->>>> I don't see any other users of this in-tree, so you'd need a vendor
->>>> prefix. That said, I'm once bitten, twice shy about fan related
->>>> properties in hwmon, so I would definitely like Rob to comment on this
->>>> whole binding.
->>>
->>> Please see this[1] and comment on it to ensure it meets your needs.
->>> Otherwise, omit any fan related properties for now.
->>>
->> This property could only be used in max31790 driver. Would it be ok if we add
->> vendor prefix like "maxim, pwm-as-tach"?
-> 
-> I think the answer to this is a pretty straightforward no. The goal is
-> to create a set of common fan properties that works for multiple
-> usecases, not create one specifically for each user...
-> 
+On Tue, Sep 19, 2023, at 12:15, Huacai Chen wrote:
+> On Tue, Sep 19, 2023 at 11:48=E2=80=AFPM Conor Dooley <conor@kernel.or=
+g> wrote:
+>> On Tue, Sep 19, 2023 at 08:36:50AM -0700, Randy Dunlap wrote:
+>>
+>> Seemingly this was sent again in isolation 2 weeks ago, but neither t=
+he
+>> maintainer (Huacai) nor soc@kernel.org were on cc:
+>>
+>> https://lore.kernel.org/all/20230905123629.4510-1-zhuyinbo@loongson.c=
+n/
+> v3 indeed cc-ed soc@kernel.org. :)
+>
+> Arnd, could you please take this series to the soc tree? And also this=20
+> series:
+> https://lore.kernel.org/loongarch/cover.1693534134.git.zhoubinbin@loon=
+gson.cn/T/#t
 
-Another chip with configurable channel configuration is nct7802, where
-individual channels can be configured as temperature or voltage sensor.
-We are using sensor-type to select the mode in that driver. Maybe something
-similar would make sense / be acceptable here.
+Sorry, I have been traveling and not pushed out the tree yet.
 
->>>> +examples:
->>>> +  - |
->>>> +    i2c {
->>>> +      #address-cells = <1>;
->>>> +      #size-cells = <0>;
->>>> +
->>>> +      pwm@20 {
->>>> +        compatible = "maxim,max31790";
->>>> +        reg = <0x20>;
->>>> +        pwm-as-tach = <2 5>;
->>>
->>> This would be <2>, <5>; no?
->>>
->> I refer to the other binding documents in hwmon and most of them were using
->> the format like <2 5> as an array.
-> 
-> Which also makes this moot, since it'll be going away.
-> 
->>>> diff --git a/MAINTAINERS b/MAINTAINERS index
->>>> c8fdd0d03907..97e13b6bf51d 100644
->>>> --- a/MAINTAINERS
->>>> +++ b/MAINTAINERS
->>>> @@ -1371,6 +1371,12 @@ F:
->>>        Documentation/devicetree/bindings/hwmon/adi,max31760.yaml
->>>>   F: Documentation/hwmon/max31760.rst
->>>>   F: drivers/hwmon/max31760.c
->>>>
->>>> +ANALOG DEVICES INC MAX31790 DRIVER
->>>> +M: Delphine CC Chiu  <Delphine_CC_Chiu@wiwynn.com>
->>>> +S: Odd Fixes
->>>
->>> This is a pretty odd status for something you're newly adding.
->>> How come it's not going to be maintained?
->>>
->> We are not the authors of this driver but we want to add a feature to
->> config PWM as TACH that was descripted in the datasheet of MAX31790.
->> Should we set the status to maintained?
-> 
-> It's really up to you. I just found it curious & wanted to ask why it
-> was that way.
-> 
+Can you confirm that the input dependency is required for 6.6
+and the other series can wait until 6.7? When you send patches
+to soc@kernel.org, please always mention which tree you intend
+them for. I might disagree, but it's better than having to guess.
 
-It is misleading because it downgrades the driver from "supported"
-(like all other hwmon drivers) to "odd fixes".
-
-Guenter
-
+     Arnd
 
