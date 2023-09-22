@@ -1,109 +1,113 @@
-Return-Path: <devicetree+bounces-2483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 807317AAF6D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 12:24:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D25D7AAFB5
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 12:41:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id ED39A1F22893
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 10:24:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 159852820E8
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 10:40:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD7091F160;
-	Fri, 22 Sep 2023 10:24:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3D2517754;
+	Fri, 22 Sep 2023 10:40:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 389901EA7E
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 10:24:41 +0000 (UTC)
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE792F7;
-	Fri, 22 Sep 2023 03:24:39 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38M9fWeK016188;
-	Fri, 22 Sep 2023 12:24:28 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=UqJ/0RkESiD0yw/aIeUdNcmWDGkVrcs8qhdQomFo5pA=; b=Hm
-	lomkGVRBsBjuF1k6+O3g+kLvlTIYUOA4C3C6Hp2RvB+VMlMyWj6FP/Csb/a3Fg++
-	qKX0uEmNrjeuMU37zWp6mFBHDe/e+OuOW0++F0oaPXdwu7HNQvM/wHJQRiOv9T+a
-	VJjeS/iGJvOu3ibGhltCqJDpEXM8UIuJLHoxRrHbAieJe7tsBdzbk/z75LO2TvG2
-	rUv2q+rNgYXA11SRUJU6CLpAfsg17M0d5BSx2A2fscE+AHS9b8hvQDBrHyWaaEmz
-	kOzfORETarXX+5vH5XGFpVJdO1p1nxPYixuWMhmiis3dgmtFxtn2ZnjK1/KtmVKN
-	zFOkOuF29BrL5z0ql45g==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3t8tt02y9e-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Sep 2023 12:24:28 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7AF92100051;
-	Fri, 22 Sep 2023 12:24:27 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6B7FB2194F3;
-	Fri, 22 Sep 2023 12:24:27 +0200 (CEST)
-Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 22 Sep
- 2023 12:24:26 +0200
-Message-ID: <10a5fd12-1edd-96d3-caab-a1b3da969ec5@foss.st.com>
-Date: Fri, 22 Sep 2023 12:24:26 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4EAC9CA64
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 10:40:54 +0000 (UTC)
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18343CA
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 03:40:52 -0700 (PDT)
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1698241DBC
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 10:40:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1695379251;
+	bh=M9atEZ8pv97FGsnY/ZWo7vn5sZBlwoU9NTKpTiNkhYY=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=QfaPhUydREmq4YdwmKCkJLfZN7K1udPKQrfT376W7C0lpcR0fJxdiCN04/2G0siTQ
+	 sAHj0fcZpKkt3UmuNZT7JyssfVlVU7+n9TVinKCpZn5oWszgbaN8fYYC/Y4KXvOKsm
+	 xJ8mKV9Q6ezbn6DDh+g6wA1qzzMr5LgD0p6GCWVerU+KCLAr8wQZ08X/XhJnYMIUtu
+	 UEYa6831+oZcy7D6pVjJ+JOwaAYuTXJ6GIBEhtBLx7OFWc4jR5nPvrGNTY7/vKgmPL
+	 BTkF+E+iq2q5gzLc0PP6yNt9vaRdqmWSIcgFV6BaTJWYf3891azn9d/u4gC/YQL1H5
+	 QkhiYQpUujLew==
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-417b3a0bd09so21614811cf.1
+        for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 03:40:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695379250; x=1695984050;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=M9atEZ8pv97FGsnY/ZWo7vn5sZBlwoU9NTKpTiNkhYY=;
+        b=bSZVyMHbJkztjakwer1V0A93U8Pj4tOvrMQaB2M/RbIjLQ9X3sLr4/2PeftJzMYoyx
+         3RbiQzatQGmkxE01Zw0j0f8y3Xx41sRFtIYSeDYcdtXWnLQ81ezNNhrGmC0vrTINvLN+
+         8aieMKZLSdRI2cM5+p+ZUyJ1Boglk8UVrMNQYWCNvuV8IlSApNkbZfwy6illgqSdOX0R
+         ASfr7RUkTfISaMgLNKVIQoMsOh4bsE19BU1wRWyAgw7HYleYtEk2rIrNBykWSyIC8upc
+         yOfH9WBYNOK/Y4nweXVHeNEiOFq0wg0khRYwqRKjvJfQubI5f/cTLcNsUueFk3CY4HNA
+         QW+Q==
+X-Gm-Message-State: AOJu0YycYA5AlWe680xcwWpTa6uEh0URb5D+p4nEihPmnztWbai7U7UL
+	+XOVnTahaV3US3Tc8UIBOD9Av6AnHxnYSE2/DA95gnzqJNsoKR7MyEN/B/zcG++xKZBWQCohdkc
+	4Csf/1coj3IRrh71YgOHVo1rIArRzgl0IIl+cJiGlBorZ0Ta/vbmOJbo=
+X-Received: by 2002:a05:622a:182:b0:417:a209:c250 with SMTP id s2-20020a05622a018200b00417a209c250mr8885215qtw.36.1695379250038;
+        Fri, 22 Sep 2023 03:40:50 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGPQTZrz7rs3Pmta65dRQOYdSqi6ed3c6QhACApdSCdCSWiGdK7A08VO8v8WV3bKXwpAriTIN7dUIJh1owv9yE=
+X-Received: by 2002:a05:622a:182:b0:417:a209:c250 with SMTP id
+ s2-20020a05622a018200b00417a209c250mr8885206qtw.36.1695379249804; Fri, 22 Sep
+ 2023 03:40:49 -0700 (PDT)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 22 Sep 2023 03:40:49 -0700
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <bcdc4623-a37e-455b-8f10-c539e2b04554@codethink.co.uk>
+References: <cover.1695189879.git.wangchen20@iscas.ac.cn> <888d57a2d5e62affb8e29e0098402e428facd969.1695189879.git.wangchen20@iscas.ac.cn>
+ <bcdc4623-a37e-455b-8f10-c539e2b04554@codethink.co.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 0/2] ARM: dts: stm32: add dfsdm & sai pin muxings on
- stm32mp13
-Content-Language: en-US
-To: Olivier Moysan <olivier.moysan@foss.st.com>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20230919163009.203752-1-olivier.moysan@foss.st.com>
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20230919163009.203752-1-olivier.moysan@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.122]
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-22_08,2023-09-21_01,2023-05-22_02
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Mime-Version: 1.0
+Date: Fri, 22 Sep 2023 03:40:49 -0700
+Message-ID: <CAJM55Z_o7Z8HhaUjrSqjxy1cPjud9Q3GrdqjgFThToxxOCrkgw@mail.gmail.com>
+Subject: Re: [PATCH v2 08/11] serial: 8250_dw: Add Sophgo SG2042 support
+To: Ben Dooks <ben.dooks@codethink.co.uk>, Chen Wang <unicornxw@gmail.com>, 
+	aou@eecs.berkeley.edu, chao.wei@sophgo.com, conor@kernel.org, 
+	devicetree@vger.kernel.org, emil.renner.berthing@canonical.com, 
+	guoren@kernel.org, jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org, 
+	xiaoguang.xing@sophgo.com
+Cc: Chen Wang <wangchen20@iscas.ac.cn>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Olivier
+Ben Dooks wrote:
+> On 20/09/2023 07:40, Chen Wang wrote:
+> > From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> >
+> > Add quirk to skip setting the input clock rate for the uarts on the
+> > Sophgo SG2042 SoC similar to the StarFive JH7100.
+>
+> I'd love an actual explanation of why this is necessary here.
 
-On 9/19/23 18:30, Olivier Moysan wrote:
-> Add pin muxings for STM32 DFSDM and SAI audio peripherals on STM32MP13
-> Disco boards expansion connector.
-> 
-> Olivier Moysan (2):
->    ARM: dts: stm32: add pins muxing for sai1 on stm32mp13
->    ARM: dts: stm32: add pins muxing for dfsdm on stm32mp13
-> 
->   arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi | 60 +++++++++++++++++++++
->   1 file changed, 60 insertions(+)
-> 
+Makes sense. For the JH7100 the commit message is:
 
-Why do you push only pins muxing ? I prefer to merge pins when I'm sure 
-that they'll be used on a board. In your case, if those pins rely on a 
-connector then declare this descriptor (as we did for mp15).
+  On the StarFive JH7100 RISC-V SoC the UART core clocks can't be set to
+  exactly 16 * 115200Hz and many other common bitrates. Trying this will
+  only result in a higher input clock, but low enough that the UART's
+  internal divisor can't come close enough to the baud rate target.
+  So rather than try to set the input clock it's better to skip the
+  clk_set_rate call and rely solely on the UART's internal divisor.
 
-regards
-Alex
+@Chen Wang is this also true for the SG2042?
 
+/Emil
 
