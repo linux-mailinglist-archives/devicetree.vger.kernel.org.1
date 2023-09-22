@@ -1,120 +1,145 @@
-Return-Path: <devicetree+bounces-2383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98DA27AAB04
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 09:59:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6D837AAB78
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 10:05:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 4BD9B2824C0
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 07:59:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 8A4F62833A2
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 08:05:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B24871A700;
-	Fri, 22 Sep 2023 07:59:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A7EE1DDC3;
+	Fri, 22 Sep 2023 08:05:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5F2719441
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 07:59:15 +0000 (UTC)
-Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CB24F7
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 00:59:14 -0700 (PDT)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.3ffe.de (Postfix) with ESMTPSA id 06FF3FF;
-	Fri, 22 Sep 2023 09:59:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-	t=1695369549;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=i5aWRlQvLj0Ai3NtLAWY4Y9rChkOr2OHujz5YgcNF/M=;
-	b=e229GHSIJdvBvaGFssBf4z0racFX5PLrLsrl9SE4SkZiGJgVf0Ypekk9GucFxD9ZvgIZHk
-	QysarpYZpevLLQL9Lc4U9gm73pxE+x+ZDAGMdVXMoGoR3JIlz9ezjyBQeZZ/tLX5LkSnah
-	CW07bcLt5sH7Zz+GJmvJhnE2d4Y0IUMPJgydtMxgY6RdxHy/h5YePTRT+6FsNWYY/hRXp+
-	IWn/PhZ0NPywFRI4jx4s7pI7ScrIXDW+39Jq2PngupXc6VqJbNq8Yg6AxRp8rxDa8Cp021
-	YZleF1G8LvBG7R36JkObrX47yh/VenRHQTk/Rnkm5gmiPMrVHshTGa8yfYB5vw==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5C361A721
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 08:05:54 +0000 (UTC)
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BA8BCE3;
+	Fri, 22 Sep 2023 01:05:53 -0700 (PDT)
+Received: from droid10-sz.amlogic.com (10.28.11.69) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Fri, 22 Sep 2023
+ 16:05:49 +0800
+From: zelong dong <zelong.dong@amlogic.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>, Sean Young <sean@mess.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Jerome Brunet <jbrunet@baylibre.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>
+CC: <linux-media@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<Qianggui.Song@amlogic.com>, <Yonghui.Yu@amlogic.com>,
+	<kelvin.zhang@amlogic.com>, Zelong Dong <zelong.dong@amlogic.com>
+Subject: [PATCH] arm64: dts: amlogic: Fix IR Controller register area for Meson-GX/AXG/G12 series SoCs
+Date: Fri, 22 Sep 2023 16:05:46 +0800
+Message-ID: <20230922080546.26442-1-zelong.dong@amlogic.com>
+X-Mailer: git-send-email 2.35.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Fri, 22 Sep 2023 09:59:08 +0200
-From: Michael Walle <michael@walle.cc>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
- Tudor Ambarus <tudor.ambarus@microchip.com>, Pratyush Yadav
- <pratyush@kernel.org>, Miquel Raynal <miquel.raynal@bootlin.com>, Richard
- Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mtd: jedec,spi-nor: Document support for
- more MT25QU parts
-In-Reply-To: <CAMuHMdUKxJDPs3Ow8E-g2bLr7c7jREf5gSqWZ+o5aWbGj6uO=w@mail.gmail.com>
-References: <363186079b4269891073f620e3e2353cf7d2559a.1669988238.git.geert+renesas@glider.be>
- <1503a3857107e3a4f34e0c7fb5dada39@walle.cc>
- <CAMuHMdXN+HJb=zGeG=3t=Pie9cVpnBLYuEb_qX6=oSxG8eTkAw@mail.gmail.com>
- <20221205163306.GB2012644-robh@kernel.org>
- <CAMuHMdUcrh26MNYuiqiC0_FMkeHtq1YnJrZKHEV_WQm5Dgzoaw@mail.gmail.com>
- <ee03d150-51cf-4e12-ae2c-9475a192fb6c@linaro.org>
- <CAMuHMdW_-0f8DOmEzYb28XABqU3oFL4KXf9M-qKVyyrE_Lo+jQ@mail.gmail.com>
- <d4d998cff934328f58cec767f93a59b5@walle.cc>
- <CAMuHMdUK=HvvjeTDefzX9sbY-vaRFVixcSvKVqDPgBpGVt2dQA@mail.gmail.com>
- <CAMuHMdUKxJDPs3Ow8E-g2bLr7c7jREf5gSqWZ+o5aWbGj6uO=w@mail.gmail.com>
-Message-ID: <f4751046b26a86b18aa7e446a4da81e8@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.28.11.69]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Am 2023-09-22 09:10, schrieb Geert Uytterhoeven:
-> On Thu, Sep 21, 2023 at 7:01 PM Geert Uytterhoeven 
-> <geert@linux-m68k.org> wrote:
->> On Thu, Sep 21, 2023 at 6:01 PM Michael Walle <michael@walle.cc> 
->> wrote:
->> > >> We won't break compatibility with older DTBs if we use a list of
->> > >> compatibles. First the vendor specific one which will use some quirks,
->> > >> and if that's not available, have as second the generic jedec,spi-nor
->> > >> to
->> > >> fallback to.
->> > >
->> > > Sure, you should use a list.
->> > >
->> > > But the current recommended practice is to not have a list,
->> > > but just "jedec,spi-nor" (using a list with a new FLASH part name
->> > > causes checkpatch and dtbs_check warnings). Hence if you follow that
->> > > recommendation, you will run into compatibility issues with older DTBs
->> > > when you discover the quirk later, and decide to add it to the list.
->> >
->> > The SPI NOR flashes should be auto discoverable. Why do you need a
->> > compatible string? Quirks can be added to the flash_info database.
->> 
->> This assumes you don't need the quirk before you can identify the 
->> part.
->> I'm not sure that is always the case.
+From: Zelong Dong <zelong.dong@amlogic.com>
 
-Yes, but that seems a reasonable assumption.
+Amloic Meson-6 SoC only has one IR Controller, since then, there are 2 IR
+Controllers in every SoCs, one is Legacy IR Controller (same as Meson-6's one),
+the new one is Multi-Format IR Controller (abbreviated "MF-IR",
+which supports more than one IR Protocol). MF-IR was updated several times,
+so different SoCs could be got different register sizes.
 
-> Reminder where this is apparently not the case:
-> https://lore.kernel.org/r/OS0PR01MB5922A4F16DE8923373AA5DD886F7A@OS0PR01MB5922.jpnprd01.prod.outlook.com/
+There are all IR Controller register areas from upstream's SoCs:
+                              Legacy IR             MF-IR
+Meson-6                  | <0xc8100480 0x20> |       NULL        |
+Meson-8/8B/8M2           | <0xc8100480 0x20> | <0xc8100580 0x30> |
+Meson-GXBB               | <0xc8100480 0x20> | <0xc8100580 0x44> |
+Meson-GXM/GXL  	         | <0xc8100480 0x20> | <0xc8100580 0x54> |
+Meson-AXG/G12A/G12B/SM1  | <0xff808000 0x20> | <0xff808040 0x58> |
 
-I think that one is still under discussion and there is something
-strange going on there. In any case, the "read id" operation is done
-with just single bit I/O, IOW, RDID should work. Unless there is a
-hardware bug and the SPI controller (!) will hold the flash in reset
-by pulling down IO3. I'd argue, that simply looking at the flash
-compatible is the wrong approach here.
+About Meson-IR driver, MF-IR was supported from Meson-8, which was distinguished
+by compatible string (of_device_is_compatible(node, "amlogic,meson6-ir")),
+and only one register (macro 'IR_DEC_REG2') was added because controller worked
+in raw decoder mode, later registers are unused, so we recommend that register
+size should be 0x24 if MF-IR is in use.
 
--michael
+There are 2 ways to fix.
+
+MF-IR is in use:
+  Meson-8/8B/8M2/GXBB/GXM/GXL: <0xc8100580 0x24>
+  Meson-AXG/G12A/G12B/SM1:     <0xff808040 0x24>
+
+Legacy IR is in use:
+  Meson-8/8B/8M2/GXBB/GXM/GXL: <0xc8100480 0x20>
+  Meson-AXG/G12A/G12B/SM1:     <0xff808000 0x20>
+
+Fixes: 2bfe8412c5388a ("arm64: dts: meson-g12a: Add IR nodes")
+Fixes: 7bd46a79aad549 ("ARM64: dts: meson-axg: enable IR controller")
+Fixes: c58d77855f0069 ("ARM64: dts: meson-gxbb: Add Infrared Remote Controller decoder")
+Link: https://lore.kernel.org/all/20160820095424.636-5-martin.blumenstingl@googlemail.com/
+Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 4 ++--
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 4 ++--
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 2 +-
+ 3 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index 768d0ed78dbe..dd8c58e74322 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -1705,9 +1705,9 @@ pwm_AO_ab: pwm@7000 {
+ 				status = "disabled";
+ 			};
+ 
+-			ir: ir@8000 {
++			ir: ir@8040 {
+ 				compatible = "amlogic,meson-gxbb-ir";
+-				reg = <0x0 0x8000 0x0 0x20>;
++				reg = <0x0 0x8040 0x0 0x24>;
+ 				interrupts = <GIC_SPI 196 IRQ_TYPE_EDGE_RISING>;
+ 				status = "disabled";
+ 			};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index ff68b911b729..e12cea5fa889 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -2084,9 +2084,9 @@ pwm_AO_ab: pwm@7000 {
+ 				status = "disabled";
+ 			};
+ 
+-			ir: ir@8000 {
++			ir: ir@8040 {
+ 				compatible = "amlogic,meson-gxbb-ir";
+-				reg = <0x0 0x8000 0x0 0x20>;
++				reg = <0x0 0x8040 0x0 0x24>;
+ 				interrupts = <GIC_SPI 196 IRQ_TYPE_EDGE_RISING>;
+ 				status = "disabled";
+ 			};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+index 2673f0dbafe7..0c04e34a0923 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+@@ -506,7 +506,7 @@ pwm_AO_ab: pwm@550 {
+ 
+ 			ir: ir@580 {
+ 				compatible = "amlogic,meson-gx-ir", "amlogic,meson-gxbb-ir";
+-				reg = <0x0 0x00580 0x0 0x40>;
++				reg = <0x0 0x00580 0x0 0x24>;
+ 				interrupts = <GIC_SPI 196 IRQ_TYPE_EDGE_RISING>;
+ 				status = "disabled";
+ 			};
+-- 
+2.35.1
+
 
