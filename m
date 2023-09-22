@@ -1,105 +1,135 @@
-Return-Path: <devicetree+bounces-2416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F9767AAC0B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 10:11:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02D9F7AAC22
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 10:15:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 94FB1B208DA
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 08:11:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id A62AD2822B5
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 08:15:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 680B81DA49;
-	Fri, 22 Sep 2023 08:11:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 309F21DDD8;
+	Fri, 22 Sep 2023 08:15:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0BB914F81
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 08:11:21 +0000 (UTC)
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71923172E;
-	Fri, 22 Sep 2023 01:11:19 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38M3Q0Kl013675;
-	Fri, 22 Sep 2023 10:11:02 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-type; s=selector1; bh=MTu0R7MXciBuzjCEVdjU
-	/QJRAV5+/VKJ/ZcovBKuFoA=; b=0DzImxo/0qhlvZmuMhJ6Ucv9NGKVv0xCVhvy
-	/++pSMJoyvdI4kLNruWLB9ZTn4a6LuUpUt9XyXDmcaGT4PuUQoUteEOipi52Ik3t
-	BUesQDqbncfRU1JtM5GtURESM4+ZnplqMG1xB2k/l72iq41xa3PFyyNadmw3mtCh
-	ZwA+8Pye7kzRXNeRNXjLn+hJ5uBBNqZdrkSjDlOgiZqr41O80ArsG1Hy9TOm/Nxn
-	ejkP+RQzrafVJe5m4fJyMn2f/fElJJuLEJ/kWiwHeQhBO66NCqK/6clC2rdfgn2c
-	KcgNeUlI7eOKbywk7rEwIlPs0IL2N8LuTH+Bn3N1qoRGwawTYg==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3t8tt7j9ju-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Sep 2023 10:11:02 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3230A10005F;
-	Fri, 22 Sep 2023 10:11:02 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2B31021230D;
-	Fri, 22 Sep 2023 10:11:02 +0200 (CEST)
-Received: from localhost (10.201.21.122) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 22 Sep
- 2023 10:11:01 +0200
-From: Alexandre Torgue <alexandre.torgue@foss.st.com>
-To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 2/2] arm64: dts: st: enable secure arm-wdt watchdog on stm32mp257f-ev1
-Date: Fri, 22 Sep 2023 10:10:55 +0200
-Message-ID: <20230922081055.6242-3-alexandre.torgue@foss.st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230922081055.6242-1-alexandre.torgue@foss.st.com>
-References: <20230922081055.6242-1-alexandre.torgue@foss.st.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BBF11DDD5;
+	Fri, 22 Sep 2023 08:15:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2800BC433C9;
+	Fri, 22 Sep 2023 08:15:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695370533;
+	bh=8ABIlKjkFIE6A7vWtZDkj2Hr1hp4Z0j+R3tTY7dVFQs=;
+	h=From:To:Cc:Subject:Date:From;
+	b=VFuw+uhOP2N0/zan3oa17woYzRuGd+FPLCXoTXiv3gsVAaXvgk3ViZUZtvWSe+j0r
+	 9SmsTStYjus2hcPKQk8kZ3FVOBgtTQRjiE1SQv/eWZRKfrwrE1blrQh2qZHlbFhddm
+	 4HsJgYS7cULTnO3veIK52Np3pgU9qLQ3flKNekOLNuSCgh57DSufUvnLxKye7Jw/zu
+	 40YaSBWREDmc3AxmmbqxWVOrj0k7fCo4vsfvQUWz5p15xxa7OEdafYaGay8ajIy7mF
+	 fuLTMh7hJHehg/bqaf+DdZPh7P1IOZ2VeHTRAknlPnhpwGKiqW2unS/OTKdH941Bya
+	 Bm6SLgm7kUTsQ==
+From: Conor Dooley <conor@kernel.org>
+To: linux-riscv@lists.infradead.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	devicetree@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	linux-renesas-soc@vger.kernel.org
+Subject: [RFC v2 0/6] riscv,isa-extensions additions
+Date: Fri, 22 Sep 2023 09:13:45 +0100
+Message-ID: <20230922081351.30239-2-conor@kernel.org>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.201.21.122]
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-22_06,2023-09-21_01,2023-05-22_02
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Transfer-Encoding: 8bit
 
-Enable the watchdog and define the default timeout to 32 seconds.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Signed-off-by: Lionel Debieve <lionel.debieve@foss.st.com>
-Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+I'm suffering from a hw failure on my main dev machine & relegated to a
+recently acquired & not really configured laptop for a bit, so hopefully
+nothing with this series goes awry. (rfc v2: I think my board farm might
+actually have been the source of the failure - I did hear a large pop
+when I turned it on the day before the thing started not booting.
+Motherboard seems to be kaput!)
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-index 6c3b83c2b48f..85891124a3a9 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-@@ -63,6 +63,11 @@
- 	status = "okay";
- };
- 
-+&arm_wdt {
-+	timeout-sec = <32>;
-+	status = "okay";
-+};
-+
- &usart2 {
- 	pinctrl-names = "default", "idle", "sleep";
- 	pinctrl-0 = <&usart2_pins_a>;
+I've had two (or more, dunnno) people ask me where the patches for the
+DTs were swapping them over, so here's what I had before the hw failure.
+I've marked this RFC as a result & I'd like to come back and revisit
+these patches once I'm out of this limited environment.
+This "RFC v2" just fixes the silly issue that was pointed out by Chen
+Wang & the patchwork automation, where I used the wrong property name
+everywhere.
+
+The canaan stuff is absent here, mostly because I don't actually know
+what to do with it. They don't actually implement the same versions of
+the F stuff as everyone else (Stefan O'Rear pointed that out to me
+somewhere recently).
+
+Cheers,
+Conor.
+
+CC: Rob Herring <robh+dt@kernel.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC: Conor Dooley <conor+dt@kernel.org>
+CC: Paul Walmsley <paul.walmsley@sifive.com>
+CC: Palmer Dabbelt <palmer@dabbelt.com>
+CC: Albert Ou <aou@eecs.berkeley.edu>
+CC: Chen-Yu Tsai <wens@csie.org>
+CC: Jernej Skrabec <jernej.skrabec@gmail.com>
+CC: Samuel Holland <samuel@sholland.org>
+CC: Daire McNamara <daire.mcnamara@microchip.com>
+CC: Geert Uytterhoeven <geert+renesas@glider.be>
+CC: Magnus Damm <magnus.damm@gmail.com>
+CC: Emil Renner Berthing <kernel@esmil.dk>
+CC: Jisheng Zhang <jszhang@kernel.org>
+CC: Guo Ren <guoren@kernel.org>
+CC: Fu Wei <wefu@redhat.com>
+CC: Chen Wang <unicorn_wang@outlook.com>
+CC: devicetree@vger.kernel.org
+CC: linux-riscv@lists.infradead.org
+CC: linux-sunxi@lists.linux.dev
+CC: linux-renesas-soc@vger.kernel.org
+
+Conor Dooley (6):
+  riscv: dts: microchip: convert isa detection to new properties
+  riscv: dts: sifive: convert isa detection to new properties
+  riscv: dts: starfive: convert isa detection to new properties
+  riscv: dts: renesas: convert isa detection to new properties
+  riscv: dts: allwinner: convert isa detection to new properties
+  riscv: dts: thead: convert isa detection to new properties
+
+ arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi |  3 +++
+ arch/riscv/boot/dts/microchip/mpfs.dtsi       | 15 +++++++++++++++
+ arch/riscv/boot/dts/renesas/r9a07g043f.dtsi   |  3 +++
+ arch/riscv/boot/dts/sifive/fu540-c000.dtsi    | 15 +++++++++++++++
+ arch/riscv/boot/dts/sifive/fu740-c000.dtsi    | 15 +++++++++++++++
+ arch/riscv/boot/dts/starfive/jh7100.dtsi      |  6 ++++++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      | 15 +++++++++++++++
+ arch/riscv/boot/dts/thead/th1520.dtsi         | 12 ++++++++++++
+ 8 files changed, 84 insertions(+)
+
 -- 
-2.17.1
+2.41.0
 
 
