@@ -1,553 +1,245 @@
-Return-Path: <devicetree+bounces-2493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 837267AB00C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 12:57:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8703B7AB017
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 12:59:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 35C882821DC
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 10:57:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2E1A4282238
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 10:59:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 337C81DA47;
-	Fri, 22 Sep 2023 10:57:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E542D1DA53;
+	Fri, 22 Sep 2023 10:59:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46FB318B0C
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 10:57:20 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 313C4AC;
-	Fri, 22 Sep 2023 03:57:18 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38M5oiPU015123;
-	Fri, 22 Sep 2023 10:57:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=INVAr87K61vSzM/bsuIjpMk6H8cHbIjfsGa6sEmsTK0=;
- b=mZcmnIk0FcpsVtvhhDP6wzOX9sQU3JVfAczeFBgqHIGM4AG6oE4tDXAmX2w5zVZbaHk/
- YudOdHrCBD0vvZSgeYl+AYsT47h8TrSI9oc+ZhZh+ClANwuueKNXZdB3vq/jq3OUfm3U
- Ww1u0kQh70PQedW/UpkaRJGyRro2nGAU9TfqXcQrgb7/jk68b5t13J43rqdTAmajljs+
- 5oh8L1tv6w3pVMhg/2IS3XZFl1NtRe5VuFHMYw9bH31HGQVA7ugWsbgzHukJmm3ulxga
- /m7uvffsdfVe0nCXW1C1FrMxOR5CnLpMGoOcPd7PF+u5TUQSHA77GQsTthFCZgZltEKa qw== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t8u6rsmn8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Sep 2023 10:57:02 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38MAuWte022689
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Sep 2023 10:56:32 GMT
-Received: from [10.216.15.173] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Fri, 22 Sep
- 2023 03:56:27 -0700
-Message-ID: <2e5a2927-2a4d-57ef-1ea2-219879a9b6a8@quicinc.com>
-Date: Fri, 22 Sep 2023 16:26:24 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0727518B0C
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 10:59:22 +0000 (UTC)
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E13F4AC;
+	Fri, 22 Sep 2023 03:59:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1695380361; x=1726916361;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=LFTTb2csT2/oxPQIWJiI+BzhxkY5mdQfT2FKiyOMZmQ=;
+  b=rz7+0g9Pnml27rDb6ffwz3L6a9XtefP0zK4YLlN+5Ebtpbdd135VASI5
+   EOclhD9xpc3iNo3iA9gxBn23nrFPxnXM1SSVz9k4BwwfzlAoIUzKMqe7D
+   8D4fFEa5WxNg7YgG+MFsgPFFH38xx3iPMrQiBJQroIblbdFSeGEXW67Gl
+   7WPrCUAeAur9NnwUxpuOPJKp6siCmRdfJ71q31Wg+EBpi9lTDQcrnHcD4
+   1cUFhzuOqOlwttqidKSxPBw+wWChqqE5PG42TSdzVsIjhEf/copjtPzUx
+   5HGEd9YrYMHekWMabsWs/4AIk41r3l1lbIlDTkL9kn0cJ4z0nQeruG8a7
+   g==;
+X-CSE-ConnectionGUID: bd7qvu6HQ76RalQG4Zn3uA==
+X-CSE-MsgGUID: 4YfelX45SM2Ll/wH0kSjVA==
+X-ThreatScanner-Verdict: Negative
+X-IronPort-AV: E=Sophos;i="6.03,167,1694761200"; 
+   d="scan'208";a="6060332"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 22 Sep 2023 03:59:20 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 22 Sep 2023 03:59:06 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 22 Sep 2023 03:59:06 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mWZV4708WkmPb/1oCiAf3x7afUCUPc6FhpHvnE/EBOFsa8/+b4jCEPw2iIcbaX5poI/Y64rUOfO4Kd03bBVB9vDNPQE6rpb8B0Xaz2kRfSaTKTDe3UD/Fk7jvdAe/TwWbMTamxa28GqllGNR4EAwTnNHsmDyh6vSNFVYNjP+hsGE3GFgXrei/P/qsGZN1sMnDFT8dTxAdv49LVTaZa58FFJj/KEizIxDc2B1rGIoeuuJhE0il3zDghUsN+SZ+ZJ9yL5woadeTv7to7+EVAGjOMEoYw50c+5DQoKuQfDKrdTuK0wgXRZRVdbmcI7pUblg1r0wuBeDpwIaiuGAVe5lOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LFTTb2csT2/oxPQIWJiI+BzhxkY5mdQfT2FKiyOMZmQ=;
+ b=UtMnuoo8S4HhqnnKLzNi+j6Z7z69c6/UZpepy0HhCov6oZaWZX7z4UmNiCqdZ4iHnl7D0+7r0xFakqV9XxchR9jeMY0SZ19N3uNRm0Dfqca6hG09WDsUrC9DZrAJ6b8ZuaVrmMmUx2FdZTUtDQRRhnyttiq7zy9lX/uYkg2X0yFtOftGuJ5imQUy/wp1/+4gBhnlTlyVq5JYPsO7rzL2ru+KKCBGI5OfHn9QpOpIXb/UdlfGNY76aAMJ/EkhNHRFjwdHhnNJbogLrMaMCZ8wqntna8P8WjagSaz2G8DgxAipK2Qg+qXP0fCTetLRw92TtWMCL39lXbynl8hON9695A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LFTTb2csT2/oxPQIWJiI+BzhxkY5mdQfT2FKiyOMZmQ=;
+ b=pRWMGn8O2vrZtovdScfGTqJVoFfpR/UHL6dBjhY3mZv3UrPnS4Mz+h4KhR7TDNLij2y4Pg4oXBUy2lxp4HA4mxl/DPEDQ43XdC5e6+LrxKAcTZUhCFdzWjVT7TiQdsCIyqR0TWRSLiCWvNr94zX9ZUvp/alPFO7qr4dXe3GHwpo=
+Received: from PH0PR11MB5611.namprd11.prod.outlook.com (2603:10b6:510:ed::9)
+ by DS0PR11MB7804.namprd11.prod.outlook.com (2603:10b6:8:f3::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.20; Fri, 22 Sep
+ 2023 10:59:04 +0000
+Received: from PH0PR11MB5611.namprd11.prod.outlook.com
+ ([fe80::1133:b6c0:3f07:84bc]) by PH0PR11MB5611.namprd11.prod.outlook.com
+ ([fe80::1133:b6c0:3f07:84bc%7]) with mapi id 15.20.6813.017; Fri, 22 Sep 2023
+ 10:59:04 +0000
+From: <Shravan.Chippa@microchip.com>
+To: <emil.renner.berthing@canonical.com>, <green.wan@sifive.com>,
+	<vkoul@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <palmer@dabbelt.com>,
+	<paul.walmsley@sifive.com>, <conor+dt@kernel.org>, <palmer@sifive.com>
+CC: <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<Nagasuresh.Relli@microchip.com>, <Praveen.Kumar@microchip.com>
+Subject: RE: [PATCH v1 1/3] dmaengine: sf-pdma: Support
+ of_dma_controller_register()
+Thread-Topic: [PATCH v1 1/3] dmaengine: sf-pdma: Support
+ of_dma_controller_register()
+Thread-Index: AQHZ7To1s/07Ob6QNEaD2mS2IRA+F7AmqX+AgAADPTA=
+Date: Fri, 22 Sep 2023 10:59:04 +0000
+Message-ID: <PH0PR11MB561162E58DA1E7F11E60DBB381FFA@PH0PR11MB5611.namprd11.prod.outlook.com>
+References: <20230922095039.74878-1-shravan.chippa@microchip.com>
+ <20230922095039.74878-2-shravan.chippa@microchip.com>
+ <CAJM55Z-NUwzo9SKtmV_5OegznDjSQEG9DVK7=5x4qnxUkk399A@mail.gmail.com>
+In-Reply-To: <CAJM55Z-NUwzo9SKtmV_5OegznDjSQEG9DVK7=5x4qnxUkk399A@mail.gmail.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH0PR11MB5611:EE_|DS0PR11MB7804:EE_
+x-ms-office365-filtering-correlation-id: b03de551-cd5e-42cb-963a-08dbbb5aef68
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: XadyD9VR31HyA2FLIc9t+AZUspFdhNlhNeOk9dzRxJRETYPh+WRTkMByjJkSCWsSptRptDNN+K4+XGBuje3gkKUWulrtQA8OAM5ROC4bHMJFYKK2BonLDfVc1N2H0UpF4HA2nfSoIeOmI+J84iIYe2MfNflsTUSeeMUZmlb6wCi6gT4hD4m/W/ru3L1bUWoaDHshDjkYXKOo28Im9hdxOu6rn3hM12wV+lQx7mRh49CW+uyL+vhzW9WTzF/V0+s0ngsSh1UhrcLj7/uW+SsVRRbZYuPWLSxKw+qOh99pnOhbNFx3p80oRfWcZ28AGk2QOQWbqcvlgaTdXhqPBOLwto3/Mspw6zyA1twZNrOt4NecnH9xuZFYD/1Un2jm9q7uSOeEqwRU7PloU4uU2pjZBMknLCRETbgLg1tkNClTQA1QU1wAjV94Gb2qTijJ92o9PG4UmXJs/2tFWkI0+VzrEY7KMwfApC7bp/pjDx4tW0pqwxT8Q/e/h9Q+VA4IBM4EvWWfaDIvR0G6vrNKV15EGr/aI0TsI1YJ700loPNRZ3xDBNTpxg8LGMJaGxiG6W3suDSXRqrx3WP+sLo84/VAWjHt/PyjDT7xVr59auejwRE=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR11MB5611.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(376002)(39860400002)(366004)(136003)(396003)(451199024)(1800799009)(186009)(41300700001)(38100700002)(5660300002)(107886003)(2906002)(55016003)(26005)(122000001)(33656002)(38070700005)(7416002)(4326008)(86362001)(8676002)(83380400001)(478600001)(53546011)(9686003)(8936002)(6506007)(966005)(7696005)(52536014)(316002)(76116006)(110136005)(71200400001)(66446008)(64756008)(54906003)(66946007)(66556008)(66476007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bTUvcUcxNEFpYUtQbFp4eWszYk9yNVdObWJZL3VSNDRCOXlURmR3V3ZpVGhj?=
+ =?utf-8?B?VmFwMnl2ZllEMklvUWhDejMreGpuT2Judlh4TnpYRlZYZVNFSWFvNHJIbk5z?=
+ =?utf-8?B?VFBQMndhNWtNazR3SXBBSDNLYlZWWTEwbHRnejdCQnA2eWJvQTF6SGxtSDd1?=
+ =?utf-8?B?MUpOVksvQzJiVlFJSXRyM05yZ0J2cFdwaWgyN3MxOUNRK1RQcEwvbTR5UjRj?=
+ =?utf-8?B?T0NFalp0a1hieG1OamVuR2hYRFBuVW9KU3I4L1dwcjdIRFQ5TWpWM0dMVG9n?=
+ =?utf-8?B?Mk5jZWdLRDQ5ZThFNDZjekFocnJLMkVXK3Zucmt0cUhQa2lTSnRjcU0zUVl4?=
+ =?utf-8?B?dURsNWQ3cnFMd054VEFRVS9RTFdiaG5QY3NMMVQ1TXpoZUN4dVI1ZHZ3Kzkw?=
+ =?utf-8?B?bTd2SmJpRkExODdwaWlUTytITzhBRG83OFhJbzZvSHhYY1N6Y1NMdzJ0WVZ1?=
+ =?utf-8?B?NUR2dWxNVzFidjhEV1FzNjFhZ2d2VjlQQzNIaml1eXhOcjRrT3RueVNLVDBW?=
+ =?utf-8?B?SGtMcTRSUzl2Mm40bjJ5M0xpYTREQVhzUVhiWW51YnVSemwvRmluTVJiSlo0?=
+ =?utf-8?B?RU9EdW9pRExVOU8wZGFnMStmODRzYm5hTWMzNUZmVDY5V0xMQmRSVjYxbXo3?=
+ =?utf-8?B?c0RjeXVXbEEwTW5sM2EyQ1RxeGxUWjYxN2hMTFl0YndIZ0RmaElOV3VtMEZv?=
+ =?utf-8?B?aWY5SktBRnp6UUh0N29Rc3hTUkhmZzhkSkI2aEdTYWc0Wmc4MVIzU2Zmb203?=
+ =?utf-8?B?WitYSUIvbUE1T0tMSTYyakVkcENtSktBQThHUUJDQzh3ODdjUm1UYXNMN2p1?=
+ =?utf-8?B?bDhQT01Tc2JxbnpBbDFrZ0QrcEw1dDREY2FFbFRSNzNBSzhmanAzR3VCWlky?=
+ =?utf-8?B?blJZSDBNckxka0kxWlRFcWRYUUN5SlA1TUg5MDljWm13V2pnUkN5WmdOVzlm?=
+ =?utf-8?B?U2hRYTJvYjVSRko5T0VlNVF4VHY4YUJJRVNDOW5wTURMakFJTTEveVl5aUVY?=
+ =?utf-8?B?ZjVZanlPMjE4bTkvcnVJTnd2bHJtS1JhamJEOXB3ZnB6ZlFQV0hDSkdVMkx4?=
+ =?utf-8?B?MzdnS01xSGdIaEpjSDZjQTNKWU5HUzd4ODRLNkwxQ25aTnR6U1IyaERMc2JR?=
+ =?utf-8?B?U0M2SzhQMlZGSStCWTEydy9CaTIyOFl5QUNhWk5KNUF0M3N0R1F5VDZSd25S?=
+ =?utf-8?B?OXBUWlo2TzZKUnBIWmx0UU1QbU5INEwxZEdSL0YxTzd3QXBMT2xjM1JUQ2VO?=
+ =?utf-8?B?dEhPc1M1bnlCWXBzeWVSamhrWHZDOFk3N3hXRUhpV0pvUko5U3hkQUo5VGVC?=
+ =?utf-8?B?SUFoNTFwSlloc2M2THdycStxUDdmMUdwN3YraUdtOWhlM3RtMGlNNW4rYmtJ?=
+ =?utf-8?B?c0JFdnJSUHM4dmFYUnc0bG5hMUZJWkh4N3FVMjJ6YTJSQXNuT1pTN0pkckNk?=
+ =?utf-8?B?eHJYS3NDak9ib3VMb2NOZjA1MEZkNkRGd0JFSFhuTHo1U04ySHVqdnVqMXQw?=
+ =?utf-8?B?NUVKaVVXMW9hcEtnc2R4bUhkWDhrcVN3SlpDRWF0M1VFU0tCT3VRMlVlQXIw?=
+ =?utf-8?B?a0JTSXBpY1JQelZRb1dOR1FOdlEvVXVwMHhnaG9UZE91Rm56T2lQbEFsaGVa?=
+ =?utf-8?B?UkxEVTFPWHJXUGx1bk9NSFVac3dycU9YRTVHSnRyWDdqRU5IbWVocGtncGxS?=
+ =?utf-8?B?dHpXUGN1eWpQenlBb2JRRGZoUC9GcjFESFFTcjVnWlQ4Y0JtT2FHdjd1M0JI?=
+ =?utf-8?B?TDhMV2g4c1ZwbmpZamtnTFF1bHk3ZUk3dzQ5ZDNpOU5meXl5T3krVEtSQlZk?=
+ =?utf-8?B?aVI3TTgvMFFDaTNNcnlKTU5nS3NaRUFEMXhEUUdiVTF0VnBCbEZYaVZtcTRU?=
+ =?utf-8?B?cHZOVXllOHRKb05FbmtuRGxjYmdnTFhWYWJDWXZ5SmhvQ0xRY3dGYTlncW16?=
+ =?utf-8?B?dmdmUTZKd2FCZVZ1T1IwSWZpUHk2M1FpZVlBZm5teEJFUmZXaHdTL1RrZk9H?=
+ =?utf-8?B?dzh6aEVEQnkrWjNHbmlmNG5EVE4ySXVMeDRRU0llZEs3VWdjTHN4UTFuSWN6?=
+ =?utf-8?B?QlJJd3F1YnhIN2ZSMEpKUGtaalI2QmhpLzdmQ3VYWVVWMnpyMlJwejFrditT?=
+ =?utf-8?B?cVpSd2xsejlPS1M3YXZYRGh3ZW1YK2k0RktXMEVhYjYrZlFxSzJ3WnBwYmlG?=
+ =?utf-8?B?MEE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 1/3] pwm: driver for qualcomm ipq6018 pwm block
-Content-Language: en-US
-To: Baruch Siach <baruch@tkos.co.il>
-CC: Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        "Andy
- Gross" <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Rob
- Herring" <robh+dt@kernel.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Kathiravan T <quic_kathirav@quicinc.com>, <linux-pwm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <17dd231f496d09ed8502bdd505eaa77bb6637e4b.1644226245.git.baruch@tkos.co.il>
- <8a331c88-c7d4-3a14-0ec3-fd616ea24a99@quicinc.com> <87wmwsylup.fsf@tarshish>
- <7b453ce7-7f41-12e7-9c7b-6c7d597037f2@quicinc.com> <87o7huli2m.fsf@tarshish>
-From: Devi Priya <quic_devipriy@quicinc.com>
-In-Reply-To: <87o7huli2m.fsf@tarshish>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: fBxushDP1weUiJwkp87e-dXIkHLPMaDP
-X-Proofpoint-ORIG-GUID: fBxushDP1weUiJwkp87e-dXIkHLPMaDP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-22_08,2023-09-21_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- lowpriorityscore=0 adultscore=0 mlxlogscore=999 impostorscore=0
- malwarescore=0 mlxscore=0 spamscore=0 bulkscore=0 phishscore=0
- suspectscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2309180000 definitions=main-2309220092
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5611.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b03de551-cd5e-42cb-963a-08dbbb5aef68
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Sep 2023 10:59:04.0824
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 6VkCnUIYMxrr54HiaQpqt5axLVJ5L9GPAe94aXetpI6MForXEoMcBPO6JTagQ8k5laEr9/rqB1lLW+9RZV/ujBkUs88ZgCsWq2Ue38oD/Kg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7804
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-
-
-On 9/22/2023 2:05 PM, Baruch Siach wrote:
-> Hi Devi,
-> 
-> On Fri, Sep 22 2023, Devi Priya wrote:
->> On 9/15/2023 12:06 PM, Baruch Siach wrote:
->>> Hi Devi,
->>> [ Dropped/updated codeaurora.org addresses ]
->>> On Fri, Sep 15 2023, Devi Priya wrote:
->>>> On 2/7/2022 3:00 PM, Baruch Siach wrote:
->>>>> From: Baruch Siach <baruch.siach@siklu.com>
->>>>> Driver for the PWM block in Qualcomm IPQ6018 line of SoCs. Based on
->>>>> driver from downstream Codeaurora kernel tree. Removed support for older
->>>>> (V1) variants because I have no access to that hardware.
->>>>> Tested on IPQ6010 based hardware.
->>>>> Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
->>>>> ---
->>>>> v11:
->>>>
->>>> Just curious to know if you have plans to post the next revision!
->>> I have been waiting for comments from pwm maintainers before sending the
->>> next revision.
->>> Unfortunately since then I lost access to the hardware, so I can't test
->>> suggested implementation changes.  The only pending issue in v11 is the
->>> trivial change that Nathan Chancellor suggested, which should be safe.
->>> If you like to take it from here you are welcome.
->>
->> Could you pls point me to the pending comment that has to be addressed.
->> Was not able to find any open comments in the latest series.
->> https://lore.kernel.org/linux-arm-msm/8a331c88-c7d4-3a14-0ec3-fd616ea24a99@quicinc.com/
-> 
-> See here:
-> 
->    https://lore.kernel.org/all/YgK63cI177ZeF5v1@dev-arch.archlinux-ax161/
-
-Great, thanks!
-Devi Priya
-> 
-> baruch
-> 
->>>>> Address comment from Uwe Kleine-König:
->>>>>      Drop redundant registers field comments
->>>>>      Fix period limit check in .apply
->>>>>      Clarify the comment explaining skip of pre_div > pwm_div values
->>>>>      Add explicit check for clock rate within limit
->>>>>      Add comment explaining the selection of initial pre_div
->>>>>      Use pwm_div division with remainder instead of separate diff calculation
->>>>>      Round up duty_cycle calculation in .get_state
->>>>> v10:
->>>>>      Restore round up in pwm_div calculation; otherwise diff is always <=
->>>>>      0, so only bingo match works
->>>>>      Don't overwrite min_diff on every loop iteration
->>>>> v9:
->>>>> Address comment from Uwe Kleine-König:
->>>>>      Use period_ns*rate in dividers calculation for better accuracy
->>>>>      Round down pre_div and pwm_div
->>>>>      Add a comment explaining why pwm_div can't underflow
->>>>>      Add a comment explaining why pre_div > pwm_div end the search loop
->>>>>      Drop 'CFG_' from register macros
->>>>>      Rename to_ipq_pwm_chip() to ipq_pwm_from_chip()
->>>>>      Change bare 'unsigned' to 'unsigned int'
->>>>>      Clarify the comment on separate REG1 write for enable/disable
->>>>>      Round up the period value in .get_state
->>>>>      Use direct readl/writel so no need to check for regmap errors
->>>>> v7:
->>>>>      Change 'offset' to 'reg' for the tcsr offset (Rob)
->>>>>      Drop clock name; there is only one clock (Bjorn)
->>>>>      Simplify probe failure code path (Bjorn)
->>>>> v6:
->>>>> Address Uwe Kleine-König review comments:
->>>>>      Drop IPQ_PWM_MAX_DEVICES
->>>>>      Rely on assigned-clock-rates; drop IPQ_PWM_CLK_SRC_FREQ
->>>>>      Simplify register offset calculation
->>>>>      Calculate duty cycle more precisely
->>>>>      Refuse to set inverted polarity
->>>>>      Drop redundant IPQ_PWM_REG1_ENABLE bit clear
->>>>>      Remove x1000 factor in pwm_div calculation, use rate directly, and round
->>>>> up
->>>>>      Choose initial pre_div such that pwm_div < IPQ_PWM_MAX_DIV
->>>>>      Ensure pre_div <= pwm_div
->>>>>      Rename close_ to best_
->>>>>      Explain in comment why effective_div doesn't overflow
->>>>>      Limit pwm_div to IPQ_PWM_MAX_DIV - 1 to allow 100% duty cycle
->>>>>      Disable clock only after pwmchip_remove()
->>>>>      const pwm_ops
->>>>> Other changes:
->>>>>      Add missing linux/bitfield.h header include (kernel test robot)
->>>>>      Adjust code for PWM device node under TCSR (Rob Herring)
->>>>> v5:
->>>>> Use &tcsr_q6 syscon to access registers (Bjorn Andersson)
->>>>> Address Uwe Kleine-König review comments:
->>>>>      Implement .get_state()
->>>>>      Add IPQ_PWM_ prefix to local macros
->>>>>      Use GENMASK/BIT/FIELD_PREP for register fields access
->>>>>      Make type of config_div_and_duty() parameters consistent
->>>>>      Derive IPQ_PWM_MIN_PERIOD_NS from IPQ_PWM_CLK_SRC_FREQ
->>>>>      Integrate enable/disable into config_div_and_duty() to save register
->>>>> read,
->>>>>      and reduce frequency glitch on update
->>>>>      Use min() instead of min_t()
->>>>>      Fix comment format
->>>>>      Use dev_err_probe() to indicate probe step failure
->>>>>      Add missing clk_disable_unprepare() in .remove
->>>>>      Don't set .owner
->>>>> v4:
->>>>>      Use div64_u64() to fix link for 32-bit targets ((kernel test robot
->>>>>      <lkp@intel.com>, Uwe Kleine-König)
->>>>> v3:
->>>>>      s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
->>>>>      Fix integer overflow on 32-bit targets (kernel test robot
->>>>> <lkp@intel.com>)
->>>>> v2:
->>>>> Address Uwe Kleine-König review comments:
->>>>>      Fix period calculation when out of range
->>>>>      Don't set period larger than requested
->>>>>      Remove PWM disable on configuration change
->>>>>      Implement .apply instead of non-atomic .config/.enable/.disable
->>>>>      Don't modify PWM on .request/.free
->>>>>      Check pwm_div underflow
->>>>>      Fix various code and comment formatting issues
->>>>> Other changes:
->>>>>      Use u64 divisor safe division
->>>>>      Remove now empty .request/.free
->>>>> ---
->>>>>     drivers/pwm/Kconfig   |  12 ++
->>>>>     drivers/pwm/Makefile  |   1 +
->>>>>     drivers/pwm/pwm-ipq.c | 281 ++++++++++++++++++++++++++++++++++++++++++
->>>>>     3 files changed, 294 insertions(+)
->>>>>     create mode 100644 drivers/pwm/pwm-ipq.c
->>>>> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
->>>>> index 21e3b05a5153..e39718137ecd 100644
->>>>> --- a/drivers/pwm/Kconfig
->>>>> +++ b/drivers/pwm/Kconfig
->>>>> @@ -260,6 +260,18 @@ config PWM_INTEL_LGM
->>>>>     	  To compile this driver as a module, choose M here: the module
->>>>>     	  will be called pwm-intel-lgm.
->>>>>     +config PWM_IPQ
->>>>> +	tristate "IPQ PWM support"
->>>>> +	depends on ARCH_QCOM || COMPILE_TEST
->>>>> +	depends on HAVE_CLK && HAS_IOMEM
->>>>> +	help
->>>>> +	  Generic PWM framework driver for IPQ PWM block which supports
->>>>> +	  4 pwm channels. Each of the these channels can be configured
->>>>> +	  independent of each other.
->>>>> +
->>>>> +	  To compile this driver as a module, choose M here: the module
->>>>> +	  will be called pwm-ipq.
->>>>> +
->>>>>     config PWM_IQS620A
->>>>>     	tristate "Azoteq IQS620A PWM support"
->>>>>     	depends on MFD_IQS62X || COMPILE_TEST
->>>>> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
->>>>> index 708840b7fba8..7402feae4b36 100644
->>>>> --- a/drivers/pwm/Makefile
->>>>> +++ b/drivers/pwm/Makefile
->>>>> @@ -22,6 +22,7 @@ obj-$(CONFIG_PWM_IMX1)		+= pwm-imx1.o
->>>>>     obj-$(CONFIG_PWM_IMX27)		+= pwm-imx27.o
->>>>>     obj-$(CONFIG_PWM_IMX_TPM)	+= pwm-imx-tpm.o
->>>>>     obj-$(CONFIG_PWM_INTEL_LGM)	+= pwm-intel-lgm.o
->>>>> +obj-$(CONFIG_PWM_IPQ)		+= pwm-ipq.o
->>>>>     obj-$(CONFIG_PWM_IQS620A)	+= pwm-iqs620a.o
->>>>>     obj-$(CONFIG_PWM_JZ4740)	+= pwm-jz4740.o
->>>>>     obj-$(CONFIG_PWM_KEEMBAY)	+= pwm-keembay.o
->>>>> diff --git a/drivers/pwm/pwm-ipq.c b/drivers/pwm/pwm-ipq.c
->>>>> new file mode 100644
->>>>> index 000000000000..994027290bcb
->>>>> --- /dev/null
->>>>> +++ b/drivers/pwm/pwm-ipq.c
->>>>> @@ -0,0 +1,281 @@
->>>>> +// SPDX-License-Identifier: BSD-3-Clause OR GPL-2.0
->>>>> +/*
->>>>> + * Copyright (c) 2016-2017, 2020 The Linux Foundation. All rights reserved.
->>>>> + */
->>>>> +
->>>>> +#include <linux/module.h>
->>>>> +#include <linux/platform_device.h>
->>>>> +#include <linux/pwm.h>
->>>>> +#include <linux/clk.h>
->>>>> +#include <linux/io.h>
->>>>> +#include <linux/of.h>
->>>>> +#include <linux/math64.h>
->>>>> +#include <linux/of_device.h>
->>>>> +#include <linux/bitfield.h>
->>>>> +#include <linux/units.h>
->>>>> +
->>>>> +/* The frequency range supported is 1 Hz to clock rate */
->>>>> +#define IPQ_PWM_MAX_PERIOD_NS	((u64)NSEC_PER_SEC)
->>>>> +
->>>>> +/*
->>>>> + * The max value specified for each field is based on the number of bits
->>>>> + * in the pwm control register for that field
->>>>> + */
->>>>> +#define IPQ_PWM_MAX_DIV		0xFFFF
->>>>> +
->>>>> +/*
->>>>> + * Two 32-bit registers for each PWM: REG0, and REG1.
->>>>> + * Base offset for PWM #i is at 8 * #i.
->>>>> + */
->>>>> +#define IPQ_PWM_REG0			0
->>>>> +#define IPQ_PWM_REG0_PWM_DIV		GENMASK(15, 0)
->>>>> +#define IPQ_PWM_REG0_HI_DURATION	GENMASK(31, 16)
->>>>> +
->>>>> +#define IPQ_PWM_REG1			4
->>>>> +#define IPQ_PWM_REG1_PRE_DIV		GENMASK(15, 0)
->>>>> +/*
->>>>> + * Enable bit is set to enable output toggling in pwm device.
->>>>> + * Update bit is set to reflect the changed divider and high duration
->>>>> + * values in register.
->>>>> + */
->>>>> +#define IPQ_PWM_REG1_UPDATE		BIT(30)
->>>>> +#define IPQ_PWM_REG1_ENABLE		BIT(31)
->>>>> +
->>>>> +
->>>>> +struct ipq_pwm_chip {
->>>>> +	struct pwm_chip chip;
->>>>> +	struct clk *clk;
->>>>> +	void __iomem *mem;
->>>>> +};
->>>>> +
->>>>> +static struct ipq_pwm_chip *ipq_pwm_from_chip(struct pwm_chip *chip)
->>>>> +{
->>>>> +	return container_of(chip, struct ipq_pwm_chip, chip);
->>>>> +}
->>>>> +
->>>>> +static unsigned int ipq_pwm_reg_read(struct pwm_device *pwm, unsigned int reg)
->>>>> +{
->>>>> +	struct ipq_pwm_chip *ipq_chip = ipq_pwm_from_chip(pwm->chip);
->>>>> +	unsigned int off = 8 * pwm->hwpwm + reg;
->>>>> +
->>>>> +	return readl(ipq_chip->mem + off);
->>>>> +}
->>>>> +
->>>>> +static void ipq_pwm_reg_write(struct pwm_device *pwm, unsigned int reg,
->>>>> +			      unsigned int val)
->>>>> +{
->>>>> +	struct ipq_pwm_chip *ipq_chip = ipq_pwm_from_chip(pwm->chip);
->>>>> +	unsigned int off = 8 * pwm->hwpwm + reg;
->>>>> +
->>>>> +	writel(val, ipq_chip->mem + off);
->>>>> +}
->>>>> +
->>>>> +static void config_div_and_duty(struct pwm_device *pwm, unsigned int pre_div,
->>>>> +			unsigned int pwm_div, unsigned long rate, u64 duty_ns,
->>>>> +			bool enable)
->>>>> +{
->>>>> +	unsigned long hi_dur;
->>>>> +	unsigned long val = 0;
->>>>> +
->>>>> +	/*
->>>>> +	 * high duration = pwm duty * (pwm div + 1)
->>>>> +	 * pwm duty = duty_ns / period_ns
->>>>> +	 */
->>>>> +	hi_dur = div64_u64(duty_ns * rate, (pre_div + 1) * NSEC_PER_SEC);
->>>>> +
->>>>> +	val = FIELD_PREP(IPQ_PWM_REG0_HI_DURATION, hi_dur) |
->>>>> +		FIELD_PREP(IPQ_PWM_REG0_PWM_DIV, pwm_div);
->>>>> +	ipq_pwm_reg_write(pwm, IPQ_PWM_REG0, val);
->>>>> +
->>>>> +	val = FIELD_PREP(IPQ_PWM_REG1_PRE_DIV, pre_div);
->>>>> +	ipq_pwm_reg_write(pwm, IPQ_PWM_REG1, val);
->>>>> +
->>>>> +	/* PWM enable toggle needs a separate write to REG1 */
->>>>> +	val |= IPQ_PWM_REG1_UPDATE;
->>>>> +	if (enable)
->>>>> +		val |= IPQ_PWM_REG1_ENABLE;
->>>>> +	ipq_pwm_reg_write(pwm, IPQ_PWM_REG1, val);
->>>>> +}
->>>>> +
->>>>> +static int ipq_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
->>>>> +			 const struct pwm_state *state)
->>>>> +{
->>>>> +	struct ipq_pwm_chip *ipq_chip = ipq_pwm_from_chip(chip);
->>>>> +	unsigned int pre_div, pwm_div, best_pre_div, best_pwm_div;
->>>>> +	unsigned long rate = clk_get_rate(ipq_chip->clk);
->>>>> +	u64 period_ns, duty_ns, period_rate;
->>>>> +	u64 min_diff;
->>>>> +
->>>>> +	if (state->polarity != PWM_POLARITY_NORMAL)
->>>>> +		return -EINVAL;
->>>>> +
->>>>> +	if (state->period < DIV64_U64_ROUND_UP(NSEC_PER_SEC, rate))
->>>>> +		return -ERANGE;
->>>>> +
->>>>> +	period_ns = min(state->period, IPQ_PWM_MAX_PERIOD_NS);
->>>>> +	duty_ns = min(state->duty_cycle, period_ns);
->>>>> +
->>>>> +	/*
->>>>> +	 * period_ns is 1G or less. As long as rate is less than 16 GHz,
->>>>> +	 * period_rate does not overflow. Make that explicit.
->>>>> +	 */
->>>>> +	if (rate > 16ULL * GIGA)
->>>>> +		return -EINVAL;
->>>>> +	period_rate = period_ns * rate;
->>>>> +	best_pre_div = IPQ_PWM_MAX_DIV;
->>>>> +	best_pwm_div = IPQ_PWM_MAX_DIV;
->>>>> +	/*
->>>>> +	 * We don't need to consider pre_div values smaller than
->>>>> +	 *
->>>>> +	 *                              period_rate
->>>>> +	 *  pre_div_min := ------------------------------------
->>>>> +	 *                 NSEC_PER_SEC * (IPQ_PWM_MAX_DIV + 1)
->>>>> +	 *
->>>>> +	 * because pre_div = pre_div_min results in a better
->>>>> +	 * approximation.
->>>>> +	 */
->>>>> +	pre_div = div64_u64(period_rate,
->>>>> +			(u64)NSEC_PER_SEC * (IPQ_PWM_MAX_DIV + 1));
->>>>> +	min_diff = period_rate;
->>>>> +
->>>>> +	for (; pre_div <= IPQ_PWM_MAX_DIV; pre_div++) {
->>>>> +		u64 remainder;
->>>>> +
->>>>> +		pwm_div = div64_u64_rem(period_rate,
->>>>> +				(u64)NSEC_PER_SEC * (pre_div + 1), &remainder);
->>>>> +		/* pwm_div is unsigned; the check below catches underflow */
->>>>> +		pwm_div--;
->>>>> +
->>>>> +		/*
->>>>> +		 * Swapping values for pre_div and pwm_div produces the same
->>>>> +		 * period length. So we can skip all settings with pre_div >
->>>>> +		 * pwm_div which results in bigger constraints for selecting
->>>>> +		 * the duty_cycle than with the two values swapped.
->>>>> +		 */
->>>>> +		if (pre_div > pwm_div)
->>>>> +			break;
->>>>> +
->>>>> +		/*
->>>>> +		 * Make sure we can do 100% duty cycle where
->>>>> +		 * hi_dur == pwm_div + 1
->>>>> +		 */
->>>>> +		if (pwm_div > IPQ_PWM_MAX_DIV - 1)
->>>>> +			continue;
->>>>> +
->>>>> +		if (remainder < min_diff) {
->>>>> +			best_pre_div = pre_div;
->>>>> +			best_pwm_div = pwm_div;
->>>>> +			min_diff = remainder;
->>>>> +
->>>>> +			if (min_diff == 0) /* bingo */
->>>>> +				break;
->>>>> +		}
->>>>> +	}
->>>>> +
->>>>> +	/* config divider values for the closest possible frequency */
->>>>> +	config_div_and_duty(pwm, best_pre_div, best_pwm_div,
->>>>> +			    rate, duty_ns, state->enabled);
->>>>> +
->>>>> +	return 0;
->>>>> +}
->>>>> +
->>>>> +static void ipq_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
->>>>> +			      struct pwm_state *state)
->>>>> +{
->>>>> +	struct ipq_pwm_chip *ipq_chip = ipq_pwm_from_chip(chip);
->>>>> +	unsigned long rate = clk_get_rate(ipq_chip->clk);
->>>>> +	unsigned int pre_div, pwm_div, hi_dur;
->>>>> +	u64 effective_div, hi_div;
->>>>> +	u32 reg0, reg1;
->>>>> +
->>>>> +	reg0 = ipq_pwm_reg_read(pwm, IPQ_PWM_REG0);
->>>>> +	reg1 = ipq_pwm_reg_read(pwm, IPQ_PWM_REG1);
->>>>> +
->>>>> +	state->polarity = PWM_POLARITY_NORMAL;
->>>>> +	state->enabled = reg1 & IPQ_PWM_REG1_ENABLE;
->>>>> +
->>>>> +	pwm_div = FIELD_GET(IPQ_PWM_REG0_PWM_DIV, reg0);
->>>>> +	hi_dur = FIELD_GET(IPQ_PWM_REG0_HI_DURATION, reg0);
->>>>> +	pre_div = FIELD_GET(IPQ_PWM_REG1_PRE_DIV, reg1);
->>>>> +
->>>>> +	/* No overflow here, both pre_div and pwm_div <= 0xffff */
->>>>> +	effective_div = (u64)(pre_div + 1) * (pwm_div + 1);
->>>>> +	state->period = DIV64_U64_ROUND_UP(effective_div * NSEC_PER_SEC, rate);
->>>>> +
->>>>> +	hi_div = hi_dur * (pre_div + 1);
->>>>> +	state->duty_cycle = DIV64_U64_ROUND_UP(hi_div * NSEC_PER_SEC, rate);
->>>>> +}
->>>>> +
->>>>> +static const struct pwm_ops ipq_pwm_ops = {
->>>>> +	.apply = ipq_pwm_apply,
->>>>> +	.get_state = ipq_pwm_get_state,
->>>>> +	.owner = THIS_MODULE,
->>>>> +};
->>>>> +
->>>>> +static int ipq_pwm_probe(struct platform_device *pdev)
->>>>> +{
->>>>> +	struct ipq_pwm_chip *pwm;
->>>>> +	struct device *dev = &pdev->dev;
->>>>> +	int ret;
->>>>> +
->>>>> +	pwm = devm_kzalloc(dev, sizeof(*pwm), GFP_KERNEL);
->>>>> +	if (!pwm)
->>>>> +		return -ENOMEM;
->>>>> +
->>>>> +	platform_set_drvdata(pdev, pwm);
->>>>> +
->>>>> +	pwm->mem = devm_platform_ioremap_resource(pdev, 0);
->>>>> +	if (IS_ERR(pwm->mem))
->>>>> +		return dev_err_probe(dev, PTR_ERR(pwm->mem),
->>>>> +				"regs map failed");
->>>>> +
->>>>> +	pwm->clk = devm_clk_get(dev, NULL);
->>>>> +	if (IS_ERR(pwm->clk))
->>>>> +		return dev_err_probe(dev, PTR_ERR(pwm->clk),
->>>>> +				"failed to get clock");
->>>>> +
->>>>> +	ret = clk_prepare_enable(pwm->clk);
->>>>> +	if (ret)
->>>>> +		return dev_err_probe(dev, ret, "clock enable failed");
->>>>> +
->>>>> +	pwm->chip.dev = dev;
->>>>> +	pwm->chip.ops = &ipq_pwm_ops;
->>>>> +	pwm->chip.npwm = 4;
->>>>> +
->>>>> +	ret = pwmchip_add(&pwm->chip);
->>>>> +	if (ret < 0) {
->>>>> +		dev_err_probe(dev, ret, "pwmchip_add() failed\n");
->>>>> +		clk_disable_unprepare(pwm->clk);
->>>>> +	}
->>>>> +
->>>>> +	return ret;
->>>>> +}
->>>>> +
->>>>> +static int ipq_pwm_remove(struct platform_device *pdev)
->>>>> +{
->>>>> +	struct ipq_pwm_chip *pwm = platform_get_drvdata(pdev);
->>>>> +
->>>>> +	pwmchip_remove(&pwm->chip);
->>>>> +	clk_disable_unprepare(pwm->clk);
->>>>> +
->>>>> +	return 0;
->>>>> +}
->>>>> +
->>>>> +static const struct of_device_id pwm_ipq_dt_match[] = {
->>>>> +	{ .compatible = "qcom,ipq6018-pwm", },
->>>>> +	{}
->>>>> +};
->>>>> +MODULE_DEVICE_TABLE(of, pwm_ipq_dt_match);
->>>>> +
->>>>> +static struct platform_driver ipq_pwm_driver = {
->>>>> +	.driver = {
->>>>> +		.name = "ipq-pwm",
->>>>> +		.of_match_table = pwm_ipq_dt_match,
->>>>> +	},
->>>>> +	.probe = ipq_pwm_probe,
->>>>> +	.remove = ipq_pwm_remove,
->>>>> +};
->>>>> +
->>>>> +module_platform_driver(ipq_pwm_driver);
->>>>> +
->>>>> +MODULE_LICENSE("Dual BSD/GPL");
->>>
-> 
-> 
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogRW1pbCBSZW5uZXIgQmVy
+dGhpbmcgPGVtaWwucmVubmVyLmJlcnRoaW5nQGNhbm9uaWNhbC5jb20+DQo+IFNlbnQ6IEZyaWRh
+eSwgU2VwdGVtYmVyIDIyLCAyMDIzIDQ6MTYgUE0NCj4gVG86IHNocmF2YW4gQ2hpcHBhIC0gSTM1
+MDg4IDxTaHJhdmFuLkNoaXBwYUBtaWNyb2NoaXAuY29tPjsNCj4gZ3JlZW4ud2FuQHNpZml2ZS5j
+b207IHZrb3VsQGtlcm5lbC5vcmc7IHJvYmgrZHRAa2VybmVsLm9yZzsNCj4ga3J6eXN6dG9mLmtv
+emxvd3NraStkdEBsaW5hcm8ub3JnOyBwYWxtZXJAZGFiYmVsdC5jb207DQo+IHBhdWwud2FsbXNs
+ZXlAc2lmaXZlLmNvbTsgY29ub3IrZHRAa2VybmVsLm9yZzsgcGFsbWVyQHNpZml2ZS5jb20NCj4g
+Q2M6IGRtYWVuZ2luZUB2Z2VyLmtlcm5lbC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3Jn
+OyBsaW51eC0NCj4gcmlzY3ZAbGlzdHMuaW5mcmFkZWFkLm9yZzsgbGludXgta2VybmVsQHZnZXIu
+a2VybmVsLm9yZzsgTmFnYXN1cmVzaCBSZWxsaSAtDQo+IEk2NzIwOCA8TmFnYXN1cmVzaC5SZWxs
+aUBtaWNyb2NoaXAuY29tPjsgUHJhdmVlbiBLdW1hciAtIEkzMDcxOA0KPiA8UHJhdmVlbi5LdW1h
+ckBtaWNyb2NoaXAuY29tPg0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHYxIDEvM10gZG1hZW5naW5l
+OiBzZi1wZG1hOiBTdXBwb3J0DQo+IG9mX2RtYV9jb250cm9sbGVyX3JlZ2lzdGVyKCkNCj4gDQo+
+IFtZb3UgZG9uJ3Qgb2Z0ZW4gZ2V0IGVtYWlsIGZyb20gZW1pbC5yZW5uZXIuYmVydGhpbmdAY2Fu
+b25pY2FsLmNvbS4gTGVhcm4NCj4gd2h5IHRoaXMgaXMgaW1wb3J0YW50IGF0IGh0dHBzOi8vYWth
+Lm1zL0xlYXJuQWJvdXRTZW5kZXJJZGVudGlmaWNhdGlvbiBdDQo+IA0KPiBFWFRFUk5BTCBFTUFJ
+TDogRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNzIHlvdSBrbm93
+IHRoZQ0KPiBjb250ZW50IGlzIHNhZmUNCj4gDQo+IHNocmF2YW4gY2hpcHBhIHdyb3RlOg0KPiA+
+IEZyb206IFNocmF2YW4gQ2hpcHBhIDxzaHJhdmFuLmNoaXBwYUBtaWNyb2NoaXAuY29tPg0KPiA+
+DQo+ID4gVXBkYXRlIHNmLXBkbWEgZHJpdmVyIHRvIGFkb3B0IGdlbmVyaWMgRE1BIGRldmljZSB0
+cmVlIGJpbmRpbmdzLg0KPiA+IEl0IGNhbGxzIG9mX2RtYV9jb250cm9sbGVyX3JlZ2lzdGVyKCkg
+d2l0aCBzZi1wZG1hIHNwZWNpZmljDQo+ID4gb2ZfZG1hX3hsYXRlIHRvIGdldCB0aGUgZ2VuZXJp
+YyBETUEgZGV2aWNlIHRyZWUgaGVscGVyIHN1cHBvcnQgYW5kIHRoZQ0KPiA+IERNQSBjbGllbnRz
+IGNhbiBsb29rIHVwIHRoZSBzZi1wZG1hIGNvbnRyb2xsZXIgdXNpbmcgc3RhbmRhcmQgQVBJcy4N
+Cj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFNocmF2YW4gQ2hpcHBhIDxzaHJhdmFuLmNoaXBwYUBt
+aWNyb2NoaXAuY29tPg0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJzL2RtYS9zZi1wZG1hL3NmLXBkbWEu
+YyB8IDQxDQo+ID4gKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysNCj4gPiAgMSBm
+aWxlIGNoYW5nZWQsIDQxIGluc2VydGlvbnMoKykNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9kcml2
+ZXJzL2RtYS9zZi1wZG1hL3NmLXBkbWEuYw0KPiA+IGIvZHJpdmVycy9kbWEvc2YtcGRtYS9zZi1w
+ZG1hLmMgaW5kZXggZDFjNjk1NmFmNDUyLi5jNzU1OGM5ZjlhYzMNCj4gPiAxMDA2NDQNCj4gPiAt
+LS0gYS9kcml2ZXJzL2RtYS9zZi1wZG1hL3NmLXBkbWEuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZG1h
+L3NmLXBkbWEvc2YtcGRtYS5jDQo+ID4gQEAgLTIwLDYgKzIwLDcgQEANCj4gPiAgI2luY2x1ZGUg
+PGxpbnV4L21vZF9kZXZpY2V0YWJsZS5oPg0KPiA+ICAjaW5jbHVkZSA8bGludXgvZG1hLW1hcHBp
+bmcuaD4NCj4gPiAgI2luY2x1ZGUgPGxpbnV4L29mLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9v
+Zl9kbWEuaD4NCj4gPiAgI2luY2x1ZGUgPGxpbnV4L3NsYWIuaD4NCj4gPg0KPiA+ICAjaW5jbHVk
+ZSAic2YtcGRtYS5oIg0KPiA+IEBAIC00OTAsNiArNDkxLDMzIEBAIHN0YXRpYyB2b2lkIHNmX3Bk
+bWFfc2V0dXBfY2hhbnMoc3RydWN0IHNmX3BkbWENCj4gKnBkbWEpDQo+ID4gICAgICAgfQ0KPiA+
+ICB9DQo+ID4NCj4gPiArc3RhdGljIHN0cnVjdCBkbWFfY2hhbiAqc2ZfcGRtYV9vZl94bGF0ZShz
+dHJ1Y3Qgb2ZfcGhhbmRsZV9hcmdzDQo+ICpkbWFfc3BlYywNCj4gPiArICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3Qgb2ZfZG1hICpvZmRtYSkgew0KPiA+ICsgICAg
+IHN0cnVjdCBzZl9wZG1hICpwZG1hID0gb2ZkbWEtPm9mX2RtYV9kYXRhOw0KPiA+ICsgICAgIHN0
+cnVjdCBkZXZpY2UgKmRldiA9IHBkbWEtPmRtYV9kZXYuZGV2Ow0KPiA+ICsgICAgIHN0cnVjdCBz
+Zl9wZG1hX2NoYW4gICpjaGFuOw0KPiA+ICsgICAgIHN0cnVjdCBkbWFfY2hhbiAqYzsNCj4gPiAr
+ICAgICB1MzIgY2hhbm5lbF9pZDsNCj4gPiArDQo+ID4gKyAgICAgaWYgKGRtYV9zcGVjLT5hcmdz
+X2NvdW50ICE9IDEpIHsNCj4gPiArICAgICAgICAgICAgIGRldl9lcnIoZGV2LCAiQmFkIG51bWJl
+ciBvZiBjZWxsc1xuIik7DQo+ID4gKyAgICAgICAgICAgICByZXR1cm4gTlVMTDsNCj4gPiArICAg
+ICB9DQo+ID4gKw0KPiA+ICsgICAgIGNoYW5uZWxfaWQgPSBkbWFfc3BlYy0+YXJnc1swXTsNCj4g
+PiArDQo+ID4gKyAgICAgY2hhbiA9ICZwZG1hLT5jaGFuc1tjaGFubmVsX2lkXTsNCj4gPiArDQo+
+ID4gKyAgICAgYyA9IGRtYV9nZXRfc2xhdmVfY2hhbm5lbCgmY2hhbi0+dmNoYW4uY2hhbik7DQo+
+ID4gKyAgICAgaWYgKCFjKSB7DQo+ID4gKyAgICAgICAgICAgICBkZXZfZXJyKGRldiwgIk5vIG1v
+cmUgY2hhbm5lbHMgYXZhaWxhYmxlXG4iKTsNCj4gPiArICAgICAgICAgICAgIHJldHVybiBOVUxM
+Ow0KPiA+ICsgICAgIH0NCj4gPiArDQo+ID4gKyAgICAgcmV0dXJuIGM7DQo+ID4gK30NCj4gPiAr
+DQo+ID4gIHN0YXRpYyBpbnQgc2ZfcGRtYV9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpw
+ZGV2KSAgew0KPiA+ICAgICAgIHN0cnVjdCBzZl9wZG1hICpwZG1hOw0KPiA+IEBAIC01NjMsNyAr
+NTkxLDIwIEBAIHN0YXRpYyBpbnQgc2ZfcGRtYV9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNl
+DQo+ICpwZGV2KQ0KPiA+ICAgICAgICAgICAgICAgcmV0dXJuIHJldDsNCj4gPiAgICAgICB9DQo+
+ID4NCj4gPiArICAgICByZXQgPSBvZl9kbWFfY29udHJvbGxlcl9yZWdpc3RlcihwZGV2LT5kZXYu
+b2Zfbm9kZSwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzZl9w
+ZG1hX29mX3hsYXRlLCBwZG1hKTsNCj4gPiArICAgICBpZiAocmV0IDwgMCkgew0KPiA+ICsgICAg
+ICAgICAgICAgZGV2X2VycigmcGRldi0+ZGV2LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAi
+Q2FuJ3QgcmVnaXN0ZXIgU2lGaXZlIFBsYXRmb3JtIE9GX0RNQS4gKCVkKVxuIiwgcmV0KTsNCj4g
+PiArICAgICAgICAgICAgIGdvdG8gZXJyX3VucmVnaXN0ZXI7DQo+ID4gKyAgICAgfQ0KPiA+ICsN
+Cj4gDQo+IEhpIFNocml2YW4sDQo+IA0KPiBEb2Vzbid0IHRoaXMgbmVlZCBhIG1hdGNoaW5nIHVu
+cmVnaXN0ZXIvZnJlZSBjYWxsIGluIHRoZSBzZl9wZG1hX3JlbW92ZQ0KPiBmdW5jdGlvbj8NCj4g
+DQo+IC9FbWlsDQo+IA0KDQpXaWxsIGFkZCBvZl9kbWFfY29udHJvbGxlcl9mcmVlKG5wKSBjYWxs
+IGluIHRoZSBzZl9wZG1hX3JlbW92ZSgpLg0KDQo+ID4gICAgICAgcmV0dXJuIDA7DQo+ID4gKw0K
+PiA+ICtlcnJfdW5yZWdpc3RlcjoNCj4gPiArICAgICBkbWFfYXN5bmNfZGV2aWNlX3VucmVnaXN0
+ZXIoJnBkbWEtPmRtYV9kZXYpOw0KPiA+ICsNCj4gPiArICAgICByZXR1cm4gcmV0Ow0KPiA+ICB9
+DQo+ID4NCj4gPiAgc3RhdGljIGludCBzZl9wZG1hX3JlbW92ZShzdHJ1Y3QgcGxhdGZvcm1fZGV2
+aWNlICpwZGV2KQ0KPiA+IC0tDQo+ID4gMi4zNC4xDQo+ID4NCj4gPg0KPiA+IF9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+ID4gbGludXgtcmlzY3YgbWFp
+bGluZyBsaXN0DQo+ID4gbGludXgtcmlzY3ZAbGlzdHMuaW5mcmFkZWFkLm9yZw0KPiA+IGh0dHA6
+Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtcmlzY3YNCg==
 
