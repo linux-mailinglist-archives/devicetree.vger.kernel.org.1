@@ -1,68 +1,48 @@
-Return-Path: <devicetree+bounces-2534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 436F87AB305
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 15:47:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E353F7AB2F0
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 15:46:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id E651B282162
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 13:47:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id 352341F22E04
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 13:46:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE1433D962;
-	Fri, 22 Sep 2023 13:47:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67F853D3A9;
+	Fri, 22 Sep 2023 13:46:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64F2F3D3A9
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 13:47:35 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B68CE8;
-	Fri, 22 Sep 2023 06:47:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1695390453; x=1726926453;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GgIL7Exn3jx6iwe7BlNdp1jFiIlg0zgq62barbXZvBQ=;
-  b=TYfCmyUgT/PAxEj2wjms89J6aMYTVA0MPUVxtTT4K6hc3KdXDI6HGDsi
-   sUcu06F8zf3Kmt6oWGUv8X6RR3dkBAq2pdr4ntOFMYnLLZT6LMfKvgDtR
-   nmB5UQoJhtqJNx0GV68ba/v+Zfp8xcWIcC+v5wBRiRI4nm6rXwL3a7NFx
-   mzHdmAuEFFkVCwGWF/VF3Muziel8A3gUni+80wbFKr9pfHLPMMqzY35Vq
-   v53J+OAhEoJaQxdW0CgHKog2Sc8/ihtY0V/PvsGxDfa8uXYNXzMTnI0QP
-   diVoRDpMp1g//h9WIyv1EszrQxeVsxW2qHSEqd5Wc37gN1x9ydFL8r/HR
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10841"; a="447307611"
-X-IronPort-AV: E=Sophos;i="6.03,167,1694761200"; 
-   d="scan'208";a="447307611"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Sep 2023 06:47:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10841"; a="890814520"
-X-IronPort-AV: E=Sophos;i="6.03,167,1694761200"; 
-   d="scan'208";a="890814520"
-Received: from lkp-server02.sh.intel.com (HELO 493f6c7fed5d) ([10.239.97.151])
-  by fmsmga001.fm.intel.com with ESMTP; 22 Sep 2023 06:46:31 -0700
-Received: from kbuild by 493f6c7fed5d with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qjgV9-0000n5-0D;
-	Fri, 22 Sep 2023 13:47:23 +0000
-Date: Fri, 22 Sep 2023 21:47:19 +0800
-From: kernel test robot <lkp@intel.com>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, jingoohan1@gmail.com,
-	gustavo.pimentel@synopsys.com, mani@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, marek.vasut+renesas@gmail.com,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	Serge Semin <fancer.lancer@gmail.com>
-Subject: Re: [PATCH v21 13/16] PCI: dwc: rcar-gen4: Add R-Car Gen4 PCIe
- controller support
-Message-ID: <202309222125.KiN4nFhD-lkp@intel.com>
-References: <20230922065331.3806925-14-yoshihiro.shimoda.uh@renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 591E634CEC
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 13:46:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 172F5C433C8;
+	Fri, 22 Sep 2023 13:46:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695390377;
+	bh=DM7Txi2MoiWZBA9K95f7zgHK56suYUEDbpXwcyC9bD8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=umEVFJrGGX/MrNunUQYkUy82x6LqEdrfsD8jygjAXXFDYOwO9AhUPrLzeJyAk2eKM
+	 EH2X9Hkf76IauDXpS2AtvTuNAjzbnmlRzsaELCQhfLhJN8MLsA0+b2XMButKL718IS
+	 jChUXG643/daHsdqciafR74kJ24ObxXfg7CRvi5dPA2o1UOuulsOvmPwK0mypO++WG
+	 clYbjTQxh0DvrGn0389fsg7fO0ljlnsctrDL9tFAY3aVwwL57w4Tj0Jn+SMjiibfx+
+	 wqbLSshF7hKZDB1vhRbyg8SgKE+M+VPDn9HpJiLjCLgBoldFrEs5TsiShoToeN9o2r
+	 eLbMGg1RGIofA==
+Date: Fri, 22 Sep 2023 06:50:22 -0700
+From: Bjorn Andersson <andersson@kernel.org>
+To: Stephan Gerhold <stephan@gerhold.net>
+Cc: Bjorn Andersson <quic_bjorande@quicinc.com>, 
+	Andy Gross <agross@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] soc: qcom: rmtfs: Support discarding guard pages
+Message-ID: <4dreta5y4rxzrfzeuomm42oszoohus5fg7hhsstx7kzo5kjive@6mosi67enick>
+References: <20230920-rmtfs-mem-guard-pages-v3-0-305b37219b78@quicinc.com>
+ <20230920-rmtfs-mem-guard-pages-v3-2-305b37219b78@quicinc.com>
+ <ZQyFliFYV7dUwGJg@gerhold.net>
+ <j5ivvbjprgdcekujzjiobk7gpoaz3jxpnda5dsgoh6f4hsn5id@3ug5i74ubkqf>
+ <ZQ1DmSRIe56WQmnK@gerhold.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,170 +51,72 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230922065331.3806925-14-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+In-Reply-To: <ZQ1DmSRIe56WQmnK@gerhold.net>
 
-Hi Yoshihiro,
+On Fri, Sep 22, 2023 at 09:35:00AM +0200, Stephan Gerhold wrote:
+> eOn Thu, Sep 21, 2023 at 07:51:42PM -0700, Bjorn Andersson wrote:
+> > On Thu, Sep 21, 2023 at 08:04:06PM +0200, Stephan Gerhold wrote:
+> > > On Wed, Sep 20, 2023 at 07:37:31PM -0700, Bjorn Andersson wrote:
+> > > > In some configurations, the exact placement of the rmtfs shared memory
+> > > > region isn't so strict. The DeviceTree author can then choose to use the
+> > > > "size" property and rely on the OS for placement (in combination with
+> > > > "alloc-ranges", if desired).
+> > > > 
+> > > > But on some platforms the rmtfs memory region may not be allocated
+> > > > adjacent to regions allocated by other clients. Add support for
+> > > > discarding the first and last 4k block in the region, if
+> > > > qcom,use-guard-pages is specified in DeviceTree.
+> > > > 
+> > > > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> > > > ---
+> > > >  drivers/soc/qcom/rmtfs_mem.c | 9 +++++++++
+> > > >  1 file changed, 9 insertions(+)
+> > > > 
+> > > > diff --git a/drivers/soc/qcom/rmtfs_mem.c b/drivers/soc/qcom/rmtfs_mem.c
+> > > > index f83811f51175..83bba9321e72 100644
+> > > > --- a/drivers/soc/qcom/rmtfs_mem.c
+> > > > +++ b/drivers/soc/qcom/rmtfs_mem.c
+> > > > @@ -200,6 +200,15 @@ static int qcom_rmtfs_mem_probe(struct platform_device *pdev)
+> > > >  	rmtfs_mem->client_id = client_id;
+> > > >  	rmtfs_mem->size = rmem->size;
+> > > >  
+> > > > +	/*
+> > > > +	 * If requested, discard the first and last 4k block in order to ensure
+> > > > +	 * that the rmtfs region isn't adjacent to other protected regions.
+> > > > +	 */
+> > > > +	if (of_property_present(node, "qcom,use-guard-pages")) {
+> > > 
+> > > I think of_property_read_bool() would be more fitting here. Right now
+> > > of_property_present() is just a wrapper around of_property_read_bool().
+> > > Semantically reading a bool fits better here though. :-)
+> > > 
+> > 
+> > Are you saying that you would prefer this to be a bool, so hat you can
+> > give it a "false" value? Or you are simply saying "it walks like a
+> > boolean, quacks like a boolean, let's use the boolean accessor"?
+> > 
+> 
+> The latter. I would expect that of_property_present() is used for
+> properties which usually have a value, while of_property_read_bool()
+> is used for pure bool values which can be present or not but must not
+> have a value. I think a "bool" in terms of DT is simply a present or
+> not-present property without any value?
+> 
+> For example consider
+> 
+>   regulator-min-microvolts = <4200000000>;
+>   regulator-always-on;
+> 
+> Then I would expect
+> 
+>   - of_property_present(..., "regulator-min-microvolts"), but
+>   - of_property_read_bool(..., "regulator-always-on")
+> 
+> Does that make sense? :D
+> 
 
-kernel test robot noticed the following build warnings:
+Certainly, of_property_read_duck() it is.
 
-[auto build test WARNING on pci/next]
-[also build test WARNING on pci/for-linus linus/master v6.6-rc2 next-20230921]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Yoshihiro-Shimoda/PCI-dwc-endpoint-Add-multiple-PFs-support-for-dbi2/20230922-145529
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
-patch link:    https://lore.kernel.org/r/20230922065331.3806925-14-yoshihiro.shimoda.uh%40renesas.com
-patch subject: [PATCH v21 13/16] PCI: dwc: rcar-gen4: Add R-Car Gen4 PCIe controller support
-config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230922/202309222125.KiN4nFhD-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230922/202309222125.KiN4nFhD-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202309222125.KiN4nFhD-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/pci/controller/dwc/pcie-rcar-gen4.c:155:5: warning: no previous prototype for 'rcar_gen4_pcie_common_init' [-Wmissing-prototypes]
-     155 | int rcar_gen4_pcie_common_init(struct rcar_gen4_pcie *rcar)
-         |     ^~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/pci/controller/dwc/pcie-rcar-gen4.c:197:6: warning: no previous prototype for 'rcar_gen4_pcie_common_deinit' [-Wmissing-prototypes]
-     197 | void rcar_gen4_pcie_common_deinit(struct rcar_gen4_pcie *rcar)
-         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/pci/controller/dwc/pcie-rcar-gen4.c:205:5: warning: no previous prototype for 'rcar_gen4_pcie_prepare' [-Wmissing-prototypes]
-     205 | int rcar_gen4_pcie_prepare(struct rcar_gen4_pcie *rcar)
-         |     ^~~~~~~~~~~~~~~~~~~~~~
->> drivers/pci/controller/dwc/pcie-rcar-gen4.c:220:6: warning: no previous prototype for 'rcar_gen4_pcie_unprepare' [-Wmissing-prototypes]
-     220 | void rcar_gen4_pcie_unprepare(struct rcar_gen4_pcie *rcar)
-         |      ^~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/pci/controller/dwc/pcie-rcar-gen4.c:228:5: warning: no previous prototype for 'rcar_gen4_pcie_get_resources' [-Wmissing-prototypes]
-     228 | int rcar_gen4_pcie_get_resources(struct rcar_gen4_pcie *rcar)
-         |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/pci/controller/dwc/pcie-rcar-gen4.c:242:24: warning: no previous prototype for 'rcar_gen4_pcie_devm_alloc' [-Wmissing-prototypes]
-     242 | struct rcar_gen4_pcie *rcar_gen4_pcie_devm_alloc(struct platform_device *pdev)
-         |                        ^~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-vim +/rcar_gen4_pcie_common_init +155 drivers/pci/controller/dwc/pcie-rcar-gen4.c
-
-   154	
- > 155	int rcar_gen4_pcie_common_init(struct rcar_gen4_pcie *rcar)
-   156	{
-   157		struct dw_pcie *dw = &rcar->dw;
-   158		u32 val;
-   159		int ret;
-   160	
-   161		ret = clk_bulk_prepare_enable(DW_PCIE_NUM_CORE_CLKS, dw->core_clks);
-   162		if (ret) {
-   163			dev_err(dw->dev, "Failed to enable ref clocks\n");
-   164			return ret;
-   165		}
-   166	
-   167		if (!reset_control_status(dw->core_rsts[DW_PCIE_PWR_RST].rstc))
-   168			reset_control_assert(dw->core_rsts[DW_PCIE_PWR_RST].rstc);
-   169	
-   170		val = readl(rcar->base + PCIEMSR0);
-   171		if (rcar->mode == DW_PCIE_RC_TYPE) {
-   172			val |= DEVICE_TYPE_RC;
-   173		} else if (rcar->mode == DW_PCIE_EP_TYPE) {
-   174			val |= DEVICE_TYPE_EP;
-   175		} else {
-   176			ret = -EINVAL;
-   177			goto err_unprepare;
-   178		}
-   179	
-   180		if (dw->num_lanes < 4)
-   181			val |= BIFUR_MOD_SET_ON;
-   182	
-   183		writel(val, rcar->base + PCIEMSR0);
-   184	
-   185		ret = reset_control_deassert(dw->core_rsts[DW_PCIE_PWR_RST].rstc);
-   186		if (ret)
-   187			goto err_unprepare;
-   188	
-   189		return 0;
-   190	
-   191	err_unprepare:
-   192		clk_bulk_disable_unprepare(DW_PCIE_NUM_CORE_CLKS, dw->core_clks);
-   193	
-   194		return ret;
-   195	}
-   196	
- > 197	void rcar_gen4_pcie_common_deinit(struct rcar_gen4_pcie *rcar)
-   198	{
-   199		struct dw_pcie *dw = &rcar->dw;
-   200	
-   201		reset_control_assert(dw->core_rsts[DW_PCIE_PWR_RST].rstc);
-   202		clk_bulk_disable_unprepare(DW_PCIE_NUM_CORE_CLKS, dw->core_clks);
-   203	}
-   204	
- > 205	int rcar_gen4_pcie_prepare(struct rcar_gen4_pcie *rcar)
-   206	{
-   207		struct device *dev = rcar->dw.dev;
-   208		int err;
-   209	
-   210		pm_runtime_enable(dev);
-   211		err = pm_runtime_resume_and_get(dev);
-   212		if (err < 0) {
-   213			dev_err(dev, "Failed to resume/get Runtime PM\n");
-   214			pm_runtime_disable(dev);
-   215		}
-   216	
-   217		return err;
-   218	}
-   219	
- > 220	void rcar_gen4_pcie_unprepare(struct rcar_gen4_pcie *rcar)
-   221	{
-   222		struct device *dev = rcar->dw.dev;
-   223	
-   224		pm_runtime_put(dev);
-   225		pm_runtime_disable(dev);
-   226	}
-   227	
- > 228	int rcar_gen4_pcie_get_resources(struct rcar_gen4_pcie *rcar)
-   229	{
-   230		/* Renesas-specific registers */
-   231		rcar->base = devm_platform_ioremap_resource_byname(rcar->pdev, "app");
-   232	
-   233		return PTR_ERR_OR_ZERO(rcar->base);
-   234	}
-   235	
-   236	static const struct dw_pcie_ops dw_pcie_ops = {
-   237		.start_link = rcar_gen4_pcie_start_link,
-   238		.stop_link = rcar_gen4_pcie_stop_link,
-   239		.link_up = rcar_gen4_pcie_link_up,
-   240	};
-   241	
- > 242	struct rcar_gen4_pcie *rcar_gen4_pcie_devm_alloc(struct platform_device *pdev)
-   243	{
-   244		struct device *dev = &pdev->dev;
-   245		struct rcar_gen4_pcie *rcar;
-   246	
-   247		rcar = devm_kzalloc(dev, sizeof(*rcar), GFP_KERNEL);
-   248		if (!rcar)
-   249			return ERR_PTR(-ENOMEM);
-   250	
-   251		rcar->dw.ops = &dw_pcie_ops;
-   252		rcar->dw.dev = dev;
-   253		rcar->pdev = pdev;
-   254		dw_pcie_cap_set(&rcar->dw, EDMA_UNROLL);
-   255		dw_pcie_cap_set(&rcar->dw, REQ_RES);
-   256		platform_set_drvdata(pdev, rcar);
-   257	
-   258		return rcar;
-   259	}
-   260	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks,
+Bjorn
 
