@@ -1,213 +1,175 @@
-Return-Path: <devicetree+bounces-2551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 958CF7AB4BC
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 17:27:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA5F87AB4C9
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 17:30:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id 02BE81F22C28
-	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 15:27:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 717E4282223
+	for <lists+devicetree@lfdr.de>; Fri, 22 Sep 2023 15:30:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E430405D8;
-	Fri, 22 Sep 2023 15:27:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEF2641203;
+	Fri, 22 Sep 2023 15:30:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AED41EA9A
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 15:27:00 +0000 (UTC)
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85A9D100
-	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 08:26:58 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-5230a22cfd1so2712930a12.1
-        for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 08:26:58 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 592EE1EA9A
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 15:30:15 +0000 (UTC)
+Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 648E1100
+	for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 08:30:11 -0700 (PDT)
+Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-1d63d38c74fso1183725fac.3
+        for <devicetree@vger.kernel.org>; Fri, 22 Sep 2023 08:30:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1695396417; x=1696001217; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ehhS94nOYDx67I5UrhN7dvh/Dlk6jqSDrmSSvlfrbig=;
-        b=FK+fR5P8nkt9huqrgibuOxwp4Wbtbmm0+PxAJ+FAtIAhsTpsnlOpR4Q2clSlOYaSID
-         6CpxIv3hDrOj2enX8lMzq1zSEzlZXJ4i+xOtDjsxrpD6k1X1JxI4Zq2nZmeJLaOaR/p2
-         f4KB7rTmdNNIvT+sjWq/oyPAlOk2f4Lst3BWw=
+        d=gmail.com; s=20230601; t=1695396610; x=1696001410; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=4TJHGEmsDY+NAj3iBtyvpvCWy99F2/68mZJZrN4IAhk=;
+        b=ci12aMbKg8E5mbHZ1ix4ERsQv2TIAVwQ3mAAAFN45hR2kQwt8M+9V1gPP7Nvi4mZud
+         ZLRHXRYl7rB7OgwldzmjAnoWKWffKApTwWKzu+GyuUTmqFvRcQ49ptcl2X/pCNZMURGR
+         U9V2yiWO0MSGzmOExEXGox6KEnGr0/iqlc0Tq07KtK7NLSMpyVWVvMqdGlaNmsyd0IEL
+         EAKJ+iqmW+90D+RTqqO44Xn67Pp5ewSPvVfK+7UVY83Cn1qr8VGGrS2XY1TQfJPXgmje
+         489xxtGNzqJDDhrIZrhKq90RHMVJMIl9ixv1is8KrDIIXKJyodyBXgYHfVoUxDy4vOm7
+         Z9aQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695396417; x=1696001217;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ehhS94nOYDx67I5UrhN7dvh/Dlk6jqSDrmSSvlfrbig=;
-        b=PeP/GsxLldiMALfxypZ8KxcZUYSCcKeXttMIV+PsFOHtwC8OGdevKAXrzbP4mvQmj2
-         xwgpLtcwfTitUVOYBAT3V5xJXQckGwuVDwdOComMPpppObLNYGz+Ga8M+PVO5gyzWbmO
-         jP9NnBImIEetin39oeWH9d9kpVt0VkfZw3et8W3nsxXMGy34MBYNh7Au18DzufYw9GAZ
-         OeM4VAu53Jqp711utq1haucmPCwWrfrO3oj2SQzQYDJFWNqCOrqL4SYRHQGlHzZs637D
-         NBjAtknfyZGYVQnHkC+XOordJGBd73wQl30R/KAz66IqlODpLu7uaHp+yD7+DP9M6LYK
-         94aQ==
-X-Gm-Message-State: AOJu0YwiAALOZOxSp3IWoIyowj8bEg2rpU9Ol+/PCUCI9UMA4HBlL/hC
-	Bs4d5ajPec0ZpQQ7NNblI8ETrd0nLKLYSGcNQBRV+RDQU4SYbbx7HnQ=
-X-Google-Smtp-Source: AGHT+IFoGrL2e/v7oEth7xaYwVHjp41m5T5R1E9Jh7pwjgOEp/hjouucyihvUHkWO43wehoYyZSTEdxlA2dO6pUlS5M=
-X-Received: by 2002:aa7:cd18:0:b0:530:c880:9171 with SMTP id
- b24-20020aa7cd18000000b00530c8809171mr8099822edw.27.1695396416625; Fri, 22
- Sep 2023 08:26:56 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1695396610; x=1696001410;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4TJHGEmsDY+NAj3iBtyvpvCWy99F2/68mZJZrN4IAhk=;
+        b=rOgKqDxGseBX2wt68oqwsvf75/RKiQ9y5yc+hEgREY64Xbmv2OkQBWbeq9VvJE8R9n
+         TL8RBYiEFthSv8C/Q+lqD1tZ2MTS6Vi568BcyTjD+cPmMfEVlYYYzgsQhBal2NSWNmBC
+         FO4sYZdic4Y0ro71ChsSllQ9wd2d/17frFirpD36fCeSwnCfhFKU3JanWLflcZ2mqMFH
+         0GGFIQDlzdb2k7sBOz5AdnTrLf3wtd71HncyLPkH/SF/geHE1+ek6W3gNq3kVOAJETTf
+         c0vFU+rFRlkEm67rfH5tOJ0vtPUXAqiuCbxIYq26fSg2qpHR+1blT8nyhDXTGKLguTa6
+         vPlA==
+X-Gm-Message-State: AOJu0YzH9rPo1BPeK+Z/YnG+Fr87G6Y+YSiafeD0838cYoDgM2nDuDW3
+	AnvfBeVNIY8Ot7hLmwk48EZxvUN3Jl8=
+X-Google-Smtp-Source: AGHT+IFpSNDfMbLwVAsfGTShXUDcaUIcejeAJrl4tdhrT/QF27f/mmhhBUZ++d9tBy4mUoUcC2tnuA==
+X-Received: by 2002:a05:6870:ad84:b0:1dc:86e5:ebd7 with SMTP id ut4-20020a056870ad8400b001dc86e5ebd7mr3924903oab.58.1695396610376;
+        Fri, 22 Sep 2023 08:30:10 -0700 (PDT)
+Received: from neuromancer. ([75.28.21.198])
+        by smtp.gmail.com with ESMTPSA id j2-20020a056870530200b001cd20f30898sm1071170oan.24.2023.09.22.08.30.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Sep 2023 08:30:09 -0700 (PDT)
+Message-ID: <650db301.050a0220.81e83.87ad@mx.google.com>
+X-Google-Original-Message-ID: <ZQ2y/d2GX9H77Ko9@neuromancer.>
+Date: Fri, 22 Sep 2023 10:30:05 -0500
+From: Chris Morgan <macroalpha82@gmail.com>
+To: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, neil.armstrong@linaro.org,
+	sam@ravnborg.org, Chris Morgan <macromorgan@hotmail.com>,
+	dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH V2 1/2] dt-bindings: display: newvision,nv3051d: Add
+ Anbernic 351V Support
+References: <20230809153941.1172-1-macroalpha82@gmail.com>
+ <20230809153941.1172-2-macroalpha82@gmail.com>
+ <20230810232409.GA1548096-robh@kernel.org>
+ <64d648ae.0d0a0220.531ba.5b33@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230921124459.1.I91ddcfacf9b234af5cc3eabea4b62edb31153317@changeid>
- <da77e965-2893-097a-b438-85787c43dcb0@linaro.org>
-In-Reply-To: <da77e965-2893-097a-b438-85787c43dcb0@linaro.org>
-From: Simon Glass <sjg@chromium.org>
-Date: Fri, 22 Sep 2023 09:26:38 -0600
-Message-ID: <CAPnjgZ2EyWxwCfUi6vHby4tYUfH0Dw6nfC7tOo-g4ahKhTMRjg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mtd: Add a schema for binman
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: devicetree@vger.kernel.org, U-Boot Mailing List <u-boot@lists.denx.de>, 
-	linux-mtd@lists.infradead.org, Tom Rini <trini@konsulko.com>, 
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Richard Weinberger <richard@nod.at>, Rob Herring <robh+dt@kernel.org>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_IN_DEF_SPF_WL autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <64d648ae.0d0a0220.531ba.5b33@mx.google.com>
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Krzysztof,
+On Fri, Aug 11, 2023 at 09:41:48AM -0500, Chris Morgan wrote:
+> On Thu, Aug 10, 2023 at 05:24:09PM -0600, Rob Herring wrote:
+> > On Wed, Aug 09, 2023 at 10:39:40AM -0500, Chris Morgan wrote:
+> > > From: Chris Morgan <macromorgan@hotmail.com>
+> > > 
+> > > Document the Anbernic RG351V panel, which appears to be identical to
+> > > the panel used in their 353 series except for in inclusion of an
+> > > additional DSI format flag.
+> > > 
+> > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > > ---
+> > >  .../display/panel/newvision,nv3051d.yaml       | 18 ++++++++++--------
+> > >  1 file changed, 10 insertions(+), 8 deletions(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
+> > > index 116c1b6030a2..576f3640cb33 100644
+> > > --- a/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
+> > > +++ b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
+> > > @@ -7,9 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+> > >  title: NewVision NV3051D based LCD panel
+> > >  
+> > >  description: |
+> > > -  The NewVision NV3051D is a driver chip used to drive DSI panels. For now,
+> > > -  this driver only supports the 640x480 panels found in the Anbernic RG353
+> > > -  based devices.
+> > > +  The NewVision NV3051D is a driver chip used to drive DSI panels.
+> > >  
+> > >  maintainers:
+> > >    - Chris Morgan <macromorgan@hotmail.com>
+> > > @@ -19,11 +17,15 @@ allOf:
+> > >  
+> > >  properties:
+> > >    compatible:
+> > > -    items:
+> > > -      - enum:
+> > > -          - anbernic,rg353p-panel
+> > > -          - anbernic,rg353v-panel
+> > > -      - const: newvision,nv3051d
+> > > +    oneOf:
+> > > +      - items:
+> > > +          - enum:
+> > > +              - anbernic,rg353p-panel
+> > > +              - anbernic,rg353v-panel
+> > > +          - const: newvision,nv3051d
+> > > +
+> > > +      - items:
+> > > +          - const: anbernic,rg351v-panel
+> > 
+> > I don't understand. Is this panel not based on newvision,nv3051d? If 
+> > not, then it probably should be a different binding. Lot's of panel 
+> > bindings have similar properties.
+> 
+> It appears to be the same panel (or extremely similar, honestly I don't
+> know because there are no external markings on it). However, this
+> specific implementation seems to require MIPI_DSI_CLOCK_NON_CONTINUOUS,
+> not using it prevents the panel from working. As for the existing panel
+> MIPI_DSI_CLOCK_NON_CONTINUOUS stops it from working. The different
+> binding essentially determines whether or not that flag is present, but
+> otherwise everything else is identical.
+> 
+> Chris
 
-On Fri, 22 Sept 2023 at 01:02, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 21/09/2023 20:45, Simon Glass wrote:
-> > Binman[1] is a tool for creating firmware images. It allows you to
-> > combine various binaries and place them in an output file.
-> >
-> > Binman uses a DT schema to describe an image, in enough detail that
-> > it can be automatically built from component parts, disassembled,
-> > replaced, listed, etc.
-> >
-> > Images are typically stored in flash, which is why this binding is
-> > targeted at mtd. Previous discussion is at [2] [3].
-> >
-> > [1] https://u-boot.readthedocs.io/en/stable/develop/package/binman.html
-> > [2] https://lore.kernel.org/u-boot/20230821180220.2724080-3-sjg@chromium.org/
-> > [3] https://www.spinics.net/lists/devicetree/msg626149.html
-> >
-> > Signed-off-by: Simon Glass <sjg@chromium.org>
-> > ---
-> >
-> >  .../bindings/mtd/partitions/binman.yaml       | 50 +++++++++++++++
-> >  .../bindings/mtd/partitions/binman/entry.yaml | 61 +++++++++++++++++++
-> >  .../bindings/mtd/partitions/partitions.yaml   |  1 +
-> >  MAINTAINERS                                   |  5 ++
-> >  4 files changed, 117 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/binman/entry.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/mtd/partitions/binman.yaml b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-> > new file mode 100644
-> > index 00000000000000..c792d5a37b700a
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-> > @@ -0,0 +1,50 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +# Copyright 2023 Google LLC
-> > +
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mtd/partitions/binman.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Binman firmware layout
-> > +
-> > +maintainers:
-> > +  - Simon Glass <sjg@chromium.org>
-> > +
-> > +description: |
-> > +  The binman node provides a layout for firmware, used when packaging firmware
-> > +  from multiple projects. For now it just supports a very simple set of
-> > +  features, as a starting point for discussion.
-> > +
-> > +  Documentation for Binman is available at:
-> > +
-> > +  https://u-boot.readthedocs.io/en/latest/develop/package/binman.html
-> > +
-> > +  with the current image-description format at:
-> > +
-> > +  https://u-boot.readthedocs.io/en/latest/develop/package/binman.html#image-description-format
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: u-boot,binman
-> > +
-> > +required:
-> > +  - compatible
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    firmware {
-> > +      binman {
-> > +        compatible = "u-boot,binman";
-> > +
-> > +        u-boot {
->
-> It does not look like you tested the bindings, at least after quick
-> look. Please run `make dt_binding_check` (see
-> Documentation/devicetree/bindings/writing-schema.rst for instructions).
-> Maybe you need to update your dtschema and yamllint.
+I don't want to lose sight of this, but I am not sure how to proceed.
+What I can do instead is change the compatible string inside the driver
+from newvision,nv3051d to either anbernic,rg353p-panel or 
+anbernic,rg351v-panel. Then, I can remove anbernic,rg353v-panel as an
+enum and replace it with anbernic,rg351v-panel. The gist of this is
+that we have a Newvision NV3051D panel that will still be supported by
+this driver in 2 different configurations, the 353P (which is identical
+to the 353V) and the 351V (which has different mode flags but is
+otherwise identical).
 
-Yes this came out of dt-schema and I assumed it was similar. I will rework it.
+So long story short would it work if I did this, and modified the
+driver and all in-use devicetrees accordingly? To my knowledge this
+panel is only in use on boards that I submitted so I can update all
+those and test them.
 
->
->
-> > +          size = <0xa0000>;
-> > +        };
-> > +
-> > +        atf-bl31 {
-> > +          offset = <0x100000>;
-> > +        };
-> > +      };
-> > +    };
-> > diff --git a/Documentation/devicetree/bindings/mtd/partitions/binman/entry.yaml b/Documentation/devicetree/bindings/mtd/partitions/binman/entry.yaml
-> > new file mode 100644
-> > index 00000000000000..8003eb4f1a994f
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mtd/partitions/binman/entry.yaml
-> > @@ -0,0 +1,61 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +# Copyright 2023 Google LLC
-> > +
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mtd/partitions/binman/entry.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Binman entry
-> > +
-> > +maintainers:
-> > +  - Simon Glass <sjg@chromium.org>
-> > +
-> > +description: |
-> > +  The entry node specifies a single entry in the firmware.
-> > +
-> > +  Entries have a specific type, such as "u-boot" or "atf-bl31". If the type
-> > +  is missing, the name is used as the type.
-> > +
-> > +  Note: This definition is intended to be hierarchical, so that entries can
-> > +  appear in other entries. Schema for that is TBD.
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    pattern: "^[-a-z]+(-[0-9]+)?$"
->
-> Why do you need this?
+      - enum:
+          - anbernic,rg351v-panel
+          - anbernic,rg353p-panel
+      - const: newvision,nv3051d
 
-It seemed to be needed in dt-schema. I will drop it.
-Regards,
-Simon
+Thank you,
+Chris.
+
+> 
+> > 
+> > Rob
 
