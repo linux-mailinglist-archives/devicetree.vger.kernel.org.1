@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-2742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B28A27AC4CC
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 21:25:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84C817AC4D3
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 21:26:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 4728A281F60
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 19:25:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 37B9F281EC9
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 19:26:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E9AE21343;
-	Sat, 23 Sep 2023 19:25:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04F2C21348;
+	Sat, 23 Sep 2023 19:26:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE42B210F1
-	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 19:25:27 +0000 (UTC)
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D373FA
-	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 12:25:26 -0700 (PDT)
-Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-59eb8ec5e20so48282617b3.3
-        for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 12:25:26 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B353C21343
+	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 19:26:10 +0000 (UTC)
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9226A194
+	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 12:26:09 -0700 (PDT)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-59f1dff5298so40082667b3.3
+        for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 12:26:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695497125; x=1696101925; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695497169; x=1696101969; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=bxesPwbKK+IbMVfBmjWGgUeL1XEUWzxsSpby7O2MdPw=;
-        b=DlfYuI5aGglWeu/+eBC0xwDAVUpKuie/z9nXzJ/nnqYKlx14qw0kjlf06AKAdQp/Ny
-         rxkioxZ4J6Jmka5r/+889fxTKMai5aI21JP0MZfv1Vm+221dMOM6tylkpuP6tdyosFhh
-         OM4CSpVx4V9PqDMw/bBUP+ZgTmlXdqN7kVQUw5e0diqhppLoaU1S/F0AVJBdbjKX8CfY
-         1v4AhEu7imk722Zoz2aXGQqLR4pUMfhq6RJf1+A6U43/zzJQnBdetwhE53VYURh7ntx5
-         ufq8Cle/r+s45ozuR+uQASts9gSZn3/zKyb6fecutdorudCcT6VsCU/h+00qFBjQh6/z
-         LyPg==
+        bh=tZizts65y01ok+ES2EUhAYAn9GXHIb4VmooXZajucCU=;
+        b=uNeVk+4wrEtA25qCf/0cc+V/J0m5Bv+FMDG8kGqEEoFlimXmspGlZ471bmLaWTR6Td
+         svLBkwjoQ5RijQ121IJl/hmiuNKyS+WT/T2Gwm2T/sOGLUGvnXRo3v/tlVCdffyi+8zs
+         QB+TT+5b2sh6nB+K0vELCI7ByecLH9qX4fncnhD3sxMhUxl2+l1WN9A95ggUhWwsLGKu
+         biMyYisQOb3tnAnGiB+x2aW3r+EqpPceYseOmI29PjY1CaPZ3O8/+HKoqB8vx17UM/uy
+         lUTNlH5O3A8vua5hzsHsd0MNdDlyUan+qr+hUm6Ar+JALhPs1eztA5WOu7f8XfcLK8mD
+         NqHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695497125; x=1696101925;
+        d=1e100.net; s=20230601; t=1695497169; x=1696101969;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=bxesPwbKK+IbMVfBmjWGgUeL1XEUWzxsSpby7O2MdPw=;
-        b=vgGqkZ3AwnIOqD7WeC+zyrWqb7VGqq2GTEroRsXlKTQk59XIGXNMgET06/k1obHlpa
-         /uQd0SqdT/Lz2wO7NrDdZhl7pRJM55X9P6/6KO39e064XGTiqukydrIwb1MXGwlkuFlI
-         ShCUZbbyGxu7porumo3ejS6fr9QVWDOT+BB9E0QwOUsOWMNR4pxfeNy0hbhCrNxYzKzs
-         kUAKbMMXFbZlE/tHhfosy0bpdhyXghsv1mbXjiBxB5cD/Wmv7tPiFV5wgJZ30jtroWrh
-         NekNdocCWV1EqZJY53uceWjMfIcqAkB7goQFbx4XgNZ3HBmT8uGUHYk4UcWYgrhZs9NH
-         Iznw==
-X-Gm-Message-State: AOJu0YyI/YJOoK4muzTb7G+Chz7m1lNNDynHAbpjKDoswEKzlj0rZyXn
-	nNWUJr1XlF/gyUCovqsipehXR+kYDF8MnEg+Xb+XMw==
-X-Google-Smtp-Source: AGHT+IG3UL8gjMqkSV9UZreXyPAOKYXw7SQBs9BVE5PjxhebQt4h+VQhMShs+JNFq9ZQ13DzznAVw/do8m3GfWdF7oA=
-X-Received: by 2002:a81:6907:0:b0:59b:be67:84cb with SMTP id
- e7-20020a816907000000b0059bbe6784cbmr2608480ywc.26.1695497125756; Sat, 23 Sep
- 2023 12:25:25 -0700 (PDT)
+        bh=tZizts65y01ok+ES2EUhAYAn9GXHIb4VmooXZajucCU=;
+        b=nO1E5Tb0tqDQSRjy56K3jw5M/9Kp08NTgECEwK57fp461ep/iI7b9npFeHkpDqaqk0
+         jMRvVu1mJk9XOF+uFEwe6esa8lpSZnwxRm0u03EgTsMASro1NMAykhojpvtf9F6u65qq
+         DH9GMTlK73FxDkRczMaGztzeWp9v63AzuP8exec3vPiVYv+NfH/GuH3yBS8NMn0wr2io
+         BWzEh0tdm32n9IKuau6wY8GdSoeOhn7NP3mHm26AlBcZm9wYN+F8aGkLppPmHUM2fRSi
+         K6qTYYV0Dyn22yV/8gwbQD2IJZUfXxvtGDihet2UNqT3HpzUP8wvki8gGckm1tY+bHuu
+         hJrA==
+X-Gm-Message-State: AOJu0YwIh0r+dO9/Dx2r9WymNHVZVWCKZsab1cqjg1lRJp5exCjkMnQc
+	pE93bw8rS/ORZkeJfK/ZkZ8KoKUl8ssukDHTHYDj2A==
+X-Google-Smtp-Source: AGHT+IH8xd9FGQCscz8xMLf0DoFylip6IAWZhY41aoUSaGynGex3s2gK+VocIMx3e8QuWNuPxfssl9IzVZ3Wrlq/3w8=
+X-Received: by 2002:a81:6089:0:b0:59b:4f5e:12d8 with SMTP id
+ u131-20020a816089000000b0059b4f5e12d8mr2866968ywb.47.1695497168744; Sat, 23
+ Sep 2023 12:26:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230922-msm8226-i2c6-v2-0-3fb55c47a084@z3ntu.xyz> <20230922-msm8226-i2c6-v2-2-3fb55c47a084@z3ntu.xyz>
-In-Reply-To: <20230922-msm8226-i2c6-v2-2-3fb55c47a084@z3ntu.xyz>
+References: <20230922-msm8226-i2c6-v2-0-3fb55c47a084@z3ntu.xyz> <20230922-msm8226-i2c6-v2-3-3fb55c47a084@z3ntu.xyz>
+In-Reply-To: <20230922-msm8226-i2c6-v2-3-3fb55c47a084@z3ntu.xyz>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sat, 23 Sep 2023 22:25:14 +0300
-Message-ID: <CAA8EJppafz38Wp7CUQGyxLoacO0kXexgyJyA27M38gS104Z_Dw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] pinctrl: qcom: msm8226: Add blsp_i2c6 function
+Date: Sat, 23 Sep 2023 22:25:57 +0300
+Message-ID: <CAA8EJprhhUN6Txbiyvb1Jk8mEnX1bxhf-WWcDU2J2WH0uVF9kQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] ARM: dts: qcom: msm8226: Add blsp1_i2c6 and blsp1_uart2
 To: Luca Weiss <luca@z3ntu.xyz>
 Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
 	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
@@ -79,12 +79,12 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 
 On Fri, 22 Sept 2023 at 19:56, Luca Weiss <luca@z3ntu.xyz> wrote:
 >
-> On GPIO22 and GPIO23 there is another I2C bus. Add the function for it.
+> Add more busses found on msm8226 SoC.
 >
 > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 > ---
->  drivers/pinctrl/qcom/pinctrl-msm8226.c | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
+>  arch/arm/boot/dts/qcom/qcom-msm8226.dtsi | 33 ++++++++++++++++++++++++++++++++
+>  1 file changed, 33 insertions(+)
 >
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
