@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-2728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49DC27AC44D
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 20:07:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E500D7AC44F
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 20:08:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id AA49B1F231F2
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 18:07:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 974D7281CF2
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 18:08:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10E3521103;
-	Sat, 23 Sep 2023 18:07:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E3021106;
+	Sat, 23 Sep 2023 18:08:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B35AA20B1B
-	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 18:07:11 +0000 (UTC)
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5674010C
-	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 11:07:10 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-401d6f6b2e0so35574115e9.1
-        for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 11:07:10 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18D1C20B1B
+	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 18:08:23 +0000 (UTC)
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 929FA136
+	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 11:08:22 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-31427ddd3fbso3578287f8f.0
+        for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 11:08:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695492429; x=1696097229; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695492501; x=1696097301; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=H149ZKwWnYhZ1xunGnnrQ+QQwSAWk1F1dR91/0OJmNc=;
-        b=wIemnXWxQOpuB7ACQ/JqQL2PBdbGZHEX3Dvroir4APx3dmR/Hez34Selg94bt9ZZos
-         yJua1MSyP8hE9bVkLUEK911CRSNZRisM7CP5jXJhDhSKoEd2DWi9n1c0Ntz+CiLKupzR
-         bTcGROgy9sAfbAq4zwhqNCnwlxldT1KTC2mDvx7JB9klVlmLPXIteE3Th+IX2kTnmj7k
-         F2BLjdhm66idVpjzADeaTHFHNV4lwRMDV330tApPfgj5eHnM7pBjtnBhu+YzbIBAIkjn
-         p3vom+VmBWP/rtthk0Pt1fAz1BBbakPQG33S4BhfZrCMiWraZ2Ud5pG0il5xVkgYBUrd
-         3KvA==
+        bh=8RYcBLgXi2Usyjv8O8F7jTAVsfiwldX4rLiaCjIZSoY=;
+        b=Ya8cEGNPvaBmDAun+1OhPyszgJVF6nAGJB0sRv8QEJg8kTpzgw6AP16J+HdM0I6lqT
+         7qhNvDLyf+dYcSQIkctbUYhZtWaeVzhqG2fvhpnP4mNgVetcVgrhKial22hJb2WE1ogA
+         HOaud75AC7sg6CGmNybM8+Zp12UFhUjQso6dKX+UDo6TYQlJRUgefVgy9lcH0eL3a/bw
+         51l9CktWt+0qF7RBOypU2maxHrCqLgJIkcrjJqO9vaf5upO1LXBS5qWebc9KOZ4UMUO9
+         PDH/4jPtz56jUkkB7na7/+p8HZUn8oD/bxvv+/kgPdW2t+nYEUSnRjju7Qoq9ZdPMf+z
+         PHHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695492429; x=1696097229;
+        d=1e100.net; s=20230601; t=1695492501; x=1696097301;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=H149ZKwWnYhZ1xunGnnrQ+QQwSAWk1F1dR91/0OJmNc=;
-        b=q3aQRbAiupbewGH5fmTvMXtYzC03uOs6/zq6GWQAKTIZws3Els+hDNBOrfzzZSCfno
-         IPzsoolNzQTBFbB5H773feQsVR8jcC2TxoCPysztfi7Ouy0ShZ+gbQbYD0+t+Pp6maxN
-         FMaH2GZIjmoKDGIKpZFeeqTRM7/3bqZHN1p4qSW3FbBjrATKO5lIQmcb2iaER/hW3hRJ
-         2rlNXjQsR2RXlo1TtIyBiGDmPtSB+d1oNogjPzZwzbOhn5+IrU7V/sK6dZ3vmod6KQlO
-         ejaDnoLQydK8N5KOKKBmeWvYx/1akgMX60vc85yRGAh1hZfPURPm+QE+k1p6i6BoZ8YB
-         I1cg==
-X-Gm-Message-State: AOJu0Yx5u2jk97MTfEsUvzlXFnTy6XnXiSjXGBhhq1JWpPUeYQu7RsEZ
-	vrhRGlwk+YKjVddSimVSko86GQ==
-X-Google-Smtp-Source: AGHT+IGGssrmYKQo06++hnwES4sRRwvQ+H+tZUVgGod48UpHafZ5lCkIM3LAng25TajcdA+SQMzndg==
-X-Received: by 2002:a5d:4682:0:b0:319:5234:5c92 with SMTP id u2-20020a5d4682000000b0031952345c92mr1812474wrq.35.1695492428791;
-        Sat, 23 Sep 2023 11:07:08 -0700 (PDT)
+        bh=8RYcBLgXi2Usyjv8O8F7jTAVsfiwldX4rLiaCjIZSoY=;
+        b=C5+efvoJbTGyR2xYxIsT+4XJ8htI4qBs7ouZFAavgfVU98dnauCVGTMpYWRfz52L2w
+         BuynkWFHMmuiqRhKvUrEarZZ2q7hzZAY65R7IIu0Mw7C0JRukeisLT5tgDa1VLL4rXOP
+         YdEipxIvGqOywDaF90BMHcRnCVPv6F8Aw8qbJKhTq6aUHgoI9A9We3AkJoMqkhYaj7j+
+         gpXkwL7E7mzu90TTSXoyXfnIiP1MKATR4NhrlZDbBjWRGAg1vBh+ONyKpZeiOUQxVC6v
+         CNaBwzraZHxiQELkIKkasXlnZhGxDiuC/poWo43NX3MJFPX5fj7lFvAgAICM7bl+Wuz5
+         xPHw==
+X-Gm-Message-State: AOJu0YzKh6Dec1k3i/YfdohrSfxhVAV2zypumSfRljn3D65BkiIaP/KN
+	mS6nsu4L+P0zfIp6Z33ta+06sA==
+X-Google-Smtp-Source: AGHT+IHgTWwCB7z8DnJNi+Zreo84MahTyxYFZoaRGkQRiDLl6+zBS9mKeFPkwSsb23KkMMbqczLODw==
+X-Received: by 2002:a5d:6b51:0:b0:31f:d95d:20a6 with SMTP id x17-20020a5d6b51000000b0031fd95d20a6mr2321405wrw.12.1695492500957;
+        Sat, 23 Sep 2023 11:08:20 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id p5-20020a056000018500b0031c855d52efsm7427661wrx.87.2023.09.23.11.07.06
+        by smtp.gmail.com with ESMTPSA id m12-20020a056000008c00b0031f3b04e7cdsm7440226wrx.109.2023.09.23.11.08.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Sep 2023 11:07:08 -0700 (PDT)
-Message-ID: <84655695-52bf-a67f-e0f1-7ad46fe44e6e@linaro.org>
-Date: Sat, 23 Sep 2023 20:07:05 +0200
+        Sat, 23 Sep 2023 11:08:20 -0700 (PDT)
+Message-ID: <ecda52ed-1d17-45e8-ab90-a9070ceb2d1c@linaro.org>
+Date: Sat, 23 Sep 2023 20:08:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,8 +64,8 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.1
-Subject: Re: [PATCH 06/15] mailbox: mediatek: Add cmdq_mbox_stop to disable
- GCE thread
+Subject: Re: [PATCH 08/15] soc: mediatek: Add cmdq_pkt_finalize_loop to CMDQ
+ driver
 Content-Language: en-US
 To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
  Jassi Brar <jassisinghbrar@gmail.com>,
@@ -83,9 +83,9 @@ Cc: Conor Dooley <conor+dt@kernel.org>,
  linux-mediatek@lists.infradead.org, dri-devel@lists.freedesktop.org,
  Project_Global_Chrome_Upstream_Group@mediatek.com
 References: <20230918192204.32263-1-jason-jh.lin@mediatek.com>
- <20230918192204.32263-7-jason-jh.lin@mediatek.com>
+ <20230918192204.32263-9-jason-jh.lin@mediatek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230918192204.32263-7-jason-jh.lin@mediatek.com>
+In-Reply-To: <20230918192204.32263-9-jason-jh.lin@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -96,35 +96,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 18/09/2023 21:21, Jason-JH.Lin wrote:
-> Add cmdq_mbox_stop to disable GCE thread.
+> Add cmdq_pkt_finalize_loop to CMDQ driver.
 > 
-> To support the error handling or the stop flow of the GCE loopping
-> thread, lopping thread user can call cmdq_mbox_stop to disable the
-> GCE HW thread.
+> cmdq_pkt_finalize_loop appends end of command(EOC) instruction and
+> jump to start of command buffer instruction to make the command
+> buffer loopable.
 > 
 > Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
 > ---
->  drivers/mailbox/mtk-cmdq-mailbox.c       | 6 ++++++
->  include/linux/mailbox/mtk-cmdq-mailbox.h | 1 +
->  2 files changed, 7 insertions(+)
+>  drivers/soc/mediatek/mtk-cmdq-helper.c | 23 +++++++++++++++++++++++
+>  include/linux/soc/mediatek/mtk-cmdq.h  |  8 ++++++++
+>  2 files changed, 31 insertions(+)
 > 
-> diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmdq-mailbox.c
-> index 4d62b07c1411..8bd39fecbf00 100644
-> --- a/drivers/mailbox/mtk-cmdq-mailbox.c
-> +++ b/drivers/mailbox/mtk-cmdq-mailbox.c
-> @@ -469,6 +469,12 @@ static void cmdq_mbox_shutdown(struct mbox_chan *chan)
->  	spin_unlock_irqrestore(&thread->chan->lock, flags);
+> diff --git a/drivers/soc/mediatek/mtk-cmdq-helper.c b/drivers/soc/mediatek/mtk-cmdq-helper.c
+> index 4be2a18a4a02..bbb127620bb3 100644
+> --- a/drivers/soc/mediatek/mtk-cmdq-helper.c
+> +++ b/drivers/soc/mediatek/mtk-cmdq-helper.c
+> @@ -475,6 +475,29 @@ int cmdq_pkt_finalize(struct cmdq_pkt *pkt)
 >  }
+>  EXPORT_SYMBOL(cmdq_pkt_finalize);
 >  
-> +void cmdq_mbox_stop(struct mbox_chan *chan)
+> +int cmdq_pkt_finalize_loop(struct cmdq_pkt *pkt)
 > +{
-> +	cmdq_mbox_shutdown(chan);
+> +	struct cmdq_instruction inst = { {0} };
+> +	int err;
+> +
+> +	/* insert EOC and generate IRQ for each command iteration */
+> +	inst.op = CMDQ_CODE_EOC;
+> +	inst.value = CMDQ_EOC_IRQ_EN;
+> +	err = cmdq_pkt_append_command(pkt, inst);
+> +	if (err < 0)
+> +		return err;
+> +
+> +	/* JUMP to start of pkt */
+> +	err = cmdq_pkt_jump(pkt, pkt->pa_base);
+> +	if (err < 0)
+> +		return err;
+> +
+> +	pkt->loop = true;
+> +
+> +	return err;
 > +}
-> +EXPORT_SYMBOL(cmdq_mbox_stop);
+> +EXPORT_SYMBOL(cmdq_pkt_finalize_loop);
 
-Plus there are no users.
-
-NAK. This is not code which should be posted upstream.
+NAK. No users (and please carefully think before you answer that your
+other patch uses it).
 
 Best regards,
 Krzysztof
