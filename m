@@ -1,101 +1,104 @@
-Return-Path: <devicetree+bounces-2712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7A497AC3B5
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 18:33:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DB6D7AC3BF
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 18:38:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id C6C061C20829
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 16:33:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 7C073B2097F
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 16:38:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EF2A15E88;
-	Sat, 23 Sep 2023 16:33:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39EBE1F163;
+	Sat, 23 Sep 2023 16:38:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 000E92F4A
-	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 16:33:49 +0000 (UTC)
-Received: from xry111.site (xry111.site [89.208.246.23])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6E1292;
-	Sat, 23 Sep 2023 09:33:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xry111.site;
-	s=default; t=1695486828;
-	bh=tW1UN5jHVwKFIWyT0vw1qK7pjftSvUIwdEui3rNfxLQ=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=MTpBgURNlVSGSVUcFrKYPfa1WwaTtCLUyPldQ1iVEPl3Q0Xt/LCoNQLvX20/wUGKc
-	 /87cdEmwPCKrPNpMdL3dAsroiPW9JlSCuRq2gJ+j/rz9MPwqhPUDXhmluoN5Sfp9xi
-	 W0DEosDlGsa2C8dU/Yb3uSxobuiykb35ImF6dgVM=
-Received: from [127.0.0.1] (xry111.site [IPv6:2001:470:683e::1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-384) server-digest SHA384)
-	(Client did not present a certificate)
-	(Authenticated sender: xry111@xry111.site)
-	by xry111.site (Postfix) with ESMTPSA id D5590659AC;
-	Sat, 23 Sep 2023 12:33:43 -0400 (EDT)
-Message-ID: <1caa7866e2a557d2da05adee29cb8ab8fe86ea25.camel@xry111.site>
-Subject: Re: [PATCH 0/6] RISC-V: Add eMMC support for TH1520 boards
-From: Xi Ruoyao <xry111@xry111.site>
-To: Drew Fustini <dfustini@baylibre.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, Adrian Hunter
- <adrian.hunter@intel.com>, Guo Ren <guoren@kernel.org>, Fu Wei
- <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley
- <conor@kernel.org>, Robert Nelson <robertcnelson@beagleboard.org>, Jason
- Kridner <jkridner@beagleboard.org>,  Han Gao <gaohan@iscas.ac.cn>, Icenowy
- Zheng <uwu@icenowy.me>, linux-mmc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-riscv@lists.infradead.org
-Date: Sun, 24 Sep 2023 00:33:41 +0800
-In-Reply-To: <ZQ2/eUKbW3wK7kHp@x1>
-References: <20230921-th1520-mmc-v1-0-49f76c274fb3@baylibre.com>
-	 <c1a4a7ab5c68c00dd8b3bb249c0371dbb8bcb929.camel@xry111.site>
-	 <ZQ2/eUKbW3wK7kHp@x1>
-Autocrypt: addr=xry111@xry111.site; prefer-encrypt=mutual;
- keydata=mDMEYnkdPhYJKwYBBAHaRw8BAQdAsY+HvJs3EVKpwIu2gN89cQT/pnrbQtlvd6Yfq7egugi0HlhpIFJ1b3lhbyA8eHJ5MTExQHhyeTExMS5zaXRlPoiTBBMWCgA7FiEEkdD1djAfkk197dzorKrSDhnnEOMFAmJ5HT4CGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQrKrSDhnnEOPHFgD8D9vUToTd1MF5bng9uPJq5y3DfpcxDp+LD3joA3U2TmwA/jZtN9xLH7CGDHeClKZK/ZYELotWfJsqRcthOIGjsdAPuDgEYnkdPhIKKwYBBAGXVQEFAQEHQG+HnNiPZseiBkzYBHwq/nN638o0NPwgYwH70wlKMZhRAwEIB4h4BBgWCgAgFiEEkdD1djAfkk197dzorKrSDhnnEOMFAmJ5HT4CGwwACgkQrKrSDhnnEOPjXgD/euD64cxwqDIqckUaisT3VCst11RcnO5iRHm6meNIwj0BALLmWplyi7beKrOlqKfuZtCLbiAPywGfCNg8LOTt4iMD
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.0 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEDDA1D547
+	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 16:38:26 +0000 (UTC)
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B78E92
+	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 09:38:25 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-533c92e65c9so982509a12.3
+        for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 09:38:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695487104; x=1696091904; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=H4Bu9499vxEYuYZsAqov7xWDeYEeKE1bzRJVu/6F6Q0=;
+        b=LPhXbEEg+OsFheXvpHFHyUD/BQSlMb8s2nWzWnR5tRoGFr8nFk5cln7cT+BHFN2ngl
+         vx5YmTGQ0zJJLa+ffnZnbqtEO22tmeUUzXj6uS8682ojcdCk/wtJ1AyHFpeOvHK4PyI3
+         FfRsYLH80q5xhC+z+nSHKVN3deQk5/rR+P+dtJ8hgyIHlHMAP3qqXnxjBTfqiUn8ysxO
+         c2chh9OW9JAM5eTSC9Yd4efVNkJNvADxwDGjG4KKxTi681C9BHaTxxOkJ3ZgzhdF5Ta+
+         9nOhXstRd3nSSAQcT72zeeKnmUI8zTEm5cMCFur3+rX6m5yOo3cXg5pN/Juoyp+QrvT5
+         gpWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695487104; x=1696091904;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=H4Bu9499vxEYuYZsAqov7xWDeYEeKE1bzRJVu/6F6Q0=;
+        b=hXJ9itiEfWY0qxg1g4xR/YwR18gyl29BtxyNP1SgxaQPxDP0xpb8Iy11cBBnRx040N
+         Wtz2YNxhdF4Vxj97I8CLIxA9xsmqSas8QotQ7Cyn/h8XVAcvsTyuAT2kqTrejgZZ8mT2
+         YFk0ozWhvzBBDdmFpbbxY7nceofpjo5j8U5iYznh+hPq1Xkv/g6nlXuDKpRixkdCnH1Q
+         nQbjcxlwXYXAwizuwlx9soHYdwD98e3MrtDqUxemWfT7+Kc5Nc6qBDsTd/+RVq7YtH2M
+         CrQ4gVrmz/JlpeOz23ZsNw53aHyoUTApS3w2cXFOJ4Q8KVKcyQXeQZukHjd4yKQDcscY
+         X4jw==
+X-Gm-Message-State: AOJu0YzFH5o0NwsUvIqR0gRhjxiicZbJbkRIkkAAW/hIUO9R4QQ8bTLP
+	5Eb9fWfkiFevwhHn9RgHZpeYBQ==
+X-Google-Smtp-Source: AGHT+IGrSg145km+P/YsAbGX7ONziClIaOrStvt5CSUU1rbY1RMIFV5ompUydv/UO1qCnZUeavlOHg==
+X-Received: by 2002:a05:6402:619:b0:533:49d2:dc8f with SMTP id n25-20020a056402061900b0053349d2dc8fmr1798513edv.17.1695487103638;
+        Sat, 23 Sep 2023 09:38:23 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.100])
+        by smtp.gmail.com with ESMTPSA id n9-20020aa7d049000000b0051e0be09297sm3535843edo.53.2023.09.23.09.38.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 23 Sep 2023 09:38:23 -0700 (PDT)
+Message-ID: <acb090f7-262b-8696-fe28-e537f48be1e6@linaro.org>
+Date: Sat, 23 Sep 2023 18:38:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [Question] dt bindings for BeagleConnect
+Content-Language: en-US
+To: Ayush Singh <ayushdevel1325@gmail.com>, devicetree@vger.kernel.org
+Cc: kernelnewbies@kernelnewbies.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+References: <ae896c35-58ba-6ba2-31dc-390a1d0d8faf@gmail.com>
+ <3a1917fc-75d6-358e-0e77-0f3c3cca316d@linaro.org>
+ <b3031ca6-83f2-80e0-2741-7b736c0f0efa@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <b3031ca6-83f2-80e0-2741-7b736c0f0efa@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Fri, 2023-09-22 at 09:23 -0700, Drew Fustini wrote:
-> > I've tested this branch and successfully booted a rootfs on Lichee Pi 4=
-A
-> > eMMC with rootdelay=3D10.
-> >=20
-> > Curiously is there some way to make it work without rootdelay?
->=20
-> Thank you for testing.
->=20
-> This is the kernel command line that I am using on both the lpi4 and
-> the ahead:
->=20
-> root=3D/dev/mmcblk0p3 ro rootfstype=3Dext4 rootwait console=3DttyS0,11520=
-0
->=20
-> I seem to recall that before I used rootwait that there would be a VFS
-> oops because mmcblk0p3 didn't exist yet.
->=20
-> Have you tried rootwait instead of the 10 second delay?
+On 23/09/2023 18:10, Ayush Singh wrote:
+> 
+>> On 23/09/2023 18:08, Ayush Singh wrote:
+>>> Hello everyone, I am working on writing a BeagleConnect driver for
+>>> Beagleplay board. Let me first go over some terminology:
+>>>
+>> Sending things twice will only make discussion even more confusing for
+>> us, e.g. spread over multiple threads. Don't do it.
+>>
+> Sorry, I sent the first using wrong email and then canceled the message 
+> from the link I got back from the mailing list.
 
-I just tried rootwait several times and it works for me.
+Emails do not work like this. You cannot cancel (or recall) a message.
+Your recipients already got your previous message.
 
-(When I tried it yesterday it did not work initially, so I switched to
-rootdelay.  I guess I'd mistyped something in the initial attempt).
+Best regards,
+Krzysztof
 
---=20
-Xi Ruoyao <xry111@xry111.site>
-School of Aerospace Science and Technology, Xidian University
 
