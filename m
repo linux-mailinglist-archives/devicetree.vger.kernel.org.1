@@ -1,229 +1,144 @@
-Return-Path: <devicetree+bounces-2647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A7617ABE83
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 09:41:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B48997ABE91
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 09:50:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id D931C1C2094C
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 07:41:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 95EF61C20506
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 07:50:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B7D7C2D6;
-	Sat, 23 Sep 2023 07:41:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36A6C63A1;
+	Sat, 23 Sep 2023 07:50:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73C35612E;
-	Sat, 23 Sep 2023 07:41:12 +0000 (UTC)
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFE29E77;
-	Sat, 23 Sep 2023 00:41:00 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-32172a50356so3224038f8f.0;
-        Sat, 23 Sep 2023 00:41:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695454859; x=1696059659; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HaysGuHoAkH6vVtvr388xi78nn8N9gJSrosG9zrGXMo=;
-        b=L7FTCx2Xu91JCtlPcHBzgYUaGwsD7cnv87IirWu5C0fnyo+QznLHcmve6jprOTLeZD
-         /bQdqY/wDdPDQYPjgy9xpqSy+DPHr/aNHuyezvrOix1c0AVrSvkjdwm/3Xaje0IbOziU
-         y9t9lEZJ3B5DViXCHrmCQOr1PP8EVB8F5V1ZBuJErMnfXmnP1SKn46II2kIcX56ouOK0
-         y++59Xr/FYOJlnAAL7fHccqU3xFNugMTZKhQyMErkhX7EPLRnCQCRyLqTEhrMy7DA/32
-         D04d6+dotaN/MjUoXXjw8QpqMmRhruqZsb6twa0wd9nBm/YdrZchmgnF94O+q/SaPKe0
-         rb5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695454859; x=1696059659;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HaysGuHoAkH6vVtvr388xi78nn8N9gJSrosG9zrGXMo=;
-        b=Frysx5kt/f/G9D/zZ2KRjO1GE0vzbVjwHFt2x34/Ir2eGUOJ2E13c6mu6wg/Vf0/gA
-         mDOdQydTQt4gVMMaMhKQttEqnjRRNsFZqlS26ut5DrIBnrvJz3yl9Zc23sdendqgLqq6
-         YLxsPyHDpHtMFlnBBwFfflASsiMmuqzA6j4fxQC+nyKJsQjpS362YTMFxzydnrxbEcvG
-         o9uwdHOZvFL/Vh2flU9A/tp5zbM0Dt+HyhsN3d+sFtBfdzY85UKLv+ycVSaWQ8fQzULP
-         5A+jk9yCkkhPKd8lngfKlI57/QrY0acK0O3mWx2EtdmzQc2GUkE14IlMnpl+V3FGZRR9
-         Yszw==
-X-Gm-Message-State: AOJu0YzjsgzSmHCGh9FcpihuysAOsIoU51io+kyWg+yqGrhxCpbWzwp7
-	JlSGDl0M1c0bEHiJklzzylRTlq4oQv8MZEsO6mw=
-X-Google-Smtp-Source: AGHT+IG2ZT9zZmdbCyCWqUVb/HGinMiwM4q90Z65SKsW6vASIWjDGLv+oRF+bB7vlggV6o6lplUh2g==
-X-Received: by 2002:a5d:6a0f:0:b0:321:71ae:736c with SMTP id m15-20020a5d6a0f000000b0032171ae736cmr1443656wru.7.1695454859006;
-        Sat, 23 Sep 2023 00:40:59 -0700 (PDT)
-Received: from primary.. ([213.139.62.222])
-        by smtp.gmail.com with ESMTPSA id k6-20020adfe3c6000000b003196e992567sm6236955wrm.115.2023.09.23.00.40.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 23 Sep 2023 00:40:58 -0700 (PDT)
-From: Abdel Alkuor <alkuor@gmail.com>
-To: heikki.krogerus@linux.intel.com,
-	krzysztof.kozlowski+dt@linaro.org,
-	bryan.odonoghue@linaro.org
-Cc: gregkh@linuxfoundation.org,
-	robh+dt@kernel.org,
-	linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	conor+dt@kernel.org,
-	ryan.eleceng@gmail.com,
-	Abdel Alkuor <abdelalkuor@geotab.com>
-Subject: [PATCH v6 14/14] USB: typec: Add status trace for tps25750
-Date: Sat, 23 Sep 2023 03:39:59 -0400
-Message-Id: <20230923073959.86660-15-alkuor@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230923073959.86660-1-alkuor@gmail.com>
-References: <20230923073959.86660-1-alkuor@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26A142117
+	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 07:50:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E628C433CB;
+	Sat, 23 Sep 2023 07:50:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695455451;
+	bh=ubMZKfnyWKEVj8IonDZ1KMHOScdcFtBBm3nDE8Z1AWc=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=QiIERg4N7rrYpj3SdR416sb92nDUGV9zxcTCRd3QekW4b15Ph48zl1w0nIrDDR7NP
+	 toaj5B4xUccHC8mDBCvMRdT+LcYwdqtL421Kh3j3YLMR2S2//D4Jm7x3mwKLE/jxqo
+	 WfwGAG76J65srxjJ4nuVPpfeiAzftq9pUUamLUQ5uRhXyhTxz/s7qeQfgNpZJMyAsb
+	 n7R3QhjAnr1FOlX1hiZ6k8eBQILTi1xNPpAFg5w0fF91/GHCNE/AD8SL6v+SCfRr7g
+	 5J71CiSYG3bWNuSt2A+4nF2YIbHfeW8BBkteF8jJZFDrGHLxqsWP65I/j3tDp0Gm34
+	 KrQV7vUY/hp5Q==
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-50307acd445so5364142e87.0;
+        Sat, 23 Sep 2023 00:50:51 -0700 (PDT)
+X-Gm-Message-State: AOJu0YxP6Tb9x3I9pARnE+HTnR1kOuDINps2pffz2PoSq+o1vsgkDZ2S
+	fF7cW4+HjNDhrhsqhgPvjTdrtJT/0+JosbebN0A=
+X-Google-Smtp-Source: AGHT+IFea1wRy5eJudPxUVu3RtK9dVhqNh4TIRC1jtYqezMS8B5X7TK38IQtLbtJiEI0LfX+mY8MEQQsI3NSizqlOp8=
+X-Received: by 2002:ac2:4a69:0:b0:502:d302:e025 with SMTP id
+ q9-20020ac24a69000000b00502d302e025mr1061315lfp.2.1695455449792; Sat, 23 Sep
+ 2023 00:50:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+References: <20230922081351.30239-2-conor@kernel.org> <20230922081351.30239-8-conor@kernel.org>
+In-Reply-To: <20230922081351.30239-8-conor@kernel.org>
+From: Guo Ren <guoren@kernel.org>
+Date: Sat, 23 Sep 2023 15:50:36 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTR2JmsMhzjzWp85hEwoJwRBN4T4iHz_Z-1cG-XgB=EFeA@mail.gmail.com>
+Message-ID: <CAJF2gTR2JmsMhzjzWp85hEwoJwRBN4T4iHz_Z-1cG-XgB=EFeA@mail.gmail.com>
+Subject: Re: [RFC v2 6/6] riscv: dts: thead: convert isa detection to new properties
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-riscv@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Daire McNamara <daire.mcnamara@microchip.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Emil Renner Berthing <kernel@esmil.dk>, 
+	Jisheng Zhang <jszhang@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Chen Wang <unicorn_wang@outlook.com>, devicetree@vger.kernel.org, 
+	linux-sunxi@lists.linux.dev, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Abdel Alkuor <abdelalkuor@geotab.com>
+On Fri, Sep 22, 2023 at 4:16=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> From: Conor Dooley <conor.dooley@microchip.com>
+>
+> Convert the th1520 devicetrees to use the new properties
+> "riscv,isa-base" & "riscv,isa-extensions".
+> For compatibility with other projects, "riscv,isa" remains.
+>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  arch/riscv/boot/dts/thead/th1520.dtsi | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>
+> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/=
+thead/th1520.dtsi
+> index ce708183b6f6..723f65487246 100644
+> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> @@ -20,6 +20,9 @@ c910_0: cpu@0 {
+>                         compatible =3D "thead,c910", "riscv";
+>                         device_type =3D "cpu";
+>                         riscv,isa =3D "rv64imafdc";
+> +                       riscv,isa-base =3D "rv64i";
+Why not riscv,isa-base =3D "rv64"? I saw "i" in the riscv,isa-extensions.
 
-tps25750 status register is a subset of tps6598x status register, hence
-a trace for tps25750 status register is added.
+Maybe this question should be in this mailing thread and a little late:
+https://lore.kernel.org/linux-riscv/20230713-tablet-jimmy-987fea0eb2e1@wend=
+y/
 
-Signed-off-by: Abdel Alkuor <abdelalkuor@geotab.com>
----
-Changes in v6:
- - Add trace status to tipd data factory
-Changes in v5:
-  - Incorporating tps25750 into tps6598x driver
+> +                       riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c", "zicntr", "zicsr",
+> +                                              "zifencei", "zihpm";
+>                         reg =3D <0>;
+>                         i-cache-block-size =3D <64>;
+>                         i-cache-size =3D <65536>;
+> @@ -41,6 +44,9 @@ c910_1: cpu@1 {
+>                         compatible =3D "thead,c910", "riscv";
+>                         device_type =3D "cpu";
+>                         riscv,isa =3D "rv64imafdc";
+> +                       riscv,isa-base =3D "rv64i";
+> +                       riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c", "zicntr", "zicsr",
+> +                                              "zifencei", "zihpm";
+>                         reg =3D <1>;
+>                         i-cache-block-size =3D <64>;
+>                         i-cache-size =3D <65536>;
+> @@ -62,6 +68,9 @@ c910_2: cpu@2 {
+>                         compatible =3D "thead,c910", "riscv";
+>                         device_type =3D "cpu";
+>                         riscv,isa =3D "rv64imafdc";
+> +                       riscv,isa-base =3D "rv64i";
+> +                       riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c", "zicntr", "zicsr",
+> +                                              "zifencei", "zihpm";
+>                         reg =3D <2>;
+>                         i-cache-block-size =3D <64>;
+>                         i-cache-size =3D <65536>;
+> @@ -83,6 +92,9 @@ c910_3: cpu@3 {
+>                         compatible =3D "thead,c910", "riscv";
+>                         device_type =3D "cpu";
+>                         riscv,isa =3D "rv64imafdc";
+> +                       riscv,isa-base =3D "rv64i";
+> +                       riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c", "zicntr", "zicsr",
+> +                                              "zifencei", "zihpm";
+>                         reg =3D <3>;
+>                         i-cache-block-size =3D <64>;
+>                         i-cache-size =3D <65536>;
+> --
+> 2.41.0
+>
 
- drivers/usb/typec/tipd/core.c  | 12 +++++++----
- drivers/usb/typec/tipd/trace.h | 37 ++++++++++++++++++++++++++++++++++
- 2 files changed, 45 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
-index e8190f1f57ad..2f9eb1ee2230 100644
---- a/drivers/usb/typec/tipd/core.c
-+++ b/drivers/usb/typec/tipd/core.c
-@@ -112,6 +112,7 @@ struct tipd_data {
- 	int (*register_port)(struct tps6598x *tps, struct fwnode_handle *node);
- 	void (*trace_irq)(void *events);
- 	void (*trace_power_status)(u16 status);
-+	void (*trace_status)(u32 status);
- };
- 
- struct tps6598x {
-@@ -471,7 +472,9 @@ static bool tps6598x_read_status(struct tps6598x *tps, u32 *status)
- 		dev_err(tps->dev, "%s: failed to read status\n", __func__);
- 		return false;
- 	}
--	trace_tps6598x_status(*status);
-+
-+	if (tps->cb.trace_status)
-+		tps->cb.trace_status(*status);
- 
- 	return true;
- }
-@@ -1150,6 +1153,7 @@ static const struct tipd_data cd321x_data = {
- 	.irq_handler = cd321x_interrupt,
- 	.register_port = tps6598x_register_port,
- 	.trace_power_status = trace_tps6598x_power_status,
-+	.trace_status = trace_tps6598x_status,
- };
- 
- static const struct tipd_data tps6598x_data = {
-@@ -1159,6 +1163,7 @@ static const struct tipd_data tps6598x_data = {
- 	.register_port = tps6598x_register_port,
- 	.trace_irq = tps6598x_trace_irq,
- 	.trace_power_status = trace_tps6598x_power_status,
-+	.trace_status = trace_tps6598x_status,
- };
- 
- static const struct tipd_data tps25750_data = {
-@@ -1168,6 +1173,7 @@ static const struct tipd_data tps25750_data = {
- 	.register_port = tps25750_register_port,
- 	.trace_irq = tps25750_trace_irq,
- 	.trace_power_status = trace_tps25750_power_status,
-+	.trace_status = trace_tps25750_status,
- };
- 
- static int tps6598x_probe(struct i2c_client *client)
-@@ -1245,10 +1251,8 @@ static int tps6598x_probe(struct i2c_client *client)
- 	if (ret)
- 		goto err_reset_controller;
- 
--	ret = tps6598x_read32(tps, TPS_REG_STATUS, &status);
--	if (ret < 0)
-+	if (!tps6598x_read_status(tps, &status))
- 		goto err_clear_mask;
--	trace_tps6598x_status(status);
- 
- 	/*
- 	 * This fwnode has a "compatible" property, but is never populated as a
-diff --git a/drivers/usb/typec/tipd/trace.h b/drivers/usb/typec/tipd/trace.h
-index 739b0a2a867d..afa0875a9de5 100644
---- a/drivers/usb/typec/tipd/trace.h
-+++ b/drivers/usb/typec/tipd/trace.h
-@@ -91,6 +91,14 @@
- 						      TPS_STATUS_USB_HOST_PRESENT_MASK | \
- 						      TPS_STATUS_LEGACY_MASK))
- 
-+#define TPS25750_STATUS_FLAGS_MASK (GENMASK(31, 0) ^ (TPS_STATUS_CONN_STATE_MASK | \
-+						      GENMASK(19, 7) | \
-+						      TPS_STATUS_VBUS_STATUS_MASK | \
-+						      TPS_STATUS_USB_HOST_PRESENT_MASK | \
-+						      TPS_STATUS_LEGACY_MASK | \
-+						      BIT(26) | \
-+						      GENMASK(31, 28)))
-+
- #define show_status_conn_state(status) \
- 	__print_symbolic(TPS_STATUS_CONN_STATE((status)), \
- 		{ TPS_STATUS_CONN_STATE_CONN_WITH_R_A,	"conn-Ra"  }, \
-@@ -148,6 +156,14 @@
- 		      { TPS_STATUS_HIGH_VOLAGE_WARNING,	"HIGH_VOLAGE_WARNING" }, \
- 		      { TPS_STATUS_HIGH_LOW_VOLTAGE_WARNING, "HIGH_LOW_VOLTAGE_WARNING" })
- 
-+#define show_tps25750_status_flags(flags) \
-+	__print_flags((flags & TPS25750_STATUS_FLAGS_MASK), "|", \
-+		      { TPS_STATUS_PLUG_PRESENT,	"PLUG_PRESENT" }, \
-+		      { TPS_STATUS_PLUG_UPSIDE_DOWN,	"UPSIDE_DOWN" }, \
-+		      { TPS_STATUS_PORTROLE,		"PORTROLE" }, \
-+		      { TPS_STATUS_DATAROLE,		"DATAROLE" }, \
-+		      { TPS_STATUS_BIST,		"BIST" })
-+
- #define show_power_status_source_sink(power_status) \
- 	__print_symbolic(TPS_POWER_STATUS_SOURCESINK(power_status), \
- 		{ 1, "sink" }, \
-@@ -292,6 +308,27 @@ TRACE_EVENT(tps6598x_status,
- 		    )
- );
- 
-+TRACE_EVENT(tps25750_status,
-+	    TP_PROTO(u32 status),
-+	    TP_ARGS(status),
-+
-+	    TP_STRUCT__entry(
-+			     __field(u32, status)
-+			     ),
-+
-+	    TP_fast_assign(
-+			   __entry->status = status;
-+			   ),
-+
-+	    TP_printk("conn: %s, vbus: %s, usb-host: %s, legacy: %s, flags: %s",
-+		      show_status_conn_state(__entry->status),
-+		      show_status_vbus_status(__entry->status),
-+		      show_status_usb_host_present(__entry->status),
-+		      show_status_legacy(__entry->status),
-+		      show_tps25750_status_flags(__entry->status)
-+		    )
-+);
-+
- TRACE_EVENT(tps6598x_power_status,
- 	    TP_PROTO(u16 power_status),
- 	    TP_ARGS(power_status),
--- 
-2.34.1
-
+--
+Best Regards
+ Guo Ren
 
