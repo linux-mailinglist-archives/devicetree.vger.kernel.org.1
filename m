@@ -1,114 +1,162 @@
-Return-Path: <devicetree+bounces-2721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACD397AC429
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 19:46:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0697B7AC436
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 19:52:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id E92FA281E1F
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 17:46:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id A866D281E34
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 17:52:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E928210EA;
-	Sat, 23 Sep 2023 17:46:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70F5A210EF;
+	Sat, 23 Sep 2023 17:52:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D6EA4691
-	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 17:46:06 +0000 (UTC)
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A624D193
-	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 10:46:04 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-530bc7c5bc3so4740327a12.1
-        for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 10:46:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695491163; x=1696095963; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zpKk21cNUHADpHved85Mc4llwz1lMTxoOCJMbiwCyKA=;
-        b=jUveVYLaTDRThjLRrEMWOdk4MUEuUdHNVyFxMLDdVcSan3R4wxY99zm6zUXXYPfuiU
-         Q1W9kKabVn/u3RArr+6yf7MEJGQp9WQREuL0iUyLo9Q1rbk3B2Uc+6xihquUiP8EziIa
-         sgdgnHYVReK9uqiTWRNlyCwaaTWZitmxTka2T1F3NF3BPA0qjiouExjNckDijPLigfCq
-         i7CIJKm1m9fuQapqlh9fHK8tUv+FPt8X6RYSx3N4Iqy8vnDErO6CGtk110Oz5WyX7mat
-         g8cO2d3dRygZeP9whkCKVTJF/TBkwOvGoM/L15+ZQdPu/0S8BeNq0lLH39SutSYzmQy5
-         0H5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695491163; x=1696095963;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zpKk21cNUHADpHved85Mc4llwz1lMTxoOCJMbiwCyKA=;
-        b=tQrZ8PXKABbl+84HklEr15W0ovYXldURd11GwPVk6dIibt193CK6xRdNp1b79eoD1a
-         6lkn4ZzuqFEET48i7Sh508D2j8ovfG8nUTu4VNjvcwx/sPWw/t2bF1jusBy8BtIsz8Wj
-         I39OKQidintTHrkcT/YPBE38in3nv94+tArIzR4Kbzo3p+dYxEF5zQxOTnKyjW77Wqid
-         05yfUYW3CyMX24NJ7BBNeeGon5N0FpVsDW6+KSm7jNFhnXBYoGinoQr9jgGfzJb2WDBT
-         MUnr4w+IuiYH+QYP88cltubZM9DgIfWSYWVItrgU8iC6i/8baWScYE0sDFFWjOMbwH1i
-         nmqg==
-X-Gm-Message-State: AOJu0YyIcXgEWA/X/KoiCKLdlISQmdFlMx9/j7f/YhVvku8Avqg7dBEz
-	wyHzfLmyA0WuIvqmlELJcvbuWA==
-X-Google-Smtp-Source: AGHT+IH8Pla4hYyuJwWIentvI+uehMgSIzlegcxu0whiArY0JoahjPG0a7PfV5DHuPn+yhBHqV6FRA==
-X-Received: by 2002:aa7:c318:0:b0:525:442b:6068 with SMTP id l24-20020aa7c318000000b00525442b6068mr2340355edq.13.1695491163142;
-        Sat, 23 Sep 2023 10:46:03 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id fi9-20020a056402550900b00533bab9d9f1sm962586edb.1.2023.09.23.10.46.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Sep 2023 10:46:02 -0700 (PDT)
-Message-ID: <8d7672a6-67e9-f983-b22f-37f1ee47f125@linaro.org>
-Date: Sat, 23 Sep 2023 19:46:00 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B6434691;
+	Sat, 23 Sep 2023 17:52:14 +0000 (UTC)
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CCC5136;
+	Sat, 23 Sep 2023 10:52:11 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 3B91560002;
+	Sat, 23 Sep 2023 17:51:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+	t=1695491529;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=+MHhj+mHJkpQWkiuvF+5NLMuTrzWJfhOnzIw/bOrX/g=;
+	b=jDirt66ui1jeO6Hlu8+DPSb5+zHMG0NAm5TnbL3SXUkqMd2JwQi4ai1vnq5/X8Szk8Ne7z
+	ENjPyW42YCD/CE9rQbsIG4H1UFUqoq3MajYpNOiPaA9PQhsRenN33jhzGldytorXAkGazx
+	pzK3RAGNISijyoFuVO5djM8uZZu7umw/KSQ2/O0gZIVK3GA3yVHscBA3fn/TO70W3K9HdC
+	4uOJXfqjDMG1UPOWg8w2m8UEfTzRUCy9deNdDY72BMM+TrepZ6NuVQoeSr/9HrWlkXdWAV
+	h4H7TvpRvRpYoNxai0idxf4Frq+AljXkzEjzrY3S0xQefYMZ7Y3szYBj1IrTUA==
+Message-ID: <228f24db-0a26-4d38-8f73-a9691262cc5f@arinc9.com>
+Date: Sat, 23 Sep 2023 20:51:44 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v3 1/3] dt-bindings: reserved-memory: rmtfs: Allow guard
- pages
-Content-Language: en-US
-To: Bjorn Andersson <quic_bjorande@quicinc.com>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v2 00/10] define and enforce phylink bindings
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20230920-rmtfs-mem-guard-pages-v3-0-305b37219b78@quicinc.com>
- <20230920-rmtfs-mem-guard-pages-v3-1-305b37219b78@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230920-rmtfs-mem-guard-pages-v3-1-305b37219b78@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Conor Dooley <conor+dt@kernel.org>,
+ George McCollister <george.mccollister@gmail.com>,
+ Florian Fainelli <f.fainelli@gmail.com>, Vladimir Oltean
+ <olteanv@gmail.com>, Kurt Kanzenbach <kurt@linutronix.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com,
+ Linus Walleij <linus.walleij@linaro.org>,
+ =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+ =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+ Marcin Wojtas <mw@semihalf.com>, Lars Povlsen <lars.povlsen@microchip.com>,
+ Steen Hegelund <Steen.Hegelund@microchip.com>,
+ Daniel Machon <daniel.machon@microchip.com>,
+ Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+ Daniel Golle <daniel@makrotopia.org>, Landen Chao
+ <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
+ Sean Wang <sean.wang@mediatek.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@microchip.com>, Marek Vasut <marex@denx.de>,
+ Claudiu Manoil <claudiu.manoil@nxp.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ John Crispin <john@phrozen.org>, Madalin Bucur <madalin.bucur@nxp.com>,
+ Ioana Ciornei <ioana.ciornei@nxp.com>, Lorenzo Bianconi
+ <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>,
+ Oleksij Rempel <linux@rempel-privat.de>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Grygorii Strashko <grygorii.strashko@ti.com>, Sekhar Nori <nsekhar@ti.com>,
+ Shyam Pandey <radhey.shyam.pandey@xilinx.com>, mithat.guner@xeront.com,
+ erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-renesas-soc@vger.kernel.org
+References: <20230916110902.234273-1-arinc.unal@arinc9.com>
+ <ZQ2LMe9aa1ViBcSH@shell.armlinux.org.uk>
+ <6c1bb7df-34cd-4db9-95b6-959c87b68588@arinc9.com>
+ <4856b212-5bc5-4783-a184-b34a4a915878@lunn.ch>
+ <5650a2a3-a36f-441e-b4c2-aa7c751b5af5@arinc9.com>
+ <410dfe3c-6f99-4054-88f8-0acbd134cfce@lunn.ch>
+Content-Language: en-US
+From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <410dfe3c-6f99-4054-88f8-0acbd134cfce@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: arinc.unal@arinc9.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 21/09/2023 04:37, Bjorn Andersson wrote:
-> On some Qualcomm platforms the firwmare, or hardware, does not
-> gracefully handle memory protection of the rmtfs memory region when
-> placed adjacent to other protected region. Some DeviceTree authors have
-> worked around this issue by explicitly reserving the space around the
-> region, but this prevents such author to use rely on the OS to place the
-> region, through the use of "size" (instead of a fixed location).
+On 23.09.2023 18:12, Andrew Lunn wrote:
+> On Sat, Sep 23, 2023 at 09:28:41AM +0300, Arınç ÜNAL wrote:
+>> On 23.09.2023 01:36, Andrew Lunn wrote:
+>>> You are missing:
+>>>
+>>> - The MAC has firmware driving the PHY, nothing for linux to do.
+>>>
+>>> There are properties in ethernet-controller.yaml the MAC driver would
+>>> however like to use such as local-mac-address, max-frame-size,
+>>> nvmem-cell-names etc.
+>>
+>> This is interesting. This is clearly a hardware difference of the ethernet
+>> controller.
+>>
+>> I believe this fits case 1. There's still an MDIO bus the ethernet
+>> controller uses, there's still a PHY on the MDIO bus which the ethernet
+>> controller uses.
 > 
+> Why must there be an MDIO bus? All the bus provides is a communication
+> channel to the PHY. There are PHYs which are memory mapped, or use
+> I2C. SFP are a good example of I2C, which Linux maps to MDIO just to
+> make things simple, but the hardware is I2C. Why must there be a PHY?
+> Maybe it is a Base-K link, i.e. a baseboard link to a switch, or a BMC
+> or something.
 
+There's no requirement for an MDIO bus or a PHY. If the MAC is connected to
+a PHY, only the PHY node needs to be described. The PHY can be controlled
+by any interface, I2C, MDIO, or something else. If there's no PHY, the
+fixed-link property would be used to describe the link.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+>> The only difference is the firmware of the ethernet
+>> controller controls... What exactly does the firmware control that a Linux
+>> driver would have controlled instead? Just configuring the link settings of
+>> the MAC?
+> 
+> A MAC driver implements struct ethtool_ops:::get_link_settings and
+> set_link_settings. For a MAC driver using phylib or phylink they
+> typically then call into phylib or phylink to do the actual work,
+> maybe with a bit of pre-processing in the MAC driver.
+> 
+> A MAC driver using firmware would typically make an RPC into the
+> firmware to implement these calls.
+> 
+> There is a MAC driver currently under review which does not have a PHY
+> at all. The MAC is directly connected to a switch, all within one
+> IC. The link is always running at 5Gbps, the link is always up. It is
+> physically impossible to connect a PHY, so get_link_settings just
+> returns hard coded values.
 
-> +
-> +      When this is set, the first and last 4kB should be left unused, and the
-> +      effective size of the region will thereby shrink with 8kB.
+The fixed-link property would be used to describe the link of the MAC here.
 
-Maybe we should not reference the actual size (4 and 8 kB), but rather
-page - "the first and last pages in mapping should be left unused ..." etc?
-
-
-
-Best regards,
-Krzysztof
-
+Arınç
 
