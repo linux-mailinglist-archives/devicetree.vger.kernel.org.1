@@ -1,120 +1,101 @@
-Return-Path: <devicetree+bounces-2711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15BB97AC3A7
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 18:28:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7A497AC3B5
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 18:33:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 2BCC91C20841
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 16:27:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id C6C061C20829
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 16:33:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 041FE208B8;
-	Sat, 23 Sep 2023 16:27:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EF2A15E88;
+	Sat, 23 Sep 2023 16:33:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B9221EA7E
-	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 16:27:55 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C085A3;
-	Sat, 23 Sep 2023 09:27:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1695486473; x=1727022473;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2EgNBjJKkDIylgKrJfdQAHWESh7j0MS+R2T8A6UuXSQ=;
-  b=XBm44GApVkQSR/KyJfFfFo2jOcXXgWWx6rzwkMBJZsb5KjraL3otF3vp
-   ff85BHHTchlJ46555Dw4yLlL7vXYZ1JDKfFjr7ahoX8wVWH0j96dHrOyu
-   /iZ9YGeaB7/YoOCbiH9uGvUnbEnnjJl+QpqIlN5NYVhUeCuq/hPi5D9CL
-   CErgCmgnN0lf4g/OObKvxs+HCiigVlLM0G9pI/ZkK/jeKa3JWSFMSrVEu
-   9rcs4dWnS3FBiDuUjEbqSEd933Ypbrx2TE4Dd4S+g+zir6pSM8x86v3IN
-   a3Wfq1We5icDZ6+J3TBs+Uz/I3GBBVVvxqCT4YM1TBB44+pznxwQjLH6m
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10842"; a="379916301"
-X-IronPort-AV: E=Sophos;i="6.03,171,1694761200"; 
-   d="scan'208";a="379916301"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Sep 2023 09:27:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10842"; a="697540892"
-X-IronPort-AV: E=Sophos;i="6.03,171,1694761200"; 
-   d="scan'208";a="697540892"
-Received: from lkp-server02.sh.intel.com (HELO 493f6c7fed5d) ([10.239.97.151])
-  by orsmga003.jf.intel.com with ESMTP; 23 Sep 2023 09:27:49 -0700
-Received: from kbuild by 493f6c7fed5d with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qk5Tv-0002cs-2D;
-	Sat, 23 Sep 2023 16:27:47 +0000
-Date: Sun, 24 Sep 2023 00:27:05 +0800
-From: kernel test robot <lkp@intel.com>
-To: Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Rohit Agarwal <quic_rohiagar@quicinc.com>
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: Add interconnect nodes for SDX75
-Message-ID: <202309240033.AmuJpOkT-lkp@intel.com>
-References: <1695383434-24705-2-git-send-email-quic_rohiagar@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 000E92F4A
+	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 16:33:49 +0000 (UTC)
+Received: from xry111.site (xry111.site [89.208.246.23])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6E1292;
+	Sat, 23 Sep 2023 09:33:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xry111.site;
+	s=default; t=1695486828;
+	bh=tW1UN5jHVwKFIWyT0vw1qK7pjftSvUIwdEui3rNfxLQ=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=MTpBgURNlVSGSVUcFrKYPfa1WwaTtCLUyPldQ1iVEPl3Q0Xt/LCoNQLvX20/wUGKc
+	 /87cdEmwPCKrPNpMdL3dAsroiPW9JlSCuRq2gJ+j/rz9MPwqhPUDXhmluoN5Sfp9xi
+	 W0DEosDlGsa2C8dU/Yb3uSxobuiykb35ImF6dgVM=
+Received: from [127.0.0.1] (xry111.site [IPv6:2001:470:683e::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature ECDSA (P-384) server-digest SHA384)
+	(Client did not present a certificate)
+	(Authenticated sender: xry111@xry111.site)
+	by xry111.site (Postfix) with ESMTPSA id D5590659AC;
+	Sat, 23 Sep 2023 12:33:43 -0400 (EDT)
+Message-ID: <1caa7866e2a557d2da05adee29cb8ab8fe86ea25.camel@xry111.site>
+Subject: Re: [PATCH 0/6] RISC-V: Add eMMC support for TH1520 boards
+From: Xi Ruoyao <xry111@xry111.site>
+To: Drew Fustini <dfustini@baylibre.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, Adrian Hunter
+ <adrian.hunter@intel.com>, Guo Ren <guoren@kernel.org>, Fu Wei
+ <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley
+ <conor@kernel.org>, Robert Nelson <robertcnelson@beagleboard.org>, Jason
+ Kridner <jkridner@beagleboard.org>,  Han Gao <gaohan@iscas.ac.cn>, Icenowy
+ Zheng <uwu@icenowy.me>, linux-mmc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org
+Date: Sun, 24 Sep 2023 00:33:41 +0800
+In-Reply-To: <ZQ2/eUKbW3wK7kHp@x1>
+References: <20230921-th1520-mmc-v1-0-49f76c274fb3@baylibre.com>
+	 <c1a4a7ab5c68c00dd8b3bb249c0371dbb8bcb929.camel@xry111.site>
+	 <ZQ2/eUKbW3wK7kHp@x1>
+Autocrypt: addr=xry111@xry111.site; prefer-encrypt=mutual;
+ keydata=mDMEYnkdPhYJKwYBBAHaRw8BAQdAsY+HvJs3EVKpwIu2gN89cQT/pnrbQtlvd6Yfq7egugi0HlhpIFJ1b3lhbyA8eHJ5MTExQHhyeTExMS5zaXRlPoiTBBMWCgA7FiEEkdD1djAfkk197dzorKrSDhnnEOMFAmJ5HT4CGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQrKrSDhnnEOPHFgD8D9vUToTd1MF5bng9uPJq5y3DfpcxDp+LD3joA3U2TmwA/jZtN9xLH7CGDHeClKZK/ZYELotWfJsqRcthOIGjsdAPuDgEYnkdPhIKKwYBBAGXVQEFAQEHQG+HnNiPZseiBkzYBHwq/nN638o0NPwgYwH70wlKMZhRAwEIB4h4BBgWCgAgFiEEkdD1djAfkk197dzorKrSDhnnEOMFAmJ5HT4CGwwACgkQrKrSDhnnEOPjXgD/euD64cxwqDIqckUaisT3VCst11RcnO5iRHm6meNIwj0BALLmWplyi7beKrOlqKfuZtCLbiAPywGfCNg8LOTt4iMD
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.0 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1695383434-24705-2-git-send-email-quic_rohiagar@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Rohit,
+On Fri, 2023-09-22 at 09:23 -0700, Drew Fustini wrote:
+> > I've tested this branch and successfully booted a rootfs on Lichee Pi 4=
+A
+> > eMMC with rootdelay=3D10.
+> >=20
+> > Curiously is there some way to make it work without rootdelay?
+>=20
+> Thank you for testing.
+>=20
+> This is the kernel command line that I am using on both the lpi4 and
+> the ahead:
+>=20
+> root=3D/dev/mmcblk0p3 ro rootfstype=3Dext4 rootwait console=3DttyS0,11520=
+0
+>=20
+> I seem to recall that before I used rootwait that there would be a VFS
+> oops because mmcblk0p3 didn't exist yet.
+>=20
+> Have you tried rootwait instead of the 10 second delay?
 
-kernel test robot noticed the following build errors:
+I just tried rootwait several times and it works for me.
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.6-rc2 next-20230921]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+(When I tried it yesterday it did not work initially, so I switched to
+rootdelay.  I guess I'd mistyped something in the initial attempt).
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Rohit-Agarwal/arm64-dts-qcom-Add-interconnect-nodes-for-SDX75/20230922-195140
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/1695383434-24705-2-git-send-email-quic_rohiagar%40quicinc.com
-patch subject: [PATCH 1/3] arm64: dts: qcom: Add interconnect nodes for SDX75
-config: arm64-defconfig (https://download.01.org/0day-ci/archive/20230924/202309240033.AmuJpOkT-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230924/202309240033.AmuJpOkT-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202309240033.AmuJpOkT-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from arch/arm64/boot/dts/qcom/sdx75-idp.dts:9:
->> arch/arm64/boot/dts/qcom/sdx75.dtsi:11:10: fatal error: dt-bindings/interconnect/qcom,sdx75.h: No such file or directory
-      11 | #include <dt-bindings/interconnect/qcom,sdx75.h>
-         |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   compilation terminated.
-
-
-vim +11 arch/arm64/boot/dts/qcom/sdx75.dtsi
-
-  > 11	#include <dt-bindings/interconnect/qcom,sdx75.h>
-    12	#include <dt-bindings/interrupt-controller/arm-gic.h>
-    13	#include <dt-bindings/power/qcom,rpmhpd.h>
-    14	#include <dt-bindings/power/qcom-rpmpd.h>
-    15	#include <dt-bindings/soc/qcom,rpmh-rsc.h>
-    16	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--=20
+Xi Ruoyao <xry111@xry111.site>
+School of Aerospace Science and Technology, Xidian University
 
