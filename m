@@ -1,739 +1,338 @@
-Return-Path: <devicetree+bounces-2669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D55787AC255
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 15:47:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC90E7AC259
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 15:49:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 1727BB2091F
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 13:47:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3C326281DBD
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 13:49:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77EE718E3A;
-	Sat, 23 Sep 2023 13:47:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6C3519BD4;
+	Sat, 23 Sep 2023 13:49:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7262E2567
-	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 13:47:32 +0000 (UTC)
-X-Greylist: delayed 2259 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 23 Sep 2023 06:47:29 PDT
-Received: from smtprelay03.ispgateway.de (smtprelay03.ispgateway.de [80.67.29.28])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 203DF19F;
-	Sat, 23 Sep 2023 06:47:29 -0700 (PDT)
-Received: from [92.206.139.21] (helo=note-book.lan)
-	by smtprelay03.ispgateway.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <git@apitzsch.eu>)
-	id 1qk2OE-00056I-MX; Sat, 23 Sep 2023 15:09:42 +0200
-From: =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-Date: Sat, 23 Sep 2023 15:09:02 +0200
-Subject: [PATCH v4 2/2] leds: add ktd202x driver
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17D1B2567;
+	Sat, 23 Sep 2023 13:49:29 +0000 (UTC)
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2050.outbound.protection.outlook.com [40.107.21.50])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B76FA19E;
+	Sat, 23 Sep 2023 06:49:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nzPET60pC55/itSPf7/sqQZ6XEoXuIwN06JcDLm0sUSvn33OZE01ArwQjIFWQ9tzLCwhlyfXjFMzTEMys1E65KH8QlqSaOM38/S5e9gJjn/a3fxUq5g5szF9LDdxY5+kVOZPFOl0qegiSVPbFuTOlWCMFrbHkLNEnQU9GJ3be2ovWKdIdLvelZv81GhVW0IJCVwsprqFJGAr9AUhXQ03UIhuUde80YwXxlks8/NNkkSiLaOBP9MO1fTFz14w5MprTRaCkW+aKDwiMrR/OxkM7A+7IcEM/vUvj6YO45duQNtM05idIbKFiwCV6NXt1w1l0Wkj2hVP1+g50Q8BGTm2uA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=h3L10oSZih4S6oiall6EzZMnfy7CHYrJoapsphP+Wmg=;
+ b=SF7sV48s/HrmPpnhZk1DnrwVirqZdU1m3PZY8GR+vsSuxiVgVtmN9Mx+E4trp8o9BwGmWCE8sGXQVkMsoHi59WEbEaXVF8x3pCQq0kYwA2om7/ygIAddeGzx2BPSKeuRuYHIDsGOWSxeNNCXUuZ7vFlWCoRzxkqcG4uQoEGmqZQ8rC0llGPGVA8V0XZotfxbI27kqWfntbxzmhg/8BpfLQVlLTSuwWed5dAXeTCxM9LUpSiFeESkIZ+QGZtQ6bPZ2P144DRkpDIX9Dvqg3EAVxihGJneKDD2K5oDw3Fx5GF3I1XxxPpD90afnxDxf4bejQTx8wXhb5LDgqPAJ2WZdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=h3L10oSZih4S6oiall6EzZMnfy7CHYrJoapsphP+Wmg=;
+ b=jiqxYaXMLjw0A2eHVoK4pXblU3VigFHaeqOC4wpdE8X7pYt2sgJwZVL+xugEcm8pRoPhLBsCUc6cvY56vdT0tr2ylp67FcL1EXtOtq8K/xpg6SWsFe/FzvUwaYEFBywRSTXA0KCWAyLxKcKUFt2AFBFk9NxTLp5I4UgKRrahutQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM0PR04MB6452.eurprd04.prod.outlook.com (2603:10a6:208:16d::21)
+ by DB9PR04MB8396.eurprd04.prod.outlook.com (2603:10a6:10:24a::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.25; Sat, 23 Sep
+ 2023 13:49:22 +0000
+Received: from AM0PR04MB6452.eurprd04.prod.outlook.com
+ ([fe80::568a:57ee:35b5:e454]) by AM0PR04MB6452.eurprd04.prod.outlook.com
+ ([fe80::568a:57ee:35b5:e454%3]) with mapi id 15.20.6813.024; Sat, 23 Sep 2023
+ 13:49:21 +0000
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org
+Cc: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Madalin Bucur <madalin.bucur@nxp.com>,
+	Ioana Ciornei <ioana.ciornei@nxp.com>,
+	Camelia Groza <camelia.groza@nxp.com>,
+	Li Yang <leoyang.li@nxp.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor@kernel.org>,
+	Sean Anderson <sean.anderson@seco.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>
+Subject: [RFC PATCH v2 net-next 00/15] Add C72/C73 copper backplane support for LX2160
+Date: Sat, 23 Sep 2023 16:48:49 +0300
+Message-Id: <20230923134904.3627402-1-vladimir.oltean@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: FR3P281CA0165.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:a2::10) To AM0PR04MB6452.eurprd04.prod.outlook.com
+ (2603:10a6:208:16d::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20230923-ktd202x-v4-2-14f724f6d43b@apitzsch.eu>
-References: <20230923-ktd202x-v4-0-14f724f6d43b@apitzsch.eu>
-In-Reply-To: <20230923-ktd202x-v4-0-14f724f6d43b@apitzsch.eu>
-To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
- =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-X-Mailer: b4 0.12.3
-X-Df-Sender: YW5kcmVAYXBpdHpzY2guZXU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR04MB6452:EE_|DB9PR04MB8396:EE_
+X-MS-Office365-Filtering-Correlation-Id: d86deed9-e973-429b-b255-08dbbc3be3c0
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+ uOx8eIrE7lo25LbClTKD3ffr9XUQGLZk/xuWl8x4uNv46MVkx6k/tPjhxRrrj2ItWOPlzDEJQ/WQu967Bg+fgzftHsWZNA1bnJEfyCwT4+RscjdTBSRzaUNb+2Ksa+CuggCksV7S4G8ra9pXdcRpwhcOmxcjfDJ8kbYuzH5XZRHriXa/IRCe3B9V/4ZVXvwP2Y+G1cVO7L5550zoWaovANhZHKyIN/ENq2BDN7BXXNtJ7ZLkFCF1O2Rfz0kl994Dl+24K4gE12dMKoADnkfj8oCJY6d/EHjUyrS4d0VMLHC4mMoxVK+h+ciKlHWOl2KNksGR8CyAGIkXbqb7vqSBrysqDsA2dOykbvo/VIFrNNqoeHTYJnz49szBuh0lsP4NW6w+4Nz0uZBUYb5WLyr1BOehFBp2Cy5Ifmp1EmJ9hCs2Wr2XDPA2bXzzaFxPWvwxrzV8iOA7QB7eLL39qTgMwaYaQFUc5ab/PG7PncVlwNr1CUzT7ohnQmA82WPbBEuqIJjzxXI8QTb/QmYXnEQUv93XXzURk0Nt4HbQ2ehjXA2PDHuZL0wDvdVtaMFEQeIgowruPSb7Zq3gskAR5quiNoq+leUY4UeSJgNk5UJQ7Sg=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6452.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(39860400002)(346002)(376002)(136003)(396003)(230922051799003)(186009)(1800799009)(451199024)(6512007)(52116002)(6506007)(6486002)(6666004)(83380400001)(86362001)(38350700002)(38100700002)(36756003)(1076003)(2616005)(26005)(2906002)(41300700001)(316002)(7416002)(44832011)(54906003)(66946007)(66476007)(66556008)(478600001)(966005)(8936002)(4326008)(8676002)(5660300002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?yojxPfPsMres7Nm6XDwOFJyCLMSDm2gYFraB1wQnzLYNVfkhfxvb7Mwe3D4M?=
+ =?us-ascii?Q?Z8K/tNhMHpmvon/q8u0D1yuM9GWoGXHI9/NgONewnO6bpTmkGPDmO8bFjrFI?=
+ =?us-ascii?Q?gYVwgDeVOOTNRMjjcgYgA+wVyrBKppQiyJlSsWMH8ro9hdHwYkn2xnZ5K1KQ?=
+ =?us-ascii?Q?LWKte6Q0rtj0VsMURjXXXtzEqfQMah++0yZmIHtYGJyAkXysVNeBGig7xajS?=
+ =?us-ascii?Q?STGheUtuOC/VS3Yv4bnZY+f+iya6cb7Yi3xVZrdvn6HSa4YIg1f4SwfoalXM?=
+ =?us-ascii?Q?zovYZCjTi878VlNzNB2qrfOvymGZVBj9edfkH7PCn64RAGKXxuQ5lPrIsuwz?=
+ =?us-ascii?Q?rfcrOaKX6rEJp+33bibv5qbaxMToiXtkWYMty8Fr4SJPNQ32wWoYZauy6tjE?=
+ =?us-ascii?Q?XKMYL4KF81pNsV9V/Mi8y3igWTojx+QTsvScEU2D12GB7wbrlcbikrP8Tnbo?=
+ =?us-ascii?Q?VcBifPSvn2m3Ox9/NlNKg7Y5IjSWI/3X8pBvhmVTDVCYUoyE6Iy83eMtaImO?=
+ =?us-ascii?Q?27zRwQR7j+tL9n/btURVgGuMK+FiW5HVYIfIubPR4Ic7uJRjTSPFLdw3Ob0p?=
+ =?us-ascii?Q?nM/E/+7yQ57B2YoG74trzQ4typFLM6Bhjzuc/zHvGri2zbvVxz4HR/lOdMqU?=
+ =?us-ascii?Q?2BkIE6BLZRU8Gm/jyob/9PFEJWHIO+p4aqxMDmkvpoq6q+RU6gous9ZtVjLx?=
+ =?us-ascii?Q?yZqYTFZkBzO2jfDBgLFG9kJs37TE5T0A8tYpoyRUtbFVVEJCJwElhvOrqPgh?=
+ =?us-ascii?Q?n5Lpuh792RgMO0PwrTWfexdEGVPX/KxpvCGtsvWqW+APWnoelIO3OqAhrpv5?=
+ =?us-ascii?Q?3/7cfsWBAzPR+1ZlNDwuaWrn1hsCijtrb85k6qX2bPmlW6SYmPGkiozlsM23?=
+ =?us-ascii?Q?/Ev5GKY/66775VpG0h8/wo42f/Zo6qGeKPRbzyc15TEzL8LzgKOwyxca7nUN?=
+ =?us-ascii?Q?iSvQcHgMnhU97nir8TYGj1e6w/1UYeT5/dTiyj6jZ0SeXrw+Z6+YFuCWobvo?=
+ =?us-ascii?Q?ZWgAbtMtEm0ZDfAOHr/NwpqNZCVqFSq4/rMLQ2SGpHYNY/ExvyQXvFL/LLXw?=
+ =?us-ascii?Q?csEki147pOZ5MXGZFmNV6rmbUto9LGTM3WOf14l5Kdm+kPKBVQL+7O6DNQ2F?=
+ =?us-ascii?Q?RHGsRNI55pGLdtaHk9IkiGnzTtP8B+8JA18p0eqUT6eYkETCRicYfFLCDhrf?=
+ =?us-ascii?Q?kb/aePk4x7SVKGTsDQl3xuNhENe/VaxYXMd1gWyikn+NNKxB+laHzQ5s1elP?=
+ =?us-ascii?Q?IqjInlXUs8NJBYIV59LBW4OpF2gNPhkdg1cY93b/winLpe9WouCth+46m+fY?=
+ =?us-ascii?Q?yoebIjHBLLro3oE6Zg6daVqFp6qGh7q4QG3pUIfQqzjbNKDwrqUR4ELM+4xQ?=
+ =?us-ascii?Q?cl/X4Br0iz/9bT2Nbt5RElyLPJMKq7XJL3iICAf9tMLpcEY58wQ68W4HYRuf?=
+ =?us-ascii?Q?NVZYPZHQZRFwJt7xvURtjVDTU2LGsb4gC1W9A9o4TV0X0fvyoYBkRGDhPAZX?=
+ =?us-ascii?Q?+UkESF/EdugtQxBrAJtJNewzB8DrwlNFhGal1czpU1H26C8UK/cc43bQ6Hmi?=
+ =?us-ascii?Q?fk9hXtSlyQBRzyIobUfaDFt9n1pobCvnykjJlXY6ToWxR5+Pa+K4wQqONW/f?=
+ =?us-ascii?Q?/g=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d86deed9-e973-429b-b255-08dbbc3be3c0
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6452.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2023 13:49:21.6919
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ATeaj1G4gOmNyFNwJFQnz2vfpxOzGgcxYxMQQf6x5+FgPj2i4N6BYS93TKlNQbyM5zZPBH5thJ7lmKHH9t0v4w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8396
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-This commit adds support for Kinetic KTD2026/7 RGB/White LED driver.
+THIS PATCH SET DOES NOT WORK, AND IT ISN'T INTENDED TO WORK.
 
-Signed-off-by: André Apitzsch <git@apitzsch.eu>
----
- drivers/leds/rgb/Kconfig        |  13 +
- drivers/leds/rgb/Makefile       |   1 +
- drivers/leds/rgb/leds-ktd202x.c | 625 ++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 639 insertions(+)
+Changes in v2:
+- replace phy_check_cdr_lock() with phy_get_status(PHY_STATUS_CDR_LOCK)
+- rename PHY_MODE_ETHERNET_PHY to PHY_MODE_ETHTOOL
+- stop describing the AN/LT block in the device tree and make use of the
+  fact that it is discoverable. Add phy_get_status(PHY_STATUS_PCVT_ADDR)
+  to the generic PHY layer to discover it.
+- add the 25GBase-KR-S and 25GBase-CR-S link modes. Proper treatment of
+  RS-FEC and BASE-R FEC is still TODO (will also require new API in the
+  generic PHY layer).
+- rework the implementation from a phylib phy_device to a phylink_pcs
+  component (library code). The phy-mode is still "internal". It may or
+  may have not been the right thing to do. There are some things to say
+  about that on patch 08/15.
+- support multi-lane link modes - tested with 40GBase-KR4
+- solve the pre-configuration and register access problem for 1000Base-KX
+  by having mtip_get_mdiodev() pre-configure the SerDes lane and
+  protocol converter for the highest supported backplane link mode.
 
-diff --git a/drivers/leds/rgb/Kconfig b/drivers/leds/rgb/Kconfig
-index 183bccc06cf3..a6a21f564673 100644
---- a/drivers/leds/rgb/Kconfig
-+++ b/drivers/leds/rgb/Kconfig
-@@ -14,6 +14,19 @@ config LEDS_GROUP_MULTICOLOR
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called leds-group-multicolor.
- 
-+config LEDS_KTD202X
-+	tristate "LED support for KTD202x Chips"
-+	depends on I2C
-+	depends on OF
-+	select REGMAP_I2C
-+	help
-+	  This option enables support for the Kinetic KTD2026/KTD2027
-+	  RGB/White LED driver found in different BQ mobile phones.
-+	  It is a 3 or 4 channel LED driver programmed via an I2C interface.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called leds-ktd202x.
-+
- config LEDS_PWM_MULTICOLOR
- 	tristate "PWM driven multi-color LED Support"
- 	depends on PWM
-diff --git a/drivers/leds/rgb/Makefile b/drivers/leds/rgb/Makefile
-index c11cc56384e7..243f31e4d70d 100644
---- a/drivers/leds/rgb/Makefile
-+++ b/drivers/leds/rgb/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- 
- obj-$(CONFIG_LEDS_GROUP_MULTICOLOR)	+= leds-group-multicolor.o
-+obj-$(CONFIG_LEDS_KTD202X)		+= leds-ktd202x.o
- obj-$(CONFIG_LEDS_PWM_MULTICOLOR)	+= leds-pwm-multicolor.o
- obj-$(CONFIG_LEDS_QCOM_LPG)		+= leds-qcom-lpg.o
- obj-$(CONFIG_LEDS_MT6370_RGB)		+= leds-mt6370-rgb.o
-diff --git a/drivers/leds/rgb/leds-ktd202x.c b/drivers/leds/rgb/leds-ktd202x.c
-new file mode 100644
-index 000000000000..b328ecd34664
---- /dev/null
-+++ b/drivers/leds/rgb/leds-ktd202x.c
-@@ -0,0 +1,625 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Kinetic KTD2026/7 RGB/White LED driver with I2C interface
-+ *
-+ * Copyright 2023 André Apitzsch <git@apitzsch.eu>
-+ *
-+ * Datasheet: https://www.kinet-ic.com/uploads/KTD2026-7-04h.pdf
-+ */
-+
-+#include <linux/i2c.h>
-+#include <linux/led-class-multicolor.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+
-+#define KTD2026_NUM_LEDS 3
-+#define KTD2027_NUM_LEDS 4
-+#define KTD202X_MAX_LEDS 4
-+
-+/* Register bank */
-+#define KTD202X_REG_RESET_CONTROL	0x00
-+#define KTD202X_REG_FLASH_PERIOD	0x01
-+#define KTD202X_REG_PWM1_TIMER		0x02
-+#define KTD202X_REG_PWM2_TIMER		0x03
-+#define KTD202X_REG_CHANNEL_CTRL	0x04
-+#define KTD202X_REG_TRISE_FALL		0x05
-+#define KTD202X_REG_LED_IOUT(x)		(0x06 + (x))
-+
-+/* Register 0 */
-+#define KTD202X_TIMER_SLOT_CONTROL_TSLOT1	0x00
-+#define KTD202X_TIMER_SLOT_CONTROL_TSLOT2	0x01
-+#define KTD202X_TIMER_SLOT_CONTROL_TSLOT3	0x02
-+#define KTD202X_TIMER_SLOT_CONTROL_TSLOT4	0x03
-+#define KTD202X_RSTR_RESET			0x07
-+
-+#define KTD202X_ENABLE_CTRL_WAKE	0x00 /* SCL High & SDA High */
-+#define KTD202X_ENABLE_CTRL_SLEEP	0x08 /* SCL High & SDA Toggling */
-+
-+#define KTD202X_TRISE_FALL_SCALE_NORMAL		0x00
-+#define KTD202X_TRISE_FALL_SCALE_SLOW_X2	0x20
-+#define KTD202X_TRISE_FALL_SCALE_SLOW_X4	0x40
-+#define KTD202X_TRISE_FALL_SCALE_FAST_X8	0x60
-+
-+/* Register 1 */
-+#define KTD202X_FLASH_PERIOD_256_MS_LOG_RAMP	0x00
-+
-+/* Register 2-3 */
-+#define KTD202X_FLASH_ON_TIME_0_4_PERCENT	0x01
-+
-+/* Register 4 */
-+#define KTD202X_CHANNEL_CTRL_MASK(x) (BIT(2 * (x)) | BIT(2 * (x) + 1))
-+#define KTD202X_CHANNEL_CTRL_OFF 0x00
-+#define KTD202X_CHANNEL_CTRL_ON(x) BIT(2 * (x))
-+#define KTD202X_CHANNEL_CTRL_PWM1(x) BIT(2 * (x) + 1)
-+#define KTD202X_CHANNEL_CTRL_PWM2(x) (BIT(2 * (x)) | BIT(2 * (x) + 1))
-+
-+/* Register 5 */
-+#define KTD202X_RAMP_TIMES_2_MS			0x00
-+
-+/* Register 6-9 */
-+#define KTD202X_LED_CURRENT_10_mA		0x4f
-+
-+#define KTD202X_FLASH_PERIOD_MIN_MS 256
-+#define KTD202X_FLASH_PERIOD_STEP_MS 128
-+#define KTD202X_FLASH_PERIOD_MAX_STEPS 126
-+#define KTD202X_FLASH_ON_MAX 256
-+
-+#define KTD202X_MAX_BRIGHTNESS 192
-+
-+static const struct reg_default ktd202x_reg_defaults[] = {
-+	{ KTD202X_REG_RESET_CONTROL, KTD202X_TIMER_SLOT_CONTROL_TSLOT1 |
-+		KTD202X_ENABLE_CTRL_WAKE | KTD202X_TRISE_FALL_SCALE_NORMAL },
-+	{ KTD202X_REG_FLASH_PERIOD, KTD202X_FLASH_PERIOD_256_MS_LOG_RAMP },
-+	{ KTD202X_REG_PWM1_TIMER, KTD202X_FLASH_ON_TIME_0_4_PERCENT },
-+	{ KTD202X_REG_PWM2_TIMER, KTD202X_FLASH_ON_TIME_0_4_PERCENT },
-+	{ KTD202X_REG_CHANNEL_CTRL, KTD202X_CHANNEL_CTRL_OFF },
-+	{ KTD202X_REG_TRISE_FALL, KTD202X_RAMP_TIMES_2_MS },
-+	{ KTD202X_REG_LED_IOUT(0), KTD202X_LED_CURRENT_10_mA },
-+	{ KTD202X_REG_LED_IOUT(1), KTD202X_LED_CURRENT_10_mA },
-+	{ KTD202X_REG_LED_IOUT(2), KTD202X_LED_CURRENT_10_mA },
-+	{ KTD202X_REG_LED_IOUT(3), KTD202X_LED_CURRENT_10_mA },
-+};
-+
-+struct ktd202x_led {
-+	struct ktd202x *chip;
-+	union {
-+		struct led_classdev cdev;
-+		struct led_classdev_mc mcdev;
-+	};
-+	u32 index;
-+};
-+
-+struct ktd202x {
-+	struct mutex mutex;
-+	struct regulator_bulk_data regulators[2];
-+	struct device *dev;
-+	struct regmap *regmap;
-+	bool enabled;
-+	int num_leds;
-+	struct ktd202x_led leds[] __counted_by(num_leds);
-+};
-+
-+static int ktd202x_chip_disable(struct ktd202x *chip)
-+{
-+	int ret;
-+
-+	if (!chip->enabled)
-+		return 0;
-+
-+	regmap_write(chip->regmap, KTD202X_REG_RESET_CONTROL,
-+		     KTD202X_ENABLE_CTRL_SLEEP);
-+
-+	ret = regulator_bulk_disable(ARRAY_SIZE(chip->regulators),
-+				     chip->regulators);
-+	if (ret) {
-+		dev_err(chip->dev, "Failed to disable regulators: %d\n", ret);
-+		return ret;
-+	}
-+
-+	chip->enabled = false;
-+	return 0;
-+}
-+
-+static int ktd202x_chip_enable(struct ktd202x *chip)
-+{
-+	int ret;
-+
-+	if (chip->enabled)
-+		return 0;
-+
-+	ret = regulator_bulk_enable(ARRAY_SIZE(chip->regulators),
-+				    chip->regulators);
-+	if (ret) {
-+		dev_err(chip->dev, "Failed to enable regulators: %d\n", ret);
-+		return ret;
-+	}
-+	chip->enabled = true;
-+
-+	ret = regmap_write(chip->regmap, KTD202X_REG_RESET_CONTROL,
-+			   KTD202X_ENABLE_CTRL_WAKE);
-+
-+	if (ret) {
-+		dev_err(chip->dev, "Failed to enable the chip: %d\n", ret);
-+		ktd202x_chip_disable(chip);
-+	}
-+
-+	return ret;
-+}
-+
-+static bool ktd202x_chip_in_use(struct ktd202x *chip)
-+{
-+	int i;
-+
-+	for (i = 0; i < chip->num_leds; i++) {
-+		if (chip->leds[i].cdev.brightness)
-+			return true;
-+	}
-+	return false;
-+}
-+
-+static int ktd202x_brightness_set(struct ktd202x_led *led,
-+				  struct mc_subled *subleds,
-+				  unsigned int num_channels)
-+{
-+	enum led_brightness brightness;
-+	bool mode_blink;
-+	int common_mode;
-+	int channel;
-+	int state;
-+	int mode;
-+	int ret;
-+	int i;
-+
-+	if (ktd202x_chip_in_use(led->chip)) {
-+		ret = ktd202x_chip_enable(led->chip);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	ret = regmap_read(led->chip->regmap, KTD202X_REG_CHANNEL_CTRL, &state);
-+	if (ret)
-+		return ret;
-+
-+	for (i = 0; i < num_channels; i++) {
-+		channel = subleds[i].channel;
-+		common_mode |= (state >> 2*channel) & (BIT(0) | BIT(1));
-+	}
-+	mode_blink = common_mode == KTD202X_CHANNEL_CTRL_PWM1(0);
-+
-+	for (i = 0; i < num_channels; i++) {
-+		brightness = subleds[i].brightness;
-+		channel = subleds[i].channel;
-+
-+		ret = regmap_write(led->chip->regmap,
-+				   KTD202X_REG_LED_IOUT(channel),
-+				   brightness ? brightness-1 : 0);
-+		if (ret)
-+			return ret;
-+
-+		if (brightness) {
-+			if (mode_blink)
-+				mode = KTD202X_CHANNEL_CTRL_PWM1(channel);
-+			else
-+				mode = KTD202X_CHANNEL_CTRL_ON(channel);
-+		} else {
-+			mode = KTD202X_CHANNEL_CTRL_OFF;
-+		}
-+		ret = regmap_update_bits(led->chip->regmap,
-+					 KTD202X_REG_CHANNEL_CTRL,
-+					 KTD202X_CHANNEL_CTRL_MASK(channel),
-+					 mode);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	if (!ktd202x_chip_in_use(led->chip))
-+		return ktd202x_chip_disable(led->chip);
-+
-+	return 0;
-+}
-+
-+static int ktd202x_brightness_single_set(struct led_classdev *cdev,
-+					 enum led_brightness value)
-+{
-+	struct ktd202x_led *led = container_of(cdev, struct ktd202x_led, cdev);
-+	struct mc_subled info;
-+	int ret;
-+
-+	cdev->brightness = value;
-+
-+	mutex_lock(&led->chip->mutex);
-+
-+	info.brightness = value;
-+	info.channel = led->index;
-+	ret = ktd202x_brightness_set(led, &info, 1);
-+
-+	mutex_unlock(&led->chip->mutex);
-+
-+	return ret;
-+}
-+
-+static int ktd202x_brightness_mc_set(struct led_classdev *cdev,
-+				     enum led_brightness value)
-+{
-+	struct led_classdev_mc *mc = lcdev_to_mccdev(cdev);
-+	struct ktd202x_led *led = container_of(mc, struct ktd202x_led, mcdev);
-+	int ret;
-+
-+	cdev->brightness = value;
-+
-+	mutex_lock(&led->chip->mutex);
-+
-+	led_mc_calc_color_components(mc, value);
-+	ret = ktd202x_brightness_set(led, mc->subled_info, mc->num_colors);
-+
-+	mutex_unlock(&led->chip->mutex);
-+
-+	return ret;
-+}
-+
-+static int ktd202x_blink_set(struct ktd202x_led *led, unsigned long *delay_on,
-+			     unsigned long *delay_off, struct mc_subled *subleds,
-+			     unsigned int num_channels)
-+{
-+	unsigned long delay_total_ms;
-+	int ret, num_steps, on;
-+	u8 ctrl_mask = 0;
-+	u8 ctrl_pwm1 = 0;
-+	u8 ctrl_on = 0;
-+	int i, channel;
-+
-+	mutex_lock(&led->chip->mutex);
-+
-+	for (i = 0; i < num_channels; i++) {
-+		channel = subleds[i].channel;
-+		ctrl_mask |= KTD202X_CHANNEL_CTRL_MASK(channel);
-+		ctrl_on |= KTD202X_CHANNEL_CTRL_ON(channel);
-+		ctrl_pwm1 |= KTD202X_CHANNEL_CTRL_PWM1(channel);
-+	}
-+
-+	/* Never off - brightness is already set, disable blinking */
-+	if (!*delay_off) {
-+		ret = regmap_update_bits(led->chip->regmap,
-+					 KTD202X_REG_CHANNEL_CTRL,
-+					 ctrl_mask,
-+					 ctrl_on);
-+		goto out;
-+	}
-+
-+	/* Convert into values the HW will understand. */
-+	/* Integer representation of time of flash period */
-+	num_steps = (*delay_on + *delay_off - KTD202X_FLASH_PERIOD_MIN_MS) /
-+		    KTD202X_FLASH_PERIOD_STEP_MS;
-+	num_steps = clamp(num_steps, 0, KTD202X_FLASH_PERIOD_MAX_STEPS);
-+	/* Integer representation of percentage of LED ON time */
-+	on = (*delay_on * KTD202X_FLASH_ON_MAX) / (*delay_on + *delay_off);
-+
-+	/* Actually used delay_{on,off} values */
-+	delay_total_ms = num_steps * KTD202X_FLASH_PERIOD_STEP_MS +
-+			 KTD202X_FLASH_PERIOD_MIN_MS;
-+	*delay_on = (delay_total_ms * on) / KTD202X_FLASH_ON_MAX;
-+	*delay_off = delay_total_ms - *delay_on;
-+
-+	/* Set timings */
-+	ret = regmap_write(led->chip->regmap, KTD202X_REG_FLASH_PERIOD,
-+			   num_steps);
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_write(led->chip->regmap, KTD202X_REG_PWM1_TIMER, on);
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_update_bits(led->chip->regmap, KTD202X_REG_CHANNEL_CTRL,
-+				 ctrl_mask,
-+				 ctrl_pwm1);
-+out:
-+	mutex_unlock(&led->chip->mutex);
-+	return ret;
-+}
-+
-+static int ktd202x_blink_single_set(struct led_classdev *cdev,
-+				    unsigned long *delay_on,
-+				    unsigned long *delay_off)
-+{
-+	struct ktd202x_led *led = container_of(cdev, struct ktd202x_led, cdev);
-+	struct mc_subled info;
-+	int ret;
-+
-+	if (!cdev->brightness) {
-+		ret = ktd202x_brightness_single_set(cdev, KTD202X_MAX_BRIGHTNESS);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	/* If no blink specified, default to 1 Hz. */
-+	if (!*delay_off && !*delay_on) {
-+		*delay_off = 500;
-+		*delay_on = 500;
-+	}
-+
-+	/* Never on - just set to off */
-+	if (!*delay_on)
-+		return ktd202x_brightness_single_set(cdev, LED_OFF);
-+
-+	info.channel = led->index;
-+
-+	return ktd202x_blink_set(led, delay_on, delay_off, &info, 1);
-+}
-+
-+static int ktd202x_blink_mc_set(struct led_classdev *cdev,
-+				unsigned long *delay_on,
-+				unsigned long *delay_off)
-+{
-+	struct led_classdev_mc *mc = lcdev_to_mccdev(cdev);
-+	struct ktd202x_led *led = container_of(mc, struct ktd202x_led, mcdev);
-+	int ret;
-+
-+	if (!cdev->brightness) {
-+		ret = ktd202x_brightness_mc_set(cdev, KTD202X_MAX_BRIGHTNESS);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	/* If no blink specified, default to 1 Hz. */
-+	if (!*delay_off && !*delay_on) {
-+		*delay_off = 500;
-+		*delay_on = 500;
-+	}
-+
-+	/* Never on - just set to off */
-+	if (!*delay_on)
-+		return ktd202x_brightness_mc_set(cdev, LED_OFF);
-+
-+	return ktd202x_blink_set(led, delay_on, delay_off, mc->subled_info,
-+				 mc->num_colors);
-+}
-+
-+static int ktd202x_add_led(struct ktd202x *chip, struct device_node *np,
-+			   unsigned int index)
-+{
-+	struct ktd202x_led *led = &chip->leds[index];
-+	struct led_init_data init_data = {};
-+	struct led_classdev *cdev;
-+	struct device_node *child;
-+	struct mc_subled *info;
-+	int num_channels;
-+	u32 color = 0;
-+	u32 reg;
-+	int ret;
-+	int i;
-+
-+	/* Color property is optional in single color case */
-+	ret = of_property_read_u32(np, "color", &color);
-+	if (ret < 0 && ret != -EINVAL) {
-+		dev_err(chip->dev, "failed to parse 'color' of %pOF\n", np);
-+		return ret;
-+	}
-+
-+	if (color == LED_COLOR_ID_RGB) {
-+		num_channels = of_get_available_child_count(np);
-+		if (!num_channels || num_channels > chip->num_leds)
-+			return -EINVAL;
-+	} else {
-+		num_channels = 1;
-+	}
-+
-+	led->chip = chip;
-+
-+	if (color == LED_COLOR_ID_RGB) {
-+		info = devm_kcalloc(chip->dev, num_channels, sizeof(*info),
-+				    GFP_KERNEL);
-+		if (!info)
-+			return -ENOMEM;
-+
-+		i = 0;
-+		for_each_available_child_of_node(np, child) {
-+			u32 mono_color = 0;
-+
-+			ret = of_property_read_u32(child, "reg", &reg);
-+			if (ret != 0 || reg >= chip->num_leds) {
-+				dev_err(chip->dev, "invalid 'reg' of %pOFn\n",
-+					np);
-+				return -EINVAL;
-+			}
-+
-+			ret = of_property_read_u32(child, "color", &mono_color);
-+			if (ret < 0 && ret != -EINVAL) {
-+				dev_err(chip->dev,
-+					"failed to parse 'color' of %pOF\n",
-+					np);
-+				return ret;
-+			}
-+
-+			info[i].color_index = mono_color;
-+			info[i].channel = reg;
-+			info[i].intensity = 0;
-+			i++;
-+		}
-+
-+		led->mcdev.subled_info = info;
-+		led->mcdev.num_colors = num_channels;
-+
-+		cdev = &led->mcdev.led_cdev;
-+		cdev->brightness_set_blocking = ktd202x_brightness_mc_set;
-+		cdev->blink_set = ktd202x_blink_mc_set;
-+	} else {
-+		ret = of_property_read_u32(np, "reg", &reg);
-+		if (ret != 0 || reg >= chip->num_leds) {
-+			dev_err(chip->dev, "invalid 'reg' of %pOFn\n", np);
-+			return -EINVAL;
-+		}
-+		led->index = reg;
-+
-+		cdev = &led->cdev;
-+		cdev->brightness_set_blocking = ktd202x_brightness_single_set;
-+		cdev->blink_set = ktd202x_blink_single_set;
-+	}
-+
-+	cdev->max_brightness = KTD202X_MAX_BRIGHTNESS;
-+
-+	init_data.fwnode = of_fwnode_handle(np);
-+
-+	if (color == LED_COLOR_ID_RGB)
-+		ret = devm_led_classdev_multicolor_register_ext(chip->dev,
-+								&led->mcdev,
-+								&init_data);
-+	else
-+		ret = devm_led_classdev_register_ext(chip->dev, &led->cdev,
-+						     &init_data);
-+	if (ret) {
-+		dev_err(chip->dev, "unable to register %s\n", cdev->name);
-+		of_node_put(np);
-+	}
-+
-+	return ret;
-+}
-+
-+static int ktd202x_probe_dt(struct ktd202x *chip)
-+{
-+	struct device_node *np = dev_of_node(chip->dev), *child;
-+	unsigned int i;
-+	int count, ret;
-+
-+	chip->num_leds = (int)(unsigned long)of_device_get_match_data(chip->dev);
-+
-+	count = of_get_available_child_count(np);
-+	if (!count || count > chip->num_leds)
-+		return -EINVAL;
-+
-+	regmap_write(chip->regmap, KTD202X_REG_RESET_CONTROL,
-+		     KTD202X_RSTR_RESET);
-+
-+	/* Allow the device to execute the complete reset */
-+	usleep_range(200, 300);
-+
-+	i = 0;
-+	for_each_available_child_of_node(np, child) {
-+		ret = ktd202x_add_led(chip, child, i);
-+		if (ret)
-+			return ret;
-+		i++;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct regmap_config ktd202x_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = 0x09,
-+	.cache_type = REGCACHE_FLAT,
-+	.reg_defaults = ktd202x_reg_defaults,
-+	.num_reg_defaults = ARRAY_SIZE(ktd202x_reg_defaults),
-+};
-+
-+static int ktd202x_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct ktd202x *chip;
-+	int count;
-+	int ret;
-+
-+	count = device_get_child_node_count(dev);
-+	if (!count || count > KTD202X_MAX_LEDS)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "Incorrect number of leds (%d)", count);
-+
-+	chip = devm_kzalloc(dev, struct_size(chip, leds, count), GFP_KERNEL);
-+	if (!chip)
-+		return -ENOMEM;
-+
-+	mutex_init(&chip->mutex);
-+
-+	chip->dev = dev;
-+	i2c_set_clientdata(client, chip);
-+
-+	chip->regmap = devm_regmap_init_i2c(client, &ktd202x_regmap_config);
-+	if (IS_ERR(chip->regmap)) {
-+		ret = dev_err_probe(dev, PTR_ERR(chip->regmap),
-+				    "Failed to allocate register map.\n");
-+		goto error;
-+	}
-+
-+	chip->regulators[0].supply = "vin";
-+	chip->regulators[1].supply = "vio";
-+	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(chip->regulators),
-+				      chip->regulators);
-+	if (ret < 0) {
-+		dev_err_probe(dev, ret, "Failed to request regulators.\n");
-+		goto error;
-+	}
-+
-+	ret = regulator_bulk_enable(ARRAY_SIZE(chip->regulators),
-+				    chip->regulators);
-+	if (ret) {
-+		dev_err_probe(dev, ret, "Failed to enable regulators.\n");
-+		goto error;
-+	}
-+
-+	ret = ktd202x_probe_dt(chip);
-+	if (ret < 0)
-+		goto error_reg;
-+
-+	ret = regulator_bulk_disable(ARRAY_SIZE(chip->regulators),
-+				     chip->regulators);
-+	if (ret) {
-+		dev_err_probe(dev, ret, "Failed to disable regulators.\n");
-+		goto error;
-+	}
-+
-+	return 0;
-+
-+error_reg:
-+	regulator_bulk_disable(ARRAY_SIZE(chip->regulators),
-+			       chip->regulators);
-+
-+error:
-+	mutex_destroy(&chip->mutex);
-+	return ret;
-+}
-+
-+static void ktd202x_remove(struct i2c_client *client)
-+{
-+	struct ktd202x *chip = i2c_get_clientdata(client);
-+
-+	ktd202x_chip_disable(chip);
-+
-+	mutex_destroy(&chip->mutex);
-+}
-+
-+static void ktd202x_shutdown(struct i2c_client *client)
-+{
-+	struct ktd202x *chip = i2c_get_clientdata(client);
-+
-+	/* Reset registers to make sure all off before shutdown */
-+	regmap_write(chip->regmap, KTD202X_REG_RESET_CONTROL,
-+		     KTD202X_RSTR_RESET);
-+}
-+
-+static const struct of_device_id ktd202x_match_table[] = {
-+	{ .compatible = "kinetic,ktd2026", .data = (void *)KTD2026_NUM_LEDS },
-+	{ .compatible = "kinetic,ktd2027", .data = (void *)KTD2027_NUM_LEDS },
-+	{},
-+};
-+
-+MODULE_DEVICE_TABLE(of, ktd202x_match_table);
-+
-+static struct i2c_driver ktd202x_driver = {
-+	.driver = {
-+		.name = "leds-ktd202x",
-+		.of_match_table = ktd202x_match_table,
-+	},
-+	.probe = ktd202x_probe,
-+	.remove = ktd202x_remove,
-+	.shutdown = ktd202x_shutdown,
-+};
-+module_i2c_driver(ktd202x_driver);
-+
-+MODULE_AUTHOR("André Apitzsch <git@apitzsch.eu>");
-+MODULE_DESCRIPTION("Kinetic KTD2026/7 LED driver");
-+MODULE_LICENSE("GPL");
+The original cover letter for the RFC v1 at
+https://patchwork.kernel.org/project/netdevbpf/cover/20230817150644.3605105-1-vladimir.oltean@nxp.com/
+is still attached below.
+
+=================================================
+
+I've been tasked with maintaining the copper backplane support on
+Layerscape SoCs. There was a previous attempt to upstream that, which is
+located here:
+https://lore.kernel.org/lkml/1587732391-3374-1-git-send-email-florinel.iordache@nxp.com/
+
+Nonetheless, I am presenting here a complete rewrite based on my
+understanding. The quality of implementation is not great, and there are
+probably bugs which I've yet to identify. The reason for this RFC is to
+collect feedback for the overall design from networking PHY and generic
+PHY maintainers.
+
+The newly proposed generic PHY API has the mtip_backplane.c driver as a
+user (a consumer), but its actual hardware implementation (which should
+go in drivers/phy/freescale/phy-fsl-lynx-28g.c), is not included in this
+patch set. That would just have just uselessly distracted the reviewers'
+attention. This is why the patch set, as posted, does not work.
+
+I recommend reviewing from the bottom up - dt-bindings first, those give
+an overall picture of the AN/LT block and its integration in the SoC.
+
+Future work consists of:
+
+- supporting multi-lane link modes
+
+- advertising more than a single link mode, and performing dynamic
+  SerDes protocol switching towards that link mode. Strictly speaking,
+  the hardware was intended to be used with a single link mode advertised
+  over C73 (the link mode pre-configured through the RCW - Reset
+  Configuration Word), and that is quite apparent in its design. With
+  some inventive workarounds which I've yet to try out, it might be
+  possible to circumvent the design limitations and advertise any link
+  mode that the SerDes PLLs can sustain. This is in an exploratory stage
+  and in the end it might not come to fruition, but I've identified some
+  aspects which require forethought in the driver's design.
+
+Both these features hit a wall given the current driver design, which is
+"how do we access the AN/LT block's registers?".
+
+The hardware designers were inconsistent in the way that they've
+integrated this AN/LT blocks for 1G/10G ports, vs how they did it for
+25G/40G/50G/100G ports. There is always one single AN/LT block per
+SerDes lane, but for 1G/10G modes, hardware design wanted to make it
+appear as if the AN/LT is part of the PCS. So it inherently responds to
+the same MDIO address as the PCS. Whereas in the >25G modes, it responds
+to an MDIO address defined by a different control register, and that
+address is also different from the PCS' MDIO address.
+
+In the current dt-bindings, I am requesting DT writers to put a
+phy-handle towards the MDIO address of the AN/LT block (which depends on
+a lot of things, see the dt-bindings document for details).
+
+As opposed to regular ports where the PCS and SerDes PHY are controlled
+by the MAC driver (drivers/net/ethernet/freescale/dpaa2/dpaa2-mac.c),
+with backplane, those same components are controlled by the
+mtip_backplane.c driver. The backplane AN/LT driver has a pcs-handle
+towards the PCS, and it treats it as a raw MDIO device when polling for
+link status.
+
+This gets obviously problematic when switching SerDes protocols, because
+the location of the backplane AN/LT block changes on the MDIO bus with
+the new SerDes protocol, and what's in the device tree becomes invalid
+(the phydev->mdio.addr would need to be updated). It's the same AN/LT
+block, and after a SerDes protocol change it has been reset, but it moved.
+
+The SerDes control registers for the MDIO addresses of the PCS and AN/LT blocks:
+- SGMIInCR1[MDEV_PORT]
+- SXGMIInCR1[MDEV_PORT]
+- ANLTnCR1[MDEV_PORT]
+- E25GnCR1[MDEV_PORT]
+- E40GnCR1[MDEV_PORT]
+- E50GnCR1[MDEV_PORT]
+- E100GnCR1[MDEV_PORT]
+
+are in premise all configurable, but it's an open question to me as to
+how Linux should configure them. Currently, we treat all those addresses
+as read-only and populate the device trees based on their default values.
+
+There's an additional (related) problem for 1000base-KX. The lane starts
+up at power-on reset in 1000base-X mode (non-backplane) and this means
+that the PCS which responds to MDIO commands is the one used for
+SGMII/1000Base-X by drivers/net/pcs/pcs-lynx.c. That responds to C22
+MDIO commands. The PCS for 1000Base-KX is different, and it responds to
+C45 MDIO commands. It also incorporates the AN/LT block at this C45 MDIO
+address. In the current mtip_backplane.c driver design, the lane switches
+to backplane mode (thus enabling the respective PCS) once the link mode
+was resolved to 1000base-KX through C73 autoneg, using phy_set_mode_ext().
+But that is too late with 1000base-KX, since the AN/LT block won't
+respond to C45 transactions either, if the port isn't pre-configured for
+1000base-KX. So C73 autoneg won't work to begin with... Somebody needs
+to pre-configure the SerDes lane for backplane mode, so that the
+mtip_backplane.c driver can probe, but it's not clear who and based on
+what.
+
+Finally, I reckon that in the end, the PCS should be driven using a
+struct phylink_pcs, by the lynx_pcs driver, and not as an mdio_device
+using raw accesses by the mtip_backplane.c. In premise, this AN/LT IP
+core can be integrated, to my knowledge, with any PCS and any SerDes,
+so that should be also possible in the driver design. Yet, there's a
+problem: in the 1G/10G modes, there would be 2 drivers for the same
+mdio_device: one for the PCS and the other for the AN/LT block (PHY).
+True, they are at different MMDs, but bindings multiple Linux drivers to
+mdio_devices per MMD is not a thing, I guess?
+
+Interrupt support is also missing, and that's very far away on my TODO
+list. AFAIU, PCS/ANLT interrupts are routed by the SoC to the attached
+MAC's IEVENT register, which isn't enabled as an interrupt source on any
+Layerscape platform yet. I've structured the code using an irqpoll
+thread for now, so it is more-or-less just as event-driven as an IRQ
+based driver would be.
+
+As a side note, I have analyzed the feedback previously given to Florinel,
+especially the one from Russell:
+https://lore.kernel.org/lkml/20200425105210.GZ25745@shell.armlinux.org.uk/
+
+"This uses phylib, which is a problem ..."
+
+and I still haven't changed that here. Without going into a wall of text
+explanation, I'm not fully convinced that phylib isn't, in fact, the
+best place for a backplane AN/LT driver to live. At least in the initial
+implementation shown here, I'm not sure that going straight for a
+phylink implementation of the AN/LT block would have solved any of the
+problems that I described above.
+
+Vladimir Oltean (15):
+  phy: introduce phy_get_status() and use it to report CDR lock
+  phy: introduce the PHY_MODE_ETHTOOL mode for phy_set_mode_ext()
+  phy: ethernet: add configuration interface for copper backplane
+    Ethernet PHYs
+  phy: allow querying the address of protocol converters through
+    phy_get_status()
+  net: add 25GBase-KR-S and 25GBase-CR-S to ethtool link mode UAPI
+  net: mii: add C73 base page helpers
+  net: phylink: centralize phy_interface_mode_is_8023z() &&
+    phylink_autoneg_inband() checks
+  net: phylink: allow PCS to handle C73 autoneg for phy-mode =
+    "internal"
+  net: ethtool: introduce ethtool_link_mode_str()
+  net: phylink: support all ethtool port modes with inband modes
+  net: phylink: support the 25GBase-KR-S and 25GBase-CR-S link modes too
+  net: phylink: add the 25G link modes to
+    phylink_c73_priority_resolution[]
+  dt-bindings: lynx-pcs: add properties for backplane mode
+  net: pcs: mtip_backplane: add driver for MoreThanIP backplane AN/LT
+    core
+  net: pcs: lynx: use MTIP AN/LT block for copper backplanes
+
+ .../bindings/net/pcs/fsl,lynx-pcs.yaml        |   15 +-
+ drivers/net/mii.c                             |   34 +-
+ drivers/net/pcs/Kconfig                       |    8 +
+ drivers/net/pcs/Makefile                      |    1 +
+ drivers/net/pcs/mtip_backplane.c              | 2022 +++++++++++++++++
+ drivers/net/pcs/mtip_backplane.h              |   87 +
+ drivers/net/pcs/pcs-lynx.c                    |  135 ++
+ drivers/net/phy/phy-core.c                    |    2 +-
+ drivers/net/phy/phylink.c                     |   53 +-
+ drivers/phy/phy-core.c                        |   31 +
+ include/linux/ethtool.h                       |    6 +
+ include/linux/mii.h                           |  105 +
+ include/linux/phy/phy-ethernet.h              |  292 +++
+ include/linux/phy/phy.h                       |   83 +
+ include/linux/phylink.h                       |    1 +
+ include/uapi/linux/ethtool.h                  |    2 +
+ net/ethtool/common.c                          |   12 +
+ 17 files changed, 2876 insertions(+), 13 deletions(-)
+ create mode 100644 drivers/net/pcs/mtip_backplane.c
+ create mode 100644 drivers/net/pcs/mtip_backplane.h
+ create mode 100644 include/linux/phy/phy-ethernet.h
 
 -- 
-2.42.0
+2.34.1
 
 
