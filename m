@@ -1,190 +1,117 @@
-Return-Path: <devicetree+bounces-2653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBDAB7ABEC1
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 10:10:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63B4A7AC070
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 12:25:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 78DD5284B96
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 08:10:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 55A88B2091F
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 10:25:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7286CA6A;
-	Sat, 23 Sep 2023 08:10:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFC7910A16;
+	Sat, 23 Sep 2023 10:25:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94F8163B9
-	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 08:10:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1C94C433CC;
-	Sat, 23 Sep 2023 08:10:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAAA1DDD6;
+	Sat, 23 Sep 2023 10:25:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57453C433C7;
+	Sat, 23 Sep 2023 10:25:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695456624;
-	bh=PdYJS/BSnWGeDJm882oDZ5X3HgUAebcEqDMRocFoqF8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=hscrhA7wcKLppn4Mnk3i/Uh8jMS+iwW5A9X1MAihRmyx7p5t4/fxrUaAwC/1fGVsU
-	 tq08+IBQgueZ449yqInw7ClVUtnNVberGrV7hlws9e1rkfsP3f/JMCmfKGiVCxwfSW
-	 xeinYa7AUwq2avb7G6Q5Q0veMrRLysEVIZUjd3aiCtnEAG/jaeG10OfqJMBNVaexR4
-	 W517T+WBHfjLde5BK2fJBQlD1jBLyEHCa7U/qQVR7wZ5CROcoJDtsBo6yT0Zz28W/J
-	 +dyFsZO2po5jVzRPMwcKA02VIkFQkPJAERAfo+rYcC0Y1cllwfYUyq5MCuKG+PAsnC
-	 VCNzPekYhrzcQ==
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-9ad8bba8125so439847766b.3;
-        Sat, 23 Sep 2023 01:10:24 -0700 (PDT)
-X-Gm-Message-State: AOJu0YwW/OP8HWNiG6ZXczb1emGFaB1ZpRt4caznLBbEti6ndz7AespG
-	BYHR/i3o1BdFk+HUxFFcpknMxaW+VE5r6KUNzpY=
-X-Google-Smtp-Source: AGHT+IGDzGapxUFpYPEZmxWl/fy6N5eTHbocFn+xPB3cVu16L7RwAdSEIB8UWAuFxHd1jSqiRyBMUlDgbWJMjo06pv4=
-X-Received: by 2002:aa7:d4c5:0:b0:530:be79:49e7 with SMTP id
- t5-20020aa7d4c5000000b00530be7949e7mr1339748edr.37.1695456623284; Sat, 23 Sep
- 2023 01:10:23 -0700 (PDT)
+	s=k20201202; t=1695464748;
+	bh=Q3Y7t0Lpv4O8LxXpOYTrQfyQd9RMu7ml1ykCJ09i0So=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=D3XJIweX871CqMOIaHHipt11EREXzfg2FoIRdC2GlabW2UWDr77bvfpiQnW6VqpX2
+	 IrInx2zSMQrWTcK7PCWKcTu2boVcKo3rkcerPNfLFYz5WsFb7SBQW8rqHhWDm+7pTx
+	 +aLLjjXNDZWqEWv/1goXqkfRefyvbp8fqjgWggWcYpY4BwCJg8LcJTId4C9UsA6tAz
+	 GU0NNqVIDt3OZduOV4HoPZlJEEDNeQqlzaupvqSU9AsQtghk6gncjir72tcevg7vJq
+	 DIIyY29iZNaTX/yjd8fVC/u+KcoZfEBB/eXoK87Ip2Qr2ft1JmbdOcatZIsgniKzNS
+	 qhQwxOrN/+DKA==
+Date: Sat, 23 Sep 2023 11:25:42 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Guo Ren <guoren@kernel.org>
+Cc: linux-riscv@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Jisheng Zhang <jszhang@kernel.org>, Fu Wei <wefu@redhat.com>,
+	Chen Wang <unicorn_wang@outlook.com>, devicetree@vger.kernel.org,
+	linux-sunxi@lists.linux.dev, linux-renesas-soc@vger.kernel.org
+Subject: Re: [RFC v2 6/6] riscv: dts: thead: convert isa detection to new
+ properties
+Message-ID: <20230923-snowsuit-angled-f49237d27c83@spud>
+References: <20230922081351.30239-2-conor@kernel.org>
+ <20230922081351.30239-8-conor@kernel.org>
+ <CAJF2gTR2JmsMhzjzWp85hEwoJwRBN4T4iHz_Z-1cG-XgB=EFeA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230921-th1520-mmc-v1-0-49f76c274fb3@baylibre.com>
- <20230921-th1520-mmc-v1-1-49f76c274fb3@baylibre.com> <20230922-parish-ice-a22e93dc3027@spud>
- <ZQ2tP48Z19C5xRug@x1>
-In-Reply-To: <ZQ2tP48Z19C5xRug@x1>
-From: Guo Ren <guoren@kernel.org>
-Date: Sat, 23 Sep 2023 16:10:11 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTSeKnB=Zc6o1wJAOyax7d=RmDJ0o8PSOfkVo5BYVc=sAw@mail.gmail.com>
-Message-ID: <CAJF2gTSeKnB=Zc6o1wJAOyax7d=RmDJ0o8PSOfkVo5BYVc=sAw@mail.gmail.com>
-Subject: Re: [PATCH 1/6] dt-bindings: mmc: sdhci-of-dwcmhsc: Add T-Head TH1520 support
-To: Drew Fustini <dfustini@baylibre.com>
-Cc: Conor Dooley <conor@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jisheng Zhang <jszhang@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>, Fu Wei <wefu@redhat.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Robert Nelson <robertcnelson@beagleboard.org>, 
-	Jason Kridner <jkridner@beagleboard.org>, Xi Ruoyao <xry111@xry111.site>, 
-	Han Gao <gaohan@iscas.ac.cn>, Icenowy Zheng <uwu@icenowy.me>, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="47AsyQWf2LP0qoEw"
+Content-Disposition: inline
+In-Reply-To: <CAJF2gTR2JmsMhzjzWp85hEwoJwRBN4T4iHz_Z-1cG-XgB=EFeA@mail.gmail.com>
+
+
+--47AsyQWf2LP0qoEw
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 22, 2023 at 11:18=E2=80=AFPM Drew Fustini <dfustini@baylibre.co=
-m> wrote:
->
-> On Fri, Sep 22, 2023 at 10:57:36AM +0100, Conor Dooley wrote:
-> > Hey Drew,
+On Sat, Sep 23, 2023 at 03:50:36PM +0800, Guo Ren wrote:
+> On Fri, Sep 22, 2023 at 4:16=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
+rote:
 > >
-> > On Thu, Sep 21, 2023 at 06:49:48PM -0700, Drew Fustini wrote:
-> > > Add compatible value for the T-Head TH1520 dwcmshc controller and add
-> > > thead,phy-pull-up property.
-> > >
-> > > Signed-off-by: Drew Fustini <dfustini@baylibre.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml | 4 ++=
-++
-> > >  1 file changed, 4 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci=
-.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> > > index a43eb837f8da..46b768d46712 100644
-> > > --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> > > +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> > > @@ -19,6 +19,7 @@ properties:
-> > >        - rockchip,rk3568-dwcmshc
-> > >        - rockchip,rk3588-dwcmshc
-> > >        - snps,dwcmshc-sdhci
-> > > +      - thead,th1520-dwcmshc
-> > >
-> > >    reg:
-> > >      maxItems: 1
-> > > @@ -60,6 +61,9 @@ properties:
-> > >      description: Specify the number of delay for tx sampling.
-> > >      $ref: /schemas/types.yaml#/definitions/uint8
-> > >
-> > > +  thead,phy-pull-up:
-> > > +    description: Enable weak pull-up on PHY pads
-> > > +    type: boolean
+> > From: Conor Dooley <conor.dooley@microchip.com>
 > >
-> > Why is the weak pull-up required? How would the dts author know if they
-> > need to use this property?
->
-> This is a good question, and I don't have a good reason beyond it is
-> what the vendor SDK was doing.
->
-> There are only two boards right now using the TH1520 that I know of.
-> Both the LPi4a [1] and the Ahead [2] have the pull-up property set on
-> all the mmc controller nodes their downstream device trees.
->
-> Rob suggested on #devicetree that it would be simpler to just enable it
-> in the driver and disable support when needed. I like this idea as it
-> will simplify this binding patch and the code in the driver patch.
-It's for the PHY debug. You could directly remove them, or keep it
-with no-pull-up flag, then no pull-up flag in the dts for default..
+> > Convert the th1520 devicetrees to use the new properties
+> > "riscv,isa-base" & "riscv,isa-extensions".
+> > For compatibility with other projects, "riscv,isa" remains.
+> >
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> >  arch/riscv/boot/dts/thead/th1520.dtsi | 12 ++++++++++++
+> >  1 file changed, 12 insertions(+)
+> >
+> > diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dt=
+s/thead/th1520.dtsi
+> > index ce708183b6f6..723f65487246 100644
+> > --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> > +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> > @@ -20,6 +20,9 @@ c910_0: cpu@0 {
+> >                         compatible =3D "thead,c910", "riscv";
+> >                         device_type =3D "cpu";
+> >                         riscv,isa =3D "rv64imafdc";
+> > +                       riscv,isa-base =3D "rv64i";
 
-static void sdhci_phy_1_8v_init_no_pull(struct sdhci_host *host)
-{
-        uint32_t val;
-        sdhci_writel(host, 1, DWC_MSHC_PTR_PHY_R);
-        sdhci_writeb(host, 1 << 4, PHY_SDCLKDL_CNFG_R);
-        sdhci_writeb(host, 0x40, PHY_SDCLKDL_DC_R);
+> Why not riscv,isa-base =3D "rv64"? I saw "i" in the riscv,isa-extensions.
 
-        val =3D sdhci_readb(host, PHY_SDCLKDL_CNFG_R);
-        val &=3D ~(1 << 4);
-        sdhci_writeb(host, val, PHY_SDCLKDL_CNFG_R);
+I did it that way as a hedge against things changing in the future. I
+have little trust in that part of the ISA specifications.
 
+--47AsyQWf2LP0qoEw
+Content-Type: application/pgp-signature; name="signature.asc"
 
-        val =3D sdhci_readw(host, PHY_CMDPAD_CNFG_R);
-        sdhci_writew(host, val | 1, PHY_CMDPAD_CNFG_R);
+-----BEGIN PGP SIGNATURE-----
 
-        val =3D sdhci_readw(host, PHY_DATAPAD_CNFG_R);
-        sdhci_writew(host, val | 1, PHY_DATAPAD_CNFG_R);
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQ69JQAKCRB4tDGHoIJi
+0vX6AQDE7jhpSu4VP4wtSRPrVTHRRS7VcBWe2XyVZJTOd9TWXAD7BBHlwAPzKSGb
+vt2Z0iGrgkRVFsQ1U/vLuYvhM1ucsgE=
+=fcfM
+-----END PGP SIGNATURE-----
 
-        val =3D sdhci_readw(host, PHY_RSTNPAD_CNFG_R);
-        sdhci_writew(host, val | 1, PHY_RSTNPAD_CNFG_R);
-
-        val =3D sdhci_readw(host, PHY_STBPAD_CNFG_R);
-        sdhci_writew(host, val | 1, PHY_STBPAD_CNFG_R);
-
-        val =3D sdhci_readb(host, PHY_DLL_CTRL_R);
-        sdhci_writeb(host, val | 1, PHY_DLL_CTRL_R);
-}
-
-static void sdhci_phy_3_3v_init_no_pull(struct sdhci_host *host)
-{
-        uint32_t val;
-        sdhci_writel(host, 1, DWC_MSHC_PTR_PHY_R);
-        sdhci_writeb(host, 1 << 4, PHY_SDCLKDL_CNFG_R);
-        sdhci_writeb(host, 0x40, PHY_SDCLKDL_DC_R);
-
-        val =3D sdhci_readb(host, PHY_SDCLKDL_CNFG_R);
-        val &=3D ~(1 << 4);
-        sdhci_writeb(host, val, PHY_SDCLKDL_CNFG_R);
-
-        val =3D sdhci_readw(host, PHY_CMDPAD_CNFG_R);
-        sdhci_writew(host, val | 2, PHY_CMDPAD_CNFG_R);
-
-        val =3D sdhci_readw(host, PHY_DATAPAD_CNFG_R);
-        sdhci_writew(host, val | 2, PHY_DATAPAD_CNFG_R);
-
-        val =3D sdhci_readw(host, PHY_RSTNPAD_CNFG_R);
-        sdhci_writew(host, val | 2, PHY_RSTNPAD_CNFG_R);
-
-        val =3D sdhci_readw(host, PHY_STBPAD_CNFG_R);
-        sdhci_writew(host, val | 2, PHY_STBPAD_CNFG_R);
-
-        val =3D sdhci_readb(host, PHY_DLL_CTRL_R);
-        sdhci_writeb(host, val | 1, PHY_DLL_CTRL_R);
-}
-
->
-> Thanks,
-> Drew
->
-> [1] https://git.beagleboard.org/beaglev-ahead/BeagleBoard-DeviceTrees/-/b=
-lob/v5.10.x-ti-unified/src/riscv/light-beagle-ref.dts
-> [2] https://github.com/revyos/thead-kernel/blob/lpi4a/arch/riscv/boot/dts=
-/thead/light-lpi4a-ref.dts
-
-
-
---=20
-Best Regards
- Guo Ren
+--47AsyQWf2LP0qoEw--
 
