@@ -1,135 +1,123 @@
-Return-Path: <devicetree+bounces-2660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F107B7AC130
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 13:26:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FDB97AC152
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 13:44:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 9D32A2814A5
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 11:26:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id B3E092820FD
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 11:44:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B392915EA6;
-	Sat, 23 Sep 2023 11:26:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D11315EAC;
+	Sat, 23 Sep 2023 11:44:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BE23612E
-	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 11:26:25 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7690F198;
-	Sat, 23 Sep 2023 04:26:24 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38NBNxnT004905;
-	Sat, 23 Sep 2023 11:26:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=bWTOsBbqIB9GxAQEeNjWm91N5pgYFPfSs0SRTZgW/JA=;
- b=NBa0vT0pBZPm0I2NNydwLXM84me17XGljcPaSRTsmXPqE3ApssH7H4F87ybx6Nw7pgcp
- qP2Gr38zJrDkcsfTCYU4Ntbro5MHBI1o3nZ1mJIYQ1nUMvxE5x3pHtUaM9FVUocF80yY
- F4jMc7Q+z4nxuq/5OIUGp6lFoB+vFO7UO5gJQcgdXYUpGsowDA9IOBNxn/9CgNOT2+SQ
- jr5EjF2lXht4YYwj0HL+z+Acqhm2dSoHJ9m1k5TqDIU5zAjvYz3gK8l1/ZrIN6MzoLtL
- 6OXND/Dm0YNsz9DuQfbHO5BXBkDEGPPICSyHknOmGbfNYiakKo12ORfYBiuwkAaePtrJ hg== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t9r88gq2u-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 23 Sep 2023 11:26:10 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38NBQ9jl015317
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 23 Sep 2023 11:26:09 GMT
-Received: from [10.253.9.19] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Sat, 23 Sep
- 2023 04:26:05 -0700
-Message-ID: <164945f5-dde9-bfe7-80f4-9ae6736a6259@quicinc.com>
-Date: Sat, 23 Sep 2023 19:26:03 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC738612E
+	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 11:44:07 +0000 (UTC)
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2CC819A
+	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 04:44:05 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so11130546a12.1
+        for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 04:44:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695469444; x=1696074244; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vla4OZsvqD5RmSyqkNtWVp3bfdJ5jFtYYQ5MrELcXSM=;
+        b=nDbEAVteD7aGdLtChPEt/+FkeMGFRMhA1Nd/qCP6CxF202JZWaq+YPyIYDUT0GzGFW
+         HLB3R5r/nn6/j/FJi7p6T9ALwPRXEeJOrYRywbYT8RKeO9prvdHu/7QcwPd+ZmqSYwTt
+         huVEP4SFaDkhQPZtyqFlsTfJx4qENLp1XbNhFxj5ChEEclciuqR56QcKzRP1i9hISX+h
+         3uRJx1VqodiWx+C+Yc3cN//klaJ+7mZDXvIX9hH8ZMaukf/clQue/1KVjo9ecFKdNYSF
+         DLZoNiiGaqTjfHDxqTiKOw+QXkjkEG1OGgk4aL63DfnSIT5k1zaOH+hLqiUa/Da0hKH7
+         1DfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695469444; x=1696074244;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vla4OZsvqD5RmSyqkNtWVp3bfdJ5jFtYYQ5MrELcXSM=;
+        b=CYK2Aodb0LAImhEWK3NIRDMjDFssQONB53Tx5f4sV0+A6w1sPdAdpwX0Kv1DDSYDFM
+         RC4Jb1bY/0qBwdWwcPRTrEw8G84OAwhNYlVM9G7jz8l/ULX62O0lYOKjcygUHEOreVvi
+         GTPEXt1P6lhPsBN+Jkhnq+Spiz16qLFk2PQTQlXcKF7THVlvqVGcZ8620Sjte9s9kLDm
+         TO7zJ8u9Jh+XYVCar9dGqGy68l+PHGZ33wIJ6BQloF14Ho8bApocQnNElZ7ndTZB+2YS
+         fO4f//V+Mude4jMyUIGi7HbeT8S0QntjfAKvbQLIVlzZwVTF/F2PtM5qA2nXK0AMZLva
+         9E3w==
+X-Gm-Message-State: AOJu0Yz4yJd2+ioG9Ix/hF+91p96xcUmQtZV4Rc7I1MWgKw5iFpv0n/h
+	r4XO//3NYrXoI4xbA83TJiCvcg==
+X-Google-Smtp-Source: AGHT+IH6goftz+deG7oSTeTuzwqyw9P8c6mgIH9qR63I1IV/ch6sI7RIzn2uujDg7rQtq/HyjVsX6g==
+X-Received: by 2002:aa7:c158:0:b0:52a:38c3:1b4b with SMTP id r24-20020aa7c158000000b0052a38c31b4bmr3444238edp.15.1695469444353;
+        Sat, 23 Sep 2023 04:44:04 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.100])
+        by smtp.gmail.com with ESMTPSA id s3-20020aa7d783000000b0053116e45317sm3274449edq.44.2023.09.23.04.44.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 23 Sep 2023 04:44:03 -0700 (PDT)
+Message-ID: <f4fa94ab-78fb-d01b-7188-c498ec3053ff@linaro.org>
+Date: Sat, 23 Sep 2023 13:44:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.1
-Subject: Re: [PATCH v6 4/4] clk: qcom: add clock controller driver for
- qca8386/qca8084
-To: Stephen Boyd <sboyd@kernel.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <catalin.marinas@arm.com>,
-        <conor+dt@kernel.org>, <konrad.dybcio@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <p.zabel@pengutronix.de>, <robh+dt@kernel.org>, <will@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_srichara@quicinc.com>
-References: <20230901091823.30242-1-quic_luoj@quicinc.com>
- <20230901091823.30242-5-quic_luoj@quicinc.com>
- <27ae3297ad161fd67706db70b402db04.sboyd@kernel.org>
- <16d09acf-7bdd-04ee-6faf-936c0366df03@quicinc.com>
- <17681a9f756cc70a190c674c51b90140.sboyd@kernel.org>
- <5a4805f7-f802-b1ba-9804-59c0fe6c7f26@quicinc.com>
- <92058c25fb11b75ee0a2298a684825e9.sboyd@kernel.org>
- <f67b354c-8a4b-49f5-6275-66b7d614301a@quicinc.com>
- <82adb75659e0d278e25b65b0e81df99a.sboyd@kernel.org>
- <9952fa20-a27f-3240-cc49-5c5109febfc1@quicinc.com>
- <580f3934ab1171e27d785db7362c342d.sboyd@kernel.org>
+Subject: Re: [PATCH V3 1/4] dt-bindings: thermal: qcom-tsens: Add ipq5018
+ compatible
 Content-Language: en-US
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <580f3934ab1171e27d785db7362c342d.sboyd@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Sricharan R <srichara@win-platform-upstream01.qualcomm.com>,
+ agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+ srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ thara.gopinath@gmail.com, rafael@kernel.org, daniel.lezcano@linaro.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ dmitry.baryshkov@linaro.org, quic_srichara@quicinc.com
+References: <20230922115116.2748804-1-srichara@win-platform-upstream01.qualcomm.com>
+ <20230922115116.2748804-2-srichara@win-platform-upstream01.qualcomm.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230922115116.2748804-2-srichara@win-platform-upstream01.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: dbrRdHWrDOisq1ggy48qblpjG8hk83mP
-X-Proofpoint-GUID: dbrRdHWrDOisq1ggy48qblpjG8hk83mP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-23_08,2023-09-21_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- phishscore=0 bulkscore=0 clxscore=1015 mlxlogscore=969 adultscore=0
- impostorscore=0 spamscore=0 mlxscore=0 lowpriorityscore=0 suspectscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2309230095
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-
-
-On 9/15/2023 12:30 AM, Stephen Boyd wrote:
-> Quoting Jie Luo (2023-09-12 20:27:25)
->>
->>
->> On 9/13/2023 1:18 AM, Stephen Boyd wrote:
->>> Quoting Jie Luo (2023-09-12 05:07:02)
->>>>
->>>> and freq_tbl are necessary to this clock.
->>>
->>> I still don't see why the freq_tbl is necessary.
->>
->> Hi Stephen,
->> For clk_rcg2_ops, freq_tbl is used to find the closest rate to decided
->> the parent clock, the configuration of clock source and clock divider
->> are saved in the freq_tbl to configure the RCG hardware register, the
->> mapping of parent clock and hardware register value is decided by the
->> freq_tbl for the RCG clock.
+On 22/09/2023 13:51, Sricharan R wrote:
+> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
 > 
-> The divider is always 1. The frequency is the frequency of the parent.
-> The two pieces of information are already known without the frequency
-> table. Why is it needed?
+> IPQ5018 has tsens v1.0 block with 4 sensors and 1 interrupt.
 
-Hi Stephen,
-i uploaded the new patchset V9 to remove these redundant freq_tbl by 
-using the clk_ops clk_ops clk_rcg2_mux_closest_ops, thanks for this
-suggestion for the code improvement.
+Then why do you allow two interrupts?
 
-Best Regards,
-Jie
+> 
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> ---
+>  [v3] Added the tsens-ipq5018 as  new binding without rpm
+> 
+>  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> index 27e9e16e6455..a02829deeb24 100644
+> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> @@ -44,6 +44,10 @@ properties:
+>                - qcom,qcs404-tsens
+>            - const: qcom,tsens-v1
+>  
+> +      - description: v1 of TSENS without rpm
+> +        enum:
+> +          - qcom,ipq5018-tsens
+
+You miss now description of interrupts, like the other variants have.
+
+Best regards,
+Krzysztof
+
 
