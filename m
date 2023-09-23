@@ -1,78 +1,74 @@
-Return-Path: <devicetree+bounces-2736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4711F7AC4AF
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 21:12:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEA537AC4B3
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 21:13:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id EE8432821EB
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 19:12:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id AED941C204DA
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 19:13:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BD702111A;
-	Sat, 23 Sep 2023 19:12:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42F992111C;
+	Sat, 23 Sep 2023 19:13:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08C5233CE
-	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 19:12:33 +0000 (UTC)
-Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7080EFA
-	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 12:12:32 -0700 (PDT)
-Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-59be6605e1dso48410187b3.3
-        for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 12:12:32 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D33433CE
+	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 19:13:54 +0000 (UTC)
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88250FB
+	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 12:13:53 -0700 (PDT)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-59c0281d72dso48341707b3.0
+        for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 12:13:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695496351; x=1696101151; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695496433; x=1696101233; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tparx3l0ikz66NK3tLBEl70hjPdpPsu27P74LAY5v9Q=;
-        b=AEc10IFPK4GcoL17hM5QOSS+c1s4ExOX8JoSteGPobW1CAz+mNEHA9cfbgP0cilTuK
-         GXMUvpVxBxHWMP0Bm7ZbHcl3FDApi13lpZVuHYjQNoFXHO33CWYEFtKMv1q6trQv+UMe
-         0L4tVQylD0MJ3tmrbUau0jWtObUmcyLlmgEpF/OEmEbdVTHF/dTl9swPhcy80wT6Gj9b
-         Yr43A1q7By46u1D5e7ryKBBVZbBSUaZnkvApvGXBJ8nZUjdYtSKJaqi9PfCnu97O0Y+g
-         t56AcQK54rtX0IyH93J1ALiJNKxetgUSPTT1LiExtvrCnv9nMQTeL/LfSjvFZJiKJBWG
-         yxfA==
+        bh=/ZmYNV3oT+zkVAf2ugnkULn4izub45DJoleWbLBZiLk=;
+        b=BYmUWmHm1d+2YeSfA6FrjZLsVZIWFYDvO+oimM5AK1Ut1MfL9t6+qD0oiN7kaG94e0
+         KKBLl867I3svVBLc4CWICmmboBjCFPY5D+IJtJSFiXUPcp/mw4jkteJuu7RdQfzBF1x/
+         OZtYgkJrUE8ncCeNi3NQPI6wa0WmgYRuTJQekEzFg3ShGcFrWD2r/NR6DjijuiQrhlpr
+         54vKvq52qjLHw5z/8fdmCfm8HFwR5hg2fU4PadZYdQhm6p2ZehRM0HQuz/xV0w/oP4TY
+         2WuyrsWKKcRVcLsN5y7CH9gjiPAQNsVj8pneQf50dX2wk5lc8dp8to1vOQvpyv7OEw76
+         bwwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695496351; x=1696101151;
+        d=1e100.net; s=20230601; t=1695496433; x=1696101233;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=tparx3l0ikz66NK3tLBEl70hjPdpPsu27P74LAY5v9Q=;
-        b=RKlCzNhbIX3rgxiLatt+kwsq7en6z/joWUV5mJsQTrjNPVIEyZzQaZRsJMIFi3QOyY
-         N+RuebZO6023YB6qkwV34TBTKI5oWFYo3kE5j4gW4RBNZTGPVqswXJpTET8Tsj0lwQb8
-         ROEWdWr4dB9qI2IiqBcXEw2y5f2SZPcRfZap7OEL7a3V6/bUbUiYXlmCIzxZr+U/CLuL
-         a9mqR/8qTWUj17ueBNL+sKbcT3AFkZf+7vZ5dq1Hr30lso6lUGvsEK5zKXha3nzb+XnN
-         Tx3mXcKKk8Yo4Lwb10RPFrXt9ihokMJ3YX2p+wnMn3P0A5H5IWfu/kCCAj/uWn5uPOyX
-         hxaA==
-X-Gm-Message-State: AOJu0Yz+eDjBvq0rKZXdd24+l47wWXeW95nkhw2UzlFMNfqShDMwPa24
-	KxWm4JALeJON4sTulegeSlAlGEPGzz+MwGUwzXdWsg==
-X-Google-Smtp-Source: AGHT+IHMs08AvAYu12BauPYVcMNwepKA0e0fxEUVJUaQmQXlGMsK6TgJkoAuEjnNJ2FmgCL9NOrejGX9+oJhlWeihSU=
-X-Received: by 2002:a0d:c546:0:b0:594:e439:d429 with SMTP id
- h67-20020a0dc546000000b00594e439d429mr3163907ywd.37.1695496351669; Sat, 23
- Sep 2023 12:12:31 -0700 (PDT)
+        bh=/ZmYNV3oT+zkVAf2ugnkULn4izub45DJoleWbLBZiLk=;
+        b=aNGUFAzAyt8eFTrg75oAuLrm/vwnOI4LymmnkOBL9JNN3PI7GOkLsHVZB2Nsq50Io4
+         PUnXeFS2egPILmJTTFnWlodP0xPa4vJ+0Z8rCzPKCLv9S9b4kaqf276VLT43NLObuSUR
+         mdDDqAy3wuWecX3tdd5p1lbrmiCfgWIv5G9hBHTlproZeyKSykMnCjX/lWocxhwB7GO+
+         6YW2Eb8/oW//8RbsgsANTXNR+ShGfNeeV25TdZVyJWS6cWwJBY4R+Q8WsfvvefUu2KUH
+         SG/RUs5KI+XqLh96jncqr7l+WR6fV98a25wrV0NHtibq+IWcD2SaLw2HyFWCbdItMwtN
+         UUZw==
+X-Gm-Message-State: AOJu0YwToSW7p/dEVav0/lI5XeFPLwTFY0y8IvhYBlJTGMkEH2pe7CMH
+	EYb5NubtbN78YaW3SsVxpUFNz02hXUZdqBsNiEjc7A==
+X-Google-Smtp-Source: AGHT+IGXN+4C918nlV0X9cam2P53VSEtGaNCjhNVGXRfBhpYoducXAEJcOhhSM/a1gaDZ9hAbqMkiRbLfciiL/l5bZg=
+X-Received: by 2002:a05:690c:4483:b0:59f:5361:d18c with SMTP id
+ gr3-20020a05690c448300b0059f5361d18cmr2111515ywb.41.1695496432784; Sat, 23
+ Sep 2023 12:13:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230922081026.2799-1-quic_tengfan@quicinc.com> <20230922081026.2799-6-quic_tengfan@quicinc.com>
-In-Reply-To: <20230922081026.2799-6-quic_tengfan@quicinc.com>
+References: <20230922084303.4164046-1-quic_gokulsri@quicinc.com> <20230922084303.4164046-3-quic_gokulsri@quicinc.com>
+In-Reply-To: <20230922084303.4164046-3-quic_gokulsri@quicinc.com>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sat, 23 Sep 2023 22:12:19 +0300
-Message-ID: <CAA8EJpq1NAOZTOmBUUnkeLDThvxosj=MzNHo=5VAXnRPQci68g@mail.gmail.com>
-Subject: Re: [PATCH v4 5/6] arm64: dts: qcom: sm4450-qrd: add QRD4450 uart support
-To: Tengfei Fan <quic_tengfan@quicinc.com>
+Date: Sat, 23 Sep 2023 22:13:41 +0300
+Message-ID: <CAA8EJpoyaM0_utG9oAwyqO3RPoNDNduuPc3u+tzrjYM6NXRnjg@mail.gmail.com>
+Subject: Re: [PATCH V2 2/3] clk: qcom: apss-ipq-pll: add support for IPQ5018
+To: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
 Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, 
-	tglx@linutronix.de, maz@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	catalin.marinas@arm.com, will@kernel.org, geert+renesas@glider.be, 
-	arnd@arndb.de, neil.armstrong@linaro.org, nfraprado@collabora.com, 
-	rafal@milecki.pl, peng.fan@nxp.com, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, quic_tsoni@quicinc.com, 
-	quic_shashim@quicinc.com, quic_kaushalk@quicinc.com, quic_tdas@quicinc.com, 
-	quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com, kernel@quicinc.com
+	mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, jassisinghbrar@gmail.com, 
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	quic_varada@quicinc.com, quic_srichara@quicinc.com
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
@@ -80,53 +76,21 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Fri, 22 Sept 2023 at 11:13, Tengfei Fan <quic_tengfan@quicinc.com> wrote:
+On Fri, 22 Sept 2023 at 11:44, Gokul Sriram Palanisamy
+<quic_gokulsri@quicinc.com> wrote:
 >
-> Add uart support for QRD4450 for enable uart console.
+> IPQ5018 APSS PLL is of type Stromer. Reuse Stromer Plus PLL offsets,
+> add configuration values and the compatible.
 >
-> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> Co-developed-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
 > ---
->  arch/arm64/boot/dts/qcom/sm4450-qrd.dts | 19 +++++++++++++++++--
->  1 file changed, 17 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sm4450-qrd.dts b/arch/arm64/boot/dts/qcom/sm4450-qrd.dts
-> index 00a1c81ca397..e354bad57a9e 100644
-> --- a/arch/arm64/boot/dts/qcom/sm4450-qrd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm4450-qrd.dts
-> @@ -10,9 +10,24 @@
->         model = "Qualcomm Technologies, Inc. SM4450 QRD";
->         compatible = "qcom,sm4450-qrd", "qcom,sm4450";
->
-> -       aliases { };
-> +       aliases {
-> +               serial0 = &uart7;
-> +       };
->
->         chosen {
-> -               bootargs = "console=hvc0";
-> +               stdout-path = "serial0:115200n8";
->         };
->  };
-> +
-> +&qupv3_id_0 {
-> +       status = "okay";
-> +};
-> +
-> +&tlmm {
-> +       /* Reserved for other subsystems */
-> +       gpio-reserved-ranges = <0 4>, <136 1>;
-> +};
+>  drivers/clk/qcom/apss-ipq-pll.c | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
 
-Is this also related to the UART support? it looks like it is a
-separate patch, which should likely have the Fixes tag
 
-> +
-> +&uart7 {
-> +       status = "okay";
-> +};
-> --
-> 2.17.1
->
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
 -- 
