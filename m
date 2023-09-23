@@ -1,117 +1,253 @@
-Return-Path: <devicetree+bounces-2654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63B4A7AC070
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 12:25:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76ED67AC119
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 13:21:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 55A88B2091F
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 10:25:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 20E9B2820D9
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 11:21:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFC7910A16;
-	Sat, 23 Sep 2023 10:25:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A86E15E96;
+	Sat, 23 Sep 2023 11:21:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAAA1DDD6;
-	Sat, 23 Sep 2023 10:25:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57453C433C7;
-	Sat, 23 Sep 2023 10:25:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695464748;
-	bh=Q3Y7t0Lpv4O8LxXpOYTrQfyQd9RMu7ml1ykCJ09i0So=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=D3XJIweX871CqMOIaHHipt11EREXzfg2FoIRdC2GlabW2UWDr77bvfpiQnW6VqpX2
-	 IrInx2zSMQrWTcK7PCWKcTu2boVcKo3rkcerPNfLFYz5WsFb7SBQW8rqHhWDm+7pTx
-	 +aLLjjXNDZWqEWv/1goXqkfRefyvbp8fqjgWggWcYpY4BwCJg8LcJTId4C9UsA6tAz
-	 GU0NNqVIDt3OZduOV4HoPZlJEEDNeQqlzaupvqSU9AsQtghk6gncjir72tcevg7vJq
-	 DIIyY29iZNaTX/yjd8fVC/u+KcoZfEBB/eXoK87Ip2Qr2ft1JmbdOcatZIsgniKzNS
-	 qhQwxOrN/+DKA==
-Date: Sat, 23 Sep 2023 11:25:42 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Guo Ren <guoren@kernel.org>
-Cc: linux-riscv@lists.infradead.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Jisheng Zhang <jszhang@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Chen Wang <unicorn_wang@outlook.com>, devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev, linux-renesas-soc@vger.kernel.org
-Subject: Re: [RFC v2 6/6] riscv: dts: thead: convert isa detection to new
- properties
-Message-ID: <20230923-snowsuit-angled-f49237d27c83@spud>
-References: <20230922081351.30239-2-conor@kernel.org>
- <20230922081351.30239-8-conor@kernel.org>
- <CAJF2gTR2JmsMhzjzWp85hEwoJwRBN4T4iHz_Z-1cG-XgB=EFeA@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75893D51E
+	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 11:21:39 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8066198;
+	Sat, 23 Sep 2023 04:21:37 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38NBLMnb030942;
+	Sat, 23 Sep 2023 11:21:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=OSRmEvcdMTR40TpwjERBT8n1cbos3S2SY9LG+na7EDM=;
+ b=KXyIIOl8SgcODX3A/u3DWPiSAamL40M9ijfFRG/GX3DXHRypbhVpFiopUifxTEaMAom9
+ R3SlVNs3oWI4sRBIiBLt0oBh4sJpb/BO7JDK3zJaBKVORmwjouvivYOLUIw+cZfenc+6
+ ziC8JokPNHkgsXtUi3O5yYhokIDUPgr2Z7TTFFBz7vbmSBUzNjOqzTbX8nlSTfAROkJt
+ 2zRojfhOtx6sQ6ZI3TN9Omd2UNihJqujplXHCbsD1LWuq6rhwa09J2XSWfm6In0p8WAD
+ c9fKMTr257qqYK0XaoZfB3keNC8cPISqMcnCyTcHz9bNl36hy4NpPTNHd5Ik+lNWo/5j sQ== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t9nqnrw8p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 23 Sep 2023 11:21:21 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38NBLLn5001337
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 23 Sep 2023 11:21:21 GMT
+Received: from akronite-sh-dev02.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Sat, 23 Sep 2023 04:21:17 -0700
+From: Luo Jie <quic_luoj@quicinc.com>
+To: <andersson@kernel.org>, <agross@kernel.org>, <konrad.dybcio@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>, <p.zabel@pengutronix.de>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_srichara@quicinc.com>
+Subject: [PATCH v9 0/4] add clock controller of qca8386/qca8084
+Date: Sat, 23 Sep 2023 19:21:01 +0800
+Message-ID: <20230923112105.18102-1-quic_luoj@quicinc.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="47AsyQWf2LP0qoEw"
-Content-Disposition: inline
-In-Reply-To: <CAJF2gTR2JmsMhzjzWp85hEwoJwRBN4T4iHz_Z-1cG-XgB=EFeA@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: pKFBsb36iPVvvupyske7bZw6b-MZP7bU
+X-Proofpoint-ORIG-GUID: pKFBsb36iPVvvupyske7bZw6b-MZP7bU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-23_08,2023-09-21_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ lowpriorityscore=0 impostorscore=0 malwarescore=0 mlxlogscore=999
+ adultscore=0 phishscore=0 priorityscore=1501 mlxscore=0 suspectscore=0
+ spamscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2309230095
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
+
+qca8xxx is 4 * 2.5GBaseT ports chip, working as switch mode
+named by qca8386, or working as PHY mode named by qca8084,
+clock hardware reigster is accessed by MDIO bus.
+
+This patch series add the clock controller of qca8363/qca8084,
+and add the clock ops clk_branch2_prepare_ops to avoid spin lock
+used during the clock operation of qca8k clock controller where
+the sleep happens when accessing clock control register by MDIO
+bus.
+
+Changes in v2:
+	* remove clock flag CLK_ENABLE_MUTEX_LOCK.
+	* add clock ops clk_branch2_qca8k_ops.
+	* improve yaml file for fixing dtschema warnings.
+	* enable clock controller driver in defconfig.
+
+Changes in v3:
+	* rename clk_branch2_qca8k_ops to clk_branch2_mdio_ops.
+	* fix review comments on yaml file.
+	* use dev_err_probe on driver probe error.
+	* only use the compatible "qcom,qca8084-nsscc".
+	* remove enable clock controller driver patch.
+
+Changes in v4:
+	* add _qcom_cc_really_probe function.
+	* commonizing the probe function.
+	* remove flag CLK_IS_CRITICAL from clocks only needed
+	to be enabled in switch device.
+	* update device tree property reg to 0x10. 
+
+Changes in v5:
+	* commonize qcom_cc_really_probe.
+	* add halt_check for the branch clocks.
+	* fix the review comments on nsscc-qca8k.c. 
+
+Changes in v6:
+	* rename clk_branch2_mdio_ops to clk_branch2_prepare_ops.
+
+Changes in v7:
+	* remove the clock flag CLK_IS_CRITICAL.
+	* optimize the file nsscc-qca8k.c.
+	* identify & fix the comments from Stephen.
+
+Changes in v8:
+	* add dependency on ARM in Kconfig.
+
+Changes in v9:
+	* take the clk_ops clk_rcg2_mux_closest_ops to remove the
+	  redundant freq_tbls.
+
+Luo Jie (4):
+  clk: qcom: branch: Add clk_branch2_prepare_ops
+  dt-bindings: clock: add qca8386/qca8084 clock and reset definitions
+  clk: qcom: common: commonize qcom_cc_really_probe
+  clk: qcom: add clock controller driver for qca8386/qca8084
+
+ .../bindings/clock/qcom,qca8k-nsscc.yaml      |   79 +
+ drivers/clk/qcom/Kconfig                      |   10 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/apss-ipq6018.c               |    2 +-
+ drivers/clk/qcom/camcc-sc7180.c               |    2 +-
+ drivers/clk/qcom/camcc-sc7280.c               |    2 +-
+ drivers/clk/qcom/camcc-sdm845.c               |    2 +-
+ drivers/clk/qcom/camcc-sm6350.c               |    2 +-
+ drivers/clk/qcom/camcc-sm8250.c               |    2 +-
+ drivers/clk/qcom/camcc-sm8450.c               |    2 +-
+ drivers/clk/qcom/clk-branch.c                 |    7 +
+ drivers/clk/qcom/clk-branch.h                 |    1 +
+ drivers/clk/qcom/common.c                     |    7 +-
+ drivers/clk/qcom/common.h                     |    2 +-
+ drivers/clk/qcom/dispcc-qcm2290.c             |    2 +-
+ drivers/clk/qcom/dispcc-sc7180.c              |    2 +-
+ drivers/clk/qcom/dispcc-sc7280.c              |    2 +-
+ drivers/clk/qcom/dispcc-sc8280xp.c            |    2 +-
+ drivers/clk/qcom/dispcc-sdm845.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm6115.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm6125.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm6350.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm6375.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm8250.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm8450.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm8550.c              |    2 +-
+ drivers/clk/qcom/gcc-ipq5018.c                |    2 +-
+ drivers/clk/qcom/gcc-ipq6018.c                |    2 +-
+ drivers/clk/qcom/gcc-ipq8074.c                |    2 +-
+ drivers/clk/qcom/gcc-mdm9607.c                |    2 +-
+ drivers/clk/qcom/gcc-mdm9615.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8917.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8939.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8953.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8976.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8996.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8998.c                |    2 +-
+ drivers/clk/qcom/gcc-qcm2290.c                |    2 +-
+ drivers/clk/qcom/gcc-qcs404.c                 |    2 +-
+ drivers/clk/qcom/gcc-qdu1000.c                |    2 +-
+ drivers/clk/qcom/gcc-sa8775p.c                |    2 +-
+ drivers/clk/qcom/gcc-sc7180.c                 |    2 +-
+ drivers/clk/qcom/gcc-sc7280.c                 |    2 +-
+ drivers/clk/qcom/gcc-sc8180x.c                |    2 +-
+ drivers/clk/qcom/gcc-sc8280xp.c               |    2 +-
+ drivers/clk/qcom/gcc-sdm660.c                 |    2 +-
+ drivers/clk/qcom/gcc-sdm845.c                 |    2 +-
+ drivers/clk/qcom/gcc-sdx55.c                  |    2 +-
+ drivers/clk/qcom/gcc-sdx65.c                  |    2 +-
+ drivers/clk/qcom/gcc-sdx75.c                  |    2 +-
+ drivers/clk/qcom/gcc-sm6115.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm6125.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm6350.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm6375.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm7150.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8150.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8250.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8350.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8450.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8550.c                 |    2 +-
+ drivers/clk/qcom/gpucc-msm8998.c              |    2 +-
+ drivers/clk/qcom/gpucc-sa8775p.c              |    2 +-
+ drivers/clk/qcom/gpucc-sc7180.c               |    2 +-
+ drivers/clk/qcom/gpucc-sc7280.c               |    2 +-
+ drivers/clk/qcom/gpucc-sc8280xp.c             |    2 +-
+ drivers/clk/qcom/gpucc-sdm660.c               |    2 +-
+ drivers/clk/qcom/gpucc-sdm845.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm6115.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm6125.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm6350.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm6375.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8150.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8250.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8350.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8450.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8550.c               |    2 +-
+ drivers/clk/qcom/lcc-ipq806x.c                |    2 +-
+ drivers/clk/qcom/lcc-msm8960.c                |    2 +-
+ drivers/clk/qcom/lpassaudiocc-sc7280.c        |    4 +-
+ drivers/clk/qcom/lpasscorecc-sc7180.c         |    2 +-
+ drivers/clk/qcom/lpasscorecc-sc7280.c         |    2 +-
+ drivers/clk/qcom/mmcc-msm8960.c               |    2 +-
+ drivers/clk/qcom/mmcc-msm8974.c               |    2 +-
+ drivers/clk/qcom/mmcc-msm8994.c               |    2 +-
+ drivers/clk/qcom/mmcc-msm8996.c               |    2 +-
+ drivers/clk/qcom/mmcc-msm8998.c               |    2 +-
+ drivers/clk/qcom/mmcc-sdm660.c                |    2 +-
+ drivers/clk/qcom/nsscc-qca8k.c                | 2139 +++++++++++++++++
+ drivers/clk/qcom/tcsrcc-sm8550.c              |    2 +-
+ drivers/clk/qcom/videocc-sc7180.c             |    2 +-
+ drivers/clk/qcom/videocc-sc7280.c             |    2 +-
+ drivers/clk/qcom/videocc-sdm845.c             |    2 +-
+ drivers/clk/qcom/videocc-sm8150.c             |    2 +-
+ drivers/clk/qcom/videocc-sm8250.c             |    2 +-
+ drivers/clk/qcom/videocc-sm8350.c             |    2 +-
+ drivers/clk/qcom/videocc-sm8450.c             |    2 +-
+ drivers/clk/qcom/videocc-sm8550.c             |    2 +-
+ include/dt-bindings/clock/qcom,qca8k-nsscc.h  |  101 +
+ include/dt-bindings/reset/qcom,qca8k-nsscc.h  |   75 +
+ 99 files changed, 2507 insertions(+), 95 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,qca8k-nsscc.yaml
+ create mode 100644 drivers/clk/qcom/nsscc-qca8k.c
+ create mode 100644 include/dt-bindings/clock/qcom,qca8k-nsscc.h
+ create mode 100644 include/dt-bindings/reset/qcom,qca8k-nsscc.h
 
 
---47AsyQWf2LP0qoEw
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+base-commit: 5a1b322cb0b7d0d33a2d13462294dc0f46911172
+-- 
+2.42.0
 
-On Sat, Sep 23, 2023 at 03:50:36PM +0800, Guo Ren wrote:
-> On Fri, Sep 22, 2023 at 4:16=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
-rote:
-> >
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> >
-> > Convert the th1520 devicetrees to use the new properties
-> > "riscv,isa-base" & "riscv,isa-extensions".
-> > For compatibility with other projects, "riscv,isa" remains.
-> >
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> >  arch/riscv/boot/dts/thead/th1520.dtsi | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> >
-> > diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dt=
-s/thead/th1520.dtsi
-> > index ce708183b6f6..723f65487246 100644
-> > --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> > +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> > @@ -20,6 +20,9 @@ c910_0: cpu@0 {
-> >                         compatible =3D "thead,c910", "riscv";
-> >                         device_type =3D "cpu";
-> >                         riscv,isa =3D "rv64imafdc";
-> > +                       riscv,isa-base =3D "rv64i";
-
-> Why not riscv,isa-base =3D "rv64"? I saw "i" in the riscv,isa-extensions.
-
-I did it that way as a hedge against things changing in the future. I
-have little trust in that part of the ISA specifications.
-
---47AsyQWf2LP0qoEw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZQ69JQAKCRB4tDGHoIJi
-0vX6AQDE7jhpSu4VP4wtSRPrVTHRRS7VcBWe2XyVZJTOd9TWXAD7BBHlwAPzKSGb
-vt2Z0iGrgkRVFsQ1U/vLuYvhM1ucsgE=
-=fcfM
------END PGP SIGNATURE-----
-
---47AsyQWf2LP0qoEw--
 
