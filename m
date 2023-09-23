@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-2713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DB6D7AC3BF
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 18:38:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22F597AC3C2
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 18:43:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 7C073B2097F
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 16:38:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id C6916281E0E
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 16:43:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39EBE1F163;
-	Sat, 23 Sep 2023 16:38:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5E9C1D547;
+	Sat, 23 Sep 2023 16:43:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEDDA1D547
-	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 16:38:26 +0000 (UTC)
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B78E92
-	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 09:38:25 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-533c92e65c9so982509a12.3
-        for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 09:38:25 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A74328EC
+	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 16:43:02 +0000 (UTC)
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96848D3
+	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 09:43:00 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-31fa15f4cc6so3717379f8f.2
+        for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 09:43:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695487104; x=1696091904; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695487379; x=1696092179; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=H4Bu9499vxEYuYZsAqov7xWDeYEeKE1bzRJVu/6F6Q0=;
-        b=LPhXbEEg+OsFheXvpHFHyUD/BQSlMb8s2nWzWnR5tRoGFr8nFk5cln7cT+BHFN2ngl
-         vx5YmTGQ0zJJLa+ffnZnbqtEO22tmeUUzXj6uS8682ojcdCk/wtJ1AyHFpeOvHK4PyI3
-         FfRsYLH80q5xhC+z+nSHKVN3deQk5/rR+P+dtJ8hgyIHlHMAP3qqXnxjBTfqiUn8ysxO
-         c2chh9OW9JAM5eTSC9Yd4efVNkJNvADxwDGjG4KKxTi681C9BHaTxxOkJ3ZgzhdF5Ta+
-         9nOhXstRd3nSSAQcT72zeeKnmUI8zTEm5cMCFur3+rX6m5yOo3cXg5pN/Juoyp+QrvT5
-         gpWg==
+        bh=+ehvNyN1e8AcFsIaExWpUQQDC3O+XNhpuGUxABDsT1k=;
+        b=lALM0hrH6G8U0itn2oxf/5bl9yJrYy/mxuWfwwu4bThd/Y0W4jdFammsnQws6Tl9jE
+         lbUOik+LiMhJBqAoMZxLGDWneqF5Z9IUSa3FuwkCpGCpClONvAdXQ2CQ+YaAt+ERZ6oF
+         4gKixWuh1kXSD5gCn1h/SzTiu/PX6uAQ72RzZrMohFOzajmSaZPpR2PaqoTUoCr28T8y
+         pBGc1uvl3U2n6PsyGYsFMz+DuasCytfQvFaxxV+hiHu3oeNBLS8KQ8ygER49JlGo4n/4
+         /UZOew1zTG+XnLdbsgTc61uNSVHC4zmbGSxkDiWHL3ucvL+7xETcjWv+zcbLCuVj039s
+         stbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695487104; x=1696091904;
+        d=1e100.net; s=20230601; t=1695487379; x=1696092179;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=H4Bu9499vxEYuYZsAqov7xWDeYEeKE1bzRJVu/6F6Q0=;
-        b=hXJ9itiEfWY0qxg1g4xR/YwR18gyl29BtxyNP1SgxaQPxDP0xpb8Iy11cBBnRx040N
-         Wtz2YNxhdF4Vxj97I8CLIxA9xsmqSas8QotQ7Cyn/h8XVAcvsTyuAT2kqTrejgZZ8mT2
-         YFk0ozWhvzBBDdmFpbbxY7nceofpjo5j8U5iYznh+hPq1Xkv/g6nlXuDKpRixkdCnH1Q
-         nQbjcxlwXYXAwizuwlx9soHYdwD98e3MrtDqUxemWfT7+Kc5Nc6qBDsTd/+RVq7YtH2M
-         CrQ4gVrmz/JlpeOz23ZsNw53aHyoUTApS3w2cXFOJ4Q8KVKcyQXeQZukHjd4yKQDcscY
-         X4jw==
-X-Gm-Message-State: AOJu0YzFH5o0NwsUvIqR0gRhjxiicZbJbkRIkkAAW/hIUO9R4QQ8bTLP
-	5Eb9fWfkiFevwhHn9RgHZpeYBQ==
-X-Google-Smtp-Source: AGHT+IGrSg145km+P/YsAbGX7ONziClIaOrStvt5CSUU1rbY1RMIFV5ompUydv/UO1qCnZUeavlOHg==
-X-Received: by 2002:a05:6402:619:b0:533:49d2:dc8f with SMTP id n25-20020a056402061900b0053349d2dc8fmr1798513edv.17.1695487103638;
-        Sat, 23 Sep 2023 09:38:23 -0700 (PDT)
+        bh=+ehvNyN1e8AcFsIaExWpUQQDC3O+XNhpuGUxABDsT1k=;
+        b=cnTjNpsUN2LK103PQeBJ8YvkJylS3RyEjIf62TP1mjUg59cgqpWGIdnOLzEg2j9Yzx
+         iJ0zGNQTVqgptF4FAhl+u2+81Fg/OwMJQqdtT8slsZUQ/JYXV72v7o7VNkEeOMRpPn7/
+         HTk0teO7oYod1qyqdpBHNPz6VP7mkMgZXMLND9ArclW1KrfD9VP2FuKWMbAAnND57IMO
+         YxvZQDqBhr20Hklird6kQ71RkhnrxIK+GCqAY6TQyinF+s2C0WBBQ5fanWF36xoWf5Do
+         b1FpxB57zkFKrzzoZjTBIN/dk49fxMvBP7r5ZtpUx6N2jgXP1JPL/REFSrmPy5WC4s3m
+         Qk1Q==
+X-Gm-Message-State: AOJu0YysWnnHSaC8gmUb0DBKf8GIubUIbfe7OgCs0IdLPEalvO0iPAq8
+	wvCcFoZgtUUXVUWaiVE+3742bA==
+X-Google-Smtp-Source: AGHT+IHeYkcu/RtMUX5lf2uTUiwk5whv3Kim5HQRxv8v4Wkt6ThO4w/ApV1UJK2BVwSR7UZ8q2JpuQ==
+X-Received: by 2002:adf:ea84:0:b0:319:6327:6adb with SMTP id s4-20020adfea84000000b0031963276adbmr2170369wrm.70.1695487378995;
+        Sat, 23 Sep 2023 09:42:58 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id n9-20020aa7d049000000b0051e0be09297sm3535843edo.53.2023.09.23.09.38.22
+        by smtp.gmail.com with ESMTPSA id x10-20020a05600c21ca00b004051b994014sm10434968wmj.19.2023.09.23.09.42.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Sep 2023 09:38:23 -0700 (PDT)
-Message-ID: <acb090f7-262b-8696-fe28-e537f48be1e6@linaro.org>
-Date: Sat, 23 Sep 2023 18:38:21 +0200
+        Sat, 23 Sep 2023 09:42:58 -0700 (PDT)
+Message-ID: <4fdfe29b-aea7-8180-d2e3-5caa1beb7232@linaro.org>
+Date: Sat, 23 Sep 2023 18:42:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,39 +64,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.1
-Subject: Re: [Question] dt bindings for BeagleConnect
+Subject: Re: [PATCH v6 02/16] dt-bindings: media: mediatek: mdp3: split out
+ general properties
 Content-Language: en-US
-To: Ayush Singh <ayushdevel1325@gmail.com>, devicetree@vger.kernel.org
-Cc: kernelnewbies@kernelnewbies.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-References: <ae896c35-58ba-6ba2-31dc-390a1d0d8faf@gmail.com>
- <3a1917fc-75d6-358e-0e77-0f3c3cca316d@linaro.org>
- <b3031ca6-83f2-80e0-2741-7b736c0f0efa@gmail.com>
+To: Moudy Ho <moudy.ho@mediatek.com>, Chun-Kuang Hu
+ <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230922072116.11009-1-moudy.ho@mediatek.com>
+ <20230922072116.11009-3-moudy.ho@mediatek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <b3031ca6-83f2-80e0-2741-7b736c0f0efa@gmail.com>
+In-Reply-To: <20230922072116.11009-3-moudy.ho@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 23/09/2023 18:10, Ayush Singh wrote:
+On 22/09/2023 09:21, Moudy Ho wrote:
+> In order to minimize duplication and standardize the document style,
+> it is necessary to separate the general properties specific to
+> MediaTek MDP3 RDMA.
 > 
->> On 23/09/2023 18:08, Ayush Singh wrote:
->>> Hello everyone, I am working on writing a BeagleConnect driver for
->>> Beagleplay board. Let me first go over some terminology:
->>>
->> Sending things twice will only make discussion even more confusing for
->> us, e.g. spread over multiple threads. Don't do it.
->>
-> Sorry, I sent the first using wrong email and then canceled the message 
-> from the link I got back from the mailing list.
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> ---
+>  .../media/mediatek,mdp3-rdma-common.yaml      | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
 
-Emails do not work like this. You cannot cancel (or recall) a message.
-Your recipients already got your previous message.
+I don't understand why this is a separate patch. It's not used, not
+effective and not visible for us how it extracts common parts.
 
 Best regards,
 Krzysztof
