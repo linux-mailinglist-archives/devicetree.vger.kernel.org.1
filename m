@@ -1,389 +1,255 @@
-Return-Path: <devicetree+bounces-2684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 171317AC27E
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 15:50:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2ACD7AC29E
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 16:20:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id 4FD291F21510
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 13:50:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id BA1761C2089C
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 14:20:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 620C31BDDC;
-	Sat, 23 Sep 2023 13:49:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC0EC1D521;
+	Sat, 23 Sep 2023 14:20:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EA781D553;
-	Sat, 23 Sep 2023 13:49:54 +0000 (UTC)
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2063.outbound.protection.outlook.com [40.107.21.63])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CCA5CF1;
-	Sat, 23 Sep 2023 06:49:47 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DD951CF97
+	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 14:20:19 +0000 (UTC)
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E875319A;
+	Sat, 23 Sep 2023 07:20:18 -0700 (PDT)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38NCSNtk027019;
+	Sat, 23 Sep 2023 10:19:50 -0400
+Received: from nam12-dm6-obe.outbound.protection.outlook.com (mail-dm6nam12lp2170.outbound.protection.outlook.com [104.47.59.170])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3t9sv4hq0v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 23 Sep 2023 10:19:49 -0400 (EDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ni9bxzrNJrhDkfYC6+t/nReANzgz7lmGWKK37eT8/0eqf4XkBeUicH8YyXfKt+y3yn31ECp83AK0dj//++jID4yJGHF0b6ACVO1Na91uMO1SGF+paWZWUK0lSapsRnAcmdHpeWMq8BKIlLrPloWUVhVKuqyrU0PKopGsiIInqBRNVND1hG4x4oveH2ikyfT4x7Uaq4iwYaGSMfuwxAEPBfFD7JEdfetIiwyQ5oI2NQEJTTGwrxIJNCUSWLNU7HiRgj+ikuUvSQkJpWuikSBpbvncovePfYFa4QFG32aEyc7qNRdtcTZ5SQ73KW901Xx3oZcSFsZV7740nbmBfE8sIw==
+ b=mg8DA6zih02vyRUWtW0/sPvDNj+IP0NvE1Spf9gLhydvuUQ0blWolhnAQKjc9ZW5Md7uVacTdPUTMrUth9A57sUIoFvSQEyHatFYcqrJN2hIpl3EfySTIIs3Yo9fMMRhN0sV+mv//EEZ4uXStqtPs5YbcozP9IeVS2eChvjbYUFnuN/9wrHfsum7sq+2x26jjZme2QjBC0o+rlS/prXAGcLB5Frgd+o+rOWshdiMnqUfiqZpoDN1w1DOhFd6oNlHkDLGhxwxTvw3zEV7er9mHb6OCEkvz/qQECQpsWs8XfVT8HhtYJupdUQ3LmOmG+SdL/Y/4D8xJqN+JPtTuyyQHA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AsPLlrLnEi/DL0vDxMpT7yQn5nNjqHycisJ0DsF6O/Y=;
- b=WwxDEGf9mon4O0EjzNDmZ8Yv4RRcLe7XXPucokm93R3CfZk72wbYaJW15N9ZtSdlHUfle+swxd7AGSJ5b1adtShByCuE2kniZm5CyGQIfO1cY6yQFYos91g4VaKz6J43T/a8AeHRuDBXSRzNA+2saKLsX6vVPDvTb/zbWTQgN6hnn4/21/UVbhNuyUnaD22bP+CdJkZIktv9geELcD47fAxNrdxaY7r/kYUzCx7g2wEi7ubnBxphsAhVoxs84azhCcAfC5EMVMWvXqhTbb6gPxteQh4ejA/3exs04zuv2rWsS9aY67NR627S6lQCXC/TDDJCWjlVjcLYuYqDFmAi8g==
+ bh=jRPaXQGSCBQ8wHhkLq5orgD3PNtKE0kzl2q7BkRpJwU=;
+ b=jtnS3iO6kJIq24ubc91KCa1FGmAZZBtxfcNRABBRjCRDUbDRtHOAU5X6Z5kHXJt8O+PRU1pZUBi56JMth0X4+ChFJMtdg7T4aN9RsSFUXg785ydFHnLS/Oz26NFKjmBv/rLz565ykkSMK7+Anr1oFwpIYSi7BYDmAljUqt+4jUsma/hGTblBRGhkuNyA9HunHt93Kkxw34lFQ+R0Bo9Xl8W/1bbLKN3BOBs7WodqviS4b+oTNoSKzCtcJdTX057dxqnz3TgQ56Z8qqaA/kwpOFwRFhFGKwBBOTHZVUCMmNLQ3W2pfk7yRpBg1ZDKmM/XG0sV0Hc6o4Vt3jb8kWmgtg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
+ dkim=pass header.d=analog.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AsPLlrLnEi/DL0vDxMpT7yQn5nNjqHycisJ0DsF6O/Y=;
- b=nTypnb0fJPlqwvhLGymrjMZY2r5+0IbI6NMM2f0jU8mR9jRAEAyVw8tfcuOy+oR3UwEW2f2NwO6iwGeD32TksE0hHwrxXsfECoZLJ4wABMDOqO60dDyHVQBQx+VtM8FAF6ezI9ys29M+hNxo0UmbbYVTbmWln2Je5G4wXx78aEA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR04MB6452.eurprd04.prod.outlook.com (2603:10a6:208:16d::21)
- by AS1PR04MB9454.eurprd04.prod.outlook.com (2603:10a6:20b:4d9::9) with
+ bh=jRPaXQGSCBQ8wHhkLq5orgD3PNtKE0kzl2q7BkRpJwU=;
+ b=jIF5e3CiSF6mZMRzPnhts+uWVboK8sv8UB3VcBtXylBcXAVIqKLgysw/nlx929wtB3mFebGcoXkmRhU40TgCcFZS2J1BH8MvPPrlPjIgPcBx9SIL9ExVq2PitMKTO3zoS6hfM9IuZ8F/bO6MIK5NhLKW/yrAl2YC30YmcXdPLDk=
+Received: from CY4PR03MB3399.namprd03.prod.outlook.com (2603:10b6:910:57::13)
+ by CH0PR03MB5953.namprd03.prod.outlook.com (2603:10b6:610:e0::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.21; Sat, 23 Sep
- 2023 13:49:40 +0000
-Received: from AM0PR04MB6452.eurprd04.prod.outlook.com
- ([fe80::568a:57ee:35b5:e454]) by AM0PR04MB6452.eurprd04.prod.outlook.com
- ([fe80::568a:57ee:35b5:e454%3]) with mapi id 15.20.6813.024; Sat, 23 Sep 2023
- 13:49:40 +0000
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org
-Cc: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Madalin Bucur <madalin.bucur@nxp.com>,
-	Ioana Ciornei <ioana.ciornei@nxp.com>,
-	Camelia Groza <camelia.groza@nxp.com>,
-	Li Yang <leoyang.li@nxp.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor@kernel.org>,
-	Sean Anderson <sean.anderson@seco.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>
-Subject: [RFC PATCH v2 net-next 15/15] net: pcs: lynx: use MTIP AN/LT block for copper backplanes
-Date: Sat, 23 Sep 2023 16:49:04 +0300
-Message-Id: <20230923134904.3627402-16-vladimir.oltean@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230923134904.3627402-1-vladimir.oltean@nxp.com>
-References: <20230923134904.3627402-1-vladimir.oltean@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: FR3P281CA0165.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a2::10) To AM0PR04MB6452.eurprd04.prod.outlook.com
- (2603:10a6:208:16d::21)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.23; Sat, 23 Sep
+ 2023 14:19:46 +0000
+Received: from CY4PR03MB3399.namprd03.prod.outlook.com
+ ([fe80::ed02:8279:265d:e00f]) by CY4PR03MB3399.namprd03.prod.outlook.com
+ ([fe80::ed02:8279:265d:e00f%3]) with mapi id 15.20.6813.017; Sat, 23 Sep 2023
+ 14:19:46 +0000
+From: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
+To: Rob Herring <robh@kernel.org>
+CC: "Matyas, Daniel" <Daniel.Matyas@analog.com>,
+        Jean Delvare
+	<jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 1/2] dt-bindings: hwmon: max31827: use supply pin name
+Thread-Topic: [PATCH 1/2] dt-bindings: hwmon: max31827: use supply pin name
+Thread-Index: AQHZ7JbW8bVvOja/3EqvTv/jlHNtWLAnWa2AgAEcYAA=
+Date: Sat, 23 Sep 2023 14:19:45 +0000
+Message-ID: 
+ <CY4PR03MB3399B818487F87D7297EC33F9BFEA@CY4PR03MB3399.namprd03.prod.outlook.com>
+References: <20230921142005.102263-1-antoniu.miclaus@analog.com>
+ <20230922211201.GA3600661-robh@kernel.org>
+In-Reply-To: <20230922211201.GA3600661-robh@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-dg-ref: 
+ =?us-ascii?Q?PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNcYW1pY2xhdXNc?=
+ =?us-ascii?Q?YXBwZGF0YVxyb2FtaW5nXDA5ZDg0OWI2LTMyZDMtNGE0MC04NWVlLTZiODRi?=
+ =?us-ascii?Q?YTI5ZTM1Ylxtc2dzXG1zZy0zZDkwNWY1ZC01YTFjLTExZWUtYWU1My00MTU2?=
+ =?us-ascii?Q?NDUwMDAwMzBcYW1lLXRlc3RcM2Q5MDVmNWUtNWExYy0xMWVlLWFlNTMtNDE1?=
+ =?us-ascii?Q?NjQ1MDAwMDMwYm9keS50eHQiIHN6PSIyNzU1IiB0PSIxMzMzOTk1MjM4NDY5?=
+ =?us-ascii?Q?MDg5NjYiIGg9ImZ1QzRDOG1Ra29nVjEvcVZTU3J0QnVUSjdqWT0iIGlkPSIi?=
+ =?us-ascii?Q?IGJsPSIwIiBibz0iMSIgY2k9ImNBQUFBRVJIVTFSU1JVRk5DZ1VBQUVvQ0FB?=
+ =?us-ascii?Q?QW03QmtBS2U3WkFYS3kyZjRVa1p3RWNyTFovaFNSbkFRREFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFIQUFBQURhQVFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFFQUFRQUJBQUFBRU9wbE9nQUFBQUFBQUFBQUFBQUFBSjRBQUFCaEFHUUFh?=
+ =?us-ascii?Q?UUJmQUhNQVpRQmpBSFVBY2dCbEFGOEFjQUJ5QUc4QWFnQmxBR01BZEFCekFG?=
+ =?us-ascii?Q?OEFaZ0JoQUd3QWN3QmxBRjhBWmdCdkFITUFhUUIwQUdrQWRnQmxBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUVBQUFBQUFBQUFBZ0FBQUFBQW5nQUFBR0VBWkFCcEFGOEFjd0JsQUdNQWRR?=
+ =?us-ascii?Q?QnlBR1VBWHdCd0FISUFid0JxQUdVQVl3QjBBSE1BWHdCMEFHa0FaUUJ5QURF?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFRQUFBQUFBQUFBQ0FB?=
+ =?us-ascii?Q?QUFBQUNlQUFBQVlRQmtBR2tBWHdCekFHVUFZd0IxQUhJQVpRQmZBSEFBY2dC?=
+ =?us-ascii?Q?dkFHb0FaUUJqQUhRQWN3QmZBSFFBYVFCbEFISUFNZ0FBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFCQUFBQUFBQUFBQUlBQUFBQUFBPT0iLz48L21l?=
+ =?us-ascii?Q?dGE+?=
+x-dg-rorf: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY4PR03MB3399:EE_|CH0PR03MB5953:EE_
+x-ms-office365-filtering-correlation-id: c83a3c4f-313a-4db4-8a85-08dbbc402357
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ IEXJcQ2fOM2+u77dCnNPEz+dKduyHfEmgeAFxJCW5k6NN0wdzbsJ0O1FBZXdk/vb1tkahsIXEu2TvszFLKgJOUxUCJ8QXSZWezSyaOdbNYmW1YALU7ATiVgIXI6NV5mRXyJiapq5D3iC4w9VmOxgp115UDbp3wQb/7AIssX/sHjMOIWkO05gmnVePEiyCxc6L+/CKp48OLQFNpSuZrGngq6TxHYmmOwqaVbmVK+kyC4y38YrmyyvhgDrq6XAlErsOWSOCSUQlMqnUe96cTPPBR+EhlV+5L7ANEihmp8afXQgGdbGTrWDY994Kx6WFqIgZwdbmN2yTUfkQVgisi14XEJlI9yPGU60jLF6QM+CxuDhWon3EbSxnw7iFyG5RdbamLPPr53+iKLJ5fwVGeNN/CZuSWK6+/knEABE5Q168C5zNSfK1Sad4LjrKx4bgTjTccAFL6w/JJjVRx2tm8IP+quh3GFyRK8OssPsea2SXT/HCXB5+ux3LZQPNGGbpc3xQxH4kMr1mVa1CRYOt6uOJnR+zEqI0abcbtMbulhIUsUbNbIsRMqtOWxFXNC0DUhycKatib+E7b0wiMrSZV7Cv3FOtmm2XbF68VC3bPlfrKmai/3uArOpKdtAPtICPi7Z
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY4PR03MB3399.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(366004)(346002)(396003)(376002)(39860400002)(230922051799003)(451199024)(186009)(1800799009)(38100700002)(6506007)(7696005)(38070700005)(33656002)(86362001)(8936002)(8676002)(2906002)(4326008)(478600001)(83380400001)(9686003)(66446008)(71200400001)(52536014)(5660300002)(41300700001)(55016003)(122000001)(6916009)(76116006)(66476007)(66946007)(64756008)(66556008)(54906003)(316002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?wMkRZ+TAbDIIfTZK+bbMgLyDNOGnMkDRbM4ku190aK65POPH/M9rm50KVWlp?=
+ =?us-ascii?Q?Wi9IhL0ihCtjU9UW97tFPQQABp5a3j4pqjU68AukhIeB7bshbiOXacCgfxGn?=
+ =?us-ascii?Q?/n9/tACVXhmjJuc9ajukJ9cTCzeF+HpcLPCVtXbaWigwGg5HOhqezXDNFoC/?=
+ =?us-ascii?Q?RpE3iSECZ/uRAxqwCVnhxkBJ3MrCxrhKcPG1gR3UFAFmRKto/3GzbkbIcJsX?=
+ =?us-ascii?Q?+LpX1sLTjW2cuyfluBvjpHsNlJNofWwy5bAChaTXr2AvpPHU7Xyj7kZoM6h9?=
+ =?us-ascii?Q?5Ud8oXZ8tNTgHc88Pm79U/Wxy2OQJtORIu5ZwkiugEZhnQsT+Gc9sCTsDhoE?=
+ =?us-ascii?Q?L2gaYp0ZmWChhvQIW5zYpqTVGrYWOie6bHpQ5B4nnEaALHbJ1IP+Th1DXtHx?=
+ =?us-ascii?Q?rfX9JDNXHihUjcHUhlGP89ljQ2n/1f7mYvohwXlhrSp9sdM4+IodBk37dCdn?=
+ =?us-ascii?Q?cDZr+Y5hR9MtOk4QlRwe0S2hhFFmPPkjlq5IAb6crlV21YcZWTZx8vW2Tise?=
+ =?us-ascii?Q?eLC4fjUZEWxswqz5MQyQE4qCENZW0KX6LJrLARDK0ny7mj9Okt/ANZ6tWrJ7?=
+ =?us-ascii?Q?7c/mYljG0ersDWGllfjxiqwMFJwYihou+39HaSE910Qt+p21LAfUTlislpIm?=
+ =?us-ascii?Q?6xK3QwRi3AmemQ6yFq2Uhcb7PbBwUVU140bewnLbrTyK2zUCb6JJ77Urka6u?=
+ =?us-ascii?Q?j1gi2BERM1CiyDD8et5RLfnqhVjy0Dd2aW37JUyUGGyM8+ezzWBKWcXOfVvH?=
+ =?us-ascii?Q?SJIESNpOKjntLn9hkExMsfS9lldp/T7FvDHQ2DmAUutlN5RqRs5eTEHutf4H?=
+ =?us-ascii?Q?slZtMY2zAlSpFog4k2KjIu1prA5OtRXbFtUGxFDbJ+3MzR2oevGtomFR5bRo?=
+ =?us-ascii?Q?JqFhkG5DKvSIGnqxV37KhFqui8Dx+qeBDq5YMWa3ZdsDDDbv2EcEzahMI/76?=
+ =?us-ascii?Q?klE6nztxgtJ8ni/sPAk119pQaA1OmZdy2pgtBc//YZmQXO738b3SETy0SLOL?=
+ =?us-ascii?Q?edVWk+lHNzVZGtsFHf0YMee7uNWfc0S7bSu1hiMALJZVYYol29dtabiy5YqS?=
+ =?us-ascii?Q?koYNEywH4u7Q+YltKqscJJvAZoTb28WfJ/5s02k0/m6gdG9m3E/Xv8hqPBs8?=
+ =?us-ascii?Q?3YzbCgdlzNFcj/rsZntPVzMiHqKR8KKSvkM4FHQEz57Lt/R/z2ojc3i5Cp0d?=
+ =?us-ascii?Q?+rHEjXiIMIL00fUZg6eM5sXoOAHy8UFI6MWEs+jSsXqUuvMOrdggtc/SF870?=
+ =?us-ascii?Q?klbBoG+vM5g0cR+jMOsvZQhT3szHK/kGGoApSNvrUju10uhBcrqNV5mTAAUG?=
+ =?us-ascii?Q?5KkinX+pZfePhQ9HKQNb3Q/9qwFVdUF6NRMjXz0LmHpAhK68XxN12PDche/b?=
+ =?us-ascii?Q?okzTPytvYS0bLZJ2gq37mybtODXmY+z/RbNmzDgqEiFsWWvuOoU/02OQ/Nxk?=
+ =?us-ascii?Q?TY6SWm1mab+o2KMlX/P9BOMgtXabhARWesUGKX6LwGXkaxhxpK/K32r95BT5?=
+ =?us-ascii?Q?hUf6AeYz1mnBZXUmKIhYXN+eLiPcKKbiJdR46IpZxbkIpBgHll+K2R5JVjuc?=
+ =?us-ascii?Q?BDYrpxlUrtEYw2zYnCXpQbcU5mN2+Tmgs2oiW7CbsJx8aU2hvkSOsiQ+sWmb?=
+ =?us-ascii?Q?lEf9iF9ClaCAk/ahnqueZ7woeRtTDsENR3zTtXon+Gc3?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB6452:EE_|AS1PR04MB9454:EE_
-X-MS-Office365-Filtering-Correlation-Id: 460eb46b-a7ee-49a9-69e9-08dbbc3bef24
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
- PwTKE0k6ZRHcRwGh365N5UKFWpIIIDb9WB3IPSKNU3U1lStmmLbLwWRozsFecGLbkvBhIO9YR4CwIjpgKIyQD0GN7y3pzNibYn3VngCpXFu160h/b3wVX8H7fZnP6YgwDkkZGiUymVAaEijYIBjdWzLbibblCo+wEiQS1+Kg5c2Jl8fOJ32dG1HzQoSDP1hHnbNra4SEocEolq6/uw0xWn9D75s2g0DCfMpiwU4CckedIiZ0k46HU77HZwv8NVrPY3uyMh0STcYTf/38yFo5Uv0Vtmt6Pj7LcEbropfbf6i/t+CamlkmM0hFmt32j7DYSMDyj7NR8Umkf81atOWZJTrHjzd+KyzdPXna/x29BxUFSWCiYwyU2P5dDjxgRn0Qhbt3vdVNdFLvhX61TXRZeeZVsHaQrCPfw2+asa+6engORTzFdFjQnNgttg8QWX9EnW+5yz6p/mMT9/sWAViIiFeTXCG2bgRHYypu14riqogHpihesCOL7uAQS8AcawtL4sZvkls4+1KTXhbHOxnEi59oiYLuGqpjqkgwukv8bl6k4sU/lROOzuSniL7BHCrymXO+NyB+PDm4PfZE8rrpb873X3SW6ABRfu99w9qaJ/dV1Tla5LojdhSf7CfxxhOm
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6452.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(346002)(39860400002)(136003)(396003)(376002)(230922051799003)(1800799009)(451199024)(186009)(66556008)(52116002)(2616005)(6506007)(6512007)(316002)(5660300002)(66946007)(38350700002)(6666004)(478600001)(1076003)(66476007)(26005)(44832011)(2906002)(4326008)(36756003)(41300700001)(7416002)(54906003)(38100700002)(6486002)(8936002)(86362001)(8676002)(83380400001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?c0eMDlAhN2Xj3R4Hc0lEzjhXo/bR99xJ+wzYQaq+dku3eQZMCbwY/enzhTL2?=
- =?us-ascii?Q?FMBch8VdBtpuHCe8bU/tCHUZ1SIOe9qCvJFfSbZnTlWoNfIpc2sTKwpgnAAg?=
- =?us-ascii?Q?FvOWF6zKCM+JYH9lc3b8QZy/Pzr+hprxxAW5M0Y0x4h8u61HiSb9JbNwYBmG?=
- =?us-ascii?Q?KrNYh/ze8sQM6YGYvG5mTb1D6qhcb7fw4dbkC5CcyG2Ug//QTRg2KrzwwBJM?=
- =?us-ascii?Q?0SsQ3N3ViyPVkzLawDUV0Uwvb89fb2IFhibKDtce+na6shPgUGVqferbx3CQ?=
- =?us-ascii?Q?I4ZBDu8HCDBzZWyEAQBjaEzKythlX/3iQdft2D1JeNkZYVsYIDgpoG7OpL3C?=
- =?us-ascii?Q?LzR2pR2o/EGsVZVYy2reiV74XqvcOWy9DrvVad/HR2cG0y3qRjmh/e3UvFTl?=
- =?us-ascii?Q?LN9KA+Z6p1oYKvlv7HYnz5rDlmJcmG2MK/84EGLvGW2bniTl6n7Rapv5HUzj?=
- =?us-ascii?Q?kvawbNW5gkZ43wve92ju4iT1uHVK2XWbja+CyWpLon/APeZJrzA0N6ETqNel?=
- =?us-ascii?Q?udB7qN4WmmR7J67KFHWkvloBlTmgi38138T31IBE82BN9U+3kW/YdD4E2fpe?=
- =?us-ascii?Q?8bgXvu8T3f7o8td1wwtyOvW93vquz4ko4XQRH+b6M+UY3MrD5U45njDh1owc?=
- =?us-ascii?Q?Xjh2D+P2jrXtjlzend5FZfGGhZc4tJUtfmTEyXPxi9PhJqejdonP7H5pafDR?=
- =?us-ascii?Q?nMizxFmr+bdDKuion7Dx2A8j/YnYRIA0sC241ihkPvf9S0OTa652W38qAYBS?=
- =?us-ascii?Q?uripA6NNGzXgcEybYAtyOoD72tVwE8Sey7TChvv3fN+kH9vMzR4+zeOBKp+v?=
- =?us-ascii?Q?n0gFUgq+MvdgnqUNmDVkhH93ZTveN6PGh8UclJu2w+zTR1qFgR8CGMSUI9ca?=
- =?us-ascii?Q?7yPSZ9XmgT+AYiut6YEETAJkJs0jZ3rkCvGvmMf7zFIPk4QwsWwP1wOGWirZ?=
- =?us-ascii?Q?e09txMtOVoVwz1/oA1ziOfLVkUUv+VCUw+TANGameHizxk6C+lQjtQEN2uJ2?=
- =?us-ascii?Q?J+tyFIbePBHdJOPR18kPNznGh8gXn2rriO5uRWB4xekn1PFa/p9tWlk8NDUj?=
- =?us-ascii?Q?ms0JN9CKo7WjhOYUbrdKNmTck4Qmwf6HvaIA0108NOZiCn7roVarecZrRADt?=
- =?us-ascii?Q?yw1jKHXT/UKN4qfDNlMB7pLbag0ekWEy3hNdXHRAZcnvtFqAUkKPMgnWzUmQ?=
- =?us-ascii?Q?mvur9D/hLD6E5D8UO9c5YCaKqIwo1WZ4ts8zqWy8xj0xyRcLks7QCtc4AUFD?=
- =?us-ascii?Q?L/v7fXqFQ3P20uvISb4Nygl0T1QXfPU1cPnhyew7n2QbMNpq4KmockANwZdd?=
- =?us-ascii?Q?szStA7aPS2VIXmQIso05ycv77xqsfL1vPVjFclNsH0gQthJTbB7b/wYdL6le?=
- =?us-ascii?Q?uSYs7MwdRzuisWaTyxzO6RoUWaA5EC9idwb/NuNeld88BWAQSq3uIlLWw8a5?=
- =?us-ascii?Q?e3yFdPGA6PrK8yoWuqXTt1yyIRLvjfQyv3cFFFmIkznjtXF5cXsVLYI46QWd?=
- =?us-ascii?Q?2zWhVBaTzKKFoKpRY3S6KZCrOFn7kVhyeCIgjkFhB33t4N8BCFJGAtNfaoCy?=
- =?us-ascii?Q?8VnvBWplRTaHucRjWIqftGmh8uC40hLx1cmUidWtjBCigjNyyEVnovyc0BU+?=
- =?us-ascii?Q?WQ=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 460eb46b-a7ee-49a9-69e9-08dbbc3bef24
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6452.eurprd04.prod.outlook.com
+X-OriginatorOrg: analog.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2023 13:49:40.5633
+X-MS-Exchange-CrossTenant-AuthSource: CY4PR03MB3399.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c83a3c4f-313a-4db4-8a85-08dbbc402357
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Sep 2023 14:19:45.9871
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rMIqtdpsKG2bR6a2VejghxXFaTzd7qflHqZpZqj+qjTFsDgR12XJzZ8Jewed8rofypDvu8j10A9JV7G2K54dVQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9454
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ZZoxgGKT5OaE2mibNyzlO8rlNxGS91b8kJ7iZobJklOMM5Puf0hd/zq6ywpzjZdQ6HLwSftLhBrXc3rS7Delw22Qk+9DTGt3HOPMwkLx4+c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR03MB5953
+X-Proofpoint-ORIG-GUID: TGC7QV6jlwMHs6QelDgeysT-UZWCg4Cn
+X-Proofpoint-GUID: TGC7QV6jlwMHs6QelDgeysT-UZWCg4Cn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-23_12,2023-09-21_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ bulkscore=0 spamscore=0 malwarescore=0 suspectscore=0 adultscore=0
+ phishscore=0 mlxlogscore=999 mlxscore=0 impostorscore=0 priorityscore=1501
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2309180000 definitions=main-2309230119
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-If the fsl,backplane-mode device tree property is present, then the Lynx
-PCS makes use of the AN/LT block to advertise the supported backplane
-link modes using clause 73 autoneg.
 
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
-v1->v2: code is new
 
- drivers/net/pcs/Kconfig    |   1 +
- drivers/net/pcs/pcs-lynx.c | 135 +++++++++++++++++++++++++++++++++++++
- 2 files changed, 136 insertions(+)
+> On Thu, Sep 21, 2023 at 05:20:03PM +0300, Antoniu Miclaus wrote:
+> > The actual hardware pin name for the supply of max31827 is vdd.
+> > Update the dt-binding to reflect the hardware properties accordingly.
+>=20
+> Changing this breaks the ABI. I see the old one wasn't used by the
+> driver, but that's just one driver potentially. You need some
+> justification here why it's okay to break the ABI.
+>=20
+As I mentioned also in the commit description, the supply should match the
+actual hardware pin name. Otherwise it might create confusion. Usually vref
+refers to an external voltage reference pin used for ADC/DACs which is not
+exactly the case for this part, taking into account that there is no "refer=
+ence"
+word mentioned in the datasheet at all. VREF and VDD are usually separate
+hardware pins. There is a hint indeed in the dts example that the vref-supp=
+ly=20
+might be referenced to a vdd regulator node, but from my point of view
+that is not enough. Moreover the current vref-supply is not handled at all =
+in
+the driver, it is only mentioned in the dt-binding (That's why I added a se=
+cond
+patch in the series handling the supply).
 
-diff --git a/drivers/net/pcs/Kconfig b/drivers/net/pcs/Kconfig
-index 24a033e93bdd..be561c465b4a 100644
---- a/drivers/net/pcs/Kconfig
-+++ b/drivers/net/pcs/Kconfig
-@@ -13,6 +13,7 @@ config MTIP_BACKPLANE_PHY
- 	  SoCs.
- 
- config PCS_XPCS
-+	depends on MTIP_BACKPLANE_PHY || MTIP_BACKPLANE_PHY=n
- 	tristate
- 	select PHYLINK
- 	help
-diff --git a/drivers/net/pcs/pcs-lynx.c b/drivers/net/pcs/pcs-lynx.c
-index dc3962b2aa6b..1352f08edcf3 100644
---- a/drivers/net/pcs/pcs-lynx.c
-+++ b/drivers/net/pcs/pcs-lynx.c
-@@ -4,10 +4,14 @@
-  */
- 
- #include <linux/mdio.h>
-+#include <linux/of.h>
-+#include <linux/phy/phy.h>
- #include <linux/phylink.h>
- #include <linux/pcs-lynx.h>
- #include <linux/property.h>
- 
-+#include "mtip_backplane.h"
-+
- #define SGMII_CLOCK_PERIOD_NS		8 /* PCS is clocked at 125 MHz */
- #define LINK_TIMER_VAL(ns)		((u32)((ns) / SGMII_CLOCK_PERIOD_NS))
- 
-@@ -20,9 +24,15 @@
- #define IF_MODE_SPEED_MSK		GENMASK(3, 2)
- #define IF_MODE_HALF_DUPLEX		BIT(4)
- 
-+#define PRIMARY_LANE			0
-+#define MAX_NUM_LANES			4
-+
- struct lynx_pcs {
- 	struct phylink_pcs pcs;
- 	struct mdio_device *mdio;
-+	struct mtip_backplane *anlt[MAX_NUM_LANES];
-+	int num_lanes;
-+	bool backplane_mode;
- };
- 
- enum sgmii_speed {
-@@ -100,6 +110,9 @@ static void lynx_pcs_get_state(struct phylink_pcs *pcs,
- 	case PHY_INTERFACE_MODE_10GBASER:
- 		phylink_mii_c45_pcs_get_state(lynx->mdio, state);
- 		break;
-+	case PHY_INTERFACE_MODE_INTERNAL:
-+		mtip_backplane_get_state(lynx->anlt[PRIMARY_LANE], state);
-+		break;
- 	default:
- 		break;
- 	}
-@@ -168,6 +181,17 @@ static int lynx_pcs_config_usxgmii(struct mdio_device *pcs,
- 				 ADVERTISE_SGMII | ADVERTISE_LPACK);
- }
- 
-+static int lynx_pcs_config_backplane(struct phylink_pcs *pcs,
-+				     unsigned int neg_mode,
-+				     const unsigned long *advertising)
-+{
-+	bool autoneg = neg_mode == PHYLINK_PCS_NEG_INBAND_ENABLED;
-+	struct lynx_pcs *lynx = phylink_pcs_to_lynx(pcs);
-+
-+	return mtip_backplane_config_aneg(lynx->anlt[PRIMARY_LANE], autoneg,
-+					  advertising);
-+}
-+
- static int lynx_pcs_config(struct phylink_pcs *pcs, unsigned int neg_mode,
- 			   phy_interface_t ifmode,
- 			   const unsigned long *advertising, bool permit)
-@@ -193,6 +217,8 @@ static int lynx_pcs_config(struct phylink_pcs *pcs, unsigned int neg_mode,
- 	case PHY_INTERFACE_MODE_10GBASER:
- 		/* Nothing to do here for 10GBASER */
- 		break;
-+	case PHY_INTERFACE_MODE_INTERNAL:
-+		return lynx_pcs_config_backplane(pcs, neg_mode, advertising);
- 	default:
- 		return -EOPNOTSUPP;
- 	}
-@@ -204,6 +230,9 @@ static void lynx_pcs_an_restart(struct phylink_pcs *pcs)
- {
- 	struct lynx_pcs *lynx = phylink_pcs_to_lynx(pcs);
- 
-+	if (lynx->backplane_mode)
-+		return mtip_backplane_an_restart(lynx->anlt[PRIMARY_LANE]);
-+
- 	phylink_mii_c22_pcs_an_restart(lynx->mdio);
- }
- 
-@@ -306,16 +335,111 @@ static void lynx_pcs_link_up(struct phylink_pcs *pcs, unsigned int neg_mode,
- 	}
- }
- 
-+static int lynx_pcs_validate(struct phylink_pcs *pcs, unsigned long *supported,
-+			     const struct phylink_link_state *state)
-+{
-+	struct lynx_pcs *lynx = phylink_pcs_to_lynx(pcs);
-+
-+	if (state->interface != PHY_INTERFACE_MODE_INTERNAL)
-+		return 0;
-+
-+	return mtip_backplane_validate(lynx->anlt[PRIMARY_LANE], supported);
-+}
-+
-+static int lynx_pcs_enable(struct phylink_pcs *pcs)
-+{
-+	struct lynx_pcs *lynx = phylink_pcs_to_lynx(pcs);
-+	int err;
-+
-+	if (lynx->backplane_mode) {
-+		err = mtip_backplane_resume(lynx->anlt[PRIMARY_LANE]);
-+		if (err)
-+			return err;
-+	}
-+
-+	return 0;
-+}
-+
-+static void lynx_pcs_disable(struct phylink_pcs *pcs)
-+{
-+	struct lynx_pcs *lynx = phylink_pcs_to_lynx(pcs);
-+
-+	if (lynx->backplane_mode)
-+		mtip_backplane_suspend(lynx->anlt[PRIMARY_LANE]);
-+}
-+
- static const struct phylink_pcs_ops lynx_pcs_phylink_ops = {
- 	.pcs_get_state = lynx_pcs_get_state,
- 	.pcs_config = lynx_pcs_config,
- 	.pcs_an_restart = lynx_pcs_an_restart,
- 	.pcs_link_up = lynx_pcs_link_up,
-+	.pcs_validate = lynx_pcs_validate,
-+	.pcs_enable = lynx_pcs_enable,
-+	.pcs_disable = lynx_pcs_disable,
- };
- 
-+static int lynx_pcs_parse_fwnode(struct lynx_pcs *lynx)
-+{
-+	struct fwnode_handle *node = lynx->mdio->dev.fwnode;
-+	enum mtip_model model = MTIP_MODEL_AUTODETECT;
-+	struct device_node *np = to_of_node(node);
-+	struct mdio_device *mdio = lynx->mdio;
-+	struct device *dev = &mdio->dev;
-+	struct phy *phy;
-+	int i, err;
-+
-+	if (!node)
-+		return 0;
-+
-+	lynx->backplane_mode = fwnode_property_present(node, "fsl,backplane-mode");
-+	if (!lynx->backplane_mode)
-+		return 0;
-+
-+	if (fwnode_device_is_compatible(node, "fsl,lx2160a-lynx-pcs"))
-+		model = MTIP_MODEL_LX2160A;
-+
-+	lynx->num_lanes = of_count_phandle_with_args(np, "phys", "#phy-cells");
-+	if (lynx->num_lanes < 0)
-+		return lynx->num_lanes;
-+
-+	if (WARN_ON(lynx->num_lanes > MAX_NUM_LANES))
-+		return -EINVAL;
-+
-+	for (i = 0; i < lynx->num_lanes; i++) {
-+		phy = devm_of_phy_get_by_index(dev, np, i);
-+		if (IS_ERR(phy))
-+			return dev_err_probe(dev, PTR_ERR(phy),
-+					     "Failed to get SerDes PHY %d\n", i);
-+
-+		lynx->anlt[i] = mtip_backplane_create(mdio, phy, model);
-+		if (IS_ERR(lynx->anlt[i])) {
-+			err = PTR_ERR(lynx->anlt[i]);
-+
-+			while (i-- > 0)
-+				mtip_backplane_destroy(lynx->anlt[i]);
-+
-+			return err;
-+		}
-+	}
-+
-+	for (i = 1; i < lynx->num_lanes; i++) {
-+		err = mtip_backplane_add_subordinate(lynx->anlt[PRIMARY_LANE],
-+						     lynx->anlt[i]);
-+		if (WARN_ON(err)) {
-+			/* Too many SerDes lanes in the device tree? */
-+			for (i = 0; i < lynx->num_lanes; i++)
-+				mtip_backplane_destroy(lynx->anlt[i]);
-+			return err;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static struct phylink_pcs *lynx_pcs_create(struct mdio_device *mdio)
- {
- 	struct lynx_pcs *lynx;
-+	int err;
- 
- 	lynx = kzalloc(sizeof(*lynx), GFP_KERNEL);
- 	if (!lynx)
-@@ -327,6 +451,12 @@ static struct phylink_pcs *lynx_pcs_create(struct mdio_device *mdio)
- 	lynx->pcs.neg_mode = true;
- 	lynx->pcs.poll = true;
- 
-+	err = lynx_pcs_parse_fwnode(lynx);
-+	if (err) {
-+		kfree(lynx);
-+		return ERR_PTR(err);
-+	}
-+
- 	return lynx_to_phylink_pcs(lynx);
- }
- 
-@@ -392,6 +522,11 @@ EXPORT_SYMBOL_GPL(lynx_pcs_create_fwnode);
- void lynx_pcs_destroy(struct phylink_pcs *pcs)
- {
- 	struct lynx_pcs *lynx = phylink_pcs_to_lynx(pcs);
-+	int i;
-+
-+	if (lynx->backplane_mode)
-+		for (i = 0; i < lynx->num_lanes; i++)
-+			mtip_backplane_destroy(lynx->anlt[i]);
- 
- 	mdio_device_put(lynx->mdio);
- 	kfree(lynx);
--- 
-2.34.1
+If the justification is not enough to apply this change, then I can keep on=
+ly the
+second patch, which handles the regulator in the driver and use the  old `v=
+ref`
+naming which currently appears only in the dt-binding.
 
+Antoniu
+> >
+> > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> > ---
+> >  Documentation/devicetree/bindings/hwmon/adi,max31827.yaml | 6 +++--
+> -
+> >  1 file changed, 3 insertions(+), 3 deletions(-)
+> >
+> > diff --git
+> a/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+> b/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+> > index 2dc8b07b4d3b..21f2d350373b 100644
+> > --- a/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+> > +++ b/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+> > @@ -27,7 +27,7 @@ properties:
+> >    reg:
+> >      maxItems: 1
+> >
+> > -  vref-supply:
+> > +  vdd-supply:
+> >      description:
+> >        Must have values in the interval (1.6V; 3.6V) in order for the d=
+evice to
+> >        function correctly.
+> > @@ -35,7 +35,7 @@ properties:
+> >  required:
+> >    - compatible
+> >    - reg
+> > -  - vref-supply
+> > +  - vdd-supply
+> >
+> >  additionalProperties: false
+> >
+> > @@ -48,7 +48,7 @@ examples:
+> >          temperature-sensor@42 {
+> >              compatible =3D "adi,max31827";
+> >              reg =3D <0x42>;
+> > -            vref-supply =3D <&reg_vdd>;
+> > +            vdd-supply =3D <&reg_vdd>;
+> >          };
+> >      };
+> >  ...
+> > --
+> > 2.42.0
+> >
 
