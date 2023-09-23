@@ -1,96 +1,111 @@
-Return-Path: <devicetree+bounces-2747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBCA67AC4E4
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 21:40:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49AE27AC516
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 22:43:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id E43D91C20818
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 19:40:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 38EDDB20A1E
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 20:43:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D19272134B;
-	Sat, 23 Sep 2023 19:40:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B93ED63A0;
+	Sat, 23 Sep 2023 20:43:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94AF321343
-	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 19:40:25 +0000 (UTC)
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75FDDFE
-	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 12:40:24 -0700 (PDT)
-Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-d862533ea85so2795265276.0
-        for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 12:40:24 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BBB0818
+	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 20:43:13 +0000 (UTC)
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0292511B
+	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 13:43:12 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-6927528c01dso637091b3a.0
+        for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 13:43:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695498023; x=1696102823; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=wT8NcA0y1AMUmWyCInUSAwqrGAZb9JXNryfhTfON+tA=;
-        b=lQu1bE6wB1ZLFS44AE8/DfHB6WH/Ev4aPbRTj/2P5Gm05HDF3UD3Z7ZBjxWbg8DwLW
-         HB/E4jWa8efN9qm44MmMn+HEOf39C2J/cnX8OKw9DDivzZ9HeSYTY3ImLIQk9rRqxmSr
-         VZPOYD4ZMCLn8PVsImbT1hd0Gpj/83ul4QfDxYIppUWoBytXrnFGkY11O2RrwDufbw6I
-         xw1xEEYyjL2Yd7Sq60TDzcO1oloVCT9cxX5oud/Ss9ndy8XdIqi2EjteCdfEqcR3L48j
-         CM6/SNXHYyxGw45FyuCVCCdUNgokwDYu04uILsvqnOumj/7/L9TwEERrJB5cLtCq5zBu
-         m+bw==
+        d=gmail.com; s=20230601; t=1695501792; x=1696106592; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NXL2vhjfGlQUf1eFKptQJ4oefwhzj3pN8+xMr4o+cOo=;
+        b=JxYzl5710RkDxsjCJ3h9lnt4Xr9tMK8aDFDldfd2lmNFAztWPlvHlOa1HbENCDLJGU
+         VGODWj4Fz+k1dnuE8T6MLtKeN8QxIoOkZYL0+GzOCY27jEq0IgwZZx5AootHS7RPZq+r
+         weC++hwtnDiZcuTLqvGlQ6rFD6DBGijJhHbxEnqAeR61mt3ilv9jRlMlfNTNCcb6qZt5
+         9B89x195/Vs2GB2YTcuDGUb/P+ZuchPOAA/bF8EM+SzQij237khkgACKNm3Na4Yra2Co
+         5n3xtlFkhFQdQ51WVmKvwmNTNC8HUrkGog4epS6DOCVfcPuUXkVCAmtoaqgRQJLdJAtN
+         ultw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695498023; x=1696102823;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1695501792; x=1696106592;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=wT8NcA0y1AMUmWyCInUSAwqrGAZb9JXNryfhTfON+tA=;
-        b=ASWHkodiFnQCrUbugH+/cFWy+AbFshBrHZodsKttlRuxMGIpBDU7u6OqpTfcveSDeq
-         /4DSUlt5ZecXcoMGMGP7vlbPipVAHAkDmCycJa0XZFoRDZPqPgK6YCL4bd665i+pcmtk
-         iTSvW/UszQEBrCD5mfhbvil0UrFv8LZTJ4hBKgPJM15wjffJHaUmFLs+oE4P4i2FhG85
-         YuUvuFvTw82QkC/tGkPHX+7MoPwAltwudYzs2hlkC6HhSKbxMBCVtwFnzUOGVasrHbbb
-         U7SibfPe2XWKiSVzr+9Ceolte0E2dGxtGdihOEh/HiVjXU9AbkmoPsnPxOBhSIR7fsMV
-         BMeQ==
-X-Gm-Message-State: AOJu0YxwLrOvVd36kZZiSZ8eEnhOXeapX5USNg6KlaYUgs/8ABikxQzr
-	fFhNqYhP3pGQTOmsszP7YZnLrI2jeSMHSWeUNHW8CA==
-X-Google-Smtp-Source: AGHT+IGt16ZqM8IpsPbAvffNnhzKkeBKUQu3tObLJcRk4eEHrZmw1uF2gtqAHgXcUPdPwsDWctZKSRW6b6W3/2to7Fk=
-X-Received: by 2002:a0d:df56:0:b0:59f:3c81:3a25 with SMTP id
- i83-20020a0ddf56000000b0059f3c813a25mr2583549ywe.14.1695498023697; Sat, 23
- Sep 2023 12:40:23 -0700 (PDT)
+        bh=NXL2vhjfGlQUf1eFKptQJ4oefwhzj3pN8+xMr4o+cOo=;
+        b=VCyO4xKzW7CywP5jW2R61a0KYmHAumEf7SXVTG9r/0lm3bbgaunddLmSJDQNF/mrIm
+         l9P9RZ64nKmStLqJUSEsJRk4faGReIqxodONadE+e0UoIya/oi3Pbc2EoMZN8U4z6JsU
+         GnMiX3oGZ4o/48YED1fG8vU2ZIwMOUYHIhCH/5qdXinPJXOz2uxa6NdwX+SaCQ7m/3aG
+         ANSar1kl7jtmfWJAA9h94r2/jfQ5Bh52VFdx83TrER1Kmmt2TBq3Ry6xvLNlqEgYIEtI
+         PWlQSofPdVWfKImzW5+c5m/3xAOuhxzLA9VCTaBsLO3SELcSAtKDvJvTCHOsHW2dWUYZ
+         g3xw==
+X-Gm-Message-State: AOJu0YwEgVtKvBkariRvwwrHpIfarnY+RxKFUclK85cgUQHZ85PL2fwu
+	Ll9S+W3isYO+KvMIxkKDYDbWKp8iD1w=
+X-Google-Smtp-Source: AGHT+IGLtMshZaaCH3WBJWS1gkRX6ebUYgZdeC2/R7MxRSX7ogbVjlVMoXLfBWwKAQRGjuKZ1vrPlg==
+X-Received: by 2002:a05:6a21:a5a2:b0:13f:65ca:52a2 with SMTP id gd34-20020a056a21a5a200b0013f65ca52a2mr4809523pzc.5.1695501792297;
+        Sat, 23 Sep 2023 13:43:12 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:d8eb:c6dc:fcf8:4b58])
+        by smtp.gmail.com with ESMTPSA id e14-20020a62ee0e000000b00690d9901ce5sm5291989pfi.102.2023.09.23.13.43.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Sep 2023 13:43:11 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: shawnguo@kernel.org
+Cc: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] dt-bindings: arm: fsl: Document the missing imx23 boards
+Date: Sat, 23 Sep 2023 17:42:58 -0300
+Message-Id: <20230923204258.635888-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230712-msm8226-dsi-clock-fixup-v1-1-71010b0b89ca@z3ntu.xyz>
-In-Reply-To: <20230712-msm8226-dsi-clock-fixup-v1-1-71010b0b89ca@z3ntu.xyz>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sat, 23 Sep 2023 22:40:12 +0300
-Message-ID: <CAA8EJppstOof5SQz+fB1gDR2LPK8zs+tqJ99UUrYokZj8Z7J2g@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: qcom: msm8226: provide dsi phy clocks to mmcc
-To: Luca Weiss <luca@z3ntu.xyz>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
-	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, 12 Jul 2023 at 10:53, Luca Weiss <luca@z3ntu.xyz> wrote:
->
-> Some mmcc clocks have dsi0pll & dsi0pllbyte as clock parents so we
-> should provide them in the dt, which I missed in the commit adding the
-> mdss nodes.
->
-> Fixes: d5fb01ad5eb4 ("ARM: dts: qcom: msm8226: Add mdss nodes")
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
->  arch/arm/boot/dts/qcom/qcom-msm8226.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+From: Fabio Estevam <festevam@denx.de>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+There are some imx23 based boards that are not documented.
 
+Add them to the list of supportted i.MX23 boards.
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 9450b2c8a678..32bab799f925 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -25,8 +25,11 @@ properties:
+       - description: i.MX23 based Boards
+         items:
+           - enum:
++              - creative,x-fi3
+               - fsl,imx23-evk
++              - fsl,stmp378x-devb
+               - olimex,imx23-olinuxino
++              - sandisk,sansa_fuze_plus
+           - const: fsl,imx23
+ 
+       - description: i.MX25 Product Development Kit
 -- 
-With best wishes
-Dmitry
+2.34.1
+
 
