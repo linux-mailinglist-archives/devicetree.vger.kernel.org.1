@@ -1,250 +1,122 @@
-Return-Path: <devicetree+bounces-2630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8937C7ABD82
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 05:10:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F5DF7ABE0E
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 08:07:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id E3B27B208F0
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 03:10:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 4EF132834A2
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 06:07:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62C60648;
-	Sat, 23 Sep 2023 03:10:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC0141FA6;
+	Sat, 23 Sep 2023 06:07:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 957AB381;
-	Sat, 23 Sep 2023 03:10:41 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEED31B2;
-	Fri, 22 Sep 2023 20:10:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1695438640; x=1726974640;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=Zs7uT5rkXwBEP94Q3MOsbrrHL02FsNr/kLDkz8dRM58=;
-  b=Q2d9C3uoNof/EYweUgrq6GOaX0y1ASjChJtanp5SluwTOl6732Ry4lUg
-   TeKYhcFvVCLlXJapQtT9syo7X7dztbLNtealO8p3NH4Nxm2SMeN62voLC
-   XYJ13PSqFa53P6Z+SFOjGEaH3qDC1aDQXIrCSgR49+qWVxwdsLumiWtsi
-   9cK7xvCSSWyJRGBI+hRfnBpwypDLdut/3kpIs2QedGOKRK+JKd2qk2Kna
-   CdnuYdrm66GGlHtfLHFxP9m5RODiJTXcKhDhe2q7UWPDWJGXij2LEl/dN
-   A9CqQfwBu9oi905mnWqllP9LFL4GnegWpZnQSM4RKx941vQQd350fYRVL
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10841"; a="384819124"
-X-IronPort-AV: E=Sophos;i="6.03,169,1694761200"; 
-   d="scan'208";a="384819124"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Sep 2023 20:10:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10841"; a="697417478"
-X-IronPort-AV: E=Sophos;i="6.03,169,1694761200"; 
-   d="scan'208";a="697417478"
-Received: from pglc00352.png.intel.com ([10.221.235.155])
-  by orsmga003.jf.intel.com with ESMTP; 22 Sep 2023 20:10:35 -0700
-From: Rohan G Thomas <rohan.g.thomas@intel.com>
-To: "David S . Miller" <davem@davemloft.net>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: netdev@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Rohan G Thomas <rohan.g.thomas@intel.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: [PATCH net-next 1/1] net: stmmac: xgmac: EST interrupts handling
-Date: Sat, 23 Sep 2023 11:10:31 +0800
-Message-Id: <20230923031031.21434-1-rohan.g.thomas@intel.com>
-X-Mailer: git-send-email 2.26.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31839A53;
+	Sat, 23 Sep 2023 06:06:59 +0000 (UTC)
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27909B9;
+	Fri, 22 Sep 2023 23:06:55 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 4B489FF803;
+	Sat, 23 Sep 2023 06:06:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+	t=1695449214;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=4oWvaYHBJFJ7O18JZNgwdBYWtURWzzwNBvvz0evj8O0=;
+	b=bmNdp5wiJX4kR9210Tg5h8vw/C+LDUgASJM+L38kQ5zwtSJ0ZsD5WjI9bmd3v1xtSTo34j
+	Mnf1r6k/vB5tk/3r3l4oq9duEyJvLJ7rny5M6wl9Iam9s5L0nf8QruRA5UIvZupcUB25Rw
+	NYW7dYS66SXbVxI6DOaCHewAiyMQH5CfkwBOBbG8/PF/gv/BgNlf3WGVEcOmnF3NXyr9mO
+	R5ea45R4MivUVkJQhmKS7+ezlXx+dqp4PffhAsPxoTYAtYTPg9s9G0opA9kC9qeJt0Mbws
+	tMFAq/inmnLXiz6AxYPTloye8TBYOFHrBu2N77AMkdxnGsYOFRw5tF3nwIDU3g==
+Message-ID: <a1cdbed7-8d71-44df-a6fc-7b1d2066cc29@arinc9.com>
+Date: Sat, 23 Sep 2023 09:06:28 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v2 00/10] define and enforce phylink bindings
+To: Andrew Lunn <andrew@lunn.ch>,
+ "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Conor Dooley <conor+dt@kernel.org>,
+ George McCollister <george.mccollister@gmail.com>,
+ Florian Fainelli <f.fainelli@gmail.com>, Vladimir Oltean
+ <olteanv@gmail.com>, Kurt Kanzenbach <kurt@linutronix.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com,
+ Linus Walleij <linus.walleij@linaro.org>,
+ =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+ =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+ Marcin Wojtas <mw@semihalf.com>, Lars Povlsen <lars.povlsen@microchip.com>,
+ Steen Hegelund <Steen.Hegelund@microchip.com>,
+ Daniel Machon <daniel.machon@microchip.com>,
+ Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+ Daniel Golle <daniel@makrotopia.org>, Landen Chao
+ <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
+ Sean Wang <sean.wang@mediatek.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@microchip.com>, Marek Vasut <marex@denx.de>,
+ Claudiu Manoil <claudiu.manoil@nxp.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ John Crispin <john@phrozen.org>, Madalin Bucur <madalin.bucur@nxp.com>,
+ Ioana Ciornei <ioana.ciornei@nxp.com>, Lorenzo Bianconi
+ <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>,
+ Oleksij Rempel <linux@rempel-privat.de>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Grygorii Strashko <grygorii.strashko@ti.com>, Sekhar Nori <nsekhar@ti.com>,
+ Shyam Pandey <radhey.shyam.pandey@xilinx.com>, mithat.guner@xeront.com,
+ erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-renesas-soc@vger.kernel.org
+References: <20230916110902.234273-1-arinc.unal@arinc9.com>
+ <ZQ2LMe9aa1ViBcSH@shell.armlinux.org.uk>
+ <6c1bb7df-34cd-4db9-95b6-959c87b68588@arinc9.com>
+ <ZQ4VPEuXB3+e48Qs@shell.armlinux.org.uk>
+ <f610de0b-a804-463d-b7ae-0433dbb809a9@lunn.ch>
+Content-Language: en-US
+From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <f610de0b-a804-463d-b7ae-0433dbb809a9@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-GND-Sasl: arinc.unal@arinc9.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Enabled the following EST related interrupts:
-  1) Constant Gate Control Error (CGCE)
-  2) Head-of-Line Blocking due to Scheduling (HLBS)
-  3) Head-of-Line Blocking due to Frame Size (HLBF)
-  4) Base Time Register error (BTRE)
-  5) Switch to S/W owned list Complete (SWLC)
-Also, add EST errors into the ethtool statistic.
+On 23.09.2023 01:44, Andrew Lunn wrote:
+>> However, to dress this up as "phylink requires xyz, so lets create
+>> a phylink binding description" is just wrong.
+> 
+> +1
+> 
+> Also, phylink is a Linux implementation detail. Other OSes using the
+> binding don't need to have phylink. Yet they can still use the DT
+> blobs because they should describe the hardware, independent of how
+> the OS drives that hardware.
 
-The commit e49aa315cb01 ("net: stmmac: EST interrupts handling and
-error reporting") and commit 9f298959191b ("net: stmmac: Add EST
-errors into ethtool statistic") add EST interrupts handling and error
-reporting support to DWMAC4 core. This patch enables the same support
-for XGMAC.
+I haven't stated it directly but I've been agreeing to this fact since the
+start of the discussion on patch 7.
 
-Signed-off-by: Rohan G Thomas <rohan.g.thomas@intel.com>
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
- .../net/ethernet/stmicro/stmmac/dwxgmac2.h    | 27 ++++++
- .../ethernet/stmicro/stmmac/dwxgmac2_core.c   | 89 +++++++++++++++++++
- 2 files changed, 116 insertions(+)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-index 7a8f47e7b728..75782b8cdfe9 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-@@ -289,6 +289,33 @@
- #define XGMAC_PTOV_SHIFT		23
- #define XGMAC_SSWL			BIT(1)
- #define XGMAC_EEST			BIT(0)
-+#define XGMAC_MTL_EST_STATUS		0x00001058
-+#define XGMAC_BTRL			GENMASK(15, 8)
-+#define XGMAC_BTRL_SHIFT		8
-+#define XGMAC_BTRL_MAX			GENMASK(15, 8)
-+#define XGMAC_CGCE			BIT(4)
-+#define XGMAC_HLBS			BIT(3)
-+#define XGMAC_HLBF			BIT(2)
-+#define XGMAC_BTRE			BIT(1)
-+#define XGMAC_SWLC			BIT(0)
-+#define XGMAC_MTL_EST_SCH_ERR		0x00001060
-+#define XGMAC_MTL_EST_FRM_SZ_ERR	0x00001064
-+#define XGMAC_MTL_EST_FRM_SZ_CAP	0x00001068
-+#define XGMAC_SZ_CAP_HBFS_MASK		GENMASK(14, 0)
-+#define XGMAC_SZ_CAP_HBFQ_SHIFT		16
-+#define XGMAC_SZ_CAP_HBFQ_MASK(val)	\
-+	({					\
-+		typeof(val) _val = (val);	\
-+		(_val > 4 ? GENMASK(18, 16) :	\
-+		 _val > 2 ? GENMASK(17, 16) :	\
-+		 BIT(16));			\
-+	})
-+#define XGMAC_MTL_EST_INT_EN		0x00001070
-+#define XGMAC_IECGCE			BIT(4)
-+#define XGMAC_IEHS			BIT(3)
-+#define XGMAC_IEHF			BIT(2)
-+#define XGMAC_IEBE			BIT(1)
-+#define XGMAC_IECC			BIT(0)
- #define XGMAC_MTL_EST_GCL_CONTROL	0x00001080
- #define XGMAC_BTR_LOW			0x0
- #define XGMAC_BTR_HIGH			0x1
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
-index f352be269deb..0af0aefa6656 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
-@@ -1469,9 +1469,97 @@ static int dwxgmac3_est_configure(void __iomem *ioaddr, struct stmmac_est *cfg,
- 		ctrl &= ~XGMAC_EEST;
- 
- 	writel(ctrl, ioaddr + XGMAC_MTL_EST_CONTROL);
-+
-+	/* Configure EST interrupt */
-+	if (cfg->enable)
-+		ctrl = XGMAC_IECGCE | XGMAC_IEHS | XGMAC_IEHF | XGMAC_IEBE |
-+		       XGMAC_IECC;
-+	else
-+		ctrl = 0;
-+
-+	writel(ctrl, ioaddr + XGMAC_MTL_EST_INT_EN);
- 	return 0;
- }
- 
-+static void dwxgmac3_est_irq_status(void __iomem *ioaddr,
-+				    struct net_device *dev,
-+				    struct stmmac_extra_stats *x, u32 txqcnt)
-+{
-+	u32 status, value, feqn, hbfq, hbfs, btrl;
-+	u32 txqcnt_mask = BIT(txqcnt) - 1;
-+
-+	status = readl(ioaddr + XGMAC_MTL_EST_STATUS);
-+
-+	value = XGMAC_CGCE | XGMAC_HLBS | XGMAC_HLBF | XGMAC_BTRE | XGMAC_SWLC;
-+
-+	/* Return if there is no error */
-+	if (!(status & value))
-+		return;
-+
-+	if (status & XGMAC_CGCE) {
-+		/* Clear Interrupt */
-+		writel(XGMAC_CGCE, ioaddr + XGMAC_MTL_EST_STATUS);
-+
-+		x->mtl_est_cgce++;
-+	}
-+
-+	if (status & XGMAC_HLBS) {
-+		value = readl(ioaddr + XGMAC_MTL_EST_SCH_ERR);
-+		value &= txqcnt_mask;
-+
-+		x->mtl_est_hlbs++;
-+
-+		/* Clear Interrupt */
-+		writel(value, ioaddr + XGMAC_MTL_EST_SCH_ERR);
-+
-+		/* Collecting info to shows all the queues that has HLBS
-+		 * issue. The only way to clear this is to clear the
-+		 * statistic.
-+		 */
-+		if (net_ratelimit())
-+			netdev_err(dev, "EST: HLB(sched) Queue 0x%x\n", value);
-+	}
-+
-+	if (status & XGMAC_HLBF) {
-+		value = readl(ioaddr + XGMAC_MTL_EST_FRM_SZ_ERR);
-+		feqn = value & txqcnt_mask;
-+
-+		value = readl(ioaddr + XGMAC_MTL_EST_FRM_SZ_CAP);
-+		hbfq = (value & XGMAC_SZ_CAP_HBFQ_MASK(txqcnt)) >>
-+			XGMAC_SZ_CAP_HBFQ_SHIFT;
-+		hbfs = value & XGMAC_SZ_CAP_HBFS_MASK;
-+
-+		x->mtl_est_hlbf++;
-+
-+		/* Clear Interrupt */
-+		writel(feqn, ioaddr + XGMAC_MTL_EST_FRM_SZ_ERR);
-+
-+		if (net_ratelimit())
-+			netdev_err(dev, "EST: HLB(size) Queue %u Size %u\n",
-+				   hbfq, hbfs);
-+	}
-+
-+	if (status & XGMAC_BTRE) {
-+		if ((status & XGMAC_BTRL) == XGMAC_BTRL_MAX)
-+			x->mtl_est_btrlm++;
-+		else
-+			x->mtl_est_btre++;
-+
-+		btrl = (status & XGMAC_BTRL) >> XGMAC_BTRL_SHIFT;
-+
-+		if (net_ratelimit())
-+			netdev_info(dev, "EST: BTR Error Loop Count %u\n",
-+				    btrl);
-+
-+		writel(XGMAC_BTRE, ioaddr + XGMAC_MTL_EST_STATUS);
-+	}
-+
-+	if (status & XGMAC_SWLC) {
-+		writel(XGMAC_SWLC, ioaddr + XGMAC_MTL_EST_STATUS);
-+		netdev_info(dev, "EST: SWOL has been switched\n");
-+	}
-+}
-+
- static void dwxgmac3_fpe_configure(void __iomem *ioaddr, u32 num_txq,
- 				   u32 num_rxq, bool enable)
- {
-@@ -1541,6 +1629,7 @@ const struct stmmac_ops dwxgmac210_ops = {
- 	.config_l4_filter = dwxgmac2_config_l4_filter,
- 	.set_arp_offload = dwxgmac2_set_arp_offload,
- 	.est_configure = dwxgmac3_est_configure,
-+	.est_irq_status = dwxgmac3_est_irq_status,
- 	.fpe_configure = dwxgmac3_fpe_configure,
- };
- 
--- 
-2.26.2
-
+Arınç
 
