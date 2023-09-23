@@ -1,113 +1,75 @@
-Return-Path: <devicetree+bounces-2750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37B607AC52B
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 23:05:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3FD57AC53B
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 23:45:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 5652B1C2091D
-	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 21:05:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 469F0281600
+	for <lists+devicetree@lfdr.de>; Sat, 23 Sep 2023 21:45:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EC4163B5;
-	Sat, 23 Sep 2023 21:05:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DAABC8F5;
+	Sat, 23 Sep 2023 21:45:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48321818
-	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 21:05:23 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C7A1180
-	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 14:05:21 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qk9oU-0000JV-Q8; Sat, 23 Sep 2023 23:05:18 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qk9oT-008UTq-Od; Sat, 23 Sep 2023 23:05:17 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qk9oT-004F4d-FA; Sat, 23 Sep 2023 23:05:17 +0200
-Date: Sat, 23 Sep 2023 23:05:17 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: shawnguo@kernel.org, thierry.reding@gmail.com,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH v2 3/3] ARM: dts: mxs: Switch to #pwm-cells = <3>
-Message-ID: <20230923210517.zbipvauk5jfmy3cc@pengutronix.de>
-References: <20230922124229.359543-1-festevam@gmail.com>
- <20230922124229.359543-3-festevam@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EFF6C8C4
+	for <devicetree@vger.kernel.org>; Sat, 23 Sep 2023 21:45:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EF6DC433C8;
+	Sat, 23 Sep 2023 21:45:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695505545;
+	bh=fS4DH7h2XPXh7V4XUcE3VlGOmmyl+giuc/McST8xN70=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=JIpYfalFeiVszYfw5kNLb41uMt+H7QBVrBkJrb6PelynhbpgrFRQYz1WB5ctlyKN5
+	 iE36M6TDf1fGKR5cxIaSwfHEvpM7sNG8N297H6cVjXbjfg9bfs1gMNBF8BPwC/OBds
+	 FuP22HNG1Y6n/yVfeT01x415DHxQGoB3u4msYyyU54J0Yvsn3DWW4qG8ujunjLgusM
+	 TiTTkZ3Oaml6xeau+VeiKYKJP3pomc4ZIzg+ZKFwqf56Rfal4QVmF1gq6fkoyREh+x
+	 SA23nSICZyKMhzKupqL/N9KE1k8iXVDkBAVxlgeHcNPoXAT8VGJnnJgk8moNPT59Iv
+	 KFSZ20ClFyeNQ==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Luca Weiss <luca.weiss@fairphone.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: qcom: sdx65-mtp: Specify PM7250B SID to use
+Date: Sat, 23 Sep 2023 14:49:48 -0700
+Message-ID: <169550521468.6100.14904156607688324657.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20230921-pm7250b-sid-fixup-v1-1-231c1a65471f@fairphone.com>
+References: <20230921-pm7250b-sid-fixup-v1-1-231c1a65471f@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="zm6td2pbnnwho3ex"
-Content-Disposition: inline
-In-Reply-To: <20230922124229.359543-3-festevam@gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
 
---zm6td2pbnnwho3ex
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, 21 Sep 2023 08:34:02 +0200, Luca Weiss wrote:
+> Now that the pm7250b.dtsi can be configured to be on a different SID, we
+> also need to specify it for this dts file. Set it to the SID 2/3 like it
+> was before commit 8e2d56f64572 ("arm64: dts: qcom: pm7250b: make SID
+> configurable").
+> 
+> 
 
-Hello Fabio,
+Applied, thanks!
 
-On Fri, Sep 22, 2023 at 09:42:29AM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
->=20
-> mxs-pwm.yaml documents that #pwm-cells should be 3.
->=20
-> This is correct as the last cell may indicate the PWM polarity.
->=20
-> Convert all mxs devicetree files to using #pwm-cells =3D <3> for
-> consistency.
->=20
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+[1/1] ARM: dts: qcom: sdx65-mtp: Specify PM7250B SID to use
+      commit: 4d8b5d7171722d2cdccc880d8e449f7ca9c7b6bf
 
-Very nice,
-
-Reviewed-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-
-Thanks!
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---zm6td2pbnnwho3ex
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmUPUwwACgkQj4D7WH0S
-/k70RQf+KK0J/5rruL7ki9dy+rFPYQ7jEf/niXOwLGktTba756QoOH/3FtFf+cma
-zPOLHffLeHduug1DIIMrQonAz41qBlsYlQVZ20CK+ez4o6lH3fR2yp6PePdhOVW9
-42Crp9xN0iD7vTsE3MWkpRa8UGFH54MfG3P/4g1iTxKpOl6QB6pBA3VBCbZm40JI
-Jco5J61GTns88g3eKYTW8uzP1tsrmbHpKuqQ+woRbjZV2cFnHW6Dttti8ryo67U4
-axd/FBTIlsllEAp1M1lCBOEiunEevmDXMVTnJNcCOe2ElQBbEH8TtFmxzmknf837
-CWrFQ79d4SfFamyMCKIrdxWdCIthRw==
-=55uq
------END PGP SIGNATURE-----
-
---zm6td2pbnnwho3ex--
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
