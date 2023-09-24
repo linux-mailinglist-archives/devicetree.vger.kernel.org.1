@@ -1,202 +1,91 @@
-Return-Path: <devicetree+bounces-2785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D30867AC833
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 15:08:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 044EC7AC836
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 15:13:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id CEC101C2082A
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 13:08:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 349DBB208CC
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 13:13:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 743C21FCA;
-	Sun, 24 Sep 2023 13:08:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EAE21FCB;
+	Sun, 24 Sep 2023 13:13:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 027E01858
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 13:08:39 +0000 (UTC)
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C8DCFC;
-	Sun, 24 Sep 2023 06:08:38 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-690d9cda925so3462675b3a.3;
-        Sun, 24 Sep 2023 06:08:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695560918; x=1696165718; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9MDNJDXW7eYgtZbRuK/v5AVHiUe1pWF40nA44SwFSMs=;
-        b=abPU7kMctujhKWEfRmM4CR4uiFmUcC94AGet1OFeyMAbv22VlTghpiEfKMn/Wnuht0
-         c4z4pbmQUw7ju4j9b8A1QwhX2iTVNqz5ATmyqPIkIIpr6n6jepQoEU1gjKXqevWpM6mR
-         Ipt4Zm+J7A0mgWnS92QOAJEpxwC9crKDTw5eEIDU6Ek2vqoVvkpW53QA+cWqgJyqh6nq
-         Cm2JoBW/np6Kzyy2VBSdr/Go8B7ek26/ytnDEfHZn5HeyPRlytd07t62aePK5MTBwWLT
-         aXVcxoMwK6+KoTbR2b4ezsoibY8hvSkhr3EuwMDt2Y6tf058OVAchAXxZZ8EwR8WIO+d
-         EWuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695560918; x=1696165718;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9MDNJDXW7eYgtZbRuK/v5AVHiUe1pWF40nA44SwFSMs=;
-        b=N7UvWvF/cvwQBASAia3PoTR2mUck6b5CEF1A/rIUrchcoOuoVNgbCR8+mTVAnCD1NW
-         t6j9yvGGKkq63ThmhatHzJvGpmxRwQSWAF+ISqkI5MBDfw2VymZ7N1s/jzW0NIsRXp4l
-         MfZWSvQYB5K/5f1jQCiFoeQ3nDpr19Pf6puksNyGD6/ejVha98A5t2vNr2YCkYsGCF7p
-         hwX1c7EJzCQEjyA7lVtsrtgrlFV5ELUyXd2mDGCj+hx2acaHAMfETZXantZ6/DbLkSwP
-         /A3zmFj9Q00njwXtUdUrNtC1AJcdeSlY1uZIik+HR3nHpjRC+DkbddUj5bQkH31BaOpZ
-         SQMw==
-X-Gm-Message-State: AOJu0YwRhRIUHZ1fMR3Rh2FZlFJroyvFqhLSX8Yy8Qo5iIAoeg100Xzb
-	SlRpP42jsiLdMMMdjtTcQ1Y=
-X-Google-Smtp-Source: AGHT+IHIQF9Tk5+ZLyiP8V1HkeUuxHs065A/VB0hZArVJ4KIbOv5iT5IOxZlV8tcvidoTDuuucEssA==
-X-Received: by 2002:a05:6a00:1748:b0:690:c1a6:1c3b with SMTP id j8-20020a056a00174800b00690c1a61c3bmr3306583pfc.33.1695560917915;
-        Sun, 24 Sep 2023 06:08:37 -0700 (PDT)
-Received: from [172.16.116.58] ([103.15.228.93])
-        by smtp.gmail.com with ESMTPSA id q16-20020a62e110000000b0069028bdd24dsm6305220pfh.34.2023.09.24.06.08.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Sep 2023 06:08:37 -0700 (PDT)
-Message-ID: <36d8a626-f4a6-fe51-5726-be32aabd519d@gmail.com>
-Date: Sun, 24 Sep 2023 18:38:32 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ACAB1366
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 13:13:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2F7BC433C8;
+	Sun, 24 Sep 2023 13:13:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695561194;
+	bh=+5KaB49uOlFQkZgApzKtK2I55JG1Pn3av0cO417t/Aw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KPkeS/KARAgDFiDSFJ6TsynTW+7uBCBlC9GxMQPbhLP2We0SW1liq3Nf3BhJLjsMW
+	 ADtUofkpUk4PYjng8gHgZUgqn73ROKiutxRoFM/d+4s9x+qDFPYn5Ixc8Z7a1TuZVA
+	 BSOQj5zc3/LM6ocNgI4BL5VEjsHXKrRzvVnksenb3Y0wrdQFbVTDMGmF4UaZQ44fj4
+	 c3Uqz5sAaOwCTa6NKONVWbPUuv1eSOurrN3oeh0BwybPXKhvGpr4G7pi8hTrXfaFSz
+	 T/87wzcDk2kCLKH49GDXHX6VIgcYnpJhoLscJnKS4j0Xl2/7zED+Gvxotv5CQ56nSr
+	 lL0NItwst+bYg==
+Date: Sun, 24 Sep 2023 21:13:02 +0800
+From: Shawn Guo <shawnguo@kernel.org>
+To: Ying Liu <victor.liu@nxp.com>
+Cc: Fabio Estevam <festevam@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>,
+	dl-linux-imx <linux-imx@nxp.com>
+Subject: Re: [PATCH 1/2] arm64: dts: imx8mm-evk: Add VDDEXT_3V3 fixed
+ regulator
+Message-ID: <20230924131302.GF7231@dragon>
+References: <20230814081148.4027053-1-victor.liu@nxp.com>
+ <20230814081148.4027053-2-victor.liu@nxp.com>
+ <CAOMZO5BktVaO1hRgv-WvwY2tV3eUrNnNMiQJKH654K+-AT5ECA@mail.gmail.com>
+ <DB8PR04MB705143050E09106FFA17DF97981EA@DB8PR04MB7051.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v5 2/3] greybus: Add BeaglePlay Linux Driver
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- greybus-dev@lists.linaro.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- gregkh@linuxfoundation.org, vaishnav@beagleboard.org,
- jkridner@beagleboard.org, nm@ti.com, krzysztof.kozlowski+dt@linaro.org,
- johan@kernel.org, elder@kernel.org
-References: <20230924113725.164948-1-ayushdevel1325@gmail.com>
- <20230924113725.164948-3-ayushdevel1325@gmail.com>
- <6ce74c42-d1d0-d9cb-9d90-68989933d1d4@linaro.org>
- <62f5671d-738b-997c-798f-7e6cc00f7ef9@gmail.com>
- <11888c25-466b-2c28-1265-578736182846@linaro.org>
-From: Ayush Singh <ayushdevel1325@gmail.com>
-In-Reply-To: <11888c25-466b-2c28-1265-578736182846@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_SBL_CSS,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <DB8PR04MB705143050E09106FFA17DF97981EA@DB8PR04MB7051.eurprd04.prod.outlook.com>
 
+On Mon, Aug 21, 2023 at 02:33:17AM +0000, Ying Liu wrote:
+> On Friday, August 18, 2023 10:06 PM Fabio Estevam <festevam@gmail.com> wrote:
+> > On Mon, Aug 14, 2023 at 5:07 AM Liu Ying <victor.liu@nxp.com> wrote:
+> > 
+> > > +       reg_vddext_3v3: regulator-vddext-3v3 {
+> > > +               compatible = "regulator-fixed";
+> > > +               regulator-name = "VDDEXT_3V3";
+> > > +               regulator-min-microvolt = <3300000>;
+> > > +               regulator-max-microvolt = <300000>;
+> > > +       };
+> > 
+> > Booting the dtb with this change will cause this regulator to be
+> > disabled as there is no consumer for it.
+> 
+> Software cannot control this regulator by any means.  It's on once
+> the board is powered on.  Do you mean it will be disabled in software
+> level if no consumer?  If that's the case, is the disablement harmful?
+> 
+> > 
+> > I suggest squashing both patches:
+> 
+> The patch looks self-contained to me.  Can we keep it as-is?
 
->>>> +	spinlock_t tx_producer_lock;
->>>> +	/* tx_consumer_lock: HDLC consumer lock */
->>>> +	spinlock_t tx_consumer_lock;
->>>> +	struct circ_buf tx_circ_buf;
->>>> +	u16 tx_crc;
->>>> +	u8 tx_ack_seq;
->>>> +
->>>> +	u16 rx_buffer_len;
->>>> +	u8 rx_in_esc;
->>>> +	u8 rx_buffer[MAX_RX_HDLC];
->>>> +};
->>>> +
->>>> +struct hdlc_payload {
->>>> +	u16 length;
->>>> +	void *payload;
->>>> +};
->>>> +
->>> ...
->>>
->>>> +
->>>> +static int gb_serdev_init(struct gb_beagleplay *bg)
->>>> +{
->>>> +	u32 speed = 115200;
->>>> +	int ret;
->>>> +
->>>> +	serdev_device_set_drvdata(bg->serdev, bg);
->>>> +	serdev_device_set_client_ops(bg->serdev, &gb_beagleplay_ops);
->>>> +	ret = serdev_device_open(bg->serdev);
->>>> +	if (ret) {
->>>> +		return dev_err_probe(&bg->serdev->dev, ret,
->>>> +				     "Unable to Open Serial Device");
->>>> +	}
->>> Please run scripts/checkpatch.pl --strict and fix reported warnings.
->>> Some warnings can be ignored, but the code here looks like it needs a
->>> fix. Feel free to get in touch if the warning is not clear.
->> So I do not actually get any errors here in checkpatch. I am running the
->> follwing:
->>
->> `scripts/checkpatch.pl --codespell --strict patch/*`
->>
->> I only get a warning in coverletter due to that path of DT bindings
->> being more than 75 character long and ` Lines should not end with a '('`.
->>
->>>> +	if (!bg)
->>>> +		return -ENOMEM;
->>>> +
->>>> +	bg->serdev = serdev;
->>>> +	ret = gb_serdev_init(bg);
->>>> +	if (ret)
->>>> +		return ret;
->>>> +
->>>> +	ret = hdlc_init(bg);
->>>> +	if (ret)
->>>> +		goto free_serdev;
->>>> +
->>>> +	ret = gb_greybus_init(bg);
->>>> +	if (ret)
->>>> +		goto free_hdlc;
->>>> +
->>>> +	gb_beagleplay_start_svc(bg);
->>>> +
->>>> +	return 0;
->>>> +
->>>> +free_hdlc:
->>>> +	hdlc_deinit(bg);
->>>> +free_serdev:
->>>> +	gb_serdev_deinit(bg);
->>>> +	return ret;
->>>> +}
->>>> +
->>>> +static void gb_beagleplay_remove(struct serdev_device *serdev)
->>>> +{
->>>> +	struct gb_beagleplay *bg = serdev_device_get_drvdata(serdev);
->>>> +
->>>> +	gb_greybus_deinit(bg);
->>>> +	gb_beagleplay_stop_svc(bg);
->>>> +	hdlc_deinit(bg);
->>>> +	gb_serdev_deinit(bg);
->>>> +}
->>>> +
->>>> +static const struct of_device_id gb_beagleplay_of_match[] = {
->>>> +	{
->>>> +		.compatible = "beagle,play-cc1352",
->>>> +	},
->>>> +	{},
->>>> +};
->>>> +MODULE_DEVICE_TABLE(of, gb_beagleplay_of_match);
->>>> +
->>>> +static struct serdev_device_driver gb_beagleplay_driver = {
->>>> +	.probe = gb_beagleplay_probe,
->>>> +	.remove = gb_beagleplay_remove,
->>>> +	.driver = {
->>>> +	      .name = "gb_beagleplay",
->>>> +	      .of_match_table = gb_beagleplay_of_match,
->>> This is still wrongly aligned. Spaces after tab. Are you sure checkpatch
->>> does not complain bout it?
->> Again, it doesn't seem to for me. Am I missing some environment
->> variables or options? Or maybe something wrong with my editor config
->> (neovim)?
-> You have spaces after tab, so how can this be properly aligned?
+While I agree the patch is self-contained, squashing them will make it
+easier to apply the change as a fix and cherry-pick the fix to stable
+kernel.
 
-Well, I will try to fix all of them. They might be remnants from when I 
-was developing this out-of-tree. Still, it's strange for checkpatch to 
-not complain. Will look into that as well if I get time.
+Applied with squashing, thanks!
 
-
-Yours Sincerely,
-
-Ayush Singh
-
+Shawn
 
