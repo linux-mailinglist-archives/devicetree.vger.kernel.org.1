@@ -1,83 +1,78 @@
-Return-Path: <devicetree+bounces-2851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBFF07ACBAC
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 21:42:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 740BA7ACBB4
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 21:50:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id EBF1DB208A8
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 19:42:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 253E028125D
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 19:50:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54586DF41;
-	Sun, 24 Sep 2023 19:42:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3A82DF45;
+	Sun, 24 Sep 2023 19:50:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 103EDDDC9
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 19:42:17 +0000 (UTC)
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB7CEFC;
-	Sun, 24 Sep 2023 12:42:15 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-9a6190af24aso625859666b.0;
-        Sun, 24 Sep 2023 12:42:15 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73FA5DF43
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 19:50:51 +0000 (UTC)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0015EFA;
+	Sun, 24 Sep 2023 12:50:49 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9aa2c6f0806so623159266b.3;
+        Sun, 24 Sep 2023 12:50:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695584534; x=1696189334; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1695585048; x=1696189848; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=B1OAJIe+rOLUJzcNXVPzHOsb+JGDg6uIpunRCjru7BA=;
-        b=mJp8Ah+MXmbEK7uvQ7uQiTWdPTlNE/ZtAAgTEnzOfuFIilT7f1P/vypblHIvsM0KYI
-         VWG60e2pTl62KCxFay6q1/qpVrzkGNfCMd1ugqvzlhyTrfnH+L/Wdz2ih8ZwuIZ/RASx
-         +xEcMJ5ybkSpr1Hoe5t/GkJhfa+I09WjW+YbEK5nPgW+pqNxdxlXmf5epjeCAqa4pa5B
-         DurJXn5iHIt1G4R20L3rxACrMwYKO9Md1X8Hn1qm9cu/dthMDkcQwA9nKNB96H68Q+Ga
-         BIuPD/NY7LdZVCOFgMMl+bTv8XDNFJYCy+PAKrDAc4sAhPf7TloxfB/HUa7ElG0s2OT3
-         OV6w==
+        bh=b0ZBqIoDYKMVCzgLuvboaux6shOrM5HIrW6ijoQ1dls=;
+        b=W+d8e8CnuBYzNUMLvdHbm1e8ekL1oZ+fPJHI2UTQAfZO7KaNQNjKvqfn6t5hk2fCU8
+         NkVhFfeiOACZhEajm/KMo6Xj7CwgdZDjwWYv/gaAjmzDffmtBpYvc5wY3Xx/I96dIO1g
+         Um91DnBV757MiuiJneMi6CHrkViKdJT0FKlrpDB2+vPvemDB1jTQBKbkGmIQ9tyhGesl
+         HF6ynFiQCNfPJ44aipfXWKEKxEQ4b0Pgq+LchpznwsQaLI9/nAjM9BEh5oKZ7Ah6o6tI
+         gur5+S5LnVPEYsW0Kvk8zyuEx10redZfGD67e/FquULZ/5snG6Ts90kIqtzSxwWXHArF
+         SJgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695584534; x=1696189334;
+        d=1e100.net; s=20230601; t=1695585048; x=1696189848;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=B1OAJIe+rOLUJzcNXVPzHOsb+JGDg6uIpunRCjru7BA=;
-        b=tde+8uSAQjvD4Tu1xUXATh4ZTWr4mKkhlKOoiuO1q21UpeXZo+zCez2AG57Jd6xbpZ
-         SS7PfljRh8NNUUsxtexvWQhMbRnEcApwCBOCR5ajJEae3q6+bAB9MZuadjNVqnYsGolx
-         cbt9XXqF2SteAezTIC/K701UFTzoQyIk8HiSnpvOYJ5vbv4A8sDZXU5Ge6cjJP8WjbIq
-         lCQKO6Xa71pXVtBwvPyQiB6HW4olfZE6uKSFSPRDn1cWyi2M9Ajl94C9JAjDyE0g2Spz
-         srelGxT/sXfD8vBBmDppAirZBO6ARITcqBMysXBrsMsJPz3Uew/bWIqjUWjhPqE66dYY
-         jPzQ==
-X-Gm-Message-State: AOJu0Yy6nqcag6qOmNbUCoK/uT69sLCB7WP1mu0124H6zsWxL4czwP1Y
-	KK81yMOlsoOWL2ocXQYKkSI=
-X-Google-Smtp-Source: AGHT+IElTLWdxYzDdmFsBbLbnhFSAtGhPSM0V5vdb/GQFUHvl00TjFJ8CTOxEMzXqAItwMFv4I1k2w==
-X-Received: by 2002:a17:907:2e01:b0:9ae:406c:3425 with SMTP id ig1-20020a1709072e0100b009ae406c3425mr4634928ejc.0.1695584534105;
-        Sun, 24 Sep 2023 12:42:14 -0700 (PDT)
+        bh=b0ZBqIoDYKMVCzgLuvboaux6shOrM5HIrW6ijoQ1dls=;
+        b=DjlLi9J5qwsk9jmOUJnfi2dLRBa0YvthkZgMWipcqW6eBFAbdfTvSuLA6UM7aszVZe
+         IOa5u03MpLITX/Pbq9FAIyjIPdRdAZ/QXB5dOp4Ah78/XjgENZZC82CkDlq3Zx2ww1Pt
+         Ssv/eE8LH6z3jGo20Vo9voHI/3MYMAi8PEgOijM8+FzOziBWK6w/bOZ9PjhjPgV96p2v
+         D7w7LPIBymsxHXl9ha7qVaiNyHo/c8LElZdJVg/SCV3zXTEBQPCA2aNvF+CBJuiv6LgI
+         W8dMJO5qx0In94TRtpn7iHUcxCzqT/20UFpkxTVMHel41OjhPK2WwhBWdZZpEmvaZVCn
+         5XbA==
+X-Gm-Message-State: AOJu0Ywp3DVdCMONoiUQX/MzuXum9PIP1uHlok4PULNBVZMeXvuNewhx
+	aAaS/Gi6SB0R641HdwPm9l/r5AW/i5i5eQ==
+X-Google-Smtp-Source: AGHT+IHLYgqMybMHGPeaqhZNmoe5ADooSVrZz1GsWPUqF2lfGpcVEHt34hg0NCrjDiXTINlAK7E+8g==
+X-Received: by 2002:a17:906:68c9:b0:9ae:7387:897b with SMTP id y9-20020a17090668c900b009ae7387897bmr3799726ejr.30.1695585048383;
+        Sun, 24 Sep 2023 12:50:48 -0700 (PDT)
 Received: from jernej-laptop.localnet (82-149-12-148.dynamic.telemach.net. [82.149.12.148])
-        by smtp.gmail.com with ESMTPSA id d18-20020a17090694d200b0099cb1a2cab0sm5322258ejy.28.2023.09.24.12.42.12
+        by smtp.gmail.com with ESMTPSA id s2-20020a170906354200b0098ec690e6d7sm5338376eja.73.2023.09.24.12.50.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Sep 2023 12:42:13 -0700 (PDT)
+        Sun, 24 Sep 2023 12:50:48 -0700 (PDT)
 From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: linux-riscv@lists.infradead.org, Conor Dooley <conor@kernel.org>
-Cc: conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+To: Lee Jones <lee@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
- Daire McNamara <daire.mcnamara@microchip.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Emil Renner Berthing <kernel@esmil.dk>,
- Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
- Fu Wei <wefu@redhat.com>, Chen Wang <unicorn_wang@outlook.com>,
- devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
- linux-renesas-soc@vger.kernel.org
+ Conor Dooley <conor+dt@kernel.org>, Andre Przywara <andre.przywara@arm.com>
+Cc: Icenowy Zheng <uwu@icenowy.me>, Mark Brown <broonie@kernel.org>,
+ Samuel Holland <samuel@sholland.org>, Shengyu Qu <wiagn233@outlook.com>,
+ Martin Botka <martin.botka1@gmail.com>,
+ Matthew Croughan <matthew.croughan@nix.how>, linux-sunxi@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Subject:
- Re: [RFC v2 5/6] riscv: dts: allwinner: convert isa detection to new
- properties
-Date: Sun, 24 Sep 2023 21:42:12 +0200
-Message-ID: <4833002.GXAFRqVoOG@jernej-laptop>
-In-Reply-To: <20230922081351.30239-7-conor@kernel.org>
+ Re: [PATCH v3 1/2] dt-bindings: mfd: x-powers,axp152: make interrupt optional
+ for more chips
+Date: Sun, 24 Sep 2023 21:50:46 +0200
+Message-ID: <2900712.e9J7NaK4W3@jernej-laptop>
+In-Reply-To: <20230919103913.463156-2-andre.przywara@arm.com>
 References:
- <20230922081351.30239-2-conor@kernel.org>
- <20230922081351.30239-7-conor@kernel.org>
+ <20230919103913.463156-1-andre.przywara@arm.com>
+ <20230919103913.463156-2-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,43 +83,54 @@ Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Dne petek, 22. september 2023 ob 10:13:50 CEST je Conor Dooley napisal(a):
-> From: Conor Dooley <conor.dooley@microchip.com>
+Dne torek, 19. september 2023 ob 12:39:12 CEST je Andre Przywara napisal(a):
+> All X-Powers PMICs described by this binding have an IRQ pin, and so
+> far (almost) all boards connected this to some NMI pin or GPIO on the SoC
+> they are connected to.
+> However we start to see boards that omit this connection, and technically
+> the IRQ pin is not essential to the basic PMIC operation.
 > 
-> Convert the D1 devicetrees to use the new properties
-> "riscv,isa-base" & "riscv,isa-extensions".
-> For compatibility with other projects, "riscv,isa" remains.
+> The existing Linux driver allows skipping the IRQ pin setup for two chips
+> already, so update the binding to also make the DT property optional for
+> the missing chip. And while we are at it, add the AXP313a to that list,
+> as they are actually boards out there not connecting the IRQ pin.
 > 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> This allows to have DTs correctly describing those boards not wiring up
+> the interrupt.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Should I pick this patch through sunxi tree?
 
 Best regards,
 Jernej
 
 > ---
->  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
+>  Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> index 8275630af977..947e975d2476 100644
-> --- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> +++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> @@ -25,6 +25,9 @@ cpu0: cpu@0 {
->  			mmu-type = "riscv,sv39";
->  			operating-points-v2 = <&opp_table_cpu>;
->  			riscv,isa = "rv64imafdc";
-> +			riscv,isa-base = "rv64i";
-> +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
-> +					       "zifencei", "zihpm";
->  			#cooling-cells = <2>;
+> diff --git a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
+> index 9ad55746133b5..06f1779835a1e 100644
+> --- a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
+> @@ -67,7 +67,10 @@ allOf:
+>          properties:
+>            compatible:
+>              contains:
+> -              const: x-powers,axp305
+> +              enum:
+> +                - x-powers,axp15060
+> +                - x-powers,axp305
+> +                - x-powers,axp313a
 >  
->  			cpu0_intc: interrupt-controller {
+>      then:
+>        required:
 > 
 
 
