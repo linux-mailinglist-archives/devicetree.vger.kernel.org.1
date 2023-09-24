@@ -1,136 +1,153 @@
-Return-Path: <devicetree+bounces-2762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F0477AC785
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 12:20:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5717B7AC7BA
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 13:38:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id D0666281472
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 10:20:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id A37E21F238CB
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 11:38:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53347ED2;
-	Sun, 24 Sep 2023 10:20:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EC09110D;
+	Sun, 24 Sep 2023 11:38:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1381B7F
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 10:20:35 +0000 (UTC)
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E11A103
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 03:20:33 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-40531812168so49326245e9.1
-        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 03:20:33 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A698910FE
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 11:38:26 +0000 (UTC)
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E839100;
+	Sun, 24 Sep 2023 04:38:23 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id 98e67ed59e1d1-27752a1e184so169440a91.3;
+        Sun, 24 Sep 2023 04:38:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695550832; x=1696155632; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hRdPYxD7N5192EFL8LQJaqcXQ1ivTYH8sYpTET86uAk=;
-        b=Dmur8oY+/3Az+a5kPuFWCGarnh3QSxz47IqPMKuRBxNB7rkkPUg/v3WxS9a2NAP6Qv
-         dJM6Lw3SVvqbRaShedUGXqALGDbXI65M1ryh9DXDyxABB4qTjvqxlOqPbi2JX584txX4
-         nGbdiZPtisg1fpT9ddU9lpTFqEGzB3CgxbqsCB2K9uLbVPVmeJmFtIX4+KUNCwuEuLR7
-         dvO2fLltFtNjcCISNB43PKVskoLR9sD2xORqeff+y2pZBwmv2sL7+O5tiGXW8kljTjWU
-         82UHHW3tie8vSiqHB9SevXihImnEPfbpvxdH8cVu1F5y4PRYxmHsjO7qoOa9eMcRr/EN
-         uaug==
+        d=gmail.com; s=20230601; t=1695555502; x=1696160302; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JhhTXSXah4I7JqQq7Z8mOSYxnO2RCWDRvV8O3bTDHb4=;
+        b=gouDfJoG5TKSbPviPZmi0oXZ+ZDYUBjNRQzBW8aCtZ07LgjFh5G82o3f9jg1uTc6hF
+         HTchtxNiaWT7iPxBawTkSbCsg38e06dV943VsTxUOGuj02nbHmx9nEsCxrbPotqFygSS
+         dNnpWK9n/S2mmb8Q/4+ck06NuyGDnLmYoXMSDiQGT7jNMV0PUOUCErveQViRCPt12oO+
+         /GgjE+9wE2eu2hoilMxxheM6Q4kfvFvLB5tcuKTHVKjWCDQZlHTn7TvXfINNI2vTYez7
+         pA41Vx7edUL9S/rM9lk8VfNrcCFMkUxwR0YMOQkZjuhLQQqFOuJ0Z+bOWHK/q7Cz52D0
+         v7Nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695550832; x=1696155632;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hRdPYxD7N5192EFL8LQJaqcXQ1ivTYH8sYpTET86uAk=;
-        b=K2p5zln5HxHiIl3CwlEH5ZUmnoE4BjtdBeZv5hGjlN9cnH8puwOMRq4/zh893ZpRXt
-         0ouImqbpMfCdikmGwxQt/BqCzXyTw3tB6p34fQrA0IOGj/NoLLC4jMc03hvkXBrFX4UW
-         Au+YeEK/Y3fNrUVzhPhCls8jr59NQFmpf2TphYAP8XHDIT0QpNmA7WwLdxPttQkpQqS+
-         1/Y3DDIlH+vQBSpQJrYH10oCHdzVTtctCHMoOxN6eP8yeeZPezArg8NJBFMMBQk6WWfq
-         GHo/tYQPIwWJo3Q5VFX3Ny7iRp2siIF7nOKw++zhOxZ3YEjjXQy2gRyjgNKUXxN6dxCC
-         EPrA==
-X-Gm-Message-State: AOJu0YxzZjhba+qM9Dtz7O96ZKDaAGHEHS++BiIAgxzlBjSL22ERVOKA
-	FrIOEgGrSHwsjnOpT2DL2cRW6g==
-X-Google-Smtp-Source: AGHT+IFu0+rneWXwnLmx447DDCYpq9I+WDULyh0rK5GTi2lG1SvGjnNw8JS1kSqjNJFQLKBqC9rfxQ==
-X-Received: by 2002:a05:6000:1106:b0:31f:f72c:dfa3 with SMTP id z6-20020a056000110600b0031ff72cdfa3mr3379946wrw.68.1695550831988;
-        Sun, 24 Sep 2023 03:20:31 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id b3-20020a05600010c300b0031416362e23sm8970759wrx.3.2023.09.24.03.20.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Sep 2023 03:20:31 -0700 (PDT)
-Message-ID: <fac95d85-0802-4819-9efe-a31e6df7a0e4@linaro.org>
-Date: Sun, 24 Sep 2023 11:20:30 +0100
+        d=1e100.net; s=20230601; t=1695555502; x=1696160302;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JhhTXSXah4I7JqQq7Z8mOSYxnO2RCWDRvV8O3bTDHb4=;
+        b=sV0fE4ASJbS4lzttAiHaCg9qRnK20oUShtsC7NvhS6Bt3YP7tz1waVlkkQbcxlMqX0
+         5tLw55EHXZm+jYXLPEHDGenpsckrrkBkyiUxnnz/XoDJipIcHeuctNpHjxfYmfSRGOKV
+         1qW/c8Uu5ePRcKJQQDBUVJykjQGCU4tgfJDPPRf9UUeBRc0n6viv2c92YLagoBv8isSh
+         QkX59IGjw1quHPnD8JibzudeSrEYC4NsSKJAgmhJOtyCG/AGmR4TTabDvfxlNnHP1ALN
+         9NGJmQzHiTM2kA0nQMrL3j8lVr76toCWVeY6HGIrT9IP13vMJ3nqunJhNs2GhpaPKBzj
+         k5Gw==
+X-Gm-Message-State: AOJu0YxtLXGFWMKa99r+ufW3pt59FKXTmr1hA2Y25PkRwfEHEbh+Ebxp
+	ckeVo5Oz3Sr8V4+QeXRww1Y=
+X-Google-Smtp-Source: AGHT+IEmNQ8d7khOcZNLgbWh7MZLvEZkY2z1beZ234hDYMipdxze0OUT12np9WnjPFun/M/AImGT2g==
+X-Received: by 2002:a17:90a:5384:b0:262:d6cb:3567 with SMTP id y4-20020a17090a538400b00262d6cb3567mr3760678pjh.26.1695555502440;
+        Sun, 24 Sep 2023 04:38:22 -0700 (PDT)
+Received: from toolbox.iitism.net ([103.15.228.93])
+        by smtp.gmail.com with ESMTPSA id s2-20020a17090a6e4200b002775281b9easm422376pjm.50.2023.09.24.04.38.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 24 Sep 2023 04:38:22 -0700 (PDT)
+From: Ayush Singh <ayushdevel1325@gmail.com>
+To: greybus-dev@lists.linaro.org
+Cc: Ayush Singh <ayushdevel1325@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	gregkh@linuxfoundation.org,
+	vaishnav@beagleboard.org,
+	jkridner@beagleboard.org,
+	nm@ti.com,
+	krzysztof.kozlowski+dt@linaro.org
+Subject: [PATCH v5 0/3] greybus: Add BeaglePlay Greybus Driver
+Date: Sun, 24 Sep 2023 17:06:56 +0530
+Message-ID: <20230924113725.164948-1-ayushdevel1325@gmail.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: clock: qcom,camcc.yaml: Convert
- qcom,camcc to a single yaml file
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- andersson@kernel.org, agross@kernel.org, konrad.dybcio@linaro.org,
- mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jonathan@marek.ca,
- quic_tdas@quicinc.com, vladimir.zapolskiy@linaro.org
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230923150045.1068556-1-bryan.odonoghue@linaro.org>
- <20230923150045.1068556-2-bryan.odonoghue@linaro.org>
- <2565aa33-619c-6c90-de96-29dc5ac5d961@linaro.org>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <2565aa33-619c-6c90-de96-29dc5ac5d961@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_SBL_CSS,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 23/09/2023 17:13, Krzysztof Kozlowski wrote:
-> On 23/09/2023 17:00, Bryan O'Donoghue wrote:
->> Move the various camcc yaml files into one. The Camera Clock Controller
->> is pretty similar from SoC to SoC.
->>
->> Mostly we have some SoCs which require fewer clocks than others. In some
->> cases we have SoCs which have required-opps and required-power-domains.
->>
->> It is likely we could and should extend the thin CAMCC descriptions such
->> as sdm845 an sm6350 to the more robust descriptions such as sm8250 and
->> sm8450.
->>
->> As a result of listing sm8250 and sm8450 together required-opps and
->> power-domains become required for sm8250, which is a NOP for the dtsi
->> since both declarations already exist for sm8250.
->>
->> sm8250 is also chosen as the example for the new combined camcc.yaml.
->>
->> A minor tweak to fix Bjorn's email address in the Maintainer list is
->> included.
->>
->> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> 
-> No, that's not the right approach. For GCC and CamCC and all other
-> Qualcomm clock controllers, we split into device schemas, not merge into
-> one. The one schema is just becoming unreviewable over time with
-> multiple if:then clauses.
-> 
-> Please use approach like we have for GCC, RPMh interconnects or remote
-> proc loaders - common file. What's more, here you probably don't even
-> need common file because it is already there - qcom,gcc.yaml
-> 
-> Best regards,
-> Krzysztof
-> 
+BeagleConnect is both a technology concept and a line of board designs
+that implement the technology. Born from Greybus, a mechanism for
+dynamically extending a Linux system with embedded peripherals,
+BeagleConnect adds two key elements: a 6LoWPAN transport and mikroBUS
+manifests. The 6LoWPAN transport provides for arbitrary connections,
+including the IEEE802.15.4g long-range wireless transport supported
+between BeaglePlay and BeagleConnect Freedom (the first BeagleConnect
+board design). The mikroBUS manifests provide for rapid prototyping
+and low-node-count production with sensor boards following the
+mikroBUS freely-licensable embedded bus standard such that existing
+Linux drivers can be loaded upon Greybus discovery of the nodes.
 
-Ah OK, I see what you mean.
+This patch set provides the Linux-side hooks required for the 6LoWPAN
+transport for BeagleConnect on BeaglePlay. Also adds required devicetree
+additions.
 
-commit f8cc21d454c50157a528c900b60aa9588b4066b3
-Author: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date:   Tue Dec 27 15:40:56 2022 +0100
+Tested over `next-20230825`.
 
-     media: dt-bindings: qcom,venus: split common properties
+Link: https://programmershideaway.xyz/tags/gsoc23/ GSoC23 Blog
+Link: https://git.beagleboard.org/gsoc/greybus/cc1352-firmware Zephyr App
+Link: https://github.com/Ayush1325/linux/tree/gb-beagleplay GitHub Branch
+Link: https://lists.linaro.org/archives/list/greybus-dev@lists.linaro.org/thread/GKOFWZ5IJMNXIWVDOM3WRNU2B2S4244G/ Patch v4
+Link: https://docs.beagleboard.org/latest/boards/beagleconnect/index.html BeagleConnect
+Link: https://docs.beagleboard.org/latest/boards/beagleplay/index.html BeaglePlay
+Link: https://github.com/Ayush1325/linux/tree/gb-beagleplay Github Repo
 
----
-bod
+Changes in Patch v5
+v4 -> v5:
+- Move DT Bindings to net
+- Rename compatible to `beagle,play-cc1352`
+- Expose CC1352 as MCU
+- Remove redundant tracing messages
+- Fix memory leaks
+
+v3 -> v4:
+- Add DT Bindings
+- Reorder commits
+- Improve commit messages
+
+v2 -> v3:
+- Move gb-beagleplay out of staging
+
+v1 -> v2:
+- Combine the driver into a single file
+- Remove redundant code
+- Fix Checkpatch complaints
+- Other suggested changes
+
+Ayush Singh (3):
+  dt-bindings: Add beaglecc1352
+  greybus: Add BeaglePlay Linux Driver
+  dts: ti: k3-am625-beagleplay: Add beaglecc1352
+
+ .../bindings/net/beagle,play-cc1352.yaml      |  25 +
+ MAINTAINERS                                   |   7 +
+ .../arm64/boot/dts/ti/k3-am625-beagleplay.dts |   4 +
+ drivers/greybus/Kconfig                       |  10 +
+ drivers/greybus/Makefile                      |   4 +-
+ drivers/greybus/gb-beagleplay.c               | 526 ++++++++++++++++++
+ 6 files changed, 574 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/beagle,play-cc1352.yaml
+ create mode 100644 drivers/greybus/gb-beagleplay.c
+
+
+base-commit: 6269320850097903b30be8f07a5c61d9f7592393
+-- 
+2.41.0
+
 
