@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-2767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77E997AC7C7
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 13:42:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ED107AC7CB
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 13:45:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id CF6392814C3
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 11:42:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 618691C2042F
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 11:45:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30E161368;
-	Sun, 24 Sep 2023 11:42:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3083E1375;
+	Sun, 24 Sep 2023 11:45:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2E121110
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 11:42:02 +0000 (UTC)
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74875100
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 04:42:00 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9936b3d0286so579576466b.0
-        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 04:42:00 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56AB41368
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 11:45:08 +0000 (UTC)
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D381F100
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 04:45:06 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-31fa15f4cc6so4532583f8f.2
+        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 04:45:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695555719; x=1696160519; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695555905; x=1696160705; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kZUeSDNMLghz4hDsfW/Ul3T9sdl/U80VAf3vf6pr3fw=;
-        b=Ol1hEoidzmehphraqMctMign2BnVuV8xkRCnk8Vh+zhgaTqIHODQooUJDkMj21TEJq
-         lQ6RqJBXx0jcC6V2kf9x0mhMXZ4QyLxVxDvWGDT9ZjjmcHgNzNhyIpU+qvgg5yflOksZ
-         PIf3nyUlZo8797MS2wDvF64QjRv3gBQ5QIWIxwAwwG/LzW9KtQKAwTHaV/hiFURd4sMZ
-         qY61enkukt7pzp8cksk2pbzqmdySNj9ENN2iFGnyw/AQnfMbYCChnD2/tIbiO7zgvTjb
-         skljXmKJIr9Qgq/AvIGwksLRTyB4v7+IMy1ax5y7uIDMIoUflssFCxZHRGJZR5EgnotZ
-         tJ0w==
+        bh=Bfo+tbTQVTfcB3muEtJ5dcAI76Wff7ckKMaMA7hGJTc=;
+        b=mem4Gj/ALL5KmE+GqBobzCFoByRTLQrhDm+bsx2yj7BTmWi35kVTl+bSpbpEjhtKtb
+         2HLj4REEhbEOFrDk0ZR8uAFwXQ5fgS0m+eEF7ft8DVbZJbo1hMsyaKLP+kJo5c1icU8N
+         2B+mAcYGQLD5rid+ktVMS5B5fOdReUaiG+Hj0NJJgz70xMjY5YmKKlj2WrfOKSpANXC/
+         HwDZdVccXtgHjuW8BHGewq4oImC4JhPKjpuDF8aZPTEdLRuB9Knfg5/ilmVmEw55RQbO
+         Z47AwwybN7m86WHppRh26Fr2B8HIBsQU/7EYLCl9H1rkL1h02tk8d/DaU73nb6RKfABo
+         XcuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695555719; x=1696160519;
+        d=1e100.net; s=20230601; t=1695555905; x=1696160705;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kZUeSDNMLghz4hDsfW/Ul3T9sdl/U80VAf3vf6pr3fw=;
-        b=LacSoxPvJvf5RUrjH2/gSXtcNSXdFzEGXzB9pUZBUQgFyV/9f91lvdH61zzjfUS8xF
-         Zse7Drurem3jArSaNDRWgQOwa8NlvEMCBT3fvP+ZLJRnysgvD8T+LMlJFOzWTNqMgVGj
-         /4Bgm9UAR3g3QRnjma+yUMHLA7LuRSp9UsDQ9Oz0MuwJSmmLaH6kM4u6w3vp1J7UpXvW
-         9vob53whpJ0+j0mRqLvqs7EMork3kG0SKdcRIUvf6bHe6v5RXpVqEtHrOOyhOf0+0Qvn
-         8o3feIHI9Fsq1t85pnyMYhEkK1KcZPXl7N6y4o6xpS+VpgFZIwYXiqPwxSPQXNpbzsjw
-         XimA==
-X-Gm-Message-State: AOJu0Ywp6U9fFuDRdRbyHyFn6VZEZyi990U0QDkCTLvbrFi4kN2WcGVe
-	M6db/+qc0Nn2E9BltFuYq7G+ukMlakGuSCtY5VI=
-X-Google-Smtp-Source: AGHT+IGmwMjmKQxu9O3cgfllR8YsIztfrTWaJwC3k6+XttmILzD7hcg/2SP9FniIMxNQAOjoAt05TQ==
-X-Received: by 2002:a17:907:7635:b0:9b2:7434:fe1f with SMTP id jy21-20020a170907763500b009b27434fe1fmr2083326ejc.46.1695555718910;
-        Sun, 24 Sep 2023 04:41:58 -0700 (PDT)
+        bh=Bfo+tbTQVTfcB3muEtJ5dcAI76Wff7ckKMaMA7hGJTc=;
+        b=Qg7B1PI3o7nIwbLS/IucBuf0Aoj4pt98/vyL/jChVpe7sqaHpeXfDgTw76emGTp8td
+         bP0bBtIoms3sUDHQ7alv/+t2M7sG9k4wHKx6iZPn+GvZZWYZDYc3kmLWP6f+YS0zus15
+         FatP9jxJKlHD57+tCHfOouUW2dnyremy9RmbswBjO+/vMBjnv4/i0ZDJ+ivZBglVFtLz
+         2SCJM9U2o7QSoeFRhEuUs6fsG3arFvMPqTDEyJxIW4TlYWzGoTCnGJ4HVibC6+sWNJxz
+         xLIN8IAPR9/Mbw+0QsvIqhKwUgMxptWs3fR0evprKsXnfZqq83F49Jg9xvKGx5+hfQDH
+         /7nQ==
+X-Gm-Message-State: AOJu0YxNqmhPKUp+Qyz3tv2xLwz8IXbJm8Pm92Hqc4r1SNmk4oinjkMn
+	PiT1464U2Keni2g5tXNJPbC2HQ==
+X-Google-Smtp-Source: AGHT+IEatxzY4iGxij3aKDiWG2DKIBpfinUH0KyqJo8wPunfVfcVbwDKYCOzxb44z/Samx/U6zZbBg==
+X-Received: by 2002:adf:e791:0:b0:31f:fab1:c3c3 with SMTP id n17-20020adfe791000000b0031ffab1c3c3mr3898673wrm.35.1695555905240;
+        Sun, 24 Sep 2023 04:45:05 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id o26-20020a1709061b1a00b0099bcb44493fsm5011159ejg.147.2023.09.24.04.41.57
+        by smtp.gmail.com with ESMTPSA id m12-20020a056000008c00b0031f3b04e7cdsm9077174wrx.109.2023.09.24.04.45.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Sep 2023 04:41:58 -0700 (PDT)
-Message-ID: <c69c86b8-67c2-cb13-8fa9-961919e258b8@linaro.org>
-Date: Sun, 24 Sep 2023 13:41:57 +0200
+        Sun, 24 Sep 2023 04:45:04 -0700 (PDT)
+Message-ID: <53e67234-1dc3-0f23-c4c4-6622828a24b9@linaro.org>
+Date: Sun, 24 Sep 2023 13:45:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,15 +64,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.1
-Subject: Re: [PATCH] dt-bindings: arm: fsl: Document the missing imx23 boards
+Subject: Re: [PATCH 1/4] dt-bindings: clock: qcom,camcc.yaml: Convert
+ qcom,camcc to a single yaml file
 Content-Language: en-US
-To: Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org,
- Fabio Estevam <festevam@denx.de>
-References: <20230923204258.635888-1-festevam@gmail.com>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, andersson@kernel.org,
+ agross@kernel.org, konrad.dybcio@linaro.org, mturquette@baylibre.com,
+ sboyd@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, jonathan@marek.ca, quic_tdas@quicinc.com,
+ vladimir.zapolskiy@linaro.org
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230923150045.1068556-1-bryan.odonoghue@linaro.org>
+ <20230923150045.1068556-2-bryan.odonoghue@linaro.org>
+ <2565aa33-619c-6c90-de96-29dc5ac5d961@linaro.org>
+ <fac95d85-0802-4819-9efe-a31e6df7a0e4@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230923204258.635888-1-festevam@gmail.com>
+In-Reply-To: <fac95d85-0802-4819-9efe-a31e6df7a0e4@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,18 +89,53 @@ X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 23/09/2023 22:42, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On 24/09/2023 12:20, Bryan O'Donoghue wrote:
+> On 23/09/2023 17:13, Krzysztof Kozlowski wrote:
+>> On 23/09/2023 17:00, Bryan O'Donoghue wrote:
+>>> Move the various camcc yaml files into one. The Camera Clock Controller
+>>> is pretty similar from SoC to SoC.
+>>>
+>>> Mostly we have some SoCs which require fewer clocks than others. In some
+>>> cases we have SoCs which have required-opps and required-power-domains.
+>>>
+>>> It is likely we could and should extend the thin CAMCC descriptions such
+>>> as sdm845 an sm6350 to the more robust descriptions such as sm8250 and
+>>> sm8450.
+>>>
+>>> As a result of listing sm8250 and sm8450 together required-opps and
+>>> power-domains become required for sm8250, which is a NOP for the dtsi
+>>> since both declarations already exist for sm8250.
+>>>
+>>> sm8250 is also chosen as the example for the new combined camcc.yaml.
+>>>
+>>> A minor tweak to fix Bjorn's email address in the Maintainer list is
+>>> included.
+>>>
+>>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>>
+>> No, that's not the right approach. For GCC and CamCC and all other
+>> Qualcomm clock controllers, we split into device schemas, not merge into
+>> one. The one schema is just becoming unreviewable over time with
+>> multiple if:then clauses.
+>>
+>> Please use approach like we have for GCC, RPMh interconnects or remote
+>> proc loaders - common file. What's more, here you probably don't even
+>> need common file because it is already there - qcom,gcc.yaml
+>>
+>> Best regards,
+>> Krzysztof
+>>
 > 
-> There are some imx23 based boards that are not documented.
+> Ah OK, I see what you mean.
 > 
-> Add them to the list of supportted i.MX23 boards.
+> commit f8cc21d454c50157a528c900b60aa9588b4066b3
+> Author: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Date:   Tue Dec 27 15:40:56 2022 +0100
 > 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
+>      media: dt-bindings: qcom,venus: split common properties
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yes, except that in case of camcc it might be enough to use existing
+gcc.yaml
 
 Best regards,
 Krzysztof
