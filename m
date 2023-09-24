@@ -1,125 +1,154 @@
-Return-Path: <devicetree+bounces-2799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1A587ACA2A
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 16:57:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32AE27ACA9E
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 17:53:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 874DB2814A2
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 14:57:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 499B21C20753
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 15:53:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BE13D27C;
-	Sun, 24 Sep 2023 14:57:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24AC8D311;
+	Sun, 24 Sep 2023 15:53:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7666D279
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 14:57:27 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EFE6FC;
-	Sun, 24 Sep 2023 07:57:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1695567446; x=1727103446;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=vz2UOygP0PG/3NMBGLLpj3xINFuw6s3dUMhingYavng=;
-  b=gjbSUqDOCvJl/pDN1RwPy5Oco21MqntaoI1rwKcKS6xTwCarn+p4WxX+
-   OOjKgOrqcntQL4nq6xgZWPgkcMpUdKaqd3iJnXlA7AXYdbabMbJmAdzkg
-   eNVt3hv6/NRVKhZ7Og3Sf2mhdPxitn9YKWsIHlJp2+1uHHSd1HyOMA33Q
-   GYnjXFIhDyYN/o8hEQbM6jmWtKn1plSsrAWX4j9QvBUIfXFV6Rfa0bRS9
-   HluUGJ9F4C/138Ddtl6e6jEqHG6vEGg39tpTesTyUuSGOleHrLOYWv+RE
-   7vgHnz42g7/w94K8MEj8bCO8zSEhKxhpKSi5VBAPj6jXQ/G8eFUlj8CrF
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="447586299"
-X-IronPort-AV: E=Sophos;i="6.03,173,1694761200"; 
-   d="scan'208";a="447586299"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Sep 2023 07:57:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="783200304"
-X-IronPort-AV: E=Sophos;i="6.03,173,1694761200"; 
-   d="scan'208";a="783200304"
-Received: from lkp-server02.sh.intel.com (HELO 493f6c7fed5d) ([10.239.97.151])
-  by orsmga001.jf.intel.com with ESMTP; 24 Sep 2023 07:57:19 -0700
-Received: from kbuild by 493f6c7fed5d with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qkQXt-0003oH-0P;
-	Sun, 24 Sep 2023 14:57:17 +0000
-Date: Sun, 24 Sep 2023 22:57:11 +0800
-From: kernel test robot <lkp@intel.com>
-To: Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org, tglx@linutronix.de,
-	maz@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	catalin.marinas@arm.com, will@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, geert+renesas@glider.be, arnd@arndb.de,
-	neil.armstrong@linaro.org, nfraprado@collabora.com,
-	rafal@milecki.pl, peng.fan@nxp.com, linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, quic_tsoni@quicinc.com,
-	quic_shashim@quicinc.com, quic_kaushalk@quicinc.com,
-	quic_tdas@quicinc.com, quic_tingweiz@quicinc.com,
-	quic_aiquny@quicinc.com, kernel@quicinc.com,
-	Tengfei Fan <quic_tengfan@quicinc.com>,
-	Ajit Pandey <quic_ajipan@quicinc.com>
-Subject: Re: [PATCH v4 3/6] arm64: dts: qcom: sm4450: Add RPMH and Global
- clock
-Message-ID: <202309242226.wwMJhznj-lkp@intel.com>
-References: <20230922081026.2799-4-quic_tengfan@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13CEFD279
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 15:53:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DA6DC433C7;
+	Sun, 24 Sep 2023 15:53:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695570820;
+	bh=z2mLUjSD6r8QvpYxhh+J/4OwMXJOhp54cH8bz3Cqgp4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=IpuPqvTgZE2QK+XpMwxCJVLLieH86iqupYiKAQOje3dM5/G5jfa8RJc8l01EN7eO9
+	 quWZHbvmV+G1O+j0eLPN6EIAHc2lZGvZ9Dcz7QbKPzApu1/SxhnRDcOv9w7/6zKk/R
+	 ljzMsJHdtxZnGUOJpQSVlV+QqyPZKCoR75S41ZEbQFPnJFnuOmrGXDPHj5LtCo+OJ/
+	 9Vu6taWQXcMwDOFHV2zxJamAnrEtKXp4B+dYmtRYukBlARNXgqk70EHAtSNU3X3+Rh
+	 b6kTAmIOy/gc46NzUEnQcagv3mXOoPj21PVT9wQqNTk3tOBZy9JTsz7lDaQvkhOWLB
+	 xfHzGZjMGxkpw==
+Date: Sun, 24 Sep 2023 16:53:31 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Angel Iglesias
+ <ang.iglesiasg@gmail.com>, Andreas Klinger <ak@it-klinger.de>, Christophe
+ JAILLET <christophe.jaillet@wanadoo.fr>, Benjamin Bara <bbara93@gmail.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/6] Support ROHM BM1390 pressure sensor
+Message-ID: <20230924165331.6df2e9c1@jic23-huawei>
+In-Reply-To: <cover.1695380366.git.mazziesaccount@gmail.com>
+References: <cover.1695380366.git.mazziesaccount@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230922081026.2799-4-quic_tengfan@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Tengfei,
+On Fri, 22 Sep 2023 14:14:52 +0300
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 
-kernel test robot noticed the following build errors:
+> ROHM BM1390 Pressure sensor (BM1390GLV-Z) can measure pressures ranging
+> from 300 hPa to 1300 hPa with configurable measurement averaging and an
+> internal FIFO. The sensor does also provide temperature measurements
+> although, according to the data sheet, sensor performs internal
+> temperature compensation for the MEMS.
+> 
+> Sensor does also contain IIR filter implemented in HW. The data-sheet
+> says the IIR filter can be configured to be "weak", "middle" or
+> "strong". Some RMS noise figures are provided in data sheet but no
+> accurate maths for the filter configurations is provided.
+> 
+> I actually asked if we can define 3db frequencies corresponding to these
+> IIR filter settings - and I received values 0.452Hz, 0.167Hz, and 0.047Hz
+> but I am not at all sure we understood each others with the HW
+> colleagues... Hence, the IIR filter configuration is not supported by this
+> driver and the filter is just configured to the "middle" setting.
+> (at least for now)
+> 
+> It would also be possible to not use IIR filter but just do some simple
+> averaging. I wonder if it would make sense to implement the OVERSAMPLING
+> value setting so that if this value is written, IIR filter is disabled and
+> number of samples to be averaged is set to value requested by
+> OVERSAMPLING. The data-sheet has a mention that if IIR is used, the
+> number of averaged samples must be set to a fixed value.
+> 
+> The FIFO measurement mode (in sensor hardware) is only measuring the
+> pressure and not the temperature. The driver measures temperature when
+> FIFO is flushed and simply uses the same measured temperature value to
+> all reported temperatures. This should not be a problem when temperature
+> is not changing very rapidly (several degrees C / second) but allows users
+> to get the temperature measurements from sensor without any additional
+> logic.
+> 
+> This driver has received limited amount of testing this far. It's in a
+> state 'works on my machine, for my use cases' - and all feedback is
+> appreciated!
 
-[auto build test ERROR on 940fcc189c51032dd0282cbee4497542c982ac59]
+At somepoint we'll just have to decide it's enough. To be honest most
+drivers in IIO get testing along those lines and we find bugs years
+later when someone tries something a little different!
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Tengfei-Fan/dt-bindings-interrupt-controller-qcom-pdc-document-qcom-sm4450-pdc/20230922-161433
-base:   940fcc189c51032dd0282cbee4497542c982ac59
-patch link:    https://lore.kernel.org/r/20230922081026.2799-4-quic_tengfan%40quicinc.com
-patch subject: [PATCH v4 3/6] arm64: dts: qcom: sm4450: Add RPMH and Global clock
-config: arm64-randconfig-002-20230924 (https://download.01.org/0day-ci/archive/20230924/202309242226.wwMJhznj-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230924/202309242226.wwMJhznj-lkp@intel.com/reproduce)
+> 
+> Revision history:
+> Major changes here, please see the head room of individual patches for
+> more detailed list.
+> v2 => v3:
+> 	rebased on v6.6-rc2
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202309242226.wwMJhznj-lkp@intel.com/
+Stick to rc1 though I doubt it makes much difference. The IIO tree
+will remain based on v6.6-rc1 until it is rebased after Greg takes
+a pull request.
 
-All errors (new ones prefixed by >>):
+Jonathan
 
-   In file included from arch/arm64/boot/dts/qcom/sm4450-qrd.dts:8:
->> arch/arm64/boot/dts/qcom/sm4450.dtsi:7:10: fatal error: dt-bindings/clock/qcom,sm4450-gcc.h: No such file or directory
-       7 | #include <dt-bindings/clock/qcom,sm4450-gcc.h>
-         |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   compilation terminated.
+> 	added three IIO fixup patches so numbering of patches changed
+> 	dt-bindings/MAINTAINERS: No changes
+> 	bm1390 driver:
+> 	 - various cleanups and fixes
+> 	 - do not disable IRQ
+> 	 - fix temperature reading when FIFO is used
+> 	 - separate buffer and trigger initialization
+> 
+> v1 => v2:
+> 	rebased on v6.6-rc1
+> 	dt-bindings:
+> 	  - fix compatible in the example
+> 	sensor driver:
+> 	  - drop unnecessary write_raw callback
+> 	  - plenty of small improvements and fixes
+> 	MAINTAINERS:
+> 	  - No changes
+> 
+> Matti Vaittinen (6):
+>   tools: iio: iio_generic_buffer ensure alignment
+>   iio: improve doc for available_scan_mask
+>   iio: try searching for exact scan_mask
+>   dt-bindings: Add ROHM BM1390 pressure sensor
+>   iio: pressure: Support ROHM BU1390
+>   MAINTAINERS: Add ROHM BM1390
+> 
+>  .../bindings/iio/pressure/rohm,bm1390.yaml    |  52 +
+>  MAINTAINERS                                   |   6 +
+>  drivers/iio/industrialio-buffer.c             |  25 +-
+>  drivers/iio/pressure/Kconfig                  |   9 +
+>  drivers/iio/pressure/Makefile                 |   1 +
+>  drivers/iio/pressure/rohm-bm1390.c            | 930 ++++++++++++++++++
+>  include/linux/iio/iio.h                       |   4 +-
+>  tools/iio/iio_generic_buffer.c                |  15 +-
+>  8 files changed, 1034 insertions(+), 8 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/iio/pressure/rohm,bm1390.yaml
+>  create mode 100644 drivers/iio/pressure/rohm-bm1390.c
+> 
+> 
+> base-commit: ce9ecca0238b140b88f43859b211c9fdfd8e5b70
 
-
-vim +7 arch/arm64/boot/dts/qcom/sm4450.dtsi
-
-   > 7	#include <dt-bindings/clock/qcom,sm4450-gcc.h>
-     8	#include <dt-bindings/gpio/gpio.h>
-     9	#include <dt-bindings/interrupt-controller/arm-gic.h>
-    10	#include <dt-bindings/soc/qcom,rpmh-rsc.h>
-    11	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
