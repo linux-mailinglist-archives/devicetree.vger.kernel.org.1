@@ -1,69 +1,74 @@
-Return-Path: <devicetree+bounces-2833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 664827ACB68
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 20:39:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 674337ACB6C
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 20:39:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 0BBF62816AD
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 18:39:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 713BE1C20826
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 18:39:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC047DDC4;
-	Sun, 24 Sep 2023 18:39:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60FD3DDC7;
+	Sun, 24 Sep 2023 18:39:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47445D2EE
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 18:39:14 +0000 (UTC)
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A4D3A6;
-	Sun, 24 Sep 2023 11:39:13 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1c571029a36so5019255ad.1;
-        Sun, 24 Sep 2023 11:39:13 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C7B3D2EE
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 18:39:21 +0000 (UTC)
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2AA8FB
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 11:39:19 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40531812168so54032225e9.1
+        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 11:39:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695580752; x=1696185552; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695580758; x=1696185558; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=CeptK0gjsxrs/rUO0yPAiUg8fDonAYbrR2ASWjNYk1Q=;
-        b=iifVM7WE2PSxPpiY76BOJCW7+2dQc/4LEVr29mzP9eckpqg9y+MLbefQbPcQPu93hm
-         dQaRqRudoNlnjWvVQlb+2h16Rs0yYmu/GtUT3sSCROJdhOwGIT+UlSjAHfTrDCquRksm
-         /6yiv9+O/7dTurIyCdlez2+VCfRma82xugfFGhg8yKCBr0MUAlp23srfpqfaZQhQiZlU
-         9xV0vX1H2cCBhSG2CugZmSg7MUEFV04k7xS/iXbQmrE+hSiQUDKre75Mhk3P3mqbMlDV
-         WRSvAmACUVqFgfZzWjcT5ohctDPyYRBtpULrilvHe/xH0yfHv0I/uuz/Xm0QVKe5+5Hv
-         MviA==
+        bh=o734mewGMtz+2kpo5WoDnDG7d6uU4MuaMiFRPG38+aw=;
+        b=uOYTGBRhk284gNIbRFyO6MjIm9QNPAiC7zHwfGgAZt/lPcU3W6/gAy5aOAwY+3r/AJ
+         2wsTZc2Y55xCKqlC2FKnbjARCPM5jqGBO0dAdQ4C6bPSe8rfOChmGaqmukf5WOxUgm2D
+         QxNu7e67saaWvLD8L6BDQVM4mwAMK+TBXBebuGeclKABgmwjtdpO1+CXn9j1wKKbIISr
+         C+Q46ISBsnPe02rpthkvfTgeHjilR2zs0HHSqYYqxseA/0OKv2jL8E6TsSwxldCRvbCd
+         Fisb+jSS0h74ata5f5RndrnX64wfYDh83B2UkpE7iq00SN/UPTSbCbWoEWQj+0S12mNM
+         fA6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695580752; x=1696185552;
+        d=1e100.net; s=20230601; t=1695580758; x=1696185558;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=CeptK0gjsxrs/rUO0yPAiUg8fDonAYbrR2ASWjNYk1Q=;
-        b=P/2KNhlUNN1FQpt2iMG8UKvaQlC7EeYgalkDCAYJmAwpoIqfgLClSZQ7SHyx8p+BlR
-         niZrVaMZNFNc0Mn5lo1zcO+coepnBnoe/TaU/FpVZGvqE0Cc2kulpvCR2XPCANzRPOKG
-         ZN0NtquV6EqzLU/Pw4VvDR1wpcVmEIK7G0pTgzlAKnCjCZW7N/o/Dc+27BhH+W/wPPnE
-         tZWOXhi3R141f7NHRvIlVj554Uf2/lbsef+NH7P1aw/53a1cj/B2m+vcWDIaFBoShDqe
-         /tMB9P7NHu4iubW1bHnqolgl7ONQ7s15GWf6qVaerupo41Ha6qN81E0Uat1aprH7C/Ba
-         FNPQ==
-X-Gm-Message-State: AOJu0YwAhHQdr3l8d3PjynvigKVrMCsh2MN3rLanDZZ+exXtHAsD9bo2
-	OLbRBlp9NQ437fsKlZcRUxk6UsTZiwI=
-X-Google-Smtp-Source: AGHT+IHNRApLXOPTiy9nlrVoBjIdngPUCfgvtwWsO+QYVIkzQ7PEU24yqcgtB+d0jQLw7KMXghuz1w==
-X-Received: by 2002:a17:903:2348:b0:1c3:4073:bf80 with SMTP id c8-20020a170903234800b001c34073bf80mr6572778plh.0.1695580752400;
-        Sun, 24 Sep 2023 11:39:12 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:24bc:448c:a18c:2275])
-        by smtp.gmail.com with ESMTPSA id v7-20020a170902b7c700b001c61073b064sm1312433plz.69.2023.09.24.11.39.09
+        bh=o734mewGMtz+2kpo5WoDnDG7d6uU4MuaMiFRPG38+aw=;
+        b=j0b/hFdr1JyubWyFiu53q7rRvGyVKbfCqUQNzTTC7pwmTiM/MW0Ild4ghhM17JGt+d
+         Ebwnlh+J5Ssbb1IymT7eWHpGpL1bEOdvWVqWmFlCnpdX4eNDcPmJ4MbGyzJ9SphL8KOn
+         tcBiDOsZ1hZVOcAc7dmEDWzk/UVyBzN1cOyX8ulIt6+TNRhvVX8jU1E79HINYNkq/xtr
+         H6VhBoRztEOJHicuJJNoOF27nBcuusURgbbitF8Lji0dUhEHKcsPKUyUBnCqoNGoF8O5
+         W3uSLcNOqOK1zKWd9xYXLg+LoQq4/OxjhSJ9hu2PfJRcaVyN6Pp47+mZtQTI5sau7wyW
+         Rp7A==
+X-Gm-Message-State: AOJu0Yw8DpnXtu68GB19FrofhfqFKP8pB34E4zE7P4ZXMt+2YDGbq/Nk
+	X8fCGqdoVTlIZDG45TENkvxLxQ==
+X-Google-Smtp-Source: AGHT+IG5UN9LXXSN96zid3SP8/ewFjj9oimFPhHYXF5OhA2nxG1Fa7TRXs8140wgRl9trJfDlcO3LQ==
+X-Received: by 2002:a05:600c:22c9:b0:405:36a0:108f with SMTP id 9-20020a05600c22c900b0040536a0108fmr4263049wmg.41.1695580758059;
+        Sun, 24 Sep 2023 11:39:18 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.219.100])
+        by smtp.gmail.com with ESMTPSA id v20-20020a05600c215400b00401b242e2e6sm7570446wml.47.2023.09.24.11.39.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Sep 2023 11:39:11 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: broonie@kernel.org
-Cc: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-spi@vger.kernel.org,
+        Sun, 24 Sep 2023 11:39:17 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Stephen Boyd <sboyd@codeaurora.org>,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] dt-bindings: spi: fsl-imx-cspi: Document missing entries
-Date: Sun, 24 Sep 2023 15:39:04 -0300
-Message-Id: <20230924183904.752415-1-festevam@gmail.com>
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [RESEND PATCH 1/4] ARM: dts: qcom: apq8064: drop incorrect regulator-type
+Date: Sun, 24 Sep 2023 20:39:11 +0200
+Message-Id: <20230924183914.51414-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -73,41 +78,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Fabio Estevam <festevam@denx.de>
+regulator-fixed does not have a "regulator-type" property:
 
-The imx25, imx50, imx51 and imx53 SPIs are compatible with the imx35.
+  qcom-apq8064-ifc6410.dtb: regulator-ext-3p3v: Unevaluated properties are not allowed ('regulator-type' was unexpected)
 
-Document them accordingly.
-
-Signed-off-by: Fabio Estevam <festevam@denx.de>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/spi/fsl-imx-cspi.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts | 1 -
+ arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts         | 1 -
+ 2 files changed, 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/spi/fsl-imx-cspi.yaml b/Documentation/devicetree/bindings/spi/fsl-imx-cspi.yaml
-index 2f593c7225e5..14cac0e6e0a1 100644
---- a/Documentation/devicetree/bindings/spi/fsl-imx-cspi.yaml
-+++ b/Documentation/devicetree/bindings/spi/fsl-imx-cspi.yaml
-@@ -22,6 +22,13 @@ properties:
-       - const: fsl,imx35-cspi
-       - const: fsl,imx51-ecspi
-       - const: fsl,imx53-ecspi
-+      - items:
-+          - enum:
-+              - fsl,imx25-cspi
-+              - fsl,imx50-cspi
-+              - fsl,imx51-cspi
-+              - fsl,imx53-cspi
-+          - const: fsl,imx35-cspi
-       - items:
-           - const: fsl,imx8mp-ecspi
-           - const: fsl,imx6ul-ecspi
+diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts b/arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts
+index c57c27cd8a20..c0dd6399f597 100644
+--- a/arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts
++++ b/arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts
+@@ -36,7 +36,6 @@ ext_3p3v: regulator-ext-3p3v {
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 		regulator-name = "ext_3p3v";
+-		regulator-type = "voltage";
+ 		startup-delay-us = <0>;
+ 		gpio = <&tlmm_pinmux 77 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
+diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts b/arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts
+index 96307550523a..b0c5e7bd5e74 100644
+--- a/arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts
++++ b/arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts
+@@ -58,7 +58,6 @@ ext_3p3v: regulator-ext-3p3v {
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 		regulator-name = "ext_3p3v";
+-		regulator-type = "voltage";
+ 		startup-delay-us = <0>;
+ 		gpio = <&tlmm_pinmux 77 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
 -- 
 2.34.1
 
