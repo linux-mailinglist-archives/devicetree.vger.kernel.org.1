@@ -1,135 +1,136 @@
-Return-Path: <devicetree+bounces-2774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26C107AC7EE
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 14:15:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FBA87AC7F4
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 14:21:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 039981C204F9
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 12:15:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id A6B3628102C
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 12:21:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A06C21398;
-	Sun, 24 Sep 2023 12:15:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0051417DB;
+	Sun, 24 Sep 2023 12:21:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FB011368
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 12:15:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F3A4C433C8;
-	Sun, 24 Sep 2023 12:14:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695557703;
-	bh=gPXi1eCu0s1miFDC6/sjRthketQrCVLtEzbLlQDVX8A=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Qk6DIL+3JVpmfVsGfuoTpzwbFVb9R3arD5zA7u3hs/aC2/zlIcu8eY42UZNKpk/WB
-	 VQLEpgsOMaBOzuS/Zq/z9yN5DHTUHYJqKEtcsPLhbzExB2eAoHtRQpgNsgXCN5TK6F
-	 f7xsKcNGTBChaF45vSHxymIeu/ZSTMBHrzc3vGAA4Mxkywz3h1/qdeddPhQ1ChGIL+
-	 gPiOpJmMNIa2WdrBQkyhoNkaYT4AqbsGLLb8n7RVVuh90DJFuHf83J3bmgV1n0Pcq3
-	 JL+5mvuBGvPPaXRFvmIxV6eEqxIHsZBpzeLfQywDuxDCLTdCaLJHzQbkZYZFsdDi7x
-	 D0We8EeEiiA1A==
-Date: Sun, 24 Sep 2023 13:14:54 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Jonathan Cameron <Jonathan.Cameron@Huawei.com>, Matti Vaittinen
- <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Angel Iglesias <ang.iglesiasg@gmail.com>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Andreas Klinger <ak@it-klinger.de>,
- Benjamin Bara <bbara93@gmail.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] iio: pressure: Support ROHM BU1390
-Message-ID: <20230924131454.7cae02a9@jic23-huawei>
-In-Reply-To: <9d929df3-ac51-7d1f-ec00-856849cc70c7@gmail.com>
-References: <cover.1694760170.git.mazziesaccount@gmail.com>
-	<f378a401cec4fb0b9287b52ab159f00dd77569a6.1694760170.git.mazziesaccount@gmail.com>
-	<20230917113518.7c4bb1a0@jic23-huawei>
-	<a5c19874-32ba-60bf-6e72-9139a2873c7e@gmail.com>
-	<c987f401-81c4-00e5-51a7-88a6a38a2ca2@gmail.com>
-	<20230919155340.0000076f@Huawei.com>
-	<7181e56e-9488-25c9-3d03-64e49b2c952a@gmail.com>
-	<9d929df3-ac51-7d1f-ec00-856849cc70c7@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7741139F
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 12:21:15 +0000 (UTC)
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F4EF101;
+	Sun, 24 Sep 2023 05:21:14 -0700 (PDT)
+Received: by mail-yb1-xb33.google.com with SMTP id 3f1490d57ef6-d8181087dc9so5185133276.3;
+        Sun, 24 Sep 2023 05:21:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695558073; x=1696162873; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MTfZjqjMpvXRZj3b3a+JLvwqBqzdhBKsQPxsSKfm4jQ=;
+        b=JmnRMdRUYmERcLwPlPVvJCbnxV/XbvmE+AMvSZTGztlVi2xyVEI4UKW7A6A9RLAYpU
+         VHz4T8KFsIBDqUy0uSZ9nXZBZLJSyFyt7DvjgQuk5s4wnSFND1b38I4P4gEh+G+DQMtK
+         bBcztbYiJZL4AES7RCXNRwCl4BzVS0a5YAWO566JJsINiLGTeJbUwiFWN0Kg6FhkdEG5
+         ncjJLsx2cvxj54ueD0jEqcv1yGsdApj5W9+bkVhNwlUkYBrMLapxZl0VhL2fsWVOLkQg
+         DilRj3XATDG8xPIfA/lFlBYhKdGwMjamLkR5rW1vR4SFNbAOFoj7JT/dvqKwOzzxA1QY
+         WLfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695558073; x=1696162873;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MTfZjqjMpvXRZj3b3a+JLvwqBqzdhBKsQPxsSKfm4jQ=;
+        b=B8CRQvCrAbD/VNKMpx/zQJ7Q0f0QyBeXxyWV/Xfs3aSd8a1or+I9IXJI3wnNg6smnt
+         2o5E9NkMetE8Gr7g1uyt/LStQaxjTlKENrdOZEw694gzahMaI9mSCrVaVM4hkO4QHdAx
+         gXNXTr/Y0vtVrcrtZmtH9rh4x69hyHIjy3Rhti0pksxFbut0Msn26Avcdy5BGn+OqqZ4
+         3SfAbfNOha90wH+Y2Uemy0La+xByTpE89lcopte7VpY+7ZctxDiDzTBtacYq64RMnAcg
+         Ez8xZwGqKzx8GswPWJAufQ/wJyWc73Nlpv2JULpEv+dUe1uKrwjuK51pNdiBUOkO4mVU
+         yIFg==
+X-Gm-Message-State: AOJu0YxRpsdfiSombxCZIEKH2JQrKGnPguOXOH49fMtj4oA25N5fzF//
+	lPVQqfmAlfro//a+wTDS6q0LqpLrgSW0hVVFXG0=
+X-Google-Smtp-Source: AGHT+IF2jNaWBk87Cb4LztG+3BYADZk5wQU4zwUp4/XjFmSp0zIWGQD+y5IecCnZhP1NNVheMxVGBydqfLx6BDN44Oo=
+X-Received: by 2002:a25:a048:0:b0:d43:a84f:a6aa with SMTP id
+ x66-20020a25a048000000b00d43a84fa6aamr3813704ybh.39.1695558073705; Sun, 24
+ Sep 2023 05:21:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <cover.1693623752.git.zhoubinbin@loongson.cn> <16a37f6ad3cc9417b6638c2cd532d88c79468eb1.1693623752.git.zhoubinbin@loongson.cn>
+ <885eab85-2c11-cf20-9187-55cd647fbe9f@infradead.org> <c7604f6c-4da7-47c4-abe9-e626b3efc665@infradead.org>
+ <20230919-9ce82588fccdd641574b468c@fedora> <CAAhV-H73kp8zWJD7AKUvknmxow=f_cPBw9jctpmced6o_QCF6w@mail.gmail.com>
+ <ea9ee2dd-b71a-4c97-a347-20536d7ad424@app.fastmail.com>
+In-Reply-To: <ea9ee2dd-b71a-4c97-a347-20536d7ad424@app.fastmail.com>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Sun, 24 Sep 2023 20:21:02 +0800
+Message-ID: <CAMpQs4Lp1y1=hp_Z7zRV7W0WCB047yDD5eqnuLHjdqHYZpchRQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/5] soc: loongson: loongson2_pm: Add dependency for INPUT
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Huacai Chen <chenhuacai@kernel.org>, Conor Dooley <conor@kernel.org>, 
+	Randy Dunlap <rdunlap@infradead.org>, Binbin Zhou <zhoubinbin@loongson.cn>, 
+	Huacai Chen <chenhuacai@loongson.cn>, Yinbo Zhu <zhuyinbo@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	loongson-kernel@lists.loongnix.cn, soc@kernel.org, devicetree@vger.kernel.org, 
+	linux-pm@vger.kernel.org, WANG Xuerui <kernel@xen0n.name>, loongarch@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Thu, 21 Sep 2023 12:00:39 +0300
-Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+On Fri, Sep 22, 2023 at 10:43=E2=80=AFPM Arnd Bergmann <arnd@arndb.de> wrot=
+e:
+>
+> On Tue, Sep 19, 2023, at 12:15, Huacai Chen wrote:
+> > On Tue, Sep 19, 2023 at 11:48=E2=80=AFPM Conor Dooley <conor@kernel.org=
+> wrote:
+> >> On Tue, Sep 19, 2023 at 08:36:50AM -0700, Randy Dunlap wrote:
+> >>
+> >> Seemingly this was sent again in isolation 2 weeks ago, but neither th=
+e
+> >> maintainer (Huacai) nor soc@kernel.org were on cc:
+> >>
+> >> https://lore.kernel.org/all/20230905123629.4510-1-zhuyinbo@loongson.cn=
+/
+> > v3 indeed cc-ed soc@kernel.org. :)
+> >
+> > Arnd, could you please take this series to the soc tree? And also this
+> > series:
+> > https://lore.kernel.org/loongarch/cover.1693534134.git.zhoubinbin@loong=
+son.cn/T/#t
+>
+> Sorry, I have been traveling and not pushed out the tree yet.
+>
+> Can you confirm that the input dependency is required for 6.6
+> and the other series can wait until 6.7? When you send patches
+> to soc@kernel.org, please always mention which tree you intend
+> them for. I might disagree, but it's better than having to guess.
+>
+Hi Arnd:
 
-> On 9/21/23 11:17, Matti Vaittinen wrote:
-> 
-> > Another thing to note is that, when we build the available_scan_mask 
-> > array - we should either pay attention to the order of masks - or change 
-> > the iio_scan_mask_match() to not accept first matching subset but to go 
-> > through all of the masks unless it finds and exactly matching one (and 
-> > in general prefer the smallest subset). Not sure this is worth the extra 
-> > cycles though.  
-> 
-> Replying to myself and to those who I perhaps managed to confuse :)
-> 
-> As a result of above pondering I wrote this:
-> 
-> @@ -411,6 +418,8 @@ static const unsigned long 
-> *iio_scan_mask_match(const unsigned long *av_masks,
->                                                  const unsigned long *mask,
->                                                  bool strict)
->   {
-> +       const unsigned long *smallest = NULL;
-> +
->          if (bitmap_empty(mask, masklength))
->                  return NULL;
->          while (*av_masks) {
-> @@ -418,12 +427,16 @@ static const unsigned long 
-> *iio_scan_mask_match(const unsigned long *av_masks,
->                          if (bitmap_equal(mask, av_masks, masklength))
->                                  return av_masks;
->                  } else {
-> -                       if (bitmap_subset(mask, av_masks, masklength))
-> -                               return av_masks;
-> +                       if (bitmap_subset(mask, av_masks, masklength)) {
-> +                               if (!smallest ||
-> +                                   bitmap_weight(av_masks, BITS_PER_LONG) <
-> +                                   bitmap_weight(smallest, BITS_PER_LONG))
-> +                                       smallest = av_masks;
-> +                       }
->                  }
->                  av_masks += BITS_TO_LONGS(masklength);
->          }
-> -       return NULL;
-> +       return smallest;
->   }
-> 
-> but ...
-> ... I see a problem that some of the channels may be more costly to 
-> access than the other. It could be that reading some of the channels is 
-> just a matter of getting a cached value, while other could require a 
-> long measurement time and access to significant amount of registers. So, 
-> the knowledge of preferred scan masks should indeed be on the driver 
-> side. Hence, the ordering of the masks in the order of preference makes 
-> perfect sense. What we could do in the IIO core side is still go through 
-> all of the available masks to see if we find an exact match. I guess we 
-> could also document the fact that the order of masks matters.
+Thanks for your reply.
 
-I should have read on in the thread. Indeed - ordering of preferences needs
-to be in driver control for exactly the reason you came up with!
+As we know, this driver was just merged in during the v6.6 window, and
+no release will use it until now:
 
-Thanks,
+commit 67694c076bd7 soc: loongson2_pm: add power management support
+commit 6054a676e969 soc: dt-bindings: add loongson-2 pm
 
-Jonathan
+Now, since the Loongson-2K series SoCs are indifferent at the driver
+level, we used fallback compatible and added
+syscon-reboot/syscon-poweroff subnodes for power on/off functionality.
+These somewhat break the original devicetree rules.
+So, I think these patches need to be merged in before the v6.6 release
+to avoid unnecessary compatibility issues.
+Of course, I added the "Fixes:" tag in the corresponding patch.
 
+Thanks.
+Binbin
 
-> 
-> Thanks for listening - and sorry for the noise :)
-> 
-> Yours,
-> 	-- Matti
-> 
-
+>      Arnd
 
