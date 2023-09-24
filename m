@@ -1,357 +1,442 @@
-Return-Path: <devicetree+bounces-2772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7706C7AC7E1
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 14:04:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1EE87AC7E6
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 14:12:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 04D182815CD
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 12:04:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 68C0628159E
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 12:12:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93DD21383;
-	Sun, 24 Sep 2023 12:04:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5C251391;
+	Sun, 24 Sep 2023 12:12:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D51DA1368
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 12:04:40 +0000 (UTC)
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBB3A101
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 05:04:37 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4053cb57f02so34770025e9.1
-        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 05:04:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695557076; x=1696161876; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3kbxdvSag+fMHEAsgBoeHBpA9Y8v3UwP2713wqpTk7w=;
-        b=nq0UyNBQyBZ7dygLmwTYegm2Hshc2zfJWc0QX4OgPWF2zouxDADs1j3dNU6UbZ5NR2
-         jZz4a02+rvvtgBwhDblCk2Qs09Hy8pjWqN0XpRB4wvBMbOvJFm3lL/xf/fuDz26ARmdC
-         8owt01gTTGrR+M8SJ9MLW1jeHwlKmHa+eetsNy2GJXQrTkwIK9Ln7pqRKyhkEDo63L72
-         EWyiKRPCH/Pdz05RJ4kiHj3yEMndHVJOePZNM2O3dwmvvzihwafEyKsDnXi0O3yAAcp8
-         l5bNt7hiTR+nk0OGUzBdSyOKeG07zRaJ47N85MxEoOnYgGoEgFHUCK8YhEbxV3LIFzUx
-         DF3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695557076; x=1696161876;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3kbxdvSag+fMHEAsgBoeHBpA9Y8v3UwP2713wqpTk7w=;
-        b=P4fF2Te4B44izBDlc/GSu7+dJ4T96QO6Jb0kXRSw/cHX1zZ3LJcMdsH9aPdzARmB2J
-         7f+k4tmMZX0dF01ft2HYGdzrzT2SAOOS7JpzxYQWBadNP0HXrmpxgpZa0/UZRoDP5Wn1
-         qKUZRepKRlFrLXcw/5fspMExj/cOf9aYtkutfhcfp5dQl3CGLDBkX7UfeTxCPGaa7lCA
-         KErPgZ7ENf2bS8UKhoyAI6uto0/2UfFe0PMsv/DiLiV8LHXl9+VNq1vVyBc4XA3jHuMO
-         vNvxZ+vIZc7pH/6LxMZOt93p904QTxQ1yELeAEal2pmRA4ZD0CArca7jMTAGK3kbi5m/
-         58Xg==
-X-Gm-Message-State: AOJu0Yw/BlDLJoTBrGYguo77UoUgeurA+qIUlagYEEE7QD9XSakvLx08
-	fEloTcecCrl/VjoWIgQsITu/HA==
-X-Google-Smtp-Source: AGHT+IFOxfkV6x8akvIQonthsIjUc8LBq8tTfByOIjzPt1UHHoR9uvwX+HhSa5ZiCIcTStrWGt3FgA==
-X-Received: by 2002:a05:600c:2252:b0:3fe:ba7:f200 with SMTP id a18-20020a05600c225200b003fe0ba7f200mr3336414wmm.20.1695557076006;
-        Sun, 24 Sep 2023 05:04:36 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id c38-20020a05600c4a2600b00405718cbeadsm767594wmp.1.2023.09.24.05.04.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Sep 2023 05:04:35 -0700 (PDT)
-Message-ID: <6ce74c42-d1d0-d9cb-9d90-68989933d1d4@linaro.org>
-Date: Sun, 24 Sep 2023 14:04:32 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3A761368
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 12:12:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8D24C433C8;
+	Sun, 24 Sep 2023 12:12:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695557558;
+	bh=suCin03FD/qH8e+5A1XgOSfSU4aMf8HCIR6C794YICQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=cqkxus+clIFBtl5Np7mB30a7oHV3VVQrgab0QHzt+XDDU/WHz7tU6QWtIpZakrhva
+	 S7Me7ONlxrggTq3dVsuOO2ZO483hqlq/FUpzi0FxgI/a/udy6jL9wln2AOJYd8DeHt
+	 EHIDe6eKogYMJu6oKJ0fQuZVfsCsJQ+G8vYXPqTWxk2Nrk+z38GKfEmfuBfDECGKQV
+	 3N4skVFZiDW/LXv9ArPGpIqLO0qdKtrJhAHGavy8JV0tW0nwtBGArlW4DhdawxnG1b
+	 x3pMNI/SZXuGKTJP3TS6mcfQQL3SKVB9MQKlzdj62wLGGQ3zCSlegiccOHZfRqlsU0
+	 KkH++rX1RcyDA==
+Date: Sun, 24 Sep 2023 13:12:30 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>, Andreas Klinger
+ <ak@it-klinger.de>, Benjamin Bara <bbara93@gmail.com>
+Cc: Jonathan Cameron <Jonathan.Cameron@Huawei.com>, Matti Vaittinen
+ <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Angel Iglesias <ang.iglesiasg@gmail.com>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] iio: pressure: Support ROHM BU1390
+Message-ID: <20230924131230.6a999c0f@jic23-huawei>
+In-Reply-To: <7181e56e-9488-25c9-3d03-64e49b2c952a@gmail.com>
+References: <cover.1694760170.git.mazziesaccount@gmail.com>
+	<f378a401cec4fb0b9287b52ab159f00dd77569a6.1694760170.git.mazziesaccount@gmail.com>
+	<20230917113518.7c4bb1a0@jic23-huawei>
+	<a5c19874-32ba-60bf-6e72-9139a2873c7e@gmail.com>
+	<c987f401-81c4-00e5-51a7-88a6a38a2ca2@gmail.com>
+	<20230919155340.0000076f@Huawei.com>
+	<7181e56e-9488-25c9-3d03-64e49b2c952a@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v5 2/3] greybus: Add BeaglePlay Linux Driver
-Content-Language: en-US
-To: Ayush Singh <ayushdevel1325@gmail.com>, greybus-dev@lists.linaro.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- gregkh@linuxfoundation.org, vaishnav@beagleboard.org,
- jkridner@beagleboard.org, nm@ti.com, krzysztof.kozlowski+dt@linaro.org,
- johan@kernel.org, elder@kernel.org
-References: <20230924113725.164948-1-ayushdevel1325@gmail.com>
- <20230924113725.164948-3-ayushdevel1325@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230924113725.164948-3-ayushdevel1325@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Transfer-Encoding: quoted-printable
 
-On 24/09/2023 13:36, Ayush Singh wrote:
-> Add the Greybus host driver for BeaglePlay board by BeagleBoard.org.
-> 
-> Current beagleconnect setup involves running SVC in a user-space
-> application (GBridge) and using netlink to communicate with kernel
-> space. GBridge itself uses wpanusb kernel driver for communication with
-> CC1325, so the greybus messages travel from kernel space (gb_netlink) to
-> user-space (GBridge) and then back to kernel space (wpanusb) before
-> reaching CC1352.
-> 
+On Thu, 21 Sep 2023 11:17:41 +0300
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 
-Thank you for your patch. There is something to discuss/improve.
+> On 9/19/23 17:53, Jonathan Cameron wrote:
+> > On Tue, 19 Sep 2023 14:28:29 +0300
+> > Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> >  =20
+> >> On 9/18/23 15:56, Matti Vaittinen wrote: =20
+> >>> On 9/17/23 13:35, Jonathan Cameron wrote: =20
+> >>>> On Fri, 15 Sep 2023 09:56:19 +0300
+> >>>> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> >>>>    =20
+> >>>>> Support for the ROHM BM1390 pressure sensor. The BM1390GLV-Z can me=
+asure
+> >>>>> pressures ranging from 300 hPa to 1300 hPa with configurable measur=
+ement
+> >>>>> averaging and internal FIFO. The sensor does also provide temperatu=
+re
+> >>>>> measurements.
+> >>>>>
+> >>>>> Sensor does also contain IIR filter implemented in HW. The data-she=
+et
+> >>>>> says the IIR filter can be configured to be "weak", "middle" or
+> >>>>> "strong". Some RMS noise figures are provided in data sheet but no
+> >>>>> accurate maths for the filter configurations is provided. Hence, th=
+e IIR
+> >>>>> filter configuration is not supported by this driver and the filter=
+ is
+> >>>>> configured to the "middle" setting (at least not for now).
+> >>>>>
+> >>>>> The FIFO measurement mode is only measuring the pressure and not the
+> >>>>> temperature. The driver measures temperature when FIFO is flushed a=
+nd
+> >>>>> simply uses the same measured temperature value to all reported
+> >>>>> temperatures. This should not be a problem when temperature is not
+> >>>>> changing very rapidly (several degrees C / second) but allows users=
+ to
+> >>>>> get the temperature measurements from sensor without any additional
+> >>>>> logic.
+> >>>>>
+> >>>>> This driver allows the sensor to be used in two muitually exclusive
+> >>>>> ways,
+> >>>>>
+> >>>>> 1. With trigger (data-ready IRQ).
+> >>>>> In this case the FIFO is not used as we get data ready for each
+> >>>>> collected
+> >>>>> sample. Instead, for each data-ready IRQ we read the sample from se=
+nsor
+> >>>>> and push it to the IIO buffer.
+> >>>>>
+> >>>>> 2. With hardware FIFO and watermark IRQ.
+> >>>>> In this case the data-ready is not used but we enable watermark IRQ=
+. At
+> >>>>> each watermark IRQ we go and read all samples in FIFO and push them
+> >>>>> to the
+> >>>>> IIO buffer.
+> >>>>>
+> >>>>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com> =20
+> >>
+> >> ...
+> >> =20
+> >>>>> +
+> >>>>> +static const unsigned long bm1390_scan_masks[] =3D {
+> >>>>> +=C2=A0=C2=A0=C2=A0 BIT(BM1390_CHAN_PRESSURE) | BIT(BM1390_CHAN_TEM=
+P), 0 =20
+> >>>> Why?=C2=A0 Doesn't look hard to support just one or the other?
+> >>>> Normally we only do this sort of limitation when there is a heavily
+> >>>> optimized read routine for a set of channels and it is better
+> >>>> to grab them all and throw away the ones we don't care about.
+> >>>> That doesn't seem to be true here. So if the fifo grabbed both
+> >>>> temp and pressure it would makes sense here, but doesn't seem
+> >>>> like it does. =20
+> >>>
+> >>> I have a feeling I have misunderstood how this mask works. I have
+> >>> assumed all the channels with corresponding mask bit _can_ be enabled
+> >>> simultaneously, but I have not understood they _must_ all be enabled.=
+ I
+> >>> think I must go back studying this, but if all channels really _must_=
+ be
+> >>> enabled, then you are correct. It actually makes a lot of sense to
+> >>> support the pressure values alone, as, according to the data-sheet, t=
+he
+> >>> HW is doing a "MEMS temperature compensation" to the pressure values.
+> >>> So, my assuimption is the temperature data may not be required to be
+> >>> captured.
+> >>>
+> >>> This also means I should revise the scan masks for the BU27008, BU270=
+10
+> >>> and BU27034 light sensors as I don't think all the users want all the
+> >>> channels enabled. I wonder how I have not noticed any problems when I
+> >>> tested those things - did I really always enable all the channels...?=
+ @_@
+> >>>
+> >>> Anyways, Thanks. =20
+> >>
+> >> Hi Jonathan,
+> >>
+> >> There's something in IIO scan_masks / buffer demuxing that I don't qui=
+te
+> >> understand =20
+>=20
+> Thank You for the patience and the explanation Jonathan. I have a -=20
+> hopefully not totally wrong - feeling I understand this better. I didn't=
+=20
+> understand that IIO framework has this extra logic and that=20
+> available_scan_masks was not really meant for telling what IIO allows=20
+> _users_ to enable - but it was for driver to tell IIO core what the=20
+> driver can give. (Naturally this impacts to what IIO allows users to=20
+> enable, but not directly). Eg, if I now get it right, the=20
+> 'available_scan_masks' is information what data flows between driver and=
+=20
+> IIO. Similarly, 'active_scan_mask' tells what the IIO core 'expects' to=20
+> get from the driver, right? So, in bm1390 case, if I set both:
+>=20
+> BIT(BM1390_CHAN_PRESSURE) | BIT(BM1390_CHAN_TEMP),
+> and
+> BIT(BM1390_CHAN_PRESSURE),
+>=20
+> to 'available_scan_masks', then it means driver is telling IIO it can=20
+> give both pressure and temperature, or temperature alone. As a result,=20
+> IIO can set either both temp and pressure to 'active_scan_mask' - in=20
+> which case driver should push both in the buffers - or just the=20
+> pressure, in which case the driver should not push the temperature.
 
->  
->  GREYBUS SUBSYSTEM
->  M:	Johan Hovold <johan@kernel.org>
-> diff --git a/drivers/greybus/Kconfig b/drivers/greybus/Kconfig
-> index 78ba3c3083d5..07e3119e2faa 100644
-> --- a/drivers/greybus/Kconfig
-> +++ b/drivers/greybus/Kconfig
-> @@ -17,6 +17,16 @@ menuconfig GREYBUS
->  
->  if GREYBUS
->  
-> +config GREYBUS_BEAGLEPLAY
-> +	tristate "Greybus BeaglePlay driver"
-> +	depends on TTY
-> +	help
-> +	  Select this option if you have a BeaglePlay where CC1352
-> +		co-processor acts as Greybus SVC.
+I think you have understood this from the comment further down.  But
+key is active_scan_masks is telling the driver what to put in the
+buffer via iio_push_to_buffer*().  The driver has to have told
+the core what it can provide (available scan masks) and the core is
+picking one of those.  So active_scan_mask is always an entry
+of available_scan_masks with the special case of no available_scan_masks
+meaning any combination of channels is fine.
+The chosen value is made up of a superset of the channels enable by
+the various consumers: userspace and in kernel consumers. A typical
+complex example being a SoC integrated ADCs where a couple of channels
+are used for the touch screen and the rest for more general purposes.
+In those cases, the in kernel touch screen driver enables the channels
+it wants, and the userspace IIO interface might enable some more.
+Each consumer just sees what it asks for as the IIO core repacks the
+requested channels for each consumer dropping the others (maybe
+leaving some valid data in the padding. I can't remember if we let
+that happen or not and that code is complex so I'm not going to go
+figure it out again today :)  There are some subtle cases around
+consumers requesting mutually exclusive sets. We also never really
+dealt with how to negotiates sample rates etc, so this isn't
+quite as intuitive as it would ideally be.  E.g. the core could
+subsample to meet a lower sampling rate request, but IIRC we just
+let the multiple consumers fight it out for control :(
 
-Fix indentation.
 
-> +
-> +	  To compile this code as a module, chose M here: the module
-> +	  will be called gb-beagleplay.ko
-> +
->  config GREYBUS_ES2
->  	tristate "Greybus ES3 USB host controller"
->  	depends on USB
-> diff --git a/drivers/greybus/Makefile b/drivers/greybus/Makefile
-> index 9bccdd229aa2..15a84a83788d 100644
-> --- a/drivers/greybus/Makefile
-> +++ b/drivers/greybus/Makefile
-> @@ -18,9 +18,9 @@ obj-$(CONFIG_GREYBUS)		+= greybus.o
->  # needed for trace events
->  ccflags-y += -I$(src)
->  
-> +obj-$(CONFIG_GREYBUS_BEAGLEPLAY)	+= gb-beagleplay.o
-> +
->  # Greybus Host controller drivers
->  gb-es2-y := es2.o
->  
->  obj-$(CONFIG_GREYBUS_ES2)	+= gb-es2.o
-> -
-> -
+>=20
+> >>
+> >> The bm1390 driver as sent in v2 does not do demuxing but always pushes
+> >> whole chunk of data and trusts IIO to do demuxing. =20
+> >=20
+> > Yup. That should work.  But in this case you can trivially decide not t=
+o read
+> > or fill in the temperature and hence save some bus cycles.
+> >  =20
+> >>
+> >> 2) I noticed the 'available_scan_masks' was marked as an optional fiel=
+d.
+> >> So, I think that if there is no restrictions to which of the channels
+> >> can be enabled, then we can omit setting it. This is what I tried.
+> >>
+> >> It appears that when we do not populate the 'available_scan_masks' wit=
+h the: =20
+> >>   >>> +static const unsigned long bm1390_scan_masks[] =3D {
+> >>   >>> +    BIT(BM1390_CHAN_PRESSURE) | BIT(BM1390_CHAN_TEMP), 0 =20
+> >>
+> >> things change. When I tested enabling only temperature and ran the
+> >> iio_generic_buffer -c 20 -N 0 -t bm1390data-rdy-dev0 - the reported
+> >> values seemed completely random. =20
+> >=20
+> > You need to pack the data correctly yourself in the driver.
+> > So it adds small amount of code complexity but potentially saves bus
+> > traffic. =20
+>=20
+> ...
+>=20
+> >>
+> >> Based on this experimenting (and headache obtained from reading the
+> >> demuxing code) - the IIO framework does not do channel demuxing if the
+> >> 'available_scan_masks' is not given? To me this was somewhat unexpecte=
+d. =20
+> >=20
+> > Yes.  If you don't tell it what channel setups are available (note ther=
+e can
+> > be lots) you are saying that we support any random combination and have
+> > to do the data packing by hand.
+> >  =20
+>=20
+> Okay... I think it kind of makes sense to leave an option where the=20
+> driver can create buffer as it wants. I am not sure I can wrap my head=20
+> around this to the extent that I knew when the IIO does not know what=20
+> channels the driver has enabled - and thus, what types of data there=20
+> will be - but I can accept the answer that such situations can exist :)=20
+> Besides, allowing the driver to do the buffer formatting may allow some=20
+> 'use-case specific, custom optimizations' when user-space knows what to=20
+> expect (for example, regarding the data alignments and ordering to for=20
+> example save space).
+>=20
+> ...This leads to another thing I noticed - and to another question :)
+>=20
+> I was experimenting with the bm1390 scan masks and iio_generic_buffer=20
+> tool. It seems to me that the iio_generic_buffer does not expect the=20
+> padding when the data in buffer is u32 + u16. When I enable the pressure=
+=20
+> (32bits) and temperature (16 bits) in bm1390 and keep the time-stamp=20
+> disabled, the user-space will get buffer where 2 bytes of padding is=20
+> added to each temperature sample so the next pressure sample stays=20
+> correctly aligned. I believe kernel side does sane job here.
+>=20
+> This, however, did result (at least my version of) the=20
+> iio_generic_buffer tool to read garbage values after the first sample.=20
+> My assumption is that the iio_generic_buffer does not add the padding=20
+> bytes to the end of last data in the scan in order to ensure also the=20
+> next scan will be correctly aligned.
+>=20
+Ah. That's definitely possible. We've found similar problems with the logic
+those example tools before and I can see that this case might not have turn=
+ed
+up much.
 
-Does not look related to your patch.
+> I did following change to the iio_generic_buffer:
+>=20
+> Author: Matti Vaittinen <mazziesaccount@gmail.com>
+> Date:   Thu Sep 21 10:15:19 2023 +0300
+>=20
+>      tools: iio: iio_generic_buffer ensure alignment
+>=20
+>      The iio_generic_buffer can return garbage values when the total size=
+ of
+>      scan data is not a multiple of largest element in the scan. This can=
+ be
+>      demonstrated by reading a scan consisting for example of one 4 byte =
+and
+>      one 2 byte element, where the 4 byte elemnt is first in the buffer.
+>=20
+>      The IIO generic buffert code does not take into accunt the last two
+>      padding bytes that are needed to ensure that the 4byte data for next
+>      scan is correctly aligned.
+>=20
+>      Add padding bytes required to align the next sample into the scan si=
+ze.
+>=20
+>      Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>=20
+> diff --git a/tools/iio/iio_generic_buffer.c b/tools/iio/iio_generic_buffe=
+r.c
+> index 44bbf80f0cfd..fc562799a109 100644
+> --- a/tools/iio/iio_generic_buffer.c
+> +++ b/tools/iio/iio_generic_buffer.c
+> @@ -54,9 +54,12 @@ enum autochan {
+>   static unsigned int size_from_channelarray(struct iio_channel_info=20
+> *channels, int num_channels)
+>   {
+>          unsigned int bytes =3D 0;
+> -       int i =3D 0;
+> +       int i =3D 0, max =3D 0;
+> +       unsigned int misalignment;
+>=20
+>          while (i < num_channels) {
+> +               if (channels[i].bytes > max)
+> +                       max =3D channels[i].bytes;
+>                  if (bytes % channels[i].bytes =3D=3D 0)
+>                          channels[i].location =3D bytes;
+>                  else
+> @@ -66,6 +69,16 @@ static unsigned int size_from_channelarray(struct=20
+> iio_channel_info *channels, in
+>                  bytes =3D channels[i].location + channels[i].bytes;
+>                  i++;
+>          }
+> +       /*
+> +        * We wan't the data in next sample to also be properly aligned so
+> +        * we'll add padding at the end if needed. TODO: should we use fi=
+xed
+> +        * 8 byte alignment instead of the size of the biggest samnple?
 
-> diff --git a/drivers/greybus/gb-beagleplay.c b/drivers/greybus/gb-beagleplay.c
-> new file mode 100644
-> index 000000000000..39d87ef3b8fc
-> --- /dev/null
-> +++ b/drivers/greybus/gb-beagleplay.c
-> @@ -0,0 +1,526 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Beagleplay Linux Driver for Greybus
-> + *
-> + * Copyright (c) 2023 Ayush Singh <ayushdevel1325@gmail.com>
-> + * Copyright (c) 2023  BeagleBoard.org Foundation
-> + */
-> +
-> +#include <linux/gfp.h>
-> +#include <linux/greybus.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/printk.h>
-> +#include <linux/serdev.h>
-> +#include <linux/tty.h>
-> +#include <linux/tty_driver.h>
-> +#include <linux/greybus/hd.h>
-> +#include <linux/init.h>
-> +#include <linux/device.h>
-> +#include <linux/crc-ccitt.h>
-> +#include <linux/circ_buf.h>
-> +#include <linux/types.h>
-> +#include <linux/workqueue.h>
-> +
-> +#define RX_HDLC_PAYLOAD 1024
-> +#define CRC_LEN 2
-> +#define MAX_RX_HDLC (1 + RX_HDLC_PAYLOAD + CRC_LEN)
-> +#define TX_CIRC_BUF_SIZE 1024
-> +
-> +#define ADDRESS_GREYBUS 0x01
-> +#define ADDRESS_DBG 0x02
-> +#define ADDRESS_CONTROL 0x03
-> +
-> +#define HDLC_FRAME 0x7E
-> +#define HDLC_ESC 0x7D
-> +#define HDLC_XOR 0x20
-> +
-> +#define CONTROL_SVC_START 0x01
-> +#define CONTROL_SVC_STOP 0x02
-> +
-> +/* The maximum number of CPorts supported by Greybus Host Device */
-> +#define BEAGLEPLAY_GB_MAX_CPORTS 32
-> +
-> +/*
+Nope, biggest sample is correct.
 
-Use kerneldoc.
+> +        */
+> +       misalignment =3D bytes % max;
+> +       if (misalignment) {
+> +               printf("Misalignment %u. Adding Padding %u\n",=20
+> misalignment,  max - misalignment);
+> +               bytes +=3D max - misalignment;
+> +       }
+>=20
+>          return bytes;
+>   }
+>=20
+> I can send this as a proper patch if you guys think it is correct.
+Please do.
 
-> + * BeaglePlay Greybus driver
-> + *
-> + * @serdev: Serdev device
-> + *
-> + * @gb_host_device: greybud host device
-> + *
-> + * @tx_work: transmit work
-> + * @tx_producer_lock: transmit producer lock
-> + * @tx_consumer_lock: transmit consumer lock
-> + * @tx_circ_buf: transmit circular buffer
-> + * @tx_crc: HDCL CRC
-> + * @tx_ack_seq: current TX ACK sequence number
-> + *
-> + * @rx_buffer_len: Rx buffer length
-> + * @rx_in_esc: Rx Flag to indicate if ESC
-> + * @rx_buffer: Rx buffer
 
-This is absolutely useless comment. We know it is RX buffer because
-member is called "rx_buffer".
+>=20
+>=20
+> >>
+> >> Finally, when the watermark IRQ is used, we can't omit reading the
+> >> pressure data because clearing the WMI is done based on the pressure
+> >> data in FIFO. =20
+> >=20
+> > Hmm. That is a good reason to keep the available scan masks set.
+> > Add a comment on that next to the mask.
+> >  =20
+> >>
+> >> So, I would propose we do:
+> >>
+> >> static const unsigned long bm1390_scan_masks[] =3D {
+> >> 	BIT(BM1390_CHAN_PRESSURE) | BIT(BM1390_CHAN_TEMP),
+> >> 	BIT(BM1390_CHAN_PRESSURE), 0 =20
+> >=20
+> > Makes sense given need to read the pressure channel. =20
+> >>
+> >> which better reflects what the hardware is capable of - and, unless I =
+am
+> >> missing something, also allows us to offload the buffer demuxing to th=
+e IIO.
+> >>
+> >> Still, as mentioned in 1), the
+> >> =20
+> >>   >>> +static const unsigned long bm1390_scan_masks[] =3D {
+> >>   >>> +    BIT(BM1390_CHAN_PRESSURE) | BIT(BM1390_CHAN_TEMP), 0 =20
+> >>
+> >> does not seem to prevent enabling only the temperature channel - so in
+> >> the driver buffer handler we still must unconditionally read the
+> >> pressure data regardles the active_scan_mask. =20
+> >=20
+> > active_scan_mask should match the above - it's separate from what is en=
+abled.
+> > active_scan_mask is on the data capture side of the demux - the buffers
+> > are then fed repacked data reflecting what is enabled. =20
+>=20
+> Cool! So, the driver can rely on IIO asking for the pressure (in=20
+> active_scan_mask) after it has correctly set the available scan mask. It=
+=20
+> may not be a big thing but I like it. It is enough to take care of=20
+> ensuring all required stuff is read from HW in one place (in available=20
+> scan masks) and not to worry about it in actual data reading path but=20
+> just read stuff IIO is asking to be read. I like it.
+>=20
+> Another thing to note is that, when we build the available_scan_mask=20
+> array - we should either pay attention to the order of masks - or change=
+=20
+> the iio_scan_mask_match() to not accept first matching subset but to go=20
+> through all of the masks unless it finds and exactly matching one (and=20
+> in general prefer the smallest subset). Not sure this is worth the extra=
+=20
+> cycles though.
 
-> + */
-> +struct gb_beagleplay {
-> +	struct serdev_device *serdev;
-> +
-> +	struct gb_host_device *gb_host_device;
-> +
-> +	struct work_struct tx_work;
-> +	/* tx_producer_lock: HDLC producer lock */
+Yes, they do need to be ordered.  I'm not sure if that's clearly documented
+or not :(  If not, a patch to add docs on that would be welcome.
+I don't think it's worth likely complexity of finding the 'smallest match'
+and that's not always obvious.  Imagine a driver that as options
 
-Do not comment in two places - kerneldoc and in-line. Only one place.
+[A, B, C, D] and [A, B, C, E] - how to chose?  May well be more efficient
+to do one option than the other (require fewer address writes for the in
+order one.  Hence order in will matter anyway so we make it matter complete=
+ly
+with a policy of first match.
 
-> +	spinlock_t tx_producer_lock;
-> +	/* tx_consumer_lock: HDLC consumer lock */
-> +	spinlock_t tx_consumer_lock;
-> +	struct circ_buf tx_circ_buf;
-> +	u16 tx_crc;
-> +	u8 tx_ack_seq;
-> +
-> +	u16 rx_buffer_len;
-> +	u8 rx_in_esc;
-> +	u8 rx_buffer[MAX_RX_HDLC];
-> +};
-> +
-> +struct hdlc_payload {
-> +	u16 length;
-> +	void *payload;
-> +};
-> +
 
-...
+>=20
+> Thanks again - feel like I've learned something today :)
+No problem.  Was quite a while ago that we figured out how to make all this
+stuff work and I remember it being very fiddle.
 
-> +
-> +static int gb_serdev_init(struct gb_beagleplay *bg)
-> +{
-> +	u32 speed = 115200;
-> +	int ret;
-> +
-> +	serdev_device_set_drvdata(bg->serdev, bg);
-> +	serdev_device_set_client_ops(bg->serdev, &gb_beagleplay_ops);
-> +	ret = serdev_device_open(bg->serdev);
-> +	if (ret) {
-> +		return dev_err_probe(&bg->serdev->dev, ret,
-> +				     "Unable to Open Serial Device");
-> +	}
+Hohum. I should take another spin at our documentation at some point as
+I'm sure some of this is less clear than it should be (or not mentioned) :)
 
-Please run scripts/checkpatch.pl --strict and fix reported warnings.
-Some warnings can be ignored, but the code here looks like it needs a
-fix. Feel free to get in touch if the warning is not clear.
+Have a few big docs jobs to do (non IIO) at the moment so this will probably
+be a 'while'.
 
-> +	speed = serdev_device_set_baudrate(bg->serdev, speed);
-> +	serdev_device_set_flow_control(bg->serdev, false);
-> +
-> +	return 0;
-> +}
-> +
-> +static int gb_beagleplay_probe(struct serdev_device *serdev)
-> +{
-> +	int ret = 0;
-> +	struct gb_beagleplay *bg =
-> +		devm_kmalloc(&serdev->dev, sizeof(*bg), GFP_KERNEL);
+Jonathan
 
-Don't mix dynamic memory allocation with variable definition. That's not
-readable.
-
-> +
-
-There is never blank line between allocation and the check.
-
-> +	if (!bg)
-> +		return -ENOMEM;
-> +
-> +	bg->serdev = serdev;
-> +	ret = gb_serdev_init(bg);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = hdlc_init(bg);
-> +	if (ret)
-> +		goto free_serdev;
-> +
-> +	ret = gb_greybus_init(bg);
-> +	if (ret)
-> +		goto free_hdlc;
-> +
-> +	gb_beagleplay_start_svc(bg);
-> +
-> +	return 0;
-> +
-> +free_hdlc:
-> +	hdlc_deinit(bg);
-> +free_serdev:
-> +	gb_serdev_deinit(bg);
-> +	return ret;
-> +}
-> +
-> +static void gb_beagleplay_remove(struct serdev_device *serdev)
-> +{
-> +	struct gb_beagleplay *bg = serdev_device_get_drvdata(serdev);
-> +
-> +	gb_greybus_deinit(bg);
-> +	gb_beagleplay_stop_svc(bg);
-> +	hdlc_deinit(bg);
-> +	gb_serdev_deinit(bg);
-> +}
-> +
-> +static const struct of_device_id gb_beagleplay_of_match[] = {
-> +	{
-> +		.compatible = "beagle,play-cc1352",
-> +	},
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, gb_beagleplay_of_match);
-> +
-> +static struct serdev_device_driver gb_beagleplay_driver = {
-> +	.probe = gb_beagleplay_probe,
-> +	.remove = gb_beagleplay_remove,
-> +	.driver = {
-> +	      .name = "gb_beagleplay",
-> +	      .of_match_table = gb_beagleplay_of_match,
-
-This is still wrongly aligned. Spaces after tab. Are you sure checkpatch
-does not complain bout it?
-
-> +	    },
-
-Align with .driver, so only one tab.
-
-> +};
-> +
-> +module_serdev_device_driver(gb_beagleplay_driver);
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_AUTHOR("Ayush Singh <ayushdevel1325@gmail.com>");
-> +MODULE_DESCRIPTION("A Greybus driver for BeaglePlay");
-
-Best regards,
-Krzysztof
+>=20
+> Yours,
+> 	-- Matti Vaittinen
+>=20
 
 
