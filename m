@@ -1,107 +1,132 @@
-Return-Path: <devicetree+bounces-2847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 736227ACB86
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 21:02:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A54D97ACBA5
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 21:30:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id B9B851F23FF2
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 19:02:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 616A51C20753
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 19:30:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DC27DDD7;
-	Sun, 24 Sep 2023 19:02:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13818DDDE;
+	Sun, 24 Sep 2023 19:30:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6D12DDD3
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 19:02:23 +0000 (UTC)
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B9FAFC
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 12:02:22 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-401187f8071so35134135e9.0
-        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 12:02:22 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCD88D29E
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 19:30:10 +0000 (UTC)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1676F1
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 12:30:07 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9a64619d8fbso638293966b.0
+        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 12:30:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695582141; x=1696186941; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1695583806; x=1696188606; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SWFO82OJRYgOOb4Wcic+eTuDC/ArVTubTGTDywYSbzc=;
-        b=EQTvLB4/KPMaNDnSHZOBXt6alw8iLa1iSxGyVnRDvsIPP/3mke9g15fmL4yYsZLb2x
-         KujetD6l0jtCSj6YfdaQGGslHfUFsDQyxb/lp+BqmlWsYp/7fSlIGQ6AE+7mZ+9WZcPu
-         W7r9U+RLRziR0AS0LjqDKq81CzIjAf0a3KsR9GDx35cIubnXJV/lVZ3zC6hsaeDdXagk
-         hY2KClfCL8hyrAvYlS+Ja+b6iXwVjYwy+exrP/ra6o4LIdzu3/akxijAUeTtw9SLzCp9
-         nvUj7ZuGg64yMhKhe1rZ5K/kPSaCKosaF+UkOcNwpU/raKHVKEYCqOCijZLgLR64bctY
-         cpXw==
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uegV/6/zQE8HABESltJplBPPeOrCrEYD8pBkTSK6Xc8=;
+        b=CtgqL34nfFNkqcVLTI3azBkjAdGvICHQDFpfTN41wBWwFJPvnNLSpRkaAEmGlB8afS
+         VpA8PFfavik1xTqkH3DJrGz9e+2lnliS/gPXFmtHXecAPcqt6+zqBVqYDhfgVSUpWfEO
+         ULZJrqQGdfnQOGUx/Rd+YckVX4JVlrXj6jypy/no0SVGwI2BGrT+cnuM85FIgxU1asJS
+         PwxfT+5/NOcJhOUsec7PQD/26CxAk+RHMbW+h5tpri+ate2kdXgJVTtZUZFQ80xuZmG9
+         Q9X8v6/5+58f0JZBC9bTBa71GA63O5ISlCuz430H6G1FdICjVxC7nkFq1GPxGpmKBb29
+         eZxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695582141; x=1696186941;
+        d=1e100.net; s=20230601; t=1695583806; x=1696188606;
         h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=SWFO82OJRYgOOb4Wcic+eTuDC/ArVTubTGTDywYSbzc=;
-        b=NVdkBgSOSGjsHphxWboRxZJ0gRCJgNbikXlHBV3Vlnp+j4/F5U3vxC+rGIpxl6L1i0
-         AWylCP2k9NbDkHld/aP/TcYnp56e1dyjCZ2mzn8gXGuTr85hXa382q89Yn+w+6rB2JTL
-         TiHDDvQUcRGkzvHlOzGzZOL61gtcaQVPSD70uZLS3UmQQKZJyZKyZGQ8vAdyY+LQqeVb
-         GQ0C01Wx4nLZr+MCRIRgh8XdtaCOI3oc6QF40+3IJSOIwGFus8kw7NyO7B/5mXR+mHLw
-         FTyFkAfJJMQ+v/XBmlGXjC4hRDqyb9ma9zeSM0ZCcJtcKtNDr62pbdRDVera4ZJBcZeO
-         /BDg==
-X-Gm-Message-State: AOJu0Yw2VrchmxStVmU4J2WRadXOnFxyxXEdZqUgBeIC9cLdkNJCAXSh
-	o4pR4H5L4xTevOLwkLES28MISOTPGD0LX2Q5iSg=
-X-Google-Smtp-Source: AGHT+IGvIpya5xYZx8UP+clOr5taqAlEPDk6qq95Fp3D28P19k6rc0DjSP2/4NtsuZPojlLQeISVcA==
-X-Received: by 2002:a7b:ca4e:0:b0:405:3924:3cad with SMTP id m14-20020a7bca4e000000b0040539243cadmr4096134wml.15.1695582140804;
-        Sun, 24 Sep 2023 12:02:20 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id v2-20020a1cf702000000b003feae747ff2sm12980507wmh.35.2023.09.24.12.02.19
+        bh=uegV/6/zQE8HABESltJplBPPeOrCrEYD8pBkTSK6Xc8=;
+        b=dOtOqTpYdx2HgZ/mM/JG/hmolQ+I4P31EpaFhhdWrrZ62LcZgnmgYCgv2h/L7JhVdL
+         if+rLrLkPN+7JCTKDEc1NraK6tEZ972BR4a4ZUgb8bZICgmIKrWBq2jkZOQHnaPm+avu
+         SaxWkmZByVr7296XTDnbxdUPeJrJfTaIV335WBc1/OVMWPH+g8kPVvW6HyvXLkEYq0ak
+         yVpFckiO3hiEjr5AHE59sl5FkgC8tXfkI5djpf4XWNEaP4daQWJABxIr43KqFqRV+rjs
+         opKcjw3LTkUwrBg8cpx4hZ8Ng4qectRp2cszlccmG5WM3QBeMuH8Y+kUo0gY8hAGRgWi
+         fGDg==
+X-Gm-Message-State: AOJu0YyNbQC0iRuTnWMWqEV7cTiLBwftxoyms4WhNXGPPP3TIdFXQ8dX
+	18Epe1Ljvsokeo2Y1gyY25vYxYNU4HHo+g==
+X-Google-Smtp-Source: AGHT+IH/R2d9hfkFWuD+vF1uvLthvReN7rN3+88k2WDRPwF9nKHjqkihElcmj4QlDO26v7lW1IpP/w==
+X-Received: by 2002:a17:906:20d4:b0:9a2:86b:bb18 with SMTP id c20-20020a17090620d400b009a2086bbb18mr3813711ejc.26.1695583806172;
+        Sun, 24 Sep 2023 12:30:06 -0700 (PDT)
+Received: from jernej-laptop.localnet (82-149-12-148.dynamic.telemach.net. [82.149.12.148])
+        by smtp.gmail.com with ESMTPSA id e10-20020a1709061e8a00b009adc5802d08sm5289132ejj.190.2023.09.24.12.30.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Sep 2023 12:02:20 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-	Tony Lindgren <tony@atomide.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-omap@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] ARM: dts: omap3-devkit8000: correct ethernet reg addresses (split)
-Date: Sun, 24 Sep 2023 21:02:06 +0200
-Message-Id: <169558197844.54884.5866852884871225928.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230713152913.82846-1-krzysztof.kozlowski@linaro.org>
-References: <20230713152913.82846-1-krzysztof.kozlowski@linaro.org>
+        Sun, 24 Sep 2023 12:30:05 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: linux-sunxi@lists.linux.dev, Chris Morgan <macroalpha82@gmail.com>
+Cc: devicetree@vger.kernel.org, mripard@kernel.org, uwu@icenowy.me,
+ samuel@sholland.org, wens@csie.org, conor+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ andre.przywara@arm.com, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V5 1/4] arm: dts: sun8i: V3s: Add pinctrl for pwm
+Date: Sun, 24 Sep 2023 21:30:04 +0200
+Message-ID: <2697958.mvXUDI8C0e@jernej-laptop>
+In-Reply-To: <20230921135136.97491-2-macroalpha82@gmail.com>
+References:
+ <20230921135136.97491-1-macroalpha82@gmail.com>
+ <20230921135136.97491-2-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Dne =C4=8Detrtek, 21. september 2023 ob 15:51:33 CEST je Chris Morgan napis=
+al(a):
+> From: Chris Morgan <macromorgan@hotmail.com>
+>=20
+> Add pinctrl nodes for pwm0 and pwm1.
+>=20
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
 
-On Thu, 13 Jul 2023 17:29:13 +0200, Krzysztof Kozlowski wrote:
-> The davicom,dm9000 Ethernet Controller accepts two reg addresses.
-> 
-> 
-
-Patches were waiting long enough on the lists. I assume there are no objections,
-at least none were shared, and this just slipped through the cracks. I applied
-to my tree for further soc pull request, but if anyone wants to take it
-instead, let me know.
-
-Applied, thanks!
-
-[1/1] ARM: dts: omap3-devkit8000: correct ethernet reg addresses (split)
-      https://git.kernel.org/krzk/linux-dt/c/33d6227fcd1a8b68bf8d5e68f69a931dc87eac81
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Jernej
+
+> ---
+>  arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi b/arch/arm/boot/d=
+ts/allwinner/sun8i-v3s.dtsi
+> index 3b9a282c2746..c87476ea31e2 100644
+> --- a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
+> +++ b/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
+> @@ -414,6 +414,18 @@ mmc1_pins: mmc1-pins {
+>  				bias-pull-up;
+>  			};
+> =20
+> +			/omit-if-no-ref/
+> +			pwm0_pin: pwm0-pin {
+> +				pins =3D "PB4";
+> +				function =3D "pwm0";
+> +			};
+> +
+> +			/omit-if-no-ref/
+> +			pwm1_pin: pwm1-pin {
+> +				pins =3D "PB5";
+> +				function =3D "pwm1";
+> +			};
+> +
+>  			spi0_pins: spi0-pins {
+>  				pins =3D "PC0", "PC1", "PC2", "PC3";
+>  				function =3D "spi0";
+>=20
+
+
+
+
 
