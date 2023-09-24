@@ -1,49 +1,47 @@
-Return-Path: <devicetree+bounces-2807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C5817ACAC5
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 18:30:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF3FA7ACAD1
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 18:51:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 4D6061C203B8
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 16:30:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 88961281546
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 16:51:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3270D532;
-	Sun, 24 Sep 2023 16:30:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8D12D30D;
+	Sun, 24 Sep 2023 16:51:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E090ED52F
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 16:30:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47E70C433C7;
-	Sun, 24 Sep 2023 16:29:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B90E279C5;
+	Sun, 24 Sep 2023 16:51:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15D30C433C8;
+	Sun, 24 Sep 2023 16:51:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695573004;
-	bh=uYRCQ2zucvlrk52ERlYDBPTVc1ETibEKBm1kYIT/P/4=;
+	s=k20201202; t=1695574291;
+	bh=rKfvvK2fWtROu5dnahrRZoarOaavt6eOxye7CB3KXic=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=KVCmZO9iOQYsZYw0E9MTUchWLy0HeGoMgHSLvWtZ6lskXLyjQfvW7ApiGkIFbIwev
-	 XFlE546/vMSc0uB28pmJvUSsn9aFkZLLyChgEJ6WDAMvotT6bCwtjW5X3HBj6H7uuK
-	 yN4WCA1OUNWLo8Cg2OnHiDu8P8Why96DdExJHozZxOQJH+5J58Wg70B66M9ymPBkyu
-	 RfnlgrDwdiJZ7d/x11UNY1AQ9W3bkztyytu4pNwG+brrKxGcfw8QHaFS14xCLrwkhH
-	 CHEbexqi2z6qxqTAmJK+mx8iSqDyO6CqIGtSK1Wppftcg40NxbmUX513bBomsw7bbg
-	 ZYhUfgf16NwIA==
-Date: Sun, 24 Sep 2023 17:29:55 +0100
+	b=HwB/B5ZPJ6jTFkWe3POgACEQRFjxdgbrHbDdAtg6slmTKz5mkHC1YrqTVjSDJ2tx0
+	 LfM6kX1EkOT9wloJ5Jex0Ve+Cx8skibbINQzSJ29aN3SB1sk0fq7f+8DK0Gb7qVQKP
+	 1j7RwZXD1FPnZ/Kbb9w52I5FLPWDZHDBXWXtEpPnlgG1IB4pA89G3ntPzazB4Gx68T
+	 vnxMnVUBvHNImQyiOMpKnB2IgiKIrWsR8Ay2pApC91ifFp/QCRuTIrOwiZCuSDy3Dj
+	 S04JSSTZ5V2guwC1af2wT0zq6dz/sl3rHCeRiMTagTUMSqVw0WXhmR8jVql9iixM3Q
+	 17XGVm2VD9A1A==
+Date: Sun, 24 Sep 2023 17:51:23 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+To: David Lechner <dlechner@baylibre.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
  <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Angel Iglesias
- <ang.iglesiasg@gmail.com>, Andreas Klinger <ak@it-klinger.de>, Christophe
- JAILLET <christophe.jaillet@wanadoo.fr>, Benjamin Bara <bbara93@gmail.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 5/6] iio: pressure: Support ROHM BU1390
-Message-ID: <20230924172955.1a34c163@jic23-huawei>
-In-Reply-To: <2e2857aa26cf06353f6aeb6d2906ee7a8490aa1a.1695380366.git.mazziesaccount@gmail.com>
-References: <cover.1695380366.git.mazziesaccount@gmail.com>
-	<2e2857aa26cf06353f6aeb6d2906ee7a8490aa1a.1695380366.git.mazziesaccount@gmail.com>
+ Michael Hennerich <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Axel Haslam <ahaslam@baylibre.com>, Philip Molloy
+ <pmolloy@baylibre.com>
+Subject: Re: [PATCH v2 00/19] iio: resolver: move ad2s1210 out of staging
+Message-ID: <20230924175123.268e8de4@jic23-huawei>
+In-Reply-To: <20230921144400.62380-1-dlechner@baylibre.com>
+References: <20230921144400.62380-1-dlechner@baylibre.com>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -54,440 +52,134 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Fri, 22 Sep 2023 14:19:10 +0300
-Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+On Thu, 21 Sep 2023 09:43:41 -0500
+David Lechner <dlechner@baylibre.com> wrote:
 
-> Support for the ROHM BM1390 pressure sensor. The BM1390GLV-Z can measure
-> pressures ranging from 300 hPa to 1300 hPa with configurable measurement
-> averaging and internal FIFO. The sensor does also provide temperature
-> measurements.
+> Resending v2 with proper `PATCH v2` prefix.
 > 
-> Sensor does also contain IIR filter implemented in HW. The data-sheet
-> says the IIR filter can be configured to be "weak", "middle" or
-> "strong". Some RMS noise figures are provided in data sheet but no
-> accurate maths for the filter configurations is provided. Hence, the IIR
-> filter configuration is not supported by this driver and the filter is
-> configured to the "middle" setting (at least not for now).
+> Changes since v1:
+> * Address initial device tree patch feedback
+> * Drop "iio: sysfs: add IIO_DEVICE_ATTR_NAMED_RW macro" (related cleanups
+>   also dropped for now, will address in a future series if needed)
+> * Apply improvements as a series as patches to the staging driver. It is not
+>   quite ready for the move out of staging patch yet.
 > 
-> The FIFO measurement mode is only measuring the pressure and not the
-> temperature. The driver measures temperature when FIFO is flushed and
-> simply uses the same measured temperature value to all reported
-> temperatures. This should not be a problem when temperature is not
-> changing very rapidly (several degrees C / second) but allows users to
-> get the temperature measurements from sensor without any additional logic.
-> 
-> This driver allows the sensor to be used in two muitually exclusive ways,
-> 
-> 1. With trigger (data-ready IRQ).
-> In this case the FIFO is not used as we get data ready for each collected
-> sample. Instead, for each data-ready IRQ we read the sample from sensor
-> and push it to the IIO buffer.
-> 
-> 2. With hardware FIFO and watermark IRQ.
-> In this case the data-ready is not used but we enable watermark IRQ. At
-> each watermark IRQ we go and read all samples in FIFO and push them to the
-> IIO buffer.
-> 
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> This series has been tested on actual hardware using a EVAL-AD2S1210 evaluation
+> board. (Note: not all device tree features have been implemented in the driver
+> since the eval board doesn't support them out of the box. We plan to add them
+> later if needed.)
 
-Main question here is whether the fifo mode is useable if now interrupt
-is wired up?  I'm guessing not really as it's not worth dealing with making
-it work if someone can't be bothered to connect the wire.  In which case
-I'd expect few more things to be disable if no IRQ.
-Also, didn't think we'd have a validate_own_trigger callback set
-as that means the buffer is potentially also something that should go
-away if no interrupts are wired.
-
-Anyhow, other than that a few trivial things inline.
-
-Jonathan
-
+Thanks for breaking it up.
 
 > 
-> ---
-> Revision history:
+> One thing left over from the staging driver that probably needs more attention
+> still is the fault handling (both the fault threshold attributes and how
+> userspace gets notified of fault conditions). We considered adding these as
+> events, but the fault conditions are related to internal measurements in the
+> chip that aren't available as channels.
 > 
-> v2 => v3:
-> - Read temperature only after FIFO is read to overcome a HW quirck
-> - Drop unused defines
-> - Allow scanning the pressure only
-> - Some clarifying comments added, some made less verbose
-> - warn if measurement stp fails
-> - use IIO_VAL_FRACTIONAL for pressure scale
-> - don't disable IRQ but use timestamp from stack
-> - fix amount of samples to read
-> - minor styling
-> - better separate buffer and trigger parts
-> - allow buffer even when there is no IRQ
->   with external trigger to be supported.
-> - add completely, utterly useless NULL check because we have the cycles
->   to waste (grumbles)
+> Since the chip is designed to read the fault register each time we read the
+> data registers for one of the two channels it seems like faults should be
+> associated with channels one way or another. Would it make sense to add extra
+> channels for the internal signals that only have fault events (mostly with
+> IIO_EV_TYPE_THRESH)? Or would it make sense to add a new "flags" channel type
+> where the "raw" value is bit flags? Or something else?
 
-)Smiles)
+Fault reporting is a continuing problem across all similar subsystems.
+Every now and then there is a discussion about something 'generic' as
+in most cases you want faults to surface separately from the main datastream.
+Unfortunately no one ever did more than talk about it as far as I know.
 
+I'm not keen on the flags channel because it's effectively custom to a particular
+driver.  Describing the various possible bits in a way generic software can
+interpret them is really challenging.  Faults tend to be a lot less 'consistent
+in form' than actual data.  You are correct that at least some of these
+could be mapped to channels though.
 
+> 
+> Here is the table of available faults for context. Sine/cosine inputs are
+> internal signals.
 
-> diff --git a/drivers/iio/pressure/Makefile b/drivers/iio/pressure/Makefile
-> index c90f77210e94..436aec7e65f3 100644
-> --- a/drivers/iio/pressure/Makefile
-> +++ b/drivers/iio/pressure/Makefile
-> @@ -5,6 +5,7 @@
->  
->  # When adding new entries keep the list in alphabetical order
->  obj-$(CONFIG_ABP060MG) += abp060mg.o
-> +obj-$(CONFIG_ROHM_BM1390) += rohm-bm1390.o
->  obj-$(CONFIG_BMP280) += bmp280.o
->  bmp280-objs := bmp280-core.o bmp280-regmap.o
->  obj-$(CONFIG_BMP280_I2C) += bmp280-i2c.o
-> diff --git a/drivers/iio/pressure/rohm-bm1390.c b/drivers/iio/pressure/rohm-bm1390.c
-> new file mode 100644
-> index 000000000000..82a0cd61d215
-> --- /dev/null
-> +++ b/drivers/iio/pressure/rohm-bm1390.c
+Some of these we could consider 'normal' events.
+> 
+> | Bit | Description
+> +-----+------------
+> | D7  |  Sine/cosine inputs clipped
 
-> +
-> +/*
-> + * If the trigger is not used we just wait until the measurement has
-> + * completed. The data-sheet says maximum measurement cycle (regardless
-> + * the AVE_NUM) is 200 mS so let's just sleep at least that long. If speed
-> + * is needed the trigger should be used.
-> + */
-> +#define BM1390_MAX_MEAS_TIME_MS 205
-> +
-> +static int bm1390_read_data(struct bm1390_data *data,
-> +			struct iio_chan_spec const *chan, int *val, int *val2)
-> +{
-> +	int ret, warn;
-> +
-> +	mutex_lock(&data->mutex);
-> +	/*
-> +	 * We use 'continuous mode' even for raw read because according to the
-> +	 * data-sheet an one-shot mode can't be used with IIR filter.
-> +	 */
-> +	ret = bm1390_meas_set(data, BM1390_MEAS_MODE_CONTINUOUS);
-> +	if (ret)
-> +		goto unlock_out;
-> +
-> +	switch (chan->type) {
-> +	case IIO_PRESSURE:
-> +		msleep(BM1390_MAX_MEAS_TIME_MS);
-> +		ret = bm1390_pressure_read(data, val);
-> +		break;
-> +	case IIO_TEMP:
-> +		msleep(BM1390_MAX_MEAS_TIME_MS);
-> +		ret = bm1390_read_temp(data, val);
-> +		break;
-> +	default:
-> +		ret = -EINVAL;
-> +	}
-> +	warn = bm1390_meas_set(data, BM1390_MEAS_MODE_STOP);
-> +	if (warn)
-> +		dev_warn(data->dev, "Failed to stop measurementi (%d)\n", warn);
+Not really related to any channel.  It's pushing the boundaries
+a little but you could add an alternating voltage channel and
+describe this as a threshold being crossed on that.  It's a bit
+of a stretch but it is something existing tooling should handle
+even if it's not easy to interpret the error.
 
-measurement
+> | D6  |  Sine/cosine inputs below LOS threshold
+Also a threshold on the input alternative voltage channel.
+Problem here is that IIO only supports one threshold. So you
+would need to figure out how to handle this vs the clip detection.
 
-> +unlock_out:
-> +	mutex_unlock(&data->mutex);
-> +
-> +	return ret;
-> +}
-> +
+> | D5  |  Sine/cosine inputs exceed DOS overrange threshold
+Not 100% sure I understood this one right, but could it be considered
+an over threshold condition?
+> | D4  |  Sine/cosine inputs exceed DOS mismatch threshold
+My knowledge of resolvers is a little limited, but this could
+be considered an event on a differential channel (between
+sine and cosine inputs.
 
-> +static int __bm1390_fifo_flush(struct iio_dev *idev, unsigned int samples,
-> +			       s64 timestamp)
-> +{
-> +	/* BM1390_FIFO_LENGTH is small so we shouldn't run out of stack */
-> +	struct bm1390_data_buf buffer[BM1390_FIFO_LENGTH];
-> +	struct bm1390_data *data = iio_priv(idev);
-> +	int smp_lvl, ret, i, warn, dummy;
-> +	u64 sample_period;
-> +	__be16 temp = 0;
-> +
-> +	ret = regmap_read(data->regmap, BM1390_REG_FIFO_LVL, &smp_lvl);
-> +	if (ret)
-> +		return ret;
-> +
-> +	smp_lvl = FIELD_GET(BM1390_MASK_FIFO_LVL, smp_lvl);
-> +	if (!smp_lvl)
-> +		return 0;
-> +
-> +	if (smp_lvl > BM1390_FIFO_LENGTH) {
-> +		/*
-> +		 * The fifo holds maximum of 4 samples so valid values
-> +		 * should be 0, 1, 2, 3, 4 - rest are probably bit errors
-> +		 * in I2C line. Don't overflow if this happens.
-> +		 */
-> +		dev_err(data->dev, "bad FIFO level %d\n", smp_lvl);
-> +		smp_lvl = BM1390_FIFO_LENGTH;
-> +	}
-> +
-> +	sample_period = timestamp - data->old_timestamp;
-> +	do_div(sample_period, smp_lvl);
-> +
-> +	if (samples && smp_lvl > samples)
-> +		smp_lvl = samples;
-> +
-> +
-> +	/*
-> +	 * After some testing it appears that the temperature is not readable
-> +	 * untill the FIFO access has been done after the WMI. Thus, we need
-Spell check. until  (Why it doesn't have 2 ls is beyond me but that's English being
-annoyingly irregular)
+> | D3  |  Tracking error exceeds LOT threshold
+Not sure if this one is expected to occur except at reset.
+It describes it as result of a step change in rotational position
+which feels like something that doesn't happen other than when
+device is reset... Could be wrong though!
 
-> +	 * to read the all pressure values to memory and read the temperature
-> +	 * only after that.
-> +	 */
-> +	for (i = 0; i < smp_lvl; i++) {
-> +		/*
-> +		 * When we start reading data from the FIFO the sensor goes to
-> +		 * special FIFO reading mode. If any other register is accessed
-> +		 * during the FIFO read, samples can be dropped. Prevent access
-> +		 * until FIFO_LVL is read. We have mutex locked and we do also
-> +		 * go performing reading of FIFO_LVL even if this read fails.
-> +		 */
-> +		if (test_bit(BM1390_CHAN_PRESSURE, idev->active_scan_mask)) {
-> +			ret = bm1390_pressure_read(data, &buffer[i].pressure);
-> +			if (ret)
-> +				break;
-> +		}
-> +
-> +		/*
-> +		 * Old timestamp is either the previous sample IRQ time,
-> +		 * previous flush-time or, if this was first sample, the enable
-> +		 * time. When we add a sample period to that we should get the
-> +		 * best approximation of the time-stamp we are handling.
-> +		 *
-> +		 * Idea is to always keep the "old_timestamp" matching the
-> +		 * timestamp which we are currently handling.
-> +		 */
-> +		data->old_timestamp += sample_period;
-> +		buffer[i].ts = data->old_timestamp;
-> +	}
-> +	/* Reading the FIFO_LVL closes the FIFO access sequence */
-> +	warn = regmap_read(data->regmap, BM1390_REG_FIFO_LVL, &dummy);
-> +	if (warn)
-> +		dev_warn(data->dev, "Closing FIFO sequence failed\n");
-> +
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (test_bit(BM1390_CHAN_TEMP, idev->active_scan_mask)) {
-> +		ret = regmap_bulk_read(data->regmap, BM1390_REG_TEMP_HI, &temp,
-> +				       sizeof(temp));
-> +		if (ret)
-> +			return ret;
-> +		pr_info("Temp before reading the FIFO %u\n", be16_to_cpu(temp));
+> | D2  |  Velocity exceeds maximum tracking rate
+This one is I think just a threshold on velocity matching what the
+hardware is capable of.
 
-Why this print? 
-
-> +	}
-> +
-> +	if (ret)
-> +		return ret;
-> +
-> +	for (i = 0; i < smp_lvl; i++) {
-> +		buffer[i].temp = temp;
-> +		iio_push_to_buffers_with_timestamp(idev, &buffer[i],
-> +						   buffer[i].ts);
-You can just use iio_push_to_buffers() if you've already filled
-in the timestamp by hand. The _with_timestamp() version was just to reduce
-boilerplate (and given the main it has caused over the years, I'm not
-sure it was a good idea!)
-> +	}
-> +
-> +	return smp_lvl;
-> +}
-
-> +
-> +static const struct iio_info bm1390_info = {
-> +	.read_raw = &bm1390_read_raw,
-> +	.validate_trigger = iio_validate_own_trigger,
-> +	.hwfifo_set_watermark = bm1390_set_watermark,
-> +	.hwfifo_flush_to_buffer = bm1390_fifo_flush,
-
-Given my (possibly incorrect assumption) that the fifo is useless
-without the interrupt, I'd expect to see another version of this
-that has read_raw only set. 
-
-Also, why do we need validate_own_trigger.  I thought this could
-be used with other triggers. If not, then don't register the buffer
-for the case with no interrupt either.
-
-> +};
-> +
-
-> +
-> +static int bm1390_fifo_set_wmi(struct bm1390_data *data)
-> +{
-> +	u8 regval;
-> +
-> +	regval = data->watermark - BM1390_WMI_MIN;
-Trivial: I'd rather we didn't put stuff that clearly isn't the register
-value in a variable called regval.   I'd just go directly to
-
-	regval = FIELD_PREP(BM1390_MASK_FIFO_LEN,
-			    data->watermark - BMI1390_WMI_MIN);
-and avoid that first 'mis'use.
-
-> +	regval = FIELD_PREP(BM1390_MASK_FIFO_LEN, regval);
-> +
-> +	return regmap_update_bits(data->regmap, BM1390_REG_FIFO_CTRL,
-> +				  BM1390_MASK_FIFO_LEN, regval);
-> +}
-> +
-> +static int bm1390_fifo_enable(struct iio_dev *idev)
-> +{
-> +	struct bm1390_data *data = iio_priv(idev);
-> +	int ret;
-> +
-> +	/* We can't do buffered stuff without IRQ as we never get WMI */
-> +	if (data->irq <= 0)
-> +		return -EINVAL;
-> +
-> +	mutex_lock(&data->mutex);
-> +	if (data->trigger_enabled) {
-> +		ret = -EBUSY;
-> +		goto unlock_out;
-> +	}
-> +
-> +	/* Update watermark to HW */
-> +	ret = bm1390_fifo_set_wmi(data);
-> +	if (ret)
-> +		goto unlock_out;
-> +
-> +	/* Enable WMI_IRQ */
-> +	ret = regmap_set_bits(data->regmap, BM1390_REG_MODE_CTRL,
-> +			      BM1390_MASK_WMI_EN);
-> +	if (ret)
-> +		goto unlock_out;
-> +
-> +	/* Enable FIFO */
-> +	ret = regmap_set_bits(data->regmap, BM1390_REG_FIFO_CTRL,
-> +			      BM1390_MASK_FIFO_EN);
-> +	if (ret)
-> +		goto unlock_out;
-> +
-> +	data->state = BM1390_STATE_FIFO;
-> +
-> +	data->old_timestamp = iio_get_time_ns(idev);
-> +	ret = bm1390_meas_set(data, BM1390_MEAS_MODE_CONTINUOUS);
-> +
-> +unlock_out:
-> +	mutex_unlock(&data->mutex);
-> +
-> +	return ret;
-> +}
-> +
-> +static int bm1390_fifo_disable(struct iio_dev *idev)
-> +{
-> +	struct bm1390_data *data = iio_priv(idev);
-> +	int ret;
-> +
-> +	msleep(1);
-> +
-> +	mutex_lock(&data->mutex);
-> +	/* Disable FIFO */
-> +	ret = regmap_clear_bits(data->regmap, BM1390_REG_FIFO_CTRL,
-> +				BM1390_MASK_FIFO_EN);
-> +	if (ret)
-> +		goto unlock_out;
-> +
-> +	data->state = BM1390_STATE_SAMPLE;
-> +
-> +	/* Disable WMI_IRQ */
-> +	ret = regmap_clear_bits(data->regmap, BM1390_REG_MODE_CTRL,
-> +				 BM1390_MASK_WMI_EN);
-> +	if (ret)
-> +		goto unlock_out;
-> +
-> +	ret = bm1390_meas_set(data, BM1390_MEAS_MODE_STOP);
-
-I'm sure it works in this order but to my mind it would make more sense
-(and might still work) for fifo_disable() to be reverse of steps
-in fifo_enable().  So I'd expect the mode change first.
-> +
-> +unlock_out:
-> +	mutex_unlock(&data->mutex);
-> +
-> +	return ret;
-> +}
+> | D1  |  Phase error exceeds phase lock range
 
 
+> | D0  |  Configuration parity error
+This one has nothing to do with the data. I'd spit a log message
+out if you see it. Chances are device is dead. You 'could' keep
+a cache of what you think should be in the registers and try
+a full reset and re configuration.  Like any other parity error
+though you will want to have something watching for repeats that
+mean the part needs replacing.
 
-> +static int bm1390_probe(struct i2c_client *i2c)
-> +{
-> +	struct bm1390_data *data;
-> +	struct regmap *regmap;
-> +	struct iio_dev *idev;
-> +	struct device *dev;
-> +	unsigned int part_id;
-> +	int ret;
-> +
-> +	dev = &i2c->dev;
-> +
-> +	regmap = devm_regmap_init_i2c(i2c, &bm1390_regmap);
-> +	if (IS_ERR(regmap))
-> +		return dev_err_probe(dev, PTR_ERR(regmap),
-> +				     "Failed to initialize Regmap\n");
-> +
-> +	ret = devm_regulator_get_enable(dev, "vdd");
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to get regulator\n");
-> +
-> +	ret = regmap_read(regmap, BM1390_REG_PART_ID, &part_id);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to access sensor\n");
-> +
-> +	if (part_id != BM1390_ID)
-> +		dev_warn(dev, "unknown device 0x%x\n", part_id);
-> +
-> +	idev = devm_iio_device_alloc(dev, sizeof(*data));
-> +	if (!idev)
-> +		return -ENOMEM;
-> +
-> +	data = iio_priv(idev);
-> +	data->regmap = regmap;
-> +	data->dev = dev;
-> +	data->irq = i2c->irq;
-> +	/*
-> +	 * For now we just allow BM1390_WMI_MIN to BM1390_WMI_MAX and
-> +	 * discard every other configuration when triggered mode is not used.
-> +	 */
-> +	data->watermark = BM1390_WMI_MAX;
-> +	mutex_init(&data->mutex);
-> +
-> +	idev->channels = bm1390_channels;
-> +	idev->num_channels = ARRAY_SIZE(bm1390_channels);
-> +	idev->name = "bm1390";
-> +	idev->info = &bm1390_info;
-> +	idev->modes = INDIO_DIRECT_MODE | INDIO_BUFFER_SOFTWARE;
-
-Silly question that I might resolve as I read on.
-If we don't have the WMI interrupt, do we have buffer_software support?
-It could be made to work with a timer, but do you do so?
-
-> +
-> +	ret = bm1390_chip_init(data);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "sensor init failed\n");
-> +
-> +	ret = bm1390_setup_buffer(data, idev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* No trigger if we don't have IRQ for data-ready and WMI */
-> +	if (i2c->irq > 0) {
-> +		ret = bm1390_setup_trigger(data, idev, i2c->irq);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret = devm_iio_device_register(dev, idev);
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret,
-> +				     "Unable to register iio device\n");
-> +
-> +	return 0;
-> +}
+> 
+> David Lechner (19):
+>   dt-bindings: iio: resolver: add devicetree bindings for ad2s1210
+>   staging: iio: Documentation: document IIO resolver AD2S1210 sysfs
+>     attributes
+>   staging: iio: resolver: ad2s1210: fix ad2s1210_show_fault
+>   staging: iio: resolver: ad2s1210: fix not restoring sample gpio in
+>     channel read
+>   staging: iio: resolver: ad2s1210: fix probe
+>   staging: iio: resolver: ad2s1210: always use 16-bit value for raw read
+>   staging: iio: resolver: ad2s1210: implement IIO_CHAN_INFO_SCALE
+>   staging: iio: resolver: ad2s1210: use devicetree to get fclkin
+>   staging: iio: resolver: ad2s1210: use regmap for config registers
+>   staging: iio: resolver: ad2s1210: add debugfs reg access
+>   staging: iio: resolver: ad2s1210: remove config attribute
+>   staging: iio: resolver: ad2s1210: rework gpios
+>   staging: iio: resolver: ad2s1210: implement hysteresis as channel attr
+>   staging: iio: resolver: ad2s1210: refactor setting excitation
+>     frequency
+>   staging: iio: resolver: ad2s1210: read excitation frequency from
+>     control register
+>   staging: iio: resolver: ad2s1210: rename fexcit attribute
+>   staging: iio: resolver: ad2s1210: convert resolution to devicetree
+>     property
+>   staging: iio: resolver: ad2s1210: add phase_lock_range attributes
+>   staging: iio: resolver: ad2s1210: add triggered buffer support
+> 
+>  .../bindings/iio/resolver/adi,ad2s1210.yaml   | 150 +++
+>  .../sysfs-bus-iio-resolver-ad2s1210           | 109 ++
+>  drivers/staging/iio/resolver/Kconfig          |   1 +
+>  drivers/staging/iio/resolver/ad2s1210.c       | 948 +++++++++++-------
+>  4 files changed, 857 insertions(+), 351 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/iio/resolver/adi,ad2s1210.yaml
+>  create mode 100644 drivers/staging/iio/Documentation/sysfs-bus-iio-resolver-ad2s1210
+> 
 
 
