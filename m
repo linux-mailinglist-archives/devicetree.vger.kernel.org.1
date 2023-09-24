@@ -1,163 +1,200 @@
-Return-Path: <devicetree+bounces-2860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F12C7ACBF9
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 23:04:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B9EB7ACC6B
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 00:06:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 786A228141D
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 21:04:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 4D7BE1C203DB
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 22:06:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24BF6DF61;
-	Sun, 24 Sep 2023 21:04:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45C6EDF6E;
+	Sun, 24 Sep 2023 22:06:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B76FDDDB
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 21:04:26 +0000 (UTC)
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44273FA
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 14:04:24 -0700 (PDT)
-Received: by mail-ot1-x329.google.com with SMTP id 46e09a7af769-6c49f781855so3114057a34.3
-        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 14:04:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695589463; x=1696194263; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=g0+IXnh6MdnWPnySyYwtUtqhST9oEZJulxHM6uyxvQ4=;
-        b=FqfnGr8QQVjY3RXWX8rjtQu4CxjR3CkQY4oXDfwm7ETGhoedIRFfq6uXCAcTjFVdrQ
-         16QVR9ZPQveB9EIV4N3Yc1g5p/jFvVfV2HO+0A7T7e8t4xwi9qiSaz11BT4vfDJmAr4H
-         ze5Y0U1x2hD7knjJYGyrObpCJUQ+K2AFZ3+iEnU8X461hno1Q3oBsPO1eLDAkDGT6k3H
-         Ql9ndAdckL8kTlkf352PTKb3yjquK9MA0g8+g2ZhfOJX0d8CpZ/t5J/b7kqEYBhzI58B
-         BNrjP3uHtxHW645RSTISDCDeoYYPGaAOIoSO6zrojVjo7Qm/8txFvhjn4SiGvHixTrIc
-         wfPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695589463; x=1696194263;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=g0+IXnh6MdnWPnySyYwtUtqhST9oEZJulxHM6uyxvQ4=;
-        b=auiU+9Ipr4SWMjtj3wVqQ3m9lbQ/AwM/soG06d6KwBv02RswjOwv/va03uNg1mZL9y
-         OgZ1VMh+69P3w/jdxtrogdUUQneBEjghYgoHbjEu7vwwvTfoiRHGFuh49dQDErNjzeZM
-         gnGm1fnAxe0gshMnUUtvuYY+ip5F33ek++0jT4y41b9pdzNgH+GzL6Y73s7QxT1UqqbY
-         iCLxlhc4tkyiQ2LArwkBZom02sO6IyWN8jBnMWLKfwxK/qlsAjfa4LYLT2jRtozMmg4+
-         OtKjuBTh/Gh59FoCG+ZKHf6f4C9CJvizXKXSO3wemvmJZaaY/cr99lJHmjwBzHssRBR7
-         V8LA==
-X-Gm-Message-State: AOJu0YwkyiNdGFbdFKMXGyjXW3YkvJesOtAW/EPUKjClMR+Iqa66YIMO
-	MdvnLdGmBKlLPMXmcnRxJ6cVDQ==
-X-Google-Smtp-Source: AGHT+IGbiJk4Y9+XU8Ptt4Wl1I2OUjbjVI4QJKzGmg6mUgquLLndTEW5kkDKj1Tuej9OjSc13PljIw==
-X-Received: by 2002:a05:6358:6f12:b0:13c:eea2:d021 with SMTP id r18-20020a0563586f1200b0013ceea2d021mr4834597rwn.9.1695589463417;
-        Sun, 24 Sep 2023 14:04:23 -0700 (PDT)
-Received: from x1 ([191.96.37.211])
-        by smtp.gmail.com with ESMTPSA id e17-20020aa78251000000b0068feb378b89sm6879991pfn.171.2023.09.24.14.04.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Sep 2023 14:04:22 -0700 (PDT)
-Date: Sun, 24 Sep 2023 23:04:14 +0200
-From: Drew Fustini <dfustini@baylibre.com>
-To: Guo Ren <guoren@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE042DF61
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 22:06:44 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44296E8;
+	Sun, 24 Sep 2023 15:06:43 -0700 (PDT)
+Received: from mercury (cust-west-par-46-193-56-210.cust.wifirst.net [46.193.56.210])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 8990D66072E5;
+	Sun, 24 Sep 2023 23:06:41 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1695593201;
+	bh=sFjeHHLZbZiPI+RXlBUmPi02ydOBLFaAfIzsmR0k31c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iLQjZrQVEQGKVRB84GXjFrXvdnlXmDcST9nC9kN1YIOADkTZNxLoJeT5XVNmjOTYj
+	 WwBCXglGUVUQeN6825yUXOjeqe0z93vDIDy7dr6SupIzDUnoGKFJwhkzHpZpGll7uZ
+	 MLl1fRTwvCnRwEalfyw7eXp4uSScphzO18mwVmkOLl+CYjd+6er1Q90LtmQUJuQ+Hj
+	 pfb8ZiwmXqwdLZY6eL4XPlgyPvX8oZNbCIM5dn2uU+0qMCaOuci1jQJeUDK9xRjJg5
+	 FzKMYPiA7gMZoPrsUj/5lJYoqDgDUjOKBVzm1JacXyhR6wlfTqmVo2XAzJBIXXeJUl
+	 MhXPpPMdT4S7g==
+Received: by mercury (Postfix, from userid 1000)
+	id D63E410611D9; Mon, 25 Sep 2023 00:06:39 +0200 (CEST)
+Date: Mon, 25 Sep 2023 00:06:39 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: =?utf-8?B?VGFtw6FzIFN6xbFjcw==?= <tszucs@protonmail.ch>
+Cc: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>, Fu Wei <wefu@redhat.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Robert Nelson <robertcnelson@beagleboard.org>,
-	Jason Kridner <jkridner@beagleboard.org>,
-	Xi Ruoyao <xry111@xry111.site>, Han Gao <gaohan@iscas.ac.cn>,
-	Icenowy Zheng <uwu@icenowy.me>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 1/6] dt-bindings: mmc: sdhci-of-dwcmhsc: Add T-Head
- TH1520 support
-Message-ID: <ZRCkTqV2qV/tMb4O@x1>
-References: <20230921-th1520-mmc-v1-0-49f76c274fb3@baylibre.com>
- <20230921-th1520-mmc-v1-1-49f76c274fb3@baylibre.com>
- <20230922-parish-ice-a22e93dc3027@spud>
- <ZQ2tP48Z19C5xRug@x1>
- <CAJF2gTSeKnB=Zc6o1wJAOyax7d=RmDJ0o8PSOfkVo5BYVc=sAw@mail.gmail.com>
+	Heiko Stuebner <heiko@sntech.de>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Christopher Obbard <chris.obbard@collabora.com>,
+	Shreeya Patel <shreeya.patel@collabora.com>,
+	FUKAUMI Naoki <naoki@radxa.com>, Jagan Teki <jagan@edgeble.ai>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Add sdio node to rock-5b
+Message-ID: <20230924220639.pmlm2ivktxqtvk55@mercury.elektranox.org>
+References: <20230924203740.65744-1-tszucs@protonmail.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="evd46iowas6r6r5v"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJF2gTSeKnB=Zc6o1wJAOyax7d=RmDJ0o8PSOfkVo5BYVc=sAw@mail.gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+In-Reply-To: <20230924203740.65744-1-tszucs@protonmail.ch>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Sat, Sep 23, 2023 at 04:10:11PM +0800, Guo Ren wrote:
-> On Fri, Sep 22, 2023 at 11:18 PM Drew Fustini <dfustini@baylibre.com> wrote:
-> >
-> > On Fri, Sep 22, 2023 at 10:57:36AM +0100, Conor Dooley wrote:
-> > > Hey Drew,
-> > >
-> > > On Thu, Sep 21, 2023 at 06:49:48PM -0700, Drew Fustini wrote:
-> > > > Add compatible value for the T-Head TH1520 dwcmshc controller and add
-> > > > thead,phy-pull-up property.
-> > > >
-> > > > Signed-off-by: Drew Fustini <dfustini@baylibre.com>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml | 4 ++++
-> > > >  1 file changed, 4 insertions(+)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> > > > index a43eb837f8da..46b768d46712 100644
-> > > > --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> > > > +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> > > > @@ -19,6 +19,7 @@ properties:
-> > > >        - rockchip,rk3568-dwcmshc
-> > > >        - rockchip,rk3588-dwcmshc
-> > > >        - snps,dwcmshc-sdhci
-> > > > +      - thead,th1520-dwcmshc
-> > > >
-> > > >    reg:
-> > > >      maxItems: 1
-> > > > @@ -60,6 +61,9 @@ properties:
-> > > >      description: Specify the number of delay for tx sampling.
-> > > >      $ref: /schemas/types.yaml#/definitions/uint8
-> > > >
-> > > > +  thead,phy-pull-up:
-> > > > +    description: Enable weak pull-up on PHY pads
-> > > > +    type: boolean
-> > >
-> > > Why is the weak pull-up required? How would the dts author know if they
-> > > need to use this property?
-> >
-> > This is a good question, and I don't have a good reason beyond it is
-> > what the vendor SDK was doing.
-> >
-> > There are only two boards right now using the TH1520 that I know of.
-> > Both the LPi4a [1] and the Ahead [2] have the pull-up property set on
-> > all the mmc controller nodes their downstream device trees.
-> >
-> > Rob suggested on #devicetree that it would be simpler to just enable it
-> > in the driver and disable support when needed. I like this idea as it
-> > will simplify this binding patch and the code in the driver patch.
-> It's for the PHY debug. You could directly remove them, or keep it
-> with no-pull-up flag, then no pull-up flag in the dts for default..
 
-Thank you for explaining that the purpose of the pull-up DT property
-was for PHY debug.
+--evd46iowas6r6r5v
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I will plan to remove the pull-up DT property in the next version of
-this patch series and remove sdhci_phy_1_8v_init_no_pull() and
-sdhci_phy_3_3v_init_no_pull() from my sdhci-of-dwcmshc.c patch.
+Hi,
 
-I will make th1520_phy_1_8v_init() and th1520_phy_3_3v_init() always
-set WEAKPULL_EN = 1 (PULLUP) for CMDPAD_CNFG, DATAPAD_CNFG, RSTNPAD_CNFG
-and set WEAKPULL_EN = 2 (PULLDOWN) for STBPAD_CNFG.
+On Sun, Sep 24, 2023 at 08:37:45PM +0000, Tam=C3=A1s Sz=C5=B1cs wrote:
+> Enable SDIO on Radxa ROCK 5 Model B M.2 Key E. Add sdio node and alias as=
+ mmc2.
+> Add regulator for the 3.3 V rail bringing it up during boot. Make sure EK=
+EY_EN
+> is muxed as GPIO.
+>=20
+> Signed-off-by: Tam=C3=A1s Sz=C5=B1cs <tszucs@protonmail.ch>
+> ---
 
-Thanks,
-Drew
+Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+
+-- Sebastian
+
+>  .../boot/dts/rockchip/rk3588-rock-5b.dts      | 43 +++++++++++++++++++
+>  1 file changed, 43 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64=
+/boot/dts/rockchip/rk3588-rock-5b.dts
+> index 8ab60968f275..d1c3f9e10b3d 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> @@ -12,6 +12,7 @@ / {
+>  	aliases {
+>  		mmc0 =3D &sdhci;
+>  		mmc1 =3D &sdmmc;
+> +		mmc2 =3D &sdio;
+>  		serial2 =3D &uart2;
+>  	};
+> =20
+> @@ -76,6 +77,21 @@ vcc_1v1_nldo_s3: vcc-1v1-nldo-s3-regulator {
+>  		regulator-max-microvolt =3D <1100000>;
+>  		vin-supply =3D <&vcc5v0_sys>;
+>  	};
+> +
+> +	vcc3v3_wf: vcc3v3-wf-regulator {
+> +		compatible =3D "regulator-fixed";
+> +		regulator-name =3D "vcc3v3_wf";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt =3D <3300000>;
+> +		regulator-max-microvolt =3D <3300000>;
+> +		enable-active-high;
+> +		gpios =3D <&gpio1 RK_PD2 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-names =3D "default";
+> +		pinctrl-0 =3D <&vcc3v3_wf_en>;
+> +		startup-delay-us =3D <50000>;
+> +		vin-supply =3D <&vcc5v0_sys>;
+> +	};
+>  };
+> =20
+>  &cpu_b0 {
+> @@ -222,6 +238,12 @@ vcc5v0_host_en: vcc5v0-host-en {
+>  			rockchip,pins =3D <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
+>  		};
+>  	};
+> +
+> +	m2e {
+> +		vcc3v3_wf_en: vcc3v3-wf-en {
+> +			rockchip,pins =3D <1 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+>  };
+> =20
+>  &pwm1 {
+> @@ -258,6 +280,27 @@ &sdmmc {
+>  	status =3D "okay";
+>  };
+> =20
+> +&sdio {
+> +	max-frequency =3D <200000000>;
+> +	no-sd;
+> +	no-mmc;
+> +	non-removable;
+> +	bus-width =3D <4>;
+> +	cap-sdio-irq;
+> +	disable-wp;
+> +	keep-power-in-suspend;
+> +	wakeup-source;
+> +	sd-uhs-sdr12;
+> +	sd-uhs-sdr25;
+> +	sd-uhs-sdr50;
+> +	sd-uhs-sdr104;
+> +	vmmc-supply =3D <&vcc3v3_wf>;
+> +	vqmmc-supply =3D <&vcc_1v8_s3>;
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&sdiom0_pins>;
+> +	status =3D "okay";
+> +};
+> +
+>  &spi2 {
+>  	status =3D "okay";
+>  	assigned-clocks =3D <&cru CLK_SPI2>;
+> --=20
+> 2.40.1
+>=20
+>=20
+
+--evd46iowas6r6r5v
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmUQsuwACgkQ2O7X88g7
++po7tA/9GVojHnrT4ofeu/2nOa8IG0Szx1UBwyUgqqMqHi9AVyZWWAFv0Z2lm/T+
+dh12mhSaIMYoCnq997/QGbnZOmnTxp2hZpoDb+Fostz/BvF8LARLaU375lEKWfxK
+ufCYe54vI0mGArwPb/U99G1eIxFT0FxuzgOIqrLXHXVE+tHYqHI6hscuvVwwVhA3
+ls9mfjeH8cYRkF+9ZWiASkioLFhbnkfnbN5coAPiBotQn6O36eIVfmmvxqvvRUOs
+doDnR9qruAYeiYBvOFGlCDVe8hmQvCoZ1G1e2pEs/2P8Wxv6JtejiRSOEJmj4Nnf
+TSpEKk506x8bFV4utcGDmjqa5LtKtXr6PvaWU1vKt5cUS6Co4/7DgEooJszeYpF/
+KsILtnXmKvnSWvh6Awnx+lsZh4J4RqQRToQm3RuwG3Dpa5CBWS9z+s5CB5bbUOI2
+pgevywuhaiwrS6j9WxjHDyI7+n6YHpvtBqsvOK1hxfTFfPiJEfYq/UO0gsz+0H/P
+kzAPDcTA0+hSPnSR6FScMHlm7UKOTPKXStN3MEvWyS1DLRdhhXS325uVBE/LayND
+ZNGn/gmXjETjGWzw3jHf0oPnk1++tGgXpOQ+PyHuVhiqmShCnMnBiWoKkRKRh4Im
+LXYOG1hNIYSCqAfzXJlDuSViL4Hxv0IpbmLWHQ6Sa3nvBuuN5tM=
+=Qg0D
+-----END PGP SIGNATURE-----
+
+--evd46iowas6r6r5v--
 
