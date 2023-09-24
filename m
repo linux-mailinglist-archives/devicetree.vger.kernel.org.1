@@ -1,147 +1,330 @@
-Return-Path: <devicetree+bounces-2820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ECA57ACB2C
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 19:55:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFC167ACB31
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 19:59:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 9ABF51C204FC
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 17:55:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 514D12816BE
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 17:59:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A2C6DDAF;
-	Sun, 24 Sep 2023 17:55:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B93EDDB0;
+	Sun, 24 Sep 2023 17:59:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BAE9D280
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 17:55:17 +0000 (UTC)
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2327BFC
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 10:55:16 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-53406799540so762708a12.1
-        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 10:55:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695578114; x=1696182914; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=A03d4SenI3qoD/0mJ6J5vk9hshjA/ZI6xbIXl5MHgGs=;
-        b=NzOZCgtKVR5l1lHEl8DTbzrUjhmZgLIaOJBK2s1JFYxePtC1nDXD2i2FH1HXshAKgR
-         7GBKnKCWmkViwpVSDJUXQB7Nb8eh+ZUhnVlA1ErfM2uuZtH/igyuph1kmkk9Ac/49YRd
-         eNmUKcKgUoWNQ3jVpuIPgSbnPBvTpBgRQXhFZdTD17G8HZW7s4CpMiUPLS9uvVfGjlDk
-         5q9mHs6vmJpquNaeb0K6Pnc/m4n/6Rl0/CDaJYgTmU4+BGvw1pHkBzXEWR8VcuqK9f+Z
-         BlrrFt3SMqlm0b4PYtWK5espAibgWV7CSmsN1Fo6KHED6M7aAWNZS7Q6dXRu7i9+9su+
-         fORw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695578114; x=1696182914;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A03d4SenI3qoD/0mJ6J5vk9hshjA/ZI6xbIXl5MHgGs=;
-        b=Apx5wE7CbGWEUMxQqdaQtQEPKyihhp1JSpOvN6bVq0nQDQb6HhnexbNaX94Vic3Gte
-         kUr2Bg/DhY21z30ybJrxzsRpnw3Mmiu0PMNpNiGAinhzYjGEKdnBdJswWEMgjqc1ywVP
-         BakC/ebip9BX65sCxyANi8YiQGm8cuIbJm4WDq+g1obq7MYrhKCerI3Pa/7hlJ07uTct
-         51sldZuqlBKQCYwMHU0dVzN3SbXsHzceEdZhaNzWe4oO/OqqJYjxO7DhRHo4TPHq/SqP
-         kW9eOiiyT0QjFb6+aZ9U9Esxc4ESB5UYd7mQ2DjiaHmazF598RgrrGqV/2EnZZJWtLHK
-         dWzQ==
-X-Gm-Message-State: AOJu0YwKDRUpX+woOuBPrS6IZMXv12hEWw4IylvJ9lkBzRSxNNHJYjmS
-	yKjdVwyujKak05PuFI339KOAwQ==
-X-Google-Smtp-Source: AGHT+IEsLlnD7P4LOstCxJ+ABgT/Jg6O64zKETnuhvnLxKGBhlVcv/9r7fU/wjyG5pPKzvU9BQm0Kg==
-X-Received: by 2002:a17:907:b12:b0:9ae:5212:e3b with SMTP id h18-20020a1709070b1200b009ae52120e3bmr3582316ejl.5.1695578114123;
-        Sun, 24 Sep 2023 10:55:14 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id gu20-20020a170906f29400b009ad8796a6aesm5238605ejb.56.2023.09.24.10.55.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Sep 2023 10:55:13 -0700 (PDT)
-Message-ID: <2955af92-5471-45e1-b342-9de3d995fad6@linaro.org>
-Date: Sun, 24 Sep 2023 19:55:12 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 541C0D268;
+	Sun, 24 Sep 2023 17:59:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0911C433C8;
+	Sun, 24 Sep 2023 17:59:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695578350;
+	bh=DtuGFc95uNt0rfMj/FIhrVYgTxyWUnjNj+n/XRqLJ5s=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=G5ynYbOQOjE70ewF8Lxs2qiF9BAA+U2/qi3qVpFwQeB1xU7a/hKG4xT3n+ZlVkskB
+	 UegYD2rXproSgfPeUmk0VYcHsFU946/eSC2nDK/H01f+KHktMzGdjSfZtApi5DZe3C
+	 gXBkz+gvtC9bEBt947z3xlug/IDcqkffT6C2OXsm9zUmnW+luaO+CaZr65rveil5pp
+	 z3UUeL7kZDEfdZ+DFOX7pFR+nNol/XJaNAC2+RRv55ywkyntt+UwkXheHrlga1QIur
+	 0g1kfZndfx16DViRFBYdC2BL9OzTl/QfwTRv9ANX4D7UPp4MNRnmRJyZSJXo1Jj1bm
+	 3+HTcfp9AV/aw==
+Date: Sun, 24 Sep 2023 18:59:02 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Michael Hennerich <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Axel Haslam <ahaslam@baylibre.com>, Philip Molloy
+ <pmolloy@baylibre.com>
+Subject: Re: [PATCH v2 09/19] staging: iio: resolver: ad2s1210: use regmap
+ for config registers
+Message-ID: <20230924185902.579a444b@jic23-huawei>
+In-Reply-To: <20230921144400.62380-10-dlechner@baylibre.com>
+References: <20230921144400.62380-1-dlechner@baylibre.com>
+	<20230921144400.62380-10-dlechner@baylibre.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: usb: ci-hdrc-usb2: Allow "fsl,imx27-usb" to
- be passed alone
-Content-Language: en-US
-To: Fabio Estevam <festevam@gmail.com>, gregkh@linuxfoundation.org
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- Fabio Estevam <festevam@denx.de>
-References: <20230924160351.692867-1-festevam@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230924160351.692867-1-festevam@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
-On 24/09/2023 18:03, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> imx27.dtsi describes its usb nodes as:
-> 
-> compatible = "fsl,imx27-usb";
-> 
-> Adjust the bindings to allow it and avoid the following schema warning:
-> 
-> usb@10024000: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	['fsl,imx27-usb'] is too short
+On Thu, 21 Sep 2023 09:43:50 -0500
+David Lechner <dlechner@baylibre.com> wrote:
 
-This probably could go with a fixes tag. In any case:
+> This makes use of the regmap API to read and write the configuration
+> registers. This simplifies code quite a bit and makes it safer
+> (previously, it was easy to write a bad value to the config registers
+> which causes the chip to lock up and need to be reset).
+> 
+I'd like a bit more description in here -mostly because I have no idea
+what the original code was doing.
+What were the MSB writes that followed main config writes for and why
+can we get rid of them>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Also, using regmap for only some accesses is a bit unusual. Add some
+text here to justify that decision.
 
-Best regards,
-Krzysztof
+Jonathan
+
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+
+
+> -/* write 1 bytes (address or data) to the chip */
+> -static int ad2s1210_config_write(struct ad2s1210_state *st, u8 data)
+> +/*
+> + * Writes the given data to the given register address.
+> + *
+> + * If the mode is configurable, the device will first be placed in
+> + * configuration mode.
+> + */
+> +static int ad2s1210_regmap_reg_write(void *context, unsigned int reg,
+> +				     unsigned int val)
+>  {
+> -	int ret;
+> +	struct ad2s1210_state *st = context;
+> +	struct spi_transfer xfers[] = {
+> +		{
+> +			.len = 1,
+> +			.rx_buf = &st->rx[0],
+> +			.tx_buf = &st->tx[0],
+> +			.cs_change = 1,
+> +		}, {
+> +			.len = 1,
+> +			.rx_buf = &st->rx[1],
+> +			.tx_buf = &st->tx[1],
+> +		},
+> +	};
+> +
+> +	/* values can only be 7 bits, the MSB indicates an address */
+> +	if (val & ~0x7F)
+> +		return -EINVAL;
+> +
+> +	st->tx[0] = reg;
+> +	st->tx[1] = val;
+>  
+>  	ad2s1210_set_mode(MOD_CONFIG, st);
+> -	st->tx[0] = data;
+> -	ret = spi_write(st->sdev, st->tx, 1);
+> -	if (ret < 0)
+> -		return ret;
+>  
+> -	return 0;
+> +	return spi_sync_transfer(st->sdev, xfers, ARRAY_SIZE(xfers));
+>  }
+>  
+> -/* read value from one of the registers */
+> -static int ad2s1210_config_read(struct ad2s1210_state *st,
+> -				unsigned char address)
+> +/*
+> + * Reads value from one of the registers.
+> + *
+> + * If the mode is configurable, the device will first be placed in
+> + * configuration mode.
+> + */
+> +static int ad2s1210_regmap_reg_read(void *context, unsigned int reg,
+> +				    unsigned int *val)
+>  {
+> +	struct ad2s1210_state *st = context;
+>  	struct spi_transfer xfers[] = {
+>  		{
+>  			.len = 1,
+> @@ -146,22 +176,34 @@ static int ad2s1210_config_read(struct ad2s1210_state *st,
+>  			.tx_buf = &st->tx[1],
+>  		},
+>  	};
+> -	int ret = 0;
+> +	int ret;
+>  
+>  	ad2s1210_set_mode(MOD_CONFIG, st);
+> -	st->tx[0] = address | AD2S1210_MSB_IS_HIGH;
+> +	st->tx[0] = reg;
+> +	/* Must be valid register address here otherwise this could write data.
+> +	 * It doesn't matter which one.
+> +	 */
+>  	st->tx[1] = AD2S1210_REG_FAULT;
+> -	ret = spi_sync_transfer(st->sdev, xfers, 2);
+> +
+> +	ret = spi_sync_transfer(st->sdev, xfers, ARRAY_SIZE(xfers));
+>  	if (ret < 0)
+>  		return ret;
+>  
+> -	return st->rx[1];
+> +	/* If the D7 bit is set on any read/write register, it indicates a
+
+IIO comments are
+	/*
+	 * If ...
+
+> +	 * parity error. The fault register is read-only and the D7 bit means
+> +	 * something else there.
+> +	 */
+> +	if (reg != AD2S1210_REG_FAULT && st->rx[1] & AD2S1210_ADDRESS_DATA)
+> +		return -EBADMSG;
+> +
+> +	*val = st->rx[1];
+> +
+> +	return 0;
+>  }
+>
+
+
+>  static ssize_t ad2s1210_store_control(struct device *dev,
+> @@ -264,25 +297,13 @@ static ssize_t ad2s1210_store_control(struct device *dev,
+>  		return -EINVAL;
+>  
+>  	mutex_lock(&st->lock);
+> -	ret = ad2s1210_config_write(st, AD2S1210_REG_CONTROL);
+> -	if (ret < 0)
+> -		goto error_ret;
+> -	data = udata & AD2S1210_MSB_IS_LOW;
+> -	ret = ad2s1210_config_write(st, data);
+> +	data = udata & ~AD2S1210_ADDRESS_DATA;
+> +	ret = regmap_write(st->regmap, AD2S1210_REG_CONTROL, data);
+>  	if (ret < 0)
+>  		goto error_ret;
+>  
+> -	ret = ad2s1210_config_read(st, AD2S1210_REG_CONTROL);
+> -	if (ret < 0)
+> -		goto error_ret;
+> -	if (ret & AD2S1210_MSB_IS_HIGH) {
+> -		ret = -EIO;
+> -		dev_err(dev,
+> -			"ad2s1210: write control register fail\n");
+> -		goto error_ret;
+> -	}
+>  	st->resolution =
+> -		ad2s1210_resolution_value[data & AD2S1210_SET_RESOLUTION];
+> +		ad2s1210_resolution_value[data & AD2S1210_SET_RES];
+>  	ad2s1210_set_resolution_pin(st);
+>  	ret = len;
+>  	st->hysteresis = !!(data & AD2S1210_ENABLE_HYSTERESIS);
+> @@ -315,30 +336,17 @@ static ssize_t ad2s1210_store_resolution(struct device *dev,
+>  		dev_err(dev, "ad2s1210: resolution out of range\n");
+>  		return -EINVAL;
+>  	}
+> +
+> +	data = (udata - 10) >> 1;
+> +
+>  	mutex_lock(&st->lock);
+> -	ret = ad2s1210_config_read(st, AD2S1210_REG_CONTROL);
+> -	if (ret < 0)
+> -		goto error_ret;
+> -	data = ret;
+> -	data &= ~AD2S1210_SET_RESOLUTION;
+> -	data |= (udata - 10) >> 1;
+> -	ret = ad2s1210_config_write(st, AD2S1210_REG_CONTROL);
+> -	if (ret < 0)
+> -		goto error_ret;
+> -	ret = ad2s1210_config_write(st, data & AD2S1210_MSB_IS_LOW);
+> +	ret = regmap_update_bits(st->regmap, AD2S1210_REG_CONTROL,
+> +				 AD2S1210_SET_RES, data);
+>  	if (ret < 0)
+>  		goto error_ret;
+> -	ret = ad2s1210_config_read(st, AD2S1210_REG_CONTROL);
+> -	if (ret < 0)
+> -		goto error_ret;
+> -	data = ret;
+> -	if (data & AD2S1210_MSB_IS_HIGH) {
+> -		ret = -EIO;
+> -		dev_err(dev, "ad2s1210: setting resolution fail\n");
+> -		goto error_ret;
+> -	}
+> +
+>  	st->resolution =
+> -		ad2s1210_resolution_value[data & AD2S1210_SET_RESOLUTION];
+> +		ad2s1210_resolution_value[data & AD2S1210_SET_RES];
+>  	ad2s1210_set_resolution_pin(st);
+>  	ret = len;
+>  error_ret:
+> @@ -351,13 +359,14 @@ static ssize_t ad2s1210_show_fault(struct device *dev,
+>  				   struct device_attribute *attr, char *buf)
+>  {
+>  	struct ad2s1210_state *st = iio_priv(dev_to_iio_dev(dev));
+> +	unsigned int value;
+>  	int ret;
+>  
+>  	mutex_lock(&st->lock);
+> -	ret = ad2s1210_config_read(st, AD2S1210_REG_FAULT);
+> +	ret = regmap_read(st->regmap, AD2S1210_REG_FAULT, &value);
+>  	mutex_unlock(&st->lock);
+>  
+> -	return (ret < 0) ? ret : sprintf(buf, "0x%02x\n", ret);
+> +	return ret < 0 ? ret : sprintf(buf, "0x%02x\n", value);
+
+You added the brackets in earlier patch. I've dropped them now
+from my tree which will make this not quite apply.
+
+
+
+>  }
+>  
+
+...
+
+>  
+>  static ssize_t ad2s1210_store_reg(struct device *dev,
+> @@ -409,14 +420,11 @@ static ssize_t ad2s1210_store_reg(struct device *dev,
+>  	struct iio_dev_attr *iattr = to_iio_dev_attr(attr);
+>  
+>  	ret = kstrtou8(buf, 10, &data);
+> -	if (ret)
+> +	if (ret < 0)
+>  		return -EINVAL;
+> +
+Unrelated. Also unnecessary as it doesn't return postive values.
+
+>  	mutex_lock(&st->lock);
+> -	ret = ad2s1210_config_write(st, iattr->address);
+> -	if (ret < 0)
+> -		goto error_ret;
+> -	ret = ad2s1210_config_write(st, data & AD2S1210_MSB_IS_LOW);
+> -error_ret:
+> +	ret = regmap_write(st->regmap, iattr->address, data);
+>  	mutex_unlock(&st->lock);
+>  	return ret < 0 ? ret : len;
+>  }
+> @@ -583,23 +591,12 @@ static int ad2s1210_initial(struct ad2s1210_state *st)
+>  	mutex_lock(&st->lock);
+>  	ad2s1210_set_resolution_pin(st);
+>  
+> -	ret = ad2s1210_config_write(st, AD2S1210_REG_CONTROL);
+> -	if (ret < 0)
+> -		goto error_ret;
+> -	data = AD2S1210_DEF_CONTROL & ~(AD2S1210_SET_RESOLUTION);
+> +	data = AD2S1210_DEF_CONTROL & ~AD2S1210_SET_RES;
+
+Somewhat unrelated and you may sort it later, but I'd like
+to see DEF_CONTROL broken out and FIELD_PREP() used for all the fields.
+Seems crazy to use a value, then drop some bits then fill them in with
+something else.
+
+>  	data |= (st->resolution - 10) >> 1;
+> -	ret = ad2s1210_config_write(st, data);
+> -	if (ret < 0)
+> -		goto error_ret;
+> -	ret = ad2s1210_config_read(st, AD2S1210_REG_CONTROL);
+> +	ret = regmap_write(st->regmap, AD2S1210_REG_CONTROL, data);
+>  	if (ret < 0)
+>  		goto error_ret;
+>  
+> -	if (ret & AD2S1210_MSB_IS_HIGH) {
+I guess this was meant to be a sanity check on the chip responding. 
+
+> -		ret = -EIO;
+> -		goto error_ret;
+> -	}
+> -
+>  	ret = ad2s1210_update_frequency_control_word(st);
+>  	if (ret < 0)
+>  		goto error_ret;
+> @@ -652,6 +649,52 @@ static int ad2s1210_setup_gpios(struct ad2s1210_state *st)
+>  	return 0;
+>  }
 
 
