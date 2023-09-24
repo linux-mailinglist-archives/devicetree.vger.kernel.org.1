@@ -1,136 +1,119 @@
-Return-Path: <devicetree+bounces-2775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FBA87AC7F4
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 14:21:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B4A07AC7F5
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 14:22:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id A6B3628102C
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 12:21:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id F07A1281599
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 12:22:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0051417DB;
-	Sun, 24 Sep 2023 12:21:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89AF615D5;
+	Sun, 24 Sep 2023 12:22:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7741139F
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 12:21:15 +0000 (UTC)
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F4EF101;
-	Sun, 24 Sep 2023 05:21:14 -0700 (PDT)
-Received: by mail-yb1-xb33.google.com with SMTP id 3f1490d57ef6-d8181087dc9so5185133276.3;
-        Sun, 24 Sep 2023 05:21:14 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CB3317DB
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 12:22:43 +0000 (UTC)
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22A97106;
+	Sun, 24 Sep 2023 05:22:40 -0700 (PDT)
+Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-692d2e8c003so661527b3a.1;
+        Sun, 24 Sep 2023 05:22:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695558073; x=1696162873; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MTfZjqjMpvXRZj3b3a+JLvwqBqzdhBKsQPxsSKfm4jQ=;
-        b=JmnRMdRUYmERcLwPlPVvJCbnxV/XbvmE+AMvSZTGztlVi2xyVEI4UKW7A6A9RLAYpU
-         VHz4T8KFsIBDqUy0uSZ9nXZBZLJSyFyt7DvjgQuk5s4wnSFND1b38I4P4gEh+G+DQMtK
-         bBcztbYiJZL4AES7RCXNRwCl4BzVS0a5YAWO566JJsINiLGTeJbUwiFWN0Kg6FhkdEG5
-         ncjJLsx2cvxj54ueD0jEqcv1yGsdApj5W9+bkVhNwlUkYBrMLapxZl0VhL2fsWVOLkQg
-         DilRj3XATDG8xPIfA/lFlBYhKdGwMjamLkR5rW1vR4SFNbAOFoj7JT/dvqKwOzzxA1QY
-         WLfg==
+        d=gmail.com; s=20230601; t=1695558159; x=1696162959; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=a2vcY7tF/zX/vLERKQFBiyXpiUq72NnOnw1gtUdIzwY=;
+        b=iEcqv9qcBKpLHRf2axvMDSvTBRE/J2vZ7r+zEw0DvR1dUObJsIhpoEtOjHHiLxOlGB
+         EWb11wtulXsQDXiyaJJyyO7dh1H+yirpRbXBUI/JvrWIMCDWVXofxPgb8iu5WzttHLqB
+         G2uHv3eD9wnbRzY/BoD/EAWY40E1rUcxn8bL4vHNI1jbgKvQPybx5lpEB7A2LIZdyKCe
+         +8CWL5AvJBLYCpZ8BNMNfXNmrCpN4mkRiqAWcUgd+EuYtTQRdOt72FBDwvMWWqUOkPBd
+         r6pBoDxR0CdGDPfMFkiMDn/Y+YJSMacSItgO3E7WrkTt1oXjmSOsCD0YKPhTvb9IxvYU
+         f8DA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695558073; x=1696162873;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MTfZjqjMpvXRZj3b3a+JLvwqBqzdhBKsQPxsSKfm4jQ=;
-        b=B8CRQvCrAbD/VNKMpx/zQJ7Q0f0QyBeXxyWV/Xfs3aSd8a1or+I9IXJI3wnNg6smnt
-         2o5E9NkMetE8Gr7g1uyt/LStQaxjTlKENrdOZEw694gzahMaI9mSCrVaVM4hkO4QHdAx
-         gXNXTr/Y0vtVrcrtZmtH9rh4x69hyHIjy3Rhti0pksxFbut0Msn26Avcdy5BGn+OqqZ4
-         3SfAbfNOha90wH+Y2Uemy0La+xByTpE89lcopte7VpY+7ZctxDiDzTBtacYq64RMnAcg
-         Ez8xZwGqKzx8GswPWJAufQ/wJyWc73Nlpv2JULpEv+dUe1uKrwjuK51pNdiBUOkO4mVU
-         yIFg==
-X-Gm-Message-State: AOJu0YxRpsdfiSombxCZIEKH2JQrKGnPguOXOH49fMtj4oA25N5fzF//
-	lPVQqfmAlfro//a+wTDS6q0LqpLrgSW0hVVFXG0=
-X-Google-Smtp-Source: AGHT+IF2jNaWBk87Cb4LztG+3BYADZk5wQU4zwUp4/XjFmSp0zIWGQD+y5IecCnZhP1NNVheMxVGBydqfLx6BDN44Oo=
-X-Received: by 2002:a25:a048:0:b0:d43:a84f:a6aa with SMTP id
- x66-20020a25a048000000b00d43a84fa6aamr3813704ybh.39.1695558073705; Sun, 24
- Sep 2023 05:21:13 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1695558159; x=1696162959;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=a2vcY7tF/zX/vLERKQFBiyXpiUq72NnOnw1gtUdIzwY=;
+        b=nLgtKyxJcO9BqbY7nocNH+YgNioWYjCK+WmLwOoEaBns5bVmopkzJ/AtqeYO2fgcx4
+         TMffzc6jC3lK4WbQaCiy5eP15EYKYEGzZJ3AaJMff+nKtMLrEPnLtGn9GYODMrY5xpyU
+         LkDXA+ncV9Hoes6hDLPRUg7uln2M9h1huubWYv0NFiiU0s/DELL6Mc7dtvabfo24M47Y
+         tMeeFFxi5QwPI6RhwBsd1rNu/OlJHw+cD/xwWCG5pb4Xj3JaYHHkPNYKJCaKusa0fGtb
+         8aseansz6ntHVIq5zqRpxZQF06uvoUUrTWNaQB6QsQGJp/M4ySC5pShGsnDCs1f6cCsU
+         PvdA==
+X-Gm-Message-State: AOJu0Yyj+RvoMeDsipYkrjCnkKeb3Lf678qWaYqPsXaHkxYahYndmI2o
+	c5U7QgX9OTsui+3PsKBDRP4=
+X-Google-Smtp-Source: AGHT+IFzH0CilMUpxjK7Ai5MGsLE7MUvQd6UclHut0zH0m8PXgN/bwJ7pFeIcalNBKxMiMJwX7I/gg==
+X-Received: by 2002:a17:90b:4ace:b0:274:98aa:72d8 with SMTP id mh14-20020a17090b4ace00b0027498aa72d8mr6467128pjb.3.1695558159500;
+        Sun, 24 Sep 2023 05:22:39 -0700 (PDT)
+Received: from [172.16.116.58] ([103.15.228.93])
+        by smtp.gmail.com with ESMTPSA id y3-20020a170902864300b001b0358848b0sm6741970plt.161.2023.09.24.05.22.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 24 Sep 2023 05:22:39 -0700 (PDT)
+Message-ID: <69f8f5aa-075c-0dc1-7a5f-bd6978c71f53@gmail.com>
+Date: Sun, 24 Sep 2023 17:52:33 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1693623752.git.zhoubinbin@loongson.cn> <16a37f6ad3cc9417b6638c2cd532d88c79468eb1.1693623752.git.zhoubinbin@loongson.cn>
- <885eab85-2c11-cf20-9187-55cd647fbe9f@infradead.org> <c7604f6c-4da7-47c4-abe9-e626b3efc665@infradead.org>
- <20230919-9ce82588fccdd641574b468c@fedora> <CAAhV-H73kp8zWJD7AKUvknmxow=f_cPBw9jctpmced6o_QCF6w@mail.gmail.com>
- <ea9ee2dd-b71a-4c97-a347-20536d7ad424@app.fastmail.com>
-In-Reply-To: <ea9ee2dd-b71a-4c97-a347-20536d7ad424@app.fastmail.com>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Sun, 24 Sep 2023 20:21:02 +0800
-Message-ID: <CAMpQs4Lp1y1=hp_Z7zRV7W0WCB047yDD5eqnuLHjdqHYZpchRQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/5] soc: loongson: loongson2_pm: Add dependency for INPUT
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: Huacai Chen <chenhuacai@kernel.org>, Conor Dooley <conor@kernel.org>, 
-	Randy Dunlap <rdunlap@infradead.org>, Binbin Zhou <zhoubinbin@loongson.cn>, 
-	Huacai Chen <chenhuacai@loongson.cn>, Yinbo Zhu <zhuyinbo@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	loongson-kernel@lists.loongnix.cn, soc@kernel.org, devicetree@vger.kernel.org, 
-	linux-pm@vger.kernel.org, WANG Xuerui <kernel@xen0n.name>, loongarch@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v5 1/3] dt-bindings: Add beagleplaycc1352
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ greybus-dev@lists.linaro.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ gregkh@linuxfoundation.org, vaishnav@beagleboard.org,
+ jkridner@beagleboard.org, nm@ti.com, krzysztof.kozlowski+dt@linaro.org,
+ vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org, conor+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20230924113725.164948-1-ayushdevel1325@gmail.com>
+ <20230924113725.164948-2-ayushdevel1325@gmail.com>
+ <0fd912a9-4aaa-d4bd-4ceb-7319d9f46db8@linaro.org>
+Content-Language: en-US
+From: Ayush Singh <ayushdevel1325@gmail.com>
+In-Reply-To: <0fd912a9-4aaa-d4bd-4ceb-7319d9f46db8@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_SBL_CSS,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Fri, Sep 22, 2023 at 10:43=E2=80=AFPM Arnd Bergmann <arnd@arndb.de> wrot=
-e:
+> So this is "Texas Instruments Simplelink CC1352P7 wireless MCU"? Since
+> you do not have any fixed feature and run general-purpose OS, then this
+> should be rather compatible matching actual hardware (so ti,cc1352p7).
+Yes, it is "Texas Instruments Simplelink CC1352P7 wireless MCU". Since 
+the docs suggest that all functionality of the device should be 
+mentioned in the bindings rather than just what is being used, I suppose 
+all the other properties can be defined as optional? The bindings for 
+this device do exist in Zephyr, so I guess that can be re-purposed for 
+Linux kernel. However, I think in that case it should be moved into 
+`soc` instead of `net`?
 >
-> On Tue, Sep 19, 2023, at 12:15, Huacai Chen wrote:
-> > On Tue, Sep 19, 2023 at 11:48=E2=80=AFPM Conor Dooley <conor@kernel.org=
-> wrote:
-> >> On Tue, Sep 19, 2023 at 08:36:50AM -0700, Randy Dunlap wrote:
-> >>
-> >> Seemingly this was sent again in isolation 2 weeks ago, but neither th=
-e
-> >> maintainer (Huacai) nor soc@kernel.org were on cc:
-> >>
-> >> https://lore.kernel.org/all/20230905123629.4510-1-zhuyinbo@loongson.cn=
-/
-> > v3 indeed cc-ed soc@kernel.org. :)
-> >
-> > Arnd, could you please take this series to the soc tree? And also this
-> > series:
-> > https://lore.kernel.org/loongarch/cover.1693534134.git.zhoubinbin@loong=
-son.cn/T/#t
->
-> Sorry, I have been traveling and not pushed out the tree yet.
->
-> Can you confirm that the input dependency is required for 6.6
-> and the other series can wait until 6.7? When you send patches
-> to soc@kernel.org, please always mention which tree you intend
-> them for. I might disagree, but it's better than having to guess.
->
-Hi Arnd:
+>> +
+>> +maintainers:
+>> +  - Ayush Singh <ayushdevel1325@gmail.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: beagle,play-cc1352
+>> +
+>> +required:
+>> +  - compatible
+> Still no resources? I asked about it last time and you did not answer
+> anything.
+Sorry, I missed that. By resources, I think you mean pins, peripherals, 
+etc right?
 
-Thanks for your reply.
 
-As we know, this driver was just merged in during the v6.6 window, and
-no release will use it until now:
+Ayush Singh
 
-commit 67694c076bd7 soc: loongson2_pm: add power management support
-commit 6054a676e969 soc: dt-bindings: add loongson-2 pm
-
-Now, since the Loongson-2K series SoCs are indifferent at the driver
-level, we used fallback compatible and added
-syscon-reboot/syscon-poweroff subnodes for power on/off functionality.
-These somewhat break the original devicetree rules.
-So, I think these patches need to be merged in before the v6.6 release
-to avoid unnecessary compatibility issues.
-Of course, I added the "Fixes:" tag in the corresponding patch.
-
-Thanks.
-Binbin
-
->      Arnd
 
