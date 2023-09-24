@@ -1,77 +1,74 @@
-Return-Path: <devicetree+bounces-2827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D51287ACB50
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 20:20:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBE6E7ACB5A
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 20:31:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id E5EC91C2048C
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 18:20:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 4C61C281688
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 18:31:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE759DDC4;
-	Sun, 24 Sep 2023 18:20:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D849FD29D;
+	Sun, 24 Sep 2023 18:31:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A0619CA5C
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 18:20:14 +0000 (UTC)
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7486BFC;
-	Sun, 24 Sep 2023 11:20:13 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9b27bc8b65eso91450466b.0;
-        Sun, 24 Sep 2023 11:20:13 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C3FAD288
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 18:31:12 +0000 (UTC)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8CE7FB
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 11:31:09 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9b0168a9e05so381627466b.3
+        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 11:31:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695579612; x=1696184412; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695580268; x=1696185068; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=a0W+/trWwbu/NCVII0SDu5FGXg+mV5jiZFYz95bx/6g=;
-        b=O1017DMeB7e4IyOLE1zRSXZ2yQPXejz3LZNeQqqcMhfVn2aVCEUshik2ASpREF1hao
-         ymKesFo1zDr60jy+R37+qS942KPbOLPcG1ofg08C62jYBL2z35PmX7KbGzn3XNm5aMtG
-         XwlBfk7q9B/hQNLQCb/yKsYg4hn8li+hprKlA4LatiHzjkHYI3M6oYz4RBY/OMnx/90I
-         /sAd2aw5P2U4IZqgT3TlAhVV7mBmdXs+LFmMB9HaZrzWeEGHMTXM4syWMdoYSOHPKraA
-         HlqtMxUrmARdmX7XT/y1OfHQzgP7pmdOyB4T39YkYSuDIc850nJjeHsyEukEnMtpEonA
-         ozRg==
+        bh=B3uSP3o9ardRpaQhkEgd5zKh22mwy8MCGageBq+4jv0=;
+        b=xl99iM4XN/rKttbXBDK7NKPRl7tqueh7EpwMXyuNt8rSD2T9rsoKb9USBvyxXEOgPp
+         /VInR4z45NuoOSZE7hAMj8qWUv4JXfsqmhb2AnMWn/vlyPQOlCsZZcq6WtuKqtaA8EE3
+         9jrGRH9HLvYr3P2uN8YajnpJ2pzj6yC2D0Yb8GuXWrBVT/RKFjots7wRYcu9i4bi8fvt
+         Wy/egsUUHaKWlK8IPW9o9JzMIArgg+mw77VMPLVO9xmmMnzZLAlSbI9UkIe9H42/FNGh
+         kGBcRnk1VMwP5lQuj1QAovpXTwva9rAkbZr49hTeqcF+0rGvyBU6cRNUt4rZqycraMCG
+         DfJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695579612; x=1696184412;
+        d=1e100.net; s=20230601; t=1695580268; x=1696185068;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=a0W+/trWwbu/NCVII0SDu5FGXg+mV5jiZFYz95bx/6g=;
-        b=rPvf4xhJcojFqvE+ChSbVGBZjDpPE4iVBqhQ+0zgs7Z0EiM6eBDTD7nMiKDtwygnwe
-         igt/TYEe5Y5hmk7o1tViPV4mm8jC8WQDINwSjYhcX63+bs0rOYm/1DUHNFc+yTT9h602
-         sSnw/N/62tvOXMPAR+TdsT0iVVsYXqOZxXgg6qJ7OVRAkdVFb9clk5XAzL8+Res7/svr
-         62oa9jj6QE3HKopsPxFydhD/C+cWkB0m06XOaAB/qBSInt6ZTiq3JUy7/urp8dYnSrSH
-         Th6nr5o17CBeYgK3uw8y0Nd7d+dn4SvFH42x/h0LgWzTgeMzOmvhUdVbOl8gvisi4MIp
-         TPTg==
-X-Gm-Message-State: AOJu0YzXihYSDweb5ST3IP2Tn9r1KPT/adNIvzITLPtKENcqzQiTx3Ap
-	f7akDms8ubVItiV1SJgRSxk=
-X-Google-Smtp-Source: AGHT+IFUlRTZ1QgAlngEAHo+92fSn9CMPMRh4wWpOlzkRUyyzEgCeFe3JMjYONjMQbQRm2YFLIKh5g==
-X-Received: by 2002:a17:906:3189:b0:9ae:3ee3:dc5a with SMTP id 9-20020a170906318900b009ae3ee3dc5amr4003581ejy.73.1695579611581;
-        Sun, 24 Sep 2023 11:20:11 -0700 (PDT)
-Received: from localhost.localdomain ([2a02:8109:8c00:3664:78ff:216e:b54c:1933])
-        by smtp.gmail.com with ESMTPSA id p20-20020a1709060e9400b009ae587ce135sm5249659ejf.223.2023.09.24.11.20.10
+        bh=B3uSP3o9ardRpaQhkEgd5zKh22mwy8MCGageBq+4jv0=;
+        b=m3BHbbvxevAUFVNUqIu9t08Vkr5WKEmYvi45QWYChmMS8MWDI7kvJ1yJ+Jr5vrxpaU
+         QSVTGmVbrGH0w6DG9J01rlF/5dbekZWbiLLhOBcvP10UwQhbM2g/JJ5uxPcPTZpktAQo
+         2TId35GaPuacNgXIHP3eHWZhVRvujtyVyWwuk28XgOB/Lq0d8AaeRlJz9mSLdac1WLyE
+         c7jgdqp4RuMg5UHIsUxjW1e1dDt5MixwNlMh8D/PIcecMhgaGZwN1uwoyEIVCMdB68yJ
+         2W8g+b8NME4e5QiFnwP5bC5BfVJNWLdbYxMuv1kjuZuwHUnvpka+BpPgEMhUXVcNVGC+
+         wuEw==
+X-Gm-Message-State: AOJu0YzrgDmxgu650YPjDHoE13HBRUULM3dt2gtfAHEQ37CKG2OxXPzI
+	gA5YcUaM8TyfNGDtZBQ3jeFfiusbjG8MeNarQ3I=
+X-Google-Smtp-Source: AGHT+IF28QSFVA9qjbvA3dya1Mq4QRPwYd9syrOpP+7JW6Xc61j2s4MuLrohjsyKHTizn7yuPtFUnA==
+X-Received: by 2002:a17:906:fe0e:b0:9ae:63bd:e4bb with SMTP id wy14-20020a170906fe0e00b009ae63bde4bbmr5028616ejb.41.1695580268355;
+        Sun, 24 Sep 2023 11:31:08 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.219.100])
+        by smtp.gmail.com with ESMTPSA id ty15-20020a170907c70f00b009ae6a6451fdsm4599845ejc.35.2023.09.24.11.31.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Sep 2023 11:20:11 -0700 (PDT)
-From: Nik Bune <n2h9z4@gmail.com>
-To: wim@linux-watchdog.org,
-	linux@roeck-us.net,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	nicolas.ferre@microchip.com,
-	alexandre.belloni@bootlin.com,
-	skhan@linuxfoundation.org,
-	claudiu.beznea@microchip.com
-Cc: Nik Bune <n2h9z4@gmail.com>,
-	linux-watchdog@vger.kernel.org,
+        Sun, 24 Sep 2023 11:31:07 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Rohit Agarwal <quic_rohiagar@quicinc.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3] dt-bindings: watchdog: atmel,at91rm9200-wdt: convert txt to yaml
-Date: Sun, 24 Sep 2023 20:19:59 +0200
-Message-Id: <20230924181959.64264-1-n2h9z4@gmail.com>
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [RESEND PATCH 1/3] ARM: dts: qcom: sdx65: correct PCIe EP phy-names
+Date: Sun, 24 Sep 2023 20:31:01 +0200
+Message-Id: <20230924183103.49487-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -80,84 +77,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Convert txt file to yaml.
+Qualcomm PCIe endpoint bindings expect phy-names to be "pciephy":
 
-Signed-off-by: Nik Bune <n2h9z4@gmail.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+  arch/arm/boot/dts/qcom/qcom-sdx65-mtp.dtb: pcie-ep@1c00000: phy-names:0: 'pciephy' was expected
+
+Fixes: 9c0bb38414a4 ("ARM: dts: qcom: sdx65: Add support for PCIe EP")
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
+ arch/arm/boot/dts/qcom/qcom-sdx65.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Changes in v3:
-- Removed trailing whitespace in an element of the maintainers list.
-
-v2 patch: https://lore.kernel.org/linux-devicetree/20230924172004.59208-1-n2h9z4@gmail.com/ 
-
- .../watchdog/atmel,at91rm9200-wdt.yaml        | 33 +++++++++++++++++++
- .../watchdog/atmel-at91rm9200-wdt.txt         |  9 -----
- 2 files changed, 33 insertions(+), 9 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml
- delete mode 100644 Documentation/devicetree/bindings/watchdog/atmel-at91rm9200-wdt.txt
-
-diff --git a/Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml b/Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml
-new file mode 100644
-index 000000000000..7af3571d89f2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml
-@@ -0,0 +1,33 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/atmel,at91rm9200-wdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel AT91RM9200 System Timer Watchdog
-+
-+maintainers:
-+  - Nicolas Ferre <nicolas.ferre@microchip.com>
-+
-+allOf:
-+  - $ref: watchdog.yaml#
-+
-+properties:
-+  compatible:
-+    const: atmel,at91rm9200-wdt
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    watchdog@fffffd00 {
-+        compatible = "atmel,at91rm9200-wdt";
-+        reg = <0xfffffd00 0x10>;
-+    };
-diff --git a/Documentation/devicetree/bindings/watchdog/atmel-at91rm9200-wdt.txt b/Documentation/devicetree/bindings/watchdog/atmel-at91rm9200-wdt.txt
-deleted file mode 100644
-index d4d86cf8f9eb..000000000000
---- a/Documentation/devicetree/bindings/watchdog/atmel-at91rm9200-wdt.txt
-+++ /dev/null
-@@ -1,9 +0,0 @@
--Atmel AT91RM9200 System Timer Watchdog
--
--Required properties:
--- compatible: must be "atmel,at91sam9260-wdt".
--
--Example:
--	watchdog@fffffd00 {
--		compatible = "atmel,at91rm9200-wdt";
--	};
+diff --git a/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
+index dd711484dfc9..c9790217320b 100644
+--- a/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
+@@ -337,7 +337,7 @@ pcie_ep: pcie-ep@1c00000 {
+ 			power-domains = <&gcc PCIE_GDSC>;
+ 
+ 			phys = <&pcie_phy>;
+-			phy-names = "pcie-phy";
++			phy-names = "pciephy";
+ 
+ 			max-link-speed = <3>;
+ 			num-lanes = <2>;
 -- 
 2.34.1
 
