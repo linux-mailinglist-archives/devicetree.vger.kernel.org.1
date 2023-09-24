@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-2877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 900E27ACCCE
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 00:53:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D9B37ACCD1
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 00:53:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3F7B3281350
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 22:53:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id EDCBA28134E
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 22:53:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FEEF101C4;
-	Sun, 24 Sep 2023 22:53:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B1A0101C5;
+	Sun, 24 Sep 2023 22:53:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 584FBA57
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 22:53:00 +0000 (UTC)
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5476210C
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 15:52:58 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-d862533ea85so4256610276.0
-        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 15:52:58 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E270A57
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 22:53:30 +0000 (UTC)
+Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D549ADA
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 15:53:29 -0700 (PDT)
+Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-59f4bc88f9fso34948177b3.2
+        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 15:53:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695595977; x=1696200777; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695596009; x=1696200809; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=RS3xD+hLJBCpSA21+g/xd7etHLQLdvhWyKWTwsdi+Ys=;
-        b=ZgBcvNTUhP1hpHAEKIFoatn/4BaYNRg3dWmK/Yn7uQBYcRbKTXDIkOiLiTyXe9U9K9
-         n7lj0qnjy/OMz1qodlO4icHJOn+7Isp632yS1uDvXPw513qnNjKJxQoWkRKhnC4iN8M7
-         XiUFMh7w/UctyQ5EMVrO74MVyPTDD2PuGej5QwXA2YxLWbP/HsTUecxS3fUGA/lvzlHa
-         LXSHq7G2qfC2QnkleXuaafb2R7p62drkuh0FWyPKM8trtAB1uQ47x2ZmwR339BW2AkEi
-         M2gmWA3uKQYN+uJyWRkqMXHMt4XcUk8mGVsn85PVhjVK/MiCslNZKxrgxz3dej++mxiQ
-         t80g==
+        bh=CECDzOBd7Sw1IlQRsWeZrGBWQioYp0atlrjefXDJZl0=;
+        b=LARfm5KHooVaVg2agIIYZ4fxZQiX/l5ffNUVyDsp8894dvaapiAnGgB1pRvAJwGFak
+         UESO+tSobe6UU1HNs63YhODKIjqD6HWF1teRamOtYnfYGIYWtMtECTTFbu6jMFzFrXwa
+         OdOcGBiVV7xA08VqVzaoJzW++X+4FdE0gImIMX6d5x2Wph1guBc6ABDUNwjZo63Q0qZq
+         5RgQ0FtXkuZVPVqeeC/sqMMF8QoUnxwocoEwl4JCwS/tOeUNj6tDSg6BPqq8wQAuKSR0
+         pXI3nVzw8QKk6TIxDSTsR9ZaZ1gYhAbwmovQEYNh9Q6b/nlQ7K9TWaTdlqNfQLaOHF7E
+         4wbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695595977; x=1696200777;
+        d=1e100.net; s=20230601; t=1695596009; x=1696200809;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=RS3xD+hLJBCpSA21+g/xd7etHLQLdvhWyKWTwsdi+Ys=;
-        b=LTuCVoYGRjEjovI+9TVv5luhEqtGM/9pIaX27r7aIl88vPr+eThaJ/g7SkKJYN9oFm
-         RkWwNI1Xzni3ej1IR2yExcTev1MkLiHvP3WNbOI/UhCJD9wMZRRJ40rdRXKywKVRfjjh
-         5FRlTwvXdr4XbBJJmtjRvbNuipSgWKdCvEHfPR/D5DKHBhMvKBgbbKrZpjxQXNUbzrmQ
-         6ETzBPe9kk89IIIRVJ3dm/QaGOTt+5sPjYW1Z+a8zb5pmuwgcQXMXjJF6TMihXlaeZZK
-         sUTwpuAOcgM65QJ1o9Rty5g+jFKX5Rdtc8SgpWQ3dFejgHXDGS18g1cVy7outSxrv3WQ
-         /tgg==
-X-Gm-Message-State: AOJu0Ywj09eDc5ZBi1yLcMMpVYYFcl5aS8IJD/ZQWZjuPDBcGFBVJhRz
-	9V5dC551OkkCVJ9a9u2YwSf5rYTMD1VwcxOIQE95dQ==
-X-Google-Smtp-Source: AGHT+IFUG+J6Ni1QrEn8tKGwp9fgqdY/HoTprD4Oql5fcXylygPKDAR6X6koHLVe++ySWBf9o11/f8lR3ldAmce81mw=
-X-Received: by 2002:a05:690c:2fc3:b0:59f:4c52:2f5d with SMTP id
- ex3-20020a05690c2fc300b0059f4c522f5dmr4199644ywb.2.1695595977476; Sun, 24 Sep
- 2023 15:52:57 -0700 (PDT)
+        bh=CECDzOBd7Sw1IlQRsWeZrGBWQioYp0atlrjefXDJZl0=;
+        b=Jy06pnLF3HJuRYfUHWo8/avfz3BBqQQfYN4oylFQ4OwbTEaq/OOyWY/s5/YTzKUwLe
+         oO7fkS+s7iTgS1NsH3s9BNwXKacf/cAegSlmY0bPou19ZTJlTIKPapaG9qW/PbU6VONa
+         1ZxJOFxZJ0FRs9r4DXqzhkCTBW+9JuMf2a+mj+8bA+IlBsnc6JHCrNJKt4Bnb8mmhwwD
+         U5aw7SSU1rZ0c8JdWvrYorLheitq86aKFXl6bGT4zRTs2Iikw6WgnoTpyf1R0xie6NCM
+         R0h9lfL2sf7PQ79CemZdirYHxdGVWvKAKpEuF/ulWO5ZD0oz8JK5f7X3Ah/P8qDLBKoE
+         CDeg==
+X-Gm-Message-State: AOJu0Yy5f14OWa0Q/21XUuIy84AMuW61XF04rD9WF7YawefWPNQjcrc0
+	3tSifsheZxjUIZZj7rcyZCsQDHSZ9WgJEtrmKJFgJ+F71kqOpNCSNx22DA==
+X-Google-Smtp-Source: AGHT+IEHwe921wPx5HEyg4aw/9FkxxX4B9PkvHunECmoUSzNQP5VzJpsZSNQJ5aAR7fCZ7mRZ89yo0k1I7fPFegmNqg=
+X-Received: by 2002:a0d:c101:0:b0:58d:7599:676a with SMTP id
+ c1-20020a0dc101000000b0058d7599676amr4816556ywd.37.1695596009057; Sun, 24 Sep
+ 2023 15:53:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230924183914.51414-1-krzysztof.kozlowski@linaro.org> <20230924183914.51414-2-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230924183914.51414-2-krzysztof.kozlowski@linaro.org>
+References: <20230924183914.51414-1-krzysztof.kozlowski@linaro.org> <20230924183914.51414-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230924183914.51414-3-krzysztof.kozlowski@linaro.org>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 25 Sep 2023 01:52:46 +0300
-Message-ID: <CAA8EJpqNON+TLxBodMhr0ZzKavNoaJi3RDrhic+UaDo8nnS9fA@mail.gmail.com>
-Subject: Re: [RESEND PATCH 2/4] ARM: dts: qcom: apq8060: drop incorrect regulator-type
+Date: Mon, 25 Sep 2023 01:53:18 +0300
+Message-ID: <CAA8EJpoyFsYNycq3SMqP4fdAU06w4aMdOQ3515NjjgyR0X6RUw@mail.gmail.com>
+Subject: Re: [RESEND PATCH 3/4] ARM: dts: qcom: mdm9615: populate vsdcc fixed regulator
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
 	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
@@ -79,18 +79,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 On Sun, 24 Sept 2023 at 21:39, Krzysztof Kozlowski
 <krzysztof.kozlowski@linaro.org> wrote:
 >
-> regulator-fixed does not have a "regulator-type" property:
+> Fixed regulator put under "regulators" node will not be populated,
+> unless simple-bus or something similar is used.  Drop the "regulators"
+> wrapper node to fix this.
 >
->   qcom-apq8060-dragonboard.dtb: regulator-fixed: Unevaluated properties are not allowed ('regulator-type' was unexpected)
->
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Fixes: 2c5e596524e7 ("ARM: dts: Add MDM9615 dtsi")
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  arch/arm/boot/dts/qcom/qcom-apq8060-dragonboard.dts | 1 -
->  1 file changed, 1 deletion(-)
+>  arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi | 14 ++++++--------
+>  1 file changed, 6 insertions(+), 8 deletions(-)
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
 
 -- 
 With best wishes
