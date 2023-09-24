@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-2769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CD1E7AC7D2
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 13:49:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C5FA7AC7D8
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 14:00:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id E0A7E1F2310C
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 11:49:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id AFD262815C4
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 12:00:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D72D91398;
-	Sun, 24 Sep 2023 11:49:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBB9D137E;
+	Sun, 24 Sep 2023 12:00:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0FA21375
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 11:49:30 +0000 (UTC)
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BF3F103
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 04:49:29 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9ad8a822508so572266366b.0
-        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 04:49:29 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1225D1368
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 12:00:32 +0000 (UTC)
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC865103
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 05:00:30 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-31f71b25a99so4625193f8f.2
+        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 05:00:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695556167; x=1696160967; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695556829; x=1696161629; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZKXfDq8RFlFcunVG3b5trMiuX2cCUltogo9A0LQGHcA=;
-        b=nTRsnw6EL0jyn+nqscuJdE2iZEo1YgzK5Ytdal9FS4U8kKn/HCFWxhX7Wj/1hRNeK3
-         xnN6wT6DXCkl38Gv1jy9dSWBSfHfeuTkBCbBUEKwSpRfn2f/3dJ+zecNDxaSmT8usrJD
-         iUEKGHsQurAEtQ7VEBScOK7nYB4OfEpU88zrD5l1upmzGaNB5c473YVL5f8PlVHqbdxf
-         eOgvZb1rrse1p6RnNP/aAgQVu5RP6ra5PDfj+b3mpdtDd9HavLavMl64DXGa1enhDzja
-         MKxQI6eewWEQcP/TmbZ8OnE+ljj0Z7ks/1tAiSV0Ow/+BtWqV4IxYrtWoluHU5c8vvJF
-         WQJw==
+        bh=dBOJish6GxNLMFSFNmns6IL1J0Fi1oU9wxX+89lv5vI=;
+        b=AEvynAlCVoVzHb4vIhZBeTWny0QQsN6utP8XZQy1NdM0Wm1Q+w3+jSwNzOv3VRxIc+
+         WfRAFdK6JYDbomI7CKwVg52gJR8roDQfoenSNQw05q0aprv3uDSyoYzpdZEUFc/cFA2o
+         TZNawIWrF/JjDtsMUBMvZ0M36nlDAHnzMlYtNF48Go35rMc5B3mSw2m+ZnXle6AIQaQp
+         N2Wvd+HtgWXEL5TjVgKvq58o86PgAltZNXJjSGh9LZypp6OYCWe5ogLn+uYV7f/LQl3S
+         GGDdk/2dLuy3ahcT8cdu0ol1rvlTWumRtDMwPmx3SDEE9wETW1GO1T62PwNwhfknseTx
+         HqQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695556167; x=1696160967;
+        d=1e100.net; s=20230601; t=1695556829; x=1696161629;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZKXfDq8RFlFcunVG3b5trMiuX2cCUltogo9A0LQGHcA=;
-        b=fgbhNVjuWp5rlN8mr0Hoh9eP3Wg6vYvDtAfcBKB2Z0l5ifyiedZdSJtpPwRt2y13cS
-         XeCi/FmAF2kbnnQGE3n2xu+ZE9P1+bMS80BkJVuuHYQWNarxi9HQARlUIu0oytGDURoy
-         omq6sI5EoINuGzsR+xqt54lnJsIMuyNyPfubUCVb4giUWP67v1nuBiYCZKdQRh3kLRMk
-         fxaofc88PAus6ysBUQqBvx2qmrhWTykIAlSjaLO/DHrtr/bfktkwCx29W607lKyhBGQJ
-         lEMp8EKYTgRfqHzSNfr/1UDtPAbW9F1jeY20Ol9cTxlWAF0yHFrxf9codWzDV5D9+lZu
-         Fz+w==
-X-Gm-Message-State: AOJu0Yz67yIzHXfh73/v+7STpYswfobd6rv/IrpSHRWD5rdITDFFT76s
-	dQgZ/rDbJ4iXXmdek8oIMkKyYg==
-X-Google-Smtp-Source: AGHT+IGRDfzFX7/VhW6vnjWtBmP/4Q5fGl/SoCKR8YZ7vonDBL5MEoAeEy+D528vIctCDF4NIT56GQ==
-X-Received: by 2002:a17:906:101a:b0:9ad:f143:e554 with SMTP id 26-20020a170906101a00b009adf143e554mr3628124ejm.30.1695556167561;
-        Sun, 24 Sep 2023 04:49:27 -0700 (PDT)
+        bh=dBOJish6GxNLMFSFNmns6IL1J0Fi1oU9wxX+89lv5vI=;
+        b=E2Ho1R1GJQCj1pA41xcdE5qzk9gN84CyU1B2/pEFNxwauOOBUUTvtRWzNJ7alWVW+Q
+         CryLADpgq8TQ4yQ/Bx8oZGy8YPc2c74mt54JXxUy84dnKANfTHwWelPBaLO5JNdLlPJd
+         XyrW+WD/lBjABBVt4Nk8BrKOd/5O/q9ienv8Eau2bLPM3vGtItQZ2fHS03rDyiu4jtL5
+         hRKITZa7qB+xLgPpM2Q6DfVyWgp/oxXHh/2p61kCjthN+GGiHf7zSNPAaZOlCQ3e3frn
+         5H3+hdi7pOyA/x1/WSfmR2rD9rk+3gDygz8I96AZ4PTk9lzLZqFAypIvbq6ZXbYPfLW+
+         42RA==
+X-Gm-Message-State: AOJu0YyylLV3Qxsw0J90246J660Ifc8oQH/LyFhxBdas9Jwy1o2c6ahr
+	sFyM6tA3/xnuar8eDLF/z8yyLg==
+X-Google-Smtp-Source: AGHT+IGO8bCTbMJp5fVQdgKbNu5/LSlEzUCvJRZBKQ27KJ/4WhcXJ+t6ywp5uxBWqEtgLTT7BspaIw==
+X-Received: by 2002:adf:f746:0:b0:31d:db92:31ae with SMTP id z6-20020adff746000000b0031ddb9231aemr3344191wrp.44.1695556829154;
+        Sun, 24 Sep 2023 05:00:29 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id a19-20020a170906275300b0099290e2c163sm4899657ejd.204.2023.09.24.04.49.25
+        by smtp.gmail.com with ESMTPSA id 12-20020a05600c240c00b003fc02e8ea68sm12284948wmp.13.2023.09.24.05.00.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Sep 2023 04:49:26 -0700 (PDT)
-Message-ID: <c31577ee-9d81-212b-42a6-e72a648f9276@linaro.org>
-Date: Sun, 24 Sep 2023 13:49:24 +0200
+        Sun, 24 Sep 2023 05:00:28 -0700 (PDT)
+Message-ID: <0fd912a9-4aaa-d4bd-4ceb-7319d9f46db8@linaro.org>
+Date: Sun, 24 Sep 2023 14:00:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,26 +64,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.1
-Subject: Re: [RFC PATCH v2 net-next 13/15] dt-bindings: lynx-pcs: add
- properties for backplane mode
+Subject: Re: [PATCH v5 1/3] dt-bindings: Add beagleplaycc1352
 Content-Language: en-US
-To: Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org
-Cc: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
- Heiner Kallweit <hkallweit1@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
- Florian Fainelli <f.fainelli@gmail.com>,
- Madalin Bucur <madalin.bucur@nxp.com>, Ioana Ciornei
- <ioana.ciornei@nxp.com>, Camelia Groza <camelia.groza@nxp.com>,
- Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor@kernel.org>, Sean Anderson <sean.anderson@seco.com>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>
-References: <20230923134904.3627402-1-vladimir.oltean@nxp.com>
- <20230923134904.3627402-14-vladimir.oltean@nxp.com>
+To: Ayush Singh <ayushdevel1325@gmail.com>, greybus-dev@lists.linaro.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ gregkh@linuxfoundation.org, vaishnav@beagleboard.org,
+ jkridner@beagleboard.org, nm@ti.com, krzysztof.kozlowski+dt@linaro.org,
+ vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org, conor+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20230924113725.164948-1-ayushdevel1325@gmail.com>
+ <20230924113725.164948-2-ayushdevel1325@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230923134904.3627402-14-vladimir.oltean@nxp.com>
+In-Reply-To: <20230924113725.164948-2-ayushdevel1325@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -93,55 +85,84 @@ X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 23/09/2023 15:49, Vladimir Oltean wrote:
-> When the Lynx PCS is deployed on a copper backplane link, it must be
-> prepared to handle clause 73 autoneg and clause 72 link training, which
-> it can do using a dedicated AN/LT block. The latter doesn't need to be
-> described in the device tree, because it is discoverable from the SerDes
-> lanes.
-> 
-> The media type that is deployed on the link is not discoverable though,
-> so the introduction of a fsl,backplane-mode boolean property appears
-> necessary to determine whether the AN/LT block should be employed, or
-> left bypassed.
-> 
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> ---
-> v1->v2: patch is new
-> 
->  .../devicetree/bindings/net/pcs/fsl,lynx-pcs.yaml | 15 ++++++++++++++-
->  1 file changed, 14 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/pcs/fsl,lynx-pcs.yaml b/Documentation/devicetree/bindings/net/pcs/fsl,lynx-pcs.yaml
-> index fbedf696c555..40fbcd80ee2a 100644
-> --- a/Documentation/devicetree/bindings/net/pcs/fsl,lynx-pcs.yaml
-> +++ b/Documentation/devicetree/bindings/net/pcs/fsl,lynx-pcs.yaml
-> @@ -16,11 +16,24 @@ description: |
->  
->  properties:
->    compatible:
-> -    const: fsl,lynx-pcs
-> +    enum:
-> +      - fsl,lx2160a-lynx-pcs
-> +      - fsl,lynx-pcs
->  
->    reg:
->      maxItems: 1
->  
-> +  phys:
-> +    maxItems: 4
-> +    description:
-> +      phandle for the SerDes lanes that act as PMA/PMD layer when the PCS is
-> +      part of a copper backplane PHY.
-> +
-> +  fsl,backplane-mode:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      Indicates that the PCS is deployed over a copper backplane link.
-> +
+On 24/09/2023 13:36, Ayush Singh wrote:
+> Adds DT bindings for BeaglePlay CC1352 co-processor.
 
-Please extend also existing example. If these do not apply to lynx-pcs,
-then they should be disallowed in allOf:if:then.
+I gave you the link to the exact wording you should use. "Add", not
+"Adds". The latter is not a correct English sentences, I believe.
+
+> 
+> BeaglePlay has a CC1352 co-processor connected to the main AM62 (running
+> Linux) over UART. In the BeagleConnect Technology, CC1352 is responsible
+> for handling 6LoWPAN communication with beagleconnect freedom nodes as
+> well as their discovery.
+> 
+> It is used by gb-beagleplay greybus driver.
+> 
+> Signed-off-by: Ayush Singh <ayushdevel1325@gmail.com>
+> ---
+>  .../bindings/net/beagle,play-cc1352.yaml      | 25 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 +++++
+>  2 files changed, 31 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/beagle,play-cc1352.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/beagle,play-cc1352.yaml b/Documentation/devicetree/bindings/net/beagle,play-cc1352.yaml
+> new file mode 100644
+> index 000000000000..f8536d1a6765
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/beagle,play-cc1352.yaml
+> @@ -0,0 +1,25 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/beagle,play-cc1352.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: BeaglePlay CC1352 co-processor
+
+So this is "Texas Instruments Simplelink CC1352P7 wireless MCU"? Since
+you do not have any fixed feature and run general-purpose OS, then this
+should be rather compatible matching actual hardware (so ti,cc1352p7).
+
+> +
+> +maintainers:
+> +  - Ayush Singh <ayushdevel1325@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: beagle,play-cc1352
+
+> +
+> +required:
+> +  - compatible
+
+Still no resources? I asked about it last time and you did not answer
+anything.
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    mcu {
+> +      compatible = "beagle,play-cc1352";
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 37b9626ee654..9d1b49a6dfad 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -8969,6 +8969,12 @@ F:	drivers/staging/greybus/sdio.c
+>  F:	drivers/staging/greybus/spi.c
+>  F:	drivers/staging/greybus/spilib.c
+>  
+> +GREYBUS BEAGLEPLAY DRIVERS
+> +M:	Ayush Singh <ayushdevel1325@gmail.com>
+> +L:	greybus-dev@lists.linaro.org (moderated for non-subscribers)
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/serial/beaglecc1352.yaml
+
+That's not a correct path.
+
 
 Best regards,
 Krzysztof
