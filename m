@@ -1,84 +1,129 @@
-Return-Path: <devicetree+bounces-2837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7759E7ACB73
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 20:39:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 834777ACB79
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 20:48:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 21E102816C6
-	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 18:39:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 1E93828169A
+	for <lists+devicetree@lfdr.de>; Sun, 24 Sep 2023 18:48:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F12FDDC9;
-	Sun, 24 Sep 2023 18:39:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 306FCDDCC;
+	Sun, 24 Sep 2023 18:48:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3251DDC4
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 18:39:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6545DDCA
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 18:48:34 +0000 (UTC)
 Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E9CCFC
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 11:39:25 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40572aeb73cso15600335e9.3
-        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 11:39:25 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D940DCE
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 11:48:32 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-405361bb93bso47703955e9.3
+        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 11:48:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695580764; x=1696185564; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=V4QGZskn2DYaZcH0HwU/BgdBem2G2usiIalK5gqegVI=;
-        b=o797mJQMXgJn22qDa7N/KuvzuT2rlXT44CfSNqoDs1iHtYhbebKTZmIjsFVA4G7COa
-         OJvzhbg1K835mqp6avAdEVdIWpfYDOxofAwqIn2DDX6eryAgDehnhr6E1HJReziPzG4R
-         8xw0/CPnvgdwnGHyzCuNmr2c/qsdUM7XeQ6diT+QlHO/0hZqyaANJlx6t/ZRgqquNhs4
-         YGeH0JrhVyxeB0OAFLZNpBb5AGlJ6KeogHeYQdG447r4/gv8PQGuEFG6QWWOfkLxKdPX
-         DklYv95NjNdjoen6FBcrZJv3l1+MyQefxl0PYlyfm5LggudjJiHlJOIe9bxHfCMFsD6V
-         ZHCw==
+        d=linaro.org; s=google; t=1695581311; x=1696186111; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xnmXOA+QaS63l50OfXpIek29rfu95uFcEdyHDfaQmtw=;
+        b=Flgrv60PVE8qsyt52tZJNQV3X2YWKBK7AH62/hXMjsu/1mIuPPVP3DcqX5drWF8psH
+         CBmI17DsSrih6ejAd81a7pmLX754lgCjZDx6/aX/AXoO6X8RffwZUw8qLabumnm8KlKp
+         IFJxe0IjpQdm/zrr4lr3MyyTiDxM9xIlQdmBlrMnT9+NKogIzCHjUZ2qg61YZw5r3i3d
+         XOo7T2qvAUlp+XeerKIieYfoOg5PliFdyaGOeYpVgKdMYJwfa9T6TgNQWZXtN494IMjY
+         VbcpfYBEZ1dPLdp7ubEOLUt22vBRyGTqdyubXhXLWhcmbimiWBojmF8P2rnmvopxNB+g
+         bZmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695580764; x=1696185564;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=V4QGZskn2DYaZcH0HwU/BgdBem2G2usiIalK5gqegVI=;
-        b=NZfhIFqewKdCEjqXRjmEVXzyTvKBzckEEQriEDkfSpgdWWRwRUpJP9bKHbeS6Tx09L
-         Hz5BDBtJcOmYZXPm/P3gVJKwj8UvEZlgYbVShldAQPCgRjMRnvtUNnmAe04ObDR5333L
-         bN+I1D0/YBGVox/nxEZNw06336ZjIjskZdX/M215dHGe/BwsqWD3Ot9/aOY62SG1SULE
-         dxO/l0G/RDrUMuzUxK7nQXfy6FzAqcnREJksfT1C9gWvrUf1wzMUegPBmxjgS9x5eKKy
-         SYwSWDSuuH0BPSx2kbbMbaXZSS0r2ipNT+Ni+Gg0GlK3hPp1ps3U6XWmylNBnhlDnnyE
-         JgEw==
-X-Gm-Message-State: AOJu0YyJw4tX+9nOfFLGHFO8300Dbed58HBqZ2QcmKUzPJIxZci+N/6V
-	B7ULx+HVirnTgWKDpmgicWpVsg==
-X-Google-Smtp-Source: AGHT+IEfxrMEzlSC+hdQp0TL0iJHbNZcOyk6Pqd6RnD8uZLMsi/XQAjZkCT/yxAqug8YWxpALmprIQ==
-X-Received: by 2002:a1c:7904:0:b0:403:787:e878 with SMTP id l4-20020a1c7904000000b004030787e878mr3908479wme.21.1695580763418;
-        Sun, 24 Sep 2023 11:39:23 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id v20-20020a05600c215400b00401b242e2e6sm7570446wml.47.2023.09.24.11.39.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Sep 2023 11:39:23 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Stephen Boyd <sboyd@codeaurora.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [RESEND PATCH 4/4] ARM: dts: qcom: ipq8064: move keys and leds out of soc node
-Date: Sun, 24 Sep 2023 20:39:14 +0200
-Message-Id: <20230924183914.51414-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230924183914.51414-1-krzysztof.kozlowski@linaro.org>
-References: <20230924183914.51414-1-krzysztof.kozlowski@linaro.org>
+        d=1e100.net; s=20230601; t=1695581311; x=1696186111;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xnmXOA+QaS63l50OfXpIek29rfu95uFcEdyHDfaQmtw=;
+        b=os1fVS/fcUbAiTiq98/ii8z3AyFLQ0JUCQncSb94ZsbiCxFdvzweZfibhkZ46gbc0x
+         98gQEJV3anNdcNNDBzHKl/u09qY8V4Hu90eRN2G6YQsoHR6ze25oc08tERc7ou9TFKGI
+         nzoLYYKsaMDjAchwU9lO9og37ZsK11Tvlugi2/NmHXXvG06J3JYuoHVx4BYMs+PRnwQf
+         GhdG3Y7n1ADaNNJ66V3N16ggCyi5r6+WFm0vIFYU2R1uXEBilmGT6tU6XHZgW74GbV7h
+         jhRmcJ6Vgku6uyEtTZn8Jl+oLyrS4cnVDdxjJEBRD1r+392500AKdNct/TLR8SUThJ+Z
+         hd5A==
+X-Gm-Message-State: AOJu0YwToivI45D+IJA8B82GtBD/2/ChJKyguZSDajePQ3gcwQHgloyh
+	+aXN1Prs5Ti1m8wtSqBj3bY5wg==
+X-Google-Smtp-Source: AGHT+IHyH0HKd5TJnAMW3M3Xdk7i6R8SJsZpVD090tzbS9CszgulAe1FBk9IZWdv21USwgLraypf+g==
+X-Received: by 2002:a5d:68c6:0:b0:319:8bb3:ab83 with SMTP id p6-20020a5d68c6000000b003198bb3ab83mr4326273wrw.66.1695581311308;
+        Sun, 24 Sep 2023 11:48:31 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.100])
+        by smtp.gmail.com with ESMTPSA id h4-20020a056000000400b0031aef72a021sm9960058wrx.86.2023.09.24.11.48.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 24 Sep 2023 11:48:30 -0700 (PDT)
+Message-ID: <54d7a712-0b07-462a-8750-4b5b2f3150c4@linaro.org>
+Date: Sun, 24 Sep 2023 20:48:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] riscv: dts: use capital "OR" for multiple licenses in
+ SPDX
+Content-Language: en-US
+To: =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20230823085238.113642-1-krzysztof.kozlowski@linaro.org>
+ <5962565.lOV4Wx5bFT@jernej-laptop>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <5962565.lOV4Wx5bFT@jernej-laptop>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
@@ -86,232 +131,41 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-GPIO keys and LEDs are not part of the SoC, so move them to top-level to
-fix dtbs_check warnings like:
+On 23/08/2023 21:13, Jernej Škrabec wrote:
+> Dne sreda, 23. avgust 2023 ob 10:52:38 CEST je Krzysztof Kozlowski napisal(a):
+>> Documentation/process/license-rules.rst and checkpatch expect the SPDX
+>> identifier syntax for multiple licenses to use capital "OR".  Correct it
+>> to keep consistent format and avoid copy-paste issues.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> ---
+>>
+>> Rebased on next-20230822, so might not apply cleanly.  What does not
+>> apply, can be skipped and I will fix it after next RC.
+>> ---
+>>  arch/riscv/boot/dts/allwinner/sun20i-common-regulators.dtsi     | 2 +-
+>>  arch/riscv/boot/dts/allwinner/sun20i-d1-dongshan-nezha-stu.dts  | 2 +-
+>>  .../boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-480p.dts    | 2 +-
+>>  .../boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-720p.dts    | 2 +-
+>>  arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel.dtsi | 2 +-
+>>  arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dts      | 2 +-
+>>  arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv.dts           | 2 +-
+>>  arch/riscv/boot/dts/allwinner/sun20i-d1-mangopi-mq-pro.dts      | 2 +-
+>>  arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts               | 2 +-
+>>  arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi                    | 2 +-
+>>  arch/riscv/boot/dts/allwinner/sun20i-d1s-mangopi-mq.dts         | 2 +-
+>>  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi                   | 2 +-
+>>  arch/riscv/boot/dts/allwinner/sunxi-d1-t113.dtsi                | 2 +-
+>>  arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi               | 2 +-
+> 
+> Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> 
+> sunxi DT changes are already closed for 6.5. I can take it after -rc1 for 6.6.
 
-  qcom-ipq8064-rb3011.dtb: soc: gpio-keys: {'compatible': ['gpio-keys'], ... should not be valid under {'type': 'object'}
-        from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+Hmmmm and what is the status of taking it after rc1?
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../arm/boot/dts/qcom/qcom-ipq8064-rb3011.dts |  55 ++++----
- arch/arm/boot/dts/qcom/qcom-ipq8064-v1.0.dtsi | 122 +++++++++---------
- 2 files changed, 88 insertions(+), 89 deletions(-)
-
-diff --git a/arch/arm/boot/dts/qcom/qcom-ipq8064-rb3011.dts b/arch/arm/boot/dts/qcom/qcom-ipq8064-rb3011.dts
-index 1796ded31d17..12e806adcda8 100644
---- a/arch/arm/boot/dts/qcom/qcom-ipq8064-rb3011.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-ipq8064-rb3011.dts
-@@ -20,6 +20,33 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-0 = <&buttons_pins>;
-+		pinctrl-names = "default";
-+
-+		button {
-+			label = "reset";
-+			linux,code = <KEY_RESTART>;
-+			gpios = <&qcom_pinmux 66 GPIO_ACTIVE_LOW>;
-+			linux,input-type = <1>;
-+			debounce-interval = <60>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-0 = <&leds_pins>;
-+		pinctrl-names = "default";
-+
-+		led-0 {
-+			label = "rb3011:green:user";
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&qcom_pinmux 33 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+	};
-+
- 	memory@42000000 {
- 		reg = <0x42000000 0x3e000000>;
- 		device_type = "memory";
-@@ -302,34 +329,6 @@ partition@0 {
- 				};
- 			};
- 		};
--
--		gpio-keys {
--			compatible = "gpio-keys";
--			pinctrl-0 = <&buttons_pins>;
--			pinctrl-names = "default";
--
--			button {
--				label = "reset";
--				linux,code = <KEY_RESTART>;
--				gpios = <&qcom_pinmux 66 GPIO_ACTIVE_LOW>;
--				linux,input-type = <1>;
--				debounce-interval = <60>;
--			};
--		};
--
--		leds {
--			compatible = "gpio-leds";
--			pinctrl-0 = <&leds_pins>;
--			pinctrl-names = "default";
--
--			led-0 {
--				label = "rb3011:green:user";
--				color = <LED_COLOR_ID_GREEN>;
--				gpios = <&qcom_pinmux 33 GPIO_ACTIVE_HIGH>;
--				default-state = "off";
--			};
--		};
--
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/qcom/qcom-ipq8064-v1.0.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq8064-v1.0.dtsi
-index 17f65e140e02..49de9752632f 100644
---- a/arch/arm/boot/dts/qcom/qcom-ipq8064-v1.0.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-ipq8064-v1.0.dtsi
-@@ -14,6 +14,67 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-0 = <&buttons_pins>;
-+		pinctrl-names = "default";
-+
-+		button-1 {
-+			label = "reset";
-+			linux,code = <KEY_RESTART>;
-+			gpios = <&qcom_pinmux 54 GPIO_ACTIVE_LOW>;
-+			linux,input-type = <1>;
-+			debounce-interval = <60>;
-+		};
-+		button-2 {
-+			label = "wps";
-+			linux,code = <KEY_WPS_BUTTON>;
-+			gpios = <&qcom_pinmux 65 GPIO_ACTIVE_LOW>;
-+			linux,input-type = <1>;
-+			debounce-interval = <60>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-0 = <&leds_pins>;
-+		pinctrl-names = "default";
-+
-+		led-0 {
-+			label = "led_usb1";
-+			gpios = <&qcom_pinmux 7 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "usbdev";
-+			default-state = "off";
-+		};
-+
-+		led-1 {
-+			label = "led_usb3";
-+			gpios = <&qcom_pinmux 8 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "usbdev";
-+			default-state = "off";
-+		};
-+
-+		led-2 {
-+			label = "status_led_fail";
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&qcom_pinmux 9 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+
-+		led-3 {
-+			label = "sata_led";
-+			gpios = <&qcom_pinmux 26 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+
-+		led-4 {
-+			label = "status_led_pass";
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&qcom_pinmux 53 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+	};
-+
- 	soc {
- 		gsbi@16300000 {
- 			qcom,mode = <GSBI_PROT_I2C_UART>;
-@@ -64,66 +125,5 @@ sata@29000000 {
- 			ports-implemented = <0x1>;
- 			status = "okay";
- 		};
--
--		gpio-keys {
--			compatible = "gpio-keys";
--			pinctrl-0 = <&buttons_pins>;
--			pinctrl-names = "default";
--
--			button-1 {
--				label = "reset";
--				linux,code = <KEY_RESTART>;
--				gpios = <&qcom_pinmux 54 GPIO_ACTIVE_LOW>;
--				linux,input-type = <1>;
--				debounce-interval = <60>;
--			};
--			button-2 {
--				label = "wps";
--				linux,code = <KEY_WPS_BUTTON>;
--				gpios = <&qcom_pinmux 65 GPIO_ACTIVE_LOW>;
--				linux,input-type = <1>;
--				debounce-interval = <60>;
--			};
--		};
--
--		leds {
--			compatible = "gpio-leds";
--			pinctrl-0 = <&leds_pins>;
--			pinctrl-names = "default";
--
--			led-0 {
--				label = "led_usb1";
--				gpios = <&qcom_pinmux 7 GPIO_ACTIVE_HIGH>;
--				linux,default-trigger = "usbdev";
--				default-state = "off";
--			};
--
--			led-1 {
--				label = "led_usb3";
--				gpios = <&qcom_pinmux 8 GPIO_ACTIVE_HIGH>;
--				linux,default-trigger = "usbdev";
--				default-state = "off";
--			};
--
--			led-2 {
--				label = "status_led_fail";
--				function = LED_FUNCTION_STATUS;
--				gpios = <&qcom_pinmux 9 GPIO_ACTIVE_HIGH>;
--				default-state = "off";
--			};
--
--			led-3 {
--				label = "sata_led";
--				gpios = <&qcom_pinmux 26 GPIO_ACTIVE_HIGH>;
--				default-state = "off";
--			};
--
--			led-4 {
--				label = "status_led_pass";
--				function = LED_FUNCTION_STATUS;
--				gpios = <&qcom_pinmux 53 GPIO_ACTIVE_HIGH>;
--				default-state = "off";
--			};
--		};
- 	};
- };
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
