@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-2989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C4097AD111
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:07:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 453397AD116
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:07:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2EFA52814BA
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 07:07:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 638C5B209E3
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 07:07:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A13BF107AF;
-	Mon, 25 Sep 2023 07:07:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F83F107B0;
+	Mon, 25 Sep 2023 07:07:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E13CC1079C
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:07:14 +0000 (UTC)
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5E44A3
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 00:07:12 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9b275afb6abso417075166b.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 00:07:12 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3C691079C
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:07:46 +0000 (UTC)
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ADFAFB
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 00:07:45 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9ad8bf9bfabso717213366b.3
+        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 00:07:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695625631; x=1696230431; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695625663; x=1696230463; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6hgI6A5TI/hgQO4BAnbd8tQJDlo2yAW6QdgmQX8/IME=;
-        b=iCF2TOqjK3evIlYOMoesRCvWt+oKpY2Dkkzo01tBRVwZvVduT4kHB4KqN4Dm9Am2S1
-         j3g43H+qdUil0gmyfyg9nWsUDL4G/eXrubRR33cV7dY2Zg1r55oBIscZMH2/f5vEFjxm
-         wh2TOWLFm5Z76AgqAfSml8ALA7hHYcRlvcbhyi0/x9zIs2RGh6GFtzM2XL8Ejs47JjDZ
-         WCPjy/GLGTZuEOEd6iKLNgSZQLtMWzrieLirm1NbsTmNUNNJHXOJcFxM5PHO2R8Z+H1L
-         UqIQjsvYIhOAcT1MxnZDIaOZrS2uQyU5l9Ex03y/VkrMn36zNZNvuYtulVN0Sobm4xcp
-         7vHA==
+        bh=7AxDBxUGXJpjOQoyOw4i0KL+pS5ojAWax8q/wfJ5KaM=;
+        b=GdMnqrXotLwd0+hSG4LnczI8ssygWpLJQ90Ocf2m4gMQFZrj7mwRjl/ItKwRfjMggU
+         Lsb92eWK4iGYyji7SzIrgT3gNAW8OkNkDTlvR71Ht/lG3PuBFZLpzyvC+CEKEz0ghCrL
+         26Npq/aXdogfI8IbK5/lWFyEYeSvD96SterxF4XZji8LaZ2RY1YPd2CkzRoDOBRVM8MQ
+         fjhVqceXIKJTz7AAEG7EsQ+sqi7UcwMf4c7NH/NbW/2XTLXRz/ppSb9UU5vaWuUc9uG/
+         URSYyEaCYWiBeJ/YJuFQYCrXlu6Ae29vo9gGgNRF4k3mtRwYMd3RaqBsMpVdptHDVXaR
+         EdCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695625631; x=1696230431;
+        d=1e100.net; s=20230601; t=1695625663; x=1696230463;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6hgI6A5TI/hgQO4BAnbd8tQJDlo2yAW6QdgmQX8/IME=;
-        b=AvoAnLvaIIx8Nz8/CBELztFTGgrwNhbvTKcy3t0l66hhu87KsIZt2UZt3TOQs0B94T
-         gxGE6K3GbzLleRRUHxKYgKwQSiAxopYVMI/eHzSyC9aGmU7qSUoMmeiZfNngU7WQjDpA
-         k7WwWQO+SWmaQTjvpgXzc+hRignjwPt2F9v+Ei9vsUk3BQ8I7wZ3ElQ5aevMDOdjNFG5
-         JBtsl9Nk5vDauTDOWgF403DgYgFpnFr9xarXxKvfnht7JDjMEMxVvtA+VESj3c4u5buE
-         A9pCGwTVv7CqMW/YIrQYDMQsp+sThzJCLQEh2vdw3RnbRcXZ/WUnWGb6S/pbpu0wL3t+
-         tl1A==
-X-Gm-Message-State: AOJu0YyQjLvOgU1OjQyp4FI1uQ42KGt4c2GJ12tgV6TNi5ngljPSPbis
-	E7PZTyqBbJ18d+vaZ5d34dw9wg==
-X-Google-Smtp-Source: AGHT+IEJwe8xpBqNTBEAg00i05LU7GHxzDQ/Fs7qchRms8TLaP+jcLANKhn7bJ4oc8AEe+k8lQVZKA==
-X-Received: by 2002:a17:907:9483:b0:9a5:7d34:e68a with SMTP id dm3-20020a170907948300b009a57d34e68amr14085048ejc.28.1695625631245;
-        Mon, 25 Sep 2023 00:07:11 -0700 (PDT)
+        bh=7AxDBxUGXJpjOQoyOw4i0KL+pS5ojAWax8q/wfJ5KaM=;
+        b=kWqHojhEX+SCR3VXVNR/jKnqzOLp0NafZL4sSDtFPv+2Gaaey1HuNpFMYj19XMRHPF
+         RAcndZpU9yg7AeewSbNK7A50T3iaoZ/iANnEHKHCrjNtQGFUMkx6HMmMT5piNRipCJbP
+         nruH+DIcqFEhZ6ilS/GS128VFKQOiKpvc60NfwuQQfDefjAkQ4mDadNGzQnJApupkzT4
+         TN24DoAa+irXud/cYkrwmXbAMJZEkooWRBOFgCxDKQmBviQfyMRGcJLeAvgnkiX96giS
+         Fvr4I+P144LmCnp4tJEUoMKN9Vsvhz9ipncmiWXRi6v/PIa7pC6qDEze2y98Hsmga6Ya
+         /jmQ==
+X-Gm-Message-State: AOJu0YzwIyzb24ZyCBYLgOAIU5dh7NBGEr+nqM9qBJ4MfhDWnRvs6hER
+	ASOOrr0PGPP+s61GqGV68Ub+MA==
+X-Google-Smtp-Source: AGHT+IGk+sCcZJzawUGj35SK4WOUi1wv/S1V6F5VR37pUSWQexIvkDTbo0JTYzvETQj8dcrlM7hvlw==
+X-Received: by 2002:a17:907:720e:b0:9ae:7912:9f61 with SMTP id dr14-20020a170907720e00b009ae79129f61mr5888039ejc.51.1695625663728;
+        Mon, 25 Sep 2023 00:07:43 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id s25-20020a170906061900b00997d76981e0sm5830258ejb.208.2023.09.25.00.07.09
+        by smtp.gmail.com with ESMTPSA id s25-20020a170906061900b00997d76981e0sm5830258ejb.208.2023.09.25.00.07.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Sep 2023 00:07:10 -0700 (PDT)
-Message-ID: <eea00166-3f02-4eb0-9f82-26ffd0133dcc@linaro.org>
-Date: Mon, 25 Sep 2023 09:07:08 +0200
+        Mon, 25 Sep 2023 00:07:43 -0700 (PDT)
+Message-ID: <0a569100-b5a9-4cf6-8fbf-63b1a59b533e@linaro.org>
+Date: Mon, 25 Sep 2023 09:07:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,16 +63,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: power: mfd: max8925: Convert to DT schema
- format
+Subject: Re: [PATCH] dt-bindings: gpio: fsl-imx-gpio: Document imx25 and imx27
 Content-Language: en-US
-To: Sebastian Reichel <sebastian.reichel@collabora.com>,
- Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230922233142.1479677-1-sebastian.reichel@collabora.com>
+To: Fabio Estevam <festevam@gmail.com>, linus.walleij@linaro.org
+Cc: brgl@bgdev.pl, andy@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ Fabio Estevam <festevam@denx.de>
+References: <20230924161403.698833-1-festevam@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,165 +116,55 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230922233142.1479677-1-sebastian.reichel@collabora.com>
+In-Reply-To: <20230924161403.698833-1-festevam@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 23/09/2023 01:31, Sebastian Reichel wrote:
-> Convert the binding to DT schema format.
+On 24/09/2023 18:14, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> The sub-functions of this MFD device do not have their own compatible
-> string and are thus described directly in the MFD binding document
-> after being converted to YAML.
+> fsl,imx25-gpio and fsl,imx27-gpio are not documented, causing schema
+> warnings.
 > 
+> fsl,imx25-gpio is compatible with fsl,imx35-gpio and fsl,imx27-gpio
+> is compatible with fsl,imx21-gpio.
+> 
+> Document them accordingly.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+>  Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml b/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
+> index d0ca2af89f1e..e716c6170643 100644
+> --- a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
+> @@ -21,6 +21,14 @@ properties:
+>        - items:
+>            - const: fsl,imx35-gpio
+>            - const: fsl,imx31-gpio
+> +      - items:
+> +          - enum:
+> +              - fsl,imx25-gpio
+> +          - const: fsl,imx35-gpio
+> +      - items:
+> +          - enum:
+> +              - fsl,imx27-gpio
+> +          - const: fsl,imx21-gpio
 
-...
+This does not look like placed in ordered way (order is by fallback
+compatible).
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  "#interrupt-cells":
-> +    const: 1
-> +    description:
-> +      The cell is the IRQ number
-> +
-> +  maxim,tsc-irq:
-> +    description: second interrupt from max8925
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  regulators:
-> +    type: object
-> +
-> +    patternProperties:
-> +      "^SDV[1-3]$|^LDO[1-9]$|^LDO1[0-9]$|^LDO20$":
-> +        description: regulator configuration for SDV1-3 and LDO1-20
-> +        $ref: /schemas/regulator/regulator.yaml
-
-Missing on this level: unevaluatedProperties: false
-
-> +
-> +    additionalProperties: false
-> +
-> +  backlight:
-> +    type: object
-> +    properties:
-> +      maxim,max8925-dual-string:
-> +        description: set to 1 to support dual string
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        enum: [0, 1]
-> +        default: 0
-> +
-> +    additionalProperties: false
-> +
-> +  charger:
-> +    type: object
-> +    properties:
-> +      batt-detect:
-> +        description: set to 1 if battery detection via ID pin is supported
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        enum: [0, 1]
-> +        default: 0
-> +
-> +      topoff-threshold:
-> +        description: charging current in topoff mode, configures bits 5-6 in CHG_CNTL1
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 0
-> +        maximum: 3
-> +        default: 0
-> +
-> +      fast-charge:
-> +        description: set charging current in fast mode, configures bits 0-3 in CHG_CNTL1
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 0
-> +        maximum: 7
-> +        default: 0
-> +
-> +      no-temp-support:
-> +        description: set to 1 if temperature sensing is not supported
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        enum: [0, 1]
-> +        default: 0
-> +
-> +      no-insert-detect:
-> +        description: set to 1 if AC detection is not supported
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        enum: [0, 1]
-> +        default: 0
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-controller
-> +  - "#interrupt-cells"
-> +  - regulators
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        max8925@3c {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
-> +            compatible = "maxim,max8925";
-> +            reg = <0x3c>;
-> +            interrupts = <1>;
-> +            interrupt-parent = <&intcmux4>;
-> +            interrupt-controller;
-> +            #interrupt-cells = <1>;
-> +            maxim,tsc-irq = <0>;
-> +
-> +            regulators {
-> +                SDV1 {
-> +                    regulator-min-microvolt = <637500>;
-> +                    regulator-max-microvolt = <1425000>;
-> +                    regulator-boot-on;
-> +                    regulator-always-on;
-> +                };
-> +
-> +                LDO1 {
-> +                    regulator-min-microvolt = <750000>;
-> +                    regulator-max-microvolt = <3900000>;
-> +                    regulator-boot-on;
-> +                    regulator-always-on;
-> +                };
-> +            };
-> +
-> +            backlight {
-> +                maxim,max8925-dual-string = <0>;
-> +            };
-> +
-> +            charger {
-> +                batt-detect = <0>;
-> +                topoff-threshold = <1>;
-> +                fast-charge = <7>;
-> +                no-temp-support = <0>;
-> +                no-insert-detect = <0>;
-> +            };
-> +        };
-> +    };
-
+>        - items:
+>            - enum:
+>                - fsl,imx50-gpio
 
 Best regards,
 Krzysztof
