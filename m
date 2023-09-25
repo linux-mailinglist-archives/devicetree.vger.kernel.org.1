@@ -1,142 +1,191 @@
-Return-Path: <devicetree+bounces-3016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CBE17AD1A2
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:26:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17C207AD1E1
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:39:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 65AA3B20A3B
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 07:26:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id BD9D32813AC
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 07:38:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 507AB10968;
-	Mon, 25 Sep 2023 07:26:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77E0A1097F;
+	Mon, 25 Sep 2023 07:38:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AA1F10964;
-	Mon, 25 Sep 2023 07:26:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CB83C433C9;
-	Mon, 25 Sep 2023 07:26:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695626801;
-	bh=I4CNi9Q/JBftF6qP99taJllMHcyGXlOe1VzUdcgnrWs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=j+Zfq8JXfDD5lGXmuBZtgQo6VKdWDgPUMBpj0dWZTupcXLhcRTmXkeMs0Aaq5G26L
-	 V11jhZjeoSR/2Ug+4fLlfnYLPrwtA+Ut8zH5BsrVHn2sPozS3nVjGObrxPDRZCH2nj
-	 ZJvDqOTOgG4Cj75dOue7ZRUwHO8JKVsYtlVQwcgXkkmsMMUgX9P1B1owgk3fb398so
-	 4Gqq6PYbts8Qk1xJbO33NbU/jGpLMHs2Q2SbeFaaj9WJoUJk6oHYg7//E9mWLtYYqJ
-	 dFL3W9Iz2L1ruJQHkyd/1V8r6MOoPuFbwmMNlh/mMJcfDkZOH+h7BTZoCNvHrwLig5
-	 L/MAWdDlIjFug==
-Received: (nullmailer pid 286711 invoked by uid 1000);
-	Mon, 25 Sep 2023 07:26:38 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B1AE6FBB
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:38:56 +0000 (UTC)
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FBB7E8
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 00:38:54 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-1c3d8fb23d9so37270325ad.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 00:38:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1695627534; x=1696232334; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=yzBL5mZPrug4GhJrNNKgL7YDgX4E0xGifdCmz+2VKp8=;
+        b=GpcagLYB/F9bybgTrfx4tbUwFxaQNbXf0czYlX4fRI5+tPLVt8C6yppX70peCHkvMb
+         WxpFILjWqHAofnktmSyZeIUDrfMw6loyyrDd+LLROjG4XfohrILPPEgO1m5V5caCULoF
+         lAWcZ7x6rhj4quvzd65t31XcJMrmCrkKlYZ9yJVQXakbjMmjhbAuc0dxIsXqWsNpo35W
+         RpnikwsCDq0Mp/bKpk8aJ+fW7XwkQXcngyQZv4IZLmAsZ/FUR/SrQaK2BAv+PPl/WgO3
+         xUp8xztD6ZuYVxEdMhS37REZ9G8g3O94Gn/e+8/Qq0tjNzinoA0smL7YkgjQTKeMFEBH
+         RMNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695627534; x=1696232334;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yzBL5mZPrug4GhJrNNKgL7YDgX4E0xGifdCmz+2VKp8=;
+        b=KDp2mbJa/knYxkKbsgDtN9YKajTSJtpxW9k3x0nDPauD8fNNIWQ8xM4WzbqzAANe7F
+         7/sVPVnBSHh/m3Uj7XkZfAmXLI6DlQgS7dewY6GA6sfY/0zQUlS19HQGszJWpWRXIwlU
+         hwtrHtEYm09cnG8rSNemRV3cYFoXbPYla/YL2WzH1toOBLS7DRc4JTYj18Qce7yBr35/
+         e5ReUi1A52EGov0rxsx8m6iC1QII5l5m+9hEZndOcNpM/aKBbszZaf0oBi400+EY2uws
+         YS5qiNGimD6A47HQ+oxT3vLFVStuUyTDTGhU78VDaI+J4YdrFDJiuUEcq0X2/JItLegq
+         Mv2A==
+X-Gm-Message-State: AOJu0Ywqt2lccJR7mxA4c61y5ZsnLiXqIhYnxnbgLYmLps9nTWx2jxm4
+	UVbCbDCEOT8sUVBgerSYePnMQQ==
+X-Google-Smtp-Source: AGHT+IHJ7dbhK17CN5P+md1/ZCDciKvs4jN5yIcS41PAcRp+Dau+ypfkJZZlHYzyA7civShES5H6iQ==
+X-Received: by 2002:a17:902:7443:b0:1bb:b86e:8d60 with SMTP id e3-20020a170902744300b001bbb86e8d60mr3963012plt.46.1695627533576;
+        Mon, 25 Sep 2023 00:38:53 -0700 (PDT)
+Received: from sunil-laptop ([106.51.190.42])
+        by smtp.gmail.com with ESMTPSA id m1-20020a170902d18100b001b8b1f6619asm8169366plb.75.2023.09.25.00.38.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Sep 2023 00:38:53 -0700 (PDT)
+Date: Mon, 25 Sep 2023 13:08:43 +0530
+From: Sunil V L <sunilvl@ventanamicro.com>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Atish Patra <atishp@atishpatra.org>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Anup Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v8 02/16] RISC-V: Add riscv_get_intc_hartid() function
+Message-ID: <ZRE5A5GxF7wU68vt@sunil-laptop>
+References: <20230912174928.528414-1-apatel@ventanamicro.com>
+ <20230912174928.528414-3-apatel@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Devi Priya <quic_devipriy@quicinc.com>
-Cc: devicetree@vger.kernel.org, agross@kernel.org, linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org, andersson@kernel.org, thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de, ndesaulniers@google.com, nathan@kernel.org, konrad.dybcio@linaro.org, conor+dt@kernel.org, baruch@tkos.co.il, robh+dt@kernel.org, linux-kernel@vger.kernel.org, trix@redhat.com, krzysztof.kozlowski+dt@linaro.org, llvm@lists.linux.dev
-In-Reply-To: <20230925065915.3467964-3-quic_devipriy@quicinc.com>
-References: <20230925065915.3467964-1-quic_devipriy@quicinc.com>
- <20230925065915.3467964-3-quic_devipriy@quicinc.com>
-Message-Id: <169562679800.286677.6236841313565579111.robh@kernel.org>
-Subject: Re: [PATCH V12 2/3] dt-bindings: pwm: add IPQ6018 binding
-Date: Mon, 25 Sep 2023 02:26:38 -0500
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230912174928.528414-3-apatel@ventanamicro.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+Hi Anup,
 
-On Mon, 25 Sep 2023 12:29:14 +0530, Devi Priya wrote:
-> DT binding for the PWM block in Qualcomm IPQ6018 SoC.
+On Tue, Sep 12, 2023 at 11:19:14PM +0530, Anup Patel wrote:
+> We add a common riscv_get_intc_hartid() which help device drivers to
+> get hartid of the HART associated with a INTC (i.e. local interrupt
+> controller) fwnode. This new function is more generic compared to
+> the existing riscv_of_parent_hartid() function hence we also replace
+> use of riscv_of_parent_hartid() with riscv_get_intc_hartid().
 > 
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Co-developed-by: Baruch Siach <baruch.siach@siklu.com>
-> Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 > ---
-> v12:
+>  arch/riscv/include/asm/processor.h |  4 +++-
+>  arch/riscv/kernel/cpu.c            | 13 ++++++++++++-
+>  drivers/irqchip/irq-riscv-intc.c   |  2 +-
+>  drivers/irqchip/irq-sifive-plic.c  |  3 ++-
+>  4 files changed, 18 insertions(+), 4 deletions(-)
 > 
->   Picked up the R-b tag
-> 
-> v11:
-> 
->   No change
-> 
-> v10:
-> 
->   No change
-> 
-> v9:
-> 
->   Add 'ranges' property to example (Rob)
-> 
->   Drop label in example (Rob)
-> 
-> v8:
-> 
->   Add size cell to 'reg' (Rob)
-> 
-> v7:
-> 
->   Use 'reg' instead of 'offset' (Rob)
-> 
->   Drop 'clock-names' and 'assigned-clock*' (Bjorn)
-> 
->   Use single cell address/size in example node (Bjorn)
-> 
->   Move '#pwm-cells' lower in example node (Bjorn)
-> 
->   List 'reg' as required
-> 
-> v6:
-> 
->   Device node is child of TCSR; remove phandle (Rob Herring)
-> 
->   Add assigned-clocks/assigned-clock-rates (Uwe Kleine-König)
-> 
-> v5: Use qcom,pwm-regs for phandle instead of direct regs (Bjorn
->     Andersson, Kathiravan T)
-> 
-> v4: Update the binding example node as well (Rob Herring's bot)
-> 
-> v3: s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
-> 
-> v2: Make #pwm-cells const (Rob Herring)
-> 
->  .../devicetree/bindings/pwm/ipq-pwm.yaml      | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
-> 
+> diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/asm/processor.h
+> index 3e23e1786d05..3ce64b3bea4e 100644
+> --- a/arch/riscv/include/asm/processor.h
+> +++ b/arch/riscv/include/asm/processor.h
+> @@ -119,7 +119,9 @@ static inline void wait_for_interrupt(void)
+>  struct device_node;
+>  int riscv_of_processor_hartid(struct device_node *node, unsigned long *hartid);
+>  int riscv_early_of_processor_hartid(struct device_node *node, unsigned long *hartid);
+> -int riscv_of_parent_hartid(struct device_node *node, unsigned long *hartid);
+> +
+> +struct fwnode_handle;
+> +int riscv_get_intc_hartid(struct fwnode_handle *node, unsigned long *hartid);
+>  
+>  extern void riscv_fill_hwcap(void);
+>  extern int arch_dup_task_struct(struct task_struct *dst, struct task_struct *src);
+> diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
+> index 157ace8b262c..ee583eac3c5b 100644
+> --- a/arch/riscv/kernel/cpu.c
+> +++ b/arch/riscv/kernel/cpu.c
+> @@ -123,7 +123,8 @@ int __init riscv_early_of_processor_hartid(struct device_node *node, unsigned lo
+>   * To achieve this, we walk up the DT tree until we find an active
+>   * RISC-V core (HART) node and extract the cpuid from it.
+>   */
+> -int riscv_of_parent_hartid(struct device_node *node, unsigned long *hartid)
+> +static int riscv_of_parent_hartid(struct device_node *node,
+> +				  unsigned long *hartid)
+>  {
+>  	for (; node; node = node->parent) {
+>  		if (of_device_is_compatible(node, "riscv")) {
+> @@ -139,6 +140,16 @@ int riscv_of_parent_hartid(struct device_node *node, unsigned long *hartid)
+>  	return -1;
+>  }
+>  
+> +/* Find hart ID of the INTC fwnode. */
+> +int riscv_get_intc_hartid(struct fwnode_handle *node, unsigned long *hartid)
+> +{
+> +	/* Extend this function ACPI in the future. */
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+As per Marc's feedback, we can't use swnode for ACPI irchips. So, there
+is no need to create this wrapper function and this patch can be
+dropped.
 
-yamllint warnings/errors:
+Thanks,
+Sunil
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pwm/ipq-pwm.example.dtb: syscon@1937000: compatible: ['qcom,tcsr-ipq6018', 'syscon', 'simple-mfd'] is too long
-	from schema $id: http://devicetree.org/schemas/mfd/qcom,tcsr.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pwm/ipq-pwm.example.dtb: syscon@1937000: '#address-cells', '#size-cells', 'pwm@a010', 'ranges' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/mfd/qcom,tcsr.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230925065915.3467964-3-quic_devipriy@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> +	if (!is_of_node(node))
+> +		return -ENODEV;
+> +
+> +	return riscv_of_parent_hartid(to_of_node(node), hartid);
+> +}
+> +
+>  DEFINE_PER_CPU(struct riscv_cpuinfo, riscv_cpuinfo);
+>  
+>  unsigned long riscv_cached_mvendorid(unsigned int cpu_id)
+> diff --git a/drivers/irqchip/irq-riscv-intc.c b/drivers/irqchip/irq-riscv-intc.c
+> index 4adeee1bc391..65f4a2afb381 100644
+> --- a/drivers/irqchip/irq-riscv-intc.c
+> +++ b/drivers/irqchip/irq-riscv-intc.c
+> @@ -143,7 +143,7 @@ static int __init riscv_intc_init(struct device_node *node,
+>  	int rc;
+>  	unsigned long hartid;
+>  
+> -	rc = riscv_of_parent_hartid(node, &hartid);
+> +	rc = riscv_get_intc_hartid(of_fwnode_handle(node), &hartid);
+>  	if (rc < 0) {
+>  		pr_warn("unable to find hart id for %pOF\n", node);
+>  		return 0;
+> diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
+> index e1484905b7bd..56b0544b1f27 100644
+> --- a/drivers/irqchip/irq-sifive-plic.c
+> +++ b/drivers/irqchip/irq-sifive-plic.c
+> @@ -477,7 +477,8 @@ static int __init __plic_init(struct device_node *node,
+>  			continue;
+>  		}
+>  
+> -		error = riscv_of_parent_hartid(parent.np, &hartid);
+> +		error = riscv_get_intc_hartid(of_fwnode_handle(parent.np),
+> +					      &hartid);
+>  		if (error < 0) {
+>  			pr_warn("failed to parse hart ID for context %d.\n", i);
+>  			continue;
+> -- 
+> 2.34.1
+> 
 
