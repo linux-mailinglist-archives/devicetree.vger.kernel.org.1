@@ -1,167 +1,153 @@
-Return-Path: <devicetree+bounces-3062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A614D7AD3D2
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 10:52:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 395077AD3CD
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 10:52:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id F3CFEB209E1
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 08:52:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id DDC4528167F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 08:52:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCC2C134DA;
-	Mon, 25 Sep 2023 08:52:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F6CA134D8;
+	Mon, 25 Sep 2023 08:52:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B91963B7
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 08:52:26 +0000 (UTC)
-Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26EC8FE;
-	Mon, 25 Sep 2023 01:52:24 -0700 (PDT)
-Received: by mail-oo1-xc2a.google.com with SMTP id 006d021491bc7-5739965a482so3239492eaf.0;
-        Mon, 25 Sep 2023 01:52:24 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E35C63B7
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 08:52:14 +0000 (UTC)
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 842FBE8
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 01:52:12 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-52fe27898e9so6959300a12.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 01:52:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695631943; x=1696236743; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1at5Bwmh4sCDy6jmu2eWw8wOIO0LjytvQnxyA14xNhk=;
-        b=GWYDiDzlteRzzgXVbReYuGTddF2bT/fiaX6T+xFT6lwClhNh1SkrRD20H+Rw4AHdhU
-         Oy3voHGvHt1i/MMc97WISIUZRrM5ZZftFlhdoS/D/pQku8DPJlwWBjb7qxCNY78KDQ6y
-         3p4+dVamIDSUQj2v6xXb5Q99es7CmsAykM4HBxbjTHC0ve9PZoz3VJ3DLhYeul1xF1oQ
-         uYBcuS+6ezIkC814s4dt/YHdw7HEFteij4PzKertZ2AoSH059cF2tJuz6HuyRBM/HGJr
-         Qt4byMHq/VFo9EjrLi4RYKAl+V9EBPi6RdlPGlPsqyB0/FnSkc8SRa47mgL9eAOT6bYz
-         jcTg==
+        d=linaro.org; s=google; t=1695631931; x=1696236731; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gLPIK/6A0OdvTUmgqW6fMGOpG0vd/sid0O/dWoZpXFk=;
+        b=O+ik+tdH2Au3yfXyzSQtplnu87GviBuuEzuxmRa4RVFbNGR/lrlU71y7A0XBBoqZor
+         zhAZI6ZSkJU57gXyC/9mELHaxTKj8boJn8QmFi+wKv1f1DDmf7OHUDh1v16W4SAk4Ln5
+         e30LwoyUKnbM8QZOic31PMUhT5LB4H540Nc0Icr6P1GJk+q55CRt686PiE8dQOi4f5Ip
+         XFI+5WxdxfifCSsCnjmZa0PU/lgCl3CSieWG9wJSW7892+i2LrwyT1nQCl3CzZIG143k
+         O5od/okmgqMiGvsGzmYFd2E7hrkc2rFu7dRsUwLqvc9SIkwvMXAfJ7/QRMwjZ8rACpOf
+         dC1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695631943; x=1696236743;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1at5Bwmh4sCDy6jmu2eWw8wOIO0LjytvQnxyA14xNhk=;
-        b=GX4q4lZyvFrQhM/OI2Jv0Pz+52DwjVeNOYAVeIpLG8Vk2KXVgncjXdhF2q0io5wCby
-         M+Zz5WF7bLo9086GOEwW9g1SO3R5u3FMlhPHneXrf1q9q2UuZS+759DjHBOLtAIrUmuD
-         /uCi277SUmDNMAQyePy7R6iKKsL8ojvoPqg8nsdLlUgbNeaBvvL0W2EtnAXkF3ZOChHG
-         7D6U2Jl+A0Ix0fke4vK85EU0j1M28hurSOC1mveiTnEHmk+iWI5oxZj/YonwkvlqaYPg
-         iMN5B9aqd/uQffVzLnKB5ag3jzrXoJkTz7XFlQi6uWpG6f8+d2hd1UR9yju/bwYniQpl
-         Gy/w==
-X-Gm-Message-State: AOJu0YwN/vgG+lUeGB7tA4bcvTuoC77GIuEzQLYIKEfeShFgbKrvtrKu
-	Xw7luus/eInMp96NhUkCo7+leKALdGb13zDGJHvZXVgMUws=
-X-Google-Smtp-Source: AGHT+IE7ZzhsO++rPVQqOURjIrUSBvAum8B5hH26XMWfLw/TGilx4XohucuBZF01BZtWYDJTySMQrf1EqcONODk/Rnk=
-X-Received: by 2002:a4a:2b02:0:b0:573:70a2:4233 with SMTP id
- i2-20020a4a2b02000000b0057370a24233mr3954867ooa.3.1695631943392; Mon, 25 Sep
- 2023 01:52:23 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1695631931; x=1696236731;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gLPIK/6A0OdvTUmgqW6fMGOpG0vd/sid0O/dWoZpXFk=;
+        b=UJwElabb70iCJuZk0KoP8g3F5ZJEp8+o6CSL9dW8RCmX12KHgPnHEnwF0b2O0nB8MC
+         /WbTMKpRtH5hrnFaamHaMKX/vYdwglcUnAfJPP5N/NxfKVED5ZPyFi09OUEgdqa4oaUl
+         n1ouvv+wyGj9p55TD5ApICnyQAkCuH3KAqMX8qiB+HZPJtVpUVAjMrShJYUcZDCNQQzm
+         awfcjKMfHpRjv+fb8zjWd248x9ACxc85pqXP/QCPuJn4EU9kh2GSW+H1G0BNm+y36PSt
+         qYSW4Kmqa5zcpdZ1x/DYnmEmNqfpFf0HvvRGvtt5OAoiYS+ENEYb+HHp9fNL71Z2xDp2
+         8M0w==
+X-Gm-Message-State: AOJu0Yw0MUZVQIV4M6crD3c4TF6dnZ2p/YK3H1TsbkeockRZm21rabrx
+	sOY4ZvSdCewrx7NaX+pPQ/gGQg==
+X-Google-Smtp-Source: AGHT+IEknGXpUcjCFhyykhoIm20lhyrc7fXegdvuAII0uwwwGWRrkN5jwyVbotbwFuNd+lYoXvXe+g==
+X-Received: by 2002:aa7:c38d:0:b0:530:8d55:9c6f with SMTP id k13-20020aa7c38d000000b005308d559c6fmr5184794edq.2.1695631930980;
+        Mon, 25 Sep 2023 01:52:10 -0700 (PDT)
+Received: from [192.168.101.165] (178235177023.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.23])
+        by smtp.gmail.com with ESMTPSA id v4-20020a056402174400b0053424352ab3sm663625edx.19.2023.09.25.01.52.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Sep 2023 01:52:10 -0700 (PDT)
+Message-ID: <a983d891-74ef-48e0-9de1-d3d000cbf415@linaro.org>
+Date: Mon, 25 Sep 2023 10:52:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230913214944.59804-1-blarson@amd.com> <20230913214944.59804-7-blarson@amd.com>
- <68ca306c-5ea2-437e-b7f1-68bad88557a0@app.fastmail.com>
-In-Reply-To: <68ca306c-5ea2-437e-b7f1-68bad88557a0@app.fastmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 25 Sep 2023 11:51:47 +0300
-Message-ID: <CAHp75VdV+2q2_W9buoL-SCO-NkNo2AU1KuiWkFBPDHOhV7b4wA@mail.gmail.com>
-Subject: Re: [PATCH v16 6/6] soc: amd: Add support for AMD Pensando SoC Controller
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: Brad Larson <blarson@amd.com>, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, 
-	"linux-mmc @ vger . kernel . org" <linux-mmc@vger.kernel.org>, linux-spi@vger.kernel.org, 
-	Adrian Hunter <adrian.hunter@intel.com>, alcooperx@gmail.com, brendan.higgins@linux.dev, 
-	Brian Norris <briannorris@chromium.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Conor Dooley <conor+dt@kernel.org>, David Gow <davidgow@google.com>, gsomlo@gmail.com, 
-	Greg Ungerer <gerg@linux-m68k.org>, Hal Feng <hal.feng@starfivetech.com>, 
-	Hitomi Hasegawa <hasegawa-hitomi@fujitsu.com>, 
-	=?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
-	Joel Stanley <joel@jms.id.au>, Emil Renner Berthing <kernel@esmil.dk>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	krzysztof.kozlowski+dt@linaro.org, Lee Jones <lee@kernel.org>, 
-	Lee Jones <lee.jones@linaro.org>, Mark Brown <broonie@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Randy Dunlap <rdunlap@infradead.org>, 
-	Rob Herring <robh+dt@kernel.org>, Samuel Holland <samuel@sholland.org>, 
-	Serge Semin <fancer.lancer@gmail.com>, Shuah Khan <skhan@linuxfoundation.org>, 
-	suravee.suthikulpanit@amd.com, Tom Lendacky <thomas.lendacky@amd.com>, 
-	Tony Huang <tonyhuang.sunplus@gmail.com>, Ulf Hansson <ulf.hansson@linaro.org>, vaishnav.a@ti.com, 
-	Walker Chen <walker.chen@starfivetech.com>, Will Deacon <will@kernel.org>, 
-	Yinbo Zhu <zhuyinbo@loongson.cn>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] arm64: boot: dts: qcom: sc8280xp: Add in CAMCC for
+ sc8280xp
+Content-Language: en-US
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, andersson@kernel.org,
+ agross@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ jonathan@marek.ca, quic_tdas@quicinc.com, vladimir.zapolskiy@linaro.org
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230923150045.1068556-1-bryan.odonoghue@linaro.org>
+ <20230923150045.1068556-5-bryan.odonoghue@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230923150045.1068556-5-bryan.odonoghue@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Fri, Sep 22, 2023 at 1:24=E2=80=AFPM Arnd Bergmann <arnd@arndb.de> wrote=
-:
-> On Wed, Sep 13, 2023, at 17:49, Brad Larson wrote:
+On 23.09.2023 17:00, Bryan O'Donoghue wrote:
+> Add in CAMCC for sc8280xp. The sc8280xp Camera Clock Controller looks
+> similar to most of the sdmX, smX and now scX controllers.
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index cad59af7ccef..dad4894f358c 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -3450,6 +3450,21 @@ usb_1_role_switch: endpoint {
+>  			};
+>  		};
+>  
+> +		camcc: clock-controller@ad00000 {
+> +			compatible = "qcom,sc8280xp-camcc";
+> +			reg = <0 0x0ad00000 0 0x20000>;
+> +			clocks = <&gcc GCC_CAMERA_AHB_CLK>,
+> +				 <&rpmhcc RPMH_CXO_CLK>,
+> +				 <&rpmhcc RPMH_CXO_CLK_A>,
+> +				 <&sleep_clk>;
+This does not match what you added in the clock driver
 
-...
+> +			clock-names = "iface", "bi_tcxo", "bi_tcxo_ao", "sleep_clk";
+And with using .index there, clock-names will become redundant
 
-> > v15 changes:
-> > - Drop custom ioctl and use existing miscdevice interface.
-> > - Delete unused definitions in amd-pensando-ctrl.h
-> > - Makefile change to compile for ARCH_PENSANDO
->
-> Hi Brad,
->
-> I'm sorry I've been out of the loop for so long, and I hope
-> we can find a way to manage your SoC support soon. My impression
-> is that the normal support patches (1, 3, 4, and 5) are largely
-> uncontroversial, while the SoC controller support seems like
-> we are still not converging onto something that is ready to
-> merge, so I would suggest you split the two parts and send
-> the basic support for inclusion in linux-6.7 while we continue
-> to discuss the soc controller driver.
->
-> Please remove any references to the soc controller from the
-> dts files and send that first series to:soc@kernel.org
-> cc:linux-arm-kernel (and the other interested parties) so
-> I can pick those up.
->
-> Regarding the soc controller driver, let me try to give
-> you my impression of where we are:
->
-> - you have gone through 16 revisions already, which is way
->   too much for a public review, we should have been able
->   to find a solution earlier than that, and this is partly
->   our fault on the reviewer side, and I'm sorry about that.
->
-> - Andy's latest comments and a lot of the earlier reviews
->   were focused on implementation details. While those comments
->   are helpful suggestions for improving the code, they miss
->   the larger point about the system design that I'm worried
->   about and probably don't help you actually get it merged.
-
-True. The fact that the new versions left the design remaining make me
-think that the ABI was settled down.
-
-> - The main problem I still see is that this driver completely
->   bypasses our normal kernel abstractions and instead creates
->   a low-level passthrough interface for handling kernel
->   functionality in userspace. This creates a liability both
->   for the user ABI and the kernel implementation and prevents
->   any
->
-> - There is a chance that your design is in fact the
->   best way to handle this particular hardware, but it is
->   your job to write a convincing explanation of why this
->   platform is different from all the others in the patch
->   description. Your current one-paragraph text does not
->   explain this at all.
->
-> I would suggest you prioritize getting the other patches
-> included for the moment, but we can keep discussion the
-> API design for this driver either in this thread or on the
-> #armlinux IRC channel (irc.libera.chat) in parallel if you
-> like. In order to help you here, I would need either
-> the documentation of the SPI software interface, or the
-> source code for the userspace tool.
-
-
-
---=20
-With Best Regards,
-Andy Shevchenko
+Konrad
 
