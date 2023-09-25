@@ -1,122 +1,225 @@
-Return-Path: <devicetree+bounces-2950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1A047AD03D
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 08:35:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2BCA7AD055
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 08:40:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id AF4561C2074E
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 06:35:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 97EE628171C
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 06:40:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2D9DD279;
-	Mon, 25 Sep 2023 06:35:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC2C3DDAF;
+	Mon, 25 Sep 2023 06:40:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F48FEC0
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 06:35:49 +0000 (UTC)
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B3EDCF;
-	Sun, 24 Sep 2023 23:35:45 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-50437f39c9dso6662001e87.3;
-        Sun, 24 Sep 2023 23:35:45 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6812D535
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 06:40:36 +0000 (UTC)
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 176A3A2
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 23:40:35 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4054f790190so39970665e9.2
+        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 23:40:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695623744; x=1696228544; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XdVp8fabZrl+SetbhyIwcfplRAGrgJKdiRNDgwwsIts=;
-        b=c98MR4y/+gV/jfdxnD7jHhVs2a7uzLX8KxBti8T3VwDmbgyPaW2oJQdMXSoe371ow+
-         rNtXzuggOXNmXxXklNTkgzwThMxKSPsrEpUiT9+GiWJLoOnAsgd1cYD4SVnldAhCVQbV
-         NzFszOo0THs6ly6br/DFMZKd59S/x2Le1bs3IXaxMBxlx7lsRerCzA2znWFMQlKTTk30
-         1s4B+IxMMtw8cyaIoL1uNMoOVSYGqyDd4z26iDxUkFXdl/NTV53ByQc6BaEL5exvkTIx
-         0y4gK1dRi3HYzOn8Et8PWU+hOcrHbsYeecWCBw2OwAwIGdwm3j0jl5NEbDjBYAw7GDg/
-         Cebw==
+        d=linaro.org; s=google; t=1695624033; x=1696228833; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=584w5GCvv5q+hi+83jUjWnSccXO4lhufxb9jJf1Otbk=;
+        b=uRHXL1QsF0WfYdBOzLsU76kltXEqZxmSGda9m0RGEiIlluj35ta6+1OOEHWtOSDLqy
+         XJA1kJ74Oho5rrA5UcDPBE3yX2fJJ3HJgN9kaEuT2v0bEa5YyJmy7baWcTsmG3GLJBto
+         /oaPUM2QUQ8JTlfXusD+63xDxspk20PR1xSLDtzxF8zKLOSdlsDS5YHeVzhiemgVYSHf
+         0JOe+PAfiWRNV7mDhTbFEXN+C5OjNYaX+EXtfHCYr8mu2CFUr/2+a/+47iMeLJ5NBkTP
+         b1S8HzzPSS5fE80DdNYSjDusGRF95KTqVJCu1lUHMGXXXmTpiXw1GiWRN6TtVehIuM6L
+         iZwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695623744; x=1696228544;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XdVp8fabZrl+SetbhyIwcfplRAGrgJKdiRNDgwwsIts=;
-        b=bGmhF8PMIa9Pn8QeTZ2sj9VPec2rN9TIUqM4zuC8suBW/cl3cxg+hhgi8ux5bDrTJ7
-         KIZmugJrIsyTMFSzOI3LE5KuB7XuupGa+gnRUQdF/na3k0ywdQNjIWGdOylHlPCfbwUm
-         aWGQRVHf4MlSrCKtCBYKbP3pkO5nalCHLhAXBjbi/80iEgN3/8VcRwcvi1Ls49jie2EJ
-         gM70SjfcwbJoMngtj7wPwXGltqzLByk6hku6Kco/kHc5Do8ItfToYuqwdHKeB8Akqzq0
-         BE0k/jJVS/VI5ZJlhHQFVgN5smJFg8iL2F2k6VgUZSUSinHjzsJZ9d6IFOm83xnX68Pb
-         FXYg==
-X-Gm-Message-State: AOJu0Yz5FNjjVF+IFncNbL2piMJgrOhQj/uVKD0dwgOFNnwJqJ90bwao
-	dHISaaEtS0YEhaXgAOIii+0VS/BjJEQ=
-X-Google-Smtp-Source: AGHT+IEZQJlUOwrQ/1uHkcqDpKZKmdLFnmpC+JeDRRVV2XBilkNnduNyMZVzgX5x3uTMWVKJ0OF5PA==
-X-Received: by 2002:a05:6512:e85:b0:500:adbd:43e7 with SMTP id bi5-20020a0565120e8500b00500adbd43e7mr5490959lfb.8.1695623743244;
-        Sun, 24 Sep 2023 23:35:43 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16f8:1500::1? (dc78bmyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::1])
-        by smtp.gmail.com with ESMTPSA id r28-20020ac252bc000000b00501c1794883sm1717087lfm.251.2023.09.24.23.35.41
+        d=1e100.net; s=20230601; t=1695624033; x=1696228833;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=584w5GCvv5q+hi+83jUjWnSccXO4lhufxb9jJf1Otbk=;
+        b=UOYXGHF/B6zZGT7EHTnhoOM60HGxm1EeABO0KTi1mV3WeqGHHjf9X6xvK/wgINhYLS
+         ExEXijSCr2MMCOMH1JcsBZKMwu2PUY8hCZFm8z8BH+CyFkLgg4DgVMSMMjHoSzq5tcrg
+         p8r5cJwmXJcfTmTvPlCZ5xipcfWL9ShgXDy33RK2v74aJPL8hMam6d+Vjcsmi07bwIxq
+         YFEJEWW9WRUdhbV/7aGciQKH5qay7oalUKxgdurYMo0WziygnkgEKF8avDCP+hp/Iq+A
+         16wYZaJvKbn2CHNtB0KPlVft28rtlHO1soce4LavSicUVuJWcevCsCx0hwYIsPnsC4/O
+         XRkA==
+X-Gm-Message-State: AOJu0YzpjN8hJ1o6iz9/vVboiwTOIlA1pICMKKpHaBL5aTVctepRiooH
+	C6JkoxKuTdOCC+77kUH/U2eS9Q==
+X-Google-Smtp-Source: AGHT+IHYBGZdE1kFtz9v+LkqAMAlWOHmS31LRPNKigLICDRG5GTs4Fdg8D6hw5Tcz78w9czwqxfsYw==
+X-Received: by 2002:a5d:6710:0:b0:319:8dcf:5c00 with SMTP id o16-20020a5d6710000000b003198dcf5c00mr4851336wru.69.1695624033425;
+        Sun, 24 Sep 2023 23:40:33 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.100])
+        by smtp.gmail.com with ESMTPSA id w10-20020adfd4ca000000b0031762e89f94sm10899573wrk.117.2023.09.24.23.40.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Sep 2023 23:35:42 -0700 (PDT)
-Message-ID: <59000a48-cb01-b92b-0a36-24227a990976@gmail.com>
-Date: Mon, 25 Sep 2023 09:35:41 +0300
+        Sun, 24 Sep 2023 23:40:32 -0700 (PDT)
+Message-ID: <aab601e8-232d-4e6b-9dae-593632c71983@linaro.org>
+Date: Mon, 25 Sep 2023 08:40:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Angel Iglesias <ang.iglesiasg@gmail.com>, Andreas Klinger
- <ak@it-klinger.de>, Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Benjamin Bara <bbara93@gmail.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <cover.1695380366.git.mazziesaccount@gmail.com>
- <20230924165331.6df2e9c1@jic23-huawei>
-Content-Language: en-US, en-GB
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-Subject: Re: [PATCH v3 0/6] Support ROHM BM1390 pressure sensor
-In-Reply-To: <20230924165331.6df2e9c1@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 08/15] soc: mediatek: Add cmdq_pkt_finalize_loop to CMDQ
+ driver
+To: =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
+ "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "angelogioacchino.delregno@collabora.com"
+ <angelogioacchino.delregno@collabora.com>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
+ =?UTF-8?B?Sm9obnNvbiBXYW5nICjnjovogZbpkasp?= <Johnson.Wang@mediatek.com>,
+ =?UTF-8?B?SmFzb24tY2ggQ2hlbiAo6Zmz5bu66LGqKQ==?=
+ <Jason-ch.Chen@mediatek.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ =?UTF-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?= <Shawn.Sung@mediatek.com>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ =?UTF-8?B?RWx2aXMgV2FuZyAo546L5YabKQ==?= <Elvis.Wang@mediatek.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20230918192204.32263-1-jason-jh.lin@mediatek.com>
+ <20230918192204.32263-9-jason-jh.lin@mediatek.com>
+ <ecda52ed-1d17-45e8-ab90-a9070ceb2d1c@linaro.org>
+ <b4a7b38d81e7d0634a172dcdd11f0106ac9449a9.camel@mediatek.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <b4a7b38d81e7d0634a172dcdd11f0106ac9449a9.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 9/24/23 18:53, Jonathan Cameron wrote:
-> On Fri, 22 Sep 2023 14:14:52 +0300
-> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+On 25/09/2023 08:04, Jason-JH Lin (林睿祥) wrote:
+> Hi Krzysztof,
+> 
+> Thanks for the reviews.
+> 
+> On Sat, 2023-09-23 at 20:08 +0200, Krzysztof Kozlowski wrote:
+>>  	 
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
+>>  On 18/09/2023 21:21, Jason-JH.Lin wrote:
+>>> Add cmdq_pkt_finalize_loop to CMDQ driver.
+>>>
+>>> cmdq_pkt_finalize_loop appends end of command(EOC) instruction and
+>>> jump to start of command buffer instruction to make the command
+>>> buffer loopable.
+>>>
+>>> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+>>> ---
+>>>  drivers/soc/mediatek/mtk-cmdq-helper.c | 23
+>> +++++++++++++++++++++++
+>>>  include/linux/soc/mediatek/mtk-cmdq.h  |  8 ++++++++
+>>>  2 files changed, 31 insertions(+)
+>>>
+>>> diff --git a/drivers/soc/mediatek/mtk-cmdq-helper.c
+>> b/drivers/soc/mediatek/mtk-cmdq-helper.c
+>>> index 4be2a18a4a02..bbb127620bb3 100644
+>>> --- a/drivers/soc/mediatek/mtk-cmdq-helper.c
+>>> +++ b/drivers/soc/mediatek/mtk-cmdq-helper.c
+>>> @@ -475,6 +475,29 @@ int cmdq_pkt_finalize(struct cmdq_pkt *pkt)
+>>>  }
+>>>  EXPORT_SYMBOL(cmdq_pkt_finalize);
+>>>  
+>>> +int cmdq_pkt_finalize_loop(struct cmdq_pkt *pkt)
+>>> +{
+>>> +struct cmdq_instruction inst = { {0} };
+>>> +int err;
+>>> +
+>>> +/* insert EOC and generate IRQ for each command iteration */
+>>> +inst.op = CMDQ_CODE_EOC;
+>>> +inst.value = CMDQ_EOC_IRQ_EN;
+>>> +err = cmdq_pkt_append_command(pkt, inst);
+>>> +if (err < 0)
+>>> +return err;
+>>> +
+>>> +/* JUMP to start of pkt */
+>>> +err = cmdq_pkt_jump(pkt, pkt->pa_base);
+>>> +if (err < 0)
+>>> +return err;
+>>> +
+>>> +pkt->loop = true;
+>>> +
+>>> +return err;
+>>> +}
+>>> +EXPORT_SYMBOL(cmdq_pkt_finalize_loop);
 >>
->> Revision history:
->> Major changes here, please see the head room of individual patches for
->> more detailed list.
->> v2 => v3:
->> 	rebased on v6.6-rc2
+>> NAK. No users (and please carefully think before you answer that your
+>> other patch uses it).
+>>
 > 
-> Stick to rc1 though I doubt it makes much difference.
-
-It shouldn't probably change much - but it 's still good to know -rc1 is 
-what you'll stick at :) Thanks for pointing it out.
-
-> The IIO tree
-> will remain based on v6.6-rc1 until it is rebased after Greg takes
-> a pull request.
+> As I know, the API with EXPORT_SYMBOL means it can be used by a dynamic
+> loaded module.
 > 
+> Do you means that mtk-cmdq-sec-mailbox.c in [PATCH 10/15] is a built-in 
+> module currently, so I should not add EXPORT_SYMBOL to this API?
 
-Yours,
-	--Matti
+I mean there is no need for this. Please name the name of module where
+this function will be defined and name of module(s) using it. ".c" is
+not a module. ".ko" is.
 
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
 
-~~ When things go utterly wrong vim users can always type :help! ~~
+Best regards,
+Krzysztof
 
 
