@@ -1,60 +1,53 @@
-Return-Path: <devicetree+bounces-2995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 661557AD150
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:21:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ADCE7AD15D
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:21:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id EDD2A1F24431
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 07:21:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id B25191F244B4
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 07:21:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E2481094F;
-	Mon, 25 Sep 2023 07:21:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6269E1095A;
+	Mon, 25 Sep 2023 07:21:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECA8310947
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:21:30 +0000 (UTC)
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E14BEC0;
-	Mon, 25 Sep 2023 00:21:28 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 5B888FF812;
-	Mon, 25 Sep 2023 07:21:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1695626487;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=8mW/LhaMZ6C8T9Ul4CHk8qHTKhJA/foMq45GY45NOR0=;
-	b=ZlnkQHc60r6J3wd2dZP/cYKxILn0bxKYukv/OkkSmvgkE18IIjcfgpNU26e1xi/o4Nch67
-	oD6+c1pJkQkZ3sYg+Bht63SC/7Ncy7MmxImhrKsHPzByzIqWnONyDShI4i2RuC1LDB1SWb
-	/HaNVl60+WIY4MHmTJMm9MlJ53jPhbxlWA06cJT1xK0Y86w6FCyVbg3/I7BEihXLdBcwD8
-	lVhi+YO+I6wn61/EeCAdf/tQDGvBu/nqYUT+5cLPpmnbwQbe1MiDBfpAlgZRx2wua4A+JX
-	MY4f9+FEh5Q0hUyrUVnWceGbmiCKgpneO87BI53cvcJ4BCfOZByWUnmlMaR2Cw==
-Date: Mon, 25 Sep 2023 09:21:22 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Simon Glass <sjg@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, U-Boot
- Mailing List <u-boot@lists.denx.de>, linux-mtd@lists.infradead.org, Tom
- Rini <trini@konsulko.com>, Conor Dooley <conor+dt@kernel.org>, Dhruva Gole
- <d-gole@ti.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Richard Weinberger
- <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mtd: Add a schema for binman
-Message-ID: <20230925092122.0b615f25@xps-13>
-In-Reply-To: <CAPnjgZ3BnD9aX3cNNPiGRKTOj+YeurHCLv6K0TRFhAtY21Qufw@mail.gmail.com>
-References: <20230921124459.1.I91ddcfacf9b234af5cc3eabea4b62edb31153317@changeid>
-	<CAL_Jsq+WuYDU+yY98opTHr1PT-J9mFYJQBjVMnk+FSWLDUO33w@mail.gmail.com>
-	<CAPnjgZ1pfxaMG1n5yOBhiOhsNrRjck1K92U7Ga=+VTY_jjjrVg@mail.gmail.com>
-	<20230922174649.GA3320366-robh@kernel.org>
-	<CAPnjgZ3ojfAv=BHqOhM=-NnYqCm81Ny=PsGKiNphKTmw++fk9w@mail.gmail.com>
-	<CAL_JsqJqvyP=c93DHDO8A5RXv7Lz_Z7eEHSbJQ=JCo+qPVhSfg@mail.gmail.com>
-	<CAPnjgZ3BnD9aX3cNNPiGRKTOj+YeurHCLv6K0TRFhAtY21Qufw@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11FF61094F
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:21:40 +0000 (UTC)
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8FFFFD3;
+	Mon, 25 Sep 2023 00:21:38 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="6.03,174,1694703600"; 
+   d="scan'208";a="177131124"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 25 Sep 2023 16:21:35 +0900
+Received: from localhost.localdomain (unknown [10.166.15.32])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 2E0A84008C70;
+	Mon, 25 Sep 2023 16:21:35 +0900 (JST)
+From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To: lpieralisi@kernel.org,
+	kw@linux.com,
+	robh@kernel.org,
+	bhelgaas@google.com,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	jingoohan1@gmail.com,
+	gustavo.pimentel@synopsys.com,
+	mani@kernel.org
+Cc: marek.vasut+renesas@gmail.com,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Serge Semin <fancer.lancer@gmail.com>
+Subject: [PATCH v22 08/16] PCI: dwc: endpoint: Introduce .pre_init() and .deinit()
+Date: Mon, 25 Sep 2023 16:21:22 +0900
+Message-Id: <20230925072130.3901087-9-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230925072130.3901087-1-yoshihiro.shimoda.uh@renesas.com>
+References: <20230925072130.3901087-1-yoshihiro.shimoda.uh@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,181 +55,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Simon,
+Renesas R-Car Gen4 PCIe controllers require vendor-specific
+initialization before .init().
 
-sjg@chromium.org wrote on Fri, 22 Sep 2023 13:51:14 -0600:
+To use dw->dbi and dw->num-lanes in the initialization code,
+introduce .pre_init() into struct dw_pcie_ep_ops. While at it,
+also introduce .deinit() to disable the controller by using
+vendor-specific de-initialization.
 
-> Hi Rob,
->=20
-> On Fri, 22 Sept 2023 at 13:43, Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Fri, Sep 22, 2023 at 1:12=E2=80=AFPM Simon Glass <sjg@chromium.org> =
-wrote: =20
-> > >
-> > > Hi Rob,
-> > >
-> > > On Fri, 22 Sept 2023 at 11:46, Rob Herring <robh@kernel.org> wrote: =
-=20
-> > > >
-> > > > On Fri, Sep 22, 2023 at 11:01:18AM -0600, Simon Glass wrote: =20
-> > > > > Hi Rob,
-> > > > >
-> > > > > On Fri, 22 Sept 2023 at 10:00, Rob Herring <robh@kernel.org> wrot=
-e: =20
-> > > > > >
-> > > > > > On Thu, Sep 21, 2023 at 1:45=E2=80=AFPM Simon Glass <sjg@chromi=
-um.org> wrote: =20
-> > > > > > >
-> > > > > > > Binman[1] is a tool for creating firmware images. It allows y=
-ou to
-> > > > > > > combine various binaries and place them in an output file.
-> > > > > > >
-> > > > > > > Binman uses a DT schema to describe an image, in enough detai=
-l that
-> > > > > > > it can be automatically built from component parts, disassemb=
-led,
-> > > > > > > replaced, listed, etc.
-> > > > > > >
-> > > > > > > Images are typically stored in flash, which is why this bindi=
-ng is
-> > > > > > > targeted at mtd. Previous discussion is at [2] [3].
-> > > > > > >
-> > > > > > > [1] https://u-boot.readthedocs.io/en/stable/develop/package/b=
-inman.html
-> > > > > > > [2] https://lore.kernel.org/u-boot/20230821180220.2724080-3-s=
-jg@chromium.org/
-> > > > > > > [3] https://www.spinics.net/lists/devicetree/msg626149.html =
-=20
-> > > > > >
-> > > > > > You missed:
-> > > > > >
-> > > > > > https://github.com/devicetree-org/dt-schema/pull/110
-> > > > > >
-> > > > > > where I said: We certainly shouldn't duplicate the existing par=
-titions
-> > > > > > bindings. What's missing from them (I assume we're mostly talki=
-ng
-> > > > > > about "fixed-partitions" which has been around forever I think =
-(before
-> > > > > > me))?
-> > > > > >
-> > > > > > To repeat, unless there is some reason binman partitions confli=
-ct with
-> > > > > > fixed-partitions, you need to start there and extend it. From w=
-hat's
-> > > > > > posted here, it neither conflicts nor needs extending. =20
-> > > > >
-> > > > > I think at this point I am just hopelessly confused. Have you tak=
-en a
-> > > > > look at the binman schema? [1] =20
-> > > >
-> > > > Why do I need to? That's used for some tool and has nothing to do w=
-ith a
-> > > > device's DTB. However, I thought somewhere in this discussion you s=
-howed
-> > > > it under a flash device node. =20
-> > >
-> > > Yes, that is the intent (under a flash node).
-> > > =20
-> > > > Then I care because then it overlaps with
-> > > > what we already have for partitions. If I misunderstood that, then =
-just
-> > > > put your schema with your tool. Only users of the tool should care =
-about
-> > > > the tool's schema. =20
-> > >
-> > > OK. I believe that binman will fit into both camps, since its input is
-> > > not necessarily fully formed. E.g. if you don't specify the offset of
-> > > an entry, then it will be packed automatically. But the output is
-> > > fully formed, in that Binman now knows the offset so can write it to
-> > > the DT. =20
-> >
-> > I suppose it could take its own format as input and then write out
-> > something different for the "on the device" format (i.e.
-> > fixed-partitions). At least for the dynamic offsets, we may need
-> > something allowed for binman input, but not allowed on device. In
-> > general, there is support for partitions without addresses/offsets,
-> > but only for partitions that have some other way to figure that out
-> > (on disk partition info).
-> >
-> > There's also the image filename which doesn't really belong in the on
-> > device partitions. So maybe the input and output schemas should be
-> > separate. =20
->=20
-> OK, I'll focus on the output schema for now. I suspect this will be a
-> grey area though.
->=20
-> As an example, if you replace a binary in the firmware, Binman can
-> repack the firmware to make room, respecting the alignment and size
-> constraints. So these need to be in the output schema somehow.
->=20
-> > =20
-> > > > > I saw this file, which seems to extend a partition.
-> > > > >
-> > > > > Documentation/devicetree/bindings/mtd/partitions/brcm,bcm4908-par=
-titions.yaml =20
-> > > >
-> > > > IIRC, that's a different type where partition locations are stored =
-in
-> > > > the flash, so we don't need location and size in DT. =20
-> > >
-> > > OK.
-> > > =20
-> > > > =20
-> > > > >
-> > > > > I was assuming that I should create a top-level compatible =3D "b=
-inman"
-> > > > > node, with subnodes like compatible =3D "binman,bl31-atf", for ex=
-ample.
-> > > > > I should use the compatible string to indicate the contents, righ=
-t? =20
-> > > >
-> > > > Yes for subnodes, and we already have some somewhat standard ones f=
-or
-> > > > "u-boot" and "u-boot-env". Though historically, "label" was used. =
-=20
-> > >
-> > > Binman has common properties for all entries, including "compress"
-> > > which sets the compression algorithm. =20
-> >
-> > I see no issue with adding that. It seems useful and something missing
-> > in the existing partition schemas. =20
->=20
-> OK I sent a patch with that.
->=20
-> > =20
-> > > So perhaps I should start by defining a new binman,bl31-atf which has
-> > > common properties from an "binman,entry" definition? =20
-> >
-> > I don't understand the binman prefix. The contents are ATF (or TF-A
-> > now). Who wrote it to the flash image is not relevant. =20
->=20
-> Are you suggesting just "atf-bl31", or "arm,atf-bl31" ? Or should we
-> change it to "tfa-bl31"?
+Note that the ep_init in the struct dw_pcie_ep_ops should be
+renamed to init later.
 
-I don't really understand the relationship with TF-A here. Can't we
-just have a kind of fixed-partitions with additional properties like
-the compression?
+[kwilczynski: commit log]
+Link: https://lore.kernel.org/linux-pci/20230825093219.2685912-13-yoshihiro.shimoda.uh@renesas.com
+Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Signed-off-by: Krzysztof Wilczyński <kwilczynski@kernel.org>
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+---
+ drivers/pci/controller/dwc/pcie-designware-ep.c | 12 +++++++++++-
+ drivers/pci/controller/dwc/pcie-designware.h    |  2 ++
+ 2 files changed, 13 insertions(+), 1 deletion(-)
 
-> > We already have some compatibles in use. We should reuse them if
-> > possible. Not sure about TF-A though. =20
->=20
-> OK.
->=20
+diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
+index a8bcbc57ef86..d34a5e87ad18 100644
+--- a/drivers/pci/controller/dwc/pcie-designware-ep.c
++++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
+@@ -637,6 +637,9 @@ void dw_pcie_ep_exit(struct dw_pcie_ep *ep)
+ 			      epc->mem->window.page_size);
+ 
+ 	pci_epc_mem_exit(epc);
++
++	if (ep->ops->deinit)
++		ep->ops->deinit(ep);
+ }
+ EXPORT_SYMBOL_GPL(dw_pcie_ep_exit);
+ 
+@@ -740,6 +743,9 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+ 	ep->phys_base = res->start;
+ 	ep->addr_size = resource_size(res);
+ 
++	if (ep->ops->pre_init)
++		ep->ops->pre_init(ep);
++
+ 	dw_pcie_version_detect(pci);
+ 
+ 	dw_pcie_iatu_detect(pci);
+@@ -794,7 +800,7 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+ 			       ep->page_size);
+ 	if (ret < 0) {
+ 		dev_err(dev, "Failed to initialize address space\n");
+-		return ret;
++		goto err_ep_deinit;
+ 	}
+ 
+ 	ep->msi_mem = pci_epc_mem_alloc_addr(epc, &ep->msi_mem_phys,
+@@ -831,6 +837,10 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+ err_exit_epc_mem:
+ 	pci_epc_mem_exit(epc);
+ 
++err_ep_deinit:
++	if (ep->ops->deinit)
++		ep->ops->deinit(ep);
++
+ 	return ret;
+ }
+ EXPORT_SYMBOL_GPL(dw_pcie_ep_init);
+diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+index e10f7e18b13a..8c637392ab08 100644
+--- a/drivers/pci/controller/dwc/pcie-designware.h
++++ b/drivers/pci/controller/dwc/pcie-designware.h
+@@ -330,7 +330,9 @@ struct dw_pcie_rp {
+ };
+ 
+ struct dw_pcie_ep_ops {
++	void	(*pre_init)(struct dw_pcie_ep *ep);
+ 	void	(*ep_init)(struct dw_pcie_ep *ep);
++	void	(*deinit)(struct dw_pcie_ep *ep);
+ 	int	(*raise_irq)(struct dw_pcie_ep *ep, u8 func_no,
+ 			     enum pci_epc_irq_type type, u16 interrupt_num);
+ 	const struct pci_epc_features* (*get_features)(struct dw_pcie_ep *ep);
+-- 
+2.25.1
 
-Also, I still don't understand the purpose of this schema. So binman
-generates an image, you want to flash this image and you would like the
-tool to generate the corresponding (partition) DT snippet automatically.
-Do I get this right? I don't get why you would need new compatibles for
-that.
-
-Thanks, Miqu=C3=A8l
 
