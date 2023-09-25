@@ -1,113 +1,105 @@
-Return-Path: <devicetree+bounces-3189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B02B37AD9B1
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 16:06:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C870C7AD9B7
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 16:07:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3DFAE281272
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 14:06:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 77EED281272
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 14:07:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A89C61BDE9;
-	Mon, 25 Sep 2023 14:06:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 101291BDEB;
+	Mon, 25 Sep 2023 14:07:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97BB118E38
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 14:06:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87208C433C8;
-	Mon, 25 Sep 2023 14:06:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695650781;
-	bh=z+beOv8eP8i270vZ1KGKwTfsMp2RfL6DAYL5zKJa3/k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MG32E4D4v6lLAVuXEpIB0vGfmaXdid2BgKg/yfGteT0SAlvD/+tl/NWbfdW2wbqq6
-	 eO8lAvso0JbMOjcKr3Z4ZKmomaScWlzWun6AWg9kIK/BMlEj6vYruZwA41b/cqbX9R
-	 lls3NzvHM1USHU/uhE1FszvWEz5ZGOAiEUp5tQhXZJ/0nBr2ygi3bpMiYk53uHqUnF
-	 0XnAVdpzLOGgC9nKlOV5agNM3wcH59ka2pivMJLD/H5aBJbuNau5NkASuklgK77834
-	 klvPEiJbjd8Kg+h7egHmthYazXTXyfnr/DLaF6J76m+d1lENd4oaHHa8bYV/jvQqln
-	 N0+6fybY3WkEw==
-Date: Mon, 25 Sep 2023 16:06:18 +0200
-From: Mark Brown <broonie@kernel.org>
-To: wangweidong.a@awinic.com
-Cc: lgirdwood@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	perex@perex.cz, tiwai@suse.com, rf@opensource.cirrus.com,
-	herve.codina@bootlin.com, shumingf@realtek.com,
-	ryans.lee@analog.com, 13916275206@139.com, linus.walleij@linaro.org,
-	ckeepax@opensource.cirrus.com, povik+lin@cutebit.org,
-	harshit.m.mogalapalli@oracle.com, arnd@arndb.de,
-	yijiangtao@awinic.com, yang.lee@linux.alibaba.com,
-	liweilei@awinic.com, u.kleine-koenig@pengutronix.de,
-	colin.i.king@gmail.com, trix@redhat.com,
-	alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V4 4/7] ASoC: codecs: Add code for bin parsing compatible
- with aw87390
-Message-ID: <ZRGT2oLQaJBVVYFH@finisterre.sirena.org.uk>
-References: <20230919105724.105624-1-wangweidong.a@awinic.com>
- <20230919105724.105624-5-wangweidong.a@awinic.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DCA018E38
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 14:07:23 +0000 (UTC)
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B35F510D
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:07:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1695650840; x=1698242840;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=MEYxuz1Uw+VReTSa6PXtiqg+xBQ1tt+ZjnGvZk0sYws=;
+	b=a8l0irkyH0tn3osUvH57okwDktBI5iEMP3HQBVhH/oM5euNy6qpHI3G0oetRVBau
+	PgDqfG4Nh84oMChggAElbWvRP1giJKaRm7ZysfUVrpuOY0I82OmInqU1fXJBYhPV
+	YlxYH2gcGR65t6gewHobru3Q8GfSN7cSJvdJRuBx7yY=;
+X-AuditID: ac14000a-6d65670000001e37-fb-65119417c4c9
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 9E.91.07735.71491156; Mon, 25 Sep 2023 16:07:20 +0200 (CEST)
+Received: from augenblix2.phytec.de (172.25.0.11) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Mon, 25 Sep
+ 2023 16:07:19 +0200
+From: Wadim Egorov <w.egorov@phytec.de>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<keescook@chromium.org>, <tony.luck@intel.com>, <gpiccoli@igalia.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
+	<upstream@lists.phytec.de>
+Subject: [PATCH] arm64: dts: ti: k3-am625-beagleplay: Fix typo in ramoops reg
+Date: Mon, 25 Sep 2023 16:07:10 +0200
+Message-ID: <20230925140710.478027-1-w.egorov@phytec.de>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="QFIK27TUvqKWMvSN"
-Content-Disposition: inline
-In-Reply-To: <20230919105724.105624-5-wangweidong.a@awinic.com>
-X-Cookie: HELLO, everybody, I'm a HUMAN!!
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [172.25.0.11]
+X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrPLMWRmVeSWpSXmKPExsWyRpKBR1diimCqwYmzTBZr9p5jsph/5Byr
+	xbzzh9ktznTnWiz/PJvdou/FQ2aLTY+vAcXX/2S0uLxrDpvFmx9ADa17j7BbvLlwj8Wi+526
+	xf+zH9gd+DxmN1xk8Zgwu5vNY/Gel0wem1Z1snncubaHzWPzknqP/u4WVo/jN7YzeXzeJBfA
+	GcVlk5Kak1mWWqRvl8CVcfLdScaCQ2wV/ZcDGxh3sHYxcnJICJhI3H/5nKmLkYtDSGAJk8Sq
+	g3uZIZwnjBJXT19nA6liE1CXuLPhGytIQkTgCqPElgNz2EEcZoHVjBKz3m5nAqkSFvCVuHa1
+	jxHEZhFQlXi7rh2og4ODV8BCon1vCMQ6eYmZl76zg9i8AoISJ2c+YQGxmYHizVtnM0PYEhIH
+	X7wAs4WA4i8uLWeB6Z127jUzhB0qsfXLdqYJjAKzkIyahWTULCSjFjAyr2IUys1Mzk4tyszW
+	K8ioLElN1ktJ3cQIiiQRBq4djH1zPA4xMnEwHmKU4GBWEuH99YwvVYg3JbGyKrUoP76oNCe1
+	+BCjNAeLkjjv/R6mRCGB9MSS1OzU1ILUIpgsEwenVAOj+CxN3WWJXB9Pn525KUz3IAdPu7no
+	GwOGZSJa/zxvH72vdaLyXUDPX8N77VYSVwrXfp7PNfnUs9gV7kYNDN6fL7/8qxPArLjJZaLT
+	B/u1nMYpxeJrNLiCy5NL9rPKHtVbsbHTTvBryclljHvzSj6LcE1d7mP157xYYaYik/2iW1cT
+	2cw85jopsRRnJBpqMRcVJwIA2fvwtpICAAA=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+Seems like the address value of the reg property was mistyped.
+Update reg to 0x9ca00000 to match node's definition.
 
---QFIK27TUvqKWMvSN
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
+---
+ arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On Tue, Sep 19, 2023 at 06:57:21PM +0800, wangweidong.a@awinic.com wrote:
-> From: Weidong Wang <wangweidong.a@awinic.com>
->=20
-> Add aw87390 compatible code to the aw88395_lib.c file
-> so that it can parse aw87390's bin file
-> Modify the function return value
+diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+index 7cfdf562b53b..2de74428a8bd 100644
+--- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
++++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+@@ -58,7 +58,7 @@ reserved-memory {
+ 
+ 		ramoops: ramoops@9ca00000 {
+ 			compatible = "ramoops";
+-			reg = <0x00 0x9c700000 0x00 0x00100000>;
++			reg = <0x00 0x9ca00000 0x00 0x00100000>;
+ 			record-size = <0x8000>;
+ 			console-size = <0x8000>;
+ 			ftrace-size = <0x00>;
+-- 
+2.25.1
 
-This breaks an x86 allmodconfig build:
-
-/build/stage/linux/sound/soc/codecs/aw88395/aw88395.c: In function =E2=80=
-=98aw88395_prof
-ile_info=E2=80=99:
-/build/stage/linux/sound/soc/codecs/aw88395/aw88395.c:199:21: error: too fe=
-w arg
-uments to function =E2=80=98aw88395_dev_get_prof_name=E2=80=99
-  199 |         prof_name =3D aw88395_dev_get_prof_name(aw88395->aw_pa, cou=
-nt);
-      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~
-In file included from /build/stage/linux/sound/soc/codecs/aw88395/aw88395.c=
-:17:
-/build/stage/linux/sound/soc/codecs/aw88395/aw88395_device.h:184:5: note: d=
-eclar
-ed here
-  184 | int aw88395_dev_get_prof_name(struct aw_device *aw_dev, int index, =
-char=20
-**prof_name);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
-
---QFIK27TUvqKWMvSN
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmURk8wACgkQJNaLcl1U
-h9AbHAf9GUfsbOtVMPrTo9cIihIM3OVqHie4TXTSEVdAf9Lg9U2Z9NDs92Cbjc9N
-7uisNTtQA6NMvc1UAYTYm7R2yRyHiaJRkW8gYmh2opw7WZgO7nbMAchxGMGvZjH8
-huc1lVOvgxbdcRnaZYG4RA8l4htTrMQTD2P+8fMmWQNW16d/xn+1/q0baZ/v8KWJ
-lAHGTem14Ry7ocS3WxxCJRrCYIp98a7SbyL3t0EbFHFFZM4JQ019PwaI7poDXRTx
-CeQmqsUQwnBwqSDCF+pFl15TEmlXEC7QFPm9B+zGjRN+TLD2ilsT3XgJfDfs9tn5
-u7FBcRLo6DeHIqOKu41HCAOkMVenfw==
-=xBek
------END PGP SIGNATURE-----
-
---QFIK27TUvqKWMvSN--
 
