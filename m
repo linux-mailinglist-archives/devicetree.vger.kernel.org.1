@@ -1,116 +1,250 @@
-Return-Path: <devicetree+bounces-3099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 905337AD572
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:09:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66FA67AD582
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:10:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id DB528B20AE7
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 10:09:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 18BB6281C0C
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 10:10:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9E0814A85;
-	Mon, 25 Sep 2023 10:09:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CED714A8A;
+	Mon, 25 Sep 2023 10:10:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A43FD14A81
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 10:09:40 +0000 (UTC)
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A07AC8E;
-	Mon, 25 Sep 2023 03:09:38 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-50307759b65so9803346e87.0;
-        Mon, 25 Sep 2023 03:09:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695636576; x=1696241376; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=pozEomMH28tFX9WItO+DCF/zxH5NXKP3RE/PmQ8nhXc=;
-        b=hrEFg7tVmcgH/f+GllUZjmm4fO/v188tWIlcrS93mnlgWn1CF+hUhXpSn6xbf01cOZ
-         IlO4yDzCh4Aoz3VKM8J1HvreUAnb556Aad8/hdBEy6XYQ4krxDSjZRFPu2l6qaKeERCN
-         Lp7O7qLCtibP0gRvQ924qdpWFmfTUaN6+UW1BKZnrwZJke1Wo4lH4PydJKkoxjEgF2nk
-         vl+ZtRUbRJ8SQlrrBjCog4zWRfQXbV9MPSoUApFYpPOvpk2UZYxW0hDmSGdoteUO52uK
-         v+e3DkQ5HiQ5Vx/zyectkeMhOanTLANNr9IoDo4i/eKshwynfveRe2I4KnCElKsFwII/
-         FZCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695636576; x=1696241376;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pozEomMH28tFX9WItO+DCF/zxH5NXKP3RE/PmQ8nhXc=;
-        b=r6OTyCx/c/ganj8bopX2mbKWbXqtvwKCIGopjYZk/ZFYx7OLhxivJQU2vWEqvedQRB
-         H7xz7n2bgd91roefXPH1SP1DDz4VPssw7Kd8J3VhHpLuWcGEUqFa7daGcl0XxtLj2pWr
-         EwhNYk7oK4mWC5/lS0E0eoS9dbKKIYk5+wgvZP2wBdOyC+Iw3qsmQg7Wes++88Vx2sHt
-         AHZl92961lgSgseavb5kAFRQ68b2WxIAvcr3KECneJmTXjERqpN5k9kasLPeZEJMjBvx
-         /wPvx6MN3XyevW9CR8CfESYKHDWvZqlCuPXAzNjeYUe6RZyohGU55iNItiCk6FNElTsK
-         4egg==
-X-Gm-Message-State: AOJu0YxTXhImq0+GNpimhPCNnQ3aTdFCBj34IILNuzyYClPkPobXSdtP
-	4EdCGHkf1nrlkyQV9lw/zxo=
-X-Google-Smtp-Source: AGHT+IGoXYE862ReHwTKDJLlC92A34VQa3pBvklcL/G2AxTgJ0wM8txLrmkQQEJZwYT0wGGByMNQtg==
-X-Received: by 2002:ac2:41c9:0:b0:500:bff5:54ec with SMTP id d9-20020ac241c9000000b00500bff554ecmr3920141lfi.3.1695636576383;
-        Mon, 25 Sep 2023 03:09:36 -0700 (PDT)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id m1-20020ac24281000000b004ff96c09b47sm1759121lfh.260.2023.09.25.03.09.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Sep 2023 03:09:35 -0700 (PDT)
-Date: Mon, 25 Sep 2023 13:09:33 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, 
-	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	jingoohan1@gmail.com, gustavo.pimentel@synopsys.com, mani@kernel.org, 
-	marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v22 12/16] PCI: add T_PVPERL macro
-Message-ID: <kx5chxi6qqepmod46etqdgcltqeptb2b6qx336b5obhqrvsfu5@ak22ycz5bl26>
-References: <20230925072130.3901087-1-yoshihiro.shimoda.uh@renesas.com>
- <20230925072130.3901087-13-yoshihiro.shimoda.uh@renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89EE214A81
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 10:10:53 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8EDACC0;
+	Mon, 25 Sep 2023 03:10:51 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38P9WaoX014344;
+	Mon, 25 Sep 2023 10:10:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=1Dg1AF+QNqKPLVes4rcD/6Z3XXkbKJBsfaWUKNHAO5Y=;
+ b=fu9qhDcSxbfQKytaDCjBqpM+0yuFkVRgTbb5RWs/YgDy0SNxlRE35Ds1C/4ubIIxc72b
+ 1xHlIBPXGpF86pcs09XuJAvcqNfOqi8IoEx94d/CBPOUvehbWpdA3S1QC1lhFaQkSW+/
+ fjaUL1Rp0ONvb9g/cIASg93A4ufBU5tJ2XtRzBL1Ft/ryXebH+6inHC7UOWcy0J2etfm
+ eFDyNOAVClOFWd0MGaCuYBV85G+dPNRtjF5PB7vo2K99KL0WH3rGXEGj62ZlDdPOjnyK
+ Ti4o2N5OafPnMMRdGSuj7ulMJjQLUy/wuetH91jxt9pNG4Qvi75J1Ytw6yxIvKHKTBAf MQ== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tb3hfruh8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Sep 2023 10:10:45 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38PAAiDl031058
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Sep 2023 10:10:44 GMT
+Received: from [10.216.42.228] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Mon, 25 Sep
+ 2023 03:10:39 -0700
+Message-ID: <ae3a4224-ddf1-4a48-8fff-001318070b67@quicinc.com>
+Date: Mon, 25 Sep 2023 15:40:34 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230925072130.3901087-13-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: Add USB3 and PHY support
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <1695383434-24705-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1695383434-24705-3-git-send-email-quic_rohiagar@quicinc.com>
+ <29b774d4-3759-4b49-926e-551c92d3f8c7@linaro.org>
+From: Rohit Agarwal <quic_rohiagar@quicinc.com>
+In-Reply-To: <29b774d4-3759-4b49-926e-551c92d3f8c7@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: cwei_RV7itqWXPrPcoHvSqmGbRNnn_k_
+X-Proofpoint-ORIG-GUID: cwei_RV7itqWXPrPcoHvSqmGbRNnn_k_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-25_07,2023-09-21_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 bulkscore=0 lowpriorityscore=0 phishscore=0 spamscore=0
+ adultscore=0 suspectscore=0 mlxscore=0 clxscore=1015 priorityscore=1501
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2309250074
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Sep 25, 2023 at 04:21:26PM +0900, Yoshihiro Shimoda wrote:
-> According to the PCI Express Card Electromechanical Specification,
-> Power stable to PERST# inactive interval is 100 ms as minimum.
-> So, add the macro to use PCIe controller drivers.
-> 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+On 9/24/2023 12:49 AM, Dmitry Baryshkov wrote:
+> On 22/09/2023 14:50, Rohit Agarwal wrote:
+>> Add devicetree nodes for enabling USB3 controller, Qcom QMP PHY and
+>> HS PHY on SDX75.
+>
+> Please fix the subject to mention the platform.
+>
+> Other than that, LGTM.
+Oh missed it.
 
--Serge(y)
-
-> ---
->  drivers/pci/pci.h | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
-> index 39a8932dc340..5ecbcf041179 100644
-> --- a/drivers/pci/pci.h
-> +++ b/drivers/pci/pci.h
-> @@ -13,6 +13,9 @@
->  
->  #define PCIE_LINK_RETRAIN_TIMEOUT_MS	1000
->  
-> +/* Power stable to PERST# inactive from PCIe card Electromechanical Spec */
-> +#define PCIE_T_PVPERL_MS		100
-> +
->  /*
->   * PCIe r6.0, sec 5.3.3.2.1 <PME Synchronization>
->   * Recommends 1ms to 10ms timeout to check L2 ready.
-> -- 
-> 2.25.1
-> 
+Thanks,
+Rohit.
+>
+>>
+>> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sdx75.dtsi | 116 
+>> ++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 116 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sdx75.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sdx75.dtsi
+>> index dd3a525..c44cdd1 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdx75.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdx75.dtsi
+>> @@ -473,6 +473,47 @@
+>>               };
+>>           };
+>>   +        usb_hsphy: phy@ff4000 {
+>> +            compatible = "qcom,sdx75-snps-eusb2-phy", 
+>> "qcom,sm8550-snps-eusb2-phy";
+>> +            reg = <0x0 0x00ff4000 0x0 0x154>;
+>> +            #phy-cells = <0>;
+>> +
+>> +            clocks = <&rpmhcc RPMH_CXO_CLK>;
+>> +            clock-names = "ref";
+>> +
+>> +            resets = <&gcc GCC_QUSB2PHY_BCR>;
+>> +
+>> +            status = "disabled";
+>> +        };
+>> +
+>> +        usb_qmpphy: phy@ff6000 {
+>> +            compatible = "qcom,sdx75-qmp-usb3-uni-phy";
+>> +            reg = <0x0 0x00ff6000 0x0 0x2000>;
+>> +
+>> +            clocks = <&gcc GCC_USB3_PHY_AUX_CLK>,
+>> +                 <&gcc GCC_USB2_CLKREF_EN>,
+>> +                 <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>,
+>> +                 <&gcc GCC_USB3_PHY_PIPE_CLK>;
+>> +            clock-names = "aux",
+>> +                      "ref",
+>> +                      "cfg_ahb",
+>> +                      "pipe";
+>> +
+>> +            power-domains = <&gcc GCC_USB3_PHY_GDSC>;
+>> +
+>> +            resets = <&gcc GCC_USB3_PHY_BCR>,
+>> +                 <&gcc GCC_USB3PHY_PHY_BCR>;
+>> +            reset-names = "phy",
+>> +                      "phy_phy";
+>> +
+>> +            #clock-cells = <0>;
+>> +            clock-output-names = "usb3_uni_phy_pipe_clk_src";
+>> +
+>> +            #phy-cells = <0>;
+>> +
+>> +            status = "disabled";
+>> +        };
+>> +
+>>           system_noc: interconnect@1640000 {
+>>               compatible = "qcom,sdx75-system-noc";
+>>               reg = <0x0 0x01640000 0x0 0x4b400>;
+>> @@ -493,6 +534,81 @@
+>>               #hwlock-cells = <1>;
+>>           };
+>>   +        usb: usb@a6f8800 {
+>> +            compatible = "qcom,sdx75-dwc3", "qcom,dwc3";
+>> +            reg = <0x0 0x0a6f8800 0x0 0x400>;
+>> +            #address-cells = <2>;
+>> +            #size-cells = <2>;
+>> +            ranges;
+>> +
+>> +            clocks = <&gcc GCC_USB30_SLV_AHB_CLK>,
+>> +                 <&gcc GCC_USB30_MASTER_CLK>,
+>> +                 <&gcc GCC_USB30_MSTR_AXI_CLK>,
+>> +                 <&gcc GCC_USB30_SLEEP_CLK>,
+>> +                 <&gcc GCC_USB30_MOCK_UTMI_CLK>;
+>> +            clock-names = "cfg_noc",
+>> +                      "core",
+>> +                      "iface",
+>> +                      "sleep",
+>> +                      "mock_utmi";
+>> +
+>> +            assigned-clocks = <&gcc GCC_USB30_MOCK_UTMI_CLK>,
+>> +                      <&gcc GCC_USB30_MASTER_CLK>;
+>> +            assigned-clock-rates = <19200000>, <200000000>;
+>> +
+>> +            interrupts-extended = <&intc GIC_SPI 131 
+>> IRQ_TYPE_LEVEL_HIGH>,
+>> +                          <&pdc 17 IRQ_TYPE_LEVEL_HIGH>,
+>> +                          <&pdc 9 IRQ_TYPE_EDGE_RISING>,
+>> +                          <&pdc 10 IRQ_TYPE_EDGE_RISING>;
+>> +            interrupt-names = "hs_phy_irq",
+>> +                      "ss_phy_irq",
+>> +                      "dm_hs_phy_irq",
+>> +                      "dp_hs_phy_irq";
+>> +
+>> +            power-domains = <&gcc GCC_USB30_GDSC>;
+>> +
+>> +            resets = <&gcc GCC_USB30_BCR>;
+>> +
+>> +            interconnects = <&system_noc MASTER_USB3_0 0 &mc_virt 
+>> SLAVE_EBI1 0>,
+>> +                    <&gem_noc MASTER_APPSS_PROC 0 &system_noc 
+>> SLAVE_USB3 0>;
+>> +            interconnect-names = "usb-ddr",
+>> +                         "apps-usb";
+>> +
+>> +            status = "disabled";
+>> +
+>> +            usb_dwc3: usb@a600000 {
+>> +                compatible = "snps,dwc3";
+>> +                reg = <0x0 0x0a600000 0x0 0xcd00>;
+>> +                interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+>> +                iommus = <&apps_smmu 0x80 0x0>;
+>> +                snps,dis_u2_susphy_quirk;
+>> +                snps,dis_enblslpm_quirk;
+>> +                phys = <&usb_hsphy>,
+>> +                       <&usb_qmpphy>;
+>> +                phy-names = "usb2-phy",
+>> +                        "usb3-phy";
+>> +
+>> +                ports {
+>> +                    #address-cells = <1>;
+>> +                    #size-cells = <0>;
+>> +
+>> +                    port@0 {
+>> +                        reg = <0>;
+>> +
+>> +                        usb_1_dwc3_hs: endpoint {
+>> +                        };
+>> +                    };
+>> +
+>> +                    port@1 {
+>> +                        reg = <1>;
+>> +
+>> +                        usb_1_dwc3_ss: endpoint {
+>> +                        };
+>> +                    };
+>> +                };
+>> +            };
+>> +        };
+>> +
+>>           pdc: interrupt-controller@b220000 {
+>>               compatible = "qcom,sdx75-pdc", "qcom,pdc";
+>>               reg = <0x0 0xb220000 0x0 0x30000>,
+>
 
