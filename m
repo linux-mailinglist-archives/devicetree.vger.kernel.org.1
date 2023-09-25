@@ -1,138 +1,168 @@
-Return-Path: <devicetree+bounces-3100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5A057AD581
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:10:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C7D67AD5AE
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:16:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id A7E551C20404
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 10:10:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id C690F282029
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 10:16:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AB4B14A87;
-	Mon, 25 Sep 2023 10:10:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1087514F6E;
+	Mon, 25 Sep 2023 10:16:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D156514A81
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 10:10:50 +0000 (UTC)
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CC071B6
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 03:10:48 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-533c0e44a72so4035373a12.3
-        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 03:10:48 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DBB510A3D
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 10:16:45 +0000 (UTC)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3B54DA
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 03:16:42 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9ae2cc4d17eso753523666b.1
+        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 03:16:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695636647; x=1696241447; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Xr0WnodR6L9SeYdsFuEWMgBEBiAtYzrQsEO7pPjODfo=;
-        b=LLvqwFYEcuEwB6Clv6i7RqhS3VxA53t/rEwdrDIH1WGg5V4eEGcrLdyYEzxyAhqVVY
-         UxKd4X/tBW0aHsx3lI3BDcDkSt8wLtz6qTNexnpLE2E+ofxbbhqKlc8axeqlvqauO5a8
-         YQWVj+Efve2XvFQxPL89OeTrQ61dQSj/78k7MXMW/YkfklIlxht1S4y/k1V6jN3T01o/
-         Q4JscRWgIIZFp4GKsAVcDPGM38RYLCo2aep3n3Een/h6bjYM9ErHstnwq/42DR/+VHb9
-         b3NP7W+1LPf6OhgDzxO++tV3f+EBNwHI+Nwk/Xvfj7M79BboD+VqCgsEY8zyr86m9mh8
-         aVew==
+        d=google.com; s=20230601; t=1695637001; x=1696241801; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=M4FMJWIhYvnrv0MR1fm5coTXmKfLOpUqIxDLXXuRcX0=;
+        b=LaFuJ+KTHXYmEa6P6Y0u6Y4mXQ+QW62KTVvpXOxpKIRakrkOEnC9n0+cZMFw10rN91
+         Fibw+hyf1aX7l8CKPS5M5w2Vfsz0pEH6I3BuacBaFdIEJyrISb+t4IKhjT6hS3rhxHii
+         vaqtr+PKVp827CNsG6H07irisOqpWVXPDPO3+JmM0T/QucE+1Cyg7HvrLt6VKvdadv+y
+         FokcuDovh/rm/rYkaasJxTJjcHYhofkoSHsIsh+9DsfnU+FCuWykgGpEiBO1iE6kK0KT
+         1soiaZr3wHkXEoi7foYXMEkdhSw5a5b7BDF9ypasqwx3bT7GhOX7UamXv9lZjKITK75Q
+         iM0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695636647; x=1696241447;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xr0WnodR6L9SeYdsFuEWMgBEBiAtYzrQsEO7pPjODfo=;
-        b=inD1B1x1jwn2DmBWaNZdF1oTES5DXHMMrSy+avhx0hh0zjOnvz+3Fmyk29NgtH99ZJ
-         UROtEHT2TpNLGh02oKaLezUAzt90dAW+C65CzC0+s+umQbZlijvwW6LOP6N2Rk398U/6
-         n9/yhhsfeMQCMqXg7Cam2snT2KJVHKOfm0wp6CzGCYR/jjgAgzNl2wcsxnWizYwtWQIT
-         khEysmzFIIaJh1YexwRCzwFZO0Sn+gz3YSTbc16Sk5I+p/mIZe7aEKPpmKm6gsEJKhBX
-         AEkxGIaDJq3uwz/ioj9JNxSHS+1Te26vSFQzvrsvYRjGlSsx3zlOb9PM8hme0WVp3LcP
-         QGtw==
-X-Gm-Message-State: AOJu0YzoiRQcvHZl6HFuKnEnsC+rXdn0sqdXtoJoaGwgQhrHEIkqAylo
-	qIM5+8C2pVLqWjUn6u1Olz0ozg==
-X-Google-Smtp-Source: AGHT+IFjmOoaGth1rXZEF8N96U9x/BOcopq9M+OEXGmLEt9p2sYbcNz+OXbdqBHaG3CqmkcJXNkfNw==
-X-Received: by 2002:aa7:c98b:0:b0:533:310b:a8aa with SMTP id c11-20020aa7c98b000000b00533310ba8aamr5114170edt.13.1695636646962;
-        Mon, 25 Sep 2023 03:10:46 -0700 (PDT)
-Received: from [192.168.101.165] (178235177023.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.23])
-        by smtp.gmail.com with ESMTPSA id u7-20020a05640207c700b005311e934765sm5349942edy.27.2023.09.25.03.10.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Sep 2023 03:10:46 -0700 (PDT)
-Message-ID: <3b48f232-501a-4adb-b6fe-0c62415c3caa@linaro.org>
-Date: Mon, 25 Sep 2023 12:10:43 +0200
+        d=1e100.net; s=20230601; t=1695637001; x=1696241801;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=M4FMJWIhYvnrv0MR1fm5coTXmKfLOpUqIxDLXXuRcX0=;
+        b=R000cMIsmroLqn2/ghgYFhjw4JTQAz8VJQC6gfPMBrO+P3iOjvbMfoDtqN+FngBkbJ
+         L06CYE4/VxcFepvRkQj7g7aR/cBRFQz5b+/p9MrgEB6K3j7JixgRVr9NQtHX2Wb9OYbS
+         Z9bqXG0+9A48hN8dkgBLmeAOFuWx07u/buvmLbCz/oiW2cuDTBgu26y2BLL09zuVly3B
+         KTuCXmTwvk0F+ga3KAHodKB7mWDDDsFulE2jIDl/sBY2sA7S8u4AKdJ/87bSCGRyqZPE
+         rXMh5V8yZBrdKDLq9iii00p1tmjQGQ0jr+1wa7n/MIgWJhSxd7Sq8DQuMN2Zmu8iRLJh
+         IqqQ==
+X-Gm-Message-State: AOJu0YwXU5Z5zL2QiMOsEIrq0tgSIPgByjhNG609zRATUYdtlWASd4cq
+	JNVhXuGtkIen0XQsBL8HJf+sYGtoPRtOMy0XQlp2xg==
+X-Google-Smtp-Source: AGHT+IHLIODtGvOVXmCVyUYM/ohBB6tpc6e9NDQpISYN4NzppvvGNkR0TOS7sD++ikMzAyYOj7cGaXsjPL8RgvFdYfg=
+X-Received: by 2002:a17:907:3f9f:b0:9a9:e858:e72f with SMTP id
+ hr31-20020a1709073f9f00b009a9e858e72fmr7291556ejc.45.1695637001285; Mon, 25
+ Sep 2023 03:16:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/7] arm64: dts: qcom: sm4450: Add RPMH and Global
- clock
-Content-Language: en-US
-To: Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
- andersson@kernel.org, tglx@linutronix.de, maz@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- catalin.marinas@arm.com, will@kernel.org
-Cc: geert+renesas@glider.be, arnd@arndb.de, neil.armstrong@linaro.org,
- nfraprado@collabora.com, u-kumar1@ti.com, peng.fan@nxp.com,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- quic_tsoni@quicinc.com, quic_shashim@quicinc.com, quic_kaushalk@quicinc.com,
- quic_tdas@quicinc.com, quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com,
- kernel@quicinc.com, Ajit Pandey <quic_ajipan@quicinc.com>
-References: <20230925064927.26448-1-quic_tengfan@quicinc.com>
- <20230925064927.26448-4-quic_tengfan@quicinc.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230925064927.26448-4-quic_tengfan@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+References: <20230919024943.3088916-1-tylor_yang@himax.corp-partner.google.com>
+ <20230919024943.3088916-2-tylor_yang@himax.corp-partner.google.com>
+ <20230919-70b2f1e368a8face73468dfa@fedora> <CAGD2q_anfBP78jck6AbMNtgAggjOgaB3P6dkmq9tONHP45adFA@mail.gmail.com>
+ <20230919-cc4646dbfb953bd34e05658c@fedora> <CAGD2q_bkTpvXiomWb_yerNjQfMVKOctYgBqF_RBSo_jYqyyyxw@mail.gmail.com>
+ <20230922-unclothed-bottom-5531329f9724@spud> <CAGD2q_YsFdDVhE4JCmQSGMWOdpe_yzG8-CdWYPXtjeZsManvgQ@mail.gmail.com>
+ <20230922-removable-footwork-f1d4d96d38dd@spud> <CAGD2q_Y467jJJnwCVH+3F-hh6a-1-OYRugcy0DdjPnTCC77Z8A@mail.gmail.com>
+ <20230925-cod-vacancy-08dc8d88f90e@wendy>
+In-Reply-To: <20230925-cod-vacancy-08dc8d88f90e@wendy>
+From: yang tylor <tylor_yang@himax.corp-partner.google.com>
+Date: Mon, 25 Sep 2023 18:16:29 +0800
+Message-ID: <CAGD2q_a1nLtFj7H42f+u+J5Bih59MGS0aJLHCFJy5gM2ydys4w@mail.gmail.com>
+Subject: Re: [PATCH V2 1/2] dt-bindings: input: Introduce Himax HID-over-SPI device
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Conor Dooley <conor@kernel.org>, dmitry.torokhov@gmail.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jikos@kernel.org, 
+	benjamin.tissoires@redhat.com, linux-input@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	poyuan_chang@himax.corp-partner.google.com, hbarnor@chromium.org, 
+	"jingyliang@chromium.org" <jingyliang@chromium.org>, wuxy23@lenovo.com, luolm1@lenovo.com, 
+	hung poyu <poyu_hung@himax.corp-partner.google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 25.09.2023 08:49, Tengfei Fan wrote:
-> Add device node for RPMH and Global clock controller on Qualcomm
-> SM4450 platform.
-> 
-> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
-> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+On Mon, Sep 25, 2023 at 4:41=E2=80=AFPM Conor Dooley <conor.dooley@microchi=
+p.com> wrote:
+>
+> On Mon, Sep 25, 2023 at 09:44:21AM +0800, yang tylor wrote:
+> > On Fri, Sep 22, 2023 at 11:31=E2=80=AFPM Conor Dooley <conor@kernel.org=
+> wrote:
+> > >
+> > > On Fri, Sep 22, 2023 at 05:43:54PM +0800, yang tylor wrote:
+> > > > On Fri, Sep 22, 2023 at 5:22=E2=80=AFPM Conor Dooley <conor@kernel.=
+org> wrote:
+> > > > >
+> > > > > On Fri, Sep 22, 2023 at 03:56:25PM +0800, yang tylor wrote:
+> > > > > > On Tue, Sep 19, 2023 at 7:09=E2=80=AFPM Conor Dooley <conor@ker=
+nel.org> wrote:
+> > > > > > > On Tue, Sep 19, 2023 at 05:31:29PM +0800, yang tylor wrote:
+> > > > >
+> > > > > > > > The behavior of "himax,boot_time_fw_upgrade" seems not stab=
+le and
+> > > > > > > > should be removed. "himax,fw_in_flash", I use the kernel co=
+nfig for
+> > > > > > > > user to select.
+> > > > > > >
+> > > > > > > That seems like a bad idea, we want to be able to build one k=
+ernel that
+> > > > > > > works for all hardware at the same time.
+> > > > > > >
+> > > > > > I see, so I should take that back?
+> > > > > > I'll explain more about it.
+> > > > >
+> > > > > Are there particular ICs where the firmware would always be in fl=
+ash and
+> > > > > others where it would never be? Or is this a choice made by the b=
+oard or
+> > > > > system designer?
+> > > > >
+> > > > Most cases it's about the system designer's decision. But some ICs =
+may be forced
+> > > > to use flash because of its architecture(multiple IC inside, need t=
+o
+> > > > load firmware to
+> > > > multiple IC's sram by master IC). But if there is no limitation on
+> > > > this part, most system
+> > > > designers will prefer flashless.
+> > >
+> > > Forgive me if I am not understanding correctly, there are some ICs th=
+at
+> > > will need to load the firmware from flash and there are some where it
+> > > will be a decision made by the designer of the board. Is the flash pa=
+rt
+> > > of the IC or is it an external flash chip?
+> > >
+> >
+> > Both are possible, it depends on the IC type. For TDDI, the IC is long
+> > and thin, placed on panel PCB, flash will be located at the external
+> > flash chip. For the OLED TP, IC is usually placed at FPC and its flash
+> > is embedded, thus the IC size is large compared to TDDI. But from the
+> > driver's perspective either external flash or embedded flash, the IC
+> > itself will load firmware from flash automatically when reset pin is
+> > released. Only if firmware is loading from the host storage system,
+> > the driver needs to operate the IC in detail.
+>
+>
+> Since there are ICs that can use the external flash or have it loaded
+> from the host, it sounds like you do need a property to differentiate
+> between those cases.
+Yep.
 
-Konrad
+> Is it sufficient to just set the firmware-name property for these cases?
+> If the property exists, then you know you need to load firmware & what
+> its name is. If it doesn't, then the firmware either isn't needed or
+> will be automatically loaded from the external flash.
+We have a default prefix firmware name(like himax_xxxx.bin) in the driver c=
+ode.
+So we'll look for it when no-flash-flag is specified. In our experience,
+forcing a prefix firmware name helps the user to aware what firmware
+they are dealing with.
+
+Thanks,
+Tylor
 
