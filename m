@@ -1,125 +1,132 @@
-Return-Path: <devicetree+bounces-3159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 531CD7AD82B
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 14:39:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEAE77AD833
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 14:44:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 9728E281007
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:39:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 58AD0281809
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:44:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A56414287;
-	Mon, 25 Sep 2023 12:39:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4071F1429D;
+	Mon, 25 Sep 2023 12:44:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E354E13AE7
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 12:39:20 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 034C99C
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 05:39:18 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qkkrs-0002iA-UL; Mon, 25 Sep 2023 14:39:16 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qkkro-008sBk-4H; Mon, 25 Sep 2023 14:39:12 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qkkrn-004fbH-Qd; Mon, 25 Sep 2023 14:39:11 +0200
-Date: Mon, 25 Sep 2023 14:39:08 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: William Qiu <william.qiu@starfivetech.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-pwm@vger.kernel.org, Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>
-Subject: Re: [PATCH v5 2/4] pwm: starfive: Add PWM driver support
-Message-ID: <20230925123908.4hohhjarviwattgw@pengutronix.de>
-References: <20230922092848.72664-1-william.qiu@starfivetech.com>
- <20230922092848.72664-3-william.qiu@starfivetech.com>
- <CAJM55Z8d368MAQPpnRO8giKmasN5XETP40i3JVdW_0gTF3Ktqg@mail.gmail.com>
- <ade1c061-63d8-8b48-b8e2-69416cd8aa48@starfivetech.com>
- <CAJM55Z83VUkoTNCMbd9GJ7NpwgeQqMjCxPmYonEAXBjr5Tx9Zg@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31B9E13AE7
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 12:44:26 +0000 (UTC)
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35DB7C0;
+	Mon, 25 Sep 2023 05:44:22 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-1c5faa2af60so5986285ad.0;
+        Mon, 25 Sep 2023 05:44:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695645862; x=1696250662; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=XklYb7b/fLQgyz+S2t23QEReui9hdouB34jEJfTniU0=;
+        b=QbVzMu/ly343z1PvfMK0kJcaO9yczZezvy7ueWXqgVgHK9nIlHNCmdIrNzqgTwmnm2
+         QQ1iAFrGngOMvm199DfAbFyeiW022J3IzNtFBVCjDJiq1a8JayEIeqNkLPP26c1ytzu1
+         nQr+rJCZkaN/e9/AoIwi+UsQfNeQhSrUWjiCtXEK3WboG0+wMJSdqiV+2p9CJLjewBdK
+         w7mLWEqLsITIL+ASk1lWl2yzZ8m5+S8U64221KwIn4Xv+jBZ435kZqP/v5jFLOlzpHVn
+         lIOcrMbcqMF8EUHJJ0AdBo1R745koOuD5WpqYyx9g5OtsP25JBPruplxqRyclTAUzH/5
+         iuuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695645862; x=1696250662;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XklYb7b/fLQgyz+S2t23QEReui9hdouB34jEJfTniU0=;
+        b=JwTvlSTDmWttPb6npBhYmRPRSqY6sq9U4RWWjC9xEeeDkKX4H7+9hlvorwUix2FvZB
+         Zmd+IPM3zqh+nKY1ihmiUE/gUBvJRtf3E94MbQWTexrE0BhEOfKL4x9eglVoRo+pcW6E
+         JpUMMMkaOScwlAoGILcyHLLHr3TeTDg46luiM060czpz8tWK/7iYaY1lGdcIKOUTQ3Xs
+         1mcM11nEOB88WywcQLlbH05H+R4nOwdHzhsa1IZ6CyumbCS/cM0oRIKRClcn9bBaXMDt
+         3iqksX6Z6nQzLTcucWinED2QgCpVbljFpgjg6Ti0DLzccF+83ISrsZoMU+NOFGRmZ/DB
+         414Q==
+X-Gm-Message-State: AOJu0Yx8HEeyEZl+VmBtCHE9fYofnCrQ71VGLpCUhE8qmSoPvAS73WDc
+	8r3ckJ0fAUKTxv/pv7U9MyjJd55yWCU=
+X-Google-Smtp-Source: AGHT+IEsrd7RGAyPg8fa6eFSJDr3viGzrEuyU2t+5fNy5ncqm9c8K7crVD5JXS2IRP64YNiscFyyoQ==
+X-Received: by 2002:a17:903:110d:b0:1c5:cd01:d846 with SMTP id n13-20020a170903110d00b001c5cd01d846mr8624351plh.3.1695645861535;
+        Mon, 25 Sep 2023 05:44:21 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:fbad:220b:bad3:838c])
+        by smtp.gmail.com with ESMTPSA id iw15-20020a170903044f00b001c5d09e9437sm8816539plb.25.2023.09.25.05.44.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Sep 2023 05:44:21 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: linus.walleij@linaro.org
+Cc: brgl@bgdev.pl,
+	andy@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3] dt-bindings: gpio: fsl-imx-gpio: Document imx25 and imx27
+Date: Mon, 25 Sep 2023 09:44:02 -0300
+Message-Id: <20230925124402.937649-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xq7ehyumhkwfir4g"
-Content-Disposition: inline
-In-Reply-To: <CAJM55Z83VUkoTNCMbd9GJ7NpwgeQqMjCxPmYonEAXBjr5Tx9Zg@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+From: Fabio Estevam <festevam@denx.de>
 
---xq7ehyumhkwfir4g
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+fsl,imx25-gpio and fsl,imx27-gpio are not documented, causing schema
+warnings.
 
-Hello,
+fsl,imx25-gpio is compatible with fsl,imx35-gpio and fsl,imx27-gpio
+is compatible with fsl,imx21-gpio.
 
-On Mon, Sep 25, 2023 at 10:31:49AM +0000, Emil Renner Berthing wrote:
-> William Qiu wrote:
-> > The PTC, short for PWM/TIMER/CONUTER, comes from OpenCore's ip, but onl=
-y PWM
-> > mode is used in the JH7110. So the register still has the word "PTC".
-> > s the best way to change all the prefix to STARFIVE?
->=20
-> I see. Yeah, since you're only using the P from PTC the PTC name doesn't =
-make a
-> lot of sense anymore. I'd just call this whole driver
-> STARFIVE_PWM_/starfive_pwm_ consistently.
+Document them accordingly.
 
-I don't care much how the driver is named iff there is only a single
-type of hardware unit on this platform that can be used as a PWM.
-However if the hardware manual calls this unit PTC I'd at least mention
-that in a comment at the top of the driver.
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes since v2:
+- Place the 'fsl,imx21-gpio' fallback prior to 'fsl,imx31-gpio'. (Krzysztof)
 
-Thanks
-Uwe
+Changes since v1:
+- Sorted by fallback compatible. (Krzysztof)
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+ Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
---xq7ehyumhkwfir4g
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml b/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
+index d0ca2af89f1e..918776d16ef3 100644
+--- a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
++++ b/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
+@@ -18,9 +18,17 @@ properties:
+           - fsl,imx31-gpio
+           - fsl,imx35-gpio
+           - fsl,imx7d-gpio
++      - items:
++          - enum:
++              - fsl,imx27-gpio
++          - const: fsl,imx21-gpio
+       - items:
+           - const: fsl,imx35-gpio
+           - const: fsl,imx31-gpio
++      - items:
++          - enum:
++              - fsl,imx25-gpio
++          - const: fsl,imx35-gpio
+       - items:
+           - enum:
+               - fsl,imx50-gpio
+-- 
+2.34.1
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmURf2wACgkQj4D7WH0S
-/k6D+Af/UurV0zRPp6nHaILWU8arJcTP6K/TCv9XK/rO3ubSZPfvesG/KvvgwhAL
-NdrQu6EKqRNNIh8gXlBP7VXgQgDlot+E9fNz10BKinKi7i7VFQvJ/W+rzZ91me1+
-Z7uxb+hvVa+GZMdc6VTeosGlnuSjugyggCwjGohFanhF6QqGMxn5hpS1/ZrKlCM+
-gUDVk5fLhLnT/Mo8GlsQEcbULJnmyZ9JSnoif+XJLvs5F55GUlQOlua9PxXegP4p
-Jsp5Oxx+wuy5BTkgVm+y1dwV3p4XNjjS/K29nn6ggZNPolFqm1Hx169DIUqE8Zqg
-YZRA5euMXw7FxnPNLsMic9EoBOzFXw==
-=M19j
------END PGP SIGNATURE-----
-
---xq7ehyumhkwfir4g--
 
