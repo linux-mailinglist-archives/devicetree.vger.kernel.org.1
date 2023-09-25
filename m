@@ -1,148 +1,199 @@
-Return-Path: <devicetree+bounces-3124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 277BC7AD651
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:45:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3B8C7AD657
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:47:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id B03581F249E6
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 10:45:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id BD5CB1C203B5
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 10:47:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59B2215EB1;
-	Mon, 25 Sep 2023 10:45:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36A1615EB2;
+	Mon, 25 Sep 2023 10:47:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E4C114267
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 10:45:43 +0000 (UTC)
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E8BFA3
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 03:45:41 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-5031ccf004cso9763368e87.2
-        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 03:45:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695638739; x=1696243539; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JJhOEMH58LR2rpNX8DYGMcQ4ke1/Bz5TvHhYkfY7lio=;
-        b=JCIgOppjMLohd3SUSAGWj/mmh7lxMIjeocV4GzBFO4kcWwF1xwhy5D3SnTDUT+4yoq
-         e7z/lzNWO2pN6dO+CwLKSMAxp7/x3JhF63dPpW6PeQt/+HAC4gm6Jsl1kuWsT/4Y2Mju
-         y3YwTi2Adh/GVAuUtR398FjQP5KzAVOipnUS3PsbkabG5/QBLo980k8+ckepvPhFozyk
-         qofQWA2xhw4BjXGDBM8AFCRw9nqXDq2e8PtUPa602EFrEv7tJtL6MXQ9lszXJDl+K4E1
-         xAbS9luoBo+ZPdzuR8f0ftkuDbAc/RdTnoYtAOtfN+WHHklonL89RKe9r/TOWcMvayvM
-         vDAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695638740; x=1696243540;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JJhOEMH58LR2rpNX8DYGMcQ4ke1/Bz5TvHhYkfY7lio=;
-        b=ux1RIBvCLQJz4vCOdjajDooW8oGqJyj/vSmQ/7tahAuCCDjS6MHMOgNJEIX4NwZ+Qt
-         3Rj2g6M/q9u0p8nSe4XWW18Udzg/lidqpc1PA1IKBLRoGALzj7SCC6xnPO5GqRCvj+VX
-         YSW58Xq32eVTaSvdKySLid8oLkKNzivrRy9h+d1rmn6EAuwbVgfuCkBDaKl8BGVEAwOx
-         CalTLBTVV3YQyUqwVKO69HKAQbIqyNj2TDpBvDXhJXgNdPjNB/344R5qG2s8jXUdn04g
-         K62eM+7UbY7kL/7i3juTKFR5nzi5UQNwCzlbv66PQnm3w2OsnrHpmn1D/Gejx8b2dqsC
-         IDQw==
-X-Gm-Message-State: AOJu0Yw9iHjpMYF1L5wZlI0wCyHJKSoJRv6HfLj1BdueV7OkvOS8cmsw
-	OwFANtTslQmPdnjt5mhhfbvV1g==
-X-Google-Smtp-Source: AGHT+IHxXTOX1fE2hluK//tSOALu1qxLgRqiFbpmx5Fz+r+ZkRzp1HhBud9Gohn39L6hc9ZVwlHCwA==
-X-Received: by 2002:a05:6512:1596:b0:503:5d8:da2e with SMTP id bp22-20020a056512159600b0050305d8da2emr6292587lfb.13.1695638739673;
-        Mon, 25 Sep 2023 03:45:39 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id l14-20020aa7cace000000b0053331f9094dsm5356947edt.52.2023.09.25.03.45.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Sep 2023 03:45:39 -0700 (PDT)
-Message-ID: <235b17ef-b34c-4006-baa4-a1d4360dca16@linaro.org>
-Date: Mon, 25 Sep 2023 12:45:37 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEE0514267
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 10:47:09 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2086.outbound.protection.outlook.com [40.107.243.86])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A53DA3;
+	Mon, 25 Sep 2023 03:47:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lBBGgvyddsNCH2RciioahgIFXH/Jt2e5o1RfdXaRYBYjPII7EsHUTP5lD8lC8TtlBpyS9gMaeQFItAAI4Ven7l5a0RxMALrlKzjuh5nDebGCmCl/APIuMZNn4Y6FkVPdrELhConDbTywKXykypkDcynh0HUsK4CzJZHaLEGdW+ChpBEgmuTs1Gca/KKG7Ua1MrUeRB1zk/1snit3HT/Rwbm+4mkRLswH7ie1qP+Oci3K+prsBQShtCUiJdHhzazO1cyu9gNohSgikfneX9NqcaFMTtj5p/pi9k8aMBv2qyWrXOqBxzcbej1UZa8Jo+QJwjH7f5W2c6W1OOg4XtAddg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pc0lAHewZmta+amd7H0H4zlX5L/rhzTmsx1Jg6OFaT4=;
+ b=Cbn7B3VTMCR1G+PeYxJQb3oY1nLbvO3z1Zx0r6vuSoQqYWdkfITRsZxgzOoxF2gUwwR8gwfxuqpFrLyxtD87H/MVSkzwHs5Qiringq7FYsVJTG2iBBrBgkt0ch/YvD4EjOZ9P2cTkTxEsaC+K0MSi+DnxEJcSNL5YPLPZxUZxlXBJIHlg8Pd5FEgDhmPLdJZTE/3BFISQbVzpldSu90NnKoBaWx47aqsRhYtRGKGK7oqZhSczbVVj3q4WeEhE8vMJK0Xl/wZQRqX5wboNWYoJ1yJ+ysjKO+3j2IrKfvOeqVUA3i+VTSbOdtoOcoWdu13e+X8lqO3DU2kuo4C2GPAiQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pc0lAHewZmta+amd7H0H4zlX5L/rhzTmsx1Jg6OFaT4=;
+ b=XrcwNBI8SbNhkDTl4giE6uLeY1i5BmijItI9+dpvbkOfYPg9DDd1sXTADAfw49gNhOG37xhpmHA1U2WLB5GM80nTmM0IWJiOwccWoWAHMHDHvRe6/Le5ZOURyRgNBUktZhc76S3YPOLucx/fD+WZKAqrepmbdYWsTjpqfNdZRwH9mJTg4K12e+wTqz5c94b/n0dj3f6pCIHrKWXNW3veXb8GMHJcHKhDakfIbjU14DJBvT4ok2M0sc9xDzYizr2X+Z8kIJAqeXD8cAEBnN2RB6VJ6Pg88PRCNpH6ZNqF5vgq/l/jnwxuXpo/pOLH6mz8RRvyOSLZri21OO5QAEwSgQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
+ MW6PR12MB7086.namprd12.prod.outlook.com (2603:10b6:303:238::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.20; Mon, 25 Sep
+ 2023 10:47:05 +0000
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::1d1b:2ca4:1600:a865]) by CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::1d1b:2ca4:1600:a865%4]) with mapi id 15.20.6792.026; Mon, 25 Sep 2023
+ 10:47:05 +0000
+Message-ID: <c2a5a199-2297-d0ca-515c-64b1dd267509@nvidia.com>
+Date: Mon, 25 Sep 2023 11:46:58 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH V3 1/4] dt-bindings: hwmon: ina3221: Convert to
+ json-schema
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ Ninad Malwade <nmalwade@nvidia.com>, Thierry Reding <treding@nvidia.com>,
+ Nicolin Chen <nicoleotsuka@gmail.com>
+References: <20230921130818.21247-1-jonathanh@nvidia.com>
+ <20230921130818.21247-2-jonathanh@nvidia.com>
+ <20230922210101.GA3562325-robh@kernel.org>
+From: Jon Hunter <jonathanh@nvidia.com>
+In-Reply-To: <20230922210101.GA3562325-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO4P123CA0554.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:33b::9) To CO6PR12MB5444.namprd12.prod.outlook.com
+ (2603:10b6:5:35e::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: Add watchdog node for Amlogic-C3 SoCs
-Content-Language: en-US
-To: Huqiang Qin <huqiang.qin@amlogic.com>, neil.armstrong@linaro.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230925090641.1185942-1-huqiang.qin@amlogic.com>
- <51470d7a-65a7-44c7-856b-53ca4b065553@linaro.org>
- <bb20efd5-4f60-5ded-caa6-2c9c94a10a44@amlogic.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <bb20efd5-4f60-5ded-caa6-2c9c94a10a44@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|MW6PR12MB7086:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1c7a22e5-aee7-4021-1751-08dbbdb4c22e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	V3wABh6GN1x12wS5rtFP4yEWWVADUA4j/uoA7he9ccS01TipCkGpnNg1Ed2D7WJDY6Iog2m+yrilE664ZiVDBmvL5TYWHf5k4MTG/y0qxryGZfevZKafU1LAal77ZCWKadi+DC7AYK8Xxx+m3/GlDr0yxW31uikQsBCOJLYRJFsIb4+bVaEWZIfT+K25/pI6+q1l34by83Og9+cS8S9Sp4KpeORf6pviw7FXPsMSGqdgjRoLA6+HBZAveRqIizj98OIxMQ1Pes7ddOuYDyGNTWS46LQ7iG+4Yd8DoqgdDVJvI4xBuMnWyN67lbR+NJugR3m9nlnzXfch/66/yWKOhAXEH9uhB7crApd5gA2Hvpe8Qgw1fj9Dr+J/GiVH4nP+rqWRsi1Uh1NUWbwIaOW9Jd+YB0pfryhWHX8aDWSmGpWVquWq4RlFc/T0L7DZ55FQp1BAojjcM/94RedB4gaEy8+248Fqwd2kABJG334HhJmHEsmwbMIuGI8/28EIZtNWHut9luwu02S5JzqrUKSSlV/3+FGTtDH06+SgKInE8QdW5wDfiDZ2Xi5g0f7MvTly70KXdnx79DuXO0xFcKmxBNeWS9nB5ycbWNcUuG6A5Cx5Wpvqq3KShtrjEKLaJWi/4XUA5DFPM7DDhk1qgnvbFw==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(39860400002)(346002)(376002)(366004)(136003)(230922051799003)(186009)(451199024)(1800799009)(478600001)(86362001)(53546011)(6486002)(6506007)(6666004)(55236004)(83380400001)(66476007)(54906003)(5660300002)(2906002)(6916009)(7416002)(316002)(66946007)(66556008)(8936002)(4326008)(8676002)(41300700001)(6512007)(2616005)(38100700002)(36756003)(26005)(31696002)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?MHdSZmZEQUlUaHdpeE5mNFUzT2ZIc3ExY3NoK245VXV3VkhQQ2U4TGQ3KzA3?=
+ =?utf-8?B?K0l1bUh6d0hmemt5WWp2UXFrS3NzOUpXODVrb3p0bS92SHk5aFpvbXdYSm9i?=
+ =?utf-8?B?c2dhR0Q4NW5YeHlncEp5OWNDdElKRzI3MHJZNkVUOVN0RnJ4NFZReVpqMlNO?=
+ =?utf-8?B?a3hqUWhhOGtiaU5CZVpYdXpQR2ZpaGh3cEhuaGJvcmszTGd5cGQ4QU84ejVI?=
+ =?utf-8?B?akZGRXRoUGdpLzlqYUFPMWZIZmVnSGF6ditEbXZSOXM5SHYwTGRRWjNtbTdz?=
+ =?utf-8?B?MGMvb1dRTFgwNUZELzhFdzZzdTd1QVJmNWpjQ2RWWGJMT2VsOVNTdXlocjZN?=
+ =?utf-8?B?OUVqMmlWOHJtUnYxNUNTRURpd3VRQS82STVmYjc0eU1EcVI0T0hySzEvMzht?=
+ =?utf-8?B?cGFMd2dKQmVnOVBmQmtYOGpVcjBOWndJTEJZTkR6cHBrd3RPeEcwalAvNktj?=
+ =?utf-8?B?OThBZWFOYlk5TFh5RVpsMjRWKy9LTU93dDgwSUhkQlVvY1lWSjlrV0dFdmtB?=
+ =?utf-8?B?alplNEtJT2IrTm8wRUVOSGg3SUFVZmtac0tGenVQNDR4NEF3Q2FGNUFCWllT?=
+ =?utf-8?B?UGVFU0x5RnRpWDdBRFh6ZDJkMVNCZVgwcFBkWW16WGpxSG9TZFpLVWpYL2Fj?=
+ =?utf-8?B?dWJVL29LWjY5M1VQd2xkdGhWOHc0OWZncVRrSWQ1L2svVmZ1eW9MdXgxdFdz?=
+ =?utf-8?B?MlpGdmQ1RWFoMXZKckp3Vmx5d1JzVnY1OTBlUG9GT3hiWml1alVVbTI3djZL?=
+ =?utf-8?B?Zmx6RjNjdmVQc2hMeFowSTlBQU1WOHJOeGlKanpxOE54N1ZDOHhXRHlTbWNt?=
+ =?utf-8?B?UHZaUTJaeDFrTzNPYTNlcHY3RVZXbENVcnQ3b1pZcTI4Yk5JNSt5dm5vVmxY?=
+ =?utf-8?B?cnl6cHkrYzNBUmFnTGwrZ3hCNHpWUFFiRnFlUXpyWHpucnNudFYwbFVkS2pj?=
+ =?utf-8?B?bkplTHlwYTdYSVJRVlFqSHl0eWluS3F1OUlBcmxXS1pnMS8xZ2hsVEUzT1hp?=
+ =?utf-8?B?cU1GazNIRFM5OG50WXlKdFg5UiticmRiZmVUV1creUdOb0VDOFI5M2xWY2Jw?=
+ =?utf-8?B?OFF1akY3cVUxbFdMcTRVMnRnWFYrWUcrZ284Tk5aclROQW9TejZwWk55b3Fp?=
+ =?utf-8?B?bFd5MURQK3Q2VDRMZmozd3lnMTNaNVRyS0lrdXJFVHVlOGM2T3RpVkRYVWtG?=
+ =?utf-8?B?Z3FnZ2dxcElMU1pxM2xieG1KRWN6M2hwRVpYd0ZCdCt6MlRsWDhEVTZiMC8y?=
+ =?utf-8?B?K2pMNjlsQnZvOGcrbjVQb0xremNTVm9ESjRUbG0zY09LdGp2emNaODFWM2FX?=
+ =?utf-8?B?Q2NBbU5vRnBGV1lPSEVBbXV4S0FJU1l6ZkhGZnpEaHVKMDZVVWQ1akZsbkpi?=
+ =?utf-8?B?MUdNTG9ad2NwVmpxeVA0cUlINEdIU2FvblpSRVRpNlQrSHlqejErWHF0L25C?=
+ =?utf-8?B?a1N5ZFBuR2ZLcHVSMmMzM0tzekxtd2g5NFFzV0pOL3N6UEE0MCtEVFdQQ3pi?=
+ =?utf-8?B?T3VEZGkvdWNpUUl5ZzNjY2p2ZXlmb0pUS3FCWU1SSVZaVHNGd3NXWUlGczlu?=
+ =?utf-8?B?dVp5dmUvYXJOUENGcGV5d1hkRXBneHl1U25IaFBGQVlEbTVab3NtU0NMamw0?=
+ =?utf-8?B?RjVMUnVVeVNrZ1FSMVZGdnNUa1h6d2E1S1poNFZ6TjhXanU3MXJ2Y1hLeVE3?=
+ =?utf-8?B?cER3dlR4dVhLbE96Yy9QNnJPRHlEb2Y3MmFHc3NxOFBNMkdJbWd4M2JVYkJX?=
+ =?utf-8?B?MjJlcEl6Vm5kQ05CbUJYc2ErdnhmaU96cWVieDVERjNKaTlIV290bG85cFdn?=
+ =?utf-8?B?MlIwWU56Y0V2c3VuaFlsdmhBazZsbWlNazBIa0o2SVd6OW40TzhpMTFLcjNx?=
+ =?utf-8?B?U2xra1lvMXFiVllzZWtYWFkrUjgwQ2hIL3FFb0NUdFhqSCtUUTZ5RHR0bTNm?=
+ =?utf-8?B?YzJJUGlOT0pESm0zVGNZWEZMTllqdVpvdXd6cVk2dFJPWDAyVzNNTElXbWpm?=
+ =?utf-8?B?TnJuRVRyLzZyMWFSUUdiV25Wc3VxNnFWc2NVUU14VTgrRnVYSmIwSUM3K2F0?=
+ =?utf-8?B?TGFUaTJHMkNIQnUyckM0TmJGT0NDL0pMV1YyTmx6VjNIbW5sZlkrNysxQ2E0?=
+ =?utf-8?Q?vrQFq6U5p6tBUjctjCLV9QBUQ?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1c7a22e5-aee7-4021-1751-08dbbdb4c22e
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2023 10:47:05.3608
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: z/YbsOUMEMhPWrLF7vSKAloy0CKS15TntIOm4lOWWtM8EC3PisblfzsiA7Fk8wDdZ+f/LxzYqL3Fgm+QjTU3kA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB7086
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+	NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+	SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 25/09/2023 12:42, Huqiang Qin wrote:
-> Hi Krzysztof,
+
+
+On 22/09/2023 22:01, Rob Herring wrote:
+> On Thu, Sep 21, 2023 at 02:08:15PM +0100, Jon Hunter wrote:
+>> From: Ninad Malwade <nmalwade@nvidia.com>
+>>
+>> Convert the TI INA3221 bindings from the free-form text format to
+>> json-schema.
+>>
+>> Note that the INA3221 input channels default to enabled in the chip.
+>> Unless channels are explicitly disabled in device-tree, input
+>> channels will be enabled.
+>>
+>> Signed-off-by: Thierry Reding <treding@nvidia.com>
+>> Signed-off-by: Ninad Malwade <nmalwade@nvidia.com>
+>> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+>> ---
+>>   .../devicetree/bindings/hwmon/ina3221.txt     | 54 ----------
+>>   .../devicetree/bindings/hwmon/ti,ina3221.yaml | 98 +++++++++++++++++++
+>>   2 files changed, 98 insertions(+), 54 deletions(-)
+>>   delete mode 100644 Documentation/devicetree/bindings/hwmon/ina3221.txt
+>>   create mode 100644 Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
+
+
+...
+
+>> +examples:
+>> +  - |
+>> +    i2c {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        power-sensor@40 {
+>> +            compatible = "ti,ina3221";
+>> +            reg = <0x40>;
+>> +            #address-cells = <1>;
+>> +            #size-cells = <0>;
+>> +
+>> +            input@0 {
+>> +                reg = <0x0>;
+>> +                status = "disabled";
 > 
-> On 2023/9/25 17:33, Krzysztof Kozlowski wrote:
->> This is c3, not t7. Why do you use t7 compatible alone?
-> 
-> The C3 and T7 use the same watchdog controller, so they are compatible.
+> Examples should be enabled.
 
-I am not saying that they are not compatible. I am saying that different
-SoCs should use the same compatible. Just like for every other platform,
-Amlogic is not special here.
 
-https://elixir.bootlin.com/linux/v6.6-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst
+Yes normally that would be the case. However, per the discussion with 
+Guenter and the comment in the changelog, for this device channels are 
+enabled in the chip by default. And so to disable them, we need to 
+explicitly disable in device-tree.
 
-Best regards,
-Krzysztof
+Jon
 
+-- 
+nvpublic
 
