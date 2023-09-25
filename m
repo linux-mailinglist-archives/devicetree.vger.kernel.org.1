@@ -1,98 +1,167 @@
-Return-Path: <devicetree+bounces-3165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D6547AD8B4
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 15:14:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 345657AD8BF
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 15:16:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id 9970C1F24AA5
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 13:14:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 3CE871C2040F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 13:16:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F3D81B290;
-	Mon, 25 Sep 2023 13:14:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D66F1B291;
+	Mon, 25 Sep 2023 13:16:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3BF31B28E
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 13:14:50 +0000 (UTC)
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87A68107
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 06:14:49 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-5042bfb4fe9so9803857e87.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 06:14:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1695647688; x=1696252488; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1dlFb9CClluN5asqyzNkIJTNCGduX6dkKi0ZTGTethQ=;
-        b=iT7b5oAQ1C6Sxidm++2fQ0NZk4D8nRecsbUKgKHZFszcBVIeNty1sunSlm49HXQwGE
-         cs4G3T5C3iI0Jrl+3sMshqLYFht0VxFJ646Z7kCbwd6QJIm2/C+tgBpcW1Asu+Ir9Nsc
-         PLG71UDIUD7282o2ihmQ2ogGL9XoPgQ/7lLMu5xNHTN2tz1Uzl9TCyWcpljG5F1NB62w
-         kBenM8q/hY19Lvg6LhwQ7ZBW/IVPzFySamgwiU8uDwfX7sEAYBEx8FvQW/nVrJ4EdOA2
-         x/efuZaLiHaFsgWumb78VA2GER5Hzpw+t9aaME2lmU+xP22z5wSfZMLewBEmg8dpdsVH
-         5lPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695647688; x=1696252488;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1dlFb9CClluN5asqyzNkIJTNCGduX6dkKi0ZTGTethQ=;
-        b=kH/5SORkTDIBMS9l9Wo5oMAwnOfD/HV6eCP5wVdfNJw7t/oWKJNII2tzM7GRXd8fal
-         8cwH5lcTSdxH03Ohu1y0Qucpawku0+hHqKLiAwQKCCRexqrpoqJmME8pe8MoDM6lEGAN
-         CXXwi9Xb9vTOaAoaU4g6PALyCDMeh8mWFxhjJ6fxRjOtXLf0z5y4b6aOrGS+Cge8V4vR
-         eKB2yNieSGulzPe7p+vjFyr0Z3H58Kh2Kfca3G5QDDmQnXrEAOULoLFg/DdVcpVwjcB0
-         z4MX+xRO5wOu1J33okgiSF5b9BFUOXjt7KyM6GX/IQ5RTcA/MfXbwlrfAmfjTAYVQHkK
-         4ghw==
-X-Gm-Message-State: AOJu0Yw6MUtb8jafBsl9PEKegdKnfIHI9ckehHv9Kdx4vRN0s9ZGfehp
-	bI1nuqHNEAKnQZBlThjFqEUemw==
-X-Google-Smtp-Source: AGHT+IHaOAbnnh4AOTSgeqS4SICLk5OHXkQxgAQQHlYcTHOeTwMRRuF2/91BgowsmYY9TTh/bCZsrQ==
-X-Received: by 2002:a05:6512:ad0:b0:500:b5db:990b with SMTP id n16-20020a0565120ad000b00500b5db990bmr6180928lfu.47.1695647687561;
-        Mon, 25 Sep 2023 06:14:47 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.177])
-        by smtp.gmail.com with ESMTPSA id w25-20020aa7d299000000b005329f1aa071sm5484747edq.10.2023.09.25.06.14.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Sep 2023 06:14:47 -0700 (PDT)
-Message-ID: <058d5889-8d16-b753-4ebb-6a25d0e5ae22@tuxon.dev>
-Date: Mon, 25 Sep 2023 16:14:45 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E88C125D8
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 13:16:34 +0000 (UTC)
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 562C3107;
+	Mon, 25 Sep 2023 06:16:33 -0700 (PDT)
+Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.206])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4RvNf037XGz6J72G;
+	Mon, 25 Sep 2023 21:15:20 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Mon, 25 Sep
+ 2023 14:16:30 +0100
+Date: Mon, 25 Sep 2023 14:16:29 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+CC: Jonathan Cameron <jic23@kernel.org>, Matti Vaittinen
+	<matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Andy
+ Shevchenko <andriy.shevchenko@linux.intel.com>, Angel Iglesias
+	<ang.iglesiasg@gmail.com>, Andreas Klinger <ak@it-klinger.de>, "Christophe
+ JAILLET" <christophe.jaillet@wanadoo.fr>, Benjamin Bara <bbara93@gmail.com>,
+	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 1/6] tools: iio: iio_generic_buffer ensure alignment
+Message-ID: <20230925141629.00004522@Huawei.com>
+In-Reply-To: <7ff22aa4-475c-b524-9f7a-f47ad02e940b@gmail.com>
+References: <cover.1695380366.git.mazziesaccount@gmail.com>
+	<029b4e3e18c76b330b606f5b14699e5ee4e5ed35.1695380366.git.mazziesaccount@gmail.com>
+	<20230924165737.54631dd3@jic23-huawei>
+	<7ff22aa4-475c-b524-9f7a-f47ad02e940b@gmail.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v4 2/2] ARM: dts: at91: sama5d29_curiosity: Add device
- tree for sama5d29_curiosity board
-Content-Language: en-US
-To: Mihai Sain <mihai.sain@microchip.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- nicolas.ferre@microchip.com, cristian.birsan@microchip.com,
- alexandre.belloni@bootlin.com, andre.przywara@arm.com,
- jerry.ray@microchip.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: andrei.simion@microchip.com
-References: <20230919124606.26898-1-mihai.sain@microchip.com>
- <20230919124606.26898-3-mihai.sain@microchip.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20230919124606.26898-3-mihai.sain@microchip.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+X-Originating-IP: [10.202.227.76]
+X-ClientProxiedBy: lhrpeml500003.china.huawei.com (7.191.162.67) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+On Mon, 25 Sep 2023 10:01:09 +0300
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 
-
-On 19.09.2023 15:46, Mihai Sain wrote:
-> Add initial device tree file for sama5d29_curiosity board.
+> On 9/24/23 18:57, Jonathan Cameron wrote:
+> > On Fri, 22 Sep 2023 14:16:08 +0300
+> > Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> >   
+> >> The iio_generic_buffer can return garbage values when the total size of
+> >> scan data is not a multiple of largest element in the scan. This can be
+> >> demonstrated by reading a scan consisting for example of one 4 byte and
+> >> one 2 byte element, where the 4 byte elemnt is first in the buffer.
+> >>
+> >> The IIO generic buffert code does not take into accunt the last two
+> >> padding bytes that are needed to ensure that the 4byte data for next
+> >> scan is correctly aligned.
+> >>
+> >> Add padding bytes required to align the next sample into the scan size.
+> >>
+> >> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> >> ---
+> >> Please note, This one could have RFC in subject.:
+> >> I attempted to write the fix so that the alignment is done based on the
+> >> biggest channel data. This may be wrong. Maybe a fixed 8 byte alignment
+> >> should be used instead? This patch can be dropped from the series if the
+> >> fix is not correct / agreed.
+> >>
+> >>   tools/iio/iio_generic_buffer.c | 15 ++++++++++++++-
+> >>   1 file changed, 14 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/tools/iio/iio_generic_buffer.c b/tools/iio/iio_generic_buffer.c
+> >> index 44bbf80f0cfd..fc562799a109 100644
+> >> --- a/tools/iio/iio_generic_buffer.c
+> >> +++ b/tools/iio/iio_generic_buffer.c
+> >> @@ -54,9 +54,12 @@ enum autochan {
+> >>   static unsigned int size_from_channelarray(struct iio_channel_info *channels, int num_channels)
+> >>   {
+> >>   	unsigned int bytes = 0;
+> >> -	int i = 0;
+> >> +	int i = 0, max = 0;
+> >> +	unsigned int misalignment;
+> >>   
+> >>   	while (i < num_channels) {
+> >> +		if (channels[i].bytes > max)
+> >> +			max = channels[i].bytes;
+> >>   		if (bytes % channels[i].bytes == 0)
+> >>   			channels[i].location = bytes;
+> >>   		else
+> >> @@ -66,6 +69,16 @@ static unsigned int size_from_channelarray(struct iio_channel_info *channels, in
+> >>   		bytes = channels[i].location + channels[i].bytes;
+> >>   		i++;
+> >>   	}
+> >> +	/*
+> >> +	 * We wan't the data in next sample to also be properly aligned so
+> >> +	 * we'll add padding at the end if needed. TODO: should we use fixed
+> >> +	 * 8 byte alignment instead of the size of the biggest samnple?
+> >> +	 */  
+> > 
+> > Should be aligned to max size seen in the scan.  
 > 
-> Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
+> Or, maybe it should be
+> min(max_size_in_scan, 8);
+> ?
 
-Applied to at91-dt, thanks!
+Definitely not.   If you are grabbing just one channel of 8 bit data,
+we want it to be tightly packed.
+
+If we have a bug that already made that true then we might be stuck
+with it, but I'm fairly sure we don't.
+> 
+> I think my suggestion above may yield undesirable effects should the 
+> scan elements be greater than 8 bytes. (Don't know if this is supported 
+> though)
+
+It is supported in theory, in practice not seen one yet.
+
+> 
+> >   
+> >> +	misalignment = bytes % max;
+> >> +	if (misalignment) {
+> >> +		printf("Misalignment %u. Adding Padding %u\n", misalignment,  max - misalignment);  
+> > 
+> > No print statement as this is correct behaviour (well the tool is buggy but the kernel generates it
+> > correctly I believe).  Fine to add a comment though!  
+> 
+> Oh, indeed. The print was forgotten from my test runs. Thanks for 
+> pointing it out!
+> 
+> >   
+> >> +		bytes += max - misalignment;
+> >> +	}
+> >>   
+> >>   	return bytes;
+> >>   }  
+> >   
+> 
+> Yours,
+> 	-- Matti
+> 
+
 
