@@ -1,125 +1,141 @@
-Return-Path: <devicetree+bounces-3168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF4D67AD8E0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 15:19:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1F877AD8F4
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 15:22:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 6B4702813BD
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 13:19:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 556842815AA
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 13:22:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43A981B295;
-	Mon, 25 Sep 2023 13:19:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BED9B1B296;
+	Mon, 25 Sep 2023 13:22:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8503125D8
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 13:19:39 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DAA610A;
-	Mon, 25 Sep 2023 06:19:38 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38PDJRiN042525;
-	Mon, 25 Sep 2023 08:19:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1695647967;
-	bh=rEHOTTuQUm/6EqbiYbx4/pn0I3WBPULrrSYiunXnvr4=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=oLKVabkoBqDwaipdlLM00NlK+Z53VHKprZxuFxDTQsHakCJVEdtbZpUxRu7owMNwV
-	 YTgIMrWKdsp0vysKOlyG30rH1RnW0OnHWu4MQv08Ch6+kEgJs9klJ+b/FY/duHanQd
-	 R7gLPJaSojyEGOENxuhiwQ37Yd4Vy5bXZ/Hy+wLQ=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38PDJRNq017726
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 25 Sep 2023 08:19:27 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 25
- Sep 2023 08:19:26 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 25 Sep 2023 08:19:27 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38PDJRx8065676;
-	Mon, 25 Sep 2023 08:19:27 -0500
-Date: Mon, 25 Sep 2023 08:19:27 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Keerthy <j-keerthy@ti.com>
-CC: <robh+dt@kernel.org>, <vigneshr@ti.com>, <conor+dt@kernel.org>,
-        <kristo@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <u-kumar1@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 5/7] arm64: dts: ti: k3-j784s4-mcu: Add the main
- domain watchdog instances
-Message-ID: <20230925131927.f7ff2u2ip3jxejyg@dreadful>
-References: <20230925081332.15906-1-j-keerthy@ti.com>
- <20230925081332.15906-6-j-keerthy@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB6E7125D8
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 13:22:02 +0000 (UTC)
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E735EA2;
+	Mon, 25 Sep 2023 06:22:00 -0700 (PDT)
+Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.206])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4RvNl16n7cz6D9y0;
+	Mon, 25 Sep 2023 21:19:41 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Mon, 25 Sep
+ 2023 14:21:58 +0100
+Date: Mon, 25 Sep 2023 14:21:57 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC: Andreas Kemnade <andreas@kemnade.info>, <jic23@kernel.org>,
+	<lars@metafoo.de>, <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <bcousson@baylibre.com>, <tony@atomide.com>,
+	<jean-baptiste.maneyrol@tdk.com>, <chenhuiz@axis.com>,
+	<andy.shevchenko@gmail.com>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-omap@vger.kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: iio: imu: mpu6050: Add level shifter
+Message-ID: <20230925142157.00000914@Huawei.com>
+In-Reply-To: <3b81a9a7-69a3-4fd6-875f-7a5170c5c872@linaro.org>
+References: <20230924222559.2038721-1-andreas@kemnade.info>
+	<20230924222559.2038721-2-andreas@kemnade.info>
+	<6db5b758-2ae6-46fb-a699-d73a2b98b4c2@linaro.org>
+	<20230925112852.00007d34@Huawei.com>
+	<20230925130225.55fe6fd4@aktux>
+	<3b81a9a7-69a3-4fd6-875f-7a5170c5c872@linaro.org>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230925081332.15906-6-j-keerthy@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.202.227.76]
+X-ClientProxiedBy: lhrpeml500003.china.huawei.com (7.191.162.67) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
 	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 13:43-20230925, Keerthy wrote:
-> There are totally 2 instances of watchdog module in MCU domain.
-> 
-> Signed-off-by: Keerthy <j-keerthy@ti.com>
-> ---
->  .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-> index a7b5c4cb7d3e..0b7cc277a567 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-> @@ -714,4 +714,24 @@
->  		ti,esm-pins = <63>;
->  		bootph-pre-ram;
->  	};
-> +
-> +	mcu_watchdog0: watchdog@40600000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x40600000 0x00 0x100>;
-> +		clocks = <&k3_clks 367 1>;
-> +		power-domains = <&k3_pds 367 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 367 0>;
-> +		assigned-clock-parents = <&k3_clks 367 4>;
-> +		status = "disabled";
-> +	};
-> +
-> +	mcu_watchdog1: watchdog@40610000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x40610000 0x00 0x100>;
-> +		clocks = <&k3_clks 368 1>;
-> +		power-domains = <&k3_pds 368 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 368 0>;
-> +		assigned-clock-parents = <&k3_clks 368 4>;
-> +		status = "disabled";
+On Mon, 25 Sep 2023 14:24:32 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-Explain in commit message as to why these are disabled. I believe it is
-because this RTI instances are tightly coupled to the micro
-controllers. but that information needs to be documented.
-> +	};
->  };
-> -- 
-> 2.17.1
+> On 25/09/2023 13:02, Andreas Kemnade wrote:
+> > On Mon, 25 Sep 2023 11:28:52 +0100
+> > Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
+> >   
+> >> On Mon, 25 Sep 2023 08:54:08 +0200
+> >> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> >>  
+> >>> On 25/09/2023 00:25, Andreas Kemnade wrote:    
+> >>>> Found in ancient platform data struct:
+> >>>> level_shifter: 0: VLogic, 1: VDD
+> >>>>
+> >>>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> >>>> ---
+> >>>>  .../devicetree/bindings/iio/imu/invensense,mpu6050.yaml         | 2 ++
+> >>>>  1 file changed, 2 insertions(+)
+> >>>>
+> >>>> diff --git a/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml b/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
+> >>>> index 1db6952ddca5e..6aae2272fa15c 100644
+> >>>> --- a/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
+> >>>> +++ b/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
+> >>>> @@ -48,6 +48,8 @@ properties:
+> >>>>  
+> >>>>    mount-matrix: true
+> >>>>  
+> >>>> +  invensense,level-shifter: true      
+> >>>
+> >>> It does not look like you tested the bindings, at least after quick
+> >>> look. Please run `make dt_binding_check` (see
+> >>> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+> >>> Maybe you need to update your dtschema and yamllint.
+> >>>
+> >>> Best regards,
+> >>> Krzysztof
+> >>>
+> >>>     
+> >>
+> >> Also this one isn't obvious - give it a description in the binding doc.
+> >>
+> >> I'm not sure of the arguement for calling it level shift in general.
+> >>  
+> > I have no more descrption than the old source (see the citation from there)
+> > https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-9150-Register-Map.pdf  
+> 
+> I could not find any reference to level shift in this manual. To which
+> page and part do you refer?
+> 
+> > 
+> > does not list it. But that bit is needed to get things to work what also does the
+> > vendor kernel do.
+> > 
+> > What could be a better descrption?  
+> 
+> I don't know, but something reasonable to you should be put there.
+
+The text you have in the commit log seems better than nothing.
+I suspect it's internally wiring VDD to VDDIO. Normally people just
+connect both power supplies to same supply if they want to do that,
+but maybe there was a chip variant that didn't have enough pins?
+
+If you have the device, can you see it actually matches the packaging
+types in the manual?
+
+Jonathan
+
+> 
+> Best regards,
+> Krzysztof
+> 
 > 
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
