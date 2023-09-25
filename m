@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-3073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 055137AD41C
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6DBB7AD41D
 	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 11:03:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id 8D59B1F247D9
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 77C3D281672
 	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:03:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FEF013AD8;
-	Mon, 25 Sep 2023 09:03:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2B0F13ADC;
+	Mon, 25 Sep 2023 09:03:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B50413ACE
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F16B13AD1
 	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 09:03:50 +0000 (UTC)
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C4A1FF
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 02:03:48 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2c038a1e2e6so89926751fa.2
-        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 02:03:47 -0700 (PDT)
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E7F3AB
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 02:03:49 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2c022ce8114so94008971fa.1
+        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 02:03:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695632626; x=1696237426; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695632627; x=1696237427; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=BXhBoTkvT12oBjTdv064IBZ5Ioc2wkVjKhOPnw7H8n0=;
-        b=F5H/AMFgv+Ccxdxo/OUCl3UEHYwpXm5tmtYNNBVteT/TDNN/afslPF8liAnFzQFx4W
-         03ps0yGIE/26Si47QduDo5Lyk5dylo54JCmjs4j5kAgdub1BEWcXxDkOCEI1ITBxcyCh
-         q4DGGHT85TWUSQ8JB+J+Ftau4mhb6n/AHSBb9UYZzMfMm8Z5zysnk72snTzPlU2fbRJ1
-         Q4WGTKOQnmaFwnGgKKQHC+o/72Gca7lURI7/lI+nRrkv5qXnTFZYbF4jehCUHV1Ry5I/
-         BR27oJWbg/XIpHUCy4MWtTx2G+Pbb/IN1jMUzP483QZ7z/7c3Njfp0ZcKmusmE46AfNd
-         NMpA==
+        bh=OaETC3HZ5CWbxTVBUq31AOC/jHNauLv5SZyr4Mwre84=;
+        b=R0jLyIlOgFBzm3pZX27j+zMdeitBGBDXiIQkbsFiV6vq5V9v22n7nX8CusFiznE4Fq
+         Y4JkYg4ArmBIjwZ5rh2KndW5Z4yadQCPpDIs3fs5L3Ap7+UuP+KOPZqMBYg0ijIvdLU2
+         WSSBprz+yTHZinuF7lLlAaDG4wAXEb92j2S9riMgkp6PguLXgKRkQJM4WojmGOAmrARE
+         2ffn/ODBywSJSne/r5fmZ0nI66ZC63LwPi5Mi8KLQelfgJXTHHm23CN2i9AtgvchVDjW
+         CQ7+EG1xiMMJRH4t6EX1VWREfIHJcM6z/i4UH0l3ZLn6PCB85FdydWbBoJPoQqfQbJuP
+         CgaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695632626; x=1696237426;
+        d=1e100.net; s=20230601; t=1695632627; x=1696237427;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=BXhBoTkvT12oBjTdv064IBZ5Ioc2wkVjKhOPnw7H8n0=;
-        b=ME+FcLAMk9bJBo4HWV0qps1qJAvDNK2u6nJTypA09KghDz1MWGwIvEvWEIkZD3YT9M
-         SrsH2E0e4rLdOd+BD469Ei4V8IyMEcfwGiH9ouOkz/cA5bbK90gWtHHTnUNhzkOR0iP2
-         d3UaRiCvB2qhJrWNfFaGXMpE3Aiw3cJd+9SdGIWh3+KqYMP8SMnRrTFbmOyXPP0vcBDz
-         GE8ZKn00HXXPhVBlfXArJlddK3cfVdtcH4EjFKsti0bwwlEFMVf/YI/0ovDeXRPjAkF2
-         4ee9+MH2JLdc+KYEAxDmsJV9pDnpxSuK1F6VBBc7mBOcdNAYeqdHWEvfKnhSo4yEdfZL
-         ghmQ==
-X-Gm-Message-State: AOJu0Ywtmw3Bur3R/5wNqh0grQI0btsTsqpFHoIezyT9tAoDr1hCKRsN
-	v17uoaxJK8ZtxE1OPp5T+EIHrw==
-X-Google-Smtp-Source: AGHT+IHf75dIfSTDh/A6EPU+pCpJ4fPnrOADbU/iwlDUo/dSWqf/y/SPyVpT/4xWaySnYU3X4ZmJWw==
-X-Received: by 2002:a05:651c:105a:b0:2bb:c212:5589 with SMTP id x26-20020a05651c105a00b002bbc2125589mr4780060ljm.17.1695632626376;
-        Mon, 25 Sep 2023 02:03:46 -0700 (PDT)
+        bh=OaETC3HZ5CWbxTVBUq31AOC/jHNauLv5SZyr4Mwre84=;
+        b=YR864UUbvIC7oKz7Pm9NSDPUfwfm2hGbC3ZjsdIFZeZbF/da+EwEnMFiTIsWGzK930
+         GxGwjiWZ8z7TSQdscGw48WjbBTuEAP+Lut1p2YaIUR0atvyDZTSRb4rI9cA9qeP1ko0N
+         JH3wi8IGUlK74b0vUUAPdUG09O6vXw0rUCDCAMEiStgbV2vf5RBakTCzYFVSMal95ZD9
+         W2Ua3XicXi9k4GTuMe5sOOdE/tIJf5AXRg1bfQamjJkRdXWX2mvueyFmnxU/rfMV6shg
+         GJ6WHJF3tkzLK0h1pMn3O5EaoDJ8+SHrnB75phMKDYoft6kU1uZQ93dQPlMWqXZ+bFto
+         B3Wg==
+X-Gm-Message-State: AOJu0YwbYK22ApN7ixGR5V8Yzt8fCNspF88PcB4FI1R1P90N6aF2svVW
+	OWKN17vBmBHRj1S3YW4OXJmMMQ==
+X-Google-Smtp-Source: AGHT+IEIT38dfYouPdmvn6rYy9EBenB9HJ8sjl2eK8aG5NOrnc6nm1vHFkrgg1dr2uMnfbmP9jcGSQ==
+X-Received: by 2002:a2e:7309:0:b0:2bc:c1d9:6848 with SMTP id o9-20020a2e7309000000b002bcc1d96848mr4812411ljc.44.1695632627425;
+        Mon, 25 Sep 2023 02:03:47 -0700 (PDT)
 Received: from [192.168.1.2] (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
-        by smtp.gmail.com with ESMTPSA id l8-20020a2e9088000000b002b70a8478ddsm2122048ljg.44.2023.09.25.02.03.45
+        by smtp.gmail.com with ESMTPSA id l8-20020a2e9088000000b002b70a8478ddsm2122048ljg.44.2023.09.25.02.03.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Sep 2023 02:03:45 -0700 (PDT)
+        Mon, 25 Sep 2023 02:03:46 -0700 (PDT)
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 25 Sep 2023 11:03:38 +0200
-Subject: [PATCH v2 1/2] dt-bindings: Add vendor prefixes
+Date: Mon, 25 Sep 2023 11:03:39 +0200
+Subject: [PATCH v2 2/2] dt-bindings: arm: List more IXP4xx devices
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,7 +65,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230925-ixp4xx-usr8200-v2-1-433261c13a28@linaro.org>
+Message-Id: <20230925-ixp4xx-usr8200-v2-2-433261c13a28@linaro.org>
 References: <20230925-ixp4xx-usr8200-v2-0-433261c13a28@linaro.org>
 In-Reply-To: <20230925-ixp4xx-usr8200-v2-0-433261c13a28@linaro.org>
 To: Peter Denison <openwrt@marshadder.org>, 
@@ -84,99 +84,54 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-These vendor prefixes are used by some routers supported
-by e.g. OpenWrt.
+The ixp4xx bindings are lacking some of the devices we have
+out there in the wild, so let's add them.
 
-- ADI Engineering is a US telecom equipment company.
-
-- Arcom Controllers is a US manufacturer of repeaters.
-
-- Freecom Gmbh is a german telecom equipment company.
-
-- Gemtek Technology is a Taiwan telecom company.
-
-- Gateway Communications was a telecommunication company,
-  now acquired by HKT Limited/PCCW.
-
-- Goramo Gorecki is a privately owned Polish telecom
-  company.
-
-- U.S. Robotics Corporation, known through their brand name
-  USRobotics is generally referred to as "USR" so use this
-  prefix for the company's device tree bindings.
+The "linksys,wrv54g", "gemtek,gtwx5715", "intel,ixp42x"
+triplet is a pretty special case where the Gemtek device is
+licensed as OEM product by Linksys (now Belkin) hence the
+special entry for this one.
 
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ .../devicetree/bindings/arm/intel-ixp4xx.yaml          | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 573578db9509..edeb870c84cd 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -59,6 +59,8 @@ patternProperties:
-     description: AD Holdings Plc.
-   "^adi,.*":
-     description: Analog Devices, Inc.
-+  "^adieng,.*":
-+    description: ADI Engineering, Inc.
-   "^advantech,.*":
-     description: Advantech Corporation
-   "^aeroflexgaisler,.*":
-@@ -127,6 +129,8 @@ patternProperties:
-     description: Arasan Chip Systems
-   "^archermind,.*":
-     description: ArcherMind Technology (Nanjing) Co., Ltd.
-+  "^arcom,.*":
-+    description: Arcom Controllers
-   "^arctic,.*":
-     description: Arctic Sand
-   "^arcx,.*":
-@@ -484,6 +488,8 @@ patternProperties:
-     description: FocalTech Systems Co.,Ltd
-   "^forlinx,.*":
-     description: Baoding Forlinx Embedded Technology Co., Ltd.
-+  "^freecom,.*":
-+    description: Freecom Gmbh
-   "^frida,.*":
-     description: Shenzhen Frida LCD Co., Ltd.
-   "^friendlyarm,.*":
-@@ -496,6 +502,8 @@ patternProperties:
-     description: FX Technology Ltd.
-   "^gardena,.*":
-     description: GARDENA GmbH
-+  "^gateway,.*":
-+    description: Gateway Communications
-   "^gateworks,.*":
-     description: Gateworks Corporation
-   "^gcw,.*":
-@@ -510,6 +518,8 @@ patternProperties:
-     description: GE Fanuc Intelligent Platforms Embedded Systems, Inc.
-   "^gemei,.*":
-     description: Gemei Digital Technology Co., Ltd.
-+  "^gemtek,.*":
-+    description: Gemtek Technology Co., Ltd.
-   "^genesys,.*":
-     description: Genesys Logic, Inc.
-   "^geniatech,.*":
-@@ -530,6 +540,8 @@ patternProperties:
-     description: Shenzhen Huiding Technology Co., Ltd.
-   "^google,.*":
-     description: Google, Inc.
-+  "^goramo,.*":
-+    description: Goramo Gorecki
-   "^gplus,.*":
-     description: GPLUS
-   "^grinn,.*":
-@@ -1444,6 +1456,8 @@ patternProperties:
-     description: United Radiant Technology Corporation
-   "^usi,.*":
-     description: Universal Scientific Industrial Co., Ltd.
-+  "^usr,.*":
-+    description: U.S. Robotics Corporation
-   "^utoo,.*":
-     description: Aigo Digital Technology Co., Ltd.
-   "^v3,.*":
+diff --git a/Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml b/Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml
+index 553dcbc70e35..1fecd4692a62 100644
+--- a/Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml
++++ b/Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml
+@@ -16,12 +16,30 @@ properties:
+     oneOf:
+       - items:
+           - enum:
++              - adieng,coyote
++              - arcom,vulcan
++              - dlink,dsm-g600-a
++              - freecom,fsg-3
++              - gateway,7001
++              - gateworks,gw2348
++              - goramo,multilink-router
++              - intel,ixdp425
++              - intel,ixdpg425
++              - iom,nas-100d
+               - linksys,nslu2
++              - netgear,wg302v1
++              - netgear,wg302v2
++              - usr,8200
+               - welltech,epbx100
+           - const: intel,ixp42x
++      - items:
++          - const: linksys,wrv54g
++          - const: gemtek,gtwx5715
++          - const: intel,ixp42x
+       - items:
+           - enum:
+               - gateworks,gw2358
++              - intel,kixrp435
+           - const: intel,ixp43x
+ 
+ additionalProperties: true
 
 -- 
 2.41.0
