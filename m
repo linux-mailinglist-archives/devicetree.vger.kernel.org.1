@@ -1,221 +1,167 @@
-Return-Path: <devicetree+bounces-3183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B47B57AD961
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 15:40:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BFFA7AD973
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 15:45:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 643C82815BA
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 13:40:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 847891C20430
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 13:45:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13B831BDD2;
-	Mon, 25 Sep 2023 13:40:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 241A11BDD2;
+	Mon, 25 Sep 2023 13:45:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9245D125D8
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 13:40:16 +0000 (UTC)
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBA8CCC9
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 06:40:13 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-1c44c0f9138so44156035ad.2
-        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 06:40:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1695649213; x=1696254013; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4s1mdQKNja8rRVRNvpznVdJduDgGmg/7wDSFseU/UmI=;
-        b=LrsLJ8qOr/6RMNQ8sKJV8ZVjL21ftj8GjZsA4COF5lrjbX1jCcGCCYRSzIsbXbKEVH
-         Sm+N674AIfxi2JkgNTBnkeaU8RwZ1/1CqcDsBNlht45RxJau/ZWambmKD0Q4xUgAsrOa
-         Oi548MQJUlGtcAMUi6bM7XdYWRKUQJjnpk5lBOYrqX368X8oMcM5yDoMBP+yl7RECoRa
-         eEK0TSnbV6GeWWfZ1q2NFb9eVg7oXldnpkmqGsC3wWMx0d+R0LtUT0/XfFpTmi7fUAmR
-         5KOaDTYcwHq7IAFnx/0L2bXHdWNeOeVxweW709ZpNjmrlywT74EcNyGzNiFbPTc9YXMd
-         tMLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695649213; x=1696254013;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4s1mdQKNja8rRVRNvpznVdJduDgGmg/7wDSFseU/UmI=;
-        b=famOoTWMfjBn2LI+VTrRzR7auUELNWgLxIOtrEeoCPYr/cv95TTtFgo1pNKxoAP+r5
-         XDNmOX1iH+ZkhTyB8mV8WtSg3r8ZzjUaJ2nYUrIJEDJQvuxYZwZvnx+H3bQ5O6oOH1Pc
-         9k6HWkwRU3qWW1Hvsvg7rECf5Wer01eNmBqvCNAkwW79QszKuTZ9Fi94L1BaW69nf69X
-         5UvvbWMBhhLoIwpmftqh0GEa4mwSpzBME3OPx4Kes8ES8iHfxWsVjtrzUNivxBxtXBnM
-         VZjdXVCxKFGeS4R+rY0Ycb7Fuod1lNtdAIYjDS8EpxO1flya8NuN5NW0kTahz+yZ94Xm
-         f8iw==
-X-Gm-Message-State: AOJu0Yx7vI3mMWO77YamJT8j1HKGydbB4mH2Hew3nbx7/cg0tSPyR0+I
-	1IjKsBEGqNiedlBHwRZoVwC7xA==
-X-Google-Smtp-Source: AGHT+IHwYx5uxjulfoXkoeURKGAldzLHqGYkvOLbEpGq9sn4ycnd7NcTYbii8mDYFgDlQkGlqzyNeA==
-X-Received: by 2002:a17:903:444:b0:1b6:6c32:59a8 with SMTP id iw4-20020a170903044400b001b66c3259a8mr4289356plb.36.1695649212949;
-        Mon, 25 Sep 2023 06:40:12 -0700 (PDT)
-Received: from anup-ubuntu-vm.localdomain ([103.97.165.210])
-        by smtp.gmail.com with ESMTPSA id p11-20020a170902eacb00b001c625d6ffccsm969433pld.129.2023.09.25.06.40.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Sep 2023 06:40:12 -0700 (PDT)
-From: Anup Patel <apatel@ventanamicro.com>
-To: Paolo Bonzini <pbonzini@redhat.com>,
-	Atish Patra <atishp@atishpatra.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Shuah Khan <shuah@kernel.org>
-Cc: Andrew Jones <ajones@ventanamicro.com>,
-	Mayuresh Chitale <mchitale@ventanamicro.com>,
-	devicetree@vger.kernel.org,
-	kvm@vger.kernel.org,
-	kvm-riscv@lists.infradead.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-kselftest@vger.kernel.org,
-	Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH v2 9/9] KVM: riscv: selftests: Add condops extensions to get-reg-list test
-Date: Mon, 25 Sep 2023 19:08:59 +0530
-Message-Id: <20230925133859.1735879-10-apatel@ventanamicro.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230925133859.1735879-1-apatel@ventanamicro.com>
-References: <20230925133859.1735879-1-apatel@ventanamicro.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 149C511C8B
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 13:45:27 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D96D5B3;
+	Mon, 25 Sep 2023 06:45:25 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38PDjITt048292;
+	Mon, 25 Sep 2023 08:45:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1695649518;
+	bh=C+GLtsfIZeXgjPd418k2iGjNqMJ7Mr3S/9rXBh3m0cA=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=gNS/PfBSsStWf3JChko/SCFRnKHUQKwjTm1NrjDGGhZz1lH4UrnK1Jdc/oeBetoYO
+	 zuDvkpIn2/Gys6pw9U3GcdRQxlygUGY15eh2O1obhwBZKjUcRRoiqvLlY2nbp5DUOL
+	 5rDssY66h8K+6W78kIXN/Ii0Sm9tGn1ShMUf505Y=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38PDjImM066303
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 25 Sep 2023 08:45:18 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 25
+ Sep 2023 08:45:17 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 25 Sep 2023 08:45:17 -0500
+Received: from [10.250.38.120] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38PDjGBv004398;
+	Mon, 25 Sep 2023 08:45:16 -0500
+Message-ID: <3869499c-532d-8cd0-f428-6697bbbedd8d@ti.com>
+Date: Mon, 25 Sep 2023 08:45:16 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2 2/4] arm64: dts: ti: k3-am654-base-board: add ICSSG2
+ Ethernet support
+Content-Language: en-US
+To: MD Danish Anwar <danishanwar@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+CC: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Tero
+ Kristo <kristo@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <r-gunasekaran@ti.com>
+References: <20230921060913.721336-1-danishanwar@ti.com>
+ <20230921060913.721336-3-danishanwar@ti.com>
+ <3b4629c7-5625-f32f-0532-5f50832c1714@ti.com>
+ <52572af4-771e-3bd9-b290-74482694f020@ti.com>
+ <8db10b88-5b06-af84-cb0a-9fbaa29cf78c@ti.com>
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <8db10b88-5b06-af84-cb0a-9fbaa29cf78c@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS,UPPERCASE_50_75 autolearn=no autolearn_force=no
-	version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-We have a new conditional operations related ISA extensions so let us
-add these extensions to get-reg-list test.
+On 9/25/23 3:21 AM, MD Danish Anwar wrote:
+> Hi Andrew,
+> 
+> On 22/09/23 09:52, MD Danish Anwar wrote:
+>> On 21/09/23 22:57, Andrew Davis wrote:
+>>> On 9/21/23 1:09 AM, MD Danish Anwar wrote:
+>>>> ICSSG2 provides dual Gigabit Ethernet support.
+>>>>
+>>>> For support SR2.0 ICSSG Ethernet firmware:
+>>>> - provide different firmware blobs and use TX_PRU.
+>>>> - IEP0 is used as PTP Hardware Clock and can only be used for one port.
+>>>> - TX timestamp notification comes via INTC interrupt.
+>>>>
+>>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>>>> ---
+>>>>    arch/arm64/boot/dts/ti/Makefile               |   4 +-
+>>>>    ...se-board.dts => k3-am654-common-board.dts} |   0
+>>>>    arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso   | 145 ++++++++++++++++++
+>>>>    3 files changed, 148 insertions(+), 1 deletion(-)
+>>>>    rename arch/arm64/boot/dts/ti/{k3-am654-base-board.dts =>
+>>>> k3-am654-common-board.dts} (100%)
+>>>>    create mode 100644 arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/ti/Makefile
+>>>> b/arch/arm64/boot/dts/ti/Makefile
+>>>> index e7b8e2e7f083..85c91f5e832e 100644
+>>>> --- a/arch/arm64/boot/dts/ti/Makefile
+>>>> +++ b/arch/arm64/boot/dts/ti/Makefile
+>>>> @@ -42,12 +42,14 @@ dtb-$(CONFIG_ARCH_K3) +=
+>>>> k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb
+>>>>    dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl-wlan.dtb
+>>>>      # Boards with AM65x SoC
+>>>> -k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb
+>>>> k3-am654-base-board-rocktech-rk101-panel.dtbo
+>>>> +k3-am654-gp-evm-dtbs := k3-am654-common-board.dtb
+>>>> k3-am654-base-board-rocktech-rk101-panel.dtbo
+>>>
+>>> Should the k3-am654-gp-evm.dtb not also have this icssg2 support? Does
+>>> it work
+>>> to keep this line like before or is there some conflict having both
+>>> enabled?
+>>>
+>>
+>> I have not tested this dtb (k3-am654-gp-evm.dtb). So just to be on the
+>> safe side I kept gp-evm.dtb as it was. Ideally gp-evm.dtb should have
+>> icssg2 support as well. But I haven't tested the combination of
+>> base-board + icssg dtbo + rockteck dtbo. That is why I kept gp-evm dtb
+>> as it was. Anyways, for ICSSG2's use case only k3-am654-base-board.dtb
+>> is used so I think it's ok to leave k3-am654-gp-evm.dtb to as it was.
+>>
+>>> Andrew
+>>>
+> 
+> I tested AM654x-GP EVM with k3-am654-gp-evm.dtb with both the
+> combination below (having k3-am654-base-board-dtbs :=
+> k3-am654-common-board.dtb k3-am654-icssg2.dtbo), ICSSG worked fine in
+> both the scenarios and I didn't see any issue. I don't have a rocktech
+> panel with me so couldn't test that. But as far as ICSSG is concerned it
+> works fine with the both the combinations. Please let me know which one
+> should I use. Should I keep gp-evm as it is (use dtb without the icssg2
+> overlay) or should I add icssg2 overlay in gp-evm.dtb as well.
+> 
+> 
+> 1. k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb
+> k3-am654-base-board-rocktech-rk101-panel.dtbo
+> 
+> 
+> 2. k3-am654-gp-evm-dtbs := k3-am654-common-board.dtb
+> k3-am654-base-board-rocktech-rk101-panel.dtbo
+> 
 
-Signed-off-by: Anup Patel <apatel@ventanamicro.com>
----
- .../selftests/kvm/riscv/get-reg-list.c        | 34 +++++++++++++++++++
- 1 file changed, 34 insertions(+)
+As you said here before, most will expect the icssg2 to work
+on the EVM out of box, you should include it. If anyone wants
+something else they can apply the set of overlays that match
+on their own.
 
-diff --git a/tools/testing/selftests/kvm/riscv/get-reg-list.c b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-index 625118d53b74..cb1bb95b5df2 100644
---- a/tools/testing/selftests/kvm/riscv/get-reg-list.c
-+++ b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-@@ -42,12 +42,14 @@ bool filter_reg(__u64 reg)
- 	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_SVINVAL:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_SVNAPOT:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_SVPBMT:
-+	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_XVENTANACONDOPS:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZBA:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZBB:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZBS:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZICBOM:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZICBOZ:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZICNTR:
-+	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZICOND:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZICSR:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZIFENCEI:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZIHINTPAUSE:
-@@ -355,12 +357,14 @@ static const char *isa_ext_id_to_str(__u64 id)
- 		KVM_ISA_EXT_ARR(SVINVAL),
- 		KVM_ISA_EXT_ARR(SVNAPOT),
- 		KVM_ISA_EXT_ARR(SVPBMT),
-+		KVM_ISA_EXT_ARR(XVENTANACONDOPS),
- 		KVM_ISA_EXT_ARR(ZBA),
- 		KVM_ISA_EXT_ARR(ZBB),
- 		KVM_ISA_EXT_ARR(ZBS),
- 		KVM_ISA_EXT_ARR(ZICBOM),
- 		KVM_ISA_EXT_ARR(ZICBOZ),
- 		KVM_ISA_EXT_ARR(ZICNTR),
-+		KVM_ISA_EXT_ARR(ZICOND),
- 		KVM_ISA_EXT_ARR(ZICSR),
- 		KVM_ISA_EXT_ARR(ZIFENCEI),
- 		KVM_ISA_EXT_ARR(ZIHINTPAUSE),
-@@ -632,6 +636,10 @@ static __u64 zicntr_regs[] = {
- 	KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZICNTR,
- };
- 
-+static __u64 zicond_regs[] = {
-+	KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZICOND,
-+};
-+
- static __u64 zicsr_regs[] = {
- 	KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZICSR,
- };
-@@ -644,6 +652,10 @@ static __u64 zihpm_regs[] = {
- 	KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZIHPM,
- };
- 
-+static __u64 xventanacondops_regs[] = {
-+	KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_XVENTANACONDOPS,
-+};
-+
- static __u64 aia_regs[] = {
- 	KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_CSR | KVM_REG_RISCV_CSR_AIA | KVM_REG_RISCV_CSR_AIA_REG(siselect),
- 	KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_CSR | KVM_REG_RISCV_CSR_AIA | KVM_REG_RISCV_CSR_AIA_REG(iprio1),
-@@ -759,12 +771,16 @@ static __u64 fp_d_regs[] = {
- 	{"zbs", .feature = KVM_RISCV_ISA_EXT_ZBS, .regs = zbs_regs, .regs_n = ARRAY_SIZE(zbs_regs),}
- #define ZICNTR_REGS_SUBLIST \
- 	{"zicntr", .feature = KVM_RISCV_ISA_EXT_ZICNTR, .regs = zicntr_regs, .regs_n = ARRAY_SIZE(zicntr_regs),}
-+#define ZICOND_REGS_SUBLIST \
-+	{"zicond", .feature = KVM_RISCV_ISA_EXT_ZICOND, .regs = zicond_regs, .regs_n = ARRAY_SIZE(zicond_regs),}
- #define ZICSR_REGS_SUBLIST \
- 	{"zicsr", .feature = KVM_RISCV_ISA_EXT_ZICSR, .regs = zicsr_regs, .regs_n = ARRAY_SIZE(zicsr_regs),}
- #define ZIFENCEI_REGS_SUBLIST \
- 	{"zifencei", .feature = KVM_RISCV_ISA_EXT_ZIFENCEI, .regs = zifencei_regs, .regs_n = ARRAY_SIZE(zifencei_regs),}
- #define ZIHPM_REGS_SUBLIST \
- 	{"zihpm", .feature = KVM_RISCV_ISA_EXT_ZIHPM, .regs = zihpm_regs, .regs_n = ARRAY_SIZE(zihpm_regs),}
-+#define XVENTANACONDOPS_REGS_SUBLIST \
-+	{"xventanacondops", .feature = KVM_RISCV_ISA_EXT_XVENTANACONDOPS, .regs = xventanacondops_regs, .regs_n = ARRAY_SIZE(xventanacondops_regs),}
- #define AIA_REGS_SUBLIST \
- 	{"aia", .feature = KVM_RISCV_ISA_EXT_SSAIA, .regs = aia_regs, .regs_n = ARRAY_SIZE(aia_regs),}
- #define SMSTATEEN_REGS_SUBLIST \
-@@ -864,6 +880,14 @@ static struct vcpu_reg_list zicntr_config = {
- 	},
- };
- 
-+static struct vcpu_reg_list zicond_config = {
-+	.sublists = {
-+	BASE_SUBLIST,
-+	ZICOND_REGS_SUBLIST,
-+	{0},
-+	},
-+};
-+
- static struct vcpu_reg_list zicsr_config = {
- 	.sublists = {
- 	BASE_SUBLIST,
-@@ -888,6 +912,14 @@ static struct vcpu_reg_list zihpm_config = {
- 	},
- };
- 
-+static struct vcpu_reg_list xventanacondops_config = {
-+	.sublists = {
-+	BASE_SUBLIST,
-+	XVENTANACONDOPS_REGS_SUBLIST,
-+	{0},
-+	},
-+};
-+
- static struct vcpu_reg_list aia_config = {
- 	.sublists = {
- 	BASE_SUBLIST,
-@@ -932,9 +964,11 @@ struct vcpu_reg_list *vcpu_configs[] = {
- 	&zbb_config,
- 	&zbs_config,
- 	&zicntr_config,
-+	&zicond_config,
- 	&zicsr_config,
- 	&zifencei_config,
- 	&zihpm_config,
-+	&xventanacondops_config,
- 	&aia_config,
- 	&smstateen_config,
- 	&fp_f_config,
--- 
-2.34.1
+So, use base-board.
 
+Andrew
 
