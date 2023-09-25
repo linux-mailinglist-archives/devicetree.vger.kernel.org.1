@@ -1,129 +1,137 @@
-Return-Path: <devicetree+bounces-3230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD68E7ADCA6
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 18:05:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2E117ADCC5
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 18:09:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id B17321C20443
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 16:05:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id A3F20281B70
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 16:09:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26BDC21A07;
-	Mon, 25 Sep 2023 16:05:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54E1321A0B;
+	Mon, 25 Sep 2023 16:09:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 846371BDEC
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 16:05:54 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 179EA92;
-	Mon, 25 Sep 2023 09:05:53 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38PG5hQ7106103;
-	Mon, 25 Sep 2023 11:05:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1695657943;
-	bh=OYWoXvhFRey3Jy19pu8xFEtqjP/997zz5z2k/ZPWF/w=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=m0WY63OMLIAlBbY2DLAMie054PF7DB0BX17mQOO1EeTpvGqpv9kAeCieUp9QrI78s
-	 iixu0VZ28DuGCK+XrM6/CDwvP01YQIBbkMZSCRsbqefBIc8foVNKZKETvIQkAUFtYK
-	 a02JS+2+DUfBWNS4Nfutrr1MTnzGt1BjQj/0AEYY=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38PG5hOp007370
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 25 Sep 2023 11:05:43 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 25
- Sep 2023 11:05:43 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 25 Sep 2023 11:05:43 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38PG5hQg028417;
-	Mon, 25 Sep 2023 11:05:43 -0500
-Date: Mon, 25 Sep 2023 11:05:43 -0500
-From: Nishanth Menon <nm@ti.com>
-To: "J, KEERTHY" <j-keerthy@ti.com>
-CC: <robh+dt@kernel.org>, <vigneshr@ti.com>, <conor+dt@kernel.org>,
-        <kristo@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <u-kumar1@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 5/7] arm64: dts: ti: k3-j784s4-mcu: Add the main
- domain watchdog instances
-Message-ID: <20230925160543.4q2rjntoxrh27qh6@drivable>
-References: <20230925081332.15906-1-j-keerthy@ti.com>
- <20230925081332.15906-6-j-keerthy@ti.com>
- <20230925131927.f7ff2u2ip3jxejyg@dreadful>
- <9fef2589-c864-bcb9-be9d-435d6abd470c@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45D9221115
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 16:09:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB61DC433C8;
+	Mon, 25 Sep 2023 16:09:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695658196;
+	bh=gcYDTYUu2Rp4Bf6iNJVLLlvth+kTKaTp+V7uWoNTvk8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Hu2v/FnFlxjU8frwOTv6HaE3GhqkL+iRiOrNGXeHONKhx+WqEGulB3iqEsO3IGGEy
+	 hgAxAAIBiVgi0fbqtFZJzQoffRDSYG8edHwQHI7nB+R1IdsW+9XyPHFjVb4u2EZiLY
+	 JBVpmpogNZg4gAdhy3ntRNlS1U9mG7GoKkWczxIV84y7xqI4WCiRcIQHYtqNhgXRBP
+	 704vKdl227PqSW7OAhjhl/wWj4vywJ+yrbw/EzARX1CuDXNFdDm7eSGy1cgYCAjguf
+	 aJnuvJGV82DqnjfRPknQoBcOHD90E7VyUwr1ytV1fLcLZgm21GlTTlXPGjygHgL2WS
+	 llt0nJ8BZyO4Q==
+Received: (nullmailer pid 1450584 invoked by uid 1000);
+	Mon, 25 Sep 2023 16:09:53 -0000
+Date: Mon, 25 Sep 2023 11:09:53 -0500
+From: Rob Herring <robh@kernel.org>
+To: Moudy Ho <moudy.ho@mediatek.com>
+Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>, dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 09/16] dt-bindings: media: mediatek: mdp3: add
+ component STITCH for MT8195
+Message-ID: <20230925160953.GA1449445-robh@kernel.org>
+References: <20230922072116.11009-1-moudy.ho@mediatek.com>
+ <20230922072116.11009-10-moudy.ho@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9fef2589-c864-bcb9-be9d-435d6abd470c@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+In-Reply-To: <20230922072116.11009-10-moudy.ho@mediatek.com>
 
-On 21:03-20230925, J, KEERTHY wrote:
-> 
-> 
-> On 9/25/2023 6:49 PM, Nishanth Menon wrote:
-> > On 13:43-20230925, Keerthy wrote:
-> > > There are totally 2 instances of watchdog module in MCU domain.
-> > > 
-> > > Signed-off-by: Keerthy <j-keerthy@ti.com>
-> > > ---
-> > >   .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     | 20 +++++++++++++++++++
-> > >   1 file changed, 20 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-> > > index a7b5c4cb7d3e..0b7cc277a567 100644
-> > > --- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-> > > +++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-> > > @@ -714,4 +714,24 @@
-> > >   		ti,esm-pins = <63>;
-> > >   		bootph-pre-ram;
-> > >   	};
-> > > +
-> > > +	mcu_watchdog0: watchdog@40600000 {
-> > > +		compatible = "ti,j7-rti-wdt";
-> > > +		reg = <0x00 0x40600000 0x00 0x100>;
-> > > +		clocks = <&k3_clks 367 1>;
-> > > +		power-domains = <&k3_pds 367 TI_SCI_PD_EXCLUSIVE>;
-> > > +		assigned-clocks = <&k3_clks 367 0>;
-> > > +		assigned-clock-parents = <&k3_clks 367 4>;
-> > > +		status = "disabled";
-> > > +	};
-> > > +
-> > > +	mcu_watchdog1: watchdog@40610000 {
-> > > +		compatible = "ti,j7-rti-wdt";
-> > > +		reg = <0x00 0x40610000 0x00 0x100>;
-> > > +		clocks = <&k3_clks 368 1>;
-> > > +		power-domains = <&k3_pds 368 TI_SCI_PD_EXCLUSIVE>;
-> > > +		assigned-clocks = <&k3_clks 368 0>;
-> > > +		assigned-clock-parents = <&k3_clks 368 4>;
-> > > +		status = "disabled";
-> > 
-> > Explain in commit message as to why these are disabled. I believe it is
-> > because this RTI instances are tightly coupled to the micro
-> > controllers. but that information needs to be documented.
-> 
-> Sure. I will add that to the commit message.
+On Fri, Sep 22, 2023 at 03:21:09PM +0800, Moudy Ho wrote:
+> Add the fundamental hardware configuration of component STITCH,
 
-And inline to code for context, please.
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+STITCH? You mean TCC?
+
+> which is controlled by MDP3 on MT8195.
+> 
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> ---
+>  .../bindings/media/mediatek,mdp3-tcc.yaml     | 60 +++++++++++++++++++
+>  1 file changed, 60 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-tcc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-tcc.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-tcc.yaml
+> new file mode 100644
+> index 000000000000..245e2134c74a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-tcc.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/mediatek,mdp3-tcc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek Media Data Path 3 TCC
+> +
+> +maintainers:
+> +  - Matthias Brugger <matthias.bgg@gmail.com>
+> +
+> +description:
+> +  One of Media Data Path 3 (MDP3) components used to support
+> +  HDR gamma curve conversion HDR displays.
+
+Please say what the block does.
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mediatek,mt8195-mdp3-tcc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  mediatek,gce-client-reg:
+> +    description:
+> +      The register of display function block to be set by gce. There are 4 arguments,
+> +      such as gce node, subsys id, offset and register size. The subsys id that is
+> +      mapping to the register of display function blocks is defined in the gce header
+> +      include/dt-bindings/gce/<chip>-gce.h of each chips.
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      items:
+> +        - description: phandle of GCE
+> +        - description: GCE subsys id
+> +        - description: register offset
+> +        - description: register size
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - mediatek,gce-client-reg
+> +  - clocks
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/mt8195-clk.h>
+> +    #include <dt-bindings/gce/mt8195-gce.h>
+> +
+> +    display@1400b000 {
+> +        compatible = "mediatek,mt8195-mdp3-tcc";
+> +        reg = <0x1400b000 0x1000>;
+> +        mediatek,gce-client-reg = <&gce1 SUBSYS_1400XXXX 0xb000 0x1000>;
+> +        clocks = <&vppsys0 CLK_VPP0_MDP_TCC>;
+> +    };
+> -- 
+> 2.18.0
+> 
 
