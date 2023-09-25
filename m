@@ -1,92 +1,48 @@
-Return-Path: <devicetree+bounces-3303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B34ED7AE26B
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 01:37:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DD0E7AE251
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 01:35:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 5FC412811DA
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 23:37:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 9B48D281475
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 23:35:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AB06266A2;
-	Mon, 25 Sep 2023 23:37:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 422D2262BA;
+	Mon, 25 Sep 2023 23:35:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3930B266AB
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 23:37:21 +0000 (UTC)
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 657BA10C;
-	Mon, 25 Sep 2023 16:37:19 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-d849df4f1ffso8916990276.0;
-        Mon, 25 Sep 2023 16:37:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695685038; x=1696289838; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TmawSKDHPmLbOIorFdlooZUH4qEwSf/uQjkWv2LDI2o=;
-        b=OHDwieJP2VQ9eyE97Lh+GywKVuCAbSghfFSZ70rCywCZ96sYVJn6BgARqBq3UBphkK
-         bkrNsths0OfHkA5757QbnQSjWBHQ+XocvBDRcWpAOpZsEM0r5yT2GBP+otYaVjsOQ43W
-         qQ66+GPlqxq4l49j08QPqeSpwCo217EqnX3xSftjoAzEgOcZO6udsVPtVehUJsWV7SnO
-         o5562IspUiOl8L/ELk5f2QbYuo1+hZc5ErREHrtJq5PLX66HI2j+2zCQ5tvzDuP0HtX/
-         4LmeoPrbDeBEksvTvyHMS4tpM+Ifi+nVZjJxHZhA16NHIif6S6OpV8jlvqfC/Tl1L3WL
-         v+kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695685038; x=1696289838;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TmawSKDHPmLbOIorFdlooZUH4qEwSf/uQjkWv2LDI2o=;
-        b=L+7kTXz3hzDZebkYdEanXI09akXT1cA0OSyDiQ1pQp3oPLxl+Fp/O1SVTRBaI6hKof
-         /gz33ReumxjPA8fv3SkD1i13Kp00sZ4hFXC+/5nMrg0QgXUytHXshafBXojdrVFxIQmk
-         uefFmOaw354sj6WCcUsNZfVmaeKwNCXU6MV7a8+rUTwfuVPOxnco5l+cbq7sLPHAblIH
-         Pfsgk13VuLTFTupWSLqiF5o8cLzRo1kcZmtOnBYMOFXiTPIepkF9c0ezgX+fVMegEr4e
-         fCtPY3SbMjq7jM4WG5DcaPA8J0pkd72J6vu2hxVx9hvouYWSOJSC/IasauEoHD5T+AQv
-         ZIdA==
-X-Gm-Message-State: AOJu0YxcC3o7BIWC7FBM2A4fGbSdrqpA+4nFb/jCEh24oamogXFp1YBx
-	ixuWx9r/wA4dHn+FuIy5+aA=
-X-Google-Smtp-Source: AGHT+IEIlniAPmF6xpy1IkDqdnzgqYGNW75cQelGmvkPhv+/3cAl0TrTEmxMK4RVNzOkmAmFHTdTzw==
-X-Received: by 2002:a25:daca:0:b0:d86:5844:a897 with SMTP id n193-20020a25daca000000b00d865844a897mr7767564ybf.5.1695685038514;
-        Mon, 25 Sep 2023 16:37:18 -0700 (PDT)
-Received: from localhost ([2607:fea8:529e:7800::efbe])
-        by smtp.gmail.com with ESMTPSA id o5-20020a056902010500b00d865e9d394asm1396171ybh.14.2023.09.25.16.37.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Sep 2023 16:37:18 -0700 (PDT)
-From: Richard Acayan <mailingradian@gmail.com>
-To: Rob Clark <robdclark@gmail.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Kuogee Hsieh <quic_khsieh@quicinc.com>,
-	Vinod Polimera <quic_vpolimer@quicinc.com>,
-	Ryan McCann <quic_rmccann@quicinc.com>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Liu Shixin <liushixin2@huawei.com>,
-	Krishna Manikandan <quic_mkrishn@quicinc.com>,
-	linux-arm-msm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org,
-	devicetree@vger.kernel.org
-Cc: Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH 6/6] arm64: dts: qcom: sdm670: add display subsystem
-Date: Mon, 25 Sep 2023 19:26:33 -0400
-Message-ID: <20230925232625.846666-15-mailingradian@gmail.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230925232625.846666-9-mailingradian@gmail.com>
-References: <20230925232625.846666-9-mailingradian@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BE6E262B3
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 23:35:07 +0000 (UTC)
+Received: from mo-csw.securemx.jp (mo-csw1801.securemx.jp [210.130.202.135])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A495010A;
+	Mon, 25 Sep 2023 16:35:05 -0700 (PDT)
+Received: by mo-csw.securemx.jp (mx-mo-csw1801) id 38PNYYKI916596; Tue, 26 Sep 2023 08:34:34 +0900
+X-Iguazu-Qid: 2yAaOS3aFSpfO9O1tT
+X-Iguazu-QSIG: v=2; s=0; t=1695684873; q=2yAaOS3aFSpfO9O1tT; m=7wX4E90bFd4ma85p1R3YT6pZKoeimqEkQGdwTD8cSwU=
+Received: from imx2-a.toshiba.co.jp (imx2-a.toshiba.co.jp [106.186.93.35])
+	by relay.securemx.jp (mx-mr1802) id 38PNYWHb3789012
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Tue, 26 Sep 2023 08:34:33 +0900
+X-SA-MID: 8623328
+From: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+To: Hans Verkuil <hverkuil@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v8 0/5] Add Toshiba Visconti Video Input Interface driver
+Date: Tue, 26 Sep 2023 08:28:01 +0900
+X-TSB-HOP2: ON
+Message-Id: <20230925232806.950683-1-yuji2.ishikawa@toshiba.co.jp>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,341 +50,147 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The Snapdragon 670 has a display subsystem for controlling and
-outputting to the display. Add support for it in the device tree.
+This series is the Video Input Interface driver
+for Toshiba's ARM SoC, Visconti.
+This provides DT binding documentation,
+device driver, documentation and MAINTAINER files.
 
-Signed-off-by: Richard Acayan <mailingradian@gmail.com>
----
- arch/arm64/boot/dts/qcom/sdm670.dtsi | 294 +++++++++++++++++++++++++++
- 1 file changed, 294 insertions(+)
+A visconti VIIF driver instance exposes
+1 media control device file and 3 video device files
+for a VIIF hardware.
+Detailed HW/SW are described in documentation directory.
+The VIIF hardware has CSI2 receiver,
+image signal processor and DMAC inside.
+The subdevice for image signal processor provides
+vendor specific V4L2 controls.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-index 84cd2e39266f..427415ed4e4a 100644
---- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-@@ -6,6 +6,7 @@
-  * Copyright (c) 2022, Richard Acayan. All rights reserved.
-  */
- 
-+#include <dt-bindings/clock/qcom,dispcc-sdm845.h>
- #include <dt-bindings/clock/qcom,gcc-sdm845.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/dma/qcom-gpi.h>
-@@ -400,6 +401,30 @@ cpu6_opp10: opp-1996800000 {
- 		};
- 	};
- 
-+	dsi_opp_table: opp-table-dsi {
-+		compatible = "operating-points-v2";
-+
-+		opp-19200000 {
-+			opp-hz = /bits/ 64 <19200000>;
-+			required-opps = <&rpmhpd_opp_min_svs>;
-+		};
-+
-+		opp-180000000 {
-+			opp-hz = /bits/ 64 <180000000>;
-+			required-opps = <&rpmhpd_opp_low_svs>;
-+		};
-+
-+		opp-275000000 {
-+			opp-hz = /bits/ 64 <275000000>;
-+			required-opps = <&rpmhpd_opp_svs>;
-+		};
-+
-+		opp-358000000 {
-+			opp-hz = /bits/ 64 <358000000>;
-+			required-opps = <&rpmhpd_opp_svs_l1>;
-+		};
-+	};
-+
- 	psci {
- 		compatible = "arm,psci-1.0";
- 		method = "smc";
-@@ -1352,6 +1377,275 @@ spmi_bus: spmi@c440000 {
- 			#interrupt-cells = <4>;
- 		};
- 
-+		mdss: display-subsystem@ae00000 {
-+			compatible = "qcom,sdm670-mdss";
-+			reg = <0 0x0ae00000 0 0x1000>;
-+			reg-names = "mdss";
-+
-+			power-domains = <&dispcc MDSS_GDSC>;
-+
-+			clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+				 <&dispcc DISP_CC_MDSS_MDP_CLK>;
-+			clock-names = "iface", "core";
-+
-+			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-controller;
-+			#interrupt-cells = <1>;
-+
-+			interconnects = <&mmss_noc MASTER_MDP_PORT0 0 &mem_noc SLAVE_EBI_CH0 0>,
-+					<&mmss_noc MASTER_MDP_PORT1 0 &mem_noc SLAVE_EBI_CH0 0>;
-+			interconnect-names = "mdp0-mem", "mdp1-mem";
-+
-+			iommus = <&apps_smmu 0x880 0x8>,
-+				 <&apps_smmu 0xc80 0x8>;
-+
-+			status = "disabled";
-+
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			mdss_mdp: display-controller@ae01000 {
-+				compatible = "qcom,sdm670-dpu";
-+				reg = <0 0x0ae01000 0 0x8f000>,
-+				      <0 0x0aeb0000 0 0x2008>;
-+				reg-names = "mdp", "vbif";
-+
-+				clocks = <&gcc GCC_DISP_AXI_CLK>,
-+					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&dispcc DISP_CC_MDSS_AXI_CLK>,
-+					 <&dispcc DISP_CC_MDSS_MDP_CLK>,
-+					 <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-+				clock-names = "gcc-bus", "iface", "bus", "core", "vsync";
-+
-+				assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-+				assigned-clock-rates = <19200000>;
-+				operating-points-v2 = <&mdp_opp_table>;
-+				power-domains = <&rpmhpd SDM670_CX>;
-+
-+				interrupt-parent = <&mdss>;
-+				interrupts = <0>;
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+						dpu_intf0_out: endpoint {
-+							remote-endpoint = <&mdss_dsi0_in>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+						dpu_intf1_out: endpoint {
-+							remote-endpoint = <&mdss_dsi1_in>;
-+						};
-+					};
-+				};
-+
-+				mdp_opp_table: opp-table {
-+					compatible = "operating-points-v2";
-+
-+					opp-19200000 {
-+						opp-hz = /bits/ 64 <19200000>;
-+						required-opps = <&rpmhpd_opp_min_svs>;
-+					};
-+
-+					opp-171428571 {
-+						opp-hz = /bits/ 64 <171428571>;
-+						required-opps = <&rpmhpd_opp_low_svs>;
-+					};
-+
-+					opp-358000000 {
-+						opp-hz = /bits/ 64 <358000000>;
-+						required-opps = <&rpmhpd_opp_svs_l1>;
-+					};
-+
-+					opp-430000000 {
-+						opp-hz = /bits/ 64 <430000000>;
-+						required-opps = <&rpmhpd_opp_nom>;
-+					};
-+				};
-+			};
-+
-+			mdss_dsi0: dsi@ae94000 {
-+				compatible = "qcom,sdm670-dsi-ctrl",
-+					     "qcom,mdss-dsi-ctrl";
-+				reg = <0 0x0ae94000 0 0x400>;
-+				reg-names = "dsi_ctrl";
-+
-+				interrupt-parent = <&mdss>;
-+				interrupts = <4>;
-+
-+				clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK>,
-+					 <&dispcc DISP_CC_MDSS_BYTE0_INTF_CLK>,
-+					 <&dispcc DISP_CC_MDSS_PCLK0_CLK>,
-+					 <&dispcc DISP_CC_MDSS_ESC0_CLK>,
-+					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&dispcc DISP_CC_MDSS_AXI_CLK>;
-+				clock-names = "byte",
-+					      "byte_intf",
-+					      "pixel",
-+					      "core",
-+					      "iface",
-+					      "bus";
-+				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK_SRC>,
-+						  <&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>;
-+				assigned-clock-parents = <&mdss_dsi0_phy 0>,
-+							 <&mdss_dsi0_phy 1>;
-+
-+				operating-points-v2 = <&dsi_opp_table>;
-+				power-domains = <&rpmhpd SDM670_CX>;
-+
-+				phys = <&mdss_dsi0_phy>;
-+				phy-names = "dsi";
-+
-+				status = "disabled";
-+
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+						mdss_dsi0_in: endpoint {
-+							remote-endpoint = <&dpu_intf0_out>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+						mdss_dsi0_out: endpoint {
-+						};
-+					};
-+				};
-+			};
-+
-+			mdss_dsi0_phy: phy@ae94400 {
-+				compatible = "qcom,dsi-phy-10nm";
-+				reg = <0 0x0ae94400 0 0x200>,
-+				      <0 0x0ae94600 0 0x280>,
-+				      <0 0x0ae94a00 0 0x1e0>;
-+				reg-names = "dsi_phy",
-+					    "dsi_phy_lane",
-+					    "dsi_pll";
-+
-+				#clock-cells = <1>;
-+				#phy-cells = <0>;
-+
-+				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&rpmhcc RPMH_CXO_CLK>;
-+				clock-names = "iface", "ref";
-+
-+				status = "disabled";
-+			};
-+
-+			mdss_dsi1: dsi@ae96000 {
-+				compatible = "qcom,sdm670-dsi-ctrl",
-+					     "qcom,mdss-dsi-ctrl";
-+				reg = <0 0x0ae96000 0 0x400>;
-+				reg-names = "dsi_ctrl";
-+
-+				interrupt-parent = <&mdss>;
-+				interrupts = <5>;
-+
-+				clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK>,
-+					 <&dispcc DISP_CC_MDSS_BYTE1_INTF_CLK>,
-+					 <&dispcc DISP_CC_MDSS_PCLK1_CLK>,
-+					 <&dispcc DISP_CC_MDSS_ESC1_CLK>,
-+					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&dispcc DISP_CC_MDSS_AXI_CLK>;
-+				clock-names = "byte",
-+					      "byte_intf",
-+					      "pixel",
-+					      "core",
-+					      "iface",
-+					      "bus";
-+				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK_SRC>,
-+						  <&dispcc DISP_CC_MDSS_PCLK1_CLK_SRC>;
-+				assigned-clock-parents = <&mdss_dsi1_phy 0>, <&mdss_dsi1_phy 1>;
-+
-+				operating-points-v2 = <&dsi_opp_table>;
-+				power-domains = <&rpmhpd SDM670_CX>;
-+
-+				phys = <&mdss_dsi1_phy>;
-+				phy-names = "dsi";
-+
-+				status = "disabled";
-+
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+						mdss_dsi1_in: endpoint {
-+							remote-endpoint = <&dpu_intf1_out>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+						mdss_dsi1_out: endpoint {
-+						};
-+					};
-+				};
-+			};
-+
-+			mdss_dsi1_phy: phy@ae96400 {
-+				compatible = "qcom,dsi-phy-10nm";
-+				reg = <0 0x0ae96400 0 0x200>,
-+				      <0 0x0ae96600 0 0x280>,
-+				      <0 0x0ae96a00 0 0x10e>;
-+				reg-names = "dsi_phy",
-+					    "dsi_phy_lane",
-+					    "dsi_pll";
-+
-+				#clock-cells = <1>;
-+				#phy-cells = <0>;
-+
-+				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&rpmhcc RPMH_CXO_CLK>;
-+				clock-names = "iface", "ref";
-+
-+				status = "disabled";
-+			};
-+		};
-+
-+		dispcc: clock-controller@af00000 {
-+			compatible = "qcom,sdm845-dispcc";
-+			reg = <0 0x0af00000 0 0x10000>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <&gcc GCC_DISP_GPLL0_CLK_SRC>,
-+				 <&gcc GCC_DISP_GPLL0_DIV_CLK_SRC>,
-+				 <&mdss_dsi0_phy 0>,
-+				 <&mdss_dsi0_phy 1>,
-+				 <&mdss_dsi1_phy 0>,
-+				 <&mdss_dsi1_phy 1>,
-+				 <0>,
-+				 <0>;
-+			clock-names = "bi_tcxo",
-+				      "gcc_disp_gpll0_clk_src",
-+				      "gcc_disp_gpll0_div_clk_src",
-+				      "dsi0_phy_pll_out_byteclk",
-+				      "dsi0_phy_pll_out_dsiclk",
-+				      "dsi1_phy_pll_out_byteclk",
-+				      "dsi1_phy_pll_out_dsiclk",
-+				      "dp_link_clk_divsel_ten",
-+				      "dp_vco_divided_clk_src_mux";
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		apps_smmu: iommu@15000000 {
- 			compatible = "qcom,sdm670-smmu-500", "qcom,smmu-500", "arm,mmu-500";
- 			reg = <0 0x15000000 0 0x80000>;
+The device driver depends on two other drivers under development;
+clock framework driver and IOMMU driver.
+Corresponding features will be added later.
+
+Best regards,
+Yuji
+
+Changelog v2:
+- Resend v1 because a patch exceeds size limit.
+
+Changelog v3:
+- Add documentation to describe SW and HW
+- Adapted to media control framework
+- Introduced ISP subdevice, capture device
+- Remove private IOCTLs and add vendor specific V4L2 controls
+- Change function name avoiding camelcase and uppercase letters
+
+Changelog v4:
+- Split patches because a patch exceeds size limit
+- fix dt-bindings document
+- stop specifying ID numbers for driver instance explicitly at device tree
+- use pm_runtime to trigger initialization of HW
+  along with open/close of device files.
+- add a entry for a header file at MAINTAINERS file
+
+Changelog v5:
+- Fix coding style problem in viif.c (patch 2/6)
+
+Changelog v6:
+- add register definition of BUS-IF and MPU in dt-bindings
+- add CSI2RX subdevice (separeted from ISP subdevice)
+- change directory layout (moved to media/platform/toshiba/visconti)
+- change source file layout (removed hwd_xxxx.c)
+- pointer to userland memory is removed from uAPI parameters
+- change register access (from struct style to macro style)
+- remove unused macros
+
+Changelog v7:
+- remove redundant "bindings" from header and description text
+- fix multiline text of "description"
+- change "compatible" to "visconti5-viif"
+- explicitly define allowed properties for port::endpoint
+- remove unused variables
+- update kerneldoc comments
+- update references to headers
+
+Changelog v8:
+- rename bindings description file
+- remove/simplify items in bindings
+- update operations around v4l2_async_notifier
+- use v4l2_async_connection instead of v4l2_async_subdev
+- use dev_err_probe()
+- better error handling at probe
+- remove redundant mutex
+- add V4L2_CTRL_TYPE_VISCONTI_ISP constant
+
+Yuji Ishikawa (5):
+  dt-bindings: media: platform: visconti: Add Toshiba Visconti Video
+    Input Interface
+  media: platform: visconti: Add Toshiba Visconti Video Input Interface
+    driver
+  media: add V4L2 vendor specific control handlers
+  documentation: media: add documentation for Toshiba Visconti Video
+    Input Interface driver
+  MAINTAINERS: Add entries for Toshiba Visconti Video Input Interface
+
+ .../media/toshiba,visconti5-viif.yaml         |  105 +
+ .../driver-api/media/drivers/index.rst        |    1 +
+ .../media/drivers/visconti-viif.rst           |  462 +++
+ .../media/v4l/vidioc-g-ext-ctrls.rst          |    4 +
+ .../media/v4l/vidioc-queryctrl.rst            |    5 +
+ MAINTAINERS                                   |    4 +
+ drivers/media/platform/Kconfig                |    1 +
+ drivers/media/platform/Makefile               |    1 +
+ drivers/media/platform/toshiba/Kconfig        |    6 +
+ drivers/media/platform/toshiba/Makefile       |    2 +
+ .../media/platform/toshiba/visconti/Kconfig   |   18 +
+ .../media/platform/toshiba/visconti/Makefile  |    8 +
+ .../media/platform/toshiba/visconti/viif.c    |  650 ++++
+ .../media/platform/toshiba/visconti/viif.h    |  374 ++
+ .../platform/toshiba/visconti/viif_capture.c  | 1489 ++++++++
+ .../platform/toshiba/visconti/viif_capture.h  |   22 +
+ .../platform/toshiba/visconti/viif_common.c   |  199 +
+ .../platform/toshiba/visconti/viif_common.h   |   38 +
+ .../platform/toshiba/visconti/viif_controls.c | 3394 +++++++++++++++++
+ .../platform/toshiba/visconti/viif_controls.h |   18 +
+ .../platform/toshiba/visconti/viif_csi2rx.c   |  691 ++++
+ .../platform/toshiba/visconti/viif_csi2rx.h   |   24 +
+ .../toshiba/visconti/viif_csi2rx_regs.h       |  102 +
+ .../platform/toshiba/visconti/viif_isp.c      | 1259 ++++++
+ .../platform/toshiba/visconti/viif_isp.h      |   24 +
+ .../platform/toshiba/visconti/viif_regs.h     |  716 ++++
+ drivers/media/v4l2-core/v4l2-ctrls-core.c     |    7 +-
+ include/uapi/linux/v4l2-controls.h            |    6 +
+ include/uapi/linux/videodev2.h                |    2 +
+ include/uapi/linux/visconti_viif.h            | 1800 +++++++++
+ 30 files changed, 11431 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/media/toshiba,visconti5-viif.yaml
+ create mode 100644 Documentation/driver-api/media/drivers/visconti-viif.rst
+ create mode 100644 drivers/media/platform/toshiba/Kconfig
+ create mode 100644 drivers/media/platform/toshiba/Makefile
+ create mode 100644 drivers/media/platform/toshiba/visconti/Kconfig
+ create mode 100644 drivers/media/platform/toshiba/visconti/Makefile
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif.c
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_capture.c
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_capture.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_common.c
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_common.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_controls.c
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_controls.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_csi2rx.c
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_csi2rx.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_csi2rx_regs.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_isp.c
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_isp.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_regs.h
+ create mode 100644 include/uapi/linux/visconti_viif.h
+
 -- 
-2.42.0
+2.34.1
+
 
 
