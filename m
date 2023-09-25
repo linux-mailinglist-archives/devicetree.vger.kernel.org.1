@@ -1,277 +1,112 @@
-Return-Path: <devicetree+bounces-3245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6924C7ADDCA
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 19:23:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52E857ADDE7
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 19:39:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id D333C1F24779
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 17:23:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id E92562815CA
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 17:39:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D23A420B05;
-	Mon, 25 Sep 2023 17:23:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBD15210ED;
+	Mon, 25 Sep 2023 17:39:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42EAF208D2
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 17:23:51 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89E97101;
-	Mon, 25 Sep 2023 10:23:49 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38PFHX9d024729;
-	Mon, 25 Sep 2023 17:23:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=qcppdkim1;
- bh=T3OwJhM/JeYff7ROz0beeSE0n+kPH8oKWpl5fSpxi08=;
- b=fPlX3INTdzefshW29dvh5eKmq3ojDVVVAwcsW/k98AvzVjciaPc/npfsr/BgwOSnFTJA
- tna4BjI1+ZrhN4bfMEtWIsnUeYumKTrf/MHYQ9FVlq5eBDnlX6wQeSaF5TQypeJsW0jv
- 7QQn34uU7DAY7vyPwVEDUZWWT7XJD9YXK3fE67fN3ItSTtYq61j7yuCZqNmOUGDfei8e
- BMmC0TmcvxRMMF7tCYl6CDCLfKunY512n306FbxEHdUCrWRzCh7a0ektR+/ncqD0/lk/
- UrNzLVaIW3Qn4o6XdsBndDUwQDVja0nxUgbHR3eiydwGlYNBR/sZIQxBTr167SHNyNtq NQ== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tb6tt181x-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 25 Sep 2023 17:23:35 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38PHNY0k024258
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 25 Sep 2023 17:23:34 GMT
-Received: from hu-omprsing-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Mon, 25 Sep 2023 10:23:29 -0700
-From: Om Prakash Singh <quic_omprsing@quicinc.com>
-To: <quic_omprsing@quicinc.com>
-CC: <neil.armstrong@linaro.org>, <konrad.dybcio@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>, <conor+dt@kernel.org>,
-        <davem@davemloft.net>, <devicetree@vger.kernel.org>,
-        <herbert@gondor.apana.org.au>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <marijn.suijten@somainline.org>,
-        <robh+dt@kernel.org>, <vkoul@kernel.org>
-Subject: [PATCH V3] crypto: qcom-rng - Add hw_random interface support
-Date: Mon, 25 Sep 2023 22:53:12 +0530
-Message-ID: <20230925172312.2843262-1-quic_omprsing@quicinc.com>
-X-Mailer: git-send-email 2.25.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B11E9D297
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 17:39:03 +0000 (UTC)
+Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5C2810E
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 10:39:01 -0700 (PDT)
+Received: by mail-qv1-xf34.google.com with SMTP id 6a1803df08f44-65b0557ec77so18902366d6.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 10:39:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1695663541; x=1696268341; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hTbKVRUtifK600GcTuB6H5T7Hq7nQwjgpsYUbwhLkRs=;
+        b=I4Y8z1B8TwdY5poWjHnCoXf7zaKCfgKCV4w5ZoUi6fs1t2eZjaEwX+sqQN1ez1XWWo
+         elUuSLZmz7EcOoFe6CAMbmoaSw/KNIqghLTrqfyNqCfpJQJengNgb7F4vMubg3McHb7G
+         rKtsoA9c38K6V2iAXWm6yfRX/fQTqkDD+V8OGwQbpUexI+nGVzTlV6xXZjiFKbB5Vvgk
+         UNzTC6+VrPJo0/jCAslOrcEPpeOA+SfRU6U9Ty97HcghVEjLMTWooqFdXnjstRNgywrl
+         L7IKYmgmQs55sIXMbYDc2XdC2Nc+Yf+JU4PoSzPcj3oiGJv9OzMYlASYBYamNoEjVCn3
+         hsCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695663541; x=1696268341;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hTbKVRUtifK600GcTuB6H5T7Hq7nQwjgpsYUbwhLkRs=;
+        b=pNygXWE0Aty9RA+ExpA/iJsU/UC5J5GKShpBX17g7vtiAZ6rdEJQOK3hC4etX/MNIb
+         c4Qzsj3fX3CNiUyhceKDLpzViGMCW+Hgl+UiSv/jsa9ehvHeL4eSbaQ2oK0GzxDdcQjW
+         Eh+uiaj8b0epj8rwPCxeN467wsoJQTPVs0v/0V4a/qjDpU10Z+VRg6HKvEY44B3goD20
+         3bLgsX7aG8A87n19AqA0Xal1+yOEjp8REZUCDsKFhmt4D2BrqXEdS9A3YYAyZaKoa1GK
+         Mbv4AooLe7Da7OEX0HoAlvmcIpYJF9wFQBRplVwQq1YB07okjuez8QZYAl9dDONhdkHJ
+         oHSg==
+X-Gm-Message-State: AOJu0YxwkAGAzRHhfd+BTYzuYc/NKjEvDjnMe6YDb5UL5xNj8vptbaZq
+	Z2w40jTbiT+oRFbJfS7nEfQguw==
+X-Google-Smtp-Source: AGHT+IG+tSQcs5F1udgePekSyNFg4nS/3ON6TuwwuW4o4BqlQE4HXLo3X3tpbTYJLPBv/LJ1Cwr8Wg==
+X-Received: by 2002:a05:6214:4307:b0:647:22cc:1784 with SMTP id oe7-20020a056214430700b0064722cc1784mr8149193qvb.15.1695663540981;
+        Mon, 25 Sep 2023 10:39:00 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2000:b002:75e1:d26a:c179:14a3? ([2600:1700:2000:b002:75e1:d26a:c179:14a3])
+        by smtp.gmail.com with ESMTPSA id ph7-20020a0562144a4700b00655ebd053dcsm3167034qvb.82.2023.09.25.10.38.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Sep 2023 10:39:00 -0700 (PDT)
+Message-ID: <a43ef21e-ce26-45ee-be28-526238e3e88f@sifive.com>
+Date: Mon, 25 Sep 2023 12:38:58 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: XHIHu42yXeYgLyf3DQvJZGrf8le_2F77
-X-Proofpoint-ORIG-GUID: XHIHu42yXeYgLyf3DQvJZGrf8le_2F77
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-25_15,2023-09-25_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- malwarescore=0 mlxlogscore=999 priorityscore=1501 adultscore=0
- lowpriorityscore=0 spamscore=0 mlxscore=0 phishscore=0 bulkscore=0
- suspectscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2309180000 definitions=main-2309250135
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC v2 2/6] riscv: dts: sifive: convert isa detection to new
+ properties
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Daire McNamara <daire.mcnamara@microchip.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Emil Renner Berthing <kernel@esmil.dk>,
+ Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
+ Fu Wei <wefu@redhat.com>, Chen Wang <unicorn_wang@outlook.com>,
+ devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
+ linux-renesas-soc@vger.kernel.org
+References: <20230922081351.30239-2-conor@kernel.org>
+ <20230922081351.30239-4-conor@kernel.org>
+From: Samuel Holland <samuel.holland@sifive.com>
+In-Reply-To: <20230922081351.30239-4-conor@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Om Prakash Singh <omprsing@qti.qualcomm.com>
+On 2023-09-22 3:13 AM, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> Convert the fu540 and fu740 devicetrees to use the new properties
+> "riscv,isa-base" & "riscv,isa-extensions".
+> For compatibility with other projects, "riscv,isa" remains.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  arch/riscv/boot/dts/sifive/fu540-c000.dtsi | 15 +++++++++++++++
+>  arch/riscv/boot/dts/sifive/fu740-c000.dtsi | 15 +++++++++++++++
+>  2 files changed, 30 insertions(+)
 
-Add hw_random interface support in qcom-rng driver as new IP block
-in Qualcomm SoC has inbuilt NIST SP800 90B compliant entropic source
-to generate true random number.
-
-Keeping current rng_alg interface as well for random number generation
-using Kernel Crypto API.
-
-Signed-off-by: Om Prakash Singh <quic_omprsing@quicinc.com>
----
-
-Changes in V3:
-- Fix qcom_rng_read() implementation to account for remaining bytes read
-- Update qcom_rng_generate() return condition for success case
-- Added hwrng structure as part of qcom_rng structure
-
-Changes in V2:
-- Updated patch to fix the return value from qcom_rng_generate() to be
-  consistent with current implementation
-- Updated patch to make it more concise
-- Removed unnecessary use local variable and it's initialization
-- Updated patch to use devm_hwrng_register() instead of hwrng_register()
-- Updated subject line of the patch
-
-This patch is depends on [1]
-[1] https://lore.kernel.org/lkml/20230824-topic-sm8550-rng-v2-4-dfcafbb16a3e@linaro.org/
-
-
- drivers/crypto/qcom-rng.c | 66 ++++++++++++++++++++++++++++++++++-----
- 1 file changed, 58 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/crypto/qcom-rng.c b/drivers/crypto/qcom-rng.c
-index fb54b8cfc35f..94cc9b539491 100644
---- a/drivers/crypto/qcom-rng.c
-+++ b/drivers/crypto/qcom-rng.c
-@@ -7,6 +7,7 @@
- #include <linux/acpi.h>
- #include <linux/clk.h>
- #include <linux/crypto.h>
-+#include <linux/hw_random.h>
- #include <linux/io.h>
- #include <linux/iopoll.h>
- #include <linux/kernel.h>
-@@ -28,17 +29,25 @@
- 
- #define WORD_SZ			4
- 
-+#define QCOM_TRNG_QUALITY	1024
-+
- struct qcom_rng {
- 	struct mutex lock;
- 	void __iomem *base;
- 	struct clk *clk;
--	unsigned int skip_init;
-+	struct hwrng hwrng;
-+	struct qcom_rng_of_data *of_data;
- };
- 
- struct qcom_rng_ctx {
- 	struct qcom_rng *rng;
- };
- 
-+struct qcom_rng_of_data {
-+	bool skip_init;
-+	bool hwrng_support;
-+};
-+
- static struct qcom_rng *qcom_rng_dev;
- 
- static int qcom_rng_read(struct qcom_rng *rng, u8 *data, unsigned int max)
-@@ -66,11 +75,11 @@ static int qcom_rng_read(struct qcom_rng *rng, u8 *data, unsigned int max)
- 		} else {
- 			/* copy only remaining bytes */
- 			memcpy(data, &val, max - currsize);
--			break;
-+			currsize = max;
- 		}
- 	} while (currsize < max);
- 
--	return 0;
-+	return currsize;
- }
- 
- static int qcom_rng_generate(struct crypto_rng *tfm,
-@@ -92,6 +101,9 @@ static int qcom_rng_generate(struct crypto_rng *tfm,
- 	mutex_unlock(&rng->lock);
- 	clk_disable_unprepare(rng->clk);
- 
-+	if (ret >= 0)
-+		ret = 0;
-+
- 	return ret;
- }
- 
-@@ -101,6 +113,13 @@ static int qcom_rng_seed(struct crypto_rng *tfm, const u8 *seed,
- 	return 0;
- }
- 
-+static int qcom_hwrng_read(struct hwrng *hwrng, void *data, size_t max, bool wait)
-+{
-+	struct qcom_rng *qrng =  container_of(hwrng, struct qcom_rng, hwrng);
-+
-+	return qcom_rng_read(qrng, data, max);
-+}
-+
- static int qcom_rng_enable(struct qcom_rng *rng)
- {
- 	u32 val;
-@@ -136,7 +155,7 @@ static int qcom_rng_init(struct crypto_tfm *tfm)
- 
- 	ctx->rng = qcom_rng_dev;
- 
--	if (!ctx->rng->skip_init)
-+	if (!ctx->rng->of_data->skip_init)
- 		return qcom_rng_enable(ctx->rng);
- 
- 	return 0;
-@@ -177,15 +196,31 @@ static int qcom_rng_probe(struct platform_device *pdev)
- 	if (IS_ERR(rng->clk))
- 		return PTR_ERR(rng->clk);
- 
--	rng->skip_init = (unsigned long)device_get_match_data(&pdev->dev);
-+	rng->of_data = (struct qcom_rng_of_data *)of_device_get_match_data(&pdev->dev);
- 
- 	qcom_rng_dev = rng;
- 	ret = crypto_register_rng(&qcom_rng_alg);
- 	if (ret) {
- 		dev_err(&pdev->dev, "Register crypto rng failed: %d\n", ret);
- 		qcom_rng_dev = NULL;
-+		return ret;
-+	}
-+
-+	if (rng->of_data->hwrng_support) {
-+		rng->hwrng.name = "qcom_hwrng";
-+		rng->hwrng.read = qcom_hwrng_read;
-+		rng->hwrng.quality = QCOM_TRNG_QUALITY;
-+		ret = devm_hwrng_register(&pdev->dev, &rng->hwrng);
-+		if (ret) {
-+			dev_err(&pdev->dev, "Register hwrng failed: %d\n", ret);
-+			qcom_rng_dev = NULL;
-+			goto fail;
-+		}
- 	}
- 
-+	return ret;
-+fail:
-+	crypto_unregister_rng(&qcom_rng_alg);
- 	return ret;
- }
- 
-@@ -198,6 +233,21 @@ static int qcom_rng_remove(struct platform_device *pdev)
- 	return 0;
- }
- 
-+struct qcom_rng_of_data qcom_prng_of_data = {
-+	.skip_init = false,
-+	.hwrng_support = false,
-+};
-+
-+struct qcom_rng_of_data qcom_prng_ee_of_data = {
-+	.skip_init = true,
-+	.hwrng_support = false,
-+};
-+
-+struct qcom_rng_of_data qcom_trng_of_data = {
-+	.skip_init = true,
-+	.hwrng_support = true,
-+};
-+
- static const struct acpi_device_id __maybe_unused qcom_rng_acpi_match[] = {
- 	{ .id = "QCOM8160", .driver_data = 1 },
- 	{}
-@@ -205,9 +255,9 @@ static const struct acpi_device_id __maybe_unused qcom_rng_acpi_match[] = {
- MODULE_DEVICE_TABLE(acpi, qcom_rng_acpi_match);
- 
- static const struct of_device_id __maybe_unused qcom_rng_of_match[] = {
--	{ .compatible = "qcom,prng", .data = (void *)0},
--	{ .compatible = "qcom,prng-ee", .data = (void *)1},
--	{ .compatible = "qcom,trng", .data = (void *)1},
-+	{ .compatible = "qcom,prng", .data = &qcom_prng_of_data },
-+	{ .compatible = "qcom,prng-ee", .data = &qcom_prng_ee_of_data },
-+	{ .compatible = "qcom,trng", .data = &qcom_trng_of_data },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, qcom_rng_of_match);
--- 
-2.25.1
+Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
 
 
