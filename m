@@ -1,93 +1,91 @@
-Return-Path: <devicetree+bounces-3149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04F367AD780
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 14:04:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF0B07AD7D6
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 14:18:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id B9EF6281D2C
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:04:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id D26CE1C20380
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:18:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 158BB1B26C;
-	Mon, 25 Sep 2023 12:04:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E942D1B278;
+	Mon, 25 Sep 2023 12:18:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2600A1B265
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 12:04:31 +0000 (UTC)
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9298E76;
-	Mon, 25 Sep 2023 05:04:29 -0700 (PDT)
-Received: from pd9e2f713.dip0.t-ipconnect.de ([217.226.247.19] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <andreas@kemnade.info>)
-	id 1qkkK2-004AN8-EF; Mon, 25 Sep 2023 14:04:18 +0200
-Date: Mon, 25 Sep 2023 14:04:15 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- bcousson@baylibre.com, tony@atomide.com, jean-baptiste.maneyrol@tdk.com,
- chenhuiz@axis.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-Subject: Re: [PATCH 2/3] iio: imu: mpu6050: add level shifter flag
-Message-ID: <20230925140415.00130082@aktux>
-In-Reply-To: <CAHp75VfvmED4ZsmrH4B6m9kGsH=68-zjQd5JMszb6UBTtbF0bw@mail.gmail.com>
-References: <20230924222559.2038721-1-andreas@kemnade.info>
-	<20230924222559.2038721-3-andreas@kemnade.info>
-	<CAHp75VfvmED4ZsmrH4B6m9kGsH=68-zjQd5JMszb6UBTtbF0bw@mail.gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D74B2134DF
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 12:18:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF963C433C8;
+	Mon, 25 Sep 2023 12:18:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695644319;
+	bh=+JXbgHqUQ0aKUPdu2YpA/gNhZEobY1Ib1Js2eZ6C4y4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VSFJXhqMU2CPq714eb0uq2pEc9nv8j/cwX+sX0cQkJMfFGxsIUDvhY5cV5xmCjd/M
+	 E1Hxf1DTQu5ojdO+6Wag6OTSsxYBgjPYjej15Hg5GhS4f+28eePgmg59pIKGs/1DHj
+	 upDFAiWEv+IkeCUZczfxORA8SP1okbOUkEs63qVemIMTACFYGMrdRuFSM4CX5eBNG6
+	 IuG3MXPG31SSkyJi6STlJMcc3lZZo/h6r1SmCr4xHEHAY51n6ljSYHevI4vqxMVU4m
+	 EgebJXe+2nOqKz+eHk1JiT/RppNwmHnbVrMUVsStzmkQi4tFfD/2Mpoo5cUc8mYHXF
+	 xZRyr7aR78lwA==
+Date: Mon, 25 Sep 2023 14:18:33 +0200
+From: Mark Brown <broonie@kernel.org>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Zhiyong Tao <zhiyong.tao@mediatek.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v3 07/12] regulator: mt6358: Add supply names for MT6358
+ regulators
+Message-ID: <ZRF6mbpswWoxdJsl@finisterre.sirena.org.uk>
+References: <20230919104357.3971512-1-wenst@chromium.org>
+ <20230919104357.3971512-8-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="C03nZbIMQ4GsEMUt"
+Content-Disposition: inline
+In-Reply-To: <20230919104357.3971512-8-wenst@chromium.org>
+X-Cookie: I had pancake makeup for brunch!
+
+
+--C03nZbIMQ4GsEMUt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
-On Mon, 25 Sep 2023 14:07:58 +0300
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+On Tue, Sep 19, 2023 at 06:43:50PM +0800, Chen-Yu Tsai wrote:
+> The DT bindings for MT6358 regulator now defines the supply names for the
+> PMIC.
+>=20
+> Add support for them by adding .supply_name field settings for each
+> regulator.
 
-> On Mon, Sep 25, 2023 at 1:26=E2=80=AFAM Andreas Kemnade <andreas@kemnade.=
-info> wrote:
-> >
-> > Some boards fail in magnetometer probe if flag is not set. =20
->=20
-> Which flag? Can you elaborate a bit more?
->=20
-well see $subj. The level shifter flag.
+This doesn't apply against current code, please check and resend (I was
+using -rc3).
 
-> Does it deserve the Fixes tag?
->=20
-As there are only certain boards affected, they would also have
-to add the flag in dtb, I do not think it deservers a Fixes tag.
-Even in the board I have here, there are basically two
-mpu9150 connected per cable, only one of them needs the flag.
+--C03nZbIMQ4GsEMUt
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> ...
->=20
-> >         unsigned int val;
-> >         int ret; =20
->=20
-> > +       ret =3D regmap_update_bits(st->map, 0x1, 0x80,
-> > +                                st->level_shifter ? 0x80 : 0); =20
->=20
-> This is a bit cryptic, what does 1 stand for?
->=20
-Well, I do not find anything in
-https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-9150-Register-Map=
-.pdf
-I have just found a similar line in the ancient 3.0 vendor kernel. No symbo=
-lic
-names there.
+-----BEGIN PGP SIGNATURE-----
 
-Regards,
-Andreas
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmURepIACgkQJNaLcl1U
+h9CZBgf7BZ9QaFpLALkLChBSjjaoNvvXZz88PigXkOGFHH1EzKUeQg2iA35QMiZU
+5+HHyO01EtSiVuAAB7Ih/f1QjLgnaRc5rooaBYYgO2oy8TO7CDIs+zi58f5Rj3gq
+ifKFsw/u3yfhd28Cg55RLbKugC/VmCjRD8fPthvhpSH9d4uKCwSwca4m5k48dUQ6
+RuHHUSIr1lEbrL3cpsPUg65EYV2TQYFDPSZjLnqfpXvfna+a+JOnmYzT4WNBvwzy
+wx0pVsbA5L+9FFuTPWWZlAbPL1gqnxaCVx4jnfaraolAciq53by4g59tbg4mkNoH
+MFOeJQpe9yDMJaFeC1cWs0L6IZU4IQ==
+=q4Ky
+-----END PGP SIGNATURE-----
+
+--C03nZbIMQ4GsEMUt--
 
