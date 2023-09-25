@@ -1,245 +1,238 @@
-Return-Path: <devicetree+bounces-3137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 851D37AD6B7
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 13:10:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E34527AD6C1
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 13:11:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id E942D2822CA
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 11:10:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 2F070B209B4
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 11:11:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D82C418E09;
-	Mon, 25 Sep 2023 11:10:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0075918E06;
+	Mon, 25 Sep 2023 11:11:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E48E18AE7
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 11:10:26 +0000 (UTC)
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2055.outbound.protection.outlook.com [40.107.249.55])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EB23C6;
-	Mon, 25 Sep 2023 04:10:24 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CXRGMfvCmoOPbtQ2Vj3fnKFyEON+jqNmhZJ3yZkaVVKtQY0ZVvHKcdfM+15IZb9wTtyKa8Ce3QpeEO6y5i2zf2ejRjastdX7WP+HK/M4ZATeOwGywVURn/H6TpgpmwZx4S0KDrbMFYFxPhVtPUEVMZ5YDZ/g0xR+X2cVK6RsbZyVYhcskAZIr6GHhs/tVSfbZLWI63uZRDQBKbGB/G/gnLCs9olAPRSNJNDob3k8eXxGOXW8DTLs1jAZDZokwhpFBAWunMIJ/2xPE4EduCGmuI/yZuzAkSQ9Ec3EujqqrPVB1XBNaXdgHirFBznu1Rl9UOWgoDRxRhccYGz0sGfIyQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=L815y72ZKLd8Q6n13OC96EtIhZ75mN/FqznbXbkA6rg=;
- b=oNaJSbE0q5ybNxlPxQiVF/iXv81DulYGLdgLS5Zhq8oZG0Ya7gjx7ZtZfsC0pGxl/g+ZHlAz/awLBTx1NFik+JqwNshKorkiXdNPJXkEijnm4W2qunUd0v+gCmwzYJm7bBx5ngWolx1oNhRzNG5Ppwcl2jeWYZhzxlQ1GuD4GkDLJrA9KElF4xaCY3PcMGLA0Qc04x0Xnmi/Dic3JT0lUS01cpP/KlpwhqvALOm4al0K2jR2JbuzXvAEnuWVYW6IPgT9HbE+Gl4KBeaAwg48aMtpW8VO+D2t3zgGL2bObnzhrrZUDFjkusEbrZaWOKXAQxFu4x/67oabhey7EKIYjw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=L815y72ZKLd8Q6n13OC96EtIhZ75mN/FqznbXbkA6rg=;
- b=jZV0UlnSCrBs+12lQi+6ixtLNPrVELeKIEwXYNE5/U0Yss6BGDpCk/wEl74rNsesq1btudEA6JN1ic2BjsM1zvXHJ6K20SazvxnziB9hCDSdJhXiket+Df+fxtZ1XmUr4sHSOGNPA2qwAZEv8Yicu5zv4ykexG94s3a6w4A2Mr8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB9PR04MB9498.eurprd04.prod.outlook.com (2603:10a6:10:360::21)
- by DB9PR04MB9283.eurprd04.prod.outlook.com (2603:10a6:10:36d::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.27; Mon, 25 Sep
- 2023 11:10:22 +0000
-Received: from DB9PR04MB9498.eurprd04.prod.outlook.com
- ([fe80::51f9:b8d2:7ddd:c74f]) by DB9PR04MB9498.eurprd04.prod.outlook.com
- ([fe80::51f9:b8d2:7ddd:c74f%6]) with mapi id 15.20.6813.027; Mon, 25 Sep 2023
- 11:10:22 +0000
-From: Chancel Liu <chancel.liu@nxp.com>
-To: lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	shengjiu.wang@gmail.com,
-	Xiubo.Lee@gmail.com,
-	festevam@gmail.com,
-	nicoleotsuka@gmail.com,
-	perex@perex.cz,
-	tiwai@suse.com,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	alsa-devel@alsa-project.org,
-	linux-kernel@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Cc: Chancel Liu <chancel.liu@nxp.com>
-Subject: [PATCH v2 2/2] ASoC: imx-rpmsg: Force codec power on in low power audio mode
-Date: Mon, 25 Sep 2023 19:09:46 +0800
-Message-Id: <20230925110946.3156100-2-chancel.liu@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230925110946.3156100-1-chancel.liu@nxp.com>
-References: <20230925110946.3156100-1-chancel.liu@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI1PR02CA0023.apcprd02.prod.outlook.com
- (2603:1096:4:1f4::19) To DB9PR04MB9498.eurprd04.prod.outlook.com
- (2603:10a6:10:360::21)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1696718AE7
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 11:11:05 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F048DC0;
+	Mon, 25 Sep 2023 04:11:03 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38PAKPEo022153;
+	Mon, 25 Sep 2023 11:10:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=06zw0yftt1QZ42hSHAqdLVM1z5Q8BG0w8ufCiqKGdcM=;
+ b=QtIoFWY8bljQFpkLh18jJUcUWITU1jb1T3krDgtLpugOk56JLO/S8B0qpeW3Xbe9pneR
+ UpVKtwnif5sEsxmoB98Ymi/gjgvFEtA73bhTsxN7wS1swrQ4k77imKDGHamgBw3FdqIS
+ gbOb/LpmziCx2FJLWlhACPcLY8sXd/2KbwuumUtfL9iz3ChN4r20h18+vp/H4Vs+OvdN
+ HwtmVq0ObyPWPRntbWDH4UlBmrvnviX27czEeXyeitnL+OcN0nHLKx3o8tYIW6HB216u
+ 6fNETDWB29PikQOmrifDtb0vvO70IiFdEImgAdHo/A1RYVSkyr9nL+74AjDgWgRRQPQ0 hQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t9safbvfb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Sep 2023 11:10:50 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38PBAoU2023655
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Sep 2023 11:10:50 GMT
+Received: from [10.218.47.181] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Mon, 25 Sep
+ 2023 04:10:44 -0700
+Message-ID: <f6a1d8f0-6af3-4e58-8c1b-7d41d46b7ce0@quicinc.com>
+Date: Mon, 25 Sep 2023 16:40:41 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB9498:EE_|DB9PR04MB9283:EE_
-X-MS-Office365-Filtering-Correlation-Id: d1c4c6e5-a02f-40dd-59c3-08dbbdb802bc
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	v5avw5OyV9OlaVblBXbqOhaRNQ4diBn5eOlnJd12M4cnXftdzswoos9DMoK2X2Oce8YW1rz7LQrs59of+JKN1xhVO0yCRl4oGqqeLDOVn8K4isqLWZcwZn0wNovRIw6cg9yoGxXsep+qAP35vwxg0XElNTxDijSxzFhl/XjeZhVAF81yim3T87PfFyP9rvPR95myBUyiRNBOV3z9+jtL7JUFeO+sQqCDQoDXsh8dVtlNXax58xLStg+c3B0BrLD1exlYhPD6tuMTPCZOVWe+hf3icVoT5OCRjC/xIyCRBQB/0+dck+5TwQjzvdq+lwCiB3Aa7siyxJDYoobSOzSOujDpkh3P0gqScgrqD2fhOZ5kE4EHMTM7UN5NiDB5e11nCNOcXdICRVnvB8kFOng3sF2gIhqH0sJE4EXs7eP0l9mNyUmeswKFi6bgtkcOLgADyTLniTaZDp3PN7lG5lcIGqPZ5Nx8g/kg790uDv/mdMANMY67Frk8IvDSsrpSrmntVzEiDbjVTTmJng5LIXKBid/lMTqyvx93daUmcqt+iPUdz95q2B0oLQIxxaxoSTqiMn42aRfrhBY0inmm6vMq7JMDyx9PeFJueI5rMGJo9M3WCv0CCSokeexP0l/eXxDtzmH6QX2I+Xp5RCZo2mI4ri5LmI1qg9YG7slXfqiXn04=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9498.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(136003)(366004)(346002)(396003)(39860400002)(230922051799003)(186009)(1800799009)(451199024)(6512007)(6486002)(52116002)(6506007)(6666004)(83380400001)(921005)(86362001)(38350700002)(38100700002)(36756003)(1076003)(2616005)(26005)(2906002)(2013699003)(41300700001)(316002)(7416002)(44832011)(66946007)(66476007)(478600001)(4326008)(8936002)(8676002)(5660300002)(66556008);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?JXwyA3gz6BSMbZ8vw/AYjIwUpU2hXOc2bOXNeoaAbtt33vqZ2APy02EDre4Z?=
- =?us-ascii?Q?IlCdY/9wiwrbzUzrFDvoO1Q132A6Aj5sAKJCsg1I6v+uX94HV4MYOcEVUQEM?=
- =?us-ascii?Q?55NRV342avmb4mDcg2M0HAH0wkCbooUIPly9SAfTsXD7KyCSkEr1o53cxBzf?=
- =?us-ascii?Q?dcoeg3NHrPMC8PIVZuYoeyD3j17T6s4JDDxC/SX4EhQ7XM7KvtnEhqlUMqtw?=
- =?us-ascii?Q?57Do5F5d5LF/sRuNrCYz4ngTZKRsKY/uuH66l1T3Ll+/rc/fsLY1f4wS+uyI?=
- =?us-ascii?Q?/J8N3p/V92uTJcr5CSRxtosGRMZSrdtiG33ZIDOtaDnTXO3w0F4P4TqLWwJv?=
- =?us-ascii?Q?Q5Lp4IzZLG2fCGqlMtN3LTRYzK/stFy2OrMqPw4RAFjlCotdGMHak7uJYsU5?=
- =?us-ascii?Q?CAKNGinSzip3mErauEhOkplp0GZwojKbGhayDlnphW+w6JENm48w8vqVYENJ?=
- =?us-ascii?Q?nH7u20YGCA/s+u96X6eEil899s3g8Z0iIHGFvsdkc/nLmxCNzYwoMslvP1up?=
- =?us-ascii?Q?xUxnIUsa6sOgqQOHXNGvaEE0AhpzK5EHizGV9aYBCC6UclXYYFsMCvU0c0nD?=
- =?us-ascii?Q?GZGZh06jSwKzktHOz0jno2OfNacbk78KRucLEzUjlTefG8IPxgrHeOdJdkUN?=
- =?us-ascii?Q?orKpi/AknbGoGJ01oBEYhj1WZvrEYXQ6hxyw95eA740PvV2qQYH/hZSfrPV+?=
- =?us-ascii?Q?1hyerWZcZky3vwHSiGxeNapl1GrER+uzlnxxHETkS+aWqfhoxtNzTJ8qfTMA?=
- =?us-ascii?Q?1FrC1Mp0zd+Ph8CPiTaHIaVMpzH2MPkppe8OLufxVbMZIwWYxQFTUWlh72ns?=
- =?us-ascii?Q?YZ4I4YTEbB87yskluvZX6OdYKPr8hRptEtd5o5D/fC0XR0h2H295hVTgkq9W?=
- =?us-ascii?Q?65EUnEPqwOOsIBacRL3vRhwX7p+adaT/QjYNw4gzKZGbrH9BE33xlVwTEm/F?=
- =?us-ascii?Q?BpqANgdDPipGxlOOOpSUtAP+RkNjnrbL+nKw7/lDRNKQf50iwXG9C7y6DuGh?=
- =?us-ascii?Q?C4cQEPk7UKABhVe7e+iU3U44oAkV8ktNSLnyn4S0HLq3EYCa4PTbbPKgrBRk?=
- =?us-ascii?Q?YYGTuUc3ViHQ8aaBUqthEvO5KVZBFUZOWzqOzw0AWMY3t2ldTJWRoxHinioa?=
- =?us-ascii?Q?YbNe6M7Yiu9NkVEnNGX84m7n4c3R8WcNmoTbtaKmi2QMYhbZXnueSWQckfuC?=
- =?us-ascii?Q?Kj2ZZUDGPG70L5qjluzd01x8ve9SpempZbG3y+fdFJm4Nf9dhwpXGr0rT+R+?=
- =?us-ascii?Q?OOGJXah+DmJ2GM1rD+O6DgPddi6FUoz+GCSsTBjImEjbjWOOkD5gdOQ3B6Kf?=
- =?us-ascii?Q?vVwoEHLnbX1mkkZ2C9qyttqkkkCN3XX2iM6Nmd68+e28MXnqBMTgnOm84N3R?=
- =?us-ascii?Q?WVEbKEFzxkmX8Y3V+S9Yoag25Ruwb/i7xAhfHWiZ9tmlyEK0NLL1ZfkYqnxL?=
- =?us-ascii?Q?Wsl2qMvMEziNh26ooYv/rbdn2O8P1u1BGq08/z6iVVFJfuOkKQcRhCAaiIxK?=
- =?us-ascii?Q?Xvj3/P0Vz6lFLovBZL6Q+gR1Aw4/xOBXg9rRy+TJR7JC/omYGaaDQcTkxh8+?=
- =?us-ascii?Q?v6na78wGs28Z7/qk84VQl5cMzC2DqO4I0qdeheqA?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d1c4c6e5-a02f-40dd-59c3-08dbbdb802bc
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9498.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2023 11:10:22.2169
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NbH4X1vt7OH69ZX4SNy4siQhMq68mcYAIkFUz/asOqxkSW3Pnn0ohq/wVBIe738aCiq9XMqwIH+xlFvFC7D1YA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9283
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2] crypto: qcom-rng - Add hw_random interface support
+To: Bjorn Andersson <quic_bjorande@quicinc.com>
+CC: <neil.armstrong@linaro.org>, <konrad.dybcio@linaro.org>,
+        <agross@kernel.org>, <andersson@kernel.org>, <conor+dt@kernel.org>,
+        <davem@davemloft.net>, <devicetree@vger.kernel.org>,
+        <herbert@gondor.apana.org.au>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <marijn.suijten@somainline.org>,
+        <robh+dt@kernel.org>, <vkoul@kernel.org>
+References: <20230905062420.3983268-1-quic_omprsing@quicinc.com>
+ <20230920030408.3181394-1-quic_omprsing@quicinc.com>
+ <20230922151651.GA437346@hu-bjorande-lv.qualcomm.com>
+Content-Language: en-US
+From: Om Prakash Singh <quic_omprsing@quicinc.com>
+In-Reply-To: <20230922151651.GA437346@hu-bjorande-lv.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: E1QCyqpvPv60va_rb2m7NC2b_qLs6i5i
+X-Proofpoint-GUID: E1QCyqpvPv60va_rb2m7NC2b_qLs6i5i
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-25_08,2023-09-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ mlxscore=0 priorityscore=1501 impostorscore=0 bulkscore=0 suspectscore=0
+ phishscore=0 malwarescore=0 mlxlogscore=999 spamscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
+ definitions=main-2309250083
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Low power audio mode requires binding codec still power on while Acore
-enters into suspend so Mcore can continue playback music.
 
-ASoC machine driver acquires DAPM endpoints through reading
-"fsl,lpa-widgets" property from DT and then forces the path between
-these endpoints ignoring suspend.
 
-If the rpmsg sound card is in low power audio mode, the suspend/resume
-callback of binding codec is overridden to disable the suspend/resume.
+On 9/22/2023 8:46 PM, Bjorn Andersson wrote:
+> On Wed, Sep 20, 2023 at 08:34:08AM +0530, Om Prakash Singh wrote:
+>> Add hw_random interface support in qcom-rng driver as new IP block
+>> in Qualcomm SoC has inbuilt NIST SP800 90B compliant entropic source
+>> to generate true random number.
+>>
+>> Keeping current rng_alg interface as well for random number generation
+>> using Kernel Crypto API.
+>>
+>> Signed-off-by: Om Prakash Singh <quic_omprsing@quicinc.com>
+>> ---
+>>
+>> Changes in V2:
+>> - Updated patch to fix the return value from qcom_rng_generate() to be
+>>    consistent with current implementation
+> 
+> As far as I can tell you didn't change this, see below.
+> 
+>> - Updated patch to make it more concise
+>> - Removed unnecessary use local variable and it's initialization
+>> - Updated patch to use devm_hwrng_register() instead of hwrng_register()
+>> - Updated subject line of the patch
+>>
+>> This patch is depends on [1]
+>> [1] https://lore.kernel.org/lkml/20230824-topic-sm8550-rng-v2-4-dfcafbb16a3e@linaro.org/
+>>
+>>   drivers/crypto/qcom-rng.c | 65 ++++++++++++++++++++++++++++++++++-----
+>>   1 file changed, 58 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/crypto/qcom-rng.c b/drivers/crypto/qcom-rng.c
+>> index fb54b8cfc35f..e5a574a3cc59 100644
+>> --- a/drivers/crypto/qcom-rng.c
+>> +++ b/drivers/crypto/qcom-rng.c
+>> @@ -7,6 +7,7 @@
+>>   #include <linux/acpi.h>
+>>   #include <linux/clk.h>
+>>   #include <linux/crypto.h>
+>> +#include <linux/hw_random.h>
+>>   #include <linux/io.h>
+>>   #include <linux/iopoll.h>
+>>   #include <linux/kernel.h>
+>> @@ -32,13 +33,18 @@ struct qcom_rng {
+>>   	struct mutex lock;
+>>   	void __iomem *base;
+>>   	struct clk *clk;
+>> -	unsigned int skip_init;
+>> +	struct qcom_rng_of_data *of_data;
+>>   };
+>>   
+>>   struct qcom_rng_ctx {
+>>   	struct qcom_rng *rng;
+>>   };
+>>   
+>> +struct qcom_rng_of_data {
+>> +	bool skip_init;
+>> +	bool hwrng_support;
+>> +};
+>> +
+>>   static struct qcom_rng *qcom_rng_dev;
+>>   
+>>   static int qcom_rng_read(struct qcom_rng *rng, u8 *data, unsigned int max)
+>> @@ -70,7 +76,7 @@ static int qcom_rng_read(struct qcom_rng *rng, u8 *data, unsigned int max)
+>>   		}
+>>   	} while (currsize < max);
+>>   
+>> -	return 0;
+>> +	return currsize;
+> 
+> As I pointed out in my previous review, if the qcom_rng_read() is
+> requested to read a number of bytes (max) that is not evenly divisible
+> with 4 (WORD_SZ) the loop will exit without accounting for the last
+> bytes copied...
 
-Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
----
- sound/soc/fsl/imx-rpmsg.c | 58 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 58 insertions(+)
+I will update implementation to account currsize for accounting 
+remaining bytes
 
-diff --git a/sound/soc/fsl/imx-rpmsg.c b/sound/soc/fsl/imx-rpmsg.c
-index b578f9a32d7f..0568a3420aae 100644
---- a/sound/soc/fsl/imx-rpmsg.c
-+++ b/sound/soc/fsl/imx-rpmsg.c
-@@ -20,8 +20,11 @@ struct imx_rpmsg {
- 	struct snd_soc_dai_link dai;
- 	struct snd_soc_card card;
- 	unsigned long sysclk;
-+	bool lpa;
- };
- 
-+static struct dev_pm_ops lpa_pm;
-+
- static const struct snd_soc_dapm_widget imx_rpmsg_dapm_widgets[] = {
- 	SND_SOC_DAPM_HP("Headphone Jack", NULL),
- 	SND_SOC_DAPM_SPK("Ext Spk", NULL),
-@@ -38,6 +41,58 @@ static int imx_rpmsg_late_probe(struct snd_soc_card *card)
- 	struct device *dev = card->dev;
- 	int ret;
- 
-+	if (data->lpa) {
-+		struct snd_soc_component *codec_comp;
-+		struct device_node *codec_np;
-+		struct device_driver *codec_drv;
-+		struct device *codec_dev = NULL;
-+
-+		codec_np = data->dai.codecs->of_node;
-+		if (codec_np) {
-+			struct platform_device *codec_pdev;
-+			struct i2c_client *codec_i2c;
-+
-+			codec_i2c = of_find_i2c_device_by_node(codec_np);
-+			if (codec_i2c)
-+				codec_dev = &codec_i2c->dev;
-+			if (!codec_dev) {
-+				codec_pdev = of_find_device_by_node(codec_np);
-+				if (codec_pdev)
-+					codec_dev = &codec_pdev->dev;
-+			}
-+		}
-+		if (codec_dev) {
-+			codec_comp = snd_soc_lookup_component_nolocked(codec_dev, NULL);
-+			if (codec_comp) {
-+				int i, num_widgets;
-+				const char *widgets;
-+				struct snd_soc_dapm_context *dapm;
-+
-+				num_widgets = of_property_count_strings(data->card.dev->of_node,
-+									"fsl,lpa-widgets");
-+				for (i = 0; i < num_widgets; i++) {
-+					of_property_read_string_index(data->card.dev->of_node,
-+								      "fsl,lpa-widgets",
-+								      i, &widgets);
-+					dapm = snd_soc_component_get_dapm(codec_comp);
-+					snd_soc_dapm_ignore_suspend(dapm, widgets);
-+				}
-+			}
-+			codec_drv = codec_dev->driver;
-+			if (codec_drv->pm) {
-+				memcpy(&lpa_pm, codec_drv->pm, sizeof(lpa_pm));
-+				lpa_pm.suspend = NULL;
-+				lpa_pm.resume = NULL;
-+				lpa_pm.freeze = NULL;
-+				lpa_pm.thaw = NULL;
-+				lpa_pm.poweroff = NULL;
-+				lpa_pm.restore = NULL;
-+				codec_drv->pm = &lpa_pm;
-+			}
-+			put_device(codec_dev);
-+		}
-+	}
-+
- 	if (!data->sysclk)
- 		return 0;
- 
-@@ -137,6 +192,9 @@ static int imx_rpmsg_probe(struct platform_device *pdev)
- 		goto fail;
- 	}
- 
-+	if (of_property_read_bool(np, "fsl,enable-lpa"))
-+		data->lpa = true;
-+
- 	data->card.dev = &pdev->dev;
- 	data->card.owner = THIS_MODULE;
- 	data->card.dapm_widgets = imx_rpmsg_dapm_widgets;
--- 
-2.25.1
+>>   }
+>>   
+>>   static int qcom_rng_generate(struct crypto_rng *tfm,
+>> @@ -92,6 +98,9 @@ static int qcom_rng_generate(struct crypto_rng *tfm,
+>>   	mutex_unlock(&rng->lock);
+>>   	clk_disable_unprepare(rng->clk);
+>>   
+>> +	if (ret == dlen)
+> 
+> ...this means that if dlen % 4, you're changing the return value of this
+> function from 0 to dlen.
 
+I will Update logic for success case return value.
+
+> 
+>> +		ret = 0;
+>> +
+>>   	return ret;
+>>   }
+>>   
+>> @@ -101,6 +110,13 @@ static int qcom_rng_seed(struct crypto_rng *tfm, const u8 *seed,
+>>   	return 0;
+>>   }
+>>   
+>> +static int qcom_hwrng_read(struct hwrng *rng, void *data, size_t max, bool wait)
+>> +{
+>> +	struct qcom_rng *qrng = (struct qcom_rng *)rng->priv;
+> 
+> You missed Herbert's request in [1], which I presume implies that
+> qcom_hwrng should be moved into struct qcom_rng, which would mean that
+> you can get the qrng by container_of().
+> 
+> [1] https://lore.kernel.org/lkml/ZQQvlXvGy8p01uJS@gondor.apana.org.au/
+
+I will address this comment is my next patch set V3.
+
+
+>> +
+>> +	return qcom_rng_read(qrng, data, max);
+>> +}
+>> +
+>>   static int qcom_rng_enable(struct qcom_rng *rng)
+>>   {
+>>   	u32 val;
+>> @@ -136,7 +152,7 @@ static int qcom_rng_init(struct crypto_tfm *tfm)
+>>   
+>>   	ctx->rng = qcom_rng_dev;
+>>   
+>> -	if (!ctx->rng->skip_init)
+>> +	if (!ctx->rng->of_data->skip_init)
+>>   		return qcom_rng_enable(ctx->rng);
+>>   
+>>   	return 0;
+>> @@ -157,6 +173,12 @@ static struct rng_alg qcom_rng_alg = {
+>>   	}
+>>   };
+>>   
+>> +static struct hwrng qcom_hwrng = {
+>> +	.name = "qcom-hwrng",
+>> +	.read = qcom_hwrng_read,
+>> +	.quality = 1024,
+>> +};
+> 
+> Which would mean not adding this static global variable...
+> 
+> Regards,
+> Bjorn
 
