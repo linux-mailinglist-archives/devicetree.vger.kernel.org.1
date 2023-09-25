@@ -1,50 +1,61 @@
-Return-Path: <devicetree+bounces-3120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 322A97AD622
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:35:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42DBC7AD639
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:40:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 4E56A1C20445
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 10:35:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 39E98B20A23
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 10:40:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A72913AD0;
-	Mon, 25 Sep 2023 10:35:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0F3815EA2;
+	Mon, 25 Sep 2023 10:40:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FC3810A30
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 10:35:46 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23F7CB3;
-	Mon, 25 Sep 2023 03:35:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1695638145; x=1727174145;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=NGy5Y6K22tAMvFW2W8adwaIoI8/17ieV64EtLSlFNBU=;
-  b=RSDoBB5kVlkjTMEBnJyI1dxtufjK/ySn8YKopORRK3pYuWxo2bUpn23X
-   ug3to7trM1X9ILZ9J/RDXVrZSJ39EE83RACnZV5LCGxVTQ7jTKLAiCWME
-   iB2NiAINpEcTnSCNwH1ThTulGnujdEiwEislm0mqWCHlTU6iu7i0rUpRh
-   wiBYoxz+CLQzM73rmCjrlVBHKfJUrzYUPsvtjQwq4z0Bg417V95mv7ok4
-   nLHPiB3GkeSuASXAEKvQ9r+ar/JIeGGAm8eMEOwqvMW3ztHlWCEwBxLsf
-   rxxcQgvF0Ls2tDeFGRtlNnombXSIciNMf8eeJvD29Fwpg2xdqmk9x5cFE
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="385049406"
-X-IronPort-AV: E=Sophos;i="6.03,174,1694761200"; 
-   d="scan'208";a="385049406"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Sep 2023 03:35:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="697929670"
-X-IronPort-AV: E=Sophos;i="6.03,174,1694761200"; 
-   d="scan'208";a="697929670"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.50.180])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Sep 2023 03:35:39 -0700
-Message-ID: <a420c2e5-db23-4b61-a110-476f8fb8636a@intel.com>
-Date: Mon, 25 Sep 2023 13:35:36 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CDA315E95
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 10:40:40 +0000 (UTC)
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05143EE
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 03:40:38 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-32001d16a14so5843180f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 03:40:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695638436; x=1696243236; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AcG6dKqnPh6NDWonuBzt7zJSnIN1u16MKiy+tQ6e/Pc=;
+        b=o4E8g2jUEaCZPwg9cw2P2CiOyLLoy+Ezi3en1lwSls2m4LewTguu3GTiDBCjhn6ouQ
+         69y08H01XB9eVit8/vWLXpXH38HM/EoPv9Uh6FCIDvLihqd42u/gRpPKRiPnXyvlLIbp
+         QImwGp7rRTql/GRZnXgbxPnPT382KE6Gw8zylpBPWLFFF08qwas0Zl4eFgDmsXE+Ku1p
+         OJNa/PsYBHoQLS6mWJEWOicBhjNfQ82gaNfMs5tBY0OTecdwSbygIacBawDxqbAYESGb
+         xt9YzzTNElJGWD+ddooxutDGcSPsccoSN+ewsrwpAiCOqEcji8EuUwHFNTgLaB4k+/yp
+         beKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695638436; x=1696243236;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AcG6dKqnPh6NDWonuBzt7zJSnIN1u16MKiy+tQ6e/Pc=;
+        b=nvyV6Ty7C+YWok+tQFjI/IYLyQNDCYNAK5gg/IFrbAtm6ZHwz6eyEp47mK/pDhPsgg
+         56voUiY6tFEmnTNOQ4Uyo0c2SVLPFOfQGBiwvI6xhmqXC6DnxTCYlXq/OZQQxazgAcdi
+         YqhW3RLTvqMvfoCg3eFDNiXO3eMI/KnVq151Rp5F1zU8nM63EkKE97TkAuWxK+Xp7nBh
+         zuLltAhmdV2J7CXgAw08inr4qYP1+IWaQ1D4hlHrryRPansL5PEdohj+hOqy6c5BTzmC
+         0va3fms79qX3lvYpFmH1+5R4OzeP6sJoCozRu6nDAs7GozJrJSv+Zvll72axHdRVV5bp
+         xw5w==
+X-Gm-Message-State: AOJu0Yxocn2oqoBpbaiqqeJLIOae0AYd4rGVGfGxpBRaRBcZCbjDSryN
+	n5Hye93fv5vijvOWAHQXLzpCwA==
+X-Google-Smtp-Source: AGHT+IF8RCL56K/TNhChvR9Sd1sg5Sx9S2AOrq1y9gBazy2tDjoJGXyUNiPgazwA7mFfRddMbd8H/Q==
+X-Received: by 2002:a5d:4006:0:b0:31f:4173:2ac8 with SMTP id n6-20020a5d4006000000b0031f41732ac8mr5457073wrp.18.1695638436415;
+        Mon, 25 Sep 2023 03:40:36 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.100])
+        by smtp.gmail.com with ESMTPSA id x11-20020a5d650b000000b00318147fd2d3sm11486283wru.41.2023.09.25.03.40.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Sep 2023 03:40:35 -0700 (PDT)
+Message-ID: <fbb3adde-3c2b-4748-aaa9-8b63fdbf6082@linaro.org>
+Date: Mon, 25 Sep 2023 12:40:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,76 +63,107 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] mmc: sdhci-of-dwcmshc: Add support for T-Head TH1520
+Subject: Re: [PATCH V3 1/4] dt-bindings: thermal: qcom-tsens: Add ipq5018
+ compatible
 Content-Language: en-US
-To: Drew Fustini <dfustini@baylibre.com>, Ulf Hansson
- <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>,
- Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Conor Dooley <conor@kernel.org>
-Cc: Robert Nelson <robertcnelson@beagleboard.org>,
- Jason Kridner <jkridner@beagleboard.org>, Xi Ruoyao <xry111@xry111.site>,
- Han Gao <gaohan@iscas.ac.cn>, Icenowy Zheng <uwu@icenowy.me>,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20230921-th1520-mmc-v1-0-49f76c274fb3@baylibre.com>
- <20230921-th1520-mmc-v1-3-49f76c274fb3@baylibre.com>
-From: Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <20230921-th1520-mmc-v1-3-49f76c274fb3@baylibre.com>
+To: Sricharan Ramabadhran <quic_srichara@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org,
+ srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ thara.gopinath@gmail.com, rafael@kernel.org, daniel.lezcano@linaro.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ dmitry.baryshkov@linaro.org
+References: <20230922115116.2748804-1-srichara@win-platform-upstream01.qualcomm.com>
+ <20230922115116.2748804-2-srichara@win-platform-upstream01.qualcomm.com>
+ <f4fa94ab-78fb-d01b-7188-c498ec3053ff@linaro.org>
+ <21caae64-b8db-ed1f-2275-a7279227cf92@quicinc.com>
+ <a225833f-e645-48cc-a0e9-103999064548@linaro.org>
+ <8922b2f1-7869-409c-8974-d2560d72f454@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <8922b2f1-7869-409c-8974-d2560d72f454@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-	autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 22/09/23 04:49, Drew Fustini wrote:
-> Add support for the mmc controller in the T-Head TH1520 with the new
-> compatible "thead,th1520-dwcmshc". Implement custom sdhci_ops for
-> set_uhs_signaling, reset, voltage_switch, and platform_execute_tuning.
+On 25/09/2023 12:31, Sricharan Ramabadhran wrote:
 > 
-> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
-> ---
->  drivers/mmc/host/sdhci-of-dwcmshc.c | 456 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 456 insertions(+)
 > 
-> diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> index 3a3bae6948a8..7294bf1afb7d 100644
-> --- a/drivers/mmc/host/sdhci-of-dwcmshc.c
-> +++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> @@ -35,6 +35,26 @@
->  #define DWCMSHC_CARD_IS_EMMC		BIT(0)
->  #define DWCMSHC_ENHANCED_STROBE		BIT(8)
->  #define DWCMSHC_EMMC_ATCTRL		0x40
-> +/* Tuning and auto-tuning fields in AT_CTRL_R control register */
-> +#define AT_CTRL_AT_EN			0x1 /* autotuning is enabled */
-> +#define AT_CTRL_CI_SEL_SHIFT		0x1 /* bit 1 */
-> +#define AT_CTRL_CI_SEL			0x1 /* interval to drive center phase select */
-> +#define AT_CTRL_SWIN_TH_EN_SHIFT	0x2 /* bit 2 */
-> +#define AT_CTRL_SWIN_TH_EN		0x1 /* sampling window threshold enable */
-> +#define AT_CTRL_RPT_TUNE_ERR_SHIFT	0x3 /* bit 3 */
-> +#define AT_CTRL_RPT_TUNE_ERR		0x1 /* enable reporting framing errors */
-> +#define AT_CTRL_SW_TUNE_EN_SHIFT	0x4 /* bit 4 */
-> +#define AT_CTRL_SW_TUNE_EN		0x1 /* enable software managed tuning */
-> +#define AT_CTRL_WIN_EDGE_SEL_SHIFT	0x8 /* bits [11:8] */
-> +#define AT_CTRL_WIN_EDGE_SEL		0xf /* sampling window edge select */
-> +#define AT_CTRL_TUNE_CLK_STOP_EN_SHIFT	0x10 /* bit 16 */
-> +#define AT_CTRL_TUNE_CLK_STOP_EN	0x1  /* clocks stopped during phase code change */
-> +#define AT_CTRL_PRE_CHANGE_DLY_SHIFT	0x11 /* bits [18:17] */
-> +#define AT_CTRL_PRE_CHANGE_DLY		0x1  /* 2-cycle latency */
-> +#define AT_CTRL_POST_CHANGE_DLY_SHIFT	0x13 /* bits [20:19] */
-> +#define AT_CTRL_POST_CHANGE_DLY		0x3  /* 4-cycle latency */
-> +#define AT_CTRL_SWIN_TH_VAL_SHIFT	0x18 /* bits [31:24] */
-> +#define AT_CTRL_SWIN_TH_VAL		0x9  /* sampling window threshold */
+> On 9/25/2023 12:16 PM, Krzysztof Kozlowski wrote:
+>> On 25/09/2023 04:06, Sricharan Ramabadhran wrote:
+>>>
+>>>
+>>> On 9/23/2023 5:14 PM, Krzysztof Kozlowski wrote:
+>>>> On 22/09/2023 13:51, Sricharan R wrote:
+>>>>> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>>>>>
+>>>>> IPQ5018 has tsens v1.0 block with 4 sensors and 1 interrupt.
+>>>>
+>>>> Then why do you allow two interrupts?
+>>>>
+>>>    infact there is only one interrupt. Will fix in the binding
+>>>    description.
+>>
+>> Description? So you still allow two interrupts? No, this must be
+>> constrained in allOf:if:then.
+>>
+> 
+>   ok, it should be fine to add this new compatible to the existing
+>   allof:if:then block of v1 targets ? (Because they also have same
+>   single interrupt (uplow) constraint)
 
-Here and elsewhere, please try to make use of BIT(), GENMASK(),
-FIELD_PREP(), FIELD_GET()
+Yes.
+
+Best regards,
+Krzysztof
 
 
