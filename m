@@ -1,112 +1,113 @@
-Return-Path: <devicetree+bounces-3246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52E857ADDE7
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 19:39:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E9C07ADDF9
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 19:48:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id E92562815CA
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 17:39:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id 7B5621F24EE3
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 17:48:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBD15210ED;
-	Mon, 25 Sep 2023 17:39:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C56D21113;
+	Mon, 25 Sep 2023 17:48:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B11E9D297
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 17:39:03 +0000 (UTC)
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5C2810E
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 10:39:01 -0700 (PDT)
-Received: by mail-qv1-xf34.google.com with SMTP id 6a1803df08f44-65b0557ec77so18902366d6.0
-        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 10:39:01 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D547F1CA9E
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 17:48:04 +0000 (UTC)
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0FF911D
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 10:48:02 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9ae75ece209so675443666b.3
+        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 10:48:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1695663541; x=1696268341; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hTbKVRUtifK600GcTuB6H5T7Hq7nQwjgpsYUbwhLkRs=;
-        b=I4Y8z1B8TwdY5poWjHnCoXf7zaKCfgKCV4w5ZoUi6fs1t2eZjaEwX+sqQN1ez1XWWo
-         elUuSLZmz7EcOoFe6CAMbmoaSw/KNIqghLTrqfyNqCfpJQJengNgb7F4vMubg3McHb7G
-         rKtsoA9c38K6V2iAXWm6yfRX/fQTqkDD+V8OGwQbpUexI+nGVzTlV6xXZjiFKbB5Vvgk
-         UNzTC6+VrPJo0/jCAslOrcEPpeOA+SfRU6U9Ty97HcghVEjLMTWooqFdXnjstRNgywrl
-         L7IKYmgmQs55sIXMbYDc2XdC2Nc+Yf+JU4PoSzPcj3oiGJv9OzMYlASYBYamNoEjVCn3
-         hsCw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695664081; x=1696268881; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1/UN+h0syPysLtxsvFcqWbygnTfY7kE0+mV4pd8zbOE=;
+        b=RYEr9cYaG57l52hf6D92FVsynybyMfC04x1z06kXcMPBIFTgkV3pwcPmmyEh6CHsmZ
+         k9CFkgieBKsHcaSx4R3liGCSX28LEbeboiK6HiPvLpc3mbsX5BoMREGE+yark4ZU3Se3
+         VJxat/ofNc+oYjiaENTdqRdcvyCkWWctYItLGqsHgn0EUopDDxjbN6Mym/OnxCnTFgci
+         d58HDyP4YLN3C8hXPz7utdfofyPoHVPy9lWxenzQJSsJQ0YLBxQ2aZ/fwf4G4dQoJ1UQ
+         5nXUnkFKlAgaAglDfKOysQpm/JFwVkhIaP4uidAO8XxBrxUfw7/wjSsqM/Sx4fqXv9q5
+         QFHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695663541; x=1696268341;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hTbKVRUtifK600GcTuB6H5T7Hq7nQwjgpsYUbwhLkRs=;
-        b=pNygXWE0Aty9RA+ExpA/iJsU/UC5J5GKShpBX17g7vtiAZ6rdEJQOK3hC4etX/MNIb
-         c4Qzsj3fX3CNiUyhceKDLpzViGMCW+Hgl+UiSv/jsa9ehvHeL4eSbaQ2oK0GzxDdcQjW
-         Eh+uiaj8b0epj8rwPCxeN467wsoJQTPVs0v/0V4a/qjDpU10Z+VRg6HKvEY44B3goD20
-         3bLgsX7aG8A87n19AqA0Xal1+yOEjp8REZUCDsKFhmt4D2BrqXEdS9A3YYAyZaKoa1GK
-         Mbv4AooLe7Da7OEX0HoAlvmcIpYJF9wFQBRplVwQq1YB07okjuez8QZYAl9dDONhdkHJ
-         oHSg==
-X-Gm-Message-State: AOJu0YxwkAGAzRHhfd+BTYzuYc/NKjEvDjnMe6YDb5UL5xNj8vptbaZq
-	Z2w40jTbiT+oRFbJfS7nEfQguw==
-X-Google-Smtp-Source: AGHT+IG+tSQcs5F1udgePekSyNFg4nS/3ON6TuwwuW4o4BqlQE4HXLo3X3tpbTYJLPBv/LJ1Cwr8Wg==
-X-Received: by 2002:a05:6214:4307:b0:647:22cc:1784 with SMTP id oe7-20020a056214430700b0064722cc1784mr8149193qvb.15.1695663540981;
-        Mon, 25 Sep 2023 10:39:00 -0700 (PDT)
-Received: from ?IPV6:2600:1700:2000:b002:75e1:d26a:c179:14a3? ([2600:1700:2000:b002:75e1:d26a:c179:14a3])
-        by smtp.gmail.com with ESMTPSA id ph7-20020a0562144a4700b00655ebd053dcsm3167034qvb.82.2023.09.25.10.38.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Sep 2023 10:39:00 -0700 (PDT)
-Message-ID: <a43ef21e-ce26-45ee-be28-526238e3e88f@sifive.com>
-Date: Mon, 25 Sep 2023 12:38:58 -0500
+        d=1e100.net; s=20230601; t=1695664081; x=1696268881;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1/UN+h0syPysLtxsvFcqWbygnTfY7kE0+mV4pd8zbOE=;
+        b=FnXDo8u/3Pe4J7wU7ywTOdbqIjFvVpFW6mh5QXzWo8HtZukfrPZAW1thDuzHaTA4+c
+         Hb13c9akch3lMo0LIBHjYXHFiaRjlGcYxgpcrwHQly6uqlJiEmS+vJg/Wz1nafWme+Db
+         4qUmF6EkYslhscDGr9KkIowdERx3NB/4F/lgClxm3LwW77nyfaYUI4P9khEGu1NOGrTl
+         P2VkBbDxEbvRuToNhasA6w1nrw9WVBAV55GQloCIA7DChebCjXj3Ke8tg5AyxrITrVIk
+         B2TsLKcTsuBO6MGkvNnmrnmf8uk7n8kuC5B/Lc86nydWTttOFbu4jyXbCELxyyWeLLUo
+         eZdg==
+X-Gm-Message-State: AOJu0Yy4F26qXFf/5zSWPeH/Eyyo4AI+4pu49L4FE2wmIi+YJffvYj+5
+	WRzGyErQSuVTRZtDfNEYgGuaY3OSlmxu7lyQgqG7UQ==
+X-Google-Smtp-Source: AGHT+IFopHnRoAlyF6POHIUhcvwlhiL61OgNYhhH4qY+wuY7Lc/f7rCYUm4UIz9VvEggFLjrRogYHi+m9F2UFzb7uQQ=
+X-Received: by 2002:a17:906:2189:b0:9a1:e941:6f49 with SMTP id
+ 9-20020a170906218900b009a1e9416f49mr6620490eju.44.1695664081274; Mon, 25 Sep
+ 2023 10:48:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v2 2/6] riscv: dts: sifive: convert isa detection to new
- properties
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org
-Cc: Conor Dooley <conor.dooley@microchip.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- Daire McNamara <daire.mcnamara@microchip.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Emil Renner Berthing <kernel@esmil.dk>,
- Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
- Fu Wei <wefu@redhat.com>, Chen Wang <unicorn_wang@outlook.com>,
- devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
- linux-renesas-soc@vger.kernel.org
-References: <20230922081351.30239-2-conor@kernel.org>
- <20230922081351.30239-4-conor@kernel.org>
-From: Samuel Holland <samuel.holland@sifive.com>
-In-Reply-To: <20230922081351.30239-4-conor@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+References: <20230921144400.62380-1-dlechner@baylibre.com> <20230921144400.62380-2-dlechner@baylibre.com>
+ <20230924175720.3be2540b@jic23-huawei>
+In-Reply-To: <20230924175720.3be2540b@jic23-huawei>
+From: David Lechner <dlechner@baylibre.com>
+Date: Mon, 25 Sep 2023 12:47:50 -0500
+Message-ID: <CAMknhBF56CWKNZ-xvsiaC3c+av8Dvyh+i-op1YxvXv2g8BPYWg@mail.gmail.com>
+Subject: Re: [PATCH v2 01/19] dt-bindings: iio: resolver: add devicetree
+ bindings for ad2s1210
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Axel Haslam <ahaslam@baylibre.com>, Philip Molloy <pmolloy@baylibre.com>, 
+	Apelete Seketeli <aseketeli@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 2023-09-22 3:13 AM, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Convert the fu540 and fu740 devicetrees to use the new properties
-> "riscv,isa-base" & "riscv,isa-extensions".
-> For compatibility with other projects, "riscv,isa" remains.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  arch/riscv/boot/dts/sifive/fu540-c000.dtsi | 15 +++++++++++++++
->  arch/riscv/boot/dts/sifive/fu740-c000.dtsi | 15 +++++++++++++++
->  2 files changed, 30 insertions(+)
+On Sun, Sep 24, 2023 at 11:57=E2=80=AFAM Jonathan Cameron <jic23@kernel.org=
+> wrote:
+>
+> On Thu, 21 Sep 2023 09:43:42 -0500
+> David Lechner <dlechner@baylibre.com> wrote:
+>
+...
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - spi-cpha
+> > +  - clocks
+> > +  - sample-gpios
+> > +  - assigned-resolution-bits
+> > +
+> > +oneOf:
+> > +  - required:
+> > +      - mode-gpios
+> > +  - required:
+> > +      - adi,fixed-mode
+> I think this allows for both.  It's fiddlier to exclude that but would be=
+ a nice
+> to have perhaps rather than relying on text above that says 'don't do it'=
+.
+>
 
-Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
-
+example-schema.yaml says that oneOf is XOR (anyOf is OR and would
+allow both).
 
