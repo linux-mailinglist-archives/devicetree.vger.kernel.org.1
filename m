@@ -1,167 +1,146 @@
-Return-Path: <devicetree+bounces-2984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF3677AD0F7
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:02:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B985E7AD0F9
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:03:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id 23B1D1F243D6
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 07:02:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 6D1A12814BB
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 07:03:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 539D210792;
-	Mon, 25 Sep 2023 07:02:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D97DD107A2;
+	Mon, 25 Sep 2023 07:03:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CECAF1078B
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:02:47 +0000 (UTC)
-Received: from imap5.colo.codethink.co.uk (imap5.colo.codethink.co.uk [78.40.148.171])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E01CFB8;
-	Mon, 25 Sep 2023 00:02:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=codethink.co.uk; s=imap5-20230908; h=Content-Transfer-Encoding:Content-Type
-	:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
-	Sender:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=VZVYpjaytBa+/7xMyqxL6b/+NyYxcUr3u+ydrtu5PFs=; b=zywNnXKqiFMjdvg3YXogtbKxho
-	KDZo8OGeqC+X+acPs51D7M5YomeEzDzJCA2AZQCiTrwmvrWdwMatTBO7Wt4I15haiMyOMalz0ayMA
-	1DVSTqDEietT4I+4KUBSbVupFvlMd8kJHVptOmfcBlYKpLMTTseNCnClpAFCDKhfHGCaVhOWp8hYI
-	ZS4tUbsct1Oks/TRTxoQVUbhp47k0QNvoDV8m3n3GVxn7l+ACBcFmW7rM/+YvwckiOyUy3+y8XNbE
-	/fTU426B6IYJCjoAj7vEypoHW/ilZhxC8nuqPTn5jalSYXqczuX00SBWwXbZeHWQAIFKkk6kr+13G
-	FyBe65AA==;
-Received: from [167.98.27.226] (helo=[10.35.4.179])
-	by imap5.colo.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
-	id 1qkfcA-00Foug-Ev; Mon, 25 Sep 2023 08:02:42 +0100
-Message-ID: <52645838-b10d-43d2-88b8-dd723f791f21@codethink.co.uk>
-Date: Mon, 25 Sep 2023 08:02:42 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F86110797;
+	Mon, 25 Sep 2023 07:03:04 +0000 (UTC)
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 015D6BF;
+	Mon, 25 Sep 2023 00:03:01 -0700 (PDT)
+Received: by mail-ot1-x334.google.com with SMTP id 46e09a7af769-6c0a3a2cc20so3669852a34.0;
+        Mon, 25 Sep 2023 00:03:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695625381; x=1696230181; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8aDz349SKKv9+MQGXfZ+z1/ikbG1yq6pnD7zJlqgtSM=;
+        b=J+V3bpzy0mNtOz/q0k1jWsD9mRigO9qiVssqo/nhUe6grIYErEltxSTD0aj4g9BNE+
+         ZKXTlu3D7EoTdw/Iz21WglGGPpZ7RBj+4egF56I31/swnKnNR6o5OZqcF0mqNZJkoE0S
+         zeNL3sSW5tEwrtl2n2JaRGXYskJB0cLESiIbDvFAxLM3DQvz0LZkuThpvNTS6OrrJ8rI
+         hbjpQupjTn8IG09LyWQi9uqxZK+ZWPqgWSm24njc6uuMIHUUxm2pfKv556SBuMlTp9jI
+         XVSa9VnO25aL6d1kxJxxJcEKzLC1vjoGq8Vw52LbusTeDlSC5rgbV+LCr+CfdmD2NCSg
+         npeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695625381; x=1696230181;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8aDz349SKKv9+MQGXfZ+z1/ikbG1yq6pnD7zJlqgtSM=;
+        b=QYn2C6nNfU1eptX2TYheTu9H7V+1GIleDcjsBGkYF8YLqOOtveHBTOYFBUeKU4T8J7
+         /6s2yaMDXSvhGMBRBNy2RYN5LVG/pJLH+UDuJd5xEznCNJvjDNUVxIdyhUI0b4SL2mug
+         2p2wGhm9J+5nXyxWFtWQmbIFoIRmPgtrT1e2cBkprjtTBDVrSmHUahL7dkqfr6Q23IWA
+         j45BpeuJ0jfpFO2RQ9oLBDK3DWFW9v4dOMm3+muIF72y3i9dq+3l2WyrG5cu8S4W6fIn
+         Ml47YjewjYKvcOqLd5v29dfzL9ebSeBF6QeJqqpeOabSymM6L05tzFSaIEEQZl3zerP4
+         TC3g==
+X-Gm-Message-State: AOJu0YxT/gO66eZuaL3NkpNk2+yPfZZcr8kAyljik3RJ43GEopDUlFhd
+	EXWvAiRG40sVIsKeTq0/rnYqKBL7JiA=
+X-Google-Smtp-Source: AGHT+IFdlgHAsFON54gDD32JbB0ZiUi6gzdiPWTk7C0UUN14dZBZKnXI5ekgKJs1JogFAj7YhKfQMQ==
+X-Received: by 2002:a05:6830:c9:b0:6be:fe1e:c13 with SMTP id x9-20020a05683000c900b006befe1e0c13mr7754598oto.0.1695625380989;
+        Mon, 25 Sep 2023 00:03:00 -0700 (PDT)
+Received: from a28aa0606c51.. (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id y5-20020a62b505000000b0068ffb8da107sm7349833pfe.212.2023.09.25.00.02.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Sep 2023 00:03:00 -0700 (PDT)
+From: Jacky Huang <ychuang570808@gmail.com>
+To: a.zummo@towertech.it,
+	alexandre.belloni@bootlin.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	mjchen@nuvoton.com,
+	schung@nuvoton.com,
+	Jacky Huang <ychuang3@nuvoton.com>
+Subject: [PATCH v4 0/3] Add support for Nuvoton ma35d1 rtc controller
+Date: Mon, 25 Sep 2023 07:02:48 +0000
+Message-Id: <20230925070251.28-1-ychuang570808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 3/6] pwm: dwc: add PWM bit unset in get_state call
-Content-Language: en-GB
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Thierry Reding <thierry.reding@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Greentime Hu <greentime.hu@sifive.com>, jarkko.nikula@linux.intel.com
-References: <20230907161242.67190-1-ben.dooks@codethink.co.uk>
- <20230907161242.67190-4-ben.dooks@codethink.co.uk>
- <20230922173556.qnn5hj5wkxnfckxm@pengutronix.de>
-From: Ben Dooks <ben.dooks@codethink.co.uk>
-Organization: Codethink Limited.
-In-Reply-To: <20230922173556.qnn5hj5wkxnfckxm@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 22/09/2023 18:35, Uwe Kleine-König wrote:
-> Hello,
-> 
-> [dropping William Salmon and Jude Onyenegecha from Cc: as in the other
-> mails before]
-> 
-> I'd change the Subject to:
-> 
-> 	pwm: dwc: Support DWC_TIM_CTRL_PWM unset in .get_state()
-> 
-> On Thu, Sep 07, 2023 at 05:12:39PM +0100, Ben Dooks wrote:
->> If we are not in PWM mode, then the output is technically a 50%
->> output based on a single timer instead of the high-low based on
->> the two counters. Add a check for the PWM mode in dwc_pwm_get_state()
->> and if DWC_TIM_CTRL_PWM is not set, then return a 50% cycle.
->>
->> This may only be an issue on initialisation, as the rest of the
->> code currently assumes we're always going to have the extended
->> PWM mode using two counters.
->>
->> Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
->> ---
->> v9:
->>   - fixed multi-line comment
->>   - put authour back to codethink email from sifive
->> v8:
->>   - fixed rename issues
->> v4:
->>   - fixed review comment on mulit-line calculations
->> ---
->>   drivers/pwm/pwm-dwc-core.c | 30 +++++++++++++++++++-----------
->>   1 file changed, 19 insertions(+), 11 deletions(-)
->>
->> diff --git a/drivers/pwm/pwm-dwc-core.c b/drivers/pwm/pwm-dwc-core.c
->> index 4b4b7b9e1d82..3fc281a78c9a 100644
->> --- a/drivers/pwm/pwm-dwc-core.c
->> +++ b/drivers/pwm/pwm-dwc-core.c
->> @@ -122,24 +122,32 @@ static int dwc_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
->>   {
->>   	struct dwc_pwm *dwc = to_dwc_pwm(chip);
->>   	u64 duty, period;
->> +	u32 ctrl, ld, ld2;
->>   
->>   	pm_runtime_get_sync(chip->dev);
->>   
->> -	state->enabled = !!(dwc_pwm_readl(dwc,
->> -				DWC_TIM_CTRL(pwm->hwpwm)) & DWC_TIM_CTRL_EN);
->> +	ctrl = dwc_pwm_readl(dwc, DWC_TIM_CTRL(pwm->hwpwm));
->> +	ld = dwc_pwm_readl(dwc, DWC_TIM_LD_CNT(pwm->hwpwm));
->> +	ld2 = dwc_pwm_readl(dwc, DWC_TIM_LD_CNT2(pwm->hwpwm));
->>   
->> -	duty = dwc_pwm_readl(dwc, DWC_TIM_LD_CNT(pwm->hwpwm));
->> -	duty += 1;
->> -	duty *= dwc->clk_ns;
->> -	state->duty_cycle = duty;
->> +	state->enabled = !!(ctrl & DWC_TIM_CTRL_EN);
->>   
->> -	period = dwc_pwm_readl(dwc, DWC_TIM_LD_CNT2(pwm->hwpwm));
->> -	period += 1;
->> -	period *= dwc->clk_ns;
->> -	period += duty;
->> -	state->period = period;
->> +	/*
->> +	 * If we're not in PWM, technically the output is a 50-50
->> +	 * based on the timer load-count only.
->> +	 */
->> +	if (ctrl & DWC_TIM_CTRL_PWM) {
->> +		duty = (ld + 1) * dwc->clk_ns;
->> +		period = (ld2 + 1)  * dwc->clk_ns;
->> +		period += duty;
->> +	} else {
->> +		duty = (ld + 1) * dwc->clk_ns;
->> +		period = duty * 2;
->> +	}
->>   
->>   	state->polarity = PWM_POLARITY_INVERSED;
->> +	state->period = period;
->> +	state->duty_cycle = duty;
->>   
->>   	pm_runtime_put_sync(chip->dev);
-> 
-> The change looks right,
-> 
-> Reviewed-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> 
-> Do you intend to address the review feedback for the other patches in
-> this series? It would be sad if you efforts didn't result in these
-> improvements getting in.
+From: Jacky Huang <ychuang3@nuvoton.com>
 
-I'm going to try and get through the review comments this week,
-I've been ill and then on leave so not had any time to look at
-this.
+This patch series adds the rtc driver for the nuvoton ma35d1 ARMv8 SoC.
+It includes DT binding documentation, the ma35d1 rtc driver, and device
+tree updates.
 
+The ma35d1 rtc controller provides real-time and calendar messaging
+capabilities. It supports programmable time tick and alarm match
+interrupts. The time and calendar messages are expressed in BCD format.
+
+This rtc driver has been tested on the ma35d1 som board with Linux 6.5-rc2.
+It passed the rtctest and rtc-range 2000 ~ 2099.
+
+v4:
+  This version is actually a resend of v3.
+  - Updated drivers/rtc/Kconfig due to this file was modified in the
+    recent mainline update.
+
+v3:
+  - Update ma35d1 rtc driver
+    - Renamed "TICKIEN" to "UIEN" as their functional equivalence.
+    - Eliminated the usage of 'struct ma35_bcd_time' and associated
+      ma35d1 bcd functions; instead, opted to directly utilize the
+      "bin2bcd()" function
+    - Employed "ma35d1_alarm_irq_enable()" to accommodate the
+      "alrm->enabled" feature
+    - Revised the probe sequence and implemented a check to verify if
+      the rtc was initialized
+    - Other minor fixes
+
+v2:
+  - Updated nuvoton,ma35d1-rtc.yaml
+    - Modified patch title and fixed typo
+    - Added reference to rtc.yaml
+    - Used unevaluatedProperties instead of additionalProperties
+  - Modified rtc driver
+    - Used dev_err_probe()
+    - Removed ma35d1_rtc_remove()
+    - Made other minor fixes
+
+Jacky Huang (3):
+  dt-bindings: rtc: Add Nuvoton ma35d1 rtc
+  arm64: dts: nuvoton: Add rtc for ma35d1
+  rtc: Add driver for Nuvoton ma35d1 rtc controller
+
+ .../bindings/rtc/nuvoton,ma35d1-rtc.yaml      |  48 +++
+ .../boot/dts/nuvoton/ma35d1-iot-512m.dts      |   4 +
+ .../boot/dts/nuvoton/ma35d1-som-256m.dts      |   4 +
+ arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       |   8 +
+ drivers/rtc/Kconfig                           |  11 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-ma35d1.c                      | 324 ++++++++++++++++++
+ 7 files changed, 400 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/nuvoton,ma35d1-rtc.yaml
+ create mode 100644 drivers/rtc/rtc-ma35d1.c
 
 -- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
-
-https://www.codethink.co.uk/privacy.html
+2.34.1
 
 
