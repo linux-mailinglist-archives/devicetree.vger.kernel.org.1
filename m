@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-3088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EEE67AD48A
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 11:32:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FC407AD492
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 11:33:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id B4B542817D8
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:32:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 4BBD81C20404
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:33:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFD1813AFF;
-	Mon, 25 Sep 2023 09:32:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 055B213FE0;
+	Mon, 25 Sep 2023 09:33:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93865320D
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 09:32:49 +0000 (UTC)
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A413410C
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 02:32:47 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-307d20548adso5070187f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 02:32:47 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC85E320D
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 09:33:49 +0000 (UTC)
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53349A3
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 02:33:48 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4053cf48670so46772955e9.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 02:33:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695634366; x=1696239166; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695634426; x=1696239226; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4nJpZG2tAtobghc3P3l7oo6Kb3vx53cUibE5PZ7QWTY=;
-        b=PqAGTbP/DwNoorNrvOP2t8UqzutyDK4/p9idASGy0z9xvbXEiHz2V57DKkznVuGaG0
-         pl6QsGcO4rUZFl06eubF7CvlAgLdxJH5mU9+z0lfpsAl9ZUfcy05OFkFT4Ql+xZTPKYD
-         kjdteMC2ZBGMGW8MiWTKyBTF0oJNZEYDDepMYBqAqO0H2m9hx/jrO8sUlD5NHJs7t2gT
-         7DNCTNJ+xrgQ5LjuLuWqLGENqpJ//O46CLuGSwIckVu3+7rfSQixdoAtiZXfjhtNQd42
-         OlE9r96Vkb1+T+DqJbCVONGDxQmmnXajsruW+eMkYneZtffSNtoMmzGggf/XannR5bcq
-         aArg==
+        bh=UdmpywfRI/Hg+yCb9vcWDENrhgdZMFiT1/XKTzVxxv0=;
+        b=TejdYCXM1lkpW3k4917uMADaNOzjp3aU4JttUti6I/njVC5sLqiUakfjJNJm8dtpkG
+         NbY9ga9gUHIF9GUnRs0471yhnZnQdIsYsB8YPxCRAKQd+OEMXYi7OIYBDaSsZifJJeK9
+         UaSF3asMtJcsp//xCUYOl/8yjSSb0NJ+TppcjFAIlzDtYks6sGeXSt+m+PEuBLnqaHUD
+         LSjo4HArnIz+9C54Do8Wpsp4Xg5P3jqqjS2CrDdloIz+redbh9LtbiW2WiKJs9d41rRa
+         +rv4E9BQiScg+0pjwq+JvkG+LtDpE1LAAO7fWsav/y7lBTV51TLx9hAKa3+FUg+3Ggmv
+         spFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695634366; x=1696239166;
+        d=1e100.net; s=20230601; t=1695634426; x=1696239226;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4nJpZG2tAtobghc3P3l7oo6Kb3vx53cUibE5PZ7QWTY=;
-        b=buhhRrpbNLCp+bn+ZiOqIV299FNealLTAZytglyXZSS45Afe/N4ZQBc070mprLqJTS
-         E+Ar0aEsEZco0Re98TiYGO3im2S1iu2YItmi6jzaUPn6ASPOW7fJLdR1VMemBv+A/TEF
-         mAKlU8mxnDFEqjGyKhC5JbZuMgX+VWjAi/BxO4co9PNxAEcTYxwkoc8TzGSRB04KUOJ8
-         JAzbYJitVtpBmUL+s7/ZEmduJaZOn13l4++D2XLggcYffJi4M2jvCbRV2Xkq3AYk4cNs
-         kJpXCSkgf+1A6flMgbvRTR459yWLWowEG4P9ixo7H/gU439QtvmV2jZhS3yIErrB5/Gh
-         MsyA==
-X-Gm-Message-State: AOJu0YzsdyWJ6SgTjZwvpN/NXKCdoOIhVw0nfUkE54pM0uDmsQxF1+YH
-	hwW8X1g0m7GEfq7FCbs/6ftvmQ==
-X-Google-Smtp-Source: AGHT+IHJRhI5foNqhxWUfb0gniemoWHSVz5JsodxJnr+Xxx+Nz8D1PLe/CE6YNxn6l5nVwOF1ZvQiw==
-X-Received: by 2002:a5d:49c1:0:b0:321:7093:53f5 with SMTP id t1-20020a5d49c1000000b00321709353f5mr4947605wrs.64.1695634366110;
-        Mon, 25 Sep 2023 02:32:46 -0700 (PDT)
+        bh=UdmpywfRI/Hg+yCb9vcWDENrhgdZMFiT1/XKTzVxxv0=;
+        b=hTlDwJSZLPU3xMbpfyCjodajWrEP/l3D5GoV2owHD5U+kHMKypXk4t8gmmOz0ymagD
+         pHCKlqKY+nhEyCpiJ2tZy5mzQIUeEifNVvMYGzn8cpZW5IE4UmWGGtN1EZ06xZdgcHvj
+         +iOZ3RbxbLQcJ4+3+cH5W16UWi+doxSAX0M7/i29+QUsA/8e5f1ZczfdE5xFep557UV/
+         AX/VK5eXyzwi1MA4A8bFT7bfDfbOPD+SmFEQWnDz14hRI7Qfy1OCX6CfM2GTZYfTecvO
+         /ob/ESAJqEK5uvKV4COL/YiSXw2GlBe51Pu45ukCZpGQIu7G6lryQ7wpUVADnmj80A4Q
+         aPzQ==
+X-Gm-Message-State: AOJu0YyvPPc/od6Y/2qtTb0qKupLRHpPeV4rPdle2fePzyKQL4MWHccI
+	6hMxH8FMNrluDNMmD+UYxKS3jw==
+X-Google-Smtp-Source: AGHT+IGxVcARyOlA3b4U7FsNKSvcyT62IMXpxRPLD5N86x4QEm8gTzkUJuoRa+gkNspQNatMPboAFg==
+X-Received: by 2002:a7b:cd13:0:b0:405:3251:47a1 with SMTP id f19-20020a7bcd13000000b00405325147a1mr5116168wmj.40.1695634426612;
+        Mon, 25 Sep 2023 02:33:46 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id h16-20020adffd50000000b0031ad5fb5a0fsm11395139wrs.58.2023.09.25.02.32.44
+        by smtp.gmail.com with ESMTPSA id h16-20020adffd50000000b0031ad5fb5a0fsm11395139wrs.58.2023.09.25.02.33.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Sep 2023 02:32:45 -0700 (PDT)
-Message-ID: <af0060ef-5e18-44ed-a7ca-c2a42b1ce151@linaro.org>
-Date: Mon, 25 Sep 2023 11:32:43 +0200
+        Mon, 25 Sep 2023 02:33:46 -0700 (PDT)
+Message-ID: <51470d7a-65a7-44c7-856b-53ca4b065553@linaro.org>
+Date: Mon, 25 Sep 2023 11:33:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,27 +63,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 3/3] PCI: xilinx-xdma: Add Xilinx XDMA Root Port driver
+Subject: Re: [PATCH] arm64: dts: Add watchdog node for Amlogic-C3 SoCs
 Content-Language: en-US
-To: "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>,
- Bjorn Helgaas <helgaas@kernel.org>, "kw@linux.com" <kw@linux.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "bhelgaas@google.com" <bhelgaas@google.com>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "Simek, Michal" <michal.simek@amd.com>,
- "Gogada, Bharat Kumar" <bharat.kumar.gogada@amd.com>
-References: <20230830090707.278136-4-thippeswamy.havalige@amd.com>
- <20230906172500.GA231799@bhelgaas>
- <SN7PR12MB720159F33F53B40453111D128BFAA@SN7PR12MB7201.namprd12.prod.outlook.com>
- <c53958d2-d7bb-c859-b4d1-37e7c61f6107@linaro.org>
- <SN7PR12MB72017F144833876216DE74F28BFCA@SN7PR12MB7201.namprd12.prod.outlook.com>
+To: Huqiang Qin <huqiang.qin@amlogic.com>, neil.armstrong@linaro.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230925090641.1185942-1-huqiang.qin@amlogic.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -129,35 +117,35 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <SN7PR12MB72017F144833876216DE74F28BFCA@SN7PR12MB7201.namprd12.prod.outlook.com>
+In-Reply-To: <20230925090641.1185942-1-huqiang.qin@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 25/09/2023 11:22, Havalige, Thippeswamy wrote:
-> ++Krzysztof Wilczyński
+On 25/09/2023 11:06, Huqiang Qin wrote:
+> Add watchdog device.
 > 
-> Can you please provide any update on this patch series.
+> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> index 998f5050795c..106f4dd09a1b 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> @@ -81,6 +81,12 @@ apb4: bus@fe000000 {
+>  			#size-cells = <2>;
+>  			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+>  
+> +			watchdog@2100 {
+> +				compatible = "amlogic,t7-wdt";
 
-And now please think... how can he comment on this one liner since he
-did not receive anything else? Since he was not Cced on original
-submission, he has nothing from this thread in inbox. Only this one
-email with one line above.
-
-How any reviewer can understand something without context? This does not
-work like that. You cannot just add someone to Cc to one line comment
-and expect that maintainers will start looking for your patches so they
-can perform the review, just because you need it.
-
-You must resend your patchset following Linux kernel process - Ccing all
-respective maintainers, not just some.
-
-You have experienced contributors and maintainers in Xilinx/AMD, so
-please talk with them how the process should look like.
+This is c3, not t7. Why do you use t7 compatible alone?
 
 Best regards,
 Krzysztof
