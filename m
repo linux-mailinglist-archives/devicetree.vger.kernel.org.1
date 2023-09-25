@@ -1,265 +1,113 @@
-Return-Path: <devicetree+bounces-3188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE1A37AD999
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 15:53:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B02B37AD9B1
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 16:06:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id C4F791C203A8
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 13:53:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3DFAE281272
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 14:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAF751BDE1;
-	Mon, 25 Sep 2023 13:53:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A89C61BDE9;
+	Mon, 25 Sep 2023 14:06:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34B8614A8A
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 13:53:40 +0000 (UTC)
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7F60FF
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 06:53:38 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-405524e6769so25360225e9.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 06:53:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695650017; x=1696254817; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=fEyyBOiumqlPrTY/pNDi/jSPRVb77LUtZxDS6rWVxtM=;
-        b=BGHWQT479/wlqRvKLsfru+Y7+2PNr8s21m9ZNfj5L97tYmde91lFmdKAwk0yvcGur8
-         6QTIR+t6tyopPy4pvh/iBjsSGMeSILuIzd1arfiLgArXQGz3OVqDZUQe86Hy/YggZp6p
-         3Yz8m3RhyPwIEmelp4e/a/dI+Nkwug5dRaLYxkPuhk40+inR8sTqbKjnCMJrtY8g2frn
-         6OhHumU9548wRxUR8Jowj1kQv7GEZ4aLtuM8rgRhr1yFO+hR19FHRfQGqMYNLDfZnJls
-         zZ4z+Mj3OGZMe68o7RVPYa+EwUtd+o7bHdC/XYFrFNQWRMwo7Vjhiko1e4ZTTlvusSVj
-         OGUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695650017; x=1696254817;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fEyyBOiumqlPrTY/pNDi/jSPRVb77LUtZxDS6rWVxtM=;
-        b=PhEHQRxpZRWq/tdxFUDjvnheqBG6oMYQ0fnQ9sc79ieEE9i2S1/YsDzKTcKya/DqFb
-         6urMK2NRznkPiAFjykgQKHgTjtJGfkMWMo10aUA3+/JgasSxHqoVo5qgCnsjxM56jFxd
-         N6XVxZFQCoh63ZEtHxA3/L1ZUWZsZ1F3neoJdfE0GXIb/gkyWm8PdL5g1v2UoFKsgoPt
-         qKxRR3ung/glIZoNKtuGkZehryPZiYuTEn0b0/3lt401rjcJe/Eg0gxYZRy5MvQdr0KX
-         IdZuRT2C2UidhZAz31qzUS0U5HKWIrf379xECtWWgPI7scUMVlCcA1JVT3tAlr8AHIvh
-         Ed+Q==
-X-Gm-Message-State: AOJu0YwYmc5s7pddYU2dOa1XV1RB31R0lxeTrp4+aQ6AGNurCIZsXBDn
-	9vO6sEGiNFULthxsnEitfttxog==
-X-Google-Smtp-Source: AGHT+IGFzUj08pHjRNoUk/5V7szaTjs5BgBSaCQCfPcY3wT4ugjofFmWzBmIPF/q1gq35Asy4Wf/6w==
-X-Received: by 2002:a7b:c8cb:0:b0:405:251f:8455 with SMTP id f11-20020a7bc8cb000000b00405251f8455mr7644308wml.7.1695650017304;
-        Mon, 25 Sep 2023 06:53:37 -0700 (PDT)
-Received: from toaster.lan ([2a01:e0a:3c5:5fb1:38f4:d5ca:ab87:c1bc])
-        by smtp.googlemail.com with ESMTPSA id v11-20020a5d610b000000b0031435731dfasm11889903wrt.35.2023.09.25.06.53.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Sep 2023 06:53:36 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH] arm64: dts: meson: g12: name spdifout consistently
-Date: Mon, 25 Sep 2023 15:53:26 +0200
-Message-Id: <20230925135326.1689396-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.40.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97BB118E38
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 14:06:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87208C433C8;
+	Mon, 25 Sep 2023 14:06:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695650781;
+	bh=z+beOv8eP8i270vZ1KGKwTfsMp2RfL6DAYL5zKJa3/k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MG32E4D4v6lLAVuXEpIB0vGfmaXdid2BgKg/yfGteT0SAlvD/+tl/NWbfdW2wbqq6
+	 eO8lAvso0JbMOjcKr3Z4ZKmomaScWlzWun6AWg9kIK/BMlEj6vYruZwA41b/cqbX9R
+	 lls3NzvHM1USHU/uhE1FszvWEz5ZGOAiEUp5tQhXZJ/0nBr2ygi3bpMiYk53uHqUnF
+	 0XnAVdpzLOGgC9nKlOV5agNM3wcH59ka2pivMJLD/H5aBJbuNau5NkASuklgK77834
+	 klvPEiJbjd8Kg+h7egHmthYazXTXyfnr/DLaF6J76m+d1lENd4oaHHa8bYV/jvQqln
+	 N0+6fybY3WkEw==
+Date: Mon, 25 Sep 2023 16:06:18 +0200
+From: Mark Brown <broonie@kernel.org>
+To: wangweidong.a@awinic.com
+Cc: lgirdwood@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	perex@perex.cz, tiwai@suse.com, rf@opensource.cirrus.com,
+	herve.codina@bootlin.com, shumingf@realtek.com,
+	ryans.lee@analog.com, 13916275206@139.com, linus.walleij@linaro.org,
+	ckeepax@opensource.cirrus.com, povik+lin@cutebit.org,
+	harshit.m.mogalapalli@oracle.com, arnd@arndb.de,
+	yijiangtao@awinic.com, yang.lee@linux.alibaba.com,
+	liweilei@awinic.com, u.kleine-koenig@pengutronix.de,
+	colin.i.king@gmail.com, trix@redhat.com,
+	alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V4 4/7] ASoC: codecs: Add code for bin parsing compatible
+ with aw87390
+Message-ID: <ZRGT2oLQaJBVVYFH@finisterre.sirena.org.uk>
+References: <20230919105724.105624-1-wangweidong.a@awinic.com>
+ <20230919105724.105624-5-wangweidong.a@awinic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="QFIK27TUvqKWMvSN"
+Content-Disposition: inline
+In-Reply-To: <20230919105724.105624-5-wangweidong.a@awinic.com>
+X-Cookie: HELLO, everybody, I'm a HUMAN!!
 
-g12 and sm1 are fairly similar when it comes to audio.
-Both have 2 spdif outputs. While the 2nd output is named "spdifout_b" for
-both, the 1st one is named 'spdifout' for g12 and 'spdifout_a' for sm1.
 
-Use 'spdifout_a' for both instead.
+--QFIK27TUvqKWMvSN
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This change does not fix any particular problem. The intent is just to make
-it easier to have a common card definitions for platform designs using both
-SoC families, when spdifout is used.
+On Tue, Sep 19, 2023 at 06:57:21PM +0800, wangweidong.a@awinic.com wrote:
+> From: Weidong Wang <wangweidong.a@awinic.com>
+>=20
+> Add aw87390 compatible code to the aw88395_lib.c file
+> so that it can parse aw87390's bin file
+> Modify the function return value
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12.dtsi           |  4 ++--
- arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts      | 10 +++++-----
- arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts   | 10 +++++-----
- arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts    | 10 +++++-----
- arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts | 10 +++++-----
- 5 files changed, 22 insertions(+), 22 deletions(-)
+This breaks an x86 allmodconfig build:
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
-index eb442aaf57e4..e732df3f3114 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
-@@ -268,12 +268,12 @@ spdifin: audio-controller@400 {
- 			status = "disabled";
- 		};
- 
--		spdifout: audio-controller@480 {
-+		spdifout_a: audio-controller@480 {
- 			compatible = "amlogic,g12a-spdifout",
- 				     "amlogic,axg-spdifout";
- 			reg = <0x0 0x480 0x0 0x50>;
- 			#sound-dai-cells = <0>;
--			sound-name-prefix = "SPDIFOUT";
-+			sound-name-prefix = "SPDIFOUT_A";
- 			clocks = <&clkc_audio AUD_CLKID_SPDIFOUT>,
- 				 <&clkc_audio AUD_CLKID_SPDIFOUT_CLK>;
- 			clock-names = "pclk", "mclk";
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
-index 7310e192efe7..8355ddd7e9ae 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
-@@ -189,9 +189,9 @@ sound {
- 				"TDMOUT_C IN 1", "FRDDR_B OUT 2",
- 				"TDMOUT_C IN 2", "FRDDR_C OUT 2",
- 				"TDM_C Playback", "TDMOUT_C OUT",
--				"SPDIFOUT IN 0", "FRDDR_A OUT 3",
--				"SPDIFOUT IN 1", "FRDDR_B OUT 3",
--				"SPDIFOUT IN 2", "FRDDR_C OUT 3",
-+				"SPDIFOUT_A IN 0", "FRDDR_A OUT 3",
-+				"SPDIFOUT_A IN 1", "FRDDR_B OUT 3",
-+				"SPDIFOUT_A IN 2", "FRDDR_C OUT 3",
- 				"SPDIFOUT_B IN 0", "FRDDR_A OUT 4",
- 				"SPDIFOUT_B IN 1", "FRDDR_B OUT 4",
- 				"SPDIFOUT_B IN 2", "FRDDR_C OUT 4",
-@@ -324,7 +324,7 @@ codec-1 {
- 
- 		/* spdif hdmi and coax output */
- 		dai-link-9 {
--			sound-dai = <&spdifout>;
-+			sound-dai = <&spdifout_a>;
- 
- 			codec-0 {
- 				sound-dai = <&spdif_dit>;
-@@ -546,7 +546,7 @@ &spdifin {
- 	status = "okay";
- };
- 
--&spdifout {
-+&spdifout_a {
- 	pinctrl-0 = <&spdif_ao_out_pins>;
- 	pinctrl-names = "default";
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-index 7ca904f5acbb..4969a76460fa 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-@@ -155,9 +155,9 @@ sound {
- 				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
- 				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
- 				"TDM_B Playback", "TDMOUT_B OUT",
--				"SPDIFOUT IN 0", "FRDDR_A OUT 3",
--				"SPDIFOUT IN 1", "FRDDR_B OUT 3",
--				"SPDIFOUT IN 2", "FRDDR_C OUT 3";
-+				"SPDIFOUT_A IN 0", "FRDDR_A OUT 3",
-+				"SPDIFOUT_A IN 1", "FRDDR_B OUT 3",
-+				"SPDIFOUT_A IN 2", "FRDDR_C OUT 3";
- 
- 		assigned-clocks = <&clkc CLKID_MPLL2>,
- 				  <&clkc CLKID_MPLL0>,
-@@ -196,7 +196,7 @@ codec {
- 
- 		/* spdif hdmi or toslink interface */
- 		dai-link-4 {
--			sound-dai = <&spdifout>;
-+			sound-dai = <&spdifout_a>;
- 
- 			codec-0 {
- 				sound-dai = <&spdif_dit>;
-@@ -456,7 +456,7 @@ &sd_emmc_c {
- 	vqmmc-supply = <&flash_1v8>;
- };
- 
--&spdifout {
-+&spdifout_a {
- 	pinctrl-0 = <&spdif_out_h_pins>;
- 	pinctrl-names = "default";
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
-index 3e826095e792..8fc2e143cb54 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
-@@ -34,9 +34,9 @@ sound {
- 				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
- 				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
- 				"TDM_B Playback", "TDMOUT_B OUT",
--				"SPDIFOUT IN 0", "FRDDR_A OUT 3",
--				"SPDIFOUT IN 1", "FRDDR_B OUT 3",
--				"SPDIFOUT IN 2", "FRDDR_C OUT 3";
-+				"SPDIFOUT_A IN 0", "FRDDR_A OUT 3",
-+				"SPDIFOUT_A IN 1", "FRDDR_B OUT 3",
-+				"SPDIFOUT_A IN 2", "FRDDR_C OUT 3";
- 
- 		assigned-clocks = <&clkc CLKID_MPLL2>,
- 				  <&clkc CLKID_MPLL0>,
-@@ -75,7 +75,7 @@ codec {
- 
- 		/* spdif hdmi or toslink interface */
- 		dai-link-4 {
--			sound-dai = <&spdifout>;
-+			sound-dai = <&spdifout_a>;
- 
- 			codec-0 {
- 				sound-dai = <&spdif_dit>;
-@@ -139,7 +139,7 @@ rtc: rtc@51 {
- 	};
- };
- 
--&spdifout {
-+&spdifout_a {
- 	pinctrl-0 = <&spdif_out_h_pins>;
- 	pinctrl-names = "default";
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
-index 098a3af6d381..ce548b373296 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
-@@ -29,9 +29,9 @@ sound {
- 				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
- 				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
- 				"TDM_B Playback", "TDMOUT_B OUT",
--				"SPDIFOUT IN 0", "FRDDR_A OUT 3",
--				"SPDIFOUT IN 1", "FRDDR_B OUT 3",
--				"SPDIFOUT IN 2", "FRDDR_C OUT 3";
-+				"SPDIFOUT_A IN 0", "FRDDR_A OUT 3",
-+				"SPDIFOUT_A IN 1", "FRDDR_B OUT 3",
-+				"SPDIFOUT_A IN 2", "FRDDR_C OUT 3";
- 
- 		assigned-clocks = <&clkc CLKID_MPLL2>,
- 				  <&clkc CLKID_MPLL0>,
-@@ -70,7 +70,7 @@ codec {
- 
- 		/* spdif hdmi or toslink interface */
- 		dai-link-4 {
--			sound-dai = <&spdifout>;
-+			sound-dai = <&spdifout_a>;
- 
- 			codec-0 {
- 				sound-dai = <&spdif_dit>;
-@@ -125,7 +125,7 @@ &ir {
- 	linux,rc-map-name = "rc-khadas";
- };
- 
--&spdifout {
-+&spdifout_a {
- 	pinctrl-0 = <&spdif_out_h_pins>;
- 	pinctrl-names = "default";
- 	status = "okay";
--- 
-2.40.1
+/build/stage/linux/sound/soc/codecs/aw88395/aw88395.c: In function =E2=80=
+=98aw88395_prof
+ile_info=E2=80=99:
+/build/stage/linux/sound/soc/codecs/aw88395/aw88395.c:199:21: error: too fe=
+w arg
+uments to function =E2=80=98aw88395_dev_get_prof_name=E2=80=99
+  199 |         prof_name =3D aw88395_dev_get_prof_name(aw88395->aw_pa, cou=
+nt);
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /build/stage/linux/sound/soc/codecs/aw88395/aw88395.c=
+:17:
+/build/stage/linux/sound/soc/codecs/aw88395/aw88395_device.h:184:5: note: d=
+eclar
+ed here
+  184 | int aw88395_dev_get_prof_name(struct aw_device *aw_dev, int index, =
+char=20
+**prof_name);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
 
+--QFIK27TUvqKWMvSN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmURk8wACgkQJNaLcl1U
+h9AbHAf9GUfsbOtVMPrTo9cIihIM3OVqHie4TXTSEVdAf9Lg9U2Z9NDs92Cbjc9N
+7uisNTtQA6NMvc1UAYTYm7R2yRyHiaJRkW8gYmh2opw7WZgO7nbMAchxGMGvZjH8
+huc1lVOvgxbdcRnaZYG4RA8l4htTrMQTD2P+8fMmWQNW16d/xn+1/q0baZ/v8KWJ
+lAHGTem14Ry7ocS3WxxCJRrCYIp98a7SbyL3t0EbFHFFZM4JQ019PwaI7poDXRTx
+CeQmqsUQwnBwqSDCF+pFl15TEmlXEC7QFPm9B+zGjRN+TLD2ilsT3XgJfDfs9tn5
+u7FBcRLo6DeHIqOKu41HCAOkMVenfw==
+=xBek
+-----END PGP SIGNATURE-----
+
+--QFIK27TUvqKWMvSN--
 
