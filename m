@@ -1,135 +1,221 @@
-Return-Path: <devicetree+bounces-3259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11E8E7ADE7C
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 20:17:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C6B67ADF44
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 20:49:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id B6BF628138C
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 18:17:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 253F4281022
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 18:49:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F181224D7;
-	Mon, 25 Sep 2023 18:17:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E06A52136F;
+	Mon, 25 Sep 2023 18:49:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C83B224CE
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 18:17:56 +0000 (UTC)
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3A058E
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 11:17:54 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99bdcade7fbso845493466b.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 11:17:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695665873; x=1696270673; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NaqmMPfKXAOtSVjFcLvPHbWm7slgkGY5/ld8VMlAl3Q=;
-        b=tnJRoyTQJM/rLuk2CE0NEqg05Y0re8HYlwjWZff29FQMEk1sFFdH91IXVAR1Bs3j4G
-         CNs/XrNwRPml7iXEwJe6jGeUokzFMMK3YoJ7KdUisVSbrAomteolGl7kgQgnFI1XP899
-         N6ecAwNuC0jfOXXTv3x682xPYdnePWPMDkCG2jkuWVh+aQxpWqgN1u59VPRXtRTaD1pU
-         n63ATV0ciiysEhppB9Nvh4BYNgSV8lv0mSRAAWXC5UV6AmJxkcI7rSp6Sww7pQ8LNLJj
-         f5mKsrvNFyMPoUpkr57eVzTHL1UWJw5Lx6Hn4SjLAiyixh7iJVnWEu1SKeqbDiWTJoM4
-         aRrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695665873; x=1696270673;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NaqmMPfKXAOtSVjFcLvPHbWm7slgkGY5/ld8VMlAl3Q=;
-        b=I0qDdgtcCIue7k9+s9GlhiJKsLjRBsKkD/aJc9wauYdAO4adrBSnhzx6C9xB+PrqNc
-         n/6+fz9Xdx6KiSV86RXPpHFkOw6ir6ace+6fmgqn2s69hzPqSoIUo71zsk+ooV1e5R82
-         +mGGnp0U83gCVXYv+bagXyiSLQ471gyb9vMAyawDHfwjKwknghI3gA9r+cDTTuirOIaG
-         QLl4nGz0TMYAE09+FY4uzC8Ap86KmyET0qLoWlBCLsN+FK6GpU9Ck86pFz8lGNryHEjz
-         nMvjodZkoO9qjsvuWF0OR/dJCFR9gslfZXUf//l+BsH+7niH90C8PQaC5auSP8XZqcm5
-         dxnA==
-X-Gm-Message-State: AOJu0YylB4cEoO/qvQTFGEDYF34U4UfhR1ZjDFiNeM4Ki3B4FNPgcEJ0
-	qDMw6QBLnvW2gENU2+5gIV0dHw==
-X-Google-Smtp-Source: AGHT+IFxzjt0ed1oiSWTrzfayOWn6SKtv3vQPmnoX8XFg6JSjmVqbuZx+3Y90wckx0OT+kjZeilupQ==
-X-Received: by 2002:a17:907:26cb:b0:9ae:513a:528b with SMTP id bp11-20020a17090726cb00b009ae513a528bmr8432278ejc.36.1695665873235;
-        Mon, 25 Sep 2023 11:17:53 -0700 (PDT)
-Received: from [127.0.1.1] ([93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id j26-20020a170906831a00b00997d7aa59fasm6793962ejx.14.2023.09.25.11.17.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Sep 2023 11:17:52 -0700 (PDT)
-From: Alexandre Mergnat <amergnat@baylibre.com>
-Date: Mon, 25 Sep 2023 20:17:41 +0200
-Subject: [PATCH v6 7/7] arm64: dts: mediatek: add iommu support for mt8365
- SoC
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D10A21C29A
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 18:49:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56B09C433D9;
+	Mon, 25 Sep 2023 18:49:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695667772;
+	bh=+rcy4oYAhba9wCyLwGbxX2HdccPNPodqOPJo6IEv+Zs=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=h8HpK/K+JNku8lmwmMNxoufWJOItCjPCi/g42NpWdooJcaidgyNGKIyEraqlT0b3B
+	 KkemmWKJLU+NVACs0fBZL2AxSWBntKOybYk+3ljPvdwkaj2KH9fFwSeFsE+gcI4Fgx
+	 TPvIfgMPJCh3AL2cqLbcEaKK0NXtoWjawqQAdacQE84+Trqyo1DLdTBiCMWoWiden0
+	 pS3BZAbkXTFe2kL4ShpESGqZrGvS7XX/T2mDFiKl2Ntf1BkDuuEtdKfPtrXCdUUC+R
+	 4s5+peO5db482uGrgAUQbwcwqzSjAbefuvnVvCJ0Ja4B0xR8c2uvBI0eAw+KIJd4C9
+	 Q/kOQXKuQovTg==
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5042f391153so8339805e87.1;
+        Mon, 25 Sep 2023 11:49:32 -0700 (PDT)
+X-Gm-Message-State: AOJu0YwMBvEsBTPJCUPPCx2Mq2aXLJXRgVXyt198zK4bJ/NIzXr4Ut/k
+	WsTsG6ok9kVi+iMRC9JR+HRc40Qzo20pfLiA0g==
+X-Google-Smtp-Source: AGHT+IGcHkOdCdPfbzp5VC5myRrLOdVgIvfsU2VlMZvLU+MhLgLmRzzSK/ci9n3/LNSjtTK1Mz2yOzkxqKrQowyQlHw=
+X-Received: by 2002:a05:6512:1598:b0:503:a1b:d0c5 with SMTP id
+ bp24-20020a056512159800b005030a1bd0c5mr215163lfb.14.1695667770401; Mon, 25
+ Sep 2023 11:49:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230207-iommu-support-v6-7-24453c8625b3@baylibre.com>
-References: <20230207-iommu-support-v6-0-24453c8625b3@baylibre.com>
-In-Reply-To: <20230207-iommu-support-v6-0-24453c8625b3@baylibre.com>
-To: Yong Wu <yong.wu@mediatek.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Rob Herring <robh+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Alexandre Mergnat <amergnat@baylibre.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1094; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=9vmrSAYQ/OJGejgymOj9rq18l0jyb8olHnhsKnJiPYw=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBlEc7Fj1C08D9uWY76sqRpCZwA3sp773KCNObftJqZ
- Fs9XuXGJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZRHOxQAKCRArRkmdfjHURTJHD/
- 95xhPf1bWof8l+Jc4t2D0Wyk7Htq4NwdZDFDBUCTIeyyJYjTdPXumlZAMdZI5JCZH1b4axEjdOEXB4
- o5eaGyx6Hm20412uB16q/KxliblLI+mi/FG6cPHCJ8GiuEHWHdzcrH0vLRzr38x72dQKoEWQBVtBHR
- VKPvHuV8KWebyFt+QxFLMeUDfsojemOuJDOL34mnmSufu8XfKLJM3Fs3mv3+6bZya8hvyEZbPWZae6
- orUW1XRiKmtM5NMTTwUlgJDM3uwwKSCm+hCNgvf+UlySjiNGhm3e5olJ4Ss514Jb6y6h1a1pHYgSiD
- WV13451VfZZo0pZ/TWAUPNhtN0ETsF+V+yDD0uS1zYs/l/A42oDSIWX8oLWw1hGiGCnBkL55ZDgRxs
- mUAvzPH2bk2JE/DxKhA6bHLgF9Ho7wNnZcmZwG4uWJXFUd4US5uucRsAAv0USxVEjWxVpVnWLpozbm
- nq3cAm6HnVlYpJCTDB8ArODMbmF+EdYebP+C9bnCaUVY0J9tBkowRBrLpPL+0nA6SE9wmFjKi9cU/i
- peVev0hH+2rLNlTp7tuzz60ob90gVU8rcqjaSgYqEIakXXrksAuAh6H/Uww7vcBJo1dbq3pL7IYDhg
- k3lifliO+iCkTBiZ+KMyiEJ26CUGXcRB061PY/aQ/WyhNLoZqeMbN253uMGw==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+References: <20230921124459.1.I91ddcfacf9b234af5cc3eabea4b62edb31153317@changeid>
+ <CAL_Jsq+WuYDU+yY98opTHr1PT-J9mFYJQBjVMnk+FSWLDUO33w@mail.gmail.com>
+ <CAPnjgZ1pfxaMG1n5yOBhiOhsNrRjck1K92U7Ga=+VTY_jjjrVg@mail.gmail.com>
+ <20230922174649.GA3320366-robh@kernel.org> <CAPnjgZ3ojfAv=BHqOhM=-NnYqCm81Ny=PsGKiNphKTmw++fk9w@mail.gmail.com>
+ <CAL_JsqJqvyP=c93DHDO8A5RXv7Lz_Z7eEHSbJQ=JCo+qPVhSfg@mail.gmail.com>
+ <CAPnjgZ3BnD9aX3cNNPiGRKTOj+YeurHCLv6K0TRFhAtY21Qufw@mail.gmail.com>
+ <20230925092122.0b615f25@xps-13> <CAPnjgZ0Z5J_33HuQF-5XgDFmZim0nHHzvZJOOZobWw_cOJd=9g@mail.gmail.com>
+ <20230925164736.5efbf4c0@xps-13> <CAPnjgZ3YCQHJ-eXuX8rYx2Qb6QEL+XviFmXYTON6M-sGPWSBBg@mail.gmail.com>
+ <20230925172447.43dcef88@xps-13> <CAPnjgZ20c9FsYVjSrQ9qbFy9Y67BqDP2zxMyATx===PFhO69Ew@mail.gmail.com>
+In-Reply-To: <CAPnjgZ20c9FsYVjSrQ9qbFy9Y67BqDP2zxMyATx===PFhO69Ew@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 25 Sep 2023 13:49:17 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJfjHqtTB2qfLmNxmQtn1rZewNyNe+Knu_Z4UCdPoPhSQ@mail.gmail.com>
+Message-ID: <CAL_JsqJfjHqtTB2qfLmNxmQtn1rZewNyNe+Knu_Z4UCdPoPhSQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mtd: Add a schema for binman
+To: Simon Glass <sjg@chromium.org>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>, devicetree@vger.kernel.org, 
+	U-Boot Mailing List <u-boot@lists.denx.de>, linux-mtd@lists.infradead.org, 
+	Tom Rini <trini@konsulko.com>, Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add iommu support in the SoC DTS using the 4 local arbiters (LARBs)
+On Mon, Sep 25, 2023 at 11:25=E2=80=AFAM Simon Glass <sjg@chromium.org> wro=
+te:
+>
+> Hi Miquel,
+>
+> On Mon, 25 Sept 2023 at 09:24, Miquel Raynal <miquel.raynal@bootlin.com> =
+wrote:
+> >
+> > Hi Simon,
+> >
+> > > > > > > > > > > I was assuming that I should create a top-level compa=
+tible =3D "binman"
+> > > > > > > > > > > node, with subnodes like compatible =3D "binman,bl31-=
+atf", for example.
+> > > > > > > > > > > I should use the compatible string to indicate the co=
+ntents, right?
+> > > > > > > > > >
+> > > > > > > > > > Yes for subnodes, and we already have some somewhat sta=
+ndard ones for
+> > > > > > > > > > "u-boot" and "u-boot-env". Though historically, "label"=
+ was used.
+> > > > > > > > >
+> > > > > > > > > Binman has common properties for all entries, including "=
+compress"
+> > > > > > > > > which sets the compression algorithm.
+> > > > > > > >
+> > > > > > > > I see no issue with adding that. It seems useful and someth=
+ing missing
+> > > > > > > > in the existing partition schemas.
+> > > > > > >
+> > > > > > > OK I sent a patch with that.
+> > > > > > >
+> > > > > > > >
+> > > > > > > > > So perhaps I should start by defining a new binman,bl31-a=
+tf which has
+> > > > > > > > > common properties from an "binman,entry" definition?
+> > > > > > > >
+> > > > > > > > I don't understand the binman prefix. The contents are ATF =
+(or TF-A
+> > > > > > > > now). Who wrote it to the flash image is not relevant.
+> > > > > > >
+> > > > > > > Are you suggesting just "atf-bl31", or "arm,atf-bl31" ? Or sh=
+ould we
+> > > > > > > change it to "tfa-bl31"?
+> > > > > >
+> > > > > > I don't really understand the relationship with TF-A here. Can'=
+t we
+> > > > > > just have a kind of fixed-partitions with additional properties=
+ like
+> > > > > > the compression?
+> > > > >
+> > > > > Binman needs to know what to put in there, which is the purpose o=
+f the
+> > > > > compatible string.
+> > > >
+> > > > But "what" should be put inside the partition is part of the input
+> > > > argument, not the output. You said (maybe I got this wrong) that th=
+e
+> > > > schema would apply to the output of binman. If you want to let user
+> > > > know what's inside, maybe it is worth adding a label, but otherwise=
+ I
+> > > > don't like the idea of a compatible for that, which for me would me=
+an:
+> > > > "here is how to handle that specific portion of the flash/here is h=
+ow
+> > > > the flash is organized".
+> > >
+> > > But I thought that the compatible string was for that purpose? See fo=
+r
+> > > example "brcm,bcm4908-firmware" and "brcm,bcm963xx-imagetag" and
+> > > "linksys,ns-firmware".
+> >
+> > These three examples apparently need specific handling, the partitions
+> > contain meta-data that a parser needs to check or something like that.
+> > And finally it looks like partition names are set depending on the
+> > content that was discovered, so yes, the partition name is likely the
+> > good location to tell users/OSes what's inside.
+> >
+> > > > > > Also, I still don't understand the purpose of this schema. So b=
+inman
+> > > > > > generates an image, you want to flash this image and you would =
+like the
+> > > > > > tool to generate the corresponding (partition) DT snippet autom=
+atically.
+> > > > > > Do I get this right? I don't get why you would need new compati=
+bles for
+> > > > > > that.
+> > > > >
+> > > > > It is actually the other way around. The schema tells Binman how =
+to
+> > > > > build the image (what goes in there and where). Then outputs an
+> > > > > updated DT which describes where everything ended up, for use by =
+other
+> > > > > tools, e.g. firmware update. It is a closed loop in that sense. S=
+ee
+> > > > > the references for more information.
+> > > >
+> > > > Maybe I fail to see why you would want these description to be
+> > > > introduced here, if they are not useful to the OS.
+> > >
+> > > Well I was asked to send them to Linux since they apparently don't
+> > > belong in dt-schema.
 
-Reviewed-by: Yong Wu <yong.wu@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
- arch/arm64/boot/dts/mediatek/mt8365.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+That is not what I said. I said fixed-partitions should be extended. I
+prefer they are extended in-place before moving them rather than the
+other way around.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365.dtsi b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-index afcfa1dd242e..24581f7410aa 100644
---- a/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-@@ -471,6 +471,14 @@ sysirq: interrupt-controller@10200a80 {
- 			reg = <0 0x10200a80 0 0x20>;
- 		};
- 
-+		iommu: iommu@10205000 {
-+			compatible = "mediatek,mt8365-m4u";
-+			reg = <0 0x10205000 0 0x1000>;
-+			interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_LOW>;
-+			mediatek,larbs = <&larb0>, <&larb1>, <&larb2>, <&larb3>;
-+			#iommu-cells = <1>;
-+		};
-+
- 		infracfg_nao: infracfg@1020e000 {
- 			compatible = "mediatek,mt8365-infracfg", "syscon";
- 			reg = <0 0x1020e000 0 0x1000>;
+> > > These are firmware bindings, as indicated, but I
+> > > took them out of the /firmware node since that is for a different
+> > > purpose. Rob suggested that partitions was a good place. We have fwup=
+d
+> > > using DT to hold the firmware-update information, so I expect it will
+> > > move to use these bindings too.
+> >
+> > I would definitely use fixed partitions as that's what you need then:
+> > registering where everything starts and ends. If you have "in-band"
+> > meta data you might require a compatible, but I don't think you
+> > do, in this case you should probably carry the content through a label
+> > (which will become the partition name) and we can discuss additional
+> > properties if needed.
+>
+> I believe I am going to need a compatible string at the 'partitions'
+> level to indicate that this is the binman scheme. But we can leave
+> that until later.
 
--- 
-2.25.1
+Perhaps:
 
+compatible =3D "binman", "fixed-partitions";
+
+Though I don't understand why binman couldn't just understand what
+"fixed-partitions" means rather than "binman".
+
+
+> So you are suggesting 'label' for the contents. Rob suggested
+> 'compatible' [1], so what should I do?
+
+"label" is for consumption by humans, not tools/software. Compatible
+values are documented, label values are not. Though the partition
+stuff started out using label long ago and it's evolved to preferring
+compatible.
+
+> With this schema, would every node be called 'partition@...' or is
+> there flexibility to use other names?
+
+The preference is to use generic names. Do you mean without a
+unit-address or different from "partition"? The need for the input
+side of binman to have dynamic addresses seems like the biggest issue.
+That's allowed in other cases with "partition-N" or "partition-foo"
+IIRC. I don't think we want to allow that for "fixed-partitions" at
+least in the DTB (i.e. the output side of binman).
+
+Rob
 
