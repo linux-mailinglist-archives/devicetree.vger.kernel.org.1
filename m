@@ -1,116 +1,132 @@
-Return-Path: <devicetree+bounces-3197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3476E7ADA13
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 16:28:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 594257ADA10
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 16:28:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 385051C2037C
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 14:28:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id F28222812F9
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 14:28:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 249C31C282;
-	Mon, 25 Sep 2023 14:28:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FDA31BDFF;
+	Mon, 25 Sep 2023 14:28:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EFEA11C8B;
-	Mon, 25 Sep 2023 14:28:22 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48AD8FC;
-	Mon, 25 Sep 2023 07:28:20 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38PERtRa100982;
-	Mon, 25 Sep 2023 09:27:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1695652075;
-	bh=kiIE/cuC2sOtvlWX64aG3nF6nKMN73VRz8KekUZdOYQ=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=JUe7AiMUo2yByN6iefSA1twMjHVoU9UHnpQVAW7ZJRQTighFC/ZmpfF3Sh+37uW9Z
-	 d3J7lcVRJnnlu1+8coZjbLaDi+Fr8M6wvyLXr+9dxxEgIZJWjHQGqHOEwHIA1NOAnv
-	 Lu7BlRIgXP0lEEnkzJ0pPfSwkJyBgXjOP8MS/ZAQ=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38PERtSl002275
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 25 Sep 2023 09:27:55 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 25
- Sep 2023 09:27:54 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 25 Sep 2023 09:27:54 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38PERsLG051392;
-	Mon, 25 Sep 2023 09:27:54 -0500
-Date: Mon, 25 Sep 2023 09:27:54 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Wadim Egorov <w.egorov@phytec.de>
-CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <keescook@chromium.org>, <tony.luck@intel.com>, <gpiccoli@igalia.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-        <upstream@lists.phytec.de>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am625-beagleplay: Fix typo in ramoops
- reg
-Message-ID: <20230925142754.vzvk6o2jncecaphv@whiny>
-References: <20230925140710.478027-1-w.egorov@phytec.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96E5111C8B
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 14:28:16 +0000 (UTC)
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D92C810D
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:28:14 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-405505b07dfso25913305e9.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:28:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=aceart.de; s=google; t=1695652093; x=1696256893; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:organization
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=o3p8nJzBx02DNMJ+7EnZtFgR5MAZSx4FbGOUUlLpYxw=;
+        b=d9Lkph9E3pMO4GQYRdiuYmhfuCQRo0HYu2OVHL7mzNYBTBpuRd0DftyfFmVJ5F5Wm1
+         N/kcJQtI7m54vukvj6tNBZpFPCqWY8PfyxnlGREn1IYM/Lo9gkfMCHcGu5GX5GsfgOyR
+         hV4g+AP56ngrIZZxshO46d+Hz1D0jtn+Qoq+alBkAafHdb18uvWcgu3kfYMdrUq12nTy
+         mmJvQi1R8tdUnMtRITfbzTHmXXw7T2q6RcO1D1Wws7b1U7hijbEYS5uI00PlomE4ZMZt
+         nVZBdAIbvr26Kc49OOxUd54kPMOfIp4ROU4wJ4Nx7BxKZ4gi/IkfCM+Kfc4nHuwOvigR
+         mTSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695652093; x=1696256893;
+        h=mime-version:user-agent:content-transfer-encoding:organization
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=o3p8nJzBx02DNMJ+7EnZtFgR5MAZSx4FbGOUUlLpYxw=;
+        b=QI2zipwTo4/OpvuEjf8LUCjndCOXnSxN/Lqw8iRrKiPsnhwMV2w0AVh0MJtXNzWgw5
+         8ujTeSpR63zH1E1JQgZCSt1H4N6DxKg6yrPmRSGvWMjCbdI4+zt7W+F+Q3br8RJykRtS
+         OKOI3dUNrq2EREFdt77fDjJS+bcvR59Cdnhx9Zxj6XIhrFtpz65RJrl8Qg1IWn+n65b4
+         UThFcfRDrMeTOBsgyZYyUlJ59zN851xXC/U22JkFtr44BanMqumyttbG/Zkq4j5Dqb30
+         U3qUgRf0Hc0KKgfhTFqa2SjQ2CctES0ZQ3zb4MwyKJVFXSBzWu9/Po8xfVmgBTjy2AUa
+         M9zQ==
+X-Gm-Message-State: AOJu0Yx25uFVV4BMk4t+zF6dSZLFa031R7a7xxaPNmQ6GC6EP7703sN7
+	5PEKBUfk2JkH44+Y2y8GOZOn8Q==
+X-Google-Smtp-Source: AGHT+IHyhLLHIMrxMT5+MjTuP9mXxsxsvs3bZXzseRBVbE5hWbY+ZOUden2sS//p4i8tzLc8BaX4jw==
+X-Received: by 2002:adf:ef0b:0:b0:316:fc03:3c66 with SMTP id e11-20020adfef0b000000b00316fc033c66mr5604701wro.3.1695652093259;
+        Mon, 25 Sep 2023 07:28:13 -0700 (PDT)
+Received: from [192.168.2.171] ([94.186.212.25])
+        by smtp.gmail.com with ESMTPSA id o9-20020a5d6849000000b0031989784d96sm12043993wrw.76.2023.09.25.07.28.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Sep 2023 07:28:12 -0700 (PDT)
+Message-ID: <9ca32137e42a22b016d8d417ee9e0dc024ef2aa9.camel@aceart.de>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: msm8939-huawei-kiwi: Add initial
+ device tree
+From: lukas walter <lukas.walter@aceart.de>
+To: konrad.dybcio@linaro.org
+Cc: agross@kernel.org, andersson@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	lukas.walter@aceart.de, phone-devel@vger.kernel.org, 
+	raymondhackley@protonmail.com, robh+dt@kernel.org, 
+	~postmarketos/upstreaming@lists.sr.ht
+Date: Mon, 25 Sep 2023 16:28:12 +0200
+In-Reply-To: <44a00fc6-d700-4713-34f0-36b172d8cb90@linaro.org>
+Organization: aceArt GmbH
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230925140710.478027-1-w.egorov@phytec.de>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 16:07-20230925, Wadim Egorov wrote:
-> Seems like the address value of the reg property was mistyped.
-> Update reg to 0x9ca00000 to match node's definition.
-> 
-> Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
+Date: Wed, 20 Sep 2023 16:47:30 +0200
 
-Missing:
+>> +
+>> +	reserved-memory {
+>> +		reserved@84a00000 {
+>> +			reg =3D <0x0 0x84a00000 0x0 0x1600000>;
+>> +			no-map;
+>> +		};
+>Do we know what this is for?
 
-Fixes: f5a731f0787f ("arm64: dts: ti: Add k3-am625-beagleplay")
+This seems to be some QSEE/TrustZone memory required to boot.
+I would name it `qseecom_mem: qseecom@84a00000` like other phones
+currently have it.
 
-With that:
+`[    1.162115] QSEECOM: qseecom_probe: secure app region
+addr=3D0x84a00000 size=3D0x1900000`
 
-Reviewed-by: Nishanth Menon <nm@ti.com>
+>> +	};
+>> +
+>> +	gpio-hall-sensor {
+>> +		compatible =3D "gpio-keys";
+>> +
+>> +		pinctrl-0 =3D <&gpio_hall_sensor_default>;
+>> +		pinctrl-names =3D "default";
+>> +
+>> +		label =3D "GPIO Hall Effect Sensor";
+>I think we can have both hall sensor and V+ under gpio-keys
+>
+>And then I am not sure how useful the label is for the container
+>node, maybe you or somebody else can tell me whether it's used
+>anywhere
+>> +
+>> +		event-hall-sensor {
+>> +			label =3D "Hall Effect Sensor";
+>> +			gpios =3D <&tlmm 69 GPIO_ACTIVE_LOW>;
+>> +			linux,input-type =3D <EV_SW>;
+>> +			linux,code =3D <SW_LID>;
+>> +			linux,can-disable;
+>Should this not be a wakeup-source btw?
 
-> ---
->  arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-> index 7cfdf562b53b..2de74428a8bd 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-> @@ -58,7 +58,7 @@ reserved-memory {
->  
->  		ramoops: ramoops@9ca00000 {
->  			compatible = "ramoops";
-> -			reg = <0x00 0x9c700000 0x00 0x00100000>;
-> +			reg = <0x00 0x9ca00000 0x00 0x00100000>;
->  			record-size = <0x8000>;
->  			console-size = <0x8000>;
->  			ftrace-size = <0x00>;
-> -- 
-> 2.25.1
-> 
+I am not sure how to change this. I would like to leave this as many
+other hall sensors seem to be configured identically.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Is this fine?
+Should I send a V2 with the signoff and reserved-memory changes?
 
