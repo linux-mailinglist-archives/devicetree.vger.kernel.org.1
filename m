@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-2969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1F7D7AD0AE
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 08:54:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 011D27AD0B2
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 08:54:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id 87F951F243B1
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 06:54:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 7EE1828167F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 06:54:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFD22101F8;
-	Mon, 25 Sep 2023 06:54:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20628101FA;
+	Mon, 25 Sep 2023 06:54:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F0B0101F3
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 06:54:03 +0000 (UTC)
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 469D4C6
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 23:54:01 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2bff7d81b5eso95397731fa.0
-        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 23:54:01 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C91C4101F8
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 06:54:13 +0000 (UTC)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A5E3101
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 23:54:11 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9b29186e20aso33935466b.2
+        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 23:54:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695624839; x=1696229639; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695624850; x=1696229650; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=76B/2ldLWNg041stQYBo6syPGhn15cocvV0xv35lTBQ=;
-        b=nUY5M3O1eW5nGKBvqvShSDdiy8GNDC3rxSoJitvufY6n3pxxp3Mb/OEAqnppRfChaZ
-         psthVVKVRRuSglD+qLjrGCkkr60w1L36LlmSWKZPdlN4EaS5OLBmaId1WdU6DYI2DY2i
-         NbCLg7m2FaPNKUyUy9lEQcSRTifwjYE5QKk8eTZEE+dK27tndH6Gu2gsQRF2OC+m+sMX
-         iei0Y+mS61LIbTe14xoR5If1K3sGu21j87M28VqKzqv1HUaJZlgMJTTkd0ZgYaWMihmx
-         X3YxA+DxHzb3JVsY7VRas9R6wR/SawExxj8teFPeBmyt9CehzQZ8kxwuNRo2Lt3lEkzt
-         0+/Q==
+        bh=ej8MhLSYVgaYvE0AkBMTcIjZZHyYhh09N7VoDW+YVrE=;
+        b=xs5XhtjxjvEBRhDB9V9xcz9mk+Vj0zxEhcV0sTMkgddXbHS+N7ttpW0dIFXoYK9GF0
+         wHwJ41uRvbQKIzY8w57lvQ8YhSd/7qIzbS1emDjMEV0D3P1zsNTdxp1uw9iosLqt18Ro
+         v+jaCiDJRK2pKfB8fGQgXHAu3qd6H9CQJfioP7a+F+Wt9DeM/IPErzMn+WVAALGVNP+T
+         HRePNWY0rOfhUogWcHrOROgEBB1UjGpkHvnqzTeFIAgU+S1reoQrDszEl7nkf4UpxwgM
+         EzYmK69Y1ogkB4AMzBoljMsEZxTiOhmF4yY5P9w4dxC/cV/5d2ktz0AKC/zaPI9vVM2D
+         Imxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695624839; x=1696229639;
+        d=1e100.net; s=20230601; t=1695624850; x=1696229650;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=76B/2ldLWNg041stQYBo6syPGhn15cocvV0xv35lTBQ=;
-        b=tZvSK8IQZN3wwMrW/Fap822c7Kfp7MA+8nbn5wkTbaypNpyv0rgJITj5bCfQqanxcE
-         wuwgGWeTFxr1tDAkSeDXRYFuJ6HWxJWU41oCNR1Tl5qiyYCZT02NFO7tyGkTS9TJUqUd
-         CeVKI6+y0L4m2Oa8G3XNhPaaPk+UrvE0hylRQkHGvvSblQIRVfcHZmw5AErinj00Ogae
-         5s16e1O61lY1BIxnC1GBU+jGXdywb6iel5AxuIj/rxyuL9TnOBjvAECcxRDTQmDQ/R9E
-         a6DjUvokDnU5rs99vcOP1vEJ4/QLBsYgcPHT2b/15E/0PdoMRFf9cIK7FD7pTsdTuBzb
-         nHvw==
-X-Gm-Message-State: AOJu0YzNkkt9RHURUr+EPfJlsLV4TpyAmYqswjRNQLWil8Scl4wiljSX
-	qZxy2hrEJDoCTFxvV5qrgHHT0Q==
-X-Google-Smtp-Source: AGHT+IFSL3h4hwRHeiH+yuBquKU3yCLvAS1FdwRqLSjZvfwJq3Y+1YvdOyspmnRJsIVhk3WeHD36nw==
-X-Received: by 2002:a2e:9b96:0:b0:2bc:b9c7:7ba8 with SMTP id z22-20020a2e9b96000000b002bcb9c77ba8mr4835512lji.43.1695624839472;
-        Sun, 24 Sep 2023 23:53:59 -0700 (PDT)
+        bh=ej8MhLSYVgaYvE0AkBMTcIjZZHyYhh09N7VoDW+YVrE=;
+        b=fe/sl3ReNM9kvGiy+ZWCbnKsoa9WKKFBv5oDb0Z57d7O9IfZ0/s6x6KRpQJg6YQPLp
+         J5tix8lUvyvW58eo6UClMyv9Yo5vd5UqFwpcr7/ec3OzgymFbmB1g+q5e0RuGrv8LwZV
+         VNLPOIEO7rrjjxh0X8uYzx/bqyp/pln/ZuqVhRkQfTmTkdbrJCtUZKBa+h82M1k6Nw/j
+         MoPluTkYhyM4VGEbFJmneijBbXT79oZD4FAwf+Qshhyr849VZCrsYHHKTuHG6UGzkBRe
+         DFa7N4+QQnSr3YpIYvF2Nw6TlSy4oFJseLJZWWBeuu7jbgfSBuIRlpD5dgd5Fyc8gj69
+         y7xg==
+X-Gm-Message-State: AOJu0YzqSEHGUR8E/E66WNZdOz24kDDwUjgG0oMBXdMv9GHNOiozyzkg
+	h2G6ide3wbDu7ipB8zWfou4kLg==
+X-Google-Smtp-Source: AGHT+IGBUIfa6aANKkuYn1kq7Cv/JwfzS0sJ8BfNDAKMelq2TRVJoGoMykWtYbSigsDvLEWvdulIRw==
+X-Received: by 2002:a17:906:3089:b0:9ae:70b7:bc9f with SMTP id 9-20020a170906308900b009ae70b7bc9fmr5269280ejv.2.1695624849895;
+        Sun, 24 Sep 2023 23:54:09 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id g27-20020a170906349b00b0099bc0daf3d7sm5843290ejb.182.2023.09.24.23.53.57
+        by smtp.gmail.com with ESMTPSA id g27-20020a170906349b00b0099bc0daf3d7sm5843290ejb.182.2023.09.24.23.54.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Sep 2023 23:53:58 -0700 (PDT)
-Message-ID: <27a838e1-28ed-48a6-86fa-1b7e67f694f8@linaro.org>
-Date: Mon, 25 Sep 2023 08:53:56 +0200
+        Sun, 24 Sep 2023 23:54:09 -0700 (PDT)
+Message-ID: <6db5b758-2ae6-46fb-a699-d73a2b98b4c2@linaro.org>
+Date: Mon, 25 Sep 2023 08:54:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,8 +63,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] ARM: dts: omap: omap4-embt2ws: Add IMU at control
- unit
+Subject: Re: [PATCH 1/3] dt-bindings: iio: imu: mpu6050: Add level shifter
 Content-Language: en-US
 To: Andreas Kemnade <andreas@kemnade.info>, jic23@kernel.org,
  lars@metafoo.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -74,7 +73,7 @@ To: Andreas Kemnade <andreas@kemnade.info>, jic23@kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-omap@vger.kernel.org
 References: <20230924222559.2038721-1-andreas@kemnade.info>
- <20230924222559.2038721-4-andreas@kemnade.info>
+ <20230924222559.2038721-2-andreas@kemnade.info>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,7 +119,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230924222559.2038721-4-andreas@kemnade.info>
+In-Reply-To: <20230924222559.2038721-2-andreas@kemnade.info>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -131,21 +130,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 25/09/2023 00:25, Andreas Kemnade wrote:
-> Add also the level-shifter flag to avoid probe failure in magnetometer
-> probe.
+> Found in ancient platform data struct:
+> level_shifter: 0: VLogic, 1: VDD
 > 
 > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 > ---
-
-
->  &keypad {
-> @@ -530,6 +539,12 @@ OMAP4_IOPAD(0x0fc, PIN_INPUT | MUX_MODE0)       /* abe_mcbsp2_fsx */
->  		>;
->  	};
+>  .../devicetree/bindings/iio/imu/invensense,mpu6050.yaml         | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml b/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
+> index 1db6952ddca5e..6aae2272fa15c 100644
+> --- a/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
+> +++ b/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
+> @@ -48,6 +48,8 @@ properties:
 >  
-> +	mpu9150_pins: pinmux_mpu9150_pins {
+>    mount-matrix: true
+>  
+> +  invensense,level-shifter: true
 
-No underscores in node names.
+It does not look like you tested the bindings, at least after quick
+look. Please run `make dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+Maybe you need to update your dtschema and yamllint.
 
 Best regards,
 Krzysztof
