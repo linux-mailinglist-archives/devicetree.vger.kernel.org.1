@@ -1,180 +1,363 @@
-Return-Path: <devicetree+bounces-3127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B57307AD667
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:51:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D73017AD66F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:53:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id D07A61C20364
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 10:51:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id E33B3282424
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 10:53:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9FE615E9E;
-	Mon, 25 Sep 2023 10:51:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CE7F15EB2;
+	Mon, 25 Sep 2023 10:53:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B12B15E98
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 10:51:03 +0000 (UTC)
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2043.outbound.protection.outlook.com [40.107.244.43])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5F1BC6;
-	Mon, 25 Sep 2023 03:51:01 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lQ40nBRmpysi+9BX94bRlrJEqbQuFUH0nlMvgSGd4D4pqS/bTB5qcuNOCIo5DmsonJfjaKv8F5RgBh7hrm2zHsHH89eK6jZsh8uwQm50c3Diryh2B17ryaDWtSSRe+j/jOSNFtjsuTZw3bZfmeUufxA+OJcmY2icnUxTc5OciI+/Y8yFjKU8wUAGzU0scKfe/L3HsYAWQ7ZMnAplc6C0pspg3Dbbw/CKOPH0digvNbEYyHEXu03agygsGyXMdu/S2+IOy4yTPWv1PEmXAwgcE6Za2ITkto/Lt//aCwn6RSgVsXCO3EVHAzldreI4940uH1nhAioMfs7LW0GySnDvAg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9I5GAwja0hu6EaJ5Xy74aY+erc0dfJiqfJmm62V5vzE=;
- b=GQ0CslD3UD5XHVo3UWrZefbVtdGB9Xgzg/3jzURtPVyCdAxenFSFLCi0t0UyS4h8DGNum+G2mmLAnph3y4suHWW5FTabc3SKUIpRiVHYbv69UBEsAH1Itp+xKWVT21ZLcDH0XjBuy+oXaG+6uNqw62Aytz2Qnzosrgi9ee+5eiTz+O2tL3zcArHblxTOo4mUk02/iHKHA1Q3RPuV3zdNmBeMvnlmteGE2T2iERFoU670q96N4aHWIppXlr57LgemJpXbZuVSR3Te7EvjKr6tAqKtF8uMJIt0HjovRZZFegbw7pb5Dr24DrNkf5emB8/FDbNgckh8TGWn9hD+42kdqg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9I5GAwja0hu6EaJ5Xy74aY+erc0dfJiqfJmm62V5vzE=;
- b=B3PAHfAU0sfTP4ZVANDfr+F4t8wB6VL676KF48D1sUbXhga/ABEEFwkK8ZYiQSNDvrpCgBiVhSxVG2GHHYAoBioN3L7shsZxJNO2yCrYkWGHatT7PuwGofXgCEQPYG8Ap3A5lTOEqn3y001ixvNxXvrh9ijnbINZiF3zow9Y04kKTipewIAbkVdzsHPAkGa3wKxb5pcRWhod41F6qqiuydOuOr/Clk6aP6Lqoy1Uy03mTrd8GocESqSism9wF5hJDbbG/NDFl+2qlJhp5zmAfCkW0dMpoKknVeLrUjR57R3rAmUkxozcFtOQ4HIQxXVLtIZp5WhaYEOCtWG5Ey/0nw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
- MW6PR12MB7086.namprd12.prod.outlook.com (2603:10b6:303:238::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.20; Mon, 25 Sep
- 2023 10:50:58 +0000
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::1d1b:2ca4:1600:a865]) by CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::1d1b:2ca4:1600:a865%4]) with mapi id 15.20.6792.026; Mon, 25 Sep 2023
- 10:50:58 +0000
-Message-ID: <b2ae2d3d-4628-d4b6-04bc-7fd842914c3b@nvidia.com>
-Date: Mon, 25 Sep 2023 11:50:51 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH V3 2/4] dt-bindings: hwmon: ina3221: Add
- ti,summation-disable
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- Ninad Malwade <nmalwade@nvidia.com>
-References: <20230921130818.21247-1-jonathanh@nvidia.com>
- <20230921130818.21247-3-jonathanh@nvidia.com>
- <20230922210631.GA3569506-robh@kernel.org>
-From: Jon Hunter <jonathanh@nvidia.com>
-In-Reply-To: <20230922210631.GA3569506-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AS4P251CA0001.EURP251.PROD.OUTLOOK.COM
- (2603:10a6:20b:5d2::19) To CO6PR12MB5444.namprd12.prod.outlook.com
- (2603:10b6:5:35e::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EC9E15E98
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 10:53:13 +0000 (UTC)
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0405CAB;
+	Mon, 25 Sep 2023 03:53:11 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2c123eed8b2so100119131fa.0;
+        Mon, 25 Sep 2023 03:53:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695639189; x=1696243989; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=S3lrauD378Jr7Nrlj6HavsU9T7AmaNkJ1AONfkx4VFY=;
+        b=FXj6MPCUkfxPQ+uwo1lU6GYjLrOctlbxhg62i+L/eae0frOUpOo6psOQa3Bt0yH2m7
+         jYr/Z+nx+xIq6iIdGWotZ2dPL204GnlxN/+MUrR3bsRuVWXoiDwtLvdMTkpf6hMhX1x5
+         WOpR1TYedw+1RVBFjQfXG+bCH0Exh8bLHxvwZ6vVW6/JKxotHfPq5RI/nIh18c8/EMFk
+         t3pgSM8Op99mqQzXgN8T0KkquxNghXk8tEPiR//bN6EQX+pU4/OA9MjR3NjxRAQcZBlU
+         1BFI1elxDMiW/BC4A2WiP0gCFneOX+SDWAq++zS5CHVrN0HD11RmhvdWVhJcHOfHLUmG
+         6B5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695639189; x=1696243989;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=S3lrauD378Jr7Nrlj6HavsU9T7AmaNkJ1AONfkx4VFY=;
+        b=bDNOW9TwE0bo9R0IxZdKBGqR4n8K9pCj7ZmuBpxzHirnJQ/y/A7jS+eiQfMB+WuQHK
+         UU/9nHhRFmBFCewWRQPglllbp7ZgQNPM2MDBETeUTxC8JUrSPNAHk4f2tsg+Q5/DeGVI
+         WteAlQt9XuA5oxjBFCBu4V470NtpquwFh16STggzQ1QYOXgjZg4B0mre4TwNaoeaAFNM
+         ym9cCQhnKf+1ucqb8f1TR+HwIYsNofBqhhLp4Qn6teCdDugegXZsqwVCUAHWLva/R/+L
+         wy/ClgNb4CUcELSaI0VKa6ZfpLI957BBrW2ICwr1fMZL980hoKHwCbFESJjam95O9XLx
+         a/ng==
+X-Gm-Message-State: AOJu0Yxez4FWCV2FOtDHSRhpzfZ26NKOClx68ayPZnt6muipSPrbCL0G
+	Dv5QD5Ddzkel87uu62LnSiZDIfsgfEM=
+X-Google-Smtp-Source: AGHT+IEcPUbo2olSid5MywiypDV/KTKaOBAG1YhXaQQndiRHZhNTRNpk4QQc+q7TcGibFEN0QKJGnQ==
+X-Received: by 2002:a2e:a0cd:0:b0:2bb:b626:5044 with SMTP id f13-20020a2ea0cd000000b002bbb6265044mr5654055ljm.6.1695639188973;
+        Mon, 25 Sep 2023 03:53:08 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id a10-20020a2eb16a000000b002bfc44dd6b3sm2079962ljm.63.2023.09.25.03.53.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Sep 2023 03:53:08 -0700 (PDT)
+Date: Mon, 25 Sep 2023 13:53:06 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, 
+	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	jingoohan1@gmail.com, gustavo.pimentel@synopsys.com, mani@kernel.org, 
+	marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v22 14/16] PCI: dwc: rcar-gen4: Add R-Car Gen4 PCIe
+ Endpoint support
+Message-ID: <bdv2lgm42igl2anvmyvekasiyioa43prhi3cxskxk33r2zxmba@2mbrybbdyo3i>
+References: <20230925072130.3901087-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230925072130.3901087-15-yoshihiro.shimoda.uh@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|MW6PR12MB7086:EE_
-X-MS-Office365-Filtering-Correlation-Id: a5e67ee1-7933-4dc4-4b7c-08dbbdb54d0d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	PXtO/ChrDWI5WclNqc8LsqthAD236a3f1+/E6/Cm1n4I2sZNYFz/ez5occlKuSAeUF9p+M1fQM2us3xAUMk9Wy4GOOfvsyWWsPXHdpB7YXdCvbpdmugkw8iSsJAyy3wfGKP36EKZSxaEO/dT4lauYQ823jHWf60zS3e9P/qwsqvN4zq1s+4KqXqa3Dvw9/5wotW0Z6aO49xBAB9VhtB7L9DIF962Xl3mTIIdj7ou64VNKDh/K8Yh7/j041d8v3BnKfq1XEUdZFaM9pAGmFUbBWkzKpXj6OD0saGICv2qnSotNi4rdTYP5H2uKuinJ2PIuhfxYMBvWuW/owrtwo9I4GM9jqUoc/Cx25S9cfgq44KFKZrQE4f74AwMcSipFSwNkAiJpsEBYo2LU/kqsGhngp7mOHFONnTBdiRlX07TELMM7GEIzBAbNemiUU08rpDaQ9Rgc9r73FnSquQVWMI5tIV3x3eePCJ7JChs8e7NWYm71QA7zHkkNra9D3CNRjeKB5WagGB4RAdRPsEr/E6I5u0VepisJw4jLL8hHmbmXpJcooBzTqSr42o776ZxPLMXqGiip7uqzrDwRMKV7NVgk7XCkS36L+nTT5j5FR0eBvc8efg78yfVasN61LMKqHyQ0hQYb/fdkpTKVE/6J20mdQ==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(39860400002)(346002)(376002)(366004)(136003)(230922051799003)(186009)(451199024)(1800799009)(478600001)(86362001)(53546011)(6486002)(6506007)(6666004)(55236004)(83380400001)(66476007)(54906003)(5660300002)(2906002)(6916009)(107886003)(316002)(66946007)(66556008)(8936002)(4326008)(8676002)(41300700001)(6512007)(2616005)(38100700002)(36756003)(26005)(31696002)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?aE5jdEhoTFVhOCtXT2d3Q1V4bzlSbFlCcDNBSG1JZDd4WCtsZFYwUmlMUWkz?=
- =?utf-8?B?S1JyMnY4ZGhPanM3c01NdXBFWnRwNVBHdDh5RmxicHVQOGtsRUptUUNWdDN1?=
- =?utf-8?B?eFZsbHFLeWpqejRWS3p3QkFjaFk0REk0TzVtSWExWVo3UXRSdmRNSGxlN3pD?=
- =?utf-8?B?c2xzZlVHM0RMZ3ExMnB5MzkzT1J2ZFJzaTRON1g5amN0SEc3WDVHaU54RWJV?=
- =?utf-8?B?VWdGYWtLZnN0MVpNZUpxRjR2endQbGp1bTZTOGx2bnQzZmJzTDZPZUFNZjlF?=
- =?utf-8?B?VzRXUmJlSUdGMzZkMzRmTmZmTFNQNnZpN0FWRE9LUUhISDZrTDJPKzg5dXJY?=
- =?utf-8?B?TlduSHdXK0ZOK1FucW05T2NZL01vTnVidWJueTNMVzZpcTJJZTlrWGozcHk0?=
- =?utf-8?B?bWdKN09sZUp6MkJSeEFlTVZpTWJqM2lKdHFTR1RpMFExOTV3QjZic0s3UGRE?=
- =?utf-8?B?bzExSVFIemU4QU1MQ1dMQ0x2VExUMERXaDdYZERhQ2NzOFRpdVRwM2ljMXZ5?=
- =?utf-8?B?T0llOGtZSXJhcnRSaHJtc212bElzVVNwZTlNcVBiVVBxcGxYdnFWc0R6WmV0?=
- =?utf-8?B?amRLeU9xZlcwa090L2ZzUDBhWU12VVQ0bEVaMWZQSzRON0pWdTBTeWNMVk1y?=
- =?utf-8?B?VUU1bmZsUWY2Mlh3QnBrbHFjMThnY3d0YlpOSGdzNVduZTdhOXFQMVZHdlBX?=
- =?utf-8?B?aDJ2TGR6TXNxekxVbUZCOFBRdVlJNEJUMG94cGRYZmZuWE9ValZCMTlRWmNr?=
- =?utf-8?B?K1BjSktRcEkwUmVrRmNyV3RHK2NiZVdrTXY3M3hjdWZ0ZXZaaVhTdW5xMDUz?=
- =?utf-8?B?ZXFCek1QUnVFdXJnMDBtbm8zWGpuMVprZ0g3aVg0VVRKK3FLNkpSSWxjRUx3?=
- =?utf-8?B?bDBsczZDdkxTVVdWTE1TMGVJTXUzc1FFd1lZMXFxM2NvRk5KYUpOM05MQjZj?=
- =?utf-8?B?eDBSMXVqMDBMNGZrZGtUbFRZbFlPZ3lvQkMzMHllVFIyalBXM1pITnNISTl6?=
- =?utf-8?B?Nmp3TkNCOFFQZWFIbEZYY1RPYjdHVTVyN3BQQ1pOOXZydUdyM2l4S01vWUdv?=
- =?utf-8?B?eU95a093NFlJWEdOSVV0dHY1UlE4NGpLQXJuTU1wbkVaUnBmR1VxdkJ6R0xi?=
- =?utf-8?B?YVpscHkvVTRuYzVyWHNLOWs0WkJ2MGRSWUJ2dCtHMFh1d0VPUE9VSCtiajBG?=
- =?utf-8?B?cVBsUmEwSGd0K0I0YkZqU0lZMThsR3hDQ2Q2RkMxVzdUR0szdGk3TkQwN1FI?=
- =?utf-8?B?N0RTMXFXWDFEVlpnRXpuOGxQc3R2UytUYmhxWmNSZFU1WWo0SlFTVnJKakVY?=
- =?utf-8?B?QTBQdlJRVmRTWGVOdC9sNlpWcDY2dU1UWEczMWhKT1pwUjVUb2JBTXN4bjBO?=
- =?utf-8?B?a21JZlk3NWdWb1pHWU42YTNZUmd0OUFpOUJNZyttTElRbVVZNmQ1ZU5vQlgy?=
- =?utf-8?B?c2pTV1JKSmpHQkZSbmkrM3B0LzdjOGc0TnVtWm5GMkF2eWRxcEpKT2pycHpU?=
- =?utf-8?B?eDV1ZG10d2dZREtqWFU0TXhFTkFMQllPRTFwRVpOcVdDK3ByZGI2VE1ERGc0?=
- =?utf-8?B?dUViY2pLYTFrYnpJTDJOQ0JrUmFhVWNHN2pwdk5lR0xRbGtDRjIybHF0QjV6?=
- =?utf-8?B?Y09IWVJNNjhmdjM3MlY4dW1RZ29HVVdaRzVrRzZ6R0JQZ0pSZnFaV1ZBZ3RG?=
- =?utf-8?B?eWowakRmODd2Z2phOEI1Rmpoc1o4MlhzQlpzT1pnUTY0bytCMXhsdmwxN0Ez?=
- =?utf-8?B?UUxoU2tKZlBLbUwya01pd0NVNmNVd21SOWQ3MlRhK3VLeUM4RTNPeTJabmtp?=
- =?utf-8?B?WUtHUmtjb1czcXdmZytoaHZ6YjFRZDJ0OTVwMEt1eDhaM0c4b05EckNRMkJm?=
- =?utf-8?B?UkhGUDlRSk1YWVcwc3RydUFOUXQ2NDRncEtGOWUwcGZrYitHenJVYWY0R3lV?=
- =?utf-8?B?dXFoaXB6a1J6QmxiWEw4QkwzVU03cTRaUU03bmZpVnpmZWdWa3B6R0IrVTZ6?=
- =?utf-8?B?S1J1SENuV2JVc1pMWXM1QnIreEF0WjJyYWNySTZoODZoZXY5MDZpenVpL0g3?=
- =?utf-8?B?eUFHdzVhb203UXdUdVhVZGp6RFJUZEpLUFMrNzNIVWhabkxGWVpKQnJSQmRS?=
- =?utf-8?Q?n4oi8n6lucjEfME2ENQpJbLdR?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a5e67ee1-7933-4dc4-4b7c-08dbbdb54d0d
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2023 10:50:58.5406
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mLO/lwsROjtZTyw2t8dHQcAod+sVxposFXsk5tTiTJXcbPwOVy3tpdUrOMMPR066wxnu4h/qI2ikrOQIjxQg7Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB7086
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-	NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-	SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230925072130.3901087-15-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-
-On 22/09/2023 22:06, Rob Herring wrote:
-> On Thu, Sep 21, 2023 at 02:08:16PM +0100, Jon Hunter wrote:
->> The INA3221 has a critical alert pin that can be controlled by the
->> summation control function. This function adds the single
->> shunt-voltage conversions for the desired channels in order to
->> compare the combined sum to the programmed limit. The Shunt-Voltage
->> Sum Limit register contains the programmed value that is compared
->> to the value in the Shunt-Voltage Sum register in order to
->> determine if the total summed limit is exceeded. If the
->> shunt-voltage sum limit value is exceeded, the critical alert pin
->> pulls low.
->>
->> For the summation limit to have a meaningful value, it is necessary
->> to use the same shunt-resistor value on all included channels. Add a new
->> vendor specific property, 'ti,summation-disable', to allow specific
->> channels to be excluded from the summation control function if the shunt
->> resistor is different to other channels or the channel should not be
->> considered for triggering the critical alert pin.
+On Mon, Sep 25, 2023 at 04:21:28PM +0900, Yoshihiro Shimoda wrote:
+> Add R-Car Gen4 PCIe controller for endpoint mode. This controller is based
+> on Synopsys DesignWare PCIe.
 > 
-> You are adding this feature to the driver, but requiring a new property
-> to disable it. So what happens with an existing user (old DT) and a
-> kernel with the new feature?
+> Link: https://lore.kernel.org/linux-pci/20230825093219.2685912-18-yoshihiro.shimoda.uh@renesas.com
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Signed-off-by: Krzysztof Wilczyński <kwilczynski@kernel.org>
+> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+> ---
+>  drivers/pci/controller/dwc/Kconfig          |  11 ++
+>  drivers/pci/controller/dwc/pcie-rcar-gen4.c | 136 +++++++++++++++++++-
+>  2 files changed, 144 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
+> index bc69fcab2e2a..e7fd37717998 100644
+> --- a/drivers/pci/controller/dwc/Kconfig
+> +++ b/drivers/pci/controller/dwc/Kconfig
+> @@ -429,4 +429,15 @@ config PCIE_RCAR_GEN4_HOST
+>  	  To compile this driver as a module, choose M here: the module will be
+>  	  called pcie-rcar-gen4.ko. This uses the DesignWare core.
+>  
+> +config PCIE_RCAR_GEN4_EP
+> +	tristate "Renesas R-Car Gen4 PCIe controller (endpoint mode)"
+> +	depends on ARCH_RENESAS || COMPILE_TEST
+> +	depends on PCI_ENDPOINT
+> +	select PCIE_DW_EP
+> +	select PCIE_RCAR_GEN4
+> +	help
+> +	  Say Y here if you want PCIe controller (endpoint mode) on R-Car Gen4
+> +	  SoCs. To compile this driver as a module, choose M here: the module
+> +	  will be called pcie-rcar-gen4.ko. This uses the DesignWare core.
+> +
+>  endmenu
+> diff --git a/drivers/pci/controller/dwc/pcie-rcar-gen4.c b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> index f6b3c3ef187c..d1b31ea909ba 100644
+> --- a/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> @@ -45,6 +45,9 @@
+>  #define RCAR_NUM_SPEED_CHANGE_RETRIES	10
+>  #define RCAR_MAX_LINK_SPEED		4
+>  
+> +#define RCAR_GEN4_PCIE_EP_FUNC_DBI_OFFSET	0x1000
+> +#define RCAR_GEN4_PCIE_EP_FUNC_DBI2_OFFSET	0x800
+> +
+>  struct rcar_gen4_pcie {
+>  	struct dw_pcie dw;
+>  	void __iomem *base;
+> @@ -53,6 +56,7 @@ struct rcar_gen4_pcie {
+>  };
+>  #define to_rcar_gen4_pcie(_dw)	container_of(_dw, struct rcar_gen4_pcie, dw)
+>  
+> +/* Common */
+>  static void rcar_gen4_pcie_ltssm_enable(struct rcar_gen4_pcie *rcar,
+>  					bool enable)
+>  {
+> @@ -311,6 +315,9 @@ static int rcar_gen4_add_dw_pcie_rp(struct rcar_gen4_pcie *rcar)
+>  {
+>  	struct dw_pcie_rp *pp = &rcar->dw.pp;
+>  
+> +	if (!IS_ENABLED(CONFIG_PCIE_RCAR_GEN4_HOST))
+> +		return -ENODEV;
+> +
+>  	pp->num_vectors = MAX_MSI_IRQS;
+>  	pp->ops = &rcar_gen4_pcie_host_ops;
+>  	rcar->mode = DW_PCIE_RC_TYPE;
+> @@ -323,8 +330,114 @@ static void rcar_gen4_remove_dw_pcie_rp(struct rcar_gen4_pcie *rcar)
+>  	dw_pcie_host_deinit(&rcar->dw.pp);
+>  }
+>  
+> +/* Endpoind mode */
+> +static void rcar_gen4_pcie_ep_pre_init(struct dw_pcie_ep *ep)
+> +{
+> +	struct dw_pcie *dw = to_dw_pcie_from_ep(ep);
+> +	struct rcar_gen4_pcie *rcar = to_rcar_gen4_pcie(dw);
+> +	int ret;
+> +
+> +	ret = rcar_gen4_pcie_common_init(rcar);
+> +	if (ret)
+> +		return;
+> +
+> +	writel(PCIEDMAINTSTSEN_INIT, rcar->base + PCIEDMAINTSTSEN);
+> +}
+> +
+> +static void rcar_gen4_pcie_ep_init(struct dw_pcie_ep *ep)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+> +	enum pci_barno bar;
+> +
+> +	for (bar = 0; bar < PCI_STD_NUM_BARS; bar++)
+> +		dw_pcie_ep_reset_bar(pci, bar);
+> +}
+> +
+> +static void rcar_gen4_pcie_ep_deinit(struct dw_pcie_ep *ep)
+> +{
+> +	struct dw_pcie *dw = to_dw_pcie_from_ep(ep);
+> +	struct rcar_gen4_pcie *rcar = to_rcar_gen4_pcie(dw);
+> +
+> +	writel(0, rcar->base + PCIEDMAINTSTSEN);
+> +	rcar_gen4_pcie_common_deinit(rcar);
+> +}
+> +
+> +static int rcar_gen4_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
+> +				       unsigned int type, u16 interrupt_num)
+> +{
+> +	struct dw_pcie *dw = to_dw_pcie_from_ep(ep);
+> +
+> +	switch (type) {
+> +	case PCI_IRQ_LEGACY:
+> +		return dw_pcie_ep_raise_legacy_irq(ep, func_no);
+> +	case PCI_IRQ_MSI:
+> +		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
+> +	default:
+> +		dev_err(dw->dev, "Unknown IRQ type\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pci_epc_features rcar_gen4_pcie_epc_features = {
+> +	.linkup_notifier = false,
+> +	.msi_capable = true,
+> +	.msix_capable = false,
+> +	.reserved_bar = 1 << BAR_1 | 1 << BAR_3 | 1 << BAR_5,
+> +	.align = SZ_1M,
+> +};
+> +
+> +static const struct pci_epc_features*
+> +rcar_gen4_pcie_ep_get_features(struct dw_pcie_ep *ep)
+> +{
+> +	return &rcar_gen4_pcie_epc_features;
+> +}
+> +
+> +static unsigned int rcar_gen4_pcie_ep_func_conf_select(struct dw_pcie_ep *ep,
+> +						       u8 func_no)
+> +{
+> +	return func_no * RCAR_GEN4_PCIE_EP_FUNC_DBI_OFFSET;
+> +}
+> +
+> +static unsigned int rcar_gen4_pcie_ep_get_dbi2_offset(struct dw_pcie_ep *ep,
+> +						      u8 func_no)
+> +{
+> +	return func_no * RCAR_GEN4_PCIE_EP_FUNC_DBI2_OFFSET;
+> +}
+> +
+> +static const struct dw_pcie_ep_ops pcie_ep_ops = {
+> +	.pre_init = rcar_gen4_pcie_ep_pre_init,
+> +	.ep_init = rcar_gen4_pcie_ep_init,
+> +	.deinit = rcar_gen4_pcie_ep_deinit,
+> +	.raise_irq = rcar_gen4_pcie_ep_raise_irq,
+> +	.get_features = rcar_gen4_pcie_ep_get_features,
+> +	.func_conf_select = rcar_gen4_pcie_ep_func_conf_select,
+> +	.get_dbi2_offset = rcar_gen4_pcie_ep_get_dbi2_offset,
+> +};
+> +
+> +static int rcar_gen4_add_dw_pcie_ep(struct rcar_gen4_pcie *rcar)
+> +{
+> +	struct dw_pcie_ep *ep = &rcar->dw.ep;
+> +
+> +	if (!IS_ENABLED(CONFIG_PCIE_RCAR_GEN4_EP))
+> +		return -ENODEV;
+> +
+> +	rcar->mode = DW_PCIE_EP_TYPE;
+> +	ep->ops = &pcie_ep_ops;
+> +
+> +	return dw_pcie_ep_init(ep);
+> +}
+> +
+> +static void rcar_gen4_remove_dw_pcie_ep(struct rcar_gen4_pcie *rcar)
+> +{
+> +	dw_pcie_ep_exit(&rcar->dw.ep);
+> +}
+> +
+> +/* Common */
+>  static int rcar_gen4_pcie_probe(struct platform_device *pdev)
+>  {
+> +	enum dw_pcie_device_mode mode;
+>  	struct rcar_gen4_pcie *rcar;
+>  	int err;
+>  
+> @@ -340,7 +453,13 @@ static int rcar_gen4_pcie_probe(struct platform_device *pdev)
+>  	if (err)
+>  		return err;
+>  
 
+> -	err = rcar_gen4_add_dw_pcie_rp(rcar);
+> +	mode = (enum dw_pcie_device_mode)of_device_get_match_data(&pdev->dev);
+> +
+> +	if (mode == DW_PCIE_RC_TYPE)
+> +		err = rcar_gen4_add_dw_pcie_rp(rcar);
+> +	else if (mode == DW_PCIE_EP_TYPE)
+> +		err = rcar_gen4_add_dw_pcie_ep(rcar);
+> +
 
-Not exactly. The summation support has always been supported in the 
-driver and is enabled (if the shunt resistors for all channels are the 
-same). What we want to do is support summation but only for a subset of 
-channels which is not supported today. So this new property allows us to 
-explicitly tell the driver not to include a specific channel in the 
-summation.
+So now you have two places with the controller mode initialization:
+1. rcar_gen4_pcie_of_match
+2. rcar_gen4_add_dw_pcie_rp() and rcar_gen4_add_dw_pcie_ep()
+It looks a bit clumsy and less maintainable than could be. What I
+suggest is to create a new method which would do what is done above,
+but also would initialize the rcar_gen4_pcie->mode field:
 
-Jon
+static int rcar_gen4_add_dw_pcie(struct rcar_gen4_pcie *rcar)
+{
+	rcar->mode = device_get_match_data(&rcar->pdev->dev);
+	switch (rcar->mode) {
+	case DW_PCIE_RC_TYPE:
+		return rcar_gen4_add_dw_pcie_rp(rcar);
+	case DW_PCIE_EP_TYPE:
+		return rcar_gen4_add_dw_pcie_ep(rcar);
+	}
 
--- 
-nvpublic
+	return -EINVAL;
+}
+
+Of course the rcar_gen4_pcie->mode field initialization should be
+dropped from the rcar_gen4_add_dw_pcie_rp() and
+rcar_gen4_add_dw_pcie_ep() methods.
+
+and ...
+
+>  	if (err)
+>  		goto err_unprepare;
+>  
+> @@ -356,12 +475,23 @@ static void rcar_gen4_pcie_remove(struct platform_device *pdev)
+>  {
+>  	struct rcar_gen4_pcie *rcar = platform_get_drvdata(pdev);
+>  
+
+> -	rcar_gen4_remove_dw_pcie_rp(rcar);
+> +	if (rcar->mode == DW_PCIE_RC_TYPE)
+> +		rcar_gen4_remove_dw_pcie_rp(rcar);
+> +	else if (rcar->mode == DW_PCIE_EP_TYPE)
+> +		rcar_gen4_remove_dw_pcie_ep(rcar);
+> +
+
+... similarly I would have added a respective antagonist:
+
+static void rcar_gen4_remove_dw_pcie(struct rcar_gen4_pcie *rcar)
+{
+	switch (rcar->mode) {
+	case DW_PCIE_RC_TYPE:
+		rcar_gen4_remove_dw_pcie_rp(rcar);
+		break;
+	case DW_PCIE_EP_TYPE:
+		rcar_gen4_remove_dw_pcie_ep(rcar);
+		break;
+	}
+}
+
+which would have been called from here instead of the open-coded
+switch-case statement. Thus the driver design will be preserved (a set
+of the init/deinit, add/remove, probe/remove and functional helper
+methods) and the mode initialization will be localized in a single
+place.
+
+-Serge(y)
+
+>  	rcar_gen4_pcie_unprepare(rcar);
+>  }
+>  
+>  static const struct of_device_id rcar_gen4_pcie_of_match[] = {
+> -	{ .compatible = "renesas,rcar-gen4-pcie", },
+> +	{
+> +		.compatible = "renesas,rcar-gen4-pcie",
+> +		.data = (void *)DW_PCIE_RC_TYPE,
+> +	},
+> +	{
+> +		.compatible = "renesas,rcar-gen4-pcie-ep",
+> +		.data = (void *)DW_PCIE_EP_TYPE,
+> +	},
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, rcar_gen4_pcie_of_match);
+> -- 
+> 2.25.1
+> 
 
