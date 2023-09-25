@@ -1,142 +1,164 @@
-Return-Path: <devicetree+bounces-3250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3CBF7ADE55
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 20:03:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65F227ADE63
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 20:12:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 91C402814CA
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 18:03:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 98A5DB20A16
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 18:12:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B333821A1C;
-	Mon, 25 Sep 2023 18:03:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEDEA224C8;
+	Mon, 25 Sep 2023 18:12:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E272221A15
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 18:03:00 +0000 (UTC)
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DA6510D;
-	Mon, 25 Sep 2023 11:02:58 -0700 (PDT)
-Received: from pd9e2f713.dip0.t-ipconnect.de ([217.226.247.19] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <andreas@kemnade.info>)
-	id 1qkpuo-004At7-Ci; Mon, 25 Sep 2023 20:02:38 +0200
-Date: Mon, 25 Sep 2023 20:02:36 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- <jic23@kernel.org>, <lars@metafoo.de>, <robh+dt@kernel.org>,
- <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
- <bcousson@baylibre.com>, <tony@atomide.com>,
- <jean-baptiste.maneyrol@tdk.com>, <chenhuiz@axis.com>,
- <andy.shevchenko@gmail.com>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-omap@vger.kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: iio: imu: mpu6050: Add level shifter
-Message-ID: <20230925200236.55fe2db7@aktux>
-In-Reply-To: <20230925142157.00000914@Huawei.com>
-References: <20230924222559.2038721-1-andreas@kemnade.info>
-	<20230924222559.2038721-2-andreas@kemnade.info>
-	<6db5b758-2ae6-46fb-a699-d73a2b98b4c2@linaro.org>
-	<20230925112852.00007d34@Huawei.com>
-	<20230925130225.55fe6fd4@aktux>
-	<3b81a9a7-69a3-4fd6-875f-7a5170c5c872@linaro.org>
-	<20230925142157.00000914@Huawei.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F22A1F61A
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 18:12:49 +0000 (UTC)
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89F61111
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 11:12:46 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id 98e67ed59e1d1-27751ac0653so1802528a91.3
+        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 11:12:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1695665566; x=1696270366; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=KsRIBM7dOdcj87tvwe4EQo8GqJ5cXnTOsGKKYnAPAk4=;
+        b=p+wkVPXVac2IdmsmXQNOMTyp2QGxdpZV3v/ms7JJKanYUFUYLKgISa5R1YS+SEeIIS
+         18CeoB5wYm/sXkounIH9X9nPLVJnJ//R6FcgQTUUZAz81tTZF4aJWTqRaOO4yBhLJNo4
+         VR8FNMHCD1A7CH4kYo7DDFXZMYwjcOosINnUgCrFlHY3CFqe1ROXIQ+0gjBdZ3er4D49
+         eAw29SCzpnniBEQ9JSC5ykrydO+XY9ouTjHyVakOPsB5IQGH1Nio39p9sBHNlv12qwtg
+         ef13lc71Tba9GoFQuOkwgHMcJ3MqjnfOx6CiGbhufL/4XMuXqc9EhOpw0uvzfrXKs/WS
+         qeHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695665566; x=1696270366;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KsRIBM7dOdcj87tvwe4EQo8GqJ5cXnTOsGKKYnAPAk4=;
+        b=Z71F8vaHUtv/aJ0OjBr+XF2Ey7Xmy9j4nlqFfzytWr5AB55YxvIlDFvTtZRxEzBgBp
+         hcIle4/pMfuQu7Gtaf1gTzX7JCUqPTn4qpnTNFpeJGpiEi+eJ8+fzQNRBNJpZ5Y6BPxW
+         lpUpkM5mjwN9/qq6M5uyjVrsjIKZBIchVh4rre0A5nEqWYTLknZQqgF9F2+29/JyVN8c
+         I9VQGQWP2LFzzcZZB4Qkay8SWCJoxgFFqtmg6FtXctLQwnp73lCQH352iAEbJVAhm2G7
+         E8U3oa9+pkODD2b6yxTM+Wvxe1NopXDFqCIDTahnyPlsSFBQPTTJQza428cZoLwpxFyy
+         iupw==
+X-Gm-Message-State: AOJu0YygpaZ+B9VnWXL/3fsOwdWfN0HY7Lx3sv5augBQJH1if86PREqD
+	GUE/mzTd7maxShzG+z9t37A5Kg==
+X-Google-Smtp-Source: AGHT+IEITTnOWUqqZd2QQfvnjuWHs46rWx0fKoZhZxeSiyP6OtQJWAzOWXHuNzwpn4hPs7lDCludXw==
+X-Received: by 2002:a17:90b:2386:b0:267:faba:705 with SMTP id mr6-20020a17090b238600b00267faba0705mr3779807pjb.10.1695665565853;
+        Mon, 25 Sep 2023 11:12:45 -0700 (PDT)
+Received: from ghost ([50.221.140.188])
+        by smtp.gmail.com with ESMTPSA id az14-20020a17090b028e00b002777001ee76sm949619pjb.18.2023.09.25.11.12.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Sep 2023 11:12:45 -0700 (PDT)
+Date: Mon, 25 Sep 2023 11:12:42 -0700
+From: Charlie Jenkins <charlie@rivosinc.com>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Paolo Bonzini <pbonzini@redhat.com>,
+	Atish Patra <atishp@atishpatra.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Shuah Khan <shuah@kernel.org>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Mayuresh Chitale <mchitale@ventanamicro.com>,
+	devicetree@vger.kernel.org, kvm@vger.kernel.org,
+	kvm-riscv@lists.infradead.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v2 2/9] RISC-V: Detect XVentanaCondOps from ISA string
+Message-ID: <ZRHNmuv8KzUU7u0r@ghost>
+References: <20230925133859.1735879-1-apatel@ventanamicro.com>
+ <20230925133859.1735879-3-apatel@ventanamicro.com>
+ <ZRHH25IyJJLWSolC@ghost>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZRHH25IyJJLWSolC@ghost>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, 25 Sep 2023 14:21:57 +0100
-Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
-
-> On Mon, 25 Sep 2023 14:24:32 +0200
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> 
-> > On 25/09/2023 13:02, Andreas Kemnade wrote:  
-> > > On Mon, 25 Sep 2023 11:28:52 +0100
-> > > Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
-> > >     
-> > >> On Mon, 25 Sep 2023 08:54:08 +0200
-> > >> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> > >>    
-> > >>> On 25/09/2023 00:25, Andreas Kemnade wrote:      
-> > >>>> Found in ancient platform data struct:
-> > >>>> level_shifter: 0: VLogic, 1: VDD
-> > >>>>
-> > >>>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> > >>>> ---
-> > >>>>  .../devicetree/bindings/iio/imu/invensense,mpu6050.yaml         | 2 ++
-> > >>>>  1 file changed, 2 insertions(+)
-> > >>>>
-> > >>>> diff --git a/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml b/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
-> > >>>> index 1db6952ddca5e..6aae2272fa15c 100644
-> > >>>> --- a/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
-> > >>>> +++ b/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
-> > >>>> @@ -48,6 +48,8 @@ properties:
-> > >>>>  
-> > >>>>    mount-matrix: true
-> > >>>>  
-> > >>>> +  invensense,level-shifter: true        
-> > >>>
-> > >>> It does not look like you tested the bindings, at least after quick
-> > >>> look. Please run `make dt_binding_check` (see
-> > >>> Documentation/devicetree/bindings/writing-schema.rst for instructions).
-> > >>> Maybe you need to update your dtschema and yamllint.
-> > >>>
-> > >>> Best regards,
-> > >>> Krzysztof
-> > >>>
-> > >>>       
-> > >>
-> > >> Also this one isn't obvious - give it a description in the binding doc.
-> > >>
-> > >> I'm not sure of the arguement for calling it level shift in general.
-> > >>    
-> > > I have no more descrption than the old source (see the citation from there)
-citation = line from ancient pdata struct comment cited in the commit message.
-
-> > > https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-9150-Register-Map.pdf    
+On Mon, Sep 25, 2023 at 10:48:11AM -0700, Charlie Jenkins wrote:
+> On Mon, Sep 25, 2023 at 07:08:52PM +0530, Anup Patel wrote:
+> > The Veyron-V1 CPU supports custom conditional arithmetic and
+> > conditional-select/move operations referred to as XVentanaCondOps
+> > extension. In fact, QEMU RISC-V also has support for emulating
+> > XVentanaCondOps extension.
 > > 
-> > I could not find any reference to level shift in this manual. To which
-> > page and part do you refer?
-> >
-> > > 
-> > > does not list it. But that bit is needed to get things to work what also does the
-> > > vendor kernel do.
-> > > 
-> > > What could be a better descrption?    
+> > Let us detect XVentanaCondOps extension from ISA string available
+> > through DT or ACPI.
 > > 
-> > I don't know, but something reasonable to you should be put there.  
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
+> > ---
+> >  arch/riscv/include/asm/hwcap.h | 1 +
+> >  arch/riscv/kernel/cpufeature.c | 1 +
+> >  2 files changed, 2 insertions(+)
+> > 
+> > diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+> > index 0f520f7d058a..b7efe9e2fa89 100644
+> > --- a/arch/riscv/include/asm/hwcap.h
+> > +++ b/arch/riscv/include/asm/hwcap.h
+> > @@ -59,6 +59,7 @@
+> >  #define RISCV_ISA_EXT_ZIFENCEI		41
+> >  #define RISCV_ISA_EXT_ZIHPM		42
+> >  #define RISCV_ISA_EXT_SMSTATEEN		43
+> > +#define RISCV_ISA_EXT_XVENTANACONDOPS	44
+> >  
+> >  #define RISCV_ISA_EXT_MAX		64
+> >  
+> > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+> > index 3755a8c2a9de..3a31d34fe709 100644
+> > --- a/arch/riscv/kernel/cpufeature.c
+> > +++ b/arch/riscv/kernel/cpufeature.c
+> > @@ -182,6 +182,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
+> >  	__RISCV_ISA_EXT_DATA(svinval, RISCV_ISA_EXT_SVINVAL),
+> >  	__RISCV_ISA_EXT_DATA(svnapot, RISCV_ISA_EXT_SVNAPOT),
+> >  	__RISCV_ISA_EXT_DATA(svpbmt, RISCV_ISA_EXT_SVPBMT),
+> > +	__RISCV_ISA_EXT_DATA(xventanacondops, RISCV_ISA_EXT_XVENTANACONDOPS),
+> >  };
+> >  
+> >  const size_t riscv_isa_ext_count = ARRAY_SIZE(riscv_isa_ext);
+> > -- 
+> > 2.34.1
+> > 
+> > 
+> > _______________________________________________
+> > linux-riscv mailing list
+> > linux-riscv@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-riscv
 > 
-> The text you have in the commit log seems better than nothing.
-> I suspect it's internally wiring VDD to VDDIO. Normally people just
-> connect both power supplies to same supply if they want to do that,
-> but maybe there was a chip variant that didn't have enough pins?
+> I worry about storing vendor extensions in this file. Because vendor
+> extensions are not standardized, they can only be expected to have the
+> desired behavior on hardware with the appropriate vendor id. A couple
+> months ago I sent a patch to address this by handling vector extensions
+> independently for each vendor [1]. I dropped the patch because it
+> relied upon Heiko's T-Head vector extension support that he stopped
+> working on. However, I can revive this patch so you can build off of it.
 > 
-> If you have the device, can you see it actually matches the packaging
-> types in the manual?
+> This scheme has the added benefit that vendors do not have to worry
+> about conficting extensions, and the kernel does not have to act as a
+> key registry for vendors.
 > 
-packaging matches. It is just as usual. I think VLogic (=VDDIO) would be 1.8V
-while VDD needs to be something higher, so I guess here it might be 3.3V.
-There are some slight hints about level shifting here:
-https://product.tdk.com/system/files/dam/doc/product/sensor/mortion-inertial/imu/data_sheet/mpu-9150-datasheet.pdf
-page 37. The aux i2c bus seem to run at levels till VDD. But here, there
-seems to be nothing at the aux i2c bus besides that internal magnetometer.
+> What are your thoughts?
+> 
+> - Charlie
+> 
+> [1] https://lore.kernel.org/lkml/20230705-thead_vendor_extensions-v1-2-ad6915349c4d@rivosinc.com/
+> 
 
-Regards,
-Andreas
+I guess I don't need to revive the patch, you could just take the code
+and update it for xventanacondops.
+
+- Charlie
 
