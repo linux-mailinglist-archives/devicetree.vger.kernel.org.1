@@ -1,271 +1,398 @@
-Return-Path: <devicetree+bounces-3161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02AC97AD83F
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 14:50:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 548DE7AD880
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 15:01:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 1A6E41C2039F
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:50:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 01C7928128F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 13:01:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C28E819BDE;
-	Mon, 25 Sep 2023 12:50:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60A651B289;
+	Mon, 25 Sep 2023 13:01:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09D0479E3
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 12:50:09 +0000 (UTC)
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7B35D3;
-	Mon, 25 Sep 2023 05:50:00 -0700 (PDT)
-X-UUID: 06bd380c5ba211eea33bb35ae8d461a2-20230925
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=5ucnnm7ou7TDJUI2qM1XF6W4sbZ+cwhD0NGzYmMPVxo=;
-	b=fOT1Q+POd6VyK5DRXliuA5/EojO6BGkcPr13WtI2sZzpovcKpolmWeDfx2l525FESUPsYE1EbHxPJIue+Dd2ZhagVJWuCi+lLjqDFXWbwQrlFMaPldsLq6wWQnWGso0r7B9K4GA7bZJSG+iFk/YpQyOGRJusW6CAcdAiFt709r4=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.32,REQID:84a1459d-6d27-445c-9016-79d4e9591514,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:5f78ec9,CLOUDID:8db43fbf-14cc-44ca-b657-2d2783296e72,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 06bd380c5ba211eea33bb35ae8d461a2-20230925
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
-	(envelope-from <yong.wu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1245616241; Mon, 25 Sep 2023 20:49:55 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 25 Sep 2023 20:49:53 +0800
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Mon, 25 Sep 2023 20:49:53 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mnvzG5ZdtlD/2d0tdRn0uxBbCIcOYUpGSmDg0S/us36Gh5McaYc1dFJ5kfChsE/G2NaHZpLkWoeVsB0vEeepe5uZ4TO7sTBpbfh9Cvbr2ADyyJIVHewQ4l2zxtcWPscNU4s7yh8UvbLmQD6F5eTIQU9ba6XNH1SUi8IfZMTeLg8CGlEn0SZo2Y7MmwcNqDcXJRaUUDF1hQqJG1ZCbtR/rLVwm2gsPFcGBCzgftvHw2/zAz4EICCDW4zTPskh8Pi8HHDu8vxO53tK3f7SLuFOjxCuaiYnuAcrIve6t0k6ff24y4idMtXugtGujyaIySZgn5j8wikYxfO5XVphVBuWLQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5ucnnm7ou7TDJUI2qM1XF6W4sbZ+cwhD0NGzYmMPVxo=;
- b=dpYpacP6//D2/f0o4YkSD1s86lvrctcp65GWchVIPc+UdgaetJE2Wvu2bs0qRQ5sZSMmwdFgfRlH5U00FlWStFFU7CMgDHHF0gNvmWW6UwpbPqgorXXLbIn4oRftZFOlADTaxUDqoA3kvyE0alskzLXVD+//9Hd2g97lGT+0yJqWxK5wP5y0Gdz5Xo8+2n00ZH8pSRT7GDs+bW8ZtaUpKXXN4R/FZIugQzzWCdtnfZ9aWBfBaCGBeP4AHxuhxjhCgKrv2D8/WIImHO1F9tM9IdMDV98OV1qEB3Vqw8oF6C5FGSTtxIvQGu500vXY35YmB9arJq+qOenJbZqXvwVNVQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5ucnnm7ou7TDJUI2qM1XF6W4sbZ+cwhD0NGzYmMPVxo=;
- b=NgObBTCLLgaVTpqxT15smXVJMNQ9uqfxAATvFpEWf054XEiF81kW0FqeF4VqERxDVmlorhs0j51FPqhL1o0DChxr+VNoda8GGz1a28Gx+E51gh0xwv7vvnsGVR5w5PI2Co35VbqgTTIW83qDvX2iuYvK1syq/fESI09vnwHmf5c=
-Received: from SI2PR03MB5885.apcprd03.prod.outlook.com (2603:1096:4:142::7) by
- TYZPR03MB6820.apcprd03.prod.outlook.com (2603:1096:400:200::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Mon, 25 Sep
- 2023 12:49:51 +0000
-Received: from SI2PR03MB5885.apcprd03.prod.outlook.com
- ([fe80::e148:3390:1eb2:28e3]) by SI2PR03MB5885.apcprd03.prod.outlook.com
- ([fe80::e148:3390:1eb2:28e3%7]) with mapi id 15.20.6813.027; Mon, 25 Sep 2023
- 12:49:50 +0000
-From: =?utf-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>
-To: "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	"christian.koenig@amd.com" <christian.koenig@amd.com>,
-	"angelogioacchino.delregno@collabora.com"
-	<angelogioacchino.delregno@collabora.com>, "robh+dt@kernel.org"
-	<robh+dt@kernel.org>, "sumit.semwal@linaro.org" <sumit.semwal@linaro.org>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"jstultz@google.com" <jstultz@google.com>, "linaro-mm-sig@lists.linaro.org"
-	<linaro-mm-sig@lists.linaro.org>, "linux-media@vger.kernel.org"
-	<linux-media@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-	=?utf-8?B?SmlhbmppYW8gWmVuZyAo5pu+5YGl5aejKQ==?=
-	<Jianjiao.Zeng@mediatek.com>, =?utf-8?B?S3VvaG9uZyBXYW5nICjnjovlnIvptLsp?=
-	<kuohong.wang@mediatek.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"Brian.Starkey@arm.com" <Brian.Starkey@arm.com>,
-	"benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
-	"tjmercier@google.com" <tjmercier@google.com>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 5/9] dma-buf: heaps: mtk_sec_heap: Initialise tee session
-Thread-Topic: [PATCH 5/9] dma-buf: heaps: mtk_sec_heap: Initialise tee session
-Thread-Index: AQHZ5FgkdSQ5OiqhjEmEvtpYDF+5QrAVXDQAgAFcr4CAADZ+gIAUpXiA
-Date: Mon, 25 Sep 2023 12:49:50 +0000
-Message-ID: <a4ecc2792f3a4d3159e34415be984ff7d5f5e263.camel@mediatek.com>
-References: <20230911023038.30649-1-yong.wu@mediatek.com>
-	 <20230911023038.30649-6-yong.wu@mediatek.com>
-	 <d0373c02-9b22-661f-9930-ca720053c2a0@collabora.com>
-	 <a115a2a5d3ac218e6db65ccdb0a1876f9cfca02b.camel@mediatek.com>
-	 <d798b15b-6f35-96db-e3f7-5c0bcc5d46a2@collabora.com>
-In-Reply-To: <d798b15b-6f35-96db-e3f7-5c0bcc5d46a2@collabora.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SI2PR03MB5885:EE_|TYZPR03MB6820:EE_
-x-ms-office365-filtering-correlation-id: d0e2d02a-eecb-4fc4-23bb-08dbbdc5e853
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: IMN/6nZTOaiMqJWoYZV1B5tWJi4LeoT1hViAwNZmgny4ltrDhJPwVUhOLjFsMMVJlj1/VqKZ8XAbp1FBEzmIxvFJh2EAwy5gf1Ptepo1GYnnLsxaR94IPY6TJ3UnY4WMSGgf1jeEcGpfMy/b8GUDBJTeDqUOhEfPqZQe1C2FdkXoXQgz2JTK1HBQzxvmcz+kZaXQpfc+JHaE6xkmrml+523HuEfgheQdBn3qiB9LTWftS14V2GD4eMUlZocsxwrYZmOqfG5Js0SGZ5wavsQ9AWvDRU01LuKOQ2GYsd/EXDTAHLR4sdEcSHRmc9wuYyfFpRVj0lxVa5kTLEeNj6JrA5hdiGbxEOdlkqaEznoCHSYRI09VZWfQvd7z8JDuV+XLN8+8X1o/CAqtflw8QCnuvLJR9GGsOsAcsTbGYumJawUYBiTkrN7cZXeQbny8F8/gPhgkBEkml2z0HvJOpyPOCwfNyJbj/5yaFCWm4l5s+RrePC23xHbM8fXVfRZbtFs1Zss5bgSeW/MmA7jAgpttqHMAVCnrowbKxEnCR6JgAO0mQTUc2+7ZPdsuoY6qoiRDrmdyg1IiCppP1sE4lleaICxdx0H4PFIrmtYBVYshQl63Pa8Fp4ypeYX06dbrlnWyxKwGvxl1U5qfS1phwi5liDZkQbTfHQKyXt565dZIi98tXmMY6kcWRikJvUSirdrh
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SI2PR03MB5885.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(346002)(136003)(366004)(39860400002)(376002)(230922051799003)(1800799009)(186009)(451199024)(26005)(71200400001)(478600001)(2616005)(83380400001)(85182001)(36756003)(86362001)(122000001)(38070700005)(5660300002)(6486002)(38100700002)(6506007)(6512007)(2906002)(4326008)(8676002)(41300700001)(54906003)(316002)(91956017)(110136005)(66946007)(64756008)(66446008)(66476007)(66556008)(76116006)(7416002)(8936002)(99106002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?d1RWY0FOSnA4TkhXRmxCdHhyRm9PNzFZT2Q5VFNxVHBCbE5ab2FZbnNyWkhY?=
- =?utf-8?B?YUx0Z0tNWllpMWR3aUt5TXM0eDZrNVJidmdZeFRTZ0I0cEliencwVng1Wmlm?=
- =?utf-8?B?ZzlJM25ObXlsOU1ZUWRMWW5lZnd2UmxSOUEzbEZXQXk5eWdVQTFMWTRXZ1k5?=
- =?utf-8?B?SXN0cFEvVHhDbmJ2clREdXRZQmdBVE96WnlRb1lObXFsZkJiM2Z5eUlMeDNL?=
- =?utf-8?B?T3RCTi9OYzVnUGFiZGN6RFNXSlRNUmxMaE1XZWRMUDhqbU13d3B5L3BZcUcv?=
- =?utf-8?B?bERPMXFkUU9PK2p0Tkl2b0JmYldZTFVaZDRKK3gvSmp4TkUxMzAxSEVEYmlz?=
- =?utf-8?B?OFQyck5VTUVobGdsUy84dTFTSzkvSzlZSStJQjZrWVhySlBJb1Z6ZlFBakNR?=
- =?utf-8?B?RlZLVXpRbk1TMmdvZzJ6R0VvK2pkQzNSY1lLTTZlS29mWVJ1VTEwS0c1eXhW?=
- =?utf-8?B?OUd6Z2FXdnR0SEloY01pc3VZanFjbnRSL1pqVVUwWXNSTlowM1Y5STUvQjRr?=
- =?utf-8?B?a2dnaUFOY0Qzd1ZBSEY3SFRPanBtUFp0ZkxMMWhqU1p3VHd4VU1sTStSSUl4?=
- =?utf-8?B?K1VONy94eXNkWFRNdHlKNjlBR2VqRVVlSEdRUWhtbk1SNGwxVlMvdDhlRWhW?=
- =?utf-8?B?SDJ3Sk8ySlNJS2VJNCs4TUJkeXVVSHV0QVRzL1J1anQ5bUZFci9sbU9KM2JF?=
- =?utf-8?B?QTh1NnZocEhSUFlTZm54SlA5MjZ3cnRuQ2FBV0RPRmFBTVFoUVhvVE9xaEJO?=
- =?utf-8?B?bXBIaUVGMXFXTDMxdXR0TlhDVWpuTG1PdWduM2Qxbmw3MGRRUnRyVHNwbXpq?=
- =?utf-8?B?dmkveFZ2MTc5Q0xGR0ZLTC93UDVsTXdrSTZWcnluOFJqR2k5UWxiWFdlVzBr?=
- =?utf-8?B?WXFqMnUvMGo0SkY3REpIMEJBMEMwTGZsWWU5VVRwcG4xeTJ1RmZQWWpoOTZM?=
- =?utf-8?B?Nk5qOUI3OUJ1dEcrRUJhb1NnTWJpMG1UOVFaYW1sMzVrQWJ2eERIdXJrdFVx?=
- =?utf-8?B?b3ZJZ1d1cHhRcThTZEpGN3RXbGQrSzJiMWJtQmU0ODMwcC80T2R0dTdtcWtH?=
- =?utf-8?B?dEFFR3QrTEx0S3BwZCtFNDJScGJMUG81N3pleUFOUTRod1JZSjVnN0RwTFlM?=
- =?utf-8?B?TitIaUV5NWEyWmdpWXgyK2prNDF5cnRJS00rcGQ0alovT0VKbWRFNDJaYmpH?=
- =?utf-8?B?YkRudms5Y3JERTJkdENNcVRhbWN0emRGUWkyakV2TGU3cnEvOUFlWURJODdh?=
- =?utf-8?B?WEs5K3ZaWkVpUmE2QnplZVlwOXdMVU85N0RiWkpmcG13TXRGcERENnBLMkRv?=
- =?utf-8?B?aitiaDJFL0MzUVpEZmpCWm5TQ2orcWZ5V1Evd3NMc0JqWnhpT1FKRFdWeTY1?=
- =?utf-8?B?WUZ4VytxSHFHK3NaRWdtd1lodWVFb2tMZG0ra1QxS1ZPQUZvTi9qQXRwQ2lV?=
- =?utf-8?B?aE0wTlp2UVdrMWVEQ1RrbG02dkNTN3FuU3ZjQkRJcHMyWXBIdnVtYTRsRVJH?=
- =?utf-8?B?L2hBMmxQS2ZOcGQwaEVyNlJ4UlFUdFlSemNQS1BuWC95aUt1QVNQa1hqbGxC?=
- =?utf-8?B?c293Qzg1aFVHWFh5dThyYkdGdHUxc0daNVRSWmJOL3JKQ2xDS2gwZm1JbHNl?=
- =?utf-8?B?L2RmR1dqWVNqblJCSjczOHdHYU8yOUFqZUwyS09xSjJncDNhRnBRa2E5dGYv?=
- =?utf-8?B?eHB2UWRXQWZsOHRwRmE1ZUd5emtCdldha1R5M1hkZTgxek90a0FxQzR2bGV5?=
- =?utf-8?B?QlBFM3lCNkpKL3pOVnYvNTU5elNCUUUraU44OEVTNEc0dlBab1pxdlpsV1A1?=
- =?utf-8?B?bUJxeSt6T1F0Q3hMVGZCMG9DZDdQTWtSSGFVaEJyQkV2eVdZaUdhVlZSN25q?=
- =?utf-8?B?U2hUZ2lUY2xacDRpQjJxTWM2UnN5REhVc3lHNTR3eVZYZWp1RnBvaFVBcmln?=
- =?utf-8?B?SlYxTGkxczFVZndmd1IrTklNclhLUU1aYlk0U2QrWTYxai9qL0tOZHZ5c2li?=
- =?utf-8?B?UUJ4VERYNXNoeWxLV2k4d2dhNnhwQmhrVVBEVnZxMXI4aklIcG1SUElleXdy?=
- =?utf-8?B?anBvN1ZycEdwenNnWDNnVC9YM0ZyUzNxMnBYRVltQnRkZEdJL3VzSlVSU09l?=
- =?utf-8?Q?XXgeH/hxrp61PDY+mcLdVoZDf?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <AB8E6A2D4F5D7E4CBE3594C777063463@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F68779E3
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 13:01:19 +0000 (UTC)
+Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A88F9F;
+	Mon, 25 Sep 2023 06:01:14 -0700 (PDT)
+Received: from kwepemi500008.china.huawei.com (unknown [172.30.72.54])
+	by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4RvNFR4w9hzMlbW;
+	Mon, 25 Sep 2023 20:57:31 +0800 (CST)
+Received: from [10.67.109.254] (10.67.109.254) by
+ kwepemi500008.china.huawei.com (7.221.188.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.31; Mon, 25 Sep 2023 21:01:11 +0800
+Message-ID: <efd9f7dc-c9e8-99a5-e139-20133b30903c@huawei.com>
+Date: Mon, 25 Sep 2023 21:01:11 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SI2PR03MB5885.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d0e2d02a-eecb-4fc4-23bb-08dbbdc5e853
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Sep 2023 12:49:50.6487
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: vJbhOkflBFjP/ncwB2v43FsqmTHr6u1Qt3J87a7GY9LnzgX42PY/EcSKNYufvaONB1HoIPhdf8ClwDyLHxtEUw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB6820
-X-MTK: N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,T_SPF_TEMPERROR,
-	UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v8 10/16] irqchip/riscv-imsic: Add support for platform
+ MSI irqdomain
+Content-Language: en-US
+To: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>, Thomas Gleixner
+	<tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, Saravana Kannan <saravanak@google.com>, Anup
+ Patel <anup@brainfault.org>, <linux-kernel@vger.kernel.org>, Atish Patra
+	<atishp@atishpatra.org>, <linux-riscv@lists.infradead.org>, Andrew Jones
+	<ajones@ventanamicro.com>
+References: <20230912174928.528414-1-apatel@ventanamicro.com>
+ <20230912174928.528414-11-apatel@ventanamicro.com>
+From: Ruan Jinjie <ruanjinjie@huawei.com>
+In-Reply-To: <20230912174928.528414-11-apatel@ventanamicro.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.67.109.254]
+X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
+ kwepemi500008.china.huawei.com (7.221.188.139)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+	RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-T24gVHVlLCAyMDIzLTA5LTEyIGF0IDExOjMyICswMjAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBS
-ZWdubyB3cm90ZToNCj4gSWwgMTIvMDkvMjMgMDg6MTcsIFlvbmcgV3UgKOWQtOWLhykgaGEgc2Ny
-aXR0bzoNCj4gPiBPbiBNb24sIDIwMjMtMDktMTEgYXQgMTE6MjkgKzAyMDAsIEFuZ2Vsb0dpb2Fj
-Y2hpbm8gRGVsIFJlZ25vDQo+ID4gd3JvdGU6DQo+ID4gPiBJbCAxMS8wOS8yMyAwNDozMCwgWW9u
-ZyBXdSBoYSBzY3JpdHRvOg0KPiA+ID4gPiBUaGUgVEVFIHByb2JlIGxhdGVyIHRoYW4gZG1hLWJ1
-ZiBoZWFwLCBhbmQgUFJPQkVfREVERVIgZG9lc24ndA0KPiA+ID4gPiB3b3JrDQo+ID4gPiA+IGhl
-cmUgc2luY2UgdGhpcyBpcyBub3QgYSBwbGF0Zm9ybSBkcml2ZXIsIHRoZXJlZm9yZSBpbml0aWFs
-aXNlDQo+ID4gPiA+IHRoZQ0KPiA+ID4gPiBURUUNCj4gPiA+ID4gY29udGV4dC9zZXNzaW9uIHdo
-aWxlIHdlIGFsbG9jYXRlIHRoZSBmaXJzdCBzZWN1cmUgYnVmZmVyLg0KPiA+ID4gPiANCj4gPiA+
-ID4gU2lnbmVkLW9mZi1ieTogWW9uZyBXdSA8eW9uZy53dUBtZWRpYXRlay5jb20+DQo+ID4gPiA+
-IC0tLQ0KPiA+ID4gPiAgICBkcml2ZXJzL2RtYS1idWYvaGVhcHMvbXRrX3NlY3VyZV9oZWFwLmMg
-fCA2MQ0KPiA+ID4gPiArKysrKysrKysrKysrKysrKysrKysrKysrDQo+ID4gPiA+ICAgIDEgZmls
-ZSBjaGFuZ2VkLCA2MSBpbnNlcnRpb25zKCspDQo+ID4gPiA+IA0KPiA+ID4gPiBkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9kbWEtYnVmL2hlYXBzL210a19zZWN1cmVfaGVhcC5jDQo+ID4gPiA+IGIvZHJp
-dmVycy9kbWEtDQo+ID4gPiA+IGJ1Zi9oZWFwcy9tdGtfc2VjdXJlX2hlYXAuYw0KPiA+ID4gPiBp
-bmRleCBiYmYxYzhkY2UyM2UuLmUzZGEzM2EzZDA4MyAxMDA2NDQNCj4gPiA+ID4gLS0tIGEvZHJp
-dmVycy9kbWEtYnVmL2hlYXBzL210a19zZWN1cmVfaGVhcC5jDQo+ID4gPiA+ICsrKyBiL2RyaXZl
-cnMvZG1hLWJ1Zi9oZWFwcy9tdGtfc2VjdXJlX2hlYXAuYw0KPiA+ID4gPiBAQCAtMTAsNiArMTAs
-MTIgQEANCj4gPiA+ID4gICAgI2luY2x1ZGUgPGxpbnV4L2Vyci5oPg0KPiA+ID4gPiAgICAjaW5j
-bHVkZSA8bGludXgvbW9kdWxlLmg+DQo+ID4gPiA+ICAgICNpbmNsdWRlIDxsaW51eC9zbGFiLmg+
-DQo+ID4gPiA+ICsjaW5jbHVkZSA8bGludXgvdGVlX2Rydi5oPg0KPiA+ID4gPiArI2luY2x1ZGUg
-PGxpbnV4L3V1aWQuaD4NCj4gPiA+ID4gKw0KPiA+ID4gPiArI2RlZmluZSBUWl9UQV9NRU1fVVVJ
-RAkJIjQ0Nzc1ODhhLTg0NzYtMTFlMi1hZDE1LQ0KPiA+ID4gPiBlNDFmMTM5MGQ2NzYiDQo+ID4g
-PiA+ICsNCj4gPiA+IA0KPiA+ID4gSXMgdGhpcyBVVUlEIHRoZSBzYW1lIGZvciBhbGwgU29DcyBh
-bmQgYWxsIFRaIHZlcnNpb25zPw0KPiA+IA0KPiA+IFllcy4gSXQgaXMgdGhlIHNhbWUgZm9yIGFs
-bCBTb0NzIGFuZCBhbGwgVFogdmVyc2lvbnMgY3VycmVudGx5Lg0KPiA+IA0KPiANCj4gVGhhdCdz
-IGdvb2QgbmV3cyENCj4gDQo+IElzIHRoaXMgVVVJRCB1c2VkIGluIGFueSB1c2Vyc3BhY2UgY29t
-cG9uZW50PyAoZXhhbXBsZTogQW5kcm9pZA0KPiBIQUxzPykNCg0KTm8uIFVzZXJzcGFjZSBuZXZl
-ciB1c2UgaXQuIElmIHVzZXJzcGFjZSB3b3VsZCBsaWtlIHRvIGFsbG9jYXRlIHRoaXMNCnNlY3Vy
-ZSBidWZmZXIsIGl0IGNhbiBhY2hpZXZlIHRocm91Z2ggdGhlIGV4aXN0aW5nIGRtYWJ1ZiBJT0NU
-TCB2aWENCi9kZXYvZG1hX2hlYXAvbXRrX3N2cCBub2RlLg0KDQoNCj4gSWYgaXQgaXMgKGFuZCBJ
-IHNvbWVob3cgZXhwZWN0IHRoYXQgaXQgaXMpLCB0aGVuIHRoaXMgZGVmaW5pdGlvbg0KPiBzaG91
-bGQgZ28NCj4gdG8gYSBVQVBJIGhlYWRlciwgYXMgc3VnZ2VzdGVkIGJ5IENocmlzdGlhbi4NCj4g
-DQo+IENoZWVycyENCj4gDQo+ID4gPiANCj4gPiA+IFRoYW5rcywNCj4gPiA+IEFuZ2Vsbw0KPiA+
-ID4gDQo+ID4gPiANCj4gPiA+ID4gKyNkZWZpbmUgTVRLX1RFRV9QQVJBTV9OVU0JCTQNCj4gPiA+
-ID4gICAgDQo+ID4gPiA+ICAgIC8qDQo+ID4gPiA+ICAgICAqIE1lZGlhVGVrIHNlY3VyZSAoY2h1
-bmspIG1lbW9yeSB0eXBlDQo+ID4gPiA+IEBAIC0yOCwxNyArMzQsNzIgQEAgc3RydWN0IG10a19z
-ZWN1cmVfaGVhcF9idWZmZXIgew0KPiA+ID4gPiAgICBzdHJ1Y3QgbXRrX3NlY3VyZV9oZWFwIHsN
-Cj4gPiA+ID4gICAgCWNvbnN0IGNoYXIJCSpuYW1lOw0KPiA+ID4gPiAgICAJY29uc3QgZW51bSBr
-cmVlX21lbV90eXBlIG1lbV90eXBlOw0KPiA+ID4gPiArCXUzMgkJCSBtZW1fc2Vzc2lvbjsNCj4g
-PiA+ID4gKwlzdHJ1Y3QgdGVlX2NvbnRleHQJKnRlZV9jdHg7DQo+ID4gPiA+ICAgIH07DQo+ID4g
-PiA+ICAgIA0KPiA+ID4gPiArc3RhdGljIGludCBtdGtfb3B0ZWVfY3R4X21hdGNoKHN0cnVjdCB0
-ZWVfaW9jdGxfdmVyc2lvbl9kYXRhDQo+ID4gPiA+ICp2ZXIsDQo+ID4gPiA+IGNvbnN0IHZvaWQg
-KmRhdGEpDQo+ID4gPiA+ICt7DQo+ID4gPiA+ICsJcmV0dXJuIHZlci0+aW1wbF9pZCA9PSBURUVf
-SU1QTF9JRF9PUFRFRTsNCj4gPiA+ID4gK30NCj4gPiA+ID4gKw0KPiA+ID4gPiArc3RhdGljIGlu
-dCBtdGtfa3JlZV9zZWN1cmVfc2Vzc2lvbl9pbml0KHN0cnVjdCBtdGtfc2VjdXJlX2hlYXANCj4g
-PiA+ID4gKnNlY19oZWFwKQ0KPiA+ID4gPiArew0KPiA+ID4gPiArCXN0cnVjdCB0ZWVfcGFyYW0g
-dF9wYXJhbVtNVEtfVEVFX1BBUkFNX05VTV0gPSB7MH07DQo+ID4gPiA+ICsJc3RydWN0IHRlZV9p
-b2N0bF9vcGVuX3Nlc3Npb25fYXJnIGFyZyA9IHswfTsNCj4gPiA+ID4gKwl1dWlkX3QgdGFfbWVt
-X3V1aWQ7DQo+ID4gPiA+ICsJaW50IHJldDsNCj4gPiA+ID4gKw0KPiA+ID4gPiArCXNlY19oZWFw
-LT50ZWVfY3R4ID0gdGVlX2NsaWVudF9vcGVuX2NvbnRleHQoTlVMTCwNCj4gPiA+ID4gbXRrX29w
-dGVlX2N0eF9tYXRjaCwNCj4gPiA+ID4gKwkJCQkJCSAgICBOVUxMLA0KPiA+ID4gPiBOVUxMKTsN
-Cj4gPiA+ID4gKwlpZiAoSVNfRVJSKHNlY19oZWFwLT50ZWVfY3R4KSkgew0KPiA+ID4gPiArCQlw
-cl9lcnIoIiVzOiBvcGVuIGNvbnRleHQgZmFpbGVkLCByZXQ9JWxkXG4iLA0KPiA+ID4gPiBzZWNf
-aGVhcC0NCj4gPiA+ID4gPiBuYW1lLA0KPiA+ID4gPiANCj4gPiA+ID4gKwkJICAgICAgIFBUUl9F
-UlIoc2VjX2hlYXAtPnRlZV9jdHgpKTsNCj4gPiA+ID4gKwkJcmV0dXJuIC1FTk9ERVY7DQo+ID4g
-PiA+ICsJfQ0KPiA+ID4gPiArDQo+ID4gPiA+ICsJYXJnLm51bV9wYXJhbXMgPSBNVEtfVEVFX1BB
-UkFNX05VTTsNCj4gPiA+ID4gKwlhcmcuY2xudF9sb2dpbiA9IFRFRV9JT0NUTF9MT0dJTl9QVUJM
-SUM7DQo+ID4gPiA+ICsJcmV0ID0gdXVpZF9wYXJzZShUWl9UQV9NRU1fVVVJRCwgJnRhX21lbV91
-dWlkKTsNCj4gPiA+ID4gKwlpZiAocmV0KQ0KPiA+ID4gPiArCQlnb3RvIGNsb3NlX2NvbnRleHQ7
-DQo+ID4gPiA+ICsJbWVtY3B5KCZhcmcudXVpZCwgJnRhX21lbV91dWlkLmIsIHNpemVvZih0YV9t
-ZW1fdXVpZCkpOw0KPiA+ID4gPiArDQo+ID4gPiA+ICsJcmV0ID0gdGVlX2NsaWVudF9vcGVuX3Nl
-c3Npb24oc2VjX2hlYXAtPnRlZV9jdHgsICZhcmcsDQo+ID4gPiA+IHRfcGFyYW0pOw0KPiA+ID4g
-PiArCWlmIChyZXQgPCAwIHx8IGFyZy5yZXQpIHsNCj4gPiA+ID4gKwkJcHJfZXJyKCIlczogb3Bl
-biBzZXNzaW9uIGZhaWxlZCwgcmV0PSVkOiVkXG4iLA0KPiA+ID4gPiArCQkgICAgICAgc2VjX2hl
-YXAtPm5hbWUsIHJldCwgYXJnLnJldCk7DQo+ID4gPiA+ICsJCXJldCA9IC1FSU5WQUw7DQo+ID4g
-PiA+ICsJCWdvdG8gY2xvc2VfY29udGV4dDsNCj4gPiA+ID4gKwl9DQo+ID4gPiA+ICsJc2VjX2hl
-YXAtPm1lbV9zZXNzaW9uID0gYXJnLnNlc3Npb247DQo+ID4gPiA+ICsJcmV0dXJuIDA7DQo+ID4g
-PiA+ICsNCj4gPiA+ID4gK2Nsb3NlX2NvbnRleHQ6DQo+ID4gPiA+ICsJdGVlX2NsaWVudF9jbG9z
-ZV9jb250ZXh0KHNlY19oZWFwLT50ZWVfY3R4KTsNCj4gPiA+ID4gKwlyZXR1cm4gcmV0Ow0KPiA+
-ID4gPiArfQ0KPiA+ID4gPiArDQo+ID4gPiA+ICAgIHN0YXRpYyBzdHJ1Y3QgZG1hX2J1ZiAqDQo+
-ID4gPiA+ICAgIG10a19zZWNfaGVhcF9hbGxvY2F0ZShzdHJ1Y3QgZG1hX2hlYXAgKmhlYXAsIHNp
-emVfdCBzaXplLA0KPiA+ID4gPiAgICAJCSAgICAgIHVuc2lnbmVkIGxvbmcgZmRfZmxhZ3MsIHVu
-c2lnbmVkIGxvbmcNCj4gPiA+ID4gaGVhcF9mbGFncykNCj4gPiA+ID4gICAgew0KPiA+ID4gPiAr
-CXN0cnVjdCBtdGtfc2VjdXJlX2hlYXAgKnNlY19oZWFwID0NCj4gPiA+ID4gZG1hX2hlYXBfZ2V0
-X2RydmRhdGEoaGVhcCk7DQo+ID4gPiA+ICAgIAlzdHJ1Y3QgbXRrX3NlY3VyZV9oZWFwX2J1ZmZl
-ciAqc2VjX2J1ZjsNCj4gPiA+ID4gICAgCURFRklORV9ETUFfQlVGX0VYUE9SVF9JTkZPKGV4cF9p
-bmZvKTsNCj4gPiA+ID4gICAgCXN0cnVjdCBkbWFfYnVmICpkbWFidWY7DQo+ID4gPiA+ICAgIAlp
-bnQgcmV0Ow0KPiA+ID4gPiAgICANCj4gPiA+ID4gKwkvKg0KPiA+ID4gPiArCSAqIFRFRSBwcm9i
-ZSBtYXkgYmUgbGF0ZS4gSW5pdGlhbGlzZSB0aGUgc2VjdXJlIHNlc3Npb24NCj4gPiA+ID4gaW4g
-dGhlDQo+ID4gPiA+IGZpcnN0DQo+ID4gPiA+ICsJICogYWxsb2NhdGluZyBzZWN1cmUgYnVmZmVy
-Lg0KPiA+ID4gPiArCSAqLw0KPiA+ID4gPiArCWlmICghc2VjX2hlYXAtPm1lbV9zZXNzaW9uKSB7
-DQo+ID4gPiA+ICsJCXJldCA9IG10a19rcmVlX3NlY3VyZV9zZXNzaW9uX2luaXQoc2VjX2hlYXAp
-Ow0KPiA+ID4gPiArCQlpZiAocmV0KQ0KPiA+ID4gPiArCQkJcmV0dXJuIEVSUl9QVFIocmV0KTsN
-Cj4gPiA+ID4gKwl9DQo+ID4gPiA+ICsNCj4gPiA+ID4gICAgCXNlY19idWYgPSBremFsbG9jKHNp
-emVvZigqc2VjX2J1ZiksIEdGUF9LRVJORUwpOw0KPiA+ID4gPiAgICAJaWYgKCFzZWNfYnVmKQ0K
-PiA+ID4gPiAgICAJCXJldHVybiBFUlJfUFRSKC1FTk9NRU0pOw0KPiA+ID4gDQo+ID4gPiANCj4g
-DQo+IA0K
+
+
+On 2023/9/13 1:49, Anup Patel wrote:
+> The Linux platform MSI support requires a platform MSI irqdomain so
+> let us add a platform irqchip driver for RISC-V IMSIC which provides
+> a base IRQ domain and platform MSI domain. This driver assumes that
+> the IMSIC state is already initialized by the IMSIC early driver.
+> 
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> ---
+>  drivers/irqchip/Makefile                   |   2 +-
+>  drivers/irqchip/irq-riscv-imsic-platform.c | 280 +++++++++++++++++++++
+>  2 files changed, 281 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/irqchip/irq-riscv-imsic-platform.c
+> 
+> diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
+> index d714724387ce..abca445a3229 100644
+> --- a/drivers/irqchip/Makefile
+> +++ b/drivers/irqchip/Makefile
+> @@ -95,7 +95,7 @@ obj-$(CONFIG_QCOM_MPM)			+= irq-qcom-mpm.o
+>  obj-$(CONFIG_CSKY_MPINTC)		+= irq-csky-mpintc.o
+>  obj-$(CONFIG_CSKY_APB_INTC)		+= irq-csky-apb-intc.o
+>  obj-$(CONFIG_RISCV_INTC)		+= irq-riscv-intc.o
+> -obj-$(CONFIG_RISCV_IMSIC)		+= irq-riscv-imsic-state.o irq-riscv-imsic-early.o
+> +obj-$(CONFIG_RISCV_IMSIC)		+= irq-riscv-imsic-state.o irq-riscv-imsic-early.o irq-riscv-imsic-platform.o
+>  obj-$(CONFIG_SIFIVE_PLIC)		+= irq-sifive-plic.o
+>  obj-$(CONFIG_IMX_IRQSTEER)		+= irq-imx-irqsteer.o
+>  obj-$(CONFIG_IMX_INTMUX)		+= irq-imx-intmux.o
+> diff --git a/drivers/irqchip/irq-riscv-imsic-platform.c b/drivers/irqchip/irq-riscv-imsic-platform.c
+> new file mode 100644
+> index 000000000000..b78f1b2ee3dc
+> --- /dev/null
+> +++ b/drivers/irqchip/irq-riscv-imsic-platform.c
+> @@ -0,0 +1,280 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2021 Western Digital Corporation or its affiliates.
+> + * Copyright (C) 2022 Ventana Micro Systems Inc.
+> + */
+> +
+> +#include <linux/bitmap.h>
+> +#include <linux/cpu.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/irq.h>
+> +#include <linux/irqchip.h>
+> +#include <linux/irqdomain.h>
+> +#include <linux/module.h>
+> +#include <linux/msi.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/spinlock.h>
+> +#include <linux/smp.h>
+> +
+> +#include "irq-riscv-imsic-state.h"
+> +
+> +static int imsic_cpu_page_phys(unsigned int cpu,
+> +			       unsigned int guest_index,
+> +			       phys_addr_t *out_msi_pa)
+> +{
+> +	struct imsic_global_config *global;
+> +	struct imsic_local_config *local;
+> +
+> +	global = &imsic->global;
+> +	local = per_cpu_ptr(global->local, cpu);
+> +
+> +	if (BIT(global->guest_index_bits) <= guest_index)
+> +		return -EINVAL;
+> +
+> +	if (out_msi_pa)
+> +		*out_msi_pa = local->msi_pa +
+> +			      (guest_index * IMSIC_MMIO_PAGE_SZ);
+> +
+> +	return 0;
+> +}
+> +
+> +static int imsic_get_cpu(const struct cpumask *mask_val, bool force,
+> +			 unsigned int *out_target_cpu)
+> +{
+> +	unsigned int cpu;
+> +
+> +	if (force)
+> +		cpu = cpumask_first(mask_val);
+> +	else
+> +		cpu = cpumask_any_and(mask_val, cpu_online_mask);
+> +
+> +	if (cpu >= nr_cpu_ids)
+> +		return -EINVAL;
+> +
+> +	if (out_target_cpu)
+> +		*out_target_cpu = cpu;
+> +
+> +	return 0;
+> +}
+> +
+> +static void imsic_irq_mask(struct irq_data *d)
+> +{
+> +	unsigned long flags;
+> +
+> +	raw_spin_lock_irqsave(&imsic->ids_lock, flags);
+> +	bitmap_clear(imsic->ids_enabled_bimap, d->hwirq, 1);
+> +	__imsic_id_disable(d->hwirq);
+> +	raw_spin_unlock_irqrestore(&imsic->ids_lock, flags);
+> +
+> +	imsic_ids_remote_sync();
+> +}
+> +
+> +static void imsic_irq_unmask(struct irq_data *d)
+> +{
+> +	unsigned long flags;
+> +
+> +	raw_spin_lock_irqsave(&imsic->ids_lock, flags);
+> +	bitmap_set(imsic->ids_enabled_bimap, d->hwirq, 1);
+> +	__imsic_id_enable(d->hwirq);
+> +	raw_spin_unlock_irqrestore(&imsic->ids_lock, flags);
+> +
+> +	imsic_ids_remote_sync();
+> +}
+> +
+> +static void imsic_irq_compose_msi_msg(struct irq_data *d,
+> +				      struct msi_msg *msg)
+> +{
+> +	phys_addr_t msi_addr;
+> +	unsigned int cpu;
+> +	int err;
+> +
+> +	cpu = imsic_id_get_target(d->hwirq);
+> +	if (WARN_ON(cpu == UINT_MAX))
+> +		return;
+> +
+> +	err = imsic_cpu_page_phys(cpu, 0, &msi_addr);
+> +	if (WARN_ON(err))
+> +		return;
+> +
+> +	msg->address_hi = upper_32_bits(msi_addr);
+> +	msg->address_lo = lower_32_bits(msi_addr);
+> +	msg->data = d->hwirq;
+> +}
+> +
+> +#ifdef CONFIG_SMP
+> +static int imsic_irq_set_affinity(struct irq_data *d,
+> +				  const struct cpumask *mask_val,
+> +				  bool force)
+> +{
+> +	unsigned int target_cpu;
+> +	int rc;
+> +
+> +	rc = imsic_get_cpu(mask_val, force, &target_cpu);
+> +	if (rc)
+> +		return rc;
+> +
+> +	imsic_id_set_target(d->hwirq, target_cpu);
+> +	irq_data_update_effective_affinity(d, cpumask_of(target_cpu));
+
+According to the “The RISC-V Advanced Interrupt Architecture Version
+0.2-draft”，the "3.1 Interrupt files and interrupt identities" has
+following description.
+
+Thus the total number of MSI sources that can be separately distinguished
+within a system is potentially the product of the number of interrupt
+identities at a single interrupt
+file times the total number of interrupt files in the system, over all
+harts.
+
+In my opinion, the MSI interrupt number is a local interrupt number.
+However, when the above interrupt affinity is set, it is processed as a
+global interrupt number, which seems not comply with the above RISC-V
+specifications.
+
+> +
+> +	return IRQ_SET_MASK_OK;
+> +}
+> +#endif
+> +
+> +static struct irq_chip imsic_irq_base_chip = {
+> +	.name			= "IMSIC-BASE",
+> +	.irq_mask		= imsic_irq_mask,
+> +	.irq_unmask		= imsic_irq_unmask,
+> +#ifdef CONFIG_SMP
+> +	.irq_set_affinity	= imsic_irq_set_affinity,
+> +#endif
+> +	.irq_compose_msi_msg	= imsic_irq_compose_msi_msg,
+> +	.flags			= IRQCHIP_SKIP_SET_WAKE |
+> +				  IRQCHIP_MASK_ON_SUSPEND,
+> +};
+> +
+> +static int imsic_irq_domain_alloc(struct irq_domain *domain,
+> +				  unsigned int virq,
+> +				  unsigned int nr_irqs,
+> +				  void *args)
+> +{
+> +	int i, hwirq, err = 0;
+> +	unsigned int cpu;
+> +
+> +	err = imsic_get_cpu(cpu_online_mask, false, &cpu);
+> +	if (err)
+> +		return err;
+> +
+> +	hwirq = imsic_ids_alloc(get_count_order(nr_irqs));
+> +	if (hwirq < 0)
+> +		return hwirq;
+> +
+> +	for (i = 0; i < nr_irqs; i++) {
+> +		imsic_id_set_target(hwirq + i, cpu);
+> +		irq_domain_set_info(domain, virq + i, hwirq + i,
+> +				    &imsic_irq_base_chip, imsic,
+> +				    handle_simple_irq, NULL, NULL);
+> +		irq_set_noprobe(virq + i);
+> +		irq_set_affinity(virq + i, cpu_online_mask);
+> +		/*
+> +		 * IMSIC does not implement irq_disable() so Linux interrupt
+> +		 * subsystem will take a lazy approach for disabling an IMSIC
+> +		 * interrupt. This means IMSIC interrupts are left unmasked
+> +		 * upon system suspend and interrupts are not processed
+> +		 * immediately upon system wake up. To tackle this, we disable
+> +		 * the lazy approach for all IMSIC interrupts.
+> +		 */
+> +		irq_set_status_flags(virq + i, IRQ_DISABLE_UNLAZY);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void imsic_irq_domain_free(struct irq_domain *domain,
+> +				  unsigned int virq,
+> +				  unsigned int nr_irqs)
+> +{
+> +	struct irq_data *d = irq_domain_get_irq_data(domain, virq);
+> +
+> +	imsic_ids_free(d->hwirq, get_count_order(nr_irqs));
+> +	irq_domain_free_irqs_parent(domain, virq, nr_irqs);
+> +}
+> +
+> +static const struct irq_domain_ops imsic_base_domain_ops = {
+> +	.alloc		= imsic_irq_domain_alloc,
+> +	.free		= imsic_irq_domain_free,
+> +};
+> +
+> +static struct irq_chip imsic_plat_irq_chip = {
+> +	.name			= "IMSIC-PLAT",
+> +};
+> +
+> +static struct msi_domain_ops imsic_plat_domain_ops = {
+> +};
+> +
+> +static struct msi_domain_info imsic_plat_domain_info = {
+> +	.flags	= (MSI_FLAG_USE_DEF_DOM_OPS | MSI_FLAG_USE_DEF_CHIP_OPS),
+> +	.ops	= &imsic_plat_domain_ops,
+> +	.chip	= &imsic_plat_irq_chip,
+> +};
+> +
+> +static int imsic_irq_domains_init(struct device *dev)
+> +{
+> +	/* Create Base IRQ domain */
+> +	imsic->base_domain = irq_domain_create_tree(dev->fwnode,
+> +					&imsic_base_domain_ops, imsic);
+> +	if (!imsic->base_domain) {
+> +		dev_err(dev, "failed to create IMSIC base domain\n");
+> +		return -ENOMEM;
+> +	}
+> +	irq_domain_update_bus_token(imsic->base_domain, DOMAIN_BUS_NEXUS);
+> +
+> +	/* Create Platform MSI domain */
+> +	imsic->plat_domain = platform_msi_create_irq_domain(dev->fwnode,
+> +						&imsic_plat_domain_info,
+> +						imsic->base_domain);
+> +	if (!imsic->plat_domain) {
+> +		dev_err(dev, "failed to create IMSIC platform domain\n");
+> +		irq_domain_remove(imsic->base_domain);
+> +		return -ENOMEM;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int imsic_platform_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct imsic_global_config *global;
+> +	int rc;
+> +
+> +	if (!imsic) {
+> +		dev_err(dev, "early driver not probed\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	if (imsic->base_domain) {
+> +		dev_err(dev, "irq domain already created\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	global = &imsic->global;
+> +
+> +	/* Initialize IRQ and MSI domains */
+> +	rc = imsic_irq_domains_init(dev);
+> +	if (rc) {
+> +		dev_err(dev, "failed to initialize IRQ and MSI domains\n");
+> +		return rc;
+> +	}
+> +
+> +	dev_info(dev, "  hart-index-bits: %d,  guest-index-bits: %d\n",
+> +		 global->hart_index_bits, global->guest_index_bits);
+> +	dev_info(dev, " group-index-bits: %d, group-index-shift: %d\n",
+> +		 global->group_index_bits, global->group_index_shift);
+> +	dev_info(dev, " mapped %d interrupts at base PPN %pa\n",
+> +		 global->nr_ids, &global->base_addr);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id imsic_platform_match[] = {
+> +	{ .compatible = "riscv,imsics" },
+> +	{}
+> +};
+> +
+> +static struct platform_driver imsic_platform_driver = {
+> +	.driver = {
+> +		.name		= "riscv-imsic",
+> +		.of_match_table	= imsic_platform_match,
+> +	},
+> +	.probe = imsic_platform_probe,
+> +};
+> +
+> +static int __init imsic_platform_init(void)
+> +{
+> +	/*
+> +	 * Register IMSIC driver as early as possible so that IMSIC
+> +	 * platform device is probed as soon as it is created.
+> +	 */
+> +	return platform_driver_register(&imsic_platform_driver);
+> +}
+> +core_initcall(imsic_platform_init);
 
