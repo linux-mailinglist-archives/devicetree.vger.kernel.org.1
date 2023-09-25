@@ -1,222 +1,180 @@
-Return-Path: <devicetree+bounces-3133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDE977AD6A4
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 13:05:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAA8E7AD6A9
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 13:07:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 1DE22B209A0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 11:05:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id C1E321C20445
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 11:07:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F74F182CA;
-	Mon, 25 Sep 2023 11:05:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C15F118B1C;
+	Mon, 25 Sep 2023 11:07:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00B6E15EA2
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 11:05:47 +0000 (UTC)
-Received: from mail-vk1-xa30.google.com (mail-vk1-xa30.google.com [IPv6:2607:f8b0:4864:20::a30])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7193AB;
-	Mon, 25 Sep 2023 04:05:45 -0700 (PDT)
-Received: by mail-vk1-xa30.google.com with SMTP id 71dfb90a1353d-49040dc5cedso1938697e0c.3;
-        Mon, 25 Sep 2023 04:05:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695639945; x=1696244745; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jl5w+wm2h45lPbVYf6Ll8mepBi7Pv/QtvC3mEzScBhI=;
-        b=CuJ+4H4pk8Lzuvd7bX7ZpdN8A4QUn6BRx1ZGZe6Bsd+ftn1hP/lTxPPFuc/1WDjdlM
-         22UY03PxpBM+aBw/e05e+EUDSM79dzEKC9EFrC/jrB6Jpl9g4mNbGMgx+xV3vOWAjKEN
-         eoRAem/3+bYMN8M6tXceyoKK8iCn5bqdAtqVFtu2bG0o6AaLB5XKfU6X8CWWXr2XFU39
-         Mi6eihmXGVo062hj0tLd5CpxrJ1mCXws2wIIBkRLb4CsggwbMV5vhUjRo+KtsPaPC7VN
-         0Xjd/GYp/Lw+1GuEPoxGo4roJeZrNf3olOlSTATTB4uOX9h0nbf+02mf0DOLYKM/7bXT
-         z6wQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695639945; x=1696244745;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jl5w+wm2h45lPbVYf6Ll8mepBi7Pv/QtvC3mEzScBhI=;
-        b=O62EhVTUN40L/7XCxmHwlkLfPaZjCGt9s5bPyqTk1AD8nTWEhPUxulsCsAyK+j1vCM
-         vUvvC8vvS99o6QfEg3fGVRL+4wb8jGwIkcWqbFtN4LIWDpe4Bx4Ed5et72a7RVbTy6cP
-         1Ie1g+r2Ag+MJTS6fiRWftQcZEYBMVL3KFQDANVUa6KHeQ6i9bM3mCqbQld055JpS+/b
-         xFZBeYAMSUQkwbt6iDpr/uwc2tGy3MZ4M9xsoYnRbcRMimiDA70vR94tIrd03uiFYEoM
-         UNmjzGZ84IIsyF4JRGL1Bvaxp8tQQ+pVCC7Ew/QRfpkft7Q9bnph+PExYbc11xzy7g7F
-         a41w==
-X-Gm-Message-State: AOJu0YzcnHrzT5zxRKeY7h1izTM6qTrYjWRgUrICmS+vMpDxpf7iaE+O
-	IT5az4UooJpmtfGBqQiE4yOi7xY7j+DE5PQNZYA=
-X-Google-Smtp-Source: AGHT+IHJFJ+CWx4Nr7N6iOlyC0jmEVz+54mGF9hHsv0FXf0duztogjizfTN6PlAZZ9dqWCGsM7NB3DEl5kpMWXJ3Th4=
-X-Received: by 2002:a05:6122:46a4:b0:49a:3d72:fe89 with SMTP id
- di36-20020a05612246a400b0049a3d72fe89mr949650vkb.14.1695639944795; Mon, 25
- Sep 2023 04:05:44 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A437F11C96
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 11:07:13 +0000 (UTC)
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2097.outbound.protection.outlook.com [40.107.255.97])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53EC9AB;
+	Mon, 25 Sep 2023 04:07:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nypxu7Vg5GKWAFS1nfhClHFNlyXgPC0ZGq1hoVwLnG12TW0pmGQ5/RDPOx9DfrFLsMGQfL12z05hQNlJslHdXRIjXV2Sbj/Ffq8L1UIHrHSc8sU+xrzT4HM7O4yUOlu0uF0+GXFDblYxkic3tXMm4Ck/AylCgWd0gEB26rsUhIgPq+YsJlsBbghVFx1wfTO6VZ38I1rNJMQE5TGQILvSIZtih1HTzlkBCON5Etis0fdFIL3wwvVxDhRuBh+26PAOM20k3dxrRtlVNkuQcaIr64fhXcPLCpxvq1rfVO+5bywDsvLKJnF6O3kHaY4m9CuaMPSWG1bi70ONSyRnxKrkfQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lIm9wZqevhhSSwjMjOH9qpIXwAUdu5OW+ho892eOmf4=;
+ b=KnW5L2cjOX9NUfdXUPC+J05HuplqouU19S9mxVvk1o5ryDIfgbOelC3PrOpKGmCzjY9k3o2QaMJzreaHkSpeI0cGgs9dZfAvZDG+CPlYC/ZzVE9bwnzRveozh6xbF/1UvWZPDWZoMxTX7pgPRHXPykeq7CMQQVIz3Kc7CNBcqBuUrkTSSuYUK9AB55xb3b300eBUkn4OP1Y+MwB9Z4RHbTl9OKkYx8ddktVCNVsmL/fA0Dc2cw4njiDfu/3bE9Kk0VGV6bQ6b95/lFmzI8i7WsxZN6ZRI7doj4zJQ1xZNVCg5i2ocAx2l4ac1oBXHiuZV/yaG84xuTTzWgAgNew1jQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lIm9wZqevhhSSwjMjOH9qpIXwAUdu5OW+ho892eOmf4=;
+ b=ynd1+a9y46S3CIqNvbShUPTjZTXVG/VsFF84k9WbANGvsN2Nf0Y1ALC//eqomJ9dtNJcTk5YTKze8JaLWdRMLPULestG1H3ZeeHELfMfGQPDfoZJ1pRIjlcrsd7fBNzyJuk/lafo+bpJoACjmQEUhFInRL3l0PhHfgnXwfr9sXnUXe6X/L8HvlhxPG4CXAjxcpZ6793LlXbWWlSk3KDZaoj+QIzToiEy9DRISQo95rdv8huKf3/O4neyk7Vuy9yIeW1KoSX+NJiGAdNfozKpfUAi8NgJ5AOC7CXPjzI5SY3PtcEu2x3xtFkfaw0RW4BkTD7hUCK7QwJX79aX9MDiSw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from KL1PR03MB7221.apcprd03.prod.outlook.com (2603:1096:820:cb::11)
+ by TYZPR03MB7790.apcprd03.prod.outlook.com (2603:1096:400:45c::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.25; Mon, 25 Sep
+ 2023 11:07:09 +0000
+Received: from KL1PR03MB7221.apcprd03.prod.outlook.com
+ ([fe80::3f14:c67:12ac:af39]) by KL1PR03MB7221.apcprd03.prod.outlook.com
+ ([fe80::3f14:c67:12ac:af39%3]) with mapi id 15.20.6813.027; Mon, 25 Sep 2023
+ 11:07:09 +0000
+Message-ID: <dc8fa418-e913-1bea-2f1f-6d7a0e331c29@amlogic.com>
+Date: Mon, 25 Sep 2023 19:07:05 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH] arm64: dts: Add watchdog node for Amlogic-C3 SoCs
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230925090641.1185942-1-huqiang.qin@amlogic.com>
+ <51470d7a-65a7-44c7-856b-53ca4b065553@linaro.org>
+ <bb20efd5-4f60-5ded-caa6-2c9c94a10a44@amlogic.com>
+ <235b17ef-b34c-4006-baa4-a1d4360dca16@linaro.org>
+ <e9334edb-bf2e-4dca-9752-14b2924763a4@linaro.org>
+From: Huqiang Qin <huqiang.qin@amlogic.com>
+In-Reply-To: <e9334edb-bf2e-4dca-9752-14b2924763a4@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI1PR02CA0006.apcprd02.prod.outlook.com
+ (2603:1096:4:1f7::11) To KL1PR03MB7221.apcprd03.prod.outlook.com
+ (2603:1096:820:cb::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20221026114908.191472-1-alistair@alistair23.me> <20221026114908.191472-2-alistair@alistair23.me>
-In-Reply-To: <20221026114908.191472-2-alistair@alistair23.me>
-From: James Hilliard <james.hilliard1@gmail.com>
-Date: Mon, 25 Sep 2023 05:05:32 -0600
-Message-ID: <CADvTj4pdSkg5RWGThmj8Z_gOL5g2Ovhvfc-XtYTU88_0ve4NPw@mail.gmail.com>
-Subject: Re: [PATCH v10 1/4] Input: Add driver for Cypress Generation 5 touchscreen
-To: Alistair Francis <alistair@alistair23.me>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org, 
-	robh+dt@kernel.org, dmitry.torokhov@gmail.com, shawnguo@kernel.org, 
-	rydberg@bitmath.org, alistair23@gmail.com, s.hauer@pengutronix.de, 
-	andreas@kemnade.info, Maxime Ripard <maxime.ripard@bootlin.com>, 
-	=?UTF-8?Q?Myl=C3=A8ne_Josserand?= <mylene.josserand@bootlin.com>, 
-	Peter Geis <pgwipeout@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: KL1PR03MB7221:EE_|TYZPR03MB7790:EE_
+X-MS-Office365-Filtering-Correlation-Id: b1c4886e-0617-4b06-40f2-08dbbdb78ed0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	A714JeLtPJYxMxo6MqMA/6Gk6po3mY1eTNz5GM6zNG+3bjzoG4geLEAcEwSNrGEYlNARtugi7h280tA22qrzv7Py5OZ8ic+ZqTreeti1p/ChyHa7YVZyZg5HzSvL6bMvWLdHpNJXNMNQyed0o3KzrzVtuuICmbhKnq3gpA8fxQO0bSgxT7fw0F51HNAuL3u/ksc8WmPUqYO1IxsWkjYaX+3hQ9bRYBiZOsHDNu26aA4fng0dVcHWkElepwLGbgVV3yvv9rYfmynn4asL41dkBRxaQM/T16IdAOBqIs1VOyrvkWqTUJ99QfcUtwSg4gczvGG8ruIrweGXIvV4rc6IFGdX93YOFapIviVvNW9QcupQOchamMV21XxUsz5TtxLeMVZTUJWa79ydA4++ui24gn1SqO53b2oXInsJajSsDFOPSIuFOexrp+8wnlVScKoKBhWlLsJD0dRY111tIacwuWjjo01QOWCgDV2kZznTIzbAmaMhYnTg7RSBMxTyNaWW3hud4I0VsBDo1oiEYjZaZoR5hhq7YO+8VB7cyffmv/YGs01xzUGDZsbGZlWPjN9Wt8h2zopSSyfd1hlAbILgh26BtnlY5rpxJjTT/8yILCrznymYaC2kpB4K1hYfX+UxBh7Efdu8nf48Cu1EsK36PLpx3kSNgseI1KFH7F00Tbb/Ua1VeYMUgMkMBGzO2CvX95ghsn0oJR2lzMNznPnjRQ==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB7221.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(6029001)(136003)(376002)(366004)(346002)(396003)(39850400004)(230922051799003)(451199024)(186009)(1800799009)(7416002)(8936002)(4326008)(8676002)(2906002)(86362001)(31696002)(31686004)(38100700002)(38350700002)(2616005)(26005)(316002)(6486002)(52116002)(966005)(5660300002)(66476007)(66556008)(44832011)(41300700001)(36756003)(66946007)(53546011)(6506007)(6666004)(6512007)(478600001)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?N1JJcGE0a1VlK2JLYkhUVCtRVHZPN0laU09PNU11VGRGT2xHeTczN0JRQXJV?=
+ =?utf-8?B?L1FWTDQ3cE1ZOEYvQTdjMjJOMHpBQXpSQzFMaVY4TU9jeXpuV2VxSk5qcGs0?=
+ =?utf-8?B?eFNrNnpYWUVNOElTbDFYQTZobE9oci81dmlXV2lkRzNURE9QNnlLemV1RVZn?=
+ =?utf-8?B?aGNjUVNUcmZ3WXJudnlCeHFCKzBzeXY5WDBJVElONjJNamp2WjM2M096Tjdt?=
+ =?utf-8?B?YS9OQWlZY2RNZ1JTbzF0N1B4cGlzNlA1Qy9KYlBLWXRJamhrd1k2bXdVRU1k?=
+ =?utf-8?B?NnpXWnd2WUw1ekNTeEdQKyttYlpYU2h0R0x0THJWSWlHYUw0VHZHb0Jyekpj?=
+ =?utf-8?B?YXhSWnRrK3RQMlE0Vk5DQkpLSE9MemdPOWVSWE1zU1d3NzcwUzYyVFg3a25v?=
+ =?utf-8?B?NDQ2ekZYaTJyRlhWbHNiZXNCNEFqb2lMZzM3dDB6dVp0cTRjV2ZBZVZNaHF5?=
+ =?utf-8?B?NXdON3BKVGpOSDFJNEdUbThDUGZtRGo5aUEyZ0VhQjlBL1h3SjE5SkI3Yit2?=
+ =?utf-8?B?V3FoMkxqL1owSDFvR0Fwb2RlTVFwSmdQK0pHTVhRR2UzRlc5U1p0VjBKNzRq?=
+ =?utf-8?B?MWlxTGxCVDBsQ0VkUUNJMktMUXB6U2tvVlFrZldjeHVKUzVjTkFYUmNoQXJM?=
+ =?utf-8?B?bXZqTmI0cjh5OWkwWGJuRm9sT3hLSUNEKzlRVk5BK3BwZmxYTklPRUF6WkZU?=
+ =?utf-8?B?Sys5RkNrTFN4NlBvdDdpU3ZnNnQ4aUxRMzNBaDlDTERyaVphODhXdmRuVnBM?=
+ =?utf-8?B?RVcvNU9IdEJCekIzbFQ0YlNnY3l4blVDVkdNNUN3WGR4eCtkT2Z3T0pzRXdo?=
+ =?utf-8?B?dllGczRQbzBudW9CNzlySHV1TFdkYmx0b0xCOXM2bnZjbXdESTdTaW5rTHY2?=
+ =?utf-8?B?WUJ1VFNWeHhaUUsyenNnYythNm5yVEdIU21oaGFmYUdvNEhPcWxyak0vOTlj?=
+ =?utf-8?B?R0tKZE5jQW5hMzJwQitvTnpuZE5ZeUNWK1Axd2J3eExRcm1IKytlL3drNnVV?=
+ =?utf-8?B?UW5yQzlMOWkvOERraTdKUmlDRC9qRHN0MmtMYVNxYnpCalBjMUR4aElCSjlJ?=
+ =?utf-8?B?VUswSTdWVFVGZkgzYzhlOTlNVXF1cXZqb08vTFk4UFNyNkdBUmNDN094L2Za?=
+ =?utf-8?B?ZmtDeUlPTVJQY1ZnTTllUm1PN2xKNkRib1lvS2g2T1N5T2ZSK2xCSzJkblcz?=
+ =?utf-8?B?ajJXRHVCWW5lVEEwVUwxSnNLVFptWGQ5YWRKbWhzRG1wUng1NFRQVWs1NDNM?=
+ =?utf-8?B?OUFJOTc1NkNUc0IwaXlzc1BQRFkvMURVZDI3NklSaFgwaTI2Y1l3ZmxWb0JN?=
+ =?utf-8?B?cUI4ZmFuTEZrRzNDSWJ2NFBQa0ovWS9CUGJFRWYxS2hsYWFFOFhvTVFyTmhM?=
+ =?utf-8?B?bXY2cVYvMzNzWjhZckFHcFVzTlpLdjZ0Y2tDZlN6dVRtMUhuOGpmay95UUNB?=
+ =?utf-8?B?NXh3czh5bEhFVkNiQzBQVnJ3QTdXdXdSOE50Y1J1dkU0dXNCelhoblhKL2NV?=
+ =?utf-8?B?QjZNVTVKdmhnbDdnblI5dzZBQzN2ZitiT0hiU2VNZk1RbW54NExVL0Z1djkx?=
+ =?utf-8?B?a0ZGb3FQUDNFZEsvYkQ1b2lSbVhRVXM4MkVGdGoxK1pWRy9hSjlMbzJlWEFo?=
+ =?utf-8?B?eUhPclE1NnFreVZkejNNZVpZUnRoTmV2OVJTK2w4QWZxV0c5MURKUHR3aFNK?=
+ =?utf-8?B?RUYzK0dNUU80RW51VGNlQkk4OVlhN2Q5TElhaSs3NUJBaTlabW1LTXBGeWxi?=
+ =?utf-8?B?YzUrTDB2akhDWHpaVlM0UWZsZzJ4YkFpeUhTcnFvOGsrWFZFQ0VaSkN1T3hw?=
+ =?utf-8?B?c3pCZzdDckhGUkhPanBVeUYvZERia2w5dWR3K016RmpUZjBYTkwwT0p3SVJV?=
+ =?utf-8?B?cXp0VGxqb3AxdEl4UHVKejlHVlowc29MbTNYdkpHaExrMlRrTkZmbkFxN2J4?=
+ =?utf-8?B?NTBkUExmdVowNS96Y3hjbnQ1dzVYcFBNNURZbjZWWFIvTlc1cU12OEZXbzdH?=
+ =?utf-8?B?ZkxTZ2F4NmQzZ2N5aFdWS1RoL01QMnhzdkpld2pNdXZkY01mVVJzNXZJSjFj?=
+ =?utf-8?B?bWt0Z1lJYm9XRHZOVlZna0JyR1Q0R1hNbVFzRlcvcDJFaVpDVGYyR2xuQW1B?=
+ =?utf-8?B?VGpkNGVtQVZiSDJLMjZIVVBhSUhxSFRSOWZmV25sV2ErRVM4MFFLRXllb2Js?=
+ =?utf-8?B?Ymc9PQ==?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b1c4886e-0617-4b06-40f2-08dbbdb78ed0
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB7221.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2023 11:07:08.2990
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: cRcPMUx7t4A/hoLD0ywQ+MMBDSdMG8aFBoKPDYQb3eudh1m1f/qA3attXEhuxhyuEOf34o6IsdCTxLxLTwntyA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB7790
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
 	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, Oct 26, 2022 at 6:05=E2=80=AFAM Alistair Francis <alistair@alistair=
-23.me> wrote:
->
-> This is the basic driver for the Cypress TrueTouch Gen5 touchscreen
-> controllers. This driver supports only the I2C bus but it uses regmap
-> so SPI support could be added later.
-> The touchscreen can retrieve some defined zone that are handled as
-> buttons (according to the hardware). That is why it handles
-> button and multitouch events.
->
-> Reviewed-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> Signed-off-by: Myl=C3=A8ne Josserand <mylene.josserand@bootlin.com>
-> Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> Tested-by: Andreas Kemnade <andreas@kemnade.info> # Kobo Clara HD
-> Tested-by: Peter Geis <pgwipeout@gmail.com>
-> ---
->  drivers/input/touchscreen/Kconfig   |  16 +
->  drivers/input/touchscreen/Makefile  |   1 +
->  drivers/input/touchscreen/cyttsp5.c | 902 ++++++++++++++++++++++++++++
->  3 files changed, 919 insertions(+)
->  create mode 100644 drivers/input/touchscreen/cyttsp5.c
->
-> +
-> +static int cyttsp5_hid_output_bl_launch_app(struct cyttsp5 *ts)
-> +{
-> +       int rc;
-> +       u8 cmd[HID_OUTPUT_BL_LAUNCH_APP];
-> +       u16 crc;
-> +
-> +       put_unaligned_le16(HID_OUTPUT_BL_LAUNCH_APP_SIZE, cmd);
-> +       cmd[2] =3D HID_BL_OUTPUT_REPORT_ID;
-> +       cmd[3] =3D 0x0; /* Reserved */
-> +       cmd[4] =3D HID_OUTPUT_BL_SOP;
-> +       cmd[5] =3D HID_OUTPUT_BL_LAUNCH_APP;
-> +       put_unaligned_le16(0x00, &cmd[6]);
-> +       crc =3D crc_itu_t(0xFFFF, &cmd[4], 4);
-> +       put_unaligned_le16(crc, &cmd[8]);
-> +       cmd[10] =3D HID_OUTPUT_BL_EOP;
-> +
-> +       rc =3D cyttsp5_write(ts, HID_OUTPUT_REG, cmd,
-> +                          HID_OUTPUT_BL_LAUNCH_APP_SIZE);
-> +       if (rc) {
-> +               dev_err(ts->dev, "Failed to write command %d", rc);
-> +               return rc;
-> +       }
-> +
-> +       rc =3D wait_for_completion_interruptible_timeout(&ts->cmd_done,
-> +                                               msecs_to_jiffies(CY_HID_O=
-UTPUT_TIMEOUT_MS));
-> +       if (rc <=3D 0) {
-> +               dev_err(ts->dev, "HID output cmd execution timed out\n");
-> +               rc =3D -ETIMEDOUT;
-> +               return rc;
-> +       }
 
-I've been seeing this timeout error somewhat randomly on a Variscite i.MX6
-QUAD/DUAL VAR-SOM-MX6 Custom Board based device at startup:
+On 2023/9/25 18:58, Krzysztof Kozlowski wrote:
+> [ EXTERNAL EMAIL ]
+> 
+> On 25/09/2023 12:45, Krzysztof Kozlowski wrote:
+>> On 25/09/2023 12:42, Huqiang Qin wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On 2023/9/25 17:33, Krzysztof Kozlowski wrote:
+>>>> This is c3, not t7. Why do you use t7 compatible alone?
+>>>
+>>> The C3 and T7 use the same watchdog controller, so they are compatible.
+>>
+>> I am not saying that they are not compatible. I am saying that different
+>> SoCs should use the same compatible. Just like for every other platform,
+> 
+> Eh, missing "not", so "should not use":
+> 
+> I am not saying that they are not compatible. I am saying that different
+> SoCs should not use the same compatible. Just like for every other
+> platform, Amlogic is not special here.
+> 
+>> Amlogic is not special here.
+>>
+>> https://elixir.bootlin.com/linux/v6.6-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst
+> 
+> Please define compatibility list with t7 as fallback.
 
-[    2.234089] cyttsp5 2-0024: HID output cmd execution timed out
-[    2.239957] cyttsp5 2-0024: Error on launch app r=3D-110
-[    2.245150] cyttsp5 2-0024: Fail initial startup r=3D-110
-[    2.257502] cyttsp5: probe of 2-0024 failed with error -110
+Okay, got it, I will modify it in the next version.
 
-When it doesn't error I just see this:
+Thanks
 
-[    2.061176] input: cyttsp5 as
-/devices/platform/soc/2100000.bus/21a8000.i2c/i2c-2/2-0024/input/input0
 
-I'm not sure if this is a driver issue or potentially a device tree issue, =
-the
-upstream kernel device tree node looks like this:
-
-touchscreen@24 {
-    compatible =3D "cypress,tt21000";
-    reg =3D <0x24>;
-    interrupt-parent =3D <&gpio3>;
-    interrupts =3D <7 IRQ_TYPE_EDGE_FALLING>;
-    reset-gpios =3D <&gpio5 13 GPIO_ACTIVE_LOW>;
-    vdd-supply =3D <&reg_3p3v>;
-    touchscreen-size-x =3D <880>;
-    touchscreen-size-y =3D <1280>;
-};
-
-Full device tree here:
-https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git/tree/arc=
-h/arm/boot/dts/nxp/imx/imx6q-var-mx6customboard.dts?h=3Dfor-next
-
-The original vendor device tree node for the downstream kernel looked like =
-this:
-tsc@0x24 {
-    compatible =3D "cy,cyttsp5_i2c_adapter";
-    reg =3D <0x24>;
-    interrupts =3D <0x07 0x02>;
-    interrupt-parent =3D <0x07>;
-    cy,adapter_id =3D "cyttsp5_i2c_adapter";
-
-    cy,core {
-        cy,name =3D "cyttsp5_core";
-
-        cy,irq_gpio =3D <71>;
-        cy,rst_gpio =3D <141>;
-        cy,hid_desc_register =3D <0x01>;
-        /* CY_CORE_FLAG_RESTORE_PARAMETERS */
-        cy,flags =3D <4>;
-        /* CY_CORE_EWG_NONE */
-        cy,easy_wakeup_gesture =3D <0>;
-        cy,btn_keys-tag =3D <0>;
-
-        cy,mt {
-            cy,name =3D "cyttsp5_mt";
-
-            cy,inp_dev_name =3D "cyttsp5_mt";
-            /* CY_MT_FLAG_NONE */
-            cy,flags =3D <0x00>;
-            cy,abs =3D
-                /* ABS_MT_POSITION_X, CY_ABS_MIN_X, CY_ABS_MAX_X, 0, 0 */
-                <0x35 0 880 0 0
-                /* ABS_MT_POSITION_Y, CY_ABS_MIN_Y, CY_ABS_MAX_Y, 0, 0 */
-                0x36 0 1280 0 0
-                /* ABS_MT_PRESSURE, CY_ABS_MIN_P, CY_ABS_MAX_P, 0, 0 */
-                0x3a 0 255 0 0
-                /* CY_IGNORE_VALUE, CY_ABS_MIN_W, CY_ABS_MAX_W, 0, 0 */
-                0xffff 0 255 0 0
-                /* ABS_MT_TRACKING_ID, CY_ABS_MIN_T, CY_ABS_MAX_T, 0, 0 */
-                0x39 0 15 0 0
-                /* ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0 */
-                0x30 0 255 0 0
-                /* ABS_MT_TOUCH_MINOR, 0, 255, 0, 0 */
-                0x31 0 255 0 0
-                /* ABS_MT_ORIENTATION, -127, 127, 0, 0 */
-                0x34 0xffffff81 127 0 0
-                /* ABS_MT_TOOL_TYPE, 0, MT_TOOL_MAX, 0, 0 */
-                0x37 0 1 0 0
-                /* ABS_MT_DISTANCE, 0, 255, 0, 0 */
-                0x3b 0 255 0 0>;
-        };
-    };
-};
+Best regards,
+Huqiang Qin
 
