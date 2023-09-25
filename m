@@ -1,237 +1,172 @@
-Return-Path: <devicetree+bounces-3051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E67A7AD38E
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 10:40:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20F597AD399
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 10:41:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 34EC31C203DF
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 08:40:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 38FF91C20442
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 08:41:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9841C125AE;
-	Mon, 25 Sep 2023 08:40:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9969125BB;
+	Mon, 25 Sep 2023 08:41:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C55D12B61
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 08:40:32 +0000 (UTC)
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D57C7BC
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 01:40:14 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-313e742a787so3936030f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 01:40:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695631213; x=1696236013; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=F3IXyMNInXmbMQ8Ek9MDO7j2NGL0skoofMOaL+e8dlE=;
-        b=vuIcHT4u+w3nyqcZI3lMVTEzN8sJcKxwnWxKSMZPyk04+jwZMxKv2dpu/hPA9sA6lA
-         AdqSGEvwrvUA7NVv4RBovdg0axXLzRlSiZOJ0luh81XWlPR8UmfIys+iK2OZHjOnPXp5
-         kCHpNNGgCP/i6tjXiA8Pn+hc+K78KaYC+IUr8bHVWzOpSUPMxJUiw/wvbsS0ON2JKAEU
-         S4gsAdDsP8fBrawgliasRXuyTAVs2hgwJGXsEj3lK1n5gyv02YGg0oEvcXQ2T9BJgLRe
-         JlpVGpM4fYjqYcVdO+GDPWSn+yG3mtK/aQuFnHaL8VgXOU2GNIo+ivG6glVhBlhbYpJN
-         0Dwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695631213; x=1696236013;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F3IXyMNInXmbMQ8Ek9MDO7j2NGL0skoofMOaL+e8dlE=;
-        b=sFa1va9FX+94KTufNsDbJVv1u8dfm923pB7w1UToar4v2TJzaS0T58oqsmE4QZZu6T
-         0O0eqhHKejuqBK+E9eEBVrC1/dHKsxnKDOZDq7JC/2fyuuMNn2h7kUNbGwEC36NSbvcX
-         B80gP2dxRlU+JQRLrn6w7nc4/ITwMBHIYL6uXk+rcjKXMPhU7/hk67/KsUhUmoLYQmZg
-         +czewQZjXj54qO1Ug+i3YHGYztk2p13kmAZ9d+fHwe/HRVGDYWdq6+5j2wdpovdmCK0u
-         +lW+0uZqWG7FaMzfTl+joPtd7Y/KxyrPVGl9PGoxTNPxKjRDR+Wtf/abiBDLXB3AgFhm
-         uZNA==
-X-Gm-Message-State: AOJu0YyZJfIEdoMfKq+ftrLt2e8f4M7dA9yDrM4zTijZddigqZyaB9hX
-	o3E7eVxh7W1VTn9THwiXVHPCrg==
-X-Google-Smtp-Source: AGHT+IGi1wySmyGOgUZqMGDdRntqbHLonm1/+J1W2LC0nHkg1XQNXCve9oKDO0VIDmtFQHj1PnMziQ==
-X-Received: by 2002:adf:e2c6:0:b0:317:f3fd:21b0 with SMTP id d6-20020adfe2c6000000b00317f3fd21b0mr4783602wrj.7.1695631213213;
-        Mon, 25 Sep 2023 01:40:13 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id v19-20020adf8b53000000b0032318649b21sm5970555wra.31.2023.09.25.01.40.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Sep 2023 01:40:12 -0700 (PDT)
-Message-ID: <5187c590-ee9a-4c46-b326-655f4c371aaf@linaro.org>
-Date: Mon, 25 Sep 2023 10:40:10 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02873125A0
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 08:41:53 +0000 (UTC)
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F83EBC;
+	Mon, 25 Sep 2023 01:41:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1695631312; x=1727167312;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Ik/VX0jzwD0mpvhQYFDRhT2i5D3eVP3vzyDvpQ2/UoM=;
+  b=mcf2al/GdRMVA524h7PChzU9J6AJIVcz77B3nvQ3cIoBOvG2MynQlcIa
+   MW4Mpeaok8PI8GPVQpZ/p5WWl+WM4GqshdtqnCrdtibykf2cuBN0fhi9t
+   f/anj+/00/clhTjFWggmkrUMGsUsIuTrQIxslnlDfEBC2OOWAEZWHdkEv
+   wwLW7JhPjsd+xseln5FeIeifhBfisM4wyex3RFcilnx12FoN633bzggzS
+   EQ5j5k1pmc2aJzC7CxsNCtiuTHM6a6qZ61tWVJx7b35osNwtV3XwpjIE8
+   gUdrQEPU3w4Eu8pkxqG5AZpNUfs5BkKHmEuhI+MLsgCfBCR/AeV2+ZNYl
+   w==;
+X-CSE-ConnectionGUID: 1TnWewJoSl6L34RRtFQyew==
+X-CSE-MsgGUID: a2jL1wM1TCiKyhjY2IueuA==
+X-ThreatScanner-Verdict: Negative
+X-IronPort-AV: E=Sophos;i="6.03,174,1694761200"; 
+   d="asc'?scan'208";a="173396645"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 25 Sep 2023 01:41:51 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 25 Sep 2023 01:41:35 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Mon, 25 Sep 2023 01:41:32 -0700
+Date: Mon, 25 Sep 2023 09:41:14 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: yang tylor <tylor_yang@himax.corp-partner.google.com>
+CC: Conor Dooley <conor@kernel.org>, <dmitry.torokhov@gmail.com>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <jikos@kernel.org>, <benjamin.tissoires@redhat.com>,
+	<linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <poyuan_chang@himax.corp-partner.google.com>,
+	<hbarnor@chromium.org>, "jingyliang@chromium.org" <jingyliang@chromium.org>
+Subject: Re: [PATCH V2 1/2] dt-bindings: input: Introduce Himax HID-over-SPI
+ device
+Message-ID: <20230925-cod-vacancy-08dc8d88f90e@wendy>
+References: <20230919024943.3088916-1-tylor_yang@himax.corp-partner.google.com>
+ <20230919024943.3088916-2-tylor_yang@himax.corp-partner.google.com>
+ <20230919-70b2f1e368a8face73468dfa@fedora>
+ <CAGD2q_anfBP78jck6AbMNtgAggjOgaB3P6dkmq9tONHP45adFA@mail.gmail.com>
+ <20230919-cc4646dbfb953bd34e05658c@fedora>
+ <CAGD2q_bkTpvXiomWb_yerNjQfMVKOctYgBqF_RBSo_jYqyyyxw@mail.gmail.com>
+ <20230922-unclothed-bottom-5531329f9724@spud>
+ <CAGD2q_YsFdDVhE4JCmQSGMWOdpe_yzG8-CdWYPXtjeZsManvgQ@mail.gmail.com>
+ <20230922-removable-footwork-f1d4d96d38dd@spud>
+ <CAGD2q_Y467jJJnwCVH+3F-hh6a-1-OYRugcy0DdjPnTCC77Z8A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/7] arm64: dts: ti: k3-j784s4-main: Add the main
- domain watchdog instances
-Content-Language: en-US
-To: Keerthy <j-keerthy@ti.com>, robh+dt@kernel.org, nm@ti.com,
- vigneshr@ti.com, conor+dt@kernel.org, kristo@kernel.org,
- krzysztof.kozlowski+dt@linaro.org
-Cc: u-kumar1@ti.com, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230925081332.15906-1-j-keerthy@ti.com>
- <20230925081332.15906-5-j-keerthy@ti.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230925081332.15906-5-j-keerthy@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="6yswMwPAh/4Cve9z"
+Content-Disposition: inline
+In-Reply-To: <CAGD2q_Y467jJJnwCVH+3F-hh6a-1-OYRugcy0DdjPnTCC77Z8A@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 25/09/2023 10:13, Keerthy wrote:
-> There are totally 19 instances of watchdog module. One each for the
-> 8 A72 cores, one each for the 4 C7x cores, 1 for the GPU, 1 each
-> for the 6 R5F cores in the main domain. Keeping only the A72 instances
-> enabled and disabling the rest by default.
-> 
-> Signed-off-by: Keerthy <j-keerthy@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 182 +++++++++++++++++++++
->  1 file changed, 182 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> index 26dc3776f911..8c3efe066803 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> @@ -1576,4 +1576,186 @@
->  			      <695>;
->  		bootph-pre-ram;
->  	};
-> +
-> +	watchdog0: watchdog@2200000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x2200000 0x00 0x100>;
-> +		clocks = <&k3_clks 348 1>;
-> +		power-domains = <&k3_pds 348 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 348 0>;
-> +		assigned-clock-parents = <&k3_clks 348 4>;
-> +	};
-> +
-> +	watchdog1: watchdog@2210000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x2210000 0x00 0x100>;
-> +		clocks = <&k3_clks 349 1>;
-> +		power-domains = <&k3_pds 349 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 349 0>;
-> +		assigned-clock-parents = <&k3_clks 349 4>;
-> +	};
-> +
-> +	watchdog2: watchdog@2220000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x2220000 0x00 0x100>;
-> +		clocks = <&k3_clks 350 1>;
-> +		power-domains = <&k3_pds 350 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 350 0>;
-> +		assigned-clock-parents = <&k3_clks 350 4>;
-> +	};
-> +
-> +	watchdog3: watchdog@2230000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x2230000 0x00 0x100>;
-> +		clocks = <&k3_clks 351 1>;
-> +		power-domains = <&k3_pds 351 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 351 0>;
-> +		assigned-clock-parents = <&k3_clks 351 4>;
-> +	};
-> +
-> +	watchdog4: watchdog@2240000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x2240000 0x00 0x100>;
-> +		clocks = <&k3_clks 352 1>;
-> +		power-domains = <&k3_pds 352 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 352 0>;
-> +		assigned-clock-parents = <&k3_clks 352 4>;
-> +	};
-> +
-> +	watchdog5: watchdog@2250000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x2250000 0x00 0x100>;
-> +		clocks = <&k3_clks 353 1>;
-> +		power-domains = <&k3_pds 353 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 353 0>;
-> +		assigned-clock-parents = <&k3_clks 353 4>;
-> +	};
-> +
-> +	watchdog6: watchdog@2260000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x2260000 0x00 0x100>;
-> +		clocks = <&k3_clks 354 1>;
-> +		power-domains = <&k3_pds 354 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 354 0>;
-> +		assigned-clock-parents = <&k3_clks 354 4>;
-> +	};
-> +
-> +	watchdog7: watchdog@2270000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x2270000 0x00 0x100>;
-> +		clocks = <&k3_clks 355 1>;
-> +		power-domains = <&k3_pds 355 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 355 0>;
-> +		assigned-clock-parents = <&k3_clks 355 4>;
-> +	};
-> +
-> +	watchdog16: watchdog@2300000 {
-> +		status = "disabled";
+--6yswMwPAh/4Cve9z
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-status is never first property. It is actually always last in node
-definition.
+On Mon, Sep 25, 2023 at 09:44:21AM +0800, yang tylor wrote:
+> On Fri, Sep 22, 2023 at 11:31=E2=80=AFPM Conor Dooley <conor@kernel.org> =
+wrote:
+> >
+> > On Fri, Sep 22, 2023 at 05:43:54PM +0800, yang tylor wrote:
+> > > On Fri, Sep 22, 2023 at 5:22=E2=80=AFPM Conor Dooley <conor@kernel.or=
+g> wrote:
+> > > >
+> > > > On Fri, Sep 22, 2023 at 03:56:25PM +0800, yang tylor wrote:
+> > > > > On Tue, Sep 19, 2023 at 7:09=E2=80=AFPM Conor Dooley <conor@kerne=
+l.org> wrote:
+> > > > > > On Tue, Sep 19, 2023 at 05:31:29PM +0800, yang tylor wrote:
+> > > >
+> > > > > > > The behavior of "himax,boot_time_fw_upgrade" seems not stable=
+ and
+> > > > > > > should be removed. "himax,fw_in_flash", I use the kernel conf=
+ig for
+> > > > > > > user to select.
+> > > > > >
+> > > > > > That seems like a bad idea, we want to be able to build one ker=
+nel that
+> > > > > > works for all hardware at the same time.
+> > > > > >
+> > > > > I see, so I should take that back?
+> > > > > I'll explain more about it.
+> > > >
+> > > > Are there particular ICs where the firmware would always be in flas=
+h and
+> > > > others where it would never be? Or is this a choice made by the boa=
+rd or
+> > > > system designer?
+> > > >
+> > > Most cases it's about the system designer's decision. But some ICs ma=
+y be forced
+> > > to use flash because of its architecture(multiple IC inside, need to
+> > > load firmware to
+> > > multiple IC's sram by master IC). But if there is no limitation on
+> > > this part, most system
+> > > designers will prefer flashless.
+> >
+> > Forgive me if I am not understanding correctly, there are some ICs that
+> > will need to load the firmware from flash and there are some where it
+> > will be a decision made by the designer of the board. Is the flash part
+> > of the IC or is it an external flash chip?
+> >
+>=20
+> Both are possible, it depends on the IC type. For TDDI, the IC is long
+> and thin, placed on panel PCB, flash will be located at the external
+> flash chip. For the OLED TP, IC is usually placed at FPC and its flash
+> is embedded, thus the IC size is large compared to TDDI. But from the
+> driver's perspective either external flash or embedded flash, the IC
+> itself will load firmware from flash automatically when reset pin is
+> released. Only if firmware is loading from the host storage system,
+> the driver needs to operate the IC in detail.
 
-> +		compatible = "ti,j7-rti-wdt";
 
-OTOH, compatible is always the first property. Always. There is no
-coding style which suggests different order.
+Since there are ICs that can use the external flash or have it loaded
+=66rom the host, it sounds like you do need a property to differentiate
+between those cases.
+Is it sufficient to just set the firmware-name property for these cases?
+If the property exists, then you know you need to load firmware & what
+its name is. If it doesn't, then the firmware either isn't needed or
+will be automatically loaded from the external flash.
 
-Best regards,
-Krzysztof
+--6yswMwPAh/4Cve9z
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRFHmgAKCRB4tDGHoIJi
+0nMVAQD0/+RvD0e0+hNILOkQtK4zp8D2AVRzfWJAv2WJqNTsjAD/byS1txiZNPpM
+fKg2haa7MvIoQWxWAckF+Bk6qkgBkgY=
+=B6aB
+-----END PGP SIGNATURE-----
+
+--6yswMwPAh/4Cve9z--
 
