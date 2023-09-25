@@ -1,151 +1,237 @@
-Return-Path: <devicetree+bounces-3122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 458457AD640
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 629C97AD64C
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:44:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id EAC3D28293A
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 10:42:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id E1F38282BF8
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 10:44:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A36C215EA9;
-	Mon, 25 Sep 2023 10:42:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D24215EBA;
+	Mon, 25 Sep 2023 10:44:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EE6211C83
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 10:42:14 +0000 (UTC)
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2110.outbound.protection.outlook.com [40.107.215.110])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B83DBBE;
-	Mon, 25 Sep 2023 03:42:13 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cWvYmM/Fs+rqkcbf4otnO8/GjYhwh/gwIufyw8lwUeAJ5q2jIVE2M8dBXaDZFJo7DO0TLlfW0zT6OLdx3I4Oqly6TwOb7Mw8Nrpy3TZQ/B3x2f2s1K4ZDH1nD0grnOfJqpx5D07XMYCuWv/ozbA7KbgGrOsFgRXH4602kJRBiRbGnEy8U1VSkUb3xUBN0cWgJYEMbbuywGmaFZtxqwRu3zMPYM5LKLkCnYE0MEx/Asy7wVmEE2USsGHk1WhI0FBwUu7A5mpJrnuogSZOdfaRtGs5JPIWN9eP2elTS5miPEPnD2dcUpoBcQ404D3+Qa17GtUGNq1B8I6pR//sQrfvmQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VwI0gfbmPjW5pBx3s0+8Kl1TIQo+ZO0ShHR0ZGa6v+A=;
- b=egdyAQ9fWaVNchaCtQpOhJ7+JAro9BzJ0Gnvoogg1tYB6ZQCP3oXuEcl31NvTSfgtf2/RgRmkaNgIMWeDTAj+TD3WAkFZyv8kOpTPGvRfjzwGurDVfdFFyj6G/0MQrZS9zbcrDJBAeopN7i+79lxaEpAZtNW8YrqFr/sTZ8Bs4WXVA9Vi0gdq2PEaZJ/TTLjabunLblkfxCuMODfkEMxk1ziEI/1WB6/oZMxCswRn7x3f/KjkIPyEyeeCqcgIf8p/26hMvPzjPyTZoBwR/9akROHg7Nula4Git29j31hMIKgWa3Bquc7uxUha7ctTdgCfMqelUA5gsvZk1O/WNBq/Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VwI0gfbmPjW5pBx3s0+8Kl1TIQo+ZO0ShHR0ZGa6v+A=;
- b=r1leUs2lMb+pm/xLP5w5ZUdnNmCiQb/65DCzgG81RZYla4hPaHAcuYXrv2xCFF+lGn9tQqFgxuOHQev0MIgPpOBRMIztZqRCGrE5V7qghPSl7uMNxIGYOkC2o79vhvn76ZnnQovPgxQfyyV4/rAkleI+v8jxPKzvqdBxvPFilSU8TqvaT/u57985FQZdAgP6bqoMO/OZ5tE5INAjkOa4tGeUYgI5A6WEWtnuK85+fCePz9WjUvjwVAhSXh0cSWOzh5R1FhwllAQ/8PrE36jUVi2F+A7sG0D6GkQ6YYai7Kt32u7bkHP/BAPM8FUZ3PkWU6s42tCn76U5G4S9O5H38g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB7221.apcprd03.prod.outlook.com (2603:1096:820:cb::11)
- by SI2PR03MB5860.apcprd03.prod.outlook.com (2603:1096:4:144::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Mon, 25 Sep
- 2023 10:42:09 +0000
-Received: from KL1PR03MB7221.apcprd03.prod.outlook.com
- ([fe80::3f14:c67:12ac:af39]) by KL1PR03MB7221.apcprd03.prod.outlook.com
- ([fe80::3f14:c67:12ac:af39%3]) with mapi id 15.20.6813.027; Mon, 25 Sep 2023
- 10:42:09 +0000
-Message-ID: <bb20efd5-4f60-5ded-caa6-2c9c94a10a44@amlogic.com>
-Date: Mon, 25 Sep 2023 18:42:02 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH] arm64: dts: Add watchdog node for Amlogic-C3 SoCs
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230925090641.1185942-1-huqiang.qin@amlogic.com>
- <51470d7a-65a7-44c7-856b-53ca4b065553@linaro.org>
-Content-Language: en-US
-From: Huqiang Qin <huqiang.qin@amlogic.com>
-In-Reply-To: <51470d7a-65a7-44c7-856b-53ca4b065553@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: TYCPR01CA0167.jpnprd01.prod.outlook.com
- (2603:1096:400:2b2::7) To KL1PR03MB7221.apcprd03.prod.outlook.com
- (2603:1096:820:cb::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AF7611C96
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 10:44:44 +0000 (UTC)
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECADED3
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 03:44:40 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-5230a22cfd1so7099006a12.1
+        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 03:44:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695638679; x=1696243479; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YPKwu29nswr19PRfxmThaRgCyfVAPPnrF03AJDF6RVE=;
+        b=KcqjVq0Zh71W300PkvOivm6pkpQGfgR10H3cywkmXHv4wb+rmTH1AhG9os5MCD2nJQ
+         CZ5QNCqyVvGqbxOIO7CaDhWUms9FI5mf+RM99TW4/uxmWCwMNgU0pruoBn3mm4nn81oC
+         ZNFmGW7ZE3Oq41NHUIjG+y9PkYnhJjoIovHWXViUHU+HjvlJ9kL1g+5mQXWYa2Lz5L+s
+         Jho+wiM4mYZzMBgRks+tF5WWcfjoEr0o1AxMQl+TLIgQEDroKMb3fJ6XGhl9FyaczDdN
+         xb7blOSpHRSME6ctzjkUvl701gRcSrBuVSQ0/vnZyVz5vl1NACRnYjvphV52vK+XVyQD
+         5n+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695638679; x=1696243479;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YPKwu29nswr19PRfxmThaRgCyfVAPPnrF03AJDF6RVE=;
+        b=HOV433BAHuSR3f4t8kc6LblF2n9cPR8ax61ZYkBLHfVwXhsJ9Bw1o9U4iQtjhFoPAu
+         NqIqh22x605tZTOcCLpDPfvQTPOpC5XkxVGxYSr63PNgJginYaxLu4Z63dmGF6nyxKrY
+         lwDbQsSquQqDusH27ez2HojJnV+Tk7rpjKg/nNdCZ/rVQYVPzIa96pQUm2iduRDQzNC3
+         nYel0ugkhQ7ZVJ6PihchuaTWbYnj4PkiKR/gtWsOxa2ZpOKdP42k7Ni/Ed2Z/gQMxkts
+         No2K4rtRDWKdAAL4lWEaBzMuPplExUnkrI6wp2v/2kTlVezufXq3XSQTfZT9rRmjB/g0
+         KRYA==
+X-Gm-Message-State: AOJu0YxoQQfUF7GXs0e4oBQQe7wMWepibejrGp8wazt7rs1MKIQmArli
+	UuztMdLECdiUcitJZKuMrZc/iQ==
+X-Google-Smtp-Source: AGHT+IFdMo5I5c373VJKI1Qiq+6RT/IKdTELM18C3QX5YTHa873Vh8IoMEaubO6qaZj1vsmpa+IZ6Q==
+X-Received: by 2002:a05:6402:b5b:b0:533:d1cd:62c5 with SMTP id bx27-20020a0564020b5b00b00533d1cd62c5mr3976542edb.17.1695638679365;
+        Mon, 25 Sep 2023 03:44:39 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.100])
+        by smtp.gmail.com with ESMTPSA id l14-20020aa7cace000000b0053331f9094dsm5356947edt.52.2023.09.25.03.44.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Sep 2023 03:44:38 -0700 (PDT)
+Message-ID: <e02ebde7-f208-40a4-bb10-aa5962ee9864@linaro.org>
+Date: Mon, 25 Sep 2023 12:44:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB7221:EE_|SI2PR03MB5860:EE_
-X-MS-Office365-Filtering-Correlation-Id: 89c27e15-cfd4-462d-52f3-08dbbdb410ec
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	iXPs9bXzO50b/eluq7ljD9CV2loEUbfLrmx2FqplWdJKMptL4g6Da+FPC4Roz2HdzagiXL5pp4IEIluoHtr5I2ST+mUnCetrMluiZw1UeM9oTsRjBUmQlaQ9/Km6CWSZeauxWaAJXspb1lPpjf6+xNGnFimWntuLKVpuym62qD61vBTkHpZazF5jBYeKFENN76rt0O70sabmiKrxfLooEsLo7D6nY8FXU15JhL/ZPVqZy14+duQFVT9Z4ZcKRbw3Ed7yGmWpLxhIxAqeRYKBLw1/P2TChIG5ov5+DvKlDnKEsM71Ta6ojYh00xoH+DwiJFyPK2/4GbqzzNReWTjTHrwL3nhieQDkMkFoxz8RAzFThcSa9iLuWMVBT8ACeUvn9ll5iTupmSnsr4HYHdXZiVZF/e6Ca4t7J0l/pInOkeCkfsCIyGurFTQ6/09M1jsyxOvWcy7pVJolq2d5g5B+NKPrJbsh0SrtH7yyQEWblMV1FjaSZe6vRu9lrAS1KYlJvbIsxqQwhrC1rHiJFjMUBdG+/ximne+H9W3Q6KwuoBxkqnZvWu0Oy7Xo9t3XLhNQhvnxrQeH8rTwwLFnrZ4gTpYdl8pTulHi98eux/ZJp/WNN0HSeWLwnz0iry78K3UBP7AHwlYkqxhW/iPeJdEh6aa18A+hK9shoCzS/5DAex6jF8gCm+AVfwszflUFFnqp9x6JkRLPAH4Gx/+uK3AESL2Pwps7Jf+SRScLmoPUaQA=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB7221.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(6029001)(346002)(136003)(376002)(366004)(396003)(39850400004)(230922051799003)(1800799009)(186009)(451199024)(6512007)(53546011)(6486002)(6666004)(6506007)(52116002)(31696002)(86362001)(558084003)(38350700002)(38100700002)(36756003)(2616005)(26005)(44832011)(2906002)(31686004)(8936002)(8676002)(4326008)(41300700001)(7416002)(66556008)(66946007)(316002)(66476007)(5660300002)(478600001)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?dFMzbUVTdXI4ZlAwWXN0MVQ1MTBZRlh6OVYxSDVqVFZ0b0tWUXRMSEVvNXJN?=
- =?utf-8?B?R2hkWlYxT1Y2R1lHZnNRN2d3UXFNNG1DNjFJTTNPZ1IxNmJoM3I5blVkSnVw?=
- =?utf-8?B?aXoxUlhsdnBXVGwzVVlMWStBN2F4ZkxSaVRqTTZIOHVQdFpPM3FqUUJkVEdJ?=
- =?utf-8?B?Nmo1VEgzcFlIK0VObFlBZFVLdnMzVjZSb0xDMEtUeGw2WDJBelZ0MUVhcS83?=
- =?utf-8?B?RTliV29nWnpjZHNLU09uSFBjYzhoZUc3RGo4aUkyZDVBS1J2ZThkZE95c2M3?=
- =?utf-8?B?NURPbURMN3Y4aFNBL24vdDZ6MU9uNlU5bmx5QXVackxBSHg3OGlDeTltWStV?=
- =?utf-8?B?ODY2UXRTWHhxL3g5SU1rODk3SFJIRW1KSnZMYTB0YnBwTXIxOVR4T1FEVm1J?=
- =?utf-8?B?RWxEdFFQamQ5b1pIVC8rTGVxM0dGNXI0MUZXamdhdE1NQ1NzdnVYZnBLbE1y?=
- =?utf-8?B?TTVZeVpaM2ozSTA0OTR2LzkxblRhNGhFbmNGcUtCWHkxcThlaWVJTlZPWG11?=
- =?utf-8?B?eSsvcUl5Z2lCMXFhTlpibFNMenR1ckJzZjlCdHB3Sm9sVzhRNDdYQkFBVzJn?=
- =?utf-8?B?U3lhN3l2M0lWYno5ZU1FV1RFMkJpUzgyZGJqVkhVN3ErUE8zMXlVdUhESDJE?=
- =?utf-8?B?UTYrN2RNQjB4TmVjUVdTUUZnbmRzMUZoZnhJMnJZdUN4bjJPM3hRYUZQZDFH?=
- =?utf-8?B?R1VMV3pROEVaaGRwWk0wZ2VXSjIvRFY4RzI1SG1jSE1SckxlbmNucGpjNVJP?=
- =?utf-8?B?QXNtTTMwNFFJanhiNHdMZGl2MzdzUWlBQjdyVlR2VVNxVGk0ako2L3RrUmtM?=
- =?utf-8?B?YUJGeUQrRE5RaklNd05QMzkzK2dvNXVvV1pONG03ejBOcUNUaFNlWTBUTzNp?=
- =?utf-8?B?Z2JsWitTV09Jd29LU240a0ppelRFeXM0elFrTVdBak1ZcHpkUzlhK1ZsK2Za?=
- =?utf-8?B?MGgyZG9Ia0Rhb0t3TStoVEt3STNJNjBSd0o2UTlMSzkwSlFPRTRWNGcvK05r?=
- =?utf-8?B?aVc3dnk2anBvc3pCMTdhVTBKWlBwYlRQT0cvV0JHclJWZHY3N3pXVHppcm1Z?=
- =?utf-8?B?TEw4cnNKcjhsMjVmNnEreWhjaDRodzdpUThnWGF3dmk2YWl3NUYwd3JNbEVD?=
- =?utf-8?B?a1dXTHE1WXF1Z0cvdWlLdHk4SkZWN3pNcWVsWk01QzV4VXFKYlB2Slo3S2ZM?=
- =?utf-8?B?MWdvaXAyczY4d0JYZ1puNnU3cVpGajE5b0prRzJyaFhDQnhoS0dESDUwcEcz?=
- =?utf-8?B?Z2J4aWNIc3N0NENqdEFBYUlWYXU2WkZ1bjExMFd6Y0xwWEhYREYxYnJTcnMr?=
- =?utf-8?B?SHhIRnNmZjgreFhnUU1idlVFTkJSbmNtMlgweGlXd3krWUlMQUQ5REJTc1p3?=
- =?utf-8?B?T1NSRkZlbS96dkJBaCt3UGpDWC90bWFNY1IvT1Q4ZmtUMXdibW1PcVJXQlEy?=
- =?utf-8?B?cGZrZnMzTENzQjg3WmRNdWoxZVFIUTl0ZFpjUmRIZHBxanFwZzV3eDlERnNw?=
- =?utf-8?B?aFJ0cUovR21xQ0txZVhQaFZRYmJwUXhhSDlIS29Pc1dEcDA0WGtCTWc4bzRK?=
- =?utf-8?B?blZpWXZKTk8rWDFIS2d0U0hKQzZvZlU0M3hxc0hzaDhvSlJOOGMxOE5BZlNa?=
- =?utf-8?B?R0MyS3FNdW9jaU9TTXJxK0owa1I4RytMd2lsTTNkVU1DdXhyRDd4U0c1ejVT?=
- =?utf-8?B?MVVGaWlJczM0TVhlZEtNaTNUN0l0VHRSd2RTUUwydzByaURUaVVDOWxEeUNL?=
- =?utf-8?B?b21oK1Z4NEJsUjFGaTRxQW5YcGJBSGV5Wm92UDdERDJONm5oR0VhbkExeE4y?=
- =?utf-8?B?WEp5UGpoMnRLMlBmd1NvMGRhbGVXU2xGVE9saXRTNmxZK2pJVEwyTjF4MDky?=
- =?utf-8?B?dVA2T1piWGRhRE9DNG5IbWhIdktZWGFhdWpTbzA4Sm5kVnM5NjhFUmFvaUc0?=
- =?utf-8?B?TWp2UzNtNHdLRTJGb0JmN205RU5ndU1xYU5GZG5ZK1M4NmlUV3hKbVFCMWNO?=
- =?utf-8?B?MnpuTkdxWVhKTGk0OHg0N040Vk54NFU1UW41NFVTdnhKc0xUOW1jeEIydlk5?=
- =?utf-8?B?S2Jub1JWZGhGOXZaeHFNTVQ3c3FHSFNMNnlXQ0Nxb3B4aTNxS1NHNFVDNzBu?=
- =?utf-8?B?TmJxUFB2c0hQL2x1bDVTL3U4Y1JuQ3JVVHcvMUEwaFBzS2tBQWFpZFMzUUNL?=
- =?utf-8?B?S0E9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 89c27e15-cfd4-462d-52f3-08dbbdb410ec
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB7221.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2023 10:42:08.7863
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FkKH+7y+4V6GTlgvwRkofpM6BsUgk8u0/ppPnPBvyFkJ1SJtp/TrZYUT2UPhObrxDLlTNptzgGooUeAwyssIcg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR03MB5860
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 08/30] dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc: Add
+ support for QMC HDLC
+Content-Language: en-US
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Qiang Zhao <qiang.zhao@nxp.com>,
+ Li Yang <leoyang.li@nxp.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Shengjiu Wang <shengjiu.wang@gmail.com>,
+ Xiubo Li <Xiubo.Lee@gmail.com>, Fabio Estevam <festevam@gmail.com>,
+ Nicolin Chen <nicoleotsuka@gmail.com>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+ Simon Horman <horms@kernel.org>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20230922075913.422435-1-herve.codina@bootlin.com>
+ <20230922075913.422435-9-herve.codina@bootlin.com>
+ <5efae150-3d92-81b8-5c25-68846d27132e@linaro.org>
+ <20230925101703.1bf083f1@bootlin.com>
+ <5b804a1a-6bfd-429d-ad84-696b7ecef72d@linaro.org>
+ <20230925122758.43963736@bootlin.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20230925122758.43963736@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Krzysztof,
+On 25/09/2023 12:27, Herve Codina wrote:
+> On Mon, 25 Sep 2023 10:21:15 +0200
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+>> On 25/09/2023 10:17, Herve Codina wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On Sat, 23 Sep 2023 19:39:49 +0200
+>>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>>>   
+>>>> On 22/09/2023 09:58, Herve Codina wrote:  
+>>>>> The QMC (QUICC mutichannel controller) is a controller present in some
+>>>>> PowerQUICC SoC such as MPC885.
+>>>>> The QMC HDLC uses the QMC controller to transfer HDLC data.
+>>>>>
+>>>>> Additionally, a framer can be connected to the QMC HDLC.
+>>>>> If present, this framer is the interface between the TDM bus used by the
+>>>>> QMC HDLC and the E1/T1 line.
+>>>>> The QMC HDLC can use this framer to get information about the E1/T1 line
+>>>>> and configure the E1/T1 line.
+>>>>>
+>>>>> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+>>>>> ---
+>>>>>  .../soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml      | 24 +++++++++++++++++++
+>>>>>  1 file changed, 24 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml
+>>>>> index 82d9beb48e00..61dfd5ef7407 100644
+>>>>> --- a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml
+>>>>> @@ -101,6 +101,27 @@ patternProperties:
+>>>>>            Channel assigned Rx time-slots within the Rx time-slots routed by the
+>>>>>            TSA to this cell.
+>>>>>  
+>>>>> +      compatible:
+>>>>> +        const: fsl,qmc-hdlc    
+>>>>
+>>>> Why this is not a device/SoC specific compatible?  
+>>>
+>>> This compatible is present in a QMC channel.
+>>> The parent node (the QMC itself) contains a compatible with device/SoC:
+>>> --- 8< ---
+>>>   compatible:
+>>>     items:
+>>>       - enum:
+>>>           - fsl,mpc885-scc-qmc
+>>>           - fsl,mpc866-scc-qmc
+>>>       - const: fsl,cpm1-scc-qmc
+>>> --- 8< ---
+>>>
+>>> At the child level (ie QMC channel), I am not sure that adding device/SoC
+>>> makes sense. This compatible indicates that the QMC channel is handled by
+>>> the QMC HDLC driver.
+>>> At this level, whatever the device/SoC, we have to be QMC compliant.
+>>>
+>>> With these details, do you still think I need to change the child (channel)
+>>> compatible ?  
+>>
+>> From OS point of view, you have a driver binding to this child-level
+>> compatible. How do you enforce Linux driver binding based on parent
+>> compatible? I looked at your next patch and I did not see it.
+> 
+> We do not need to have the child driver binding based on parent.
 
-On 2023/9/25 17:33, Krzysztof Kozlowski wrote:
-> This is c3, not t7. Why do you use t7 compatible alone?
+Exactly, that's what I said.
 
-The C3 and T7 use the same watchdog controller, so they are compatible.
+> We have to ensure that the child handles a QMC channel and the parent provides
+> a QMC channel.
+> 
+> A QMC controller (parent) has to implement the QMC API (include/soc/fsl/qe/qmc.h)
+> and a QMC channel driver (child) has to use the QMC API.
+
+How does this solve my concerns? Sorry, I do not understand. Your driver
+is a platform driver and binds to the generic compatible. How do you
+solve regular compatibility issues (need for quirks) if parent
+compatible is not used?
+
+How does being QMC compliant affects driver binding and
+compatibility/quirks?
+
+We are back to my original question and I don't think you answered to
+any of the concerns.
 
 Best regards,
-Huqiang Qin
+Krzysztof
+
 
