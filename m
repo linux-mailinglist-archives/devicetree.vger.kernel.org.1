@@ -1,136 +1,329 @@
-Return-Path: <devicetree+bounces-3213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C4D57ADAA3
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 16:53:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C12C87ADAAA
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 16:54:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 032212814B1
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 14:53:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id DC3D91C20843
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 14:54:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 478121C697;
-	Mon, 25 Sep 2023 14:53:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0A9B1C6A7;
+	Mon, 25 Sep 2023 14:54:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E0A71C290
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 14:53:07 +0000 (UTC)
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A3B5197
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:53:00 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2c131ddfc95so99813401fa.0
-        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:53:00 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24D371C290
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 14:54:20 +0000 (UTC)
+Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2600107
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:54:17 -0700 (PDT)
+Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-59bbdb435bfso78446397b3.3
+        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:54:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695653578; x=1696258378; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=12lvvZVko7HwcFd7BVr7FRaCYZcG3/6yf/N02oFBsK8=;
-        b=znnFwVGn+zck2eznawy53HuyrlhwhEcgK90aK6K8nOemWEjHO5lc1uOQYuVTiZaTwf
-         shGOESxGUXmzoqCzqUkLzDn5KjK/kGSnjqkLWxL/rrgzkK7axQq9kJT62xROgrazZV8L
-         Er9u6sq3F1fGoca3K4gY33FCwvRvS2VO3gsjnyOX90CiRsCfrQkRbHgXeXP6tzQFH7Ic
-         x48he8NVvebbENIMVc2Bjkgu3WOkf/3YSW5jR4CaJkI4uxu0tsktnlNbIuqq8ZSO/8Ac
-         22Xwd0Mlnot3pcqemqLyIbSQfGHee6RYyUB1DJbYhIDvseBqgQtMD+SX4pPm65govz9u
-         /06g==
+        d=chromium.org; s=google; t=1695653657; x=1696258457; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gAs/h3x9h+77khWIK3iPvQFPgGZ4y9rDhC59IFJZTGw=;
+        b=fnQcBfjLLh1mKBUQWy7wvpr1QOrrcCchV0wcyAN7AUSm8NlJQcsaEireWheIiExX5Z
+         z3tlSyziRTJ4IXVYkWUuRMVoDIdgrk/fVfI81HH6WAXCfrIAlBd7i3rh5VNob5SI11xF
+         6pQBnAN3Jg23SSQ2MXBLEIZ+q52pZIU5ysQ3A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695653578; x=1696258378;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=12lvvZVko7HwcFd7BVr7FRaCYZcG3/6yf/N02oFBsK8=;
-        b=GEwHfwSEVKLoq1ry4TPJOT577dBMhEJ6ZM+Gxxbym5ppYxbq0kncuH4Bx11Og1tFoP
-         GnpIb//XP0HQDcvmQqkm3kC/J/26zsJBFe0PEIfBNW0Wmb1ezBviDfT3vARvxlrZZHUa
-         Xxj9r1ky0w43pA6uiqEh8mPJpKRT4wZpOMf43lHF0lblQnekOSkoXgUGkXNp39CGPNwO
-         30UT1q5cR4hBdi1Kxdl80uZ+GLQaupb0B/8HDQy1oVQ7zAA5vCL04MIrRMjyhHZybrFF
-         u5Dn51tidJ3gIgtUxaxaniBV1572rqiARtxuuAnaT2FaMxdWdSsA2Failbi4OAwCfdPJ
-         c8BA==
-X-Gm-Message-State: AOJu0YwaeJbBBg/mPKiNuwbF77zllUjhgJZXsIXeRoZHhaHFMka9R85F
-	1ZjdnMVH+QCceh0BMqXJO+xwDQ==
-X-Google-Smtp-Source: AGHT+IFDQpUk2VXmAw55MR/ZBzMc5xEwHe1FQv75sipuCMabU5D0JcaGYP7gRdWeBjtjiRNoVPTmdA==
-X-Received: by 2002:a2e:984e:0:b0:2bc:eceb:6a4b with SMTP id e14-20020a2e984e000000b002bceceb6a4bmr5683898ljj.28.1695653578381;
-        Mon, 25 Sep 2023 07:52:58 -0700 (PDT)
-Received: from [192.168.1.172] ([93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id md1-20020a170906ae8100b009a1be9c29d7sm6455357ejb.179.2023.09.25.07.52.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Sep 2023 07:52:57 -0700 (PDT)
-Message-ID: <a16e1b9e-06b7-0dce-124e-f13c672d779d@baylibre.com>
-Date: Mon, 25 Sep 2023 16:52:56 +0200
+        d=1e100.net; s=20230601; t=1695653657; x=1696258457;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gAs/h3x9h+77khWIK3iPvQFPgGZ4y9rDhC59IFJZTGw=;
+        b=LSqROBxjjh00wq8mE6VCosFg8yUb7zd/vTRwBnwCwVDP0+cQo7EX604vSGn25aJ+5e
+         RQ7ydcsvTH8HpBFn+ue1ZqkjDD7RH0NwjDSbyZu5fiKffdw9+o1ZglZGoytl9+gWMbib
+         QFex860NtU8Q7T3L1p/LgvfI4q+v9ZCnI/ghHunluS02fxDG/vJAUo5aFnxgwyb1WsuF
+         NCMCJdgNoAE1YU2GzrsXIf8b2e73fTwxXn0+0f4y261DkOIHNHd1Cx6RsZl/09kQ5tOs
+         msajKlPxvMx7Pdd/sipiaEdp6QYDf8u9c6RIC3hNHp0zV4IBskp09B/I5M99zzMV8J/K
+         tojw==
+X-Gm-Message-State: AOJu0YxxV+jwsLxhxdzifJ2xCJCUB/4DwXB5hnfTN5p90wtxBnDxZBIW
+	itCaeKmFdaUxoQYyjAYcZvtLm2pMbc9uSL7zOAAGux11Fpy5vsNdgLKp4g==
+X-Google-Smtp-Source: AGHT+IHzjHIDz/yn/ztOldBZssnouHhhnprKKe22wtVgmt4CE9tlbt9a7WbVTOT55WwDR4WjkXVN84l//rbWRTHR4cI=
+X-Received: by 2002:a25:77c7:0:b0:d7b:9bd7:f280 with SMTP id
+ s190-20020a2577c7000000b00d7b9bd7f280mr7664332ybc.0.1695653656597; Mon, 25
+ Sep 2023 07:54:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v4 2/5] thermal/drivers/mediatek/lvts_thermal: Add suspend
- and resume
-Content-Language: en-US
-To: Daniel Lezcano <daniel.lezcano@linaro.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
- rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
- matthias.bgg@gmail.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
- ye.xingchen@zte.com.cn, p.zabel@pengutronix.de
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, wenst@chromium.org, james.lo@mediatek.com,
- rex-bc.chen@mediatek.com, nfraprado@collabora.com, abailon@baylibre.com,
- khilman@baylibre.com
-References: <20230530195132.2286163-1-bero@baylibre.com>
- <20230530195132.2286163-3-bero@baylibre.com>
- <371790cd-5a7c-8fa6-cc38-3a3680525092@collabora.com>
- <b544e079-c9de-23d3-80f7-cff89293eeb5@linaro.org>
-From: Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <b544e079-c9de-23d3-80f7-cff89293eeb5@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+References: <20230921124459.1.I91ddcfacf9b234af5cc3eabea4b62edb31153317@changeid>
+ <CAL_Jsq+WuYDU+yY98opTHr1PT-J9mFYJQBjVMnk+FSWLDUO33w@mail.gmail.com>
+ <CAPnjgZ1pfxaMG1n5yOBhiOhsNrRjck1K92U7Ga=+VTY_jjjrVg@mail.gmail.com>
+ <20230922174649.GA3320366-robh@kernel.org> <CAPnjgZ3ojfAv=BHqOhM=-NnYqCm81Ny=PsGKiNphKTmw++fk9w@mail.gmail.com>
+ <CAL_JsqJqvyP=c93DHDO8A5RXv7Lz_Z7eEHSbJQ=JCo+qPVhSfg@mail.gmail.com>
+ <CAPnjgZ3BnD9aX3cNNPiGRKTOj+YeurHCLv6K0TRFhAtY21Qufw@mail.gmail.com>
+ <20230925092122.0b615f25@xps-13> <CAPnjgZ0Z5J_33HuQF-5XgDFmZim0nHHzvZJOOZobWw_cOJd=9g@mail.gmail.com>
+ <20230925164736.5efbf4c0@xps-13>
+In-Reply-To: <20230925164736.5efbf4c0@xps-13>
+From: Simon Glass <sjg@chromium.org>
+Date: Mon, 25 Sep 2023 08:53:59 -0600
+Message-ID: <CAPnjgZ3YCQHJ-eXuX8rYx2Qb6QEL+XviFmXYTON6M-sGPWSBBg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mtd: Add a schema for binman
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	U-Boot Mailing List <u-boot@lists.denx.de>, linux-mtd@lists.infradead.org, 
+	Tom Rini <trini@konsulko.com>, Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hi Miquel,
 
+On Mon, 25 Sept 2023 at 08:47, Miquel Raynal <miquel.raynal@bootlin.com> wr=
+ote:
+>
+> Hi Simon,
+>
+> sjg@chromium.org wrote on Mon, 25 Sep 2023 06:33:14 -0600:
+>
+> > Hi Miquel,
+> >
+> > On Mon, 25 Sept 2023 at 01:21, Miquel Raynal <miquel.raynal@bootlin.com=
+> wrote:
+> > >
+> > > Hi Simon,
+> > >
+> > > sjg@chromium.org wrote on Fri, 22 Sep 2023 13:51:14 -0600:
+> > >
+> > > > Hi Rob,
+> > > >
+> > > > On Fri, 22 Sept 2023 at 13:43, Rob Herring <robh@kernel.org> wrote:
+> > > > >
+> > > > > On Fri, Sep 22, 2023 at 1:12=E2=80=AFPM Simon Glass <sjg@chromium=
+.org> wrote:
+> > > > > >
+> > > > > > Hi Rob,
+> > > > > >
+> > > > > > On Fri, 22 Sept 2023 at 11:46, Rob Herring <robh@kernel.org> wr=
+ote:
+> > > > > > >
+> > > > > > > On Fri, Sep 22, 2023 at 11:01:18AM -0600, Simon Glass wrote:
+> > > > > > > > Hi Rob,
+> > > > > > > >
+> > > > > > > > On Fri, 22 Sept 2023 at 10:00, Rob Herring <robh@kernel.org=
+> wrote:
+> > > > > > > > >
+> > > > > > > > > On Thu, Sep 21, 2023 at 1:45=E2=80=AFPM Simon Glass <sjg@=
+chromium.org> wrote:
+> > > > > > > > > >
+> > > > > > > > > > Binman[1] is a tool for creating firmware images. It al=
+lows you to
+> > > > > > > > > > combine various binaries and place them in an output fi=
+le.
+> > > > > > > > > >
+> > > > > > > > > > Binman uses a DT schema to describe an image, in enough=
+ detail that
+> > > > > > > > > > it can be automatically built from component parts, dis=
+assembled,
+> > > > > > > > > > replaced, listed, etc.
+> > > > > > > > > >
+> > > > > > > > > > Images are typically stored in flash, which is why this=
+ binding is
+> > > > > > > > > > targeted at mtd. Previous discussion is at [2] [3].
+> > > > > > > > > >
+> > > > > > > > > > [1] https://u-boot.readthedocs.io/en/stable/develop/pac=
+kage/binman.html
+> > > > > > > > > > [2] https://lore.kernel.org/u-boot/20230821180220.27240=
+80-3-sjg@chromium.org/
+> > > > > > > > > > [3] https://www.spinics.net/lists/devicetree/msg626149.=
+html
+> > > > > > > > >
+> > > > > > > > > You missed:
+> > > > > > > > >
+> > > > > > > > > https://github.com/devicetree-org/dt-schema/pull/110
+> > > > > > > > >
+> > > > > > > > > where I said: We certainly shouldn't duplicate the existi=
+ng partitions
+> > > > > > > > > bindings. What's missing from them (I assume we're mostly=
+ talking
+> > > > > > > > > about "fixed-partitions" which has been around forever I =
+think (before
+> > > > > > > > > me))?
+> > > > > > > > >
+> > > > > > > > > To repeat, unless there is some reason binman partitions =
+conflict with
+> > > > > > > > > fixed-partitions, you need to start there and extend it. =
+From what's
+> > > > > > > > > posted here, it neither conflicts nor needs extending.
+> > > > > > > >
+> > > > > > > > I think at this point I am just hopelessly confused. Have y=
+ou taken a
+> > > > > > > > look at the binman schema? [1]
+> > > > > > >
+> > > > > > > Why do I need to? That's used for some tool and has nothing t=
+o do with a
+> > > > > > > device's DTB. However, I thought somewhere in this discussion=
+ you showed
+> > > > > > > it under a flash device node.
+> > > > > >
+> > > > > > Yes, that is the intent (under a flash node).
+> > > > > >
+> > > > > > > Then I care because then it overlaps with
+> > > > > > > what we already have for partitions. If I misunderstood that,=
+ then just
+> > > > > > > put your schema with your tool. Only users of the tool should=
+ care about
+> > > > > > > the tool's schema.
+> > > > > >
+> > > > > > OK. I believe that binman will fit into both camps, since its i=
+nput is
+> > > > > > not necessarily fully formed. E.g. if you don't specify the off=
+set of
+> > > > > > an entry, then it will be packed automatically. But the output =
+is
+> > > > > > fully formed, in that Binman now knows the offset so can write =
+it to
+> > > > > > the DT.
+> > > > >
+> > > > > I suppose it could take its own format as input and then write ou=
+t
+> > > > > something different for the "on the device" format (i.e.
+> > > > > fixed-partitions). At least for the dynamic offsets, we may need
+> > > > > something allowed for binman input, but not allowed on device. In
+> > > > > general, there is support for partitions without addresses/offset=
+s,
+> > > > > but only for partitions that have some other way to figure that o=
+ut
+> > > > > (on disk partition info).
+> > > > >
+> > > > > There's also the image filename which doesn't really belong in th=
+e on
+> > > > > device partitions. So maybe the input and output schemas should b=
+e
+> > > > > separate.
+> > > >
+> > > > OK, I'll focus on the output schema for now. I suspect this will be=
+ a
+> > > > grey area though.
+> > > >
+> > > > As an example, if you replace a binary in the firmware, Binman can
+> > > > repack the firmware to make room, respecting the alignment and size
+> > > > constraints. So these need to be in the output schema somehow.
+> > > >
+> > > > >
+> > > > > > > > I saw this file, which seems to extend a partition.
+> > > > > > > >
+> > > > > > > > Documentation/devicetree/bindings/mtd/partitions/brcm,bcm49=
+08-partitions.yaml
+> > > > > > >
+> > > > > > > IIRC, that's a different type where partition locations are s=
+tored in
+> > > > > > > the flash, so we don't need location and size in DT.
+> > > > > >
+> > > > > > OK.
+> > > > > >
+> > > > > > >
+> > > > > > > >
+> > > > > > > > I was assuming that I should create a top-level compatible =
+=3D "binman"
+> > > > > > > > node, with subnodes like compatible =3D "binman,bl31-atf", =
+for example.
+> > > > > > > > I should use the compatible string to indicate the contents=
+, right?
+> > > > > > >
+> > > > > > > Yes for subnodes, and we already have some somewhat standard =
+ones for
+> > > > > > > "u-boot" and "u-boot-env". Though historically, "label" was u=
+sed.
+> > > > > >
+> > > > > > Binman has common properties for all entries, including "compre=
+ss"
+> > > > > > which sets the compression algorithm.
+> > > > >
+> > > > > I see no issue with adding that. It seems useful and something mi=
+ssing
+> > > > > in the existing partition schemas.
+> > > >
+> > > > OK I sent a patch with that.
+> > > >
+> > > > >
+> > > > > > So perhaps I should start by defining a new binman,bl31-atf whi=
+ch has
+> > > > > > common properties from an "binman,entry" definition?
+> > > > >
+> > > > > I don't understand the binman prefix. The contents are ATF (or TF=
+-A
+> > > > > now). Who wrote it to the flash image is not relevant.
+> > > >
+> > > > Are you suggesting just "atf-bl31", or "arm,atf-bl31" ? Or should w=
+e
+> > > > change it to "tfa-bl31"?
+> > >
+> > > I don't really understand the relationship with TF-A here. Can't we
+> > > just have a kind of fixed-partitions with additional properties like
+> > > the compression?
+> >
+> > Binman needs to know what to put in there, which is the purpose of the
+> > compatible string.
+>
+> But "what" should be put inside the partition is part of the input
+> argument, not the output. You said (maybe I got this wrong) that the
+> schema would apply to the output of binman. If you want to let user
+> know what's inside, maybe it is worth adding a label, but otherwise I
+> don't like the idea of a compatible for that, which for me would mean:
+> "here is how to handle that specific portion of the flash/here is how
+> the flash is organized".
 
-On 23/08/2023 09:48, Daniel Lezcano wrote:
-> On 31/05/2023 10:05, AngeloGioacchino Del Regno wrote:
-> 
-> [ ... ]
-> 
->>>   static const struct lvts_ctrl_data mt8195_lvts_mcu_data_ctrl[] = {
->>>       {
->>>           .cal_offset = { 0x04, 0x07 },
->>> @@ -1268,6 +1300,8 @@ MODULE_DEVICE_TABLE(of, lvts_of_match);
->>>   static struct platform_driver lvts_driver = {
->>>       .probe = lvts_probe,
->>>       .remove = lvts_remove,
->>> +    .suspend = lvts_suspend,
->>
->> Should we do that in noirq handlers?
->> We're risking to miss a thermal interrupt.
-> 
-> I'm not sure missing a thermal interrupt is a problem in this context 
-> but we may go in the irq routine with an undefined state sensor setup 
-> (eg. the internal clock stopped in the suspend and then read the sensor 
-> in the isr).
-> 
-> IMO, using suspend_noirq and resume_noirq may be required here.
-> 
-> Alexandre are you taking over the next iteration?
-> 
-> 
+But I thought that the compatible string was for that purpose? See for
+example "brcm,bcm4908-firmware" and "brcm,bcm963xx-imagetag" and
+"linksys,ns-firmware".
 
-Hi Daniel,
+What mechanism do you suggest be used here?
 
-Sorry I missed your message...
-I don't think taking over the next iteration, Bernhard should continue. 
-Let me check internally to be sure. As I understood, the next change 
-should be heavy.
+>
+> > > > > We already have some compatibles in use. We should reuse them if
+> > > > > possible. Not sure about TF-A though.
+> > > >
+> > > > OK.
+> > > >
+> > >
+> > > Also, I still don't understand the purpose of this schema. So binman
+> > > generates an image, you want to flash this image and you would like t=
+he
+> > > tool to generate the corresponding (partition) DT snippet automatical=
+ly.
+> > > Do I get this right? I don't get why you would need new compatibles f=
+or
+> > > that.
+> >
+> > It is actually the other way around. The schema tells Binman how to
+> > build the image (what goes in there and where). Then outputs an
+> > updated DT which describes where everything ended up, for use by other
+> > tools, e.g. firmware update. It is a closed loop in that sense. See
+> > the references for more information.
+>
+> Maybe I fail to see why you would want these description to be
+> introduced here, if they are not useful to the OS.
 
--- 
+Well I was asked to send them to Linux since they apparently don't
+belong in dt-schema. These are firmware bindings, as indicated, but I
+took them out of the /firmware node since that is for a different
+purpose. Rob suggested that partitions was a good place. We have fwupd
+using DT to hold the firmware-update information, so I expect it will
+move to use these bindings too.
+
+>
+> > [1] https://u-boot.readthedocs.io/en/latest/develop/package/index.html
+> > [2] https://pretalx.com/media/osfc2019/submissions/Y7EN9V/resources/Bin=
+man_-_A_data-controlled_firmware_packer_for_U-B_pFU3n2K.pdf
+> > [3] https://www.youtube.com/watch?v=3DL84ujgUXBOQ
+>
+
 Regards,
-Alexandre
+Simon
 
