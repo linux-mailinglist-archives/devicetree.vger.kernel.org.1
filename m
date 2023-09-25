@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-2991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 231657AD129
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:11:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CDF87AD132
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:13:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id CA6F12816DA
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 07:11:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id AF35E1F243E3
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 07:13:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB93510945;
-	Mon, 25 Sep 2023 07:11:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7216710946;
+	Mon, 25 Sep 2023 07:13:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6488E10E4
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:11:55 +0000 (UTC)
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 300FA115
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 00:11:53 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-99c1c66876aso696857066b.2
-        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 00:11:53 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A67C10E4
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:13:10 +0000 (UTC)
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3D5ABF
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 00:13:07 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9b27bc8b65eso173994666b.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 00:13:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695625911; x=1696230711; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695625986; x=1696230786; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qbxfcRFg7sfBdUligJEEVnlDiFs/P9G+Yi1P7+ItKXA=;
-        b=FKafhlOrl7qeuOeVksHC1Sl0b7eXkOHm/p/PVDpH7YslgfxF9iATAjAPaHTmQLvAHd
-         KrHI9E+Ok496ze6ED8upmKSN7HPavZkiUQj0IFjHRSL+2gCpd8goC98p3YFLljvQTZir
-         riz+UloH8iWxJQrTfDBlB4xvREpY/ToWpZR7oiJSZcGrCuhGJ8nBLXJlLrU34xgavY91
-         tBkEAP+iP/6p6y2WYcENFkI8O3jpunJMBEGcfjnNXsbIgvoAuyE+rUg07XEFuAMYILXi
-         1022SUeC7opOXQFBAvOC1zF7+P2Jic4rvfVGgu+bxzIxtI6sQ2usSH6ZsiY7s618CpDm
-         7JBA==
+        bh=/8iCV0HKXYgLSBrZA3lOs4wADg7WAuFH2qTQMoH5xB0=;
+        b=K20gYhi2WqgXFwq7OI9f7ehbZQ+STC6z1yZcUqDqrb77r4QyZWkpR6iAe2Vb3zVKKb
+         P5YP71bU48/iu/IxrMWKsQwC6wAudLfCkSy7od8ANXdv/ghVKANvivtthcIspljHujNu
+         TO1CykDb+eEZ7uZyhtAF6Zj9zBKKGCjwNQ5KuhFouxiE5IZFezvoFI82qSxIEmzpRNnD
+         HirLYS6bP+QRuCJva9aBOutWXjJ5u+8dE0hGw+y9s4oH8D56zt2h5+U4IzmsYgkJ4LAN
+         eSEr2++hcoOHrM9rd6VdKaFdJJHJ3ZkAODQ9hG/7v2dpvvI7sI7z9XZ/OoHfmYAt/ad1
+         dfCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695625911; x=1696230711;
+        d=1e100.net; s=20230601; t=1695625986; x=1696230786;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qbxfcRFg7sfBdUligJEEVnlDiFs/P9G+Yi1P7+ItKXA=;
-        b=xAAcv1mnv1loLD1dZMf4Iz1yxvBsuNNLAACmAA9kIgon79ADNf1McEHFmhWcdZKwxL
-         7U2aa8blLpPqfp0eve3s8n9PbR/vane/P3pIYarSVJLjvhtpySaUFMuI2VPP7RroxmWs
-         ElYwZcngR4novMPCB+tRmsesceFP8hG8SHfZo9p+Dlaj3dZrjKpDYJlDmiJbA/vFSgKR
-         sCjW2x22WWJKkWGfgre60R8AqrWxFY61wN/h18MidYwscVxqcKjJlXpILaDjqjp8Ekck
-         XwIv5kuJqMqxe2SuLd9vq0R+2+FO0YwYRvXMs+klOlwovkGUwNGaPx4QtBF4O+zDFzXD
-         2l2w==
-X-Gm-Message-State: AOJu0Yy2M9QsP8USSlPxz7QSTx8Rw5BGDHH9woismwC0GM8tELYLwk9x
-	c8fK9PU/10/BSD6fhzcwlXDMlg==
-X-Google-Smtp-Source: AGHT+IGQckapbaVGl7TBr+SCsYqMAqKTXz8kkjPeKFYSfsp85MDIe5I8HWyjnJj0gafpoN+IviHAdg==
-X-Received: by 2002:a17:906:209:b0:9a9:d5f4:1a0d with SMTP id 9-20020a170906020900b009a9d5f41a0dmr4977678ejd.45.1695625911604;
-        Mon, 25 Sep 2023 00:11:51 -0700 (PDT)
+        bh=/8iCV0HKXYgLSBrZA3lOs4wADg7WAuFH2qTQMoH5xB0=;
+        b=jOQA8EjNwnSghF+wARWRjNuyw2rCumgG6S3XF8o2OCQXbObTrWRZltDWMuHwWtqXC2
+         VnIxwzRbmmX7lHXVZm97uBlOv6bU+xHhFkdsLTnl89JfQHfMHnx7NgzhisKiTIt3VBOq
+         Z6A4CS7Mr/E7H7NRAddYAIumYyW9AUJkUBJKHg9OVNv7+hlF+OURu0GCfTYOJ16691Xx
+         L99hH8Gl3FrvKCo6GIzcPnYVQPHCPWv8Rde1eSsbI9DnScg6rWt9vrgmkTTSIap1t1x5
+         nK6WSDCNm7ceFloPPuecRZjPKlqVrkSy5PNxnvuQwFGX0NMT2QQFyAcU40IdGCPX1Mov
+         MlQw==
+X-Gm-Message-State: AOJu0YxGlzRsWR1qoU3MOA02yHp7oTtPPJcynx5pI9dyL33o8d6ns3he
+	eRqR/4XtCQUUpdHksPv6kcw4nQ==
+X-Google-Smtp-Source: AGHT+IFCtJJhX6fU8/rXziSQQ+7DvYnxiDLCucOeAO55eZt9WPXeY0oCE7rgZDiyG+dIObNt+y7Zww==
+X-Received: by 2002:a17:906:c143:b0:9a1:f81f:d0d5 with SMTP id dp3-20020a170906c14300b009a1f81fd0d5mr6385597ejc.54.1695625986178;
+        Mon, 25 Sep 2023 00:13:06 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id i13-20020a170906090d00b0099cbfee34e3sm5906887ejd.196.2023.09.25.00.11.49
+        by smtp.gmail.com with ESMTPSA id i13-20020a170906090d00b0099cbfee34e3sm5906887ejd.196.2023.09.25.00.13.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Sep 2023 00:11:51 -0700 (PDT)
-Message-ID: <42338d41-1b90-4f77-958e-479d32e0ce1d@linaro.org>
-Date: Mon, 25 Sep 2023 09:11:48 +0200
+        Mon, 25 Sep 2023 00:13:05 -0700 (PDT)
+Message-ID: <80692b04-9f60-4112-a594-f405adb27cdd@linaro.org>
+Date: Mon, 25 Sep 2023 09:13:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +63,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V12 2/3] dt-bindings: pwm: add IPQ6018 binding
+Subject: Re: [PATCH V12 3/3] arm64: dts: ipq6018: add pwm node
 Content-Language: en-US
 To: Devi Priya <quic_devipriy@quicinc.com>, thierry.reding@gmail.com,
  robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
@@ -74,7 +74,7 @@ To: Devi Priya <quic_devipriy@quicinc.com>, thierry.reding@gmail.com,
 Cc: linux-pwm@vger.kernel.org, u.kleine-koenig@pengutronix.de,
  nathan@kernel.org
 References: <20230925065915.3467964-1-quic_devipriy@quicinc.com>
- <20230925065915.3467964-3-quic_devipriy@quicinc.com>
+ <20230925065915.3467964-4-quic_devipriy@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,92 +120,85 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230925065915.3467964-3-quic_devipriy@quicinc.com>
+In-Reply-To: <20230925065915.3467964-4-quic_devipriy@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
 	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 25/09/2023 08:59, Devi Priya wrote:
-> DT binding for the PWM block in Qualcomm IPQ6018 SoC.
+> Describe the PWM block on IPQ6018.
 > 
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> The PWM is in the TCSR area. Make &tcsr "simple-mfd" compatible, and add
+> &pwm as child of &tcsr.
+> 
+> Add also ipq6018 specific compatible string.
+> 
 > Co-developed-by: Baruch Siach <baruch.siach@siklu.com>
 > Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
 > Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+> ---
+> v12: 
+> 
+>   No change
+> 
+> v11:
+> 
+>   No change
+> 
+> v10:
+> 
+>   No change
+> 
+> v9:
+> 
+>   Add 'ranges' property (Rob)
+> 
+> v8:
+> 
+>   Add size cell to 'reg' (Rob)
+> 
+> v7:
+> 
+>   Use 'reg' instead of 'offset' (Rob)
+> 
+>   Add qcom,tcsr-ipq6018 (Rob)
+> 
+>   Drop clock-names (Bjorn)
+> 
+> v6:
+> 
+>   Make the PWM node child of TCSR (Rob Herring)
+> 
+>   Add assigned-clocks/assigned-clock-rates (Uwe Kleine-König)
+> 
+> v5: Use qcom,pwm-regs for TCSR phandle instead of direct regs
+> 
+> v3: s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
+> 
+>  arch/arm64/boot/dts/qcom/ipq6018.dtsi | 15 ++++++++++++++-
+>  1 file changed, 14 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> index 47b8b1d6730a..cadd2c583526 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> @@ -398,8 +398,21 @@ tcsr_mutex: hwlock@1905000 {
+>  		};
+>  
+>  		tcsr: syscon@1937000 {
+> -			compatible = "qcom,tcsr-ipq6018", "syscon";
+> +			compatible = "qcom,tcsr-ipq6018", "syscon", "simple-mfd";
 
-...
-
-> diff --git a/Documentation/devicetree/bindings/pwm/ipq-pwm.yaml b/Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
-> new file mode 100644
-> index 000000000000..857086ad539e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
-
-Filename matching compatible, so qcom,ipq6018-pwm.yaml
-
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/ipq-pwm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm IPQ6018 PWM controller
-> +
-> +maintainers:
-> +  - Baruch Siach <baruch@tkos.co.il>
-> +
-> +properties:
-> +  "#pwm-cells":
-> +    const: 2
-> +
-> +  compatible:
-> +    const: qcom,ipq6018-pwm
-
-compatible is always the first property.
-
-> +
-> +  reg:
-> +    description: Offset of PWM register in the TCSR block.
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - "#pwm-cells"
-
-And this order must be the same as in properties.
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,gcc-ipq6018.h>
-> +
-> +    syscon@1937000 {
-> +        compatible = "qcom,tcsr-ipq6018", "syscon", "simple-mfd";
-> +        reg = <0x01937000 0x21000>;
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges = <0 0x1937000 0x21000>;
-
-Drop this node, not related. The parent binding could have full example,
-on the other hand. Additionally, I have doubts that you really tested
-the parent binding.
-
-> +
-> +        pwm: pwm@a010 {
-> +            compatible = "qcom,ipq6018-pwm";
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
 
 Best regards,
 Krzysztof
