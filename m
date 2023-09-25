@@ -1,167 +1,192 @@
-Return-Path: <devicetree+bounces-3184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BFFA7AD973
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 15:45:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CBB07AD98A
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 15:51:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 847891C20430
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 13:45:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id 0BCD81F24C5A
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 13:51:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 241A11BDD2;
-	Mon, 25 Sep 2023 13:45:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 500D51BDD6;
+	Mon, 25 Sep 2023 13:51:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 149C511C8B
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 13:45:27 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D96D5B3;
-	Mon, 25 Sep 2023 06:45:25 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38PDjITt048292;
-	Mon, 25 Sep 2023 08:45:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1695649518;
-	bh=C+GLtsfIZeXgjPd418k2iGjNqMJ7Mr3S/9rXBh3m0cA=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=gNS/PfBSsStWf3JChko/SCFRnKHUQKwjTm1NrjDGGhZz1lH4UrnK1Jdc/oeBetoYO
-	 zuDvkpIn2/Gys6pw9U3GcdRQxlygUGY15eh2O1obhwBZKjUcRRoiqvLlY2nbp5DUOL
-	 5rDssY66h8K+6W78kIXN/Ii0Sm9tGn1ShMUf505Y=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38PDjImM066303
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 25 Sep 2023 08:45:18 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 25
- Sep 2023 08:45:17 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 25 Sep 2023 08:45:17 -0500
-Received: from [10.250.38.120] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38PDjGBv004398;
-	Mon, 25 Sep 2023 08:45:16 -0500
-Message-ID: <3869499c-532d-8cd0-f428-6697bbbedd8d@ti.com>
-Date: Mon, 25 Sep 2023 08:45:16 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A27C41B299;
+	Mon, 25 Sep 2023 13:51:00 +0000 (UTC)
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2B46111;
+	Mon, 25 Sep 2023 06:50:57 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1ACB520003;
+	Mon, 25 Sep 2023 13:50:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1695649855;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=vKSyVssNGXpwuZBiOav013PZuKtEgGXdrsg4u/3aceE=;
+	b=fgmbfV17sTrAXSP+UGikfGs9yRQIdCNszisJ3LPyj2bUqQe1En3z/EC2zeVfOpL7dQ0Sor
+	9vdQFy3t7fAOBR5a3cLGQehT6l6ajmK2WOA4+os/9/aBAwlVEnitY5D2Ow0i21bM2BjumD
+	jQTvGRiyNEQowpG4VGdyGMh5upTVvN9eABTermy5HVNLWnE8hc9McGf+2WDa5BvyvCdokN
+	uvrD05smenth7Nvk2vVvonZ8TK2huLy7epZzwJrek6H+Pv7rv8GLThplybWlnvvhYPNdhI
+	ZUNQpGTv54ppl9bVicKKao5kcVqcYeuX7P55RXWU9LbMiC0Halam01cJpahvvg==
+Date: Mon, 25 Sep 2023 15:50:49 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Lee Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Qiang
+ Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Jaroslav Kysela
+ <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Shengjiu Wang
+ <shengjiu.wang@gmail.com>, Xiubo Li <Xiubo.Lee@gmail.com>, Fabio Estevam
+ <festevam@gmail.com>, Nicolin Chen <nicoleotsuka@gmail.com>, Christophe
+ Leroy <christophe.leroy@csgroup.eu>, Randy Dunlap <rdunlap@infradead.org>,
+ netdev@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ alsa-devel@alsa-project.org, Simon Horman <horms@kernel.org>, Christophe
+ JAILLET <christophe.jaillet@wanadoo.fr>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v6 08/30] dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc:
+ Add support for QMC HDLC
+Message-ID: <20230925154929.2b6a9cab@bootlin.com>
+In-Reply-To: <e02ebde7-f208-40a4-bb10-aa5962ee9864@linaro.org>
+References: <20230922075913.422435-1-herve.codina@bootlin.com>
+	<20230922075913.422435-9-herve.codina@bootlin.com>
+	<5efae150-3d92-81b8-5c25-68846d27132e@linaro.org>
+	<20230925101703.1bf083f1@bootlin.com>
+	<5b804a1a-6bfd-429d-ad84-696b7ecef72d@linaro.org>
+	<20230925122758.43963736@bootlin.com>
+	<e02ebde7-f208-40a4-bb10-aa5962ee9864@linaro.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v2 2/4] arm64: dts: ti: k3-am654-base-board: add ICSSG2
- Ethernet support
-Content-Language: en-US
-To: MD Danish Anwar <danishanwar@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
-CC: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Tero
- Kristo <kristo@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <r-gunasekaran@ti.com>
-References: <20230921060913.721336-1-danishanwar@ti.com>
- <20230921060913.721336-3-danishanwar@ti.com>
- <3b4629c7-5625-f32f-0532-5f50832c1714@ti.com>
- <52572af4-771e-3bd9-b290-74482694f020@ti.com>
- <8db10b88-5b06-af84-cb0a-9fbaa29cf78c@ti.com>
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <8db10b88-5b06-af84-cb0a-9fbaa29cf78c@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+X-GND-Sasl: herve.codina@bootlin.com
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 9/25/23 3:21 AM, MD Danish Anwar wrote:
-> Hi Andrew,
-> 
-> On 22/09/23 09:52, MD Danish Anwar wrote:
->> On 21/09/23 22:57, Andrew Davis wrote:
->>> On 9/21/23 1:09 AM, MD Danish Anwar wrote:
->>>> ICSSG2 provides dual Gigabit Ethernet support.
->>>>
->>>> For support SR2.0 ICSSG Ethernet firmware:
->>>> - provide different firmware blobs and use TX_PRU.
->>>> - IEP0 is used as PTP Hardware Clock and can only be used for one port.
->>>> - TX timestamp notification comes via INTC interrupt.
->>>>
->>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->>>> ---
->>>>    arch/arm64/boot/dts/ti/Makefile               |   4 +-
->>>>    ...se-board.dts => k3-am654-common-board.dts} |   0
->>>>    arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso   | 145 ++++++++++++++++++
->>>>    3 files changed, 148 insertions(+), 1 deletion(-)
->>>>    rename arch/arm64/boot/dts/ti/{k3-am654-base-board.dts =>
->>>> k3-am654-common-board.dts} (100%)
->>>>    create mode 100644 arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
->>>>
->>>> diff --git a/arch/arm64/boot/dts/ti/Makefile
->>>> b/arch/arm64/boot/dts/ti/Makefile
->>>> index e7b8e2e7f083..85c91f5e832e 100644
->>>> --- a/arch/arm64/boot/dts/ti/Makefile
->>>> +++ b/arch/arm64/boot/dts/ti/Makefile
->>>> @@ -42,12 +42,14 @@ dtb-$(CONFIG_ARCH_K3) +=
->>>> k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb
->>>>    dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl-wlan.dtb
->>>>      # Boards with AM65x SoC
->>>> -k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb
->>>> k3-am654-base-board-rocktech-rk101-panel.dtbo
->>>> +k3-am654-gp-evm-dtbs := k3-am654-common-board.dtb
->>>> k3-am654-base-board-rocktech-rk101-panel.dtbo
->>>
->>> Should the k3-am654-gp-evm.dtb not also have this icssg2 support? Does
->>> it work
->>> to keep this line like before or is there some conflict having both
->>> enabled?
->>>
->>
->> I have not tested this dtb (k3-am654-gp-evm.dtb). So just to be on the
->> safe side I kept gp-evm.dtb as it was. Ideally gp-evm.dtb should have
->> icssg2 support as well. But I haven't tested the combination of
->> base-board + icssg dtbo + rockteck dtbo. That is why I kept gp-evm dtb
->> as it was. Anyways, for ICSSG2's use case only k3-am654-base-board.dtb
->> is used so I think it's ok to leave k3-am654-gp-evm.dtb to as it was.
->>
->>> Andrew
->>>
-> 
-> I tested AM654x-GP EVM with k3-am654-gp-evm.dtb with both the
-> combination below (having k3-am654-base-board-dtbs :=
-> k3-am654-common-board.dtb k3-am654-icssg2.dtbo), ICSSG worked fine in
-> both the scenarios and I didn't see any issue. I don't have a rocktech
-> panel with me so couldn't test that. But as far as ICSSG is concerned it
-> works fine with the both the combinations. Please let me know which one
-> should I use. Should I keep gp-evm as it is (use dtb without the icssg2
-> overlay) or should I add icssg2 overlay in gp-evm.dtb as well.
-> 
-> 
-> 1. k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb
-> k3-am654-base-board-rocktech-rk101-panel.dtbo
-> 
-> 
-> 2. k3-am654-gp-evm-dtbs := k3-am654-common-board.dtb
-> k3-am654-base-board-rocktech-rk101-panel.dtbo
-> 
+On Mon, 25 Sep 2023 12:44:35 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-As you said here before, most will expect the icssg2 to work
-on the EVM out of box, you should include it. If anyone wants
-something else they can apply the set of overlays that match
-on their own.
+> On 25/09/2023 12:27, Herve Codina wrote:
+> > On Mon, 25 Sep 2023 10:21:15 +0200
+> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> >   
+> >> On 25/09/2023 10:17, Herve Codina wrote:  
+> >>> Hi Krzysztof,
+> >>>
+> >>> On Sat, 23 Sep 2023 19:39:49 +0200
+> >>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> >>>     
+> >>>> On 22/09/2023 09:58, Herve Codina wrote:    
+> >>>>> The QMC (QUICC mutichannel controller) is a controller present in some
+> >>>>> PowerQUICC SoC such as MPC885.
+> >>>>> The QMC HDLC uses the QMC controller to transfer HDLC data.
+> >>>>>
+> >>>>> Additionally, a framer can be connected to the QMC HDLC.
+> >>>>> If present, this framer is the interface between the TDM bus used by the
+> >>>>> QMC HDLC and the E1/T1 line.
+> >>>>> The QMC HDLC can use this framer to get information about the E1/T1 line
+> >>>>> and configure the E1/T1 line.
+> >>>>>
+> >>>>> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> >>>>> ---
+> >>>>>  .../soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml      | 24 +++++++++++++++++++
+> >>>>>  1 file changed, 24 insertions(+)
+> >>>>>
+> >>>>> diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml
+> >>>>> index 82d9beb48e00..61dfd5ef7407 100644
+> >>>>> --- a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml
+> >>>>> +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml
+> >>>>> @@ -101,6 +101,27 @@ patternProperties:
+> >>>>>            Channel assigned Rx time-slots within the Rx time-slots routed by the
+> >>>>>            TSA to this cell.
+> >>>>>  
+> >>>>> +      compatible:
+> >>>>> +        const: fsl,qmc-hdlc      
+> >>>>
+> >>>> Why this is not a device/SoC specific compatible?    
+> >>>
+> >>> This compatible is present in a QMC channel.
+> >>> The parent node (the QMC itself) contains a compatible with device/SoC:
+> >>> --- 8< ---
+> >>>   compatible:
+> >>>     items:
+> >>>       - enum:
+> >>>           - fsl,mpc885-scc-qmc
+> >>>           - fsl,mpc866-scc-qmc
+> >>>       - const: fsl,cpm1-scc-qmc
+> >>> --- 8< ---
+> >>>
+> >>> At the child level (ie QMC channel), I am not sure that adding device/SoC
+> >>> makes sense. This compatible indicates that the QMC channel is handled by
+> >>> the QMC HDLC driver.
+> >>> At this level, whatever the device/SoC, we have to be QMC compliant.
+> >>>
+> >>> With these details, do you still think I need to change the child (channel)
+> >>> compatible ?    
+> >>
+> >> From OS point of view, you have a driver binding to this child-level
+> >> compatible. How do you enforce Linux driver binding based on parent
+> >> compatible? I looked at your next patch and I did not see it.  
+> > 
+> > We do not need to have the child driver binding based on parent.  
+> 
+> Exactly, that's what I said.
+> 
+> > We have to ensure that the child handles a QMC channel and the parent provides
+> > a QMC channel.
+> > 
+> > A QMC controller (parent) has to implement the QMC API (include/soc/fsl/qe/qmc.h)
+> > and a QMC channel driver (child) has to use the QMC API.  
+> 
+> How does this solve my concerns? Sorry, I do not understand. Your driver
+> is a platform driver and binds to the generic compatible. How do you
+> solve regular compatibility issues (need for quirks) if parent
+> compatible is not used?
+> 
+> How does being QMC compliant affects driver binding and
+> compatibility/quirks?
+> 
+> We are back to my original question and I don't think you answered to
+> any of the concerns.
 
-So, use base-board.
+Well, to be sure that I understand correctly, do you mean that I should
+provide a compatible for the child (HDLC) with something like this:
+--- 8< ---
+  compatible:
+    items:
+      - enum:
+          - fsl,mpc885-qmc-hdlc
+          - fsl,mpc866-qmc-hdlc
+      - const: fsl,cpm1-qmc-hdlc
+      - const: fsl,qmc-hdlc
+--- 8< ---
 
-Andrew
+If so, I didn't do that because a QMC channel consumer (driver matching
+fsl,qmc-hdlc) doesn't contains any SoC specific part.
+It uses the channel as a communication channel to send/receive HDLC frames
+to/from this communication channel.
+All the specific SoC part is handled by the QMC controller (parent) itself and
+not by any consumer (child).
+
+Best regards,
+Hervé
 
