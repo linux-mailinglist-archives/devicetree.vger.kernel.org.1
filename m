@@ -1,102 +1,235 @@
-Return-Path: <devicetree+bounces-3154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D2557AD7F1
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 14:25:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 679327AD800
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 14:26:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 0FB5E281603
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:25:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 1BA512817D5
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:26:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3410E1B27F;
-	Mon, 25 Sep 2023 12:25:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6D4C1B281;
+	Mon, 25 Sep 2023 12:26:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 251771429D
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 12:25:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A3CFC433C8;
-	Mon, 25 Sep 2023 12:25:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695644718;
-	bh=EpScTZPLgSj65vBFSIAyo7Cs1HB/1MAIHpQTaZ0bcLI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WOPfcOgNDBAeO4O+0jKxnPe1Lx4/OaazqraHxWLEniyocDCR/cxEGGp/1h9gmYzNT
-	 GGWqEr7I835ssWWvijGb9t+Nh57032xRF3NVRgUAIeDfETZfdQabHr/O9kdQ/fO7Jh
-	 ONTvPBjZ+1eeh44LgK4ekXn6mRYj0UNb2mnje0p2jUP+k6a75GQDGrKvqqfcyxI4UJ
-	 9rmHzSSZWcer6u1FC2XHatapgkGmrJXyez5tHe/1DTAnNJHMC3mmqN+twElSSfyQZm
-	 bd9UyBTC3XNLXG8NI4IbUhwcKPDyDD1U4+I1/wKYcarCOx+7g/DQco05eKdNDKxvmb
-	 GRzouKT4TE8AQ==
-Date: Mon, 25 Sep 2023 14:25:12 +0200
-From: Mark Brown <broonie@kernel.org>
-To: Chancel Liu <chancel.liu@nxp.com>
-Cc: lgirdwood@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
-	nicoleotsuka@gmail.com, perex@perex.cz, tiwai@suse.com,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: fsl_rpmsg: List DAPM endpoints
- ignoring system suspend
-Message-ID: <ZRF8KI11IVf6NzpL@finisterre.sirena.org.uk>
-References: <20230925110946.3156100-1-chancel.liu@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BD251B27A
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 12:26:53 +0000 (UTC)
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2057.outbound.protection.outlook.com [40.107.22.57])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75A0ACE;
+	Mon, 25 Sep 2023 05:26:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CyS34+UL77Hgr9CMvKTBL3OvwM8PC4nZsEUCeei7jhpuiAoE6pRmb/xniahCgRkjFv/EuyDpKNVh0cPd+50aT0S8vA9/U+nYEUrul+kZ10gDb4FgK+gls07kzSqKf/1w5mz5qJ6bOz0kUixQHd9Fdp5QG/584o79vJ29ZB5oD7Vzss9a6rJX2/ScOTeTrVgwCWvT8n+26uiZD09N+Dg6d1RaMqA12qRsHf43zBce0XGISc5CArpu1R1Ea1ZO/mHGw1ZjWPe/mAWGgwojXSw6d0g3LsYfuBPeSjxry15+K+kTs3rhlZxGR9wHpBKkXLT+d27qd0KF+7p8vDYJOum5sw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Uyd0o4JvcjRjUAoyozcpPdzoVoil7+iWwK4OY683CF8=;
+ b=e8Gv3oLMTjl3NjzFjtSHR0Qi1uoA5R0UJVtMbxjzLil8XUXBogOEsrX1Qt68D9z/ODHzyhp906/ciWZM6IUBmmiCGsVfFaX1VGxmBta9rra4C/jG3pazXknLg7MsctW2fXhqi0e3y865P9294nnONZVLsHL6Mi6WiOjSK6RZq1bRM7BEoeJuzfKHE2N7H8KVciwWE7r7Hu7dBUMNoBXOgbfLfJP6DhWQvAhoLu1HRrY3B79AF1MPNYGrAW0AWW0fElC+PgFrRP546qcyNwsw8vLmdkuWKJT2Fcb//YjrD+UiF2yYUbqBq0q4D9iuYD8QrUv9JvhfbuGy9gZGoc923g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 151.1.184.193) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=asem.it;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=asem.it;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=asem.it; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Uyd0o4JvcjRjUAoyozcpPdzoVoil7+iWwK4OY683CF8=;
+ b=KOXHQdASZIIIQ2PrczIowdeXlxIlkYXJfOaExtaH5oWJBO28icn2r44ZKZpsUGBCISLAQeWOxrizkJAB9IRLqiKi8Lvkra0GdHyH5OMk7NNDzdp54f5cN0baStHNQDWA47SP+QG8mrxC2HyKjXQLS2eubONtRzTfY73cr3gcTXg=
+Received: from AS9PR06CA0223.eurprd06.prod.outlook.com (2603:10a6:20b:45e::11)
+ by PAXPR01MB9147.eurprd01.prod.exchangelabs.com (2603:10a6:102:2be::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.18; Mon, 25 Sep
+ 2023 12:26:47 +0000
+Received: from AM3PEPF00009BA2.eurprd04.prod.outlook.com
+ (2603:10a6:20b:45e:cafe::1e) by AS9PR06CA0223.outlook.office365.com
+ (2603:10a6:20b:45e::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.35 via Frontend
+ Transport; Mon, 25 Sep 2023 12:26:47 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
+ 151.1.184.193) smtp.mailfrom=asem.it; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=asem.it;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ asem.it discourages use of 151.1.184.193 as permitted sender)
+Received: from asas054.asem.intra (151.1.184.193) by
+ AM3PEPF00009BA2.mail.protection.outlook.com (10.167.16.27) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6838.14 via Frontend Transport; Mon, 25 Sep 2023 12:26:47 +0000
+Received: from flavio-x.asem.intra ([172.16.18.47]) by asas054.asem.intra with Microsoft SMTPSVC(10.0.14393.4169);
+	 Mon, 25 Sep 2023 14:26:46 +0200
+From: Flavio Suligoi <f.suligoi@asem.it>
+To: Lee Jones <lee@kernel.org>,
+	Daniel Thompson <daniel.thompson@linaro.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Helge Deller <deller@gmx.de>,
+	Pavel Machek <pavel@ucw.cz>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-fbdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Flavio Suligoi <f.suligoi@asem.it>,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 1/2] dt-bindings: backlight: Add MPS MP3309C
+Date: Mon, 25 Sep 2023 14:26:08 +0200
+Message-Id: <20230925122609.78849-1-f.suligoi@asem.it>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="q/IrCVZv+ZArlVx4"
-Content-Disposition: inline
-In-Reply-To: <20230925110946.3156100-1-chancel.liu@nxp.com>
-X-Cookie: Save energy:  Drive a smaller shell.
+Content-Transfer-Encoding: 8bit
+X-OriginalArrivalTime: 25 Sep 2023 12:26:46.0637 (UTC) FILETIME=[8CE479D0:01D9EFAB]
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM3PEPF00009BA2:EE_|PAXPR01MB9147:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: dd9efa45-51e0-477f-eedc-08dbbdc2afc6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	sVZlxzJn6sWGaThX4Qxv00unpHhn8IRpCqnFae+ayMJ0EuGOGZAFK1cvXcJCYaHBQJiPIAMgYBA2z84osD5qbwDTXdt12WVBGqBhTtuQg3byxmgaN305VTEy0VaJGaMne2qmLi88N+WLpYHE0dYqEvgOMEXiqAogm5rPQv0c0w0URIWlrATAD/pKXXg0AW+8XVjPw9UrtY+dYtB9DASQm/1I146YTUr5VKmS8GDxAGNVRbGV8+UgzYEciBINR84bomJFjNgSY043emVYdpMPQrRP3urSQLEz4IYE35U5FTn7iWLPg6saH9saJW67KXtCLU7j2ZwhmAp6nSDxaTjGdozBJfo+sCoki7JOmBrsjFKL8PzNZA3KTZTFfhZZLBoc8IEyS/AuXaiDvknXC4fNjDPiZ3W+VLpPtPsIVQYUXGmdtttr98QpgeQHiqhBeAA3ofDI8RTey6DK5e3hZUz66CcKIU8a9ai78HpCIps1DymsUAkKWuylHhZZQ2rWC06BebadvTXtyr+Jsj1+cZgZ3mQBrar1T1suOplao0YYugnLWefsDg4YC/evNHfB8Qx8Hw9cPwdw7jEaKZy+eWBW7eJxV12VHeFryu85dLNFB6B5ZnbdVqoA2JkZTZ3DmtOSHJ5bUNgnzEEO0MG1+/2hfxQDkJ6SrmabRFHJJU28Sgz51fuTjYUoPJGRKKrUxzIisOHvug/xTxzeFg6qdEhAg2k1ruxKYi9+KqxU7Mc97oc=
+X-Forefront-Antispam-Report:
+	CIP:151.1.184.193;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:asas054.asem.intra;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(39850400004)(136003)(376002)(396003)(346002)(230922051799003)(186009)(1800799009)(451199024)(82310400011)(46966006)(36840700001)(6666004)(70586007)(82740400003)(26005)(336012)(1076003)(2616005)(70206006)(86362001)(110136005)(966005)(478600001)(47076005)(36860700001)(81166007)(356005)(54906003)(2906002)(8936002)(8676002)(4326008)(36756003)(5660300002)(40480700001)(450100002)(316002)(41300700001)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: asem.it
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2023 12:26:47.1537
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: dd9efa45-51e0-477f-eedc-08dbbdc2afc6
+X-MS-Exchange-CrossTenant-Id: d0a766c6-7992-4344-a4a2-a467a7bb1ed2
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d0a766c6-7992-4344-a4a2-a467a7bb1ed2;Ip=[151.1.184.193];Helo=[asas054.asem.intra]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AM3PEPF00009BA2.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR01MB9147
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+The Monolithic Power (MPS) MP3309C is a WLED step-up converter, featuring a
+programmable switching frequency to optimize efficiency.
+The brightness can be controlled either by I2C commands (called "analog"
+mode) or by a PWM input signal (PWM mode).
+This driver supports both modes.
 
---q/IrCVZv+ZArlVx4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+For device driver details, please refer to:
+- drivers/video/backlight/mp3309c_bl.c
 
-On Mon, Sep 25, 2023 at 07:09:45PM +0800, Chancel Liu wrote:
+The datasheet is available at:
+- https://www.monolithicpower.com/en/mp3309c.html
 
-> +  fsl,lpa-widgets:
-> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> +    description: |
-> +      A list of DAPM endpoints which mark paths between these endpoints should
-> +      not be disabled when system enters in suspend state. LPA means low power
-> +      audio case. On asymmetric multiprocessor, there are Cortex-A core and
-> +      Cortex-M core, Linux is running on Cortex-A core, RTOS or other OS is
-> +      running on Cortex-M core. The audio hardware devices can be controlled by
-> +      Cortex-M. LPA can be explained as a mechanism that Cortex-A allocates a
-> +      large buffer and fill audio data, then Cortex-A can enter into suspend
-> +      for the purpose of power saving. Cortex-M continues to play the sound
-> +      during suspend phase of Cortex-A. When the data in buffer is consumed,
-> +      Cortex-M will trigger the Cortex-A to wakeup to fill data. LPA requires
-> +      some audio paths still enabled when Cortex-A enters into suspend.
+Signed-off-by: Flavio Suligoi <f.suligoi@asem.it>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
 
-This is a fairly standard DSP playback case as far as I can see so it
-should work with DAPM without needing this obviously use case specific
-stuff peering into the Linux implementation.  Generally this is done by
-tagging endpoint widgets and DAIs as ignore_suspend, DAPM will then
-figure out the rest of the widgets in the path.
+v3:
+ - add default value for mps,overvoltage-protection-microvolt property
+ - fix the example, changing from "mps,mp3309c-backlight" to "mps,mp3309c" in
+   compatible property
+v2:
+ - remove useless properties (dimming-mode, pinctrl-names, pinctrl-0,
+   switch-on-delay-ms, switch-off-delay-ms, reset-gpios, reset-on-delay-ms,
+   reset-on-length-ms)
+ - add common.yaml#
+ - remove already included properties (default-brightness, max-brightness)
+ - substitute three boolean properties, used for the overvoltage-protection
+   values, with a single enum property
+ - remove some conditional definitions
+ - remove the 2nd example
+v1:
+ - first version
 
---q/IrCVZv+ZArlVx4
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../bindings/leds/backlight/mps,mp3309c.yaml  | 73 +++++++++++++++++++
+ 1 file changed, 73 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
 
------BEGIN PGP SIGNATURE-----
+diff --git a/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml b/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
+new file mode 100644
+index 000000000000..4191e33626f5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
+@@ -0,0 +1,73 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/backlight/mps,mp3309c.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MPS MP3309C backlight
++
++maintainers:
++  - Flavio Suligoi <f.suligoi@asem.it>
++
++description: |
++  The Monolithic Power (MPS) MP3309C is a WLED step-up converter, featuring a
++  programmable switching frequency to optimize efficiency.
++  It supports two different dimming modes:
++
++  - analog mode, via I2C commands (default)
++  - PWM controlled mode.
++
++  The datasheet is available at:
++  https://www.monolithicpower.com/en/mp3309c.html
++
++allOf:
++  - $ref: common.yaml#
++
++properties:
++  compatible:
++    const: mps,mp3309c
++
++  reg:
++    maxItems: 1
++
++  pwms:
++    description: if present, the backlight is controlled in PWM mode.
++    maxItems: 1
++
++  enable-gpios:
++    description: GPIO used to enable the backlight in "analog-i2c" dimming mode.
++    maxItems: 1
++
++  mps,overvoltage-protection-microvolt:
++    description: Overvoltage protection (13.5V, 24V or 35.5V).
++    enum: [ 13500000, 24000000, 35500000 ]
++    default: 35500000
++
++  mps,no-sync-mode:
++    description: disable synchronous rectification mode
++    type: boolean
++
++required:
++  - compatible
++  - reg
++  - max-brightness
++  - default-brightness
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        /* Backlight with PWM control */
++        backlight_pwm: backlight@17 {
++            compatible = "mps,mp3309c";
++            reg = <0x17>;
++            pwms = <&pwm1 0 3333333 0>; /* 300 Hz --> (1/f) * 1*10^9 */
++            max-brightness = <100>;
++            default-brightness = <80>;
++            mps,overvoltage-protection-microvolt = <24000000>;
++        };
++    };
+-- 
+2.34.1
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmURfCcACgkQJNaLcl1U
-h9AHzAf+PwWIz4bbMz7QJRzUtT+mOEdX/5lMuK4w3mvqnYoUdqA2qy3yVAdLoegF
-WoPAesxiBiwTkmnQcnEsWsIdH7T3tGO6oSpYg1DfWmKbwGi2wnPerTw98/lNyLM7
-f23wUYprpUdcE2+9j6/1dMuN7T5hDZoBLXxp/pcVOmL/z40sXOKkpaRhBb1oy5Jq
-qeIcheuyv3RCEdBKCoMa70apc3LRU6MTkVJpqBjM6DfDZ6YTOFwUs841MV/lz/uz
-fXV0yK4ETHlJ5ThXNPLezNqSEyghVeFKt7ZaIBze4VuoS7YYhgv777AZBJ6rIija
-y2y2FOnTDyyU7C14ZyZdfXWkCnp0Aw==
-=Zz/j
------END PGP SIGNATURE-----
-
---q/IrCVZv+ZArlVx4--
 
