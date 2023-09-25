@@ -1,165 +1,138 @@
-Return-Path: <devicetree+bounces-3093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B68527AD4D1
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 11:50:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 359057AD4DA
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 11:53:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 025B0B20A35
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:50:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 3B1341C20490
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:53:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7C3613FFA;
-	Mon, 25 Sep 2023 09:50:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A716C13FFD;
+	Mon, 25 Sep 2023 09:53:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E6B1134DC
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 09:50:52 +0000 (UTC)
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D26EFA3;
-	Mon, 25 Sep 2023 02:50:49 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-50336768615so10167778e87.0;
-        Mon, 25 Sep 2023 02:50:49 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 404B4134DC
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 09:53:23 +0000 (UTC)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB866A3
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 02:53:21 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9a648f9d8e3so797433466b.1
+        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 02:53:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695635448; x=1696240248; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1695635600; x=1696240400; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=x6urbypd/JPj46RxbzcfUv0+mt9BQ2YKzGt/PpzONi8=;
-        b=jHbI78Rp6GrxoPtCUs4tEpYmBlMoWwpV8SckR15v6G8uuWCZPAHSoJgU4y+rfEo7Lw
-         qDXv5BE9oAF2How93CdrvkWMSdNw5aSGPltIQ3/qCJ/3Mm5PYC1QBWG2XYJauipJFr1h
-         6HTwRHII0Vw5T6jPG1R09x9/D+/9tkOQ2ogs5vzZRga100ULlVS7c0ru1mYKJMg32KDu
-         QvGM1sx59vvGJN6R1Y0jHQiDZ7X7MlHjTdpvJfPGNjKd0tc+xpVi5DqpxOXer1TUPIiS
-         fmWuE4rI579V5W2b4Wz0fD5yUcjiQh05icyvyHgFHQAF31lDZ0kabLufP1GwYWeQyyTh
-         Ydtg==
+        bh=nIrqv9oq5sNWvOZMSPBXexVhTAp4lRyjI5nZVEYm+7g=;
+        b=rv5VU0Bt/GgtwoxlX3M4IMi0uCLcVpvjlKxW2quO4A1iDK33EB+JV8orMu+t+/Lgp2
+         uF6NezbOr+BF02AaDAYCTsiugx3Lbhc8qcuut3mbcuUa2omqoZG+qGct0XOERd4dwXX4
+         +t0NfvGLJ6CIMU0Y2QI8tA0u002HrF9lTRqDm2wiRjJSkagXYp1jCJzChk/AwAYf5Mov
+         I4LQVyDQmBIZ1PdxMKGiuvIPuyISp/YXw39lh+RsOyyloVneIG/4aRS4x52tnhXiIwCB
+         u6oi8Th0KO9Us76lrnf4XmOOf5jz5/JWOyLwPZxJAht2F12PylrRH8MpO23KqScvAhYv
+         GIQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695635448; x=1696240248;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1695635600; x=1696240400;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=x6urbypd/JPj46RxbzcfUv0+mt9BQ2YKzGt/PpzONi8=;
-        b=q5MG/4hGxhcv49q+zxZJHvZ3yD75kJMgZn5Swcf282yWlI9L0fRDbFVHgskb/AOZP0
-         CALrrcHxrkUk4GZOSWGZYW7TD/dh4CBh/Dn1oIXObnJuPtWgcmm0Vw+4ersg9FIYjiTV
-         oxJsLkgy652I3gTQ6GY7nDkgK6mmwOxqnB6QLdB8ZAAukVUfpkwL7aY8cEmoRdQ0hI20
-         35bx+Qxr2yZrPMc9Rv0SYqvQGviz302HDUa0kyxxFDLkuf49ZRU57QK5ZDSd/SaLZ7Lg
-         qljIjS0ZskgfBGHRZCxvYNYI2eh1uamdtRmEPumz45jy6FJTOEjHbq38F/xUWBrArKek
-         UPPg==
-X-Gm-Message-State: AOJu0YyjlJczCtIHIBBSW7HCx63CV8SoUrLl8/ZD0CrMh2G7fT/7OI2r
-	GnLS8VLDEk/8P1c8LQk+EKiHp2TEu8I=
-X-Google-Smtp-Source: AGHT+IEP6nxaunpg0g+mD90TO5ii10hJtP90BGL7zBBliiNiblrIJj0VXzliZgFqUZ3ztpeBlMj6ww==
-X-Received: by 2002:a05:6512:3d08:b0:504:2970:da62 with SMTP id d8-20020a0565123d0800b005042970da62mr6205435lfv.64.1695635447853;
-        Mon, 25 Sep 2023 02:50:47 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16f8:1500::1? (dc78bmyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::1])
-        by smtp.gmail.com with ESMTPSA id h8-20020ac25968000000b0050089b26ea1sm1744070lfp.276.2023.09.25.02.50.46
+        bh=nIrqv9oq5sNWvOZMSPBXexVhTAp4lRyjI5nZVEYm+7g=;
+        b=ZuYKBQATkPN5JWkRy+yYE9GvqN07LWQuWtVjVDT6Xoaevc6VoAQt6GXbEcxMGpgD59
+         j4pnSlvajm+ZwNg9wYg/PQ8NhQ1wYWwLtlJvSeZgOaJRbnb1F6uwFdu97UuG0RM2sYXm
+         jquYHCfK2x5J2dgj7MCFH8oUm/lMjorImtAsjKGHyy8NGK2tcrqmahEvJEj2eOCll78g
+         UTHL1jxg7YDGCUL41ZtjBMeHdW9C1ud5ApOSmCN9t6zH88mPQEK3xJ9g2QxBrUuaumb0
+         HJhie2wHd7wPK4StdqB5+145+Q28QXnCprCiX3d0nRXntnRu/M5G2eO0XO4dpSDxAWUy
+         oxuQ==
+X-Gm-Message-State: AOJu0Yzq/m1NQEmKiqilhn18glnI6XeJJIbJjtHd8BanLSvB2StdOYi2
+	H9kapRI/pufO1XUUStj24UOAKQ==
+X-Google-Smtp-Source: AGHT+IHBaAZK0STsyHakY9uDVflJt2b3NulBoMQ4GrOP7s4xI7pdP1qk+MD0+lJX1avXJEM3BzeN8w==
+X-Received: by 2002:a17:907:985b:b0:992:c8d7:b66f with SMTP id jj27-20020a170907985b00b00992c8d7b66fmr6063940ejc.75.1695635600128;
+        Mon, 25 Sep 2023 02:53:20 -0700 (PDT)
+Received: from [192.168.101.165] (178235177023.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.23])
+        by smtp.gmail.com with ESMTPSA id a19-20020a170906275300b0099290e2c163sm6011915ejd.204.2023.09.25.02.53.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Sep 2023 02:50:47 -0700 (PDT)
-Message-ID: <9c0938d7-7c35-4d46-ec69-4171e0cf14ae@gmail.com>
-Date: Mon, 25 Sep 2023 12:50:46 +0300
+        Mon, 25 Sep 2023 02:53:19 -0700 (PDT)
+Message-ID: <83552cff-b490-4c7e-9fef-e05bb6bdc75a@linaro.org>
+Date: Mon, 25 Sep 2023 11:53:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v3 2/6] iio: improve doc for available_scan_mask
-Content-Language: en-US, en-GB
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Angel Iglesias <ang.iglesiasg@gmail.com>, Andreas Klinger
- <ak@it-klinger.de>, Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Benjamin Bara <bbara93@gmail.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <cover.1695380366.git.mazziesaccount@gmail.com>
- <74b66a5b9eee2fb7046f254928391e3da61aa3b2.1695380366.git.mazziesaccount@gmail.com>
- <20230924165908.5a332fac@jic23-huawei>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20230924165908.5a332fac@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/7] arm64: dts: qcom: sm4450: Add apps_rsc and cmd_db
+ node
+Content-Language: en-US
+To: Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, tglx@linutronix.de, maz@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ catalin.marinas@arm.com, will@kernel.org
+Cc: geert+renesas@glider.be, arnd@arndb.de, neil.armstrong@linaro.org,
+ nfraprado@collabora.com, u-kumar1@ti.com, peng.fan@nxp.com,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ quic_tsoni@quicinc.com, quic_shashim@quicinc.com, quic_kaushalk@quicinc.com,
+ quic_tdas@quicinc.com, quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com,
+ kernel@quicinc.com, Ajit Pandey <quic_ajipan@quicinc.com>
+References: <20230925064927.26448-1-quic_tengfan@quicinc.com>
+ <20230925064927.26448-3-quic_tengfan@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230925064927.26448-3-quic_tengfan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 9/24/23 18:59, Jonathan Cameron wrote:
-> On Fri, 22 Sep 2023 14:16:57 +0300
-> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+On 25.09.2023 08:49, Tengfei Fan wrote:
+> From: Ajit Pandey <quic_ajipan@quicinc.com>
 > 
->> The available_scan_mask is an array of bitmaps representing the channels
->> which can be simultaneously enabled by the driver. In many cases the
->> hardware can offer more channels than what the user is interested in
->> obtaining. In such cases it may be preferred that only subset of
->> channels are enabled, and driver reads only a subset of the channels from
->> the hardware.
->>
->> Some devices can't support all channel combinations. For example the
->> BM1390 pressure sensor must always read the pressure data in order to
->> acknowledge the watermark IRQ, while reading temperature can be omitted.
->> So, the available scan mask would be 'pressure and temperature' and
->> 'pressure only'.
->>
->> When IIO seatchs for the scan mask it asks the driver to use, it will
+> Add apps_rsc node and cmd_db memory region for sm4450.
 > 
-> Spell check description.  searches
+> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Oh, right. Thanks!
-
-> 
->> pick the first suitable one from the 'available_scan_mask' array. Hence,
->> ordering the masks in the array makes difference. We should 'prefer'
->> reading just the pressure from the hardware (as it is cheaper operation
->> than reading both pressure and temperature) over reading both pressure
->> and temperature. Hence, we should set the 'only pressure' as first scan
->> mask in available_scan_mask array. If we set the 'pressure and
->> temperature' as first in array, then the 'only temperature' will never
->> get used as 'pressure and temperature' can always serve the user's
->> needs.
->>
->> Add (minimal) kerneldoc to the 'available_scan_mask' to hint the user
->> that ordering of masks matters.
->>
->> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
->> ---
->>   include/linux/iio/iio.h | 4 +++-
->>   1 file changed, 3 insertions(+), 1 deletion(-)
->>
->> diff --git a/include/linux/iio/iio.h b/include/linux/iio/iio.h
->> index 202e55b0a28b..7bfa1b9bc8a2 100644
->> --- a/include/linux/iio/iio.h
->> +++ b/include/linux/iio/iio.h
->> @@ -556,7 +556,9 @@ struct iio_buffer_setup_ops {
->>    *			and owner
->>    * @buffer:		[DRIVER] any buffer present
->>    * @scan_bytes:		[INTERN] num bytes captured to be fed to buffer demux
->> - * @available_scan_masks: [DRIVER] optional array of allowed bitmasks
->> + * @available_scan_masks: [DRIVER] optional array of allowed bitmasks. Sort the
->> + *			   array in order of preference, the most preferred
->> + *			   masks first.
-> 
-> LGTM
-
-I'll try to spell check the commit message and then I treat this as an 
-ack. Please, let me know if it's not Ok.
-
->>    * @masklength:		[INTERN] the length of the mask established from
->>    *			channels
->>    * @active_scan_mask:	[INTERN] union of all scan masks requested by buffers
-> 
-
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
-
+Konrad
 
