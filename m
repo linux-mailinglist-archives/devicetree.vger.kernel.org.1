@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-2952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5489A7AD059
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 08:42:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E9587AD05F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 08:42:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 6721D1C2080C
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 06:42:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id B17711F24364
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 06:42:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA593DDBF;
-	Mon, 25 Sep 2023 06:42:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFD04DF6F;
+	Mon, 25 Sep 2023 06:42:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92645D535
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 06:42:16 +0000 (UTC)
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCF58A2
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 23:42:14 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-405524e6769so19569675e9.1
-        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 23:42:14 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74F1FD535
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 06:42:51 +0000 (UTC)
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90274FB
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 23:42:49 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4056ce55e7eso24090045e9.2
+        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 23:42:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695624133; x=1696228933; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695624168; x=1696228968; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=DxPA+KdsJMnTVrzO2Y8BmmDcflApuxJbXgL4sNW4wUo=;
-        b=jPzMmtO32dFUCtGTYN1JFRS/Ba3/ITmgf/GACD+wxiwBuMkr7WEpVT9X33596PikoU
-         dMkclaDtL5LixXwMJIRmcKtEe5xcTLaJb/+RtIRRu/ovcJP48ZfUsSlkzxK5RsWK6bL9
-         6iZhBBKOJmdTSDBc5T06yML5LZYAICkQrMQF8HOZjBfaqjD9pwfzo8n7B0dOTNHDXo7z
-         d1ng95kkrYBtbAtqm5eCAfgoe+mFuDLFuZH1Tqa3rYviHfTs70QEr75YM0WS2G7b5GNW
-         D6c8U6HZ4+NagUELfEPYX8pPtMG1m0s6rCbaUwN8tN4PtxYSIyeiDrPPy+Dtdu0RLF/E
-         3nUA==
+        bh=xL2fRR5i7Z8ytWJZ8fikuI0CzZNxyMwNZkn7LWwPIBc=;
+        b=B0KQX2iLXR21tmrhrvv+duWiyJ9MxBKmUZIvchJiEmgUUN/wt2k1e5n7WqOH0kKybf
+         ntbpQG8XLUXTP2YXW4GsTdVYYp0TX67cUHmnR85F2Hbt6+53+3BqHO4atl0GFHF3YNww
+         jVKfkO1pRMQ417H7EKxBTEoatyFN5q+kmYYfpYvKbYRT4uEh0n0Rd2F78/Iop1pPg0s+
+         gbxCCR8tn09J+p5FcMDq2M4cBA8ozj8mD2BmxdD5KJMGk0WlZqAp4UccxxJpEfcho0nt
+         fWIXQxjh4Z39EAMG6JUP5OVXCBjOTplPAQG8O2v/qhvCuoz1E2TQHKhNzZzsOD5ZlUor
+         pR2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695624133; x=1696228933;
+        d=1e100.net; s=20230601; t=1695624168; x=1696228968;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DxPA+KdsJMnTVrzO2Y8BmmDcflApuxJbXgL4sNW4wUo=;
-        b=P6ssSg0eilR6ZX+isugKLGwsKvshC5NZdWAbs/COU+JMDfkfWkhv/UcuybjLSdE65j
-         vz6VcyomeD7GdYHWHbZ3x8HzeKb0H/TJpva5/CnklYzoVK6yM0+VSrFIjexfrOMVvXW1
-         7aXLB0/wNADgfzBqRa4FCerNJgDga0SgD5jTNBCMUwgLSWul14DizdmcDITk8fVJp7Nu
-         FXCn8Id0yphD54swX+F/DjND2Ih2Kq4cfmZ62cvqZoBS/cNgn2vhGhin+mG7rO1hCrEv
-         Wczi29ucL2LzH58PKXXkkUCrPC+UaQ08jAz0CuClWh91AqHaXhV5+d9x38KE8PH5v0/d
-         Y06Q==
-X-Gm-Message-State: AOJu0YzFk9SSKutnAmuO218vWwiE5XdPt6UlGZr2k4NojVaJtYEalRUs
-	SC3kU/kZhrZiPdr20wS9QeUbZBwUblE8xWEJ23s=
-X-Google-Smtp-Source: AGHT+IF3BuvnLiDMOCnyW5AJa/rMsbhaZSmkEDsEHvVaD90jVBMWixO3kjtvNOuQdxzuSq5gRUzjnQ==
-X-Received: by 2002:a05:600c:cf:b0:401:609f:7f9a with SMTP id u15-20020a05600c00cf00b00401609f7f9amr6744769wmm.8.1695624133076;
-        Sun, 24 Sep 2023 23:42:13 -0700 (PDT)
+        bh=xL2fRR5i7Z8ytWJZ8fikuI0CzZNxyMwNZkn7LWwPIBc=;
+        b=syKFqAA+O/Xnu/TXo6NnfVMqyhXM9Zw7afM9j/pLkxO80fwIfiF0ja2v5E0nKicDot
+         ccVgN6xMVvS5t2gie2e3hHQPq8R+7TZNYedUQgN8iwScsGNgHlPI3IRnf3bpv+F7izlu
+         aVhC25Wo4BqYDKGL/2o4neg64p8Ea2cEvWBMaCZC5ecAig9XPMlh9SmfaQvum/aRaSvV
+         jMSWrnQkYru9ifmtHht+5eD835I4SiGVuhW6mBss6yz3J6/o5q++zaPhBF6PrYrlCIVH
+         IfefQPjYkLQYb0OmdCASaq58Nmllc/SLikXISxu5dXapqQcg7aA5g72Kn72pMfe5L8Lp
+         p6KA==
+X-Gm-Message-State: AOJu0YzeK/u0sCwsToHUplVMEgr/ohySK+Lyy7pb6M3DPS8clr9hWmxX
+	VYxXDlLlDrJ3qE/6Ebxrn6a2Ag==
+X-Google-Smtp-Source: AGHT+IEukJx2vgrSb3uUJj0dsvdzKXDJQ9VzA6AXnsQw2puF6X0hzj2sui/dwJxOawyQrv4B2sAg/A==
+X-Received: by 2002:a7b:cbd1:0:b0:401:b2c7:349b with SMTP id n17-20020a7bcbd1000000b00401b2c7349bmr4399555wmi.7.1695624167950;
+        Sun, 24 Sep 2023 23:42:47 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id w10-20020adfd4ca000000b0031762e89f94sm10899573wrk.117.2023.09.24.23.42.11
+        by smtp.gmail.com with ESMTPSA id w10-20020adfd4ca000000b0031762e89f94sm10899573wrk.117.2023.09.24.23.42.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Sep 2023 23:42:12 -0700 (PDT)
-Message-ID: <e69ca292-e0b9-4ee2-9f4e-6e9300a636a6@linaro.org>
-Date: Mon, 25 Sep 2023 08:42:11 +0200
+        Sun, 24 Sep 2023 23:42:47 -0700 (PDT)
+Message-ID: <c6983f0e-9a62-4fe8-bb1a-01c44ec43985@linaro.org>
+Date: Mon, 25 Sep 2023 08:42:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,8 +63,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/15] dt-bindings: gce: mt8195: Add
- CMDQ_SYNC_TOKEN_SECURE_THR_EOF event id
+Subject: Re: [PATCH 03/15] soc: mailbox: Add SPR definition for GCE
 Content-Language: en-US
 To: =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
  "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
@@ -91,9 +90,9 @@ Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
  Project_Global_Chrome_Upstream_Group
  <Project_Global_Chrome_Upstream_Group@mediatek.com>
 References: <20230918192204.32263-1-jason-jh.lin@mediatek.com>
- <20230918192204.32263-3-jason-jh.lin@mediatek.com>
- <20372e40-e4fc-467a-d91a-fcf8e26728bc@linaro.org>
- <1f324b04cbd8faa7510a3519eb718c0be25af2be.camel@mediatek.com>
+ <20230918192204.32263-4-jason-jh.lin@mediatek.com>
+ <797fc698-54d2-4848-3a4d-43ca631eb96d@linaro.org>
+ <d2fee308c86c23e98e99497d2de138e31ad72537.camel@mediatek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -139,39 +138,45 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1f324b04cbd8faa7510a3519eb718c0be25af2be.camel@mediatek.com>
+In-Reply-To: <d2fee308c86c23e98e99497d2de138e31ad72537.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 25/09/2023 07:05, Jason-JH Lin (林睿祥) wrote:
+On 25/09/2023 07:08, Jason-JH Lin (林睿祥) wrote:
 > Hi Krzysztof,
 > 
 > Thanks for the reviews.
 > 
-> On Sat, 2023-09-23 at 20:01 +0200, Krzysztof Kozlowski wrote:
+> On Sat, 2023-09-23 at 20:02 +0200, Krzysztof Kozlowski wrote:
 >>  	 
 >> External email : Please do not click links or open attachments until
 >> you have verified the sender or the content.
 >>  On 18/09/2023 21:21, Jason-JH.Lin wrote:
->>> CMDQ_SYNC_TOKEN_SECURE_THR_EOF is used as secure irq to notify CMDQ
->>> driver in the normal world that GCE secure thread has completed a
->> task
->>> in thee secure world.
+>>> GCE has specific purpose registers, abbreviated as SPR.
+>>> Client can us SPR to store data or programs.
+>>>
+>>> In CMDQ driver, it allows client to STORE or LOAD data into SPR.
+>>> The value stored in SPR will be cleared after reset GCE HW thread.
+>>>
+>>> There are 4 SPR (register index 0 - 3) in every GCE HW thread.
+>>> SPR is thread-independent and HW secure protected.
+>>>
+>>> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+>>> ---
+>>>  include/linux/soc/mediatek/mtk-cmdq.h | 5 +++++
 >>
->> How can #define be added after its usage? Does it even make any sense
->> of
->> being separate patch?
->>
+>> There is no user of this... Why do you add unused defines?
 > 
-> This definition is used in the mt8195.dts at [PATCH 15/15] and the CMDQ
+> It'll be used in cmdq_sec_insert_backup_cookie() at [PATCH 10/15].
+> Should I merge this patch into [PATCH 10/15]?
 
-No, the define is used in previous patch, which means your patchset is
-not bisectable and not tested.
+Yes, because what is the purpose of adding unused defines? I asked
+before and did not get answer...
 
 Best regards,
 Krzysztof
