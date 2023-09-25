@@ -1,190 +1,217 @@
-Return-Path: <devicetree+bounces-3217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86FEE7ADAEA
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 17:07:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E520F7ADB04
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 17:10:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 385992813B5
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 15:07:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 2C632B20977
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 15:10:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEA481CF98;
-	Mon, 25 Sep 2023 15:07:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB7A81D522;
+	Mon, 25 Sep 2023 15:10:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEE3E1CF85
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 15:07:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 087A5C433C8;
-	Mon, 25 Sep 2023 15:07:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695654429;
-	bh=bivzZDncrKe0eAtcWd82K5+BpAK/gZqr/XIOn3YurAU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M0K0o8kJ56GSNHPhAk6QFPkhTSVBV+cmOb2ikJeU7Mkv4vVR5axSxnyeDIE7ZSINb
-	 /0I+0XyU3gTLA3LNDm+P3moOj9fpid57kqif0rnqOpgoW5R1me9H/E1accyHUTSQo0
-	 M/E0WoKNi01FBpo3f4B+Si9oeAOcVqNAHh3b+C58hwtqht4MZeg4XszGPx6h6U8upM
-	 Ka7zAvP+P1c5YuKz7d7ST9d/+pbw3P/zYHSUEM7Hyjrv82BV3w8eoIxvSnL9GmSeNl
-	 3xt69wWujr7S07Ws0mfNPUfoUwyKX0VZBevM18O5os5CXz8G5lLPdpRvMH6T67pQ+l
-	 NVTA/VrvYxhAg==
-Date: Mon, 25 Sep 2023 17:07:06 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Benjamin Bara <bbara93@gmail.com>
-Cc: abelvesa@kernel.org, benjamin.bara@skidata.com, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, festevam@gmail.com, frank@oltmanns.dev, kernel@pengutronix.de, 
-	krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
-	linux-imx@nxp.com, linux-kernel@vger.kernel.org, linux@armlinux.org.uk, 
-	mturquette@baylibre.com, peng.fan@nxp.com, robh+dt@kernel.org, s.hauer@pengutronix.de, 
-	sboyd@kernel.org, shawnguo@kernel.org
-Subject: Re: [PATCH 06/13] clk: keep track if a clock is explicitly configured
-Message-ID: <2z7ujpgyptfa2wtzmb2jvb6krngh5fpnbbqjhx22rwv2qvofas@uple3zsk42nx>
-References: <pgnlrokdqqqclqvp4h2zk7iyq2jfncnvvwavovydovdmj3d2gf@kszpslmeswbr>
- <20230920072216.1737599-1-bbara93@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F6AC1B276
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 15:10:33 +0000 (UTC)
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2080.outbound.protection.outlook.com [40.107.20.80])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EE9211C;
+	Mon, 25 Sep 2023 08:10:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KyBGpJYJ8GPuMm8duV1ANqiGIrS/lT7qbl3teX7u/t1Ljoo9kYYddFAC1A9+fU0RxU58Rb4GgbxJ8vnb0omQyfTRJhZEySg/FFZL2eslzJyMvK0znG6tAlNf7rgUDjcqbz3REcYYvLeZvOEgfoXYE2j1cqT9WjQQnxJrlkvYGSi9cYDnJXZQ23/6qLiVssulHHngCmVzHkuKAZpsKlepKLZSqlzNsW2inuoj+UJSaAdtFms1Qs9wrhbvfmTM8TCpREvt/BvojydJIfYZegn2TKmrzsDyY/tXvw5cB3qdDU+NZY9jG8utSVWflXh4jegcDpMFfY2kcyOxBFhEu8OqCw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iOj8MA+QlyeDwSu9jcml6IisrotUj9aqWmLXcD8eqRI=;
+ b=eOQ/qLF2N8XfWz6we2KgQ7hS22xzMGoJiup0nW4N4GGf4Pcv6BWS3Embmq3G2lqmfx2gRHbKZFLFthmyTKBm3IavTl1CGntZ6tUAWweeX1FsGqu/S624xurA2jtT0zp8S9YyFIShmMbebICDJffML2j6Ob+9DWX2/c1XAFjtBORx+tpqym25cSxC7ioa3trXtQ9dJZf+0mFvbB/9Yrf4IZvGICXzJDUKcBvjOluPkAa01x5oItAAYf4gPjW+gqg+Ih6SI8xMO/yNLXyzSuskqmyMrVObtYD08rR2+QNcf5omPcPfNcDkf+nz737R+XpvbNacezV4uZKynds28E2vSw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iOj8MA+QlyeDwSu9jcml6IisrotUj9aqWmLXcD8eqRI=;
+ b=lBm2wZ6eRjARfhaariHnD/HfXLiWxhDxoZy5WZSeLuaWtUGUi3egjzRUxk1omGctylcAstVPnLDP2iwXRTn1c0VMJoW0Pf96CZZNsqT79Vt/Oc49wgrlYaewvfpj2o3uWBZraAg8jl4cGqDDE34cJHPB5WY5LkIojME3+TgoX3g=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9380.eurprd04.prod.outlook.com (2603:10a6:10:368::16)
+ by PAXPR04MB9204.eurprd04.prod.outlook.com (2603:10a6:102:227::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Mon, 25 Sep
+ 2023 15:10:25 +0000
+Received: from DB9PR04MB9380.eurprd04.prod.outlook.com
+ ([fe80::425a:a4a9:17b3:cfe4]) by DB9PR04MB9380.eurprd04.prod.outlook.com
+ ([fe80::425a:a4a9:17b3:cfe4%4]) with mapi id 15.20.6813.027; Mon, 25 Sep 2023
+ 15:10:25 +0000
+From: Laurentiu Tudor <laurentiu.tudor@nxp.com>
+To: shawnguo@kernel.org,
+	leoyang.li@nxp.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Laurentiu Tudor <laurentiu.tudor@nxp.com>
+Subject: [PATCH v3] arm64: dts: ls208xa: use a pseudo-bus to constrain usb dma size
+Date: Mon, 25 Sep 2023 18:10:15 +0300
+Message-Id: <20230925151015.4449-1-laurentiu.tudor@nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: AM4PR07CA0033.eurprd07.prod.outlook.com
+ (2603:10a6:205:1::46) To DB9PR04MB9380.eurprd04.prod.outlook.com
+ (2603:10a6:10:368::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="w3qki6j3vhdewku6"
-Content-Disposition: inline
-In-Reply-To: <20230920072216.1737599-1-bbara93@gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9380:EE_|PAXPR04MB9204:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1516f1e1-1554-4063-c05b-08dbbdd98bc9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	TajW+9ICardIbiqjW7t4VtJiyZ4x6/szKI50EcXSRAtkojzehsH5aRPfvefuuMOZv5kYwK2wTZou2Pwz620K3IYswI4ZtbPu3qBGECm4JcHgTK1D9ohY4eelt3LMKwflE33tEZN2jujxj6evNC4lAxZx0W6s6e+qSkPh1Iq+MGBWG8yjJzuIBpr/CRK4gHpYpBdEdAkoFQyswgw4lCzHLe0vn897G8Mi7YGKoL5Zdj/y/G3u24bFGZ/xWM+SW+Uv1kl+QDFOYA9JHnQacqNIX2i8X5qxs/bholsqrAV/DY49SE/MkGxE7snM/KUTFHHiJsCBh2G8VOD/6by5gkZrTAOZIpG9FwIsL+Ovpi8+X0DQh+TaMe3rukwWJ0KYjhEBQofSoO4MRWqvesEIBUiIcm0OyOn7jujeaaYzKVSAdD32sdJyNl878CkJ90OABErFzjBpWLC9VQyJTtew5qK4LepeRtzqPNGXtDUWkCikINhiWru9g+2O26W9uxIJquT/pm4g7XakQOWQbhBuhQzlAs0WRRKSYElZkNiT8+IduoQZStiq9BayRqcFKfEwhx84r9Vna2rGj2X9d0FET3BuV5fZ8nDDcS77ufbQlh7i5X54AG+UPTI1z/L8aqatRBtL
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9380.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(39860400002)(366004)(346002)(136003)(376002)(230922051799003)(1800799009)(186009)(451199024)(6512007)(6486002)(6506007)(6666004)(52116002)(83380400001)(86362001)(38350700002)(38100700002)(36756003)(1076003)(2616005)(26005)(44832011)(2906002)(8936002)(8676002)(4326008)(41300700001)(316002)(66556008)(66946007)(66476007)(5660300002)(478600001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?hC8dVc/beVIZFcK/65HvwB2kLQjrH5Verd+yqMWJ79eDb2xRR84co6NEpMJG?=
+ =?us-ascii?Q?3f4qoX9n5PfZDquA6t+UpsOo2GEZEBndImnaE01aQEBGVIaky0VJ4V8ZXN+U?=
+ =?us-ascii?Q?UGxjBKm0WQHL0CZYiQOO/+o4q24WxeVNeI4PbjPSpsejqT5PtO19WfRNUnKr?=
+ =?us-ascii?Q?s3VMYQLiVjmQQNFZNRyTQ8bxceSBG53JUs1EeKt/Yi9fIwqBGoqcinn87+ps?=
+ =?us-ascii?Q?TSgSY6akqmAwPx8odpT2ojixeqzL+aOKV+Rlg4Na8xCyKZJr96V9oN92oNFs?=
+ =?us-ascii?Q?nD8XHyEMAdIfZonUYG1Y1USYEDQwniLZ9dsTtewZ3jlsbJbsP/7VQ6231Tu+?=
+ =?us-ascii?Q?8RczBLkqkZxZs0bNb1qaC1QJiQixjNAkC3m580moofc8OCt1w1FjJPqAfW4W?=
+ =?us-ascii?Q?deP0vWUs8weMESWyJJCdbqMz0bqXAytYUH+PE9uKFXK9bFqpRvutPvV6FSF3?=
+ =?us-ascii?Q?JPkDn8s83qOB8WOYdJ1WS8oFSCytz7jnMQOhtTav1S02HtSOQwAzUQC9pkhD?=
+ =?us-ascii?Q?qYYVL+DcJX9gA+j5wc2nruxoAKA0Qe2mUuYcnxmg68gbzyLGVRpKVFB83msx?=
+ =?us-ascii?Q?yVplDTmcOz9mz2T0ic3BYuYpfIl6F4JoCKlgp46t211HJwxESZ7ZNjlVgvi+?=
+ =?us-ascii?Q?1TZVRJZtIMXhg0drIjbvIrGpr2lVil0ePS0ujRxExvYtqfvQsA/A68i3kE0n?=
+ =?us-ascii?Q?6fTOaOgzRDkEe/hAztLoG3u38U/cuanGPX73w8DDZJZkcxXyhjw4vtcYXPKB?=
+ =?us-ascii?Q?j53cu+B7bJae8Fr4ABPt8zZYRUo3YNIJOvHNBJ/EqSQlF4bBuF/KQqL69FVo?=
+ =?us-ascii?Q?jy57Kh5JrM8xZdj4+Ug6nLGw/ZZwR1RcYBoiTfRx80Ujpf3mK/p0yuN5jN5Y?=
+ =?us-ascii?Q?fpw21we8+NnUv4qJv0SC+WwasMDlM+X9r251IYTd5c5Os0oTHdvryZDxKwXZ?=
+ =?us-ascii?Q?Np44bVx6xL7vsO0sQhj/TmRFzcV1NHHpUs0xSBkuK/TtDXLSMfhuC4kS+ca9?=
+ =?us-ascii?Q?7+8J7PT6hRczadk0he38cBwf/xo7SobB7hqvpYHB2UU/9urTIb6GzgSOhe7P?=
+ =?us-ascii?Q?HSxujj5uOwtki0Que1MgEVA3Ps4Qexh2GVVNAd/U6ft7Z56pwMK8rODDLWku?=
+ =?us-ascii?Q?MsP45CPN0tH9hCDV7QnQGyBt/d2VbqmzK/7VA5fl2xGmKeSmn5lw/7l7R3dd?=
+ =?us-ascii?Q?SOnz65WfhgLbitdqphEoVUBAtQB1PgtU+tW3AuR2qBJtA7P94bi5L7m+S6mS?=
+ =?us-ascii?Q?1Y5XLEkNvhYSbXLZNg5IoLtsV4oWQZvLZotSNfd8sA7y3tcjM8DbYpi2xrVB?=
+ =?us-ascii?Q?UsBQqccQ6/yx1OyNKZU5orzXdSPxHyvBUaQbFfjQxyBRaRoW5elHgc4qodsE?=
+ =?us-ascii?Q?4aTyRHlUXe8Ymiiyrr1PUq8uuOq9GOLlCABL1ap2YKXOxmyKjSGJ6PydfATB?=
+ =?us-ascii?Q?GGaWehw40m9G7o3/hPUD+sJ8ue19GGfR+afYQ/SAmlwlJ6zmRibJznHgZtuu?=
+ =?us-ascii?Q?9w6f8V5TJktlewAVWH4SnD4DB/8BetoSlYc33CtgAH6Mus7ZZij969Inrf1s?=
+ =?us-ascii?Q?Pkh6ArKvs/EA+CQ9se0ao0iliTQQNO7EG3RmqEyP?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1516f1e1-1554-4063-c05b-08dbbdd98bc9
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9380.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2023 15:10:25.5378
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Qn+TlZNLIrKVd/J28+fNXzwuUEM3OLCTc41yYJwTeMs6Wpn/SLMkRijoNweNVxYlveTOWQ9si9TkL13AjMJaBg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9204
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+Wrap the usb controllers in an intermediate simple-bus and use it to
+constrain the dma address size of these usb controllers to the 40b
+that they generate toward the interconnect. This is required because
+the SoC uses 48b address sizes and this mismatch would lead to smmu
+context faults [1] because the usb generates 40b addresses while the
+smmu page tables are populated with 48b wide addresses.
 
---w3qki6j3vhdewku6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+[1]
+xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
+xhci-hcd xhci-hcd.0.auto: hcc params 0x0220f66d hci version 0x100 quirks 0x0000000002000010
+xhci-hcd xhci-hcd.0.auto: irq 108, io mem 0x03100000
+xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
+xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0 SuperSpeed
+arm-smmu 5000000.iommu: Unhandled context fault: fsr=0x402, iova=0xffffffb000, fsynr=0x0, cbfrsynra=0xc01, cb=3
 
-Hi Benjamin,
+Signed-off-by: Laurentiu Tudor <laurentiu.tudor@nxp.com>
+---
+Changes in v3:
+ - move 'status' prop to the end
 
-On Wed, Sep 20, 2023 at 09:22:16AM +0200, Benjamin Bara wrote:
-> On Tue, 19 Sept 2023 at 09:07, Maxime Ripard <mripard@kernel.org> wrote:
-> > On Mon, Sep 18, 2023 at 12:40:02AM +0200, Benjamin Bara wrote:
-> > > From: Benjamin Bara <benjamin.bara@skidata.com>
-> > >
-> > > When we keep track if a clock has a given rate explicitly set by a
-> > > consumer, we can identify unintentional clock rate changes in an easy
-> > > way. This also helps during debugging, as one can see if a rate is set
-> > > by accident or due to a consumer-related change.
-> > >
-> > > Signed-off-by: Benjamin Bara <benjamin.bara@skidata.com>
-> > > ---
-> > >  drivers/clk/clk.c            | 25 +++++++++++++++++++++++++
-> > >  include/linux/clk-provider.h |  1 +
-> > >  2 files changed, 26 insertions(+)
-> > >
-> > > diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-> > > index 8f4f92547768..82c65ed432c5 100644
-> > > --- a/drivers/clk/clk.c
-> > > +++ b/drivers/clk/clk.c
-> > > @@ -70,6 +70,7 @@ struct clk_core {
-> > >       unsigned long           rate;
-> > >       unsigned long           req_rate;
-> > >       unsigned long           new_rate;
-> > > +     unsigned long           set_rate;
-> >
-> > This is pretty much what req_rate is supposed to be about. Why didn't it
-> > work in your case?
->=20
-> I picked this one to respond first because I think some of the
-> implemented stuff just workarounds the current req_rate behaviour.
->=20
-> Currently, I have two "problems" with it:
-> 1. It's set during initialization[1]. In this phase, the *required* rate
->    isn't known yet, so it should be 0 imo.
+Changes in v2:
+ - renamed pseudo-bus from 'aux_bus' to just 'bus'
 
-Agreed. Ideally, it should be another value (like -1) since 0 is also
-used for rates in some drivers, but that's a separate story :)
+ .../arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 46 +++++++++++--------
+ 1 file changed, 27 insertions(+), 19 deletions(-)
 
-> 2. It's set during re-parenting[2,3]. Also here, just because we
->    re-parent, the active consumer (which set the req_rate to a valid
->    value) still requires the clock to have the same rate.
->
-> That is basically the reason why we have no info if the req_rate is
-> really "required" by a consumer or if it is just set because the parent
-> had it at some time. It's only usage is here[4], which IMO doesn't
-> really depends on the wrong behaviour I described above.
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+index d2f5345d0560..717288bbdb8b 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+@@ -1186,26 +1186,34 @@
+ 			dma-coherent;
+ 		};
+ 
+-		usb0: usb@3100000 {
+-			status = "disabled";
+-			compatible = "snps,dwc3";
+-			reg = <0x0 0x3100000 0x0 0x10000>;
+-			interrupts = <0 80 0x4>; /* Level high type */
+-			dr_mode = "host";
+-			snps,quirk-frame-length-adjustment = <0x20>;
+-			snps,dis_rxdet_inp3_quirk;
+-			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
+-		};
++		bus: bus {
++			#address-cells = <2>;
++			#size-cells = <2>;
++			compatible = "simple-bus";
++			ranges;
++			dma-ranges = <0x0 0x0 0x0 0x0 0x100 0x00000000>;
++
++			usb0: usb@3100000 {
++				compatible = "snps,dwc3";
++				reg = <0x0 0x3100000 0x0 0x10000>;
++				interrupts = <0 80 0x4>; /* Level high type */
++				dr_mode = "host";
++				snps,quirk-frame-length-adjustment = <0x20>;
++				snps,dis_rxdet_inp3_quirk;
++				snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
++				status = "disabled";
++			};
+ 
+-		usb1: usb@3110000 {
+-			status = "disabled";
+-			compatible = "snps,dwc3";
+-			reg = <0x0 0x3110000 0x0 0x10000>;
+-			interrupts = <0 81 0x4>; /* Level high type */
+-			dr_mode = "host";
+-			snps,quirk-frame-length-adjustment = <0x20>;
+-			snps,dis_rxdet_inp3_quirk;
+-			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
++			usb1: usb@3110000 {
++				compatible = "snps,dwc3";
++				reg = <0x0 0x3110000 0x0 0x10000>;
++				interrupts = <0 81 0x4>; /* Level high type */
++				dr_mode = "host";
++				snps,quirk-frame-length-adjustment = <0x20>;
++				snps,dis_rxdet_inp3_quirk;
++				snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		ccn@4000000 {
+-- 
+2.17.1
 
-Ah, right.
-
-> The respective sub-tree we talk about on the imx8mp looks like this (one
-> example for the the LVDS-only case):
-> video_pll1 (pll; 7x crtc rate - currently, rate is assigned via dt)
->   video_pll1_bypass (mux; 7x crtc rate)
->     video_pll1_out (gate; 7x crtc rate)
->       media_ldb (divider; 7x crtc rate)
->         media_ldb_root_clk (gate; 7x crtc rate)
->       media_disp2_pix (divider; 1x crtc rate)
->         media_disp2_pix_root_clk (gate; 1x crtc rate)
->       media_disp1_pix (divider; unused for now)
->         media_disp1_pix_root_clk (gate; unused for now)
->=20
-> The problem is that the panel driver sets media_disp1_pix_root_clk,
-> ldb-bridge driver sets media_ldb_root_clk. All the others have a
-> req_rate of the rate video_pll1 had when they got initialized or
-> re-parented.
-
-So we have only dividers, but what is the range of those? ie, could we
-get away with running the video-pll1 at 297/594MHz (or a multiple of it)
-and cover most of the pixel rates for LVDS?
-
-> My idea was, that when media_disp2_pix_root_clk is set to the CRTC rate,
-> IMO all clocks along the line (especially media_disp1_pix, which is
-> "seen" as child of the PLL, and the actual divider for
-> media_disp2_pix_root_clk) need to set their new rate as "required",
-> because the subtree below them relies on it. This might be a wrong
-> approach. It might be sufficient to have a req_rate only on the nodes
-> that actually require it.
-
-That makes total sense. However, the clock framework hasn't been
-designed around modifying the rate of multiple clocks in one go, which
-is pretty much what you want to achieve at the moment.
-
-You're already reaching those limits in your patches since, for example,
-you kind of hardcode the tolerance the clocks consider to be ok within
-the framework, which something that really belongs to each clock driver.
-
-This is why I'm insisting in figuring out whether we can run the main
-PLL at a frequency that is good enough for each use-case. That way it
-doesn't have to change, you don't have to propagate anything, the
-problem becomes much simpler :)
-
-> However, IMHO we need to make sure that *all* required rates
-> (especially the ones of leaves!) are respected after a change.
-
-Part of the issue I was telling you about is that clk_set_rate never
-really expressed any time duration, it's very much a fire and forget
-call, so for all the CCF cares the rate could change on the very next
-instruction and it would be ok.
-
-Doing so would also introduce some subtle corner-cases, like what is
-happening if cpufreq set your CPU frequency to (for example) 1GHz, but
-the firmware lowered it to 600MHz for thermal throttling. What happens
-then? Which rate do you consider the required rate?
-
-This would effectively mean merging clk_set_rate with
-clk_set_rate_exclusive, but the latter never really caught up because
-most clocks don't care, and it's fairly inconvenient to use.
-
-If there is an effort to be made (and I still don't believe we need to),
-then I think we should put in into improving clk_set_rate_exclusive()
-rather than changing the semantics of clk_set_rate().
-
-Maxime
-
---w3qki6j3vhdewku6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZRGiGgAKCRDj7w1vZxhR
-xYF8AQD3ptB1rqfyR5RILANllLGYphcfR0zwbSaykHIjMoX3lwD/eeKkYte4HbhG
-AZ1KPxfPovlj7jmuBLB0KW7uY228YQg=
-=Dr5U
------END PGP SIGNATURE-----
-
---w3qki6j3vhdewku6--
 
