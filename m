@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-3046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 271367AD373
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 10:33:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1B477AD37C
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 10:36:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id CB66C281792
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 08:33:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id 2641C1F246DF
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 08:36:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBF6610A33;
-	Mon, 25 Sep 2023 08:33:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BB63111AC;
+	Mon, 25 Sep 2023 08:36:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D62910A21
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 08:33:33 +0000 (UTC)
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 475DFC4
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 01:33:31 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-5310a63cf7bso6823391a12.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 01:33:31 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B14A1097B
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 08:36:49 +0000 (UTC)
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D6029D
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 01:36:48 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4051fea48a8so66263095e9.2
+        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 01:36:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695630810; x=1696235610; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1695631007; x=1696235807; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XJHSZ26T3MOsUizLOBZhGM+0h1d7T5Ujoo+fZj6JV3g=;
-        b=d5o96ZdoFftzNJAVZmgUlLPYKvS8Mh9Fw1CkDrM2suFptCT6NG3eLRZMOmJ83Whgdk
-         hrm8OtycYnm62nBABKCe4puWGnhhsXo7QbZcaQr2ZG/V3GqKR19xaYsJrluw2NS4H8CT
-         XjCc9hrTCxAWUCheTk8k03BkeoGbRWJvcSUNImMXoPp0PVk8/Q5eclseqQEmqDa3ky71
-         75MTeQdrAeVJZcMOo8CdXjfgEYjOPsbJ0RmlyZU5bkZgXhDXQhAo6SQqYVkL4XjpXddl
-         UQ7oNdyBKcD16vHtXtj+btsJHN9iUyDwzlakbesl7wds+jMEFDfcme1OatUeCHR7dlXO
-         UVEA==
+        bh=tWHXGf/28UmGg0QYv/KDMxlG6hTCVFQe8U+b4Xx9ObM=;
+        b=iIYy84UwD3FRZQGdiMoLuSB0u2fae3h74+qhniZYG5q1+b23K9vnHSEqFz3A2eipQG
+         RXlaBZfbYPYxUKLM/OLBFndEB3ayOLRgdHZUAY2v0vys2oFR5FPDWu7D1KTigyUYqJ8Q
+         jIOxLpuYe5b8jyxQ/Xt5RBCq99VcwjIDrOFy3cEhLy2eENwibeEhGxIjvaJrbKKeoAJb
+         b4j64u5XP9y4Y3mi7Myt8Hc95Cc9pOSRrbqnjKNJqu7J+Oh+hNVDplaQQfshpqK5XbRr
+         22ljO2MWCl4w0mU8PA3eUVLzatQbDCaXoRjvgzsia7xTXVBL1tlPzgMvArY2+r3G2TPX
+         89nQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695630810; x=1696235610;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1695631007; x=1696235807;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XJHSZ26T3MOsUizLOBZhGM+0h1d7T5Ujoo+fZj6JV3g=;
-        b=vSOO8ryID1q65tT2kCAlV5HcjYZNFfjSa2zFLLV44HmEoTd9ThRHtcl4u7iFXsRj0Q
-         0vlwTBVE4F39B7kgTHPhFszHHiFmu3YIiC8Db3F7Diqm/WpLR2p4tLT5DJSBXmqS6HGd
-         PC4XNl8jx1XWoYNREosv9wF3EfNaN7qQZHmvhAVtT2OcPKvrDQB6nJGTa/eFeJD1jjpw
-         EA3l+Yi0xfRq3bbXeOhqL4NzO2V0WaGPsrKYfCV4jnqD+a/l+Nus4Ywz1WLt98O6arav
-         rAJTkaZ8rqfhj4V/AEadObli38+ONXbKbPhKWYZpDeJzGemKF3WPPrzV2qCShfReLdKI
-         TTLA==
-X-Gm-Message-State: AOJu0Ywq3kgDrWP8h6RmEBD7rqdfYWdO5nmxVaiP7vz/FpMtJp0mITEE
-	pBEh4LHbSAwTy0d9uyqFx7bGMw==
-X-Google-Smtp-Source: AGHT+IFfuv30iJKFaQZblE5W2CuoAPDtpaqHfR9cl7zQ99pN7d4jonBQ0udhcCD4y3K2MN621drBuA==
-X-Received: by 2002:a17:906:3389:b0:9a5:9f8d:770 with SMTP id v9-20020a170906338900b009a59f8d0770mr5378906eja.46.1695630809684;
-        Mon, 25 Sep 2023 01:33:29 -0700 (PDT)
+        bh=tWHXGf/28UmGg0QYv/KDMxlG6hTCVFQe8U+b4Xx9ObM=;
+        b=nRjxzcP2/M3fXIokIefE1YKFBX+nGtwNydS4SVw9yhcE1xe0fi9zlaz6vjrY0ULlVf
+         ShMZqJyvQpnCMwmhatVE6s6ZVkbur7D3CaZIekyw1CIusn2Kd8D7THsgk/B7mZGVGwIv
+         5dlZL0y0QhnhC7CfVVk0mOnHqYYsuozSWVAHARz+NoFeuXo59o9NvUa4jF0rJse0/Z3a
+         OHoRiZk1dQ6gt3JtDusSNOb4ytL7td6bI9R/Lq3PEca3cKIpN6u6ZQM69GnZ9r4v3803
+         +qpAiastIIR67V3O2J6JVl2OANp9070veXFqHEi40rnzsaiAhEXhUmqqagr/QMZxweVL
+         p2OA==
+X-Gm-Message-State: AOJu0Yx1q18fJf2LFW+H15Vxd8q0UJTo7A178TUJQCN668ksXo+9KOZf
+	CNp+GaasgLoi2/01K5yT3jlcaw==
+X-Google-Smtp-Source: AGHT+IEj8GV6kW4W9+YjFYpTKqIX3yRSpMMeifsTqhuG1Qtc3FnNeS+ajKhOLku1duVjtqHcI+uoUw==
+X-Received: by 2002:a05:600c:22c7:b0:401:c436:8999 with SMTP id 7-20020a05600c22c700b00401c4368999mr5440828wmg.30.1695631006792;
+        Mon, 25 Sep 2023 01:36:46 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id hs35-20020a1709073ea300b009b28ad521f4sm542452ejc.4.2023.09.25.01.33.27
+        by smtp.gmail.com with ESMTPSA id r8-20020a5d4e48000000b00315af025098sm11089954wrt.46.2023.09.25.01.36.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Sep 2023 01:33:28 -0700 (PDT)
-Message-ID: <df86ea4b-d389-4060-bd3b-830bacabde1c@linaro.org>
-Date: Mon, 25 Sep 2023 10:33:26 +0200
+        Mon, 25 Sep 2023 01:36:46 -0700 (PDT)
+Message-ID: <7f539f82-d904-4c46-ba84-6aedd4fafcbe@linaro.org>
+Date: Mon, 25 Sep 2023 10:36:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,34 +63,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [EXT] Re: [PATCH v3 2/2] dt-bindings: media: imx-jpeg: Assign
- slot for imx jpeg encoder/decoder
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: fsl_rpmsg: List DAPM endpoints
+ ignoring suspend
 Content-Language: en-US
-To: Ming Qian <ming.qian@nxp.com>,
- "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>,
+To: Chancel Liu <chancel.liu@nxp.com>,
+ "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+ "broonie@kernel.org" <broonie@kernel.org>,
  "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "shawnguo@kernel.org" <shawnguo@kernel.org>
-Cc: "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
  "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "mchehab@kernel.org" <mchehab@kernel.org>,
- "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+ "shengjiu.wang@gmail.com" <shengjiu.wang@gmail.com>,
+ "Xiubo.Lee@gmail.com" <Xiubo.Lee@gmail.com>,
+ "festevam@gmail.com" <festevam@gmail.com>,
+ "nicoleotsuka@gmail.com" <nicoleotsuka@gmail.com>,
+ "perex@perex.cz" <perex@perex.cz>, "tiwai@suse.com" <tiwai@suse.com>,
+ "shawnguo@kernel.org" <shawnguo@kernel.org>,
  "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
  "kernel@pengutronix.de" <kernel@pengutronix.de>,
- "festevam@gmail.com" <festevam@gmail.com>, "X.H. Bao" <xiahong.bao@nxp.com>,
- Eagle Zhou <eagle.zhou@nxp.com>, Tao Jiang <tao.jiang_2@nxp.com>,
- dl-linux-imx <linux-imx@nxp.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
  "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
  "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-References: <20230925074131.10133-1-ming.qian@nxp.com>
- <20230925074131.10133-2-ming.qian@nxp.com>
- <bbc8dd05-8589-44ec-87dd-f2d7b4368245@linaro.org>
- <AM6PR04MB63418AE18D3D0ED98CCC1A0FE7FCA@AM6PR04MB6341.eurprd04.prod.outlook.com>
- <751a552e-5209-4d5e-9292-23339a06f8a9@linaro.org>
- <AM6PR04MB63410BEA725DDBF1D1B7814FE7FCA@AM6PR04MB6341.eurprd04.prod.outlook.com>
- <10c50df3-9a99-4552-9b25-0844b87e28f5@linaro.org>
- <AM6PR04MB6341C8E7553F66695467C398E7FCA@AM6PR04MB6341.eurprd04.prod.outlook.com>
+References: <20230925024847.2971421-1-chancel.liu@nxp.com>
+ <c3e682dd-7bb7-4662-b97d-872df1ff879d@linaro.org>
+ <DB9PR04MB9498338014461E28A9988538E3FCA@DB9PR04MB9498.eurprd04.prod.outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -136,138 +133,74 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <AM6PR04MB6341C8E7553F66695467C398E7FCA@AM6PR04MB6341.eurprd04.prod.outlook.com>
+In-Reply-To: <DB9PR04MB9498338014461E28A9988538E3FCA@DB9PR04MB9498.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 25/09/2023 10:20, Ming Qian wrote:
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: 2023年9月25日 16:14
->> To: Ming Qian <ming.qian@nxp.com>; Mirela Rabulea (OSS)
->> <mirela.rabulea@oss.nxp.com>; robh+dt@kernel.org; shawnguo@kernel.org
->> Cc: krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
->> mchehab@kernel.org; hverkuil-cisco@xs4all.nl; s.hauer@pengutronix.de;
->> kernel@pengutronix.de; festevam@gmail.com; X.H. Bao
->> <xiahong.bao@nxp.com>; Eagle Zhou <eagle.zhou@nxp.com>; Tao Jiang
->> <tao.jiang_2@nxp.com>; dl-linux-imx <linux-imx@nxp.com>;
->> devicetree@vger.kernel.org; linux-media@vger.kernel.org; linux-
->> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org
->> Subject: Re: [EXT] Re: [PATCH v3 2/2] dt-bindings: media: imx-jpeg: Assign slot
->> for imx jpeg encoder/decoder
->>
->> Caution: This is an external email. Please take care when clicking links or
->> opening attachments. When in doubt, report the message using the 'Report
->> this email' button
->>
->>
->> On 25/09/2023 10:13, Ming Qian wrote:
->>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> Sent: 2023年9月25日 16:10
->>>> To: Ming Qian <ming.qian@nxp.com>; Mirela Rabulea (OSS)
->>>> <mirela.rabulea@oss.nxp.com>; robh+dt@kernel.org;
->> shawnguo@kernel.org
->>>> Cc: krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
->>>> mchehab@kernel.org; hverkuil-cisco@xs4all.nl; s.hauer@pengutronix.de;
->>>> kernel@pengutronix.de; festevam@gmail.com; X.H. Bao
->>>> <xiahong.bao@nxp.com>; Eagle Zhou <eagle.zhou@nxp.com>; Tao Jiang
->>>> <tao.jiang_2@nxp.com>; dl-linux-imx <linux-imx@nxp.com>;
->>>> devicetree@vger.kernel.org; linux-media@vger.kernel.org; linux-
->>>> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org
->>>> Subject: Re: [EXT] Re: [PATCH v3 2/2] dt-bindings: media: imx-jpeg:
->>>> Assign slot for imx jpeg encoder/decoder
->>>>
->>>> Caution: This is an external email. Please take care when clicking
->>>> links or opening attachments. When in doubt, report the message using
->>>> the 'Report this email' button
->>>>
->>>>
->>>> On 25/09/2023 10:07, Ming Qian wrote:
->>>>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>>> Sent: 2023年9月25日 16:02
->>>>>> To: Ming Qian <ming.qian@nxp.com>; Mirela Rabulea (OSS)
->>>>>> <mirela.rabulea@oss.nxp.com>; robh+dt@kernel.org;
->>>> shawnguo@kernel.org
->>>>>> Cc: krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
->>>>>> mchehab@kernel.org; hverkuil-cisco@xs4all.nl;
->>>>>> s.hauer@pengutronix.de; kernel@pengutronix.de; festevam@gmail.com;
->>>>>> X.H. Bao <xiahong.bao@nxp.com>; Eagle Zhou <eagle.zhou@nxp.com>;
->>>>>> Tao Jiang <tao.jiang_2@nxp.com>; dl-linux-imx <linux-imx@nxp.com>;
->>>>>> devicetree@vger.kernel.org; linux-media@vger.kernel.org; linux-
->>>>>> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org
->>>>>> Subject: [EXT] Re: [PATCH v3 2/2] dt-bindings: media: imx-jpeg:
->>>>>> Assign slot for imx jpeg encoder/decoder
->>>>>>
->>>>>> Caution: This is an external email. Please take care when clicking
->>>>>> links or opening attachments. When in doubt, report the message
->>>>>> using the 'Report this email' button
->>>>>>
->>>>>>
->>>>>> On 25/09/2023 09:41, Ming Qian wrote:
->>>>>>> There are total 4 slots available in the IP, and we only need to
->>>>>>> use one slot in one os, assign a single slot, configure interrupt
->>>>>>> and power domain only for 1 slot, not for the all 4 slots.
->>>>>>
->>>>>> No changelog and I do not see much of improvements. Do not ignore
->>>>>> the feedback but respond to it or fix the patch. Really, what happened
->> here?
->>>>>>
->>>>>
->>>>> Hi Krzysztof,
->>>>>    What do you mean wrap commit message? Do you mean line wrapped
->> at
->>>> 75 columns?
->>>>>
->>>>>   - The body of the explanation, line wrapped at 75 columns, which will
->>>>>     be copied to the permanent changelog to describe this patch.
->>>>
->>>> I gave you clear link to the doc explaining this. What is unclear there?
->>>>
->>>> And you decide to ignore all the rest of the comments here as well?
->>
->> So this is still ignored? Can you respond to all my comments?
->>
->>>>
->>>> Best regards,
->>>> Krzysztof
+On 25/09/2023 10:20, Chancel Liu wrote:
+>>> Add a property to list DAPM endpoints which mark paths between these
+>>> endpoints ignoring suspend. These DAPM paths can still be power on
+>>> when system enters into suspend.
 >>>
->>> The link content is as below:
+>>> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml | 6 ++++++
+>>>  1 file changed, 6 insertions(+)
 >>>
->>>   - The body of the explanation, line wrapped at 75 columns, which will
->>>     be copied to the permanent changelog to describe this patch.
+>>> diff --git a/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
+>>> b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
+>>> index 188f38baddec..ec6e09eab427 100644
+>>> --- a/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
+>>> +++ b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
+>>> @@ -91,6 +91,12 @@ properties:
+>>>        - rpmsg-audio-channel
+>>>        - rpmsg-micfil-channel
 >>>
->>> I'm sorry that I didn’t get your point.
+>>> +  fsl,lpa-widgets:
 >>
->> Wrap
->> your
->> commit
->> according
->> to
->> coding
->> style.
+>> What is LPA? It's not explained in property description.
 >>
->> Best regards,
->> Krzysztof
 > 
-> Hi Krzysztof,
->     I opened your link about the Linux coding style / submission process, but I only find the following message:
+> On asymmetric multiprocessor, there are Cortex-A core and Cortex-M core, Linux
+> is running on Cortex-A core, RTOS or other OS is running on Cortex-M core. The
+> audio hardware devices can be controlled by Cortex-M. LPA means low power audio
+> case. The mechanism can be explained that Cortex-A allocates a large buffer and
+> fill audio data, then Cortex-A can enter into suspend for the purpose of power
+> saving. Cortex-M continues to play the sound during suspend phase of Cortex-A.
+> When the data in buffer is consumed, Cortex-M will trigger the Cortex-A to
+> wakeup to fill data.
 > 
->   - The body of the explanation, line wrapped at 75 columns, which will
->     be copied to the permanent changelog to describe this patch.
+> I can add above explanation to LPA in patch v2.
 > 
->      So I don't know what do you mean the coding style.
+>>> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+>>> +    description: |
+>>> +      A list of DAPM endpoints which mark paths between these endpoints
+>>> +      ignoring suspend.
+>>
+>> And how does it differ from audio-routing? Also, you need to explain what is
+>> "suspend" in this context. Bindings are independent of Linux.
+>>
+> 
+> Normally audio paths will be disabled by ASoC dynamic audio power management if
+> Linux enters into suspend. LPA requires some audio paths enabled when Cortex-A
+> enters into suspend. We can read DAPM endpoints from the "fsl,lpa-widgets"
+> property and keep the paths between these endpoints enabled during suspend
+> phase of Cortex-A. Property "audio-routing" just declares the connection
+> between widgets and doesn't have such feature.
+> 
+> I will modify the description as following:
+> "A list of DAPM endpoints which mark paths between these endpoints still enabled
+> when system enters into suspend."
 
-
-Linked document explains what is a patch, how it is formatted. Just read
-entire doc, not one sentence.
-
-You keep ignoring my other comments all the time, so I will stop asking
-you to respond to them. Instead I will be NAK-ing your patches till you
-decide to respond.
+Yes, that's better, but even better would be to say not how the OS
+should behave, but how the actual entire system works. Basically these
+widgets remain in use by your co-processor, thus OS should not disable
+them when entering in system suspend state.
 
 Best regards,
 Krzysztof
