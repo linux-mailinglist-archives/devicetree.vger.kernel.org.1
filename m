@@ -1,103 +1,111 @@
-Return-Path: <devicetree+bounces-2978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E5127AD0DF
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 08:59:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 615667AD0E3
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 08:59:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 481611C2011E
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 06:59:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 1273728162C
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 06:59:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 641D41078B;
-	Mon, 25 Sep 2023 06:59:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 027991078D;
+	Mon, 25 Sep 2023 06:59:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CC3A5686
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 06:59:25 +0000 (UTC)
-Received: from mail-vk1-xa36.google.com (mail-vk1-xa36.google.com [IPv6:2607:f8b0:4864:20::a36])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70459DF
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 23:59:23 -0700 (PDT)
-Received: by mail-vk1-xa36.google.com with SMTP id 71dfb90a1353d-495ea3299b0so1753687e0c.2
-        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 23:59:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1695625162; x=1696229962; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=z8qEI90LoSzHC7OVIZurF0tjd1Yq1runGQ/mYc0XDOc=;
-        b=Vqzbn/Q+sAS971Sf0mtq97YG9LJ8YmaSizP0uS6xzRCripmVmtSEmkJa03caIZC65m
-         PtnNizla3o9UyzYEKADbYk8WtA/5nhjFIKZHs7bZ+WXfyhiRfw2LreUR0pLqyTNpoAdo
-         XjlaBU1tQ7wsIQR5YtkLL1SOwQz1e8W+ykzZX0cuHSJ3ZPRZuaeyKFed5MxfYHjTLFZ+
-         /TWETr6LSTyembbEvq+eqP3hgT614ird0hhcooQqi5n6BvipuCGm9tLTiiEC8PFvBXYV
-         xDBr+XN3Y3dW0s2EN62R2ym0/gRfWR10MRSsu/g2GBNSqBUlz79LHlAKC440S0ExoVA+
-         gXWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695625162; x=1696229962;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=z8qEI90LoSzHC7OVIZurF0tjd1Yq1runGQ/mYc0XDOc=;
-        b=Jnvvhe4+enUQ1UD439eDpJNMreHc3hJ6YwSEHRRS8ZiQS2IZsW9KkzYOZ4gPV1f651
-         VSYbvyK8zU5bIs+RNdEVByPXadI8VgHMtJR2lsXgZ+BsDRoDiWOhBxHJkoehYC3fzXmI
-         o6hE6BkuieG9LX40bZbPk8C9/JL4GziFrnw4ZZ/SH2lQ/6uno44cbgV0A04DotDvp8JL
-         mXiOHV+5RmEgapm+9xAmSTgaYVEa7/oYN4lxWHmUMAASmEdimE4nf1vl1qNfAUHKYp49
-         6o2Se4WwmNFo4obKxkZkw1SnUAtcE7Yzgoinn6pNu0I4mc9rXEPz/uRp41mVBdsdBAVa
-         DY2g==
-X-Gm-Message-State: AOJu0YwW4t+rY84RzkDxBIHOIAbJ2IYfy7VBHHEf0L24vfjwQd/vRIQV
-	+702MxOtEA/CuQgSQ+uRLTY1xXTbggDOyk6WRSAu8g==
-X-Google-Smtp-Source: AGHT+IF/Zg1NsknbtSQpgBwTNUOHG3qhF9RP3mNCyeEXfaFEh7vh3SlLepbzoDFv12Fu/M9ql+IpvbyggHe6hJYXuQw=
-X-Received: by 2002:a1f:d546:0:b0:48d:3b80:fba9 with SMTP id
- m67-20020a1fd546000000b0048d3b80fba9mr1691006vkg.11.1695625162450; Sun, 24
- Sep 2023 23:59:22 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4B871078C
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 06:59:52 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ADF4CF;
+	Sun, 24 Sep 2023 23:59:51 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38P5DdZ4028258;
+	Mon, 25 Sep 2023 06:59:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=Ui/rR6BUBsfiSpLCNBIjp14VY6rQXxkTQ8UdtHdSN3M=;
+ b=ODaAXr3GwntTHubRmK8FEmuFqOTIUh6Kj0cJYMJcwIaxywzasbvQtUHedNS88wpPMobi
+ AHmhKfBAz57MMEOf9vGKr7pV85uwmqTKixhZ2eEmAF7AlbEhWndB/sGrSKM7YIyEFz2d
+ e9kAD7pemSR1B4YBaPz6UwTK4+L7QtNCn4A/eSrBW30FcMm+NmirtfwB1qXq4Mcf/pAQ
+ u9oSF98jl2R9z2dq/s2miMjqu3t4L9dAOXrHJKPoqXk9Hteb7OoEACzdf3hTES+TgRix
+ yOkLVtra8gTdNPc+ysBxvvI7kl0tgiIZEGu7bXp3qIgXZ4IpvqXVqztJvjCTbgNO3+IB kg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t9qbpu3x8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Sep 2023 06:59:34 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38P6xXPB025886
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Sep 2023 06:59:33 GMT
+Received: from hu-devipriy-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Sun, 24 Sep 2023 23:59:28 -0700
+From: Devi Priya <quic_devipriy@quicinc.com>
+To: <thierry.reding@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <ndesaulniers@google.com>,
+        <trix@redhat.com>, <baruch@tkos.co.il>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <llvm@lists.linux.dev>
+CC: <linux-pwm@vger.kernel.org>, <u.kleine-koenig@pengutronix.de>,
+        <nathan@kernel.org>
+Subject: [PATCH V12 0/3] Add PWM support for IPQ chipsets
+Date: Mon, 25 Sep 2023 12:29:12 +0530
+Message-ID: <20230925065915.3467964-1-quic_devipriy@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230913153529.32777-1-bartosz.golaszewski@linaro.org> <c574c47e-9ceb-ef83-cc92-cdc6cd4982e5@linaro.org>
-In-Reply-To: <c574c47e-9ceb-ef83-cc92-cdc6cd4982e5@linaro.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Mon, 25 Sep 2023 08:59:11 +0200
-Message-ID: <CAMRc=Md1x1ZVj1pfyGZf+=KULd+eujRnGQ0JM43-jd=cB4mPng@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: crypto: ice: document the sa8775p inline
- crypto engine
-To: Herbert Xu <herbert@gondor.apana.org.au>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	"David S . Miller" <davem@davemloft.net>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE
-	autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: MbP2NKkmWh8SzeQhJqXqaY68dKJC1xfz
+X-Proofpoint-ORIG-GUID: MbP2NKkmWh8SzeQhJqXqaY68dKJC1xfz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-25_04,2023-09-21_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ priorityscore=1501 adultscore=0 mlxlogscore=755 spamscore=0 malwarescore=0
+ impostorscore=0 lowpriorityscore=0 phishscore=0 suspectscore=0
+ clxscore=1011 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2309250047
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, Sep 13, 2023 at 5:56=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 13/09/2023 17:35, Bartosz Golaszewski wrote:
-> > Add the compatible string for QCom ICE on sa8775p SoCs.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > ---
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
-> Best regards,
-> Krzysztof
->
+Add PWM driver and binding support for IPQ chipsets.
+Also, add support for pwm in ipq6018.
 
-Herbert,
+Devi Priya (3):
+  pwm: driver for qualcomm ipq6018 pwm block
+  dt-bindings: pwm: add IPQ6018 binding
+  arm64: dts: ipq6018: add pwm node
 
-Gentle ping for the binding as Bjorn already picked up the dts part.
+ .../devicetree/bindings/pwm/ipq-pwm.yaml      |  53 ++++
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi         |  15 +-
+ drivers/pwm/Kconfig                           |  12 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-ipq.c                         | 282 ++++++++++++++++++
+ 5 files changed, 362 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-ipq.c
 
-Bart
+
+base-commit: 940fcc189c51032dd0282cbee4497542c982ac59
+-- 
+2.34.1
+
 
