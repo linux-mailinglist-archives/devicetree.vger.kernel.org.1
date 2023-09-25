@@ -1,72 +1,61 @@
-Return-Path: <devicetree+bounces-3244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4718C7ADD7E
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 18:57:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6924C7ADDCA
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 19:23:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 7847AB20B76
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 16:57:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id D333C1F24779
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 17:23:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC1541D6BA;
-	Mon, 25 Sep 2023 16:57:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D23A420B05;
+	Mon, 25 Sep 2023 17:23:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 510DC1095B
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 16:57:24 +0000 (UTC)
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C699EBE;
-	Mon, 25 Sep 2023 09:57:22 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id d2e1a72fcca58-692a885f129so3797714b3a.0;
-        Mon, 25 Sep 2023 09:57:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695661042; x=1696265842; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=KNPKfLP0E+UkNkw5CTvEwC/Bj3Ev7o9rQHtsP3/MgPM=;
-        b=GtrLMCGa6q5uMUkTjANg1YwZxyinihngCu4qQQvnQvafv9JM/ybIBOYowUgJkYUYWk
-         ZjSWbPcieMdnvmaiz7X8bkhsY+pYs45gjvhmVpsHMZlHKe0D+uWs9Uf7t4tewSpG863Q
-         we6oFK3e1tJmnxmsGPgUM95IqrURqvqc98sYfHxjxgBppxPjJ4Tg6w/QQp7/3/QTKwY2
-         NyMhfnt5UeHVk0T+zsPURaa4bmRDbAlWSpyxRIihachph5qwacpZ7pS9s13DxJw+FHNP
-         x8VMQQ0xNt4iAxz8zTvsO6G7MSXOm2Lb4HahRiHUOc1WcD2bbhCjaDoG6hdDunJ7YOEe
-         NEVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695661042; x=1696265842;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KNPKfLP0E+UkNkw5CTvEwC/Bj3Ev7o9rQHtsP3/MgPM=;
-        b=acLFFApWWcHiveuQnUwxX0Ww0sEPbxPAPMbSl42suVSo5gdqpfr0Sm8pav75dXCTPJ
-         /2+hwh/S5ppFJwerlV1IDxkwiBoztAo80EHYxqzKUNyPNgzc61sVbCEZ/klTPNFKEosN
-         /Zr//ikEHQibN3tOn6reWqXk/3sCbRSZv2qc6msKFoXzbi94cSxQ77sKhArv9YmV/UGd
-         49GP6NHlk6a4WXeRLeb90UH82TfaZo3hHeA4K+w1BmGgwUY7Fha1txY5fD3xd9XZ19ug
-         7Besr3WUkFBkkApTcCy/bVC09GvTE4JRrzfbQZRNq+FlGWrJGDk29fa3k3X4XyRFx9Ob
-         h/fw==
-X-Gm-Message-State: AOJu0Yy+dcWAow3F5kYhUZnhXEE633mJInU/ap1JXM4mIyjKMhwQ051j
-	rwevfnP2v2zPCuj8w6Qkywk=
-X-Google-Smtp-Source: AGHT+IGgAIdPUxAnztT0fJPj4/tqnX0ygspeJDX0q+y8/ITWvnKA6PxrzpaVbgnvmtZnsupmDazAKA==
-X-Received: by 2002:a05:6a21:601:b0:155:5c28:ea74 with SMTP id ll1-20020a056a21060100b001555c28ea74mr5201556pzb.12.1695661042173;
-        Mon, 25 Sep 2023 09:57:22 -0700 (PDT)
-Received: from brag-vm.localdomain ([27.4.138.218])
-        by smtp.gmail.com with ESMTPSA id jw1-20020a170903278100b001c452f827casm9158507plb.257.2023.09.25.09.57.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Sep 2023 09:57:21 -0700 (PDT)
-From: Bragatheswaran Manickavel <bragathemanick0908@gmail.com>
-To: lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: Bragatheswaran Manickavel <bragathemanick0908@gmail.com>,
-	alsa-devel@alsa-project.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] ASoC: dt-bindings: rt5616: Convert to dtschema
-Date: Mon, 25 Sep 2023 22:27:15 +0530
-Message-Id: <20230925165715.34883-1-bragathemanick0908@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42EAF208D2
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 17:23:51 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89E97101;
+	Mon, 25 Sep 2023 10:23:49 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38PFHX9d024729;
+	Mon, 25 Sep 2023 17:23:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=T3OwJhM/JeYff7ROz0beeSE0n+kPH8oKWpl5fSpxi08=;
+ b=fPlX3INTdzefshW29dvh5eKmq3ojDVVVAwcsW/k98AvzVjciaPc/npfsr/BgwOSnFTJA
+ tna4BjI1+ZrhN4bfMEtWIsnUeYumKTrf/MHYQ9FVlq5eBDnlX6wQeSaF5TQypeJsW0jv
+ 7QQn34uU7DAY7vyPwVEDUZWWT7XJD9YXK3fE67fN3ItSTtYq61j7yuCZqNmOUGDfei8e
+ BMmC0TmcvxRMMF7tCYl6CDCLfKunY512n306FbxEHdUCrWRzCh7a0ektR+/ncqD0/lk/
+ UrNzLVaIW3Qn4o6XdsBndDUwQDVja0nxUgbHR3eiydwGlYNBR/sZIQxBTr167SHNyNtq NQ== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tb6tt181x-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Sep 2023 17:23:35 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38PHNY0k024258
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Sep 2023 17:23:34 GMT
+Received: from hu-omprsing-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Mon, 25 Sep 2023 10:23:29 -0700
+From: Om Prakash Singh <quic_omprsing@quicinc.com>
+To: <quic_omprsing@quicinc.com>
+CC: <neil.armstrong@linaro.org>, <konrad.dybcio@linaro.org>,
+        <agross@kernel.org>, <andersson@kernel.org>, <conor+dt@kernel.org>,
+        <davem@davemloft.net>, <devicetree@vger.kernel.org>,
+        <herbert@gondor.apana.org.au>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <marijn.suijten@somainline.org>,
+        <robh+dt@kernel.org>, <vkoul@kernel.org>
+Subject: [PATCH V3] crypto: qcom-rng - Add hw_random interface support
+Date: Mon, 25 Sep 2023 22:53:12 +0530
+Message-ID: <20230925172312.2843262-1-quic_omprsing@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,122 +63,215 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: XHIHu42yXeYgLyf3DQvJZGrf8le_2F77
+X-Proofpoint-ORIG-GUID: XHIHu42yXeYgLyf3DQvJZGrf8le_2F77
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-25_15,2023-09-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 mlxlogscore=999 priorityscore=1501 adultscore=0
+ lowpriorityscore=0 spamscore=0 mlxscore=0 phishscore=0 bulkscore=0
+ suspectscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2309180000 definitions=main-2309250135
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
 	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Convert the rt5616 audio CODEC bindings to DT schema
-No error/warning seen when running make dt_binding_check
+From: Om Prakash Singh <omprsing@qti.qualcomm.com>
 
-Signed-off-by: Bragatheswaran Manickavel <bragathemanick0908@gmail.com>
+Add hw_random interface support in qcom-rng driver as new IP block
+in Qualcomm SoC has inbuilt NIST SP800 90B compliant entropic source
+to generate true random number.
+
+Keeping current rng_alg interface as well for random number generation
+using Kernel Crypto API.
+
+Signed-off-by: Om Prakash Singh <quic_omprsing@quicinc.com>
 ---
- .../bindings/sound/realtek,rt5616.yaml        | 53 +++++++++++++++++++
- .../devicetree/bindings/sound/rt5616.txt      | 32 -----------
- 2 files changed, 53 insertions(+), 32 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/realtek,rt5616.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/rt5616.txt
 
-diff --git a/Documentation/devicetree/bindings/sound/realtek,rt5616.yaml b/Documentation/devicetree/bindings/sound/realtek,rt5616.yaml
-new file mode 100644
-index 000000000000..00ff9b4e3c7e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/realtek,rt5616.yaml
-@@ -0,0 +1,53 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/realtek,rt5616.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+Changes in V3:
+- Fix qcom_rng_read() implementation to account for remaining bytes read
+- Update qcom_rng_generate() return condition for success case
+- Added hwrng structure as part of qcom_rng structure
+
+Changes in V2:
+- Updated patch to fix the return value from qcom_rng_generate() to be
+  consistent with current implementation
+- Updated patch to make it more concise
+- Removed unnecessary use local variable and it's initialization
+- Updated patch to use devm_hwrng_register() instead of hwrng_register()
+- Updated subject line of the patch
+
+This patch is depends on [1]
+[1] https://lore.kernel.org/lkml/20230824-topic-sm8550-rng-v2-4-dfcafbb16a3e@linaro.org/
+
+
+ drivers/crypto/qcom-rng.c | 66 ++++++++++++++++++++++++++++++++++-----
+ 1 file changed, 58 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/crypto/qcom-rng.c b/drivers/crypto/qcom-rng.c
+index fb54b8cfc35f..94cc9b539491 100644
+--- a/drivers/crypto/qcom-rng.c
++++ b/drivers/crypto/qcom-rng.c
+@@ -7,6 +7,7 @@
+ #include <linux/acpi.h>
+ #include <linux/clk.h>
+ #include <linux/crypto.h>
++#include <linux/hw_random.h>
+ #include <linux/io.h>
+ #include <linux/iopoll.h>
+ #include <linux/kernel.h>
+@@ -28,17 +29,25 @@
+ 
+ #define WORD_SZ			4
+ 
++#define QCOM_TRNG_QUALITY	1024
 +
-+title: Realtek rt5616 ALSA SoC audio codec driver
+ struct qcom_rng {
+ 	struct mutex lock;
+ 	void __iomem *base;
+ 	struct clk *clk;
+-	unsigned int skip_init;
++	struct hwrng hwrng;
++	struct qcom_rng_of_data *of_data;
+ };
+ 
+ struct qcom_rng_ctx {
+ 	struct qcom_rng *rng;
+ };
+ 
++struct qcom_rng_of_data {
++	bool skip_init;
++	bool hwrng_support;
++};
 +
-+description: |
-+  Pins on the device (for linking into audio routes) for RT5616:
+ static struct qcom_rng *qcom_rng_dev;
+ 
+ static int qcom_rng_read(struct qcom_rng *rng, u8 *data, unsigned int max)
+@@ -66,11 +75,11 @@ static int qcom_rng_read(struct qcom_rng *rng, u8 *data, unsigned int max)
+ 		} else {
+ 			/* copy only remaining bytes */
+ 			memcpy(data, &val, max - currsize);
+-			break;
++			currsize = max;
+ 		}
+ 	} while (currsize < max);
+ 
+-	return 0;
++	return currsize;
+ }
+ 
+ static int qcom_rng_generate(struct crypto_rng *tfm,
+@@ -92,6 +101,9 @@ static int qcom_rng_generate(struct crypto_rng *tfm,
+ 	mutex_unlock(&rng->lock);
+ 	clk_disable_unprepare(rng->clk);
+ 
++	if (ret >= 0)
++		ret = 0;
 +
-+      * IN1P
-+      * IN2P
-+      * IN2N
-+      * LOUTL
-+      * LOUTR
-+      * HPOL
-+      * HPOR
+ 	return ret;
+ }
+ 
+@@ -101,6 +113,13 @@ static int qcom_rng_seed(struct crypto_rng *tfm, const u8 *seed,
+ 	return 0;
+ }
+ 
++static int qcom_hwrng_read(struct hwrng *hwrng, void *data, size_t max, bool wait)
++{
++	struct qcom_rng *qrng =  container_of(hwrng, struct qcom_rng, hwrng);
 +
-+maintainers:
-+  - Bard Liao <bardliao@realtek.com>
++	return qcom_rng_read(qrng, data, max);
++}
 +
-+allOf:
-+  - $ref: dai-common.yaml#
+ static int qcom_rng_enable(struct qcom_rng *rng)
+ {
+ 	u32 val;
+@@ -136,7 +155,7 @@ static int qcom_rng_init(struct crypto_tfm *tfm)
+ 
+ 	ctx->rng = qcom_rng_dev;
+ 
+-	if (!ctx->rng->skip_init)
++	if (!ctx->rng->of_data->skip_init)
+ 		return qcom_rng_enable(ctx->rng);
+ 
+ 	return 0;
+@@ -177,15 +196,31 @@ static int qcom_rng_probe(struct platform_device *pdev)
+ 	if (IS_ERR(rng->clk))
+ 		return PTR_ERR(rng->clk);
+ 
+-	rng->skip_init = (unsigned long)device_get_match_data(&pdev->dev);
++	rng->of_data = (struct qcom_rng_of_data *)of_device_get_match_data(&pdev->dev);
+ 
+ 	qcom_rng_dev = rng;
+ 	ret = crypto_register_rng(&qcom_rng_alg);
+ 	if (ret) {
+ 		dev_err(&pdev->dev, "Register crypto rng failed: %d\n", ret);
+ 		qcom_rng_dev = NULL;
++		return ret;
++	}
 +
-+properties:
-+  compatible:
-+    const: realtek,rt5616
++	if (rng->of_data->hwrng_support) {
++		rng->hwrng.name = "qcom_hwrng";
++		rng->hwrng.read = qcom_hwrng_read;
++		rng->hwrng.quality = QCOM_TRNG_QUALITY;
++		ret = devm_hwrng_register(&pdev->dev, &rng->hwrng);
++		if (ret) {
++			dev_err(&pdev->dev, "Register hwrng failed: %d\n", ret);
++			qcom_rng_dev = NULL;
++			goto fail;
++		}
+ 	}
+ 
++	return ret;
++fail:
++	crypto_unregister_rng(&qcom_rng_alg);
+ 	return ret;
+ }
+ 
+@@ -198,6 +233,21 @@ static int qcom_rng_remove(struct platform_device *pdev)
+ 	return 0;
+ }
+ 
++struct qcom_rng_of_data qcom_prng_of_data = {
++	.skip_init = false,
++	.hwrng_support = false,
++};
 +
-+  reg:
-+    maxItems: 1
++struct qcom_rng_of_data qcom_prng_ee_of_data = {
++	.skip_init = true,
++	.hwrng_support = false,
++};
 +
-+  "#sound-dai-cells":
-+    const: 0
++struct qcom_rng_of_data qcom_trng_of_data = {
++	.skip_init = true,
++	.hwrng_support = true,
++};
 +
-+required:
-+  - compatible
-+  - reg
-+  - '#sound-dai-cells'
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        codec@1b {
-+            compatible = "realtek,rt5616";
-+            reg = <0x1b>;
-+            #sound-dai-cells = <0>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/sound/rt5616.txt b/Documentation/devicetree/bindings/sound/rt5616.txt
-deleted file mode 100644
-index 540a4bf252e4..000000000000
---- a/Documentation/devicetree/bindings/sound/rt5616.txt
-+++ /dev/null
-@@ -1,32 +0,0 @@
--RT5616 audio CODEC
--
--This device supports I2C only.
--
--Required properties:
--
--- compatible : "realtek,rt5616".
--
--- reg : The I2C address of the device.
--
--Optional properties:
--
--- clocks: The phandle of the master clock to the CODEC.
--
--- clock-names: Should be "mclk".
--
--Pins on the device (for linking into audio routes) for RT5616:
--
--  * IN1P
--  * IN2P
--  * IN2N
--  * LOUTL
--  * LOUTR
--  * HPOL
--  * HPOR
--
--Example:
--
--rt5616: codec@1b {
--	compatible = "realtek,rt5616";
--	reg = <0x1b>;
--};
+ static const struct acpi_device_id __maybe_unused qcom_rng_acpi_match[] = {
+ 	{ .id = "QCOM8160", .driver_data = 1 },
+ 	{}
+@@ -205,9 +255,9 @@ static const struct acpi_device_id __maybe_unused qcom_rng_acpi_match[] = {
+ MODULE_DEVICE_TABLE(acpi, qcom_rng_acpi_match);
+ 
+ static const struct of_device_id __maybe_unused qcom_rng_of_match[] = {
+-	{ .compatible = "qcom,prng", .data = (void *)0},
+-	{ .compatible = "qcom,prng-ee", .data = (void *)1},
+-	{ .compatible = "qcom,trng", .data = (void *)1},
++	{ .compatible = "qcom,prng", .data = &qcom_prng_of_data },
++	{ .compatible = "qcom,prng-ee", .data = &qcom_prng_ee_of_data },
++	{ .compatible = "qcom,trng", .data = &qcom_trng_of_data },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, qcom_rng_of_match);
 -- 
-2.34.1
+2.25.1
 
 
