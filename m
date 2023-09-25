@@ -1,539 +1,219 @@
-Return-Path: <devicetree+bounces-3105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2195D7AD5C2
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:23:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D3AF7AD5CC
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 12:24:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id C575C2820A3
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 10:23:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id A56BCB20A8D
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 10:24:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55FE115E80;
-	Mon, 25 Sep 2023 10:23:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3A3E15E84;
+	Mon, 25 Sep 2023 10:24:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EC8610A3D
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 10:23:28 +0000 (UTC)
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C7DFA3;
-	Mon, 25 Sep 2023 03:23:25 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-503f39d3236so9639480e87.0;
-        Mon, 25 Sep 2023 03:23:25 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E39E14F61
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 10:24:20 +0000 (UTC)
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDB659F;
+	Mon, 25 Sep 2023 03:24:15 -0700 (PDT)
+X-UUID: aa5f12ba5b8d11ee8051498923ad61e6-20230925
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=CnzUaiHuSn14dmbvIULAQmN4lGYeFod7+T+M8dhkHrU=;
+	b=BFAWQP6WLURMSgBRZIHebIVSWDwbsOhpVFxyy6KqjiOMx8K9P8dUOoLeJxjKe12wE2QCychRXp4Tf2fokXSmYjGDArxZWLdpiBR1UqaW+bNm3rUBtK+lK/RTzTKfyyeHCRDtlBasMWS73ONigANko3hdAABXzvL8M/+qwhOz4j4=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.32,REQID:0abb0a31-b3c2-4559-9f27-14729c9ec9d9,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:5f78ec9,CLOUDID:eb756fc3-1e57-4345-9d31-31ad9818b39f,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: aa5f12ba5b8d11ee8051498923ad61e6-20230925
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
+	(envelope-from <jason-jh.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 853942153; Mon, 25 Sep 2023 18:24:10 +0800
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Mon, 25 Sep 2023 18:24:09 +0800
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Mon, 25 Sep 2023 18:24:08 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=n5RM4z3INahKxaadm5Otob6ri9b09q3k7uTQt76xaIeScE5RtMrwKAxTEMULq5FzVw4lAO0b5fGt5G5i+pDjR5SJHzJHncv3SVFgfDqyn+gq2VuVB+LHvgr+WgVJQs9WuFPRYGXeiIC00e1fnXQrGKTdDJzgxEsn+UvmuIiMfhG8OdjnO+wJaIgQ/+vJeFaKkvz2dKhhlUbTeR8rYy9nHG2SutYWpqkFzzV2n+LpW/XCYXVXN0TGRwYEiU1uhbHx2YEofwQENDjuerZ76V9qNkQaCMsOXVgy4ZWqqWwOo3baGvuWnFO6IZaSkNJliRJ4ugLqIkiz5e+0EIUvynwvUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CnzUaiHuSn14dmbvIULAQmN4lGYeFod7+T+M8dhkHrU=;
+ b=ncquu2MWlpwhNTSa0HGpiNrkEcgesaGaYN2U5Js1uGLL5QYE2iQJO5AMNS3vOuWaCxp4QgQChYB7CGrLChnrFGd7WRqz9k3HES8NJK7RCduQRA3wOiZzkIkxbGLJyMf2wZQRzuY8NN963WLPPRbkvov8zmS27EaWL/0tCDYfpcYXolKAr1xXIkozvprgSn9YXTW9I5xezWnOKYvRbvaec8S0mHIFOJom+XNN7Kd5gl3A1nsfcMiC5MlsQqubG+Oh0BculnK2YasWSTP8Oc2Iro2MyHPFNMObrkpy0ngs80QcHV1OBxMw+cwmBHhG2fmGNXfJNWlqjEIVD4JPteWevQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695637404; x=1696242204; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=MqmhHFuPn9TXDgBGsBKENILi5/Q3cVkH5awadFf6wGc=;
-        b=XaV/j+gzH/jrlKN8K6ib3RuxP3xyMAcZlvI7SQM9ksbH2e3M04KTEnBi3xyJzxKIqc
-         ycRjyiIJaGtbyKofzzq8JGKAtnXBTgz9EXd6Xi4tNEcY3CEVt7Hxg91XviUE1BtUS3yU
-         VbPHT5LCWDz4XFicCjAmoY/hXx8aTioCOGt3GaHHTaUHc3cxqFArCKUSqwuD7N7bujP7
-         P+My5h7HOBMdo9UR7/WWYJYVeSpTWD/fvpMgMMIkWLGsseyUao0ldyiTLYcKWtu2xfZh
-         zXBJk8z8M/6WSb7RksF1J86ygI88QityyEUOeM9IP/+SFGJmOl+uJx3bVMq4CqFmVsTo
-         KkRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695637404; x=1696242204;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MqmhHFuPn9TXDgBGsBKENILi5/Q3cVkH5awadFf6wGc=;
-        b=G72Sn/Yv4cid52LYhXxfsl4ZcfyFJXrAUrm+XJeRVNDg1J1qnxsYgZZFzwLBqVSBa+
-         YzpK6iH8GQh3YlMarJdieUvrkoPdtyyWjFo6EAX9vjfOLBdOgcBp/tZ2Ey7nuw/3bWfY
-         du3CzA81VXxaYMwbKyvi7B74sx8cGhxgEceAc4zQKIuFG4vgmC2KH5b/fvqCYFFWT2R5
-         RzKMUXYjcntqy3izybcVKgPokf8mM1U0ADvUB6iNxsKTVxOENCF7ctIQdasPsL6sW2gr
-         5LoB9u6imk7Jh5WZgNa/QXddRysfuFscBnD4pi2nKgggOXLrYfNzOQj5edBTHnnshQNb
-         xAKg==
-X-Gm-Message-State: AOJu0YzA7ZMCU2IhHqLRlVwx54lyKRI6AUFyMwStEZHuGeBz16T74lTf
-	iN2kgiBg8OOFHecgRSpZGKk=
-X-Google-Smtp-Source: AGHT+IEEgbQpiygPuatZuXWhS8892JUb1FxcKRMDfjeRtVRJ71ZirrCbq4/1AbHFhpkGO/oao3h+qw==
-X-Received: by 2002:a05:6512:3297:b0:503:3787:f75a with SMTP id p23-20020a056512329700b005033787f75amr4392890lfe.62.1695637402340;
-        Mon, 25 Sep 2023 03:23:22 -0700 (PDT)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id z6-20020ac25de6000000b00503555aa934sm1776008lfq.11.2023.09.25.03.23.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Sep 2023 03:23:21 -0700 (PDT)
-Date: Mon, 25 Sep 2023 13:23:19 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, 
-	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	jingoohan1@gmail.com, gustavo.pimentel@synopsys.com, mani@kernel.org, 
-	marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v22 13/16] PCI: dwc: rcar-gen4: Add R-Car Gen4 PCIe
- controller support
-Message-ID: <hosrzwdlkedp6sddia465a27b5mdncjxmhof5jpa2b5senobhf@5c5ldtmjbzee>
-References: <20230925072130.3901087-1-yoshihiro.shimoda.uh@renesas.com>
- <20230925072130.3901087-14-yoshihiro.shimoda.uh@renesas.com>
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CnzUaiHuSn14dmbvIULAQmN4lGYeFod7+T+M8dhkHrU=;
+ b=qu9JxXinvZ3bm2+bV24fiw5n3FjupQVgHt5bIDQHf7nc/SSFjE6NE2L7hHcxjCtOOMseMEWO1V1n9PuhofArf+sqk2KLm6f6hDaY0+mDNH4qkk0C23wIQtA6Qxld5mrGLSbZE3H6BkfhjGvZNnHcis2Y6sTueROwkPzZHCTYOb4=
+Received: from SEYPR03MB7682.apcprd03.prod.outlook.com (2603:1096:101:149::11)
+ by TY0PR03MB6340.apcprd03.prod.outlook.com (2603:1096:400:149::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Mon, 25 Sep
+ 2023 10:24:05 +0000
+Received: from SEYPR03MB7682.apcprd03.prod.outlook.com
+ ([fe80::1b82:a45d:e171:62e8]) by SEYPR03MB7682.apcprd03.prod.outlook.com
+ ([fe80::1b82:a45d:e171:62e8%4]) with mapi id 15.20.6813.027; Mon, 25 Sep 2023
+ 10:24:05 +0000
+From: =?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>
+To: "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	"krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>, "robh+dt@kernel.org"
+	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>,
+	"angelogioacchino.delregno@collabora.com"
+	<angelogioacchino.delregno@collabora.com>
+CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	=?utf-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
+	=?utf-8?B?Sm9obnNvbiBXYW5nICjnjovogZbpkasp?= <Johnson.Wang@mediatek.com>,
+	=?utf-8?B?SmFzb24tY2ggQ2hlbiAo6Zmz5bu66LGqKQ==?=
+	<Jason-ch.Chen@mediatek.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, =?utf-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?=
+	<Shawn.Sung@mediatek.com>, =?utf-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?=
+	<Nancy.Lin@mediatek.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	=?utf-8?B?RWx2aXMgV2FuZyAo546L5YabKQ==?= <Elvis.Wang@mediatek.com>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, Project_Global_Chrome_Upstream_Group
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: Re: [PATCH 03/15] soc: mailbox: Add SPR definition for GCE
+Thread-Topic: [PATCH 03/15] soc: mailbox: Add SPR definition for GCE
+Thread-Index: AQHZ6mV+OMIN5fPo3EKCCvwEF6sInLAou1wAgAJMXQCAABp4AIAAPdQA
+Date: Mon, 25 Sep 2023 10:24:05 +0000
+Message-ID: <32a6b54a4ba2be7ff2762c3e0f2e4b83affd3881.camel@mediatek.com>
+References: <20230918192204.32263-1-jason-jh.lin@mediatek.com>
+	 <20230918192204.32263-4-jason-jh.lin@mediatek.com>
+	 <797fc698-54d2-4848-3a4d-43ca631eb96d@linaro.org>
+	 <d2fee308c86c23e98e99497d2de138e31ad72537.camel@mediatek.com>
+	 <c6983f0e-9a62-4fe8-bb1a-01c44ec43985@linaro.org>
+In-Reply-To: <c6983f0e-9a62-4fe8-bb1a-01c44ec43985@linaro.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SEYPR03MB7682:EE_|TY0PR03MB6340:EE_
+x-ms-office365-filtering-correlation-id: ce341545-52b5-468e-097c-08dbbdb18bc6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: b1g/DNEp5RaR2ijf9b/puaO3iSzhnY9cXSr+aNAbh/rfrnqL2VwnCJuOwhXJ+xHOgAmCbiD4xQZrCHUrScs5VnzgHwXhRe1hq8KGEh8+2VDonIBkRbUxf13NV33XaV1XXPAZq//LI6SwjuBqaHtlDPvJ6cuN8PQukvqk0f7W0ob2eFXM+ASp+gv7WotxYZthP2A81dJUXJ7WfjzuCIGpHqeZz+QXbf7OVNssIWrPVGLQwJrG3wWVb6SnNkg93OG5M/zNM87WzdThteGDDfh5RI3RyfhNcXIPQ1t7OqUAtlUQr0fPG6Cd5QwdTuarlQS0d3QPHvkPdLY45dBq4uMHz8LH3AYwjtCl9KDL+AHdS5LtzpwaEAZHqpJG501NzIDmSSeDYVnlorDB7tf4+hp8CDRgDNLBiCXQB16EakgMmQy7lMDGnU+jKCK4fwveXEgFy04lPq/BdoV5pIdR8zIOp7G5E6onHGA1fnZ1ighXUie41KUGBtEtuIwe5u76WJG33iE24+Hjn1RceOeJTkLIFD2GlTfFbirom31LCo+bhuXe78bMwuifeM1w4hubL0iUBfWbZUJbaeHHea7QNmD8RgpiLJVI5OjQOgsfqfVzYY4vJmrD7aGLc7zb4z2iLJaI1J/DB6WtDddkkat3Vl/wCTShLXUu0ma4BfqQ2RKyZ8w=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR03MB7682.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(376002)(346002)(136003)(39860400002)(366004)(230922051799003)(1800799009)(186009)(451199024)(83380400001)(107886003)(26005)(8936002)(8676002)(4326008)(41300700001)(478600001)(66476007)(316002)(66446008)(64756008)(54906003)(66946007)(110136005)(91956017)(76116006)(66556008)(15650500001)(6512007)(5660300002)(53546011)(2616005)(2906002)(7416002)(6486002)(6506007)(71200400001)(86362001)(85182001)(36756003)(38070700005)(38100700002)(122000001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eWlROEpJditUNC9qUWxTQXRnSFZpRElXcDRCWTZOYXpYQ3JRWXVxaTJGQVJY?=
+ =?utf-8?B?eU02MGkxSEk2NHk5V3JxMnZLdnJTbjIzOUtqTHYvaExZY3BMZVZ6emVNOWlB?=
+ =?utf-8?B?MWN6TmJES0g3MGdLQXBGVnpnWGloNlhDeDZaVU1SdldRTEZIcDA3dkJ6L096?=
+ =?utf-8?B?N09XcG5rZlJuazNLc0cwODEzOFBnL0dlKytvZzlONVREbnloQy8rWktvSWJH?=
+ =?utf-8?B?S1FHUmZYNzlxbUZNOFh6cXdoNHlkamxIb2dsVWFSdThNSndCbHZLT1gyaVNR?=
+ =?utf-8?B?dFdhWGtuV0xWSVAxTE1tSTVoMVpKRmtPN2xRUExXaDVacXZNelNnbVA2TVdR?=
+ =?utf-8?B?QVVsa1pBdC9xb29QQVNnaHpTbUdaVmtyQUR4ODFzNmE5Z25tbithYVRMVURm?=
+ =?utf-8?B?cUVjSXJCaHRtRFRPdm5NZGNEUlk1OE9VRzh3b2ZHTVhMbE1LeDFEbnBpdHBI?=
+ =?utf-8?B?TmhqQ3VISEpXRXQ5T1Nxa2lxV2VxZjJkRFcvR3lqaXJWaVhmTlNacHFtaEZQ?=
+ =?utf-8?B?U1RYMG5xbmZqWEM0RFp3eFRxOXdOQzNxUUFxOXIvRUVYY1VGNjlaVEhHelJV?=
+ =?utf-8?B?OWxaMWZua3lMdDFtekp6cmJNQlZEUE1jUGpncWNaa2R3aFZwTjNTSHhNdlA1?=
+ =?utf-8?B?eC9lVFpNWEw1VW5xVC9Lamh2Mjcwcy9IVkp3MXNMK3ExYm9IOTEwMDZ6NU1o?=
+ =?utf-8?B?a2tieWFxVmRuK2lkZHlUbSs5bU9pZG5yc3dXL2xSV0RYMkxmY1FUT3l4ZFdU?=
+ =?utf-8?B?WkdwY2FmL0FVTm00SmhRcVJwT0xHeUJyT2lXTHo2OERNem9XUG9Hb01zZGF4?=
+ =?utf-8?B?YjVXMUpoSmtOU1JmdnJMRWlXWllyTXYvNDBSamkyWnhJRm5xd3RDZnhBWWhD?=
+ =?utf-8?B?NXNMK2xoL0NUcE0vc2VXWC9JaUtGaU05NEdPUkR1dzRLSXJ6WFZhZHFOSGZu?=
+ =?utf-8?B?U0FsTTU2WGNLK0lrc1FEclUzRDJjWVJGS1NJWWtOV2c3VlMzNnE2NTFzUGZM?=
+ =?utf-8?B?R3ZiVmJXRVV2czdHRmlqVDMxMnFMb29WcWNuUklrQVFLTy9aZmlZaXdTZkRC?=
+ =?utf-8?B?ZHFZQyt1QWdtTndXSlBQZlM4Y0s1ZVVqc3BabWNzdmIrRHFabUJHcXhZU3JO?=
+ =?utf-8?B?aFc3dEhXTVVqVFlaUVdTbGlveHFTT3BTb3A2VXVUakt0bDU3KzZXT0JaZndv?=
+ =?utf-8?B?ZTBaZUlmWTFNcDdNUXBwZFFqUndYWVZ2cWowU2JiRjRYRGRGL2p5eC9FRHNC?=
+ =?utf-8?B?Ylh3bkpKRzM1VkNoYzVpTEZZcWZsNVN3K2t1clBJdWEyYWtiOVNLa1lPTm1o?=
+ =?utf-8?B?Ymh5dkI4bVRjdVdGbFloNzNXcTBBMHZ3Mm9JSXhheWpYRXQ5cWZlZGVobVA5?=
+ =?utf-8?B?WmVQTjNXQTVjalpjaHAyaFh0cDRXU2J6N3NHbWJ6Z0ZhOVNIZXZ5YU82anhh?=
+ =?utf-8?B?S3R0ZTRXQWFucW42OGRFSEJZa21FTFRnMW8xZDNjMWc4YXZzRW93TkVmN0dl?=
+ =?utf-8?B?c0RGUXRRNHFUYVJpT1ord3VsYmZuZy9GR2l4YzAxSUNYNWtzVmhoM0ZlMzVI?=
+ =?utf-8?B?cmtkVFZoT2pDSERxTWVxem8xak81Zm5VOGxkZlZsR3hJUm83UU13b0R6clF5?=
+ =?utf-8?B?NlRmUHdRbFpDSkVSRU4zZFc2SXRRRnpXZFJiRUlrays1Wk1NNnE1WU5VTHdG?=
+ =?utf-8?B?dUhzV3ZxQVFFdHVaMUxMazJ6enNxZkFMQ1NpOU9CY1RTT3FCVGs2NXNuVXRZ?=
+ =?utf-8?B?SEswMXdkQkFYU0hlNUFsSmF1UE40S3lEVWh2NHpDVnNQNDNFSzgxZlVubVVD?=
+ =?utf-8?B?ZDI5Y255Ui9vdDREU05ZQWY3YUpQSm93dWxBcDFJM1FrWnpBKzBXWlVLUTlp?=
+ =?utf-8?B?aWFtamVEbHZ2MndsbVllV1lBbzRweEJBN0MyNVdvenZHdFhuQjNtby8zL3V1?=
+ =?utf-8?B?SEpiMGNWYThDVUpkL2NmQWxwK2xqMWpzU1NPNWNITmJDYkJ6M04rSWt5cExM?=
+ =?utf-8?B?OEtQSzFjZU03NE1BQmVxamZXK1IySEQxSUtTMWFldVdmVG4zQjI5bjdCbkhU?=
+ =?utf-8?B?MkpIUTEzZTZmdndtYjNmLzdUd2FxNTEwV1R2UjhZaWdVN3NkclFUY1RqcmVN?=
+ =?utf-8?B?NWdCR3dSMDVKV1VBa05ML1lmSlp3bmdYcFRjWi9wWTNaMHVGVGRGdUpNVlVz?=
+ =?utf-8?B?Qmc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <F8551921C8ACCA4D859B8E620B652D05@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230925072130.3901087-14-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SEYPR03MB7682.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ce341545-52b5-468e-097c-08dbbdb18bc6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Sep 2023 10:24:05.4386
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: XSIIteU5KeTmh2yrvJWsTY45qu0L/3lhjRcClIGdYR5Dm9AemOcn1XccXdxoErP9LuM6JaT7KmDIDfFHdYa3V4Cl0grsal33SwQDGxzpwrE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR03MB6340
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,
+	SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=no
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Sep 25, 2023 at 04:21:27PM +0900, Yoshihiro Shimoda wrote:
-> Add R-Car Gen4 PCIe controller support for host mode.
-> 
-> This controller is based on Synopsys DesignWare PCIe. However, this
-> particular controller has a number of vendor-specific registers, and as
-> such, requires initialization code like mode setting and retraining and
-> so on.
-> 
-> [kwilczynski: commit log]
-> Link: https://lore.kernel.org/linux-pci/20230825093219.2685912-17-yoshihiro.shimoda.uh@renesas.com
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> Signed-off-by: Krzysztof Wilczyński <kwilczynski@kernel.org>
-> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
-> ---
->  drivers/pci/controller/dwc/Kconfig          |  14 +
->  drivers/pci/controller/dwc/Makefile         |   1 +
->  drivers/pci/controller/dwc/pcie-rcar-gen4.c | 381 ++++++++++++++++++++
->  3 files changed, 396 insertions(+)
->  create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> 
-> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> index ab96da43e0c2..bc69fcab2e2a 100644
-> --- a/drivers/pci/controller/dwc/Kconfig
-> +++ b/drivers/pci/controller/dwc/Kconfig
-> @@ -415,4 +415,18 @@ config PCIE_VISCONTI_HOST
->  	  Say Y here if you want PCIe controller support on Toshiba Visconti SoC.
->  	  This driver supports TMPV7708 SoC.
->  
-> +config PCIE_RCAR_GEN4
-> +	tristate
-> +
-> +config PCIE_RCAR_GEN4_HOST
-> +	tristate "Renesas R-Car Gen4 PCIe controller (host mode)"
-> +	depends on ARCH_RENESAS || COMPILE_TEST
-> +	depends on PCI_MSI
-> +	select PCIE_DW_HOST
-> +	select PCIE_RCAR_GEN4
-> +	help
-> +	  Say Y here if you want PCIe controller (host mode) on R-Car Gen4 SoCs.
-> +	  To compile this driver as a module, choose M here: the module will be
-> +	  called pcie-rcar-gen4.ko. This uses the DesignWare core.
-> +
->  endmenu
-> diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-> index bf5c311875a1..bac103faa523 100644
-> --- a/drivers/pci/controller/dwc/Makefile
-> +++ b/drivers/pci/controller/dwc/Makefile
-> @@ -26,6 +26,7 @@ obj-$(CONFIG_PCIE_TEGRA194) += pcie-tegra194.o
->  obj-$(CONFIG_PCIE_UNIPHIER) += pcie-uniphier.o
->  obj-$(CONFIG_PCIE_UNIPHIER_EP) += pcie-uniphier-ep.o
->  obj-$(CONFIG_PCIE_VISCONTI_HOST) += pcie-visconti.o
-> +obj-$(CONFIG_PCIE_RCAR_GEN4) += pcie-rcar-gen4.o
->  
->  # The following drivers are for devices that use the generic ACPI
->  # pci_root.c driver but don't support standard ECAM config access.
-> diff --git a/drivers/pci/controller/dwc/pcie-rcar-gen4.c b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> new file mode 100644
-> index 000000000000..f6b3c3ef187c
-> --- /dev/null
-> +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> @@ -0,0 +1,381 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * PCIe controller driver for Renesas R-Car Gen4 Series SoCs
-> + * Copyright (C) 2022-2023 Renesas Electronics Corporation
-> + */
-> +
-> +#include <linux/delay.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/pci.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/reset.h>
-> +
-> +#include "../../pci.h"
-> +#include "pcie-designware.h"
-> +
-> +/* Renesas-specific */
-> +/* PCIe Mode Setting Register 0 */
-> +#define PCIEMSR0		0x0000
-> +#define BIFUR_MOD_SET_ON	BIT(0)
-> +#define DEVICE_TYPE_EP		0
-> +#define DEVICE_TYPE_RC		BIT(4)
-> +
-> +/* PCIe Interrupt Status 0 */
-> +#define PCIEINTSTS0		0x0084
-> +
-> +/* PCIe Interrupt Status 0 Enable */
-> +#define PCIEINTSTS0EN		0x0310
-> +#define MSI_CTRL_INT		BIT(26)
-> +#define SMLH_LINK_UP		BIT(7)
-> +#define RDLH_LINK_UP		BIT(6)
-> +
-> +/* PCIe DMA Interrupt Status Enable */
-> +#define PCIEDMAINTSTSEN		0x0314
-> +#define PCIEDMAINTSTSEN_INIT	GENMASK(15, 0)
-> +
-> +/* PCIe Reset Control Register 1 */
-> +#define PCIERSTCTRL1		0x0014
-> +#define APP_HOLD_PHY_RST	BIT(16)
-> +#define APP_LTSSM_ENABLE	BIT(0)
-> +
-> +#define RCAR_NUM_SPEED_CHANGE_RETRIES	10
-> +#define RCAR_MAX_LINK_SPEED		4
-> +
-> +struct rcar_gen4_pcie {
-> +	struct dw_pcie dw;
-> +	void __iomem *base;
-> +	struct platform_device *pdev;
-> +	enum dw_pcie_device_mode mode;
-> +};
-> +#define to_rcar_gen4_pcie(_dw)	container_of(_dw, struct rcar_gen4_pcie, dw)
-> +
-> +static void rcar_gen4_pcie_ltssm_enable(struct rcar_gen4_pcie *rcar,
-> +					bool enable)
-> +{
-> +	u32 val;
-> +
-> +	val = readl(rcar->base + PCIERSTCTRL1);
-> +	if (enable) {
-> +		val |= APP_LTSSM_ENABLE;
-> +		val &= ~APP_HOLD_PHY_RST;
-> +	} else {
-> +		/*
-> +		 * Since the datasheet of R-Car doesn't mention how to assert
-> +		 * the APP_HOLD_PHY_RST, don't assert it again. Otherwise,
-> +		 * hang-up issue happened in the dw_edma_core_off() when
-> +		 * the controller didn't detect a PCI device.
-> +		 */
-> +		val &= ~APP_LTSSM_ENABLE;
-> +	}
-> +	writel(val, rcar->base + PCIERSTCTRL1);
-> +}
-> +
-> +static int rcar_gen4_pcie_link_up(struct dw_pcie *dw)
-> +{
-> +	struct rcar_gen4_pcie *rcar = to_rcar_gen4_pcie(dw);
-> +	u32 val, mask;
-> +
-> +	val = readl(rcar->base + PCIEINTSTS0);
-> +	mask = RDLH_LINK_UP | SMLH_LINK_UP;
-> +
-> +	return (val & mask) == mask;
-> +}
-> +
-> +/*
-> + * Manually initiate the speed change. Return true if the change succeeded,
-> + * false if the change didn't finish within certain periods.
-> + */
-> +static int rcar_gen4_pcie_speed_change(struct dw_pcie *dw)
-> +{
-> +	u32 val;
-> +	int i;
-> +
-> +	val = dw_pcie_readl_dbi(dw, PCIE_LINK_WIDTH_SPEED_CONTROL);
-> +	val &= ~PORT_LOGIC_SPEED_CHANGE;
-> +	dw_pcie_writel_dbi(dw, PCIE_LINK_WIDTH_SPEED_CONTROL, val);
-> +
-> +	val = dw_pcie_readl_dbi(dw, PCIE_LINK_WIDTH_SPEED_CONTROL);
-> +	val |= PORT_LOGIC_SPEED_CHANGE;
-> +	dw_pcie_writel_dbi(dw, PCIE_LINK_WIDTH_SPEED_CONTROL, val);
-> +
-> +	for (i = 0; i < RCAR_NUM_SPEED_CHANGE_RETRIES; i++) {
-> +		val = dw_pcie_readl_dbi(dw, PCIE_LINK_WIDTH_SPEED_CONTROL);
-> +		if (!(val & PORT_LOGIC_SPEED_CHANGE))
-> +			return 0;
-> +		usleep_range(10000, 11000);
-> +	}
-> +
-> +	return -ETIMEDOUT;
-> +}
-> +
-> +/*
-> + * Enable LTSSM of this controller and manually initiate the speed change.
-> + * Always return 0.
-> + */
-> +static int rcar_gen4_pcie_start_link(struct dw_pcie *dw)
-> +{
-> +	struct rcar_gen4_pcie *rcar = to_rcar_gen4_pcie(dw);
-> +	int i, changes;
-> +
-> +	rcar_gen4_pcie_ltssm_enable(rcar, true);
-> +
-> +	/*
-> +	 * Require direct speed change with retrying here if the link_gen is
-> +	 * PCIe Gen2 or higher.
-> +	 */
-> +	changes = min_not_zero(dw->link_gen, RCAR_MAX_LINK_SPEED) - 1;
-> +
-> +	/*
-> +	 * Since dw_pcie_setup_rc() sets it once, PCIe Gen2 will be trained.
-> +	 * So, this needs remaining times for up to PCIe Gen4 if RC mode.
-> +	 */
-> +	if (changes && rcar->mode == DW_PCIE_RC_TYPE)
-> +		changes--;
-> +
-> +	for (i = 0; i < changes; i++) {
-> +		/* No error because possible disconnected here if EP mode */
-> +		if (rcar_gen4_pcie_speed_change(dw))
-> +			break;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void rcar_gen4_pcie_stop_link(struct dw_pcie *dw)
-> +{
-> +	struct rcar_gen4_pcie *rcar = to_rcar_gen4_pcie(dw);
-> +
-> +	rcar_gen4_pcie_ltssm_enable(rcar, false);
-> +}
-> +
-> +static int rcar_gen4_pcie_common_init(struct rcar_gen4_pcie *rcar)
-> +{
-> +	struct dw_pcie *dw = &rcar->dw;
-> +	u32 val;
-> +	int ret;
-> +
-> +	ret = clk_bulk_prepare_enable(DW_PCIE_NUM_CORE_CLKS, dw->core_clks);
-> +	if (ret) {
-> +		dev_err(dw->dev, "Failed to enable ref clocks\n");
-> +		return ret;
-> +	}
-> +
-> +	if (!reset_control_status(dw->core_rsts[DW_PCIE_PWR_RST].rstc))
-> +		reset_control_assert(dw->core_rsts[DW_PCIE_PWR_RST].rstc);
-> +
-> +	val = readl(rcar->base + PCIEMSR0);
-> +	if (rcar->mode == DW_PCIE_RC_TYPE) {
-> +		val |= DEVICE_TYPE_RC;
-
-> +	} else if (rcar->mode == DW_PCIE_EP_TYPE) {
-> +		val |= DEVICE_TYPE_EP;
-
-Ideally this should have been moved to the patch
-[PATCH v22 14/16] PCI: dwc: rcar-gen4: Add R-Car Gen4 PCIe Endpoint support
-
--Serge(y)
-
-> +	} else {
-> +		ret = -EINVAL;
-> +		goto err_unprepare;
-> +	}
-> +
-> +	if (dw->num_lanes < 4)
-> +		val |= BIFUR_MOD_SET_ON;
-> +
-> +	writel(val, rcar->base + PCIEMSR0);
-> +
-> +	ret = reset_control_deassert(dw->core_rsts[DW_PCIE_PWR_RST].rstc);
-> +	if (ret)
-> +		goto err_unprepare;
-> +
-> +	return 0;
-> +
-> +err_unprepare:
-> +	clk_bulk_disable_unprepare(DW_PCIE_NUM_CORE_CLKS, dw->core_clks);
-> +
-> +	return ret;
-> +}
-> +
-> +static void rcar_gen4_pcie_common_deinit(struct rcar_gen4_pcie *rcar)
-> +{
-> +	struct dw_pcie *dw = &rcar->dw;
-> +
-> +	reset_control_assert(dw->core_rsts[DW_PCIE_PWR_RST].rstc);
-> +	clk_bulk_disable_unprepare(DW_PCIE_NUM_CORE_CLKS, dw->core_clks);
-> +}
-> +
-> +static int rcar_gen4_pcie_prepare(struct rcar_gen4_pcie *rcar)
-> +{
-> +	struct device *dev = rcar->dw.dev;
-> +	int err;
-> +
-> +	pm_runtime_enable(dev);
-> +	err = pm_runtime_resume_and_get(dev);
-> +	if (err < 0) {
-> +		dev_err(dev, "Failed to resume/get Runtime PM\n");
-> +		pm_runtime_disable(dev);
-> +	}
-> +
-> +	return err;
-> +}
-> +
-> +static void rcar_gen4_pcie_unprepare(struct rcar_gen4_pcie *rcar)
-> +{
-> +	struct device *dev = rcar->dw.dev;
-> +
-> +	pm_runtime_put(dev);
-> +	pm_runtime_disable(dev);
-> +}
-> +
-> +static int rcar_gen4_pcie_get_resources(struct rcar_gen4_pcie *rcar)
-> +{
-> +	/* Renesas-specific registers */
-> +	rcar->base = devm_platform_ioremap_resource_byname(rcar->pdev, "app");
-> +
-> +	return PTR_ERR_OR_ZERO(rcar->base);
-> +}
-> +
-> +static const struct dw_pcie_ops dw_pcie_ops = {
-> +	.start_link = rcar_gen4_pcie_start_link,
-> +	.stop_link = rcar_gen4_pcie_stop_link,
-> +	.link_up = rcar_gen4_pcie_link_up,
-> +};
-> +
-> +static struct
-> +rcar_gen4_pcie *rcar_gen4_pcie_devm_alloc(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct rcar_gen4_pcie *rcar;
-> +
-> +	rcar = devm_kzalloc(dev, sizeof(*rcar), GFP_KERNEL);
-> +	if (!rcar)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	rcar->dw.ops = &dw_pcie_ops;
-> +	rcar->dw.dev = dev;
-> +	rcar->pdev = pdev;
-> +	dw_pcie_cap_set(&rcar->dw, EDMA_UNROLL);
-> +	dw_pcie_cap_set(&rcar->dw, REQ_RES);
-> +	platform_set_drvdata(pdev, rcar);
-> +
-> +	return rcar;
-> +}
-> +
-> +/* Host mode */
-> +static int rcar_gen4_pcie_host_init(struct dw_pcie_rp *pp)
-> +{
-> +	struct dw_pcie *dw = to_dw_pcie_from_pp(pp);
-> +	struct rcar_gen4_pcie *rcar = to_rcar_gen4_pcie(dw);
-> +	int ret;
-> +	u32 val;
-> +
-> +	gpiod_set_value_cansleep(dw->pe_rst, 1);
-> +
-> +	ret = rcar_gen4_pcie_common_init(rcar);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * According to the section 3.5.7.2 "RC Mode" in DWC PCIe Dual Mode
-> +	 * Rev.5.20a, we should disable two BARs to avoid unnecessary memory
-> +	 * assignment during device enumeration.
-> +	 */
-> +	dw_pcie_writel_dbi2(dw, PCI_BASE_ADDRESS_0, 0x0);
-> +	dw_pcie_writel_dbi2(dw, PCI_BASE_ADDRESS_1, 0x0);
-> +
-> +	/* Enable MSI interrupt signal */
-> +	val = readl(rcar->base + PCIEINTSTS0EN);
-> +	val |= MSI_CTRL_INT;
-> +	writel(val, rcar->base + PCIEINTSTS0EN);
-> +
-> +	msleep(PCIE_T_PVPERL_MS);	/* pe_rst requires 100msec delay */
-> +
-> +	gpiod_set_value_cansleep(dw->pe_rst, 0);
-> +
-> +	return 0;
-> +}
-> +
-> +static void rcar_gen4_pcie_host_deinit(struct dw_pcie_rp *pp)
-> +{
-> +	struct dw_pcie *dw = to_dw_pcie_from_pp(pp);
-> +	struct rcar_gen4_pcie *rcar = to_rcar_gen4_pcie(dw);
-> +
-> +	gpiod_set_value_cansleep(dw->pe_rst, 1);
-> +	rcar_gen4_pcie_common_deinit(rcar);
-> +}
-> +
-> +static const struct dw_pcie_host_ops rcar_gen4_pcie_host_ops = {
-> +	.host_init = rcar_gen4_pcie_host_init,
-> +	.host_deinit = rcar_gen4_pcie_host_deinit,
-> +};
-> +
-> +static int rcar_gen4_add_dw_pcie_rp(struct rcar_gen4_pcie *rcar)
-> +{
-> +	struct dw_pcie_rp *pp = &rcar->dw.pp;
-> +
-> +	pp->num_vectors = MAX_MSI_IRQS;
-> +	pp->ops = &rcar_gen4_pcie_host_ops;
-> +	rcar->mode = DW_PCIE_RC_TYPE;
-> +
-> +	return dw_pcie_host_init(pp);
-> +}
-> +
-> +static void rcar_gen4_remove_dw_pcie_rp(struct rcar_gen4_pcie *rcar)
-> +{
-> +	dw_pcie_host_deinit(&rcar->dw.pp);
-> +}
-> +
-> +static int rcar_gen4_pcie_probe(struct platform_device *pdev)
-> +{
-> +	struct rcar_gen4_pcie *rcar;
-> +	int err;
-> +
-> +	rcar = rcar_gen4_pcie_devm_alloc(pdev);
-> +	if (IS_ERR(rcar))
-> +		return PTR_ERR(rcar);
-> +
-> +	err = rcar_gen4_pcie_get_resources(rcar);
-> +	if (err)
-> +		return err;
-> +
-> +	err = rcar_gen4_pcie_prepare(rcar);
-> +	if (err)
-> +		return err;
-> +
-> +	err = rcar_gen4_add_dw_pcie_rp(rcar);
-> +	if (err)
-> +		goto err_unprepare;
-> +
-> +	return 0;
-> +
-> +err_unprepare:
-> +	rcar_gen4_pcie_unprepare(rcar);
-> +
-> +	return err;
-> +}
-> +
-> +static void rcar_gen4_pcie_remove(struct platform_device *pdev)
-> +{
-> +	struct rcar_gen4_pcie *rcar = platform_get_drvdata(pdev);
-> +
-> +	rcar_gen4_remove_dw_pcie_rp(rcar);
-> +	rcar_gen4_pcie_unprepare(rcar);
-> +}
-> +
-> +static const struct of_device_id rcar_gen4_pcie_of_match[] = {
-> +	{ .compatible = "renesas,rcar-gen4-pcie", },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, rcar_gen4_pcie_of_match);
-> +
-> +static struct platform_driver rcar_gen4_pcie_driver = {
-> +	.driver = {
-> +		.name = "pcie-rcar-gen4",
-> +		.of_match_table = rcar_gen4_pcie_of_match,
-> +		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-> +	},
-> +	.probe = rcar_gen4_pcie_probe,
-> +	.remove_new = rcar_gen4_pcie_remove,
-> +};
-> +module_platform_driver(rcar_gen4_pcie_driver);
-> +
-> +MODULE_DESCRIPTION("Renesas R-Car Gen4 PCIe controller driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.25.1
-> 
+T24gTW9uLCAyMDIzLTA5LTI1IGF0IDA4OjQyICswMjAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
+b3RlOg0KPiAgCSANCj4gRXh0ZXJuYWwgZW1haWwgOiBQbGVhc2UgZG8gbm90IGNsaWNrIGxpbmtz
+IG9yIG9wZW4gYXR0YWNobWVudHMgdW50aWwNCj4geW91IGhhdmUgdmVyaWZpZWQgdGhlIHNlbmRl
+ciBvciB0aGUgY29udGVudC4NCj4gIE9uIDI1LzA5LzIwMjMgMDc6MDgsIEphc29uLUpIIExpbiAo
+5p6X552/56WlKSB3cm90ZToNCj4gPiBIaSBLcnp5c3p0b2YsDQo+ID4gDQo+ID4gVGhhbmtzIGZv
+ciB0aGUgcmV2aWV3cy4NCj4gPiANCj4gPiBPbiBTYXQsIDIwMjMtMDktMjMgYXQgMjA6MDIgKzAy
+MDAsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6DQo+ID4+ICAgDQo+ID4+IEV4dGVybmFsIGVt
+YWlsIDogUGxlYXNlIGRvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzDQo+IHVu
+dGlsDQo+ID4+IHlvdSBoYXZlIHZlcmlmaWVkIHRoZSBzZW5kZXIgb3IgdGhlIGNvbnRlbnQuDQo+
+ID4+ICBPbiAxOC8wOS8yMDIzIDIxOjIxLCBKYXNvbi1KSC5MaW4gd3JvdGU6DQo+ID4+PiBHQ0Ug
+aGFzIHNwZWNpZmljIHB1cnBvc2UgcmVnaXN0ZXJzLCBhYmJyZXZpYXRlZCBhcyBTUFIuDQo+ID4+
+PiBDbGllbnQgY2FuIHVzIFNQUiB0byBzdG9yZSBkYXRhIG9yIHByb2dyYW1zLg0KPiA+Pj4NCj4g
+Pj4+IEluIENNRFEgZHJpdmVyLCBpdCBhbGxvd3MgY2xpZW50IHRvIFNUT1JFIG9yIExPQUQgZGF0
+YSBpbnRvIFNQUi4NCj4gPj4+IFRoZSB2YWx1ZSBzdG9yZWQgaW4gU1BSIHdpbGwgYmUgY2xlYXJl
+ZCBhZnRlciByZXNldCBHQ0UgSFcNCj4gdGhyZWFkLg0KPiA+Pj4NCj4gPj4+IFRoZXJlIGFyZSA0
+IFNQUiAocmVnaXN0ZXIgaW5kZXggMCAtIDMpIGluIGV2ZXJ5IEdDRSBIVyB0aHJlYWQuDQo+ID4+
+PiBTUFIgaXMgdGhyZWFkLWluZGVwZW5kZW50IGFuZCBIVyBzZWN1cmUgcHJvdGVjdGVkLg0KPiA+
+Pj4NCj4gPj4+IFNpZ25lZC1vZmYtYnk6IEphc29uLUpILkxpbiA8amFzb24tamgubGluQG1lZGlh
+dGVrLmNvbT4NCj4gPj4+IC0tLQ0KPiA+Pj4gIGluY2x1ZGUvbGludXgvc29jL21lZGlhdGVrL210
+ay1jbWRxLmggfCA1ICsrKysrDQo+ID4+DQo+ID4+IFRoZXJlIGlzIG5vIHVzZXIgb2YgdGhpcy4u
+LiBXaHkgZG8geW91IGFkZCB1bnVzZWQgZGVmaW5lcz8NCj4gPiANCj4gPiBJdCdsbCBiZSB1c2Vk
+IGluIGNtZHFfc2VjX2luc2VydF9iYWNrdXBfY29va2llKCkgYXQgW1BBVENIIDEwLzE1XS4NCj4g
+PiBTaG91bGQgSSBtZXJnZSB0aGlzIHBhdGNoIGludG8gW1BBVENIIDEwLzE1XT8NCj4gDQo+IFll
+cywgYmVjYXVzZSB3aGF0IGlzIHRoZSBwdXJwb3NlIG9mIGFkZGluZyB1bnVzZWQgZGVmaW5lcz8g
+SSBhc2tlZA0KPiBiZWZvcmUgYW5kIGRpZCBub3QgZ2V0IGFuc3dlci4uLg0KPiANCg0KSSdtIHRv
+dGFsbHkgYWdyZWUgd2l0aCBtZXJnaW5nIHRoaXMgcGF0Y2ggdG8gdGhlIHVzYWdlIHBhcnRzIG9m
+IG10ay0NCmNtZHEtc2VjLW1haWxib3guYy4NCg0KQnV0IEkgaGF2ZSBubyBpZGVhIHdoeSBtdGst
+Y21kcS1zZWMtbWFpbGJveC5jIGFuZCBtdGstY21kcS1tYWlsYm94LmMNCmFyZSBub3QgcGxhY2Vk
+IGluIHRoZSBzYW1lIG1haW50YWluZXIncyB0cmVlIGFzIG10ay1jbWRxLmggYW5kIG10ay0NCmNt
+ZHEtaGVscGVyLmMsIHNvIEkganVzdCBzZXBhcmF0ZSB0aGVtIHRvIGRpZmZlcmVudCBwYXRjaCBi
+eSB0cmVlIGxpa2UNCnRoZSByZXF1aXJlbWVudCBmcm9tIHByZXZpb3VzIHNlbnQgc2VyaWVzLg0K
+DQpJIHdpbGwgcmUtb3JnYW5pemVkIHRoaXMgc2VyaWVzIHRvIG1ha2UgdGhlIGRlZmluaXRpb24g
+YW5kIHRoZSB1c2FnZSBvZg0KdGhlIGNvZGUgaW4gdGhlIHNhbWUgcGF0Y2guDQoNClJlZ2FyZHMs
+DQpKYXNvbi1KSC5MaW4NCg0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KPiANCj4gDQo=
 
