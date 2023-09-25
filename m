@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-2990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 453397AD116
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:07:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 231657AD129
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:11:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 638C5B209E3
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 07:07:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id CA6F12816DA
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 07:11:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F83F107B0;
-	Mon, 25 Sep 2023 07:07:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB93510945;
+	Mon, 25 Sep 2023 07:11:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3C691079C
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:07:46 +0000 (UTC)
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ADFAFB
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 00:07:45 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9ad8bf9bfabso717213366b.3
-        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 00:07:45 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6488E10E4
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:11:55 +0000 (UTC)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 300FA115
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 00:11:53 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-99c1c66876aso696857066b.2
+        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 00:11:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695625663; x=1696230463; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695625911; x=1696230711; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7AxDBxUGXJpjOQoyOw4i0KL+pS5ojAWax8q/wfJ5KaM=;
-        b=GdMnqrXotLwd0+hSG4LnczI8ssygWpLJQ90Ocf2m4gMQFZrj7mwRjl/ItKwRfjMggU
-         Lsb92eWK4iGYyji7SzIrgT3gNAW8OkNkDTlvR71Ht/lG3PuBFZLpzyvC+CEKEz0ghCrL
-         26Npq/aXdogfI8IbK5/lWFyEYeSvD96SterxF4XZji8LaZ2RY1YPd2CkzRoDOBRVM8MQ
-         fjhVqceXIKJTz7AAEG7EsQ+sqi7UcwMf4c7NH/NbW/2XTLXRz/ppSb9UU5vaWuUc9uG/
-         URSYyEaCYWiBeJ/YJuFQYCrXlu6Ae29vo9gGgNRF4k3mtRwYMd3RaqBsMpVdptHDVXaR
-         EdCQ==
+        bh=qbxfcRFg7sfBdUligJEEVnlDiFs/P9G+Yi1P7+ItKXA=;
+        b=FKafhlOrl7qeuOeVksHC1Sl0b7eXkOHm/p/PVDpH7YslgfxF9iATAjAPaHTmQLvAHd
+         KrHI9E+Ok496ze6ED8upmKSN7HPavZkiUQj0IFjHRSL+2gCpd8goC98p3YFLljvQTZir
+         riz+UloH8iWxJQrTfDBlB4xvREpY/ToWpZR7oiJSZcGrCuhGJ8nBLXJlLrU34xgavY91
+         tBkEAP+iP/6p6y2WYcENFkI8O3jpunJMBEGcfjnNXsbIgvoAuyE+rUg07XEFuAMYILXi
+         1022SUeC7opOXQFBAvOC1zF7+P2Jic4rvfVGgu+bxzIxtI6sQ2usSH6ZsiY7s618CpDm
+         7JBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695625663; x=1696230463;
+        d=1e100.net; s=20230601; t=1695625911; x=1696230711;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7AxDBxUGXJpjOQoyOw4i0KL+pS5ojAWax8q/wfJ5KaM=;
-        b=kWqHojhEX+SCR3VXVNR/jKnqzOLp0NafZL4sSDtFPv+2Gaaey1HuNpFMYj19XMRHPF
-         RAcndZpU9yg7AeewSbNK7A50T3iaoZ/iANnEHKHCrjNtQGFUMkx6HMmMT5piNRipCJbP
-         nruH+DIcqFEhZ6ilS/GS128VFKQOiKpvc60NfwuQQfDefjAkQ4mDadNGzQnJApupkzT4
-         TN24DoAa+irXud/cYkrwmXbAMJZEkooWRBOFgCxDKQmBviQfyMRGcJLeAvgnkiX96giS
-         Fvr4I+P144LmCnp4tJEUoMKN9Vsvhz9ipncmiWXRi6v/PIa7pC6qDEze2y98Hsmga6Ya
-         /jmQ==
-X-Gm-Message-State: AOJu0YzwIyzb24ZyCBYLgOAIU5dh7NBGEr+nqM9qBJ4MfhDWnRvs6hER
-	ASOOrr0PGPP+s61GqGV68Ub+MA==
-X-Google-Smtp-Source: AGHT+IGk+sCcZJzawUGj35SK4WOUi1wv/S1V6F5VR37pUSWQexIvkDTbo0JTYzvETQj8dcrlM7hvlw==
-X-Received: by 2002:a17:907:720e:b0:9ae:7912:9f61 with SMTP id dr14-20020a170907720e00b009ae79129f61mr5888039ejc.51.1695625663728;
-        Mon, 25 Sep 2023 00:07:43 -0700 (PDT)
+        bh=qbxfcRFg7sfBdUligJEEVnlDiFs/P9G+Yi1P7+ItKXA=;
+        b=xAAcv1mnv1loLD1dZMf4Iz1yxvBsuNNLAACmAA9kIgon79ADNf1McEHFmhWcdZKwxL
+         7U2aa8blLpPqfp0eve3s8n9PbR/vane/P3pIYarSVJLjvhtpySaUFMuI2VPP7RroxmWs
+         ElYwZcngR4novMPCB+tRmsesceFP8hG8SHfZo9p+Dlaj3dZrjKpDYJlDmiJbA/vFSgKR
+         sCjW2x22WWJKkWGfgre60R8AqrWxFY61wN/h18MidYwscVxqcKjJlXpILaDjqjp8Ekck
+         XwIv5kuJqMqxe2SuLd9vq0R+2+FO0YwYRvXMs+klOlwovkGUwNGaPx4QtBF4O+zDFzXD
+         2l2w==
+X-Gm-Message-State: AOJu0Yy2M9QsP8USSlPxz7QSTx8Rw5BGDHH9woismwC0GM8tELYLwk9x
+	c8fK9PU/10/BSD6fhzcwlXDMlg==
+X-Google-Smtp-Source: AGHT+IGQckapbaVGl7TBr+SCsYqMAqKTXz8kkjPeKFYSfsp85MDIe5I8HWyjnJj0gafpoN+IviHAdg==
+X-Received: by 2002:a17:906:209:b0:9a9:d5f4:1a0d with SMTP id 9-20020a170906020900b009a9d5f41a0dmr4977678ejd.45.1695625911604;
+        Mon, 25 Sep 2023 00:11:51 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id s25-20020a170906061900b00997d76981e0sm5830258ejb.208.2023.09.25.00.07.42
+        by smtp.gmail.com with ESMTPSA id i13-20020a170906090d00b0099cbfee34e3sm5906887ejd.196.2023.09.25.00.11.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Sep 2023 00:07:43 -0700 (PDT)
-Message-ID: <0a569100-b5a9-4cf6-8fbf-63b1a59b533e@linaro.org>
-Date: Mon, 25 Sep 2023 09:07:42 +0200
+        Mon, 25 Sep 2023 00:11:51 -0700 (PDT)
+Message-ID: <42338d41-1b90-4f77-958e-479d32e0ce1d@linaro.org>
+Date: Mon, 25 Sep 2023 09:11:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,14 +63,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: gpio: fsl-imx-gpio: Document imx25 and imx27
+Subject: Re: [PATCH V12 2/3] dt-bindings: pwm: add IPQ6018 binding
 Content-Language: en-US
-To: Fabio Estevam <festevam@gmail.com>, linus.walleij@linaro.org
-Cc: brgl@bgdev.pl, andy@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- Fabio Estevam <festevam@denx.de>
-References: <20230924161403.698833-1-festevam@gmail.com>
+To: Devi Priya <quic_devipriy@quicinc.com>, thierry.reding@gmail.com,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+ ndesaulniers@google.com, trix@redhat.com, baruch@tkos.co.il,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, llvm@lists.linux.dev
+Cc: linux-pwm@vger.kernel.org, u.kleine-koenig@pengutronix.de,
+ nathan@kernel.org
+References: <20230925065915.3467964-1-quic_devipriy@quicinc.com>
+ <20230925065915.3467964-3-quic_devipriy@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -116,7 +120,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230924161403.698833-1-festevam@gmail.com>
+In-Reply-To: <20230925065915.3467964-3-quic_devipriy@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -126,45 +130,82 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 24/09/2023 18:14, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On 25/09/2023 08:59, Devi Priya wrote:
+> DT binding for the PWM block in Qualcomm IPQ6018 SoC.
 > 
-> fsl,imx25-gpio and fsl,imx27-gpio are not documented, causing schema
-> warnings.
-> 
-> fsl,imx25-gpio is compatible with fsl,imx35-gpio and fsl,imx27-gpio
-> is compatible with fsl,imx21-gpio.
-> 
-> Document them accordingly.
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
->  Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml b/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
-> index d0ca2af89f1e..e716c6170643 100644
-> --- a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
-> @@ -21,6 +21,14 @@ properties:
->        - items:
->            - const: fsl,imx35-gpio
->            - const: fsl,imx31-gpio
-> +      - items:
-> +          - enum:
-> +              - fsl,imx25-gpio
-> +          - const: fsl,imx35-gpio
-> +      - items:
-> +          - enum:
-> +              - fsl,imx27-gpio
-> +          - const: fsl,imx21-gpio
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Co-developed-by: Baruch Siach <baruch.siach@siklu.com>
+> Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
+> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
 
-This does not look like placed in ordered way (order is by fallback
-compatible).
+...
 
->        - items:
->            - enum:
->                - fsl,imx50-gpio
+> diff --git a/Documentation/devicetree/bindings/pwm/ipq-pwm.yaml b/Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
+> new file mode 100644
+> index 000000000000..857086ad539e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
+
+Filename matching compatible, so qcom,ipq6018-pwm.yaml
+
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/ipq-pwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm IPQ6018 PWM controller
+> +
+> +maintainers:
+> +  - Baruch Siach <baruch@tkos.co.il>
+> +
+> +properties:
+> +  "#pwm-cells":
+> +    const: 2
+> +
+> +  compatible:
+> +    const: qcom,ipq6018-pwm
+
+compatible is always the first property.
+
+> +
+> +  reg:
+> +    description: Offset of PWM register in the TCSR block.
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - "#pwm-cells"
+
+And this order must be the same as in properties.
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,gcc-ipq6018.h>
+> +
+> +    syscon@1937000 {
+> +        compatible = "qcom,tcsr-ipq6018", "syscon", "simple-mfd";
+> +        reg = <0x01937000 0x21000>;
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        ranges = <0 0x1937000 0x21000>;
+
+Drop this node, not related. The parent binding could have full example,
+on the other hand. Additionally, I have doubts that you really tested
+the parent binding.
+
+> +
+> +        pwm: pwm@a010 {
+> +            compatible = "qcom,ipq6018-pwm";
 
 Best regards,
 Krzysztof
