@@ -1,271 +1,168 @@
-Return-Path: <devicetree+bounces-2920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C9EB7ACE68
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 04:43:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAC5F7ACE70
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 04:49:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id EDFD1B20968
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 02:43:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 4745EB20971
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 02:49:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9119AEC6;
-	Mon, 25 Sep 2023 02:43:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84881879;
+	Mon, 25 Sep 2023 02:49:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 937E47F
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 02:43:15 +0000 (UTC)
-Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A68692;
-	Sun, 24 Sep 2023 19:43:12 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-	by mailout.west.internal (Postfix) with ESMTP id 707CF32009E2;
-	Sun, 24 Sep 2023 22:43:07 -0400 (EDT)
-Received: from imap50 ([10.202.2.100])
-  by compute6.internal (MEProxy); Sun, 24 Sep 2023 22:43:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:sender
-	:subject:subject:to:to; s=fm1; t=1695609786; x=1695696186; bh=Uq
-	jDrarA+shRfC8ltMwHAr+TUFm7nNOSDNsd970tbLw=; b=RcK132xuzObTUxcJHj
-	mtGTHR8mL/CpJNmGrJByJFEQZ0Ifrln/vtjoUSEnPyumebLrZsOfpBz4CVzrqXL1
-	JSqtLwbn9Vuy/bwrvU/0/nvMvzQstLMrASo0YKkjPTq6+FOuFoGcDvnYcdMnRbdg
-	lnrGVRU/tp1sXO/kaUi2aGs0+v0REVCggPushe5k+id/VEH7trEfsBrzhgYqPN0t
-	Auov+5t7haL4VvAX+DOn0RmsOc7+QpVKrKIIoWsK9BvFvsIkkyWnjvhW3Klpcqmc
-	G9LnsUrwU/XHTCMG4clVWZOPq4h2cSdzN9Nq28nCdRQdBmKtCPhzKNcRs9QIWO6l
-	mncw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:sender:subject
-	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-	:x-sasl-enc; s=fm2; t=1695609786; x=1695696186; bh=UqjDrarA+shRf
-	C8ltMwHAr+TUFm7nNOSDNsd970tbLw=; b=b6SNUx6Zq9Bd/AlDRQxfxa630kKvx
-	wi3BsWPfm5OPxf+tK4hoafLUs+Hm71TpohijG9w+4AMtciNcPsROigv54FJMtlYl
-	046taGoiYYhNFg6GB6+frndhQggqUAexQoBmphd723CQ8AXZo4rz/YugZgBUxm9L
-	Q7P/1blq1Sqe31CIFsmS+a7baWPGCLajU61eeYRvX1li/Z//jAQ9ICipnqdY0L3P
-	34AbfD7nPTIJTCHcYvkF31u6HjGl2mMNLugkUKAtQckeKlGeQPGgThhiprveLibp
-	LHeie6Fhu9NHRWYinzta/snfiCzdcvBSvC3/rcx4iyVU7EM38svgFsAGQ==
-X-ME-Sender: <xms:ufMQZQwYYayUQhLi9Yn5f6270PhrGkYiwtYO0LTrkFg4Mi33iTSvHA>
-    <xme:ufMQZUQh-Ht4wo777KGBlXOBfb2JiandNG948u4Bot5c3OfScfGyyGRATqYD1deNM
-    kcMZXenB9fy580rFA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedrudelfedgieefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehn
-    ughrvgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucggtf
-    frrghtthgvrhhnpeekvdekjeekgfejudffteetgeejkeetteduvedtffdtledutdfhheev
-    feetkeeiteenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
-    hmpegrnhgurhgvfiesrghjrdhiugdrrghu
-X-ME-Proxy: <xmx:ufMQZSWamVBQ5SZlQlh3m3x79FXuTIZhC5gNJp3Tu51JsN9assMxtg>
-    <xmx:ufMQZehL48Yik-Qnd78EfYrN4SB0svmrgKI2NRDygVd3tQgD0RgMgw>
-    <xmx:ufMQZSCGHUtY1vZi9RxmRbNEEg35P5GKxtAat6WqB8c1q6e_ykR4ag>
-    <xmx:uvMQZaZc87wi0MoakXrq8nH4hs4cWEHOUTKF-JPKC0f8FuT9yDIb_A>
-Feedback-ID: idfb84289:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id B7A451700090; Sun, 24 Sep 2023 22:43:05 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-761-gece9e40c48-fm-20230913.001-gece9e40c
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63C447F
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 02:49:32 +0000 (UTC)
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2056.outbound.protection.outlook.com [40.107.247.56])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5EE092;
+	Sun, 24 Sep 2023 19:49:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jQkp+qIpI4bGHnxvxodeSqlXE8QUEHO1iFcAeK8OfakvUfwCxvULPhC7fXjyWgcfhWjpfooJUydP91DmgiCOLOop6v/igq8guqax0aCh2NVo+VSNrl3j1SD20Gc+APcSv4qZNa+xz1T9dk7gh5so8NQpJF8OvAZWmjZFBM2EZsHwvBdzVND9H15OeWFH/KLeiw48agoSFV/KHgBIziVB8KRCYJmsZgx6uz1qmoNgqT0BiQHXJEv2ywBNzS1BY/li2Mn154hf39QvSrtJt3j9ITuqIUbXb6oe4o100ZyaAV8fg/PTVXoAPp+pOshtoiGnP5Kdb9rt/sCtWpV5DVpvZw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Atu2yeOUMSdGg0Bv9GuZJULBgLbhni+7Y8Yt8KV6bw8=;
+ b=YVmOzs25AFqnjCC936rXdKI6ZYNWWg9TwKDCKSuYwlr7cawWIPLWvkNa7yvIovFb8tjEYR78mIyB/L1RVZ8FlHwE52wmo4Ndgnk3pspQ66ICjUzj2OjCVeZNz29o5yKwwgy3oKs9Ddix+UgiwBthDBKeqg6ml7cghJywhyog6c9KKP8z5Czd0mG+76SkUd9dQ4Mqg9pSamg0w3HsvBh7dCVo0CjtwG/chjPinwOjUmbuQt8v06+XQ1zOs3TxqmxMli2WxZXfA43xt8pdgUPWcgQnDrtxQt963deaZEKtd8z6OZuD2jgX+c8NkuwnjJl6HJcltzQ0aAYhrXjXLOllsg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Atu2yeOUMSdGg0Bv9GuZJULBgLbhni+7Y8Yt8KV6bw8=;
+ b=eoaSR7gVGBNd/0jHri4De5OKTx2c/+ZLoxcfOmtI+EBazQ+BSODDPLsKt0G/Q8yWVL7/eTPXo86tcR0M4CJI/ioDcdNTFrldnx6plCf2eecv3NU9qKjZ8y7RUzFBiFcPfe4sOJM3n5hO3i0X1Q5v+db+xo6Aa6d45qcPos8DiGs=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9498.eurprd04.prod.outlook.com (2603:10a6:10:360::21)
+ by AS8PR04MB8232.eurprd04.prod.outlook.com (2603:10a6:20b:3b2::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Mon, 25 Sep
+ 2023 02:49:28 +0000
+Received: from DB9PR04MB9498.eurprd04.prod.outlook.com
+ ([fe80::51f9:b8d2:7ddd:c74f]) by DB9PR04MB9498.eurprd04.prod.outlook.com
+ ([fe80::51f9:b8d2:7ddd:c74f%6]) with mapi id 15.20.6813.027; Mon, 25 Sep 2023
+ 02:49:28 +0000
+From: Chancel Liu <chancel.liu@nxp.com>
+To: lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shengjiu.wang@gmail.com,
+	Xiubo.Lee@gmail.com,
+	festevam@gmail.com,
+	nicoleotsuka@gmail.com,
+	perex@perex.cz,
+	tiwai@suse.com,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	alsa-devel@alsa-project.org,
+	linux-kernel@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: Chancel Liu <chancel.liu@nxp.com>
+Subject: [PATCH 1/2] ASoC: dt-bindings: fsl_rpmsg: List DAPM endpoints ignoring suspend
+Date: Mon, 25 Sep 2023 10:48:46 +0800
+Message-Id: <20230925024847.2971421-1-chancel.liu@nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SGXP274CA0024.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b8::36)
+ To DB9PR04MB9498.eurprd04.prod.outlook.com (2603:10a6:10:360::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <6df088a6-75ab-42f2-ba39-3f155714ed2d@app.fastmail.com>
-In-Reply-To: <20230922104231.1434-5-zev@bewilderbeest.net>
-References: <20230922104231.1434-4-zev@bewilderbeest.net>
- <20230922104231.1434-5-zev@bewilderbeest.net>
-Date: Mon, 25 Sep 2023 12:12:45 +0930
-From: "Andrew Jeffery" <andrew@aj.id.au>
-To: "Zev Weiss" <zev@bewilderbeest.net>, "Conor Dooley" <conor+dt@kernel.org>,
- "Guenter Roeck" <linux@roeck-us.net>, "Joel Stanley" <joel@jms.id.au>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
- "Milton D. Miller II" <mdmii@outlook.com>,
- "Rob Herring" <robh+dt@kernel.org>,
- "Wim Van Sebroeck" <wim@linux-watchdog.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
- openbmc@lists.ozlabs.org
-Cc: "Eddie James" <eajames@linux.ibm.com>,
- "Ivan Mikhaylov" <i.mikhaylov@yadro.com>,
- =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
-Subject: Re: [PATCH 1/2] dt-bindings: watchdog: aspeed-wdt: Add aspeed,reset-mask
- property
-Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9498:EE_|AS8PR04MB8232:EE_
+X-MS-Office365-Filtering-Correlation-Id: 08cc7204-79b1-4f6e-a40f-08dbbd72094f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	i7JIQbjns09NJq/hZlGPCrmHr0oobaQiAWxDPbMKALdyTvnp2z4jjKU2+4KFsSp6pMualjzuBSMs+Zpv0H2grB/qVfYSnzbtgde0fIfRCQfQ+47EcrFRZrAfulhAiM7v6zyyw31fXtY/idxrmCLmon8uOnlyUCLi/LraGykyZmFA6GjNfyRlRAEV1fC7K3HV3Q30eo6RylSnhpORQCsg2eN8mf6bdILxluV7ZVV0HVP6mJtc3fnulBrXAqCi1kSzQmTx9cM3K3g30WPlIkVk5VOeamGA3X/pPhwwtqjruDnFjF2qC3OeaHinLLfsJ6Xni9llxdw6XasKUV5iyzoFFp0/gF7YwoHx8F30KYHdMK+dahg6HQGOWgEuX2iZkiQyt5NRra1N7Zqm1QBA2vovlig9m34EIBx2fDQ2FI06/teV75w8nlDPpmTPbblNneaFXpJgJTWRU7t59Q71zPgwCkKKdHTpS4gBvrrG+0n71F8PMstHeyr4qs1Ft+I4GnAanMGSkwBlLewsqlirbuiwjKNeFQh1SF5yfAA20mOyNk1qzdB3GTPqnLO7MRCgfCkjxX5of6M3CDADzsxoJzO0UcbYrPxpIuNy73XdbC/JP8AHGgyJLtE83XMc/6S8fRo3rk/dIze/ldaU6H2sMuI9qw==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9498.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(39860400002)(136003)(366004)(346002)(376002)(230922051799003)(1800799009)(451199024)(186009)(478600001)(6512007)(6666004)(52116002)(41300700001)(38350700002)(921005)(38100700002)(316002)(26005)(1076003)(2616005)(44832011)(83380400001)(5660300002)(66946007)(66476007)(66556008)(6506007)(6486002)(8676002)(8936002)(4326008)(15650500001)(2906002)(4744005)(7416002)(86362001)(36756003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?4eZoP03Pm6sd57TIlBDgsrAt93febvjPfyxmtOYaCmB+V4ZvZWW0c2uWaJMH?=
+ =?us-ascii?Q?gvgO7Ee84gQgfcbSIQFUOO6Z1+jW43dvGCqxGz4Y8UKR2UX5l8TZx+M11VGf?=
+ =?us-ascii?Q?+AihQO8ofZRhIOpjIxjWxdv0668V/HPl9D5aYuZLr0j+mtj9qdBetAlFEuHN?=
+ =?us-ascii?Q?p0hjnJiscLrHeYVaFwWNH5KWE97eUtwoA1bMepUyzVPHXqFMJs7QikPVO4Pn?=
+ =?us-ascii?Q?0dArzHCM3zOJgMFuj2MMdCpvcuufTR9kRrgkTp41DbdBqesVFoo2wDro/kR8?=
+ =?us-ascii?Q?uyF8uOgjVeWJArpaxY/mZJt8VkPln3fmUTgvm5O9tlhOic/HLNSnPVeSB+5d?=
+ =?us-ascii?Q?QITsDeJNTLvuTyfTLHeDwVul6S5NjqnHV12caX4+FqaKVWQaoxwpX6SJVp3t?=
+ =?us-ascii?Q?EbyqeLUXyVQqHXmMT+lk8T/PNsQ01gCBENug4S/R6gXBfW2gBYFZt22eJOK8?=
+ =?us-ascii?Q?6iC2quopopeR9jAIz+x+ksKVc2uZqu2qQDrCHp81LjEff2fGAzdR5W/8zMKv?=
+ =?us-ascii?Q?SUMp9QwhvJq1oTT528i61x2kZaIlTTj+zZO60aROF8oVIkedTHsAqnzRGoH/?=
+ =?us-ascii?Q?BLfDHndK0pqXZzvDpfxN9yzx0g0N/huAXo7lOwzDxdietSuFZsRXEAfpwQY/?=
+ =?us-ascii?Q?sYXG3x0W2MBG69iZe3gqcNlF3KX5zFYgf8YrT1UGVwUoQfnY7Hm+lAfPSsa6?=
+ =?us-ascii?Q?p0wOIBmxNW2LlqCmL5F4YeefxsnLv9KTPuyxa7tl6SIU1eUnuhesF665HkUd?=
+ =?us-ascii?Q?c+nI5lf1Nskw/ziIZCeeB1aWELAjlcZY3CR6+xqU4zpebxGBIfKcdKgnNCC3?=
+ =?us-ascii?Q?maz5KVoFFDUhzkzvolvZn8Di64G/de/ssOds84JHzbpFVcbLterm58QomycV?=
+ =?us-ascii?Q?Y9Q+4iCdJVVPuZZDvl1OCTDRSJBqiFHgQ6zdzgIOEiy0pxgUsFwVLI8zjJe8?=
+ =?us-ascii?Q?qmHBMGWbVDogoJTGKHve2xY7kl4Re3uSuoU9Str0G0sZcF0kz/gbFfa6hhFV?=
+ =?us-ascii?Q?4oE8bmahPoU4qe4QXwvy8FXELdsEM0GoJXRDgw0J2cjt2hKSOul3DbUii7xO?=
+ =?us-ascii?Q?c13IfGy1DcL9IcoUo6eSNuaKMI9QWofktYYkptKaB9s2BJEeokh9a1nXRlGN?=
+ =?us-ascii?Q?OTAwPwwOjVt1/BIDN/zrRgZvdHSzR77x2ov9JtHnWFvnTsLvL9vGycRJFvnX?=
+ =?us-ascii?Q?0vra+SZWpoo+sx+vIoGreV3PlOgNXI9hqSnxkEelR5H84EZreW0U3gE67K83?=
+ =?us-ascii?Q?78XIAcZCdBN6jW8LrzRdIbxYT+R7Q5vCHxL1YUP+loQDGZScMDyX6X45PdY7?=
+ =?us-ascii?Q?ZTGsp5wx+RUN7bg1fvH2hKGnHwD3wD45dxYm3GwgaUuz6J8D2ivEC50CWsHD?=
+ =?us-ascii?Q?dFNEI2AEJRDCBsNvcatoNqC0K5SQqznvphJe3NcK/Hcoutp5CNJckgoOZRb2?=
+ =?us-ascii?Q?6Kl6QaUnqovC5IDQDtCERVxYGjsuHT9qZkWHK3OX44hZJUGgaVZUFtgT7rNn?=
+ =?us-ascii?Q?9K0sd828GxGf03uMaoTUkUO9wicjEcV0g4jOXTwgDytQla+3PAP1WrZG5zwf?=
+ =?us-ascii?Q?Q/OQ6nQ3BRRBtfO0Xla/KQTq3BGJWA4ZffoM02uY?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 08cc7204-79b1-4f6e-a40f-08dbbd72094f
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9498.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2023 02:49:28.6031
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: aTR/TjFBi3pWElb2xjIW1hY162F1/IC0hGMdODv2KuNLKEozymoBxeBc8AxRqo5LUMXURzKeNMoYCZKEfsm6iA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8232
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Add a property to list DAPM endpoints which mark paths between these
+endpoints ignoring suspend. These DAPM paths can still be power on when
+system enters into suspend.
 
+Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
+---
+ Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-On Fri, 22 Sep 2023, at 20:12, Zev Weiss wrote:
-> This property configures the Aspeed watchdog timer's reset mask, which
-> controls which peripherals are reset when the watchdog timer expires.
-> Some platforms require that certain devices be left untouched across a
-> reboot; aspeed,reset-mask can now be used to express such constraints.
->
-> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
-> ---
->  .../bindings/watchdog/aspeed-wdt.txt          | 18 +++-
->  include/dt-bindings/watchdog/aspeed-wdt.h     | 92 +++++++++++++++++++
->  2 files changed, 109 insertions(+), 1 deletion(-)
->  create mode 100644 include/dt-bindings/watchdog/aspeed-wdt.h
->
-> diff --git a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt 
-> b/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
-> index a8197632d6d2..3208adb3e52e 100644
-> --- a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
-> +++ b/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
-> @@ -47,7 +47,15 @@ Optional properties for AST2500-compatible watchdogs:
->  			   is configured as push-pull, then set the pulse
->  			   polarity to active-high. The default is active-low.
-> 
-> -Example:
-> +Optional properties for AST2500- and AST2600-compatible watchdogs:
-> + - aspeed,reset-mask: A bitmask indicating which peripherals will be reset if
-> +		      the watchdog timer expires.  On AST2500 this should be a
-> +		      single word defined using the AST2500_WDT_RESET_* macros;
-> +		      on AST2600 this should be a two-word array with the first
-> +		      word defined using the AST2600_WDT_RESET1_* macros and the
-> +		      second word defined using the AST2600_WDT_RESET2_* macros.
-> +
-> +Examples:
-> 
->  	wdt1: watchdog@1e785000 {
->  		compatible = "aspeed,ast2400-wdt";
-> @@ -55,3 +63,11 @@ Example:
->  		aspeed,reset-type = "system";
->  		aspeed,external-signal;
->  	};
-> +
-> +	#include <dt-bindings/watchdog/aspeed-wdt.h>
-> +	wdt2: watchdog@1e785040 {
-> +		compatible = "aspeed,ast2600-wdt";
-> +		reg = <0x1e785040 0x40>;
-> +		aspeed,reset-mask = <AST2600_WDT_RESET1_DEFAULT
-> +				     (AST2600_WDT_RESET2_DEFAULT & ~AST2600_WDT_RESET2_LPC)>;
-> +	};
+diff --git a/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
+index 188f38baddec..ec6e09eab427 100644
+--- a/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
++++ b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
+@@ -91,6 +91,12 @@ properties:
+       - rpmsg-audio-channel
+       - rpmsg-micfil-channel
+ 
++  fsl,lpa-widgets:
++    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
++    description: |
++      A list of DAPM endpoints which mark paths between these endpoints
++      ignoring suspend.
++
+ required:
+   - compatible
+ 
+-- 
+2.25.1
 
-Rob has acked your current approach already, but I do wonder about an alternative that aligns more with the clock/reset/interrupt properties. Essentially, define a new generic watchdog property that is specified on the controllers to be reset by the watchdog (or even on just the watchdog node itself, emulating what you've proposed here):
-
-watchdog-resets = <phandle index>;
-
-The phandle links to the watchdog of interest, and the index specifies the controller associated with the configuration. It might even be useful to do:
-
-watchdog-resets = <phandle index enable>;
-
-"enable" could provide explicit control over whether somethings should be reset or not (as a way to prevent reset if the controller targeted by the provided index would otherwise be reset in accordance with the default reset value in the watchdog controller).
-
-The macros from the dt-bindings header can then use macros to name the indexes rather than define a mask tied to the register layout. The index may still in some way represent the mask position. This has the benefit of hiding the issue of one vs two configuration registers between the AST2500 and AST2600 while also allowing other controllers to exploit the binding (Nuvoton BMCs? Though maybe it's generalising too early?).
-
-It'd probably need a new function exported from the watchdog subsystem for the drivers to call through, though I don't think that's too much of a hurdle?
-
-Andrew
-
-> diff --git a/include/dt-bindings/watchdog/aspeed-wdt.h 
-> b/include/dt-bindings/watchdog/aspeed-wdt.h
-> new file mode 100644
-> index 000000000000..7ae6d84b2bd9
-> --- /dev/null
-> +++ b/include/dt-bindings/watchdog/aspeed-wdt.h
-> @@ -0,0 +1,92 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +
-> +#ifndef DT_BINDINGS_ASPEED_WDT_H
-> +#define DT_BINDINGS_ASPEED_WDT_H
-> +
-> +#define AST2500_WDT_RESET_CPU		(1 << 0)
-> +#define AST2500_WDT_RESET_COPROC	(1 << 1)
-> +#define AST2500_WDT_RESET_SDRAM		(1 << 2)
-> +#define AST2500_WDT_RESET_AHB		(1 << 3)
-> +#define AST2500_WDT_RESET_I2C		(1 << 4)
-> +#define AST2500_WDT_RESET_MAC0		(1 << 5)
-> +#define AST2500_WDT_RESET_MAC1		(1 << 6)
-> +#define AST2500_WDT_RESET_GRAPHICS	(1 << 7)
-> +#define AST2500_WDT_RESET_USB2_HOST_HUB	(1 << 8)
-> +#define AST2500_WDT_RESET_USB_HOST	(1 << 9)
-> +#define AST2500_WDT_RESET_HID_EHCI	(1 << 10)
-> +#define AST2500_WDT_RESET_VIDEO		(1 << 11)
-> +#define AST2500_WDT_RESET_HAC		(1 << 12)
-> +#define AST2500_WDT_RESET_LPC		(1 << 13)
-> +#define AST2500_WDT_RESET_SDIO		(1 << 14)
-> +#define AST2500_WDT_RESET_MIC		(1 << 15)
-> +#define AST2500_WDT_RESET_CRT		(1 << 16)
-> +#define AST2500_WDT_RESET_PWM		(1 << 17)
-> +#define AST2500_WDT_RESET_PECI		(1 << 18)
-> +#define AST2500_WDT_RESET_JTAG		(1 << 19)
-> +#define AST2500_WDT_RESET_ADC		(1 << 20)
-> +#define AST2500_WDT_RESET_GPIO		(1 << 21)
-> +#define AST2500_WDT_RESET_MCTP		(1 << 22)
-> +#define AST2500_WDT_RESET_XDMA		(1 << 23)
-> +#define AST2500_WDT_RESET_SPI		(1 << 24)
-> +#define AST2500_WDT_RESET_SOC_MISC	(1 << 25)
-> +
-> +#define AST2500_WDT_RESET_DEFAULT 0x023ffff3
-> +
-> +#define AST2600_WDT_RESET1_CPU		(1 << 0)
-> +#define AST2600_WDT_RESET1_SDRAM	(1 << 1)
-> +#define AST2600_WDT_RESET1_AHB		(1 << 2)
-> +#define AST2600_WDT_RESET1_SLI		(1 << 3)
-> +#define AST2600_WDT_RESET1_SOC_MISC0	(1 << 4)
-> +#define AST2600_WDT_RESET1_COPROC	(1 << 5)
-> +#define AST2600_WDT_RESET1_USB_A	(1 << 6)
-> +#define AST2600_WDT_RESET1_USB_B	(1 << 7)
-> +#define AST2600_WDT_RESET1_UHCI		(1 << 8)
-> +#define AST2600_WDT_RESET1_GRAPHICS	(1 << 9)
-> +#define AST2600_WDT_RESET1_CRT		(1 << 10)
-> +#define AST2600_WDT_RESET1_VIDEO	(1 << 11)
-> +#define AST2600_WDT_RESET1_HAC		(1 << 12)
-> +#define AST2600_WDT_RESET1_DP		(1 << 13)
-> +#define AST2600_WDT_RESET1_DP_MCU	(1 << 14)
-> +#define AST2600_WDT_RESET1_GP_MCU	(1 << 15)
-> +#define AST2600_WDT_RESET1_MAC0		(1 << 16)
-> +#define AST2600_WDT_RESET1_MAC1		(1 << 17)
-> +#define AST2600_WDT_RESET1_SDIO0	(1 << 18)
-> +#define AST2600_WDT_RESET1_JTAG0	(1 << 19)
-> +#define AST2600_WDT_RESET1_MCTP0	(1 << 20)
-> +#define AST2600_WDT_RESET1_MCTP1	(1 << 21)
-> +#define AST2600_WDT_RESET1_XDMA0	(1 << 22)
-> +#define AST2600_WDT_RESET1_XDMA1	(1 << 23)
-> +#define AST2600_WDT_RESET1_GPIO0	(1 << 24)
-> +#define AST2600_WDT_RESET1_RVAS		(1 << 25)
-> +
-> +#define AST2600_WDT_RESET1_DEFAULT 0x030f1ff1
-> +
-> +#define AST2600_WDT_RESET2_CPU		(1 << 0)
-> +#define AST2600_WDT_RESET2_SPI		(1 << 1)
-> +#define AST2600_WDT_RESET2_AHB2		(1 << 2)
-> +#define AST2600_WDT_RESET2_SLI2		(1 << 3)
-> +#define AST2600_WDT_RESET2_SOC_MISC1	(1 << 4)
-> +#define AST2600_WDT_RESET2_MAC2		(1 << 5)
-> +#define AST2600_WDT_RESET2_MAC3		(1 << 6)
-> +#define AST2600_WDT_RESET2_SDIO1	(1 << 7)
-> +#define AST2600_WDT_RESET2_JTAG1	(1 << 8)
-> +#define AST2600_WDT_RESET2_GPIO1	(1 << 9)
-> +#define AST2600_WDT_RESET2_MDIO		(1 << 10)
-> +#define AST2600_WDT_RESET2_LPC		(1 << 11)
-> +#define AST2600_WDT_RESET2_PECI		(1 << 12)
-> +#define AST2600_WDT_RESET2_PWM		(1 << 13)
-> +#define AST2600_WDT_RESET2_ADC		(1 << 14)
-> +#define AST2600_WDT_RESET2_FSI		(1 << 15)
-> +#define AST2600_WDT_RESET2_I2C		(1 << 16)
-> +#define AST2600_WDT_RESET2_I3C_GLOBAL	(1 << 17)
-> +#define AST2600_WDT_RESET2_I3C0		(1 << 18)
-> +#define AST2600_WDT_RESET2_I3C1		(1 << 19)
-> +#define AST2600_WDT_RESET2_I3C2		(1 << 20)
-> +#define AST2600_WDT_RESET2_I3C3		(1 << 21)
-> +#define AST2600_WDT_RESET2_I3C4		(1 << 22)
-> +#define AST2600_WDT_RESET2_I3C5		(1 << 23)
-> +#define AST2600_WDT_RESET2_ESPI		(1 << 26)
-> +
-> +#define AST2600_WDT_RESET2_DEFAULT 0x03fffff1
-> +
-> +#endif
-> -- 
-> 2.40.0.5.gf6e3b97ba6d2.dirty
 
