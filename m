@@ -1,329 +1,486 @@
-Return-Path: <devicetree+bounces-3214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C12C87ADAAA
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 16:54:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E3727ADAD0
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 17:00:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id DC3D91C20843
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 14:54:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 0C18828103F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 15:00:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0A9B1C6A7;
-	Mon, 25 Sep 2023 14:54:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01D1B1CA8B;
+	Mon, 25 Sep 2023 15:00:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24D371C290
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 14:54:20 +0000 (UTC)
-Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2600107
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:54:17 -0700 (PDT)
-Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-59bbdb435bfso78446397b3.3
-        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:54:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1695653657; x=1696258457; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gAs/h3x9h+77khWIK3iPvQFPgGZ4y9rDhC59IFJZTGw=;
-        b=fnQcBfjLLh1mKBUQWy7wvpr1QOrrcCchV0wcyAN7AUSm8NlJQcsaEireWheIiExX5Z
-         z3tlSyziRTJ4IXVYkWUuRMVoDIdgrk/fVfI81HH6WAXCfrIAlBd7i3rh5VNob5SI11xF
-         6pQBnAN3Jg23SSQ2MXBLEIZ+q52pZIU5ysQ3A=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695653657; x=1696258457;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gAs/h3x9h+77khWIK3iPvQFPgGZ4y9rDhC59IFJZTGw=;
-        b=LSqROBxjjh00wq8mE6VCosFg8yUb7zd/vTRwBnwCwVDP0+cQo7EX604vSGn25aJ+5e
-         RQ7ydcsvTH8HpBFn+ue1ZqkjDD7RH0NwjDSbyZu5fiKffdw9+o1ZglZGoytl9+gWMbib
-         QFex860NtU8Q7T3L1p/LgvfI4q+v9ZCnI/ghHunluS02fxDG/vJAUo5aFnxgwyb1WsuF
-         NCMCJdgNoAE1YU2GzrsXIf8b2e73fTwxXn0+0f4y261DkOIHNHd1Cx6RsZl/09kQ5tOs
-         msajKlPxvMx7Pdd/sipiaEdp6QYDf8u9c6RIC3hNHp0zV4IBskp09B/I5M99zzMV8J/K
-         tojw==
-X-Gm-Message-State: AOJu0YxxV+jwsLxhxdzifJ2xCJCUB/4DwXB5hnfTN5p90wtxBnDxZBIW
-	itCaeKmFdaUxoQYyjAYcZvtLm2pMbc9uSL7zOAAGux11Fpy5vsNdgLKp4g==
-X-Google-Smtp-Source: AGHT+IHzjHIDz/yn/ztOldBZssnouHhhnprKKe22wtVgmt4CE9tlbt9a7WbVTOT55WwDR4WjkXVN84l//rbWRTHR4cI=
-X-Received: by 2002:a25:77c7:0:b0:d7b:9bd7:f280 with SMTP id
- s190-20020a2577c7000000b00d7b9bd7f280mr7664332ybc.0.1695653656597; Mon, 25
- Sep 2023 07:54:16 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C36BA1C6BD
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 15:00:44 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12olkn2101.outbound.protection.outlook.com [40.92.21.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E19D103
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 08:00:41 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IyM9zFzDbo7wL4ccvnvdjpu5KhwNvagV/uDnnWMHHqe1O06TEZlQSHhvKVfxjTD4+CsMIbtNB9SN84HV1sEuOAHyP03kmDc4ms1SSsqWgpkEpx1oUpMksuYQCiI83o57gSEdl6ivvHImOsmNJPEywWTg06CkvPsnx5r+MrtEDphvYdc35iY056eYKV3NlcF4nBBomn3Gj3NIGMrk5b3gmi2qYK9bDh3xVVTCBPnbNL4ufI2LUDqLIOVJJRvjxrj05YmBxKbhA5XQUPQOHsRRZ/rsXSlr+7UL7Xc3E8cV8escnvbJuKHlDt0GKvvokmv1wX2V8+9Mefo2MOs/5cJ3+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KQadqu36J1g47feH1q+43S+OC65x6eaSWC2OOhLJ3KI=;
+ b=cWfgvwRRCtY9nKRegD9BihMfia5ZeDspf8ZSDgB2WRJwoJAR05OgL4K81dnqePQe49+j/4ejzDdiHB2PSCdiOnhx9ezkE4mFzd04VXJ2IUq8m9sgr5gexz0HH+1bcUJ02bSyhcVUCjj99AUUJ5JFfq8oBtqzaMy7B875bkWRA4k/Ihe3cHezEKz5h5patGJfAbq4DEVXu/+JSCL3mUYArCxsjNUAMZ+BC3wHcMlyWWnCpjHiAWlmAns8eCoBYhWkOJCOUOWrM8UlS9NtCjuLuC+4wYqd9Xfdg3H5l5JFA8gR6rJqPxRNYj6v/ZJbhh8vHjfCByc0ZcMFFYQotemZwA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KQadqu36J1g47feH1q+43S+OC65x6eaSWC2OOhLJ3KI=;
+ b=XVC7Ao675SLJihU1c26xXvU20egARfCwEVZ4LB2h5zaD00BFZQpq5HjuDtipQLZinyWfsT/4ZXKAZW8EilVeCWM3gwl63it0obBjRk1R9W0SObZUJ/APsoYXYIKnHiRqdYGIZIT2XdZrCrGc6RIf1Tpkay6sRXBSb53RrAkaAyT0Gbo0cvBd5gg8Ptm9IIpuuYTxssR9bdJesANI7balUtaiV1Xv4GVSGfbrvOVmW3ObDhbtoppeOyIGHv/cVLMOX2/z5zvRs+fkfskrQkZFjntu1H+SOhVoH+Wox0M5bCRTISGmEJ8/KHLsenexNNtZLugzghsd2P4aJ7+FK+00ng==
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
+ by SA1PR06MB8436.namprd06.prod.outlook.com (2603:10b6:806:1cf::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.20; Mon, 25 Sep
+ 2023 15:00:36 +0000
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::c40c:bbc8:b103:459c]) by SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::c40c:bbc8:b103:459c%2]) with mapi id 15.20.6813.027; Mon, 25 Sep 2023
+ 15:00:36 +0000
+Date: Mon, 25 Sep 2023 10:00:33 -0500
+From: Chris Morgan <macromorgan@hotmail.com>
+To: Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
+Cc: linux-sunxi@lists.linux.dev, Chris Morgan <macroalpha82@gmail.com>,
+	devicetree@vger.kernel.org, mripard@kernel.org, uwu@icenowy.me,
+	samuel@sholland.org, wens@csie.org, conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	andre.przywara@arm.com
+Subject: Re: [PATCH V5 4/4] ARM: dts: sunxi: add support for Anbernic RG-Nano
+Message-ID:
+ <SN6PR06MB5342C836DCCD58AA47C7FE33A5FCA@SN6PR06MB5342.namprd06.prod.outlook.com>
+References: <20230921135136.97491-1-macroalpha82@gmail.com>
+ <20230921135136.97491-5-macroalpha82@gmail.com>
+ <4860683.31r3eYUQgx@jernej-laptop>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4860683.31r3eYUQgx@jernej-laptop>
+X-TMN: [E2FuoC+jx+z9h7nE/Nth541Kx38HU/ZG]
+X-ClientProxiedBy: SN6PR04CA0096.namprd04.prod.outlook.com
+ (2603:10b6:805:f2::37) To SN6PR06MB5342.namprd06.prod.outlook.com
+ (2603:10b6:805:f9::31)
+X-Microsoft-Original-Message-ID: <ZRGgkQmBaSDd8c10@wintermute.localhost.fail>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230921124459.1.I91ddcfacf9b234af5cc3eabea4b62edb31153317@changeid>
- <CAL_Jsq+WuYDU+yY98opTHr1PT-J9mFYJQBjVMnk+FSWLDUO33w@mail.gmail.com>
- <CAPnjgZ1pfxaMG1n5yOBhiOhsNrRjck1K92U7Ga=+VTY_jjjrVg@mail.gmail.com>
- <20230922174649.GA3320366-robh@kernel.org> <CAPnjgZ3ojfAv=BHqOhM=-NnYqCm81Ny=PsGKiNphKTmw++fk9w@mail.gmail.com>
- <CAL_JsqJqvyP=c93DHDO8A5RXv7Lz_Z7eEHSbJQ=JCo+qPVhSfg@mail.gmail.com>
- <CAPnjgZ3BnD9aX3cNNPiGRKTOj+YeurHCLv6K0TRFhAtY21Qufw@mail.gmail.com>
- <20230925092122.0b615f25@xps-13> <CAPnjgZ0Z5J_33HuQF-5XgDFmZim0nHHzvZJOOZobWw_cOJd=9g@mail.gmail.com>
- <20230925164736.5efbf4c0@xps-13>
-In-Reply-To: <20230925164736.5efbf4c0@xps-13>
-From: Simon Glass <sjg@chromium.org>
-Date: Mon, 25 Sep 2023 08:53:59 -0600
-Message-ID: <CAPnjgZ3YCQHJ-eXuX8rYx2Qb6QEL+XviFmXYTON6M-sGPWSBBg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mtd: Add a schema for binman
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	U-Boot Mailing List <u-boot@lists.denx.de>, linux-mtd@lists.infradead.org, 
-	Tom Rini <trini@konsulko.com>, Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
-	autolearn=no autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|SA1PR06MB8436:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5da910c2-ad89-4d0a-1ec3-08dbbdd82c06
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	6mJwlHZHDexscnhg8FKWSWno9EHTmmtmUbG6+nqcga7ytj15DGZpK6cl1q0BF+M/+KMNJFWalCxzPdfJ2VxeyTPbB2Kgs9CNDLUQ+4QD1yLttRPR5vAWiPeDNB0dcFQw5l0zKycMlCIGscfhjRsQst/NraiMLUwpkhR6JTSHDil0h+uvhjyXRqH0HuiPYaGlFG7EbNcNcj3inIOcLZ2mggCeH44+aHdAtJLiNMtkkEHsAYO3uH/zDnVV4R5ITJc2NYnTVC1jjwdIA8UGOgINtqqtnRmePKmx3vEFg6x99ZJ7L5ztL3+f6xyI31XedGtdyVfN/rN99QOyl9xVLmgzER+i4R1HtT5cKJOGt29Ry1QkR0+a8ZmHzmyaevUUE+q9t0VZ6P4c1G3T4Cvm7AusILB0MzyC+9xJKL7nLD9KegBWUFASH+p6pQ0dVL1KOUMjtWXDIzxVpJeURltRr7GOKcZkMueaSZ8QyfoB/CuVama/Gh8B+q8jrDY3FGimLk19nDZfsZCU7PJNAH2uhm+pVgMwKtV5q0XnIxx2+f47fYIlMR0lKSqg13tWLJk/dfiJKlRAIfT9UEykdQuvoh/JXVWVz08Xd7U4BPXhuYaK84Q=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?dS9MSmFLVDhlY0lkcmx2Z2pFZzlDaVNGRFl1eDdERFpZakVBWUUxTnB4Wmgw?=
+ =?utf-8?B?eDJlVWxrYWFuYUpNUndIRUJpemh4czlNK29JSkp0MEpmYjBBNThWOGd3NUwy?=
+ =?utf-8?B?NE5yYy9TMkhjVXhUMnEyQy9JcElBbmJydjkvZVhsdzBURStENXNyWmMrT2d5?=
+ =?utf-8?B?NUpocFRwckVwbGhLZVoybTNJT3crN0taUGtKN1lVNVhBR1N4S0lYQUVySVFk?=
+ =?utf-8?B?QUF2SXdCYXpxTm1KU1Y4Z1BOY0ptUFl2K2paNGJOQ2VEOUVDNDNuOHowSzVS?=
+ =?utf-8?B?RUNwWVFlYUpsUXJQeG9KQjBCMDgyQ01zZWs3KzF4MjFRcFNWRzNMZjZCcHZN?=
+ =?utf-8?B?VU9QeDdUdlcxdG9TSGxiMFhsM1RnZ0d4TkxWYjZjTEs4TmFnM3dnZzB6d1cx?=
+ =?utf-8?B?d0ZHSUR6WVlWNml3aXIyaDFOdE16czdtOUd5RUpOSWdJdml0SzBHcThXYlVN?=
+ =?utf-8?B?TjhZVlhFQXZvcUU5QmEwRTFzUU94VUowakhWd3MwN1F2WlJ4MmJYb3VHeXgw?=
+ =?utf-8?B?dGYxKzVYZThCeW95b1NuNThnUm9ZeEpXMjRpbGJ6QTJmVHcxNlIvZFg0dWdM?=
+ =?utf-8?B?QzNISW5KWFduN1BuZXplN1FkVGY3czhCVnhIazhtZm9zS2pVUEFLT1dFVnM3?=
+ =?utf-8?B?OE9kRldLZEJ5Mk0wRW5IdHNPQ20waG1UeCtoaUtXcUl3cDFMc1lCaERSU2tR?=
+ =?utf-8?B?aWdjMlJ3UjlTN2NpMmNVSVozY2R3b2J2L2Rralk4WENPendwdUx1SGJ1emZE?=
+ =?utf-8?B?eGkzZkRZVmhjUDFPcjRwMGZ2K1g0QWJCcGtLK3dNUnZmNkZYcjdFeERHVWZQ?=
+ =?utf-8?B?RFZZZW1iaUVmOXNsVG5WS1pXekxXeklZS21qOTl5d25sQWhzZHRxOWVNeER2?=
+ =?utf-8?B?Zkg5TWhYVDhSZFJkMGlhYXQ3UEFHdEprU29pbkkweTBXRUdPZUpuTUJ6K3J6?=
+ =?utf-8?B?Vjh1M25vUlJORStIYis3VElaZGRvMjhGeGhDaUlRQlE5d0xqRlhBWmFUbHJG?=
+ =?utf-8?B?cXFibHBvY2dweTZxSWpHcVBnYmtxYU1mMHk2b3F4Nll4UWdGTVhEYW93RDVz?=
+ =?utf-8?B?dGM4REgwZUFRWHc5MVFhTUpXTWNqaDlacjk1TXRENTZxRTN1cUdtVWdUNnZu?=
+ =?utf-8?B?K21YNTFMajZaaXBVNGJycG51R1g3V1V4WUo1VTQxTnYzTFFSUldTbXhqNXFF?=
+ =?utf-8?B?UWkyY3dlL0RSVjBPckR2ZENweFB0OVpKNWJnWU8rWUN5emd4bXY0OFBhT3Ni?=
+ =?utf-8?B?alJWS09JczlNZnlVUDVWVzBkVDFYV2FPNUhHSzhkRm44QTc0VmxzSzllWXp6?=
+ =?utf-8?B?VEUyc2ZhQW5COTAySldid0d2RFVxYmFsa1ZaNk8yeTI0MHRCOHp1cHM0Z2dH?=
+ =?utf-8?B?OHRRTkVzWjZ2NGRyRUE0Y2NCNFBWZ0x4QkpIMjd4c1pQR0I5UzF6dzN3VjNO?=
+ =?utf-8?B?Uzd6V0YxR3RCTmR0U0dBYWY0SUlQNFZKL1RCVjZYcmpuYUlwVUxWOUNiRW1I?=
+ =?utf-8?B?aUMvZXNMaHpvT1Z3TEkrVzVYN1NsZkkxdG56OGV3bC81M0Nxa2l1RlBKd0R6?=
+ =?utf-8?B?ditRR2NlWVVsSFpsUU8remxUMEZ5L1ltUlJSWVMxNFhZOUtRMkU2WmZzOTZq?=
+ =?utf-8?Q?P20/LPEjzKM5ZIsQcNzjd2kaWfsPnZ2225TH76sfKuTI=3D?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5da910c2-ad89-4d0a-1ec3-08dbbdd82c06
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2023 15:00:36.1860
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR06MB8436
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Miquel,
+On Sun, Sep 24, 2023 at 09:33:53PM +0200, Jernej Škrabec wrote:
+> Dne četrtek, 21. september 2023 ob 15:51:36 CEST je Chris Morgan napisal(a):
+> > From: Chris Morgan <macromorgan@hotmail.com>
+> > 
+> > The Anbernic RG-Nano is a small portable game device based on the
+> > Allwinner V3s SoC. It has GPIO buttons on the face and side for
+> > input, a single mono speaker, a 240x240 SPI controlled display, a USB-C
+> > OTG port, an SD card slot for booting, and 64MB of RAM included in the
+> > SoC. There does not appear to be a crystal feeding the internal RTC so
+> > it does not keep proper time (for me it ran 8 hours slow in a 24 hour
+> > period). External RTC works just fine.
+> > 
+> > Working/Tested:
+> > - SDMMC
+> > - UART (for debugging)
+> > - Buttons
+> > - Charging/battery/PMIC
+> > - Speaker
+> > - RTC (external RTC)
+> > - USB
+> > - Display
+> > 
+> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > ---
+> >  arch/arm/boot/dts/allwinner/Makefile          |   1 +
+> >  .../allwinner/sun8i-v3s-anbernic-rg-nano.dts  | 284 ++++++++++++++++++
+> >  2 files changed, 285 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
+> > 
+> > diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts/allwinner/Makefile
+> > index eebb5a0c873a..2d26c3397f14 100644
+> > --- a/arch/arm/boot/dts/allwinner/Makefile
+> > +++ b/arch/arm/boot/dts/allwinner/Makefile
+> > @@ -256,6 +256,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
+> >  	sun8i-t113s-mangopi-mq-r-t113.dtb \
+> >  	sun8i-t3-cqa3t-bv3.dtb \
+> >  	sun8i-v3-sl631-imx179.dtb \
+> > +	sun8i-v3s-anbernic-rg-nano.dtb \
+> >  	sun8i-v3s-licheepi-zero.dtb \
+> >  	sun8i-v3s-licheepi-zero-dock.dtb \
+> >  	sun8i-v40-bananapi-m2-berry.dtb
+> > diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts b/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
+> > new file mode 100644
+> > index 000000000000..1a4429dc57b1
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
+> > @@ -0,0 +1,284 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +
+> > +/dts-v1/;
+> > +#include <dt-bindings/input/linux-event-codes.h>
+> > +#include "sun8i-v3s.dtsi"
+> > +#include "sunxi-common-regulators.dtsi"
+> > +
+> > +/ {
+> > +	model = "Anbernic RG Nano";
+> > +	compatible = "anbernic,rg-nano", "allwinner,sun8i-v3s";
+> > +
+> > +	aliases {
+> > +		rtc0 = &pcf8563;
+> > +		rtc1 = &rtc;
+> > +		serial0 = &uart0;
+> > +	};
+> > +
+> > +	backlight: backlight {
+> > +		compatible = "pwm-backlight";
+> > +		brightness-levels = <0 1 2 3 8 14 21 32 46 60 80 100>;
+> > +		default-brightness-level = <11>;
+> > +		power-supply = <&reg_vcc5v0>;
+> > +		pwms = <&pwm 0 40000 1>;
+> > +	};
+> > +
+> > +	chosen {
+> > +		stdout-path = "serial0:115200n8";
+> > +	};
+> > +
+> > +	gpio_keys: gpio-keys {
+> > +		compatible = "gpio-keys";
+> > +
+> > +		button-a {
+> > +			gpios = <&gpio_expander 12 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +			label = "BTN-A";
+> > +			linux,code = <BTN_EAST>;
+> > +		};
+> > +
+> > +		button-b {
+> > +			gpios = <&gpio_expander 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +			label = "BTN-B";
+> > +			linux,code = <BTN_SOUTH>;
+> > +		};
+> > +
+> > +		button-down {
+> > +			gpios = <&gpio_expander 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +			label = "DPAD-DOWN";
+> > +			linux,code = <BTN_DPAD_DOWN>;
+> > +		};
+> > +
+> > +		button-left {
+> > +			gpios = <&gpio_expander 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +			label = "DPAD-LEFT";
+> > +			linux,code = <BTN_DPAD_LEFT>;
+> > +		};
+> > +
+> > +		button-right {
+> > +			gpios = <&gpio_expander 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +			label = "DPAD-RIGHT";
+> > +			linux,code = <BTN_DPAD_RIGHT>;
+> > +		};
+> > +
+> > +		button-se {
+> > +			gpios = <&gpio_expander 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +			label = "BTN-SELECT";
+> > +			linux,code = <BTN_SELECT>;
+> > +		};
+> > +
+> > +		button-st {
+> > +			gpios = <&gpio_expander 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +			label = "BTN-START";
+> > +			linux,code = <BTN_START>;
+> > +		};
+> > +
+> > +		button-tl {
+> > +			gpios = <&gpio_expander 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +			label = "BTN-L";
+> > +			linux,code = <BTN_TL>;
+> > +		};
+> > +
+> > +		button-tr {
+> > +			gpios = <&gpio_expander 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +			label = "BTN-R";
+> > +			linux,code = <BTN_TR>;
+> > +		};
+> > +
+> > +		button-up {
+> > +			gpios = <&gpio_expander 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +			label = "DPAD-UP";
+> > +			linux,code = <BTN_DPAD_UP>;
+> > +		};
+> > +
+> > +		button-x {
+> > +			gpios = <&gpio_expander 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +			label = "BTN-X";
+> > +			linux,code = <BTN_NORTH>;
+> > +		};
+> > +
+> > +		button-y {
+> > +			gpios = <&gpio_expander 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +			label = "BTN-Y";
+> > +			linux,code = <BTN_WEST>;
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&codec {
+> > +	allwinner,audio-routing = "Speaker", "HP",
+> > +				  "MIC1", "Mic",
+> > +				  "Mic", "HBIAS";
+> > +	allwinner,pa-gpios = <&pio 5 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; /* PF6 */
+> > +	status = "okay";
+> > +};
+> > +
+> > +&ehci {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&i2c0 {
+> > +	status = "okay";
+> > +
+> > +	gpio_expander: gpio@20 {
+> > +		compatible = "nxp,pcal6416";
+> > +		reg = <0x20>;
+> > +		gpio-controller;
+> > +		#gpio-cells = <2>;
+> > +		#interrupt-cells = <2>;
+> > +		interrupt-controller;
+> > +		interrupt-parent = <&pio>;
+> > +		interrupts = <1 3 IRQ_TYPE_EDGE_BOTH>; /* PB3/EINT3 */
+> > +		vcc-supply = <&reg_vcc3v3>;
+> > +	};
+> > +
+> > +	axp209: pmic@34 {
+> > +		reg = <0x34>;
+> > +		interrupt-parent = <&pio>;
+> > +		interrupts = <1 5 IRQ_TYPE_EDGE_FALLING>; /* PB5/EINT5 */
+> > +	};
+> > +
+> > +	pcf8563: rtc@51 {
+> > +		compatible = "nxp,pcf8563";
+> > +		reg = <0x51>;
+> > +	};
+> > +};
+> > +
+> > +#include "axp209.dtsi"
+> > +
+> > +&battery_power_supply {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&mmc0 {
+> > +	broken-cd;
+> > +	bus-width = <4>;
+> > +	disable-wp;
+> > +	vmmc-supply = <&reg_vcc3v3>;
+> > +	vqmmc-supply = <&reg_vcc3v3>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&ohci {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&pio {
+> > +	vcc-pb-supply = <&reg_vcc3v3>;
+> > +	vcc-pc-supply = <&reg_vcc3v3>;
+> > +	vcc-pf-supply = <&reg_vcc3v3>;
+> > +	vcc-pg-supply = <&reg_vcc3v3>;
+> > +
+> > +	spi0_no_miso_pins: spi0-no-miso-pins {
+> > +		pins = "PC1", "PC2", "PC3";
+> > +		function = "spi0";
+> > +	};
+> > +};
+> > +
+> > +&pwm {
+> > +	pinctrl-0 = <&pwm0_pin>;
+> > +	pinctrl-names = "default";
+> > +	status = "okay";
+> > +};
+> > +
+> > +/* DCDC2 wired into vdd-cpu, vdd-sys, and vdd-ephy. */
+> > +&reg_dcdc2 {
+> > +	regulator-always-on;
+> > +	regulator-max-microvolt = <1250000>;
+> > +	regulator-min-microvolt = <1250000>;
+> > +	regulator-name = "vdd-cpu";
+> > +};
+> > +
+> > +/* DCDC3 wired into every 3.3v input that isn't the RTC. */
+> > +&reg_dcdc3 {
+> > +	regulator-always-on;
+> > +	regulator-max-microvolt = <3300000>;
+> > +	regulator-min-microvolt = <3300000>;
+> > +	regulator-name = "vcc-io";
+> > +};
+> > +
+> > +/*
+> > + * LDO1 wired into RTC, voltage is hard-wired at 3.3v and cannot be
+> > + * software modified. Note that setting voltage here to 3.3v for accuracy
+> > + * sake causes an issue with the driver that causes it to fail to probe
+> > + * because of a voltage constraint in the driver.
+> > + */
+> 
+> Can you please remove any mention of drivers everywhere? DT is OS and 
+> thus driver independent.
+> 
+> Once fixed:
+> Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-On Mon, 25 Sept 2023 at 08:47, Miquel Raynal <miquel.raynal@bootlin.com> wr=
-ote:
->
-> Hi Simon,
->
-> sjg@chromium.org wrote on Mon, 25 Sep 2023 06:33:14 -0600:
->
-> > Hi Miquel,
-> >
-> > On Mon, 25 Sept 2023 at 01:21, Miquel Raynal <miquel.raynal@bootlin.com=
-> wrote:
-> > >
-> > > Hi Simon,
-> > >
-> > > sjg@chromium.org wrote on Fri, 22 Sep 2023 13:51:14 -0600:
-> > >
-> > > > Hi Rob,
-> > > >
-> > > > On Fri, 22 Sept 2023 at 13:43, Rob Herring <robh@kernel.org> wrote:
-> > > > >
-> > > > > On Fri, Sep 22, 2023 at 1:12=E2=80=AFPM Simon Glass <sjg@chromium=
-.org> wrote:
-> > > > > >
-> > > > > > Hi Rob,
-> > > > > >
-> > > > > > On Fri, 22 Sept 2023 at 11:46, Rob Herring <robh@kernel.org> wr=
-ote:
-> > > > > > >
-> > > > > > > On Fri, Sep 22, 2023 at 11:01:18AM -0600, Simon Glass wrote:
-> > > > > > > > Hi Rob,
-> > > > > > > >
-> > > > > > > > On Fri, 22 Sept 2023 at 10:00, Rob Herring <robh@kernel.org=
-> wrote:
-> > > > > > > > >
-> > > > > > > > > On Thu, Sep 21, 2023 at 1:45=E2=80=AFPM Simon Glass <sjg@=
-chromium.org> wrote:
-> > > > > > > > > >
-> > > > > > > > > > Binman[1] is a tool for creating firmware images. It al=
-lows you to
-> > > > > > > > > > combine various binaries and place them in an output fi=
-le.
-> > > > > > > > > >
-> > > > > > > > > > Binman uses a DT schema to describe an image, in enough=
- detail that
-> > > > > > > > > > it can be automatically built from component parts, dis=
-assembled,
-> > > > > > > > > > replaced, listed, etc.
-> > > > > > > > > >
-> > > > > > > > > > Images are typically stored in flash, which is why this=
- binding is
-> > > > > > > > > > targeted at mtd. Previous discussion is at [2] [3].
-> > > > > > > > > >
-> > > > > > > > > > [1] https://u-boot.readthedocs.io/en/stable/develop/pac=
-kage/binman.html
-> > > > > > > > > > [2] https://lore.kernel.org/u-boot/20230821180220.27240=
-80-3-sjg@chromium.org/
-> > > > > > > > > > [3] https://www.spinics.net/lists/devicetree/msg626149.=
-html
-> > > > > > > > >
-> > > > > > > > > You missed:
-> > > > > > > > >
-> > > > > > > > > https://github.com/devicetree-org/dt-schema/pull/110
-> > > > > > > > >
-> > > > > > > > > where I said: We certainly shouldn't duplicate the existi=
-ng partitions
-> > > > > > > > > bindings. What's missing from them (I assume we're mostly=
- talking
-> > > > > > > > > about "fixed-partitions" which has been around forever I =
-think (before
-> > > > > > > > > me))?
-> > > > > > > > >
-> > > > > > > > > To repeat, unless there is some reason binman partitions =
-conflict with
-> > > > > > > > > fixed-partitions, you need to start there and extend it. =
-From what's
-> > > > > > > > > posted here, it neither conflicts nor needs extending.
-> > > > > > > >
-> > > > > > > > I think at this point I am just hopelessly confused. Have y=
-ou taken a
-> > > > > > > > look at the binman schema? [1]
-> > > > > > >
-> > > > > > > Why do I need to? That's used for some tool and has nothing t=
-o do with a
-> > > > > > > device's DTB. However, I thought somewhere in this discussion=
- you showed
-> > > > > > > it under a flash device node.
-> > > > > >
-> > > > > > Yes, that is the intent (under a flash node).
-> > > > > >
-> > > > > > > Then I care because then it overlaps with
-> > > > > > > what we already have for partitions. If I misunderstood that,=
- then just
-> > > > > > > put your schema with your tool. Only users of the tool should=
- care about
-> > > > > > > the tool's schema.
-> > > > > >
-> > > > > > OK. I believe that binman will fit into both camps, since its i=
-nput is
-> > > > > > not necessarily fully formed. E.g. if you don't specify the off=
-set of
-> > > > > > an entry, then it will be packed automatically. But the output =
-is
-> > > > > > fully formed, in that Binman now knows the offset so can write =
-it to
-> > > > > > the DT.
-> > > > >
-> > > > > I suppose it could take its own format as input and then write ou=
-t
-> > > > > something different for the "on the device" format (i.e.
-> > > > > fixed-partitions). At least for the dynamic offsets, we may need
-> > > > > something allowed for binman input, but not allowed on device. In
-> > > > > general, there is support for partitions without addresses/offset=
-s,
-> > > > > but only for partitions that have some other way to figure that o=
-ut
-> > > > > (on disk partition info).
-> > > > >
-> > > > > There's also the image filename which doesn't really belong in th=
-e on
-> > > > > device partitions. So maybe the input and output schemas should b=
-e
-> > > > > separate.
-> > > >
-> > > > OK, I'll focus on the output schema for now. I suspect this will be=
- a
-> > > > grey area though.
-> > > >
-> > > > As an example, if you replace a binary in the firmware, Binman can
-> > > > repack the firmware to make room, respecting the alignment and size
-> > > > constraints. So these need to be in the output schema somehow.
-> > > >
-> > > > >
-> > > > > > > > I saw this file, which seems to extend a partition.
-> > > > > > > >
-> > > > > > > > Documentation/devicetree/bindings/mtd/partitions/brcm,bcm49=
-08-partitions.yaml
-> > > > > > >
-> > > > > > > IIRC, that's a different type where partition locations are s=
-tored in
-> > > > > > > the flash, so we don't need location and size in DT.
-> > > > > >
-> > > > > > OK.
-> > > > > >
-> > > > > > >
-> > > > > > > >
-> > > > > > > > I was assuming that I should create a top-level compatible =
-=3D "binman"
-> > > > > > > > node, with subnodes like compatible =3D "binman,bl31-atf", =
-for example.
-> > > > > > > > I should use the compatible string to indicate the contents=
-, right?
-> > > > > > >
-> > > > > > > Yes for subnodes, and we already have some somewhat standard =
-ones for
-> > > > > > > "u-boot" and "u-boot-env". Though historically, "label" was u=
-sed.
-> > > > > >
-> > > > > > Binman has common properties for all entries, including "compre=
-ss"
-> > > > > > which sets the compression algorithm.
-> > > > >
-> > > > > I see no issue with adding that. It seems useful and something mi=
-ssing
-> > > > > in the existing partition schemas.
-> > > >
-> > > > OK I sent a patch with that.
-> > > >
-> > > > >
-> > > > > > So perhaps I should start by defining a new binman,bl31-atf whi=
-ch has
-> > > > > > common properties from an "binman,entry" definition?
-> > > > >
-> > > > > I don't understand the binman prefix. The contents are ATF (or TF=
--A
-> > > > > now). Who wrote it to the flash image is not relevant.
-> > > >
-> > > > Are you suggesting just "atf-bl31", or "arm,atf-bl31" ? Or should w=
-e
-> > > > change it to "tfa-bl31"?
-> > >
-> > > I don't really understand the relationship with TF-A here. Can't we
-> > > just have a kind of fixed-partitions with additional properties like
-> > > the compression?
-> >
-> > Binman needs to know what to put in there, which is the purpose of the
-> > compatible string.
->
-> But "what" should be put inside the partition is part of the input
-> argument, not the output. You said (maybe I got this wrong) that the
-> schema would apply to the output of binman. If you want to let user
-> know what's inside, maybe it is worth adding a label, but otherwise I
-> don't like the idea of a compatible for that, which for me would mean:
-> "here is how to handle that specific portion of the flash/here is how
-> the flash is organized".
+This note was added due to prior comments because in this very specific
+case we're working around a driver issue. Sadly if I accurately
+describe the hardware the PMIC and devices that depend on it will fail
+to probe (the hardware is 3.3v, but here it's set as 1.3v).
 
-But I thought that the compatible string was for that purpose? See for
-example "brcm,bcm4908-firmware" and "brcm,bcm963xx-imagetag" and
-"linksys,ns-firmware".
+https://lore.kernel.org/linux-sunxi/20230629203410.660eb9a4@slackpad.lan/
 
-What mechanism do you suggest be used here?
+Thank you,
+Chris
 
->
-> > > > > We already have some compatibles in use. We should reuse them if
-> > > > > possible. Not sure about TF-A though.
-> > > >
-> > > > OK.
-> > > >
-> > >
-> > > Also, I still don't understand the purpose of this schema. So binman
-> > > generates an image, you want to flash this image and you would like t=
-he
-> > > tool to generate the corresponding (partition) DT snippet automatical=
-ly.
-> > > Do I get this right? I don't get why you would need new compatibles f=
-or
-> > > that.
-> >
-> > It is actually the other way around. The schema tells Binman how to
-> > build the image (what goes in there and where). Then outputs an
-> > updated DT which describes where everything ended up, for use by other
-> > tools, e.g. firmware update. It is a closed loop in that sense. See
-> > the references for more information.
->
-> Maybe I fail to see why you would want these description to be
-> introduced here, if they are not useful to the OS.
-
-Well I was asked to send them to Linux since they apparently don't
-belong in dt-schema. These are firmware bindings, as indicated, but I
-took them out of the /firmware node since that is for a different
-purpose. Rob suggested that partitions was a good place. We have fwupd
-using DT to hold the firmware-update information, so I expect it will
-move to use these bindings too.
-
->
-> > [1] https://u-boot.readthedocs.io/en/latest/develop/package/index.html
-> > [2] https://pretalx.com/media/osfc2019/submissions/Y7EN9V/resources/Bin=
-man_-_A_data-controlled_firmware_packer_for_U-B_pFU3n2K.pdf
-> > [3] https://www.youtube.com/watch?v=3DL84ujgUXBOQ
->
-
-Regards,
-Simon
+> 
+> Best regards,
+> Jernej
+> 
+> > +&reg_ldo1 {
+> > +	regulator-always-on;
+> > +	regulator-name = "vcc-rtc";
+> > +};
+> > +
+> > +/* LDO2 wired into VCC-PLL and audio codec. */
+> > +&reg_ldo2 {
+> > +	regulator-always-on;
+> > +	regulator-max-microvolt = <3000000>;
+> > +	regulator-min-microvolt = <3000000>;
+> > +	regulator-name = "vcc-pll";
+> > +};
+> > +
+> > +/* LDO3, LDO4, and LDO5 unused. */
+> > +&reg_ldo3 {
+> > +	status = "disabled";
+> > +};
+> > +
+> > +&reg_ldo4 {
+> > +	status = "disabled";
+> > +};
+> > +
+> > +/*
+> > + * Force the driver to use internal oscillator by removing clocks
+> > + * property.
+> > + */
+> > +&rtc {
+> > +	/delete-property/ clocks;
+> > +};
+> > +
+> > +&spi0 {
+> > +	pinctrl-0 = <&spi0_no_miso_pins>;
+> > +	pinctrl-names = "default";
+> > +	status = "okay";
+> > +
+> > +	display@0 {
+> > +		compatible = "saef,sftc154b", "panel-mipi-dbi-spi";
+> > +		reg = <0>;
+> > +		backlight = <&backlight>;
+> > +		dc-gpios = <&pio 2 0 GPIO_ACTIVE_HIGH>; /* PC0 */
+> > +		reset-gpios = <&pio 1 2 GPIO_ACTIVE_HIGH>; /* PB2 */
+> > +		spi-max-frequency = <100000000>;
+> > +
+> > +		height-mm = <39>;
+> > +		width-mm = <39>;
+> > +
+> > +		/* Set hb-porch to compensate for non-visible area */
+> > +		panel-timing {
+> > +			hactive = <240>;
+> > +			vactive = <240>;
+> > +			hback-porch = <80>;
+> > +			vback-porch = <0>;
+> > +			clock-frequency = <0>;
+> > +			hfront-porch = <0>;
+> > +			hsync-len = <0>;
+> > +			vfront-porch = <0>;
+> > +			vsync-len = <0>;
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&uart0 {
+> > +	pinctrl-0 = <&uart0_pb_pins>;
+> > +	pinctrl-names = "default";
+> > +	status = "okay";
+> > +};
+> > +
+> > +&usb_otg {
+> > +	dr_mode = "otg";
+> > +	status = "okay";
+> > +};
+> > +
+> > +&usb_power_supply {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&usbphy {
+> > +	usb0_id_det-gpios = <&pio 6 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PG5 */
+> > +	status = "okay";
+> > +};
+> > 
+> 
+> 
+> 
+> 
 
