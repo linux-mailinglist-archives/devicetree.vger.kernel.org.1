@@ -1,173 +1,186 @@
-Return-Path: <devicetree+bounces-2982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10BB27AD0ED
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:00:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C20457AD0F3
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:01:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 63AE0B209A9
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 07:00:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 71F842814BE
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 07:01:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02FED1078F;
-	Mon, 25 Sep 2023 07:00:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A355610791;
+	Mon, 25 Sep 2023 07:01:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D9991078B
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:00:16 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DA24120;
-	Mon, 25 Sep 2023 00:00:14 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38P3Btba019848;
-	Mon, 25 Sep 2023 06:59:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=U4H5CUSZBMNk8yH3RVT2ePXs/x4w8hw03NsXbrG+TBQ=;
- b=LxRwLhmwwAqj4nUWFqiaqiD7LcDvB6gWiW8dEsMARqvk/bP5NqvJHE7cMEob58tEpOAm
- KQatLFOHTxrhRDRDRlGLfoLdJsCMctGZbnoDngesaHfwsK1PRUXL2fVtEvWknkJ3Ws8O
- Ho3jOF/FCjgUMWimSgRg4unLOfG1d8IwG/oP1NN7RQKqyLVkA9JlftmciNOXs4CgOXex
- 0Q1j6PIQTm0JzJs19vfCUbIRzhLbnCDb6h3dG5WuHV6n03pixmoMP51J/K1bAkRoGA/h
- c5BZTfZejzJKxAu6uDVt10u7cf0jCD67A3nJhS/c9bjpfvt/6aJLSJLJxX5WGlp9niQ8 Dg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tajaphkfr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 25 Sep 2023 06:59:48 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38P6xlgE028796
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 25 Sep 2023 06:59:48 GMT
-Received: from hu-devipriy-blr.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Sun, 24 Sep 2023 23:59:43 -0700
-From: Devi Priya <quic_devipriy@quicinc.com>
-To: <thierry.reding@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <ndesaulniers@google.com>,
-        <trix@redhat.com>, <baruch@tkos.co.il>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <llvm@lists.linux.dev>
-CC: <linux-pwm@vger.kernel.org>, <u.kleine-koenig@pengutronix.de>,
-        <nathan@kernel.org>
-Subject: [PATCH V12 3/3] arm64: dts: ipq6018: add pwm node
-Date: Mon, 25 Sep 2023 12:29:15 +0530
-Message-ID: <20230925065915.3467964-4-quic_devipriy@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230925065915.3467964-1-quic_devipriy@quicinc.com>
-References: <20230925065915.3467964-1-quic_devipriy@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F04F41078B
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:01:16 +0000 (UTC)
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30853E8;
+	Mon, 25 Sep 2023 00:01:14 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2c038a1e2e6so86865391fa.2;
+        Mon, 25 Sep 2023 00:01:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695625272; x=1696230072; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iYQkx42hAwqXvNKUFpRxlN/NVuhqNtrXo/dMgV1J1JM=;
+        b=PiO1YVkXzglRkSragH7pph1GRSKpYQYw1xeyH8mbZLlQgoWpf0IrY41TTmEEqA0Bwo
+         P1HNN0IgDxLmT319N19j9EB88NxzEEfzyklPnUWCU+m0wUUhOgMBBJgr/sVGF9X7IUFB
+         cF6i1Pvai91/18LJpynIq3toHUcZDzzunfLoZ88vmH5bhRHqt3naD8IuYOy8th5jPPHD
+         xjyozQsl8qWnE4zRa1ns2VY9DwDGiOB4eZY2vLv9BUFKuyAg10XlDbhaw/cQDaG9EM7w
+         v2L9ZYM4/soYzqdCCEWhmt+P0AzW7Ou7ox/QgVzRvfCH2jvbA/a+/Gxk3IRguzvZfU/5
+         JPpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695625272; x=1696230072;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iYQkx42hAwqXvNKUFpRxlN/NVuhqNtrXo/dMgV1J1JM=;
+        b=kJFwnSMyAUp1/Xp/AMHAdmGC6F/SbnvMAnvTQwLR+vlDFK83XeLPvqBtwtkkr0YqZ/
+         WBR2V4vQujZuyqBjbtMfIWibIH4097OQ9GSLmLcttKufQbSakjqZh7V0aASOJO3azkOS
+         zNBUDzdlD+GpUv3TSg6PGoJgj8l3iLEf8V1EojdBOC11sbiAXEr35r3krmPBo5yG8MxP
+         xJwRnVRGKlfrGFxBk+/vaqymwqaP895YZGiypgU263BZrO4B3jK6lu7TnEHkLrTVeyfh
+         ZBKDyDkCoPz/AC2fPr1p0ppU5Jtdx7ZHtShURaYbFtD2fm8OmxhOoC1bs/dpu/A6//QO
+         ot9Q==
+X-Gm-Message-State: AOJu0Yzv/lFyLGFKh9/+nzz14pjEFrC7Wy2jyxyTPSeDz4t/s/mDgzNL
+	nfPIhIOLoo4uXm6GbFryRmE=
+X-Google-Smtp-Source: AGHT+IHTnpauAoRjZUS0BV1CBUX4/GxNP2t4RiiSUtfvjd9Hed1meKRyFYk5XtDTfjyDNiU8VmAmCQ==
+X-Received: by 2002:a2e:730b:0:b0:2bc:b75e:b88 with SMTP id o11-20020a2e730b000000b002bcb75e0b88mr4964849ljc.18.1695625271923;
+        Mon, 25 Sep 2023 00:01:11 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f8:1500::1? (dc78bmyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::1])
+        by smtp.gmail.com with ESMTPSA id p2-20020a2e9a82000000b002c001e57e1asm2086956lji.73.2023.09.25.00.01.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Sep 2023 00:01:11 -0700 (PDT)
+Message-ID: <7ff22aa4-475c-b524-9f7a-f47ad02e940b@gmail.com>
+Date: Mon, 25 Sep 2023 10:01:09 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 7w6MzZ7UMwfapwVFDF8Mp1Pt_tw7gSYp
-X-Proofpoint-GUID: 7w6MzZ7UMwfapwVFDF8Mp1Pt_tw7gSYp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-25_03,2023-09-21_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
- phishscore=0 spamscore=0 suspectscore=0 lowpriorityscore=0 clxscore=1015
- mlxscore=0 bulkscore=0 impostorscore=0 priorityscore=1501 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
- definitions=main-2309250047
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 1/6] tools: iio: iio_generic_buffer ensure alignment
+Content-Language: en-US, en-GB
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Angel Iglesias <ang.iglesiasg@gmail.com>, Andreas Klinger
+ <ak@it-klinger.de>, Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Benjamin Bara <bbara93@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1695380366.git.mazziesaccount@gmail.com>
+ <029b4e3e18c76b330b606f5b14699e5ee4e5ed35.1695380366.git.mazziesaccount@gmail.com>
+ <20230924165737.54631dd3@jic23-huawei>
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20230924165737.54631dd3@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Describe the PWM block on IPQ6018.
+On 9/24/23 18:57, Jonathan Cameron wrote:
+> On Fri, 22 Sep 2023 14:16:08 +0300
+> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> 
+>> The iio_generic_buffer can return garbage values when the total size of
+>> scan data is not a multiple of largest element in the scan. This can be
+>> demonstrated by reading a scan consisting for example of one 4 byte and
+>> one 2 byte element, where the 4 byte elemnt is first in the buffer.
+>>
+>> The IIO generic buffert code does not take into accunt the last two
+>> padding bytes that are needed to ensure that the 4byte data for next
+>> scan is correctly aligned.
+>>
+>> Add padding bytes required to align the next sample into the scan size.
+>>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>> ---
+>> Please note, This one could have RFC in subject.:
+>> I attempted to write the fix so that the alignment is done based on the
+>> biggest channel data. This may be wrong. Maybe a fixed 8 byte alignment
+>> should be used instead? This patch can be dropped from the series if the
+>> fix is not correct / agreed.
+>>
+>>   tools/iio/iio_generic_buffer.c | 15 ++++++++++++++-
+>>   1 file changed, 14 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/tools/iio/iio_generic_buffer.c b/tools/iio/iio_generic_buffer.c
+>> index 44bbf80f0cfd..fc562799a109 100644
+>> --- a/tools/iio/iio_generic_buffer.c
+>> +++ b/tools/iio/iio_generic_buffer.c
+>> @@ -54,9 +54,12 @@ enum autochan {
+>>   static unsigned int size_from_channelarray(struct iio_channel_info *channels, int num_channels)
+>>   {
+>>   	unsigned int bytes = 0;
+>> -	int i = 0;
+>> +	int i = 0, max = 0;
+>> +	unsigned int misalignment;
+>>   
+>>   	while (i < num_channels) {
+>> +		if (channels[i].bytes > max)
+>> +			max = channels[i].bytes;
+>>   		if (bytes % channels[i].bytes == 0)
+>>   			channels[i].location = bytes;
+>>   		else
+>> @@ -66,6 +69,16 @@ static unsigned int size_from_channelarray(struct iio_channel_info *channels, in
+>>   		bytes = channels[i].location + channels[i].bytes;
+>>   		i++;
+>>   	}
+>> +	/*
+>> +	 * We wan't the data in next sample to also be properly aligned so
+>> +	 * we'll add padding at the end if needed. TODO: should we use fixed
+>> +	 * 8 byte alignment instead of the size of the biggest samnple?
+>> +	 */
+> 
+> Should be aligned to max size seen in the scan.
 
-The PWM is in the TCSR area. Make &tcsr "simple-mfd" compatible, and add
-&pwm as child of &tcsr.
+Or, maybe it should be
+min(max_size_in_scan, 8);
+?
 
-Add also ipq6018 specific compatible string.
+I think my suggestion above may yield undesirable effects should the 
+scan elements be greater than 8 bytes. (Don't know if this is supported 
+though)
 
-Co-developed-by: Baruch Siach <baruch.siach@siklu.com>
-Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
-Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
----
-v12: 
+> 
+>> +	misalignment = bytes % max;
+>> +	if (misalignment) {
+>> +		printf("Misalignment %u. Adding Padding %u\n", misalignment,  max - misalignment);
+> 
+> No print statement as this is correct behaviour (well the tool is buggy but the kernel generates it
+> correctly I believe).  Fine to add a comment though!
 
-  No change
+Oh, indeed. The print was forgotten from my test runs. Thanks for 
+pointing it out!
 
-v11:
+> 
+>> +		bytes += max - misalignment;
+>> +	}
+>>   
+>>   	return bytes;
+>>   }
+> 
 
-  No change
+Yours,
+	-- Matti
 
-v10:
-
-  No change
-
-v9:
-
-  Add 'ranges' property (Rob)
-
-v8:
-
-  Add size cell to 'reg' (Rob)
-
-v7:
-
-  Use 'reg' instead of 'offset' (Rob)
-
-  Add qcom,tcsr-ipq6018 (Rob)
-
-  Drop clock-names (Bjorn)
-
-v6:
-
-  Make the PWM node child of TCSR (Rob Herring)
-
-  Add assigned-clocks/assigned-clock-rates (Uwe Kleine-König)
-
-v5: Use qcom,pwm-regs for TCSR phandle instead of direct regs
-
-v3: s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
-
- arch/arm64/boot/dts/qcom/ipq6018.dtsi | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-index 47b8b1d6730a..cadd2c583526 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -398,8 +398,21 @@ tcsr_mutex: hwlock@1905000 {
- 		};
- 
- 		tcsr: syscon@1937000 {
--			compatible = "qcom,tcsr-ipq6018", "syscon";
-+			compatible = "qcom,tcsr-ipq6018", "syscon", "simple-mfd";
- 			reg = <0x0 0x01937000 0x0 0x21000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0x0 0x01937000 0x21000>;
-+
-+			 pwm: pwm@a010 {
-+				compatible = "qcom,ipq6018-pwm";
-+				reg = <0xa010 0x20>;
-+				clocks = <&gcc GCC_ADSS_PWM_CLK>;
-+				assigned-clocks = <&gcc GCC_ADSS_PWM_CLK>;
-+				assigned-clock-rates = <100000000>;
-+				#pwm-cells = <2>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		usb2: usb@70f8800 {
 -- 
-2.34.1
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
 
