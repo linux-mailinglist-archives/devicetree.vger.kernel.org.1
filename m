@@ -1,30 +1,30 @@
-Return-Path: <devicetree+bounces-3012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CA0F7AD166
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:21:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D257A7AD162
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 09:21:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 997D6281D2A
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 07:21:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id D371C281773
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 07:21:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED68F1095F;
-	Mon, 25 Sep 2023 07:21:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E210C1097E;
+	Mon, 25 Sep 2023 07:21:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A325710956
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:21:43 +0000 (UTC)
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 74E62126;
-	Mon, 25 Sep 2023 00:21:41 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 937F51096F
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:21:41 +0000 (UTC)
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 75164C0;
+	Mon, 25 Sep 2023 00:21:39 -0700 (PDT)
 X-IronPort-AV: E=Sophos;i="6.03,174,1694703600"; 
-   d="scan'208";a="177131139"
+   d="scan'208";a="180864189"
 Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 25 Sep 2023 16:21:36 +0900
+  by relmlie6.idc.renesas.com with ESMTP; 25 Sep 2023 16:21:36 +0900
 Received: from localhost.localdomain (unknown [10.166.15.32])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 4D9AB4008C77;
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 786784008C6F;
 	Mon, 25 Sep 2023 16:21:36 +0900 (JST)
 From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 To: lpieralisi@kernel.org,
@@ -40,11 +40,10 @@ Cc: marek.vasut+renesas@gmail.com,
 	linux-pci@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	Serge Semin <fancer.lancer@gmail.com>
-Subject: [PATCH v22 15/16] MAINTAINERS: Update PCI DRIVER FOR RENESAS R-CAR for R-Car Gen4
-Date: Mon, 25 Sep 2023 16:21:29 +0900
-Message-Id: <20230925072130.3901087-16-yoshihiro.shimoda.uh@renesas.com>
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v22 16/16] misc: pci_endpoint_test: Add Device ID for R-Car S4-8 PCIe controller
+Date: Mon, 25 Sep 2023 16:21:30 +0900
+Message-Id: <20230925072130.3901087-17-yoshihiro.shimoda.uh@renesas.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230925072130.3901087-1-yoshihiro.shimoda.uh@renesas.com>
 References: <20230925072130.3901087-1-yoshihiro.shimoda.uh@renesas.com>
@@ -56,34 +55,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Update this entry for R-Car Gen4's source code.
+Add Renesas R8A779F0 in pci_device_id table so that pci-epf-test
+can be used for testing PCIe EP on R-Car S4-8.
 
-Link: https://lore.kernel.org/linux-pci/20230825093219.2685912-19-yoshihiro.shimoda.uh@renesas.com
+Link: https://lore.kernel.org/linux-pci/20230825093219.2685912-20-yoshihiro.shimoda.uh@renesas.com
 Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 Signed-off-by: Krzysztof Wilczyński <kwilczynski@kernel.org>
-Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
 Acked-by: Manivannan Sadhasivam <mani@kernel.org>
 ---
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/misc/pci_endpoint_test.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 90f13281d297..4115e648b4af 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16424,6 +16424,7 @@ L:	linux-renesas-soc@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/pci/*rcar*
- F:	drivers/pci/controller/*rcar*
-+F:	drivers/pci/controller/dwc/*rcar*
+diff --git a/drivers/misc/pci_endpoint_test.c b/drivers/misc/pci_endpoint_test.c
+index ed4d0ef5e5c3..150083dab71a 100644
+--- a/drivers/misc/pci_endpoint_test.c
++++ b/drivers/misc/pci_endpoint_test.c
+@@ -81,6 +81,7 @@
+ #define PCI_DEVICE_ID_RENESAS_R8A774B1		0x002b
+ #define PCI_DEVICE_ID_RENESAS_R8A774C0		0x002d
+ #define PCI_DEVICE_ID_RENESAS_R8A774E1		0x0025
++#define PCI_DEVICE_ID_RENESAS_R8A779F0		0x0031
  
- PCI DRIVER FOR SAMSUNG EXYNOS
- M:	Jingoo Han <jingoohan1@gmail.com>
+ static DEFINE_IDA(pci_endpoint_test_ida);
+ 
+@@ -990,6 +991,9 @@ static const struct pci_device_id pci_endpoint_test_tbl[] = {
+ 	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A774B1),},
+ 	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A774C0),},
+ 	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A774E1),},
++	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A779F0),
++	  .driver_data = (kernel_ulong_t)&default_data,
++	},
+ 	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_J721E),
+ 	  .driver_data = (kernel_ulong_t)&j721e_data,
+ 	},
 -- 
 2.25.1
 
