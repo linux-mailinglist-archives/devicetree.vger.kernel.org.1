@@ -1,486 +1,334 @@
-Return-Path: <devicetree+bounces-3215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E3727ADAD0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 17:00:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 460397ADAE0
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 17:04:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 0C18828103F
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 15:00:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 2F9171C203DC
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 15:04:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01D1B1CA8B;
-	Mon, 25 Sep 2023 15:00:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05F041CA96;
+	Mon, 25 Sep 2023 15:04:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C36BA1C6BD
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 15:00:44 +0000 (UTC)
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12olkn2101.outbound.protection.outlook.com [40.92.21.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E19D103
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 08:00:41 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IyM9zFzDbo7wL4ccvnvdjpu5KhwNvagV/uDnnWMHHqe1O06TEZlQSHhvKVfxjTD4+CsMIbtNB9SN84HV1sEuOAHyP03kmDc4ms1SSsqWgpkEpx1oUpMksuYQCiI83o57gSEdl6ivvHImOsmNJPEywWTg06CkvPsnx5r+MrtEDphvYdc35iY056eYKV3NlcF4nBBomn3Gj3NIGMrk5b3gmi2qYK9bDh3xVVTCBPnbNL4ufI2LUDqLIOVJJRvjxrj05YmBxKbhA5XQUPQOHsRRZ/rsXSlr+7UL7Xc3E8cV8escnvbJuKHlDt0GKvvokmv1wX2V8+9Mefo2MOs/5cJ3+w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KQadqu36J1g47feH1q+43S+OC65x6eaSWC2OOhLJ3KI=;
- b=cWfgvwRRCtY9nKRegD9BihMfia5ZeDspf8ZSDgB2WRJwoJAR05OgL4K81dnqePQe49+j/4ejzDdiHB2PSCdiOnhx9ezkE4mFzd04VXJ2IUq8m9sgr5gexz0HH+1bcUJ02bSyhcVUCjj99AUUJ5JFfq8oBtqzaMy7B875bkWRA4k/Ihe3cHezEKz5h5patGJfAbq4DEVXu/+JSCL3mUYArCxsjNUAMZ+BC3wHcMlyWWnCpjHiAWlmAns8eCoBYhWkOJCOUOWrM8UlS9NtCjuLuC+4wYqd9Xfdg3H5l5JFA8gR6rJqPxRNYj6v/ZJbhh8vHjfCByc0ZcMFFYQotemZwA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KQadqu36J1g47feH1q+43S+OC65x6eaSWC2OOhLJ3KI=;
- b=XVC7Ao675SLJihU1c26xXvU20egARfCwEVZ4LB2h5zaD00BFZQpq5HjuDtipQLZinyWfsT/4ZXKAZW8EilVeCWM3gwl63it0obBjRk1R9W0SObZUJ/APsoYXYIKnHiRqdYGIZIT2XdZrCrGc6RIf1Tpkay6sRXBSb53RrAkaAyT0Gbo0cvBd5gg8Ptm9IIpuuYTxssR9bdJesANI7balUtaiV1Xv4GVSGfbrvOVmW3ObDhbtoppeOyIGHv/cVLMOX2/z5zvRs+fkfskrQkZFjntu1H+SOhVoH+Wox0M5bCRTISGmEJ8/KHLsenexNNtZLugzghsd2P4aJ7+FK+00ng==
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
- by SA1PR06MB8436.namprd06.prod.outlook.com (2603:10b6:806:1cf::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.20; Mon, 25 Sep
- 2023 15:00:36 +0000
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::c40c:bbc8:b103:459c]) by SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::c40c:bbc8:b103:459c%2]) with mapi id 15.20.6813.027; Mon, 25 Sep 2023
- 15:00:36 +0000
-Date: Mon, 25 Sep 2023 10:00:33 -0500
-From: Chris Morgan <macromorgan@hotmail.com>
-To: Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc: linux-sunxi@lists.linux.dev, Chris Morgan <macroalpha82@gmail.com>,
-	devicetree@vger.kernel.org, mripard@kernel.org, uwu@icenowy.me,
-	samuel@sholland.org, wens@csie.org, conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-	andre.przywara@arm.com
-Subject: Re: [PATCH V5 4/4] ARM: dts: sunxi: add support for Anbernic RG-Nano
-Message-ID:
- <SN6PR06MB5342C836DCCD58AA47C7FE33A5FCA@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20230921135136.97491-1-macroalpha82@gmail.com>
- <20230921135136.97491-5-macroalpha82@gmail.com>
- <4860683.31r3eYUQgx@jernej-laptop>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4860683.31r3eYUQgx@jernej-laptop>
-X-TMN: [E2FuoC+jx+z9h7nE/Nth541Kx38HU/ZG]
-X-ClientProxiedBy: SN6PR04CA0096.namprd04.prod.outlook.com
- (2603:10b6:805:f2::37) To SN6PR06MB5342.namprd06.prod.outlook.com
- (2603:10b6:805:f9::31)
-X-Microsoft-Original-Message-ID: <ZRGgkQmBaSDd8c10@wintermute.localhost.fail>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EEA018E13
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 15:04:16 +0000 (UTC)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41A56101
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 08:04:14 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-5041d6d8b10so11027936e87.2
+        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 08:04:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1695654252; x=1696259052; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7Txl9Ul5ppPZWo20VjtGmmKq+FIdSbk7aHQLdyBIM4I=;
+        b=ASImDT6dRUdONxOvyc1sTIBQSMigcyXtBcmZKQZPX19fcg1uzsbp1nOauKXCkE5NQQ
+         7NkUpS2NBhORTm4X1/BwRs2HewtsYsRzgCVswCYTOBZNwIWKLv8VvsWK3CDH8Gii7gbx
+         VfzGU9D7fP1owulnPBTpSyZc5RmxNYT41+jUg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695654252; x=1696259052;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7Txl9Ul5ppPZWo20VjtGmmKq+FIdSbk7aHQLdyBIM4I=;
+        b=cIBPDhLuuH1J6d3Z4d5JA9gwFB41m2xiB5TisQ5kqF0UzHk6rZBUQhGMMWzbPx2IkK
+         0pkL6cjrPKtMGEbGBKoA45V9dfI/3jRc0r+kOm2bisog+jNa7QTdDUkyDiCukJCbI32z
+         B3pYiEU3QEw4Ly/b4paWWqFtO8943wkjQEchX4JKZTHlOVI2HG9ggfu1ica1EtJ/Znqo
+         QDCCKlUx2laTesF0YVSDdFbQn1D67eatfH4aOVDhJc3H2iSYx14m0zw7yQfFaNjdX9PN
+         T7GzRDR22XmnMHQtJ58E01fNGQsntMBmSZ2fgsG8xQ0pTjqstFo1MAY/MUThSggC8H8D
+         pWxg==
+X-Gm-Message-State: AOJu0YyBrAPN8jL77LB9bXWjS6pQOucvCr3VGY5wKWsdZyWrsOOhUo44
+	v36hvh0YJwDXDjm0qTDNC0+iIGqOpXwFmzopSYnFHQ==
+X-Google-Smtp-Source: AGHT+IE5AhtMP6qEM9yWMqRJ3+7rXd9hu34InnVnapcgdPnz9dWwim+voHnX9Y2fhT6EBxN6ptIT7YU/xt9iAOQjDSg=
+X-Received: by 2002:a05:6512:1044:b0:500:a0a3:80ff with SMTP id
+ c4-20020a056512104400b00500a0a380ffmr5994543lfb.58.1695654252173; Mon, 25 Sep
+ 2023 08:04:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|SA1PR06MB8436:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5da910c2-ad89-4d0a-1ec3-08dbbdd82c06
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	6mJwlHZHDexscnhg8FKWSWno9EHTmmtmUbG6+nqcga7ytj15DGZpK6cl1q0BF+M/+KMNJFWalCxzPdfJ2VxeyTPbB2Kgs9CNDLUQ+4QD1yLttRPR5vAWiPeDNB0dcFQw5l0zKycMlCIGscfhjRsQst/NraiMLUwpkhR6JTSHDil0h+uvhjyXRqH0HuiPYaGlFG7EbNcNcj3inIOcLZ2mggCeH44+aHdAtJLiNMtkkEHsAYO3uH/zDnVV4R5ITJc2NYnTVC1jjwdIA8UGOgINtqqtnRmePKmx3vEFg6x99ZJ7L5ztL3+f6xyI31XedGtdyVfN/rN99QOyl9xVLmgzER+i4R1HtT5cKJOGt29Ry1QkR0+a8ZmHzmyaevUUE+q9t0VZ6P4c1G3T4Cvm7AusILB0MzyC+9xJKL7nLD9KegBWUFASH+p6pQ0dVL1KOUMjtWXDIzxVpJeURltRr7GOKcZkMueaSZ8QyfoB/CuVama/Gh8B+q8jrDY3FGimLk19nDZfsZCU7PJNAH2uhm+pVgMwKtV5q0XnIxx2+f47fYIlMR0lKSqg13tWLJk/dfiJKlRAIfT9UEykdQuvoh/JXVWVz08Xd7U4BPXhuYaK84Q=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?dS9MSmFLVDhlY0lkcmx2Z2pFZzlDaVNGRFl1eDdERFpZakVBWUUxTnB4Wmgw?=
- =?utf-8?B?eDJlVWxrYWFuYUpNUndIRUJpemh4czlNK29JSkp0MEpmYjBBNThWOGd3NUwy?=
- =?utf-8?B?NE5yYy9TMkhjVXhUMnEyQy9JcElBbmJydjkvZVhsdzBURStENXNyWmMrT2d5?=
- =?utf-8?B?NUpocFRwckVwbGhLZVoybTNJT3crN0taUGtKN1lVNVhBR1N4S0lYQUVySVFk?=
- =?utf-8?B?QUF2SXdCYXpxTm1KU1Y4Z1BOY0ptUFl2K2paNGJOQ2VEOUVDNDNuOHowSzVS?=
- =?utf-8?B?RUNwWVFlYUpsUXJQeG9KQjBCMDgyQ01zZWs3KzF4MjFRcFNWRzNMZjZCcHZN?=
- =?utf-8?B?VU9QeDdUdlcxdG9TSGxiMFhsM1RnZ0d4TkxWYjZjTEs4TmFnM3dnZzB6d1cx?=
- =?utf-8?B?d0ZHSUR6WVlWNml3aXIyaDFOdE16czdtOUd5RUpOSWdJdml0SzBHcThXYlVN?=
- =?utf-8?B?TjhZVlhFQXZvcUU5QmEwRTFzUU94VUowakhWd3MwN1F2WlJ4MmJYb3VHeXgw?=
- =?utf-8?B?dGYxKzVYZThCeW95b1NuNThnUm9ZeEpXMjRpbGJ6QTJmVHcxNlIvZFg0dWdM?=
- =?utf-8?B?QzNISW5KWFduN1BuZXplN1FkVGY3czhCVnhIazhtZm9zS2pVUEFLT1dFVnM3?=
- =?utf-8?B?OE9kRldLZEJ5Mk0wRW5IdHNPQ20waG1UeCtoaUtXcUl3cDFMc1lCaERSU2tR?=
- =?utf-8?B?aWdjMlJ3UjlTN2NpMmNVSVozY2R3b2J2L2Rralk4WENPendwdUx1SGJ1emZE?=
- =?utf-8?B?eGkzZkRZVmhjUDFPcjRwMGZ2K1g0QWJCcGtLK3dNUnZmNkZYcjdFeERHVWZQ?=
- =?utf-8?B?RFZZZW1iaUVmOXNsVG5WS1pXekxXeklZS21qOTl5d25sQWhzZHRxOWVNeER2?=
- =?utf-8?B?Zkg5TWhYVDhSZFJkMGlhYXQ3UEFHdEprU29pbkkweTBXRUdPZUpuTUJ6K3J6?=
- =?utf-8?B?Vjh1M25vUlJORStIYis3VElaZGRvMjhGeGhDaUlRQlE5d0xqRlhBWmFUbHJG?=
- =?utf-8?B?cXFibHBvY2dweTZxSWpHcVBnYmtxYU1mMHk2b3F4Nll4UWdGTVhEYW93RDVz?=
- =?utf-8?B?dGM4REgwZUFRWHc5MVFhTUpXTWNqaDlacjk1TXRENTZxRTN1cUdtVWdUNnZu?=
- =?utf-8?B?K21YNTFMajZaaXBVNGJycG51R1g3V1V4WUo1VTQxTnYzTFFSUldTbXhqNXFF?=
- =?utf-8?B?UWkyY3dlL0RSVjBPckR2ZENweFB0OVpKNWJnWU8rWUN5emd4bXY0OFBhT3Ni?=
- =?utf-8?B?alJWS09JczlNZnlVUDVWVzBkVDFYV2FPNUhHSzhkRm44QTc0VmxzSzllWXp6?=
- =?utf-8?B?VEUyc2ZhQW5COTAySldid0d2RFVxYmFsa1ZaNk8yeTI0MHRCOHp1cHM0Z2dH?=
- =?utf-8?B?OHRRTkVzWjZ2NGRyRUE0Y2NCNFBWZ0x4QkpIMjd4c1pQR0I5UzF6dzN3VjNO?=
- =?utf-8?B?Uzd6V0YxR3RCTmR0U0dBYWY0SUlQNFZKL1RCVjZYcmpuYUlwVUxWOUNiRW1I?=
- =?utf-8?B?aUMvZXNMaHpvT1Z3TEkrVzVYN1NsZkkxdG56OGV3bC81M0Nxa2l1RlBKd0R6?=
- =?utf-8?B?ditRR2NlWVVsSFpsUU8remxUMEZ5L1ltUlJSWVMxNFhZOUtRMkU2WmZzOTZq?=
- =?utf-8?Q?P20/LPEjzKM5ZIsQcNzjd2kaWfsPnZ2225TH76sfKuTI=3D?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5da910c2-ad89-4d0a-1ec3-08dbbdd82c06
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2023 15:00:36.1860
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR06MB8436
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+References: <20230907214012.74978-1-sjg@chromium.org> <CAL_Jsq+WfWrZErmz4u3_-CoVAuxL21UndcRekfJ1e61ZMMBqRw@mail.gmail.com>
+ <CAPnjgZ3ALq9Hr+t4CywO113mKr83xCgFhfz+6=jav3T3R1_TGA@mail.gmail.com>
+ <CAL_JsqJdTR9morobxty1egHFmTwL1-Kh3-sQ5CY7xit80fE2jw@mail.gmail.com> <CAPnjgZ37MmqinWHcWWToVsMwn+3TY=bzyXAqLFgz6kZN=tZ54g@mail.gmail.com>
+In-Reply-To: <CAPnjgZ37MmqinWHcWWToVsMwn+3TY=bzyXAqLFgz6kZN=tZ54g@mail.gmail.com>
+From: Simon Glass <sjg@chromium.org>
+Date: Mon, 25 Sep 2023 09:04:00 -0600
+Message-ID: <CAPnjgZ2tZBY-Mq3ncGEBDd9nhVP5NJbqVFzZe7=UmWtN7kELtQ@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] schemas: Add some common reserved-memory usages
+To: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, Dhaval Sharma <dhaval@rivosinc.com>, 
+	Guo Dong <guo.dong@intel.com>, U-Boot Mailing List <u-boot@lists.denx.de>, 
+	Yunhui Cui <cuiyunhui@bytedance.com>, Chiu Chasel <chasel.chiu@intel.com>, 
+	Mark Rutland <mark.rutland@arm.com>, linux-acpi@vger.kernel.org, 
+	Maximilian Brune <maximilian.brune@9elements.com>, Ard Biesheuvel <ardb@kernel.org>, 
+	Tom Rini <trini@konsulko.com>, Lean Sheng Tan <sheng.tan@9elements.com>, 
+	Gua Guo <gua.guo@intel.com>, ron minnich <rminnich@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Sun, Sep 24, 2023 at 09:33:53PM +0200, Jernej Škrabec wrote:
-> Dne četrtek, 21. september 2023 ob 15:51:36 CEST je Chris Morgan napisal(a):
-> > From: Chris Morgan <macromorgan@hotmail.com>
-> > 
-> > The Anbernic RG-Nano is a small portable game device based on the
-> > Allwinner V3s SoC. It has GPIO buttons on the face and side for
-> > input, a single mono speaker, a 240x240 SPI controlled display, a USB-C
-> > OTG port, an SD card slot for booting, and 64MB of RAM included in the
-> > SoC. There does not appear to be a crystal feeding the internal RTC so
-> > it does not keep proper time (for me it ran 8 hours slow in a 24 hour
-> > period). External RTC works just fine.
-> > 
-> > Working/Tested:
-> > - SDMMC
-> > - UART (for debugging)
-> > - Buttons
-> > - Charging/battery/PMIC
-> > - Speaker
-> > - RTC (external RTC)
-> > - USB
-> > - Display
-> > 
-> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > ---
-> >  arch/arm/boot/dts/allwinner/Makefile          |   1 +
-> >  .../allwinner/sun8i-v3s-anbernic-rg-nano.dts  | 284 ++++++++++++++++++
-> >  2 files changed, 285 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
-> > 
-> > diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts/allwinner/Makefile
-> > index eebb5a0c873a..2d26c3397f14 100644
-> > --- a/arch/arm/boot/dts/allwinner/Makefile
-> > +++ b/arch/arm/boot/dts/allwinner/Makefile
-> > @@ -256,6 +256,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
-> >  	sun8i-t113s-mangopi-mq-r-t113.dtb \
-> >  	sun8i-t3-cqa3t-bv3.dtb \
-> >  	sun8i-v3-sl631-imx179.dtb \
-> > +	sun8i-v3s-anbernic-rg-nano.dtb \
-> >  	sun8i-v3s-licheepi-zero.dtb \
-> >  	sun8i-v3s-licheepi-zero-dock.dtb \
-> >  	sun8i-v40-bananapi-m2-berry.dtb
-> > diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts b/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
-> > new file mode 100644
-> > index 000000000000..1a4429dc57b1
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
-> > @@ -0,0 +1,284 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +
-> > +/dts-v1/;
-> > +#include <dt-bindings/input/linux-event-codes.h>
-> > +#include "sun8i-v3s.dtsi"
-> > +#include "sunxi-common-regulators.dtsi"
-> > +
-> > +/ {
-> > +	model = "Anbernic RG Nano";
-> > +	compatible = "anbernic,rg-nano", "allwinner,sun8i-v3s";
-> > +
-> > +	aliases {
-> > +		rtc0 = &pcf8563;
-> > +		rtc1 = &rtc;
-> > +		serial0 = &uart0;
-> > +	};
-> > +
-> > +	backlight: backlight {
-> > +		compatible = "pwm-backlight";
-> > +		brightness-levels = <0 1 2 3 8 14 21 32 46 60 80 100>;
-> > +		default-brightness-level = <11>;
-> > +		power-supply = <&reg_vcc5v0>;
-> > +		pwms = <&pwm 0 40000 1>;
-> > +	};
-> > +
-> > +	chosen {
-> > +		stdout-path = "serial0:115200n8";
-> > +	};
-> > +
-> > +	gpio_keys: gpio-keys {
-> > +		compatible = "gpio-keys";
-> > +
-> > +		button-a {
-> > +			gpios = <&gpio_expander 12 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "BTN-A";
-> > +			linux,code = <BTN_EAST>;
-> > +		};
-> > +
-> > +		button-b {
-> > +			gpios = <&gpio_expander 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "BTN-B";
-> > +			linux,code = <BTN_SOUTH>;
-> > +		};
-> > +
-> > +		button-down {
-> > +			gpios = <&gpio_expander 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "DPAD-DOWN";
-> > +			linux,code = <BTN_DPAD_DOWN>;
-> > +		};
-> > +
-> > +		button-left {
-> > +			gpios = <&gpio_expander 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "DPAD-LEFT";
-> > +			linux,code = <BTN_DPAD_LEFT>;
-> > +		};
-> > +
-> > +		button-right {
-> > +			gpios = <&gpio_expander 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "DPAD-RIGHT";
-> > +			linux,code = <BTN_DPAD_RIGHT>;
-> > +		};
-> > +
-> > +		button-se {
-> > +			gpios = <&gpio_expander 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "BTN-SELECT";
-> > +			linux,code = <BTN_SELECT>;
-> > +		};
-> > +
-> > +		button-st {
-> > +			gpios = <&gpio_expander 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "BTN-START";
-> > +			linux,code = <BTN_START>;
-> > +		};
-> > +
-> > +		button-tl {
-> > +			gpios = <&gpio_expander 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "BTN-L";
-> > +			linux,code = <BTN_TL>;
-> > +		};
-> > +
-> > +		button-tr {
-> > +			gpios = <&gpio_expander 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "BTN-R";
-> > +			linux,code = <BTN_TR>;
-> > +		};
-> > +
-> > +		button-up {
-> > +			gpios = <&gpio_expander 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "DPAD-UP";
-> > +			linux,code = <BTN_DPAD_UP>;
-> > +		};
-> > +
-> > +		button-x {
-> > +			gpios = <&gpio_expander 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "BTN-X";
-> > +			linux,code = <BTN_NORTH>;
-> > +		};
-> > +
-> > +		button-y {
-> > +			gpios = <&gpio_expander 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "BTN-Y";
-> > +			linux,code = <BTN_WEST>;
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&codec {
-> > +	allwinner,audio-routing = "Speaker", "HP",
-> > +				  "MIC1", "Mic",
-> > +				  "Mic", "HBIAS";
-> > +	allwinner,pa-gpios = <&pio 5 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; /* PF6 */
-> > +	status = "okay";
-> > +};
-> > +
-> > +&ehci {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&i2c0 {
-> > +	status = "okay";
-> > +
-> > +	gpio_expander: gpio@20 {
-> > +		compatible = "nxp,pcal6416";
-> > +		reg = <0x20>;
-> > +		gpio-controller;
-> > +		#gpio-cells = <2>;
-> > +		#interrupt-cells = <2>;
-> > +		interrupt-controller;
-> > +		interrupt-parent = <&pio>;
-> > +		interrupts = <1 3 IRQ_TYPE_EDGE_BOTH>; /* PB3/EINT3 */
-> > +		vcc-supply = <&reg_vcc3v3>;
-> > +	};
-> > +
-> > +	axp209: pmic@34 {
-> > +		reg = <0x34>;
-> > +		interrupt-parent = <&pio>;
-> > +		interrupts = <1 5 IRQ_TYPE_EDGE_FALLING>; /* PB5/EINT5 */
-> > +	};
-> > +
-> > +	pcf8563: rtc@51 {
-> > +		compatible = "nxp,pcf8563";
-> > +		reg = <0x51>;
-> > +	};
-> > +};
-> > +
-> > +#include "axp209.dtsi"
-> > +
-> > +&battery_power_supply {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&mmc0 {
-> > +	broken-cd;
-> > +	bus-width = <4>;
-> > +	disable-wp;
-> > +	vmmc-supply = <&reg_vcc3v3>;
-> > +	vqmmc-supply = <&reg_vcc3v3>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&ohci {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&pio {
-> > +	vcc-pb-supply = <&reg_vcc3v3>;
-> > +	vcc-pc-supply = <&reg_vcc3v3>;
-> > +	vcc-pf-supply = <&reg_vcc3v3>;
-> > +	vcc-pg-supply = <&reg_vcc3v3>;
-> > +
-> > +	spi0_no_miso_pins: spi0-no-miso-pins {
-> > +		pins = "PC1", "PC2", "PC3";
-> > +		function = "spi0";
-> > +	};
-> > +};
-> > +
-> > +&pwm {
-> > +	pinctrl-0 = <&pwm0_pin>;
-> > +	pinctrl-names = "default";
-> > +	status = "okay";
-> > +};
-> > +
-> > +/* DCDC2 wired into vdd-cpu, vdd-sys, and vdd-ephy. */
-> > +&reg_dcdc2 {
-> > +	regulator-always-on;
-> > +	regulator-max-microvolt = <1250000>;
-> > +	regulator-min-microvolt = <1250000>;
-> > +	regulator-name = "vdd-cpu";
-> > +};
-> > +
-> > +/* DCDC3 wired into every 3.3v input that isn't the RTC. */
-> > +&reg_dcdc3 {
-> > +	regulator-always-on;
-> > +	regulator-max-microvolt = <3300000>;
-> > +	regulator-min-microvolt = <3300000>;
-> > +	regulator-name = "vcc-io";
-> > +};
-> > +
-> > +/*
-> > + * LDO1 wired into RTC, voltage is hard-wired at 3.3v and cannot be
-> > + * software modified. Note that setting voltage here to 3.3v for accuracy
-> > + * sake causes an issue with the driver that causes it to fail to probe
-> > + * because of a voltage constraint in the driver.
-> > + */
-> 
-> Can you please remove any mention of drivers everywhere? DT is OS and 
-> thus driver independent.
-> 
-> Once fixed:
-> Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Hi Rob,
 
-This note was added due to prior comments because in this very specific
-case we're working around a driver issue. Sadly if I accurately
-describe the hardware the PMIC and devices that depend on it will fail
-to probe (the hardware is 3.3v, but here it's set as 1.3v).
+On Thu, 21 Sept 2023 at 10:45, Simon Glass <sjg@chromium.org> wrote:
+>
+> Hi Rob,
+>
+> On Thu, 21 Sept 2023 at 09:20, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Thu, Sep 21, 2023 at 9:38=E2=80=AFAM Simon Glass <sjg@chromium.org> =
+wrote:
+> > >
+> > > Hi Rob,
+> > >
+> > > On Thu, 21 Sept 2023 at 08:25, Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > On Thu, Sep 7, 2023 at 4:40=E2=80=AFPM Simon Glass <sjg@chromium.or=
+g> wrote:
+> > > > >
+> > > > > It is common to split firmware into 'Platform Init', which does t=
+he
+> > > > > initial hardware setup and a "Payload" which selects the OS to be=
+ booted.
+> > > > > Thus an handover interface is required between these two pieces.
+> > > > >
+> > > > > This aims to provide an small schema addition for the memory mapp=
+ing
+> > > > > needed to keep these two pieces working together well.
+> > > > >
+> > > > > Signed-off-by: Simon Glass <sjg@chromium.org>
+> > > > > ---
+> > > > >
+> > > > > Changes in v6:
+> > > > > - Drop mention of UEFI
+> > > > > - Use compatible strings instead of node names
+> > > > >
+> > > > > Changes in v5:
+> > > > > - Drop the memory-map node (should have done that in v4)
+> > > > > - Tidy up schema a bit
+> > > > >
+> > > > > Changes in v4:
+> > > > > - Make use of the reserved-memory node instead of creating a new =
+one
+> > > > >
+> > > > > Changes in v3:
+> > > > > - Reword commit message again
+> > > > > - cc a lot more people, from the FFI patch
+> > > > > - Split out the attributes into the /memory nodes
+> > > > >
+> > > > > Changes in v2:
+> > > > > - Reword commit message
+> > > > >
+> > > > >  .../reserved-memory/common-reserved.yaml      | 71 +++++++++++++=
+++++++
+> > > > >  1 file changed, 71 insertions(+)
+> > > > >  create mode 100644 dtschema/schemas/reserved-memory/common-reser=
+ved.yaml
+> > > > >
+> > > > > diff --git a/dtschema/schemas/reserved-memory/common-reserved.yam=
+l b/dtschema/schemas/reserved-memory/common-reserved.yaml
+> > > > > new file mode 100644
+> > > > > index 0000000..4889f59
+> > > > > --- /dev/null
+> > > > > +++ b/dtschema/schemas/reserved-memory/common-reserved.yaml
+> > > > > @@ -0,0 +1,71 @@
+> > > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: http://devicetree.org/schemas/reserved-memory/common-reserv=
+ed.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: Common memory reservations
+> > > > > +
+> > > > > +description: |
+> > > > > +  Specifies that the reserved memory region can be used for the =
+purpose
+> > > > > +  indicated by its compatible string.
+> > > > > +
+> > > > > +  Clients may reuse this reserved memory if they understand what=
+ it is for,
+> > > > > +  subject to the notes below.
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Simon Glass <sjg@chromium.org>
+> > > > > +
+> > > > > +allOf:
+> > > > > +  - $ref: reserved-memory.yaml
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    description: |
+> > > > > +      This describes some common memory reservations:
+> > > > > +
+> > > > > +         acpi-reclaim: Contains ACPI tables; memory may be recla=
+imed when the
+> > > > > +           tables are no-longer needed
+> > > >
+> > > > I think you are mixing 2 things with the name here. What the memory
+> > > > contains and what to do with it. You don't need the latter. The
+> > > > consumer of the region will know what to do with it if anything bas=
+ed
+> > > > on knowing what is in the region. For example, The DTB passed to th=
+e
+> > > > OS is typically in a reserved region (probably still /mem-reserve/
+> > > > though). The DTB may remain there forever or the OS could copy it
+> > > > somewhere else and free the reserved region. The Linux kernel does
+> > > > both depending on the arch. (Of course there is no "dtb" compatible
+> > > > because we have to pass the location of the dtb to even find the
+> > > > reserved regions in the first place.)
+> > > >
+> > > > So the question here is whether just "acpi" (or "acpi-tables"?) wou=
+ld
+> > > > be explicit enough?
+> > >
+> > > Yes acpi-tables would be enough.
+> > >
+> > > >
+> > > > > +         acpi-nvs: Contains ACPI Non-volatile-storage data; memo=
+ry may be
+> > > > > +           reclaimed when the tables are no-longer needed
+> > > >
+> > > > No need to say anything about reclaiming.
+> > >
+> > > OK...so what about all that discussion about being able to reclaim th=
+e
+> > > memory if you know what it is for? Where should that be written? Or i=
+s
+> > > it somewhere else already?
+> >
+> > Reclaiming is a policy of the consumer of the data. It belongs in the
+> > documentation of the consumer if you are going to document it.
+> >
+> > The global policy is you can't use reserved regions and you can't
+> > reclaim them if you don't know what they are. If you want to add
+> > something to that effect in reserved-memory.yaml or the spec, that's
+> > fine, but that's not a per compatible thing.
+>
+> OK I will do that.
+>
+> >
+> > > > I know some ACPIisms (e.g. DSDT), but I don't know what NVS or
+> > > > "Non-volatile-storage data" is in an ACPI context.
+> > > >
+> > > > > +         boot-code: Contains code used for booting; memory may b=
+e reclaimed by
+> > > > > +           the OS when it is running
+> > > > > +         boot-code: Contains data used for booting; memory may b=
+e reclaimed by
+> > > >
+> > > > boot-data?
+> > >
+> > > Yes
+> > >
+> > > >
+> > > > > +           the OS when it is running
+> > > >
+> > > > I thought these were for stages before we get to OS?
+> > >
+> > > Yes...but of course these will be passed on to the OS in some form.
+> > > See above re reclaiming.
+> > >
+> > > >
+> > > > > +         runtime-code: Contains code used for interacting with t=
+he system when
+> > > > > +           running; memory may be reclaimed if this code is not =
+called
+> > > > > +         runtime-data: Contains data used for interacting with t=
+he system when
+> > > > > +           running; memory may be reclaimed if the runtime code =
+is not used
+> > > >
+> > > > "boot" vs. "runtime" seem too vague. However, if these mean EFI boo=
+t
+> > > > time services and runtime services, then I understand exactly what
+> > > > they are. In that case dropping 'uefi,' was a mistake. But EFI has =
+its
+> > > > own way to define these regions, right?
+> > >
+> > > I really don't want to do another round of that circle. I was asked t=
+o
+> > > drop mention of EFI which I did. If these are too vague, what should =
+I
+> > > do instead? Perhaps:
+> > >
+> > > boot-code / data
+> > > os-code / data
+> >
+> > The kernel is boot code (and os code and runtime code). Can I use
+>
+> What do you mean by that? The kernel is an OS. It might have an EFI
+> stub or other stuff, but it is not a boot loader. We have to have some
+> generally accepted terms for what is the OS and what is the firmware.
+>
+> > these for the kernel image? Certainly not. But they are too vague to
+> > understand when to use them and when not to. Are they specific to EDK2
+> > implementation? Then perhaps they need an 'edk2' prefix.
+> >
+> > Either these are related to EFI boot time services and runtime
+> > services or they aren't. Which is it? If they are related, then EFI
+> > should certainly be mentioned. Review comments are wrong all the time
+> > when the reasoning is missing or misunderstood. Please back up and
+> > explain why these are needed. Maybe it's buried in prior threads
+> > somewhere, but I'm not going back to re-read all that. This patch has
+> > to stand on its own.
+>
+> For my email client it is buried in this thread, see the ~20 messages
+> above, or [1]. I took all the EFI stuff out of here because it was
+> going nowhere.
+>
+> The text I removed in this version is:
+>
+> >>>
+> It is common to split firmware into 'Platform Init', which does the
+> initial hardware setup and a "Payload" which selects the OS to be booted.
+> Thus an handover interface is required between these two pieces.
+>
+> Where UEFI boot-time services are not available, but UEFI firmware is
+> present on either side of this interface, information about memory usage
+> and attributes must be presented to the "Payload" in some form.
+> <<<
+>
+> Then I tried to explain it in terms of Tianocore being split into two
+> parts, one of which does Platform Init (e.g. silicon setup) and the
+> other which boots the OS. But that got lost is discussion about DXEs,
+> etc. There is no other communication mechanism between these two
+> pieces, nor does either piece know (at runtime or build time) whether
+> the other is there, or whether it is something else (e.g. coreboot or
+> U-Boot). This allows supporting Platform Init / Payload combinations
+> like coreboot->Tianocore, Tianocore->Tianocore. coreboot->U-Boot,
+> etc., i.e. universal compatibility.
+>
+> IMhO this binding doesn't need to be about EFI. The concept of code
+> which is used during boot and code which is used by the OS doesn't
+> seem specific to EFI. After all, ARM has PSCI code which presumably
+> lives somewhere.
+>
+> So do you really want it to mention EFI?
+>
+> I have volunteered to take this on on behalf of the EDK2 people, who
+> are copied on this thread and hoping / relying on something being
+> resolved.
 
-https://lore.kernel.org/linux-sunxi/20230629203410.660eb9a4@slackpad.lan/
+Do you have any thoughts on the above? I'd really like to understand
+what needs to be done here. We have a meeting tomorrow on the handoff
+format and I don't have a lot to show for my efforts of the last 5
+weeks.
 
-Thank you,
-Chris
+Regards,
+SImon
 
-> 
-> Best regards,
-> Jernej
-> 
-> > +&reg_ldo1 {
-> > +	regulator-always-on;
-> > +	regulator-name = "vcc-rtc";
-> > +};
-> > +
-> > +/* LDO2 wired into VCC-PLL and audio codec. */
-> > +&reg_ldo2 {
-> > +	regulator-always-on;
-> > +	regulator-max-microvolt = <3000000>;
-> > +	regulator-min-microvolt = <3000000>;
-> > +	regulator-name = "vcc-pll";
-> > +};
-> > +
-> > +/* LDO3, LDO4, and LDO5 unused. */
-> > +&reg_ldo3 {
-> > +	status = "disabled";
-> > +};
-> > +
-> > +&reg_ldo4 {
-> > +	status = "disabled";
-> > +};
-> > +
-> > +/*
-> > + * Force the driver to use internal oscillator by removing clocks
-> > + * property.
-> > + */
-> > +&rtc {
-> > +	/delete-property/ clocks;
-> > +};
-> > +
-> > +&spi0 {
-> > +	pinctrl-0 = <&spi0_no_miso_pins>;
-> > +	pinctrl-names = "default";
-> > +	status = "okay";
-> > +
-> > +	display@0 {
-> > +		compatible = "saef,sftc154b", "panel-mipi-dbi-spi";
-> > +		reg = <0>;
-> > +		backlight = <&backlight>;
-> > +		dc-gpios = <&pio 2 0 GPIO_ACTIVE_HIGH>; /* PC0 */
-> > +		reset-gpios = <&pio 1 2 GPIO_ACTIVE_HIGH>; /* PB2 */
-> > +		spi-max-frequency = <100000000>;
-> > +
-> > +		height-mm = <39>;
-> > +		width-mm = <39>;
-> > +
-> > +		/* Set hb-porch to compensate for non-visible area */
-> > +		panel-timing {
-> > +			hactive = <240>;
-> > +			vactive = <240>;
-> > +			hback-porch = <80>;
-> > +			vback-porch = <0>;
-> > +			clock-frequency = <0>;
-> > +			hfront-porch = <0>;
-> > +			hsync-len = <0>;
-> > +			vfront-porch = <0>;
-> > +			vsync-len = <0>;
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&uart0 {
-> > +	pinctrl-0 = <&uart0_pb_pins>;
-> > +	pinctrl-names = "default";
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usb_otg {
-> > +	dr_mode = "otg";
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usb_power_supply {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usbphy {
-> > +	usb0_id_det-gpios = <&pio 6 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PG5 */
-> > +	status = "okay";
-> > +};
-> > 
-> 
-> 
-> 
-> 
+> [1] https://lore.kernel.org/lkml/CAMj1kXHGpCt8qkd6XYQF8mMdivQkTnEWjv6NzsF=
+K=3D+N72LAn=3DQ@mail.gmail.com/
 
