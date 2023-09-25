@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-2974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-2975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC25C7AD0C8
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 08:56:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D9B7AD0CF
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 08:56:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id 4E3EF1F243A3
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 06:56:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id B5BE11F2435E
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 06:56:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A6B310783;
-	Mon, 25 Sep 2023 06:56:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79A7A10786;
+	Mon, 25 Sep 2023 06:56:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C7CAEC0
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 06:56:11 +0000 (UTC)
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 860AECE
-	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 23:56:10 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9a9cd066db5so757508466b.0
-        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 23:56:10 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B0B45686
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 06:56:53 +0000 (UTC)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7EE9DF
+	for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 23:56:50 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-530e721f077so6812468a12.2
+        for <devicetree@vger.kernel.org>; Sun, 24 Sep 2023 23:56:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695624969; x=1696229769; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695625009; x=1696229809; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qEZbrl9SIs9a0XW0Xx0utzWhv2bO+1IK7txISbkkhkc=;
-        b=lhFsmZueXfZ8BOJzF8EhfTqtQKi4L8XY7sXWe6VlXYSsSXlNbUUummrOk+L6b+nQRK
-         E1cwfc7S1rN5q3RXdtL8K8UqhOEmatfPjO8f/Wm+XgenJ/iq2QIO9a4ohYnHOnpK6Y8w
-         21iPOqkc6i5dVDaNiU4MG6K8qyXivNbsDNqTpuv2nHHpSTDisn4HQF+cwcts/ZBon+9J
-         vpJjVtQ8+35EpCpIyT8uJMadWB5PwZ9/8h/ob09hJVJMrHkIJFGoolfyWyRNiC5mcgCx
-         i7iyBRZiK9NOsXu+1i72DYAu3dbLxDejagIr54FbGc99nguoYqoTx8wPSpfnPW8rsdRj
-         q3yQ==
+        bh=L7WPHi+cU40K0cpq2z6xjT+pYbikoqD2eOCtsPV145c=;
+        b=KLbiz+eutL0NrzJ10K1QldzNXoSc4ofF5FMGLcVuoHcuFPckAAZA/nMq2qKYfgNreP
+         9Hwu5sFeX5rtF4v1IrIwBxgoURdUqvheNqc9Cgz9wZhAXYgu08jbSFGihCMGXGAGxHhf
+         l9BDYGRGzlTn/UQDOoF483LY8nY50xyCa7CXavroVJqq8wn+xFRiysx9BJboHn9QabF0
+         BS1sWNCEHau/aR7NYpOkBZie+oEonhtfOOfchS2+hEevGCcu4oYJeklYDGO3dXEJOB3C
+         ZgwzV3lPUA+ypUVoEx44kzb9snvjPhhdsh4u8OMu384a9JGfG7NBxZ1E3kOdZuKHLCa+
+         oC8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695624969; x=1696229769;
+        d=1e100.net; s=20230601; t=1695625009; x=1696229809;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qEZbrl9SIs9a0XW0Xx0utzWhv2bO+1IK7txISbkkhkc=;
-        b=Qjk383TFJj9d/fVMJstxHruTmzR6UCe9L43xVpF3VN23Sk+7rnc2SqwFMR5lc8Inrb
-         V/3xBuPMPWGQoH1G0nLGSpGUUnLwJaRQUDe6fCYVOJycWncorlqO43qHzk/UfZTeE7Cl
-         R4oLgEfh+l05cYjwQu+w4Qr2U2o+ZqOSVIEEEYU8uqPzpnyDquHFKfiMBFDm0EdTWMyL
-         sUHKEKFrBKFX5ubxsZQy4cY5url+tekXkzg4paWAcNjBotA6uefG9INQISTkMZYh5RGk
-         lMkG6kbNWVGnK4sRqRdW0GmSvuGNXlA0X3AExKrT+DYl+n36YtLrjg/5AoplbDzQ23a/
-         VptA==
-X-Gm-Message-State: AOJu0YzsHHU/E3FrCxc2jjBJjwxSJBY0On7s9G5LV04L5DDaz1jsIHb1
-	PZzq0U1xjogx7/+wIpEZKA852w==
-X-Google-Smtp-Source: AGHT+IEAT613GfYim95ogwinzmxiDQUza6TUO8J5dgmA83wo7uF6hKpwkDHOjwZh4CRKHud+pkTHZg==
-X-Received: by 2002:a17:906:5308:b0:9ae:69b8:322b with SMTP id h8-20020a170906530800b009ae69b8322bmr5289335ejo.60.1695624969061;
-        Sun, 24 Sep 2023 23:56:09 -0700 (PDT)
+        bh=L7WPHi+cU40K0cpq2z6xjT+pYbikoqD2eOCtsPV145c=;
+        b=W622hIlnDwjPcBTjiInFJ3GxjV+FrJt7ERYFq00HMSZ1b3sC5btnBlzH5zNXeu0QxL
+         d3tcmx2HAkZX2pcO3N7U6X9TwgCkIOq+SRs5DI5pu10xYZFEce+K/OpKW2EwuMgESsva
+         NHlMR/yM+Ef7m9hJYXPqjk2fqUTTthJJm1ygLBliSeJ2FKzo1LV+QxQIVv35FfjpFCw5
+         JUGUqrTDCm8jcVySkstcOMQkW/bLKfp4WmxPKdmmsVZsLm0VCPFdG6kEviZJX1IGrwD2
+         24UTFrsJmupXquwusVx5oD+a3fZJZsHzPOu2TfV79PPeca+iAb1Si6r2PvSZYKtW6QhK
+         AryQ==
+X-Gm-Message-State: AOJu0YyDfLRa+3l8jEGVjoWx7kWRzkn5ySnMyKJduFvi3qDpf0V3kEqh
+	ojCUQupJmBUKck8bRlKYO4uKlQ==
+X-Google-Smtp-Source: AGHT+IEKMwoW0elwx2fK4G2iKfyxbK5pK6eha13vKmmsNaUrxPXz5brsCWXqrRU8lEak95SeH0I7ew==
+X-Received: by 2002:a17:907:272a:b0:9a5:d74a:8b0a with SMTP id d10-20020a170907272a00b009a5d74a8b0amr5195178ejl.12.1695625009489;
+        Sun, 24 Sep 2023 23:56:49 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.100])
-        by smtp.gmail.com with ESMTPSA id g27-20020a170906349b00b0099bc0daf3d7sm5843290ejb.182.2023.09.24.23.56.07
+        by smtp.gmail.com with ESMTPSA id g27-20020a170906349b00b0099bc0daf3d7sm5843290ejb.182.2023.09.24.23.56.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Sep 2023 23:56:08 -0700 (PDT)
-Message-ID: <e00aa564-faf1-4ce3-8b56-595c7dd089b1@linaro.org>
-Date: Mon, 25 Sep 2023 08:56:07 +0200
+        Sun, 24 Sep 2023 23:56:48 -0700 (PDT)
+Message-ID: <97009cf9-4c90-408d-8c6b-f07ce3dd9263@linaro.org>
+Date: Mon, 25 Sep 2023 08:56:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,15 +63,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] dt-bindings: crypto: fsl-imx-sahara: Document the
- clocks
+Subject: Re: [PATCH 4/4] dt-bindings: crypto: fsl-imx-sahara: Fix the number
+ of irqs
 Content-Language: en-US
 To: Fabio Estevam <festevam@gmail.com>, herbert@gondor.apana.org.au
 Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
  conor+dt@kernel.org, linux-crypto@vger.kernel.org,
  devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
 References: <20230924223104.862169-1-festevam@gmail.com>
- <20230924223104.862169-3-festevam@gmail.com>
+ <20230924223104.862169-4-festevam@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -117,27 +117,73 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230924223104.862169-3-festevam@gmail.com>
+In-Reply-To: <20230924223104.862169-4-festevam@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 25/09/2023 00:31, Fabio Estevam wrote:
 > From: Fabio Estevam <festevam@denx.de>
 > 
-> The Sahara block needs to clocks (ipg and ahb) to operate.
+> i.MX27 has only one Sahara interrupt. i.MX53 has two.
 > 
-> Describe them.
+> Describe this difference.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+>  .../bindings/crypto/fsl-imx-sahara.yaml       | 23 ++++++++++++++++++-
+>  1 file changed, 22 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/fsl-imx-sahara.yaml b/Documentation/devicetree/bindings/crypto/fsl-imx-sahara.yaml
+> index 9dbfc15510a8..9d1d9c8f0955 100644
+> --- a/Documentation/devicetree/bindings/crypto/fsl-imx-sahara.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/fsl-imx-sahara.yaml
+> @@ -19,7 +19,10 @@ properties:
+>      maxItems: 1
+>  
+>    interrupts:
+> -    maxItems: 1
+> +    items:
+> +      - description: SAHARA Interrupt for Host 0
+> +      - description: SAHARA Interrupt for Host 1
+> +    minItems: 1
+>  
+>    clocks:
+>      items:
+> @@ -40,6 +43,24 @@ required:
+>  
+>  additionalProperties: false
+>  
+> +allOf:
 
-"Describe the clocks (ipg and ahb) needed by Sahara block to operate".
-One line, instead of three.
+This goes before additionalProperties:.
+
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx53-sahara
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          minItems: 2
+> +          maxItems: 2
+> +    else:
+> +      properties:
+> +        interrupts:
+> +          minItems: 1
+
+maxItems is enough.
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
