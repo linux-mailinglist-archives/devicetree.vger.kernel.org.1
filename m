@@ -1,175 +1,133 @@
-Return-Path: <devicetree+bounces-3198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1F797ADA29
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 16:34:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 425977ADA31
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 16:41:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 87A04281461
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 14:34:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id E592D281332
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 14:41:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92F541BDE8;
-	Mon, 25 Sep 2023 14:34:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F108A1C282;
+	Mon, 25 Sep 2023 14:41:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 211081A266
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 14:34:50 +0000 (UTC)
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D7AA103
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:34:47 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-530ce262ab2so7330480a12.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:34:47 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3071C1B26E
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 14:41:42 +0000 (UTC)
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82E48101
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:41:40 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-40572aeb673so32968375e9.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 07:41:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695652486; x=1696257286; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=At5G8LjCiI/G/LK/Xh23Vr8bY4UZ5vnWbR2xhLShcaM=;
-        b=BrlEPtkALjym9wTh/iSL1BZQleVuzmALvEyAldOCRwxYohndQ+cy4Q480nEVzELoRH
-         R2CRdMfOVlcy1lzXTl/gWUn7zVqAW2s1BUmZq/e6csBdpIBA2bbpHCD5IKGT8NmdnMNM
-         iFg1VJfr4cJbcn8iT/6KAq0f25lEXfgcBgsslebi+1EmvedP3dCobmjp6zdF8XSKMvEo
-         iWYb/LkDcg4oe/q0Xa23tZILVvWag3Lh5zCntpbnfsWWQxOnbbFogIxSFu8vbvT6zueE
-         6RkhDuRrGi3gUN5yZ9Oc6JBgFcJBe9yHyiiE7uDRkp/nJ++yCw1T3i8I2g+MgwN0HSwH
-         Gpag==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1695652899; x=1696257699; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZnQkb6b5eXRZq2LrytU5CtIWVTHEXBAeVcMvdSE/Rjs=;
+        b=RgrjnsBAhL6Gsfqefnw2S4Nddo2drXSwMMH3mHDEhVQILMGP2SstZN882aVhsvu3Dx
+         jEU5hGPGMuOS96AWyEsw5yI2nSuXu36pR6so+ZjVD2GO26joIZ+xPZMEq2dBTqIeXiC4
+         0PoLZfHkDnK1fCiPeiOuAo/3G3gpDbezpoiqq/4iP7X6Dc/TFjEwSR6PlyvEk6Djrhjd
+         CdCI2Ir1ClAcaXdrObTwAZswQVphBhq2PZd5Z0mJ7Dv/d7/n80+bcQIpqTeMm6hUvjAQ
+         h+NPxqixVADe3HyJnaitXq7qVHoOiu7vTjPvpgmTeYfA8+k5kjSlVua3f87IZrcpBFCD
+         XZrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695652486; x=1696257286;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=At5G8LjCiI/G/LK/Xh23Vr8bY4UZ5vnWbR2xhLShcaM=;
-        b=kDH3tammPYNlAq27OG+NEFqi1BnUg0s2Ysm3IwzZpmMnXvqKACj8VsyFLwyPr+J417
-         RgQ17e6qyfZhqdnPht+seB4KOEONsjYPPUepKJcClbbrV+zZjjlt6/MSiVgtbAIs+NUr
-         lk8B6L6kKdbGDcs6xjyNyrrcoT+LhWxHirAUreXIPzHaZhMrttBs/MF0xZoVwGoiW6J2
-         QVoEGKaT4qugE3WarYe5fRTLhVm5/59PLTGyc0aqHFxzhsd5YOycLiAtiBcuYOY+0VhD
-         9uLgcqX9PxsQwYuAXHYVEXdYWN3dxW6VZ6J5o6bp54raHlKlZSPg01v/pzNvkTrfRdpz
-         Q/zQ==
-X-Gm-Message-State: AOJu0YxgDma+cDEEDn0SRDySUHKpho3n4dVHQgJ5mnNCjZswZtMbEqbE
-	uiYQUahp3F6qJiqYvkJ2xm1YrQ==
-X-Google-Smtp-Source: AGHT+IEPZMcnUPRGiFdo+ag6klK/WjWV50YQqP08HeqcthIFRIeFK+cBJR/W1XtD65zduN4ZQ2PhWw==
-X-Received: by 2002:a05:6402:2285:b0:533:c25a:aee9 with SMTP id cw5-20020a056402228500b00533c25aaee9mr6037310edb.34.1695652486088;
-        Mon, 25 Sep 2023 07:34:46 -0700 (PDT)
-Received: from [192.168.101.165] (178235177023.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.23])
-        by smtp.gmail.com with ESMTPSA id g7-20020aa7d1c7000000b0053112d6a40esm5615597edp.82.2023.09.25.07.34.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Sep 2023 07:34:45 -0700 (PDT)
-Message-ID: <8e6a41b2-7ad9-4cc6-8f95-93b8c2e4151f@linaro.org>
-Date: Mon, 25 Sep 2023 16:34:44 +0200
+        d=1e100.net; s=20230601; t=1695652899; x=1696257699;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZnQkb6b5eXRZq2LrytU5CtIWVTHEXBAeVcMvdSE/Rjs=;
+        b=rgOdmXZcUcRRspHDqonQnvkyXN0aTFOOEdx3Rn6yQqeAn+XrKqXGjMNb/SFQdB2Gdh
+         SqkhgPks/icrXS8lA+QqXkJbLaQiiKtGxd9cAezSekXKlebtkxQW4PhU4euLNVM1p1r4
+         f8Z2QtNB9HCEkrR3jGrbEbZZ2DwXM7QpLAruS5lSBjhB8jMNDDROoAcMgyq0qWcB0X/b
+         cbcKLWfxsGN6DvVwpJtaL+I3WBtJ5wFv00V78zVIGsiVrKrJ/S5uq/O6TmkmYcmpfnSb
+         Kc7+/qJYuqm+ybjy2ocwl+HCLzkP2e6vyWDahyLrdfSmLzBEpSeg10g/Gh80ai9iaO3W
+         OfpA==
+X-Gm-Message-State: AOJu0Yy1xegQ1KU/L8GX7f5p1xxTE0eR71/jTU/O6zflI1T0Xx2/Zl+Z
+	hoyX3nhhndy7MQIAFVjsHzgFlw==
+X-Google-Smtp-Source: AGHT+IHPb8vKchvFnY0s05TsviFcSJxnsXgmrDWlqO7Le6/fH+Zwot+4Ces80LRgrG4M+d5CjIT0Lw==
+X-Received: by 2002:adf:f205:0:b0:31f:8a6d:e527 with SMTP id p5-20020adff205000000b0031f8a6de527mr6030302wro.45.1695652898924;
+        Mon, 25 Sep 2023 07:41:38 -0700 (PDT)
+Received: from x1 ([193.52.24.5])
+        by smtp.gmail.com with ESMTPSA id bt14-20020a056000080e00b003200c918c81sm5683354wrb.112.2023.09.25.07.41.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Sep 2023 07:41:38 -0700 (PDT)
+Date: Mon, 25 Sep 2023 16:41:30 +0200
+From: Drew Fustini <dfustini@baylibre.com>
+To: Adrian Hunter <adrian.hunter@intel.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	Robert Nelson <robertcnelson@beagleboard.org>,
+	Jason Kridner <jkridner@beagleboard.org>,
+	Xi Ruoyao <xry111@xry111.site>, Han Gao <gaohan@iscas.ac.cn>,
+	Icenowy Zheng <uwu@icenowy.me>, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 2/6] mmc: sdhci: add __sdhci_execute_tuning() to header
+Message-ID: <ZRGcGnl8N80yblkw@x1>
+References: <20230921-th1520-mmc-v1-0-49f76c274fb3@baylibre.com>
+ <20230921-th1520-mmc-v1-2-49f76c274fb3@baylibre.com>
+ <4ef60ffd-3661-4bca-91a3-b49d6189c71b@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: msm8939-huawei-kiwi: Add initial
- device tree
-Content-Language: en-US
-To: lukas walter <lukas.walter@aceart.de>
-Cc: agross@kernel.org, andersson@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- phone-devel@vger.kernel.org, raymondhackley@protonmail.com,
- robh+dt@kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <9ca32137e42a22b016d8d417ee9e0dc024ef2aa9.camel@aceart.de>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
- BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
- HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
- TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
- zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
- MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
- t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
- UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
- aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
- kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
- Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
- R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
- BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
- yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
- xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
- 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
- GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
- mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
- x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
- BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
- mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
- Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
- xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
- AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
- 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
- jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
- cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
- jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
- cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
- bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
- YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
- bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
- nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
- izWDgYvmBE8=
-In-Reply-To: <9ca32137e42a22b016d8d417ee9e0dc024ef2aa9.camel@aceart.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4ef60ffd-3661-4bca-91a3-b49d6189c71b@intel.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 25.09.2023 16:28, lukas walter wrote:
-> Date: Wed, 20 Sep 2023 16:47:30 +0200
+On Mon, Sep 25, 2023 at 01:21:05PM +0300, Adrian Hunter wrote:
+> On 22/09/23 04:49, Drew Fustini wrote:
+> > Expose __sdhci_execute_tuning() so that it can be called from the
+> > mmc host controller drivers.
+> > 
+> > In the sdhci-of-dwcmshc driver, sdhci_dwcmshc_th1520_ops sets
+> > platform_execute_tuning to th1520_execute_tuning(). That function has
+> > to manipulate phy registers before tuning can be performed. To avoid
+> > copying the code verbatim from __sdhci_execute_tuning() into
+> > th1520_execute_tuning(), make it possible for __sdhci_execute_tuning()
+> > to be called from sdhci-of-dwcmshc.
+> > 
+> > Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+> > ---
+> >  drivers/mmc/host/sdhci.c | 2 +-
+> >  drivers/mmc/host/sdhci.h | 1 +
+> >  2 files changed, 2 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/mmc/host/sdhci.c b/drivers/mmc/host/sdhci.c
+> > index ff41aa56564e..fd607058d176 100644
+> > --- a/drivers/mmc/host/sdhci.c
+> > +++ b/drivers/mmc/host/sdhci.c
+> > @@ -2841,7 +2841,7 @@ void sdhci_send_tuning(struct sdhci_host *host, u32 opcode)
+> >  }
+> >  EXPORT_SYMBOL_GPL(sdhci_send_tuning);
+> >  
+> > -static int __sdhci_execute_tuning(struct sdhci_host *host, u32 opcode)
+> > +int __sdhci_execute_tuning(struct sdhci_host *host, u32 opcode)
 > 
->>> +
->>> +	reserved-memory {
->>> +		reserved@84a00000 {
->>> +			reg = <0x0 0x84a00000 0x0 0x1600000>;
->>> +			no-map;
->>> +		};
->> Do we know what this is for?
-> 
-> This seems to be some QSEE/TrustZone memory required to boot.
-> I would name it `qseecom_mem: qseecom@84a00000` like other phones
-> currently have it.
-> 
-> `[    1.162115] QSEECOM: qseecom_probe: secure app region
-> addr=0x84a00000 size=0x1900000`
-Sounds good!
+> Also need
+> 	EXPORT_SYMBOL_GPL(__sdhci_execute_tuning);
 
-> 
->>> +	};
->>> +
->>> +	gpio-hall-sensor {
->>> +		compatible = "gpio-keys";
->>> +
->>> +		pinctrl-0 = <&gpio_hall_sensor_default>;
->>> +		pinctrl-names = "default";
->>> +
->>> +		label = "GPIO Hall Effect Sensor";
->> I think we can have both hall sensor and V+ under gpio-keys
->>
->> And then I am not sure how useful the label is for the container
->> node, maybe you or somebody else can tell me whether it's used
->> anywhere
->>> +
->>> +		event-hall-sensor {
->>> +			label = "Hall Effect Sensor";
->>> +			gpios = <&tlmm 69 GPIO_ACTIVE_LOW>;
->>> +			linux,input-type = <EV_SW>;
->>> +			linux,code = <SW_LID>;
->>> +			linux,can-disable;
->> Should this not be a wakeup-source btw?
-> 
-> I am not sure how to change this. I would like to leave this as many
-> other hall sensors seem to be configured identically.
-Krzysztof, opinions?
+Thank, I will add that.
 
-> 
-> Is this fine?
-> Should I send a V2 with the signoff and reserved-memory changes?
-I don't quite get it, what signoff?
+I wasn't sure if making __sdhci_execute_tuning() available outside of
+sdhci.c was going to be seen as an acceptable solution.
 
-Konrad
+Do you think my apporach is acceptable (once I add EXPORT_SYMBOL_GPL)?
+
+Thanks,
+Drew
 
