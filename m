@@ -1,180 +1,120 @@
-Return-Path: <devicetree+bounces-3134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAA8E7AD6A9
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 13:07:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D5537AD6AD
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 13:08:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id C1E321C20445
-	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 11:07:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 153931C2039F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Sep 2023 11:08:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C15F118B1C;
-	Mon, 25 Sep 2023 11:07:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D1D018E01;
+	Mon, 25 Sep 2023 11:08:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A437F11C96
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 11:07:13 +0000 (UTC)
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2097.outbound.protection.outlook.com [40.107.255.97])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53EC9AB;
-	Mon, 25 Sep 2023 04:07:12 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nypxu7Vg5GKWAFS1nfhClHFNlyXgPC0ZGq1hoVwLnG12TW0pmGQ5/RDPOx9DfrFLsMGQfL12z05hQNlJslHdXRIjXV2Sbj/Ffq8L1UIHrHSc8sU+xrzT4HM7O4yUOlu0uF0+GXFDblYxkic3tXMm4Ck/AylCgWd0gEB26rsUhIgPq+YsJlsBbghVFx1wfTO6VZ38I1rNJMQE5TGQILvSIZtih1HTzlkBCON5Etis0fdFIL3wwvVxDhRuBh+26PAOM20k3dxrRtlVNkuQcaIr64fhXcPLCpxvq1rfVO+5bywDsvLKJnF6O3kHaY4m9CuaMPSWG1bi70ONSyRnxKrkfQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lIm9wZqevhhSSwjMjOH9qpIXwAUdu5OW+ho892eOmf4=;
- b=KnW5L2cjOX9NUfdXUPC+J05HuplqouU19S9mxVvk1o5ryDIfgbOelC3PrOpKGmCzjY9k3o2QaMJzreaHkSpeI0cGgs9dZfAvZDG+CPlYC/ZzVE9bwnzRveozh6xbF/1UvWZPDWZoMxTX7pgPRHXPykeq7CMQQVIz3Kc7CNBcqBuUrkTSSuYUK9AB55xb3b300eBUkn4OP1Y+MwB9Z4RHbTl9OKkYx8ddktVCNVsmL/fA0Dc2cw4njiDfu/3bE9Kk0VGV6bQ6b95/lFmzI8i7WsxZN6ZRI7doj4zJQ1xZNVCg5i2ocAx2l4ac1oBXHiuZV/yaG84xuTTzWgAgNew1jQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lIm9wZqevhhSSwjMjOH9qpIXwAUdu5OW+ho892eOmf4=;
- b=ynd1+a9y46S3CIqNvbShUPTjZTXVG/VsFF84k9WbANGvsN2Nf0Y1ALC//eqomJ9dtNJcTk5YTKze8JaLWdRMLPULestG1H3ZeeHELfMfGQPDfoZJ1pRIjlcrsd7fBNzyJuk/lafo+bpJoACjmQEUhFInRL3l0PhHfgnXwfr9sXnUXe6X/L8HvlhxPG4CXAjxcpZ6793LlXbWWlSk3KDZaoj+QIzToiEy9DRISQo95rdv8huKf3/O4neyk7Vuy9yIeW1KoSX+NJiGAdNfozKpfUAi8NgJ5AOC7CXPjzI5SY3PtcEu2x3xtFkfaw0RW4BkTD7hUCK7QwJX79aX9MDiSw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB7221.apcprd03.prod.outlook.com (2603:1096:820:cb::11)
- by TYZPR03MB7790.apcprd03.prod.outlook.com (2603:1096:400:45c::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.25; Mon, 25 Sep
- 2023 11:07:09 +0000
-Received: from KL1PR03MB7221.apcprd03.prod.outlook.com
- ([fe80::3f14:c67:12ac:af39]) by KL1PR03MB7221.apcprd03.prod.outlook.com
- ([fe80::3f14:c67:12ac:af39%3]) with mapi id 15.20.6813.027; Mon, 25 Sep 2023
- 11:07:09 +0000
-Message-ID: <dc8fa418-e913-1bea-2f1f-6d7a0e331c29@amlogic.com>
-Date: Mon, 25 Sep 2023 19:07:05 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH] arm64: dts: Add watchdog node for Amlogic-C3 SoCs
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230925090641.1185942-1-huqiang.qin@amlogic.com>
- <51470d7a-65a7-44c7-856b-53ca4b065553@linaro.org>
- <bb20efd5-4f60-5ded-caa6-2c9c94a10a44@amlogic.com>
- <235b17ef-b34c-4006-baa4-a1d4360dca16@linaro.org>
- <e9334edb-bf2e-4dca-9752-14b2924763a4@linaro.org>
-From: Huqiang Qin <huqiang.qin@amlogic.com>
-In-Reply-To: <e9334edb-bf2e-4dca-9752-14b2924763a4@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI1PR02CA0006.apcprd02.prod.outlook.com
- (2603:1096:4:1f7::11) To KL1PR03MB7221.apcprd03.prod.outlook.com
- (2603:1096:820:cb::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB6D918AE7
+	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 11:08:35 +0000 (UTC)
+Received: from mail-oo1-xc2c.google.com (mail-oo1-xc2c.google.com [IPv6:2607:f8b0:4864:20::c2c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C3ACC0;
+	Mon, 25 Sep 2023 04:08:35 -0700 (PDT)
+Received: by mail-oo1-xc2c.google.com with SMTP id 006d021491bc7-57b72cef02bso2620197eaf.2;
+        Mon, 25 Sep 2023 04:08:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695640114; x=1696244914; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KhksRDH5+3gqX7xxC5k77QH+a4l6ggBxkAUvbHIGKz0=;
+        b=nEQLn/FDGU+Iop6gChSODERS3OcXfZmBewzE+Y1vdp5NPoKv2C9GwO6b2iv6p3FXb/
+         AbrOpukAzvCXxEssVjmVvkXZ/XPViYgW8guqngZSQ4oKvODeEZ63NqezU5L32SL4t8Ig
+         J19UOUYBOsF8ny/Uuz0Zr8jmo7wxo2LW0mOqwV1ZLW4K/y5AF6CzI780jFXmlnjk23XU
+         l0K54k9K8uFtdmvgaw7f30yNsnMr8TrCG5GIqqX/RKyC/8eIWZzno8rkldPQep5TWjqV
+         jPpMWaU/PLpVo3NjZBQYzny1wl33z2h6Tz8l2HExoqqmZeEz+fx5Dg8JKzg69ApYhbFL
+         FMpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695640114; x=1696244914;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KhksRDH5+3gqX7xxC5k77QH+a4l6ggBxkAUvbHIGKz0=;
+        b=YeprHjTkbZUdADGe9NKzaaS+cBwA61rVXiahdWDjp7mc6ghsFjum3BgmeKPJFYxpUD
+         Ua4CPMNgV2FvgTZuRb5CfD3hiEn+f7f25We+0Aqj7FzDHwdBQG7NexFh+41G8dFyLbQs
+         fMs12uAmTYPZeEQguxkhQhrtX485PTvmKq+3CmfCqaLfuZh7WkCP0/iUqs2bNqJUHWD8
+         JYjctfrfzMs4fHkToCpRPCkYfBgOFWeoUXUHGL8UyPGwXUOxX/EEKtak1GW1dXirGFE8
+         WpUgB4M5GWoi0V3vDVLV5vdjgCbJ+ETNxVnLIp59Iy9yfz+sGc3zjoJS+Jk/st+cqShe
+         +siQ==
+X-Gm-Message-State: AOJu0YxxATgr/uB8dMk5cwM8AHjdyazxYJ0DtHZahki3OhhAhOLyYVj8
+	bvQY+uX8cQNv5qxvdWBE29fcGKzzIFinLcfAV08=
+X-Google-Smtp-Source: AGHT+IFBgmxC31xNGXnzyqamskZ+s2s9UQR4bCjAqXcXs6+kWLWrWojSJeEx88cBC3xxQ/DWK8+ElGzFm+N4jg4xWsE=
+X-Received: by 2002:a4a:6c03:0:b0:57b:cbc2:79ff with SMTP id
+ q3-20020a4a6c03000000b0057bcbc279ffmr1999532ooc.4.1695640114280; Mon, 25 Sep
+ 2023 04:08:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB7221:EE_|TYZPR03MB7790:EE_
-X-MS-Office365-Filtering-Correlation-Id: b1c4886e-0617-4b06-40f2-08dbbdb78ed0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	A714JeLtPJYxMxo6MqMA/6Gk6po3mY1eTNz5GM6zNG+3bjzoG4geLEAcEwSNrGEYlNARtugi7h280tA22qrzv7Py5OZ8ic+ZqTreeti1p/ChyHa7YVZyZg5HzSvL6bMvWLdHpNJXNMNQyed0o3KzrzVtuuICmbhKnq3gpA8fxQO0bSgxT7fw0F51HNAuL3u/ksc8WmPUqYO1IxsWkjYaX+3hQ9bRYBiZOsHDNu26aA4fng0dVcHWkElepwLGbgVV3yvv9rYfmynn4asL41dkBRxaQM/T16IdAOBqIs1VOyrvkWqTUJ99QfcUtwSg4gczvGG8ruIrweGXIvV4rc6IFGdX93YOFapIviVvNW9QcupQOchamMV21XxUsz5TtxLeMVZTUJWa79ydA4++ui24gn1SqO53b2oXInsJajSsDFOPSIuFOexrp+8wnlVScKoKBhWlLsJD0dRY111tIacwuWjjo01QOWCgDV2kZznTIzbAmaMhYnTg7RSBMxTyNaWW3hud4I0VsBDo1oiEYjZaZoR5hhq7YO+8VB7cyffmv/YGs01xzUGDZsbGZlWPjN9Wt8h2zopSSyfd1hlAbILgh26BtnlY5rpxJjTT/8yILCrznymYaC2kpB4K1hYfX+UxBh7Efdu8nf48Cu1EsK36PLpx3kSNgseI1KFH7F00Tbb/Ua1VeYMUgMkMBGzO2CvX95ghsn0oJR2lzMNznPnjRQ==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB7221.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(6029001)(136003)(376002)(366004)(346002)(396003)(39850400004)(230922051799003)(451199024)(186009)(1800799009)(7416002)(8936002)(4326008)(8676002)(2906002)(86362001)(31696002)(31686004)(38100700002)(38350700002)(2616005)(26005)(316002)(6486002)(52116002)(966005)(5660300002)(66476007)(66556008)(44832011)(41300700001)(36756003)(66946007)(53546011)(6506007)(6666004)(6512007)(478600001)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?N1JJcGE0a1VlK2JLYkhUVCtRVHZPN0laU09PNU11VGRGT2xHeTczN0JRQXJV?=
- =?utf-8?B?L1FWTDQ3cE1ZOEYvQTdjMjJOMHpBQXpSQzFMaVY4TU9jeXpuV2VxSk5qcGs0?=
- =?utf-8?B?eFNrNnpYWUVNOElTbDFYQTZobE9oci81dmlXV2lkRzNURE9QNnlLemV1RVZn?=
- =?utf-8?B?aGNjUVNUcmZ3WXJudnlCeHFCKzBzeXY5WDBJVElONjJNamp2WjM2M096Tjdt?=
- =?utf-8?B?YS9OQWlZY2RNZ1JTbzF0N1B4cGlzNlA1Qy9KYlBLWXRJamhrd1k2bXdVRU1k?=
- =?utf-8?B?NnpXWnd2WUw1ekNTeEdQKyttYlpYU2h0R0x0THJWSWlHYUw0VHZHb0Jyekpj?=
- =?utf-8?B?YXhSWnRrK3RQMlE0Vk5DQkpLSE9MemdPOWVSWE1zU1d3NzcwUzYyVFg3a25v?=
- =?utf-8?B?NDQ2ekZYaTJyRlhWbHNiZXNCNEFqb2lMZzM3dDB6dVp0cTRjV2ZBZVZNaHF5?=
- =?utf-8?B?NXdON3BKVGpOSDFJNEdUbThDUGZtRGo5aUEyZ0VhQjlBL1h3SjE5SkI3Yit2?=
- =?utf-8?B?V3FoMkxqL1owSDFvR0Fwb2RlTVFwSmdQK0pHTVhRR2UzRlc5U1p0VjBKNzRq?=
- =?utf-8?B?MWlxTGxCVDBsQ0VkUUNJMktMUXB6U2tvVlFrZldjeHVKUzVjTkFYUmNoQXJM?=
- =?utf-8?B?bXZqTmI0cjh5OWkwWGJuRm9sT3hLSUNEKzlRVk5BK3BwZmxYTklPRUF6WkZU?=
- =?utf-8?B?Sys5RkNrTFN4NlBvdDdpU3ZnNnQ4aUxRMzNBaDlDTERyaVphODhXdmRuVnBM?=
- =?utf-8?B?RVcvNU9IdEJCekIzbFQ0YlNnY3l4blVDVkdNNUN3WGR4eCtkT2Z3T0pzRXdo?=
- =?utf-8?B?dllGczRQbzBudW9CNzlySHV1TFdkYmx0b0xCOXM2bnZjbXdESTdTaW5rTHY2?=
- =?utf-8?B?WUJ1VFNWeHhaUUsyenNnYythNm5yVEdIU21oaGFmYUdvNEhPcWxyak0vOTlj?=
- =?utf-8?B?R0tKZE5jQW5hMzJwQitvTnpuZE5ZeUNWK1Axd2J3eExRcm1IKytlL3drNnVV?=
- =?utf-8?B?UW5yQzlMOWkvOERraTdKUmlDRC9qRHN0MmtMYVNxYnpCalBjMUR4aElCSjlJ?=
- =?utf-8?B?VUswSTdWVFVGZkgzYzhlOTlNVXF1cXZqb08vTFk4UFNyNkdBUmNDN094L2Za?=
- =?utf-8?B?ZmtDeUlPTVJQY1ZnTTllUm1PN2xKNkRib1lvS2g2T1N5T2ZSK2xCSzJkblcz?=
- =?utf-8?B?ajJXRHVCWW5lVEEwVUwxSnNLVFptWGQ5YWRKbWhzRG1wUng1NFRQVWs1NDNM?=
- =?utf-8?B?OUFJOTc1NkNUc0IwaXlzc1BQRFkvMURVZDI3NklSaFgwaTI2Y1l3ZmxWb0JN?=
- =?utf-8?B?cUI4ZmFuTEZrRzNDSWJ2NFBQa0ovWS9CUGJFRWYxS2hsYWFFOFhvTVFyTmhM?=
- =?utf-8?B?bXY2cVYvMzNzWjhZckFHcFVzTlpLdjZ0Y2tDZlN6dVRtMUhuOGpmay95UUNB?=
- =?utf-8?B?NXh3czh5bEhFVkNiQzBQVnJ3QTdXdXdSOE50Y1J1dkU0dXNCelhoblhKL2NV?=
- =?utf-8?B?QjZNVTVKdmhnbDdnblI5dzZBQzN2ZitiT0hiU2VNZk1RbW54NExVL0Z1djkx?=
- =?utf-8?B?a0ZGb3FQUDNFZEsvYkQ1b2lSbVhRVXM4MkVGdGoxK1pWRy9hSjlMbzJlWEFo?=
- =?utf-8?B?eUhPclE1NnFreVZkejNNZVpZUnRoTmV2OVJTK2w4QWZxV0c5MURKUHR3aFNK?=
- =?utf-8?B?RUYzK0dNUU80RW51VGNlQkk4OVlhN2Q5TElhaSs3NUJBaTlabW1LTXBGeWxi?=
- =?utf-8?B?YzUrTDB2akhDWHpaVlM0UWZsZzJ4YkFpeUhTcnFvOGsrWFZFQ0VaSkN1T3hw?=
- =?utf-8?B?c3pCZzdDckhGUkhPanBVeUYvZERia2w5dWR3K016RmpUZjBYTkwwT0p3SVJV?=
- =?utf-8?B?cXp0VGxqb3AxdEl4UHVKejlHVlowc29MbTNYdkpHaExrMlRrTkZmbkFxN2J4?=
- =?utf-8?B?NTBkUExmdVowNS96Y3hjbnQ1dzVYcFBNNURZbjZWWFIvTlc1cU12OEZXbzdH?=
- =?utf-8?B?ZkxTZ2F4NmQzZ2N5aFdWS1RoL01QMnhzdkpld2pNdXZkY01mVVJzNXZJSjFj?=
- =?utf-8?B?bWt0Z1lJYm9XRHZOVlZna0JyR1Q0R1hNbVFzRlcvcDJFaVpDVGYyR2xuQW1B?=
- =?utf-8?B?VGpkNGVtQVZiSDJLMjZIVVBhSUhxSFRSOWZmV25sV2ErRVM4MFFLRXllb2Js?=
- =?utf-8?B?Ymc9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b1c4886e-0617-4b06-40f2-08dbbdb78ed0
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB7221.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2023 11:07:08.2990
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cRcPMUx7t4A/hoLD0ywQ+MMBDSdMG8aFBoKPDYQb3eudh1m1f/qA3attXEhuxhyuEOf34o6IsdCTxLxLTwntyA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB7790
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+References: <20230924222559.2038721-1-andreas@kemnade.info> <20230924222559.2038721-3-andreas@kemnade.info>
+In-Reply-To: <20230924222559.2038721-3-andreas@kemnade.info>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Mon, 25 Sep 2023 14:07:58 +0300
+Message-ID: <CAHp75VfvmED4ZsmrH4B6m9kGsH=68-zjQd5JMszb6UBTtbF0bw@mail.gmail.com>
+Subject: Re: [PATCH 2/3] iio: imu: mpu6050: add level shifter flag
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, bcousson@baylibre.com, 
+	tony@atomide.com, jean-baptiste.maneyrol@tdk.com, chenhuiz@axis.com, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+On Mon, Sep 25, 2023 at 1:26=E2=80=AFAM Andreas Kemnade <andreas@kemnade.in=
+fo> wrote:
+>
+> Some boards fail in magnetometer probe if flag is not set.
 
-On 2023/9/25 18:58, Krzysztof Kozlowski wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On 25/09/2023 12:45, Krzysztof Kozlowski wrote:
->> On 25/09/2023 12:42, Huqiang Qin wrote:
->>> Hi Krzysztof,
->>>
->>> On 2023/9/25 17:33, Krzysztof Kozlowski wrote:
->>>> This is c3, not t7. Why do you use t7 compatible alone?
->>>
->>> The C3 and T7 use the same watchdog controller, so they are compatible.
->>
->> I am not saying that they are not compatible. I am saying that different
->> SoCs should use the same compatible. Just like for every other platform,
-> 
-> Eh, missing "not", so "should not use":
-> 
-> I am not saying that they are not compatible. I am saying that different
-> SoCs should not use the same compatible. Just like for every other
-> platform, Amlogic is not special here.
-> 
->> Amlogic is not special here.
->>
->> https://elixir.bootlin.com/linux/v6.6-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst
-> 
-> Please define compatibility list with t7 as fallback.
+Which flag? Can you elaborate a bit more?
 
-Okay, got it, I will modify it in the next version.
+Does it deserve the Fixes tag?
 
-Thanks
+...
 
+>         unsigned int val;
+>         int ret;
 
-Best regards,
-Huqiang Qin
+> +       ret =3D regmap_update_bits(st->map, 0x1, 0x80,
+> +                                st->level_shifter ? 0x80 : 0);
+
+This is a bit cryptic, what does 1 stand for?
+
+Also
+
+  unsigned int mask =3D BIT(7);
+  ...
+  val =3D st->level_shifter ? mask : 0;
+
+> +       if (ret)
+> +               return ret;
+
+...
+> +       st->level_shifter =3D device_property_present(dev,
+> +                                                   "invensense,level-shi=
+fter");
+
+It was a recommendation to use _read_bool() when reading the value,
+while the result will be the same.
+
+--
+With Best Regards,
+Andy Shevchenko
 
