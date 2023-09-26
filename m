@@ -1,188 +1,179 @@
-Return-Path: <devicetree+bounces-3323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 340337AE468
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 06:09:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A27987AE473
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 06:11:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id A483D2819BE
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 04:09:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 54B332819DC
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 04:11:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D98CC1859;
-	Tue, 26 Sep 2023 04:09:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FF6E1865;
+	Tue, 26 Sep 2023 04:11:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0E59184F
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 04:09:10 +0000 (UTC)
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CC1ABF
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 21:09:08 -0700 (PDT)
-Received: by mail-ot1-x331.google.com with SMTP id 46e09a7af769-6c4d625da40so3379298a34.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 21:09:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1695701348; x=1696306148; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sqOFR+aV2U747dOvG4VR290UntHO+h5U56cTzrU/C40=;
-        b=RVRuxCV9UxPq9ivAiEFO3pzFyI46rQd842Pu4Fpu9yOkIQzaWIQ/8uIi55O7pMMZxD
-         5Jni4QA4gA9p5k6E5a8+1wOTiU8t727yDr3XrIGVPiMep+84hSGjWUVRXOWE+t8lnMB7
-         T1TdkCay+nNKOnXydGfR3H+I5h/CFQ1iI+7YiI5sFlRCum3FjlzxtiaiFBv/5avsT2ms
-         +SnI5ozP+VjiChzksZssEusASH3isEm1CeJgLpzL0OaD2jXHOFC33QuKDQmGV3s+Zap/
-         nBaoU2GXwkYlKy+AQKoZWXYc4HZgzntdBBMOQZP0srMkZRuldqsLgy20ijIB4tt+5SyU
-         L4OQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695701348; x=1696306148;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sqOFR+aV2U747dOvG4VR290UntHO+h5U56cTzrU/C40=;
-        b=St6khiS4g87ht6S9wp8bT4r2MQ+CF/k1Rz54JqULlKDQTt7XCLoISGbyKWLPkFmzB9
-         3utl1ykoMRQKb+KUq2DPnswQhO5daDbvV0K5MhNopWdAlrZb3b9I98ZSYez9QxNh4n2i
-         8sB9sHeTU4prufn5mJxSyEiy7TcZ59NJ+YUGdeaeIEl/RD8yPkEoNkfPYPkRUq7XM9jt
-         itFtJ8e8zdVzfJpIbg4nQt0hgTq+uzvRMEJFP5/nNffUzv6Fun7geGFcTtnNGySvOhzj
-         IHWy3UbRxG0A86mth+x3l476tCNFv3ydLkl9gNZJT4x/uxDlr/lKl5wdgf01ZfjNVRyv
-         jJcg==
-X-Gm-Message-State: AOJu0YwqlycV0cqnydU4bRcsfPF0O3u1w3jeZNnh7GlPeuVPpmrGaxtO
-	hZaOTy2Rnpgg1F3o0Cgkx3lQmJbh7SItGNB0J5R5AA==
-X-Google-Smtp-Source: AGHT+IGmAxRog0hnxnVuuXVJuHjUbHq/ZKXhq770X+Pd2SPALmcAYb8MwVNhUMNSdmD8plbQLTGKkz2OCmPClWmIJ90=
-X-Received: by 2002:a05:6808:1a21:b0:3a7:2690:94e0 with SMTP id
- bk33-20020a0568081a2100b003a7269094e0mr13581224oib.4.1695701347858; Mon, 25
- Sep 2023 21:09:07 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6113184F
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 04:11:30 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8120EC;
+	Mon, 25 Sep 2023 21:11:08 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38Q4Ault117691;
+	Mon, 25 Sep 2023 23:10:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1695701456;
+	bh=8FskWr9ivCrbrfrBejroOfp5cPTyHuS9Y94xhIafONc=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=i7Pqo+MK3wRcWZkCJBgYgHbXOBcgxDd9ynkeqh6wzG4Df8N4eq8IvYf86cIOrtnuh
+	 ZbprZg2cf8ln+M/QhkvzSyrU+TimQybrxHObPSk2NMhBzk7LOJC6EZlZDlwM6e6gwb
+	 l2dFVdeaLQvelnQN6xhjvX6UE+quf3BMk9MsM4KM=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38Q4AuAW019443
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 25 Sep 2023 23:10:56 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 25
+ Sep 2023 23:10:56 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 25 Sep 2023 23:10:56 -0500
+Received: from [10.249.135.225] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38Q4AqSY122072;
+	Mon, 25 Sep 2023 23:10:52 -0500
+Message-ID: <c11ce7e2-d388-cb81-f133-d57eefa14f95@ti.com>
+Date: Tue, 26 Sep 2023 09:40:51 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230925133859.1735879-1-apatel@ventanamicro.com>
- <20230925133859.1735879-3-apatel@ventanamicro.com> <ZRHH25IyJJLWSolC@ghost>
-In-Reply-To: <ZRHH25IyJJLWSolC@ghost>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Tue, 26 Sep 2023 09:38:56 +0530
-Message-ID: <CAK9=C2UoKxM+wknB4n8=okyXCCE6t0Vvz4jU_tBW6DMm6Vb3DA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/9] RISC-V: Detect XVentanaCondOps from ISA string
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Paolo Bonzini <pbonzini@redhat.com>, Atish Patra <atishp@atishpatra.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Shuah Khan <shuah@kernel.org>, 
-	Andrew Jones <ajones@ventanamicro.com>, Mayuresh Chitale <mchitale@ventanamicro.com>, 
-	devicetree@vger.kernel.org, kvm@vger.kernel.org, 
-	kvm-riscv@lists.infradead.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2 2/4] arm64: dts: ti: k3-am654-base-board: add ICSSG2
+ Ethernet support
+Content-Language: en-US
+To: Andrew Davis <afd@ti.com>, MD Danish Anwar <danishanwar@ti.com>,
+        Vignesh
+ Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+CC: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Tero
+ Kristo <kristo@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <r-gunasekaran@ti.com>
+References: <20230921060913.721336-1-danishanwar@ti.com>
+ <20230921060913.721336-3-danishanwar@ti.com>
+ <3b4629c7-5625-f32f-0532-5f50832c1714@ti.com>
+ <52572af4-771e-3bd9-b290-74482694f020@ti.com>
+ <8db10b88-5b06-af84-cb0a-9fbaa29cf78c@ti.com>
+ <3869499c-532d-8cd0-f428-6697bbbedd8d@ti.com>
+From: "Anwar, Md Danish" <a0501179@ti.com>
+In-Reply-To: <3869499c-532d-8cd0-f428-6697bbbedd8d@ti.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Sep 25, 2023 at 11:18=E2=80=AFPM Charlie Jenkins <charlie@rivosinc.=
-com> wrote:
->
-> On Mon, Sep 25, 2023 at 07:08:52PM +0530, Anup Patel wrote:
-> > The Veyron-V1 CPU supports custom conditional arithmetic and
-> > conditional-select/move operations referred to as XVentanaCondOps
-> > extension. In fact, QEMU RISC-V also has support for emulating
-> > XVentanaCondOps extension.
-> >
-> > Let us detect XVentanaCondOps extension from ISA string available
-> > through DT or ACPI.
-> >
-> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
-> > ---
-> >  arch/riscv/include/asm/hwcap.h | 1 +
-> >  arch/riscv/kernel/cpufeature.c | 1 +
-> >  2 files changed, 2 insertions(+)
-> >
-> > diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hw=
-cap.h
-> > index 0f520f7d058a..b7efe9e2fa89 100644
-> > --- a/arch/riscv/include/asm/hwcap.h
-> > +++ b/arch/riscv/include/asm/hwcap.h
-> > @@ -59,6 +59,7 @@
-> >  #define RISCV_ISA_EXT_ZIFENCEI               41
-> >  #define RISCV_ISA_EXT_ZIHPM          42
-> >  #define RISCV_ISA_EXT_SMSTATEEN              43
-> > +#define RISCV_ISA_EXT_XVENTANACONDOPS        44
-> >
-> >  #define RISCV_ISA_EXT_MAX            64
-> >
-> > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeat=
-ure.c
-> > index 3755a8c2a9de..3a31d34fe709 100644
-> > --- a/arch/riscv/kernel/cpufeature.c
-> > +++ b/arch/riscv/kernel/cpufeature.c
-> > @@ -182,6 +182,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] =3D=
- {
-> >       __RISCV_ISA_EXT_DATA(svinval, RISCV_ISA_EXT_SVINVAL),
-> >       __RISCV_ISA_EXT_DATA(svnapot, RISCV_ISA_EXT_SVNAPOT),
-> >       __RISCV_ISA_EXT_DATA(svpbmt, RISCV_ISA_EXT_SVPBMT),
-> > +     __RISCV_ISA_EXT_DATA(xventanacondops, RISCV_ISA_EXT_XVENTANACONDO=
-PS),
-> >  };
-> >
-> >  const size_t riscv_isa_ext_count =3D ARRAY_SIZE(riscv_isa_ext);
-> > --
-> > 2.34.1
-> >
-> >
-> > _______________________________________________
-> > linux-riscv mailing list
-> > linux-riscv@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-riscv
->
-> I worry about storing vendor extensions in this file. Because vendor
-> extensions are not standardized, they can only be expected to have the
-> desired behavior on hardware with the appropriate vendor id. A couple
 
-Assuming that a vendor extension is only available on hardware with
-appropriate vendor id is not correct because:
-1) vendor A can allow vendor B to implement a custom extension
-    defined by vendor B
-2) vendor A and vendor B can jointly develop a RISC-V CPU where
-    both vendors integrate their custom extensions.
 
-It is best to identify a vendor extension independently with a
-"X<vendor_name><extension_name>" string to keep it simple
-and scalable.
+On 9/25/2023 7:15 PM, Andrew Davis wrote:
+> On 9/25/23 3:21 AM, MD Danish Anwar wrote:
+>> Hi Andrew,
+>>
+>> On 22/09/23 09:52, MD Danish Anwar wrote:
+>>> On 21/09/23 22:57, Andrew Davis wrote:
+>>>> On 9/21/23 1:09 AM, MD Danish Anwar wrote:
+>>>>> ICSSG2 provides dual Gigabit Ethernet support.
+>>>>>
+>>>>> For support SR2.0 ICSSG Ethernet firmware:
+>>>>> - provide different firmware blobs and use TX_PRU.
+>>>>> - IEP0 is used as PTP Hardware Clock and can only be used for one
+>>>>> port.
+>>>>> - TX timestamp notification comes via INTC interrupt.
+>>>>>
+>>>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>>>>> ---
+>>>>>    arch/arm64/boot/dts/ti/Makefile               |   4 +-
+>>>>>    ...se-board.dts => k3-am654-common-board.dts} |   0
+>>>>>    arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso   | 145
+>>>>> ++++++++++++++++++
+>>>>>    3 files changed, 148 insertions(+), 1 deletion(-)
+>>>>>    rename arch/arm64/boot/dts/ti/{k3-am654-base-board.dts =>
+>>>>> k3-am654-common-board.dts} (100%)
+>>>>>    create mode 100644 arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/ti/Makefile
+>>>>> b/arch/arm64/boot/dts/ti/Makefile
+>>>>> index e7b8e2e7f083..85c91f5e832e 100644
+>>>>> --- a/arch/arm64/boot/dts/ti/Makefile
+>>>>> +++ b/arch/arm64/boot/dts/ti/Makefile
+>>>>> @@ -42,12 +42,14 @@ dtb-$(CONFIG_ARCH_K3) +=
+>>>>> k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb
+>>>>>    dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl-wlan.dtb
+>>>>>      # Boards with AM65x SoC
+>>>>> -k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb
+>>>>> k3-am654-base-board-rocktech-rk101-panel.dtbo
+>>>>> +k3-am654-gp-evm-dtbs := k3-am654-common-board.dtb
+>>>>> k3-am654-base-board-rocktech-rk101-panel.dtbo
+>>>>
+>>>> Should the k3-am654-gp-evm.dtb not also have this icssg2 support? Does
+>>>> it work
+>>>> to keep this line like before or is there some conflict having both
+>>>> enabled?
+>>>>
+>>>
+>>> I have not tested this dtb (k3-am654-gp-evm.dtb). So just to be on the
+>>> safe side I kept gp-evm.dtb as it was. Ideally gp-evm.dtb should have
+>>> icssg2 support as well. But I haven't tested the combination of
+>>> base-board + icssg dtbo + rockteck dtbo. That is why I kept gp-evm dtb
+>>> as it was. Anyways, for ICSSG2's use case only k3-am654-base-board.dtb
+>>> is used so I think it's ok to leave k3-am654-gp-evm.dtb to as it was.
+>>>
+>>>> Andrew
+>>>>
+>>
+>> I tested AM654x-GP EVM with k3-am654-gp-evm.dtb with both the
+>> combination below (having k3-am654-base-board-dtbs :=
+>> k3-am654-common-board.dtb k3-am654-icssg2.dtbo), ICSSG worked fine in
+>> both the scenarios and I didn't see any issue. I don't have a rocktech
+>> panel with me so couldn't test that. But as far as ICSSG is concerned it
+>> works fine with the both the combinations. Please let me know which one
+>> should I use. Should I keep gp-evm as it is (use dtb without the icssg2
+>> overlay) or should I add icssg2 overlay in gp-evm.dtb as well.
+>>
+>>
+>> 1. k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb
+>> k3-am654-base-board-rocktech-rk101-panel.dtbo
+>>
+>>
+>> 2. k3-am654-gp-evm-dtbs := k3-am654-common-board.dtb
+>> k3-am654-base-board-rocktech-rk101-panel.dtbo
+>>
+> 
+> As you said here before, most will expect the icssg2 to work
+> on the EVM out of box, you should include it. If anyone wants
+> something else they can apply the set of overlays that match
+> on their own.
+> 
+> So, use base-board.
+> 
+> Andrew
 
-Along these lines, each T-Head custom extension should have a
-"XThead<xyz>" name associated with it.
+Sure Andrew, I will make the change and send v3.
 
-> months ago I sent a patch to address this by handling vector extensions
-> independently for each vendor [1]. I dropped the patch because it
-> relied upon Heiko's T-Head vector extension support that he stopped
-> working on. However, I can revive this patch so you can build off of it.
-
-At least, the conditional operations don't need a hwprobe interface
-because an application is either compiled with or without conditional
-operations. In other words, effective use of conditional operation is
-only possible if compiler generates these instructions based on
-code patterns.
-
->
-> This scheme has the added benefit that vendors do not have to worry
-> about conficting extensions, and the kernel does not have to act as a
-> key registry for vendors.
-
-How can vendor extensions conflict if they all follow the
-"X<vendor_name><extension_name>" naming scheme ?
-
->
-> What are your thoughts?
->
-> - Charlie
->
-> [1] https://lore.kernel.org/lkml/20230705-thead_vendor_extensions-v1-2-ad=
-6915349c4d@rivosinc.com/
->
-
-Regards,
-Anup
+-- 
+Thanks and Regards,
+Md Danish Anwar
 
