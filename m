@@ -1,205 +1,191 @@
-Return-Path: <devicetree+bounces-3376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28C447AE995
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 11:53:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0E907AE9A8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 11:56:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id EC895B208F9
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 09:52:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id A07C328117B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 09:56:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05AA113AE4;
-	Tue, 26 Sep 2023 09:52:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A01B118E1B;
+	Tue, 26 Sep 2023 09:56:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A192134D1
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 09:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01ED912B70
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 09:55:59 +0000 (UTC)
 Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AE26BE
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 02:52:51 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9ad8d47ef2fso1015042966b.1
-        for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 02:52:51 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48916CCB
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 02:55:58 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9ad8bf9bfabso1053418166b.3
+        for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 02:55:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1695721969; x=1696326769; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ahIZ7yuPJ9MJX7623BAJCLqe/mYzgXMdeYKDpf77qm8=;
-        b=RRhw4MIaNsa7lpqZyR9xZUVzhdYDe8cp/HzuvyGGewabDF1ac147Q68zo5rFeOPmB0
-         ac3z4ePJTw9I6hgCiJjRr6spT+Ps53snysfSHJe1JxaDEuKqLYxD+TRWVAlxGC5joHT+
-         zC6II+VEHwhKKjxsuJoHa6VLor1zYVx6HEdZi56+v60O/+CycFtWJUH5eg3806JdhNhV
-         S2+GLws9ER0tgsIibRzwraERtKODPYpRwlVTR2OoSjREvAQXagaDv8YE1VhmFV4QNdqw
-         KrJFDQbE9sdFxfwo2sTL4tgvslT4eonCHaRGNVknJDMWA4zVGJwnZ8CHnNyjYcjgkvI4
-         CEAA==
+        d=tuxon.dev; s=google; t=1695722156; x=1696326956; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oCGAB9bjd2rRkobql917EBDyBbo8Xf1tmOkuieid9Qw=;
+        b=HFmsZ4RrW76dmgghgjnLmy/if7RGsBsH4gCiOAm04mIl6nM43bU4nQtLpo9Mipeio4
+         JUhdNIn4w3HgA3gLB+81owUI+uiPg/4oyDitaKB+k6BzOwxh8C6RoMsHT6RFdWJ/t5fa
+         kZkn3eT+bQKDuIZbyX+KdFGTZlx/r1PFcgLzEr1Wa9Gxr4hkCtQiDoaruQAnT9TdaoLw
+         Lk8iZytyVRi3Hc982kBcXwdfyLV5KKQ7qefdk6LDk/U0aXwxhIAfzfZc7PFdV29YdBRj
+         k6fRmlWHQ+eJ/xaWFtECSUf0Xd7QCXN5TOpRM4YTq/E0wPiTnPiEcvndPYLYKtNKLhqs
+         A6tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695721969; x=1696326769;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ahIZ7yuPJ9MJX7623BAJCLqe/mYzgXMdeYKDpf77qm8=;
-        b=rHoTAOD9HQubw6FUD3ThBH+iRYxTw4oNYTl2wMxnG1eSNJyripWh78i/HEuEzyZMy5
-         lAnLmX+eMqd4Dbs/APnZ7KVkS9rXlF0/P8DNWEn553qZlmB3NeXxDDa0F7FLS6u6EBgq
-         bWA4UKgXvQ0vSAbl8CEHQgrVYbUcJigNWOheF/hoYlDOcPPVpZs7pt/H0H3pTmB8z8xa
-         SUk6U//sGGEz24JIbPifwm9omx85cj6IU2VuEjGzuhunrFObSq8t197yMF9/2kJ2a3iz
-         pfaMD90qM+WgHxmC04i5l4L5EPdAYsaU3iq+cG3QO4aA3xchZHE085+/658dthIJkBx8
-         XDNQ==
-X-Gm-Message-State: AOJu0Yxp4XC2ENvx0CorXUiEq4uKvyzG7S+SHCWjvu/S3wYf1rvFFODE
-	THjlufpf55wK1Dw84RHB1UwMTX2ujWOKQ9CRoenieA==
-X-Google-Smtp-Source: AGHT+IEgXjQS5acUN/BhQbyuSj3NBsTBC11THgTrSOyiA98EuI4pGo7gQktc2BYq1e2OVHB0VLElJPkrzX9i4MT4k24=
-X-Received: by 2002:a17:906:18b1:b0:9ae:6d0:84f7 with SMTP id
- c17-20020a17090618b100b009ae06d084f7mr6942913ejf.32.1695721969517; Tue, 26
- Sep 2023 02:52:49 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1695722156; x=1696326956;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oCGAB9bjd2rRkobql917EBDyBbo8Xf1tmOkuieid9Qw=;
+        b=qPqd5z3JT4jpSqgmOcAPrEhC0hma2QFwG6ydW/a4b/5SL9hKVFkYZSR1GhQhfm1xJp
+         CmUVVw8+vuyMgXNPJw/TPGqRcsKYUrM1XjP0Cv859dXcSU0JAB2H7YoKvRdSBIRUcYag
+         vMlUzA35AzwyHkK8F3cDpj7mpM8DR1p6XR5KRIWt00HHX+u3ZRnPZjxYzEOF1eTy/YW+
+         6k1R7f6hXyxg91+Vu9QwANbxt4dkReArNzNzhC4ROmmbLT3Lad7nJZ7CPzS5AkaW7Xe7
+         EHN+jYLDx9BaxlXPl93TYfoNfBalzrmaYghO/xmYw+6Du+qpR7VCAn9SoqN5wsqnPogK
+         pAHw==
+X-Gm-Message-State: AOJu0YwgP30PRNYnS71XaNe9LALqgcHzlMIfcO8N2hOcz//x9Y0maYcx
+	TeO58ye0x0z8dtGyf7qS8IPZ1/GbxgRMBq9Q76A=
+X-Google-Smtp-Source: AGHT+IEiQ8iJO3tEsrKT6DurQH2FvKo0uS+xJFcGLGiCr6SvtCfNXfJUyT6nkOwQSaE5M72oHauuhA==
+X-Received: by 2002:a17:906:3188:b0:9ae:5fdc:aee8 with SMTP id 8-20020a170906318800b009ae5fdcaee8mr8441103ejy.53.1695722156458;
+        Tue, 26 Sep 2023 02:55:56 -0700 (PDT)
+Received: from [192.168.32.2] ([82.78.167.177])
+        by smtp.gmail.com with ESMTPSA id j26-20020a170906831a00b00997d7aa59fasm7698269ejx.14.2023.09.26.02.55.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Sep 2023 02:55:55 -0700 (PDT)
+Message-ID: <1f1b5174-cfd4-4393-3a86-9adfc8c2cce1@tuxon.dev>
+Date: Tue, 26 Sep 2023 12:55:53 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230919-70b2f1e368a8face73468dfa@fedora> <CAGD2q_anfBP78jck6AbMNtgAggjOgaB3P6dkmq9tONHP45adFA@mail.gmail.com>
- <20230919-cc4646dbfb953bd34e05658c@fedora> <CAGD2q_bkTpvXiomWb_yerNjQfMVKOctYgBqF_RBSo_jYqyyyxw@mail.gmail.com>
- <20230922-unclothed-bottom-5531329f9724@spud> <CAGD2q_YsFdDVhE4JCmQSGMWOdpe_yzG8-CdWYPXtjeZsManvgQ@mail.gmail.com>
- <20230922-removable-footwork-f1d4d96d38dd@spud> <CAGD2q_Y467jJJnwCVH+3F-hh6a-1-OYRugcy0DdjPnTCC77Z8A@mail.gmail.com>
- <20230925-cod-vacancy-08dc8d88f90e@wendy> <CAGD2q_a1nLtFj7H42f+u+J5Bih59MGS0aJLHCFJy5gM2ydys4w@mail.gmail.com>
- <20230926-action-sludge-ec8e51fdd6d4@spud>
-In-Reply-To: <20230926-action-sludge-ec8e51fdd6d4@spud>
-From: yang tylor <tylor_yang@himax.corp-partner.google.com>
-Date: Tue, 26 Sep 2023 17:52:39 +0800
-Message-ID: <CAGD2q_YBfDT950tyxEF87ZeiANgea_x8S16Ud5K2bcQ+eL9T=w@mail.gmail.com>
-Subject: Re: [PATCH V2 1/2] dt-bindings: input: Introduce Himax HID-over-SPI device
-To: Conor Dooley <conor@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>, dmitry.torokhov@gmail.com, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	jikos@kernel.org, benjamin.tissoires@redhat.com, linux-input@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	poyuan_chang@himax.corp-partner.google.com, hbarnor@chromium.org, 
-	"jingyliang@chromium.org" <jingyliang@chromium.org>, wuxy23@lenovo.com, luolm1@lenovo.com, 
-	hung poyu <poyu_hung@himax.corp-partner.google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 25/37] pinctrl: renesas: rzg2l: adapt function number for
+ RZ/G3S
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ ulf.hansson@linaro.org, linus.walleij@linaro.org,
+ gregkh@linuxfoundation.org, jirislaby@kernel.org, magnus.damm@gmail.com,
+ catalin.marinas@arm.com, will@kernel.org,
+ prabhakar.mahadev-lad.rj@bp.renesas.com, biju.das.jz@bp.renesas.com,
+ quic_bjorande@quicinc.com, arnd@arndb.de, konrad.dybcio@linaro.org,
+ neil.armstrong@linaro.org, nfraprado@collabora.com, rafal@milecki.pl,
+ wsa+renesas@sang-engineering.com, linux-renesas-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
+ <20230912045157.177966-26-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdVkttQpA-s0MrKbTVxJ6K+xXmhV3sNNLTAPSbDa0f8XYA@mail.gmail.com>
+Content-Language: en-US
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <CAMuHMdVkttQpA-s0MrKbTVxJ6K+xXmhV3sNNLTAPSbDa0f8XYA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, Sep 26, 2023 at 5:02=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> On Mon, Sep 25, 2023 at 06:16:29PM +0800, yang tylor wrote:
-> > On Mon, Sep 25, 2023 at 4:41=E2=80=AFPM Conor Dooley <conor.dooley@micr=
-ochip.com> wrote:
-> > >
-> > > On Mon, Sep 25, 2023 at 09:44:21AM +0800, yang tylor wrote:
-> > > > On Fri, Sep 22, 2023 at 11:31=E2=80=AFPM Conor Dooley <conor@kernel=
-.org> wrote:
-> > > > >
-> > > > > On Fri, Sep 22, 2023 at 05:43:54PM +0800, yang tylor wrote:
-> > > > > > On Fri, Sep 22, 2023 at 5:22=E2=80=AFPM Conor Dooley <conor@ker=
-nel.org> wrote:
-> > > > > > >
-> > > > > > > On Fri, Sep 22, 2023 at 03:56:25PM +0800, yang tylor wrote:
-> > > > > > > > On Tue, Sep 19, 2023 at 7:09=E2=80=AFPM Conor Dooley <conor=
-@kernel.org> wrote:
-> > > > > > > > > On Tue, Sep 19, 2023 at 05:31:29PM +0800, yang tylor wrot=
-e:
-> > > > > > >
-> > > > > > > > > > The behavior of "himax,boot_time_fw_upgrade" seems not =
-stable and
-> > > > > > > > > > should be removed. "himax,fw_in_flash", I use the kerne=
-l config for
-> > > > > > > > > > user to select.
-> > > > > > > > >
-> > > > > > > > > That seems like a bad idea, we want to be able to build o=
-ne kernel that
-> > > > > > > > > works for all hardware at the same time.
-> > > > > > > > >
-> > > > > > > > I see, so I should take that back?
-> > > > > > > > I'll explain more about it.
-> > > > > > >
-> > > > > > > Are there particular ICs where the firmware would always be i=
-n flash and
-> > > > > > > others where it would never be? Or is this a choice made by t=
-he board or
-> > > > > > > system designer?
-> > > > > > >
-> > > > > > Most cases it's about the system designer's decision. But some =
-ICs may be forced
-> > > > > > to use flash because of its architecture(multiple IC inside, ne=
-ed to
-> > > > > > load firmware to
-> > > > > > multiple IC's sram by master IC). But if there is no limitation=
- on
-> > > > > > this part, most system
-> > > > > > designers will prefer flashless.
-> > > > >
-> > > > > Forgive me if I am not understanding correctly, there are some IC=
-s that
-> > > > > will need to load the firmware from flash and there are some wher=
-e it
-> > > > > will be a decision made by the designer of the board. Is the flas=
-h part
-> > > > > of the IC or is it an external flash chip?
-> > > > >
-> > > >
-> > > > Both are possible, it depends on the IC type. For TDDI, the IC is l=
-ong
-> > > > and thin, placed on panel PCB, flash will be located at the externa=
-l
-> > > > flash chip. For the OLED TP, IC is usually placed at FPC and its fl=
-ash
-> > > > is embedded, thus the IC size is large compared to TDDI. But from t=
-he
-> > > > driver's perspective either external flash or embedded flash, the I=
-C
-> > > > itself will load firmware from flash automatically when reset pin i=
-s
-> > > > released. Only if firmware is loading from the host storage system,
-> > > > the driver needs to operate the IC in detail.
-> > >
-> > >
-> > > Since there are ICs that can use the external flash or have it loaded
-> > > from the host, it sounds like you do need a property to differentiate
-> > > between those cases.
-> > Yep.
-> >
-> > > Is it sufficient to just set the firmware-name property for these cas=
-es?
-> > > If the property exists, then you know you need to load firmware & wha=
-t
-> > > its name is. If it doesn't, then the firmware either isn't needed or
-> > > will be automatically loaded from the external flash.
->
-> > We have a default prefix firmware name(like himax_xxxx.bin) in the driv=
-er code.
->
-> How do you intend generating the name of the firmware file? I assume the
-> same firmware doesn't work on every IC, so you'll need to pick a
-> different one depending on the compatible?
->
-If considering a firmware library line-up for all the incoming panels
-of this driver.
-We would use PID as part of the file name. Because all the support panels w=
-ould
-have a unique PID associated. Which will make the firmware name like
-himax_xxx_{$PID}.bin. The problem is, we need to know PID before firmware l=
-oad
-at no flash condition. Thus PID information is required in dts when
-no-flash-flag
-is specified.
+Hi, Geert,
 
-> > So we'll look for it when no-flash-flag is specified. In our experience=
-,
-> > forcing a prefix firmware name helps the user to aware what firmware
-> > they are dealing with.
+On 21.09.2023 15:51, Geert Uytterhoeven wrote:
+> Hi Claudiu,
+> 
+> Thanks for your patch!
+> 
+> On Tue, Sep 12, 2023 at 6:53 AM Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> On RZ/G3S PFC register allow setting 8 functions for individual ports
+>> (function1 to function8). For function1 register need to be configured
+>> with 0, for function8 register need to be configured with 7.
+>> We cannot use zero based addressing when requesting functions from
+>> different code places as documentation (RZG3S_pinfunction_List_r1.0.xlsx)
+>> states explicitly that function0 has different meaning.
+> 
+> According to that table, function0 is GPIO.
 
-If a more simple solution for no-flash condition is needed, as you mentione=
-d,
-specifying a firmware name in dts would be the best. Otherwise, a
-no-flash-flag and
-PID information needs to be added in dts.
+Yes, I'll mention it like this in the next version.
 
-Thanks,
-Tylor
+> 
+>> For this add a new member to struct rzg2l_hwcfg that will keep the
+>> offset that need to be substracted before applying a value to PFC register.
+>>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> 
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> 
+> But one question below...
+> 
+>> --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+>> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+>> @@ -136,9 +136,11 @@ struct rzg2l_register_offsets {
+>>  /**
+>>   * struct rzg2l_hwcfg - hardware configuration data structure
+>>   * @regs: hardware specific register offsets
+>> + * @func_base: base number for port function (see register PFC)
+>>   */
+>>  struct rzg2l_hwcfg {
+>>         const struct rzg2l_register_offsets regs;
+>> +       u8 func_base;
+>>  };
+>>
+>>  struct rzg2l_dedicated_configs {
+>> @@ -221,6 +223,7 @@ static int rzg2l_pinctrl_set_mux(struct pinctrl_dev *pctldev,
+>>                                  unsigned int group_selector)
+>>  {
+>>         struct rzg2l_pinctrl *pctrl = pinctrl_dev_get_drvdata(pctldev);
+>> +       const struct rzg2l_hwcfg *hwcfg = pctrl->data->hwcfg;
+>>         const struct pinctrl_pin_desc *pin_desc;
+>>         unsigned int i, *psel_val, *pin_data;
+>>         struct function_desc *func;
+>> @@ -247,9 +250,9 @@ static int rzg2l_pinctrl_set_mux(struct pinctrl_dev *pctldev,
+>>                 off = RZG2L_PIN_CFG_TO_PORT_OFFSET(*pin_data);
+>>
+>>                 dev_dbg(pctrl->dev, "port:%u pin: %u off:%x PSEL:%u\n", port,
+>> -                       pin, off, psel_val[i]);
+>> +                       pin, off, psel_val[i] - hwcfg->func_base);
+>>
+>> -               rzg2l_pinctrl_set_pfc_mode(pctrl, pin, off, psel_val[i]);
+>> +               rzg2l_pinctrl_set_pfc_mode(pctrl, pin, off, psel_val[i] - hwcfg->func_base);
+>>         }
+>>
+>>         return 0;
+> 
+> Perhaps the adjustment should be done in rzg2l_dt_subnode_to_map()
+> instead, when obtaining MUX_FUNC() from DT? That would allow you to do
+> some basic validation on it too, which is currently completely missing
+> (reject out-of-range values overflowing into adjacent PFC fields,
+> reject zero on RZ/G3S).
+
+I'll have a look on this. I see .set_mux() can also be called from sysfs
+though pinmux-select exported file thus, I don't know at the moment if
+validating it on rzg2l_dt_subnode_to_map() will be enough.
+
+Would it be OK to have this outside of this series or you would prefer it now?
+
+Thank you,
+Claudiu Beznea
+
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
 
