@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-3566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81A8D7AF48D
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 21:58:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D93C7AF496
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 22:01:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 6F2701C20754
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 19:57:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2D88F281AF9
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 20:01:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D015F4998E;
-	Tue, 26 Sep 2023 19:57:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD78348E9B;
+	Tue, 26 Sep 2023 20:01:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8023C41E2A
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 19:57:56 +0000 (UTC)
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11E4B11F
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 12:57:54 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9a648f9d8e3so1266498566b.1
-        for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 12:57:53 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CF4430D00
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 20:01:28 +0000 (UTC)
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC74811F
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 13:01:26 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2bffdf50212so156780561fa.1
+        for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 13:01:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695758272; x=1696363072; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695758485; x=1696363285; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=s0kSwK3PVk7H9vqR6LJUrVkOaC2Hn8PPpjAomEPL3kY=;
-        b=wyQnV90dnER2pauqvwS3EVchmsVgjbxJq4kAlatt7HUkKxosEyJ5XD4hreMLMLyrQT
-         8Q8hDN1b2f1vinA7cQa59H8okH9FtXRJv3qe8Hf22txPBanPYzZY0YECmfP3d/OSBzN+
-         ILZnGJcOX4hpv7BG+1o1a28eG54Nrp4idiQ6eDevvabqYaEGOGnO65ZK2W52Cqtmuseo
-         F+3lEMdBapqgy8VKGrkcZdc9jseHrmDcYI5itfaOTzEs7L/na4L+3xYdIUQN7meMYZzs
-         9E6IjPLbbfAxgVVNgaKPep9rqQZgGXYcKqHWh4xFcMtcf5q5Yu2zETcQxBA8MMUTMKZd
-         PlBQ==
+        bh=xzh+BqCORH5y356NrL2kb0nBeLQs1vF5RJDXWt6M7dI=;
+        b=u8gIuFWsvDmYLdBbN8h4LxaaLLoCgzQEotutfB6U8hkCZD5NL0D+4MA5G/2pm1EANA
+         muQ/aN1JksAWHY6gzEOzert7GoJcb3MgtX3GzOY46fTYxCHc8PZb6xRgJQa0noKzIVu3
+         4jdt7F555GXcpD1WbvaeQsFI2CixfjzLJAGYB5JbflC1Ys/27YFaVTZhsdtYGb+iIOYB
+         OR08o9TIv61gO8QCgiSOTDF1TXLTsFj2Z8hFQQ0Kmb0VojsvwwrUGS1AGCn0aNSueWmA
+         IOhnq17KEyA5caxQ2gp9cywELhh9ie5MeUxgS5AS0Wek3sy60nGfrRuQXXCKPaYYG0cV
+         o2YQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695758272; x=1696363072;
+        d=1e100.net; s=20230601; t=1695758485; x=1696363285;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s0kSwK3PVk7H9vqR6LJUrVkOaC2Hn8PPpjAomEPL3kY=;
-        b=YtwTIHt8mSU/G5+ceGbB8RmH4bGRZF3dOBC+htGsKycLNfbuCoSbbhKJAS+2vEe+no
-         vNl+axsXMnye6TGCmJS9ZB9mIPZYWbir/RJ8098R70AnM4ZvwSbyzXVQcqH3LbGib7OC
-         hgfaAPYvLB7Oc2MHuHR+/rPoTJ1z0L7TdWiaYj48PTZxiBlRES4Rk6ocFethlF/529x+
-         cPBSd0e/xAw7jlEujmLmgKVn2zonNtQPvvSr20LfPafMAkUi2fpIgEPWkWG50XPp9Acw
-         1J21jrWQslyZ+chM2XWY1Ehry9HVRufWMqXEr9mmBkGBeAzM6c8ZykW5YqUh4bgv3g6x
-         RaFw==
-X-Gm-Message-State: AOJu0Ywt17HP1hDh6GVDx+LLqkPdfGVuLuQA25555h66p+vX+Tj0otYy
-	klY529hHelAfY83h58ButXHHag==
-X-Google-Smtp-Source: AGHT+IHjbWORZPXjmDOgqu7p72QUQqNxDanzZxOQWlI3iMKFmTK9o5TkYkJYJt/utg0kDv6Sl696wg==
-X-Received: by 2002:a17:907:7818:b0:9ae:654d:5105 with SMTP id la24-20020a170907781800b009ae654d5105mr10095500ejc.47.1695758272572;
-        Tue, 26 Sep 2023 12:57:52 -0700 (PDT)
+        bh=xzh+BqCORH5y356NrL2kb0nBeLQs1vF5RJDXWt6M7dI=;
+        b=MQ73S0gx0ObIWtdtrAFVuJpWk0LXDQxDRlIe9XPS8lkfCuM0Jog+VGnAawcoAxv3F0
+         vmnIP/fsLTablGT0XIk+j1obSUeEhepClzzQrzLtGjpvA0NcUxBzRo26JBmlq+LjYrMq
+         t+5MR0JMa0dE+bjVR64nkEFQXWBSThkJFoJnl0l+Y7qmGP1lpkKGIhLZ6p3HyMT4icGw
+         7Enz5219MnEVzerrF2063xa+JZYV+P8MDN1QpP6NXIN1nqfi55eNyNmGcOvgPjo18h8I
+         Decdb8AEVPG3jwE+uXWzFhV3t2Qo0m9z7VXkuIquZcFxANSB/I5pXuB4b2Hl3nUijn4J
+         id1Q==
+X-Gm-Message-State: AOJu0YzpjuudGzNwwl+wM+ds/tvJcv5RaSV+1ewOwMSLNueJPZJZzCi3
+	5wSqL5o2WY3tFtAydZ8rvsYC+w==
+X-Google-Smtp-Source: AGHT+IH8Wd9vsEvjCwgGUfyF706J2MSG/pEBpaspbpK3ulVbLzL9tJWNFAc3r4j2FJxMmYwcpV8XHQ==
+X-Received: by 2002:a2e:978c:0:b0:2bc:ce85:2de2 with SMTP id y12-20020a2e978c000000b002bcce852de2mr46153lji.37.1695758483882;
+        Tue, 26 Sep 2023 13:01:23 -0700 (PDT)
 Received: from [192.168.33.189] (178235177023.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.23])
-        by smtp.gmail.com with ESMTPSA id v6-20020a170906380600b0099c53c4407dsm8109693ejc.78.2023.09.26.12.57.51
+        by smtp.gmail.com with ESMTPSA id x20-20020a05651c105400b002c02b36d381sm2774571ljm.88.2023.09.26.13.01.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Sep 2023 12:57:52 -0700 (PDT)
-Message-ID: <449f8299-3694-49e9-ba18-38cb52b5f196@linaro.org>
-Date: Tue, 26 Sep 2023 21:57:51 +0200
+        Tue, 26 Sep 2023 13:01:23 -0700 (PDT)
+Message-ID: <1be747ae-1d80-4ebc-9841-c0e98e64a0d1@linaro.org>
+Date: Tue, 26 Sep 2023 22:01:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,8 +63,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/13] arm64: dts: qcom: msm8916-samsung-serranove: Add
- sound and modem
+Subject: Re: [PATCH 03/13] arm64: dts: qcom: msm8916: Add common
+ msm8916-modem-qdsp6.dtsi
 Content-Language: en-US
 To: Stephan Gerhold <stephan@gerhold.net>
 Cc: Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
@@ -73,9 +73,9 @@ Cc: Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
  ~postmarketos/upstreaming@lists.sr.ht,
  Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 References: <20230926-msm8916-modem-v1-0-398eec74bac9@gerhold.net>
- <20230926-msm8916-modem-v1-5-398eec74bac9@gerhold.net>
- <64f030ca-27e5-47c8-b0d4-5fd0d4fce9d9@linaro.org>
- <ZRMxDjVKu-kGIs5f@gerhold.net>
+ <20230926-msm8916-modem-v1-3-398eec74bac9@gerhold.net>
+ <45665b43-3be9-4f27-aa88-12cdef56346d@linaro.org>
+ <ZRMrqsZ0QeDNFHFj@gerhold.net>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -112,41 +112,83 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <ZRMxDjVKu-kGIs5f@gerhold.net>
+In-Reply-To: <ZRMrqsZ0QeDNFHFj@gerhold.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-[...]
-
->>>  
->>> +&sound {
->>> +	status = "okay";
->>> +	audio-routing =
->>> +		"AMIC1", "MIC BIAS External1",
->>> +		"AMIC2", "MIC BIAS Internal2",
->>> +		"AMIC3", "MIC BIAS External1";
->>> +};
->> I *think* we should be able to harmlessly enable &audio globally?
+On 26.09.2023 21:06, Stephan Gerhold wrote:
+> On Tue, Sep 26, 2023 at 08:49:24PM +0200, Konrad Dybcio wrote:
+>> On 26.09.2023 18:51, Stephan Gerhold wrote:
+>>> Most MSM8916/MSM8939 devices use very similar setups for the modem,
+>>> because most of the device-specific details are abstracted by the modem
+>>> firmware. There are several definitions (status switches, DAI links
+>>> etc) that will be exactly the same for every board.
+>>>
+>>> Introduce a common msm8916-modem-qdsp6.dtsi include that can be used to
+>>> simplify enabling the modem for such devices. By default the
+>>> digital/analog codec in the SoC/PMIC is used, but boards can define
+>>> additional codecs using the templates for Secondary and Quaternary
+>>> MI2S.
+>>>
+>>> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+>>> ---
+>> I'd rather see at least one usage so that you aren't introducing
+>> effectively non-compiled code..
 >>
 > 
-> What about boards that do not have/use audio at all? (see
-> msm8916-ufi.dtsi). We don't even want to load the kernel modules on
-> those.
-Is it really an issue other than losing a few kb of memory?
-
+> There are 10 usages in the rest of the patch series.
+> Is that enough? :D
 > 
-> IMO the SoC dtsi should always be minimal by default. This also
-> guarantees that you don't run into trouble because of half- or
-> incorrectly configured components during early bring-up, especially if
-> you don't have serial and are hoping to get the device booting far
-> enough to debug it.
-Generally I'd agree, but if the audio machine driver cannot NOP
-successfully without a topology configuration, that's a problem.
+> IMHO it doesn't make sense to squash this with one of the device
+> patches, especially considering several of them are primarily authored
+> by others.
+I see..
+
+Well, I guess I don't have better counter-arguments, but please
+consider this the next time around.
+
+[...]
+
+>>> +&lpass_codec {
+>>> +	status = "okay";
+>>> +};
+>> Any reason for it to stay disabled?
+>>
+> 
+> You mean in msm8916.dtsi?
+Yes
+
+> For the SoC dtsi we don't make assumptions
+> what devices use or not. There could be devices that ignore the internal
+> codec entirely. If there is nothing connected to the codec lpass_codec
+> should not be enabled (e.g. the msm8916-ufi.dtsi devices).
+See my reply to patch 5
+
+[...]
+
+>>> +	sound_dai_secondary: mi2s-secondary-dai-link {
+>>> +		link-name = "Secondary MI2S";
+>>> +		status = "disabled"; /* Needs extra codec configuration */
+>> Hmm.. Potential good user of /omit-if-no-ref/?
+>>
+> 
+> AFAICT /omit-if-no-ref/ is for phandle references only. Basically it
+> would only work if you would somewhere reference the phandle:
+> 
+> 	list-of-sound-dais = <&sound_dai_primary &sound_dai_secondary>;
+> 
+> But this doesn't exist so /omit-if-no-ref/ cannot be used here.
+Ahh right, this is the one we don't reference.. Too bad,
+would be a nice fit :/
+
+I only see one usage of it though (patch 7), perhaps it could
+be kept local to that one?
 
 Konrad
 
