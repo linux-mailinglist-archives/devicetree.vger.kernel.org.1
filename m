@@ -1,270 +1,198 @@
-Return-Path: <devicetree+bounces-3552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58EA27AF427
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 21:30:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 538F67AF41E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 21:27:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 0C468281357
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 19:30:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 56A431C20840
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 19:27:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 392B747C99;
-	Tue, 26 Sep 2023 19:30:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E30E136B1E;
+	Tue, 26 Sep 2023 19:26:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CE05F51A
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 19:30:08 +0000 (UTC)
-X-Greylist: delayed 565 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 26 Sep 2023 12:30:06 PDT
-Received: from bmailout2.hostsharing.net (bmailout2.hostsharing.net [83.223.78.240])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04FA6FC;
-	Tue, 26 Sep 2023 12:30:05 -0700 (PDT)
-Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
-	(Client CN "*.hostsharing.net", Issuer "RapidSSL Global TLS RSA4096 SHA256 2022 CA1" (verified OK))
-	by bmailout2.hostsharing.net (Postfix) with ESMTPS id B91712800B48B;
-	Tue, 26 Sep 2023 21:20:38 +0200 (CEST)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-	id AC0D1155F66; Tue, 26 Sep 2023 21:20:38 +0200 (CEST)
-Message-Id: <75b775d0526e72f292e0546a306b37680714686c.1695754856.git.lukas@wunner.de>
-In-Reply-To: <ae40859b82494d75e9ad7bf616b3264138ad1f6a.1695754856.git.lukas@wunner.de>
-References: <ae40859b82494d75e9ad7bf616b3264138ad1f6a.1695754856.git.lukas@wunner.de>
-From: Lukas Wunner <lukas@wunner.de>
-Date: Tue, 26 Sep 2023 21:09:36 +0200
-Subject: [PATCH 2/2] reset: Add Infineon SLB9670 TPM reset driver
-To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Lino Sanfilippo <l.sanfilippo@kunbus.com>, linux-integrity@vger.kernel.org, devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6355F51A
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 19:26:56 +0000 (UTC)
+Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.171])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDF7C193;
+	Tue, 26 Sep 2023 12:26:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1695756407; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=j5vO5Z+d6AFqtgPF9hbTxSr4Q3zdMvZRGY1iXWQonVYkA1/Rb1OY+k13PF1q/p/Kvt
+    1K0D/gC3uHbv3T86wYJ7PAPfotnOVV5M9AUT4H3qthMprVaovWoP9Xbn+ZZuonm/ECeN
+    L/MChnYb9bEgdgEZEXIVOVQwt/+uECm7tJ1JuUGU49n+KdBt1TrwghnUGoRPvsauNdaZ
+    s9LL2JVQl1152Sk3N0x3buCGRqSJF35EwGEDdxB1gr7cf8OfaJVd0yoBqpZ+yeTuDhdR
+    TdX8gTb/upFJSfYSYsP3fSsLsxHui8WCTxmafhUETzc8xCUI//Gnw9UCIJNLr46vc/F6
+    7Waw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1695756407;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=4FqenWm85bgQFUJF4ZZgZ9PH37olU8MqKVaaTd8hPqA=;
+    b=VFHaRYwEZJkKVLbdcHc1H0qVElP5DEzDepnkJM3M7fiO0HaQHhmevFxqO147adRgRZ
+    i+/mvaOzQQqHOB8q/nDLQWEpj9sRxQn9NxzJYoNRQtgnTXff1+R3DSrbk/TWah7LscHJ
+    YzhsuLhuLfUQuZ4Yj0XBqRaxCpyUjOsv/EmFCgKzJcuJzy8OH28Q9BE0DlZFclB4mAxM
+    vnwI2fQ0XisuZ4iyz5QdaUV5dlWB9a8TYpucBAjYDBDZk7uzqQJwz9A4byjKRObGWLm+
+    /WCzWWukhgZiThK8DU/nl/D3XvxRm5q83qdnr1emtSKtn7ZRlByg7LFOPVCSvL4Qmu7d
+    8q4g==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo02
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1695756407;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=4FqenWm85bgQFUJF4ZZgZ9PH37olU8MqKVaaTd8hPqA=;
+    b=etilVRUji3m4T5WC/XndJD950mA0M9HOjWthkIUzuuiYW2CZ9VBnZQIgJMFEz/d+dD
+    1dKoxji1hFqaju/mJwj+6iS//3M4GgjsgNCs9JU9GeCMu5vOMGxvsKFNf/EtLJWiBZcX
+    n7IhbZSMdgS+/97YECjP4jlFEiRf0gkIBb+Cv3ytMSHiT7xP0T2iCue5+xeK1C6zllEP
+    jX17CMM9ZvEDfc79LApmovV328g2Ec59fzRKEEki+1Hp6Z648XfyZHdizWmmQcIr7lza
+    CWlMDpPklHQW55kStE5H3Fk/RR8R+LnOIz85LKFP9YXtxEqpahqVkoJrBK/1mxIRqr8f
+    ebgg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1695756406;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=4FqenWm85bgQFUJF4ZZgZ9PH37olU8MqKVaaTd8hPqA=;
+    b=KuQRe1o4T2S0QWo8poFQyef4A941Cw5r9nCA8MP3Rtow7B28xuGkSjmvpYy99fY4tT
+    0/03smhxUjc89nVa80BA==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4paA8piJ1A=="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.8.2 SBL|AUTH)
+    with ESMTPSA id R04c57z8QJQkgM9
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Tue, 26 Sep 2023 21:26:46 +0200 (CEST)
+Date: Tue, 26 Sep 2023 21:26:45 +0200
+From: Stephan Gerhold <stephan@gerhold.net>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	"Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+Subject: Re: [PATCH 04/13] arm64: dts: qcom: msm8916-samsung-a2015: Add sound
+ and modem
+Message-ID: <ZRMwdRo9hAm4BO5E@gerhold.net>
+References: <20230926-msm8916-modem-v1-0-398eec74bac9@gerhold.net>
+ <20230926-msm8916-modem-v1-4-398eec74bac9@gerhold.net>
+ <2c9eda54-a90e-483a-abc2-865d82854b80@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2c9eda54-a90e-483a-abc2-865d82854b80@linaro.org>
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+	SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-From: Lino Sanfilippo <l.sanfilippo@kunbus.com>
+On Tue, Sep 26, 2023 at 08:54:29PM +0200, Konrad Dybcio wrote:
+> On 26.09.2023 18:51, Stephan Gerhold wrote:
+> > Enable sound and modem for the Samsung A2015 based devices (A3, A5, E5,
+> > E7, Grand Max). The setup is similar to most MSM8916 devices, i.e.:
+> > 
+> >  - QDSP6 audio
+> >  - Earpiece/headphones/microphones via digital/analog codec in
+> >    MSM8916/PM8916
+> >  - WWAN Internet via BAM-DMUX
+> > 
+> > except:
+> > 
+> >  - NXP TFA9895 codec for speaker on Quaternary MI2S
+> >  - Samsung-specific audio jack detection (not supported yet)
+> > 
+> > [Lin: Add e2015 and grandmax]
+> > Co-developed-by: "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+> > Signed-off-by: "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> > ---
+> >  .../dts/qcom/msm8916-samsung-a2015-common.dtsi     | 55 ++++++++++++++++++++++
+> >  .../dts/qcom/msm8916-samsung-e2015-common.dtsi     |  4 ++
+> >  .../boot/dts/qcom/msm8916-samsung-grandmax.dts     |  4 ++
+> >  3 files changed, 63 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+> > index 0b29132b74e1..f71b18d89bf9 100644
+> > --- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+> > @@ -1,10 +1,13 @@
+> >  // SPDX-License-Identifier: GPL-2.0-only
+> >  
+> >  #include "msm8916-pm8916.dtsi"
+> > +#include "msm8916-modem-qdsp6.dtsi"
+> > +
+> >  #include <dt-bindings/gpio/gpio.h>
+> >  #include <dt-bindings/input/input.h>
+> >  #include <dt-bindings/interrupt-controller/irq.h>
+> >  #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+> > +#include <dt-bindings/sound/apq8016-lpass.h>
+> >  
+> >  / {
+> >  	aliases {
+> > @@ -196,6 +199,18 @@ vibrator: vibrator {
+> >  	};
+> >  };
+> >  
+> > +&blsp_i2c1 {
+> > +	status = "okay";
+> > +
+> > +	speaker_codec: audio-codec@34 {
+> > +		compatible = "nxp,tfa9895";
+> > +		reg = <0x34>;
+> > +		vddd-supply = <&pm8916_l5>;
+> > +		sound-name-prefix = "Speaker";
+> > +		#sound-dai-cells = <0>;
+> > +	};
+> > +};
+> > +
+> >  &blsp_i2c2 {
+> >  	status = "okay";
+> >  
+> > @@ -243,6 +258,13 @@ &gpu {
+> >  	status = "okay";
+> >  };
+> >  
+> > +&lpass {
+> > +	dai-link@3 {
+> > +		reg = <MI2S_QUATERNARY>;
+> > +		qcom,playback-sd-lines = <1>;
+> > +	};
+> > +};
+> Is that not status = reserved?
+> 
 
-Normally the platform firmware is responsible for taking a Trusted
-Platform Module out of reset on boot and storing measurements into it.
+Correct. This is here to simplify switching to the modem-bypass audio
+routing if someone does not need (or want) the modem. The direct audio
+path with the LPASS drivers tends to be more reliable and configurable
+(especially wrt bit formats, sampling rates, latency, channels etc).
+I know that at some point this helped someone who tried to use an old
+phone as some kind of portable musical instrument / synthesizer.
 
-However if the platform firmware is incapable of doing that -- as is the
-case on the Raspberry Pi -- then the onus is on the kernel to take the
-TPM out of reset before trying to attach a driver to it.
+It's not too obvious that these definitions would be needed when making
+those changes (because devices using the standard SD lines (i.e <0>) do
+not need it). If you forget about this you get non-functional audio with
+no error or any hint what could be wrong.
 
-Provide a reset driver for such platforms.
+To simplify switching between the different audio routing options, the
+lk2nd bootloader actually has an option to do this transformation in the
+DTB automagically during boot. It's sort of like a DTB overlay that
+disables the QDSP6 audio path and enables this node instead. The DAI
+links are also adjusted where necessary.
 
-The Infineon SLB9670 TPM requires a specific reset sequence on its RST#
-pin which is documented in sections 5.4 and 5.5 of the datasheet:
+Do you think a comment would help here?
 
-https://www.infineon.com/dgdl/Infineon-SLB%209670VQ2.0-DataSheet-v01_04-EN.pdf?fileId=5546d4626fc1ce0b016fc78270350cd6
-
-The sequence with minimum wait intervals is as follows:
-
-  deassert RST#
-  wait at least 60 ms
-  assert RST#
-  wait at least 2 usecs
-  deassert RST#
-  wait at least 60 ms
-  assert RST#
-  wait at least 2 usecs
-  deassert RST#
-  wait at least 60 ms before issuing the first TPM command
-
-Signed-off-by: Lino Sanfilippo <l.sanfilippo@kunbus.com>
-Signed-off-by: Lukas Wunner <lukas@wunner.de>
----
- drivers/reset/Kconfig         |   9 +++
- drivers/reset/Makefile        |   1 +
- drivers/reset/reset-slb9670.c | 141 ++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 151 insertions(+)
- create mode 100644 drivers/reset/reset-slb9670.c
-
-diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index ccd59dd..3296e33 100644
---- a/drivers/reset/Kconfig
-+++ b/drivers/reset/Kconfig
-@@ -229,6 +229,15 @@ config RESET_SIMPLE
- 	   - Allwinner SoCs
- 	   - SiFive FU740 SoCs
- 
-+config RESET_SLB9670
-+	tristate "Infineon SLB9670 TPM Reset Driver"
-+	depends on TCG_TIS_SPI
-+	help
-+	  This enables the reset driver for the Infineon SLB9670 Trusted
-+	  Platform Module. Only say Y here if your platform firmware is
-+	  incapable of taking the TPM out of reset on boot, requiring the
-+	  kernel to do so.
-+
- config RESET_SOCFPGA
- 	bool "SoCFPGA Reset Driver" if COMPILE_TEST && (!ARM || !ARCH_INTEL_SOCFPGA)
- 	default ARM && ARCH_INTEL_SOCFPGA
-diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-index 8270da8..d9c182e 100644
---- a/drivers/reset/Makefile
-+++ b/drivers/reset/Makefile
-@@ -30,6 +30,7 @@ obj-$(CONFIG_RESET_RASPBERRYPI) += reset-raspberrypi.o
- obj-$(CONFIG_RESET_RZG2L_USBPHY_CTRL) += reset-rzg2l-usbphy-ctrl.o
- obj-$(CONFIG_RESET_SCMI) += reset-scmi.o
- obj-$(CONFIG_RESET_SIMPLE) += reset-simple.o
-+obj-$(CONFIG_RESET_SLB9670) += reset-slb9670.o
- obj-$(CONFIG_RESET_SOCFPGA) += reset-socfpga.o
- obj-$(CONFIG_RESET_SUNPLUS) += reset-sunplus.o
- obj-$(CONFIG_RESET_SUNXI) += reset-sunxi.o
-diff --git a/drivers/reset/reset-slb9670.c b/drivers/reset/reset-slb9670.c
-new file mode 100644
-index 00000000..cc09ab5
---- /dev/null
-+++ b/drivers/reset/reset-slb9670.c
-@@ -0,0 +1,141 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Reset driver for Infineon SLB9670 Trusted Platform Module
-+ *
-+ * Copyright (C) 2022 KUNBUS GmbH
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+#include <linux/reset-controller.h>
-+
-+/*
-+ * Time intervals used in the reset sequence:
-+ *
-+ * RSTIN: minimum time to hold the reset line deasserted
-+ * WRST: minimum time to hold the reset line asserted
-+ */
-+#define SLB9670_TIME_RSTIN	60 /* msecs */
-+#define SLB9670_TIME_WRST	2  /* usecs */
-+
-+struct reset_slb9670 {
-+	struct reset_controller_dev rcdev;
-+	struct gpio_desc *gpio;
-+};
-+
-+static inline struct reset_slb9670 *
-+to_reset_slb9670(struct reset_controller_dev *rcdev)
-+{
-+	return container_of(rcdev, struct reset_slb9670, rcdev);
-+}
-+
-+static int reset_slb9670_assert(struct reset_controller_dev *rcdev,
-+				unsigned long id)
-+{
-+	struct reset_slb9670 *reset_slb9670 = to_reset_slb9670(rcdev);
-+
-+	gpiod_set_value(reset_slb9670->gpio, 1);
-+	return 0;
-+}
-+
-+static int reset_slb9670_deassert(struct reset_controller_dev *rcdev,
-+				  unsigned long id)
-+{
-+	struct reset_slb9670 *reset_slb9670 = to_reset_slb9670(rcdev);
-+
-+	/*
-+	 * Perform the reset sequence: Deassert and assert the reset line twice
-+	 * and wait the respective time intervals. After a last wait interval
-+	 * of RSTIN the chip is ready to receive the first command.
-+	 */
-+	gpiod_set_value(reset_slb9670->gpio, 0);
-+	msleep(SLB9670_TIME_RSTIN);
-+	gpiod_set_value(reset_slb9670->gpio, 1);
-+	udelay(SLB9670_TIME_WRST);
-+	gpiod_set_value(reset_slb9670->gpio, 0);
-+	msleep(SLB9670_TIME_RSTIN);
-+	gpiod_set_value(reset_slb9670->gpio, 1);
-+	udelay(SLB9670_TIME_WRST);
-+	gpiod_set_value(reset_slb9670->gpio, 0);
-+	msleep(SLB9670_TIME_RSTIN);
-+
-+	return 0;
-+}
-+
-+static int reset_slb9670_reset(struct reset_controller_dev *rcdev,
-+			       unsigned long id)
-+{
-+	int ret;
-+
-+	ret = reset_slb9670_assert(rcdev, id);
-+	if (ret)
-+		return ret;
-+
-+	return reset_slb9670_deassert(rcdev, id);
-+}
-+
-+static int reset_slb9670_status(struct reset_controller_dev *rcdev,
-+				unsigned long id)
-+{
-+	struct reset_slb9670 *reset_slb9670 = to_reset_slb9670(rcdev);
-+
-+	return gpiod_get_value(reset_slb9670->gpio);
-+}
-+
-+static const struct reset_control_ops reset_slb9670_ops = {
-+	.assert		= reset_slb9670_assert,
-+	.deassert	= reset_slb9670_deassert,
-+	.reset		= reset_slb9670_reset,
-+	.status		= reset_slb9670_status,
-+};
-+
-+static int reset_slb9670_of_xlate(struct reset_controller_dev *rcdev,
-+				  const struct of_phandle_args *reset_spec)
-+{
-+	return 0;
-+}
-+
-+static int reset_slb9670_probe(struct platform_device *pdev)
-+{
-+	struct reset_slb9670 *reset_slb9670;
-+	struct device *dev = &pdev->dev;
-+
-+	reset_slb9670 = devm_kzalloc(dev, sizeof(*reset_slb9670), GFP_KERNEL);
-+	if (!reset_slb9670)
-+		return -ENOMEM;
-+
-+	reset_slb9670->gpio = devm_gpiod_get(dev, "reset", GPIOD_ASIS);
-+	if (IS_ERR(reset_slb9670->gpio))
-+		return dev_err_probe(dev, PTR_ERR(reset_slb9670->gpio),
-+				     "cannot get reset gpio\n");
-+
-+	reset_slb9670->rcdev.nr_resets = 1;
-+	reset_slb9670->rcdev.owner = THIS_MODULE;
-+	reset_slb9670->rcdev.of_node = dev->of_node;
-+	reset_slb9670->rcdev.ops = &reset_slb9670_ops;
-+	reset_slb9670->rcdev.of_xlate = reset_slb9670_of_xlate;
-+	reset_slb9670->rcdev.of_reset_n_cells = 0;
-+
-+	return devm_reset_controller_register(dev, &reset_slb9670->rcdev);
-+}
-+
-+static const struct of_device_id reset_slb9670_dt_ids[] = {
-+	{ .compatible = "infineon,slb9670-reset" },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, reset_slb9670_dt_ids);
-+
-+static struct platform_driver reset_slb9670_driver = {
-+	.probe	= reset_slb9670_probe,
-+	.driver = {
-+		.name		= "reset-slb9670",
-+		.of_match_table	= reset_slb9670_dt_ids,
-+	},
-+};
-+module_platform_driver(reset_slb9670_driver);
-+
-+MODULE_DESCRIPTION("Infineon SLB9670 TPM Reset Driver");
-+MODULE_AUTHOR("Lino Sanfilippo <l.sanfilippo@kunbus.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.40.1
-
+Thanks,
+Stephan
 
