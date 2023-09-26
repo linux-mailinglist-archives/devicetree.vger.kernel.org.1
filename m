@@ -1,68 +1,39 @@
-Return-Path: <devicetree+bounces-3331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A939F7AE4C8
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 06:54:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B2E87AE548
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 07:55:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id C60521C2042A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 04:54:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id F37D82815BC
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 05:55:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F34861876;
-	Tue, 26 Sep 2023 04:54:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BF5B2114;
+	Tue, 26 Sep 2023 05:55:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94EB6186F
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 04:54:28 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CC8619E;
-	Mon, 25 Sep 2023 21:54:27 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38Q4sGVN127720;
-	Mon, 25 Sep 2023 23:54:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1695704056;
-	bh=Ez0n0IB9An/4q6TtN9YYyKqtOIiZUXjQe4ILvhUADOw=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=K3Hy7NvoUmwN6i0DZYHkJM5TsY+nSiyFkRCK4EzQJ9cP2OMYGmEqOvYKvo/aplzpQ
-	 PRA/LY2INrfC111xikZ5/9F7x4PpMCt6LU34zBtlEh4zEUoGklt7GJjgwhcDjGSdYr
-	 vPfKnRTH8RzCrWffcCkUzyzHy6RLPWds5OS8IMm0=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38Q4sGV4064871
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 25 Sep 2023 23:54:16 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 25
- Sep 2023 23:54:16 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 25 Sep 2023 23:54:16 -0500
-Received: from lelv0854.itg.ti.com (lelv0854.itg.ti.com [10.181.64.140])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38Q4sG5F027523;
-	Mon, 25 Sep 2023 23:54:16 -0500
-Received: from localhost (danish-tpc.dhcp.ti.com [10.24.69.199])
-	by lelv0854.itg.ti.com (8.14.7/8.14.7) with ESMTP id 38Q4sFqm004442;
-	Mon, 25 Sep 2023 23:54:15 -0500
-From: MD Danish Anwar <danishanwar@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
-CC: <afd@ti.com>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Tero
- Kristo <kristo@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>,
-        <danishanwar@ti.com>
-Subject: [PATCH v3 4/4] arm64: defconfig: Enable TI_ICSSG_PRUETH
-Date: Tue, 26 Sep 2023 10:23:37 +0530
-Message-ID: <20230926045337.1248276-5-danishanwar@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230926045337.1248276-1-danishanwar@ti.com>
-References: <20230926045337.1248276-1-danishanwar@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1921B20F6
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 05:55:37 +0000 (UTC)
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E37D39D;
+	Mon, 25 Sep 2023 22:55:35 -0700 (PDT)
+Received: from rd02-sz.amlogic.software (10.28.11.83) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Tue, 26 Sep 2023
+ 13:55:32 +0800
+From: Huqiang Qin <huqiang.qin@amlogic.com>
+To: <wim@linux-watchdog.org>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<neil.armstrong@linaro.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>
+CC: <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, Huqiang Qin <huqiang.qin@amlogic.com>
+Subject: [PATCH V2 0/2] Add watchdog support for Amlogic C3 SoCs
+Date: Tue, 26 Sep 2023 13:55:10 +0800
+Message-ID: <20230926055512.2355390-1-huqiang.qin@amlogic.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,40 +42,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+X-Originating-IP: [10.28.11.83]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The Programmable Real-time Unit and Industrial Communication Subsystem
-Gigabit (PRU_ICSSG) is a low-latency microcontroller subsystem in the TI
-K3 SoCs such as AM654x, AM64x. This subsystem is provided for the use
-cases like implementation of custom peripheral interfaces, offloading of
-tasks from the other processor cores of the SoC, etc.
+Amlogic C3 has the same watchdog controller as Amlogic T7.
 
-Currently AM654x-EVM uses ICSSG driver.
+[PATCH 1/2]: 
+  V1 -> V2: Added compatibles.
 
-Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+[PATCH 2/2]:
+  V1 -> V2: Increase compatibles of C3 watchdog.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 5443e6ff4544..6061e5e0e401 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -368,6 +368,7 @@ CONFIG_SNI_NETSEC=y
- CONFIG_STMMAC_ETH=m
- CONFIG_DWMAC_TEGRA=m
- CONFIG_TI_K3_AM65_CPSW_NUSS=y
-+CONFIG_TI_ICSSG_PRUETH=m
- CONFIG_QCOM_IPA=m
- CONFIG_MESON_GXL_PHY=m
- CONFIG_AQUANTIA_PHY=y
+Huqiang Qin (2):
+  dt-bindings: watchdog: Add support for Amlogic C3 SoCs
+  arm64: dts: Add watchdog node for Amlogic C3 SoCs
+
+ .../bindings/watchdog/amlogic,meson-gxbb-wdt.yaml           | 1 +
+ arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi                 | 6 ++++++
+ 2 files changed, 7 insertions(+)
+
+
+base-commit: 8fff9184d1b5810dca5dd1a02726d4f844af88fc
 -- 
-2.34.1
+2.42.0
 
 
