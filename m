@@ -1,169 +1,141 @@
-Return-Path: <devicetree+bounces-3522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A20E7AF2AE
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 20:25:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD7CC7AF2C2
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 20:27:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 4C5A5B20A13
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 18:25:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 41AA3B20957
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 18:27:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85F1E450CE;
-	Tue, 26 Sep 2023 18:24:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E25AA38FA5;
+	Tue, 26 Sep 2023 18:27:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14C0D42BFA
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 18:24:58 +0000 (UTC)
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A0501A5
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 11:24:55 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-533d6a8d6b6so7580352a12.2
-        for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 11:24:55 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF33329432
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 18:27:03 +0000 (UTC)
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D62B10A
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 11:27:02 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2bff7d81b5eso160835371fa.0
+        for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 11:27:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695752694; x=1696357494; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gcsTNpsjbN2SKqWT86OIi6rzpyQaQonBZGDEar8VbjY=;
-        b=fzK/WDQr6gSfQrXmNn3vKUxX4OGgnfQ5Aac74bu5IC/6y29W15b6wJP85Qk+PCHB1i
-         GwyuUItnpZFdqB30SGAr114DJPvr9SAOhyU1cuh1YLsD6kWshR4JYW7DC+0rz0fT/KxH
-         3zC2S3Ul5sekWqQsdoynbnzBjMVJy/CZ0yxzJod9iJXEDSZV1qcUe5jRj6UzHe21PDhO
-         dDKiMNLweduxjk/PxsSoWH386R0OJ+Nb2O/p9HeJOQc1aIBNGGrYk0eqZ8cmcKcCN0Ep
-         tEjnP4CSf9riQjfu9/2i7Sc2d4CQgVLzuU0xRoAVTQhEE6/QHhC1mCeKpJT6PMd+zBUG
-         3JLQ==
+        d=linaro.org; s=google; t=1695752820; x=1696357620; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vTLNwViOe5m9gPGr07BjzMggYdw+lKweFfmGHhfhfs4=;
+        b=XlzbAhjtkB3l7ABUSXvwGCTj5jGUMpdJeLr8AidePi1uA4XGvhU4C2i7I+O0yWy6OM
+         Bdz5Ap7vDx1EBHx+CubeP4CWZRcU0nnc+E4XmzxxW5KbkeAnM0XoFTLUh2arKnU0sWxf
+         A9efspkggaUum4EqCUrsl8f3n5P9j8YYPxG5PqMlr7Fz9WAiZN3R4lMLdlfvyhJCDqyJ
+         ssD4TkNB2qTsJReL9zHioEI3ecp1PlwqnPM3pgd8GLSX3TrAOfoWqWXtrAm7jdmb3ncm
+         7+sklxwMGkQtu5F5Rrk0OBwuHCe96hMgMealA1XeEaDYEd/+j3c9alEFJkm/6JKbhs9R
+         T2Nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695752694; x=1696357494;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gcsTNpsjbN2SKqWT86OIi6rzpyQaQonBZGDEar8VbjY=;
-        b=I4UoBSFws46cLtYnF0e6QoV4jxTpqRl9L5wRr/JEN8iTb5ix4yan5kMytcsyf39Q1C
-         RWobx0tHxJAKeXlvZStUenfoIqOLJe1CHES3IqHl1BLDCJDHSKgQ8o8WHHpAtnK5F2ic
-         4rvgvNC/g+9Nu9LKL9A1X77WxjIiz2yA5nxct/l28oXaZZX6zgxHwvz/dtlBr9PxHhZ7
-         nays+2lWRHZzysdAT5inHMJdLysPcL4TbIbxEXOQwJK6x5vX8AULjxa+3KZ0k0q8QOZt
-         RHyoyAPhiNf/ISCsIPqNe+rPdWZt97DxTymPJ7Yr+s1/pTOveHO+C39eVs50pLlKD+ma
-         oeVw==
-X-Gm-Message-State: AOJu0YznsDjLz5FbLxAXToiA8feGlG+ZYoA802bn/4GWaKdx0MdED55r
-	wth8WarSgJinG2rsNwqYPEpjug==
-X-Google-Smtp-Source: AGHT+IHSDS5XqFLTJ3Fj4mnDdxfJXQcOrG9mYsIt1RG52uxZWsc1JdF5u15aBVAjCYJy3NW7NDbP+g==
-X-Received: by 2002:aa7:da8b:0:b0:52a:66c0:1e9b with SMTP id q11-20020aa7da8b000000b0052a66c01e9bmr8454988eds.30.1695752694412;
-        Tue, 26 Sep 2023 11:24:54 -0700 (PDT)
-Received: from [10.167.154.1] (178235177023.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.23])
-        by smtp.gmail.com with ESMTPSA id f19-20020a056402151300b0053090e2afafsm7020643edw.22.2023.09.26.11.24.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Sep 2023 11:24:54 -0700 (PDT)
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Tue, 26 Sep 2023 20:24:42 +0200
-Subject: [PATCH 7/7] arm64: dts: qcom: sc7280: Add 0xac Adreno speed bin
+        d=1e100.net; s=20230601; t=1695752820; x=1696357620;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vTLNwViOe5m9gPGr07BjzMggYdw+lKweFfmGHhfhfs4=;
+        b=o1IY7hpHur/8rtsLImLgpCHQGRiId/FbuvT4y+BBZfRbpPftBqoYxgiOOcr+7f3bT5
+         cPtNqlVnxO4VjfR5HQGUPV4hPgliDtbKxzBHAwiGc+vtWI8QpL4Uo4Ie3I5r8dbKg6iP
+         4g1x9XKhs20i4XlyaNpgbLLzDMDauaH8OtY4kctQ66pBqzmtFHcjZB1hPuiO78USWjfs
+         pbZmgy7GNQAIPY2cxT9gXlWyTWOpcJQwxQDgE9DAyvWoxOLyi/jcMwnz2q/uZc0HoRye
+         PtK2L1qxtoI4JNIS2Le8tVgRoNDEdCOkINJ5i/l/ue6qYcDvlG+KQDEgVHrz+Tn4TJ9T
+         gQ9Q==
+X-Gm-Message-State: AOJu0Yz1IOvD/v/2mYwl2uMbRRVn9nBCDNzN7h3QSoJAydbVY9eu6ZqD
+	NlSLNNkNNUujXSIUGeaEuukCtA==
+X-Google-Smtp-Source: AGHT+IEItoYPB7nIesNR5cDDEWTvSDiEGrmr/1eAZ4KTrqt9XRTMXRRy2PBiiLBmQQIYzNe6Y5f4Cw==
+X-Received: by 2002:a05:6512:2103:b0:503:26bc:b08f with SMTP id q3-20020a056512210300b0050326bcb08fmr8003107lfr.24.1695752819917;
+        Tue, 26 Sep 2023 11:26:59 -0700 (PDT)
+Received: from [192.168.33.189] (178235177023.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.23])
+        by smtp.gmail.com with ESMTPSA id eo2-20020a056512480200b004fe7011072fsm2292076lfb.58.2023.09.26.11.26.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Sep 2023 11:26:59 -0700 (PDT)
+Message-ID: <ffe64462-b2ca-41d7-a895-09014aadd9c5@linaro.org>
+Date: Tue, 26 Sep 2023 20:26:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230926-topic-a643-v1-7-7af6937ac0a3@linaro.org>
-References: <20230926-topic-a643-v1-0-7af6937ac0a3@linaro.org>
-In-Reply-To: <20230926-topic-a643-v1-0-7af6937ac0a3@linaro.org>
-To: Rob Clark <robdclark@gmail.com>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- cros-qcom-dts-watchers@chromium.org, Andy Gross <agross@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <swboyd@chromium.org>, 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/7] arm64: dts: qcom: sc7280: Mark Adreno SMMU as DMA
+ coherent
+Content-Language: en-US
+To: Rob Clark <robdclark@gmail.com>, Abhinav Kumar
+ <quic_abhinavk@quicinc.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, cros-qcom-dts-watchers@chromium.org,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <swboyd@chromium.org>,
  Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- Luca Weiss <luca.weiss@fairphone.com>, Rob Clark <robdclark@chromium.org>, 
- linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1695752677; l=2100;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=9BePAqziunVu9kZivYgvv/caBkDoTl2qS9g1hj02Wgg=;
- b=DftHVsKPD4gXQnOXwv6J08JDe4kPe9q61Uq+Yk6OGVwbAalLbxGFp7JSs/NLklUN8hzuG4ORl
- P20Q6ZH69KsAaETW8eBjDpCidhznk2dyYWm7+g8ddSZevjirhjhF8yS
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ Luca Weiss <luca.weiss@fairphone.com>, Rob Clark <robdclark@chromium.org>,
+ linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20230926-topic-a643-v1-0-7af6937ac0a3@linaro.org>
+ <20230926-topic-a643-v1-6-7af6937ac0a3@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230926-topic-a643-v1-6-7af6937ac0a3@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-A643 (A635 speedbin 0xac) tops out at 812 MHz. Fill in the
-opp-supported-hw appropriately.
+On 26.09.2023 20:24, Konrad Dybcio wrote:
+> The SMMUs on sc7280 are cache-coherent. APPS_SMMU is marked as such,
+> mark the GPU one as well.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+Fixes: 96c471970b7b ("arm64: dts: qcom: sc7280: Add gpu support")
 
-Note that fuseval 0xac is referred to as speedbin 1 downstream, but
-that was already in use upstream, so 2 was chosen instead.
+Sorry.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index edaca6c2cf8c..ccc2dd6c45de 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2626,14 +2626,14 @@ opp-315000000 {
- 					opp-hz = /bits/ 64 <315000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
- 					opp-peak-kBps = <1804000>;
--					opp-supported-hw = <0x03>;
-+					opp-supported-hw = <0x07>;
- 				};
- 
- 				opp-450000000 {
- 					opp-hz = /bits/ 64 <450000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
- 					opp-peak-kBps = <4068000>;
--					opp-supported-hw = <0x03>;
-+					opp-supported-hw = <0x07>;
- 				};
- 
- 				/* Only applicable for SKUs which has 550Mhz as Fmax */
-@@ -2648,28 +2648,28 @@ opp-550000000-1 {
- 					opp-hz = /bits/ 64 <550000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
- 					opp-peak-kBps = <6832000>;
--					opp-supported-hw = <0x02>;
-+					opp-supported-hw = <0x06>;
- 				};
- 
- 				opp-608000000 {
- 					opp-hz = /bits/ 64 <608000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L2>;
- 					opp-peak-kBps = <8368000>;
--					opp-supported-hw = <0x02>;
-+					opp-supported-hw = <0x06>;
- 				};
- 
- 				opp-700000000 {
- 					opp-hz = /bits/ 64 <700000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
- 					opp-peak-kBps = <8532000>;
--					opp-supported-hw = <0x02>;
-+					opp-supported-hw = <0x06>;
- 				};
- 
- 				opp-812000000 {
- 					opp-hz = /bits/ 64 <812000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
- 					opp-peak-kBps = <8532000>;
--					opp-supported-hw = <0x02>;
-+					opp-supported-hw = <0x06>;
- 				};
- 
- 				opp-840000000 {
-
--- 
-2.42.0
-
+Konrad
 
