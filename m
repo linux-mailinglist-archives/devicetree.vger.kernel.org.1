@@ -1,280 +1,192 @@
-Return-Path: <devicetree+bounces-3461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE66F7AEE64
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 16:18:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A56417AEE6B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 16:24:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 33DE9B20954
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 14:18:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 60E212813A1
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 14:24:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 965672AB4F;
-	Tue, 26 Sep 2023 14:18:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 659EB2AB52;
+	Tue, 26 Sep 2023 14:24:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 914D31C296
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 14:18:40 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5EB9101;
-	Tue, 26 Sep 2023 07:18:38 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38QEISjs056926;
-	Tue, 26 Sep 2023 09:18:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1695737908;
-	bh=1dy5yM8yoUL1bkfMYrYwW1LQmhZqRTk186kAw6Iq51g=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=yddBs9gCsvLNc4iPYjoMKZf76ecUzfkhccWSv74C4JgrG4Ge4aHPU5GNCrpNTcov/
-	 z100hbvqQ/ZD0fSJGtBJQPz7Qt7DeqMBbXMjEVlCWiAmPQfkTrVtPip1sAlv2GpUad
-	 eajBfDB7oi7FJP0zRRqAOAgFPTrnab4wMojP9bPA=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38QEISHR029600
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 26 Sep 2023 09:18:28 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 26
- Sep 2023 09:18:28 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 26 Sep 2023 09:18:27 -0500
-Received: from [10.250.38.120] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38QEIRq7122731;
-	Tue, 26 Sep 2023 09:18:27 -0500
-Message-ID: <9f3f39fc-e456-11f4-e567-393cfc3629b5@ti.com>
-Date: Tue, 26 Sep 2023 09:18:26 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B7611C296
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 14:23:59 +0000 (UTC)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 803AD101;
+	Tue, 26 Sep 2023 07:23:56 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-59f6492b415so68293317b3.0;
+        Tue, 26 Sep 2023 07:23:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695738235; x=1696343035;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=b6GInBInFecR+uHBKFfmOCInwlwyJcLVJtZLCIykOZs=;
+        b=ZUZMHEsZto/UkzaDFCGwHe9Z/OJ5naLg3jyeu+5PKrKkJSTvrWPJzxUNX5tw3bGisU
+         TqP3lzoxrMpjtgL1APQU4o9ctAlwYR/70SVoaX83LRFLuurHGVh9LUDMf7olbILQ7zgG
+         i4wIKBfi0vbpEDA5Y4TUFrBmysrBd3YCpyPFMddSR9noX+zxaNu8cN5QImJO35TVIQTV
+         oI14Ghj9yTpnufcI9zsYBw6kd1KxJEixxBz98/9g6Xc5FtXsbKA3awYAFBbgdawc7ZVu
+         RvZ/qBBCxynG7EaZ80s7RGWqwEbsQuLtGMtzg8RgUsXmMMMYD1Pjny/WQiVaIAXDAd4i
+         w6WQ==
+X-Gm-Message-State: AOJu0YzbQ0pihNRBZRM3PzDwe84+K9QIGDI0kH2M3Zh17pa/BQUt3au6
+	+WBS/22K58jB2I2fEEof5FlGVS0XWGJ7Sg==
+X-Google-Smtp-Source: AGHT+IHoy5K5uGXt4Am/NdtVvpfIGtR5dl61OjDvtiyjuLMl/jpu53XB8kamVMkIdz8McXQ2X06j5Q==
+X-Received: by 2002:a05:690c:4808:b0:59f:6440:7eff with SMTP id hc8-20020a05690c480800b0059f64407effmr2242894ywb.15.1695738235335;
+        Tue, 26 Sep 2023 07:23:55 -0700 (PDT)
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
+        by smtp.gmail.com with ESMTPSA id x184-20020a0deec1000000b005463e45458bsm3041260ywe.123.2023.09.26.07.23.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Sep 2023 07:23:54 -0700 (PDT)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-59e88a28b98so126177077b3.1;
+        Tue, 26 Sep 2023 07:23:54 -0700 (PDT)
+X-Received: by 2002:a0d:e8c5:0:b0:59f:6489:75ac with SMTP id
+ r188-20020a0de8c5000000b0059f648975acmr1898989ywe.19.1695738234682; Tue, 26
+ Sep 2023 07:23:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v3 2/4] arm64: dts: ti: k3-am654-base-board: add ICSSG2
- Ethernet support
-Content-Language: en-US
-To: MD Danish Anwar <danishanwar@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
-CC: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Tero
- Kristo <kristo@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>
-References: <20230926045337.1248276-1-danishanwar@ti.com>
- <20230926045337.1248276-3-danishanwar@ti.com>
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20230926045337.1248276-3-danishanwar@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
+ <20230912045157.177966-26-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdVkttQpA-s0MrKbTVxJ6K+xXmhV3sNNLTAPSbDa0f8XYA@mail.gmail.com> <1f1b5174-cfd4-4393-3a86-9adfc8c2cce1@tuxon.dev>
+In-Reply-To: <1f1b5174-cfd4-4393-3a86-9adfc8c2cce1@tuxon.dev>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 26 Sep 2023 16:23:41 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXL=MpBin208aXe95Mp+NunGLGugtDG0MSs1XtYxyZ71Q@mail.gmail.com>
+Message-ID: <CAMuHMdXL=MpBin208aXe95Mp+NunGLGugtDG0MSs1XtYxyZ71Q@mail.gmail.com>
+Subject: Re: [PATCH 25/37] pinctrl: renesas: rzg2l: adapt function number for RZ/G3S
+To: claudiu beznea <claudiu.beznea@tuxon.dev>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	ulf.hansson@linaro.org, linus.walleij@linaro.org, gregkh@linuxfoundation.org, 
+	jirislaby@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, 
+	will@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com, arnd@arndb.de, 
+	konrad.dybcio@linaro.org, neil.armstrong@linaro.org, nfraprado@collabora.com, 
+	rafal@milecki.pl, wsa+renesas@sang-engineering.com, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 9/25/23 11:53 PM, MD Danish Anwar wrote:
-> ICSSG2 provides dual Gigabit Ethernet support.
-> 
-> For support SR2.0 ICSSG Ethernet firmware:
-> - provide different firmware blobs and use TX_PRU.
-> - IEP0 is used as PTP Hardware Clock and can only be used for one port.
-> - TX timestamp notification comes via INTC interrupt.
-> 
-> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
-> ---
+Hi Claudiu,
 
-Seems reasonable to me,
+On Tue, Sep 26, 2023 at 11:55=E2=80=AFAM claudiu beznea
+<claudiu.beznea@tuxon.dev> wrote:
+> On 21.09.2023 15:51, Geert Uytterhoeven wrote:
+> > On Tue, Sep 12, 2023 at 6:53=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.d=
+ev> wrote:
+> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>
+> >> On RZ/G3S PFC register allow setting 8 functions for individual ports
+> >> (function1 to function8). For function1 register need to be configured
+> >> with 0, for function8 register need to be configured with 7.
+> >> We cannot use zero based addressing when requesting functions from
+> >> different code places as documentation (RZG3S_pinfunction_List_r1.0.xl=
+sx)
+> >> states explicitly that function0 has different meaning.
+> >
+> > According to that table, function0 is GPIO.
+>
+> Yes, I'll mention it like this in the next version.
+>
+> >> For this add a new member to struct rzg2l_hwcfg that will keep the
+> >> offset that need to be substracted before applying a value to PFC regi=
+ster.
+> >>
+> >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> >
+> > But one question below...
+> >
+> >> --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> >> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> >> @@ -136,9 +136,11 @@ struct rzg2l_register_offsets {
+> >>  /**
+> >>   * struct rzg2l_hwcfg - hardware configuration data structure
+> >>   * @regs: hardware specific register offsets
+> >> + * @func_base: base number for port function (see register PFC)
+> >>   */
+> >>  struct rzg2l_hwcfg {
+> >>         const struct rzg2l_register_offsets regs;
+> >> +       u8 func_base;
+> >>  };
+> >>
+> >>  struct rzg2l_dedicated_configs {
+> >> @@ -221,6 +223,7 @@ static int rzg2l_pinctrl_set_mux(struct pinctrl_de=
+v *pctldev,
+> >>                                  unsigned int group_selector)
+> >>  {
+> >>         struct rzg2l_pinctrl *pctrl =3D pinctrl_dev_get_drvdata(pctlde=
+v);
+> >> +       const struct rzg2l_hwcfg *hwcfg =3D pctrl->data->hwcfg;
+> >>         const struct pinctrl_pin_desc *pin_desc;
+> >>         unsigned int i, *psel_val, *pin_data;
+> >>         struct function_desc *func;
+> >> @@ -247,9 +250,9 @@ static int rzg2l_pinctrl_set_mux(struct pinctrl_de=
+v *pctldev,
+> >>                 off =3D RZG2L_PIN_CFG_TO_PORT_OFFSET(*pin_data);
+> >>
+> >>                 dev_dbg(pctrl->dev, "port:%u pin: %u off:%x PSEL:%u\n"=
+, port,
+> >> -                       pin, off, psel_val[i]);
+> >> +                       pin, off, psel_val[i] - hwcfg->func_base);
+> >>
+> >> -               rzg2l_pinctrl_set_pfc_mode(pctrl, pin, off, psel_val[i=
+]);
+> >> +               rzg2l_pinctrl_set_pfc_mode(pctrl, pin, off, psel_val[i=
+] - hwcfg->func_base);
+> >>         }
+> >>
+> >>         return 0;
+> >
+> > Perhaps the adjustment should be done in rzg2l_dt_subnode_to_map()
+> > instead, when obtaining MUX_FUNC() from DT? That would allow you to do
+> > some basic validation on it too, which is currently completely missing
+> > (reject out-of-range values overflowing into adjacent PFC fields,
+> > reject zero on RZ/G3S).
+>
+> I'll have a look on this. I see .set_mux() can also be called from sysfs
+> though pinmux-select exported file thus, I don't know at the moment if
+> validating it on rzg2l_dt_subnode_to_map() will be enough.
 
-Reviewed-by: Andrew Davis <afd@ti.com>
+OK, that's a good reason to keep it as-is.
 
->   arch/arm64/boot/dts/ti/Makefile               |   2 +
->   ...se-board.dts => k3-am654-common-board.dts} |   0
->   arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso   | 145 ++++++++++++++++++
->   3 files changed, 147 insertions(+)
->   rename arch/arm64/boot/dts/ti/{k3-am654-base-board.dts => k3-am654-common-board.dts} (100%)
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
-> 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index e7b8e2e7f083..8f5c9515777e 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -42,12 +42,14 @@ dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl-wlan.dtb
->   
->   # Boards with AM65x SoC
-> +k3-am654-base-board-dtbs := k3-am654-common-board.dtb k3-am654-icssg2.dtbo
->   k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb k3-am654-base-board-rocktech-rk101-panel.dtbo
->   dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic-pg2.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-m2.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-am654-common-board.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am654-gp-evm.dtb
->   
-> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-common-board.dts
-> similarity index 100%
-> rename from arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-> rename to arch/arm64/boot/dts/ti/k3-am654-common-board.dts
-> diff --git a/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso b/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
-> new file mode 100644
-> index 000000000000..7b7d32282668
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
-> @@ -0,0 +1,145 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/**
-> + * DT overlay for IDK application board on AM654 EVM
-> + *
-> + * Copyright (C) 2018-2023 Texas Instruments Incorporated - https://www.ti.com/
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#include <dt-bindings/net/ti-dp83867.h>
-> +#include "k3-pinctrl.h"
-> +
-> +&{/} {
-> +	aliases {
-> +		ethernet1 = &icssg2_emac0;
-> +		ethernet2 = &icssg2_emac1;
-> +	};
-> +
-> +	/* Ethernet node on PRU-ICSSG2 */
-> +	icssg2_eth: icssg2-eth {
-> +		compatible = "ti,am654-icssg-prueth";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&icssg2_rgmii_pins_default>;
-> +		sram = <&msmc_ram>;
-> +		ti,prus = <&pru2_0>, <&rtu2_0>, <&tx_pru2_0>,
-> +			<&pru2_1>, <&rtu2_1>, <&tx_pru2_1>;
-> +		firmware-name = "ti-pruss/am65x-sr2-pru0-prueth-fw.elf",
-> +				"ti-pruss/am65x-sr2-rtu0-prueth-fw.elf",
-> +				"ti-pruss/am65x-sr2-txpru0-prueth-fw.elf",
-> +				"ti-pruss/am65x-sr2-pru1-prueth-fw.elf",
-> +				"ti-pruss/am65x-sr2-rtu1-prueth-fw.elf",
-> +				"ti-pruss/am65x-sr2-txpru1-prueth-fw.elf";
-> +
-> +		ti,pruss-gp-mux-sel = <2>,      /* MII mode */
-> +				      <2>,
-> +				      <2>,
-> +				      <2>,	/* MII mode */
-> +				      <2>,
-> +				      <2>;
-> +
-> +		ti,mii-g-rt = <&icssg2_mii_g_rt>;
-> +		ti,mii-rt = <&icssg2_mii_rt>;
-> +		ti,iep = <&icssg2_iep0>, <&icssg2_iep1>;
-> +
-> +		interrupt-parent = <&icssg2_intc>;
-> +		interrupts = <24 0 2>, <25 1 3>;
-> +		interrupt-names = "tx_ts0", "tx_ts1";
-> +
-> +		dmas = <&main_udmap 0xc300>, /* egress slice 0 */
-> +		       <&main_udmap 0xc301>, /* egress slice 0 */
-> +		       <&main_udmap 0xc302>, /* egress slice 0 */
-> +		       <&main_udmap 0xc303>, /* egress slice 0 */
-> +		       <&main_udmap 0xc304>, /* egress slice 1 */
-> +		       <&main_udmap 0xc305>, /* egress slice 1 */
-> +		       <&main_udmap 0xc306>, /* egress slice 1 */
-> +		       <&main_udmap 0xc307>, /* egress slice 1 */
-> +		       <&main_udmap 0x4300>, /* ingress slice 0 */
-> +		       <&main_udmap 0x4301>; /* ingress slice 1 */
-> +
-> +		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
-> +			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
-> +			    "rx0", "rx1";
-> +		ethernet-ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			icssg2_emac0: port@0 {
-> +				reg = <0>;
-> +				phy-handle = <&icssg2_phy0>;
-> +				phy-mode = "rgmii-id";
-> +				ti,syscon-rgmii-delay = <&scm_conf 0x4120>;
-> +				/* Filled in by bootloader */
-> +				local-mac-address = [00 00 00 00 00 00];
-> +			};
-> +			icssg2_emac1: port@1 {
-> +				reg = <1>;
-> +				phy-handle = <&icssg2_phy1>;
-> +				phy-mode = "rgmii-id";
-> +				ti,syscon-rgmii-delay = <&scm_conf 0x4124>;
-> +				/* Filled in by bootloader */
-> +				local-mac-address = [00 00 00 00 00 00];
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&main_pmx0 {
-> +
-> +	icssg2_mdio_pins_default: icssg2-mdio-default-pins {
-> +		pinctrl-single,pins = <
-> +			AM65X_IOPAD(0x0094, PIN_INPUT, 2) /* (AC19) PRG2_PRU0_GPO7.PRG2_MDIO0_MDIO */
-> +			AM65X_IOPAD(0x00c8, PIN_OUTPUT, 2) /* (AE15) PRG2_PRU1_GPO7.PRG2_MDIO0_MDC */
-> +		>;
-> +	};
-> +
-> +	icssg2_rgmii_pins_default: icssg2-rgmii-default-pins {
-> +		pinctrl-single,pins = <
-> +			AM65X_IOPAD(0x00ac, PIN_INPUT, 2) /* (AH15) PRG2_PRU1_GPO0.PRG2_RGMII2_RD0 */
-> +			AM65X_IOPAD(0x00b0, PIN_INPUT, 2) /* (AC16) PRG2_PRU1_GPO1.PRG2_RGMII2_RD1 */
-> +			AM65X_IOPAD(0x00b4, PIN_INPUT, 2) /* (AD17) PRG2_PRU1_GPO2.PRG2_RGMII2_RD2 */
-> +			AM65X_IOPAD(0x00b8, PIN_INPUT, 2) /* (AH14) PRG2_PRU1_GPO3.PRG2_RGMII2_RD3 */
-> +			AM65X_IOPAD(0x00cc, PIN_OUTPUT, 2) /* (AD15) PRG2_PRU1_GPO8.PRG2_RGMII2_TD0 */
-> +			AM65X_IOPAD(0x00d0, PIN_OUTPUT, 2) /* (AF14) PRG2_PRU1_GPO9.PRG2_RGMII2_TD1 */
-> +			AM65X_IOPAD(0x00d4, PIN_OUTPUT, 2) /* (AC15) PRG2_PRU1_GPO10.PRG2_RGMII2_TD2 */
-> +			AM65X_IOPAD(0x00d8, PIN_OUTPUT, 2) /* (AD14) PRG2_PRU1_GPO11.PRG2_RGMII2_TD3 */
-> +			AM65X_IOPAD(0x00dc, PIN_INPUT, 2) /* (AE14) PRG2_PRU1_GPO16.PRG2_RGMII2_TXC */
-> +			AM65X_IOPAD(0x00c4, PIN_OUTPUT, 2) /* (AC17) PRG2_PRU1_GPO6.PRG2_RGMII2_TX_CTL */
-> +			AM65X_IOPAD(0x00c0, PIN_INPUT, 2) /* (AG15) PRG2_PRU1_GPO5.PRG2_RGMII2_RXC */
-> +			AM65X_IOPAD(0x00bc, PIN_INPUT, 2) /* (AG14) PRG2_PRU1_GPO4.PRG2_RGMII2_RX_CTL */
-> +
-> +			AM65X_IOPAD(0x0078, PIN_INPUT, 2) /* (AF18) PRG2_PRU0_GPO0.PRG2_RGMII1_RD0 */
-> +			AM65X_IOPAD(0x007c, PIN_INPUT, 2) /* (AE18) PRG2_PRU0_GPO1.PRG2_RGMII1_RD1 */
-> +			AM65X_IOPAD(0x0080, PIN_INPUT, 2) /* (AH17) PRG2_PRU0_GPO2.PRG2_RGMII1_RD2 */
-> +			AM65X_IOPAD(0x0084, PIN_INPUT, 2) /* (AG18) PRG2_PRU0_GPO3.PRG2_RGMII1_RD3 */
-> +			AM65X_IOPAD(0x0098, PIN_OUTPUT, 2) /* (AH16) PRG2_PRU0_GPO8.PRG2_RGMII1_TD0 */
-> +			AM65X_IOPAD(0x009c, PIN_OUTPUT, 2) /* (AG16) PRG2_PRU0_GPO9.PRG2_RGMII1_TD1 */
-> +			AM65X_IOPAD(0x00a0, PIN_OUTPUT, 2) /* (AF16) PRG2_PRU0_GPO10.PRG2_RGMII1_TD2 */
-> +			AM65X_IOPAD(0x00a4, PIN_OUTPUT, 2) /* (AE16) PRG2_PRU0_GPO11.PRG2_RGMII1_TD3 */
-> +			AM65X_IOPAD(0x00a8, PIN_INPUT, 2) /* (AD16) PRG2_PRU0_GPO16.PRG2_RGMII1_TXC */
-> +			AM65X_IOPAD(0x0090, PIN_OUTPUT, 2) /* (AE17) PRG2_PRU0_GPO6.PRG2_RGMII1_TX_CTL */
-> +			AM65X_IOPAD(0x008c, PIN_INPUT, 2) /* (AF17) PRG2_PRU0_GPO5.PRG2_RGMII1_RXC */
-> +			AM65X_IOPAD(0x0088, PIN_INPUT, 2) /* (AG17) PRG2_PRU0_GPO4.PRG2_RGMII1_RX_CTL */
-> +		>;
-> +	};
-> +};
-> +
-> +&icssg2_mdio {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&icssg2_mdio_pins_default>;
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	icssg2_phy0: ethernet-phy@0 {
-> +		reg = <0>;
-> +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-> +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-> +	};
-> +
-> +	icssg2_phy1: ethernet-phy@3 {
-> +		reg = <3>;
-> +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-> +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-> +	};
-> +};
+> Would it be OK to have this outside of this series or you would prefer it=
+ now?
+
+That can be done later. I believe currently there is no validation against
+the register field size limit anyway.
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
