@@ -1,200 +1,118 @@
-Return-Path: <devicetree+bounces-3325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA6DF7AE478
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 06:14:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 380DB7AE4B5
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 06:48:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id 579E31F25290
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 04:14:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id DF958281C21
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 04:48:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EDE51867;
-	Tue, 26 Sep 2023 04:14:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 707281116;
+	Tue, 26 Sep 2023 04:48:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD512184F
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 04:14:52 +0000 (UTC)
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E02FF0
-	for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 21:14:50 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id 41be03b00d2f7-578d0d94986so5637705a12.2
-        for <devicetree@vger.kernel.org>; Mon, 25 Sep 2023 21:14:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1695701690; x=1696306490; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=D0Uz9m0Lpyj2Up3M7ljAj872e7YEcYxbkjr4aA3fxoM=;
-        b=BIA5itrFYbRSfcwBtv6qT97Aph65YufArhdmkwRx98crNms3XpdOn4VlcnQ9vMxVE3
-         f1NlRmv8u3zDOn0J/amHvwmiNQFK9OxpzV+WNg6spVsUXTeoUQ2nkXWg/pR1Tw94Jg4h
-         CZHBBySlEsHnuai08b8HsQFGS+j8KLnECC4l6DoJ/2RLnNYzjpCT5N5vukhHO4x/XLjW
-         L/XGI9xdY5AUo3NeKr2gh2FcGjJIhMbb/jb0yCYog1xYuAX0ZOBgcocozO/8eT183NKj
-         TLYHSf6IAkgFRbrhozKuFaaGG5iAR3KEmBuhlZwNwdPpuCVpity/ZOMIY5gFKu83KY2y
-         mWcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695701690; x=1696306490;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=D0Uz9m0Lpyj2Up3M7ljAj872e7YEcYxbkjr4aA3fxoM=;
-        b=vHXmAG9LITqC5d1d4EQG08x0SXK1kAyWsYCpDe2fgPOm5xPx3jv7i2egbtT7uQlt6D
-         jBh/FPJ28WhluvDodseuxHwWlP3QWD9/u5blhcMv0v+ISjQ9JeP4RAuRsHy5syk+6Cat
-         kI+7SFP84mVhOKSk3glkL79l21YPLubkZWTjfzeVTS8gTewLnesKvoQdE5i2Uq9tCRnF
-         2lhxzmSFbIn45EBabHJLC12CEiNIzvAUDuRSyC063e2CrW1uTYt2W7AtpV+8qU4HDra3
-         Vc8YBvtEJQp3mi6wHNJNvyOYM+oFD49NSp83JQ1Is0BP7hs6Uk0Y8JH9wkHRDaoAtqJA
-         wKWg==
-X-Gm-Message-State: AOJu0YzGnmTiYzz8BNEjEy4LOHY4/VSd/lIi+dH5+vLR3r2C8lRh9uRc
-	9wRqEampnR8FmT/f5Se1kIGUfdpmifLIQbvZcqWUOQ==
-X-Google-Smtp-Source: AGHT+IGlrqzBQynTQ2ZOIqd8C6kbA5Z3vGoWbVXr0mUzMrb0AxrCfYzkhQU9qD+Ac1FboN94cMy4dyuKkXku+Op/CWc=
-X-Received: by 2002:a05:6a20:a11e:b0:153:5832:b31b with SMTP id
- q30-20020a056a20a11e00b001535832b31bmr9309947pzk.53.1695701689540; Mon, 25
- Sep 2023 21:14:49 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03CDB1104
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 04:48:42 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60F00D9;
+	Mon, 25 Sep 2023 21:48:41 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38Q3SmSc023777;
+	Tue, 26 Sep 2023 04:48:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=7+U+bg6mNPTBakerXQD6k6E+X6B7lLRqpcPeZotduPY=;
+ b=PHJrv0YTQXcjQzYp0A5YvWBJj3lLVd09jizxW2eefAOU5q2YWUIB+D7Ib4tHkK/S+22v
+ W4zprvsyPu4s4thwj5GrjF4lZgn00xOJ/3fdZcVZtmR9vROJ7/XpaAb2sJpBiSyvK+p+
+ FSmmCXpN/Mmcxhz5Xp52P5/VmwYD3+d3b1vdQVJ/98337OSRjFwyQkFFrIq9FifVfOUN
+ exIxzQEGog3iMkUov4B4gpA4jJ/gdRJkwy7hoGg9ZWDaRtj3CJqYUm7fk5oWJ4GtzApW
+ V88Rk0VEzQUF3Tcj6+q6hOe/z1Cf+fs7lW/n9smffOZ9k5/SWnFeJEhCL//Vd1u7iBck yg== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tbh25gq8f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Sep 2023 04:48:32 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38Q4mVHV002847
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Sep 2023 04:48:31 GMT
+Received: from hu-rkakarla-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Mon, 25 Sep 2023 21:48:27 -0700
+From: Raghavendra Kakarla <quic_rkakarla@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Raghavendra Kakarla <quic_rkakarla@quicinc.com>
+CC: <quic_mkshah@quicinc.com>, <quic_lsrao@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v2] arm64: dts: qcom: sa8775p: Add RPMh sleep stats
+Date: Tue, 26 Sep 2023 10:18:14 +0530
+Message-ID: <20230926044814.535-1-quic_rkakarla@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230925133859.1735879-1-apatel@ventanamicro.com>
- <20230925133859.1735879-3-apatel@ventanamicro.com> <ZRHH25IyJJLWSolC@ghost> <CAK9=C2UoKxM+wknB4n8=okyXCCE6t0Vvz4jU_tBW6DMm6Vb3DA@mail.gmail.com>
-In-Reply-To: <CAK9=C2UoKxM+wknB4n8=okyXCCE6t0Vvz4jU_tBW6DMm6Vb3DA@mail.gmail.com>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Tue, 26 Sep 2023 09:44:38 +0530
-Message-ID: <CAK9=C2X9FpLTW4mDTNUWkoRLAXZonPzhrsOD5xrCfrqKSbaLhg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/9] RISC-V: Detect XVentanaCondOps from ISA string
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Paolo Bonzini <pbonzini@redhat.com>, Atish Patra <atishp@atishpatra.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Shuah Khan <shuah@kernel.org>, 
-	Andrew Jones <ajones@ventanamicro.com>, Mayuresh Chitale <mchitale@ventanamicro.com>, 
-	devicetree@vger.kernel.org, kvm@vger.kernel.org, 
-	kvm-riscv@lists.infradead.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: u43Ai1iMSYV4_0KP6pobufFaN1nOoQgh
+X-Proofpoint-ORIG-GUID: u43Ai1iMSYV4_0KP6pobufFaN1nOoQgh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-26_02,2023-09-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
+ spamscore=0 adultscore=0 malwarescore=0 phishscore=0 lowpriorityscore=0
+ priorityscore=1501 clxscore=1015 suspectscore=0 mlxscore=0 mlxlogscore=586
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
+ definitions=main-2309260041
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, Sep 26, 2023 at 9:38=E2=80=AFAM Anup Patel <apatel@ventanamicro.com=
-> wrote:
->
-> On Mon, Sep 25, 2023 at 11:18=E2=80=AFPM Charlie Jenkins <charlie@rivosin=
-c.com> wrote:
-> >
-> > On Mon, Sep 25, 2023 at 07:08:52PM +0530, Anup Patel wrote:
-> > > The Veyron-V1 CPU supports custom conditional arithmetic and
-> > > conditional-select/move operations referred to as XVentanaCondOps
-> > > extension. In fact, QEMU RISC-V also has support for emulating
-> > > XVentanaCondOps extension.
-> > >
-> > > Let us detect XVentanaCondOps extension from ISA string available
-> > > through DT or ACPI.
-> > >
-> > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > > Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
-> > > ---
-> > >  arch/riscv/include/asm/hwcap.h | 1 +
-> > >  arch/riscv/kernel/cpufeature.c | 1 +
-> > >  2 files changed, 2 insertions(+)
-> > >
-> > > diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/=
-hwcap.h
-> > > index 0f520f7d058a..b7efe9e2fa89 100644
-> > > --- a/arch/riscv/include/asm/hwcap.h
-> > > +++ b/arch/riscv/include/asm/hwcap.h
-> > > @@ -59,6 +59,7 @@
-> > >  #define RISCV_ISA_EXT_ZIFENCEI               41
-> > >  #define RISCV_ISA_EXT_ZIHPM          42
-> > >  #define RISCV_ISA_EXT_SMSTATEEN              43
-> > > +#define RISCV_ISA_EXT_XVENTANACONDOPS        44
-> > >
-> > >  #define RISCV_ISA_EXT_MAX            64
-> > >
-> > > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufe=
-ature.c
-> > > index 3755a8c2a9de..3a31d34fe709 100644
-> > > --- a/arch/riscv/kernel/cpufeature.c
-> > > +++ b/arch/riscv/kernel/cpufeature.c
-> > > @@ -182,6 +182,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] =
-=3D {
-> > >       __RISCV_ISA_EXT_DATA(svinval, RISCV_ISA_EXT_SVINVAL),
-> > >       __RISCV_ISA_EXT_DATA(svnapot, RISCV_ISA_EXT_SVNAPOT),
-> > >       __RISCV_ISA_EXT_DATA(svpbmt, RISCV_ISA_EXT_SVPBMT),
-> > > +     __RISCV_ISA_EXT_DATA(xventanacondops, RISCV_ISA_EXT_XVENTANACON=
-DOPS),
-> > >  };
-> > >
-> > >  const size_t riscv_isa_ext_count =3D ARRAY_SIZE(riscv_isa_ext);
-> > > --
-> > > 2.34.1
-> > >
-> > >
-> > > _______________________________________________
-> > > linux-riscv mailing list
-> > > linux-riscv@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-riscv
-> >
-> > I worry about storing vendor extensions in this file. Because vendor
-> > extensions are not standardized, they can only be expected to have the
-> > desired behavior on hardware with the appropriate vendor id. A couple
->
-> Assuming that a vendor extension is only available on hardware with
-> appropriate vendor id is not correct because:
-> 1) vendor A can allow vendor B to implement a custom extension
->     defined by vendor B
+Add device node for sleep stats driver which provides various
+low power mode stats.
 
-Typo correction: "vendor A can allow vendor B to implement a custom
-extension defined by vendor A"
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Raghavendra Kakarla <quic_rkakarla@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-> 2) vendor A and vendor B can jointly develop a RISC-V CPU where
->     both vendors integrate their custom extensions.
->
-> It is best to identify a vendor extension independently with a
-> "X<vendor_name><extension_name>" string to keep it simple
-> and scalable.
->
-> Along these lines, each T-Head custom extension should have a
-> "XThead<xyz>" name associated with it.
->
-> > months ago I sent a patch to address this by handling vector extensions
-> > independently for each vendor [1]. I dropped the patch because it
-> > relied upon Heiko's T-Head vector extension support that he stopped
-> > working on. However, I can revive this patch so you can build off of it=
-.
->
-> At least, the conditional operations don't need a hwprobe interface
-> because an application is either compiled with or without conditional
-> operations. In other words, effective use of conditional operation is
-> only possible if compiler generates these instructions based on
-> code patterns.
->
-> >
-> > This scheme has the added benefit that vendors do not have to worry
-> > about conficting extensions, and the kernel does not have to act as a
-> > key registry for vendors.
->
-> How can vendor extensions conflict if they all follow the
-> "X<vendor_name><extension_name>" naming scheme ?
->
-> >
-> > What are your thoughts?
-> >
-> > - Charlie
-> >
-> > [1] https://lore.kernel.org/lkml/20230705-thead_vendor_extensions-v1-2-=
-ad6915349c4d@rivosinc.com/
-> >
->
-> Regards,
-> Anup
+diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+index 9f4f58e831a4..cee7491de675 100644
+--- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
++++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+@@ -1912,6 +1912,11 @@
+ 			#clock-cells = <0>;
+ 		};
+ 
++		sram@c3f0000 {
++			compatible = "qcom,rpmh-stats";
++			reg = <0 0x0c3f0000 0 0x400>;
++		};
++
+ 		spmi_bus: spmi@c440000 {
+ 			compatible = "qcom,spmi-pmic-arb";
+ 			reg = <0x0 0x0c440000 0x0 0x1100>,
+-- 
+2.17.1
 
-Regards,
-Anup
 
