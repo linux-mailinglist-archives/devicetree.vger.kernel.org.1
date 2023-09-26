@@ -1,224 +1,353 @@
-Return-Path: <devicetree+bounces-3586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 423247AF595
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 22:59:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADE6D7AF597
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 23:00:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id DDE0C281B94
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 20:59:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 5D014281E7F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 21:00:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2109238FB3;
-	Tue, 26 Sep 2023 20:59:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5498041A8C;
+	Tue, 26 Sep 2023 21:00:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89AFD23D7
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 20:59:21 +0000 (UTC)
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81A8C19B0
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 13:59:19 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9a6190af24aso1193723766b.0
-        for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 13:59:19 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40887347D2
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 21:00:09 +0000 (UTC)
+Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93AC91BE6
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 14:00:05 -0700 (PDT)
+Received: by mail-il1-x132.google.com with SMTP id e9e14a558f8ab-35137ab766dso38325ab.0
+        for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 14:00:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695761958; x=1696366758; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nbm0fl6t7js3aniuoVoiV7uhTyT8SoKhMhmvTfEHKF0=;
-        b=W5eRTqGUHYRciSsKpzlaqpaBB6xXZUH34WS7vYCduqPlqRkZsQuLy+aake7oJ50f7R
-         oOS+jscmDiEDu6lq8RZt7kEk/HRjvhtOFLhhXAJ0AhucjtggdzJTXNT01bra2VrgfqDt
-         YLVTt7IMsC4FONdT1/XlA/V87sOUhrAshhNhRCn5JAplNQuzO3fPrDj75p5s4lodjbyb
-         AhkPO1I7XixIOSWDROP4YB+zbEwjQvmnTG4pqSqgFgjFxqrW9S1toA5KWsLQD8uyRKlK
-         AeKJOQKO2uvB+xoUpH+IOtQMGCAmK1/B6vcv7Y2pmT1S+WVbqyLdKzIBqvbWDrUdlyk+
-         nzNA==
+        d=google.com; s=20230601; t=1695762005; x=1696366805; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TA45zhytFPggJ/KNc3nT/s2rZmIFeSaR3+xLqtcK0a4=;
+        b=oyelkEXOrVN4kgQ2Y+/AjDXZOeYSXja0GiLIWcu97fTGoD6ajiIUNYoWWaJ3vjE9s0
+         VOvGgeIsh9I8Q5cn2e3gswt3A5jCewomhdodu/7ez2yUxsSOy2GavMOxVlcLFe8Wyk+q
+         +ZzPhhUwQDKiXF6bnjm2X3X0Dvc+xVkDL0atxPn91y7GT2+LY7eyKmQ5UYOW6SoKu9XG
+         GOJZwj5U9lfEZroUs4YiNJa57qs6sYsA/kp0zTJojB7WPZJPnpAUknU8YeL5eXTIxJ16
+         fA9qAzFxPeCJX86I2Ij2k4HxJhOzXvgBPmxDT3Cj2Gl48PU0xFbOUJufBAwoHfqjXXpt
+         rcgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695761958; x=1696366758;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nbm0fl6t7js3aniuoVoiV7uhTyT8SoKhMhmvTfEHKF0=;
-        b=ixcXlX9c9dKAXlY//RNZLtpcuFe+fMA6BO5n5LXHyFixLPw0GVK349TAtuxPUhBNUR
-         13FzE6zjx8yDDdnD0ZxUb/myP/3Lf/9z+FTyP4CicnTlu52o6dAZcADS7WqQAoG0wPAV
-         dEZrT876yHDGy8voKhreG1C+xzEBu72j3w4OfL5XZZ0rKLXsb3TcxPTtk7raOPPyGEj9
-         3kZfGJkAkBN8QRw5HmbeN0JKgZHvjzmgJiMbFFrOPN3awC3h+DsdAG7EpShgV9IAvIW0
-         x6g8CYoM8j9+7MSA7p+tGXRUJYQlFDkXObskDkVfE29nz51IKXzogZmMhbg0pmh43PbE
-         nONw==
-X-Gm-Message-State: AOJu0YzEAhNCVLQ0OJ5fwUlFaRWjlCpvabQeG6fgUh11z1uQ/TDoH5ib
-	69ELdQUeBeBwj1gyNi/N8/6spA==
-X-Google-Smtp-Source: AGHT+IENJ0xPYi4uzaeTJwwedZ+8tWUxG3QlM6olVDYu5bRBD5Pc+AxjzgEP0mdOv30vPgdF5uo+og==
-X-Received: by 2002:a17:906:8457:b0:9b2:89ec:7fca with SMTP id e23-20020a170906845700b009b289ec7fcamr5558979ejy.34.1695761957945;
-        Tue, 26 Sep 2023 13:59:17 -0700 (PDT)
-Received: from [192.168.1.145] (host-87-4-82-94.retail.telecomitalia.it. [87.4.82.94])
-        by smtp.gmail.com with ESMTPSA id gu20-20020a170906f29400b009ad8796a6aesm8202912ejb.56.2023.09.26.13.59.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Sep 2023 13:59:17 -0700 (PDT)
-Message-ID: <e8ee6529-b194-4588-96c0-1459f214d005@linaro.org>
-Date: Tue, 26 Sep 2023 22:59:14 +0200
+        d=1e100.net; s=20230601; t=1695762005; x=1696366805;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TA45zhytFPggJ/KNc3nT/s2rZmIFeSaR3+xLqtcK0a4=;
+        b=YdnDcPjqtV8hw+EK7UIirfitJDkg38PDPSdDxjT8BQNTcxZpuqjnZO8I2h4QVVaaG9
+         VyTbb5qCCSkz4TlEcAQrM87MqVl2ZtDctXweZpka1h3+1pRQoNXfEsNe1uWqPeuHk4L1
+         Bc1HZtptQW0t5mkVrVCjwksZv3Q9R1G+mz1NjBMXS9r0OcFM/AZJtZSDNMO0sf6kQlLv
+         YJjT5pL9atFOneX8jzee2+KnIkTLPS+SuZCThu/rEo7vzwNTK6xXCUJoS37rp82nm9Ly
+         BV6Jgs1I2ZDAqi9FNSPUr4KffTS0XTmVffTDaNiqLA7V8rfUgEUucelNQgsQ2ayWKf0Q
+         RGDA==
+X-Gm-Message-State: AOJu0YwORQvxsD7CgQo8A8jn4WWLOmnXU8QkQFe4uOfUT/CevrpbA9dt
+	7m5NfnxokpeIMftv5NIgkq7db87VQFq/QUnf0Bhv
+X-Google-Smtp-Source: AGHT+IH0K9jqTlO5uKW9Jk4H1zWznZIkAiTG/Sjcg0WAY719KKeJ9HLq7/pc0+OhaE2YfKwbhRYcwP13j84kzOzGKFA=
+X-Received: by 2002:a92:c562:0:b0:351:4dad:4738 with SMTP id
+ b2-20020a92c562000000b003514dad4738mr367127ilj.9.1695762004652; Tue, 26 Sep
+ 2023 14:00:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 08/30] dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc: Add
- support for QMC HDLC
-Content-Language: en-US
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, Qiang Zhao <qiang.zhao@nxp.com>,
- Li Yang <leoyang.li@nxp.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Shengjiu Wang <shengjiu.wang@gmail.com>,
- Xiubo Li <Xiubo.Lee@gmail.com>, Fabio Estevam <festevam@gmail.com>,
- Nicolin Chen <nicoleotsuka@gmail.com>,
- Christophe Leroy <christophe.leroy@csgroup.eu>,
- Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
- Simon Horman <horms@kernel.org>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20230922075913.422435-1-herve.codina@bootlin.com>
- <20230922075913.422435-9-herve.codina@bootlin.com>
- <5efae150-3d92-81b8-5c25-68846d27132e@linaro.org>
- <20230925101703.1bf083f1@bootlin.com>
- <5b804a1a-6bfd-429d-ad84-696b7ecef72d@linaro.org>
- <20230925122758.43963736@bootlin.com>
- <e02ebde7-f208-40a4-bb10-aa5962ee9864@linaro.org>
- <20230925154929.2b6a9cab@bootlin.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230925154929.2b6a9cab@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230911125936.10648-1-yunfei.dong@mediatek.com>
+ <20230911125936.10648-13-yunfei.dong@mediatek.com> <1df3e79b84933dda0313d0d9719220dbc06c9022.camel@collabora.com>
+ <d4cedcb0-32ed-495d-a8cd-a635d5105824@xs4all.nl> <5307203d79c0d90cc742a315bb161fa796b9960f.camel@mediatek.com>
+ <bafc37e8-96e8-41c0-b805-c6477f0d7c4a@xs4all.nl> <CA+ddPcN6EaFERC60_Z_-ZmWzqyUEwxiDCZwt_U6Y-gpaAu76tA@mail.gmail.com>
+ <ff7aa575-c820-4dfa-853f-77438b8b149a@xs4all.nl> <b7d661637eacbda3e83d192b1126fc3970c4f50d.camel@collabora.com>
+ <c3d14f64-bf04-46b9-ac7b-af7ef9014335@xs4all.nl> <00302ac675af858eb11d8398f100921af806bc30.camel@mediatek.com>
+ <3e053387-4ba6-49bc-a59a-46854e0a7c26@xs4all.nl> <CA+ddPcOaCKq5Nd_3eWwJ3=oAf=5t-Z+w51NqapXN8VBuvbTw3g@mail.gmail.com>
+ <71cadec5-06df-4490-9b06-e3af6bb43498@xs4all.nl> <CA+ddPcN0ivYa+vfvs-8PDpkDFkC=1gkM6fkeP7kE8Wqbi1w+dw@mail.gmail.com>
+In-Reply-To: <CA+ddPcN0ivYa+vfvs-8PDpkDFkC=1gkM6fkeP7kE8Wqbi1w+dw@mail.gmail.com>
+From: Jeffrey Kardatzke <jkardatzke@google.com>
+Date: Tue, 26 Sep 2023 13:59:50 -0700
+Message-ID: <CA+ddPcMX=6ek-EVRMxJcRfZxRuLTGL3A-jeeNaifNF0E5AvVHw@mail.gmail.com>
+Subject: Re: [PATCH 12/14] media: medkatek: vcodec: set secure mode to decoder driver
+To: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc: =?UTF-8?B?WXVuZmVpIERvbmcgKOiRo+S6kemjnik=?= <Yunfei.Dong@mediatek.com>, 
+	"nicolas.dufresne@collabora.com" <nicolas.dufresne@collabora.com>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
+	"frkoenig@chromium.org" <frkoenig@chromium.org>, "stevecho@chromium.org" <stevecho@chromium.org>, 
+	"wenst@chromium.org" <wenst@chromium.org>, "nhebert@chromium.org" <nhebert@chromium.org>, 
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "daniel@ffwll.ch" <daniel@ffwll.ch>, 
+	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>, 
+	"benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>, 
+	"hsinyi@chromium.org" <hsinyi@chromium.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>, 
+	"nfraprado@collabora.com" <nfraprado@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+	USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 25/09/2023 15:50, Herve Codina wrote:
->>>>> With these details, do you still think I need to change the child (channel)
->>>>> compatible ?    
->>>>
->>>> From OS point of view, you have a driver binding to this child-level
->>>> compatible. How do you enforce Linux driver binding based on parent
->>>> compatible? I looked at your next patch and I did not see it.  
->>>
->>> We do not need to have the child driver binding based on parent.  
->>
->> Exactly, that's what I said.
->>
->>> We have to ensure that the child handles a QMC channel and the parent provides
->>> a QMC channel.
->>>
->>> A QMC controller (parent) has to implement the QMC API (include/soc/fsl/qe/qmc.h)
->>> and a QMC channel driver (child) has to use the QMC API.  
->>
->> How does this solve my concerns? Sorry, I do not understand. Your driver
->> is a platform driver and binds to the generic compatible. How do you
->> solve regular compatibility issues (need for quirks) if parent
->> compatible is not used?
->>
->> How does being QMC compliant affects driver binding and
->> compatibility/quirks?
->>
->> We are back to my original question and I don't think you answered to
->> any of the concerns.
-> 
-> Well, to be sure that I understand correctly, do you mean that I should
-> provide a compatible for the child (HDLC) with something like this:
-> --- 8< ---
->   compatible:
->     items:
->       - enum:
->           - fsl,mpc885-qmc-hdlc
->           - fsl,mpc866-qmc-hdlc
->       - const: fsl,cpm1-qmc-hdlc
->       - const: fsl,qmc-hdlc
-> --- 8< ---
+Hans,
 
-Yes, more or less, depending on actual compatibility and SoC-family.
-Maybe "fsl,cpm1-qmc-hdlc" item in the middle is not needed.
+I've been looking through the v4l2/vbuf2 code to get an idea of the
+details for implementing a new memory type for secure buffers.  What
+it comes down to essentially is that it would behave just like
+V4L2_MEMORY_DMABUF, but then there would be an extra check in
+__prepare_dmabuf (in videobuf2-core.c) when the memory type is SECURE
+to ensure that it is actually from a secure dma-buf allocation.  So
+I'm thinking an alternate solution might be cleaner so we don't have
+two memory types that are handled nearly identically in most of the
+code. What do you think about a new memory flag like
+V4L2_MEMORY_FLAG_SECURE?  This would be set in vb2_queue struct like
+the other existing memory flag. Then when it gets into
+__prepare_dmabuf and invokes attach_dmabuf on each buffer...that call
+could then check for the existence of that flag, and if it's there it
+could validate it is actually secure memory.  Then in various other
+dmabuf vb2_mem_ops (maybe alloc, get_userptr, vaddr and mmap) those
+could also check for the secure flag, and if present return an
+error/null.  Then also in the driver specific vb2_ops for queue_setup,
+the MTK driver could recognize the flag there and then configure
+itself for secure mode.
 
-> 
-> If so, I didn't do that because a QMC channel consumer (driver matching
-> fsl,qmc-hdlc) doesn't contains any SoC specific part.
+How does that sound as an overall strategy?
 
-Just like hundreds of other drivers. :)
+Cheers,
+Jeff
 
-There is a paragraph about specific compatibles here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/writing-schema.html
-
-
-> It uses the channel as a communication channel to send/receive HDLC frames
-> to/from this communication channel.
-> All the specific SoC part is handled by the QMC controller (parent) itself and
-> not by any consumer (child).
-
-OK, so you guarantee in 100% for this hardware and all future (including
-designs unknown currently), that they will be 100% compatible with
-existing QMC channel consumer (child, matching fsl,qmc-hdlc) driver,
-thus there will be no need for any quirk. Specifically, there will be no
-chances that it would be reasonable to re-use the same driver for child
-(currently fsl,qmc-hdlc) in different parent.
-
-P.S. If you received this email twice, apologies, I have here troubles
-with internet.
-
-Best regards,
-Krzysztof
-
+On Mon, Sep 25, 2023 at 9:51=E2=80=AFAM Jeffrey Kardatzke <jkardatzke@googl=
+e.com> wrote:
+>
+> On Mon, Sep 25, 2023 at 2:00=E2=80=AFAM Hans Verkuil <hverkuil-cisco@xs4a=
+ll.nl> wrote:
+> >
+> > On 22/09/2023 21:17, Jeffrey Kardatzke wrote:
+> > > On Fri, Sep 22, 2023 at 1:44=E2=80=AFAM Hans Verkuil <hverkuil-cisco@=
+xs4all.nl> wrote:
+> > >>
+> > >> On 22/09/2023 05:28, Yunfei Dong (=E8=91=A3=E4=BA=91=E9=A3=9E) wrote=
+:
+> > >>> Hi Hans,
+> > >>>
+> > >>> Thanks for your help to give some good advice.
+> > >>> On Wed, 2023-09-20 at 09:20 +0200, Hans Verkuil wrote:
+> > >>>>
+> > >>>>>>>> In any case, using a control to switch to secure mode and usin=
+g
+> > >>>> a control
+> > >>>>>>>> to convert a dmabuf fd to a secure handle seems a poor choice =
+to
+> > >>>> me.
+> > >>>>>>>>
+> > >>>>>>>> I was wondering if it wouldn't be better to create a new
+> > >>>> V4L2_MEMORY_ type,
+> > >>>>>>>> e.g. V4L2_MEMORY_DMABUF_SECURE (or perhaps _DMABUF_OPTEE). Tha=
+t
+> > >>>> ensures that
+> > >>>>>>>> once you create buffers for the first time, the driver can
+> > >>>> switch into secure
+> > >>>>>>>> mode, and until all buffers are released again you know that t=
+he
+> > >>>> driver will
+> > >>>>>>>> stay in secure mode.
+> > >>>>>>>
+> > >>>>>>> Why do you think the control for setting secure mode is a poor
+> > >>>> choice?
+> > >>>>>>> There's various places in the driver code where functionality
+> > >>>> changes
+> > >>>>>>> based on being secure/non-secure mode, so this is very much a
+> > >>>> 'global'
+> > >>>>>>> setting for the driver. It could be inferred based off a new
+> > >>>> memory
+> > >>>>>>> type for the queues...which then sets that flag in the driver;
+> > >>>> but
+> > >>>>>>> that seems like it would be more fragile and would require
+> > >>>> checking
+> > >>>>>>> for incompatible output/capture memory types. I'm not against
+> > >>>> another
+> > >>>>>>> way of doing this; but didn't see why you think the proposed
+> > >>>> method is
+> > >>>>>>> a poor choice.
+> > >>>>>>
+> > >>>>>> I assume you are either decoding to secure memory all the time, =
+or
+> > >>>> not
+> > >>>>>> at all. That's something you would want to select the moment you
+> > >>>> allocate
+> > >>>>>> the first buffer. Using the V4L2_MEMORY_ value would be the
+> > >>>> natural place
+> > >>>>>> for that. A control can typically be toggled at any time, and it
+> > >>>> makes
+> > >>>>>> no sense to do that for secure streaming.
+> > >>>>>>
+> > >>>>>> Related to that: if you pass a dmabuf fd you will need to check
+> > >>>> somewhere
+> > >>>>>> if the fd points to secure memory or not. You don't want to mix
+> > >>>> the two
+> > >>>>>> but you want to check that at VIDIOC_QBUF time.
+> > >>>>>>
+> > >>>>>> Note that the V4L2_MEMORY_ value is already checked in the v4l2
+> > >>>> core,
+> > >>>>>> drivers do not need to do that.
+> > >>>>>
+> > >>>>> Just to clarify a bit, and make sure I understand this too. You a=
+re
+> > >>>> proposing to
+> > >>>>> introduce something like:
+> > >>>>>
+> > >>>>>    V4L2_MEMORY_SECURE_DMABUF
+> > >>>>>
+> > >>>>> Which like V4L2_MEMORY_DMABUF is meant to import dmabuf, while
+> > >>>> telling the
+> > >>>>> driver that the memory is secure according to the definition of
+> > >>>> "secure" for the
+> > >>>>> platform its running on.
+> > >>>>>
+> > >>>>> This drivers also allocate secure SHM (a standard tee concept) an=
+d
+> > >>>> have internal
+> > >>>>> allocation for reconstruction buffer and some hw specific referen=
+ce
+> > >>>> metadata. So
+> > >>>>> the idea would be that it would keep allocation using the dmabuf
+> > >>>> heap internal
+> > >>>>> APIs ? And decide which type of memory based on the memory type
+> > >>>> found in the
+> > >>>>> queue?
+> > >>>>
+> > >>>> Yes. Once you request the first buffer you basically tell the driv=
+er
+> > >>>> whether it
+> > >>>> will operate in secure or non-secure mode, and that stays that way
+> > >>>> until all
+> > >>>> buffers are freed. I think that makes sense.
+> > >>>>
+> > >>>
+> > >>> According to iommu's information, the dma operation for secure and =
+non-
+> > >>> secure are the same, whether just need to add one memory type in v4=
+l2
+> > >>> framework the same as V4L2_MEMORY_DMABUF? The dma operation in
+> > >>> videobuf2-dma-contig.c can use the same functions.
+> > >>
+> > >> So if I pass a non-secure dma fd to the capture queue of the codec, =
+who
+> > >> will check that it can't write the data to that fd? Since doing so w=
+ould
+> > >> expose the video. Presumably at some point the tee code will prevent=
+ that?
+> > >> (I sincerely hope so!)
+> > >
+> > > It is entirely the job of the TEE to prevent this. Nothing in the
+> > > kernel should allow exploitation of what happens in the TEE no matter
+> > > what goes on in the kernel
+> > >
+> > >>
+> > >> Having a separate V4L2_MEMORY_DMABUF_SECURE type is to indicate to t=
+he
+> > >> driver that 1) it can expect secure dmabuf fds, 2) it can configure =
+itself
+> > >> for that (that avoids using a control to toggle between normal and s=
+ecure mode),
+> > >> and at VIDIOC_QBUF time it is easy for the V4L2 core to verify that =
+the
+> > >> fd that is passed in is for secure memory. This means that mistakes =
+by
+> > >> userspace are caught at QBUF time.
+> > >>
+> > >> Of course, this will not protect you (people can disable this check =
+by
+> > >> recompiling the kernel), that still has to be done by the firmware, =
+but
+> > >> it catches userspace errors early on.
+> > >>
+> > >> Also, while for this hardware the DMA operation is the same, that mi=
+ght
+> > >> not be the case for other hardware.
+> > >
+> > > That's a really good point. So one of the other models that is used
+> > > for secure video decoding is to send the encrypted buffer into the
+> > > video decoder directly (i.e. V4L2_MEMORY_MMAP) and then also send in
+> > > all the corresponding crypto parameters (i.e. algorithm, IV,
+> > > encryption pattern, etc.). Then the video driver internally does the
+> > > decryption and decode in one operation.  That's not what we want to
+> > > use here for Mediatek; but I've done other integrations that work tha=
+t
+> > > way (that was for VAAPI [1], not V4L2...but there are other ARM
+> > > implementations that do operate that way).  So if we end up requiring
+> > > V4L2_MEMORY_DMABUF_SECURE to indicate secure mode and enforce it on
+> > > output+capture, that'll close off other potential solutions in the
+> > > future.
+> > >
+> > > Expanding on your point about DMA operations being different on
+> > > various hardware, that also makes me think a general check for this i=
+n
+> > > v4l2 code may also be limiting. There are various ways secure video
+> > > pipelines are done, so leaving these checks up to the individual
+> > > drivers that implement secure video decode may be more pragmatic. If
+> > > there's a generic V4L2 _CID_SECURE_MODE control, that makes it more
+> > > general for how drivers can handle secure video decode.
+> >
+> > No, using a control for this is really wrong.
+> >
+> > The reason why I want it as a separate memory type is that that is
+> > what you use when you call VIDIOC_REQBUFS, and that ioctl is also
+> > when things are locked down in a driver. As long as no buffers have
+> > been allocated, you can still change formats, parameters, etc. But
+> > once buffers are allocated, most of that can't be changed, since
+> > changing e.g. the format would also change the buffer sizes.
+> >
+> > It also locks down who owns the buffers by storing the file descriptor.
+> > This prevents other processes from hijacking the I/O streaming, only
+> > the owner can stream buffers.
+> >
+> > So it is a natural point in the sequence for selecting secure
+> > buffers.
+> >
+> > If you request V4L2_MEMORY_DMABUF_SECURE for the output, then the
+> > capture side must also use DMABUF_SECURE. Whether or not you can
+> > use regular DMABUF for the output side and select DMABUF_SECURE
+> > on the capture side is a driver decision. It can be useful to
+> > support this for testing the secure capture using regular video
+> > streams (something Nicolas discussed as well), but it depends on
+> > the hardware whether you can use that technique.
+>
+> OK, that does work for the additional cases I mentioned.  And for
+> testing...we would still want to use DMABUF_SECURE on both ends for
+> Mediatek at least (that's the only way they support it). But rather
+> than having to bother with a clearkey implementation...we can just do
+> something that directly copies compressed video into the secure
+> dmabufs and then exercises the whole pipeline from there. This same
+> thing happens with the 'clear lead' that is sometimes there with
+> encrypted video (where the first X seconds are unencrypted and then it
+> switches to encrypted...but you're still using the secure video
+> pipeline on the unencrypted frames in that case).
+>
+>
+> >
+> > Regards,
+> >
+> >         Hans
+> >
+> > >
+> > > [1] - https://github.com/intel/libva/blob/master/va/va.h#L2177
+> > >
+> > >>
+> > >> Regards,
+> > >>
+> > >>         Hans
+> > >>
+> > >>>
+> > >>> Best Regards,
+> > >>> Yunfei Dong
+> > >>>
+> > >>
+> >
 
