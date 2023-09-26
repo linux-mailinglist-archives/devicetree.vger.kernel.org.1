@@ -1,192 +1,123 @@
-Return-Path: <devicetree+bounces-3462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A56417AEE6B
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 16:24:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40E957AEE6C
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 16:28:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 60E212813A1
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 14:24:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 2EECE1C20361
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 14:27:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 659EB2AB52;
-	Tue, 26 Sep 2023 14:24:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D797A2AB5D;
+	Tue, 26 Sep 2023 14:27:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B7611C296
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 14:23:59 +0000 (UTC)
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 803AD101;
-	Tue, 26 Sep 2023 07:23:56 -0700 (PDT)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-59f6492b415so68293317b3.0;
-        Tue, 26 Sep 2023 07:23:56 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3E5C26E11
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 14:27:55 +0000 (UTC)
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 876F8FB
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 07:27:54 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1c5faa2af60so10261745ad.0
+        for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 07:27:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695738474; x=1696343274; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=RoE3eW3hdmyIp5DBZQI/nReBBYJkVVywCHuyXQI6658=;
+        b=F49uQ7/krn7vbTvILGI9Sok1A4KJKwKkY4m7kii1XlFeLHhgqrfFVlXzKPHpBasY3R
+         O5De/BWeQkrFqJkKXJ5qKgIvW3UjBEno9TCS/Tt+611FhKfNJRRTmWgp/sLlYNeQQBxK
+         el7i5epawgIgyhJA6Z4B9jd4kDPeF+qhXo5mI718xEhSRNar6cHfpeV/CvjtFmIQ3GbA
+         XB5oqyOYbymg6joI86Q+9XXfErmTHKbTJvQEB/opw5hlswIdKLgyWx29KooE9XrCeBj8
+         GrtlcLHrNHKh1UFcRi1Uoufqjr+qViscDOe+o4MoSQMY2GaYLQ7CqnJ63icnOTTEJNUC
+         OvWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695738235; x=1696343035;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b6GInBInFecR+uHBKFfmOCInwlwyJcLVJtZLCIykOZs=;
-        b=ZUZMHEsZto/UkzaDFCGwHe9Z/OJ5naLg3jyeu+5PKrKkJSTvrWPJzxUNX5tw3bGisU
-         TqP3lzoxrMpjtgL1APQU4o9ctAlwYR/70SVoaX83LRFLuurHGVh9LUDMf7olbILQ7zgG
-         i4wIKBfi0vbpEDA5Y4TUFrBmysrBd3YCpyPFMddSR9noX+zxaNu8cN5QImJO35TVIQTV
-         oI14Ghj9yTpnufcI9zsYBw6kd1KxJEixxBz98/9g6Xc5FtXsbKA3awYAFBbgdawc7ZVu
-         RvZ/qBBCxynG7EaZ80s7RGWqwEbsQuLtGMtzg8RgUsXmMMMYD1Pjny/WQiVaIAXDAd4i
-         w6WQ==
-X-Gm-Message-State: AOJu0YzbQ0pihNRBZRM3PzDwe84+K9QIGDI0kH2M3Zh17pa/BQUt3au6
-	+WBS/22K58jB2I2fEEof5FlGVS0XWGJ7Sg==
-X-Google-Smtp-Source: AGHT+IHoy5K5uGXt4Am/NdtVvpfIGtR5dl61OjDvtiyjuLMl/jpu53XB8kamVMkIdz8McXQ2X06j5Q==
-X-Received: by 2002:a05:690c:4808:b0:59f:6440:7eff with SMTP id hc8-20020a05690c480800b0059f64407effmr2242894ywb.15.1695738235335;
-        Tue, 26 Sep 2023 07:23:55 -0700 (PDT)
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
-        by smtp.gmail.com with ESMTPSA id x184-20020a0deec1000000b005463e45458bsm3041260ywe.123.2023.09.26.07.23.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Sep 2023 07:23:54 -0700 (PDT)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-59e88a28b98so126177077b3.1;
-        Tue, 26 Sep 2023 07:23:54 -0700 (PDT)
-X-Received: by 2002:a0d:e8c5:0:b0:59f:6489:75ac with SMTP id
- r188-20020a0de8c5000000b0059f648975acmr1898989ywe.19.1695738234682; Tue, 26
- Sep 2023 07:23:54 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1695738474; x=1696343274;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RoE3eW3hdmyIp5DBZQI/nReBBYJkVVywCHuyXQI6658=;
+        b=rbwI0E4tsfSLiH6faDDHcEdRwPUAjlKUp/dT62Nwc2hDOKVfXceOnDnNW08O/jXWlV
+         NLKw9FALbAgYXDa2ptIaitgY6v/PHUQtIzrvIn7YJM9izbYq2OKF2E3qNPyaigDO5mNj
+         N3TPXooeNqNkmicSG3NMDHMbVzi4LgwMNBz00JU0tT0ZbNbR4PdE0Bj4pSsLmkKsC3ud
+         c9qdcJoxEydIeI1Oikvv3lUBIQZnoYiSEg9gizUGKRjphYlqYDH7wmB0Msb3eCWkA/MI
+         LtI03t58j6meGZ6GsuaSqQiKmyKaBML75/zX6lHLf2KXRwYvDdk8wCicynLnOP8bLYSx
+         um/A==
+X-Gm-Message-State: AOJu0YylxQ+kXKNJ0GkPV9lcQeLRHZc0UsjfFE+eYGyFWpiUB/mfoMRO
+	/Px9gC9ntDSCkR2+/Zm/RgU=
+X-Google-Smtp-Source: AGHT+IGluCn4Hp2PDjIwnl6XT4YgauQsszYNY5mxUD9wxpm9ViLkJyAvM8ooLC/wE8Ze6ZUGd13rpQ==
+X-Received: by 2002:a17:902:b488:b0:1c7:1eed:10f2 with SMTP id y8-20020a170902b48800b001c71eed10f2mr622138plr.2.1695738473877;
+        Tue, 26 Sep 2023 07:27:53 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:87f:ba12:de84:998e])
+        by smtp.gmail.com with ESMTPSA id p11-20020a170902eacb00b001c625d6ffccsm3198115pld.129.2023.09.26.07.27.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Sep 2023 07:27:53 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: shawnguo@kernel.org
+Cc: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	mirela.rabulea@nxp.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Fabio Estevam <festevam@denx.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4] arm64: imx8qm-ss-img: Fix jpegenc compatible entry
+Date: Tue, 26 Sep 2023 11:27:36 -0300
+Message-Id: <20230926142736.390477-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
- <20230912045157.177966-26-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdVkttQpA-s0MrKbTVxJ6K+xXmhV3sNNLTAPSbDa0f8XYA@mail.gmail.com> <1f1b5174-cfd4-4393-3a86-9adfc8c2cce1@tuxon.dev>
-In-Reply-To: <1f1b5174-cfd4-4393-3a86-9adfc8c2cce1@tuxon.dev>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 26 Sep 2023 16:23:41 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXL=MpBin208aXe95Mp+NunGLGugtDG0MSs1XtYxyZ71Q@mail.gmail.com>
-Message-ID: <CAMuHMdXL=MpBin208aXe95Mp+NunGLGugtDG0MSs1XtYxyZ71Q@mail.gmail.com>
-Subject: Re: [PATCH 25/37] pinctrl: renesas: rzg2l: adapt function number for RZ/G3S
-To: claudiu beznea <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	ulf.hansson@linaro.org, linus.walleij@linaro.org, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, 
-	will@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com, arnd@arndb.de, 
-	konrad.dybcio@linaro.org, neil.armstrong@linaro.org, nfraprado@collabora.com, 
-	rafal@milecki.pl, wsa+renesas@sang-engineering.com, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Claudiu,
+From: Fabio Estevam <festevam@denx.de>
 
-On Tue, Sep 26, 2023 at 11:55=E2=80=AFAM claudiu beznea
-<claudiu.beznea@tuxon.dev> wrote:
-> On 21.09.2023 15:51, Geert Uytterhoeven wrote:
-> > On Tue, Sep 12, 2023 at 6:53=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.d=
-ev> wrote:
-> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >>
-> >> On RZ/G3S PFC register allow setting 8 functions for individual ports
-> >> (function1 to function8). For function1 register need to be configured
-> >> with 0, for function8 register need to be configured with 7.
-> >> We cannot use zero based addressing when requesting functions from
-> >> different code places as documentation (RZG3S_pinfunction_List_r1.0.xl=
-sx)
-> >> states explicitly that function0 has different meaning.
-> >
-> > According to that table, function0 is GPIO.
->
-> Yes, I'll mention it like this in the next version.
->
-> >> For this add a new member to struct rzg2l_hwcfg that will keep the
-> >> offset that need to be substracted before applying a value to PFC regi=
-ster.
-> >>
-> >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> >
-> > But one question below...
-> >
-> >> --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> >> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> >> @@ -136,9 +136,11 @@ struct rzg2l_register_offsets {
-> >>  /**
-> >>   * struct rzg2l_hwcfg - hardware configuration data structure
-> >>   * @regs: hardware specific register offsets
-> >> + * @func_base: base number for port function (see register PFC)
-> >>   */
-> >>  struct rzg2l_hwcfg {
-> >>         const struct rzg2l_register_offsets regs;
-> >> +       u8 func_base;
-> >>  };
-> >>
-> >>  struct rzg2l_dedicated_configs {
-> >> @@ -221,6 +223,7 @@ static int rzg2l_pinctrl_set_mux(struct pinctrl_de=
-v *pctldev,
-> >>                                  unsigned int group_selector)
-> >>  {
-> >>         struct rzg2l_pinctrl *pctrl =3D pinctrl_dev_get_drvdata(pctlde=
-v);
-> >> +       const struct rzg2l_hwcfg *hwcfg =3D pctrl->data->hwcfg;
-> >>         const struct pinctrl_pin_desc *pin_desc;
-> >>         unsigned int i, *psel_val, *pin_data;
-> >>         struct function_desc *func;
-> >> @@ -247,9 +250,9 @@ static int rzg2l_pinctrl_set_mux(struct pinctrl_de=
-v *pctldev,
-> >>                 off =3D RZG2L_PIN_CFG_TO_PORT_OFFSET(*pin_data);
-> >>
-> >>                 dev_dbg(pctrl->dev, "port:%u pin: %u off:%x PSEL:%u\n"=
-, port,
-> >> -                       pin, off, psel_val[i]);
-> >> +                       pin, off, psel_val[i] - hwcfg->func_base);
-> >>
-> >> -               rzg2l_pinctrl_set_pfc_mode(pctrl, pin, off, psel_val[i=
-]);
-> >> +               rzg2l_pinctrl_set_pfc_mode(pctrl, pin, off, psel_val[i=
-] - hwcfg->func_base);
-> >>         }
-> >>
-> >>         return 0;
-> >
-> > Perhaps the adjustment should be done in rzg2l_dt_subnode_to_map()
-> > instead, when obtaining MUX_FUNC() from DT? That would allow you to do
-> > some basic validation on it too, which is currently completely missing
-> > (reject out-of-range values overflowing into adjacent PFC fields,
-> > reject zero on RZ/G3S).
->
-> I'll have a look on this. I see .set_mux() can also be called from sysfs
-> though pinmux-select exported file thus, I don't know at the moment if
-> validating it on rzg2l_dt_subnode_to_map() will be enough.
+The first compatible entry for the jpegenc should be 'nxp,imx8qm-jpgenc'.
 
-OK, that's a good reason to keep it as-is.
+Change it accordingly to fix the following schema warning:
 
-> Would it be OK to have this outside of this series or you would prefer it=
- now?
+imx8qm-apalis-eval.dtb: jpegenc@58450000: compatible: 'oneOf' conditional failed, one must be fixed:
+	'nxp,imx8qm-jpgdec' is not one of ['nxp,imx8qxp-jpgdec', 'nxp,imx8qxp-jpgenc']
+	'nxp,imx8qm-jpgenc' was expected
+	'nxp,imx8qxp-jpgdec' was expected
 
-That can be done later. I believe currently there is no validation against
-the register field size limit anyway.
-Thanks!
+Fixes: 5bb279171afc ("arm64: dts: imx8: Add jpeg encoder/decoder nodes")
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+Reviewed-by: Mirela Rabulea <mirela.rabulea@nxp.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes since v3:
+- None. Re-sent it as a standalone patch.
 
-Gr{oetje,eeting}s,
+Changes since v2:
+- Collected Reviewed-by tags.
 
-                        Geert
+ arch/arm64/boot/dts/freescale/imx8qm-ss-img.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+diff --git a/arch/arm64/boot/dts/freescale/imx8qm-ss-img.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-ss-img.dtsi
+index 7764b4146e0a..2bbdacb1313f 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qm-ss-img.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8qm-ss-img.dtsi
+@@ -8,5 +8,5 @@ &jpegdec {
+ };
+ 
+ &jpegenc {
+-	compatible = "nxp,imx8qm-jpgdec", "nxp,imx8qxp-jpgenc";
++	compatible = "nxp,imx8qm-jpgenc", "nxp,imx8qxp-jpgenc";
+ };
+-- 
+2.34.1
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
