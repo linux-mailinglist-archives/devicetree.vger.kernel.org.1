@@ -1,87 +1,122 @@
-Return-Path: <devicetree+bounces-3394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24C117AEB0F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 13:08:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28C1C7AEB12
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 13:10:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id B899A281981
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 11:08:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 11D3D1C203DF
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 11:10:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36C0125119;
-	Tue, 26 Sep 2023 11:08:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74B26266BE;
+	Tue, 26 Sep 2023 11:10:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2374E5381
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 11:08:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32DFBC433C9;
-	Tue, 26 Sep 2023 11:08:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695726523;
-	bh=jQrrNY4WO/EXAky46FBS3wZWboPvdx/wNKeZCzXERe0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Q6yn4qmExdhyPIqy05Or2lb/0bjFn6xu/ixZUFpQhwHiaGTKG54qD9GyXLePDUrVX
-	 AdMGE7HyBpxLw50pJucZXsqPO2v6w18prC1BJVd34Lba2FIXTAInM/UzDhgpqywb+x
-	 0NzQgQnu+ezXM4GbMhKtKMnBCxj1+7ZBey9UTQvN8Ty1BS8vMkxTgx53FFo3j3G2Ak
-	 SWip6w5WQ351MZDpyinJDrMUaj6Vr1+ggC2vsOQFYH2gN7/A3VdXQYK3ggw7J9W/kj
-	 RuZteJ7PNSezAeBxjNkEF1o6g3ePuJwQuMDBzi7AGT8z+VS1TKRx6RcYxwtlywLGnv
-	 6Y80uKx1G1DpQ==
-From: Mark Brown <broonie@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
- conor+dt@kernel.org, linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
- Fabio Estevam <festevam@denx.de>
-In-Reply-To: <20230924183904.752415-1-festevam@gmail.com>
-References: <20230924183904.752415-1-festevam@gmail.com>
-Subject: Re: [PATCH] dt-bindings: spi: fsl-imx-cspi: Document missing
- entries
-Message-Id: <169572652181.2600426.16905514948305432960.b4-ty@kernel.org>
-Date: Tue, 26 Sep 2023 13:08:41 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B28735381;
+	Tue, 26 Sep 2023 11:10:38 +0000 (UTC)
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39852E5;
+	Tue, 26 Sep 2023 04:10:37 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-1c571029a36so9430295ad.1;
+        Tue, 26 Sep 2023 04:10:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695726637; x=1696331437; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lw4LOW9v/3DFm9VyRP52ODXPQwHjn/OUSwNkQdFfjXk=;
+        b=YpE7J6YhxDp7p3+dbKKk+mECu/1WTZ+gQpFRLA1KIoiuPOuRnrHX5fp3Sy/thLL4gp
+         dtHxt+BQsxJi9PtONk704MUs8KcWQm9FdcXJvgLhvJ4P7D5xoqiunKWDCHhxBGUIguFX
+         By29mCzMHD+4a32iqjZDrct6LdjY3dbmadxKJy/i89QBCRf7sgBANyRYl06GC1PKUGW6
+         7bbfv5wW8VuM5Exe5KJgGXu3hoF5GT3SZ6M16QZrQs5pnnwV+amS+hbJO7EZrcRSfoeB
+         fZRCWKP6mvbyeXJo3Hhvidefe2yvSt3qkjTg5a1+ztO1SQHfJUTdBMG+b4I7Fxzqhilc
+         2H3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695726637; x=1696331437;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lw4LOW9v/3DFm9VyRP52ODXPQwHjn/OUSwNkQdFfjXk=;
+        b=nuf4N76bJjbKRpNJaWrh0zo0++Dz2EQbspxh15Dj4wDWbs+BsEGDbbAaba4LZxeGW7
+         474TGVtiW7gxQ4XU0AEBFxwpzKHLeDvCWPJpZGQu/bYfswOTU+oNUv0OEgTNTenhNTSg
+         O7i5iwsmOPLLkgSeTqb2P0br+w+P0SsyraXWU44akwRbXHKFweg+R+9eFns+k7VGS1rS
+         F7GWIzUBEFl3R8B+y31WLCqSgRGv2MEAJG761GbuvE6Dd2sh3isLL4slqVke+Hde5GHc
+         pSpJmdHpsjVODF5tCezkb3oexEueD9u+mjj30FOahlLrP7JSVj/0O2+jZ64y7e+bfD3n
+         MYQg==
+X-Gm-Message-State: AOJu0Yxo1Kanke/v5rczBoZtgTmdfMPWWPPDjUxDJll4GC3ce/Hg5LXL
+	cls7uO68Hl2ozF2jMc/w9Tc=
+X-Google-Smtp-Source: AGHT+IGOAAXOyVjv/e8Cm+Y5b01Cz9RxiLJ3YUtO8aGN9PmwqbVaYwOGZ3EHuPY7/KX2pncQs5U6Hg==
+X-Received: by 2002:a17:903:2acf:b0:1c6:9312:187 with SMTP id lw15-20020a1709032acf00b001c693120187mr435027plb.3.1695726636512;
+        Tue, 26 Sep 2023 04:10:36 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:87f:ba12:de84:998e])
+        by smtp.gmail.com with ESMTPSA id g11-20020a170902740b00b001bafd5cf769sm10675422pll.2.2023.09.26.04.10.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Sep 2023 04:10:36 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: kuba@kernel.org
+Cc: wei.fang@nxp.com,
+	shenwei.wang@nxp.com,
+	xiaoning.wang@nxp.com,
+	linux-imx@nxp.com,
+	davem@davemloft.net,
+	edumazet@google.com,
+	pabeni@redhat.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v2 net-next] dt-bindings: net: fec: Add imx8dxl description
+Date: Tue, 26 Sep 2023 08:10:17 -0300
+Message-Id: <20230926111017.320409-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-099c9
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Sun, 24 Sep 2023 15:39:04 -0300, Fabio Estevam wrote:
-> The imx25, imx50, imx51 and imx53 SPIs are compatible with the imx35.
-> 
-> Document them accordingly.
-> 
-> 
+From: Fabio Estevam <festevam@denx.de>
 
-Applied to
+The imx8dl FEC has the same programming model as the one on the imx8qxp.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+Add the imx8dl compatible string.
 
-Thanks!
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+Changes since v1:
+- Sent as a standalone patch to netdev folks.
+- Collected Conor's ack.
 
-[1/1] dt-bindings: spi: fsl-imx-cspi: Document missing entries
-      commit: 3b4e5194138b4576e7b703edcd85ffe8783df798
+ Documentation/devicetree/bindings/net/fsl,fec.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+diff --git a/Documentation/devicetree/bindings/net/fsl,fec.yaml b/Documentation/devicetree/bindings/net/fsl,fec.yaml
+index b494e009326e..8948a11c994e 100644
+--- a/Documentation/devicetree/bindings/net/fsl,fec.yaml
++++ b/Documentation/devicetree/bindings/net/fsl,fec.yaml
+@@ -59,6 +59,7 @@ properties:
+           - const: fsl,imx6sx-fec
+       - items:
+           - enum:
++              - fsl,imx8dxl-fec
+               - fsl,imx8qxp-fec
+           - const: fsl,imx8qm-fec
+           - const: fsl,imx6sx-fec
+-- 
+2.34.1
 
 
