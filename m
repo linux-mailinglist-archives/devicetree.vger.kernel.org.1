@@ -1,73 +1,102 @@
-Return-Path: <devicetree+bounces-3527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B93D37AF309
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 20:36:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 230627AF31B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 20:41:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 71B892811F4
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 18:36:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id ABD121F2450A
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 18:41:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EAE238FA7;
-	Tue, 26 Sep 2023 18:36:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BF2A38BC8;
+	Tue, 26 Sep 2023 18:41:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EAFF3715D
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 18:36:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 039DDC433C8;
-	Tue, 26 Sep 2023 18:36:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695753393;
-	bh=nB/bYvjQ2YqbWoDt/ygO0b3k0aUmsxkxaDBANtllUf0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=J9n4VCgFEXCzXV3XHV2G304PB6SdxK9ZIn5W/NJY5vAerglOuQQvsFjZvFr9b9Uaw
-	 cJgJwLl84c9dRrkoGtaPx97/hGotwOKtDNVzOEaBUWLzbsGPwpOyKtngIHg9WNdUJB
-	 1fo5aATu4GmFra5DPTpTloSvbQvV9PVUImiZFeOoeQu8io1+R6RQRFEJvLz9w/zRpX
-	 icl0XqSdOUuUdD9Q2r2PRIQp0EpiumO/7RDP2bNwM4HKCkISEg8cENqYigfjtFtefQ
-	 GfxdwrFC15UWTrSOyTNxCyIkdfQApRHnZ+s6VkDAkJFJ3ngQJtaaEt7OsZvIbV+I8O
-	 ng6LAvBGaFrbg==
-Message-ID: <77fa12a6-a81f-4fdd-a29c-145e9ca02a83@kernel.org>
-Date: Tue, 26 Sep 2023 21:36:27 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BDD429AB
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 18:41:23 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D64DB11F;
+	Tue, 26 Sep 2023 11:41:21 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38QIcToP029667;
+	Tue, 26 Sep 2023 18:41:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=sKtbeylSWVLyUui5BBAROIGKpDpCi31kNkcoiTxLpkQ=;
+ b=UWzYF4aKvk1pUCcb3enJmISVnJqRXvsp4P+7d7NlY+K/dMJNKNmYc1BJyszmMdYEfnon
+ anZCDQAXXd+ySzOwew3a7XP645CY43VM0N2h0ML1Ri93k/NpcVeuplGkYohN8b20s99q
+ rUOTAB5xYaww90xkGA9thfXnUmP4/czuGK1os+/ok1NExr8+5S8LTTScC8a1nopomAZ3
+ Cw71cJnkue8OUeacY9DJQyR51uZk1JzqYuBGEEo0jpOli6EeaMNysftcv0vEzJbxcj9F
+ spQs6yQL2tM21ZQlI4+cxUqiZN5OkqPx8pwuGtBucwLrTYSJBG9jE6TWN7QfTxuOLu+6 yA== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tbmwwtcmp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Sep 2023 18:41:08 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38QIf755013574
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Sep 2023 18:41:07 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Tue, 26 Sep 2023 11:41:07 -0700
+Date: Tue, 26 Sep 2023 11:41:05 -0700
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+To: Om Prakash Singh <quic_omprsing@quicinc.com>
+CC: <neil.armstrong@linaro.org>, <konrad.dybcio@linaro.org>,
+        <agross@kernel.org>, <andersson@kernel.org>, <conor+dt@kernel.org>,
+        <davem@davemloft.net>, <devicetree@vger.kernel.org>,
+        <herbert@gondor.apana.org.au>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <marijn.suijten@somainline.org>,
+        <robh+dt@kernel.org>, <vkoul@kernel.org>
+Subject: Re: [PATCH V4] crypto: qcom-rng - Add hw_random interface support
+Message-ID: <20230926184105.GD437346@hu-bjorande-lv.qualcomm.com>
+References: <20230926102005.3277045-1-quic_omprsing@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: memory-controllers: Make
- "additionalProperties: true" explicit
-To: Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Paul Cercueil <paul@crapouillou.net>,
- Sergei Shtylyov <sergei.shtylyov@gmail.com>, Tony Lindgren <tony@atomide.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org
-References: <20230925212626.1974676-1-robh@kernel.org>
-Content-Language: en-US
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20230925212626.1974676-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230926102005.3277045-1-quic_omprsing@quicinc.com>
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: lxWp1M1oY6HIRf5IaiW51npEmjeIBPGU
+X-Proofpoint-ORIG-GUID: lxWp1M1oY6HIRf5IaiW51npEmjeIBPGU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-26_13,2023-09-26_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
+ bulkscore=0 impostorscore=0 malwarescore=0 lowpriorityscore=0 phishscore=0
+ mlxlogscore=758 spamscore=0 priorityscore=1501 clxscore=1015 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
+ definitions=main-2309260162
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-
-
-On 26/09/2023 00:26, Rob Herring wrote:
-> Make it explicit that child nodes have additional properties and the
-> child node schema is not complete. The complete schemas are applied
-> separately based the compatible strings.
+On Tue, Sep 26, 2023 at 03:50:05PM +0530, Om Prakash Singh wrote:
+> Add hw_random interface support in qcom-rng driver as new IP block
+> in Qualcomm SoC has inbuilt NIST SP800 90B compliant entropic source
+> to generate true random number.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/memory-controllers/ingenic,nemc.yaml    | 1 +
->  .../devicetree/bindings/memory-controllers/renesas,rpc-if.yaml  | 2 ++
->  .../devicetree/bindings/memory-controllers/ti,gpmc.yaml         | 2 +-
+> Keeping current rng_alg interface as well for random number generation
+> using Kernel Crypto API.
+> 
+> Signed-off-by: Om Prakash Singh <quic_omprsing@quicinc.com>
 
-For ti,gpmc.yaml
+Reviewed-by: Bjorn Andersson <quic_bjorande@quicinc.com>
 
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
+Regards,
+Bjorn
 
