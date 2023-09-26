@@ -1,172 +1,100 @@
-Return-Path: <devicetree+bounces-3391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 874997AEAB1
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 12:46:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24DFE7AEAE3
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 12:57:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 39044280E24
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 10:46:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 45A631C2074D
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 10:57:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98A8813AD5;
-	Tue, 26 Sep 2023 10:46:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C75D5266A5;
+	Tue, 26 Sep 2023 10:57:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AA1D125A9
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 10:46:55 +0000 (UTC)
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A963095
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 03:46:53 -0700 (PDT)
-Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-1c5cd27b1acso74438505ad.2
-        for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 03:46:53 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F0D2107B9
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 10:57:02 +0000 (UTC)
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09AD8101
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 03:57:01 -0700 (PDT)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-59e77e4f707so102444377b3.0
+        for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 03:57:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695725213; x=1696330013; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=x7TAsjUHwem8Kp86Puq8NmvImkceCNDS6+Uq+a+QFMw=;
-        b=pDXbG8Xm71Y2BsAvg1+lQWnpD/Ninx80RNMMq3WV7Vx+HxPX3hJ+iuz6LVW78Ze47u
-         qBtJu33fxGKAAR2Q7Pu5W/6ZOCdZu91xH+n+shmkVVCa/2o3t5ump1xMR9bO1OH+KlO7
-         wDjQIvFbuo5GDw9D9zox7jUv1lWBmWX77NlAh5OCBwCSjdX+/ltKAR17BTZ5tFASOee/
-         Gm2IK/eNkTAeKXyqpufKsdWFBoZWie7cNQjVH5XgRV0ph6T0wlZE1krTQD4bXjPxmZ1K
-         KWHoT62mH/KUlzOKFrJdcRBZxVOj5wrGzFDnfbpQaIxErrCBvAR9Y++ZlLsUevh60Rf9
-         od1Q==
+        d=linaro.org; s=google; t=1695725820; x=1696330620; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+yFxl6n4mvRXw7jluKkJGV+bmvyn5qTXRpdajEZLGg8=;
+        b=ChpI1j8sxmf3KQOBXD0J/wN7MflfWR2g0xK6B/hPIEeKvHLqJu6IpdYZbeh1eToyfH
+         Mxnd0WD6P79z2PHpzxqsQqmnTbqGE4NGE7LjKAut+Y+Ox9dfachUaXu6zCRacjLfI/o0
+         2snFDAPdrq2R+eFCBnPLTo3ETVfBDGagLWhVbbq53x2AcVwa1+/n2SUDZwRZAMjGpTJM
+         NXiV54cXYxVcrrXwLVnbnjvCNI3yZK9UhOpKEBeKffHHE0OgjJFxWz3gAJ+oVlksOjpj
+         GggF6+skpynBWkcxgwg/wo46dAFNkTWHvZka14eah4Foy1HP2Je1n+JIw/vi+JO6m3jq
+         4g6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695725213; x=1696330013;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=x7TAsjUHwem8Kp86Puq8NmvImkceCNDS6+Uq+a+QFMw=;
-        b=VFt7M6Qr0vfxgWacvQ965obe1ZdWho/NKQHGmXrKjWSuDKhRZvuMhZ90I4a/oT21sX
-         NASd35EwVhwa38Fup1ltl1YfhpSPE7neXLhckYViV+J9NWMWBuU6tyD0LDnW6cEFsyDX
-         hzFNBhG1kWVLVGkUvEauxP2ynF4iA8ios+VsR5riBaWqrBmAlVFzKxmUB3B4LaXAk0xn
-         8IfmrtCm/OqEhW5aQc5EIdjFA2DCvgh7tw4uOS5MUDH84fNZUfHeeeMIr4Q2AJeuf+1o
-         rbhP8KvHc/zrlZa9iraBd271TndGIDbeq2JO5pDeWBqY4Ac4ctZw9olytsE2wlWjZ2qO
-         eNyg==
-X-Gm-Message-State: AOJu0YzrTDvs9d5Hh1JDyfsalGTdgjbsaZ09zlamrlH+XLWa6Nj6CSQ2
-	fwnVaErbAVYXFZ3J6jxQRiweqmcjFC5n/rS/TJvN3g==
-X-Google-Smtp-Source: AGHT+IE2rvdbnUFQ/+0OzMfhE1u2rLdf5Kj27JFCEBMZGP0PKvSZWXltI4Lakowyh92+G1HNfqGqfgwtGCwp6VLIkMU=
-X-Received: by 2002:a17:902:b709:b0:1c5:e1b7:1c13 with SMTP id
- d9-20020a170902b70900b001c5e1b71c13mr8024462pls.3.1695725213126; Tue, 26 Sep
- 2023 03:46:53 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1695725820; x=1696330620;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+yFxl6n4mvRXw7jluKkJGV+bmvyn5qTXRpdajEZLGg8=;
+        b=F6WdXFXdcB4/b70CPzV+EDO6uF+qwiZG5oMoXqjg2Jo7t+8BYCm+bivcQZi84BYPWL
+         UroKaC/1Xt3isEV/aunGE0I0dUjY/8JEiEWpy+1Ntcae/+XJxZmY5wj0UhUfjYhE0Ib4
+         Xvt4dH2hZmD/H8T8/H6LFDKq3XT3uOtNw/V8ismUghWFU2qvU+yN4rDOCrwBhHeyjkii
+         TY/en/DmU2c6NRBF4lNf+JQsE2/OX87JjOzDiYpqVNq/OHWtACXIFobUHI64cpHuCtF0
+         sJnEWivdbyemhFGJLIn9py9Xk0Oj4yFX6bIAJ+RmvJhLZ9hGM6qN/HJrDq2veLysrkWG
+         pffQ==
+X-Gm-Message-State: AOJu0YykcNKS00aPO7WC8STLcv0G5KY+xJkc5hMl5H0YmORSYnKveJYv
+	mWbRNh4A4vAViRPKTzB5NfXz7DkWTVYKsIEeIagsfg==
+X-Google-Smtp-Source: AGHT+IFYMo6vNxLPVaePYEv+Q9UttG4JjxZ7q/TJyEIAvX2UEziDYG32Tt5Dn4ASPYNegMxnHVJlZ6Q0FGbEuRMKJ6Y=
+X-Received: by 2002:a81:4f8a:0:b0:578:5e60:dcc9 with SMTP id
+ d132-20020a814f8a000000b005785e60dcc9mr9287945ywb.10.1695725820227; Tue, 26
+ Sep 2023 03:57:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230925220511.2026514-1-robh@kernel.org> <20230925220511.2026514-2-robh@kernel.org>
-In-Reply-To: <20230925220511.2026514-2-robh@kernel.org>
-From: Mike Leach <mike.leach@linaro.org>
-Date: Tue, 26 Sep 2023 11:46:42 +0100
-Message-ID: <CAJ9a7VgoeByBL2C+q1D6kxK2tNQj4QxjeE7q61CfRAQMvPM8XA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: arm,coresight-cti: Add missing
- additionalProperties on child nodes
-To: Rob Herring <robh@kernel.org>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, James Clark <james.clark@arm.com>, 
-	Leo Yan <leo.yan@linaro.org>, 
+References: <20230921-rtc-7301-regwidth-v1-0-1900556181bf@linaro.org>
+ <20230921-rtc-7301-regwidth-v1-1-1900556181bf@linaro.org> <20230922-magenta-impending-f5ade19286ae@spud>
+In-Reply-To: <20230922-magenta-impending-f5ade19286ae@spud>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 26 Sep 2023 12:56:48 +0200
+Message-ID: <CACRpkdZaGJQp8965YQDspjpSMRCVDYD1eyCb+dhg3SEtRS4a_A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] rtc: rtc7301: Rewrite bindings in schema
+To: Conor Dooley <conor@kernel.org>
+Cc: Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+	Akinobu Mita <akinobu.mita@gmail.com>, Jose Vasconcellos <jvasco@verizon.net>, linux-rtc@vger.kernel.org, 
+	devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, 25 Sept 2023 at 23:05, Rob Herring <robh@kernel.org> wrote:
->
-> Just as unevaluatedProperties or additionalProperties are required at
-> the top level of schemas, they should (and will) also be required for
-> child node schemas. That ensures only documented properties are
-> present for any node.
->
-> Adding additionalProperties constraint on 'trig-conns' nodes results in
-> warnings that 'cpu' and 'arm,cs-dev-assoc' are not allowed. These are
-> already defined for the parent node, but need to be duplicated for the
-> child node. Drop the free form description that the properties also apply
-> to the child nodes.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../bindings/arm/arm,coresight-cti.yaml       | 33 ++++++++++++++-----
->  1 file changed, 24 insertions(+), 9 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
-> index b9bdfc8969cd..2d5545a2b49c 100644
-> --- a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
-> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
-> @@ -93,9 +93,7 @@ properties:
->
->    cpu:
->      description:
-> -      Handle to cpu this device is associated with. This must appear in the
-> -      base cti node if compatible string arm,coresight-cti-v8-arch is used,
-> -      or may appear in a trig-conns child node when appropriate.
-> +      Handle to cpu this CTI is associated with.
->
->    power-domains:
->      maxItems: 1
-> @@ -112,12 +110,12 @@ properties:
->      description:
->        defines a phandle reference to an associated CoreSight trace device.
->        When the associated trace device is enabled, then the respective CTI
-> -      will be enabled. Use in a trig-conns node, or in CTI base node when
-> -      compatible string arm,coresight-cti-v8-arch used. If the associated
-> -      device has not been registered then the node name will be stored as
-> -      the connection name for later resolution. If the associated device is
-> -      not a CoreSight device or not registered then the node name will remain
-> -      the connection name and automatic enabling will not occur.
-> +      will be enabled. Use in CTI base node when compatible string
-> +      arm,coresight-cti-v8-arch used. If the associated device has not been
-> +      registered then the node name will be stored as the connection name for
-> +      later resolution. If the associated device is not a CoreSight device or
-> +      not registered then the node name will remain the connection name and
-> +      automatic enabling will not occur.
->
->    # size cells and address cells required if trig-conns node present.
->    "#size-cells":
-> @@ -129,6 +127,8 @@ properties:
->  patternProperties:
->    '^trig-conns@([0-9]+)$':
->      type: object
-> +    additionalProperties: false
-> +
->      description:
->        A trigger connections child node which describes the trigger signals
->        between this CTI and another hardware device. This device may be a CPU,
-> @@ -140,6 +140,21 @@ patternProperties:
->        reg:
->          maxItems: 1
->
-> +      cpu:
-> +        description:
-> +          Handle to cpu this trigger connection is associated with.
-> +
-> +      arm,cs-dev-assoc:
-> +        $ref: /schemas/types.yaml#/definitions/phandle
-> +        description:
-> +          defines a phandle reference to an associated CoreSight trace device.
-> +          When the associated trace device is enabled, then the respective CTI
-> +          will be enabled. If the associated device has not been registered
-> +          then the node name will be stored as the connection name for later
-> +          resolution. If the associated device is not a CoreSight device or
-> +          not registered then the node name will remain the connection name
-> +          and automatic enabling will not occur.
-> +
->        arm,trig-in-sigs:
->          $ref: /schemas/types.yaml#/definitions/uint32-array
->          minItems: 1
-> --
-> 2.40.1
->
+On Fri, Sep 22, 2023 at 12:45=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
+ote:
+> On Thu, Sep 21, 2023 at 10:27:42PM +0200, Linus Walleij wrote:
 
-Reviewed-by: Mike Leach <mike.leach@linaro.org>
+> > This rewrites the Epson RTC7301 bindings to use YAML schema,
+> > and adds a property for "reg-io-width" as used in several
+> > other bindings to account for different register strides.
+>
+> It'd probably be good to mention that there is hardware that needs this,
+> rather that saying "other bindings use this".
 
--- 
-Mike Leach
-Principal Engineer, ARM Ltd.
-Manchester Design Centre. UK
+That is an explanation why I call it "reg-io-width", rather than,
+say "reg-stride-bytes" as there are other bindings that use this
+
+But I'll mention some hardware, no problem!
+
+Yours,
+Linus Walleij
 
