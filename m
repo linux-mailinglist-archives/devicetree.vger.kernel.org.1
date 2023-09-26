@@ -1,93 +1,96 @@
-Return-Path: <devicetree+bounces-3602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 694E57AF6F8
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 01:52:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE2797AF6EE
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 01:48:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id A2A6F282322
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 23:52:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id A76911C209E3
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 23:48:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FD274BDC0;
-	Tue, 26 Sep 2023 23:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 489AA4BDC9;
+	Tue, 26 Sep 2023 23:48:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C1B511731
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 23:52:08 +0000 (UTC)
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D7C61AC5A
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 16:52:05 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 7A05386C13;
-	Wed, 27 Sep 2023 01:52:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1695772323;
-	bh=bZYRkoDhWlo1Lv4/2GJe5H9WktaebAg/yWqtDVbxoCM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iANx9vKOY9yc/IzPdCSBL2PZdnGYc3Qpd/Gu0YtrwRYx8SoDfsBtsr1xLmUCIF7Zd
-	 5aeBXVEgWsevFY0B187vrERIbtzDmMlqP4JR0ZG6OG9tO8MfXG+798bhHNxfVoYDkg
-	 MndEIC6dM25rAMFMFV8MdfZX/rhNAtVJmR3Yn4F3SQfy6P6W5Q3SsqL/xmzP06FpoF
-	 cDeB94JbRjNscc1DrqYAXJfjLhCiJxjQt+LR5rCuA/DZFTAjO7U0S19ALEKGqoU3hP
-	 ozVlVA2zEBD4Gz+srMnJcl/c4t54N8HWIFUWpO0+pcbkbpq4rNGEIr0b725b9lOrEL
-	 jTxR7zb1KsbhA==
-Message-ID: <48d52dab-79b0-3db2-b492-797b0df857e8@denx.de>
-Date: Wed, 27 Sep 2023 01:46:04 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03B094B234
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 23:48:13 +0000 (UTC)
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 044DD19A3
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 16:48:10 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 4CCF52C0526;
+	Wed, 27 Sep 2023 12:48:08 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1695772088;
+	bh=b75WKuP+3dUziG2rTJfVWwAGvRIdFNM7vfhk4HCV9Ek=;
+	h=From:To:Cc:Subject:Date:From;
+	b=ju6VS0VBNlA1OUCc9HW5b0DAexJKmQJUYnFhhNMF+Rp36liw+KMN3ZIWs4KEb/xdC
+	 iQD0F4yAH5AYvbrBfDYjoeM8xIO/y+7ohWn6prMXKnQIWopLmCfNZMx4UeBZuVpA5L
+	 oZ/ncGAgHQJXZ8nsDmkUo3gGhfR93zkArAr4Pl7tgC19qa1YGFi3d3yH93ov6XDxP2
+	 BOl9/IPGsS+/l291J5YuZK/dtctXezls4cR5ArDeJCj1vqTvnlwIoHjrrOVy57VnkC
+	 49gFQgGMdy3zxnF6+cXo13zd5HMjHIOFeXBGCMxJTZhj5Ke4wx3yY7ojEjuEFYN1BJ
+	 VCYT5HswjG4MQ==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B65136db70000>; Wed, 27 Sep 2023 12:48:08 +1300
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id E8CC713EE32;
+	Wed, 27 Sep 2023 12:48:07 +1300 (NZDT)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+	id E563328160F; Wed, 27 Sep 2023 12:48:07 +1300 (NZDT)
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+To: gregory.clement@bootlin.com,
+	andi.shyti@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	pierre.gondois@arm.com
+Cc: linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH 0/3] i2c: mv64xxx: Support for I2C unstuck
+Date: Wed, 27 Sep 2023 12:47:58 +1300
+Message-ID: <20230926234801.4078042-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 1/2] arm64: dts: imx8mp: Update i.MX8MP DHCOM SoM DT to
- production rev.200
-Content-Language: en-US
-To: Shawn Guo <shawnguo@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@gmail.com>,
- Frieder Schrempf <frieder.schrempf@kontron.de>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- NXP Linux Team <linux-imx@nxp.com>, Peng Fan <peng.fan@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- devicetree@vger.kernel.org
-References: <20230921192933.71639-1-marex@denx.de>
- <20230925034210.GJ7231@dragon>
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20230925034210.GJ7231@dragon>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=fOpHIqSe c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=zNV7Rl7Rt7sA:10 a=N-MdeIapwvzwuhZPf1QA:9
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 9/25/23 05:42, Shawn Guo wrote:
-> On Thu, Sep 21, 2023 at 09:29:32PM +0200, Marek Vasut wrote:
->> The current imx8mp-dhcom-som.dtsi describes prototype rev.100 SoM,
->> update the DT to describe production rev.200 SoM which brings the
->> following changes:
->> - Fast SoC GPIOs exposed on the SoM edge connector
->> - Slow GPIOs like component resets moved to I2C GPIO expander
->> - ADC upgraded from TLA2024 to ADS1015 with conversion interrupt
->> - EEPROM size increased from 256 B to 4 kiB
->>
->> Signed-off-by: Marek Vasut <marex@denx.de>
-> 
-> Hmm, it doesn't apply to my imx/dt64 branch.
+Some newer Marvell SoCs natively support a recovery mechanisim. This can =
+be
+used as an alternative to the generic pinctrl/GPIO recovery mechanism use=
+d on
+the older SoCs.
 
-Maybe the following series is missing ? I sent it about a month ago.
+Chris Packham (3):
+  dt-bindings: i2c: mv64xxx: update bindings for unstuck register
+  arm64: dts: marvell: AC5: use I2C unstuck function
+  i2c: mv64xxx: add support for FSM based recovery
 
-[PATCH 1/4] arm64: dts: imx8mp: Describe VDD_ARM run and standby voltage 
-for DH i.MX8M Plus DHCOM SoM
+ .../bindings/i2c/marvell,mv64xxx-i2c.yaml     |  5 +-
+ arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi | 14 ++--
+ drivers/i2c/busses/i2c-mv64xxx.c              | 71 +++++++++++++++++--
+ 3 files changed, 75 insertions(+), 15 deletions(-)
+
+--=20
+2.42.0
+
 
