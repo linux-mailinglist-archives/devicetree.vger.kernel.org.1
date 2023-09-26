@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-3523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD7CC7AF2C2
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 20:27:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17D667AF2DB
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 20:27:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 41AA3B20957
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 18:27:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 52DC3281AC6
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 18:27:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E25AA38FA5;
-	Tue, 26 Sep 2023 18:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 530AA45F74;
+	Tue, 26 Sep 2023 18:27:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF33329432
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 18:27:03 +0000 (UTC)
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D62B10A
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 11:27:02 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2bff7d81b5eso160835371fa.0
-        for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 11:27:02 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F50C47353
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 18:27:38 +0000 (UTC)
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A426180
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 11:27:36 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-503f39d3236so15367642e87.0
+        for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 11:27:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695752820; x=1696357620; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695752854; x=1696357654; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vTLNwViOe5m9gPGr07BjzMggYdw+lKweFfmGHhfhfs4=;
-        b=XlzbAhjtkB3l7ABUSXvwGCTj5jGUMpdJeLr8AidePi1uA4XGvhU4C2i7I+O0yWy6OM
-         Bdz5Ap7vDx1EBHx+CubeP4CWZRcU0nnc+E4XmzxxW5KbkeAnM0XoFTLUh2arKnU0sWxf
-         A9efspkggaUum4EqCUrsl8f3n5P9j8YYPxG5PqMlr7Fz9WAiZN3R4lMLdlfvyhJCDqyJ
-         ssD4TkNB2qTsJReL9zHioEI3ecp1PlwqnPM3pgd8GLSX3TrAOfoWqWXtrAm7jdmb3ncm
-         7+sklxwMGkQtu5F5Rrk0OBwuHCe96hMgMealA1XeEaDYEd/+j3c9alEFJkm/6JKbhs9R
-         T2Nw==
+        bh=w+WhEvVzq354lp8en3vleqjPVBkIdxbFh2tnxte7FFY=;
+        b=PovOo45hn4PitTGs8n59N5e0qFRgsYoDAgiFe7PMdXJ7ITVN1aF6IajISsIyOhm2K9
+         NhuWIRNvTX7Hq4FmqRsOuTv8gEDW6JHBs3kpxxf6AuAbVJQDeymgJLxoUzK7tNBlyjQK
+         5HA22CCVGnlRfC5KYaulfNY8Y17nkh7KKQ64vfNhZncd0By6I0tdFf/xWd+Y37U3F2+/
+         z5v5iZYCe4DViNjSG/KBa8QBNXDF7F7JWrsSg5mCyIHyzSVq2Kyag2AEnRNls9Ajc/UF
+         kefycjUt4Z+opy2WsoQcgBgsLCOJ0Xnlo3+23SHFpYeRf+lfiP4TGIjXa+jVbWPkHBmw
+         g1gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695752820; x=1696357620;
+        d=1e100.net; s=20230601; t=1695752854; x=1696357654;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vTLNwViOe5m9gPGr07BjzMggYdw+lKweFfmGHhfhfs4=;
-        b=o1IY7hpHur/8rtsLImLgpCHQGRiId/FbuvT4y+BBZfRbpPftBqoYxgiOOcr+7f3bT5
-         cPtNqlVnxO4VjfR5HQGUPV4hPgliDtbKxzBHAwiGc+vtWI8QpL4Uo4Ie3I5r8dbKg6iP
-         4g1x9XKhs20i4XlyaNpgbLLzDMDauaH8OtY4kctQ66pBqzmtFHcjZB1hPuiO78USWjfs
-         pbZmgy7GNQAIPY2cxT9gXlWyTWOpcJQwxQDgE9DAyvWoxOLyi/jcMwnz2q/uZc0HoRye
-         PtK2L1qxtoI4JNIS2Le8tVgRoNDEdCOkINJ5i/l/ue6qYcDvlG+KQDEgVHrz+Tn4TJ9T
-         gQ9Q==
-X-Gm-Message-State: AOJu0Yz1IOvD/v/2mYwl2uMbRRVn9nBCDNzN7h3QSoJAydbVY9eu6ZqD
-	NlSLNNkNNUujXSIUGeaEuukCtA==
-X-Google-Smtp-Source: AGHT+IEItoYPB7nIesNR5cDDEWTvSDiEGrmr/1eAZ4KTrqt9XRTMXRRy2PBiiLBmQQIYzNe6Y5f4Cw==
-X-Received: by 2002:a05:6512:2103:b0:503:26bc:b08f with SMTP id q3-20020a056512210300b0050326bcb08fmr8003107lfr.24.1695752819917;
-        Tue, 26 Sep 2023 11:26:59 -0700 (PDT)
+        bh=w+WhEvVzq354lp8en3vleqjPVBkIdxbFh2tnxte7FFY=;
+        b=GcxObY7/JD5zoxgV1ptPFpEzNatehGE+/nTV38EwMmqzFtec91dqrW5cCvg9nMsatr
+         lxWHKTJtz45EHeudXmfWOp37MKIuug602KaS6bkP/T4gMZKgARk4SgWJlV3jwFM0R9/z
+         dqvUlSz+zV1tH+IR6JhH2EV5UHGxk3C+Hp0BVy2mlQnuFU7XpY+95anSycz7yoS0PxF4
+         xsP/lFDNBxn260CSudjvGRcO/meXlJGxcdPnxEDNS3c93cFn86Qlkoc8DspFFRiqv4aj
+         uhROE0pJl+jYAuWocjNCmmQVV8qdORkLk6+ZABLInNZ8njjrt5rgHhPp7HGJqfIqXs8p
+         H8sg==
+X-Gm-Message-State: AOJu0YxIw1F/mH1UQXm0lWyjYpcpZgMuud6zmEVrMLDTa3C/nGbVtrTI
+	rNyaPuQP34qZB2at49x3ByQtXQ==
+X-Google-Smtp-Source: AGHT+IGEOwe5h8wRsbW86uovHuF6C3KdXUg4eQbG+lGNwE4BDIcXlWp3pHYrGv6+2lPWBKDyxbsq9A==
+X-Received: by 2002:a05:6512:3b98:b0:500:be57:ce53 with SMTP id g24-20020a0565123b9800b00500be57ce53mr11045472lfv.42.1695752854381;
+        Tue, 26 Sep 2023 11:27:34 -0700 (PDT)
 Received: from [192.168.33.189] (178235177023.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.23])
-        by smtp.gmail.com with ESMTPSA id eo2-20020a056512480200b004fe7011072fsm2292076lfb.58.2023.09.26.11.26.57
+        by smtp.gmail.com with ESMTPSA id eo2-20020a056512480200b004fe7011072fsm2292076lfb.58.2023.09.26.11.27.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Sep 2023 11:26:59 -0700 (PDT)
-Message-ID: <ffe64462-b2ca-41d7-a895-09014aadd9c5@linaro.org>
-Date: Tue, 26 Sep 2023 20:26:56 +0200
+        Tue, 26 Sep 2023 11:27:34 -0700 (PDT)
+Message-ID: <1736686f-d7b5-4433-aa45-2369a1e9b53e@linaro.org>
+Date: Tue, 26 Sep 2023 20:27:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,8 +63,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/7] arm64: dts: qcom: sc7280: Mark Adreno SMMU as DMA
- coherent
+Subject: Re: [PATCH 4/7] arm64: dts: qcom: sc7280: Add ZAP shader support
 Content-Language: en-US
 To: Rob Clark <robdclark@gmail.com>, Abhinav Kumar
  <quic_abhinavk@quicinc.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
@@ -81,7 +80,7 @@ Cc: Marijn Suijten <marijn.suijten@somainline.org>,
  freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org
 References: <20230926-topic-a643-v1-0-7af6937ac0a3@linaro.org>
- <20230926-topic-a643-v1-6-7af6937ac0a3@linaro.org>
+ <20230926-topic-a643-v1-4-7af6937ac0a3@linaro.org>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -118,7 +117,7 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230926-topic-a643-v1-6-7af6937ac0a3@linaro.org>
+In-Reply-To: <20230926-topic-a643-v1-4-7af6937ac0a3@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -128,14 +127,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 26.09.2023 20:24, Konrad Dybcio wrote:
-> The SMMUs on sc7280 are cache-coherent. APPS_SMMU is marked as such,
-> mark the GPU one as well.
+> Non-Chrome SC7280-family platforms ship a ZAP shader with the Adreno GPU.
+> Describe that and make sure it doesn't interfere with Chrome devices.
 > 
 > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
-Fixes: 96c471970b7b ("arm64: dts: qcom: sc7280: Add gpu support")
+>  arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi |  2 ++
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi               | 10 ++++++++++
+>  2 files changed, 12 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+> index 5d462ae14ba1..88fc67c3646e 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+> @@ -17,6 +17,8 @@
+>   * required by the setup for Chrome boards.
+>   */
+>  
+> +/delete-node/ &gpu_zap_mem;
+> +/delete-node/ &gpu_zap_shader;
+>  /delete-node/ &hyp_mem;
+>  /delete-node/ &xbl_mem;
+>  /delete-node/ &reserved_xbl_uefi_log;
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 66f1eb83cca7..c38ddf267ef5 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -152,6 +152,11 @@ ipa_fw_mem: memory@8b700000 {
+>  			no-map;
+>  		};
+>  
+> +		gpu_zap_mem: zap@8b71a000 {
+> +			reg = <0 0x8b71a000 0 0x2000>;
+> +			no-map;
+> +		};
+> +
+>  		rmtfs_mem: memory@9c900000 {
+>  			compatible = "qcom,rmtfs-mem";
+>  			reg = <0x0 0x9c900000 0x0 0x280000>;
+> @@ -2608,6 +2613,11 @@ gpu: gpu@3d00000 {
+>  			nvmem-cells = <&gpu_speed_bin>;
+>  			nvmem-cell-names = "speed_bin";
+>  
+> +			gpu_zap_shader: zap-shader {
+> +				memory-region = <&gpu_zap_mem>;
+> +				firmware-name = "qcom/a660_zap.mdt";
+Gah. This line shouldn't have been there.
 
-Sorry.
+Considering it's not the only oops, I'll resend.
 
 Konrad
 
