@@ -1,145 +1,133 @@
-Return-Path: <devicetree+bounces-3511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A8DB7AF1F9
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 19:51:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 858417AF296
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 20:24:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 78096B2096B
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 17:51:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 31596281684
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 18:24:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB9A53D38C;
-	Tue, 26 Sep 2023 17:51:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C08C3FB24;
+	Tue, 26 Sep 2023 18:24:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 821A110A3F
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 17:51:49 +0000 (UTC)
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E9B711F;
-	Tue, 26 Sep 2023 10:51:48 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-	by mailout.nyi.internal (Postfix) with ESMTP id D309A5C007F;
-	Tue, 26 Sep 2023 13:51:44 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Tue, 26 Sep 2023 13:51:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:sender
-	:subject:subject:to:to; s=fm1; t=1695750704; x=1695837104; bh=Va
-	tiiq1gZOzxN4XlZZr69JB0/W7VEpnHbxzOMAKG1eA=; b=ZLF3PscOBSvp2Btli/
-	JtvyLDUcuaue8C0slp7a2/U45O9auHsnokJYllFadO4OQVS1/LQ8BNmBX4b9FGyP
-	cV/XY+MDFU2Ao5PnRc9BPb4PWZo2zCOzIigg+DNFVnyTnYTAS4zJKIjpcUsVziFm
-	RkqKtyvAXKMvGqGq4MVW3M1NXL+ElK/us8NXYfg2V7eDEM8T5ayA9EGVJ9vack5R
-	AfXJrWSaU6o/sUutRHSaCAUGLWHY6ANHSBWXSe+X2xw4EhMUz41kxDQs9q7NMzsu
-	sCXwFmYTY2fqwKxuscRt4z90+uPkvDAdvvIG7avPxThGgQZcMNFdhwzWKe4G8+2e
-	ak+g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:sender:subject
-	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-	:x-sasl-enc; s=fm2; t=1695750704; x=1695837104; bh=Vatiiq1gZOzxN
-	4XlZZr69JB0/W7VEpnHbxzOMAKG1eA=; b=AZ4rCx+s8I8mAM1VlaRYei3Ffo8GI
-	UQ37Bpgk9AHL5W4dU0lwXGpSz3mGor4OANqK0R1vDxq9r9m3mdbYFvQ6zofCX76W
-	fC0p+IgaEgvEkFKKjR9jCywspjgPggUBvKQGxzGuK52PLaJ+ZzFrau8iD5YHpvDc
-	55dJzWaZlqtFPpmU4F3KuG63sGlZfzCDxzoHVqjvNnHFeU7BZzqyYU7VIOKzNrfq
-	W26wMjB9dupshoXjmYtYNx4UHoMpH9B4pMQI29qwjDVzKIsqE0Z8G1GkOr7HBfFd
-	00W9c6XeDhQ7KcCs9vxAPcBbkW9RNSdpIZJr+nXoWQOe7szbwGX8S9hlA==
-X-ME-Sender: <xms:LxoTZXDEXhJ9vPFt8irquhh_s-nnU7Osz62pGQSNTfRgYxDMUY6m3w>
-    <xme:LxoTZdhfDHZPdPpiaD_jPh3Ed7OaiOQyrV4acW_y2vfy-35GQvfucRTS0TYDImard
-    _Iegy2sNHYNzQjzXAc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvjedrtddtgdekjecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
-    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
-    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
-    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
-    hnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:LxoTZSk34QNRAKMIfPePjLPT-WD4LXr4vpsYAdMSRzRp8DVTKH1H1A>
-    <xmx:LxoTZZy-IquBwvJD9QSvHoUnJQTXxcdRo2421cQMn82W3kMYltftOA>
-    <xmx:LxoTZcQUH1FTgoElpbkuXpKOrxlZpKKdt80pneYsOYYzyi-UYZ28eA>
-    <xmx:MBoTZcEH6t0APRh5m1qHM-TiEapr9xi-LZ1cgbekw2-JK3ROkUio0A>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 0423BB6008D; Tue, 26 Sep 2023 13:51:43 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-957-ga1ccdb4cff-fm-20230919.001-ga1ccdb4c
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B193E38BD4
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 18:24:43 +0000 (UTC)
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A1B510A
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 11:24:41 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-523100882f2so10883279a12.2
+        for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 11:24:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695752680; x=1696357480; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wRbJzVyzAsF5dK6nn+zhhFn0HQb3v3TAPzMsem2dH88=;
+        b=TJ3MJla1G9fry5m9KtsqemxPyC14x5o6FK4nXzjRPosJ9AKgzBargcHfd1bO89BNm8
+         zbUDn+90SKKQT7cZNbx952cOwlncYXTg+b9A9F22Z/5qL/X+A2CsDbCWH3sAlNn4oENL
+         IhTo6SsxIRbsLucUIFmcWSEdboNeNDv+c9v6DwXVpKyYX7i4mj8+HL6mxTurmc3xH2FM
+         2ejS8oNKS34Pl+NcBUWsKW7Tykhnaadko4+t/hnAu0qqnMh0prYhhxenmWkNT1oyJ32m
+         7EcNs70Sfp2szFoAcvExutgJiIcbcaQ+JO82eTaD1Zq6+9FJln28bBC46Edidc53ZoBV
+         oi8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695752680; x=1696357480;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wRbJzVyzAsF5dK6nn+zhhFn0HQb3v3TAPzMsem2dH88=;
+        b=DY6CpgRpx6dRgkBm5mRiX5etvAxVOcc+Z7frZAIEFzMCQh8V7eC2A50qdzjzWd8VC5
+         s6r5FQIy1ZI/ihKKHnptyJRbnTYZ4IU4SekIEMZ5G9uOT6skIrz86/JYIfSrjf+QTiCe
+         zRd/z+0CvuZKAUvWMilzruVDIPUSt1JC9Oo+wluL9DVBvGCxH/+6ICRLrpvFgF3lil79
+         LobCYY0GEe5exMKSfUFWnpnS8qELbariO22DgXdpKvvY41lJawF73z+Bh84Twqz9KfiV
+         OEmdv5EUvPXyHl1mDyHZHGv1ILlQJMDaekOvEE6IhUSZfFP53bkFS8GkBTbN51cyYtM1
+         xSMg==
+X-Gm-Message-State: AOJu0Ywzjl1hcZV4BQ2UzetAWePKcGiJXd0+H4lxrfAOAVq4gr+QJJjM
+	PsqTNf3MjrxrBWgmQeaIQqPTwA==
+X-Google-Smtp-Source: AGHT+IEvQPOXzH6evT1wU3sw4ZwK7LW3sBAWFWdrUZzq0HmG2Mrdkcf0x6ZDGIfcs2fl1PuQKAMnKg==
+X-Received: by 2002:a05:6402:176d:b0:534:7ae0:9789 with SMTP id da13-20020a056402176d00b005347ae09789mr875694edb.24.1695752679713;
+        Tue, 26 Sep 2023 11:24:39 -0700 (PDT)
+Received: from [10.167.154.1] (178235177023.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.23])
+        by smtp.gmail.com with ESMTPSA id f19-20020a056402151300b0053090e2afafsm7020643edw.22.2023.09.26.11.24.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Sep 2023 11:24:39 -0700 (PDT)
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 0/7] Adreno 643 + fixes
+Date: Tue, 26 Sep 2023 20:24:35 +0200
+Message-Id: <20230926-topic-a643-v1-0-7af6937ac0a3@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <aa1bb018-cfdf-43de-a1d0-47b11dd626fa@app.fastmail.com>
-In-Reply-To: <20230926174716.41705-1-blarson@amd.com>
-References: <68ca306c-5ea2-437e-b7f1-68bad88557a0@app.fastmail.com>
- <20230926174716.41705-1-blarson@amd.com>
-Date: Tue, 26 Sep 2023 19:51:22 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Brad Larson" <blarson@amd.com>
-Cc: "Adrian Hunter" <adrian.hunter@intel.com>, alcooperx@gmail.com,
- "Andy Shevchenko" <andy.shevchenko@gmail.com>, brendan.higgins@linux.dev,
- "Brian Norris" <briannorris@chromium.org>,
- "Mark Brown" <broonie@kernel.org>,
- "Catalin Marinas" <catalin.marinas@arm.com>,
- "Conor Dooley" <conor+dt@kernel.org>, "David Gow" <davidgow@google.com>,
- devicetree@vger.kernel.org, "Serge Semin" <fancer.lancer@gmail.com>,
- "Greg Ungerer" <gerg@linux-m68k.org>, gsomlo@gmail.com,
- "Hal Feng" <hal.feng@starfivetech.com>,
- "Hitomi Hasegawa" <hasegawa-hitomi@fujitsu.com>,
- =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
- "Joel Stanley" <joel@jms.id.au>,
- "Emil Renner Berthing" <kernel@esmil.dk>,
- "Krzysztof Kozlowski" <krzk@kernel.org>,
- krzysztof.kozlowski+dt@linaro.org, "Lee Jones" <lee.jones@linaro.org>,
- "Lee Jones" <lee@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- "linux-mmc @ vger . kernel . org" <linux-mmc@vger.kernel.org>,
- linux-spi@vger.kernel.org, "Philipp Zabel" <p.zabel@pengutronix.de>,
- "Randy Dunlap" <rdunlap@infradead.org>,
- "Rob Herring" <robh+dt@kernel.org>,
- "Samuel Holland" <samuel@sholland.org>,
- "Shuah Khan" <skhan@linuxfoundation.org>, suravee.suthikulpanit@amd.com,
- "Tom Lendacky" <thomas.lendacky@amd.com>,
- "Tony Huang" <tonyhuang.sunplus@gmail.com>,
- "Ulf Hansson" <ulf.hansson@linaro.org>, vaishnav.a@ti.com,
- "Walker Chen" <walker.chen@starfivetech.com>,
- "Will Deacon" <will@kernel.org>, "Yinbo Zhu" <zhuyinbo@loongson.cn>
-Subject: Re: [PATCH v16 6/6] soc: amd: Add support for AMD Pensando SoC Controller
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOMhE2UC/x2NywqDMBAAf0X23IWYFF+/UnpY060uSBISLULw3
+ 116nIFhKhTOwgWmpkLmnxSJQaF9NOBXCgujfJTBGuvMaDvcYxKP1D0dUs9+JDOQoxY0mKkwzpm
+ CXzUJx7apTJm/cv4Pr/d13Zmw8BhxAAAA
+To: Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ cros-qcom-dts-watchers@chromium.org, Andy Gross <agross@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <swboyd@chromium.org>, 
+ Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ Luca Weiss <luca.weiss@fairphone.com>, Rob Clark <robdclark@chromium.org>, 
+ linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1695752677; l=1165;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=EU9teWjPD7h5e92Oew+5MuXdWQG5NKBrkuAcC3oTWG8=;
+ b=pEgeFuwL0ONn3mJdwEhg/cTN76w/vQK27DzSYLvcj31+lB+ESvoYMsuidc9PHh2HmEbvyk91I
+ khKsQeAIVdrBCc48WPE1MOUH8l5idaZROwlYG37dWiV9yT2/HvWgkio
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, Sep 26, 2023, at 19:47, Brad Larson wrote:
-> On Fri, Sep 22, 2023, at 06:24:00 -0400, Arnd Bergmann wrote:
->> On Wed, Sep 13, 2023, at 17:49, Brad Larson wrote:
->> I'm sorry I've been out of the loop for so long, and I hope
->> we can find a way to manage your SoC support soon. My impression
->> is that the normal support patches (1, 3, 4, and 5) are largely
->> uncontroversial, while the SoC controller support seems like
->> we are still not converging onto something that is ready to
->> merge, so I would suggest you split the two parts and send
->> the basic support for inclusion in linux-6.7 while we continue
->> to discuss the soc controller driver.
->
-> I've sent a patchset with only patches 1, 3, 4, and 5.  Correctness
-> is the priority for upstream inclusion.
+as it says on the can
 
-Ok, I took a look already and it all looks good. I should
-be able to pick it up into linux-next in the next few days
-when I open my branches for 6.7.
+drm/msm patches for Rob
+arm64 patches for linux-arm-msm
 
-> I'll redirect and reframe what the SoC driver is doing to
-> #armlinux IRC to find an appropriate solution.
+for use with https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/25408
 
-Ok.
+tested on QCM6490 (SC7280-IOT) Fairphone FP5
 
-    Arnd
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (7):
+      drm/msm/a6xx: Fix unknown speedbin case
+      drm/msm/adreno: Add ZAP firmware name to A635
+      drm/msm/adreno: Add A635 speedbin 0xac (A643)
+      arm64: dts: qcom: sc7280: Add ZAP shader support
+      arm64: dts: qcom: sc7280: Fix up GPU SIDs
+      arm64: dts: qcom: sc7280: Mark Adreno SMMU as DMA coherent
+      arm64: dts: qcom: sc7280: Add 0xac Adreno speed bin
+
+ arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi |  2 ++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               | 26 ++++++++++++++++------
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.c              |  2 +-
+ drivers/gpu/drm/msm/adreno/adreno_device.c         |  2 ++
+ 4 files changed, 24 insertions(+), 8 deletions(-)
+---
+base-commit: 4ae73bba62a367f2314f6ce69e3085a941983d8b
+change-id: 20230926-topic-a643-a7ec9a08a3a1
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
 
