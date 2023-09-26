@@ -1,114 +1,119 @@
-Return-Path: <devicetree+bounces-3362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A45997AE896
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 11:04:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C09987AE8AF
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 11:12:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id 2E3DC1F2562A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 09:04:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 54F192816F3
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 09:12:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2772012B6F;
-	Tue, 26 Sep 2023 09:04:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D1CD12B74;
+	Tue, 26 Sep 2023 09:12:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B11EA107B9
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 09:04:39 +0000 (UTC)
-Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24F0CEB
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 02:04:38 -0700 (PDT)
-Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-59eb8ec5e20so100952937b3.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 02:04:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695719077; x=1696323877; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FzX1dhqpgLYHxmHjlyAI+LT3608qRTT00wQjYKiDWeo=;
-        b=D5xZ+/LiqH7VrLZi4Uxfm3AZWwYEGZ/gW/Ne7fVSe6wWCNkRDOmebR/b13acvcNa5g
-         nAZWC1KbiF3P0PHrTO0toH9Fot5NNjumtgjX1Y7WGO1Gqa/0ILsy3j+d51ck2M3VWMTj
-         3cdT3b5+WKkisr+MGPdAJd+1TgqtobHKOK0TbE1mxznR5sGbmX+MfoSnpFARMdkD69Hs
-         8vJlUk1SWDSvpjTIHwKn7v9VRNMXY8u8vHGCVJWP0ZhRZk5j4uYV+D4SvrzfZYXrWGZV
-         Rpf9Iw2wDxjafq3l6pVOG6QGvJvEHhwkdneNGPPE05u2P4OPLpTogqkfKs7EcigjVN02
-         XOiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695719077; x=1696323877;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FzX1dhqpgLYHxmHjlyAI+LT3608qRTT00wQjYKiDWeo=;
-        b=U1Fh/ZGljevLaZbMlw7Ivzct+XREfJzme6f29NFYk+fj1hpGQvt2bpXkG1x+Aeh7PD
-         +a+xvkrWLi/hJFH0Tjhxr1ta7eU4Mb71RLmOKDltXYR7/KemaEwNJzi3dT6balJHI298
-         RfnBZWhHF0OjvZorWgENS2L7y7GbHdUFo6Ae6TQovlciUPGri80Qgh8KSywmhZE3Fs2D
-         Lu6EkWJsm9sfvQuh2YBiCrhiCyzmRfWtop22hvQd5t0KzPllYQU9Ef1J/ysGwoBLy2sO
-         s/XUvtPJUYyKjLBwVvE40rRXNIbQZoVPOn5cLfViTsAfjpAgR9Fyyefi1yJxrFgrzWga
-         UIig==
-X-Gm-Message-State: AOJu0YwHQa+yVfyPXsuifbuYUqCVzEUddKNQFcYo2tCii83G+CRY2bQD
-	Fi5BYjIXQ2y1qifYiEYNO70vDkgTcveNOiKrnw+Ndw==
-X-Google-Smtp-Source: AGHT+IF4ZzqQchMLHpPrQERj1BdsJJRbfkh9xBs2fwf4x7321BSoyasvwIi/yFitSo7K/C1cZsqRgBqYC/nvXi302L8=
-X-Received: by 2002:a0d:ce81:0:b0:589:b3c6:95ff with SMTP id
- q123-20020a0dce81000000b00589b3c695ffmr10047314ywd.36.1695719077282; Tue, 26
- Sep 2023 02:04:37 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27D6E1849
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 09:12:29 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B94FDE;
+	Tue, 26 Sep 2023 02:12:28 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38Q7LIUX014019;
+	Tue, 26 Sep 2023 09:12:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=gvCQTCR/NydbDHGjQ2qfSwSTxf+YX72vUpmHW0UtVCw=;
+ b=GJbTJzJIl6SOwPcSLVqYNnSvKUmRamoaFsy9RPFlz4XBRQQv3LIcnflQPmS+NSQ0vZkA
+ 98TBNE/FZKDhBqYdcsBFebkjbpWX9bm3vgeky9JM9/6EHhWGolBF68WxpKkp7Ge46BlQ
+ mBDHhjmck4aqvhQai1DebGCMa2PTUiJjcV40GnKy4pXLexnFEosOEClkc3/UCLaWPOwQ
+ nEbALog9EotvojAd1CCK6fgfdBQyJJZckhGZYhWHM5aLxt5I1j/0PGBYZYBZd9+88z+u
+ ZQO6v8To7pemDclgn1V6sX5YyqwGN6yXamleGxVqwXVdwXUr0naVuK8AOxaIycWMa8Ua ng== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tbexghh0f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Sep 2023 09:12:22 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38Q9CLGF024877
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Sep 2023 09:12:21 GMT
+Received: from hu-priyjain-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Tue, 26 Sep 2023 02:12:13 -0700
+From: Priyansh Jain <quic_priyjain@quicinc.com>
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J . Wysocki"
+	<rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui
+	<rui.zhang@intel.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_manafm@quicinc.com>, <quic_priyjain@quicinc.com>,
+        <kernel@quicinc.com>
+Subject: [PATCH v3 0/2] Enable tsens and thermal for sa8775p SoC
+Date: Tue, 26 Sep 2023 14:41:54 +0530
+Message-ID: <20230926091154.25463-1-quic_priyjain@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230925-ixp4xx-usr8200-v2-0-433261c13a28@linaro.org>
- <20230925-ixp4xx-usr8200-v2-2-433261c13a28@linaro.org> <20230926-chef-steerable-94e1f0bdcc24@spud>
-In-Reply-To: <20230926-chef-steerable-94e1f0bdcc24@spud>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 26 Sep 2023 11:04:26 +0200
-Message-ID: <CACRpkdatck-5gFDdooxd=fP0R0hBP8Wf490znfvRkeShMLMxsQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: arm: List more IXP4xx devices
-To: Conor Dooley <conor@kernel.org>
-Cc: Peter Denison <openwrt@marshadder.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linusw@kernel.org>, Krzysztof Halasa <khalasa@piap.pl>, Imre Kaloz <kaloz@openwrt.org>, 
-	Ted Hess <thess@kitschensync.net>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: hpniWQ_d2Pjm8wAYW9rLdALcs9u2XZhn
+X-Proofpoint-GUID: hpniWQ_d2Pjm8wAYW9rLdALcs9u2XZhn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-26_07,2023-09-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ phishscore=0 spamscore=0 suspectscore=0 impostorscore=0 mlxlogscore=793
+ adultscore=0 clxscore=1015 bulkscore=0 mlxscore=0 malwarescore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2309260080
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, Sep 26, 2023 at 10:26=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
-ote:
+Adding compatible string in TSENS dt-bindings, device node
+for TSENS controller and Thermal zone support
 
-> > +      - items:
-> > +          - const: linksys,wrv54g
-> > +          - const: gemtek,gtwx5715
-> > +          - const: intel,ixp42x
->
-> One question, not so much about this particular case, but is there no
-> "standalone" version of the gtwx5715 sold by gemtek? Asking as I don't
-> see it in the enum above. The description sounds like it is both a
-> product in its own right & sold rebadged.
+Changes since v3:
+- Correct the unit address of tsens node
+- Updated tsens nodes in sorted order by address
+- Moved thermal zones outside /soc node
 
-Yeah this one is a special headache. It's two different brandings
-of the same router. The Linksys version can still be bought new
-from Amazon:
-https://www.amazon.com/Cisco-Linksys-WRV54G-Wireless-G-VPN-Router/dp/B0000A=
-R8Z1
+Changes since v2:
+- Indentation mistakes are resolved
+- Updated offset of tsens srot region in reg property
+- Updated tsens reg property cells properly
 
-I'm leaning toward listing them as two different devices instead
-of what we have now, which is
 
-  compatible =3D "linksys,wrv54g", "gemtek,gtwx5715", "intel,ixp42x";
+Priyansh Jain (2):
+  dt-bindings: thermal: tsens: Add sa8775p compatible
+  arm64: dts: qcom: Enable tsens and thermal for sa8775p SoC
 
-We can just decide that one of them is the canon device, I guess
-Linksys, and the other we can just use that device tree, or we
-create a device tree that includes the former and just override
-the compatible.
+ .../bindings/thermal/qcom-tsens.yaml          |    1 +
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 1096 +++++++++++++++++
+ 2 files changed, 1097 insertions(+)
 
-I don't really know what to do here.
+-- 
+2.17.1
 
-Yours,
-Linus Walleij
 
