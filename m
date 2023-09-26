@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-3467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43A757AEE82
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 16:44:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1AB77AEE8C
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 16:52:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id EA4BE2815BB
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 14:44:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id B9EE51C20371
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 14:52:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D8D7266B0;
-	Tue, 26 Sep 2023 14:44:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 102FE27702;
+	Tue, 26 Sep 2023 14:52:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8F9B10EF
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 14:44:18 +0000 (UTC)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E886F101;
-	Tue, 26 Sep 2023 07:44:16 -0700 (PDT)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-59e77e4f707so108567687b3.0;
-        Tue, 26 Sep 2023 07:44:16 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ED7810EF
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 14:52:03 +0000 (UTC)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9824E6;
+	Tue, 26 Sep 2023 07:52:01 -0700 (PDT)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-5a1d0fee86aso38019487b3.2;
+        Tue, 26 Sep 2023 07:52:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695739456; x=1696344256;
+        d=1e100.net; s=20230601; t=1695739921; x=1696344721;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ivyZHRBgAcyVi68nE2bpnhz+CC5mnJuOpqgFaju5LfE=;
-        b=Z6Mb42gQhMV63Z42pDaqMqd6CYwKaEM8Tbg/GS9rKy9DJpkP/7XBiB0bP8vPdJOHrT
-         pWLUxzqmLY+jKEbN7duAXMKAFXWI7FPLwRHt3RexZm0DgLGq7MB5oJK48s6UB4KEFM9A
-         dCHWZmyPhc/mkx1xB2lWn0mF8y0YNvfuwmIWk+8KEXs7dFmuUHrUH0fbfCqOd2jX8ldc
-         0JUynAPTZNafb8jZl4o0mOeSJHR8FZ3Auw0G6z+/aUFnbw7FZGmLuTVrImRLTT4b4Gg6
-         1vq7O3szugR887tmzxF0UFtCXXftnvGZ6aXccJKddEL441/R5bxHLwJtQgQYPr48OWw/
-         IgoQ==
-X-Gm-Message-State: AOJu0Yxy8YmV3+lnl9MxPbNJm222mIdq6lZSkjtpxIofPisOA/8k8oqV
-	07olPEuD4JQ4vYp4srtWWZe3UgNmvJ0s9Q==
-X-Google-Smtp-Source: AGHT+IGa5Jo9kJDHGXIFdHHPnQGaIArnecMrPDAH9XvmvJxbK+ZhjCjymTogMAHfIDKCN4JZ8V85EQ==
-X-Received: by 2002:a0d:d1c3:0:b0:58a:83cd:115d with SMTP id t186-20020a0dd1c3000000b0058a83cd115dmr7781934ywd.50.1695739455915;
-        Tue, 26 Sep 2023 07:44:15 -0700 (PDT)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
-        by smtp.gmail.com with ESMTPSA id d133-20020a814f8b000000b0058fb9863fe7sm3008430ywb.103.2023.09.26.07.44.13
+        bh=GeJt2kDkJDREmJCiOFGlfnsT2tn2qZEwAJk2/hTfX/A=;
+        b=mKZfX09dwIW1CL9VUU/k7AKmdtn5FLzmKXuJ7CWMrrDzz3YcoFb1fG9Yt4QwHztf1C
+         kUKFwQDi0ad9YpxYk9vXLHy5iO+c+o+P/1zlOs1FVmc1UUSK34br7gpSV7ekKpOVMv69
+         Zedm9svPQ4pBc4QTvUlKn9Yax1OdO0U66WIBbhYdncbCup/BCdj46NosCizDgryZ9plX
+         klKxszuXMx2nWE9r0n6HOW2mJXVyZdAlpBkCo0AtF6kZaeqax5Lo5f/oDtR29WpJEm1I
+         oa86k5o+Fhoubdlt6Eag4RdKOyhwxgMEige5al2ayRUmKvjFS+3g9a+0BtulFgF3lVh6
+         fnKw==
+X-Gm-Message-State: AOJu0Yzy6dF7+7g4vrqcR3GzVFAYqNMvnBcCQTJ1TZNVHueuwyXvW1DZ
+	NtN82qrKmLT8MhjcgpG4aUpkKGQlIyEmdA==
+X-Google-Smtp-Source: AGHT+IHA9Kwv8b9RsIF/btN0XIzdlR77dl0BD83zmSktk2GgARGXV6ketpyUafK+4HljurNDkPRSKA==
+X-Received: by 2002:a81:5245:0:b0:59b:e72a:e40b with SMTP id g66-20020a815245000000b0059be72ae40bmr10149177ywb.6.1695739920709;
+        Tue, 26 Sep 2023 07:52:00 -0700 (PDT)
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
+        by smtp.gmail.com with ESMTPSA id c7-20020a0dc107000000b0058e37788bf7sm3029319ywd.72.2023.09.26.07.51.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Sep 2023 07:44:14 -0700 (PDT)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-59e77e4f707so108566047b3.0;
-        Tue, 26 Sep 2023 07:44:13 -0700 (PDT)
-X-Received: by 2002:a0d:e603:0:b0:570:28a9:fe40 with SMTP id
- p3-20020a0de603000000b0057028a9fe40mr9000567ywe.5.1695739453342; Tue, 26 Sep
- 2023 07:44:13 -0700 (PDT)
+        Tue, 26 Sep 2023 07:51:58 -0700 (PDT)
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-d7f0a60a159so10242142276.0;
+        Tue, 26 Sep 2023 07:51:58 -0700 (PDT)
+X-Received: by 2002:a25:f211:0:b0:d86:b9d5:124d with SMTP id
+ i17-20020a25f211000000b00d86b9d5124dmr5899090ybe.16.1695739918497; Tue, 26
+ Sep 2023 07:51:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
- <20230912045157.177966-10-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdVNzgHqURohOgpFEaGn+6+rQTqsDomoS1u_-jn=GgmHXw@mail.gmail.com> <dfe64c7c-2f90-65a2-05fc-e96ec5113a60@tuxon.dev>
-In-Reply-To: <dfe64c7c-2f90-65a2-05fc-e96ec5113a60@tuxon.dev>
+References: <cover.1694767208.git.geert+renesas@glider.be> <CAMuHMdWfBTKdXvZutg4LvWqBjuz-X=ZjzX0LKPqD=JxYuLoPRw@mail.gmail.com>
+ <20230919152428.GB18426@pendragon.ideasonboard.com>
+In-Reply-To: <20230919152428.GB18426@pendragon.ideasonboard.com>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 26 Sep 2023 16:44:00 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXJ_gp5cdGpcK-kGk16YGDX8d9MEjQQkSobOGLphbJ5dQ@mail.gmail.com>
-Message-ID: <CAMuHMdXJ_gp5cdGpcK-kGk16YGDX8d9MEjQQkSobOGLphbJ5dQ@mail.gmail.com>
-Subject: Re: [PATCH 09/37] clk: renesas: rzg2l: fix computation formula
-To: claudiu beznea <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	ulf.hansson@linaro.org, linus.walleij@linaro.org, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, 
-	will@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	biju.das.jz@bp.renesas.com, quic_bjorande@quicinc.com, arnd@arndb.de, 
-	konrad.dybcio@linaro.org, neil.armstrong@linaro.org, nfraprado@collabora.com, 
-	rafal@milecki.pl, wsa+renesas@sang-engineering.com, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Date: Tue, 26 Sep 2023 16:51:46 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUwBXQ2X6hOm+kcZOteDLMau8x5xUcRJr2zy9dXyVf9Xw@mail.gmail.com>
+Message-ID: <CAMuHMdUwBXQ2X6hOm+kcZOteDLMau8x5xUcRJr2zy9dXyVf9Xw@mail.gmail.com>
+Subject: Re: [GIT PULL] drm: renesas: shmobile: Atomic conversion + DT support
+ (was: Re: [PATCH v4 00/41] drm: renesas: shmobile: Atomic conversion + DT support)
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>
+Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Magnus Damm <magnus.damm@gmail.com>, 
+	DRI Development <dri-devel@lists.freedesktop.org>, 
+	Linux-Renesas <linux-renesas-soc@vger.kernel.org>, 
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	Linux Media Mailing List <linux-media@vger.kernel.org>, 
+	Linux Fbdev development list <linux-fbdev@vger.kernel.org>, Linux-sh list <linux-sh@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
@@ -85,96 +84,70 @@ X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Claudiu,
+Hi Laurent, David, Daniel,
 
-On Tue, Sep 26, 2023 at 1:47=E2=80=AFPM claudiu beznea <claudiu.beznea@tuxo=
-n.dev> wrote:
-> On 14.09.2023 15:55, Geert Uytterhoeven wrote:
-> > On Tue, Sep 12, 2023 at 6:52=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.d=
-ev> wrote:
-> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >>
-> >> According to hardware manual of RZ/G2L (r01uh0914ej0130-rzg2l-rzg2lc.p=
-df)
-> >> the computation formula for PLL rate is as follows:
-> >>
-> >> Fout =3D ((m + k/65536) * Fin) / (p * 2^s)
-> >>
-> >> and k has values in range [-32768, 32767]. Dividing k by 65536 with
-> >> integer variables leads all the time to zero. Thus we may have slight
-> >> differences b/w what has been set vs. what is displayed. Thus,
-> >> get rid of this and decompose the formula before dividing k by 65536.
-> >>
-> >> Fixes: ef3c613ccd68a ("clk: renesas: Add CPG core wrapper for RZ/G2L S=
-oC")
-> >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On Tue, Sep 19, 2023 at 5:24=E2=80=AFPM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+> On Tue, Sep 19, 2023 at 04:28:40PM +0200, Geert Uytterhoeven wrote:
+> > The following changes since commit 0663e1da5ba8e6459e3555ac12c62741668c=
+0d30:
 > >
-> > Thanks for your patch!
+> >   drm/dp_mst: Tune down error message during payload addition
+> > (2023-09-18 16:38:21 +0300)
 > >
-> >> --- a/drivers/clk/renesas/rzg2l-cpg.c
-> >> +++ b/drivers/clk/renesas/rzg2l-cpg.c
-> >> @@ -696,18 +696,22 @@ static unsigned long rzg2l_cpg_pll_clk_recalc_ra=
-te(struct clk_hw *hw,
-> >>         struct pll_clk *pll_clk =3D to_pll(hw);
-> >>         struct rzg2l_cpg_priv *priv =3D pll_clk->priv;
-> >>         unsigned int val1, val2;
-> >> -       unsigned int mult =3D 1;
-> >> -       unsigned int div =3D 1;
-> >> +       unsigned int div;
-> >> +       u64 rate;
-> >> +       s16 kdiv;
-> >>
-> >>         if (pll_clk->type !=3D CLK_TYPE_SAM_PLL)
-> >>                 return parent_rate;
-> >>
-> >>         val1 =3D readl(priv->base + GET_REG_SAMPLL_CLK1(pll_clk->conf)=
-);
-> >>         val2 =3D readl(priv->base + GET_REG_SAMPLL_CLK2(pll_clk->conf)=
-);
-> >> -       mult =3D MDIV(val1) + KDIV(val1) / 65536;
-> >> +       kdiv =3D KDIV(val1);
-> >>         div =3D PDIV(val1) << SDIV(val2);
-> >>
-> >> -       return DIV_ROUND_CLOSEST_ULL((u64)parent_rate * mult, div);
-> >> +       rate =3D (u64)MDIV(val1) * parent_rate;
-> >> +       rate +=3D ((long long)parent_rate * kdiv) / 65536;
+> > are available in the Git repository at:
 > >
-> > As the division is a binary shift, you can use the mul_u64_u32_shr() he=
-lper,
-> > and incorporate the sdiv shift at the same time:
+> >   git://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.g=
+it
+> > tags/shmob-drm-atomic-dt-tag1
 > >
-> >     rate +=3D mul_u64_u32_shr(parent_rate, KDIV(val1), 16 + SDIV(val2))=
-;
+> > for you to fetch changes up to bfea0fa9052aa8d235b24957eb84d9ff20cb87b7=
+:
+> >
+> >   drm: renesas: shmobile: Add DT support (2023-09-19 15:58:04 +0200)
+> >
+> > ----------------------------------------------------------------
+> > drm: renesas: shmobile: Atomic conversion + DT support
+> >
+> > Currently, there are two drivers for the LCD controller on Renesas
+> > SuperH-based and ARM-based SH-Mobile and R-Mobile SoCs:
+> >   1. sh_mobile_lcdcfb, using the fbdev framework,
+> >   2. shmob_drm, using the DRM framework.
+> > However, only the former driver is used, as all platform support
+> > integrates the former.  None of these drivers support DT-based systems.
+> >
+> > Convert the SH-Mobile DRM driver to atomic modesetting, and add DT
+> > support, complemented by the customary set of fixes and improvements.
+> >
+> > Link: https://lore.kernel.org/r/cover.1694767208.git.geert+renesas@glid=
+er.be/
+> >
+> > This PR is based on today's drm-misc/for-linux-next, to avoid a
+> > conflict with commit 775b0669e19f2e4a ("drm/shmobile: Convert to
+> > platform remove callback returning void") in drm-misc/for-linux-next
 
- [1]^
+Now drm-misc/for-linux-next (which is still at v6.5-rc2) has been
+merged into drm/drm-next (which is at v6.6-rc2), do you want me to
+rebase my branch to current drm/drm-next, or any other commit?
 
-> >
-> > You can save a multiplication by premultiplying mdiv by 65536:
-> >
-> >     rate =3D mul_u64_u32_shr(parent_rate, (MDIV(val1) << 16)) + KDIV(va=
-l1),
-> >                            16 + SDIV(val2));
+Thanks!
 
-[2]^
-
+> > Thanks for pulling!
+> > ----------------------------------------------------------------
+> > Geert Uytterhoeven (36):
+> >       MAINTAINER: Create entry for Renesas SH-Mobile DRM drivers
 >
-> Looking again at this: KDIV (aka DIV_K) could have negative values thus
-> mul_u64_u32_shr() cannot be used here.
+> I'm technically listed as the maintainer for this driver until Geert
+> takes over, so for this pull request,
+>
+> Acked-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>
+> And after that, shmobile won't need my ack to merge further changes :-)
+>
+> This is very nice work Geert. I'm looking forward to dropping the
+> sh_mobile_lcdcfb driver.
 
-That means you can indeed not use [1].
-
-But you can still use [2], as MDIV() must be in the range 64..533[3],
-so "(MDIV(val1) << 16)) + (s16)KDIV(val1)" is always positive.
-Note that you do need the cast to s16 (which I had missed before), or
-the intermediate variable kdiv of type s16 (like in your patch).
-
-[3] As the current PLL driver is read-only, there is no calculation or
-    validation of the PLL parameters.
-
-> >> +
-> >> +       return DIV_ROUND_CLOSEST_ULL(rate, div);
-> >
-> > return DIV_ROUND_CLOSEST_ULL(rate, PDIV(val1));
+Thank you!
 
 Gr{oetje,eeting}s,
 
