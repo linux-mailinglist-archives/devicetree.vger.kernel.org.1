@@ -1,100 +1,117 @@
-Return-Path: <devicetree+bounces-3469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9235B7AEE8F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 16:55:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E0C77AEF29
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 17:04:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3A8A72814F9
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 14:55:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2999F28144E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 15:04:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 787EE27714;
-	Tue, 26 Sep 2023 14:54:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D1822AB41;
+	Tue, 26 Sep 2023 15:04:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9A3A10EF
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 14:54:56 +0000 (UTC)
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45F84E6;
-	Tue, 26 Sep 2023 07:54:53 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-6927528c01dso1396453b3a.0;
-        Tue, 26 Sep 2023 07:54:53 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8234328DD5
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 15:04:15 +0000 (UTC)
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1506180
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 08:04:12 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-d8673a90f56so6582659276.0
+        for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 08:04:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695740093; x=1696344893; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eUg7RA9AWENnAEvjktXw0Q0VX8Hq+Jj1QvlmV23RBnY=;
-        b=ANYBt44+/IwPebLXa0MyLXFpGzZTlK96CifKfSLSiTzy4VHZMIpvbYqYapLkme9pIK
-         i9hfvr2HDCUoAivcMPVfYOtBg9YxmatI0FaNxfogqbQ2oqO9bLwCBN5BSN+6K4VCrvw4
-         DMtFgr4lkFtNLuXUdE8/5lw1nS1U/veY36+hirQYHVlj/WncU2OlP1d/qraBJsmpIM9g
-         xIIgBd3qjTvlCc6i3WQJleFcQN2b4iBAowQLsB/hMVpTJ4KO933boZixWGZjckOpb6wJ
-         Pv62Bsfa90S//khiikZGSDmYdrEv5zvzQ/QVOhA/0HWKIp3JhbIOc3cQXCe1dCKvGKiy
-         tM5Q==
+        d=linaro.org; s=google; t=1695740652; x=1696345452; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=gACCqU464nbmifans7JAXRQVvVlNjsznE9UNt5TqO8E=;
+        b=zz6fgqoFphdvGMLNH2enrbt75dF3gnnEZnc99UaQQszWz/SoVa20wcZrHv5Yi/RZUM
+         3yqEKzPF0OdvS8g95UdBhU/uzT4C6Y+HbkPEHYXtVup5uXBicCwG7Ruc9dCDBcInc51g
+         B+iakIzwDcG2etCBlfrdIZmOxrDW3PqBNDqMMVbZGuvFR+tMYK0vwkW9AfiMrlg39JTl
+         q2rSS/6UxUiVsrh3T3pWhMmdku03y/L2lvGHKDzOb/lqkAj3OGGM/VnNipJDIcXaUkgC
+         DkK0GzqLeiTIAjI3AeITmj7shwANteLC2yfdEE5Zrraq/gl0NMcykkqHnToSxR00bvYh
+         1n+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695740093; x=1696344893;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eUg7RA9AWENnAEvjktXw0Q0VX8Hq+Jj1QvlmV23RBnY=;
-        b=ON8iwdTgOESD/wRyhPcoD/jwUv03wQ2ic+WegpQFwQv4hNCz+otXLW3h5O21xjtIEC
-         XqraEnYAqGPl54+cqftPnNBFylWI3T3U64i8qHgu2UtGMaRuztY/OU4ivDScbkyDBkys
-         OXxLKnF2eK18xdWHh/QVm/5vD5C9ED6+/+QkLs8KFdBMK5s+XUcnSUg755meI3S8jycd
-         waWCVo+nAV4w//97Bfv7/lPnXPN7cyOaoM/NALAP8XzGCzq4YZQgFrb+bZC30ORwgxug
-         jwPFUKQPAu8LwB1ZbR/CDJNhKebc4fKSx/rezRYnFViU3Wldp8wTUwgNMxS9Fsa6OJ1+
-         nI8Q==
-X-Gm-Message-State: AOJu0YzcSAwgEVULvtjhdM/FBf5LVIfnOr+9n36MUTaVGoqVYS+bABSX
-	QlviNIWyULp4/n6IKFz9PlvksfGKTH7uz+HPNgQ=
-X-Google-Smtp-Source: AGHT+IGppKOdOzhPvyCP7PuxYQZxIRXjPesiJpWn0izFZt6xiJeROoTqfOhhXOSb2Cksmwz8hbvNIH79Vu8b2i/Q4a4=
-X-Received: by 2002:a05:6a20:8e19:b0:15a:f7fd:dd97 with SMTP id
- y25-20020a056a208e1900b0015af7fddd97mr10735996pzj.2.1695740092640; Tue, 26
- Sep 2023 07:54:52 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1695740652; x=1696345452;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gACCqU464nbmifans7JAXRQVvVlNjsznE9UNt5TqO8E=;
+        b=IFFQQDhqKz5eGhS7imPAnDNu4Pg8Oi6jpn0TryfMis9crSCLQjxjsoS9FANGngEGbs
+         f4iNLHO1khtKo+X1YCe8nikrvEW3f8WeOUhrnHjc7EDoQHsmQnD+YqHIlHxduEUCNZUV
+         ElTSa3nmtbiwZrCWlZM4G/qZwwEw2v4DSXNehuWYrkCxirqfcdQOxB73Drdp0A49VCfX
+         z4fOkYiGZLO7KEbJLyJHnXrMvfM4BtYxcWnyUEGZtIzIMy6MMoxzEYMMqkDTkmbF8zyT
+         2eTh2LJ6CpjgpdGTcGAftNmGoRE7zXZdovv5LnDtXuUD/UsrAK8peooZ2b7nk1EWWqNw
+         +NoQ==
+X-Gm-Message-State: AOJu0YyvRebKAJmW9COA4jCYg8l5tCJzWL7ioFj3KTB14z+MZfaR2nHh
+	lVez18TlMiVNzJvngu00NmchMAgUIAoN74Ey5OyzLw==
+X-Google-Smtp-Source: AGHT+IHebOY62vQuQ8mi7GVykbe+TPx5MZJx0BhkK6giVggi+4w9oRLPJPUde9+BtK9dj0EgQ9y6d+OUJIa5A5+74kA=
+X-Received: by 2002:a25:320e:0:b0:d7f:13da:f773 with SMTP id
+ y14-20020a25320e000000b00d7f13daf773mr9543151yby.6.1695740651642; Tue, 26 Sep
+ 2023 08:04:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230926-vf610-gpio-v4-0-b57b7f6e8368@nxp.com> <20230926-vf610-gpio-v4-1-b57b7f6e8368@nxp.com>
-In-Reply-To: <20230926-vf610-gpio-v4-1-b57b7f6e8368@nxp.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Tue, 26 Sep 2023 11:54:41 -0300
-Message-ID: <CAOMZO5BXb02NAEd32vr5OoPXyL=Xm46FwomT2L7nDzLYZQGF1w@mail.gmail.com>
-Subject: Re: [PATCH v4 1/7] dt-bindings: gpio: vf610: update gpio-ranges
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+References: <20230922062834.39212-1-william.qiu@starfivetech.com>
+In-Reply-To: <20230922062834.39212-1-william.qiu@starfivetech.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 26 Sep 2023 17:03:35 +0200
+Message-ID: <CAPDyKFrrW+c9zm5pb6B7T_ULfij6=47E7OM-sgpCKTyWZ_BV0w@mail.gmail.com>
+Subject: Re: [PATCH v3 0/3] Change tuning implementation
+To: William Qiu <william.qiu@starfivetech.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-mmc@vger.kernel.org, 
+	Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>, 
+	Jaehoon Chung <jh80.chung@samsung.com>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Stefan Agner <stefan@agner.ch>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	NXP Linux Team <linux-imx@nxp.com>, Marco Felsch <m.felsch@pengutronix.de>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, Sep 26, 2023 at 12:28=E2=80=AFAM Peng Fan (OSS) <peng.fan@oss.nxp.c=
-om> wrote:
+On Fri, 22 Sept 2023 at 08:28, William Qiu <william.qiu@starfivetech.com> wrote:
 >
-> From: Peng Fan <peng.fan@nxp.com>
+> Hi,
 >
-> i.MX93 supports four gpio-ranges at max. To fix below issue:
-> "gpio@43820080: gpio-ranges: [[30, 0, 84, 8], [30, 8, 66, 18],
->  [30, 26, 34, 2], [30, 28, 0, 4]] is too long"
+> This series of patches changes the tuning implementation, from the
+> previous way of reading and writing system controller registers to
+> reading and writing UHS_REG_EXT register, thus optimizing the tuning
+> of obtaining delay-chain.
 >
->  Update the gpio-ranges property
+> Changes v2->v3:
+> - Rebased to v6.6rc2.
+> - Dropped redundant criteria.
+> - Keeped "starfive,sysreg" in dts file.
 >
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Changes v1->v2:
+> - Rebased to v6.6rc1.
+> - Keeped "starfive,sysreg" in dt-bindings but removed from required.
+> - Changed the function interface name.
+> - Maked the code implementation more concise.
+>
+> The patch series is based on v6.6rc2.
+>
+> William Qiu (3):
+>   dt-bindings: mmc: Remove properties from required
+>   mmc: starfive: Change tuning implementation
+>   riscv: dts: starfive: add assigned-clock* to limit frquency
+>
+>  .../bindings/mmc/starfive,jh7110-mmc.yaml     |   2 -
+>  .../jh7110-starfive-visionfive-2.dtsi         |   4 +
+>  drivers/mmc/host/dw_mmc-starfive.c            | 137 +++++-------------
+>  3 files changed, 44 insertions(+), 99 deletions(-)
+>
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+Patch 1 -> 2 applied for next, thanks!
+
+Kind regards
+Uffe
 
