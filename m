@@ -1,137 +1,102 @@
-Return-Path: <devicetree+bounces-3365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB59F7AE8C7
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 11:18:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 598717AE8D6
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 11:21:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id 3B9901F25666
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 09:18:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 09782281722
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 09:21:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A72DD12B7C;
-	Tue, 26 Sep 2023 09:18:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9064D12B82;
+	Tue, 26 Sep 2023 09:21:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 935E112B73
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 09:18:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74BF3C433C8;
-	Tue, 26 Sep 2023 09:18:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695719922;
-	bh=mlwG5wTGIlk+oeIJXV5mNozKoyrhncfuc0jgKxRBWzM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=T3S8kaOmXQ8FsN5083g0llW5eIovcu9kopK2DSymPv33VasNg76uU6RDfujD2zvMT
-	 lsYnOPIJ2K4xO6Dh2QDaq3lOjo61mnEaDVPIimXMb/AEvkuKO2OYRgOm5HcsibrY98
-	 UELjcG8tDoHEyeTaQ/bvyX4QqAXbVoP+9y08QqgshIfDlTDS1Dh0EMN+644cBjxO9o
-	 SPBQlKkRrN50VO8Hw3hLdufDe1Up9Q1INpDIVH9l1bVDRFarfu1GgVi34TBQcIhxTz
-	 nb0SlbqbMrfGna9Mk03r/CBR9DhOMTTYc45FrongNwTNiXYWiK6paesvAtetzzKE/i
-	 JjAQsgM+1C8eg==
-Date: Tue, 26 Sep 2023 10:18:37 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jon Hunter <jonathanh@nvidia.com>
-Cc: Rob Herring <robh@kernel.org>, Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org, Ninad Malwade <nmalwade@nvidia.com>,
-	Thierry Reding <treding@nvidia.com>,
-	Nicolin Chen <nicoleotsuka@gmail.com>
-Subject: Re: [PATCH V3 1/4] dt-bindings: hwmon: ina3221: Convert to
- json-schema
-Message-ID: <20230926-caretaker-raging-0fe380cd1232@spud>
-References: <20230921130818.21247-1-jonathanh@nvidia.com>
- <20230921130818.21247-2-jonathanh@nvidia.com>
- <20230922210101.GA3562325-robh@kernel.org>
- <c2a5a199-2297-d0ca-515c-64b1dd267509@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F00F063AF
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 09:21:18 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF170F3;
+	Tue, 26 Sep 2023 02:21:17 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 579876607313;
+	Tue, 26 Sep 2023 10:21:15 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1695720076;
+	bh=FKvRcZczMijqG8YmeVx25lsAadHS5xULTP5v1ZDi/Yc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=IxceUlmBtOiC/bvzFXAWd7X6itv/URlN7AFBiOcK3qw/JI6FdPQ7x2maqYXNOIF6G
+	 yUaxFobcey3F38OEXcTHnoNSvnF9OZKUpzWlJwpBuzs90t8iFoc0XfWEY+vmpUv2UK
+	 UR23LHeESMsF+1o6ednzjwZICOFm4La8tDnuh7xal4g/raZtu8xS4RK2YxtCaGMLfm
+	 OTo1C2+tdT3+RQ54FdySt5HVa3t10HFru7Jal1XFqM/hJWDLHR7alucwLg43SaNi9A
+	 Hr+DIw0bTQdt0XNdP67RoYlbIFke85DgrFfVtecKdj2ztqkwyX0v2pZ3sQJAVFINiZ
+	 ikOrEbFs7/NwA==
+Message-ID: <05086c59-f6df-7a72-59be-762fdcd0a31f@collabora.com>
+Date: Tue, 26 Sep 2023 11:21:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="t5SaNNLRZ2Jhwil1"
-Content-Disposition: inline
-In-Reply-To: <c2a5a199-2297-d0ca-515c-64b1dd267509@nvidia.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH] dt-bindings: mfd: Add missing unevaluatedProperties on
+ child node schemas
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>, Lee Jones <lee@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+ Patrick Rudolph <patrick.rudolph@9elements.com>,
+ Flora Fu <flora.fu@mediatek.com>, Alexandre Mergnat <amergnat@baylibre.com>,
+ Chris Zhong <zyw@rock-chips.com>, Zhang Qing <zhangqing@rock-chips.com>,
+ - Keerthy <j-keerthy@ti.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+References: <20230925212729.1976117-1-robh@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230925212729.1976117-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+Il 25/09/23 23:27, Rob Herring ha scritto:
+> Just as unevaluatedProperties or additionalProperties are required at
+> the top level of schemas, they should (and will) also be required for
+> child node schemas. That ensures only documented properties are
+> present for any node.
+> 
+> Add unevaluatedProperties as needed, and then add any missing properties
+> flagged by the addition.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
---t5SaNNLRZ2Jhwil1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+For MediaTek:
 
-On Mon, Sep 25, 2023 at 11:46:58AM +0100, Jon Hunter wrote:
->=20
->=20
-> On 22/09/2023 22:01, Rob Herring wrote:
-> > On Thu, Sep 21, 2023 at 02:08:15PM +0100, Jon Hunter wrote:
-> > > From: Ninad Malwade <nmalwade@nvidia.com>
-> > >=20
-> > > Convert the TI INA3221 bindings from the free-form text format to
-> > > json-schema.
-> > >=20
-> > > Note that the INA3221 input channels default to enabled in the chip.
-> > > Unless channels are explicitly disabled in device-tree, input
-> > > channels will be enabled.
-> > >=20
-> > > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > > Signed-off-by: Ninad Malwade <nmalwade@nvidia.com>
-> > > Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> > > ---
-> > >   .../devicetree/bindings/hwmon/ina3221.txt     | 54 ----------
-> > >   .../devicetree/bindings/hwmon/ti,ina3221.yaml | 98 ++++++++++++++++=
-+++
-> > >   2 files changed, 98 insertions(+), 54 deletions(-)
-> > >   delete mode 100644 Documentation/devicetree/bindings/hwmon/ina3221.=
-txt
-> > >   create mode 100644 Documentation/devicetree/bindings/hwmon/ti,ina32=
-21.yaml
->=20
->=20
-> ...
->=20
-> > > +examples:
-> > > +  - |
-> > > +    i2c {
-> > > +        #address-cells =3D <1>;
-> > > +        #size-cells =3D <0>;
-> > > +
-> > > +        power-sensor@40 {
-> > > +            compatible =3D "ti,ina3221";
-> > > +            reg =3D <0x40>;
-> > > +            #address-cells =3D <1>;
-> > > +            #size-cells =3D <0>;
-> > > +
-> > > +            input@0 {
-> > > +                reg =3D <0x0>;
-> > > +                status =3D "disabled";
-> >=20
-> > Examples should be enabled.
->=20
->=20
-> Yes normally that would be the case. However, per the discussion with
-> Guenter and the comment in the changelog, for this device channels are
-> enabled in the chip by default. And so to disable them, we need to
-> explicitly disable in device-tree.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Maybe a comment at this location would be good then, to point out that
-this is what you are trying to demonstrate with this example?
+> ---
+>   Documentation/devicetree/bindings/mfd/maxim,max5970.yaml   | 5 +++++
+>   Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml | 2 ++
+>   Documentation/devicetree/bindings/mfd/rockchip,rk805.yaml  | 1 +
+>   Documentation/devicetree/bindings/mfd/rockchip,rk808.yaml  | 1 +
+>   Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml  | 3 ++-
+>   Documentation/devicetree/bindings/mfd/rockchip,rk818.yaml  | 1 +
+>   Documentation/devicetree/bindings/mfd/ti,lp87524-q1.yaml   | 1 +
+>   Documentation/devicetree/bindings/mfd/ti,lp87561-q1.yaml   | 1 +
+>   Documentation/devicetree/bindings/mfd/ti,lp87565-q1.yaml   | 1 +
+>   9 files changed, 15 insertions(+), 1 deletion(-)
+> 
 
-
---t5SaNNLRZ2Jhwil1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRKh7QAKCRB4tDGHoIJi
-0p6zAP9IDPIlYXKh1b6yTrS2dz8pjd5jzbbeXViPKKFPs5v8FgD/W5j59c0Z9HxS
-NecwcJZBhTXgt/Ro2/fPA2mvhz1agws=
-=NJQ8
------END PGP SIGNATURE-----
-
---t5SaNNLRZ2Jhwil1--
 
