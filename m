@@ -1,198 +1,197 @@
-Return-Path: <devicetree+bounces-3507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48FEA7AF197
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 19:13:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 151787AF1BC
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 19:29:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id CD4A11F25DA1
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 17:13:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 30A031C20429
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 17:29:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0463A35882;
-	Tue, 26 Sep 2023 17:13:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80DDA374FB;
+	Tue, 26 Sep 2023 17:29:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 842D626E07
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 17:13:53 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B13ED10A;
-	Tue, 26 Sep 2023 10:13:51 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38QHDemY053018;
-	Tue, 26 Sep 2023 12:13:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1695748420;
-	bh=pAqjAHzJL/gEQqTo5/2Ffn6ANWX6xspZpkSBw/wOuNU=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=Epj2VFkOD1j9JBhOdza3Oud9xtvraBDWQMY8QdpHSDfwVWZFr/yqjYfmLfznqjbL4
-	 qwlZMkYTr28U2xsENki84GdB23fTtLi9YYcqn29XHaGU1MmmQqlAUFDjKwuAXqrG7t
-	 t05NofwXj5RghT4xcv6ogM3k5pHWmwMvR8xIpaZc=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38QHDeh0075877
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 26 Sep 2023 12:13:40 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 26
- Sep 2023 12:13:40 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 26 Sep 2023 12:13:39 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38QHDeBu106480;
-	Tue, 26 Sep 2023 12:13:40 -0500
-Date: Tue, 26 Sep 2023 12:13:40 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Keerthy <j-keerthy@ti.com>
-CC: <robh+dt@kernel.org>, <vigneshr@ti.com>, <conor+dt@kernel.org>,
-        <kristo@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <u-kumar1@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 6/7] arm64: dts: ti: k3-j721s2-main: Add the main
- domain watchdog instances
-Message-ID: <20230926171340.t227lqfjjcitx37z@clump>
-References: <20230926132805.6518-1-j-keerthy@ti.com>
- <20230926132805.6518-7-j-keerthy@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 713E326E0C
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 17:29:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7CF0C433C7;
+	Tue, 26 Sep 2023 17:29:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695749359;
+	bh=qrBeQ51Dvxv01D+MaeOf5SpdgRWicIvEOSKVURSSzjA=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=jLKAuoY9Tq+nBCfB3Rsekoz5TWyvDE4Cz2iyx889195Ydz/Bm/vK+0uAblBSwOgyT
+	 4HO5gJ2LGgExjKXjYF0WDHcIHP6HAV8q6MsvQH2Fa1ungePnpAHr10Ac/tnY6eflVJ
+	 wjq7Vx2X7c2MBRDvXAl3jvH6oNjT60/1eozlWbuwyWY/AoV1eIJTb8yOWAOzl/ioDN
+	 MrsGgHSHIjl/waRnu0LdfdrngFegEjL6CM/V1e5yav3vZ07wwDPy3N3UER3Udxb7Cp
+	 AzFdLBUnvAPAvadGS6HFaFsJ2/0UvPysGZzaf6YxRMh6z8Lbfna7ZlsIvtG+t06sZa
+	 NCCbbM6N4VJlQ==
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5041335fb9cso14979399e87.0;
+        Tue, 26 Sep 2023 10:29:19 -0700 (PDT)
+X-Gm-Message-State: AOJu0YwkSIYyPqCqIonIGl6/fKZIjNMmviVPvhJPb3yU7v53OgUfVk0z
+	E5SvC6A7lNNsEZhuoN3w542LYqNiTxVNKlS34g==
+X-Google-Smtp-Source: AGHT+IF4jsYIOlWRMaDBVtY1ZGg0bMgAPx9E8v3RDGUGPZuPx/gUDtti2upRNZGqjvQTlkNrF5gZRcr/muks4aGOsIc=
+X-Received: by 2002:a05:6512:2520:b0:500:8022:3dc7 with SMTP id
+ be32-20020a056512252000b0050080223dc7mr9331056lfb.10.1695749358093; Tue, 26
+ Sep 2023 10:29:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230926132805.6518-7-j-keerthy@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+References: <20230921124459.1.I91ddcfacf9b234af5cc3eabea4b62edb31153317@changeid>
+ <CAL_Jsq+WuYDU+yY98opTHr1PT-J9mFYJQBjVMnk+FSWLDUO33w@mail.gmail.com>
+ <CAPnjgZ1pfxaMG1n5yOBhiOhsNrRjck1K92U7Ga=+VTY_jjjrVg@mail.gmail.com>
+ <20230922174649.GA3320366-robh@kernel.org> <CAPnjgZ3ojfAv=BHqOhM=-NnYqCm81Ny=PsGKiNphKTmw++fk9w@mail.gmail.com>
+ <CAL_JsqJqvyP=c93DHDO8A5RXv7Lz_Z7eEHSbJQ=JCo+qPVhSfg@mail.gmail.com>
+ <CAPnjgZ3BnD9aX3cNNPiGRKTOj+YeurHCLv6K0TRFhAtY21Qufw@mail.gmail.com>
+ <20230925092122.0b615f25@xps-13> <CAPnjgZ0Z5J_33HuQF-5XgDFmZim0nHHzvZJOOZobWw_cOJd=9g@mail.gmail.com>
+ <20230925164736.5efbf4c0@xps-13> <CAPnjgZ3YCQHJ-eXuX8rYx2Qb6QEL+XviFmXYTON6M-sGPWSBBg@mail.gmail.com>
+ <20230925172447.43dcef88@xps-13> <CAPnjgZ20c9FsYVjSrQ9qbFy9Y67BqDP2zxMyATx===PFhO69Ew@mail.gmail.com>
+ <CAL_JsqJfjHqtTB2qfLmNxmQtn1rZewNyNe+Knu_Z4UCdPoPhSQ@mail.gmail.com>
+ <CAPnjgZ1npHPpwPmw2f4=E3U5=RH0m4R+W_MZ7+oXdmDF=EeUjg@mail.gmail.com> <20230926094815.5802e184@xps-13>
+In-Reply-To: <20230926094815.5802e184@xps-13>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 26 Sep 2023 12:29:03 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL_8bhHkHOFL8a8=g1dYL4OY8hGuNDyc0Jz22rEuJzXtQ@mail.gmail.com>
+Message-ID: <CAL_JsqL_8bhHkHOFL8a8=g1dYL4OY8hGuNDyc0Jz22rEuJzXtQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mtd: Add a schema for binman
+To: Miquel Raynal <miquel.raynal@bootlin.com>, Simon Glass <sjg@chromium.org>
+Cc: devicetree@vger.kernel.org, U-Boot Mailing List <u-boot@lists.denx.de>, 
+	linux-mtd@lists.infradead.org, Tom Rini <trini@konsulko.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 18:58-20230926, Keerthy wrote:
-> There are totally 9 instances of watchdog module. One each for the
-> 2 A72 cores, one each for the 2 C7x cores, 1 for the GPU, 1 each
-> for the 4 R5F cores in the main domain. Keeping only the A72 instances
-> enabled and disabling the rest by default.
+On Tue, Sep 26, 2023 at 2:48=E2=80=AFAM Miquel Raynal <miquel.raynal@bootli=
+n.com> wrote:
+>
+> Hello,
+>
+> > > > > > These are firmware bindings, as indicated, but I
+> > > > > > took them out of the /firmware node since that is for a differe=
+nt
+> > > > > > purpose. Rob suggested that partitions was a good place. We hav=
+e fwupd
+> > > > > > using DT to hold the firmware-update information, so I expect i=
+t will
+> > > > > > move to use these bindings too.
+> > > > >
+> > > > > I would definitely use fixed partitions as that's what you need t=
+hen:
+> > > > > registering where everything starts and ends. If you have "in-ban=
+d"
+> > > > > meta data you might require a compatible, but I don't think you
+> > > > > do, in this case you should probably carry the content through a =
+label
+> > > > > (which will become the partition name) and we can discuss additio=
+nal
+> > > > > properties if needed.
+> > > >
+> > > > I believe I am going to need a compatible string at the 'partitions=
+'
+> > > > level to indicate that this is the binman scheme. But we can leave
+> > > > that until later.
+> > >
+> > > Perhaps:
+> > >
+> > > compatible =3D "binman", "fixed-partitions";
+> > >
+> > > Though I don't understand why binman couldn't just understand what
+> > > "fixed-partitions" means rather than "binman".
+> >
+> > Well so long as we don't add any binman things in here, you are right.
+> >
+> > But the eventual goal is parity with current Binman functionality,
+> > which writes the entire (augmented) description to the DT, allowing
+> > tools to rebuild / repack / replace pieces later, maintaining the same
+> > alignment constraints, etc. I am assuming that properties like 'align
+> > =3D <16>' would not fit with fixed-partitions.
+>
+> I am personally not bothered by this kind of properties. But if we plan
+> on adding too much properties, I will advise to indeed use another name
+> than fixed-partitions (or add the "binman" secondary compatible)
+> otherwise it's gonna be hard to support in the code while still
+> restraining as much as we can the other partition schema.
 
-Will be good to explain why in the commit message as well.
+Agreed. It's a trade off. I think we need enough to understand the
+problem (not just presented with a solution), agree on the general
+solution/direction, and then discuss specific additions.
 
-> 
-> Signed-off-by: Keerthy <j-keerthy@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 88 ++++++++++++++++++++++
->  1 file changed, 88 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> index 8a717b592238..5e3c0ef9b10b 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> @@ -1702,4 +1702,92 @@
->  		ti,esm-pins = <688>, <689>;
->  		bootph-pre-ram;
->  	};
-> +
-> +	watchdog0: watchdog@2200000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x2200000 0x00 0x100>;
-> +		clocks = <&k3_clks 286 1>;
-> +		power-domains = <&k3_pds 286 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 286 1>;
-> +		assigned-clock-parents = <&k3_clks 286 5>;
-> +	};
-> +
-> +	watchdog1: watchdog@2210000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x2210000 0x00 0x100>;
-> +		clocks = <&k3_clks 287 1>;
-> +		power-domains = <&k3_pds 287 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 287 1>;
-> +		assigned-clock-parents = <&k3_clks 287 5>;
-> +	};
-> +
-> +	watchdog16: watchdog@2300000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x2300000 0x00 0x100>;
-> +		clocks = <&k3_clks 288 1>;
-> +		power-domains = <&k3_pds 288 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 288 1>;
-> +		assigned-clock-parents = <&k3_clks 288 5>;
-> +		status = "disabled";
-> +	};
-> +
-> +	watchdog17: watchdog@2310000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x2310000 0x00 0x100>;
-> +		clocks = <&k3_clks 289 1>;
-> +		power-domains = <&k3_pds 289 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 289 1>;
-> +		assigned-clock-parents = <&k3_clks 289 5>;
-> +		status = "disabled";
-> +	};
-> +
-> +	watchdog15: watchdog@22f0000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x22f0000 0x00 0x100>;
-> +		clocks = <&k3_clks 290 1>;
-> +		power-domains = <&k3_pds 290 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 290 1>;
-> +		assigned-clock-parents = <&k3_clks 290 5>;
-> +		status = "disabled";
-> +	};
-> +
-> +	watchdog28: watchdog@23c0000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x23c0000 0x00 0x100>;
-> +		clocks = <&k3_clks 291 1>;
-> +		power-domains = <&k3_pds 291 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 291 1>;
-> +		assigned-clock-parents = <&k3_clks 291 5>;
-> +		status = "disabled";
-> +	};
-> +
-> +	watchdog29: watchdog@23d0000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x23d0000 0x00 0x100>;
-> +		clocks = <&k3_clks 292 1>;
-> +		power-domains = <&k3_pds 292 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 292 1>;
-> +		assigned-clock-parents = <&k3_clks 292 5>;
-> +		status = "disabled";
-> +	};
-> +
-> +	watchdog30: watchdog@23e0000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x23e0000 0x00 0x100>;
-> +		clocks = <&k3_clks 293 1>;
-> +		power-domains = <&k3_pds 293 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 293 1>;
-> +		assigned-clock-parents = <&k3_clks 293 5>;
-> +		status = "disabled";
-> +	};
-> +
-> +	watchdog31: watchdog@23f0000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x23f0000 0x00 0x100>;
-> +		clocks = <&k3_clks 294 1>;
-> +		power-domains = <&k3_pds 294 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 294 1>;
-> +		assigned-clock-parents = <&k3_clks 294 5>;
-> +		status = "disabled";
+> > But if we don't preserve
+> > these properties then Binman cannot do repacking reliably. Perhaps for
+> > now I could put the augmented DT in its own section somewhere, but I
+> > am just not sure if that will work in a real system. E.g. with VBE the
+> > goal is to use the DT to figure out how to access the firmware, update
+> > it, etc.
 
-Missing documentation here as well.
+VBE?
 
-> +	};
->  };
-> -- 
-> 2.17.1
-> 
+> > Is it not possible to have my own node with whatever things Binman
+> > needs in it (subject to review of course)? i.e. could we discuss how
+> > to encode it, but argue less about whether things are needed? I
+> > kind-of feel I know what is needed, since I wrote the tool.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+What we don't need is the same information in 2 places for the DTB
+used at runtime. If the binman node is removed, do whatever you want.
+If you want to keep it at runtime, then it's got to extend what we
+already have.
+
+I don't think anyone is disagreeing about whether specific information
+is needed or not.
+
+> > > > So you are suggesting 'label' for the contents. Rob suggested
+> > > > 'compatible' [1], so what should I do?
+> > >
+> > > "label" is for consumption by humans, not tools/software. Compatible
+> > > values are documented, label values are not. Though the partition
+> > > stuff started out using label long ago and it's evolved to preferring
+> > > compatible.
+> >
+> > OK so we are agreed that we are going with 'compatible'.
+>
+> Still strongly disagree here.
+
+Miquel is right. I was confused here. "label" is still pretty much
+used for what the image is. Though we do have "u-boot,env" for both it
+seems.
+
+My position on "label" stands. To the extent we have images for common
+components, I think we should standardize the names. Certainly if
+tools rely on the names, then they should be documented.
+
+
+> My understanding is that a compatible carries how the content is
+> organized, and how this maybe specific (like you have in-band meta data
+> data that needs to be parsed in a specific way or in your case
+> additional specific properties in the DT which give more context about
+> how the data is stored). But the real content of the partition, ie. if
+> it contains a firmware, the kernel or some user data does not belong to
+> the compatible.
+>
+> I.e:
+> - The first byte of my partition gives the compression algorithm:
+>   -> compatible =3D "compressed-partition-foo";
+>      or
+>   -> compatible =3D "fixed-partitions" + compression-algorithm =3D "foo";
+> - The partition contains a picture of my dog:
+>   -> label =3D "my dog is beautiful"
+>   but certainly not
+>   -> compatible =3D "my-dog";
+
+IMO, compatible in this case should convey "JPEG image" or similar.
+
+> I don't see why, for the binman schema, we could not constrain the
+> labels?
+
+Yes, but those should follow what we already have. "u-boot" for
+example rather than "data,u-boot" which I think Simon had in some
+version of this.
+
+Rob
 
