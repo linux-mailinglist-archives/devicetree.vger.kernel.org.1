@@ -1,124 +1,110 @@
-Return-Path: <devicetree+bounces-3477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8361D7AF014
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 17:56:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3A427AF088
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 18:21:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 31FFB281551
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 15:56:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 94CA6281677
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 16:21:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B005830D15;
-	Tue, 26 Sep 2023 15:56:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDD3F328B5;
+	Tue, 26 Sep 2023 16:20:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D48830D13
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 15:56:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBE57C433C7;
-	Tue, 26 Sep 2023 15:56:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695743806;
-	bh=sz3LleGIgkDcRxsY10cRbgEtugt9GVhiu7ELFn1C6PM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=pQ0bxYsFFW6f3k8Mm9YI6BmpG2prf+7jIv4S+F1z1386cIVcJob8goJ79mN/ygtGn
-	 LwBrPO/JVUlO2j/UqOLwnuLiiuNReUALoxduWfNpBG+Vutf0qrLwcNG8vPlPi089J5
-	 IO1Pi7q35HxGeadWPmr72WV1Ws73n6gXn2qQWFHUVYiGDyDUlXRp/CiPJQG9JD8O5/
-	 zoYNs+M/fzB/ue4ZgOpi5QCQU2NOWZXT3GqxctlK2SWJCTzPh8cxzrPoziiWg7AtX1
-	 01nGw9jArczGNVvuYj9s3xXZjLKyxdmORBTQayk4tcv57YsVKpqLXfOQpBdBZcDVQO
-	 wq2vZyE2CDYwA==
-Received: (nullmailer pid 34714 invoked by uid 1000);
-	Tue, 26 Sep 2023 15:56:43 -0000
-From: Rob Herring <robh@kernel.org>
-To: Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Ray Jui <ray.jui@broadcom.com>, Scott Branden <scott.branden@broadcom.com>, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] dt-bindings: PCI: brcm,iproc-pcie: Fix 'msi' child node schema
-Date: Tue, 26 Sep 2023 10:56:09 -0500
-Message-Id: <20230926155613.33904-3-robh@kernel.org>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230926155351.31117-1-robh@kernel.org>
-References: <20230926155351.31117-1-robh@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701F930D1C
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 16:20:58 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9785210A;
+	Tue, 26 Sep 2023 09:20:56 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38QD8X7G015172;
+	Tue, 26 Sep 2023 16:20:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=4egfuai/K1YaEUv09gPmcF8efD43YT+tVjuUW8tDWh4=;
+ b=N4WqbL7wY3jFMqFG83ksBNFNHsVOgBMlJmT0wQp0/HULRtA9zm+AC4/stwWuWho2rhm7
+ jVPDLwk01OUE0tncyka41JN5LFW7R9An/nR57zTB0IYfjMYezFv2Vo/bki3jCxMlax/h
+ iDkKSFkDbhqRShNzc4LWklr7u9L8+Uv9XeZd+PgiGhHQkJ1b13Q5bvnWq28GHjV9M4uy
+ d0LQM0FzlqR4f97ogv8ipXFqWND0dZ/nAubsB1/aq6IYuXDGcyYbBd0suZQ04EfPrG8L
+ giHduI+Sr9IfKdFw+eVrqA2+OzubGq3NkiCFJXPyuPgJR9lgwDQZg1wuMkFmGpiEwBor Sg== 
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tb7re3rp7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Sep 2023 16:20:48 +0000
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 38QGKjw5010028;
+	Tue, 26 Sep 2023 16:20:45 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3t9s3kk6mr-1;
+	Tue, 26 Sep 2023 16:20:45 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 38QGKiQ7010022;
+	Tue, 26 Sep 2023 16:20:44 GMT
+Received: from hu-maiyas-hyd.qualcomm.com (hu-nitirawa-hyd.qualcomm.com [10.213.109.152])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 38QGKiAf010021;
+	Tue, 26 Sep 2023 16:20:44 +0000
+Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 2342877)
+	id E04A8601917; Tue, 26 Sep 2023 21:50:43 +0530 (+0530)
+From: Nitin Rawat <quic_nitirawa@quicinc.com>
+To: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        mani@kernel.org, alim.akhtar@samsung.com, bvanassche@acm.org,
+        avri.altman@wdc.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        cros-qcom-dts-watchers@chromium.org
+Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Nitin Rawat <quic_nitirawa@quicinc.com>
+Subject: [PATCH V2 0/3] Add UFS host controller and Phy nodes for sc7280
+Date: Tue, 26 Sep 2023 21:50:39 +0530
+Message-Id: <20230926162042.14180-1-quic_nitirawa@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: -lu74KSH2ts1NxLe9C2n0mkt1P08Xxe_
+X-Proofpoint-GUID: -lu74KSH2ts1NxLe9C2n0mkt1P08Xxe_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-26_13,2023-09-26_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ lowpriorityscore=0 suspectscore=0 bulkscore=0 mlxlogscore=555 adultscore=0
+ priorityscore=1501 phishscore=0 clxscore=1011 spamscore=0 impostorscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2309260142
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=no
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-The 'msi' child node schema is missing constraints on additional properties.
-It turns out it is incomplete and properties for it are documented in the
-parent node by mistake. Move the reference to msi-controller.yaml and
-the custom properties to the 'msi' node. Adding 'unevaluatedProperties'
-ensures all the properties in the 'msi' node are documented.
+This patch adds UFS host controller and Phy nodes for Qualcomm sc7280 SOC
+and sc7280 Board.
 
-With the schema corrected, a minimal interrupt controller node is needed
-to properly decode the interrupt properties since the example has
-multiple interrupt parents.
+Changes from v1:
+- Addressed mani comment to separate soc and board change.
+- Addressed mani comment to sort ufs node in ascending order.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../bindings/pci/brcm,iproc-pcie.yaml         | 24 ++++++++++++-------
- 1 file changed, 16 insertions(+), 8 deletions(-)
+Nitin Rawat (3):
+  scsi: ufs: qcom: dt-bindings: Add SC7280 compatible string
+  arm64: dts: qcom: sc7280: Add UFS nodes for sc7280 soc
+  arm64: dts: qcom: sc7280: Add UFS nodes for sc7280 IDP board
 
-diff --git a/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml
-index 6730d68fedc7..0e07ab61a48d 100644
---- a/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml
-@@ -12,7 +12,6 @@ maintainers:
- 
- allOf:
-   - $ref: /schemas/pci/pci-bus.yaml#
--  - $ref: /schemas/interrupt-controller/msi-controller.yaml#
- 
- properties:
-   compatible:
-@@ -63,20 +62,24 @@ properties:
- 
-   msi:
-     type: object
-+    $ref: /schemas/interrupt-controller/msi-controller.yaml#
-+    unevaluatedProperties: false
-+
-     properties:
-       compatible:
-         items:
-           - const: brcm,iproc-msi
- 
--  msi-parent: true
-+      interrupts:
-+        maxItems: 4
- 
--  msi-controller: true
-+      brcm,pcie-msi-inten:
-+        type: boolean
-+        description:
-+          Needs to be present for some older iProc platforms that require the
-+          interrupt enable registers to be set explicitly to enable MSI
- 
--  brcm,pcie-msi-inten:
--    type: boolean
--    description: >
--      Needs to be present for some older iProc platforms that require the
--      interrupt enable registers to be set explicitly to enable MSI
-+  msi-parent: true
- 
- dependencies:
-   brcm,pcie-ob-axi-offset: ["brcm,pcie-ob"]
-@@ -104,6 +107,11 @@ examples:
-   - |
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
- 
-+    gic: interrupt-controller {
-+        interrupt-controller;
-+        #interrupt-cells = <3>;
-+    };
-+
-     pcie@18012000 {
-         compatible = "brcm,iproc-pcie";
-         reg = <0x18012000 0x1000>;
--- 
-2.40.1
+ .../devicetree/bindings/ufs/qcom,ufs.yaml     |  2 +
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi      | 19 ++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          | 64 +++++++++++++++++++
+ 3 files changed, 85 insertions(+)
+
+--
+2.17.1
 
 
