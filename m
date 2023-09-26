@@ -1,41 +1,41 @@
-Return-Path: <devicetree+bounces-3488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27B107AF113
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 18:45:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D9B17AF116
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 18:45:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 193E4281E12
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 16:45:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 678D21C20833
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 16:45:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B89A34196;
-	Tue, 26 Sep 2023 16:45:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE6A933980;
+	Tue, 26 Sep 2023 16:45:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B0C01FA1
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 16:45:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62842C433C7;
-	Tue, 26 Sep 2023 16:45:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E002D5386
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 16:45:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8626C433C8;
+	Tue, 26 Sep 2023 16:45:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695746725;
-	bh=aYyNkcYVEy5iUmtkKozylsTv6tDrVJnDNQ3yWacAOpE=;
+	s=k20201202; t=1695746742;
+	bh=aLLqkdKFCxYcXITRkqjnjOM4U5KU00Rw+HhFRqy0ov0=;
 	h=From:To:Cc:Subject:Date:From;
-	b=qq2tfooTqqPYFON0eSeyQI07FZu1DUcA8mcw4uBpxv1/cgJOQRnZ93YtiKi/61vKS
-	 UAYcUWY/ICSiL+GOadHAG2K5n5KfxIxdfUG9ho7TLRoc33/bpFVx4qq6m+waAyh/n9
-	 HpcjGSw6bDZ9LkKqz6EtET7UqIpCeML9hecUhZJ9IW0tBP9qZ91PhMoJHjO8pLe45x
-	 zb1JyUuu/h1CApqiBKjopN4PmYLLQlbAA7VLLCK/veDYnoCJ4dHpkwJwoZEQTAVsPE
-	 f2wL1UboIZ/WN2yO43riAsOtVxN7efRf1RP0q+Ko+gHgNyTxz6JBW3NsKHOqzLsyv3
-	 wFfYrCigx4ctQ==
-Received: (nullmailer pid 102369 invoked by uid 1000);
-	Tue, 26 Sep 2023 16:45:22 -0000
+	b=NdCFrlkgfWfiMlPk83uqy45Vrb9+sQxddQSbpd9jnPWw+FcwGE9rVML7eU3aZb+Jm
+	 NYsgPUKVl9eRoCYDsSDt/ZHteAqW4BzDvBuvwlMal/DbwPt1tBeOwn//8WozUBOFxz
+	 mSMFmlggL3k7k2lAJMVq4GDAVRKf9fJqD3Iqz7pvDwdN2skzTB08WNXBNMs81o5Wha
+	 R9EFGdqY1uxTci6c84UevqJJauz9xYs/djLmESlIZwmIDirZWmn9ZpbZL77bY18SVo
+	 okdC9gV/5iKpcpjphy4DWvkt6L5JEx7rEv1xFU2xmrIJYQKWvs5EgvIjpT/cf6fWQg
+	 E4r+/8Ftm/yMQ==
+Received: (nullmailer pid 102861 invoked by uid 1000);
+	Tue, 26 Sep 2023 16:45:40 -0000
 From: Rob Herring <robh@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Tinghan Shen <tinghan.shen@mediatek.com>
-Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: [PATCH] dt-bindings: remoteproc: mtk,scp: Add missing additionalProperties on child node schemas
-Date: Tue, 26 Sep 2023 11:45:08 -0500
-Message-Id: <20230926164513.101958-1-robh@kernel.org>
+To: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: nvmem: u-boot,env: Add missing additionalProperties on child node schemas
+Date: Tue, 26 Sep 2023 11:45:25 -0500
+Message-Id: <20230926164529.102427-1-robh@kernel.org>
 X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -52,21 +52,22 @@ present for any node.
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/nvmem/u-boot,env.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-index 895415772d1d..24422fd56e83 100644
---- a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-@@ -91,6 +91,7 @@ allOf:
- 
- additionalProperties:
-   type: object
-+  additionalProperties: false
-   description:
-     Subnodes of the SCP represent rpmsg devices. The names of the devices
-     are not important. The properties of these nodes are defined by the
+diff --git a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+index 36d97fb87865..9c36afc7084b 100644
+--- a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
++++ b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+@@ -51,6 +51,8 @@ properties:
+   ethaddr:
+     type: object
+     description: Ethernet interfaces base MAC address.
++    additionalProperties: false
++
+     properties:
+       "#nvmem-cell-cells":
+         description: The first argument is a MAC address offset.
 -- 
 2.40.1
 
