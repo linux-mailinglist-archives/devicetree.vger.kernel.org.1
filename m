@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-3478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3A427AF088
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 18:21:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCE8E7AF08B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 18:21:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 94CA6281677
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 16:21:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 2DF46B20A12
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 16:21:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDD3F328B5;
-	Tue, 26 Sep 2023 16:20:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B33A33980;
+	Tue, 26 Sep 2023 16:21:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701F930D1C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E7031A8B
 	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 16:20:58 +0000 (UTC)
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9785210A;
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C23311F;
 	Tue, 26 Sep 2023 09:20:56 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38QD8X7G015172;
-	Tue, 26 Sep 2023 16:20:48 GMT
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38QD7v2M022515;
+	Tue, 26 Sep 2023 16:20:49 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id; s=qcppdkim1;
- bh=4egfuai/K1YaEUv09gPmcF8efD43YT+tVjuUW8tDWh4=;
- b=N4WqbL7wY3jFMqFG83ksBNFNHsVOgBMlJmT0wQp0/HULRtA9zm+AC4/stwWuWho2rhm7
- jVPDLwk01OUE0tncyka41JN5LFW7R9An/nR57zTB0IYfjMYezFv2Vo/bki3jCxMlax/h
- iDkKSFkDbhqRShNzc4LWklr7u9L8+Uv9XeZd+PgiGhHQkJ1b13Q5bvnWq28GHjV9M4uy
- d0LQM0FzlqR4f97ogv8ipXFqWND0dZ/nAubsB1/aq6IYuXDGcyYbBd0suZQ04EfPrG8L
- giHduI+Sr9IfKdFw+eVrqA2+OzubGq3NkiCFJXPyuPgJR9lgwDQZg1wuMkFmGpiEwBor Sg== 
+ subject : date : message-id : in-reply-to : references; s=qcppdkim1;
+ bh=djF4G+3iPZueudohzeoKOdNApP2XEG/pet+/xmFU4zQ=;
+ b=Y+NhnlEJgAtt6bPDEaHN4eWD0NymGvS0dVGfWb2K6UNXsdY92M0sUurQ0SgHGlEcxzZo
+ HpdJA1I5FmBnXDDj+onz3uRSeepMfDFnkVciOYYqx1tVCqRUlFdhAaW3dHbSOdVBRO1S
+ jo+p5pgwh/cVbjypY8eDWWGNBSEmnt6RupHwsUPusiv/QQVFtS8KTUapSIUxTM0mfR4+
+ gJHzuUPvmOIK6curRyCLCGPZTAoYfPbu0Qbte+aFtYEIb/xq+nWaCszXWQJ7FcYSLNKQ
+ dBoMO0S3IP3BbGevKTTeAhICGdeFkWljs6nD4v6Db2Qmz4lmvsopiToolnXaxICXE3L4 aA== 
 Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tb7re3rp7-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tbexgjkbj-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
 	Tue, 26 Sep 2023 16:20:48 +0000
 Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 38QGKjw5010028;
+	by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 38QGKjvG010041;
 	Tue, 26 Sep 2023 16:20:45 GMT
 Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3t9s3kk6mr-1;
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3t9s3kk6mx-1;
 	Tue, 26 Sep 2023 16:20:45 +0000
 Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 38QGKiQ7010022;
-	Tue, 26 Sep 2023 16:20:44 GMT
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 38QGKj64010035;
+	Tue, 26 Sep 2023 16:20:45 GMT
 Received: from hu-maiyas-hyd.qualcomm.com (hu-nitirawa-hyd.qualcomm.com [10.213.109.152])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 38QGKiAf010021;
-	Tue, 26 Sep 2023 16:20:44 +0000
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 38QGKjpx010032;
+	Tue, 26 Sep 2023 16:20:45 +0000
 Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 2342877)
-	id E04A8601917; Tue, 26 Sep 2023 21:50:43 +0530 (+0530)
+	id A6949601918; Tue, 26 Sep 2023 21:50:44 +0530 (+0530)
 From: Nitin Rawat <quic_nitirawa@quicinc.com>
 To: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
         mani@kernel.org, alim.akhtar@samsung.com, bvanassche@acm.org,
@@ -57,23 +57,25 @@ To: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
 Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         Nitin Rawat <quic_nitirawa@quicinc.com>
-Subject: [PATCH V2 0/3] Add UFS host controller and Phy nodes for sc7280
-Date: Tue, 26 Sep 2023 21:50:39 +0530
-Message-Id: <20230926162042.14180-1-quic_nitirawa@quicinc.com>
+Subject: [PATCH V2 1/3] scsi: ufs: qcom: dt-bindings: Add SC7280 compatible string
+Date: Tue, 26 Sep 2023 21:50:40 +0530
+Message-Id: <20230926162042.14180-2-quic_nitirawa@quicinc.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20230926162042.14180-1-quic_nitirawa@quicinc.com>
+References: <20230926162042.14180-1-quic_nitirawa@quicinc.com>
 X-QCInternal: smtphost
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: -lu74KSH2ts1NxLe9C2n0mkt1P08Xxe_
-X-Proofpoint-GUID: -lu74KSH2ts1NxLe9C2n0mkt1P08Xxe_
+X-Proofpoint-ORIG-GUID: fs8-Hf2QEL75blzKQganX-ffZtdwx_ij
+X-Proofpoint-GUID: fs8-Hf2QEL75blzKQganX-ffZtdwx_ij
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2023-09-26_13,2023-09-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- lowpriorityscore=0 suspectscore=0 bulkscore=0 mlxlogscore=555 adultscore=0
- priorityscore=1501 phishscore=0 clxscore=1011 spamscore=0 impostorscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ phishscore=0 spamscore=0 suspectscore=0 impostorscore=0 mlxlogscore=843
+ adultscore=0 clxscore=1015 bulkscore=0 mlxscore=0 malwarescore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.12.0-2309180000 definitions=main-2309260142
 X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
@@ -87,23 +89,34 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 
-This patch adds UFS host controller and Phy nodes for Qualcomm sc7280 SOC
-and sc7280 Board.
+Document the compatible string for the UFS found on SC7280.
 
-Changes from v1:
-- Addressed mani comment to separate soc and board change.
-- Addressed mani comment to sort ufs node in ascending order.
+Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+Acked-by: Manivannan Sadhasivam <mani@kernel.org>
+---
+ Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Nitin Rawat (3):
-  scsi: ufs: qcom: dt-bindings: Add SC7280 compatible string
-  arm64: dts: qcom: sc7280: Add UFS nodes for sc7280 soc
-  arm64: dts: qcom: sc7280: Add UFS nodes for sc7280 IDP board
-
- .../devicetree/bindings/ufs/qcom,ufs.yaml     |  2 +
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi      | 19 ++++++
- arch/arm64/boot/dts/qcom/sc7280.dtsi          | 64 +++++++++++++++++++
- 3 files changed, 85 insertions(+)
-
+diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+index 462ead5a1cec..802640efa956 100644
+--- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
++++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+@@ -27,6 +27,7 @@ properties:
+           - qcom,msm8996-ufshc
+           - qcom,msm8998-ufshc
+           - qcom,sa8775p-ufshc
++          - qcom,sc7280-ufshc
+           - qcom,sc8280xp-ufshc
+           - qcom,sdm845-ufshc
+           - qcom,sm6115-ufshc
+@@ -117,6 +118,7 @@ allOf:
+             enum:
+               - qcom,msm8998-ufshc
+               - qcom,sa8775p-ufshc
++              - qcom,sc7280-ufshc
+               - qcom,sc8280xp-ufshc
+               - qcom,sm8250-ufshc
+               - qcom,sm8350-ufshc
 --
 2.17.1
 
