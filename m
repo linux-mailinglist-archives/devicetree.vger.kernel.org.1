@@ -1,123 +1,113 @@
-Return-Path: <devicetree+bounces-3344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AB897AE703
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 09:38:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EA6A7AE718
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 09:47:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 955101C204F7
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 07:38:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 701FB1C20756
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 07:47:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABD636FDB;
-	Tue, 26 Sep 2023 07:38:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED93C107B5;
+	Tue, 26 Sep 2023 07:47:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3915C6D38
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 07:38:34 +0000 (UTC)
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB8AB92;
-	Tue, 26 Sep 2023 00:38:32 -0700 (PDT)
-Received: by mail-qv1-xf34.google.com with SMTP id 6a1803df08f44-65b0e623189so19459536d6.1;
-        Tue, 26 Sep 2023 00:38:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695713912; x=1696318712; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/27Fg5u72g9kvgafrBJAucjZrohxNI5dpw0DZZayMMA=;
-        b=VHvRx+AyXuNpp1KN3oi66AuitFW1PDwbLk00fl/o5fuv4uIM9pSeah2j3a2rT48O2U
-         G9V6kcfl5kQ3P58fxAUqZrxatfVuhaXbBLfhtMbD/vvnJaUlnjaQYv1TT/g8XaLc3VuI
-         84fDhK+UbdvUOp/P3ylcUzXNj805bnfHd8LFPsfZ8fDg8NxS6b5BV3hqO1mqzUM1/n0+
-         M5y75joNP1bKCBcQBouQS9pSspzDWZEGV/uSwWIlbOaKFgK5xr++9uM3Wk/uyg4EV5ei
-         v4cj2p8foQxiYRoZg5qADJrCs5UUP3k5dh9oajrTOroJ5yRGjQHN4WtEx5f4ncaunl93
-         26dg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695713912; x=1696318712;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/27Fg5u72g9kvgafrBJAucjZrohxNI5dpw0DZZayMMA=;
-        b=k+WxVo3DcV0qrlDGk3WVKBcesBy91HfyXaNM5LMKastxPTo/1IzIcWFlXcZbS8s08N
-         PkDfn6wIX+FBeD3qXqo2G0g30pXKjqLYl30ep2mGCu2AgAm0RFqQ1VHDbLrcCT6MHoZP
-         qUTiyaCXE5tXiHRE2bNW3Td7MUjwS66zPbw43ivZal96B1xGrAj/nnvV/nZrVJEQ5Cd0
-         PMhMhuk7aEm6mT1QcJJC3Wg1G6KnjlRER1oWcEulHsRS4lMddLtHsS4J/l52A3Rbeg6i
-         PByogvlow5uCSKxVCI+uJWnuHJvICANGDOoUBfg8b/EFcJAXQ3TXJxx4NgUU+4ykiH9Y
-         NX6Q==
-X-Gm-Message-State: AOJu0Yz1o1inVQ5z7/4TXm+ID0+xbaNZyM2291aWPVksdauzK9pfJN7Y
-	f7qopVdNZcB/TXfaONT+U+BhByUsxCM55KltfVA=
-X-Google-Smtp-Source: AGHT+IH5GGWDwUTM2/VMHJHk6heCTbLLWR+CtE7yZz/A0eO0teEhx/fcpYu4iA90waY1nizPw8gcqa3tPVDjn/N3gYg=
-X-Received: by 2002:a0c:aa93:0:b0:653:583d:d400 with SMTP id
- f19-20020a0caa93000000b00653583dd400mr8098108qvb.52.1695713911865; Tue, 26
- Sep 2023 00:38:31 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD8346D38
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 07:47:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C91C3C433C7;
+	Tue, 26 Sep 2023 07:47:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695714455;
+	bh=vl35SqT6As6GYRAB1JyOE9/QeFzf9D4iT44T99JNDlI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JjUhAaaoMDko8sv9+IFAdtVK2RNanulH1ZWFUiB1DPHQE7cHVcsGafcs8JEz0Vsaw
+	 mS9dPobqyU+cvTEo1zmOaQ/21D5jUVnWXrgkQkd3M+qYg/8kfRi7p6lHnMEgPMrk+h
+	 D8lCCVtAczUF7D03AL5w34mfyQd0S5MSrI/6FefEn5G5o+JBHOQCqlVMc7BE67xyQg
+	 BqUksUX/eKNggweBScJtbTmo0lKvSq25NB/NLy70aSszQAox93L8xic42RY01Nj4LE
+	 152ryVriErwTu1sUfFrFk6XPN+sIY2Ez54b1ppXxdguEyE7bxlzVgLE5724i75oLKp
+	 lsXcr6Pq1b6JA==
+Date: Tue, 26 Sep 2023 09:47:32 +0200
+From: Mark Brown <broonie@kernel.org>
+To: wangweidong.a@awinic.com
+Cc: 13916275206@139.com, alsa-devel@alsa-project.org, arnd@arndb.de,
+	ckeepax@opensource.cirrus.com, colin.i.king@gmail.com,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	harshit.m.mogalapalli@oracle.com, herve.codina@bootlin.com,
+	krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
+	linus.walleij@linaro.org, linux-kernel@vger.kernel.org,
+	liweilei@awinic.com, perex@perex.cz, povik+lin@cutebit.org,
+	rf@opensource.cirrus.com, robh+dt@kernel.org, ryans.lee@analog.com,
+	shumingf@realtek.com, tiwai@suse.com, trix@redhat.com,
+	u.kleine-koenig@pengutronix.de, yang.lee@linux.alibaba.com,
+	yijiangtao@awinic.com
+Subject: Re: [PATCH V4 4/7] ASoC: codecs: Add code for bin parsing compatible
+ with aw87390
+Message-ID: <ZRKMlCd+Ys5kGXVw@finisterre.sirena.org.uk>
+References: <ZRGT2oLQaJBVVYFH@finisterre.sirena.org.uk>
+ <20230926070436.486530-1-wangweidong.a@awinic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1695189879.git.wangchen20@iscas.ac.cn> <888d57a2d5e62affb8e29e0098402e428facd969.1695189879.git.wangchen20@iscas.ac.cn>
- <bcdc4623-a37e-455b-8f10-c539e2b04554@codethink.co.uk> <CAJM55Z_o7Z8HhaUjrSqjxy1cPjud9Q3GrdqjgFThToxxOCrkgw@mail.gmail.com>
-In-Reply-To: <CAJM55Z_o7Z8HhaUjrSqjxy1cPjud9Q3GrdqjgFThToxxOCrkgw@mail.gmail.com>
-From: Chen Wang <unicornxw@gmail.com>
-Date: Tue, 26 Sep 2023 15:38:19 +0800
-Message-ID: <CAHAQgRCtWY5pDroDNcWSXpsPaHY1=0L9u_BjB8iWaOY44BkYdQ@mail.gmail.com>
-Subject: Re: [PATCH v2 08/11] serial: 8250_dw: Add Sophgo SG2042 support
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: Ben Dooks <ben.dooks@codethink.co.uk>, aou@eecs.berkeley.edu, chao.wei@sophgo.com, 
-	conor@kernel.org, devicetree@vger.kernel.org, guoren@kernel.org, 
-	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org, 
-	xiaoguang.xing@sophgo.com, Chen Wang <wangchen20@iscas.ac.cn>, haijiao.liu@sophgo.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="tZVZOycL8pVKc0vY"
+Content-Disposition: inline
+In-Reply-To: <20230926070436.486530-1-wangweidong.a@awinic.com>
+X-Cookie: Save energy:  Drive a smaller shell.
+
+
+--tZVZOycL8pVKc0vY
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
-Emil Renner Berthing <emil.renner.berthing@canonical.com> =E4=BA=8E2023=E5=
-=B9=B49=E6=9C=8822=E6=97=A5=E5=91=A8=E4=BA=94 18:40=E5=86=99=E9=81=93=EF=BC=
-=9A
->
-> Ben Dooks wrote:
-> > On 20/09/2023 07:40, Chen Wang wrote:
-> > > From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> > >
-> > > Add quirk to skip setting the input clock rate for the uarts on the
-> > > Sophgo SG2042 SoC similar to the StarFive JH7100.
-> >
-> > I'd love an actual explanation of why this is necessary here.
->
-> Makes sense. For the JH7100 the commit message is:
->
->   On the StarFive JH7100 RISC-V SoC the UART core clocks can't be set to
->   exactly 16 * 115200Hz and many other common bitrates. Trying this will
->   only result in a higher input clock, but low enough that the UART's
->   internal divisor can't come close enough to the baud rate target.
->   So rather than try to set the input clock it's better to skip the
->   clk_set_rate call and rely solely on the UART's internal divisor.
->
-> @Chen Wang is this also true for the SG2042?
->
-> /Emil
+On Tue, Sep 26, 2023 at 03:04:30PM +0800, wangweidong.a@awinic.com wrote:
+> On Mon, Sep 25, 2023 at 16:06:18 +0200, broonie@kernel.org wrote:
 
-Emil & Ben,
-After double-checking with Sophgo engineers and doing more
-investigation, we think the original changes(quirk to skip setting the
-input clock) on UART may not  be required. Due to currently, the
-target of this patchset is just to enable a minimal system and no
-clock relateding changes are included yet. I will first remove this
-quirk change on UART and use the fixed frequence - 500M - and reply
-solely on the UART's internal divisor to work. We will re-evaluate
-this quirk change in next patchset when we involve clock related
-stuff.
-Looping Haijiao, engineer from Sophgo, who is working on clock on sg2042.
+> > /build/stage/linux/sound/soc/codecs/aw88395/aw88395.c:199:21: error: to=
+o few arg
+> > uments to function =E2=80=98aw88395_dev_get_prof_name=E2=80=99
+> >  199 |         prof_name =3D aw88395_dev_get_prof_name(aw88395->aw_pa, =
+count);
+> >      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~
+> > In file included from /build/stage/linux/sound/soc/codecs/aw88395/aw883=
+95.c:17:
+> > /build/stage/linux/sound/soc/codecs/aw88395/aw88395_device.h:184:5: not=
+e: declar
+> > ed here
+> >  184 | int aw88395_dev_get_prof_name(struct aw_device *aw_dev, int inde=
+x, char=20
+> > **prof_name);
+> >      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
 
-Regards,
-Chen
+> I did not get this error when compiling base on "2cf0f715623872823a72e451=
+243bbf555d10d032"
+> and the changes to this function are already in [patch V4 3/7]
+> Can you tell me how to modify it?
+
+Apply every patch in sequence and check that it builds individually,
+including for configs like the x86 allmodconfig.  I don't specifically
+know what the context was here, I'm just reporting the failure my CI
+found.  If you're confident things are fixed then resend.
+
+--tZVZOycL8pVKc0vY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmUSjJQACgkQJNaLcl1U
+h9AhNQf+PgXK+9hFtAV8TDEBHilOTUoirrT7GLRXtflsuD4DNlW9QYMd+UEt6YT5
+lfNWJhq9hhwcgdAfc2L8n22a+WN+tt5iEv1r4V0lRXxhvoxuWiWoPcM4z+Udr5KG
+Oj49aBdhZ0XMtu8z4YzhDJtra5cO19kvv+1t8zI+9XKYUSuUc4PrVDDWdCU1LSMm
+8jnd/Q5ViOky26oktO/JMDD9rpIIE023Zwvyrz1/gadhZsodwUP0UUwXs+dR1KVF
+3sLPU61KC9TVfPrtRESiFUn+rj6FW4qk6m6H/vFq83UksIBF3V2H1M5Nk9m/meyV
+JY+hC93fqWPdqhpqPJSTC5loPpwfNw==
+=5Afg
+-----END PGP SIGNATURE-----
+
+--tZVZOycL8pVKc0vY--
 
