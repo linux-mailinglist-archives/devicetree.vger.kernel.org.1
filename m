@@ -1,102 +1,182 @@
-Return-Path: <devicetree+bounces-3349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A587B7AE775
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 10:08:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD6A87AE7F5
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 10:24:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id D3A962819C4
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 08:08:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id A217FB20A34
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 08:24:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 936DD11CB9;
-	Tue, 26 Sep 2023 08:08:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45B57125C6;
+	Tue, 26 Sep 2023 08:24:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84FFE11CB1
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 08:08:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F12C4C433C8;
-	Tue, 26 Sep 2023 08:08:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33CBE6FAB
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 08:24:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 812D4C433C7;
+	Tue, 26 Sep 2023 08:23:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695715702;
-	bh=UjHcxElqJT2Xn40h70QVPAzMGgQiQRJNiS+9s0Gk/2Y=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Tbfzb396Id5RYpSZusFkKdTiL9aPVNcGgS0A0dsHmqnoeaLC1HtiE+jwMZNzXUs9H
-	 uuRoqOoSaznBmPFFknL2+Obbdu3r2S8RdSLvjueky9tM0+prY6DIqOuHyWNXvEVpO1
-	 CQZaVkCTpHqMv04Zgn6xY9NV7Ynab9biQhu5D0HL9Bh0bRX9bvuaQ5avK/6cc0Ovfx
-	 AYLacydmC1YKFY3nr83v3IQDO1tvJPc/HkP656G6Tm+iwQDWPaMCm1NclDK6AaWwf4
-	 Gkk2ejWhkF/NzRyL/ZxjpS8AO1pfdyLbtwFwDqIZiqP7CN7Yn2SjJyCCn1UVy5CYHS
-	 c93sy0mgxUI7w==
-From: Mark Brown <broonie@kernel.org>
-To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, 
- Daniel Vetter <daniel@ffwll.ch>, Lee Jones <lee@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Alex Bee <knaerzche@gmail.com>
-Cc: Elaine Zhang <zhangqing@rock-chips.com>, 
- Johan Jonker <jbx6244@gmail.com>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- alsa-devel@alsa-project.org, linux-clk@vger.kernel.org, 
- linux-phy@lists.infradead.org
-In-Reply-To: <20230829171647.187787-1-knaerzche@gmail.com>
-References: <20230829171647.187787-1-knaerzche@gmail.com>
-Subject: Re: (subset) [PATCH 00/31] Fix and improve Rockchip RK3128 support
-Message-Id: <169571569769.2520438.14041840367987493896.b4-ty@kernel.org>
-Date: Tue, 26 Sep 2023 10:08:17 +0200
+	s=k20201202; t=1695716641;
+	bh=N+htFXw/hCzIbw77S71T5S5Ge7dnttaQL6oIDatJBEY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qiiM36hO7sqMBFIoLRJVCrh4riS2y5yLMs7+/4JYwHWPD0tjbSEUBP/t3E494YivH
+	 Yyn/U7kJ7ueVsY73QCDoeEXtwYDZLFH+Qqv1RMW5t8NTxReKufGOMyqC1tpMz65eWf
+	 2nAgYANNe1/W9x9EptGlqdWki4gOxoB6Dg3SoRMXQlOGhTw1R6BPq+vhQeDGio83mw
+	 JW/tvn1ZQmWENch2I2WL7LVl1V0njn6sNQKyNOO+unNVg6ZMTct4v5j+QI8oZxOmXe
+	 UmFtkg0Aumr46aunI0yKSKBJrFcq3LKFw0gWASqH8SwjFx4ZJFuNmTRYA17c5NeXxi
+	 q4pWdoPTqhEPQ==
+Date: Tue, 26 Sep 2023 09:23:57 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Peter Denison <openwrt@marshadder.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Krzysztof Halasa <khalasa@piap.pl>, Imre Kaloz <kaloz@openwrt.org>,
+	Ted Hess <thess@kitschensync.net>, Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: Add vendor prefixes
+Message-ID: <20230926-ignore-negligee-7868c3e07424@spud>
+References: <20230925-ixp4xx-usr8200-v2-0-433261c13a28@linaro.org>
+ <20230925-ixp4xx-usr8200-v2-1-433261c13a28@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-099c9
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="S2SscZ/1PQix+1QU"
+Content-Disposition: inline
+In-Reply-To: <20230925-ixp4xx-usr8200-v2-1-433261c13a28@linaro.org>
 
-On Tue, 29 Aug 2023 19:16:16 +0200, Alex Bee wrote:
-> this series fixes some issues I found when testing my "new" RK3128 board
-> with the mainline kernel and adds some core functionality like SMP bringup,
-> usb and networking.
-> 
-> The propably most distinctive change is the split up of the DTs for the
-> different SoCs of this platform: RK3126 and RK3128. Even if I'm not adding
-> a RK3126 board in this series: I think this change should be done as early
-> as possible in order to avoid issues in future.
-> Actually it should have been done like that in the first place.
-> 
-> [...]
 
-Applied to
+--S2SscZ/1PQix+1QU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+On Mon, Sep 25, 2023 at 11:03:38AM +0200, Linus Walleij wrote:
+> These vendor prefixes are used by some routers supported
+> by e.g. OpenWrt.
+>=20
+> - ADI Engineering is a US telecom equipment company.
+>=20
+> - Arcom Controllers is a US manufacturer of repeaters.
+>=20
+> - Freecom Gmbh is a german telecom equipment company.
+>=20
+> - Gemtek Technology is a Taiwan telecom company.
+>=20
+> - Gateway Communications was a telecommunication company,
+>   now acquired by HKT Limited/PCCW.
+>=20
+> - Goramo Gorecki is a privately owned Polish telecom
+>   company.
+>=20
+> - U.S. Robotics Corporation, known through their brand name
+>   USRobotics is generally referred to as "USR" so use this
+>   prefix for the company's device tree bindings.
+>=20
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 
-Thanks!
-
-[03/31] dt-bindings: ASoC: rockchip: Add compatible for RK3128 spdif
-        commit: 5c8a033f5674ae62d5aa2ebbdb9980b89380c34f
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Thanks,
-Mark
+Conor.
 
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 14 ++++++++++++=
+++
+>  1 file changed, 14 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
+umentation/devicetree/bindings/vendor-prefixes.yaml
+> index 573578db9509..edeb870c84cd 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -59,6 +59,8 @@ patternProperties:
+>      description: AD Holdings Plc.
+>    "^adi,.*":
+>      description: Analog Devices, Inc.
+> +  "^adieng,.*":
+> +    description: ADI Engineering, Inc.
+>    "^advantech,.*":
+>      description: Advantech Corporation
+>    "^aeroflexgaisler,.*":
+> @@ -127,6 +129,8 @@ patternProperties:
+>      description: Arasan Chip Systems
+>    "^archermind,.*":
+>      description: ArcherMind Technology (Nanjing) Co., Ltd.
+> +  "^arcom,.*":
+> +    description: Arcom Controllers
+>    "^arctic,.*":
+>      description: Arctic Sand
+>    "^arcx,.*":
+> @@ -484,6 +488,8 @@ patternProperties:
+>      description: FocalTech Systems Co.,Ltd
+>    "^forlinx,.*":
+>      description: Baoding Forlinx Embedded Technology Co., Ltd.
+> +  "^freecom,.*":
+> +    description: Freecom Gmbh
+>    "^frida,.*":
+>      description: Shenzhen Frida LCD Co., Ltd.
+>    "^friendlyarm,.*":
+> @@ -496,6 +502,8 @@ patternProperties:
+>      description: FX Technology Ltd.
+>    "^gardena,.*":
+>      description: GARDENA GmbH
+> +  "^gateway,.*":
+> +    description: Gateway Communications
+>    "^gateworks,.*":
+>      description: Gateworks Corporation
+>    "^gcw,.*":
+> @@ -510,6 +518,8 @@ patternProperties:
+>      description: GE Fanuc Intelligent Platforms Embedded Systems, Inc.
+>    "^gemei,.*":
+>      description: Gemei Digital Technology Co., Ltd.
+> +  "^gemtek,.*":
+> +    description: Gemtek Technology Co., Ltd.
+>    "^genesys,.*":
+>      description: Genesys Logic, Inc.
+>    "^geniatech,.*":
+> @@ -530,6 +540,8 @@ patternProperties:
+>      description: Shenzhen Huiding Technology Co., Ltd.
+>    "^google,.*":
+>      description: Google, Inc.
+> +  "^goramo,.*":
+> +    description: Goramo Gorecki
+>    "^gplus,.*":
+>      description: GPLUS
+>    "^grinn,.*":
+> @@ -1444,6 +1456,8 @@ patternProperties:
+>      description: United Radiant Technology Corporation
+>    "^usi,.*":
+>      description: Universal Scientific Industrial Co., Ltd.
+> +  "^usr,.*":
+> +    description: U.S. Robotics Corporation
+>    "^utoo,.*":
+>      description: Aigo Digital Technology Co., Ltd.
+>    "^v3,.*":
+>=20
+> --=20
+> 2.41.0
+>=20
+
+--S2SscZ/1PQix+1QU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRKVHQAKCRB4tDGHoIJi
+0oAvAQCwdFd1Nj2FHcrysvHH0ELYFaKqQQZ65TmDUm4fMN8FJwEAnikTc8xS1osi
+HSJBeBYFc9mBsipR2Sw7Rz/toikGUQY=
+=Nlz4
+-----END PGP SIGNATURE-----
+
+--S2SscZ/1PQix+1QU--
 
