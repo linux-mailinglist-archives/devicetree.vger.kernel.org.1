@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-3529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F2FD7AF329
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 20:44:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CCB07AF33B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 20:46:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 10F1028176D
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 18:44:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id C319E2816A8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 18:46:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A2A638FA7;
-	Tue, 26 Sep 2023 18:44:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C56BC4122B;
+	Tue, 26 Sep 2023 18:46:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D26D029AB
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 18:43:58 +0000 (UTC)
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29EF3136
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 11:43:57 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2c131ddfeb8so146261411fa.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 11:43:57 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FD5423DE
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 18:46:42 +0000 (UTC)
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2F4A198
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 11:46:40 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-50437f39c9dso12959945e87.3
+        for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 11:46:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695753835; x=1696358635; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695753999; x=1696358799; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=OSU+SZPxKGYTjIc6rJyWeRopODL5gheCV1/1DObf/og=;
-        b=XWo4S2sk8fepgsSTr7NoxlsWdv7VDA1Qr9O9NIpsWYGew3bpazMXfnQj3iGOdg26iA
-         RshP3qQh1dtw/J2OEe0FDTEd0WNuTV8vCYkeycVbnlC+ozP+1/L3tOsB5nca/7UTPxGT
-         zQZCBKSZTXlUquGPdifrXuVvHXsxqo8wNOumqpuRMWObrQUfkp2A6znnum+MvNl6DoA/
-         SIo5fIHuu5U/ZJp9oIU3+E4X0Tunn4bj+WT7KNBcDbcLsepSahPzoGZpDwjvonzdSJhj
-         OMSADP0yG5v78cwoZV2NPP9o4/z/4tbBOF6nqrErBaMSoBzSpSfp0T3yVAD+XEIemKi1
-         IHXg==
+        bh=NadJLUD/WUTfQyTRvPLc0aWcku/CjVqqV/Vkjig6NCs=;
+        b=ibYqRr4kDH+TXfKLhwgLN2nadFEqOO9cZe1tAv1VCxhp0ZGZ9KvXr8vfeWRsr+sVrM
+         YqTevnIMPqwdA+xbgXe0D+ODmoaPSg507oKPEauu8uMIlG4BjnIzx889Qs7An0fwAWHd
+         zmVitu1nS7ymZgPxCjM57e+hfcrHMiF4mfWYfqb73T2ypKldR3sm+FZeepWNOzuKFyHZ
+         +oadRjZcwIixnFkyy9kwFP1xWvqY9dVvDkDw2LyYnd0juluhjw75O1UXgqoGwyW9a8f7
+         QpxVuLljp3fWxT1he4ISXx6jxceEskmCtrDvIVdxlovxjPX4uNl79Etp45jHZsO9E8FH
+         MSzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695753835; x=1696358635;
+        d=1e100.net; s=20230601; t=1695753999; x=1696358799;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OSU+SZPxKGYTjIc6rJyWeRopODL5gheCV1/1DObf/og=;
-        b=q7EXm1IZbT29YVsR3eArt/sDkidK6dtSeCKf9200LR2iqYlaIh7SU53x3fJ2CxK108
-         Fm6GXNMYWYL2bekRdjAMVO8veDPZvVFSeVNxUWGQT3tNV8srt2zf2c+xnT33LX2LVQ+g
-         7AD6z4hHBsOeBjkQZa9vncppt/KvBHVN4kasYTCenMvkkVB1kTiIHZzfR9s6akdjYhJy
-         Nt8U1S0pnLgCGx9kHY/IeqhgO7xl2PFArwNvK3ToJW23rr9a9Kb4Hcj7Hdale29OQfU1
-         KjkZ+NiULgzBAda1HsYFtp+JFbnWPapplOp7c6IIv0R50nfaoiDe1PoXd2nstKtDW9VX
-         SA0g==
-X-Gm-Message-State: AOJu0YyeaGG0wS+J4FMcB1MsZxmLRioSxS6nrhupwv04Y+b2xxKY86eB
-	UYDHQpGeBwO2Ha+Om0dyS5OdhQ==
-X-Google-Smtp-Source: AGHT+IF9pReSezCP0GUZ6S6nPiyNYYJPmFuruAVe0wO+kMf8MTtHPsimOosx/kfGfD2v5tJV7zQGTQ==
-X-Received: by 2002:a05:6512:3a89:b0:503:a9c:af83 with SMTP id q9-20020a0565123a8900b005030a9caf83mr10336058lfu.41.1695753835393;
-        Tue, 26 Sep 2023 11:43:55 -0700 (PDT)
+        bh=NadJLUD/WUTfQyTRvPLc0aWcku/CjVqqV/Vkjig6NCs=;
+        b=lV2ompRu8KWxZPJwv5ZKajaYhiu2v0tGK7ISlAA4LkvBV8xdz4hLhMh9dc/wVjECtO
+         WacvmTIRE0tVdG96agr/aY/Br8eISsrg3FarC7S+nCP2p9rFfKJmjwTbrDZtHdhitBS2
+         z+mGqnEPeVJMVwoLOPIuS79ZE7kaCFfQ1G6CmpPh6b/KDb9SnEoJ4XeOm4cOAdVCbIut
+         xYG+0lMnPhPp9IJhACZ+uYdCJ/91vy9Lm62q28snASxo/pks9sbMeZ7cJZXnVG2M359t
+         wAinegxzZ7nQC63pcNFuo0y2LlMIxraUOTdAZG3ZOPjqxF9MHHFsXyDHyPY2KeCpS6PK
+         72uQ==
+X-Gm-Message-State: AOJu0YwQoq73BYKgCXwCxgirehNHCBllv+F5UL2sad1I7UBQaNy9RA0r
+	Ds9BbgyjNlPDL3Mp3JYGJnBlRA==
+X-Google-Smtp-Source: AGHT+IH1edATO4YtoxPkIrT4GQA5z9UNOHT4LgI3ZsUXu8Kz0Gu9E3/9El902f/VDd6bVuMEACYkpw==
+X-Received: by 2002:a05:6512:33d4:b0:4ff:7e1e:b4b4 with SMTP id d20-20020a05651233d400b004ff7e1eb4b4mr10395268lfg.39.1695753998826;
+        Tue, 26 Sep 2023 11:46:38 -0700 (PDT)
 Received: from [192.168.33.189] (178235177023.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.23])
-        by smtp.gmail.com with ESMTPSA id b25-20020a056512025900b004fe4d45f56bsm2267177lfo.68.2023.09.26.11.43.54
+        by smtp.gmail.com with ESMTPSA id r5-20020ac252a5000000b0050306259d88sm2283081lfm.23.2023.09.26.11.46.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Sep 2023 11:43:55 -0700 (PDT)
-Message-ID: <12d47129-4bf6-4ccc-930a-b0a6b8825124@linaro.org>
-Date: Tue, 26 Sep 2023 20:43:53 +0200
+        Tue, 26 Sep 2023 11:46:38 -0700 (PDT)
+Message-ID: <698c8d60-e284-4267-8349-b327712c94cc@linaro.org>
+Date: Tue, 26 Sep 2023 20:46:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,17 +63,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/13] arm64: dts: qcom: msm8939: Add BAM-DMUX WWAN
+Subject: Re: [PATCH 02/13] arm64: dts: qcom: msm8916/39: Add QDSP6
 Content-Language: en-US
 To: Stephan Gerhold <stephan@gerhold.net>,
  Bjorn Andersson <andersson@kernel.org>
 Cc: Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Vincent Knecht <vincent.knecht@mailoo.org>
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 References: <20230926-msm8916-modem-v1-0-398eec74bac9@gerhold.net>
- <20230926-msm8916-modem-v1-1-398eec74bac9@gerhold.net>
+ <20230926-msm8916-modem-v1-2-398eec74bac9@gerhold.net>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -110,26 +109,31 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230926-msm8916-modem-v1-1-398eec74bac9@gerhold.net>
+In-Reply-To: <20230926-msm8916-modem-v1-2-398eec74bac9@gerhold.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 26.09.2023 18:51, Stephan Gerhold wrote:
-> From: Vincent Knecht <vincent.knecht@mailoo.org>
+> MSM8916 and MSM8939 do not have a dedicated ADSP. Instead, the audio
+> services via APR are also implemented by the modem DSP. Audio can be
+> either routed via the modem DSP (necessary for voice call audio etc)
+> or directly sent to the LPASS hardware (currently used by DB410c).
+> Bypassing QDSP6 audio is only possible with special firmware
+> (on DB410c) or when the modem DSP is completely disabled.
 > 
-> BAM DMUX is used as the network interface to the modem. This is copied
-> as-is from msm8916.dtsi.
+> Add the typical nodes for QDSP6 audio to msm8916.dtsi and msm8939.dtsi.
+> The apr node is disabled by default to avoid changing behavior for
+> devices like DB410c that use the bypassed audio path.
 > 
-> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
 > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+I'm generally grumpy with regards to multi-soc changes that
+have no need to be multi-soc..
 
 Konrad
 
