@@ -1,161 +1,130 @@
-Return-Path: <devicetree+bounces-3352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D6B17AE833
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 10:38:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 989147AE845
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 10:49:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id B0B051F25569
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 08:38:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 37B9228154A
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 08:49:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 513E02908;
-	Tue, 26 Sep 2023 08:38:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 813FB125D3;
+	Tue, 26 Sep 2023 08:49:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7601E570
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 08:38:09 +0000 (UTC)
-Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com [IPv6:2607:f8b0:4864:20::c34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 356B7EB;
-	Tue, 26 Sep 2023 01:38:08 -0700 (PDT)
-Received: by mail-oo1-xc34.google.com with SMTP id 006d021491bc7-5739972accdso4819780eaf.1;
-        Tue, 26 Sep 2023 01:38:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695717487; x=1696322287; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=A9WTdFbfgD8PWJJN8ElB5etSNlTYmtIcow35neC8gMI=;
-        b=nqqMRg3Ri8b7c+M9ePq5CBCZ9tik4xxWIzGhKdb94Cw8pI2HJ9Ffb/wu8uZ1otIrhw
-         3dSMIFmgCRirKUQZz9Fj/OGiHsXvZlGTqiaMR5huT+5Ffmo5B6JEONhyyMtIaaBmW/+0
-         037uyev8nASA3lwcfLpjkBQpigaRyVEwxZrtdGG6U++w0uJIbdP/ei7fwXu40JouP/Au
-         ecith2a3l65om9drN51u5r9OQ3yEK8ZX5AXeuckhXpzuOK+upjG9Kv0/X8lt9e26KioX
-         PynsI9TOqhrxeLlMUdOxl1OeKCBmLkmlaWzYJ/m8Jjor9N1kq6+9ZFPh4whq3apxXGrR
-         C5Iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695717487; x=1696322287;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=A9WTdFbfgD8PWJJN8ElB5etSNlTYmtIcow35neC8gMI=;
-        b=wnOp9b36AA5ZUY31Idc6dVk6STRftOfSi+w6vih5XhsTL0y0f0zrwLwV1Rcqjv8MfI
-         3kOfjxd+9A7lDyKAQgbZPSzEv8n0vbcDt/WNwQ2TVAripiwteeTVIVOTKNuelkD5v9vg
-         nLillxc9MnhRN6U/IDzash9eVFDmzm+vDQoTdGUv6CrxZU8GEA8WYCihjff0/qcatTg5
-         Pz7x47E+pWBrooWiBOvwfqvmr4MUMjXpFzl3c0rSPAQUIteO1pZmjKJxybsl4YhAFod9
-         BtKBdMWHmSkY/ZlIr5RnQhO2fPwLDN/sBcsBV3MGrqBzFXoMDLp/q6jbGB6Lsb2BjO31
-         lT+A==
-X-Gm-Message-State: AOJu0YyArWbQXRh6N+f19Nmk4kPDzJxbZj7F9OqhMmF9VxbjH6J6Dk9C
-	uUVngyK1NUWQgCwQlg3LQnBHdCOm7Nkqtfw9O8SVXzF+
-X-Google-Smtp-Source: AGHT+IGx7MZtsEcLX1+5BoGvOJornsWK9NOloJY9pJNjev2EleQNjGF0kF6eRWj+2Fhgvwvtvgj5hhpPITRmJv7i/O4=
-X-Received: by 2002:a05:6870:5608:b0:1dd:2a3f:cef3 with SMTP id
- m8-20020a056870560800b001dd2a3fcef3mr1175635oao.26.1695717487413; Tue, 26 Sep
- 2023 01:38:07 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5D81125B0
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 08:49:45 +0000 (UTC)
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F27FDD;
+	Tue, 26 Sep 2023 01:49:43 -0700 (PDT)
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 3E07C12000D;
+	Tue, 26 Sep 2023 11:49:40 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 3E07C12000D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1695718180;
+	bh=57ZxTHjS9C6nv7uak2H/t7U0j7TNgZzPuexEpUZlLxQ=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=Sxb4y2NCy915ZpqAaHViZYDuKPIugAGMGF9lxawkjvKhxErH0j6aEBfGux01qxbTx
+	 3DjYe2ShImAo6MEc/RcJtQYvstZZBywJUTLZvI3VT1pKRxHfmMsTVarQWB55i68PEX
+	 x6q43dU4Ad2a0628B2FZsqxdz1KZXlDwDJHJkMtUWnRFmRy3Wa4+Eh1AedZkjb4Nxa
+	 HeIA86WE4RlbYtKzcdD3A3eD0HDr/2W/Gt+O7W9apwmYhlx5u/t3mm/HaC2nnZXXPX
+	 2hL+PjycJGjC4rK0xHI1o0TJz2pbrHWNAV9cOKhCkSJWTrg7sZ8w+JdX/+TLKsrG6/
+	 TpkPBnhu83PlQ==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue, 26 Sep 2023 11:49:40 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Tue, 26 Sep 2023 11:49:39 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: <narmstrong@baylibre.com>, <neil.armstrong@linaro.org>,
+	<olivia@selenic.com>, <herbert@gondor.apana.org.au>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<conor@kernel.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <f.fainelli@gmail.com>,
+	<hkallweit1@gmail.com>, <lists@kaiser.cx>
+CC: <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
+	<kernel@sberdevices.ru>, Alexey Romanov <avromanov@sberdevices.ru>
+Subject: [PATCH v4 0/3] Meson S4 HW RNG Support
+Date: Tue, 26 Sep 2023 11:49:23 +0300
+Message-ID: <20230926084932.65126-1-avromanov@salutedevices.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230628082716.2075736-1-sergio.paracuellos@gmail.com>
- <20230628154022.GA520881-robh@kernel.org> <CAMhs-H_WD7tkawv1cg3GympqyzzPwK4Es_GxoFD5gPR=Y0H7kw@mail.gmail.com>
- <CAMhs-H9Aafp1FPe9Y=pX-TeviMfXnFd4vBmfGMy9k-y7P+boqA@mail.gmail.com>
-In-Reply-To: <CAMhs-H9Aafp1FPe9Y=pX-TeviMfXnFd4vBmfGMy9k-y7P+boqA@mail.gmail.com>
-From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date: Tue, 26 Sep 2023 10:37:55 +0200
-Message-ID: <CAMhs-H_9kAdOfR-RaJWqAq6d3S3DXtKJqWy-EWCu0-ZjWKB9Sw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: timer: add Ralink SoCs system tick counter
-To: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, tglx@linutronix.de, daniel.lezcano@linaro.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 180127 [Sep 26 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 534 534 808c2ea49f7195c68d40844e073217da4fa0d1e3, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/09/26 05:53:00 #21984147
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, Aug 30, 2023 at 8:54=E2=80=AFAM Sergio Paracuellos
-<sergio.paracuellos@gmail.com> wrote:
->
-> On Wed, Jun 28, 2023 at 6:42=E2=80=AFPM Sergio Paracuellos
-> <sergio.paracuellos@gmail.com> wrote:
-> >
-> > Hi Rob,
-> >
-> > On Wed, Jun 28, 2023 at 5:40=E2=80=AFPM Rob Herring <robh@kernel.org> w=
-rote:
-> > >
-> > > On Wed, Jun 28, 2023 at 10:27:16AM +0200, Sergio Paracuellos wrote:
-> > > > Add YAML doc for the system tick counter which is present on Ralink=
- SoCs.
-> > > >
-> > > > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > > > ---
-> > > >  .../bindings/timer/ralink,cevt-systick.yaml   | 38 +++++++++++++++=
-++++
-> > > >  1 file changed, 38 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/timer/ralink,=
-cevt-systick.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/timer/ralink,cevt-sy=
-stick.yaml b/Documentation/devicetree/bindings/timer/ralink,cevt-systick.ya=
-ml
-> > > > new file mode 100644
-> > > > index 000000000000..59d97feddf4e
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/timer/ralink,cevt-systick.y=
-aml
-> > > > @@ -0,0 +1,38 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/timer/ralink,cevt-systick.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: System tick counter present in Ralink family SoCs
-> > > > +
-> > > > +maintainers:
-> > > > +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    const: ralink,cevt-systick
-> > >
-> > > What is "cevt"? Would be nice to define. Really this should have been
-> > > SoC specific, but it looks like it has been upstream "forever", so fi=
-ne.
-> >
-> > Not sure what cevt really means, I guess maybe "clock event"? Inside
-> > the documentation this is just listed as "System Tick Counter". It is
-> > upstreamed since Ralink SoCs are on tree. I am just documenting
-> > already mainlined stuff since there are lots of missing  binding docs
-> > for old Ralink SoCs.
-> >
-> > >
-> > > Otherwise,
-> > >
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
->
-> Daniel, is this patch going through your tree?
->
-> Thanks,
->     Sergio Paracuellos
+From: Alexey Romanov <avromanov@sberdevices.ru>
 
-Gentle ping on this patch. I guess nothing missing is here and this
-patch can just be added with Rob's RB?
+Hello!
 
-Best regards,
-    Sergio Paracuellos
->
-> >
-> > Thanks!
-> >
-> > Best regards,
-> >     Sergio Paracuellos
-> > >
-> > > (the error report can be ignored)
+This patch series adds hwrng support for Amlogic S4-series.
+Now, S4 uses a new random number generation algorithm.
+This changes implemnents new algo and also adds description
+to meson-s4.dtsi.
+
+V2:
+
+- Use readl_relaxed_poll_timeout_atomic() function instead of loop.
+- Use two different functions: meson_rng_read() and meson_s4_rng_read().
+- Fix naming in DT schema (meson-s4-hwrng instead of meson-hwrng-s4).
+- A little code style fixes.
+
+V3:
+
+- Fix commit message in patch with dt-bindings schema changes.
+
+V4:
+
+- Drop struct meson_rng_priv field from struct meson_rng_data.
+
+Alexey Romanov (3):
+  drivers: rng: meson: add support for S4
+  dt-bindings: rng: meson: add meson-rng-s4 compatible
+  arch/arm64: dts: meson-s4: add hwrng node
+
+ .../bindings/rng/amlogic,meson-rng.yaml       |  1 +
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |  5 ++
+ drivers/char/hw_random/meson-rng.c            | 80 ++++++++++++++++++-
+ 3 files changed, 83 insertions(+), 3 deletions(-)
+
+-- 
+2.25.1
+
 
