@@ -1,246 +1,79 @@
-Return-Path: <devicetree+bounces-3450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69B5B7AEDFD
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 15:32:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85F5C7AEE10
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 15:47:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 5E4BC1C20938
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 13:32:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id 044421F25B09
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 13:47:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2203229404;
-	Tue, 26 Sep 2023 13:32:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0ECE29422;
+	Tue, 26 Sep 2023 13:47:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 132C929401
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 13:32:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8423BC433C7;
-	Tue, 26 Sep 2023 13:32:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695735136;
-	bh=UhBWE1Hzoh3LnzyM68s+fzN+7fsUlZ16T4JMNTg7gFY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hLFB6r+Otpn2MZYGQB6alKD3znEtWyTbAnLzUWlpAxBGVxiOvQs5jlTIqvv7mDlXi
-	 bEvBUtRpPv47L37Th847/iuu4pJYb+vOCpRdSepXavowzAOsOGreH9GigBP7z80q2y
-	 OlKSyoNBah7NMGAnNMfplj6IY4qRwf+Z8ijqmX6y6GAwrfrHYemaNAWfsvioN9ExXk
-	 /0g7G1I8TdDfD0nb6R7ZGCoL4JG9KIwxCj+1eMJYbNrmhM96Fp4unod9r03LtZgOIo
-	 b11RsoSuCOqz/4p8A6UAlW1GNklsOO1Kh/ps7gw6qBPFTbVAGl3VhULIlSlUue2ov3
-	 EVdvr1i4hEfPg==
-Date: Tue, 26 Sep 2023 14:32:12 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Alain Volmat <alain.volmat@foss.st.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andrey Skvortsov <andrej.skvortzov@gmail.com>,
-	Rob Herring <robh@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: media: i2c: add galaxycore,gc2145
- dt-bindings
-Message-ID: <20230926-skyline-absolute-a563a42b1220@spud>
-References: <20230926092825.819229-1-alain.volmat@foss.st.com>
- <20230926092825.819229-2-alain.volmat@foss.st.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8182026E34
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 13:47:01 +0000 (UTC)
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98C2A95;
+	Tue, 26 Sep 2023 06:47:00 -0700 (PDT)
+Received: by mail-qk1-x72a.google.com with SMTP id af79cd13be357-77412b91c41so460570485a.1;
+        Tue, 26 Sep 2023 06:47:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695736019; x=1696340819; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=HoEvBtWhyms91Wk0krqHULnviTnuUoiVYm+WuAD7to4=;
+        b=nIWl9RvZwRpHyBurEMWJurzHd+Jn0qXBgirQp1nfpKSta++0Lh9p+SGmMin148aoAM
+         5TBj/+KPO6rMNfuN05meekxlQS6xam1XgtHGPr5BVou13SLd/8VCC4kP7wjR25ucAr3Q
+         iiKsyTSij4GJl+UeII99dYMnB1G5H/mRoSO9YQTtGnY3ys+aglo6l9UUtUzCDjrosOi8
+         rkxvxOXV1yKWQbEjPWKQrFPhjV91VsELNnUASnVcqrjiadDI72eKgw/2kvFiNxKcRhLy
+         FH7pUJ7cfuZcaQK4BFywvJGaJbEtXln9vLeI/swAh0KM3yp+WaOB9Ovy4uySRswyOHT8
+         4ypg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695736019; x=1696340819;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HoEvBtWhyms91Wk0krqHULnviTnuUoiVYm+WuAD7to4=;
+        b=nGKx3mt6fjSN6Uq6AFCC49RseRNzr4IQqIFLm2yGBtXf/9noE6Iy10CtmjWYowcdGM
+         bpROHcdck9A1l4s/zOFQMwCrZsLlXjXmS+/sWadwZDWsHdBx4jO1UWTR63M/f82ty54I
+         5FExd98s1At7Hw9IgyNR+2M2K48CM3jGkVPCHTcUDnSWyhSmbk3CaouIRdgAp/Jz5Euc
+         0fMR2Gpj2ggABIajs65wo5FORVmb/vUByaohBICHuBI6uAp38nHxZE/Qz+68L4QFAgK4
+         4P21cXNzaV3OloE62GP+5kFKyvPHea6bbvr7xWWNbdBeP6z5MqtqlnN5lEiy6UJMxDSD
+         NTpg==
+X-Gm-Message-State: AOJu0YwuWwNnDO006jc868O354d21TH2FaWk8U7yDvGnLdZNBdDOpL3s
+	rhe4c+mPdKFYnSk6HDTp/qLKnFSy2zptj9foj84=
+X-Google-Smtp-Source: AGHT+IGykYB5UPsLfPurQ8CQ1MugnOgrqtxif6zRnr9Gfu3wgFJzWTtijtU76jcjvMCgb/r3a6fl0Vhvn4akvSD98b0=
+X-Received: by 2002:a05:622a:1495:b0:419:50c7:f6de with SMTP id
+ t21-20020a05622a149500b0041950c7f6demr1629063qtx.39.1695736019585; Tue, 26
+ Sep 2023 06:46:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Q2CIXPIQPxlIZzB0"
-Content-Disposition: inline
-In-Reply-To: <20230926092825.819229-2-alain.volmat@foss.st.com>
+From: Jonathan Cormier <jjcf89@gmail.com>
+Date: Tue, 26 Sep 2023 09:46:48 -0400
+Message-ID: <CAEzfL1kA5PMgPRFoce6R3Oi9fr0d2eN17sPqenWwKhqy3KLw_g@mail.gmail.com>
+Subject: Re: [PATCH v4 0/3] drm/bridge: tfp410: Add i2c support
+To: Jonathan Cormier <jcormier@criticallink.com>
+Cc: Laurent.pinchart@ideasonboard.com, airlied@gmail.com, 
+	andrzej.hajda@intel.com, Bob Duke <bduke@criticallink.com>, daniel@ffwll.ch, 
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	jernej.skrabec@gmail.com, jonas@kwiboo.se, krzysztof.kozlowski+dt@linaro.org, 
+	linux-kernel@vger.kernel.org, 
+	Mike Williamson <michael.williamson@criticallink.com>, neil.armstrong@linaro.org, 
+	robh+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-
---Q2CIXPIQPxlIZzB0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hey Alain,
-
-On Tue, Sep 26, 2023 at 11:28:19AM +0200, Alain Volmat wrote:
-> Introduction of the Galaxy Core GC2145 XVGA CMOS camera sensor.
->=20
-> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
-> ---
->  .../bindings/media/i2c/galaxycore,gc2145.yaml | 108 ++++++++++++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
-
-AFAIU, changes to the vendor-prefixes file are done as standalone
-patches.
-
->  2 files changed, 110 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/galaxycor=
-e,gc2145.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/media/i2c/galaxycore,gc214=
-5.yaml b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml
-> new file mode 100644
-> index 000000000000..e80b581498fc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml
-> @@ -0,0 +1,108 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/galaxycore,gc2145.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Galaxy Core 1/5'' UXGA CMOS Image Sensor
-> +
-> +maintainers:
-> +  - Alain Volmat <alain.volmat@foss.st.com>
-> +
-> +description: |
-
-This | seems unneeded as you have no formatting to preserve.
-
-> +  The Galaxy Core GC2145 is a high quality 2 Mega CMOS image sensor, for=
- mobile
-> +  phone camera applications and digital camera products. GC2145 incorpor=
-ates a
-> +  1616V x 1232H active pixel array, on-chip 10-bit ADC, and image signal
-> +  processor. It is programmable through an I2C interface. Image data is =
-sent
-> +  either through a parallel interface or through MIPI CSI-2.
-> +
-> +allOf:
-> +  - $ref: ../video-interface-devices.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: galaxycore,gc2145
-> +
-> +  reg:
-> +    enum:
-> +      - 0x3c
-
-If this is the only permitted address, this should be a const, rather
-than an enum, no? Are you expecting the list to grow?
-
-> +
-> +  clocks:
-> +    description: Reference to the xclk clock.
-> +    maxItems: 1
-> +
-> +  powerdown-gpios:
-> +    description: GPIO descriptor for the powerdown pin.
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    description: GPIO descriptor for the reset pin.
-> +    maxItems: 1
-
-Where you only have a single entry, a lot of these descriptions are
-superfluous.
-
-Generally, this looks pretty good to me.
-
-Thanks,
-Conor.
-
-> +
-> +  IOVDD-supply:
-> +    description: Power Supply for I/O circuits (1.7 - 3V).
-> +
-> +  AVDD-supply:
-> +    description: Power for analog circuit/sensor array (2.7 - 3V).
-> +
-> +  DVDD-supply:
-> +    description: Power for digital core (1.7 - 1.9V).
-> +
-> +  orientation: true
-> +
-> +  rotation: true
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +    required:
-> +      - endpoint
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - powerdown-gpios
-> +  - reset-gpios
-> +  - IOVDD-supply
-> +  - AVDD-supply
-> +  - DVDD-supply
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c5 {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        gc2145@3c {
-> +            compatible =3D "galaxycore,gc2145";
-> +            reg =3D <0x3c>;
-> +            clocks =3D <&clk_ext_camera>;
-> +            IOVDD-supply =3D <&scmi_v3v3_sw>;
-> +            AVDD-supply =3D <&scmi_v3v3_sw>;
-> +            DVDD-supply =3D <&scmi_v3v3_sw>;
-> +            powerdown-gpios =3D <&mcp23017 3 (GPIO_ACTIVE_LOW | GPIO_PUS=
-H_PULL)>;
-> +            reset-gpios =3D <&mcp23017 4 (GPIO_ACTIVE_LOW | GPIO_PUSH_PU=
-LL)>;
-> +
-> +            port {
-> +                endpoint {
-> +                    remote-endpoint =3D <&mipid02_0>;
-> +                    data-lanes =3D <1 2>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
-umentation/devicetree/bindings/vendor-prefixes.yaml
-> index 573578db9509..d9df03bba5bb 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -494,6 +494,8 @@ patternProperties:
->      description: Fujitsu Ltd.
->    "^fxtec,.*":
->      description: FX Technology Ltd.
-> +  "^galaxycore,.*":
-> +    description: Galaxy Core Inc.
->    "^gardena,.*":
->      description: GARDENA GmbH
->    "^gateworks,.*":
-> --=20
-> 2.25.1
->=20
-
---Q2CIXPIQPxlIZzB0
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRLdXAAKCRB4tDGHoIJi
-0kqMAP0QWoaRdvEPv30Qv/ugA/+Zl/2iLS3E4Wrn0OV0tPD43wD+J7Df5bEQ4Edn
-OTpv59DRPn0rPZ8eAn6hhwdPULmHYgo=
-=p/G0
------END PGP SIGNATURE-----
-
---Q2CIXPIQPxlIZzB0--
+How do I bump this patch submission?
 
