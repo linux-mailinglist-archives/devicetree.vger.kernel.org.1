@@ -1,154 +1,237 @@
-Return-Path: <devicetree+bounces-3482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E39D7AF09A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 18:22:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F5D47AF0A5
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 18:25:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 576DA1C20805
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 16:21:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 126922816AB
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 16:25:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C3B833986;
-	Tue, 26 Sep 2023 16:21:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75D7A3399F;
+	Tue, 26 Sep 2023 16:25:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C327931A8B
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 16:21:55 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 243C410A;
-	Tue, 26 Sep 2023 09:21:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1695745314; x=1727281314;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=kOLi+tNVVtaYkWTVX/7AESQkIiZFjfH3RaEZEz2Zfb4=;
-  b=OOscPrhyBOcxo1g4MgXCUQfLK6J+EnTXsod5SzOny241DoZbeos92G4r
-   B6qAesdf5vdfJCyic0ZHv5ptWby/OGRKh7q/KTBDMAdpHpRpG1Kh/NfJH
-   bydlqO7jA0HSKFvMiDRR7F526zCULuKLNyFRTL+xw0gOnOSekn7Sfd5xs
-   pFtA5XEX335E6/+ZNpYJnBIavbm7TEdxPUXLc+k2Y3A588oBZFeaF6OyM
-   zYMdiRq4XJbJP49EzB8+f2jDoQ5+vOrA7YIhpaoohxA4MU8t1eOFc+n6o
-   phyVFe46jPNt/XXdOttwN73dXxXxp4Jf4BXWH1PdiGwMzLj2cqKlXOv3D
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="445739335"
-X-IronPort-AV: E=Sophos;i="6.03,178,1694761200"; 
-   d="scan'208";a="445739335"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Sep 2023 09:21:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="814540198"
-X-IronPort-AV: E=Sophos;i="6.03,178,1694761200"; 
-   d="scan'208";a="814540198"
-Received: from lkp-server02.sh.intel.com (HELO 32c80313467c) ([10.239.97.151])
-  by fmsmga008.fm.intel.com with ESMTP; 26 Sep 2023 09:21:47 -0700
-Received: from kbuild by 32c80313467c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qlAoi-000358-2u;
-	Tue, 26 Sep 2023 16:21:44 +0000
-Date: Wed, 27 Sep 2023 00:21:31 +0800
-From: kernel test robot <lkp@intel.com>
-To: Alain Volmat <alain.volmat@foss.st.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
-	Andrey Skvortsov <andrej.skvortzov@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] media: i2c: gc2145: Galaxy Core GC2145 sensor support
-Message-ID: <202309270018.GBMyNvxU-lkp@intel.com>
-References: <20230926092825.819229-3-alain.volmat@foss.st.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E991D30D12
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 16:25:17 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D79C8E;
+	Tue, 26 Sep 2023 09:25:16 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38QDwh5m020866;
+	Tue, 26 Sep 2023 16:25:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Kn0NWfrf2PoJA+utp/K+B/7mDfqS5Mn1G1dsC5wgm6E=;
+ b=j2xXP4VwzjZTvmyk4bS2D9EQ5n3uXudKaH7UeS0GwyN0LrQgWfVfGTFjXyN4CPk+TPm2
+ uf/Rh6uRAimblBjYEOiJv4SUlOVRE/4o39+35ZgNKoi9dhqFBI6H6B1jNBLQEVK0/L9l
+ PLzqSVTWyvhs0Xy1XLCknlJHK/HivC0wE3O46n3t+d6ZwfGiM63JiUvLWMiHEnJ/61+4
+ s9ejxvoCZXOkwRkTSQYgI1bKyZhbS5vN9Yc4YOthMS2SU5Ybl+0OJhMdg9CCuPE01jlb
+ TqSGX72UyoYCtRro2Al8D21yNye3DOECUWCvE+uQS9BRsM/GLpt6EyK3KLCLQ9i/1JeF Iw== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tbmwwt26q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Sep 2023 16:25:02 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38QGOSsC010322
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Sep 2023 16:24:28 GMT
+Received: from [10.218.45.181] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Tue, 26 Sep
+ 2023 09:24:22 -0700
+Message-ID: <593fa9be-9f55-3649-e825-1dee31ac5c21@quicinc.com>
+Date: Tue, 26 Sep 2023 21:54:19 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230926092825.819229-3-alain.volmat@foss.st.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH V1 2/2] arm64: dts: qcom: sc7280: Add UFS host controller
+ and phy nodes
+To: Manivannan Sadhasivam <mani@kernel.org>
+CC: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <alim.akhtar@samsung.com>, <bvanassche@acm.org>, <robh+dt@kernel.org>,
+        <avri.altman@wdc.com>, <cros-qcom-dts-watchers@chromium.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20230821094937.13059-1-quic_nitirawa@quicinc.com>
+ <20230821094937.13059-3-quic_nitirawa@quicinc.com>
+ <20230822070841.GA24753@thinkpad>
+Content-Language: en-US
+From: Nitin Rawat <quic_nitirawa@quicinc.com>
+In-Reply-To: <20230822070841.GA24753@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 5TkmNezfs8z-kSjLn0mFlFVUitDhXyq9
+X-Proofpoint-ORIG-GUID: 5TkmNezfs8z-kSjLn0mFlFVUitDhXyq9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-26_13,2023-09-26_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
+ bulkscore=0 impostorscore=0 malwarescore=0 lowpriorityscore=0 phishscore=0
+ mlxlogscore=999 spamscore=0 priorityscore=1501 clxscore=1015 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
+ definitions=main-2309260144
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Alain,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on media-tree/master]
-[also build test WARNING on robh/for-next linus/master v6.6-rc3 next-20230926]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Alain-Volmat/dt-bindings-media-i2c-add-galaxycore-gc2145-dt-bindings/20230926-173518
-base:   git://linuxtv.org/media_tree.git master
-patch link:    https://lore.kernel.org/r/20230926092825.819229-3-alain.volmat%40foss.st.com
-patch subject: [PATCH 2/2] media: i2c: gc2145: Galaxy Core GC2145 sensor support
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20230927/202309270018.GBMyNvxU-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230927/202309270018.GBMyNvxU-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202309270018.GBMyNvxU-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/media/i2c/gc2145.c:1140:12: warning: 'gc2145_resume' defined but not used [-Wunused-function]
-    1140 | static int gc2145_resume(struct device *dev)
-         |            ^~~~~~~~~~~~~
->> drivers/media/i2c/gc2145.c:1129:12: warning: 'gc2145_suspend' defined but not used [-Wunused-function]
-    1129 | static int gc2145_suspend(struct device *dev)
-         |            ^~~~~~~~~~~~~~
 
 
-vim +/gc2145_resume +1140 drivers/media/i2c/gc2145.c
+On 8/22/2023 12:38 PM, Manivannan Sadhasivam wrote:
+> On Mon, Aug 21, 2023 at 03:19:37PM +0530, Nitin Rawat wrote:
+>> Add UFS host controller and PHY nodes for sc7280.
+>>
+> 
+> You should split this patch into 2. One for SoC and another for board.
+Updated in Latest Patchset.
 
-  1128	
-> 1129	static int gc2145_suspend(struct device *dev)
-  1130	{
-  1131		struct v4l2_subdev *sd = dev_get_drvdata(dev);
-  1132		struct gc2145 *gc2145 = to_gc2145(sd);
-  1133	
-  1134		if (gc2145->streaming)
-  1135			gc2145_stop_streaming(gc2145);
-  1136	
-  1137		return 0;
-  1138	}
-  1139	
-> 1140	static int gc2145_resume(struct device *dev)
-  1141	{
-  1142		struct v4l2_subdev *sd = dev_get_drvdata(dev);
-  1143		struct gc2145 *gc2145 = to_gc2145(sd);
-  1144		struct v4l2_subdev_state *state;
-  1145		int ret;
-  1146	
-  1147		if (gc2145->streaming) {
-  1148			state = v4l2_subdev_lock_and_get_active_state(sd);
-  1149			ret = gc2145_start_streaming(gc2145, state);
-  1150			v4l2_subdev_unlock_state(state);
-  1151			if (ret)
-  1152				goto error;
-  1153		}
-  1154	
-  1155		return 0;
-  1156	
-  1157	error:
-  1158		gc2145_stop_streaming(gc2145);
-  1159		gc2145->streaming = false;
-  1160	
-  1161		return ret;
-  1162	}
-  1163	
+> 
+>> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 19 +++++++
+>>   arch/arm64/boot/dts/qcom/sc7280.dtsi     | 64 ++++++++++++++++++++++++
+>>   2 files changed, 83 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>> index 2ff549f4dc7a..c60cdd511222 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>> @@ -451,6 +451,25 @@
+>>   	status = "okay";
+>>   };
+>>
+>> +&ufs_mem_hc {
+>> +	reset-gpios = <&tlmm 175 GPIO_ACTIVE_LOW>;
+>> +	vcc-supply = <&vreg_l7b_2p9>;
+>> +	vcc-max-microamp = <800000>;
+>> +	vccq-supply = <&vreg_l9b_1p2>;
+>> +	vccq-max-microamp = <900000>;
+>> +	vccq2-supply = <&vreg_l9b_1p2>;
+>> +	vccq2-max-microamp = <900000>;
+>> +
+>> +	status = "okay";
+>> +};
+>> +
+>> +&ufs_mem_phy {
+>> +	vdda-phy-supply = <&vreg_l10c_0p8>;
+>> +	vdda-pll-supply = <&vreg_l6b_1p2>;
+>> +
+>> +	status = "okay";
+>> +};
+>> +
+>>   &sdhc_1 {
+>>   	status = "okay";
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> index 925428a5f6ae..d4a15d56b384 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -908,6 +908,70 @@
+>>   			};
+>>   		};
+>>
+>> +		ufs_mem_phy: phy@1d87000 {
+> 
+> Please sort the nodes in ascending order.
+Updated in Latest Patchset.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> 
+>> +			compatible = "qcom,sc7280-qmp-ufs-phy";
+>> +			reg = <0x0 0x01d87000 0x0 0xe00>;
+>> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
+>> +				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
+>> +				 <&gcc GCC_UFS_1_CLKREF_EN>;
+>> +			clock-names = "ref", "ref_aux", "qref";
+>> +
+>> +			resets = <&ufs_mem_hc 0>;
+>> +			reset-names = "ufsphy";
+>> +
+>> +			#clock-cells = <1>;
+>> +			#phy-cells = <0>;
+>> +
+>> +			status = "disabled";
+>> +
+>> +		};
+>> +
+>> +		ufs_mem_hc: ufs@1d84000 {
+>> +			compatible = "qcom,sc7280-ufshc", "qcom,ufshc",
+>> +				     "jedec,ufs-2.0";
+>> +			reg = <0x0 0x01d84000 0x0 0x3000>;
+>> +			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
+>> +			phys = <&ufs_mem_phy>;
+>> +			phy-names = "ufsphy";
+>> +			lanes-per-direction = <2>;
+>> +			#reset-cells = <1>;
+>> +			resets = <&gcc GCC_UFS_PHY_BCR>;
+>> +			reset-names = "rst";
+>> +
+>> +			power-domains = <&gcc GCC_UFS_PHY_GDSC>;
+>> +			required-opps = <&rpmhpd_opp_nom>;
+>> +
+>> +			iommus = <&apps_smmu 0x80 0x0>;
+>> +			dma-coherent;
+>> +
+>> +			clock-names = "core_clk",
+>> +				      "bus_aggr_clk",
+>> +				      "iface_clk",
+>> +				      "core_clk_unipro",
+>> +				      "ref_clk",
+>> +				      "tx_lane0_sync_clk",
+>> +				      "rx_lane0_sync_clk",
+>> +				      "rx_lane1_sync_clk";
+> 
+> "clocks" property should come first.
+  DT binding shows clock-names first followed by clocks.
+  Let me know if see still see concern, would update .
+
+> 
+> - Mani
+> 
+>> +			clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
+>> +				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+>> +				 <&gcc GCC_UFS_PHY_AHB_CLK>,
+>> +				 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
+>> +				 <&rpmhcc RPMH_CXO_CLK>,
+>> +				 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
+>> +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+>> +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
+>> +			freq-table-hz =
+>> +				<75000000 300000000>,
+>> +				<0 0>,
+>> +				<0 0>,
+>> +				<75000000 300000000>,
+>> +				<0 0>,
+>> +				<0 0>,
+>> +				<0 0>,
+>> +				<0 0>;
+>> +			status = "disabled";
+>> +		};
+>> +
+>>   		sdhc_1: mmc@7c4000 {
+>>   			compatible = "qcom,sc7280-sdhci", "qcom,sdhci-msm-v5";
+>>   			pinctrl-names = "default", "sleep";
+>> --
+>> 2.17.1
+>>
+> 
+
+Thanks,
+Nitin
 
