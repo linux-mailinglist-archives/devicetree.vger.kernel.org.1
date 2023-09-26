@@ -1,27 +1,27 @@
-Return-Path: <devicetree+bounces-3336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 930A87AE615
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 08:38:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF8677AE61A
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 08:38:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id 0172B1F254B8
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 06:38:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id A2538281EA5
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 06:38:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B437186D;
-	Tue, 26 Sep 2023 06:38:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B99C1C16;
+	Tue, 26 Sep 2023 06:38:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77DF4185A
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 06:38:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27A07185A
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 06:38:25 +0000 (UTC)
 Received: from muru.com (muru.com [72.249.23.125])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 818E511D;
-	Mon, 25 Sep 2023 23:38:19 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id D8BE110A;
+	Mon, 25 Sep 2023 23:38:23 -0700 (PDT)
 Received: from hillo.muru.com (localhost [127.0.0.1])
-	by muru.com (Postfix) with ESMTP id B53DC80A3;
-	Tue, 26 Sep 2023 06:38:17 +0000 (UTC)
+	by muru.com (Postfix) with ESMTP id 8EEC480B4;
+	Tue, 26 Sep 2023 06:38:21 +0000 (UTC)
 From: Tony Lindgren <tony@atomide.com>
 To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 Cc: Rob Herring <robh+dt@kernel.org>,
@@ -31,11 +31,14 @@ Cc: Rob Herring <robh+dt@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 1/2] dt-bindings: input: gpio-keys: Allow optional dedicated wakeirq
-Date: Tue, 26 Sep 2023 09:38:08 +0300
-Message-ID: <20230926063809.25654-1-tony@atomide.com>
+	Rob Herring <robh@kernel.org>,
+	Dhruva Gole <d-gole@ti.com>
+Subject: [PATCH v3 2/2] Input: gpio-keys - Add system suspend support for dedicated wakeirqs
+Date: Tue, 26 Sep 2023 09:38:09 +0300
+Message-ID: <20230926063809.25654-2-tony@atomide.com>
 X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20230926063809.25654-1-tony@atomide.com>
+References: <20230926063809.25654-1-tony@atomide.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,105 +52,186 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Allow configuring an optional dedicated wakeirq for gpio-keys that
-some SoCs have.
+Some SoCs have a separate dedicated wake-up interrupt controller that can
+be used to wake up the system from deeper idle states. We already support
+configuring a separate interrupt for a gpio-keys button to be used with a
+gpio line. However, we are lacking support system suspend for cases where
+a separate interrupt needs to be used in deeper sleep modes.
 
-Let's use the common interrupt naming "irq" and "wakeup" that we already
-have in use for some drivers and subsystems like i2c framework.
+Because of it's nature, gpio-keys does not know about the runtime PM state
+of the button gpios, and may have several gpio buttons configured for each
+gpio-keys device instance. Implementing runtime PM support for gpio-keys
+does not help, and we cannot use drivers/base/power/wakeirq.c support. We
+need to implement custom wakeirq support for gpio-keys.
 
-Note that the gpio-keys interrupt property is optional. If only a gpio
-property is specified, the driver tries to translate the gpio into an
-interrupt.
+For handling a dedicated wakeirq for system suspend, we enable and disable
+it with gpio_keys_enable_wakeup() and gpio_keys_disable_wakeup() that we
+already use based on device_may_wakeup().
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Some systems may have a dedicated wakeirq that can also be used as the
+main interrupt, this is already working for gpio-keys. Let's add some
+wakeirq related comments while at it as the usage with a gpio line and
+separate interrupt line may not be obvious.
+
+Tested-by: Dhruva Gole <d-gole@ti.com>
 Signed-off-by: Tony Lindgren <tony@atomide.com>
 ---
 
-Changes since v2:
-- Fix indentation as noted by Rob's bot
-
-- Add Reviewed-by from Rob
-
-Changes since v1:
-
-- Run make dt_binding_check on the binding
-
-- Add better checks for interrupt-names as suggested by Rob, it is
-  now required if two interrupts are configured
-
-- Add more decription entries
-
-- Add a new example for key-wakeup
+No changes from v1
 
 ---
- .../devicetree/bindings/input/gpio-keys.yaml  | 41 ++++++++++++++++++-
- 1 file changed, 40 insertions(+), 1 deletion(-)
+ drivers/input/keyboard/gpio_keys.c | 69 ++++++++++++++++++++++++++++--
+ include/linux/gpio_keys.h          |  2 +
+ 2 files changed, 67 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/input/gpio-keys.yaml b/Documentation/devicetree/bindings/input/gpio-keys.yaml
---- a/Documentation/devicetree/bindings/input/gpio-keys.yaml
-+++ b/Documentation/devicetree/bindings/input/gpio-keys.yaml
-@@ -31,7 +31,23 @@ patternProperties:
-         maxItems: 1
+diff --git a/drivers/input/keyboard/gpio_keys.c b/drivers/input/keyboard/gpio_keys.c
+--- a/drivers/input/keyboard/gpio_keys.c
++++ b/drivers/input/keyboard/gpio_keys.c
+@@ -45,7 +45,9 @@ struct gpio_button_data {
+ 	unsigned int software_debounce;	/* in msecs, for GPIO-driven buttons */
  
-       interrupts:
--        maxItems: 1
-+        oneOf:
-+          - items:
-+              - description: Optional key interrupt or wakeup interrupt
-+          - items:
-+              - description: Key interrupt
-+              - description: Wakeup interrupt
+ 	unsigned int irq;
++	unsigned int wakeirq;
+ 	unsigned int wakeup_trigger_type;
 +
-+      interrupt-names:
-+        description:
-+          Optional interrupt names, can be used to specify a separate dedicated
-+          wake-up interrupt in addition to the gpio irq
-+        oneOf:
-+          - items:
-+              - enum: [ irq, wakeup ]
-+          - items:
-+              - const: irq
-+              - const: wakeup
+ 	spinlock_t lock;
+ 	bool disabled;
+ 	bool key_pressed;
+@@ -511,6 +513,7 @@ static int gpio_keys_setup_key(struct platform_device *pdev,
+ 	struct gpio_button_data *bdata = &ddata->data[idx];
+ 	irq_handler_t isr;
+ 	unsigned long irqflags;
++	const char *wakedesc;
+ 	int irq;
+ 	int error;
  
-       label:
-         description: Descriptive name of the key.
-@@ -97,6 +113,20 @@ patternProperties:
-       - required:
-           - gpios
+@@ -575,6 +578,14 @@ static int gpio_keys_setup_key(struct platform_device *pdev,
+ 					!gpiod_cansleep(bdata->gpiod);
+ 		}
  
-+    allOf:
-+      - if:
-+          properties:
-+            interrupts:
-+              minItems: 2
-+          required:
-+            - interrupts
-+        then:
-+          properties:
-+            interrupt-names:
-+              minItems: 2
-+          required:
-+            - interrupt-names
++		/*
++		 * If an interrupt was specified, use it instead of the gpio
++		 * interrupt and use the gpio for reading the state. A separate
++		 * interrupt may be used as the main button interrupt for
++		 * runtime PM to detect events also in deeper idle states. If a
++		 * dedicated wakeirq is used for system suspend only, see below
++		 * for bdata->wakeirq setup.
++		 */
+ 		if (button->irq) {
+ 			bdata->irq = button->irq;
+ 		} else {
+@@ -672,6 +683,36 @@ static int gpio_keys_setup_key(struct platform_device *pdev,
+ 		return error;
+ 	}
+ 
++	if (!button->wakeirq)
++		return 0;
 +
-     dependencies:
-       wakeup-event-action: [ wakeup-source ]
-       linux,input-value: [ gpios ]
-@@ -137,6 +167,15 @@ examples:
-             linux,code = <108>;
-             interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
-         };
++	/* Use :wakeup suffix like drivers/base/power/wakeirq.c does */
++	wakedesc = devm_kasprintf(dev, GFP_KERNEL, "%s:wakeup", desc);
++	if (!wakedesc)
++		return -ENOMEM;
 +
-+        key-wakeup {
-+            label = "GPIO Key WAKEUP";
-+            linux,code = <143>;
-+            interrupts-extended = <&intc 2 IRQ_TYPE_EDGE_FALLING>,
-+                                  <&intc_wakeup 0 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-names = "irq", "wakeup";
-+            wakeup-source;
-+        };
-     };
++	bdata->wakeirq = button->wakeirq;
++	irqflags |= IRQF_NO_SUSPEND;
++
++	/*
++	 * Wakeirq shares the handler with the main interrupt, it's only
++	 * active during system suspend. See gpio_keys_button_enable_wakeup()
++	 * and gpio_keys_button_disable_wakeup().
++	 */
++	error = devm_request_any_context_irq(dev, bdata->wakeirq, isr,
++					     irqflags, wakedesc, bdata);
++	if (error < 0) {
++		dev_err(dev, "Unable to claim wakeirq %d; error %d\n",
++			bdata->irq, error);
++		return error;
++	}
++
++	/*
++	 * Disable wakeirq until suspend. IRQF_NO_AUTOEN won't work if
++	 * IRQF_SHARED was set based on !button->can_disable.
++	 */
++	disable_irq_nosync(bdata->wakeirq);
++
+ 	return 0;
+ }
  
- ...
+@@ -728,7 +769,7 @@ gpio_keys_get_devtree_pdata(struct device *dev)
+ 	struct gpio_keys_platform_data *pdata;
+ 	struct gpio_keys_button *button;
+ 	struct fwnode_handle *child;
+-	int nbuttons;
++	int nbuttons, irq;
+ 
+ 	nbuttons = device_get_child_node_count(dev);
+ 	if (nbuttons == 0)
+@@ -750,9 +791,19 @@ gpio_keys_get_devtree_pdata(struct device *dev)
+ 	device_property_read_string(dev, "label", &pdata->name);
+ 
+ 	device_for_each_child_node(dev, child) {
+-		if (is_of_node(child))
+-			button->irq =
+-				irq_of_parse_and_map(to_of_node(child), 0);
++		if (is_of_node(child)) {
++			irq = of_irq_get_byname(to_of_node(child), "irq");
++			if (irq > 0)
++				button->irq = irq;
++
++			irq = of_irq_get_byname(to_of_node(child), "wakeup");
++			if (irq > 0)
++				button->wakeirq = irq;
++
++			if (!button->irq && !button->wakeirq)
++				button->irq =
++					irq_of_parse_and_map(to_of_node(child), 0);
++		}
+ 
+ 		if (fwnode_property_read_u32(child, "linux,code",
+ 					     &button->code)) {
+@@ -921,6 +972,11 @@ gpio_keys_button_enable_wakeup(struct gpio_button_data *bdata)
+ 		}
+ 	}
+ 
++	if (bdata->wakeirq) {
++		enable_irq(bdata->wakeirq);
++		disable_irq_nosync(bdata->irq);
++	}
++
+ 	return 0;
+ }
+ 
+@@ -929,6 +985,11 @@ gpio_keys_button_disable_wakeup(struct gpio_button_data *bdata)
+ {
+ 	int error;
+ 
++	if (bdata->wakeirq) {
++		enable_irq(bdata->irq);
++		disable_irq_nosync(bdata->wakeirq);
++	}
++
+ 	/*
+ 	 * The trigger type is always both edges for gpio-based keys and we do
+ 	 * not support changing wakeup trigger for interrupt-based keys.
+diff --git a/include/linux/gpio_keys.h b/include/linux/gpio_keys.h
+--- a/include/linux/gpio_keys.h
++++ b/include/linux/gpio_keys.h
+@@ -21,6 +21,7 @@ struct device;
+  *			disable button via sysfs
+  * @value:		axis value for %EV_ABS
+  * @irq:		Irq number in case of interrupt keys
++ * @wakeirq:		Optional dedicated wake-up interrupt
+  */
+ struct gpio_keys_button {
+ 	unsigned int code;
+@@ -34,6 +35,7 @@ struct gpio_keys_button {
+ 	bool can_disable;
+ 	int value;
+ 	unsigned int irq;
++	unsigned int wakeirq;
+ };
+ 
+ /**
 -- 
 2.42.0
 
