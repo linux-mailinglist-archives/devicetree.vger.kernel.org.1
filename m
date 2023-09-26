@@ -1,102 +1,101 @@
-Return-Path: <devicetree+bounces-3366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 598717AE8D6
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 11:21:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C38A27AE8DE
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 11:22:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 09782281722
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 09:21:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 750E3281759
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 09:22:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9064D12B82;
-	Tue, 26 Sep 2023 09:21:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2F7212B83;
+	Tue, 26 Sep 2023 09:22:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F00F063AF
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 09:21:18 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF170F3;
-	Tue, 26 Sep 2023 02:21:17 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 579876607313;
-	Tue, 26 Sep 2023 10:21:15 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1695720076;
-	bh=FKvRcZczMijqG8YmeVx25lsAadHS5xULTP5v1ZDi/Yc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IxceUlmBtOiC/bvzFXAWd7X6itv/URlN7AFBiOcK3qw/JI6FdPQ7x2maqYXNOIF6G
-	 yUaxFobcey3F38OEXcTHnoNSvnF9OZKUpzWlJwpBuzs90t8iFoc0XfWEY+vmpUv2UK
-	 UR23LHeESMsF+1o6ednzjwZICOFm4La8tDnuh7xal4g/raZtu8xS4RK2YxtCaGMLfm
-	 OTo1C2+tdT3+RQ54FdySt5HVa3t10HFru7Jal1XFqM/hJWDLHR7alucwLg43SaNi9A
-	 Hr+DIw0bTQdt0XNdP67RoYlbIFke85DgrFfVtecKdj2ztqkwyX0v2pZ3sQJAVFINiZ
-	 ikOrEbFs7/NwA==
-Message-ID: <05086c59-f6df-7a72-59be-762fdcd0a31f@collabora.com>
-Date: Tue, 26 Sep 2023 11:21:12 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D31EB63AF
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 09:22:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FBE8C433C8;
+	Tue, 26 Sep 2023 09:22:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695720172;
+	bh=5Ay18k+jPh73OS8+ssl9DFrqcOhVxl+RBRenHltQGiI=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=QpNEEZ/25PZBLK1cSeRjXuRk8hB1hpJ00YxGA5akv2L4mQxQz7hvEKPaJoaCni+Kg
+	 HgZNsQK74Mytzw/jD/MWdyZrUuaS1tsuvkZlNgxN/ojco5QVZXp7rWOUJWSKaG9e0F
+	 7VkrF9jMMrQQ30ja8qyLV/XI58eSY3e3huQGXBlMxkaoi20TDnIiIua6fcguek9zBV
+	 1yX6h7FFoFr2SKvkfcjN2Dgpb76yMxhaoW57LImT3zSAIlAVwZN4RuAG1zhkT2LKAA
+	 aL9L/wAODA00gB/IFWX5ziAoCggxmzLXj5kle79fXHhkTFa28BRf6XIl4Lp4SEaG/q
+	 um/HpNdlDnGyg==
+From: Mark Brown <broonie@kernel.org>
+To: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230919-spi-qup-dvfs-v2-0-1bac2e9ab8db@kernkonzept.com>
+References: <20230919-spi-qup-dvfs-v2-0-1bac2e9ab8db@kernkonzept.com>
+Subject: Re: [PATCH v2 0/4] spi: qup: Allow scaling power domains and
+ interconnect
+Message-Id: <169572016977.2563985.17070473917450911159.b4-ty@kernel.org>
+Date: Tue, 26 Sep 2023 11:22:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH] dt-bindings: mfd: Add missing unevaluatedProperties on
- child node schemas
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>, Lee Jones <lee@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
- Patrick Rudolph <patrick.rudolph@9elements.com>,
- Flora Fu <flora.fu@mediatek.com>, Alexandre Mergnat <amergnat@baylibre.com>,
- Chris Zhong <zyw@rock-chips.com>, Zhang Qing <zhangqing@rock-chips.com>,
- - Keerthy <j-keerthy@ti.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-rockchip@lists.infradead.org
-References: <20230925212729.1976117-1-robh@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230925212729.1976117-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+X-Mailer: b4 0.13-dev-099c9
 
-Il 25/09/23 23:27, Rob Herring ha scritto:
-> Just as unevaluatedProperties or additionalProperties are required at
-> the top level of schemas, they should (and will) also be required for
-> child node schemas. That ensures only documented properties are
-> present for any node.
+On Tue, 19 Sep 2023 13:59:47 +0200, Stephan Gerhold wrote:
+> Make it possible to scale performance states of the power domain and
+> interconnect of the SPI QUP controller in relation to the selected SPI
+> speed / core clock. This is done separately by:
 > 
-> Add unevaluatedProperties as needed, and then add any missing properties
-> flagged by the addition.
+>   - Parsing the OPP table from the device tree for performance state
+>     votes of the power domain
+>   - Voting for the necessary bandwidth on the interconnect path to DRAM
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> [...]
 
-For MediaTek:
+Applied to
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-> ---
->   Documentation/devicetree/bindings/mfd/maxim,max5970.yaml   | 5 +++++
->   Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml | 2 ++
->   Documentation/devicetree/bindings/mfd/rockchip,rk805.yaml  | 1 +
->   Documentation/devicetree/bindings/mfd/rockchip,rk808.yaml  | 1 +
->   Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml  | 3 ++-
->   Documentation/devicetree/bindings/mfd/rockchip,rk818.yaml  | 1 +
->   Documentation/devicetree/bindings/mfd/ti,lp87524-q1.yaml   | 1 +
->   Documentation/devicetree/bindings/mfd/ti,lp87561-q1.yaml   | 1 +
->   Documentation/devicetree/bindings/mfd/ti,lp87565-q1.yaml   | 1 +
->   9 files changed, 15 insertions(+), 1 deletion(-)
-> 
+Thanks!
+
+[1/4] spi: dt-bindings: qup: Document power-domains and OPP
+      commit: e6419c35f0d92632e06708c5610a31957f1bd6b3
+[2/4] spi: qup: Parse OPP table for DVFS support
+      commit: 287fcdaa35fc666640f805310095c52f2d818d26
+[3/4] spi: dt-bindings: qup: Document interconnects
+      commit: d15befc0cef42db7712714157d9483cab81149a1
+[4/4] spi: qup: Vote for interconnect bandwidth to DRAM
+      commit: ecdaa9473019f94e0ad6974a5f69b9be7de137d3
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
