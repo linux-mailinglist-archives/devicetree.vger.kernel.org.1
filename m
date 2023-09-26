@@ -1,198 +1,111 @@
-Return-Path: <devicetree+bounces-3346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65F417AE71C
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 09:48:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D3BF7AE74E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 10:04:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id 00F1A1F25581
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 07:48:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 7254D1C20364
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 08:04:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D575107B6;
-	Tue, 26 Sep 2023 07:48:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D16511CA5;
+	Tue, 26 Sep 2023 08:04:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74BE06D38
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 07:48:25 +0000 (UTC)
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91D1BDC;
-	Tue, 26 Sep 2023 00:48:22 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 62FF41BF208;
-	Tue, 26 Sep 2023 07:48:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1695714501;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=WByilfXcf9fwVRPpSMAIkhXNNnHM8fT1soPbMgZimUo=;
-	b=UByeNvtFKGUJFu1r0cCVg4+6yFQMDRx3wfWvVNZdgBJ5aAZyYTFHXVNk8YXzQ+gqfyu7Vj
-	LwFeBNk0hjpd+S5kuzcJpVl07s4zPh+5PF9MXJAj2J7Cwa6C5nYzJzLTuzC2dwd3i2QCPm
-	uVHFHh9cTFsd1d1qCeS5kRLHIQgpfDahPO/iUmIvFY9drBLH156TnaLMrfj4GgaTWhwSR9
-	WKswhTyRPBo685G0NmpdIpmxjid0SysKvF7C/Q3nj76ii+vo7WnUVse1GiqN4XO3Uomjp/
-	x/3dlWrMw2mvxxabewSs/TLI1FpSmlooHgTCL1cYJWL49xPmAS7MJGXg3zof7A==
-Date: Tue, 26 Sep 2023 09:48:15 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Simon Glass <sjg@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, U-Boot
- Mailing List <u-boot@lists.denx.de>, linux-mtd@lists.infradead.org, Tom
- Rini <trini@konsulko.com>, Conor Dooley <conor+dt@kernel.org>, Dhruva Gole
- <d-gole@ti.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Richard Weinberger
- <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mtd: Add a schema for binman
-Message-ID: <20230926094815.5802e184@xps-13>
-In-Reply-To: <CAPnjgZ1npHPpwPmw2f4=E3U5=RH0m4R+W_MZ7+oXdmDF=EeUjg@mail.gmail.com>
-References: <20230921124459.1.I91ddcfacf9b234af5cc3eabea4b62edb31153317@changeid>
-	<CAL_Jsq+WuYDU+yY98opTHr1PT-J9mFYJQBjVMnk+FSWLDUO33w@mail.gmail.com>
-	<CAPnjgZ1pfxaMG1n5yOBhiOhsNrRjck1K92U7Ga=+VTY_jjjrVg@mail.gmail.com>
-	<20230922174649.GA3320366-robh@kernel.org>
-	<CAPnjgZ3ojfAv=BHqOhM=-NnYqCm81Ny=PsGKiNphKTmw++fk9w@mail.gmail.com>
-	<CAL_JsqJqvyP=c93DHDO8A5RXv7Lz_Z7eEHSbJQ=JCo+qPVhSfg@mail.gmail.com>
-	<CAPnjgZ3BnD9aX3cNNPiGRKTOj+YeurHCLv6K0TRFhAtY21Qufw@mail.gmail.com>
-	<20230925092122.0b615f25@xps-13>
-	<CAPnjgZ0Z5J_33HuQF-5XgDFmZim0nHHzvZJOOZobWw_cOJd=9g@mail.gmail.com>
-	<20230925164736.5efbf4c0@xps-13>
-	<CAPnjgZ3YCQHJ-eXuX8rYx2Qb6QEL+XviFmXYTON6M-sGPWSBBg@mail.gmail.com>
-	<20230925172447.43dcef88@xps-13>
-	<CAPnjgZ20c9FsYVjSrQ9qbFy9Y67BqDP2zxMyATx===PFhO69Ew@mail.gmail.com>
-	<CAL_JsqJfjHqtTB2qfLmNxmQtn1rZewNyNe+Knu_Z4UCdPoPhSQ@mail.gmail.com>
-	<CAPnjgZ1npHPpwPmw2f4=E3U5=RH0m4R+W_MZ7+oXdmDF=EeUjg@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343882906
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 08:04:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B023EC433C8;
+	Tue, 26 Sep 2023 08:04:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695715444;
+	bh=Gk8UPv85NpIAuRUm/g1FxXwc/A9EC198ra1ZI3l3y+I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=p2CxJOqPE3nULReRB6ueRzPUzLpG0HduGqLQMB0peveb97gyS0glSpsfF/OfzpYSK
+	 FtKFoAboDI/Wl31DYCEJNH6MJwo2lSENM8wLT/hEf+bzbwDajk7F3Z+/7afgxKP8+t
+	 8HLSDlYyxmyfYmjUleCNSg0SjLRSaSqubaqV49fJbCMBU6tTD8GTdpTLQuY+18SkcS
+	 FiaXCSorr5u2AEdAs1yXGjOyqL98yQX0TOORNHULtuuEU8by8vwSNCZY9y1qW5kfYo
+	 DDRKhdJuUgvkNI7oHJFs2R9ba4ixOaxRbcHRAVaJAygr3p8ohvuh/wgFRbxq57jtZA
+	 hW71Nb5MESBuA==
+Date: Tue, 26 Sep 2023 09:03:59 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Huqiang Qin <huqiang.qin@amlogic.com>
+Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	neil.armstrong@linaro.org, khilman@baylibre.com,
+	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V2 2/2] arm64: dts: Add watchdog node for Amlogic C3 SoCs
+Message-ID: <20230926-output-musket-a43dd5abd0b5@spud>
+References: <20230926055512.2355390-1-huqiang.qin@amlogic.com>
+ <20230926055512.2355390-3-huqiang.qin@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="/h6xUWSBVS6sbE34"
+Content-Disposition: inline
+In-Reply-To: <20230926055512.2355390-3-huqiang.qin@amlogic.com>
+
+
+--/h6xUWSBVS6sbE34
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
-Hello,
-
-> > > > > These are firmware bindings, as indicated, but I
-> > > > > took them out of the /firmware node since that is for a different
-> > > > > purpose. Rob suggested that partitions was a good place. We have =
-fwupd
-> > > > > using DT to hold the firmware-update information, so I expect it =
-will
-> > > > > move to use these bindings too. =20
-> > > >
-> > > > I would definitely use fixed partitions as that's what you need the=
-n:
-> > > > registering where everything starts and ends. If you have "in-band"
-> > > > meta data you might require a compatible, but I don't think you
-> > > > do, in this case you should probably carry the content through a la=
-bel
-> > > > (which will become the partition name) and we can discuss additional
-> > > > properties if needed. =20
-> > >
-> > > I believe I am going to need a compatible string at the 'partitions'
-> > > level to indicate that this is the binman scheme. But we can leave
-> > > that until later. =20
-> >
-> > Perhaps:
-> >
-> > compatible =3D "binman", "fixed-partitions";
-> >
-> > Though I don't understand why binman couldn't just understand what
-> > "fixed-partitions" means rather than "binman". =20
+On Tue, Sep 26, 2023 at 01:55:12PM +0800, Huqiang Qin wrote:
+> Add watchdog device.
 >=20
-> Well so long as we don't add any binman things in here, you are right.
+> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
+> ---
 >=20
-> But the eventual goal is parity with current Binman functionality,
-> which writes the entire (augmented) description to the DT, allowing
-> tools to rebuild / repack / replace pieces later, maintaining the same
-> alignment constraints, etc. I am assuming that properties like 'align
-> =3D <16>' would not fit with fixed-partitions.=20
-
-I am personally not bothered by this kind of properties. But if we plan
-on adding too much properties, I will advise to indeed use another name
-than fixed-partitions (or add the "binman" secondary compatible)
-otherwise it's gonna be hard to support in the code while still
-restraining as much as we can the other partition schema.
-
-> But if we don't preserve
-> these properties then Binman cannot do repacking reliably. Perhaps for
-> now I could put the augmented DT in its own section somewhere, but I
-> am just not sure if that will work in a real system. E.g. with VBE the
-> goal is to use the DT to figure out how to access the firmware, update
-> it, etc.
+> V1 -> V2: Increase compatibles of C3 watchdog.
 >=20
-> Is it not possible to have my own node with whatever things Binman
-> needs in it (subject to review of course)? i.e. could we discuss how
-> to encode it, but argue less about whether things are needed? I
-> kind-of feel I know what is needed, since I wrote the tool.
+>  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
 >=20
-> >
-> > =20
-> > > So you are suggesting 'label' for the contents. Rob suggested
-> > > 'compatible' [1], so what should I do? =20
-> >
-> > "label" is for consumption by humans, not tools/software. Compatible
-> > values are documented, label values are not. Though the partition
-> > stuff started out using label long ago and it's evolved to preferring
-> > compatible. =20
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boo=
+t/dts/amlogic/amlogic-c3.dtsi
+> index 998f5050795c..2ad1f8eef199 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> @@ -81,6 +81,12 @@ apb4: bus@fe000000 {
+>  			#size-cells =3D <2>;
+>  			ranges =3D <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+> =20
+> +			watchdog@2100 {
+> +				compatible =3D "amlogic,c3-wdt", "amlogic,t7-wdt";
+
+Does this pass dtbs_check?
+The binding patch doesn't seem to permit this combo..
+
+> +				reg =3D <0x0 0x2100 0x0 0x10>;
+> +				clocks =3D <&xtal>;
+> +			};
+> +
+>  			periphs_pinctrl: pinctrl@4000 {
+>  				compatible =3D "amlogic,c3-periphs-pinctrl";
+>  				#address-cells =3D <2>;
+> --=20
+> 2.42.0
 >=20
-> OK so we are agreed that we are going with 'compatible'.
 
-Still strongly disagree here.
+--/h6xUWSBVS6sbE34
+Content-Type: application/pgp-signature; name="signature.asc"
 
-My understanding is that a compatible carries how the content is
-organized, and how this maybe specific (like you have in-band meta data
-data that needs to be parsed in a specific way or in your case
-additional specific properties in the DT which give more context about
-how the data is stored). But the real content of the partition, ie. if
-it contains a firmware, the kernel or some user data does not belong to
-the compatible.
+-----BEGIN PGP SIGNATURE-----
 
-I.e:
-- The first byte of my partition gives the compression algorithm:
-  -> compatible =3D "compressed-partition-foo";
-     or
-  -> compatible =3D "fixed-partitions" + compression-algorithm =3D "foo";
-- The partition contains a picture of my dog:
-  -> label =3D "my dog is beautiful"
-  but certainly not
-  -> compatible =3D "my-dog";
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRKQbwAKCRB4tDGHoIJi
+0inUAPwLNBh3Grd1kaNeXqiBtQPj8KCHNGRCyoENBGkom8ZsewEApURp1rXmTzcy
+YTPySsifKx2BM9nMc5YyQIuMhDpgGg0=
+=mVVI
+-----END PGP SIGNATURE-----
 
-I don't see why, for the binman schema, we could not constrain the
-labels?
-
-> > > With this schema, would every node be called 'partition@...' or is
-> > > there flexibility to use other names? =20
-> >
-> > The preference is to use generic names. Do you mean without a
-> > unit-address or different from "partition"? The need for the input
-> > side of binman to have dynamic addresses seems like the biggest issue.
-> > That's allowed in other cases with "partition-N" or "partition-foo"
-> > IIRC. I don't think we want to allow that for "fixed-partitions" at
-> > least in the DTB (i.e. the output side of binman). =20
->=20
-> OK I suppose this is the problem with starting small. I was hoping to
-> build up the schema piece by piece but now I am wondering whether
-> every little detail will get redirected and I'll end up with something
-> that Binman cannot use.
->=20
-> So far all I have is that I can add a 'compress' property and a
-> 'compatible' which describes the contents. I suppose it is a start.
-
-I guess defining all you need in one go would be better. At least
-showing a full and typical example might help. But some items like
-encoding if you have TF-A or U-Boot in the compatible, I'm far from
-convinced...
-
-Thanks,
-Miqu=C3=A8l
+--/h6xUWSBVS6sbE34--
 
