@@ -1,111 +1,227 @@
-Return-Path: <devicetree+bounces-3347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D3BF7AE74E
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 10:04:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 644237AE760
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 10:06:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 7254D1C20364
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 08:04:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 7E6A51C20831
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 08:06:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D16511CA5;
-	Tue, 26 Sep 2023 08:04:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A284511CB5;
+	Tue, 26 Sep 2023 08:06:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343882906
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 08:04:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B023EC433C8;
-	Tue, 26 Sep 2023 08:04:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695715444;
-	bh=Gk8UPv85NpIAuRUm/g1FxXwc/A9EC198ra1ZI3l3y+I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=p2CxJOqPE3nULReRB6ueRzPUzLpG0HduGqLQMB0peveb97gyS0glSpsfF/OfzpYSK
-	 FtKFoAboDI/Wl31DYCEJNH6MJwo2lSENM8wLT/hEf+bzbwDajk7F3Z+/7afgxKP8+t
-	 8HLSDlYyxmyfYmjUleCNSg0SjLRSaSqubaqV49fJbCMBU6tTD8GTdpTLQuY+18SkcS
-	 FiaXCSorr5u2AEdAs1yXGjOyqL98yQX0TOORNHULtuuEU8by8vwSNCZY9y1qW5kfYo
-	 DDRKhdJuUgvkNI7oHJFs2R9ba4ixOaxRbcHRAVaJAygr3p8ohvuh/wgFRbxq57jtZA
-	 hW71Nb5MESBuA==
-Date: Tue, 26 Sep 2023 09:03:59 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Huqiang Qin <huqiang.qin@amlogic.com>
-Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	neil.armstrong@linaro.org, khilman@baylibre.com,
-	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V2 2/2] arm64: dts: Add watchdog node for Amlogic C3 SoCs
-Message-ID: <20230926-output-musket-a43dd5abd0b5@spud>
-References: <20230926055512.2355390-1-huqiang.qin@amlogic.com>
- <20230926055512.2355390-3-huqiang.qin@amlogic.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 014984C6E
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 08:06:43 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A318FC;
+	Tue, 26 Sep 2023 01:06:40 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id AFD8D66072AE;
+	Tue, 26 Sep 2023 09:06:37 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1695715598;
+	bh=DNkzrB6xB46nwXnn/uIEbW0EYRfFZ+iNhweCVbOVwQw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=E5ghLCBlBe5MVn6CZ4teUjynYKdeSRfx1tlahHjFVdi/7weU2mEN4gK+ujzjQT2kG
+	 OU7RhR4rGRDb+J0ejTfrUCqY5oM8AJ8ClTaWEHTY0HnHwwb/D0+OJTNsZEzq7k4nWr
+	 R0SRur5OgneaBDFntamiDNmwT11UaGM4nVaXbQAABS+FBl2JWkE39JQS9fffDwAklv
+	 sZyIJETX5GraA5/oCB92VEGTm1/bTLvWsSvlZxGLA9Iu6KD1Tnfhy4a26U2+TL6jMR
+	 tBIt9CdxxrVsLB/egnmf2AHYIPgAvGWz0S0SgwWJQgXo/9dExe6Y1nMFK761XX/GZE
+	 M051cHAj3Xlzg==
+Message-ID: <b0037c9f-588b-4eb8-6415-0fe75bed264f@collabora.com>
+Date: Tue, 26 Sep 2023 10:06:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="/h6xUWSBVS6sbE34"
-Content-Disposition: inline
-In-Reply-To: <20230926055512.2355390-3-huqiang.qin@amlogic.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH] drm/panel: Move AUX B116XW03 out of panel-edp back to
+ panel-simple
+Content-Language: en-US
+To: Douglas Anderson <dianders@chromium.org>, dri-devel@lists.freedesktop.org
+Cc: linux-samsung-soc@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
+ matthias.bgg@gmail.com, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ Marek Szyprowski <m.szyprowski@samsung.com>, airlied@gmail.com,
+ daniel@ffwll.ch, jitao.shi@mediatek.com, linus.walleij@linaro.org,
+ linux-kernel@vger.kernel.org, neil.armstrong@linaro.org,
+ quic_jesszhan@quicinc.com, sam@ravnborg.org
+References: <20230925150010.1.Iff672233861bcc4cf25a7ad0a81308adc3bda8a4@changeid>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230925150010.1.Iff672233861bcc4cf25a7ad0a81308adc3bda8a4@changeid>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-
---/h6xUWSBVS6sbE34
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Sep 26, 2023 at 01:55:12PM +0800, Huqiang Qin wrote:
-> Add watchdog device.
->=20
-> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
+Il 26/09/23 00:00, Douglas Anderson ha scritto:
+> In commit 5f04e7ce392d ("drm/panel-edp: Split eDP panels out of
+> panel-simple") I moved a pile of panels out of panel-simple driver
+> into the newly created panel-edp driver. One of those panels, however,
+> shouldn't have been moved.
+> 
+> As is clear from commit e35e305eff0f ("drm/panel: simple: Add AUO
+> B116XW03 panel support"), AUX B116XW03 is an LVDS panel. It's used in
+> exynos5250-snow and exynos5420-peach-pit where it's clear that the
+> panel is hooked up with LVDS. Furthermore, searching for datasheets I
+> found one that makes it clear that this panel is LVDS.
+> 
+> As far as I can tell, I got confused because in commit 88d3457ceb82
+> ("drm/panel: auo,b116xw03: fix flash backlight when power on") Jitao
+> Shi added "DRM_MODE_CONNECTOR_eDP". That seems wrong. Looking at the
+> downstream ChromeOS trees, it seems like some Mediatek boards are
+> using a panel that they call "auo,b116xw03" that's an eDP panel. The
+> best I can guess is that they actually have a different panel that has
+> similar timing. If so then the proper panel should be used or they
+> should switch to the generic "edp-panel" compatible.
+> 
+> When moving this back to panel-edp, I wasn't sure what to use for
+> .bus_flags and .bus_format and whether to add the extra "enable" delay
+> from commit 88d3457ceb82 ("drm/panel: auo,b116xw03: fix flash
+> backlight when power on"). I've added formats/flags/delays based on my
+> (inexpert) analysis of the datasheet. These are untested.
+> 
+> NOTE: if/when this is backported to stable, we might run into some
+> trouble. Specifically, before 474c162878ba ("arm64: dts: mt8183:
+> jacuzzi: Move panel under aux-bus") this panel was used by
+> "mt8183-kukui-jacuzzi", which assumed it was an eDP panel. I don't
+> know what to suggest for that other than someone making up a bogus
+> panel for jacuzzi that's just for the stable channel.
+> 
+> Fixes: 88d3457ceb82 ("drm/panel: auo,b116xw03: fix flash backlight when power on")
+> Fixes: 5f04e7ce392d ("drm/panel-edp: Split eDP panels out of panel-simple")
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 > ---
->=20
-> V1 -> V2: Increase compatibles of C3 watchdog.
->=20
->  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boo=
-t/dts/amlogic/amlogic-c3.dtsi
-> index 998f5050795c..2ad1f8eef199 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> @@ -81,6 +81,12 @@ apb4: bus@fe000000 {
->  			#size-cells =3D <2>;
->  			ranges =3D <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
-> =20
-> +			watchdog@2100 {
-> +				compatible =3D "amlogic,c3-wdt", "amlogic,t7-wdt";
+> I haven't had a snow or peach-pit hooked up for debugging / testing
+> for years. I presume that they must be broken and hope that this fixes
+> them.
 
-Does this pass dtbs_check?
-The binding patch doesn't seem to permit this combo..
+We could avoid backport breakages by avoiding to backport this to any kernel
+that doesn't contain commit 474c162878ba ("arm64: dts: mt8183: jacuzzi: Move
+panel under aux-bus")... because creating a dummy panel to get two wrongs
+right is definitely not ok.
 
-> +				reg =3D <0x0 0x2100 0x0 0x10>;
-> +				clocks =3D <&xtal>;
-> +			};
+Cheers,
+Angelo
+
+> 
+>   drivers/gpu/drm/panel/panel-edp.c    | 29 -----------------------
+>   drivers/gpu/drm/panel/panel-simple.c | 35 ++++++++++++++++++++++++++++
+>   2 files changed, 35 insertions(+), 29 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
+> index feb665df35a1..95c8472d878a 100644
+> --- a/drivers/gpu/drm/panel/panel-edp.c
+> +++ b/drivers/gpu/drm/panel/panel-edp.c
+> @@ -976,32 +976,6 @@ static const struct panel_desc auo_b116xak01 = {
+>   	},
+>   };
+>   
+> -static const struct drm_display_mode auo_b116xw03_mode = {
+> -	.clock = 70589,
+> -	.hdisplay = 1366,
+> -	.hsync_start = 1366 + 40,
+> -	.hsync_end = 1366 + 40 + 40,
+> -	.htotal = 1366 + 40 + 40 + 32,
+> -	.vdisplay = 768,
+> -	.vsync_start = 768 + 10,
+> -	.vsync_end = 768 + 10 + 12,
+> -	.vtotal = 768 + 10 + 12 + 6,
+> -	.flags = DRM_MODE_FLAG_NVSYNC | DRM_MODE_FLAG_NHSYNC,
+> -};
+> -
+> -static const struct panel_desc auo_b116xw03 = {
+> -	.modes = &auo_b116xw03_mode,
+> -	.num_modes = 1,
+> -	.bpc = 6,
+> -	.size = {
+> -		.width = 256,
+> -		.height = 144,
+> -	},
+> -	.delay = {
+> -		.enable = 400,
+> -	},
+> -};
+> -
+>   static const struct drm_display_mode auo_b133han05_mode = {
+>   	.clock = 142600,
+>   	.hdisplay = 1920,
+> @@ -1725,9 +1699,6 @@ static const struct of_device_id platform_of_match[] = {
+>   	}, {
+>   		.compatible = "auo,b116xa01",
+>   		.data = &auo_b116xak01,
+> -	}, {
+> -		.compatible = "auo,b116xw03",
+> -		.data = &auo_b116xw03,
+>   	}, {
+>   		.compatible = "auo,b133han05",
+>   		.data = &auo_b133han05,
+> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+> index bb89e6d047bc..439d26928938 100644
+> --- a/drivers/gpu/drm/panel/panel-simple.c
+> +++ b/drivers/gpu/drm/panel/panel-simple.c
+> @@ -919,6 +919,38 @@ static const struct panel_desc auo_b101xtn01 = {
+>   	},
+>   };
+>   
+> +static const struct drm_display_mode auo_b116xw03_mode = {
+> +	.clock = 70589,
+> +	.hdisplay = 1366,
+> +	.hsync_start = 1366 + 40,
+> +	.hsync_end = 1366 + 40 + 40,
+> +	.htotal = 1366 + 40 + 40 + 32,
+> +	.vdisplay = 768,
+> +	.vsync_start = 768 + 10,
+> +	.vsync_end = 768 + 10 + 12,
+> +	.vtotal = 768 + 10 + 12 + 6,
+> +	.flags = DRM_MODE_FLAG_NVSYNC | DRM_MODE_FLAG_NHSYNC,
+> +};
 > +
->  			periphs_pinctrl: pinctrl@4000 {
->  				compatible =3D "amlogic,c3-periphs-pinctrl";
->  				#address-cells =3D <2>;
-> --=20
-> 2.42.0
->=20
+> +static const struct panel_desc auo_b116xw03 = {
+> +	.modes = &auo_b116xw03_mode,
+> +	.num_modes = 1,
+> +	.bpc = 6,
+> +	.size = {
+> +		.width = 256,
+> +		.height = 144,
+> +	},
+> +	.delay = {
+> +		.prepare = 1,
+> +		.enable = 200,
+> +		.disable = 200,
+> +		.unprepare = 500,
+> +	},
+> +	.bus_format = MEDIA_BUS_FMT_RGB666_1X7X3_SPWG,
+> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
+> +	.connector_type = DRM_MODE_CONNECTOR_LVDS,
+> +};
+> +
+>   static const struct display_timing auo_g070vvn01_timings = {
+>   	.pixelclock = { 33300000, 34209000, 45000000 },
+>   	.hactive = { 800, 800, 800 },
+> @@ -4128,6 +4160,9 @@ static const struct of_device_id platform_of_match[] = {
+>   	}, {
+>   		.compatible = "auo,b101xtn01",
+>   		.data = &auo_b101xtn01,
+> +	}, {
+> +		.compatible = "auo,b116xw03",
+> +		.data = &auo_b116xw03,
+>   	}, {
+>   		.compatible = "auo,g070vvn01",
+>   		.data = &auo_g070vvn01,
 
---/h6xUWSBVS6sbE34
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRKQbwAKCRB4tDGHoIJi
-0inUAPwLNBh3Grd1kaNeXqiBtQPj8KCHNGRCyoENBGkom8ZsewEApURp1rXmTzcy
-YTPySsifKx2BM9nMc5YyQIuMhDpgGg0=
-=mVVI
------END PGP SIGNATURE-----
-
---/h6xUWSBVS6sbE34--
 
