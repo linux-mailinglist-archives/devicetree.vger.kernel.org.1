@@ -1,140 +1,161 @@
-Return-Path: <devicetree+bounces-3351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56C687AE7F7
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 10:26:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D6B17AE833
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 10:38:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 00ADA281308
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 08:26:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id B0B051F25569
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 08:38:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91DEE125CF;
-	Tue, 26 Sep 2023 08:26:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 513E02908;
+	Tue, 26 Sep 2023 08:38:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 827BD6FAB
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 08:26:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFF53C433C7;
-	Tue, 26 Sep 2023 08:26:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695716763;
-	bh=FuCy5VA/8fbYT8cI4YGq6xcsx61gH9ovFfxV+TckrYw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AStEcg0uKRGF5Ay23VNYBkMEr+0VJ0N60/EcI/CuXp1MLOwfdOEi3nJZXdFbSX7Cf
-	 U1b7J2UcITkAgadRo9L5dBnteDhnLD4VgccwY6/uqjPiRg7NUj/VK7INkrWMWyyLgP
-	 ZFbG4mN0ZIA1lS88FknH8jjNxk8/herfsKvTIr1tXrRIXkoAy5ZCOf7v1/Csytzu/V
-	 Izf6576qD42wmG4f7c6sUcUBNXk71NOh7b3QD2SFsMetEPh975QR3X1NTaOVLiAjhm
-	 jzKse5QGh2aV3RWT6gPbPyTSaltDm4XEJ96wZN9XsTFkJWO0uLpYVt+72a8oKxPMaX
-	 icSPxsnfH+5BA==
-Date: Tue, 26 Sep 2023 09:25:58 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Peter Denison <openwrt@marshadder.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Krzysztof Halasa <khalasa@piap.pl>, Imre Kaloz <kaloz@openwrt.org>,
-	Ted Hess <thess@kitschensync.net>, Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: arm: List more IXP4xx devices
-Message-ID: <20230926-chef-steerable-94e1f0bdcc24@spud>
-References: <20230925-ixp4xx-usr8200-v2-0-433261c13a28@linaro.org>
- <20230925-ixp4xx-usr8200-v2-2-433261c13a28@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7601E570
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 08:38:09 +0000 (UTC)
+Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com [IPv6:2607:f8b0:4864:20::c34])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 356B7EB;
+	Tue, 26 Sep 2023 01:38:08 -0700 (PDT)
+Received: by mail-oo1-xc34.google.com with SMTP id 006d021491bc7-5739972accdso4819780eaf.1;
+        Tue, 26 Sep 2023 01:38:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695717487; x=1696322287; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=A9WTdFbfgD8PWJJN8ElB5etSNlTYmtIcow35neC8gMI=;
+        b=nqqMRg3Ri8b7c+M9ePq5CBCZ9tik4xxWIzGhKdb94Cw8pI2HJ9Ffb/wu8uZ1otIrhw
+         3dSMIFmgCRirKUQZz9Fj/OGiHsXvZlGTqiaMR5huT+5Ffmo5B6JEONhyyMtIaaBmW/+0
+         037uyev8nASA3lwcfLpjkBQpigaRyVEwxZrtdGG6U++w0uJIbdP/ei7fwXu40JouP/Au
+         ecith2a3l65om9drN51u5r9OQ3yEK8ZX5AXeuckhXpzuOK+upjG9Kv0/X8lt9e26KioX
+         PynsI9TOqhrxeLlMUdOxl1OeKCBmLkmlaWzYJ/m8Jjor9N1kq6+9ZFPh4whq3apxXGrR
+         C5Iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695717487; x=1696322287;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=A9WTdFbfgD8PWJJN8ElB5etSNlTYmtIcow35neC8gMI=;
+        b=wnOp9b36AA5ZUY31Idc6dVk6STRftOfSi+w6vih5XhsTL0y0f0zrwLwV1Rcqjv8MfI
+         3kOfjxd+9A7lDyKAQgbZPSzEv8n0vbcDt/WNwQ2TVAripiwteeTVIVOTKNuelkD5v9vg
+         nLillxc9MnhRN6U/IDzash9eVFDmzm+vDQoTdGUv6CrxZU8GEA8WYCihjff0/qcatTg5
+         Pz7x47E+pWBrooWiBOvwfqvmr4MUMjXpFzl3c0rSPAQUIteO1pZmjKJxybsl4YhAFod9
+         BtKBdMWHmSkY/ZlIr5RnQhO2fPwLDN/sBcsBV3MGrqBzFXoMDLp/q6jbGB6Lsb2BjO31
+         lT+A==
+X-Gm-Message-State: AOJu0YyArWbQXRh6N+f19Nmk4kPDzJxbZj7F9OqhMmF9VxbjH6J6Dk9C
+	uUVngyK1NUWQgCwQlg3LQnBHdCOm7Nkqtfw9O8SVXzF+
+X-Google-Smtp-Source: AGHT+IGx7MZtsEcLX1+5BoGvOJornsWK9NOloJY9pJNjev2EleQNjGF0kF6eRWj+2Fhgvwvtvgj5hhpPITRmJv7i/O4=
+X-Received: by 2002:a05:6870:5608:b0:1dd:2a3f:cef3 with SMTP id
+ m8-20020a056870560800b001dd2a3fcef3mr1175635oao.26.1695717487413; Tue, 26 Sep
+ 2023 01:38:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="mVcj+xAQdlYPKMGQ"
-Content-Disposition: inline
-In-Reply-To: <20230925-ixp4xx-usr8200-v2-2-433261c13a28@linaro.org>
-
-
---mVcj+xAQdlYPKMGQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20230628082716.2075736-1-sergio.paracuellos@gmail.com>
+ <20230628154022.GA520881-robh@kernel.org> <CAMhs-H_WD7tkawv1cg3GympqyzzPwK4Es_GxoFD5gPR=Y0H7kw@mail.gmail.com>
+ <CAMhs-H9Aafp1FPe9Y=pX-TeviMfXnFd4vBmfGMy9k-y7P+boqA@mail.gmail.com>
+In-Reply-To: <CAMhs-H9Aafp1FPe9Y=pX-TeviMfXnFd4vBmfGMy9k-y7P+boqA@mail.gmail.com>
+From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date: Tue, 26 Sep 2023 10:37:55 +0200
+Message-ID: <CAMhs-H_9kAdOfR-RaJWqAq6d3S3DXtKJqWy-EWCu0-ZjWKB9Sw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: timer: add Ralink SoCs system tick counter
+To: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, tglx@linutronix.de, daniel.lezcano@linaro.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Mon, Sep 25, 2023 at 11:03:39AM +0200, Linus Walleij wrote:
-> The ixp4xx bindings are lacking some of the devices we have
-> out there in the wild, so let's add them.
->=20
-> The "linksys,wrv54g", "gemtek,gtwx5715", "intel,ixp42x"
-> triplet is a pretty special case where the Gemtek device is
-> licensed as OEM product by Linksys (now Belkin) hence the
-> special entry for this one.
->=20
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->  .../devicetree/bindings/arm/intel-ixp4xx.yaml          | 18 ++++++++++++=
-++++++
->  1 file changed, 18 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml b/Do=
-cumentation/devicetree/bindings/arm/intel-ixp4xx.yaml
-> index 553dcbc70e35..1fecd4692a62 100644
-> --- a/Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml
-> +++ b/Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml
-> @@ -16,12 +16,30 @@ properties:
->      oneOf:
->        - items:
->            - enum:
-> +              - adieng,coyote
-> +              - arcom,vulcan
-> +              - dlink,dsm-g600-a
-> +              - freecom,fsg-3
-> +              - gateway,7001
-> +              - gateworks,gw2348
-> +              - goramo,multilink-router
-> +              - intel,ixdp425
-> +              - intel,ixdpg425
-> +              - iom,nas-100d
->                - linksys,nslu2
-> +              - netgear,wg302v1
-> +              - netgear,wg302v2
-> +              - usr,8200
->                - welltech,epbx100
->            - const: intel,ixp42x
-> +      - items:
-> +          - const: linksys,wrv54g
-> +          - const: gemtek,gtwx5715
-> +          - const: intel,ixp42x
+On Wed, Aug 30, 2023 at 8:54=E2=80=AFAM Sergio Paracuellos
+<sergio.paracuellos@gmail.com> wrote:
+>
+> On Wed, Jun 28, 2023 at 6:42=E2=80=AFPM Sergio Paracuellos
+> <sergio.paracuellos@gmail.com> wrote:
+> >
+> > Hi Rob,
+> >
+> > On Wed, Jun 28, 2023 at 5:40=E2=80=AFPM Rob Herring <robh@kernel.org> w=
+rote:
+> > >
+> > > On Wed, Jun 28, 2023 at 10:27:16AM +0200, Sergio Paracuellos wrote:
+> > > > Add YAML doc for the system tick counter which is present on Ralink=
+ SoCs.
+> > > >
+> > > > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > > > ---
+> > > >  .../bindings/timer/ralink,cevt-systick.yaml   | 38 +++++++++++++++=
+++++
+> > > >  1 file changed, 38 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/timer/ralink,=
+cevt-systick.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/timer/ralink,cevt-sy=
+stick.yaml b/Documentation/devicetree/bindings/timer/ralink,cevt-systick.ya=
+ml
+> > > > new file mode 100644
+> > > > index 000000000000..59d97feddf4e
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/timer/ralink,cevt-systick.y=
+aml
+> > > > @@ -0,0 +1,38 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/timer/ralink,cevt-systick.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: System tick counter present in Ralink family SoCs
+> > > > +
+> > > > +maintainers:
+> > > > +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    const: ralink,cevt-systick
+> > >
+> > > What is "cevt"? Would be nice to define. Really this should have been
+> > > SoC specific, but it looks like it has been upstream "forever", so fi=
+ne.
+> >
+> > Not sure what cevt really means, I guess maybe "clock event"? Inside
+> > the documentation this is just listed as "System Tick Counter". It is
+> > upstreamed since Ralink SoCs are on tree. I am just documenting
+> > already mainlined stuff since there are lots of missing  binding docs
+> > for old Ralink SoCs.
+> >
+> > >
+> > > Otherwise,
+> > >
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+>
+> Daniel, is this patch going through your tree?
+>
+> Thanks,
+>     Sergio Paracuellos
 
-One question, not so much about this particular case, but is there no
-"standalone" version of the gtwx5715 sold by gemtek? Asking as I don't
-see it in the enum above. The description sounds like it is both a
-product in its own right & sold rebadged.
+Gentle ping on this patch. I guess nothing missing is here and this
+patch can just be added with Rob's RB?
 
-Thanks,
-Conor.
-
->        - items:
->            - enum:
->                - gateworks,gw2358
-> +              - intel,kixrp435
->            - const: intel,ixp43x
-> =20
->  additionalProperties: true
->=20
-> --=20
-> 2.41.0
->=20
-
---mVcj+xAQdlYPKMGQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRKVlgAKCRB4tDGHoIJi
-0nW+AQC8AxeAroONjWOHevrxZvaVtHlrQN+R870SLjm+/K0FhAEAwDsrPwg6BMJO
-OgbGdX9u5+Z5o2Xp5bzAPJxoDBR60AM=
-=zYJe
------END PGP SIGNATURE-----
-
---mVcj+xAQdlYPKMGQ--
+Best regards,
+    Sergio Paracuellos
+>
+> >
+> > Thanks!
+> >
+> > Best regards,
+> >     Sergio Paracuellos
+> > >
+> > > (the error report can be ignored)
 
