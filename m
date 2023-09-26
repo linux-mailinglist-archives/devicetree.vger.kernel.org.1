@@ -1,191 +1,206 @@
-Return-Path: <devicetree+bounces-3377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0E907AE9A8
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 11:56:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 867F17AEA01
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 12:10:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id A07C328117B
-	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 09:56:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id A8AE91C2040C
+	for <lists+devicetree@lfdr.de>; Tue, 26 Sep 2023 10:10:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A01B118E1B;
-	Tue, 26 Sep 2023 09:56:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC01B1A262;
+	Tue, 26 Sep 2023 10:10:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01ED912B70
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 09:55:59 +0000 (UTC)
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48916CCB
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 02:55:58 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9ad8bf9bfabso1053418166b.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 02:55:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1695722156; x=1696326956; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oCGAB9bjd2rRkobql917EBDyBbo8Xf1tmOkuieid9Qw=;
-        b=HFmsZ4RrW76dmgghgjnLmy/if7RGsBsH4gCiOAm04mIl6nM43bU4nQtLpo9Mipeio4
-         JUhdNIn4w3HgA3gLB+81owUI+uiPg/4oyDitaKB+k6BzOwxh8C6RoMsHT6RFdWJ/t5fa
-         kZkn3eT+bQKDuIZbyX+KdFGTZlx/r1PFcgLzEr1Wa9Gxr4hkCtQiDoaruQAnT9TdaoLw
-         Lk8iZytyVRi3Hc982kBcXwdfyLV5KKQ7qefdk6LDk/U0aXwxhIAfzfZc7PFdV29YdBRj
-         k6fRmlWHQ+eJ/xaWFtECSUf0Xd7QCXN5TOpRM4YTq/E0wPiTnPiEcvndPYLYKtNKLhqs
-         A6tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695722156; x=1696326956;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oCGAB9bjd2rRkobql917EBDyBbo8Xf1tmOkuieid9Qw=;
-        b=qPqd5z3JT4jpSqgmOcAPrEhC0hma2QFwG6ydW/a4b/5SL9hKVFkYZSR1GhQhfm1xJp
-         CmUVVw8+vuyMgXNPJw/TPGqRcsKYUrM1XjP0Cv859dXcSU0JAB2H7YoKvRdSBIRUcYag
-         vMlUzA35AzwyHkK8F3cDpj7mpM8DR1p6XR5KRIWt00HHX+u3ZRnPZjxYzEOF1eTy/YW+
-         6k1R7f6hXyxg91+Vu9QwANbxt4dkReArNzNzhC4ROmmbLT3Lad7nJZ7CPzS5AkaW7Xe7
-         EHN+jYLDx9BaxlXPl93TYfoNfBalzrmaYghO/xmYw+6Du+qpR7VCAn9SoqN5wsqnPogK
-         pAHw==
-X-Gm-Message-State: AOJu0YwgP30PRNYnS71XaNe9LALqgcHzlMIfcO8N2hOcz//x9Y0maYcx
-	TeO58ye0x0z8dtGyf7qS8IPZ1/GbxgRMBq9Q76A=
-X-Google-Smtp-Source: AGHT+IEiQ8iJO3tEsrKT6DurQH2FvKo0uS+xJFcGLGiCr6SvtCfNXfJUyT6nkOwQSaE5M72oHauuhA==
-X-Received: by 2002:a17:906:3188:b0:9ae:5fdc:aee8 with SMTP id 8-20020a170906318800b009ae5fdcaee8mr8441103ejy.53.1695722156458;
-        Tue, 26 Sep 2023 02:55:56 -0700 (PDT)
-Received: from [192.168.32.2] ([82.78.167.177])
-        by smtp.gmail.com with ESMTPSA id j26-20020a170906831a00b00997d7aa59fasm7698269ejx.14.2023.09.26.02.55.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Sep 2023 02:55:55 -0700 (PDT)
-Message-ID: <1f1b5174-cfd4-4393-3a86-9adfc8c2cce1@tuxon.dev>
-Date: Tue, 26 Sep 2023 12:55:53 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 114E218E1B
+	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 10:10:26 +0000 (UTC)
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2059.outbound.protection.outlook.com [40.107.6.59])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 323CE97;
+	Tue, 26 Sep 2023 03:10:24 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RZsFXaY2vzYs9KY3uIgOfEvJ1itkXjF7+gdIiKagZgY+JGMYDFpY/eDOaY90UzX3yjpY5RHr7i76LKk1f+Ia5exBa5IZni1t8KvJCyT77imSDh5J/i5p9KQl8yMNNGoUfr4jCUbEL8uHfZnuRcpFPr8PD+qGVw4O7DMIwY3JKx9h9X12Iuof7rDUfUUQ1OZ2pjIWUUIaBzckCfpapgJ1qhRx7f+Oh4fsJCoHHXX/tSjiOUHXwTrr7a1ABYbedyV/LuapACwwXCBRO4EFqIL7/Hbyd7PGCb3LoC3CswACkg7abooXYv0rT9WjUXW1TjVoPpKp7IrdzsL8RUFFTlU5pA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mSiaO2jgVQSVZZjDdSW0RixFyyXTmS/xSWR5m2cQI2g=;
+ b=PsqObSkCDfa90NMofQ8fLMgn8adiibTBQNcbNmxVNpndZWSVcP+cAvy/ZwwZP7ZYY3I2zCPRW3jnQ6teN3h1Crk325vB50TIl74qJZ6fktpCqOu6KetxLnUOo+puRV9X5+FMPhi6gzYNBLKRR9qPWvNTB1qAz0/RU2rAPzP5IEysWNOt0FLJz5r3fMIvKD7nXYN4k3WC+O2QazCKIIEtUriJ0UiZX9suH/LhPsZkFjTdRtEQhC+rwEEsOZctgdaSozwqvzdmMD49C8XB8TacHmXm9kX72hWqwLVucMgYqjWcntutsvHPLtDQjITTAy/L9AxaPDNgfvkiX6cV3sxufQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mSiaO2jgVQSVZZjDdSW0RixFyyXTmS/xSWR5m2cQI2g=;
+ b=Xp9PSUwy96lcKPu0b9BdUeJea+muwNN4j3Xc+BsatAWCNr+hHLnbmjmpZg11ZGadFnx+YeDraHuH5LVkehuG9Olxtcw1epFPPwb/yC1TmvW5wYL935tYb4ThPHyWJt4D3sZhNw8C+HYh1j2qZEf0kKRVfXpC1l/4XGuQJVD1N2Y=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
+ by PAXPR04MB8142.eurprd04.prod.outlook.com (2603:10a6:102:1ce::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Tue, 26 Sep
+ 2023 10:10:21 +0000
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::71e6:21de:ecb2:560f]) by AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::71e6:21de:ecb2:560f%4]) with mapi id 15.20.6813.027; Tue, 26 Sep 2023
+ 10:10:21 +0000
+From: Ming Qian <ming.qian@nxp.com>
+To: mirela.rabulea@oss.nxp.com,
+	robh+dt@kernel.org,
+	shawnguo@kernel.org
+Cc: krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	mchehab@kernel.org,
+	hverkuil-cisco@xs4all.nl,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	xiahong.bao@nxp.com,
+	eagle.zhou@nxp.com,
+	tao.jiang_2@nxp.com,
+	linux-imx@nxp.com,
+	devicetree@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v4 1/2] arm64: dts: imx8-ss-img: Assign slot for imx jpeg encoder/decoder
+Date: Tue, 26 Sep 2023 18:09:59 +0800
+Message-Id: <20230926101000.13392-1-ming.qian@nxp.com>
+X-Mailer: git-send-email 2.38.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR04CA0209.apcprd04.prod.outlook.com
+ (2603:1096:4:187::12) To AM6PR04MB6341.eurprd04.prod.outlook.com
+ (2603:10a6:20b:d8::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 25/37] pinctrl: renesas: rzg2l: adapt function number for
- RZ/G3S
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- ulf.hansson@linaro.org, linus.walleij@linaro.org,
- gregkh@linuxfoundation.org, jirislaby@kernel.org, magnus.damm@gmail.com,
- catalin.marinas@arm.com, will@kernel.org,
- prabhakar.mahadev-lad.rj@bp.renesas.com, biju.das.jz@bp.renesas.com,
- quic_bjorande@quicinc.com, arnd@arndb.de, konrad.dybcio@linaro.org,
- neil.armstrong@linaro.org, nfraprado@collabora.com, rafal@milecki.pl,
- wsa+renesas@sang-engineering.com, linux-renesas-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
- <20230912045157.177966-26-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdVkttQpA-s0MrKbTVxJ6K+xXmhV3sNNLTAPSbDa0f8XYA@mail.gmail.com>
-Content-Language: en-US
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <CAMuHMdVkttQpA-s0MrKbTVxJ6K+xXmhV3sNNLTAPSbDa0f8XYA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR04MB6341:EE_|PAXPR04MB8142:EE_
+X-MS-Office365-Filtering-Correlation-Id: b3a54493-d165-453d-3fa3-08dbbe78cad7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	TFT1B/e5Ud5Uahy0HAPCcn1kUzDInYshDVx/UJ46j2rRqC1qEYL+q/SI+Wu9fJyo8MbXa4urNGShvXPq+eF/bB/0HOcdSxoT/MUhk0pVvEs2qmJvofVwoS6NW/oRR8iQnwTmuRZy+46Z70MsQrKiikqnxC2ddSKwrEvVd8xSkX6aUnWSNT47fQcSJjLno9hYMtjhM3CYqUS7CM7p7uJHvr02SGaQLqIgbWmDGEtkMAMuQ4OiETWFnRqqa+Ur/72+bYPqBW5Z4KOn1dFYdB9lPZkuR+i0NiZkQTVsTLDQxjDZvcIA3gNrtw5Vvh+ETdafbRGM6l/4JkRd8yxOAHcWVKvWKwOWm+eTgQLWXMEMyPydvW6ifpnkZVWntVdnIl5BR5QXgN0d++NDaaCVm2nTsL5RiBoXoZcmgDBlN0o+Tuew/gNH6thjaglr9JyY02s+5h1Fca2Ftdscb+J+hSr5+L0IXkVnJwhziK6Gl8pw1/KEZcBMWe4iyYKuBcuRvB6MEwBY36MWhatNCo1xkBlk6JbxgKe2bImHe39lJI30SpdgxaABn8I/pHlgXV1U1T1lYSTNKQevNRMNpHuhj3rXGSksZiHHGQK6OemfCfzhs9St7nIjXhUmK4IhCCa0XPmK
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(376002)(366004)(346002)(39860400002)(136003)(230922051799003)(451199024)(1800799009)(186009)(2616005)(26005)(1076003)(52116002)(6506007)(6512007)(86362001)(38100700002)(38350700002)(36756003)(83380400001)(66476007)(316002)(41300700001)(4326008)(44832011)(8936002)(8676002)(5660300002)(66946007)(2906002)(7416002)(478600001)(6666004)(6486002)(66556008);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?2V4/xGVvBxxEnbEHpKEIpvIJCGeF9b3QxPw1475x53247mnfgEe5ZePvI+a5?=
+ =?us-ascii?Q?nS5ml/pHr6NwW3Mry2sVt/IEYhw8RfpGd8myh4FGOPrJ+5f5YiVbwbfbUIgF?=
+ =?us-ascii?Q?bYIBPz8xjEx38qM3WQ+lj00eVpqWQXRMoFdaJsuJnVNqlrAEO8cO0CavLrzs?=
+ =?us-ascii?Q?tSxgMvC01qtZeXC9Xz2w+SoxY7rXF0DD17JYzYlLYw5BvSKGxRHlDqIEgr/m?=
+ =?us-ascii?Q?rgn2gDvkkgg8u2DEe/BjmAIjPK+9qpS+kfJ9AysK2vnD3KXWQExrTOItIgL7?=
+ =?us-ascii?Q?PyEVccq9iWoO28lzd6iBrAZUgaNLQmP+8cocxJOaCN+WHn15uZrI7F2Z+yma?=
+ =?us-ascii?Q?xd5eDIQsD5qgKq4q7iW8R/7TKuI9CfjKSzWoPW+pTSqJ+ZUNe29q/Q/Zh/1z?=
+ =?us-ascii?Q?VR6G6kKpp22jkqkoyijEvP70eVFmykWh+YdXOcfMw0O8rnJo+BXxAaqUP0VR?=
+ =?us-ascii?Q?qRzvSvPj1EOF9aJpH0OO9aP0WuzfYQsmkg/szwfO0OBLJX3Ln0ADrfjf3EwV?=
+ =?us-ascii?Q?F943a8I13qVDl1NSjB+1bVr974aPrnkL40kENC+/Z6SBpmIq790zv11cq2Tb?=
+ =?us-ascii?Q?ZuRShECoRxJ6A+nBHrliyvW4MOU6aSggw15Z4VbIFdyc/X1pqhHL+K+Lmvxq?=
+ =?us-ascii?Q?B+XF56+KCnIn/XVKnp5Wgo6wwnW4+IgOMvkIDKdn3S6ZwQO0pFZUx2alnr5i?=
+ =?us-ascii?Q?RGE+dl7u6sr3BbDsnrPH3GR4PeQqElaoFabSqvyvAB12kSqesz78EQw+jCUs?=
+ =?us-ascii?Q?ZordgNKQKqU0W0NeSWxsKcvsh/1SJ3YwJbYUiLtJqUzCrdO/KBDfBf7a6zAu?=
+ =?us-ascii?Q?JB5AAwVJz4DrA66/788kixiUY+W3QmP/QW1rWb7o97GfrwYrK6DsKxOj/CdC?=
+ =?us-ascii?Q?hx/zy+zSEpyuTfzyEGQIQGKltz1FDigTjbkL5Fon3atbpfsEIS7riDFk50BW?=
+ =?us-ascii?Q?WqnKpfdTDwjKPZIUvcDE6LLRn3+DgEhkO1DBjxg6h7AwfhFMBDA4i2DQSzif?=
+ =?us-ascii?Q?3Yhoyb4XuhBx5gMSvxElCCb6ctGWTas8Dj8Gj5osqE1Fk0+5q6ALM3Jv2ULW?=
+ =?us-ascii?Q?mfSigcneE4g1c1UgKJ00Vg2KL7pS9AOxGqPBO28q/1/CN6TuYnZp5U0Sj3Yp?=
+ =?us-ascii?Q?+0rpelM5v5WNC+DY+g4xNeB8mVM7//O3QsnkDLMFIHjftor01xQlA9xrTVyr?=
+ =?us-ascii?Q?BGhWLEO2XLt5MOBE/HFT4FS3wWdFj0eFDi8Gg1CGAhE3GZiruMuF7iejgO9R?=
+ =?us-ascii?Q?N12SLSiMgkHKaHeZwQHktaMl7T/BH5UXYl4FAJRDp8puA5qdPci4Fc3KSpsf?=
+ =?us-ascii?Q?8EBtRZzRxcucXquRN75362AxFc1npMJro+20cKPe5b44OvSGo5jUTegD71gu?=
+ =?us-ascii?Q?Ji3zWoLTsF31arvuoe8z6hWugfgqg3UCWXXl5fWf2F99oDXgdsAjt2FuanHd?=
+ =?us-ascii?Q?AeO8IH7Sy9C0U9C7iINRJQZXsmWyFFpvkPh8Dow0AtljuJc7kPctSZXjwHHE?=
+ =?us-ascii?Q?03ZL4rYN5Ogmy8915bOAzn8y3t+RA6XYtoCj5J/ai68Vk1/GerElId7IPhjm?=
+ =?us-ascii?Q?QOH63u7z/o84tm3UWc2gUK+Kd/lEqdqCYo7Z+fDl?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b3a54493-d165-453d-3fa3-08dbbe78cad7
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2023 10:10:21.3636
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pPTTC/seNWsPZB1NTyP6NEuwDyZoDHrOe95zwMsn9+1QQwZFYvKmm6CTQwIY41IVVx+zQPYetAYa93YOtp105A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8142
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi, Geert,
+There are total 4 slots available in the IP, and we only need to use one
+slot in one os, assign a single slot for imx jpeg device node, configure
+interrupt and power domain only for 1 slot, not for the all 4 slots.
 
-On 21.09.2023 15:51, Geert Uytterhoeven wrote:
-> Hi Claudiu,
-> 
-> Thanks for your patch!
-> 
-> On Tue, Sep 12, 2023 at 6:53 AM Claudiu <claudiu.beznea@tuxon.dev> wrote:
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> On RZ/G3S PFC register allow setting 8 functions for individual ports
->> (function1 to function8). For function1 register need to be configured
->> with 0, for function8 register need to be configured with 7.
->> We cannot use zero based addressing when requesting functions from
->> different code places as documentation (RZG3S_pinfunction_List_r1.0.xlsx)
->> states explicitly that function0 has different meaning.
-> 
-> According to that table, function0 is GPIO.
+Signed-off-by: Ming Qian <ming.qian@nxp.com>
+---
+v4
+- improve the commit message
+v3
+- add vender prefix, change property slot to nxp,slot
 
-Yes, I'll mention it like this in the next version.
+ .../arm64/boot/dts/freescale/imx8-ss-img.dtsi | 22 +++++--------------
+ 1 file changed, 6 insertions(+), 16 deletions(-)
 
-> 
->> For this add a new member to struct rzg2l_hwcfg that will keep the
->> offset that need to be substracted before applying a value to PFC register.
->>
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> 
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> 
-> But one question below...
-> 
->> --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
->> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
->> @@ -136,9 +136,11 @@ struct rzg2l_register_offsets {
->>  /**
->>   * struct rzg2l_hwcfg - hardware configuration data structure
->>   * @regs: hardware specific register offsets
->> + * @func_base: base number for port function (see register PFC)
->>   */
->>  struct rzg2l_hwcfg {
->>         const struct rzg2l_register_offsets regs;
->> +       u8 func_base;
->>  };
->>
->>  struct rzg2l_dedicated_configs {
->> @@ -221,6 +223,7 @@ static int rzg2l_pinctrl_set_mux(struct pinctrl_dev *pctldev,
->>                                  unsigned int group_selector)
->>  {
->>         struct rzg2l_pinctrl *pctrl = pinctrl_dev_get_drvdata(pctldev);
->> +       const struct rzg2l_hwcfg *hwcfg = pctrl->data->hwcfg;
->>         const struct pinctrl_pin_desc *pin_desc;
->>         unsigned int i, *psel_val, *pin_data;
->>         struct function_desc *func;
->> @@ -247,9 +250,9 @@ static int rzg2l_pinctrl_set_mux(struct pinctrl_dev *pctldev,
->>                 off = RZG2L_PIN_CFG_TO_PORT_OFFSET(*pin_data);
->>
->>                 dev_dbg(pctrl->dev, "port:%u pin: %u off:%x PSEL:%u\n", port,
->> -                       pin, off, psel_val[i]);
->> +                       pin, off, psel_val[i] - hwcfg->func_base);
->>
->> -               rzg2l_pinctrl_set_pfc_mode(pctrl, pin, off, psel_val[i]);
->> +               rzg2l_pinctrl_set_pfc_mode(pctrl, pin, off, psel_val[i] - hwcfg->func_base);
->>         }
->>
->>         return 0;
-> 
-> Perhaps the adjustment should be done in rzg2l_dt_subnode_to_map()
-> instead, when obtaining MUX_FUNC() from DT? That would allow you to do
-> some basic validation on it too, which is currently completely missing
-> (reject out-of-range values overflowing into adjacent PFC fields,
-> reject zero on RZ/G3S).
+diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi
+index a90654155a88..3043c416c43e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi
+@@ -18,10 +18,7 @@ img_ipg_clk: clock-img-ipg {
+ 
+ 	jpegdec: jpegdec@58400000 {
+ 		reg = <0x58400000 0x00050000>;
+-		interrupts = <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
+-			     <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
+-			     <GIC_SPI 311 IRQ_TYPE_LEVEL_HIGH>,
+-			     <GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>;
++		interrupts = <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&img_jpeg_dec_lpcg IMX_LPCG_CLK_0>,
+ 			 <&img_jpeg_dec_lpcg IMX_LPCG_CLK_4>;
+ 		clock-names = "per", "ipg";
+@@ -29,18 +26,13 @@ jpegdec: jpegdec@58400000 {
+ 				  <&img_jpeg_dec_lpcg IMX_LPCG_CLK_4>;
+ 		assigned-clock-rates = <200000000>, <200000000>;
+ 		power-domains = <&pd IMX_SC_R_MJPEG_DEC_MP>,
+-				<&pd IMX_SC_R_MJPEG_DEC_S0>,
+-				<&pd IMX_SC_R_MJPEG_DEC_S1>,
+-				<&pd IMX_SC_R_MJPEG_DEC_S2>,
+-				<&pd IMX_SC_R_MJPEG_DEC_S3>;
++				<&pd IMX_SC_R_MJPEG_DEC_S0>;
++		nxp,slot = <0>;
+ 	};
+ 
+ 	jpegenc: jpegenc@58450000 {
+ 		reg = <0x58450000 0x00050000>;
+-		interrupts = <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>,
+-			     <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>,
+-			     <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
+-			     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>;
++		interrupts = <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&img_jpeg_enc_lpcg IMX_LPCG_CLK_0>,
+ 			 <&img_jpeg_enc_lpcg IMX_LPCG_CLK_4>;
+ 		clock-names = "per", "ipg";
+@@ -48,10 +40,8 @@ jpegenc: jpegenc@58450000 {
+ 				  <&img_jpeg_enc_lpcg IMX_LPCG_CLK_4>;
+ 		assigned-clock-rates = <200000000>, <200000000>;
+ 		power-domains = <&pd IMX_SC_R_MJPEG_ENC_MP>,
+-				<&pd IMX_SC_R_MJPEG_ENC_S0>,
+-				<&pd IMX_SC_R_MJPEG_ENC_S1>,
+-				<&pd IMX_SC_R_MJPEG_ENC_S2>,
+-				<&pd IMX_SC_R_MJPEG_ENC_S3>;
++				<&pd IMX_SC_R_MJPEG_ENC_S0>;
++		nxp,slot = <0>;
+ 	};
+ 
+ 	img_jpeg_dec_lpcg: clock-controller@585d0000 {
+-- 
+2.38.1
 
-I'll have a look on this. I see .set_mux() can also be called from sysfs
-though pinmux-select exported file thus, I don't know at the moment if
-validating it on rzg2l_dt_subnode_to_map() will be enough.
-
-Would it be OK to have this outside of this series or you would prefer it now?
-
-Thank you,
-Claudiu Beznea
-
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> 
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
 
