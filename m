@@ -1,242 +1,267 @@
-Return-Path: <devicetree+bounces-4004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D0637B0FA3
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 01:50:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99CFB7B0FB8
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 01:58:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id BBFFF281945
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 23:50:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id E3CA8281127
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 23:58:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3316D4D918;
-	Wed, 27 Sep 2023 23:50:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDB304D91F;
+	Wed, 27 Sep 2023 23:58:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7210D1079A
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 23:50:32 +0000 (UTC)
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 475A7F5
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 16:50:30 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-504a7f9204eso1727654e87.3
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 16:50:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1695858628; x=1696463428; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SQOY6tEOrqC0mvJgxPaq1cgtEoQjHgAb4TcKrL7E2Jg=;
-        b=SfeMRVsX/3mciiQbrewbqiY6TrJdBmDYy8w3bzErj8xg/wiimqF460972CxAH2mvcT
-         ceFchHj8a4thZdTwPQtRUZTpFE3m+Xa37bO63SaRksyc/gxY/0ZvTZMuhuTgIQVub6sp
-         mUWt11H+3NMJ6b85d+T02sSyR32AS4jeOQz0I=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695858628; x=1696463428;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SQOY6tEOrqC0mvJgxPaq1cgtEoQjHgAb4TcKrL7E2Jg=;
-        b=Z9qX9LxVStm1t/7i3ZxlONtR9JhhhA9I4iyzpm88Tbjq0B9lKWtnXDSUVrOJBES5m7
-         7JBEWDs/O6zAV2IOjJ/SiPEjrJUr6KpLC5Mm6SYcsDckty74Si/RhCLR9T6MVuUq/14S
-         wa3yJxq1Ox7Tb5iULOofQpP8YQRW0hj9r3dX957XSwncBDJODZ7yY2izWxoi656OW1EU
-         wZGng6J41p0ihYJ0PdehKVSgRSm8nMvDS4IjKRSgeUhXGVIyYQ8fKIa6UaUU4iu8ZsSZ
-         ZATsvoMcoxTpsEfzJl4QQCWHgyUhycnzQqSQIlu/7v0wNLRReOUoNLe3LN5gDTeA5JUL
-         kwiw==
-X-Gm-Message-State: AOJu0Yx8tQv10M8BCuOW2WW7yXC8cnltSX3gy2ygX5Knk35S62yQzu+H
-	Oov4cTTpS2KhVKeZf/hQiognMk5e/vwVcYNd0kbprnLJ
-X-Google-Smtp-Source: AGHT+IHWW0PiLI+o05IKxdKkvys1ECRQChxKaulv7VT//TJeivxjo5XGJlM8D872CYyRN3xIpjGz+A==
-X-Received: by 2002:a19:8c12:0:b0:4fe:8c1d:9e81 with SMTP id o18-20020a198c12000000b004fe8c1d9e81mr2511957lfd.36.1695858627623;
-        Wed, 27 Sep 2023 16:50:27 -0700 (PDT)
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com. [209.85.208.47])
-        by smtp.gmail.com with ESMTPSA id f19-20020a056402151300b0053090e2afafsm8734122edw.22.2023.09.27.16.50.26
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Sep 2023 16:50:26 -0700 (PDT)
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-53074ee0c2aso3988a12.1
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 16:50:26 -0700 (PDT)
-X-Received: by 2002:a50:d71d:0:b0:52f:2f32:e76c with SMTP id
- t29-20020a50d71d000000b0052f2f32e76cmr365834edi.2.1695858626384; Wed, 27 Sep
- 2023 16:50:26 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87D2B1079A
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 23:58:10 +0000 (UTC)
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC8CCF4;
+	Wed, 27 Sep 2023 16:58:08 -0700 (PDT)
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1qlePg-00049j-38;
+	Wed, 27 Sep 2023 23:57:53 +0000
+Date: Thu, 28 Sep 2023 00:55:33 +0100
+From: Daniel Golle <daniel@makrotopia.org>
+To: Frank Wunderlich <linux@fw-web.de>
+Cc: linux-mediatek@lists.infradead.org,
+	Frank Wunderlich <frank-w@public-files.de>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 3/4] thermal/drivers/mediatek/lvts_thermal: make coeff
+ configurable
+Message-ID: <ZRTA9UtVm9zxf2QD@pidgin.makrotopia.org>
+References: <20230922055020.6436-1-linux@fw-web.de>
+ <20230922055020.6436-4-linux@fw-web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230921102420.RFC.1.I9dddd99ccdca175e3ceb1b9fa1827df0928c5101@changeid>
- <CAL_Jsq+noP32-m5xdUCLFPFBXLxX9Ys1BNFM+9sga6KYTmDzqQ@mail.gmail.com>
- <CAD=FV=WXxGhX0Fw2nSS7PxYb1O-LUewAhoUVPn=2EpbSD2OeHQ@mail.gmail.com>
- <CAL_JsqKJyRJmwJzB1yew71Ld7BeMMat+rzhX9XtDtiFE8Dbvcw@mail.gmail.com>
- <CAD=FV=UgFzT0TW2WEV0Wmk05EXUad2EYhN2DcckAxE_Lw5gV1Q@mail.gmail.com> <ZROVSAoKF9bimnSP@nixie71>
-In-Reply-To: <ZROVSAoKF9bimnSP@nixie71>
-From: Doug Anderson <dianders@chromium.org>
-Date: Wed, 27 Sep 2023 16:50:13 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UR47x+t37B2+Myv0qvvOJMFxVe-Fj7js=-Ez2GWuDySg@mail.gmail.com>
-Message-ID: <CAD=FV=UR47x+t37B2+Myv0qvvOJMFxVe-Fj7js=-Ez2GWuDySg@mail.gmail.com>
-Subject: Re: [RFC PATCH] of: device: Support 2nd sources of probeable but
- undiscoverable devices
-To: Jeff LaBundy <jeff@labundy.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, 
-	Benjamin Tissoires <benjamin.tissoires@redhat.com>, Chen-Yu Tsai <wenst@chromium.org>, 
-	linux-input@vger.kernel.org, Jiri Kosina <jikos@kernel.org>, 
-	Hsin-Yi Wang <hsinyi@chromium.org>, linux-gpio@vger.kernel.org, linus.walleij@linaro.org, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Johan Hovold <johan+linaro@kernel.org>, 
-	andriy.shevchenko@linux.intel.com, broonie@kernel.org, frowand.list@gmail.com, 
-	gregkh@linuxfoundation.org, hdegoede@redhat.com, james.clark@arm.com, 
-	james@equiv.tech, keescook@chromium.org, linux-kernel@vger.kernel.org, 
-	rafael@kernel.org, tglx@linutronix.de
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230922055020.6436-4-linux@fw-web.de>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
 	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi,
+On Fri, Sep 22, 2023 at 07:50:19AM +0200, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
+> 
+> The upcoming mt7988 has different temperature coefficients so we
+> cannot use constants in the functions lvts_golden_temp_init,
+> lvts_golden_temp_init and lvts_raw_to_temp anymore.
+> 
+> Add a field in the lvts_ctrl pointing to the lvts_data which now
+> contains the soc-specific temperature coefficents.
+> 
+> To make the code better readable, rename static int coeff_b to
+> golden_temp_offset, COEFF_A to temp_factor and COEFF_B to temp_offset.
+> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-On Tue, Sep 26, 2023 at 7:37=E2=80=AFPM Jeff LaBundy <jeff@labundy.com> wro=
-te:
->
-> Hi Doug,
->
-> On Fri, Sep 22, 2023 at 05:11:10PM -0700, Doug Anderson wrote:
-> > Hi,
-> >
-> > On Fri, Sep 22, 2023 at 12:08=E2=80=AFPM Rob Herring <robh+dt@kernel.or=
-g> wrote:
-> > >
-> > > > > This seems like overkill to me. Do we really need groups and a mu=
-tex
-> > > > > for each group? Worst case is what? 2-3 groups of 2-3 devices?
-> > > > > Instead, what about extending "status" with another value
-> > > > > ("fail-needs-probe"? (fail-xxx is a documented value)). Currently=
-, the
-> > > > > kernel would just ignore nodes with that status. Then we can proc=
-ess
-> > > > > those nodes separately 1-by-1.
-> > > >
-> > > > My worry here is that this has the potential to impact boot speed i=
-n a
-> > > > non-trivial way. While trackpads and touchscreens _are_ probable,
-> > > > their probe routines are often quite slow. This is even mentioned i=
-n
-> > > > Dmitry's initial patches adding async probe to the kernel. See comm=
-it
-> > > > 765230b5f084 ("driver-core: add asynchronous probing support for
-> > > > drivers") where he specifically brings up input devices as examples=
-.
->
-> Ideally, all but one driver in a group should bail out of probe quickly i=
-f
-> the device is not populated. If not, I would consider that to be a bug or=
- at
-> least room for improvement in that driver.
->
-> The reason input devices can take a while to probe is because they may be
-> loading FW over I2C or performing some sort of calibration procedure; onl=
-y
-> one driver in the group should get that far.
+Tested-by: Daniel Golle <daniel@makrotopia.org>
 
-Hmm, that's not my experience. Specifically I've seen i2c-hid devices
-whose datasheets say that you're not allowed to talk i2c to them at
-all for hundreds of milliseconds after you power them on. See, for
-instance, "i2c-hid-of-goodix.c" which has a "post_gpio_reset_delay_ms"
-of 180 ms and "i2c-hid-of-elan.c" which has one of 300 ms.
-
-As I understand it these touchscreens have firmware on them and that
-firmware can take a while to boot. Until the firmware boots they won't
-respond over i2c. This is simply not something that Linux can do
-anything about.
-
-About the best you could do would be to add a board-specific driver
-that understood that it could power up the rails, wait the maximum
-amount of time that all possible touchscreens might need, and then
-look for i2c ACKs. I'm still hoping to hear from Rob about how I would
-get a board-specific driver to load on a DT system so I can
-investigate / prototype this.
-
-
-> > > We could add information on the class of device. touchscreen and
-> > > touchpad aliases or something.
-> >
-> > Ah, I see. So something like "fail-needs-probe-<class>". The
-> > touchscreens could have "fail-needs-probe-touchscreen" and the
-> > trackpads could have "fail-needs-probe-trackpad" ? That could work. In
-> > theory that could fall back to the same solution of grabbing a mutex
-> > based on the group ID...
-> >
-> > Also: if having the mutex in the "struct device" is seen as a bad
-> > idea, it would also be easy to remove. __driver_probe_device() could
-> > just make a call like "of_device_probe_start()" at the beginning that
-> > locks the mutex and then "of_device_probe_end()" that unlocks it. Both
-> > of those calls could easily lookup the mutex in a list, which would
-> > get rid of the need to store it in the "struct device".
-> >
-> >
-> > > > That would lead me to suggest this:
-> > > >
-> > > >   &i2c_bus {
-> > > >     trackpad-prober {
-> > > >       compatible =3D "mt8173-elm-hana-trackpad-prober";
-> > > >
-> > > >       tp1: trackpad@10 {
-> > > >         compatible =3D "hid-over-i2c";
-> > > >         reg =3D <0x10>;
-> > > >         ...
-> > > >         post-power-on-delay-ms =3D <200>;
-> > > >       };
-> > > >       tp2: trackpad@20 {
-> > > >         compatible =3D "hid-over-i2c";
-> > > >         reg =3D <0x20>;
-> > > >         ...
-> > > >         post-power-on-delay-ms =3D <200>;
-> > > >       };
-> > > >     };
-> > > >   };
-> > > >
-> > > > ...but I suspect that would be insta-NAKed because it's creating a
-> > > > completely virtual device ("mt8173-elm-hana-trackpad-prober") in th=
-e
-> > > > device tree. I don't know if there's something that's functionally
-> > > > similar that would be OK?
->
-> This solution seems a bit confusing to me, and would require more edits
-> to the dts each time a second source is added. It also means one would
-> have to write a small platform driver for each group of devices, correct?
-
-No matter what we need to add something to the dts each time a second
-source is added, right?
-
-While it's true that we'd end up with some extra drivers, if we do it
-correctly we don't necessarily need a driver for each group of devices
-nor even a driver per board. If several boards have very similar
-probing requirements then, even if they have unique "compatible"
-strings they could still end up using the same Linux driver.
-
-I've actually been talking offline with folks on ChromeOS more about
-this problem as well. Chen-Yu actually pointed at a patch series (that
-never landed, I guess) that has some similar ideas [1]. I guess in
-that case Hans was actually constructing device tree properties
-manually in the driver. I was thinking more of having all of the
-options listed in the device tree and then doing something that only
-causes some of them to probe.
-
-If Rob was OK with it, I guess I could have some sort of top-level
-"hwmanager" node like Hans did and then have phandle links to all the
-hardware that are managed by it. Then I could just change those to
-"okay"?
-
-Ideally, though, this could somehow use device tree "overlays" I
-guess. That seems like almost a perfect fit. I guess the issue here,
-though, is that I'd want the overlays bundled together with the
-original DT and then the board-specific "hardware prober" driver to
-actually apply the overlays after probing. Does that seem sensible?
-
-
-[1] https://lore.kernel.org/linux-arm-kernel/20160901190820.21987-1-hdegoed=
-e@redhat.com/
+> ---
+> v2:
+> - rename static int coeff_b to golden_temp_offset
+> - rename coeff.a to temp_factor and coeff.b to temp_offset
+> ---
+>  drivers/thermal/mediatek/lvts_thermal.c | 51 ++++++++++++++++---------
+>  1 file changed, 34 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/mediatek/lvts_thermal.c
+> index effd9b00a424..c2669f405a94 100644
+> --- a/drivers/thermal/mediatek/lvts_thermal.c
+> +++ b/drivers/thermal/mediatek/lvts_thermal.c
+> @@ -80,8 +80,8 @@
+>  #define LVTS_SENSOR_MAX				4
+>  #define LVTS_GOLDEN_TEMP_MAX		62
+>  #define LVTS_GOLDEN_TEMP_DEFAULT	50
+> -#define LVTS_COEFF_A				-250460
+> -#define LVTS_COEFF_B				250460
+> +#define LVTS_COEFF_A_MT8195			-250460
+> +#define LVTS_COEFF_B_MT8195			250460
+>  
+>  #define LVTS_MSR_IMMEDIATE_MODE		0
+>  #define LVTS_MSR_FILTERED_MODE		1
+> @@ -94,7 +94,7 @@
+>  #define LVTS_MINIMUM_THRESHOLD		20000
+>  
+>  static int golden_temp = LVTS_GOLDEN_TEMP_DEFAULT;
+> -static int coeff_b = LVTS_COEFF_B;
+> +static int golden_temp_offset;
+>  
+>  struct lvts_sensor_data {
+>  	int dt_id;
+> @@ -112,6 +112,8 @@ struct lvts_ctrl_data {
+>  struct lvts_data {
+>  	const struct lvts_ctrl_data *lvts_ctrl;
+>  	int num_lvts_ctrl;
+> +	int temp_factor;
+> +	int temp_offset;
+>  };
+>  
+>  struct lvts_sensor {
+> @@ -126,6 +128,7 @@ struct lvts_sensor {
+>  
+>  struct lvts_ctrl {
+>  	struct lvts_sensor sensors[LVTS_SENSOR_MAX];
+> +	const struct lvts_data *lvts_data;
+>  	u32 calibration[LVTS_SENSOR_MAX];
+>  	u32 hw_tshut_raw_temp;
+>  	int num_lvts_sensor;
+> @@ -247,21 +250,21 @@ static void lvts_debugfs_exit(struct lvts_domain *lvts_td) { }
+>  
+>  #endif
+>  
+> -static int lvts_raw_to_temp(u32 raw_temp)
+> +static int lvts_raw_to_temp(u32 raw_temp, int temp_factor)
+>  {
+>  	int temperature;
+>  
+> -	temperature = ((s64)(raw_temp & 0xFFFF) * LVTS_COEFF_A) >> 14;
+> -	temperature += coeff_b;
+> +	temperature = ((s64)(raw_temp & 0xFFFF) * temp_factor) >> 14;
+> +	temperature += golden_temp_offset;
+>  
+>  	return temperature;
+>  }
+>  
+> -static u32 lvts_temp_to_raw(int temperature)
+> +static u32 lvts_temp_to_raw(int temperature, int temp_factor)
+>  {
+> -	u32 raw_temp = ((s64)(coeff_b - temperature)) << 14;
+> +	u32 raw_temp = ((s64)(golden_temp_offset - temperature)) << 14;
+>  
+> -	raw_temp = div_s64(raw_temp, -LVTS_COEFF_A);
+> +	raw_temp = div_s64(raw_temp, -temp_factor);
+>  
+>  	return raw_temp;
+>  }
+> @@ -269,6 +272,9 @@ static u32 lvts_temp_to_raw(int temperature)
+>  static int lvts_get_temp(struct thermal_zone_device *tz, int *temp)
+>  {
+>  	struct lvts_sensor *lvts_sensor = thermal_zone_device_priv(tz);
+> +	struct lvts_ctrl *lvts_ctrl = container_of(lvts_sensor, struct lvts_ctrl,
+> +						   sensors[lvts_sensor->id]);
+> +	const struct lvts_data *lvts_data = lvts_ctrl->lvts_data;
+>  	void __iomem *msr = lvts_sensor->msr;
+>  	u32 value;
+>  	int rc;
+> @@ -301,7 +307,7 @@ static int lvts_get_temp(struct thermal_zone_device *tz, int *temp)
+>  	if (rc)
+>  		return -EAGAIN;
+>  
+> -	*temp = lvts_raw_to_temp(value & 0xFFFF);
+> +	*temp = lvts_raw_to_temp(value & 0xFFFF, lvts_data->temp_factor);
+>  
+>  	return 0;
+>  }
+> @@ -348,10 +354,13 @@ static bool lvts_should_update_thresh(struct lvts_ctrl *lvts_ctrl, int high)
+>  static int lvts_set_trips(struct thermal_zone_device *tz, int low, int high)
+>  {
+>  	struct lvts_sensor *lvts_sensor = thermal_zone_device_priv(tz);
+> -	struct lvts_ctrl *lvts_ctrl = container_of(lvts_sensor, struct lvts_ctrl, sensors[lvts_sensor->id]);
+> +	struct lvts_ctrl *lvts_ctrl = container_of(lvts_sensor, struct lvts_ctrl,
+> +						   sensors[lvts_sensor->id]);
+> +	const struct lvts_data *lvts_data = lvts_ctrl->lvts_data;
+>  	void __iomem *base = lvts_sensor->base;
+> -	u32 raw_low = lvts_temp_to_raw(low != -INT_MAX ? low : LVTS_MINIMUM_THRESHOLD);
+> -	u32 raw_high = lvts_temp_to_raw(high);
+> +	u32 raw_low = lvts_temp_to_raw(low != -INT_MAX ? low : LVTS_MINIMUM_THRESHOLD,
+> +				       lvts_data->temp_factor);
+> +	u32 raw_high = lvts_temp_to_raw(high, lvts_data->temp_factor);
+>  	bool should_update_thresh;
+>  
+>  	lvts_sensor->low_thresh = low;
+> @@ -692,7 +701,7 @@ static int lvts_calibration_read(struct device *dev, struct lvts_domain *lvts_td
+>  	return 0;
+>  }
+>  
+> -static int lvts_golden_temp_init(struct device *dev, u32 *value)
+> +static int lvts_golden_temp_init(struct device *dev, u32 *value, int temp_offset)
+>  {
+>  	u32 gt;
+>  
+> @@ -701,7 +710,7 @@ static int lvts_golden_temp_init(struct device *dev, u32 *value)
+>  	if (gt && gt < LVTS_GOLDEN_TEMP_MAX)
+>  		golden_temp = gt;
+>  
+> -	coeff_b = golden_temp * 500 + LVTS_COEFF_B;
+> +	golden_temp_offset = golden_temp * 500 + temp_offset;
+>  
+>  	return 0;
+>  }
+> @@ -724,7 +733,7 @@ static int lvts_ctrl_init(struct device *dev, struct lvts_domain *lvts_td,
+>  	 * The golden temp information is contained in the first chunk
+>  	 * of efuse data.
+>  	 */
+> -	ret = lvts_golden_temp_init(dev, (u32 *)lvts_td->calib);
+> +	ret = lvts_golden_temp_init(dev, (u32 *)lvts_td->calib, lvts_data->temp_offset);
+>  	if (ret)
+>  		return ret;
+>  
+> @@ -735,6 +744,7 @@ static int lvts_ctrl_init(struct device *dev, struct lvts_domain *lvts_td,
+>  	for (i = 0; i < lvts_data->num_lvts_ctrl; i++) {
+>  
+>  		lvts_ctrl[i].base = lvts_td->base + lvts_data->lvts_ctrl[i].offset;
+> +		lvts_ctrl[i].lvts_data = lvts_data;
+>  
+>  		ret = lvts_sensor_init(dev, &lvts_ctrl[i],
+>  				       &lvts_data->lvts_ctrl[i]);
+> @@ -758,7 +768,8 @@ static int lvts_ctrl_init(struct device *dev, struct lvts_domain *lvts_td,
+>  		 * after initializing the calibration.
+>  		 */
+>  		lvts_ctrl[i].hw_tshut_raw_temp =
+> -			lvts_temp_to_raw(lvts_data->lvts_ctrl[i].hw_tshut_temp);
+> +			lvts_temp_to_raw(lvts_data->lvts_ctrl[i].hw_tshut_temp,
+> +					 lvts_data->temp_factor);
+>  
+>  		lvts_ctrl[i].low_thresh = INT_MIN;
+>  		lvts_ctrl[i].high_thresh = INT_MIN;
+> @@ -1223,6 +1234,8 @@ static int lvts_probe(struct platform_device *pdev)
+>  	if (irq < 0)
+>  		return irq;
+>  
+> +	golden_temp_offset = lvts_data->temp_offset;
+> +
+>  	ret = lvts_domain_init(dev, lvts_td, lvts_data);
+>  	if (ret)
+>  		return dev_err_probe(dev, ret, "Failed to initialize the lvts domain\n");
+> @@ -1338,11 +1351,15 @@ static const struct lvts_ctrl_data mt8195_lvts_ap_data_ctrl[] = {
+>  static const struct lvts_data mt8195_lvts_mcu_data = {
+>  	.lvts_ctrl	= mt8195_lvts_mcu_data_ctrl,
+>  	.num_lvts_ctrl	= ARRAY_SIZE(mt8195_lvts_mcu_data_ctrl),
+> +	.temp_factor	= LVTS_COEFF_A_MT8195,
+> +	.temp_offset	= LVTS_COEFF_B_MT8195,
+>  };
+>  
+>  static const struct lvts_data mt8195_lvts_ap_data = {
+>  	.lvts_ctrl	= mt8195_lvts_ap_data_ctrl,
+>  	.num_lvts_ctrl	= ARRAY_SIZE(mt8195_lvts_ap_data_ctrl),
+> +	.temp_factor	= LVTS_COEFF_A_MT8195,
+> +	.temp_offset	= LVTS_COEFF_B_MT8195,
+>  };
+>  
+>  static const struct of_device_id lvts_of_match[] = {
+> -- 
+> 2.34.1
+> 
 
