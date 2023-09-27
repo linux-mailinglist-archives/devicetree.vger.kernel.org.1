@@ -1,189 +1,297 @@
-Return-Path: <devicetree+bounces-3977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3DB97B0C18
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 20:44:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C402C7B0C41
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 20:54:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 8357E281C94
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 18:44:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id E092D1C20852
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 18:54:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE37B20B04;
-	Wed, 27 Sep 2023 18:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7977536AED;
+	Wed, 27 Sep 2023 18:54:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C33EEE574
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 18:44:50 +0000 (UTC)
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F0C4E6
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 11:44:45 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-405e48d8cfdso57169755e9.2
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 11:44:45 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C47AE27710
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 18:54:17 +0000 (UTC)
+Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 876DCDD
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 11:54:15 -0700 (PDT)
+Received: by mail-il1-x132.google.com with SMTP id e9e14a558f8ab-35137ab766dso25805ab.0
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 11:54:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jrtc27.com; s=gmail.jrtc27.user; t=1695840284; x=1696445084; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+        d=google.com; s=20230601; t=1695840855; x=1696445655; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=6+uiTOmGSxLchBRjvKV/vrfTnBZdrMZ5XZFVPvVP6Hk=;
-        b=gfPEnuM7z2HQ1mbyHVUH9LOwsDZGJ33N0xaqKAiSCh88zEJoeUiaBDMca4oTFyY84I
-         i2h5wh5F0enWHrnrkuHa/YmwdTFEVwC0jaxcpkEBiGlRBM8klwuskt/wrIVLgB3ZhoJj
-         qoBT8AzOG5Ka1REmRL8DqZuUVXDsVdOo00RJe5JSsfbMH/A8PoIXaulcUkK4dVpC9zB2
-         VyqL4b7oE9ZnfGhjw4frzNVELIfFop8ZEelLbowYnwvfQFUQ/WKJg4VWN0GcKfGEvJuW
-         B92G59butgvrrRRsDYLmp0BisL6xOi0PT17NPeLs7HpvGT8GEO6vzfMJi99TFgiHUjUr
-         byuA==
+        bh=pgknUwnq9gIV+tvRlScN3zfltL029CTlXmtn1qWfZ48=;
+        b=CuOl5XrCYS06vtYmnr6IgA5Q5UvsyZdXDUmApZzoFhCeRol/q2H52nc9klsREksetB
+         EDLOZo9AoJ2TZKweFC0F92mVh2z0R/l3rJz4sISCWu1rYTzAuTLXzozYwvzb6AX00TaG
+         wdC6egT+yr/85KBs2x09A8x3iTzmpbjKTdS7ZJWY8/6zpPHnyJKsFf2IMz0IA1fYgprs
+         vYtBViyMiZ7hjxv1A17ARNPCUt5sCOApaIjZk2tq08fz/y3VaQQzkOCM42g6JMwHu5S1
+         Hj9D3qm2Bm9dhXgfoZmr1h4C7U2NiAfzShtpgjAEQNKW9oSORjM331F141wnGy9mYk+P
+         4M7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695840284; x=1696445084;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1695840855; x=1696445655;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=6+uiTOmGSxLchBRjvKV/vrfTnBZdrMZ5XZFVPvVP6Hk=;
-        b=SxEKSxdYYqJ0o8bfqxdfdewHh3i5mzcSKKiM+SVWNJq5XlFeFp/bMmSvPpvzvmv08Y
-         uS5pBRcWd2PotrW3xtfte3FTL8+0c98vJGMd2WiWutqVMf1VBz2yXP9dX+LaDJ9pUU0f
-         2QYp6ChC569ojYJdllHlsfimL4YGrndKKRWoWNHvm3IbdNQXfuOXc2+hs3lPaFSZJxgb
-         53SHkHzQhFeQ2iPzmSNmNKNlKS4L+yJ1XAPDQSZnXLFT3K/cqdxdXnusfxaEcl+8tpsV
-         P/vn1XBG2+XWx5zhJoJaNmDdsPfYGlwXoProuhi0Eg53Su/NoegDH13TRLzCj6SNcxKT
-         5kVA==
-X-Gm-Message-State: AOJu0YzJgUA3W9C80ZdpfJG+DDleUKejQGT/bu08Pm06mOlNFA6vmqXA
-	/OKVE5RuBVrQCpFqTVKd+utqPA==
-X-Google-Smtp-Source: AGHT+IFCLPPlB8l+AVBO1lOEzvQO9ZomJNTtfFASLwJfuG+u2aKneFh1WB8sF2W/Vs55+CkE9Ewd9A==
-X-Received: by 2002:a5d:444e:0:b0:320:7272:8fbe with SMTP id x14-20020a5d444e000000b0032072728fbemr2883194wrr.17.1695840283728;
-        Wed, 27 Sep 2023 11:44:43 -0700 (PDT)
-Received: from smtpclient.apple ([131.111.5.246])
-        by smtp.gmail.com with ESMTPSA id d5-20020a056000186500b00323384e04e8sm4735329wri.111.2023.09.27.11.44.42
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 27 Sep 2023 11:44:43 -0700 (PDT)
-Content-Type: text/plain;
-	charset=utf-8
+        bh=pgknUwnq9gIV+tvRlScN3zfltL029CTlXmtn1qWfZ48=;
+        b=egf+agpZwPTr45j/dECBZe6AqWTPkYhBWKey4mLPturdK6bOCRgQ9nIQ2IDh5/2mbw
+         1PBAzMb6dhPiLG/nYKBlvMeE5X1VPNGjAGNZ+NDsNgvxkS303pNkqSQeCn87lqep3ctc
+         hDrrU9ABq+BdUjU4omvHL1AhCRtkMkuV/SJ7rjV3JgxmuDF7FfbAvlqMTIHJmsA3MgYC
+         LGlYOg+/obawoJXvOPlQ/klIXsDv1Vg1ib/nGZ2wkXEJnPJ35vawVsPl20bI6LOpWK5m
+         XKcWrn8iPWMc9Kg/BpaEzlyMa5RJOTqY1pbKQ47WJLWQtNPK7vAidOuCt3z6MhmP8U4i
+         Qmbw==
+X-Gm-Message-State: AOJu0YzbFUEwXNKA1kWT2811TLm5o3r9w8iNmtfu/Edb3wRrJBuDjWgz
+	8UwxxpDwIZ6oHrUT5YHAxJCr0uzZdH+A0mIKn6+s
+X-Google-Smtp-Source: AGHT+IGFTNOeIjY0z4z1jsppqGQ/+DkN5LKNzVhtRpc1fe/Zjm0L6bfMROX9KjJp8peSFpnQgwJTEYqVV/8DUuyxQQM=
+X-Received: by 2002:a92:c242:0:b0:34d:ff4c:5e3a with SMTP id
+ k2-20020a92c242000000b0034dff4c5e3amr748810ilo.10.1695840854718; Wed, 27 Sep
+ 2023 11:54:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.600.7\))
-Subject: Re: [PATCH v2 2/3] dt-bindings: riscv: Add Svadu Entry
-From: Jessica Clarke <jrtc27@jrtc27.com>
-In-Reply-To: <d141062b-e3e0-45ce-bc61-3404417c7d7c@app.fastmail.com>
-Date: Wed, 27 Sep 2023 19:44:32 +0100
-Cc: Yong-Xuan Wang <yongxuan.wang@sifive.com>,
- linux-riscv <linux-riscv@lists.infradead.org>,
- kvm-riscv@lists.infradead.org,
- Greentime Hu <greentime.hu@sifive.com>,
- Vincent Chen <vincent.chen@sifive.com>,
- Jinyu Tang <tjytimi@163.com>,
- Alexandre Ghiti <alex@ghiti.fr>,
- Conor Dooley <conor@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
- Stefan O'Rear <sorear@fastmail.com>
+MIME-Version: 1.0
+References: <20230911023038.30649-1-yong.wu@mediatek.com> <20230911023038.30649-6-yong.wu@mediatek.com>
+ <d0373c02-9b22-661f-9930-ca720053c2a0@collabora.com> <a115a2a5d3ac218e6db65ccdb0a1876f9cfca02b.camel@mediatek.com>
+ <d798b15b-6f35-96db-e3f7-5c0bcc5d46a2@collabora.com> <a4ecc2792f3a4d3159e34415be984ff7d5f5e263.camel@mediatek.com>
+ <20230927134614.kp27moxdw72jiu4y@pop-os.localdomain>
+In-Reply-To: <20230927134614.kp27moxdw72jiu4y@pop-os.localdomain>
+From: Jeffrey Kardatzke <jkardatzke@google.com>
+Date: Wed, 27 Sep 2023 11:54:03 -0700
+Message-ID: <CA+ddPcNDOsd4+1a3W5ufA-FaCc801bKkA-OapNKOC8snXrntAw@mail.gmail.com>
+Subject: Re: [PATCH 5/9] dma-buf: heaps: mtk_sec_heap: Initialise tee session
+To: Joakim Bech <joakim.bech@linaro.org>
+Cc: =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>, 
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, 
+	"christian.koenig@amd.com" <christian.koenig@amd.com>, 
+	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>, 
+	"robh+dt@kernel.org" <robh+dt@kernel.org>, "sumit.semwal@linaro.org" <sumit.semwal@linaro.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
+	"jstultz@google.com" <jstultz@google.com>, 
+	"linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>, 
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	=?UTF-8?B?SmlhbmppYW8gWmVuZyAo5pu+5YGl5aejKQ==?= <Jianjiao.Zeng@mediatek.com>, 
+	=?UTF-8?B?S3VvaG9uZyBXYW5nICjnjovlnIvptLsp?= <kuohong.wang@mediatek.com>, 
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "Brian.Starkey@arm.com" <Brian.Starkey@arm.com>, 
+	"benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>, 
+	"tjmercier@google.com" <tjmercier@google.com>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <55289FD5-55F7-4EE6-BBCC-933B32770A95@jrtc27.com>
-References: <20230922085701.3164-1-yongxuan.wang@sifive.com>
- <20230922085701.3164-3-yongxuan.wang@sifive.com>
- <d141062b-e3e0-45ce-bc61-3404417c7d7c@app.fastmail.com>
-To: LKML <linux-kernel@vger.kernel.org>
-X-Mailer: Apple Mail (2.3731.600.7)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+	USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 27 Sep 2023, at 18:24, Stefan O'Rear <sorear@fastmail.com> wrote:
->=20
-> On Fri, Sep 22, 2023, at 4:56 AM, Yong-Xuan Wang wrote:
->> Add an entry for the Svadu extension to the riscv,isa-extensions =
-property.
->>=20
->> Signed-off-by: Yong-Xuan Wang <yongxuan.wang@sifive.com>
->> ---
->> Documentation/devicetree/bindings/riscv/extensions.yaml | 6 ++++++
->> 1 file changed, 6 insertions(+)
->>=20
->> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml=20=
+On Wed, Sep 27, 2023 at 6:46=E2=80=AFAM Joakim Bech <joakim.bech@linaro.org=
+> wrote:
+>
+> On Mon, Sep 25, 2023 at 12:49:50PM +0000, Yong Wu (=E5=90=B4=E5=8B=87) wr=
+ote:
+> > On Tue, 2023-09-12 at 11:32 +0200, AngeloGioacchino Del Regno wrote:
+> > > Il 12/09/23 08:17, Yong Wu (=E5=90=B4=E5=8B=87) ha scritto:
+> > > > On Mon, 2023-09-11 at 11:29 +0200, AngeloGioacchino Del Regno
+> > > > wrote:
+> > > > > Il 11/09/23 04:30, Yong Wu ha scritto:
+> > > > > > The TEE probe later than dma-buf heap, and PROBE_DEDER doesn't
+> > > > > > work
+> > > > > > here since this is not a platform driver, therefore initialise
+> > > > > > the
+> > > > > > TEE
+> > > > > > context/session while we allocate the first secure buffer.
+> > > > > >
+> > > > > > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> > > > > > ---
+> > > > > >    drivers/dma-buf/heaps/mtk_secure_heap.c | 61
+> > > > > > +++++++++++++++++++++++++
+> > > > > >    1 file changed, 61 insertions(+)
+> > > > > >
+> > > > > > diff --git a/drivers/dma-buf/heaps/mtk_secure_heap.c
+> > > > > > b/drivers/dma-
+> > > > > > buf/heaps/mtk_secure_heap.c
+> > > > > > index bbf1c8dce23e..e3da33a3d083 100644
+> > > > > > --- a/drivers/dma-buf/heaps/mtk_secure_heap.c
+> > > > > > +++ b/drivers/dma-buf/heaps/mtk_secure_heap.c
+> > > > > > @@ -10,6 +10,12 @@
+> > > > > >    #include <linux/err.h>
+> > > > > >    #include <linux/module.h>
+> > > > > >    #include <linux/slab.h>
+> > > > > > +#include <linux/tee_drv.h>
+> > > > > > +#include <linux/uuid.h>
+> > > > > > +
+> > > > > > +#define TZ_TA_MEM_UUID               "4477588a-8476-11e2-ad15-
+> > > > > > e41f1390d676"
+> > > > > > +
+> > > > >
+> > > > > Is this UUID the same for all SoCs and all TZ versions?
+> > > >
+> > > > Yes. It is the same for all SoCs and all TZ versions currently.
+> > > >
+> > >
+> > > That's good news!
+> > >
+> > > Is this UUID used in any userspace component? (example: Android
+> > > HALs?)
+> >
+> > No. Userspace never use it. If userspace would like to allocate this
+> > secure buffer, it can achieve through the existing dmabuf IOCTL via
+> > /dev/dma_heap/mtk_svp node.
+> >
+> In general I think as mentioned elsewhere in comments, that there isn't
+> that much here that seems to be unique for MediaTek in this patch
+> series, so I think it worth to see whether this whole patch set can be
+> made more generic. Having said that, the UUID is always unique for a
+> certain Trusted Application. So, it's not entirely true saying that the
+> UUID is the same for all SoCs and all TrustZone versions. It might be
+> true for a family of MediaTek devices and the TEE in use, but not
+> generically.
+>
+> So, if we need to differentiate between different TA implementations,
+> then we need different UUIDs. If it would be possible to make this patch
+> set generic, then it sounds like a single UUID would be sufficient, but
+> that would imply that all TA's supporting such a generic UUID would be
+> implemented the same from an API point of view. Which also means that
+> for example Trusted Application function ID's needs to be the same etc.
+> Not impossible to achieve, but still not easy (different TEE follows
+> different specifications) and it's not typically something we've done in
+> the past.
+>
+> Unfortunately there is no standardized database of TA's describing what
+> they implement and support.
+>
+> As an alternative, we could implement a query call in the TEE answering,
+> "What UUID does your TA have that implements secure unmapped heap?".
+> I.e., something that reminds of a lookup table. Then we wouldn't have to
+> carry this in UAPI, DT or anywhere else.
+>
 
->> b/Documentation/devicetree/bindings/riscv/extensions.yaml
->> index cc1f546fdbdc..b5a0aed0165b 100644
->> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
->> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
->> @@ -147,6 +147,12 @@ properties:
->>             ratified at commit 3f9ed34 ("Add ability to manually=20
->> trigger
->>             workflow. (#2)") of riscv-time-compare.
->>=20
->> +        - const: svadu
->> +          description: |
->> +            The standard Svadu supervisor-level extension for =
-hardware updating
->> +            of PTE A/D bits as frozen at commit b65e07c ("move to =
-Frozen
->> +            state") of riscv-svadu.
->> +
->=20
-> This is incomplete without a specification of the behavior of the HADE =
-bit implied
-> by svadu being present.
->=20
-> The ratified RVA20 requires page table accesses with A/D =3D 0 to =
-trap, in other
-> words HADE =3D 0 for RVA20 conformance.  If we are serious about =
-compatibility,
-> I think that we need platforms to be able to conform to both RVA20 and =
-RVA23,
-> which requires HADE =3D 0 at kernel entry with a SBI call to set HADE =
-=3D 1.  For
-> the same reason KVM should probably default to HADE =3D 0 so that the =
-default
-> configuration remains conformant to RVA20.
+I think that's a good idea. If we add kernel APIs to the tee for
+opening a session for secure memory allocation and for performing the
+allocation, then the UUID, TA commands and TA parameters can all be
+decided upon in the TEE specific driver and the code in dma-heap
+becomes generic.
 
-I=E2=80=99ve filed https://github.com/riscv/riscv-svadu/issues/21 to =
-track this
-broken ISA design, as discussed on IRC.
-
-As a FreeBSD RISC-V developer, and sometime reviewer of Linux RISC-V
-patches, this is a NAK from me for this ISA design. Which does beg the
-question of how much sense the current RISC-V processes make, given for
-freezing a spec you just need to send out the relevant RFC patches,
-they don=E2=80=99t actually need to have any review from the project in
-question that says it=E2=80=99s a sensible design, instead treating that =
-as
-part of the public review period, where it=E2=80=99s much harder to
-fundamentally change the spec, despite being the first time most people
-see it or take it seriously as a thing to look at. In my opinion there
-is a serious need for knowledgeable people on the software side to
-review the ISA extension and its interaction with software *before* it
-can be frozen so that these things can be fixed. And of course, if they
-do get fixed during/after public review, what good is the frozen state
-anyway, because a spec that changes is not very frozen.
-
-But I=E2=80=99m probably preaching to the choir here about RISC-V =
-processes
-being unfit for purpose.
-
-Jess
-
->>         - const: svinval
->>           description:
->>             The standard Svinval supervisor-level extension for =
-fine-grained
->> --=20
->> 2.17.1
->>=20
->>=20
->> _______________________________________________
->> linux-riscv mailing list
->> linux-riscv@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-riscv
->=20
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
-
-
+> --
+> // Regards
+> Joakim
+>
+> >
+> > > If it is (and I somehow expect that it is), then this definition
+> > > should go
+> > > to a UAPI header, as suggested by Christian.
+> > >
+> > > Cheers!
+> > >
+> > > > >
+> > > > > Thanks,
+> > > > > Angelo
+> > > > >
+> > > > >
+> > > > > > +#define MTK_TEE_PARAM_NUM            4
+> > > > > >
+> > > > > >    /*
+> > > > > >     * MediaTek secure (chunk) memory type
+> > > > > > @@ -28,17 +34,72 @@ struct mtk_secure_heap_buffer {
+> > > > > >    struct mtk_secure_heap {
+> > > > > >       const char              *name;
+> > > > > >       const enum kree_mem_type mem_type;
+> > > > > > +     u32                      mem_session;
+> > > > > > +     struct tee_context      *tee_ctx;
+> > > > > >    };
+> > > > > >
+> > > > > > +static int mtk_optee_ctx_match(struct tee_ioctl_version_data
+> > > > > > *ver,
+> > > > > > const void *data)
+> > > > > > +{
+> > > > > > +     return ver->impl_id =3D=3D TEE_IMPL_ID_OPTEE;
+> > > > > > +}
+> > > > > > +
+> > > > > > +static int mtk_kree_secure_session_init(struct mtk_secure_heap
+> > > > > > *sec_heap)
+> > > > > > +{
+> > > > > > +     struct tee_param t_param[MTK_TEE_PARAM_NUM] =3D {0};
+> > > > > > +     struct tee_ioctl_open_session_arg arg =3D {0};
+> > > > > > +     uuid_t ta_mem_uuid;
+> > > > > > +     int ret;
+> > > > > > +
+> > > > > > +     sec_heap->tee_ctx =3D tee_client_open_context(NULL,
+> > > > > > mtk_optee_ctx_match,
+> > > > > > +                                                 NULL,
+> > > > > > NULL);
+> > > > > > +     if (IS_ERR(sec_heap->tee_ctx)) {
+> > > > > > +             pr_err("%s: open context failed, ret=3D%ld\n",
+> > > > > > sec_heap-
+> > > > > > > name,
+> > > > > >
+> > > > > > +                    PTR_ERR(sec_heap->tee_ctx));
+> > > > > > +             return -ENODEV;
+> > > > > > +     }
+> > > > > > +
+> > > > > > +     arg.num_params =3D MTK_TEE_PARAM_NUM;
+> > > > > > +     arg.clnt_login =3D TEE_IOCTL_LOGIN_PUBLIC;
+> > > > > > +     ret =3D uuid_parse(TZ_TA_MEM_UUID, &ta_mem_uuid);
+> > > > > > +     if (ret)
+> > > > > > +             goto close_context;
+> > > > > > +     memcpy(&arg.uuid, &ta_mem_uuid.b, sizeof(ta_mem_uuid));
+> > > > > > +
+> > > > > > +     ret =3D tee_client_open_session(sec_heap->tee_ctx, &arg,
+> > > > > > t_param);
+> > > > > > +     if (ret < 0 || arg.ret) {
+> > > > > > +             pr_err("%s: open session failed, ret=3D%d:%d\n",
+> > > > > > +                    sec_heap->name, ret, arg.ret);
+> > > > > > +             ret =3D -EINVAL;
+> > > > > > +             goto close_context;
+> > > > > > +     }
+> > > > > > +     sec_heap->mem_session =3D arg.session;
+> > > > > > +     return 0;
+> > > > > > +
+> > > > > > +close_context:
+> > > > > > +     tee_client_close_context(sec_heap->tee_ctx);
+> > > > > > +     return ret;
+> > > > > > +}
+> > > > > > +
+> > > > > >    static struct dma_buf *
+> > > > > >    mtk_sec_heap_allocate(struct dma_heap *heap, size_t size,
+> > > > > >                     unsigned long fd_flags, unsigned long
+> > > > > > heap_flags)
+> > > > > >    {
+> > > > > > +     struct mtk_secure_heap *sec_heap =3D
+> > > > > > dma_heap_get_drvdata(heap);
+> > > > > >       struct mtk_secure_heap_buffer *sec_buf;
+> > > > > >       DEFINE_DMA_BUF_EXPORT_INFO(exp_info);
+> > > > > >       struct dma_buf *dmabuf;
+> > > > > >       int ret;
+> > > > > >
+> > > > > > +     /*
+> > > > > > +      * TEE probe may be late. Initialise the secure session
+> > > > > > in the
+> > > > > > first
+> > > > > > +      * allocating secure buffer.
+> > > > > > +      */
+> > > > > > +     if (!sec_heap->mem_session) {
+> > > > > > +             ret =3D mtk_kree_secure_session_init(sec_heap);
+> > > > > > +             if (ret)
+> > > > > > +                     return ERR_PTR(ret);
+> > > > > > +     }
+> > > > > > +
+> > > > > >       sec_buf =3D kzalloc(sizeof(*sec_buf), GFP_KERNEL);
+> > > > > >       if (!sec_buf)
+> > > > > >               return ERR_PTR(-ENOMEM);
+> > > > >
+> > > > >
+> > >
+> > >
 
