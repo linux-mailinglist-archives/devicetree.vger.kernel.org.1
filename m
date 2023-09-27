@@ -1,216 +1,184 @@
-Return-Path: <devicetree+bounces-3666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D3F47AFBD7
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:19:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46CC57AFBF6
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:24:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id F179C1C2083A
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 07:19:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 85B5AB20A33
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 07:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A03221C2B7;
-	Wed, 27 Sep 2023 07:19:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D58521C2BF;
+	Wed, 27 Sep 2023 07:24:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EF64134BD
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 07:19:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F389C433C7;
-	Wed, 27 Sep 2023 07:19:48 +0000 (UTC)
-Message-ID: <d9af2b98-8da5-4487-8125-3c68eefcf77c@xs4all.nl>
-Date: Wed, 27 Sep 2023 09:19:46 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E630D368;
+	Wed, 27 Sep 2023 07:24:28 +0000 (UTC)
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3584BF;
+	Wed, 27 Sep 2023 00:24:26 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id D1DB71C0005;
+	Wed, 27 Sep 2023 07:24:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1695799465;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Y7lheL/fPD30+qWF6kotkKYQgHBfzDpYHPBkU7rqwKc=;
+	b=CUxDSg3duEvh2iFUudjI4nwvl79l+61/0VAmFQSu2LRxhgpcqiWvVArxluGLfvz8i5H50g
+	/1E6SCgjLvpCudreDT7YjSUJNoddPGTSsaP4qgW8mWZk1r2YQFIKYrFJ/YEM0vSjcRIouF
+	jAG7C/ETkfGIPjGdzUf59swSIoGJQUGcVuuayMkzk8au+5Sk7KAiVV36+GbS/U8eAaBUBo
+	Pb/APoI1htl9U6jlR0NLt4TNlSJhGv0qMJmsS+9RrcsdPKtRdRr7gPHjPd+Eba7D0t9cHn
+	BMVN9LDMWuIFiKvBLMP4Ihx4uyZvHi66OO4LFFFAfTsgo3N8lhrCfO7XudhEyQ==
+Date: Wed, 27 Sep 2023 09:24:18 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Lee Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Qiang
+ Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Jaroslav Kysela
+ <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Shengjiu Wang
+ <shengjiu.wang@gmail.com>, Xiubo Li <Xiubo.Lee@gmail.com>, Fabio Estevam
+ <festevam@gmail.com>, Nicolin Chen <nicoleotsuka@gmail.com>, Christophe
+ Leroy <christophe.leroy@csgroup.eu>, Randy Dunlap <rdunlap@infradead.org>,
+ netdev@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ alsa-devel@alsa-project.org, Simon Horman <horms@kernel.org>, Christophe
+ JAILLET <christophe.jaillet@wanadoo.fr>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v6 08/30] dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc:
+ Add support for QMC HDLC
+Message-ID: <20230927092418.6a5326ce@bootlin.com>
+In-Reply-To: <e8ee6529-b194-4588-96c0-1459f214d005@linaro.org>
+References: <20230922075913.422435-1-herve.codina@bootlin.com>
+	<20230922075913.422435-9-herve.codina@bootlin.com>
+	<5efae150-3d92-81b8-5c25-68846d27132e@linaro.org>
+	<20230925101703.1bf083f1@bootlin.com>
+	<5b804a1a-6bfd-429d-ad84-696b7ecef72d@linaro.org>
+	<20230925122758.43963736@bootlin.com>
+	<e02ebde7-f208-40a4-bb10-aa5962ee9864@linaro.org>
+	<20230925154929.2b6a9cab@bootlin.com>
+	<e8ee6529-b194-4588-96c0-1459f214d005@linaro.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 5/7] media: chips-media: wave5: Add the v4l2 layer
-Content-Language: en-US, nl
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Sebastian Fricke <sebastian.fricke@collabora.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Nas Chung <nas.chung@chipsnmedia.com>, Sascha Hauer
- <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Jackson Lee <jackson.lee@chipsnmedia.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- NXP Linux Team <linux-imx@nxp.com>, Conor Dooley <conor+dt@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Robert Beckett <bob.beckett@collabora.com>, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20230915-wave5_v12_on_media_master-v12-0-92fc66cd685d@collabora.com>
- <20230915-wave5_v12_on_media_master-v12-5-92fc66cd685d@collabora.com>
- <b7aa9a5a-018a-4d78-b001-4ba84acb1e24@xs4all.nl>
- <7b159731dfbc2ab8243396eaec8f41be10af5160.camel@collabora.com>
- <6ae8a639-b9f5-4426-be49-5340a8b8b5e9@xs4all.nl>
- <330a177320fd766af8eddb76f57ea728b2e36afe.camel@collabora.com>
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Autocrypt: addr=hverkuil@xs4all.nl; keydata=
- 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
-In-Reply-To: <330a177320fd766af8eddb76f57ea728b2e36afe.camel@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On 27/09/2023 01:29, Nicolas Dufresne wrote:
-> Le vendredi 22 septembre 2023 à 09:33 +0200, Hans Verkuil a écrit :
->> On 21/09/2023 21:11, Nicolas Dufresne wrote:
->>> Le mercredi 20 septembre 2023 à 17:13 +0200, Hans Verkuil a écrit :
->>>> On 15/09/2023 23:11, Sebastian Fricke wrote:
->>>>> From: Nas Chung <nas.chung@chipsnmedia.com>
->>>>>
->>>>> Add the decoder and encoder implementing the v4l2
->>>>> API. This patch also adds the Makefile and the VIDEO_WAVE_VPU config
->>>>>
->>>>> Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
->>>>> Signed-off-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
->>>>> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
->>>>> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
->>>>> Signed-off-by: Nas Chung <nas.chung@chipsnmedia.com>
->>>>> ---
->>>>>  drivers/media/platform/chips-media/Kconfig         |    1 +
->>>>>  drivers/media/platform/chips-media/Makefile        |    1 +
->>>>>  drivers/media/platform/chips-media/wave5/Kconfig   |   12 +
->>>>>  drivers/media/platform/chips-media/wave5/Makefile  |   10 +
->>>>>  .../platform/chips-media/wave5/wave5-helper.c      |  196 ++
->>>>>  .../platform/chips-media/wave5/wave5-helper.h      |   30 +
->>>>>  .../platform/chips-media/wave5/wave5-vpu-dec.c     | 1965 ++++++++++++++++++++
->>>>>  .../platform/chips-media/wave5/wave5-vpu-enc.c     | 1825 ++++++++++++++++++
->>>>>  .../media/platform/chips-media/wave5/wave5-vpu.c   |  331 ++++
->>>>>  .../media/platform/chips-media/wave5/wave5-vpu.h   |   83 +
->>>>>  10 files changed, 4454 insertions(+)
->>>>>
->>
->> <snip>
->>
->>>>> +static int wave5_vpu_dec_set_eos_on_firmware(struct vpu_instance *inst)
->>>>> +{
->>>>> +	int ret;
->>>>> +
->>>>> +	ret = wave5_vpu_dec_update_bitstream_buffer(inst, 0);
->>>>> +	if (ret) {
->>>>> +		dev_err(inst->dev->dev,
->>>>> +			"Setting EOS for the bitstream, fail: %d\n", ret);
->>>>
->>>> Is this an error due to a driver problem, or because a bad bitstream is
->>>> fed from userspace? In the first case, dev_err would be right, in the
->>>> second dev_dbg would be more appropriate. Bad userspace input should not
->>>> spam the kernel log in general.
->>>
->>> Its the first. To set the EOS flag, a command is sent to the firmware. That
->>> command may never return (timeout) or may report an error. For this specific
->>> command, if that happens we are likely facing firmware of driver problem (or
->>> both).
->>
->> OK, I'd add that as a comment here as this is unexpected behavior.
->>
->>>
->>>>
->>>>> +		return ret;
->>>>> +	}
->>>>> +	return 0;
->>>>> +}
->>
->> <snip>
->>
->>>>> +static int wave5_vpu_dec_create_bufs(struct file *file, void *priv,
->>>>> +				     struct v4l2_create_buffers *create)
->>>>> +{
->>>>> +	struct v4l2_format *f = &create->format;
->>>>> +
->>>>> +	if (f->type == V4L2_BUF_TYPE_VIDEO_CAPTURE)
->>>>> +		return -ENOTTY;
->>>>
->>>> Huh? Why is this needed?
->>>
->>> Minimally a comment should be added. The why is that we support CREATE_BUF for
->>> OUTPUT queue (bitstream) but not for CAPTURE queues. This is simply not
->>> supported by Wave5 firmware. Do you have any suggestion how this asymmetry can
->>> be implemented better ?
->>
->> Certainly not with ENOTTY: the ioctl exists, it is just not supported for
->> CAPTURE queues.
->>
->> How about -EPERM? And document this error as well in the VIDIOC_CREATE_BUFS
->> documentation. And you want a dev_dbg here too.
-> 
-> The suggestion cannot be used since there is documentation for that one already,
-> and it does not match "unsupported".
-> 
-> "Permission denied. Can be returned if the device needs write permission, or
-> some special capabilities is needed (e. g. root)"
-> 
-> What about using the most logical error code, which name is actually obvious,
-> like ENOTSUP ?
-> 
->    #define ENOTSUPP	524	/* Operation is not supported */
-> 
+Hi Krzysztof,
 
-Let's go with EOPNOTSUPP. That seems to be the more commonly used error
-code in drivers.
+On Tue, 26 Sep 2023 22:59:14 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
->>
->> So I would propose that EPERM is returned if CREATE_BUFS is only supported
->> for for one of the two queues of an M2M device.
+> On 25/09/2023 15:50, Herve Codina wrote:
+> >>>>> With these details, do you still think I need to change the child (channel)
+> >>>>> compatible ?      
+> >>>>
+> >>>> From OS point of view, you have a driver binding to this child-level
+> >>>> compatible. How do you enforce Linux driver binding based on parent
+> >>>> compatible? I looked at your next patch and I did not see it.    
+> >>>
+> >>> We do not need to have the child driver binding based on parent.    
+> >>
+> >> Exactly, that's what I said.
+> >>  
+> >>> We have to ensure that the child handles a QMC channel and the parent provides
+> >>> a QMC channel.
+> >>>
+> >>> A QMC controller (parent) has to implement the QMC API (include/soc/fsl/qe/qmc.h)
+> >>> and a QMC channel driver (child) has to use the QMC API.    
+> >>
+> >> How does this solve my concerns? Sorry, I do not understand. Your driver
+> >> is a platform driver and binds to the generic compatible. How do you
+> >> solve regular compatibility issues (need for quirks) if parent
+> >> compatible is not used?
+> >>
+> >> How does being QMC compliant affects driver binding and
+> >> compatibility/quirks?
+> >>
+> >> We are back to my original question and I don't think you answered to
+> >> any of the concerns.  
+> > 
+> > Well, to be sure that I understand correctly, do you mean that I should
+> > provide a compatible for the child (HDLC) with something like this:
+> > --- 8< ---
+> >   compatible:
+> >     items:
+> >       - enum:
+> >           - fsl,mpc885-qmc-hdlc
+> >           - fsl,mpc866-qmc-hdlc
+> >       - const: fsl,cpm1-qmc-hdlc
+> >       - const: fsl,qmc-hdlc
+> > --- 8< ---  
 > 
-> Note that userspace does not care of the difference between an ioctl not being
-> implemented at all or not being implement for one queue. GStreamer have been
-> testing with both queue type for couple of years now. Adding this distinction is
-> just leaking an implementation details to userspace. I'm fine to just do what
-> you'd like, just stating the obvious that while it may look logical inside the
-> kernel, its a bit of a non-sense for our users.
+> Yes, more or less, depending on actual compatibility and SoC-family.
+> Maybe "fsl,cpm1-qmc-hdlc" item in the middle is not needed.
 
-I don't agree with that. If an ioctl returns ENOTTY, then userspace can be certain
-that that ioctl is not implemented for the given file descriptor. That's not the case
-here: it is implemented, the operation is just not supported for one of the queues.
+Ok,
+I will keep "fsl,cpm1-qmc-hdlc". The CPM1 is the co-processor present in these
+SoCs and it handles the QMC controller. So, it makes sense to have it in this
+binding.
 
-Regards,
+I plan to add support for other SoCs in the future and for these SoCs, the
+co-processor is not the CPM1. So, it makes sense to keep "fsl,cpm1-qmc-hdlc"
+to identify the co-processor.
 
-	Hans
+> 
+> > 
+> > If so, I didn't do that because a QMC channel consumer (driver matching
+> > fsl,qmc-hdlc) doesn't contains any SoC specific part.  
+> 
+> Just like hundreds of other drivers. :)
+> 
+> There is a paragraph about specific compatibles here:
+> https://www.kernel.org/doc/html/latest/devicetree/bindings/writing-schema.html
+> 
+> 
+> > It uses the channel as a communication channel to send/receive HDLC frames
+> > to/from this communication channel.
+> > All the specific SoC part is handled by the QMC controller (parent) itself and
+> > not by any consumer (child).  
+> 
+> OK, so you guarantee in 100% for this hardware and all future (including
+> designs unknown currently), that they will be 100% compatible with
+> existing QMC channel consumer (child, matching fsl,qmc-hdlc) driver,
+> thus there will be no need for any quirk. Specifically, there will be no
+> chances that it would be reasonable to re-use the same driver for child
+> (currently fsl,qmc-hdlc) in different parent.
+
+Right,
+compatible strings with SoC and co-processor will be added in the next iteration.
+
+Thanks for your feedback.
+
+Best regards,
+Hervé
+
+> 
+> P.S. If you received this email twice, apologies, I have here troubles
+> with internet.
+> 
+> Best regards,
+> Krzysztof
+> 
 
