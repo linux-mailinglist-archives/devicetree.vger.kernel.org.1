@@ -1,35 +1,35 @@
-Return-Path: <devicetree+bounces-3925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C69997B0832
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 17:27:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 442E07B0833
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 17:27:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 7F4DD281603
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 15:27:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 71D671C20934
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 15:27:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8045A450C8;
-	Wed, 27 Sep 2023 15:27:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07EA8450CA;
+	Wed, 27 Sep 2023 15:27:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70AD36FA2
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 15:27:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EDCCC433C8;
-	Wed, 27 Sep 2023 15:27:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC8E86FA2
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 15:27:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42FC5C433C7;
+	Wed, 27 Sep 2023 15:27:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695828439;
-	bh=RUPpmHbb4kJSl2c/HLftS0eFYan82W2JMeZx9U6odFM=;
+	s=k20201202; t=1695828441;
+	bh=psoTQr8mGkV3UKidOz+pQ205UAHWxAMSfHwgV7szlp0=;
 	h=Date:From:To:Subject:In-Reply-To:References:Cc:From;
-	b=m2uFvcH/Sh7Py6hPDqCl2ffQkF+wpMQrL3cz00UjOU+0iKN/p4fNZIC2Y55QwFQHV
-	 zkfHk7a2B5jDM8lwiD9pw+X9tFd/AX8qZOHDj53UJZV+4pIzucP8wfGGkjiH43QaX5
-	 2WSgIk0bAQDEkHMOE8J/xKMz8jI5nBBU7Ipz37yvJEPlQNwfcLQG1eXJXrevm8eZL6
-	 B6r00VOqDYFG/4PcVC7wWrKnUm+PWTY1bYnW42OxnCDS5TBCNEEQkoa8ZRcibqEstF
-	 jOtkcmdYkRIfR9OYa3mwTY4NylxErIjUzKvAHLe4QkSodXP/HOwKm4uJ9X6UtzDWLc
-	 4V+TSgiYhW+jA==
-Message-ID: <c16e9f00a14f232b2408ddcb5f8e6f1b.mripard@kernel.org>
-Date: Wed, 27 Sep 2023 07:20:30 +0000
+	b=s1bKn/hrxcB+5VItQe5OsoMYGoU/S0bzhLZqIPWY+8oyIVylxEls9DGhiSFV4C8K6
+	 MK25VHKQVGHZ8ANAV9qxiSEG5H9eMprCeTwJr85mwX2/hHBtZLzTUAcggEqF2RLG5G
+	 zBvQMGtJ9wFMVIeY+9dxWzAfSQRWVIbriGPHz2mP+ANXqID0mQzUxVLyL8PrcGQdf+
+	 +XjihmnzS9FZ2n2xDaIwjHebV5sHP1u9fxOBbMGpp0ZPvDKHDBeCrGHfDyc1t+KG7g
+	 Y/CSQIpivWbIzkBq3Nq3JWVY6WSI+ubjCS+20T2K614XJydh5D9dWT/v8ckf49KuR4
+	 q0q5iCi+E6tSg==
+Message-ID: <d919baedaa11a1d6a710edce20826c82.mripard@kernel.org>
+Date: Wed, 27 Sep 2023 07:20:34 +0000
 From: "Maxime Ripard" <mripard@kernel.org>
 To: "Miquel Raynal" <miquel.raynal@bootlin.com>
 Subject: Re: [PATCH v2 00/17] Prevent NAND chip unevaluated properties
@@ -66,6 +66,8 @@ On Tue, 6 Jun 2023 19:52:29 +0200, Miquel Raynal wrote:
 > 
 > [ ... ]
 
+Acked-by: Maxime Ripard <mripard@kernel.org>
+Reviewed-by: Maxime Ripard <mripard@kernel.org>
 
 Thanks!
 Maxime
