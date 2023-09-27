@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-3622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28D837AF834
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 04:37:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 853067AF835
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 04:38:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 4B3D31C20363
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 02:37:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 364D1281414
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 02:38:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C78B653B5;
-	Wed, 27 Sep 2023 02:37:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CB2363BF;
+	Wed, 27 Sep 2023 02:38:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4365363B8
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 02:37:55 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A18B83D0;
-	Tue, 26 Sep 2023 19:37:53 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38R2bmAO077280;
-	Tue, 26 Sep 2023 21:37:48 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C636863B8
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 02:37:58 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B69E783DF;
+	Tue, 26 Sep 2023 19:37:57 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38R2bpgt015427;
+	Tue, 26 Sep 2023 21:37:51 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1695782268;
-	bh=hU6AG6u3N7qPJdb3f63krM/m6jIdTn+7XdyY5gkrbJ8=;
+	s=ti-com-17Q1; t=1695782272;
+	bh=1YynK1VqnSUvtlYIHIZVlskNYj/GU5J34sPokkW3EZ8=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=SZahda260RMb6W88CRAXYpCZ8U1xSBe5vHAHtIIvXwbjDllZzJe32F6MXC7y7n6w1
-	 Oc1KOQKnfAQX7NyzGPoD4OuuAkrS4kMQBeSVZI1G3WcSQ++RiXUfeXOVZEs+1F1GqY
-	 feE/H5ZKsqwvswlcXmjVxVbd4mJo2OcHvajsJGE8=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38R2bmga019479
+	b=js4Dj1urhbJMCmqc4YLD4QTr3Ww2EVfhTDiOl3sVV0EAZlXEIhejDs92S9uURk+rZ
+	 lumCc7ths4d80fNKWj6gLOazxJtHWlC6nqkxSrwSiP6vGOah1ek7LmSQSWRVYTRsXS
+	 IDdIoqRf3UC8mrWC9YJKwu83Lp9By6l4LKlS2S4E=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38R2bpch026309
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 26 Sep 2023 21:37:48 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 26 Sep 2023 21:37:51 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 26
- Sep 2023 21:37:47 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2023 21:37:51 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 26 Sep 2023 21:37:48 -0500
+ Frontend Transport; Tue, 26 Sep 2023 21:37:51 -0500
 Received: from localhost.localdomain (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38R2bL7Y013228;
-	Tue, 26 Sep 2023 21:37:44 -0500
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38R2bL7Z013228;
+	Tue, 26 Sep 2023 21:37:48 -0500
 From: Keerthy <j-keerthy@ti.com>
 To: <robh+dt@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
         <conor+dt@kernel.org>, <kristo@kernel.org>,
@@ -51,9 +51,9 @@ To: <robh+dt@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
 CC: <j-keerthy@ti.com>, <u-kumar1@ti.com>,
         <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>
-Subject: [PATCH v6 6/7] arm64: dts: ti: k3-j721s2-main: Add the main domain watchdog instances
-Date: Wed, 27 Sep 2023 08:03:56 +0530
-Message-ID: <20230927023357.9883-7-j-keerthy@ti.com>
+Subject: [PATCH v6 7/7] dts: ti: k3-j712s2-mcu: Add the mcu domain watchdog instances
+Date: Wed, 27 Sep 2023 08:03:57 +0530
+Message-ID: <20230927023357.9883-8-j-keerthy@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20230927023357.9883-1-j-keerthy@ti.com>
 References: <20230927023357.9883-1-j-keerthy@ti.com>
@@ -67,120 +67,50 @@ Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-There are totally 9 instances of watchdog module. One each for the
-2 A72 cores, one each for the 2 C7x cores, 1 for the GPU, 1 each
-for the 4 R5F cores in the main domain. Keeping only the A72 instances
-enabled and disabling the rest by default as they will be used by
-their respective firmware.
+There are totally 2 instances of watchdog module in MCU domain.
+These instances are coupled with the MCU domain R5F instances.
+Disabling them as they are not used by Linux.
 
 Signed-off-by: Keerthy <j-keerthy@ti.com>
 ---
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 93 ++++++++++++++++++++++
- 1 file changed, 93 insertions(+)
+ .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 24 +++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-index 8a717b592238..19fe7672ef7b 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-@@ -1702,4 +1702,97 @@
- 		ti,esm-pins = <688>, <689>;
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+index 4b29418a6076..83377c47e709 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+@@ -669,4 +669,28 @@
+ 		ti,esm-pins = <63>;
  		bootph-pre-ram;
  	};
 +
-+	watchdog0: watchdog@2200000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x2200000 0x00 0x100>;
-+		clocks = <&k3_clks 286 1>;
-+		power-domains = <&k3_pds 286 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 286 1>;
-+		assigned-clock-parents = <&k3_clks 286 5>;
-+	};
-+
-+	watchdog1: watchdog@2210000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x2210000 0x00 0x100>;
-+		clocks = <&k3_clks 287 1>;
-+		power-domains = <&k3_pds 287 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 287 1>;
-+		assigned-clock-parents = <&k3_clks 287 5>;
-+	};
-+
 +	/*
-+	 * The following RTI instances are coupled with MCU R5Fs, c7x and
-+	 * GPU so keeping them disabled as these will be used by their
-+	 * respective firmware
++	 * The 2 RTI instances are couple with MCU R5Fs so keeping them
++	 * disabled as these will be used by their respective firmware
 +	 */
-+	watchdog16: watchdog@2300000 {
++	mcu_watchdog0: watchdog@40600000 {
 +		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x2300000 0x00 0x100>;
-+		clocks = <&k3_clks 288 1>;
-+		power-domains = <&k3_pds 288 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 288 1>;
-+		assigned-clock-parents = <&k3_clks 288 5>;
++		reg = <0x00 0x40600000 0x00 0x100>;
++		clocks = <&k3_clks 295 1>;
++		power-domains = <&k3_pds 295 TI_SCI_PD_EXCLUSIVE>;
++		assigned-clocks = <&k3_clks 295 1>;
++		assigned-clock-parents = <&k3_clks 295 5>;
 +		status = "disabled";
 +	};
 +
-+	watchdog17: watchdog@2310000 {
++	mcu_watchdog1: watchdog@40610000 {
 +		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x2310000 0x00 0x100>;
-+		clocks = <&k3_clks 289 1>;
-+		power-domains = <&k3_pds 289 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 289 1>;
-+		assigned-clock-parents = <&k3_clks 289 5>;
-+		status = "disabled";
-+	};
-+
-+	watchdog15: watchdog@22f0000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x22f0000 0x00 0x100>;
-+		clocks = <&k3_clks 290 1>;
-+		power-domains = <&k3_pds 290 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 290 1>;
-+		assigned-clock-parents = <&k3_clks 290 5>;
-+		status = "disabled";
-+	};
-+
-+	watchdog28: watchdog@23c0000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x23c0000 0x00 0x100>;
-+		clocks = <&k3_clks 291 1>;
-+		power-domains = <&k3_pds 291 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 291 1>;
-+		assigned-clock-parents = <&k3_clks 291 5>;
-+		status = "disabled";
-+	};
-+
-+	watchdog29: watchdog@23d0000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x23d0000 0x00 0x100>;
-+		clocks = <&k3_clks 292 1>;
-+		power-domains = <&k3_pds 292 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 292 1>;
-+		assigned-clock-parents = <&k3_clks 292 5>;
-+		status = "disabled";
-+	};
-+
-+	watchdog30: watchdog@23e0000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x23e0000 0x00 0x100>;
-+		clocks = <&k3_clks 293 1>;
-+		power-domains = <&k3_pds 293 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 293 1>;
-+		assigned-clock-parents = <&k3_clks 293 5>;
-+		status = "disabled";
-+	};
-+
-+	watchdog31: watchdog@23f0000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x23f0000 0x00 0x100>;
-+		clocks = <&k3_clks 294 1>;
-+		power-domains = <&k3_pds 294 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 294 1>;
-+		assigned-clock-parents = <&k3_clks 294 5>;
++		reg = <0x00 0x40610000 0x00 0x100>;
++		clocks = <&k3_clks 296 1>;
++		power-domains = <&k3_pds 296 TI_SCI_PD_EXCLUSIVE>;
++		assigned-clocks = <&k3_clks 296 1>;
++		assigned-clock-parents = <&k3_clks 296 5>;
 +		status = "disabled";
 +	};
  };
