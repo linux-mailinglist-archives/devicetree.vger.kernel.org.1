@@ -1,134 +1,119 @@
-Return-Path: <devicetree+bounces-3824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B44287B03A1
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 14:13:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B7697B03B5
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 14:16:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 64F9A2829B7
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 12:13:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id E910C282284
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 12:16:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F5892868F;
-	Wed, 27 Sep 2023 12:13:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31DB22869C;
+	Wed, 27 Sep 2023 12:16:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC7FF27EFA
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 12:13:06 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23046CFA;
-	Wed, 27 Sep 2023 05:12:51 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38RATCso031345;
-	Wed, 27 Sep 2023 12:12:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=GfLxy6NW7pVVRzAZZfz4B4qGDlxBa3LB37XO0ccyL3E=;
- b=C4IlZT8w51smZExqQpUoLSMuMxq52LFsTU5ZUqV67eODTFOQj7fOu2+AYURxeoxfeATz
- LFldxRo1Id3GnE3ARKLYpyGKw/UIZ9HR12Sjtdp7d4dX1szp/3W3FDhOgEIUWk9Rsg4Z
- cv8r5YLzUV4/A2a7Rj/AAwFVqXqXGgKuV3M29EukafiDS6fvcLH5VzD2IB7RRkrSi0g3
- g/NuxMKTZ1HHDCw0nGHj4zJmX1l47K69WCUh6Tu3+FEIG9MhVPGN3CGMkBJhWuUvYJYJ
- Rk9xlKA5PUzEOe89gJGsODrwqs3jVPLdw9fulLCsGkJ2tUsjZPRe18A7IuFVl/Xk456L Aw== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tbv6638wy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 27 Sep 2023 12:12:38 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38RCCbZr010161
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 27 Sep 2023 12:12:37 GMT
-Received: from [10.216.29.85] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 27 Sep
- 2023 05:12:30 -0700
-Message-ID: <f3eba136-74d4-4f54-b35d-ce3236db9f67@quicinc.com>
-Date: Wed, 27 Sep 2023 17:42:25 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E0A8107BE
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 12:16:50 +0000 (UTC)
+Received: from out28-125.mail.aliyun.com (out28-125.mail.aliyun.com [115.124.28.125])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E683BE;
+	Wed, 27 Sep 2023 05:16:47 -0700 (PDT)
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.08141265|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0395652-0.000209205-0.960226;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047205;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=29;RT=29;SR=0;TI=SMTPD_---.Upkf2vE_1695816995;
+Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.Upkf2vE_1695816995)
+          by smtp.aliyun-inc.com;
+          Wed, 27 Sep 2023 20:16:44 +0800
+From: wangweidong.a@awinic.com
+To: lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	perex@perex.cz,
+	tiwai@suse.com,
+	wangweidong.a@awinic.com,
+	shumingf@realtek.com,
+	rf@opensource.cirrus.com,
+	herve.codina@bootlin.com,
+	arnd@arndb.de,
+	13916275206@139.com,
+	ryans.lee@analog.com,
+	linus.walleij@linaro.org,
+	ckeepax@opensource.cirrus.com,
+	doug@schmorgal.com,
+	fido_max@inbox.ru,
+	harshit.m.mogalapalli@oracle.com,
+	liweilei@awinic.com,
+	yang.lee@linux.alibaba.com,
+	u.kleine-koenig@pengutronix.de,
+	yijiangtao@awinic.com,
+	dan.carpenter@linaro.org,
+	colin.i.king@gmail.com,
+	trix@redhat.com,
+	alsa-devel@alsa-project.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH V5 0/8] ASoC: codecs: Add aw87390 amplifier driver
+Date: Wed, 27 Sep 2023 20:16:26 +0800
+Message-ID: <20230927121634.94822-1-wangweidong.a@awinic.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 08/11] arm64: dts: qcom: ipq8074: include the GPLL0 as
- clock provider for mailbox
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Sricharan
- Ramabadhran" <quic_srichara@quicinc.com>,
-        Gokul Sriram Palanisamy
-	<quic_gokulsri@quicinc.com>,
-        Varadarajan Narayanan <quic_varada@quicinc.com>,
-        Anusha Rao <quic_anusha@quicinc.com>,
-        Devi Priya <quic_devipriy@quicinc.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20230913-gpll_cleanup-v2-0-c8ceb1a37680@quicinc.com>
- <20230913-gpll_cleanup-v2-8-c8ceb1a37680@quicinc.com>
- <731f4e05-6205-432b-8cd5-29d5e1c2222d@linaro.org>
-From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-In-Reply-To: <731f4e05-6205-432b-8cd5-29d5e1c2222d@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: bgerQsRCE6GkEYH4JuOKW_26eZUJDDRV
-X-Proofpoint-GUID: bgerQsRCE6GkEYH4JuOKW_26eZUJDDRV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-27_06,2023-09-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 mlxlogscore=730 bulkscore=0 phishscore=0 suspectscore=0
- clxscore=1015 impostorscore=0 mlxscore=0 adultscore=0 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2309270102
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+From: Weidong Wang <wangweidong.a@awinic.com>
 
-On 9/27/2023 5:03 PM, Konrad Dybcio wrote:
-> On 14.09.2023 08:59, Kathiravan Thirumoorthy wrote:
->> While the kernel is booting up, APSS PLL will be running at 800MHz with
->> GPLL0 as source. Once the cpufreq driver is available, APSS PLL will be
->> configured to the rate based on the opp table and the source also will
->> be changed to APSS_PLL_EARLY. So allow the mailbox to consume the GPLL0,
->> with this inclusion, CPU Freq correctly reports that CPU is running at
->> 800MHz rather than 24MHz.
->>
->> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
->> ---
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->
-> Konrad
+The awinic aw87390 is a new high efficiency, low noise,
+constant large volume, 6th Smart K audio amplifier.
 
-Thanks Konrad.
+Add a DT schema for describing awinic aw87390 audio amplifiers.
+They are controlled using I2C.
 
-I just realized that, in commit message, the statement "APSS PLL will be 
-running at 800MHz" should be "APSS clock / CPU clock will be running at 
-800MHz".
+v4 -> v5: Adjust the order and context of the patch
 
-Bjorn, will you be able to fix it up while applying (all 4 DTS changes 
-needs update) or shall I respin it?
+Weidong Wang (8):
+  ASoC: dt-bindings: awinic,aw88395: Add properties for multiple PA
+    support
+  ASoC: dt-bindings: Add schema for "awinic,aw87390"
+  ASoC: codecs: Modify the code related to the property
+  ASoC: codecs: Modify the transmission method of parameters
+  ASoC: codecs: Add code for bin parsing compatible with aw87390
+  ASoC: codecs: Modify the code related to the property
+  ASoC: codecs: Modify the transmission mode of function parameters
+  ASoC: codecs: Add aw87390 amplifier driver
 
-Thanks,
+ .../bindings/sound/awinic,aw87390.yaml        |  58 +++
+ .../bindings/sound/awinic,aw88395.yaml        |  16 +
+ sound/soc/codecs/Kconfig                      |  15 +-
+ sound/soc/codecs/Makefile                     |   2 +
+ sound/soc/codecs/aw87390.c                    | 462 ++++++++++++++++++
+ sound/soc/codecs/aw87390.h                    |  85 ++++
+ sound/soc/codecs/aw88261.c                    |  27 +-
+ sound/soc/codecs/aw88261.h                    |   4 +-
+ sound/soc/codecs/aw88395/aw88395.c            |   9 +-
+ sound/soc/codecs/aw88395/aw88395.h            |   2 +-
+ sound/soc/codecs/aw88395/aw88395_device.c     |  47 +-
+ sound/soc/codecs/aw88395/aw88395_device.h     |   6 +-
+ sound/soc/codecs/aw88395/aw88395_lib.c        |  25 +-
+ sound/soc/codecs/aw88395/aw88395_reg.h        |   1 +
+ 14 files changed, 685 insertions(+), 74 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/awinic,aw87390.yaml
+ create mode 100644 sound/soc/codecs/aw87390.c
+ create mode 100644 sound/soc/codecs/aw87390.h
 
-Kathiravan T.
+
+base-commit: 0e945134b680040b8613e962f586d91b6d40292d
+-- 
+2.41.0
 
 
