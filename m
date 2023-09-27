@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-3673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E7B77AFD18
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:53:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A98FF7AFD1C
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:54:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 72480B20B4C
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 07:53:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id C654B1C20833
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 07:54:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFDD514F77;
-	Wed, 27 Sep 2023 07:53:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 734FE1C686;
+	Wed, 27 Sep 2023 07:54:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96DFC2F93
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 07:53:25 +0000 (UTC)
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49239B3
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:53:23 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-533cbbd0153so8992692a12.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:53:23 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E104D2F93
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 07:54:47 +0000 (UTC)
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D9A6136
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:54:45 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso1331344566b.1
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:54:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695801201; x=1696406001; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695801284; x=1696406084; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5w/ydUvx9Mul+qzGTm/H1iYhapsHMStHla99DX4w10g=;
-        b=N/D8oZU4jqoKv2hi5WydwmTRth5cpTDEgHDE9L/ItAfxVEmx0jlaIUsyiwP3UHQSj6
-         6+Ud9qoyl6r9rdoeKinp+124Ss07ps8funViei3+fxQE6LID0E2dBWSAQ4X5CnhjHV0d
-         1s3/+8rsvnhW2jkJK4qM3NrmS2wTDWC8pf/EZZbDMtjyEd8n057hF7NUN7P9gagElwdF
-         2Z3ePhSdxs6Q8opWCDbZVRK16g9DHoVIwuW7XprnBxhX4q71Rd88ybpHuCzM2F4wAh5X
-         sduGLG+nMfOkAfjQ9lbLQbfWCMZsSTG9uh8eZC2lq+2UE1xqRY80GnVSI630cRLRbJ0n
-         LAXA==
+        bh=D7Jlp2PcQoKOrsVy5Jf/Ifw8DifNKFzd0XusMIA25T4=;
+        b=Ab92Dh80e1Xxqt+ic5Ll+dBT86pKBTGGigCk6qGq9jeH9Vc60pAKZsEWtzKQg/NBCH
+         rZAuXaSMza7WolaK1xfAz6EZdeuwUEbgoBIePr5m9EJGEH/E352NIjBsxahiQEdXpxbK
+         x3hUSIFYvZkFPzzXeiMU22VSMJr269MHjfVKLiRhfiZzGnuhKQq0r7qftnwIfRW6j9gF
+         RfSg2ahOC1A4BO23GjHsPdIbsLe2KBa3UBl+G23vnYFU1MEXO95duUgxD8IXgr0eTIoa
+         my6Egsgf9P/VL6K6hIR4FBfPbMbjkR3WE1rQdeNpQT5YLGvdS6Hf8h7U9Rr/g6FX5Nfk
+         lq+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695801201; x=1696406001;
+        d=1e100.net; s=20230601; t=1695801284; x=1696406084;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5w/ydUvx9Mul+qzGTm/H1iYhapsHMStHla99DX4w10g=;
-        b=uzF0V/9F02nyEPzFGeC3Pbkmv4A+OAnBu5GrCa/bB2UqSmOdFnA1zCiOY5D3YthS6H
-         DC4JIUboa2WephWojNvWhbPOnkiDyzngibm9afOMERdUM7Op8UzbONB9Uu0CpLFqsg0T
-         Vnxwty2OMpVrQNpnSC/UjkP4qcI7XAJNwHznjEm6x46GEOLLNIIgiR/GlxfmWQUgWEub
-         uqY/VZJIUwgP1uJ0XNlj9dhy8yuAksGCJjjLwPlDGkuXO3taKosswxTR38apUf9kRuiM
-         /Mm/0h5ibATDeSbObGJkF8hAO1pKbnVRXinLK+wAu68I/gbnXLwCjeww0YfFSlE+qFfg
-         3i8g==
-X-Gm-Message-State: AOJu0YwmNSIsXlnFOiItgusmeMYQa+iG8Orvg65Ps9c/C32olR1ScjTj
-	nA4eEmHOsGQMYc2O/TdKhSEi5A==
-X-Google-Smtp-Source: AGHT+IEienITSZ/00Th5kJHuuoT8iX5Vt23ieeqHv1R2wCDy5jLxZ3OCLPlX8FuDSNWkWAiDbCf6oQ==
-X-Received: by 2002:a17:907:7884:b0:9a1:bebc:8282 with SMTP id ku4-20020a170907788400b009a1bebc8282mr1064637ejc.32.1695801201806;
-        Wed, 27 Sep 2023 00:53:21 -0700 (PDT)
+        bh=D7Jlp2PcQoKOrsVy5Jf/Ifw8DifNKFzd0XusMIA25T4=;
+        b=POAgBRqcbWar1KNcUEqvqGFR7bcdsTZ/npZm1JS0l4SedFuVsqnCuPjH7LfzaP3q4P
+         EkI/poVr3kvbTWdawnPG09y4QNggzDdvB44wwghoRUElilLb2Pt1EkAowoOEFSIMsiPI
+         I9dmNBGxBGz9YBcnQlMXrLFiyBUZGOdrfGJpz26bJcj0siFPTTWTHii0U6SenPFHg3HM
+         nLnqQLaNK4IuMRuK1YUd3b3W7k4QAlDaAnV9WnjY04hi4zOKbg6vx5/QECB7Kc+6Y6hZ
+         wJEdEz4B6tqt4mkiYiFI5+B5qc5y92YPHKNNyQl5ocO+ukv+SXCYnkSlDKAWI1+1cGaB
+         CBZA==
+X-Gm-Message-State: AOJu0YwhL6pqMbVdmuThaftD6m496UeJSZLW+LqXwJS2+H1c77Hl0VGP
+	AAAH1nyERtKVIv/NBd/cQ1SogQ==
+X-Google-Smtp-Source: AGHT+IFUxftRh2tI5NDPRBFMRWS4GVTwRXaEM8E2RQKMSqScFQLfy2ilcr7NrGEYIwu7jWYOjfDbqA==
+X-Received: by 2002:a17:906:9a:b0:9a1:e233:e627 with SMTP id 26-20020a170906009a00b009a1e233e627mr1196529ejc.42.1695801284039;
+        Wed, 27 Sep 2023 00:54:44 -0700 (PDT)
 Received: from [192.168.1.160] (host-87-4-82-94.retail.telecomitalia.it. [87.4.82.94])
-        by smtp.gmail.com with ESMTPSA id cb25-20020a170906a45900b009ad778a68c5sm8928632ejb.60.2023.09.27.00.53.19
+        by smtp.gmail.com with ESMTPSA id cb25-20020a170906a45900b009ad778a68c5sm8928632ejb.60.2023.09.27.00.54.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Sep 2023 00:53:21 -0700 (PDT)
-Message-ID: <877f583e-ed08-4248-ac38-28e8c3039444@linaro.org>
-Date: Wed, 27 Sep 2023 09:53:19 +0200
+        Wed, 27 Sep 2023 00:54:43 -0700 (PDT)
+Message-ID: <0c709939-9867-4d80-ba7e-640b594f8d7a@linaro.org>
+Date: Wed, 27 Sep 2023 09:54:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,16 +63,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 7/7] dts: ti: k3-j712s2-mcu: Add the mcu domain
- watchdog instances
+Subject: Re: [PATCH v5 4/7] arm64: dts: ti: k3-j784s4-main: Add the main
+ domain watchdog instances
 Content-Language: en-US
 To: Keerthy <j-keerthy@ti.com>, robh+dt@kernel.org, nm@ti.com,
  vigneshr@ti.com, conor+dt@kernel.org, kristo@kernel.org,
  krzysztof.kozlowski+dt@linaro.org
 Cc: u-kumar1@ti.com, linux-arm-kernel@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230927023357.9883-1-j-keerthy@ti.com>
- <20230927023357.9883-8-j-keerthy@ti.com>
+References: <20230926132805.6518-1-j-keerthy@ti.com>
+ <20230926132805.6518-5-j-keerthy@ti.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,23 +118,119 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230927023357.9883-8-j-keerthy@ti.com>
+In-Reply-To: <20230926132805.6518-5-j-keerthy@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 27/09/2023 04:33, Keerthy wrote:
-> There are totally 2 instances of watchdog module in MCU domain.
-> These instances are coupled with the MCU domain R5F instances.
-> Disabling them as they are not used by Linux.
+On 26/09/2023 15:28, Keerthy wrote:
+> There are totally 19 instances of watchdog module. One each for the
+> 8 A72 cores, one each for the 4 C7x cores, 1 for the GPU, 1 each
+> for the 6 R5F cores in the main domain. Keeping only the A72 instances
+> enabled and disabling the rest by default.
 > 
 > Signed-off-by: Keerthy <j-keerthy@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 182 +++++++++++++++++++++
+>  1 file changed, 182 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> index 26dc3776f911..8c3efe066803 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> @@ -1576,4 +1576,186 @@
+>  			      <695>;
+>  		bootph-pre-ram;
+>  	};
+> +
+> +	watchdog0: watchdog@2200000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x2200000 0x00 0x100>;
+> +		clocks = <&k3_clks 348 1>;
+> +		power-domains = <&k3_pds 348 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 348 0>;
+> +		assigned-clock-parents = <&k3_clks 348 4>;
+> +	};
+> +
+> +	watchdog1: watchdog@2210000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x2210000 0x00 0x100>;
+> +		clocks = <&k3_clks 349 1>;
+> +		power-domains = <&k3_pds 349 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 349 0>;
+> +		assigned-clock-parents = <&k3_clks 349 4>;
+> +	};
+> +
+> +	watchdog2: watchdog@2220000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x2220000 0x00 0x100>;
+> +		clocks = <&k3_clks 350 1>;
+> +		power-domains = <&k3_pds 350 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 350 0>;
+> +		assigned-clock-parents = <&k3_clks 350 4>;
+> +	};
+> +
+> +	watchdog3: watchdog@2230000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x2230000 0x00 0x100>;
+> +		clocks = <&k3_clks 351 1>;
+> +		power-domains = <&k3_pds 351 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 351 0>;
+> +		assigned-clock-parents = <&k3_clks 351 4>;
+> +	};
+> +
+> +	watchdog4: watchdog@2240000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x2240000 0x00 0x100>;
+> +		clocks = <&k3_clks 352 1>;
+> +		power-domains = <&k3_pds 352 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 352 0>;
+> +		assigned-clock-parents = <&k3_clks 352 4>;
+> +	};
+> +
+> +	watchdog5: watchdog@2250000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x2250000 0x00 0x100>;
+> +		clocks = <&k3_clks 353 1>;
+> +		power-domains = <&k3_pds 353 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 353 0>;
+> +		assigned-clock-parents = <&k3_clks 353 4>;
+> +	};
+> +
+> +	watchdog6: watchdog@2260000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x2260000 0x00 0x100>;
+> +		clocks = <&k3_clks 354 1>;
+> +		power-domains = <&k3_pds 354 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 354 0>;
+> +		assigned-clock-parents = <&k3_clks 354 4>;
+> +	};
+> +
+> +	watchdog7: watchdog@2270000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x2270000 0x00 0x100>;
+> +		clocks = <&k3_clks 355 1>;
+> +		power-domains = <&k3_pds 355 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 355 0>;
+> +		assigned-clock-parents = <&k3_clks 355 4>;
+> +	};
+> +
+> +	watchdog16: watchdog@2300000 {
+> +		status = "disabled";
 
-Still incorrect subject prefix.
+This is a friendly reminder during the review process.
+
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
+
+Thank you.
 
 Best regards,
 Krzysztof
