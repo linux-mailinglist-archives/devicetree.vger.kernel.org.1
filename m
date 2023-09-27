@@ -1,170 +1,130 @@
-Return-Path: <devicetree+bounces-3994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74FFE7B0D40
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 22:21:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 378CA7B0D6E
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 22:28:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id C1C111C20946
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 20:21:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id DCD80282B3F
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 20:28:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ABFE4BDC1;
-	Wed, 27 Sep 2023 20:21:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D42444CFBF;
+	Wed, 27 Sep 2023 20:28:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 904394CFA9
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 20:21:12 +0000 (UTC)
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C7E010E
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 13:21:11 -0700 (PDT)
-Received: by mail-io1-xd2b.google.com with SMTP id ca18e2360f4ac-79fa2dbd793so354242539f.2
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 13:21:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1695846071; x=1696450871; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=t/WPzSaDS9c+jiadSigu8kAq3wHnfTKelNMfiF3LTzM=;
-        b=NFPIdVfVm9Cs8hzkeVsa84P9bc5aJOExpVnEr16PwbTM5gi6VTllZdBDI14c/F79th
-         MaCLFOXmFm1SVOfSy0WA8RpUwNjX4/R2AP2/dUX3ZwpMc7BtoaN0qQzqkhXHodiHreQO
-         I4TJllASEqF6WEezGq0r0+0ZqkUH6f4DjQ7o4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695846071; x=1696450871;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=t/WPzSaDS9c+jiadSigu8kAq3wHnfTKelNMfiF3LTzM=;
-        b=aAPCkblLOOi51nf9vNI4DoVoFL7wZL6Lx3CU1KhfxhZNg6GsWHus5bX7WAyHURagld
-         1Zx0b0S5zmAKUh6hFRMQ2kOqRSbfUvy+Wmq9hZSomzhv59HkGihI3ho+o20nQkBtd/ts
-         abDrgh4exI75ho/+sSvm/XD7J5A8j6X/cGtjCzDJ6juiNem/LiZE/VDAH01LrtNUkzIk
-         pO9yK3wwN8F1d8GgleNI/mgo623Y5hRmKnE0xx4GYqkJsW0RgTSccbGu0JD3JyhaXK7q
-         LZq++n+csvQSIReLQYVRz6x+pzYwVhPJBydcODdtxtMvZgpef9Njtt9OBz+2Am1xsiC1
-         bEVQ==
-X-Gm-Message-State: AOJu0YxqZDGWVyCdfHS56F8pEpL91Nhm77sv6t902DVBdOvI7V/z6bw1
-	bMNfXS++s4jBBcM89aVqrtbeEId1z4+47ZMAUB8=
-X-Google-Smtp-Source: AGHT+IFRbrRAe8Dnju3UVQpeWZ5Tyu9bkia5NuOv1VLGeo8FMF3tFtAq/tcjBk0rXfAM+4qlRibD1A==
-X-Received: by 2002:a92:ca0b:0:b0:34c:e7a3:894 with SMTP id j11-20020a92ca0b000000b0034ce7a30894mr4107520ils.16.1695846070751;
-        Wed, 27 Sep 2023 13:21:10 -0700 (PDT)
-Received: from kea.bld.corp.google.com ([2620:15c:183:200:5d4f:fe51:5575:6f76])
-        by smtp.gmail.com with ESMTPSA id ei15-20020a05663829af00b0042fec8620e4sm4113299jab.57.2023.09.27.13.21.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Sep 2023 13:21:10 -0700 (PDT)
-From: Simon Glass <sjg@chromium.org>
-To: devicetree@vger.kernel.org
-Cc: linux-mtd@lists.infradead.org,
-	U-Boot Mailing List <u-boot@lists.denx.de>,
-	Tom Rini <trini@konsulko.com>,
-	Rob Herring <robh@kernel.org>,
-	Simon Glass <sjg@chromium.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Rob Herring <robh+dt@kernel.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] dt-bindings: mtd: binman-partitions: Add alignment properties
-Date: Wed, 27 Sep 2023 14:20:53 -0600
-Message-ID: <20230927202057.3676497-3-sjg@chromium.org>
-X-Mailer: git-send-email 2.42.0.515.g380fc7ccd1-goog
-In-Reply-To: <20230927202057.3676497-1-sjg@chromium.org>
-References: <20230927202057.3676497-1-sjg@chromium.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F3C148EBE
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 20:28:15 +0000 (UTC)
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 795E711D
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 13:28:13 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailout.nyi.internal (Postfix) with ESMTP id 2D98A5C2903;
+	Wed, 27 Sep 2023 16:28:11 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Wed, 27 Sep 2023 16:28:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to; s=fm3; t=
+	1695846491; x=1695932891; bh=DVbBKFnJ4KpOYGaSTwQCG+u4QqU7wtSCnVO
+	E7Dfn380=; b=ecNmrI3NY0ZdBdmOebpvtr0Ybs+A/m/UlhZnMuQgPc/PfV959mT
+	8RIfAh/JEb7cCO5Da4uMdhJM0QZI5AvIPY6lBPwr81ly0OAKQv7un8bt9pZJRMbG
+	MHhJXHSHCjamRRjfDBM0amk9iT6esivqV4D/4cAp9/vl4RHRxz7kHrOKRczzJGHS
+	8sgvesAifbhvjDtNCUs2hUjWPc0zIUVKEMqEM1zU+IZkpy+AizGfABxj/1UaOQMk
+	qI5+gG7Ws6Y2TPQmFqiouUZFc0innW+o9jU/7+U2M0oCoUFCOenLq9AQEGBUBSwq
+	qVY3U+gemCDHZx7YLN5CJy9uKAHnhgJ+bYQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
+	1695846491; x=1695932891; bh=DVbBKFnJ4KpOYGaSTwQCG+u4QqU7wtSCnVO
+	E7Dfn380=; b=WhnnZnFw9Hhn/Ooht5mwxbbGsUzaHvOB321pPOWhVxGNNsHWXkJ
+	TsqducG+pstLHlRzLPClfUxnuz1qS2Vhe4QKV7+Xl8zxdcIZtNnmNrvP20dN+kHU
+	9u8yQJ460Y6OtfuOoj9nnicgwXps9a2yS9QfJRUeKHaN0Dd6s+kZl4RAZqwrNgY8
+	I4AegXpgOFjc6odIe0lLZ+sP7e3ITp+UEkVT+FX6S8k5P3sd2+QN7IkrvVxDx5s4
+	2WSu67qdx12GsD7M1fKUQGz0AxW9MxR61f4FNMxG1fVmdD44zkqKz1WZ9J2lgkIP
+	TKpNIQSSjdI0Izr1mMqm5h+YPx8vf3II6pQ==
+X-ME-Sender: <xms:WpAUZcNn7SVVp5OU9MLb-NejqftO5fTAN9JmLiecNNvBCuT6YbkZug>
+    <xme:WpAUZS98CHt9E2yNf-ZwrovkKRGZww4kDPx7s5CIP6VGr-3xuHwin2I3gVQb2rU48
+    1fO_wJT2YwlYkT4Nw>
+X-ME-Received: <xmr:WpAUZTRy4zaf3hu7ebbaL7uAoEYcNAz034Gz47uQCgJHZ-3DN953JyhA7QZJxkH3KiRaZm2CCTZu71KJVvJIMRtspDQt5uO0EttwL74k0OyqPeCthAOuI2Xd9w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvjedrtdeggdekiecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefkffggfgfuvfevfhfhjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepkeejleelfeeitdfhtdfgkeeghedufeduueegffdvhfdukeelleef
+    tdetjeehuddtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:WpAUZUvERVyoLnBU3ZxPWFcgKiKu5Av2D4mRqBZK4Ph3gfd0--I3sg>
+    <xmx:WpAUZUe6dzPnWDMgG1pG2sfw6-H41qdupKaN8MqdUlHtSRynqm9A5g>
+    <xmx:WpAUZY22sEdqmE1gLGxM5SCWg4ayPj9uj53IyKll9B1ggP85UJP5EA>
+    <xmx:W5AUZVVsbZn25ji8UeeoJCRLXgHM8twGeBbc5xtzUYnCsf2NHoMRYQ>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 27 Sep 2023 16:28:09 -0400 (EDT)
+Message-ID: <158304d2-ec49-f280-4cd5-8f9a36a520ed@sholland.org>
+Date: Wed, 27 Sep 2023 15:28:09 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH V5 4/4] ARM: dts: sunxi: add support for Anbernic RG-Nano
+Content-Language: en-US
+To: Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev
+Cc: devicetree@vger.kernel.org, mripard@kernel.org, uwu@icenowy.me,
+ jernej.skrabec@gmail.com, wens@csie.org, conor+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ andre.przywara@arm.com, Chris Morgan <macromorgan@hotmail.com>
+References: <20230921135136.97491-1-macroalpha82@gmail.com>
+ <20230921135136.97491-5-macroalpha82@gmail.com>
+From: Samuel Holland <samuel@sholland.org>
+In-Reply-To: <20230921135136.97491-5-macroalpha82@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add three properties for controlling alignment of partitions, aka
-'entries' in binman.
+On 9/21/23 08:51, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> The Anbernic RG-Nano is a small portable game device based on the
+> Allwinner V3s SoC. It has GPIO buttons on the face and side for
+> input, a single mono speaker, a 240x240 SPI controlled display, a USB-C
+> OTG port, an SD card slot for booting, and 64MB of RAM included in the
+> SoC. There does not appear to be a crystal feeding the internal RTC so
+> it does not keep proper time (for me it ran 8 hours slow in a 24 hour
+> period). External RTC works just fine.
+> 
+> Working/Tested:
+> - SDMMC
+> - UART (for debugging)
+> - Buttons
+> - Charging/battery/PMIC
+> - Speaker
+> - RTC (external RTC)
+> - USB
+> - Display
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
+>  arch/arm/boot/dts/allwinner/Makefile          |   1 +
+>  .../allwinner/sun8i-v3s-anbernic-rg-nano.dts  | 284 ++++++++++++++++++
+>  2 files changed, 285 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
 
-For now there is no explicit mention of hierarchy, so a 'section' is
-just the 'fixed-partitions' node.
-
-These new properties are inputs to the packaging process, but are also
-needed if the firmware is repacked, to ensure that alignment
-constraints are not violated. Therefore they a provided as part of the
-schema.
-
-Signed-off-by: Simon Glass <sjg@chromium.org>
----
-
- .../mtd/partitions/binman-partition.yaml      | 39 +++++++++++++++++++
- 1 file changed, 39 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/mtd/partitions/binman-partition.yaml b/Documentation/devicetree/bindings/mtd/partitions/binman-partition.yaml
-index 6ee832cb4c4c..9cd424447e76 100644
---- a/Documentation/devicetree/bindings/mtd/partitions/binman-partition.yaml
-+++ b/Documentation/devicetree/bindings/mtd/partitions/binman-partition.yaml
-@@ -27,6 +27,42 @@ properties:
-         - u-boot       # u-boot.bin from U-Boot projec6t
-         - atf-bl31     # bl31.bin or bl31.elf from TF-A project
- 
-+  align:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      This sets the alignment of the entry. The entry offset is adjusted
-+      so that the entry starts on an aligned boundary within the containing
-+      section or image. For example ‘align = <16>’ means that the entry will
-+      start on a 16-byte boundary. This may mean that padding is added before
-+      the entry. The padding is part of the containing section but is not
-+      included in the entry, meaning that an empty space may be created before
-+      the entry starts. Alignment should be a power of 2. If ‘align’ is not
-+      provided, no alignment is performed.
-+
-+  align-size:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      This sets the alignment of the entry size. For example, to ensure
-+      that the size of an entry is a multiple of 64 bytes, set this to 64.
-+      While this does not affect the contents of the entry within binman
-+      itself (the padding is performed only when its parent section is
-+      assembled), the end result is that the entry ends with the padding
-+      bytes, so may grow. If ‘align-size’ is not provided, no alignment is
-+      performed.
-+
-+  align-end:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      This sets the alignment of the end of an entry with respect to the
-+      containing section. Some entries require that they end on an alignment
-+      boundary, regardless of where they start. This does not move the start
-+      of the entry, so the contents of the entry will still start at the
-+      beginning. But there may be padding at the end. While this does not
-+      affect the contents of the entry within binman itself (the padding is
-+      performed only when its parent section is assembled), the end result is
-+      that the entry ends with the padding bytes, so may grow. If ‘align-end’
-+      is not provided, no alignment is performed.
-+
- additionalProperties: false
- 
- examples:
-@@ -39,10 +75,13 @@ examples:
-         partition-u-boot@100000 {
-             label = "u-boot";
-             reg = <0x100000 0xf00000>;
-+            align-size = <0x1000>;
-+            align-end = <0x10000>;
-         };
- 
-         partition-atf-bl31t@200000 {
-             label = "atf-bl31";
-             reg = <0x200000 0x100000>;
-+            align = <0x4000>;
-         };
-     };
--- 
-2.42.0.515.g380fc7ccd1-goog
+Reviewed-by: Samuel Holland <samuel@sholland.org>
 
 
