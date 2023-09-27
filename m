@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-3808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA74A7B030A
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 13:33:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 577617B0310
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 13:33:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id C7B131C208C8
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 11:33:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 0633A2827EB
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 11:33:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54A7026E08;
-	Wed, 27 Sep 2023 11:33:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70FA526E13;
+	Wed, 27 Sep 2023 11:33:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFDF0C8E2
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 11:33:04 +0000 (UTC)
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 292E013A
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 04:33:02 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-5046bf37ec1so8128920e87.1
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 04:33:02 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B54BC8E2
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 11:33:11 +0000 (UTC)
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEBA71AB
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 04:33:09 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-532784c8770so13260702a12.1
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 04:33:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695814380; x=1696419180; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695814388; x=1696419188; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+Xc9PjePNFnUDnIuQ5EhMvgwsL+HMhUntcq+NbO/3Vc=;
-        b=UVKVyVQ2B19TQlZsolRlFzB0gUfzQR71l7boB6lGgs8RBSfqKRLmHQzrFnG59sTgYN
-         /u/QIeNOPHNTeCbNbpJS9JAj2A4wh9t50JTDefOTE+QH6DrcluAo+QIvoq8rxhKTyNcd
-         nBld//U7IyNatOZzMCQgwgoBDsY462a5jUOEqlu7NNusg7o0vTGmOsEA9l3NnPP5jTPh
-         i1T1E2Yn/ZJ8U/hzm1bjzZB6VEhzcP/+ERDj8Ucs7LpokxgIwnHrsrYVVwmj7klfO9mr
-         PXmhgbg2vHQQG24obLsSt6RDlPmall5lLeeeL6KqbBkzGgcec6yOBbOAi3vWpekZv/Fp
-         YYvA==
+        bh=V00dE13jvyk8AXLplxFmvGq1JYd/3Se8SH8h98wACWU=;
+        b=s+aEY2lPXHlkA1cWVWBJd7u4Ay+43MMG4Q1ZVau33dKKHpFSoam9VhX2ffjgPT7MnZ
+         IwUaoItXljlUBAiVbPAduYUcZmmVDz+jjLdGojtBmtNis4GwYJ57y4ye8e9GTVojHEt6
+         /Giq3MssXc4wzpCojrVAh33Dq+4rMK3UKikm81Xlc0BXKawIFZpvbHhu8kbM/pV8L8h0
+         O1cwKKdS767/54QsG4vLgYsCzOuTGpau/oFQ0qeiabNYvcIJnzzDs1FEwZaryL3JqPzc
+         mql4BZZn1Wkf6Mb5HdC2MRfpZI6aDG+0AVm5t4OIvISIDI5gfqsZBynUItnBa+HXnLzH
+         OyFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695814380; x=1696419180;
+        d=1e100.net; s=20230601; t=1695814388; x=1696419188;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+Xc9PjePNFnUDnIuQ5EhMvgwsL+HMhUntcq+NbO/3Vc=;
-        b=Nbhp7je4Lsc2Cybg/Ae7BSCNN2svuaoH/ecVsBi6TRHeNK7+rssAUA+7ZpsHgPGr4i
-         aKp0NJQ7ZxIrJpSep9gAbm41grVIlbCnXDsS41kYpFSIwBzYkNVc6jHeNRlca3CTc7vD
-         Wut6WcvIazW7b0P4TM9XmskiSva1tU9/1ncBZwx0GH+ycW5T2uvObcdKdimRWPiivD3M
-         kpI6qLh8FO/y3FAd27Y3t99+tk+jP5HZlDGvKwKdqAHT8mfjgEx5ZcFrWny3EoDicb23
-         yxadfWdRwpWfqBFKOW+18MXGAxRXmx+W37N24Jq2Vm2rNNk38fof3Y0ICxWwlfh5YN19
-         H1lQ==
-X-Gm-Message-State: AOJu0YwyOXJxMXUmbxw0ssyUMASSb7wTRRITO3O3AoVxNbyaOwROBb6A
-	EjAH+pT9Bq/CrWiB9BSFx+kRgA==
-X-Google-Smtp-Source: AGHT+IFE1qDEeHPJsLontfd/roA46OozoPth5BHrEcraZOTfzweaJdrU/KcMVLXZme9ulfoUV7pRGw==
-X-Received: by 2002:ac2:4e8d:0:b0:503:3589:f369 with SMTP id o13-20020ac24e8d000000b005033589f369mr1420333lfr.49.1695814380045;
-        Wed, 27 Sep 2023 04:33:00 -0700 (PDT)
+        bh=V00dE13jvyk8AXLplxFmvGq1JYd/3Se8SH8h98wACWU=;
+        b=AmQoNI8609HBn/LnWvsno8KxaqI3aFu3OIEopp1Ed2+wWZ0iejx78gsSSCEVArdECx
+         Fss1YEIBxp5+fvo28NQhMObcD8xQJVXpb07a7LeOhnIV1bi1z02RXrbyonDNKrMgfSaZ
+         RRCwg/qTcLpip4YCrhHn/fx6GmXJiJJQxBPPjmf85v5yuJcY8g+hOvk2GbvXzaZgFgXT
+         PIqe/h/Iygoj/6jDSQX6vgeOzbGwLbmtymvHUojn/wKnmSR9xlB2bY+XuaHHFOGKT1Vf
+         wSG5H5mx+Q/Zq5xuvAqsX6ZBaCOVFCOlGBPkCgLN0Dni/9dAlccBT8JOH+pyrVkgiXE1
+         e71A==
+X-Gm-Message-State: AOJu0Ywe9T9xU+CSUzka0F5SadhOfvkL0hgdmcclyaFkEYSX1UJNBRHT
+	mU0XwSdGi96zN3XwEqy7HYxtBA==
+X-Google-Smtp-Source: AGHT+IFXXJiB6420fa+diA8GSTb4CFAiCHBHfEgxODCA27fk+Nk+OEP37bXkZsPF/O3hZEVjtrts9g==
+X-Received: by 2002:a05:6402:1503:b0:52c:164:efe9 with SMTP id f3-20020a056402150300b0052c0164efe9mr1748653edw.29.1695814388151;
+        Wed, 27 Sep 2023 04:33:08 -0700 (PDT)
 Received: from [192.168.33.189] (178235177023.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.23])
-        by smtp.gmail.com with ESMTPSA id a2-20020aa7cf02000000b005232ea6a330sm8065681edy.2.2023.09.27.04.32.58
+        by smtp.gmail.com with ESMTPSA id a2-20020aa7cf02000000b005232ea6a330sm8065681edy.2.2023.09.27.04.33.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Sep 2023 04:32:59 -0700 (PDT)
-Message-ID: <2505f9f6-e9f6-40f3-afb9-792ddcf23b41@linaro.org>
-Date: Wed, 27 Sep 2023 13:32:58 +0200
+        Wed, 27 Sep 2023 04:33:07 -0700 (PDT)
+Message-ID: <c56cf777-3ab1-4978-815c-b8748d11a7a1@linaro.org>
+Date: Wed, 27 Sep 2023 13:33:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +63,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 04/11] clk: qcom: ipq9574: drop the CLK_SET_RATE_PARENT
+Subject: Re: [PATCH v2 05/11] clk: qcom: ipq5332: drop the CLK_SET_RATE_PARENT
  flag from GPLL clocks
 Content-Language: en-US
 To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
@@ -80,7 +80,7 @@ To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
 Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 References: <20230913-gpll_cleanup-v2-0-c8ceb1a37680@quicinc.com>
- <20230913-gpll_cleanup-v2-4-c8ceb1a37680@quicinc.com>
+ <20230913-gpll_cleanup-v2-5-c8ceb1a37680@quicinc.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -117,7 +117,7 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230913-gpll_cleanup-v2-4-c8ceb1a37680@quicinc.com>
+In-Reply-To: <20230913-gpll_cleanup-v2-5-c8ceb1a37680@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -128,13 +128,13 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 14.09.2023 08:59, Kathiravan Thirumoorthy wrote:
-> GPLL clock rates are fixed and shouldn't be scaled based on the request
-> from dependent clocks. Doing so will result in the unexpected behaviour.
-> So drop the CLK_SET_RATE_PARENT flag from the GPLL clocks.
+> GPLL clock rates are fixed and shouldn't be scaled based on the
+> request from dependent clocks. Doing so will result in the unexpected
+> behaviour. So drop the CLK_SET_RATE_PARENT flag from the GPLL clocks.
 > 
-> Fixes: d75b82cff488 ("clk: qcom: Add Global Clock Controller driver for IPQ9574")
+> Fixes: 3d89d52970fd ("clk: qcom: add Global Clock controller (GCC) driver for IPQ5332 SoC")
 > Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-> ----
+> ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
