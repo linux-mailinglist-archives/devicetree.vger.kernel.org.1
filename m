@@ -1,136 +1,100 @@
-Return-Path: <devicetree+bounces-3945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5BFE7B0A95
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 18:47:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59A667B0AD4
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 19:07:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 98805281758
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 16:47:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id A2D9FB20902
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 17:07:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A23B3C6B6;
-	Wed, 27 Sep 2023 16:47:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0C1049985;
+	Wed, 27 Sep 2023 17:07:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD64928DCC
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 16:47:32 +0000 (UTC)
-Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89A3492
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 09:47:28 -0700 (PDT)
-Received: by mail-il1-x130.google.com with SMTP id e9e14a558f8ab-35133097583so26361825ab.1
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 09:47:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1695833246; x=1696438046; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xi0NPAXOKB2g4KhPtyHEVHOc+BFF5U0uejfT8FKn0j4=;
-        b=ANev2KbLmjb0e3xXYqld5zgaRI70VN7XQUK2fw4yoVdiTpStIFJOWFiDu5iAG0/TlR
-         QzKwtdNwFhFVSdaRLUTGMwhGfGJ8IYpK2yeVwHpmq0ZbbHLse2Xs20C6sdbE2lUFROrg
-         RzTogpyfS5f+LKAQlCXyASltpGj5d2dHUbVPo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695833246; x=1696438046;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xi0NPAXOKB2g4KhPtyHEVHOc+BFF5U0uejfT8FKn0j4=;
-        b=ZbpRPG6QzzDymY9YVmmLme2pmcq7rMKXiTNtQZuw+qYhyeqpsYksPg/p9tNYC6dTqH
-         llQNzepeOUV554BNsMrJnIKrEkYqKkTZ1H3+8SoktefTJXXem7nmqC/G9M6Sj65nE/ux
-         9aXl+OPbCmbnykpJMRyS+6VFXXt4GbWEmNmj/BTe70yJFzJgHrNkZV3pyd7IZDKV7BkN
-         /a10MHNpySK9KChcstMTX3EQdaqmWVzA1PytJ8k7Y2ye83zC2omfNNIooJs9hrsoa+3p
-         Roe/Wx1NxiL1PCtVgzcVdBa4qHumWBjNhEcFm3dYOt8GRY9joTn/YQLYhFq52uJv5gwW
-         pAfw==
-X-Gm-Message-State: AOJu0Yy8MS72ngZB8w6xvtFGAAa7a08JOkXGP0Z51CYom58ZqD9qe3S1
-	147tXSK7q4hkZhuvjnJ3u5tT9rJAl5jmDdFvNCQ=
-X-Google-Smtp-Source: AGHT+IH+JcaNhVNz7FfFGoWF8iw2OSTtskunRegjjj1eGuC9QOYwU8eTORJoA1lvodxfPDArPEpPZw==
-X-Received: by 2002:a05:6e02:12c5:b0:34c:ecc8:98e7 with SMTP id i5-20020a056e0212c500b0034cecc898e7mr3216823ilm.9.1695833246163;
-        Wed, 27 Sep 2023 09:47:26 -0700 (PDT)
-Received: from kea.bld.corp.google.com ([2620:15c:183:200:5d4f:fe51:5575:6f76])
-        by smtp.gmail.com with ESMTPSA id ei25-20020a05663829b900b00439eda8c1c1sm3980500jab.111.2023.09.27.09.47.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Sep 2023 09:47:25 -0700 (PDT)
-From: Simon Glass <sjg@chromium.org>
-To: devicetree@vger.kernel.org
-Cc: U-Boot Mailing List <u-boot@lists.denx.de>,
-	Tom Rini <trini@konsulko.com>,
-	Rob Herring <robh@kernel.org>,
-	linux-mtd@lists.infradead.org,
-	Simon Glass <sjg@chromium.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Nick Terrell <terrelln@fb.com>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-	Richard Weinberger <richard@nod.at>,
-	Rob Herring <robh+dt@kernel.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: mtd: fixed-partitions: Add compression property
-Date: Wed, 27 Sep 2023 10:46:51 -0600
-Message-ID: <20230927164654.3397353-1-sjg@chromium.org>
-X-Mailer: git-send-email 2.42.0.515.g380fc7ccd1-goog
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B14E4262AD
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 17:07:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E5FDC433CA;
+	Wed, 27 Sep 2023 17:07:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695834437;
+	bh=ww8RDx9hkAQpnQEyKaBryIAZS7sFZDCDMf/pXai+c9s=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=pONniO0Wh/r657qy6wzumxLdiRzPPpwd5i5nolw/BqVERxHHVS13jzYKlPW/cqtZM
+	 v8sxdbM0gJh+HkGRDYS0dxo2G9ulEQ/L0ziwKzZLVrPtSaEws2hXWDj6qNUz2slwUc
+	 0K1VsnlFFGiOF8SRTviD38W4tFKZK25/ljWADwS1jKOZGHYMMQ75O3XscT/9i4zSz1
+	 TKMB4mn/0ntURaEZZoAXkIYlFBW0Jdxpl3UByarb8geZGVfZw1LIJ/NZZtpgQrLPuy
+	 /w9DehAbGSlOWQUIzo8lMKhXGLBj5JvcH2QBxGo02OoDG7z5nOPFp+h3xhO2je9YT+
+	 t67pZWP6WrurQ==
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5048156976cso2810847e87.2;
+        Wed, 27 Sep 2023 10:07:17 -0700 (PDT)
+X-Gm-Message-State: AOJu0YzewQ3TrswF6TktxSRXSTCcclJLMYYBXLha+te2kXY2mPlHKr1Y
+	2aAzbc4ZcbJ/oCMLK4gJ4fJon4MlW+XBMPxSfQ==
+X-Google-Smtp-Source: AGHT+IGOLYTox/AsEEvFcAMKFEwLQY4eI4MKNQ5mu482nElyCsj5ZwnSX1DOvDq1FlFAXqyncxX32XFlR0U+KrDkKh0=
+X-Received: by 2002:a05:6512:11c6:b0:502:d35b:5058 with SMTP id
+ h6-20020a05651211c600b00502d35b5058mr1936935lfr.4.1695834435296; Wed, 27 Sep
+ 2023 10:07:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+References: <20230926155351.31117-1-robh@kernel.org> <20230926155613.33904-3-robh@kernel.org>
+ <20230927-utmost-copied-6982126a7f00@spud>
+In-Reply-To: <20230927-utmost-copied-6982126a7f00@spud>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 27 Sep 2023 12:07:02 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLFxAf1MA2qhENGFH6Rim2ePWf8Y3RGxiUGyH3uKMC63Q@mail.gmail.com>
+Message-ID: <CAL_JsqLFxAf1MA2qhENGFH6Rim2ePWf8Y3RGxiUGyH3uKMC63Q@mail.gmail.com>
+Subject: Re: [PATCH 3/3] dt-bindings: PCI: brcm,iproc-pcie: Fix 'msi' child
+ node schema
+To: Conor Dooley <conor@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <ray.jui@broadcom.com>, 
+	Scott Branden <scott.branden@broadcom.com>, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Sometimes the contents of a partition are compressed. Add a property to
-express this and define the algorithm used.
+On Wed, Sep 27, 2023 at 10:35=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
+ote:
+>
+> On Tue, Sep 26, 2023 at 10:56:09AM -0500, Rob Herring wrote:
+> > The 'msi' child node schema is missing constraints on additional proper=
+ties.
+> > It turns out it is incomplete and properties for it are documented in t=
+he
+> > parent node by mistake. Move the reference to msi-controller.yaml and
+> > the custom properties to the 'msi' node. Adding 'unevaluatedProperties'
+> > ensures all the properties in the 'msi' node are documented.
+> >
+> > With the schema corrected, a minimal interrupt controller node is neede=
+d
+> > to properly decode the interrupt properties since the example has
+> > multiple interrupt parents.
+>
+> I suppose this is an ABI break, but the patch just makes the binding
+> match the example and intent.
 
-Signed-off-by: Simon Glass <sjg@chromium.org>
----
+It also matches what the in tree users do, so not an ABI break. I
+imagine the .txt binding just listed out properties and the conversion
+carried that over.
 
-Changes in v3:
-- Just add a compression property for now
+> Feels like of all the patches doing the
+> unevaluatedProperty additions, this one is the most deserving of a fixes
+> tag, since the original binding just seems to be completely wrong?
 
-Changes in v2:
-- Use "binman" for compatible instead of "u-boot,binman"
-- Significantly rework the patch
-- Use make dt_binding_check DT_SCHEMA_FILES=Documentation/../partitions
+Yes, though the example fix is a dependency, so probably not worth backport=
+ing.
 
- .../mtd/partitions/fixed-partitions.yaml       | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+Fixes: 905b986d099c ("dt-bindings: pci: Convert iProc PCIe to YAML")
 
-diff --git a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
-index 331e564f29dc..13ff313cabda 100644
---- a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
-+++ b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
-@@ -29,6 +29,24 @@ properties:
- 
-   "#size-cells": true
- 
-+  compression:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: |
-+      Compression algorithm used to store the data in this partition, chosen
-+      from a list of well-known algorithms.
-+
-+      The contents are compressed using this algorithm.
-+
-+    enum:
-+      - none
-+      - bzip2
-+      - gzip
-+      - lzop
-+      - lz4
-+      - lzma
-+      - xz
-+      - zstd
-+
- patternProperties:
-   "@[0-9a-f]+$":
-     $ref: partition.yaml#
--- 
-2.42.0.515.g380fc7ccd1-goog
-
+Rob
 
