@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-3790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 831117B0229
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 12:47:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4536D7B022A
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 12:48:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 34FE0281E56
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 10:47:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id E8F29281D1B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 10:48:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 923AC156EA;
-	Wed, 27 Sep 2023 10:47:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1F5B15AC2;
+	Wed, 27 Sep 2023 10:48:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54FDC1170C
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 10:47:15 +0000 (UTC)
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A669180
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 03:47:13 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-530fa34ab80so26117960a12.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 03:47:13 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E1F61170C
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 10:48:14 +0000 (UTC)
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59316F3
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 03:48:13 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9ad8bf9bfabso1385756166b.3
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 03:48:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695811632; x=1696416432; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695811692; x=1696416492; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PQ3dRWFSzFn+xxVwVVaoy7t/aSLLVEtHDoJ4V/iI1zg=;
-        b=ZcaiorcXKf6of8oh7Y4tGgStw4rvHgTNKUqc5fNNOED1wG/ovpwOZcuwBB2fO1K5mt
-         mT6yLp+J3AkHzFtq53FCjX9o8fP1udBd3/3q1G1NoMEuJkX0Sg+CtoF66o1m+r7Q6R9M
-         KRTVz12RYv9L1YiUkBr/XzG6xgPIp9Y3VF7Kh6K6kzHrlF6rQrHl26uyv3udOJ2y0vVg
-         KKNdq/2g7zUC/ToWbDHtLfq6CFFMejstg3pcHu7qeW+tfs0aZsMUFR4YrN00UVGd+Sgt
-         0mfPiE8s5+nM4M1xWPcD8WzAzO1zvKnqcJ3Ervckzy2KW4wfHhkaWihRBfR6MuUq6wml
-         Gk8Q==
+        bh=hgYtHaJmWbG/l/mQSkduAi/lldsxlVfqeTOi4f5g8SI=;
+        b=w8RPAH/T5DAj/QLxqBViR0NnnAJzzL6MMOR2a7GPSNdbS/6BB/8JyYUEtb1G+odh1C
+         ngveOxU2cOqQTWIYZKWPGW2EbbWvx8+XnCuA6oqIOlUJQ2Lz4l1U5YYQI8RnVTp/GxMu
+         qINKFMIrl/+H6pv8G0FCmhF2+S4YSau+GjKKmPZGnagsBa6sKARJC4x0WLfOVkLxcdpF
+         UUZTtlcLcRL/v+b8v9Z9ebfyKysl8LOikAM5DiRSThKkjpAHPaPiXq+8+relOAOTIdRA
+         k9aU4eAisa7DCLt6T/m8hNaW42vqFk9GwClbTYxU+Dc+bkwzk3di6P05o5rbdTXL9sim
+         BceQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695811632; x=1696416432;
+        d=1e100.net; s=20230601; t=1695811692; x=1696416492;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PQ3dRWFSzFn+xxVwVVaoy7t/aSLLVEtHDoJ4V/iI1zg=;
-        b=hpE45H51aT3KVEKt/N/V1U6oY+TT1h5LWam6hHyQoXdY2EYMbbDFUWzk0hhFaYcpaB
-         cXk76OJ9TSqAO7ZEopG/2ga2nMi96JBhE4vSZQ4EkyDO5PG0aPttUIPjUbuDNTZbPJiz
-         RydoQyQMPUD42SFL5U4ISdya4pFztK/AwlQ8Ni18HUzINuIMEYkjOFahLMYyIXwRJOLq
-         DNn2o46aKHWK1vToYTsxFa4u2Zh/Vx17wvjJEfr7a1a14S8HvU9Swda3+Zo+An9IfySe
-         SRQvbCYCGKuA/uL5hmOaelK4j4cE+xMpCkLU3OC41et7KybNGmQrRdkXuIXLGrN+Ph2e
-         uJ5Q==
-X-Gm-Message-State: AOJu0Yxto3EqWfMU0OS189/ogpqUUMOZLPFY9o0sOc+K7FhZd8AIP6To
-	UJhgpliLWPm78v9D824x8nL6Sy2JJyonpYD/6qK21Q==
-X-Google-Smtp-Source: AGHT+IETV+6cwPeaHCYHkCp7qDMiBWINene2tNDTs1LgDTmUSv8Os1xlNfbkHXrCpiodmdzKX2cmKQ==
-X-Received: by 2002:a17:906:c144:b0:9ae:513f:a4f3 with SMTP id dp4-20020a170906c14400b009ae513fa4f3mr7899469ejc.32.1695811632037;
-        Wed, 27 Sep 2023 03:47:12 -0700 (PDT)
+        bh=hgYtHaJmWbG/l/mQSkduAi/lldsxlVfqeTOi4f5g8SI=;
+        b=P57seT/nxcYqpZy3TK1ANGreVU6ECAqUke8izOVdmoJrSBVU7+wQZsCHZGhejEGKWD
+         yGUOH4Mu1bqX0I2nZYirfkEUzphWDsacadK0AQ9ubLK7XuUDyWwxBzC2XMcjxhjkCkR3
+         CQZFKhBbNKBAnkSIVAjZuYrZbuklmXfg0UDJLlpbPlg/ckfGfPFV7c/AVPYsi5zM48SG
+         fwIzvUWDo5xGXili8RQ/6T5zwe9X6zsM0BhK9FKorvYyUnsXp1XKI8kPMTsa2jrl9XIl
+         wTIH5WeZ9EdpLpFj3tlQ5TXVZmSe/MP+L5jomxiFM9A4QBnYi0rYwDPN/k00iiYBJR3J
+         Q9Lg==
+X-Gm-Message-State: AOJu0YzxXqZvVnFyAO9FUupIXjvmay4KV5qu/mzRYw4IeqQE1xN3Wzpi
+	yE4DrZ9DNRw8HcwYFg2kqRYwsg==
+X-Google-Smtp-Source: AGHT+IHWOcLosFxEUUGzC06Wi0710O90AgroQ05CZ7Q1zNBshuuuM1xgDQWhYjeilX2YeqyXTdPKWA==
+X-Received: by 2002:a17:906:76d1:b0:9a2:40e:2caf with SMTP id q17-20020a17090676d100b009a2040e2cafmr1440228ejn.13.1695811691865;
+        Wed, 27 Sep 2023 03:48:11 -0700 (PDT)
 Received: from [192.168.33.189] (178235177023.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.23])
-        by smtp.gmail.com with ESMTPSA id k5-20020a1709062a4500b009934b1eb577sm9212009eje.77.2023.09.27.03.47.10
+        by smtp.gmail.com with ESMTPSA id k5-20020a1709062a4500b009934b1eb577sm9212009eje.77.2023.09.27.03.48.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Sep 2023 03:47:11 -0700 (PDT)
-Message-ID: <35703a29-5c5a-47a8-9a4b-04953dc3faba@linaro.org>
-Date: Wed, 27 Sep 2023 12:47:09 +0200
+        Wed, 27 Sep 2023 03:48:11 -0700 (PDT)
+Message-ID: <cce67898-9caf-4898-9dfe-5374d66c3477@linaro.org>
+Date: Wed, 27 Sep 2023 12:48:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +63,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: Add interconnect nodes for SDX75
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sdx75-idp: Enable USB3 and PHY
+ support
 Content-Language: en-US
 To: Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
  andersson@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -71,7 +72,7 @@ To: Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <1695720564-2978-1-git-send-email-quic_rohiagar@quicinc.com>
- <1695720564-2978-2-git-send-email-quic_rohiagar@quicinc.com>
+ <1695720564-2978-4-git-send-email-quic_rohiagar@quicinc.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -108,34 +109,22 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <1695720564-2978-2-git-send-email-quic_rohiagar@quicinc.com>
+In-Reply-To: <1695720564-2978-4-git-send-email-quic_rohiagar@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 26.09.2023 11:29, Rohit Agarwal wrote:
-> Add interconnect nodes to support interconnects on SDX75.
-> Also parallely add the interconnect property for UART required
-> so that the bootup to shell does not break with interconnects
-> in place.
+> Enable the support for USB3 controller, QMP PHY and HS PHY
+> on SDX75 IDP.
 > 
 > Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
 > ---
-[...]
-
->  		scm: scm {
->  			compatible = "qcom,scm-sdx75", "qcom,scm";
-> @@ -434,6 +448,8 @@
->  			clock-names = "m-ahb",
->  				      "s-ahb";
->  			iommus = <&apps_smmu 0xe3 0x0>;
-> +			interconnects = <&clk_virt MASTER_QUP_CORE_0 0 &clk_virt SLAVE_QUP_CORE_0 0>;
-0 -> QCOM_ICC_TAG_ALWAYS (dt-bindings/interconnect/qcom,icc.h)
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 
