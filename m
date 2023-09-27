@@ -1,190 +1,102 @@
-Return-Path: <devicetree+bounces-3712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D51927AFF07
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 10:54:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C1C57AFF1C
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 10:56:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 87C6E283486
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:54:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 701B8B20AB8
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:56:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BDEE1C6BF;
-	Wed, 27 Sep 2023 08:54:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5043A1D6B9;
+	Wed, 27 Sep 2023 08:56:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4DDF111A1
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 08:54:53 +0000 (UTC)
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE771192;
-	Wed, 27 Sep 2023 01:54:50 -0700 (PDT)
-Received: by mail-ot1-x334.google.com with SMTP id 46e09a7af769-6bd04558784so6491766a34.3;
-        Wed, 27 Sep 2023 01:54:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695804890; x=1696409690; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=MoYbiHoRTBkFkCQeE69Y8EorC+SjrK0dNJelyHZJ5P0=;
-        b=bDZPOSTvsbPSfAmWbhJUddREHEhWN5okYfwo6KOZk9C389FElSlQ+2Vs3rQxHs4l36
-         WSBOwiYigQlJvnREJduVoICUlNhnBwamWQLYQtoni6kTcmJNELKbhPrsaItbAQzw7a9s
-         VU3Qb32VHIDcV21XqZEgKEqvQ2fnStwifFeu3LulOhyTgzpEOOSyrWFPnHp7Tb/WW/PE
-         YDxSQN4qD7Po6nrgkMAxYz/G3IlQlFSZVMR0MQQQQ330EkBQNiK8Y0DDR6nV3/D5oVLs
-         ny7kJQAp+ANMmJEBl7a5tSrWDKSOdbe4FRrHsvFk7Am4KMtVihql8eJXDk7GpFICNMwV
-         AURQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695804890; x=1696409690;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MoYbiHoRTBkFkCQeE69Y8EorC+SjrK0dNJelyHZJ5P0=;
-        b=aSmzjAKA1LX7uYMutsEVKf2kpoDPyhN6n6Z9hLg0EhueqzC7ivFp8nCoHVfcqB0wxL
-         rC3RCngbe1mXnJZ523Hx/8TTKpEiepuKNmzWkvx2Pcjvh38gZUm9EfnlmpBUdcvc14VR
-         LxOOzzJnjsGvcGLn5EzLeE4ObTE4L9/gRLDYqBDEf9fq59pbc87VrZQK84S+WNoIwWDM
-         pN7y1X5sUzMOhW2fKNXjmL6tD0f2j0GdTk+5vc4EwTZlMiDyPvQgASxGv/cdITdw0Kn0
-         SVJM98KY/IdMtK2G6uFjxcEOzNwIctSGAtmUu+fj0O/JiwfuXWlBib9iOM7A6P1Ure3l
-         c8Jw==
-X-Gm-Message-State: AOJu0YxrNYW6aCw4t2mhKVxIPi5m4QFniyxzJKjcVzuSUj3i7wwG4kn0
-	3JFFjrAZTYPJabg9KdM+8dY=
-X-Google-Smtp-Source: AGHT+IE7eYgWleSnh6tDnUyYVY08rHA5PEnYMgEJh3AmLlogwa3AMpP/EvRVYEl2Pbk2FRPbyZfJGg==
-X-Received: by 2002:a9d:66cf:0:b0:6bd:152f:9918 with SMTP id t15-20020a9d66cf000000b006bd152f9918mr1434562otm.14.1695804889948;
-        Wed, 27 Sep 2023 01:54:49 -0700 (PDT)
-Received: from localhost.localdomain ([122.8.183.87])
-        by smtp.gmail.com with ESMTPSA id f6-20020a056830204600b006b92509e76esm2304744otp.32.2023.09.27.01.54.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Sep 2023 01:54:49 -0700 (PDT)
-From: Chen Wang <unicornxw@gmail.com>
-To: aou@eecs.berkeley.edu,
-	chao.wei@sophgo.com,
-	conor@kernel.org,
-	devicetree@vger.kernel.org,
-	guoren@kernel.org,
-	jszhang@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	palmer@dabbelt.com,
-	paul.walmsley@sifive.com,
-	robh+dt@kernel.org,
-	xiaoguang.xing@sophgo.com,
-	apatel@ventanamicro.com
-Cc: Chen Wang <unicornxw@gmail.com>
-Subject: [PATCH v3 00/11] Add Milk-V Pioneer RISC-V board support
-Date: Wed, 27 Sep 2023 16:54:38 +0800
-Message-Id: <cover.1695804418.git.unicornxw@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F46213ADF
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 08:56:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52132C433C7;
+	Wed, 27 Sep 2023 08:56:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695805005;
+	bh=Cao/bocpgqpFeJIKvW5opyJ4/rHkM9Gq7550IJgQQDg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qe6KTU7Sn8Hs0MapzvaEx7O/dKZhmloYikn5MDNsYhg/AbGi8CTbhVwZZZ/yV63TW
+	 NrJlCYAghT2nraItdlDQmhX/ERO/CfbOZE/aV1/fLY6QSvjprJ/7u9gKHHYRXAgliH
+	 inT6TzQzp1Gn1lFvUWMhqgM5FDzs3tsSOmLzXMHH0EsztxOsW36EGbeajGwKKU6vXQ
+	 rEP/i7/ACILKb0kmxJoWRyQt85wfUgXgaoT9OebJqq/h+sCXUzqyRNKbHB6HQ5/34i
+	 T6b9CEhgpMOZUlNJMC9+zyKjsTej6d0XbEcoS36VI12Lbk+H/wKPCK37tDXdzU5AEt
+	 hkDIHF7mctJ0Q==
+Date: Wed, 27 Sep 2023 10:56:42 +0200
+From: Mark Brown <broonie@kernel.org>
+To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Chris Paterson <Chris.Paterson2@renesas.com>,
+	Biju Das <biju.das@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 1/2] spi: renesas,rzv2m-csi: Add SPI Slave related
+ properties
+Message-ID: <ZRPuSidGd5zO6pXf@finisterre.sirena.org.uk>
+References: <20230926210818.197356-1-fabrizio.castro.jz@renesas.com>
+ <20230926210818.197356-2-fabrizio.castro.jz@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
-
-Milk-V Pioneer [1] is a developer motherboard based on SOPHON SG2042 [2]
-in a standard mATX form factor. Add minimal device
-tree files for the SG2042 SOC and the Milk-V Pioneer board.
-
-Now only support basic uart drivers to boot up into a basic console.
-
-Thanks,
-Chen
-
----
-
-Changes in v3:
-  The patch series is based on v6.6-rc1. You can simply review or test 
-  the patches at the link [5].
-  - add new vendor specific compatible strings to identify timer/mswi for sg2042 clint
-  - updated maintainers info. for sophgo devicetree
-  - remove the quirk changes for uart
-  - updated dts, such as:
-    - add "riscv,isa-base"/"riscv,isa-extensions" for cpus
-    - update l2 cache node's name
-    - remove memory and pmu nodes
-  - fixed other issues as per input from reviewers.
-
-Changes in v2:
-  The patch series is based on v6.6-rc1. You can simply review or test 
-  the patches at the link [4].
-  - Improve format for comment of commitments as per input from last review.
-  - Improve format of DTS as per input from last review.
-  - Remove numa related stuff from DTS. This part is just for optimization, may
-    add it later if really needed. 
-
-Changes in v1:
-   The patch series is based on v6.6-rc1. Due to it is not sent in thread,
-   I have listed permlinks of the patchset [v1-0/12] ~ [v1-12/12] here for 
-   quick reference. You can simply review or test the patches at the link [3].
-
-[1]: https://milkv.io/pioneer
-[2]: https://en.sophgo.com/product/introduce/sg2042.html
-[3]: https://github.com/unicornx/linux-riscv/commits/milkv-pioneer-minimal
-[4]: https://github.com/unicornx/linux-riscv/commits/milkv-pioneer-minimal-v2
-[5]: https://github.com/unicornx/linux-riscv/commits/milkv-pioneer-minimal-v3
-[v1-0/12]:https://lore.kernel.org/linux-riscv/20230915070856.117514-1-wangchen20@iscas.ac.cn/
-[v1-1/12]:https://lore.kernel.org/linux-riscv/20230915071005.117575-1-wangchen20@iscas.ac.cn/
-[v1-2/12]:https://lore.kernel.org/linux-riscv/20230915071409.117692-1-wangchen20@iscas.ac.cn/
-[v1-3/12]:https://lore.kernel.org/linux-riscv/20230915072242.117935-1-wangchen20@iscas.ac.cn/
-[v1-4/12]:https://lore.kernel.org/linux-riscv/20230915072333.117991-1-wangchen20@iscas.ac.cn/
-[v1-5/12]:https://lore.kernel.org/linux-riscv/20230915072358.118045-1-wangchen20@iscas.ac.cn/
-[v1-6/12]:https://lore.kernel.org/linux-riscv/20230915072415.118100-1-wangchen20@iscas.ac.cn/
-[v1-7/12]:https://lore.kernel.org/linux-riscv/20230915072431.118154-1-wangchen20@iscas.ac.cn/
-[v1-8/12]:https://lore.kernel.org/linux-riscv/20230915072451.118209-1-wangchen20@iscas.ac.cn/
-[v1-9/12]:https://lore.kernel.org/linux-riscv/20230915072517.118266-1-wangchen20@iscas.ac.cn/
-[v1-10/12]:https://lore.kernel.org/linux-riscv/20230915072558.118325-1-wangchen20@iscas.ac.cn/
-[v1-11/12]:https://lore.kernel.org/linux-riscv/20230915072624.118388-1-wangchen20@iscas.ac.cn/
-[v1-12/12]:https://lore.kernel.org/linux-riscv/20230915072653.118448-1-wangchen20@iscas.ac.cn/
-
----
-
-Chen Wang (9):
-  riscv: Add SOPHGO SOC family Kconfig support
-  dt-bindings: vendor-prefixes: add milkv/sophgo
-  dt-bindings: riscv: add sophgo sg2042 bindings
-  dt-bindings: riscv: Add T-HEAD C920 compatibles
-  dt-bindings: interrupt-controller: Add Sophgo SG2042 PLIC
-  MAINTAINERS: add two files to sophgo devicetrees entry
-  riscv: dts: add initial Sophgo SG2042 SoC device tree
-  riscv: dts: sophgo: add Milk-V Pioneer board device tree
-  riscv: defconfig: enable SOPHGO SoC
-
-Inochi Amaoto (2):
-  dt-bindings: timer: Add Sophgo sg2042 CLINT timer
-  dt-bindings: interrupt-controller: Add Sophgo sg2042 CLINT mswi
-
- .../sifive,plic-1.0.0.yaml                    |    1 +
- .../sophgo,sg2042-clint-mswi.yaml             |   42 +
- .../devicetree/bindings/riscv/cpus.yaml       |    1 +
- .../devicetree/bindings/riscv/sophgo.yaml     |   28 +
- .../timer/sophgo,sg2042-clint-mtimer.yaml     |   42 +
- .../devicetree/bindings/vendor-prefixes.yaml  |    4 +
- MAINTAINERS                                   |    9 +
- arch/riscv/Kconfig.socs                       |    5 +
- arch/riscv/boot/dts/Makefile                  |    1 +
- arch/riscv/boot/dts/sophgo/Makefile           |    3 +
- arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi   | 1880 +++++++++++++++++
- .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  |   19 +
- arch/riscv/boot/dts/sophgo/sg2042.dtsi        |  325 +++
- arch/riscv/configs/defconfig                  |    1 +
- 14 files changed, 2361 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/sophgo,sg2042-clint-mswi.yaml
- create mode 100644 Documentation/devicetree/bindings/riscv/sophgo.yaml
- create mode 100644 Documentation/devicetree/bindings/timer/sophgo,sg2042-clint-mtimer.yaml
- create mode 100644 arch/riscv/boot/dts/sophgo/Makefile
- create mode 100644 arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi
- create mode 100644 arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
- create mode 100644 arch/riscv/boot/dts/sophgo/sg2042.dtsi
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="NweErwwnK6vf4dVT"
+Content-Disposition: inline
+In-Reply-To: <20230926210818.197356-2-fabrizio.castro.jz@renesas.com>
+X-Cookie: Save energy:  Drive a smaller shell.
 
 
-base-commit: 0bb80ecc33a8fb5a682236443c1e740d5c917d1d
--- 
-2.25.1
+--NweErwwnK6vf4dVT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+On Tue, Sep 26, 2023 at 10:08:17PM +0100, Fabrizio Castro wrote:
+> The CSI IP found inside the Renesas RZ/V2M SoC can also work
+> in SPI slave mode.
+> When working in slave mode, the IP can make use of the SS
+> (Slave Select) pin, with "low" as default active level.
+> The active level of SS can be changed to "high" upon configuration.
+> This patch adds two new properties, one to make use of the
+> SS pin when in slave mode, and one to make the SS pin active high.
+
+Please avoid the use of outdated terminology like this, prefer "device
+mode" or similar.
+
+> +  renesas,csi-ss:
+> +    type: boolean
+> +    description:
+> +      Use CSI Slave Selection (SS) pin to enable transmission and reception when
+> +      in slave mode.
+
+When would this ever not be true when in device mode?
+
+--NweErwwnK6vf4dVT
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmUT7kkACgkQJNaLcl1U
+h9AMqgf/ZuFxoWKxQxzkjvFfE0DOLwBfbcS17S+hLEbttlrCE5+4EBd224qBeKYQ
+iRQpyNVbPXfCJesuwKzplzK1EMJ3bmgtf2JksGIEwxchjCPEcAB3MakWimJyRfeN
+CunfmZ6US/62Xg+X8ZTO2F9IYpwfxK2xcT2bwuF1iDNMaYuuH0ohYN8TyRJ1P/d6
+2mrkBs367ZBYilYKWICHV3HxBy8HlkAqGG8v5HdoUd5CrJVCyUpuW9NVTbNerSru
+XQhvx3DVdPzpBKDv+d7XPsAGD4UhbBBsUKyUsV8l15wgqBy/bzscRM5Qx6nhW4qA
+2Ni1w+aITJRQnwtge9UPpruggz0cQA==
+=aQdy
+-----END PGP SIGNATURE-----
+
+--NweErwwnK6vf4dVT--
 
