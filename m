@@ -1,232 +1,814 @@
-Return-Path: <devicetree+bounces-3626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E84D47AF851
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 04:52:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5394F7AF85D
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 05:00:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 01FD21C20754
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 02:52:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id E654B2815E0
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 03:00:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA2ED6AA2;
-	Wed, 27 Sep 2023 02:52:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21BCF522A;
+	Wed, 27 Sep 2023 03:00:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45EF817EE
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 02:52:30 +0000 (UTC)
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17604A5DE;
-	Tue, 26 Sep 2023 19:52:26 -0700 (PDT)
-X-UUID: e01b58ce5ce011ee8051498923ad61e6-20230927
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=jWhDdRTEAU+zw/lhjP8Yc14q2g7obPCQEaeePg/cjqM=;
-	b=YuoAtgQjLEzMsivC7VoL2rnNM2HTm+AzpIbzy/573bAg0PZ+KRoEiLSvJTFC5TXGnztuOyafIqGrEOCm1+aFuXAVIBjQ3VUT5hiyMEmkoJZYxXtjsKtUTgMQy06l+q5kezqoTAo5oWzvDBrY5Az5qefRtVGyAzZGGtUB9Mm/DTQ=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.32,REQID:66cc766d-5a36-452a-b6ef-afc16de00b21,IP:0,U
-	RL:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:25
-X-CID-META: VersionHash:5f78ec9,CLOUDID:0d082df0-9a6e-4c39-b73e-f2bc08ca3dc5,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
-	NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-UUID: e01b58ce5ce011ee8051498923ad61e6-20230927
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-	(envelope-from <moudy.ho@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1398149878; Wed, 27 Sep 2023 10:52:19 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Wed, 27 Sep 2023 10:52:18 +0800
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Wed, 27 Sep 2023 10:52:18 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72052110F
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 03:00:08 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2078.outbound.protection.outlook.com [40.107.93.78])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 794F31854C;
+	Tue, 26 Sep 2023 20:00:04 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Je6HIXt8DmZJFlJsSGTjsTckUSXc2/zi6NmY1OtOrc+fF/Hv5BBZQy2C52IwCvr2I1l5aR/Av62Oz2aVwGaIYb3TwcJhQdcwSCCaof1ODqjp+/6M2CY7wHOimmBEwD5iP2nY2IQs4fWGXFsFI0i9cAo5u1Y/bahHBgv8gJyAdZDkfUlXcM6uoZZqZKtwpow468KOJS6vqTb8O3V+Fft8GVU7gReWYREXVTBDqYFb48GYv/YNxh8ISSsj3pNgNymurrry+QbmjuB9xa/vpbNZF2wzPqRE62EWuVJOCXHXzjyK4IwbtmysRkq4fN3uwYnSs/S2/trJzO9tsUjaG01xVA==
+ b=iAGRceZetgudq5OoUm8hhaXMmehU5cgEZi5ETJv4Dy5CDe8/c07Oy7aRoh809hPzC05efk2GNJKnLJ2jLaovLd9NaTn6DD67jeKao6C0N1NU/nPooxpQK8vPGwuxqQWjX4VWKRNYuSOzKebzyYXq+pFg5QWy+mHCPtZEmuTIhnn4MczDFIRpM3rn9XHgXZ9XPdJdFban4eLnLB+0S7kbyboBIhcnTPN7iCZyTlk49MiH7OIOrZfQ1K3HgN5Au1bKS8ISiOOSK3pWTuUC4wvB1ifS0faAv04EbYnqZ1dT7Gg7yyUqNYKgNcnXqbfrYbvK42EgL5+ZBtVdlt7OWYnErQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jWhDdRTEAU+zw/lhjP8Yc14q2g7obPCQEaeePg/cjqM=;
- b=cC/6DKq6WsQ/zAvwh7iu7ZqpJxL5lD365zNmJY4DLYgHMglSw5PjzlkMxRhCLIQp3WycJY9TNLcAIgcyJ835MQvZ2cYn9q8gNDQbPLGRAkbU8XrXkTQfVcgF1TnXdSUGZiI6a3G+HiR2d8HvHW80bLmlR79wvXhdUjxEWevWu2hAbS4fC5aTdj3Pafb/HLoKQWn9UjX4xqCaMT94swsGnUKkJCiLCEGYVV9xDUf40vIp8bcY0UZcKrUQTOqD0+Fptvu3DuBE1nI9iz+pL/dru6CFGQ23mvjDjbMdUl5444A9m2N2sfCONce59NjF7rHnh/sfMZErdbTsqKwDPmpy+w==
+ bh=El8zzyVk1qQyDp3JDE02KYwNtiRcQLW+Elfrv2N1ESY=;
+ b=frfcACn+LieiBhSQAGtuOYEeVWOfC1bVM9eOyF1hJs+X6t2hXhXGneTcvOrg1fYCdKC3RJLTD/Nl5FrvC3/vcHPUg1yZuhelWW2UFSodDjO9e3rdVkJL1dftSfvkfoz5FOYWPRUKRsvkgPxK2vBZ45wI3HTUd7mJcjV972PVc7fvINzHEkr5qgK1fFZ1oXieS5/PUlNYD4kyIzjHC5SLkvQZJKWrx4cVOoUr2IiYbQhk0Bbu9V1loZzwOicX9Qt+Y6Lwn5TIT/sTq1HYL+3Sf/JSca8E8hmcoNZQrf/jzX/u8iik8HUbB6nUJZMbRcTqFHSlip+KzvXyrWPohYtxVQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
+ smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
+ dkim=pass header.d=labundy.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jWhDdRTEAU+zw/lhjP8Yc14q2g7obPCQEaeePg/cjqM=;
- b=DAJDpywAoYbUz6A2hw1jtlNF7AC0neUkSVmkf5x1L++k1xStu+7LqsurQMOXZEMgGgMgs896DMI+xgtrRZ6vhEAhVlyqKnbwbrgmn9rm0ilg93Mmzn+NvWNKBO1nQFjM9qRkmFQA6L5/tirYfRXXlUvU0ayDmG7T+nYdnls4tyw=
-Received: from TY0PR03MB6356.apcprd03.prod.outlook.com (2603:1096:400:14c::9)
- by KL1PR03MB5524.apcprd03.prod.outlook.com (2603:1096:820:3b::13) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=El8zzyVk1qQyDp3JDE02KYwNtiRcQLW+Elfrv2N1ESY=;
+ b=TN14n1PAk7izCZCER6odBdcjxyxO8oqUiDa3k3p6PPAYZvMZFSJ8IExgr5/OY0JiZlRVly6c4ImbGJ3JgxDRaNtUZqY6odJLu4EsRaIQfyHF3QpLizeYMdGCldQZad1ZTkktInyXyeQcs94K8beDeDqh0tBy+yNeA6h0T2/X7sE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=labundy.com;
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21) by BN8PR08MB6178.namprd08.prod.outlook.com
+ (2603:10b6:408:7c::12) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Wed, 27 Sep
- 2023 02:52:16 +0000
-Received: from TY0PR03MB6356.apcprd03.prod.outlook.com
- ([fe80::2d8b:d64e:65cb:b7af]) by TY0PR03MB6356.apcprd03.prod.outlook.com
- ([fe80::2d8b:d64e:65cb:b7af%6]) with mapi id 15.20.6813.027; Wed, 27 Sep 2023
- 02:52:16 +0000
-From: =?utf-8?B?TW91ZHkgSG8gKOS9leWul+WOnyk=?= <Moudy.Ho@mediatek.com>
-To: "robh+dt@kernel.org" <robh+dt@kernel.org>, "chunkuang.hu@kernel.org"
-	<chunkuang.hu@kernel.org>, "mchehab@kernel.org" <mchehab@kernel.org>,
-	"krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
-	"daniel@ffwll.ch" <daniel@ffwll.ch>, "p.zabel@pengutronix.de"
-	<p.zabel@pengutronix.de>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>, "airlied@gmail.com"
-	<airlied@gmail.com>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "matthias.bgg@gmail.com"
-	<matthias.bgg@gmail.com>, "angelogioacchino.delregno@collabora.com"
-	<angelogioacchino.delregno@collabora.com>
-CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v6 10/16] dt-bindings: media: mediatek: mdp3: add
- component TDSHP for MT8195
-Thread-Topic: [PATCH v6 10/16] dt-bindings: media: mediatek: mdp3: add
- component TDSHP for MT8195
-Thread-Index: AQHZ7SWG+juuYn9W1Uq9kLbQoBxE1bAorgIAgAVS8IA=
-Date: Wed, 27 Sep 2023 02:52:16 +0000
-Message-ID: <75897feec12e34c5a2acb550a55f4de10437aa1b.camel@mediatek.com>
-References: <20230922072116.11009-1-moudy.ho@mediatek.com>
-	 <20230922072116.11009-11-moudy.ho@mediatek.com>
-	 <948a37c4-2237-8ec8-270d-8a704c8c4835@linaro.org>
-In-Reply-To: <948a37c4-2237-8ec8-270d-8a704c8c4835@linaro.org>
-Accept-Language: zh-TW, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY0PR03MB6356:EE_|KL1PR03MB5524:EE_
-x-ms-office365-filtering-correlation-id: 15b2bb09-2cc0-4cac-1d03-08dbbf04c255
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: rUcV8H2FYngrGjgGPGrKSZmNDmDJp6nCMFr1nAG2UdfBFaJw+rHdrLCZMXztZqkjesp4719N33Zcuz+7SS46zJWu3jQvp692Rvw6d3SfYYA6B6XLcEVExynPx8/mHzZp96Z4zE5KFdOMffym2GUosEDMZtA2be8RR29eop8izJxmO335XqR1Dq4tZR1HXY3LSiHNraV05F0TJZaCIh83ddwVUPvlIm3cBLHG8bpIWO4SwfPp09PdYaUsP6S1JWq3OKwKk44n0WuW9/4911cfVlow3PCZ11w0Qs2dXZxyJ8i1IQZZRR3YD4OlGFcCejn5r3M2I++Stww6AD5zZqKAnQPaDhO8W1Hq17BtBGuPohgjBbnEqzXmZc97/BeaWNmEK34nUtHBGA2Fel3J/9LHWgbsd43McQAJyt9tInljg3kVnEaugkOXtRM0NzWqNdrSsHL96kn7JxynekjYsldCw7H78YqMm6pbI9spkNrHSAz8klLLWl/fuwybE5y8ZZPVKY0EevZudw76HKVUNjsOTK/adKkL/3Tvc0hjbPLiuBzBgSoWt2L0tq9QEjpWZF5ze7jgz9p2vhiRW+RXr38pyZTUrsqBdHjfmCK3vxCYLYzGgaI5cVrAhSrmqOaufPdvrchui8HB2Ox95btaO6X5ZOiA1NpFsslvkEhPl3mGciEv8HpcxQHIQmSVe7gPc8enpx8Omsps2xcz82mDf5KPqab/BovlXD8qh22USVF7/4k=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY0PR03MB6356.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(136003)(39860400002)(346002)(376002)(396003)(230922051799003)(1800799009)(451199024)(186009)(38100700002)(85182001)(36756003)(38070700005)(86362001)(53546011)(4326008)(2616005)(2906002)(41300700001)(478600001)(316002)(66556008)(64756008)(966005)(66476007)(66446008)(54906003)(66946007)(110136005)(7416002)(76116006)(6506007)(6486002)(71200400001)(122000001)(6512007)(8676002)(83380400001)(26005)(5660300002)(8936002)(921005)(99106002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZHk2RFQyTGxnbWxNdjMvOWZTNzk0ZXBHckRveC9ZbDZhTkJEQ0dBMG9iRFI3?=
- =?utf-8?B?dkJUUXgxRWZwUWU4bGVoYnNkaGlBNngwbFlncnQvQksrUTQzTVRrL2ZsZDhL?=
- =?utf-8?B?TFJSMWdBenBJS1lnbkxJTURpWDJNaU1JK3pVWHI4enJ5eGhoaFd3bW5GVEFR?=
- =?utf-8?B?L2VPZS9Odjc3RjdtWlh1NW9MdUxjdVlETFE5RVpwUjZTZUh6R1UzdGlrTHBF?=
- =?utf-8?B?MytxczBEUHJSRE5PWnNBUktYdzBWZjc1dGdhSFJDV3h1a0wxZFhKY1Z4MVB2?=
- =?utf-8?B?MXYyS29HOGhRVjlUcjFHL0hzWDFYZnZhNStBS2dURkdxaGMyUlUrU1Q5TWFa?=
- =?utf-8?B?S1dDWldkK3k0SUpVRC9GdEIwL2hYcDFWWmdwbFFxM01ocDlhQUFVT2pVTWI0?=
- =?utf-8?B?bFdhK2tBUzBIVWRqR3FjR1V4Q201SDFUMnFJOFRyQmdpQWgzbEozNkxmN1hC?=
- =?utf-8?B?Ulo3b2FYWENBdWNmRnJjaS9kQVZ1SEMwbURaZzh5ZlF3Zmw4UTczK1ZJWDlD?=
- =?utf-8?B?YzdTL1dNM1poTkp6blgxUjlBRjVxU2tTSEVBZnJhMlhaL2VjQ3pCSE5tNU9I?=
- =?utf-8?B?NVBZajd0YUVXQnBrS2dRZUcwY3dqVCtONUFDeE5FcjhHb1NEYWRxei9BSHp2?=
- =?utf-8?B?Z0UwYkNXWVNCdHFjNHY3THkwQlhQUWpqaVBJWGVCci9OMm5INTR2OG4rMUsv?=
- =?utf-8?B?bGFNeDBldER6SFUrYTVFamkzYk1mSHNQTmYxUittZDdOVWF2VS9HQ3BEU1B5?=
- =?utf-8?B?ZXM5N3RQNnArVnhnYlBoclljSUd1U1hGYXBITERYTlgwMzVHT0YvYndyZUxE?=
- =?utf-8?B?bTB5R3RMWCsyZjJQOWNxMVQyMWVxWVozL1ZXKzNRcUorNVBWeUZTVEpjWmhj?=
- =?utf-8?B?SndSbW5DemE1eW1QMDVLMWdRTDR0cVZxU1VxNGNpK2M2eEhwV2UvQ1dYWGpp?=
- =?utf-8?B?YWFzNjhJOUtxNnQrWTlhTVAxWDgxNmEyYXJrbTFlZUU3T0lYc0hwcXZObFpm?=
- =?utf-8?B?aWhOdjNZWFZENmhVNld3TExhYkR4UlFzZ3d4UXZzeFo5QkREaVJSSzV4L3ow?=
- =?utf-8?B?UldkZS85MTBBZlBJSzZmY01yLythTHJTbTVDNzNKUlBzb1FIT3JxUSt6TVJO?=
- =?utf-8?B?UjE5aEhRK0hKQzdSb2tIajBYTjZvOGhobVQ0eWNBc3cxR0JlQVppZ09aQWdI?=
- =?utf-8?B?RVovbjkyc3FqUUFnSHVlWGFGQkk3VjF2ZFJIRENVK3ZMeXRDV3Vpc0VnYUpZ?=
- =?utf-8?B?MUZsSndIT25zZUFIdHBkYmlJYXBCeEMyOExNSmZqU1FMeERWS21FOEZoMUlO?=
- =?utf-8?B?VUV0Qyt6T1pVS3NpTjVzYXREQ0YzVDVhTTh6VHcwLzNlTGxLcnZKWkxqbVNn?=
- =?utf-8?B?a2ZjZkNkRDE3cE5GWWFoNEc5YTRCcndDT3dXYVArZ1JXYUcyWXVQdkxLclFE?=
- =?utf-8?B?ZTRZT1RRQU9XR1ZMYzA2ZmtLK1BDVnBhUWVvSnlCejhndDlvUVM0Q0dzV0xm?=
- =?utf-8?B?eTNDdFpmajJuM2J3WWpHemdRcUMwRFZCd0VQaTZIbi9CTGQxWjFjSUVQT1N5?=
- =?utf-8?B?c3A0NVl1L1VORSs5Sms3SjYxTHlNc01CYUZhMkxUWU9pTkhFdnhWaUY1Ym1B?=
- =?utf-8?B?MWw2Wmh6RnZTUlMyQjZ0M2tiT1hyVjlpcmFjUm9OZXZwZTJwS09QSlBjWVh2?=
- =?utf-8?B?b0dpbmhyUmx5bDVsRXFNZTJUUWNGWHNYbmR0YzZWUWltRi9tUUpvVVB6VDJs?=
- =?utf-8?B?Z2c5WmZpNGxZQVpyQklJTmpOVTdDMEpaK3grZnFDcnNJWlk2QllsaHZ0cGt0?=
- =?utf-8?B?Qjl3RDU0by9XSlJ6c2dEdkR4VFBiOTB3RG53Vy9mcVZJbHgvLzQyMmFndC9F?=
- =?utf-8?B?dVJtQmU1RGQ3bTczVUliRFAySlcvVk5kSjVkNW1jUnFudlA3aHlHazJlUFZT?=
- =?utf-8?B?M01FSDJLQjRaN2ZjOENjN3o0eStCczJKYmVQNFp2eTZBZFlDaFJmZStoQUwy?=
- =?utf-8?B?cHZ2NExyK285dWx0Y0pVTWJDOFVQNEdodnFMUGE5VGtnVWVhUFNab3pQT280?=
- =?utf-8?B?djZvKytGSjNrMWVvTFFIOFU1UmEwQ3ZwejlGQTlkYW9xREx4c0JpY3U1aUt6?=
- =?utf-8?B?ZHE4L2hFTjZFc3gwbTVYWGxuUUcycVcxMW9pUUpIamNCMndFTjFKQkFFcHcv?=
- =?utf-8?B?Mnc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <F954066871F38E43BACBF4E1C68EEEF2@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ 2023 03:00:01 +0000
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::4528:c7c7:de7:aec2]) by SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::4528:c7c7:de7:aec2%6]) with mapi id 15.20.6813.027; Wed, 27 Sep 2023
+ 03:00:01 +0000
+Date: Tue, 26 Sep 2023 21:59:53 -0500
+From: Jeff LaBundy <jeff@labundy.com>
+To: Stephan Gerhold <stephan@gerhold.net>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Jonathan Albrieux <jonathan.albrieux@gmail.com>
+Subject: Re: [PATCH 2/2] Input: add Himax HX852x(ES) touchscreen driver
+Message-ID: <ZROaqRiWa6ReVH/D@nixie71>
+References: <20230913-hx852x-v1-0-9c1ebff536eb@gerhold.net>
+ <20230913-hx852x-v1-2-9c1ebff536eb@gerhold.net>
+ <ZQYUe46/rj8jqNvg@nixie71>
+ <ZQcx7oQyL6RM06Jt@gerhold.net>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZQcx7oQyL6RM06Jt@gerhold.net>
+X-ClientProxiedBy: DM6PR12CA0026.namprd12.prod.outlook.com
+ (2603:10b6:5:1c0::39) To SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN4PR0801MB3774:EE_|BN8PR08MB6178:EE_
+X-MS-Office365-Filtering-Correlation-Id: db5a669f-30a6-4274-ee15-08dbbf05d6c8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	GYF620/XlBMqaGqfEBfQL4o+7doxi9siiohSTx6/PgYL5534ffY7qeBhJC+l75S6g9kTcPVfsFmOWYG7WGGIDWgYKf+CblTagHs6wbQrTal85TTIJC0XHYlqUd1PJmxv508J1dZ9T3P7fs5Xx7G6MUKZddSPSMjjp6mk5HI18qe7KQ1uzzFz8guZdMKx9wqGip2b7IBzqmadSXK7i3iij8runqkfy6W+NX2jkE5eF/GyTSTogqQitPVZiGLSTxKAg+MXq8qh9otduI1swsneVjcOTZ62t1xPKA9M5iVPgx01Rdhpa7yXHOwEWHL8DGscHt4RNQ6A445a0vY36tfNhMUdQJMwJKnHtrJ2brgf678mjfvmROXprZ9FKmOl95pREP1HkVI1y33/8oYuO4Z7xUsHyfgfcVMRftw/7i+dI52YMGe2422NSlkbJXQI6tIsumZZQ91ZEJsjxP7/bOtgro676GKms6u8TeCMXsqCuX5Vav93syCEZniFEwkPsyJ7BN1mx7Bv5bQUxkUKS/5XjkFvdl1UKdlnnrxNK5CeQrg71ky9yZgDz7BiQtbTzKXk
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(346002)(136003)(39830400003)(366004)(396003)(376002)(230922051799003)(1800799009)(186009)(451199024)(6512007)(9686003)(6486002)(6506007)(66899024)(6666004)(83380400001)(38100700002)(86362001)(33716001)(26005)(2906002)(30864003)(4326008)(8676002)(8936002)(41300700001)(7416002)(66556008)(66946007)(54906003)(6916009)(66476007)(5660300002)(316002)(478600001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Esf+ZmXk5+6SxIYuXtt3a6LCLIZkDruDa1KGXjtwIpa3NNANXIzbfYKForLt?=
+ =?us-ascii?Q?aWijAqqrYqEEKvCQIB2kDGKkZaYJ5CE909taR2O/JIf27n/nPonsZtrQDs6K?=
+ =?us-ascii?Q?J+VCzFJGjDlgH9N1N3c/0DnKukTprMMT8RzjAqLEBLutK5zAqgsfzpe9fmZj?=
+ =?us-ascii?Q?ArzlAOPYgJxVoTrbfo3+QAlU8dwl1Qiow41N+/+Whtni322goZ89wLlTuSfD?=
+ =?us-ascii?Q?BrFaCdWLl1UCx2pgaEwtMDiJ20r3gPHjxuo1XXs3QnIbdTLrLCdgrD51PJwV?=
+ =?us-ascii?Q?rAgra4lBcNA240TbELCRfoXVjAuu6OEDEu45TdZilOB0kBJpxFixGrKqrMqs?=
+ =?us-ascii?Q?wAMa+J+Q7NzKZecnvDh9/xojP0v3ecriWSmbbQSFe6yGJRFOTmmRWsb3uOcR?=
+ =?us-ascii?Q?/BsjJq2XVipzsBM8q/EpERCG6Z/a5v+sU/qv72/x2+OCuF3ttrOuefGYfbxa?=
+ =?us-ascii?Q?k2RnKQiM7dOzxBYIvuYAZ4E4xF4miPvPx3sTi3owBv1rJL0oBtbzw2UQwBOe?=
+ =?us-ascii?Q?g3gnRimOlsFOVFH2oD9VmW0eVC7IYCVTARGl+6crdZ/UWtkECnagZd2h3aQr?=
+ =?us-ascii?Q?0sRUiU7MC0xg93h4r09p2d2P7Ok6nnsElsjqU0dJC51qOHqMoiELgkOLcDrl?=
+ =?us-ascii?Q?GU/yevqSCAYIqZsGQpnGOXAgIXxTrx4JgJ33CZa2m/y+HE1HVabnz2uWSoy/?=
+ =?us-ascii?Q?kX1lh0xhDIgHqSaYkaavI7de9nBy5EQCStt/xWNMeTALb3Hy3VwroP8JvIJR?=
+ =?us-ascii?Q?j8K4T7gEZtMbjTGvsYPQE9f7nh8/+acucz7oSMTaS4ADGD5cH0p2YDpZsRJA?=
+ =?us-ascii?Q?bxFEAdUAvy3eFV5kxkjW/U7j/xJ7Mdm1DDi8ueu1zgbVZERKkzmWQ0F7NqSe?=
+ =?us-ascii?Q?q3scz6Bn5jJH5nKrOwc5WcwPm2bIxEphczQRqwnzMeRJrfEeSRKHRe5ekrNX?=
+ =?us-ascii?Q?M4sEYLjAuZFYbO8Fd513BDMObDvZYe5SViGtzuvJR6N5lyXzGt5XHPx0zvJk?=
+ =?us-ascii?Q?6gWiSbn2+RJSZh8wDDq+m+vMqcSOLucCshQFEta8v+THyeSFByUIFVb6xPE9?=
+ =?us-ascii?Q?Sn6UR872x+Ws/DEP6Ts3KkcupAwZy3uZ8r0lpTxLQrY7+ckSLWw4n16Rin5/?=
+ =?us-ascii?Q?LI79KAC7hxRVfTgoYEZ54QH+KWg56EDubJIulSrEDgl/kJRsWl8k2n4/kxKJ?=
+ =?us-ascii?Q?95mOyXeA/FgWSGmMo0EUXngNoxtwpp2XyBK1eWNVCJQlI/X79nN6nwh6XBkg?=
+ =?us-ascii?Q?TPjxFswb552fW8yjE8G459b8UO9HWLDyssFwumTlS8a6FC1r1wCzd44Zw8rc?=
+ =?us-ascii?Q?oLyhAWjmpMutPNuE0fcUpQbmJEK7u8OVZRjEB7TV7pDZbVkxEwW9hzsxv5uo?=
+ =?us-ascii?Q?t2X29FuOH9tclW+W7R5gW8SAzoVBimHuC/q8PkeFDti1nzThgi5OqgL/sfKx?=
+ =?us-ascii?Q?7tmowShFAEYlEmvG7MZhgxzoDakY5QOlnoFBNPhm4kp2J43DDLgu8uViFuqJ?=
+ =?us-ascii?Q?FBrHxGFJjAR+8I5oYjWGB1soFGtJVpN3Z35Y3gPLYwUizGJz5XBBdQ4vq8Oi?=
+ =?us-ascii?Q?Bg0l5DuWmArAoXr3Bx0lrARiH++ThlCQ8lXDlcDp?=
+X-OriginatorOrg: labundy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: db5a669f-30a6-4274-ee15-08dbbf05d6c8
+X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY0PR03MB6356.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 15b2bb09-2cc0-4cac-1d03-08dbbf04c255
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Sep 2023 02:52:16.3809
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2023 03:00:00.9564
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: F9i6/FghBVL+DyzLbnhI16q6D5uW1wAdxpNQW81RAfj2ACNUjd1OiCqlllA05q76LJciI+VKghrMKueIozGFEw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR03MB5524
-X-MTK: N
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RDNS_NONE,SPF_HELO_PASS,
-	SPF_PASS,UNPARSEABLE_RELAY autolearn=no autolearn_force=no
-	version=3.4.6
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ig82lo1ORXH9No0+YXcttg6gvCg/VP4ttUl1tZ5LYyx+hogpdRC/KIJOfWJ8IYH6z/nwCgPtBlKZj7TkqAC6Uw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR08MB6178
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-T24gU2F0LCAyMDIzLTA5LTIzIGF0IDE5OjM0ICswMjAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
-b3RlOg0KPiAgCSANCj4gRXh0ZXJuYWwgZW1haWwgOiBQbGVhc2UgZG8gbm90IGNsaWNrIGxpbmtz
-IG9yIG9wZW4gYXR0YWNobWVudHMgdW50aWwNCj4geW91IGhhdmUgdmVyaWZpZWQgdGhlIHNlbmRl
-ciBvciB0aGUgY29udGVudC4NCj4gIE9uIDIyLzA5LzIwMjMgMDk6MjEsIE1vdWR5IEhvIHdyb3Rl
-Og0KPiA+IEFkZCB0aGUgZnVuZGFtZW50YWwgaGFyZHdhcmUgY29uZmlndXJhdGlvbiBvZiBjb21w
-b25lbnQgVERTSFAsDQo+ID4gd2hpY2ggaXMgY29udHJvbGxlZCBieSBNRFAzIG9uIE1UODE5NS4N
-Cj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBNb3VkeSBIbyA8bW91ZHkuaG9AbWVkaWF0ZWsuY29t
-Pg0KPiA+IC0tLQ0KPiA+ICAuLi4vYmluZGluZ3MvbWVkaWEvbWVkaWF0ZWssbWRwMy10ZHNocC55
-YW1sICAgfCA2MQ0KPiArKysrKysrKysrKysrKysrKysrDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCA2
-MSBpbnNlcnRpb25zKCspDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NA0KPiBEb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvbWVkaWEvbWVkaWF0ZWssbWRwMy10ZHNocC55YW1sDQo+ID4g
-DQo+ID4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZWRp
-YS9tZWRpYXRlayxtZHAzLQ0KPiB0ZHNocC55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
-L2JpbmRpbmdzL21lZGlhL21lZGlhdGVrLG1kcDMtDQo+IHRkc2hwLnlhbWwNCj4gPiBuZXcgZmls
-ZSBtb2RlIDEwMDY0NA0KPiA+IGluZGV4IDAwMDAwMDAwMDAwMC4uMGFjOTA0Y2JjMmMwDQo+ID4g
-LS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
-cy9tZWRpYS9tZWRpYXRlayxtZHAzLQ0KPiB0ZHNocC55YW1sDQo+ID4gQEAgLTAsMCArMSw2MSBA
-QA0KPiA+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMC1vbmx5IE9SIEJTRC0y
-LUNsYXVzZSkNCj4gPiArJVlBTUwgMS4yDQo+ID4gKy0tLQ0KPiA+ICskaWQ6IGh0dHA6Ly9kZXZp
-Y2V0cmVlLm9yZy9zY2hlbWFzL21lZGlhL21lZGlhdGVrLG1kcDMtdGRzaHAueWFtbCMNCj4gPiAr
-JHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUub3JnL21ldGEtc2NoZW1hcy9jb3JlLnlhbWwjDQo+
-ID4gKw0KPiA+ICt0aXRsZTogTWVkaWFUZWsgTWVkaWEgRGF0YSBQYXRoIDMgVERTSFANCj4gPiAr
-DQo+ID4gK21haW50YWluZXJzOg0KPiA+ICsgIC0gTWF0dGhpYXMgQnJ1Z2dlciA8bWF0dGhpYXMu
-YmdnQGdtYWlsLmNvbT4NCj4gPiArICAtIE1vdWR5IEhvIDxtb3VkeS5ob0BtZWRpYXRlay5jb20+
-DQo+ID4gKw0KPiA+ICtkZXNjcmlwdGlvbjoNCj4gPiArICBPbmUgb2YgTWVkaWEgRGF0YSBQYXRo
-IDMgKE1EUDMpIGNvbXBvbmVudHMgdXNlZCB0byBpbXByb3ZlIGltYWdlDQo+ID4gKyAgc2hhcnBu
-ZXNzIGFuZCBjb250cmFzdC4NCj4gPiArDQo+ID4gK3Byb3BlcnRpZXM6DQo+ID4gKyAgY29tcGF0
-aWJsZToNCj4gPiArICAgIGVudW06DQo+ID4gKyAgICAgIC0gbWVkaWF0ZWssbXQ4MTk1LW1kcDMt
-dGRzaHANCj4gPiArDQo+ID4gKyAgcmVnOg0KPiA+ICsgICAgbWF4SXRlbXM6IDENCj4gPiArDQo+
-ID4gKyAgbWVkaWF0ZWssZ2NlLWNsaWVudC1yZWc6DQo+ID4gKyAgICBkZXNjcmlwdGlvbjoNCj4g
-PiArICAgICAgVGhlIHJlZ2lzdGVyIG9mIGRpc3BsYXkgZnVuY3Rpb24gYmxvY2sgdG8gYmUgc2V0
-IGJ5IGdjZS4NCj4gVGhlcmUgYXJlIDQgYXJndW1lbnRzLA0KPiA+ICsgICAgICBzdWNoIGFzIGdj
-ZSBub2RlLCBzdWJzeXMgaWQsIG9mZnNldCBhbmQgcmVnaXN0ZXIgc2l6ZS4gVGhlDQo+IHN1YnN5
-cyBpZCB0aGF0IGlzDQo+ID4gKyAgICAgIG1hcHBpbmcgdG8gdGhlIHJlZ2lzdGVyIG9mIGRpc3Bs
-YXkgZnVuY3Rpb24gYmxvY2tzIGlzDQo+IGRlZmluZWQgaW4gdGhlIGdjZSBoZWFkZXINCj4gPiAr
-ICAgICAgaW5jbHVkZS9kdC1iaW5kaW5ncy9nY2UvPGNoaXA+LWdjZS5oIG9mIGVhY2ggY2hpcHMu
-DQo+ID4gKyAgICAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy9waGFuZGxl
-LWFycmF5DQo+ID4gKyAgICBpdGVtczoNCj4gPiArICAgICAgaXRlbXM6DQo+ID4gKyAgICAgICAg
-LSBkZXNjcmlwdGlvbjogcGhhbmRsZSBvZiBHQ0UNCj4gPiArICAgICAgICAtIGRlc2NyaXB0aW9u
-OiBHQ0Ugc3Vic3lzIGlkDQo+ID4gKyAgICAgICAgLSBkZXNjcmlwdGlvbjogcmVnaXN0ZXIgb2Zm
-c2V0DQo+ID4gKyAgICAgICAgLSBkZXNjcmlwdGlvbjogcmVnaXN0ZXIgc2l6ZQ0KPiA+ICsgICAg
-bWF4SXRlbXM6IDENCj4gPiArDQo+ID4gKyAgY2xvY2tzOg0KPiA+ICsgICAgbWluSXRlbXM6IDEN
-Cj4gDQo+IE5BSy4gU28geW91IGlnbm9yZWQgYWxsIHRoZSByZXZpZXcuIEJyaWxsaWFudC4NCj4g
-DQo+IEkgYW0gZ2V0dGluZyBmZWQgdXAgd2l0aCBNZWRpYXRlaydzIGFwcHJvYWNoLiBJdCdzIG5v
-dCB0aGUgZmlyc3QNCj4gdGltZS4NCj4gDQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6dG9mDQo+
-IA0KDQpIaSBLcnp5c3p0b2YsDQoNCkkgYXBvbG9naXplIHNpbmNlcmVseSBmb3Igb3Zlcmxvb2tp
-bmcgZGVzcGl0ZSB5b3VyIG11bHRpcGxlIHJlbWluZGVycy4NClRvIHByZXZlbnQgc2ltaWxhciBp
-bmNpZGVudHMsIEkgd2lsbCBlbnN1cmUgYSB0aG9yb3VnaCBzY3J1dGlueSBvZg0KZXZlcnl0aGlu
-ZyBpbiBxdWVzdGlvbi4gSSBnZW51aW5lbHkgYXBwcmVjaWF0ZSB5b3VyIHBhdGllbnQgcmV2aWV3
-IGFuZA0KZGVlcGx5IHJlZ3JldCBhbnkgaW5jb252ZW5pZW5jZSB0aGlzIG1heSBoYXZlIGNhdXNl
-ZCB5b3UuDQoNClNpbmNlcmVseSwNCk1vdWR5DQo=
+Hi Stephan,
+
+On Sun, Sep 17, 2023 at 07:05:50PM +0200, Stephan Gerhold wrote:
+> Hi Jeff,
+> 
+> Thanks a lot for your detailed review!
+
+Thank you for the productive discussion.
+
+> 
+> On Sat, Sep 16, 2023 at 03:47:55PM -0500, Jeff LaBundy wrote:
+> > On Wed, Sep 13, 2023 at 03:25:30PM +0200, Stephan Gerhold wrote:
+> > > From: Jonathan Albrieux <jonathan.albrieux@gmail.com>
+> > > 
+> > > Add a simple driver for the Himax HX852x(ES) touch panel controller,
+> > > with support for multi-touch and capacitive touch keys.
+> > > 
+> > > The driver is somewhat based on sample code from Himax. However, that
+> > > code was so extremely confusing that we spent a significant amount of
+> > > time just trying to understand the packet format and register commands.
+> > > In this driver they are described with clean structs and defines rather
+> > > than lots of magic numbers and offset calculations.
+> > > 
+> > > Signed-off-by: Jonathan Albrieux <jonathan.albrieux@gmail.com>
+> > > Co-developed-by: Stephan Gerhold <stephan@gerhold.net>
+> > > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> > > ---
+> > >  MAINTAINERS                              |   7 +
+> > >  drivers/input/touchscreen/Kconfig        |  10 +
+> > >  drivers/input/touchscreen/Makefile       |   1 +
+> > >  drivers/input/touchscreen/himax_hx852x.c | 491 +++++++++++++++++++++++++++++++
+> > >  4 files changed, 509 insertions(+)
+> > > 
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > index 90f13281d297..c551c60b0598 100644
+> > > --- a/MAINTAINERS
+> > > +++ b/MAINTAINERS
+> > > @@ -9331,6 +9331,13 @@ S:	Maintained
+> > >  F:	Documentation/devicetree/bindings/input/touchscreen/himax,hx83112b.yaml
+> > >  F:	drivers/input/touchscreen/himax_hx83112b.c
+> > >  
+> > > +HIMAX HX852X TOUCHSCREEN DRIVER
+> > > +M:	Stephan Gerhold <stephan@gerhold.net>
+> > > +L:	linux-input@vger.kernel.org
+> > > +S:	Maintained
+> > > +F:	Documentation/devicetree/bindings/input/touchscreen/himax,hx852es.yaml
+> > > +F:	drivers/input/touchscreen/himax_hx852x.c
+> > > +
+> > >  HIPPI
+> > >  M:	Jes Sorensen <jes@trained-monkey.org>
+> > >  L:	linux-hippi@sunsite.dk
+> > > diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
+> > > index e3e2324547b9..8e5667ae5dab 100644
+> > > --- a/drivers/input/touchscreen/Kconfig
+> > > +++ b/drivers/input/touchscreen/Kconfig
+> > > @@ -427,6 +427,16 @@ config TOUCHSCREEN_HIDEEP
+> > >  	  To compile this driver as a module, choose M here : the
+> > >  	  module will be called hideep_ts.
+> > >  
+> > > +config TOUCHSCREEN_HIMAX_HX852X
+> > > +	tristate "Himax HX852x(ES) touchscreen"
+> > > +	depends on I2C
+> > > +	help
+> > > +	  Say Y here if you have a Himax HX852x(ES) touchscreen.
+> > > +	  If unsure, say N.
+> > > +
+> > > +	  To compile this driver as a module, choose M here: the module
+> > > +	  will be called himax_hx852x.
+> > > +
+> > >  config TOUCHSCREEN_HYCON_HY46XX
+> > >  	tristate "Hycon hy46xx touchscreen support"
+> > >  	depends on I2C
+> > > diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
+> > > index 62bd24f3ac8e..f42a87faa86c 100644
+> > > --- a/drivers/input/touchscreen/Makefile
+> > > +++ b/drivers/input/touchscreen/Makefile
+> > > @@ -48,6 +48,7 @@ obj-$(CONFIG_TOUCHSCREEN_EXC3000)	+= exc3000.o
+> > >  obj-$(CONFIG_TOUCHSCREEN_FUJITSU)	+= fujitsu_ts.o
+> > >  obj-$(CONFIG_TOUCHSCREEN_GOODIX)	+= goodix_ts.o
+> > >  obj-$(CONFIG_TOUCHSCREEN_HIDEEP)	+= hideep.o
+> > > +obj-$(CONFIG_TOUCHSCREEN_HIMAX_HX852X)	+= himax_hx852x.o
+> > >  obj-$(CONFIG_TOUCHSCREEN_HYNITRON_CSTXXX)	+= hynitron_cstxxx.o
+> > >  obj-$(CONFIG_TOUCHSCREEN_ILI210X)	+= ili210x.o
+> > >  obj-$(CONFIG_TOUCHSCREEN_ILITEK)	+= ilitek_ts_i2c.o
+> > > diff --git a/drivers/input/touchscreen/himax_hx852x.c b/drivers/input/touchscreen/himax_hx852x.c
+> > > new file mode 100644
+> > > index 000000000000..31616dcfc5ab
+> > > --- /dev/null
+> > > +++ b/drivers/input/touchscreen/himax_hx852x.c
+> > > @@ -0,0 +1,491 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > +/*
+> > > + * Himax HX852x(ES) Touchscreen Driver
+> > > + * Copyright (c) 2020-2023 Stephan Gerhold <stephan@gerhold.net>
+> > > + * Copyright (c) 2020 Jonathan Albrieux <jonathan.albrieux@gmail.com>
+> > > + *
+> > > + * Based on the Himax Android Driver Sample Code Ver 0.3 for HMX852xES chipset:
+> > > + * Copyright (c) 2014 Himax Corporation.
+> > > + */
+> > > +
+> > > +#include <asm/unaligned.h>
+> > > +#include <linux/delay.h>
+> > > +#include <linux/gpio/consumer.h>
+> > > +#include <linux/i2c.h>
+> > > +#include <linux/input.h>
+> > > +#include <linux/input/mt.h>
+> > > +#include <linux/input/touchscreen.h>
+> > > +#include <linux/interrupt.h>
+> > > +#include <linux/kernel.h>
+> > > +#include <linux/module.h>
+> > 
+> > Please explicitly #include of_device.h.
+> > 
+> 
+> Ack, thanks!
+> 
+> > > +#include <linux/regulator/consumer.h>
+> > > +
+> > > +#define HX852X_COORD_SIZE(fingers)	((fingers) * sizeof(struct hx852x_coord))
+> > > +#define HX852X_WIDTH_SIZE(fingers)	ALIGN(fingers, 4)
+> > > +#define HX852X_BUF_SIZE(fingers)	(HX852X_COORD_SIZE(fingers) + \
+> > > +					 HX852X_WIDTH_SIZE(fingers) + \
+> > > +					 sizeof(struct hx852x_touch_info))
+> > > +
+> > > +#define HX852X_MAX_FINGERS		12
+> > 
+> > Well, that's a new one :)
+> > 
+> 
+> FWIW: I'm not sure if any controller exists that actually supports 12,
+> but the bits are layed out in a way that it would be possible. :-)
+> 
+> > > +#define HX852X_MAX_KEY_COUNT		4
+> > > +#define HX852X_MAX_BUF_SIZE		HX852X_BUF_SIZE(HX852X_MAX_FINGERS)
+> > > +
+> > > +#define HX852X_TS_SLEEP_IN		0x80
+> > > +#define HX852X_TS_SLEEP_OUT		0x81
+> > > +#define HX852X_TS_SENSE_OFF		0x82
+> > > +#define HX852X_TS_SENSE_ON		0x83
+> > > +#define HX852X_READ_ONE_EVENT		0x85
+> > > +#define HX852X_READ_ALL_EVENTS		0x86
+> > > +#define HX852X_READ_LATEST_EVENT	0x87
+> > > +#define HX852X_CLEAR_EVENT_STACK	0x88
+> > > +
+> > > +#define HX852X_REG_SRAM_SWITCH		0x8c
+> > > +#define HX852X_REG_SRAM_ADDR		0x8b
+> > > +#define HX852X_REG_FLASH_RPLACE		0x5a
+> > > +
+> > > +#define HX852X_SRAM_SWITCH_TEST_MODE	0x14
+> > > +#define HX852X_SRAM_ADDR_CONFIG		0x7000
+> > > +
+> > > +struct hx852x {
+> > > +	struct i2c_client *client;
+> > > +	struct input_dev *input_dev;
+> > > +	struct touchscreen_properties props;
+> > > +
+> > > +	struct gpio_desc *reset_gpiod;
+> > > +	struct regulator_bulk_data supplies[2];
+> > > +
+> > > +	unsigned int max_fingers;
+> > > +	unsigned int keycount;
+> > > +	u32 keycodes[HX852X_MAX_KEY_COUNT];
+> > 
+> > Nit: might as well make keycodes 'unsigned int' for consistency; I also do not
+> > feel the newlines are necessary.
+> > 
+> 
+> I don't mind having the newlines but also don't mind removing them,
+> will drop them in v2!
+> 
+> > > +};
+> > > +
+> > > +struct hx852x_config {
+> > > +	u8 rx_num;
+> > > +	u8 tx_num;
+> > > +	u8 max_pt;
+> > > +	u8 padding1[3];
+> > > +	__be16 x_res;
+> > > +	__be16 y_res;
+> > > +	u8 padding2[2];
+> > > +} __packed __aligned(4);
+> > 
+> > What is the reason to include trailing padding in this packed struct? Does the
+> > controller require the entire register length to be read for some reason?
+> > 
+> 
+> Given your question I guess "padding" might be the wrong word here.
+> Basically the driver we based this on reads this config in a
+> semi-obfuscated way like this:
+> 
+> 	char data[12];
+> 	i2c_himax_read(..., data, 12, ...);
+> 	rx_num = data[0];
+> 	/* ... */
+> 	x_res = data[6]*256 + data[7];
+> 	/* ... */
+> 
+> data[10] and data[11] are not used in the vendor code, so we don't know
+> what is encoded there, if there is something encoded there, if only on
+> some models or only on some firmware versions.
+> 
+> I would prefer to keep the read/write operations similar to the vendor
+> driver. Who knows if there are peculiar firmware versions that would
+> fail if the read size is not correct. And maybe there is actually
+> interesting data in there?
+> 
+> Maybe "unknown" would be more clear than "padding"?
+
+If it is unknown whether a specific number of bytes must be read from the
+controller for it to remain in a valid state, then I think it is fine to
+keep your existing implementation, as well as the original name 'padding'.
+
+> 
+> > > +
+> > > +struct hx852x_coord {
+> > > +	__be16 x;
+> > > +	__be16 y;
+> > > +} __packed __aligned(4);
+> > > +
+> > > +struct hx852x_touch_info {
+> > > +	u8 finger_num;
+> > > +	__le16 finger_pressed;
+> > 
+> > It's interesting that most registers/packets use big endian (e.g. x_res) while
+> > only this uses little endian. Is that expected?
+> > 
+> 
+> Yes, it's really like that. If you look closely the __le16 is also the
+> only 16-bit number that isn't aligned properly. I guess for the
+> "protocol designers" this fields was maybe not a 16-bit number but two
+> separate fields. No idea what they were thinking.
+
+ACK.
+
+> 
+> > > +	u8 padding;
+> > 
+> > Same question with regard to trailing padding.
+> > 
+> 
+> I think the same answer as above applies here. Additionally here, the
+> packet format seems to be intentionally 4-byte/32-bit aligned (see
+> comment in hx852x_handle_events()) so I would say it makes sense to also
+> read an aligned size from the controller.
+> 
+> > > +} __packed __aligned(4);
+> > > +
+> > > +static int hx852x_i2c_read(struct hx852x *hx, u8 cmd, void *data, u16 len)
+> > > +{
+> > > +	struct i2c_client *client = hx->client;
+> > > +	int ret;
+> > > +
+> > > +	struct i2c_msg msg[] = {
+> > > +		{
+> > > +			.addr = client->addr,
+> > > +			.flags = 0,
+> > > +			.len = 1,
+> > > +			.buf = &cmd,
+> > > +		},
+> > > +		{
+> > > +			.addr = client->addr,
+> > > +			.flags = I2C_M_RD,
+> > > +			.len = len,
+> > > +			.buf = data,
+> > > +		}
+> > > +	};
+> > > +
+> > > +	ret = i2c_transfer(client->adapter, msg, ARRAY_SIZE(msg));
+> > > +	if (ret != ARRAY_SIZE(msg)) {
+> > > +		dev_err(&client->dev, "failed to read %#x: %d\n", cmd, ret);
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +}
+> > 
+> > This function does not appear to be doing anything unique (e.g. retry loop to
+> > deal with special HW condition, etc.), so I do not see any reason to open-code
+> > a standard write-then-read operation.
+> > 
+> > Can i2c_smbus API simply replace this function,
+> 
+> As far as I know the SMBus standard and API is limited to reading a
+> maximum of 32 bytes (I2C_SMBUS_BLOCK_MAX). With >= 6 fingers the touch
+> packet sizes will exceed that.
+> 
+> > or better yet, can this driver
+> > simply use regmap? In fact, that is what the other mainline Himax driver uses.
+> 
+> Regmap could maybe work, but I think it does not really fit. The I2C
+> interface here does not provide a consistent register map. Problem is,
+> for regmap_config we would need to define "reg_bits" and "val_bits".
+> This does not really exist here: The commands are usually sent without
+> any arguments, sometimes with a single byte (HX852X_REG_SRAM_SWITCH) and
+> sometimes with a word (HX852X_REG_SRAM_ADDR). There isn't a specific
+> register set with values here but more like random "commands".
+> 
+> Since SMBus doesn't allow reading more than 32 bytes and regmap does not
+> fit I think this custom but fairly standard routine is necessary. :/
+
+That makes sense; thank you for the follow-up.
+
+> 
+> > 
+> > > +
+> > > +static int hx852x_power_on(struct hx852x *hx)
+> > > +{
+> > > +	struct device *dev = &hx->client->dev;
+> > > +	int error;
+> > > +
+> > > +	error = regulator_bulk_enable(ARRAY_SIZE(hx->supplies), hx->supplies);
+> > > +	if (error < 0) {
+> > 
+> > Nit: if (error) as you have done elsewhere.
+> > 
+> 
+> Thanks, will fix this.
+> 
+> > > +		dev_err(dev, "failed to enable regulators: %d\n", error);
+> > > +		return error;
+> > > +	}
+> > > +
+> > > +	gpiod_set_value_cansleep(hx->reset_gpiod, 1);
+> > > +	msleep(20);
+> > > +	gpiod_set_value_cansleep(hx->reset_gpiod, 0);
+> > > +	msleep(20);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int hx852x_start(struct hx852x *hx)
+> > > +{
+> > > +	struct device *dev = &hx->client->dev;
+> > > +	int error;
+> > > +
+> > > +	error = i2c_smbus_write_byte(hx->client, HX852X_TS_SLEEP_OUT);
+> > > +	if (error) {
+> > > +		dev_err(dev, "failed to send TS_SLEEP_OUT: %d\n", error);
+> > > +		return error;
+> > > +	}
+> > > +	msleep(30);
+> > > +
+> > > +	error = i2c_smbus_write_byte(hx->client, HX852X_TS_SENSE_ON);
+> > > +	if (error) {
+> > > +		dev_err(dev, "failed to send TS_SENSE_ON: %d\n", error);
+> > > +		return error;
+> > > +	}
+> > > +	msleep(20);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static void hx852x_stop(struct hx852x *hx)
+> > > +{
+> > > +	struct device *dev = &hx->client->dev;
+> > > +	int error;
+> > > +
+> > > +	error = i2c_smbus_write_byte(hx->client, HX852X_TS_SENSE_OFF);
+> > > +	if (error)
+> > > +		dev_err(dev, "failed to send TS_SENSE_OFF: %d\n", error);
+> > 
+> > Granted the function is of void type, should we not still return if there
+> > is an error?
+> > 
+> > Actually, I would still keep this function as an int for future re-use, even
+> > though hx852x_input_close() simply ignores the value. This way, the return
+> > value can be propagated to the return value of hx852x_suspend() and elsewhere.
+> > 
+> > > +
+> > > +	msleep(20);
+> > > +
+> > > +	error = i2c_smbus_write_byte(hx->client, HX852X_TS_SLEEP_IN);
+> > > +	if (error)
+> > > +		dev_err(dev, "failed to send TS_SLEEP_IN: %d\n", error);
+> > 
+> > Same here; no need to sleep following a register write that seemingly did
+> > not happen.
+> > 
+> > > +
+> > > +	msleep(30);
+> > > +}
+> > > +
+> > > +static void hx852x_power_off(struct hx852x *hx)
+> > > +{
+> > > +	struct device *dev = &hx->client->dev;
+> > > +	int error;
+> > > +
+> > > +	error = regulator_bulk_disable(ARRAY_SIZE(hx->supplies), hx->supplies);
+> > > +	if (error)
+> > > +		dev_err(dev, "failed to disable regulators: %d\n", error);
+> > > +}
+> > 
+> > Same comment with regard to function type; it's nice for internal helpers
+> > to be of type int, even if the core callback using it is void.
+> > 
+> > > +
+> > > +static int hx852x_read_config(struct hx852x *hx)
+> > > +{
+> > > +	struct device *dev = &hx->client->dev;
+> > > +	struct hx852x_config conf = {0};
+> > 
+> > No need to initialize.
+> > 
+> > > +	int x_res, y_res;
+> > > +	int error;
+> > > +
+> > > +	error = hx852x_power_on(hx);
+> > > +	if (error)
+> > > +		return error;
+> > > +
+> > > +	/* Sensing must be turned on briefly to load the config */
+> > > +	error = hx852x_start(hx);
+> > > +	if (error)
+> > > +		goto power_off;
+> > > +
+> > > +	hx852x_stop(hx);
+> > 
+> > See my earlier comment about promoting this function's type to int.
+> > 
+> > > +
+> > > +	error = i2c_smbus_write_byte_data(hx->client, HX852X_REG_SRAM_SWITCH,
+> > > +					  HX852X_SRAM_SWITCH_TEST_MODE);
+> > > +	if (error)
+> > > +		goto power_off;
+> > > +
+> > > +	error = i2c_smbus_write_word_data(hx->client, HX852X_REG_SRAM_ADDR,
+> > > +					  HX852X_SRAM_ADDR_CONFIG);
+> > > +	if (error)
+> > > +		goto exit_test_mode;
+> > > +
+> > > +	error = hx852x_i2c_read(hx, HX852X_REG_FLASH_RPLACE, &conf, sizeof(conf));
+> > > +	if (error)
+> > > +		goto exit_test_mode;
+> > > +
+> > > +	x_res = be16_to_cpu(conf.x_res);
+> > > +	y_res = be16_to_cpu(conf.y_res);
+> > > +	hx->max_fingers = (conf.max_pt & 0xf0) >> 4;
+> > > +	dev_dbg(dev, "x res: %d, y res: %d, max fingers: %d\n",
+> > > +		x_res, y_res, hx->max_fingers);
+> > > +
+> > > +	if (hx->max_fingers > HX852X_MAX_FINGERS) {
+> > > +		dev_err(dev, "max supported fingers: %d, found: %d\n",
+> > > +			HX852X_MAX_FINGERS, hx->max_fingers);
+> > > +		error = -EINVAL;
+> > > +		goto exit_test_mode;
+> > > +	}
+> > > +
+> > > +	if (x_res && y_res) {
+> > > +		input_set_abs_params(hx->input_dev, ABS_MT_POSITION_X, 0, x_res - 1, 0, 0);
+> > > +		input_set_abs_params(hx->input_dev, ABS_MT_POSITION_Y, 0, y_res - 1, 0, 0);
+> > > +	}
+> > > +
+> > > +exit_test_mode:
+> > > +	i2c_smbus_write_byte_data(hx->client, HX852X_REG_SRAM_SWITCH, 0);
+> > 
+> > Nit: it would still be nice to preserve as many return values as possible, perhaps
+> > as follows:
+> > 
+> > +exit_test_mode:
+> > 	error = i2c_smbus_write_byte_data(...) ? : error;
+> > 
+> > > +power_off:
+> > > +	hx852x_power_off(hx);
+> > > +	return error;
+> > 
+> > Similarly, with hx852x_power_off() being promoted to int as suggested above,
+> > this could be:
+> > 
+> > 	return hx852x_power_off(...) ? : error;
+> > 
+> > There are other idiomatic ways to do the same thing based on your preference.
+> > Another (perhaps more clear) option would be to move some of these test mode
+> > functions into a helper, which would also avoid some goto statements.
+> > 
+> 
+> Thanks for your suggestions regarding the error handling / return codes.
+> For v2 I will play with the different options you gave and look which
+> one feels best. :-)
+> 
+> > > +}
+> > > +
+> > > +static int hx852x_handle_events(struct hx852x *hx)
+> > > +{
+> > > +	/*
+> > > +	 * The event packets have variable size, depending on the amount of
+> > > +	 * supported fingers (hx->max_fingers). They are laid out as follows:
+> > > +	 *  - struct hx852x_coord[hx->max_fingers]: Coordinates for each finger
+> > > +	 *  - u8[ALIGN(hx->max_fingers, 4)]: Touch width for each finger
+> > > +	 *      with padding for 32-bit alignment
+> > > +	 *  - struct hx852x_touch_info
+> > > +	 *
+> > > +	 * Load everything into a 32-bit aligned buffer so the coordinates
+> > > +	 * can be assigned directly, without using get_unaligned_*().
+> > > +	 */
+> > > +	u8 buf[HX852X_MAX_BUF_SIZE] __aligned(4);
+> > > +	struct hx852x_coord *coord = (struct hx852x_coord *)buf;
+> > > +	u8 *width = &buf[HX852X_COORD_SIZE(hx->max_fingers)];
+> > > +	struct hx852x_touch_info *info = (struct hx852x_touch_info *)
+> > > +		&width[HX852X_WIDTH_SIZE(hx->max_fingers)];
+> > > +	unsigned long finger_pressed, key_pressed;
+> > 
+> > It seems these only need to be u16.
+> > 
+> 
+> Right. However, unsigned long is necessary for using it with
+> for_each_set_bit(), which wants a pointer to an unsigned long.
+> I can change it for key_pressed though.
+
+Thanks for the clarification; the existing implementation seems fine then.
+
+> 
+> > > +	unsigned int i, x, y, w;
+> > > +	int error;
+> > > +
+> > > +	error = hx852x_i2c_read(hx, HX852X_READ_ALL_EVENTS, buf,
+> > > +				HX852X_BUF_SIZE(hx->max_fingers));
+> > > +	if (error)
+> > > +		return error;
+> > > +
+> > > +	finger_pressed = get_unaligned_le16(&info->finger_pressed);
+> > > +	key_pressed = finger_pressed >> HX852X_MAX_FINGERS;
+> > > +
+> > > +	/* All bits are set when no touch is detected */
+> > > +	if (info->finger_num == 0xff || !(info->finger_num & 0x0f))
+> > > +		finger_pressed = 0;
+> > > +	if (key_pressed == 0xf)
+> > > +		key_pressed = 0;
+> > > +
+> > > +	for_each_set_bit(i, &finger_pressed, hx->max_fingers) {
+> > > +		x = be16_to_cpu(coord[i].x);
+> > > +		y = be16_to_cpu(coord[i].y);
+> > > +		w = width[i];
+> > > +
+> > > +		input_mt_slot(hx->input_dev, i);
+> > > +		input_mt_report_slot_state(hx->input_dev, MT_TOOL_FINGER, 1);
+> > > +		touchscreen_report_pos(hx->input_dev, &hx->props, x, y, true);
+> > > +		input_report_abs(hx->input_dev, ABS_MT_TOUCH_MAJOR, w);
+> > > +	}
+> > > +	input_mt_sync_frame(hx->input_dev);
+> > > +
+> > > +	for (i = 0; i < hx->keycount; i++)
+> > > +		input_report_key(hx->input_dev, hx->keycodes[i], key_pressed & BIT(i));
+> > > +
+> > > +	input_sync(hx->input_dev);
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static irqreturn_t hx852x_interrupt(int irq, void *ptr)
+> > > +{
+> > > +	struct hx852x *hx = ptr;
+> > > +	int error;
+> > > +
+> > > +	error = hx852x_handle_events(hx);
+> > > +	if (error) {
+> > > +		dev_err(&hx->client->dev, "failed to handle events: %d\n", error);
+> > > +		return IRQ_NONE;
+> > > +	}
+> > > +
+> > > +	return IRQ_HANDLED;
+> > > +}
+> > > +
+> > > +static int hx852x_input_open(struct input_dev *dev)
+> > > +{
+> > > +	struct hx852x *hx = input_get_drvdata(dev);
+> > > +	int error;
+> > > +
+> > > +	error = hx852x_power_on(hx);
+> > > +	if (error)
+> > > +		return error;
+> > > +
+> > > +	error = hx852x_start(hx);
+> > > +	if (error) {
+> > > +		hx852x_power_off(hx);
+> > > +		return error;
+> > > +	}
+> > > +
+> > > +	enable_irq(hx->client->irq);
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static void hx852x_input_close(struct input_dev *dev)
+> > > +{
+> > > +	struct hx852x *hx = input_get_drvdata(dev);
+> > > +
+> > > +	hx852x_stop(hx);
+> > > +	disable_irq(hx->client->irq);
+> > > +	hx852x_power_off(hx);
+> > > +}
+> > > +
+> > > +static int hx852x_parse_properties(struct hx852x *hx)
+> > > +{
+> > > +	struct device *dev = &hx->client->dev;
+> > > +	int error;
+> > > +
+> > > +	hx->keycount = device_property_count_u32(dev, "linux,keycodes");
+> > > +	if (hx->keycount <= 0) {
+> > > +		hx->keycount = 0;
+> > > +		return 0;
+> > > +	}
+> > > +
+> > > +	if (hx->keycount > HX852X_MAX_KEY_COUNT) {
+> > > +		dev_err(dev, "max supported keys: %d, found: %d\n",
+> > 
+> > Nit: these should both be printed as %u.
+> > 
+> 
+> Right, thanks!
+> 
+> > > +			HX852X_MAX_KEY_COUNT, hx->keycount);
+> > > +		return -EINVAL;
+> > > +	}
+> > > +
+> > > +	error = device_property_read_u32_array(dev, "linux,keycodes",
+> > > +					       hx->keycodes, hx->keycount);
+> > > +	if (error)
+> > > +		dev_err(dev, "failed to read linux,keycodes: %d\n", error);
+> > > +
+> > > +	return error;
+> > > +}
+> > > +
+> > > +static int hx852x_probe(struct i2c_client *client)
+> > > +{
+> > > +	struct device *dev = &client->dev;
+> > > +	struct hx852x *hx;
+> > > +	int error, i;
+> > > +
+> > > +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C |
+> > > +				     I2C_FUNC_SMBUS_WRITE_BYTE |
+> > > +				     I2C_FUNC_SMBUS_WRITE_BYTE_DATA |
+> > > +				     I2C_FUNC_SMBUS_WRITE_WORD_DATA)) {
+> > > +		dev_err(dev, "not all i2c functionality supported\n");
+> > > +		return -ENXIO;
+> > > +	}
+> > > +
+> > > +	hx = devm_kzalloc(dev, sizeof(*hx), GFP_KERNEL);
+> > > +	if (!hx)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	hx->client = client;
+> > > +	hx->input_dev = devm_input_allocate_device(dev);
+> > > +	if (!hx->input_dev)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	hx->input_dev->name = "Himax HX852x";
+> > > +	hx->input_dev->id.bustype = BUS_I2C;
+> > > +	hx->input_dev->open = hx852x_input_open;
+> > > +	hx->input_dev->close = hx852x_input_close;
+> > > +
+> > > +	i2c_set_clientdata(client, hx);
+> > > +	input_set_drvdata(hx->input_dev, hx);
+> > > +
+> > > +	hx->supplies[0].supply = "vcca";
+> > > +	hx->supplies[1].supply = "vccd";
+> > > +	error = devm_regulator_bulk_get(dev, ARRAY_SIZE(hx->supplies), hx->supplies);
+> > > +	if (error < 0)
+> > > +		return dev_err_probe(dev, error, "failed to get regulators");
+> > > +
+> > > +	hx->reset_gpiod = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> > > +	if (IS_ERR(hx->reset_gpiod))
+> > > +		return dev_err_probe(dev, error, "failed to get reset gpio");
+> > 
+> > Can the reset GPIO be optional?
+> > 
+> 
+> I'm afraid I have no idea if the controller needs this or not. Would it
+> be better to keep it required until someone confirms otherwise or have
+> it optional for the other way around?
+
+If you have a datasheet handy, or your hardware provides a means for you to
+test and confirm whether reset can be left out, I would make the reset GPIO
+optional. Often times, these controllers are part of a module and reset may
+be tied high locally as opposed to adding another signal to a flex cable.
+
+If you have no way to confirm, I would keep it as required for now; it is not
+too cumbersome to be changed later if the need arises on different hardware.
+
+> 
+> Thanks!
+> Stephan
+
+Kind regards,
+Jeff LaBundy
 
