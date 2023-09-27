@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-3681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C35D07AFD7F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 10:02:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 019177AFD94
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 10:06:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 73953283A16
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:02:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 8B5352834EC
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:06:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 464B61CA83;
-	Wed, 27 Sep 2023 08:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA7441D693;
+	Wed, 27 Sep 2023 08:06:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C440B1FD9
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 08:01:56 +0000 (UTC)
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02E04136
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 01:01:55 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-533d9925094so8892735a12.2
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 01:01:54 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87C211D559
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 08:06:08 +0000 (UTC)
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E67D126
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 01:06:06 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-530c9980556so12501276a12.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 01:06:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695801713; x=1696406513; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695801964; x=1696406764; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jB7antm8x02oT8yLkgXZ4Ih1/IuxugkmIPNQb092geM=;
-        b=bhwwGBztMM9PZTnTqiNas2uzvkW5K7C1TT8MFzWcO/zQBHk1vSnvXEQ8QGlTBXrS/2
-         rwaZWRqSrw9ZVlkAk2VR1n6yWEiMNongAxfhfAI6t+6MDONDWREoqc+08eavN7NhJ32G
-         hL3PKj5FUuEqKhss3tv5gId+lmlFrwZkRvmkwq1E1FSBu9s4l537Metq4xea+8QyzxI4
-         AglenZM/tS3HEZ63bwHO2JrbpdU/dodTSKfQGo/1HNgY+D4rKquOFps45jFSsenGNHM+
-         jQRO79xWFp+qxuJvc53fV4POzm4PVn51Y6XoHVOgdZPMV9i298OYqj18VzcNHgVsyUXl
-         /7Xg==
+        bh=s9lhIWUiEHwYDI/ZE1Mrd+/X49I6RpefneqXYBV0K7o=;
+        b=ldLd8GK2hxPdTT50+icZledFOE8HkWRxj9ko2mxp40rjcVmZK2qinsnhIVjdapaGFX
+         UqkEsvMrE8qVbPnU1O/BsbWgcAL7dPNXRfV1A6MdAm53k3dZysf2AAa19kz40r3kDOXa
+         qY746og5F8K4Dig1FzT3fZSH8FvauhLBRY5F7LiTFHto5pxA+Ud6LhutPTkV54oDVfCQ
+         4ZiLTaIQIUdAF+oC+DZ+RV+8TLZXgoDU3BtwMs0W3KMo2H/L7CRRka8sm07jT84GKxii
+         gauWXVdQMGh2hsHm912zYK82lZFWPlvd2SsfKgyeHiVSt2fuuLKM++vLNK6tUom7B3hT
+         zU/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695801713; x=1696406513;
+        d=1e100.net; s=20230601; t=1695801964; x=1696406764;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jB7antm8x02oT8yLkgXZ4Ih1/IuxugkmIPNQb092geM=;
-        b=xQg72rw+G3QmQhIc7iDAs7RSTF77bIBeHLeBdMOnbIIZb8vtgPaNli5G187DcK79jr
-         xp8jb/6AjcdKqGpSnX3jJY90UQ06cXnztQHwmJPyjHrk1+8x/Oy6FQp5dCwPlAeXt3hO
-         LG+sbdhLi3Zyx1omkfnYnSOnCGEM5vFu2lBjm10W1f6LjPD8anOBG5UD8yov0HkwDfg7
-         vQl8m/zD/6NPhu7w9uC3TjG8UtO72A1A6jI6PxcJdEUwGrw/Y1o5fQ0WKz8udSwnaTXw
-         5+awQAI3q19LCKayI1pxiSD1oZX4lDdyRuerURNyStKWELr49C0m2xSn/EXvOA5iPjt5
-         ndfQ==
-X-Gm-Message-State: AOJu0YxDjaCy53FYvMBE9APNN6JlFbPyOUCuCTNlArRE2MS7WK+TwXaH
-	Ll51i+BcKSszZYgWxilg3lJvOw==
-X-Google-Smtp-Source: AGHT+IGWScm8bkj7QubxIHqcxNwwx+N/SjnnbmtgS4zihWaFa9IkwMVyrG5LMELpwHwhJMZKIq7yzA==
-X-Received: by 2002:a17:906:308a:b0:9b2:89ec:7fca with SMTP id 10-20020a170906308a00b009b289ec7fcamr1157388ejv.34.1695801713433;
-        Wed, 27 Sep 2023 01:01:53 -0700 (PDT)
-Received: from [192.168.1.160] (host-87-4-82-94.retail.telecomitalia.it. [87.4.82.94])
-        by smtp.gmail.com with ESMTPSA id va1-20020a17090711c100b0099d9dee8108sm8952273ejb.149.2023.09.27.01.01.51
+        bh=s9lhIWUiEHwYDI/ZE1Mrd+/X49I6RpefneqXYBV0K7o=;
+        b=VxNPKEPjCPMxKoDq/VSmFdI77XRZhHhu99qCai3T9pzpuNeFH4sexCoCR5kuGzU7KN
+         jAW5KkDQCbIL54GbEX1N45IaNJdKqJAtcBAlzC6GZcXdEBaaU0pbFtvvTUAbVUPMhLYJ
+         ZYOOkbSgI3gHyEEFHqnELnIfuPRzKrIP6e9qp+dlMmXGsATCUkEIOWYRs9G9xeTVemSv
+         lhAPI8qJyxB7hWnnPZAGLhyBRSLxOLqRNvnDzMg7Uq4ooEDnb4WWMlfMz0WLBDmsNIgX
+         Vsu90/myTA8HuF6BY2HDWI2IF3smjjnR7TV8WXIYkA8nTHfJmU2qzN7y8736PH5/dxsV
+         blaA==
+X-Gm-Message-State: AOJu0Yzl+Hp+yrfHGD/tCSCCBjWGEpPhm2oVyPADO5tHQNSaRZs+0TUx
+	KMpJq0AXP1ripUFUwg5DPXbJqA==
+X-Google-Smtp-Source: AGHT+IEJHLpBtZHIOgcPBm1iXxyDo1WfxKr99oBFs2g4VeNxtdd/d/vypZAAAShqO3/0yuyisFZMMQ==
+X-Received: by 2002:a17:906:d6:b0:9ae:2f33:4ad0 with SMTP id 22-20020a17090600d600b009ae2f334ad0mr1187387eji.71.1695801964602;
+        Wed, 27 Sep 2023 01:06:04 -0700 (PDT)
+Received: from [192.168.1.162] (host-87-4-82-94.retail.telecomitalia.it. [87.4.82.94])
+        by smtp.gmail.com with ESMTPSA id b18-20020a170906039200b009ae5674825asm8886694eja.47.2023.09.27.01.06.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Sep 2023 01:01:52 -0700 (PDT)
-Message-ID: <01d8c1ea-ffce-4efc-b2a2-437403dc1d89@linaro.org>
-Date: Wed, 27 Sep 2023 10:01:51 +0200
+        Wed, 27 Sep 2023 01:06:04 -0700 (PDT)
+Message-ID: <2c351ca0-cee4-4c1b-956b-6134ad101a9a@linaro.org>
+Date: Wed, 27 Sep 2023 10:06:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,18 +63,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 1/2] dt-bindings: watchdog: Add support for Amlogic C3
- SoCs
+Subject: Re: [PATCH v4 2/2] dt-bindings: media: imx-jpeg: Assign slot for imx
+ jpeg encoder/decoder
 Content-Language: en-US
-To: Huqiang Qin <huqiang.qin@amlogic.com>, wim@linux-watchdog.org,
- linux@roeck-us.net, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, neil.armstrong@linaro.org, khilman@baylibre.com,
- jbrunet@baylibre.com, martin.blumenstingl@googlemail.com
-Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20230926055512.2355390-1-huqiang.qin@amlogic.com>
- <20230926055512.2355390-2-huqiang.qin@amlogic.com>
+To: Ming Qian <ming.qian@nxp.com>, mirela.rabulea@oss.nxp.com,
+ robh+dt@kernel.org, shawnguo@kernel.org
+Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ mchehab@kernel.org, hverkuil-cisco@xs4all.nl, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, xiahong.bao@nxp.com,
+ eagle.zhou@nxp.com, tao.jiang_2@nxp.com, linux-imx@nxp.com,
+ devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230926101000.13392-1-ming.qian@nxp.com>
+ <20230926101000.13392-2-ming.qian@nxp.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,43 +121,72 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230926055512.2355390-2-huqiang.qin@amlogic.com>
+In-Reply-To: <20230926101000.13392-2-ming.qian@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
 	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 26/09/2023 07:55, Huqiang Qin wrote:
-> Update dt-binding document for watchdog of Amlogic C3 SoCs.
+On 26/09/2023 12:10, Ming Qian wrote:
+> There are total 4 slots available in the IP, and we only need to use one
+> slot in one os, assign a single slot, configure interrupt and power
+> domain only for 1 slot, not for the all 4 slots.
 > 
-> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
+> Signed-off-by: Ming Qian <ming.qian@nxp.com>
 > ---
+> v4
+> - improve commit message
+> - don't make an ABI break
+> v3
+> - add vender prefix, change property slot to nxp,slot
+> - add type for property slot
 > 
-> V1 -> V2: Added compatibles.
+>  .../bindings/media/nxp,imx8-jpeg.yaml         | 45 +++++++++----------
+>  1 file changed, 21 insertions(+), 24 deletions(-)
 > 
->  .../devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml     | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml b/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
-> index 443e2e7ab467..b7e8e453c0ef 100644
-> --- a/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
-> @@ -17,6 +17,7 @@ properties:
->    compatible:
->      enum:
->        - amlogic,meson-gxbb-wdt
-> +      - amlogic,c3-wdt
+> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
+> index 3d9d1db37040..4bcfc815c894 100644
+> --- a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
+> +++ b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
+> @@ -32,19 +32,26 @@ properties:
+>      maxItems: 1
+>  
+>    interrupts:
+> -    description: |
+> -      There are 4 slots available in the IP, which the driver may use
+> -      If a certain slot is used, it should have an associated interrupt
+> -      The interrupt with index i is assumed to be for slot i
+> -    minItems: 1               # At least one slot is needed by the driver
+> -    maxItems: 4               # The IP has 4 slots available for use
+> +    description:
+> +      Interrupt number for slot
+> +    maxItems: 1
+>  
+>    power-domains:
+>      description:
+>        List of phandle and PM domain specifier as documented in
+>        Documentation/devicetree/bindings/power/power_domain.txt
+> -    minItems: 2               # Wrapper and 1 slot
+> -    maxItems: 5               # Wrapper and 4 slots
+> +    minItems: 1               # VPUMIX
+> +    maxItems: 2               # Wrapper and 1 slot
+> +
+> +  nxp,slot:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Integer number of slot index used. There are 4 slots available in the IP,
+> +      and driver can use a certain slot, it should have an associated interrupt
+> +      and power-domain. In theory, it supports 4 os or vm. If not specified, 0
+> +      is used by default.
+> +    minimum: 0
+> +    maximum: 3
 
-Nothing improved... this won't even work :/
-
-It does not look like you tested the bindings, at least after quick
-look. Please run `make dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-Maybe you need to update your dtschema and yamllint.
+NAK, you still did not answer concerns why this is needed and justified.
+I keep asking and you keep ignoring...
 
 Best regards,
 Krzysztof
