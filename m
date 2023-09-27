@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-3860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DF217B046A
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 14:41:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6505B7B0471
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 14:41:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 8A7B91C209D6
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 12:41:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 16AEB280E6B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 12:41:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 610DD286AF;
-	Wed, 27 Sep 2023 12:41:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15515286B9;
+	Wed, 27 Sep 2023 12:41:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8C8123742
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 12:41:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A88C286AF
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 12:41:13 +0000 (UTC)
 Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B01419A;
-	Wed, 27 Sep 2023 05:40:58 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38RArI9p025344;
-	Wed, 27 Sep 2023 14:40:36 +0200
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBAB8C0;
+	Wed, 27 Sep 2023 05:41:11 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38RAqu09007532;
+	Wed, 27 Sep 2023 14:40:55 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
 	from:to:cc:subject:date:message-id:in-reply-to:references
 	:mime-version:content-transfer-encoding:content-type; s=
-	selector1; bh=SgomDZ4n8rij0Ku1C1HWR5BqnMLcC05vUVKWOJcNk4M=; b=s2
-	Eew1PFCSEHeOy3wDJIwE+Bs8Oi9RFMdqkoXLDLlMsdYKfAUDBK1Bx+ydR/1O/gsy
-	Qvidxx+bHfR/B1lxXn74HY6ZB/wnZJaCHy0WxbmyXaBUaggkDNPa+auC3QHz5c04
-	FXd6V7InX2RSDWBzuH/6b2XoV4sHbkzu0gwF92KnqsRzUUtzBaBug434eqAtrm3X
-	f0f0Pb3uxIz3R2vm3wMWISF/T9GGiOXkv1FVyhvjHkQukAg21jeD8MWyqSoSjGR2
-	pSZXMv9WNWAMjxzmXm5PdSFxkmNVVCXU1n9UfhX+kdeeFCEu710cKHHfCn47wA/I
-	lLh1yZZUa/tKGJ4Fxl8w==
+	selector1; bh=9eluZSRn7peMLgOArt+M1C4neGyvCINQUcgy5sA40d4=; b=hC
+	CiNqPpCbVTq9uI4qs/sb7EmMIdpjDVgCnxtKzRagGfP5YvmuxEJJLr5RC2svPEwt
+	BbylcGO9AODwvL4mzBhbEbNLnvL7qL9CsXlNWOBEx+Si59BGGXt0SK2zvNLyHTdl
+	jOlLpdFv3BgUaHb+Yi9iMOueDCOvAuygBrbNipBPV3Z8rpJYixT33EY9LSIgbOFm
+	ajeRlQwCPJV8PGThRX2QaHvxl29PACpuoIZge6l1H2Dpw6vKacnoIepjOzKX2w1k
+	+wtRvZxZSpCocJvziqjAmL4LX27fjGk+Mjd0NsrpCpQroA6mBp2pRnyZ8NE3f5AJ
+	93Nb7zleTXX1phfycgxA==
 Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3t9n54jd4w-1
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3t9pwda7dd-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 27 Sep 2023 14:40:36 +0200 (MEST)
+	Wed, 27 Sep 2023 14:40:55 +0200 (MEST)
 Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0D0B810005A;
-	Wed, 27 Sep 2023 14:40:36 +0200 (CEST)
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1DB44100058;
+	Wed, 27 Sep 2023 14:40:55 +0200 (CEST)
 Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0159F23C6A5;
-	Wed, 27 Sep 2023 14:40:36 +0200 (CEST)
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1574D23C6A5;
+	Wed, 27 Sep 2023 14:40:55 +0200 (CEST)
 Received: from localhost (10.129.178.213) by SHFDAG1NODE1.st.com
  (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 27 Sep
- 2023 14:40:35 +0200
+ 2023 14:40:54 +0200
 From: Alain Volmat <alain.volmat@foss.st.com>
 To: Hugues Fruchet <hugues.fruchet@foss.st.com>,
         Alain Volmat
@@ -66,13 +66,12 @@ CC: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Dan Scally
 	<dan.scally@ideasonboard.com>,
         Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
         <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-stm32@st-md-mailman.stormreply.com>,
         <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 1/5] dt-bindings: media: add bindings for stm32 dcmipp
-Date: Wed, 27 Sep 2023 14:38:30 +0200
-Message-ID: <20230927123842.944025-2-alain.volmat@foss.st.com>
+Subject: [PATCH v4 2/5] media: MAINTAINERS: add entry for STM32 DCMIPP driver
+Date: Wed, 27 Sep 2023 14:38:31 +0200
+Message-ID: <20230927123842.944025-3-alain.volmat@foss.st.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230927123842.944025-1-alain.volmat@foss.st.com>
 References: <20230927123842.944025-1-alain.volmat@foss.st.com>
@@ -96,112 +95,38 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add the yaml binding for the ST Microelectronics STM32 DCMIPP
-(Digital Camera Memory Interface Pixel Processor)
+Add the entry related to the STM32 MEDIA DCMIPP driver within the
+MAINTAINERS file.
+Add myself as maintainer of the DCMI driver as well.
 
 Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 ---
- .../bindings/media/st,stm32-dcmipp.yaml       | 89 +++++++++++++++++++
- 1 file changed, 89 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml
+ MAINTAINERS | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml b/Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml
-new file mode 100644
-index 000000000000..87731f3ce7bd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml
-@@ -0,0 +1,89 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/st,stm32-dcmipp.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STMicroelectronics STM32 DCMIPP Digital Camera Memory Interface Pixel Processor
-+
-+maintainers:
-+  - Hugues Fruchet <hugues.fruchet@foss.st.com>
-+  - Alain Volmat <alain.volmat@foss.st.com>
-+
-+properties:
-+  compatible:
-+    const: st,stm32mp13-dcmipp
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    unevaluatedProperties: false
-+    description:
-+      DCMIPP supports a single port node with parallel bus.
-+
-+    properties:
-+      endpoint:
-+        $ref: video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          bus-type:
-+            enum: [5, 6]
-+            default: 5
-+
-+          bus-width:
-+            enum: [8, 10, 12, 14]
-+            default: 8
-+
-+          pclk-sample: true
-+          hsync-active: true
-+          vsync-active: true
-+
-+        required:
-+          - pclk-sample
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - resets
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/stm32mp13-clks.h>
-+    #include <dt-bindings/reset/stm32mp13-resets.h>
-+    dcmipp@5a000000 {
-+        compatible = "st,stm32mp13-dcmipp";
-+        reg = <0x5a000000 0x400>;
-+        interrupts = <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
-+        resets = <&rcc DCMIPP_R>;
-+        clocks = <&rcc DCMIPP_K>;
-+
-+        port {
-+             endpoint {
-+                   remote-endpoint = <&mipid02_2>;
-+                   bus-width = <8>;
-+                   hsync-active = <0>;
-+                   vsync-active = <0>;
-+                   pclk-sample = <0>;
-+             };
-+        };
-+    };
-+
-+...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 90f13281d297..ffff6f61461c 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -13274,13 +13274,16 @@ W:	https://linuxtv.org
+ T:	git git://linuxtv.org/media_tree.git
+ F:	drivers/media/dvb-frontends/stv6111*
+ 
+-MEDIA DRIVERS FOR STM32 - DCMI
++MEDIA DRIVERS FOR STM32 - DCMI / DCMIPP
+ M:	Hugues Fruchet <hugues.fruchet@foss.st.com>
++M:	Alain Volmat <alain.volmat@foss.st.com>
+ L:	linux-media@vger.kernel.org
+ S:	Supported
+ T:	git git://linuxtv.org/media_tree.git
+ F:	Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
+ F:	drivers/media/platform/st/stm32/stm32-dcmi.c
++F:	Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml
++F:	drivers/media/platform/st/stm32/stm32-dcmipp/*
+ 
+ MEDIA INPUT INFRASTRUCTURE (V4L/DVB)
+ M:	Mauro Carvalho Chehab <mchehab@kernel.org>
 -- 
 2.25.1
 
