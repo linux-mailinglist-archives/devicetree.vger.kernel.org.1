@@ -1,111 +1,126 @@
-Return-Path: <devicetree+bounces-3850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 734ED7B041F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 14:28:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78CB17B0424
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 14:29:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 25EAE28259C
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 12:28:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 967201C208B5
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 12:29:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8E8B28DAD;
-	Wed, 27 Sep 2023 12:28:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E07928DB2;
+	Wed, 27 Sep 2023 12:29:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99CB0241FC
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 12:28:54 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77C5A12A;
-	Wed, 27 Sep 2023 05:28:53 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38RCSl82038661;
-	Wed, 27 Sep 2023 07:28:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1695817727;
-	bh=kpGv4yviBFiv3jDn0Nsp/s5B6ZpDCik8xDM9KmbC7A8=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=I+o3hnfzmlncG62TGV3AQJQ+jYnezeeCJh5T0jfvPuHQs29nC7E/MUMXscwupzOir
-	 sB5QLr9fdIhSIYDv48lZ9bUNyf18nvNvKaZfi+GGgeRAMOZcGz3YKdmdBsbNLe+NrH
-	 1wdPVwb06h/Vz/ivUkpQbMHw+fpTr2pKjhT89lus=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38RCSl4Y033798
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 27 Sep 2023 07:28:47 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 27
- Sep 2023 07:28:47 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 27 Sep 2023 07:28:47 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38RCSlDV053432;
-	Wed, 27 Sep 2023 07:28:47 -0500
-Date: Wed, 27 Sep 2023 07:28:47 -0500
-From: Nishanth Menon <nm@ti.com>
-To: "Kumar, Udit" <u-kumar1@ti.com>
-CC: Apurva Nandan <a-nandan@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Hari Nagalla
-	<hnagalla@ti.com>
-Subject: Re: [PATCH v4 0/9] Add R5F and C7x DSP node for K3 J721S2, AM68 and
- AM69 SoCs
-Message-ID: <20230927122847.jslgzitgcesnv5ik@gangway>
-References: <20230906112422.2846151-1-a-nandan@ti.com>
- <ff0fabf8-8f55-4d91-04ee-7581efc465d6@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0543241FC;
+	Wed, 27 Sep 2023 12:29:37 +0000 (UTC)
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9609E193;
+	Wed, 27 Sep 2023 05:29:35 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-406402933edso24203735e9.2;
+        Wed, 27 Sep 2023 05:29:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695817774; x=1696422574; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MqrlAO5sztrD1NimOBbmkaeWGCBRbknzZR3MhxUtqJk=;
+        b=naup93iuZZIHBNrg7x06YTu29vDlozLnf14gcX4NkFnP6km2GgY81WxeMEtmhst4r4
+         pXuXP5UsTUccFlTLz/3epMlW9SKXP711dtH7vsqqO4DE2HMfn40P5M8tSfLVfoTYjDtd
+         Ra9cAQ3K3SITOUIk0S0ssbYv9Klv1NvLXP8tQq9RRUEX0QzPr0ZCVRIKigu3OJJqDcUR
+         IrTbxI0Q6wEzatIL5UdCIo6GQiWUKeoGYIsjb7VmLQOmivsF2oR5aTspp5Uq2W+Aq3IO
+         DfWMVnDTGHoNOc8uqjbhNlm5aRmz/FTM4J3z5Y3Z2YvCWbDCcuMWudGChxsLsD2i/zN9
+         An5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695817774; x=1696422574;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MqrlAO5sztrD1NimOBbmkaeWGCBRbknzZR3MhxUtqJk=;
+        b=hKJJDlEhKrkL1CRTAcLW2N/P8UBEoB9JHpo2DQeJS/gQxofnwyHjaGF9Pe071uyHw1
+         NRX9WUVFy3D46ZZfp7z1Efw+G5Q6SXFVU9GXTux9bFyTao41jHGplag/ceVvfr2Me1g7
+         oa20BYvfJuJeVoSYaC470OQaxkz0qbJyMquosi/C2gb5nA66yQDhuyujahyZjUbQNT/q
+         Ew2JRSmXhk36jqS5sKobKKTqfWCRtAvi2zGFN94d6HPw4v9/Ju9iwe6GUrO9IZxEaYUj
+         lg355CAvqDnndUXZCFJeMgxbKTXFur3LRN0Xsx9CyYWmPwkkHTO2qPAgUzUoMRD5mk+f
+         ESig==
+X-Gm-Message-State: AOJu0Yw2cpzrqIBF94V8mn2QEhAikQsmPQHx87MlUcTcGMyiq7I3L4fb
+	nbRpYzUDbk+5UEOkTTkLMfI=
+X-Google-Smtp-Source: AGHT+IF5xtLdTh5ebA3MvomjOgILvnz4IhFIHGw6vrUOiVXXmVjun0KXM08k7tob5hnd5+T2RFQvmA==
+X-Received: by 2002:a5d:5348:0:b0:315:8a13:ef17 with SMTP id t8-20020a5d5348000000b003158a13ef17mr1430106wrv.65.1695817773679;
+        Wed, 27 Sep 2023 05:29:33 -0700 (PDT)
+Received: from localhost.localdomain (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
+        by smtp.googlemail.com with ESMTPSA id 8-20020a05600c230800b004042dbb8925sm4521218wmo.38.2023.09.27.05.29.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Sep 2023 05:29:33 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	Andrew Halaney <ahalaney@redhat.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Shenwei Wang <shenwei.wang@nxp.com>,
+	Jochen Henneberg <jh@henneberg-systemdesign.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org
+Cc: Christian Marangi <ansuelsmth@gmail.com>
+Subject: [net-next PATCH 1/2] dt-bindings: net: snps,dwmac: DMA Arbitration scheme
+Date: Wed, 27 Sep 2023 14:29:27 +0200
+Message-Id: <20230927122928.22033-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ff0fabf8-8f55-4d91-04ee-7581efc465d6@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 14:24-20230927, Kumar, Udit wrote:
-> 
-> On 9/6/2023 4:54 PM, Apurva Nandan wrote:
-> > This series adds the R5F processor nodes and C7x DSP nodes for
-> > J721S2, AM68 and AM69 SoCs to align these nodes with other K3 SOC's node.
-> > 
-> > The first three patches adds the remote proc nodes to the SoC device
-> > tree, remaining patches reserves the memory for remote proc IPCs
-> > on K3 J721S2 EVM, AM68 SK, AM69 boards.
-> > 
-> > Note, K3 AM69 SoC derives from K3 J784S4 SoC, but is included in this
-> > series as it was originally missed in the K3 J784S4 EVM rproc series.
-> > (https://lore.kernel.org/all/20230502231527.25879-4-hnagalla@ti.com/).
-> > 
-> > kpv log: https://gist.githubusercontent.com/apurvanandan1997/57fcf127c118a48bd174ce36d8840329/raw/
-> > Test log: https://gist.githubusercontent.com/apurvanandan1997/556b4148651ae74b50dda993ad07f1e5/raw/
-> 
-> You need to rebase the series
-> 
-> For patches 6/9, 7/9, 8/9 and 9/9
-> 
-> Reviewed by: Udit Kumar <u-kumar1@ti.com>
+Document new binding snps,arbit to program the DMA to use Arbitration
+scheme. (Rx has priority over Tx)
 
-Please provide reviewed by for the exact patches than expecting
-maintainers to pick the reviewed bys.
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+---
+ Documentation/devicetree/bindings/net/snps,dwmac.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+index 5c2769dc689a..4499f221c29b 100644
+--- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+@@ -442,6 +442,12 @@ properties:
+     description:
+       Use Address-Aligned Beats
+ 
++  snps,arbit:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Program the DMA to use Arbitration scheme.
++      (Rx has priority over Tx)
++
+   snps,fixed-burst:
+     $ref: /schemas/types.yaml#/definitions/flag
+     description:
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.40.1
+
 
