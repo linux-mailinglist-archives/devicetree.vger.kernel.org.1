@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-3996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5539E7B0D86
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 22:44:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2699B7B0DFD
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 23:20:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id CE8A42836F6
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 20:44:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id CCAE628233D
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 21:20:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AD3D3CD0E;
-	Wed, 27 Sep 2023 20:44:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7CC04CFAC;
+	Wed, 27 Sep 2023 21:20:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB66420B27
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 20:44:40 +0000 (UTC)
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 895B3BF;
-	Wed, 27 Sep 2023 13:44:39 -0700 (PDT)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-	by mailout.nyi.internal (Postfix) with ESMTP id DD8285C28A2;
-	Wed, 27 Sep 2023 16:44:38 -0400 (EDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E3F74CFAA
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 21:20:00 +0000 (UTC)
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC3FFD6;
+	Wed, 27 Sep 2023 14:19:57 -0700 (PDT)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+	by mailout.nyi.internal (Postfix) with ESMTP id 3FE515C2905;
+	Wed, 27 Sep 2023 17:19:57 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Wed, 27 Sep 2023 16:44:38 -0400
+  by compute4.internal (MEProxy); Wed, 27 Sep 2023 17:19:57 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
 	cc:cc:content-transfer-encoding:content-type:content-type:date
 	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
 	:references:reply-to:sender:subject:subject:to:to; s=fm3; t=
-	1695847478; x=1695933878; bh=AsKv5ZivNNx+hY2Lpt116e+FY6DRWUuM4nh
-	D0mTfvhc=; b=bSUi+nOFHg8ft6wbFjA0yvta90PS1jT2HrUd0Z2e4F9scGk7Dn+
-	41UykMoDIQTf0IM4DFaATb5AscXcwHpSbpUiPthdVct7hsKRLmsQWcCkNpqXCZCB
-	C99wg32+IYwcp4pyf45dP7F5fd33aWk/8Sr34qKgDTbkzNkXik5vkF8R33JtrGEF
-	abmE48VTDCuE+LHbqoGOxROgZHltFmfibEMGkxiK+jv6sgVmzq8hjCJxbuO7vUI3
-	dKTWJGmAInrvBBqSr9HZCLnGVhLv4yucUe1nqqxG2516PJht5Hsdhz++sTRlMCDV
-	ALqsBczDMgrymaK9WvT6OxZiZb4djrjvijg==
+	1695849597; x=1695935997; bh=z/h4fES0SS47bjZAkAyklErYzVJ4ozg9Y5J
+	Is7GVL5U=; b=olotVyJ+N7j8cdoju2RGI6pXjslf5vkG3tkjrRwDWQdEVWxgA9u
+	DIViJNOO1nHBt8EWwnyJdl3EloQ0cyReiISrV8SkwvMG433+0U4sc1Aap7JO5zG3
+	LLO8GjHnqRnP2fzvO9gV6gxRv/SF41CjvTjzGJeztI6bLTW28Un2aR3XPsr85Dw5
+	QhDztDl31p8tyr2m6DLWO0RsCXukliTboKWG4HAMxNvCS2BKDMoYWZTbFMqeZt8g
+	KuJfdbRlGC9C21+v1remCgiiaWQIf4ZcHJo9CoOXhG4+THzMNWtbc1SUgPINKyM5
+	GVtnN2bQZizNwpPuMe59/lhc73z27jTguCA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-transfer-encoding
 	:content-type:content-type:date:date:feedback-id:feedback-id
 	:from:from:in-reply-to:in-reply-to:message-id:mime-version
 	:references:reply-to:sender:subject:subject:to:to:x-me-proxy
 	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
-	1695847478; x=1695933878; bh=AsKv5ZivNNx+hY2Lpt116e+FY6DRWUuM4nh
-	D0mTfvhc=; b=A71tizEN4nqYpiImzTdUpkAphX15Xy3maDRN9gakrPi3ejPE0ln
-	hkY3B6u5wXrJM5O/U/cz2NRfv2vf7Vfpmz7sZ/BgaJ2GNPWb3kU8Hahztz6ev0Do
-	E6KqD6wmh+ml6ssZIi51Gn01Cw1izYVXaZMTN+FyfcbaesGOo8P9iMyrfFQFAOHW
-	YJF+teMMbM7asZVfscByLkXF7aYs9QHEFwF0R3ymGS0VcSvWaxtdXYVu3Vua6RLX
-	hNJc27QpM8l88z4hAfLhYxZmJrWlhjM1WQKe9ukp9Sw8IRfP0MDj3RM9lavEk5Ru
-	QHziEQrwTUwN8APA6KOIfEqovithnFN1ERg==
-X-ME-Sender: <xms:NpQUZYFNUmHOPTTmZvMPZDlaHq5ctA4YDS3zZS_OKCLmiIRhazbhUw>
-    <xme:NpQUZRUCj_oDgHZWxeR7mJP8FquDGwm-9FZjJyFo0huQHK2tq5tvCq3G5vJqg2YPL
-    IYiwCSejOSqzg5gpA>
-X-ME-Received: <xmr:NpQUZSIZf0Njr3qkBpGhYnqcOJu3rUlGVsVYQg8SUh-_pYz3fyM2uAZ0K7Sp5ahd9Bep4FATCZfGt-Yikc5sTafOKFJ2zHYT9OE6edYIaKwjkOL0-TfOJXeU-g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvjedrtdeggdeklecutefuodetggdotefrodftvf
+	1695849597; x=1695935997; bh=z/h4fES0SS47bjZAkAyklErYzVJ4ozg9Y5J
+	Is7GVL5U=; b=QCo/QAdKZyiuQa2zuGTta3TV7bCKJugAv9+Qgaf9gRsmtdr/NBO
+	79sZJ6rs23M+0+LKjGA/oS8ERy+Ef0okO7LhwgdUoXWe4+IdhErcuq7sqztITNYZ
+	RqX2MpK99SK5+EuyN+9mEuBEsYWIThUiW3OoeQ0pkDyjcYRA5MDBnEIGVlj8+ZCA
+	6m+o2CidOKhgSQHGf10kKUmyYpQ6DcMfg852TY4psRfRgNIOpdjMkR9YdzxTPqcS
+	FU4+Gq+jAoOBjMIeinbjTVXeotJEz+iZh13PlOETBZzKuLI7Qilm+7VsnUtCPgGZ
+	Ll7mwy/QulX5NknRf7DexNBWvUFMg4r9gwQ==
+X-ME-Sender: <xms:fJwUZUutVoPFPUUW-plZ5D_Saqx7ABLCyIuSqtPfKN7hwlzu38IL5g>
+    <xme:fJwUZRdHs950H13w4IzFrrWRzoGtIUu_kCkuY0qreDTtUMk-Sh1f4ppG5BqWs-1U0
+    me4h-TspPoY9OvfqA>
+X-ME-Received: <xmr:fJwUZfxGyFZZ3nmdmqafvvqnri83xoVxPfb31p9M7rXLc79SEaFUrmpl6JDaXl4NpXqVapHdrXcBqtuX4EW9yHS7OpsVBLbqQtqNKwenFJwCE0_NsmFdn3vSSg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvjedrtdeggdeljecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
     fjughrpefkffggfgfuvfevfhfhjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
     vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepkeejleelfeeitdfhtdfgkeeghedufeduueegffdvhfdukeelleef
-    tdetjeehuddtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
-    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:NpQUZaGr7dnzQd6wOwbwAFk1KaXAZ3_UUXPbVaYVgF--rZ7VC9XF4w>
-    <xmx:NpQUZeV9FGV2J94JPrvrSmpjpFiaH4cJSns6pwLv_BsxsPoN0_4b6Q>
-    <xmx:NpQUZdP015hNVswPn9NEXcoDMt-MpU2JFeyPFGzxzHAziDTHrHpE2A>
-    <xmx:NpQUZczeMfdwit1_wF9ehODNseJfvUuAnVHj7kFag6GSFwjD2eHWcA>
+    ftrfgrthhtvghrnheptefgveeigfetjefgudduvdejgfelkefgtdehiefgtedugeejueeu
+    teelveetteeknecuffhomhgrihhnpeguthhsihdrhihouhenucevlhhushhtvghrufhiii
+    gvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgrnhgu
+    rdhorhhg
+X-ME-Proxy: <xmx:fJwUZXMNQCD0WgZSpi2aySxTB3-e3d6vp1fYtUaYdLWfdLEs9xxIsg>
+    <xmx:fJwUZU_QoqO-6vRvi6GWuyfnuyfc8BiTfFuV5EJgc0X32P8NZXPIrQ>
+    <xmx:fJwUZfVHNP9GMDRRRWVq5BoJusGVJEqKJ89esk7J3dNxxXfzK1TMzg>
+    <xmx:fZwUZYTmRnuitVKRcA-yklCvObH3WIfk7yniuStNqmMYSGgS5ankVA>
 Feedback-ID: i0ad843c9:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 27 Sep 2023 16:44:38 -0400 (EDT)
-Message-ID: <af27d5a9-b63f-825f-924f-eb4170a5a9bc@sholland.org>
-Date: Wed, 27 Sep 2023 15:44:37 -0500
+ 27 Sep 2023 17:19:56 -0400 (EDT)
+Message-ID: <9730f21c-fd8e-9583-98c7-e5d923269f79@sholland.org>
+Date: Wed, 27 Sep 2023 16:19:55 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,18 +78,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v2 2/2] dt-bindings: arm: sunxi: Add
- itead,iteaduino-plus-a20
+Subject: Re: [PATCH v2 1/2] ARM: dts: sun7i: Add Iteaduino Plus A20
 Content-Language: en-US
 To: Julian Ribbeck <julian.ribbeck@gmx.de>
 Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
  krzysztof.kozlowski@linaro.org
 References: <e0e71b0c-086d-ce54-f4d3-6f594d8e5da6@linaro.org>
  <20230617205624.1178427-1-julian.ribbeck@gmx.de>
- <20230617205624.1178427-2-julian.ribbeck@gmx.de>
 From: Samuel Holland <samuel@sholland.org>
-In-Reply-To: <20230617205624.1178427-2-julian.ribbeck@gmx.de>
+In-Reply-To: <20230617205624.1178427-1-julian.ribbeck@gmx.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -98,14 +99,200 @@ X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hi Julian,
+
+Next time please CC everyone reported by scripts/get_maintainer.pl on
+this file, so we are aware of your patch.
+
 On 6/17/23 15:55, Julian Ribbeck wrote:
-> Add itead,iteaduino-plus-a20 bindings
+> Iteaduino Plus A20 is very similar to Iteaduino Plus A10. In fact it
+> shares the same breakout board and the Itead Core A20 on top of it, is
+> only adapted to support the dual-core A20.
+> 
+> This commits enables the following hardware:
+> 
+> * HDMI Video output
+> * USB
+> * SATA (untested due to lack of hardware I could attach)
+> * Ethernet
+> * MMC storage
+> * UART
+> * USB OTG (untested, because I don't own an USB OTG cable/device)
 > 
 > Signed-off-by: Julian Ribbeck <julian.ribbeck@gmx.de>
 > ---
->  Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  arch/arm/boot/dts/Makefile                    |   1 +
+>  .../dts/sun7i-a20-itead-iteaduino-plus.dts    | 114 ++++++++++++++++++
+>  2 files changed, 115 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/sun7i-a20-itead-iteaduino-plus.dts
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 59829fc90315..3b6e284e4472 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1334,6 +1334,7 @@ dtb-$(CONFIG_MACH_SUN7I) += \
+>  	sun7i-a20-haoyu-marsboard.dtb \
+>  	sun7i-a20-hummingbird.dtb \
+>  	sun7i-a20-itead-ibox.dtb \
+> +	sun7i-a20-itead-iteaduino-plus.dtb \
+>  	sun7i-a20-i12-tvbox.dtb \
+>  	sun7i-a20-icnova-swac.dtb \
+>  	sun7i-a20-lamobo-r1.dtb \
+> diff --git a/arch/arm/boot/dts/sun7i-a20-itead-iteaduino-plus.dts b/arch/arm/boot/dts/sun7i-a20-itead-iteaduino-plus.dts
+> new file mode 100644
 
-Reviewed-by: Samuel Holland <samuel@sholland.org>
+ARM devicetrees were moved into subdirectories, so this patch will need
+to be rebased.
+
+> index 000000000000..204c5f2c81c7
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/sun7i-a20-itead-iteaduino-plus.dts
+> @@ -0,0 +1,114 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
+> +
+> +/dts-v1/;
+> +#include "sun7i-a20.dtsi"
+> +#include "sunxi-itead-core-common.dtsi"
+> +#include "axp209.dtsi"
+
+axp209.dtsi is already included by sunxi-itead-core-common.dtsi. You
+don't need to include it again here.
+
+> +
+> +/ {
+> +	model = "Itead Iteaduino Plus A20";
+> +	compatible = "itead,iteaduino-plus-a20", "allwinner,sun7i-a20";
+> +
+> +	hdmi-connector {
+> +		compatible = "hdmi-connector";
+> +		type = "a";
+> +
+> +		port {
+> +			hdmi_con_in: endpoint {
+> +				remote-endpoint = <&hdmi_out_con>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&ac_power_supply {
+> +	status = "okay";
+> +};
+> +
+> +&ahci {
+> +	target-supply = <&reg_ahci_5v>;
+> +	status = "okay";
+> +};
+> +
+> +&axp209 {
+> +	interrupt-parent = <&nmi_intc>;
+> +	interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
+> +};
+> +
+> +&battery_power_supply {
+> +	status = "okay";
+> +};
+> +
+> +&codec {
+> +	stauts = "okay";
+> +};
+> +
+> +&de {
+> +	status = "okay";
+> +};
+> +
+> +&emac {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&emac_pa_pins>;
+> +	phy-handle = <&phy1>;
+> +	status = "okay";
+> +};
+> +
+> +&emac_sram {
+> +	status = "okay";
+> +};
+> +
+> +&hdmi {
+> +	status = "okay";
+> +};
+> +
+> +&hdmi_out {
+> +	hdmi_out_con: endpoint {
+> +		remote-endpoint = <&hdmi_con_in>;
+> +	};
+> +};
+> +
+> +&mdio {
+> +	status = "okay";
+> +
+> +	phy1: ethernet-phy@1 {
+> +		reg = <1>;
+> +	};
+> +};
+> +
+> +&mmc0 {
+> +	vmmc-supply = <&reg_vcc3v3>;
+> +	bus-width = <4>;
+> +	cd-gpios = <&pio 7 1 GPIO_ACTIVE_LOW>; /* PH1 */
+> +	status = "okay";
+> +};
+> +
+> +
+> +&otg_sram {
+> +	status = "okay";
+> +};
+> +
+> +&reg_ahci_5v {
+> +	status = "okay";
+> +};
+> +
+> +
+
+Extra blank line here and above otg_sram.
+
+> +&reg_usb0_vbus {
+> +	status = "okay";
+> +};
+> +
+> +&usb_otg {
+> +	status = "okay";
+> +	dr_mode = "otg";
+
+The mini-USB port is always powered, and the ID pin isn't hooked up in a
+usable way, so this should be "host".
+
+> +};
+> +
+> +&usb_power_supply {
+> +	status = "okay";
+> +};
+
+The board's power supply is only connected to the ACIN pins of the
+AXP209, not the USBVBUS pin (which is pulled to 3.3V for some reason).
+So usb_power_supply should not be enabled or used below.
+
+> +
+> +&usbphy {
+> +	usb0_id_det-gpios = <&pio 7 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; /* PH4 */
+
+The ID pin is connected to N_VBUSEN on the PMIC, not this GPIO. Per the
+schematic, this GPIO is not connected to anything.
+
+> +	usb0_vbus_det-gpios = <&pio 7 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; /* PH5 */
+
+Per the schematic, this GPIO is not connected to anything.
+
+> +	usb0_vbus_power-supply = <&usb_power_supply>;
+
+As explained above, please remove this property.
+
+Regards,
+Samuel
+
+> +	usb0_vbus-supply = <&reg_usb0_vbus>;
+> +};
+> --
+> 2.41.0
+> 
 
 
