@@ -1,114 +1,124 @@
-Return-Path: <devicetree+bounces-3661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A5547AFBA8
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:04:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4337B7AFBAC
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:08:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3B47F2818BB
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 07:04:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id D6845281884
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 07:08:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 220F71C28C;
-	Wed, 27 Sep 2023 07:04:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E2F51C29F;
+	Wed, 27 Sep 2023 07:08:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 348DA1FCC
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 07:04:46 +0000 (UTC)
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABBBAA3
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:04:43 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9a9cd066db5so1379580966b.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:04:43 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 762022903
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 07:08:01 +0000 (UTC)
+Received: from mail-vk1-xa2b.google.com (mail-vk1-xa2b.google.com [IPv6:2607:f8b0:4864:20::a2b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62F0D10E
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:07:59 -0700 (PDT)
+Received: by mail-vk1-xa2b.google.com with SMTP id 71dfb90a1353d-49040dc5cedso3723953e0c.3
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:07:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1695798282; x=1696403082; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=mUfHtwwTDrHdk2HONnb9D4bIQEZmaUosI6XyqFoIeCw=;
-        b=h7ejs9G5jolI4yR6tEuVOR21QF0jr7ZdqbXKFFDs/RoOu/5FVDsfu5lKoN3Y4nsvsR
-         xL0ysBw2oZKFWkyr4SZTWN5zoRMKqsOmRhfzpLDZ0LOuFGobbDsyoVKk1XMJt2lsBkis
-         0cY1SAZoVJ4A1urn2RX+V0jrnNZoNrB1Z6L5G3dqEXl8Oc2nwTV60BfaeV8iehZOvaO+
-         Zgx7vQAIyaxkrNsLmXbqv+tVnP4rTRhhdaNv/emS0U255O8iRZwTQHi4lcnckBzvm92E
-         7d3woFOrKjeXDgUn1YxGkj7r/78a6KqmRSBUI5bc0b1gB7LtswgRi+fgG2eHFrXVKkjj
-         Qc5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695798282; x=1696403082;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1695798478; x=1696403278; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mUfHtwwTDrHdk2HONnb9D4bIQEZmaUosI6XyqFoIeCw=;
-        b=KqLm9vH8OPoaWu1Y4+OkpC7xUlBGaVPXkwHmJmN4WbZa6XXIzArNyW8D33zNwvw81C
-         PSPzHaIV9BTQjniIAWkoyJiKby2JB/kjskqavIrQvscztapWwxMkOfpw9VblLbvraNNo
-         1S7wMH51AyWoU9l5jrwDiLrHSKbKfvhdyQG/O7uHQhSo1dBGgJz5jsTIkkWB0w4nuDTg
-         URs37rE+AmJbWQkg0NMma9KgmP+DT2QMVy6apZ/fl95iAHGNPLThSFM0pnbYunKtAxoV
-         zDhCcRoTbXFncd9QPby6Ft1M5pa3wXHyWtZl6zHow7tBgA/yCK527MnXaswy4WpNjqo1
-         Pt8g==
-X-Gm-Message-State: AOJu0YwJrQ0UR1rQOH7QUxhSDv5ag3eEFto620/jKzHb8149NSltfKns
-	VwWQxvhboioQ4to+PekAnOGM6g==
-X-Google-Smtp-Source: AGHT+IGPRTkGC4Od1WoatDcn89FvS49OIiWfhQoFMm0Di906wf3KEkkApp3YAheBlq3xlop70aMjRg==
-X-Received: by 2002:a17:906:21b:b0:9ae:46c7:90fe with SMTP id 27-20020a170906021b00b009ae46c790femr891826ejd.72.1695798282161;
-        Wed, 27 Sep 2023 00:04:42 -0700 (PDT)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id l9-20020a170906230900b00993004239a4sm8743056eja.215.2023.09.27.00.04.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Sep 2023 00:04:41 -0700 (PDT)
-Date: Wed, 27 Sep 2023 09:04:40 +0200
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Yong-Xuan Wang <yongxuan.wang@sifive.com>
-Cc: linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org, 
-	greentime.hu@sifive.com, vincent.chen@sifive.com, tjytimi@163.com, alex@ghiti.fr, 
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: riscv: Add Svadu Entry
-Message-ID: <20230927-d524858b10298a4e338cde02@orel>
-References: <20230922085701.3164-1-yongxuan.wang@sifive.com>
- <20230922085701.3164-3-yongxuan.wang@sifive.com>
+        bh=5Kv7jmytR7Cl6Bx7jgRq1B3ANrXCvmoOcRtFgOD3gcI=;
+        b=pWu1N9kKYNfkf2L8zwU5+ixnjjs5w7pUivF4m8G+A7JLIN1kvI/SwlZIGFmrmy82B1
+         v3EYcIk91rM4BrrYZbii++MhHd0ytAFbXWSXpcyk/zl/tqJEah9MmpiQY4Co5Vj8ndL4
+         ArtqurEQFS2IVuANFul2AM/R4KApZ+uDKUxwoPLBod55P7CH4es2ubX2OATTMJXU/N6w
+         I7kswNOWzNXbcTjvEHo69BdLuwRZxQXKNsYTxoaShZghK9rcxGRUofK70b+IFzrCu45J
+         L+N7gEw2aaZFk9kKpp1otPBTzxVo3YIytrTY+VRt/T6KiLm0lpE7q3OekC0zs21GAiDy
+         DL5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695798478; x=1696403278;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5Kv7jmytR7Cl6Bx7jgRq1B3ANrXCvmoOcRtFgOD3gcI=;
+        b=sTls5MyMc44yVv8HmzuA88S3H4K56lI/tSa99s4JcXr6D343i2U21cHPHa6XrRC7Jp
+         Tr4W1JwaOmg3Setd0BiV7ALGytGTWxHpNMrJAGsclgvPkq/2xMXSEMVSnta7I0M+mXvm
+         lgUExrvyctcE6BddQHxsQuRG3KtH0qMH2l2kMLE1g3BduyZc2Cm9hbf3bruMc9uu8Gfb
+         8Q9qU/SetqKQRZJs3xgiK3hYok0pF1uSAxJJHPyL108QfbMHhkCZxZIGQAp+W43q1XOJ
+         kgTUosC7Jji+wjYfisCn7jR6WYPGCNmOD83M4IaWE2ni2IyBgGWVWvo6pTXdqOxOivUg
+         10MQ==
+X-Gm-Message-State: AOJu0Yxm3v0t0ApEmgZxHXMQevNbHcZrsDVZtFv8GFL/RrfpR5WKzeEW
+	7ajiZZ3D0n/Ip8AqvmF+Il/mlO51cVruV6C6yefDcw==
+X-Google-Smtp-Source: AGHT+IHDPQqjVDxDkNQNRwSlqWvkdkMkG91cF3xhgI47OCkvieSGjCc5ncnHUbGVptN6z7XZUtIZRPt8+tugLd6HTj4=
+X-Received: by 2002:a1f:d5c4:0:b0:495:bf5b:7e49 with SMTP id
+ m187-20020a1fd5c4000000b00495bf5b7e49mr1005244vkg.13.1695798478435; Wed, 27
+ Sep 2023 00:07:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230922085701.3164-3-yongxuan.wang@sifive.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230921015247.23478-1-zhuyinbo@loongson.cn>
+In-Reply-To: <20230921015247.23478-1-zhuyinbo@loongson.cn>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Wed, 27 Sep 2023 09:07:47 +0200
+Message-ID: <CAMRc=MdHcqd=3-Sd5U3nUR=fkzTEFo=UFn91E5G3VHTu=Y9qdA@mail.gmail.com>
+Subject: Re: [PATCH v6 0/2] gpio: loongson: add more gpio chip support
+To: Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>, 
+	wanghongliang@loongson.cn, loongson-kernel@lists.loongnix.cn
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Fri, Sep 22, 2023 at 08:56:48AM +0000, Yong-Xuan Wang wrote:
-> Add an entry for the Svadu extension to the riscv,isa-extensions property.
-> 
-> Signed-off-by: Yong-Xuan Wang <yongxuan.wang@sifive.com>
-> ---
->  Documentation/devicetree/bindings/riscv/extensions.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> index cc1f546fdbdc..b5a0aed0165b 100644
-> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> @@ -147,6 +147,12 @@ properties:
->              ratified at commit 3f9ed34 ("Add ability to manually trigger
->              workflow. (#2)") of riscv-time-compare.
->  
-> +        - const: svadu
-> +          description: |
-> +            The standard Svadu supervisor-level extension for hardware updating
-> +            of PTE A/D bits as frozen at commit b65e07c ("move to Frozen
-> +            state") of riscv-svadu.
-> +
->          - const: svinval
->            description:
->              The standard Svinval supervisor-level extension for fine-grained
-> -- 
-> 2.17.1
+On Thu, Sep 21, 2023 at 3:53=E2=80=AFAM Yinbo Zhu <zhuyinbo@loongson.cn> wr=
+ote:
+>
+> This patch was to add loongson 2k0500, 2k2000 and 3a5000 gpio chip
+> driver support.
+>
+> Change in v6:
+>                 1. Add a reviewed-by for gpio driver.
+>                 2. Rework the commit log.
+>                 3. Replace changes to "u32" in loongson_gpio_chip_data.
+> Change in v5:
+>                 1. Use boolean initializer for lgpio->chip.can_sleep.
+>                 2. Remove the code that about io width gain from ngpios.
+>                 3. Fixup the ls7a-gpio and ls2k-gpio items in yaml file.
+>                 4. Add the reviewed-by information for dt-bindings patch.
+>                 5. Add some comments in loongson_gpio_to_irq.
+> Change in v4:
+>                 1. Reword the title and commit log information.
+>                 2. Remove the offset parse in DT and add it in of_device_=
+id and
+>                    acpi_device_id's data field.
+>                 3. Add more gpio chip dt-bindings support in yaml file.
+> Change in v3:
+>                 1. Reword the dt-bindings patch commit log information.
+>                 2. Add "loongson,ls2k1000-gpio" compatible.
+> Change in v2:
+>                 1. Reword the patch commit log information.
+>                 2. Add some GPIO register offset description in yaml.
+>
+> Yinbo Zhu (2):
+>   gpio: dt-bindings: add more loongson gpio chip support
+>   gpio: loongson: add more gpio chip support
+>
+>  .../bindings/gpio/loongson,ls-gpio.yaml       |  21 +++-
+>  drivers/gpio/gpio-loongson-64bit.c            | 119 ++++++++++++++++--
+>  2 files changed, 127 insertions(+), 13 deletions(-)
+>
+> --
+> 2.20.1
 >
 
-Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
+Queued for v6.7. Thanks!
+
+Bart
 
