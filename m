@@ -1,75 +1,78 @@
-Return-Path: <devicetree+bounces-3857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 309117B044C
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 14:35:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B8A77B0464
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 14:40:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 4B93C1C20A0D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 12:35:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 95E761C20955
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 12:40:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FEEE28E09;
-	Wed, 27 Sep 2023 12:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FD122869B;
+	Wed, 27 Sep 2023 12:40:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C80E250EB;
-	Wed, 27 Sep 2023 12:35:28 +0000 (UTC)
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB07E1B4;
-	Wed, 27 Sep 2023 05:35:26 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-1c72e235debso427955ad.0;
-        Wed, 27 Sep 2023 05:35:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695818126; x=1696422926; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gprJVDsXwLSiY6ns4WLf8qHBaq7AHy9fuArStvHNVVI=;
-        b=FT/lPXtXa252nj2IyWI20iCeWGLWc8lq59OT7wi0PnN8yOoFBA0cMhv3I2QOyQbe2I
-         X0cxL4GokxL8XJ7ZaiFtJMHYgEuSOBSz8GfM6lp/0XFXr0dmv8Qq7sRxXsm46N6n8kQh
-         HfvawIUmlTvnvAAnXrUudjkpRhhy3PkHQnW1R72Zmi7P8mAvnE/xJ2vCMJ1HGx671L5S
-         cDVUQGXtd2kln4jRtRdnjr0cLSfKaScFhGb992S9V/6PrQ+T3f0wVFCrbwuM6qzhzSYK
-         AmaNDcO/zl7C7MU0G25qRH2Dx5D3f3vYtNqmuQF177Xpqxh/VI9VJ1wFtEBjaT/l66fy
-         slRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695818126; x=1696422926;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gprJVDsXwLSiY6ns4WLf8qHBaq7AHy9fuArStvHNVVI=;
-        b=ddlg85OnQMsMxiZd/q4ariesAvb9bbNHwhMKZ4e7mh0EQfHrgExNXoSuCCZ94ZvC2Q
-         B0iWwIl3hM4kAMyomFkDLdl4v5tV1Q+AQNEISUcRsryfAydIkwlU+YfRQona0KAtsvvM
-         PMIsqYPFwv69oYFtl1azTxaWwiBEdtlqDeE/CUoFLD6v2rgHPOIIxU7iVgALIoX6uAIV
-         r6efsZVdKq7heZo4ZwU3gwqhJZ/RdrZY4aIDyE/tiQqSREuV8dSJnViYzoSI6r0NxtkB
-         O+p1Y10aht6HfWVJGIdGYQmbRB4QdaeXFmBh7NDAWDsiZ6pxj/zsH9poTIblMp9gcO3g
-         HYog==
-X-Gm-Message-State: AOJu0YydKooxAG2GAzOCESxscTTN2vQGG3BzwcWtH/RQBalVHpw3gR2T
-	wMpwALzWsnJVzlRJL4gCd0A=
-X-Google-Smtp-Source: AGHT+IFvWPS14Ke6xJZbCzThFfKWqUdQUhikdjJShzrA/Q14kj3jp3KU5J0a+6vJuUyG74ROZUfu6Q==
-X-Received: by 2002:a17:902:c94d:b0:1c6:9312:187 with SMTP id i13-20020a170902c94d00b001c693120187mr1755433pla.3.1695818126019;
-        Wed, 27 Sep 2023 05:35:26 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:8313:ad6b:7769:5148])
-        by smtp.gmail.com with ESMTPSA id s4-20020a170902a50400b001b567bbe82dsm12969886plq.150.2023.09.27.05.35.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Sep 2023 05:35:25 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: gregkh@linuxfoundation.org
-Cc: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	andersson@kernel.org,
-	linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	jun.li@nxp.com,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v3 2/2] dt-bindings: usb: gpio-sbu-mux: Make 'mode-switch' not required
-Date: Wed, 27 Sep 2023 09:35:11 -0300
-Message-Id: <20230927123511.45085-2-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230927123511.45085-1-festevam@gmail.com>
-References: <20230927123511.45085-1-festevam@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 722AC23742
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 12:40:41 +0000 (UTC)
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99383C0;
+	Wed, 27 Sep 2023 05:40:39 -0700 (PDT)
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38RArC6r032260;
+	Wed, 27 Sep 2023 14:40:12 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=emca6je
+	z2K/ZVKcbp1qKhyIDAykmyL5j+vxAhAC3rKc=; b=Tp6HhNd3AEqOainzO6DHFvP
+	avkfnh7mir61X2K5vXJGGcXA77H+uY6pgJHguoWNx6oPiiz74CsVSIvlT60yt3FV
+	xpO6hwhj4vdiKBbXDw4K/Tjmc7LkX9Y0zM6gw68vdqWAZSz/+TbjpjZ0mw81ATAJ
+	pRIAX0g53LPPz5A1yDtC/CfRyatKQOh27D4AJ0HhG3T9LRL71BBxx+DdrYbZ8FN1
+	mCz+j0vddW4G+HbAKLMJARKKT/tmcHt6oB363hkrE7U+m18nD+CpSVrhEy6Rh3lc
+	Mn9n0mqSVu9O1DarKXEpSXXL0zrZWOPfwCL60yxirmNuWyJvN9Jvoc/+wcuhA+Q=
+	=
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3taayhqwf0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 27 Sep 2023 14:40:11 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D0D17100058;
+	Wed, 27 Sep 2023 14:40:10 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C579A23C6A1;
+	Wed, 27 Sep 2023 14:40:10 +0200 (CEST)
+Received: from localhost (10.129.178.213) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 27 Sep
+ 2023 14:40:10 +0200
+From: Alain Volmat <alain.volmat@foss.st.com>
+To: Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        Alain Volmat
+	<alain.volmat@foss.st.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob
+ Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Philipp
+ Zabel <p.zabel@pengutronix.de>
+CC: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Dan Scally
+	<dan.scally@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4 0/5] Add support for DCMIPP camera interface of STMicroelectronics STM32 SoC series
+Date: Wed, 27 Sep 2023 14:38:29 +0200
+Message-ID: <20230927123842.944025-1-alain.volmat@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,41 +80,106 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.129.178.213]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-27_06,2023-09-27_01,2023-05-22_02
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Fabio Estevam <festevam@denx.de>
+This patchset introduces support for Digital Camera Memory Interface
+Pixel Processor (DCMIPP) of STMicroelectronics STM32 SoC series.
 
-On a i.MX8QXP MEK board that has an NXP CBDTU02043 mux, there is
-no mode-switch, only an orientation switch.
+This initial support implements a single capture pipe
+allowing RGB565, YUV, Y, RAW8 and JPEG capture with
+frame skipping, prescaling and cropping.
 
-Make the 'mode-switch' property a non-required one.
+DCMIPP is exposed through 3 subdevices:
+- dcmipp_dump_parallel: parallel interface handling
+- dcmipp_dump_postproc: frame skipping, prescaling and cropping control
+- dcmipp_dump_capture: video device capture node
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
-Changes since v2:
-- Newly introduced.
+v4:
+  - rework of mutex / spinlock handling
+  - addition of dma mask setting
+  - removal of __maybe_unused, use pm_ptr and new declaration macros
+  - driver now only generate a single stm32-dcmipp.ko module instead of
+    several as before
+  - removal of the component framework usage
+  - various small fixes (function names, lowercase values, indentation,
+    print formats)
+  - register name removal in register access function, only dev_dbg with
+    address & values are kept
+  - removal of VB2_READ and CAP_READWRITE
+  - usage of subdev active state mechanism and removal of locally stored
+    format/compose/crop
+  - addition of port { } within the stm32mp135.dtsi
 
- Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml | 1 -
- 1 file changed, 1 deletion(-)
+v3:
+  - Have same To & Cc in all patches emails of the serie so that everybody
+    has coherent view of the serie
+  - bindings: correct wording, clock-names & label removal
+  - driver: replace of_graph call with fwnode_graph
+  - driver: use defined bus-type when calling v4l2_fwnode_endpoint_parse
+  - driver: remove clock name
+  - dtsi: remove clock-names property
 
-diff --git a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
-index b61dcf8b4aad..d3b2b666ec2a 100644
---- a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
-+++ b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
-@@ -51,7 +51,6 @@ required:
-   - compatible
-   - enable-gpios
-   - select-gpios
--  - mode-switch
-   - orientation-switch
-   - port
- 
+v2:
+  - removal of pclk-max-frequency from yaml example dts
+  - codying-style fixes
+  - correction in enum functions (format, mbus, frame_size ...) handling
+  - drop of v4l2_pipeline_pm_ calls, and specific open/close handler of
+    vdev
+  - video dev s_stream handling updated to call s_stream of remote subdev
+    instead of loop until sensor subdev
+  - code update following media_pipeline & v4l2_async_ api changes since v1
+  - removal of IP reset call upon error
+  - removal of link_validate handlers
+  - addition of V4L2_CAP_IO_MC device_caps
+  - removal of the frame skip control for the time being, will be added
+    back in another commit once control method will be agreed
+  - change byteproc entity type to MEDIA_ENT_F_PROC_VIDEO_SCALER
+  - various fixes from Dan & Sakari remarks
+
+Alain Volmat (2):
+  dt-bindings: media: add bindings for stm32 dcmipp
+  media: MAINTAINERS: add entry for STM32 DCMIPP driver
+
+Hugues Fruchet (3):
+  media: stm32-dcmipp: STM32 DCMIPP camera interface driver
+  ARM: dts: stm32: add dcmipp support to stm32mp135
+  ARM: multi_v7_defconfig: enable STM32 DCMIPP media support
+
+ .../bindings/media/st,stm32-dcmipp.yaml       |  89 ++
+ MAINTAINERS                                   |   5 +-
+ arch/arm/boot/dts/st/stm32mp135.dtsi          |  11 +
+ arch/arm/configs/multi_v7_defconfig           |   1 +
+ drivers/media/platform/st/stm32/Kconfig       |  15 +
+ drivers/media/platform/st/stm32/Makefile      |   1 +
+ .../platform/st/stm32/stm32-dcmipp/Makefile   |   4 +
+ .../st/stm32/stm32-dcmipp/dcmipp-bytecap.c    | 993 ++++++++++++++++++
+ .../st/stm32/stm32-dcmipp/dcmipp-byteproc.c   | 591 +++++++++++
+ .../st/stm32/stm32-dcmipp/dcmipp-common.c     | 106 ++
+ .../st/stm32/stm32-dcmipp/dcmipp-common.h     | 207 ++++
+ .../st/stm32/stm32-dcmipp/dcmipp-core.c       | 603 +++++++++++
+ .../st/stm32/stm32-dcmipp/dcmipp-parallel.c   | 461 ++++++++
+ 13 files changed, 3086 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml
+ create mode 100644 drivers/media/platform/st/stm32/stm32-dcmipp/Makefile
+ create mode 100644 drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-bytecap.c
+ create mode 100644 drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-byteproc.c
+ create mode 100644 drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-common.c
+ create mode 100644 drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-common.h
+ create mode 100644 drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-core.c
+ create mode 100644 drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-parallel.c
+
 -- 
-2.34.1
+2.25.1
 
 
