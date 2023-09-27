@@ -1,298 +1,254 @@
-Return-Path: <devicetree+bounces-3612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 422127AF828
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 04:33:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA9BD7AF829
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 04:34:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id E64162813EA
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 02:33:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id EC143B20855
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 02:33:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4BE41878;
-	Wed, 27 Sep 2023 02:33:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD7D12909;
+	Wed, 27 Sep 2023 02:33:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D208D2F24
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 02:33:24 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E54D7AA5;
-	Tue, 26 Sep 2023 19:33:23 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38R2XHfP013973;
-	Tue, 26 Sep 2023 21:33:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1695781997;
-	bh=7AKkCUIIjXosndBxlHmGTWyhZDiPu05U+B4Tu8+KOIU=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=FWMWOdL2282Hn15OJHg+R6Uj7jQasuCdJja0grMRBeDFTpEXYnWsw8CNVWmM67gjZ
-	 b6iDwjdMup+0C1bGqzzqWf/K/I1VMGjYwWJ+ctBGIrvOJx6UpG3qBTLqTEKE3BJVWL
-	 BAws93Y4/9W+wuNcuJFZV8nE1ILXNI+X/W44ewDs=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38R2XHmO023481
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 26 Sep 2023 21:33:17 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 26
- Sep 2023 21:33:16 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 26 Sep 2023 21:33:17 -0500
-Received: from [10.249.131.134] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38R2XDGJ096415;
-	Tue, 26 Sep 2023 21:33:13 -0500
-Message-ID: <2f9d2c67-a056-3422-baff-9398a4c6b147@ti.com>
-Date: Wed, 27 Sep 2023 08:03:12 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB49D2F24
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 02:33:55 +0000 (UTC)
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2054.outbound.protection.outlook.com [40.107.8.54])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 845727AAF;
+	Tue, 26 Sep 2023 19:33:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ePe0LFqdAvbYZPQrW/FlyGmvWGx0EW7Gv2M3/tYBRwhDQQoq2595Jyy0Jp4J8kem0vdvW37kAMWx/+NPEmkd/ztx2GgH6+GkcvYCv/us5/9jDTe8Uai8x4ld3bQfXESvq2mCWdF5kyaVnk7BTF3MiJkGvPJdycQn0UjHFaLmTyqAJZR4nB5+VmX+57p/STTtFkshiKasc34pexRKkM9b1quOPn4c3nhIUCehicRcmVMF5T4CkqAzsqTwdW4nkjSrwwl/j5fSPowMqgjYzmMNfgnAQAs64mPoxs2Tiv3e4ICHx/76JFO8WFfQs3dt1GEDs2FRIwFJYeiuPPe6nKpZZQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=J+/yWg7UAlBZBqfnjTJEhe69VGob3z30U9N4/k7/DxA=;
+ b=iLDqvCDXhWlP/XvGQxDLDDk4lb5FaNh3kNx1aMzJf2UR35k7sT5Mew1z3pZQZqZlEuR1+AFtyd4ed/IaT919HNBF+/3s6bzhridQLqKk7M4HT8qJb/sYFh7vCOiHCoBYqcsw6qoPaUqzHgTHQAG6QMIR1V6ZFfh92BbLDdq/c7tjOX8IqPCFnSAAADNaia1/5KpYgspoRtgJZOKMxRxjUJhihsRyzBneIL5/hwMRXg2mRqmZWWEOQKL44vOTM7mvxdsRy7+5I88FyGMyxHMNIsJxSVQe3FHX1UiWeDklcAfjdArFt/ilfPGUqtBK9JRZvz0Bxf3Zy+paOXnrW2iqag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=J+/yWg7UAlBZBqfnjTJEhe69VGob3z30U9N4/k7/DxA=;
+ b=ra4AfNsOZ3SAFcMp5wPe0Mgub7w+Xwc0ZX8GEK0vtcO5qn5AD4PxqjunALS992E9G0NygafdgqlOV9xMoE+hk0jvj2zr7okea+GGEmEzbB/Sfj1+M4ykslzGjv3opZzc3Xpqo6oN9d9qpBkJX7/NkpNhd5FmXTaw/QPJLFOdyTA=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9498.eurprd04.prod.outlook.com (2603:10a6:10:360::21)
+ by AM0PR04MB7090.eurprd04.prod.outlook.com (2603:10a6:208:19e::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.25; Wed, 27 Sep
+ 2023 02:33:51 +0000
+Received: from DB9PR04MB9498.eurprd04.prod.outlook.com
+ ([fe80::51f9:b8d2:7ddd:c74f]) by DB9PR04MB9498.eurprd04.prod.outlook.com
+ ([fe80::51f9:b8d2:7ddd:c74f%6]) with mapi id 15.20.6813.027; Wed, 27 Sep 2023
+ 02:33:51 +0000
+From: Chancel Liu <chancel.liu@nxp.com>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	linux-imx@nxp.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Chancel Liu <chancel.liu@nxp.com>
+Subject: [PATCH 1/2] arm64: dts: imx93: Add audio device nodes
+Date: Wed, 27 Sep 2023 10:33:20 +0800
+Message-Id: <20230927023321.3955170-1-chancel.liu@nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR04CA0197.apcprd04.prod.outlook.com
+ (2603:1096:4:14::35) To DB9PR04MB9498.eurprd04.prod.outlook.com
+ (2603:10a6:10:360::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v5 4/7] arm64: dts: ti: k3-j784s4-main: Add the main
- domain watchdog instances
-Content-Language: en-US
-To: Nishanth Menon <nm@ti.com>
-CC: <robh+dt@kernel.org>, <vigneshr@ti.com>, <conor+dt@kernel.org>,
-        <kristo@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <u-kumar1@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230926132805.6518-1-j-keerthy@ti.com>
- <20230926132805.6518-5-j-keerthy@ti.com>
- <20230926171213.nihjj2nsnnvnxhel@gradation>
-From: "J, KEERTHY" <j-keerthy@ti.com>
-In-Reply-To: <20230926171213.nihjj2nsnnvnxhel@gradation>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9498:EE_|AM0PR04MB7090:EE_
+X-MS-Office365-Filtering-Correlation-Id: 85cb1fc8-d34e-4dba-a4b9-08dbbf022f80
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	3BX5u/Ch+1+/H6WKe9tcVuReXcHTgoXPeCZo87eDLJLZbAHJYGEpB2EG90dHNSX4T22w8UzJKED/edsw+PFUWgLjkFIwJp9UvblKxNK8TlcpVQU6HxosRve9BQGWGsc1XdPIeH2Ynccamf2XZFPkf8tUWskmBPoxfc7KPU+va/wUcgotUBhbur+DUKKrBloQkTQYB0N1d3ft83R59q7nlbDACDvEUnJ53STWxHzZcRsZAVxtaIA5yyZfUz8dcY4vBYixWdR5OGJqV6m+mvVmYJJBwEKjwIwPpey4Ko4uldk+VGaZEKiyKLnrUnmcRg/c85q1DaLC/SjgoUOo/onAvHo+lCqL2uSb/ZZxrfbzHTmJiNV5/STZ2E3K9hTRbRwp63eUc7jSq3Xsp8H+V2JoQfNYqyNcuGCpQhN1BPAHOrK/CeqSLQMxK1QPBQPfoO0eX3PhbLy4n9lc/+BTlqBbrA9mX2r8R/osLC6Sn699/eKJY83Q/8olJYFwQiAn3mezgH/BJfl3CCEHjs/v0PbyF5wQvJqGD3kShi9iJAgIoBhllNngeUj5qC64eJZK7+QTonxZXYtCjWgU5SGh7y5sXaydh0Zp0JWgeUiZm08ac1YvyOPTlxR3z4NoS9qFRUk/0+a5B7RErI+n5wcPjTGt3YdEDPLuqEmHVWoHYiy2PCc=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9498.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(396003)(366004)(39860400002)(376002)(136003)(230922051799003)(451199024)(1800799009)(186009)(1076003)(52116002)(6512007)(83380400001)(2616005)(38100700002)(921005)(6666004)(6506007)(26005)(36756003)(38350700002)(6486002)(66476007)(478600001)(66946007)(66556008)(41300700001)(316002)(5660300002)(8676002)(8936002)(2906002)(44832011)(86362001)(2013699003)(7416002)(4326008);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?3QawiXgfO+tJ2EtqYeYVTaq66htmTsJbKhZZYM1VMyibVnrbtp94VNsUpCQz?=
+ =?us-ascii?Q?Rc8lHF/KZqesNhC9YWZduJEPKfeh4mcVHXaYRpGi3nHxq7criK4HE9nWOR8s?=
+ =?us-ascii?Q?8gZL6K2ltOLgXaOfninxtdaKwShvRCDbH+dnoNbX8zsTaobsA38FxF/vh+jc?=
+ =?us-ascii?Q?GDSslCjn2knb5HfXFoZX2+lAGfX1qUAhlSs8EcB9BUvnOhPdfb+YQ3J8RkjX?=
+ =?us-ascii?Q?5/l2rNrsW2/gD4zsBq6/QSs5Ju8A5BWDIHa01B4BIU5Cp6gQGFYxCz/eh5up?=
+ =?us-ascii?Q?KsQHSG8Ff34zMFA7wxkWNrizx3qELhauIueueNMFyv8lEq8BTHcwO8N00cVT?=
+ =?us-ascii?Q?AaD+jx9WbStZ1/2pJhlAkLgZ6oWmLIliNx5iGO95lBdzPUmmre5zyTcM+xtQ?=
+ =?us-ascii?Q?CLx7FEiSdAcy6DsOvHvhRHKpkAbWMgZMp7aBKkfIKoH28Ti7pF1A9qImhJVm?=
+ =?us-ascii?Q?GPJNA7Biifm+ejCtvMRzhix9PSHJ2cUdoaZ8EaI1MfEs15fk1bqiUaArTDZl?=
+ =?us-ascii?Q?mmmQkXrvWmqwtfslupF+ydfbihsGuc+bmW8Yd6g33w0Jy88MAQ0S3C2F6+EA?=
+ =?us-ascii?Q?FTKygGCJe7tpjWsJtBi2YlkXRbEs7EkpSnhXvPAFsEKp895w2XkV3RwEA5jc?=
+ =?us-ascii?Q?8HX9G9JlutEhC0DfFlBLgCGh29mwDez2WR+buwWLv30rvORv5OelNyAVWaXB?=
+ =?us-ascii?Q?P3cr4rTupDWNao2j/OvrO7X/LWGMokBaDEUNvprablXLwplprDiqXuVd3AB8?=
+ =?us-ascii?Q?2cJa9X75Mx4zW0H0ZQWssbcK51dTLRbBp+bfpqGEq5qC3y4SH8I03GQpjKbB?=
+ =?us-ascii?Q?QkQ8X4QN8QLEjZMeeljwcb9d4S2vvo3KZAdy3tWt8UNaob53LTg9xnO7EzPV?=
+ =?us-ascii?Q?c9fGI9itnhwuZzBVA/MrpRUwu2a2r+BSbJ+y0QYmDqXSyx7Lfobh/r8Qy2PX?=
+ =?us-ascii?Q?cIq5vlY+SGvcZ9at4IZD/V87bgb6NAexCfnvfTEbaqrL2Dd0/K/0YVn3CUP3?=
+ =?us-ascii?Q?4cu+SmPYDUZR6mW3RjZ5Kj1LeeDJYN/P0OYTy8s+7hHFU+BczjjCcuIajVRy?=
+ =?us-ascii?Q?s2naBX1zauR1hdaoF9i8FNX82nTVDVahro67moX+QpeWsTE5m25sa0ZFK3dx?=
+ =?us-ascii?Q?7b0IIuAlvU2H81Spd/PeEEGk5VNVlh5QK4ChTX5X72H7jGZJF42MxuU+xrG5?=
+ =?us-ascii?Q?2d1bHbE5xnP5tC18gAdN9efFrSmLDPx+aJno+VpIc7Q8SVWTjVHntZV0hl1i?=
+ =?us-ascii?Q?/ZBvvV/qmbKDwEUIdBz0mOCpNZZJMzVOna4wtOLLvMQJwBcUkWCDs6jAEKyx?=
+ =?us-ascii?Q?Yn7C/UYKrqOqCzDPNIXroWmWVFkCPGOGTPePK27tC/c56qmS86w4ECrHOgJQ?=
+ =?us-ascii?Q?/cfi/mpIOTnPuOXYMh7lvSu+etqTG/SOKWMlmJpvg9mXJTseDSMV5ybR+C8w?=
+ =?us-ascii?Q?yuQlcYcBCCVKi6gAGr6yUOIAcFmnv//Gp1yYfB0tzCQWK10zZVqU4K8Bi59h?=
+ =?us-ascii?Q?3FDyiAhZBUXyju4+d1YPx/FCc5ui5mY1bKsPpFhy37rCYHU2SW3rxaLMJto1?=
+ =?us-ascii?Q?WruA4AN2iJjP6KRtbtPLuoA62icQfhsNPAEss/Lu?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85cb1fc8-d34e-4dba-a4b9-08dbbf022f80
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9498.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2023 02:33:51.1885
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 70DV/tyIIZIHqHHqiuW/sRNym1AYRFpRP10eYvYqVAIw5ubld3eA/5SO6Gdw2s52nAlMNLFjK9uLMiFAYSg+HA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7090
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Add audio devices nodes including SAI, MICFIL, XCVR and MQS.
 
+Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx93.dtsi | 87 ++++++++++++++++++++++++
+ 1 file changed, 87 insertions(+)
 
-On 9/26/2023 10:42 PM, Nishanth Menon wrote:
-> On 18:58-20230926, Keerthy wrote:
->> There are totally 19 instances of watchdog module. One each for the
->> 8 A72 cores, one each for the 4 C7x cores, 1 for the GPU, 1 each
->> for the 6 R5F cores in the main domain. Keeping only the A72 instances
->> enabled and disabling the rest by default.
->>
->> Signed-off-by: Keerthy <j-keerthy@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 182 +++++++++++++++++++++
->>   1 file changed, 182 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
->> index 26dc3776f911..8c3efe066803 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
->> @@ -1576,4 +1576,186 @@
->>   			      <695>;
->>   		bootph-pre-ram;
->>   	};
->> +
->> +	watchdog0: watchdog@2200000 {
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x2200000 0x00 0x100>;
->> +		clocks = <&k3_clks 348 1>;
->> +		power-domains = <&k3_pds 348 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 348 0>;
->> +		assigned-clock-parents = <&k3_clks 348 4>;
->> +	};
->> +
->> +	watchdog1: watchdog@2210000 {
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x2210000 0x00 0x100>;
->> +		clocks = <&k3_clks 349 1>;
->> +		power-domains = <&k3_pds 349 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 349 0>;
->> +		assigned-clock-parents = <&k3_clks 349 4>;
->> +	};
->> +
->> +	watchdog2: watchdog@2220000 {
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x2220000 0x00 0x100>;
->> +		clocks = <&k3_clks 350 1>;
->> +		power-domains = <&k3_pds 350 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 350 0>;
->> +		assigned-clock-parents = <&k3_clks 350 4>;
->> +	};
->> +
->> +	watchdog3: watchdog@2230000 {
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x2230000 0x00 0x100>;
->> +		clocks = <&k3_clks 351 1>;
->> +		power-domains = <&k3_pds 351 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 351 0>;
->> +		assigned-clock-parents = <&k3_clks 351 4>;
->> +	};
->> +
->> +	watchdog4: watchdog@2240000 {
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x2240000 0x00 0x100>;
->> +		clocks = <&k3_clks 352 1>;
->> +		power-domains = <&k3_pds 352 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 352 0>;
->> +		assigned-clock-parents = <&k3_clks 352 4>;
->> +	};
->> +
->> +	watchdog5: watchdog@2250000 {
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x2250000 0x00 0x100>;
->> +		clocks = <&k3_clks 353 1>;
->> +		power-domains = <&k3_pds 353 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 353 0>;
->> +		assigned-clock-parents = <&k3_clks 353 4>;
->> +	};
->> +
->> +	watchdog6: watchdog@2260000 {
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x2260000 0x00 0x100>;
->> +		clocks = <&k3_clks 354 1>;
->> +		power-domains = <&k3_pds 354 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 354 0>;
->> +		assigned-clock-parents = <&k3_clks 354 4>;
->> +	};
->> +
->> +	watchdog7: watchdog@2270000 {
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x2270000 0x00 0x100>;
->> +		clocks = <&k3_clks 355 1>;
->> +		power-domains = <&k3_pds 355 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 355 0>;
->> +		assigned-clock-parents = <&k3_clks 355 4>;
->> +	};
->> +
->> +	watchdog16: watchdog@2300000 {
->> +		status = "disabled";
-> 
-> wow.. lots of watchdogs.. but you seem to have missed the document why
-> disabled comment here AND missed the comment about using status
-> as the last property.
-> https://lore.kernel.org/all/5187c590-ee9a-4c46-b326-655f4c371aaf@linaro.org/
+diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
+index f20dd18e0b65..6ed7b156c633 100644
+--- a/arch/arm64/boot/dts/freescale/imx93.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+@@ -366,6 +366,25 @@ flexcan1: can@443a0000 {
+ 				status = "disabled";
+ 			};
+ 
++			sai1: sai@443b0000 {
++				compatible = "fsl,imx93-sai";
++				reg = <0x443b0000 0x10000>;
++				interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clk IMX93_CLK_SAI1_IPG>, <&clk IMX93_CLK_DUMMY>,
++					 <&clk IMX93_CLK_SAI1_GATE>, <&clk IMX93_CLK_DUMMY>,
++					 <&clk IMX93_CLK_DUMMY>;
++				clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
++				dmas = <&edma1 22 0 1>, <&edma1 21 0 0>;
++				dma-names = "rx", "tx";
++				status = "disabled";
++			};
++
++			mqs1: mqs {
++				compatible = "fsl,imx93-mqs";
++				gpr = <&anomix_ns_gpr>;
++				status = "disabled";
++			};
++
+ 			iomuxc: pinctrl@443c0000 {
+ 				compatible = "fsl,imx93-iomuxc";
+ 				reg = <0x443c0000 0x10000>;
+@@ -446,6 +465,23 @@ tmu: tmu@44482000 {
+ 				#thermal-sensor-cells = <1>;
+ 			};
+ 
++			micfil: micfil@44520000 {
++				compatible = "fsl,imx93-micfil";
++				reg = <0x44520000 0x10000>;
++				interrupts = <GIC_SPI 202 IRQ_TYPE_LEVEL_HIGH>,
++					     <GIC_SPI 201 IRQ_TYPE_LEVEL_HIGH>,
++					     <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>,
++					     <GIC_SPI 199 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clk IMX93_CLK_PDM_IPG>,
++					 <&clk IMX93_CLK_PDM_GATE>,
++					 <&clk IMX93_CLK_AUDIO_PLL>,
++					 <&clk IMX93_CLK_DUMMY>;
++				clock-names = "ipg_clk", "ipg_clk_app",
++					      "pll8k", "clkext3";
++				dmas = <&edma1 29 0 5>;
++				dma-names = "rx";
++				status = "disabled";
++			};
+ 
+ 			adc1: adc@44530000 {
+ 				compatible = "nxp,imx93-adc";
+@@ -736,6 +772,57 @@ flexspi1: spi@425e0000 {
+ 				status = "disabled";
+ 			};
+ 
++			sai2: sai@42650000 {
++				compatible = "fsl,imx93-sai";
++				reg = <0x42650000 0x10000>;
++				interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clk IMX93_CLK_SAI2_IPG>, <&clk IMX93_CLK_DUMMY>,
++					 <&clk IMX93_CLK_SAI2_GATE>, <&clk IMX93_CLK_DUMMY>,
++					<&clk IMX93_CLK_DUMMY>;
++				clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
++				dmas = <&edma2 59 0 1>, <&edma2 58 0 0>;
++				dma-names = "rx", "tx";
++				status = "disabled";
++			};
++
++			sai3: sai@42660000 {
++				compatible = "fsl,imx93-sai";
++				reg = <0x42660000 0x10000>;
++				interrupts = <GIC_SPI 171 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clk IMX93_CLK_SAI3_IPG>, <&clk IMX93_CLK_DUMMY>,
++					 <&clk IMX93_CLK_SAI3_GATE>, <&clk IMX93_CLK_DUMMY>,
++					 <&clk IMX93_CLK_DUMMY>;
++				clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
++				dmas = <&edma2 61 0 1>, <&edma2 60 0 0>;
++				dma-names = "rx", "tx";
++				status = "disabled";
++			};
++
++			mqs2: mqs {
++				compatible = "fsl,imx93-mqs";
++				gpr = <&wakeupmix_gpr>;
++				status = "disabled";
++			};
++
++			xcvr: xcvr@42680000 {
++				compatible = "fsl,imx93-xcvr";
++				reg = <0x42680000 0x800>,
++				      <0x42680800 0x400>,
++				      <0x42680c00 0x080>,
++				      <0x42680e00 0x080>;
++				reg-names = "ram", "regs", "rxfifo", "txfifo";
++				interrupts = <GIC_SPI 203 IRQ_TYPE_LEVEL_HIGH>,
++					     <GIC_SPI 204 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clk IMX93_CLK_BUS_WAKEUP>,
++					 <&clk IMX93_CLK_SPDIF_GATE>,
++					 <&clk IMX93_CLK_DUMMY>,
++					 <&clk IMX93_CLK_AUD_XCVR_GATE>;
++				clock-names = "ipg", "phy", "spba", "pll_ipg";
++				dmas = <&edma2 65 0 1>, <&edma2 66 0 0>;
++				dma-names = "rx", "tx";
++				status = "disabled";
++			};
++
+ 			lpuart7: serial@42690000 {
+ 				compatible = "fsl,imx93-lpuart", "fsl,imx8ulp-lpuart", "fsl,imx7ulp-lpuart";
+ 				reg = <0x42690000 0x1000>;
+-- 
+2.25.1
 
-I will fix it in v6.
-
-> 
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x2300000 0x00 0x100>;
->> +		clocks = <&k3_clks 356 1>;
->> +		power-domains = <&k3_pds 356 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 356 0>;
->> +		assigned-clock-parents = <&k3_clks 356 4>;
->> +	};
->> +
->> +	watchdog17: watchdog@2310000 {
->> +		status = "disabled";
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x2310000 0x00 0x100>;
->> +		clocks = <&k3_clks 357 1>;
->> +		power-domains = <&k3_pds 357 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 357 0>;
->> +		assigned-clock-parents = <&k3_clks 357 4>;
->> +	};
->> +
->> +	watchdog18: watchdog@2320000 {
->> +		status = "disabled";
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x2320000 0x00 0x100>;
->> +		clocks = <&k3_clks 358 1>;
->> +		power-domains = <&k3_pds 358 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 358 0>;
->> +		assigned-clock-parents = <&k3_clks 358 4>;
->> +	};
->> +
->> +	watchdog19: watchdog@2330000 {
->> +		status = "disabled";
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x2330000 0x00 0x100>;
->> +		clocks = <&k3_clks 359 1>;
->> +		power-domains = <&k3_pds 359 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 359 0>;
->> +		assigned-clock-parents = <&k3_clks 359 4>;
->> +	};
->> +
->> +	watchdog15: watchdog@22f0000 {
->> +		status = "disabled";
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x22f0000 0x00 0x100>;
->> +		clocks = <&k3_clks 360 1>;
->> +		power-domains = <&k3_pds 360 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 360 0>;
->> +		assigned-clock-parents = <&k3_clks 360 4>;
->> +	};
->> +
->> +	watchdog28: watchdog@23c0000 {
->> +		status = "disabled";
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x23c0000 0x00 0x100>;
->> +		clocks = <&k3_clks 361 1>;
->> +		power-domains = <&k3_pds 361 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 361 0>;
->> +		assigned-clock-parents = <&k3_clks 361 4>;
->> +	};
->> +
->> +	watchdog29: watchdog@23d0000 {
->> +		status = "disabled";
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x23d0000 0x00 0x100>;
->> +		clocks = <&k3_clks 362 1>;
->> +		power-domains = <&k3_pds 362 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 362 0>;
->> +		assigned-clock-parents = <&k3_clks 362 4>;
->> +	};
->> +
->> +	watchdog30: watchdog@23e0000 {
->> +		status = "disabled";
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x23e0000 0x00 0x100>;
->> +		clocks = <&k3_clks 363 1>;
->> +		power-domains = <&k3_pds 363 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 363 0>;
->> +		assigned-clock-parents = <&k3_clks 363 4>;
->> +	};
->> +
->> +	watchdog31: watchdog@23f0000 {
->> +		status = "disabled";
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x23f0000 0x00 0x100>;
->> +		clocks = <&k3_clks 364 1>;
->> +		power-domains = <&k3_pds 364 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 364 0>;
->> +		assigned-clock-parents = <&k3_clks 364 4>;
->> +	};
->> +
->> +	watchdog32: watchdog@2540000 {
->> +		status = "disabled";
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x2540000 0x00 0x100>;
->> +		clocks = <&k3_clks 365 1>;
->> +		power-domains = <&k3_pds 365 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 365 0>;
->> +		assigned-clock-parents = <&k3_clks 366 4>;
->> +	};
->> +
->> +	watchdog33: watchdog@2550000 {
->> +		status = "disabled";
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x2550000 0x00 0x100>;
->> +		clocks = <&k3_clks 366 1>;
->> +		power-domains = <&k3_pds 366 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 366 0>;
->> +		assigned-clock-parents = <&k3_clks 366 4>;
->> +	};
->>   };
->> -- 
->> 2.17.1
->>
-> 
 
