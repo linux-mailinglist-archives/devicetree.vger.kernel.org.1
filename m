@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-3684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1327E7AFDAF
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 10:10:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E5247AFDB3
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 10:10:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id B80C8280FBB
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:10:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 498831C20908
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:10:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91A1A1CFB7;
-	Wed, 27 Sep 2023 08:10:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE3C51D520;
+	Wed, 27 Sep 2023 08:10:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C336210A
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 08:10:42 +0000 (UTC)
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 140E8126
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 01:10:41 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-98377c5d53eso1287629366b.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 01:10:41 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 209CC210A
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 08:10:46 +0000 (UTC)
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D73EA11D
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 01:10:43 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9a9f139cd94so1269258266b.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 01:10:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695802239; x=1696407039; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695802242; x=1696407042; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zrv/orswLKGtMYEM2J3TGbaUiAP2gVqPFFRipYnpK9o=;
-        b=NZzKc1ZhfSZEtZFhjlJu9SQyGRd215DOx/KSXBj2DBmgrDj08vYwo/ooYyVOzKfR0M
-         8TNo9lS2dtabWp6lX0IoJBYrfRgOTrpeic1d4qNRVrOsE8FZrIF8Zu6J2SWyTdtnH4L7
-         ND9nG+dAZVCSLC4ZCKAlLWmm+XXRDSkWi0Pcy7zJte104hGW8odzcqufxehGDuMj4+H+
-         XxlvH1oCw1e1G/kLc6ApnWMce2KczSqWB57U5LEfcQ+8RTwC0T0Wmho0NGxeBMvJ7MWA
-         b0ncYXB+lFydzWc9d1dlfzKxcTaRL+kHQk3QbBocKNY+SuLjIa3NWLh33HVeu+QEtTlz
-         qR+Q==
+        bh=+G3VE8bLfC7FRcRjfb8N9PNI/qpVRz0H3I7jxJ+ZrlE=;
+        b=T+00bZFekfKtLmRIVTy/BU9/khSNdTwAKQDWLFgZijEnQxcKkD9X5PKAeBDNtLQ1vF
+         Tjh4kazm21dwDf/Eip+770VubwG/AnErc18POrHRHYliffpAJWz+N9g64SoLf0tHnOox
+         unAWBT8ZXFEua3T6TlmF9VasHBc4FaNdHur10mIUmXaTqganBjo7ykRqT+WFy1pv3Rlk
+         0hbvVfSmR+06UE9E/NX+M+ZdZ3iV38deXxiU0+f54gpbmSJzh6/qFPjIZUZLjpdqK8/d
+         M6t56ds/rfRYLAuAlpn9XHYjf6MoQ0i/4A9Lbx4NZMxGQr5hn1CJ9/mUphrmmmSE6OmA
+         MucQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695802239; x=1696407039;
+        d=1e100.net; s=20230601; t=1695802242; x=1696407042;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zrv/orswLKGtMYEM2J3TGbaUiAP2gVqPFFRipYnpK9o=;
-        b=KCjmmzgtdiCWqfMGWctzkgMDwM8tpPXOqJeM7YVwwmz0Uqy1PVOUCkcwWYWz6NxCH6
-         8/14A2EV44bzp/VaiTY6HdZeKcim/4Wjfo6JIODqbZysw8OYv9m6grtUeg/vYOYmn17N
-         ILcWkRzkY7Mpm4n5rbu93vPQdgzJa3RcU51tB+OLVPR/S7OKM2CPtlJhTtwns5Pz1fmw
-         fn+1GKHRu9vfYVQIM6KyknQ0jVk8EFsnGwMV1jyRZfiDvBiAMGVeSRTa814g4uJNFH+W
-         GqxqyrY1Lk5bM9KKDhfIAAW5owg7ueMeLTNt83/AbmptL+wTfXQh98XweUGKknhuZ+FR
-         EyPQ==
-X-Gm-Message-State: AOJu0Ywy34U+GZNNsrmTLyVcd6k/KBCFmCBuyExFs4QLZmboc1ee7l71
-	lcvld+gq9w9SzN1+U/WNyLuueQ==
-X-Google-Smtp-Source: AGHT+IFgk2vKnQB3sSqeXG2hTapJ+SZBoodpPf61KCq42O923H4y6M7bTbvMCYNOF1dEnBBfKW5KHA==
-X-Received: by 2002:a17:906:31c9:b0:9ae:729c:f651 with SMTP id f9-20020a17090631c900b009ae729cf651mr1077502ejf.17.1695802239523;
-        Wed, 27 Sep 2023 01:10:39 -0700 (PDT)
+        bh=+G3VE8bLfC7FRcRjfb8N9PNI/qpVRz0H3I7jxJ+ZrlE=;
+        b=gcTxF5swXpVsJF7U65y0OPzNYfg4j4Dylegs1U2siSmIKqCEtSHPQPrAGu4FldTJzT
+         qQZ62mqE9BukIpPEWhVnoSi2z5kLJiGtceSOEVojGC9rS6lsblS1R+Cu0ZiHDKs2B5VJ
+         AK1ncm9o5r7BDtvZ2cvY/I6RG+ZYg2DNyfu9osJohSmpZ5hBGoCW9LZS0Ruvt/6vl39v
+         U2i3tsft8GF+f0JTuxhWg2kP+B91LwU1BJPvC8Hxw5MvwsjEw1+ZN/K9etw2p9YfBeGW
+         e7MNBBogyvWSTcGv5PW/KqX8muSCMCPEKL9F+XpB8/u5KI2UBic9eOaLldpdc3Rxq39q
+         ymmw==
+X-Gm-Message-State: AOJu0Yz9XElpZ23vjNKQonKXKArdHPBZ3LWOtv4RvHqnyRq7SnjMp9dM
+	99bgTaPwAXyiAtg3fbsrM3liGw==
+X-Google-Smtp-Source: AGHT+IHFTBMsRFro7Q7iw+nXy/6vudOXRPelV81MHMibrohwyvmaVnwB1el0yulBfFKVMA0T7qQ/0A==
+X-Received: by 2002:a17:906:11d:b0:9b2:abda:2543 with SMTP id 29-20020a170906011d00b009b2abda2543mr1149599eje.65.1695802242286;
+        Wed, 27 Sep 2023 01:10:42 -0700 (PDT)
 Received: from [192.168.1.162] (host-87-4-82-94.retail.telecomitalia.it. [87.4.82.94])
-        by smtp.gmail.com with ESMTPSA id qw25-20020a1709066a1900b009b293d1f2eesm2997199ejc.107.2023.09.27.01.10.37
+        by smtp.gmail.com with ESMTPSA id qw25-20020a1709066a1900b009b293d1f2eesm2997199ejc.107.2023.09.27.01.10.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Sep 2023 01:10:39 -0700 (PDT)
-Message-ID: <1144f7f3-ffdc-47ff-b90f-2d2dd86c8f15@linaro.org>
-Date: Wed, 27 Sep 2023 10:10:36 +0200
+        Wed, 27 Sep 2023 01:10:41 -0700 (PDT)
+Message-ID: <54c87219-de9f-4c5b-9c70-11de22c7c612@linaro.org>
+Date: Wed, 27 Sep 2023 10:10:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,18 +63,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] arm64: dts: imx8-ss-img: Assign slot for imx jpeg
- encoder/decoder
+Subject: Re: [EXT] Re: [PATCH v4 2/2] dt-bindings: media: imx-jpeg: Assign
+ slot for imx jpeg encoder/decoder
 Content-Language: en-US
-To: Ming Qian <ming.qian@nxp.com>, mirela.rabulea@oss.nxp.com,
- robh+dt@kernel.org, shawnguo@kernel.org
-Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- mchehab@kernel.org, hverkuil-cisco@xs4all.nl, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, xiahong.bao@nxp.com,
- eagle.zhou@nxp.com, tao.jiang_2@nxp.com, linux-imx@nxp.com,
- devicetree@vger.kernel.org, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+To: Ming Qian <ming.qian@nxp.com>, Conor Dooley <conor@kernel.org>
+Cc: "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "shawnguo@kernel.org" <shawnguo@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "mchehab@kernel.org" <mchehab@kernel.org>,
+ "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+ "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+ "kernel@pengutronix.de" <kernel@pengutronix.de>,
+ "festevam@gmail.com" <festevam@gmail.com>, "X.H. Bao" <xiahong.bao@nxp.com>,
+ Eagle Zhou <eagle.zhou@nxp.com>, Tao Jiang <tao.jiang_2@nxp.com>,
+ dl-linux-imx <linux-imx@nxp.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
 References: <20230926101000.13392-1-ming.qian@nxp.com>
+ <20230926101000.13392-2-ming.qian@nxp.com>
+ <20230926-slackness-target-b74e33ab1031@spud>
+ <AM6PR04MB6341B0D9EC8146149CF8ADB0E7C2A@AM6PR04MB6341.eurprd04.prod.outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,31 +132,66 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230926101000.13392-1-ming.qian@nxp.com>
+In-Reply-To: <AM6PR04MB6341B0D9EC8146149CF8ADB0E7C2A@AM6PR04MB6341.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 26/09/2023 12:09, Ming Qian wrote:
-> There are total 4 slots available in the IP, and we only need to use one
-> slot in one os, assign a single slot for imx jpeg device node, configure
-> interrupt and power domain only for 1 slot, not for the all 4 slots.
+On 27/09/2023 04:10, Ming Qian wrote:
+>> From: Conor Dooley <conor@kernel.org>
+>> Sent: 2023年9月26日 21:26
+>> To: Ming Qian <ming.qian@nxp.com>
+>> Cc: Mirela Rabulea (OSS) <mirela.rabulea@oss.nxp.com>;
+>> robh+dt@kernel.org; shawnguo@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+>> mchehab@kernel.org; hverkuil-cisco@xs4all.nl; s.hauer@pengutronix.de;
+>> kernel@pengutronix.de; festevam@gmail.com; X.H. Bao
+>> <xiahong.bao@nxp.com>; Eagle Zhou <eagle.zhou@nxp.com>; Tao Jiang
+>> <tao.jiang_2@nxp.com>; dl-linux-imx <linux-imx@nxp.com>;
+>> devicetree@vger.kernel.org; linux-media@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org
+>> Subject: [EXT] Re: [PATCH v4 2/2] dt-bindings: media: imx-jpeg: Assign slot for
+>> imx jpeg encoder/decoder
+>>
+>> Hi,
+>>
+>> On Tue, Sep 26, 2023 at 06:10:00PM +0800, Ming Qian wrote:
+>>> There are total 4 slots available in the IP, and we only need to use
+>>> one slot in one os, assign a single slot, configure interrupt and
+>>> power domain only for 1 slot, not for the all 4 slots.
+>>>
+>>> Signed-off-by: Ming Qian <ming.qian@nxp.com>
+>>> ---
+>>> v4
+>>> - improve commit message
+>>
+>>> - don't make an ABI break
+>>
+>> What does this mean? Can you please try to explain things a bit more clearly
+>> in your changelogs?
+>>
+>> Also, where is the code that actually makes use of these properties?
+> 
+> In v3 patch, I make this property required, make it an ABI break, so in v4, I remove it from required, and default to the previous behavior if it is missing.
 
-DTS is independent of OS, so same DTS will be used by two OSes. This
-patch is not correct in that matter. Explanation is not proper
-justification.
+So say that you dropped line making the property required.
 
 > 
-> Signed-off-by: Ming Qian <ming.qian@nxp.com>
-> ---
-> v4
-> - improve the commit message
-> v3
-> - add vender prefix, change property slot to nxp,slot
+> The code patch is sent before, but the dts change is not applicable, so I send it separately. The code patch link is as below:
+> https://patchwork.linuxtv.org/project/linux-media/patch/cdadb4a23697fdc97def958c69b12cd00f547212.1685430841.git.ming.qian@nxp.com/
+> 
+> But in the patch, the property name is "slot", not "nxp,slot", I will make another patch to fix the property name after this patch is reviewed.
+
+Format your emails properly. It's difficult to read it.
+
+I already NAKed it, I will be NAKing still. Don't embed OS specific into
+the bindings nor into the DTS.
+
 
 Best regards,
 Krzysztof
