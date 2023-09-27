@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-3923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 364C17B082F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 17:27:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2B327B0837
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 17:27:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id AF47EB20992
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 15:27:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id A4DE0281689
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 15:27:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7852450C3;
-	Wed, 27 Sep 2023 15:27:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75EA2450D4;
+	Wed, 27 Sep 2023 15:27:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9767D6FA2
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 15:27:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2991CC433C8;
-	Wed, 27 Sep 2023 15:27:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6607F6FA2
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 15:27:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BEECC433C8;
+	Wed, 27 Sep 2023 15:27:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695828435;
-	bh=aw0/9cgQsDBVjjrJdDVGrqkQ0FgYmL9yWqvaxanLjY0=;
+	s=k20201202; t=1695828466;
+	bh=ew1MYjtPQy8sB9eXrgz71lc2ePX2xsFIrzywzE9J6Eo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Yp2KYFnf4VWnAK/lJysjzMKIFpbq+du6gQLBicsR+070pWL2pSKTmaAMM/Yk5TJLE
-	 Tl5WvzYaMBYJ5ZgyzmJFa2wQyH7MXjToZ4cexLLrsP9e3lyUvOIWDfEp1AhZYBGZuu
-	 vfy49iaR/HIsyBM2Nfezqn90Bm9DYGJhiAnmEigrDWSCc49yWjauA9xA3zOXO2o1CQ
-	 8A5o3GqoGZDhHpXxEQtGayajJo3egrXAG1Rs2XWyU0Z6rmdJOoVqXNHBivMGpg+yRf
-	 5SWe47QVd+0OvrIIDKVBU9DYM0fhm5kPqxn7kP1w3a8+w4Ew2UdNh3VvMcxd0m8mF8
-	 vQyZPflYJ0x4w==
-Date: Wed, 27 Sep 2023 16:27:09 +0100
+	b=X0RB2onXT9AYbf8nJ0cuxMqvm5mGl0XlsyhgPLLf4uJaZX61Sq2+yfjJ3PizalktX
+	 xzZufZ+A/+zvr+/IFMZQO1ds5uWSreoqrlbDoB0APF9yiy35Xhe3C6DF+Fs5jXbCsa
+	 XaRaEufy+XOcy4uRMCMWhsyOJSdNUHNuwmNSSdRI9+i0/+Iku4VnF0o/v6lI/5Qxfl
+	 ElAwdnw0pvJHIcGCcJZPm2OJ2CN5QwnjMd9z+FjtxkWf4LBTUYiUd4JjURaGDjSYrQ
+	 SJjqE2SPmAMwc5v5sKJ6nmpBBDzYpaBPYsm0D5kSyaozBr5Srpb4ZiJR86Lg8gLkXX
+	 0vZVr08TbygLw==
+Date: Wed, 27 Sep 2023 16:27:41 +0100
 From: Conor Dooley <conor@kernel.org>
 To: Rob Herring <robh@kernel.org>
 Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
@@ -42,10 +42,11 @@ Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
 	Scott Branden <scott.branden@broadcom.com>,
 	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: PCI: brcm,iproc-pcie: Fix example
- indentation
-Message-ID: <20230927-overspend-that-c5f8e7b9eac7@spud>
+Subject: Re: [PATCH 2/3] dt-bindings: PCI: brcm,iproc-pcie: Drop common
+ pci-bus properties
+Message-ID: <20230927-fraying-pranker-19ae72ff86a7@spud>
 References: <20230926155351.31117-1-robh@kernel.org>
+ <20230926155351.31117-2-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,37 +54,82 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="GSZxDkacQH77W/rI"
+	protocol="application/pgp-signature"; boundary="GAGv5w0d/anu4Sn5"
 Content-Disposition: inline
-In-Reply-To: <20230926155351.31117-1-robh@kernel.org>
+In-Reply-To: <20230926155351.31117-2-robh@kernel.org>
 
 
---GSZxDkacQH77W/rI
+--GAGv5w0d/anu4Sn5
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Sep 26, 2023 at 10:53:40AM -0500, Rob Herring wrote:
-> The example's indentation is off. While fixing this, the 'bus' node
-> is unnecessary and can be dropped. It is also preferred to split up
-> unrelated examples to their own entries.
-
-Damn, it really was all over the shop..
+On Tue, Sep 26, 2023 at 10:53:41AM -0500, Rob Herring wrote:
+> Drop the unnecessary listing of properties already defined in
+> pci-bus.yaml. Unless there are additional constraints, it is not
+> necessary.
+>=20
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Thanks,
 Conor.
 
---GSZxDkacQH77W/rI
+> ---
+>  .../devicetree/bindings/pci/brcm,iproc-pcie.yaml  | 15 ---------------
+>  1 file changed, 15 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml b=
+/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml
+> index 0cb5bd6cffa1..6730d68fedc7 100644
+> --- a/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml
+> @@ -34,13 +34,6 @@ properties:
+>      description: >
+>         Base address and length of the PCIe controller I/O register space
+> =20
+> -  interrupt-map: true
+> -
+> -  interrupt-map-mask: true
+> -
+> -  "#interrupt-cells":
+> -    const: 1
+> -
+>    ranges:
+>      minItems: 1
+>      maxItems: 2
+> @@ -54,16 +47,8 @@ properties:
+>      items:
+>        - const: pcie-phy
+> =20
+> -  bus-range: true
+> -
+>    dma-coherent: true
+> =20
+> -  "#address-cells": true
+> -
+> -  "#size-cells": true
+> -
+> -  device_type: true
+> -
+>    brcm,pcie-ob:
+>      type: boolean
+>      description: >
+> --=20
+> 2.40.1
+>=20
+
+--GAGv5w0d/anu4Sn5
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRRJzQAKCRB4tDGHoIJi
-0qrpAQCAWVNdifbs6d9PzfN2w0yFtF1Mwu3kcAeK1uBd8DruPwEAuwbhxNAGfQKR
-QACYiLmwo+89BCxaqwXBtMDqQj9lkQQ=
-=kNLS
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRRJ7QAKCRB4tDGHoIJi
+0lP1AQDaCJ6JUfOS07CvDiagWs4i2dBIvfiGnR/4dB4fYNmQBwD8CMisRB8zqfjI
+XZRmMkwsvx0bWoQ2dtE878SKFLfoCgw=
+=PQD9
 -----END PGP SIGNATURE-----
 
---GSZxDkacQH77W/rI--
+--GAGv5w0d/anu4Sn5--
 
