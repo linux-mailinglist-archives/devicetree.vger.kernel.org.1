@@ -1,292 +1,393 @@
-Return-Path: <devicetree+bounces-3651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05A307AFAC1
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:08:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01BD07AFB0C
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:26:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 0941E1C20925
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 06:08:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id A5B46281495
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 06:26:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1EE51C285;
-	Wed, 27 Sep 2023 06:08:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E48BD1C289;
+	Wed, 27 Sep 2023 06:26:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A9C214A9D
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 06:08:43 +0000 (UTC)
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E3D8FB;
-	Tue, 26 Sep 2023 23:08:40 -0700 (PDT)
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4063e3ce085so22768645e9.2;
-        Tue, 26 Sep 2023 23:08:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695794919; x=1696399719;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nrUcGV6/TGAq1mAVk6tirT0ahWvs32m+2fPhzBlw9M0=;
-        b=lUGcBN2sLKqIO4v3ElKxLLjJHqoGZyTi/LQ7gSsS2gZO73hgQALJnWLEmpWRG0S5EH
-         gLJp/aEFhvZ0SQq5rHuCgOg0v9MzTiIHD5S8nXZMzwXWUi/CfJBXHHEzU1vpcN0zwM2O
-         nxzGHg/COEXCgsiABSl411GO+Mv03eMoAzqWKyzBfT5SSRWSj7tlBk4fqMVE/CE/7tkr
-         BvHyweI5/JBSODJ1Nhuz4K95C5VJXT1ypT+Iso2P3DbnLWm1ke5YEkwHpCnUUqFVvxWG
-         PDdtMtRTepfaUMkYrPiJP+QNv6E/cHCYQLtL6zRrsqlIZn0xG2yZAizdE0DAeAymlM88
-         9WLQ==
-X-Gm-Message-State: AOJu0YzxFiGANuS/5hZqBGRN8qUGMel/z86y4nBVpBAM37ouxdVaVsxC
-	sh/eBHXWVuLxLcatG/D3ZJg=
-X-Google-Smtp-Source: AGHT+IEntufGaPzUmHbEibf99qqMC+e2QK1mPrUD6wWcsB/Lkr9KcFvD1DPEHZCdguL8kR2uEvK7bw==
-X-Received: by 2002:a7b:cbd1:0:b0:405:514d:eb0e with SMTP id n17-20020a7bcbd1000000b00405514deb0emr1152295wmi.19.1695794918697;
-        Tue, 26 Sep 2023 23:08:38 -0700 (PDT)
-Received: from [192.168.86.246] (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net. [82.11.51.62])
-        by smtp.gmail.com with ESMTPSA id s9-20020a05600c45c900b0040550c20cbcsm12015055wmo.24.2023.09.26.23.08.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Sep 2023 23:08:38 -0700 (PDT)
-Message-ID: <ff2c6d41-7c9a-4633-8343-eb94404de6e8@linux.com>
-Date: Wed, 27 Sep 2023 07:08:37 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 342481079A
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 06:26:38 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39781FB;
+	Tue, 26 Sep 2023 23:26:33 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38R5lIQ7003428;
+	Wed, 27 Sep 2023 06:26:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=aLj9nVUmctPS88bht+B+dtGe6J2ZFnFJIe2IS6vOrpo=;
+ b=GWx5kCAoJ3gLm4tS7cRntHOJij0fNUEgcdrda2+Vvr3KLLrqKFItwlloN53ik69xsV4e
+ Cx8dgpZUIdd/ad95XgOoEuKb4KHmXJgBJ/1tP1OW8vjgOVxifLnfVbe9Q06iR2vsM/gY
+ wBLB+7N7nWl43pM2LCi0a7lZ3Oy/8gYn26wR1uGOuABITbup+/WC4rd7chz6v1oIJiXE
+ xRwMviwokAlDUhtyHAeLKNWg9WpwtaeFD2QVZ+xtDpoakSIQaESv5Y857lMUx6hTre8l
+ Agb7d29MFfGlxB3h/4krDkgjwYvAa7QuudTY+aCwrYLB67Jn+sfJzgk/ybGQpwUQDvKJ Hw== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tcda7r6jj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 27 Sep 2023 06:26:10 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38R6Q9Dx009112
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 27 Sep 2023 06:26:09 GMT
+Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 26 Sep
+ 2023 23:26:04 -0700
+Message-ID: <2ddf5db0-8b1e-7c83-07de-48a230be8782@quicinc.com>
+Date: Wed, 27 Sep 2023 14:26:02 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 1/3] dt-bindings: pinctrl: Add support for Amlogic T7
- SoCs
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v9 13/13] coresight-tpdm: Add nodes for dsb msr support
 Content-Language: en-US
-To: Huqiang Qin <huqiang.qin@amlogic.com>, linus.walleij@linaro.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, brgl@bgdev.pl, andy@kernel.org
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-References: <20230922094342.637251-1-huqiang.qin@amlogic.com>
- <20230922094342.637251-2-huqiang.qin@amlogic.com>
-From: Lucas Tanure <tanure@linux.com>
-In-Reply-To: <20230922094342.637251-2-huqiang.qin@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Alexander Shishkin
+	<alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tingwei Zhang
+	<quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <andersson@kernel.org>
+References: <1694670204-11515-1-git-send-email-quic_taozha@quicinc.com>
+ <1694670204-11515-14-git-send-email-quic_taozha@quicinc.com>
+ <8efff98d-e9a4-5dca-54c8-1fd715ac1972@arm.com>
+From: Tao Zhang <quic_taozha@quicinc.com>
+In-Reply-To: <8efff98d-e9a4-5dca-54c8-1fd715ac1972@arm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: lb2qKdyq3mZxR3kiDjYWsi83zq2sSiaI
+X-Proofpoint-GUID: lb2qKdyq3mZxR3kiDjYWsi83zq2sSiaI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-27_03,2023-09-26_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
+ clxscore=1011 lowpriorityscore=0 impostorscore=0 bulkscore=0
+ mlxlogscore=999 priorityscore=1501 mlxscore=0 suspectscore=0 spamscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2309270054
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 22-09-2023 10:43, Huqiang Qin wrote:
-> Add a new compatible name for Amlogic T7 pin controller, and add
-> a new dt-binding header file which document the detail pin names.
-> 
-> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> 
-> V1 -> V2: Rename amlogic-t7-gpio.h to amlogic,t7-periphs-pinctrl.h
->            Corrected indentation format.
-> V2 -> V3: Updated subject.
-> 
->   .../pinctrl/amlogic,meson-pinctrl-a1.yaml     |   1 +
->   .../gpio/amlogic,t7-periphs-pinctrl.h         | 179 ++++++++++++++++++
->   2 files changed, 180 insertions(+)
->   create mode 100644 include/dt-bindings/gpio/amlogic,t7-periphs-pinctrl.h
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
-> index 4e7a456ea4cc..c7df4cd34197 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
-> @@ -16,6 +16,7 @@ properties:
->     compatible:
->       enum:
->         - amlogic,c3-periphs-pinctrl
-> +      - amlogic,t7-periphs-pinctrl
->         - amlogic,meson-a1-periphs-pinctrl
->         - amlogic,meson-s4-periphs-pinctrl
->   
-> diff --git a/include/dt-bindings/gpio/amlogic,t7-periphs-pinctrl.h b/include/dt-bindings/gpio/amlogic,t7-periphs-pinctrl.h
-> new file mode 100644
-> index 000000000000..4e16d31a71c9
-> --- /dev/null
-> +++ b/include/dt-bindings/gpio/amlogic,t7-periphs-pinctrl.h
-> @@ -0,0 +1,179 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-> +/*
-> + * Copyright (c) 2023 Amlogic, Inc. All rights reserved.
-> + * Author: Huqiang Qin <huqiang.qin@amlogic.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_AMLOGIC_T7_GPIO_H
-> +#define _DT_BINDINGS_AMLOGIC_T7_GPIO_H
-> +
-> +#define GPIOB_0		0
-> +#define GPIOB_1		1
-> +#define GPIOB_2		2
-> +#define GPIOB_3		3
-> +#define GPIOB_4		4
-> +#define GPIOB_5		5
-> +#define GPIOB_6		6
-> +#define GPIOB_7		7
-> +#define GPIOB_8		8
-> +#define GPIOB_9		9
-> +#define GPIOB_10	10
-> +#define GPIOB_11	11
-> +#define GPIOB_12	12
-> +
-> +#define GPIOC_0		13
-> +#define GPIOC_1		14
-> +#define GPIOC_2		15
-> +#define GPIOC_3		16
-> +#define GPIOC_4		17
-> +#define GPIOC_5		18
-> +#define GPIOC_6		19
-> +
-> +#define GPIOX_0		20
-> +#define GPIOX_1		21
-> +#define GPIOX_2		22
-> +#define GPIOX_3		23
-> +#define GPIOX_4		24
-> +#define GPIOX_5		25
-> +#define GPIOX_6		26
-> +#define GPIOX_7		27
-> +#define GPIOX_8		28
-> +#define GPIOX_9		29
-> +#define GPIOX_10	30
-> +#define GPIOX_11	31
-> +#define GPIOX_12	32
-> +#define GPIOX_13	33
-> +#define GPIOX_14	34
-> +#define GPIOX_15	35
-> +#define GPIOX_16	36
-> +#define GPIOX_17	37
-> +#define GPIOX_18	38
-> +#define GPIOX_19	39
-> +
-> +#define GPIOW_0		40
-> +#define GPIOW_1		41
-> +#define GPIOW_2		42
-> +#define GPIOW_3		43
-> +#define GPIOW_4		44
-> +#define GPIOW_5		45
-> +#define GPIOW_6		46
-> +#define GPIOW_7		47
-> +#define GPIOW_8		48
-> +#define GPIOW_9		49
-> +#define GPIOW_10	50
-> +#define GPIOW_11	51
-> +#define GPIOW_12	52
-> +#define GPIOW_13	53
-> +#define GPIOW_14	54
-> +#define GPIOW_15	55
-> +#define GPIOW_16	56
-> +
-> +#define GPIOD_0		57
-> +#define GPIOD_1		58
-> +#define GPIOD_2		59
-> +#define GPIOD_3		60
-> +#define GPIOD_4		61
-> +#define GPIOD_5		62
-> +#define GPIOD_6		63
-> +#define GPIOD_7		64
-> +#define GPIOD_8		65
-> +#define GPIOD_9		66
-> +#define GPIOD_10	67
-> +#define GPIOD_11	68
-> +#define GPIOD_12	69
-> +
-> +#define GPIOE_0		70
-> +#define GPIOE_1		71
-> +#define GPIOE_2		72
-> +#define GPIOE_3		73
-> +#define GPIOE_4		74
-> +#define GPIOE_5		75
-> +#define GPIOE_6		76
-> +
-> +#define GPIOZ_0		77
-> +#define GPIOZ_1		78
-> +#define GPIOZ_2		79
-> +#define GPIOZ_3		80
-> +#define GPIOZ_4		81
-> +#define GPIOZ_5		82
-> +#define GPIOZ_6		83
-> +#define GPIOZ_7		84
-> +#define GPIOZ_8		85
-> +#define GPIOZ_9		86
-> +#define GPIOZ_10	87
-> +#define GPIOZ_11	88
-> +#define GPIOZ_12	89
-> +#define GPIOZ_13	90
-> +
-> +#define GPIOT_0		91
-> +#define GPIOT_1		92
-> +#define GPIOT_2		93
-> +#define GPIOT_3		94
-> +#define GPIOT_4		95
-> +#define GPIOT_5		96
-> +#define GPIOT_6		97
-> +#define GPIOT_7		98
-> +#define GPIOT_8		99
-> +#define GPIOT_9		100
-> +#define GPIOT_10	101
-> +#define GPIOT_11	102
-> +#define GPIOT_12	103
-> +#define GPIOT_13	104
-> +#define GPIOT_14	105
-> +#define GPIOT_15	106
-> +#define GPIOT_16	107
-> +#define GPIOT_17	108
-> +#define GPIOT_18	109
-> +#define GPIOT_19	110
-> +#define GPIOT_20	111
-> +#define GPIOT_21	112
-> +#define GPIOT_22	113
-> +#define GPIOT_23	114
-> +
-> +#define GPIOM_0		115
-> +#define GPIOM_1		116
-> +#define GPIOM_2		117
-> +#define GPIOM_3		118
-> +#define GPIOM_4		119
-> +#define GPIOM_5		120
-> +#define GPIOM_6		121
-> +#define GPIOM_7		122
-> +#define GPIOM_8		123
-> +#define GPIOM_9		124
-> +#define GPIOM_10	125
-> +#define GPIOM_11	126
-> +#define GPIOM_12	127
-> +#define GPIOM_13	128
-> +
-> +#define GPIOY_0		129
-> +#define GPIOY_1		130
-> +#define GPIOY_2		131
-> +#define GPIOY_3		132
-> +#define GPIOY_4		133
-> +#define GPIOY_5		134
-> +#define GPIOY_6		135
-> +#define GPIOY_7		136
-> +#define GPIOY_8		137
-> +#define GPIOY_9		138
-> +#define GPIOY_10	139
-> +#define GPIOY_11	140
-> +#define GPIOY_12	141
-> +#define GPIOY_13	142
-> +#define GPIOY_14	143
-> +#define GPIOY_15	144
-> +#define GPIOY_16	145
-> +#define GPIOY_17	146
-> +#define GPIOY_18	147
-> +
-> +#define GPIOH_0		148
-> +#define GPIOH_1		149
-> +#define GPIOH_2		150
-> +#define GPIOH_3		151
-> +#define GPIOH_4		152
-> +#define GPIOH_5		153
-> +#define GPIOH_6		154
-> +#define GPIOH_7		155
-> +
-> +#define GPIO_TEST_N	156
-> +
-> +#endif /* _DT_BINDINGS_AMLOGIC_T7_GPIO_H */
-Tested-by: Lucas Tanure <tanure@linux.com>
+
+On 9/26/2023 7:46 PM, Suzuki K Poulose wrote:
+> On 14/09/2023 06:43, Tao Zhang wrote:
+>> Add the nodes for DSB subunit MSR(mux select register) support.
+>> The TPDM MSR (mux select register) interface is an optional
+>> interface and associated bank of registers per TPDM subunit.
+>> The intent of mux select registers is to control muxing structures
+>> driving the TPDM’s’ various subunit interfaces.
+>>
+>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>> ---
+>>   .../ABI/testing/sysfs-bus-coresight-devices-tpdm   |  8 +++
+>>   drivers/hwtracing/coresight/coresight-tpdm.c       | 81 
+>> ++++++++++++++++++++++
+>>   drivers/hwtracing/coresight/coresight-tpdm.h       | 12 ++++
+>>   3 files changed, 101 insertions(+)
+>>
+>> diff --git 
+>> a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm 
+>> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>> index 1f20a3f..f07218e 100644
+>> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>> @@ -162,3 +162,11 @@ Description:
+>>           Accepts only one of the 2 values -  0 or 1.
+>>           0 : Set the DSB pattern type to value.
+>>           1 : Set the DSB pattern type to toggle.
+>> +
+>> +What: /sys/bus/coresight/devices/<tpdm-name>/dsb_msr/msr[0:31]
+>> +Date:        March 2023
+>> +KernelVersion    6.7
+>> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang 
+>> (QUIC) <quic_taozha@quicinc.com>
+>> +Description:
+>> +        (RW) Set/Get the MSR(mux select register) for the DSB subunit
+>> +        TPDM.
+>> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c 
+>> b/drivers/hwtracing/coresight/coresight-tpdm.c
+>> index 7acc220..ea29e05 100644
+>> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
+>> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
+>> @@ -61,6 +61,11 @@ static ssize_t tpdm_simple_dataset_show(struct 
+>> device *dev,
+>>               return -EINVAL;
+>>           return sysfs_emit(buf, "0x%x\n",
+>>               drvdata->dsb->patt_mask[tpdm_attr->idx]);
+>> +    case DSB_MSR:
+>> +        if (tpdm_attr->idx >= drvdata->dsb_msr_num)
+>> +            return -EINVAL;
+>> +        return sysfs_emit(buf, "0x%x\n",
+>> +                drvdata->dsb->msr[tpdm_attr->idx]);
+>>       }
+>>       return -EINVAL;
+>>   }
+>> @@ -107,6 +112,12 @@ static ssize_t tpdm_simple_dataset_store(struct 
+>> device *dev,
+>>           else
+>>               ret = -EINVAL;
+>>           break;
+>> +    case DSB_MSR:
+>> +        if (tpdm_attr->idx < drvdata->dsb_msr_num)
+>> +            drvdata->dsb->msr[tpdm_attr->idx] = val;
+>> +        else
+>> +            ret = -EINVAL;
+>> +        break;
+>>       default:
+>>           ret = -EINVAL;
+>>       }
+>> @@ -132,6 +143,18 @@ static umode_t tpdm_dsb_is_visible(struct 
+>> kobject *kobj,
+>>       return 0;
+>>   }
+>>   +static umode_t tpdm_dsb_msr_is_visible(struct kobject *kobj,
+>> +                       struct attribute *attr, int n)
+>> +{
+>> +    struct device *dev = kobj_to_dev(kobj);
+>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+>> +
+>> +    if (drvdata->dsb_msr_num != 0)
+>> +        return attr->mode;
+>
+> I did mention in the last review, that we should limit the number of
+> files visible based on the number of msrs ?
+>     struct tpdm_dataset_attribute *tpdm_attr =
+>         container_of(attr, struct tpdm_dataset_attribute, attr);
+>
+>     if (tpdm_attr->idx < drvdata->dsb_msr_num)
+>         return attr->mode;
+>
+> That way, only the available msrs are listed in the directory ?
+>
+> Suzuki
+
+Since "device_attribute" is the member of "tpdm_dataset_attribute", not 
+"attribute". I need to
+
+get the "device_attribute " pointer first. List the following code I 
+have verified. I will post the new
+
+patch series if you agree on this approach.
+
+     struct device_attribute *dev_attr =
+         container_of(attr, struct device_attribute, attr);
+     struct tpdm_dataset_attribute *tpdm_attr =
+
+         container_of(dev_attr, struct tpdm_dataset_attribute, attr);
+
+
+     if (tpdm_attr->idx < drvdata->dsb_msr_num)
+         return attr->mode;
+
+Best,
+
+Tao
+
+>
+>
+>> +
+>> +    return 0;
+>> +}
+>> +
+>>   static void tpdm_reset_datasets(struct tpdm_drvdata *drvdata)
+>>   {
+>>       if (tpdm_has_dsb_dataset(drvdata)) {
+>> @@ -193,6 +216,15 @@ static void set_dsb_tier(struct tpdm_drvdata 
+>> *drvdata)
+>>       writel_relaxed(val, drvdata->base + TPDM_DSB_TIER);
+>>   }
+>>   +static void set_dsb_msr(struct tpdm_drvdata *drvdata)
+>> +{
+>> +    int i;
+>> +
+>> +    for (i = 0; i < drvdata->dsb_msr_num; i++)
+>> +        writel_relaxed(drvdata->dsb->msr[i],
+>> +               drvdata->base + TPDM_DSB_MSR(i));
+>> +}
+>> +
+>>   static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
+>>   {
+>>       u32 val, i;
+>> @@ -216,6 +248,8 @@ static void tpdm_enable_dsb(struct tpdm_drvdata 
+>> *drvdata)
+>>         set_dsb_tier(drvdata);
+>>   +    set_dsb_msr(drvdata);
+>> +
+>>       val = readl_relaxed(drvdata->base + TPDM_DSB_CR);
+>>       /* Set the mode of DSB dataset */
+>>       set_dsb_mode(drvdata, &val);
+>> @@ -739,6 +773,42 @@ static struct attribute *tpdm_dsb_patt_attrs[] = {
+>>       NULL,
+>>   };
+>>   +static struct attribute *tpdm_dsb_msr_attrs[] = {
+>> +    DSB_MSR_ATTR(0),
+>> +    DSB_MSR_ATTR(1),
+>> +    DSB_MSR_ATTR(2),
+>> +    DSB_MSR_ATTR(3),
+>> +    DSB_MSR_ATTR(4),
+>> +    DSB_MSR_ATTR(5),
+>> +    DSB_MSR_ATTR(6),
+>> +    DSB_MSR_ATTR(7),
+>> +    DSB_MSR_ATTR(8),
+>> +    DSB_MSR_ATTR(9),
+>> +    DSB_MSR_ATTR(10),
+>> +    DSB_MSR_ATTR(11),
+>> +    DSB_MSR_ATTR(12),
+>> +    DSB_MSR_ATTR(13),
+>> +    DSB_MSR_ATTR(14),
+>> +    DSB_MSR_ATTR(15),
+>> +    DSB_MSR_ATTR(16),
+>> +    DSB_MSR_ATTR(17),
+>> +    DSB_MSR_ATTR(18),
+>> +    DSB_MSR_ATTR(19),
+>> +    DSB_MSR_ATTR(20),
+>> +    DSB_MSR_ATTR(21),
+>> +    DSB_MSR_ATTR(22),
+>> +    DSB_MSR_ATTR(23),
+>> +    DSB_MSR_ATTR(24),
+>> +    DSB_MSR_ATTR(25),
+>> +    DSB_MSR_ATTR(26),
+>> +    DSB_MSR_ATTR(27),
+>> +    DSB_MSR_ATTR(28),
+>> +    DSB_MSR_ATTR(29),
+>> +    DSB_MSR_ATTR(30),
+>> +    DSB_MSR_ATTR(31),
+>> +    NULL,
+>> +};
+>> +
+>>   static struct attribute *tpdm_dsb_attrs[] = {
+>>       &dev_attr_dsb_mode.attr,
+>>       &dev_attr_dsb_trig_ts.attr,
+>> @@ -769,12 +839,19 @@ static struct attribute_group tpdm_dsb_patt_grp 
+>> = {
+>>       .name = "dsb_patt",
+>>   };
+>>   +static struct attribute_group tpdm_dsb_msr_grp = {
+>> +    .attrs = tpdm_dsb_msr_attrs,
+>> +    .is_visible = tpdm_dsb_msr_is_visible,
+>> +    .name = "dsb_msr",
+>> +};
+>> +
+>>   static const struct attribute_group *tpdm_attr_grps[] = {
+>>       &tpdm_attr_grp,
+>>       &tpdm_dsb_attrs_grp,
+>>       &tpdm_dsb_edge_grp,
+>>       &tpdm_dsb_trig_patt_grp,
+>>       &tpdm_dsb_patt_grp,
+>> +    &tpdm_dsb_msr_grp,
+>>       NULL,
+>>   };
+>>   @@ -809,6 +886,10 @@ static int tpdm_probe(struct amba_device 
+>> *adev, const struct amba_id *id)
+>>       if (ret)
+>>           return ret;
+>>   +    if (drvdata && tpdm_has_dsb_dataset(drvdata))
+>> +        of_property_read_u32(drvdata->dev->of_node,
+>> +               "qcom,dsb_msr_num", &drvdata->dsb_msr_num);
+>> +
+>>       /* Set up coresight component description */
+>>       desc.name = coresight_alloc_device_name(&tpdm_devs, dev);
+>>       if (!desc.name)
+>> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h 
+>> b/drivers/hwtracing/coresight/coresight-tpdm.h
+>> index 891979d..4115b2a1 100644
+>> --- a/drivers/hwtracing/coresight/coresight-tpdm.h
+>> +++ b/drivers/hwtracing/coresight/coresight-tpdm.h
+>> @@ -18,6 +18,7 @@
+>>   #define TPDM_DSB_XPMR(n)    (0x7E8 + (n * 4))
+>>   #define TPDM_DSB_EDCR(n)    (0x808 + (n * 4))
+>>   #define TPDM_DSB_EDCMR(n)    (0x848 + (n * 4))
+>> +#define TPDM_DSB_MSR(n)        (0x980 + (n * 4))
+>>     /* Enable bit for DSB subunit */
+>>   #define TPDM_DSB_CR_ENA        BIT(0)
+>> @@ -90,6 +91,8 @@
+>>   #define TPDM_DSB_MAX_EDCMR    8
+>>   /* MAX number of DSB pattern */
+>>   #define TPDM_DSB_MAX_PATT    8
+>> +/* MAX number of DSB MSR */
+>> +#define TPDM_DSB_MAX_MSR 32
+>>     #define tpdm_simple_dataset_ro(name, mem, idx)            \
+>>       (&((struct tpdm_dataset_attribute[]) {            \
+>> @@ -134,6 +137,10 @@
+>>           tpdm_simple_dataset_rw(tpmr##nr,        \
+>>           DSB_PATT_MASK, nr)
+>>   +#define DSB_MSR_ATTR(nr)                    \
+>> +        tpdm_simple_dataset_rw(msr##nr,            \
+>> +        DSB_MSR, nr)
+>> +
+>>   /**
+>>    * struct dsb_dataset - specifics associated to dsb dataset
+>>    * @mode:             DSB programming mode
+>> @@ -144,6 +151,7 @@
+>>    * @patt_mask:        Save value for pattern mask
+>>    * @trig_patt:        Save value for trigger pattern
+>>    * @trig_patt_mask:   Save value for trigger pattern mask
+>> + * @msr               Save value for MSR
+>>    * @patt_ts:          Enable/Disable pattern timestamp
+>>    * @patt_type:        Set pattern type
+>>    * @trig_ts:          Enable/Disable trigger timestamp.
+>> @@ -158,6 +166,7 @@ struct dsb_dataset {
+>>       u32            patt_mask[TPDM_DSB_MAX_PATT];
+>>       u32            trig_patt[TPDM_DSB_MAX_PATT];
+>>       u32            trig_patt_mask[TPDM_DSB_MAX_PATT];
+>> +    u32            msr[TPDM_DSB_MAX_MSR];
+>>       bool            patt_ts;
+>>       bool            patt_type;
+>>       bool            trig_ts;
+>> @@ -173,6 +182,7 @@ struct dsb_dataset {
+>>    * @enable:     enable status of the component.
+>>    * @datasets:   The datasets types present of the TPDM.
+>>    * @dsb         Specifics associated to TPDM DSB.
+>> + * @dsb_msr_num Number of MSR supported by DSB TPDM
+>>    */
+>>     struct tpdm_drvdata {
+>> @@ -183,6 +193,7 @@ struct tpdm_drvdata {
+>>       bool            enable;
+>>       unsigned long        datasets;
+>>       struct dsb_dataset    *dsb;
+>> +    u32            dsb_msr_num;
+>>   };
+>>     /* Enumerate members of various datasets */
+>> @@ -193,6 +204,7 @@ enum dataset_mem {
+>>       DSB_TRIG_PATT_MASK,
+>>       DSB_PATT,
+>>       DSB_PATT_MASK,
+>> +    DSB_MSR,
+>>   };
+>>     /**
+>
 
