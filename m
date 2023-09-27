@@ -1,97 +1,121 @@
-Return-Path: <devicetree+bounces-3855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5177D7B0448
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 14:35:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C26CD7B044A
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 14:35:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 01AD2281D0D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 12:35:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 72B53281D0D
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 12:35:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B35F523778;
-	Wed, 27 Sep 2023 12:35:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96F0628DB3;
+	Wed, 27 Sep 2023 12:35:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 164951846
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 12:35:11 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79F97139;
-	Wed, 27 Sep 2023 05:35:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1695818108; x=1727354108;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=wHFoOefAecLIgZERRLYz5FZSvZCU5QTJbhhe5Vz/dxI=;
-  b=CBehDosFCt8rbHzmhCC3UPTn1+Xc9xKwsxJRhIOsRsfVp0H/5VBIkjj3
-   aDutM/FIG95DKX0RL6rqKRfYRAjFQ76sVXzPhQk7Ps7AUQa+/tDiuKWGd
-   4otIF/pAEi0HQgN2HE8ASSdc3i6g8VfMOGcU8asJPGiqMkmauqblNiz73
-   9d9QeuDUraVpuSK0cOM/ynoUD+eYjyR7cev2RzmldvVmAsu5jTiata5Dd
-   eCtHKHO07RKQGTAzA6tEB1NBaTeCrMDK5LzDyKHdACeuPt+G2pbkCv1Vu
-   kur5pkWruS0BBk+1pJRAhKGCYxFc4vmK5EGmk7ylMqtZHiFfPTzxA5nLL
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="412723452"
-X-IronPort-AV: E=Sophos;i="6.03,181,1694761200"; 
-   d="scan'208";a="412723452"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Sep 2023 05:35:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="819405757"
-X-IronPort-AV: E=Sophos;i="6.03,181,1694761200"; 
-   d="scan'208";a="819405757"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Sep 2023 05:35:05 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC0)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1qlTks-00000000sqT-25xD;
-	Wed, 27 Sep 2023 15:35:02 +0300
-Date: Wed, 27 Sep 2023 15:35:02 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Jagath Jog J <jagathjog1996@gmail.com>, jic23@kernel.org,
-	lars@metafoo.de, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC 2/2] iio: imu: Add driver for BMI323 IMU
-Message-ID: <ZRQhdkVNFdCfPseY@smile.fi.intel.com>
-References: <20230918080314.11959-1-jagathjog1996@gmail.com>
- <20230918080314.11959-3-jagathjog1996@gmail.com>
- <20230927095708.l57kmdc3mmrtaco7@pengutronix.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1E6623778;
+	Wed, 27 Sep 2023 12:35:25 +0000 (UTC)
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58BD513A;
+	Wed, 27 Sep 2023 05:35:23 -0700 (PDT)
+Received: by mail-pf1-x42e.google.com with SMTP id d2e1a72fcca58-6927528c01dso1722816b3a.0;
+        Wed, 27 Sep 2023 05:35:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695818123; x=1696422923; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mZmTHs4dbokakR8gFcLSlnEV375fC03XiwASdWZxx3c=;
+        b=a87PakmvGN0TkAWBqkNE3JqpUQGnlktKdKIGWQAYUkb/y7ZlHkFbqH3RstLqRk6G9R
+         3Ju4uwa32PUZ4dzdJ4yk0ynt4h8KzLXvxF+CZoytxJ3zQGVyN4G0so+nTJ2g8LFb+Xgd
+         vSIBeE/adsghEyv6KQoIxNwUsO81An7JAHi4uM0ancWo8PuYkIRJLpTkVQHUhfM82yI9
+         pU5R7IhXRfGhJuS08lDJAUnmI/1AmcPqgdgqQ5mdjBXoX29fzpsRS+x3kteOsDH2BaMX
+         QJXCCbudYmaodDe/U/VquixdZWLbzxdZX+rZqXvQZCwlH8cFJl7feU+XpxZwJoHCblp/
+         IkAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695818123; x=1696422923;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mZmTHs4dbokakR8gFcLSlnEV375fC03XiwASdWZxx3c=;
+        b=tt3IYib+iZ1eMnEWk0qTkKMDLxsH+BqtWYAVn41idWGQkK9S8ek+ZHV8H5XxEfffoL
+         hroKwLhyvKzMF7r9fSKuYyIZUDkorzNrqmwZ66J7SajENRgTkCmtbRytCwtNEDNTDgEp
+         3QDHGVRXo76JinXlh+eA5kuoqqUlj/Xo1WW8tFxpkmi3oX8wUvJcSjkk1FQSZLjWxpJQ
+         eGXsgIKY+FeLVYKztpUECAe3yKJnL3TWC7GGMKRHWznhI3+FMW442Twt1axEda95gB3J
+         vYgJkSQqk/GXbpFKIKjOJxpNnjVUJJLpWXNxsUed88qwMQ3w49Fv1rNS6PUjDNOPWyZ0
+         4N2w==
+X-Gm-Message-State: AOJu0YymakR7bKMPBe4I1d7v9kEkC3VhIJNiln88fqrcDXLkr6AYB9gF
+	ELexpMuhC+nbNfU3SHq/LD8=
+X-Google-Smtp-Source: AGHT+IEteVHzB1bHAgzOS9qc6fFf/SUHwn6ezxQ3PdhRXtaZbCXw+dENsj3GVzN0/K8S83Vj0Ji4dA==
+X-Received: by 2002:a05:6a20:1445:b0:13d:d5bd:758f with SMTP id a5-20020a056a20144500b0013dd5bd758fmr1941642pzi.6.1695818122712;
+        Wed, 27 Sep 2023 05:35:22 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:8313:ad6b:7769:5148])
+        by smtp.gmail.com with ESMTPSA id s4-20020a170902a50400b001b567bbe82dsm12969886plq.150.2023.09.27.05.35.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Sep 2023 05:35:22 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: gregkh@linuxfoundation.org
+Cc: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	andersson@kernel.org,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	jun.li@nxp.com,
+	Fabio Estevam <festevam@denx.de>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v3 1/2] dt-bindings: usb: gpio-sbu-mux: Add an entry for CBDTU02043
+Date: Wed, 27 Sep 2023 09:35:10 -0300
+Message-Id: <20230927123511.45085-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230927095708.l57kmdc3mmrtaco7@pengutronix.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, Sep 27, 2023 at 11:57:08AM +0200, Uwe Kleine-König wrote:
-> On Mon, Sep 18, 2023 at 01:33:14PM +0530, Jagath Jog J wrote:
+From: Fabio Estevam <festevam@denx.de>
 
-...
+Add a compatible entry for the NXP CBDTU02043 GPIO-based mux hardware
+used for connecting, disconnecting and switching orientation of
+the SBU lines in USB Type-C applications.
 
-> > Datasheet: https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi323-ds000.pdf
-> 
-> Maybe put this link better in the driver.
+CBTU02043 datasheet: https://www.nxp.com/docs/en/data-sheet/CBTU02043.pdf
 
-Why? We have a handful commits with this and it's better to see the link
-to the datasheet without browsing the source code.
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+Changes since v2:
+- None. Splitted the dt-bindings from the dts changes so that
+this series can go via the USB tree.
 
+Changes since v1:
+- None. Only collected Conor's Ack.
+
+ Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+index f196beb826d8..b61dcf8b4aad 100644
+--- a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
++++ b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+@@ -19,6 +19,7 @@ properties:
+   compatible:
+     items:
+       - enum:
++          - nxp,cbdtu02043
+           - onnn,fsusb43l10x
+           - pericom,pi3usb102
+       - const: gpio-sbu-mux
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.34.1
 
 
