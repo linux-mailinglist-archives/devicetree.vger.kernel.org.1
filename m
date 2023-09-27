@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-3671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61A587AFD05
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:48:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E0197AFD13
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:52:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 2FCF8B20BBA
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 07:48:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id DF9AA282235
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 07:52:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 328291CA88;
-	Wed, 27 Sep 2023 07:48:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0629811724;
+	Wed, 27 Sep 2023 07:52:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 374371C6B0
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 07:48:45 +0000 (UTC)
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 594CA19C
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:48:43 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b962c226ceso177981971fa.3
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:48:43 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C0DA2F93
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 07:52:53 +0000 (UTC)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2139FBF
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:52:52 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9a9f139cd94so1265296066b.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:52:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695800921; x=1696405721; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1695801170; x=1696405970; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cjDOYF7T/FlNaBw6bgVsIRpbkeeR+8h756YrDe1mwTU=;
-        b=N5XRNMjEd+28y2ArB8uZKeIg4NQq2hcMqgkhybGGQ3fSuznRrc8toshrVGZsalOglB
-         D7JKA+VcGTrCHW0Qpq8ibP4LS0vTmdZS7BIgScWjPv3d/c/fnFomsITxrLfKNDk81b1T
-         55+NRl8ZDn6Irlj85Fm75xAS9HGucoucFMBgcqvzFKAKHyVGgxT7obSDG/BBn3nghf4Z
-         7X4d0Zl7gQNk25lCem+xdo1AIdxck/OYAPkL8P3qsyoDCrGAeBPEqYrWG563epduYc6J
-         vMAitiXAqio5d5eB8e+RLIfd6p/uEIWWsi046mXot7T87IHy/8A78Vv8EPdkvRrWVaAr
-         uNpw==
+        bh=olrunBZCu18pPkdgh/nW/8cTqZXGjy595cYqHEMTivI=;
+        b=dBwuO743vtUzqfoNYvolIPizHYLkUM3VS07DUviRKPZqIWYVztklpxD7As1O5I0bZM
+         fjFGFIB6jM6pI3mXndfAbrkBRJPlTuwruSv/lT0sQUmGm+oJEVdh40cUYREtvHLYIgYv
+         YtepP+UBsSvzi0nSfno/h3uv2RecbiV8vLgVexVlefbcHSSXZErPR7DAGAF005z9tXu+
+         Nz9KdjfhylsiIX0Y9VQyD7OX1o8owJ5vlJZP6bEaT0zTy5wAD/MgzS3wBYVCs9S8Fd7y
+         nTOlt0T3NmAcbDdRss/DiownwE9zQLEhf9vSGdQR0OjMnjhGDr4170djg26Cj7AKiEhr
+         wvWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695800921; x=1696405721;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1695801170; x=1696405970;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cjDOYF7T/FlNaBw6bgVsIRpbkeeR+8h756YrDe1mwTU=;
-        b=oqjYdXQbBhgDgFQPkUAra8uxgvoZmNUNbnI7wkSTUkDfNEhwY5o2J+BPjYST5Iw+AI
-         FT46V+Lh4U3mD7CrWCzwHitfLUEfSrhnk5YKj8YDBvcxkBmJvgp2w8vz8TmmxzvFMa15
-         Mlbb8umwz8MD/aY/YxcuOy+/C2Ai7cUCZWZHzSsbQMBrNmddQS6Vyi5Nikr5O9B6XSAF
-         qU9h6tp9GBgrcDC7ELKxmVesQ+tdKZmvG+B1MgIaVGVflru4zG0x/aMd15rX+eSCZGSh
-         KnkXV6W4VOQqSlEoU8xshyw9KGkaKaHHKtcrTHzbeopE2sEq1pLBFclROGJmwDLQboxl
-         tKMA==
-X-Gm-Message-State: AOJu0YyjR87GieffSDDJLHByHP4FeOyO7doiWfTgVKMgDLdtmMIVRGNg
-	JAZhLluf5s6EFbfoyJ7PLbXgBg==
-X-Google-Smtp-Source: AGHT+IEyfcxZXq2JD3kKUo5F/6BG1ZAgNVJbuPYFPpf0IaIJR+PXVWQoMudr1psd/L+lxT2RdDmeYw==
-X-Received: by 2002:a2e:9919:0:b0:2bc:e46d:f4ca with SMTP id v25-20020a2e9919000000b002bce46df4camr1211139lji.46.1695800921549;
-        Wed, 27 Sep 2023 00:48:41 -0700 (PDT)
+        bh=olrunBZCu18pPkdgh/nW/8cTqZXGjy595cYqHEMTivI=;
+        b=kLWbsyzXpu4gFAvVlnUC+L15HZ8SOwGp7hmrIPOGwnlozWe+SsZXusImgzS+B5FcBS
+         jBnlRfO+a1hqfM1oGsgc8eAOchBUVfodi9n/PItvBsmz9ABXnFRr3KXi73LrblDR/J41
+         rfVkfKqugvZZcj+DrLsKU4oDmZ6+/I3MJl7ZgSMIX+5UOGQZVpnfek+hKNZl1L3z91cf
+         3oL1xpdIrbmFynLCdVb7TMfi+CakF5Fkirw7JiCZ4Q/qis0QVYCO1aGo4YSibYtShwL1
+         f7DXGwb73Em9WtBmx3W5ImuO+AePrbKWCjLgebo92DxILFWpMyDIfMPyvgIIB+xtxlZh
+         /2Bg==
+X-Gm-Message-State: AOJu0Yyv7QsR/3ViIiTgvZRg+8OBVMKU2EpoCSQa1DuKW9hvRQT0+tsu
+	UpNLt+yRNGtEHgHoEfd1SKYCCQ==
+X-Google-Smtp-Source: AGHT+IEGur5UvLbs3Ux92nEUDwJO9LR96ztFFjm32ZttIq991fD9C1JKTTk6zMfnpcBMQq6rz/ryhQ==
+X-Received: by 2002:a17:906:178d:b0:9ad:c89b:482d with SMTP id t13-20020a170906178d00b009adc89b482dmr960939eje.33.1695801170473;
+        Wed, 27 Sep 2023 00:52:50 -0700 (PDT)
 Received: from [192.168.1.160] (host-87-4-82-94.retail.telecomitalia.it. [87.4.82.94])
-        by smtp.gmail.com with ESMTPSA id v5-20020a1709064e8500b00993470682e5sm8792520eju.32.2023.09.27.00.48.39
+        by smtp.gmail.com with ESMTPSA id cb25-20020a170906a45900b009ad778a68c5sm8928632ejb.60.2023.09.27.00.52.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Sep 2023 00:48:40 -0700 (PDT)
-Message-ID: <2d7eac30-480c-49a4-903c-d4f2b3cdfc8d@linaro.org>
-Date: Wed, 27 Sep 2023 09:48:39 +0200
+        Wed, 27 Sep 2023 00:52:49 -0700 (PDT)
+Message-ID: <f2a1e101-7d4d-47e5-93a6-71623895f851@linaro.org>
+Date: Wed, 27 Sep 2023 09:52:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,20 +63,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 1/3] dt-bindings: pinctrl: Add support for Amlogic T7
- SoCs
+Subject: Re: [PATCH 1/2] arm64: dts: imx93: Add audio device nodes
 Content-Language: en-US
-To: Lucas Tanure <tanure@linux.com>, Huqiang Qin <huqiang.qin@amlogic.com>,
- linus.walleij@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, brgl@bgdev.pl, andy@kernel.org
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-References: <20230922094342.637251-1-huqiang.qin@amlogic.com>
- <20230922094342.637251-2-huqiang.qin@amlogic.com>
- <ff2c6d41-7c9a-4633-8343-eb94404de6e8@linux.com>
+To: Chancel Liu <chancel.liu@nxp.com>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ linux-imx@nxp.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230927023321.3955170-1-chancel.liu@nxp.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,7 +116,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ff2c6d41-7c9a-4633-8343-eb94404de6e8@linux.com>
+In-Reply-To: <20230927023321.3955170-1-chancel.liu@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -131,39 +125,40 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 27/09/2023 08:08, Lucas Tanure wrote:
-> On 22-09-2023 10:43, Huqiang Qin wrote:
->> Add a new compatible name for Amlogic T7 pin controller, and add
->> a new dt-binding header file which document the detail pin names.
->>
->> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
->> Acked-by: Conor Dooley <conor.dooley@microchip.com>
->> ---
->>
->> V1 -> V2: Rename amlogic-t7-gpio.h to amlogic,t7-periphs-pinctrl.h
->>            Corrected indentation format.
->> V2 -> V3: Updated subject.
->>
->>   .../pinctrl/amlogic,meson-pinctrl-a1.yaml     |   1 +
->>   .../gpio/amlogic,t7-periphs-pinctrl.h         | 179 ++++++++++++++++++
+On 27/09/2023 04:33, Chancel Liu wrote:
+> Add audio devices nodes including SAI, MICFIL, XCVR and MQS.
+> 
+> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx93.dtsi | 87 ++++++++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> index f20dd18e0b65..6ed7b156c633 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> @@ -366,6 +366,25 @@ flexcan1: can@443a0000 {
+>  				status = "disabled";
+>  			};
+>  
+> +			sai1: sai@443b0000 {
+> +				compatible = "fsl,imx93-sai";
+> +				reg = <0x443b0000 0x10000>;
+> +				interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&clk IMX93_CLK_SAI1_IPG>, <&clk IMX93_CLK_DUMMY>,
+> +					 <&clk IMX93_CLK_SAI1_GATE>, <&clk IMX93_CLK_DUMMY>,
+> +					 <&clk IMX93_CLK_DUMMY>;
+> +				clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
+> +				dmas = <&edma1 22 0 1>, <&edma1 21 0 0>;
+> +				dma-names = "rx", "tx";
+> +				status = "disabled";
+> +			};
+> +
+> +			mqs1: mqs {
 
-...
+Why do you have non-MMIO nodes in soc@? You introduce new warnings.
+Please test your code (dtbs_check W=1)
 
->> +#define GPIOH_0		148
->> +#define GPIOH_1		149
->> +#define GPIOH_2		150
->> +#define GPIOH_3		151
->> +#define GPIOH_4		152
->> +#define GPIOH_5		153
->> +#define GPIOH_6		154
->> +#define GPIOH_7		155
->> +
->> +#define GPIO_TEST_N	156
->> +
->> +#endif /* _DT_BINDINGS_AMLOGIC_T7_GPIO_H */
-> Tested-by: Lucas Tanure <tanure@linux.com>
-
-How can you test bindings?
 
 Best regards,
 Krzysztof
