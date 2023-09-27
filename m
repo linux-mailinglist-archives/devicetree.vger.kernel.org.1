@@ -1,111 +1,215 @@
-Return-Path: <devicetree+bounces-3696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2F977AFE3E
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 10:25:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA9877AFE49
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 10:26:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 8FB31B20BD3
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:25:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 0BC1C283030
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:26:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DD51F9CE;
-	Wed, 27 Sep 2023 08:25:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C66B1F5EE;
+	Wed, 27 Sep 2023 08:26:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08C7E33F1
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 08:25:15 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBC67DE;
-	Wed, 27 Sep 2023 01:25:13 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38R8P8Up005152;
-	Wed, 27 Sep 2023 03:25:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1695803108;
-	bh=7JCLfOz6vi/ZAWl1OetwVW/EMHbMuWTaPqKghyNaO+Y=;
-	h=Date:Subject:From:To:CC:References:In-Reply-To;
-	b=JbWc0Vn0XWM0m+nIRLLef+FHhnyaOsTZIVWnTDD1Ny9QqX5OZN+7tkV4M7Vo8tYO9
-	 IoAjPf8Frz2pzdcFl/ByTTLjlVdfhSrgWnmjdlP4yJGlM9IhX0cGm8Fo+vu8xJ8IPJ
-	 KwdQKIP0ShgnkdQOaSrfLDjb14DJKCxrshJLmIf4=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38R8P8mT096569
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 27 Sep 2023 03:25:08 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 27
- Sep 2023 03:25:07 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 27 Sep 2023 03:25:07 -0500
-Received: from [10.24.68.251] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38R8P4x5093336;
-	Wed, 27 Sep 2023 03:25:04 -0500
-Message-ID: <0dfcac11-13d1-32fe-9c85-3663bcc34177@ti.com>
-Date: Wed, 27 Sep 2023 13:55:03 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E41DF1C6B6
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 08:26:27 +0000 (UTC)
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A732CE9;
+	Wed, 27 Sep 2023 01:26:23 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-503397ee920so16761852e87.1;
+        Wed, 27 Sep 2023 01:26:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695803182; x=1696407982; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3M+fhkSU75ZwJTVy/9LEZES58n3Sr/w+Y0+8L0nomxI=;
+        b=S6bnlg6iw3CoIgvx97RpA9I+w/dZH1ssIGt+8PXtX2ZW1ICm+Tcuh2HwsUN7rPaAWq
+         a9DF0IFLKSw1QzovG0nPPrExbNyyqc4POBE+lZznDUIqb5HzHN6OstWvg7lfOp1EAuAT
+         cc2xXpxvVv5E8sOGM9T/y/nepfh0lud54ANJwqe3ZN7KIVFpZXmQdwlKQq5EZrlkQv4c
+         Mfe50mhAk58KE14xYi/gH1y8F+EY3H2dIYcZnC+xbgcorO9IDqouYinD9dXTLrXtg6Ce
+         r//3j1lnMEXVDyAwisflX3gLMzLM2n4/0r/NC0kuenDmq70MHYbi+ZFHjptMb1G7yNQb
+         kyOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695803182; x=1696407982;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3M+fhkSU75ZwJTVy/9LEZES58n3Sr/w+Y0+8L0nomxI=;
+        b=MWQ0GEcHmkY+kdQ2UmT65ZkiaTpzPqOn1Z6e9Kec1srAWOgww6G6MiwZLOKinDqvGk
+         75uE7PnD6qzNQUH6SGdUcjkZbGxFdYEWoc13w4ZMUoOPf5StBf4Qnq1aAmimt+ATWzqu
+         U9KY3xAXrC8ZrSpcqDyC3AwYH6IYAdlV9DPLj70jQ1A0KPC1NkA0ci0hAaKEf5cpv8hS
+         kL5xz/sGuWqGKfjTlhHYqZ+WZAPuY/Boqp2UVe4a0rbVMPXzSXfqx5iDQjiB3k2kpzEq
+         4BPJy/VlogUdA3ZmNiMiuL4jJeKzuYUX7fBK1HInrUW9RH+7FVxfXCgvr+x006xkix3E
+         SIgg==
+X-Gm-Message-State: AOJu0Yyevn2YS4lSq5rEj8Kh2G15OPuxzS7cTH5HjbiRB9VAfJjx9GAe
+	M4qWfxuUySyLs9UHQuwBii/ngh/dJT4=
+X-Google-Smtp-Source: AGHT+IEvTKArd+9rhJz1P3ux20jG6esY8uIeRZvvlL70yqMnj+s8j9q6aFlo4F34eBNu31UMcyyttQ==
+X-Received: by 2002:a05:6512:11c6:b0:4fa:5e76:7ad4 with SMTP id h6-20020a05651211c600b004fa5e767ad4mr983405lfr.10.1695803181724;
+        Wed, 27 Sep 2023 01:26:21 -0700 (PDT)
+Received: from fedora ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id h18-20020a197012000000b0050309ea3a62sm2479646lfc.277.2023.09.27.01.26.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Sep 2023 01:26:20 -0700 (PDT)
+Date: Wed, 27 Sep 2023 11:26:07 +0300
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Angel Iglesias <ang.iglesiasg@gmail.com>,
+	Andreas Klinger <ak@it-klinger.de>,
+	Benjamin Bara <bbara93@gmail.com>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 1/5] tools: iio: iio_generic_buffer ensure alignment
+Message-ID: <e986b4562ca663e19ea30b81d15221c15bd87227.1695727471.git.mazziesaccount@gmail.com>
+References: <cover.1695727471.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v6 7/7] dts: ti: k3-j712s2-mcu: Add the mcu domain
- watchdog instances
-Content-Language: en-US
-From: "J, KEERTHY" <j-keerthy@ti.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>,
-        <nm@ti.com>, <vigneshr@ti.com>, <conor+dt@kernel.org>,
-        <kristo@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
-CC: <u-kumar1@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230927023357.9883-1-j-keerthy@ti.com>
- <20230927023357.9883-8-j-keerthy@ti.com>
- <877f583e-ed08-4248-ac38-28e8c3039444@linaro.org>
- <78a9a231-ce53-7a3c-d9ce-af9d1c2a097d@ti.com>
-In-Reply-To: <78a9a231-ce53-7a3c-d9ce-af9d1c2a097d@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="FUsvzO4N/DXR6Pi1"
+Content-Disposition: inline
+In-Reply-To: <cover.1695727471.git.mazziesaccount@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 
+--FUsvzO4N/DXR6Pi1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 9/27/2023 1:46 PM, J, KEERTHY wrote:
-> 
-> 
-> On 9/27/2023 1:23 PM, Krzysztof Kozlowski wrote:
->> On 27/09/2023 04:33, Keerthy wrote:
->>> There are totally 2 instances of watchdog module in MCU domain.
->>> These instances are coupled with the MCU domain R5F instances.
->>> Disabling them as they are not used by Linux.
->>>
->>> Signed-off-by: Keerthy <j-keerthy@ti.com>
->>
->> Still incorrect subject prefix.
-> 
-> Sorry. I missed this :-(. I will fix all your comments in the next version.
+The iio_generic_buffer can return garbage values when the total size of
+scan data is not a multiple of the largest element in the scan. This can be
+demonstrated by reading a scan, consisting, for example of one 4-byte and
+one 2-byte element, where the 4-byte element is first in the buffer.
 
-Hi Krzysztof,
+The IIO generic buffer code does not take into account the last two
+padding bytes that are needed to ensure that the 4-byte data for next
+scan is correctly aligned.
 
-If there are no further comments on V6. Can i resend this patch alone 
-with subject corrected?
+Add the padding bytes required to align the next sample with the scan size.
 
-Regards,
-Keerthy
+Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
-> 
->>
->> Best regards,
->> Krzysztof
->>
+---
+I think the whole alignment code could be revised here, but I am unsure
+what kind of alignment is expected, and if it actually depends on the
+architecture. Anyways, I'll quote myself from another mail to explain
+how this patch handles things:
+
+> For non power of2 sizes, the alignment code will result strange alignment=
+s.
+> For example, scan consisting of two 6-byte elements would be packed -
+> meaning the second element would probably break the alignment rules by
+> starting from address '6'. I think that on most architectures the proper
+> access would require 2 padding bytes to be added at the end of the first
+> sample. Current code wouldn't do that.
+
+> If we allow only power of 2 sizes - I would expect a scan consisting of a
+> 8 byte element followed by a 16 byte element to be tightly packed. I'd
+> assume that for the 16 byte data, it'd be enough to ensure 8 byte alignme=
+nt.
+> Current code would however add 8 bytes of padding at the end of the first
+> 8 byte element to make the 16 byte scan element to be aligned at 16 byte
+> address. To my uneducated mind this is not needed - but maybe I just don't
+> know what I am writing about :)
+
+Revision history
+v3 =3D> v4:
+ - drop extra print and TODO coment
+ - add comment clarifying alignment sizes
+---
+ tools/iio/iio_generic_buffer.c | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
+
+diff --git a/tools/iio/iio_generic_buffer.c b/tools/iio/iio_generic_buffer.c
+index 44bbf80f0cfd..c07c49397b19 100644
+--- a/tools/iio/iio_generic_buffer.c
++++ b/tools/iio/iio_generic_buffer.c
+@@ -54,9 +54,12 @@ enum autochan {
+ static unsigned int size_from_channelarray(struct iio_channel_info *channe=
+ls, int num_channels)
+ {
+ 	unsigned int bytes =3D 0;
+-	int i =3D 0;
++	int i =3D 0, max =3D 0;
++	unsigned int misalignment;
+=20
+ 	while (i < num_channels) {
++		if (channels[i].bytes > max)
++			max =3D channels[i].bytes;
+ 		if (bytes % channels[i].bytes =3D=3D 0)
+ 			channels[i].location =3D bytes;
+ 		else
+@@ -66,6 +69,19 @@ static unsigned int size_from_channelarray(struct iio_ch=
+annel_info *channels, in
+ 		bytes =3D channels[i].location + channels[i].bytes;
+ 		i++;
+ 	}
++	/*
++	 * We wan't the data in next sample to also be properly aligned so
++	 * we'll add padding at the end if needed.
++	 *
++	 * Please note, this code does ensure alignment to maximum channel
++	 * size. It works only as long as the channel sizes are 1, 2, 4 or 8
++	 * bytes. Also, on 32 bit platforms it might be enough to align also
++	 * the 8 byte elements to 4 byte boundary - which this code is not
++	 * doing.
++	 */
++	misalignment =3D bytes % max;
++	if (misalignment)
++		bytes +=3D max - misalignment;
+=20
+ 	return bytes;
+ }
+--=20
+2.41.0
+
+
+--=20
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
+
+--FUsvzO4N/DXR6Pi1
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmUT5x8ACgkQeFA3/03a
+ocXFBAf/agzdoD0BTlSQt9kSg5PKTv+tn0wW7rJuXFzNBCu5rhlqLNP6QOi99QWI
+hK2rxH58jseymEaYPW4eIlpcqodLlRbiDmFgo9sPSyxHG05rUXZjdWPR32WQ3F3D
+uSwmI2UNclE6waCiEWsHSGHeziVrCd5HVLShM1lpdRYBXx208ETBvCxSxANEi6tN
+bhK79Y8dTMexxtYZ3cvFG+8hfFACPeU26dOFk2FX3kscg84MUsfPyynmq6bPybU9
+93KkSixmo5GtqbqQUufAY7zeitoxPqwb6CjR16TowaLnyuxsSuokd8YPw8/oizDC
+O/XW9NqFLWrJ1KK5bA8NgoaB2fgp4w==
+=bVGG
+-----END PGP SIGNATURE-----
+
+--FUsvzO4N/DXR6Pi1--
 
