@@ -1,1873 +1,299 @@
-Return-Path: <devicetree+bounces-3887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F00BA7B05D4
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 15:54:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56CD77B03F8
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 14:26:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id C2AAC1C20829
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 13:54:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id F3333282498
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 12:26:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7723327EEF;
-	Wed, 27 Sep 2023 13:54:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A68714C86;
+	Wed, 27 Sep 2023 12:26:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 109641FA1
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 13:54:20 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3009111D;
-	Wed, 27 Sep 2023 06:54:15 -0700 (PDT)
-Received: from ideasonboard.com (unknown [IPv6:2001:861:388f:1650:2f32:b6ff:a885:7d5e])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BC491D20;
-	Wed, 27 Sep 2023 15:52:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1695822751;
-	bh=oe9pYiHpkrL97dvSUPeqZhx4DLwtPOfc7JPOsPPxv3w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Xo35ytlE3FIhk9x08h/ohH/Sc0QxN+7txwlWYtbASBBjmOxdeOwplbuXYJAkOu70p
-	 50cN7XDtlxnMemT6YEXv3YY/RD7iati0S+Dsxm/Flb/9hcneIALWhuVGftwkwzH1H/
-	 ozYoAM4Cg10smBJ+NkYaVHyUa0OfmT/XBJlmv0Lw=
-Date: Wed, 27 Sep 2023 15:54:09 +0200
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Alain Volmat <alain.volmat@foss.st.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Andrey Skvortsov <andrej.skvortzov@gmail.com>, 
-	Rob Herring <robh@kernel.org>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] media: i2c: gc2145: Galaxy Core GC2145 sensor support
-Message-ID: <c2jflrljuoiudmqqjzthumwxf3fpeepr2zh4alvunoyo4hmfn2@eapdhi43qilj>
-References: <20230926092825.819229-1-alain.volmat@foss.st.com>
- <20230926092825.819229-3-alain.volmat@foss.st.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECDAA29A2
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 12:26:31 +0000 (UTC)
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2044.outbound.protection.outlook.com [40.107.8.44])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EB59E6;
+	Wed, 27 Sep 2023 05:26:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=V+KG+O7RrcU10hE/8LXJXJXdJJiGC8g4Iy34+vz0zkLq8qEEv3eVg1qUBlhj5HzyTnj79a+YZtTr0x919y+mPSDkiyitQMUZh/SQCahNZGRSyO0cIAib9sXGIPYbZpa+9cXNF4jb74I49/T3JQ1SW9nCh3ZYPqchG/Zg2N21SFSWigRW9SCP2NmQXKlRjvvEmqVKPmMoIKU7k+uhg0t2bnfrcnu1yNuAJXOFpKrx+lYXGiSumY73sM3pk9YvjrAslTr2eFBmmSwq37x7cS3ebt0QjzDO1uoUmwQN1JOMi4W5kBDOIqrZ5GnR3EAkTokf8J9vHzxR0goFSevCNA3VTA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9jkjTZzXfGW/gQ8bE8PkKRfnxqXYGPBNT0oVC0GmzZQ=;
+ b=EzzDmfkZfQxcWztDpIts1x0diOLPg9QI1VRewIks/Fhhtjvvc3x4jC10Fz1Eid3MYqddJ1yxM0u7VvMNV33XaKIojCMBGCJW+kBVnePivyAmE/npCn8F8dWwL4DJex2Zl5Hm0zTHnAb3E65BM/NtosYUd44vNAmy3BdIRmQaGzRHt5Rm326YnxIcIwBCwgTo7MVH422WxOMNkkBd75ZeblegBS5jappx7SCd2/YnGHb3e2p4ORwM8RTxe6KL/7c9jPiZ1ijrInhollIXoQHOrpylDEeA2W4xv1mYJzaAfHcYbP1NIOdArYm31uA0R3XSvHeMfEZlCiVHl3hObtyiOA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9jkjTZzXfGW/gQ8bE8PkKRfnxqXYGPBNT0oVC0GmzZQ=;
+ b=OougMJCnpdFXnQmc+uI/9JovPU8Oc2FUaocq3zjxKHlZB/7GE7IJ98OLFwc+3ekmIzbrNvLNZkV2F1rNw+0vZMSqOTn8z6hurCfLanLRd/e8jPParJSYd1agzBUPN1uyryDN5meZsjXsmXZVi0C2yX/tmUiX66StK903RfINpCQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8630.eurprd04.prod.outlook.com (2603:10a6:10:2dd::15)
+ by AS8PR04MB7704.eurprd04.prod.outlook.com (2603:10a6:20b:296::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.27; Wed, 27 Sep
+ 2023 12:26:27 +0000
+Received: from DU2PR04MB8630.eurprd04.prod.outlook.com
+ ([fe80::dbc:99b7:7808:f82e]) by DU2PR04MB8630.eurprd04.prod.outlook.com
+ ([fe80::dbc:99b7:7808:f82e%7]) with mapi id 15.20.6838.016; Wed, 27 Sep 2023
+ 12:26:27 +0000
+From: Pankaj Gupta <pankaj.gupta@nxp.com>
+To: shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	clin@suse.com,
+	conor+dt@kernel.org,
+	pierre.gondois@arm.com,
+	festevam@gmail.com,
+	linux-imx@nxp.com,
+	davem@davemloft.net,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	gaurav.jain@nxp.com,
+	alexander.stein@ew.tq-group.com,
+	V.Sethi@nxp.com
+Cc: Pankaj Gupta <pankaj.gupta@nxp.com>
+Subject: [PATCH v6 00/11] firmware: imx: NXP Secure-Enclave FW Driver
+Date: Wed, 27 Sep 2023 23:23:50 +0530
+Message-Id: <20230927175401.1962733-1-pankaj.gupta@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR02CA0128.apcprd02.prod.outlook.com
+ (2603:1096:4:188::20) To DU2PR04MB8630.eurprd04.prod.outlook.com
+ (2603:10a6:10:2dd::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230926092825.819229-3-alain.volmat@foss.st.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,PDS_OTHER_BAD_TLD,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8630:EE_|AS8PR04MB7704:EE_
+X-MS-Office365-Filtering-Correlation-Id: fcc37925-da7b-4c19-bcd0-08dbbf54f85a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	V9QAdXbWvBBT03p7orH3VUHGfLx5ZB2NTTjAxbVsqy0PAGg9UaWWfvhTr8DZwhkhhq4jGW6YE3vc1CT8z13Qv4g1kfXAZdaaSSfbvZrPfwby+x7Wna4DHj7ME8Fl6hZr1oC30k0VGEr1HGTyuudL2HahZBfFNPIhPtwzPaE3NbFQ0FgL1MjVPRlOkHSEI2SZrcjzUOUb2LhAcTAkP1N58CV3f2jFTAHmUir9tyjUnxaDoaF4AbxVDY5qQuV2EjmtnqzOvpVmg/oz1TIupjyqTxkEpXGUF58OgHsU0NPbiDipDrkMz5XhCYAZTotDrKN4p6KBNPx65TG5XKj24ft4otFnx5ztNuApAZuv32BYxYR273cN2W/DBY/vkh4G/CcZTBSKHCxDAUiM5RVNvTZ3O0DAQ2E+eb/8GacX8bSbO21qBDMqQzciImc5LvTm8d1GT3p45THGtnhKKeF8wYl0CBHiyhCAhmkSVgofnBjUTe2uOfAZT+YEhm0ai+LI3YeJgjiD55v87ep6VnWN+dozhz1GAzc+1+2BLIQH4NjBWCJqkU237U4GlZcv/NndrIec9Je+TmWRQkXojZvIldxIMHDkOt0kbfzhgxOb1YbUSpe51Qlb52xOfJyT0Jp4jSLX
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8630.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(366004)(136003)(39860400002)(396003)(376002)(230922051799003)(1800799009)(186009)(451199024)(1076003)(2616005)(6506007)(52116002)(6512007)(44832011)(26005)(8936002)(478600001)(921005)(5660300002)(6666004)(36756003)(4326008)(2906002)(316002)(6636002)(86362001)(66556008)(66946007)(8676002)(41300700001)(38100700002)(38350700002)(66476007)(6486002)(7416002)(83380400001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?PHTbdS3ky+EBz3HwI0CL3QsMGd3Sd7SdG7O0LzI7z0Yiu3G1ftIbFS9uRijU?=
+ =?us-ascii?Q?w+R2zgU8/+realC3ndvibfG1YSAd5OPk0ey6vKdpAUZKp2+oKMASNyhGY/7o?=
+ =?us-ascii?Q?WdRCmW+xXip4SmVXhkO+w0BbYQnHiIg6ald9qOdKoVtn6CsFOTED3fV4JREP?=
+ =?us-ascii?Q?sK+je5OubL5WxbuWehwb/P8igKgBA8yANRF7c3Zf8H3yaj0z4hFmTnj2FdcT?=
+ =?us-ascii?Q?fVnXPWosnDIvvj3ZS4rY6HK8GdHpGl+cAawAS/cDrv3p+h7XsMB4J7CCeJBL?=
+ =?us-ascii?Q?0BLUxz8ICoPOgjiok7XnqsYCZGxCVvau2Pu4a+IMYZPV73e/aPsenU1Vp6kw?=
+ =?us-ascii?Q?xr8y2SPS6PIiRX9gSgPQNTrorbrlYEw9U1QyU5pCd2JvdQHMQbxMFf8fEL2K?=
+ =?us-ascii?Q?70l0AOGlN/XyUF+lc0u1tjsexPX7gqWlw4sh2BVtYLtF2GzpLNeoZht6rHv9?=
+ =?us-ascii?Q?5ms0RrX7IUL/yUwgld5yyIMInF8kPH7nsmHVIP0Awu0Ae78bcIPYZZZCJD1J?=
+ =?us-ascii?Q?nMYUID5oYGibRttZmYuWWN5A37b4Kufv59Y/2Q/7UufsZz10SZMcTyWLPdNm?=
+ =?us-ascii?Q?Tos2LZzFcSoa2348+JAdvT+xXOR1kx6nZhTaVuCghmwYKGP5YO4t/xr4LBfq?=
+ =?us-ascii?Q?WoR1krhb+nJ2syRqrtCNzW790Jiiy++MN+7KMqGdWDSTxxQ74xGnOc1KrEXN?=
+ =?us-ascii?Q?GJSLr8ZOKcCd8PUrbylmSOwE2KDVsFx3g6Qjzdf1+lwZC/wccmJ1FOKeee3H?=
+ =?us-ascii?Q?kaW5icDvcUiaTkF1xQZBQVmADI93LUgbfCxZ7mNPOcBu+PGVn6Logyu/jH1m?=
+ =?us-ascii?Q?HLHJF3XsV7/UXCYtKATyGMPEkgv5GZe6cgiUbyU8vNasfSbAwfZ6wvMPCc9t?=
+ =?us-ascii?Q?NF56Lf9Lw8IZInyHzPf2ODfMJtLpzDsS4h+tGnMGYVcd4GlsJSjgAb5ef9vV?=
+ =?us-ascii?Q?Z9t0J6ZfCtvC5S5pXPk1BnC/GeZ7NGgWjYZUcet4PIDJRIyKc2Ztf+na9Qfc?=
+ =?us-ascii?Q?3HADO6F49wQ/G77QngRzSke2hYPCh2IFZuBQh1xt5D/Z8Fsz1S5jFMFIyF/Q?=
+ =?us-ascii?Q?OJ7CduDqJv9euBoBzKl1LPtZ4oGGBoWMtV1fn1szslosgTArUwuhlqDkqxuy?=
+ =?us-ascii?Q?Yqu+9tK4AqSd0YOUupJnsayoyLNMKYWLzQSBPg5HUCBegTlTv7BOCu707cNH?=
+ =?us-ascii?Q?YBfLP+jeK6esPokvmAzWYWSgz/XkAdAS/8sUni4SAbb533V9/E71A6wR/A3Y?=
+ =?us-ascii?Q?jktB7EMNTpv197jfGTTSd8mNJno8lW3BqbyWqsHXJbDbRQkGRJs96v7Dr6Oh?=
+ =?us-ascii?Q?5duESc4z5o4EMCFqOjSwuZEarMcJjFxi+0lFAdWMQ1SkSnoEkaTkWMr3fmKJ?=
+ =?us-ascii?Q?rAUu6Ptj0W1DCTZ0qMfMIJy7yA0s+/IcDK/ttht22cyA474l5GgnlOPZEkp6?=
+ =?us-ascii?Q?ts38WeDQtep5NdVPJXn+T6xmuCsypMKYyda6/nvDffFm/1nXTQ6qGgW+sTwS?=
+ =?us-ascii?Q?qKrJ+bFjFZLF9lW/d4X1dFLqWdq1FmFe9fPq2eFhS3f8igdu8iBfkBhhubuY?=
+ =?us-ascii?Q?dJobSxdnA3oHDYqmlFvTEE5FIPFrRm1gqg+w2WoW?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fcc37925-da7b-4c19-bcd0-08dbbf54f85a
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8630.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2023 12:26:26.9832
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gLG09VjRZrPQFKC9GEWAFqFOolypHlMcUm2xN9MLbKFMZtL4wruhRmWo3o3lJUOwfqaghNVSICsCozvAyS0LxQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7704
+X-Spam-Status: No, score=0.9 required=5.0 tests=BAYES_00,DATE_IN_FUTURE_03_06,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Alain
+V6 Changes:
+
+- 1/11 (New): Kernel doc: "Documentation/driver-api/firmware/other_interfaces.rst" is added.
+
+- 2/11 DT Binding: Disposed off comments from .yaml
+	-- replaced the "sram-pool" property, with standard property "fsl,sram".
+	-- removed the additional details from the description.
+
+- 3,4,5,6/11: DTSI changes:
+	-- Validated using the following commands:
+		--- make dt_binding_check DT_SCHEMA_FILES=freescale
+        --- make CHECK_DTBS=y freescale/imx8ulp-evk.dtb;
+		    make CHECK_DTBS=y freescale/imx93-11x11-evk.dtb
+
+- 7/11 firmware: imx: add driver for NXP EdgeLock Enclave:
+	-- Removed:
+		Reported-by: kernel test robot <lkp@intel.com> 
+		Closes:https://lore.kernel.org/oe-kbuild-all/202304120902.bP52A56z-lkp@intel.com
+	-- pr_info is removed.
+	-- macro "devctx_info", "devctx_dbg" & "devctx_err" is removed.
+	-- Updated ABI:
+	    --- Users: user-space SE-LIB, crypto-api, imx-ocotp-ele driver , smw
+		--- IOCTLS: Updated the ioctl
+		--- read/write: 
+	-- Correct message header validation.
+	   --- segregated handling of the error, while msg header parsing.
+	-- removed TX and RX messages static allocation in state container.
+	-- ran coccicheck: make C=1 CHECK=scripts/coccicheck drivers/firmware/imx/*.* W=1
+		--- ran on all the patches.
+- 8/11 firmware: imx: init-fw api exchange on imx93
+	-- removed TX and RX messages static allocation in state container.
+	-- moved the header file ele_fw_api.h, to driver/firmware/imx/
+	-- segregated handling of the error, while msg header parsing.
+
+- 9/11 firmware: imx: enable trng
+	-- macro "devctx_info", "devctx_dbg" & "devctx_err" is removed.
+	-- will remove this patch, will send this patch later, including RNG and crypto-maintainers. 
+  
+  
+  
+  
+- 10/11 firmware: imx: enclave-fw: add handling for save/restore IMEM region
+	-- Linux comment style fixed.
+	
+- 10/11(old)(Removed) firmware: imx: enclave api to read-common-fuses
+	-- This API will be used by imx-ocotp-ele.c.
+	-- This patch can be sent later, when the changes to imx-ocotp-ele.c will be sent.
+	-- "Documentation/driver-api/firmware/other_interfaces.rst" will be update for the exported symbols:
+	   - read_common_fuses()
+	   - get_se_dev()
+	
+v5 Changes:
+  - 1/7 DT Binding: Disposed off comments from .yaml
+	-- to use "-", instead of "_".
+	-- to use generic name, concatinated with soc-id.
+	-- removed mu-did.
+	-- renamed the ele-mu to se-fw
+	-- moved the file from .../arm/freescale/ to .../firmware/
+  - 2/7 Changed the .dtsi, as per the comments.
+	-- removed mu-did
+	-- renamed the ele_mu to se-fw.
+	-- updated the compatible string.
+	-- tested the DTB.
+  - 4/7  Changed the .dtsi, as per the comments.
+	-- removed mu-did
+	-- renamed the ele_mu to se-fw.
+	-- updated the compatible string.
+	-- tested the DTB.
+  - 6/7 Changes in driver code:
+	-- replace pr_err with dev_err
+	-- removed export symbols, except one, which will be used in other driver.
+	-- Each API, send-recived based on device reference.
+	-- Divided the commits into smaller commits.
+		- Base Driver
+			-- Added ABI file.
+		- 7/11 (new) firmware: imx: init-fw api exchange on imx93
+		- 8/11 (new) firmware: imx: enable trng
+		- 9/11 (new) firmware: imx: enclave-fw: add handling for save/restore IMEM region
+		- 10/11 (new) firmware: imx: enclave api to read-common-fuses
+
+v4 Changes:
+- Post internal review, changed the name from "ele-mu" to "se-fw".
+- Disposed-off comments in the dt-binding file.
+- Removed the non-hw related dt-bindings from the driver code.
+- Corrected the File MAINTAINERS for correct name of yaml file.
+
+v3 Changes:
+- update the commit message for documentation.
+- Fixed dt-binding checking error for file- fsl,ele_mu.yaml
+- Coverity fixes in the ele_mu.c
+
+v2 Changes:
+- Fixed Kernel Test Bot issues.
+- Removed ".../devicetree/bindings/mailbox/fsl,muap.txt"
+
+The NXP's i.MX EdgeLock Enclave, a HW IP creating an embedded
+secure enclave within the SoC boundary to enable features like
+- HSM
+- SHE
+- V2X
+
+Communicates via message unit with linux kernel. This driver
+is enables communication ensuring well defined message sequence
+protocol between Application Core and enclave's firmware.
+
+Driver configures multiple misc-device on the MU, for multiple
+user-space applications can communicate on single MU.
+
+It exists on some i.MX processors. e.g. i.MX8ULP, i.MX93 etc.
+
+Pankaj Gupta (11):
+  Documentation/firmware: added imx/se-fw to other_interfaces
+  dt-bindings: arm: fsl: add imx-se-fw binding doc
+  arm64: dts: imx8ulp-evk: added nxp secure enclave firmware
+  arm64: dts: imx8ulp-evk: reserved mem-ranges to constrain ele_fw
+    dma-range
+  arm64: dts: imx93-11x11-evk: added nxp secure enclave fw
+  arm64: dts: imx93-11x11-evk: reserved mem-ranges
+  firmware: imx: add driver for NXP EdgeLock Enclave
+  firmware: imx: init-fw api exchange on imx93
+  firmware: imx: enable trng
+  firmware: imx: enclave-fw: add handling for save/restore IMEM region
+  MAINTAINERS: Added maintainer details
+
+ Documentation/ABI/testing/se-cdev             |   41 +
+ .../bindings/firmware/fsl,imx-se-fw.yaml      |   73 +
+ .../driver-api/firmware/other_interfaces.rst  |   67 +
+ MAINTAINERS                                   |   10 +
+ arch/arm64/boot/dts/freescale/imx8ulp-evk.dts |   15 +
+ arch/arm64/boot/dts/freescale/imx8ulp.dtsi    |   12 +-
+ .../boot/dts/freescale/imx93-11x11-evk.dts    |   15 +
+ arch/arm64/boot/dts/freescale/imx93.dtsi      |   10 +-
+ drivers/firmware/imx/Kconfig                  |   21 +
+ drivers/firmware/imx/Makefile                 |    3 +
+ drivers/firmware/imx/ele_base_msg.c           |  271 ++++
+ drivers/firmware/imx/ele_common.c             |  294 ++++
+ drivers/firmware/imx/ele_common.h             |   40 +
+ drivers/firmware/imx/ele_fw_api.c             |  118 ++
+ drivers/firmware/imx/ele_fw_api.h             |   26 +
+ drivers/firmware/imx/ele_trng.c               |   47 +
+ drivers/firmware/imx/se_fw.c                  | 1372 +++++++++++++++++
+ drivers/firmware/imx/se_fw.h                  |  152 ++
+ include/linux/firmware/imx/ele_base_msg.h     |   67 +
+ include/linux/firmware/imx/ele_mu_ioctl.h     |   73 +
+ 20 files changed, 2725 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/ABI/testing/se-cdev
+ create mode 100644 Documentation/devicetree/bindings/firmware/fsl,imx-se-fw.yaml
+ create mode 100644 drivers/firmware/imx/ele_base_msg.c
+ create mode 100644 drivers/firmware/imx/ele_common.c
+ create mode 100644 drivers/firmware/imx/ele_common.h
+ create mode 100644 drivers/firmware/imx/ele_fw_api.c
+ create mode 100644 drivers/firmware/imx/ele_fw_api.h
+ create mode 100644 drivers/firmware/imx/ele_trng.c
+ create mode 100644 drivers/firmware/imx/se_fw.c
+ create mode 100644 drivers/firmware/imx/se_fw.h
+ create mode 100644 include/linux/firmware/imx/ele_base_msg.h
+ create mode 100644 include/linux/firmware/imx/ele_mu_ioctl.h
+
+-- 
+2.34.1
 
-On Tue, Sep 26, 2023 at 11:28:20AM +0200, Alain Volmat wrote:
-> Addition of support for the Galaxy Core GC2145 XVGA sensor.
-> The sensor supports both DVP and CSI-2 interfaces however for
-> the time being only CSI-2 is implemented.
->
-> Configurations is currently based on initialization scripts
-> coming from Galaxy Core and for that purpose only 3 static
-> resolutions are supported with static framerates.
->  - 640x480 (30fps)
->  - 1280x720 (30fps)
->  - 1600x1200 (20fps)
->
-> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
-> ---
->  MAINTAINERS                |    8 +
->  drivers/media/i2c/Kconfig  |   12 +
->  drivers/media/i2c/Makefile |    1 +
->  drivers/media/i2c/gc2145.c | 1591 ++++++++++++++++++++++++++++++++++++
->  4 files changed, 1612 insertions(+)
->  create mode 100644 drivers/media/i2c/gc2145.c
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 90f13281d297..c595335812c7 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8600,6 +8600,14 @@ F:	kernel/futex/*
->  F:	tools/perf/bench/futex*
->  F:	tools/testing/selftests/futex/
->
-> +GALAXYCORE GC2145 SENSOR DRIVER
-> +M:	Alain Volmat <alain.volmat@foss.st.com>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +T:	git git://linuxtv.org/media_tree.git
-> +F:	Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml
-> +F:	drivers/media/i2c/gc2145.c
-> +
->  GATEWORKS SYSTEM CONTROLLER (GSC) DRIVER
->  M:	Tim Harvey <tharvey@gateworks.com>
->  S:	Maintained
-> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
-> index 74ff833ff48c..78e5c8cbf916 100644
-> --- a/drivers/media/i2c/Kconfig
-> +++ b/drivers/media/i2c/Kconfig
-> @@ -50,6 +50,18 @@ config VIDEO_AR0521
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called ar0521.
->
-> +config VIDEO_GC2145
-> +	tristate "GalaxyCore GC2145 sensor support"
-> +	depends on I2C && VIDEO_DEV
-> +	select VIDEO_V4L2_SUBDEV_API
-> +	select V4L2_FWNODE
-
-The top-level menu already:
-
-	select V4L2_FWNODE
-	select VIDEO_V4L2_SUBDEV_API
-
-you can drop these two.
-
-> +	help
-> +	  This is a V4L2 sensor-level driver for GalaxyCore GC2145
-> +	  2 Mpixel camera.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called gc2145.
-> +
->  config VIDEO_HI556
->  	tristate "Hynix Hi-556 sensor support"
->  	help
-> diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
-> index 80b00d39b48f..e74eded89428 100644
-> --- a/drivers/media/i2c/Makefile
-> +++ b/drivers/media/i2c/Makefile
-> @@ -36,6 +36,7 @@ obj-$(CONFIG_VIDEO_DW9719) += dw9719.o
->  obj-$(CONFIG_VIDEO_DW9768) += dw9768.o
->  obj-$(CONFIG_VIDEO_DW9807_VCM) += dw9807-vcm.o
->  obj-$(CONFIG_VIDEO_ET8EK8) += et8ek8/
-> +obj-$(CONFIG_VIDEO_GC2145) += gc2145.o
->  obj-$(CONFIG_VIDEO_HI556) += hi556.o
->  obj-$(CONFIG_VIDEO_HI846) += hi846.o
->  obj-$(CONFIG_VIDEO_HI847) += hi847.o
-> diff --git a/drivers/media/i2c/gc2145.c b/drivers/media/i2c/gc2145.c
-> new file mode 100644
-> index 000000000000..d0b065011732
-> --- /dev/null
-> +++ b/drivers/media/i2c/gc2145.c
-> @@ -0,0 +1,1591 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * A V4L2 driver for Galaxycore GC2145 camera.
-> + * Copyright (C) 2022, STMicroelectronics SA
-
-2023 ?
-
-> + *
-> + * Inspired from the imx219.c driver
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/units.h>
-
-I would have added an empy line here. Up to you
-
-> +#include <media/mipi-csi2.h>
-> +#include <media/v4l2-ctrls.h>
-> +#include <media/v4l2-device.h>
-> +#include <media/v4l2-event.h>
-> +#include <media/v4l2-fwnode.h>
-> +#include <media/v4l2-mediabus.h>
-> +
-> +/* Chip ID */
-> +#define GC2145_CHIP_ID		0x2145
-> +
-> +/* Page 0 */
-> +#define GC2145_REG_HBLANK_HIGH	0x05
-> +#define GC2145_REG_HBLANK_LOW	0x06
-> +#define GC2145_REG_VBLANK_HIGH	0x07
-> +#define GC2145_REG_VBLANK_LOW	0x08
-> +#define GC2145_REG_ROW_START_HIGH	0x09
-> +#define GC2145_REG_ROW_START_LOW	0x0a
-> +#define GC2145_REG_COL_START_HIGH	0x0b
-> +#define GC2145_REG_COL_START_LOW	0x0c
-> +#define GC2145_REG_WIN_HEIGHT_HIGH	0x0d
-> +#define GC2145_REG_WIN_HEIGHT_LOW	0x0e
-> +#define GC2145_REG_WIN_WIDTH_HIGH	0x0f
-> +#define GC2145_REG_WIN_WIDTH_LOW	0x10
-> +#define GC2145_REG_ANALOG_MODE1	0x17
-> +#define GC2145_REG_OUTPUT_FMT	0x84
-> +#define GC2145_REG_SYNC_MODE	0x86
-> +#define GC2145_SYNC_MODE_COL_SWITCH	BIT(4)
-> +#define GC2145_SYNC_MODE_ROW_SWITCH	BIT(5)
-> +#define GC2145_REG_DEBUG_MODE2	0x8c
-> +#define GC2145_REG_DEBUG_MODE3	0x8d
-> +#define GC2145_REG_CROP_ENABLE	0x90
-> +#define GC2145_REG_CROP_Y_HIGH	0x91
-> +#define GC2145_REG_CROP_Y_LOW	0x92
-> +#define GC2145_REG_CROP_X_HIGH	0x93
-> +#define GC2145_REG_CROP_X_LOW	0x94
-> +#define GC2145_REG_CROP_HEIGHT_HIGH	0x95
-> +#define GC2145_REG_CROP_HEIGHT_LOW	0x96
-> +#define GC2145_REG_CROP_WIDTH_HIGH	0x97
-> +#define GC2145_REG_CROP_WIDTH_LOW	0x98
-> +#define GC2145_REG_CHIP_ID	0xf0
-> +#define GC2145_REG_PAD_IO	0xf2
-> +#define GC2145_REG_PAGE_SELECT	0xfe
-> +/* Page 3 */
-> +#define GC2145_REG_FIFO_FULL_LVL_LOW	0x04
-> +#define GC2145_REG_FIFO_FULL_LVL_HIGH	0x05
-> +#define GC2145_REG_MIPI_DT	0x11
-> +#define GC2145_REG_LWC_LOW	0x12
-> +#define GC2145_REG_LWC_HIGH	0x13
-> +#define GC2145_REG_FIFO_GATE_MODE	0x17
-> +
-> +/* External clock frequency is 24.0MHz */
-> +#define GC2145_XCLK_FREQ	(24 * HZ_PER_MHZ)
-> +
-> +#define GC2145_NATIVE_WIDTH	1616U
-> +#define GC2145_NATIVE_HEIGHT	1232U
-> +
-> +struct gc2145_reg {
-> +	unsigned char address;
-> +	unsigned char val;
-> +};
-> +
-> +struct gc2145_reg_list {
-> +	unsigned int num_of_regs;
-> +	const struct gc2145_reg *regs;
-> +};
-> +
-> +/**
-> + * struct gc2145_mode - GC2145 mode description
-> + * @width: frame width (in pixel)
-> + * @height: frame height (in pixel)
-> + * @frame_interval: interval (fractionnal) between 2 frames
-> + * @reg_list: registers config sequence to enter into the mode
-> + * @pixel_rate: pixel_rate associated with the mode
-> + * @crop: window area captured
-> + * @hblank: horizontal blanking setting of this mode
-> + */
-> +struct gc2145_mode {
-> +	unsigned int width;
-> +	unsigned int height;
-> +	struct v4l2_fract frame_interval;
-> +	struct gc2145_reg_list reg_list;
-> +	unsigned long pixel_rate;
-> +	struct v4l2_rect crop;
-> +	u32 hblank;
-> +};
-> +
-> +static const struct gc2145_reg common_regs[] = {
-> +	{GC2145_REG_PAGE_SELECT, 0x00},
-> +	/* SH Delay */
-> +	{0x12, 0x2e},
-> +	/* Flip */
-> +	{GC2145_REG_ANALOG_MODE1, 0x14},
-> +	/* Analog Conf */
-> +	{0x18, 0x22}, {0x19, 0x0e}, {0x1a, 0x01}, {0x1b, 0x4b},
-> +	{0x1c, 0x07}, {0x1d, 0x10}, {0x1e, 0x88}, {0x1f, 0x78},
-> +	{0x20, 0x03}, {0x21, 0x40}, {0x22, 0xa0}, {0x24, 0x16},
-> +	{0x25, 0x01}, {0x26, 0x10}, {0x2d, 0x60}, {0x30, 0x01},
-> +	{0x31, 0x90}, {0x33, 0x06}, {0x34, 0x01},
-> +	{0x80, 0x7f}, {0x81, 0x26}, {0x82, 0xfa}, {0x83, 0x00},
-> +	{0x84, 0x02}, {0x86, 0x02}, {0x88, 0x03}, {0x89, 0x03},
-> +	{0x85, 0x08}, {0x8a, 0x00}, {0x8b, 0x00}, {0xb0, 0x55},
-> +	{0xc3, 0x00}, {0xc4, 0x80}, {0xc5, 0x90}, {0xc6, 0x3b},
-> +	{0xc7, 0x46},
-> +	/* BLK */
-> +	{GC2145_REG_PAGE_SELECT, 0x00},
-> +	{0x40, 0x42}, {0x41, 0x00}, {0x43, 0x5b}, {0x5e, 0x00},
-> +	{0x5f, 0x00}, {0x60, 0x00}, {0x61, 0x00}, {0x62, 0x00},
-> +	{0x63, 0x00}, {0x64, 0x00}, {0x65, 0x00}, {0x66, 0x20},
-> +	{0x67, 0x20}, {0x68, 0x20}, {0x69, 0x20}, {0x76, 0x00},
-> +	{0x6a, 0x08}, {0x6b, 0x08}, {0x6c, 0x08}, {0x6d, 0x08},
-> +	{0x6e, 0x08}, {0x6f, 0x08}, {0x70, 0x08}, {0x71, 0x08},
-> +	{0x76, 0x00}, {0x72, 0xf0}, {0x7e, 0x3c}, {0x7f, 0x00},
-> +	{GC2145_REG_PAGE_SELECT, 0x02},
-> +	{0x48, 0x15}, {0x49, 0x00}, {0x4b, 0x0b},
-> +	/* AEC */
-> +	{GC2145_REG_PAGE_SELECT, 0x00},
-> +	{0x03, 0x04}, {0x04, 0xe2},
-> +	{GC2145_REG_PAGE_SELECT, 0x01},
-> +	{0x01, 0x04}, {0x02, 0xc0}, {0x03, 0x04}, {0x04, 0x90},
-> +	{0x05, 0x30}, {0x06, 0x90}, {0x07, 0x30}, {0x08, 0x80},
-> +	{0x09, 0x00}, {0x0a, 0x82}, {0x0b, 0x11}, {0x0c, 0x10},
-> +	{0x11, 0x10}, {0x13, 0x7b}, {0x17, 0x00}, {0x1c, 0x11},
-> +	{0x1e, 0x61}, {0x1f, 0x35}, {0x20, 0x40}, {0x22, 0x40},
-> +	{0x23, 0x20},
-> +	{GC2145_REG_PAGE_SELECT, 0x02},
-> +	{0x0f, 0x04},
-> +	{GC2145_REG_PAGE_SELECT, 0x01},
-> +	{0x12, 0x35}, {0x15, 0xb0}, {0x10, 0x31}, {0x3e, 0x28},
-> +	{0x3f, 0xb0}, {0x40, 0x90}, {0x41, 0x0f},
-> +	/* INTPEE */
-> +	{GC2145_REG_PAGE_SELECT, 0x02},
-> +	{0x90, 0x6c}, {0x91, 0x03}, {0x92, 0xcb}, {0x94, 0x33},
-> +	{0x95, 0x84}, {0x97, 0x65}, {0xa2, 0x11},
-> +	/* DNDD */
-> +	{GC2145_REG_PAGE_SELECT, 0x02},
-> +	{0x80, 0xc1}, {0x81, 0x08}, {0x82, 0x05}, {0x83, 0x08},
-> +	{0x84, 0x0a}, {0x86, 0xf0}, {0x87, 0x50}, {0x88, 0x15},
-> +	{0x89, 0xb0}, {0x8a, 0x30}, {0x8b, 0x10},
-> +	/* ASDE */
-> +	{GC2145_REG_PAGE_SELECT, 0x01},
-> +	{0x21, 0x04},
-> +	{GC2145_REG_PAGE_SELECT, 0x02},
-> +	{0xa3, 0x50}, {0xa4, 0x20}, {0xa5, 0x40}, {0xa6, 0x80},
-> +	{0xab, 0x40}, {0xae, 0x0c}, {0xb3, 0x46}, {0xb4, 0x64},
-> +	{0xb6, 0x38}, {0xb7, 0x01}, {0xb9, 0x2b}, {0x3c, 0x04},
-> +	{0x3d, 0x15}, {0x4b, 0x06}, {0x4c, 0x20},
-> +	/* Gamma */
-> +	{GC2145_REG_PAGE_SELECT, 0x02},
-> +	{0x10, 0x09}, {0x11, 0x0d}, {0x12, 0x13}, {0x13, 0x19},
-> +	{0x14, 0x27}, {0x15, 0x37}, {0x16, 0x45}, {0x17, 0x53},
-> +	{0x18, 0x69}, {0x19, 0x7d}, {0x1a, 0x8f}, {0x1b, 0x9d},
-> +	{0x1c, 0xa9}, {0x1d, 0xbd}, {0x1e, 0xcd}, {0x1f, 0xd9},
-> +	{0x20, 0xe3}, {0x21, 0xea}, {0x22, 0xef}, {0x23, 0xf5},
-> +	{0x24, 0xf9}, {0x25, 0xff},
-> +	{GC2145_REG_PAGE_SELECT, 0x00},
-> +	{0xc6, 0x20}, {0xc7, 0x2b},
-> +	/* Gamma 2 */
-> +	{GC2145_REG_PAGE_SELECT, 0x02},
-> +	{0x26, 0x0f}, {0x27, 0x14}, {0x28, 0x19}, {0x29, 0x1e},
-> +	{0x2a, 0x27}, {0x2b, 0x33}, {0x2c, 0x3b}, {0x2d, 0x45},
-> +	{0x2e, 0x59}, {0x2f, 0x69}, {0x30, 0x7c}, {0x31, 0x89},
-> +	{0x32, 0x98}, {0x33, 0xae}, {0x34, 0xc0}, {0x35, 0xcf},
-> +	{0x36, 0xda}, {0x37, 0xe2}, {0x38, 0xe9}, {0x39, 0xf3},
-> +	{0x3a, 0xf9}, {0x3b, 0xff},
-> +	/* YCP */
-> +	{GC2145_REG_PAGE_SELECT, 0x02},
-> +	{0xd1, 0x32}, {0xd2, 0x32}, {0xd3, 0x40}, {0xd6, 0xf0},
-> +	{0xd7, 0x10}, {0xd8, 0xda}, {0xdd, 0x14}, {0xde, 0x86},
-> +	{0xed, 0x80}, {0xee, 0x00}, {0xef, 0x3f}, {0xd8, 0xd8},
-> +	/* ABS */
-> +	{GC2145_REG_PAGE_SELECT, 0x01},
-> +	{0x9f, 0x40},
-> +	/* LSC */
-> +	{GC2145_REG_PAGE_SELECT, 0x01},
-> +	{0xc2, 0x14}, {0xc3, 0x0d}, {0xc4, 0x0c}, {0xc8, 0x15},
-> +	{0xc9, 0x0d}, {0xca, 0x0a}, {0xbc, 0x24}, {0xbd, 0x10},
-> +	{0xbe, 0x0b}, {0xb6, 0x25}, {0xb7, 0x16}, {0xb8, 0x15},
-> +	{0xc5, 0x00}, {0xc6, 0x00}, {0xc7, 0x00}, {0xcb, 0x00},
-> +	{0xcc, 0x00}, {0xcd, 0x00}, {0xbf, 0x07}, {0xc0, 0x00},
-> +	{0xc1, 0x00}, {0xb9, 0x00}, {0xba, 0x00}, {0xbb, 0x00},
-> +	{0xaa, 0x01}, {0xab, 0x01}, {0xac, 0x00}, {0xad, 0x05},
-> +	{0xae, 0x06}, {0xaf, 0x0e}, {0xb0, 0x0b}, {0xb1, 0x07},
-> +	{0xb2, 0x06}, {0xb3, 0x17}, {0xb4, 0x0e}, {0xb5, 0x0e},
-> +	{0xd0, 0x09}, {0xd1, 0x00}, {0xd2, 0x00}, {0xd6, 0x08},
-> +	{0xd7, 0x00}, {0xd8, 0x00}, {0xd9, 0x00}, {0xda, 0x00},
-> +	{0xdb, 0x00}, {0xd3, 0x0a}, {0xd4, 0x00}, {0xd5, 0x00},
-> +	{0xa4, 0x00}, {0xa5, 0x00}, {0xa6, 0x77}, {0xa7, 0x77},
-> +	{0xa8, 0x77}, {0xa9, 0x77}, {0xa1, 0x80}, {0xa2, 0x80},
-> +	{GC2145_REG_PAGE_SELECT, 0x01},
-> +	{0xdf, 0x0d}, {0xdc, 0x25}, {0xdd, 0x30}, {0xe0, 0x77},
-> +	{0xe1, 0x80}, {0xe2, 0x77}, {0xe3, 0x90}, {0xe6, 0x90},
-> +	{0xe7, 0xa0}, {0xe8, 0x90}, {0xe9, 0xa0},
-> +	/* AWB */
-> +	/* measure window */
-> +	{GC2145_REG_PAGE_SELECT, 0x00},
-> +	{0xec, 0x06}, {0xed, 0x04}, {0xee, 0x60}, {0xef, 0x90},
-> +	{0xb6, 0x01},
-> +	{GC2145_REG_PAGE_SELECT, 0x01},
-> +	{0x4f, 0x00}, {0x4f, 0x00}, {0x4b, 0x01}, {0x4f, 0x00},
-> +	{0x4c, 0x01}, {0x4d, 0x71}, {0x4e, 0x01},
-> +	{0x4c, 0x01}, {0x4d, 0x91}, {0x4e, 0x01},
-> +	{0x4c, 0x01}, {0x4d, 0x70}, {0x4e, 0x01},
-> +	{0x4c, 0x01}, {0x4d, 0x90}, {0x4e, 0x02},
-> +	{0x4c, 0x01}, {0x4d, 0xb0}, {0x4e, 0x02},
-> +	{0x4c, 0x01}, {0x4d, 0x8f}, {0x4e, 0x02},
-> +	{0x4c, 0x01}, {0x4d, 0x6f}, {0x4e, 0x02},
-> +	{0x4c, 0x01}, {0x4d, 0xaf}, {0x4e, 0x02},
-> +	{0x4c, 0x01}, {0x4d, 0xd0}, {0x4e, 0x02},
-> +	{0x4c, 0x01}, {0x4d, 0xf0}, {0x4e, 0x02},
-> +	{0x4c, 0x01}, {0x4d, 0xcf}, {0x4e, 0x02},
-> +	{0x4c, 0x01}, {0x4d, 0xef}, {0x4e, 0x02},
-> +	{0x4c, 0x01}, {0x4d, 0x6e}, {0x4e, 0x03},
-> +	{0x4c, 0x01}, {0x4d, 0x8e}, {0x4e, 0x03},
-> +	{0x4c, 0x01}, {0x4d, 0xae}, {0x4e, 0x03},
-> +	{0x4c, 0x01}, {0x4d, 0xce}, {0x4e, 0x03},
-> +	{0x4c, 0x01}, {0x4d, 0x4d}, {0x4e, 0x03},
-> +	{0x4c, 0x01}, {0x4d, 0x6d}, {0x4e, 0x03},
-> +	{0x4c, 0x01}, {0x4d, 0x8d}, {0x4e, 0x03},
-> +	{0x4c, 0x01}, {0x4d, 0xad}, {0x4e, 0x03},
-> +	{0x4c, 0x01}, {0x4d, 0xcd}, {0x4e, 0x03},
-> +	{0x4c, 0x01}, {0x4d, 0x4c}, {0x4e, 0x03},
-> +	{0x4c, 0x01}, {0x4d, 0x6c}, {0x4e, 0x03},
-> +	{0x4c, 0x01}, {0x4d, 0x8c}, {0x4e, 0x03},
-> +	{0x4c, 0x01}, {0x4d, 0xac}, {0x4e, 0x03},
-> +	{0x4c, 0x01}, {0x4d, 0xcc}, {0x4e, 0x03},
-> +	{0x4c, 0x01}, {0x4d, 0xcb}, {0x4e, 0x03},
-> +	{0x4c, 0x01}, {0x4d, 0x4b}, {0x4e, 0x03},
-> +	{0x4c, 0x01}, {0x4d, 0x6b}, {0x4e, 0x03},
-> +	{0x4c, 0x01}, {0x4d, 0x8b}, {0x4e, 0x03},
-> +	{0x4c, 0x01}, {0x4d, 0xab}, {0x4e, 0x03},
-> +	{0x4c, 0x01}, {0x4d, 0x8a}, {0x4e, 0x04},
-> +	{0x4c, 0x01}, {0x4d, 0xaa}, {0x4e, 0x04},
-> +	{0x4c, 0x01}, {0x4d, 0xca}, {0x4e, 0x04},
-> +	{0x4c, 0x01}, {0x4d, 0xca}, {0x4e, 0x04},
-> +	{0x4c, 0x01}, {0x4d, 0xc9}, {0x4e, 0x04},
-> +	{0x4c, 0x01}, {0x4d, 0x8a}, {0x4e, 0x04},
-> +	{0x4c, 0x01}, {0x4d, 0x89}, {0x4e, 0x04},
-> +	{0x4c, 0x01}, {0x4d, 0xa9}, {0x4e, 0x04},
-> +	{0x4c, 0x02}, {0x4d, 0x0b}, {0x4e, 0x05},
-> +	{0x4c, 0x02}, {0x4d, 0x0a}, {0x4e, 0x05},
-> +	{0x4c, 0x01}, {0x4d, 0xeb}, {0x4e, 0x05},
-> +	{0x4c, 0x01}, {0x4d, 0xea}, {0x4e, 0x05},
-> +	{0x4c, 0x02}, {0x4d, 0x09}, {0x4e, 0x05},
-> +	{0x4c, 0x02}, {0x4d, 0x29}, {0x4e, 0x05},
-> +	{0x4c, 0x02}, {0x4d, 0x2a}, {0x4e, 0x05},
-> +	{0x4c, 0x02}, {0x4d, 0x4a}, {0x4e, 0x05},
-> +	{0x4c, 0x02}, {0x4d, 0x8a}, {0x4e, 0x06},
-> +	{0x4c, 0x02}, {0x4d, 0x49}, {0x4e, 0x06},
-> +	{0x4c, 0x02}, {0x4d, 0x69}, {0x4e, 0x06},
-> +	{0x4c, 0x02}, {0x4d, 0x89}, {0x4e, 0x06},
-> +	{0x4c, 0x02}, {0x4d, 0xa9}, {0x4e, 0x06},
-> +	{0x4c, 0x02}, {0x4d, 0x48}, {0x4e, 0x06},
-> +	{0x4c, 0x02}, {0x4d, 0x68}, {0x4e, 0x06},
-> +	{0x4c, 0x02}, {0x4d, 0x69}, {0x4e, 0x06},
-> +	{0x4c, 0x02}, {0x4d, 0xca}, {0x4e, 0x07},
-> +	{0x4c, 0x02}, {0x4d, 0xc9}, {0x4e, 0x07},
-> +	{0x4c, 0x02}, {0x4d, 0xe9}, {0x4e, 0x07},
-> +	{0x4c, 0x03}, {0x4d, 0x09}, {0x4e, 0x07},
-> +	{0x4c, 0x02}, {0x4d, 0xc8}, {0x4e, 0x07},
-> +	{0x4c, 0x02}, {0x4d, 0xe8}, {0x4e, 0x07},
-> +	{0x4c, 0x02}, {0x4d, 0xa7}, {0x4e, 0x07},
-> +	{0x4c, 0x02}, {0x4d, 0xc7}, {0x4e, 0x07},
-> +	{0x4c, 0x02}, {0x4d, 0xe7}, {0x4e, 0x07},
-> +	{0x4c, 0x03}, {0x4d, 0x07}, {0x4e, 0x07},
-> +	{0x4f, 0x01},
-> +	{0x50, 0x80}, {0x51, 0xa8}, {0x52, 0x47}, {0x53, 0x38},
-> +	{0x54, 0xc7}, {0x56, 0x0e}, {0x58, 0x08}, {0x5b, 0x00},
-> +	{0x5c, 0x74}, {0x5d, 0x8b}, {0x61, 0xdb}, {0x62, 0xb8},
-> +	{0x63, 0x86}, {0x64, 0xc0}, {0x65, 0x04}, {0x67, 0xa8},
-> +	{0x68, 0xb0}, {0x69, 0x00}, {0x6a, 0xa8}, {0x6b, 0xb0},
-> +	{0x6c, 0xaf}, {0x6d, 0x8b}, {0x6e, 0x50}, {0x6f, 0x18},
-> +	{0x73, 0xf0}, {0x70, 0x0d}, {0x71, 0x60}, {0x72, 0x80},
-> +	{0x74, 0x01}, {0x75, 0x01}, {0x7f, 0x0c}, {0x76, 0x70},
-> +	{0x77, 0x58}, {0x78, 0xa0}, {0x79, 0x5e}, {0x7a, 0x54},
-> +	{0x7b, 0x58},
-> +	/* CC */
-> +	{GC2145_REG_PAGE_SELECT, 0x02},
-> +	{0xc0, 0x01}, {0xc1, 0x44}, {0xc2, 0xfd}, {0xc3, 0x04},
-> +	{0xc4, 0xf0}, {0xc5, 0x48}, {0xc6, 0xfd}, {0xc7, 0x46},
-> +	{0xc8, 0xfd}, {0xc9, 0x02}, {0xca, 0xe0}, {0xcb, 0x45},
-> +	{0xcc, 0xec}, {0xcd, 0x48}, {0xce, 0xf0}, {0xcf, 0xf0},
-> +	{0xe3, 0x0c}, {0xe4, 0x4b}, {0xe5, 0xe0},
-> +	/* ABS */
-> +	{GC2145_REG_PAGE_SELECT, 0x01},
-> +	{0x9f, 0x40},
-> +	/* Dark sun */
-> +	{GC2145_REG_PAGE_SELECT, 0x02},
-> +	{0x40, 0xbf}, {0x46, 0xcf},
-> +};
-> +
-> +#define GC2145_640_480_PIXELRATE	(60 * HZ_PER_MHZ)
-> +static const struct gc2145_reg mode_640_480_regs[] = {
-> +	{GC2145_REG_PAGE_SELECT, 0xf0}, {GC2145_REG_PAGE_SELECT, 0xf0},
-> +	{GC2145_REG_PAGE_SELECT, 0xf0}, {0xfc, 0x06},
-> +	{0xf6, 0x00}, {0xf7, 0x1d}, {0xf8, 0x86}, {0xfa, 0x00},
-> +	{0xf9, 0x8e},
-> +	/* Disable PAD IO */
-> +	{GC2145_REG_PAD_IO, 0x00},
-> +	{GC2145_REG_PAGE_SELECT, 0x00},
-> +	/* Row/Col start - 0/0 */
-> +	{GC2145_REG_ROW_START_HIGH, 0x00}, {GC2145_REG_ROW_START_LOW, 0x00},
-> +	{GC2145_REG_COL_START_HIGH, 0x00}, {GC2145_REG_COL_START_LOW, 0x00},
-> +	/* Window size 1216/1618 */
-> +	{GC2145_REG_WIN_HEIGHT_HIGH, 0x04}, {GC2145_REG_WIN_HEIGHT_LOW, 0xc0},
-> +	{GC2145_REG_WIN_WIDTH_HIGH, 0x06}, {GC2145_REG_WIN_WIDTH_LOW, 0x52},
-> +	/* Scalar more */
-> +	{0xfd, 0x01}, {0xfa, 0x00},
-> +	/* Crop 640-480@0-0 */
-> +	{GC2145_REG_CROP_ENABLE, 0x01},
-> +	{GC2145_REG_CROP_Y_HIGH, 0x00}, {GC2145_REG_CROP_Y_LOW, 0x00},
-> +	{GC2145_REG_CROP_X_HIGH, 0x00}, {GC2145_REG_CROP_X_LOW, 0x00},
-> +	{GC2145_REG_CROP_HEIGHT_HIGH, 0x01}, {GC2145_REG_CROP_HEIGHT_LOW, 0xe0},
-> +	{GC2145_REG_CROP_WIDTH_HIGH, 0x02}, {GC2145_REG_CROP_WIDTH_LOW, 0x80},
-> +	/* Subsampling configuration */
-> +	{0x99, 0x55}, {0x9a, 0x06}, {0x9b, 0x01},
-> +	{0x9c, 0x23}, {0x9d, 0x00}, {0x9e, 0x00}, {0x9f, 0x01},
-> +	{0xa0, 0x23}, {0xa1, 0x00}, {0xa2, 0x00},
-> +	/* Framerate */
-> +	{GC2145_REG_PAGE_SELECT, 0x00},
-> +	{GC2145_REG_HBLANK_HIGH, 0x01}, {GC2145_REG_HBLANK_LOW, 0x30},
-> +	{GC2145_REG_VBLANK_HIGH, 0x00}, {GC2145_REG_VBLANK_LOW, 0x0c},
-> +	{GC2145_REG_PAGE_SELECT, 0x01},
-> +	/* AEC anti-flicker */
-> +	{0x25, 0x01}, {0x26, 0x75},
-> +	/* AEC exposure level 1-5 */
-> +	{0x27, 0x04}, {0x28, 0x5f}, {0x29, 0x04}, {0x2a, 0x5f},
-> +	{0x2b, 0x04}, {0x2c, 0x5f}, {0x2d, 0x04}, {0x2e, 0x5f},
-> +};
-> +
-> +#define GC2145_1280_720_PIXELRATE	(96 * HZ_PER_MHZ)
-> +static const struct gc2145_reg mode_1280_720_regs[] = {
-> +	{GC2145_REG_PAGE_SELECT, 0xf0}, {GC2145_REG_PAGE_SELECT, 0xf0},
-> +	{GC2145_REG_PAGE_SELECT, 0xf0}, {0xfc, 0x06},
-> +	{0xf6, 0x00}, {0xf7, 0x1d}, {0xf8, 0x83}, {0xfa, 0x00},
-> +	{0xf9, 0x8e},
-> +	/* Disable PAD IO */
-> +	{GC2145_REG_PAD_IO, 0x00},
-> +	{GC2145_REG_PAGE_SELECT, 0x00},
-> +	/* Row/Col start - 240/160 */
-> +	{GC2145_REG_ROW_START_HIGH, 0x00}, {GC2145_REG_ROW_START_LOW, 0xf0},
-> +	{GC2145_REG_COL_START_HIGH, 0x00}, {GC2145_REG_COL_START_LOW, 0xa0},
-> +	/* Window size 736/1296 */
-> +	{GC2145_REG_WIN_HEIGHT_HIGH, 0x02}, {GC2145_REG_WIN_HEIGHT_LOW, 0xe0},
-> +	{GC2145_REG_WIN_WIDTH_HIGH, 0x05}, {GC2145_REG_WIN_WIDTH_LOW, 0x10},
-> +	/* Crop 1280-720@0-0 */
-> +	{GC2145_REG_CROP_ENABLE, 0x01},
-> +	{GC2145_REG_CROP_Y_HIGH, 0x00}, {GC2145_REG_CROP_Y_LOW, 0x00},
-> +	{GC2145_REG_CROP_X_HIGH, 0x00}, {GC2145_REG_CROP_X_LOW, 0x00},
-> +	{GC2145_REG_CROP_HEIGHT_HIGH, 0x02}, {GC2145_REG_CROP_HEIGHT_LOW, 0xd0},
-> +	{GC2145_REG_CROP_WIDTH_HIGH, 0x05}, {GC2145_REG_CROP_WIDTH_LOW, 0x00},
-> +	/* Framerate */
-> +	{GC2145_REG_PAGE_SELECT, 0x00},
-> +	{GC2145_REG_HBLANK_HIGH, 0x01}, {GC2145_REG_HBLANK_LOW, 0x56},
-> +	{GC2145_REG_VBLANK_HIGH, 0x00}, {GC2145_REG_VBLANK_LOW, 0x11},
-> +	{GC2145_REG_PAGE_SELECT, 0x01},
-> +	/* AEC anti-flicker */
-> +	{0x25, 0x00}, {0x26, 0xe6},
-> +	/* AEC exposure level 1-5 */
-> +	{0x27, 0x02}, {0x28, 0xb2}, {0x29, 0x02}, {0x2a, 0xb2},
-> +	{0x2b, 0x02}, {0x2c, 0xb2}, {0x2d, 0x02}, {0x2e, 0xb2},
-> +};
-> +
-> +#define GC2145_1600_1200_PIXELRATE	(72 * HZ_PER_MHZ)
-> +static const struct gc2145_reg mode_1600_1200_regs[] = {
-> +	{GC2145_REG_PAGE_SELECT, 0xf0}, {GC2145_REG_PAGE_SELECT, 0xf0},
-> +	{GC2145_REG_PAGE_SELECT, 0xf0}, {0xfc, 0x06},
-> +	{0xf6, 0x00}, {0xf7, 0x1d}, {0xf8, 0x84}, {0xfa, 0x00},
-> +	{0xf9, 0x8e},
-> +	/* Disable PAD IO */
-> +	{GC2145_REG_PAD_IO, 0x00},
-> +	{GC2145_REG_PAGE_SELECT, 0x00},
-> +	/* Row/Col start - 0/0 */
-> +	{GC2145_REG_ROW_START_HIGH, 0x00}, {GC2145_REG_ROW_START_LOW, 0x00},
-> +	{GC2145_REG_COL_START_HIGH, 0x00}, {GC2145_REG_COL_START_LOW, 0x00},
-> +	/* Window size: 1216/1618 */
-> +	{GC2145_REG_WIN_HEIGHT_HIGH, 0x04}, {GC2145_REG_WIN_HEIGHT_LOW, 0xc0},
-> +	{GC2145_REG_WIN_WIDTH_HIGH, 0x06}, {GC2145_REG_WIN_WIDTH_LOW, 0x52},
-> +	/* Crop 1600-1200@0-0 */
-> +	{GC2145_REG_CROP_ENABLE, 0x01},
-> +	{GC2145_REG_CROP_Y_HIGH, 0x00}, {GC2145_REG_CROP_Y_LOW, 0x00},
-> +	{GC2145_REG_CROP_X_HIGH, 0x00}, {GC2145_REG_CROP_X_LOW, 0x00},
-> +	{GC2145_REG_CROP_HEIGHT_HIGH, 0x04}, {GC2145_REG_CROP_HEIGHT_LOW, 0xb0},
-> +	{GC2145_REG_CROP_WIDTH_HIGH, 0x06}, {GC2145_REG_CROP_WIDTH_LOW, 0x40},
-> +	/* Framerate */
-> +	{GC2145_REG_PAGE_SELECT, 0x00},
-> +	{GC2145_REG_HBLANK_HIGH, 0x01}, {GC2145_REG_HBLANK_LOW, 0x56},
-> +	{GC2145_REG_VBLANK_HIGH, 0x00}, {GC2145_REG_VBLANK_LOW, 0x10},
-> +	{GC2145_REG_PAGE_SELECT, 0x01},
-> +	/* AEC anti-flicker */
-> +	{0x25, 0x00}, {0x26, 0xfa},
-> +	/* AEC exposure level 1-5 */
-> +	{0x27, 0x04}, {0x28, 0xe2}, {0x29, 0x04}, {0x2a, 0xe2},
-> +	{0x2b, 0x04}, {0x2c, 0xe2}, {0x2d, 0x04}, {0x2e, 0xe2},
-> +};
-> +
-> +/* Regulators supplies */
-> +static const char * const gc2145_supply_name[] = {
-> +	"IOVDD", /* Digital I/O (1.7-3V) suppply */
-> +	"AVDD",  /* Analog (2.7-3V) supply */
-> +	"DVDD",  /* Digital Core (1.7-1.9V) supply */
-> +};
-> +
-> +#define GC2145_NUM_SUPPLIES ARRAY_SIZE(gc2145_supply_name)
-> +
-> +/* Mode configs */
-> +#define GC2145_MODE_640X480	0
-> +#define GC2145_MODE_1280X720	1
-> +#define GC2145_MODE_1600X1200	2
-> +static const struct gc2145_mode supported_modes[] = {
-> +	{
-> +		/* 640x480 30fps mode */
-> +		.width = 640,
-> +		.height = 480,
-> +		.frame_interval = {
-> +			.numerator = 1,
-> +			.denominator = 30,
-> +		},
-> +		.reg_list = {
-> +			.num_of_regs = ARRAY_SIZE(mode_640_480_regs),
-> +			.regs = mode_640_480_regs,
-> +		},
-> +		.pixel_rate = GC2145_640_480_PIXELRATE,
-> +		.crop = {
-> +			.top = 0,
-> +			.left = 0,
-> +			.width = 640,
-> +			.height = 480,
-> +		},
-> +		.hblank = 0x130,
-> +	},
-> +	{
-> +		/* 1280x720 30fps mode */
-> +		.width = 1280,
-> +		.height = 720,
-> +		.frame_interval = {
-> +			.numerator = 1,
-> +			.denominator = 30,
-> +		},
-> +		.reg_list = {
-> +			.num_of_regs = ARRAY_SIZE(mode_1280_720_regs),
-> +			.regs = mode_1280_720_regs,
-> +		},
-> +		.pixel_rate = GC2145_1280_720_PIXELRATE,
-> +		.crop = {
-> +			.top = 160,
-> +			.left = 240,
-> +			.width = 1280,
-> +			.height = 720,
-> +		},
-> +		.hblank = 0x156,
-> +	},
-> +	{
-> +		/* 1600x1200 20fps mode */
-> +		.width = 1600,
-> +		.height = 1200,
-> +		.frame_interval = {
-> +			.numerator = 1,
-> +			.denominator = 20,
-> +		},
-> +		.reg_list = {
-> +			.num_of_regs = ARRAY_SIZE(mode_1600_1200_regs),
-> +			.regs = mode_1600_1200_regs,
-> +		},
-> +		.pixel_rate = GC2145_1600_1200_PIXELRATE,
-> +		.crop = {
-> +			.top = 0,
-> +			.left = 0,
-> +			.width = 1600,
-> +			.height = 1200,
-> +		},
-> +		.hblank = 0x156,
-> +	},
-> +};
-> +
-> +/**
-> + * struct gc2145_format - GC2145 pixel format description
-> + * @code: media bus (MBUS) associated code
-> + * @colorspace: V4L2 colospace
-> + * @datatype: MIPI CSI2 data type
-> + * @output_fmt: GC2145 output format
-> + * @row_col_switch: control of GC2145 row/col switch feature
-> + */
-> +struct gc2145_format {
-> +	unsigned int code;
-> +	unsigned int colorspace;
-> +	unsigned char datatype;
-> +	unsigned char output_fmt;
-> +	unsigned char row_col_switch;
-
-Never initialized in the supported_formats[] list. Is this intentional ?
-
-> +};
-> +
-> +/* All supported formats */
-> +#define GC2145_DEFAULT_MBUS_FORMAT	MEDIA_BUS_FMT_YUYV8_2X8
-
-Seems like this is not used and you use MEDIA_BUS_FMT_RGB565_2X8_BE
-in init_cfg()
-
-> +static const struct gc2145_format supported_formats[] = {
-> +	{
-> +		.code		= MEDIA_BUS_FMT_UYVY8_2X8,
-> +		.colorspace	= V4L2_COLORSPACE_SRGB,
-> +		.datatype	= MIPI_CSI2_DT_YUV422_8B,
-> +		.output_fmt	= 0x00,
-> +	},
-> +	{
-> +		.code		= MEDIA_BUS_FMT_VYUY8_2X8,
-> +		.colorspace	= V4L2_COLORSPACE_SRGB,
-> +		.datatype	= MIPI_CSI2_DT_YUV422_8B,
-> +		.output_fmt	= 0x01,
-> +	},
-> +	{
-> +		.code		= MEDIA_BUS_FMT_YUYV8_2X8,
-> +		.colorspace	= V4L2_COLORSPACE_SRGB,
-> +		.datatype	= MIPI_CSI2_DT_YUV422_8B,
-> +		.output_fmt	= 0x02,
-> +	},
-> +	{
-> +		.code		= MEDIA_BUS_FMT_YVYU8_2X8,
-> +		.colorspace	= V4L2_COLORSPACE_SRGB,
-> +		.datatype	= MIPI_CSI2_DT_YUV422_8B,
-> +		.output_fmt	= 0x03,
-> +	},
-> +	{
-> +		.code		= MEDIA_BUS_FMT_RGB565_2X8_BE,
-> +		.colorspace	= V4L2_COLORSPACE_SRGB,
-> +		.datatype	= MIPI_CSI2_DT_RGB565,
-> +		.output_fmt	= 0x06,
-> +	},
-> +};
-> +
-> +struct gc2145_ctrls {
-> +	struct v4l2_ctrl_handler handler;
-> +	struct v4l2_ctrl *pixel_rate;
-> +	struct v4l2_ctrl *hblank;
-> +	struct v4l2_ctrl *test_pattern;
-> +	struct v4l2_ctrl *hflip;
-> +	struct v4l2_ctrl *vflip;
-> +};
-> +
-> +struct gc2145 {
-> +	struct v4l2_subdev sd;
-> +	struct media_pad pad;
-> +
-> +	struct clk *xclk;
-> +
-> +	struct gpio_desc *reset_gpio;
-> +	struct gpio_desc *powerdown_gpio;
-> +	struct regulator_bulk_data supplies[GC2145_NUM_SUPPLIES];
-> +
-> +	/* V4L2 controls */
-> +	struct gc2145_ctrls ctrls;
-> +
-> +	/* Current mode */
-> +	const struct gc2145_mode *mode;
-> +
-> +	/* Streaming on/off */
-> +	bool streaming;
-> +};
-> +
-> +static inline struct gc2145 *to_gc2145(struct v4l2_subdev *_sd)
-> +{
-> +	return container_of(_sd, struct gc2145, sd);
-> +}
-> +
-> +static inline struct v4l2_subdev *ctrl_to_sd(struct v4l2_ctrl *ctrl)
-> +{
-> +	return &container_of(ctrl->handler, struct gc2145,
-> +			     ctrls.handler)->sd;
-> +}
-> +
-> +static int gc2145_read_reg(struct gc2145 *gc2145, u8 addr, u8 *data,
-> +			   int data_size)
-> +{
-> +	struct i2c_client *client = v4l2_get_subdevdata(&gc2145->sd);
-> +	struct i2c_msg msg[2];
-> +	int ret;
-> +
-> +	msg[0].addr = client->addr;
-> +	msg[0].flags = client->flags;
-> +	msg[0].buf = &addr;
-> +	msg[0].len = 1;
-> +
-> +	msg[1].addr = client->addr;
-> +	msg[1].flags = client->flags | I2C_M_RD;
-> +	msg[1].buf = data;
-> +	msg[1].len = data_size;
-> +
-> +	ret = i2c_transfer(client->adapter, msg, 2);
-> +	if (ret < 0) {
-> +		dev_err(&client->dev, "%s: error %d: start_index=%x, data_size=%d\n",
-> +			__func__, ret, (u32)addr, data_size);
-> +		return ret;
-> +	}
-> +
-> +	dev_dbg(&client->dev, "[rd %02x] => %*ph\n", (u32)addr, data_size,
-> +		data);
-> +
-> +	return 0;
-> +}
-> +
-> +static int gc2145_write_reg(struct gc2145 *gc2145, u8 addr, u8 data)
-> +{
-> +	struct i2c_client *client = v4l2_get_subdevdata(&gc2145->sd);
-> +	struct i2c_msg msg;
-> +	u8 buf[] = { addr, data };
-> +	int ret;
-> +
-> +	msg.addr = client->addr;
-> +	msg.flags = client->flags;
-> +	msg.buf = buf;
-> +	msg.len = sizeof(buf);
-> +
-> +	dev_dbg(&client->dev, "[wr %02x] <= %02xh\n", (u32)addr, data);
-> +
-> +	ret = i2c_transfer(client->adapter, &msg, 1);
-> +	if (ret < 0) {
-> +		dev_err(&client->dev, "%s: error %d: addr=%x, data=%02xh\n",
-> +			__func__, ret, (u32)addr, data);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int gc2145_mod_reg(struct gc2145 *gc2145, u16 reg, u8 mask, u8 val)
-> +{
-> +	u8 readval;
-> +	int ret;
-> +
-> +	ret = gc2145_read_reg(gc2145, reg, &readval, 1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	readval &= ~mask;
-> +	val &= mask;
-> +	val |= readval;
-> +
-> +	return gc2145_write_reg(gc2145, reg, val);
-> +}
-> +
-> +/* Write a list of registers */
-> +static int gc2145_write_regs(struct gc2145 *gc2145,
-> +			     const struct gc2145_reg *regs, u32 len)
-> +{
-> +	unsigned int i;
-> +	int ret;
-> +
-> +	for (i = 0; i < len; i++) {
-> +		ret = gc2145_write_reg(gc2145, regs[i].address, regs[i].val);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-
-From a quick look at the documentation, this sensor seems to be
-compatible with MIPI CCI. The newly merged CCI helpers would provide
-read/write functions for you. If possible I would suggest to use them
-
-> +
-> +static const struct gc2145_format *
-> +gc2145_get_format_code(struct gc2145 *gc2145, u32 code)
-> +{
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(supported_formats); i++)
-> +		if (supported_formats[i].code == code)
-> +			break;
-> +
-> +	if (i >= ARRAY_SIZE(supported_formats))
-> +		i = 0;
-> +
-> +	return &supported_formats[i];
-> +}
-> +
-> +static void gc2145_update_pad_format(struct gc2145 *gc2145,
-> +				     const struct gc2145_mode *mode,
-> +				     struct v4l2_mbus_framefmt *fmt, u32 code)
-> +{
-> +	fmt->code = code;
-> +	fmt->width = mode->width;
-> +	fmt->height = mode->height;
-> +	fmt->field = V4L2_FIELD_NONE;
-> +	fmt->colorspace = V4L2_COLORSPACE_SRGB;
-> +	fmt->ycbcr_enc = V4L2_MAP_YCBCR_ENC_DEFAULT(fmt->colorspace);
-> +	fmt->quantization = V4L2_MAP_QUANTIZATION_DEFAULT(true, fmt->colorspace,
-> +							  fmt->ycbcr_enc);
-> +	fmt->xfer_func = V4L2_MAP_XFER_FUNC_DEFAULT(fmt->colorspace);
-> +}
-> +
-> +static int gc2145_init_cfg(struct v4l2_subdev *sd,
-> +			   struct v4l2_subdev_state *state)
-> +{
-> +	struct gc2145 *gc2145 = to_gc2145(sd);
-> +	struct v4l2_mbus_framefmt *format;
-> +	struct v4l2_rect *crop;
-> +
-> +	/* Initialize try_fmt */
-> +	format = v4l2_subdev_get_pad_format(sd, state, 0);
-> +	gc2145_update_pad_format(gc2145,
-> +				 &supported_modes[0], format,
-> +				 MEDIA_BUS_FMT_RGB565_2X8_BE);
-> +
-> +	/* Initialize crop rectangle. */
-> +	crop = v4l2_subdev_get_pad_crop(sd, state, 0);
-> +	*crop = supported_modes[0].crop;
-> +
-> +	return 0;
-> +}
-> +
-> +static int gc2145_get_selection(struct v4l2_subdev *sd,
-> +				struct v4l2_subdev_state *sd_state,
-> +				struct v4l2_subdev_selection *sel)
-> +{
-> +	switch (sel->target) {
-> +	case V4L2_SEL_TGT_CROP: {
-> +		sel->r = *v4l2_subdev_get_pad_crop(sd, sd_state, 0);
-> +		return 0;
-> +	}
-
-Do you need {} ?
-
-> +
-> +	case V4L2_SEL_TGT_NATIVE_SIZE:
-> +		sel->r.top = 0;
-> +		sel->r.left = 0;
-> +		sel->r.width = GC2145_NATIVE_WIDTH;
-> +		sel->r.height = GC2145_NATIVE_HEIGHT;
-> +
-> +		return 0;
-> +
-> +	case V4L2_SEL_TGT_CROP_DEFAULT:
-> +	case V4L2_SEL_TGT_CROP_BOUNDS:
-> +		sel->r.top = 0;
-> +		sel->r.left = 0;
-> +		sel->r.width = 1600;
-> +		sel->r.height = 1200;
-> +
-> +		return 0;
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-> +
-> +static int gc2145_enum_mbus_code(struct v4l2_subdev *sd,
-> +				 struct v4l2_subdev_state *sd_state,
-> +				 struct v4l2_subdev_mbus_code_enum *code)
-> +{
-> +	if (code->index >= ARRAY_SIZE(supported_formats))
-> +		return -EINVAL;
-> +
-> +	code->code = supported_formats[code->index].code;
-> +	return 0;
-> +}
-> +
-> +static int gc2145_enum_frame_size(struct v4l2_subdev *sd,
-> +				  struct v4l2_subdev_state *sd_state,
-> +				  struct v4l2_subdev_frame_size_enum *fse)
-> +{
-> +	struct gc2145 *gc2145 = to_gc2145(sd);
-> +	const struct gc2145_format *gc2145_format;
-> +	u32 code;
-> +
-> +	if (fse->index >= ARRAY_SIZE(supported_modes))
-> +		return -EINVAL;
-> +
-> +	gc2145_format = gc2145_get_format_code(gc2145, fse->code);
-> +	code = gc2145_format->code;
-> +	if (fse->code != code)
-> +		return -EINVAL;
-
-Is this correct ? Should you check if fse->code matches the currently
-applied format code or should you just check if fse->code is supported
-at al ? I recall the API doc was not super-clear about this, am I
-wrong ?
-
-> +
-> +	fse->min_width = supported_modes[fse->index].width;
-> +	fse->max_width = fse->min_width;
-> +	fse->min_height = supported_modes[fse->index].height;
-> +	fse->max_height = fse->min_height;
-> +
-> +	return 0;
-> +}
-> +
-> +static int
-> +gc2145_enum_frame_interval(struct v4l2_subdev *sd,
-> +			   struct v4l2_subdev_state *sd_state,
-> +			   struct v4l2_subdev_frame_interval_enum *fie)
-> +{
-> +	struct gc2145 *gc2145 = to_gc2145(sd);
-> +	const struct gc2145_format *gc2145_format;
-> +	u32 code, i;
-> +
-> +	/* Only supporting a unique framerate per resolution currently */
-> +	if (fie->index > 0)
-> +		return -EINVAL;
-> +
-> +	gc2145_format = gc2145_get_format_code(gc2145, fie->code);
-> +	code = gc2145_format->code;
-> +	if (fie->code != code)
-> +		return -EINVAL;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(supported_modes); i++)
-> +		if (supported_modes[i].width == fie->width &&
-> +		    supported_modes[i].height == fie->height)
-> +			break;
-> +
-> +	if (i >= ARRAY_SIZE(supported_modes))
-> +		return -EINVAL;
-> +
-> +	fie->interval.numerator = supported_modes[i].frame_interval.numerator;
-> +	fie->interval.denominator =
-> +		supported_modes[i].frame_interval.denominator;
-> +
-> +	return 0;
-> +}
-> +
-> +static int gc2145_set_pad_format(struct v4l2_subdev *sd,
-> +				 struct v4l2_subdev_state *sd_state,
-> +				 struct v4l2_subdev_format *fmt)
-> +{
-> +	struct gc2145 *gc2145 = to_gc2145(sd);
-> +	const struct gc2145_mode *mode;
-> +	const struct gc2145_format *gc2145_fmt;
-> +	struct v4l2_mbus_framefmt *framefmt;
-> +	struct gc2145_ctrls *ctrls = &gc2145->ctrls;
-> +	struct v4l2_rect *crop;
-> +
-> +	gc2145_fmt = gc2145_get_format_code(gc2145, fmt->format.code);
-> +	mode = v4l2_find_nearest_size(supported_modes,
-> +				      ARRAY_SIZE(supported_modes),
-> +				      width, height,
-> +				      fmt->format.width, fmt->format.height);
-> +
-> +	/* In RAW mode, VGA is not possible so use 720p instead */
-> +	if (gc2145_fmt->colorspace == V4L2_COLORSPACE_RAW &&
-> +	    mode == &supported_modes[GC2145_MODE_640X480])
-> +		mode = &supported_modes[GC2145_MODE_1280X720];
-> +
-> +	gc2145_update_pad_format(gc2145, mode, &fmt->format, gc2145_fmt->code);
-> +	framefmt = v4l2_subdev_get_pad_format(sd, sd_state, fmt->pad);
-> +	if (fmt->which == V4L2_SUBDEV_FORMAT_ACTIVE &&
-> +	    (gc2145->mode != mode || framefmt->code != fmt->format.code)) {
-
-For consistency see  6cb042908b3e ("media: i2c: imx219: Perform a full
-mode set unconditionally")
-
-> +		gc2145->mode = mode;
-> +		/* Update pixel_rate based on the mode */
-> +		__v4l2_ctrl_s_ctrl_int64(ctrls->pixel_rate, mode->pixel_rate);
-> +		/* Update hblank based on the mode */
-> +		__v4l2_ctrl_modify_range(ctrls->hblank, mode->hblank,
-> +					 mode->hblank, 1, mode->hblank);
-> +		__v4l2_ctrl_s_ctrl(ctrls->hblank, mode->hblank);
-> +	}
-> +	*framefmt = fmt->format;
-> +	crop = v4l2_subdev_get_pad_crop(sd, sd_state, fmt->pad);
-> +	*crop = mode->crop;
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct gc2145_reg common_mipi_regs[] = {
-> +	{GC2145_REG_PAGE_SELECT, 0x03},
-> +	{0x01, 0x87}, {0x02, 0x22}, {0x03, 0x10},
-> +	{0x06, 0x88}, {0x10, 0x95}, {0x15, 0x10}, {0x22, 0x04},
-> +	{0x23, 0x10}, {0x24, 0x10}, {0x25, 0x10}, {0x26, 0x05},
-> +	{0x21, 0x10}, {0x29, 0x03}, {0x2a, 0x0a}, {0x2b, 0x06},
-
-I supposed these are undocumented in your documentation as well, right ?
-
-
-> +};
-> +
-> +static int gc2145_config_mipi_mode(struct gc2145 *gc2145,
-> +				   const struct gc2145_format *gc2145_format)
-> +{
-> +	struct i2c_client *client = v4l2_get_subdevdata(&gc2145->sd);
-> +	u16 lwc, fifo_full_lvl, fifo_gate_mode;
-> +	int ret;
-> +
-> +	/* Common MIPI settings */
-> +	ret = gc2145_write_regs(gc2145, common_mipi_regs,
-> +				ARRAY_SIZE(common_mipi_regs));
-> +	if (ret) {
-> +		dev_err(&client->dev, "%s failed to set mode - MIPI\n",
-> +			__func__);
-> +		return ret;
-> +	}
-> +
-> +	/*
-> +	 * Adjust the MIPI buffer settings.
-> +	 * For YUV/RGB, LWC = image width * 2
-> +	 * For RAW8, LWC = image width
-> +	 * For RAW10, LWC = image width * 1.25
-
-The multiplication factor is then just bpp expressed in bytes, right ?
-
-> +	 */
-> +	if (gc2145_format->colorspace != V4L2_COLORSPACE_RAW)
-> +		lwc = gc2145->mode->width * 2;
-> +	else if (gc2145_format->code == MEDIA_BUS_FMT_SGRBG8_1X8 ||
-> +		 gc2145_format->code == MEDIA_BUS_FMT_SRGGB8_1X8 ||
-> +		 gc2145_format->code == MEDIA_BUS_FMT_SBGGR8_1X8 ||
-> +		 gc2145_format->code == MEDIA_BUS_FMT_SGBRG8_1X8)
-> +		lwc = gc2145->mode->width * 1;
-
-The driver does not support RAW formats, right ?
-
-> +	else
-> +		lwc = gc2145->mode->width + (gc2145->mode->width / 4);
-> +
-> +	ret = gc2145_write_reg(gc2145, GC2145_REG_LWC_HIGH, lwc >> 8);
-> +	if (ret)
-> +		return ret;
-> +	ret = gc2145_write_reg(gc2145, GC2145_REG_LWC_LOW, (lwc & 0xff));
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * Adjust the MIPI Fifo Full Level
-> +	 * 640x480 RGB: 0x0190
-> +	 * 1280x720 / 1600x1200 (aka no scaler) non RAW: 0x0001
-> +	 * 1600x1200 RAW: 0x0190
-> +	 */
-> +	if (gc2145_format->colorspace != V4L2_COLORSPACE_RAW) {
-
-Ditto, no RAW formats are supported. This applies to all other uses of
-V4L2_COLORSPACE_RAW in the driver
-
-> +		if (gc2145->mode->width == 1280 || gc2145->mode->width == 1600)
-> +			fifo_full_lvl = 0x0001;
-> +		else
-> +			fifo_full_lvl = 0x0190;
-> +	} else {
-> +		fifo_full_lvl = 0x0190;
-> +	}
-> +
-> +	ret = gc2145_write_reg(gc2145, GC2145_REG_FIFO_FULL_LVL_HIGH,
-> +			       fifo_full_lvl >> 8);
-> +	if (ret)
-> +		return ret;
-> +	ret = gc2145_write_reg(gc2145, GC2145_REG_FIFO_FULL_LVL_LOW,
-> +			       fifo_full_lvl & 0xff);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Set the fifo gate mode / MIPI wdiv set */
-> +	if (gc2145_format->colorspace == V4L2_COLORSPACE_RAW)
-> +		fifo_gate_mode = 0xf1;
-> +	else
-> +		fifo_gate_mode = 0xf0;
-> +	ret = gc2145_write_reg(gc2145, GC2145_REG_FIFO_GATE_MODE,
-> +			       fifo_gate_mode);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Set the MIPI data type */
-> +	ret = gc2145_write_reg(gc2145, GC2145_REG_MIPI_DT,
-> +			       gc2145_format->datatype);
-> +	return ret;
-> +}
-> +
-> +static int gc2145_start_streaming(struct gc2145 *gc2145,
-> +				  struct v4l2_subdev_state *state)
-> +{
-> +	struct i2c_client *client = v4l2_get_subdevdata(&gc2145->sd);
-> +	const struct gc2145_format *gc2145_format;
-> +	struct v4l2_mbus_framefmt *fmt;
-> +	u8 sync_mode;
-> +	int ret;
-> +
-> +	ret = pm_runtime_resume_and_get(&client->dev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/*
-> +	 * TODO - configuration of the sensor will have to be moved into
-> +	 * gc2145_set_pad_format once we have a way to configure without
-> +	 * starting the sensor.  In such case, only streaming start will
-> +	 * be done here.
-> +	 */
-
-Are you sure ? It seems correct to me to update the sensor
-configuration before starting the streaming, isn't it ?
-
-> +
-> +	/* Apply default values of current mode */
-> +	ret = gc2145_write_regs(gc2145, gc2145->mode->reg_list.regs,
-> +				gc2145->mode->reg_list.num_of_regs);
-> +	if (ret) {
-> +		dev_err(&client->dev, "%s failed to set mode - pre ISP\n",
-> +			__func__);
-> +		goto err_rpm_put;
-> +	}
-> +
-> +	ret = gc2145_write_regs(gc2145, common_regs,
-> +				ARRAY_SIZE(common_regs));
-> +	if (ret) {
-> +		dev_err(&client->dev, "%s failed to set common regs\n",
-> +			__func__);
-> +		goto err_rpm_put;
-> +	}
-> +
-> +	fmt = v4l2_subdev_get_pad_format(&gc2145->sd, state, 0);
-> +	gc2145_format = gc2145_get_format_code(gc2145, fmt->code);
-> +
-> +	/* Set the output format */
-> +	ret = gc2145_write_reg(gc2145, GC2145_REG_PAGE_SELECT, 0x00);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = gc2145_write_reg(gc2145, GC2145_REG_OUTPUT_FMT,
-> +			       gc2145_format->output_fmt);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = gc2145_read_reg(gc2145, GC2145_REG_SYNC_MODE, &sync_mode, 1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	sync_mode &= ~(GC2145_SYNC_MODE_COL_SWITCH |
-> +		       GC2145_SYNC_MODE_ROW_SWITCH);
-> +	sync_mode |= gc2145_format->row_col_switch;
-
-As said, this is fixed to 0. Did you get what COL/ROW_SWITCH is meant
-to be used for ?
-
-> +
-> +	ret = gc2145_write_reg(gc2145, GC2145_REG_SYNC_MODE, sync_mode);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Perform MIPI specific configuration */
-> +	ret = gc2145_config_mipi_mode(gc2145, gc2145_format);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Come back on page 0 by default */
-> +	ret = gc2145_write_reg(gc2145, GC2145_REG_PAGE_SELECT, 0x00);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Apply customized values from user */
-> +	ret =  __v4l2_ctrl_handler_setup(&gc2145->ctrls.handler);
-> +	if (ret)
-> +		goto err_rpm_put;
-> +
-> +	return 0;
-> +
-> +err_rpm_put:
-> +	pm_runtime_put(&client->dev);
-> +	return ret;
-> +}
-> +
-> +static void gc2145_stop_streaming(struct gc2145 *gc2145)
-> +{
-> +	struct i2c_client *client = v4l2_get_subdevdata(&gc2145->sd);
-> +
-> +	/*
-> +	 * TODO - once we have a way to turn off only streaming of the
-> +	 * sensor, we will have to do it here.
-
-Right, what register write "starts" the streaming ?
-
-> +	 */
-> +
-> +	pm_runtime_put(&client->dev);
-> +}
-> +
-> +static int gc2145_g_frame_interval(struct v4l2_subdev *sd,
-> +				   struct v4l2_subdev_frame_interval *fi)
-> +{
-> +	struct gc2145 *gc2145 = to_gc2145(sd);
-> +
-> +	fi->interval = gc2145->mode->frame_interval;
-> +
-> +	return 0;
-> +}
-> +
-> +static int gc2145_set_stream(struct v4l2_subdev *sd, int enable)
-> +{
-> +	struct gc2145 *gc2145 = to_gc2145(sd);
-> +	struct v4l2_subdev_state *state;
-> +	int ret = 0;
-> +
-> +	state = v4l2_subdev_lock_and_get_active_state(sd);
-> +
-> +	if (gc2145->streaming == enable)
-> +		goto unlock;
-> +
-> +	if (enable) {
-> +		/*
-> +		 * Apply default & customized values
-> +		 * and then start streaming.
-> +		 */
-> +		ret = gc2145_start_streaming(gc2145, state);
-> +		if (ret)
-> +			goto unlock;
-> +	} else {
-> +		gc2145_stop_streaming(gc2145);
-> +	}
-> +
-> +	gc2145->streaming = enable;
-> +
-> +unlock:
-> +	v4l2_subdev_unlock_state(state);
-> +
-> +	return ret;
-> +}
-> +
-> +/* Power/clock management functions */
-> +static int gc2145_power_on(struct device *dev)
-> +{
-> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> +	struct gc2145 *gc2145 = to_gc2145(sd);
-> +	int ret;
-> +
-> +	ret = regulator_bulk_enable(GC2145_NUM_SUPPLIES, gc2145->supplies);
-> +	if (ret) {
-> +		dev_err(dev, "failed to enable regulators\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = clk_prepare_enable(gc2145->xclk);
-> +	if (ret) {
-> +		dev_err(dev, "failed to enable clock\n");
-> +		goto reg_off;
-> +	}
-> +
-> +	/* TODO - Following delays should be tuned */
-> +	usleep_range(10000, 12000);
-
-wow, 10 to 12 msec ?
-
-The datasheet version I have reports "TBD" as suggested delays :/
-
-
-> +	gpiod_set_value_cansleep(gc2145->powerdown_gpio, 0);
-> +	usleep_range(10000, 12000);
-> +	gpiod_set_value_cansleep(gc2145->reset_gpio, 0);
-> +	usleep_range(40000, 50000);
-> +
-> +	return 0;
-> +
-> +reg_off:
-> +	regulator_bulk_disable(GC2145_NUM_SUPPLIES, gc2145->supplies);
-> +
-> +	return ret;
-> +}
-> +
-> +static int gc2145_power_off(struct device *dev)
-> +{
-> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> +	struct gc2145 *gc2145 = to_gc2145(sd);
-> +
-> +	gpiod_set_value_cansleep(gc2145->powerdown_gpio, 1);
-> +	gpiod_set_value_cansleep(gc2145->reset_gpio, 1);
-> +	regulator_bulk_disable(GC2145_NUM_SUPPLIES, gc2145->supplies);
-> +	clk_disable_unprepare(gc2145->xclk);
-
-7.2.2 Power Off Sequence shows clock being stopped before disabling
-regulators.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int gc2145_suspend(struct device *dev)
-> +{
-> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> +	struct gc2145 *gc2145 = to_gc2145(sd);
-> +
-> +	if (gc2145->streaming)
-> +		gc2145_stop_streaming(gc2145);
-> +
-> +	return 0;
-> +}
-> +
-> +static int gc2145_resume(struct device *dev)
-> +{
-> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> +	struct gc2145 *gc2145 = to_gc2145(sd);
-> +	struct v4l2_subdev_state *state;
-> +	int ret;
-> +
-> +	if (gc2145->streaming) {
-> +		state = v4l2_subdev_lock_and_get_active_state(sd);
-> +		ret = gc2145_start_streaming(gc2145, state);
-> +		v4l2_subdev_unlock_state(state);
-> +		if (ret)
-> +			goto error;
-> +	}
-> +
-> +	return 0;
-> +
-> +error:
-> +	gc2145_stop_streaming(gc2145);
-> +	gc2145->streaming = false;
-> +
-> +	return ret;
-> +}
-> +
-> +static int gc2145_get_regulators(struct gc2145 *gc2145)
-> +{
-> +	struct i2c_client *client = v4l2_get_subdevdata(&gc2145->sd);
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < GC2145_NUM_SUPPLIES; i++)
-> +		gc2145->supplies[i].supply = gc2145_supply_name[i];
-> +
-> +	return devm_regulator_bulk_get(&client->dev, GC2145_NUM_SUPPLIES,
-> +				       gc2145->supplies);
-> +}
-> +
-> +/* Verify chip ID */
-> +static int gc2145_identify_module(struct gc2145 *gc2145)
-> +{
-> +	struct i2c_client *client = v4l2_get_subdevdata(&gc2145->sd);
-> +	int ret;
-> +	u16 chip_id;
-> +
-> +	ret = gc2145_read_reg(gc2145, GC2145_REG_CHIP_ID, (u8 *)&chip_id, 2);
-> +	if (ret) {
-> +		dev_err(&client->dev, "failed to read chip id (%d)\n", ret);
-> +		return ret;
-> +	}
-> +	chip_id = be16_to_cpu(chip_id);
-> +
-> +	if (chip_id != GC2145_CHIP_ID) {
-> +		dev_err(&client->dev, "chip id mismatch: %x!=%x\n",
-> +			GC2145_CHIP_ID, chip_id);
-> +		return -EIO;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const char * const test_pattern_menu[] = {
-> +	"Disabled",
-> +	"Colored patterns",
-> +	"Uniform white",
-> +	"Uniform yellow",
-> +	"Uniform cyan",
-> +	"Uniform green",
-> +	"Uniform magenta",
-> +	"Uniform red",
-> +	"Uniform black",
-> +};
-> +
-> +#define GC2145_TEST_PATTERN_ENABLE	BIT(0)
-> +#define GC2145_TEST_PATTERN_UXGA	BIT(3)
-> +
-> +#define GC2145_TEST_UNIFORM		BIT(3)
-> +#define GC2145_TEST_WHITE		(4 << 4)
-> +#define GC2145_TEST_YELLOW		(8 << 4)
-> +#define GC2145_TEST_CYAN		(9 << 4)
-> +#define GC2145_TEST_GREEN		(6 << 4)
-> +#define GC2145_TEST_MAGENTA		(10 << 4)
-> +#define GC2145_TEST_RED			(5 << 4)
-> +#define GC2145_TEST_BLACK		(0)
-> +
-> +static const u8 test_pattern_val[] = {
-> +	0,
-> +	GC2145_TEST_PATTERN_ENABLE,
-> +	GC2145_TEST_UNIFORM | GC2145_TEST_WHITE,
-> +	GC2145_TEST_UNIFORM | GC2145_TEST_YELLOW,
-> +	GC2145_TEST_UNIFORM | GC2145_TEST_CYAN,
-> +	GC2145_TEST_UNIFORM | GC2145_TEST_GREEN,
-> +	GC2145_TEST_UNIFORM | GC2145_TEST_MAGENTA,
-> +	GC2145_TEST_UNIFORM | GC2145_TEST_RED,
-> +	GC2145_TEST_UNIFORM | GC2145_TEST_BLACK,
-> +};
-> +
-> +static const struct v4l2_subdev_core_ops gc2145_core_ops = {
-> +	.subscribe_event = v4l2_ctrl_subdev_subscribe_event,
-> +	.unsubscribe_event = v4l2_event_subdev_unsubscribe,
-> +};
-> +
-> +static const struct v4l2_subdev_video_ops gc2145_video_ops = {
-> +	.g_frame_interval = gc2145_g_frame_interval,
-> +	/*
-> +	 * Currently frame_interval can't be changed hence s_frame_interval
-> +	 * does same as g_frame_interval
-> +	 */
-> +	.s_frame_interval = gc2145_g_frame_interval,
-> +	.s_stream = gc2145_set_stream,
-> +};
-> +
-> +static const struct v4l2_subdev_pad_ops gc2145_pad_ops = {
-> +	.init_cfg = gc2145_init_cfg,
-> +	.enum_mbus_code = gc2145_enum_mbus_code,
-> +	.get_fmt = v4l2_subdev_get_fmt,
-> +	.set_fmt = gc2145_set_pad_format,
-> +	.get_selection = gc2145_get_selection,
-> +	.enum_frame_size = gc2145_enum_frame_size,
-> +	.enum_frame_interval = gc2145_enum_frame_interval,
-> +};
-> +
-> +static const struct v4l2_subdev_ops gc2145_subdev_ops = {
-> +	.core = &gc2145_core_ops,
-> +	.video = &gc2145_video_ops,
-> +	.pad = &gc2145_pad_ops,
-> +};
-> +
-> +static int gc2145_set_ctrl_test_pattern(struct gc2145 *gc2145, int value)
-> +{
-> +	int ret;
-> +
-> +	if (!value) {
-> +		/* Disable test pattern */
-> +		ret = gc2145_write_reg(gc2145, GC2145_REG_DEBUG_MODE2, 0);
-> +		if (ret)
-> +			return ret;
-> +
-> +		return gc2145_write_reg(gc2145, GC2145_REG_DEBUG_MODE3, 0);
-> +	}
-> +
-> +	/* Enable test pattern, colored or uniform */
-> +	ret = gc2145_write_reg(gc2145, GC2145_REG_DEBUG_MODE2,
-> +			       GC2145_TEST_PATTERN_ENABLE |
-> +			       GC2145_TEST_PATTERN_UXGA);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (!(test_pattern_val[value] & GC2145_TEST_UNIFORM))
-> +		return gc2145_write_reg(gc2145, GC2145_REG_DEBUG_MODE3, 0);
-> +
-> +	/* Uniform */
-> +	return gc2145_write_reg(gc2145, GC2145_REG_DEBUG_MODE3,
-> +				test_pattern_val[value]);
-> +}
-> +
-> +static int gc2145_set_ctrl_hflip(struct gc2145 *gc2145, int value)
-> +{
-> +	return gc2145_mod_reg(gc2145, GC2145_REG_ANALOG_MODE1,
-> +			      BIT(0), (value ? BIT(0) : 0));
-> +}
-> +
-> +static int gc2145_set_ctrl_vflip(struct gc2145 *gc2145, int value)
-> +{
-> +	return gc2145_mod_reg(gc2145, GC2145_REG_ANALOG_MODE1,
-> +			      BIT(1), (value ? BIT(1) : 0));
-> +}
-> +
-> +static int gc2145_s_ctrl(struct v4l2_ctrl *ctrl)
-> +{
-> +	struct v4l2_subdev *sd = ctrl_to_sd(ctrl);
-> +	struct i2c_client *client = v4l2_get_subdevdata(sd);
-> +	struct gc2145 *gc2145 = to_gc2145(sd);
-> +	int ret;
-> +
-> +	ret = pm_runtime_resume_and_get(&client->dev);
-
-You shouldn't resume the sensor when setting controls but rather check
-if the sensor is powered up with:
-
-	if (pm_runtime_get_if_in_use(&client->dev) == 0)
-		return 0;
-
-and as you call  __v4l2_ctrl_handler_setup() already at s_stream(1)
-time, controls will be applied before streaming start
-
-
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	switch (ctrl->id) {
-> +	case V4L2_CID_TEST_PATTERN:
-> +		ret = gc2145_set_ctrl_test_pattern(gc2145, ctrl->val);
-> +		break;
-> +	case V4L2_CID_HFLIP:
-> +		ret = gc2145_set_ctrl_hflip(gc2145, ctrl->val);
-> +		break;
-> +	case V4L2_CID_VFLIP:
-> +		ret = gc2145_set_ctrl_vflip(gc2145, ctrl->val);
-> +		break;
-> +	default:
-> +		ret = -EINVAL;
-> +		break;
-> +	}
-> +
-> +	pm_runtime_put(&client->dev);
-> +	return ret;
-> +}
-> +
-> +static const struct v4l2_ctrl_ops gc2145_ctrl_ops = {
-> +	.s_ctrl = gc2145_s_ctrl,
-> +};
-> +
-> +/* Initialize control handlers */
-> +static int gc2145_init_controls(struct gc2145 *gc2145)
-> +{
-> +	struct i2c_client *client = v4l2_get_subdevdata(&gc2145->sd);
-> +	const struct v4l2_ctrl_ops *ops = &gc2145_ctrl_ops;
-> +	struct gc2145_ctrls *ctrls = &gc2145->ctrls;
-> +	struct v4l2_ctrl_handler *hdl = &ctrls->handler;
-> +	struct v4l2_fwnode_device_properties props;
-> +	int ret;
-> +
-> +	ret = v4l2_ctrl_handler_init(hdl, 12);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ctrls->pixel_rate = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_PIXEL_RATE,
-> +					      0, INT_MAX, 1,
-
-You know the supported pixel rates. Why use INT_MAX ?
-
-> +					      supported_modes[0].pixel_rate);
-> +	ctrls->pixel_rate->flags |= V4L2_CTRL_FLAG_READ_ONLY;
-
-isn't PIXEL_RATE RO by default ?
-
-> +
-> +	ctrls->hblank = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_HBLANK,
-> +					  supported_modes[0].hblank,
-> +					  supported_modes[0].hblank, 1,
-> +					  supported_modes[0].hblank);
-
-Register P0:0x05 "HBlanking" is 12 bits long.
-Is the max value BIT(13) - 1 ?
-
-I have not been able to find a min value.
-
-However registering hblank without vblank kind of defeats the purpose
-of using the two controls to compute the frame duration..
-
-> +	ctrls->hblank->flags |= V4L2_CTRL_FLAG_READ_ONLY;
-> +
-> +	ctrls->test_pattern =
-> +		v4l2_ctrl_new_std_menu_items(hdl, ops, V4L2_CID_TEST_PATTERN,
-> +					     ARRAY_SIZE(test_pattern_menu) - 1,
-> +					     0, 0, test_pattern_menu);
-> +	ctrls->hflip = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_HFLIP,
-> +					 0, 1, 1, 0);
-> +	ctrls->vflip = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_VFLIP,
-> +					 0, 1, 1, 0);
-> +
-> +	if (hdl->error) {
-> +		ret = hdl->error;
-> +		dev_err(&client->dev, "control init failed (%d)\n", ret);
-> +		goto error;
-> +	}
-> +
-> +	ret = v4l2_fwnode_device_parse(&client->dev, &props);
-> +	if (ret)
-> +		goto error;
-> +
-> +	ret = v4l2_ctrl_new_fwnode_properties(hdl, &gc2145_ctrl_ops,
-> +					      &props);
-> +	if (ret)
-> +		goto error;
-> +
-> +	gc2145->sd.ctrl_handler = hdl;
-> +
-> +	return 0;
-> +
-> +error:
-> +	v4l2_ctrl_handler_free(hdl);
-> +
-> +	return ret;
-> +}
-> +
-> +static void gc2145_free_controls(struct gc2145 *gc2145)
-> +{
-> +	v4l2_ctrl_handler_free(&gc2145->ctrls.handler);
-
-One liners could be called directly maybe..
-
-> +}
-> +
-> +static int gc2145_check_hwcfg(struct device *dev)
-> +{
-> +	struct fwnode_handle *endpoint;
-> +	struct v4l2_fwnode_endpoint ep_cfg = {
-> +		.bus_type = V4L2_MBUS_CSI2_DPHY
-> +	};
-> +	int ret = -EINVAL;
-> +
-> +	endpoint = fwnode_graph_get_next_endpoint(dev_fwnode(dev), NULL);
-> +	if (!endpoint) {
-> +		dev_err(dev, "endpoint node not found\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (v4l2_fwnode_endpoint_alloc_parse(endpoint, &ep_cfg)) {
-> +		dev_err(dev, "could not parse endpoint\n");
-> +		goto error_out;
-
-no need to v4l2_fwnode_endpoint_free() if
-v4l2_fwnode_endpoint_alloc_parse() fails.
-
-This could be
-
-        ret = v4l2_fwnode_endpoint_alloc_parse(endpoint, &ep_cfg);
-        fwnode_handle_put(endpoint);
-        if (ret)
-                return ret;
-
-
-> +	}
-> +
-> +	/* Check the number of MIPI CSI2 data lanes */
-> +	if (ep_cfg.bus.mipi_csi2.num_data_lanes != 2) {
-> +		dev_err(dev, "only 2 data lanes are currently supported\n");
-> +		goto error_out;
-> +	}
-> +
-> +	ret = 0;
-> +
-> +error_out:
-> +	v4l2_fwnode_endpoint_free(&ep_cfg);
-> +	fwnode_handle_put(endpoint);
-> +
-> +	return ret;
-> +}
-> +
-> +static int gc2145_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct gc2145 *gc2145;
-> +	int ret;
-> +	unsigned int xclk_freq;
-
-You can easily declare this 2 lines up (I know, reverse-xmas-tree
-nitpicking)
-
-> +
-> +	gc2145 = devm_kzalloc(&client->dev, sizeof(*gc2145), GFP_KERNEL);
-> +	if (!gc2145)
-> +		return -ENOMEM;
-> +
-> +	v4l2_i2c_subdev_init(&gc2145->sd, client, &gc2145_subdev_ops);
-> +
-> +	/* Check the hardware configuration in device tree */
-> +	if (gc2145_check_hwcfg(dev))
-> +		return -EINVAL;
-> +
-> +	/* Get system clock (xclk) */
-> +	gc2145->xclk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(gc2145->xclk)) {
-> +		dev_err(dev, "failed to get xclk\n");
-> +		return PTR_ERR(gc2145->xclk);
-> +	}
-> +
-> +	xclk_freq = clk_get_rate(gc2145->xclk);
-> +	if (xclk_freq != GC2145_XCLK_FREQ) {
-> +		dev_err(dev, "xclk frequency not supported: %d Hz\n",
-> +			xclk_freq);
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = gc2145_get_regulators(gc2145);
-> +	if (ret) {
-> +		dev_err(dev, "failed to get regulators\n");
-
-Can dev_err_probe help here ?
-
-> +		return ret;
-> +	}
-> +
-> +	/* Request optional enable pin */
-> +	gc2145->reset_gpio = devm_gpiod_get_optional(dev, "reset",
-> +						     GPIOD_OUT_HIGH);
-> +
-> +	/* Request optional enable pin */
-> +	gc2145->powerdown_gpio = devm_gpiod_get_optional(dev, "powerdown",
-> +							 GPIOD_OUT_HIGH);
-> +
-> +	/*
-> +	 * The sensor must be powered for gc2145_identify_module()
-> +	 * to be able to read the CHIP_ID register
-> +	 */
-> +	ret = gc2145_power_on(dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = gc2145_identify_module(gc2145);
-> +	if (ret)
-> +		goto error_power_off;
-> +
-> +	/* Set default mode */
-> +	gc2145->mode = &supported_modes[0];
-> +
-> +	ret = gc2145_init_controls(gc2145);
-> +	if (ret)
-> +		goto error_power_off;
-> +
-> +	/* Initialize subdev */
-> +	gc2145->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE |
-> +			    V4L2_SUBDEV_FL_HAS_EVENTS;
-> +	gc2145->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
-> +
-> +	/* Initialize source pad */
-> +	gc2145->pad.flags = MEDIA_PAD_FL_SOURCE;
-> +
-> +	ret = media_entity_pads_init(&gc2145->sd.entity, 1, &gc2145->pad);
-> +	if (ret) {
-> +		dev_err(dev, "failed to init entity pads: %d\n", ret);
-> +		goto error_handler_free;
-> +	}
-> +
-> +	gc2145->sd.state_lock = gc2145->ctrls.handler.lock;
-> +	ret = v4l2_subdev_init_finalize(&gc2145->sd);
-> +	if (ret < 0) {
-> +		dev_err(dev, "subdev init error: %d\n", ret);
-> +		goto error_media_entity;
-> +	}
-> +
-> +	ret = v4l2_async_register_subdev_sensor(&gc2145->sd);
-> +	if (ret < 0) {
-> +		dev_err(dev, "failed to register sensor sub-device: %d\n", ret);
-> +		goto error_subdev_cleanup;
-> +	}
-> +
-> +	/* Enable runtime PM and turn off the device */
-> +	pm_runtime_set_active(dev);
-> +	pm_runtime_enable(dev);
-> +	pm_runtime_idle(dev);
-> +
-> +	return 0;
-> +
-> +error_subdev_cleanup:
-> +	v4l2_subdev_cleanup(&gc2145->sd);
-> +
-> +error_media_entity:
-> +	media_entity_cleanup(&gc2145->sd.entity);
-> +
-> +error_handler_free:
-> +	gc2145_free_controls(gc2145);
-> +
-> +error_power_off:
-> +	gc2145_power_off(dev);
-> +
-> +	return ret;
-> +}
-> +
-> +static void gc2145_remove(struct i2c_client *client)
-> +{
-> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
-> +	struct gc2145 *gc2145 = to_gc2145(sd);
-> +
-> +	v4l2_async_unregister_subdev(sd);
-> +	media_entity_cleanup(&sd->entity);
-
-Do you need to call
-	v4l2_subdev_cleanup(&gc2145->sd);
-
-here as well ?
-
-> +	gc2145_free_controls(gc2145);
-> +
-> +	pm_runtime_disable(&client->dev);
-> +	if (!pm_runtime_status_suspended(&client->dev))
-> +		gc2145_power_off(&client->dev);
-> +	pm_runtime_set_suspended(&client->dev);
-> +}
-> +
-> +static const struct of_device_id gc2145_dt_ids[] = {
-> +	{ .compatible = "galaxycore,gc2145" },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, gc2145_dt_ids);
-> +
-> +static const struct dev_pm_ops gc2145_pm_ops = {
-> +	SET_SYSTEM_SLEEP_PM_OPS(gc2145_suspend, gc2145_resume)
-
-You can drop these function and the "streaming" flag
-
-Thanks
-  j
-
-See: [PATCH 00/57] media: i2c: Reduce cargo cult
-
-> +	SET_RUNTIME_PM_OPS(gc2145_power_off, gc2145_power_on, NULL)
-> +};
-> +
-> +static struct i2c_driver gc2145_i2c_driver = {
-> +	.driver = {
-> +		.name = "gc2145",
-> +		.of_match_table	= gc2145_dt_ids,
-> +		.pm = pm_ptr(&gc2145_pm_ops),
-> +	},
-> +	.probe = gc2145_probe,
-> +	.remove = gc2145_remove,
-> +};
-> +
-> +module_i2c_driver(gc2145_i2c_driver);
-> +
-> +MODULE_AUTHOR("Alain Volmat <alain.volmat@foss.st.com");
-> +MODULE_DESCRIPTION("GalaxyCore GC2145 sensor driver");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.25.1
->
 
