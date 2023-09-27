@@ -1,99 +1,108 @@
-Return-Path: <devicetree+bounces-3714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE0CC7AFF2A
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 10:58:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 291217AFF2B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 10:58:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 607FB281645
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:58:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 244D11C208C2
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:58:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4A051D6BF;
-	Wed, 27 Sep 2023 08:58:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4D891F189;
+	Wed, 27 Sep 2023 08:58:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8725913ADF
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 08:58:08 +0000 (UTC)
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2274BBF
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 01:58:07 -0700 (PDT)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-59f57ad6126so91283807b3.3
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 01:58:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695805086; x=1696409886; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=y4Qt7MPKUZBp7gXinhRZHu894kl5p4OlGl8pyoVCVvw=;
-        b=PSQCUa4zSz9zdkYl+3UDVCmwQISAkb+w8sFU5aKVoEc0sgMZtODT1kw4VrXFOSyRth
-         85Uun9MjT09IcWH7298B4sNWtKrSEz0q55baMLNFaiY8oTVXFdBJxXFxxDN4dqFYoCEt
-         ALpyUbtTBXiG7oHVaXk+M3J8vZyCyPH2iathfT4drvfQzCDpWcHC5QB9Xte9jsvj3D69
-         qS+9WRZEmJbFG8Q+nd+RdQgUAO4npr6cuL3f+GRVmbo9S1kYQwLdGLkpe/egOpD+JJ0E
-         KfOw/wBhENPbSk6DM4DEV6kpnxmkFL1DYcdiaLcKP3xgnlNHPZbF1Jtd63dYgXn8o+1i
-         fiJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695805086; x=1696409886;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=y4Qt7MPKUZBp7gXinhRZHu894kl5p4OlGl8pyoVCVvw=;
-        b=jZ/c0J/IXqR4oFjmeNQb8vsfOleqbx0hrll/vDoT8EKCECfzuwaknR7ns5nFxYWy+n
-         XZ6mNAOI1qyCvJbTXKHKqcTth+ljHTGWZAHTOM3vGlucLs2e9GP+Dxo+Tm6OmER46aI4
-         a2EmDpITZ7BSKZ+LlwCaX4wfZVnbn2teZnPDRSGEaBKLU65PHN39n+dbHGaBZG7Mby+6
-         43Zn6HfVZDhHzB4csXRhkGgyYzTSD3JzWsn29IVjI1mhHGxr4jFbDp9O9BwLLuq1KFxt
-         ML+cuZI+FZ5yTITzQxiPLXEFtRM+5XMbVAzC2LtjOLf8cpw8ktcGpcUyNs/9hkcQJeZd
-         r8FA==
-X-Gm-Message-State: AOJu0Yz7ctqhKs6WeONNnByC5vJle+mBfRZM9Vooxl3OAzrCMbqG+6tk
-	wjI8VlABvXpvhe42COteH8v02xUdKKdwe7FrNG4Nag==
-X-Google-Smtp-Source: AGHT+IEUmKO2BsqC37PrNycNqioSf/28nUrv3FZyiL1k0/yaHaLFkmQkRcbVXqDppaKLaYKSl/j7y7Gt5sdoNpGrogI=
-X-Received: by 2002:a81:48d8:0:b0:59f:6212:e170 with SMTP id
- v207-20020a8148d8000000b0059f6212e170mr1641107ywa.10.1695805086311; Wed, 27
- Sep 2023 01:58:06 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A641B13ADF
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 08:58:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9A2EC433CD;
+	Wed, 27 Sep 2023 08:58:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695805090;
+	bh=5NESgz9NKBwccsQ0Ujo74kHMO5OzmxrWwiJfaekpyDs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=oKyjTmXEnqst1LSzcib9B0n6Kb/BIaQHmWuymqnxqjaxCgqEjre4/pB1ZwEdS4yzx
+	 LgfxNEPc/rbI5k4Mx0/MYoszoX1yq0SDFflpdCEDoSUKAzTJTzmofAtYHAgsDTku7g
+	 nbntNbvvnEUq+4kpmjld6tuQw0Fpx6ZM2GoXOqo+cV5mK+gCAyf47YxW2An6dS4GJw
+	 Dy8/bwwqR+9o0Jbt7HuLDXOqE226g4K2+DoEgQU8wRFykpLWEMNoeReJk1lEeJB4OU
+	 UEY91HUAQP2HxVDrQRRMGEem1YIJNTxbgdaZNbzwDDWq8jQSiaVS0sewBn/T3yHHon
+	 DtaJjak5rKvxA==
+From: Mark Brown <broonie@kernel.org>
+To: Stephan Gerhold <stephan@gerhold.net>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Robert Marko <robimarko@gmail.com>, 
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, 
+ Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+In-Reply-To: <20230912-spmi-pm8909-v1-0-ba4b3bfaf87d@gerhold.net>
+References: <20230912-spmi-pm8909-v1-0-ba4b3bfaf87d@gerhold.net>
+Subject: Re: [PATCH 0/6] regulator: qcom_spmi: Add PM8909, PM8019 and
+ PMA8084
+Message-Id: <169580508696.2677308.6259946007338687878.b4-ty@kernel.org>
+Date: Wed, 27 Sep 2023 10:58:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230919-fp5-initial-v2-0-14bb7cedadf5@fairphone.com> <20230919-fp5-initial-v2-5-14bb7cedadf5@fairphone.com>
-In-Reply-To: <20230919-fp5-initial-v2-5-14bb7cedadf5@fairphone.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 27 Sep 2023 10:57:55 +0200
-Message-ID: <CACRpkdap7ZC=KokB4ysgvDVPRYP0ns3Dqz6p4d6cQqGmWWX2EQ@mail.gmail.com>
-Subject: Re: [PATCH v2 5/7] dt-bindings: pinctrl: qcom,sc7280: Allow gpio-reserved-ranges
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: cros-qcom-dts-watchers@chromium.org, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>, ~postmarketos/upstreaming@lists.sr.ht, 
-	phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-099c9
 
-On Tue, Sep 19, 2023 at 2:46=E2=80=AFPM Luca Weiss <luca.weiss@fairphone.co=
-m> wrote:
+On Tue, 12 Sep 2023 09:49:48 +0200, Stephan Gerhold wrote:
+> Add the necessary definitions for the PM8909, PM8019 and PMA8084 PMIC to
+> the qcom_spmi-regulator driver to allow reading the actual voltages
+> applied to the hardware at runtime. This is mainly intended for
+> debugging since the regulators are usually controlled through the
+> RPM firmware (via qcom_smd-regulator).
+> 
+> These PMICs are used on totally different platforms (MSM8909, MDM9607,
+> MSM8974/APQ8084). Each PMIC addition is independent and useful on it
+> own. I only bundled them to simplify review.
+> 
+> [...]
 
-> Allow the gpio-reserved-ranges property on SC7280 TLMM.
->
-> Acked-by: Linus Walleij <linus.walleij@linaro.org>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+Applied to
 
-This patch 5/7 applied to the pinctrl tree!
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-Yours,
-Linus Walleij
+Thanks!
+
+[1/6] dt-bindings: regulator: qcom,spmi: Document PM8909
+      commit: 6f20872035378ab2311cc901f8f94f8718f1b17f
+[2/6] regulator: qcom_spmi: Add PM8909 regulators
+      commit: 813d01a40ae7c0c67681c82edce8463fbbd84b08
+[3/6] dt-bindings: regulator: qcom,spmi: Document PM8019
+      commit: 350aab7f8f2c7d7368d2bbc47717696a51014078
+[4/6] regulator: qcom_spmi: Add PM8019 regulators
+      commit: 5b30cb2a317a8e2636f724e8ebf5cbe3849e786e
+[5/6] dt-bindings: regulator: qcom,spmi: Document PMA8084
+      commit: f72d04235781cf89410ffd750109f4b9931c50ea
+[6/6] regulator: qcom_spmi: Add PMA8084 regulators
+      commit: 317aa3c4fe708fcbee5b9fe5fc25e1b9e92b83f5
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
