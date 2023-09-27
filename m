@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-3723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E52657AFF47
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 11:01:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 914837AFF48
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 11:01:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 0EAC51C2089C
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:01:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id AF0B11C20909
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:01:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D09F31F600;
-	Wed, 27 Sep 2023 09:01:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F3FA1F604;
+	Wed, 27 Sep 2023 09:01:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78FB21C684
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 09:01:29 +0000 (UTC)
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E70DE1B8;
-	Wed, 27 Sep 2023 02:01:27 -0700 (PDT)
-Received: by mail-ot1-x335.google.com with SMTP id 46e09a7af769-6c4e38483d2so3663475a34.1;
-        Wed, 27 Sep 2023 02:01:27 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD74F1C684
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 09:01:47 +0000 (UTC)
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89D9BA3;
+	Wed, 27 Sep 2023 02:01:46 -0700 (PDT)
+Received: by mail-ot1-x32a.google.com with SMTP id 46e09a7af769-6c4b9e09521so5412175a34.3;
+        Wed, 27 Sep 2023 02:01:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695805287; x=1696410087; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1695805306; x=1696410106; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YppGQzKW+2r3xnb53t/LIH/j9u+a8juMyAfNzTVGTww=;
-        b=NldFDpBBn60FCAYIJRrEmfoy5lzUR1VFIEjsWbZZRE5jddU6ZnfJmPg8F8V3dBsNLn
-         6LGm3eTpQreP5bjnbSmflLfQ2Y+6uI724rbypNuY4funQIjGOwRQIq+j99AuStxa4iDP
-         91DPD8XVnLscK+GRUlW5nkBauAT2dY8fGyRf8Cf2EIOIkLtCZ/uTulFmNiFI4grd/NbS
-         HkO66aJISrqtR0bRfkdCIursT1KzG5oX9aWvmw80XMwabU4JNXYlKsUpqwAUl66TfUL1
-         l31X/lNfckTO+rLS27yTNQHR45r9Y9uDnKtxh/91uSfwRgz4ucpx+yiZGQK7v1fpRRdL
-         +Jlw==
+        bh=PXIpE3t2S5hvGBlA4qF3kN7EACJyW+Do/rfIdtRkLUc=;
+        b=Qgbj+kDXSNrOL8+s6qH8JiM/QySkP4ucirf4cglRfmHJ9S8E7oViI4WSsT8CJI080D
+         sts0dsgt+bLb7ej2Y8dn6dWId9Hofltb1y7vpqSu+iM19rf31/9bDWYxY6PLqfcy2/1q
+         e4SMXnNTpH4UN+eEIrJiTfnNsyBHDUuJDX3UG4Gh03ADRwH2NiX44eOqmsXc6hnFshl8
+         ZXCeAE8IMOVDx1fJ+a8Nw/RPVQK2NGOEa3tj9U004eqQctdrv3KMbg6VSyYytUW2/XVA
+         UsssapRIKFwxktpG+xKM38SwuxFzRf/k0VYWP3M1WxE0wOFFIhIW+EuDE04R3iqYQNsE
+         j+YA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695805287; x=1696410087;
+        d=1e100.net; s=20230601; t=1695805306; x=1696410106;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YppGQzKW+2r3xnb53t/LIH/j9u+a8juMyAfNzTVGTww=;
-        b=kru+Mmd5SXt4g4c64I2zWtzMk5kXHQ8IcwCazEeGw+VGTbAcJsvoEHSk8TEqsg5kM+
-         S3hq9/AOzG7Lp7GPf8sfd3+yjmb3Q5XrBkIqm7+ao6Hjy/OMmN/f0RNjLB9Jn99YY8nw
-         JtXc4lnU16PviIHri8Wjyl/mvDPKFfyS4m7oFdH+Z6Q+x8vuFz6jrJ/3n6vu7AoPe0CE
-         SpPkvofAx9rE5gkQzc4tmrd/zqcwjktHF3BwwwG6A0D1bVOAIeQ1nH2Xwvu6o3Hb33Lx
-         54e84+fX0ATS7boudxfa3ywAdcCda61KkgkwhfXtRKn01oyNjqHxsonTgvPy+HxiJf7Y
-         bstQ==
-X-Gm-Message-State: AOJu0Yxa4kVTka4uIw2RmLCFNSNaLvZo3WJFmTxuQVgmHL7NR1bxKXIB
-	97oUueun/bRO+vxI19hZZcu0YSYAXQXqMQ==
-X-Google-Smtp-Source: AGHT+IES/qcWO76tOeeuoIlprC1dblIRpibZEH/5iy8gCVaskuyWvzti7QClb5q84LqsaWehVwQJ/w==
-X-Received: by 2002:a9d:4f12:0:b0:6c4:a30c:f3f1 with SMTP id d18-20020a9d4f12000000b006c4a30cf3f1mr1566244otl.19.1695805286685;
-        Wed, 27 Sep 2023 02:01:26 -0700 (PDT)
+        bh=PXIpE3t2S5hvGBlA4qF3kN7EACJyW+Do/rfIdtRkLUc=;
+        b=ZGj232M1gjT12CEBDy5GFQ5AGk7q7RCcJkp8cxgnlkmjmZ45Et7YsO+B3mHmBMg+cp
+         aMt944K/SLZwTkLWPkAUawQjS4qpzShofwkjAh7Vx1xuuKu6avC4wf4dupsOKsaCVXE5
+         179DJHWUy35YESqKzp8wF6LbCQBHmtkQoxUHAGe4Wy4P8kMXnm0lcXHx8RH7WH8YgEeg
+         5Bb54qTKUl/cXQ3IMXze6V1VIj/2YwejZhiNY+sr3rwG5wXwQM0cf4+Y5Nr00D73HVgQ
+         v2ow6DfiwwOL7R9ChGNrSUTOOh8SVEEMr1ZwSWZMg3t1JN2DLloLkTiAY6kNEfA1X30q
+         WKNQ==
+X-Gm-Message-State: AOJu0YzKkmlZWpqWatIBqtmrTBZkIvsISmDjE5YfnhbUCDRM5qqAB3GN
+	NbMNs/WCsdrNrR/Ks9LtdYIKnVuxiO7AOA==
+X-Google-Smtp-Source: AGHT+IGIIPx7LpmWuBAwJyMC+B4D+B7f2hNQ3krtTefomBIb8tOVeWEMPZHi106hegZJOgN1jP48zA==
+X-Received: by 2002:a05:6830:1291:b0:6c4:cdce:5de8 with SMTP id z17-20020a056830129100b006c4cdce5de8mr1517090otp.26.1695805305760;
+        Wed, 27 Sep 2023 02:01:45 -0700 (PDT)
 Received: from localhost.localdomain ([122.8.183.87])
-        by smtp.gmail.com with ESMTPSA id w1-20020a9d5381000000b006c4e2f00135sm1086568otg.28.2023.09.27.02.01.25
+        by smtp.gmail.com with ESMTPSA id t7-20020a05683022e700b006b9b0a08fdasm2312157otc.59.2023.09.27.02.01.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Sep 2023 02:01:26 -0700 (PDT)
+        Wed, 27 Sep 2023 02:01:45 -0700 (PDT)
 From: Chen Wang <unicornxw@gmail.com>
 To: aou@eecs.berkeley.edu,
 	chao.wei@sophgo.com,
@@ -69,12 +69,12 @@ To: aou@eecs.berkeley.edu,
 	robh+dt@kernel.org,
 	xiaoguang.xing@sophgo.com,
 	apatel@ventanamicro.com
-Cc: Chen Wang <unicornxw@gmail.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Chen Wang <wangchen20@iscas.ac.cn>
-Subject: [PATCH v3 05/11] dt-bindings: interrupt-controller: Add Sophgo SG2042 PLIC
-Date: Wed, 27 Sep 2023 17:01:19 +0800
-Message-Id: <8fb6f431928271bf9d5d4bba204729efdd12669a.1695804418.git.unicornxw@gmail.com>
+Cc: Inochi Amaoto <inochiama@outlook.com>,
+	Chen Wang <wangchen20@iscas.ac.cn>,
+	Chen Wang <unicornxw@gmail.com>
+Subject: [PATCH v3 06/11] dt-bindings: timer: Add Sophgo sg2042 CLINT timer
+Date: Wed, 27 Sep 2023 17:01:37 +0800
+Message-Id: <6e263430685732a4f354b45396c7422a37440ac8.1695804418.git.unicornxw@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1695804418.git.unicornxw@gmail.com>
 References: <cover.1695804418.git.unicornxw@gmail.com>
@@ -92,29 +92,75 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add compatible string for SOPHGO SG2042 plic.
+From: Inochi Amaoto <inochiama@outlook.com>
 
-Acked-by: Chao Wei <chao.wei@sophgo.com>
-Reviewed-by: Guo Ren <guoren@kernel.org>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+The clint of Sophgo sg2042 is incompatible with the standard sifive
+clint, as the timer and ipi device on the different address, and can
+not be handled by the sifive,clint DT.
+
+In addition, the timers of sg2042 are mapped by per cluster, which is
+hard to merge with its ipi device.
+
+To avoid conficts caused by using the same clint compatible string when
+this device is parsed by SBI, add a new vendor specific compatible string
+to identify the timer of sg2042 soc.
+
+Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
 Signed-off-by: Chen Wang <wangchen20@iscas.ac.cn>
 Signed-off-by: Chen Wang <unicornxw@gmail.com>
 ---
- .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml         | 1 +
- 1 file changed, 1 insertion(+)
+ .../timer/sophgo,sg2042-clint-mtimer.yaml     | 42 +++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/sophgo,sg2042-clint-mtimer.yaml
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-index dc1f28e55266..16f9c4760c0f 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-@@ -65,6 +65,7 @@ properties:
-       - items:
-           - enum:
-               - allwinner,sun20i-d1-plic
-+              - sophgo,sg2042-plic
-               - thead,th1520-plic
-           - const: thead,c900-plic
-       - items:
+diff --git a/Documentation/devicetree/bindings/timer/sophgo,sg2042-clint-mtimer.yaml b/Documentation/devicetree/bindings/timer/sophgo,sg2042-clint-mtimer.yaml
+new file mode 100644
+index 000000000000..5da0947d048a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/sophgo,sg2042-clint-mtimer.yaml
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/timer/sophgo,sg2042-clint-mtimer.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Sophgo CLINT Timer
++
++maintainers:
++  - Inochi Amaoto <inochiama@outlook.com>
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - const: sophgo,sg2042-clint-mtimer
++
++  reg:
++    maxItems: 1
++
++  interrupts-extended:
++    minItems: 1
++    maxItems: 4095
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts-extended
++
++examples:
++  - |
++    timer@ac000000 {
++      compatible = "sophgo,sg2042-clint-mtimer";
++      interrupts-extended = <&cpu1intc 7>,
++                            <&cpu2intc 7>,
++                            <&cpu3intc 7>,
++                            <&cpu4intc 7>;
++      reg = <0xac000000 0x00010000>;
++    };
++...
 -- 
 2.25.1
 
