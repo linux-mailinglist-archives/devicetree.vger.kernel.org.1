@@ -1,50 +1,51 @@
-Return-Path: <devicetree+bounces-3694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07F2F7AFE28
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 10:22:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B6227AFE38
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 10:24:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id ACEA0283547
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:22:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id A3AD1283562
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:24:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8139F1FAD;
-	Wed, 27 Sep 2023 08:21:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BB842585;
+	Wed, 27 Sep 2023 08:24:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 347BC2585
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 08:21:57 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1090A95;
-	Wed, 27 Sep 2023 01:21:55 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38R6pSev007299;
-	Wed, 27 Sep 2023 08:21:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=8YEEJs7TF2Rwgbmw3waJ5/TM14s5m5qzE3Tt2KN3g+0=;
- b=EErM6lM94k6i7TtvPVy8a6I/VwQDUg/OTHjACmWyFU9zC/PB+Ffvvu+Q31uOn1mY3ghc
- eevXIJqVsjQXmgYFJanYzwCA7eQMBxs0C5KbVFccf5LMOHfKvO7d9XDsqHu8rm8OEo/w
- KbRiV6PNFXLxHB1eZsyPfiyvFcNvV9ynoxxDPzZQqd6ChwU8VlLZXG/N+SSfJ7LB9GoD
- 6/otjDsClkKpjUGE1hVWK+kjvPySkb5yIEG6KbkOxte1XVfmfy1Ca71i5+W7KHIgsAvs
- VkfdX0JKTMDFkpMhrU5h2Z0Jhzzc7wdJKnilwg6/Dkzz1JJG5p+DGFHXid8Nmw/Klrzv Ww== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tc179hxrx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 27 Sep 2023 08:21:45 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38R8Li1A001951
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 27 Sep 2023 08:21:44 GMT
-Received: from [10.218.45.181] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 27 Sep
- 2023 01:21:39 -0700
-Message-ID: <10b19caa-466b-e98e-a6e1-05658ff74cd0@quicinc.com>
-Date: Wed, 27 Sep 2023 13:51:35 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E39F46A3
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 08:24:16 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0140B95;
+	Wed, 27 Sep 2023 01:24:13 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38R8NxKO106127;
+	Wed, 27 Sep 2023 03:23:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1695803039;
+	bh=KVPQP9iGYJ3tp6PmrcVX4eUF5yXfRjhIcxebBh+/Sv4=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=WYUDN/PNEX0/E0KybWxdBzWoW9eEt0h8SmiZ4qJAZ1TqqF59mNylzn224zM7B9EKx
+	 jW/t41VVLXpvGWA3uOusTUcXITxHeYhLEmm2JbQZj8dBYpIdKv7BOizxRAm1OQxBd4
+	 emfcJ1uMFBnY3KENdXP5jLWL4T36/JysKhL+na+U=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38R8NxAw019056
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 27 Sep 2023 03:23:59 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 27
+ Sep 2023 03:23:59 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 27 Sep 2023 03:23:59 -0500
+Received: from [10.24.68.251] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38R8NtJ6092142;
+	Wed, 27 Sep 2023 03:23:56 -0500
+Message-ID: <b7c87a3a-32ef-fe58-0cf2-230100f377d5@ti.com>
+Date: Wed, 27 Sep 2023 13:53:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,121 +53,141 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH V2 2/3] arm64: dts: qcom: sc7280: Add UFS nodes for sc7280
- soc
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v5 4/7] arm64: dts: ti: k3-j784s4-main: Add the main
+ domain watchdog instances
 Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <mani@kernel.org>, <alim.akhtar@samsung.com>,
-        <bvanassche@acm.org>, <avri.altman@wdc.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20230926162042.14180-1-quic_nitirawa@quicinc.com>
- <20230926162042.14180-3-quic_nitirawa@quicinc.com>
- <e6c77627-c257-45e1-b4bd-19807aefd829@linaro.org>
-From: Nitin Rawat <quic_nitirawa@quicinc.com>
-In-Reply-To: <e6c77627-c257-45e1-b4bd-19807aefd829@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>,
+        <nm@ti.com>, <vigneshr@ti.com>, <conor+dt@kernel.org>,
+        <kristo@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+CC: <u-kumar1@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230926132805.6518-1-j-keerthy@ti.com>
+ <20230926132805.6518-5-j-keerthy@ti.com>
+ <0c709939-9867-4d80-ba7e-640b594f8d7a@linaro.org>
+From: "J, KEERTHY" <j-keerthy@ti.com>
+In-Reply-To: <0c709939-9867-4d80-ba7e-640b594f8d7a@linaro.org>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: BU4hg_CHuQlF71heKdsNS59VmTs8rNQO
-X-Proofpoint-ORIG-GUID: BU4hg_CHuQlF71heKdsNS59VmTs8rNQO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-27_03,2023-09-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- impostorscore=0 lowpriorityscore=0 suspectscore=0 mlxlogscore=999
- clxscore=1015 spamscore=0 bulkscore=0 priorityscore=1501 adultscore=0
- phishscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2309270067
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 
 
-On 9/27/2023 12:01 AM, Konrad Dybcio wrote:
-> On 26.09.2023 18:20, Nitin Rawat wrote:
->> Add UFS host controller and PHY nodes for sc7280 soc.
+On 9/27/2023 1:24 PM, Krzysztof Kozlowski wrote:
+> On 26/09/2023 15:28, Keerthy wrote:
+>> There are totally 19 instances of watchdog module. One each for the
+>> 8 A72 cores, one each for the 4 C7x cores, 1 for the GPU, 1 each
+>> for the 6 R5F cores in the main domain. Keeping only the A72 instances
+>> enabled and disabling the rest by default.
 >>
->> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+>> Signed-off-by: Keerthy <j-keerthy@ti.com>
 >> ---
->>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 64 ++++++++++++++++++++++++++++
->>   1 file changed, 64 insertions(+)
+>>   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 182 +++++++++++++++++++++
+>>   1 file changed, 182 insertions(+)
 >>
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> index 66f1eb83cca7..3be8ea090ade 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> @@ -3353,6 +3353,70 @@
->>   			};
->>   		};
->>
->> +		ufs_mem_hc: ufs@1d84000 {
->> +			compatible = "qcom,sc7280-ufshc", "qcom,ufshc",
->> +				     "jedec,ufs-2.0";
->> +			reg = <0x0 0x01d84000 0x0 0x3000>;
->> +			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
->> +			phys = <&ufs_mem_phy>;
->> +			phy-names = "ufsphy";
->> +			lanes-per-direction = <2>;
->> +			#reset-cells = <1>;
->> +			resets = <&gcc GCC_UFS_PHY_BCR>;
->> +			reset-names = "rst";
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> index 26dc3776f911..8c3efe066803 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> @@ -1576,4 +1576,186 @@
+>>   			      <695>;
+>>   		bootph-pre-ram;
+>>   	};
 >> +
->> +			power-domains = <&gcc GCC_UFS_PHY_GDSC>;
->> +			required-opps = <&rpmhpd_opp_nom>;
+>> +	watchdog0: watchdog@2200000 {
+>> +		compatible = "ti,j7-rti-wdt";
+>> +		reg = <0x00 0x2200000 0x00 0x100>;
+>> +		clocks = <&k3_clks 348 1>;
+>> +		power-domains = <&k3_pds 348 TI_SCI_PD_EXCLUSIVE>;
+>> +		assigned-clocks = <&k3_clks 348 0>;
+>> +		assigned-clock-parents = <&k3_clks 348 4>;
+>> +	};
 >> +
->> +			iommus = <&apps_smmu 0x80 0x0>;
->> +			dma-coherent;
+>> +	watchdog1: watchdog@2210000 {
+>> +		compatible = "ti,j7-rti-wdt";
+>> +		reg = <0x00 0x2210000 0x00 0x100>;
+>> +		clocks = <&k3_clks 349 1>;
+>> +		power-domains = <&k3_pds 349 TI_SCI_PD_EXCLUSIVE>;
+>> +		assigned-clocks = <&k3_clks 349 0>;
+>> +		assigned-clock-parents = <&k3_clks 349 4>;
+>> +	};
 >> +
->> +			clock-names = "core_clk",
->> +				      "bus_aggr_clk",
->> +				      "iface_clk",
->> +				      "core_clk_unipro",
->> +				      "ref_clk",
->> +				      "tx_lane0_sync_clk",
->> +				      "rx_lane0_sync_clk",
->> +				      "rx_lane1_sync_clk";
-> As discussed, property-names is preferred to come after
-> property, just like in the other node you're adding.
-Sure. Updated this in latest patchset and updated the binding as well.
+>> +	watchdog2: watchdog@2220000 {
+>> +		compatible = "ti,j7-rti-wdt";
+>> +		reg = <0x00 0x2220000 0x00 0x100>;
+>> +		clocks = <&k3_clks 350 1>;
+>> +		power-domains = <&k3_pds 350 TI_SCI_PD_EXCLUSIVE>;
+>> +		assigned-clocks = <&k3_clks 350 0>;
+>> +		assigned-clock-parents = <&k3_clks 350 4>;
+>> +	};
+>> +
+>> +	watchdog3: watchdog@2230000 {
+>> +		compatible = "ti,j7-rti-wdt";
+>> +		reg = <0x00 0x2230000 0x00 0x100>;
+>> +		clocks = <&k3_clks 351 1>;
+>> +		power-domains = <&k3_pds 351 TI_SCI_PD_EXCLUSIVE>;
+>> +		assigned-clocks = <&k3_clks 351 0>;
+>> +		assigned-clock-parents = <&k3_clks 351 4>;
+>> +	};
+>> +
+>> +	watchdog4: watchdog@2240000 {
+>> +		compatible = "ti,j7-rti-wdt";
+>> +		reg = <0x00 0x2240000 0x00 0x100>;
+>> +		clocks = <&k3_clks 352 1>;
+>> +		power-domains = <&k3_pds 352 TI_SCI_PD_EXCLUSIVE>;
+>> +		assigned-clocks = <&k3_clks 352 0>;
+>> +		assigned-clock-parents = <&k3_clks 352 4>;
+>> +	};
+>> +
+>> +	watchdog5: watchdog@2250000 {
+>> +		compatible = "ti,j7-rti-wdt";
+>> +		reg = <0x00 0x2250000 0x00 0x100>;
+>> +		clocks = <&k3_clks 353 1>;
+>> +		power-domains = <&k3_pds 353 TI_SCI_PD_EXCLUSIVE>;
+>> +		assigned-clocks = <&k3_clks 353 0>;
+>> +		assigned-clock-parents = <&k3_clks 353 4>;
+>> +	};
+>> +
+>> +	watchdog6: watchdog@2260000 {
+>> +		compatible = "ti,j7-rti-wdt";
+>> +		reg = <0x00 0x2260000 0x00 0x100>;
+>> +		clocks = <&k3_clks 354 1>;
+>> +		power-domains = <&k3_pds 354 TI_SCI_PD_EXCLUSIVE>;
+>> +		assigned-clocks = <&k3_clks 354 0>;
+>> +		assigned-clock-parents = <&k3_clks 354 4>;
+>> +	};
+>> +
+>> +	watchdog7: watchdog@2270000 {
+>> +		compatible = "ti,j7-rti-wdt";
+>> +		reg = <0x00 0x2270000 0x00 0x100>;
+>> +		clocks = <&k3_clks 355 1>;
+>> +		power-domains = <&k3_pds 355 TI_SCI_PD_EXCLUSIVE>;
+>> +		assigned-clocks = <&k3_clks 355 0>;
+>> +		assigned-clock-parents = <&k3_clks 355 4>;
+>> +	};
+>> +
+>> +	watchdog16: watchdog@2300000 {
+>> +		status = "disabled";
+> 
+> This is a friendly reminder during the review process.
+> 
+> It seems my previous comments were not fully addressed. Maybe my
+> feedback got lost between the quotes, maybe you just forgot to apply it.
+> Please go back to the previous discussion and either implement all
+> requested changes or keep discussing them.
+
+Apologies. I have fixed the order in v6.
 
 > 
-> [...]
+> Thank you.
 > 
->> +		ufs_mem_phy: phy@1d87000 {
->> +			compatible = "qcom,sc7280-qmp-ufs-phy";
->> +			reg = <0x0 0x01d87000 0x0 0xe00>;
->> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
->> +				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
->> +				 <&gcc GCC_UFS_1_CLKREF_EN>;
->> +			clock-names = "ref", "ref_aux", "qref";
->> +
->> +			resets = <&ufs_mem_hc 0>;
->> +			reset-names = "ufsphy";
->> +
->> +			#clock-cells = <1>;
->> +			#phy-cells = <0>;
->> +
->> +			status = "disabled";
->> +
->> +		};
-> Stray newline above.
-Removed this in latest Patchset
-
+> Best regards,
+> Krzysztof
 > 
-> Konrad
-
-Thanks,
-Nitin
 
