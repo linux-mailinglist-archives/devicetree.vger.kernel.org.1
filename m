@@ -1,434 +1,513 @@
-Return-Path: <devicetree+bounces-3956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52EA17B0B32
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 19:39:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48A267B0B52
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 19:53:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 822ADB209F6
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 17:39:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 7DA82B2097B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 17:53:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1032337C87;
-	Wed, 27 Sep 2023 17:39:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CEC138FB5;
+	Wed, 27 Sep 2023 17:53:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06518266DB
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 17:39:04 +0000 (UTC)
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01hn2210.outbound.protection.outlook.com [52.100.223.210])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FE3610A;
-	Wed, 27 Sep 2023 10:39:02 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gNppdX/AbenypGYvlz97QBYDuLHAPJTlvNWMqfkumNN0s1VxN3kEYjyOdcez/Oyb/rGI7rYx5PBrTm9UKQl7n4FX7+3rOt4aesY45The46JddYl9YHFnfbYTVQ42w9t7jTht1/SVPu/nNPGK6bcDbdwVYMqv1r5463JDtF2awgC+0HSpAiTw69vsy0Qm0a9v+Wdg1TsO9d49AU2UlqMaes4Kl6EtFOwNO5NR2TRJVa1sUbngDZBtJZ3qL8KnPIyRnSaRORyJp4Olba2BA+yHXSuy2mUUT9Gr4rSzR0+Q2VRBVnBXeVQWfEXRfeCXMYRptJp7ntfXHW1uPoVaFIZCsg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1GTbCPg1a6KW0sKyEcuX1XZKVpW9lN1Uc6yebFbrP/g=;
- b=apCM7vfs+twAko/WT1dgAv6960SSv7YLGXBIjAQqpEqqnIo0+PMTo82aJeyMPyAspnj9nywyLqq95dqOSvADHA4pfqfznT3olOIKakc4d38777JP42OZVpUqXjyurl7j4QGNtvO0BG0XHV61JVIjMCoQDVyajFgItFY+ACECpQBKji3AQgVMCviR6X/xH6dDd+F87AOJiCoBZxjSVk9H1WtfHJjes4tLjcoNrfZqGeSXNc6O12s8WorQFz1VXttT+HKWI3x0Xm5XVcJLIx0O6FTnooP6AZPF5vmzL1qcjQDcb17HjVlFpybt+CtSfw0gOJdUqyDGd+xtYeYIlFKQMA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 175.98.123.7) smtp.rcpttodomain=codeconstruct.com.au
- smtp.mailfrom=nuvoton.com; dmarc=fail (p=none sp=quarantine pct=100)
- action=none header.from=gmail.com; dkim=none (message not signed); arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 483A528DC2
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 17:53:21 +0000 (UTC)
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8C5CE5
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 10:53:18 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4053cb57f02so106923005e9.1
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 10:53:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=nuvoton.onmicrosoft.com; s=selector2-nuvoton-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1GTbCPg1a6KW0sKyEcuX1XZKVpW9lN1Uc6yebFbrP/g=;
- b=McjZXOjzyNYUxXPmctJs+9LQ3XoWZQVUdx82n9mcDUslTn7zV1DBfS8gCMwjxwtO2nmOIX7W933QTnqeENIIT+7v/DtXJ8+b3azVVtok6fB8rai+Z6WkGhlJHBu9eWmG1grncpjIyxgiltz5Da1jRZ2flbzIVKZOw7Qh+6p8avM=
-Received: from SI1PR02CA0057.apcprd02.prod.outlook.com (2603:1096:4:1f5::10)
- by TY0PR03MB6292.apcprd03.prod.outlook.com (2603:1096:400:144::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.28; Wed, 27 Sep
- 2023 17:38:59 +0000
-Received: from HK3PEPF00000220.apcprd03.prod.outlook.com
- (2603:1096:4:1f5:cafe::cb) by SI1PR02CA0057.outlook.office365.com
- (2603:1096:4:1f5::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.22 via Frontend
- Transport; Wed, 27 Sep 2023 17:38:58 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 175.98.123.7)
- smtp.mailfrom=nuvoton.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=gmail.com;
-Received-SPF: Pass (protection.outlook.com: domain of nuvoton.com designates
- 175.98.123.7 as permitted sender) receiver=protection.outlook.com;
- client-ip=175.98.123.7; helo=NTHCCAS04.nuvoton.com; pr=C
-Received: from NTHCCAS04.nuvoton.com (175.98.123.7) by
- HK3PEPF00000220.mail.protection.outlook.com (10.167.8.42) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
- 15.20.6838.14 via Frontend Transport; Wed, 27 Sep 2023 17:38:57 +0000
-Received: from NTHCML01B.nuvoton.com (10.1.8.178) by NTHCCAS04.nuvoton.com
- (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.14; Thu, 28
- Sep 2023 01:38:56 +0800
-Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCML01B.nuvoton.com
- (10.1.8.178) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Thu, 28 Sep
- 2023 01:38:56 +0800
-Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS01.nuvoton.com
- (10.1.8.28) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Thu, 28 Sep 2023 01:38:56 +0800
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
-	id 4D1ED64742; Wed, 27 Sep 2023 20:38:54 +0300 (IDT)
-From: Tomer Maimon <tmaimon77@gmail.com>
-To: <linux@roeck-us.net>, <jdelvare@suse.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <avifishman70@gmail.com>,
-	<tali.perry1@gmail.com>, <joel@jms.id.au>, <andrew@codeconstruct.com.au>,
-	<venture@google.com>, <yuenn@google.com>, <benjaminfair@google.com>,
-	<j.neuschaefer@gmx.net>
-CC: <openbmc@lists.ozlabs.org>, <linux-hwmon@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Tomer Maimon
-	<tmaimon77@gmail.com>
-Subject: [PATCH v1 2/2] hwmon: npcm750-pwm-fan: Add NPCM8xx support
-Date: Wed, 27 Sep 2023 20:38:50 +0300
-Message-ID: <20230927173850.103435-3-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20230927173850.103435-1-tmaimon77@gmail.com>
-References: <20230927173850.103435-1-tmaimon77@gmail.com>
+        d=gmail.com; s=20230601; t=1695837197; x=1696441997; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=R1wVUuLdJyTDbyEhe+RQWq8qbG4VwyUxAevJxJSIPOE=;
+        b=KvvIcxF5We+eZBfJmdp/LvAgRURm8pFRlFsSPUVuwU23C1qja6uf9nXWLdwypzROWQ
+         HaygiEBz2UJOrh+0aqNTM+RalB/rEVTYThc3x0aqKIhXWZjTNpNQ4Iy0aTznLSUxkTL6
+         jyv5BUbpAhkcNzyg3AWfc0VbUxP2UgnDhRlvZXIB+FohQxrH9JcpEJW0At853VJWsCmo
+         pcjXCFmzKICaZkcQz6WSUvRMbs53oUf6B49sLBhdcLPvu4u7YIBcM7bj0MUqu/NnrPs+
+         oczef/mG+GdlrgDZPELMRpN0EZD4/jTnOzpvBzFEM9USOmL5EsPY4zu80TxUTmz5tp4e
+         tcgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695837197; x=1696441997;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=R1wVUuLdJyTDbyEhe+RQWq8qbG4VwyUxAevJxJSIPOE=;
+        b=Rm5Sojk6zu0pxhw/K6qdhNMZZqmCrJ02isT0K4JRUSv1+84gJ0nPtnHWjmIEb20sJF
+         i3Ypmb2g0D8SJK5XptMZkwukqYMOVzPmGRxJmVpHHJ6cMhFmL6vA7gw+oLamqPoxARPO
+         UcyHasST2tCXp23sGQBfGFdyFyMB21hFceoZr646SpHi+97ADb07+Ru49NsOgNdCQuez
+         heXuByGliWanSVlGsxXyGEufzirg1/HiKCEfzAgFYJ/sQBqvza/Cb9yTPdzxDxumxn5o
+         dpEMENJ92k52mV2euncmkgGDZhsmFklVWqrtklMciRW/fpBOOC4tpQzSO99Ak6JCw9O+
+         aLIw==
+X-Gm-Message-State: AOJu0Yxz4wJP6sFWllAphA9YL5GSiXuudwqL6plgX9j4ouD92f1xknWY
+	xXs8LmOsM44XBada6HZzR/FYMflC5NQt3Q==
+X-Google-Smtp-Source: AGHT+IHd1IqFOJn/UDvP6MNE3yLmOcgQwBFTzdWE9IKOIXNaWopt4aLTtKUqGLdOqp4nuTOyTkNG+Q==
+X-Received: by 2002:a7b:c4cb:0:b0:405:a30:151e with SMTP id g11-20020a7bc4cb000000b004050a30151emr2689935wmk.12.1695837197021;
+        Wed, 27 Sep 2023 10:53:17 -0700 (PDT)
+Received: from jernej-laptop.localnet (82-149-12-148.dynamic.telemach.net. [82.149.12.148])
+        by smtp.gmail.com with ESMTPSA id y2-20020a7bcd82000000b00403bbe69629sm18250277wmj.31.2023.09.27.10.53.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Sep 2023 10:53:16 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Chris Morgan <macromorgan@hotmail.com>
+Cc: linux-sunxi@lists.linux.dev, Chris Morgan <macroalpha82@gmail.com>,
+ devicetree@vger.kernel.org, mripard@kernel.org, uwu@icenowy.me,
+ samuel@sholland.org, wens@csie.org, conor+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, andre.przywara@arm.com
+Subject: Re: [PATCH V5 4/4] ARM: dts: sunxi: add support for Anbernic RG-Nano
+Date: Wed, 27 Sep 2023 19:53:16 +0200
+Message-ID: <5797841.DvuYhMxLoT@jernej-laptop>
+In-Reply-To:
+ <SN6PR06MB5342313BDE341C6F17DB7557A5C2A@SN6PR06MB5342.namprd06.prod.outlook.com>
+References:
+ <20230921135136.97491-1-macroalpha82@gmail.com>
+ <9217807.rMLUfLXkoz@jernej-laptop>
+ <SN6PR06MB5342313BDE341C6F17DB7557A5C2A@SN6PR06MB5342.namprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NotSetDelaration: True
-X-EOPAttributedMessage: 0
-X-MS-Exchange-SkipListedInternetSender:
- ip=[175.98.123.7];domain=NTHCCAS04.nuvoton.com
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: HK3PEPF00000220:EE_|TY0PR03MB6292:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7114734f-ed42-4373-bb75-08dbbf80a0a1
-X-MS-Exchange-SenderADCheck: 0
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?rzdT+TcYBOhH8/2nzkl9OnjYEwg3Ame4xM/JWJkUjZ1I+hrwzvlTJTRjlaQR?=
- =?us-ascii?Q?KU2GgPhY/G+PyZ/dvfH36B3nDDUaR4Sfq9sIInDDfcHll02JRvsa/CO6dFRi?=
- =?us-ascii?Q?p+Na7s9XtaEAaAz9hjJWBbZ44Rwu76yCP1m2LiWfDJW7QIsZVKvOt+VHT8Ge?=
- =?us-ascii?Q?I2pcq55pN1hpPqfHCVBS5f/uZ0yIEIO7gXGcYAimrQwNg/KiQsliRPopbfmm?=
- =?us-ascii?Q?MnADlVAySMHIRGTjJJwoTdPKVT6qEn44GcG6ShljM4V6+XJ/huEAuNCANNgW?=
- =?us-ascii?Q?n2RazYxVPjV1MdUPfi8xlhIk6nB7p9Pa0yWF7UoYi+IX3uE72k+/l7X/2sRj?=
- =?us-ascii?Q?Z2/1WncXPSusRLvS5n42vnz+f7Aai8I1JW2g2zf8lE07uGWTr8aJtSZVry9Z?=
- =?us-ascii?Q?PxZKOorgoDzoiVt36TodNLtxD+8Vn+vCzfNt5FV7ysomL1B1wa3PXtEPLLU3?=
- =?us-ascii?Q?urYpzlXxFqr5tiZAp2yRvwav2mVKni62keFV6D7+6LzK4D0Bc0ZwFZwcEAmL?=
- =?us-ascii?Q?n/odG3r7LrYOxbt0Ul3tV78kN4uPKgkou6kTU/wtjL+fF6LqA4lNaJzRy9xT?=
- =?us-ascii?Q?6DEc81K9YVVKHHQ5UAmDMJklV8BAYyVLju4pJFXTUwDZIQlEwYZye5tgVzp3?=
- =?us-ascii?Q?qc5x/Z4uZMPIABAPW+hRY1cD3SLxAxc21ky6KmIB/ZTnh52j5tKwzoZujPRM?=
- =?us-ascii?Q?PZ7rLL9tyDhVkDFIu8WQK5d2zl+nEIwjAy+oTMFhboIQtFHfiTHttCKRdKda?=
- =?us-ascii?Q?iCZ/yJrkcZPu1vRpyYHWRIC0u2AticPMVJ5H3+3ZO54W6FFuuhxb9w99QTN3?=
- =?us-ascii?Q?7jXk0KoJRiJYKFsHwuXqOE7n43foV0h/lMEcBJ5i5IkWKmEVFS3cuOO49Lkt?=
- =?us-ascii?Q?MUDKJn5Bq/+MsGo3U4U/P86PA6RGiKGG1I5Jh8o8hysJJSWScRXOuffDGiKU?=
- =?us-ascii?Q?WYDLBduAEL1/79NFzN6ZIoJ48wyVFqUBV274onsXQkbh2fsmq5+2aChToidd?=
- =?us-ascii?Q?oDgDWCn7xMGfLgAvD57ZuMb4Fg=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:175.98.123.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS04.nuvoton.com;PTR:175-98-123-7.static.tfn.net.tw;CAT:NONE;SFS:(13230031)(4636009)(346002)(136003)(396003)(376002)(39860400002)(84050400002)(230922051799003)(61400799006)(451199024)(82310400011)(5400799018)(48200799006)(186009)(40470700004)(36840700001)(46966006)(921005)(7416002)(8936002)(5660300002)(4326008)(41300700001)(8676002)(2906002)(6266002)(336012)(54906003)(82202003)(110136005)(42186006)(70586007)(42882007)(40460700003)(76482006)(26005)(70206006)(34020700004)(81166007)(316002)(478600001)(83170400001)(6666004)(2616005)(40480700001)(83380400001)(73392003)(82740400003)(47076005)(356005)(36860700001)(55446002)(36756003)(1076003)(45356006)(32563001)(35450700002)(84790400001)(12100799045);DIR:OUT;SFP:1501;
-X-OriginatorOrg: nuvoton.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2023 17:38:57.4105
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7114734f-ed42-4373-bb75-08dbbf80a0a1
-X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[175.98.123.7];Helo=[NTHCCAS04.nuvoton.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	HK3PEPF00000220.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR03MB6292
-X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Adding Pulse Width Modulation (PWM) and fan tacho NPCM8xx support to
-NPCM PWM and fan tacho driver.
-NPCM8xx uses a different number of PWM devices.
+Dne sreda, 27. september 2023 ob 16:14:03 CEST je Chris Morgan napisal(a):
+> On Mon, Sep 25, 2023 at 06:00:46PM +0200, Jernej =C5=A0krabec wrote:
+> > Dne ponedeljek, 25. september 2023 ob 17:00:33 CEST je Chris Morgan nap=
+isal(a):
+> > > On Sun, Sep 24, 2023 at 09:33:53PM +0200, Jernej =C5=A0krabec wrote:
+> > > > Dne =C4=8Detrtek, 21. september 2023 ob 15:51:36 CEST je Chris Morg=
+an napisal(a):
+> > > > > From: Chris Morgan <macromorgan@hotmail.com>
+> > > > >=20
+> > > > > The Anbernic RG-Nano is a small portable game device based on the
+> > > > > Allwinner V3s SoC. It has GPIO buttons on the face and side for
+> > > > > input, a single mono speaker, a 240x240 SPI controlled display, a=
+ USB-C
+> > > > > OTG port, an SD card slot for booting, and 64MB of RAM included i=
+n the
+> > > > > SoC. There does not appear to be a crystal feeding the internal R=
+TC so
+> > > > > it does not keep proper time (for me it ran 8 hours slow in a 24 =
+hour
+> > > > > period). External RTC works just fine.
+> > > > >=20
+> > > > > Working/Tested:
+> > > > > - SDMMC
+> > > > > - UART (for debugging)
+> > > > > - Buttons
+> > > > > - Charging/battery/PMIC
+> > > > > - Speaker
+> > > > > - RTC (external RTC)
+> > > > > - USB
+> > > > > - Display
+> > > > >=20
+> > > > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > > > > ---
+> > > > >  arch/arm/boot/dts/allwinner/Makefile          |   1 +
+> > > > >  .../allwinner/sun8i-v3s-anbernic-rg-nano.dts  | 284 ++++++++++++=
+++++++
+> > > > >  2 files changed, 285 insertions(+)
+> > > > >  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-v3s-anberni=
+c-rg-nano.dts
+> > > > >=20
+> > > > > diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot=
+/dts/allwinner/Makefile
+> > > > > index eebb5a0c873a..2d26c3397f14 100644
+> > > > > --- a/arch/arm/boot/dts/allwinner/Makefile
+> > > > > +++ b/arch/arm/boot/dts/allwinner/Makefile
+> > > > > @@ -256,6 +256,7 @@ dtb-$(CONFIG_MACH_SUN8I) +=3D \
+> > > > >  	sun8i-t113s-mangopi-mq-r-t113.dtb \
+> > > > >  	sun8i-t3-cqa3t-bv3.dtb \
+> > > > >  	sun8i-v3-sl631-imx179.dtb \
+> > > > > +	sun8i-v3s-anbernic-rg-nano.dtb \
+> > > > >  	sun8i-v3s-licheepi-zero.dtb \
+> > > > >  	sun8i-v3s-licheepi-zero-dock.dtb \
+> > > > >  	sun8i-v40-bananapi-m2-berry.dtb
+> > > > > diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-na=
+no.dts b/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
+> > > > > new file mode 100644
+> > > > > index 000000000000..1a4429dc57b1
+> > > > > --- /dev/null
+> > > > > +++ b/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
+> > > > > @@ -0,0 +1,284 @@
+> > > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > > > > +
+> > > > > +/dts-v1/;
+> > > > > +#include <dt-bindings/input/linux-event-codes.h>
+> > > > > +#include "sun8i-v3s.dtsi"
+> > > > > +#include "sunxi-common-regulators.dtsi"
+> > > > > +
+> > > > > +/ {
+> > > > > +	model =3D "Anbernic RG Nano";
+> > > > > +	compatible =3D "anbernic,rg-nano", "allwinner,sun8i-v3s";
+> > > > > +
+> > > > > +	aliases {
+> > > > > +		rtc0 =3D &pcf8563;
+> > > > > +		rtc1 =3D &rtc;
+> > > > > +		serial0 =3D &uart0;
+> > > > > +	};
+> > > > > +
+> > > > > +	backlight: backlight {
+> > > > > +		compatible =3D "pwm-backlight";
+> > > > > +		brightness-levels =3D <0 1 2 3 8 14 21 32 46 60 80 100>;
+> > > > > +		default-brightness-level =3D <11>;
+> > > > > +		power-supply =3D <&reg_vcc5v0>;
+> > > > > +		pwms =3D <&pwm 0 40000 1>;
+> > > > > +	};
+> > > > > +
+> > > > > +	chosen {
+> > > > > +		stdout-path =3D "serial0:115200n8";
+> > > > > +	};
+> > > > > +
+> > > > > +	gpio_keys: gpio-keys {
+> > > > > +		compatible =3D "gpio-keys";
+> > > > > +
+> > > > > +		button-a {
+> > > > > +			gpios =3D <&gpio_expander 12 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)=
+>;
+> > > > > +			label =3D "BTN-A";
+> > > > > +			linux,code =3D <BTN_EAST>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-b {
+> > > > > +			gpios =3D <&gpio_expander 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)=
+>;
+> > > > > +			label =3D "BTN-B";
+> > > > > +			linux,code =3D <BTN_SOUTH>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-down {
+> > > > > +			gpios =3D <&gpio_expander 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > > > > +			label =3D "DPAD-DOWN";
+> > > > > +			linux,code =3D <BTN_DPAD_DOWN>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-left {
+> > > > > +			gpios =3D <&gpio_expander 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > > > > +			label =3D "DPAD-LEFT";
+> > > > > +			linux,code =3D <BTN_DPAD_LEFT>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-right {
+> > > > > +			gpios =3D <&gpio_expander 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > > > > +			label =3D "DPAD-RIGHT";
+> > > > > +			linux,code =3D <BTN_DPAD_RIGHT>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-se {
+> > > > > +			gpios =3D <&gpio_expander 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > > > > +			label =3D "BTN-SELECT";
+> > > > > +			linux,code =3D <BTN_SELECT>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-st {
+> > > > > +			gpios =3D <&gpio_expander 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > > > > +			label =3D "BTN-START";
+> > > > > +			linux,code =3D <BTN_START>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-tl {
+> > > > > +			gpios =3D <&gpio_expander 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > > > > +			label =3D "BTN-L";
+> > > > > +			linux,code =3D <BTN_TL>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-tr {
+> > > > > +			gpios =3D <&gpio_expander 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)=
+>;
+> > > > > +			label =3D "BTN-R";
+> > > > > +			linux,code =3D <BTN_TR>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-up {
+> > > > > +			gpios =3D <&gpio_expander 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > > > > +			label =3D "DPAD-UP";
+> > > > > +			linux,code =3D <BTN_DPAD_UP>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-x {
+> > > > > +			gpios =3D <&gpio_expander 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)=
+>;
+> > > > > +			label =3D "BTN-X";
+> > > > > +			linux,code =3D <BTN_NORTH>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-y {
+> > > > > +			gpios =3D <&gpio_expander 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)=
+>;
+> > > > > +			label =3D "BTN-Y";
+> > > > > +			linux,code =3D <BTN_WEST>;
+> > > > > +		};
+> > > > > +	};
+> > > > > +};
+> > > > > +
+> > > > > +&codec {
+> > > > > +	allwinner,audio-routing =3D "Speaker", "HP",
+> > > > > +				  "MIC1", "Mic",
+> > > > > +				  "Mic", "HBIAS";
+> > > > > +	allwinner,pa-gpios =3D <&pio 5 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_=
+UP)>; /* PF6 */
+> > > > > +	status =3D "okay";
+> > > > > +};
+> > > > > +
+> > > > > +&ehci {
+> > > > > +	status =3D "okay";
+> > > > > +};
+> > > > > +
+> > > > > +&i2c0 {
+> > > > > +	status =3D "okay";
+> > > > > +
+> > > > > +	gpio_expander: gpio@20 {
+> > > > > +		compatible =3D "nxp,pcal6416";
+> > > > > +		reg =3D <0x20>;
+> > > > > +		gpio-controller;
+> > > > > +		#gpio-cells =3D <2>;
+> > > > > +		#interrupt-cells =3D <2>;
+> > > > > +		interrupt-controller;
+> > > > > +		interrupt-parent =3D <&pio>;
+> > > > > +		interrupts =3D <1 3 IRQ_TYPE_EDGE_BOTH>; /* PB3/EINT3 */
+> > > > > +		vcc-supply =3D <&reg_vcc3v3>;
+> > > > > +	};
+> > > > > +
+> > > > > +	axp209: pmic@34 {
+> > > > > +		reg =3D <0x34>;
+> > > > > +		interrupt-parent =3D <&pio>;
+> > > > > +		interrupts =3D <1 5 IRQ_TYPE_EDGE_FALLING>; /* PB5/EINT5 */
+> > > > > +	};
+> > > > > +
+> > > > > +	pcf8563: rtc@51 {
+> > > > > +		compatible =3D "nxp,pcf8563";
+> > > > > +		reg =3D <0x51>;
+> > > > > +	};
+> > > > > +};
+> > > > > +
+> > > > > +#include "axp209.dtsi"
+> > > > > +
+> > > > > +&battery_power_supply {
+> > > > > +	status =3D "okay";
+> > > > > +};
+> > > > > +
+> > > > > +&mmc0 {
+> > > > > +	broken-cd;
+> > > > > +	bus-width =3D <4>;
+> > > > > +	disable-wp;
+> > > > > +	vmmc-supply =3D <&reg_vcc3v3>;
+> > > > > +	vqmmc-supply =3D <&reg_vcc3v3>;
+> > > > > +	status =3D "okay";
+> > > > > +};
+> > > > > +
+> > > > > +&ohci {
+> > > > > +	status =3D "okay";
+> > > > > +};
+> > > > > +
+> > > > > +&pio {
+> > > > > +	vcc-pb-supply =3D <&reg_vcc3v3>;
+> > > > > +	vcc-pc-supply =3D <&reg_vcc3v3>;
+> > > > > +	vcc-pf-supply =3D <&reg_vcc3v3>;
+> > > > > +	vcc-pg-supply =3D <&reg_vcc3v3>;
+> > > > > +
+> > > > > +	spi0_no_miso_pins: spi0-no-miso-pins {
+> > > > > +		pins =3D "PC1", "PC2", "PC3";
+> > > > > +		function =3D "spi0";
+> > > > > +	};
+> > > > > +};
+> > > > > +
+> > > > > +&pwm {
+> > > > > +	pinctrl-0 =3D <&pwm0_pin>;
+> > > > > +	pinctrl-names =3D "default";
+> > > > > +	status =3D "okay";
+> > > > > +};
+> > > > > +
+> > > > > +/* DCDC2 wired into vdd-cpu, vdd-sys, and vdd-ephy. */
+> > > > > +&reg_dcdc2 {
+> > > > > +	regulator-always-on;
+> > > > > +	regulator-max-microvolt =3D <1250000>;
+> > > > > +	regulator-min-microvolt =3D <1250000>;
+> > > > > +	regulator-name =3D "vdd-cpu";
+> > > > > +};
+> > > > > +
+> > > > > +/* DCDC3 wired into every 3.3v input that isn't the RTC. */
+> > > > > +&reg_dcdc3 {
+> > > > > +	regulator-always-on;
+> > > > > +	regulator-max-microvolt =3D <3300000>;
+> > > > > +	regulator-min-microvolt =3D <3300000>;
+> > > > > +	regulator-name =3D "vcc-io";
+> > > > > +};
+> > > > > +
+> > > > > +/*
+> > > > > + * LDO1 wired into RTC, voltage is hard-wired at 3.3v and cannot=
+ be
+> > > > > + * software modified. Note that setting voltage here to 3.3v for=
+ accuracy
+> > > > > + * sake causes an issue with the driver that causes it to fail t=
+o probe
+> > > > > + * because of a voltage constraint in the driver.
+> > > > > + */
+> > > >=20
+> > > > Can you please remove any mention of drivers everywhere? DT is OS a=
+nd=20
+> > > > thus driver independent.
+> > > >=20
+> > > > Once fixed:
+> > > > Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> > >=20
+> > > This note was added due to prior comments because in this very specif=
+ic
+> > > case we're working around a driver issue. Sadly if I accurately
+> > > describe the hardware the PMIC and devices that depend on it will fail
+> > > to probe (the hardware is 3.3v, but here it's set as 1.3v).
+> > >=20
+> > > https://lore.kernel.org/linux-sunxi/20230629203410.660eb9a4@slackpad.=
+lan/
+> >=20
+> > Sorry, I should follow conversation more closely. Procedure in such cas=
+es
+> > is to fix driver first and then submit proper DT file. While DT files
+> > reside in Linux source, they are often used by diferent projects, like
+> > U-Boot or FreeBSD, so we can't make hacks just because Linux driver doe=
+sn't
+> > work.
+>=20
+> I'll drop all but the note that "LDO1 is wired into RTC and voltage is
+> hard wired at 3.3v". That accurately describes the hardware, so will
+> that work?
 
-As part of adding NPCM8XX support:
-- Add NPCM8xx specific compatible string.
-- Add data to handle architecture-specific PWM and fan tacho parameters.
+OK.
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
----
- drivers/hwmon/npcm750-pwm-fan.c | 161 +++++++++++++++++++++++++++-----
- 1 file changed, 136 insertions(+), 25 deletions(-)
+Best regards,
+Jernej
 
-diff --git a/drivers/hwmon/npcm750-pwm-fan.c b/drivers/hwmon/npcm750-pwm-fan.c
-index 10ed3f4335d4..324de4482e71 100644
---- a/drivers/hwmon/npcm750-pwm-fan.c
-+++ b/drivers/hwmon/npcm750-pwm-fan.c
-@@ -45,11 +45,6 @@
- #define NPCM7XX_PWM_CTRL_CH2_EN_BIT		BIT(12)
- #define NPCM7XX_PWM_CTRL_CH3_EN_BIT		BIT(16)
- 
--/* Define the maximum PWM channel number */
--#define NPCM7XX_PWM_MAX_CHN_NUM			8
--#define NPCM7XX_PWM_MAX_CHN_NUM_IN_A_MODULE	4
--#define NPCM7XX_PWM_MAX_MODULES                 2
--
- /* Define the Counter Register, value = 100 for match 100% */
- #define NPCM7XX_PWM_COUNTER_DEFAULT_NUM		255
- #define NPCM7XX_PWM_CMR_DEFAULT_NUM		255
-@@ -138,11 +133,9 @@
- #define NPCM7XX_FAN_TCPCFG_CPASEL	BIT(0)
- 
- /* FAN General Definition */
--/* Define the maximum FAN channel number */
--#define NPCM7XX_FAN_MAX_MODULE			8
-+/* Define the PWM and FAN in a module */
-+#define NPCM7XX_PWM_MAX_CHN_NUM_IN_A_MODULE	4
- #define NPCM7XX_FAN_MAX_CHN_NUM_IN_A_MODULE	2
--#define NPCM7XX_FAN_MAX_CHN_NUM			16
--
- /*
-  * Get Fan Tach Timeout (base on clock 214843.75Hz, 1 cnt = 4.654us)
-  * Timeout 94ms ~= 0x5000
-@@ -171,6 +164,15 @@
- #define FAN_PREPARE_TO_GET_FIRST_CAPTURE	0x01
- #define FAN_ENOUGH_SAMPLE			0x02
- 
-+struct npcm_hwmon_info {
-+	u32 pwm_max_modules;
-+	u32 pwm_max_ch;
-+	u32 fan_max_modules;
-+	u32 fan_max_ch;
-+	const struct hwmon_chip_info *hinfo;
-+	const char *name;
-+};
-+
- struct npcm7xx_fan_dev {
- 	u8 fan_st_flg;
- 	u8 fan_pls_per_rev;
-@@ -195,15 +197,16 @@ struct npcm7xx_pwm_fan_data {
- 	unsigned long fan_clk_freq;
- 	struct clk *pwm_clk;
- 	struct clk *fan_clk;
--	struct mutex pwm_lock[NPCM7XX_PWM_MAX_MODULES];
--	spinlock_t fan_lock[NPCM7XX_FAN_MAX_MODULE];
--	int fan_irq[NPCM7XX_FAN_MAX_MODULE];
--	bool pwm_present[NPCM7XX_PWM_MAX_CHN_NUM];
--	bool fan_present[NPCM7XX_FAN_MAX_CHN_NUM];
-+	struct mutex *pwm_lock;
-+	spinlock_t *fan_lock;
-+	int *fan_irq;
-+	bool *pwm_present;
-+	bool *fan_present;
- 	u32 input_clk_freq;
- 	struct timer_list fan_timer;
--	struct npcm7xx_fan_dev fan_dev[NPCM7XX_FAN_MAX_CHN_NUM];
--	struct npcm7xx_cooling_device *cdev[NPCM7XX_PWM_MAX_CHN_NUM];
-+	struct npcm7xx_fan_dev *fan_dev;
-+	struct npcm7xx_cooling_device **cdev;
-+	const struct npcm_hwmon_info *info;
- 	u8 fan_select;
- };
- 
-@@ -333,7 +336,7 @@ static void npcm7xx_fan_polling(struct timer_list *t)
- 	 * Polling two module per one round,
- 	 * FAN01 & FAN89 / FAN23 & FAN1011 / FAN45 & FAN1213 / FAN67 & FAN1415
- 	 */
--	for (i = data->fan_select; i < NPCM7XX_FAN_MAX_MODULE;
-+	for (i = data->fan_select; i < data->info->fan_max_modules;
- 	      i = i + 4) {
- 		/* clear the flag and reset the counter (TCNT) */
- 		iowrite8(NPCM7XX_FAN_TICLR_CLEAR_ALL,
-@@ -659,6 +662,40 @@ static const struct hwmon_channel_info * const npcm7xx_info[] = {
- 	NULL
- };
- 
-+static const struct hwmon_channel_info * const npcm8xx_info[] = {
-+	HWMON_CHANNEL_INFO(pwm,
-+			   HWMON_PWM_INPUT,
-+			   HWMON_PWM_INPUT,
-+			   HWMON_PWM_INPUT,
-+			   HWMON_PWM_INPUT,
-+			   HWMON_PWM_INPUT,
-+			   HWMON_PWM_INPUT,
-+			   HWMON_PWM_INPUT,
-+			   HWMON_PWM_INPUT,
-+			   HWMON_PWM_INPUT,
-+			   HWMON_PWM_INPUT,
-+			   HWMON_PWM_INPUT,
-+			   HWMON_PWM_INPUT),
-+	HWMON_CHANNEL_INFO(fan,
-+			   HWMON_F_INPUT,
-+			   HWMON_F_INPUT,
-+			   HWMON_F_INPUT,
-+			   HWMON_F_INPUT,
-+			   HWMON_F_INPUT,
-+			   HWMON_F_INPUT,
-+			   HWMON_F_INPUT,
-+			   HWMON_F_INPUT,
-+			   HWMON_F_INPUT,
-+			   HWMON_F_INPUT,
-+			   HWMON_F_INPUT,
-+			   HWMON_F_INPUT,
-+			   HWMON_F_INPUT,
-+			   HWMON_F_INPUT,
-+			   HWMON_F_INPUT,
-+			   HWMON_F_INPUT),
-+	NULL
-+};
-+
- static const struct hwmon_ops npcm7xx_hwmon_ops = {
- 	.is_visible = npcm7xx_is_visible,
- 	.read = npcm7xx_read,
-@@ -670,6 +707,29 @@ static const struct hwmon_chip_info npcm7xx_chip_info = {
- 	.info = npcm7xx_info,
- };
- 
-+static const struct hwmon_chip_info npcm8xx_chip_info = {
-+	.ops = &npcm7xx_hwmon_ops,
-+	.info = npcm8xx_info,
-+};
-+
-+static const struct npcm_hwmon_info npxm7xx_hwmon_info = {
-+	.pwm_max_modules = 2,
-+	.pwm_max_ch = NPCM7XX_PWM_MAX_CHN_NUM_IN_A_MODULE * 2,
-+	.fan_max_modules = 8,
-+	.fan_max_ch = NPCM7XX_FAN_MAX_CHN_NUM_IN_A_MODULE * 8,
-+	.hinfo = &npcm7xx_chip_info,
-+	.name = "npcm7xx_pwm_fan",
-+};
-+
-+static const struct npcm_hwmon_info npxm8xx_hwmon_info = {
-+	.pwm_max_modules = 3,
-+	.pwm_max_ch = NPCM7XX_PWM_MAX_CHN_NUM_IN_A_MODULE * 3,
-+	.fan_max_modules = 8,
-+	.fan_max_ch = NPCM7XX_FAN_MAX_CHN_NUM_IN_A_MODULE * 8,
-+	.hinfo = &npcm8xx_chip_info,
-+	.name = "npcm8xx_pwm_fan",
-+};
-+
- static u32 npcm7xx_pwm_init(struct npcm7xx_pwm_fan_data *data)
- {
- 	int m, ch;
-@@ -693,7 +753,7 @@ static u32 npcm7xx_pwm_init(struct npcm7xx_pwm_fan_data *data)
- 	/* Setting PWM Prescale Register value register to both modules */
- 	prescale_val |= (prescale_val << NPCM7XX_PWM_PRESCALE_SHIFT_CH01);
- 
--	for (m = 0; m < NPCM7XX_PWM_MAX_MODULES  ; m++) {
-+	for (m = 0; m < data->info->pwm_max_modules  ; m++) {
- 		iowrite32(prescale_val, NPCM7XX_PWM_REG_PR(data->pwm_base, m));
- 		iowrite32(NPCM7XX_PWM_PRESCALE2_DEFAULT,
- 			  NPCM7XX_PWM_REG_CSR(data->pwm_base, m));
-@@ -716,7 +776,7 @@ static void npcm7xx_fan_init(struct npcm7xx_pwm_fan_data *data)
- 	int i;
- 	u32 apb_clk_freq;
- 
--	for (md = 0; md < NPCM7XX_FAN_MAX_MODULE; md++) {
-+	for (md = 0; md < data->info->fan_max_modules; md++) {
- 		/* stop FAN0~7 clock */
- 		iowrite8(NPCM7XX_FAN_TCKC_CLKX_NONE,
- 			 NPCM7XX_FAN_REG_TCKC(data->fan_base, md));
-@@ -905,6 +965,49 @@ static int npcm7xx_en_pwm_fan(struct device *dev,
- 	return 0;
- }
- 
-+static int npcm_pwm_fan_alloc_data(struct device *dev,
-+				   struct npcm7xx_pwm_fan_data *data)
-+{
-+	data->pwm_lock = devm_kcalloc(dev, data->info->pwm_max_modules,
-+				      sizeof(*data->pwm_lock), GFP_KERNEL);
-+	if (!data->pwm_lock)
-+		return -ENOMEM;
-+
-+	data->fan_lock = devm_kcalloc(dev, data->info->fan_max_modules,
-+				      sizeof(*data->fan_lock), GFP_KERNEL);
-+	if (!data->fan_lock)
-+		return -ENOMEM;
-+
-+	data->fan_irq = devm_kcalloc(dev, data->info->fan_max_modules,
-+				     sizeof(*data->fan_irq), GFP_KERNEL);
-+	if (!data->fan_irq)
-+		return -ENOMEM;
-+
-+	data->pwm_present = devm_kcalloc(dev, data->info->pwm_max_ch,
-+					 sizeof(*data->pwm_present),
-+					 GFP_KERNEL);
-+	if (!data->pwm_present)
-+		return -ENOMEM;
-+
-+	data->fan_present = devm_kcalloc(dev, data->info->fan_max_ch,
-+					 sizeof(*data->fan_present),
-+					 GFP_KERNEL);
-+	if (!data->fan_present)
-+		return -ENOMEM;
-+
-+	data->fan_dev = devm_kcalloc(dev, data->info->fan_max_ch,
-+				     sizeof(*data->fan_dev), GFP_KERNEL);
-+	if (!data->fan_dev)
-+		return -ENOMEM;
-+
-+	data->cdev = devm_kcalloc(dev, data->info->pwm_max_ch,
-+				  sizeof(*data->cdev), GFP_KERNEL);
-+	if (!data->cdev)
-+		return -ENOMEM;
-+
-+	return 0;
-+}
-+
- static int npcm7xx_pwm_fan_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -923,6 +1026,13 @@ static int npcm7xx_pwm_fan_probe(struct platform_device *pdev)
- 	if (!data)
- 		return -ENOMEM;
- 
-+	data->info = device_get_match_data(dev);
-+	if (!data->info)
-+		return -EINVAL;
-+
-+	if (npcm_pwm_fan_alloc_data(dev, data))
-+		return -ENOMEM;
-+
- 	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "pwm");
- 	if (!res) {
- 		dev_err(dev, "pwm resource not found\n");
-@@ -960,10 +1070,10 @@ static int npcm7xx_pwm_fan_probe(struct platform_device *pdev)
- 	output_freq = npcm7xx_pwm_init(data);
- 	npcm7xx_fan_init(data);
- 
--	for (cnt = 0; cnt < NPCM7XX_PWM_MAX_MODULES  ; cnt++)
-+	for (cnt = 0; cnt < data->info->pwm_max_modules  ; cnt++)
- 		mutex_init(&data->pwm_lock[cnt]);
- 
--	for (i = 0; i < NPCM7XX_FAN_MAX_MODULE; i++) {
-+	for (i = 0; i < data->info->fan_max_modules; i++) {
- 		spin_lock_init(&data->fan_lock[i]);
- 
- 		data->fan_irq[i] = platform_get_irq(pdev, i);
-@@ -988,15 +1098,15 @@ static int npcm7xx_pwm_fan_probe(struct platform_device *pdev)
- 		}
- 	}
- 
--	hwmon = devm_hwmon_device_register_with_info(dev, "npcm7xx_pwm_fan",
--						     data, &npcm7xx_chip_info,
-+	hwmon = devm_hwmon_device_register_with_info(dev, data->info->name,
-+						     data, data->info->hinfo,
- 						     NULL);
- 	if (IS_ERR(hwmon)) {
- 		dev_err(dev, "unable to register hwmon device\n");
- 		return PTR_ERR(hwmon);
- 	}
- 
--	for (i = 0; i < NPCM7XX_FAN_MAX_CHN_NUM; i++) {
-+	for (i = 0; i < data->info->fan_max_ch; i++) {
- 		if (data->fan_present[i]) {
- 			/* fan timer initialization */
- 			data->fan_timer.expires = jiffies +
-@@ -1015,7 +1125,8 @@ static int npcm7xx_pwm_fan_probe(struct platform_device *pdev)
- }
- 
- static const struct of_device_id of_pwm_fan_match_table[] = {
--	{ .compatible = "nuvoton,npcm750-pwm-fan", },
-+	{ .compatible = "nuvoton,npcm750-pwm-fan", .data = &npxm7xx_hwmon_info},
-+	{ .compatible = "nuvoton,npcm845-pwm-fan", .data = &npxm8xx_hwmon_info},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, of_pwm_fan_match_table);
--- 
-2.33.0
+>=20
+> >=20
+> > >=20
+> > > Thank you,
+> > > Chris
+> > >=20
+> > > >=20
+> > > > Best regards,
+> > > > Jernej
+> > > >=20
+> > > > > +&reg_ldo1 {
+> > > > > +	regulator-always-on;
+> > > > > +	regulator-name =3D "vcc-rtc";
+> > > > > +};
+> > > > > +
+> > > > > +/* LDO2 wired into VCC-PLL and audio codec. */
+> > > > > +&reg_ldo2 {
+> > > > > +	regulator-always-on;
+> > > > > +	regulator-max-microvolt =3D <3000000>;
+> > > > > +	regulator-min-microvolt =3D <3000000>;
+> > > > > +	regulator-name =3D "vcc-pll";
+> > > > > +};
+> > > > > +
+> > > > > +/* LDO3, LDO4, and LDO5 unused. */
+> > > > > +&reg_ldo3 {
+> > > > > +	status =3D "disabled";
+> > > > > +};
+> > > > > +
+> > > > > +&reg_ldo4 {
+> > > > > +	status =3D "disabled";
+> > > > > +};
+> > > > > +
+> > > > > +/*
+> > > > > + * Force the driver to use internal oscillator by removing clocks
+> > > > > + * property.
+> > > > > + */
+> >=20
+> > This should be reworded to avoid mentioning driver. Like: "RTC uses
+> > internal oscillator".
+> >=20
+> > Best regards,
+> > Jernej
+> >=20
+>=20
+> You got it.
+>=20
+> > > > > +&rtc {
+> > > > > +	/delete-property/ clocks;
+> > > > > +};
+> > > > > +
+> > > > > +&spi0 {
+> > > > > +	pinctrl-0 =3D <&spi0_no_miso_pins>;
+> > > > > +	pinctrl-names =3D "default";
+> > > > > +	status =3D "okay";
+> > > > > +
+> > > > > +	display@0 {
+> > > > > +		compatible =3D "saef,sftc154b", "panel-mipi-dbi-spi";
+> > > > > +		reg =3D <0>;
+> > > > > +		backlight =3D <&backlight>;
+> > > > > +		dc-gpios =3D <&pio 2 0 GPIO_ACTIVE_HIGH>; /* PC0 */
+> > > > > +		reset-gpios =3D <&pio 1 2 GPIO_ACTIVE_HIGH>; /* PB2 */
+> > > > > +		spi-max-frequency =3D <100000000>;
+> > > > > +
+> > > > > +		height-mm =3D <39>;
+> > > > > +		width-mm =3D <39>;
+> > > > > +
+> > > > > +		/* Set hb-porch to compensate for non-visible area */
+> > > > > +		panel-timing {
+> > > > > +			hactive =3D <240>;
+> > > > > +			vactive =3D <240>;
+> > > > > +			hback-porch =3D <80>;
+> > > > > +			vback-porch =3D <0>;
+> > > > > +			clock-frequency =3D <0>;
+> > > > > +			hfront-porch =3D <0>;
+> > > > > +			hsync-len =3D <0>;
+> > > > > +			vfront-porch =3D <0>;
+> > > > > +			vsync-len =3D <0>;
+> > > > > +		};
+> > > > > +	};
+> > > > > +};
+> > > > > +
+> > > > > +&uart0 {
+> > > > > +	pinctrl-0 =3D <&uart0_pb_pins>;
+> > > > > +	pinctrl-names =3D "default";
+> > > > > +	status =3D "okay";
+> > > > > +};
+> > > > > +
+> > > > > +&usb_otg {
+> > > > > +	dr_mode =3D "otg";
+> > > > > +	status =3D "okay";
+> > > > > +};
+> > > > > +
+> > > > > +&usb_power_supply {
+> > > > > +	status =3D "okay";
+> > > > > +};
+> > > > > +
+> > > > > +&usbphy {
+> > > > > +	usb0_id_det-gpios =3D <&pio 6 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP=
+)>; /* PG5 */
+> > > > > +	status =3D "okay";
+> > > > > +};
+> > > > >=20
+> > > >=20
+> > > >=20
+> > > >=20
+> > > >=20
+> > >=20
+> >=20
+> >=20
+> >=20
+> >=20
+>=20
+> Thank you,
+> Chris
+>=20
+
+
+
 
 
