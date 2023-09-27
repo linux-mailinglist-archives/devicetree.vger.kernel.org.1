@@ -1,153 +1,212 @@
-Return-Path: <devicetree+bounces-3991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5CBF7B0D2C
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 22:11:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F86D7B0D3D
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 22:21:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 98DDB283082
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 20:11:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 4706C1C20869
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 20:21:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD9034C853;
-	Wed, 27 Sep 2023 20:11:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D66FB4BDC1;
+	Wed, 27 Sep 2023 20:21:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DE2B14A98;
-	Wed, 27 Sep 2023 20:11:08 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1498ECC;
-	Wed, 27 Sep 2023 13:11:06 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38RJwqTa021844;
-	Wed, 27 Sep 2023 20:10:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=90q9NOxzqefCLLb/rXZtD8+r2D3ym/pWfk2IUKZ2P14=;
- b=p2XOg6YcZGZGLpHOOt7i4Uo+22v250jwhaoPSt6xZpfZecBiXmB5+2pVpi9xwsdUV9Ue
- ImSn8bX2NDyelCp289GDLFnxMO+B4XUQzmV7cg3tGQV5Xz7bZvAwOAiO3Oiszf4GIgzt
- RyuLvcBLQQ8e4atLfGeOLthwQd1VcGxCh6Itk73mjTh7nrqtIiKqFRwL2n4CqmNeDTf1
- lquhW1BN4dOS95+Sc+VKeWTdUGPnHAnRCW6DtQGnEXWWveZXAwk0NWjZrcX/KqlA7rt3
- j4061mbSJmPp4CJDuNi0VeSR8YeBMUkMF10rx32/qxatSwoapIAo3L0HK1zOpLigjzHc pg== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tcda7sy83-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 27 Sep 2023 20:10:42 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38RKAfkE031384
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 27 Sep 2023 20:10:41 GMT
-Received: from [10.110.25.80] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 27 Sep
- 2023 13:10:40 -0700
-Message-ID: <191e6429-bb47-625b-a074-fa67ee052f03@quicinc.com>
-Date: Wed, 27 Sep 2023 13:10:40 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 629347490
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 20:21:10 +0000 (UTC)
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2C9A114
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 13:21:08 -0700 (PDT)
+Received: by mail-io1-xd2f.google.com with SMTP id ca18e2360f4ac-79f92726f47so407201439f.3
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 13:21:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1695846068; x=1696450868; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IIjs+rwErzRuI8OpZgfCnKlE1NGemok/NR/4pjhGmqU=;
+        b=Y/iVW9V7jGTlHL2EpgLQKoiRlIlWiatJ87pARD7bNAKZCshdOcRNxJtxnIkwJfkjXF
+         Pb+mOknWCvtMBEnboet0aVlw6uC58WRRvOfKH9FtzNgEff9TvWBkA7hHWQ0BLL33pVkV
+         P7BBAjX7QDEsds7p3Y5DCjS2IA4F0el5oXjhU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695846068; x=1696450868;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IIjs+rwErzRuI8OpZgfCnKlE1NGemok/NR/4pjhGmqU=;
+        b=gSfnSM+BrDwsc91HkAP+ezclEhdsT9gWg5dOXiLRmHc72+peZ4DCwFJvkOWlGlM02h
+         36DrmmnhXODDEqn1aPfFq5ZwDXl5hdXVhFiZjhqEgDX4B5hPovXq+rDBvN9L1bVmi6LT
+         n+bwLKTJgiHCEpBuVhemdy9mC1rFUGUla9vObP+Fyoe+DyQTcmTXibgPC2LhA098Qcg/
+         LzKrjGMxQWW6rhda5mG/khVdcEOT6ssIVCqPigUD9uV++P/j/cB3Cb8yjCtbpBdF3Hem
+         fBFqtFNrhZ5fWuZsT8jR7jaF7D4ReyJC81b5J9p8CNRAtd1GWOfeDQfXLQ+yyF9VSGtG
+         b+5w==
+X-Gm-Message-State: AOJu0YyH7uWLPJCO7UaJZfSRvXjT426GKtJRt/a5rivKYR3MwleMwK8+
+	FpRSPP/UikY71zvFiT4UyAzjy4DqzbcXeYi4Zu4=
+X-Google-Smtp-Source: AGHT+IE/xm+sDlsbj5TMwcIX6s89wG1zzgEzTIKDltB0ZdFPBg7kOF1N3Y/GeFEAB8keQ7aPZmfbKQ==
+X-Received: by 2002:a5e:dd02:0:b0:79a:b526:2f1c with SMTP id t2-20020a5edd02000000b0079ab5262f1cmr3230494iop.21.1695846067982;
+        Wed, 27 Sep 2023 13:21:07 -0700 (PDT)
+Received: from kea.bld.corp.google.com ([2620:15c:183:200:5d4f:fe51:5575:6f76])
+        by smtp.gmail.com with ESMTPSA id ei15-20020a05663829af00b0042fec8620e4sm4113299jab.57.2023.09.27.13.21.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Sep 2023 13:21:07 -0700 (PDT)
+From: Simon Glass <sjg@chromium.org>
+To: devicetree@vger.kernel.org
+Cc: linux-mtd@lists.infradead.org,
+	U-Boot Mailing List <u-boot@lists.denx.de>,
+	Tom Rini <trini@konsulko.com>,
+	Rob Herring <robh@kernel.org>,
+	Simon Glass <sjg@chromium.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dhruva Gole <d-gole@ti.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Pratyush Yadav <ptyadav@amazon.de>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	Richard Weinberger <richard@nod.at>,
+	Rob Herring <robh+dt@kernel.org>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/3] dt-bindings: mtd: fixed-partitions: Add binman compatible
+Date: Wed, 27 Sep 2023 14:20:51 -0600
+Message-ID: <20230927202057.3676497-1-sjg@chromium.org>
+X-Mailer: git-send-email 2.42.0.515.g380fc7ccd1-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v7 29/33] ASoC: qcom: qdsp6: Add SND kcontrol for fetching
- offload status
-Content-Language: en-US
-To: Mark Brown <broonie@kernel.org>
-CC: <mathias.nyman@intel.com>, <gregkh@linuxfoundation.org>,
-        <lgirdwood@gmail.com>, <perex@perex.cz>, <tiwai@suse.com>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <srinivas.kandagatla@linaro.org>, <bgoswami@quicinc.com>,
-        <Thinh.Nguyen@synopsys.com>, <linux-kernel@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20230921214843.18450-1-quic_wcheng@quicinc.com>
- <20230921214843.18450-30-quic_wcheng@quicinc.com>
- <ZRRD8eFZugh/+dex@finisterre.sirena.org.uk>
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <ZRRD8eFZugh/+dex@finisterre.sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: blIC-0fzkR4GdcVTYsm5N-g6sY1MOCnu
-X-Proofpoint-GUID: blIC-0fzkR4GdcVTYsm5N-g6sY1MOCnu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-27_12,2023-09-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
- clxscore=1015 lowpriorityscore=0 impostorscore=0 bulkscore=0
- mlxlogscore=783 priorityscore=1501 mlxscore=0 suspectscore=0 spamscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2309270171
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Mark,
+Add a compatible string for binman, so we can extend fixed-partitions
+in various ways.
 
-On 9/27/2023 8:02 AM, Mark Brown wrote:
-> On Thu, Sep 21, 2023 at 02:48:39PM -0700, Wesley Cheng wrote:
-> 
->> Add a kcontrol to the platform sound card to fetch the current offload
->> status.  This can allow for userspace to ensure/check which USB SND
->> resources are actually busy versus having to attempt opening the USB SND
->> devices, which will result in an error if offloading is active.
-> 
->> +static int q6usb_prepare(struct snd_pcm_substream *substream,
->> +               struct snd_soc_dai *dai)
->> +{
->> +       struct q6usb_port_data *data = dev_get_drvdata(dai->dev);
->> +
->> +       mutex_lock(&data->mutex);
->> +       data->status[data->sel_card_idx].running = true;
->> +       mutex_unlock(&data->mutex);
-> 
-> These updates of running should really have a snd_ctl_notify() so that
-> UIs can know to update when the value changes while they're open.
-> 
+Signed-off-by: Simon Glass <sjg@chromium.org>
+---
 
-Sure, me review some of the APIs again and add the notify call where 
-necessary.
+ .../bindings/mtd/partitions/binman.yaml       | 49 +++++++++++++++++++
+ .../mtd/partitions/fixed-partitions.yaml      |  6 +++
+ .../bindings/mtd/partitions/partitions.yaml   |  1 +
+ MAINTAINERS                                   |  5 ++
+ 4 files changed, 61 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mtd/partitions/binman.yaml
 
->> +static int q6usb_mixer_get_offload_status(struct snd_kcontrol *kcontrol,
->> +				   struct snd_ctl_elem_value *ucontrol)
->> +{
-> 
->> +	running = q6usb_find_running(data);
->> +	if (running < 0) {
->> +		card_idx = -1;
->> +		pcm_idx = -1;
->> +	} else {
->> +		card_idx = running;
->> +		pcm_idx = data->status[running].pcm_index;
->> +	}
->> +
->> +	ucontrol->value.integer.value[0] = card_idx;
->> +	ucontrol->value.integer.value[1] = pcm_idx;
-> 
-> This feels a bit messy but I'm not sure what we'd do that's better so
-> unless someone else has better ideas let's go with this.  Possibly we
-> should standardise this as a new control type for joining cards up so at
-> least if there's further needs for this we can use the same solution?
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/binman.yaml b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
+new file mode 100644
+index 000000000000..34fd10c1a318
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
+@@ -0,0 +1,49 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2023 Google LLC
++
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mtd/partitions/binman.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Binman firmware layout
++
++maintainers:
++  - Simon Glass <sjg@chromium.org>
++
++select: false
++
++description: |
++  The binman node provides a layout for firmware, used when packaging firmware
++  from multiple projects. It is based on fixed-partitions, with some
++  extensions.
++
++  Documentation for Binman is available at:
++
++  https://u-boot.readthedocs.io/en/latest/develop/package/binman.html
++
++  with the current image-description format at:
++
++  https://u-boot.readthedocs.io/en/latest/develop/package/binman.html#image-description-format
++
++allOf:
++  - $ref: /schemas/mtd/partitions/fixed-partitions.yaml#
++
++properties:
++  compatible:
++    const: binman
++
++additionalProperties: false
++
++examples:
++  - |
++    partitions {
++        compatible = "binman", "fixed-partitions";
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        partition-u-boot@100000 {
++            label = "u-boot";
++            reg = <0x100000 0xf00000>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+index 331e564f29dc..1c04bc2b95af 100644
+--- a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
++++ b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+@@ -14,6 +14,9 @@ description: |
+   The partition table should be a node named "partitions". Partitions are then
+   defined as subnodes.
+ 
++  The Binman tool provides some enhanced features, so provides a compatible
++  string to indicate that these are permitted.
++
+ maintainers:
+   - Rafał Miłecki <rafal@milecki.pl>
+ 
+@@ -24,6 +27,9 @@ properties:
+       - items:
+           - const: sercomm,sc-partitions
+           - const: fixed-partitions
++      - items:
++          - const: binman
++          - const: fixed-partitions
+ 
+   "#address-cells": true
+ 
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
+index 1dda2c80747b..849fd15d085c 100644
+--- a/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
++++ b/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
+@@ -15,6 +15,7 @@ maintainers:
+ 
+ oneOf:
+   - $ref: arm,arm-firmware-suite.yaml
++  - $ref: binman.yaml
+   - $ref: brcm,bcm4908-partitions.yaml
+   - $ref: brcm,bcm947xx-cfe-partitions.yaml
+   - $ref: fixed-partitions.yaml
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 5f18c6ba3c3c..367c843ec348 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -3517,6 +3517,11 @@ F:	Documentation/filesystems/bfs.rst
+ F:	fs/bfs/
+ F:	include/uapi/linux/bfs_fs.h
+ 
++BINMAN
++M:	Simon Glass <sjg@chromium.org>
++S:	Supported
++F:	Documentation/devicetree/bindings/mtd/partitions/binman*
++
+ BITMAP API
+ M:	Yury Norov <yury.norov@gmail.com>
+ R:	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+-- 
+2.42.0.515.g380fc7ccd1-goog
 
-I'm all ears for any suggestions from other users :).  I think its a bit 
-difficult to tell since this is the first iteration of adding this 
-feature.  Pierre gave me some great feedback from the 
-userspace/application level, and tried my best to accommodate for those 
-requirements since it would be the main entity interacting with these 
-controls.
-
-Thanks
-Wesley Cheng
 
