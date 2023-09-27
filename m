@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-3646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E3DD7AFAB0
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:05:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0A197AFAB7
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:07:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 842C61C2080C
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 06:05:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 7FED12814E2
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 06:07:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B6AD14F91;
-	Wed, 27 Sep 2023 06:05:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C50951A27D;
+	Wed, 27 Sep 2023 06:07:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82FC114A9D
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 06:05:54 +0000 (UTC)
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D19EDFC;
-	Tue, 26 Sep 2023 23:05:52 -0700 (PDT)
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-40528376459so105454115e9.3;
-        Tue, 26 Sep 2023 23:05:52 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF4BC14A9D
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 06:07:06 +0000 (UTC)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51870DD;
+	Tue, 26 Sep 2023 23:07:05 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4063da036c9so27074555e9.3;
+        Tue, 26 Sep 2023 23:07:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695794751; x=1696399551;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1695794824; x=1696399624;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tzf3auFOPADoZEEKnwvAvKOmFmpAc1qrk78Z/GaSFMU=;
-        b=m3zGMmg4egqI2BgHqSMFPi2xMDuaivHJvYPKiSw5qVswEIljK1JNciyV1RTSwdh6qX
-         Xu0ZRMHCSu54ZxuMeZBnXpp5a1gl2HfSy06rdWQFh0WJaezJR485HE+POcbIujz7v9Qe
-         BHo4butxjhYmh10XTGfX67ZlEKpDNTlfvp2sTI0P/s3cnMxcirAQsPQVCGqgjFEfzhek
-         Twxr0SziWgPXQGXaBTnTfIRGXqv41wlNhWE753HJnjUGqt+0nIROxgzc6e//M7R9Els0
-         IoZcA+W7Ih+C73uR46PlC/MuxUmgHGpM/O4ixzxRVUXNAzTRVpsDkUm57dzwcnhiLtqL
-         eW9Q==
-X-Gm-Message-State: AOJu0Yx7Paj46mRVPCjiT5aBiVwrabDtFqL0W/MRdO7XqHGD8Y4cfR7I
-	u1Vt1ri2/XTyIeO1jQgYTT4=
-X-Google-Smtp-Source: AGHT+IGKJGFGn4GVwZfT4SGNCkuVFhljd71lZh3+GhQ08MjmPhwykQ7MgIPHOLR2ikiXWikY/ceP4A==
-X-Received: by 2002:a7b:c4cb:0:b0:405:a30:151e with SMTP id g11-20020a7bc4cb000000b004050a30151emr1008916wmk.12.1695794750977;
-        Tue, 26 Sep 2023 23:05:50 -0700 (PDT)
+        bh=5ilGbwZbw+r63tsdGtSB6Sstf8G+rcZU4Qn42BZBqRc=;
+        b=rYP0xqz2lLLe046yeVqADyqTD5GXoelOEPEeVSSJMv8v3nBLor8fBL4lSkDyMY7p1T
+         bayQ6sy6x1dHZ9wWNCcSOPjkeTlibE3Ujnd9dcJ8MV9VwZlDo+GfmV4diSvl8+U73kJ+
+         OkrJ3OSdJYPnIAB+4c6SE0l/jZwAxZ7ni1mysi1Cc1UrbvDRFC057cQX18aoyCJxIxF2
+         tCZnok/s5frtBG2rMo0MzLyja1A0N9ZXgjpshYVJGf2BrYThaynqbLQGmtycesuV/zCY
+         akW7XNQqKm+LFXszgHMWkpM5ZBaPpfEzVjIiNu8Hl1GqJgWbz9alY2yrebris+s5cvda
+         PF1w==
+X-Gm-Message-State: AOJu0YxyMcAVsZodtiFv0SIdpnaK4VyP0srvPX98dwfkwvlrDDUYfL7H
+	41XZ2B41X+q2P80u+3zVz/o=
+X-Google-Smtp-Source: AGHT+IExiuRhyetKklbMtnuZX3MinJL95Qxp7MaKxoC/O93bGilh4rCdS630ztVDycq2j5nYZI2SUg==
+X-Received: by 2002:a05:600c:1587:b0:406:44fe:7621 with SMTP id r7-20020a05600c158700b0040644fe7621mr672176wmf.25.1695794823700;
+        Tue, 26 Sep 2023 23:07:03 -0700 (PDT)
 Received: from [192.168.86.246] (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net. [82.11.51.62])
-        by smtp.gmail.com with ESMTPSA id s9-20020a05600c45c900b0040550c20cbcsm12015055wmo.24.2023.09.26.23.05.49
+        by smtp.gmail.com with ESMTPSA id s9-20020a05600c45c900b0040550c20cbcsm12015055wmo.24.2023.09.26.23.07.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Sep 2023 23:05:50 -0700 (PDT)
-Message-ID: <916aea7d-50ba-45d8-9b3c-0f507c922601@linux.com>
-Date: Wed, 27 Sep 2023 07:05:49 +0100
+        Tue, 26 Sep 2023 23:07:03 -0700 (PDT)
+Message-ID: <bb37e3ec-d0b9-4b73-ac6e-183b55e8814f@linux.com>
+Date: Wed, 27 Sep 2023 07:07:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,22 +51,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: (subset) [PATCH V3 RESEND 0/6] Power: T7: add power domain driver
-To: Neil Armstrong <neil.armstrong@linaro.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Ulf Hansson <ulf.hansson@linaro.org>
-References: <20230911025223.3433776-1-xianwei.zhao@amlogic.com>
- <169444496123.3944766.3763051739383485051.b4-ty@linaro.org>
+Subject: Re: [PATCH 3/3] arm64: dts: Add gpio_intc node for Amlogic-T7 SoCs
 Content-Language: en-US
+To: neil.armstrong@linaro.org, Huqiang Qin <huqiang.qin@amlogic.com>,
+ tglx@linutronix.de, maz@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, hkallweit1@gmail.com
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+References: <20230913080924.3336391-1-huqiang.qin@amlogic.com>
+ <20230913080924.3336391-4-huqiang.qin@amlogic.com>
+ <4c1566e0-a502-4379-b360-9e6ef374af04@linaro.org>
 From: Lucas Tanure <tanure@linux.com>
-In-Reply-To: <169444496123.3944766.3763051739383485051.b4-ty@linaro.org>
+In-Reply-To: <4c1566e0-a502-4379-b360-9e6ef374af04@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
 	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
 	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
@@ -74,54 +74,42 @@ X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 11-09-2023 16:09, Neil Armstrong wrote:
-> Hi,
-> 
-> On Mon, 11 Sep 2023 10:52:17 +0800, Xianwei Zhao wrote:
->> First patch is that remove C3 some power domain ALWAYS_ON property.
->> Second patch is that add driver to support power parent node.
->> Third patch is that turn on power if initial power domain with
->> "AWAY_ON" property state is off.
+On 14-09-2023 09:26, neil.armstrong@linaro.org wrote:
+> On 13/09/2023 10:09, Huqiang Qin wrote:
+>> Add GPIO interrupt controller device.
 >>
->> Other patchs adds power controller driver support for Amlogic T7 SoC.
+>> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
+>> ---
+>>   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 10 ++++++++++
+>>   1 file changed, 10 insertions(+)
 >>
->> [...]
+>> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi 
+>> b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+>> index dae3465bd39b..21b2436c47e2 100644
+>> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+>> @@ -155,6 +155,16 @@ watchdog@2100 {
+>>                   clocks = <&xtal>;
+>>               };
+>> +            gpio_intc: interrupt-controller@4080 {
+>> +                compatible = "amlogic,t7-gpio-intc",
+>> +                         "amlogic,meson-gpio-intc";
+>> +                reg = <0x0 0x4080 0x0 0x20>;
+>> +                interrupt-controller;
+>> +                #interrupt-cells = <2>;
+>> +                amlogic,channel-interrupts =
+>> +                    <10 11 12 13 14 15 16 17 18 19 20 21>;
+>> +            };
+>> +
+>>               uart_a: serial@78000 {
+>>                   compatible = "amlogic,t7-uart", 
+>> "amlogic,meson-s4-uart";
+>>                   reg = <0x0 0x78000 0x0 0x18>;
 > 
-> Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.7/arm64-dt)
-> 
-> [6/6] arm64: dts: amlogic: t7: add power domain controller node
->        https://git.kernel.org/amlogic/c/5355699dabac3c97492a30e6e01820fcaae11218
-> 
-> These changes has been applied on the intermediate git tree [1].
-> 
-> The v6.7/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-> for inclusion in their intermediate git branches in order to be sent to Linus during
-> the next merge window, or sooner if it's a set of fixes.
-> 
-> In the cases of fixes, those will be merged in the current release candidate
-> kernel and as soon they appear on the Linux master branch they will be
-> backported to the previous Stable and Long-Stable kernels [2].
-> 
-> The intermediate git branches are merged daily in the linux-next tree [3],
-> people are encouraged testing these pre-release kernels and report issues on the
-> relevant mailing-lists.
-> 
-> If problems are discovered on those changes, please submit a signed-off-by revert
-> patch followed by a corrective changeset.
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-> [3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-> 
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 I re-tested this today with Vim4 and works fine.
 By works I mean, vim4 is able to boot without panics but drops to 
 emergency shell as expected.
 
-I was not able to find patches 1-3 and 5 at amlogic/for-next.
-Is there a reason why amlogic/for-next only have DTs changes?
-
 Tested-by: Lucas Tanure <tanure@linux.com>
-
-
-
 
