@@ -1,32 +1,32 @@
-Return-Path: <devicetree+bounces-3954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 848B07B0B1F
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AE707B0B20
 	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 19:33:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 839541C20949
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 17:33:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 4D238281BBA
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 17:33:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF3644BDA1;
-	Wed, 27 Sep 2023 17:33:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 555134B231;
+	Wed, 27 Sep 2023 17:33:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1C8A37C85
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0FCA27EF2
 	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 17:33:03 +0000 (UTC)
 Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8741F5;
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76B2EEB;
 	Wed, 27 Sep 2023 10:33:00 -0700 (PDT)
 Received: from p200300ccff4287001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff42:8700:1a3d:a2ff:febf:d33a] helo=aktux)
 	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <andreas@kemnade.info>)
-	id 1qlYP1-004Exw-P3; Wed, 27 Sep 2023 19:32:47 +0200
+	id 1qlYP2-004Exz-51; Wed, 27 Sep 2023 19:32:47 +0200
 Received: from andi by aktux with local (Exim 4.96)
 	(envelope-from <andreas@kemnade.info>)
-	id 1qlYP1-0091bG-07;
+	id 1qlYP1-0091bM-1L;
 	Wed, 27 Sep 2023 19:32:47 +0200
 From: Andreas Kemnade <andreas@kemnade.info>
 To: jic23@kernel.org,
@@ -44,9 +44,9 @@ To: jic23@kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-omap@vger.kernel.org
-Subject: [PATCH v3 1/3] dt-bindings: iio: imu: mpu6050: Add level shifter
-Date: Wed, 27 Sep 2023 19:32:43 +0200
-Message-Id: <20230927173245.2151083-2-andreas@kemnade.info>
+Subject: [PATCH v3 2/3] iio: imu: mpu6050: add level shifter flag
+Date: Wed, 27 Sep 2023 19:32:44 +0200
+Message-Id: <20230927173245.2151083-3-andreas@kemnade.info>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230927173245.2151083-1-andreas@kemnade.info>
 References: <20230927173245.2151083-1-andreas@kemnade.info>
@@ -63,30 +63,74 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add a level shifter flag as found in ancient platform data struct:
-level_shifter: 0: VLogic, 1: VDD
+Some boards fail in magnetometer probe if level shifter flag is not set,
+definition was found in the vendor Linux kernel v3.0.
 
 Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 ---
- .../devicetree/bindings/iio/imu/invensense,mpu6050.yaml      | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/iio/imu/inv_mpu6050/inv_mpu_aux.c  | 13 +++++++++++++
+ drivers/iio/imu/inv_mpu6050/inv_mpu_core.c |  3 +++
+ drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h  |  1 +
+ 3 files changed, 17 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml b/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
-index 1db6952ddca5e..297b8a1a7ffbc 100644
---- a/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
-@@ -48,6 +48,11 @@ properties:
+diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_aux.c b/drivers/iio/imu/inv_mpu6050/inv_mpu_aux.c
+index 7327e5723f961..8a7f2911905af 100644
+--- a/drivers/iio/imu/inv_mpu6050/inv_mpu_aux.c
++++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_aux.c
+@@ -71,6 +71,19 @@ int inv_mpu_aux_init(const struct inv_mpu6050_state *st)
+ 	unsigned int val;
+ 	int ret;
  
-   mount-matrix: true
- 
-+  invensense,level-shifter:
-+    type: boolean
-+    description: |
-+      From ancient platform data struct: false: VLogic, true: VDD
++	/*
++	 * Code based on the vendor Linux kernel v3.0,
++	 * the exact meaning is unknown.
++	 */
++	if (st->chip_type == INV_MPU9150) {
++		unsigned int mask = BIT(7);
 +
-   i2c-gate:
-     $ref: /schemas/i2c/i2c-controller.yaml
-     unevaluatedProperties: false
++		val = st->level_shifter ? mask : 0;
++		ret = regmap_update_bits(st->map, 0x1, mask, val);
++		if (ret)
++			return ret;
++	}
++
+ 	/* configure i2c master */
+ 	val = INV_MPU6050_BITS_I2C_MST_CLK_400KHZ |
+ 			INV_MPU6050_BIT_WAIT_FOR_ES;
+diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c b/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
+index 29f906c884bd8..3fbeef1a70186 100644
+--- a/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
++++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
+@@ -17,6 +17,7 @@
+ #include <linux/regulator/consumer.h>
+ #include <linux/pm.h>
+ #include <linux/pm_runtime.h>
++#include <linux/property.h>
+ 
+ #include <linux/iio/common/inv_sensors_timestamp.h>
+ #include <linux/iio/iio.h>
+@@ -1495,6 +1496,8 @@ int inv_mpu_core_probe(struct regmap *regmap, int irq, const char *name,
+ 	st->irq = irq;
+ 	st->map = regmap;
+ 
++	st->level_shifter = device_property_read_bool(dev,
++						      "invensense,level-shifter");
+ 	pdata = dev_get_platdata(dev);
+ 	if (!pdata) {
+ 		result = iio_read_mount_matrix(dev, &st->orientation);
+diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h b/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h
+index ed5a96e78df05..7eba1439c8093 100644
+--- a/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h
++++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h
+@@ -203,6 +203,7 @@ struct inv_mpu6050_state {
+ 	s32 magn_raw_to_gauss[3];
+ 	struct iio_mount_matrix magn_orient;
+ 	unsigned int suspended_sensors;
++	bool level_shifter;
+ 	u8 *data;
+ };
+ 
 -- 
 2.39.2
 
