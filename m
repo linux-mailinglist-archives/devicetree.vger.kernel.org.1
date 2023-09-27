@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-3811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A9107B0318
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 13:33:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29C407B031C
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 13:33:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id F00AB282809
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 11:33:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 6AFD1B20AD9
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 11:33:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2515273D1;
-	Wed, 27 Sep 2023 11:33:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90F8827729;
+	Wed, 27 Sep 2023 11:33:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64167C8E2
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 11:33:35 +0000 (UTC)
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21D271B4
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 04:33:30 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-50336768615so18553295e87.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 04:33:30 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EE42C8E2
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 11:33:39 +0000 (UTC)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFD7ACCE
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 04:33:35 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-534659061afso3991938a12.3
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 04:33:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695814408; x=1696419208; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695814414; x=1696419214; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=q7oaQadNI9cp/jqhEK90+7phoQh1W7CA6pqxWC0Ghgw=;
-        b=ItUrV70areHtGnmmkCNLTVwo6pGYL00YrRU//c1kNIR4GutiDjK1gG6h1NFymSZA6q
-         OHyzOdS8vE/UcPQ8Ro4LzJR4I7+7xPHbXsYfONkMDKIu/ovz+H0tInvfphAsKp9fAkW4
-         KD1Lm7zOtZ419YdFa9sikqWZYMW5qlyt0N/0SOGjf5oHlQusO7W95zsCa34g43FJV/Fr
-         SeI5CYgS7GPhC3AcI6Tj262VC/KsHuQP0HOhwU3+4w7m7kIxxQbvXzXu+g5spxhrcQZm
-         4JAMsM8wiM1xwy7+Q/Z/lCpeVDaYZ6gpqbt2lQ4po9ggLgISkssFP1YLdDejgmoHB850
-         FUWQ==
+        bh=NhD4WDTFGHdLBvewCxrX0OSCga6/MEIyTOxdiWNOK6o=;
+        b=imthRC/EVZKfdGNc5lpkAsbb85vDWjDSJfR0sn5npbLiE27Bw+jZsbDjxOBmX+wrLM
+         6qrZM2XblXkpryLTSYcjya3wrjSTZlsQAl2JMdXpTfwyq8CP8bRjJTSphemlYmVXle5t
+         3OruAB/1OMofvez1dbJU/lzOW6RlOD6ilEUi++vPkW777SVg9msrx6t3z72AJ8lwINpG
+         jYFoWUzLSEj0GLx5iC5k2RXQel1ocwHWh7oZfkWFqrRAlKQmNsIO05b3MA8ZIKRzZllj
+         CCcx37+g6rrQQNKHO0H3ZDlBmx/vLE0hgnVDTNp7P2iId9Ek5b0Dc/smJW9t8xOR+FOx
+         2brA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695814408; x=1696419208;
+        d=1e100.net; s=20230601; t=1695814414; x=1696419214;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=q7oaQadNI9cp/jqhEK90+7phoQh1W7CA6pqxWC0Ghgw=;
-        b=HE0WCNuIP82cbvF98UKJw/vGKFuCTlclRAdEHwe1xBg3nooWiWcDu4Q7JCbwPPbRi7
-         PDoZsanCJTMocM0zSerc7ZDc/d0EmnS7PiYbnWYzyyUQeLOhTrs9/NawqqmWN+hQFIV4
-         nBVy0JY4ekrUOrJBUUKgcUVhPMKvfVDOuN42c/CjxwoI+5LSP6Y+UUjxFxyKnlMU9hSp
-         x+wHCxq/fh9LJuFAgklvJNGna3K1MedrUJJj/z4O86FYK7eqACHUXWCTmU5YTiAiXpP5
-         AbOycJWVznGfksJNnlKR8KkD0Mz4bEJ+WFXl44IiBFMfitx2/Ttq5A7AHI2O4W9+Nlk5
-         Hzgw==
-X-Gm-Message-State: AOJu0Yx6qQ/cA9zkcWo9MspVb62jV4RByTfKUK52WobCpi8OR1LGc8an
-	JSMui5iQMj45ksYgi2LbgWWzxA==
-X-Google-Smtp-Source: AGHT+IGydO9MbLoH+NEVQ2sd0V/Gc4/0JsWiNU42WUYN2eNNppGR1PGs8YuoZNPHN7MPGeLr9naR/w==
-X-Received: by 2002:ac2:5638:0:b0:501:b97a:9f50 with SMTP id b24-20020ac25638000000b00501b97a9f50mr1492551lff.65.1695814408367;
-        Wed, 27 Sep 2023 04:33:28 -0700 (PDT)
+        bh=NhD4WDTFGHdLBvewCxrX0OSCga6/MEIyTOxdiWNOK6o=;
+        b=KNZjIQ4Z93yRmdL2ayPMTRVC7sJf3viOIwqzGCf16BmVE8h6xI58ICs7sbDkthqL3m
+         /DMKFIQZxn/korSZaUGHZMmtDezisYsgabjgsEr2rPBG43DZEs5EEziHC32eIFni4u+z
+         q8OFhtHVsHUPYYCju0jZGbvc2Mftm31l5MtclMbpKGDPbg3C6seORJ45B1sJZf2zeWjp
+         bKIUesEvFNWagCQjtzf/MHqn3rcCjKKQC1UNb9SZQScgzh/0gUTKKkgCnB0XTPyvb6Et
+         d9m0WtMM+0Tfr+2fARwjiEMH2VEoIQwsXdlgcbMwFbooHsuQ78OC3cXx33UHz0jlz7VB
+         1M3Q==
+X-Gm-Message-State: AOJu0Yxu4SlUXVHARRLb9DBg/UlzTxvyvWQbm3+wRy3le0lcpbHP1LxX
+	QH6W5zcVIi2RCBYH8MZXqsdwVA==
+X-Google-Smtp-Source: AGHT+IGREm/oDgCd+x7m4RTrCAy51z5yw9C0K5vLd6tDE2X6hIEZpn+ydTXm24ss+YtNo8VoIVlaDQ==
+X-Received: by 2002:a50:ef16:0:b0:52b:d169:b382 with SMTP id m22-20020a50ef16000000b0052bd169b382mr1705983eds.29.1695814414115;
+        Wed, 27 Sep 2023 04:33:34 -0700 (PDT)
 Received: from [192.168.33.189] (178235177023.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.23])
-        by smtp.gmail.com with ESMTPSA id a2-20020aa7cf02000000b005232ea6a330sm8065681edy.2.2023.09.27.04.33.26
+        by smtp.gmail.com with ESMTPSA id a2-20020aa7cf02000000b005232ea6a330sm8065681edy.2.2023.09.27.04.33.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Sep 2023 04:33:28 -0700 (PDT)
-Message-ID: <018cf0d4-216f-4b3f-aa00-33a22343ef15@linaro.org>
-Date: Wed, 27 Sep 2023 13:33:26 +0200
+        Wed, 27 Sep 2023 04:33:33 -0700 (PDT)
+Message-ID: <e2840aa4-9920-4c62-866f-2dc53b7caf25@linaro.org>
+Date: Wed, 27 Sep 2023 13:33:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +63,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 09/11] arm64: dts: qcom: ipq6018: include the GPLL0 as
+Subject: Re: [PATCH v2 10/11] arm64: dts: qcom: ipq9574: include the GPLL0 as
  clock provider for mailbox
 Content-Language: en-US
 To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
@@ -80,7 +80,7 @@ To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
 Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 References: <20230913-gpll_cleanup-v2-0-c8ceb1a37680@quicinc.com>
- <20230913-gpll_cleanup-v2-9-c8ceb1a37680@quicinc.com>
+ <20230913-gpll_cleanup-v2-10-c8ceb1a37680@quicinc.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -117,17 +117,16 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230913-gpll_cleanup-v2-9-c8ceb1a37680@quicinc.com>
+In-Reply-To: <20230913-gpll_cleanup-v2-10-c8ceb1a37680@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 14.09.2023 08:59, Kathiravan Thirumoorthy wrote:
+On 14.09.2023 09:00, Kathiravan Thirumoorthy wrote:
 > While the kernel is booting up, APSS PLL will be running at 800MHz with
 > GPLL0 as source. Once the cpufreq driver is available, APSS PLL will be
 > configured to the rate based on the opp table and the source also will
