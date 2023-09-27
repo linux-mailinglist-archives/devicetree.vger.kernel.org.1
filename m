@@ -1,55 +1,86 @@
-Return-Path: <devicetree+bounces-3951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AAAD7B0B17
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 19:33:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 808547B0B2F
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 19:39:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 8471C1C2083E
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 17:33:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id F1B0D281ADF
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 17:39:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30A8D4B22E;
-	Wed, 27 Sep 2023 17:33:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6470437C85;
+	Wed, 27 Sep 2023 17:39:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2A9430F91
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 17:33:03 +0000 (UTC)
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76A79E5;
-	Wed, 27 Sep 2023 10:32:59 -0700 (PDT)
-Received: from p200300ccff4287001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff42:8700:1a3d:a2ff:febf:d33a] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <andreas@kemnade.info>)
-	id 1qlYP2-004Ey1-FE; Wed, 27 Sep 2023 19:32:48 +0200
-Received: from andi by aktux with local (Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1qlYP1-0091bQ-2R;
-	Wed, 27 Sep 2023 19:32:47 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: jic23@kernel.org,
-	lars@metafoo.de,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	bcousson@baylibre.com,
-	tony@atomide.com,
-	andreas@kemnade.info,
-	chenhuiz@axis.com,
-	jean-baptiste.maneyrol@tdk.com,
-	andy.shevchenko@gmail.com,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org
-Subject: [PATCH v3 3/3] ARM: dts: omap: omap4-embt2ws: Add IMU at control unit
-Date: Wed, 27 Sep 2023 19:32:45 +0200
-Message-Id: <20230927173245.2151083-4-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230927173245.2151083-1-andreas@kemnade.info>
-References: <20230927173245.2151083-1-andreas@kemnade.info>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D81F9266DB
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 17:39:01 +0000 (UTC)
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01hn2232.outbound.protection.outlook.com [52.100.0.232])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA8B5EB;
+	Wed, 27 Sep 2023 10:38:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=anvNKGb8X4b9G/TmwnSIYVpuvxFyIuEHIQBJ3GQmWTz21cFyU/pngQQ4ow7dwKxKL+T/FyWMfbIOfdvo+HN0hlRooqA73I9AChF2zzlqetou6WdtNTZPIR8OcJYiW9RjpPUddIWSAs9rMKufXM5VRQ+/JtnBFzMxaVUrh+rikpuH7kbeK0CCi+NtHMyFRG/UrkrYilrzpegFkApUIjqnIcN55QuvoZodNMiss+TCx/Uqvd2Xe2E8cardtQtOE+TmZ6m9v2t4bfksCsfsUU4xr0Pns4rYmYgcQmoPG9CBQCAIc+N6Y/MoDz7K1lwx/t0skl7o1tSJ40jkFgUQ/IEeZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lYMLLLjjvpmjfLX97jQ9XFP6vJk0sgvRo2vvSjZKp9Q=;
+ b=kHob3b+4uxba/MzVexeX6jJODv+Pyn+b1/VRPmknNWWmHRox/SGqJWcCz1rY7i+3Pzfu61bXYPOd9Wod/afLEswIQlVdOXGR/JxLhDyln9HqTtvsqeVoYOOpzd+1n+e5HIiT5/C87xLtLBXdfB+CJL2RY6J0x1KRad1OoHcZUIWLWkbd+KLUYD+2119TYLLlQv/JpkmEgwMsD2mRhiZaA+sfxxd73Y2e/uOtJxedp5ATvTAXvRUs6++h6u9pHIS1L4Au3ZDXVkhXGimd+fD3746Xv7YA+mVPfX5clvmdo8dEYxeJUyCGcjSUnK7zCWsMiLdS9KSAdRwLuY6E6YsfAA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 211.75.126.7) smtp.rcpttodomain=codeconstruct.com.au
+ smtp.mailfrom=nuvoton.com; dmarc=fail (p=none sp=quarantine pct=100)
+ action=none header.from=gmail.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=nuvoton.onmicrosoft.com; s=selector2-nuvoton-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lYMLLLjjvpmjfLX97jQ9XFP6vJk0sgvRo2vvSjZKp9Q=;
+ b=BhBD0SQA91P74vfwh2ccilpCmwOf75IRf6G1wwwk3puEdOmWs4CK62yWu5AJ1dmcLHoFoQmf7lx0XczGIqaESdZ6dfjzmbyeYXOusTKUguPdRrutXCow0V+qeZXpR+RSWSSaQInrRQkXE5h1eK+EJB/lzEp4M9jSoRjx1B+9djM=
+Received: from SG2PR01CA0182.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:189::20) by TY0PR03MB6774.apcprd03.prod.outlook.com
+ (2603:1096:400:217::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.21; Wed, 27 Sep
+ 2023 17:38:56 +0000
+Received: from SG1PEPF000082E3.apcprd02.prod.outlook.com
+ (2603:1096:4:189:cafe::b2) by SG2PR01CA0182.outlook.office365.com
+ (2603:1096:4:189::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.21 via Frontend
+ Transport; Wed, 27 Sep 2023 17:38:55 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 211.75.126.7)
+ smtp.mailfrom=nuvoton.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=gmail.com;
+Received-SPF: Pass (protection.outlook.com: domain of nuvoton.com designates
+ 211.75.126.7 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.75.126.7; helo=NTHCCAS01.nuvoton.com; pr=C
+Received: from NTHCCAS01.nuvoton.com (211.75.126.7) by
+ SG1PEPF000082E3.mail.protection.outlook.com (10.167.240.6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6838.14 via Frontend Transport; Wed, 27 Sep 2023 17:38:55 +0000
+Received: from NTHCCAS02.nuvoton.com (10.1.9.121) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 28 Sep
+ 2023 01:38:54 +0800
+Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS02.nuvoton.com
+ (10.1.9.121) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Thu, 28 Sep
+ 2023 01:38:54 +0800
+Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Thu, 28 Sep 2023 01:38:54 +0800
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+	id 363F164740; Wed, 27 Sep 2023 20:38:53 +0300 (IDT)
+From: Tomer Maimon <tmaimon77@gmail.com>
+To: <linux@roeck-us.net>, <jdelvare@suse.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <avifishman70@gmail.com>,
+	<tali.perry1@gmail.com>, <joel@jms.id.au>, <andrew@codeconstruct.com.au>,
+	<venture@google.com>, <yuenn@google.com>, <benjaminfair@google.com>,
+	<j.neuschaefer@gmx.net>
+CC: <openbmc@lists.ozlabs.org>, <linux-hwmon@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Tomer Maimon
+	<tmaimon77@gmail.com>
+Subject: [PATCH v1 0/2] hwmon: npcm: add Arbel NPCM8XX support
+Date: Wed, 27 Sep 2023 20:38:48 +0300
+Message-ID: <20230927173850.103435-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.33.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,56 +88,72 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-NotSetDelaration: True
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG1PEPF000082E3:EE_|TY0PR03MB6774:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8a398add-d1bd-4334-d47a-08dbbf809f68
+X-MS-Exchange-SenderADCheck: 0
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?UxMN7h/F8DL5L3UjjDLFpBkTHKqdpuQW4MaYH+NO+J1O7vUlpaeNMqH/nonj?=
+ =?us-ascii?Q?MRknY3MgRU26RjqtXzUNOUHi8RYhnKtWEDa+32MnPJFGXQwAg3sbvEzH5RDt?=
+ =?us-ascii?Q?N3Q2CQQuqy+Syum65KtRfmivwt/5h7RtBydGqua+ESpX49AC8cJDPhl3j075?=
+ =?us-ascii?Q?dc+YBDUjQQBBVhQtBSFd0bHNFKLoyMxytAfui4E/zuqvbacVw26BuwEY1YeN?=
+ =?us-ascii?Q?7W5dKDIpGT4EYydnTkJ2/Sc2yxP0tXp7XX45SuZRFaLeNV2PRGmRQv0+HljF?=
+ =?us-ascii?Q?/xieyE7ResP2pr5KoZ29Vr/VkzilhXQmFYFxmZ5uNV3y2xDPCqK146LYRw+d?=
+ =?us-ascii?Q?8cRwYud1/6xNQJuis4mvjfbXtHukE3QhoLpRFQrzULvt2BwMtatYPNqQ0QEB?=
+ =?us-ascii?Q?tMwNz1BZ4bBfXkJ0xvrMxZfQPg/uCW36C3SOCyUOo9n8lf4m3/g2XEak1OGc?=
+ =?us-ascii?Q?CbWQdJRURmG47x8jah7ijmTvOMcQKjhDJt5d070Tvp5BfAQa5Dj4sfi2Z6Jy?=
+ =?us-ascii?Q?/aIgNLWT8CydDLjjtmPs1ZFEAfylQ9k2V74D7DpSZBkv8LsauCtNxcUT9+4J?=
+ =?us-ascii?Q?XrcXFwVZyZBrA24obxpq5FfTsMjGQJ1r43TkyZVUOY03lYxSsn5tp2Nr0O15?=
+ =?us-ascii?Q?jlf01vlE3tdFlYs/Ncim/upQ/Ll5T8JC9zWiv2IDLz5i7mOKwU59721/9Fqv?=
+ =?us-ascii?Q?Yf1iOdXmgdWlbxQGVnQ/resMREg5SwrlOnNjk8V43/l6teVSB7p4IChkyOkc?=
+ =?us-ascii?Q?9BVidCSKMV+ofZIKGZ8iYqs5mCLUHvwIDd2BQBaqlYyx8s9rN9KXD+3pGCVu?=
+ =?us-ascii?Q?ecm0AJpnnylEqoYaBYCp+acpBgGVVrGULbEK34X/Y+zHBF9xzf6xQNRKMcwC?=
+ =?us-ascii?Q?oVhdQ4PprMADl4sgDvuZp9hnsO5LzFSfCK2JlL1P0OevBLgkQWNdKPwYsr7o?=
+ =?us-ascii?Q?SU6UowDmGODh+a1JR5WX91E5xoJN1N4vbQogttGO3/+mTU4vu/NL215C00+j?=
+ =?us-ascii?Q?mHxoHOyT10OdJn1NHpUvQzoF9w=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:211.75.126.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS01.nuvoton.com;PTR:211-75-126-7.hinet-ip.hinet.net;CAT:NONE;SFS:(13230031)(4636009)(376002)(346002)(396003)(136003)(39860400002)(230922051799003)(186009)(5400799018)(451199024)(82310400011)(48200799006)(61400799006)(46966006)(40470700004)(36840700001)(36756003)(40460700003)(55446002)(40480700001)(26005)(82202003)(70206006)(8936002)(6266002)(73392003)(42882007)(1076003)(8676002)(4326008)(70586007)(336012)(5660300002)(54906003)(42186006)(110136005)(41300700001)(34020700004)(36860700001)(316002)(7416002)(83380400001)(47076005)(6666004)(4744005)(2906002)(2616005)(478600001)(76482006)(82740400003)(921005)(81166007)(356005)(83170400001)(45356006)(32563001)(35450700002)(84790400001)(12100799045);DIR:OUT;SFP:1501;
+X-OriginatorOrg: nuvoton.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2023 17:38:55.2973
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8a398add-d1bd-4334-d47a-08dbbf809f68
+X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[211.75.126.7];Helo=[NTHCCAS01.nuvoton.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG1PEPF000082E3.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR03MB6774
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add also the level-shifter flag to avoid probe failure in magnetometer
-probe.
+This patch set adds Arbel NPCM8XX Pulse Width Modulation (PWM) and
+Fan tachometer (Fan) support to PWM FAN NPCM driver.
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- .../boot/dts/ti/omap/omap4-epson-embt2ws.dts    | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+The NPCM8XX supports up to 16 Fan tachometer inputs and
+up to 12 PWM outputs.
 
-diff --git a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-index cd4f858d846ab..284a438fc5dcf 100644
---- a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-+++ b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-@@ -391,7 +391,16 @@ tlv320aic3x: codec@18 {
- 		reset-gpios = <&gpio2 23 GPIO_ACTIVE_LOW>;
- 	};
- 
--	/* TODO: mpu9150 at control unit, seems to require quirks */
-+	mpu9150: imu@68 {
-+		compatible = "invensense,mpu9150";
-+		reg = <0x68>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&mpu9150_pins>;
-+		interrupt-parent = <&gpio2>;
-+		interrupt = <7 IRQ_TYPE_LEVEL_HIGH>;
-+		invensense,level-shifter;
-+	};
- };
- 
- &keypad {
-@@ -530,6 +539,12 @@ OMAP4_IOPAD(0x0fc, PIN_INPUT | MUX_MODE0)       /* abe_mcbsp2_fsx */
- 		>;
- 	};
- 
-+	mpu9150_pins: pinmux-mpu9150-pins {
-+		pinctrl-single,pins = <
-+			OMAP4_IOPAD(0x5e, PIN_INPUT_PULLUP | MUX_MODE3)
-+		>;
-+	};
-+
- 	mpu9150h_pins: pinmux-mpu9150h-pins {
- 		pinctrl-single,pins = <
- 			OMAP4_IOPAD(0x76, PIN_INPUT_PULLUP | MUX_MODE3)
+The NPCM PWM FAN driver was tested on the NPCM845 evaluation board.
+
+Tomer Maimon (2):
+  dt-bindings: hwmon: npcm: Add npcm845 compatible string
+  hwmon: npcm750-pwm-fan: Add NPCM8xx support
+
+ .../bindings/hwmon/npcm750-pwm-fan.txt        |   6 +-
+ drivers/hwmon/npcm750-pwm-fan.c               | 161 +++++++++++++++---
+ 2 files changed, 141 insertions(+), 26 deletions(-)
+
 -- 
-2.39.2
+2.33.0
 
 
