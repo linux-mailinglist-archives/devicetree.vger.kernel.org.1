@@ -1,141 +1,172 @@
-Return-Path: <devicetree+bounces-3754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E24487B00D1
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 11:44:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9714D7B00E6
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 11:49:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 0AD0B1C20856
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:44:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id B51A01C20878
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:49:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD0AE26282;
-	Wed, 27 Sep 2023 09:44:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4D2726282;
+	Wed, 27 Sep 2023 09:49:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38D0920B22
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 09:44:34 +0000 (UTC)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6414E6;
-	Wed, 27 Sep 2023 02:44:32 -0700 (PDT)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-59f55c276c3so98479607b3.2;
-        Wed, 27 Sep 2023 02:44:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695807872; x=1696412672;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bCBtKjtOUbRzWwc+gk7sBNQfwK7ouTGHrKXSYvXMAhM=;
-        b=F3+bmwXyNVKPf8Ix/anOjpY2mvIV3Ifb5c4pmdwpg8fvzBXpkC9tAspFKJPagrmqvx
-         jh5nO0S4XNRv5bg7Lqj1FYBlMWCSyGYqZS6QS9QRHGzBC6xLsP3/isN5ArnhAtd/kq9Q
-         dicqZAe4TAsbZHtoaNvlxt5OSaYtVXE/TnZWgHK5woiL9Ko5dfEf1w0ekzd1yAACYjZB
-         prOhMjTl26TJxbuHRe7ENdraZQ4JKe4Ti/wYpeKdebjTmBy+fcFpy2z0N2IOMuBSd4cQ
-         4HHrxsQ8HQGol4u9m3khgnWG9HSinPFzMePylpplPAvm5rCfo62VBCSjb12AmP6cu7bA
-         BftA==
-X-Gm-Message-State: AOJu0YxokLw9wILe2gbfW7QQoOZ5t9tWuZ3l/GciS+0Epvv9w2LCYUOV
-	qU6s/ZdC6hFqSAPPpQq3e3FYfHMEi8+8Rg==
-X-Google-Smtp-Source: AGHT+IF8ltCzWRnIznlHP/+1Jk/toif12fLxW6sw3FLMWQs7FntXvo06tTxvGSiGNr1ZfOdE6ijbng==
-X-Received: by 2002:a25:c287:0:b0:d86:b9d5:124e with SMTP id s129-20020a25c287000000b00d86b9d5124emr1374845ybf.18.1695807871771;
-        Wed, 27 Sep 2023 02:44:31 -0700 (PDT)
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
-        by smtp.gmail.com with ESMTPSA id y4-20020a5b0f44000000b00d7e3e42d0c4sm259519ybr.53.2023.09.27.02.44.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Sep 2023 02:44:30 -0700 (PDT)
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-59f6041395dso93370477b3.1;
-        Wed, 27 Sep 2023 02:44:30 -0700 (PDT)
-X-Received: by 2002:a81:80c1:0:b0:59f:4bc3:3e9 with SMTP id
- q184-20020a8180c1000000b0059f4bc303e9mr1707738ywf.46.1695807870658; Wed, 27
- Sep 2023 02:44:30 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10D74523B
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 09:49:00 +0000 (UTC)
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9480CCA;
+	Wed, 27 Sep 2023 02:48:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1695808139; x=1727344139;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=oj/BIJaPlLOZ5a4Bm+3wRDEKMjmwS+415AzmToQmxko=;
+  b=GjxvRm8fpvmHDF2G23csv+Moo5B6jaBJSrMFVUlYOQWb69dMLmU8lJ0O
+   B6ldDfwrq9m7tO1Kmaz/MaytdEl4UnvU/wag03Vvghm0D8b+lDThTAQzm
+   XbpJ9eyqoTh9FNyu2egBRbX5faiWeP0Og+A7Giq/22n2Hz9BbIRGzxDlX
+   J269/0Zuosr3FtmhfGZchrWmkYu84aD4KY/3T4cEQUkrnHispEmkJ9FVX
+   UQPxDw5r6ePtRWKEkPqrqS6VwrDsWbX2Vtz2T13Tjbq7X0mqffU/bdrIT
+   dYlZqnLB3nTeTygE+DuIcl2d0tCl2eziMJadYn6dKPeDZEO7QBVj7HKkl
+   w==;
+X-CSE-ConnectionGUID: +8y/5vKTQAWpUgUoFVJWOw==
+X-CSE-MsgGUID: FCeDeZE/SGCJlrPGv/SrHA==
+X-ThreatScanner-Verdict: Negative
+X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; 
+   d="asc'?scan'208";a="173847249"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 27 Sep 2023 02:48:49 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 27 Sep 2023 02:48:03 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Wed, 27 Sep 2023 02:48:00 -0700
+Date: Wed, 27 Sep 2023 10:47:42 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Moudy Ho =?utf-8?B?KOS9leWul+WOnyk=?= <Moudy.Ho@mediatek.com>
+CC: "conor@kernel.org" <conor@kernel.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-media@vger.kernel.org"
+	<linux-media@vger.kernel.org>, "chunkuang.hu@kernel.org"
+	<chunkuang.hu@kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "mchehab@kernel.org" <mchehab@kernel.org>,
+	"daniel@ffwll.ch" <daniel@ffwll.ch>, "p.zabel@pengutronix.de"
+	<p.zabel@pengutronix.de>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>, "airlied@gmail.com"
+	<airlied@gmail.com>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, "matthias.bgg@gmail.com"
+	<matthias.bgg@gmail.com>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>,
+	"angelogioacchino.delregno@collabora.com"
+	<angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v6 12/16] dt-bindings: display: mediatek: color: add
+ compatible for MT8195
+Message-ID: <20230927-crunching-prancing-36fe3eb79607@wendy>
+References: <20230922072116.11009-1-moudy.ho@mediatek.com>
+ <20230922072116.11009-13-moudy.ho@mediatek.com>
+ <20230922-zebra-modify-87ff23c70bb3@spud>
+ <20230922-overhung-deception-e9b461ba0372@spud>
+ <7c445195e17e15d5af5fcb30ae53f76c713e958b.camel@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230926210818.197356-1-fabrizio.castro.jz@renesas.com>
- <20230926210818.197356-2-fabrizio.castro.jz@renesas.com> <CAMuHMdUibHxPBCLbeWdNrEk_szm+o4cOcskEMZAqUufNTzQKMQ@mail.gmail.com>
- <ZRPvHJXbuZ9Db2Go@finisterre.sirena.org.uk> <CAMuHMdUv8FFwkde8K3Ta8FEWrkkJ=9ZqbTi1EO8sRxVOhGtvzQ@mail.gmail.com>
- <ZRP0MpIHf67tfQJY@finisterre.sirena.org.uk>
-In-Reply-To: <ZRP0MpIHf67tfQJY@finisterre.sirena.org.uk>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 27 Sep 2023 11:44:17 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWPxn=RTU6uytOp31BoXbW0m8Oxk_LM2Rp4Dtop7okWgQ@mail.gmail.com>
-Message-ID: <CAMuHMdWPxn=RTU6uytOp31BoXbW0m8Oxk_LM2Rp4Dtop7okWgQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] spi: renesas,rzv2m-csi: Add SPI Slave related properties
-To: Mark Brown <broonie@kernel.org>
-Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-spi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, 
-	Chris Paterson <Chris.Paterson2@renesas.com>, Biju Das <biju.das@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="T9lGne2QQapOBRac"
+Content-Disposition: inline
+In-Reply-To: <7c445195e17e15d5af5fcb30ae53f76c713e958b.camel@mediatek.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+	RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Mark,
+--T9lGne2QQapOBRac
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Sep 27, 2023 at 11:21=E2=80=AFAM Mark Brown <broonie@kernel.org> wr=
-ote:
-> On Wed, Sep 27, 2023 at 11:10:58AM +0200, Geert Uytterhoeven wrote:
-> > On Wed, Sep 27, 2023 at 11:00=E2=80=AFAM Mark Brown <broonie@kernel.org=
-> wrote:
->
-> > > The description is clearly saying there is a chip select, _NO_CS seem=
-s
-> > > entirely inappropriate.  It's not specified in the device tree becaus=
-e
-> > > when there's no chip select for a device it's a fundamental property =
-of
-> > > how the device is controlled and we don't need any information beyond
-> > > the compatible.
->
-> > In host mode, it indeed doesn't matter, as you can have only a single
-> > device connected with SPI_NO_CS.
-> > In device mode, the device needs to know if it must monitor the chip
-> > select line or not.
->
-> > In hindsight, I should have kept the question I had written initially,
-> > but deleted after having read the documentation for the corresponding
-> > RZ/V2M register bits:
->
-> >     What does it mean if this is false? That there is no chip select?
->
-> > So "spi-no-cs" would be the inverse of "renesas,csi-ss".
->
-> I see.  Is there any control over what the chip select is when there is
-> one, in which case we could just look to see if there's one specified?
+On Wed, Sep 27, 2023 at 07:19:28AM +0000, Moudy Ho (=E4=BD=95=E5=AE=97=E5=
+=8E=9F) wrote:
+> On Fri, 2023-09-22 at 16:51 +0100, Conor Dooley wrote:
+> > On Fri, Sep 22, 2023 at 04:49:14PM +0100, Conor Dooley wrote:
+> > > On Fri, Sep 22, 2023 at 03:21:12PM +0800, Moudy Ho wrote:
+> > > > Add a compatible string for the COLOR block in MediaTek MT8195
+> > > > that
+> > > > is controlled by MDP3.
+> > > >=20
+> > > > Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> > > > ---
+> > > >  .../devicetree/bindings/display/mediatek/mediatek,color.yaml   =20
+> > > >  | 1 +
+> > > >  1 file changed, 1 insertion(+)
+> > > >=20
+> > > > diff --git
+> > > > a/Documentation/devicetree/bindings/display/mediatek/mediatek,col
+> > > > or.yaml
+> > > > b/Documentation/devicetree/bindings/display/mediatek/mediatek,col
+> > > > or.yaml
+> > > > index f21e44092043..b886ca0d89ea 100644
+> > > > ---
+> > > > a/Documentation/devicetree/bindings/display/mediatek/mediatek,col
+> > > > or.yaml
+> > > > +++
+> > > > b/Documentation/devicetree/bindings/display/mediatek/mediatek,col
+> > > > or.yaml
+> > > > @@ -26,6 +26,7 @@ properties:
+> > > >            - mediatek,mt2701-disp-color
+> > > >            - mediatek,mt8167-disp-color
+> > > >            - mediatek,mt8173-disp-color
+> > > > +          - mediatek,mt8195-mdp3-color
+> > >=20
+> > > How come this one is a "mdp3" not a "disp"?
+> >=20
+> > I don't know what mdp3 means & googling gives me no answers. What's
+> > the
+> > "disp" one controlled by, since it isn't controlled by mdp3?
+> >=20
+>=20
+> Hi Conor,
+>=20
+> Mediatek's Media Data Path ver.3 (MDP3) is associated with MMSYS and
+> acts as an independent driver that operates between VDEC and DISP.
+> By controlling multiple components, it carries out tasks like
+> converting color formats, resizing, and applying specific Picture
+> Quality (PQ) effects.
+> The driver can be found at "driver/media/platform/mediatek/mdp3".
+> Since the same hardware components are configured in both MDP3 and
+> DISP, considering previous discussions, I attemped to integrate into a
+> single binding, named after the controlling user.
 
-On RZ/V2M there isn't, as there is only a single hardware chip select.
+I'm still kinda struggling to understand this. Do you mean that the
+hardware can be controlled by either of the disp and mdp3 drivers, and
+a compatible containing "disp" would use one driver, and one containing
+"mdp3" would use another?
 
-On MSIOF, there are 3 hardware chip selects, but apparently only the
-primary one can be used in target mode.
 
-I have to admit I never thought about this before (commit
-cf9e4784f3bde3e4 ("spi: sh-msiof: Add slave mode support") also predates
-commit 9cce882bedd2768d ("spi: sh-msiof: Extend support to 3 native chip
-selects")).  Hence the SPI target DT bindings use a single "slave" subnode,
-without a unit address, thus assuming no explicit (or a default)
-chip select configuration.
+--T9lGne2QQapOBRac
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Gr{oetje,eeting}s,
+-----BEGIN PGP SIGNATURE-----
 
-                        Geert
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRP6PgAKCRB4tDGHoIJi
+0kh7AP9O7MKYjrnar798S6fbop9AWuqH31/FShl/0JtdCf2N/wD/R/G17q/VHosy
+cmzXFHme+vk2cMO0cR0geJwglqggtQo=
+=5FSm
+-----END PGP SIGNATURE-----
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+--T9lGne2QQapOBRac--
 
