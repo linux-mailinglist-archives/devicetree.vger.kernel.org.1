@@ -1,94 +1,150 @@
-Return-Path: <devicetree+bounces-3659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91FD27AFB76
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:56:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E02AE7AFB95
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:00:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 44D85281313
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 06:56:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 8A10C28122B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 07:00:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED4B71BDD8;
-	Wed, 27 Sep 2023 06:56:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95B21134BD;
+	Wed, 27 Sep 2023 07:00:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6931E368
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 06:56:38 +0000 (UTC)
-Received: from mail-ua1-x92f.google.com (mail-ua1-x92f.google.com [IPv6:2607:f8b0:4864:20::92f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C50DD6
-	for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 23:56:37 -0700 (PDT)
-Received: by mail-ua1-x92f.google.com with SMTP id a1e0cc1a2514c-7aae07e7ba4so4060449241.1
-        for <devicetree@vger.kernel.org>; Tue, 26 Sep 2023 23:56:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1695797796; x=1696402596; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ogHgKYOg4Pr/48DpWW/k5DqXjmMzTHrz2VavoAqChL0=;
-        b=VtlD3vjw3b9qsIlToPFug2iap18BxG3lbLhkcfkI9y4ecd8E+VHNI7WdcmruujfaZU
-         bZHs02deWDae8FNoT8GAJ8BmgyOWvjs9r585LO5qlekLupo0Bf3O5CPRUdu/i3qNlzgb
-         sGVG18XF40qbag2saOy+wRLX+h8WPzPCx+q6nXLyZ7eBoFTX+Bzf0AMnPcaQnSQjuuKX
-         xIB7juVwxW+azV1Mv7IRjbsFffzU462iZOru0OKdfEWwrgVbWMjviJdNwc8T/ROCnq/h
-         qIcHwoiuzpuLOq2VEejXivx2/LrvGx2l08u70s4FUfdKNpdvh6C2c0uPwUg9T/rpvLqs
-         cOlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695797796; x=1696402596;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ogHgKYOg4Pr/48DpWW/k5DqXjmMzTHrz2VavoAqChL0=;
-        b=kQnttrvpeDQbER8kCLdPqiwBmrAyJv1RisxfW9mv6rLqpBWI+ssYqT9xf93SVQ+mCt
-         rQhS/jVBzviCSKg04QXQatdhc5X96zpStnplmQY8WD+1F0Kfc1/VgzXtGriG2vukGhUp
-         QCMkUJTpnJYs/B9VYkumHBN6vOnPyHy0VSOSIPxPq831BirH7UNH0WLd7LiPqnSizuFy
-         r3SxdSzZ0E2rBIq8Z81OT30U1PzTlrVn4G9AdLmDFliZqN18Z+YNp5zIH4VwWFdR6cTo
-         TWZSdMsBYwyi7nd8/TawvNxlwOahuLXACSOyombtOb+3D2ATetUha+jfU0cL9toDFH/A
-         rlyQ==
-X-Gm-Message-State: AOJu0Yzv9HyuyqOgycYz3bxHz8ZB6OiWheEscDyImxJaeDBfVHZkB6Iq
-	Ro1FGT9/ZGHSGYdnboQajwxM7bsNwxMqHcgCVp20bQ==
-X-Google-Smtp-Source: AGHT+IEu7l+qv/EzFktz29NbLQ8Mjiny3AVF2fHHy3dxJi8oJsXwR/qzlMXaz4XRHFg37LF+Nq2tqw4MF6xZYwKTDJo=
-X-Received: by 2002:a67:eb16:0:b0:452:773c:e0a6 with SMTP id
- a22-20020a67eb16000000b00452773ce0a6mr1149906vso.9.1695797796250; Tue, 26 Sep
- 2023 23:56:36 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB6257486;
+	Wed, 27 Sep 2023 07:00:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1EDADD;
+	Wed, 27 Sep 2023 00:00:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1695798050; x=1727334050;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=YX9TWgn0UXlaSLJg2Ni0qoS+6JJGfy7qMNveOHGM1SA=;
+  b=eyWNQB7d1dJ0FvM5Hmk45CJ7lW/jfwSDhChw6SoZwV91hd8uuuPVMdQt
+   VS3dd+974CdKYTsmVEMKnN5fHyhMwCqBedoLXiDY8lJFxafrBI6JmIBvF
+   AVrwf9cKBinBbCWg6lx9dPSouTArmr1pKKLSuTtiEv/n1f3+EyED1GmLS
+   tLj9A06zahDgwvgimWBXdMaN4r/+JDF2qE3s2u61XJcFj1qCgzKBP3VJ1
+   oZlwFRB868sOYdNzdTM+7S4N/MW26RpaB7PzouMvgYTOqD/UgUMGC4aUq
+   ueHC5Mbx0E87SCOKOQUYX0vL4KJ76NEaRVUe6sGCLMrgAIM6X5ADgq/6R
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="412662330"
+X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; 
+   d="scan'208";a="412662330"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Sep 2023 00:00:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="1080015792"
+X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; 
+   d="scan'208";a="1080015792"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga005.fm.intel.com with SMTP; 27 Sep 2023 00:00:46 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Wed, 27 Sep 2023 10:00:45 +0300
+Date: Wed, 27 Sep 2023 10:00:45 +0300
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Abdel Alkuor <alkuor@gmail.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, bryan.odonoghue@linaro.org,
+	gregkh@linuxfoundation.org, robh+dt@kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, conor+dt@kernel.org,
+	ryan.eleceng@gmail.com
+Subject: Re: [PATCH v6 02/14] USB: typec: Add cmd timeout and response delay
+Message-ID: <ZRPTHeYhdtdtKZ1/@kuha.fi.intel.com>
+References: <20230923073959.86660-1-alkuor@gmail.com>
+ <20230923073959.86660-3-alkuor@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230923-ixp4xx-gpio-clocks-v3-0-66f8fe4e7f15@linaro.org> <20230923-ixp4xx-gpio-clocks-v3-1-66f8fe4e7f15@linaro.org>
-In-Reply-To: <20230923-ixp4xx-gpio-clocks-v3-1-66f8fe4e7f15@linaro.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 27 Sep 2023 08:56:25 +0200
-Message-ID: <CAMRc=Mdk783GGe8-9__sNigr8kMedmLO1xtqtsbK2y=RMFJ4nA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] gpio: Rewrite IXP4xx GPIO bindings in schema
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Linus Walleij <linusw@kernel.org>, Imre Kaloz <kaloz@openwrt.org>, 
-	Krzysztof Halasa <khalasa@piap.pl>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230923073959.86660-3-alkuor@gmail.com>
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Sat, Sep 23, 2023 at 6:02=E2=80=AFPM Linus Walleij <linus.walleij@linaro=
-.org> wrote:
->
-> This rewrites the IXP4xx GPIO bindings to use YAML schema,
-> and adds two new properties to enable fixed clock output on
-> pins 14 and 15.
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+On Sat, Sep 23, 2023 at 03:39:47AM -0400, Abdel Alkuor wrote:
+> Some commands in tps25750 take longer than 1 second
+> to complete, and some responses need some delay before
+> the result becomes available.
+> 
+> Signed-off-by: Abdel Alkuor <alkuor@gmail.com>
+
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+
 > ---
+> Changes in v6:
+>   - Use tps6598x_exec_cmd as a wrapper
+> Changes in v5:
+>   - Incorporating tps25750 into tps6598x driver
+> 
+>  drivers/usb/typec/tipd/core.c | 19 +++++++++++++++----
+>  1 file changed, 15 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
+> index 37b56ce75f39..32420c61660d 100644
+> --- a/drivers/usb/typec/tipd/core.c
+> +++ b/drivers/usb/typec/tipd/core.c
+> @@ -282,9 +282,10 @@ static void tps6598x_disconnect(struct tps6598x *tps, u32 status)
+>  	power_supply_changed(tps->psy);
+>  }
+>  
+> -static int tps6598x_exec_cmd(struct tps6598x *tps, const char *cmd,
+> +static int tps6598x_exec_cmd_tmo(struct tps6598x *tps, const char *cmd,
+>  			     size_t in_len, u8 *in_data,
+> -			     size_t out_len, u8 *out_data)
+> +			     size_t out_len, u8 *out_data,
+> +			     u32 cmd_timeout_ms, u32 res_delay_ms)
+>  {
+>  	unsigned long timeout;
+>  	u32 val;
+> @@ -307,8 +308,7 @@ static int tps6598x_exec_cmd(struct tps6598x *tps, const char *cmd,
+>  	if (ret < 0)
+>  		return ret;
+>  
+> -	/* XXX: Using 1s for now, but it may not be enough for every command. */
+> -	timeout = jiffies + msecs_to_jiffies(1000);
+> +	timeout = jiffies + msecs_to_jiffies(cmd_timeout_ms);
+>  
+>  	do {
+>  		ret = tps6598x_read32(tps, TPS_REG_CMD1, &val);
+> @@ -321,6 +321,9 @@ static int tps6598x_exec_cmd(struct tps6598x *tps, const char *cmd,
+>  			return -ETIMEDOUT;
+>  	} while (val);
+>  
+> +	/* some commands require delay for the result to be available */
+> +	mdelay(res_delay_ms);
+> +
+>  	if (out_len) {
+>  		ret = tps6598x_block_read(tps, TPS_REG_DATA1,
+>  					  out_data, out_len);
+> @@ -345,6 +348,14 @@ static int tps6598x_exec_cmd(struct tps6598x *tps, const char *cmd,
+>  	return 0;
+>  }
+>  
+> +static int tps6598x_exec_cmd(struct tps6598x *tps, const char *cmd,
+> +			     size_t in_len, u8 *in_data,
+> +			     size_t out_len, u8 *out_data)
+> +{
+> +	return tps6598x_exec_cmd_tmo(tps, cmd, in_len, in_data,
+> +				     out_len, out_data, 1000, 0);
+> +}
+> +
+>  static int tps6598x_dr_set(struct typec_port *port, enum typec_data_role role)
+>  {
+>  	const char *cmd = (role == TYPEC_DEVICE) ? "SWUF" : "SWDF";
+> -- 
+> 2.34.1
 
-I queued this, no need to resend it with the next respin of patch 2/2.
-
-Bart
+-- 
+heikki
 
