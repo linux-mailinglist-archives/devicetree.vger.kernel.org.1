@@ -1,98 +1,217 @@
-Return-Path: <devicetree+bounces-3687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A85DB7AFDFF
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 10:16:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1F267AFE0B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 10:19:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 57D18282899
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:16:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 17A681C208DF
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:19:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4502523A8;
-	Wed, 27 Sep 2023 08:16:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88DFD14ABC;
+	Wed, 27 Sep 2023 08:19:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5B1B290B
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 08:16:32 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4CE810DC;
-	Wed, 27 Sep 2023 01:16:30 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38R8GDj7002230;
-	Wed, 27 Sep 2023 03:16:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1695802573;
-	bh=yIn5zxmvYo4azr/4bZX+OLlJcq7q6KBIv0PdFQdZU1c=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=s7AE6o+dTsauPL0S8UK3hjRhgIC5G4qNNri+jSfAcZUi9BuQLlL2mVh2AbgTNtpzH
-	 DsNw1FBK10MGqZdkt73VGQ+mEW70vGVqqsLYJCsO3RoG6YM1ffm6N7S9IEPLB5VDda
-	 4yLdX0Z76xpzk8H+76kFybPhoibPfdXcVzVSDpyA=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38R8GDrv013949
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 27 Sep 2023 03:16:13 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 27
- Sep 2023 03:16:12 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 27 Sep 2023 03:16:12 -0500
-Received: from [10.24.68.251] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38R8G97O016607;
-	Wed, 27 Sep 2023 03:16:09 -0500
-Message-ID: <78a9a231-ce53-7a3c-d9ce-af9d1c2a097d@ti.com>
-Date: Wed, 27 Sep 2023 13:46:08 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7107F9CE
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 08:18:58 +0000 (UTC)
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACC5095;
+	Wed, 27 Sep 2023 01:18:55 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-503065c4b25so16760266e87.1;
+        Wed, 27 Sep 2023 01:18:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695802734; x=1696407534; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+3x8vUXTH+hRGX3fxYyM/ow7F7EZ9k5o10DeJwSjcq4=;
+        b=PSR5ojaGddvT2WStqShEF+rlWJXrxyKdabBR7meq6i0yuBMCkw6pz3V0aKujdV1lb6
+         hYd3pf5AciAZQeJMnFQCRKlG+5g1oZyue/ij+ukSOkx8Kgitq8OdQQyfbCVFJXSjT3Oh
+         Dk1cwECTKPy1JDtzpWCo3s653UhBwXH/07A+N1lvE73qSbtre3TnsrwPe4OektrFx2Px
+         DPt+hnW4yf4wwLWC+U5i+HD4YMH61LcHJq9lqEHJl6rcFoa+phx7XYCSqJZEGzpeDMsz
+         DBoHVayIW+lp6zwsHpeNuO8MfbEM8AN/CSftpamwUGxx0bgVsFKO8n+ITF6N87sawlG4
+         0/ZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695802734; x=1696407534;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+3x8vUXTH+hRGX3fxYyM/ow7F7EZ9k5o10DeJwSjcq4=;
+        b=UBrLbp/tGRBmZfZuIpC6KGIc3dIJFOwtm0QPokqY/Pbb2y4n9Ax7Yyoi/EHnnW2jh1
+         6S9NsV4I1yIfbOl6ntafIQCF02pG/fB6R+axKKnQjov8FeTjtIldtM/55JMdmo9ZhDOj
+         7IrSGOi7Iqicz1MgpRoMj+QO8waNGvRR3wh+efXUupRcEa0VL6h7XjBs4JsuLD///40v
+         r7UxD92RSmVL+9KCMGJG8Ka8WwTxtZ1U/UboAkAbEAwmfC2JL1Gkhp+xzJSBvroo+xnt
+         akjsNO84dufIJPlCNdtcrNt5USpVdgpuTdYAy6ACcZ/jQvXqVzsSCFnQkUARVgSG4Oej
+         em4Q==
+X-Gm-Message-State: AOJu0Yz3ggMhIS3JeTypI4KLrxtJsh6VNJRohlooNfRuOrvUiUwqEH3U
+	puyqpGh1nshweILrtA70dxRm+EE/JrM=
+X-Google-Smtp-Source: AGHT+IEpHX0mNt6z5BMFuuLqTJ8UidjxgMkPm8uup8OdQ2EUIBGLEmKcUqWlzTaHcQnK9t5kfNyubg==
+X-Received: by 2002:a19:5e1c:0:b0:4fe:5860:7abf with SMTP id s28-20020a195e1c000000b004fe58607abfmr1088770lfb.13.1695802733518;
+        Wed, 27 Sep 2023 01:18:53 -0700 (PDT)
+Received: from fedora ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id t17-20020ac243b1000000b00502ae8db086sm2517072lfl.19.2023.09.27.01.18.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Sep 2023 01:18:52 -0700 (PDT)
+Date: Wed, 27 Sep 2023 11:18:38 +0300
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Angel Iglesias <ang.iglesiasg@gmail.com>,
+	Andreas Klinger <ak@it-klinger.de>,
+	Benjamin Bara <bbara93@gmail.com>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/5] Support ROHM BM1390 pressure sensor
+Message-ID: <cover.1695727471.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v6 7/7] dts: ti: k3-j712s2-mcu: Add the mcu domain
- watchdog instances
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>,
-        <nm@ti.com>, <vigneshr@ti.com>, <conor+dt@kernel.org>,
-        <kristo@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
-CC: <u-kumar1@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230927023357.9883-1-j-keerthy@ti.com>
- <20230927023357.9883-8-j-keerthy@ti.com>
- <877f583e-ed08-4248-ac38-28e8c3039444@linaro.org>
-From: "J, KEERTHY" <j-keerthy@ti.com>
-In-Reply-To: <877f583e-ed08-4248-ac38-28e8c3039444@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="fSwAP33zslKgzBDb"
+Content-Disposition: inline
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 
+--fSwAP33zslKgzBDb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 9/27/2023 1:23 PM, Krzysztof Kozlowski wrote:
-> On 27/09/2023 04:33, Keerthy wrote:
->> There are totally 2 instances of watchdog module in MCU domain.
->> These instances are coupled with the MCU domain R5F instances.
->> Disabling them as they are not used by Linux.
->>
->> Signed-off-by: Keerthy <j-keerthy@ti.com>
-> 
-> Still incorrect subject prefix.
+ROHM BM1390 Pressure sensor (BM1390GLV-Z) can measure pressures ranging
+=66rom 300 hPa to 1300 hPa with configurable measurement averaging and an
+internal FIFO. The sensor does also provide temperature measurements
+although, according to the data sheet, sensor performs internal
+temperature compensation for the MEMS.
 
-Sorry. I missed this :-(. I will fix all your comments in the next version.
+Sensor does also contain IIR filter implemented in HW. The data-sheet
+says the IIR filter can be configured to be "weak", "middle" or
+"strong". Some RMS noise figures are provided in data sheet but no
+accurate maths for the filter configurations is provided.
 
-> 
-> Best regards,
-> Krzysztof
-> 
+I actually asked if we can define 3db frequencies corresponding to these
+IIR filter settings - and I received values 0.452Hz, 0.167Hz, and 0.047Hz
+but I am not at all sure we understood each others with the HW
+colleagues... Hence, the IIR filter configuration is not supported by this
+driver and the filter is just configured to the "middle" setting.
+(at least for now)
+
+It would also be possible to not use IIR filter but just do some simple
+averaging. I wonder if it would make sense to implement the OVERSAMPLING
+value setting so that if this value is written, IIR filter is disabled and
+number of samples to be averaged is set to value requested by
+OVERSAMPLING. The data-sheet has a mention that if IIR is used, the
+number of averaged samples must be set to a fixed value.
+
+The FIFO measurement mode (in sensor hardware) is only measuring the
+pressure and not the temperature. The driver measures temperature when
+FIFO is flushed and simply uses the same measured temperature value to
+all reported temperatures. This should not be a problem when temperature
+is not changing very rapidly (several degrees C / second) but allows users
+to get the temperature measurements from sensor without any additional
+logic.
+
+Revision history:
+Major changes here, please see the head room of individual patches for
+more detailed list.
+v3 =3D> v4:
+	rebased back on v6.6-rc1
+	dropped patch implementing the exact match search for
+	available_scan_mask
+	tools: iio_generic_buffer: comment on aligning logic
+	bm1390 driver:
+	 - cleanups and fixes
+         - own info struct for case where IRQ is omitted and FIFO not
+           supported
+	 - fix support for using other triggers. (not really tested but
+	   should work)
+
+v2 =3D> v3:
+	rebased on v6.6-rc2
+	added three IIO fixup patches so numbering of patches changed
+	dt-bindings/MAINTAINERS: No changes
+	bm1390 driver:
+	 - various cleanups and fixes
+	 - do not disable IRQ
+	 - fix temperature reading when FIFO is used
+	 - separate buffer and trigger initialization
+
+v1 =3D> v2:
+	rebased on v6.6-rc1
+	dt-bindings:
+	  - fix compatible in the example
+	sensor driver:
+	  - drop unnecessary write_raw callback
+	  - plenty of small improvements and fixes
+	MAINTAINERS:
+	  - No changes
+
+Matti Vaittinen (5):
+  tools: iio: iio_generic_buffer ensure alignment
+  iio: improve doc for available_scan_mask
+  dt-bindings: Add ROHM BM1390 pressure sensor
+  iio: pressure: Support ROHM BU1390
+  MAINTAINERS: Add ROHM BM1390
+
+ .../bindings/iio/pressure/rohm,bm1390.yaml    |  52 +
+ MAINTAINERS                                   |   6 +
+ drivers/iio/pressure/Kconfig                  |   9 +
+ drivers/iio/pressure/Makefile                 |   1 +
+ drivers/iio/pressure/rohm-bm1390.c            | 934 ++++++++++++++++++
+ include/linux/iio/iio.h                       |   4 +-
+ tools/iio/iio_generic_buffer.c                |  18 +-
+ 7 files changed, 1022 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/pressure/rohm,bm1=
+390.yaml
+ create mode 100644 drivers/iio/pressure/rohm-bm1390.c
+
+
+base-commit: 0bb80ecc33a8fb5a682236443c1e740d5c917d1d
+--=20
+2.41.0
+
+
+--=20
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
+
+--fSwAP33zslKgzBDb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmUT5U8ACgkQeFA3/03a
+ocXQTggArZYjJmcqpldv5kUoB8oC4OFUOC5FE/+rvhGYHZeZp958xTZY+53A6wdL
+9kedZhSCM8MFObWkCQdG01NcEoD1tdJ1ISLee8BBNzGM9o8I6Y5DG4T0ptNCx7uw
+6//SY0oTUee2MEtGOYHWsms8VG57OBh4qW2Uv0vSCDiTQ2YyO+zFVdYJCJQzRCC3
+C6x5JMv+OiYx1wtM1zPwAqV+uK8/IO+48b3amVd2tbYpfrGBmOO3lIz3xy6i43NA
+AS7kJNrHZSvKRyhyeLCEKxuO3iFIl5HHpjo+fgAppajsd32oIfXfnzDwKe0ONpJi
+VEKr2DqZK0K+n1EQ5ttDAI5hgEv+Fg==
+=yTSK
+-----END PGP SIGNATURE-----
+
+--fSwAP33zslKgzBDb--
 
