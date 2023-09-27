@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-3674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A98FF7AFD1C
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:54:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CEC57AFD26
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:56:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id C654B1C20833
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 07:54:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id B3B261C2083E
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 07:56:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 734FE1C686;
-	Wed, 27 Sep 2023 07:54:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48C251CA8E;
+	Wed, 27 Sep 2023 07:56:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E104D2F93
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 07:54:47 +0000 (UTC)
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D9A6136
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:54:45 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso1331344566b.1
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:54:45 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B0D21C285
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 07:56:33 +0000 (UTC)
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5155126
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:56:31 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-5335725cf84so11480250a12.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:56:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695801284; x=1696406084; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1695801390; x=1696406190; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=D7Jlp2PcQoKOrsVy5Jf/Ifw8DifNKFzd0XusMIA25T4=;
-        b=Ab92Dh80e1Xxqt+ic5Ll+dBT86pKBTGGigCk6qGq9jeH9Vc60pAKZsEWtzKQg/NBCH
-         rZAuXaSMza7WolaK1xfAz6EZdeuwUEbgoBIePr5m9EJGEH/E352NIjBsxahiQEdXpxbK
-         x3hUSIFYvZkFPzzXeiMU22VSMJr269MHjfVKLiRhfiZzGnuhKQq0r7qftnwIfRW6j9gF
-         RfSg2ahOC1A4BO23GjHsPdIbsLe2KBa3UBl+G23vnYFU1MEXO95duUgxD8IXgr0eTIoa
-         my6Egsgf9P/VL6K6hIR4FBfPbMbjkR3WE1rQdeNpQT5YLGvdS6Hf8h7U9Rr/g6FX5Nfk
-         lq+g==
+        bh=96ebBgx1uSlbR8rPTJiSyqkFJrYOiTjIL7us7h3SKyE=;
+        b=tsGqzCl+8UuWu9S/JlNDmNAZLDaJVtzke9OoDG1mOivTBa5HbJvrwXu6xb7kTluMQH
+         B5g9kVcTFJX7YzceKCKVF+mSR0xNpoClzmt52IC0OBc4zKCULHxkjZ8e+r7IaNAmztqN
+         DdGUuOl/ZRbUV3208/yCueffPQqryPZ26pFAIphMLZn51OTO97P5V9LE4zMhahn7FkSU
+         hgZRUxW4R2pZJu3WDKMQlBKrIxLtv6XneVogPQnTBji6NPnk6W/y/AYH//elkZzfryg+
+         92h/1H/xeL1X9OP8sou29fv3SejImq3FE2IiiAOpyBqBgYMhDb2Wigu5eLiNOB9FDTbp
+         ZZjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695801284; x=1696406084;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1695801390; x=1696406190;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=D7Jlp2PcQoKOrsVy5Jf/Ifw8DifNKFzd0XusMIA25T4=;
-        b=POAgBRqcbWar1KNcUEqvqGFR7bcdsTZ/npZm1JS0l4SedFuVsqnCuPjH7LfzaP3q4P
-         EkI/poVr3kvbTWdawnPG09y4QNggzDdvB44wwghoRUElilLb2Pt1EkAowoOEFSIMsiPI
-         I9dmNBGxBGz9YBcnQlMXrLFiyBUZGOdrfGJpz26bJcj0siFPTTWTHii0U6SenPFHg3HM
-         nLnqQLaNK4IuMRuK1YUd3b3W7k4QAlDaAnV9WnjY04hi4zOKbg6vx5/QECB7Kc+6Y6hZ
-         wJEdEz4B6tqt4mkiYiFI5+B5qc5y92YPHKNNyQl5ocO+ukv+SXCYnkSlDKAWI1+1cGaB
-         CBZA==
-X-Gm-Message-State: AOJu0YwhL6pqMbVdmuThaftD6m496UeJSZLW+LqXwJS2+H1c77Hl0VGP
-	AAAH1nyERtKVIv/NBd/cQ1SogQ==
-X-Google-Smtp-Source: AGHT+IFUxftRh2tI5NDPRBFMRWS4GVTwRXaEM8E2RQKMSqScFQLfy2ilcr7NrGEYIwu7jWYOjfDbqA==
-X-Received: by 2002:a17:906:9a:b0:9a1:e233:e627 with SMTP id 26-20020a170906009a00b009a1e233e627mr1196529ejc.42.1695801284039;
-        Wed, 27 Sep 2023 00:54:44 -0700 (PDT)
+        bh=96ebBgx1uSlbR8rPTJiSyqkFJrYOiTjIL7us7h3SKyE=;
+        b=PvKIPcKPwXRVWrd1Oz8KD8p8dOKpWl9QKaowf++2sB86dpBFAhjEu+rYvhpkowQP7+
+         E04GFz3ejLxqNY8MmJSoUO2ao2eNoOde/OymM0tuVUzRJ2PD8WrztzZzByoG08IamXiT
+         MOgK9GkmQCOrJaulDvsX7H9ZCX8OF0OXbjBWum2xsptC474SuN4kXpthMR+F172pa/SX
+         12t4xorvfqo21tQgWVXqM8JxejlUEPyKPBXgfYzvl6UAxzBYUavk/2E1wdcR3ZhupVO8
+         SR8yxkmF5ep9IDOTuwhXc7UQxzom8gaE1wndRR90atHA9YoLQqSzeG2jxlrDZLyvDZee
+         mYTw==
+X-Gm-Message-State: AOJu0YwQLPtapXnEwe+nc1GOVpj9JSEPD3/bpAKaH9t+7tlSPTDn5kHo
+	ZG0L+vPMQTwd82CIul4kbb6r1Q==
+X-Google-Smtp-Source: AGHT+IE/+vV2N0BC0BpdUGGHLkhFgZnIDdSYdpwLbgx9oIa7dkp4+4CPHsuOaFVi9hmwJggC+Uw2rw==
+X-Received: by 2002:a17:906:10da:b0:9a5:c9a4:ba1a with SMTP id v26-20020a17090610da00b009a5c9a4ba1amr1147664ejv.59.1695801390443;
+        Wed, 27 Sep 2023 00:56:30 -0700 (PDT)
 Received: from [192.168.1.160] (host-87-4-82-94.retail.telecomitalia.it. [87.4.82.94])
-        by smtp.gmail.com with ESMTPSA id cb25-20020a170906a45900b009ad778a68c5sm8928632ejb.60.2023.09.27.00.54.38
+        by smtp.gmail.com with ESMTPSA id vb5-20020a170907d04500b009b299529709sm2198845ejc.132.2023.09.27.00.56.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Sep 2023 00:54:43 -0700 (PDT)
-Message-ID: <0c709939-9867-4d80-ba7e-640b594f8d7a@linaro.org>
-Date: Wed, 27 Sep 2023 09:54:37 +0200
+        Wed, 27 Sep 2023 00:56:30 -0700 (PDT)
+Message-ID: <be991b32-018a-478d-bd74-6c79ea1c788e@linaro.org>
+Date: Wed, 27 Sep 2023 09:56:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,16 +63,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/7] arm64: dts: ti: k3-j784s4-main: Add the main
- domain watchdog instances
+Subject: Re: [PATCH] ARM: dts: omap4-embt2ws: Add Bluetooth
 Content-Language: en-US
-To: Keerthy <j-keerthy@ti.com>, robh+dt@kernel.org, nm@ti.com,
- vigneshr@ti.com, conor+dt@kernel.org, kristo@kernel.org,
- krzysztof.kozlowski+dt@linaro.org
-Cc: u-kumar1@ti.com, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230926132805.6518-1-j-keerthy@ti.com>
- <20230926132805.6518-5-j-keerthy@ti.com>
+To: Andreas Kemnade <andreas@kemnade.info>, bcousson@baylibre.com,
+ tony@atomide.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20230926204204.2120316-1-andreas@kemnade.info>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,119 +115,49 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230926132805.6518-5-j-keerthy@ti.com>
+In-Reply-To: <20230926204204.2120316-1-andreas@kemnade.info>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 26/09/2023 15:28, Keerthy wrote:
-> There are totally 19 instances of watchdog module. One each for the
-> 8 A72 cores, one each for the 4 C7x cores, 1 for the GPU, 1 each
-> for the 6 R5F cores in the main domain. Keeping only the A72 instances
-> enabled and disabling the rest by default.
+On 26/09/2023 22:42, Andreas Kemnade wrote:
+> Since the required clock is now available, add bluetooth.
 > 
-> Signed-off-by: Keerthy <j-keerthy@ti.com>
+> Note: Firmware (bts file) from device vendor reroutes tx for some time
+> during initialisation and later put it back, producing timeouts in
+> bluetooth initialisation but ignoring that command leads to proper
+> initialisation.
+> 
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 > ---
->  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 182 +++++++++++++++++++++
->  1 file changed, 182 insertions(+)
+> Depends on: https://lore.kernel.org/linux-omap/20230916100515.1650336-6-andreas@kemnade.info/T/#u
+>  arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> index 26dc3776f911..8c3efe066803 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> @@ -1576,4 +1576,186 @@
->  			      <695>;
->  		bootph-pre-ram;
->  	};
-> +
-> +	watchdog0: watchdog@2200000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x2200000 0x00 0x100>;
-> +		clocks = <&k3_clks 348 1>;
-> +		power-domains = <&k3_pds 348 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 348 0>;
-> +		assigned-clock-parents = <&k3_clks 348 4>;
-> +	};
-> +
-> +	watchdog1: watchdog@2210000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x2210000 0x00 0x100>;
-> +		clocks = <&k3_clks 349 1>;
-> +		power-domains = <&k3_pds 349 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 349 0>;
-> +		assigned-clock-parents = <&k3_clks 349 4>;
-> +	};
-> +
-> +	watchdog2: watchdog@2220000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x2220000 0x00 0x100>;
-> +		clocks = <&k3_clks 350 1>;
-> +		power-domains = <&k3_pds 350 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 350 0>;
-> +		assigned-clock-parents = <&k3_clks 350 4>;
-> +	};
-> +
-> +	watchdog3: watchdog@2230000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x2230000 0x00 0x100>;
-> +		clocks = <&k3_clks 351 1>;
-> +		power-domains = <&k3_pds 351 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 351 0>;
-> +		assigned-clock-parents = <&k3_clks 351 4>;
-> +	};
-> +
-> +	watchdog4: watchdog@2240000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x2240000 0x00 0x100>;
-> +		clocks = <&k3_clks 352 1>;
-> +		power-domains = <&k3_pds 352 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 352 0>;
-> +		assigned-clock-parents = <&k3_clks 352 4>;
-> +	};
-> +
-> +	watchdog5: watchdog@2250000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x2250000 0x00 0x100>;
-> +		clocks = <&k3_clks 353 1>;
-> +		power-domains = <&k3_pds 353 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 353 0>;
-> +		assigned-clock-parents = <&k3_clks 353 4>;
-> +	};
-> +
-> +	watchdog6: watchdog@2260000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x2260000 0x00 0x100>;
-> +		clocks = <&k3_clks 354 1>;
-> +		power-domains = <&k3_pds 354 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 354 0>;
-> +		assigned-clock-parents = <&k3_clks 354 4>;
-> +	};
-> +
-> +	watchdog7: watchdog@2270000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x2270000 0x00 0x100>;
-> +		clocks = <&k3_clks 355 1>;
-> +		power-domains = <&k3_pds 355 TI_SCI_PD_EXCLUSIVE>;
-> +		assigned-clocks = <&k3_clks 355 0>;
-> +		assigned-clock-parents = <&k3_clks 355 4>;
-> +	};
-> +
-> +	watchdog16: watchdog@2300000 {
-> +		status = "disabled";
+> diff --git a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
+> index 9d2f2d8639496..25b80385dc1f0 100644
+> --- a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
+> +++ b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
+> @@ -478,10 +478,12 @@ &uart2 {
+>  	interrupts-extended = <&wakeupgen GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH
+>  			       &omap4_pmx_core OMAP4_UART2_RX>;
+>  
+> -	/*
+> -	 * BT + GPS in WL1283 in WG7500 requiring CLK32KAUDIO of pmic
+> -	 * which does not have a driver
+> -	 */
+> +	bluetooth: tiwi {
 
-This is a friendly reminder during the review process.
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
+E.g. "bluetooth"
 
-Thank you.
 
 Best regards,
 Krzysztof
