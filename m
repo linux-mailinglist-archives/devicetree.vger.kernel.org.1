@@ -1,116 +1,154 @@
-Return-Path: <devicetree+bounces-3742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C52D7AFFC3
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 11:22:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0703A7AFFDB
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 11:25:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3E8F3281AE1
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:22:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 7B500281A96
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:25:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 616C920B16;
-	Wed, 27 Sep 2023 09:21:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0977B20B22;
+	Wed, 27 Sep 2023 09:25:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 517DE20B0F
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 09:21:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40E62C433D9;
-	Wed, 27 Sep 2023 09:21:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695806517;
-	bh=I448svr5ZDYp4rTesI5QISMQCcJhofO8M8peXBBCVFM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cpKxZGCHxET7gWuWcExH6CsMZ9pfGLXCTxYP/6YtBpQYujCM4n+xPTZfWZt+hhP0+
-	 NXnwHc+pAdxCGnMaHqG/Fe0XfyZ7hnrvR9yUvw5WO7wnbI2+AAbR5mEarzdMpY4ZrU
-	 Q29GnboTaxtoij/admCVD36krYP8urbjTRMsMmGABzccsys3ZA/Ny0/47irocy/c1H
-	 kwy9x7vYNoO9GgSvezOMjMyX1J+5JH9ldG3965MD6GB6quP81N1kV3L5vIp+dYPh66
-	 aRBHYrFHWg5mxLkDxWgfrWMMQpw32GaL4V4LoXSvjgjHS40bbRBm3cj0Mf5hKGUQu9
-	 2N2HvVBwnyXrA==
-Date: Wed, 27 Sep 2023 11:21:54 +0200
-From: Mark Brown <broonie@kernel.org>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Chris Paterson <Chris.Paterson2@renesas.com>,
-	Biju Das <biju.das@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 1/2] spi: renesas,rzv2m-csi: Add SPI Slave related
- properties
-Message-ID: <ZRP0MpIHf67tfQJY@finisterre.sirena.org.uk>
-References: <20230926210818.197356-1-fabrizio.castro.jz@renesas.com>
- <20230926210818.197356-2-fabrizio.castro.jz@renesas.com>
- <CAMuHMdUibHxPBCLbeWdNrEk_szm+o4cOcskEMZAqUufNTzQKMQ@mail.gmail.com>
- <ZRPvHJXbuZ9Db2Go@finisterre.sirena.org.uk>
- <CAMuHMdUv8FFwkde8K3Ta8FEWrkkJ=9ZqbTi1EO8sRxVOhGtvzQ@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B466220B16
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 09:25:11 +0000 (UTC)
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE027CC
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 02:25:09 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2bb9a063f26so176318751fa.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 02:25:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695806708; x=1696411508; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Tx78fQ268fCCK112gQHRLPlPwlRrUAegvp0thTyf+O0=;
+        b=ytFTP/shvGPjo2aegje8dGrAaJ3ashrHJGXeAE96bFLbc/YObtgGLGRE14oQifF8vU
+         Upt86USnQBXJaJp8/mVqkLYEmTIGy58rtwHG2S+Ly5xTasutB34q0TLE9532qQf3jJCH
+         l5+UBiFD2qr0Aw4+n5kh8YQ+qrOOy5cXxcwoY5Yyg2BPoENr2W3wQr1a8/cEqSeDnMv5
+         lBceLjQxaiGVrkihsmnzpp+gVffGrrIQQTMITxFHqeufLpm4yemqPoeHe1P3EF4Qjyiw
+         45f+T/FKffKss347OKUqPdFKug27ZTaT+w67TjRWf4QcEKyyXwfYtn1Ur7g4VqLOreYJ
+         HvRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695806708; x=1696411508;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Tx78fQ268fCCK112gQHRLPlPwlRrUAegvp0thTyf+O0=;
+        b=Rak15MNcwXUzUqM/8cQWaU0rYwyfQGgVs2bn7GoWy/APZkm0f5kbsWlQ7lo9w2M3LJ
+         pHZFghMIoVZ4HMNSzNqmbmGGVOyt0SuVc2bwWf7X6hs+z1Sc1Ft1G9G8PApksjdaT45J
+         vmGy/p2eSiHjJiN5C78zugTk2ayeOQJPpWqnIZIMmu9OiNVZok3bUd0dgPaUpePgJPmr
+         NPtaYyO7SVg7wtxRAYLXvyxowneFs6HgyCyMD2F5kvJ9qyi3SXaAZpxgPrjOpWd/p/O2
+         HsZ2CL3XKzh22eI9OqHqfV/sLA+WfYM0hilXC8DAqFMAOBy73YxhvbZi8kyyMAnb/AMu
+         kQrg==
+X-Gm-Message-State: AOJu0YxuksaJwL0PFJvSVrA4WRuXKnBMxb9tWhyBU6N9Vi1YyQIXO0YL
+	BacXz/1TJYPSyzo1drNFcKBItw==
+X-Google-Smtp-Source: AGHT+IEQl8OWG1dKPh3/PDyouqW/3rBJ3LrvEdck5K0sQLWyR43DO7tYzx485e2tzfLp+C7KdL6BMQ==
+X-Received: by 2002:a2e:9815:0:b0:2c0:34ed:b5ea with SMTP id a21-20020a2e9815000000b002c034edb5eamr1271078ljj.45.1695806708061;
+        Wed, 27 Sep 2023 02:25:08 -0700 (PDT)
+Received: from [192.168.33.189] (178235177023.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.23])
+        by smtp.gmail.com with ESMTPSA id u23-20020a17090617d700b00993a9a951fasm9161055eje.11.2023.09.27.02.25.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Sep 2023 02:25:07 -0700 (PDT)
+Message-ID: <b5146a7f-91b6-480c-b61a-514a365dc41d@linaro.org>
+Date: Wed, 27 Sep 2023 11:25:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Pm+YXDPO8WF2t5nM"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdUv8FFwkde8K3Ta8FEWrkkJ=9ZqbTi1EO8sRxVOhGtvzQ@mail.gmail.com>
-X-Cookie: Save energy:  Drive a smaller shell.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 3/4] arm64: dts: qcom: sc7280: Add UFS nodes for sc7280
+ IDP board
+To: Nitin Rawat <quic_nitirawa@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, mani@kernel.org, alim.akhtar@samsung.com,
+ bvanassche@acm.org, avri.altman@wdc.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ cros-qcom-dts-watchers@chromium.org
+Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230927081858.15961-1-quic_nitirawa@quicinc.com>
+ <20230927081858.15961-4-quic_nitirawa@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230927081858.15961-4-quic_nitirawa@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+On 27.09.2023 10:18, Nitin Rawat wrote:
+> Add UFS host controller and PHY nodes for sc7280 IDP board.
+> 
+> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> index 2ff549f4dc7a..a0059527d9e4 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> @@ -499,6 +499,25 @@
+>  	status = "okay";
+>  };
+> 
+> +&ufs_mem_hc {
+> +	reset-gpios = <&tlmm 175 GPIO_ACTIVE_LOW>;
+> +	vcc-supply = <&vreg_l7b_2p9>;
+> +	vcc-max-microamp = <800000>;
+> +	vccq-supply = <&vreg_l9b_1p2>;
+> +	vccq-max-microamp = <900000>;
+> +	vccq2-supply = <&vreg_l9b_1p2>;
+> +	vccq2-max-microamp = <900000>;
+Were you able to confirm it's correct (see the q in [1])
 
---Pm+YXDPO8WF2t5nM
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Konrad
 
-On Wed, Sep 27, 2023 at 11:10:58AM +0200, Geert Uytterhoeven wrote:
-> On Wed, Sep 27, 2023 at 11:00=E2=80=AFAM Mark Brown <broonie@kernel.org> =
-wrote:
-
-> > The description is clearly saying there is a chip select, _NO_CS seems
-> > entirely inappropriate.  It's not specified in the device tree because
-> > when there's no chip select for a device it's a fundamental property of
-> > how the device is controlled and we don't need any information beyond
-> > the compatible.
-
-> In host mode, it indeed doesn't matter, as you can have only a single
-> device connected with SPI_NO_CS.
-> In device mode, the device needs to know if it must monitor the chip
-> select line or not.
-
-> In hindsight, I should have kept the question I had written initially,
-> but deleted after having read the documentation for the corresponding
-> RZ/V2M register bits:
-
->     What does it mean if this is false? That there is no chip select?
-
-> So "spi-no-cs" would be the inverse of "renesas,csi-ss".
-
-I see.  Is there any control over what the chip select is when there is
-one, in which case we could just look to see if there's one specified?
-
-I'm a bit nervous about a generic property that maps onto _NO_CS since
-it's likely that people will start using that in device bindings when
-they shouldn't.
-
---Pm+YXDPO8WF2t5nM
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmUT9DIACgkQJNaLcl1U
-h9AoWgf8C4m4QGJxKqU2uTMR2OZGAiTjBvZPPRlWk3tOi86FMNdl2y3nyWSLo8Xn
-wX09m6jOWe9hdlXxeP865u3KMrDvVsHaL8wF8T7jNQc4h7LwGdE2PxsjvWEXS9qL
-301JwbJPnR0u3DMoCfv6QzfDsJdw3BWhMgjYsA5fid0cnOjY1BENubwtg5egP5qB
-0XbxeqK6/6GGtLIVl4IVobJaJbt76H5jKvXrqUNVskKQg+FfxA2yE6aWRoAcGbVn
-lQ09uL2W6G57XFRq9r4/R2y9AJWNgFeVmzpKsPSEiA/Yzd6RUHU/UN6mqAKNHgAi
-VUZMiQi/SpBI7EqDkS/x22F4sENSAw==
-=CrDz
------END PGP SIGNATURE-----
-
---Pm+YXDPO8WF2t5nM--
+[1] https://lore.kernel.org/linux-arm-msm/20230926162042.14180-1-quic_nitirawa@quicinc.com/T/#m72ca82a9145af380ffd37415455d6ef3d4195795
 
