@@ -1,221 +1,242 @@
-Return-Path: <devicetree+bounces-4003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 841537B0F99
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 01:40:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D0637B0FA3
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 01:50:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2CD91281A5E
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 23:40:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id BBFFF281945
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 23:50:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9FBD4D8F3;
-	Wed, 27 Sep 2023 23:40:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3316D4D918;
+	Wed, 27 Sep 2023 23:50:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2FCC15B6
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 23:39:59 +0000 (UTC)
-Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFFC6F4;
-	Wed, 27 Sep 2023 16:39:57 -0700 (PDT)
-Received: by mail-qv1-xf35.google.com with SMTP id 6a1803df08f44-65b10205207so36626826d6.0;
-        Wed, 27 Sep 2023 16:39:57 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7210D1079A
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 23:50:32 +0000 (UTC)
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 475A7F5
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 16:50:30 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-504a7f9204eso1727654e87.3
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 16:50:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695857997; x=1696462797; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1695858628; x=1696463428; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gQWVSyMSESKVXR7lHsisu37f0DFjVJDNSkQFdAeg8Rc=;
-        b=glEnYWQKUCJsHEyo4ev9nrcbV3fvHL3I1eg+YGWrouZxy3Htwc/81fhaHMta+RAFzc
-         nr7CtV6Epb0GBmSYSViqF8dkPfG+OhbIOJjBnzlQOQ5TMXz4fwVtIB8FlVJP/nsmti4G
-         LsWjYcFXuaUy3GcHBmhDcENs4Omfvza3aY4kHRUTd+AGXnMcG90gQjPyvB5K8LOYfotl
-         s8UG6u50Oz1dHEte6kNV+0zPwHlKfbN+MERyz0xnQmBzNLsOV5O4a+53tphASdsgUkcU
-         n2xE5AcMeKO6FJVm698NDe3Wltwy6ihNJ/CVMds6WICDwZHojEOHBuidBPmJDcLUfsB0
-         TLfQ==
+        bh=SQOY6tEOrqC0mvJgxPaq1cgtEoQjHgAb4TcKrL7E2Jg=;
+        b=SfeMRVsX/3mciiQbrewbqiY6TrJdBmDYy8w3bzErj8xg/wiimqF460972CxAH2mvcT
+         ceFchHj8a4thZdTwPQtRUZTpFE3m+Xa37bO63SaRksyc/gxY/0ZvTZMuhuTgIQVub6sp
+         mUWt11H+3NMJ6b85d+T02sSyR32AS4jeOQz0I=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695857997; x=1696462797;
+        d=1e100.net; s=20230601; t=1695858628; x=1696463428;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gQWVSyMSESKVXR7lHsisu37f0DFjVJDNSkQFdAeg8Rc=;
-        b=exefzGnt3/tcNcPK+zBFs/OvD33gozBa7jKHUAyBgqBrQaq7m0VSjz5JNHjWV4zwbd
-         zxO4XmLX37jbB+6g6PVsBbjuATY+owRTGvt6dJ8XqeywgZ89pUh+oh6SH5mMVfnJ6kST
-         rRI/AL4hrab8h55k3Sdmi5FK2YIyRBXMxCA3sYkU7R1KzIySVpNvQQreuleJD3FcwcQB
-         Z2wXNInvVOiV1QxXLpCejJ2/epFpPfE9QCulVGAvRIPzhDNQjgTbUAS8iuVChrcIxeoE
-         os9fQCcOqNCZbC2z1RiHnMYFcrG3hvQjE40Qn1sJhc6ori24de3IbXIWSIdbhDl7rDaE
-         JDzw==
-X-Gm-Message-State: AOJu0YxFXR8ODYBZanNkcKLNfCq5T4Y3dq4cyWSj8HZRq2bt48GJux45
-	wPhC156oIWBInzKFhlfG6Qyk9NpQWtauH/FF+XE=
-X-Google-Smtp-Source: AGHT+IFoprYkIDxUtCHlyYzh+wqHcvx4P6k6uIZuO/hY4iiSk4nxHrGQAOkw+bADmNjWozNYnrs3WHNz87mEp9N4gkU=
-X-Received: by 2002:a0c:f04c:0:b0:65b:1744:55d4 with SMTP id
- b12-20020a0cf04c000000b0065b174455d4mr3619280qvl.3.1695857996868; Wed, 27 Sep
- 2023 16:39:56 -0700 (PDT)
+        bh=SQOY6tEOrqC0mvJgxPaq1cgtEoQjHgAb4TcKrL7E2Jg=;
+        b=Z9qX9LxVStm1t/7i3ZxlONtR9JhhhA9I4iyzpm88Tbjq0B9lKWtnXDSUVrOJBES5m7
+         7JBEWDs/O6zAV2IOjJ/SiPEjrJUr6KpLC5Mm6SYcsDckty74Si/RhCLR9T6MVuUq/14S
+         wa3yJxq1Ox7Tb5iULOofQpP8YQRW0hj9r3dX957XSwncBDJODZ7yY2izWxoi656OW1EU
+         wZGng6J41p0ihYJ0PdehKVSgRSm8nMvDS4IjKRSgeUhXGVIyYQ8fKIa6UaUU4iu8ZsSZ
+         ZATsvoMcoxTpsEfzJl4QQCWHgyUhycnzQqSQIlu/7v0wNLRReOUoNLe3LN5gDTeA5JUL
+         kwiw==
+X-Gm-Message-State: AOJu0Yx8tQv10M8BCuOW2WW7yXC8cnltSX3gy2ygX5Knk35S62yQzu+H
+	Oov4cTTpS2KhVKeZf/hQiognMk5e/vwVcYNd0kbprnLJ
+X-Google-Smtp-Source: AGHT+IHWW0PiLI+o05IKxdKkvys1ECRQChxKaulv7VT//TJeivxjo5XGJlM8D872CYyRN3xIpjGz+A==
+X-Received: by 2002:a19:8c12:0:b0:4fe:8c1d:9e81 with SMTP id o18-20020a198c12000000b004fe8c1d9e81mr2511957lfd.36.1695858627623;
+        Wed, 27 Sep 2023 16:50:27 -0700 (PDT)
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com. [209.85.208.47])
+        by smtp.gmail.com with ESMTPSA id f19-20020a056402151300b0053090e2afafsm8734122edw.22.2023.09.27.16.50.26
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Sep 2023 16:50:26 -0700 (PDT)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-53074ee0c2aso3988a12.1
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 16:50:26 -0700 (PDT)
+X-Received: by 2002:a50:d71d:0:b0:52f:2f32:e76c with SMTP id
+ t29-20020a50d71d000000b0052f2f32e76cmr365834edi.2.1695858626384; Wed, 27 Sep
+ 2023 16:50:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1695804418.git.unicornxw@gmail.com> <20230927-ebony-duress-44ff45d3d253@spud>
-In-Reply-To: <20230927-ebony-duress-44ff45d3d253@spud>
-From: Chen Wang <unicornxw@gmail.com>
-Date: Thu, 28 Sep 2023 07:39:45 +0800
-Message-ID: <CAHAQgRC2xeqUu4mDZRJd3brcPNT4KovX65rNE7YXm+ku0+eERg@mail.gmail.com>
-Subject: Re: [PATCH v3 00/11] Add Milk-V Pioneer RISC-V board support
-To: Conor Dooley <conor@kernel.org>
-Cc: aou@eecs.berkeley.edu, chao.wei@sophgo.com, devicetree@vger.kernel.org, 
-	guoren@kernel.org, jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org, 
-	xiaoguang.xing@sophgo.com, apatel@ventanamicro.com
+References: <20230921102420.RFC.1.I9dddd99ccdca175e3ceb1b9fa1827df0928c5101@changeid>
+ <CAL_Jsq+noP32-m5xdUCLFPFBXLxX9Ys1BNFM+9sga6KYTmDzqQ@mail.gmail.com>
+ <CAD=FV=WXxGhX0Fw2nSS7PxYb1O-LUewAhoUVPn=2EpbSD2OeHQ@mail.gmail.com>
+ <CAL_JsqKJyRJmwJzB1yew71Ld7BeMMat+rzhX9XtDtiFE8Dbvcw@mail.gmail.com>
+ <CAD=FV=UgFzT0TW2WEV0Wmk05EXUad2EYhN2DcckAxE_Lw5gV1Q@mail.gmail.com> <ZROVSAoKF9bimnSP@nixie71>
+In-Reply-To: <ZROVSAoKF9bimnSP@nixie71>
+From: Doug Anderson <dianders@chromium.org>
+Date: Wed, 27 Sep 2023 16:50:13 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UR47x+t37B2+Myv0qvvOJMFxVe-Fj7js=-Ez2GWuDySg@mail.gmail.com>
+Message-ID: <CAD=FV=UR47x+t37B2+Myv0qvvOJMFxVe-Fj7js=-Ez2GWuDySg@mail.gmail.com>
+Subject: Re: [RFC PATCH] of: device: Support 2nd sources of probeable but
+ undiscoverable devices
+To: Jeff LaBundy <jeff@labundy.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, 
+	Benjamin Tissoires <benjamin.tissoires@redhat.com>, Chen-Yu Tsai <wenst@chromium.org>, 
+	linux-input@vger.kernel.org, Jiri Kosina <jikos@kernel.org>, 
+	Hsin-Yi Wang <hsinyi@chromium.org>, linux-gpio@vger.kernel.org, linus.walleij@linaro.org, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Johan Hovold <johan+linaro@kernel.org>, 
+	andriy.shevchenko@linux.intel.com, broonie@kernel.org, frowand.list@gmail.com, 
+	gregkh@linuxfoundation.org, hdegoede@redhat.com, james.clark@arm.com, 
+	james@equiv.tech, keescook@chromium.org, linux-kernel@vger.kernel.org, 
+	rafael@kernel.org, tglx@linutronix.de
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Conor Dooley <conor@kernel.org> =E4=BA=8E2023=E5=B9=B49=E6=9C=8828=E6=97=A5=
-=E5=91=A8=E5=9B=9B 00:09=E5=86=99=E9=81=93=EF=BC=9A
->
-> Hey,
->
-> On Wed, Sep 27, 2023 at 04:54:38PM +0800, Chen Wang wrote:
-> > Milk-V Pioneer [1] is a developer motherboard based on SOPHON SG2042 [2=
-]
-> > in a standard mATX form factor. Add minimal device
-> > tree files for the SG2042 SOC and the Milk-V Pioneer board.
-> >
-> > Now only support basic uart drivers to boot up into a basic console.
-> >
-> > Thanks,
-> > Chen
-> >
-> > ---
-> >
-> > Changes in v3:
-> >   The patch series is based on v6.6-rc1. You can simply review or test
-> >   the patches at the link [5].
-> >   - add new vendor specific compatible strings to identify timer/mswi f=
-or sg2042 clint
-> >   - updated maintainers info. for sophgo devicetree
-> >   - remove the quirk changes for uart
-> >   - updated dts, such as:
-> >     - add "riscv,isa-base"/"riscv,isa-extensions" for cpus
-> >     - update l2 cache node's name
-> >     - remove memory and pmu nodes
-> >   - fixed other issues as per input from reviewers.
->
-> v3 looks better indeed. I had some comments on the bindings and dt
-> patches, but none were particularly major.
->
-> Thanks,
-> Conor.
->
-Thanks, Conor, I will continue imrpoving according to your commnents.
+Hi,
 
+On Tue, Sep 26, 2023 at 7:37=E2=80=AFPM Jeff LaBundy <jeff@labundy.com> wro=
+te:
+>
+> Hi Doug,
+>
+> On Fri, Sep 22, 2023 at 05:11:10PM -0700, Doug Anderson wrote:
+> > Hi,
 > >
-> > Changes in v2:
-> >   The patch series is based on v6.6-rc1. You can simply review or test
-> >   the patches at the link [4].
-> >   - Improve format for comment of commitments as per input from last re=
-view.
-> >   - Improve format of DTS as per input from last review.
-> >   - Remove numa related stuff from DTS. This part is just for optimizat=
-ion, may
-> >     add it later if really needed.
+> > On Fri, Sep 22, 2023 at 12:08=E2=80=AFPM Rob Herring <robh+dt@kernel.or=
+g> wrote:
+> > >
+> > > > > This seems like overkill to me. Do we really need groups and a mu=
+tex
+> > > > > for each group? Worst case is what? 2-3 groups of 2-3 devices?
+> > > > > Instead, what about extending "status" with another value
+> > > > > ("fail-needs-probe"? (fail-xxx is a documented value)). Currently=
+, the
+> > > > > kernel would just ignore nodes with that status. Then we can proc=
+ess
+> > > > > those nodes separately 1-by-1.
+> > > >
+> > > > My worry here is that this has the potential to impact boot speed i=
+n a
+> > > > non-trivial way. While trackpads and touchscreens _are_ probable,
+> > > > their probe routines are often quite slow. This is even mentioned i=
+n
+> > > > Dmitry's initial patches adding async probe to the kernel. See comm=
+it
+> > > > 765230b5f084 ("driver-core: add asynchronous probing support for
+> > > > drivers") where he specifically brings up input devices as examples=
+.
+>
+> Ideally, all but one driver in a group should bail out of probe quickly i=
+f
+> the device is not populated. If not, I would consider that to be a bug or=
+ at
+> least room for improvement in that driver.
+>
+> The reason input devices can take a while to probe is because they may be
+> loading FW over I2C or performing some sort of calibration procedure; onl=
+y
+> one driver in the group should get that far.
+
+Hmm, that's not my experience. Specifically I've seen i2c-hid devices
+whose datasheets say that you're not allowed to talk i2c to them at
+all for hundreds of milliseconds after you power them on. See, for
+instance, "i2c-hid-of-goodix.c" which has a "post_gpio_reset_delay_ms"
+of 180 ms and "i2c-hid-of-elan.c" which has one of 300 ms.
+
+As I understand it these touchscreens have firmware on them and that
+firmware can take a while to boot. Until the firmware boots they won't
+respond over i2c. This is simply not something that Linux can do
+anything about.
+
+About the best you could do would be to add a board-specific driver
+that understood that it could power up the rails, wait the maximum
+amount of time that all possible touchscreens might need, and then
+look for i2c ACKs. I'm still hoping to hear from Rob about how I would
+get a board-specific driver to load on a DT system so I can
+investigate / prototype this.
+
+
+> > > We could add information on the class of device. touchscreen and
+> > > touchpad aliases or something.
 > >
-> > Changes in v1:
-> >    The patch series is based on v6.6-rc1. Due to it is not sent in thre=
-ad,
-> >    I have listed permlinks of the patchset [v1-0/12] ~ [v1-12/12] here =
-for
-> >    quick reference. You can simply review or test the patches at the li=
-nk [3].
+> > Ah, I see. So something like "fail-needs-probe-<class>". The
+> > touchscreens could have "fail-needs-probe-touchscreen" and the
+> > trackpads could have "fail-needs-probe-trackpad" ? That could work. In
+> > theory that could fall back to the same solution of grabbing a mutex
+> > based on the group ID...
 > >
-> > [1]: https://milkv.io/pioneer
-> > [2]: https://en.sophgo.com/product/introduce/sg2042.html
-> > [3]: https://github.com/unicornx/linux-riscv/commits/milkv-pioneer-mini=
-mal
-> > [4]: https://github.com/unicornx/linux-riscv/commits/milkv-pioneer-mini=
-mal-v2
-> > [5]: https://github.com/unicornx/linux-riscv/commits/milkv-pioneer-mini=
-mal-v3
-> > [v1-0/12]:https://lore.kernel.org/linux-riscv/20230915070856.117514-1-w=
-angchen20@iscas.ac.cn/
-> > [v1-1/12]:https://lore.kernel.org/linux-riscv/20230915071005.117575-1-w=
-angchen20@iscas.ac.cn/
-> > [v1-2/12]:https://lore.kernel.org/linux-riscv/20230915071409.117692-1-w=
-angchen20@iscas.ac.cn/
-> > [v1-3/12]:https://lore.kernel.org/linux-riscv/20230915072242.117935-1-w=
-angchen20@iscas.ac.cn/
-> > [v1-4/12]:https://lore.kernel.org/linux-riscv/20230915072333.117991-1-w=
-angchen20@iscas.ac.cn/
-> > [v1-5/12]:https://lore.kernel.org/linux-riscv/20230915072358.118045-1-w=
-angchen20@iscas.ac.cn/
-> > [v1-6/12]:https://lore.kernel.org/linux-riscv/20230915072415.118100-1-w=
-angchen20@iscas.ac.cn/
-> > [v1-7/12]:https://lore.kernel.org/linux-riscv/20230915072431.118154-1-w=
-angchen20@iscas.ac.cn/
-> > [v1-8/12]:https://lore.kernel.org/linux-riscv/20230915072451.118209-1-w=
-angchen20@iscas.ac.cn/
-> > [v1-9/12]:https://lore.kernel.org/linux-riscv/20230915072517.118266-1-w=
-angchen20@iscas.ac.cn/
-> > [v1-10/12]:https://lore.kernel.org/linux-riscv/20230915072558.118325-1-=
-wangchen20@iscas.ac.cn/
-> > [v1-11/12]:https://lore.kernel.org/linux-riscv/20230915072624.118388-1-=
-wangchen20@iscas.ac.cn/
-> > [v1-12/12]:https://lore.kernel.org/linux-riscv/20230915072653.118448-1-=
-wangchen20@iscas.ac.cn/
-> >
-> > ---
-> >
-> > Chen Wang (9):
-> >   riscv: Add SOPHGO SOC family Kconfig support
-> >   dt-bindings: vendor-prefixes: add milkv/sophgo
-> >   dt-bindings: riscv: add sophgo sg2042 bindings
-> >   dt-bindings: riscv: Add T-HEAD C920 compatibles
-> >   dt-bindings: interrupt-controller: Add Sophgo SG2042 PLIC
-> >   MAINTAINERS: add two files to sophgo devicetrees entry
-> >   riscv: dts: add initial Sophgo SG2042 SoC device tree
-> >   riscv: dts: sophgo: add Milk-V Pioneer board device tree
-> >   riscv: defconfig: enable SOPHGO SoC
-> >
-> > Inochi Amaoto (2):
-> >   dt-bindings: timer: Add Sophgo sg2042 CLINT timer
-> >   dt-bindings: interrupt-controller: Add Sophgo sg2042 CLINT mswi
-> >
-> >  .../sifive,plic-1.0.0.yaml                    |    1 +
-> >  .../sophgo,sg2042-clint-mswi.yaml             |   42 +
-> >  .../devicetree/bindings/riscv/cpus.yaml       |    1 +
-> >  .../devicetree/bindings/riscv/sophgo.yaml     |   28 +
-> >  .../timer/sophgo,sg2042-clint-mtimer.yaml     |   42 +
-> >  .../devicetree/bindings/vendor-prefixes.yaml  |    4 +
-> >  MAINTAINERS                                   |    9 +
-> >  arch/riscv/Kconfig.socs                       |    5 +
-> >  arch/riscv/boot/dts/Makefile                  |    1 +
-> >  arch/riscv/boot/dts/sophgo/Makefile           |    3 +
-> >  arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi   | 1880 +++++++++++++++++
-> >  .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  |   19 +
-> >  arch/riscv/boot/dts/sophgo/sg2042.dtsi        |  325 +++
-> >  arch/riscv/configs/defconfig                  |    1 +
-> >  14 files changed, 2361 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/interrupt-control=
-ler/sophgo,sg2042-clint-mswi.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/riscv/sophgo.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/timer/sophgo,sg20=
-42-clint-mtimer.yaml
-> >  create mode 100644 arch/riscv/boot/dts/sophgo/Makefile
-> >  create mode 100644 arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi
-> >  create mode 100644 arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-> >  create mode 100644 arch/riscv/boot/dts/sophgo/sg2042.dtsi
+> > Also: if having the mutex in the "struct device" is seen as a bad
+> > idea, it would also be easy to remove. __driver_probe_device() could
+> > just make a call like "of_device_probe_start()" at the beginning that
+> > locks the mutex and then "of_device_probe_end()" that unlocks it. Both
+> > of those calls could easily lookup the mutex in a list, which would
+> > get rid of the need to store it in the "struct device".
 > >
 > >
-> > base-commit: 0bb80ecc33a8fb5a682236443c1e740d5c917d1d
-> > --
-> > 2.25.1
-> >
+> > > > That would lead me to suggest this:
+> > > >
+> > > >   &i2c_bus {
+> > > >     trackpad-prober {
+> > > >       compatible =3D "mt8173-elm-hana-trackpad-prober";
+> > > >
+> > > >       tp1: trackpad@10 {
+> > > >         compatible =3D "hid-over-i2c";
+> > > >         reg =3D <0x10>;
+> > > >         ...
+> > > >         post-power-on-delay-ms =3D <200>;
+> > > >       };
+> > > >       tp2: trackpad@20 {
+> > > >         compatible =3D "hid-over-i2c";
+> > > >         reg =3D <0x20>;
+> > > >         ...
+> > > >         post-power-on-delay-ms =3D <200>;
+> > > >       };
+> > > >     };
+> > > >   };
+> > > >
+> > > > ...but I suspect that would be insta-NAKed because it's creating a
+> > > > completely virtual device ("mt8173-elm-hana-trackpad-prober") in th=
+e
+> > > > device tree. I don't know if there's something that's functionally
+> > > > similar that would be OK?
+>
+> This solution seems a bit confusing to me, and would require more edits
+> to the dts each time a second source is added. It also means one would
+> have to write a small platform driver for each group of devices, correct?
+
+No matter what we need to add something to the dts each time a second
+source is added, right?
+
+While it's true that we'd end up with some extra drivers, if we do it
+correctly we don't necessarily need a driver for each group of devices
+nor even a driver per board. If several boards have very similar
+probing requirements then, even if they have unique "compatible"
+strings they could still end up using the same Linux driver.
+
+I've actually been talking offline with folks on ChromeOS more about
+this problem as well. Chen-Yu actually pointed at a patch series (that
+never landed, I guess) that has some similar ideas [1]. I guess in
+that case Hans was actually constructing device tree properties
+manually in the driver. I was thinking more of having all of the
+options listed in the device tree and then doing something that only
+causes some of them to probe.
+
+If Rob was OK with it, I guess I could have some sort of top-level
+"hwmanager" node like Hans did and then have phandle links to all the
+hardware that are managed by it. Then I could just change those to
+"okay"?
+
+Ideally, though, this could somehow use device tree "overlays" I
+guess. That seems like almost a perfect fit. I guess the issue here,
+though, is that I'd want the overlays bundled together with the
+original DT and then the board-specific "hardware prober" driver to
+actually apply the overlays after probing. Does that seem sensible?
+
+
+[1] https://lore.kernel.org/linux-arm-kernel/20160901190820.21987-1-hdegoed=
+e@redhat.com/
 
