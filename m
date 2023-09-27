@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-3670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 102527AFD00
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:48:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61A587AFD05
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:48:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 2A49C1C204D6
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 07:48:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 2FCF8B20BBA
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 07:48:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7244E1C6BA;
-	Wed, 27 Sep 2023 07:48:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 328291CA88;
+	Wed, 27 Sep 2023 07:48:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70AB21C2BA
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 07:48:42 +0000 (UTC)
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF8A01A5
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:48:39 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-533e7d127d4so8173640a12.3
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:48:39 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 374371C6B0
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 07:48:45 +0000 (UTC)
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 594CA19C
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:48:43 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b962c226ceso177981971fa.3
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:48:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695800918; x=1696405718; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=DDN8CaUWyyaMzzng4BvgyrNM8oRA8ZCWD7UDepNEACQ=;
-        b=QEOMM4QIOAey5MCgE0qCsWB7p1P/qc5op7NC7K8Seha1miqErZpFNH1of123vYg7Ng
-         Gyk+OOe0fcweliGoqCHfb7xvvjJNYU5Gz3U+oPMLbfrlW17OzlQ2INzNgF5XAeXQxUQQ
-         YgIIKtVs71dao4w8p9FmGDDqRdOzN+qIV6HL2Sk9mOCu6HNGH7lmyUiy/R4CxkG7ef9I
-         qwe5DWVZGgrsqAU8GaNzeSSCEOxgCwNpr36lB3n2k5zb6StK+BGm0CedM6FZV4aYgVZF
-         wrzT5yOAN9M3HEiGvibBvzjYYFAMWDwS2wnU0oTZSD9aSZxb/3kdvTbSDRkplbDlMQIk
-         Ao1A==
+        d=linaro.org; s=google; t=1695800921; x=1696405721; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cjDOYF7T/FlNaBw6bgVsIRpbkeeR+8h756YrDe1mwTU=;
+        b=N5XRNMjEd+28y2ArB8uZKeIg4NQq2hcMqgkhybGGQ3fSuznRrc8toshrVGZsalOglB
+         D7JKA+VcGTrCHW0Qpq8ibP4LS0vTmdZS7BIgScWjPv3d/c/fnFomsITxrLfKNDk81b1T
+         55+NRl8ZDn6Irlj85Fm75xAS9HGucoucFMBgcqvzFKAKHyVGgxT7obSDG/BBn3nghf4Z
+         7X4d0Zl7gQNk25lCem+xdo1AIdxck/OYAPkL8P3qsyoDCrGAeBPEqYrWG563epduYc6J
+         vMAitiXAqio5d5eB8e+RLIfd6p/uEIWWsi046mXot7T87IHy/8A78Vv8EPdkvRrWVaAr
+         uNpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695800918; x=1696405718;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DDN8CaUWyyaMzzng4BvgyrNM8oRA8ZCWD7UDepNEACQ=;
-        b=Q0DfL5W4EQ11+vURB1jBBLxEq6LWycfG1Qz2B/v85dQ3YiPH3rp/2poxn3ujcDwrqr
-         fapzDxELXKZt6z0j/FIyMJ+DtzqLJRBGO28hCaI/bZAthZUfLRIaoSsjTS34mJwDdOjW
-         9R6T/FeKxItojqcNqyJ1LkFg9+64uH4Llh4E9HyXfSFgegu+NNnRr6N8RlUqwqYYx9R8
-         mAAFpsNFztUIqf1pfgy3BgZj9aJot5WNKl2yEmcKfjBv98bnuY6NiCBWw1cyx/NeJkF9
-         h3zt4K24zB0bKY7UIIUcsl9MK1+AWAnyc0Joe15ko1Qh1F9kFvyDB/sybdgUnMKveS0N
-         1Q5g==
-X-Gm-Message-State: AOJu0YzZbBtUMt52f8s2IdQjqBxq4UMq6MICFTMYcFc3o7AWYiPiRZnW
-	vWJxR33tXfsEU86rmuMvuPssqw==
-X-Google-Smtp-Source: AGHT+IF/IKoQsRHW2/VOL3l42j/c3hARsN9XDT0ZghxoPnXf39fZNhCOMv8E5Mh5DvSOiC3lAUMu6Q==
-X-Received: by 2002:a17:906:291:b0:9ae:5ba3:9d8f with SMTP id 17-20020a170906029100b009ae5ba39d8fmr960815ejf.17.1695800918270;
-        Wed, 27 Sep 2023 00:48:38 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1695800921; x=1696405721;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cjDOYF7T/FlNaBw6bgVsIRpbkeeR+8h756YrDe1mwTU=;
+        b=oqjYdXQbBhgDgFQPkUAra8uxgvoZmNUNbnI7wkSTUkDfNEhwY5o2J+BPjYST5Iw+AI
+         FT46V+Lh4U3mD7CrWCzwHitfLUEfSrhnk5YKj8YDBvcxkBmJvgp2w8vz8TmmxzvFMa15
+         Mlbb8umwz8MD/aY/YxcuOy+/C2Ai7cUCZWZHzSsbQMBrNmddQS6Vyi5Nikr5O9B6XSAF
+         qU9h6tp9GBgrcDC7ELKxmVesQ+tdKZmvG+B1MgIaVGVflru4zG0x/aMd15rX+eSCZGSh
+         KnkXV6W4VOQqSlEoU8xshyw9KGkaKaHHKtcrTHzbeopE2sEq1pLBFclROGJmwDLQboxl
+         tKMA==
+X-Gm-Message-State: AOJu0YyjR87GieffSDDJLHByHP4FeOyO7doiWfTgVKMgDLdtmMIVRGNg
+	JAZhLluf5s6EFbfoyJ7PLbXgBg==
+X-Google-Smtp-Source: AGHT+IEyfcxZXq2JD3kKUo5F/6BG1ZAgNVJbuPYFPpf0IaIJR+PXVWQoMudr1psd/L+lxT2RdDmeYw==
+X-Received: by 2002:a2e:9919:0:b0:2bc:e46d:f4ca with SMTP id v25-20020a2e9919000000b002bce46df4camr1211139lji.46.1695800921549;
+        Wed, 27 Sep 2023 00:48:41 -0700 (PDT)
 Received: from [192.168.1.160] (host-87-4-82-94.retail.telecomitalia.it. [87.4.82.94])
-        by smtp.gmail.com with ESMTPSA id v5-20020a1709064e8500b00993470682e5sm8792520eju.32.2023.09.27.00.48.36
+        by smtp.gmail.com with ESMTPSA id v5-20020a1709064e8500b00993470682e5sm8792520eju.32.2023.09.27.00.48.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Sep 2023 00:48:37 -0700 (PDT)
-Message-ID: <fe7a5807-92ad-4669-ab76-be24d20832f5@linaro.org>
-Date: Wed, 27 Sep 2023 09:48:36 +0200
+        Wed, 27 Sep 2023 00:48:40 -0700 (PDT)
+Message-ID: <2d7eac30-480c-49a4-903c-d4f2b3cdfc8d@linaro.org>
+Date: Wed, 27 Sep 2023 09:48:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,16 +63,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: reset: Add Infineon SLB9670 TPM reset
- driver
-To: Lukas Wunner <lukas@wunner.de>, Philipp Zabel <p.zabel@pengutronix.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Lino Sanfilippo <l.sanfilippo@kunbus.com>,
- linux-integrity@vger.kernel.org, devicetree@vger.kernel.org
-References: <ae40859b82494d75e9ad7bf616b3264138ad1f6a.1695754856.git.lukas@wunner.de>
+Subject: Re: [PATCH V3 1/3] dt-bindings: pinctrl: Add support for Amlogic T7
+ SoCs
 Content-Language: en-US
+To: Lucas Tanure <tanure@linux.com>, Huqiang Qin <huqiang.qin@amlogic.com>,
+ linus.walleij@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, brgl@bgdev.pl, andy@kernel.org
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+References: <20230922094342.637251-1-huqiang.qin@amlogic.com>
+ <20230922094342.637251-2-huqiang.qin@amlogic.com>
+ <ff2c6d41-7c9a-4633-8343-eb94404de6e8@linux.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -119,7 +122,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ae40859b82494d75e9ad7bf616b3264138ad1f6a.1695754856.git.lukas@wunner.de>
+In-Reply-To: <ff2c6d41-7c9a-4633-8343-eb94404de6e8@linux.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -128,108 +131,39 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 26/09/2023 21:09, Lukas Wunner wrote:
-> A new reset driver is about to be added to perform the reset sequence of
-> the Infineon SLB9670 Trusted Platform Module.
-> 
-> Document its device tree bindings.
-> 
-> Signed-off-by: Lukas Wunner <lukas@wunner.de>
-> ---
->  .../bindings/reset/infineon,slb9670-reset.yaml     | 68 ++++++++++++++++++++++
->  1 file changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reset/infineon,slb9670-reset.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/reset/infineon,slb9670-reset.yaml b/Documentation/devicetree/bindings/reset/infineon,slb9670-reset.yaml
-> new file mode 100644
-> index 00000000..b1e23d47
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reset/infineon,slb9670-reset.yaml
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/reset/infineon,slb9670-reset.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Infineon SLB9670 TPM Reset Driver
+On 27/09/2023 08:08, Lucas Tanure wrote:
+> On 22-09-2023 10:43, Huqiang Qin wrote:
+>> Add a new compatible name for Amlogic T7 pin controller, and add
+>> a new dt-binding header file which document the detail pin names.
+>>
+>> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
+>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>> ---
+>>
+>> V1 -> V2: Rename amlogic-t7-gpio.h to amlogic,t7-periphs-pinctrl.h
+>>            Corrected indentation format.
+>> V2 -> V3: Updated subject.
+>>
+>>   .../pinctrl/amlogic,meson-pinctrl-a1.yaml     |   1 +
+>>   .../gpio/amlogic,t7-periphs-pinctrl.h         | 179 ++++++++++++++++++
 
-Sorry, bindings are for hardware, not for drivers.
+...
 
-> +
-> +maintainers:
-> +  - Lukas Wunner <lukas@wunner.de>
-> +
-> +description: |
-> +  The Infineon SLB9670 Trusted Platform Module requires a specific reset
-> +  sequence on its RST# pin which is documented in sections 5.4 and 5.5 of
-> +  the datasheet [1]. This driver performs the reset sequence using a GPIO.
+>> +#define GPIOH_0		148
+>> +#define GPIOH_1		149
+>> +#define GPIOH_2		150
+>> +#define GPIOH_3		151
+>> +#define GPIOH_4		152
+>> +#define GPIOH_5		153
+>> +#define GPIOH_6		154
+>> +#define GPIOH_7		155
+>> +
+>> +#define GPIO_TEST_N	156
+>> +
+>> +#endif /* _DT_BINDINGS_AMLOGIC_T7_GPIO_H */
+> Tested-by: Lucas Tanure <tanure@linux.com>
 
-Sorry, bindings are for hardware, not for drivers. I don't see the point
-for this binding, especially that you refer to drivers. Why it cannot be
-just part of other device?
-
-
-> +
-> +  The sequence with minimum wait intervals is as follows:
-> +  deassert RST#
-> +  wait at least 60 ms
-> +  assert RST#
-> +  wait at least 2 usecs
-> +  deassert RST#
-> +  wait at least 60 ms
-> +  assert RST#
-> +  wait at least 2 usecs
-> +  deassert RST#
-> +  wait at least 60 ms before issuing the first TPM command
-> +
-> +  [1] https://www.infineon.com/dgdl/Infineon-SLB%209670VQ2.0-DataSheet-v01_04-EN.pdf?fileId=5546d4626fc1ce0b016fc78270350cd6
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - infineon,slb9670-reset
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: Reference to the GPIO connected to the RST# pin.
-> +
-> +  "#reset-cells":
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reset-gpios
-> +  - "#reset-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    tpm_reset: reset-controller {
-
-No need for label.
-
-> +        compatible = "infineon,slb9670-reset";
-> +        #reset-cells = <0>;
-> +        reset-gpios = <&gpio 0 GPIO_ACTIVE_LOW>;
-> +    };
-> +
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        tpm@0 {
-> +            compatible = "infineon,slb9670";
-
-Drop node, not related to the binding. We never keep consumers in
-binding providers.
-
-> +            reg = <0>;
-> +            resets = <&tpm_reset>;
-> +        };
-> +    };
+How can you test bindings?
 
 Best regards,
 Krzysztof
