@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-3805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46D157B02FB
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 13:31:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07EB97B0303
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 13:32:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id E31AEB20AB8
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 11:31:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 5AADFB20AC4
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 11:32:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00DF32377E;
-	Wed, 27 Sep 2023 11:31:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40099250EA;
+	Wed, 27 Sep 2023 11:32:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA6CEC8E2
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 11:31:20 +0000 (UTC)
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A373013A
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 04:31:18 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4053d53a1bfso97247635e9.1
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 04:31:18 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAEB3C8E2
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 11:32:43 +0000 (UTC)
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9175191
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 04:32:41 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-50308217223so17240472e87.3
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 04:32:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695814277; x=1696419077; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1695814359; x=1696419159; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+Cttx4wy+RtyD3bhI4AcUfgzla5e7qptgXHb9CsKrSI=;
-        b=MFWUw+wuChHsXuCa+64K15akSIt2elqeTWZaRlJatr/G6nUhv1qv1Legtz6U4022DU
-         Iv1eh0MEsAJX185/5QSfom6T/BnXyeXZq7xB0s6CX61tMiQ6UUkq+7ndv4MfyIPDcqiI
-         pVc5zGIhEiT4XlDF1vyZfnsMGiRaUF5IzpF0764mG8u3I0pK8VvPolaWtNtHh6YZ7nmP
-         QuqrNOCOYYPr5c+6JUpc91z7iR8zf6gbhDyBXOG5nZfVRNOthN+FdzJ8F4I8hB6HtTl/
-         TgQMvao/u7Hgx4uK9WHTNZVrnVpjF+Abk/Q8zCnaJzGGYuMrfGJ/CCUnX2EmPFiO8Mfh
-         ylHA==
+        bh=HdUWFQCLZSrl7zH0hUj4VOl1H38sQ0R60GSX/EJE7tU=;
+        b=lJ/LQqTW5sSn9i5DLLaUrXB4f4b3Hv0edhg1Z9rtkkHXiNc/yY6qrNvyvkURHrGvkE
+         A5Sjj1DO57GDXlkw1CHwvRY//kwwufhvGs1ca68x3nBT5xy3YaV8F2WhgvbQ1yhAvMuj
+         HnQoO/NxNjaWa26Ah6Abh46fC8bb3WzchOOJvfEzTPSqMG54AezSidzJaTx6F89vnA7Q
+         JKXeIpLfPhPspnCpgeq8NSXHGr1ZG0v8GPIkC3uOw/YitrzPw/+ZRuHWfO640Xiw71QW
+         Wjorl1Tk97WAmHIn7soTfZrI6YhVJ131Sy1fgO2HeCf5k6hc6CO8vTNhzTfBGxpw4LW2
+         62CQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695814277; x=1696419077;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1695814359; x=1696419159;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+Cttx4wy+RtyD3bhI4AcUfgzla5e7qptgXHb9CsKrSI=;
-        b=R1X6FPBeNXasNJ5HlJLfC2Zai6o3ocZu3c16yFMa04bFq2zWf7qJnRFbb1kXb0OQun
-         RR+MFm9SE71n7VnSrYZI6ehlt50IFbyjR3OyxAQmpmisyNRL96PNy0kTntD2PoF7Ys20
-         hEDuP/xk4iCfzxQn8skB2B3rNjVEdX2fGoAwZvuV0l8pfuxAYQTcoQelMSakNHpQMyI6
-         3wiQzt+28ow+AE1kl2uzvup6iO23xbXGuR4VbkYes9glFgpe02vcuoxCSIEy+Q7fcuYA
-         3tRndBHEcyKIfNE4ff8olwTuvMVcjx02a/KuCe9k3TWrOgOPuDMgO8vT9hesnN9Hz4Ji
-         R3Zg==
-X-Gm-Message-State: AOJu0Yz37LBeiRwXN9yt/3wtNYotVdSwsJ3PeNwqsdIaLVd+p2+v0y5b
-	iuppTeFaPdDwf0ZGy46IwIYoxg==
-X-Google-Smtp-Source: AGHT+IGiMJxv5MldFpzURf1bE7TOb01VZpsp4SX7KUlILbcUlw8Nw4K+r2oYFiflHcNQPk6PUmh0cw==
-X-Received: by 2002:a7b:cd89:0:b0:405:3e92:76db with SMTP id y9-20020a7bcd89000000b004053e9276dbmr1656437wmj.5.1695814277037;
-        Wed, 27 Sep 2023 04:31:17 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id l7-20020a1c7907000000b003fef60005b5sm9876510wme.9.2023.09.27.04.31.16
+        bh=HdUWFQCLZSrl7zH0hUj4VOl1H38sQ0R60GSX/EJE7tU=;
+        b=cJtqmcg/Ua1CNZC+OS6y+2pT6y6ZEgabyS7++msY5OVdPv8p1qz0GVbBykY3s6GVRx
+         u7f0EWQ3MYmisGNLYvrC4h8w9KWAF6JSyBBz9ejaAqQSA9zQGEElX4NPMrMZjXppyr08
+         u7eOFRg16lGyT2xhM/B7iEyKEngLoK8A7rwsQdS/7Yef8l4Ne9gqtS8icXfBN78jvosW
+         o/qgT7pVz9dyd0K1tytYKp8/V3APZqdzCVffJ3UmGzv0mpkOdCdEdER9jAHYfovznh6A
+         fpFtMw09lFMcwrpndgAk+k0cckqEncZ9sMFEyPf1kN8B0tDqmIEpoSmfND0u4FL+DV/l
+         FUGg==
+X-Gm-Message-State: AOJu0YwNOuFM0QlTeLu1W+QJSOmFAvlPzPXJoyj+a42X8nyIzvvwpkVv
+	5ZNRm6iOpeWykqYMVIs5/4xwwg==
+X-Google-Smtp-Source: AGHT+IEkHEK00EpmVPI8WUnrrnY+GIf2d6DWtNHZOcPr9e85S75Znl7+fMzO4eTxiWoYIfCLIKjDnQ==
+X-Received: by 2002:a19:f718:0:b0:503:1746:6882 with SMTP id z24-20020a19f718000000b0050317466882mr1260506lfe.37.1695814359385;
+        Wed, 27 Sep 2023 04:32:39 -0700 (PDT)
+Received: from [192.168.33.189] (178235177023.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.23])
+        by smtp.gmail.com with ESMTPSA id a2-20020aa7cf02000000b005232ea6a330sm8065681edy.2.2023.09.27.04.32.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Sep 2023 04:31:16 -0700 (PDT)
-Message-ID: <3b7a6266-e2fc-4b56-8b41-a26042248c64@linaro.org>
-Date: Wed, 27 Sep 2023 12:31:15 +0100
+        Wed, 27 Sep 2023 04:32:39 -0700 (PDT)
+Message-ID: <bef962c8-a1ff-4309-8381-fb748f198a40@linaro.org>
+Date: Wed, 27 Sep 2023 13:32:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,17 +63,63 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: arm: qcom: drop the IPQ board types
+Subject: Re: [PATCH v2 02/11] clk: qcom: ipq6018: drop the CLK_SET_RATE_PARENT
+ flag from PLL clocks
 Content-Language: en-US
-To: Sridharan S N <quic_sridsn@quicinc.com>, agross@kernel.org,
- andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20230927093130.4098385-1-quic_sridsn@quicinc.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230927093130.4098385-1-quic_sridsn@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Sricharan Ramabadhran <quic_srichara@quicinc.com>,
+ Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>,
+ Varadarajan Narayanan <quic_varada@quicinc.com>,
+ Anusha Rao <quic_anusha@quicinc.com>, Devi Priya
+ <quic_devipriy@quicinc.com>, Jassi Brar <jassisinghbrar@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ stable@vger.kernel.org
+References: <20230913-gpll_cleanup-v2-0-c8ceb1a37680@quicinc.com>
+ <20230913-gpll_cleanup-v2-2-c8ceb1a37680@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230913-gpll_cleanup-v2-2-c8ceb1a37680@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
@@ -82,48 +128,17 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 27/09/2023 10:31, Sridharan S N wrote:
-> IPQ bootloaders do not need these information to select the
-> the DTB blob. So dropping the board names from board section.
+On 14.09.2023 08:59, Kathiravan Thirumoorthy wrote:
+> GPLL, NSS crypto PLL clock rates are fixed and shouldn't be scaled based
+> on the request from dependent clocks. Doing so will result in the
+> unexpected behaviour. So drop the CLK_SET_RATE_PARENT flag from the PLL
+> clocks.
 > 
-> Signed-off-by: Sridharan S N <quic_sridsn@quicinc.com>
+> Cc: stable@vger.kernel.org
+> Fixes: d9db07f088af ("clk: qcom: Add ipq6018 Global Clock Controller support")
+> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
 > ---
->   Documentation/devicetree/bindings/arm/qcom.yaml | 14 --------------
->   1 file changed, 14 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index 7f80f48a0954..5b56f3d90d4d 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -91,24 +91,10 @@ description: |
->     The 'board' element must be one of the following strings:
->   
->           adp
-> -        ap-al02-c2
-> -        ap-al02-c6
-> -        ap-al02-c7
-> -        ap-al02-c8
-> -        ap-al02-c9
-> -        ap-mi01.2
-> -        ap-mi01.3
-> -        ap-mi01.6
-> -        ap-mi01.9
->           cdp
-> -        cp01-c1
->           dragonboard
-> -        hk01
-> -        hk10-c1
-> -        hk10-c2
->           idp
->           liquid
-> -        rdp432-c2
->           mtp
->           qrd
->           rb2
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-All bootloaders ? You are 100% sure that all versions of downstream 
-u-boot don't rely on these strings ? Upstream u-boot too ?
-
----
-bod
+Konrad
 
