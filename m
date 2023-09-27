@@ -1,145 +1,228 @@
-Return-Path: <devicetree+bounces-3705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F59C7AFE6A
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 10:29:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 438437AFE95
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 10:32:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 2E6271C20865
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:29:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id E7AE22841DF
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 08:32:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 080241F619;
-	Wed, 27 Sep 2023 08:29:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A67431C689;
+	Wed, 27 Sep 2023 08:32:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EE2653AE
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 08:29:43 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11E64F4;
-	Wed, 27 Sep 2023 01:29:41 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38R8FR7x032656;
-	Wed, 27 Sep 2023 08:29:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=HpJgdl/mtnzZkUABcW4CfNA7EBSkZK/fcBh9bbFEqCE=;
- b=Ge8rp72c3geUNE2DCAzKksxYNZCGE9D4gEnzP4Xx6gUi7yX1eEHIpVebspDg3QVTBtzQ
- o508+74V/10ypkUHHRmRp2Ut9xVgg4kYuE2ybs+G3Tz4KhQG3TnvZQMMuj5hoQrbVk3O
- lcy6dWW/B4ysdBi2KgQzL32HAqKkaTBsw8/dmOCS9Ha6zhnSaETkO+aoYeF55PQagd6k
- fL6V6sd+wCt4ExJW8kyM+6L/nNtaEx1CPZpiD3WSX0lNVEg9Qx2JfBNRZrtB3/hYgyrZ
- PDZflcRj3QzCqHfnmKvxUaqLpY/IBQLv0hvG5nZeWscmyn9hMKm5BVF++/8d48HzEw4+ yA== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tc8v48sem-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 27 Sep 2023 08:29:32 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38R8TVu9000622
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 27 Sep 2023 08:29:31 GMT
-Received: from [10.218.45.181] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 27 Sep
- 2023 01:29:26 -0700
-Message-ID: <c71623bd-d70b-7b25-2f13-a5ec3d4f7c93@quicinc.com>
-Date: Wed, 27 Sep 2023 13:59:22 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C85581CA84
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 08:32:53 +0000 (UTC)
+Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2038.outbound.protection.outlook.com [40.92.102.38])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D27C198;
+	Wed, 27 Sep 2023 01:32:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=N5iRk8MT+W1kLPqaqrGNwknGpDMvGfYjazZJgPdnbynD3iq+wFpomM2a3tkUYGUxQ4gKTRS0uFhwi2RSEqVTMyqjTX8Rpz5pS/PuNIt8CF9xgOqkTmJSYQiAMQfS+b72RGyoX0Bzo3yY9BYKkO0tzgNgFepOXC0eH2qu83UBO5bohpK9Avvw59Hwe15M1tIpt6375RuvYNww+abG5TnhBGZ3euUKzQFtMcNsBIVMLvqRTBKwna4UBT/H8MEJsUPVgp511xk/cu+0tMun9Wk4srG7uD1HxtGpc/h9sVrQjIFvyGCcnK/nC+B2pQrBn+Vj4DK5Psa0dHIA0sl70rwRSw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MuRO69vy8k+ez91ZELx0P68ENEr6f132mHC07CYv1/A=;
+ b=ZP9+1aYP8v1d3NnzgiL8opIlvV5kSD121C1VJf2pLoDUT5XQfeIQ8LLjMsCErh5442jbz6ZTnKVjtlcYcqManSU7sZFJgb8lHN7RnXOwKyJEQ/PcDHfmrFmKqWK91jz254wxhOuD3r/NVx+kGnr4NmIzLJ2l6q8U2/gMFC7KkMLOA+jRvhZAumctRPsHX2RoeXjZt6MFaX6zEZAIylB7/9V1QMIAES3n5cd7Blwdz80QKwgMY3VLp0OOGRDw3OGs8BEEo1cg+d+X8MRU2kuxqPKwJqHGdlFdbYVZWkXJoaLbKgliqydyUcVTLlYQHVs4/dPn+GQijPZLg3f+DwkFqA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MuRO69vy8k+ez91ZELx0P68ENEr6f132mHC07CYv1/A=;
+ b=CXe+RoUs/wtl/j83Lf2B3BinYBmzfjezzjceuXEr+mb11gnUZjc+/iPSDPw2Hy1VfziRHIUw0h4KnjhrMNyFR3sar1XcUoY3TMT90oTGdz13ECzQ2ehuvaxwl9uL5+A2PCNKaT1l5aBMaLMYENql9PCEhkKp4TNbqu3lUrMtjbnUbTK58p54HoTaaZpZrN3POt2N8Cso2wQbAQIGNXpULyAC7zoJ1Gi6ONXdR1JMU5xm1uALy0FwNo0lP7nF5vKuPx3NT8PRuPwADrCKIiYm3ovX6cxlcVQa/lZTa1A7iQW15NpCeO60d1xXF2RFs1vMjZvUh4VUMzpuX1AYU7cz8w==
+Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
+ PN0P287MB2035.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1bd::9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6838.21; Wed, 27 Sep 2023 08:32:41 +0000
+Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ ([fe80::efe9:8d54:281b:23f7]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ ([fe80::efe9:8d54:281b:23f7%3]) with mapi id 15.20.6838.016; Wed, 27 Sep 2023
+ 08:32:41 +0000
+Message-ID:
+ <MA0P287MB0332C7B60DDF5E13D65F84B7FEC2A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+Date: Wed, 27 Sep 2023 16:32:36 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 00/11] Add SOPHGO SOC family Kconfig support
+To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
+ chao.wei@sophgo.com, conor@kernel.org, devicetree@vger.kernel.org,
+ guoren@kernel.org, jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
+ xiaoguang.xing@sophgo.com, apatel@ventanamicro.com
+References: <cover.1695800389.git.unicornxw@gmail.com>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <cover.1695800389.git.unicornxw@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-TMN: [7G0ciwaGc/YzNRjDQFX0VySWn6ADd+d8]
+X-ClientProxiedBy: SI2P153CA0026.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:4:190::18) To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:ab::5)
+X-Microsoft-Original-Message-ID:
+ <a88e89e3-fdac-4ead-b431-d6ddaa47c396@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH V3 4/4] dt-bindings: ufs: qcom: Align clk binding property
- for Qualcomm UFS
-Content-Language: en-US
-To: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <mani@kernel.org>, <alim.akhtar@samsung.com>, <bvanassche@acm.org>,
-        <avri.altman@wdc.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20230927081858.15961-1-quic_nitirawa@quicinc.com>
- <20230927081858.15961-5-quic_nitirawa@quicinc.com>
-From: Nitin Rawat <quic_nitirawa@quicinc.com>
-In-Reply-To: <20230927081858.15961-5-quic_nitirawa@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 0oSsOqBPKUmKC7wxsBT_Tw0AiuoVPywk
-X-Proofpoint-ORIG-GUID: 0oSsOqBPKUmKC7wxsBT_Tw0AiuoVPywk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-27_03,2023-09-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- suspectscore=0 spamscore=0 malwarescore=0 mlxlogscore=999 bulkscore=0
- phishscore=0 impostorscore=0 priorityscore=1501 mlxscore=0 adultscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2309270068
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|PN0P287MB2035:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2496b785-8bdf-4989-c7f3-08dbbf345048
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	7jGy+PMH6LwQScSWiO5FE7gBbh1k9Pydnkm46lN9Cw7w31/hUxAKfbUkqJ0aCb3tPRzG4fjSvjPgGwlSOBWYBoBGRDX6JR1ueROPUBid+Jkb4qVgqEz8vSlzvAEgmlRLsTnYz9Zz7EueAydTE8fQRx03ftSHYQ+cBnpvmQb65wDaNLEC/f/tyPNVCO1Ab3z4hTFraHjej96UMKGwT00s4ydY9P1/0DjzYSoj5phRnmLdnn1UKGmWH5vGZ7zRoI2LU//9knswkAXEhg92KgJ6juiK4pYveJHAnuroLundyS4A+w3e7id7F3/uJIYLmd1mj8dmhYVukys7gjRedxOHPVFGWyfj2I2aCEp7jVnFRLIFzA/E5bunWtSt1U+ndqavWZIs0VZfzWEaP9rG0Xm94dqIeAi/pmPnZIyRmapG5Godjffm1uOHLWEhBY8u2rWrQYG8kr4MrAa25JuyvcN66LAEZpf8AIgD/GQ3iMwH6iJpadWD98VUJXnJmJg/OD5DolsDRuITE/nUajwS6dMWp2YKqAaHVeZrudBiOGH1zIow4bDQqOXSrX4yQDqhPdxdILxGKv7dreSkgLeKUvsq9I0Lmr7HJ7WQTmWrIbIPA0c=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?RlIwNFRHY2V6K3lUTW8yUVR4dndkTHFOVGcwWjZ5cjZlOVZSQUlYRENMd1Vt?=
+ =?utf-8?B?M2NZZExxTzdHcGpvbm4xdEYvTE8rdjVBU0swU3VFMFpiMnp1cXJ1Wis5NStY?=
+ =?utf-8?B?L1g3SExDa0xjTHpaOGRiSVI5MW5LRnlucmFLRGw3OUtHVURXUlpJdEV4RnQ2?=
+ =?utf-8?B?OUtmS3hoWGtXM1FCVHFyNVV5VXRGNE4zM0g0VHpHR3J4cDFHQmxrdExFL2V0?=
+ =?utf-8?B?Unh5MVhmNTVtTWdhTW9sSjhkbzMxVFNHMGxTWmtiZ3dLQzhFaHlVc1ptV1o2?=
+ =?utf-8?B?YmNyMVFpZVlTRnh1NWxXWlh6aFhrSVBPUGhyOUR2bDl1QjRRQjQvU2V2RGk4?=
+ =?utf-8?B?WXZQQ1AvUzJCc2tlRkszYThCMS8yaldSakg1Zk1HOTJoWGFhVDdkM3dtRXVi?=
+ =?utf-8?B?R1NjT0tGTmNYazBmeGNmM1VrQlhrV2lUUjRkdkRudk9EYy9tZmdjYWZEWjVt?=
+ =?utf-8?B?bGdrYWFkRnhSVkFacGt2QWJJWHhzeTd5amZZbkpucXFCek5DQ2FrZENzUVVm?=
+ =?utf-8?B?NGNoUmlHUE5NMDRYa1Z4WkViVVlwTzBOY2dGZnlhSTdMU3ZIemJwVnM5NlBF?=
+ =?utf-8?B?S0tBN28vV294aFBUeldUYTFTaE1sZ09VU0JCZ09oak9YZEczUjFSZnRBNXox?=
+ =?utf-8?B?WHkvQVFZNG4rWkFOakptVG1TeFJzRklDenZac0cyRVVmSFpaR0Jua3hzckxV?=
+ =?utf-8?B?eDJKMWl3WnZjU0hPdittSlg0TFI5U2pXRUhwdkF1V1IzOGVUTFU4NXBsUlVL?=
+ =?utf-8?B?bU84dW1QQTAzWExlOENCOXdpY1ZrN1cranpXU0JUand1UG0wMExXWlRLc3hF?=
+ =?utf-8?B?NUhwaWRBOGtCVnFIRkVHYi9aNDQ2Yk5TOUNsU1RaWEJ1YlN0OXk0cUdjZTV0?=
+ =?utf-8?B?RnZxc1RGbktQYktMdTRiM2J3WVpiSldMdnJIOXNjdGZYSXR6dXRWZGZwcmxF?=
+ =?utf-8?B?cGwrSnQ4VGhmRzBtU08zSFJFWkNEcHUvOUlhb0RCL1ZSTHo4Ym9WL0RROUpV?=
+ =?utf-8?B?V2g1Rmx4dVAzcUtKOEtGdUR5Q25WT1RXbEhGa0FxQjh3cXYrWVoxdFZZVWdB?=
+ =?utf-8?B?cVAzOFVvTEw4czhDMHhQbmZMSm5Yakp5dzZTN21BdlRJVXo1Vkk2OGwyWlhx?=
+ =?utf-8?B?S0pSWHFQY2ZBYWo5UUJLTlV2ZDdXSzk0VWRFMTltSG96aHJSNm03aHo5dFpr?=
+ =?utf-8?B?SFdsSnU1OGFtVmpyOTR4dHV1VEdMakdmMmhxalBEY0luVEVFbEU2MkVBeDg4?=
+ =?utf-8?B?d3kvcGN4eTloUjV2Q0xvZDVEYVF4QTF4d0tJU1k0U3kySktlajNMSDk5Z3FX?=
+ =?utf-8?B?eVo0RGVZTHVaWTcrOE43dmlmSWgxOW8rUmJuYVI2N0R4dWFONExRcnBtUmRr?=
+ =?utf-8?B?MjdXR2k1SFJKUElYUmExRmk3Wjl2bjFvbUx5WGtTQXNtNWFKUGp3aGtQRXEw?=
+ =?utf-8?B?WFdPNi9KZ1M5dUZoRVNobmdKYjFFV3phT1BweDV3R3dNY2VzWkFPMEd4bUsr?=
+ =?utf-8?B?Y2hNZkZDcno3VWROeXFVVjA2bUIyZlNtek1oTE1JNDU0cHVwVmtGK3RVYWlk?=
+ =?utf-8?B?clJRT0VRejE5SGwxMGd2dEwvU3ArclVNUGlyelNsMWw0TUlRdkhmNnlMOGk4?=
+ =?utf-8?Q?fLyk1POLNoczL1VYCRk22RkUBmSnGpTduSmbejF74leQ=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2496b785-8bdf-4989-c7f3-08dbbf345048
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2023 08:32:41.3859
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0P287MB2035
+X-Spam-Status: No, score=0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,
+	FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=no
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi ,
-I have reposted this patch by removing the change id. Please ignore this.
+Sorry, please ignore this email. The subjiect of the email is wrong, I 
+will re-send another one.
 
-Regards,
-Nitin
-
-
-On 9/27/2023 1:48 PM, Nitin Rawat wrote:
-> Align the binding property for clock such that "clocks" property
-> comes first followed by "clock-names" property.
-> 
-> Change-Id: I53282da8eee8ec349d315de7ada56c99bb12b00d
-> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+在 2023/9/27 16:26, Chen Wang 写道:
+> Milk-V Pioneer [1] is a developer motherboard based on SOPHON SG2042 [2]
+> in a standard mATX form factor. Add minimal device
+> tree files for the SG2042 SOC and the Milk-V Pioneer board.
+>
+> Now only support basic uart drivers to boot up into a basic console.
+>
+> Thanks,
+> Chen
+>
 > ---
->   .../devicetree/bindings/ufs/qcom,ufs.yaml        | 16 ++++++++--------
->   1 file changed, 8 insertions(+), 8 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> index 802640efa956..d17bdc4e934f 100644
-> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> @@ -295,14 +295,6 @@ examples:
->                               <&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_UFS_MEM_CFG>;
->               interconnect-names = "ufs-ddr", "cpu-ufs";
->   
-> -            clock-names = "core_clk",
-> -                          "bus_aggr_clk",
-> -                          "iface_clk",
-> -                          "core_clk_unipro",
-> -                          "ref_clk",
-> -                          "tx_lane0_sync_clk",
-> -                          "rx_lane0_sync_clk",
-> -                          "rx_lane1_sync_clk";
->               clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
->                        <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
->                        <&gcc GCC_UFS_PHY_AHB_CLK>,
-> @@ -311,6 +303,14 @@ examples:
->                        <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
->                        <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
->                        <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
-> +            clock-names = "core_clk",
-> +                          "bus_aggr_clk",
-> +                          "iface_clk",
-> +                          "core_clk_unipro",
-> +                          "ref_clk",
-> +                          "tx_lane0_sync_clk",
-> +                          "rx_lane0_sync_clk",
-> +                          "rx_lane1_sync_clk";
->               freq-table-hz = <75000000 300000000>,
->                               <0 0>,
->                               <0 0>,
+>
+> Changes in v3:
+>    The patch series is based on v6.6-rc1. You can simply review or test
+>    the patches at the link [5].
+>    - add new vendor specific compatible strings to identify timer/mswi for sg2042 clint
+>    - updated maintainers info. for sophgo devicetree
+>    - remove the quirk changes for uart
+>    - updated dts, such as:
+>      - add "riscv,isa-base"/"riscv,isa-extensions" for cpus
+>      - update l2 cache node's name
+>      - remove memory and pmu nodes
+>    - fixed other issues as per input from reviewers.
+>
+> Changes in v2:
+>    The patch series is based on v6.6-rc1. You can simply review or test
+>    the patches at the link [4].
+>    - Improve format for comment of commitments as per input from last review.
+>    - Improve format of DTS as per input from last review.
+>    - Remove numa related stuff from DTS. This part is just for optimization, may
+>      add it later if really needed.
+>
+> Changes in v1:
+>     The patch series is based on v6.6-rc1. Due to it is not sent in thread,
+>     I have listed permlinks of the patchset [v1-0/12] ~ [v1-12/12] here for
+>     quick reference. You can simply review or test the patches at the link [3].
+>
+> [1]: https://milkv.io/pioneer
+> [2]: https://en.sophgo.com/product/introduce/sg2042.html
+> [3]: https://github.com/unicornx/linux-riscv/commits/milkv-pioneer-minimal
+> [4]: https://github.com/unicornx/linux-riscv/commits/milkv-pioneer-minimal-v2
+> [5]: https://github.com/unicornx/linux-riscv/commits/milkv-pioneer-minimal-v3
+> [v1-0/12]:https://lore.kernel.org/linux-riscv/20230915070856.117514-1-wangchen20@iscas.ac.cn/
+> [v1-1/12]:https://lore.kernel.org/linux-riscv/20230915071005.117575-1-wangchen20@iscas.ac.cn/
+> [v1-2/12]:https://lore.kernel.org/linux-riscv/20230915071409.117692-1-wangchen20@iscas.ac.cn/
+> [v1-3/12]:https://lore.kernel.org/linux-riscv/20230915072242.117935-1-wangchen20@iscas.ac.cn/
+> [v1-4/12]:https://lore.kernel.org/linux-riscv/20230915072333.117991-1-wangchen20@iscas.ac.cn/
+> [v1-5/12]:https://lore.kernel.org/linux-riscv/20230915072358.118045-1-wangchen20@iscas.ac.cn/
+> [v1-6/12]:https://lore.kernel.org/linux-riscv/20230915072415.118100-1-wangchen20@iscas.ac.cn/
+> [v1-7/12]:https://lore.kernel.org/linux-riscv/20230915072431.118154-1-wangchen20@iscas.ac.cn/
+> [v1-8/12]:https://lore.kernel.org/linux-riscv/20230915072451.118209-1-wangchen20@iscas.ac.cn/
+> [v1-9/12]:https://lore.kernel.org/linux-riscv/20230915072517.118266-1-wangchen20@iscas.ac.cn/
+> [v1-10/12]:https://lore.kernel.org/linux-riscv/20230915072558.118325-1-wangchen20@iscas.ac.cn/
+> [v1-11/12]:https://lore.kernel.org/linux-riscv/20230915072624.118388-1-wangchen20@iscas.ac.cn/
+> [v1-12/12]:https://lore.kernel.org/linux-riscv/20230915072653.118448-1-wangchen20@iscas.ac.cn/
+>
+> ---
+>
+> Chen Wang (9):
+>    riscv: Add SOPHGO SOC family Kconfig support
+>    dt-bindings: vendor-prefixes: add milkv/sophgo
+>    dt-bindings: riscv: add sophgo sg2042 bindings
+>    dt-bindings: riscv: Add T-HEAD C920 compatibles
+>    dt-bindings: interrupt-controller: Add Sophgo SG2042 PLIC
+>    MAINTAINERS: add two files to sophgo devicetrees entry
+>    riscv: dts: add initial Sophgo SG2042 SoC device tree
+>    riscv: dts: sophgo: add Milk-V Pioneer board device tree
+>    riscv: defconfig: enable SOPHGO SoC
+>
+> Inochi Amaoto (2):
+>    dt-bindings: timer: Add Sophgo sg2042 CLINT timer
+>    dt-bindings: interrupt-controller: Add Sophgo sg2042 CLINT mswi
+>
+>   .../sifive,plic-1.0.0.yaml                    |    1 +
+>   .../sophgo,sg2042-clint-mswi.yaml             |   42 +
+>   .../devicetree/bindings/riscv/cpus.yaml       |    1 +
+>   .../devicetree/bindings/riscv/sophgo.yaml     |   28 +
+>   .../timer/sophgo,sg2042-clint-mtimer.yaml     |   42 +
+>   .../devicetree/bindings/vendor-prefixes.yaml  |    4 +
+>   MAINTAINERS                                   |    9 +
+>   arch/riscv/Kconfig.socs                       |    5 +
+>   arch/riscv/boot/dts/Makefile                  |    1 +
+>   arch/riscv/boot/dts/sophgo/Makefile           |    3 +
+>   arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi   | 1880 +++++++++++++++++
+>   .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  |   19 +
+>   arch/riscv/boot/dts/sophgo/sg2042.dtsi        |  325 +++
+>   arch/riscv/configs/defconfig                  |    1 +
+>   14 files changed, 2361 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/interrupt-controller/sophgo,sg2042-clint-mswi.yaml
+>   create mode 100644 Documentation/devicetree/bindings/riscv/sophgo.yaml
+>   create mode 100644 Documentation/devicetree/bindings/timer/sophgo,sg2042-clint-mtimer.yaml
+>   create mode 100644 arch/riscv/boot/dts/sophgo/Makefile
+>   create mode 100644 arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi
+>   create mode 100644 arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
+>   create mode 100644 arch/riscv/boot/dts/sophgo/sg2042.dtsi
+>
+>
+> base-commit: 0bb80ecc33a8fb5a682236443c1e740d5c917d1d
 
