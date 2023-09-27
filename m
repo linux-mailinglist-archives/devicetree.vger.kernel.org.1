@@ -1,172 +1,191 @@
-Return-Path: <devicetree+bounces-3755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9714D7B00E6
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 11:49:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71A3B7B00FE
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 11:52:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id B51A01C20878
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:49:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2152C2818BD
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:51:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4D2726282;
-	Wed, 27 Sep 2023 09:49:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1708262A8;
+	Wed, 27 Sep 2023 09:51:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10D74523B
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 09:49:00 +0000 (UTC)
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9480CCA;
-	Wed, 27 Sep 2023 02:48:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1695808139; x=1727344139;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=oj/BIJaPlLOZ5a4Bm+3wRDEKMjmwS+415AzmToQmxko=;
-  b=GjxvRm8fpvmHDF2G23csv+Moo5B6jaBJSrMFVUlYOQWb69dMLmU8lJ0O
-   B6ldDfwrq9m7tO1Kmaz/MaytdEl4UnvU/wag03Vvghm0D8b+lDThTAQzm
-   XbpJ9eyqoTh9FNyu2egBRbX5faiWeP0Og+A7Giq/22n2Hz9BbIRGzxDlX
-   J269/0Zuosr3FtmhfGZchrWmkYu84aD4KY/3T4cEQUkrnHispEmkJ9FVX
-   UQPxDw5r6ePtRWKEkPqrqS6VwrDsWbX2Vtz2T13Tjbq7X0mqffU/bdrIT
-   dYlZqnLB3nTeTygE+DuIcl2d0tCl2eziMJadYn6dKPeDZEO7QBVj7HKkl
-   w==;
-X-CSE-ConnectionGUID: +8y/5vKTQAWpUgUoFVJWOw==
-X-CSE-MsgGUID: FCeDeZE/SGCJlrPGv/SrHA==
-X-ThreatScanner-Verdict: Negative
-X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; 
-   d="asc'?scan'208";a="173847249"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 27 Sep 2023 02:48:49 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 27 Sep 2023 02:48:03 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Wed, 27 Sep 2023 02:48:00 -0700
-Date: Wed, 27 Sep 2023 10:47:42 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Moudy Ho =?utf-8?B?KOS9leWul+WOnyk=?= <Moudy.Ho@mediatek.com>
-CC: "conor@kernel.org" <conor@kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-media@vger.kernel.org"
-	<linux-media@vger.kernel.org>, "chunkuang.hu@kernel.org"
-	<chunkuang.hu@kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "mchehab@kernel.org" <mchehab@kernel.org>,
-	"daniel@ffwll.ch" <daniel@ffwll.ch>, "p.zabel@pengutronix.de"
-	<p.zabel@pengutronix.de>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>, "airlied@gmail.com"
-	<airlied@gmail.com>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "matthias.bgg@gmail.com"
-	<matthias.bgg@gmail.com>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-	"angelogioacchino.delregno@collabora.com"
-	<angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v6 12/16] dt-bindings: display: mediatek: color: add
- compatible for MT8195
-Message-ID: <20230927-crunching-prancing-36fe3eb79607@wendy>
-References: <20230922072116.11009-1-moudy.ho@mediatek.com>
- <20230922072116.11009-13-moudy.ho@mediatek.com>
- <20230922-zebra-modify-87ff23c70bb3@spud>
- <20230922-overhung-deception-e9b461ba0372@spud>
- <7c445195e17e15d5af5fcb30ae53f76c713e958b.camel@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28E681F5EE
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 09:51:56 +0000 (UTC)
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B309192;
+	Wed, 27 Sep 2023 02:51:54 -0700 (PDT)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-59bf1dde73fso137594607b3.3;
+        Wed, 27 Sep 2023 02:51:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695808313; x=1696413113;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=URclzgkzbuk7qvKcvbCEsThVgg1SGyUhQn8jsEUe6I8=;
+        b=vIwRBc8KvYuEaOpeSGs0o+GTItWh3z2aA8GAf+ttcK6I1lJZQwlxzn2aUIDsPlomoW
+         +zGYzYKIDU7KwmpC3O7Iq1Vi8tQQUU6zHM2UQvcQC2jpsN7OCcyHntM97FPhUjNjg41v
+         Vs6JNYTXNScqyv9bP70pv0fABkAZQf09KGjWROeumFCdALd4nu2CLluuHZ4NaZgoJxfh
+         WQCiBEu2zZW1rpmrZiYmOrAHDMCianvn4+k79OKWOuN7JDOg8xKe8T910wG8+8iwIMzF
+         c8LTxRRS9QQeUZlce4kqmq4/HC4lIfDzcBXi7DZXRRiTRTDNV7/wS0hEZDJXj5tbgf+o
+         skaQ==
+X-Gm-Message-State: AOJu0Yxc6lfHo32zb9hNrbPUGpbqROEDEN+YB99jz2qBERwBv9W3UQ/Q
+	54JrU+hlkBRqRG0nV6tkdvnyxneq8WFFxw==
+X-Google-Smtp-Source: AGHT+IF9/r9TS5kRAsvJuDXgjlhfF24839TybiQhQtCHEfzfKOgb0YNGyIs52AP9MStUJrIEuvE2gQ==
+X-Received: by 2002:a0d:c5c5:0:b0:59c:aea:d877 with SMTP id h188-20020a0dc5c5000000b0059c0aead877mr1456390ywd.40.1695808313246;
+        Wed, 27 Sep 2023 02:51:53 -0700 (PDT)
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
+        by smtp.gmail.com with ESMTPSA id p72-20020a0de64b000000b0059beb468cb3sm3627784ywe.32.2023.09.27.02.51.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Sep 2023 02:51:52 -0700 (PDT)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-59c215f2f4aso137550557b3.1;
+        Wed, 27 Sep 2023 02:51:52 -0700 (PDT)
+X-Received: by 2002:a0d:d808:0:b0:59b:ec40:a121 with SMTP id
+ a8-20020a0dd808000000b0059bec40a121mr1841815ywe.3.1695808312511; Wed, 27 Sep
+ 2023 02:51:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="T9lGne2QQapOBRac"
-Content-Disposition: inline
-In-Reply-To: <7c445195e17e15d5af5fcb30ae53f76c713e958b.camel@mediatek.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
-	autolearn=ham autolearn_force=no version=3.4.6
+References: <20230926210818.197356-1-fabrizio.castro.jz@renesas.com> <20230926210818.197356-3-fabrizio.castro.jz@renesas.com>
+In-Reply-To: <20230926210818.197356-3-fabrizio.castro.jz@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 27 Sep 2023 11:51:39 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWUr5ReouCWV3WsOJE=2faBO-y70aDC8W8qBGVBhaMTAg@mail.gmail.com>
+Message-ID: <CAMuHMdWUr5ReouCWV3WsOJE=2faBO-y70aDC8W8qBGVBhaMTAg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] spi: rzv2m-csi: Add Slave mode support
+To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Chris Paterson <Chris.Paterson2@renesas.com>, Biju Das <biju.das@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
---T9lGne2QQapOBRac
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Fabrizio,
 
-On Wed, Sep 27, 2023 at 07:19:28AM +0000, Moudy Ho (=E4=BD=95=E5=AE=97=E5=
-=8E=9F) wrote:
-> On Fri, 2023-09-22 at 16:51 +0100, Conor Dooley wrote:
-> > On Fri, Sep 22, 2023 at 04:49:14PM +0100, Conor Dooley wrote:
-> > > On Fri, Sep 22, 2023 at 03:21:12PM +0800, Moudy Ho wrote:
-> > > > Add a compatible string for the COLOR block in MediaTek MT8195
-> > > > that
-> > > > is controlled by MDP3.
-> > > >=20
-> > > > Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> > > > ---
-> > > >  .../devicetree/bindings/display/mediatek/mediatek,color.yaml   =20
-> > > >  | 1 +
-> > > >  1 file changed, 1 insertion(+)
-> > > >=20
-> > > > diff --git
-> > > > a/Documentation/devicetree/bindings/display/mediatek/mediatek,col
-> > > > or.yaml
-> > > > b/Documentation/devicetree/bindings/display/mediatek/mediatek,col
-> > > > or.yaml
-> > > > index f21e44092043..b886ca0d89ea 100644
-> > > > ---
-> > > > a/Documentation/devicetree/bindings/display/mediatek/mediatek,col
-> > > > or.yaml
-> > > > +++
-> > > > b/Documentation/devicetree/bindings/display/mediatek/mediatek,col
-> > > > or.yaml
-> > > > @@ -26,6 +26,7 @@ properties:
-> > > >            - mediatek,mt2701-disp-color
-> > > >            - mediatek,mt8167-disp-color
-> > > >            - mediatek,mt8173-disp-color
-> > > > +          - mediatek,mt8195-mdp3-color
-> > >=20
-> > > How come this one is a "mdp3" not a "disp"?
-> >=20
-> > I don't know what mdp3 means & googling gives me no answers. What's
-> > the
-> > "disp" one controlled by, since it isn't controlled by mdp3?
-> >=20
->=20
-> Hi Conor,
->=20
-> Mediatek's Media Data Path ver.3 (MDP3) is associated with MMSYS and
-> acts as an independent driver that operates between VDEC and DISP.
-> By controlling multiple components, it carries out tasks like
-> converting color formats, resizing, and applying specific Picture
-> Quality (PQ) effects.
-> The driver can be found at "driver/media/platform/mediatek/mdp3".
-> Since the same hardware components are configured in both MDP3 and
-> DISP, considering previous discussions, I attemped to integrate into a
-> single binding, named after the controlling user.
+On Tue, Sep 26, 2023 at 11:08=E2=80=AFPM Fabrizio Castro
+<fabrizio.castro.jz@renesas.com> wrote:
+> The CSI IP found inside the Renesas RZ/V2M SoC supports
+> both SPI Master and SPI Slave roles.
+>
+> When working in slave mode, the CSI IP has the option
+> of using its Slave Select (SS) pin to enable TX and RX
+> operations. Since the SPI slave cannot control the clock,
+> when working as slave it's best not to stop operations
+> during a transfer, as by doing so the IP will not send or
+> receive data, regardless of clock and active level on pin SS.
+> A side effect from not stopping operations is that the RX
+> FIFO needs to be flushed, word by word, when RX data needs
+> to be discarded.
+>
+> Finally, when in slave mode timings are tighter, as missing a
+> deadline translates to errors being thrown, resulting in
+> aborting the transfer. In order to speed things up, we can
+> avoid waiting for the TX FIFO to be empty, we can just wait
+> for the RX FIFO to contain at least the number of words that
+> we expect.
+>
+> Add slave support to the currently existing CSI driver.
+>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
 
-I'm still kinda struggling to understand this. Do you mean that the
-hardware can be controlled by either of the disp and mdp3 drivers, and
-a compatible containing "disp" would use one driver, and one containing
-"mdp3" would use another?
+Thanks for your patch!
 
+> --- a/drivers/spi/Kconfig
+> +++ b/drivers/spi/Kconfig
+> @@ -861,8 +861,10 @@ config SPI_RSPI
+>  config SPI_RZV2M_CSI
+>         tristate "Renesas RZ/V2M CSI controller"
+>         depends on ARCH_RENESAS || COMPILE_TEST
+> +       depends on SPI_SLAVE
 
---T9lGne2QQapOBRac
-Content-Type: application/pgp-signature; name="signature.asc"
+Isn't that a bit too strict?
+The driver can/should be used/usable in host mode when SPI_SLAVE
+is not enabled.
 
------BEGIN PGP SIGNATURE-----
+>         help
+> -         SPI driver for Renesas RZ/V2M Clocked Serial Interface (CSI)
+> +         SPI driver for Renesas RZ/V2M Clocked Serial Interface (CSI).
+> +         CSI supports master and slave roles.
+>
+>  config SPI_QCOM_QSPI
+>         tristate "QTI QSPI controller"
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRP6PgAKCRB4tDGHoIJi
-0kh7AP9O7MKYjrnar798S6fbop9AWuqH31/FShl/0JtdCf2N/wD/R/G17q/VHosy
-cmzXFHme+vk2cMO0cR0geJwglqggtQo=
-=5FSm
------END PGP SIGNATURE-----
+> --- a/drivers/spi/spi-rzv2m-csi.c
+> +++ b/drivers/spi/spi-rzv2m-csi.c
 
---T9lGne2QQapOBRac--
+> @@ -99,6 +112,9 @@ struct rzv2m_csi_priv {
+>         wait_queue_head_t wait;
+>         u32 errors;
+>         u32 status;
+> +       int mode;
+
+Do you need this flag?
+You can use spi_controller_is_target() instead.
+
+> +       int slave_select;
+> +       bool slave_aborted;
+>  };
+>
+>  static void rzv2m_csi_reg_write_bit(const struct rzv2m_csi_priv *csi,
+
+> @@ -279,32 +303,23 @@ static int rzv2m_csi_wait_for_interrupt(struct rzv2=
+m_csi_priv *csi,
+>
+>         rzv2m_csi_enable_irqs(csi, enable_bits);
+>
+> -       ret =3D wait_event_timeout(csi->wait,
+> -                                ((csi->status & wait_mask) =3D=3D wait_m=
+ask) ||
+> -                                csi->errors, HZ);
+> +       if (csi->mode =3D=3D RZV2M_CSI_SPI_SLAVE) {
+
+spi_controller_is_target()
+
+> +               ret =3D wait_event_interruptible(csi->wait,
+> +                               ((csi->status & wait_mask) =3D=3D wait_ma=
+sk) ||
+> +                               csi->errors || csi->slave_aborted);
+
+target_aborted (everywhere)
+
+> +               if (ret || csi->slave_aborted)
+> +                       ret =3D -EINTR;
+> +       } else {
+> +               ret =3D wait_event_timeout(csi->wait,
+> +                               ((csi->status & wait_mask) =3D=3D wait_ma=
+sk) ||
+> +                               csi->errors, HZ) =3D=3D 0 ? -ETIMEDOUT : =
+0;
+> +       }
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
