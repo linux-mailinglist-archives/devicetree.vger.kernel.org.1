@@ -1,170 +1,378 @@
-Return-Path: <devicetree+bounces-3930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D9367B0857
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 17:35:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84B6C7B08B5
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 17:37:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 000A3281B2F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 15:35:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 38894281CBE
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 15:37:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BED234CEB;
-	Wed, 27 Sep 2023 15:35:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A24B0450DF;
+	Wed, 27 Sep 2023 15:37:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BC0227ED7
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 15:35:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22173C433C8;
-	Wed, 27 Sep 2023 15:35:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695828955;
-	bh=Vbcpyf8NR6obj9hRrWqEruzSZGutGz1yExgH+iLFr+Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=A9hxyKZqoQ2qZv3jGkVqTnIuauZkwqAo2+Age9iyTVmJ9qkjfNF2zLfHQdX6ZmKvq
-	 /MCMSKw1PdhwHoijPT73JL2aDQ0FRhCZBxtDXzgq1aIHrolCMSGN8PV1xGdvC9Yo/N
-	 SaKBJjDjwaY0350cc14w8W6kRTrIkWAlxuCjbMPtlk7Sdxl7Ty2d9QwCz4LEMk1iZg
-	 UG7S3AK3FzWGN3aNMkPdcjQV2IhwZ0MMXFhV7Wml8GdgtvJLTTMkFDQ5wdtO77y6go
-	 p41vvBRfxmJRvcf5Tl4fR2ff2okcVbOhz6cLpmmfAFgSGwB2nPMf9vqUlwr3ALHsQ/
-	 5b3WlrtnhXRAQ==
-Date: Wed, 27 Sep 2023 16:35:49 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Ray Jui <ray.jui@broadcom.com>,
-	Scott Branden <scott.branden@broadcom.com>,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: PCI: brcm,iproc-pcie: Fix 'msi' child
- node schema
-Message-ID: <20230927-utmost-copied-6982126a7f00@spud>
-References: <20230926155351.31117-1-robh@kernel.org>
- <20230926155613.33904-3-robh@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCE4548E81
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 15:36:58 +0000 (UTC)
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 471A21722;
+	Wed, 27 Sep 2023 08:36:49 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-5041335fb9cso18385625e87.0;
+        Wed, 27 Sep 2023 08:36:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695829007; x=1696433807; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:cc:to:content-language
+         :references:subject:from:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ffEWQtMwlyKXyuJe449HLxuPGShQkJVuIYKtCPmrqmU=;
+        b=M1FV7wZ/hh3cAL+FKx0QYbay3nfCCK/Vx1joI8jHyt/Hnu+tk4/gLclOl6A1tyxKDT
+         UcQ3J9qac0kdXj8RSX3wn/WBtyWNtco4KE+tRDw1ezmIEfoYmCxKyNI0WbnKPDa/VzOQ
+         uwmHOyYgxh8kRxY9pk8Netw4weI1YoFK/Hut3xMLqXOd7KNXW0xtAoyaoINSUF+S9Fuj
+         Z4CGbHywK5lY2nycfjBwABrsdmi1vZjfGVK5DhqQQNbx1en6ylbUanZ8zRgvld56SnHi
+         6rk0RlD8nIrcq4VmfA0QOvrG6l8xEIBhEGxGp+nS4UxogsPupo4CMgJlxpBI0VrMAfIz
+         oGFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695829007; x=1696433807;
+        h=content-transfer-encoding:in-reply-to:cc:to:content-language
+         :references:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ffEWQtMwlyKXyuJe449HLxuPGShQkJVuIYKtCPmrqmU=;
+        b=A5vMfYjza5RjiOUGteBi+bW0ztc5CKJRvqiTRbdbELBeJZFKsZfoT+ZUpXZ3wmc+wh
+         Po15K/I20QSJZSxjH2l6l6P8qSOqWq46+WtptXgy+WJqXm4djaZTSapSZDki0luPgMAH
+         jjCNyr/2ZLwfjC2G51AQuprc4fYNlZFvQ6woxGX1y2i/NW6ODj3Il4kQxJWposG3FRwc
+         RE6jiQKQwzYWig8GC3znVBPYwK2eplrfZwtvChvCKehBCK78EImiH387wUSMt9EsAPHQ
+         UlsiknaxTZzcSWwHl2JUHjvgvKm9VLZKfJ8ugbYvSKe4v96+o4tMOq0XsTZPfO3dMAI3
+         A0Xw==
+X-Gm-Message-State: AOJu0Yy40nyPc8bGCLoquB5uCqrzDlzZK/iJErBAPFCwSpAgUt+04iX7
+	g8z2Idbavj9GfQ9Vp47qaqQ=
+X-Google-Smtp-Source: AGHT+IEUA9IT+/K09thYk5Vq/TGFnfiutOra1ZSaKmzMcgnyeBUDgm882lAsH2ZYvmu90PcjEKFAHg==
+X-Received: by 2002:a05:6512:138e:b0:503:60f:1c48 with SMTP id fc14-20020a056512138e00b00503060f1c48mr2357165lfb.19.1695829006864;
+        Wed, 27 Sep 2023 08:36:46 -0700 (PDT)
+Received: from [192.168.1.8] ([37.55.203.63])
+        by smtp.gmail.com with ESMTPSA id a10-20020a19f80a000000b0050318721b62sm2685538lff.6.2023.09.27.08.36.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Sep 2023 08:36:46 -0700 (PDT)
+Message-ID: <72e02837-9a82-4007-8ba2-fa05f3c17670@gmail.com>
+Date: Wed, 27 Sep 2023 18:36:44 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="1BjGV0efq9T3tTST"
-Content-Disposition: inline
-In-Reply-To: <20230926155613.33904-3-robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+From: Markuss Broks <markuss.broks@gmail.com>
+Subject: Re: [PATCH 1/2] input: generalize the Imagis touchscreen driver
+References: <7b9864bf-2aa6-4510-ad98-276fbfaadc30@gmail.com>
+Content-Language: en-US
+To: Karel Balej <balejk@matfyz.cz>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+ ~postmarketos/upstreaming@lists.sr.ht, Jeff LaBundy <jeff@labundy.com>,
+ linmengbo0689@protonmail.com
+In-Reply-To: <7b9864bf-2aa6-4510-ad98-276fbfaadc30@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+Hi Karel,
 
---1BjGV0efq9T3tTST
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 9/26/23 20:35, Karel Balej wrote:
+> This driver should work with other Imagis ICs of the IST30**C series.
+> Make that more apparent.
 
-On Tue, Sep 26, 2023 at 10:56:09AM -0500, Rob Herring wrote:
-> The 'msi' child node schema is missing constraints on additional properti=
-es.
-> It turns out it is incomplete and properties for it are documented in the
-> parent node by mistake. Move the reference to msi-controller.yaml and
-> the custom properties to the 'msi' node. Adding 'unevaluatedProperties'
-> ensures all the properties in the 'msi' node are documented.
->=20
-> With the schema corrected, a minimal interrupt controller node is needed
-> to properly decode the interrupt properties since the example has
-> multiple interrupt parents.
+To be fair, this driver should work with all Imagis3 chips, which could 
+be a better name for it. However, I agree with Jeff here: the driver 
+doesn't necessarily need renaming.
 
-I suppose this is an ABI break, but the patch just makes the binding
-match the example and intent. Feels like of all the patches doing the
-unevaluatedProperty additions, this one is the most deserving of a fixes
-tag, since the original binding just seems to be completely wrong?
-
-Otherwise,
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-Conor.
-
->=20
-> Signed-off-by: Rob Herring <robh@kernel.org>
+>
+> Co-developed-by: Duje Mihanović<duje.mihanovic@skole.hr>
+> Signed-off-by: Duje Mihanović<duje.mihanovic@skole.hr>
+> Signed-off-by: Karel Balej<balejk@matfyz.cz>
 > ---
->  .../bindings/pci/brcm,iproc-pcie.yaml         | 24 ++++++++++++-------
->  1 file changed, 16 insertions(+), 8 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml b=
-/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml
-> index 6730d68fedc7..0e07ab61a48d 100644
-> --- a/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml
-> @@ -12,7 +12,6 @@ maintainers:
-> =20
->  allOf:
->    - $ref: /schemas/pci/pci-bus.yaml#
-> -  - $ref: /schemas/interrupt-controller/msi-controller.yaml#
-> =20
->  properties:
->    compatible:
-> @@ -63,20 +62,24 @@ properties:
-> =20
->    msi:
->      type: object
-> +    $ref: /schemas/interrupt-controller/msi-controller.yaml#
-> +    unevaluatedProperties: false
+>   ...gis,ist3038c.yaml => imagis,ist30xxc.yaml} |  2 +-
+>   MAINTAINERS                                   |  2 +-
+>   drivers/input/touchscreen/Kconfig             |  4 +-
+>   drivers/input/touchscreen/imagis.c            | 86 +++++++++++--------
+>   4 files changed, 52 insertions(+), 42 deletions(-)
+>   rename Documentation/devicetree/bindings/input/touchscreen/{imagis,ist3038c.yaml => imagis,ist30xxc.yaml} (99%)
+>
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist30xxc.yaml
+> similarity index 99%
+> rename from Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
+> rename to Documentation/devicetree/bindings/input/touchscreen/imagis,ist30xxc.yaml
+> index 0d6b033fd5fb..09bf3a6acc5e 100644
+> --- a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist30xxc.yaml
+> @@ -1,7 +1,7 @@
+>   # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>   %YAML 1.2
+>   ---
+> -$id:http://devicetree.org/schemas/input/touchscreen/imagis,ist3038c.yaml#
+> +$id:http://devicetree.org/schemas/input/touchscreen/imagis,ist30xxc.yaml#
+>   $schema:http://devicetree.org/meta-schemas/core.yaml#
+>   
+>   title: Imagis IST30XXC family touchscreen controller
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index b19995690904..b23e76418d94 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -10209,7 +10209,7 @@ F:	drivers/usb/atm/ueagle-atm.c
+>   IMAGIS TOUCHSCREEN DRIVER
+>   M:	Markuss Broks<markuss.broks@gmail.com>
+>   S:	Maintained
+> -F:	Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
+> +F:	Documentation/devicetree/bindings/input/touchscreen/imagis,ist30xxc.yaml
+>   F:	drivers/input/touchscreen/imagis.c
+>   
+>   IMGTEC ASCII LCD DRIVER
+> diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
+> index e3e2324547b9..45503aa2653e 100644
+> --- a/drivers/input/touchscreen/Kconfig
+> +++ b/drivers/input/touchscreen/Kconfig
+> @@ -665,10 +665,10 @@ config TOUCHSCREEN_NOVATEK_NVT_TS
+>   	  module will be called novatek-nvt-ts.
+>   
+>   config TOUCHSCREEN_IMAGIS
+> -	tristate "Imagis touchscreen support"
+> +	tristate "Imagis IST30XXC touchscreen support"
+>   	depends on I2C
+>   	help
+> -	  Say Y here if you have an Imagis IST30xxC touchscreen.
+> +	  Say Y here if you have an Imagis IST30XXC touchscreen.
+>   	  If unsure, say N.
+>   
+>   	  To compile this driver as a module, choose M here: the
+> diff --git a/drivers/input/touchscreen/imagis.c b/drivers/input/touchscreen/imagis.c
+> index 07111ca24455..4456f1b4d527 100644
+> --- a/drivers/input/touchscreen/imagis.c
+> +++ b/drivers/input/touchscreen/imagis.c
+> @@ -11,25 +11,26 @@
+>   #include <linux/property.h>
+>   #include <linux/regulator/consumer.h>
+>   
+> -#define IST3038C_HIB_ACCESS		(0x800B << 16)
+> -#define IST3038C_DIRECT_ACCESS		BIT(31)
+> -#define IST3038C_REG_CHIPID		0x40001000
+> -#define IST3038C_REG_HIB_BASE		0x30000100
+> -#define IST3038C_REG_TOUCH_STATUS	(IST3038C_REG_HIB_BASE | IST3038C_HIB_ACCESS)
+> -#define IST3038C_REG_TOUCH_COORD	(IST3038C_REG_HIB_BASE | IST3038C_HIB_ACCESS | 0x8)
+> -#define IST3038C_REG_INTR_MESSAGE	(IST3038C_REG_HIB_BASE | IST3038C_HIB_ACCESS | 0x4)
+> +#define IST30XXC_HIB_ACCESS		(0x800B << 16)
+> +#define IST30XXC_DIRECT_ACCESS		BIT(31)
+> +#define IST30XXC_REG_CHIPID		0x40001000
+> +#define IST30XXC_REG_HIB_BASE		0x30000100
+> +#define IST30XXC_REG_TOUCH_STATUS	(IST30XXC_REG_HIB_BASE | IST30XXC_HIB_ACCESS)
+> +#define IST30XXC_REG_TOUCH_COORD	(IST30XXC_REG_HIB_BASE | IST30XXC_HIB_ACCESS | 0x8)
+> +#define IST30XXC_REG_INTR_MESSAGE	(IST30XXC_REG_HIB_BASE | IST30XXC_HIB_ACCESS | 0x4)
+> +#define IST30XXC_CHIP_ON_DELAY_MS	60
+> +#define IST30XXC_I2C_RETRY_COUNT	3
+> +#define IST30XXC_MAX_FINGER_NUM		10
+> +#define IST30XXC_X_MASK			GENMASK(23, 12)
+> +#define IST30XXC_X_SHIFT		12
+> +#define IST30XXC_Y_MASK			GENMASK(11, 0)
+> +#define IST30XXC_AREA_MASK		GENMASK(27, 24)
+> +#define IST30XXC_AREA_SHIFT		24
+> +#define IST30XXC_FINGER_COUNT_MASK	GENMASK(15, 12)
+> +#define IST30XXC_FINGER_COUNT_SHIFT	12
+> +#define IST30XXC_FINGER_STATUS_MASK	GENMASK(9, 0)
 > +
->      properties:
->        compatible:
->          items:
->            - const: brcm,iproc-msi
-> =20
-> -  msi-parent: true
-> +      interrupts:
-> +        maxItems: 4
-> =20
-> -  msi-controller: true
-> +      brcm,pcie-msi-inten:
-> +        type: boolean
-> +        description:
-> +          Needs to be present for some older iProc platforms that requir=
-e the
-> +          interrupt enable registers to be set explicitly to enable MSI
-> =20
-> -  brcm,pcie-msi-inten:
-> -    type: boolean
-> -    description: >
-> -      Needs to be present for some older iProc platforms that require the
-> -      interrupt enable registers to be set explicitly to enable MSI
-> +  msi-parent: true
-> =20
->  dependencies:
->    brcm,pcie-ob-axi-offset: ["brcm,pcie-ob"]
-> @@ -104,6 +107,11 @@ examples:
->    - |
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
-> =20
-> +    gic: interrupt-controller {
-> +        interrupt-controller;
-> +        #interrupt-cells =3D <3>;
-> +    };
+>   #define IST3038C_WHOAMI			0x38c
+> -#define IST3038C_CHIP_ON_DELAY_MS	60
+> -#define IST3038C_I2C_RETRY_COUNT	3
+> -#define IST3038C_MAX_FINGER_NUM		10
+> -#define IST3038C_X_MASK			GENMASK(23, 12)
+> -#define IST3038C_X_SHIFT		12
+> -#define IST3038C_Y_MASK			GENMASK(11, 0)
+> -#define IST3038C_AREA_MASK		GENMASK(27, 24)
+> -#define IST3038C_AREA_SHIFT		24
+> -#define IST3038C_FINGER_COUNT_MASK	GENMASK(15, 12)
+> -#define IST3038C_FINGER_COUNT_SHIFT	12
+> -#define IST3038C_FINGER_STATUS_MASK	GENMASK(9, 0)
+>   
+>   struct imagis_ts {
+>   	struct i2c_client *client;
+> @@ -57,7 +58,7 @@ static int imagis_i2c_read_reg(struct imagis_ts *ts,
+>   		},
+>   	};
+>   	int ret, error;
+> -	int retry = IST3038C_I2C_RETRY_COUNT;
+> +	int retry = IST30XXC_I2C_RETRY_COUNT;
+>   
+>   	/* Retry in case the controller fails to respond */
+>   	do {
+> @@ -84,7 +85,7 @@ static irqreturn_t imagis_interrupt(int irq, void *dev_id)
+>   	int i;
+>   	int error;
+>   
+> -	error = imagis_i2c_read_reg(ts, IST3038C_REG_INTR_MESSAGE,
+> +	error = imagis_i2c_read_reg(ts, IST30XXC_REG_INTR_MESSAGE,
+>   				    &intr_message);
+>   	if (error) {
+>   		dev_err(&ts->client->dev,
+> @@ -92,20 +93,20 @@ static irqreturn_t imagis_interrupt(int irq, void *dev_id)
+>   		goto out;
+>   	}
+>   
+> -	finger_count = (intr_message & IST3038C_FINGER_COUNT_MASK) >>
+> -				IST3038C_FINGER_COUNT_SHIFT;
+> -	if (finger_count > IST3038C_MAX_FINGER_NUM) {
+> +	finger_count = (intr_message & IST30XXC_FINGER_COUNT_MASK) >>
+> +				IST30XXC_FINGER_COUNT_SHIFT;
+> +	if (finger_count > IST30XXC_MAX_FINGER_NUM) {
+>   		dev_err(&ts->client->dev,
+>   			"finger count %d is more than maximum supported\n",
+>   			finger_count);
+>   		goto out;
+>   	}
+>   
+> -	finger_pressed = intr_message & IST3038C_FINGER_STATUS_MASK;
+> +	finger_pressed = intr_message & IST30XXC_FINGER_STATUS_MASK;
+>   
+>   	for (i = 0; i < finger_count; i++) {
+>   		error = imagis_i2c_read_reg(ts,
+> -					    IST3038C_REG_TOUCH_COORD + (i * 4),
+> +					    IST30XXC_REG_TOUCH_COORD + (i * 4),
+>   					    &finger_status);
+>   		if (error) {
+>   			dev_err(&ts->client->dev,
+> @@ -118,12 +119,12 @@ static irqreturn_t imagis_interrupt(int irq, void *dev_id)
+>   		input_mt_report_slot_state(ts->input_dev, MT_TOOL_FINGER,
+>   					   finger_pressed & BIT(i));
+>   		touchscreen_report_pos(ts->input_dev, &ts->prop,
+> -				       (finger_status & IST3038C_X_MASK) >>
+> -						IST3038C_X_SHIFT,
+> -				       finger_status & IST3038C_Y_MASK, 1);
+> +				       (finger_status & IST30XXC_X_MASK) >>
+> +						IST30XXC_X_SHIFT,
+> +				       finger_status & IST30XXC_Y_MASK, 1);
+>   		input_report_abs(ts->input_dev, ABS_MT_TOUCH_MAJOR,
+> -				 (finger_status & IST3038C_AREA_MASK) >>
+> -					IST3038C_AREA_SHIFT);
+> +				 (finger_status & IST30XXC_AREA_MASK) >>
+> +					IST30XXC_AREA_SHIFT);
+>   	}
+>   
+>   	input_mt_sync_frame(ts->input_dev);
+> @@ -148,7 +149,7 @@ static int imagis_power_on(struct imagis_ts *ts)
+>   	if (error)
+>   		return error;
+>   
+> -	msleep(IST3038C_CHIP_ON_DELAY_MS);
+> +	msleep(IST30XXC_CHIP_ON_DELAY_MS);
+>   
+>   	return 0;
+>   }
+> @@ -220,7 +221,7 @@ static int imagis_init_input_dev(struct imagis_ts *ts)
+>   	}
+>   
+>   	error = input_mt_init_slots(input_dev,
+> -				    IST3038C_MAX_FINGER_NUM,
+> +				    IST30XXC_MAX_FINGER_NUM,
+>   				    INPUT_MT_DIRECT | INPUT_MT_DROP_UNUSED);
+>   	if (error) {
+>   		dev_err(&ts->client->dev,
+> @@ -253,7 +254,7 @@ static int imagis_probe(struct i2c_client *i2c)
+>   {
+>   	struct device *dev = &i2c->dev;
+>   	struct imagis_ts *ts;
+> -	int chip_id, error;
+> +	int chip_id, dt_chip_id, error;
+>   
+>   	ts = devm_kzalloc(dev, sizeof(*ts), GFP_KERNEL);
+>   	if (!ts)
+> @@ -261,6 +262,8 @@ static int imagis_probe(struct i2c_client *i2c)
+>   
+>   	ts->client = i2c;
+>   
+> +	dt_chip_id = (int)(uintptr_t)device_get_match_data(&i2c->dev);
 > +
->      pcie@18012000 {
->          compatible =3D "brcm,iproc-pcie";
->          reg =3D <0x18012000 0x1000>;
-> --=20
-> 2.40.1
->=20
+>   	error = imagis_init_regulators(ts);
+>   	if (error) {
+>   		dev_err(dev, "regulator init error: %d\n", error);
+> @@ -280,15 +283,15 @@ static int imagis_probe(struct i2c_client *i2c)
+>   	}
+>   
+>   	error = imagis_i2c_read_reg(ts,
+> -			IST3038C_REG_CHIPID | IST3038C_DIRECT_ACCESS,
+> +			IST30XXC_REG_CHIPID | IST30XXC_DIRECT_ACCESS,
+>   			&chip_id);
+>   	if (error) {
+>   		dev_err(dev, "chip ID read failure: %d\n", error);
+>   		return error;
+>   	}
+>   
+> -	if (chip_id != IST3038C_WHOAMI) {
+> -		dev_err(dev, "unknown chip ID: 0x%x\n", chip_id);
+> +	if (chip_id != dt_chip_id) {
+> +		dev_err(dev, "unknown or misconfigured chip ID: 0x%x\n", chip_id);
+>   		return -EINVAL;
+>   	}
+>   
+> @@ -345,12 +348,18 @@ static DEFINE_SIMPLE_DEV_PM_OPS(imagis_pm_ops, imagis_suspend, imagis_resume);
+>   
+>   #ifdef CONFIG_OF
+>   static const struct of_device_id imagis_of_match[] = {
+> -	{ .compatible = "imagis,ist3038c", },
+> +	{ .compatible = "imagis,ist3038c", .data = (void *)IST3038C_WHOAMI, },
+>   	{ },
+>   };
+>   MODULE_DEVICE_TABLE(of, imagis_of_match);
+>   #endif
+>   
+> +static const struct i2c_device_id imagis_ts_i2c_id[] = {
+> +	{ "ist3038c", IST3038C_WHOAMI, },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(i2c, imagis_ts_i2c_id);
+> +
+>   static struct i2c_driver imagis_ts_driver = {
+>   	.driver = {
+>   		.name = "imagis-touchscreen", @@ -358,10 +367,11 @@ static struct i2c_driver imagis_ts_driver = { 
+> .of_match_table = of_match_ptr(imagis_of_match), }, .probe = 
+> imagis_probe, + .id_table = imagis_ts_i2c_id, }; 
+> module_i2c_driver(imagis_ts_driver); -MODULE_DESCRIPTION("Imagis IST3038C Touchscreen Driver");
+> +MODULE_DESCRIPTION("Imagis IST30XXC Touchscreen Driver");
+>   MODULE_AUTHOR("Markuss Broks<markuss.broks@gmail.com>");
+>   MODULE_LICENSE("GPL");
 
---1BjGV0efq9T3tTST
-Content-Type: application/pgp-signature; name="signature.asc"
+Additionally, there used to be my series [1] that generalized the 
+driver, but it never got applied. I will re-send it. It introduces 
+`struct imagis_properties`, which contains register addresses for the 
+registers that we use to read the touch input. In your specific case, I 
+believe it should be:
 
------BEGIN PGP SIGNATURE-----
+static const struct imagis_properties imagis_3032c_data =
+{
+	.interrupt_msg_cmd = IST3038C_REG_INTR_MESSAGE,
+	.touch_coord_cmd = IST3038C_REG_TOUCH_COORD,
+	.whoami_cmd = IST3038C_REG_CHIPID,
+	.whoami_val = IST3032C_WHOAMI, /* change it to your whoami */
+};
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRRL1QAKCRB4tDGHoIJi
-0vG2AQDluSVffOKOHbIEMmIpNz0g1yHoArvULfqpNTho1ylwlQEA/EmGD6/g/1ZF
-dKNKjfPaJCXwB3Jg7O7xQ9vpU0G2xA0=
-=4PdT
------END PGP SIGNATURE-----
 
---1BjGV0efq9T3tTST--
+As for the voltage set, I believe this does not belong in a kernel 
+driver. You should set it in device-tree with `regulator-max-microvolt` 
+and `regulator-min-microvolt`.
+
+
+Yours,
+
+- Markuss
+
+
+[1]: 
+https://lore.kernel.org/lkml/20220504152406.8730-1-markuss.broks@gmail.com/
+
 
