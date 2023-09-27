@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-3676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-3677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E338E7AFD2B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:57:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5007F7AFD63
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 09:59:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 949132821CF
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 07:57:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 0043728459E
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 07:59:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D5071CA90;
-	Wed, 27 Sep 2023 07:57:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1203D1D52B;
+	Wed, 27 Sep 2023 07:58:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1F7B1C285
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 07:57:07 +0000 (UTC)
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D9BD13A
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:57:05 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-9a64619d8fbso1345516266b.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:57:05 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B12A21D694
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 07:58:38 +0000 (UTC)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EED2F196
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:58:36 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9b275afb6abso1414590866b.1
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 00:58:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695801423; x=1696406223; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1695801515; x=1696406315; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=G6qcjno+1zTbyZy3oHtVK6lgUt4U3JQtrPZBgB3GEp4=;
-        b=qb+H3EG4YrLMjUf36Az5tFbEGNEAwFvd4fyCkEMq23t4tur2frxb00RNOVWUwiJhQ7
-         /c8WJg44Ac23/soUVbJky5u43ycpWMzSLyEvpj1bUlqdZtuyJmX/OITOMEV8FZp/yneQ
-         6zfWCJe9apVoHjGuA5JOswuNXMVB10q5eKmENEcPMv6O7/cZBxIvLKEYr4PgmOqTsAii
-         jPq8uwJRX245PRWkRy0bOL8QgtVxXVK5/Cx4wqK3coQZxoa4y2eNMg2wLeRJ+AAoLXsU
-         G5f8b3lyHAVMLweEB5+MDNl+TkzG7u3Y2ur9S5pEKOuOHox0XfmwJud5E6qVMLZ6Oupa
-         RC5w==
+        bh=L1p3BNrc0FU2AxfUecdFgP/QNroO2JWxyiNPmKyfjuA=;
+        b=hWOpd9/2o7ayO4eilqHAsmw5lBxfXlKLLTfRZ9kuA/I6OU2CUf5hMeK4mLwET+AgAY
+         ntYEolaGQvkV/M2rmJjNRE6nXQGtEJzKrDSK9fi+XRres6qMTsvmdUJJmutuhddcSUqX
+         Wi07fps7djKUR+EzhdiKedSyDmw/d+Jc1Z2SfoBU3iffWcim7+3FwonzzmVEN7kbU0kP
+         4L1c3H7S3YWX606HxSLFMuCSumDR6AKRi6kJrVbWu5OIah99EbizbUm38EPzZxeU03hD
+         kxp8bc9g3NO2aBLnLMtckYzx6t4r0mfj0pip9q9RK58mqMRSE/PxPz7OjjntYi2FeWyp
+         poRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695801423; x=1696406223;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1695801515; x=1696406315;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G6qcjno+1zTbyZy3oHtVK6lgUt4U3JQtrPZBgB3GEp4=;
-        b=xOSZdn1E9x7wHJTNdBCsTDUzMLTvNvELjcbFu/u7YBg7D+MH+y4VCnhHlK4FmOMBqJ
-         uKYIGjgxFRslUC4k1toaeeNPeEMts4JgeOPOYLSFvBq2yxxFrQLfgl40z8BKavJCP6u1
-         6TkDIxcydOEbqrZWi0TEflCPtX93D52ERtS289eFiShVq3fwW5/sz9hQRkfjJhT/o5Ul
-         4CCtQRgcrdcB4IduluSSPg7g7F3xm94Nlr4Yd+helzhdDXi17IqBNq9iygZk8UcRFtlA
-         4f/ZjKqw9tMBV1Tiaqbnakx+bswHwrXVmYuScno9c7/pLfXWcTnA6JRGnL+EZaH+/Nli
-         4cKQ==
-X-Gm-Message-State: AOJu0YwjIGEHn9DGGcQN7kF2gd6O9jWzpJmmUO2yl+yYz9g0WiFJc2bQ
-	rwi3lidIitQKxRlrujQw5cJj9w==
-X-Google-Smtp-Source: AGHT+IHbHseys7ButVUwKibA5PCwnJwlZhiyl16BTUVQe6h1n528HbZWVv3sqikuXMetDvvYS7xC/w==
-X-Received: by 2002:a17:906:29c:b0:9a1:debe:6b9b with SMTP id 28-20020a170906029c00b009a1debe6b9bmr886358ejf.35.1695801423529;
-        Wed, 27 Sep 2023 00:57:03 -0700 (PDT)
+        bh=L1p3BNrc0FU2AxfUecdFgP/QNroO2JWxyiNPmKyfjuA=;
+        b=gp+Bad4+kifapCmupMSzyjglsdT/qkkabkwXJ8GKvgnSvnODd9v8FTTy7z/rxqEacp
+         xzwKI69sE6J+uqV6Vj6kSuop0l602EllLoZlS/LyasZdEtzvmaZ0/HXEBxu2nmEJMe3w
+         /eB701Hgp/AIA0SQ5ROUGOqsZjvffX5gkCFW0eSBa2NWGYYQmhbfqQLB1wVXlY7gwsGz
+         qOIiX+OXcEdxkIH4yTS5XBLN/Rhxoa0Z8owDJuNQ9DBwhPJhKYWg3AHu2W1BARcBEfie
+         DxtfX+hwRmDdxt6W/Tty8XtQLfAoHBLVMXb5YWQ37IAcnV+nn4hma7ZYiWvyE6F80NhD
+         8ziA==
+X-Gm-Message-State: AOJu0YyXBIuHXTKeqVJGxEcQOSScbuk9uePT/6Yw6XAqAXh0hG7wx5FS
+	3NXOy7ZV1hJFItZsuvrN96OHYA==
+X-Google-Smtp-Source: AGHT+IEs1tTnzZIP4e4/89QMU1gvy5bc1+Dqx5wThCGWgH5K1H7RBn4VKg0A2X4/2+21EvIb7Bqmpg==
+X-Received: by 2002:a17:906:53d3:b0:9b2:b755:5b94 with SMTP id p19-20020a17090653d300b009b2b7555b94mr332869ejo.38.1695801515277;
+        Wed, 27 Sep 2023 00:58:35 -0700 (PDT)
 Received: from [192.168.1.160] (host-87-4-82-94.retail.telecomitalia.it. [87.4.82.94])
-        by smtp.gmail.com with ESMTPSA id vb5-20020a170907d04500b009b299529709sm2198845ejc.132.2023.09.27.00.57.01
+        by smtp.gmail.com with ESMTPSA id vb5-20020a170907d04500b009b299529709sm2198845ejc.132.2023.09.27.00.58.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Sep 2023 00:57:03 -0700 (PDT)
-Message-ID: <63c5fab2-281d-4354-b20b-b2bbb82d7ff6@linaro.org>
-Date: Wed, 27 Sep 2023 09:57:01 +0200
+        Wed, 27 Sep 2023 00:58:34 -0700 (PDT)
+Message-ID: <a3b3d647-4995-4d55-b6f9-a93119caf86e@linaro.org>
+Date: Wed, 27 Sep 2023 09:58:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,18 +63,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] ARM: dts: omap: omap4-embt2ws: Add IMU at control
- unit
+Subject: Re: [PATCH] arm64: dts: imx8mp-venice-gw73xx: add TPM device
 Content-Language: en-US
-To: Andreas Kemnade <andreas@kemnade.info>, jic23@kernel.org,
- lars@metafoo.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, bcousson@baylibre.com, tony@atomide.com,
- jean-baptiste.maneyrol@tdk.com, chenhuiz@axis.com,
- andy.shevchenko@gmail.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-omap@vger.kernel.org
-References: <20230926203739.2119963-1-andreas@kemnade.info>
- <20230926203739.2119963-4-andreas@kemnade.info>
+To: Tim Harvey <tharvey@gateworks.com>, Shawn Guo <shawnguo@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
+References: <20230926194335.1451802-1-tharvey@gateworks.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,54 +119,52 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230926203739.2119963-4-andreas@kemnade.info>
+In-Reply-To: <20230926194335.1451802-1-tharvey@gateworks.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 26/09/2023 22:37, Andreas Kemnade wrote:
-> Add also the level-shifter flag to avoid probe failure in magnetometer
-> probe.
+On 26/09/2023 21:43, Tim Harvey wrote:
+> Add the TPM device found on the GW73xx revision F PCB.
 > 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
 > ---
->  .../boot/dts/ti/omap/omap4-epson-embt2ws.dts    | 17 ++++++++++++++++-
->  1 file changed, 16 insertions(+), 1 deletion(-)
+>  .../boot/dts/freescale/imx8mp-venice-gw73xx.dtsi      | 11 ++++++++++-
+>  1 file changed, 10 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-> index cd4f858d846ab..0cc66e158a8d5 100644
-> --- a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-> +++ b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-> @@ -391,7 +391,16 @@ tlv320aic3x: codec@18 {
->  		reset-gpios = <&gpio2 23 GPIO_ACTIVE_LOW>;
->  	};
->  
-> -	/* TODO: mpu9150 at control unit, seems to require quirks */
-> +	mpu9150: imu@68 {
-> +		compatible = "invensense,mpu9150";
-> +		reg = <0x68>;
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi
+> index 48a284478468..43e5e838cefa 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi
+> @@ -95,8 +95,17 @@ reg_usdhc2_vmmc: regulator-usdhc2-vmmc {
+>  &ecspi2 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_spi2>;
+> -	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
+> +	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>,
+> +		   <&gpio1 10 GPIO_ACTIVE_LOW>;
+>  	status = "okay";
 > +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&mpu9150_pins>;
-> +		interrupt-parent = <&gpio2>;
-> +		interrupt = <7 IRQ_TYPE_LEVEL_HIGH>;
-> +		invensense,level-shifter;
+> +	tpm@1 {
+> +		compatible = "tcg,tpm_tis-spi";
+> +		#address-cells = <0x1>;
+> +		#size-cells = <0x1>;
+
+Why do you need these?
+
+> +		reg = <0x1>;
+
+reg is always after compatible
+
+> +		spi-max-frequency = <36000000>;
 > +	};
 >  };
 >  
->  &keypad {
-> @@ -530,6 +539,12 @@ OMAP4_IOPAD(0x0fc, PIN_INPUT | MUX_MODE0)       /* abe_mcbsp2_fsx */
->  		>;
->  	};
->  
-> +	mpu9150_pins: pinmux_mpu9150-pins {
-
-Not much improved.
+>  &gpio4 {
 
 Best regards,
 Krzysztof
