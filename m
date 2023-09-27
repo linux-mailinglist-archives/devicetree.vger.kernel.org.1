@@ -1,184 +1,184 @@
-Return-Path: <devicetree+bounces-4000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1761B7B0E2D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 23:37:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E5377B0F00
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 00:45:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id A8B07281486
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 21:37:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id D3EB5281CDE
+	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 22:45:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FAA14C866;
-	Wed, 27 Sep 2023 21:37:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5999C1CF8A;
+	Wed, 27 Sep 2023 22:45:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF3041D6AE
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 21:37:37 +0000 (UTC)
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 643FC11F;
-	Wed, 27 Sep 2023 14:37:35 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-504a7f9204eso1480037e87.3;
-        Wed, 27 Sep 2023 14:37:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695850653; x=1696455453; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CYLc3HDZug2/Yd29NYOTkdZgvZmGgRReX54Dn37yNTg=;
-        b=kL//kzkUd8to1zWPEMatFMfKLbPhT7dBR+a7ejtoFxbzj7AVgOXVif9qc3dQt6iypE
-         yxQLvtrqkZHnzv9NIE1kmjukgsztO+gQNjRGtH9pKF7tGjv9MO0oYajiDjNy4KjKs8S4
-         EGRZJszbg0O0WfBNzS+nsBivBLlxIj36bL4/louKVri7r89GHruJCagHd6glPAXjnAs9
-         kM04Ws0yfWz3svrieHbd9lS/Wfg9tiue5rf6yHQq/LdfiNSUOU1HdLqKjZo3MY1iYyuF
-         SBMJUTQojom05OpplMx9uacI82r+WsSYqmwHS/xKW0h0bjaaW6+LBWOA0njD14bkSTAP
-         m09w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695850653; x=1696455453;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CYLc3HDZug2/Yd29NYOTkdZgvZmGgRReX54Dn37yNTg=;
-        b=Zue6j0AcCoC/YkqXDHHYzsShot9cOctzzyMfBbHbGciB+djZS++xfwOxbSp70sZtD8
-         tL4fZEsDVfZGBlqIkY9ySfQs/b/f5Wjbltwm1eys5uVyW86J4Gjd67weqycozAoZv7Z3
-         RBhMuvlXNteQj3/Ocshlx979X4wyJMEyml3sPfg9nddoBG0B9TLuSkxrU1tqX7w+O6tm
-         UV8wiRIfsfX8HqGso5z+SoesIjWz6aTph+mj7WvDPnkbg8lTMOdfvDC/Hour5vduJR5t
-         fudbtKpcJbz8CVcxIAnVmNqq152xh8H2xl0GINZsP01VvHe6gHCG8Idc90eG12y03eP+
-         XZWw==
-X-Gm-Message-State: AOJu0YwgurFd4DxfU3X77XcXsBnGfJG2gGMEvBDKCxP5I0Qqt7l1Fcj/
-	d/06grzeOKpuWAcXKUGXAg55k6UfRSjA8RSbYcHi+L9wSfOXjg==
-X-Google-Smtp-Source: AGHT+IGQyluJO+6YgJLtmKSvQEEjzaXAl86/D2dgg8PJECZK7gCuTBZx0ZbDDeqsKae5cFBtHXHVxy8G/uFfSZnZAN0=
-X-Received: by 2002:a05:6512:39d2:b0:500:c589:95fb with SMTP id
- k18-20020a05651239d200b00500c58995fbmr3118553lfu.55.1695850653252; Wed, 27
- Sep 2023 14:37:33 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C0431C6B3
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 22:45:46 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22D00AF;
+	Wed, 27 Sep 2023 15:45:44 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38RMhLEc021202;
+	Wed, 27 Sep 2023 22:44:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=2WzMCyujUUN8vsItkqe30uu8LNBKln4ud1vWe5HQBXc=;
+ b=gp/ksm5e9YgMqVJk1uaNNgbzZXcDL9Y5PUlM8QRbA/WQGoOju4jq+yo6DBVFV/arFrxr
+ 3Lsii92FbWJhJiVUmyzbCbKMgKESQ1iw3zecNq+yFsqdSoynyWjQqR/5LVHFF2uk6r9B
+ 6OlyhnZ1WNYXmPOHIp2+W2d7FEw2Yy00vavA/7K2mTyYLJuQnzIMKW76PyAz60YHY8Uk
+ cYH7LJP3EgAgYFADMUcwJ+SAfU2zn9EXDZi/OXxd5sDTINUz8mZbCXbxNrmetlf13KdP
+ 30+NKDfSkehHZsm+71weqSzFdgJlcWQGP66V+I7zQ7KdternlvvZbsAEF56KyfDJIUF3 bA== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tc43mu1gr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 27 Sep 2023 22:44:34 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38RMiXT1007881
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 27 Sep 2023 22:44:33 GMT
+Received: from quicinc.com (10.49.16.6) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 27 Sep
+ 2023 15:44:30 -0700
+Date: Wed, 27 Sep 2023 15:44:28 -0700
+From: Guru Das Srinagesh <quic_gurus@quicinc.com>
+To: Pavan Kondeti <quic_pkondeti@quicinc.com>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Guru Das Srinagesh
+	<quic_gurus@quicinc.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        "Nick
+ Desaulniers" <ndesaulniers@google.com>,
+        Andrew Morton
+	<akpm@linux-foundation.org>,
+        Nicolas Schier <nicolas@fjasle.eu>,
+        "Konstantin
+ Ryabitsev" <konstantin@linuxfoundation.org>,
+        Kees Cook
+	<keescook@chromium.org>,
+        Bjorn Andersson <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, Will Deacon
+	<will@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        <workflows@vger.kernel.org>, <tools@linux.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>
+Subject: Re: [PATCH v3 1/1] scripts: Add add-maintainer.py
+Message-ID: <ZRSwTBkhlg5kj7jf@quicinc.com>
+Mail-Followup-To: Pavan Kondeti <quic_pkondeti@quicinc.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Nicolas Schier <nicolas@fjasle.eu>,
+	Konstantin Ryabitsev <konstantin@linuxfoundation.org>,
+	Kees Cook <keescook@chromium.org>,
+	Bjorn Andersson <andersson@kernel.org>, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, Will Deacon <will@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	linux-kernel@vger.kernel.org, kernel@quicinc.com,
+	workflows@vger.kernel.org, tools@linux.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+References: <cover.1693037031.git.quic_gurus@quicinc.com>
+ <141b9fcab2208ace3001df4fc10e3dfd42b9f5d9.1693037031.git.quic_gurus@quicinc.com>
+ <2efba6b3-2399-9deb-d0ce-78f7b5e12f30@linaro.org>
+ <0f0bc437-e052-459d-bbda-bebeff1537ae@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230918080314.11959-1-jagathjog1996@gmail.com>
- <20230918080314.11959-2-jagathjog1996@gmail.com> <20230924143710.7c6edc4a@jic23-huawei>
-In-Reply-To: <20230924143710.7c6edc4a@jic23-huawei>
-From: Jagath Jog J <jagathjog1996@gmail.com>
-Date: Thu, 28 Sep 2023 03:07:22 +0530
-Message-ID: <CAM+2EuJ8o5X2ucph8gic2=03bbLQmUCX=j3SFLrqD4Y6rwXs9A@mail.gmail.com>
-Subject: Re: [RFC 1/2] dt-bindings: iio: imu: Add DT binding doc for BMI323
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: andriy.shevchenko@linux.intel.com, lars@metafoo.de, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <0f0bc437-e052-459d-bbda-bebeff1537ae@quicinc.com>
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: T6hX6RCIoYGyX4HlYCDsPLRHDWQvfoYp
+X-Proofpoint-GUID: T6hX6RCIoYGyX4HlYCDsPLRHDWQvfoYp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-27_15,2023-09-27_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ impostorscore=0 bulkscore=0 phishscore=0 mlxlogscore=819 malwarescore=0
+ adultscore=0 spamscore=0 clxscore=1011 priorityscore=1501 mlxscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2309270195
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-HI Jonathan,
+On Sep 27 2023 10:21, Pavan Kondeti wrote:
+> On Mon, Aug 28, 2023 at 10:21:32AM +0200, Krzysztof Kozlowski wrote:
+> > On 26/08/2023 10:07, Guru Das Srinagesh wrote:
+> > > This script runs get_maintainer.py on a given patch file (or multiple
+> > > patch files) and adds its output to the patch file in place with the
+> > > appropriate email headers "To: " or "Cc: " as the case may be. These new
+> > > headers are added after the "From: " line in the patch.
+> > > 
+> > > Currently, for a single patch, maintainers and reviewers are added as
+> > > "To: ", mailing lists and all other roles are added as "Cc: ".
+> > > 
+> > > For a series of patches, however, a set-union scheme is employed in
+> > > order to solve the all-too-common problem of ending up sending only
+> > > subsets of a patch series to some lists, which results in important
+> > > pieces of context such as the cover letter (or other patches in the
+> > > series) being dropped from those lists. This scheme is as follows:
+> > > 
+> > > - Create set-union of all maintainers and reviewers from all patches and
+> > >   use this to do the following per patch:
+> > >   - add only that specific patch's maintainers and reviewers as "To: "
+> > >   - add the other maintainers and reviewers from the other patches as "Cc: "
+> > > 
+> > > - Create set-union of all mailing lists corresponding to all patches and
+> > >   add this to all patches as "Cc: "
+> > > 
+> > > - Create set-union of all other roles corresponding to all patches and
+> > >   add this to all patches as "Cc: "
+> > > 
+> > > Please note that patch files that don't have any "Maintainer"s or
+> > > "Reviewers" explicitly listed in their `get_maintainer.pl` output will
+> > 
+> > So before you will ignoring the reviewers, right? One more reason to not
+> > get it right...
+> > 
+> > > not have any "To: " entries added to them; developers are expected to
+> > > manually make edits to the added entries in such cases to convert some
+> > > "Cc: " entries to "To: " as desired.
+> > > 
+> > > The script is quiet by default (only prints errors) and its verbosity
+> > > can be adjusted via an optional parameter.
+> > > 
+> > > Signed-off-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
+> > > ---
+> > >  MAINTAINERS               |   5 ++
+> > >  scripts/add-maintainer.py | 164 ++++++++++++++++++++++++++++++++++++++
+> > >  2 files changed, 169 insertions(+)
+> > >  create mode 100755 scripts/add-maintainer.py
+> > > 
+> > 
+> > I do not see the benefits of this script. For me - it's unnecessarily
+> > more complicated instead of my simple bash function which makes
+> > everything one command less than here.
+> > One more thing to maintain.
+> 
+> Thanks for your bash script. I slightly modified it to keep maintainers
+> in To and rest in Cc. 
+> 
+> git send-email --dry-run --to="$(scripts/get_maintainer.pl --no-multiline --separator=, --no-r --no-l --no-git --no-roles --no-rolestats --no-git-fallback *.patch)" --cc="$(scripts/get_maintainer.pl --no-multiline --separator=, --no-m --no-git --no-roles --no-rolestats --no-git-fallback *.patch)" *.patch
 
-On Sun, Sep 24, 2023 at 7:07=E2=80=AFPM Jonathan Cameron <jic23@kernel.org>=
- wrote:
->
-> On Mon, 18 Sep 2023 13:33:13 +0530
-> Jagath Jog J <jagathjog1996@gmail.com> wrote:
->
-> > Add devicetree description document for Bosch BMI323, a 6-Axis IMU.
-> >
-> > Signed-off-by: Jagath Jog J <jagathjog1996@gmail.com>
-> > ---
-> >  .../bindings/iio/imu/bosch,bmi323.yaml        | 81 +++++++++++++++++++
-> >  1 file changed, 81 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/iio/imu/bosch,bmi=
-323.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/iio/imu/bosch,bmi323.yam=
-l b/Documentation/devicetree/bindings/iio/imu/bosch,bmi323.yaml
-> > new file mode 100644
-> > index 000000000000..9c08988103c5
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/imu/bosch,bmi323.yaml
-> > @@ -0,0 +1,81 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/imu/bosch,bmi323.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Bosch BMI323 6-Axis IMU
-> > +
-> > +maintainers:
-> > +  - Jagath Jog J <jagathjog1996@gmail.com>
-> > +
-> > +description:
-> > +  BMI323 is a 6-axis inertial measurement unit that supports accelerat=
-ion and
-> > +  gyroscopic measurements with hardware fifo buffering. Sensor also pr=
-ovides
-> > +  events information such as motion, steps, orientation, single and do=
-uble
-> > +  tap detection.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: bosch,bmi323
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  interrupt-names:
-> > +    enum:
-> > +      - INT1
-> > +      - INT2
-> > +    description: |
-> > +      set to "INT1" if INT1 pin should be used as interrupt input, set
-> > +      to "INT2" if INT2 pin should be used instead
->
-> Why not both?  Sure driver might elect to use only one, but the binding
-> describes the hardware not the driver and both might be wired.
+FYI, b4 has "b4.send-auto-to-cmd" and "b4.send-auto-cc-cmd" [1] as well to
+override its default behaviour. You can just set the above two b4 config
+options as you like and it will do the right thing.
 
-If both interrupt pins are wired, should the DTS file need to define
-both of the pins?
-
->
-> Lots of different sources of interrupts so might be advantageous
-> to split them up across two wires.   A simple case being to route
-> errors to one and everything 'good' to the other.  No obligation to
-> support that in the Linux driver though if you don't need to.
-
-Sure I will split into two different wires in bindings.
-
->
-> > +
-> > +  drive-open-drain:
-> > +    description: |
-> > +      set if the specified interrupt pin should be configured as
-> > +      open drain. If not set, defaults to push-pull.
->
-> Two pins.  Might be different so you need two controls.
-
-Sure, In bindings I will add two different drive controls.
-If both interrupt pins are wired with different drive options
-should the DTS file still define both of the pins?
-
->
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
->
-> As mentioned, need power supplies specified and marked as required
-> (though they may be provided via always on regulators and rely on stubs
-> being created by the regulator subsystem on a given board).
-> Looks like there are at least 2 supplies.
-
-Sure, I will add 2 power supplies in the next series.
-
-Regards
-Jagath
+Guru Das.
 
