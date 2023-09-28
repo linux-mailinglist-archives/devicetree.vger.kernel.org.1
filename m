@@ -1,50 +1,61 @@
-Return-Path: <devicetree+bounces-4290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06F1B7B1E8D
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 15:35:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44DF07B1E77
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 15:32:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id A7714282380
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 13:35:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id EB17028225C
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 13:32:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B5233B789;
-	Thu, 28 Sep 2023 13:35:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 084CE3B2B3;
+	Thu, 28 Sep 2023 13:32:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 378F63B781;
-	Thu, 28 Sep 2023 13:35:01 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C22B11F;
-	Thu, 28 Sep 2023 06:35:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1695908100; x=1727444100;
-  h=message-id:date:mime-version:to:cc:references:from:
-   subject:in-reply-to:content-transfer-encoding;
-  bh=2q/ofJbjVnxsiWF4wpyLGs7XzpOCXPm/6xI4ePXLves=;
-  b=AapLIZpfhIbLoy2Bxnc3/gaTMXAiw948rsHJtPSPwuyuZO1+AEeUaoaw
-   NEJC1PLrRRpU7eX117AmHyxkBaIUXoicCsieo/l/V4rRGLhAIFPuGBUnx
-   xB2pc6+8XwLBKtkrWQjm1PIQNMv2flyGAMFwMLmb/SM465ovRE5TIzBMo
-   UTH8ktwTDNv66boYuM+x6UEo0OYw3vpMx6JGqXowVoJcCJUHhbiuu5wok
-   7NIRP8dQuliZlbdB8RNCgGTSNoy4yL+ecDz33KS2g+ZK/fLI3ERRp+7AN
-   eWKgvfu/gmt8+DznE9UmRlJhrRQDgo91U7mE+nqAL+Yt2md7wAgzAv4vb
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="381968817"
-X-IronPort-AV: E=Sophos;i="6.03,184,1694761200"; 
-   d="scan'208";a="381968817"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Sep 2023 06:30:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="923216353"
-X-IronPort-AV: E=Sophos;i="6.03,184,1694761200"; 
-   d="scan'208";a="923216353"
-Received: from mattu-haswell.fi.intel.com (HELO [10.237.72.199]) ([10.237.72.199])
-  by orsmga005.jf.intel.com with ESMTP; 28 Sep 2023 06:30:28 -0700
-Message-ID: <6e9d2094-0bf9-b2ac-29f3-99115b456fdb@linux.intel.com>
-Date: Thu, 28 Sep 2023 16:31:52 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A37FC38DCD
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 13:32:53 +0000 (UTC)
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7778198
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 06:32:51 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-405361bb93bso128493295e9.3
+        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 06:32:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695907970; x=1696512770; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/LFPkZX/1gUK7F/uY/aH14+cb1Ue1VnDX6eq0URoca8=;
+        b=jUarAXlaTwlJA4zmvXqpuLyXbr6xugRBXKpwmzpUpBJPG03b3g9wyrR57B0g+UCALm
+         2pD/FLTnCfZOVsl39uPqOj6giIyoxWJ79PxfRQAybhcCPe9mHmq8i1WULmrKaUPKEF1E
+         b6/wZIZHdp+/NVkteS5ncGbKtdTMJUjWflQIr1ZlV9Db+4O2gYywlQxMgGUvbFHFzFyV
+         5yrhFihcRuxIXBp57Xf9WcNoaHQ1pO9lbg99fw9WBnwg2HqYZpWnfXHkdOsHpHwAWoaW
+         P9BWurorHi/vWqG7gQkxarQGBdWWy7hd4Dhwu6d4OVxVDzYCpLnr2Djg7HMYqulvemDU
+         oPGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695907970; x=1696512770;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/LFPkZX/1gUK7F/uY/aH14+cb1Ue1VnDX6eq0URoca8=;
+        b=OizHv0EWbSblPtgvl4X4vjyWKvUUkAHgWkIMskJPCOlz3FYnXuhHyEEv9xUYFX/KC5
+         kKbr7EZsAu1wTRy0ZsSUWCXRC8KBahmMO7p7vszJTXCBcSjQEQ2qNM3OLUOkG+nbGi6d
+         0R6GVUwz0uL3kUppIb1r9QvFpCnTGJ+mq4bu9lk9NJEg95fxhV2PQdFWrQ8KEkaH+dkd
+         O+Rb6V0Pl95KsvrtSsiUOzbIVkoCp9MTmWSxrtSZqqOeafdevcGM2ynPf1KXqk9U+Q1v
+         IAcOm0f2TJkzKIKr9nr8GxnaMm1q3iZqfvLWKYXtVuyWHRitHqWUASChIU/UTQZ+1Zau
+         YTlA==
+X-Gm-Message-State: AOJu0Yxq2wuPiKClyPMVbJEAeVAZv099RSbDnTQRzKKJWzX4SMpY7Cn+
+	cnHYMAbScw4OfbW+WAgSYRpmdUKr+HrsoMkckc0=
+X-Google-Smtp-Source: AGHT+IHAbge+Ntd+bTFRkoLZgej8iUaRLJlUiUs79u8Pf7GBDFP+XnQeWZI0rnEZdvM6IuWWosMkgA==
+X-Received: by 2002:a05:600c:2207:b0:3f6:58ad:ed85 with SMTP id z7-20020a05600c220700b003f658aded85mr1270450wml.10.1695907969994;
+        Thu, 28 Sep 2023 06:32:49 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0? ([2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0])
+        by smtp.googlemail.com with ESMTPSA id v2-20020a1cf702000000b003feae747ff2sm22690325wmh.35.2023.09.28.06.32.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Sep 2023 06:32:49 -0700 (PDT)
+Message-ID: <1e81197e-7f69-b716-4cb9-23639db83235@linaro.org>
+Date: Thu, 28 Sep 2023 15:32:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,211 +63,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.13.0
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 5/8] dt-bindings: thermal: fsl,scu-thermal: Document
+ imx8dl
 Content-Language: en-US
-To: Wesley Cheng <quic_wcheng@quicinc.com>, mathias.nyman@intel.com,
- gregkh@linuxfoundation.org, lgirdwood@gmail.com, broonie@kernel.org,
- perex@perex.cz, tiwai@suse.com, agross@kernel.org, andersson@kernel.org,
- konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- srinivas.kandagatla@linaro.org, bgoswami@quicinc.com,
- Thinh.Nguyen@synopsys.com
-Cc: linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
- alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20230921214843.18450-1-quic_wcheng@quicinc.com>
- <20230921214843.18450-3-quic_wcheng@quicinc.com>
-From: Mathias Nyman <mathias.nyman@linux.intel.com>
-Subject: Re: [PATCH v7 02/33] xhci: add helper to stop endpoint and wait for
- completion
-In-Reply-To: <20230921214843.18450-3-quic_wcheng@quicinc.com>
+To: Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, linux-imx@nxp.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Fabio Estevam <festevam@denx.de>,
+ "Rafael J . Wysocki" <rafael@kernel.org>, Amit Kucheria <amitk@kernel.org>
+References: <20230926122957.341094-1-festevam@gmail.com>
+ <20230926122957.341094-5-festevam@gmail.com>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20230926122957.341094-5-festevam@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 22.9.2023 0.48, Wesley Cheng wrote:
-> From: Mathias Nyman <mathias.nyman@linux.intel.com>
+On 26/09/2023 14:29, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Expose xhci_stop_endpoint_sync() which is a synchronous variant of
-> xhci_queue_stop_endpoint().  This is useful for client drivers that are
-> using the secondary interrupters, and need to stop/clean up the current
-> session.  The stop endpoint command handler will also take care of cleaning
-> up the ring.
+> imx8dxl also contains the SCU thermal block.
 > 
-> Modifications to repurpose the new API into existing stop endpoint
-> sequences was implemented by Wesley Cheng.
+> Add an entry for 'fsl,imx8dxl-sc-thermal'.
 > 
-> Signed-off-by: Mathias Nyman <mathias.nyman@linux.intel.com>
-> Co-developed-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> Cc: Rafael J. Wysocki <rafael@kernel.org>
+> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Cc: Amit Kucheria <amitk@kernel.org>
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 > ---
->   drivers/usb/host/xhci-hub.c | 29 +++---------------
->   drivers/usb/host/xhci.c     | 60 +++++++++++++++++++++++++++----------
->   drivers/usb/host/xhci.h     |  2 ++
->   3 files changed, 50 insertions(+), 41 deletions(-)
+
+May I apply this patch or do you want it to be applied with the series 
+it belongs?
+
+>   .../devicetree/bindings/thermal/fsl,scu-thermal.yaml          | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/usb/host/xhci-hub.c b/drivers/usb/host/xhci-hub.c
-> index 0054d02239e2..2f7309bdc922 100644
-> --- a/drivers/usb/host/xhci-hub.c
-> +++ b/drivers/usb/host/xhci-hub.c
-> @@ -489,7 +489,6 @@ EXPORT_SYMBOL_GPL(xhci_find_slot_id_by_port);
->   static int xhci_stop_device(struct xhci_hcd *xhci, int slot_id, int suspend)
->   {
->   	struct xhci_virt_device *virt_dev;
-> -	struct xhci_command *cmd;
->   	unsigned long flags;
->   	int ret;
->   	int i;
-> @@ -501,10 +500,6 @@ static int xhci_stop_device(struct xhci_hcd *xhci, int slot_id, int suspend)
+> diff --git a/Documentation/devicetree/bindings/thermal/fsl,scu-thermal.yaml b/Documentation/devicetree/bindings/thermal/fsl,scu-thermal.yaml
+> index 3721c8c8ec64..e02d04d4f71e 100644
+> --- a/Documentation/devicetree/bindings/thermal/fsl,scu-thermal.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/fsl,scu-thermal.yaml
+> @@ -18,7 +18,9 @@ allOf:
+>   properties:
+>     compatible:
+>       items:
+> -      - const: fsl,imx8qxp-sc-thermal
+> +      - enum:
+> +          - fsl,imx8dxl-sc-thermal
+> +          - fsl,imx8qxp-sc-thermal
+>         - const: fsl,imx-sc-thermal
 >   
->   	trace_xhci_stop_device(virt_dev);
->   
-> -	cmd = xhci_alloc_command(xhci, true, GFP_NOIO);
-> -	if (!cmd)
-> -		return -ENOMEM;
-> -
->   	spin_lock_irqsave(&xhci->lock, flags);
->   	for (i = LAST_EP_INDEX; i > 0; i--) {
->   		if (virt_dev->eps[i].ring && virt_dev->eps[i].ring->dequeue) {
-> @@ -521,7 +516,7 @@ static int xhci_stop_device(struct xhci_hcd *xhci, int slot_id, int suspend)
->   			if (!command) {
->   				spin_unlock_irqrestore(&xhci->lock, flags);
->   				ret = -ENOMEM;
-> -				goto cmd_cleanup;
-> +				goto out;
->   			}
->   
->   			ret = xhci_queue_stop_endpoint(xhci, command, slot_id,
-> @@ -529,30 +524,14 @@ static int xhci_stop_device(struct xhci_hcd *xhci, int slot_id, int suspend)
->   			if (ret) {
->   				spin_unlock_irqrestore(&xhci->lock, flags);
->   				xhci_free_command(xhci, command);
-> -				goto cmd_cleanup;
-> +				goto out;
->   			}
->   		}
->   	}
-> -	ret = xhci_queue_stop_endpoint(xhci, cmd, slot_id, 0, suspend);
-> -	if (ret) {
-> -		spin_unlock_irqrestore(&xhci->lock, flags);
-> -		goto cmd_cleanup;
-> -	}
-> -
-> -	xhci_ring_cmd_db(xhci);
->   	spin_unlock_irqrestore(&xhci->lock, flags);
-> +	ret = xhci_stop_endpoint_sync(xhci, &virt_dev->eps[0], suspend);
+>     '#thermal-sensor-cells':
 
-I didn't take this new xhci_stop_endpoint_sync() helper into use as it causes an extra
-xhci spinlock release and reacquire here.
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Also the memory allocation flags differ, GFP_NOIO is turned into GFP_KERNEL after this change.
-
->   
-> -	/* Wait for last stop endpoint command to finish */
-> -	wait_for_completion(cmd->completion);
-> -
-> -	if (cmd->status == COMP_COMMAND_ABORTED ||
-> -	    cmd->status == COMP_COMMAND_RING_STOPPED) {
-> -		xhci_warn(xhci, "Timeout while waiting for stop endpoint command\n");
-> -		ret = -ETIME;
-> -	}
-> -
-> -cmd_cleanup:
-> -	xhci_free_command(xhci, cmd);
-> +out:
->   	return ret;
->   }
->   
-> diff --git a/drivers/usb/host/xhci.c b/drivers/usb/host/xhci.c
-> index 3fd2b58ee1d3..163d533d6200 100644
-> --- a/drivers/usb/host/xhci.c
-> +++ b/drivers/usb/host/xhci.c
-> @@ -2758,6 +2758,46 @@ static int xhci_reserve_bandwidth(struct xhci_hcd *xhci,
->   	return -ENOMEM;
->   }
->   
-> +/*
-> + * Synchronous XHCI stop endpoint helper.  Issues the stop endpoint command and
-> + * waits for the command completion before returning.
-> + */
-> +int xhci_stop_endpoint_sync(struct xhci_hcd *xhci, struct xhci_virt_ep *ep, int suspend)
-> +{
-> +	struct xhci_command *command;
-> +	unsigned long flags;
-> +	int ret;
-> +
-> +	command = xhci_alloc_command(xhci, true, GFP_KERNEL);
-> +	if (!command)
-> +		return -ENOMEM;
-> +
-> +	spin_lock_irqsave(&xhci->lock, flags);
-> +	ret = xhci_queue_stop_endpoint(xhci, command, ep->vdev->slot_id,
-> +				       ep->ep_index, suspend);
-> +	if (ret < 0) {
-> +		spin_unlock_irqrestore(&xhci->lock, flags);
-> +		goto out;
-> +	}
-> +
-> +	xhci_ring_cmd_db(xhci);
-> +	spin_unlock_irqrestore(&xhci->lock, flags);
-> +
-> +	ret = wait_for_completion_timeout(command->completion, msecs_to_jiffies(3000));
-> +	if (!ret)
-> +		xhci_warn(xhci, "%s: Unable to stop endpoint.\n",
-> +				__func__);
-> +
-> +	if (command->status == COMP_COMMAND_ABORTED ||
-> +	    command->status == COMP_COMMAND_RING_STOPPED) {
-> +		xhci_warn(xhci, "Timeout while waiting for stop endpoint command\n");
-> +		ret = -ETIME;
-> +	}
-> +out:
-> +	xhci_free_command(xhci, command);
-> +
-> +	return ret;
-> +}
->   
->   /* Issue a configure endpoint command or evaluate context command
->    * and wait for it to finish.
-> @@ -3078,7 +3118,7 @@ static void xhci_endpoint_reset(struct usb_hcd *hcd,
->   	struct xhci_virt_device *vdev;
->   	struct xhci_virt_ep *ep;
->   	struct xhci_input_control_ctx *ctrl_ctx;
-> -	struct xhci_command *stop_cmd, *cfg_cmd;
-> +	struct xhci_command *cfg_cmd;
->   	unsigned int ep_index;
->   	unsigned long flags;
->   	u32 ep_flag;
-> @@ -3118,10 +3158,6 @@ static void xhci_endpoint_reset(struct usb_hcd *hcd,
->   	if (ep_flag == SLOT_FLAG || ep_flag == EP0_FLAG)
->   		return;
->   
-> -	stop_cmd = xhci_alloc_command(xhci, true, GFP_NOWAIT);
-> -	if (!stop_cmd)
-> -		return;
-> -
->   	cfg_cmd = xhci_alloc_command_with_ctx(xhci, true, GFP_NOWAIT);
->   	if (!cfg_cmd)
->   		goto cleanup;
-> @@ -3144,23 +3180,16 @@ static void xhci_endpoint_reset(struct usb_hcd *hcd,
->   		goto cleanup;
->   	}
->   
-> -	err = xhci_queue_stop_endpoint(xhci, stop_cmd, udev->slot_id,
-> -					ep_index, 0);
-> +	spin_unlock_irqrestore(&xhci->lock, flags);
-> +
-
-Same here, extra unlock -> lock, and GFP flags differ.
-
-
-> +	err = xhci_stop_endpoint_sync(xhci, ep, 0);
-
-Thanks
-Mathias
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
 
