@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-4043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA6527B1225
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 07:32:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 407237B122D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 07:37:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 312D1B20A61
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 05:32:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 5C34E1C2089C
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 05:37:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5DE413AFB;
-	Thu, 28 Sep 2023 05:32:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EB951862E;
+	Thu, 28 Sep 2023 05:37:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B5E26D18
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 05:32:26 +0000 (UTC)
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C50C139
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 22:32:24 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9a64619d8fbso1618175066b.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 22:32:24 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 702541FC2
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 05:37:32 +0000 (UTC)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CBE4126
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 22:37:29 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-5334f9a56f6so14779511a12.3
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 22:37:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695879142; x=1696483942; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695879448; x=1696484248; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZAOCLhkc883imuhwELA/Sn7bvE+DYVt5946/0QV3Vhk=;
-        b=BuxuDHHtEj/V+6glJu4G0jjiVIZZIwI+wJ1GXmXSsd3UTo90d4FckVdp1roJEmtAHJ
-         LrwVRUC4FckzPCcxShT4k2ckosA+eIsZ1q1A38AVcWEBUgIdRFORZFhVdJP+PqPcPVrc
-         eWYKu7FeqIm5eYjZJAZxHBG22Z1jwv10ld8BiRpYCiesS83mAbS6O0dlnbtiwPGn+G1B
-         7iFvu7QC+Xdi0Gm3gm4IhtwIVjVaCbgqCq8eHEPmpUgj1S4d0fOWuGSW6j+OwRNG3ZjV
-         Yd04OoAeTVuamrmrQA0BK/wtxe5omzg4HDP86UstWioqcvZ2+6fzt9S9V4Ej3d5JjLgo
-         Ua1Q==
+        bh=wmcotlRCrBk80r7OsmMGFTSrnZaiLKFO2fVbfsVUPoI=;
+        b=aIeLOgQWH5bPq4m0orCEDq4XaPX3LHcKslIC7zKju9DyqlVto2HkETXJFm7wuMuxC3
+         QyvTOFPQiNwbnQOUmJOeSiHuBWq//F7ZvYF/nOB2ISbskpjeSz6wuK8rEleOJb9L63k6
+         QSLV41mAAm+j87r5Y8AaTqmd+HxjS1K8/kI7gqQfZhSNSOcj2b/uvPNbczdYbl8PCSDK
+         Ez4TobYPvt+a2c2xPCq/wwWWa27O5U7VCobxmyVSOoCZAX6Z4fitMzJkyP5Cha7Yp/7g
+         MQymMJFD3MOI0uKI7yAxfp/NEaZ92wR2Dav73cfW3wqW7dct7fDNt2o/lJDuiq9cmwr3
+         on7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695879142; x=1696483942;
+        d=1e100.net; s=20230601; t=1695879448; x=1696484248;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZAOCLhkc883imuhwELA/Sn7bvE+DYVt5946/0QV3Vhk=;
-        b=sVNynWGanmGk16SHRAUYt56PsOI8DChGaDvZbg0L7fgjXXpeQWYQRtIk5Ax5sY084g
-         NaT/Wial5q0YtKfDYVkPNC9hn4EAjWoJHuLpVXL68Q24NN5DFpP3192Sx7HKOH4dgN9d
-         M7WsuN4u5IMkSxICjEFh6B0zWJjmjdTmjBz52wnrp+r47Pm2DEhHNbCFUrwABKLMFLIE
-         fUZGUgu4/YyRutVi3ZlvjTQSp4Sbji3EMJPnZDN2NXVIfsYb8lXFMuM49OasnaYRIl1z
-         iKxSbYBln/AjYv9SF8efoLAbo61qF+IKt3i2YZ1ygGslZAV5sFnabzg+87ku+ig5FjNW
-         XOiQ==
-X-Gm-Message-State: AOJu0YyquHnuqfvux42sQzo1vIu+o1AKz0o3DoyFdPXgY7UQy76A3SMT
-	eRfIgGA3Wbi/WxNQ8Qgq3GxHNQ==
-X-Google-Smtp-Source: AGHT+IHJh8BRt0WI4/IuVDNeNl4sJyfaJ7tN8Va16jjJ1W7nj7MWxT06kPYO2NYHnF76FAcqy+F9JA==
-X-Received: by 2002:a17:906:518d:b0:9a5:a44a:86f3 with SMTP id y13-20020a170906518d00b009a5a44a86f3mr249833ejk.25.1695879142608;
-        Wed, 27 Sep 2023 22:32:22 -0700 (PDT)
+        bh=wmcotlRCrBk80r7OsmMGFTSrnZaiLKFO2fVbfsVUPoI=;
+        b=vHTv5veDnDTDtZE7wk3CX3cqMEAH0l7PLi8B3oCWuCuXCKSxaRryx6AJr8/+icOFFr
+         zbQhSBp9nGJy/c8DzxjndVPtPTyTmCvUdTEc+yHibztakR2I3JVItXRLocfyzveYx4CI
+         nIJZ3f3t/p/kmSKeDRET6LvFys4hBEL9hKYHe5gllmqyoOqMa4AXvcTddRASTYpx5zzl
+         xV031J8AmehissfhgM7Umq/sv7Ksc7/BEKhzBm7N6py9gvMZdUJZL6qmKqAGK2I4W/SR
+         yFuPmFjuv0zSIK0tvBY2qPvy4d8Co4qqoOejs/Ll1/EwJNXilS82j/Yq9QVkonfmmRv0
+         GOxw==
+X-Gm-Message-State: AOJu0YyEmInzhqg0fZJxkh1NCUNQEuf8+U0n/IQqMjlmaeofhr+567Zu
+	7EJLxxWQcO0MLIRK4VRT8+QvWw==
+X-Google-Smtp-Source: AGHT+IHEfbd0byXhvmYaG9HXJ29xqTB3PRreLwdGTKLxr4tFg+7C9sQbPDMO/xEr9w48gPlh8Sx5OA==
+X-Received: by 2002:a17:907:77c9:b0:9ae:1872:d01a with SMTP id kz9-20020a17090777c900b009ae1872d01amr230583ejc.76.1695879447172;
+        Wed, 27 Sep 2023 22:37:27 -0700 (PDT)
 Received: from [192.168.168.70] (host-87-4-82-94.retail.telecomitalia.it. [87.4.82.94])
-        by smtp.gmail.com with ESMTPSA id rh27-20020a17090720fb00b0099b6becb107sm10322051ejb.95.2023.09.27.22.32.21
+        by smtp.gmail.com with ESMTPSA id s4-20020a170906168400b009ad829ed144sm10250766ejd.130.2023.09.27.22.37.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Sep 2023 22:32:22 -0700 (PDT)
-Message-ID: <c58ffc72-59d9-49f5-be22-18588f7df1e3@linaro.org>
-Date: Thu, 28 Sep 2023 07:32:20 +0200
+        Wed, 27 Sep 2023 22:37:26 -0700 (PDT)
+Message-ID: <77d9306e-ac55-48ab-8751-db43fd03523d@linaro.org>
+Date: Thu, 28 Sep 2023 07:37:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,20 +63,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 1/5] dt-bindings: media: platform: visconti: Add
- Toshiba Visconti Video Input Interface
+Subject: Re: [PATCH v7 01/14] dt-bindings: usb: tps6598x: Add tps25750
 Content-Language: en-US
-To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
- Hans Verkuil <hverkuil@xs4all.nl>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230925232806.950683-1-yuji2.ishikawa@toshiba.co.jp>
- <20230925232806.950683-2-yuji2.ishikawa@toshiba.co.jp>
+To: Abdel Alkuor <alkuor@gmail.com>, heikki.krogerus@linux.intel.com,
+ krzysztof.kozlowski+dt@linaro.org, bryan.odonoghue@linaro.org
+Cc: gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ryan.eleceng@gmail.com, robh+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ Abdel Alkuor <abdelalkuor@geotab.com>
+References: <20230927175348.18041-1-alkuor@gmail.com>
+ <20230927175348.18041-2-alkuor@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,86 +118,93 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230925232806.950683-2-yuji2.ishikawa@toshiba.co.jp>
+In-Reply-To: <20230927175348.18041-2-alkuor@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 26/09/2023 01:28, Yuji Ishikawa wrote:
-> Adds the Device Tree binding documentation that allows to describe
-> the Video Input Interface found in Toshiba Visconti SoCs.
+On 27/09/2023 19:53, Abdel Alkuor wrote:
+> From: Abdel Alkuor <abdelalkuor@geotab.com>
 > 
-
-
-> +  reg:
+> TPS25750 is USB TypeC PD controller which is a subset of TPS6598x.
+> 
+> Signed-off-by: Abdel Alkuor <abdelalkuor@geotab.com>
+> ---
+> Changes in v7:
+>   - Define reg at top-level
+>   - Remove description from reg-names
+> Changes in v6:
+>   - Use reg property for patch address
+> Changes in v5:
+>   - Add tps25750 bindings
+> 
+>  .../devicetree/bindings/usb/ti,tps6598x.yaml  | 81 ++++++++++++++++++-
+>  1 file changed, 80 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
+> index 5497a60cddbc..9303d00b89de 100644
+> --- a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
+> +++ b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
+> @@ -20,8 +20,18 @@ properties:
+>      enum:
+>        - ti,tps6598x
+>        - apple,cd321x
+> +      - ti,tps25750
+> +
+>    reg:
+> -    maxItems: 1
+> +    minItems: 1
 > +    items:
-> +      - description: Registers for capture control
-> +      - description: Registers for CSI2 receiver control
-> +      - description: Registers for bus interface unit control
-> +      - description: Registers for Memory Protection Unit
+> +      - description: main PD controller address
+> +      - description: |
+> +          I2C slave address field in PBMs input data
+> +          which is used as the device address when writing the
+> +          patch for TPS25750.
+> +          The patch address can be any value except 0x00, 0x20,
+> +          0x21, 0x22, and 0x23
+>  
+>    wakeup-source: true
+>  
+> @@ -32,10 +42,47 @@ properties:
+>      items:
+>        - const: irq
+>  
+> +  firmware-name:
+> +    description: |
+> +      Should contain the name of the default patch binary
+> +      file located on the firmware search path which is
+> +      used to switch the controller into APP mode.
+> +      This is used when tps25750 doesn't have an EEPROM
+> +      connected to it.
+> +    maxItems: 1
 > +
-> +  interrupts:
-> +    items:
-> +      - description: Sync Interrupt
-> +      - description: Status (Error) Interrupt
-> +      - description: CSI2 Receiver Interrupt
-> +      - description: L1ISP Interrupt
+>  required:
+>    - compatible
+>    - reg
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: ti,tps25750
+> +    then:
+> +      properties:
+> +        reg:
+> +          maxItems: 2
 > +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    unevaluatedProperties: false
-> +    description: CSI-2 input port, with a single endpoint connected to the CSI-2 transmitter.
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: video-interfaces.yaml#
-> +        additionalProperties: false
+> +        reg-names:
+> +          items:
+> +            - const: main
+> +            - const: patch-address
 
-This is a friendly reminder during the review process.
-
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
-
-
-> +
-> +        required:
-> +          - clock-noncontinuous
-> +          - link-frequencies
-> +          - remote-endpoint
-> +          - data-lanes
-
-Not much improved here. required goes after properties, always. I
-pointed you last time the file which you should use as an example.
-
-> +
-> +        properties:
-> +          data-lanes:
-> +            description: VIIF supports 1, 2, 3 or 4 data lanes
-> +            minItems: 1
-> +            items:
-> +              - const: 1
-> +              - const: 2
-> +              - const: 3
-> +              - const: 4
-> +
-> +          clock-noncontinuous: true
-
-Drop
-
-> +          link-frequencies: true
-
-Drop
-> +          remote-endpoint: true
-
-Drop
+This should be at top level. I wrote it last time - do not define
+properties in if:then:, but in top-level.
 
 Best regards,
 Krzysztof
