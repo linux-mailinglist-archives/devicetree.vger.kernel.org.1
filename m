@@ -1,108 +1,81 @@
-Return-Path: <devicetree+bounces-4388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D72B7B2531
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 20:24:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59A0A7B254C
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 20:32:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id E9D6C28272F
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 18:24:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 881F81C20BE6
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 18:32:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7448D516CB;
-	Thu, 28 Sep 2023 18:24:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C6E215BF;
+	Thu, 28 Sep 2023 18:32:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6058051226
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 18:24:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9D28C433B8;
-	Thu, 28 Sep 2023 18:24:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29132523F
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 18:32:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 522B0C433C7;
+	Thu, 28 Sep 2023 18:32:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695925487;
-	bh=h9io9sW/9EKNfXuhbVDmG/ERea8sgTVkea3CXbxpcMM=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=aAdZvCdpTxtSZe7T3jbt37NB8EhqfCnx/8i1HWRu9uqCjCUq7iPbdaQ4od2pz/EKo
-	 cR/ZfEwnJ6heg0PqVJCAqwE9llx6nUjocN7gHvKhcMBSd7KZhF2AIdPZw6liFjPj1Q
-	 sbuN88hyxQdkcRYBeSsqvCzJ9DN9zQwoEJktVc52eymvWE8jtCSLCTQJ0DaH5setXF
-	 kcJbpWcXJHnDdk+tpvsOr4c3kOzc8LkLxpfk+K9qZq0Hx5Go+yJWYj0qwpLYg969CE
-	 59qxx2dg0VoX/96mNpYEWsboAtdT+nLVsiRWUt0cnKVSg06WS+a5QRc4trB775fjxn
-	 FbC2Kkym6D08A==
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5041cc983f9so21262839e87.3;
-        Thu, 28 Sep 2023 11:24:47 -0700 (PDT)
-X-Gm-Message-State: AOJu0YxTFa8mVXh+J3zbggtx+cXIEOWB2hbzRbe8PODpZi/SYW+QZaoZ
-	cdIbdPuc9W87UIOvwwtILGwW21AYWi+gBwQCrA==
-X-Google-Smtp-Source: AGHT+IFIjVbmeOmoi1Ex9wWzryBy0huO5vhLMaCPZ42y3Diqs0tyk+JP/B6O/jxBFtqJcFlDkre6GZiUXkBPfrtKulA=
-X-Received: by 2002:a05:6512:234a:b0:500:7fc1:414b with SMTP id
- p10-20020a056512234a00b005007fc1414bmr2158838lfu.25.1695925485862; Thu, 28
- Sep 2023 11:24:45 -0700 (PDT)
+	s=k20201202; t=1695925934;
+	bh=JCe7blWVCnsLe70OwN/f81hGjMC1UJQ2rXeecgnmwzs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YhJS0frvyLcMcO5ihEp2dgsrmmkIfNmL/P36g3iMjXQowr0ubha3wu2dHXdDPA2rE
+	 ZA1qZFZNSJEAgaASGYSqtAClTsnzS/fyCF2tUDMwNtnF6iWJt7RlA6mJH0xpj5JkKR
+	 NVedECdLU98YaFvx8vM2uyNVvWWbWL+cbHtFp48YA1bfcVFLZ+pLu3TMMnzS2r+35d
+	 mn8SRbolpQC6fVFLO06KMrfGtzTaYpLbwKAah/JXTPY0iYlePaK4RxDYpJHmPUPkNG
+	 CiSLJFchpQ7TuVTbZkM/4Gd9+vg1w88ztbZR1DYp3nogOwM7dk8VVL/eWiQTvA5e4s
+	 9zif/GWp/lqfw==
+Received: (nullmailer pid 1030969 invoked by uid 1000);
+	Thu, 28 Sep 2023 18:32:12 -0000
+Date: Thu, 28 Sep 2023 13:32:12 -0500
+From: Rob Herring <robh@kernel.org>
+To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc: linux-renesas-soc@vger.kernel.org, Chris Paterson <Chris.Paterson2@renesas.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, devicetree@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, linux-spi@vger.kernel.org, Mark Brown <broonie@kernel.org>, Biju Das <biju.das@bp.renesas.com>, linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>
+Subject: Re: [PATCH v2 1/2] spi: renesas,rzv2m-csi: Add CSI (SPI) target
+ related property
+Message-ID: <169592593187.1030914.2646161997489930237.robh@kernel.org>
+References: <20230927162508.328736-1-fabrizio.castro.jz@renesas.com>
+ <20230927162508.328736-2-fabrizio.castro.jz@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230723-sm6125-dpu-v4-0-a3f287dd6c07@somainline.org> <20230723-sm6125-dpu-v4-17-a3f287dd6c07@somainline.org>
-In-Reply-To: <20230723-sm6125-dpu-v4-17-a3f287dd6c07@somainline.org>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Thu, 28 Sep 2023 13:24:33 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJymkURYKONU4b9g7QHi7LzpbhLmo8i1WEHy995vfdS6w@mail.gmail.com>
-Message-ID: <CAL_JsqJymkURYKONU4b9g7QHi7LzpbhLmo8i1WEHy995vfdS6w@mail.gmail.com>
-Subject: Re: [PATCH v4 17/17] arm64: dts: qcom: sm6125-seine: Configure MDSS,
- DSI and panel
-To: Marijn Suijten <marijn.suijten@somainline.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Krishna Manikandan <quic_mkrishn@quicinc.com>, Loic Poulain <loic.poulain@linaro.org>, 
-	Konrad Dybcio <konrad.dybcio@somainline.org>, ~postmarketos/upstreaming@lists.sr.ht, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Martin Botka <martin.botka@somainline.org>, 
-	Jami Kettunen <jami.kettunen@somainline.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk@kernel.org>, linux-clk@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	Lux Aliaga <they@mint.lgbt>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230927162508.328736-2-fabrizio.castro.jz@renesas.com>
 
-On Sun, Jul 23, 2023 at 11:09=E2=80=AFAM Marijn Suijten
-<marijn.suijten@somainline.org> wrote:
->
-> Enable MDSS and DSI, and configure the Samsung SOFEF01-M ams597ut01
-> 6.0" 1080x2520 panel.
->
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+
+On Wed, 27 Sep 2023 17:25:07 +0100, Fabrizio Castro wrote:
+> The CSI IP found inside the Renesas RZ/V2M SoC can also work
+> in SPI target mode.
+> When working in target mode, the IP will make use of the SS
+> (Slave Selection) pin, with "low" as default active level.
+> The active level of SS can be changed to "high" upon setting
+> property "spi-cs-high" to true.
+> By default, the SS will be used in target mode, unless property
+> "renesas,csi-no-ss" is set to true, in which case data will be
+> shifted in and out purely based on clock activity, and the
+> logic level of the SS pin will be completely ignored.
+> 
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
 > ---
->  .../dts/qcom/sm6125-sony-xperia-seine-pdx201.dts   | 59 ++++++++++++++++=
-++++++
->  1 file changed, 59 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts=
- b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-> index 82b0da5bb794..62c3e6d8147c 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-> @@ -179,6 +179,43 @@ &i2c3 {
->         /* Cirrus Logic CS35L41 boosted audio amplifier @ 40 */
->  };
->
-> +&mdss {
-> +       status =3D "okay";
-> +};
-> +
-> +&mdss_dsi0 {
-> +       vdda-supply =3D <&pm6125_l18>;
-> +       status =3D "okay";
-> +
-> +       panel@0 {
-> +               compatible =3D "samsung,sofef01-m-ams597ut01";
+> v1->v2: I have dropped properties renesas,csi-ss and
+>         renesas,csi-ss-high. I have added property
+> 	renesas,csi-no-ss, and to configure SS as active
+> 	high one now needs to use property spi-cs-high.
+> 	I have also reworded the changelog to use a more
+> 	modern terminology (host and target as opposed to
+> 	master and slave).
+> 
+>  .../devicetree/bindings/spi/renesas,rzv2m-csi.yaml       | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
 
-This needs to be documented.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-Rob
 
