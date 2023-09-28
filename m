@@ -1,116 +1,194 @@
-Return-Path: <devicetree+bounces-4246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 084087B1B5E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 13:45:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 429527B1B6C
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 13:52:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id D80242814EB
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 11:45:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id E317C281179
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 11:52:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78CA237CAA;
-	Thu, 28 Sep 2023 11:45:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73CDC37C9F;
+	Thu, 28 Sep 2023 11:52:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEF6A18622
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 11:45:39 +0000 (UTC)
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1424412A;
-	Thu, 28 Sep 2023 04:45:37 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0341918622
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 11:52:30 +0000 (UTC)
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5B5AF5;
+	Thu, 28 Sep 2023 04:52:28 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4064876e8b8so26002105e9.0;
+        Thu, 28 Sep 2023 04:52:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1695901538; x=1727437538;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=X5p7JcHFpT44Zh0Pe/0NroATZwJsdO+79pqlDjr7wh8=;
-  b=FPP/SjC1Q2MYdX+I5fARcaeEPxQqGUaq4s4wkKBkGnz+unGWKBnUQz4M
-   RaD25g8dGkPd+Lz1qmRnzW6PIhQGmMN/1RzOZIRXgoU+kXyEbgvomAFos
-   +7/yO92/NFh5dEMy1mx7uQS6rZYUZSnJEfm6YZM1qdP9zHoVSCST1nP/v
-   9sQ5nH1yG7Or+D6kHjhqwBPaZMQ/V27R8jka9KfnyaUv+pCxhMFJHs6DQ
-   NuydGByXsawiik2hiXLvKT2lGIfEgoOxzvVEpeVylFlZqbV5IMjFvdWq5
-   zqC88P8ZJUv6viSF1LIILDy0Eqh0nRb2JVRtzWDV31rlainnhnWoT6pMD
-   g==;
-X-IronPort-AV: E=Sophos;i="6.03,183,1694728800"; 
-   d="scan'208";a="33198952"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 28 Sep 2023 13:45:30 +0200
-Received: from localhost.localdomain (SCHIFFERM-M2.tq-net.de [10.121.49.20])
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPA id 89748280086;
-	Thu, 28 Sep 2023 13:45:30 +0200 (CEST)
-From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux@ew.tq-group.com,
-	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-Subject: [PATCH 4/4] arm64: dts: ti: k3-am64-tqma64xxl-mbax4xxl: update gpio-led configuration
-Date: Thu, 28 Sep 2023 13:45:13 +0200
-Message-Id: <79cb3cdfed19962ce0d4ae558de897695658a81f.1695901360.git.matthias.schiffer@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <d5991041263c96c798b94c0844a1550e28daa3b1.1695901360.git.matthias.schiffer@ew.tq-group.com>
-References: <d5991041263c96c798b94c0844a1550e28daa3b1.1695901360.git.matthias.schiffer@ew.tq-group.com>
+        d=gmail.com; s=20230601; t=1695901947; x=1696506747; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=mi0Qpp+66iw3Eu/2daVu9ecjp3IKiE246H3U/Qd4rPQ=;
+        b=Tbaxa8XohlcrfUiklJnMbu+C1R2dj3gody8A5AMsuQNL05ssalTcltgNffJxWmF+bz
+         Xyqz0POZbFCyUnTl3SMKC/FiZjoLSGWaGPqF2pccmxjmpsUwOfr29OWm2GnjPJUMA+Sb
+         h6T6Ipuad9oC8NAbAL4HLZn4rT1jwLRW0Kfyk9iDqNP0XOnsiEdBW35C7E+WOEtl+tib
+         KuoBWQ9oGhY4NvLqqMWPTwnJsdd1R4CbF43NOtAqdGjglHe6rfVQ5TWaX2qub/4qwZmx
+         dHott82ayqfzxHVdffjX7Hshe8pHlHV5+s0frQgMX2OvLxD+qxu3BfSGAyquYnYuPKB8
+         slrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695901947; x=1696506747;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mi0Qpp+66iw3Eu/2daVu9ecjp3IKiE246H3U/Qd4rPQ=;
+        b=fRwmiqkob226ghs0AFrDjsMo/tQUQ0Dtt0x16hdIKjUkCF+sPOnl7cZn5hyjVMTJGV
+         m0aQR8cIiIe5bOI4tRSd1JB1ki4kopHez3/nD4w1dapYZm8G0ogmcEnljIKmrDn7NaD9
+         8OqQtxjVLZreDj+MYyDn/qsYXMX0eKrhfnf6q/ceobINoXirrxXBYB0GbHBi0eVGUxky
+         iYMcD7govTMOx8zOXTFoTAalIpZ00mgxR6qvWTiABeNiRNcxK7zNFUHH2o6dtRsieIIR
+         G0fWej1MDkUH3Xp6Lwt4+NKyb/5ERHZDt0xFdZudIqQj0MV4Qx3uZKrOPgWr1PGzSezc
+         83+Q==
+X-Gm-Message-State: AOJu0YwiizTL6A0PRslkALGzJTjjMToqKUHSxku/W8VCj3aqHVwabeTo
+	Rch4SgnHtdWd0ZJuAQDEiZ8=
+X-Google-Smtp-Source: AGHT+IERkIcRtPRoApWbVzzaEhLEJdqPbeDDri5WVWkJACp1t/QAn3tCqsvofX8pzjO+1dLmLStnWA==
+X-Received: by 2002:a05:600c:21c5:b0:406:45c1:a657 with SMTP id x5-20020a05600c21c500b0040645c1a657mr1026826wmj.6.1695901946900;
+        Thu, 28 Sep 2023 04:52:26 -0700 (PDT)
+Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
+        by smtp.gmail.com with ESMTPSA id v20-20020a05600c215400b00401b242e2e6sm17293654wml.47.2023.09.28.04.52.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Sep 2023 04:52:26 -0700 (PDT)
+Message-ID: <5b6318f16799e6e2575fe541e83e42e0afebe6cf.camel@gmail.com>
+Subject: Re: [PATCH v2 2/2] drivers: misc: adi-axi-tdd: Add TDD engine
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Arnd Bergmann <arnd@arndb.de>, Eliza Balas <eliza.balas@analog.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+ "derek.kiernan@amd.com" <derek.kiernan@amd.com>, "dragan.cvetic@amd.com"
+ <dragan.cvetic@amd.com>,  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Jonathan Cameron
+ <jic23@kernel.org>
+Date: Thu, 28 Sep 2023 13:52:25 +0200
+In-Reply-To: <839638d2-7502-4925-8b7f-6b15779a6840@app.fastmail.com>
+References: <20230928092804.22612-1-eliza.balas@analog.com>
+	 <20230928092804.22612-3-eliza.balas@analog.com>
+	 <839638d2-7502-4925-8b7f-6b15779a6840@app.fastmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Replace the deprecated label property with color/function.
+Hi Arnd,
 
-Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
----
- arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+On Thu, 2023-09-28 at 12:07 +0200, Arnd Bergmann wrote:
+> On Thu, Sep 28, 2023, at 11:28, Eliza Balas wrote:
+> > This patch introduces the driver for the new ADI TDD engine HDL.
+> > The generic TDD controller is in essence a waveform generator
+> > capable of addressing RF applications which require Time Division
+> > Duplexing, as well as controlling other modules of general
+> > applications through its dedicated 32 channel outputs.
+> >=20
+> > The reason of creating the generic TDD controller was to reduce
+> > the naming confusion around the existing repurposed TDD core
+> > built for AD9361, as well as expanding its number of output
+> > channels for systems which require more than six controlling signals.
+> >=20
+> > Signed-off-by: Eliza Balas <eliza.balas@analog.com>
+>=20
+> Thanks for your submission, I've had a first look at the driver
+> and the implementation of the interface you have chosen looks
+> all good to me, so I have no detailed comments on that.
+>=20
+> It would however help to explain the ideas you had for the
+> user-space interface design and summarize them in the changelog
+> text.
+>=20
+> You have chosen a low-level interface that wraps the individual
+> device registers and gives user space direct control over them.
+> The risk here is to lock yourself into the first design,
+> giving you less flexibility for future extensions, so it would
+> help to understand what the usage model is here.
+>=20
+> One risk is that there may be an in-kernel user in the future
+> when the TDD engine interacts with another device, so you
+> need a driver level interface, which would in turn break
+> if any user pokes the registers directly.
+>=20
+> Another possible problem I see is that an application written
+> for this driver would be incompatible with similar hardware
+> that has the same functionality but a different register-level
+> interface, or even a minor revision of the device that ends up
+> breaking one of the assumptions about the hardware design.
+>=20
+> In both cases, the likely answer is to have a higher-level
+> interface of some sort, but the downside of that would be
+> that it is much harder to come up with a good interface that
+> covers all possible use cases.
+>=20
+> Another question is whether you could fit into some
+> existing subsystem instead of creating a single-driver
+> interface. drivers/iio/ might be a good choice, as
+> it already handles both in-kernel and userspace users,
+> and provides a common abstraction for multiple classes
+> of devices that (without any domain knowledge in my case)
+> look similar enough that this could be added there.
+>=20
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
-index 1cb44fb9d2729..d95d80076a427 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
-@@ -8,6 +8,7 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/net/ti-dp83867.h>
- #include <dt-bindings/phy/phy.h>
- #include <dt-bindings/pwm/pwm.h>
-@@ -59,12 +60,14 @@ gpio-leds {
- 		pinctrl-0 = <&mcu_gpio_leds_pins>;
- 
- 		led-0 {
--			label = "led0";
- 			gpios = <&mcu_gpio0 8 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_INDICATOR;
- 		};
- 		led-1 {
--			label = "led1";
- 			gpios = <&mcu_gpio0 9 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_YELLOW>;
-+			function = LED_FUNCTION_INDICATOR;
- 		};
- 	};
- 
--- 
-TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht München, HRB 105018
-Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
-https://www.tq-group.com/
+Yeah, the same question was done in v1 [1]:
+
+For some reason (I guess a simple mistake :)) Jonathan only replied to me: =
+Here is
+it's response:
+
+"
+> We do have tons of specific attributes (non IIO ones) for this device. Th=
+e ones
+> resembling IIO is likely because it feels familiar to us in ADI. Anyways,=
+ I have my
+> doubts this fits (at least as IIO stands right now) but maybe Jonathan th=
+inks
+> otherwise.
+
+From a superficial look, it's a stretch but we have stretched IIO in the pa=
+st
+(things like very high frequency synthesizers)
+
+In some ways this looks like a complex PWM device though it would probably =
+be hard
+to force it into that framework.
+
+This is weird enough that I'd be surprised to see it fit well anywhere so m=
+isc
+might be the best option.
+
+Jonathan
+
+>=20
+> +cc Jonathan...
+"
+
+That said, I do agree that some of the interface should likely not be part =
+of the
+"main" ABI. Like anything that states "debugging purposes"  in the ABI file=
+ should
+probably go to debugfs. I'm also not sure about those dual "*_ms" vs "*_raw=
+" files.
+Ideally, we would only provide the non "raw" ones. At least in the beginnin=
+g...=20
+
++cc Jonathan again so he can confirm that I'm not putting words in his mout=
+h :)
+
+[1]: https://lore.kernel.org/all/b2379aadad95d68ca9605bb9566ce6a70121a409.c=
+amel@gmail.com/
+
+- Nuno S=C3=A1
 
 
