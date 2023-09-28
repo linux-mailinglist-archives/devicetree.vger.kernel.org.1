@@ -1,168 +1,74 @@
-Return-Path: <devicetree+bounces-4006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AE627B0FBD
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 01:58:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD4F57B0FF7
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 02:30:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id BF49428114B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Sep 2023 23:58:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id CAA7E281B80
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 00:30:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 321F44E264;
-	Wed, 27 Sep 2023 23:58:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF4FC163;
+	Thu, 28 Sep 2023 00:30:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB05A41AB8
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 23:58:33 +0000 (UTC)
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14A2BF5;
-	Wed, 27 Sep 2023 16:58:32 -0700 (PDT)
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.96)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1qleQB-0004AP-2S;
-	Wed, 27 Sep 2023 23:58:23 +0000
-Date: Thu, 28 Sep 2023 00:56:04 +0100
-From: Daniel Golle <daniel@makrotopia.org>
-To: Frank Wunderlich <linux@fw-web.de>
-Cc: linux-mediatek@lists.infradead.org,
-	Frank Wunderlich <frank-w@public-files.de>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEC3E7E2
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 00:30:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EA20C433C7;
+	Thu, 28 Sep 2023 00:30:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695861001;
+	bh=kXFSCeRU2ImTAfuVFvWc2Qp0CvqqeJOrJwWl5+HdpAk=;
+	h=From:To:Subject:Date:In-Reply-To:References:From;
+	b=atPeUuvoPLi3iU+dg7MQuE4O7PqPJfd6TEPAINWhLnshhqP9xQOmzXnX+LLWu6yBJ
+	 hYJuR7q3aRBFudSxvb8F7ZFx2xY53PzDVZoQei3TqxGycOeVMHoshEPvAYAXL3JxeI
+	 xZ/hLAor3pDublhIXvj1xjtlsgCwpINT6pYGL2PF+NXM94mmgoeuwbfRZoRADjCqst
+	 Qp/JXiEDuPi1YzZo331Z7rP8x6hyUtYnGnibm4Sz8+xCu2GDV2pwtyIOVbRXouu+ZV
+	 Trymnp67pw1LcKjUt8VyqTEmf5b1TYcW6dQ3e/95KH4rIz49BAryNXT2dWXhhzdAYV
+	 QyxTvI+7USs7g==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 4/4] thermal/drivers/mediatek/lvts_thermal: add mt7988
- support
-Message-ID: <ZRTBFJPL3NwWpMSP@pidgin.makrotopia.org>
-References: <20230922055020.6436-1-linux@fw-web.de>
- <20230922055020.6436-5-linux@fw-web.de>
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [RESEND PATCH 1/2] ARM: dts: qcom: apq8064: drop label property from DSI
+Date: Wed, 27 Sep 2023 17:34:05 -0700
+Message-ID: <169586125037.1226038.2973634569568481893.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20230924183335.49961-1-krzysztof.kozlowski@linaro.org>
+References: <20230924183335.49961-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230922055020.6436-5-linux@fw-web.de>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
-On Fri, Sep 22, 2023 at 07:50:20AM +0200, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> Add Support for Mediatek Filogic 880/MT7988 LVTS.
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 
-Tested-by: Daniel Golle <daniel@makrotopia.org>
+On Sun, 24 Sep 2023 20:33:34 +0200, Krzysztof Kozlowski wrote:
+> DSI node does not accept nor use "label" property:
+> 
+>   qcom-apq8064-asus-nexus7-flo.dtb: dsi@4700000: Unevaluated properties are not allowed ('label' was unexpected)
+> 
+> 
 
-> ---
-> v3:
-> - drop comments
-> 
-> v2:
-> - use 105°C for hw shutdown
-> - move constants to binding file
-> - change coeff.a to temp_factor and coeff.b to temp_offset
-> - change to lvts to lvts-ap (Application Processor)
-> - drop comments about efuse offsets
-> - change comment of mt8195 to be similar to mt7988
-> ---
->  drivers/thermal/mediatek/lvts_thermal.c | 38 +++++++++++++++++++++++++
->  1 file changed, 38 insertions(+)
-> 
-> diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/mediatek/lvts_thermal.c
-> index c2669f405a94..23b4e0b3195c 100644
-> --- a/drivers/thermal/mediatek/lvts_thermal.c
-> +++ b/drivers/thermal/mediatek/lvts_thermal.c
-> @@ -82,6 +82,8 @@
->  #define LVTS_GOLDEN_TEMP_DEFAULT	50
->  #define LVTS_COEFF_A_MT8195			-250460
->  #define LVTS_COEFF_B_MT8195			250460
-> +#define LVTS_COEFF_A_MT7988			-204650
-> +#define LVTS_COEFF_B_MT7988			204650
->  
->  #define LVTS_MSR_IMMEDIATE_MODE		0
->  #define LVTS_MSR_FILTERED_MODE		1
-> @@ -89,6 +91,7 @@
->  #define LVTS_MSR_READ_TIMEOUT_US	400
->  #define LVTS_MSR_READ_WAIT_US		(LVTS_MSR_READ_TIMEOUT_US / 2)
->  
-> +#define LVTS_HW_SHUTDOWN_MT7988		105000
->  #define LVTS_HW_SHUTDOWN_MT8195		105000
->  
->  #define LVTS_MINIMUM_THRESHOLD		20000
-> @@ -1269,6 +1272,33 @@ static int lvts_remove(struct platform_device *pdev)
->  	return 0;
->  }
->  
-> +static const struct lvts_ctrl_data mt7988_lvts_ap_data_ctrl[] = {
-> +	{
-> +		.cal_offset = { 0x00, 0x04, 0x08, 0x0c },
-> +		.lvts_sensor = {
-> +			{ .dt_id = MT7988_CPU_0 },
-> +			{ .dt_id = MT7988_CPU_1 },
-> +			{ .dt_id = MT7988_ETH2P5G_0 },
-> +			{ .dt_id = MT7988_ETH2P5G_1 }
-> +		},
-> +		.num_lvts_sensor = 4,
-> +		.offset = 0x0,
-> +		.hw_tshut_temp = LVTS_HW_SHUTDOWN_MT7988,
-> +	},
-> +	{
-> +		.cal_offset = { 0x14, 0x18, 0x1c, 0x20 },
-> +		.lvts_sensor = {
-> +			{ .dt_id = MT7988_TOPS_0},
-> +			{ .dt_id = MT7988_TOPS_1},
-> +			{ .dt_id = MT7988_ETHWARP_0},
-> +			{ .dt_id = MT7988_ETHWARP_1}
-> +		},
-> +		.num_lvts_sensor = 4,
-> +		.offset = 0x100,
-> +		.hw_tshut_temp = LVTS_HW_SHUTDOWN_MT7988,
-> +	}
-> +};
-> +
->  static const struct lvts_ctrl_data mt8195_lvts_mcu_data_ctrl[] = {
->  	{
->  		.cal_offset = { 0x04, 0x07 },
-> @@ -1348,6 +1378,13 @@ static const struct lvts_ctrl_data mt8195_lvts_ap_data_ctrl[] = {
->  	}
->  };
->  
-> +static const struct lvts_data mt7988_lvts_ap_data = {
-> +	.lvts_ctrl	= mt7988_lvts_ap_data_ctrl,
-> +	.num_lvts_ctrl	= ARRAY_SIZE(mt7988_lvts_ap_data_ctrl),
-> +	.temp_factor	= LVTS_COEFF_A_MT7988,
-> +	.temp_offset	= LVTS_COEFF_B_MT7988,
-> +};
-> +
->  static const struct lvts_data mt8195_lvts_mcu_data = {
->  	.lvts_ctrl	= mt8195_lvts_mcu_data_ctrl,
->  	.num_lvts_ctrl	= ARRAY_SIZE(mt8195_lvts_mcu_data_ctrl),
-> @@ -1363,6 +1400,7 @@ static const struct lvts_data mt8195_lvts_ap_data = {
->  };
->  
->  static const struct of_device_id lvts_of_match[] = {
-> +	{ .compatible = "mediatek,mt7988-lvts-ap", .data = &mt7988_lvts_ap_data },
->  	{ .compatible = "mediatek,mt8195-lvts-mcu", .data = &mt8195_lvts_mcu_data },
->  	{ .compatible = "mediatek,mt8195-lvts-ap", .data = &mt8195_lvts_ap_data },
->  	{},
-> -- 
-> 2.34.1
-> 
+Applied, thanks!
+
+[1/2] ARM: dts: qcom: apq8064: drop label property from DSI
+      commit: 83daed13a5aa0ca563bfde920178ca67fbbdb5f3
+[2/2] ARM: dts: qcom: sdx65: fix SDHCI clocks order
+      commit: 88fc274cb6c4bd643b0157db2602f685af57b846
+
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
