@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-4034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F3657B11DB
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 06:56:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 850037B11E5
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 07:03:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2D0A328150B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 04:56:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 64665B20973
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 05:03:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03DBED522;
-	Thu, 28 Sep 2023 04:56:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2CF2E55E;
+	Thu, 28 Sep 2023 05:03:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA35D749B
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 04:56:33 +0000 (UTC)
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17C2DBF
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 21:56:31 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-9b1ebc80d0aso1287380066b.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 21:56:31 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41EDF8471
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 05:03:06 +0000 (UTC)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02851122
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 22:03:04 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9a9f139cd94so1518676466b.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 22:03:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695876989; x=1696481789; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695877382; x=1696482182; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=C4iB1nWfdkplR5rehtoms0dHBmNKDO/VCIkn0MwaJ4k=;
-        b=LqNEXjBeyF4lV5C5u0CEZGWHHhX1G/fGTcULMw0WV6fnaTo3yckC5WrmrKyD9S7izR
-         dv9l/QuFR1V1AtmyPPM7FocK1pKnY5hZhsKWD9RAF+4tfyyEDRGUFbpfG92hvBijaHPD
-         kalIGw/gaj05/85kV6R5e3mousfc+8cvVNk77KHpl2S5vfWXzz/7+oYX2VvqCjlKUgVI
-         2QBpdhd80/GHkEvJnLeemumtfXaFXvKDMP/OHv9AVY4BHe3N/0/WKp9LEO3YgysHP+bF
-         0nwkz2HQVD26s4edy9si44DGqX74zH79LtgEuW/QWcPDrPVD6Qn5MRSIU5VSnZfJu/Vz
-         U/7g==
+        bh=mspHcJckUlaxETWwuOHrN0yw1MsZoClt+U5QzCn+vVk=;
+        b=zlXCStP3hOEDUjMwcYJjkp0YrocsfjFtnyGivUfC1Vdoq4bluEbQf74KhuUpK1ghYX
+         GUgWgYrVrK1pf66wAby0T4szMcKxpizG/EmmvOIdPLLlMGu9EoCuptUjzWv8zLVjBgtZ
+         c8TaL9UX1jg/YXm24UUs3pvQ4pr5HH+AL9tVkmnVrsF0HrUwUlClxNwTKfostUHaVaAI
+         KkGfX0jL1CZm0m2u7Mz4Nspy//DUvz7dENc0iDA43uSxEi3vJN5x/IOfjR315I9bsnuK
+         z7cJDKwYrIe7cJkzvPBvOPTvVbWJf0520i/znmBWNzXNhiyRNYeATdYUBuSfa5QDBCIy
+         8HvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695876989; x=1696481789;
+        d=1e100.net; s=20230601; t=1695877382; x=1696482182;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C4iB1nWfdkplR5rehtoms0dHBmNKDO/VCIkn0MwaJ4k=;
-        b=QSeniSvXqjxg8tpdZ4FiK9FMJcPLj9fPp2MZdIGZjYxjbdNHlHgGirPm7IsKjDNHlP
-         6lFI1K68gxX2tREwBsqyJmVY80TWuIhxG+F1+vAka4Ts09Dl194tSUw+H9F2DIVQQ017
-         aG8XTfr7g655dn70RZRUHF2ySfs4QJbiEjwM/3kOwqOoTiiLUGYIdOU4IuaQAwRapbv/
-         3kON+R9PQTShAzLVwn7anCDn9WG4EaiSXB0juEn/kkPXfzGWdF8Bqs05y9K/Mjzjllhn
-         JHG5z38hA1QAQvAGXUYJRL4wL0ph9hsIm+6GNOFfGIzEsoYmsVKtml9PErbg7JT5KyIR
-         FMxQ==
-X-Gm-Message-State: AOJu0YwX21ea/1LkSpKEAmXihAsYjzjgadzPeZ3hLIJi7w8LjchodDPe
-	PsURZsmJ3ikqUnzd0HfAOlLTWA==
-X-Google-Smtp-Source: AGHT+IGBNcWBnssmUYK1CVxXXzPy5SGtc5layIFYw2T+7vdDrI0iDtAYykd2rupwlwEhj3HMCFjZeA==
-X-Received: by 2002:a17:906:cc14:b0:9ad:cf30:10c with SMTP id ml20-20020a170906cc1400b009adcf30010cmr162908ejb.46.1695876989019;
-        Wed, 27 Sep 2023 21:56:29 -0700 (PDT)
-Received: from [192.168.1.231] (host-87-4-82-94.retail.telecomitalia.it. [87.4.82.94])
-        by smtp.gmail.com with ESMTPSA id y22-20020a170906449600b009adc77fe165sm10082708ejo.118.2023.09.27.21.56.27
+        bh=mspHcJckUlaxETWwuOHrN0yw1MsZoClt+U5QzCn+vVk=;
+        b=aePFnpuKMy4RaleYzLM0Vi2/nvWzxV2zNPiU7KQxGr3Djzh7SBDUatzyoSaOV39U9j
+         ZMoYNzqR/NiZ+bW0WuSrVmcsD4LWmSW/wO+GIqt2mwwP/O6Nfjy9gbILHPd+2W1l1hMG
+         8A4Jp5PA1BoiGCM18ChTLkmJDcx07CSUWHavmut4OH/QR2U/iZeJqBmeDlZn7O7QdUpS
+         FDrk39QUEo9rbEHY+zm8HQxtSDnTSK1srJOl7D/6KT8rxG+q/j9olapLIq/b3td59jWj
+         7grfggrzX8Furi+v8w3W3//hEtIfDozxMFcraOcnWdekQ1rhAD3J95BQsomXHpFqrQHY
+         0ndA==
+X-Gm-Message-State: AOJu0YxqCxaV7vfJEhNxiFyGmb0kZbmf43OBUZAAiiMex4smfBIu+/7C
+	5oCVmesTRovAR0m/XXl7glXPig==
+X-Google-Smtp-Source: AGHT+IHvfs6p3D0WxZjC1iuzuOH6XGVCQWrXBUEiHU77uqSQR2zLGTmNM/xP/AdD0R4dkkAH79BeFw==
+X-Received: by 2002:a17:906:8a73:b0:9aa:e08:9fb7 with SMTP id hy19-20020a1709068a7300b009aa0e089fb7mr167922ejc.76.1695877382465;
+        Wed, 27 Sep 2023 22:03:02 -0700 (PDT)
+Received: from [192.168.1.233] (host-87-4-82-94.retail.telecomitalia.it. [87.4.82.94])
+        by smtp.gmail.com with ESMTPSA id i22-20020a17090671d600b0099bcdfff7cbsm10194171ejk.160.2023.09.27.22.03.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Sep 2023 21:56:28 -0700 (PDT)
-Message-ID: <3c2a0e56-7e94-4497-9577-eb24922ff8c6@linaro.org>
-Date: Thu, 28 Sep 2023 06:56:26 +0200
+        Wed, 27 Sep 2023 22:03:02 -0700 (PDT)
+Message-ID: <2665f382-3df9-441e-bdb5-205a3466dd35@linaro.org>
+Date: Thu, 28 Sep 2023 07:02:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,22 +63,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 1/3] dt-bindings: pinctrl: Add support for Amlogic T7
- SoCs
+Subject: Re: [EXT] Re: [PATCH v4 1/2] arm64: dts: imx8-ss-img: Assign slot for
+ imx jpeg encoder/decoder
 Content-Language: en-US
-To: tanure@linux.com
-Cc: Huqiang Qin <huqiang.qin@amlogic.com>, linus.walleij@linaro.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, brgl@bgdev.pl, andy@kernel.org,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-References: <20230922094342.637251-1-huqiang.qin@amlogic.com>
- <20230922094342.637251-2-huqiang.qin@amlogic.com>
- <ff2c6d41-7c9a-4633-8343-eb94404de6e8@linux.com>
- <2d7eac30-480c-49a4-903c-d4f2b3cdfc8d@linaro.org>
- <CAJX_Q+2vpMM78DA_Q1YLddwogW_vHLDLQbO_mnBk_zMNg7V8KA@mail.gmail.com>
+To: Ming Qian <ming.qian@nxp.com>,
+ "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "shawnguo@kernel.org" <shawnguo@kernel.org>
+Cc: "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "mchehab@kernel.org" <mchehab@kernel.org>,
+ "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+ "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+ "kernel@pengutronix.de" <kernel@pengutronix.de>,
+ "festevam@gmail.com" <festevam@gmail.com>, "X.H. Bao" <xiahong.bao@nxp.com>,
+ Eagle Zhou <eagle.zhou@nxp.com>, Tao Jiang <tao.jiang_2@nxp.com>,
+ dl-linux-imx <linux-imx@nxp.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+References: <20230926101000.13392-1-ming.qian@nxp.com>
+ <1144f7f3-ffdc-47ff-b90f-2d2dd86c8f15@linaro.org>
+ <AM6PR04MB6341F15D9A932C3567103BF4E7C2A@AM6PR04MB6341.eurprd04.prod.outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,7 +131,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAJX_Q+2vpMM78DA_Q1YLddwogW_vHLDLQbO_mnBk_zMNg7V8KA@mail.gmail.com>
+In-Reply-To: <AM6PR04MB6341F15D9A932C3567103BF4E7C2A@AM6PR04MB6341.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -134,53 +141,52 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 27/09/2023 12:54, Lucas Tanure wrote:
-> On Wed, Sep 27, 2023 at 8:48 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
+On 27/09/2023 11:19, Ming Qian wrote:
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: 2023年9月27日 16:11
+>> To: Ming Qian <ming.qian@nxp.com>; Mirela Rabulea (OSS)
+>> <mirela.rabulea@oss.nxp.com>; robh+dt@kernel.org; shawnguo@kernel.org
+>> Cc: krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+>> mchehab@kernel.org; hverkuil-cisco@xs4all.nl; s.hauer@pengutronix.de;
+>> kernel@pengutronix.de; festevam@gmail.com; X.H. Bao
+>> <xiahong.bao@nxp.com>; Eagle Zhou <eagle.zhou@nxp.com>; Tao Jiang
+>> <tao.jiang_2@nxp.com>; dl-linux-imx <linux-imx@nxp.com>;
+>> devicetree@vger.kernel.org; linux-media@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org
+>> Subject: [EXT] Re: [PATCH v4 1/2] arm64: dts: imx8-ss-img: Assign slot for imx
+>> jpeg encoder/decoder
 >>
->> On 27/09/2023 08:08, Lucas Tanure wrote:
->>> On 22-09-2023 10:43, Huqiang Qin wrote:
->>>> Add a new compatible name for Amlogic T7 pin controller, and add
->>>> a new dt-binding header file which document the detail pin names.
->>>>
->>>> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
->>>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
->>>> ---
->>>>
->>>> V1 -> V2: Rename amlogic-t7-gpio.h to amlogic,t7-periphs-pinctrl.h
->>>>            Corrected indentation format.
->>>> V2 -> V3: Updated subject.
->>>>
->>>>   .../pinctrl/amlogic,meson-pinctrl-a1.yaml     |   1 +
->>>>   .../gpio/amlogic,t7-periphs-pinctrl.h         | 179 ++++++++++++++++++
+>> Caution: This is an external email. Please take care when clicking links or
+>> opening attachments. When in doubt, report the message using the 'Report
+>> this email' button
 >>
->> ...
 >>
->>>> +#define GPIOH_0             148
->>>> +#define GPIOH_1             149
->>>> +#define GPIOH_2             150
->>>> +#define GPIOH_3             151
->>>> +#define GPIOH_4             152
->>>> +#define GPIOH_5             153
->>>> +#define GPIOH_6             154
->>>> +#define GPIOH_7             155
->>>> +
->>>> +#define GPIO_TEST_N 156
->>>> +
->>>> +#endif /* _DT_BINDINGS_AMLOGIC_T7_GPIO_H */
->>> Tested-by: Lucas Tanure <tanure@linux.com>
+>> On 26/09/2023 12:09, Ming Qian wrote:
+>>> There are total 4 slots available in the IP, and we only need to use
+>>> one slot in one os, assign a single slot for imx jpeg device node,
+>>> configure interrupt and power domain only for 1 slot, not for the all 4 slots.
 >>
->> How can you test bindings?
+>> DTS is independent of OS, so same DTS will be used by two OSes. This patch is
+>> not correct in that matter. Explanation is not proper justification.
 >>
->> Best regards,
->> Krzysztof
->>
-> Sure!
-> make dt_binding_check  dtbs_check don't flag any issues with T7 bindings.
+> 
+> Hi Krzysztof,
+> 
+> I agree that DTS is independent of OS, otherwise we need to choose the slot index by hard code in driver.
+> I think it's just the reason why we need this patch.
+> We have different platforms that use this IP, we need to configure the slot in dts.
 
-Rob's bot does it... anyway this is ehich is equivalent to compile
-testing of C. This is not testing and we do no credit compile tests with
-"Tested-by". Otherwise dozens of build-bots would had to receive it.
+I still do not know what is the "slot". VM partitioning? Some pinmux
+configuration?
+
+Other platforms will use the same DTS, so the same slot and you are back
+at the same problem... DTS should be the full description of the
+hardware, thus removing interrupts is not "full description" anymore.
+
+> 
+> Would you please give some guide about proper justification?
+Describe architecture and then propose generic solution matching
+multiple vendors and IP blocks, not something solving only this one problem.
 
 Best regards,
 Krzysztof
