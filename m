@@ -1,130 +1,112 @@
-Return-Path: <devicetree+bounces-4166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56E847B1748
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 11:25:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3CE77B1762
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 11:32:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id A4D5C282469
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 09:25:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id ED4C21C20869
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 09:32:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D31863419B;
-	Thu, 28 Sep 2023 09:25:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D062341A2;
+	Thu, 28 Sep 2023 09:32:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCE1E34192
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 09:25:23 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 254F6CF6;
-	Thu, 28 Sep 2023 02:25:21 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38S9PAwD104297;
-	Thu, 28 Sep 2023 04:25:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1695893110;
-	bh=o0ED1kfJG1RufpI9CAgyV1TxWurfgTv4TIBc7Zp6N1g=;
-	h=From:Date:Subject:References:In-Reply-To:To:CC;
-	b=s6kvyYv0IrHovbvZq9KKX2JghoGppsy0vNEtq24IJg1qLNZEasa1rg5nDk/kB+8u/
-	 l0z7yKul1coqQvnm9QF0evvpSs0SdiYu9rFd/It1SjnUIk6PGMGFYGPAxyP5Qkjamk
-	 4KW9JLeedi/00MWhYoG860BqDdcH0dl7i7v5gqZY=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38S9PAc7013142
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 28 Sep 2023 04:25:10 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 28
- Sep 2023 04:25:10 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 28 Sep 2023 04:25:10 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38S9P9Xx121283;
-	Thu, 28 Sep 2023 04:25:10 -0500
-From: Jai Luthra <j-luthra@ti.com>
-Date: Thu, 28 Sep 2023 14:54:31 +0530
-Subject: [PATCH v2 6/6] arm64: defconfig: Enable TPS6593 PMIC for SK-AM62A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EB1831A83
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 09:32:21 +0000 (UTC)
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D379C122;
+	Thu, 28 Sep 2023 02:32:19 -0700 (PDT)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38S88Fsi027951;
+	Thu, 28 Sep 2023 05:32:03 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3tck4q7973-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 Sep 2023 05:32:03 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 38S9W2OI057121
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 28 Sep 2023 05:32:02 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 28 Sep 2023 05:32:01 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 28 Sep 2023 05:32:01 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Thu, 28 Sep 2023 05:32:01 -0400
+Received: from ubuntu20.04.ad.analog.com (HYB-d0iOFy9ma8q.ad.analog.com [10.48.65.139])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 38S9Vjfa028736;
+	Thu, 28 Sep 2023 05:31:48 -0400
+From: Eliza Balas <eliza.balas@analog.com>
+To: 
+CC: Eliza Balas <eliza.balas@analog.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Derek Kiernan <derek.kiernan@amd.com>,
+        Dragan Cvetic
+	<dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v2 0/2] Add support for ADI TDD Engine
+Date: Thu, 28 Sep 2023 12:28:02 +0300
+Message-ID: <20230928092804.22612-1-eliza.balas@analog.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20230928-mcasp_am62a-v2-6-ce9f0e1ba22b@ti.com>
-References: <20230928-mcasp_am62a-v2-0-ce9f0e1ba22b@ti.com>
-In-Reply-To: <20230928-mcasp_am62a-v2-0-ce9f0e1ba22b@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon
-	<will@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devarsht@ti.com>, <a-bhatia1@ti.com>,
-        Jai
- Luthra <j-luthra@ti.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=867; i=j-luthra@ti.com;
- h=from:subject:message-id; bh=/Lj5kyUdXlkA9yGStAcfh52IUoBdgRQoHn/afCOf6+c=;
- b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBlFUZnbUw5nSwPtomUBH4NLaw//CRnbWv9s8MaE
- 8Ep8DCTFZWJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZRVGZwAKCRBD3pH5JJpx
- RWIZD/415zV3mz8jK19pj5dxOhPYqM0c67jMJwr5iixRKbcVt3R4kFTonmnPI29S/zTV4s7iymZ
- /tBLBJ7Un4U0F+VJZ+0kiUjnhUKlL555Yxp1VXSSvJTBlKfFbMGPfE6vIaCG2hXeubsor6CTNup
- oh3HFiSiI5+Eb09j+EjEXvB9BGAfunZPLqtSQzOphscNH8asVepBhOeUCyLvgtbXEAYD3AKo3+g
- zX9N6eK9G8XHk5dOr/CWeJWmp4gvB6GkNZpNUXz756WRzCxWHWuADPuzeqVDAGxys6EF2vN3jqQ
- e4DEaSXII37lEJKEbACNNO3QC9anuNTAHGWiXLwpuW3bt4WycyubMszGQYsm+AqE5fUAIKAA8Dc
- zCDOUF338oGZryzEm44mbI3zKDBQnk/HiAZfkmzEd5WJH6X8kkHnRK97ULyEkdSAc5Q3isHZx9n
- 9oCRR6igYNf8x/OIm6TocVTUqdpdH9FPGEAEcQ4G4XW9k9a+qqTy+wc15uZTM1p0CYMggUDIDs+
- 2iNPCA7cqzTgpihleTGh7XsTJA3JC5fTx9SmyBpPGSYlLcYZ84gauWOQDv9hgapXrlYePHTT2IY
- SpVInTK3+eLtBz6DfXslBHU9ENXWhpoMzLuX34gHrbQJ/Qy0/8WEmKFoykFdGtFG/mWG12s562a
- mOm6IXDmCkH3olg==
-X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
- fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: xZgqBPDDrrSLANtmYsTBwJBiRqmlcMXK
+X-Proofpoint-ORIG-GUID: xZgqBPDDrrSLANtmYsTBwJBiRqmlcMXK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-28_07,2023-09-27_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ priorityscore=1501 clxscore=1011 lowpriorityscore=0 malwarescore=0
+ spamscore=0 impostorscore=0 mlxlogscore=799 bulkscore=0 phishscore=0
+ adultscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2309180000 definitions=main-2309280081
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-SK-AM62A-LP uses TPS6593x PMIC (interfaced over I2C) to power the SoC
-and various other peripherals on the board [1].
+V1 -> V2:
+ * remove label in examples in bindings file
+ * add detailed description of the hardware in bindings file
+ * remove adi_axi_tdd_clk_disable function
+ * remove devm_add_action_or_reset, devm_clk_get, clk_prepare_enable
+   and use instead devm_clk_get_enabled
 
-Specifically, the audio codec (TLV320AIC3106) on the board relies on the
-PMIC for the DVDD (1.8V) supply.
+Eliza Balas (2):
+  dt-bindings: misc: adi,axi-tdd: Add device-tree binding for TDD engine
+  drivers: misc: adi-axi-tdd: Add TDD engine
 
-[1]: https://www.ti.com/lit/zip/sprr459
-
-Reviewed-by: Devarsh Thakkar <devarsht@ti.com>
-Signed-off-by: Jai Luthra <j-luthra@ti.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 66bfbef73324..38f0ce9cd2a3 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -725,6 +725,7 @@ CONFIG_MFD_SEC_CORE=y
- CONFIG_MFD_SL28CPLD=y
- CONFIG_RZ_MTU3=y
- CONFIG_MFD_TPS65219=y
-+CONFIG_MFD_TPS6594_I2C=m
- CONFIG_MFD_TI_AM335X_TSCADC=m
- CONFIG_MFD_ROHM_BD718XX=y
- CONFIG_MFD_WCD934X=m
+ .../sysfs-bus-platform-drivers-adi-axi-tdd    | 158 ++++
+ .../devicetree/bindings/misc/adi,axi-tdd.yaml |  65 ++
+ MAINTAINERS                                   |   9 +
+ drivers/misc/Kconfig                          |  10 +
+ drivers/misc/Makefile                         |   1 +
+ drivers/misc/adi-axi-tdd.c                    | 780 ++++++++++++++++++
+ 6 files changed, 1023 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-platform-drivers-adi-axi-tdd
+ create mode 100644 Documentation/devicetree/bindings/misc/adi,axi-tdd.yaml
+ create mode 100644 drivers/misc/adi-axi-tdd.c
 
 -- 
-2.42.0
+2.25.1
 
 
