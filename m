@@ -1,441 +1,224 @@
-Return-Path: <devicetree+bounces-4085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 591497B133E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 08:43:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30BC87B1356
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 08:48:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 458261C208E5
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 06:43:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 4B4951C208D0
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 06:48:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DE33262A3;
-	Thu, 28 Sep 2023 06:43:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90266262B1;
+	Thu, 28 Sep 2023 06:48:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3578D1863F
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 06:43:46 +0000 (UTC)
-Received: from out28-195.mail.aliyun.com (out28-195.mail.aliyun.com [115.124.28.195])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 272C4E5;
-	Wed, 27 Sep 2023 23:43:43 -0700 (PDT)
-X-Alimail-AntiSpam:AC=CONTINUE;BC=0.07436259|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0023292-4.2477e-05-0.997628;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047205;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=29;RT=29;SR=0;TI=SMTPD_---.UqKxdRM_1695883411;
-Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.UqKxdRM_1695883411)
-          by smtp.aliyun-inc.com;
-          Thu, 28 Sep 2023 14:43:39 +0800
-From: wangweidong.a@awinic.com
-To: dan.carpenter@linaro.org
-Cc: 13916275206@139.com,
-	alsa-devel@alsa-project.org,
-	arnd@arndb.de,
-	broonie@kernel.org,
-	ckeepax@opensource.cirrus.com,
-	colin.i.king@gmail.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	doug@schmorgal.com,
-	fido_max@inbox.ru,
-	harshit.m.mogalapalli@oracle.com,
-	herve.codina@bootlin.com,
-	krzysztof.kozlowski+dt@linaro.org,
-	lgirdwood@gmail.com,
-	linus.walleij@linaro.org,
-	linux-kernel@vger.kernel.org,
-	liweilei@awinic.com,
-	perex@perex.cz,
-	rf@opensource.cirrus.com,
-	robh+dt@kernel.org,
-	ryans.lee@analog.com,
-	shumingf@realtek.com,
-	tiwai@suse.com,
-	trix@redhat.com,
-	u.kleine-koenig@pengutronix.de,
-	wangweidong.a@awinic.com,
-	yang.lee@linux.alibaba.com,
-	yijiangtao@awinic.com
-Subject: Re: [PATCH V5 8/8] ASoC: codecs: Add aw87390 amplifier driver
-Date: Thu, 28 Sep 2023 14:43:30 +0800
-Message-ID: <20230928064330.104265-1-wangweidong.a@awinic.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <464ada20-072d-48f8-a270-155dfd4a06b9@kadam.mountain>
-References: <464ada20-072d-48f8-a270-155dfd4a06b9@kadam.mountain>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D47C8467
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 06:48:16 +0000 (UTC)
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89C0599;
+	Wed, 27 Sep 2023 23:48:06 -0700 (PDT)
+X-UUID: f7c1d1e85dca11eea33bb35ae8d461a2-20230928
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=JZ3lzCc7PlXX6cPojgDYoXnNiYZZGfKB0wjDCagkwIs=;
+	b=okMbRyBCO9FTt8SC5vJ15ia4Xy5zS093RezALXOLlJrmo+R1zGh8isuZvIjmZavluyUHpnH+AiLPijPpvXzAcJF9GJ6nXevUTJ40/58ApWcH66Rw1/IH2npfiEamtM+fbFlrt06MNOnFY4j6AVSCb25TtvCsNCZKW8jcMKWICWs=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.32,REQID:874db624-75d8-497c-a19d-753a85fa67cb,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:5f78ec9,CLOUDID:91c97814-4929-4845-9571-38c601e9c3c9,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
+	NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-UUID: f7c1d1e85dca11eea33bb35ae8d461a2-20230928
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
+	(envelope-from <ck.hu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1153070846; Thu, 28 Sep 2023 14:48:01 +0800
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 28 Sep 2023 14:48:00 +0800
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 28 Sep 2023 14:47:59 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XkKNYX5RiP/nWcsk1WJ/aqQFbAcp07/Re6ovqCJ5/APAfoK9Y/rds3H0HIDFDY9zxEDe9u5S4+RTKwW7RSq729zUGGyPYfL/gR8I/pqNJvU1NkknIHyohglrodFlxkOm2xl4COo09JiAA+e43kC9ScJ3UjlBS4Jj1KTUbZy22m2x+P2GXdovHxtEsfkN986rSo3/ZHRsixvteOLaMPdj3MVD/ggWt5Kbv7ptKVwGak7RBgi2Qy3PLqBCcNLsmVRxY/ZSpp+KRop667ETYeVHgOOFEBdsO0WweiYKOReTuZIt7UeX0PmJxTbHRIl2Ki+N+BOXe9GG/ZaAa0kab3eKEg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JZ3lzCc7PlXX6cPojgDYoXnNiYZZGfKB0wjDCagkwIs=;
+ b=jd5v9dIC7uZqVb/VZOjgpVnONtlv/W3YuqzsL31vfngDcG/C131g/qXCTuiEplCPT7A/CTBWLwl+DU6U1zMizyhzg9nDgqpkR6fIrt+MSeqyp7lSQvJcQdRRjrx9168FjC5+Rtz7KwqOE5Nhj1uDiKjjk01g1nyXTQCuW85AUjh4Ek6b2m0so9plY+XZvpvy6mcvLKl/XlIvb+ld9jwWev2X+7oZmnA2wxgUi4nlAmND+pYwSrprUCyIxe4PTp3TadFmI0baPBkV1x2tn8u9md3WLlWZIKHcMxLVfkQXYt4oZHiTD/GxHksG1K0k1ndFv0XjmwWYFkxysWas6vOvFA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JZ3lzCc7PlXX6cPojgDYoXnNiYZZGfKB0wjDCagkwIs=;
+ b=ZP84bMxlmwq3L9HhyERHnBEQcATPuGfBoicSY34mhxJGsJWzVIMUsWe4HUSubRWL+UM3pw0xsF3VrrqRxlSROs0gu1qQIPFa7nC38Dw24bemLz1ZB7VMdM/7oTjVONE5OItfMlPitqacIOroIXd0Id8qQJWJTGUEAs+WSpiElBQ=
+Received: from TYZPR03MB6624.apcprd03.prod.outlook.com (2603:1096:400:1f4::13)
+ by SEYPR03MB6815.apcprd03.prod.outlook.com (2603:1096:101:8e::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Thu, 28 Sep
+ 2023 06:47:56 +0000
+Received: from TYZPR03MB6624.apcprd03.prod.outlook.com
+ ([fe80::9c2c:c08a:212f:e984]) by TYZPR03MB6624.apcprd03.prod.outlook.com
+ ([fe80::9c2c:c08a:212f:e984%6]) with mapi id 15.20.6792.026; Thu, 28 Sep 2023
+ 06:47:56 +0000
+From: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
+To: =?utf-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?= <Shawn.Sung@mediatek.com>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	"angelogioacchino.delregno@collabora.com"
+	<angelogioacchino.delregno@collabora.com>, "robh+dt@kernel.org"
+	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>
+CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	=?utf-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	=?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
+	=?utf-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+	"daniel@ffwll.ch" <daniel@ffwll.ch>, "p.zabel@pengutronix.de"
+	<p.zabel@pengutronix.de>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	Project_Global_Chrome_Upstream_Group
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, "airlied@gmail.com"
+	<airlied@gmail.com>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "nfraprado@collabora.com"
+	<nfraprado@collabora.com>
+Subject: Re: [RESEND PATCH v6 19/20] drm/mediatek: Support MT8188 VDOSYS1 in
+ display driver
+Thread-Topic: [RESEND PATCH v6 19/20] drm/mediatek: Support MT8188 VDOSYS1 in
+ display driver
+Thread-Index: AQHZ5IO+UxaXw/JOeUmaTSqbnKHRTLAv5mOA
+Date: Thu, 28 Sep 2023 06:47:56 +0000
+Message-ID: <fbfc407213d2de1d781dc43f8cb2b4f3d67a67c8.camel@mediatek.com>
+References: <20230911074233.31556-1-shawn.sung@mediatek.com>
+	 <20230911074233.31556-20-shawn.sung@mediatek.com>
+In-Reply-To: <20230911074233.31556-20-shawn.sung@mediatek.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYZPR03MB6624:EE_|SEYPR03MB6815:EE_
+x-ms-office365-filtering-correlation-id: 00a50b15-8706-4f7a-8d41-08dbbfeed8e4
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: LyjijdnZfBPCnQOrqZwUb79GLaMQpeOjcBtKDg1N7lxAKxCfy5djG862jchD5h8XEkeHM4yKz2sFNLAnr5sNbwPe/bTJ7U9xgrRA06BokQM0xEbQDCq8VdvmkMqD3q5vRFY75FhY6adVhyULkj+pPVIINf5n0t8dixcqRvOuL1n50YVW2/3j+m64T1LI1dbTTb488Ad9yvE1sWt6juTcVrz4kxV/PkQhh0E4rJFYA9AcefKSrvUqlw+DI+GzLLT87gltszsmEGB3IeqFEGhd8K1mTXekbcjy2p1+o3U3MIlwU1I99JlNFmrOQ00l02ZZyz7aLbnOKgTtKXD70b9RC9UFymPwQbGlnBKkgLL1ccbyCJPLgCM1M2asNjj1nvEtSgVtKB5BgmDLC0O54GMNDwpc4UYeibl8tB/Z5PeNxHrxJKtB5zFtIWF0mkfXA3+iRn8yPyXLXCtH2IJT6p66hHIF66miP+ydgd5k6SIfe0mZBTKX0Nngx9M7NMiyW09Bi5xVWe/Wnuo/S0YmtZ6jby0qjon9Y7tY03smNugDnH14D4WAL/Y5dlpqy8gc2CipicEHwz0blJmTHcKxDL9xvow43Ety1sv/oF5oT8Sg3tLwpsDzwGbYOa0a7fDGOpKe37Z3baueR8/5EHPSUfMZyab6RwILLjNPwNN/cAgs64s=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6624.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(136003)(396003)(346002)(366004)(376002)(230922051799003)(186009)(64100799003)(1800799009)(451199024)(26005)(41300700001)(5660300002)(4326008)(8936002)(8676002)(7416002)(2906002)(86362001)(316002)(110136005)(76116006)(66946007)(54906003)(66446008)(64756008)(66556008)(66476007)(85182001)(6506007)(38070700005)(122000001)(478600001)(6512007)(36756003)(38100700002)(6486002)(71200400001)(2616005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UzBOWUdZL1RjTVF5SlFXUkYwREkwR29HSlovTm5jZy8xejhjbndVWE9SRTRx?=
+ =?utf-8?B?aDRxWWFxVmlnTUowNmxKOCtMWGREV2dsbWlUN2xKZDNqZTE3bWFWQmpkelJR?=
+ =?utf-8?B?MEFXVGozWlJjaEN0K2dKTlQ5dGMzUjU0WC82OVhDY3NvYmx6ci91YnA4UXQ3?=
+ =?utf-8?B?V0F0aVRmN09IQ3NVQWxaZzM2WitZaUNWdEg2NWdEaFNFWC9IU21NK1p1T0lO?=
+ =?utf-8?B?Z3plRjZqUjUvY1p3NnB2Nm4remF4MCtMWHZvNkFEcWpKQkhFNWMrK0FIL0JW?=
+ =?utf-8?B?amZqaU40U2NlTlR4Y2U4U0NqV2ZGejlmQjNHQVdMeks1Rm5ENWprOHVmMS9K?=
+ =?utf-8?B?cW1lV1FOLytMTjAyZzBjTFZaVG1qMC85UjA1YjN6Y0FOeHNVd1lZdXFvbGFQ?=
+ =?utf-8?B?UHRrUkpEUmN4OU12aVk1VmhXbC95NUw1SFdvWTFveC9nZW43VlZLMnAzY1Jm?=
+ =?utf-8?B?M2NFM0hHWHRtam1Tb3Zod2dFdWpmYzBVR2lpSUhsemNQT0F4Q2NVdkdYaFJY?=
+ =?utf-8?B?TG5mQXo4OFNnaXZzbnFrRm5Vb09zckhvY0VySVNTbXhvaUdYN1ZZY2g0cEdJ?=
+ =?utf-8?B?KzY4cnBPaDhucFRQbkwrZ0JWaUxwTVRpdEx2SlFFNkJ2TXFGV0lQdXJ2T2Uw?=
+ =?utf-8?B?TEdKQ2o2TmFkTWVuWEdxSnhCd05vQUFYZDFXUlF5dFFDQ3JVTHN2UWZQSFdF?=
+ =?utf-8?B?V0MvZVZxTkQ0ZE5UZUZDNXBEZUJsWlhrcEFYMjBVem1QdlZSTWIyOXlJczVm?=
+ =?utf-8?B?TDZPYTlGVlhlWEJWMU9GaXl0WEpPWW5yZTgydGtsK2dOTk5qTHVXbnAwQVJz?=
+ =?utf-8?B?R2dGcWlDZ2FPay9vdGl1OGQ3QklXVmtWeEhZSEMrSkI1VFNPUlVjclpUY0hM?=
+ =?utf-8?B?QVZWb2xYMnZzbFhqS0R3U3JJMGVpK2t2VXNvUVNic3Z5NCt3S0tLS0w2M1hm?=
+ =?utf-8?B?S0lBV1BDKzdFMmVtMnpGakdNelp0SUNFUDNuaG51MTArRU8rRUdPK1ZWcVpo?=
+ =?utf-8?B?ZTV6cE1PcXhCL25DK05KN05nQ1ZqcHZScWRJeDBMbnhDbnlPeXZWMk5YUGFO?=
+ =?utf-8?B?TG9zK25LN0R4RThxb1FnUzM5QW5uQWxPSGR3U3ZWYWJvVVBuc3JhMmpoK3Ur?=
+ =?utf-8?B?V3BZVlRVTVQvYmNrS3A1dzBrTnZYa1lZM3VLWkY2a2g3TVZ2NFZMRXNNMjZq?=
+ =?utf-8?B?ODh2eUdFSk02Ync1bjlnTHFCTXY4WEtURFhEKzZqSVFCdkt1TE8vcFFVU1h2?=
+ =?utf-8?B?ZHU3YnJCaDdneFA3YTVNOEZoVEovM2hBR3hUbmN2UVRDYmpoYWthVFIzeVBa?=
+ =?utf-8?B?N2EreVg1L1dLMTBoR2JMMEd4elFEbXdzeFM2ZCtOWkNPVTQ5WmZHNHBUemQy?=
+ =?utf-8?B?bDRFeGNwQ29zb0JXeHBsbWpNKzRoWlJmWXhVcmg4dTAybWNhT3RkUkd3elBZ?=
+ =?utf-8?B?MjFKeUU3dUxmWFZBQXRDV0pYTFNGMDVuUEx2Q2V6cjFjL2hiVGFqR0RtUnBz?=
+ =?utf-8?B?em1hQ3VaSzVqQXV1TWdWU0JqRlBOdzF0d2l4MmQwZ2tlQXpTeVkyYnEvczY2?=
+ =?utf-8?B?QS92RkJWdDdTOE1PeTI1aUFyREhFdEVIaG43SmF0ZEkzK2FOcjFidnpPRExy?=
+ =?utf-8?B?cFdEZ2FHKzluYVdvd3NaejRhK21JOERyMkdCakNDVCtIRS9Fc2xHME5VV29x?=
+ =?utf-8?B?N3Q3TGNPUlNST0ZvbEpDTVFJRDNmSjJ0bjlDdTd6a2lTQ1JobVo1dEtTMml0?=
+ =?utf-8?B?eEtEN1Y1RXJueTU0NW5sVVFIMVc3bHVMdFNzWXF0bm5pRDdpSGZUbi9qNXF1?=
+ =?utf-8?B?M01DZWRSTkp5cGNPNjI3c0ZlbjdRWGdvclJlcDkxbDNob1czQjVVajRJNTRQ?=
+ =?utf-8?B?b1ZVeTlWZ3IzUVJmVHRxK0tiN0FPQndUTm44K3JvTUhOV2FEdERPM1hKSDVR?=
+ =?utf-8?B?b01kUVZQbDVCUlpNVGs5MkNhbmFZOHVkTjdaTVc0VzYrdmZDT3BmdmZ2M3VU?=
+ =?utf-8?B?b3VkeWhCb0MxWnVZQzM1RDI1N1lCOXc0bW4vSVdOeXFFdktKbnM2VmRJOWNt?=
+ =?utf-8?B?dk1HciswVWhvb3ZoQlVxZ05scS9nbzdCTTFIQmlKejhxZkFlTjhSc0gvZjRu?=
+ =?utf-8?Q?/8HHds+SWr8zHyfzdTVemwRW6?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <6F3B171F601E6E4DAEF38C17F0940025@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
-	autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6624.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 00a50b15-8706-4f7a-8d41-08dbbfeed8e4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Sep 2023 06:47:56.4960
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: OOxCdT05Uwxgk3oOIQvX4KOriaMIrwcWaEsnOA9Bkx9L7ZOx60DzJtiiQN6mB8vEPlbXXjR8dq8vu/LjaFpVSA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB6815
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--16.143900-8.000000
+X-TMASE-MatchedRID: cgbqQT5W8hc/XHdICuW5r97SWiiWSV/1jLOy13Cgb4+qvcIF1TcLYApB
+	bGrMo6JyTPMwViVb9SUzQez0qIntbRnsS71Oo/Hw1ilQ4KKAwrfpJe7BSAYfSKmHdZcXDuA+8oL
+	zUWewXkhOFu8ssjxG82lMzgdmISFzXqbZn4+AZIsMH4SsGvRsA7n7V+KB+3cumyiLZetSf8n5kv
+	mj69FXvKEwgORH8p/AjaPj0W1qn0Q7AFczfjr/7ChJgLj8aapYq6OM8FAY9s8ICzmovpevUIALf
+	BNkjKijTniYlUdPySc=
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--16.143900-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP:
+	5D66AFF8336E609025CE968F444531AEB852B70CD4F4D770C12EA71B9BA2F78B2000:8
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,T_SPF_TEMPERROR,
+	UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Thank you very much for your review, but I have some questions
-I would like to discuss with you
-
-> On Wed, Sep 27, 2023 at 08:16:34PM +0800, wangweidong.a@awinic.com wrote:
->> @@ -668,6 +668,17 @@ config SND_SOC_AW88261
->>  	  boost converter can be adjusted smartly according to
->>  	  the input amplitude.
->>  
->> +config SND_SOC_AW87390
->> +	tristate "Soc Audio for awinic aw87390"
-
-> Capitalize A in Awinic.
-
-Thank you very much, but our company prefers to 
-use awinic rather than Awinic
-
->> +	depends on I2C
->> +	select REGMAP_I2C
->> +	select SND_SOC_AW88395_LIB
->> +	help
->> +	  The awinic aw87390 is specifically designed to improve
->> +	  the musical output dynamic range, enhance the overall
->> +	  sound quallity, which is a new high efficiency, low
-
-> s/quallity/quality/.
-
-Thank you very much. I'll correct it
-
->> +	  noise, constant large volume, 6th Smart K audio amplifier.
->> +
->>  config SND_SOC_BD28623
->>  	tristate "ROHM BD28623 CODEC"
->>  	help
-
-> [ snip ]
-
->> diff --git a/sound/soc/codecs/aw87390.c b/sound/soc/codecs/aw87390.c
->> new file mode 100644
->> index 000000000000..8efae3b73eea
->> --- /dev/null
->> +++ b/sound/soc/codecs/aw87390.c
->> @@ -0,0 +1,462 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
-
-> Checkpatch complains about this.  It should just be GPL-2.0, the "only"
-> is assumed unless there is a + as in "GPL-2.0+".  You might want to
-> run scripts/checkpatch.pl --strict on your patch.
-
-Thank you very much.
-Our company uses the GPL-2.0-only all the time, 
-and I see a lot of GPL-2.0-only in other drivers.
-
->> +//
->> +// aw87390.c  --  AW87390 ALSA SoC Audio driver
->> +//
->> +// Copyright (c) 2023 awinic Technology CO., LTD
->> +//
->> +// Author: Weidong Wang <wangweidong.a@awinic.com>
->> +//
->> +
->> +#include <linux/i2c.h>
->> +#include <linux/firmware.h>
->> +#include <linux/regmap.h>
->> +#include <sound/soc.h>
->> +#include "aw87390.h"
->> +#include "aw88395/aw88395_data_type.h"
->> +#include "aw88395/aw88395_device.h"
->> +
->> +static const struct regmap_config aw87390_remap_config = {
->> +	.val_bits = 8,
->> +	.reg_bits = 8,
->> +	.max_register = AW87390_REG_MAX,
->> +	.reg_format_endian = REGMAP_ENDIAN_LITTLE,
->> +	.val_format_endian = REGMAP_ENDIAN_BIG,
->> +};
->> +
->> +static int aw87390_dev_reg_update(struct aw_device *aw_dev,
->> +					unsigned char *data, unsigned int len)
->> +{
->> +	int i, ret;
->> +
->> +	if (!data) {
->> +		dev_err(aw_dev->dev, "data is NULL\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	for (i = 0; i < len; i = i + 2) {
->> +		if (data[i] == AW87390_DELAY_REG_ADDR) {
->> +			usleep_range(data[i + 1] * AW87390_REG_DELAY_TIME,
->> +					data[i + 1] * AW87390_REG_DELAY_TIME + 10);
->> +			continue;
->> +		}
->> +		ret = regmap_write(aw_dev->regmap, data[i], data[i + 1]);
-
-> This assumes that len is an even number...  Maybe write it as:
->
->	for (i = 0; i < len - 1; i += 2) {
->
->Although that assumes len can't be zero so maybe it's not a win...
-
-Thank you very much. I will modify it.
-
->> +		if (ret)
->> +			return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int aw87390_dev_get_prof_name(struct aw_device *aw_dev, int index, char **prof_name)
->> +{
->> +	struct aw_prof_info *prof_info = &aw_dev->prof_info;
->> +	struct aw_prof_desc *prof_desc;
->> +
->> +	if ((index >= aw_dev->prof_info.count) || (index < 0)) {
->> +		dev_err(aw_dev->dev, "index[%d] overflow count[%d]\n",
->> +			index, aw_dev->prof_info.count);
-
-...
-
->> +
->> +	/* update reg */
->> +	sec_desc = prof_index_desc->sec_desc;
->> +	ret = aw87390_dev_reg_update(aw_dev, sec_desc[AW88395_DATA_TYPE_REG].data,
->> +					sec_desc[AW88395_DATA_TYPE_REG].len);
->> +	if (ret) {
->> +		dev_err(aw_dev->dev, "update reg failed\n");
->> +		return ret;
->> +	}
->> +
->> +	aw_dev->prof_cur = aw_dev->prof_index;
->> +
->> +	return ret;
-
-> Just "return 0;" here.  It's the same but zero is more clear.
-
-Thank you very much. I will modify it.
-
->> +}
->> +
->> +static int aw87390_power_off(struct aw_device *aw_dev)
->> +{
->> +	int ret;
->> +
->> +	if (aw_dev->status == AW87390_DEV_PW_OFF) {
->> +		dev_info(aw_dev->dev, "already power off\n");
->> +		return 0;
->> +	}
->> +
->> +	ret = regmap_write(aw_dev->regmap, AW87390_SYSCTRL_REG, AW87390_POWER_DOWN_VALUE);
->> +	if (ret)
->> +		return ret;
->> +	aw_dev->status = AW87390_DEV_PW_OFF;
->> +
->> +	return ret;
-
-> return 0;
-
-Thank you very much. I will modify it.
-
->> +}
->> +
->> +static int aw87390_power_on(struct aw_device *aw_dev)
->> +{
->> +	int ret;
->> +
->> +	if (aw_dev->status == AW87390_DEV_PW_ON) {
->> +		dev_info(aw_dev->dev, "already power on\n");
-
-> Change this dev_info() to dev_dbg().
-
-Thank you very much. I will modify it.
-
->> +		return 0;
->> +	}
->> +
->> +	if (!aw_dev->fw_status) {
->> +		dev_err(aw_dev->dev, "fw not load\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	ret = regmap_write(aw_dev->regmap, AW87390_SYSCTRL_REG, AW87390_POWER_DOWN_VALUE);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = aw87390_dev_fw_update(aw_dev);
->> +	if (ret) {
->> +		dev_err(aw_dev->dev, "%s load profile failed\n", __func__);
->> +		return ret;
->> +	}
->> +	aw_dev->status = AW87390_DEV_PW_ON;
->> +
->> +	return ret;
-
-> return 0;
-
-Thank you very much. I will modify it.
-
->> +}
->> +
->> +static int aw87390_dev_set_profile_index(struct aw_device *aw_dev, int index)
->> +{
->> +	if ((index >= aw_dev->prof_info.count) || (index < 0))
->> +		return -EINVAL;
->> +
->> +	if (aw_dev->prof_index == index)
->> +		return -EPERM;
->> +
->> +	aw_dev->prof_index = index;
->> +
->> +	return 0;
-> +}
-
-...
-
->> +
->> +static const struct snd_kcontrol_new aw87390_controls[] = {
->> +	AW87390_PROFILE_EXT("AW87390 Profile Set", aw87390_profile_info,
->> +		aw87390_profile_get, aw87390_profile_set),
->> +};
->> +
->> +static int aw87390_request_firmware_file(struct aw87390 *aw87390)
->> +{
->> +	const struct firmware *cont = NULL;
->> +	int ret;
->> +
->> +	aw87390->aw_pa->fw_status = AW87390_DEV_FW_FAILED;
->> +
->> +	ret = request_firmware(&cont, AW87390_ACF_FILE, aw87390->aw_pa->dev);
->> +	if (ret)
->> +		return dev_err_probe(aw87390->aw_pa->dev, ret,
->> +					"load [%s] failed!\n", AW87390_ACF_FILE);
->> +
->> +	dev_dbg(aw87390->aw_pa->dev, "loaded %s - size: %zu\n",
->> +			AW87390_ACF_FILE, cont ? cont->size : 0);
->> +
->> +	aw87390->aw_cfg = devm_kzalloc(aw87390->aw_pa->dev, cont->size + sizeof(int), GFP_KERNEL);
-
-> Use struct_size().
->
->	aw87390->aw_cfg = devm_kzalloc(aw87390->aw_pa->dev,
->				       struct_size(aw87390->aw_cfg, data, cont->size),
->				       GFP_KERNEL);
->
-
-Thank you very much. I will modify it.
-
->> +	if (!aw87390->aw_cfg) {
->> +		release_firmware(cont);
->> +		return -ENOMEM;
->> +	}
->> +
->> +	aw87390->aw_cfg->len = (int)cont->size;
-
-> No need for this scary looking cast.
-
-Thank you very much. I will modify it to
-"aw87390->aw_cfg->len = cont->size;"
-
->> +	memcpy(aw87390->aw_cfg->data, cont->data, cont->size);
->> +	release_firmware(cont);
->> +
->> +	ret = aw88395_dev_load_acf_check(aw87390->aw_pa, aw87390->aw_cfg);
->> +	if (ret) {
->> +		dev_err(aw87390->aw_pa->dev, "load [%s] failed !\n", AW87390_ACF_FILE);
-
-> No space before !.
-
-Thank you very much. I will modify it.
-
->> +		return ret;
->> +	}
->> +
->> +	mutex_lock(&aw87390->lock);
->> +
->> +	ret = aw88395_dev_cfg_load(aw87390->aw_pa, aw87390->aw_cfg);
-
-...
-
->> +static int aw87390_init(struct aw87390 **aw87390, struct i2c_client *i2c, struct regmap *regmap)
->> +{
->> +	struct aw_device *aw_dev;
->> +	unsigned int chip_id;
->> +	int ret;
->> +
->> +	/* read chip id */
->> +	ret = regmap_read(regmap, AW87390_ID_REG, &chip_id);
->> +	if (ret) {
->> +		dev_err(&i2c->dev, "%s read chipid error. ret = %d\n", __func__, ret);
->> +		return ret;
->> +	}
->> +
->> +	if (chip_id != AW87390_CHIP_ID) {
->> +		dev_err(&i2c->dev, "unsupported device\n");
->> +		return -ENXIO;
->> +	}
->> +
->> +	dev_info(&i2c->dev, "chip id = 0x%x\n", chip_id);
-
-> Make this dev_dbg().
-
-Thank you very much. I will modify it.
-
->> +
->> +	aw_dev = devm_kzalloc(&i2c->dev, sizeof(*aw_dev), GFP_KERNEL);
->> +	if (!aw_dev)
->> +		return -ENOMEM;
->> +
->> +	(*aw87390)->aw_pa = aw_dev;
->> +	aw_dev->i2c = i2c;
->> +	aw_dev->regmap = regmap;
->> +	aw_dev->dev = &i2c->dev;
->> +	aw_dev->chip_id = AW87390_CHIP_ID;
->> +	aw_dev->acf = NULL;
->> +	aw_dev->prof_info.prof_desc = NULL;
->> +	aw_dev->prof_info.count = 0;
->> +	aw_dev->prof_info.prof_type = AW88395_DEV_NONE_TYPE_ID;
->> +	aw_dev->channel = AW87390_DEV_DEFAULT_CH;
->> +	aw_dev->fw_status = AW87390_DEV_FW_FAILED;
->> +	aw_dev->prof_index = AW87390_INIT_PROFILE;
->> +	aw_dev->status = AW87390_DEV_PW_OFF;
->> +
->> +	aw87390_parse_channel_dt(*aw87390);
->> +
->> +	return ret;
-
-> return 0;
-
-Thank you very much. I will modify it.
-
->> +}
->> +
->> +static int aw87390_i2c_probe(struct i2c_client *i2c)
->> +{
->> +	struct aw87390 *aw87390;
->> +	int ret;
-
-...
-
->> +static const struct i2c_device_id aw87390_i2c_id[] = {
->> +	{ AW87390_I2C_NAME, 0 },
->> +	{ }
->> +};
->> +MODULE_DEVICE_TABLE(i2c, aw87390_i2c_id);
->> +
->> +static struct i2c_driver aw87390_i2c_driver = {
->> +	.driver = {
->> +		.name = AW87390_I2C_NAME,
->> +	},
->> +	.probe = aw87390_i2c_probe,
->> +	.id_table = aw87390_i2c_id,
->> +};
->> +module_i2c_driver(aw87390_i2c_driver);
->> +
->> +MODULE_DESCRIPTION("ASoC AW87390 PA Driver");
->> +MODULE_LICENSE("GPL v2");
-
-> This is another checkpatch thing.  It should just be
-> MODULE_LICENSE("GPL");
-
-Thank you very much, but our company follows the "GPL v2"
-So I want to still use it
-
-Best regards,
-Weidong Wang
+SGksIEhzaWFvLWNoaWVuOg0KDQpPbiBNb24sIDIwMjMtMDktMTEgYXQgMTU6NDIgKzA4MDAsIEhz
+aWFvIENoaWVuIFN1bmcgd3JvdGU6DQo+IC0gVGhlIG1tc3lzX2Rldl9udW0gaW4gTVQ4MTg4IFZE
+T1NZUzAgd2FzIHNldCB0byAxIHNpbmNlDQo+ICAgVkRPU1lTMSB3YXMgbm90IGF2YWlsYWJsZSBi
+ZWZvcmUuIEluY3JlYXNlIGl0IHRvIHN1cHBvcnQNCj4gICBWRE9TWVMxIGluIGRpc3BsYXkgZHJp
+dmVyLg0KPiAtIEFkZCBjb21wYXRpYmxlIG5hbWUgZm9yIE1UODE4OCBWRE9TWVMxDQo+ICAgKHNo
+YXJlcyB0aGUgc2FtZSBkcml2ZXIgZGF0YSB3aXRoIE1UODE5NSBWRE9TWVMxKQ0KDQpSZXZpZXdl
+ZC1ieTogQ0sgSHUgPGNrLmh1QG1lZGlhdGVrLmNvbT4NCg0KPiANCj4gUmV2aWV3ZWQtYnk6IEFu
+Z2Vsb0dpb2FjY2hpbm8gRGVsIFJlZ25vIDwNCj4gYW5nZWxvZ2lvYWNjaGluby5kZWxyZWdub0Bj
+b2xsYWJvcmEuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBIc2lhbyBDaGllbiBTdW5nIDxzaGF3bi5z
+dW5nQG1lZGlhdGVrLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRr
+X2RybV9kcnYuYyB8IDMgKysrDQo+ICAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspDQo+
+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcm1fZHJ2LmMN
+Cj4gYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9kcnYuYw0KPiBpbmRleCBjZGU2
+OWYzOWEwNjYuLjIxMjQ3NTQzNmY0NyAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL21l
+ZGlhdGVrL210a19kcm1fZHJ2LmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210
+a19kcm1fZHJ2LmMNCj4gQEAgLTI4OCw2ICsyODgsNyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IG10
+a19tbXN5c19kcml2ZXJfZGF0YQ0KPiBtdDgxODZfbW1zeXNfZHJpdmVyX2RhdGEgPSB7DQo+ICBz
+dGF0aWMgY29uc3Qgc3RydWN0IG10a19tbXN5c19kcml2ZXJfZGF0YSBtdDgxODhfdmRvc3lzMF9k
+cml2ZXJfZGF0YQ0KPiA9IHsNCj4gIAkubWFpbl9wYXRoID0gbXQ4MTg4X210a19kZHBfbWFpbiwN
+Cj4gIAkubWFpbl9sZW4gPSBBUlJBWV9TSVpFKG10ODE4OF9tdGtfZGRwX21haW4pLA0KPiArCS5t
+bXN5c19kZXZfbnVtID0gMiwNCj4gIH07DQo+IA0KPiAgc3RhdGljIGNvbnN0IHN0cnVjdCBtdGtf
+bW1zeXNfZHJpdmVyX2RhdGEgbXQ4MTkyX21tc3lzX2RyaXZlcl9kYXRhID0NCj4gew0KPiBAQCAt
+MzI4LDYgKzMyOSw4IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3Qgb2ZfZGV2aWNlX2lkIG10a19kcm1f
+b2ZfaWRzW10NCj4gPSB7DQo+ICAJICAuZGF0YSA9ICZtdDgxODZfbW1zeXNfZHJpdmVyX2RhdGF9
+LA0KPiAgCXsgLmNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTg4LXZkb3N5czAiLA0KPiAgCSAg
+LmRhdGEgPSAmbXQ4MTg4X3Zkb3N5czBfZHJpdmVyX2RhdGF9LA0KPiArCXsgLmNvbXBhdGlibGUg
+PSAibWVkaWF0ZWssbXQ4MTg4LXZkb3N5czEiLA0KPiArCSAgLmRhdGEgPSAmbXQ4MTk1X3Zkb3N5
+czFfZHJpdmVyX2RhdGF9LA0KPiAgCXsgLmNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTkyLW1t
+c3lzIiwNCj4gIAkgIC5kYXRhID0gJm10ODE5Ml9tbXN5c19kcml2ZXJfZGF0YX0sDQo+ICAJeyAu
+Y29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxOTUtbW1zeXMiLA0KPiAtLQ0KPiAyLjE4LjANCj4g
+DQo=
 
