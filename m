@@ -1,69 +1,71 @@
-Return-Path: <devicetree+bounces-4204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBE437B18CB
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 12:59:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 086007B18EB
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 13:03:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 6DFB32820F9
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 10:59:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 96BC52827C0
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 11:03:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9B2C358A6;
-	Thu, 28 Sep 2023 10:59:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC47B36B08;
+	Thu, 28 Sep 2023 11:03:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E468358A0
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 10:59:26 +0000 (UTC)
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECF501BD;
-	Thu, 28 Sep 2023 03:59:20 -0700 (PDT)
-X-UUID: 0f79c2fa5dee11ee8051498923ad61e6-20230928
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=eTl+5rJDHXHaFhRSPKGBEYBBFhhWzNurSbbh6oNLLFM=;
-	b=jx9cZh2f2ONlu5gDTg+2O3UxGwmgXWZKwsJxjHPC7x6BZ7AKWknsyeid5o7ioo7n7YZ6AXLd6L+dMZdV6jYEpcaqBLLp4NXHZ+xFnui3HeFhfIrLW64T+6N2vow7m9SFtPQInJjGWJU9uP6OSTcXGrK2oo1+bbZSdl1s7Qfu58w=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.32,REQID:f4587b11-eeb9-4753-9ca1-117b265fb093,IP:0,U
-	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-	N:release,TS:-25
-X-CID-META: VersionHash:5f78ec9,CLOUDID:c6d03df0-9a6e-4c39-b73e-f2bc08ca3dc5,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 0f79c2fa5dee11ee8051498923ad61e6-20230928
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
-	(envelope-from <jian.yang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 521920082; Thu, 28 Sep 2023 18:59:13 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 28 Sep 2023 18:59:12 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Thu, 28 Sep 2023 18:59:11 +0800
-From: Jian Yang <jian.yang@mediatek.com>
-To: Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi
-	<lpieralisi@kernel.org>, =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?=
-	<kw@linux.com>, Matthias Brugger <matthias.bgg@gmail.com>, Jianjun Wang
-	<jianjun.wang@mediatek.com>, Rob Herring <robh@kernel.org>
-CC: <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	<Chuanjia.Liu@mediatek.com>, <Jieyy.Yang@mediatek.com>,
-	<Qizhong.Cheng@mediatek.com>, <Jian.Yang@mediatek.com>, jian.yang
-	<jian.yang@mediatek.com>
-Subject: [PATCH v3 2/2] PCI: mediatek-gen3: Add power and reset control feature for downstream component
-Date: Thu, 28 Sep 2023 18:58:22 +0800
-Message-ID: <20230928105819.5161-3-jian.yang@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230928105819.5161-1-jian.yang@mediatek.com>
-References: <20230928105819.5161-1-jian.yang@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78FF034CC3
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 11:03:14 +0000 (UTC)
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F23DF12A
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 04:03:11 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-50308217223so20319985e87.3
+        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 04:03:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695898990; x=1696503790; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1p+6youuH5bjqrYOnT9IQ9rKwC7lebaEKtt33v0MbqE=;
+        b=eQFIi5R9N/5xq3CgGbHEk1fEfBFMcBZsbRoF+z2k7/jxt4QXkThHPv/46EUPoa/9v2
+         CCQHOCSFK5Zdqda6y4jCn255G4kaJmHs22XqEpnLk9yyFRu082D7E13EzfVbjkJholaV
+         sRhaqwBPgtz7K+KcCFuIRs1az8RiixAhDKleDIf9+plEYZY2gPfaYu29YL+G5becrN5c
+         v4iNgS5+513IdOKZlUqem+ki46/gm3v0S+PKPyN+rIrW34pTHNJA8U0vG992Wl1lrCEy
+         +hYAORnFEMJep+A0FW4xiTD51zKrkWHpTBeJYE7N8Rd+c4Hw1IHzCYW5X2HQAEKd+peN
+         /iRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695898990; x=1696503790;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1p+6youuH5bjqrYOnT9IQ9rKwC7lebaEKtt33v0MbqE=;
+        b=hvneUOA1SSGIabohBpsnCVo6zhGcTFOTCnd+ZcbbQ8+GHutasyzeogIniiyFYGPWcc
+         uT5mJUDmlQQ91wdCy2quxUgRaSq4EXEzSIONucS85qwnJFx7t4vWgL3P9oqx/NLL8r3r
+         CJkNuuRK0TweQeXliqk//o3dOt4oBIQFNtOKfa8XXWtG2BJnpRqMk29daTLyhyqQcVVC
+         jOl9JKOItf/kMxY6jxVtGoOLChalNiGddgp0RjfLWIC2bn1qYqrekqvFtP9p9Ke9dYMt
+         2JLJLsJ12ji8uV+NEQ13xPFgRwwSqsd/f3PwjrW0eB3at/njLtZKGJ8/g1C/IXrMn8/1
+         A+ew==
+X-Gm-Message-State: AOJu0Yz+PE0qhXdsa/sOt8z+Ranb+MQfF/UxlAyGjCKt7Lz+rvwHOEua
+	4Lzp3MlfIAMtYzZzrSkHLVYbVQ==
+X-Google-Smtp-Source: AGHT+IGrXqKGLr52gkcaadow2Qx5xht4iqoWahzQsMBdNe8jnqCk6RGNOrweaGTGNbAO8N5j5YO/Eg==
+X-Received: by 2002:a05:6512:3d04:b0:500:7efe:313c with SMTP id d4-20020a0565123d0400b005007efe313cmr1031092lfv.24.1695898990157;
+        Thu, 28 Sep 2023 04:03:10 -0700 (PDT)
+Received: from umbar.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id u2-20020a056512040200b005030a35019dsm3052953lfk.178.2023.09.28.04.03.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Sep 2023 04:03:09 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-input@vger.kernel.org
+Subject: [PATCH v6 00/36] ARM: dts: qcom: cleanup PMIC usage
+Date: Thu, 28 Sep 2023 14:02:33 +0300
+Message-Id: <20230928110309.1212221-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,213 +73,168 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--5.888800-8.000000
-X-TMASE-MatchedRID: LTAc3o+XUF8kYRdjNXG/+XTnOygHVQpOmX+W7bzPOQHdyLGp/yhwWgoe
-	ktpGiVj3mcuyb+ll2ykfKM+QT8rKpGhyvm9EcIhqk3ewifG2MNNCX8V1FiRRkt9RlPzeVuQQost
-	SmZzTxtotz23lNbS2WkTQlgPQUcNkszLAY5oHhBCQOktEo73GFKX1XMd/SqvuNE5yhKhaSOqtbj
-	X4EGqr77NyHVC04zQVHX4qwBWZhmIEshQLfIZrynV7tdtvoibauIQDHu9PGw7IvQIyugvKdfhTq
-	8/WMstvw90VsoEgW724vmdMTUrXti7SCjRWRA7yngIgpj8eDcAZ1CdBJOsoY8RB0bsfrpPIHm9g
-	gFVoCcDu4f3bZWiBPMJZMKP/NAMokGveOWGf/ArhJ5aAtS3hZB6VAK3Ivyh9ftwZ3X11IV0=
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--5.888800-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP: 745D00A8C4D6B43D7943DEC9C409B8A90006EB607EE7240CACFF34509D9E55202000:8
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,
-	SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=no
-	autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: "jian.yang" <jian.yang@mediatek.com>
+While reviewing APQ8064 CPUFreq patchset, Konrad pointed out that PMICs
+are not a part of SoC and as such do not belong to the per-SoC files.
 
-Make MediaTek's controller driver capable of controlling power
-supplies and reset pin of a downstream component in power-on and
-power-off flow.
+Cleanup the way 32-bit Qualcomm platforms treat PMICs:
 
-Some downstream components (e.g., a WIFI chip) may need an extra
-reset pin other than PERST# and their power supplies, depending on
-the requirements of platform, may need to controlled by their
-parent's driver. To meet the requirements described above, I add this
-feature to MediaTek's PCIe controller driver as an optional feature.
+- Move SSBI PMICs to separate files (as a bonus merging two different
+  instances of PM8921, benefitting both platforms).
 
-Signed-off-by: jian.yang <jian.yang@mediatek.com>
----
- drivers/pci/controller/pcie-mediatek-gen3.c | 93 ++++++++++++++++++++-
- 1 file changed, 92 insertions(+), 1 deletion(-)
+- Include such PMIC files only from the board files, keeping SoC file
+  generic.
 
-diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pci/controller/pcie-mediatek-gen3.c
-index e0e27645fdf4..ad4b25c34f5d 100644
---- a/drivers/pci/controller/pcie-mediatek-gen3.c
-+++ b/drivers/pci/controller/pcie-mediatek-gen3.c
-@@ -8,6 +8,7 @@
- 
- #include <linux/clk.h>
- #include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/iopoll.h>
- #include <linux/irq.h>
- #include <linux/irqchip/chained_irq.h>
-@@ -20,6 +21,8 @@
- #include <linux/platform_device.h>
- #include <linux/pm_domain.h>
- #include <linux/pm_runtime.h>
-+#include <linux/pm_wakeup.h>
-+#include <linux/regulator/consumer.h>
- #include <linux/reset.h>
- 
- #include "../pci.h"
-@@ -100,6 +103,13 @@
- #define PCIE_ATR_TLP_TYPE_MEM		PCIE_ATR_TLP_TYPE(0)
- #define PCIE_ATR_TLP_TYPE_IO		PCIE_ATR_TLP_TYPE(2)
- 
-+/* Downstream Component power supplies used by MediaTek PCIe */
-+static const char *const dsc_power_supplies[] = {
-+	"pcie1v8",
-+	"pcie3v3",
-+	"pcie12v",
-+};
-+
- /**
-  * struct mtk_msi_set - MSI information for each set
-  * @base: IO mapped register base
-@@ -122,6 +132,9 @@ struct mtk_msi_set {
-  * @phy: PHY controller block
-  * @clks: PCIe clocks
-  * @num_clks: PCIe clocks count for this port
-+ * @supplies: Downstream Component power supplies
-+ * @num_supplies: Downstream Component power supplies count
-+ * @dsc_reset: The GPIO pin to reset Downstream component
-  * @irq: PCIe controller interrupt number
-  * @saved_irq_state: IRQ enable state saved at suspend time
-  * @irq_lock: lock protecting IRQ register access
-@@ -141,6 +154,9 @@ struct mtk_gen3_pcie {
- 	struct phy *phy;
- 	struct clk_bulk_data *clks;
- 	int num_clks;
-+	struct regulator_bulk_data *supplies;
-+	int num_supplies;
-+	struct gpio_desc *dsc_reset;
- 
- 	int irq;
- 	u32 saved_irq_state;
-@@ -763,7 +779,7 @@ static int mtk_pcie_parse_port(struct mtk_gen3_pcie *pcie)
- 	struct device *dev = pcie->dev;
- 	struct platform_device *pdev = to_platform_device(dev);
- 	struct resource *regs;
--	int ret;
-+	int ret, i;
- 
- 	regs = platform_get_resource_byname(pdev, IORESOURCE_MEM, "pcie-mac");
- 	if (!regs)
-@@ -809,14 +825,86 @@ static int mtk_pcie_parse_port(struct mtk_gen3_pcie *pcie)
- 		return pcie->num_clks;
- 	}
- 
-+	pcie->num_supplies = ARRAY_SIZE(dsc_power_supplies);
-+	pcie->supplies = devm_kcalloc(dev, pcie->num_supplies,
-+				      sizeof(*pcie->supplies),
-+				      GFP_KERNEL);
-+	if (!pcie->supplies)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < pcie->num_supplies; i++)
-+		pcie->supplies[i].supply = dsc_power_supplies[i];
-+
-+	ret = devm_regulator_bulk_get(dev, pcie->num_supplies, pcie->supplies);
-+	if (ret)
-+		return ret;
-+
-+	pcie->dsc_reset = devm_gpiod_get_optional(dev, "dsc-reset",
-+						  GPIOD_OUT_LOW);
-+	if (IS_ERR(pcie->dsc_reset)) {
-+		ret = PTR_ERR(pcie->dsc_reset);
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "failed to request DSC reset gpio\n");
-+
-+		return ret;
-+	}
-+
- 	return 0;
- }
- 
-+static int mtk_pcie_dsc_power_up(struct mtk_gen3_pcie *pcie)
-+{
-+	struct device *dev = pcie->dev;
-+	int ret;
-+
-+	/*
-+	 * Skip downstream component's power-up flow if it was kept power-on
-+	 * while system entered suspend state
-+	 */
-+	if (device_wakeup_path(dev))
-+		return 0;
-+
-+	/* Assert Downstream Component reset */
-+	if (pcie->dsc_reset)
-+		gpiod_set_value_cansleep(pcie->dsc_reset, 1);
-+
-+	ret = regulator_bulk_enable(pcie->num_supplies, pcie->supplies);
-+	if (ret)
-+		dev_err(dev, "failed to enable DSC power supplies: %d\n", ret);
-+
-+	/* De-assert Downstream Component reset */
-+	if (pcie->dsc_reset)
-+		gpiod_set_value_cansleep(pcie->dsc_reset, 0);
-+
-+	return ret;
-+}
-+
-+static void mtk_pcie_dsc_power_down(struct mtk_gen3_pcie *pcie)
-+{
-+	/*
-+	 * Keep downstream component power-on if it need to wake up the
-+	 * system in suspend state
-+	 */
-+	if (device_wakeup_path(pcie->dev))
-+		return;
-+
-+	/* Assert Downstream Component reset */
-+	if (pcie->dsc_reset)
-+		gpiod_set_value_cansleep(pcie->dsc_reset, 1);
-+
-+	regulator_bulk_disable(pcie->num_supplies, pcie->supplies);
-+}
-+
- static int mtk_pcie_power_up(struct mtk_gen3_pcie *pcie)
- {
- 	struct device *dev = pcie->dev;
- 	int err;
- 
-+	/* Downstream Component power up before RC */
-+	err = mtk_pcie_dsc_power_up(pcie);
-+	if (err)
-+		return err;
-+
- 	/* PHY power on and enable pipe clock */
- 	reset_control_deassert(pcie->phy_reset);
- 
-@@ -855,6 +943,7 @@ static int mtk_pcie_power_up(struct mtk_gen3_pcie *pcie)
- 	phy_exit(pcie->phy);
- err_phy_init:
- 	reset_control_assert(pcie->phy_reset);
-+	mtk_pcie_dsc_power_down(pcie);
- 
- 	return err;
- }
-@@ -870,6 +959,8 @@ static void mtk_pcie_power_down(struct mtk_gen3_pcie *pcie)
- 	phy_power_off(pcie->phy);
- 	phy_exit(pcie->phy);
- 	reset_control_assert(pcie->phy_reset);
-+
-+	mtk_pcie_dsc_power_down(pcie);
- }
- 
- static int mtk_pcie_setup(struct mtk_gen3_pcie *pcie)
+- Move RPM regulator definitions to board files too. They do not belong
+  to the SoC dtsi files for the same reason.
+
+- Move PMIC-specific GPIOs and supply properties to individual board
+  files.
+
+Note, enabling DT schema triggers warnings for pmic:led@48 in
+qcom-apq8060-dragonboard.dts. This node uses custom ('cm3605') trigger
+to make the LED follow the state of the proximity / ALS device.
+Previously [1] Rob pointed out that this is not the best way and the
+device should be switched to `trigger-sources' instead. However as I do
+not have this device, I'm not brave enough to introduce these changes.
+
+Note2: DT binding changes are largely independent from the DTS changes,
+they can be applied separately.
+
+[1] https://lore.kernel.org/linux-arm-msm/20221205220709.GA2713165-robh@kernel.org
+
+Changes since v5:
+- Dropped accepted patches
+- Provided proper commit message for the last two patches (Konrad)
+
+Changes since v4:
+- Rebased on top of linux-next
+
+Changes since v3:
+- Dropped the interrupts/interrupts-extended patch, it is handled by
+  dtschema itself (Krzysztof)
+
+Changes since v3:
+- Moved PMIC interrupts to board DT files, they are not a property of
+  the board, not the SoC.
+- Dropped qcom, prefix from ssbi node names in ipq8064 and mdm9615 DT
+  files.
+
+Changes since v2:
+- Rebased on top of linux-next to fix conflict
+- Picked up dt-bindings patches from old, not-fully merged series.
+- qcom,pm8921-keypad: droped the no-autorepeat property (Rob, Dmitry)
+- Moved qcom,ssbi to /bus/ (Krzysztof)
+
+Changes since v1:
+- To ease reviewing break cleanups from the  "split PMIC" patches
+  (Konrad).
+
+
+Dmitry Baryshkov (36):
+  dt-bindings: input: qcom,pm8921-keypad: convert to YAML format
+  ARM: dts: qcom: apq8064: correct XOADC register address
+  ARM: dts: qcom: msm8960: introduce label for PMIC keypad
+  ARM: dts: qcom: msm8660-surf: use keypad label directly
+  ARM: dts: qcom: apq8064-nexus7: move sdcc1 node to proper place
+  ARM: dts: qcom: mdm9615-wp8548-mangoh-green: group include clauses
+  ARM: dts: qcom: strip prefix from PMIC files
+  ARM: dts: qcom: apq8064: fix PMIC node labels
+  ARM: dts: qcom: mdm9615: fix PMIC node labels
+  ARM: dts: qcom: msm8660: fix PMIC node labels
+  ARM: dts: qcom: msm8960: fix PMIC node labels
+  ARM: dts: qcom: apq8064: move PMIC interrupts to the board files
+  ARM: dts: qcom: mdm9615: move PMIC interrupts to the board files
+  ARM: dts: qcom: msm8660: move PMIC interrupts to the board files
+  ARM: dts: qcom: msm8960: move PMIC interrupts to the board files
+  ARM: dts: qcom: msm8960: split PMIC to separate dtsi files
+  ARM: dts: qcom: apq8064: split PMICs to separate dtsi files
+  ARM: dts: qcom: mdm9615: split PMIC to separate dtsi files
+  ARM: dts: qcom: msm8660: split PMIC to separate dtsi files
+  ARM: dts: qcom: pm8058: reorder nodes
+  ARM: dts: qcom: pm8921: reorder nodes
+  ARM: dts: qcom: pm8018: move reg property
+  ARM: dts: qcom: pm8921: move reg property
+  ARM: dts: qcom: pm8058: use defined IRQ flags
+  ARM: dts: qcom: pm8921: switch to interrupts-extended
+  ARM: dts: qcom: pm8018: switch to interrupts-extended
+  ARM: dts: qcom: pm8058: switch to interrupts-extended
+  ARM: dts: qcom: apq8064: move RPM regulators to board files
+  ARM: dts: qcom: mdm9615: move RPM regulators to board files
+  ARM: dts: qcom: msm8660: move RPM regulators to board files
+  ARM: dts: qcom: msm8960: drop useless rpm regulators node
+  ARM: dts: qcom: msm8974: move regulators to board files
+  ARM: dts: qcom: pm8921: Disable keypad by default
+  ARM: dts: qcom: apq8060-dragonboard: rename mpp ADC channels to
+    adc-channel
+  ARM: dts: qcom: ipq8064: drop qcom, prefix from SSBI node name
+  ARM: dts: qcom: mdm9615: drop qcom, prefix from SSBI node name
+
+ .../bindings/input/qcom,pm8921-keypad.yaml    |  89 +++++++
+ .../bindings/input/qcom,pm8xxx-keypad.txt     |  90 --------
+ arch/arm/boot/dts/qcom/pm8018.dtsi            |  55 +++++
+ arch/arm/boot/dts/qcom/pm8058.dtsi            | 159 +++++++++++++
+ .../qcom/{qcom-pm8226.dtsi => pm8226.dtsi}    |   0
+ arch/arm/boot/dts/qcom/pm8821.dtsi            |  22 ++
+ .../qcom/{qcom-pm8841.dtsi => pm8841.dtsi}    |   0
+ arch/arm/boot/dts/qcom/pm8921.dtsi            | 137 +++++++++++
+ .../qcom/{qcom-pm8941.dtsi => pm8941.dtsi}    |   0
+ .../qcom/{qcom-pma8084.dtsi => pma8084.dtsi}  |   0
+ .../dts/qcom/{qcom-pmx55.dtsi => pmx55.dtsi}  |   0
+ .../dts/qcom/{qcom-pmx65.dtsi => pmx65.dtsi}  |   0
+ .../dts/qcom/qcom-apq8026-asus-sparrow.dts    |   2 +-
+ .../dts/qcom/qcom-apq8026-huawei-sturgeon.dts |   2 +-
+ .../boot/dts/qcom/qcom-apq8026-lg-lenok.dts   |   2 +-
+ .../qcom-apq8026-samsung-matisse-wifi.dts     |   2 +-
+ .../dts/qcom/qcom-apq8060-dragonboard.dts     | 164 ++++++++-----
+ .../dts/qcom/qcom-apq8064-asus-nexus7-flo.dts |  70 +++---
+ .../boot/dts/qcom/qcom-apq8064-cm-qs600.dts   |  35 ++-
+ .../boot/dts/qcom/qcom-apq8064-ifc6410.dts    |  42 ++--
+ .../qcom-apq8064-sony-xperia-lagan-yuga.dts   | 111 +++++----
+ arch/arm/boot/dts/qcom/qcom-apq8064.dtsi      | 201 +---------------
+ .../dts/qcom/qcom-apq8074-dragonboard.dts     |  31 ++-
+ .../boot/dts/qcom/qcom-apq8084-ifc6540.dts    |   2 +-
+ arch/arm/boot/dts/qcom/qcom-apq8084-mtp.dts   |   2 +-
+ arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi      |   2 +-
+ .../qcom/qcom-mdm9615-wp8548-mangoh-green.dts |   4 +-
+ .../boot/dts/qcom/qcom-mdm9615-wp8548.dtsi    | 143 +++++++++++-
+ arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi      | 183 +--------------
+ arch/arm/boot/dts/qcom/qcom-msm8660-surf.dts  |  61 +++--
+ arch/arm/boot/dts/qcom/qcom-msm8660.dtsi      | 217 +-----------------
+ arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts   |  27 ++-
+ .../qcom/qcom-msm8960-samsung-expressatt.dts  |   7 +-
+ arch/arm/boot/dts/qcom/qcom-msm8960.dtsi      |  45 +---
+ .../qcom-msm8974-lge-nexus5-hammerhead.dts    |  31 ++-
+ .../qcom/qcom-msm8974-sony-xperia-rhine.dtsi  |  31 ++-
+ arch/arm/boot/dts/qcom/qcom-msm8974.dtsi      |  27 ---
+ .../qcom/qcom-msm8974pro-fairphone-fp2.dts    |  31 ++-
+ .../qcom/qcom-msm8974pro-oneplus-bacon.dts    |  31 ++-
+ .../dts/qcom/qcom-msm8974pro-samsung-klte.dts |  12 +-
+ ...-msm8974pro-sony-xperia-shinano-castor.dts |  31 ++-
+ arch/arm/boot/dts/qcom/qcom-sdx55-mtp.dts     |   2 +-
+ arch/arm/boot/dts/qcom/qcom-sdx55-t55.dts     |   2 +-
+ .../dts/qcom/qcom-sdx55-telit-fn980-tlb.dts   |   2 +-
+ arch/arm/boot/dts/qcom/qcom-sdx65-mtp.dts     |   2 +-
+ 45 files changed, 1137 insertions(+), 972 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/qcom,pm8921-keypad.yaml
+ delete mode 100644 Documentation/devicetree/bindings/input/qcom,pm8xxx-keypad.txt
+ create mode 100644 arch/arm/boot/dts/qcom/pm8018.dtsi
+ create mode 100644 arch/arm/boot/dts/qcom/pm8058.dtsi
+ rename arch/arm/boot/dts/qcom/{qcom-pm8226.dtsi => pm8226.dtsi} (100%)
+ create mode 100644 arch/arm/boot/dts/qcom/pm8821.dtsi
+ rename arch/arm/boot/dts/qcom/{qcom-pm8841.dtsi => pm8841.dtsi} (100%)
+ create mode 100644 arch/arm/boot/dts/qcom/pm8921.dtsi
+ rename arch/arm/boot/dts/qcom/{qcom-pm8941.dtsi => pm8941.dtsi} (100%)
+ rename arch/arm/boot/dts/qcom/{qcom-pma8084.dtsi => pma8084.dtsi} (100%)
+ rename arch/arm/boot/dts/qcom/{qcom-pmx55.dtsi => pmx55.dtsi} (100%)
+ rename arch/arm/boot/dts/qcom/{qcom-pmx65.dtsi => pmx65.dtsi} (100%)
+
 -- 
-2.18.0
+2.39.2
 
 
