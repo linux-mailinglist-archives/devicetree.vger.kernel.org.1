@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-4307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E7107B1FF8
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 16:47:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15D7C7B1FFA
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 16:47:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id C666D28286E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 14:47:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 9C468282B50
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 14:47:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A01283FB26;
-	Thu, 28 Sep 2023 14:47:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 604EA3FB19;
+	Thu, 28 Sep 2023 14:47:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A2FE8480;
-	Thu, 28 Sep 2023 14:47:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18E3CC433C8;
-	Thu, 28 Sep 2023 14:47:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 510078480
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 14:47:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54797C433C9;
+	Thu, 28 Sep 2023 14:47:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695912433;
-	bh=DAhYMVG3nEzAFn/EI+pyjEUCUyXo8CLi3ZCOtHs/arQ=;
+	s=k20201202; t=1695912435;
+	bh=jkl0eNZxunoiBQRh8rBnK1U/95JO9xlXay+2bUDxxm0=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=mCgSUN8BLRBjiIjTvtgM4sByKgXNxwGgVACsctHPBYgPR+J2tr64sI/av6TRNwRID
-	 Sxpn8EtCKqLGWGkJfqA9lzSasMm32pAlX3fk96W+pNc/Z8t7zWt4lC1lJGyhvJjTk3
-	 KbQbRykpAUQgmcMwdYlm7LxXjVrzITokeNS1iiL9FEjABOlk+ay3qcO+KyIsM/M1si
-	 YzWniGsMD8aMrpaqQuqzdGXL4I9jgcUjssGoiN1moF8vjmRqZ1qZxM/8jMQt85LeEx
-	 Qo/pzFld00MzXxlDSJchdTVb+rUd2j2Dz05u6es26vKor49zKn5/xfCyisM7GjHH4+
-	 sqAdTLKWtX6pg==
-Received: (nullmailer pid 408729 invoked by uid 1000);
+	b=scHqdd0ftYybYJA5yUlRWBDfw+URZu54CG0ax1Mwni64teM/409C/VM5xSw+CZivs
+	 pgWKnw9nV72i3LegMkkwFV2V1La8v4r4c6O93iIni69IDoBnTYhjmjhq4fViMzJtP/
+	 TKp10PeRBQWcjwdhedexqRvSa63H5zFbmXHH/76wkGcAmo7tmpA8F3sCzc5fUPnWvO
+	 frTznp+WODxvnwj2rUT9J/8K23kWdxHKkfWDcsnhYYvYCMNhpWdodd6a+Pcb665Ads
+	 1jy4w+hEEXVkJ7vosrIP3irSheepa+iOxeJ3ITWVLmrLFhgyfhDa77JFYZ2dIrsVQC
+	 sctSZQ0R2wGpA==
+Received: (nullmailer pid 408736 invoked by uid 1000);
 	Thu, 28 Sep 2023 14:47:11 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -39,26 +39,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: Rob Herring <robh@kernel.org>
-To: Jisheng Zhang <jszhang@kernel.org>
-Cc: linux-riscv@lists.infradead.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Fu Wei <wefu@redhat.com>, Guo Ren <guoren@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20230927164222.3505-2-jszhang@kernel.org>
-References: <20230927164222.3505-1-jszhang@kernel.org>
- <20230927164222.3505-2-jszhang@kernel.org>
-Message-Id: <169591240666.408168.6432337250715117687.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: usb: Add T-HEAD TH1520 USB controller
+To: Jian Yang <jian.yang@mediatek.com>
+Cc: Chuanjia.Liu@mediatek.com, Jieyy.Yang@mediatek.com, Jian.Yang@mediatek.com, Qizhong.Cheng@mediatek.com, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Project_Global_Chrome_Upstream_Group@mediatek.com, Lorenzo Pieralisi <lpieralisi@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, Bjorn Helgaas <bhelgaas@google.com>, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org, Jianjun Wang <jianjun.wang@mediatek.com>
+In-Reply-To: <20230928105819.5161-2-jian.yang@mediatek.com>
+References: <20230928105819.5161-1-jian.yang@mediatek.com>
+ <20230928105819.5161-2-jian.yang@mediatek.com>
+Message-Id: <169591240857.408275.15934417880074506796.robh@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: mediatek-gen3: Add support
+ for controlling power and reset
 Date: Thu, 28 Sep 2023 09:47:11 -0500
 
 
-On Thu, 28 Sep 2023 00:42:21 +0800, Jisheng Zhang wrote:
-> T-HEAD TH1520 platform's USB has a wrapper module around
-> the DesignWare USB3 DRD controller. Add binding information doc for
-> it.
+On Thu, 28 Sep 2023 18:58:20 +0800, Jian Yang wrote:
+> From: "jian.yang" <jian.yang@mediatek.com>
 > 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> Add new properties to support control power supplies and reset pin of
+> a downstream component.
+> 
+> Signed-off-by: jian.yang <jian.yang@mediatek.com>
 > ---
->  .../bindings/usb/thead,th1520-usb.yaml        | 73 +++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/thead,th1520-usb.yaml
+>  .../bindings/pci/mediatek-pcie-gen3.yaml      | 25 +++++++++++++++++++
+>  1 file changed, 25 insertions(+)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -67,11 +68,31 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/usb/thead,th1520-usb.example.dts:25.13-43.11: Warning (unit_address_vs_reg): /example-0/usb: node has a reg or ranges property, but no unit name
+Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dts:72.24-75.19: Warning (unit_address_vs_reg): /example-0/bus/pcie@11230000/pcie@0: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dts:72.24-75.19: Warning (pci_bridge): /example-0/bus/pcie@11230000/pcie@0: missing ranges for PCI bridge (or not a bridge)
+Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dts:72.24-75.19: Warning (pci_bridge): /example-0/bus/pcie@11230000/pcie@0: incorrect #address-cells for PCI bridge
+Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dts:72.24-75.19: Warning (pci_bridge): /example-0/bus/pcie@11230000/pcie@0: incorrect #size-cells for PCI bridge
+Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dtb: Warning (unit_address_format): Failed prerequisite 'pci_bridge'
+Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dtb: Warning (pci_device_reg): Failed prerequisite 'pci_bridge'
+Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'pci_bridge'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dtb: pcie@11230000: pcie@0: 'reg' is a required property
+	from schema $id: http://devicetree.org/schemas/pci/mediatek-pcie-gen3.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dtb: pcie@11230000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'bus-range', 'device_type', 'interrupt-map', 'interrupt-map-mask', 'pcie@0' were unexpected)
+	from schema $id: http://devicetree.org/schemas/pci/mediatek-pcie-gen3.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dtb: pcie@11230000: pcie@0: 'reg' is a required property
+	from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dtb: pcie@0: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dtb: pcie@0: 'reg' is a required property
+	from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dtb: pcie@0: '#address-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dtb: pcie@0: '#size-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230927164222.3505-2-jszhang@kernel.org
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230928105819.5161-2-jian.yang@mediatek.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
