@@ -1,81 +1,44 @@
-Return-Path: <devicetree+bounces-4347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 068577B219A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 17:45:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 798387B21D2
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 17:54:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 153831C209A5
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 15:45:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 6DE2F1C209D9
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 15:54:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 978904F142;
-	Thu, 28 Sep 2023 15:45:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29C3F4F13D;
+	Thu, 28 Sep 2023 15:54:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B83AA4F143
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 15:45:24 +0000 (UTC)
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E112411F
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 08:45:21 -0700 (PDT)
-Received: by mail-qk1-x72c.google.com with SMTP id af79cd13be357-77412b91c41so730939385a.1
-        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 08:45:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=hefring-com.20230601.gappssmtp.com; s=20230601; t=1695915921; x=1696520721; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=zjyiO2aerenB+L5bFFtdZmRzY+MpNJymXfUVpkxGKO4=;
-        b=dwO6EE243/koFMbKulZmcycWPxT1PjywGL+koaDrv4hLiEowCLzyPBedMp7ugDDcvy
-         lfRIFfgO5vf2UjKAb6LuEPisgGOMSAgfgQCvu+0B99aCduaYmaXuWCbgamV47RJnyJft
-         Ppg2YcDOO3eDJ+ZV9afprcLZS5suzxQyJ8Uphz0wrt+OPrd5OuyMecgPXViEMIbvd5PM
-         lADYLmx+K2DHxZtro2NtQOSZVKEsFWNQAaTiMLjohZ/4o8bFWrlf7gkG/o/ji5KwTt9s
-         8DGyugOpBuvbIc6mV02fEcUmwe4nabTJyRXbL4c3bE2i63JGI1Tid5W1pe/pYalst377
-         CxkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695915921; x=1696520721;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zjyiO2aerenB+L5bFFtdZmRzY+MpNJymXfUVpkxGKO4=;
-        b=aI8UBdspGDCAZxYdcATTU10Wb25sQjxQldt0MZwycyNNA/tcW6T+B0J/QGPpmVogEc
-         hO8/eCehGo4V1zSTbg0o5Ur96nVdO8/kVtwhp+wRX9Y0l+ZEBdG5OcMWv6e0no4C6bSa
-         /6lsKpXKZ8X2bPqSKQ3hlMDnO4UYO2hB1sdadOJKZRCWKg/DKC4B0tTBGrhqh0NjBxhR
-         /V6vX6pRCpelb+ui+cNq19y3W4HL/HxzcILAMZU8suEwpeAf3WWE5APYpM8O6lWgT2se
-         SVa4iLMmkTaSO3I3YDyHTCuCjJnvOswyLQjpwmVD3fgp2cpdoP9S7RtejqSYTHoewB+T
-         nidg==
-X-Gm-Message-State: AOJu0Yy7FRSknpcwh4rTlXywfLm/pgbtJ7m06SP4795pZyzm1SXkiXvs
-	byU1QZNUPY2y1WNyRbXDq8P4/A==
-X-Google-Smtp-Source: AGHT+IFKFYsPa5h8pLMtcKIq+MzAXP0NgUcgCjLytQEnC2TxzCHGxJpa5mBsW/GglWjJvBke4oO7bg==
-X-Received: by 2002:ac8:5885:0:b0:418:12c6:467f with SMTP id t5-20020ac85885000000b0041812c6467fmr1513741qta.3.1695915921011;
-        Thu, 28 Sep 2023 08:45:21 -0700 (PDT)
-Received: from dell-precision-5540 ([50.212.55.89])
-        by smtp.gmail.com with ESMTPSA id r15-20020ac87eef000000b004181a3eeff4sm3076750qtc.5.2023.09.28.08.45.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Sep 2023 08:45:20 -0700 (PDT)
-Date: Thu, 28 Sep 2023 11:45:10 -0400
-From: Ben Wolsieffer <ben.wolsieffer@hefring.com>
-To: Christophe Roullier <christophe.roullier@foss.st.com>
-Cc: "David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 08/12] net: ethernet: stmmac: stm32: support the
- phy-supply regulator binding
-Message-ID: <ZRWfhk0aEDwytGv5@dell-precision-5540>
-References: <20230928151512.322016-1-christophe.roullier@foss.st.com>
- <20230928151512.322016-9-christophe.roullier@foss.st.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19CD6347A3
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 15:54:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BC35C433C8;
+	Thu, 28 Sep 2023 15:54:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695916488;
+	bh=TyK4oRa39EFi3FEtmPtV9JKHNZGXq3NJxrDJaHDMNvs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iblaJIoiMbx07wf9W6cMp12Y7iY2swpXlxPlb/pxJATIQo+98pN6XDEqVuw47eUmH
+	 ZvYcYKCaysRNYqof4CpliJKG3188qvONwse3P/f9XuC6sYOsWnQxSM105e17WBSniz
+	 Pr/Ci4MN8UIjupJcIPoPcEVFsnO+Snuu3q8qtyulQAvM9wcDMNbdpAe8LOfjoPZYGc
+	 VkXtfAC4Lf35/S/gaS0mp9WgKmXNNPCB9xqVkEt8g9R36HGkR3PWMUtmKA/S4SfFOw
+	 bcCKBPgqZg35DOQfFe6OEKqFMPjKB7S+UEIrtS7QhRYwZGXKLRt6An9MnDjnAzy7s6
+	 QEwpmRK+Vuqng==
+Received: (nullmailer pid 575144 invoked by uid 1000);
+	Thu, 28 Sep 2023 15:54:46 -0000
+Date: Thu, 28 Sep 2023 10:54:46 -0500
+From: Rob Herring <robh@kernel.org>
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc: Fabio Estevam <festevam@gmail.com>, mchehab@kernel.org, sakari.ailus@linux.intel.com, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, martink@posteo.de, linux-media@vger.kernel.org, devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2] media: dt-bindings: hynix,hi846: Document orientation
+ and rotation
+Message-ID: <20230928155446.GA568091-robh@kernel.org>
+References: <20230928121424.388019-1-festevam@gmail.com>
+ <avoixz5pqixr366cqks672akniv7h7ewix4edoyikg23dv24fd@bquxelr53t7t>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,62 +47,87 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230928151512.322016-9-christophe.roullier@foss.st.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+In-Reply-To: <avoixz5pqixr366cqks672akniv7h7ewix4edoyikg23dv24fd@bquxelr53t7t>
 
-Hello,
-
-On Thu, Sep 28, 2023 at 05:15:08PM +0200, Christophe Roullier wrote:
-> From: Christophe Roullier <christophe.roullier@st.com>
+On Thu, Sep 28, 2023 at 04:57:23PM +0200, Jacopo Mondi wrote:
+> Hi Fabio, Krzysztof
 > 
-> Configure the phy regulator if defined by the "phy-supply" DT phandle.
+> On Thu, Sep 28, 2023 at 09:14:24AM -0300, Fabio Estevam wrote:
+> > From: Fabio Estevam <festevam@denx.de>
+> >
+> > Document the 'orientation' and 'rotation' properties, which
+> > are valid for the SK Hynix Hi-846 sensor.
+> >
+> > Their definitions come from video-interface-devices.yaml, so add
+> > a reference to it.
+> >
+> > Signed-off-by: Fabio Estevam <festevam@denx.de>
+> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Acked-by: Martin Kepplinger <martink@posteo.de>
+> > ---
+> > Changes since v1:
+> > - Also pass a ref to video-interface-devices.yaml. (Martin)
+> >
 > 
-> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
-> ---
->  .../net/ethernet/stmicro/stmmac/dwmac-stm32.c | 51 ++++++++++++++++++-
->  1 file changed, 50 insertions(+), 1 deletion(-)
+> This patch is technically correct, so this message is not meant to
+> delay its integration or anything like that, but I'll take the
+> occasion to ask for guidance to the DT maintainers, as I think this
+> approach doesn't scale.
 > 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
-> index 72dda71850d75..31e3abd2caeaa 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
-... snip ...
->  static int stm32mp1_suspend(struct stm32_dwmac *dwmac)
-> @@ -455,12 +496,20 @@ static int stm32mp1_suspend(struct stm32_dwmac *dwmac)
->  	if (dwmac->enable_eth_ck)
->  		clk_disable_unprepare(dwmac->clk_eth_ck);
->  
-> +	/* Keep the PHY up if we use Wake-on-Lan. */
-> +	if (!device_may_wakeup(dwmac->dev))
-> +		phy_power_on(dwmac, false);
-> +
->  	return ret;
->  }
->  
->  static void stm32mp1_resume(struct stm32_dwmac *dwmac)
->  {
->  	clk_disable_unprepare(dwmac->clk_ethstp);
-> +
-> +	/* The PHY was up for Wake-on-Lan. */
-> +	if (!device_may_wakeup(dwmac->dev))
-> +		phy_power_on(dwmac, true);
->  }
->  
->  static int stm32mcu_suspend(struct stm32_dwmac *dwmac)
-
-Why only turn off the regulator in suspend on the STM32MP1 and not STM32
-MCUs? It seems like this could just go in stm32_dwmac_suspend/resume().
-
-Selfishly, I have a use case for this on an STM32F746 platform, so I
-would like to see support for it and would test an updated version.
-
-> -- 
-> 2.25.1
+> I count the following sensor bindings that refer to
+> video-interface-device.yaml
 > 
+> Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
+> Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
+> Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+> Documentation/devicetree/bindings/media/i2c/ovti,ov5675.yaml
+> Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+> Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
+> Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
+> 
+> These:
+> 
+> Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml:additionalProperties: false
+> Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml:additionalProperties: false
+> Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml:additionalProperties: false
+> Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml:additionalProperties: false
+> Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml:additionalProperties: false
+> 
+> specify 'additionalProperties: false' at the top-level.
+> This is correct imho, as it implies that any properties not
+> specifically allowed by bindings is forbidden.
+> 
+> This unfortunately applies to  'rotation' and 'orientation' as well.
+> This is not correct, as those two properties should apply to all
+> sensors without the requiring the bindings to explicitly allow them.
+> 
+> Counterproof: It's very easy to break validation of, in example,
+> ov5640
+> 
+> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+> @@ -109,6 +109,7 @@ examples:
+>                powerdown-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
+>                reset-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
+>                rotation = <180>;
+> +              orientation = <0>;
+> 
+>                port {
+>                    /* MIPI CSI-2 bus endpoint */
+> 
+> $ make ARCH=arm64 dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+>   DTC_CHK Documentation/devicetree/bindings/media/i2c/ovti,ov5640.example.dtb
+>   'orientation' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/media/i2c/ovti,ov5640.yaml#
+> 
+> Is there a way to allow those two properties ('rotation' and
+> 'orientation') to be accepted by all sensor drivers bindings ?
 
-Thanks, Ben
+Use unevaluatedProperties instead of additionalProperties and add a $ref 
+to video-interface-devices.yaml in the sensor schemas. However, that 
+will allow all properties in video-interface-devices.yaml (which is just 
+flash-leds and lens-focus which seem fine). If you don't want that, then 
+you will have to split up video-interface-devices.yaml.
+
+Rob
 
