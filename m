@@ -1,77 +1,76 @@
-Return-Path: <devicetree+bounces-4088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 135F27B1367
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 08:54:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CC127B1371
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 08:59:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 912C2281C99
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 06:54:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 836AE1C208F8
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 06:59:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65F2226E32;
-	Thu, 28 Sep 2023 06:54:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28538273FD;
+	Thu, 28 Sep 2023 06:59:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32CF48467
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 06:54:15 +0000 (UTC)
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73E889C
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 23:54:14 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-690fa0eea3cso11341998b3a.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 23:54:14 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85F1D8467
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 06:59:16 +0000 (UTC)
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5613BE
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 23:59:14 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40566f8a093so95203045e9.3
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 23:59:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695884053; x=1696488853; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695884353; x=1696489153; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ORFh1G/tLLYSxkT+tmliKlXY8dPwCVzvjctTBPYPJoA=;
-        b=ft1pFHQABlryPmfTY7AphwsYXbkqAVWBZC8omNIws/V7hcQMH+ZOQn++Y3fXWkh44w
-         TebDlQy4J67Xxh1jZoQBiEWKhac58s03A8em3+SO6vw+QdGW+Fwpw65evWFgoFSbvI/q
-         ZQXw+MPeG9eXZfDoyApmd3u5tmoHAOaJ6MapcMTI4tQva4In82iUV530zVvsxHVvoCRa
-         SRrdYkFFRxB1aUlFc1BSdk4V/czcr+EgeBieC8zZd0tt9fOPFhDFQ2PehZrHVyhlTeOF
-         Ub8yGJn/ZZid9WiIekHImyOKCSkUIDbmSoccCVZqOFiiIaWZgK4knUbgAzQoacBeuGUz
-         Y5BA==
+        bh=IxtdkWUQyRUGTWll+i5PkjZHj3/ZutnR3Ko0Ft8Vpf4=;
+        b=cHWb7Q0X2rRfjh4LpqywXlpBBmOLku5nUK8F9Kk+CJyt5yfE7i4Qv4q/6/ITe87EeJ
+         8civ/5e2ldG7bCHJMdzJyc6yoVohBt5UpOIiJADA24NaQA+5sClB3rztOAYn3iS7XHD6
+         sfiUQDZ+agai70UpFpbjPBc13ojMT1sb2dRZE2r5a0oJOV6HHco8pueFAu97MYCRPehO
+         4UhtZUF2MdjwkaHF9pxjD9nojkZmvFNi2bNaBkEPgaEEFZqjbnlkkw7u66cjLbXDeKQe
+         wId9Ckxe9Xc0cvwmR7j2sa02Q+LLC7WvaJZIFL+b0CWjxilj4eR4nEvLv4gLk5ZKSwS4
+         yv1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695884053; x=1696488853;
+        d=1e100.net; s=20230601; t=1695884353; x=1696489153;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ORFh1G/tLLYSxkT+tmliKlXY8dPwCVzvjctTBPYPJoA=;
-        b=q/uRPa/6bMtxDjhiuBXTxeKzjZsVVZ7OChldbw18T8Nv5PDZUyF/A3p/w0k/ObTXnw
-         pK5vWN4B8Yt8lbx8kp1xODWRJKCNun5InLMPitDxLO0wAprxxvlr+7nnx+bOH1uYFcZO
-         zaj4LX8t5wq+mFMJVwRT8wAJTNWsw8yDJtMPiKgjMSaxwGR3AYKSVjHuXH3kElHdfngg
-         foUYUlPSzcNNd9juUy75WmPAPby4Km5+c958KG8C4/OYrf5qY2AWPgpcyR6FAqNsZe2d
-         IeeD9nwySDSvFjIbl4dxkJXoiPm6F1EzShU6tdlYukFMHDxrAtnEHCeuTOtWNeFy0RRq
-         W8tQ==
-X-Gm-Message-State: AOJu0Yw3h0n65PRlpBCWQag7CTtb9rVQ3bfEvZVcv4V5b9UJAPRJ5ib5
-	ey10mSKHIEvw9jbToRXauIRRHQ==
-X-Google-Smtp-Source: AGHT+IFNRQNqqdXxxa3csygfbjqkQyvW8kGqyU9ZM1twjgU8rhX0gzHHjfRf0thapiix1HIk6FM2dQ==
-X-Received: by 2002:aa7:88c1:0:b0:68f:dfda:1814 with SMTP id k1-20020aa788c1000000b0068fdfda1814mr480850pff.18.1695884052920;
-        Wed, 27 Sep 2023 23:54:12 -0700 (PDT)
-Received: from localhost ([122.172.81.92])
-        by smtp.gmail.com with ESMTPSA id du14-20020a056a002b4e00b00690fe1c928esm8915642pfb.91.2023.09.27.23.54.11
+        bh=IxtdkWUQyRUGTWll+i5PkjZHj3/ZutnR3Ko0Ft8Vpf4=;
+        b=R82GJa0naZvr9CY5/YhiKfWGekBYt8x8J7VsEm5DjJ+nq8Hl6U0JBB0HuceX5Rg41X
+         zUQVcnIBqGj2gPvvy+ajSjuVrwRa/VkptUDQjz9dpr9cha3EbJjE14pac9ktE8M45agz
+         ByJI1aok7T6FlyM49Wi6lZFYKIixaWUkRGLQmut3tDMWcjoDSZAYK4HcF/8aUCGSLv40
+         yeukcTWh0kYNg0wkVfzREFoUulguc3eFLc42m8wRK8GGr8qEgBXpCOW9/4vn7/8KdDcC
+         uUJL311/tozssDQURIH2F6ihXtZDQCBITi6L7/htaSdjkhnXfzg00g4M6E4kf3HcCd6l
+         hAug==
+X-Gm-Message-State: AOJu0YxSgHn2UmMcnJu8UadK73yQlV89EyiqiIy+8accXkdDlGjN41va
+	A1bwgJlph6wCWlVQrFJI69j0eQ==
+X-Google-Smtp-Source: AGHT+IGKeFwM5Om0OMVfRkBh1YdUioiRAuzKQMZJEqVhiuiiZ7tZD589pp+o//kNbzitL+JePrtmtw==
+X-Received: by 2002:a05:600c:3b22:b0:406:5303:9be2 with SMTP id m34-20020a05600c3b2200b0040653039be2mr304954wms.0.1695884353220;
+        Wed, 27 Sep 2023 23:59:13 -0700 (PDT)
+Received: from localhost ([102.36.222.112])
+        by smtp.gmail.com with ESMTPSA id z4-20020a05600c220400b003fe61c33df5sm6326296wml.3.2023.09.27.23.59.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Sep 2023 23:54:12 -0700 (PDT)
-Date: Thu, 28 Sep 2023 12:24:10 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Ilia Lin <ilia.lin@kernel.org>, devicetree@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>, linux-pm@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 3/4] dt-bindings: cpufreq: qcom-nvmem: Document MSM8909
-Message-ID: <20230928065410.4flrqdm5mtw6zt32@vireshk-i7>
-References: <20230912-msm8909-cpufreq-v1-0-767ce66b544b@kernkonzept.com>
- <20230912-msm8909-cpufreq-v1-3-767ce66b544b@kernkonzept.com>
- <169454334732.1164153.5118228878567772612.robh@kernel.org>
+        Wed, 27 Sep 2023 23:59:12 -0700 (PDT)
+Date: Thu, 28 Sep 2023 09:59:10 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: wangweidong.a@awinic.com
+Cc: 13916275206@139.com, alsa-devel@alsa-project.org, arnd@arndb.de,
+	broonie@kernel.org, ckeepax@opensource.cirrus.com,
+	colin.i.king@gmail.com, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, doug@schmorgal.com, fido_max@inbox.ru,
+	harshit.m.mogalapalli@oracle.com, herve.codina@bootlin.com,
+	krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
+	linus.walleij@linaro.org, linux-kernel@vger.kernel.org,
+	liweilei@awinic.com, perex@perex.cz, rf@opensource.cirrus.com,
+	robh+dt@kernel.org, ryans.lee@analog.com, shumingf@realtek.com,
+	tiwai@suse.com, trix@redhat.com, u.kleine-koenig@pengutronix.de,
+	yang.lee@linux.alibaba.com, yijiangtao@awinic.com
+Subject: Re: [PATCH V5 8/8] ASoC: codecs: Add aw87390 amplifier driver
+Message-ID: <71f6bff0-c173-4de2-aed0-38ed2c15ec59@kadam.mountain>
+References: <464ada20-072d-48f8-a270-155dfd4a06b9@kadam.mountain>
+ <20230928064330.104265-1-wangweidong.a@awinic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,31 +79,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <169454334732.1164153.5118228878567772612.robh@kernel.org>
+In-Reply-To: <20230928064330.104265-1-wangweidong.a@awinic.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 12-09-23, 13:29, Rob Herring wrote:
+On Thu, Sep 28, 2023 at 02:43:30PM +0800, wangweidong.a@awinic.com wrote:
+> Thank you very much for your review, but I have some questions
+> I would like to discuss with you
 > 
-> On Tue, 12 Sep 2023 11:40:17 +0200, Stephan Gerhold wrote:
-> > Document that MSM8909 is used with qcom-cpufreq-nvmem for voltage
-> > scaling and to restrict the maximum frequency based on the speedbin
-> > encoded in the nvmem cells.
-> > 
-> > Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-> > ---
-> >  Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
+> > On Wed, Sep 27, 2023 at 08:16:34PM +0800, wangweidong.a@awinic.com wrote:
+> >> @@ -668,6 +668,17 @@ config SND_SOC_AW88261
+> >>  	  boost converter can be adjusted smartly according to
+> >>  	  the input amplitude.
+> >>  
+> >> +config SND_SOC_AW87390
+> >> +	tristate "Soc Audio for awinic aw87390"
 > 
-> Acked-by: Rob Herring <robh@kernel.org>
+> > Capitalize A in Awinic.
+> 
+> Thank you very much, but our company prefers to 
+> use awinic rather than Awinic
 
-Applied. Thanks.
+Ah.  Fine.  I did Google the company name but hadn't scrolled down
+far enough.
 
--- 
-viresh
+regards,
+dan carpenter
+
 
