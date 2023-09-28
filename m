@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-4417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38A5B7B2763
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 23:23:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E39507B2767
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 23:24:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 2090A1C20959
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 21:23:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 9400D2836A9
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 21:24:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66FCF168C7;
-	Thu, 28 Sep 2023 21:23:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63F9F168C8;
+	Thu, 28 Sep 2023 21:24:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 118789CA71
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 21:23:51 +0000 (UTC)
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C96F61B1
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 14:23:49 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-3231dff4343so3978f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 14:23:49 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 130B29CA71
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 21:24:28 +0000 (UTC)
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46B9E1A2
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 14:24:26 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-405524e6768so113994445e9.2
+        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 14:24:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1695936228; x=1696541028; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1695936265; x=1696541065; darn=vger.kernel.org;
         h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=rO9RKxosGgwP91qvsq0ZRq57pd8ymagCUF261P3iRlY=;
-        b=SqVIUylJibb4YSXdz9dYdTa2MTktjcJN5u8QNqefYyU8RYuvidn/I3vuote5r72vQA
-         5CfXNJNJyUs872CcYxw+EJlwj/3QuQA5PpP1X0BiRgKb2YI3MPDlNqC6pDnkSko+v8m/
-         2qGj4f1izY/bsooBExba5XE5a5A7HxdJISnBc=
+        bh=Qyo8gYXex48hlPlzxB1Q2SgqlZ7UcLmIUvyD23rz20E=;
+        b=E4fR1dM4QSTd4U9J1vzGvwyKb5u1VR0sDalC+CMBDNZJKFUM4ZQtJaqstq4emWU5gC
+         i+dRVFhuBRDPpj1V8hfNxy5TbS4k0V2HCacUOedp45xazJlv8DWE7n8jQEjnnzODdpUW
+         wrye5Z7kkINlTtcXymzRKYUk41DKmXc7au6a8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695936228; x=1696541028;
+        d=1e100.net; s=20230601; t=1695936265; x=1696541065;
         h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=rO9RKxosGgwP91qvsq0ZRq57pd8ymagCUF261P3iRlY=;
-        b=kqE2PYLyZR3lrdutm7uYakjyFH0lWHUM5xrDe5Ixv1on/sWfC/qFVN1GWNDs+bQNJS
-         kqIyHl3bdyQCngzoMqM6crP6imwAdAG+4LudEYzO/wUoU8h59zOUwDP3ni6E1Xjd5t/a
-         BYh+HGFoXj8bxYZYwoD6mn2v0wih1UIhKm0Jl8/aqQQUKylFrSn1HAshjSs0TkIpX2E7
-         CJdJbZbgmCUE6R5zyFmPqeCs9PgWtmeFoKH4G41xjUT9sPZZtyKGwdxFILI5vPp/vx60
-         RJfEWSwBU0slAfRSIIL0Kri+f2+r5fNOu5/zh5Xzo55Hni/LFw69LhyqBBw+ptfIp/P8
-         5cmA==
-X-Gm-Message-State: AOJu0YwxnufWa0zEZ/LPwnJY6M4wjg/mUi1uRAMuSJMfNWxtjTW7pUBv
-	PRE4xmIcRwKn2t4eDiPdsHtWsQ==
-X-Google-Smtp-Source: AGHT+IEtcC8oNE7W4UIwUvqQiedUQr7RfbS0avGBv4QaGCpjynITItQ6TZZk6qwn1BM1v/qNAXgxOA==
-X-Received: by 2002:adf:db48:0:b0:31f:a15f:2cdc with SMTP id f8-20020adfdb48000000b0031fa15f2cdcmr2211506wrj.29.1695936228131;
-        Thu, 28 Sep 2023 14:23:48 -0700 (PDT)
+        bh=Qyo8gYXex48hlPlzxB1Q2SgqlZ7UcLmIUvyD23rz20E=;
+        b=n669/rjCGyuh974DttyigCFrzjmSbP520YmxtI8MyE5C1z5Tlzwmnxnz5zTos5PLtM
+         G9VAc07qT6eN99Ipb/z6S8Fq8wwXWqXHsMvICER7G8BhlA85OCV941le6v6JS617MT/a
+         QJ+yzkTwYDk+Wxn4ZQLcfmLJpZdQWwbmxbCetfdx9ST5ysSXgVn00m3iJI7SifgeYrui
+         ZGEdChkIEHMIJlosL+Ym+QAMnwNsEKqIPihnLw5tWwlqLZsoCHcSqdNW7Deas6R5u0Ma
+         Gbb8M3dgJBg7OR2r/au/mBZyPdu14XfutHhCJqAMvtpQhas7wd702iBcI9qEqB+RN+Cf
+         nVEw==
+X-Gm-Message-State: AOJu0Yx80lWl4L1lZkEPcpcdtf4XI8Z4QBJyxqh6TkpcM/5MvzPUkRKY
+	vLkEE54rZovvRXrzec6azQIsHA==
+X-Google-Smtp-Source: AGHT+IGl5Fabye9VdtRvJpjW+0KClxb52Cez/GLB0qR1zxNGnrtZLoli5ADAPjPufQ60DBLMmbDncg==
+X-Received: by 2002:a7b:cd15:0:b0:401:c52c:5ed9 with SMTP id f21-20020a7bcd15000000b00401c52c5ed9mr2282452wmj.32.1695936264586;
+        Thu, 28 Sep 2023 14:24:24 -0700 (PDT)
 Received: from [192.168.244.133] ([37.175.77.39])
-        by smtp.gmail.com with ESMTPSA id x16-20020a05600c2a5000b003fe23b10fdfsm2707wme.36.2023.09.28.14.23.45
+        by smtp.gmail.com with ESMTPSA id x16-20020a05600c2a5000b003fe23b10fdfsm2707wme.36.2023.09.28.14.24.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Sep 2023 14:23:46 -0700 (PDT)
-Message-ID: <9088c5f6-08e9-4cb9-81de-6739e93e8c70@broadcom.com>
-Date: Thu, 28 Sep 2023 23:23:51 +0200
+        Thu, 28 Sep 2023 14:24:23 -0700 (PDT)
+Message-ID: <fa9219ff-efff-4b51-89d6-0c2221332624@broadcom.com>
+Date: Thu, 28 Sep 2023 23:24:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,11 +60,11 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: PCI: brcm,iproc-pcie: Drop common
- pci-bus properties
-To: Rob Herring <robh@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
+Subject: Re: [PATCH 3/3] dt-bindings: PCI: brcm,iproc-pcie: Fix 'msi' child
+ node schema
+To: Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
  =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
  Scott Branden <sbranden@broadcom.com>,
@@ -74,7 +74,7 @@ Cc: Ray Jui <ray.jui@broadcom.com>, Scott Branden
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org
 References: <20230926155351.31117-1-robh@kernel.org>
- <20230926155351.31117-2-robh@kernel.org>
+ <20230926155613.33904-3-robh@kernel.org>
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
@@ -108,9 +108,9 @@ Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
  7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
  95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20230926155351.31117-2-robh@kernel.org>
+In-Reply-To: <20230926155613.33904-3-robh@kernel.org>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="00000000000076a71f060671ec00"
+	boundary="000000000000a3185c060671eef4"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
@@ -118,17 +118,23 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
---00000000000076a71f060671ec00
+--000000000000a3185c060671eef4
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
-On 9/26/2023 5:53 PM, Rob Herring wrote:
-> Drop the unnecessary listing of properties already defined in
-> pci-bus.yaml. Unless there are additional constraints, it is not
-> necessary.
+On 9/26/2023 5:56 PM, Rob Herring wrote:
+> The 'msi' child node schema is missing constraints on additional properties.
+> It turns out it is incomplete and properties for it are documented in the
+> parent node by mistake. Move the reference to msi-controller.yaml and
+> the custom properties to the 'msi' node. Adding 'unevaluatedProperties'
+> ensures all the properties in the 'msi' node are documented.
+> 
+> With the schema corrected, a minimal interrupt controller node is needed
+> to properly decode the interrupt properties since the example has
+> multiple interrupt parents.
 > 
 > Signed-off-by: Rob Herring <robh@kernel.org>
 
@@ -136,7 +142,7 @@ Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
 -- 
 Florian
 
---00000000000076a71f060671ec00
+--000000000000a3185c060671eef4
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -207,15 +213,15 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEILWKBl6wojh3f4/E
-8wJUlEsw3tpo4huOztWXcLSJh+AmMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMDkyODIxMjM0OFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIA9HavKY3cqX3xe7
+XBUO9Xwcn23Xr6QKfhZwtrjtHWO4MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMDkyODIxMjQyNVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQDpE2/rbop0DKh16cP8bKIqmdMWHil8F5rQ
-hDrqDQB3YbOpjypy8DOJQXn5TmpNgTdPxB1P4hi/qFjvH2cDfD7y6giRcOnuwQ6SdMli2QzFOp1y
-4pEcRE4AYWt6bOxH1x/eH2MPKUIhill6FgLDWRKqD7Z33rd3w7SZH6ogtRd7pdooWKX012rDgHE/
-XOcyD2ZDQlshEqgyP16zTlC+nS8M7AEgyhuArQH2mMaH+mAG89S1A5ojJB8YDmmT0kf2AA4iM6Qi
-IPwAxv7XaTcninpV08rE8P5A0jaXTbfuwdyFty73/qA/sNIGskS2pxvlYxrlfBQcTz/fnUnLI8FV
-8EXc
---00000000000076a71f060671ec00--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQCuvOPU/CJyCJCd0bcT2/XWaMuh5uDXY++R
+0XL09kO/G2FX4bfOmBBtm2Vh+7/28gepCey1qRDJxd0r7ROMprxdwj3ao8GE/KAjvgoqsn9wQkuI
+OYHaV3cZVwUwG0xWAugI667r9L8VqJA9SXgbiTQLX2OJwbTIVsG3Qm/jBkSW5DsdNcNTSLs94rZw
+AlBw0kQIGtYE1Wqff846ZtF6/gaX6tBxnaheo5xjUvYTsVp5CfwnkpHz4we5VHeuH9NuUNejxUyF
+harS5lRC3HrW4Qi3nwE0g5JvWyLHvGVt4BCtsepxlwoi3VY5JIlojbIxqL9USv/jjHFQ7+hQgRU4
++nr3
+--000000000000a3185c060671eef4--
 
