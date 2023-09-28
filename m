@@ -1,145 +1,134 @@
-Return-Path: <devicetree+bounces-4029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A90C7B11A4
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 06:41:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B5FD7B11C0
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 06:52:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 788631C20840
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 04:41:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id D18BA28175D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 04:52:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62200749B;
-	Thu, 28 Sep 2023 04:41:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB586847C;
+	Thu, 28 Sep 2023 04:52:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2103B33FF
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 04:41:25 +0000 (UTC)
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B156F121
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 21:41:23 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9adb9fa7200so2766279666b.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 21:41:23 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A535749B
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 04:52:13 +0000 (UTC)
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03983121;
+	Wed, 27 Sep 2023 21:52:11 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2bffa8578feso212458131fa.2;
+        Wed, 27 Sep 2023 21:52:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695876082; x=1696480882; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=pYkpogWiXfkYPHZfTXMkVm3tZA30h8DN2DZStHbrQIA=;
-        b=vvDBJR9aCTiQATRRr9v+lOEYX0fgBThU2IsFEkzLKTYXWuRtDzlzR4dfcDgt9GTDoP
-         HUVZEEeYtt6XkWm09NrZQYzbms/79xwEf9drSJ6EBUYlkCnIHWfCxSq5yIYCD58xMln1
-         Qan+Z65UjFohCKH0mkDbg9sJhgEazyCYPaMCk+/A0NgxfG5u2T1my/leEtsyui/utbIA
-         wQzdQTOdNw5ynuvehPjLINaA1n1dcrSjXbrj1XrlY/Xd59EnsUBXYyf4ZAFtF+4RDt0R
-         gx7+IOcIExDNSn9wf/q7KfFJwAmbQpQAincekJ0FdKgHgF8HtzK3z5jnm4msil2NzWjm
-         q6Fw==
+        d=gmail.com; s=20230601; t=1695876729; x=1696481529; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=50CeIcBtyDTmcONQhSsmODzCCq0J0/waCFp836ioZfA=;
+        b=cxR7ksdCfDSCYmtYWqK0+53si0DWuCOdgEl9BP2mVllFOdb5VWr9jIw7tj59uA3G5g
+         unDKLX8xLKLvOlpCIQlJz+bwNh0TYkwVou0cfPX6QamUHO9UPmvKxbz3q7e1G/LB9Uq+
+         mtMKAtQro1ZlJpwVXxgCOLtWsC/BGx144yzNGKTGVjXlDhPGHyHcIKQkXX5t1T3wXSuO
+         6mgNtlDduj0oH4OwdOLLaB/E+HnFeEhVfii8fuHte54zWs7sRkKCmPx3Cbc1w7Bx6YKN
+         xRc03J/YDVCBnlUwFju6Zvm1N5seWi8Sa+1dD2OAVSy3n2zsqXoxve/5Gz5M/TtE6okC
+         cX6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695876082; x=1696480882;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pYkpogWiXfkYPHZfTXMkVm3tZA30h8DN2DZStHbrQIA=;
-        b=CLAtlsLF3jOjtsPa30siXIPolcAg1KJQ9vAx0/o08T8ISAnx3HR3iqkpMIm4bPFpvk
-         Cf6cDapfT2Ph9Nq/UnSnfS6VFUQwFVKA+vzeaBFSj3Zw4eEzSjVK9qRuqnUsXeSSNcFl
-         ZyDYV0SJzp/i32j3UpeUPq12N49khGMPURTi8qLOzHbIelZNdX9Fsr09C2vPrpRRZDi0
-         nBrY1OHlrZ4GvG1fl/5u6j+8cyrJPWOZjXYVzr966WUgdCw6//N5CCt7KDwdgiJQvaFm
-         gW3WtUh2nTjtXk8EfBO362XU1K8v0f14OlCw3dpaQe8v7/KEfBYeh3BO9HDaBF6y1aN6
-         a0dQ==
-X-Gm-Message-State: AOJu0Yzy1nSvAha/XpRLFbd6/c8zTreRCbDnt1hPyL/YscaMZLw3r5gk
-	hELfde1mJUr9Ato+NgnVIdZhZQ==
-X-Google-Smtp-Source: AGHT+IF3R1QER8Ouxb5u936VKEOepcCFOGtBNHMoWyQsfaqs4jatx5UsPNHqtFxGK74cgx/djaJyig==
-X-Received: by 2002:a17:907:6d17:b0:9a1:8993:9532 with SMTP id sa23-20020a1709076d1700b009a189939532mr193346ejc.30.1695876082235;
-        Wed, 27 Sep 2023 21:41:22 -0700 (PDT)
-Received: from [192.168.168.64] (host-87-4-82-94.retail.telecomitalia.it. [87.4.82.94])
-        by smtp.gmail.com with ESMTPSA id lf11-20020a170907174b00b009ad81554c1bsm10166970ejc.55.2023.09.27.21.41.21
+        d=1e100.net; s=20230601; t=1695876729; x=1696481529;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=50CeIcBtyDTmcONQhSsmODzCCq0J0/waCFp836ioZfA=;
+        b=JQq34NWucYUAAszmhMRBOU+hIxc7YXW7GezdXk0wahyJt9wmDH3J7vBYb3h4dFLviL
+         uv23pVmmkVWuwNd7KJNg7ODhZ1yBfphMQHh5HjuF+3BvWNW0jw8UlEnfWbaDa5IKX5Gn
+         2PHscJ55uN222KVqYZeOab7A25wx6icHGHSvm9B6kyUE8JneSubK3aVu3gnw6oC3eaAw
+         iB3DvqAdx3tSqTaoUH6LNxq36/dephRdLKTuGEB7omcg1ZQQcEjRC840M0666qDk8I4w
+         lAfMkeobLPXNbNNqH6GikV2KyQH56twXoe84t9Fk/o87dKYtJO2Ky8UtOlIRLLuMOLuz
+         AlPg==
+X-Gm-Message-State: AOJu0YxWYU7E+y4KiRd6+9b9PHb8as0z4QZJ/BI7gQVJ5HuQ6pI23rZU
+	dajj/Dy8ArER3Pk/Lyp5jAc=
+X-Google-Smtp-Source: AGHT+IHRPWejVElofn9/9Ioro7bntPjotq0g/0Z86Cj+JgSnoqhwy1+TcB94wcEGwXXVrN0+igLJ0w==
+X-Received: by 2002:a2e:9854:0:b0:2bb:78ad:56cb with SMTP id e20-20020a2e9854000000b002bb78ad56cbmr85554ljj.37.1695876728814;
+        Wed, 27 Sep 2023 21:52:08 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f8:1500::7? (dc78bmyyyyyyyyyyyyydt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::7])
+        by smtp.gmail.com with ESMTPSA id v21-20020a2e7a15000000b002be5d222c60sm3321524ljc.102.2023.09.27.21.52.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Sep 2023 21:41:21 -0700 (PDT)
-Message-ID: <56c4b1b8-3f96-463e-8d49-a17a11ebfe74@linaro.org>
-Date: Thu, 28 Sep 2023 06:41:17 +0200
+        Wed, 27 Sep 2023 21:52:07 -0700 (PDT)
+Message-ID: <4f352a44-1fe2-f44a-20ba-efaed874b1b0@gmail.com>
+Date: Thu, 28 Sep 2023 07:52:06 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: arm: sunxi: Add
- itead,iteaduino-plus-a20
-To: Julian Ribbeck <julian.ribbeck@gmx.de>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org
-References: <e0e71b0c-086d-ce54-f4d3-6f594d8e5da6@linaro.org>
- <20230617205624.1178427-1-julian.ribbeck@gmx.de>
- <20230617205624.1178427-2-julian.ribbeck@gmx.de>
- <bba4acf9-23a4-d732-900b-944c4ddef08c@linaro.org>
- <CVTLLDPXFP5D.ANP0YTD5AD0P@x1-yoga-arch>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CVTLLDPXFP5D.ANP0YTD5AD0P@x1-yoga-arch>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 0/2] Support ROHM KX132ACR-LBZ Accelerometer
+Content-Language: en-US, en-GB
+To: Mehdi Djait <mehdi.djait.k@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1695819243.git.mazziesaccount@gmail.com>
+ <CAFukWp0TM+v7Y93gFuHL2_ihefxxPmDkGT4R9nmruL70D7KNZA@mail.gmail.com>
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <CAFukWp0TM+v7Y93gFuHL2_ihefxxPmDkGT4R9nmruL70D7KNZA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 27/09/2023 11:38, Julian Ribbeck wrote:
-> Hi,
+On 9/27/23 17:30, Mehdi Djait wrote:
+> Hello Matti,
 > 
-> I'm not totally familiar with the process here, but it seems like my
-> patch was kind of forgotten? What should I do now? Is anything still
-> missing?
+> On Wed, Sep 27, 2023 at 2:56 PM Matti Vaittinen
+> <mazziesaccount@gmail.com> wrote:
+>>
+>> The ROHM KX132ACR-LBZ is an accelerometer for industrial applications.
+>> It has a subset of KX022A (NOTE: Not KX132-1211) functionalities, dropping
+>> support for tap, free fall and tilt detection engines. Also, the register
+>> interface is an exact subset of what is found on KX022A (except the
+>> WHO_AM_I register value).
+>>
+>> This series adds own DT compatible for the KX132ACR-LBZ and also own
+>> chip-info in driver to allow handling the different 'WHO_AM_I' value.
+>> The separation of the Kionix KX022A and ROHM KX132ACR-LBZ does also
+>> allow adding support for the KX022A tilt/free fall/tap engines which are
+>> not present on KX132ACR-LBZ.
+>>
+>> Matti Vaittinen (2):
+>>    dt-bindings: iio: Add KX132ACR-LBZ accelerometer
+>>    iio: kx022a: Support ROHM KX132ACR-LBZ
+>>
+>>   .../bindings/iio/accel/kionix,kx022a.yaml     | 10 +++---
+>>   drivers/iio/accel/kionix-kx022a-i2c.c         |  4 ++-
+>>   drivers/iio/accel/kionix-kx022a-spi.c         |  4 ++-
+>>   drivers/iio/accel/kionix-kx022a.c             | 34 ++++++++++++++++++-
+>>   drivers/iio/accel/kionix-kx022a.h             |  2 ++
+>>   5 files changed, 47 insertions(+), 7 deletions(-)
+>>
+> 
+> You could also mention this device in the list of supported devices
+> under drivers/iio/accel/Kconfig
 
-Cc-ing maintainers is missing. Don't expect people you do no CC, to
-magically pick up patches. :/
+Oh, indeed. Thanks Mehdi!
 
-Best regards,
-Krzysztof
+Yours,
+	-- Matti
+
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
 
