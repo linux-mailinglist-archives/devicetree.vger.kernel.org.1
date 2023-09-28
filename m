@@ -1,99 +1,103 @@
-Return-Path: <devicetree+bounces-4407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D45A7B26D7
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 22:51:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B44857B26E2
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 22:53:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id D1639282C14
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 20:51:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2F07A282C1D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 20:53:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87ABC15BA;
-	Thu, 28 Sep 2023 20:51:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2303715BA;
+	Thu, 28 Sep 2023 20:53:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77ABF8839
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 20:51:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEA49C433C9;
-	Thu, 28 Sep 2023 20:51:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695934303;
-	bh=+cexd9xmPLNbQCGnjBv9HJvEF+QQ1Nd1d5VSzHVzH18=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=A809uqZtFChSXtY0mrvblI9e56lh7EgcS/8DcHrR/960mCdscUPNE2FqO5VuwPnGs
-	 PtjDtCDBGTI8NC5q944brmyVDbDxTJwoeR0j2fNQ7ipy2jR9tsXZgnLn7GtaQj0jD0
-	 V3Us1JN08pAjwlxjxeUyoEtuD8e52Q/E7fhaODLpj5pf+UNpEnKOCnOXKq5+LDjYVA
-	 YGX0ejDXUhE7CEn7sjNz47r1DcYO+r1vYNqCEBjGE1LzzH0Xz19u0irX7sjx9TCTPL
-	 VOOuCrQiZ9l+BmdHkRjSS+VgrQv4bKjd3ffzWls/O0ryQilFpISeB2WEvlfyFodOT6
-	 nAMBXO3Fx0zOA==
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-503065c4b25so21142088e87.1;
-        Thu, 28 Sep 2023 13:51:43 -0700 (PDT)
-X-Gm-Message-State: AOJu0YzfltNRp1MjCuPtYhsJMqCH3cfAxvQJ8xo7+cXLqu6zdaiQSP4N
-	MA4SNldPkqu4SouR1/caU8R0qEmFGYT9BU+D6A==
-X-Google-Smtp-Source: AGHT+IHQjuWrzI/HJv/GQJ62u9AtMtab4xl4POez9pkIVKXQVDmkWjOO+IdPZzcbrwWIwZANLwwNhMl4ZrVYdeEIVfk=
-X-Received: by 2002:a05:6512:ba7:b0:4fe:db6:cb41 with SMTP id
- b39-20020a0565120ba700b004fe0db6cb41mr2673606lfv.39.1695934302090; Thu, 28
- Sep 2023 13:51:42 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD1079CA76
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 20:53:41 +0000 (UTC)
+Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 035D219D
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 13:53:40 -0700 (PDT)
+Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-59c0b9ad491so166522337b3.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 13:53:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695934419; x=1696539219; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WOwNzxsGPfo7cMZUYR/AlrykeFdMS8Jk3CVApYaoi44=;
+        b=ACiYCNyiLRw/Jzqs0QhvgknXDJFRbOImkMdqjtj5crHlLiRPlspIpFAJVb///+N24E
+         8lB1YU7/v1UMOuGoFVr6WkKVbmYxBn/wf5qbuhECopANVW+Qwm+UIAaeQGKA8Aaaws7N
+         jvzw8QnqAiVXa+p2ikoWBZLMMT+a+7kn+x9xucmSxWBN1PBMoBAMtC7ZPVECID8bYbSp
+         fsTGnxRDXsshn6PpJuHSyZiKUKSjqBV4eyxXdwJbu2ufBI7D1+Xwl8FLPaBA2rX6ITfc
+         bpkKEkIg0Dv9TUaMwMQ1kThm0C1k3QuJYn+UwAi9Tvg7IQMWc3jdc1kaqcvi3llpyL2i
+         /qeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695934419; x=1696539219;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WOwNzxsGPfo7cMZUYR/AlrykeFdMS8Jk3CVApYaoi44=;
+        b=mxS0Ne8qekGzFVnOnpN+hGXSNM2zcaMmw2OapGngrDykNJwxC6CNLFvuu1awDSh9MG
+         oC58GxHzX584vm0nTi16VD3Je0AaWxZRJUIfI3dlSNmI9l3v8dgDVpEci7zb/VWij4Ah
+         t+kGEjKMEnMonKSdb1FO+QdYEGnMuK6D6OG3AFFF1PE+teOrUueW2ReMB5rZoSNNMljQ
+         ibJ7tpFPCI+8B8n3uvJrFvXM7o3YYk4aI7Wxf3g77boFfkyxy46gNFqFroLOaM8Xid/S
+         q1XERKzmqIpXn7CTXV+CTx46Nq1kLnjwRsTUTHH0DbnBnNLAISV2oTHIVSTEkkUDeyfe
+         omGg==
+X-Gm-Message-State: AOJu0YxCWk3BUsIydkgdW8JGX9jrWSA0cnVftb5hshAww89dOtj9uvd5
+	gEjd4pGyg0g3/1juBID7UlhYfO4OCckakzSvKf/Riw==
+X-Google-Smtp-Source: AGHT+IFSlI6fRsLGLuQpuzlTwFu9Bu8WQ8PXxZtdccuFVKar/m1+t8x/SiSa1P8A8iTwCj70M5BysQnL9i8vZ+snw9E=
+X-Received: by 2002:a25:ef07:0:b0:d8b:1407:f61d with SMTP id
+ g7-20020a25ef07000000b00d8b1407f61dmr1638744ybd.26.1695934419047; Thu, 28 Sep
+ 2023 13:53:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230926164513.101958-1-robh@kernel.org> <ZRXUhSqHPt9R5Zd8@p14s>
-In-Reply-To: <ZRXUhSqHPt9R5Zd8@p14s>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 28 Sep 2023 15:51:29 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJ=rR07tQ8PgdcVRTFkbx=y5Qh1ok0JY+WPeBi7hF7E1Q@mail.gmail.com>
-Message-ID: <CAL_JsqJ=rR07tQ8PgdcVRTFkbx=y5Qh1ok0JY+WPeBi7hF7E1Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: remoteproc: mtk,scp: Add missing
- additionalProperties on child node schemas
-To: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
+References: <20230926-vf610-gpio-v4-0-b57b7f6e8368@nxp.com> <20230926-vf610-gpio-v4-1-b57b7f6e8368@nxp.com>
+In-Reply-To: <20230926-vf610-gpio-v4-1-b57b7f6e8368@nxp.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 28 Sep 2023 22:53:27 +0200
+Message-ID: <CACRpkdbvXXJX48nuCQNU_HVJztnH_qQ=QuJWOWp3ZBzN_JsWHw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/7] dt-bindings: gpio: vf610: update gpio-ranges
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Tinghan Shen <tinghan.shen@mediatek.com>, linux-remoteproc@vger.kernel.org, 
+	Stefan Agner <stefan@agner.ch>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+	Marco Felsch <m.felsch@pengutronix.de>, linux-gpio@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+	linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Thu, Sep 28, 2023 at 2:31=E2=80=AFPM Mathieu Poirier
-<mathieu.poirier@linaro.org> wrote:
->
-> Hi Rob,
->
-> On Tue, Sep 26, 2023 at 11:45:08AM -0500, Rob Herring wrote:
-> > Just as unevaluatedProperties or additionalProperties are required at
-> > the top level of schemas, they should (and will) also be required for
-> > child node schemas. That ensures only documented properties are
-> > present for any node.
-> >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml =
-b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> > index 895415772d1d..24422fd56e83 100644
-> > --- a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> > +++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> > @@ -91,6 +91,7 @@ allOf:
-> >
-> >  additionalProperties:
-> >    type: object
-> > +  additionalProperties: false
->
-> Things have changed in the remoteproc tree [1] and this patch doesn't app=
-ly.
-> Please see if it is still needed.
+On Tue, Sep 26, 2023 at 5:28=E2=80=AFAM Peng Fan (OSS) <peng.fan@oss.nxp.co=
+m> wrote:
 
-It is not needed any more.
+> From: Peng Fan <peng.fan@nxp.com>
+>
+> i.MX93 supports four gpio-ranges at max. To fix below issue:
+> "gpio@43820080: gpio-ranges: [[30, 0, 84, 8], [30, 8, 66, 18],
+>  [30, 26, 34, 2], [30, 28, 0, 4]] is too long"
+>
+>  Update the gpio-ranges property
+>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-Thanks,
-Rob
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Yours,
+Linus Walleij
 
