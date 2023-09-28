@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-4039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2967C7B11FB
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 07:22:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CF9D7B1202
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 07:24:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id C997F281EDB
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 05:22:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 7C89AB20A5B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 05:24:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C48AA125DC;
-	Thu, 28 Sep 2023 05:22:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46B5E1079A;
+	Thu, 28 Sep 2023 05:24:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EE518462
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 05:22:01 +0000 (UTC)
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72E0019C
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 22:21:58 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-9ae7383b7ecso2465688166b.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 22:21:58 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8E5D8462
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 05:24:14 +0000 (UTC)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 519F6139
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 22:24:12 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9b2b53e17feso323483466b.3
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 22:24:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695878517; x=1696483317; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695878651; x=1696483451; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=aLxA3fRcN7nIS8WD4djsJZwj9LeN9tfQPkx+icK4+GQ=;
-        b=QtavY0pZwGSxA8Qdx5oAepY0sA3byeRjd1L8ITHomp/a3dFWVqK4e1B4wg6lql+R64
-         e/TiM6O/bxgg6rDpPRPqvpXtXWQ5ZR/Wjfz3Egj6Njxk8NYsm3WpJjYnyzVfxZr7+ghQ
-         iGOG5LAt49ugzWnPss+idim65/BRHNHxLSg4kMne0nPjhlujPFKUsBt3cdoDb5uUc0Mp
-         KIBL8I4uCKQv0rA1zoD1UP7gL8KztBZJ7ETOXfAIRNGSu5lqmS6r5Cfq2Fv8fjuL1a5A
-         t7IfgryIxMs7Banh6Rr/hGppdvOEqZQST6yqXTewyYwTGOT5zQITwqp2vedP+V3arOG6
-         gYTQ==
+        bh=Z/tK7wXzLt4G0BaD7X8oQx8pA1M6tH1CynuIs/p8vkk=;
+        b=YmFGbAnqhwZNJ9Xqazoqdp0umyQ+mwJxfd/fG92ndl5KbInBDjNPfxMPB/qQjYeXKI
+         BKhtKhSMeu/tWot6RIOweKweftNzpCHoGJpml+kIUjFetMtN+aNjb1/bN50hT2vZcGF8
+         FexIUj0HaFytx+VVUIVIkm0sknebjgfuwr9usp6bn+2hnodkH+gsTDB1YZjzRSYzyjzz
+         dqV+bwTF3DfNHkjIaqPDzC12HZ/NzzgFTRDuqSVuqERg8KeI3xkBDF9vm3jO+nl///wL
+         7xqxMFIWEXLZ1ncIhlxjDS6nRKyEJlvHwKde+YCciX8gvofKBvcMGJR9bnN4TcUuvbY1
+         cHNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695878517; x=1696483317;
+        d=1e100.net; s=20230601; t=1695878651; x=1696483451;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aLxA3fRcN7nIS8WD4djsJZwj9LeN9tfQPkx+icK4+GQ=;
-        b=evTu62+AV1uOI1TbeCdyPqiCoVMxGchvP6l8uWr/0xYjUJ9toJE0vfpiQaHYwTJ4xR
-         5A0AW+j2udo6HOzBOKyhXnotlEUYvn+0yJvBOIL9EtV6Qap11eIdiBqMCcWtgv+2mPJ8
-         RdfqzGAiAZm4qtffUYy9UEX7qFBztYTjS2FW8zuKMV8XIFuKLuRW1MPNF63PG7j75alM
-         kt8ww7YX9FP3TO98UA4olh4s1VJl40mukq6E68kd1exzIkcwIxtz4C6ITrOE3kFR2A/r
-         Ylwrl9WfGSPThKJOhoMv3uAVZRvGAmom00W3HVc1jKkcbih6YI8/7Pjk2nnC7lHRxKq5
-         Q1Pg==
-X-Gm-Message-State: AOJu0YyhIACj2A2eJm0JvquEr78pVs5z+fB1N5f862SGifth4MBt+eQJ
-	B2LluFgnVTtCFRImzOJWSB9geA==
-X-Google-Smtp-Source: AGHT+IGrjdOfj0NO/zfv1A1IGDKzs8SjVxJSt9DYkeasnIQWGn08dUVMnrUV4kFWnbTiGaVOFGM5uw==
-X-Received: by 2002:a17:907:b1a:b0:9a1:b85d:c952 with SMTP id h26-20020a1709070b1a00b009a1b85dc952mr252211ejl.12.1695878516859;
-        Wed, 27 Sep 2023 22:21:56 -0700 (PDT)
+        bh=Z/tK7wXzLt4G0BaD7X8oQx8pA1M6tH1CynuIs/p8vkk=;
+        b=OhXtAIhijeKxJOgMgdbSyekgmIx09shgb0cwAkbNT1UryPBQJk9zaNa2caEmSRDlxg
+         0Hb79HseUu/GY3YfrfDAANeouzQtedVA19UxxjSatV9ctRufgRe3ms3SVeCWus0kOilP
+         8SQCoecUlTbVdmB1hMXBlaTu/5a+y4ADnE4802ddeZ0moTXTU/wWouR5KDVW3HBcGNhB
+         csqMfmdRa7J0YybKZZqCUKzpqtnN5rAP48tSvxUv6dFh2Nc23MCdejrWvK02UgRV5XbI
+         5oojCWjdiNjM8pMEW+0ZSxzCo0ONu3CfdRSh0jHdnHppb+ROLywmZSaZxbcjuXAev4Sq
+         2y0A==
+X-Gm-Message-State: AOJu0YyQI6VJC7Yn3oIZe6m5owUpUW8oG5uPU05igZKca49gq3N/FqMi
+	PvaR0tCopXM2UpVVOqFE8IVP4w==
+X-Google-Smtp-Source: AGHT+IExMdjx2sRycDAz41kNLqcPfxeb9FiU0cKSDI0yZKbCWah+alQjl45t6xJqR3MFbSHPN+m+sw==
+X-Received: by 2002:a17:906:210a:b0:9ae:69b8:322b with SMTP id 10-20020a170906210a00b009ae69b8322bmr220313ejt.60.1695878650780;
+        Wed, 27 Sep 2023 22:24:10 -0700 (PDT)
 Received: from [192.168.1.235] (host-87-4-82-94.retail.telecomitalia.it. [87.4.82.94])
-        by smtp.gmail.com with ESMTPSA id v5-20020a1709064e8500b00993470682e5sm10174443eju.32.2023.09.27.22.21.55
+        by smtp.gmail.com with ESMTPSA id j11-20020a170906278b00b00977eec7b7e8sm10321538ejc.68.2023.09.27.22.24.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Sep 2023 22:21:56 -0700 (PDT)
-Message-ID: <08760c32-fee0-4681-92f2-56003cadad0a@linaro.org>
-Date: Thu, 28 Sep 2023 07:21:55 +0200
+        Wed, 27 Sep 2023 22:24:10 -0700 (PDT)
+Message-ID: <9fbe078e-615c-473a-b0ae-f4a53336432a@linaro.org>
+Date: Thu, 28 Sep 2023 07:24:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,18 +63,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: usb: Add T-HEAD TH1520 USB controller
+Subject: Re: [EXT] Re: [PATCH v4 2/2] dt-bindings: media: imx-jpeg: Assign
+ slot for imx jpeg encoder/decoder
 Content-Language: en-US
-To: Jisheng Zhang <jszhang@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Guo Ren <guoren@kernel.org>,
- Fu Wei <wefu@redhat.com>, linux-riscv@lists.infradead.org
-References: <20230927164222.3505-1-jszhang@kernel.org>
- <20230927164222.3505-2-jszhang@kernel.org>
+To: Ming Qian <ming.qian@nxp.com>, Conor Dooley <conor@kernel.org>
+Cc: "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "shawnguo@kernel.org" <shawnguo@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "mchehab@kernel.org" <mchehab@kernel.org>,
+ "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+ "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+ "kernel@pengutronix.de" <kernel@pengutronix.de>,
+ "festevam@gmail.com" <festevam@gmail.com>, "X.H. Bao" <xiahong.bao@nxp.com>,
+ Eagle Zhou <eagle.zhou@nxp.com>, Tao Jiang <tao.jiang_2@nxp.com>,
+ dl-linux-imx <linux-imx@nxp.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+References: <20230926101000.13392-1-ming.qian@nxp.com>
+ <20230926101000.13392-2-ming.qian@nxp.com>
+ <20230926-slackness-target-b74e33ab1031@spud>
+ <AM6PR04MB6341B0D9EC8146149CF8ADB0E7C2A@AM6PR04MB6341.eurprd04.prod.outlook.com>
+ <54c87219-de9f-4c5b-9c70-11de22c7c612@linaro.org>
+ <AM6PR04MB6341B76B30FBF12A58B77AE1E7C2A@AM6PR04MB6341.eurprd04.prod.outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,69 +134,31 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230927164222.3505-2-jszhang@kernel.org>
+In-Reply-To: <AM6PR04MB6341B76B30FBF12A58B77AE1E7C2A@AM6PR04MB6341.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 27/09/2023 18:42, Jisheng Zhang wrote:
-> T-HEAD TH1520 platform's USB has a wrapper module around
-> the DesignWare USB3 DRD controller. Add binding information doc for
-> it.
+On 27/09/2023 11:25, Ming Qian wrote:
+>> Format your emails properly. It's difficult to read it.
+>>
+>> I already NAKed it, I will be NAKing still. Don't embed OS specific into the
+>> bindings nor into the DTS.
+>>
+>>
+>> Best regards,
+>> Krzysztof
 > 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> ---
+> Hi Krzysztof,
+>     Do you mean the link is inappropriate or something else? I will avoid links in my emails in the future. I'm sorry to bother you.
 
-...
-
-> +
-> +  '#address-cells':
-> +    enum: [ 1, 2 ]
-> +
-> +  '#size-cells':
-> +    enum: [ 1, 2 ]
-> +
-> +# Required child node:
-> +
-> +patternProperties:
-> +  "^usb@[0-9a-f]+$":
-> +    $ref: snps,dwc3.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - ranges
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +
-
-Drop stray blank line
-
-> +    usb {
-> +          compatible = "thead,th1520-usb";
-
-Use 4 spaces for example indentation.
-
-> +          reg = <0xec03f000 0x1000>;
-> +          clocks = <&clk 1>,
-> +                   <&clk 2>,
-> +                   <&clk 3>,
-> +                   <&clk 4>;
-> +          clock-names = "ref", "bus_early", "phy", "suspend";
-> +          ranges;
-
-Are you sure you do not have W=1 warnings in DTS?
-
+Your emails are not wrapped according to email guidelines. You have
+simply misconfigured email app.
 
 Best regards,
 Krzysztof
