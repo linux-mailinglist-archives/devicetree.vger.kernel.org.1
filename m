@@ -1,187 +1,187 @@
-Return-Path: <devicetree+bounces-4032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C831C7B11CE
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 06:55:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 098CC7B11D6
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 06:55:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 7B79028175D
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 04:55:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id AED74281551
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 04:55:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9FB1881E;
-	Thu, 28 Sep 2023 04:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FDD5883B;
+	Thu, 28 Sep 2023 04:55:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21A08749B
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 04:55:05 +0000 (UTC)
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF043136
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 21:55:03 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9ae75ece209so1419322566b.3
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 21:55:03 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10CA5749B
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 04:55:51 +0000 (UTC)
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5228E98
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 21:55:49 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-98377c5d53eso1538740366b.0
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 21:55:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695876902; x=1696481702; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=tuxon.dev; s=google; t=1695876948; x=1696481748; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=EJzDx2Q6nxZ+DWJMtFRfSZYTpolzYPfGhsHuRSrEKc0=;
-        b=EKzk6BImnX69tO7583aNdG72Q5H0VQtVH6PmrOGI+8m7o03tpVWjulVafAAczF9EbH
-         WFv18onUrVkF/lRCY3LhM5zqG8EvzPxtWhMUn1kvSDEx+ttCxqh0Vkx76Hp9fkXzWlph
-         m1RAGzmXDQH8Iu6My45r6OBJ2eo1yb3B3eChZ/LYgLlRiC/7OUlwe1qcX5IWitDMgW8k
-         QIngZRpoar/F4PlDApZsL1+bJn+I1em6GIkiKuIOjOcs75l7tDDymCLf0uJXYPWon1jM
-         aSlr0q8GeSMlFs/FKYaLHlyJvoBcsOVZZNkFJItgXYnLddmzg+NzeJaxkjZG2DBB2Zdj
-         cOwQ==
+        bh=GRoZ9U8WPN+Qr3fM7UT4CjFDZZqBDxWZDvc7yR6K5h0=;
+        b=d0oyf8m3qm5rklWiT/R30kvt4WfzwTKMe6jjY5/Iwv/Y8XlJpH8MjUFNrn3+zwNpvY
+         Bya/r3q8L0EvaBav+sxt0WaBF1HjhRuSbmrMO/gub6qLNV3WqAZyRbRaDb051QluCaji
+         c8/4niu+xDJABda20M8xnCOeerIZuV5lECuP/zcXDkrc3XLdQVpCAZi2UPi5SrfVYHu6
+         2+TPUCGktlSDTL1pZUPfFPu0oMB3ePVnGfS3koNuv5X2exSS5DNlItwO+8iaxjRtxqJV
+         Lziyr3kNdaVx31nzizJfYdIhMiSd5mS0ywNlvFl2k2uBHim28zuFOBp/x7EoGQ2OZ7yr
+         hEeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695876902; x=1696481702;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1695876948; x=1696481748;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EJzDx2Q6nxZ+DWJMtFRfSZYTpolzYPfGhsHuRSrEKc0=;
-        b=Ld4evFgeBPhYoO2XvejjTLO5t+tHW8QKve5koT1TGthpxrUI26nbpoT54KMxP1MwRS
-         iPXhKe2qPd6877bfUGzWJYlY8NWrWh/cpCvQsjYOhpkdCykCKW58tUTDzSWg58qmjOhz
-         pRzK+cIsRYdParhdFDM73qiswWQhIHv9tVxBMTidWxICSoNL7v4yFVQn3qkFkTc9OOED
-         8ZSMe9GCEM8uWe+2kq0ioVZeOiePGjPe1yMq31EN5unSww38OmGVNhnFRJA9qnjz8r7k
-         Bq3gpVIt30Fb7HIvSqDFgVCCV5JQ98WQeuYEgzhuqTfbKzs/n7UPnuNEOccSLMYwW+dJ
-         gTNA==
-X-Gm-Message-State: AOJu0YydPtvJexS6CxGrOQRm82FghHyfWYtvL3biaa/0XURK4Un3D5LP
-	pPMBCnE//0az0w6EnR99spcVig==
-X-Google-Smtp-Source: AGHT+IHACU5tHsuZ4EvgrKipDUERUw5JqVpj7Q+M3eWKWUApcch67+gkqynZubl+rC/1s3suEWX+5Q==
-X-Received: by 2002:a17:906:28e:b0:9ae:552a:3d3f with SMTP id 14-20020a170906028e00b009ae552a3d3fmr181199ejf.28.1695876902123;
-        Wed, 27 Sep 2023 21:55:02 -0700 (PDT)
-Received: from [192.168.1.231] (host-87-4-82-94.retail.telecomitalia.it. [87.4.82.94])
-        by smtp.gmail.com with ESMTPSA id y22-20020a170906449600b009adc77fe165sm10082708ejo.118.2023.09.27.21.55.00
+        bh=GRoZ9U8WPN+Qr3fM7UT4CjFDZZqBDxWZDvc7yR6K5h0=;
+        b=Sik5ulfbIryvB1FkyYb5MKIDN3Zm6bBQAZ9wgq4mM0SBEPbC/eq5vPo+xpEf817Nk0
+         xomUrO4uHOuEf+cM8I7Dj/7K2A0VBTYKuY4PLTk7NdLpzPScUVp+7gvqSSi0Ow8o1Alv
+         FFj+ZZ+swK71i3KBHN2cHmG2oa9OSs2tCI+PgMof8DWp6kmf5PLMKJ345FWNk+RlPBsJ
+         k8HIv102UrVP62Ufqydk+2KJWUKrBrOIRqBvYHK9ss1TFloVR2tNWmTJKNYaeLlxc/ae
+         pmgeLOHy9j53JqWJtXjgDCwNydosdeLMG+EivsalGPOGLF4eFftr4ss3ZHtpjiSEARZ1
+         iQMg==
+X-Gm-Message-State: AOJu0YxYaPDkvYIevhrJygUfYmLl8Cd7Am1vx1jk2ahgLNGhEZvyqjeT
+	qmIhf1r+QzyCXJkf7P6ZRJ2mfg==
+X-Google-Smtp-Source: AGHT+IE3pAEjLgDO8zlyhmBRQp2g+CFl8YUn7EwT8APbyBoysQf9t3e6/pskUqprJEO69PoIDitB5w==
+X-Received: by 2002:a17:907:78d5:b0:9ae:6ab9:af90 with SMTP id kv21-20020a17090778d500b009ae6ab9af90mr142567ejc.47.1695876947632;
+        Wed, 27 Sep 2023 21:55:47 -0700 (PDT)
+Received: from [192.168.32.2] ([82.78.167.177])
+        by smtp.gmail.com with ESMTPSA id jt24-20020a170906ca1800b009929d998abcsm10195585ejb.209.2023.09.27.21.55.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Sep 2023 21:55:01 -0700 (PDT)
-Message-ID: <f488a583-6229-4e6b-a22e-4abb224895fe@linaro.org>
-Date: Thu, 28 Sep 2023 06:54:59 +0200
+        Wed, 27 Sep 2023 21:55:47 -0700 (PDT)
+Message-ID: <25ba20db-6dca-7179-a892-9d9f87442313@tuxon.dev>
+Date: Thu, 28 Sep 2023 07:55:43 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: omap4-embt2ws: Add Bluetooth
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 09/37] clk: renesas: rzg2l: fix computation formula
 Content-Language: en-US
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
  krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20230926204204.2120316-1-andreas@kemnade.info>
- <be991b32-018a-478d-bd74-6c79ea1c788e@linaro.org>
- <20230927182903.4cf1527f@aktux>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230927182903.4cf1527f@aktux>
+ ulf.hansson@linaro.org, linus.walleij@linaro.org,
+ gregkh@linuxfoundation.org, jirislaby@kernel.org, magnus.damm@gmail.com,
+ catalin.marinas@arm.com, will@kernel.org,
+ prabhakar.mahadev-lad.rj@bp.renesas.com, biju.das.jz@bp.renesas.com,
+ quic_bjorande@quicinc.com, arnd@arndb.de, konrad.dybcio@linaro.org,
+ neil.armstrong@linaro.org, nfraprado@collabora.com, rafal@milecki.pl,
+ wsa+renesas@sang-engineering.com, linux-renesas-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20230912045157.177966-1-claudiu.beznea.uj@bp.renesas.com>
+ <20230912045157.177966-10-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdVNzgHqURohOgpFEaGn+6+rQTqsDomoS1u_-jn=GgmHXw@mail.gmail.com>
+ <dfe64c7c-2f90-65a2-05fc-e96ec5113a60@tuxon.dev>
+ <CAMuHMdXJ_gp5cdGpcK-kGk16YGDX8d9MEjQQkSobOGLphbJ5dQ@mail.gmail.com>
+ <CAMuHMdV=r9704bNemDHWvjMJKbsBQJKqTxkKCeGUNp4iBNBoew@mail.gmail.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <CAMuHMdV=r9704bNemDHWvjMJKbsBQJKqTxkKCeGUNp4iBNBoew@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 27/09/2023 18:29, Andreas Kemnade wrote:
-> 
-> 
-> On Wed, 27 Sep 2023 09:56:28 +02Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> 
->> On 26/09/2023 22:42, Andreas Kemnade wrote:
->>> Since the required clock is now available, add bluetooth.
->>>
->>> Note: Firmware (bts file) from device vendor reroutes tx for some time
->>> during initialisation and later put it back, producing timeouts in
->>> bluetooth initialisation but ignoring that command leads to proper
->>> initialisation.
->>>
->>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
->>> ---
->>> Depends on: https://lore.kernel.org/linux-omap/20230916100515.1650336-6-andreas@kemnade.info/T/#u
->>>  arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts | 10 ++++++----
->>>  1 file changed, 6 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
->>> index 9d2f2d8639496..25b80385dc1f0 100644
->>> --- a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
->>> +++ b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
->>> @@ -478,10 +478,12 @@ &uart2 {
->>>  	interrupts-extended = <&wakeupgen GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH
->>>  			       &omap4_pmx_core OMAP4_UART2_RX>;
->>>  
->>> -	/*
->>> -	 * BT + GPS in WL1283 in WG7500 requiring CLK32KAUDIO of pmic
->>> -	 * which does not have a driver
->>> -	 */
->>> +	bluetooth: tiwi {  
->>
->> Node names should be generic. See also an explanation and list of
->> examples (not exhaustive) in DT specification:
->> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
->>
->> E.g. "bluetooth"
->>
-> well, that is what I get currently as a reward from the kernel for describing
-> the hardware and so the motivation for the patch, not necessarily the most important
-> functionality.
-> 
-> But the over the uart runs the ti shared transport protocol (also there is
-> a non dt compatible driver in drivers/misc/ti-st) which provides more than Bluetooth,
-> e.g. it also provides at least GNSS and FM (although it do not know if it works in this particular
-> hardware). GPS/GNSS should work.
-> 
-> So the node name would be bluetoothgnss then? Well, I think we do not need the label then.
+Hi, Geert,
 
-bluetooth-gnss would work for me if it was accepted by bindings... but
-it is not, so this leaves you so far with "bluetooth".
+On 27.09.2023 11:00, Geert Uytterhoeven wrote:
+> Hi Claudiu,
+> 
+> On Tue, Sep 26, 2023 at 4:44 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>> On Tue, Sep 26, 2023 at 1:47 PM claudiu beznea <claudiu.beznea@tuxon.dev> wrote:
+>>> On 14.09.2023 15:55, Geert Uytterhoeven wrote:
+>>>> On Tue, Sep 12, 2023 at 6:52 AM Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>>>
+>>>>> According to hardware manual of RZ/G2L (r01uh0914ej0130-rzg2l-rzg2lc.pdf)
+>>>>> the computation formula for PLL rate is as follows:
+>>>>>
+>>>>> Fout = ((m + k/65536) * Fin) / (p * 2^s)
+>>>>>
+>>>>> and k has values in range [-32768, 32767]. Dividing k by 65536 with
+>>>>> integer variables leads all the time to zero. Thus we may have slight
+>>>>> differences b/w what has been set vs. what is displayed. Thus,
+>>>>> get rid of this and decompose the formula before dividing k by 65536.
+>>>>>
+>>>>> Fixes: ef3c613ccd68a ("clk: renesas: Add CPG core wrapper for RZ/G2L SoC")
+>>>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>>
+>>>> Thanks for your patch!
+>>>>
+>>>>> --- a/drivers/clk/renesas/rzg2l-cpg.c
+>>>>> +++ b/drivers/clk/renesas/rzg2l-cpg.c
+>>>>> @@ -696,18 +696,22 @@ static unsigned long rzg2l_cpg_pll_clk_recalc_rate(struct clk_hw *hw,
+>>>>>         struct pll_clk *pll_clk = to_pll(hw);
+>>>>>         struct rzg2l_cpg_priv *priv = pll_clk->priv;
+>>>>>         unsigned int val1, val2;
+>>>>> -       unsigned int mult = 1;
+>>>>> -       unsigned int div = 1;
+>>>>> +       unsigned int div;
+>>>>> +       u64 rate;
+>>>>> +       s16 kdiv;
+>>>>>
+>>>>>         if (pll_clk->type != CLK_TYPE_SAM_PLL)
+>>>>>                 return parent_rate;
+>>>>>
+>>>>>         val1 = readl(priv->base + GET_REG_SAMPLL_CLK1(pll_clk->conf));
+>>>>>         val2 = readl(priv->base + GET_REG_SAMPLL_CLK2(pll_clk->conf));
+>>>>> -       mult = MDIV(val1) + KDIV(val1) / 65536;
+>>>>> +       kdiv = KDIV(val1);
+>>>>>         div = PDIV(val1) << SDIV(val2);
+>>>>>
+>>>>> -       return DIV_ROUND_CLOSEST_ULL((u64)parent_rate * mult, div);
+>>>>> +       rate = (u64)MDIV(val1) * parent_rate;
+>>>>> +       rate += ((long long)parent_rate * kdiv) / 65536;
+>>>>
+>>>> As the division is a binary shift, you can use the mul_u64_u32_shr() helper,
+>>>> and incorporate the sdiv shift at the same time:
+>>>>
+>>>>     rate += mul_u64_u32_shr(parent_rate, KDIV(val1), 16 + SDIV(val2));
+>>
+>>  [1]^
+>>
+>>>>
+>>>> You can save a multiplication by premultiplying mdiv by 65536:
+>>>>
+>>>>     rate = mul_u64_u32_shr(parent_rate, (MDIV(val1) << 16)) + KDIV(val1),
+>>>>                            16 + SDIV(val2));
+>>
+>> [2]^
+>>
+>>>
+>>> Looking again at this: KDIV (aka DIV_K) could have negative values thus
+>>> mul_u64_u32_shr() cannot be used here.
+>>
+>> That means you can indeed not use [1].
 
-Best regards,
-Krzysztof
+You're right. Thanks for the input!
 
+>>
+>> But you can still use [2], as MDIV() must be in the range 64..533[3],
+>> so "(MDIV(val1) << 16)) + (s16)KDIV(val1)" is always positive.
+>> Note that you do need the cast to s16 (which I had missed before), or
+>> the intermediate variable kdiv of type s16 (like in your patch).
+> 
+> Or include the cast to a signed type in the definition of KDIV().
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
 
