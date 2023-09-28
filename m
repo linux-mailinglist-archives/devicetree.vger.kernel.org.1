@@ -1,152 +1,138 @@
-Return-Path: <devicetree+bounces-4182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFFC07B1813
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 12:07:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5911F7B1834
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 12:24:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 6546C281B25
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 10:07:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 8025D1C208E0
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 10:24:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79FAC347C9;
-	Thu, 28 Sep 2023 10:07:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0868234CCD;
+	Thu, 28 Sep 2023 10:24:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C35091D68A
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 10:07:51 +0000 (UTC)
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5B55194;
-	Thu, 28 Sep 2023 03:07:49 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-	by mailout.nyi.internal (Postfix) with ESMTP id 1B3F85C25ED;
-	Thu, 28 Sep 2023 06:07:47 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Thu, 28 Sep 2023 06:07:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:sender
-	:subject:subject:to:to; s=fm1; t=1695895667; x=1695982067; bh=16
-	HPbAIF0KxSDAv7A2kqSkSfgf23118g+srCqqLlUyo=; b=PsH2Fx4sdu8I1G6WJq
-	dcOCqaWVZnmVfsHQeyDxC0zwLh3ARMGM1doSQwNyuhdTJv+Td+p3/DtsD5hg7h+N
-	EXISVysMCCVGSGO9Jvh4vjejy193LyWKcLb9z/jxhB/hmkqShVQmWuESkVHpz6ZS
-	faJgl9CExx3yXKwdy63xlLdwujUCoD2wFEu4dKnPJh2BCxC17g1W1SxoJtCFeIat
-	Uln3U+t6R61vp5bFQLAAqDkHsCwMdQQJcgJGENfRfLQZCx08dnTK7++Ruj36j1NT
-	GABQtJjawL6E+gg0tQsVfYZUzju8Z8eISdd+831+rsLkynIWCJMWE7SEyhqhcyap
-	S6Xw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:sender:subject
-	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-	:x-sasl-enc; s=fm2; t=1695895667; x=1695982067; bh=16HPbAIF0KxSD
-	Av7A2kqSkSfgf23118g+srCqqLlUyo=; b=VHKj0JAtIseHmp2Zv91ZZ4tNcBC+J
-	9D/EVrUgC6bhTkYb5W23jt7J9BG+oluC2deIhcKdnCztsl+XYxKN4/dP4zoWZInn
-	MzBwqyOybmJV3uSUMjZxlDacqSx279EjoqEUi0ECZOfjHNT+HQw0C5B78ZqIeRaW
-	+aAb54aUiERQYBVODa7xxi51xs1zSNqe/0GETN2YYElVM8Hw9vRqd2ZoaoICjZt0
-	NmTsldiwWEfYWIDGrzur79ZNmDD3pHPtaP8mgI2uF4XwIpomY2s4aMBv3QrNk/Ak
-	Sb+nHflxFUWzy4ygVIR0N5ZQGh2lrdNLbGTfC7x/cJMDr3d9jejsfPY9Q==
-X-ME-Sender: <xms:clAVZRYqYpjaGD_Hp6XPKA8r6PqkXcxaaKC7GNplZdJr5b8ieNIA2g>
-    <xme:clAVZYbL2TuQ6rDe5y_nRR4TF0qGRupHq_YHUawhsKnzIgn1mvg5baNXBQdRD_Oar
-    WH8UVNPvRzR78BsT18>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvjedrtdeigddvfecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
-    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
-    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
-    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
-    hnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:clAVZT9kfvPpvf-MmWrocY-VEYMZUX3LhoOkdm0jNhiDpy_JSEcewA>
-    <xmx:clAVZfq02IsMC4VND0THfuDgs6n3YBBgLqXWK-8JHvPBiNbicUEQtA>
-    <xmx:clAVZcpumRyFUv91bGuTWSqWgaFYRJnn6hwAKkLWWKxLBvo71SXW2A>
-    <xmx:c1AVZddApnKSrIfxmdu8O87-_WW4FQBiUzyc1t8dDkJSzsdCYU4KoQ>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id B9EB1B60089; Thu, 28 Sep 2023 06:07:46 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-958-g1b1b911df8-fm-20230927.002-g1b1b911d
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8A993418E
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 10:24:41 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E2DA126;
+	Thu, 28 Sep 2023 03:24:40 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id AA06A6607330;
+	Thu, 28 Sep 2023 11:24:37 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1695896678;
+	bh=5hCbgR+BACDhVeYZKUOi0bMLQ8NC+PJjXquJc5GRf98=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Ld5ACCr/B7/IiU8odH20F4Td3WX4xDZs0EwgfnDXiFT9fZtAblS9mr9bwIGislksT
+	 e/pXGo5ahcuj5++F+CthhX4Jp9TmVkdI4Yqe/E4OaM5glFtKRu1LQKCDzZFANDd5pH
+	 AMbx6tm2ahnklinuCOPjkmDP1FaKGHqHVvofvuV+aIIPICtu0EyqVQCxj4teY4Pthu
+	 kih+i8XE9Y/9Jx5IOP960coCEZ6prEr+F5aYrA0nzyhfavnebCPP8kevL+zjW3LBez
+	 1xMAm+Y8KOl1zGDGORtl+YEnmm9Y3gJMUp9LAHExSkM2FkWwoUZFA+SGgk4yf4w3Gn
+	 tsa0zBvWZp2Rw==
+Message-ID: <5d1669c0-64c3-8a5d-6f4e-88f72d4b40b4@collabora.com>
+Date: Thu, 28 Sep 2023 12:24:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <839638d2-7502-4925-8b7f-6b15779a6840@app.fastmail.com>
-In-Reply-To: <20230928092804.22612-3-eliza.balas@analog.com>
-References: <20230928092804.22612-1-eliza.balas@analog.com>
- <20230928092804.22612-3-eliza.balas@analog.com>
-Date: Thu, 28 Sep 2023 12:07:26 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Eliza Balas" <eliza.balas@analog.com>
-Cc: "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "derek.kiernan@amd.com" <derek.kiernan@amd.com>,
- "dragan.cvetic@amd.com" <dragan.cvetic@amd.com>,
- "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] drivers: misc: adi-axi-tdd: Add TDD engine
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [RESEND PATCH v6 17/20] drm/mediatek: Support MT8188 Padding in
+ display driver
+Content-Language: en-US
+To: =?UTF-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?= <Shawn.Sung@mediatek.com>,
+ =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
+ =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+ "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "nfraprado@collabora.com" <nfraprado@collabora.com>
+References: <20230911074233.31556-1-shawn.sung@mediatek.com>
+ <20230911074233.31556-18-shawn.sung@mediatek.com>
+ <9fc58793d90b7a984dc3d40ac44719e9869b1202.camel@mediatek.com>
+ <f28018229a5c0c232535da929e9d27cb7f649b7e.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <f28018229a5c0c232535da929e9d27cb7f649b7e.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Thu, Sep 28, 2023, at 11:28, Eliza Balas wrote:
-> This patch introduces the driver for the new ADI TDD engine HDL.
-> The generic TDD controller is in essence a waveform generator
-> capable of addressing RF applications which require Time Division
-> Duplexing, as well as controlling other modules of general
-> applications through its dedicated 32 channel outputs.
->
-> The reason of creating the generic TDD controller was to reduce
-> the naming confusion around the existing repurposed TDD core
-> built for AD9361, as well as expanding its number of output
-> channels for systems which require more than six controlling signals.
->
-> Signed-off-by: Eliza Balas <eliza.balas@analog.com>
+Il 28/09/23 05:39, Shawn Sung (宋孝謙) ha scritto:
+> Hi CK,
+> 
+> On Thu, 2023-09-28 at 03:05 +0000, CK Hu (胡俊光) wrote:
+>> Hi, Hsiao-chien:
+>>
+>> On Mon, 2023-09-11 at 15:42 +0800, Hsiao Chien Sung wrote:
+>>> Padding is a new display module on MT8188, it provides ability
+>>> to add pixels to width and height of a layer with specified colors.
+>>>
+>>> Due to hardware design, Mixer in VDOSYS1 requires width of a layer
+>>> to be 2-pixel-align, or 4-pixel-align when ETHDR is enabled,
+>>> we need Padding to deal with odd width.
+>>>
+>>> Please notice that even if the Padding is in bypass mode,
+>>> settings in register must be cleared to 0,
+>>> or undefined behaviors could happen.
+>>
+>> You just set padding to bypass mode and not clear settings to 0. Any
+>> thing wrong?
+>>
+> 
+> Since the deafult value of all the registers in Padding is zero, and
+> we are not using Padding currently, it's fine if we just set padding to
+> bypass mode witout clearing other registers.
+> 
+> The comment is just a reminder in case we forget it in the future.
 
-Thanks for your submission, I've had a first look at the driver
-and the implementation of the interface you have chosen looks
-all good to me, so I have no detailed comments on that.
+Do *not* rely on default register values, because you don't know what booted
+Linux in the first place: you shall *not* expect a clean state and you shall
+*not* expect a clean boot.
 
-It would however help to explain the ideas you had for the
-user-space interface design and summarize them in the changelog
-text.
+Besides, what I see is that you're setting GENMASK(1, 0) without explaining
+why in the code: you have to add at least the definitions for PADDING_EN and
+PADDING_BYPASS.
 
-You have chosen a low-level interface that wraps the individual
-device registers and gives user space direct control over them.
-The risk here is to lock yourself into the first design,
-giving you less flexibility for future extensions, so it would
-help to understand what the usage model is here.
+I also don't see why you shouldn't add at least basic handling for this block,
+as it looks easy enough: after all, you anyway have to make sure that the
+registers are cleared - might as well just add a little more effort on top
+and actually set them to meaningful values? That's ultimately your choice, but
+I don't want to see any GENMASK(31,0) write even for register clearing.
 
-One risk is that there may be an in-kernel user in the future
-when the TDD engine interacts with another device, so you
-need a driver level interface, which would in turn break
-if any user pokes the registers directly.
+Please make this driver proper.
 
-Another possible problem I see is that an application written
-for this driver would be incompatible with similar hardware
-that has the same functionality but a different register-level
-interface, or even a minor revision of the device that ends up
-breaking one of the assumptions about the hardware design.
+Thanks,
+Angelo
 
-In both cases, the likely answer is to have a higher-level
-interface of some sort, but the downside of that would be
-that it is much harder to come up with a good interface that
-covers all possible use cases.
+> 
+> Regards,
+> Hsiao Chien Sung
 
-Another question is whether you could fit into some
-existing subsystem instead of creating a single-driver
-interface. drivers/iio/ might be a good choice, as
-it already handles both in-kernel and userspace users,
-and provides a common abstraction for multiple classes
-of devices that (without any domain knowledge in my case)
-look similar enough that this could be added there.
-
-     Arnd
 
