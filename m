@@ -1,121 +1,180 @@
-Return-Path: <devicetree+bounces-4271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D8517B1C58
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 14:27:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 866D27B1C74
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 14:30:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 5B0FB1C20A0A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 12:27:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id D709FB20DAE
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 12:30:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1BDB38DD1;
-	Thu, 28 Sep 2023 12:27:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A71C37C93;
+	Thu, 28 Sep 2023 12:30:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B30738DC1;
-	Thu, 28 Sep 2023 12:27:24 +0000 (UTC)
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01A0B19B;
-	Thu, 28 Sep 2023 05:27:22 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38S8F5w3017039;
-	Thu, 28 Sep 2023 14:27:02 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	selector1; bh=zemeS+BhI32ZF8QdJ+UdBB3Jn6cezmIxj3rwJwlzC0U=; b=y5
-	pbBMOy/hgkjB7Pu7dCU5UnBQI2yzPT4j3PJf1QYrbHhILPFT3M9wJAtr35JBnQQg
-	fNQKjKEvCfH8XwK66OpYBdIbHQ5r9uoHpYxlogP5+rHHrxQR5o1x022uItlinxeR
-	kr+x+vYrFVjFKtTeb+6gL3kUf3nSHy7p0nNlnqMZmdu10OJINgerP0x4I3R3rA+l
-	cXsXQ3CyQtFWqC+Bg18/Q4YUv4qgDIXUCL2MWLBRz5L9BnJobVqTySoTGGovD/Of
-	YyqDg3Pmb8mSHPKniQU8Q780jOLzq/ZsfbZ9C98ZOSACgQOCy33UukxEvKqalE0Z
-	s15xU7KHEtAM78Y9wUhQ==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3t9nefxq7f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Sep 2023 14:27:02 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 30F38100058;
-	Thu, 28 Sep 2023 14:27:02 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 292012309ED;
-	Thu, 28 Sep 2023 14:27:02 +0200 (CEST)
-Received: from localhost (10.201.21.249) by SHFDAG1NODE2.st.com (10.75.129.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 28 Sep
- 2023 14:27:01 +0200
-From: Christophe Roullier <christophe.roullier@foss.st.com>
-To: "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark
- Brown <broonie@kernel.org>,
-        Christophe Roullier
-	<christophe.roullier@foss.st.com>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 12/12] ARM: multi_v7_defconfig: Add MCP23S08 pinctrl support
-Date: Thu, 28 Sep 2023 14:24:27 +0200
-Message-ID: <20230928122427.313271-13-christophe.roullier@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230928122427.313271-1-christophe.roullier@foss.st.com>
-References: <20230928122427.313271-1-christophe.roullier@foss.st.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5458338DFF
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 12:30:48 +0000 (UTC)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC8F819D;
+	Thu, 28 Sep 2023 05:30:44 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-9a64619d8fbso1691055766b.0;
+        Thu, 28 Sep 2023 05:30:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695904243; x=1696509043; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Pa99WKi0ZutazJSkijjM2Ke2vSmVN1iISnLjgW4Hqnk=;
+        b=IN8BDH2BuvcrRyiEGYoscuM9Ga8buhqRs0KcBIAat2IMmI3xeZaMc+RYgU8xxiZB6Z
+         5/1B8vOfFjUNJmVxNcLSOsvFN9SKSgtauflgl9i06ni5kh5FrY9dX4/sjAOA4WcBfTGY
+         bTFuCnfhG26kBMs7aSr13c0NSpkTFJL+jBYtrUXyoH8IBuYiTSofLjiSo0JODej4Q4E8
+         t7lxo/UnoO/h/1/Qx7+nZ9yat0bCkJ4eXUExwlFEThCSt7Mla/WSuyPrpqt9hbBIcNmx
+         T50/OMkmPgsa0cpDClfCUVv67/CPqW9HBue04TA4Ol4IkJQQYhBzZgHQq9Vck4AZ77L8
+         iQlg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695904243; x=1696509043;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Pa99WKi0ZutazJSkijjM2Ke2vSmVN1iISnLjgW4Hqnk=;
+        b=bfqsmlCZ1QvCuzu5JlvoPrFcdS6YtVv/1IeHmctR4vU8P6TTI9Pm9ep7WDuySFvkAe
+         +je/cBnW0wATlfEg0dYYqAJlbv7ioLPTI0j8s34uA4orVoK3C1As5IVxLEn7EMFZHmO+
+         Fen+QKHADX2g17uV7ZoO6YzrknWxMP8Ua+owgBoJYpH2lbi3jd3hp0KqCn82tZJNJB0k
+         WtaDqSXjJ/iASu6vnbfzy9rnOf/NxGlNBsch7zIkXOOualKulmfKJte4WGRdEgn9SZnt
+         aENiveRL3+DRhXelimmC2IassAw4TmbeXN4csMXax4NULrEJ/ulmGu7HOvxMXnNxkg6Z
+         CKIQ==
+X-Gm-Message-State: AOJu0YxFvYFyOgmodOyLgC8e2ecf3oLYBdkKkPu+KBdVZoj8enSmQ0F6
+	kQKjy7MQj1DfRdodrSeZbzE=
+X-Google-Smtp-Source: AGHT+IE3Qo6MBirJVmxZVy38t4x1pYtshHAhrDjsniEE2u4e4ELQHUl5k1sBP9z7igQSYcYSGvdTpg==
+X-Received: by 2002:a17:906:cd1:b0:9ae:6919:813 with SMTP id l17-20020a1709060cd100b009ae69190813mr1013474ejh.17.1695904242989;
+        Thu, 28 Sep 2023 05:30:42 -0700 (PDT)
+Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
+        by smtp.gmail.com with ESMTPSA id m14-20020a7bce0e000000b00402ff8d6086sm4352265wmc.18.2023.09.28.05.30.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Sep 2023 05:30:42 -0700 (PDT)
+Message-ID: <e39c7b4f44d4c4713bb352469e3367731f8497fc.camel@gmail.com>
+Subject: Re: [PATCH v2 2/2] drivers: misc: adi-axi-tdd: Add TDD engine
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: "Balas, Eliza" <Eliza.Balas@analog.com>, Arnd Bergmann <arnd@arndb.de>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+ "derek.kiernan@amd.com" <derek.kiernan@amd.com>, "dragan.cvetic@amd.com"
+ <dragan.cvetic@amd.com>,  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Date: Thu, 28 Sep 2023 14:30:41 +0200
+In-Reply-To: <BN7PR03MB4545DC903A0D62639085591697C1A@BN7PR03MB4545.namprd03.prod.outlook.com>
+References: <20230928092804.22612-1-eliza.balas@analog.com>
+	 <20230928092804.22612-3-eliza.balas@analog.com>
+	 <839638d2-7502-4925-8b7f-6b15779a6840@app.fastmail.com>
+	 <BN7PR03MB4545DC903A0D62639085591697C1A@BN7PR03MB4545.namprd03.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.201.21.249]
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-28_11,2023-09-28_01,2023-05-22_02
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Need to enable MCP23S08 I/O expanders to manage Ethernet phy
-reset in STM32MP135F-DK board
-STMMAC driver defer is not silent, need to put this config in
-built-in to avoid huge of Ethernet messages
+On Thu, 2023-09-28 at 10:54 +0000, Balas, Eliza wrote:
+>=20
+>=20
+> > -----Original Message-----
+> > From: Arnd Bergmann <arnd@arndb.de>
+> > Sent: Thursday, September 28, 2023 13:07
+> > To: Balas, Eliza <Eliza.Balas@analog.com>
+> > Cc: Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+> > <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
+> > <conor+dt@kernel.org>; derek.kiernan@amd.com; dragan.cvetic@amd.com; Gr=
+eg Kroah-
+> > Hartman <gregkh@linuxfoundation.org>;
+> > linux-kernel@vger.kernel.org; devicetree@vger.kernel.org
+> > Subject: Re: [PATCH v2 2/2] drivers: misc: adi-axi-tdd: Add TDD engine
+> >=20
+> > [External]
+> >=20
+> > On Thu, Sep 28, 2023, at 11:28, Eliza Balas wrote:
+> > > This patch introduces the driver for the new ADI TDD engine HDL.
+> > > The generic TDD controller is in essence a waveform generator
+> > > capable of addressing RF applications which require Time Division
+> > > Duplexing, as well as controlling other modules of general
+> > > applications through its dedicated 32 channel outputs.
+> > >=20
+> > > The reason of creating the generic TDD controller was to reduce
+> > > the naming confusion around the existing repurposed TDD core
+> > > built for AD9361, as well as expanding its number of output
+> > > channels for systems which require more than six controlling signals.
+> > >=20
+> > > Signed-off-by: Eliza Balas <eliza.balas@analog.com>
+> >=20
+> > Thanks for your submission, I've had a first look at the driver
+> > and the implementation of the interface you have chosen looks
+> > all good to me, so I have no detailed comments on that.
+> >=20
+> > It would however help to explain the ideas you had for the
+> > user-space interface design and summarize them in the changelog
+> > text.
+> >=20
+> > You have chosen a low-level interface that wraps the individual
+> > device registers and gives user space direct control over them.
+> > The risk here is to lock yourself into the first design,
+> > giving you less flexibility for future extensions, so it would
+> > help to understand what the usage model is here.
+> >=20
+> > One risk is that there may be an in-kernel user in the future
+> > when the TDD engine interacts with another device, so you
+> > need a driver level interface, which would in turn break
+> > if any user pokes the registers directly.
+> >=20
+> > Another possible problem I see is that an application written
+> > for this driver would be incompatible with similar hardware
+> > that has the same functionality but a different register-level
+> > interface, or even a minor revision of the device that ends up
+> > breaking one of the assumptions about the hardware design.
+> >=20
+> > In both cases, the likely answer is to have a higher-level
+> > interface of some sort, but the downside of that would be
+> > that it is much harder to come up with a good interface that
+> > covers all possible use cases.
+> >=20
+> > Another question is whether you could fit into some
+> > existing subsystem instead of creating a single-driver
+> > interface. drivers/iio/ might be a good choice, as
+> > it already handles both in-kernel and userspace users,
+> > and provides a common abstraction for multiple classes
+> > of devices that (without any domain knowledge in my case)
+> > look similar enough that this could be added there.
+> >=20
+> > =C2=A0=C2=A0=C2=A0=C2=A0 Arnd
+>=20
+> Hello Arnd,
+>=20
+> We are using this driver with an iio-fake device
+> https://github.com/analogdevicesinc/linux/blob/master/Documentation/devic=
+etree/bindings/iio/jesd204/adi%2Ciio-fakedev.yaml
+> =C2=A0 so we can take advantage of the iio user-space interface.
+>=20
 
-Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
----
- arch/arm/configs/multi_v7_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Ehehehh, iio-fake device is an hack we have to make use of libiio capabilit=
+y to
+access IIO devices trough USB, network and serial. I might be wrong, but I =
+think
+that's pretty much the reason for that driver.
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index 23fc49f23d255..373f58f2d5b98 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -458,6 +458,7 @@ CONFIG_SPI_XILINX=y
- CONFIG_SPI_SPIDEV=y
- CONFIG_SPMI=y
- CONFIG_PINCTRL_AS3722=y
-+CONFIG_PINCTRL_MCP23S08=y
- CONFIG_PINCTRL_MICROCHIP_SGPIO=y
- CONFIG_PINCTRL_OCELOT=y
- CONFIG_PINCTRL_PALMAS=y
--- 
-2.25.1
+In the past we used to treat non IIO devices as IIO solely for that reason =
+so it's
+better do it just once (with that fake device)
+
+- Nuno S=C3=A1
 
 
