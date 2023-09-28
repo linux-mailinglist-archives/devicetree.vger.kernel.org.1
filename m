@@ -1,100 +1,102 @@
-Return-Path: <devicetree+bounces-4394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97B517B25A3
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 21:03:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDF417B25A7
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 21:05:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id E90BB2820DE
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 19:03:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 691BF28194B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 19:05:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68A261C693;
-	Thu, 28 Sep 2023 19:03:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 491832943E;
+	Thu, 28 Sep 2023 19:05:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 780CF5253
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 19:03:07 +0000 (UTC)
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DE5D194;
-	Thu, 28 Sep 2023 12:03:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
-	:From:subject:date:message-id:reply-to;
-	bh=8qfV6+XarzhmAa+YjW7gMWQ3/yom86jJ+dlvQAfmhFE=; b=za82yO7yAGggbOysnBRt3wHfbi
-	NPOoIMfpj220OrDblWaZf4TTNC/Q9HCjGiMPYBZdXG8NYDa++XFOw+seUZX4E7xbv9WyJIjxZYr/I
-	6YwaBHS6TFxbX+kIAEf597lxxgEb0VXtVkOHejVCjN6zYBRTmwD8fDihEDr3ncGmTpZ0=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:51996 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1qlwHt-00067p-M3; Thu, 28 Sep 2023 15:03:02 -0400
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 326E25253;
+	Thu, 28 Sep 2023 19:05:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3BEAC433C7;
+	Thu, 28 Sep 2023 19:05:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695927945;
+	bh=hL+1NK7FhszHgz8oD0fZO4rkoqzQEsWg3x3hhHFUDiE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=D5RF0CV+X6PZ2UnKfF1cHF0YRVn39sT/fWwmRXYooWHxcmtRfB3Pzkh3H2SXVWzDK
+	 hOxEwwX8zPxXSRo+nXVuHXZF9uCGZwEZ6m3OTiBlR69wgxpSgERc0v+wlxEAEr59KS
+	 BdQHOnTrmj1EGypvPQozajvkpiL4Q9I14qQvIwl3tcuL2tvZD1jvxxuOgLi5Jrcsuo
+	 xDw5ORw6S9vV08RvCLEGmVSepCLo+YMUoaqOssAzZfxjd7/Xh9YAsYf9AsKo3Zv/vv
+	 WAGeKLgkgQzr6RuMmGMoxP9uHdb1dZzLt7RnDAxU8f+O5yW+zUd8r5Zs5MCyNqw9O1
+	 slQ1GCspCCBPw==
+Date: Thu, 28 Sep 2023 21:05:36 +0200
+From: Simon Horman <horms@kernel.org>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Madalin Bucur <madalin.bucur@nxp.com>,
+	Ioana Ciornei <ioana.ciornei@nxp.com>,
+	Camelia Groza <camelia.groza@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: hugo@hugovil.com,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Date: Thu, 28 Sep 2023 15:02:59 -0400
-Message-Id: <20230928190259.3497563-1-hugo@hugovil.com>
-X-Mailer: git-send-email 2.30.2
+	Conor Dooley <conor@kernel.org>,
+	Sean Anderson <sean.anderson@seco.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>
+Subject: Re: [RFC PATCH v2 net-next 03/15] phy: ethernet: add configuration
+ interface for copper backplane Ethernet PHYs
+Message-ID: <20230928190536.GO24230@kernel.org>
+References: <20230923134904.3627402-1-vladimir.oltean@nxp.com>
+ <20230923134904.3627402-4-vladimir.oltean@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-Subject: [PATCH] docs: dt: writing-schema: add example for multiple DT_SCHEMA_FILES
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230923134904.3627402-4-vladimir.oltean@nxp.com>
 
-From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+On Sat, Sep 23, 2023 at 04:48:52PM +0300, Vladimir Oltean wrote:
 
-Variable DT_SCHEMA_FILES can specify multiple files, but the
-documentation does not indicate how to do it. Each entry needs to be
-separated by a column symbol ':'.
+...
 
-Add an example to make it more obvious how to specify multiple
-DT_SCHEMA_FILES.
+> +/**
+> + * coef_update_opposite - return the opposite of one C72 coefficient update
+> + *			  request
+> + *
+> + * @update:	original coefficient update
+> + *
+> + * Helper to transform the update request of one equalization tap into a
+> + * request of the same tap in the opposite direction. May be used by C72
+> + * phy remote TX link training algorithms.
+> + */
+> +static inline enum coef_update coef_update_opposite(enum coef_update update)
 
-Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
----
- Documentation/devicetree/bindings/writing-schema.rst | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Hi Vladimir,
 
-diff --git a/Documentation/devicetree/bindings/writing-schema.rst b/Documentation/devicetree/bindings/writing-schema.rst
-index 4a381d20f2b4..a500d3c2e12e 100644
---- a/Documentation/devicetree/bindings/writing-schema.rst
-+++ b/Documentation/devicetree/bindings/writing-schema.rst
-@@ -159,11 +159,13 @@ It is possible to run both in a single command::
-     make dt_binding_check dtbs_check
- 
- It is also possible to run checks with a subset of matching schema files by
--setting the ``DT_SCHEMA_FILES`` variable to a specific schema file or pattern.
-+setting the ``DT_SCHEMA_FILES`` variable to a specific schema file, multiple
-+schema files or pattern.
- 
- ::
- 
-     make dt_binding_check DT_SCHEMA_FILES=trivial-devices.yaml
-+    make dt_binding_check DT_SCHEMA_FILES=trivial-devices.yaml:rtc.yaml
-     make dt_binding_check DT_SCHEMA_FILES=/gpio/
-     make dtbs_check DT_SCHEMA_FILES=trivial-devices.yaml
- 
+another nit from me.
 
-base-commit: 633b47cb009d09dc8f4ba9cdb3a0ca138809c7c7
--- 
-2.30.2
+Please put the inline keyword first.
+Likewise elsewhere in this patch.
 
+Tooling, including gcc-13 with W=1, complains about this.
+
+> +{
+> +	switch (update) {
+> +	case COEF_UPD_INC:
+> +		return COEF_UPD_DEC;
+> +	case COEF_UPD_DEC:
+> +		return COEF_UPD_INC;
+> +	default:
+> +		return COEF_UPD_HOLD;
+> +	}
+> +}
+
+...
 
