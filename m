@@ -1,249 +1,232 @@
-Return-Path: <devicetree+bounces-4404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE0687B26AB
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 22:38:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D3167B26B4
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 22:39:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 847D828228E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 20:38:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 49AB0B209C5
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 20:39:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B876C9CA52;
-	Thu, 28 Sep 2023 20:38:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 439889CA52;
+	Thu, 28 Sep 2023 20:39:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2D7F15BA
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 20:38:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF7EEC43395;
-	Thu, 28 Sep 2023 20:38:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3086F15BA;
+	Thu, 28 Sep 2023 20:39:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00D00C433C8;
+	Thu, 28 Sep 2023 20:39:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695933485;
-	bh=+5tm2Vd5PKOmhpMKfm+sC2xHmtcyWlmwAkVhsJfRFw0=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=n63WiHtfofc346V9vtx/DsCnBYGahYnj2S+HLeMCkLBw216CHsJ/WzIQvH7+iyMls
-	 EZT7sesiHWrTgLJinM/eWLLCExnsTeJZZ4ILnFDkjH06VFgaLcv8pdJHaUeNQBRAcc
-	 KIrGVK28GbbizxatTODb6UPzFDZrUb9nZv5t1OgKVBuFmjA9n4tIUoGRF0TIZh+JtP
-	 QFuYzfWbJvlcb2NdrHlhLTLgFQrmHGEw3EXowU5N7ta3vePJwBlwcGrt46uIDsF+0/
-	 yYyVIl+/KKBWCcUz/I7JELXNHYfluV5viStxbRyPr/dktIoGJKIfky5Jffan58FLBK
-	 U6te9YPrLrvrw==
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-50481a0eee7so3981693e87.0;
-        Thu, 28 Sep 2023 13:38:04 -0700 (PDT)
-X-Gm-Message-State: AOJu0Yz9/zEpNb5ZLzL0h2zTxcxlZuIRtnfgiReQy09dJKi5zmrxpqJ+
-	mAH149N/wc7E0U7L7WDryDUPAze8CDTqCqGEKA==
-X-Google-Smtp-Source: AGHT+IF2xXsg9U14M/m2PALWfFu6neDsTAAfB5nDPcr7c8bpvgDMo+9Xq+F3rz+3PE6s6CbUxi5ERC8vfRjpc67el2s=
-X-Received: by 2002:a05:6512:3083:b0:504:3464:b4a1 with SMTP id
- z3-20020a056512308300b005043464b4a1mr1864702lfd.22.1695933482981; Thu, 28 Sep
- 2023 13:38:02 -0700 (PDT)
+	s=k20201202; t=1695933550;
+	bh=xINXDKcTe6ijRIqT/PemFdRIVgJJnLG488c56JbijgA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iwGeJcBnI4vzd0lgEzuKqStNzmqnNABTX3xmghorXxnqzGNG6fOsKS0yoXIjFGHX8
+	 hoRJRFEQau+i9BA8D5FUzu0TlSKY/OJeMI4mxDGOYphFOnFGBLTJu3z62TJkdw7M8o
+	 sBnzZaGl5t+KCMwnxVfd4WVh0oH0myH1whk9T9wT6uBC38H5H+dL5oJtYA+8HvsYIc
+	 7f7mWXomZ4TwjnMJRUYY5JQibY7xFJlsyh5Yvw0G2JVxXnbk36zYjIO0Jl0znRPkG5
+	 8TgGEbUNYa62BWEKEBKY6JSM1w1j7x//N1I9tPJOhBgtzgsEyqKrAEs/rWAlPwIXQ8
+	 OERuE5KGkNnXQ==
+Date: Thu, 28 Sep 2023 21:39:04 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Christophe Roullier <christophe.roullier@foss.st.com>
+Cc: "David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 01/12] dt-bindings: net: add STM32MP13 compatible in
+ documentation for stm32
+Message-ID: <20230928-footwork-padlock-524173c3e205@spud>
+References: <20230928151512.322016-1-christophe.roullier@foss.st.com>
+ <20230928151512.322016-2-christophe.roullier@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230921102420.RFC.1.I9dddd99ccdca175e3ceb1b9fa1827df0928c5101@changeid>
- <CAL_Jsq+noP32-m5xdUCLFPFBXLxX9Ys1BNFM+9sga6KYTmDzqQ@mail.gmail.com>
- <CAD=FV=WXxGhX0Fw2nSS7PxYb1O-LUewAhoUVPn=2EpbSD2OeHQ@mail.gmail.com>
- <CAL_JsqKJyRJmwJzB1yew71Ld7BeMMat+rzhX9XtDtiFE8Dbvcw@mail.gmail.com>
- <CAD=FV=UgFzT0TW2WEV0Wmk05EXUad2EYhN2DcckAxE_Lw5gV1Q@mail.gmail.com>
- <ZROVSAoKF9bimnSP@nixie71> <CAD=FV=UR47x+t37B2+Myv0qvvOJMFxVe-Fj7js=-Ez2GWuDySg@mail.gmail.com>
-In-Reply-To: <CAD=FV=UR47x+t37B2+Myv0qvvOJMFxVe-Fj7js=-Ez2GWuDySg@mail.gmail.com>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Thu, 28 Sep 2023 15:37:50 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLohA20q4TpWQ=67Am-dwP43RXm-PPw5Crc4AdzBhTVoA@mail.gmail.com>
-Message-ID: <CAL_JsqLohA20q4TpWQ=67Am-dwP43RXm-PPw5Crc4AdzBhTVoA@mail.gmail.com>
-Subject: Re: [RFC PATCH] of: device: Support 2nd sources of probeable but
- undiscoverable devices
-To: Doug Anderson <dianders@chromium.org>
-Cc: Jeff LaBundy <jeff@labundy.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, 
-	Benjamin Tissoires <benjamin.tissoires@redhat.com>, Chen-Yu Tsai <wenst@chromium.org>, 
-	linux-input@vger.kernel.org, Jiri Kosina <jikos@kernel.org>, 
-	Hsin-Yi Wang <hsinyi@chromium.org>, linux-gpio@vger.kernel.org, linus.walleij@linaro.org, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Johan Hovold <johan+linaro@kernel.org>, 
-	andriy.shevchenko@linux.intel.com, broonie@kernel.org, frowand.list@gmail.com, 
-	gregkh@linuxfoundation.org, hdegoede@redhat.com, james.clark@arm.com, 
-	james@equiv.tech, keescook@chromium.org, linux-kernel@vger.kernel.org, 
-	rafael@kernel.org, tglx@linutronix.de
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="8U54nw6WVDXbYGlQ"
+Content-Disposition: inline
+In-Reply-To: <20230928151512.322016-2-christophe.roullier@foss.st.com>
+
+
+--8U54nw6WVDXbYGlQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Sep 27, 2023 at 6:50=E2=80=AFPM Doug Anderson <dianders@chromium.or=
-g> wrote:
->
-> Hi,
->
-> On Tue, Sep 26, 2023 at 7:37=E2=80=AFPM Jeff LaBundy <jeff@labundy.com> w=
-rote:
-> >
-> > Hi Doug,
-> >
-> > On Fri, Sep 22, 2023 at 05:11:10PM -0700, Doug Anderson wrote:
-> > > Hi,
-> > >
-> > > On Fri, Sep 22, 2023 at 12:08=E2=80=AFPM Rob Herring <robh+dt@kernel.=
-org> wrote:
-> > > >
-> > > > > > This seems like overkill to me. Do we really need groups and a =
-mutex
-> > > > > > for each group? Worst case is what? 2-3 groups of 2-3 devices?
-> > > > > > Instead, what about extending "status" with another value
-> > > > > > ("fail-needs-probe"? (fail-xxx is a documented value)). Current=
-ly, the
-> > > > > > kernel would just ignore nodes with that status. Then we can pr=
-ocess
-> > > > > > those nodes separately 1-by-1.
-> > > > >
-> > > > > My worry here is that this has the potential to impact boot speed=
- in a
-> > > > > non-trivial way. While trackpads and touchscreens _are_ probable,
-> > > > > their probe routines are often quite slow. This is even mentioned=
- in
-> > > > > Dmitry's initial patches adding async probe to the kernel. See co=
-mmit
-> > > > > 765230b5f084 ("driver-core: add asynchronous probing support for
-> > > > > drivers") where he specifically brings up input devices as exampl=
-es.
-> >
-> > Ideally, all but one driver in a group should bail out of probe quickly=
- if
-> > the device is not populated. If not, I would consider that to be a bug =
-or at
-> > least room for improvement in that driver.
-> >
-> > The reason input devices can take a while to probe is because they may =
-be
-> > loading FW over I2C or performing some sort of calibration procedure; o=
-nly
-> > one driver in the group should get that far.
->
-> Hmm, that's not my experience. Specifically I've seen i2c-hid devices
-> whose datasheets say that you're not allowed to talk i2c to them at
-> all for hundreds of milliseconds after you power them on. See, for
-> instance, "i2c-hid-of-goodix.c" which has a "post_gpio_reset_delay_ms"
-> of 180 ms and "i2c-hid-of-elan.c" which has one of 300 ms.
->
-> As I understand it these touchscreens have firmware on them and that
-> firmware can take a while to boot. Until the firmware boots they won't
-> respond over i2c. This is simply not something that Linux can do
-> anything about.
->
-> About the best you could do would be to add a board-specific driver
-> that understood that it could power up the rails, wait the maximum
-> amount of time that all possible touchscreens might need, and then
-> look for i2c ACKs. I'm still hoping to hear from Rob about how I would
-> get a board-specific driver to load on a DT system so I can
-> investigate / prototype this.
+Hey,
 
-foo_initcall()
-{
-  if (of_machine_is_compatible(...))
-    platform_device_create();
-}
+On Thu, Sep 28, 2023 at 05:15:01PM +0200, Christophe Roullier wrote:
+> New STM32 SOC have 2 GMACs instances.
+> GMAC IP version is SNPS 4.20.
+>=20
+> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
+> ---
+>  .../devicetree/bindings/net/stm32-dwmac.yaml  | 78 +++++++++++++++++--
+>  1 file changed, 70 insertions(+), 8 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml b/Doc=
+umentation/devicetree/bindings/net/stm32-dwmac.yaml
+> index fc8c96b08d7dc..ca976281bfc22 100644
+> --- a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+> @@ -22,18 +22,17 @@ select:
+>          enum:
+>            - st,stm32-dwmac
+>            - st,stm32mp1-dwmac
+> +          - st,stm32mp13-dwmac
+>    required:
+>      - compatible
+> =20
+> -allOf:
+> -  - $ref: snps,dwmac.yaml#
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+>        - items:
+>            - enum:
+>                - st,stm32mp1-dwmac
+> +              - st,stm32mp13-dwmac
+>            - const: snps,dwmac-4.20a
+>        - items:
+>            - enum:
+> @@ -74,13 +73,10 @@ properties:
+> =20
+>    st,syscon:
+>      $ref: /schemas/types.yaml#/definitions/phandle-array
+> -    items:
+> -      - items:
+> -          - description: phandle to the syscon node which encompases the=
+ glue register
+> -          - description: offset of the control register
+>      description:
+>        Should be phandle/offset pair. The phandle to the syscon node which
+> -      encompases the glue register, and the offset of the control regist=
+er
+> +      encompases the glue register, the offset of the control register a=
+nd
+> +      the mask to set bitfield in control register
+> =20
+>    st,eth-clk-sel:
+>      description:
+> @@ -101,6 +97,38 @@ required:
+> =20
+>  unevaluatedProperties: false
+> =20
+> +allOf:
+> +  - $ref: snps,dwmac.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - st,stm32mp1-dwmac
+> +              - st,stm32-dwmac
+> +    then:
+> +      properties:
+> +        st,syscon:
+> +          items:
+> +            items:
+> +              - description: phandle to the syscon node which encompases=
+ the glue register
+> +              - description: offset of the control register
 
-That chunk would have to be built in and if that's part of the driver
-module, autoloading wouldn't work.
+These descriptions should, IMO, be moved back out to the st,syscon
+definition. If you put the 3 descriptions there, with "minItems: 2" &
+put "maxItems: 2" and "minItems: 3" in each of the if/then clauses.
+Also, it should be sufficient to simplify to if/then/else.
 
-We could have a match table of board compatibles and driver names. I'm
-not worried about that list being big, so I'm happy to stick that in
-drivers/of/.
+Cheers,
+Conor.
 
-> > > > We could add information on the class of device. touchscreen and
-> > > > touchpad aliases or something.
-> > >
-> > > Ah, I see. So something like "fail-needs-probe-<class>". The
-> > > touchscreens could have "fail-needs-probe-touchscreen" and the
-> > > trackpads could have "fail-needs-probe-trackpad" ? That could work. I=
-n
-> > > theory that could fall back to the same solution of grabbing a mutex
-> > > based on the group ID...
-> > >
-> > > Also: if having the mutex in the "struct device" is seen as a bad
-> > > idea, it would also be easy to remove. __driver_probe_device() could
-> > > just make a call like "of_device_probe_start()" at the beginning that
-> > > locks the mutex and then "of_device_probe_end()" that unlocks it. Bot=
-h
-> > > of those calls could easily lookup the mutex in a list, which would
-> > > get rid of the need to store it in the "struct device".
-> > >
-> > >
-> > > > > That would lead me to suggest this:
-> > > > >
-> > > > >   &i2c_bus {
-> > > > >     trackpad-prober {
-> > > > >       compatible =3D "mt8173-elm-hana-trackpad-prober";
-> > > > >
-> > > > >       tp1: trackpad@10 {
-> > > > >         compatible =3D "hid-over-i2c";
-> > > > >         reg =3D <0x10>;
-> > > > >         ...
-> > > > >         post-power-on-delay-ms =3D <200>;
-> > > > >       };
-> > > > >       tp2: trackpad@20 {
-> > > > >         compatible =3D "hid-over-i2c";
-> > > > >         reg =3D <0x20>;
-> > > > >         ...
-> > > > >         post-power-on-delay-ms =3D <200>;
-> > > > >       };
-> > > > >     };
-> > > > >   };
-> > > > >
-> > > > > ...but I suspect that would be insta-NAKed because it's creating =
-a
-> > > > > completely virtual device ("mt8173-elm-hana-trackpad-prober") in =
-the
-> > > > > device tree. I don't know if there's something that's functionall=
-y
-> > > > > similar that would be OK?
-> >
-> > This solution seems a bit confusing to me, and would require more edits
-> > to the dts each time a second source is added. It also means one would
-> > have to write a small platform driver for each group of devices, correc=
-t?
->
-> No matter what we need to add something to the dts each time a second
-> source is added, right?
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - st,stm32mp13-dwmac
+> +    then:
+> +      properties:
+> +        st,syscon:
+> +          items:
+> +            items:
+> +              - description: phandle to the syscon node which encompases=
+ the glue register
+> +              - description: offset of the control register
+> +              - description: field to set mask in register
+> +
+>  examples:
+>    - |
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+> @@ -161,3 +189,37 @@ examples:
+>             snps,pbl =3D <8>;
+>             phy-mode =3D "mii";
+>         };
+> +
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/stm32mp1-clks.h>
+> +    #include <dt-bindings/reset/stm32mp1-resets.h>
+> +    #include <dt-bindings/mfd/stm32h7-rcc.h>
+> +    //Example 4
+> +     ethernet3: ethernet@5800a000 {
+> +           compatible =3D "st,stm32mp13-dwmac", "snps,dwmac-4.20a";
+> +           reg =3D <0x5800a000 0x2000>;
+> +           reg-names =3D "stmmaceth";
+> +           interrupts-extended =3D <&intc GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH=
+>,
+> +                                 <&exti 68 IRQ_TYPE_LEVEL_HIGH>;
+> +           interrupt-names =3D "macirq",
+> +                             "eth_wake_irq";
+> +           clock-names =3D "stmmaceth",
+> +                         "mac-clk-tx",
+> +                         "mac-clk-rx",
+> +                         "eth-ck",
+> +                         "ptp_ref",
+> +                         "ethstp";
+> +           clocks =3D <&rcc ETHMAC>,
+> +                    <&rcc ETHTX>,
+> +                    <&rcc ETHRX>,
+> +                    <&rcc ETHCK_K>,
+> +                    <&rcc ETHPTP_K>,
+> +                    <&rcc ETHSTP>;
+> +           st,syscon =3D <&syscfg 0x4 0xff0000>;
+> +           snps,mixed-burst;
+> +           snps,pbl =3D <2>;
+> +           snps,axi-config =3D <&stmmac_axi_config_1>;
+> +           snps,tso;
+> +           phy-mode =3D "rmii";
+> +     };
+> --=20
+> 2.25.1
+>=20
 
-That was my thought. There is the case of the devices are almost the
-same, so we lie. That's what you are doing for displays IIRC.
+--8U54nw6WVDXbYGlQ
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> While it's true that we'd end up with some extra drivers, if we do it
-> correctly we don't necessarily need a driver for each group of devices
-> nor even a driver per board. If several boards have very similar
-> probing requirements then, even if they have unique "compatible"
-> strings they could still end up using the same Linux driver.
->
-> I've actually been talking offline with folks on ChromeOS more about
-> this problem as well. Chen-Yu actually pointed at a patch series (that
-> never landed, I guess) that has some similar ideas [1]. I guess in
-> that case Hans was actually constructing device tree properties
-> manually in the driver. I was thinking more of having all of the
-> options listed in the device tree and then doing something that only
-> causes some of them to probe.
->
-> If Rob was OK with it, I guess I could have some sort of top-level
-> "hwmanager" node like Hans did and then have phandle links to all the
-> hardware that are managed by it. Then I could just change those to
-> "okay"?
+-----BEGIN PGP SIGNATURE-----
 
-That's really just making the mutex node link the other direction. The
-devices link to the common mutex node vs. the hwmanager node(s) links
-to all the devices. That's really just picking the paint colors.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRXkaAAKCRB4tDGHoIJi
+0opWAP9JSnWhMjiIcX6Vc/XK2po8UfJBgrzDdpbxtFfTG/BmvwEA3JncB06h6fKE
+ThgDVUqVEGxr4yKfVfIj32yBSVdxXwU=
+=awMY
+-----END PGP SIGNATURE-----
 
-> Ideally, though, this could somehow use device tree "overlays" I
-> guess. That seems like almost a perfect fit. I guess the issue here,
-> though, is that I'd want the overlays bundled together with the
-> original DT and then the board-specific "hardware prober" driver to
-> actually apply the overlays after probing. Does that seem sensible?
-
-BTW, there was an idea long ago from maintainer emeritus Likely to
-append overlays to the base DTB for the kernel to apply.
-
-How would that help you here? Are you going to have an overlay for
-each device that enables it? It's much easier to just call
-of_update_property() to change "status".
-
-Rob
+--8U54nw6WVDXbYGlQ--
 
