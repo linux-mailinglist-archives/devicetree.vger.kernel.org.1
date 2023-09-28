@@ -1,36 +1,36 @@
-Return-Path: <devicetree+bounces-4309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADC417B1FFB
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 16:47:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DF2C7B2001
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 16:47:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 182991C20A1C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 14:47:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 660F6B20CBD
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 14:47:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C52653FB35;
-	Thu, 28 Sep 2023 14:47:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2D153FB33;
+	Thu, 28 Sep 2023 14:47:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B447B3FB2F
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 14:47:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7281C43395;
-	Thu, 28 Sep 2023 14:47:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDBD23D3B6;
+	Thu, 28 Sep 2023 14:47:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52D52C433CB;
+	Thu, 28 Sep 2023 14:47:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695912438;
-	bh=ImbJJt6lxA8I9pgmrzl1yvRbcB2Hjbk9mPdoIz4rOhc=;
+	s=k20201202; t=1695912442;
+	bh=Yqv4ybBi58HnuL+bzF0z8/TsxzS8ktMKAJWJgCPHa+Q=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=r9fyjiAJjrsDcK5xUPyR39tdDZzscjdbcTlaVXqFYJ7f8ZiyLNT+hvLyGmwBuT1EX
-	 CCuLc5/7IIiDZSFbAAbJyhLe9tbjkUY2J9fam3hQm2VVKETUs68AZztINVKfPjPvWq
-	 c3nPwq9X/9C7W56zW5IzaZXzAb6A+MnKL2HryVomatX0iSPwiITU3hPTuheVLwK4J/
-	 pfQFCuBZDMVefdsco7rJxZz2BlRHnqbDSF2ZPepWvgOteyqUkxP1EkJ913nZVtx6tv
-	 2pXlC19w43Orm43W3l2poUcEWHscncVxInCoqkpq7dwTuCDUDbzz9al6fchGSi7FGR
-	 X9P2qRZlW2c+w==
-Received: (nullmailer pid 408734 invoked by uid 1000);
+	b=lJ4cBFtg7YmRBEZR8ALXzGUBVrqqOpbJxcQjtUT1DP0DisNwZ186VdPe6bub9LfdZ
+	 V0mf+YJ8aavSENSnoQtOw9GXAshtY/RTY0M82kiHXT5ppzE8//01JjL+JB/LJQHdgs
+	 xgiVBYjq9B7KiB0SpzfWwMUx3wvnyvtdSKAdBsr+c6ZHyGSVStAcXmVLeojQnzO6F7
+	 00ujCCgemOOPtG0dxZAJZBMObfJhJBHrfNUONyon8PwhIejB/pOamY8pFaqv3LCb+Z
+	 Fq3gtpVwlv74tXzf+pONprrZ+D9iG2YAGfqMyFfHeBHlVbKfKIaegHI49kvrJyOLVO
+	 JdpiW7S15zENg==
+Received: (nullmailer pid 408738 invoked by uid 1000);
 	Thu, 28 Sep 2023 14:47:11 -0000
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -39,75 +39,52 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: Rob Herring <robh@kernel.org>
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, linux-arm-kernel@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>
-In-Reply-To: <20230928063448.3544464-3-xianwei.zhao@amlogic.com>
-References: <20230928063448.3544464-1-xianwei.zhao@amlogic.com>
- <20230928063448.3544464-3-xianwei.zhao@amlogic.com>
-Message-Id: <169591240804.408241.17087442588468882782.robh@kernel.org>
-Subject: Re: [PATCH 2/4] dt-bindings: clock: add Amlogic C3 peripherals
- clock controller bindings
+To: Christophe Roullier <christophe.roullier@foss.st.com>
+Cc: linux-kernel@vger.kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Paolo Abeni <pabeni@redhat.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, Rob Herring <robh+dt@kernel.org>, Jose Abreu <joabreu@synopsys.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, "David S . Miller" <davem@davemloft.net>, Richard Cochran <richardcochran@gmail.com>, Jakub Kicinski <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>
+In-Reply-To: <20230928122427.313271-3-christophe.roullier@foss.st.com>
+References: <20230928122427.313271-1-christophe.roullier@foss.st.com>
+ <20230928122427.313271-3-christophe.roullier@foss.st.com>
+Message-Id: <169591240912.408297.5448136157647549306.robh@kernel.org>
+Subject: Re: [PATCH v2 02/12] dt-bindings: net: add new property
+ st,ext-phyclk in documentation for stm32
 Date: Thu, 28 Sep 2023 09:47:11 -0500
 
 
-On Thu, 28 Sep 2023 14:34:46 +0800, Xianwei Zhao wrote:
-> Add the peripherals clock controller dt-bindings for Amlogic C3 SoC family
+On Thu, 28 Sep 2023 14:24:17 +0200, Christophe Roullier wrote:
+> Add property st,ext-phyclk to manage cases when PHY have no cristal/quartz
+> This property can be used with RMII phy without cristal 50Mhz and when we
+> want to select RCC clock instead of ETH_REF_CLK
+> Can be used also with RGMII phy with no cristal and we select RCC clock
+> instead of ETH_CLK125
+> This new property replace st,eth-clk-sel and st,eth-ref-clk-sel
 > 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
 > ---
->  .../clock/amlogic,c3-peripherals-clkc.yaml    |  86 +++++++
->  .../clock/amlogic,c3-peripherals-clkc.h       | 230 ++++++++++++++++++
->  2 files changed, 316 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,c3-peripherals-clkc.yaml
->  create mode 100644 include/dt-bindings/clock/amlogic,c3-peripherals-clkc.h
+>  Documentation/devicetree/bindings/net/stm32-dwmac.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
+./Documentation/devicetree/bindings/net/stm32-dwmac.yaml:82:6: [warning] wrong indentation: expected 4 but found 5 (indentation)
+./Documentation/devicetree/bindings/net/stm32-dwmac.yaml:83:7: [warning] wrong indentation: expected 7 but found 6 (indentation)
+./Documentation/devicetree/bindings/net/stm32-dwmac.yaml:86:5: [error] syntax error: expected <block end>, but found '<block mapping start>' (syntax)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,c3-peripherals-clkc.yaml: properties:clocks: 'oneOf' conditional failed, one must be fixed:
-	[{'description': 'input oscillator (usually at 24MHz)'}, {'description': 'input fixed pll'}, {'description': 'input fixed pll div2'}, {'description': 'input fixed pll div2p5'}, {'description': 'input fixed pll div3'}, {'description': 'input fixed pll div4'}, {'description': 'input fixed pll div5'}, {'description': 'input fixed pll div7'}, {'description': 'input gp0 pll'}, {'description': 'input hifi pll'}] is too long
-	[{'description': 'input oscillator (usually at 24MHz)'}, {'description': 'input fixed pll'}, {'description': 'input fixed pll div2'}, {'description': 'input fixed pll div2p5'}, {'description': 'input fixed pll div3'}, {'description': 'input fixed pll div4'}, {'description': 'input fixed pll div5'}, {'description': 'input fixed pll div7'}, {'description': 'input gp0 pll'}, {'description': 'input hifi pll'}] is too short
-	False schema does not allow 10
-	1 was expected
-	10 is greater than the maximum of 2
-	10 is greater than the maximum of 3
-	10 is greater than the maximum of 4
-	10 is greater than the maximum of 5
-	10 is greater than the maximum of 6
-	10 is greater than the maximum of 7
-	10 is greater than the maximum of 8
-	10 is greater than the maximum of 9
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,c3-peripherals-clkc.yaml: properties:clock-names: 'oneOf' conditional failed, one must be fixed:
-	[{'const': 'xtal'}, {'const': 'fixed_pll'}, {'const': 'fclk_div2'}, {'const': 'fclk_div2p5'}, {'const': 'fclk_div3'}, {'const': 'fclk_div4'}, {'const': 'fclk_div5'}, {'const': 'fclk_div7'}, {'const': 'gp0_pll'}, {'const': 'hifi_pll'}] is too long
-	[{'const': 'xtal'}, {'const': 'fixed_pll'}, {'const': 'fclk_div2'}, {'const': 'fclk_div2p5'}, {'const': 'fclk_div3'}, {'const': 'fclk_div4'}, {'const': 'fclk_div5'}, {'const': 'fclk_div7'}, {'const': 'gp0_pll'}, {'const': 'hifi_pll'}] is too short
-	False schema does not allow 10
-	1 was expected
-	10 is greater than the maximum of 2
-	10 is greater than the maximum of 3
-	10 is greater than the maximum of 4
-	10 is greater than the maximum of 5
-	10 is greater than the maximum of 6
-	10 is greater than the maximum of 7
-	10 is greater than the maximum of 8
-	10 is greater than the maximum of 9
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-Error: Documentation/devicetree/bindings/clock/amlogic,c3-peripherals-clkc.example.dts:23.31-32 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/clock/amlogic,c3-peripherals-clkc.example.dtb] Error 1
+make[2]: *** Deleting file 'Documentation/devicetree/bindings/net/stm32-dwmac.example.dts'
+Documentation/devicetree/bindings/net/stm32-dwmac.yaml:86:5: did not find expected key
+make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/net/stm32-dwmac.example.dts] Error 1
 make[2]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/net/stm32-dwmac.yaml:86:5: did not find expected key
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/stm32-dwmac.yaml: ignoring, error parsing file
 make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1427: dt_binding_check] Error 2
 make: *** [Makefile:234: __sub-make] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230928063448.3544464-3-xianwei.zhao@amlogic.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230928122427.313271-3-christophe.roullier@foss.st.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
