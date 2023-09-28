@@ -1,108 +1,139 @@
-Return-Path: <devicetree+bounces-4160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DA7A7B1710
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 11:20:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04A4F7B1743
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 11:25:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2F0622816C9
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 09:20:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 23518281CBA
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 09:25:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2DDB34185;
-	Thu, 28 Sep 2023 09:20:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DFCB3419F;
+	Thu, 28 Sep 2023 09:25:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD393339AE
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 09:20:19 +0000 (UTC)
-Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EC3F1B5
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 02:20:17 -0700 (PDT)
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout01.posteo.de (Postfix) with ESMTPS id 6AC8724002B
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 11:20:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.de; s=2017;
-	t=1695892814; bh=vNg75BWjesiSPoc4xOBVO7NMpYNZqPj5y/QTD+itxPY=;
-	h=Message-ID:Subject:From:To:Cc:Date:Content-Transfer-Encoding:
-	 MIME-Version:From;
-	b=CEvae+P8PW/jhAfPAikzMwKPCPNtuZcpcXyMrOGYtyFmjWQ8KOh3Um7/Xp0/NPs+4
-	 2yiWP+ZWlIMFD3Oc8u0YJAeeaEDswO8HyfMQBIkcE+MIWCzPF0kotZpHTHKof/GpzH
-	 TfVDD2Hirt1HB++f+R+TmtRGomxxquaPfeb17499bNmMJuh1dhXMiaBPIG+1o3uBv7
-	 eKNSqpd6rYAAovFJqxOU9yEwubKdfcrK+3sGhh5gaNTB3hI/UDKD3uBsCtw8dBMxGh
-	 HNNn73bbCl6Z7Is3nzvuXzRIaiIj1XRk3/DzhOBCtlsm6mVjRZeBUOwLn07BRMR4+q
-	 8ijCVFQ/UaeJw==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4Rx7HJ5Q38z6twr;
-	Thu, 28 Sep 2023 11:20:12 +0200 (CEST)
-Message-ID: <38925de00ef14354a17e2437284e08d0524e6a23.camel@posteo.de>
-Subject: Re: [PATCH] media: dt-bindings: hynix,hi846: Document orientation
- and rotation
-From: Martin Kepplinger <martink@posteo.de>
-To: Fabio Estevam <festevam@gmail.com>, mchehab@kernel.org
-Cc: sakari.ailus@linux.intel.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, Fabio Estevam
-	 <festevam@denx.de>
-Date: Thu, 28 Sep 2023 09:20:12 +0000
-In-Reply-To: <20230927181600.272904-1-festevam@gmail.com>
-References: <20230927181600.272904-1-festevam@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A90934192
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 09:25:20 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FE4310DE;
+	Thu, 28 Sep 2023 02:25:16 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38S9P1JF118832;
+	Thu, 28 Sep 2023 04:25:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1695893101;
+	bh=p9ke9yR4lxAzb71HYkGxjOjuDERO4DFpweRDLMyT/GY=;
+	h=From:Subject:Date:To:CC;
+	b=LcfNF9pKydt3FbsTG+v4J4IS4xBdsqeCrdKF8huDtX7oegJzO7ZAbjg3BQlEUwnoC
+	 iKocQhz9SXevLZRA3+lSuVLG9WpVb90ejdhoxBSL2KF+Lbuf5GYWj/3vKOitnYrP77
+	 Rmhvun0cEHFVU5G73W93kLlSGJABUJkAAeUr8mhM=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38S9P1NK012654
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 28 Sep 2023 04:25:01 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 28
+ Sep 2023 04:25:01 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 28 Sep 2023 04:25:01 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38S9P0Ao021772;
+	Thu, 28 Sep 2023 04:25:00 -0500
+From: Jai Luthra <j-luthra@ti.com>
+Subject: [PATCH v2 0/6] arm64: ti: Enable audio on AM62A
+Date: Thu, 28 Sep 2023 14:54:25 +0530
+Message-ID: <20230928-mcasp_am62a-v2-0-ce9f0e1ba22b@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAElGFWUC/23MQQ7CIBCF4as0sxbDgIHqqvcwjUEKdhaUBhqia
+ bi72LXL/yXv2yG7RC7DrdshuUKZ4tJCnDqws1lejtHUGgQXkmuJLFiT14cJShhmPCrFlbj4q4b
+ 2WJPz9D60+9h6przF9Dnwgr/1v1OQcdY/J5Tae9N7HDY62xhgrLV+AYLJ/c6jAAAA
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon
+	<will@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devarsht@ti.com>, <a-bhatia1@ti.com>,
+        Jai
+ Luthra <j-luthra@ti.com>, Jayesh Choudhary <j-choudhary@ti.com>,
+        Julien Panis
+	<jpanis@baylibre.com>,
+        Esteban Blanc <eblanc@baylibre.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1280; i=j-luthra@ti.com;
+ h=from:subject:message-id; bh=BHtCb2PMXGV0tQRjk09OqvvmhzCZSOL04njidPR9a8c=;
+ b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBlFUZgwirUMDt1tyJ3P47oSRFPJkrvAAdCz0/7/
+ muummsYJzOJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZRVGYAAKCRBD3pH5JJpx
+ RRgKEACRSnxhjrepqp+KSFnZNvl7Z0rz6G3T3BwdLOnQH+mWlyCz3+jYPvO+k0QBs/lGQiVum/a
+ Y2dJRBpZUbVHze++aEmiazKplovdOZQesCaa8+5s9eeF2bH3mRsYeoufIsFhhIMYMfBpRJHXP5t
+ PxjyGdMpX+vIdhLHXHpKvdepLAwGs6o5d77AD8218XuyTqUoVrRGq6Wb2wKgwbqr2OWFShxe0Kv
+ XPhJXiVHa2zY/58PNo468ZbaVsKqZlnnC/w7qjbZIOxw2yVA1x3qDkYt8bgIcLKTJyULOyNkoC6
+ B7NWpAZsJeTLWk07FRxmfh8yogTD6xlHBrqIXM1tktZ3LPB6F4zFnheIjtswsPozSXTO1UPk12D
+ DVq5jUcaQBUuhvzujuGm5EszFMj45bBREXczZ/vVvO3Hm62A2bokUj/k262m/sP6Dmt8hZoc1qq
+ M8gtK692DHJtahmWr3iWCGOUlkE8o3n4vcwO8XwS4R0KqvEgdWoZf2APkLEicfrlcy4fsBdxyRA
+ 74HUYr8xBvdGmcnRFVsc+yE902Rb8Wj2Ny3oH9eoojEbel0A1YisY5XYnsXXw875F3hoZpZT25Y
+ R3i15+/iLsaHQNwtKjfoQ5kL0aAWskb7MPbTpZbgTpj5IqkORlNn7O4Nwleu9rdgdUO3k6zliVO
+ TN3KFf1mFMv2vuA==
+X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
+ fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
 	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Am Mittwoch, dem 27.09.2023 um 15:16 -0300 schrieb Fabio Estevam:
-> From: Fabio Estevam <festevam@denx.de>
->=20
-> Document the 'orientation' and 'rotation' properties, which
-> are valid for the SK Hynix Hi-846 sensor.
->=20
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
-> =C2=A0Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml | 4
-> ++++
-> =C2=A01 file changed, 4 insertions(+)
->=20
-> diff --git
-> a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> index 1e2df8cf2937..ab0ff6f60fc0 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> @@ -48,6 +48,10 @@ properties:
-> =C2=A0=C2=A0 vddd-supply:
-> =C2=A0=C2=A0=C2=A0=C2=A0 description: Definition of the regulator used fo=
-r the VDDD power
-> supply.
-> =C2=A0
-> +=C2=A0 orientation: true
-> +
-> +=C2=A0 rotation: true
-> +
-> =C2=A0=C2=A0 port:
-> =C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/graph.yaml#/$defs/port-base
-> =C2=A0=C2=A0=C2=A0=C2=A0 unevaluatedProperties: false
+This patch series adds support for audio via headphone jack on
+SK-AM62A-LP. The jack is wired to TLV320AIC3106 (codec), which is
+connected to McASP1 (serializer) on the SoC.
 
-hi Fabio,
+The TRRS 3.5mm jack can be used for simultaneous playback and recording.
 
-thanks a lot, I like to have this fixed. I always thought we could re-
-use media/video-interface-devices.yaml for these properties somehow...
+Signed-off-by: Jai Luthra <j-luthra@ti.com>
+---
+Changes in v2:
+- Move the patch that enables TPS6593 PMIC to this series
+- Link to v1: https://lore.kernel.org/r/20230731-mcasp_am62a-v1-0-8bd137ffa8f1@ti.com
 
-if your change is preferred,
+---
+Jai Luthra (5):
+      arm64: dts: ti: k3-am62a-main: Add nodes for McASP
+      arm64: dts: ti: k3-am62a7-sk: Split vcc_3v3 regulators
+      arm64: dts: ti: k3-am62a7-sk: Drop i2c-1 to 100Khz
+      arm64: dts: ti: k3-am62a7-sk: Enable audio on AM62A
+      arm64: defconfig: Enable TPS6593 PMIC for SK-AM62A
 
-Acked-by: Martin Kepplinger <martink@posteo.de>
+Julien Panis (1):
+      arm64: dts: ti: k3-am62a7-sk: Add support for TPS6593 PMIC
 
-                         martin
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi |  60 ++++++++++
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts   | 189 +++++++++++++++++++++++++++++-
+ arch/arm64/configs/defconfig              |   1 +
+ 3 files changed, 247 insertions(+), 3 deletions(-)
+---
+base-commit: 18030226a48de1fbfabf4ae16aaa2695a484254f
+change-id: 20230731-mcasp_am62a-af1660624f97
+
+Best regards,
+-- 
+Jai Luthra <j-luthra@ti.com>
 
 
