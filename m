@@ -1,265 +1,109 @@
-Return-Path: <devicetree+bounces-4337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A97A37B20FC
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 17:20:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 957777B2117
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 17:23:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 4980C282EC0
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 15:20:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 39EF1282FB8
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 15:23:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FC4A4E298;
-	Thu, 28 Sep 2023 15:20:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E75444F120;
+	Thu, 28 Sep 2023 15:23:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C1404E291
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 15:20:20 +0000 (UTC)
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45729B7
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 08:20:18 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-533cbbd0153so12874710a12.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 08:20:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1695914416; x=1696519216; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NhGCCrTPz3qD815DrUTz3QFvoilWcLj84jeEgBAbn4g=;
-        b=RQ2FPrFYjacQNvGdOlD75otTCmHvrF1Ybu5BwIbkEwy/0WPLPBJ+0J62RXmfkdETIx
-         gBZOUDhhBxWjalQacJipdaRmkDvXzbX3Ir/mBHVdRIvSh/6zZxe+dhu4O4jl23Dlri1z
-         9sAC0gnWrxGiVRpATaZf4sy/SS4qIQdILJlJM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695914416; x=1696519216;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NhGCCrTPz3qD815DrUTz3QFvoilWcLj84jeEgBAbn4g=;
-        b=PTooe17mXAKZm6radzqIxyFTYY3sQdbHTWAyYv/eo7PlkB+lcjbhi1SGQ2SuzXV7Gh
-         jDg4CzAYvIxJGNRUv99QbK2JfJJQEFYOaA/M1T+wBxq2DNY3zzX7dn9H/IHSLlvMLpqJ
-         zyYBdxU6VX9UYKZLrqJ4kMwKO1oiHoC+vjfABwbe9chM1hY84oyXdxDqUfgFsIAFShC/
-         dH/XYhF3hSOyRKYENSOlJ7lFhkKbICMOu/OFkkQGSe17c3Ctu3xTtlFR3Lx9epzZ4pAm
-         qf9iDbeMbI3beDo7dP14+v7ZTSBEJcWcShPdIOsoYfaiLsxwidrmvjfOftHy47/YUYZh
-         sGUA==
-X-Gm-Message-State: AOJu0YzZtoFYFTKcoi4SJdOYWcrPwuVzqHSI/v8uoDQEaXGidHRU6h6h
-	1wYZs3ju/WRkVmHTaJRwHHLsylq67S9w3ROlTJUElA==
-X-Google-Smtp-Source: AGHT+IGCrTzWYKPGz8+625kDs0eQi51Ow82elgipH2Qu5W+6QmLi6g4eOr361Yni2q+KJAEShzSViau1oDvFTplMmIU=
-X-Received: by 2002:aa7:c1ca:0:b0:533:926:da9d with SMTP id
- d10-20020aa7c1ca000000b005330926da9dmr1505968edp.18.1695914416372; Thu, 28
- Sep 2023 08:20:16 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D247138DF9;
+	Thu, 28 Sep 2023 15:23:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9EADC433C8;
+	Thu, 28 Sep 2023 15:23:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695914584;
+	bh=rcZ+yPGU6okKYD+rLigRTLFj0SWxtD4Qs2tvWAkbLxE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iY4F9BLerOAK76UmoDcIZx4ZmZUfptcUF+XovFro9utaD7rc1RloVIF/jGr4J1gfN
+	 CKfbjowpbgX57d8+QhMSqFQjRIbTtnzwvNr90NGJ2C5W0h/bFd7P8bJpq9M7eSp4oH
+	 3X9HKU3h+yBrY5IhhP2gelS7q9UxYHBnwE5WA3SqCDpg6H2t5zKy2rYossxo/Ib7Vw
+	 bKdcgvuLZZK293u2iI86/TCrF/H/bd38+Wr6y4GsED51zkNUWbKaBoAPe/Ak406EHA
+	 LYgsQc95936b4A/IH7ystFKFnH77SvrGMnAqSUOUx+6rjh7FLSGpROJqChxf6OU43w
+	 s+YJTtBOMnH+g==
+Received: (nullmailer pid 532633 invoked by uid 1000);
+	Thu, 28 Sep 2023 15:23:01 -0000
+Date: Thu, 28 Sep 2023 10:23:01 -0500
+From: Rob Herring <robh@kernel.org>
+To: Christophe Roullier <christophe.roullier@foss.st.com>
+Cc: "David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, Richard Cochran <richardcochran@gmail.com>, Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 02/12] dt-bindings: net: add new property
+ st,ext-phyclk in documentation for stm32
+Message-ID: <20230928152301.GA512899-robh@kernel.org>
+References: <20230928122427.313271-1-christophe.roullier@foss.st.com>
+ <20230928122427.313271-3-christophe.roullier@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230921124459.1.I91ddcfacf9b234af5cc3eabea4b62edb31153317@changeid>
- <CAL_Jsq+WuYDU+yY98opTHr1PT-J9mFYJQBjVMnk+FSWLDUO33w@mail.gmail.com>
- <CAPnjgZ1pfxaMG1n5yOBhiOhsNrRjck1K92U7Ga=+VTY_jjjrVg@mail.gmail.com>
- <20230922174649.GA3320366-robh@kernel.org> <CAPnjgZ3ojfAv=BHqOhM=-NnYqCm81Ny=PsGKiNphKTmw++fk9w@mail.gmail.com>
- <CAL_JsqJqvyP=c93DHDO8A5RXv7Lz_Z7eEHSbJQ=JCo+qPVhSfg@mail.gmail.com>
- <CAPnjgZ3BnD9aX3cNNPiGRKTOj+YeurHCLv6K0TRFhAtY21Qufw@mail.gmail.com>
- <20230925092122.0b615f25@xps-13> <CAPnjgZ0Z5J_33HuQF-5XgDFmZim0nHHzvZJOOZobWw_cOJd=9g@mail.gmail.com>
- <20230925164736.5efbf4c0@xps-13> <CAPnjgZ3YCQHJ-eXuX8rYx2Qb6QEL+XviFmXYTON6M-sGPWSBBg@mail.gmail.com>
- <20230925172447.43dcef88@xps-13> <CAPnjgZ20c9FsYVjSrQ9qbFy9Y67BqDP2zxMyATx===PFhO69Ew@mail.gmail.com>
- <CAL_JsqJfjHqtTB2qfLmNxmQtn1rZewNyNe+Knu_Z4UCdPoPhSQ@mail.gmail.com>
- <CAPnjgZ1npHPpwPmw2f4=E3U5=RH0m4R+W_MZ7+oXdmDF=EeUjg@mail.gmail.com>
- <20230926094815.5802e184@xps-13> <CAL_JsqL_8bhHkHOFL8a8=g1dYL4OY8hGuNDyc0Jz22rEuJzXtQ@mail.gmail.com>
- <CAPnjgZ3TJLaRzv_cXyLdpRBtc2-FBYQ=gk-_MhEDH47HvO71FQ@mail.gmail.com>
-In-Reply-To: <CAPnjgZ3TJLaRzv_cXyLdpRBtc2-FBYQ=gk-_MhEDH47HvO71FQ@mail.gmail.com>
-From: Simon Glass <sjg@chromium.org>
-Date: Thu, 28 Sep 2023 09:20:05 -0600
-Message-ID: <CAPnjgZ2eUcgevpS7Ak5p=7bhm0aHW3taLO8Fq_EcpDDQidJFVA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mtd: Add a schema for binman
-To: Rob Herring <robh@kernel.org>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, devicetree@vger.kernel.org, 
-	U-Boot Mailing List <u-boot@lists.denx.de>, linux-mtd@lists.infradead.org, 
-	Tom Rini <trini@konsulko.com>, Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
-	autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230928122427.313271-3-christophe.roullier@foss.st.com>
 
-Hi again Rob,
+On Thu, Sep 28, 2023 at 02:24:17PM +0200, Christophe Roullier wrote:
+> Add property st,ext-phyclk to manage cases when PHY have no cristal/quartz
+> This property can be used with RMII phy without cristal 50Mhz and when we
+> want to select RCC clock instead of ETH_REF_CLK
+> Can be used also with RGMII phy with no cristal and we select RCC clock
 
-On Wed, 27 Sept 2023 at 10:43, Simon Glass <sjg@chromium.org> wrote:
->
-> Hi Rob,
->
-> On Tue, 26 Sept 2023 at 11:29, Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Tue, Sep 26, 2023 at 2:48=E2=80=AFAM Miquel Raynal <miquel.raynal@bo=
-otlin.com> wrote:
-> > >
-> > > Hello,
-> > >
-> > > > > > > > These are firmware bindings, as indicated, but I
-> > > > > > > > took them out of the /firmware node since that is for a dif=
-ferent
-> > > > > > > > purpose. Rob suggested that partitions was a good place. We=
- have fwupd
-> > > > > > > > using DT to hold the firmware-update information, so I expe=
-ct it will
-> > > > > > > > move to use these bindings too.
-> > > > > > >
-> > > > > > > I would definitely use fixed partitions as that's what you ne=
-ed then:
-> > > > > > > registering where everything starts and ends. If you have "in=
--band"
-> > > > > > > meta data you might require a compatible, but I don't think y=
-ou
-> > > > > > > do, in this case you should probably carry the content throug=
-h a label
-> > > > > > > (which will become the partition name) and we can discuss add=
-itional
-> > > > > > > properties if needed.
-> > > > > >
-> > > > > > I believe I am going to need a compatible string at the 'partit=
-ions'
-> > > > > > level to indicate that this is the binman scheme. But we can le=
-ave
-> > > > > > that until later.
-> > > > >
-> > > > > Perhaps:
-> > > > >
-> > > > > compatible =3D "binman", "fixed-partitions";
-> > > > >
-> > > > > Though I don't understand why binman couldn't just understand wha=
-t
-> > > > > "fixed-partitions" means rather than "binman".
-> > > >
-> > > > Well so long as we don't add any binman things in here, you are rig=
-ht.
-> > > >
-> > > > But the eventual goal is parity with current Binman functionality,
-> > > > which writes the entire (augmented) description to the DT, allowing
-> > > > tools to rebuild / repack / replace pieces later, maintaining the s=
-ame
-> > > > alignment constraints, etc. I am assuming that properties like 'ali=
-gn
-> > > > =3D <16>' would not fit with fixed-partitions.
-> > >
-> > > I am personally not bothered by this kind of properties. But if we pl=
-an
-> > > on adding too much properties, I will advise to indeed use another na=
-me
-> > > than fixed-partitions (or add the "binman" secondary compatible)
-> > > otherwise it's gonna be hard to support in the code while still
-> > > restraining as much as we can the other partition schema.
-> >
-> > Agreed. It's a trade off. I think we need enough to understand the
-> > problem (not just presented with a solution), agree on the general
-> > solution/direction, and then discuss specific additions.
-> >
-> > > > But if we don't preserve
-> > > > these properties then Binman cannot do repacking reliably. Perhaps =
-for
-> > > > now I could put the augmented DT in its own section somewhere, but =
-I
-> > > > am just not sure if that will work in a real system. E.g. with VBE =
-the
-> > > > goal is to use the DT to figure out how to access the firmware, upd=
-ate
-> > > > it, etc.
-> >
-> > VBE?
+typo
 
-Verified Boot for Embedded, an EFI alternative with no callbacks.
+> instead of ETH_CLK125
+> This new property replace st,eth-clk-sel and st,eth-ref-clk-sel
 
-> >
-> > > > Is it not possible to have my own node with whatever things Binman
-> > > > needs in it (subject to review of course)? i.e. could we discuss ho=
-w
-> > > > to encode it, but argue less about whether things are needed? I
-> > > > kind-of feel I know what is needed, since I wrote the tool.
-> >
-> > What we don't need is the same information in 2 places for the DTB
-> > used at runtime. If the binman node is removed, do whatever you want.
-> > If you want to keep it at runtime, then it's got to extend what we
-> > already have.
-> >
-> > I don't think anyone is disagreeing about whether specific information
-> > is needed or not.
-> >
-> > > > > > So you are suggesting 'label' for the contents. Rob suggested
-> > > > > > 'compatible' [1], so what should I do?
-> > > > >
-> > > > > "label" is for consumption by humans, not tools/software. Compati=
-ble
-> > > > > values are documented, label values are not. Though the partition
-> > > > > stuff started out using label long ago and it's evolved to prefer=
-ring
-> > > > > compatible.
-> > > >
-> > > > OK so we are agreed that we are going with 'compatible'.
-> > >
-> > > Still strongly disagree here.
-> >
-> > Miquel is right. I was confused here. "label" is still pretty much
-> > used for what the image is. Though we do have "u-boot,env" for both it
-> > seems.
-> >
-> > My position on "label" stands. To the extent we have images for common
-> > components, I think we should standardize the names. Certainly if
-> > tools rely on the names, then they should be documented.
->
-> OK thanks for clearing that up.
->
-> But at present 'label' is free-form text. If I change it to an enum,
-> won't that break things? If not, how do I actually do it?
->
-> There is a u-boot.yaml but it doesn't actually have a "u-boot" label
-> in the schema. In fact it seems that the label is not validated at
-> all?
+Certainly 1 property is better than 2 for me, but carrying 3 is not 
+great. I don't understand why the we need a new property. What can't be 
+supported with the existing properties?
 
-It looks like I can just add it to a separate schema file, which is
-what I did in the latest version.
+> 
+> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
+> ---
+>  Documentation/devicetree/bindings/net/stm32-dwmac.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+> index ca976281bfc22..54fda8b052abc 100644
+> --- a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+> @@ -78,12 +78,21 @@ properties:
+>        encompases the glue register, the offset of the control register and
+>        the mask to set bitfield in control register
+>  
+> +  st,ext-phyclk:
+> +     description:
+> +      set this property in RMII mode when you have PHY without crystal 50MHz and want to
+> +      select RCC clock instead of ETH_REF_CLK. or in RGMII mode when you want to select
+> +      RCC clock instead of ETH_CLK125.
+> +    type: boolean
 
->
-> >
-> >
-> > > My understanding is that a compatible carries how the content is
-> > > organized, and how this maybe specific (like you have in-band meta da=
-ta
-> > > data that needs to be parsed in a specific way or in your case
-> > > additional specific properties in the DT which give more context abou=
-t
-> > > how the data is stored). But the real content of the partition, ie. i=
-f
-> > > it contains a firmware, the kernel or some user data does not belong =
-to
-> > > the compatible.
-> > >
-> > > I.e:
-> > > - The first byte of my partition gives the compression algorithm:
-> > >   -> compatible =3D "compressed-partition-foo";
-> > >      or
-> > >   -> compatible =3D "fixed-partitions" + compression-algorithm =3D "f=
-oo";
-> > > - The partition contains a picture of my dog:
-> > >   -> label =3D "my dog is beautiful"
-> > >   but certainly not
-> > >   -> compatible =3D "my-dog";
-> >
-> > IMO, compatible in this case should convey "JPEG image" or similar.
-> >
-> > > I don't see why, for the binman schema, we could not constrain the
-> > > labels?
-> >
-> > Yes, but those should follow what we already have. "u-boot" for
-> > example rather than "data,u-boot" which I think Simon had in some
-> > version of this.
->
-> Yes, don't worry, I had some feedback from Alper but have given up on
-> that approach.
+It's not clear to me what 'external' (assuming that's what 'ext' is 
+short for) means. A crystal is external to the PHY too. So it means 'the 
+PHY has no crystal'? That's a property of the PHY though, so it should 
+be in the PHY's node. If you want this in the MAC node, then name the 
+property and make the description primarily about the MAC modes.
 
-Regards,
-Simon
+> +
+>    st,eth-clk-sel:
+> +    deprecated: true
+>      description:
+>        set this property in RGMII PHY when you want to select RCC clock instead of ETH_CLK125.
+>      type: boolean
+>  
+>    st,eth-ref-clk-sel:
+> +    deprecated: true
+>      description:
+>        set this property in RMII mode when you have PHY without crystal 50MHz and want to
+>        select RCC clock instead of ETH_REF_CLK.
+> -- 
+> 2.25.1
+> 
 
