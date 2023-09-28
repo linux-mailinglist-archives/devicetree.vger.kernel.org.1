@@ -1,118 +1,133 @@
-Return-Path: <devicetree+bounces-4323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 486E97B20AB
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 17:15:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE4E17B20C1
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 17:16:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id E9C85282863
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 15:15:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 4D434283809
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 15:16:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D7634D91B;
-	Thu, 28 Sep 2023 15:15:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3770A4E272;
+	Thu, 28 Sep 2023 15:15:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A49094D8FC
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 15:15:02 +0000 (UTC)
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6FC7F9;
-	Thu, 28 Sep 2023 08:15:00 -0700 (PDT)
-Received: from mail.denx.de (unknown [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: festevam@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id D188086D86;
-	Thu, 28 Sep 2023 17:14:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1695914098;
-	bh=pY0CXKbCgt+oEjgVyQIM5pgTX3AWgto7saofKKuBxFE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=PQ7dbFmQ6hizVDBfzDcUGirTC9lXRC0B26umCbtU25uGU4BidUxfgQCbTKx8GDUys
-	 tmIlGjFe+avizq0sa8HVj5wh0xN1JJgL8CJ0QiDr1su394yiqwMr/F/vp/35DWRiKw
-	 1HGvf04MQa/DgpWEnK9SutfVXDVEAHFb7+SNpSbPgTdPDBf3jSpGwEPmvyQwo95Xhi
-	 zH/UNnUrSHTZuR/KKhyMuPPVogw8dOQMRt9zT+ArZPITGf8ZSdRolz5bft3DyzvqbW
-	 do7EJT+dLCrMpzZNT4VUxaAg4mVVpx48esHr2HWhQAibm7hgHbx+ZXOBjZW5iQjfKE
-	 s24EwFR2JiLQw==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C38C4E26A;
+	Thu, 28 Sep 2023 15:15:55 +0000 (UTC)
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB9921AE;
+	Thu, 28 Sep 2023 08:15:53 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 38SE0DPd015115;
+	Thu, 28 Sep 2023 17:15:17 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=DVDsnfq
+	WMzi6qlYBynRmCr8AXaqPBbzCO9a9d54AX5w=; b=A0MvNWGd4arOF12LqpD2H8P
+	gcObAHYXnzOgfPWWGoMANdRrvTMZUdVOKeHNBUcFTnLJaOecqWsh19j2lcISflpm
+	tgUIiCi+Pa1I7Cuqpghm2+kMGxs9fekQhO+XSspXClpu/HKh/gJLdqe002ATUuUo
+	LiUrZZrklIqzPoNuDMTXd3MtWp1AsP/WoLn5RxDPKdQDqoqPhpyJmXJ5AZvcOwqT
+	EBeBeqPrAh5zt9ifMAvyG8GmqcGVUGEjxpyqITVO5GhTDS2lu3hJVdUg6w8d1Rwa
+	M0L1omIeK0kyDsW8tZqjagICSVrg18X84HqpSyYOxl3h1TiVjGh4fG0zR5kzYJg=
+	=
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3t9nefye3d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 Sep 2023 17:15:17 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 917B0100057;
+	Thu, 28 Sep 2023 17:15:16 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 58B4E233004;
+	Thu, 28 Sep 2023 17:15:16 +0200 (CEST)
+Received: from localhost (10.201.21.249) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 28 Sep
+ 2023 17:15:15 +0200
+From: Christophe Roullier <christophe.roullier@foss.st.com>
+To: "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark
+ Brown <broonie@kernel.org>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 00/12] Series to deliver Ethernets for STM32MP13
+Date: Thu, 28 Sep 2023 17:15:00 +0200
+Message-ID: <20230928151512.322016-1-christophe.roullier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date: Thu, 28 Sep 2023 12:14:58 -0300
-From: Fabio Estevam <festevam@denx.de>
-To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc: Fabio Estevam <festevam@gmail.com>, mchehab@kernel.org,
- sakari.ailus@linux.intel.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, martink@posteo.de,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2] media: dt-bindings: hynix,hi846: Document orientation
- and rotation
-In-Reply-To: <avoixz5pqixr366cqks672akniv7h7ewix4edoyikg23dv24fd@bquxelr53t7t>
-References: <20230928121424.388019-1-festevam@gmail.com>
- <avoixz5pqixr366cqks672akniv7h7ewix4edoyikg23dv24fd@bquxelr53t7t>
-Message-ID: <e5002417d8d3ed29a0289d3895213f64@denx.de>
-X-Sender: festevam@denx.de
-User-Agent: Roundcube Webmail/1.3.6
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.201.21.249]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-28_14,2023-09-28_02,2023-05-22_02
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Jacopo,
+STM32MP13 is STM32 SOC with 2 GMACs instances
+This board have 2 RMII phy:
+  -Ethernet1: RMII with crystal
+  -Ethernet2: RMII without crystal
+Rework dwmac glue to simplify management for next stm32
 
-On 28/09/2023 11:57, Jacopo Mondi wrote:
+-V2: Update from remark of Andrew Lunn (split commit into a number of smaller patches)
+     Update from Conor Dooley (yaml documentation)
+-V3: bad indentation for yaml (sorry)
 
-> Counterproof: It's very easy to break validation of, in example,
-> ov5640
-> 
-> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
-> @@ -109,6 +109,7 @@ examples:
->                powerdown-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
->                reset-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
->                rotation = <180>;
-> +              orientation = <0>;
-> 
->                port {
->                    /* MIPI CSI-2 bus endpoint */
-> 
-> $ make ARCH=arm64 dt_binding_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
->   DTC_CHK 
-> Documentation/devicetree/bindings/media/i2c/ovti,ov5640.example.dtb
->   'orientation' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: 
-> http://devicetree.org/schemas/media/i2c/ovti,ov5640.yaml#
+Christophe Roullier (12):
+  dt-bindings: net: add STM32MP13 compatible in documentation for stm32
+  dt-bindings: net: add new property st,ext-phyclk in documentation for
+    stm32
+  dt-bindings: net: add phy-supply property for stm32
+  net: ethernet: stmmac: rework glue to simplify management for next
+    stm32
+  net: ethernet: stmmac: add management of stm32mp13 for stm32
+  net: ethernet: stmmac: stm32: update config management for phy wo
+    cristal
+  net: ethernet: stm32: clean the way to manage wol irqwake
+  net: ethernet: stmmac: stm32: support the phy-supply regulator binding
+  ARM: dts: stm32: add ethernet1 and ethernet2 support on stm32mp13
+  ARM: dts: stm32: add ethernet1/2 RMII pins for STM32MP13F-DK board
+  ARM: dts: stm32: add ethernet1 and ethernet2 for STM32MP135F-DK board
+  ARM: multi_v7_defconfig: Add MCP23S08 pinctrl support
 
-Should we use unevaluatedProperties: false instead?
+ .../devicetree/bindings/net/stm32-dwmac.yaml  |  90 ++++++-
+ arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi   |  71 ++++++
+ arch/arm/boot/dts/st/stm32mp131.dtsi          |  31 +++
+ arch/arm/boot/dts/st/stm32mp133.dtsi          |  30 +++
+ arch/arm/boot/dts/st/stm32mp135f-dk.dts       |  48 ++++
+ arch/arm/configs/multi_v7_defconfig           |   1 +
+ .../net/ethernet/stmicro/stmmac/dwmac-stm32.c | 229 +++++++++++++-----
+ 7 files changed, 425 insertions(+), 75 deletions(-)
 
---- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
-@@ -85,7 +85,7 @@ required:
-    - DOVDD-supply
-    - port
+-- 
+2.25.1
 
--additionalProperties: false
-+unevaluatedProperties: false
-
-  examples:
-    - |
-@@ -109,6 +109,7 @@ examples:
-                powerdown-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
-                reset-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
-                rotation = <180>;
-+              orientation = <0>;
-
-                port {
-                    /* MIPI CSI-2 bus endpoint */
 
