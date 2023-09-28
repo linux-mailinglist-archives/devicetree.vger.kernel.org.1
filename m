@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-4042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CABE37B1209
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 07:26:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA6527B1225
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 07:32:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 7C63C281E23
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 05:26:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 312D1B20A61
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 05:32:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6957011188;
-	Thu, 28 Sep 2023 05:25:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5DE413AFB;
+	Thu, 28 Sep 2023 05:32:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 722641FA9
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 05:25:57 +0000 (UTC)
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A50F798
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 22:25:55 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9ae2cc4d17eso1604739266b.1
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 22:25:55 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B5E26D18
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 05:32:26 +0000 (UTC)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C50C139
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 22:32:24 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9a64619d8fbso1618175066b.0
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 22:32:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695878754; x=1696483554; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1695879142; x=1696483942; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=iYQSq7QHiuiyS0dR9XMV5Ksd5EKV/hFTK+3dgExQusQ=;
-        b=bNwNO/EYBK8s6FDhLgM5qdUp/Vksj8q3jbaCWL1j/6Bey4WRgApk5OFvUf0o54xk/1
-         BF71ItDmJreFBUkV6SID+UB4tpB5DLFIfob7IWVBLSg95L3uGWjjL7sQ/u4VseYVP3P1
-         ehpD08kOoDPiZjzqlRbzzgznrBJp+BK5Diy8hLRr2ruU4+tIHm9ENL6MQCIBIlm+NCIa
-         Zr+sEo6Iz1acM2rFX34//S2TW/TV1BosOhRp6IfEgzdWHhQru8LPYW760Uzxvi8qIJVI
-         wWVTp3SOc00vf8hTZsbZWfcMuXTCv+23xf2nCQ1Q3iKMXyx7ZGfBigbOq/AxYoNbwN+E
-         knUg==
+        bh=ZAOCLhkc883imuhwELA/Sn7bvE+DYVt5946/0QV3Vhk=;
+        b=BuxuDHHtEj/V+6glJu4G0jjiVIZZIwI+wJ1GXmXSsd3UTo90d4FckVdp1roJEmtAHJ
+         LrwVRUC4FckzPCcxShT4k2ckosA+eIsZ1q1A38AVcWEBUgIdRFORZFhVdJP+PqPcPVrc
+         eWYKu7FeqIm5eYjZJAZxHBG22Z1jwv10ld8BiRpYCiesS83mAbS6O0dlnbtiwPGn+G1B
+         7iFvu7QC+Xdi0Gm3gm4IhtwIVjVaCbgqCq8eHEPmpUgj1S4d0fOWuGSW6j+OwRNG3ZjV
+         Yd04OoAeTVuamrmrQA0BK/wtxe5omzg4HDP86UstWioqcvZ2+6fzt9S9V4Ej3d5JjLgo
+         Ua1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695878754; x=1696483554;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1695879142; x=1696483942;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iYQSq7QHiuiyS0dR9XMV5Ksd5EKV/hFTK+3dgExQusQ=;
-        b=WoZacyD+KtqkpYC76QtJw6h0BJuTRpqc9oyieYtj/fohRLlmQRxEVJzWWv984iPQUK
-         aC43vVNWgn5i79BPS4Oy8HY5FVBTEwZPaIfWEHUNOF5s80A12lTVv447nzULcq3SZ3c5
-         ADNEnSZ70zbdb61kwi0Rcf1hugpZ9Arrq835FpDUovFLvx4zGKFigK7iN002Ey/Kn8tP
-         HwTiSkA6c67iNC5eT9jVWkHs5FiU+3qTEFA3F5fbvOaGgz4uVVQBxZ1HMLuT0zD1lUZ0
-         bJSebqgdP2tQUVT0zKJ6VXpaWBDCcMDRi+Tbwr4ks51WshNUkb52f3D398HdXB/owubb
-         e5jw==
-X-Gm-Message-State: AOJu0YwoHNBF5FAmwVo3edp2vvQ/5OUv9q/PZ075FGW9h3vPtQoQCp9p
-	fjqreK8/RPnnwZptm4ZPiNObFg==
-X-Google-Smtp-Source: AGHT+IGW1VkTStCt19APrmMZsGsw0+8KtuYXvcE12wx5vqA80PvWt7Cx4LMvCf5RkksuDRuY4SxmvQ==
-X-Received: by 2002:a17:907:778d:b0:9ae:3ee3:1f59 with SMTP id ky13-20020a170907778d00b009ae3ee31f59mr227125ejc.13.1695878754001;
-        Wed, 27 Sep 2023 22:25:54 -0700 (PDT)
-Received: from [192.168.1.235] (host-87-4-82-94.retail.telecomitalia.it. [87.4.82.94])
-        by smtp.gmail.com with ESMTPSA id lz1-20020a170906fb0100b0099297782aa9sm10230778ejb.49.2023.09.27.22.25.52
+        bh=ZAOCLhkc883imuhwELA/Sn7bvE+DYVt5946/0QV3Vhk=;
+        b=sVNynWGanmGk16SHRAUYt56PsOI8DChGaDvZbg0L7fgjXXpeQWYQRtIk5Ax5sY084g
+         NaT/Wial5q0YtKfDYVkPNC9hn4EAjWoJHuLpVXL68Q24NN5DFpP3192Sx7HKOH4dgN9d
+         M7WsuN4u5IMkSxICjEFh6B0zWJjmjdTmjBz52wnrp+r47Pm2DEhHNbCFUrwABKLMFLIE
+         fUZGUgu4/YyRutVi3ZlvjTQSp4Sbji3EMJPnZDN2NXVIfsYb8lXFMuM49OasnaYRIl1z
+         iKxSbYBln/AjYv9SF8efoLAbo61qF+IKt3i2YZ1ygGslZAV5sFnabzg+87ku+ig5FjNW
+         XOiQ==
+X-Gm-Message-State: AOJu0YyquHnuqfvux42sQzo1vIu+o1AKz0o3DoyFdPXgY7UQy76A3SMT
+	eRfIgGA3Wbi/WxNQ8Qgq3GxHNQ==
+X-Google-Smtp-Source: AGHT+IHJh8BRt0WI4/IuVDNeNl4sJyfaJ7tN8Va16jjJ1W7nj7MWxT06kPYO2NYHnF76FAcqy+F9JA==
+X-Received: by 2002:a17:906:518d:b0:9a5:a44a:86f3 with SMTP id y13-20020a170906518d00b009a5a44a86f3mr249833ejk.25.1695879142608;
+        Wed, 27 Sep 2023 22:32:22 -0700 (PDT)
+Received: from [192.168.168.70] (host-87-4-82-94.retail.telecomitalia.it. [87.4.82.94])
+        by smtp.gmail.com with ESMTPSA id rh27-20020a17090720fb00b0099b6becb107sm10322051ejb.95.2023.09.27.22.32.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Sep 2023 22:25:53 -0700 (PDT)
-Message-ID: <3d15a1a1-d47e-49ad-9491-1ac95f68bc64@linaro.org>
-Date: Thu, 28 Sep 2023 07:25:51 +0200
+        Wed, 27 Sep 2023 22:32:22 -0700 (PDT)
+Message-ID: <c58ffc72-59d9-49f5-be22-18588f7df1e3@linaro.org>
+Date: Thu, 28 Sep 2023 07:32:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,19 +63,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] input: Imagis: add support for the IST3032C
- touchscreen
+Subject: Re: [PATCH v8 1/5] dt-bindings: media: platform: visconti: Add
+ Toshiba Visconti Video Input Interface
 Content-Language: en-US
-To: Karel Balej <balejk@matfyz.cz>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
+ Hans Verkuil <hverkuil@xs4all.nl>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
  <robh+dt@kernel.org>, Krzysztof Kozlowski
  <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Markuss Broks <markuss.broks@gmail.com>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
- ~postmarketos/upstreaming@lists.sr.ht
-References: <20230926173531.18715-1-balejk@matfyz.cz>
- <20230926173531.18715-3-balejk@matfyz.cz>
+ Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230925232806.950683-1-yuji2.ishikawa@toshiba.co.jp>
+ <20230925232806.950683-2-yuji2.ishikawa@toshiba.co.jp>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,36 +122,86 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230926173531.18715-3-balejk@matfyz.cz>
+In-Reply-To: <20230925232806.950683-2-yuji2.ishikawa@toshiba.co.jp>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 26/09/2023 19:35, Karel Balej wrote:
-> The downstream driver sets the regulator voltage to 3.1 V. Without this,
-> the touchscreen generates random touches even after it is no longer
-> being touched. It is unknown whether the same problem appears with other
-> chips of the IST30**C series.
+On 26/09/2023 01:28, Yuji Ishikawa wrote:
+> Adds the Device Tree binding documentation that allows to describe
+> the Video Input Interface found in Toshiba Visconti SoCs.
 > 
-> Co-developed-by: Duje Mihanović <duje.mihanovic@skole.hr>
-> Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
-> Signed-off-by: Karel Balej <balejk@matfyz.cz>
-> ---
->  .../bindings/input/touchscreen/imagis,ist30xxc.yaml |  1 +
 
-Bindings are always separate patches. Always.
 
-Please run scripts/checkpatch.pl and fix reported warnings. Some
-warnings can be ignored, but the code here looks like it needs a fix.
-Feel free to get in touch if the warning is not clear.
+> +  reg:
+> +    items:
+> +      - description: Registers for capture control
+> +      - description: Registers for CSI2 receiver control
+> +      - description: Registers for bus interface unit control
+> +      - description: Registers for Memory Protection Unit
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Sync Interrupt
+> +      - description: Status (Error) Interrupt
+> +      - description: CSI2 Receiver Interrupt
+> +      - description: L1ISP Interrupt
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    unevaluatedProperties: false
+> +    description: CSI-2 input port, with a single endpoint connected to the CSI-2 transmitter.
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: video-interfaces.yaml#
+> +        additionalProperties: false
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching.
+This is a friendly reminder during the review process.
+
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
+
+Thank you.
+
+
+> +
+> +        required:
+> +          - clock-noncontinuous
+> +          - link-frequencies
+> +          - remote-endpoint
+> +          - data-lanes
+
+Not much improved here. required goes after properties, always. I
+pointed you last time the file which you should use as an example.
+
+> +
+> +        properties:
+> +          data-lanes:
+> +            description: VIIF supports 1, 2, 3 or 4 data lanes
+> +            minItems: 1
+> +            items:
+> +              - const: 1
+> +              - const: 2
+> +              - const: 3
+> +              - const: 4
+> +
+> +          clock-noncontinuous: true
+
+Drop
+
+> +          link-frequencies: true
+
+Drop
+> +          remote-endpoint: true
+
+Drop
 
 Best regards,
 Krzysztof
