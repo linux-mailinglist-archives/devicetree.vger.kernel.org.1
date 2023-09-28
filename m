@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-4128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B9C37B1505
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 09:37:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B17247B150D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 09:38:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 1DC621C208E0
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 07:37:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 6400C282A24
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 07:38:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8E4E31A6D;
-	Thu, 28 Sep 2023 07:37:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E16F31A70;
+	Thu, 28 Sep 2023 07:38:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AA92538C
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 07:37:34 +0000 (UTC)
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2B4DAC
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 00:37:30 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-32488a22810so180426f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 00:37:30 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77276538C
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 07:38:35 +0000 (UTC)
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 004CF92
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 00:38:33 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40652e5718cso1476735e9.3
+        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 00:38:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695886649; x=1696491449; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695886712; x=1696491512; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=tLZwhKDgfdFsd3vZ+zpeV363DbF016coL6R25E3ugY4=;
-        b=GjQIMHypTa/x+Lc8QHlTPz/L4cuzr9tekM8BwgmAVK3RuSVBpPsqaAE9HjX9rnxxfI
-         N+rOmT5dxeS43VCyOmCBP/A9I87TqGfRgo6RmOeanouV3ldd2sy6iH6zKfyYrhmhHhfn
-         Q8qsr49g9JMeS0dzi5D4oicZaAoxEtF4s333rvjMftnPwUc0ZNQMqUZnx5aq/ELz30+v
-         VXwjBd19gqX0mgvKzKOr2+KtEzwYc8dwEAgr52lhcYnHKQHviGWP1oIEK/bzqv48SzXd
-         k/veb/nFNHeOufO8B+krcA6AV/Mw4LxivL1ZegItkvLBTU0nWNzDqFHbzljONvvJ9Xjr
-         J8Ag==
+        bh=gKzzcFRe2VplRfr6R2h6JRusbvnJYPDky4iW2ifDT3M=;
+        b=MgrPdD0PkR5oFqdUf2hRFdPWUUs6CtXDzJJ3oBgsrdZSrIiw1/ywZwBvDqGejpEwux
+         pcLceDk/80oOX7hCio/sbiBGzsHr/+QGsvSCwHB84EF2hbpM2Q30KWwCwsR4PnuDeZel
+         jnt2EKCT1tMm2e6VmwJQOuoLrM4mgyPGKpddWZKOxelvDpYz61fgQT5zxB1ebjspetPg
+         cP0iY+JLzqww2Ykco37AS+We4EvSBqt4xeGFx3NCS/VAmWCVKiFEGRqNw0lL/zVSyVc0
+         qCuMLYOH5byS/Smlzg8EyFbLA91j6OA25xSyxBE76YS5Tgi/D/79UR7+W71C1AdDaNgM
+         j1tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695886649; x=1696491449;
+        d=1e100.net; s=20230601; t=1695886712; x=1696491512;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tLZwhKDgfdFsd3vZ+zpeV363DbF016coL6R25E3ugY4=;
-        b=o/Lg1H2v9KC8jaGXalhaF8e7RvLLuHDLMIVBljSR6szmdk15SkNSRJHJnwhvSKhgXS
-         VI6B6IcsB/tPN2T1BlP5lcmBVKdDl9OJToWFcWbFpN8xI2lPUJwqLhxll0lVJH8weOcz
-         eso+goYuuLVEdV73w+4vNW0iUBJEuKFCasC3HWN/XoPJl1J9IB5tJGyR1q2Rep/8PcV2
-         7xbPA0Q/08Mvjou8E3dLPrJ8vcgOwR9goFuxkqw5/et2lXKxV621mC1+GXWGTMQLPXSs
-         ahtWlRSQoGGCVMYxeXZuBOHyTDOfsRKqmzmXSEoFntUUsPd6/S209eLLNf98+GtZ35wS
-         BDbA==
-X-Gm-Message-State: AOJu0Yz21YsoTNPdai3CVVI1q5GpMxLXw9tJHiNl4/1YlHyMtw60jk8N
-	OVSlRcEw+eIJnlmHsMjFQInvDw==
-X-Google-Smtp-Source: AGHT+IEykS3sv6+IRCprkWFIYzQut6WfxhajwABJSA3a9n4e2P7oAuta+iEBJdwMvKYwA8NZgiIIoA==
-X-Received: by 2002:a5d:4b43:0:b0:319:8430:f80f with SMTP id w3-20020a5d4b43000000b003198430f80fmr449720wrs.49.1695886649008;
-        Thu, 28 Sep 2023 00:37:29 -0700 (PDT)
+        bh=gKzzcFRe2VplRfr6R2h6JRusbvnJYPDky4iW2ifDT3M=;
+        b=QwVsrVf3d0eOdpmOiVBaZqIXXnVd7Hhm1PtYTyvN2Ke4AnB8K9N6hkkq8JGZ92LCF2
+         A+8JkjRSZ2hb6fRKD4Srpt0Qj/dhjnogwRpLvWfIJk6YLjBjtNReDVSA9SrBsyFOorgq
+         q5lKT8bwwiD1Et1s2QfR4SUDt9eMDOBxGrfOjzpYpLnfAEGTMXMYJDqE5w9Q3L0bl9XR
+         4yN4FdIPBYYGacQgguAtyAraHEGXo60c3j3h27SojekVXEdep/K8KrLPGH14RZsHpusx
+         TyVQzBseUcC5nyDgG8mSY0kmjuDEdfkMfp08lDAqOehk/tI9A519cmM/HpNT8lkgv3qw
+         vzZA==
+X-Gm-Message-State: AOJu0Yy4Ed/vwAQcFVr6qI8P6EuCO9uN4TsxCGIRT1p4wdE20ZWgEeXe
+	0zI/xkFJV8QLpB6/Zcf9RhNn9g==
+X-Google-Smtp-Source: AGHT+IHlxudOT+0WQEHXM8R5fIZXNF/+mzKQMiuWrpNaj1uCitxMDDn+XL2jAmyw0Q2PHrQ0Xokpmw==
+X-Received: by 2002:a1c:4b13:0:b0:405:3dee:3515 with SMTP id y19-20020a1c4b13000000b004053dee3515mr476951wma.27.1695886712314;
+        Thu, 28 Sep 2023 00:38:32 -0700 (PDT)
 Received: from ?IPV6:2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0? ([2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0])
-        by smtp.googlemail.com with ESMTPSA id o11-20020a056000010b00b0031c52e81490sm18876523wrx.72.2023.09.28.00.37.28
+        by smtp.googlemail.com with ESMTPSA id z5-20020adfe545000000b003177074f830sm344363wrm.59.2023.09.28.00.38.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Sep 2023 00:37:28 -0700 (PDT)
-Message-ID: <dc0460ff-9b72-d739-cc1b-ae6d3a2bfa82@linaro.org>
-Date: Thu, 28 Sep 2023 09:37:27 +0200
+        Thu, 28 Sep 2023 00:38:31 -0700 (PDT)
+Message-ID: <9de0e708-ff82-cc2b-2bb6-00c01cd5ff57@linaro.org>
+Date: Thu, 28 Sep 2023 09:38:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,47 +64,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v3 0/4] add LVTS support for mt7988
+Subject: Re: [PATCH] dt-bindings: thermal: nvidia,tegra124-soctherm: Add
+ missing unevaluatedProperties on child node schemas
 Content-Language: en-US
-To: Frank Wunderlich <linux@fw-web.de>, linux-mediatek@lists.infradead.org
-Cc: Frank Wunderlich <frank-w@public-files.de>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Amit Kucheria <amitk@kernel.org>,
- Zhang Rui <rui.zhang@intel.com>, Rob Herring <robh+dt@kernel.org>,
+To: Rob Herring <robh@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230922055020.6436-1-linux@fw-web.de>
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230926164500.101593-1-robh@kernel.org>
 From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20230922055020.6436-1-linux@fw-web.de>
+In-Reply-To: <20230926164500.101593-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 22/09/2023 07:50, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
+On 26/09/2023 18:44, Rob Herring wrote:
+> Just as unevaluatedProperties or additionalProperties are required at
+> the top level of schemas, they should (and will) also be required for
+> child node schemas. That ensures only documented properties are
+> present for any node.
 > 
-> This series makes allows soc specific temperature coefficients
-> and adds support for mt7988 which has a different one.
+> Add unevaluatedProperties as needed, and then add any missing properties
+> flagged by the addition.
 > 
-> Frank Wunderlich (4):
->    dt-bindings: thermal: mediatek: add mt7988 lvts compatible
->    dt-bindings: thermal: mediatek: Add LVTS thermal sensors for mt7988
->    thermal/drivers/mediatek/lvts_thermal: make coeff configurable
->    thermal/drivers/mediatek/lvts_thermal: add mt7988 support
-> 
->   .../thermal/mediatek,lvts-thermal.yaml        |  1 +
->   drivers/thermal/mediatek/lvts_thermal.c       | 89 +++++++++++++++----
->   .../thermal/mediatek,lvts-thermal.h           |  9 ++
->   3 files changed, 82 insertions(+), 17 deletions(-)
-> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
 
 Applied, thanks
 
