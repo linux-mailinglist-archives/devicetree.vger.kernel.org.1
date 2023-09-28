@@ -1,28 +1,28 @@
-Return-Path: <devicetree+bounces-4401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66D8C7B2655
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 22:13:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 135967B2657
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 22:14:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id E0CABB209EE
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 20:13:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id BF0D42820E3
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 20:14:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A7D044468;
-	Thu, 28 Sep 2023 20:13:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4513450D7;
+	Thu, 28 Sep 2023 20:14:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD2AF18626
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 20:13:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6823418626
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 20:14:03 +0000 (UTC)
 Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F4DD180;
-	Thu, 28 Sep 2023 13:13:36 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFC63194;
+	Thu, 28 Sep 2023 13:14:01 -0700 (PDT)
 Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
 	by finn.localdomain with esmtp (Exim 4.93)
 	(envelope-from <tharvey@gateworks.com>)
-	id 1qlxO6-009HeF-EL; Thu, 28 Sep 2023 20:13:30 +0000
+	id 1qlxOW-009Hee-Iu; Thu, 28 Sep 2023 20:13:56 +0000
 From: Tim Harvey <tharvey@gateworks.com>
 To: Shawn Guo <shawnguo@kernel.org>,
 	devicetree@vger.kernel.org,
@@ -36,9 +36,9 @@ Cc: Rob Herring <robh+dt@kernel.org>,
 	Fabio Estevam <festevam@gmail.com>,
 	NXP Linux Team <linux-imx@nxp.com>,
 	Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH v2] arm64: dts: imx8mm-venice-gw73xx: add TPM device
-Date: Thu, 28 Sep 2023 13:13:28 -0700
-Message-Id: <20230928201328.1945960-1-tharvey@gateworks.com>
+Subject: [PATCH v2] arm64: dts: imx8mp-venice-gw73xx: add TPM device
+Date: Thu, 28 Sep 2023 13:13:54 -0700
+Message-Id: <20230928201354.1946035-1-tharvey@gateworks.com>
 X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -59,14 +59,14 @@ Signed-off-by: Tim Harvey <tharvey@gateworks.com>
 ---
 v2: removed uncessary properties
 ---
- .../arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-index 4f859d0fec69..d79fe9f62b95 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-@@ -104,8 +104,15 @@ reg_wifi_en: regulator-wifi-en {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi
+index 48a284478468..b0d42b18c5ce 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi
+@@ -95,8 +95,15 @@ reg_usdhc2_vmmc: regulator-usdhc2-vmmc {
  &ecspi2 {
  	pinctrl-names = "default";
  	pinctrl-0 = <&pinctrl_spi2>;
@@ -82,15 +82,7 @@ index 4f859d0fec69..d79fe9f62b95 100644
 +	};
  };
  
- &gpio1 {
-@@ -361,6 +368,7 @@ MX8MM_IOMUXC_ECSPI2_SCLK_ECSPI2_SCLK	0xd6
- 			MX8MM_IOMUXC_ECSPI2_MOSI_ECSPI2_MOSI	0xd6
- 			MX8MM_IOMUXC_ECSPI2_MISO_ECSPI2_MISO	0xd6
- 			MX8MM_IOMUXC_ECSPI2_SS0_GPIO5_IO13	0xd6
-+			MX8MM_IOMUXC_GPIO1_IO10_GPIO1_IO10	0xd6
- 		>;
- 	};
- 
+ &gpio4 {
 -- 
 2.25.1
 
