@@ -1,110 +1,108 @@
-Return-Path: <devicetree+bounces-4308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15D7C7B1FFA
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 16:47:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B49EC7B201C
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 16:51:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 9C468282B50
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 14:47:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 68116281577
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 14:51:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 604EA3FB19;
-	Thu, 28 Sep 2023 14:47:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBEAF450CC;
+	Thu, 28 Sep 2023 14:51:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 510078480
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 14:47:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54797C433C9;
-	Thu, 28 Sep 2023 14:47:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC05641AB8
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 14:51:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 561DEC433C8;
+	Thu, 28 Sep 2023 14:51:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695912435;
-	bh=jkl0eNZxunoiBQRh8rBnK1U/95JO9xlXay+2bUDxxm0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=scHqdd0ftYybYJA5yUlRWBDfw+URZu54CG0ax1Mwni64teM/409C/VM5xSw+CZivs
-	 pgWKnw9nV72i3LegMkkwFV2V1La8v4r4c6O93iIni69IDoBnTYhjmjhq4fViMzJtP/
-	 TKp10PeRBQWcjwdhedexqRvSa63H5zFbmXHH/76wkGcAmo7tmpA8F3sCzc5fUPnWvO
-	 frTznp+WODxvnwj2rUT9J/8K23kWdxHKkfWDcsnhYYvYCMNhpWdodd6a+Pcb665Ads
-	 1jy4w+hEEXVkJ7vosrIP3irSheepa+iOxeJ3ITWVLmrLFhgyfhDa77JFYZ2dIrsVQC
-	 sctSZQ0R2wGpA==
-Received: (nullmailer pid 408736 invoked by uid 1000);
-	Thu, 28 Sep 2023 14:47:11 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1695912678;
+	bh=vtAG6cN4FFihjCJoKNItIO/oCqZM7u5zMuURdQJMWd4=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=mrJ3s6DZjF8wixjaOzrLe9Udx9g8i1HtTEMgowCifYnZOr1hb79Bz/WtbZH8A7nSg
+	 Ch35Aw6rP6UOhmn6Os7pCePBfwIdgUhl4Hm2vuMpT6GokC4VIZ7nnlEbVTs9wkXBwD
+	 afpx/jy8qCRD6Q5ftt8RCg1AIdOnPDJ6+ilHhiULkIxBiMYx2H1FUoKfKkuAx/dlMM
+	 hTtw5hcJmI8UM2Seaabk5NM/Kw4MaMHEiKuOFmQ76jBOIN3Ghlh20mgYZc+J0H2abh
+	 ZwXJNA3I+QAkEDuk9ar7XJb7uzBn8X5ZdpAhijqgvpnqBDNkHerrO+7pq9I461eI6b
+	 x237b0Ph/d13g==
+From: Mark Brown <broonie@kernel.org>
+To: lgirdwood@gmail.com, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, perex@perex.cz, 
+ tiwai@suse.com, rf@opensource.cirrus.com, herve.codina@bootlin.com, 
+ shumingf@realtek.com, ryans.lee@analog.com, 13916275206@139.com, 
+ linus.walleij@linaro.org, ckeepax@opensource.cirrus.com, 
+ povik+lin@cutebit.org, harshit.m.mogalapalli@oracle.com, arnd@arndb.de, 
+ yijiangtao@awinic.com, yang.lee@linux.alibaba.com, liweilei@awinic.com, 
+ u.kleine-koenig@pengutronix.de, colin.i.king@gmail.com, trix@redhat.com, 
+ alsa-devel@alsa-project.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, wangweidong.a@awinic.com
+In-Reply-To: <20230919105724.105624-1-wangweidong.a@awinic.com>
+References: <20230919105724.105624-1-wangweidong.a@awinic.com>
+Subject: Re: [PATCH V4 0/7] ASoC: codecs: Add aw87390 amplifier driver
+Message-Id: <169591267537.2776105.6073100654657258877.b4-ty@kernel.org>
+Date: Thu, 28 Sep 2023 16:51:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Jian Yang <jian.yang@mediatek.com>
-Cc: Chuanjia.Liu@mediatek.com, Jieyy.Yang@mediatek.com, Jian.Yang@mediatek.com, Qizhong.Cheng@mediatek.com, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Project_Global_Chrome_Upstream_Group@mediatek.com, Lorenzo Pieralisi <lpieralisi@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, Bjorn Helgaas <bhelgaas@google.com>, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org, Jianjun Wang <jianjun.wang@mediatek.com>
-In-Reply-To: <20230928105819.5161-2-jian.yang@mediatek.com>
-References: <20230928105819.5161-1-jian.yang@mediatek.com>
- <20230928105819.5161-2-jian.yang@mediatek.com>
-Message-Id: <169591240857.408275.15934417880074506796.robh@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: mediatek-gen3: Add support
- for controlling power and reset
-Date: Thu, 28 Sep 2023 09:47:11 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-099c9
 
-
-On Thu, 28 Sep 2023 18:58:20 +0800, Jian Yang wrote:
-> From: "jian.yang" <jian.yang@mediatek.com>
+On Tue, 19 Sep 2023 18:57:17 +0800, wangweidong.a@awinic.com wrote:
+> The awinic aw87390 is a new high efficiency, low noise,
+> constant large volume, 6th Smart K audio amplifier.
 > 
-> Add new properties to support control power supplies and reset pin of
-> a downstream component.
+> Add a DT schema for describing awinic aw87390 audio amplifiers.
+> They are controlled using I2C.
 > 
-> Signed-off-by: jian.yang <jian.yang@mediatek.com>
-> ---
->  .../bindings/pci/mediatek-pcie-gen3.yaml      | 25 +++++++++++++++++++
->  1 file changed, 25 insertions(+)
+> v3 -> v4: Divide the changes of aw88395 into multiple patches
 > 
+> [...]
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Applied to
 
-yamllint warnings/errors:
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dts:72.24-75.19: Warning (unit_address_vs_reg): /example-0/bus/pcie@11230000/pcie@0: node has a unit name, but no reg or ranges property
-Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dts:72.24-75.19: Warning (pci_bridge): /example-0/bus/pcie@11230000/pcie@0: missing ranges for PCI bridge (or not a bridge)
-Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dts:72.24-75.19: Warning (pci_bridge): /example-0/bus/pcie@11230000/pcie@0: incorrect #address-cells for PCI bridge
-Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dts:72.24-75.19: Warning (pci_bridge): /example-0/bus/pcie@11230000/pcie@0: incorrect #size-cells for PCI bridge
-Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dtb: Warning (unit_address_format): Failed prerequisite 'pci_bridge'
-Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dtb: Warning (pci_device_reg): Failed prerequisite 'pci_bridge'
-Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'pci_bridge'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dtb: pcie@11230000: pcie@0: 'reg' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/mediatek-pcie-gen3.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dtb: pcie@11230000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'bus-range', 'device_type', 'interrupt-map', 'interrupt-map-mask', 'pcie@0' were unexpected)
-	from schema $id: http://devicetree.org/schemas/pci/mediatek-pcie-gen3.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dtb: pcie@11230000: pcie@0: 'reg' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dtb: pcie@0: 'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dtb: pcie@0: 'reg' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dtb: pcie@0: '#address-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dtb: pcie@0: '#size-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/pci-bus.yaml#
+Thanks!
 
-doc reference errors (make refcheckdocs):
+[1/7] ASoC: dt-bindings: awinic,aw88395: Add properties for multiple PA support
+      commit: b99d8d8adfda1f9220dd2ee9bdb96ba02dc62bd7
+[2/7] ASoC: dt-bindings: Add schema for "awinic,aw87390"
+      commit: 457b6587c112e162d3bec871c7b93359168d5c0a
+[3/7] ASoC: codecs: Modify the transmission method of parameters and property node
+      (no commit info)
+[4/7] ASoC: codecs: Add code for bin parsing compatible with aw87390
+      commit: b116c832c9e84843c64eed087271e29b3bc6c1b8
+[5/7] ASoC: codecs: Modify i2c name and parameter transmission methodls
+      (no commit info)
+[6/7] ASoC: codecs: Change the aw88261 variable name and i2c driver name
+      (no commit info)
+[7/7] ASoC: codecs: Add aw87390 amplifier driver
+      commit: 37b4346ed8681660ae60de4facc3d499d8e5cf2a
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230928105819.5161-2-jian.yang@mediatek.com
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-pip3 install dtschema --upgrade
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Thanks,
+Mark
 
 
