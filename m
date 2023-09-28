@@ -1,147 +1,160 @@
-Return-Path: <devicetree+bounces-4156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBBD57B16A8
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 10:56:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DB6B7B16CF
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 11:03:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 377D6B20AA9
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 08:56:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 9B26E1C20911
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 09:03:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F251339A2;
-	Thu, 28 Sep 2023 08:56:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3015D339A8;
+	Thu, 28 Sep 2023 09:03:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF86D3399A
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 08:56:29 +0000 (UTC)
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 550FFCD3
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 01:56:26 -0700 (PDT)
-Received: by mail-qk1-x735.google.com with SMTP id af79cd13be357-77433d61155so495981185a.2
-        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 01:56:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1695891385; x=1696496185; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qgeyQ9XqFkXYBeBValgSP4KCftxD8NcYA2elGZ0g2+A=;
-        b=QW5jewgaysjglS7C96AkuVPDBX2M9rozQnByhhmO7GLm/7r9bbzn8C0+uq6taanrUl
-         lk3bUBSeEMXz6N6EMIKOtAk8Rn9wkQQ8AKJ1g/ygaqt3MVA6w1N9azMkzp+fmeK0gW0+
-         xREhE3rcJRYoe92+Dr59O5VEtVcJeIp6RdySc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695891385; x=1696496185;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qgeyQ9XqFkXYBeBValgSP4KCftxD8NcYA2elGZ0g2+A=;
-        b=Kx/tDmlSOHgRpbKk7TzQ8SSAEUvbjaY5icnZ/FDSTQHQfjUtbvwJmoOi5Onkz6klQn
-         evSSkqsiZpwMuDcAGEZeDuzEKpPLbxTUbi7cCqxUOpmTPljn/uIaJQOkrjv17qFmGnjD
-         NmJ1vdtjFiNkWK4qCmIcEU41yCAUTzYtpdg/j0VCz8Z6HFjpxCn+DjgPFOz51PH34EFc
-         xymUL5jiEjP/AIdUa6J6xVGf4z2w3Nek3heoRbb1QlBH1GgVYGQsIGSpDyZ7klTu7DMa
-         EqohMBABRiCHsAcb9/koC+myq2F1K9wTauG55jor30rLL4ZocKNtIEicSn2LF5sPKcP2
-         3P/w==
-X-Gm-Message-State: AOJu0YyY/+urNoMNsklSDkrQfKFpw451O4OOVo3+Os5UL5xA3F9dhReU
-	qnO4fA6wuZnPeyv5HWHcvBSdYg==
-X-Google-Smtp-Source: AGHT+IFqaLEZNfjA5pU7uen9wRPCrpJO5khkqsKxmyJDY4pM7Sk8LJdyfVsz0G2Qn3psaxuRQUKg3Q==
-X-Received: by 2002:a05:620a:2191:b0:76e:ec77:10a4 with SMTP id g17-20020a05620a219100b0076eec7710a4mr561459qka.77.1695891385357;
-        Thu, 28 Sep 2023 01:56:25 -0700 (PDT)
-Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:6747:c12a:dbfd:2cc7])
-        by smtp.gmail.com with ESMTPSA id y7-20020aa78047000000b006879493aca0sm1754016pfm.26.2023.09.28.01.56.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Sep 2023 01:56:24 -0700 (PDT)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Mark Brown <broonie@kernel.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	Lee Jones <lee@kernel.org>,
-	Zhiyong Tao <zhiyong.tao@mediatek.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH v4 12/12] arm64: dts: mediatek: mt8183-kukui: Add PMIC regulator supplies
-Date: Thu, 28 Sep 2023 16:55:35 +0800
-Message-ID: <20230928085537.3246669-13-wenst@chromium.org>
-X-Mailer: git-send-email 2.42.0.582.g8ccd20d70d-goog
-In-Reply-To: <20230928085537.3246669-1-wenst@chromium.org>
-References: <20230928085537.3246669-1-wenst@chromium.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 255EF3399A
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 09:03:54 +0000 (UTC)
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1CC9AC;
+	Thu, 28 Sep 2023 02:03:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1695891832; x=1727427832;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=OBb0qKSmHLcYJsOeped2EGIbj9N76LFCrWGOCNJOufU=;
+  b=OffWTrKJmUmlOvTtClgC/hBzZh3zX5LPh14+8/Q3a58AU1Ewdw9D49yw
+   eDlm/w+FlKRpk4t23ayQTaAJyDrjVGRGvyQT1wZ/kjgBkVQ74vwrGN4VT
+   3u6mxnmHytZ3Fy7l7Nj41S83b46I9a8gt+C9L8f94SVykSDjmNNXMN0yU
+   SyFKsmdZqgg9CZw4hKztnOLx/yQRFYdgcga+bObK1obiHCDJpiL8HXXtB
+   kygDW/4V/VSzMvXUpwBql0zibI85I7ZC+gZeBYQJ1HZ9KCqHvg5fheoDN
+   CeOzfHimcDXb3GQxJTLIkvAT2pkCexA6iTC9ibOknMbVALUHt3Cn6JlW+
+   w==;
+X-CSE-ConnectionGUID: G7oJAJERQB+qO+xfGDy6Ng==
+X-CSE-MsgGUID: 2pAk1O+nRbeRA9AAhduaww==
+X-ThreatScanner-Verdict: Negative
+X-IronPort-AV: E=Sophos;i="6.03,183,1694761200"; 
+   d="asc'?scan'208";a="174047323"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 28 Sep 2023 02:03:51 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 28 Sep 2023 02:03:51 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Thu, 28 Sep 2023 02:03:48 -0700
+Date: Thu, 28 Sep 2023 10:03:30 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Inochi Amaoto <inochiama@outlook.com>
+CC: Conor Dooley <conor@kernel.org>, <aou@eecs.berkeley.edu>,
+	<chao.wei@sophgo.com>, <devicetree@vger.kernel.org>,
+	<emil.renner.berthing@canonical.com>, <guoren@kernel.org>,
+	<jszhang@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+	<palmer@dabbelt.com>, <paul.walmsley@sifive.com>, <robh+dt@kernel.org>,
+	<xiaoguang.xing@sophgo.com>, Anup Patel <apatel@ventanamicro.com>, Chen Wang
+	<wangchen20@iscas.ac.cn>
+Subject: Re: [PATCH v3 06/11] dt-bindings: timer: Add Sophgo sg2042 CLINT
+ timer
+Message-ID: <20230928-winter-uranium-cc07496a49e3@wendy>
+References: <20230928-bring-gnarly-05eeeb85f3c5@wendy>
+ <IA1PR20MB49537BCE9EF342B55174B829BBC1A@IA1PR20MB4953.namprd20.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="b6mSgDjZ5Q8taV3j"
+Content-Disposition: inline
+In-Reply-To: <IA1PR20MB49537BCE9EF342B55174B829BBC1A@IA1PR20MB4953.namprd20.prod.outlook.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=3.4.6
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The PMIC regulator node is missing regulator supplies. Now that the
-binding supports them, add all the power rail supplies. Most of them
-are fed from a system-wide semi-regulated power rail. A couple LDOs
-are fed from the PMIC's own buck regulator outputs.
+--b6mSgDjZ5Q8taV3j
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
- .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 28 +++++++++++++++++++
- 1 file changed, 28 insertions(+)
+On Thu, Sep 28, 2023 at 04:24:54PM +0800, Inochi Amaoto wrote:
+> >
+> >On Thu, Sep 28, 2023 at 08:34:42AM +0800, Inochi Amaoto wrote:
+> >
+> >>>> +properties:
+> >>>> +  compatible:
+> >>>> +    oneOf:
+> >>>> +      - items:
+> >>>> +          - const: sophgo,sg2042-clint-mtimer
+> >>>
+> >>> There's only one of these, so you don't need the oneOf.
+> >>
+> >> Thanks
+> >>
+> >>> Also, is the clint here not a thead IP? In which case, you need to ad=
+d a
+> >>
+> >> Yes, The clint is a thead IP, like that of th1520 and allwinner D1.
+> >>
+> >>> second compatible IMO. That second compatible then would be the one t=
+hat
+> >>> appears in opensbi etc.
+> >>>
+> >>
+> >> As this is a thead IP, maybe use thead,c900-clint-mtimer is fine?
+> >
+> >I would suggest calling it -aclint-mtimer instead of clint-mtimer.
+> >
+>=20
+> It is OK for me. As I describe below, now use sophgo as vendor is better.
+> Anyway, I will add a new second one in the next patch.
+>=20
+> >> If so, whether we should replace the "thead,c900-clint" with these sep=
+arate
+> >> DT to describe the thead clint?
+> >
+> >No, since that's a different device, right?
+> >
+>=20
+> Yes. It seems sophgo defined these by themselves, but the T-HEAD. Sorry
+> for my mistake.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-index ab2eb4500643..bf7de35ffcbc 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-@@ -103,6 +103,14 @@ pp3300_alw: regulator6 {
- 		regulator-max-microvolt = <3300000>;
- 	};
- 
-+	/* system wide semi-regulated power rail from charger */
-+	reg_vsys: regulator-vsys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
- 	reserved_memory: reserved-memory {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -404,6 +412,26 @@ &mt6358codec {
- 	Avdd-supply = <&mt6358_vaud28_reg>;
- };
- 
-+&mt6358regulator {
-+	vsys-ldo1-supply = <&reg_vsys>;
-+	vsys-ldo2-supply = <&reg_vsys>;
-+	vsys-ldo3-supply = <&reg_vsys>;
-+	vsys-vcore-supply = <&reg_vsys>;
-+	vsys-vdram1-supply = <&reg_vsys>;
-+	vsys-vgpu-supply = <&reg_vsys>;
-+	vsys-vmodem-supply = <&reg_vsys>;
-+	vsys-vpa-supply = <&reg_vsys>;
-+	vsys-vproc11-supply = <&reg_vsys>;
-+	vsys-vproc12-supply = <&reg_vsys>;
-+	vsys-vs1-supply = <&reg_vsys>;
-+	vsys-vs2-supply = <&reg_vsys>;
-+	vs1-ldo1-supply = <&mt6358_vs1_reg>;
-+	vs2-ldo1-supply = <&mt6358_vdram1_reg>;
-+	vs2-ldo2-supply = <&mt6358_vs2_reg>;
-+	vs2-ldo3-supply = <&mt6358_vs2_reg>;
-+	vs2-ldo4-supply = <&mt6358_vs2_reg>;
-+};
-+
- &mt6358_vgpu_reg {
- 	regulator-min-microvolt = <625000>;
- 	regulator-max-microvolt = <900000>;
--- 
-2.42.0.582.g8ccd20d70d-goog
+I'm sorry, I don't quite understand this. Do you mean that the IP is not
+T-Head, but rather designed by Sophgo? If the IP is made by T-Head, then
+I would expect to see something like
 
+compatible =3D "sophgo,sg2042-aclint-mtimer", "thead,c900-aclint-mtimer";
+
+in the dts.
+
+>=20
+> >> The DT binding said the thead clint is not
+> >> compatible with the sifive clint, so maybe this is a chance to just mo=
+ve
+> >> them out.
+> >
+> >I don't think that it really makes sense to do that.
+
+--b6mSgDjZ5Q8taV3j
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRVBYgAKCRB4tDGHoIJi
+0vLWAQCaVGggIAebDnmEiJzjw1X/RgLe0+aKKdWYxJ0fcufvIgD/QjEGmlfqom8m
+pARBLjaCCUh5j/+WVtng9mGnCts03wA=
+=pEic
+-----END PGP SIGNATURE-----
+
+--b6mSgDjZ5Q8taV3j--
 
