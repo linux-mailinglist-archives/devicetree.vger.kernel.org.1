@@ -1,113 +1,78 @@
-Return-Path: <devicetree+bounces-4369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 165BE7B2312
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 18:59:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2C567B2379
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 19:15:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 2B1AB1C20994
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 16:59:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id AC9DC282127
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 17:14:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E07F151235;
-	Thu, 28 Sep 2023 16:59:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C2345124C;
+	Thu, 28 Sep 2023 17:14:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0CC651231
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 16:59:18 +0000 (UTC)
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0001BF;
-	Thu, 28 Sep 2023 09:59:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.de; s=s31663417;
- t=1695920340; x=1696525140; i=julian.ribbeck@gmx.de;
- bh=pgzYVMK04U11CH6h9Yble3k0HzNklkv+LW2WhvSCwtQ=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
- b=f2lyhWCdspd+wKbQ75KGOgK9H2BAysh7G3H7H4q5NRsw1CDU59NrgcLOlyAuujx6cH2I7jSS+e5
- 48WASg0xe85trvfVvXAn2sSCq/G+xzSfWwjMNFl+D0wLAuTPnsZyWen0hsezQBx7oW4A23L98JoQi
- 5g6S9z1xG9B0PLKrHjk8nICYxEMPiZ0UussHPr3WtvBFSc4k+gfG399QM/j9x6Nicw/s9nUFeCWaa
- aIiL4sa7MClKDQPMNODqSz8IUcKXJZjaHk6t6pdXeyfcQf5iPmx7X0iBRIgF5UkwJkfqhYU8SF3KP
- XeqpuLXJ+wfXETjRSDSToPHmce9IV71/8jiQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from localhost.localdomain ([95.90.255.242]) by mail.gmx.net
- (mrgmx004 [212.227.17.190]) with ESMTPSA (Nemesis) id
- 1MgvvT-1rHODW3xNt-00hPZq; Thu, 28 Sep 2023 18:59:00 +0200
-From: Julian Ribbeck <julian.ribbeck@gmx.de>
-To: samuel@sholland.org
-Cc: conor+dt@kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C8BF13AFB
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 17:14:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8808C433C7;
+	Thu, 28 Sep 2023 17:14:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695921298;
+	bh=Tw/MBuqJbVhiahwI6Oee4TQln3rp94ykoKAprce0/ro=;
+	h=From:To:Cc:Subject:Date:From;
+	b=r5qCzk+rPVHtWc/EEbQL6oIpiG4dGv8t1ICFQP1GjEdl7w+TfNkQd0M73Qus8ngV+
+	 NmUYHbyaoI2aX48wzQaW+kCrJezTfySz10bY+QqY7r+mlAyRe5wkwUFy3q7xYM85lX
+	 eObkO0OVHsq76nyhuRG1E7fQqJV3TZ3Qd2HtQId0yYqSPHAS/vj+Z30gAu78VFrfu7
+	 IQxRurbNS/cr1mP6hX9fksfEziEcRqFlsDnh5o4DHnX8tRd7YlwD9w/LhPHrpDgd+F
+	 ciR2097/18ttEoKMuh9wtx543l9wtIlfV1nSCSZYkpremZ+6d+/gj/VYt9JNk7lK+E
+	 VJGSEQ62PEQ2w==
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Thierry Reding <thierry.reding@gmail.com>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pwm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	wens@csie.org,
-	jernej.skrabec@gmail.com,
-	julian.ribbeck@gmx.de,
-	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	robh+dt@kernel.org
-Subject: [PATCH v3 2/2] dt-bindings: arm: sunxi: Add itead,iteaduino-plus-a20
-Date: Thu, 28 Sep 2023 18:57:02 +0200
-Message-ID: <20230928165803.30127-2-julian.ribbeck@gmx.de>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230928165803.30127-1-julian.ribbeck@gmx.de>
-References: <9730f21c-fd8e-9583-98c7-e5d923269f79@sholland.org>
- <20230928165803.30127-1-julian.ribbeck@gmx.de>
+	Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH 0/2] pwm: add driver for T-THEAD TH1520 SoC
+Date: Fri, 29 Sep 2023 01:02:52 +0800
+Message-Id: <20230928170254.413-1-jszhang@kernel.org>
+X-Mailer: git-send-email 2.40.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:P+6Q2PWpdB5kQfCXWzv1Akg7Tgg17CXmpZMVE+xnoG+XKC+qYEi
- arn67oWwTWaLrbmV+qSM1U26dQhZ6tEXn2IjvF7izsPMlJp90eFa3U9e5ZJAEk+VgnG3TFq
- MjbYiExv0JQLwPVWANwRiAgH9NZ1mUwLkf8W7hiNIn0hOYpgqJDWLMvCGCH3Q3bd4V6oCiZ
- DPbZ9c5Cxhe96FPSsTlWg==
-UI-OutboundReport: notjunk:1;M01:P0:jrXD7kg4Rl4=;S7cWsOJDbzTL8AZvkaDGIhjFO8F
- tFNFLuD6f8DYj2qgfP007c09yMu8PnaJlGCiYtJCqdgZc0BqNxbt6aYQoj5IxhLWJDTUeWHj7
- Eqm8Dot5KEVyD1QkVUQMiJr6H6w3RqF5HjNy/B7MG0+3X1azI+nGi2yN2tdBxngXPjI4wWZ35
- CZhJIDQtyGE8mQWvwn2D8ns7lM7qVACqWxFW4dzs9uuRcc8HMJwD5DI3BYNdEYUOWlLfTSNdm
- 6Ax2GsKXazX789ncIkJjKJKSYTQaOyLikJ6lN3TqAa72FN5G+/CgZUkAQGEv+b2XzPPrIC6F4
- njn85hGp1Na8IwQ7jeW4AqyOaQXSdlpL3E5VmiX+rNB6Y5Ll0nPVOUY/LVfUIHKkFr7+w2sn8
- GMPeYZydMgtuA5VZqmwyvd5cs6B23gGyiN0itwcPlXNVgLlawss5qlc1jn/1MHKKQ5fftq9jn
- uyDGYQ0TF8GTdX09jrGPvOmzQ23j7FPpWv9g6rve5s6V59lYzn1xBR4zgjK/0vZ8fc77fA4C4
- 96d0zCYEAkQ1kEeoxm05m092ftSqi9vsT128Qn7c9LfXjmrd9z7TGN061RQZy1MwEIMKOobI5
- b353Eq7Iw8BzOHnzsafruZHk0qL6fbyLqEaMfTzzH+e3m6X8l6ulPm7qpo7W+2SGGw8XRM4kO
- /R4BgPcrzf/USwzroHzHOuIX78UjQj/Xif/pemb0kanZqx2nXBudESFZ6wX7fLj5J4nViJusx
- njWZyI/ynebBXwcYH0p9199+n94xaeWz9Ms7k3ao4CQ46Ytp7hjBymFE65avJF/SNPo/CWuWu
- e1s+1fc1GFxZkGx/zpjAc0xcCL3fxKhuLKl6IY2GJnoA7say/VzyF6R2lcod+i8g69xBt9z0c
- Yb0weX9jdO7fnnuSdwA9d+qj4PXh0we8A07TBuGOgz3z36hbWqfHIqtXI5LnfmDUOsyOgJQyh
- V6FiRQ==
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Transfer-Encoding: 8bit
 
-Add itead,iteaduino-plus-a20 bindings
+T-HEAD SoCs such as the TH1520 contain a PWM controller used
+among other things to control the LCD backlight, fan and so on.
+Add the PWM driver support for it.
 
-Signed-off-by: Julian Ribbeck <julian.ribbeck@gmx.de>
-=2D--
- Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+Since the clk part isn't mainlined, so SoC dts(i) changes are not
+included in this series. However, it can be tested by using fixed-clock.
 
-diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentat=
-ion/devicetree/bindings/arm/sunxi.yaml
-index e4dd678f4212..25251ce4b60d 100644
-=2D-- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-+++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-@@ -362,6 +362,11 @@ properties:
-           - const: itead,iteaduino-plus-a10
-           - const: allwinner,sun4i-a10
+Jisheng Zhang (2):
+  dt-bindings: pwm: Add T-HEAD PWM controller
+  pwm: add T-HEAD PWM driver
 
-+      - description: Itead Iteaduino Plus A20
-+        items:
-+          - const: itead,iteaduino-plus-a20
-+          - const: allwinner,sun7i-a20
-+
-       - description: Jesurun Q5
-         items:
-           - const: jesurun,q5
-=2D-
-2.42.0
+ .../devicetree/bindings/pwm/pwm-thead.yaml    |  44 +++
+ MAINTAINERS                                   |   1 +
+ drivers/pwm/Kconfig                           |  11 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-thead.c                       | 289 ++++++++++++++++++
+ 5 files changed, 346 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/pwm-thead.yaml
+ create mode 100644 drivers/pwm/pwm-thead.c
+
+-- 
+2.40.1
 
 
