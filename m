@@ -1,310 +1,123 @@
-Return-Path: <devicetree+bounces-4422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 679397B2820
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 00:11:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 640A77B284A
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 00:21:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 1ACBC2833A2
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 22:11:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 11C68283DC8
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 22:21:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAA6C18B14;
-	Thu, 28 Sep 2023 22:11:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2FF5347A8;
+	Thu, 28 Sep 2023 22:21:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F729168CE;
-	Thu, 28 Sep 2023 22:11:20 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5F90199;
-	Thu, 28 Sep 2023 15:11:18 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38SLMrYD005712;
-	Thu, 28 Sep 2023 22:10:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=uk+G1kp/tg9sdS+9uFAYBPz89f84jH42slLz163CM0A=;
- b=aNWY771bOrjm5LLfcK+bUkOwd2QJAYdn6UORXLtisHn8J0yGhx3AwhFwkN5a2vQL9F+m
- vExDIAjZSXaBJKCu/0xkb/zt2+uk+9W0IJX8XWoEID+N58NAwHhekr6qeGS97W0aZ1Lc
- hBPX21lNFDFNG+ATyKCfAxpQTenFu6P8d81FI0I6MXrTls0iCnmEM2J21X8OoJ95IQHy
- d71y9zZQFovSIgw4U3HJpxX89IFa4ytYVmMLy3PxfptcvriisQz7oOuVCbtzmnze2s5e
- vtYIl62J/0QdeUqnjMyA3x/c0jv0tK4i6PAmesVKbCSNHndVXOqQe2TMeBVsbFxBaFee hw== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tct5gu7bv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Sep 2023 22:10:36 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38SMAa9R031137
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Sep 2023 22:10:36 GMT
-Received: from [10.71.112.36] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Thu, 28 Sep
- 2023 15:10:35 -0700
-Message-ID: <0cbc80f2-4238-c9c6-7954-2d6d7e750446@quicinc.com>
-Date: Thu, 28 Sep 2023 15:10:34 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0023138BA8
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 22:21:41 +0000 (UTC)
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C3FE1B4;
+	Thu, 28 Sep 2023 15:21:39 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-1c5cc63ce27so22324885ad.0;
+        Thu, 28 Sep 2023 15:21:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695939699; x=1696544499; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SN+WpjnbWQ/SgFseTyvAxaRi1FEF0pQJe3jhNkS4sxk=;
+        b=h474tLifb8ZTBeEWJIkBSxbkegdJipf6Vknl1cwrYdfXyHzupyQ91T3jdrS8Zv2HgM
+         AdN+MaVi7fTfHSWsrIstoO5P67a+UjLwD+2TyrWs59lOeneeHhxm+b5wVAfHAcyXI7cc
+         hcCjvKvx3wjnpi2+ioPhqQAzKZj4FYpt5Lv0/eqVg4Vf4gnpH/HiylqEjIxwTWIzessb
+         1GBt4c9q5TjDRXIVa9d0jUjA/PXpzG5KAG8riEyfw7Px3OsiD/IfOLsOpeNiWa8RAWq0
+         fz5MQVpx7lRzeNXDYI5Pq1yaNu/BXj7QGQd2JfEB4UYy7nWKSebxFT1oupUmRacAPNsX
+         bpGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695939699; x=1696544499;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SN+WpjnbWQ/SgFseTyvAxaRi1FEF0pQJe3jhNkS4sxk=;
+        b=GqSdFbAEciOlrgT8N2wpfINGUHPVHwJxdx8q7z2rc30kQZGBFxi7H+BJbKMMZFCy1V
+         quqVHzBKpbN4S0q00a3yv8dWKk31HuVld583gOT+0PX5tIZDNzBVQQvEG+A2hTi2SXn+
+         qGMd12+9M/whj0YsCzOjIdkhGqaM4wMky8jud4qqjvYXWIjcTUAtvu6A67VpaSms+GrE
+         K8Xc0hh+0gKjSB8l1tme5SqSqfEd0CC2VgFA5M6H/aIQB2QCC5rkHSDFTiiTbQaHCJVE
+         fUj2UCGfc4rrCGg7Nsr+hiNEBBDPS7UmwGQW0h6z+PYU2gDri7PrXEXK6TMKfADMqdPV
+         /0nw==
+X-Gm-Message-State: AOJu0YxW8De4RurVmK2lP595zw2BNXumciLOp+sFCUwMbje0cT08xpSB
+	dO0f1zq+id/Lc+6GayR9i5rZ21KOgHE=
+X-Google-Smtp-Source: AGHT+IFKC5eW58DWkRcEJ8zCdITc/FL/EvrMuPT1Z3eEzdTvMoFYtFSjSTYoXxg7k0FFa2pdAuNAKw==
+X-Received: by 2002:a17:902:e845:b0:1b3:d8ac:8db3 with SMTP id t5-20020a170902e84500b001b3d8ac8db3mr2544181plg.6.1695939698581;
+        Thu, 28 Sep 2023 15:21:38 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:386c:ba81:a385:9374])
+        by smtp.gmail.com with ESMTPSA id v7-20020a170902b7c700b001c61073b064sm9610002plz.69.2023.09.28.15.21.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Sep 2023 15:21:37 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: daniel.lezcano@linaro.org
+Cc: rafael@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH v3] dt-bindings: thermal: qoriq-thermal: Adjust fsl,tmu-range min/maxItems
+Date: Thu, 28 Sep 2023 19:21:30 -0300
+Message-Id: <20230928222130.580487-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v7 02/33] xhci: add helper to stop endpoint and wait for
- completion
-Content-Language: en-US
-To: Mathias Nyman <mathias.nyman@linux.intel.com>, <mathias.nyman@intel.com>,
-        <gregkh@linuxfoundation.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <perex@perex.cz>, <tiwai@suse.com>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <srinivas.kandagatla@linaro.org>, <bgoswami@quicinc.com>,
-        <Thinh.Nguyen@synopsys.com>
-CC: <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20230921214843.18450-1-quic_wcheng@quicinc.com>
- <20230921214843.18450-3-quic_wcheng@quicinc.com>
- <6e9d2094-0bf9-b2ac-29f3-99115b456fdb@linux.intel.com>
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <6e9d2094-0bf9-b2ac-29f3-99115b456fdb@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: N-MC0TjGQafJ131XUacYB100yuWmPZQF
-X-Proofpoint-GUID: N-MC0TjGQafJ131XUacYB100yuWmPZQF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-28_21,2023-09-28_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- malwarescore=0 mlxlogscore=999 impostorscore=0 phishscore=0 adultscore=0
- suspectscore=0 priorityscore=1501 mlxscore=0 bulkscore=0 clxscore=1015
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2309280190
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
 	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Mathias,
+From: Fabio Estevam <festevam@denx.de>
 
-On 9/28/2023 6:31 AM, Mathias Nyman wrote:
-> On 22.9.2023 0.48, Wesley Cheng wrote:
->> From: Mathias Nyman <mathias.nyman@linux.intel.com>
->>
->> Expose xhci_stop_endpoint_sync() which is a synchronous variant of
->> xhci_queue_stop_endpoint().  This is useful for client drivers that are
->> using the secondary interrupters, and need to stop/clean up the current
->> session.  The stop endpoint command handler will also take care of 
->> cleaning
->> up the ring.
->>
->> Modifications to repurpose the new API into existing stop endpoint
->> sequences was implemented by Wesley Cheng.
->>
->> Signed-off-by: Mathias Nyman <mathias.nyman@linux.intel.com>
->> Co-developed-by: Wesley Cheng <quic_wcheng@quicinc.com>
->> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
->> ---
->>   drivers/usb/host/xhci-hub.c | 29 +++---------------
->>   drivers/usb/host/xhci.c     | 60 +++++++++++++++++++++++++++----------
->>   drivers/usb/host/xhci.h     |  2 ++
->>   3 files changed, 50 insertions(+), 41 deletions(-)
->>
->> diff --git a/drivers/usb/host/xhci-hub.c b/drivers/usb/host/xhci-hub.c
->> index 0054d02239e2..2f7309bdc922 100644
->> --- a/drivers/usb/host/xhci-hub.c
->> +++ b/drivers/usb/host/xhci-hub.c
->> @@ -489,7 +489,6 @@ EXPORT_SYMBOL_GPL(xhci_find_slot_id_by_port);
->>   static int xhci_stop_device(struct xhci_hcd *xhci, int slot_id, int 
->> suspend)
->>   {
->>       struct xhci_virt_device *virt_dev;
->> -    struct xhci_command *cmd;
->>       unsigned long flags;
->>       int ret;
->>       int i;
->> @@ -501,10 +500,6 @@ static int xhci_stop_device(struct xhci_hcd 
->> *xhci, int slot_id, int suspend)
->>       trace_xhci_stop_device(virt_dev);
->> -    cmd = xhci_alloc_command(xhci, true, GFP_NOIO);
->> -    if (!cmd)
->> -        return -ENOMEM;
->> -
->>       spin_lock_irqsave(&xhci->lock, flags);
->>       for (i = LAST_EP_INDEX; i > 0; i--) {
->>           if (virt_dev->eps[i].ring && virt_dev->eps[i].ring->dequeue) {
->> @@ -521,7 +516,7 @@ static int xhci_stop_device(struct xhci_hcd *xhci, 
->> int slot_id, int suspend)
->>               if (!command) {
->>                   spin_unlock_irqrestore(&xhci->lock, flags);
->>                   ret = -ENOMEM;
->> -                goto cmd_cleanup;
->> +                goto out;
->>               }
->>               ret = xhci_queue_stop_endpoint(xhci, command, slot_id,
->> @@ -529,30 +524,14 @@ static int xhci_stop_device(struct xhci_hcd 
->> *xhci, int slot_id, int suspend)
->>               if (ret) {
->>                   spin_unlock_irqrestore(&xhci->lock, flags);
->>                   xhci_free_command(xhci, command);
->> -                goto cmd_cleanup;
->> +                goto out;
->>               }
->>           }
->>       }
->> -    ret = xhci_queue_stop_endpoint(xhci, cmd, slot_id, 0, suspend);
->> -    if (ret) {
->> -        spin_unlock_irqrestore(&xhci->lock, flags);
->> -        goto cmd_cleanup;
->> -    }
->> -
->> -    xhci_ring_cmd_db(xhci);
->>       spin_unlock_irqrestore(&xhci->lock, flags);
->> +    ret = xhci_stop_endpoint_sync(xhci, &virt_dev->eps[0], suspend);
-> 
-> I didn't take this new xhci_stop_endpoint_sync() helper into use as it 
-> causes an extra
-> xhci spinlock release and reacquire here.
-> 
-> Also the memory allocation flags differ, GFP_NOIO is turned into 
-> GFP_KERNEL after this change.
-> 
+The number of fsl,tmu-range entries vary among the several NXP SoCs.
 
-Thanks for the review.  I agree with the points made.  I wasn't sure if 
-the extra unlock/lock would cause issues if we've already queued the 
-stop ep for the other eps used by the device.
+- lx2160a has two fsl,tmu-range entries  (fsl,qoriq-tmu compatible)
+- imx8mq has four fsl,tmu-range entries. (fsl,imx8mq-tmu compatible)
+- imx93 has seven fsl,tmu-range entries. (fsl,qoriq-tmu compatible)
 
-I think addressing the flags might be straightforward, we can just pass 
-it in as an argument.  At least for this change in particular, is the 
-concern that there could be another XHCI command queued before the stop 
-endpoint command is?
+Change minItems and maxItems accordingly.
 
->> -    /* Wait for last stop endpoint command to finish */
->> -    wait_for_completion(cmd->completion);
->> -
->> -    if (cmd->status == COMP_COMMAND_ABORTED ||
->> -        cmd->status == COMP_COMMAND_RING_STOPPED) {
->> -        xhci_warn(xhci, "Timeout while waiting for stop endpoint 
->> command\n");
->> -        ret = -ETIME;
->> -    }
->> -
->> -cmd_cleanup:
->> -    xhci_free_command(xhci, cmd);
->> +out:
->>       return ret;
->>   }
->> diff --git a/drivers/usb/host/xhci.c b/drivers/usb/host/xhci.c
->> index 3fd2b58ee1d3..163d533d6200 100644
->> --- a/drivers/usb/host/xhci.c
->> +++ b/drivers/usb/host/xhci.c
->> @@ -2758,6 +2758,46 @@ static int xhci_reserve_bandwidth(struct 
->> xhci_hcd *xhci,
->>       return -ENOMEM;
->>   }
->> +/*
->> + * Synchronous XHCI stop endpoint helper.  Issues the stop endpoint 
->> command and
->> + * waits for the command completion before returning.
->> + */
->> +int xhci_stop_endpoint_sync(struct xhci_hcd *xhci, struct 
->> xhci_virt_ep *ep, int suspend)
->> +{
->> +    struct xhci_command *command;
->> +    unsigned long flags;
->> +    int ret;
->> +
->> +    command = xhci_alloc_command(xhci, true, GFP_KERNEL);
->> +    if (!command)
->> +        return -ENOMEM;
->> +
->> +    spin_lock_irqsave(&xhci->lock, flags);
->> +    ret = xhci_queue_stop_endpoint(xhci, command, ep->vdev->slot_id,
->> +                       ep->ep_index, suspend);
->> +    if (ret < 0) {
->> +        spin_unlock_irqrestore(&xhci->lock, flags);
->> +        goto out;
->> +    }
->> +
->> +    xhci_ring_cmd_db(xhci);
->> +    spin_unlock_irqrestore(&xhci->lock, flags);
->> +
->> +    ret = wait_for_completion_timeout(command->completion, 
->> msecs_to_jiffies(3000));
->> +    if (!ret)
->> +        xhci_warn(xhci, "%s: Unable to stop endpoint.\n",
->> +                __func__);
->> +
->> +    if (command->status == COMP_COMMAND_ABORTED ||
->> +        command->status == COMP_COMMAND_RING_STOPPED) {
->> +        xhci_warn(xhci, "Timeout while waiting for stop endpoint 
->> command\n");
->> +        ret = -ETIME;
->> +    }
->> +out:
->> +    xhci_free_command(xhci, command);
->> +
->> +    return ret;
->> +}
->>   /* Issue a configure endpoint command or evaluate context command
->>    * and wait for it to finish.
->> @@ -3078,7 +3118,7 @@ static void xhci_endpoint_reset(struct usb_hcd 
->> *hcd,
->>       struct xhci_virt_device *vdev;
->>       struct xhci_virt_ep *ep;
->>       struct xhci_input_control_ctx *ctrl_ctx;
->> -    struct xhci_command *stop_cmd, *cfg_cmd;
->> +    struct xhci_command *cfg_cmd;
->>       unsigned int ep_index;
->>       unsigned long flags;
->>       u32 ep_flag;
->> @@ -3118,10 +3158,6 @@ static void xhci_endpoint_reset(struct usb_hcd 
->> *hcd,
->>       if (ep_flag == SLOT_FLAG || ep_flag == EP0_FLAG)
->>           return;
->> -    stop_cmd = xhci_alloc_command(xhci, true, GFP_NOWAIT);
->> -    if (!stop_cmd)
->> -        return;
->> -
->>       cfg_cmd = xhci_alloc_command_with_ctx(xhci, true, GFP_NOWAIT);
->>       if (!cfg_cmd)
->>           goto cleanup;
->> @@ -3144,23 +3180,16 @@ static void xhci_endpoint_reset(struct usb_hcd 
->> *hcd,
->>           goto cleanup;
->>       }
->> -    err = xhci_queue_stop_endpoint(xhci, stop_cmd, udev->slot_id,
->> -                    ep_index, 0);
->> +    spin_unlock_irqrestore(&xhci->lock, flags);
->> +
-> 
-> Same here, extra unlock -> lock, and GFP flags differ.
-> 
-> 
+This fixes the following schema warning:
 
-My intention here (minus the GFP flags) was that the locking was mainly 
-for setting the EP state flag -- EP_SOFT_CLEAR_TOGGLE.  If that was set, 
-then new TD queues are blocked.  Seems like that was why there is a 
-check like this afterwards:
+imx93-11x11-evk.dtb: tmu@44482000: fsl,tmu-range: 'oneOf' conditional failed, one must be fixed:
+        [2147483866, 2147483881, 2147483906, 2147483946, 2147484006, 2147484071, 2147484086] is too long
 
-if (!list_empty(&ep->ring->td_list)) {
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+Changes since v1:
+- Adjust min/maxItems to cover all NXP SoCs.
 
-So I believed that releasing the lock here was going to be ok, because 
-by that point since the flag is set, nothing would be able to be added 
-to the td_list.
+ Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Thanks
-Wesley Cheng
+diff --git a/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml b/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
+index ee4780f186f9..60b9d79e7543 100644
+--- a/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
++++ b/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
+@@ -36,7 +36,8 @@ properties:
+     description: |
+       The values to be programmed into TTRnCR, as specified by the SoC
+       reference manual. The first cell is TTR0CR, the second is TTR1CR, etc.
+-    minItems: 4
++    minItems: 2
++    maxItems: 7
+ 
+   fsl,tmu-calibration:
+     $ref: /schemas/types.yaml#/definitions/uint32-matrix
+-- 
+2.34.1
 
 
