@@ -1,334 +1,164 @@
-Return-Path: <devicetree+bounces-4281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C67F7B1D1F
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 14:56:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 672C77B1E0D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 15:23:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id CEF3A28210D
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 12:56:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 6ABEC1C2097A
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 13:23:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3814738DF3;
-	Thu, 28 Sep 2023 12:56:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE39E3AC39;
+	Thu, 28 Sep 2023 13:23:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AAEA38DD8
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 12:56:02 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 879CF1A6
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 05:56:00 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <l.stach@pengutronix.de>)
-	id 1qlqYL-000674-Kk; Thu, 28 Sep 2023 14:55:37 +0200
-Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-	(envelope-from <l.stach@pengutronix.de>)
-	id 1qlqYK-009aA2-8k; Thu, 28 Sep 2023 14:55:36 +0200
-From: Lucas Stach <l.stach@pengutronix.de>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liu Ying <victor.liu@nxp.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	patchwork-lst@pengutronix.de
-Subject: [PATCH v4 2/2] drm/bridge: imx: add driver for HDMI TX Parallel Video Interface
-Date: Thu, 28 Sep 2023 14:55:36 +0200
-Message-Id: <20230928125536.1782715-2-l.stach@pengutronix.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230928125536.1782715-1-l.stach@pengutronix.de>
-References: <20230928125536.1782715-1-l.stach@pengutronix.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A495C38F92
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 13:23:22 +0000 (UTC)
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B47EA358D
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 06:23:20 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-32164a6af64so11344974f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 06:23:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695907399; x=1696512199; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WumchtKkos+S+wxd4AjzKbSnNzsmwP2thY8yEvpwMVE=;
+        b=IKuza3+mAkCShCaeBrblhKVUaXPVwusnqKSjCVxkFUYFAgfN5us+FMJnq71vw+n8lY
+         9V+GkamfFYXgNYRkwAhFsJYEace6/roBtxmhoA6EFUruP9W/bxqvCqMMnfZN5ovT2oeY
+         lcOsTUF17lYsTddoEetL4MfiH5yG7SRwohhifeIR2ky5mOsBN+haUOTjTVtCQLvdc4A8
+         OucHnDI7OUu248zd9twPBH3ql+8D3t7G6nofUXsQ3HOPqKncJ3+SO0dGYzMbsZSxvIUZ
+         MINXZrKhpOfcUyZX04IBfZ2MOBc/g+BZ+iC2wTdMyn3FKomvNy91LZpaotv0msxHAbMr
+         ixfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695907399; x=1696512199;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WumchtKkos+S+wxd4AjzKbSnNzsmwP2thY8yEvpwMVE=;
+        b=cAx/R1k3CBJ5kNchewxxXqNnm1TqlaozG9aptu06UpBXTn2fthe4OVH3eO9fBSvkM1
+         clTSoS3fXbg5pLfWTJRXDWvMhQFQ1ig8o89IxQXKG2Xnp1EwZ5ll6ZRe+uqoJ+4RUksK
+         sStP9ey+ZGBE7hkmwaW5YnkcnqU4AHCZ7qI2dMiAwZ7e3WXcARhREW5P2LLJQ87/A55K
+         Pj/0S7jAMq9zVs1aFT8XHf9AJEitGlcn57dzDlrepcQn3eCOcHTd4620yIO133dy7YTO
+         M/8hu9tSsIe60XAq247Ps9zoGh1eSHQBvNY0RUL9LF/3c7ZC1mC5pAJxO4Z2twaqmDjk
+         agig==
+X-Gm-Message-State: AOJu0YyNLrhYh5koF7CKbtczPs3NDIWmfcgaXVrAADgoZGFsGgv5XmeN
+	J0elGRedB0c7ojzfqdwcnEpZxw==
+X-Google-Smtp-Source: AGHT+IGRJ7TolrskiDdSR2JOTQd5921ScgfEtFfaDVIS7JF9sZ68tN+AMEJnqpdSNEuk1Y8W/wUN+w==
+X-Received: by 2002:adf:f085:0:b0:320:77f:a97c with SMTP id n5-20020adff085000000b00320077fa97cmr1232478wro.63.1695907398871;
+        Thu, 28 Sep 2023 06:23:18 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0? ([2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0])
+        by smtp.googlemail.com with ESMTPSA id w10-20020adfd4ca000000b0031762e89f94sm19280144wrk.117.2023.09.28.06.23.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Sep 2023 06:23:18 -0700 (PDT)
+Message-ID: <90c4e025-6f55-994f-b51d-9c1274873104@linaro.org>
+Date: Thu, 28 Sep 2023 15:23:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v8 1/3] dt-bindings: thermal-zones: Document
+ critical-action
+Content-Language: en-US
+To: Fabio Estevam <festevam@gmail.com>, rafael@kernel.org
+Cc: amitk@kernel.org, rui.zhang@intel.com, linux-pm@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20230916014928.2848737-1-festevam@gmail.com>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20230916014928.2848737-1-festevam@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-This IP block is found in the HDMI subsystem of the i.MX8MP SoC. It has a
-full timing generator and can switch between different video sources. On
-the i.MX8MP however the only supported source is the LCDIF. The block
-just needs to be powered up and told about the polarity of the video
-sync signals to act in bypass mode.
+On 16/09/2023 03:49, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+> 
+> Document the critical-action property to describe the thermal action
+> the OS should perform after the critical temperature is reached.
+> 
+> The possible values are "shutdown" and "reboot".
+> 
+> The motivation for introducing the critical-action property is that
+> different systems may need different thermal actions when the critical
+> temperature is reached.
+> 
+> For example, a desktop PC may want the OS to trigger a shutdown
+> when the critical temperature is reached.
+> 
+> However, in some embedded cases, such behavior does not suit well,
+> as the board may be unattended in the field and rebooting may be a
+> better approach.
+> 
+> The bootloader may also benefit from this new property as it can check
+> the SoC temperature and in case the temperature is above the critical
+> point, it can trigger a shutdown or reboot accordingly.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> Changes since v7:
+> - Made critical-action a property of the top-level thermal-zone node. (Rafael)
+> 
+>   .../devicetree/bindings/thermal/thermal-zones.yaml        | 8 ++++++++
+>   1 file changed, 8 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> index 4f3acdc4dec0..d28f3fe1045d 100644
+> --- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> @@ -48,6 +48,14 @@ properties:
+>         platform-data regarding temperature thresholds and the mitigation actions
+>         to take when the temperature crosses those thresholds.
+>   
+> +  critical-action:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description:
+> +      The action the OS should perform after the critical temperature is reached.
+> +    enum:
+> +      - shutdown
+> +      - reboot
 
-Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
-Tested-by: Marek Vasut <marex@denx.de> (v1)
-Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
-Tested-by: Richard Leitner <richard.leitner@skidata.com> (v2)
-Tested-by: Frieder Schrempf <frieder.schrempf@kontron.de> (v2)
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com> (v3)
----
- drivers/gpu/drm/bridge/imx/Kconfig           |   7 +
- drivers/gpu/drm/bridge/imx/Makefile          |   1 +
- drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c | 206 +++++++++++++++++++
- 3 files changed, 214 insertions(+)
- create mode 100644 drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
+Given I'm catching up the versions, I'll directly comment this series 
+instead of the previous versions.
 
-diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridge/imx/Kconfig
-index 9fae28db6aa7..3a4e663d922a 100644
---- a/drivers/gpu/drm/bridge/imx/Kconfig
-+++ b/drivers/gpu/drm/bridge/imx/Kconfig
-@@ -3,6 +3,13 @@ if ARCH_MXC || COMPILE_TEST
- config DRM_IMX_LDB_HELPER
- 	tristate
- 
-+config DRM_IMX8MP_HDMI_PVI
-+	tristate "Freescale i.MX8MP HDMI PVI bridge support"
-+	depends on OF
-+	help
-+	  Choose this to enable support for the internal HDMI TX Parallel
-+	  Video Interface found on the Freescale i.MX8MP SoC.
-+
- config DRM_IMX8QM_LDB
- 	tristate "Freescale i.MX8QM LVDS display bridge"
- 	depends on OF
-diff --git a/drivers/gpu/drm/bridge/imx/Makefile b/drivers/gpu/drm/bridge/imx/Makefile
-index 8e2ebf3399a1..be9b4f9adb50 100644
---- a/drivers/gpu/drm/bridge/imx/Makefile
-+++ b/drivers/gpu/drm/bridge/imx/Makefile
-@@ -1,4 +1,5 @@
- obj-$(CONFIG_DRM_IMX_LDB_HELPER) += imx-ldb-helper.o
-+obj-$(CONFIG_DRM_IMX8MP_HDMI_PVI) += imx8mp-hdmi-pvi.o
- obj-$(CONFIG_DRM_IMX8QM_LDB) += imx8qm-ldb.o
- obj-$(CONFIG_DRM_IMX8QXP_LDB) += imx8qxp-ldb.o
- obj-$(CONFIG_DRM_IMX8QXP_PIXEL_COMBINER) += imx8qxp-pixel-combiner.o
-diff --git a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
-new file mode 100644
-index 000000000000..9efe051a1e31
---- /dev/null
-+++ b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
-@@ -0,0 +1,206 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+
-+/*
-+ * Copyright (C) 2022 Pengutronix, Lucas Stach <kernel@pengutronix.de>
-+ */
-+
-+#include <drm/drm_atomic_helper.h>
-+#include <drm/drm_bridge.h>
-+#include <drm/drm_crtc.h>
-+#include <linux/bitfield.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/of_graph.h>
-+#include <linux/pm_runtime.h>
-+
-+#define HTX_PVI_CTRL			0x0
-+#define  PVI_CTRL_OP_VSYNC_POL		BIT(18)
-+#define  PVI_CTRL_OP_HSYNC_POL		BIT(17)
-+#define  PVI_CTRL_OP_DE_POL		BIT(16)
-+#define  PVI_CTRL_INP_VSYNC_POL		BIT(14)
-+#define  PVI_CTRL_INP_HSYNC_POL		BIT(13)
-+#define  PVI_CTRL_INP_DE_POL		BIT(12)
-+#define  PVI_CTRL_MODE_MASK		GENMASK(2, 1)
-+#define  PVI_CTRL_MODE_LCDIF		2
-+#define  PVI_CTRL_EN			BIT(0)
-+
-+struct imx8mp_hdmi_pvi {
-+	struct drm_bridge	bridge;
-+	struct device		*dev;
-+	struct drm_bridge	*next_bridge;
-+	void __iomem		*regs;
-+};
-+
-+static inline struct imx8mp_hdmi_pvi *
-+to_imx8mp_hdmi_pvi(struct drm_bridge *bridge)
-+{
-+	return container_of(bridge, struct imx8mp_hdmi_pvi, bridge);
-+}
-+
-+static int imx8mp_hdmi_pvi_bridge_attach(struct drm_bridge *bridge,
-+					 enum drm_bridge_attach_flags flags)
-+{
-+	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
-+
-+	return drm_bridge_attach(bridge->encoder, pvi->next_bridge,
-+				 bridge, flags);
-+}
-+
-+static void imx8mp_hdmi_pvi_bridge_enable(struct drm_bridge *bridge,
-+					  struct drm_bridge_state *bridge_state)
-+{
-+	struct drm_atomic_state *state = bridge_state->base.state;
-+	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
-+	struct drm_connector_state *conn_state;
-+	const struct drm_display_mode *mode;
-+	struct drm_crtc_state *crtc_state;
-+	struct drm_connector *connector;
-+	u32 bus_flags, val;
-+
-+	connector = drm_atomic_get_new_connector_for_encoder(state, bridge->encoder);
-+	conn_state = drm_atomic_get_new_connector_state(state, connector);
-+	crtc_state = drm_atomic_get_new_crtc_state(state, conn_state->crtc);
-+
-+	if (WARN_ON(pm_runtime_resume_and_get(pvi->dev)))
-+		return;
-+
-+	mode = &crtc_state->adjusted_mode;
-+
-+	val = FIELD_PREP(PVI_CTRL_MODE_MASK, PVI_CTRL_MODE_LCDIF) | PVI_CTRL_EN;
-+
-+	if (mode->flags & DRM_MODE_FLAG_PVSYNC)
-+		val |= PVI_CTRL_OP_VSYNC_POL | PVI_CTRL_INP_VSYNC_POL;
-+
-+	if (mode->flags & DRM_MODE_FLAG_PHSYNC)
-+		val |= PVI_CTRL_OP_HSYNC_POL | PVI_CTRL_INP_HSYNC_POL;
-+
-+	if (pvi->next_bridge->timings)
-+		bus_flags = pvi->next_bridge->timings->input_bus_flags;
-+	else if (bridge_state)
-+		bus_flags = bridge_state->input_bus_cfg.flags;
-+
-+	if (bus_flags & DRM_BUS_FLAG_DE_HIGH)
-+		val |= PVI_CTRL_OP_DE_POL | PVI_CTRL_INP_DE_POL;
-+
-+	writel(val, pvi->regs + HTX_PVI_CTRL);
-+}
-+
-+static void imx8mp_hdmi_pvi_bridge_disable(struct drm_bridge *bridge,
-+					   struct drm_bridge_state *bridge_state)
-+{
-+	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
-+
-+	writel(0x0, pvi->regs + HTX_PVI_CTRL);
-+
-+	pm_runtime_put(pvi->dev);
-+}
-+
-+static u32 *
-+imx8mp_hdmi_pvi_bridge_get_input_bus_fmts(struct drm_bridge *bridge,
-+					  struct drm_bridge_state *bridge_state,
-+					  struct drm_crtc_state *crtc_state,
-+					  struct drm_connector_state *conn_state,
-+					  u32 output_fmt,
-+					  unsigned int *num_input_fmts)
-+{
-+	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
-+	struct drm_bridge *next_bridge = pvi->next_bridge;
-+	struct drm_bridge_state *next_state;
-+
-+	if (!next_bridge->funcs->atomic_get_input_bus_fmts)
-+		return 0;
-+
-+	next_state = drm_atomic_get_new_bridge_state(crtc_state->state,
-+						     next_bridge);
-+
-+	return next_bridge->funcs->atomic_get_input_bus_fmts(next_bridge,
-+							     next_state,
-+							     crtc_state,
-+							     conn_state,
-+							     output_fmt,
-+							     num_input_fmts);
-+}
-+
-+static const struct drm_bridge_funcs imx_hdmi_pvi_bridge_funcs = {
-+	.attach		= imx8mp_hdmi_pvi_bridge_attach,
-+	.atomic_enable	= imx8mp_hdmi_pvi_bridge_enable,
-+	.atomic_disable	= imx8mp_hdmi_pvi_bridge_disable,
-+	.atomic_get_input_bus_fmts = imx8mp_hdmi_pvi_bridge_get_input_bus_fmts,
-+	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
-+	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
-+	.atomic_reset = drm_atomic_helper_bridge_reset,
-+};
-+
-+static int imx8mp_hdmi_pvi_probe(struct platform_device *pdev)
-+{
-+	struct device_node *remote;
-+	struct imx8mp_hdmi_pvi *pvi;
-+
-+	pvi = devm_kzalloc(&pdev->dev, sizeof(*pvi), GFP_KERNEL);
-+	if (!pvi)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, pvi);
-+	pvi->dev = &pdev->dev;
-+
-+	pvi->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(pvi->regs))
-+		return PTR_ERR(pvi->regs);
-+
-+	/* Get the next bridge in the pipeline. */
-+	remote = of_graph_get_remote_node(pdev->dev.of_node, 1, -1);
-+	if (!remote)
-+		return -EINVAL;
-+
-+	pvi->next_bridge = of_drm_find_bridge(remote);
-+	of_node_put(remote);
-+
-+	if (!pvi->next_bridge)
-+		return dev_err_probe(&pdev->dev, -EPROBE_DEFER,
-+				     "could not find next bridge\n");
-+
-+	pm_runtime_enable(&pdev->dev);
-+
-+	/* Register the bridge. */
-+	pvi->bridge.funcs = &imx_hdmi_pvi_bridge_funcs;
-+	pvi->bridge.of_node = pdev->dev.of_node;
-+	pvi->bridge.timings = pvi->next_bridge->timings;
-+
-+	drm_bridge_add(&pvi->bridge);
-+
-+	return 0;
-+}
-+
-+static int imx8mp_hdmi_pvi_remove(struct platform_device *pdev)
-+{
-+	struct imx8mp_hdmi_pvi *pvi = platform_get_drvdata(pdev);
-+
-+	drm_bridge_remove(&pvi->bridge);
-+
-+	pm_runtime_disable(&pdev->dev);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id imx8mp_hdmi_pvi_match[] = {
-+	{
-+		.compatible = "fsl,imx8mp-hdmi-pvi",
-+	}, {
-+		/* sentinel */
-+	}
-+};
-+MODULE_DEVICE_TABLE(of, imx8mp_hdmi_pvi_match);
-+
-+static struct platform_driver imx8mp_hdmi_pvi_driver = {
-+	.probe	= imx8mp_hdmi_pvi_probe,
-+	.remove	= imx8mp_hdmi_pvi_remove,
-+	.driver		= {
-+		.name = "imx-hdmi-pvi",
-+		.of_match_table	= imx8mp_hdmi_pvi_match,
-+	},
-+};
-+module_platform_driver(imx8mp_hdmi_pvi_driver);
-+
-+MODULE_DESCRIPTION("i.MX8MP HDMI TX Parallel Video Interface bridge driver");
-+MODULE_LICENSE("GPL");
+ From my POV, the critical action to be done is not per system, but per 
+critical trip point, which is per thermal zone.
+
+Putting the critical action at the thermal zone device level is 
+inconsistent with the fact the thermal zone may not have a critical trip 
+point described.
+
+So, the property should be either:
+
+  - In the critical trip point description as optional
+
+Or
+
+  - At the thermal zone level if there is a critical trip point 
+described (I don't know how this dependency can be described)
+
+>   patternProperties:
+>     "^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-thermal$":
+>       type: object
+
 -- 
-2.39.2
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
 
