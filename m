@@ -1,232 +1,149 @@
-Return-Path: <devicetree+bounces-4405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D3167B26B4
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 22:39:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 737787B26D1
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 22:48:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 49AB0B209C5
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 20:39:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 232F4282C3F
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 20:48:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 439889CA52;
-	Thu, 28 Sep 2023 20:39:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31B8D9CA73;
+	Thu, 28 Sep 2023 20:48:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3086F15BA;
-	Thu, 28 Sep 2023 20:39:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00D00C433C8;
-	Thu, 28 Sep 2023 20:39:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695933550;
-	bh=xINXDKcTe6ijRIqT/PemFdRIVgJJnLG488c56JbijgA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iwGeJcBnI4vzd0lgEzuKqStNzmqnNABTX3xmghorXxnqzGNG6fOsKS0yoXIjFGHX8
-	 hoRJRFEQau+i9BA8D5FUzu0TlSKY/OJeMI4mxDGOYphFOnFGBLTJu3z62TJkdw7M8o
-	 sBnzZaGl5t+KCMwnxVfd4WVh0oH0myH1whk9T9wT6uBC38H5H+dL5oJtYA+8HvsYIc
-	 7f7mWXomZ4TwjnMJRUYY5JQibY7xFJlsyh5Yvw0G2JVxXnbk36zYjIO0Jl0znRPkG5
-	 8TgGEbUNYa62BWEKEBKY6JSM1w1j7x//N1I9tPJOhBgtzgsEyqKrAEs/rWAlPwIXQ8
-	 OERuE5KGkNnXQ==
-Date: Thu, 28 Sep 2023 21:39:04 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Christophe Roullier <christophe.roullier@foss.st.com>
-Cc: "David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 01/12] dt-bindings: net: add STM32MP13 compatible in
- documentation for stm32
-Message-ID: <20230928-footwork-padlock-524173c3e205@spud>
-References: <20230928151512.322016-1-christophe.roullier@foss.st.com>
- <20230928151512.322016-2-christophe.roullier@foss.st.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2411715BA
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 20:48:22 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35526180
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 13:48:21 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qlxvW-0006Oy-Fq; Thu, 28 Sep 2023 22:48:02 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qlxvV-009erQ-B8; Thu, 28 Sep 2023 22:48:01 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qlxvV-005kYi-1e; Thu, 28 Sep 2023 22:48:01 +0200
+Date: Thu, 28 Sep 2023 22:48:00 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Jagath Jog J <jagathjog1996@gmail.com>
+Cc: jic23@kernel.org, andriy.shevchenko@linux.intel.com, lars@metafoo.de,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [RFC 2/2] iio: imu: Add driver for BMI323 IMU
+Message-ID: <20230928204800.tlsauorjk6iz5r7f@pengutronix.de>
+References: <20230918080314.11959-1-jagathjog1996@gmail.com>
+ <20230918080314.11959-3-jagathjog1996@gmail.com>
+ <20230927095708.l57kmdc3mmrtaco7@pengutronix.de>
+ <CAM+2EuKb9-Wc+HAmsmPfmdM49k=7yoXboDF+swaMS_bgXbCOQA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="8U54nw6WVDXbYGlQ"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="gahfz3hanrircdwo"
 Content-Disposition: inline
-In-Reply-To: <20230928151512.322016-2-christophe.roullier@foss.st.com>
+In-Reply-To: <CAM+2EuKb9-Wc+HAmsmPfmdM49k=7yoXboDF+swaMS_bgXbCOQA@mail.gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
 
---8U54nw6WVDXbYGlQ
-Content-Type: text/plain; charset=us-ascii
+--gahfz3hanrircdwo
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hey,
-
-On Thu, Sep 28, 2023 at 05:15:01PM +0200, Christophe Roullier wrote:
-> New STM32 SOC have 2 GMACs instances.
-> GMAC IP version is SNPS 4.20.
+On Thu, Sep 28, 2023 at 11:49:01PM +0530, Jagath Jog J wrote:
+> Hi Uwe Kleine-K=C3=B6nig,
 >=20
-> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
-> ---
->  .../devicetree/bindings/net/stm32-dwmac.yaml  | 78 +++++++++++++++++--
->  1 file changed, 70 insertions(+), 8 deletions(-)
+> On Wed, Sep 27, 2023 at 3:27=E2=80=AFPM Uwe Kleine-K=C3=B6nig
+> <u.kleine-koenig@pengutronix.de> wrote:
+> >
+> > Hello,
+> >
+> > On Mon, Sep 18, 2023 at 01:33:14PM +0530, Jagath Jog J wrote:
+> > > The Bosch BMI323 is a 6-axis low-power IMU that provide measurements =
+for
+> > > acceleration, angular rate, and temperature. This sensor includes
+> > > motion-triggered interrupt features, such as a step counter, tap dete=
+ction,
+> > > and activity/inactivity interrupt capabilities.
+> > >
+> > > The driver supports various functionalities, including data ready, FI=
+FO
+> > > data handling, and events such as tap detection, step counting, and
+> > > activity interrupts
+> > >
+> > > Datasheet: https://www.bosch-sensortec.com/media/boschsensortec/downl=
+oads/datasheets/bst-bmi323-ds000.pdf
+> >
+> > Maybe put this link better in the driver.
 >=20
-> diff --git a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml b/Doc=
-umentation/devicetree/bindings/net/stm32-dwmac.yaml
-> index fc8c96b08d7dc..ca976281bfc22 100644
-> --- a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
-> @@ -22,18 +22,17 @@ select:
->          enum:
->            - st,stm32-dwmac
->            - st,stm32mp1-dwmac
-> +          - st,stm32mp13-dwmac
->    required:
->      - compatible
-> =20
-> -allOf:
-> -  - $ref: snps,dwmac.yaml#
-> -
->  properties:
->    compatible:
->      oneOf:
->        - items:
->            - enum:
->                - st,stm32mp1-dwmac
-> +              - st,stm32mp13-dwmac
->            - const: snps,dwmac-4.20a
->        - items:
->            - enum:
-> @@ -74,13 +73,10 @@ properties:
-> =20
->    st,syscon:
->      $ref: /schemas/types.yaml#/definitions/phandle-array
-> -    items:
-> -      - items:
-> -          - description: phandle to the syscon node which encompases the=
- glue register
-> -          - description: offset of the control register
->      description:
->        Should be phandle/offset pair. The phandle to the syscon node which
-> -      encompases the glue register, and the offset of the control regist=
-er
-> +      encompases the glue register, the offset of the control register a=
-nd
-> +      the mask to set bitfield in control register
-> =20
->    st,eth-clk-sel:
->      description:
-> @@ -101,6 +97,38 @@ required:
-> =20
->  unevaluatedProperties: false
-> =20
-> +allOf:
-> +  - $ref: snps,dwmac.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - st,stm32mp1-dwmac
-> +              - st,stm32-dwmac
-> +    then:
-> +      properties:
-> +        st,syscon:
-> +          items:
-> +            items:
-> +              - description: phandle to the syscon node which encompases=
- the glue register
-> +              - description: offset of the control register
-
-These descriptions should, IMO, be moved back out to the st,syscon
-definition. If you put the 3 descriptions there, with "minItems: 2" &
-put "maxItems: 2" and "minItems: 3" in each of the if/then clauses.
-Also, it should be sufficient to simplify to if/then/else.
-
-Cheers,
-Conor.
-
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - st,stm32mp13-dwmac
-> +    then:
-> +      properties:
-> +        st,syscon:
-> +          items:
-> +            items:
-> +              - description: phandle to the syscon node which encompases=
- the glue register
-> +              - description: offset of the control register
-> +              - description: field to set mask in register
-> +
->  examples:
->    - |
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
-> @@ -161,3 +189,37 @@ examples:
->             snps,pbl =3D <8>;
->             phy-mode =3D "mii";
->         };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/stm32mp1-clks.h>
-> +    #include <dt-bindings/reset/stm32mp1-resets.h>
-> +    #include <dt-bindings/mfd/stm32h7-rcc.h>
-> +    //Example 4
-> +     ethernet3: ethernet@5800a000 {
-> +           compatible =3D "st,stm32mp13-dwmac", "snps,dwmac-4.20a";
-> +           reg =3D <0x5800a000 0x2000>;
-> +           reg-names =3D "stmmaceth";
-> +           interrupts-extended =3D <&intc GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH=
->,
-> +                                 <&exti 68 IRQ_TYPE_LEVEL_HIGH>;
-> +           interrupt-names =3D "macirq",
-> +                             "eth_wake_irq";
-> +           clock-names =3D "stmmaceth",
-> +                         "mac-clk-tx",
-> +                         "mac-clk-rx",
-> +                         "eth-ck",
-> +                         "ptp_ref",
-> +                         "ethstp";
-> +           clocks =3D <&rcc ETHMAC>,
-> +                    <&rcc ETHTX>,
-> +                    <&rcc ETHRX>,
-> +                    <&rcc ETHCK_K>,
-> +                    <&rcc ETHPTP_K>,
-> +                    <&rcc ETHSTP>;
-> +           st,syscon =3D <&syscfg 0x4 0xff0000>;
-> +           snps,mixed-burst;
-> +           snps,pbl =3D <2>;
-> +           snps,axi-config =3D <&stmmac_axi_config_1>;
-> +           snps,tso;
-> +           phy-mode =3D "rmii";
-> +     };
-> --=20
-> 2.25.1
+> Yes, if there are multiple commits on the driver, the datasheet
+> link will move further down with the initial commit. I will add
+> datasheet link in the driver.
 >=20
+> >
+> > > +static struct i2c_driver bmi323_i2c_driver =3D {
+> > > +     .driver =3D {
+> > > +             .name =3D "bmi323",
+> > > +             .of_match_table =3D bmi323_of_i2c_match,
+> > > +     },
+> > > +     .probe_new =3D bmi323_i2c_probe,
+> > > +     .id_table =3D bmi323_i2c_ids,
+> > > +};
+> > > +module_i2c_driver(bmi323_i2c_driver);
+> >
+> > If you want to compile this driver after v6.6-rc2 (which includes
+> > commit 5eb1e6e459cf ("i2c: Drop legacy callback .probe_new()")) better
+> > use .probe here instead of .probe_new().
+>=20
+> Thanks for pointing it out.
+> I switched to v6.6-rc3 and I will change to .probe.
 
---8U54nw6WVDXbYGlQ
+Note that you can use .probe (with that prototype) already since
+v6.3-rc2. So there is no hard requirement to go to v6.6-rc3.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
+   |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--gahfz3hanrircdwo
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRXkaAAKCRB4tDGHoIJi
-0opWAP9JSnWhMjiIcX6Vc/XK2po8UfJBgrzDdpbxtFfTG/BmvwEA3JncB06h6fKE
-ThgDVUqVEGxr4yKfVfIj32yBSVdxXwU=
-=awMY
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmUV5oAACgkQj4D7WH0S
+/k4esgf7BLpFWcXJXdhUexxP4+lc7WqPmab2RU67NFt7RdHv88Da4TAqWR+H7oWD
+KJ1C8M59Ko+CV2jwfyCsef5tHE7WYlVUQOZixU+It/DOOY0r9wTOgt1B+iYl7BF9
+vlfKNolt5AAlWMbunLjot7h3/37+mXLV+5JWMOBu/pmo6R1FM8mduXVJ7mdSZfRj
+hWDuGnfTysXg60mPgVhMfjGNRkgc5qfmt/ec4Cf9uznBKfm8SbtH1oy4Ucs+uGtl
+WaqtKfNh+shFge+7maB/JUo/bur8IO90K+Tadf4Gfh9i71J3RZKBQZioiWlaAyAX
+skxOOb/jTr0UPgpUqnuINOcaTDoQFA==
+=QnTw
 -----END PGP SIGNATURE-----
 
---8U54nw6WVDXbYGlQ--
+--gahfz3hanrircdwo--
 
