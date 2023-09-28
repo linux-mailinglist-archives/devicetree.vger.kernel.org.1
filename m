@@ -1,169 +1,275 @@
-Return-Path: <devicetree+bounces-4399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 430F07B2600
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 21:41:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86ADA7B2650
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 22:12:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 63613B20A05
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 19:41:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 9C8E61C20945
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 20:12:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCE9638FAF;
-	Thu, 28 Sep 2023 19:41:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BFF543A9D;
+	Thu, 28 Sep 2023 20:12:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9E4F110B
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 19:41:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DE9AC433C7;
-	Thu, 28 Sep 2023 19:41:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C66918626
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 20:12:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4DD7C433C9;
+	Thu, 28 Sep 2023 20:12:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695930095;
-	bh=+f/LROZgFTPzcFy5/y8VtrXLG8LIcts2Ik8CzlQ3RsM=;
-	h=From:To:Cc:Subject:Date:From;
-	b=GS04NkNVwjZ5aAvctflC98Uo4+fIaRixp/S7KhAw1pj6pKgWEnR6iDPnRHcMrbxWk
-	 GDRgbrpFlHSnG52T5EMZagd0oohD+/xcuCf4IvfL4xylZ6RTNK1drD97IFlFBhvAYe
-	 rMlWf9Os5/p+g+hY6SnSR+EjfGnV8WR42DL5Bu6SarRJs1I73kT6nkyt2N6xugHotX
-	 DZjlqz/z04UMNuNoCQsaclN3jzUEiyc2uE39Ahqx7ekUBFq46WzlKbD3tNmilxO26P
-	 x6jbj8r7HxHo4ukR3juucsPsAq1CpDdnM/+vHzKqpvc1t4NAi6L8MkFv3DsG1aPtw7
-	 SevonLnDNfLVg==
-Received: (nullmailer pid 1147011 invoked by uid 1000);
-	Thu, 28 Sep 2023 19:41:33 -0000
-From: Rob Herring <robh@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: alsa-devel@alsa-project.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] ASoC: dt-bindings: Simplify referencing dai-params.yaml
-Date: Thu, 28 Sep 2023 14:41:16 -0500
-Message-Id: <20230928194126.1146622-1-robh@kernel.org>
-X-Mailer: git-send-email 2.40.1
+	s=k20201202; t=1695931930;
+	bh=bqzkqO5GyJ3b2u9PxXpLcSb3jCjFoeXu76DGP/lb7pY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=k07cqYLMDuODh0aykrMMpsUvxH/Z57r7GwQA/x9ygRAVxKm1DZywYEsNsoYFjrUt/
+	 7Ntrb/rh1mWt0RWaydcnbLeocG2gUuT+qHM6iVMJSlb9f5PsuHNVRyQVQnG7Lhvbm3
+	 clY9JUil4uUM/ZuItAEq6jE7N0OzcAQrN35BH/3teo+gi1/M1tWEv7xhZGg+uNeCht
+	 LtCS4eEHoYPV9NgoTaxef8d1QiMk2uYi5hLZheAzc3jrrIX9WBHxhmT6aoZf9Nmsdr
+	 WM5TNS+Crm5DPUsM8q1FznRYp2Iw+JYkYeUgBwyLCs/jAg2jYm5vQy5uy6b3nG+/rW
+	 mQsweC3Y8nagw==
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5041d6d8b10so21942607e87.2;
+        Thu, 28 Sep 2023 13:12:10 -0700 (PDT)
+X-Gm-Message-State: AOJu0YzsoZ3Ab25Mr7c38AvmJ+sHVwUaE1XWjKildegA18gHpd4bPZ/a
+	BCwwTrvF/C2ZCWhbtS+6tpAlc7CjfCimTqpPKw==
+X-Google-Smtp-Source: AGHT+IG+Es5CrJodeaE7IylSCEAYbUYAvA3xcoWie0uZ/jsKfuiE11XqJgKP7sweDmDh2CjoYjEdRhyZFthf3qqhTXg=
+X-Received: by 2002:ac2:4d8e:0:b0:503:3890:ca3a with SMTP id
+ g14-20020ac24d8e000000b005033890ca3amr2003265lfe.66.1695931928910; Thu, 28
+ Sep 2023 13:12:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230921102420.RFC.1.I9dddd99ccdca175e3ceb1b9fa1827df0928c5101@changeid>
+ <CAL_Jsq+noP32-m5xdUCLFPFBXLxX9Ys1BNFM+9sga6KYTmDzqQ@mail.gmail.com>
+ <CAD=FV=WXxGhX0Fw2nSS7PxYb1O-LUewAhoUVPn=2EpbSD2OeHQ@mail.gmail.com>
+ <CAL_JsqKJyRJmwJzB1yew71Ld7BeMMat+rzhX9XtDtiFE8Dbvcw@mail.gmail.com> <CAD=FV=UgFzT0TW2WEV0Wmk05EXUad2EYhN2DcckAxE_Lw5gV1Q@mail.gmail.com>
+In-Reply-To: <CAD=FV=UgFzT0TW2WEV0Wmk05EXUad2EYhN2DcckAxE_Lw5gV1Q@mail.gmail.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Thu, 28 Sep 2023 15:11:56 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKK0tjeXNv=a8L3k0AjhCa15XOq1tPWqVod9mycsKXJHg@mail.gmail.com>
+Message-ID: <CAL_JsqKK0tjeXNv=a8L3k0AjhCa15XOq1tPWqVod9mycsKXJHg@mail.gmail.com>
+Subject: Re: [RFC PATCH] of: device: Support 2nd sources of probeable but
+ undiscoverable devices
+To: Doug Anderson <dianders@chromium.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, 
+	Benjamin Tissoires <benjamin.tissoires@redhat.com>, Chen-Yu Tsai <wenst@chromium.org>, 
+	linux-input@vger.kernel.org, Jiri Kosina <jikos@kernel.org>, 
+	Hsin-Yi Wang <hsinyi@chromium.org>, linux-gpio@vger.kernel.org, linus.walleij@linaro.org, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Johan Hovold <johan+linaro@kernel.org>, 
+	andriy.shevchenko@linux.intel.com, broonie@kernel.org, frowand.list@gmail.com, 
+	gregkh@linuxfoundation.org, hdegoede@redhat.com, james.clark@arm.com, 
+	james@equiv.tech, keescook@chromium.org, linux-kernel@vger.kernel.org, 
+	rafael@kernel.org, tglx@linutronix.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-There's generally no need to use definitions to reference from
-individual properties. All the property names are the same, and all the
-defined properties are used by all the users.
+On Fri, Sep 22, 2023 at 7:11=E2=80=AFPM Doug Anderson <dianders@chromium.or=
+g> wrote:
+>
+> Hi,
+>
+> On Fri, Sep 22, 2023 at 12:08=E2=80=AFPM Rob Herring <robh+dt@kernel.org>=
+ wrote:
+> >
+> > > > This seems like overkill to me. Do we really need groups and a mute=
+x
+> > > > for each group? Worst case is what? 2-3 groups of 2-3 devices?
+> > > > Instead, what about extending "status" with another value
+> > > > ("fail-needs-probe"? (fail-xxx is a documented value)). Currently, =
+the
+> > > > kernel would just ignore nodes with that status. Then we can proces=
+s
+> > > > those nodes separately 1-by-1.
+> > >
+> > > My worry here is that this has the potential to impact boot speed in =
+a
+> > > non-trivial way. While trackpads and touchscreens _are_ probable,
+> > > their probe routines are often quite slow. This is even mentioned in
+> > > Dmitry's initial patches adding async probe to the kernel. See commit
+> > > 765230b5f084 ("driver-core: add asynchronous probing support for
+> > > drivers") where he specifically brings up input devices as examples.
+> >
+> > Perhaps then this should be solved in userspace where it can learn
+> > which device is actually present and save that information for
+> > subsequent boots.
+>
+> Yeah, the thought occurred to me as well. I think there are a few
+> problems, though:
+>
+> a) Userspace can't itself probe these devices effectively. While
+> userspace could turn on GPIOs manually and query the i2c bus manually,
+> it can't (I believe) turn on regulators nor can it turn on clocks, if
+> they are needed. About the best userspace could do would be to blindly
+> try binding an existing kernel driver, and in that case why did we
+> need userspace involved anyway?
+>
+> b) While deferring to userspace can work for solutions like ChromeOS
+> or Android where it's easy to ensure the userspace bits are there,
+> it's less appealing as a general solution. I think in Johan's case
+> he's taking a laptop that initially ran Windows and then is trying to
+> run a generic Linux distro on it. For anyone in a similar situation,
+> they'd either need to pick a Linux distro that has the magic userspace
+> bits that are needed or they need to know that, on their laptop, they
+> need to manually install some software. While requiring special
+> userspace might make sense if you've got a special peripheral, like an
+> LTE modem, it makes less sense to need special userspace just to get
+> the right devices bound...
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../bindings/sound/audio-graph-port.yaml      | 20 ++++++-------------
- .../bindings/sound/audio-graph.yaml           |  9 +++------
- .../devicetree/bindings/sound/dai-params.yaml | 11 ++++------
- 3 files changed, 13 insertions(+), 27 deletions(-)
+I did not mean do it all in userspace, but for userspace to save off
+what devices are actually present. For example, if userspace has
+access to the dtb, it could just update the dtb to enable the right
+nodes. Then after the first boot, boot time is faster. Or a driver
+could try to load an overlay with the config enabling the right
+devices. Though maybe waiting til userspace is available wouldn't
+speed things up.
 
-diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-index fa9f9a853365..60b5e3fd1115 100644
---- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-+++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-@@ -13,19 +13,17 @@ select: false
- 
- definitions:
-   port-base:
--    $ref: /schemas/graph.yaml#/$defs/port-base
-+    allOf:
-+      - $ref: /schemas/graph.yaml#/$defs/port-base
-+      - $ref: /schemas/sound/dai-params.yaml#
-     properties:
--      convert-rate:
--        $ref: /schemas/sound/dai-params.yaml#/$defs/dai-sample-rate
--      convert-channels:
--        $ref: /schemas/sound/dai-params.yaml#/$defs/dai-channels
--      convert-sample-format:
--        $ref: /schemas/sound/dai-params.yaml#/$defs/dai-sample-format
-       mclk-fs:
-         $ref: simple-card.yaml#/definitions/mclk-fs
- 
-   endpoint-base:
--    $ref: /schemas/graph.yaml#/$defs/endpoint-base
-+    allOf:
-+      - $ref: /schemas/graph.yaml#/$defs/endpoint-base
-+      - $ref: /schemas/sound/dai-params.yaml#
-     properties:
-       mclk-fs:
-         $ref: simple-card.yaml#/definitions/mclk-fs
-@@ -68,12 +66,6 @@ definitions:
-             - pdm
-             - msb
-             - lsb
--      convert-rate:
--        $ref: /schemas/sound/dai-params.yaml#/$defs/dai-sample-rate
--      convert-channels:
--        $ref: /schemas/sound/dai-params.yaml#/$defs/dai-channels
--      convert-sample-format:
--        $ref: /schemas/sound/dai-params.yaml#/$defs/dai-sample-format
- 
-       dai-tdm-slot-num:
-         description: Number of slots in use.
-diff --git a/Documentation/devicetree/bindings/sound/audio-graph.yaml b/Documentation/devicetree/bindings/sound/audio-graph.yaml
-index ed31e04ff6a6..71f52f7e55f6 100644
---- a/Documentation/devicetree/bindings/sound/audio-graph.yaml
-+++ b/Documentation/devicetree/bindings/sound/audio-graph.yaml
-@@ -9,6 +9,9 @@ title: Audio Graph
- maintainers:
-   - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
- 
-+allOf:
-+  - $ref: /schemas/sound/dai-params.yaml#
-+
- properties:
-   dais:
-     $ref: /schemas/types.yaml#/definitions/phandle-array
-@@ -30,12 +33,6 @@ properties:
-       widget ("Microphone", "Line", "Headphone", "Speaker"), the
-       second being the machine specific name for the widget.
-     $ref: /schemas/types.yaml#/definitions/non-unique-string-array
--  convert-rate:
--    $ref: /schemas/sound/dai-params.yaml#/$defs/dai-sample-rate
--  convert-channels:
--    $ref: /schemas/sound/dai-params.yaml#/$defs/dai-channels
--  convert-sample-format:
--    $ref: /schemas/sound/dai-params.yaml#/$defs/dai-sample-format
- 
-   pa-gpios:
-     maxItems: 1
-diff --git a/Documentation/devicetree/bindings/sound/dai-params.yaml b/Documentation/devicetree/bindings/sound/dai-params.yaml
-index f5fb71f9b603..cd8508175564 100644
---- a/Documentation/devicetree/bindings/sound/dai-params.yaml
-+++ b/Documentation/devicetree/bindings/sound/dai-params.yaml
-@@ -11,15 +11,14 @@ maintainers:
- 
- select: false
- 
--$defs:
--
--  dai-channels:
-+properties:
-+  convert-channels:
-     description: Number of audio channels used by DAI
-     $ref: /schemas/types.yaml#/definitions/uint32
-     minimum: 1
-     maximum: 32
- 
--  dai-sample-format:
-+  convert-sample-format:
-     description: Audio sample format used by DAI
-     $ref: /schemas/types.yaml#/definitions/string
-     enum:
-@@ -29,12 +28,10 @@ $defs:
-       - s24_3le
-       - s32_le
- 
--  dai-sample-rate:
-+  convert-rate:
-     description: Audio sample rate used by DAI
-     $ref: /schemas/types.yaml#/definitions/uint32
-     minimum: 8000
-     maximum: 192000
- 
--properties: {}
--
- additionalProperties: true
--- 
-2.40.1
+> > > It wouldn't be absurd to have a system that has multiple sources for
+> > > both the trackpad and the touchscreen. If we have to probe each of
+> > > these one at a time then it could be slow. It would be quicker to be
+> > > able to probe the trackpads (one at a time) at the same time we're
+> > > probing the touchscreens (one at a time). Using the "fail-needs-probe=
+"
+> > > doesn't provide information needed to know which devices conflict wit=
+h
+> > > each other.
+> >
+> > I would guess most of the time that's pretty evident. They are going
+> > to be on the same bus/link. If unrelated devices are on the same bus,
+> > then that's going to get serialized anyways (if bus accesses are what
+> > make things slow).
+> >
+> > We could add information on the class of device. touchscreen and
+> > touchpad aliases or something.
+>
+> Ah, I see. So something like "fail-needs-probe-<class>". The
+> touchscreens could have "fail-needs-probe-touchscreen" and the
+> trackpads could have "fail-needs-probe-trackpad" ? That could work. In
+> theory that could fall back to the same solution of grabbing a mutex
+> based on the group ID...
 
+I would not combine the 2 things. Knowing the class/type of the device
+may be useful independent of your problem.
+
+> Also: if having the mutex in the "struct device" is seen as a bad
+> idea, it would also be easy to remove. __driver_probe_device() could
+> just make a call like "of_device_probe_start()" at the beginning that
+> locks the mutex and then "of_device_probe_end()" that unlocks it. Both
+> of those calls could easily lookup the mutex in a list, which would
+> get rid of the need to store it in the "struct device".
+
+That could be useful for other things too. Like moving some of the hw
+init we do outside of probe (though that's mostly abstracted to be not
+DT specific, so maybe not).
+
+> > > That would lead me to suggest this:
+> > >
+> > >   &i2c_bus {
+> > >     trackpad-prober {
+> > >       compatible =3D "mt8173-elm-hana-trackpad-prober";
+> > >
+> > >       tp1: trackpad@10 {
+> > >         compatible =3D "hid-over-i2c";
+> > >         reg =3D <0x10>;
+> > >         ...
+> > >         post-power-on-delay-ms =3D <200>;
+> > >       };
+> > >       tp2: trackpad@20 {
+> > >         compatible =3D "hid-over-i2c";
+> > >         reg =3D <0x20>;
+> > >         ...
+> > >         post-power-on-delay-ms =3D <200>;
+> > >       };
+> > >     };
+> > >   };
+> > >
+> > > ...but I suspect that would be insta-NAKed because it's creating a
+> > > completely virtual device ("mt8173-elm-hana-trackpad-prober") in the
+> > > device tree. I don't know if there's something that's functionally
+> > > similar that would be OK?
+> >
+> > Why do you need the intermediate node other than a convenient way to
+> > instantiate a driver? You just need a flag in each node which needs
+> > this special handling. Again, "status" could work well here since it
+> > keeps the normal probe from happening. But I'm not saying you can't
+> > have some board specific code. Sometimes you just need code to deal
+> > with this stuff. Don't try to parameterize everything to DT
+> > properties.
+>
+> I think I'd have an easier time understanding if I knew where you
+> envisioned the board-specific code living. Do you have an example of
+> board specific code running at boot time in the kernel on DT systems?
+
+drivers/soc/ or drivers/platform/ are the dumping grounds. Don't we
+already have CrOS stuff there?
+
+> > Note that the above only works with "generic" compatibles with
+> > "generic" power sequencing properties (I won't repeat my dislike
+> > again).
+>
+> I don't think so? I was imagining that we'd have some board specific
+> code that ran that knew all the possible combinations of devices,
+> could probe them, and then could instantiate the correct driver.
+
+Okay, just making sure you weren't trying to parameterize everything
+when generally, how to power sequence is implicit.
+
+>
+> Imagine that instead of the hated "hid-over-i2c" compatible we were
+> using two other devices. Imagine that a given board could have a
+> "elan,ekth6915" and a "goodix,gt7375p". Both of these devices have
+> specific timing requirements on how to sequence their supplies and
+> reset GPIOs. For Elan we power on the supplies, wait at least 1 ms,
+> deassert reset, wait at least 300 ms, and then can talk i2c. For
+> Goodix we power on the supply, wait at least 10 ms, deassert reset,
+> wait at least 180 ms, and then can talk i2c. If we had a
+> board-specific probing driver then it would power on the supplies,
+> wait at least 10 ms (the max of the two), deassert reset, wait at
+> least 300 ms (the max of the two), and then see which device talked.
+> Then it would instantiate whichever of the two drivers. This could be
+> done for any two devices that EEs have determined have "compatible"
+> probing sequences.
+
+My point was that in the above example, all these delay times would
+have to be defined in the kernel, not DT.
+
+> Ideally in the above situation we'd be able to avoid turning the
+> device off and on again between the board-specific probe code and the
+> normal driver. That optimization might need special code per-driver
+> but it feels doable by passing some sort of hint to the child driver
+> when it's instantiated.
+
+I think fixing regulators getting turned off on failed probes and
+having a "regulator on time" would go a long way towards providing
+that hint even if the on time was just since clocksource started.
+
+
+> > If only the driver knows how to handle the device, then you
+> > still just have to have the driver probe. If you *only* wanted to
+> > solve the above case, I'd just make "hid-over-i2c" take a 2nd (and
+> > 3rd) I2C address in reg and have those as fallbacks.
+>
+> Yeah, it did occur to me that having "hid-over-i2c" take more than one
+> register (and I guess more than one "hid-descr-addr") would work in my
+> earlier example and this might actually be a good solution for Johan.
+> I'm hoping for a better generic solution, though.
+>
+>
+> > You could always make the driver probe smarter where if your supply
+> > was already powered on, then don't delay. Then something else could
+> > ensure that the supply is enabled. I'm not sure if regulators have the
+> > same issue as clocks where the clock might be on from the bootloader,
+> > then a failed probe which gets then puts the clock turns it off.
+>
+> I'm not sure it's that simple. Even if the supply didn't turn off by
+> itself in some cases, we wouldn't know how long the supply was on.
+
+We know the time since the clocksource was initialized. I'd imagine
+for most cases, more than enough time would elapse by the time you get
+to these drivers.
+
+Rob
 
