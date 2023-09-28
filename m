@@ -1,141 +1,108 @@
-Return-Path: <devicetree+bounces-4387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F37B97B251C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 20:19:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D72B7B2531
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 20:24:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 9C0D2281C1C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 18:19:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id E9D6C28272F
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 18:24:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5744516C3;
-	Thu, 28 Sep 2023 18:19:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7448D516CB;
+	Thu, 28 Sep 2023 18:24:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 462D54F15D
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 18:19:16 +0000 (UTC)
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE48F99;
-	Thu, 28 Sep 2023 11:19:14 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-32488a22810so816718f8f.3;
-        Thu, 28 Sep 2023 11:19:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695925153; x=1696529953; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=X/vYG8CJ/ewvJ2G4SHIfjDvp/E77tz/2UvBKFbRj/OM=;
-        b=lkEIwUBJcgz3w1n8+0KuwHDPVHp7o6QRATLJFyobfjPlx6EIplO8BHWk/OU2qHRtwg
-         LL+Zf3YzCmFTVO+pr6ZEQRvuI14qVOjnJVW6jw3gCzoNYxTpCagjHGBqMMj3WsGlrjtR
-         gqu5X1JI2VgwiuPyA+2R1z9UG80JYxg9D848eQz//o5dTjuzdtHR+er4ZyiF+3EBwe9Y
-         uMEyYpLmotHx1Li1GhiTtdfRgV9UxWO9x65POAP90j9zrin2beVZdATjGegiIAq00BAO
-         XaBApHbheo01iLQe5hlBxuF5b1tS0EUpILOus/Y8BcOEOIY+TG9QlftIDxoNs8r7FvX/
-         phUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695925153; x=1696529953;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=X/vYG8CJ/ewvJ2G4SHIfjDvp/E77tz/2UvBKFbRj/OM=;
-        b=M+EOMdulBXJkZ/+do9BpmIrn5rvVEpdaO1DBNeuR0HUWeKKFPizH5/34pNurl/Z2Yq
-         GLdo7kZK5yza6kwlLTKfAxw6agZFNZixWCncSNkRrXgj1cOqO7hlTvhsQbsj+8+9ly93
-         ktgN4oMZ+iRF05MKx5FYp2DGRv6SdKAD8GZg1lbzgoz86NJlZscGTE1zmm1B2o4/4vtd
-         I56suwEi5akTeu3rA6UzQhjobJ5VpCYdierlEW/TNaXigrG4HFfuvdPStAWg/zU64OE5
-         T6tMF+8UX8OAO6muBpow9xNmXVDK7DQUuaYmPxK+dia55qmtceLcHZG6Qy39QunpsUgr
-         nExw==
-X-Gm-Message-State: AOJu0YxAlSeu1jfmqyzReXkJvuBE5agcrILuiJYrbyBoDHEF4Odjrbth
-	mg2pCiF0ygY8YwxqnDOQaLOroVeFk0PgY40pCqw=
-X-Google-Smtp-Source: AGHT+IEkXnAd53of4antYDJ+mebfWoU45tHrRpXzvuqB49hiREtfEaw/BcVrqDN2SzGAfN7vXbEQS6lOPaT+Cixw1HM=
-X-Received: by 2002:a05:6000:1006:b0:31f:9b4f:1910 with SMTP id
- a6-20020a056000100600b0031f9b4f1910mr1808253wrx.63.1695925152811; Thu, 28 Sep
- 2023 11:19:12 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6058051226
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 18:24:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9D28C433B8;
+	Thu, 28 Sep 2023 18:24:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695925487;
+	bh=h9io9sW/9EKNfXuhbVDmG/ERea8sgTVkea3CXbxpcMM=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=aAdZvCdpTxtSZe7T3jbt37NB8EhqfCnx/8i1HWRu9uqCjCUq7iPbdaQ4od2pz/EKo
+	 cR/ZfEwnJ6heg0PqVJCAqwE9llx6nUjocN7gHvKhcMBSd7KZhF2AIdPZw6liFjPj1Q
+	 sbuN88hyxQdkcRYBeSsqvCzJ9DN9zQwoEJktVc52eymvWE8jtCSLCTQJ0DaH5setXF
+	 kcJbpWcXJHnDdk+tpvsOr4c3kOzc8LkLxpfk+K9qZq0Hx5Go+yJWYj0qwpLYg969CE
+	 59qxx2dg0VoX/96mNpYEWsboAtdT+nLVsiRWUt0cnKVSg06WS+a5QRc4trB775fjxn
+	 FbC2Kkym6D08A==
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5041cc983f9so21262839e87.3;
+        Thu, 28 Sep 2023 11:24:47 -0700 (PDT)
+X-Gm-Message-State: AOJu0YxTFa8mVXh+J3zbggtx+cXIEOWB2hbzRbe8PODpZi/SYW+QZaoZ
+	cdIbdPuc9W87UIOvwwtILGwW21AYWi+gBwQCrA==
+X-Google-Smtp-Source: AGHT+IFIjVbmeOmoi1Ex9wWzryBy0huO5vhLMaCPZ42y3Diqs0tyk+JP/B6O/jxBFtqJcFlDkre6GZiUXkBPfrtKulA=
+X-Received: by 2002:a05:6512:234a:b0:500:7fc1:414b with SMTP id
+ p10-20020a056512234a00b005007fc1414bmr2158838lfu.25.1695925485862; Thu, 28
+ Sep 2023 11:24:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230918080314.11959-1-jagathjog1996@gmail.com>
- <20230918080314.11959-3-jagathjog1996@gmail.com> <20230927095708.l57kmdc3mmrtaco7@pengutronix.de>
-In-Reply-To: <20230927095708.l57kmdc3mmrtaco7@pengutronix.de>
-From: Jagath Jog J <jagathjog1996@gmail.com>
-Date: Thu, 28 Sep 2023 23:49:01 +0530
-Message-ID: <CAM+2EuKb9-Wc+HAmsmPfmdM49k=7yoXboDF+swaMS_bgXbCOQA@mail.gmail.com>
-Subject: Re: [RFC 2/2] iio: imu: Add driver for BMI323 IMU
-To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: jic23@kernel.org, andriy.shevchenko@linux.intel.com, lars@metafoo.de, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+References: <20230723-sm6125-dpu-v4-0-a3f287dd6c07@somainline.org> <20230723-sm6125-dpu-v4-17-a3f287dd6c07@somainline.org>
+In-Reply-To: <20230723-sm6125-dpu-v4-17-a3f287dd6c07@somainline.org>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Thu, 28 Sep 2023 13:24:33 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJymkURYKONU4b9g7QHi7LzpbhLmo8i1WEHy995vfdS6w@mail.gmail.com>
+Message-ID: <CAL_JsqJymkURYKONU4b9g7QHi7LzpbhLmo8i1WEHy995vfdS6w@mail.gmail.com>
+Subject: Re: [PATCH v4 17/17] arm64: dts: qcom: sm6125-seine: Configure MDSS,
+ DSI and panel
+To: Marijn Suijten <marijn.suijten@somainline.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Krishna Manikandan <quic_mkrishn@quicinc.com>, Loic Poulain <loic.poulain@linaro.org>, 
+	Konrad Dybcio <konrad.dybcio@somainline.org>, ~postmarketos/upstreaming@lists.sr.ht, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Martin Botka <martin.botka@somainline.org>, 
+	Jami Kettunen <jami.kettunen@somainline.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk@kernel.org>, linux-clk@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	Lux Aliaga <they@mint.lgbt>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
-Hi Uwe Kleine-K=C3=B6nig,
-
-On Wed, Sep 27, 2023 at 3:27=E2=80=AFPM Uwe Kleine-K=C3=B6nig
-<u.kleine-koenig@pengutronix.de> wrote:
+On Sun, Jul 23, 2023 at 11:09=E2=80=AFAM Marijn Suijten
+<marijn.suijten@somainline.org> wrote:
 >
-> Hello,
+> Enable MDSS and DSI, and configure the Samsung SOFEF01-M ams597ut01
+> 6.0" 1080x2520 panel.
 >
-> On Mon, Sep 18, 2023 at 01:33:14PM +0530, Jagath Jog J wrote:
-> > The Bosch BMI323 is a 6-axis low-power IMU that provide measurements fo=
-r
-> > acceleration, angular rate, and temperature. This sensor includes
-> > motion-triggered interrupt features, such as a step counter, tap detect=
-ion,
-> > and activity/inactivity interrupt capabilities.
-> >
-> > The driver supports various functionalities, including data ready, FIFO
-> > data handling, and events such as tap detection, step counting, and
-> > activity interrupts
-> >
-> > Datasheet: https://www.bosch-sensortec.com/media/boschsensortec/downloa=
-ds/datasheets/bst-bmi323-ds000.pdf
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> ---
+>  .../dts/qcom/sm6125-sony-xperia-seine-pdx201.dts   | 59 ++++++++++++++++=
+++++++
+>  1 file changed, 59 insertions(+)
 >
-> Maybe put this link better in the driver.
-
-Yes, if there are multiple commits on the driver, the datasheet
-link will move further down with the initial commit. I will add
-datasheet link in the driver.
-
+> diff --git a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts=
+ b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+> index 82b0da5bb794..62c3e6d8147c 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+> @@ -179,6 +179,43 @@ &i2c3 {
+>         /* Cirrus Logic CS35L41 boosted audio amplifier @ 40 */
+>  };
 >
-> > +static struct i2c_driver bmi323_i2c_driver =3D {
-> > +     .driver =3D {
-> > +             .name =3D "bmi323",
-> > +             .of_match_table =3D bmi323_of_i2c_match,
-> > +     },
-> > +     .probe_new =3D bmi323_i2c_probe,
-> > +     .id_table =3D bmi323_i2c_ids,
-> > +};
-> > +module_i2c_driver(bmi323_i2c_driver);
->
-> If you want to compile this driver after v6.6-rc2 (which includes
-> commit 5eb1e6e459cf ("i2c: Drop legacy callback .probe_new()")) better
-> use .probe here instead of .probe_new().
+> +&mdss {
+> +       status =3D "okay";
+> +};
+> +
+> +&mdss_dsi0 {
+> +       vdda-supply =3D <&pm6125_l18>;
+> +       status =3D "okay";
+> +
+> +       panel@0 {
+> +               compatible =3D "samsung,sofef01-m-ams597ut01";
 
-Thanks for pointing it out.
-I switched to v6.6-rc3 and I will change to .probe.
+This needs to be documented.
 
-Regards
-Jagath
-
-Jagath
-
->
-> Best regards
-> Uwe
->
-> --
-> Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig       =
-     |
-> Industrial Linux Solutions                 | https://www.pengutronix.de/ =
-|
+Rob
 
