@@ -1,130 +1,110 @@
-Return-Path: <devicetree+bounces-4285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44DF07B1E77
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 15:32:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A7B27B1E7C
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 15:33:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id EB17028225C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 13:32:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id CD8582825A4
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 13:33:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 084CE3B2B3;
-	Thu, 28 Sep 2023 13:32:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67B6A3B787;
+	Thu, 28 Sep 2023 13:33:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A37FC38DCD
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 13:32:53 +0000 (UTC)
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7778198
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 06:32:51 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-405361bb93bso128493295e9.3
-        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 06:32:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695907970; x=1696512770; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/LFPkZX/1gUK7F/uY/aH14+cb1Ue1VnDX6eq0URoca8=;
-        b=jUarAXlaTwlJA4zmvXqpuLyXbr6xugRBXKpwmzpUpBJPG03b3g9wyrR57B0g+UCALm
-         2pD/FLTnCfZOVsl39uPqOj6giIyoxWJ79PxfRQAybhcCPe9mHmq8i1WULmrKaUPKEF1E
-         b6/wZIZHdp+/NVkteS5ncGbKtdTMJUjWflQIr1ZlV9Db+4O2gYywlQxMgGUvbFHFzFyV
-         5yrhFihcRuxIXBp57Xf9WcNoaHQ1pO9lbg99fw9WBnwg2HqYZpWnfXHkdOsHpHwAWoaW
-         P9BWurorHi/vWqG7gQkxarQGBdWWy7hd4Dhwu6d4OVxVDzYCpLnr2Djg7HMYqulvemDU
-         oPGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695907970; x=1696512770;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/LFPkZX/1gUK7F/uY/aH14+cb1Ue1VnDX6eq0URoca8=;
-        b=OizHv0EWbSblPtgvl4X4vjyWKvUUkAHgWkIMskJPCOlz3FYnXuhHyEEv9xUYFX/KC5
-         kKbr7EZsAu1wTRy0ZsSUWCXRC8KBahmMO7p7vszJTXCBcSjQEQ2qNM3OLUOkG+nbGi6d
-         0R6GVUwz0uL3kUppIb1r9QvFpCnTGJ+mq4bu9lk9NJEg95fxhV2PQdFWrQ8KEkaH+dkd
-         O+Rb6V0Pl95KsvrtSsiUOzbIVkoCp9MTmWSxrtSZqqOeafdevcGM2ynPf1KXqk9U+Q1v
-         IAcOm0f2TJkzKIKr9nr8GxnaMm1q3iZqfvLWKYXtVuyWHRitHqWUASChIU/UTQZ+1Zau
-         YTlA==
-X-Gm-Message-State: AOJu0Yxq2wuPiKClyPMVbJEAeVAZv099RSbDnTQRzKKJWzX4SMpY7Cn+
-	cnHYMAbScw4OfbW+WAgSYRpmdUKr+HrsoMkckc0=
-X-Google-Smtp-Source: AGHT+IHAbge+Ntd+bTFRkoLZgej8iUaRLJlUiUs79u8Pf7GBDFP+XnQeWZI0rnEZdvM6IuWWosMkgA==
-X-Received: by 2002:a05:600c:2207:b0:3f6:58ad:ed85 with SMTP id z7-20020a05600c220700b003f658aded85mr1270450wml.10.1695907969994;
-        Thu, 28 Sep 2023 06:32:49 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0? ([2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0])
-        by smtp.googlemail.com with ESMTPSA id v2-20020a1cf702000000b003feae747ff2sm22690325wmh.35.2023.09.28.06.32.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Sep 2023 06:32:49 -0700 (PDT)
-Message-ID: <1e81197e-7f69-b716-4cb9-23639db83235@linaro.org>
-Date: Thu, 28 Sep 2023 15:32:48 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECBE93B2B3
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 13:33:44 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2993F198;
+	Thu, 28 Sep 2023 06:33:42 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38SB0UFX031882;
+	Thu, 28 Sep 2023 13:33:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=nzGokz7/Nwo54cHR4d29oMCkeeJAUdLArHDO5mVWTHs=;
+ b=Wm/gfpQaxcQ/Hr3PQsLZvKElkjSuZi8CrxSJ4Bg6jGRYd0rwdYWknT7oiKtydJ2SyHMm
+ b3rlJgeJ1jd4feXscZcQRmNzvwhl4Da+Afh8dL36gB+rA9MjT//l24eL08rXGsw3FbER
+ 0LANZm3i+xZFKfEoYbGRou0xvJqGOFSjiG+hfUOpKZiUG0KGUk86LTu7LdmLTi3uPb33
+ 6yORshR9a7K7qcenLu8F1/eKUzt4rRKymVecq3N4WdvdvAnvMLgrBpF9C2ZwHpiazI4+
+ H6qIw5XqmqB1j6QmalD256zBXpvynMnm3OqHWwMO9wRAYmlOaexvQ0XG4IF7BGiBjiVx oQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tct5gt20b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 Sep 2023 13:33:34 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38SDXXHJ023121
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 Sep 2023 13:33:33 GMT
+Received: from hu-kbajaj-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Thu, 28 Sep 2023 06:33:29 -0700
+From: Komal Bajaj <quic_kbajaj@quicinc.com>
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Luca Weiss <luca.weiss@fairphone.com>,
+        "Komal
+ Bajaj" <quic_kbajaj@quicinc.com>
+Subject: [PATCH 0/2] Initial support for the QCM6490 IDP
+Date: Thu, 28 Sep 2023 19:03:10 +0530
+Message-ID: <20230928133312.11371-1-quic_kbajaj@quicinc.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 5/8] dt-bindings: thermal: fsl,scu-thermal: Document
- imx8dl
-Content-Language: en-US
-To: Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, linux-imx@nxp.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Fabio Estevam <festevam@denx.de>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Amit Kucheria <amitk@kernel.org>
-References: <20230926122957.341094-1-festevam@gmail.com>
- <20230926122957.341094-5-festevam@gmail.com>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20230926122957.341094-5-festevam@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: i2AkTnqbPDrk5s5mAP3aIus0qPqrWaeJ
+X-Proofpoint-GUID: i2AkTnqbPDrk5s5mAP3aIus0qPqrWaeJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-28_13,2023-09-28_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 mlxlogscore=712 impostorscore=0 phishscore=0 adultscore=0
+ suspectscore=0 priorityscore=1501 mlxscore=0 bulkscore=0 clxscore=1011
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2309280116
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 26/09/2023 14:29, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> imx8dxl also contains the SCU thermal block.
-> 
-> Add an entry for 'fsl,imx8dxl-sc-thermal'.
-> 
-> Cc: Rafael J. Wysocki <rafael@kernel.org>
-> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Cc: Amit Kucheria <amitk@kernel.org>
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
+Add dt-binding and devicetree files for QCM6490 IDP.
 
-May I apply this patch or do you want it to be applied with the series 
-it belongs?
+This patch is based on commit 76934f4772e9 i.e
+https://lore.kernel.org/lkml/20230919-fp5-initial-v2-6-14bb7cedadf5@fairphone.com/
 
->   .../devicetree/bindings/thermal/fsl,scu-thermal.yaml          | 4 +++-
->   1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/fsl,scu-thermal.yaml b/Documentation/devicetree/bindings/thermal/fsl,scu-thermal.yaml
-> index 3721c8c8ec64..e02d04d4f71e 100644
-> --- a/Documentation/devicetree/bindings/thermal/fsl,scu-thermal.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/fsl,scu-thermal.yaml
-> @@ -18,7 +18,9 @@ allOf:
->   properties:
->     compatible:
->       items:
-> -      - const: fsl,imx8qxp-sc-thermal
-> +      - enum:
-> +          - fsl,imx8dxl-sc-thermal
-> +          - fsl,imx8qxp-sc-thermal
->         - const: fsl,imx-sc-thermal
->   
->     '#thermal-sensor-cells':
+Komal Bajaj (2):
+  dt-bindings: arm: qcom: Add QCM6490 IDP board
+  arm64: dts: qcom: qcm6490: Add qcm6490 dts file
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+ .../devicetree/bindings/arm/qcom.yaml         |   1 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ arch/arm64/boot/dts/qcom/qcm6490-idp.dts      | 304 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/qcm6490.dtsi         | 137 ++++++++
+ 4 files changed, 443 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/qcm6490.dtsi
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+--
+2.42.0
 
 
