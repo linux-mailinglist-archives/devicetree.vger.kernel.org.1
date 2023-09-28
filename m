@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-4218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 662B47B1911
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 13:03:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 582DE7B1916
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 13:03:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 7386E1C209A1
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 11:03:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 09E71282C82
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 11:03:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A01A436B0C;
-	Thu, 28 Sep 2023 11:03:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AF8336AE1;
+	Thu, 28 Sep 2023 11:03:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6DCF3715A
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 11:03:25 +0000 (UTC)
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98695195
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 04:03:23 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-5046bf37ec1so11327669e87.1
-        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 04:03:23 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F4225358B4
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 11:03:26 +0000 (UTC)
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B14AF1A2
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 04:03:24 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-50325ce89e9so21195583e87.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 04:03:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695899002; x=1696503802; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695899003; x=1696503803; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Hrf3T7SMfrgZcpY2Sc1wJIHd3l2CoV8yNgWWkItWy4A=;
-        b=GvLcKFULrpXMFs5NseCTu7OoqudCM0Ui4sbhW+Ox5nxvAXzzq4AJ0WHjtFu7DNU1HF
-         vWOsP+mkMXnKJMRC8rtoCZOUlK5fk4GA8vloq03xtU22sVeJFK+/BeTkHza/EN6C1wNa
-         IV4Gm9XDxn/s8UPAzpxqiYf6TgL4opKhv2f34JDkE4T9VlLhaAKUSaT+KgNF87cdZUhn
-         pEQ6wZNVESbot7aS4SA2INUOlMyQ5sn2mj9Pkjw2Q+1weE8YQ9/RvFMYL2uCxkxcUz7N
-         aPKzYjNsdt4vjdmiw1PufdTMxdSdluKdBJgCWbcOJvkHCCDr/NsoybGj6P0z/mik0KNv
-         uVrg==
+        bh=9yhFXWgI+Nw/HVhizDlvwlBGCzre1lf/F+Jl5Rt5/EM=;
+        b=tLFkyi235JlGPgaODrdiP4Ox5p3a1HUeUw6aW+M/OtgSXsUwJdq3CkE70HfUEICRFZ
+         BmFtiOofRoioLqxYJsZ2vDa9fVSrFpOMKRtLB2D5I1cUFm+pPHqeuy6mcVLlAeEhrnRf
+         5VQKnMR5jAiPkdazqlm1DH0Y+2vG52h6DYDuWC9K/pENCFmHkANVeWKPWJ48HDDqiMrK
+         Po3bF64StNQXTRS6qBNkS9nxeUXaBUtN3kYxZnwWwMnlrDjmt8BvE/IsJ4JkO/SK4pGZ
+         JmEJgaVxbdbc42+uVFdZSkCilunkRe8gwD8AV/TeXrKzM8vuO4J72kuszqpburGE5fop
+         B/WA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695899002; x=1696503802;
+        d=1e100.net; s=20230601; t=1695899003; x=1696503803;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Hrf3T7SMfrgZcpY2Sc1wJIHd3l2CoV8yNgWWkItWy4A=;
-        b=ZzyCDZWObJauoXQY0q6ovoFRMAJCRb6lF7yyE0k/L1owcxeB8heZ/IabufnNNvF4Ca
-         N+Nsee/8ktqAC2HAk2OBRDQgaKNqA4i78rEWTyiZwqwdMcCkOTj9/0/JIgUtoU1MBUqF
-         MvxpC7SGyLi/1l8jckvrXJJgVKiqzG4TuXK1BxWt4YmzuiU3eJvoYkmdxrCpaxPQ2q+O
-         ifj15V2TYNcPN6zXIZorFDTRVcy/kMYyBrtRsUQvK9vw8YeeQPeVmNgd3dA9feXhn8UI
-         I5vREcoxS4UPUFWYnx3cchWmLhgprzl76D6slwmX4oNi5c2Dci030IZeWQ0oloi8hJy1
-         sVPA==
-X-Gm-Message-State: AOJu0Yyu2on9hLesGlEYT8oIpoo3LOHjkVzPbl7WRuS1r1znJEkr1oIw
-	agdxhh54dkQvakysdrDevfQqVA==
-X-Google-Smtp-Source: AGHT+IE/PBgzoBJ8Ws+SL+3i6nraA8b/wENcr1l/EEeAgWaYFs8Qk2jIooGzKUNVhMzQuoh7R1gOfw==
-X-Received: by 2002:a05:6512:110f:b0:500:99a9:bc40 with SMTP id l15-20020a056512110f00b0050099a9bc40mr981332lfg.69.1695899001911;
-        Thu, 28 Sep 2023 04:03:21 -0700 (PDT)
+        bh=9yhFXWgI+Nw/HVhizDlvwlBGCzre1lf/F+Jl5Rt5/EM=;
+        b=T8pev7KxrBd5XCYyxDhiy0LtaU3PezqH/zkSdaXkMmnSnPANxgFjPOR8HVuzFzDtBS
+         EfN17+UhE1lXSsNtpXhoWWkHmkTAi25PSLmykpakz+0MOUHhlm/WMgOjk9pWA4NR1phl
+         M2YsvTCH0Q6lsV0D83yYpNxqvHlVcCJYcXMjaXQduQjyInkVWwhVxb0i+zaErgaGZ+La
+         l+DlAKTPrY1frPh3M73qKKueQuWfovNtB4/YWazqwf1V7cth4+SA2rEiFi300ejz40f7
+         yaMLeoZQ48/kv1UFcB+gokM8TA2zrkGaUEuU93akvDv+PM0iMSGn260HaRztIg6HmY6l
+         WczA==
+X-Gm-Message-State: AOJu0YxH29RmGR7jySW8Ofdzg1p9YbuXYxELBO0HnRIkknp9/5aFSYfF
+	ihYOQcutduWXt5un683PIrt1Pw==
+X-Google-Smtp-Source: AGHT+IGJ3VQlIwDXgujPjHoTOnOyrlE25RMQMjsLqHuYdGkNYO0mipGztQzoq6UxJQ9OULFdnsPCAQ==
+X-Received: by 2002:a05:6512:1053:b0:502:9c4e:d46a with SMTP id c19-20020a056512105300b005029c4ed46amr1105183lfb.32.1695899002865;
+        Thu, 28 Sep 2023 04:03:22 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id u2-20020a056512040200b005030a35019dsm3052953lfk.178.2023.09.28.04.03.21
+        by smtp.gmail.com with ESMTPSA id u2-20020a056512040200b005030a35019dsm3052953lfk.178.2023.09.28.04.03.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Sep 2023 04:03:21 -0700 (PDT)
+        Thu, 28 Sep 2023 04:03:22 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Andy Gross <agross@kernel.org>,
 	Bjorn Andersson <andersson@kernel.org>,
@@ -63,9 +63,9 @@ To: Andy Gross <agross@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-input@vger.kernel.org
-Subject: [PATCH v6 14/36] ARM: dts: qcom: msm8660: move PMIC interrupts to the board files
-Date: Thu, 28 Sep 2023 14:02:47 +0300
-Message-Id: <20230928110309.1212221-15-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v6 15/36] ARM: dts: qcom: msm8960: move PMIC interrupts to the board files
+Date: Thu, 28 Sep 2023 14:02:48 +0300
+Message-Id: <20230928110309.1212221-16-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230928110309.1212221-1-dmitry.baryshkov@linaro.org>
 References: <20230928110309.1212221-1-dmitry.baryshkov@linaro.org>
@@ -88,54 +88,54 @@ not a property of the SoC, it is a property of the particular board
 (even if it is standard and unified between all devices). Move these
 interrupt specifications to the board files.
 
-Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm/boot/dts/qcom/qcom-apq8060-dragonboard.dts | 4 ++++
- arch/arm/boot/dts/qcom/qcom-msm8660-surf.dts        | 4 ++++
- arch/arm/boot/dts/qcom/qcom-msm8660.dtsi            | 2 --
+ arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts                | 4 ++++
+ arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts | 4 ++++
+ arch/arm/boot/dts/qcom/qcom-msm8960.dtsi                   | 2 --
  3 files changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8060-dragonboard.dts b/arch/arm/boot/dts/qcom/qcom-apq8060-dragonboard.dts
-index 48fd1a1feea3..e4261d729d35 100644
---- a/arch/arm/boot/dts/qcom/qcom-apq8060-dragonboard.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8060-dragonboard.dts
-@@ -273,6 +273,10 @@ kxsd9@18 {
+diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts b/arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts
+index 4641b4f2195d..43149c90c4fc 100644
+--- a/arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts
++++ b/arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts
+@@ -88,6 +88,10 @@ clk-pins {
  	};
  };
  
-+&pm8058 {
-+	interrupts-extended = <&tlmm 88 IRQ_TYPE_LEVEL_LOW>;
++&pm8921 {
++	interrupts-extended = <&msmgpio 104 IRQ_TYPE_LEVEL_LOW>;
 +};
 +
- &pm8058_gpio {
- 	dragon_ethernet_gpios: ethernet-state {
- 		pinconf {
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8660-surf.dts b/arch/arm/boot/dts/qcom/qcom-msm8660-surf.dts
-index 86fbb6dfdc2a..a5441aecd637 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8660-surf.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8660-surf.dts
-@@ -34,6 +34,10 @@ &gsbi12_serial {
- 	status = "okay";
+ &pm8921_keypad {
+ 	linux,keymap = <
+ 		MATRIX_KEY(0, 0, KEY_VOLUMEUP)
+diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts b/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
+index 13e85c287498..9e203164beb6 100644
+--- a/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
++++ b/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
+@@ -84,6 +84,10 @@ clk-pins {
+ 	};
  };
  
-+&pm8058 {
-+	interrupts-extended = <&tlmm 88 IRQ_TYPE_LEVEL_LOW>;
++&pm8921 {
++	interrupts-extended = <&msmgpio 104 IRQ_TYPE_LEVEL_LOW>;
 +};
 +
- &pm8058_keypad {
- 	linux,keymap = <
- 		MATRIX_KEY(0, 0, KEY_FN_F1)
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8660.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8660.dtsi
-index 9217ced108c4..84b0366792d4 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8660.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8660.dtsi
-@@ -341,8 +341,6 @@ ssbi@500000 {
+ &rpm {
+ 	regulators {
+ 		compatible = "qcom,rpm-pm8921-regulators";
+diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
+index ea2d961b266b..f1267c83d67a 100644
+--- a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
+@@ -266,8 +266,6 @@ ssbi@500000 {
  
- 			pm8058: pmic {
- 				compatible = "qcom,pm8058";
--				interrupt-parent = <&tlmm>;
--				interrupts = <88 8>;
+ 			pm8921: pmic {
+ 				compatible = "qcom,pm8921";
+-				interrupt-parent = <&msmgpio>;
+-				interrupts = <104 IRQ_TYPE_LEVEL_LOW>;
  				#interrupt-cells = <2>;
  				interrupt-controller;
  				#address-cells = <1>;
