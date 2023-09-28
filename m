@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-4037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EE8B7B11EC
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 07:07:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F8D57B11F8
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 07:21:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 338122815A9
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 05:07:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 777B5B20999
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 05:21:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39F1AF50B;
-	Thu, 28 Sep 2023 05:07:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6890A125CC;
+	Thu, 28 Sep 2023 05:21:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD5718471
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 05:07:04 +0000 (UTC)
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 051C1199
-	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 22:07:00 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9ae75ece209so1420389066b.3
-        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 22:07:00 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC31AE553
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 05:21:35 +0000 (UTC)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E38A7139
+	for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 22:21:29 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9a9d82d73f9so1547448266b.3
+        for <devicetree@vger.kernel.org>; Wed, 27 Sep 2023 22:21:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695877619; x=1696482419; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695878488; x=1696483288; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=iharTJU5Bifx1z2hCCj9/iXAdTatfSCs/y5PbcRu+IM=;
-        b=COUt88vdnfwCvukUQ6iRyOSbAv4Yf1C6/+Uv8ywThKn35I4djYP94gYDFka6+bO0OW
-         iJpLtnxRpL58/0ly8IGkNF3nCpi72N2QV9rvmZ/LinAJlPvPdHQA4HXQd/hQlWS5OEAg
-         SjhJuqffP5p6jzcv8cxdSJq64nRC4tkLCSW6675QEqXFicaJAzlLAG2M1qV8UqrXbx+m
-         Btp3chGzhXsz8d330c4ONP8NCjfTCAymVXhf+zmU4kc8xRQW1RhiDQL0kyoY9Z7pAhO4
-         ElkNhjkd87rW2jK1OIoQcHEWwvVQ1gWLZLlxFcGulcnN2GdG0W0kuXlE16yKlYO1wpdM
-         TOnw==
+        bh=IctSNdmwP27jdIkRDHGtBl56HPuutEqsWQ3K1xwqCM0=;
+        b=aoEQP5Rjc5ZNYQNrei6cdSkuXyvUeU/pbQkvmZASAFNvoQgWSpFIT+KbZY73QWSpnd
+         If6dvXdScViqYtm46ZukiDxoagHulPcWw2sqQ68Eyg6AVEzB8gEcDUMgMpjiJ70SQdgy
+         Zq+49MIA4JRhOgrxkVYqXfFepCyu4/OuhBcylSNuTYz/vmQ67zloCOu36GM3q7gACIF5
+         8NZV9mjX2vpBKNoggeeyMU1pUn2aPlQqUMG2p2TJ5Gbmj0s21cAaoc0RtJfRAyXFZ0MF
+         yaOXbIAa0ehZVfPNp8xrk6qesS9/Bd1gtT6BOBCjy1RdgmK/ZoDYOjaRKdoERZB0xg8C
+         sTgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695877619; x=1696482419;
+        d=1e100.net; s=20230601; t=1695878488; x=1696483288;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iharTJU5Bifx1z2hCCj9/iXAdTatfSCs/y5PbcRu+IM=;
-        b=AVA3zAWYs5N0jpSBjLDYVkI2ri8hCrG1PyxGmuWJWJ0x+RQNin0ZBrsBv1vHxqUOal
-         AVYY3ukJgSqpMxkpNVrSJaIKaQCOvqW4PoDJGFLrGMzEzUK1aWwG3o6DgWR24skq1ESX
-         9Zl3jDj8dV5RKrRpn0jtAuj0A9GN+eGMIxUKwmmMhwSIMsQHe/tDAzstnm6V0yQOtK5b
-         xwhw3wC93PcffZt4H4CJXB/TT5+qkAfD3dLkHUVXw8Y2hpdZkPrXhMuuNW8GtiBrGxC5
-         Vf+HHX7GXu5sQTR2Mm6lrW8yGT3ySoAONQtNOkcNv6CAdcsPi77+mVxAjLUG2wXJEHFT
-         WJww==
-X-Gm-Message-State: AOJu0YwgGnfvlTL5zL/qbnKLG5H9yQkl2yCWwRF5k+DCwgynjcmj3d3+
-	8scoElVBPthihAqiX4FUKQ5omw==
-X-Google-Smtp-Source: AGHT+IEDIkYhRtbBw3Mzn5spS8ZQv67kDmvuQX0UfKumFs9KpLvHbUtItvXsOR6yd3K2sN6A2avD/A==
-X-Received: by 2002:a17:907:b10:b0:9b2:78bf:d8d4 with SMTP id h16-20020a1709070b1000b009b278bfd8d4mr151066ejl.5.1695877618796;
-        Wed, 27 Sep 2023 22:06:58 -0700 (PDT)
-Received: from [192.168.1.234] (host-87-4-82-94.retail.telecomitalia.it. [87.4.82.94])
-        by smtp.gmail.com with ESMTPSA id gx10-20020a170906f1ca00b0099cb349d570sm10279642ejb.185.2023.09.27.22.06.56
+        bh=IctSNdmwP27jdIkRDHGtBl56HPuutEqsWQ3K1xwqCM0=;
+        b=NZMnqs9EQDNOrBZcxPNPmQmqrZ24RJ/F4/APey3be6xveAFsDQxy+nsPNV/mWsFYjl
+         grKbzjgAkjBLU/0+Kq2c7+Q0edU+URatLOdMseq2zYcvNJxe2h5unYTJuxYqq6eERZ49
+         c5fxT7wVYjeGAo9oicTt25WYcXTTNVLD0ccuXFfjo02ulF1OwxUTBGxX8p+JEfaXzPE+
+         rOScIfzPI5IvJfrG6FMfxXv8nMOn8m6TrblPfqrh0ZQM5coP2vgh7l+jTT4nSAk4E3py
+         gmRi8hp33vu5+WArvJKpWCTQMjABcg1ZSd1g01LregCz+p1EOnpN4kjnPIpoQG8To8b2
+         fNow==
+X-Gm-Message-State: AOJu0Yw8NvEAdSho/MrUJR84UCL7T4gxEOh6SexXZ1XUYNQLHGCWagPf
+	LGsHBm8lbq4MIuLhP3vqbQgQcg==
+X-Google-Smtp-Source: AGHT+IHCI6nP8GJrizsiycPqb9sumMYLwbNfauPQm9m/YdWVDylObm9wgRL27P0XVvBUJvRPacOxyA==
+X-Received: by 2002:a17:906:1dd:b0:9ae:6355:64bb with SMTP id 29-20020a17090601dd00b009ae635564bbmr200009ejj.73.1695878488360;
+        Wed, 27 Sep 2023 22:21:28 -0700 (PDT)
+Received: from [192.168.1.235] (host-87-4-82-94.retail.telecomitalia.it. [87.4.82.94])
+        by smtp.gmail.com with ESMTPSA id v5-20020a1709064e8500b00993470682e5sm10174443eju.32.2023.09.27.22.21.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Sep 2023 22:06:58 -0700 (PDT)
-Message-ID: <e243a285-156f-4947-8932-45f2a8e3ec93@linaro.org>
-Date: Thu, 28 Sep 2023 07:06:56 +0200
+        Wed, 27 Sep 2023 22:21:27 -0700 (PDT)
+Message-ID: <5e453da1-91b6-4f55-8af7-c25e9d28be7a@linaro.org>
+Date: Thu, 28 Sep 2023 07:21:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,30 +63,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [EXT] Re: [PATCH v4 2/2] dt-bindings: media: imx-jpeg: Assign
- slot for imx jpeg encoder/decoder
+Subject: Re: [PATCH 2/2] usb: dwc3: add T-HEAD TH1520 usb driver
 Content-Language: en-US
-To: Ming Qian <ming.qian@nxp.com>,
- "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "shawnguo@kernel.org" <shawnguo@kernel.org>
-Cc: "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "mchehab@kernel.org" <mchehab@kernel.org>,
- "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
- "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
- "kernel@pengutronix.de" <kernel@pengutronix.de>,
- "festevam@gmail.com" <festevam@gmail.com>, "X.H. Bao" <xiahong.bao@nxp.com>,
- Eagle Zhou <eagle.zhou@nxp.com>, Tao Jiang <tao.jiang_2@nxp.com>,
- dl-linux-imx <linux-imx@nxp.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-References: <20230926101000.13392-1-ming.qian@nxp.com>
- <20230926101000.13392-2-ming.qian@nxp.com>
- <2c351ca0-cee4-4c1b-956b-6134ad101a9a@linaro.org>
- <AM6PR04MB63415CF2EDCF0AF33F778774E7C2A@AM6PR04MB6341.eurprd04.prod.outlook.com>
+To: Jisheng Zhang <jszhang@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Guo Ren <guoren@kernel.org>,
+ Fu Wei <wefu@redhat.com>, linux-riscv@lists.infradead.org
+References: <20230927164222.3505-1-jszhang@kernel.org>
+ <20230927164222.3505-3-jszhang@kernel.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -132,9 +120,9 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <AM6PR04MB63415CF2EDCF0AF33F778774E7C2A@AM6PR04MB6341.eurprd04.prod.outlook.com>
+In-Reply-To: <20230927164222.3505-3-jszhang@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -142,97 +130,186 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 27/09/2023 11:10, Ming Qian wrote:
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: 2023年9月27日 16:06
->> To: Ming Qian <ming.qian@nxp.com>; Mirela Rabulea (OSS)
->> <mirela.rabulea@oss.nxp.com>; robh+dt@kernel.org; shawnguo@kernel.org
->> Cc: krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
->> mchehab@kernel.org; hverkuil-cisco@xs4all.nl; s.hauer@pengutronix.de;
->> kernel@pengutronix.de; festevam@gmail.com; X.H. Bao
->> <xiahong.bao@nxp.com>; Eagle Zhou <eagle.zhou@nxp.com>; Tao Jiang
->> <tao.jiang_2@nxp.com>; dl-linux-imx <linux-imx@nxp.com>;
->> devicetree@vger.kernel.org; linux-media@vger.kernel.org; linux-
->> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org
->> Subject: [EXT] Re: [PATCH v4 2/2] dt-bindings: media: imx-jpeg: Assign slot for
->> imx jpeg encoder/decoder
->>
->> Caution: This is an external email. Please take care when clicking links or
->> opening attachments. When in doubt, report the message using the 'Report
->> this email' button
->>
->>
->> On 26/09/2023 12:10, Ming Qian wrote:
->>> There are total 4 slots available in the IP, and we only need to use
->>> one slot in one os, assign a single slot, configure interrupt and
->>> power domain only for 1 slot, not for the all 4 slots.
->>>
->>> Signed-off-by: Ming Qian <ming.qian@nxp.com>
->>> ---
->>> v4
->>> - improve commit message
->>> - don't make an ABI break
->>> v3
->>> - add vender prefix, change property slot to nxp,slot
->>> - add type for property slot
->>>
->>>  .../bindings/media/nxp,imx8-jpeg.yaml         | 45 +++++++++----------
->>>  1 file changed, 21 insertions(+), 24 deletions(-)
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
->>> b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
->>> index 3d9d1db37040..4bcfc815c894 100644
->>> --- a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
->>> +++ b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
->>> @@ -32,19 +32,26 @@ properties:
->>>      maxItems: 1
->>>
->>>    interrupts:
->>> -    description: |
->>> -      There are 4 slots available in the IP, which the driver may use
->>> -      If a certain slot is used, it should have an associated interrupt
->>> -      The interrupt with index i is assumed to be for slot i
->>> -    minItems: 1               # At least one slot is needed by the driver
->>> -    maxItems: 4               # The IP has 4 slots available for use
->>> +    description:
->>> +      Interrupt number for slot
->>> +    maxItems: 1
->>>
->>>    power-domains:
->>>      description:
->>>        List of phandle and PM domain specifier as documented in
->>>        Documentation/devicetree/bindings/power/power_domain.txt
->>> -    minItems: 2               # Wrapper and 1 slot
->>> -    maxItems: 5               # Wrapper and 4 slots
->>> +    minItems: 1               # VPUMIX
->>> +    maxItems: 2               # Wrapper and 1 slot
->>> +
->>> +  nxp,slot:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description:
->>> +      Integer number of slot index used. There are 4 slots available in the IP,
->>> +      and driver can use a certain slot, it should have an associated interrupt
->>> +      and power-domain. In theory, it supports 4 os or vm. If not specified, 0
->>> +      is used by default.
->>> +    minimum: 0
->>> +    maximum: 3
->>
->> NAK, you still did not answer concerns why this is needed and justified.
->> I keep asking and you keep ignoring...
->>
->> Best regards,
->> Krzysztof
+On 27/09/2023 18:42, Jisheng Zhang wrote:
+> Adds TH1520 Glue layer to support USB controller on T-HEAD TH1520 SoC.
+> There is a DesignWare USB3 DRD core in TH1520 SoCs, the dwc3 core is
+> the child of this USB wrapper module device.
 > 
-> Hi Krzysztof,
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> ---
+>  MAINTAINERS                   |   1 +
+>  drivers/usb/dwc3/Kconfig      |   9 +++
+>  drivers/usb/dwc3/Makefile     |   1 +
+>  drivers/usb/dwc3/dwc3-thead.c | 119 ++++++++++++++++++++++++++++++++++
+>  4 files changed, 130 insertions(+)
+>  create mode 100644 drivers/usb/dwc3/dwc3-thead.c
 > 
->> Nothing explains what is a slot and nothing explains why do you need this property.
-> 
-> I thought I had answered that question, but seems you don't agree with that explanation. 
-> Would the following description be any better?
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 90f13281d297..d55e40060c46 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -18481,6 +18481,7 @@ M:	Fu Wei <wefu@redhat.com>
+>  L:	linux-riscv@lists.infradead.org
+>  S:	Maintained
+>  F:	arch/riscv/boot/dts/thead/
+> +F:	drivers/usb/dwc3/dwc3-thead.c
+>  
+>  RNBD BLOCK DRIVERS
+>  M:	Md. Haris Iqbal <haris.iqbal@ionos.com>
+> diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
+> index 98efcbb76c88..1b02f4f55b47 100644
+> --- a/drivers/usb/dwc3/Kconfig
+> +++ b/drivers/usb/dwc3/Kconfig
+> @@ -178,4 +178,13 @@ config USB_DWC3_OCTEON
+>  	  Only the host mode is currently supported.
+>  	  Say 'Y' or 'M' here if you have one such device.
+>  
+> +config USB_DWC3_THEAD
+> +	tristate "T-HEAD Platform"
+> +	depends on ARCH_THEAD || COMPILE_TEST
+> +	default USB_DWC3
+> +	help
+> +	  Support T-HEAD platform with DesignWare Core USB3 IP.
+> +	  Only the host mode is currently supported.
+> +	  Say 'Y' or 'M' here if you have one such device.
+> +
+>  endif
+> diff --git a/drivers/usb/dwc3/Makefile b/drivers/usb/dwc3/Makefile
+> index fe1493d4bbe5..9523a51dd279 100644
+> --- a/drivers/usb/dwc3/Makefile
+> +++ b/drivers/usb/dwc3/Makefile
+> @@ -55,3 +55,4 @@ obj-$(CONFIG_USB_DWC3_QCOM)		+= dwc3-qcom.o
+>  obj-$(CONFIG_USB_DWC3_IMX8MP)		+= dwc3-imx8mp.o
+>  obj-$(CONFIG_USB_DWC3_XILINX)		+= dwc3-xilinx.o
+>  obj-$(CONFIG_USB_DWC3_OCTEON)		+= dwc3-octeon.o
+> +obj-$(CONFIG_USB_DWC3_THEAD)		+= dwc3-thead.o
+> diff --git a/drivers/usb/dwc3/dwc3-thead.c b/drivers/usb/dwc3/dwc3-thead.c
+> new file mode 100644
+> index 000000000000..999b1e319c72
+> --- /dev/null
+> +++ b/drivers/usb/dwc3/dwc3-thead.c
+> @@ -0,0 +1,119 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * dwc3-thead.c - T-HEAD platform specific glue layer
+> + *
+> + * Inspired by dwc3-of-simple.c
+> + *
+> + * Copyright (C) 2021 Alibaba Group Holding Limited.
+> + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+> + * Copyright (c) 2018, The Linux Foundation. All rights reserved.
+> + */
+> +
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+> +#include "core.h"
+> +
+> +#define USB_SSP_EN		0x34
+> +#define  REF_SSP_EN		BIT(0)
+> +#define USB_SYS			0x3c
+> +#define  COMMONONN		BIT(0)
+> +
+> +#define USB3_DRD_SWRST		0x14
+> +#define  USB3_DRD_PRST		BIT(0)
+> +#define  USB3_DRD_PHYRST	BIT(1)
+> +#define  USB3_DRD_VCCRST	BIT(2)
+> +#define  USB3_DRD_RSTMASK	(USB3_DRD_PRST | USB3_DRD_PHYRST | USB3_DRD_VCCRST)
+> +
+> +struct dwc3_thead {
+> +	void __iomem		*base;
+> +	struct regmap		*misc_sysreg;
+> +	struct regulator	*vbus;
+> +};
+> +
+> +static void dwc3_thead_optimize_power(struct dwc3_thead *thead)
+> +{
+> +	u32 val;
+> +
+> +	/* config usb top within USB ctrl & PHY reset */
+> +	regmap_update_bits(thead->misc_sysreg, USB3_DRD_SWRST,
+> +			   USB3_DRD_RSTMASK, USB3_DRD_PRST);
+> +
+> +	/*
+> +	 * dwc reg also need to be configed to save power
+> +	 * 1. set USB_SYS[COMMONONN]
+> +	 * 2. set DWC3_GCTL[SOFITPSYNC](done by core.c)
+> +	 * 3. set GUSB3PIPECTL[SUSPENDEN] (done by core.c)
+> +	 */
+> +	val = readl(thead->base + USB_SYS);
+> +	val |= COMMONONN;
+> +	writel(val, thead->base + USB_SYS);
+> +	val = readl(thead->base + USB_SSP_EN);
+> +	val |= REF_SSP_EN;
+> +	writel(val, thead->base + USB_SSP_EN);
+> +
+> +	regmap_update_bits(thead->misc_sysreg, USB3_DRD_SWRST,
+> +			   USB3_DRD_RSTMASK, USB3_DRD_RSTMASK);
+> +}
+> +
+> +static int dwc3_thead_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *np = dev->of_node;
+> +	struct dwc3_thead *thead;
+> +	int ret;
+> +
+> +	thead = devm_kzalloc(&pdev->dev, sizeof(*thead), GFP_KERNEL);
+> +	if (!thead)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, thead);
+> +
+> +	ret = devm_regulator_get_enable_optional(dev, "vbus");
+> +	if (ret < 0 && ret != -ENODEV)
+> +		return ret;
+> +
+> +	thead->misc_sysreg = syscon_regmap_lookup_by_phandle(np, "thead,misc-sysreg");
 
-No, you didn't. I don't see any explanation in the commit msg. You just
-say you have "4 slots".
+NAK. Test your DTS first. You do not have such property.
+
+> +	if (IS_ERR(thead->misc_sysreg))
+> +		return PTR_ERR(thead->misc_sysreg);
+> +
+> +	thead->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(thead->base))
+> +		return PTR_ERR(thead->base);
+> +
+> +	dwc3_thead_optimize_power(thead);
+> +
+> +	return of_platform_populate(np, NULL, NULL, dev);
+> +}
+> +
+> +static void dwc3_thead_remove(struct platform_device *pdev)
+> +{
+> +	of_platform_depopulate(&pdev->dev);
+> +}
+> +
+> +static const struct of_device_id dwc3_thead_of_match[] = {
+> +	{ .compatible = "thead,th1520-usb" },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, dwc3_thead_of_match);
+> +
+> +static struct platform_driver dwc3_thead_driver = {
+> +	.probe		= dwc3_thead_probe,
+> +	.remove_new	= dwc3_thead_remove,
+> +	.driver		= {
+> +		.name	= "dwc3-thead",
+> +		.of_match_table	= dwc3_thead_of_match,
+> +	},
+> +};
+> +module_platform_driver(dwc3_thead_driver);
+> +
+> +MODULE_ALIAS("platform:dwc3-thead");
+
+No, you do not need this. If you need, your device ID table is wrong.
 
 Best regards,
 Krzysztof
