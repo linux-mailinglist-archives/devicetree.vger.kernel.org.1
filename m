@@ -1,134 +1,142 @@
-Return-Path: <devicetree+bounces-4382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE7047B2490
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 20:01:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C1E97B24B5
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 20:04:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 7FE05282656
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 18:01:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 1FB9C28269B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 18:04:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E52B513CD;
-	Thu, 28 Sep 2023 18:01:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F90D513DA;
+	Thu, 28 Sep 2023 18:04:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C10786FBF
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 18:01:27 +0000 (UTC)
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B2F019E
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 11:01:25 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-5363227cc80so1334984a12.3
-        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 11:01:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20230601.gappssmtp.com; s=20230601; t=1695924084; x=1696528884; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uiur2uBooxXQUwnNCRFKyJNY9Mbndh5Va49ZBRlBVnE=;
-        b=EQe67hE51E/a6VgfxXlBAzZCIDwxZJPDV2ZBN3AT9RwqBeUYxm8q69zZdJ0jEA/gNf
-         IirJYjKSyZUgJt1PVEw7QrLXIcCxUV+PSY5zKHYzggHDxp0gvCesEyMZKaIqE3bSk0oO
-         JpemQ1kLIjtcjLBQ+hM9p7gozeHe4O4tV1rVdoQBaceOU7yDyBixyslDIKOkp+6tI6zz
-         5Yo1CjTihKtDAhxhT+cM+5fkC2IWNMFApqpMm77AP8NdAB38ffhHQkP6oJu8ibCr78pt
-         BbkfnHJ3fZ84OxQ6HWGjHbjnjokI2oXg8vssBisDXNTinYXDkSHfXlp3Agym3+0bRDLh
-         PsJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695924084; x=1696528884;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uiur2uBooxXQUwnNCRFKyJNY9Mbndh5Va49ZBRlBVnE=;
-        b=jV4POulYcKUrlKLsLH7XMI8huhVaCxqziqAljNHB8n1CZ1e5/RWD8nLX2x9CiNOxyW
-         Fv4RyWcpW9SqHRTOwe2WFIj3/Qc2hHc6891jhJ/wkmMyU1kZ1YyjlfL/PN5C9tws2tHS
-         gpKQLGqj81UaAqbvCMvEkZDJVxIf5kCgw65u1F4fAaWGO0SCSjs25Gel3uE1CY9yLyF1
-         01jwADSKRHsW4swq1iIGOa/nvjmVk2vv4IQCnlQa5AXyPyCgcaX5J0TRh6bj9Gmt9snu
-         7VVvbq2fX84WZWoMRe/Tbw4DjpltJFQy0gRxFWk1HrJF4jdUkc2/a3B4dkkrKG6DfrP5
-         ycXQ==
-X-Gm-Message-State: AOJu0YzjlmZFF/r9QNwVVm64LhS3NfmCbYpPPQ/owjKZJa0flLJXjBl8
-	RtxPtV1kpR97w6STvTXsL6JATDeMeA/fWFeTWnmV0g==
-X-Google-Smtp-Source: AGHT+IGaXe8uTKz9Ra+54w7HxJaOzDdbmCsFVteQiYOGSh3tR/eEZ9h+AFAxYV1KjHvtL2mksRiQ52ceS6LkJ4KGNgY=
-X-Received: by 2002:a17:906:5393:b0:9a1:f73b:90ce with SMTP id
- g19-20020a170906539300b009a1f73b90cemr1949184ejo.54.1695924083992; Thu, 28
- Sep 2023 11:01:23 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D484513BD
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 18:04:19 +0000 (UTC)
+X-Greylist: delayed 448 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 28 Sep 2023 11:04:17 PDT
+Received: from nikam.ms.mff.cuni.cz (nikam.ms.mff.cuni.cz [195.113.20.16])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83A06DD;
+	Thu, 28 Sep 2023 11:04:17 -0700 (PDT)
+Received: from gimli.ms.mff.cuni.cz (gimli.ms.mff.cuni.cz [195.113.20.176])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by nikam.ms.mff.cuni.cz (Postfix) with ESMTPS id AA16F2849E2;
+	Thu, 28 Sep 2023 19:56:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gimli.ms.mff.cuni.cz;
+	s=gen1; t=1695923805;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=DWp3kDtho7RU/DdQcVMnlTwUzQKLeIBgkhDxP9Wgdl0=;
+	b=vQU/YjfnQ2WCDqgnnbT2/EXcIiQ72fNfw5LmI81X9kGcN84JD1mvxp4bUNsVGOhhYcKxtR
+	xWhddkYSNNaNgjYPedleSdaSptLcjInqJIMYM0yIogNmMhOhLxbiPNuTgPz8Y0jFCjrUjZ
+	b38mG6AmqkXJADH50Ls5hKhAbrrIrKQ=
+Received: from localhost (internet5.mraknet.com [185.200.108.250])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: karelb)
+	by gimli.ms.mff.cuni.cz (Postfix) with ESMTPSA id 8757644AFF0;
+	Thu, 28 Sep 2023 19:56:45 +0200 (CEST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20230926194335.1451802-1-tharvey@gateworks.com> <a3b3d647-4995-4d55-b6f9-a93119caf86e@linaro.org>
-In-Reply-To: <a3b3d647-4995-4d55-b6f9-a93119caf86e@linaro.org>
-From: Tim Harvey <tharvey@gateworks.com>
-Date: Thu, 28 Sep 2023 11:01:11 -0700
-Message-ID: <CAJ+vNU0R_zU2wh1Om9wgLp4ZREAJia5uxBCgrO7MxNmcZf7uLw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp-venice-gw73xx: add TPM device
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 28 Sep 2023 19:56:45 +0200
+Message-Id: <CVUQTCJBG265.1MTSYOLY0FR7Q@gimli.ms.mff.cuni.cz>
+Cc: "Dmitry Torokhov" <dmitry.torokhov@gmail.com>, "Rob Herring"
+ <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Markuss Broks" <markuss.broks@gmail.com>, <linux-input@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+ <~postmarketos/upstreaming@lists.sr.ht>
+Subject: Re: [PATCH 2/2] input: Imagis: add support for the IST3032C
+ touchscreen
+To: "Jeff LaBundy" <jeff@labundy.com>, "Karel Balej" <balejk@matfyz.cz>
+From: "Karel Balej" <karelb@gimli.ms.mff.cuni.cz>
+References: <20230926173531.18715-1-balejk@matfyz.cz>
+ <20230926173531.18715-3-balejk@matfyz.cz> <ZROIKSVCiTI3VB2B@nixie71>
+In-Reply-To: <ZROIKSVCiTI3VB2B@nixie71>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,
+	RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, Sep 27, 2023 at 12:58=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 26/09/2023 21:43, Tim Harvey wrote:
-> > Add the TPM device found on the GW73xx revision F PCB.
-> >
-> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> > ---
-> >  .../boot/dts/freescale/imx8mp-venice-gw73xx.dtsi      | 11 ++++++++++-
-> >  1 file changed, 10 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi b/=
-arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi
-> > index 48a284478468..43e5e838cefa 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi
-> > @@ -95,8 +95,17 @@ reg_usdhc2_vmmc: regulator-usdhc2-vmmc {
-> >  &ecspi2 {
-> >       pinctrl-names =3D "default";
-> >       pinctrl-0 =3D <&pinctrl_spi2>;
-> > -     cs-gpios =3D <&gpio5 13 GPIO_ACTIVE_LOW>;
-> > +     cs-gpios =3D <&gpio5 13 GPIO_ACTIVE_LOW>,
-> > +                <&gpio1 10 GPIO_ACTIVE_LOW>;
-> >       status =3D "okay";
+Hello, Jeff,
+
+thank you very much for your feedback.
+
+> > +	if (chip_id =3D=3D IST3032C_WHOAMI) {
+> > +		/*
+> > +		 * if the regulator voltage is not set like this, the touchscreen
+> > +		 * generates random touches without user interaction
+> > +		 */
+> > +		error =3D regulator_set_voltage(ts->supplies[0].consumer, 3100000, 3=
+100000);
+> > +		if (error)
+> > +			dev_warn(dev, "failed to set regulator voltage\n");
+> > +	}
 > > +
-> > +     tpm@1 {
-> > +             compatible =3D "tcg,tpm_tis-spi";
-> > +             #address-cells =3D <0x1>;
-> > +             #size-cells =3D <0x1>;
 >
-> Why do you need these?
+> Opinions may vary, but mine is that this kind of hard-coded board-level p=
+olicy
+> does not belong in the driver. Surely the supply need not be equal to exa=
+ctly
+> 3.1 V and this is merely an upper or lower limit? Assuming so, what if th=
+e board
+> designer opts to share this supply with another consumer that requires a =
+specific
+> voltage not equal to 3.1 V, but still within the safe range of IST3032C?
 >
-> > +             reg =3D <0x1>;
->
-> reg is always after compatible
->
-> > +             spi-max-frequency =3D <36000000>;
-> > +     };
-> >  };
-> >
-> >  &gpio4 {
->
-> Best regards,
-> Krzysztof
->
+> To me, this restriction belongs in dts, specifically within the regulator=
+ child
+> node referenced by the client which bears the new 'ist3032c' compatible s=
+tring.
+> Maybe a better solution is to simply note this presumed silicon erratum i=
+n the
+> description of the vdd supply in the binding which, as Conor states, must=
+ not be
+> clubbed with driver patches.
 
-Krzysztof,
+I agree that the voltage should not be hardcoded. I do not know what the
+safe range for the touchscreen is though, because the downstream driver
+does exactly this. I will try to test it with several values within the
+range allowed by the regulator and see if I can determine some limits on
+when the "ghost" touches do not appear.
 
-Thanks for the review - I will remove the unnecessary properties with a v2
+However I am not sure whether this setting should be moved to the
+regulator DT - it is my understanding that the DT for the regulator
+should list the min/max range *supported* by the regulator, not conform
+to requirements of its consumers, which should instead ask for the
+regulator to be set to a range they require themselves, via their driver
+- is it not so?
 
-Best Regards,
+The regulator driver is not mainlined yet (although I managed to get the
+downstream code working with mainline), however the downstream DT
+contains much wider range of supported voltage (compared to those 3.1 V
+used by the touchscreen) - an information which would get lost if I set
+the DT for the regulator by the requirements of the touchscreen, which I
+believe would have similiar implications as what you said regarding
+using this regulator with other consumers.
 
-Tim
+What would seem a reasonable solution to me would be to move the voltage
+range values to the touchscreen DT (which incidentally is what the
+downstream driver does also, except it uses one value for both min and
+max), so that they would be set by the driver but not hardcoded in the
+code - what do you think about this?
+
+Best regards,
+K. B.
 
