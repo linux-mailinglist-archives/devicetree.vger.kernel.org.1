@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-4230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0229E7B1931
+	by mail.lfdr.de (Postfix) with ESMTPS id 834AF7B1932
 	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 13:03:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id A84302824AC
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 11:03:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 366532829A7
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 11:03:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 726EA36AE8;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F02DB36AEA;
 	Thu, 28 Sep 2023 11:03:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0608F37155
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B51336B00
 	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 11:03:38 +0000 (UTC)
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E36CDCDF
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 04:03:33 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-50336768615so21737972e87.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 04:03:33 -0700 (PDT)
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B022CCE0
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 04:03:34 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-5041bb9ce51so20483675e87.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 04:03:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695899012; x=1696503812; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695899013; x=1696503813; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OFX9JomlQAWrg2wVtXgvkj8bMtfCZmpZ79ww1DHQiqs=;
-        b=t/EMW/ZkOfzBKLPp0fPEAnbgkjb+LZ6VgtvkHPvfNClf8lmlbBpUPnWTUKD/mpavvl
-         XhtTEGE1THArAnLEwr5IkS9gr9/78kZv7yFUbVoTT7v7M6YPGooTWSjWVce9N8LaX4D4
-         iQzj0iCZ44G18cwT1MaUmIJ+nnMv1V0ODBQwE0Vkzv0y9Q+a5Eu8MlkaM4EgDKKQdKMf
-         t4WU4J+6Xb+k5BIJBxjRmKUVfrSbNOFR9Q/qETGOFfvOHa9h7T2K/BwDDhyGJIZmQ7NE
-         xgTK3jPfqrKbuBPN9Xuf781oxrFs97X2DJoshJwyj7YOfmrTd5tn7Nqv4xn3gpP++dJb
-         6tzg==
+        bh=dm6eWdkXRtbkiE6yiEQEBoDe5iM/WM4eQNZl22nI37Q=;
+        b=qa8oRA7DYVjUSsIJWvwcPgnnngXw8Wz/XC2HjNoErWQdClDrAUVHIDgRurQptxin3g
+         cJZpbw1zAnXt20H5QT5kVITVSOmMQTL9E7Xu+4I4EZ71EKix9qhFGY0POWGLX5Ld83eR
+         Vlkr/Scxz4vIWyDVSASIZ24FD0ST38TuM6Areg0K8XKuDEQSGCyrfvvOSj8+HGFKqKRl
+         O3Y6l24D2Bq0H7pkz75uleVOHpADMr2AmvXDsoZYFOiokzoY8OLqrAlQLrq1kdAHd3s7
+         x7TtvaYtonbOXxxnDTukuprOoFB3QGfJSiRcwb49cNuhcNnmGFer8BZAZfAnUskmT1UW
+         5tog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695899012; x=1696503812;
+        d=1e100.net; s=20230601; t=1695899013; x=1696503813;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OFX9JomlQAWrg2wVtXgvkj8bMtfCZmpZ79ww1DHQiqs=;
-        b=K0X872wDP3BA69agVcLkHQPXlS2Z0RyTv0DJR/4piA2F7u8iVO8kft++KAzD3dSdh5
-         6WFDLC1209cK5ZOms4fR3c77pA1VxFhQzMiTw71KIdveOEOUTn+0jHHCxH3xogRaeK+0
-         Acu3qpzolCfwGa2CpOxYiwdQLaBIDij2s5qH6Fk3brKHcnqb+Q4Z4sK5M30MojQ59ciZ
-         jVwN+B4PAFuo+nq3aNbMIvv9IwzPj4pdRKcx2RTcWaCywEI6MioZwsltHPVH3Koa/Mm+
-         YMajNvJWrpCwP9H+ytY59ECbdtKnEejpn+S806kfAO756XltPMWZb2VT7DoAOH4ueW6v
-         WIkA==
-X-Gm-Message-State: AOJu0YzWtCdX38Cbk4MhzCvVONYg84CLH5uBn97sfJoUAbOpuS+DrmFP
-	9FtNow4fZRIT+83Dotg0rrNp2A==
-X-Google-Smtp-Source: AGHT+IHdEfPI24XGfVGZEfYWZKHcs+lEBcRXhLp+C5z556VudXi8sGfQagUsYFtsfVN5X512utV2sg==
-X-Received: by 2002:a05:6512:1388:b0:503:1bd4:5e43 with SMTP id fc8-20020a056512138800b005031bd45e43mr1025434lfb.40.1695899012070;
-        Thu, 28 Sep 2023 04:03:32 -0700 (PDT)
+        bh=dm6eWdkXRtbkiE6yiEQEBoDe5iM/WM4eQNZl22nI37Q=;
+        b=ApdtgA/Y+kBEQq/K7PluZkfzzPG8LnbIGhRrVXrUQEUvtejQD3JH9hw0p8E84Q5zkw
+         eqDkxvAaTnsq7FUXL4IRmKXlgMJDnRoXuxU7fO7nRXyd0iqHLEefcl3fz5Bz4Kbwjv/8
+         Hv7zxPyf4RbK2dPAh4rt7oNm6M8IvsNJNO3Xf2tRUrVBT6Edn0XmPryUpS7ZnUWUTEQ2
+         YzM9sQ2JpBpL07HCTUEnAqCop1N254of4GZSgMWM0JdTNShuumgsCgipM83q8akwxR+8
+         28S1e5h1f/pMeD65pbK4TimjXtp+5im+hQwr2kM/N6uN+DeQ0lIbLF6cuKPkjabCWalj
+         Iwug==
+X-Gm-Message-State: AOJu0Yxtt2nQylzkvfmyc0AvnUzvsovSkyNt4nEiAjMN7zo/NbpDtCPJ
+	x7lXMav74AXuwMdsIqLOERYy+g==
+X-Google-Smtp-Source: AGHT+IEnl1aVLFAz34yc6Y9Kbyr/iB1hncHxUTCaffKSciAtgUe7cB6jUvUXjWMTWVZJqsB9f5RIRQ==
+X-Received: by 2002:a05:6512:39c4:b0:500:bffa:5b85 with SMTP id k4-20020a05651239c400b00500bffa5b85mr1081423lfu.32.1695899013018;
+        Thu, 28 Sep 2023 04:03:33 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id u2-20020a056512040200b005030a35019dsm3052953lfk.178.2023.09.28.04.03.31
+        by smtp.gmail.com with ESMTPSA id u2-20020a056512040200b005030a35019dsm3052953lfk.178.2023.09.28.04.03.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Sep 2023 04:03:31 -0700 (PDT)
+        Thu, 28 Sep 2023 04:03:32 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Andy Gross <agross@kernel.org>,
 	Bjorn Andersson <andersson@kernel.org>,
@@ -63,9 +63,9 @@ To: Andy Gross <agross@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-input@vger.kernel.org
-Subject: [PATCH v6 25/36] ARM: dts: qcom: pm8921: switch to interrupts-extended
-Date: Thu, 28 Sep 2023 14:02:58 +0300
-Message-Id: <20230928110309.1212221-26-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v6 26/36] ARM: dts: qcom: pm8018: switch to interrupts-extended
+Date: Thu, 28 Sep 2023 14:02:59 +0300
+Message-Id: <20230928110309.1212221-27-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230928110309.1212221-1-dmitry.baryshkov@linaro.org>
 References: <20230928110309.1212221-1-dmitry.baryshkov@linaro.org>
@@ -87,49 +87,38 @@ Merge interrups and interrupt-parent properties into a single
 interrupts-extended property.
 
 Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Reviewed-by: Konrad DYbcio <konrad.dybcio@linaro.org>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm/boot/dts/qcom/pm8921.dtsi | 13 +++++--------
- 1 file changed, 5 insertions(+), 8 deletions(-)
+ arch/arm/boot/dts/qcom/pm8018.dtsi | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom/pm8921.dtsi b/arch/arm/boot/dts/qcom/pm8921.dtsi
-index fa00b57e28b9..360a179670c5 100644
---- a/arch/arm/boot/dts/qcom/pm8921.dtsi
-+++ b/arch/arm/boot/dts/qcom/pm8921.dtsi
-@@ -11,9 +11,8 @@ pm8921: pmic {
- 		pwrkey@1c {
- 			compatible = "qcom,pm8921-pwrkey";
+diff --git a/arch/arm/boot/dts/qcom/pm8018.dtsi b/arch/arm/boot/dts/qcom/pm8018.dtsi
+index 85ab36b6d006..22f3c7bac522 100644
+--- a/arch/arm/boot/dts/qcom/pm8018.dtsi
++++ b/arch/arm/boot/dts/qcom/pm8018.dtsi
+@@ -18,9 +18,8 @@ pwrkey@1c {
+ 			compatible = "qcom,pm8018-pwrkey",
+ 				     "qcom,pm8921-pwrkey";
  			reg = <0x1c>;
--			interrupt-parent = <&pm8921>;
+-			interrupt-parent = <&pm8018>;
 -			interrupts = <50 IRQ_TYPE_EDGE_RISING>,
 -				     <51 IRQ_TYPE_EDGE_RISING>;
-+			interrupts-extended = <&pm8921 50 IRQ_TYPE_EDGE_RISING>,
-+					      <&pm8921 51 IRQ_TYPE_EDGE_RISING>;
++			interrupts-extended = <&pm8018 50 IRQ_TYPE_EDGE_RISING>,
++					      <&pm8018 51 IRQ_TYPE_EDGE_RISING>;
  			debounce = <15625>;
  			pull-up;
  		};
-@@ -32,17 +31,15 @@ pm8921_mpps: mpps@50 {
+@@ -38,8 +37,7 @@ pm8018_mpps: mpps@50 {
  		rtc@11d {
- 			compatible = "qcom,pm8921-rtc";
+ 			compatible = "qcom,pm8018-rtc", "qcom,pm8921-rtc";
  			reg = <0x11d>;
--			interrupt-parent = <&pm8921>;
+-			interrupt-parent = <&pm8018>;
 -			interrupts = <39 IRQ_TYPE_EDGE_RISING>;
-+			interrupts-extended = <&pm8921 39 IRQ_TYPE_EDGE_RISING>;
++			interrupts-extended = <&pm8018 39 IRQ_TYPE_EDGE_RISING>;
  			allow-set-time;
  		};
  
- 		pm8921_keypad: keypad@148 {
- 			compatible = "qcom,pm8921-keypad";
- 			reg = <0x148>;
--			interrupt-parent = <&pm8921>;
--			interrupts = <74 IRQ_TYPE_EDGE_RISING>,
--				     <75 IRQ_TYPE_EDGE_RISING>;
-+			interrupts-extended = <&pm8921 74 IRQ_TYPE_EDGE_RISING>,
-+					      <&pm8921 75 IRQ_TYPE_EDGE_RISING>;
- 			debounce = <15>;
- 			scan-delay = <32>;
- 			row-hold = <91500>;
 -- 
 2.39.2
 
