@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-4217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 048B47B190F
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 13:03:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00DE17B1914
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 13:03:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 1C9981C20A25
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id A446F282726
 	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 11:03:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D85D36B1C;
-	Thu, 28 Sep 2023 11:03:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBBEE37148;
+	Thu, 28 Sep 2023 11:03:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34E92358B4
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 11:03:23 +0000 (UTC)
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D4FB19D
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6E113715B
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 11:03:25 +0000 (UTC)
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D133F19F
 	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 04:03:22 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-50307acd445so20353555e87.0
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-50444e756deso16706602e87.0
         for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 04:03:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695899000; x=1696503800; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695899001; x=1696503801; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=EOrWUiYOcXCyoqm0CVvNGXKNYMS6loIPhDCU3q6avBA=;
-        b=vz5N7stNicRwlY+5ObjrwJbJOuewu8BPIR5VJAtVSD/gwC3pixFA9PY7LxKkIlUJod
-         /0NKrtDW8FibQ5XeOoSujl1wO1zDq5rOr7CJfoiUcS/F95ZCkgJYCWLGzCUOrjs+4t3Q
-         vGbCJ4t7Jsap7I/Q7EnhHnlrZUNoa9/CtJvJEdl2jJWl20xOJ2PfYPMfUyOTfDNb2waX
-         PBrSe5e3CgibeaO/M21RV+Scxy2xPyrfoiFicWlF7OQN4hpnnBdXS0ENv3I2cS0O5JtU
-         65gatUwvaHCGuJiaOIycHu+jmUZ8ITGv5kfZNHKN8pAkmIeSKOY8eoIOVY7kOE+CHZ9Q
-         B9EQ==
+        bh=iUde0xWN/AjS01R5yGPdNlIjFEbaN381Y5DCWq+FQog=;
+        b=AyELNFiY81zR5BmQCMN2hW6Er5zSy9S2nWr6qJn88ST6QcnKG1tfO+88kdKem5QvQw
+         5/jQniJOwXc/gv2HMny6z4e/+cKXR3wkJvyHoJ3vXCn1kI84MpgHDiAeLoluZT9q5Om4
+         EMdTo/V1YpFgZpP1b4YOLjLW9Tv8Xk/KAtCGAqUIrEnHQdYPt7bo4a1EJlXpVEnRfO5s
+         3AtET5Ml4GbJdkfHQA5jA1hCf6zgCj2iAPhztQjGyNLMXx49n5ZqDmnq3XPpZmhec3A+
+         4mN5+VAHoZhSj09sHsvey4dSlf3WbOBNuoCWQw3yOfapeurcks2WOTnm9qKyFoYF0ePC
+         2qqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695899000; x=1696503800;
+        d=1e100.net; s=20230601; t=1695899001; x=1696503801;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=EOrWUiYOcXCyoqm0CVvNGXKNYMS6loIPhDCU3q6avBA=;
-        b=tu8OA1qWD5xCLAboAg4mC14kjjNLK3Ek3q3qIBkZxXpqMbtJngRV1fIb3B4L6o4byV
-         Ye+30ph2+aoZb50eXhowfmmzd1uquIFQyQVHWxPzAGOl1XTEngck+XQSR/L8S8jvAM4S
-         rMWHAYZSRkm0K4nE56JxqbckWWaMFa9Nvx2Twoovy5GNyaqrc7JqTMh2lHYDx9fO8X05
-         2UyxMKavMsx8mF/QmKEn9yHTv4TlGe/0WjW/6MAL2FpCkPWCqRlp6nD5a3HVwSUM0+F4
-         9ZsrikG11VEdTQxwpwQPmpS2qPCe9QZ+lPb8OiR9jC3fMbQrmmbB5yMDv4YuGHsoHIRO
-         FGGQ==
-X-Gm-Message-State: AOJu0Yx79XDq12naLSGDDYRuHP1Of0GQLAGFUCbm3M/BXAoLC9mZ6igM
-	MXg8/T4Ew7jM7Y8ePvCIC6zOAw==
-X-Google-Smtp-Source: AGHT+IFm6Ng1Z6O/arM2t1g9uy9MH7ekEiS4EP5Qzd0lJlf3iujZ6mvxQBUiCIMWT/yhjjTO0MOfdA==
-X-Received: by 2002:a05:6512:1396:b0:4fa:5e76:7ad4 with SMTP id fc22-20020a056512139600b004fa5e767ad4mr1052591lfb.10.1695899000402;
-        Thu, 28 Sep 2023 04:03:20 -0700 (PDT)
+        bh=iUde0xWN/AjS01R5yGPdNlIjFEbaN381Y5DCWq+FQog=;
+        b=m4dp6rUSaL6o3SV8tnEETxIQTMzdkST1YFqQTgD/TiET/wa5V3zTOBgojkpkDmDTXb
+         KHIobFVWh3mddx1xXb+nFSHk2pOcE02W8AaATN6kTwUohYPosB0jjcoH3MOblA3uNCHU
+         ccn5/7WsyHd02baRRYx6ZcJLZzd/uZ1iThPzy7l268bx38qbfs6nkIYjWJcEFaTgIe0q
+         UAUKQSpmsI+Q5w9x3M8b41ts0qd5R6cUjfJbawJRBXjdzAR3NBDtgw64ZmwYsy7TIZTT
+         Ef3xQNLSgzi65EZpM2aak+gc4uDGuoPYZg3lqzN08v3Lreo2DML0vs62o2XffgeTzzKu
+         fpWA==
+X-Gm-Message-State: AOJu0YxnKgdPznw1h5ljj0bwjHBCi5JosFqJ57k2mafaGvT0X34LYg/9
+	6SBzX4vnS7HL3gqiJmfRMo/QCh2gGjzemZzHCSi27Q==
+X-Google-Smtp-Source: AGHT+IEdXV+w9LHV/GVWD+gT78HA93kFON+U4naGZaAFCFTa05TKKC9TWERFiSA+3sk7IKuhesyKiw==
+X-Received: by 2002:a05:6512:527:b0:500:9d4a:89ff with SMTP id o7-20020a056512052700b005009d4a89ffmr860031lfc.62.1695899001166;
+        Thu, 28 Sep 2023 04:03:21 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id u2-20020a056512040200b005030a35019dsm3052953lfk.178.2023.09.28.04.03.19
+        by smtp.gmail.com with ESMTPSA id u2-20020a056512040200b005030a35019dsm3052953lfk.178.2023.09.28.04.03.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Sep 2023 04:03:19 -0700 (PDT)
+        Thu, 28 Sep 2023 04:03:20 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Andy Gross <agross@kernel.org>,
 	Bjorn Andersson <andersson@kernel.org>,
@@ -63,9 +63,9 @@ To: Andy Gross <agross@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-input@vger.kernel.org
-Subject: [PATCH v6 12/36] ARM: dts: qcom: apq8064: move PMIC interrupts to the board files
-Date: Thu, 28 Sep 2023 14:02:45 +0300
-Message-Id: <20230928110309.1212221-13-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v6 13/36] ARM: dts: qcom: mdm9615: move PMIC interrupts to the board files
+Date: Thu, 28 Sep 2023 14:02:46 +0300
+Message-Id: <20230928110309.1212221-14-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230928110309.1212221-1-dmitry.baryshkov@linaro.org>
 References: <20230928110309.1212221-1-dmitry.baryshkov@linaro.org>
@@ -78,7 +78,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
@@ -87,111 +88,37 @@ not a property of the SoC, it is a property of the particular board
 (even if it is standard and unified between all devices). Move these
 interrupt specifications to the board files.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts   | 8 ++++++++
- arch/arm/boot/dts/qcom/qcom-apq8064-cm-qs600.dts          | 8 ++++++++
- arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts           | 8 ++++++++
- .../boot/dts/qcom/qcom-apq8064-sony-xperia-lagan-yuga.dts | 8 ++++++++
- arch/arm/boot/dts/qcom/qcom-apq8064.dtsi                  | 4 ----
- 5 files changed, 32 insertions(+), 4 deletions(-)
+ arch/arm/boot/dts/qcom/qcom-mdm9615-wp8548.dtsi | 4 ++++
+ arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi        | 1 -
+ 2 files changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts b/arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts
-index 0e80a5a8e3c6..b820f3255c16 100644
---- a/arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts
-@@ -185,6 +185,14 @@ &mdp_dsi1_out {
- 	remote-endpoint = <&dsi0_in>;
+diff --git a/arch/arm/boot/dts/qcom/qcom-mdm9615-wp8548.dtsi b/arch/arm/boot/dts/qcom/qcom-mdm9615-wp8548.dtsi
+index dac3aa793f71..b782ff0d16cd 100644
+--- a/arch/arm/boot/dts/qcom/qcom-mdm9615-wp8548.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-mdm9615-wp8548.dtsi
+@@ -76,6 +76,10 @@ reset-out-pins {
+ 	};
  };
  
-+&pm8821 {
-+	interrupts-extended = <&tlmm_pinmux 76 IRQ_TYPE_LEVEL_LOW>;
++&pm8018 {
++	interrupts-extended = <&intc GIC_PPI 226 IRQ_TYPE_LEVEL_HIGH>;
 +};
 +
-+&pm8921 {
-+	interrupts-extended = <&tlmm_pinmux 74 IRQ_TYPE_LEVEL_LOW>;
-+};
-+
- &rpm {
- 	regulators {
- 		vdd_l1_l2_l12_l18-supply = <&pm8921_s4>;
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-cm-qs600.dts b/arch/arm/boot/dts/qcom/qcom-apq8064-cm-qs600.dts
-index d6ecfd8addb7..c01254b1a3a7 100644
---- a/arch/arm/boot/dts/qcom/qcom-apq8064-cm-qs600.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8064-cm-qs600.dts
-@@ -69,6 +69,14 @@ &pcie {
- 	status = "okay";
- };
+ &pm8018_gpio {
+ 	usb_vbus_5v_pins: usb-vbus-5v-state {
+ 		pins = "gpio4";
+diff --git a/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi b/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi
+index c4cfbdbcdf14..373d9425b8bd 100644
+--- a/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi
+@@ -265,7 +265,6 @@ qcom,ssbi@500000 {
  
-+&pm8821 {
-+	interrupts-extended = <&tlmm_pinmux 76 IRQ_TYPE_LEVEL_LOW>;
-+};
-+
-+&pm8921 {
-+	interrupts-extended = <&tlmm_pinmux 74 IRQ_TYPE_LEVEL_LOW>;
-+};
-+
- &pm8921_gpio {
- 	wlan_default_gpios: wlan-gpios-state {
- 		pinconf {
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts b/arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts
-index 96307550523a..f1bd29333c9b 100644
---- a/arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts
-@@ -171,6 +171,14 @@ &pcie {
- 	perst-gpios = <&tlmm_pinmux 27 GPIO_ACTIVE_LOW>;
- };
- 
-+&pm8821 {
-+	interrupts-extended = <&tlmm_pinmux 76 IRQ_TYPE_LEVEL_LOW>;
-+};
-+
-+&pm8921 {
-+	interrupts-extended = <&tlmm_pinmux 74 IRQ_TYPE_LEVEL_LOW>;
-+};
-+
- &pm8921_gpio {
- 	wlan_default_gpios: wlan-gpios-state {
- 		pinconf {
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-sony-xperia-lagan-yuga.dts b/arch/arm/boot/dts/qcom/qcom-apq8064-sony-xperia-lagan-yuga.dts
-index 9244512b74d1..7917f1657025 100644
---- a/arch/arm/boot/dts/qcom/qcom-apq8064-sony-xperia-lagan-yuga.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8064-sony-xperia-lagan-yuga.dts
-@@ -65,6 +65,14 @@ &gsbi5_serial {
- 	status = "okay";
- };
- 
-+&pm8821 {
-+	interrupts-extended = <&tlmm_pinmux 76 IRQ_TYPE_LEVEL_LOW>;
-+};
-+
-+&pm8921 {
-+	interrupts-extended = <&tlmm_pinmux 74 IRQ_TYPE_LEVEL_LOW>;
-+};
-+
- &pm8921_gpio {
- 	gpio_keys_pin_a: gpio-keys-active-state {
- 		pins = "gpio3", "gpio4", "gpio29", "gpio35";
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
-index 6514d728b1ec..76796002bda6 100644
---- a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
-@@ -662,8 +662,6 @@ ssbi@c00000 {
- 
- 			pm8821: pmic {
- 				compatible = "qcom,pm8821";
--				interrupt-parent = <&tlmm_pinmux>;
--				interrupts = <76 IRQ_TYPE_LEVEL_LOW>;
- 				#interrupt-cells = <2>;
- 				interrupt-controller;
- 				#address-cells = <1>;
-@@ -688,8 +686,6 @@ ssbi@500000 {
- 
- 			pm8921: pmic {
- 				compatible = "qcom,pm8921";
--				interrupt-parent = <&tlmm_pinmux>;
--				interrupts = <74 8>;
+ 			pm8018: pmic {
+ 				compatible = "qcom,pm8018", "qcom,pm8921";
+-				interrupts = <GIC_PPI 226 IRQ_TYPE_LEVEL_HIGH>;
  				#interrupt-cells = <2>;
  				interrupt-controller;
  				#address-cells = <1>;
