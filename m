@@ -1,109 +1,333 @@
-Return-Path: <devicetree+bounces-4293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D4567B1ED1
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 15:44:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C6DF7B1EE2
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 15:46:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id BDFFA282176
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 13:44:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id F2D522811C8
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 13:46:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BB523B7AA;
-	Thu, 28 Sep 2023 13:44:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76FB53B7B4;
+	Thu, 28 Sep 2023 13:46:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59A093AC3D
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 13:44:37 +0000 (UTC)
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66A9C19C
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 06:44:35 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40566f8a093so98936725e9.3
-        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 06:44:35 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C051E3AC3D
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 13:46:45 +0000 (UTC)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B64C18F
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 06:46:43 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-9a645e54806so1635391866b.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 06:46:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695908674; x=1696513474; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1695908801; x=1696513601; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PrYF5cdJqo09uMp8BBlyHLC/J6XK4bPMJmhqEe83tas=;
-        b=oAjg9Akwf34yKjYzizU4q6iI3Mr2qPo7YTrPJz8iMNibdgUwZ6nYCRskiYOc4XPajf
-         JB5exyydirfrl7uZ36hLpMxap1GNzivZFQFtpbnmNWAFAUJUmcUq/6TxzPebGlZOwmgg
-         uhOhfaDEHc3395dZ8OqVFJ47nu01xTn/DjUJQdoG9RueFEWMunKVwgo6VL9yIRs6CCu6
-         UjXwsidnV36NYfirnY0ROU3qCiOBqXen6NJRZi+aYnXxfl20JqX/HJ+BkMuLmamjqS1s
-         nXA9aGLJR3TiwHof9JmoZk0UExVaYSrIzVzdItq09UQy4vs3Rpgi/uiZfP3lD+anJ3OF
-         GmJA==
+        bh=5prnC0xekZLUIdAIGR+O/njuKh1qKyD4Z08lsS5xD/Y=;
+        b=ZiiaPkqrSuQEPPb2oZi9wOyqROug+N0NhukGAtovEMokxztICxbkV6YrQE0F58UrhQ
+         fD5+bGSVwrE1AW9YCgUf7/yJ0MzZXtNeafsX79xtn7xbrOQxrD39q4edaLuwrMzxtyl1
+         X7/z9v1iDDeVKNfGbYWlIa46912P5k+EHZjhEQFCWpL3JZCmHMP8EV1/TOO5SxIri3wP
+         3eHfFwsXqUbvZ12SNWYkLFq0w8bt9T328wZ/Al+AXdnytJRM8LPvs9O2H8AnS1Y4NMgV
+         XznRor0bvkNqQMwfqmXtugfOAn7rVJUpFI7Em5SwOqlruPDaZAjXAfeJL/S0UreXPyi8
+         4f7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695908674; x=1696513474;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1695908801; x=1696513601;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PrYF5cdJqo09uMp8BBlyHLC/J6XK4bPMJmhqEe83tas=;
-        b=RYfa1wtJCBvZeTl+UFq3unR1XxBYKA2JQLWk9xkX49zn8mFP+hS8b4EKprCEqwfU6n
-         CfJ0vgkRm7BR8VGB87DKovqYgI30ck+OITD/uAYSnWm9x77EA+YWeKtpTPc5lUGEZRcD
-         /ZldIFUlG4qHoERdQlTxHqPehlWvL2+DvAMMxr8XaVC8MlDBalaim/NxERx635Jjrjxf
-         /DdUs5xNQjzVWcO6wutPB0uw1eKFDFmmXlIJY+8Af4ptZl3uL2xrVc8RYcPZWx7aFadi
-         DAfENcqeWA8HT1WHYODXOBo5qf4WRe0eUo6yNa2mOxk1qLbtTc7U+dtKeNqNJ5L1WjiE
-         Jeuw==
-X-Gm-Message-State: AOJu0YyUWOY5W6xlKy1bAU7y7i0wFj02sL3CAT+kw5xOQyQ1Ph6afpnR
-	geh04NJYPn8C2x64yoDfR6onIQ==
-X-Google-Smtp-Source: AGHT+IF2+xfi/KVQH7ypTN5t283gXFIlAJzfSJTdp/rN8KCzkAVZjEsqWZSmUk6APKq35IqZcUKj7g==
-X-Received: by 2002:a5d:43c2:0:b0:321:67f4:8bd7 with SMTP id v2-20020a5d43c2000000b0032167f48bd7mr1083284wrr.32.1695908673682;
-        Thu, 28 Sep 2023 06:44:33 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0? ([2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0])
-        by smtp.googlemail.com with ESMTPSA id s24-20020a7bc398000000b003fe2a40d287sm2769316wmj.1.2023.09.28.06.44.32
+        bh=5prnC0xekZLUIdAIGR+O/njuKh1qKyD4Z08lsS5xD/Y=;
+        b=rSKokPbTvqkdyfmSwu7+duaOIvrgAYJd3L5/NFR9NFmtvA7nIqcvYBpyQol6CFRtRP
+         w/3owdgQGq/K+Q3X5iBIDcK/Dm1qMYLR1zN5oVAYvB2jK2vou2ua2I+j8MXFyUgYQ8Wu
+         +22sSEKanbSiqQbKyjTiLBqcVjVE63nZPdSqVNb6yfDuCaHUlptD91CTOT35o1ajIljG
+         jFrYpqh6w8ATMMnWur6Evtsl0DjHuutCzoyoFC0LU4FprMYJyj0CVoZCf8rXnklxjeqU
+         EaYb8Tqi4+qY6Un+BnGLXYUX4z21aeYiNKTFkR1LpNw/d8i8ED49fsc+Bx5+/YGO0NPy
+         bGgg==
+X-Gm-Message-State: AOJu0Yw260qOg8qQA7sKDCsSqXt2/YQgGDo4V/NA/W90deQI1oA/sAl5
+	kNIXXlsku2pMkgFUzk4Hfo3Sp7DhbYvw2IcGZqy2xg==
+X-Google-Smtp-Source: AGHT+IGIHJE5t2kSD7jVdHBJjmf6prRowOPg/0X5XcPyJ06xcH7rbLd5xgm3yq0GRA4ErAW4OY0ksA==
+X-Received: by 2002:a17:906:2249:b0:9a3:faf:7aaa with SMTP id 9-20020a170906224900b009a30faf7aaamr1208832ejr.15.1695908801547;
+        Thu, 28 Sep 2023 06:46:41 -0700 (PDT)
+Received: from [192.168.33.189] (178235177217.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.217])
+        by smtp.gmail.com with ESMTPSA id j19-20020a170906051300b009937e7c4e54sm10959533eja.39.2023.09.28.06.46.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Sep 2023 06:44:33 -0700 (PDT)
-Message-ID: <f5e3700d-5f4b-7ba8-519b-ffda8ff04a0d@linaro.org>
-Date: Thu, 28 Sep 2023 15:44:32 +0200
+        Thu, 28 Sep 2023 06:46:41 -0700 (PDT)
+Message-ID: <661bd908-a056-4d46-97a3-d3b12b14c050@linaro.org>
+Date: Thu, 28 Sep 2023 15:46:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 5/8] dt-bindings: thermal: fsl,scu-thermal: Document
- imx8dl
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: qcm6490: Add qcm6490 dts file
 Content-Language: en-US
-To: Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, linux-imx@nxp.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Fabio Estevam <festevam@denx.de>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Amit Kucheria <amitk@kernel.org>
-References: <20230926122957.341094-1-festevam@gmail.com>
- <20230926122957.341094-5-festevam@gmail.com>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20230926122957.341094-5-festevam@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+To: Komal Bajaj <quic_kbajaj@quicinc.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
+References: <20230928133312.11371-1-quic_kbajaj@quicinc.com>
+ <20230928133312.11371-3-quic_kbajaj@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230928133312.11371-3-quic_kbajaj@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 26/09/2023 14:29, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On 28.09.2023 15:33, Komal Bajaj wrote:
+> Add qcm6490 devicetree file for QCM6490 SoC and QCM6490 IDP
+> platform. QCM6490 is derived from SC7280 meant for various
+> form factor including IoT.
 > 
-> imx8dxl also contains the SCU thermal block.
+> Supported features are, as of now:
+> * Debug UART
+> * eMMC
+> * USB
 > 
-> Add an entry for 'fsl,imx8dxl-sc-thermal'.
-> 
-> Cc: Rafael J. Wysocki <rafael@kernel.org>
-> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Cc: Amit Kucheria <amitk@kernel.org>
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
 > ---
+[...]
 
-Applied, thanks
+> +/ {
+> +	model = "Qualcomm Technologies, Inc. QCM6490 IDP platform";
+Isomething Development Platform platform?
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+> +	compatible = "qcom,qcm6490-idp", "qcom,qcm6490";
+> +
+> +	aliases {
+> +		serial0 = &uart5;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +};
+Stray newline above
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+> +
+> +&apps_rsc {
+> +	regulators-0 {
+> +		compatible = "qcom,pm7325-rpmh-regulators";
+> +		qcom,pmic-id = "b";
+> +
+> +		vreg_s1b_1p8: smps1 {
+> +			regulator-min-microvolt = <1856000>;
+> +			regulator-max-microvolt = <2040000>;
+Hm, you didn't specify regulator-initial-mode on any vregs
 
+[...]
+
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/qcm6490.dtsi
+> @@ -0,0 +1,137 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include "sc7280.dtsi"
+> +
+> +/*
+> + * Delete sc7280 lpass related nodes as qcm6490 intends to move away from
+> + * bypass configuration
+> + */
+> +/delete-node/ &lpass_ag_noc;
+> +/delete-node/ &lpass_aon;
+> +/delete-node/ &lpass_audiocc;
+> +/delete-node/ &lpass_core;
+> +/delete-node/ &lpass_cpu;
+> +/delete-node/ &lpass_hm;
+> +/delete-node/ &lpass_rx_macro;
+> +/delete-node/ &lpass_tx_macro;
+> +/delete-node/ &lpass_va_macro;
+> +/delete-node/ &lpass_tlmm;
+> +/delete-node/ &lpasscc;
+> +/delete-node/ &swr0;
+> +/delete-node/ &swr1;
+That's very unnecessary, most of these nodes are in use even
+when routing audio through ADSP.
+
+Ones that are not, are set to status = "reserved" and some
+will need more work to function based on the configuration.
+
+There was once a series from somebody at qc to introduce ADSP
+audio on 7280, but it was full of hacks and NAKed
+
+
+> +
+> +/*
+> + * Delete unused sc7280 memory nodes and define the memory regions
+> + * required by qcm6490
+> + */
+That's specific to your board.
+
+> +/delete-node/ &rmtfs_mem;
+> +/delete-node/ &wlan_ce_mem;
+> +
+> +/{
+> +	reserved-memory {
+> +		secdata_apss_mem: secdata-apss@808ff000 {
+> +			reg = <0x0 0x808ff000 0x0 0x1000>;
+> +			no-map;
+> +		};
+This is identical to the entry in sc7280.dtsi.
+
+> +
+> +		cdsp_secure_heap_mem: cdsp-secure-heap@81800000 {
+> +			reg = <0x0 0x81800000 0x0 0x1e00000>;
+> +			no-map;
+> +		};
+> +
+> +		camera_mem: camera@84300000 {
+> +			reg = <0x0 0x84300000 0x0 0x500000>;
+> +			no-map;
+> +		};
+> +
+> +		adsp_mem: adsp@86100000 {
+> +			reg = <0x0 0x86100000 0x0 0x2800000>;
+> +			no-map;
+> +		};
+> +
+> +		cdsp_mem: cdsp@88900000 {
+> +			reg = <0x0 0x88900000 0x0 0x1e00000>;
+> +			no-map;
+> +		};
+> +
+> +		cvp_mem: cvp@8ac00000 {
+> +			reg = <0x0 0x8ac00000 0x0 0x500000>;
+> +			no-map;
+> +		};
+> +
+> +		ipa_gsi_mem: ipa-gsi@8b110000 {
+> +			reg = <0x0 0x8b110000 0x0 0xa000>;
+> +			no-map;
+> +		};
+> +
+> +		gpu_microcode_mem: gpu-microcode@8b11a000 {
+> +			reg = <0x0 0x8b11a000 0x0 0x2000>;
+> +			no-map;
+> +		};
+> +
+> +		mpss_mem: mpss@8b800000 {
+> +			reg = <0x0 0x8b800000 0x0 0xf600000>;
+> +			no-map;
+> +		};
+> +
+> +		wpss_mem: wpss@9ae00000 {
+> +			reg = <0x0 0x9ae00000 0x0 0x1900000>;
+> +			no-map;
+> +		};
+This entry is in both chrome-common and fairphone (meaning all boards
+use it), perhaps this one could be moved to 7280.dtsi
+
+> +
+> +		tz_stat_mem: tz-stat@c0000000 {
+> +			reg = <0x0 0xc0000000 0x0 0x100000>;
+> +			no-map;
+> +		};
+> +
+> +		tags_mem: tags@c0100000 {
+> +			reg = <0x0 0xc0100000 0x0 0x1200000>;
+> +			no-map;
+> +		};
+> +
+> +		qtee_mem: qtee@c1300000 {
+> +			reg = <0x0 0xc1300000 0x0 0x500000>;
+> +			no-map;
+> +		};
+> +
+> +		trusted_apps_mem: trusted_apps@c1800000 {
+> +			reg = <0x0 0xc1800000 0x0 0x3900000>;
+> +			no-map;
+> +		};
+> +	};
+> +};
+> +
+> +&hyp_mem {
+> +	reg = <0x0 0x80000000 0x0 0x600000>;
+This is identical to the entry in sc7280.dtsi.
+
+> +};
+> +
+> +&mpss_mem {
+> +	reg = <0x0 0x8b800000 0x0 0xf600000>;
+You're defining it here and overwriting it with an identical
+value.
+
+Looks like CrOS folks don't boot up the modem on non-LTE SKUs.
+Weird. Normally it would host some more software..
+
+> +};
+> +
+> +&remoteproc_mpss {
+> +	memory-region = <&mpss_mem>;
+This is identical to the entry in sc7280.dtsi.
+
+> +};
+> +
+> +&video_mem {
+> +	reg = <0x0 0x8a700000 0x0 0x500000>;
+> +};
+> +
+> +&wifi {
+> +	memory-region = <&wlan_fw_mem>;
+No CE region?
+
+> +};
+> +
+> +&wlan_fw_mem {
+> +	reg = <0x0 0x80c00000 0x0 0xc00000>;
+This is identical to the entry in sc7280.dtsi.
+
+
+The memory map generally looks quite different to both chrome
+and fairphone.. are you sure it's all correct?
+
+Konrad
 
