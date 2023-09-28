@@ -1,124 +1,169 @@
-Return-Path: <devicetree+bounces-4398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41ACD7B25F5
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 21:31:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 430F07B2600
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 21:41:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id C5B6E281FC0
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 19:31:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 63613B20A05
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 19:41:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54ECA38DF2;
-	Thu, 28 Sep 2023 19:31:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCE9638FAF;
+	Thu, 28 Sep 2023 19:41:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9E60110B
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 19:31:21 +0000 (UTC)
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96F5119F
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 12:31:20 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1c4194f769fso100074905ad.3
-        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 12:31:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695929480; x=1696534280; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=yiM835Qdr8r3YY1MsttP3YD4WAnIIepGWpUnlhXauk8=;
-        b=qrRtX/iHC6Fhouk/Fk5b/cGsYjqc7q9ekjy1zaQAg8icBWDg+Ylf6qq/1fIt1iSMdB
-         LHprXqVC1daW8xqjH/FXTPU0pgfSe3h6m0mHUVdDKZ/oVwQoXca4INuLHoCPhhErflxj
-         u6Dz8c+yHn+2A3OuyrmyxdjPC+FbgvRAH0bNphzOVgfilEU0nqu6MgrUHbErGE9epNTe
-         F/bZ6WBwmGkGD+wr8JSnLz7bQrlL++3PFBKGPNzZhwW/BV0UWEGOBzwr+y3WG1+VuMBp
-         G4jkxYu1v7pIx7Ml1XWPCJpAEn/3bqTTXp8p2NsutIdptnkmbjS+gFyEwvJr/k8ugJlY
-         iPzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695929480; x=1696534280;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yiM835Qdr8r3YY1MsttP3YD4WAnIIepGWpUnlhXauk8=;
-        b=r86pkXb3n57C0VgXw4Sta/J3dY94uqPqutWzkx9ch6VV7o5kKTCZRD6bSD9xPFrPVm
-         1GYGPfQRROoZoly9pO7wmyQN4Fi/V8v06aedW1ivGJ3bzwnECYo9deqPIl4LcSe5sFjz
-         QkL+GnKG1caCTOq1osKyp/I1YRMXnrdRk3e7sEnRcd3qQ6srHZ4OMpRen5H3vPGiq+u6
-         HpGv6I14M6JpdXwFn0JDmW69r1b9Mbwi4rEA3wRXw/xFyGj/qww0hIchIvhgBgkluKPJ
-         Ruv0fmY2AuKRL/qeQOZ2RoIt/bZ+VW+UzdGIDsgeWOmEfgEwNhwGi3UVfd3k55YrEcE+
-         xAcA==
-X-Gm-Message-State: AOJu0YyzKdxcfzfAY7rI1VtoSW7G9a5Sh8YFKVOojwuZjSl/2OAixaoM
-	YCAKuDcUIiJaC7Yt+3Okcw3rbA==
-X-Google-Smtp-Source: AGHT+IE95MGmqksj4rnPsJlhQcIbTza6nvpDZ3jVQORmb3wxwujuxwIunVo313zxNSIjjCOnvIToSQ==
-X-Received: by 2002:a17:902:8649:b0:1c3:1f0c:fb82 with SMTP id y9-20020a170902864900b001c31f0cfb82mr1816980plt.41.1695929480038;
-        Thu, 28 Sep 2023 12:31:20 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:46f7:63a8:c7b8:44bb])
-        by smtp.gmail.com with ESMTPSA id c4-20020a170902c1c400b001bf8779e051sm7236931plc.289.2023.09.28.12.31.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Sep 2023 12:31:19 -0700 (PDT)
-Date: Thu, 28 Sep 2023 13:31:17 -0600
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Tinghan Shen <tinghan.shen@mediatek.com>,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: remoteproc: mtk,scp: Add missing
- additionalProperties on child node schemas
-Message-ID: <ZRXUhSqHPt9R5Zd8@p14s>
-References: <20230926164513.101958-1-robh@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9E4F110B
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 19:41:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DE9AC433C7;
+	Thu, 28 Sep 2023 19:41:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695930095;
+	bh=+f/LROZgFTPzcFy5/y8VtrXLG8LIcts2Ik8CzlQ3RsM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=GS04NkNVwjZ5aAvctflC98Uo4+fIaRixp/S7KhAw1pj6pKgWEnR6iDPnRHcMrbxWk
+	 GDRgbrpFlHSnG52T5EMZagd0oohD+/xcuCf4IvfL4xylZ6RTNK1drD97IFlFBhvAYe
+	 rMlWf9Os5/p+g+hY6SnSR+EjfGnV8WR42DL5Bu6SarRJs1I73kT6nkyt2N6xugHotX
+	 DZjlqz/z04UMNuNoCQsaclN3jzUEiyc2uE39Ahqx7ekUBFq46WzlKbD3tNmilxO26P
+	 x6jbj8r7HxHo4ukR3juucsPsAq1CpDdnM/+vHzKqpvc1t4NAi6L8MkFv3DsG1aPtw7
+	 SevonLnDNfLVg==
+Received: (nullmailer pid 1147011 invoked by uid 1000);
+	Thu, 28 Sep 2023 19:41:33 -0000
+From: Rob Herring <robh@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: alsa-devel@alsa-project.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] ASoC: dt-bindings: Simplify referencing dai-params.yaml
+Date: Thu, 28 Sep 2023 14:41:16 -0500
+Message-Id: <20230928194126.1146622-1-robh@kernel.org>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230926164513.101958-1-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Transfer-Encoding: 8bit
 
-Hi Rob,
+There's generally no need to use definitions to reference from
+individual properties. All the property names are the same, and all the
+defined properties are used by all the users.
 
-On Tue, Sep 26, 2023 at 11:45:08AM -0500, Rob Herring wrote:
-> Just as unevaluatedProperties or additionalProperties are required at
-> the top level of schemas, they should (and will) also be required for
-> child node schemas. That ensures only documented properties are
-> present for any node.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> index 895415772d1d..24422fd56e83 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> @@ -91,6 +91,7 @@ allOf:
->  
->  additionalProperties:
->    type: object
-> +  additionalProperties: false
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/sound/audio-graph-port.yaml      | 20 ++++++-------------
+ .../bindings/sound/audio-graph.yaml           |  9 +++------
+ .../devicetree/bindings/sound/dai-params.yaml | 11 ++++------
+ 3 files changed, 13 insertions(+), 27 deletions(-)
 
-Things have changed in the remoteproc tree [1] and this patch doesn't apply.
-Please see if it is still needed.
+diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+index fa9f9a853365..60b5e3fd1115 100644
+--- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
++++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+@@ -13,19 +13,17 @@ select: false
+ 
+ definitions:
+   port-base:
+-    $ref: /schemas/graph.yaml#/$defs/port-base
++    allOf:
++      - $ref: /schemas/graph.yaml#/$defs/port-base
++      - $ref: /schemas/sound/dai-params.yaml#
+     properties:
+-      convert-rate:
+-        $ref: /schemas/sound/dai-params.yaml#/$defs/dai-sample-rate
+-      convert-channels:
+-        $ref: /schemas/sound/dai-params.yaml#/$defs/dai-channels
+-      convert-sample-format:
+-        $ref: /schemas/sound/dai-params.yaml#/$defs/dai-sample-format
+       mclk-fs:
+         $ref: simple-card.yaml#/definitions/mclk-fs
+ 
+   endpoint-base:
+-    $ref: /schemas/graph.yaml#/$defs/endpoint-base
++    allOf:
++      - $ref: /schemas/graph.yaml#/$defs/endpoint-base
++      - $ref: /schemas/sound/dai-params.yaml#
+     properties:
+       mclk-fs:
+         $ref: simple-card.yaml#/definitions/mclk-fs
+@@ -68,12 +66,6 @@ definitions:
+             - pdm
+             - msb
+             - lsb
+-      convert-rate:
+-        $ref: /schemas/sound/dai-params.yaml#/$defs/dai-sample-rate
+-      convert-channels:
+-        $ref: /schemas/sound/dai-params.yaml#/$defs/dai-channels
+-      convert-sample-format:
+-        $ref: /schemas/sound/dai-params.yaml#/$defs/dai-sample-format
+ 
+       dai-tdm-slot-num:
+         description: Number of slots in use.
+diff --git a/Documentation/devicetree/bindings/sound/audio-graph.yaml b/Documentation/devicetree/bindings/sound/audio-graph.yaml
+index ed31e04ff6a6..71f52f7e55f6 100644
+--- a/Documentation/devicetree/bindings/sound/audio-graph.yaml
++++ b/Documentation/devicetree/bindings/sound/audio-graph.yaml
+@@ -9,6 +9,9 @@ title: Audio Graph
+ maintainers:
+   - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+ 
++allOf:
++  - $ref: /schemas/sound/dai-params.yaml#
++
+ properties:
+   dais:
+     $ref: /schemas/types.yaml#/definitions/phandle-array
+@@ -30,12 +33,6 @@ properties:
+       widget ("Microphone", "Line", "Headphone", "Speaker"), the
+       second being the machine specific name for the widget.
+     $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+-  convert-rate:
+-    $ref: /schemas/sound/dai-params.yaml#/$defs/dai-sample-rate
+-  convert-channels:
+-    $ref: /schemas/sound/dai-params.yaml#/$defs/dai-channels
+-  convert-sample-format:
+-    $ref: /schemas/sound/dai-params.yaml#/$defs/dai-sample-format
+ 
+   pa-gpios:
+     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/sound/dai-params.yaml b/Documentation/devicetree/bindings/sound/dai-params.yaml
+index f5fb71f9b603..cd8508175564 100644
+--- a/Documentation/devicetree/bindings/sound/dai-params.yaml
++++ b/Documentation/devicetree/bindings/sound/dai-params.yaml
+@@ -11,15 +11,14 @@ maintainers:
+ 
+ select: false
+ 
+-$defs:
+-
+-  dai-channels:
++properties:
++  convert-channels:
+     description: Number of audio channels used by DAI
+     $ref: /schemas/types.yaml#/definitions/uint32
+     minimum: 1
+     maximum: 32
+ 
+-  dai-sample-format:
++  convert-sample-format:
+     description: Audio sample format used by DAI
+     $ref: /schemas/types.yaml#/definitions/string
+     enum:
+@@ -29,12 +28,10 @@ $defs:
+       - s24_3le
+       - s32_le
+ 
+-  dai-sample-rate:
++  convert-rate:
+     description: Audio sample rate used by DAI
+     $ref: /schemas/types.yaml#/definitions/uint32
+     minimum: 8000
+     maximum: 192000
+ 
+-properties: {}
+-
+ additionalProperties: true
+-- 
+2.40.1
 
-Thanks,
-Mathieu
-
-[1]. https://git.kernel.org/pub/scm/linux/kernel/git/remoteproc/linux.git/tree/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml?h=rproc-next#n80
-
->    description:
->      Subnodes of the SCP represent rpmsg devices. The names of the devices
->      are not important. The properties of these nodes are defined by the
-> -- 
-> 2.40.1
-> 
 
