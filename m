@@ -1,315 +1,99 @@
-Return-Path: <devicetree+bounces-4412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4C177B2709
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 23:05:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E6CC7B2749
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 23:15:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 83DE4282C63
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 21:05:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 300B3283747
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 21:15:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9366D14F63;
-	Thu, 28 Sep 2023 21:05:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0335D168AB;
+	Thu, 28 Sep 2023 21:15:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B46B712B6D
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 21:05:39 +0000 (UTC)
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E7301A2;
-	Thu, 28 Sep 2023 14:05:34 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9ae7383b7ecso2664234466b.0;
-        Thu, 28 Sep 2023 14:05:34 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87C029CA71
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 21:15:19 +0000 (UTC)
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 629B3F3
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 14:15:18 -0700 (PDT)
+Received: by mail-yb1-xb2e.google.com with SMTP id 3f1490d57ef6-d81d09d883dso15235915276.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 14:15:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695935133; x=1696539933; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1695935717; x=1696540517; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=p2QhZIGRimXUpKfiQKROu8TDaBumFkhLePqP20LMTqY=;
-        b=XQ89dG1DSNsm4iMHTtvBQYQQWRx0r3dwrqiewnRiq5HE2sPsEEzB9L3tOZd/3BNCb6
-         y7IiRp3f+3didE1r+kNH+M0urapeKmoIjNABnfF7HNY8zBM/ZrCBEZe/guJqxnT3mL0W
-         +GSrAzq+3VuxDf54FhvjMJ/riS4yhRnda5nJZsvU8rQ7c7QnimlxV4/sYI+UlATT3Dsl
-         DNczX9arf84mk+FoguXp2vhPgvUieECd7VGvW8d9FNvwboXu9Iz6WdruyrMrU1jsGxJq
-         tUCwg1WwiAcHmOLYOjbtC4iKheiQbOpOCMbJKuF/klR2vc/wPGhV3HxpfrcrBdYbIMUC
-         sb1w==
+        bh=zMae55Fx7PiApDYXyPzKPPdkwhRMRqPd7wXKmf/Imiw=;
+        b=V3QrO3PKQm9H77cDdo64Sx3GKFC9R0/AE55TYuvlRWvAc38QhOX3skh4W/5A8B3S6v
+         wRN7Clf1QRkmqa0FYiqOW0Mz0H02ARktho3VUFYk2r0SHBqvSLyWa5f9wz6FaTJjd2Ui
+         HR0QYYZQlkvV3wnTLuUYGizNl+F1B3P7TTKaUICfy3dfiLsRYJDgEVX6NkMtoEnQF63/
+         ckabajfDmYZXifx0zoG/OlGFeXeGetgLsiDevIs8+JeJobnnAm2oKeOnOyeTvOel5AZQ
+         KYsjBRbsecZVyJVmHK8fIKhOzpU2HW9p0Y9BtMwj1z0mnM81SJ0+eUH/3XOQpnWLleUS
+         +AVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695935133; x=1696539933;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1695935717; x=1696540517;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=p2QhZIGRimXUpKfiQKROu8TDaBumFkhLePqP20LMTqY=;
-        b=TbDdVOPK2/DxRnt+c0OSUjPzA78Z9sM57sjj5TwqiT6CKfRhpGynJWl66GA8eyv13P
-         WAdDU+QxK11Et6zvUwtVlNCxN2HxRWI6ddYVwt3Ix1MXNDuq44X8CLtc3kQDPjlWWENU
-         vXIfvNe8xDwQtdSLB39UCqInlxeuTTUS1gwJaUqvQzqYzPG4+y1c/SP8bpG1kUwH9RDR
-         rbr55qT7bzWUm4p9fNRNkR1SKQCEYZhkjnyNifL0m2X8mqdD1oLia8FcPvgesfoAlSZl
-         jskLup78IGZncDVjFu33sVbRWcTWCov6Yq3IX++W0jWSnWM2GoXxnGmnKHCnJNUNmdPo
-         oG/A==
-X-Gm-Message-State: AOJu0YwRaeh6O7tSQoW/9UQ95IobmR4UBJYoxmcojWjD3nfcB7SO8UV2
-	4a0kPCF5mP6sFamzQV25asw=
-X-Google-Smtp-Source: AGHT+IEkeV2mWRn+9vo4tmGyppwAXWdGn3NkE046bMzPdQDK0xNVpca1/AVPjCI0UCGco3msBr9wQA==
-X-Received: by 2002:a17:907:724b:b0:9a5:7dec:fab9 with SMTP id ds11-20020a170907724b00b009a57decfab9mr2085173ejc.9.1695935132858;
-        Thu, 28 Sep 2023 14:05:32 -0700 (PDT)
-Received: from fedora.. (dh207-99-57.xnet.hr. [88.207.99.57])
-        by smtp.googlemail.com with ESMTPSA id la9-20020a170906ad8900b0098f33157e7dsm11386849ejb.82.2023.09.28.14.05.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Sep 2023 14:05:32 -0700 (PDT)
-From: Robert Marko <robimarko@gmail.com>
-To: ilia.lin@kernel.org,
-	vireshk@kernel.org,
-	nm@ti.com,
-	sboyd@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	agross@kernel.org,
-	andersson@kernel.org,
-	konrad.dybcio@linaro.org,
-	rafael@kernel.org,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Cc: Christian Marangi <ansuelsmth@gmail.com>
-Subject: [PATCH v4 4/4] ARM: dts: qcom: ipq8064: Add CPU OPP table
-Date: Thu, 28 Sep 2023 23:04:07 +0200
-Message-ID: <20230928210525.1265958-4-robimarko@gmail.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230928210525.1265958-1-robimarko@gmail.com>
-References: <20230928210525.1265958-1-robimarko@gmail.com>
+        bh=zMae55Fx7PiApDYXyPzKPPdkwhRMRqPd7wXKmf/Imiw=;
+        b=TbxBk9p1Z42rizF7Qg9RR0lCEJ3uar9ClyuS8u5udE4t1kkE2Yk0PXR3qZSnhmvF6D
+         cn1Teck8/oFRMIUQI4Y1cNTbkZ1xOsd56BVYDHo5NAMr57VfEYbKnibbQ03xhJhEk0KT
+         Sjm/TZDsLoq/b8Ni2TrdUAbDrXh4WleSYhi0k87zeTDMUaFs0xxX/Gzh6wcsne7uJxp+
+         14EryL06F1D62GloRje4eI1GZgprZYR5NOM4werY7qPmBDSQjxyOXeUqQqmbX4TwFs/R
+         k05ptS5Ac0ZhoxhG8GMdn64LKz0++Y6I2LHJQ2qQhrHhsH6Zycu2XEWSilKYJk7+x91L
+         4yYQ==
+X-Gm-Message-State: AOJu0Yy1LE4pqPa4tGqRQOewiivJ2gaPm4NY+JILG7ILmFj9su1n5EvM
+	CafsqfjfSOsPWEChB79C+jVZXOcYnksRzlEnTlB+lg==
+X-Google-Smtp-Source: AGHT+IEx5vmOlgc90YGcN9ELfymxnTjl5jH5W/7HnoFi7r9aFnJqkqfFU0S8v8Bpml17IwCuy4WjLkmqcJSWej8jc+E=
+X-Received: by 2002:a25:ca8b:0:b0:d80:9ed:5038 with SMTP id
+ a133-20020a25ca8b000000b00d8009ed5038mr2385007ybg.21.1695935717623; Thu, 28
+ Sep 2023 14:15:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230926-gpio-led-trigger-dt-v2-0-e06e458b788e@linaro.org> <20230926-gpio-led-trigger-dt-v2-1-e06e458b788e@linaro.org>
+In-Reply-To: <20230926-gpio-led-trigger-dt-v2-1-e06e458b788e@linaro.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 28 Sep 2023 23:15:06 +0200
+Message-ID: <CACRpkda0XnLtNwp-sQhS=SKqPB+zce7ZJpEeKnJbGmfsL=p_Qw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] gpiolib: of: Allow "trigger-sources" to reference
+ a GPIO
+To: =?UTF-8?B?SmFuIEt1bmRyw6F0?= <jan.kundrat@cesnet.cz>, 
+	Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-leds@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Christian Marangi <ansuelsmth@gmail.com>
+On Tue, Sep 26, 2023 at 11:48=E2=80=AFPM Linus Walleij <linus.walleij@linar=
+o.org> wrote:
 
-Add CPU OPP table for IPQ8062, IPQ8064 and IPQ8065 SoC.
-Use opp-supported-hw binding to correctly enable and disable the
-frequency as IPQ8062 supports up to 1.0Ghz, IPQ8064 supports up to
-1.4GHz with 1.2GHz as an additional frequency and IPQ8065 supports
-1.7GHZ but doesn't have 1.2GHZ frequency and has to be disabled.
+> The "trigger-sources" phandle used for LED triggers are special:
+> the DT bindings mandate that such triggers have the same phandle
+> references no matter what the trigger is. A GPIO is just another
+> kind of device that can trigger a LED.
+>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- arch/arm/boot/dts/qcom/qcom-ipq8062.dtsi | 30 +++++++++++
- arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi | 67 ++++++++++++++++++++++++
- arch/arm/boot/dts/qcom/qcom-ipq8065.dtsi | 65 +++++++++++++++++++++++
- 3 files changed, 162 insertions(+)
+Bartosz could you queue this patch? Lee already queued patches 2+3,
+and there is just runtime dependency with no in-tree users so it's fine
+to merge them in the different trees.
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-ipq8062.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq8062.dtsi
-index 5d3ebd3e2e51..72d9782c3d6f 100644
---- a/arch/arm/boot/dts/qcom/qcom-ipq8062.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-ipq8062.dtsi
-@@ -6,3 +6,33 @@ / {
- 	model = "Qualcomm Technologies, Inc. IPQ8062";
- 	compatible = "qcom,ipq8062", "qcom,ipq8064";
- };
-+
-+&opp_table_cpu {
-+	opp-384000000 {
-+		opp-microvolt-speed0-pvs0 = <1000000 950000 1050000>;
-+		opp-microvolt-speed0-pvs1 = <925000 878750 971250>;
-+		opp-microvolt-speed0-pvs2 = <875000 831250 918750>;
-+		opp-microvolt-speed0-pvs3 = <800000 760000 840000>;
-+	};
-+
-+	opp-600000000 {
-+		opp-microvolt-speed0-pvs0 = <1050000 997500 1102500>;
-+		opp-microvolt-speed0-pvs1 = <975000 926250 1023750>;
-+		opp-microvolt-speed0-pvs2 = <925000 878750 971250>;
-+		opp-microvolt-speed0-pvs3 = <850000 807500 892500>;
-+	};
-+
-+	opp-800000000 {
-+		opp-microvolt-speed0-pvs0 = <1100000 1045000 1155000>;
-+		opp-microvolt-speed0-pvs1 = <1025000 973750 1076250>;
-+		opp-microvolt-speed0-pvs2 = <995000 945250 1044750>;
-+		opp-microvolt-speed0-pvs3 = <900000 855000 945000>;
-+	};
-+
-+	opp-1000000000 {
-+		opp-microvolt-speed0-pvs0 = <1150000 1092500 1207500>;
-+		opp-microvolt-speed0-pvs1 = <1075000 1021250 1128750>;
-+		opp-microvolt-speed0-pvs2 = <1025000 973750 1076250>;
-+		opp-microvolt-speed0-pvs3 = <950000 902500 997500>;
-+	};
-+};
-diff --git a/arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi
-index 6198f42f6a9c..cbbd28b43dc4 100644
---- a/arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi
-@@ -30,6 +30,7 @@ cpu0: cpu@0 {
- 			next-level-cache = <&L2>;
- 			qcom,acc = <&acc0>;
- 			qcom,saw = <&saw0>;
-+			operating-points-v2 = <&opp_table_cpu>;
- 		};
- 
- 		cpu1: cpu@1 {
-@@ -40,6 +41,7 @@ cpu1: cpu@1 {
- 			next-level-cache = <&L2>;
- 			qcom,acc = <&acc1>;
- 			qcom,saw = <&saw1>;
-+			operating-points-v2 = <&opp_table_cpu>;
- 		};
- 
- 		L2: l2-cache {
-@@ -49,6 +51,71 @@ L2: l2-cache {
- 		};
- 	};
- 
-+	opp_table_cpu: opp-table-cpu {
-+		compatible = "operating-points-v2-kryo-cpu";
-+		nvmem-cells = <&speedbin_efuse>;
-+
-+		opp-384000000 {
-+			opp-hz = /bits/ 64 <384000000>;
-+			opp-microvolt-speed0-pvs0 = <1000000 950000 1050000>;
-+			opp-microvolt-speed0-pvs1 = <925000 878750 971250>;
-+			opp-microvolt-speed0-pvs2 = <875000 831250 918750>;
-+			opp-microvolt-speed0-pvs3 = <800000 760000 840000>;
-+			opp-supported-hw = <0x7>;
-+			clock-latency-ns = <100000>;
-+		};
-+
-+		opp-600000000 {
-+			opp-hz = /bits/ 64 <600000000>;
-+			opp-microvolt-speed0-pvs0 = <1050000 997500 1102500>;
-+			opp-microvolt-speed0-pvs1 = <975000 926250 1023750>;
-+			opp-microvolt-speed0-pvs2 = <925000 878750 971250>;
-+			opp-microvolt-speed0-pvs3 = <850000 807500 892500>;
-+			opp-supported-hw = <0x7>;
-+			clock-latency-ns = <100000>;
-+		};
-+
-+		opp-800000000 {
-+			opp-hz = /bits/ 64 <800000000>;
-+			opp-microvolt-speed0-pvs0 = <1100000 1045000 1155000>;
-+			opp-microvolt-speed0-pvs1 = <1025000 973750 1076250>;
-+			opp-microvolt-speed0-pvs2 = <995000 945250 1044750>;
-+			opp-microvolt-speed0-pvs3 = <900000 855000 945000>;
-+			opp-supported-hw = <0x7>;
-+			clock-latency-ns = <100000>;
-+		};
-+
-+		opp-1000000000 {
-+			opp-hz = /bits/ 64 <1000000000>;
-+			opp-microvolt-speed0-pvs0 = <1150000 1092500 1207500>;
-+			opp-microvolt-speed0-pvs1 = <1075000 1021250 1128750>;
-+			opp-microvolt-speed0-pvs2 = <1025000 973750 1076250>;
-+			opp-microvolt-speed0-pvs3 = <950000 902500 997500>;
-+			opp-supported-hw = <0x7>;
-+			clock-latency-ns = <100000>;
-+		};
-+
-+		opp-1200000000 {
-+			opp-hz = /bits/ 64 <1200000000>;
-+			opp-microvolt-speed0-pvs0 = <1200000 1140000 1260000>;
-+			opp-microvolt-speed0-pvs1 = <1125000 1068750 1181250>;
-+			opp-microvolt-speed0-pvs2 = <1075000 1021250 1128750>;
-+			opp-microvolt-speed0-pvs3 = <1000000 950000 1050000>;
-+			opp-supported-hw = <0x2>;
-+			clock-latency-ns = <100000>;
-+		};
-+
-+		opp-1400000000 {
-+			opp-hz = /bits/ 64 <1400000000>;
-+			opp-microvolt-speed0-pvs0 = <1250000 1187500 1312500>;
-+			opp-microvolt-speed0-pvs1 = <1175000 1116250 1233750>;
-+			opp-microvolt-speed0-pvs2 = <1125000 1068750 1181250>;
-+			opp-microvolt-speed0-pvs3 = <1050000 997500 1102500>;
-+			opp-supported-hw = <0x6>;
-+			clock-latency-ns = <100000>;
-+		};
-+	};
-+
- 	thermal-zones {
- 		sensor0-thermal {
- 			polling-delay-passive = <0>;
-diff --git a/arch/arm/boot/dts/qcom/qcom-ipq8065.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq8065.dtsi
-index ea49f6cc416d..d9ead31b897b 100644
---- a/arch/arm/boot/dts/qcom/qcom-ipq8065.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-ipq8065.dtsi
-@@ -6,3 +6,68 @@ / {
- 	model = "Qualcomm Technologies, Inc. IPQ8065";
- 	compatible = "qcom,ipq8065", "qcom,ipq8064";
- };
-+
-+&opp_table_cpu {
-+	opp-384000000 {
-+		opp-microvolt-speed0-pvs0 = <975000 926250 1023750>;
-+		opp-microvolt-speed0-pvs1 = <950000 902500 997500>;
-+		opp-microvolt-speed0-pvs2 = <925000 878750 971250>;
-+		opp-microvolt-speed0-pvs3 = <900000 855000 945000>;
-+		opp-microvolt-speed0-pvs4 = <875000 831250 918750>;
-+		opp-microvolt-speed0-pvs5 = <825000 783750 866250>;
-+		opp-microvolt-speed0-pvs6 = <775000 736250 813750>;
-+	};
-+
-+	opp-600000000 {
-+		opp-microvolt-speed0-pvs0 = <1000000 950000 1050000>;
-+		opp-microvolt-speed0-pvs1 = <975000 926250 1023750>;
-+		opp-microvolt-speed0-pvs2 = <950000 902500 997500>;
-+		opp-microvolt-speed0-pvs3 = <925000 878750 971250>;
-+		opp-microvolt-speed0-pvs4 = <900000 855000 945000>;
-+		opp-microvolt-speed0-pvs5 = <850000 807500 892500>;
-+		opp-microvolt-speed0-pvs6 = <800000 760000 840000>;
-+	};
-+
-+	opp-800000000 {
-+		opp-microvolt-speed0-pvs0 = <1050000 997500 1102500>;
-+		opp-microvolt-speed0-pvs1 = <1025000 973750 1076250>;
-+		opp-microvolt-speed0-pvs2 = <1000000 950000 1050000>;
-+		opp-microvolt-speed0-pvs3 = <975000 926250 1023750>;
-+		opp-microvolt-speed0-pvs4 = <950000 902500 997500>;
-+		opp-microvolt-speed0-pvs5 = <900000 855000 945000>;
-+		opp-microvolt-speed0-pvs6 = <850000 807500 892500>;
-+	};
-+
-+	opp-1000000000 {
-+		opp-microvolt-speed0-pvs0 = <1100000 1045000 1155000>;
-+		opp-microvolt-speed0-pvs1 = <1075000 1021250 1128750>;
-+		opp-microvolt-speed0-pvs2 = <1050000 997500 1102500>;
-+		opp-microvolt-speed0-pvs3 = <1025000 973750 1076250>;
-+		opp-microvolt-speed0-pvs4 = <1000000 950000 1050000>;
-+		opp-microvolt-speed0-pvs5 = <950000 902500 997500>;
-+		opp-microvolt-speed0-pvs6 = <900000 855000 945000>;
-+	};
-+
-+	opp-1400000000 {
-+		opp-microvolt-speed4-pvs0 = <1175000 1116250 1233750>;
-+		opp-microvolt-speed4-pvs1 = <1150000 1092500 1207500>;
-+		opp-microvolt-speed4-pvs2 = <1125000 1068750 1181250>;
-+		opp-microvolt-speed4-pvs3 = <1100000 1045000 1155000>;
-+		opp-microvolt-speed4-pvs4 = <1075000 1021250 1128750>;
-+		opp-microvolt-speed4-pvs5 = <1025000 973750 1076250>;
-+		opp-microvolt-speed4-pvs6 = <975000 926250 1023750>;
-+	};
-+
-+	opp-1725000000 {
-+		opp-hz = /bits/ 64 <1725000000>;
-+		opp-microvolt-speed0-pvs0 = <1262500 1199375 1325625>;
-+		opp-microvolt-speed0-pvs1 = <1225000 1163750 1286250>;
-+		opp-microvolt-speed0-pvs2 = <1200000 1140000 1260000>;
-+		opp-microvolt-speed0-pvs3 = <1175000 1116250 1233750>;
-+		opp-microvolt-speed0-pvs4 = <1150000 1092500 1207500>;
-+		opp-microvolt-speed0-pvs5 = <1100000 1045000 1155000>;
-+		opp-microvolt-speed0-pvs6 = <1050000 997500 1102500>;
-+		opp-supported-hw = <0x4>;
-+		clock-latency-ns = <100000>;
-+	};
-+};
--- 
-2.41.0
+Sorry for missing to CC you directly on the set :/
 
+Yours,
+Linus Walleij
 
