@@ -1,109 +1,234 @@
-Return-Path: <devicetree+bounces-4129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B17247B150D
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 09:38:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAEC57B154D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 09:48:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 6400C282A24
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 07:38:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id D5E4FB20A79
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 07:48:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E16F31A70;
-	Thu, 28 Sep 2023 07:38:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9306F31A7A;
+	Thu, 28 Sep 2023 07:48:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77276538C
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 07:38:35 +0000 (UTC)
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 004CF92
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 00:38:33 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40652e5718cso1476735e9.3
-        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 00:38:33 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F03530FAE
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 07:48:39 +0000 (UTC)
+Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 208C692;
+	Thu, 28 Sep 2023 00:48:37 -0700 (PDT)
+Received: by mail-qv1-xf35.google.com with SMTP id 6a1803df08f44-65af1037ca8so54080976d6.2;
+        Thu, 28 Sep 2023 00:48:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695886712; x=1696491512; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gKzzcFRe2VplRfr6R2h6JRusbvnJYPDky4iW2ifDT3M=;
-        b=MgrPdD0PkR5oFqdUf2hRFdPWUUs6CtXDzJJ3oBgsrdZSrIiw1/ywZwBvDqGejpEwux
-         pcLceDk/80oOX7hCio/sbiBGzsHr/+QGsvSCwHB84EF2hbpM2Q30KWwCwsR4PnuDeZel
-         jnt2EKCT1tMm2e6VmwJQOuoLrM4mgyPGKpddWZKOxelvDpYz61fgQT5zxB1ebjspetPg
-         cP0iY+JLzqww2Ykco37AS+We4EvSBqt4xeGFx3NCS/VAmWCVKiFEGRqNw0lL/zVSyVc0
-         qCuMLYOH5byS/Smlzg8EyFbLA91j6OA25xSyxBE76YS5Tgi/D/79UR7+W71C1AdDaNgM
-         j1tg==
+        d=gmail.com; s=20230601; t=1695887316; x=1696492116; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Kuf9lKPBLXFO99XEA7Zpn0AwyKHANLiyZjv73Ko4GuQ=;
+        b=L1YYVoHm+2gs/30uQ7zEFqRzS/4oQNXXbN/3MgKOFN61jMVkBlzSpNLrin+boq9p6f
+         319SWjMtnXG1uzXi+Gaq0VuQuA61MfPvEKcW0paBV1R17VdqGpIOMVn+lARlhY4m3iEA
+         +JR0HLBDOvAK0Z/mBpurogE0/jVd2SG0Y6eAaeEz/l03VCqgD0+TPK++AO0oZYuzuOVg
+         fXaKKDQMYTqVQccNQG8f2LKtfOxfQjU0Gvp8O4sJHdWgewz4ZkpLW+zgD07LaFB/Zpzf
+         IQldq4IH2so8mE6onBaLIP8xSOUhS6zFXuUZjW6JBIYPp3/H+Z32IgypL01lL5UaKfqO
+         LIrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695886712; x=1696491512;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gKzzcFRe2VplRfr6R2h6JRusbvnJYPDky4iW2ifDT3M=;
-        b=QwVsrVf3d0eOdpmOiVBaZqIXXnVd7Hhm1PtYTyvN2Ke4AnB8K9N6hkkq8JGZ92LCF2
-         A+8JkjRSZ2hb6fRKD4Srpt0Qj/dhjnogwRpLvWfIJk6YLjBjtNReDVSA9SrBsyFOorgq
-         q5lKT8bwwiD1Et1s2QfR4SUDt9eMDOBxGrfOjzpYpLnfAEGTMXMYJDqE5w9Q3L0bl9XR
-         4yN4FdIPBYYGacQgguAtyAraHEGXo60c3j3h27SojekVXEdep/K8KrLPGH14RZsHpusx
-         TyVQzBseUcC5nyDgG8mSY0kmjuDEdfkMfp08lDAqOehk/tI9A519cmM/HpNT8lkgv3qw
-         vzZA==
-X-Gm-Message-State: AOJu0Yy4Ed/vwAQcFVr6qI8P6EuCO9uN4TsxCGIRT1p4wdE20ZWgEeXe
-	0zI/xkFJV8QLpB6/Zcf9RhNn9g==
-X-Google-Smtp-Source: AGHT+IHlxudOT+0WQEHXM8R5fIZXNF/+mzKQMiuWrpNaj1uCitxMDDn+XL2jAmyw0Q2PHrQ0Xokpmw==
-X-Received: by 2002:a1c:4b13:0:b0:405:3dee:3515 with SMTP id y19-20020a1c4b13000000b004053dee3515mr476951wma.27.1695886712314;
-        Thu, 28 Sep 2023 00:38:32 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0? ([2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0])
-        by smtp.googlemail.com with ESMTPSA id z5-20020adfe545000000b003177074f830sm344363wrm.59.2023.09.28.00.38.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Sep 2023 00:38:31 -0700 (PDT)
-Message-ID: <9de0e708-ff82-cc2b-2bb6-00c01cd5ff57@linaro.org>
-Date: Thu, 28 Sep 2023 09:38:31 +0200
+        d=1e100.net; s=20230601; t=1695887316; x=1696492116;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Kuf9lKPBLXFO99XEA7Zpn0AwyKHANLiyZjv73Ko4GuQ=;
+        b=p8BGkEV32fNfTw4kZuUt5WWOpivHolwhUQJbO9vxcNlbw7oW4mwbeiedmI2chYqC6+
+         7Hm8GB0JFzoQMkw0V7XGTFmTTMkve4VOLyuZAtBzyjhDvyk7CgdqHZ4l711cDRW/jMYR
+         W3FM/tADxUT5flBpxuG7E4XPQdCSTo4hxpQ+s+VePW72IBj8qTeXTFMKb1tKlo9kYgX1
+         ynovKUUn9uJAbOub1vBpyAJnJaLMJvD4wjp3U8/xB+EdQ92bQnTflsjsYDA757oadeb9
+         68JbB3+IZg/fIbeD97pUs4C1m8tcL2yaJCthIqqSJlRuX00XOTGhKddWshy30MJjSmk/
+         /45A==
+X-Gm-Message-State: AOJu0YyiNkPv5b1g2n1u/MJXheP3HmDSrnuLJCDqUUgvf5ECpnenxgKR
+	EiFg48IQJZUH7rWNNmiZtPRVmgHLtpohop2eIcQ=
+X-Google-Smtp-Source: AGHT+IF1bP1VCr5f+pdcsycs9fnFccmUeuSWQpBqzPdqd7DS7qCrPbNO06XQFpq9hTt55EwSzuhf9h8Z6tpiUSDKSfY=
+X-Received: by 2002:a05:6214:5d8f:b0:65b:1c7c:5ad3 with SMTP id
+ mf15-20020a0562145d8f00b0065b1c7c5ad3mr471467qvb.15.1695887316024; Thu, 28
+ Sep 2023 00:48:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] dt-bindings: thermal: nvidia,tegra124-soctherm: Add
- missing unevaluatedProperties on child node schemas
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230926164500.101593-1-robh@kernel.org>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20230926164500.101593-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <cover.1695804418.git.unicornxw@gmail.com> <20230927-ebony-duress-44ff45d3d253@spud>
+ <CAHAQgRC2xeqUu4mDZRJd3brcPNT4KovX65rNE7YXm+ku0+eERg@mail.gmail.com>
+In-Reply-To: <CAHAQgRC2xeqUu4mDZRJd3brcPNT4KovX65rNE7YXm+ku0+eERg@mail.gmail.com>
+From: Chen Wang <unicornxw@gmail.com>
+Date: Thu, 28 Sep 2023 15:48:24 +0800
+Message-ID: <CAHAQgRDz=Gp45ZkyW1fZiZW7+EyxDzbqKkc56XOpCpZ7x1rJeQ@mail.gmail.com>
+Subject: Re: [PATCH v3 00/11] Add Milk-V Pioneer RISC-V board support
+To: Conor Dooley <conor@kernel.org>
+Cc: aou@eecs.berkeley.edu, chao.wei@sophgo.com, devicetree@vger.kernel.org, 
+	guoren@kernel.org, jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org, 
+	xiaoguang.xing@sophgo.com, apatel@ventanamicro.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 26/09/2023 18:44, Rob Herring wrote:
-> Just as unevaluatedProperties or additionalProperties are required at
-> the top level of schemas, they should (and will) also be required for
-> child node schemas. That ensures only documented properties are
-> present for any node.
-> 
-> Add unevaluatedProperties as needed, and then add any missing properties
-> flagged by the addition.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
+Chen Wang <unicornxw@gmail.com> =E4=BA=8E2023=E5=B9=B49=E6=9C=8828=E6=97=A5=
+=E5=91=A8=E5=9B=9B 07:39=E5=86=99=E9=81=93=EF=BC=9A
+>
+> Conor Dooley <conor@kernel.org> =E4=BA=8E2023=E5=B9=B49=E6=9C=8828=E6=97=
+=A5=E5=91=A8=E5=9B=9B 00:09=E5=86=99=E9=81=93=EF=BC=9A
+> >
+> > Hey,
+> >
+> > On Wed, Sep 27, 2023 at 04:54:38PM +0800, Chen Wang wrote:
+> > > Milk-V Pioneer [1] is a developer motherboard based on SOPHON SG2042 =
+[2]
+> > > in a standard mATX form factor. Add minimal device
+> > > tree files for the SG2042 SOC and the Milk-V Pioneer board.
+> > >
+> > > Now only support basic uart drivers to boot up into a basic console.
+> > >
+> > > Thanks,
+> > > Chen
+> > >
+> > > ---
+> > >
+> > > Changes in v3:
+> > >   The patch series is based on v6.6-rc1. You can simply review or tes=
+t
+> > >   the patches at the link [5].
+> > >   - add new vendor specific compatible strings to identify timer/mswi=
+ for sg2042 clint
+> > >   - updated maintainers info. for sophgo devicetree
+> > >   - remove the quirk changes for uart
+> > >   - updated dts, such as:
+> > >     - add "riscv,isa-base"/"riscv,isa-extensions" for cpus
+> > >     - update l2 cache node's name
+> > >     - remove memory and pmu nodes
+> > >   - fixed other issues as per input from reviewers.
+> >
+> > v3 looks better indeed. I had some comments on the bindings and dt
+> > patches, but none were particularly major.
+> >
+> > Thanks,
+> > Conor.
+> >
+> Thanks, Conor, I will continue imrpoving according to your commnents.
+>
 
-Applied, thanks
+hi, Conor, one more question, what base should I take for next v4? I'm
+still using 6.6-rc1 and I see 6.6-rc3 has been released out.
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+> > >
+> > > Changes in v2:
+> > >   The patch series is based on v6.6-rc1. You can simply review or tes=
+t
+> > >   the patches at the link [4].
+> > >   - Improve format for comment of commitments as per input from last =
+review.
+> > >   - Improve format of DTS as per input from last review.
+> > >   - Remove numa related stuff from DTS. This part is just for optimiz=
+ation, may
+> > >     add it later if really needed.
+> > >
+> > > Changes in v1:
+> > >    The patch series is based on v6.6-rc1. Due to it is not sent in th=
+read,
+> > >    I have listed permlinks of the patchset [v1-0/12] ~ [v1-12/12] her=
+e for
+> > >    quick reference. You can simply review or test the patches at the =
+link [3].
+> > >
+> > > [1]: https://milkv.io/pioneer
+> > > [2]: https://en.sophgo.com/product/introduce/sg2042.html
+> > > [3]: https://github.com/unicornx/linux-riscv/commits/milkv-pioneer-mi=
+nimal
+> > > [4]: https://github.com/unicornx/linux-riscv/commits/milkv-pioneer-mi=
+nimal-v2
+> > > [5]: https://github.com/unicornx/linux-riscv/commits/milkv-pioneer-mi=
+nimal-v3
+> > > [v1-0/12]:https://lore.kernel.org/linux-riscv/20230915070856.117514-1=
+-wangchen20@iscas.ac.cn/
+> > > [v1-1/12]:https://lore.kernel.org/linux-riscv/20230915071005.117575-1=
+-wangchen20@iscas.ac.cn/
+> > > [v1-2/12]:https://lore.kernel.org/linux-riscv/20230915071409.117692-1=
+-wangchen20@iscas.ac.cn/
+> > > [v1-3/12]:https://lore.kernel.org/linux-riscv/20230915072242.117935-1=
+-wangchen20@iscas.ac.cn/
+> > > [v1-4/12]:https://lore.kernel.org/linux-riscv/20230915072333.117991-1=
+-wangchen20@iscas.ac.cn/
+> > > [v1-5/12]:https://lore.kernel.org/linux-riscv/20230915072358.118045-1=
+-wangchen20@iscas.ac.cn/
+> > > [v1-6/12]:https://lore.kernel.org/linux-riscv/20230915072415.118100-1=
+-wangchen20@iscas.ac.cn/
+> > > [v1-7/12]:https://lore.kernel.org/linux-riscv/20230915072431.118154-1=
+-wangchen20@iscas.ac.cn/
+> > > [v1-8/12]:https://lore.kernel.org/linux-riscv/20230915072451.118209-1=
+-wangchen20@iscas.ac.cn/
+> > > [v1-9/12]:https://lore.kernel.org/linux-riscv/20230915072517.118266-1=
+-wangchen20@iscas.ac.cn/
+> > > [v1-10/12]:https://lore.kernel.org/linux-riscv/20230915072558.118325-=
+1-wangchen20@iscas.ac.cn/
+> > > [v1-11/12]:https://lore.kernel.org/linux-riscv/20230915072624.118388-=
+1-wangchen20@iscas.ac.cn/
+> > > [v1-12/12]:https://lore.kernel.org/linux-riscv/20230915072653.118448-=
+1-wangchen20@iscas.ac.cn/
+> > >
+> > > ---
+> > >
+> > > Chen Wang (9):
+> > >   riscv: Add SOPHGO SOC family Kconfig support
+> > >   dt-bindings: vendor-prefixes: add milkv/sophgo
+> > >   dt-bindings: riscv: add sophgo sg2042 bindings
+> > >   dt-bindings: riscv: Add T-HEAD C920 compatibles
+> > >   dt-bindings: interrupt-controller: Add Sophgo SG2042 PLIC
+> > >   MAINTAINERS: add two files to sophgo devicetrees entry
+> > >   riscv: dts: add initial Sophgo SG2042 SoC device tree
+> > >   riscv: dts: sophgo: add Milk-V Pioneer board device tree
+> > >   riscv: defconfig: enable SOPHGO SoC
+> > >
+> > > Inochi Amaoto (2):
+> > >   dt-bindings: timer: Add Sophgo sg2042 CLINT timer
+> > >   dt-bindings: interrupt-controller: Add Sophgo sg2042 CLINT mswi
+> > >
+> > >  .../sifive,plic-1.0.0.yaml                    |    1 +
+> > >  .../sophgo,sg2042-clint-mswi.yaml             |   42 +
+> > >  .../devicetree/bindings/riscv/cpus.yaml       |    1 +
+> > >  .../devicetree/bindings/riscv/sophgo.yaml     |   28 +
+> > >  .../timer/sophgo,sg2042-clint-mtimer.yaml     |   42 +
+> > >  .../devicetree/bindings/vendor-prefixes.yaml  |    4 +
+> > >  MAINTAINERS                                   |    9 +
+> > >  arch/riscv/Kconfig.socs                       |    5 +
+> > >  arch/riscv/boot/dts/Makefile                  |    1 +
+> > >  arch/riscv/boot/dts/sophgo/Makefile           |    3 +
+> > >  arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi   | 1880 +++++++++++++++=
+++
+> > >  .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  |   19 +
+> > >  arch/riscv/boot/dts/sophgo/sg2042.dtsi        |  325 +++
+> > >  arch/riscv/configs/defconfig                  |    1 +
+> > >  14 files changed, 2361 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/interrupt-contr=
+oller/sophgo,sg2042-clint-mswi.yaml
+> > >  create mode 100644 Documentation/devicetree/bindings/riscv/sophgo.ya=
+ml
+> > >  create mode 100644 Documentation/devicetree/bindings/timer/sophgo,sg=
+2042-clint-mtimer.yaml
+> > >  create mode 100644 arch/riscv/boot/dts/sophgo/Makefile
+> > >  create mode 100644 arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi
+> > >  create mode 100644 arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.d=
+ts
+> > >  create mode 100644 arch/riscv/boot/dts/sophgo/sg2042.dtsi
+> > >
+> > >
+> > > base-commit: 0bb80ecc33a8fb5a682236443c1e740d5c917d1d
+> > > --
+> > > 2.25.1
+> > >
 
