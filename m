@@ -1,108 +1,226 @@
-Return-Path: <devicetree+bounces-4135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3DCD7B15DB
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 10:17:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74EBF7B15EF
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 10:23:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 5BD5528262A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 08:17:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 58AF51C208CF
+	for <lists+devicetree@lfdr.de>; Thu, 28 Sep 2023 08:23:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B6D0328D9;
-	Thu, 28 Sep 2023 08:17:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5F08328DF;
+	Thu, 28 Sep 2023 08:22:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C4DA1FD5
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 08:17:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06C89C433C9;
-	Thu, 28 Sep 2023 08:17:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1695889065;
-	bh=f0Py5KsQnV1kllOtBgaMRjOqXMqsVEKHE9P7jkmTxLc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mdKT26sKpwvKyVxjrAM3SwSFoLqZQ3Ap9kIl3LPvUuGJri7B/UskSlNUv3pTUlydj
-	 +cKEq+FCaDatZOay9enVHnlVG0SmJU+tjbwN50C51rL/jz5Bn9ZRZiqPTS+5QBN0F+
-	 U5KdvwyZuPYLoyKpkGLGxI7c0lpnWRHDl84zjW4w=
-Date: Thu, 28 Sep 2023 10:17:40 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Max Filippov <jcmvbkbc@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org, Jiri Slaby <jirislaby@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Subject: Re: [PATCH v2 1/5] serial: core: tidy invalid baudrate handling in
- uart_get_baud_rate
-Message-ID: <2023092835-applied-shakable-f5dc@gregkh>
-References: <20230920022644.2712651-1-jcmvbkbc@gmail.com>
- <20230920022644.2712651-2-jcmvbkbc@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A51AA847B;
+	Thu, 28 Sep 2023 08:22:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D590C433C7;
+	Thu, 28 Sep 2023 08:22:54 +0000 (UTC)
+Message-ID: <c9eb7857-896f-43dd-b8fe-4711ba202c81@xs4all.nl>
+Date: Thu, 28 Sep 2023 10:22:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230920022644.2712651-2-jcmvbkbc@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 0/8] Add StarFive Camera Subsystem driver
+Content-Language: en-US, nl
+To: Jack Zhu <jack.zhu@starfivetech.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>,
+ "bryan.odonoghue@linaro.org" <bryan.odonoghue@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-staging@lists.linux.dev" <linux-staging@lists.linux.dev>,
+ Changhuang Liang <changhuang.liang@starfivetech.com>
+References: <20230914031607.34877-1-jack.zhu@starfivetech.com>
+ <11735008-1adf-4b84-9023-d295371caed5@xs4all.nl>
+ <705f6143-169d-907e-9453-a5b384f921cd@starfivetech.com>
+From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <705f6143-169d-907e-9453-a5b384f921cd@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Sep 19, 2023 at 07:26:40PM -0700, Max Filippov wrote:
-> uart_get_baud_rate has input parameters 'min' and 'max' limiting the
-> range of acceptable baud rates from the caller's perspective. If neither
-> current or old termios structures have acceptable baud rate setting and
-> 9600 is not in the min/max range either the function returns 0 and
-> issues a warning.
-> However for a UART that does not support speed of 9600 baud this is
-> expected behavior.
-> Clarify that 0 can be (and always could be) returned from the
-> uart_get_baud_rate. Don't issue a warning in that case.
-> Move the warinng to the uart_get_divisor instead, which is often called
-> with the uart_get_baud_rate return value.
+On 28/09/2023 10:12, Jack Zhu wrote:
 > 
-> Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
-> ---
->  drivers/tty/serial/serial_core.c | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/tty/serial/serial_core.c b/drivers/tty/serial/serial_core.c
-> index 7bdc21d5e13b..a8e2915832e8 100644
-> --- a/drivers/tty/serial/serial_core.c
-> +++ b/drivers/tty/serial/serial_core.c
-> @@ -431,7 +431,7 @@ EXPORT_SYMBOL(uart_update_timeout);
->   * baud.
->   *
->   * If the new baud rate is invalid, try the @old termios setting. If it's still
-> - * invalid, we try 9600 baud.
-> + * invalid, we try 9600 baud. If that is also invalid 0 is returned.
->   *
->   * The @termios structure is updated to reflect the baud rate we're actually
->   * going to be using. Don't do this for the case where B0 is requested ("hang
-> @@ -515,8 +515,6 @@ uart_get_baud_rate(struct uart_port *port, struct ktermios *termios,
->  							max - 1, max - 1);
->  		}
->  	}
-> -	/* Should never happen */
-> -	WARN_ON(1);
+> On 2023/9/15 17:26, Hans Verkuil wrote:
+>> On 14/09/2023 05:15, Jack Zhu wrote:
+>>> Hi,
+>>>
+>>> This series is the v9 series that attempts to support the Camera Subsystem
+>>> found on StarFive JH7110 SoC.
+>>>
+>>> This series is based on top of the master branch of media_stage repository.
+>>>
+>>> The following are the media graph for the device and the v4l2-compliance
+>>> output.
+>>>
+>>> ===========================================================================
+>>> [the media graph]:
+>>>
+>>> digraph board {
+>>> 	rankdir=TB
+>>> 	n00000001 [label="{{<port0> 0} | stf_isp\n/dev/v4l-subdev0 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
+>>> 	n00000001:port1 -> n00000008 [style=dashed]
+>>> 	n00000004 [label="capture_raw\n/dev/video0", shape=box, style=filled, fillcolor=yellow]
+>>> 	n00000008 [label="capture_yuv\n/dev/video1", shape=box, style=filled, fillcolor=yellow]
+>>> 	n0000000e [label="{{<port0> 0} | cdns_csi2rx.19800000.csi-bridge\n | {<port1> 1 | <port2> 2 | <port3> 3 | <port4> 4}}", shape=Mrecord, style=filled, fillcolor=green]
+>>> 	n0000000e:port1 -> n00000001:port0 [style=dashed]
+>>> 	n0000000e:port1 -> n00000004 [style=dashed]
+>>> 	n00000018 [label="{{} | imx219 6-0010\n/dev/v4l-subdev1 | {<port0> 0}}", shape=Mrecord, style=filled, fillcolor=green]
+>>> 	n00000018:port0 -> n0000000e:port0 [style=bold]
+>>> }
+>>>
+>>> [the device topology]:
+>>>
+>>> Media controller API version 6.5.0
+>>>
+>>> Media device information
+>>> ------------------------
+>>> driver          starfive-camss
+>>> model           Starfive Camera Subsystem
+>>> serial          
+>>> bus info        platform:19840000.camss
+>>> hw revision     0x0
+>>> driver version  6.5.0
+>>>
+>>> Device topology
+>>> - entity 1: stf_isp (2 pads, 2 links)
+>>>             type V4L2 subdev subtype Unknown flags 0
+>>>             device node name /dev/v4l-subdev0
+>>> 	pad0: Sink
+>>> 		[fmt:SRGGB10_1X10/1920x1080 field:none colorspace:srgb
+>>> 		 crop.bounds:(0,0)/1920x1080
+>>> 		 crop:(0,0)/1920x1080]
+>>> 		<- "cdns_csi2rx.19800000.csi-bridge":1 []
+>>> 	pad1: Source
+>>> 		[fmt:YUYV8_1_5X8/1920x1080 field:none colorspace:srgb
+>>> 		 crop.bounds:(0,0)/1920x1080
+>>> 		 crop:(0,0)/1920x1080]
+>>> 		-> "capture_yuv":0 []
+>>>
+>>> - entity 4: capture_raw (1 pad, 1 link)
+>>>             type Node subtype V4L flags 0
+>>>             device node name /dev/video0
+>>> 	pad0: Sink
+>>> 		<- "cdns_csi2rx.19800000.csi-bridge":1 []
+>>>
+>>> - entity 8: capture_yuv (1 pad, 1 link)
+>>>             type Node subtype V4L flags 0
+>>>             device node name /dev/video1
+>>> 	pad0: Sink
+>>> 		<- "stf_isp":1 []
+>>>
+>>> - entity 14: cdns_csi2rx.19800000.csi-bridge (5 pads, 3 links)
+>>>              type V4L2 subdev subtype Unknown flags 0
+>>> 	pad0: Sink
+>>> 		<- "imx219 6-0010":0 [ENABLED,IMMUTABLE]
+>>> 	pad1: Source
+>>> 		-> "stf_isp":0 []
+>>> 		-> "capture_raw":0 []
+>>> 	pad2: Source
+>>> 	pad3: Source
+>>> 	pad4: Source
+>>>
+>>> - entity 24: imx219 6-0010 (1 pad, 1 link)
+>>>              type V4L2 subdev subtype Sensor flags 0
+>>>              device node name /dev/v4l-subdev1
+>>> 	pad0: Source
+>>> 		[fmt:SRGGB10_1X10/3280x2464 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:full-range
+>>> 		 crop.bounds:(8,8)/3280x2464
+>>> 		 crop:(8,8)/3280x2464]
+>>> 		-> "cdns_csi2rx.19800000.csi-bridge":0 [ENABLED,IMMUTABLE]
+>>>
+>>> ===========================================================================
+>>> [the v4l2-compliance output]:
+>>>
+>>> v4l2-compliance 1.24.1, 64 bits, 64-bit time_t
+>>
+>> This v4l2-compliance version is from a distro. For driver acceptance you
+>> must test with a v4l2-compliance compiled from the git repo (git://linuxtv.org/v4l-utils.git).
+>>
+>> Also, since this driver uses the media controller, you must run v4l2-compliance
+>> with the -m /dev/mediaX option. This will test the compliance of all devices
+>> reported by the media controller.
+>>
+>>>
+>>> Compliance test for stf camss device /dev/video1:
+>>>
+>>> Driver Info:
+>>> 	Driver name      : stf camss
+>>
+>> The module is called starfive-camss, so shouldn't the driver name reported here
+>> be the same?
+>>
+>>> 	Card type        : Starfive Camera Subsystem
+>>> 	Bus info         : platform:19840000.camss
+>>> 	Driver version   : 6.5.0
+>>> 	Capabilities     : 0x84200001
+>>> 		Video Capture
+>>> 		Streaming
+>>> 		Extended Pix Format
+>>> 		Device Capabilities
+>>> 	Device Caps      : 0x04200001
+>>> 		Video Capture
+>>> 		Streaming
+>>> 		Extended Pix Format
+>>> Media Driver Info:
+>>> 	Driver name      : starfive-camss
+>>
+>> It's correct in the media controller information.
+>>
+>>> 	Model            : Starfive Camera Subsystem
+>>> 	Serial           : 
+>>> 	Bus info         : platform:19840000.camss
+>>> 	Media version    : 6.5.0
+>>> 	Hardware revision: 0x00000000 (0)
+>>> 	Driver version   : 6.5.0
+>>> Interface Info:
+>>> 	ID               : 0x0300000a
+>>> 	Type             : V4L Video
+>>> Entity Info:
+>>> 	ID               : 0x00000008 (8)
+>>> 	Name             : capture_yuv
+>>> 	Function         : V4L2 I/O
+>>> 	Pad 0x01000009   : 0: Sink
+>>> 	  Link 0x0200000c: from remote pad 0x1000003 of entity 'stf_isp' (Unknown Function (00004009)): Data, Enabled
+>>
+>> Hmm, this reports "Unknown Function". I bet that when you run v4l2-compliance
+>> with the -m option it will fail on this. If not, then that's likely a bug in
+>> the compliance test, please let me know if that's the case.
+>>
+> 
+> Hi Hans,
+> 
+> The following is the latest test log, which does not report a failure, but
+> also reports "Unknown Function".
+> 
+> I make the following settings in the stf-isp.c file:
+> v4l2_subdev.entity.function = MEDIA_ENT_F_PROC_VIDEO_ISP;
+> 
 
-I'm ok with this removal, but:
+Can you post the output of:
 
->  	return 0;
->  }
->  EXPORT_SYMBOL(uart_get_baud_rate);
-> @@ -539,6 +537,7 @@ uart_get_divisor(struct uart_port *port, unsigned int baud)
->  {
->  	unsigned int quot;
->  
-> +	WARN_ON(baud == 0);
+v4l2-compliance --verbose -M /dev/media0
 
-Why is this needed?  If this isn't happening today, then there's no need
-to check for this here.  Or if it can happen, we should return an error,
-not cause a possible reboot of the system if panic-on-warn is enabled.
+I am beginning to suspect that utils/common/media-info.cpp is out-of-date:
+it is missing MEDIA_ENT_F_PROC_VIDEO_ISP.
 
-thanks,
+But I don't understand why v4l2-compliance didn't fail on this.
 
-greg k-h
+Regards,
+
+	Hans
 
