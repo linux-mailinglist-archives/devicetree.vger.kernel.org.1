@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-4660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE8F97B35F3
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 16:45:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B8AE7B35F4
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 16:45:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id A1759289274
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 14:45:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 391D71C209F2
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 14:45:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C3E8516DD;
-	Fri, 29 Sep 2023 14:45:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63D55516D5;
+	Fri, 29 Sep 2023 14:45:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FAC44122F
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 14:45:00 +0000 (UTC)
-Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47E621A4
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 07:44:59 -0700 (PDT)
-Received: by mail-oo1-xc33.google.com with SMTP id 006d021491bc7-57d086365f7so2923653eaf.0
-        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 07:44:59 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70DA641ABA
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 14:45:01 +0000 (UTC)
+Received: from mail-oo1-xc35.google.com (mail-oo1-xc35.google.com [IPv6:2607:f8b0:4864:20::c35])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2117D1A8
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 07:45:00 -0700 (PDT)
+Received: by mail-oo1-xc35.google.com with SMTP id 006d021491bc7-57bab8676f9so5187775eaf.3
+        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 07:45:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695998698; x=1696603498; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1695998699; x=1696603499; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YhDXBL6djx3l6DnIsclYTYIvG11sEMF/WMaryhbeYQw=;
-        b=bLhrTGexjFXzmH12FvHSiipumO6rtxAc7r80090Ak3kDSWiUgVH/C+LXoy8zmFVRjF
-         PwsDrYE6KCAw7MoNKozdQDA3+e+zCfd/4lVMHcGFMnZ4dC8RB2OFeVTVH+tC33Safn1S
-         2MEUAOgpDNtc75xYAM8kb4wgGVM0DcB/51mk25OTuF9WzNT3uECmr+YsCkvrnYd7yp/K
-         jU+XYraVIy4im+psDfgL95sReTllPbPtEjXER/sbckhL59nDR2ffLeV8KWKSe/fELVPz
-         +PBT5McZBSGMDXC/hKhHYQGJRqTXE5YNnhtFLwHKGcBrllY6jrUcimHdp1ySRffUN52d
-         phxA==
+        bh=gGhQthT64pdSxzZ5aTBXuH64J4biaW8ztdfRr2G2cDM=;
+        b=N7SpxTND7enfNaphkyWEBIWMWrT+kDAZHZFAeS9ZQ3g3ezCNkkY+IDcENhmIxzXY4r
+         CCzEjPMB879CFHY1UKyevwvydwMiIHIq0Z75vyaxLpGr0jz4Aqp5iQzGVW/CXMmpPwZB
+         YHy2VmCEDlrRNXNyK58seDVSVql9m3Nk8EuDcBL6djdUpkABDzZZOVIvVDg2row+Mvaq
+         7841yv4Rl5UzLto1PVyKoeDtlOyh9M7/Dx5N9M6W/AJjESkXLtmPl27CVz9Yvj7r9M97
+         Ni0U5cuc0NhPP8U4M5ICXp349i4aRL2U71slWLmZLKrtr3vrShLWwKzA9PoyGxoLLHlU
+         ozkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695998698; x=1696603498;
+        d=1e100.net; s=20230601; t=1695998699; x=1696603499;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YhDXBL6djx3l6DnIsclYTYIvG11sEMF/WMaryhbeYQw=;
-        b=rQrA+qEAP9DAiPB+QgxdqTutI3rXdpa150+vCcEq2juckKLpwCE7bodrjms8oFKhyw
-         I5nVQz/vuZucZXbWdPTOtXe8Zz8rG6+pwx7yyj1xj2xaB2UvsFllQNy/DUvM4v/Yvbs8
-         I1Op84Uq+QbU/uaiZ7nbhoEuNBx4bTFDUMvpOIDKWx57NtPwNBFkX5Ld/t7TAVq3TSh/
-         CbwDPq/VsVEMXQ0Mp+4CLkbNNcOl9KqAiDmIkwAnFDCEZXaFjtvbtfgWQplUiBFSkVuq
-         lg1RKo/D8uzKsAf+bjobxHl7yNkdOgHpOq8XJrXhNvcXsoKvz9JFbUUO50vbBa63j7QH
-         jLVA==
-X-Gm-Message-State: AOJu0YwTZ0JMYzzcegSOd65GJCyKCkVZQlMdLGfrZbmFQI2KPHK/YCAH
-	lAqd7ePcuEDoL/QD1lpKKNuo5DYWee8=
-X-Google-Smtp-Source: AGHT+IHin0WRYrMxB7uZfpH9iQe49dwXPt7hEgxWu4SOSKamTJLivb4w5WsNchcuuYMag9/cK1zzvw==
-X-Received: by 2002:a4a:3019:0:b0:57d:e76d:c206 with SMTP id q25-20020a4a3019000000b0057de76dc206mr4658027oof.1.1695998698437;
-        Fri, 29 Sep 2023 07:44:58 -0700 (PDT)
+        bh=gGhQthT64pdSxzZ5aTBXuH64J4biaW8ztdfRr2G2cDM=;
+        b=IUsh5ULD+Xj7LtPwa3g3pDm3ENIKfChhDOsMmYX+0P/NTILr0/aN9cpXwtNjCV9i4j
+         R3cs57MAyf8OXnpezwrqm25JvfE2uQIeEUt6qGKUd5yf2v5UJwwBtTmc7ktFFNOiUIkL
+         o0+RRd1V8YxauQn2MYc/3HfB+bHVa8kXiErnfjhknwFzNcVEzoJRdJjH2LMyRzOX8fYA
+         +iacxEcj+TEEQ9KtzLdlB5ZrDxY/C6aGLiO067MwFt16FzHRo3WOy7AKDIJ+o5zMMdNR
+         V81SYka8McKT8AiwM44FSK+7S0tAhUHFQGJjMhR1L8DCFYcukMzNmwIKX3eGCzl3Dvg3
+         ycvQ==
+X-Gm-Message-State: AOJu0YwXQktR5A4x7jNcFGmu3MVpieiY3Y5W4J/ion97aSYIThNCwGT5
+	XS7Xv+foAEMoeAO7FgcnUsU=
+X-Google-Smtp-Source: AGHT+IELq6iwO1Fa157H4tcNZ5YXb3nXTi/tPLBGB2vyJx6Y8gwTC2FoYMVGNpnR7EeH15ZCLR3LPA==
+X-Received: by 2002:a4a:2742:0:b0:57b:a346:167e with SMTP id w2-20020a4a2742000000b0057ba346167emr4474794oow.6.1695998699351;
+        Fri, 29 Sep 2023 07:44:59 -0700 (PDT)
 Received: from localhost.localdomain ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id q19-20020a9d6653000000b006b753685cc5sm3012619otm.79.2023.09.29.07.44.57
+        by smtp.gmail.com with ESMTPSA id q19-20020a9d6653000000b006b753685cc5sm3012619otm.79.2023.09.29.07.44.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Sep 2023 07:44:57 -0700 (PDT)
+        Fri, 29 Sep 2023 07:44:58 -0700 (PDT)
 From: Chris Morgan <macroalpha82@gmail.com>
 To: linux-sunxi@lists.linux.dev
 Cc: devicetree@vger.kernel.org,
@@ -66,10 +66,11 @@ Cc: devicetree@vger.kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	robh+dt@kernel.org,
 	andre.przywara@arm.com,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH V6 2/4] ARM: dts: sun8i: v3s: add EHCI and OHCI to v3s dts
-Date: Fri, 29 Sep 2023 09:44:39 -0500
-Message-Id: <20230929144441.3409-3-macroalpha82@gmail.com>
+	Chris Morgan <macromorgan@hotmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH V6 3/4] dt-bindings: arm: sunxi: add Anbernic RG-Nano
+Date: Fri, 29 Sep 2023 09:44:40 -0500
+Message-Id: <20230929144441.3409-4-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230929144441.3409-1-macroalpha82@gmail.com>
 References: <20230929144441.3409-1-macroalpha82@gmail.com>
@@ -89,50 +90,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Add the EHCI and OHCI controller to the Allwinner v3s to support using
-USB in host mode.
+The Anbernic RG-Nano is a portable handheld console from Anbernic which
+uses the Allwinner V3s SoC.
 
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 ---
- arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi | 23 ++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi b/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
-index c87476ea31e2..e8a04476b776 100644
---- a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
-+++ b/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
-@@ -319,6 +319,29 @@ usbphy: phy@1c19400 {
- 			#phy-cells = <1>;
- 		};
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index e4dd678f4212..1929a0a475fd 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -51,6 +51,11 @@ properties:
+           - const: allwinner,parrot
+           - const: allwinner,sun8i-a33
  
-+		ehci: usb@1c1a000 {
-+			compatible = "allwinner,sun8i-v3s-ehci", "generic-ehci";
-+			reg = <0x01c1a000 0x100>;
-+			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_EHCI0>, <&ccu CLK_BUS_OHCI0>;
-+			resets = <&ccu RST_BUS_EHCI0>, <&ccu RST_BUS_OHCI0>;
-+			phys = <&usbphy 0>;
-+			phy-names = "usb";
-+			status = "disabled";
-+		};
++      - description: Anbernic RG-Nano
++        items:
++          - const: anbernic,rg-nano
++          - const: allwinner,sun8i-v3s
 +
-+		ohci: usb@1c1a400 {
-+			compatible = "allwinner,sun8i-v3s-ohci", "generic-ohci";
-+			reg = <0x01c1a400 0x100>;
-+			interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_EHCI0>, <&ccu CLK_BUS_OHCI0>,
-+				 <&ccu CLK_USB_OHCI0>;
-+			resets = <&ccu RST_BUS_EHCI0>, <&ccu RST_BUS_OHCI0>;
-+			phys = <&usbphy 0>;
-+			phy-names = "usb";
-+			status = "disabled";
-+		};
-+
- 		ccu: clock@1c20000 {
- 			compatible = "allwinner,sun8i-v3s-ccu";
- 			reg = <0x01c20000 0x400>;
+       - description: Amarula A64 Relic
+         items:
+           - const: amarula,a64-relic
 -- 
 2.34.1
 
