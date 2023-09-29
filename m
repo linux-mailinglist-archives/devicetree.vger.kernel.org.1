@@ -1,103 +1,125 @@
-Return-Path: <devicetree+bounces-4436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B954C7B2967
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 02:10:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97A477B2990
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 02:30:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id D31161C2090F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 00:10:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 23645282595
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 00:30:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D031188;
-	Fri, 29 Sep 2023 00:10:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA965646;
+	Fri, 29 Sep 2023 00:30:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 262BF1381
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 00:10:06 +0000 (UTC)
-Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9AE992
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 17:10:05 -0700 (PDT)
-Received: by mail-qt1-x835.google.com with SMTP id d75a77b69052e-4195fe5cf73so93391cf.1
-        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 17:10:05 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 311AE10FA
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 00:30:50 +0000 (UTC)
+Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F8351A3
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 17:30:48 -0700 (PDT)
+Received: by mail-qv1-xf34.google.com with SMTP id 6a1803df08f44-65af7d102b3so65496276d6.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 17:30:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1695946205; x=1696551005; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LzvTFN75+iA4NEl0LJCBH/BP6Z5NQCZHvtY+oNVE+gw=;
-        b=OjCFf9TOnkrLU/KswzCvSTiHaAwPyIWNJJ2EPe6dDqm+X5kAOzryroIiLCzfM8xmVr
-         YPCnE39m1D1V6DUzfZu8OBJcU25eGSp6gJjXyhqJvXDGbqdo8pBhvKEqzddTxevzcxIa
-         GZ/cNiIMCHi1a5JxJlFWZ2Kzn4ftofnKMyH057/K0hjQKxq2mxTWKwC9xmi74DP2fUfW
-         9wF3Qrw4n7YArj6sDmadA0ZyZGQ18m96hXrMp60KURbiQgIzuA/bxGqls40Hexe0Bn3O
-         E9NvZ9cKCD1hqsyypzt8CowKCH1/mpPiol56odkeYMSMbrI87cQ4seeXBzuLS2Um5v/T
-         igTw==
+        d=sifive.com; s=google; t=1695947447; x=1696552247; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=atEB7wjnfyIdR+cI94PXlHFbCfo6brMiQMFpy3s241U=;
+        b=cijoMD3UATZPstSif7qtw9XrrWff8Ty/4+1i1c3pfR6GeTs2gUOaj5mnaB00ar9TvQ
+         URTXi7rF4JzJ8qWhqSLlgv2mgYJhfEZLZ4QZyjZItSyJLW7EndY16g8IbR7unadVTZWH
+         LNNg8GoXQY2vo/KiiokMnWANnE2yBv5p8nSkcL6yvylsN8768qe/0JrSoqOe8vvn52+p
+         aFir0WFmg9kIe4dboae7okpeSnGyxPdb0wF037m5e3MvSobK+r/mrX2EZ5ZsWPr5Oab9
+         1ym9f4E8A0PFSTabe94Fw2+d3zME1hIJj3k7bHNhj2RHwKmIbWzINuCyglXK5sQ0jv5I
+         pzlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695946205; x=1696551005;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LzvTFN75+iA4NEl0LJCBH/BP6Z5NQCZHvtY+oNVE+gw=;
-        b=qBvhkzOmPMtURqiB6ppHQlvh2kgC95uqNGCrk+3Oc4newAjaeE4RHW73hetrbibsjw
-         mUxs8I3CO2c8+R0u+Ohd4HTpQqPjmaF4SauWhfd6K0NlrPfY9gXMymtIQLe/IVVw7CBt
-         axqVgGnWre+mC5noC8LCbMilWyX/jg/Si4m8bZMty3ZIbhcMbZvMb0KB5tLpayqFMbQz
-         rZ/FP4ge1wQHP1EOebYMC8O74UUAFm1LOO8vGtyYkWV1ubiMEzzQ044/HH7J4SxP2a7x
-         aFOzs5SpBy/G+5+Z+F6NyA2MPZ1AkgyFASqZ+G/Ao1UkMRSxVi95/rIO0iWYMDcR8xRN
-         ZwAg==
-X-Gm-Message-State: AOJu0YxLvzuA+mJdRRX/BqK30sJioTfsUtEUaSrD4a12MWYzORQrJ92O
-	mVJCavYEr1fpP1AgzAAL/frQ7ulhiINVZS/wa0kj3Q==
-X-Google-Smtp-Source: AGHT+IH4jwtz94nsixUZlli6bJCxlt1xjILkhR2GybMC88NTjRXEj7Vlfpt7diniCxJex6zUjQlOAOBjKfTfS7/tbTc=
-X-Received: by 2002:a05:622a:100f:b0:417:9238:5a30 with SMTP id
- d15-20020a05622a100f00b0041792385a30mr1067632qte.29.1695946204321; Thu, 28
- Sep 2023 17:10:04 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1695947447; x=1696552247;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=atEB7wjnfyIdR+cI94PXlHFbCfo6brMiQMFpy3s241U=;
+        b=AAAU0rB6UXz2tU2Vnk56j8j7YfPemlPG49Dli5D5oWI1jdxeL8tT1evmjukzez1BBU
+         CfhvEJYiKpW/uEAssXVcYaPoKwuhJFSMPsNT/O3iseEHfUE3Gg9dqyxdFrdnNp6vYNrn
+         0aeSGo5qGYzKPimIImu9222UiUaXXuqZbkfnKLAshhVk7u+kle2252HlnSIYx/io+d/M
+         rT7VY10UdjYQCRfOxqTN7Js8bozNFqWnr9rSSJi6hk5w+Q/VwlUqjHcwlrPpn/slElU3
+         2qsl7XQsZxuGcLv2x9oPVJKa8A6cuxN6ENDfIgE+rqqS1HlIhzpckoekrw5HBOj4EUYl
+         9wTA==
+X-Gm-Message-State: AOJu0Yx/XtC3BuMfloBkUDeD27kkBnWsSAnfH8OPCzGlBS+L2rexRrdG
+	jIYfk8i8p4ODB8gA7/f9u9z06ycgzYNmfoTL3STLXmZH
+X-Google-Smtp-Source: AGHT+IEYm7+id3//cfxcIDRfW/DYDioXQBn/ZqKu09zqWg0PZQxdEAy8zuztSY5h7LmqGu3r0JstLg==
+X-Received: by 2002:a0c:cb88:0:b0:65b:1468:8210 with SMTP id p8-20020a0ccb88000000b0065b14688210mr2774211qvk.23.1695947447439;
+        Thu, 28 Sep 2023 17:30:47 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2000:b002:5086:8bae:a4b0:bdad? ([2600:1700:2000:b002:5086:8bae:a4b0:bdad])
+        by smtp.gmail.com with ESMTPSA id q5-20020a0cf5c5000000b0065d105f6931sm759933qvm.59.2023.09.28.17.30.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Sep 2023 17:30:47 -0700 (PDT)
+Message-ID: <3d9eb660-e255-4477-a04b-6db8d249a20d@sifive.com>
+Date: Thu, 28 Sep 2023 19:30:46 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230928061207.1841513-1-apatel@ventanamicro.com>
- <20230928061207.1841513-3-apatel@ventanamicro.com> <CAL_JsqL6LvfQQi4AqJpDPKwC76Xap4Re4o+bzviyb--dUOG7vQ@mail.gmail.com>
-In-Reply-To: <CAL_JsqL6LvfQQi4AqJpDPKwC76Xap4Re4o+bzviyb--dUOG7vQ@mail.gmail.com>
-From: Saravana Kannan <saravanak@google.com>
-Date: Thu, 28 Sep 2023 17:09:27 -0700
-Message-ID: <CAGETcx_1sKjyMR4Vkx4maVy+jopHtjuzO7n8zzOnj9u9G5s1mw@mail.gmail.com>
-Subject: Re: [PATCH v9 02/15] of: property: Add fw_devlink support for msi-parent
-To: Rob Herring <robh+dt@kernel.org>
-Cc: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	Marc Zyngier <maz@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Frank Rowand <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, 
-	Sunil V L <sunilvl@ventanamicro.com>, Anup Patel <anup@brainfault.org>, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-	USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
-	autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] riscv: dts: renesas: rzfive-smarc: Drop dma
+ properties from SSI1 node
+Content-Language: en-US
+To: Prabhakar <prabhakar.csengg@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Biju Das <biju.das.jz@bp.renesas.com>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20230929000704.53217-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230929000704.53217-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Samuel Holland <samuel.holland@sifive.com>
+In-Reply-To: <20230929000704.53217-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Thu, Sep 28, 2023 at 7:40=E2=80=AFAM Rob Herring <robh+dt@kernel.org> wr=
-ote:
->
-> On Thu, Sep 28, 2023 at 1:12=E2=80=AFAM Anup Patel <apatel@ventanamicro.c=
-om> wrote:
-> >
-> > This allows fw_devlink to create device links between consumers of
-> > a MSI and the supplier of the MSI.
-> >
-> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > ---
-> >  drivers/of/property.c | 2 ++
-> >  1 file changed, 2 insertions(+)
->
-> Acked-by: Rob Herring <robh@kernel.org>
+Hi Prabhakar,
 
-Reviewed-by: Saravana Kannan <saravanak@google.com>
+On 2023-09-28 7:07 PM, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> With DMA enabled audio capture/playback has some echo noise. So for
+> now switch to PIO mode until fixed.
+
+Is it really appropriate to work around a Linux software bug with a DT change
+like this? Remember, the devicetrees are used by software other than Linux.
+
+Regards,
+Samuel
+
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+>  arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi b/arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi
+> index a8573fdfd8b1..85f96e24a96e 100644
+> --- a/arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi
+> +++ b/arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi
+> @@ -6,3 +6,8 @@
+>   */
+>  
+>  #include <arm64/renesas/rzg2ul-smarc.dtsi>
+> +
+> +&ssi1 {
+> +	/delete-property/ dmas;
+> +	/delete-property/ dma-names;
+> +};
+
 
