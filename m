@@ -1,89 +1,104 @@
-Return-Path: <devicetree+bounces-4756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E70C97B3BFF
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 23:36:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 122B57B3C1F
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 23:51:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 9F727281D91
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 21:36:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 2BF211C20828
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 21:51:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D6386728D;
-	Fri, 29 Sep 2023 21:36:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C89E667296;
+	Fri, 29 Sep 2023 21:51:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E2706669B
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 21:36:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F8E8C433C7;
-	Fri, 29 Sep 2023 21:36:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696023401;
-	bh=mXWRebIPnDtz7oa99tSWCEXMUJKJoTz+JHyEwZ8HvhY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=bLcLk+2j9fqeZGtfvsdOlGdsg5jzp7n2RH4hFJzueX+iZhUQ38TQd1012iDUjj4ZR
-	 cby8FAqubnkRK8LMcR/RTt4J6TK+6wL8ROn4xtz/DC9SNqmvGwVSggLkvThPIzaPZU
-	 V8wDGzk5UmLC5mQvI/+y+dvr5a81rQ391ObCluQ3XW8nx4HsFZxmiMGT00ojXIHJHy
-	 QAjNd2MRO5O77OUt5/2xvNISr9S3s/V9QVfYQRPWD45WkIdFGP6+w7YVvQqAtiLKK/
-	 oW1xlv+kSlxh1d5+uKoeeHQf2c8Lwzej1KmlFC9yxSUjnQdKaAhtDrlzrgzNtYnfil
-	 On5cGxIeOr2Zw==
-Received: (nullmailer pid 278069 invoked by uid 1000);
-	Fri, 29 Sep 2023 21:36:39 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8106B67291
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 21:51:05 +0000 (UTC)
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C7AD1BC
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 14:51:03 -0700 (PDT)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-59c268676a9so177287637b3.0
+        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 14:51:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696024262; x=1696629062; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Hskw88hLeAFbdhf2MCWNUtrnHOIlmXUQ4ZL1O7T/y0E=;
+        b=M2ygEO2xao9bi1LsQy8OB5+84c6hVswvmjJwxCoJHSHOM/pIbKXoenew8o0NL1JgGW
+         kxRUK8At0IKdWg2TuKHOrVi9ymb9Eeckmr211X/KOAYMMyfc2BuOyCkWnBdDxVs/c60r
+         m9FF3Q0Vz6Q8ZqFB+m5MxoSLqtg0PwzRA9arXKzXvO3KYW3enAZACmKI8MFDldD05HNl
+         Qd0ZDPm4RbB2K8CtconqBtn0QE/xeC2UiSp5KDOFODfrbEXgRUs/GU1BCMqnMEguarnd
+         4GZn0piAkt8redRma/jLzZza9yszARRsyaXGc/C03Phckc79/4p4X/pbUDWj+zqg6sPk
+         RpdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696024262; x=1696629062;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Hskw88hLeAFbdhf2MCWNUtrnHOIlmXUQ4ZL1O7T/y0E=;
+        b=TECIvNy4u9P/3WCOJmenLP+yUL1Ge0kGBeO+kQEccLx06WftbtTt5IiwsG07F9TrW5
+         aOGMrtQdTgMEjzmEl5bFNlW2pmAj/yWl09g03zZZBkqWPiB4VXbzdJNW+5XhGn04iAYK
+         CMBlR/eXWUKPtnrxqiz5pru02J6+WQ8s5l+AIDgsfhHzxJ2eNPVbQNKozae8FNoVQiw/
+         QdcvI+KFLTSTc6T5X/59YqavW5YPqRKVdDzVzeV+BPJFefo0Fnsf85BCoOD+w4eQhXMF
+         ARs4iqhKR29glY0e8H+XE93tDgFNIcR6g03VcYdtsKfaOsDHLX2+4Zq4VgSoJ4Zqhc4D
+         VVow==
+X-Gm-Message-State: AOJu0YxeCxkzSPWTDMUDjbhTP4G1JRq1gWmCW1k46XM/lhKZFO5tkVdW
+	Rd0NFjNpxYGhgx5YyGzGFi/AiiQUm3FwotLTnWTnuA==
+X-Google-Smtp-Source: AGHT+IE63fBH+1dNUwDRNH6iqlkLqEfx/+NHRsl/1r9uDgfQ0bqotCuiv4a9l+YPI2jFuA031iE6BeH9RXt0OKpKTI8=
+X-Received: by 2002:a0d:dd11:0:b0:59b:e97e:f7ce with SMTP id
+ g17-20020a0ddd11000000b0059be97ef7cemr5210736ywe.22.1696024262418; Fri, 29
+ Sep 2023 14:51:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Ivan Mikhaylov <fr0st61te@gmail.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Jonathan Cameron <jic23@kernel.org>, devicetree@vger.kernel.org, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20230929200844.23316-2-fr0st61te@gmail.com>
-References: <20230929200844.23316-1-fr0st61te@gmail.com>
- <20230929200844.23316-2-fr0st61te@gmail.com>
-Message-Id: <169602339920.278051.17156701807857771134.robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: adc: provide max34408/9 device
- tree binding document
-Date: Fri, 29 Sep 2023 16:36:39 -0500
+References: <20230929-pxa1908-lkml-v5-0-5aa5a1109c5f@skole.hr> <20230929-pxa1908-lkml-v5-2-5aa5a1109c5f@skole.hr>
+In-Reply-To: <20230929-pxa1908-lkml-v5-2-5aa5a1109c5f@skole.hr>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 29 Sep 2023 23:50:51 +0200
+Message-ID: <CACRpkdbgbu=1kD=+f83NUZwXZ80-yjGOdH2CR7Lbg4rhubaR0g@mail.gmail.com>
+Subject: Re: [PATCH RESEND v5 2/8] clk: mmp: Switch to use struct u32_fract
+ instead of custom one
+To: =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Cc: Robert Jarzmik <robert.jarzmik@free.fr>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Andy Shevchenko <andy@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Lubomir Rintel <lkundrak@v3.sk>, Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Kees Cook <keescook@chromium.org>, Tony Luck <tony.luck@intel.com>, 
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, linux-gpio@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-hardening@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+	phone-devel@vger.kernel.org, afaerber@suse.de, balejk@matfyz.cz, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+On Fri, Sep 29, 2023 at 5:42=E2=80=AFPM Duje Mihanovi=C4=87 <duje.mihanovic=
+@skole.hr> wrote:
 
-On Fri, 29 Sep 2023 23:08:43 +0300, Ivan Mikhaylov wrote:
-> The hardware binding for i2c current monitoring device with overcurrent
-> control.
-> 
-> Signed-off-by: Ivan Mikhaylov <fr0st61te@gmail.com>
-> ---
->  .../bindings/iio/adc/maxim,max34408.yaml      | 101 ++++++++++++++++++
->  1 file changed, 101 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/maxim,max34408.yaml
-> 
+> From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+>
+> The struct mmp_clk_factor_tbl repeats the generic struct u32_fract.
+> Kill the custom one and use the generic one instead.
+>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Tested-by: Duje Mihanovi=C4=87 <duje.mihanovic@skole.hr>
+> Signed-off-by: Duje Mihanovi=C4=87 <duje.mihanovic@skole.hr>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/maxim,max34408.yaml: supply-vdd: missing type definition
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230929200844.23316-2-fr0st61te@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Yours,
+Linus Walleij
 
