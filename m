@@ -1,140 +1,152 @@
-Return-Path: <devicetree+bounces-4485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F374C7B2C64
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 08:34:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20F147B2C94
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 08:49:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id A33BA282DBF
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 06:34:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id C5F1128242F
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 06:49:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12BDA10E3;
-	Fri, 29 Sep 2023 06:34:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 090AB2100;
+	Fri, 29 Sep 2023 06:49:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43810188
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 06:34:18 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67D3619F;
-	Thu, 28 Sep 2023 23:34:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1695969255; x=1727505255;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=rjspptSg7zSqg15bu/FnJMsdagx6q/43SjMsDTCWF3c=;
-  b=L471OKp2GzLHgA03HEqcGoxaWP5BkXf+ZSfR9JlPvgUU4darRYow5GUC
-   EbImqCigwMAenTxbCTJUsTpbC5Y0JPJmkLaLOLj7mhWpIWonLVNaz3Fha
-   9VcN1rmwQ+5H08m9Xd/8jq4Hwor2QmPjy0CgyUbFub/bWCSgDv/FAf9GP
-   i7fBGiNUdiNORCiow0LFwO3Wb/Ap24i5gtUkOzORsiEdhTbybVtKhCW8H
-   HM0B3zzBpxIdBpCQgu3peH/LFHGmOU9Ti0EgxLI1aRPP9Vrjl6QQAKQ7V
-   0Idmqhny4UWJ4AOHXRSJUJAacUEUjAk4A0g+/8UncGD5meKb69cXTb7od
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="386107495"
-X-IronPort-AV: E=Sophos;i="6.03,186,1694761200"; 
-   d="scan'208";a="386107495"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Sep 2023 23:34:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="923523838"
-X-IronPort-AV: E=Sophos;i="6.03,186,1694761200"; 
-   d="scan'208";a="923523838"
-Received: from smorozov-mobl1.ger.corp.intel.com ([10.252.52.167])
-  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Sep 2023 23:34:13 -0700
-Date: Fri, 29 Sep 2023 09:34:07 +0300 (EEST)
-From: =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: Max Filippov <jcmvbkbc@gmail.com>
-cc: LKML <linux-kernel@vger.kernel.org>, 
-    linux-serial <linux-serial@vger.kernel.org>, devicetree@vger.kernel.org, 
-    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-    Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-    Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-    Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v4 1/5] serial: core: tidy invalid baudrate handling in
- uart_get_baud_rate
-In-Reply-To: <20230928151631.149333-2-jcmvbkbc@gmail.com>
-Message-ID: <69902af8-103-38a8-c438-87f7a047497@linux.intel.com>
-References: <20230928151631.149333-1-jcmvbkbc@gmail.com> <20230928151631.149333-2-jcmvbkbc@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 646C6188;
+	Fri, 29 Sep 2023 06:49:22 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D63B51A5;
+	Thu, 28 Sep 2023 23:49:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XPyyLl60OQYytysSFMIRnDcduVjygZn7ExLBE015e2ajZvJ5Tx+6aAnDUufICiF1+TIZCmwHuk+fz99IFM4c0BPh8RkbmeKo4w1okxEshvnwvCB76paX3qDmXl7N7JqRuriOPOfw9QtwK5tW+62BPvFg2YakAtyj/KyU0sW2LcOWB+Sy/RNCHRc4D9NF6FJwPFPmu9ta4JJIxFJ7h5gZdMwAAn4/cqe6zZNq5JuO2IgDMcyfVNlyPNnhRs3b2SAZqUv0ajqHk64XB7f6sAPXaJfY05FTj3OrVbIDStC1FLTh6W+VkmR8QFxJhIRJKkFZiw1/D0zk7DF7EbMVNqygMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DMC0rhvn9eui6qw7dlYdSXsNb5PHD/SCtgQUwxah8YM=;
+ b=OXYWURnuUwuaNXXeolRdQx/7unBQkrJ0Jp/XPH1jUbQbR9hj0p6OA+xVA5vzwBvXx/26fEPJFYCMYazjmZEtEUVB2qX/m7C416TKTXGp3sS9cwy28ycw7fjfSJIPgGcZXNKHkRJrycBXWso+E4JJ7yJ0yYLQxXjmBkwGkHLXg4rp6mMxaOlyADCknGCDcRhKXbf3LLIB3biykaJ3ZvxDyeIijJmm/l9LqccuInPWdk63DRr8gzutt2JI+1ThM+14aqcml8JXYJnBIZArnD/8tumCWwbiXenjZvmAhfXeLt4UDC+FeymclTKW1xzEJ5MAaLl9XNXZpkcWdtrmlp4waQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linuxfoundation.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DMC0rhvn9eui6qw7dlYdSXsNb5PHD/SCtgQUwxah8YM=;
+ b=yq2g4ghtRUspN+RRE5p5fgn740hfvGQ/oFull6zMmVEqRF4mx8uMG+e6aC3Lr7tgMw7Ct07/UJhrxs1Kny4+E+uN1o4U8GJS4xSns5IKEp8TnCDUtekLoTJvEpHhK/IfrofQrCz4dlDhM3PYQdzPOD2yB68LXj9JbADckdC+ZjE=
+Received: from DM6PR02CA0082.namprd02.prod.outlook.com (2603:10b6:5:1f4::23)
+ by DM4PR12MB6232.namprd12.prod.outlook.com (2603:10b6:8:a5::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6813.35; Fri, 29 Sep 2023 06:49:18 +0000
+Received: from DS1PEPF0001708F.namprd03.prod.outlook.com
+ (2603:10b6:5:1f4:cafe::22) by DM6PR02CA0082.outlook.office365.com
+ (2603:10b6:5:1f4::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.25 via Frontend
+ Transport; Fri, 29 Sep 2023 06:49:18 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DS1PEPF0001708F.mail.protection.outlook.com (10.167.17.139) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6838.14 via Frontend Transport; Fri, 29 Sep 2023 06:49:18 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 29 Sep
+ 2023 01:49:17 -0500
+Received: from xhdpiyushm40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
+ Transport; Fri, 29 Sep 2023 01:49:14 -0500
+From: Piyush Mehta <piyush.mehta@amd.com>
+To: <gregkh@linuxfoundation.org>, <michal.simek@amd.com>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <peter.chen@kernel.org>, <linus.walleij@linaro.org>,
+	<paul@crapouillou.net>, <arnd@arndb.de>
+CC: <piyush.mehta@amd.com>, <linux-usb@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, <git@amd.com>
+Subject: [RFC PATCH 0/3] usb: phy: Add platform driver support for ULPI phys
+Date: Fri, 29 Sep 2023 12:18:49 +0530
+Message-ID: <20230929064852.16642-1-piyush.mehta@amd.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS1PEPF0001708F:EE_|DM4PR12MB6232:EE_
+X-MS-Office365-Filtering-Correlation-Id: e9d2fc6f-4eb8-4311-5e98-08dbc0b83410
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	iD8MnXFXsaemyiZVV1YDvSC9CTjgmXIzGUcU7Oa0NSVOjYAyF/ZbwU5KNCGdr/h5PoEwAILSJ8nTyxchcoYq96q4mgmliNMA+GiuQlNh+ZxZIZuwpjozkEcxrHbC2f5cWeoRtEbL1qw/s5TX1JQdnPMwriLymG4njk6EY8OPaEESlUEJ6Zz66IkbL19XjAtEnl2Ka5lV6Ud112RS6oDKki+PERARHHZQEjSzZTUkPv2F9+QPS5Fbzd1q2bSDu4a/uMN3aYvsdyNFeMKPvchpiqONKMv3KfEnvA2zcH7hCtza7ikqT2a9OpJShedimbolcpnOVdwt0k1Z00Gn7g73Rm7HxxXi6QN6U42QqaxZmXJCHa8oE2yeH7Gdr9QZ+11ZzPKVbLpt42H7i2z40b93ohRYk3jfRm1MjjCjx7FE1rMezK3UavBF0+kHLJt+NUKjX3Ie+O/8kj9k2FSXLt+KVoBShoQ93vb0D1urpHNvdGQuAasHV2FaY6haIClftyOEeKUk6APLeJ4WGZixdGoFwuwkedVYQRmGcPo3RGJyNMgOm22Q3TjV8GOlCFPOihuGGMZmsGh/cosVnsTEhWUeCnKLJz+RD9c21w/zDHj8Yg3D49heXRJQhT0vStX0gYW458SVsuX1ugoRSOZCquEO4zmcE4yG+bzB8S8mK6A2zJW1GECd1Gu5GnwQOqyzgtkXFF2LM2y5f1PH6nyJ12cLzBvYSa7mGd34duEon0/nfE5dnz1n98bjgAjgBTggPn3Ti/k23fckAWVUp6Z30YenUw==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(346002)(376002)(136003)(39860400002)(396003)(230922051799003)(82310400011)(64100799003)(1800799009)(451199024)(186009)(46966006)(40470700004)(36840700001)(54906003)(41300700001)(316002)(8676002)(70586007)(70206006)(4326008)(8936002)(5660300002)(44832011)(83380400001)(6666004)(478600001)(26005)(1076003)(2616005)(7416002)(336012)(47076005)(426003)(110136005)(36860700001)(82740400003)(81166007)(356005)(86362001)(36756003)(40460700003)(2906002)(40480700001)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2023 06:49:18.2280
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9d2fc6f-4eb8-4311-5e98-08dbc0b83410
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DS1PEPF0001708F.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6232
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Thu, 28 Sep 2023, Max Filippov wrote:
+Added USB2 phy for Zynq platform and converted ULPI framework to platform
+driver to drive CPEN to enable external 5 volt supply when Zynq USB is in
+host mode.
 
-> uart_get_baud_rate has input parameters 'min' and 'max' limiting the
-> range of acceptable baud rates from the caller's perspective. If neither
-> current or old termios structures have acceptable baud rate setting and
-> 9600 is not in the min/max range either the function returns 0 and
-> issues a warning.
-> However for a UART that does not support speed of 9600 baud this is
-> expected behavior.
-> Clarify that 0 can be (and always could be) returned from the
-> uart_get_baud_rate. Don't issue a warning in that case.
-> Move the warinng to the uart_get_divisor instead, which is often called
-> with the uart_get_baud_rate return value.
-> 
-> Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
-> ---
-> Changes v3->v4:
-> - drop WARN_ON from uart_get_divisor()
-> 
->  drivers/tty/serial/serial_core.c | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
-> 
-> diff --git a/drivers/tty/serial/serial_core.c b/drivers/tty/serial/serial_core.c
-> index 7bdc21d5e13b..3f130fe9f1a0 100644
-> --- a/drivers/tty/serial/serial_core.c
-> +++ b/drivers/tty/serial/serial_core.c
-> @@ -431,7 +431,7 @@ EXPORT_SYMBOL(uart_update_timeout);
->   * baud.
->   *
->   * If the new baud rate is invalid, try the @old termios setting. If it's still
-> - * invalid, we try 9600 baud.
-> + * invalid, we try 9600 baud. If that is also invalid 0 is returned.
->   *
->   * The @termios structure is updated to reflect the baud rate we're actually
->   * going to be using. Don't do this for the case where B0 is requested ("hang
-> @@ -515,8 +515,6 @@ uart_get_baud_rate(struct uart_port *port, struct ktermios *termios,
->  							max - 1, max - 1);
->  		}
->  	}
-> -	/* Should never happen */
-> -	WARN_ON(1);
->  	return 0;
->  }
->  EXPORT_SYMBOL(uart_get_baud_rate);
+---
+On zynq platform chipidea USB controller is capable of fulfilling a wide
+range of applications for USB 2.0 implementations as a host, a device, or
+On-the-Go. The USB controllers are integrated into the PS IOP to bridge
+between the PS interconnect and an external ULPI PHY. The register provides
+indirect access to the ULPI PHY register set. The ULPI PHY register I/O
+interface uses Viewport to access PHY registers.
 
-While looking into this, I found this old commit:
+In current approach we have extended generic ulpi phy driver and made it a
+platform driver. This solves the problem, but would like to know if it is
+the right approach?
 
-commit 16ae2a877bf4179737921235e85ceffd7b79354f
-Author: Alan Cox <alan@linux.intel.com>
-Date:   Mon Jan 4 16:26:21 2010 +0000
+The another approach would be to have access to the ULPI register via
+viewport flow by creating a new platform driver at path "driver/usb/phy"
+using "phy-ulpi-zynq-usb.c" source file, where the source driver would be
+particular to the Xilinx/AMD zynq platform. And binding patch [1/3] would
+be specific to Xilinx/AMD-specific.
 
-    serial: Fix crash if the minimum rate of the device is > 9600 baud
-    
-    In that situation if the old rate is invalid and the new rate is invalid
-    and the chip cannot do 9600 baud we report zero, which makes all the
-    drivers explode.
-    
-    Instead force the rate based on min/max
+We need your inputs in order to have access to the ULPI register via
+viewport flow.
+---
+ drivers/usb/phy/Kconfig    |  2 +-
 
-But for some reason it does not work as advertized here? What is the exact 
-cause for that?
+Piyush Mehta (3):
+  dt-binding: usb: ulpi-phy: add ulpi-phy binding
+  usb: chipidea: add usb2 phy interface for Zynq platform
+  usb: phy: Add platform driver support for ULPI phys
 
-Is something wrong with how min/max have that +1/-1 there or what?
+ .../devicetree/bindings/usb/ulpi-phy.yaml     | 48 ++++++++++
+ drivers/usb/chipidea/ci_hdrc_usb2.c           |  8 ++
+ drivers/usb/phy/Kconfig                       |  2 +-
+ drivers/usb/phy/phy-ulpi.c                    | 90 +++++++++++++++++++
+ 4 files changed, 147 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/ulpi-phy.yaml
 
 -- 
- i.
+2.17.1
 
 
