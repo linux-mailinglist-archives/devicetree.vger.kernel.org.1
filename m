@@ -1,283 +1,132 @@
-Return-Path: <devicetree+bounces-4678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E1A57B36C6
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 17:26:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12E2B7B36E1
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 17:35:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 3A43A1C2090F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:26:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id A712D283EC5
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:35:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A382F51B9D;
-	Fri, 29 Sep 2023 15:26:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60EC051BA4;
+	Fri, 29 Sep 2023 15:35:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FBD718631
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 15:26:06 +0000 (UTC)
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC4251AC
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 08:26:02 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9b281a2aa94so1310442166b.2
-        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 08:26:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696001161; x=1696605961; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BRjRxESnxGZ8aiamezaiD8zKeBhrLQcAQ0nK38FQ9LE=;
-        b=Rd1gHtLYa8ab5kQ3+qLWS91uGfAZlX5aHBuXajBLq84UMocKXtDgwgAL5mqB68TQyh
-         AXuawrULy5RTRMnrjTGel5y+PR75k4j8ph+edShzxzmn0TRTG6YZ6F6zhtzWitlzN9pP
-         7Qq1lb8NaIfZ8d0kgzWUnn+Rpd3YB/aG69a2RFEChpwTbo8E4CQgqLfzj0uDOwSb49/N
-         vWlnOXsiqU6UvawXRF61LHsbjaeX92Q0VAfo7kaVMUU94wFqLBLKx8Dcx+09JlgjpJc8
-         7Ue9MjmWhhRCP0Hb/AFyz479rzceSQGgzK8pgO59OFkXOrgCGPP+leO6OaUd29oPO1qa
-         bdDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696001161; x=1696605961;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BRjRxESnxGZ8aiamezaiD8zKeBhrLQcAQ0nK38FQ9LE=;
-        b=cWac4kcx5DyNgf4sDTeKJ2DifiURB9btRU5Usuc76gOWtvRt3dNOynTPNe+8NuM6Fu
-         uWxeEcX4XFUa7LkO2Z/rln/Yzv7J9E8UI6bbvhBCoND0A1S57nn3XJdcmA1DPvDLjtrt
-         lt2Gr9DBexsiECetRTMqGOLOMzrQCpwsVosmtFPN5d2Z0sWoq4VuX1qLKTOLSgeb/Mzn
-         ABZx2iiI+Tf4GgdvDcvi00I71PzJ2xzzNgbeeJ02Y2RFUBWMW0rByXU63oDuHPoE8Hch
-         RrdEoQ7YeIavnK7J/nmgXwwtj7DpRvcxNz6tcs6C8+Ug2Rojx7IkMz2MUxjEX+wuMeyj
-         rLyQ==
-X-Gm-Message-State: AOJu0YzFoUPBF86IOT9uP5oO3RddhG/vBBwuKzRWEOQJC/KFXIZlR+n6
-	sN1HxD05Mk4mOq6KganKkywukQ==
-X-Google-Smtp-Source: AGHT+IFD+weK/Hg9X6BWQ21ZocegAzC8sUeYlMloB8BjIoO+hG96p5S6kz2Hpqm4ZLZeS4E+kSRYcQ==
-X-Received: by 2002:a17:906:8455:b0:9ae:6a8b:f8aa with SMTP id e21-20020a170906845500b009ae6a8bf8aamr4269613ejy.26.1696001160804;
-        Fri, 29 Sep 2023 08:26:00 -0700 (PDT)
-Received: from [192.168.33.189] (178235177217.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.217])
-        by smtp.gmail.com with ESMTPSA id y22-20020a170906449600b009adc77fe165sm12388062ejo.118.2023.09.29.08.25.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Sep 2023 08:26:00 -0700 (PDT)
-Message-ID: <b6f801fc-1d8b-420b-a439-ea0cdd12f7f6@linaro.org>
-Date: Fri, 29 Sep 2023 17:25:57 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4748E18631;
+	Fri, 29 Sep 2023 15:35:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4186C433C7;
+	Fri, 29 Sep 2023 15:35:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696001729;
+	bh=n8c5VPqof5cSz/xeEzUcmLspOpPdFu7ZTPAoFiNDi+g=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=dLE9nEAz7xekqFIavm5dEJULK3Af4aiyLsSYoYDepzYMqvw4BVd56r19mCA7b5ove
+	 YEWaLF6IxaIZpcLVg07pFTX5C8bu2DWEUlQy2TM3PZMnRVQ1eHzv7tZChTjYGAUpYK
+	 5rjIOl+kGt9fV0ruN3IkDiHN78H0wW6m4rxcLIxHP5bueH1MbBWdJXCW8KclvSlw/E
+	 NyyDtTE8ZoMz1nJRKZNonHppUVkdK7mv+8Px297LBx1RECgAPUEcg8MHOP+sQ7uVJd
+	 hyYm5Soq2Y0bJvcEGJBidVI1rjZAkeY+3gKimZgrdAkVdAKaNqrCsbYjhbO2zPKadh
+	 ox3UJzGXhqyQQ==
+Received: (nullmailer pid 3601354 invoked by uid 1000);
+	Fri, 29 Sep 2023 15:35:24 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sc7280: Add Camera Control
- Interface busses
-Content-Language: en-US
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Luca Weiss <luca.weiss@fairphone.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230929-sc7280-cci-v1-0-16c7d386f062@fairphone.com>
- <20230929-sc7280-cci-v1-2-16c7d386f062@fairphone.com>
- <8dd470e5-ce33-3d33-98f1-e66935ca7b56@linaro.org>
- <1b5bd391-4bb0-44ac-88d1-e326bec4dd7d@nexus-software.ie>
- <acc606a6-c46c-43f5-86e0-84bf876001dd@linaro.org>
- <db5d00b5-5d18-4144-88c2-ff6cfb8c176a@linaro.org>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <db5d00b5-5d18-4144-88c2-ff6cfb8c176a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+From: Rob Herring <robh@kernel.org>
+To: Gatien Chevallier <gatien.chevallier@foss.st.com>
+Cc: arnd@kernel.org, linux-phy@lists.infradead.org,
+	linux-mmc@vger.kernel.org, dmaengine@vger.kernel.org,
+	robh+dt@kernel.org, jic23@kernel.org, davem@davemloft.net,
+	kuba@kernel.org, pabeni@redhat.com, linux-spi@vger.kernel.org,
+	linux-i2c@vger.kernel.org, olivier.moysan@foss.st.com,
+	linux-media@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	Oleksii Moisieiev <oleksii_moisieiev@epam.com>, edumazet@google.com,
+	linux-stm32@st-md-mailman.stormreply.com, ulf.hansson@linaro.org,
+	richardcochran@gmail.com, will@kernel.org,
+	linux-crypto@vger.kernel.org, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, arnaud.pouliquen@foss.st.com,
+	linux-serial@vger.kernel.org, alexandre.torgue@foss.st.com,
+	Frank Rowand <frowand.list@gmail.com>, andi.shyti@kernel.org,
+	linux-usb@vger.kernel.org, peng.fan@oss.nxp.com, lee@kernel.org,
+	fabrice.gasnier@foss.st.com, conor+dt@kernel.org,
+	Oleksii_Moisieiev@epam.com, herbert@gondor.apana.org.au,
+	linux-arm-kernel@lists.infradead.org, catalin.marinas@arm.com,
+	al@web.codeaurora.org, sa-devel@alsa-project.org,
+	hugues.fruchet@foss.st.com, devicetree@vger.kernel.org,
+	linux-iio@vger.kernel.org, mchehab@kernel.org, vkoul@kernel.org,
+	gregkh@linuxfoundation.org
+In-Reply-To: <20230929142852.578394-2-gatien.chevallier@foss.st.com>
+References: <20230929142852.578394-1-gatien.chevallier@foss.st.com>
+ <20230929142852.578394-2-gatien.chevallier@foss.st.com>
+Message-Id: <169600172184.3601218.2121908606358610119.robh@kernel.org>
+Subject: Re: [PATCH v5 01/11] dt-bindings: document generic access
+ controller
+Date: Fri, 29 Sep 2023 10:35:24 -0500
 
-On 29.09.2023 17:22, Bryan O'Donoghue wrote:
-> On 29/09/2023 15:18, Konrad Dybcio wrote:
->> On 29.09.2023 16:15, Bryan O'Donoghue wrote:
->>> On 29/09/2023 14:35, Konrad Dybcio wrote:
->>>>
->>>>
->>>> On 9/29/23 10:01, Luca Weiss wrote:
->>>>> Add the CCI busses found on sc7280 and their pinctrl states.
->>>>>
->>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>>>> ---
->>>>>    arch/arm64/boot/dts/qcom/sc7280.dtsi | 136 +++++++++++++++++++++++++++++++++++
->>>>>    1 file changed, 136 insertions(+)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->>>>> index 66f1eb83cca7..65550de2e4ff 100644
->>>>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->>>>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->>>>> @@ -3793,6 +3793,86 @@ videocc: clock-controller@aaf0000 {
->>>>>                #power-domain-cells = <1>;
->>>>>            };
->>>>> +        cci0: cci@ac4a000 {
->>>>> +            compatible = "qcom,sc7280-cci", "qcom,msm8996-cci";
->>>>> +            reg = <0 0x0ac4a000 0 0x1000>;
->>>>> +            interrupts = <GIC_SPI 460 IRQ_TYPE_EDGE_RISING>;
->>>>> +            power-domains = <&camcc CAM_CC_TITAN_TOP_GDSC>;
->>>>> +
->>>>> +            clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
->>>>> +                 <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
->>>>> +                 <&camcc CAM_CC_CPAS_AHB_CLK>,
->>>>> +                 <&camcc CAM_CC_CCI_0_CLK>,
->>>>> +                 <&camcc CAM_CC_CCI_0_CLK_SRC>;
->>>>> +            clock-names = "camnoc_axi",
->>>>> +                      "slow_ahb_src",
->>>>> +                      "cpas_ahb",
->>>>> +                      "cci",
->>>>> +                      "cci_src";
->>>> I guess this is more of a question to e.g. Bryan, but are all of these clocks actually necessary?
->>>>
->>>> Konrad
->>> Hmm its a good question, we generally take the approach of adopting all of the downstream clocks for these camera interfaces verbatim.
->>>
->>> The clock plan for this part only calls out cci_X_clk and cci_x_clk_src for the CCI however we know that to be incomplete since we *absolutely* need to have the AXI for the block clocked to access those registers, same deal with the AHB bus.
->>>
->>> AXI: registers
->>> AHB: data
->>>
->>> In the above list the only clock you might conceivably not need is CPAS_AHB_CLK.
->>>
->>> Let me zap that clock from sdm845 since I have an rb3 right in front of me and see what happens.
->>>
->>> Crash and reset
->>>
->>> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->>> @@ -4402,13 +4402,11 @@ cci: cci@ac4a000 {
->>>                          clocks = <&clock_camcc CAM_CC_CAMNOC_AXI_CLK>,
->>>                                  <&clock_camcc CAM_CC_SOC_AHB_CLK>,
->>>                                  <&clock_camcc CAM_CC_SLOW_AHB_CLK_SRC>,
->>> -                               <&clock_camcc CAM_CC_CPAS_AHB_CLK>,
->>>                                  <&clock_camcc CAM_CC_CCI_CLK>,
->>>                                  <&clock_camcc CAM_CC_CCI_CLK_SRC>;
->>>                          clock-names = "camnoc_axi",
->>>                                  "soc_ahb",
->>>                                  "slow_ahb_src",
->>> -                               "cpas_ahb",
->>>                                  "cci",
->>>                                  "cci_src";
->>>
->>>
->>> I think the list is good tbh
->> WDYT about camcc consuming ahb, like dispcc does?
->> AXI, hmm.. not quite sure what to do with it
->>
->> Konrad
-> 
-> Hmm on which platform, camcc clock depds on sdm845 looks very sparse to me.
-> 
-> 8550 OTOH
-> 
-> dispcc: clock-controller@af00000 {
->        compatible = "qcom,sm8550-dispcc";
->        reg = <0 0x0af00000 0 0x20000>;
->        clocks = <&bi_tcxo_div2>,
->                 <&bi_tcxo_ao_div2>,
->                 <&gcc GCC_DISP_AHB_CLK>,
-> 
-> videocc: clock-controller@aaf0000 {
->        compatible = "qcom,sm8550-videocc";
->        reg = <0 0x0aaf0000 0 0x10000>;
->        clocks = <&bi_tcxo_div2>,
->                 <&gcc GCC_VIDEO_AHB_CLK>;
-> 
-> sm8250
-> 
-> camcc: clock-controller@ad00000 {
->         compatible = "qcom,sm8250-camcc";
->         reg = <0 0x0ad00000 0 0x10000>;
->         clocks = <&gcc GCC_CAMERA_AHB_CLK>,
-> 
-> I think those DISP_AHB, VIDEO_AHB_CLK, CAMERA_AHB_CLKs should live in the display, video and camss blocks i.e. they are not clocks that you require to access the clock controller registers themselves...
-> 
-> I'm seeing for the most part these MEDIAIPBLOCK_AHB_CLKs don't come from the GCC AHB clock but from another root clock generator.
-> 
-> bi_tcxo ->
-> cam_cc_pll0_out_main ->
-> cam_cc_pll0_out_even ->
-> cam_cc_pll0_out_odd ->
-> cam_cc_pll2_out_main ->
->                         cam_cc_slow_ahb_clk_src ->
->                                    camcc_bps_ahb_clk
->                                    camcc_ipe_0_ahb_clk
->                                    ...
->                                    camcc_core_ahb_clk
-> 
-> Lets see what happens to sm8250 if we remove CAMERA_AHB_CLK from the camera clock controller @ camcc: clock-controller@ad00000 {} I don't believe that is required.
-> 
-> ...
-> 
-> Yep.. does SFA
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index 1efa07f2caff4..1e7d9ee25eeae 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -4172,11 +4172,10 @@ port@5 {
->                 camcc: clock-controller@ad00000 {
->                         compatible = "qcom,sm8250-camcc";
->                         reg = <0 0x0ad00000 0 0x10000>;
-> -                       clocks = <&gcc GCC_CAMERA_AHB_CLK>,
-> -                                <&rpmhcc RPMH_CXO_CLK>,
-> +                       clocks = <&rpmhcc RPMH_CXO_CLK>,
->                                  <&rpmhcc RPMH_CXO_CLK_A>,
->                                  <&sleep_clk>;
-> -                       clock-names = "iface", "bi_tcxo", "bi_tcxo_ao", "sleep_clk";
-> +                       clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk";
->                         power-domains = <&rpmhpd SM8250_MMCX>;
->                         required-opps = <&rpmhpd_opp_low_svs>;
->                         status = "disabled";
-> 
-> Not actually a required clock for the clock controller.
-> 
-> I suspect the same is true for dispcc and videocc though it would also mean the respective drivers would need to switch on <&gcc DISPx_CAMERA_AHB_CLK> or <&gcc GCC_VIDEO_AHB_CLK> prior to accessing registers inside the ip blocks which may not currently be the case.
-> 
-> Feels like a bit of a contrary answer but my reading is the GCC_IPBLOCK_AHB_CLK clocks belong in the drivers not the clock controllers..  or at least that's true for sm8250/camcc
-I believe the idea here would be that registering GCC_IP_AHB_CLK
-as a pm_clk for the clock controller would make that clock turn
-on when IPBLOCK_CC is accessed (e.g. when we turn on
-IPBLOCK_CORE_CLK), so that it doesn't need to be duplicated in
-each and every end device.
 
-Konrad
+On Fri, 29 Sep 2023 16:28:42 +0200, Gatien Chevallier wrote:
+> From: Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
+> 
+> Introducing of the generic access controller bindings for the
+> access controller provider and consumer devices. Those bindings are
+> intended to allow a better handling of accesses to resources in a
+> hardware architecture supporting several compartments.
+> 
+> This patch is based on [1]. It is integrated in this patchset as it
+> provides a use-case for it.
+> 
+> Diffs with [1]:
+> 	- Rename feature-domain* properties to access-control* to narrow
+> 	  down the scope of the binding
+> 	- YAML errors and typos corrected.
+> 	- Example updated
+> 	- Some rephrasing in the binding description
+> 
+> [1]: https://lore.kernel.org/lkml/0c0a82bb-18ae-d057-562b
+> 
+> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+> 
+> ---
+> Changes in V5:
+> 	- Diffs with [1]
+> 	- Discarded the [IGNORE] tag as the patch is now part of the
+> 	  patchset
+> 
+>  .../access-controllers/access-controller.yaml | 90 +++++++++++++++++++
+>  1 file changed, 90 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/access-controllers/access-controller.yaml
+> 
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/access-controllers/access-controller.yaml: access-control-provider: missing type definition
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230929142852.578394-2-gatien.chevallier@foss.st.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
