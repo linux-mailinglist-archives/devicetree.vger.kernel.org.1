@@ -1,115 +1,202 @@
-Return-Path: <devicetree+bounces-4625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C9397B34CD
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 16:22:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 059CA7B34DB
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 16:26:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id F25F7281FCD
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 14:22:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id A6DEF2821DF
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 14:26:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2AC74F14B;
-	Fri, 29 Sep 2023 14:22:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8160D4F156;
+	Fri, 29 Sep 2023 14:26:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 926D74123C
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 14:22:30 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1164B1AC;
-	Fri, 29 Sep 2023 07:22:27 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38T9q4fB011558;
-	Fri, 29 Sep 2023 14:22:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=uel0KbMalDjHMwSQ7GdbifduKXHuQtJEkwaFOppR4OA=;
- b=bExpVf4++NQPRGlhHJa1C/CT1WlKE0vjhknyaXaM1DYF46odSnz9irIrOEDI918IflLB
- 66OCrU2hp7oUMZ9kNiD55wyp9/be+fmmpHk7azs32RbRkBHHAg75EbR1+o9eANp5s+/A
- j1puJeGPskA7jhoD5/Yza0VVz23Z0wWm2MQ4O1FYv/Iul/lKEgDJ16mNTJLJoZ900wIN
- 5WNVwBK4AHPD9Qn0ZdwL8kBOi4ohetdja5iL8embj0qC+9qqSk6T/OIps2Re5St34K5w
- vKH0IDDnAsRiG8zqengQokVKfX6xvsJEIxiWMyI7PxHkAqApY8dINW7XrqUTrUlqSvLx nw== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3td3ggbv2e-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Sep 2023 14:22:15 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38TEME1W032607
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Sep 2023 14:22:15 GMT
-Received: from [10.218.45.181] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Fri, 29 Sep
- 2023 07:22:10 -0700
-Message-ID: <162b61dc-6304-353b-e9be-9ff941ab3e9b@quicinc.com>
-Date: Fri, 29 Sep 2023 19:52:06 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB0CA4F124
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 14:26:44 +0000 (UTC)
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2074.outbound.protection.outlook.com [40.107.15.74])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF8991B4;
+	Fri, 29 Sep 2023 07:26:41 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hMEJobw1V2LW9pQ1uQDTg6lZsy8Sp4TgkXdM637JEYcvJ0qU3xXN/UlkRnHOKRLAxLBQnufMWmvE6Tn1A3Knxg2ic7Uy06vFxYdhyTw8F1602dZAVYios9kdR0UcTBLsIdTzz8JTsIZjtL7w7C8gIdUSwxHoQcjY2rltE8xFMA2O/uGRj+tlUnuqK7Gt7lM/kL0tBlWSG26af5PKwMZPTJqA9NDIoLtl1Dmr96CeaR1pVezqo6WqSCwQd/KI1ZEjCO5N7FyJQpQtiNqLoQOe/KdfYb0UOckrs+EGTZQehwVxGDbKTBq64l+W/X1VlG5EEb74U7BpAmtKYkg5Or2j6A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WHj0ZBhPNoGfVNDTM0inqX5CZ/XSlSEWlHMZccKvNb4=;
+ b=c+9wsICjKY2HqQx3r7E/iMy6iNLk5jyw6fXjf7ooCybd7dyMpdEGa58DHB9taj1gK/rPySnvgGhzGlo6b2OQn7BXDGgEFGlPEGvjYmXCCcFEEefHeYib1pYWO1rT1kf6vJIvCEamAQ3xinUyDx62GfsO1yMR68YeYEju0oFZdO8yp3PISsRzwBkfJwVTMoYTtS9+Smcm1id+bCW1gLpJd3ReKYLb2ITiwFEz5GWceL4Y7poIKobe1Vfi8rg5W4Fp0SvhfhuloYqorBJFdIZXP7nviVjP5/8+zmxlWcXizlUCZwGlHtyjlsYjWVjwX1Akt+/PF1lZHP+1RthDBMjppQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WHj0ZBhPNoGfVNDTM0inqX5CZ/XSlSEWlHMZccKvNb4=;
+ b=WzqmRlPIowCen82AHZwxCBsIrLu2pZPcuKi74ejqZLRPsnmDSb4lOkH/mz5Of6iXsDopo+2qD8gCvXZDGdc5zh41JLX04cMo6uyVfYOSdvAfDB6esiO4l1GDN0t54Mlaw385YyX4sMGCRIPFBu/dejikiBgmOWyglZTOxxB0L20=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
+ by PAXPR04MB9708.eurprd04.prod.outlook.com (2603:10a6:102:24e::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Fri, 29 Sep
+ 2023 14:26:39 +0000
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::1774:e25f:f99:aca2]) by AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::1774:e25f:f99:aca2%4]) with mapi id 15.20.6813.027; Fri, 29 Sep 2023
+ 14:26:39 +0000
+Date: Fri, 29 Sep 2023 10:26:25 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Kishon Vijay Abraham I <kvijayab@amd.com>
+Cc: manivannan.sadhasivam@linaro.org, aisheng.dong@nxp.com,
+	bhelgaas@google.com, devicetree@vger.kernel.org, festevam@gmail.com,
+	imx@lists.linux.dev, jdmason@kudzu.us, kernel@pengutronix.de,
+	kishon@kernel.org, kw@linux.com,
+	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	lorenzo.pieralisi@arm.com, lpieralisi@kernel.org, maz@kernel.org,
+	s.hauer@pengutronix.de, shawnguo@kernel.org, tglx@linutronix.de
+Subject: Re: [PATCH v2 3/5] PCI: endpoint: pci-epf-test: add doorbell test
+Message-ID: <ZRbeketQ/Mje2cuw@lizhi-Precision-Tower-5810>
+References: <20230911220920.1817033-1-Frank.Li@nxp.com>
+ <20230911220920.1817033-4-Frank.Li@nxp.com>
+ <f89afd2c-8870-077c-b4b4-368784f6d54c@amd.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f89afd2c-8870-077c-b4b4-368784f6d54c@amd.com>
+X-ClientProxiedBy: SJ0PR13CA0153.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c7::8) To AM6PR04MB4838.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH V4 3/4] arm64: dts: qcom: sc7280: Add UFS nodes for sc7280
- IDP board
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <mani@kernel.org>, <alim.akhtar@samsung.com>,
-        <bvanassche@acm.org>, <avri.altman@wdc.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20230929131936.29421-1-quic_nitirawa@quicinc.com>
- <20230929131936.29421-4-quic_nitirawa@quicinc.com>
- <ed61f6a1-a21d-cc23-b995-7692a2e8530a@linaro.org>
-From: Nitin Rawat <quic_nitirawa@quicinc.com>
-In-Reply-To: <ed61f6a1-a21d-cc23-b995-7692a2e8530a@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 1RUuwAXoNCMWU-LHXJ03zpttm34mrTy7
-X-Proofpoint-ORIG-GUID: 1RUuwAXoNCMWU-LHXJ03zpttm34mrTy7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-29_11,2023-09-28_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=470
- priorityscore=1501 bulkscore=0 malwarescore=0 clxscore=1015
- lowpriorityscore=0 suspectscore=0 mlxscore=0 spamscore=0 adultscore=0
- phishscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2309180000 definitions=main-2309290123
-X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|PAXPR04MB9708:EE_
+X-MS-Office365-Filtering-Correlation-Id: 92ad68db-c33b-4b5a-9e92-08dbc0f817c0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	yuOurEA9Wr3FCf1b9KII8GTaWR1Dj9OmxL0j2Iw2ANIFgM/vWjHq8727yPQv/ZqktQzxIpQLKryT6olZ7MByJlxTnbPLfSBiO6MmTfBf5qA2BMyp8OAwN8QKfkceEL7xU8F/fs9MuvtHtqlR6x7zdaDxJR6CeeIPiRtTPHOkTW4q2Wy3FieHF0EHePQOkZRsza5wtHT8RybJ1Po5u8w3Nt/Uc3r7/VArhinWKBYTlLES7YvFbAckozPXr9uM6Lb5KDcZKzeN3i9Cqx7mlh1tt950wW8DFaPQjta0KNq10F1dW2POAIMSlZuEg0XLfpKqGf2UoelCW2ECm+Sg8S9AREVGHungJhaSM7ZNv+ZCAXsXKVSlyM6lD+7cuEv39Eh8zGq/pbr9QLmpyRd5+lekuLFGQoJgr0UFEfKgsQHgavxVJbEzugt7HfwzpPFyE/KPvJmIx5PE4bf7Mg8qHx/v/hJjL35B5eX5rlcpe9HGA4EvDUkBZuQuwu7lXpVJPuu4SRfmyUsEcUuZQJGfQuQRwkIM9SN0QNMu7scLkHFHHi+4PVe6uJUf43EbBWJIGZfj22BQ+zoOKBUC2BPPCkvjDPCJP6fg2W3kUQVlIHc6oweYUxpVWUM1BsMlR1SrWsvP
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(366004)(39860400002)(376002)(136003)(346002)(396003)(230922051799003)(1800799009)(186009)(64100799003)(451199024)(6666004)(6506007)(2906002)(38100700002)(6486002)(66946007)(7416002)(83380400001)(478600001)(6512007)(9686003)(26005)(66476007)(53546011)(5660300002)(66556008)(52116002)(6916009)(8936002)(8676002)(316002)(41300700001)(4326008)(86362001)(38350700002)(33716001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?RSmtoFuuVcLyYRoom06jb+Yvjq+DNvahHfP+F02T4mDzqSeUMbqTox/D+rTw?=
+ =?us-ascii?Q?z0D0HwKVU7a6wNOUWvVU8STyn/G5aD40oR9mPf8Rk0EXh9wBZyUM03ehI3n0?=
+ =?us-ascii?Q?LcOedgD2MeYCDqVe9yZe0zzUAm0YK7pRSzU9a61gf3F3ns5B+HdBZ1vABT5X?=
+ =?us-ascii?Q?tLZezJ6jHwSZYaJCXLEUisvs50UwluRnsz+E1OcfIpw0xLmbIKAr1gctTk2A?=
+ =?us-ascii?Q?DWxudYSWWzOuG+9rMSrQtXN40IlqG0PXLR7x+R7FYZtra8Zid84PxjHUuwCN?=
+ =?us-ascii?Q?A2psVW8oCKfM1rhsDZsH/TVOobtAfigvjIRgwmfi9G+SqX7VQRU5b6pGztxC?=
+ =?us-ascii?Q?hBJfiOHwBr02BrnZNGMhMxa8gAgjgPeUXrNpFEdE+jbhhQRB1W6xLEYTNwUg?=
+ =?us-ascii?Q?RBuVehDMJz0ZSwDDrV9PCKjFv5fmzxrGm3vI/YQItwAnZwlEeV4OxXPlduoO?=
+ =?us-ascii?Q?wmSplXWigKtrKO91tDhiVJa74yeHjGahfUCQ5mFHOu9yLFgi3kkZzfvorB8X?=
+ =?us-ascii?Q?NaEeJuJ4KvLCq/Dn55xNQeJbjQT0+eCX52XVP+7HjNPnu/GLnqD23R+oFTOP?=
+ =?us-ascii?Q?13S4wEHTKj+KeCNdoS/APBRjWeTJerGyT3Rd7G5FOQ3ki1M1ca8fzDUOQUrH?=
+ =?us-ascii?Q?n7ZTu3uSVBoH4icFbF1F300HxjU3tu3W1o6OjurL2xYUFG5WfN+De+lSKNzM?=
+ =?us-ascii?Q?RKm9ND9XHjp8dBeVTCAB/WKDPmrcFsXL7VCXMbDinPfEAiJGjNgjFVM7xeJU?=
+ =?us-ascii?Q?SeZW49t5BL+7qmXzhRrCEMG/edC0UADgpdGfuWtFHlBGw/GJTI4RzDIX1Gtn?=
+ =?us-ascii?Q?wjxltYp5U8qYGnRWXRDwaeQgj/Xzb459KhMy8Hvj8S8x8l2Y7EWgU/WMTI/f?=
+ =?us-ascii?Q?OhZbccGuGq7mxuPkFDXYeGKWmW0UPAUY5O2e7bzg3/9EW9uwvk9lgDUWm5AZ?=
+ =?us-ascii?Q?KL/gFX4hYo1m8ScguUgtptTl5EsYqnR2QD+VjodUq6pifOiug8bY5P0erApA?=
+ =?us-ascii?Q?mlO365N65QRyOVkFmtNia45JXFXHuCnMiiA7FOmKFBj31aecJNlQoS8kwvRg?=
+ =?us-ascii?Q?3ZyM2H/xj/Gor5djc2A1aX+GVWcfmH1AsE7IvrVhrzDr8VTFszHVoW/GX9v1?=
+ =?us-ascii?Q?ByxWFyZv53Z5tQBTE1zY2sK4t2CLVC873Gu5aAzjREnCJoEQ1UsRMEEswWJG?=
+ =?us-ascii?Q?s+ggkLKwczd93uI/pAMX+5LlXLzU9o/VpXzKhgsLBtpjZZsxuSyvtdcRCK0t?=
+ =?us-ascii?Q?00fLHeHaruF+2teTzDKrfXsdkrhGrH7zl7zujqHte7zkJhKDyIOmUwesbycy?=
+ =?us-ascii?Q?qWcc+SX3Vqru2zO65IcaH/u0YE2y4M/GYdeeP3rn6bdFlDsP+YLjgWn2m5Gd?=
+ =?us-ascii?Q?POMrCj0KHHaNNQv+lpqkR6N7nCy4qvH7jEqKhOnEswV3ndCM9mksqKg6rlT2?=
+ =?us-ascii?Q?O+YIqcXFw0WkxZU1Elm6az83y+N5oNtCrul7bbT1t6DQQUgvIqKomu7OKUat?=
+ =?us-ascii?Q?bOeK3Otjr/j1T1rW+r0MGsGT0VMoSJhAX7vmBj8zauWgRk7yup4UfA0OgyhN?=
+ =?us-ascii?Q?hTJcb7OH78kBj9LeOdM=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 92ad68db-c33b-4b5a-9e92-08dbc0f817c0
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2023 14:26:38.9206
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: sgF6wJKW22EUNXgFQ5Q+y7mwiWN+u/hVuFu+pOMGhS5nlMsb1eAcILgi6gK+arU4w3NFUPV5O2vuK3ycdayImg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9708
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+On Fri, Sep 29, 2023 at 03:03:35PM +0530, Kishon Vijay Abraham I wrote:
+> Hi Frank,
+> 
+> On 9/12/2023 3:39 AM, Frank Li wrote:
+> > Add three register: doorbell_bar, doorbell_addr, doorbell_data,
+> > doorbell_done. Call pci_epf_alloc_doorbell() all a doorbell address space.
+> > 
+> > Root complex(RC) side driver can trigger pci-epc-test's doorbell callback
+> > handler by write doorbell_data to mapped doorbell_bar's address space.
+> > 
+> > pci-epc-test will set doorbell_done in doorbell callback.
+> > 
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> >   drivers/pci/endpoint/functions/pci-epf-test.c | 59 ++++++++++++++++++-
+> >   1 file changed, 58 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/pci/endpoint/functions/pci-epf-test.c b/drivers/pci/endpoint/functions/pci-epf-test.c
+> > index 1f0d2b84296a3..566549919b87b 100644
+> > --- a/drivers/pci/endpoint/functions/pci-epf-test.c
+> > +++ b/drivers/pci/endpoint/functions/pci-epf-test.c
+> > @@ -11,6 +11,7 @@
+> >   #include <linux/dmaengine.h>
+> >   #include <linux/io.h>
+> >   #include <linux/module.h>
+> > +#include <linux/msi.h>
+> >   #include <linux/slab.h>
+> >   #include <linux/pci_ids.h>
+> >   #include <linux/random.h>
+> > @@ -39,17 +40,21 @@
+> >   #define STATUS_IRQ_RAISED		BIT(6)
+> >   #define STATUS_SRC_ADDR_INVALID		BIT(7)
+> >   #define STATUS_DST_ADDR_INVALID		BIT(8)
+> > +#define STATUS_DOORBELL_SUCCESS		BIT(9)
+> >   #define FLAG_USE_DMA			BIT(0)
+> >   #define TIMER_RESOLUTION		1
+> > +#define MAGIC_VERSION_MASK		GENMASK(7, 0)
+> > +
+> >   static struct workqueue_struct *kpcitest_workqueue;
+> >   struct pci_epf_test {
+> >   	void			*reg[PCI_STD_NUM_BARS];
+> >   	struct pci_epf		*epf;
+> >   	enum pci_barno		test_reg_bar;
+> > +	enum pci_barno		doorbell_bar;
+> >   	size_t			msix_table_offset;
+> >   	struct delayed_work	cmd_handler;
+> >   	struct dma_chan		*dma_chan_tx;
+> > @@ -74,6 +79,9 @@ struct pci_epf_test_reg {
+> >   	u32	irq_type;
+> >   	u32	irq_number;
+> >   	u32	flags;
+> > +	u32	doorbell_bar;
+> 
+> You could extend test_reg_bar for doorbell to avoid using additional BAR.
 
+It is sperated physical address space. So far, epc still not support map
+two difference physcial address space into a bar.
 
-On 9/29/2023 6:56 PM, Konrad Dybcio wrote:
+So I have to use a sperate pci bar for doorbell.
+
+Frank
+
 > 
 > 
-> On 9/29/23 15:19, Nitin Rawat wrote:
->> Add UFS host controller and PHY nodes for sc7280 IDP board.
->>
->> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
->> Acked-by: Manivannan Sadhasivam <mani@kernel.org>
->> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> Tested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> I did not add these tags to this patch, drop them.
-
-My Apologies.Actually Patch 2 and Patch3 review tag got swapped.
-Will update and send new patchset
+> > +	u32	doorbell_addr;
+> > +	u32	doorbell_data;
+> >   } __packed;
 > 
-> Konrad
-
-Thanks,
-Nitin
+> Thanks,
+> Kishon
 
