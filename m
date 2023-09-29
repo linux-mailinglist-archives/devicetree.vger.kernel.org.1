@@ -1,109 +1,111 @@
-Return-Path: <devicetree+bounces-4568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9D8F7B326C
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 14:24:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FC097B329A
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 14:33:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id E7EA11C20956
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 12:24:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2A64F282544
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 12:32:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8617918657;
-	Fri, 29 Sep 2023 12:23:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0346933D8;
+	Fri, 29 Sep 2023 12:32:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5018DF9CC
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 12:23:58 +0000 (UTC)
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 830C8DB
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 05:23:56 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-533c92e65c9so14044382a12.3
-        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 05:23:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1695990235; x=1696595035; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sla6wmpD1DUPXq81GA+Qf96ZRYBJdn00BJ+JAxCtCQg=;
-        b=RDfYwL3iPdVBDnC8c57GDN+3kAlSFgn5Pk66grBMHHnzbWdvN2tFRo44knjhLxTt5C
-         9Uh5rBzShfr2JTTiOhbqy7JkGfDaU3aNlfBMuKTuPl1EzvdmLXOH8+Zve8niBcasOB6Q
-         4kWQNebEPoXfwLeYrGappNCQqgPnSyr5iG7/OVStx84oRhoPxGQ36W2o3TokPG/6hqBK
-         tKAnHHkhrLP1PRr7ScmXkrGstwguOGQRLax7wKx3qz8LCt/octdtupAdDbEjGypZ2tMb
-         n6bOIGxa1DTBEVa9t1U6r7hxFq5NPNFIlyMjc5f02hEjapJH3MumFYJKHUD3T92Pj1x7
-         /HIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695990235; x=1696595035;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=sla6wmpD1DUPXq81GA+Qf96ZRYBJdn00BJ+JAxCtCQg=;
-        b=t1vMwkacfsFiaFGu9/0NiBwCzoNhZMHwwbQDmab29z3ShDXhXE7ei02ZJOApcwiWoP
-         xBb724ib/NCRN4oVRLasWOi5xZJ87CqXXAMGO13+fL8LDkymGJNLYkbkBTjGphmj3x5B
-         L1JvRAEJFI9ptWxyorZ9g1lMU/9lkgfyXUkhX5cHIjHThxj/mMLz+f06nYNjLScnr11J
-         PxFEd3r9iiV5wgpVabdgJGPEUwI5c8OZFFzBd/A6db/JBCc3f9qdL78UcaakMrjofvF5
-         mG4SZiqBC6jopurvcsxzzRtZgTywordN/81cHdgkKGGn0MSYsPldTAigxiskGC9qJbD5
-         RRoQ==
-X-Gm-Message-State: AOJu0YyRcjjS3+BrDBXVdX8jQyBQp7dH8y5FD+woY3VxHVL/7q4rj0DQ
-	JM8wq4tpFOpd3A4D5sQB8LaiDQ==
-X-Google-Smtp-Source: AGHT+IG2kjzZLb1SdI6/JkmBGM33kigR2o+WpFZUGImV1UHmk2br8Y6U1scGw32/Vw2pa3JA1cAbFg==
-X-Received: by 2002:a17:906:217:b0:9ae:3210:22fd with SMTP id 23-20020a170906021700b009ae321022fdmr3509603ejd.48.1695990234936;
-        Fri, 29 Sep 2023 05:23:54 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id mc1-20020a170906eb4100b009a5f1d1564dsm12209790ejb.126.2023.09.29.05.23.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Sep 2023 05:23:54 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E74139CA47
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 12:32:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FFC7C433C8;
+	Fri, 29 Sep 2023 12:32:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1695990777;
+	bh=1Bo4FZNzqybjVrw58i9A7aUqAJ5AK5epSxmtyX6LO3Y=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=mp8Om77UtnPoeFBHs1iuvcmOn5u/zQUtgAuCvlYumujvVwP2RZcByMalV6vzeqcF2
+	 sekzx0/SBomc+dE8UGDCskzK+T7mlg3E0ADdcesQ9614e+9E+3d3oLUfJrOvxXhHEW
+	 gFvnmmvXClzQachJhaTCix4fUI1M1IILaIIol6Vh27M4jPZelGWeXLOWelMhmZRLw4
+	 K77zZQWETq88pE3D5oIyVAPlVHF8r2lErC4XVdw5QOHGtL3E92PcH0iSrn3eDGeWRQ
+	 WCJWDP5dLFDW9V5t6exraTcT6Oo6/do3Xob9Sl40rMe7eT2mRweWrmSRBIpL3+fUvc
+	 bDcIlOEiK8Vag==
+Received: from [85.255.233.37] (helo=wait-a-minute.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1qmCfu-00HFD4-CN;
+	Fri, 29 Sep 2023 13:32:54 +0100
+Date: Fri, 29 Sep 2023 13:32:52 +0100
+Message-ID: <87bkdlma6j.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Atish Patra <atishp@atishpatra.org>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Anup Patel <anup@brainfault.org>,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v9 05/15] irqchip/sifive-plic: Convert PLIC driver into a platform driver
+In-Reply-To: <20230928061207.1841513-6-apatel@ventanamicro.com>
+References: <20230928061207.1841513-1-apatel@ventanamicro.com>
+	<20230928061207.1841513-6-apatel@ventanamicro.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 29 Sep 2023 14:23:54 +0200
-Message-Id: <CVVED1K40NK5.1MFHLQH8YS4IY@otso>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Add ports subnodes in usb/dp
- qmpphy node
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Konrad Dybcio" <konrad.dybcio@linaro.org>,
- <cros-qcom-dts-watchers@chromium.org>, "Andy Gross" <agross@kernel.org>,
- "Bjorn Andersson" <andersson@kernel.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>
-X-Mailer: aerc 0.15.2
-References: <20230929-sc7280-qmpphy-ports-v1-1-7532c11973af@fairphone.com>
- <af19b32e-9e91-4829-8d77-9cf154e19bac@linaro.org>
-In-Reply-To: <af19b32e-9e91-4829-8d77-9cf154e19bac@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 85.255.233.37
+X-SA-Exim-Rcpt-To: apatel@ventanamicro.com, palmer@dabbelt.com, paul.walmsley@sifive.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, frowand.list@gmail.com, conor+dt@kernel.org, atishp@atishpatra.org, ajones@ventanamicro.com, sunilvl@ventanamicro.com, saravanak@google.com, anup@brainfault.org, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On Fri Sep 29, 2023 at 1:44 PM CEST, Konrad Dybcio wrote:
-> On 29.09.2023 09:31, Luca Weiss wrote:
-> > Add the USB3+DP Combo QMP PHY port subnodes in the SC7280 SoC DTSI to
-> > avoid duplication in the devices DTs.
-> The rationale here is to make describing the connections between
-> certain hw blocks possible. Defining it in the soc dtsi gives us
-> a very cool side-effect of not having to repeat this, but it's not
-> the main point here
-
-Commit message is copy-pasted from sm8550 commit with has your R-b ;)
-
-But I'll change it for this commit since your comment makes sense.
-
+On Thu, 28 Sep 2023 07:11:57 +0100,
+Anup Patel <apatel@ventanamicro.com> wrote:
+> 
+> The PLIC driver does not require very early initialization so let
+> us convert it into a platform driver.
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 
+> As part of the conversion, the PLIC probing undergoes the following
+> changes:
+> 1. Use dev_info(), dev_err() and dev_warn() instead of pr_info(),
+>    pr_err() and pr_warn()
+> 2. Use devm_xyz() APIs wherever applicable
+> 3. PLIC is now probed after CPUs are brought-up so we have to
+>    setup cpuhp state after context handler of all online CPUs
+>    are initialized otherwise we see crash on multi-socket systems
+> 
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> ---
+>  drivers/irqchip/irq-sifive-plic.c | 242 +++++++++++++++++++-----------
+>  1 file changed, 154 insertions(+), 88 deletions(-)
 >
-> With the commit msg amended:
->
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->
-> Konrad
 
+[...]
+
+> +core_initcall(plic_init);
+
+Or not. There are only two choices: either you absolutely require
+early init, and you stick with the current situation, or you don't,
+and you can rely on dependencies.
+
+I'm not prepared to have a third option.
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
 
