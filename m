@@ -1,574 +1,162 @@
-Return-Path: <devicetree+bounces-4577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67E9A7B32DF
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 14:54:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AA177B32E8
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 14:56:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 1A323281F5A
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 12:54:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 207711C2094A
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 12:56:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDFF11865D;
-	Fri, 29 Sep 2023 12:54:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A50018B1A;
+	Fri, 29 Sep 2023 12:56:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE4F01864F
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 12:54:34 +0000 (UTC)
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 956A9C0
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 05:54:31 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-9ae7383b7ecso144475966b.0
-        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 05:54:31 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5FE018050
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 12:56:32 +0000 (UTC)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB53AB7
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 05:56:30 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9a9d82d73f9so1826036266b.3
+        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 05:56:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695992070; x=1696596870; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PnHhSoBdf7XuQiadJVYaGHP6YZcGwM+gG+XCBzaF3W0=;
-        b=o2+IJLcEQxaU4dJ9fQ05hQ9MHehVjzBhxPE70Lk3kuco3CCY3Ppa83Jv44dj8r0sQZ
-         3Z9QcXE0SZoRgU38li4kvZOtfy5iRGQmCYFvDRqi86wCDw1t3BZmSc543VySNssryvZE
-         YHg4u1uve/V4XuFbF8HzM3PLbXJ1u54ndxZP3IHOueGYBrFYQWF2hmmWSAw7Q+OErGa7
-         DWk4m2MyuXGtymsuxG0+KO64nT65oXdhX/A57ifhN5PNlrrNJzDUGR3H/W8xt400ziUw
-         Sg3nUW1gSCUlNlV6/3Vkzcu6yLpT8Q0B9L+qWj7myG0B0Z4r5pqd4MSWoVJGnQNxshBb
-         jlNg==
+        d=linaro.org; s=google; t=1695992189; x=1696596989; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=o0O2iHOSU6V8QBcjMfQhVcZbNkje+8n8sZpqQP6ki2o=;
+        b=vof3UYNoL8/fwTNAHMD97O5BuhU1oULce64wvDw2C28TX8zUPwJ1bsvvF4aum/z4kI
+         i9dFQcYjEKHz0nrUKToYaSl/d7U5Sz44k/Z91Pq+urumzedCCikXbJD8AloKaLlzy/aH
+         +JdYKpFExX8GtM+T0IqNjd2egKgv8wUL2d0ZgLGlw79tpj0/vZUO5xpKkOG9P9Ry8G+r
+         25V2vsngWatCalmttBFp+YZLPUzPSSxeeMfiATwmVHz28CdnWPLGablpFQIQSiS+kbHr
+         hYA5FV7//GGoQ2sdC6mAH7zGo7aWS/ECoc4ylTeJES4RChG1G8CrjvOrlDtdkIiARLP0
+         benA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695992070; x=1696596870;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PnHhSoBdf7XuQiadJVYaGHP6YZcGwM+gG+XCBzaF3W0=;
-        b=c++ZGBUQTh+m0cRNrWNWrUDekO4oCeF/u5RLod2F68E3WZBHOqL89CuR8VxZr1ZfNo
-         2gKTCV7MmX0SsVd9Mw57xaDyZSP7vGcV/w+7pVniErvaB52855CUrFbkOT07NW5yepuY
-         0t4uHMzyCVCVEmqy/Qu/cT1FWQHljKQ+jAlbyYcX9nfSaGpkA2sathibwqX2OaQOpueI
-         djKcQgEaCTpUkf0fXUmv/bZ7KVOciFuxByMzofHdkSSlshv+0CCdupQtT8VAeiPjB+WY
-         omxysH3T0elNRaeiA5/G/56WQNbW0boi6eMf8EY4TLQfFPsa1H11eW5UNm+xWz6vkw9d
-         Hg/Q==
-X-Gm-Message-State: AOJu0YytT897V/5r/ylDvsf0hCOPI397Cd7wdEapATdonRHBF+J83PJd
-	WHL49uHy1/napzKcVYaV6sho6Q==
-X-Google-Smtp-Source: AGHT+IHPqOFR7o9dTYNV7ZOsPQegA0zGRMMQCpbPU3Univ//7uXfmWkJKIxafh33zPfdu8gfnSmssA==
-X-Received: by 2002:a17:906:c146:b0:9a5:dc2b:6a5 with SMTP id dp6-20020a170906c14600b009a5dc2b06a5mr3573969ejc.35.1695992069876;
-        Fri, 29 Sep 2023 05:54:29 -0700 (PDT)
-Received: from [10.167.154.1] (178235177217.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.217])
-        by smtp.gmail.com with ESMTPSA id j26-20020a170906831a00b0099bc8bd9066sm12380376ejx.150.2023.09.29.05.54.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Sep 2023 05:54:29 -0700 (PDT)
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Fri, 29 Sep 2023 14:54:21 +0200
-Subject: [PATCH v2 2/2] drm/panel: Add driver for BOE RM692E5 AMOLED panel
+        d=1e100.net; s=20230601; t=1695992189; x=1696596989;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=o0O2iHOSU6V8QBcjMfQhVcZbNkje+8n8sZpqQP6ki2o=;
+        b=SJaV9TSNXBUGjNNI+gzwHQITRv/OGqHEtlDcAzq3juEuuB5Ew7YOD4i3Qa5aUvOzsN
+         S3/s8Spgivf8HYfD4LdDX/TBXrVxgKZDHGE3sqEc9gJKezBw439mUT6+SA++0GdBQEUc
+         aRuzqkv1+8CUP4PlaP65mI/qAO03gdfQxtEEKLiRp0bsb6PLaxDhXSbGJhlnSCKp6Pvx
+         3Z3F4zfK+MiLkQtrSrjlT0fqwbvI2RrxHZugsZS1w/88LF8AKidlW0gLlTqoqLoTxGi1
+         H2KiOhPx7SA1b28gabx++j40VnkcgkeI1vY33ECa1Mx2KPJiOwXoi11lbCvXAJdJ4NdJ
+         zGlg==
+X-Gm-Message-State: AOJu0YwUBmemDvWJuYDY6dRT3CRjijhA7EjAFpHwCvjBHyWe+gvKLXLF
+	8TdWzcGVjCFvZii89adBhEfCPw==
+X-Google-Smtp-Source: AGHT+IHJ+1khKqYJgtx/TnRmZpfflJN1BDfF2euEg3cfsBufY9K4aOGjhkXxyT6TleFCuZml4id7GQ==
+X-Received: by 2002:a17:906:783:b0:9ae:5fe1:ef00 with SMTP id l3-20020a170906078300b009ae5fe1ef00mr3371589ejc.45.1695992189069;
+        Fri, 29 Sep 2023 05:56:29 -0700 (PDT)
+Received: from [192.168.33.189] (178235177217.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.217])
+        by smtp.gmail.com with ESMTPSA id k15-20020a1709062a4f00b009ad8084e08asm12328286eje.0.2023.09.29.05.56.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Sep 2023 05:56:28 -0700 (PDT)
+Message-ID: <9e5ad332-2c04-4024-8321-3a9c66586b64@linaro.org>
+Date: Fri, 29 Sep 2023 14:56:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/8] arm64: dts: qcom: ipq5332: Add USB Super-Speed PHY
+ node
+Content-Language: en-US
+To: Praveenkumar I <quic_ipkumar@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ gregkh@linuxfoundation.org, catalin.marinas@arm.com, will@kernel.org,
+ p.zabel@pengutronix.de, geert+renesas@glider.be, arnd@arndb.de,
+ neil.armstrong@linaro.org, nfraprado@collabora.com, u-kumar1@ti.com,
+ peng.fan@nxp.com, quic_wcheng@quicinc.com, quic_varada@quicinc.com,
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: quic_kathirav@quicinc.com, quic_nsekar@quicinc.com,
+ quic_srichara@quicinc.com
+References: <20230929084209.3033093-1-quic_ipkumar@quicinc.com>
+ <20230929084209.3033093-4-quic_ipkumar@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
+ BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
+ HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
+ TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
+ zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
+ MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
+ t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
+ UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
+ aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
+ kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
+ Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
+ R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
+ BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
+ yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
+ xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
+ 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
+ GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
+ mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
+ x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
+ BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
+ mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
+ Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
+ xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
+ AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
+ 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
+ jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
+ cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
+ jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
+ cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
+ bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
+ YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
+ bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
+ nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
+ izWDgYvmBE8=
+In-Reply-To: <20230929084209.3033093-4-quic_ipkumar@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230927-topic-fp5_disp-v2-2-7b5e1d1662a6@linaro.org>
-References: <20230927-topic-fp5_disp-v2-0-7b5e1d1662a6@linaro.org>
-In-Reply-To: <20230927-topic-fp5_disp-v2-0-7b5e1d1662a6@linaro.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1695992063; l=14734;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=xhFvMSRAktnscJ5HdAaQV6f8eDAQMl/fLhoJOm2JFY0=;
- b=P0OtNCnlOcjpKrMFtZ/4orkPU0gtxo0GZ+OAdarleml5Jr+zlipWHu0LFirM8GFKjvk9eH/Q6
- y4RD0jRt0R6B1mX+DCjYqq3o47E1hHwrT83edZ4jn5Ls/+B+Am67mWa
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add support for the 2700x1224 AMOLED BOE panel bundled with a RM692E5
-driver IC, as found on the Fairphone 5 smartphone.
+On 29.09.2023 10:42, Praveenkumar I wrote:
+> Add USB Super-Speed UNIPHY node and populate the phandle on
+> gcc node for the parent clock map.
+> 
+> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/ipq5332.dtsi | 25 ++++++++++++++++++++++++-
+>  1 file changed, 24 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+> index d3fef2f80a81..b08ffd8c094e 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+> @@ -158,6 +158,29 @@ usbphy0: phy@7b000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		usbphy1: phy@4b0000 {
+> +			compatible = "qcom,ipq5332-usb-uniphy";
+> +			reg = <0x4b0000 0x800>;
+Please pad the address part to 8 hex digits with leading zeroes.
 
-Co-developed-by: Luca Weiss <luca.weiss@fairphone.com>
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- drivers/gpu/drm/panel/Kconfig                 |   9 +
- drivers/gpu/drm/panel/Makefile                |   1 +
- drivers/gpu/drm/panel/panel-raydium-rm692e5.c | 423 ++++++++++++++++++++++++++
- 3 files changed, 433 insertions(+)
+> +
+> +			clocks = <&gcc GCC_PCIE3X1_PHY_AHB_CLK>,
+> +				 <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
+> +				 <&gcc GCC_USB0_PIPE_CLK>;
+> +			clock-names = "ahb",
+> +				      "cfg_ahb",
+> +				      "pipe";
+> +
+> +			resets =  <&gcc GCC_USB0_PHY_BCR>;
+Looks like there's a double space after '='
 
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index 2d6d96ee3547..ecb22ea326cb 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -516,6 +516,15 @@ config DRM_PANEL_RAYDIUM_RM68200
- 	  Say Y here if you want to enable support for Raydium RM68200
- 	  720x1280 DSI video mode panel.
- 
-+config DRM_PANEL_RAYDIUM_RM692E5
-+	tristate "Raydium RM692E5-based DSI panel"
-+	depends on OF
-+	depends on DRM_MIPI_DSI
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	help
-+	  Say Y here if you want to enable support for Raydium RM692E5-based
-+	  display panels, such as the one found in the Fairphone 5 smartphone.
-+
- config DRM_PANEL_RONBO_RB070D30
- 	tristate "Ronbo Electronics RB070D30 panel"
- 	depends on OF
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index 157c77ff157f..e14ce55a0875 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -49,6 +49,7 @@ obj-$(CONFIG_DRM_PANEL_PANASONIC_VVX10F034N00) += panel-panasonic-vvx10f034n00.o
- obj-$(CONFIG_DRM_PANEL_RASPBERRYPI_TOUCHSCREEN) += panel-raspberrypi-touchscreen.o
- obj-$(CONFIG_DRM_PANEL_RAYDIUM_RM67191) += panel-raydium-rm67191.o
- obj-$(CONFIG_DRM_PANEL_RAYDIUM_RM68200) += panel-raydium-rm68200.o
-+obj-$(CONFIG_DRM_PANEL_RAYDIUM_RM692E5) += panel-raydium-rm692e5.o
- obj-$(CONFIG_DRM_PANEL_RONBO_RB070D30) += panel-ronbo-rb070d30.o
- obj-$(CONFIG_DRM_PANEL_SAMSUNG_ATNA33XC20) += panel-samsung-atna33xc20.o
- obj-$(CONFIG_DRM_PANEL_SAMSUNG_DB7430) += panel-samsung-db7430.o
-diff --git a/drivers/gpu/drm/panel/panel-raydium-rm692e5.c b/drivers/gpu/drm/panel/panel-raydium-rm692e5.c
-new file mode 100644
-index 000000000000..a613ba5b816c
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-raydium-rm692e5.c
-@@ -0,0 +1,423 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Generated with linux-mdss-dsi-panel-driver-generator from vendor device tree.
-+ * Copyright (c) 2023 Linaro Limited
-+ */
-+
-+#include <linux/backlight.h>
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <drm/display/drm_dsc.h>
-+#include <drm/display/drm_dsc_helper.h>
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+
-+struct rm692e5_panel {
-+	struct drm_panel panel;
-+	struct mipi_dsi_device *dsi;
-+	struct drm_dsc_config dsc;
-+	struct regulator_bulk_data supplies[3];
-+	struct gpio_desc *reset_gpio;
-+	bool prepared;
-+};
-+
-+static inline struct rm692e5_panel *to_rm692e5_panel(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct rm692e5_panel, panel);
-+}
-+
-+static void rm692e5_reset(struct rm692e5_panel *ctx)
-+{
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	usleep_range(10000, 11000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	usleep_range(5000, 6000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	usleep_range(10000, 11000);
-+}
-+
-+static int rm692e5_on(struct rm692e5_panel *ctx)
-+{
-+	struct mipi_dsi_device *dsi = ctx->dsi;
-+	struct device *dev = &dsi->dev;
-+	int ret;
-+
-+	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-+
-+	mipi_dsi_generic_write_seq(dsi, 0xfe, 0x41);
-+	mipi_dsi_generic_write_seq(dsi, 0xd6, 0x00);
-+	mipi_dsi_generic_write_seq(dsi, 0xfe, 0x16);
-+	mipi_dsi_generic_write_seq(dsi, 0x8a, 0x87);
-+	mipi_dsi_generic_write_seq(dsi, 0xfe, 0x71);
-+	mipi_dsi_generic_write_seq(dsi, 0x82, 0x01);
-+	mipi_dsi_generic_write_seq(dsi, 0xc6, 0x00);
-+	mipi_dsi_generic_write_seq(dsi, 0xc7, 0x2c);
-+	mipi_dsi_generic_write_seq(dsi, 0xc8, 0x64);
-+	mipi_dsi_generic_write_seq(dsi, 0xc9, 0x3c);
-+	mipi_dsi_generic_write_seq(dsi, 0xca, 0x80);
-+	mipi_dsi_generic_write_seq(dsi, 0xcb, 0x02);
-+	mipi_dsi_generic_write_seq(dsi, 0xcc, 0x02);
-+	mipi_dsi_generic_write_seq(dsi, 0xfe, 0x38);
-+	mipi_dsi_generic_write_seq(dsi, 0x18, 0x13);
-+	mipi_dsi_generic_write_seq(dsi, 0xfe, 0xf4);
-+	mipi_dsi_generic_write_seq(dsi, 0x00, 0xff);
-+	mipi_dsi_generic_write_seq(dsi, 0x01, 0xff);
-+	mipi_dsi_generic_write_seq(dsi, 0x02, 0xcf);
-+	mipi_dsi_generic_write_seq(dsi, 0x03, 0xbc);
-+	mipi_dsi_generic_write_seq(dsi, 0x04, 0xb9);
-+	mipi_dsi_generic_write_seq(dsi, 0x05, 0x99);
-+	mipi_dsi_generic_write_seq(dsi, 0x06, 0x02);
-+	mipi_dsi_generic_write_seq(dsi, 0x07, 0x0a);
-+	mipi_dsi_generic_write_seq(dsi, 0x08, 0xe0);
-+	mipi_dsi_generic_write_seq(dsi, 0x09, 0x4c);
-+	mipi_dsi_generic_write_seq(dsi, 0x0a, 0xeb);
-+	mipi_dsi_generic_write_seq(dsi, 0x0b, 0xe8);
-+	mipi_dsi_generic_write_seq(dsi, 0x0c, 0x32);
-+	mipi_dsi_generic_write_seq(dsi, 0x0d, 0x07);
-+	mipi_dsi_generic_write_seq(dsi, 0xfe, 0xf4);
-+	mipi_dsi_generic_write_seq(dsi, 0x0d, 0xc0);
-+	mipi_dsi_generic_write_seq(dsi, 0x0e, 0xff);
-+	mipi_dsi_generic_write_seq(dsi, 0x0f, 0xff);
-+	mipi_dsi_generic_write_seq(dsi, 0x10, 0x33);
-+	mipi_dsi_generic_write_seq(dsi, 0x11, 0x6f);
-+	mipi_dsi_generic_write_seq(dsi, 0x12, 0x6e);
-+	mipi_dsi_generic_write_seq(dsi, 0x13, 0xa6);
-+	mipi_dsi_generic_write_seq(dsi, 0x14, 0x80);
-+	mipi_dsi_generic_write_seq(dsi, 0x15, 0x02);
-+	mipi_dsi_generic_write_seq(dsi, 0x16, 0x38);
-+	mipi_dsi_generic_write_seq(dsi, 0x17, 0xd3);
-+	mipi_dsi_generic_write_seq(dsi, 0x18, 0x3a);
-+	mipi_dsi_generic_write_seq(dsi, 0x19, 0xba);
-+	mipi_dsi_generic_write_seq(dsi, 0x1a, 0xcc);
-+	mipi_dsi_generic_write_seq(dsi, 0x1b, 0x01);
-+
-+	ret = mipi_dsi_dcs_nop(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to nop: %d\n", ret);
-+		return ret;
-+	}
-+	msleep(32);
-+
-+	mipi_dsi_generic_write_seq(dsi, 0xfe, 0x38);
-+	mipi_dsi_generic_write_seq(dsi, 0x18, 0x13);
-+	mipi_dsi_generic_write_seq(dsi, 0xfe, 0xd1);
-+	mipi_dsi_generic_write_seq(dsi, 0xd3, 0x00);
-+	mipi_dsi_generic_write_seq(dsi, 0xd0, 0x00);
-+	mipi_dsi_generic_write_seq(dsi, 0xd2, 0x00);
-+	mipi_dsi_generic_write_seq(dsi, 0xd4, 0x00);
-+	mipi_dsi_generic_write_seq(dsi, 0xb4, 0x01);
-+	mipi_dsi_generic_write_seq(dsi, 0xfe, 0xf9);
-+	mipi_dsi_generic_write_seq(dsi, 0x00, 0xaf);
-+	mipi_dsi_generic_write_seq(dsi, 0x1d, 0x37);
-+	mipi_dsi_generic_write_seq(dsi, 0x44, 0x0a, 0x7b);
-+	mipi_dsi_generic_write_seq(dsi, 0xfe, 0x00);
-+	mipi_dsi_generic_write_seq(dsi, 0xfa, 0x01);
-+	mipi_dsi_generic_write_seq(dsi, 0xc2, 0x08);
-+	mipi_dsi_generic_write_seq(dsi, 0x35, 0x00);
-+	mipi_dsi_generic_write_seq(dsi, 0x51, 0x05, 0x42);
-+
-+	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
-+		return ret;
-+	}
-+	msleep(100);
-+
-+	ret = mipi_dsi_dcs_set_display_on(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set display on: %d\n", ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int rm692e5_disable(struct drm_panel *panel)
-+{
-+	struct rm692e5_panel *ctx = to_rm692e5_panel(panel);
-+	struct mipi_dsi_device *dsi = ctx->dsi;
-+	struct device *dev = &dsi->dev;
-+	int ret;
-+
-+	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-+
-+	mipi_dsi_generic_write_seq(dsi, 0xfe, 0x00);
-+
-+	ret = mipi_dsi_dcs_set_display_off(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set display off: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to enter sleep mode: %d\n", ret);
-+		return ret;
-+	}
-+	msleep(100);
-+
-+	return 0;
-+}
-+
-+static int rm692e5_prepare(struct drm_panel *panel)
-+{
-+	struct rm692e5_panel *ctx = to_rm692e5_panel(panel);
-+	struct drm_dsc_picture_parameter_set pps;
-+	struct device *dev = &ctx->dsi->dev;
-+	int ret;
-+
-+	if (ctx->prepared)
-+		return 0;
-+
-+	ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to enable regulators: %d\n", ret);
-+		return ret;
-+	}
-+
-+	rm692e5_reset(ctx);
-+
-+	ret = rm692e5_on(ctx);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to initialize panel: %d\n", ret);
-+		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+		regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-+		return ret;
-+	}
-+
-+	drm_dsc_pps_payload_pack(&pps, &ctx->dsc);
-+
-+	ret = mipi_dsi_picture_parameter_set(ctx->dsi, &pps);
-+	if (ret < 0) {
-+		dev_err(panel->dev, "failed to transmit PPS: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = mipi_dsi_compression_mode(ctx->dsi, true);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to enable compression mode: %d\n", ret);
-+		return ret;
-+	}
-+
-+	msleep(28);
-+
-+	mipi_dsi_generic_write_seq(ctx->dsi, 0xfe, 0x40);
-+
-+	/* 0x05 -> 90Hz, 0x00 -> 60Hz */
-+	mipi_dsi_generic_write_seq(ctx->dsi, 0xbd, 0x05);
-+
-+	mipi_dsi_generic_write_seq(ctx->dsi, 0xfe, 0x00);
-+
-+	ctx->prepared = true;
-+
-+	return 0;
-+}
-+
-+static int rm692e5_unprepare(struct drm_panel *panel)
-+{
-+	struct rm692e5_panel *ctx = to_rm692e5_panel(panel);
-+
-+	if (!ctx->prepared)
-+		return 0;
-+
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-+
-+	ctx->prepared = false;
-+	return 0;
-+}
-+
-+static const struct drm_display_mode rm692e5_mode = {
-+	.clock = (1224 + 32 + 8 + 8) * (2700 + 8 + 2 + 8) * 90 / 1000,
-+	.hdisplay = 1224,
-+	.hsync_start = 1224 + 32,
-+	.hsync_end = 1224 + 32 + 8,
-+	.htotal = 1224 + 32 + 8 + 8,
-+	.vdisplay = 2700,
-+	.vsync_start = 2700 + 8,
-+	.vsync_end = 2700 + 8 + 2,
-+	.vtotal = 2700 + 8 + 2 + 8,
-+	.width_mm = 68,
-+	.height_mm = 150,
-+};
-+
-+static int rm692e5_get_modes(struct drm_panel *panel,
-+					struct drm_connector *connector)
-+{
-+	struct drm_display_mode *mode;
-+
-+	mode = drm_mode_duplicate(connector->dev, &rm692e5_mode);
-+	if (!mode)
-+		return -ENOMEM;
-+
-+	drm_mode_set_name(mode);
-+
-+	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
-+	connector->display_info.width_mm = mode->width_mm;
-+	connector->display_info.height_mm = mode->height_mm;
-+	drm_mode_probed_add(connector, mode);
-+
-+	return 1;
-+}
-+
-+static const struct drm_panel_funcs rm692e5_panel_funcs = {
-+	.prepare = rm692e5_prepare,
-+	.unprepare = rm692e5_unprepare,
-+	.disable = rm692e5_disable,
-+	.get_modes = rm692e5_get_modes,
-+};
-+
-+static int rm692e5_bl_update_status(struct backlight_device *bl)
-+{
-+	struct mipi_dsi_device *dsi = bl_get_data(bl);
-+	u16 brightness = backlight_get_brightness(bl);
-+	int ret;
-+
-+	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-+
-+	ret = mipi_dsi_dcs_set_display_brightness_large(dsi, brightness);
-+	if (ret < 0)
-+		return ret;
-+
-+	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-+
-+	return 0;
-+}
-+
-+static int rm692e5_bl_get_brightness(struct backlight_device *bl)
-+{
-+	struct mipi_dsi_device *dsi = bl_get_data(bl);
-+	u16 brightness;
-+	int ret;
-+
-+	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-+
-+	ret = mipi_dsi_dcs_get_display_brightness_large(dsi, &brightness);
-+	if (ret < 0)
-+		return ret;
-+
-+	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-+
-+	return brightness;
-+}
-+
-+static const struct backlight_ops rm692e5_bl_ops = {
-+	.update_status = rm692e5_bl_update_status,
-+	.get_brightness = rm692e5_bl_get_brightness,
-+};
-+
-+static struct backlight_device *
-+rm692e5_create_backlight(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	const struct backlight_properties props = {
-+		.type = BACKLIGHT_RAW,
-+		.brightness = 4095,
-+		.max_brightness = 4095,
-+	};
-+
-+	return devm_backlight_device_register(dev, dev_name(dev), dev, dsi,
-+					      &rm692e5_bl_ops, &props);
-+}
-+
-+static int rm692e5_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	struct rm692e5_panel *ctx;
-+	int ret;
-+
-+	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-+	if (!ctx)
-+		return -ENOMEM;
-+
-+	ctx->supplies[0].supply = "vddio";
-+	ctx->supplies[1].supply = "dvdd";
-+	ctx->supplies[2].supply = "vci";
-+	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(ctx->supplies),
-+				      ctx->supplies);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "Failed to get regulators\n");
-+
-+	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(ctx->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
-+				     "Failed to get reset-gpios\n");
-+
-+	ctx->dsi = dsi;
-+	mipi_dsi_set_drvdata(dsi, ctx);
-+
-+	dsi->lanes = 4;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->mode_flags = MIPI_DSI_MODE_NO_EOT_PACKET |
-+			  MIPI_DSI_CLOCK_NON_CONTINUOUS;
-+
-+	drm_panel_init(&ctx->panel, dev, &rm692e5_panel_funcs,
-+		       DRM_MODE_CONNECTOR_DSI);
-+	ctx->panel.prepare_prev_first = true;
-+
-+	ctx->panel.backlight = rm692e5_create_backlight(dsi);
-+	if (IS_ERR(ctx->panel.backlight))
-+		return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
-+				     "Failed to create backlight\n");
-+
-+	drm_panel_add(&ctx->panel);
-+
-+	/* This panel only supports DSC; unconditionally enable it */
-+	dsi->dsc = &ctx->dsc;
-+
-+	/* TODO: Pass slice_per_pkt = 2 */
-+	ctx->dsc.dsc_version_major = 1;
-+	ctx->dsc.dsc_version_minor = 1;
-+	ctx->dsc.slice_height = 60;
-+	ctx->dsc.slice_width = 1224;
-+
-+	ctx->dsc.slice_count = 1224 / ctx->dsc.slice_width;
-+	ctx->dsc.bits_per_component = 8;
-+	ctx->dsc.bits_per_pixel = 8 << 4; /* 4 fractional bits */
-+	ctx->dsc.block_pred_enable = true;
-+
-+	ret = mipi_dsi_attach(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
-+		drm_panel_remove(&ctx->panel);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static void rm692e5_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct rm692e5_panel *ctx = mipi_dsi_get_drvdata(dsi);
-+	int ret;
-+
-+	ret = mipi_dsi_detach(dsi);
-+	if (ret < 0)
-+		dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
-+
-+	drm_panel_remove(&ctx->panel);
-+}
-+
-+static const struct of_device_id rm692e5_of_match[] = {
-+	{ .compatible = "fairphone,fp5-rm692e5-boe" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, rm692e5_of_match);
-+
-+static struct mipi_dsi_driver rm692e5_driver = {
-+	.probe = rm692e5_probe,
-+	.remove = rm692e5_remove,
-+	.driver = {
-+		.name = "panel-rm692e5-boe-amoled",
-+		.of_match_table = rm692e5_of_match,
-+	},
-+};
-+module_mipi_dsi_driver(rm692e5_driver);
-+
-+MODULE_DESCRIPTION("DRM driver for rm692e5-equipped DSI panels");
-+MODULE_LICENSE("GPL");
-
--- 
-2.42.0
-
+Konrad
 
