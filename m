@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-4720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45CAD7B38A4
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 19:25:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9D9B7B38AA
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 19:25:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id A50DF283629
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 17:25:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id CB3581C20B09
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 17:25:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D402658B2;
-	Fri, 29 Sep 2023 17:25:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B910658A2;
+	Fri, 29 Sep 2023 17:25:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6FF3658A5
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 17:25:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DCFD658AF
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 17:25:53 +0000 (UTC)
 Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5B07CC1
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 10:25:50 -0700 (PDT)
-Received: by mail-oo1-xc29.google.com with SMTP id 006d021491bc7-57b706f604aso7021390eaf.0
-        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 10:25:50 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3BD61B0
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 10:25:51 -0700 (PDT)
+Received: by mail-oo1-xc29.google.com with SMTP id 006d021491bc7-57b67c84999so7808741eaf.3
+        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 10:25:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1696008350; x=1696613150; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1696008351; x=1696613151; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=VZs7RCyHEDyjwo9BM8JVP9aWGPKGhSjAg7KPK55tj0w=;
-        b=jWcHhfOsleOJfNNW0K3SQhI2r+yv+Ryh5Q5h8c6w1qEIqM0OOPC0fpet4vidV0wQHW
-         wM7Bn5y9FD1ehMufk1m0FEJGWEfauqpicIiIDOvdc+2DLHjP3j0SyYJbLCHo1Hz/mNZH
-         Tw33MXuDjCE0c83riFFl754mWZhwOsVwKqHzUm7pNTQiMG/1xvWbxH19EgGNOFRMbU9q
-         gE2aJFoyaciX/V9PiukCWEvgM4on1hWVG/7HodI88oIRjqo5gWTjN0sMtICTPD/In/HL
-         Y+NblSQZQyKkCX1LudXIOxvdrl6nU/flo1oeLlTuxoAL+pYsueFvUCg+CdALBYWSzhz/
-         oXwg==
+        bh=b7PDmHSczFeqgAzbimbZilruGj50u/2gIL6ZrFf0Suo=;
+        b=tPqTfgr7eS8w94njpeNR2mA4fJMEkZl4vcBfgDwqGnY7WAt/hyF+JYt41g+LD1pjG2
+         +r2w+dszYB7Ks63dx5V6O9uP/HLESAEZOdXe3bPB7xfoCyVMUGmL6LAnMVoOr6a/vLLu
+         0tH1hmGkaGedT4jHw6xjH1rCqCTiaa5m6k1kesaRIS8LwFBHHkV1hoS/2JrJETGrpm/9
+         ae7ivzQNuhvmStWtZVFxFXzNQWpeQDi1v/91KqGis/OpFPby4ixe6H6TAwLM68div8mQ
+         msVXMafiXTHV691q71BE/bfySAr8eZJW0dCA9tRr0M8Iyu5xpdfKMoyUsObaNa87qztZ
+         jkJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696008350; x=1696613150;
+        d=1e100.net; s=20230601; t=1696008351; x=1696613151;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=VZs7RCyHEDyjwo9BM8JVP9aWGPKGhSjAg7KPK55tj0w=;
-        b=jVWddgY8UrnWMPe9XUOdUvt8FTp77Aaputqqs1GBm6DzKDdagecQToG+1PZX6mGr3n
-         9s/HGcMRng3N3mrQzMBaxwce5fHNpdLgc3ufeVYCX4XhZR6/zoNWCKvCZ1pLx+wZT4I6
-         KREJA7Op3ICO2EoUORH8ZdNyihVI92/XbYSC3bX3i8fZI6O+ggYDw2YBEKBGdcXerwdm
-         d1Bz545KtedY9HJcWh0m8f1TYSBKX0FFsy3dpfjFdcGNola4goqGheuYIJKT4ex3mQM+
-         8DibQz0K9Ew1DAjQuvtPExRCIW81E0/CeqpUY4rCyFCMuUC96WtTPiO/zOoR/AnlprPL
-         oeog==
-X-Gm-Message-State: AOJu0YyiK64QLF28BPzy1HPU2gpfWxsbYl1qLEJOAQ1uQ1Bh+IKt25do
-	UKCxy6OPLMAXCtakDjHrPyeroQ==
-X-Google-Smtp-Source: AGHT+IEV4b51ilWN++n/0+rU+iGp7VHyBLZBDmjeuTWYmnl26MZ3t8X5p2iE4s9s18GyLz1K/SQJLg==
-X-Received: by 2002:a4a:9257:0:b0:57b:63a6:306d with SMTP id g23-20020a4a9257000000b0057b63a6306dmr5249640ooh.6.1696008350202;
-        Fri, 29 Sep 2023 10:25:50 -0700 (PDT)
+        bh=b7PDmHSczFeqgAzbimbZilruGj50u/2gIL6ZrFf0Suo=;
+        b=asxYyUKoGi27WntXv7VwjXJK675zjbKurKRgkLYVlLXh6/N1z/wjFJF1IO7pNo5eiU
+         6Qf5sOE6nzDjRyd3VDNLvZREo5qL94puygT6YTE/3Z4Oz7Oc3hBaiuX1gyTbnhZNiTNr
+         ikgwoFisW5Qz6L0kZslPzdjVtxEh+SPlIxUGoxnsANEHNc3xptuQrZTqbvMRd6d+fhXU
+         XvissauJBIyeRwnJxC5OfnhsHyNU3X5BVpHuFE5OnCpUbJAzB6cKku5+XPIiRZpg6tTp
+         lktg1KgpD6cJmXfwZEHuC2XIRxTul15eKswxmatx1PPKc0h0gQQ6odVr9MGY/W4CCDdA
+         Ckdg==
+X-Gm-Message-State: AOJu0YzcNOZnlavLz22F+yQjiN7TnS3svoXX55Fa1wAZEeq51Fiy+DLg
+	/cYZbQpZWN/7JoMMQ6Fuz4x2eQ==
+X-Google-Smtp-Source: AGHT+IHxogutDZ1XLOIzr9/nOTx5KhbYFs+7hKsrWe7PtJOi6WwkLjfxiyyCL5MSgpTSmN6+IIr3og==
+X-Received: by 2002:a4a:7319:0:b0:57b:3a07:181c with SMTP id s25-20020a4a7319000000b0057b3a07181cmr4656794ooc.9.1696008351082;
+        Fri, 29 Sep 2023 10:25:51 -0700 (PDT)
 Received: from freyr.lechnology.com (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id f128-20020a4a5886000000b0057bb326cad4sm2272915oob.33.2023.09.29.10.25.49
+        by smtp.gmail.com with ESMTPSA id f128-20020a4a5886000000b0057bb326cad4sm2272915oob.33.2023.09.29.10.25.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Sep 2023 10:25:49 -0700 (PDT)
+        Fri, 29 Sep 2023 10:25:50 -0700 (PDT)
 From: David Lechner <dlechner@baylibre.com>
 To: linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org,
@@ -69,9 +69,9 @@ Cc: David Lechner <david@lechnology.com>,
 	Philip Molloy <pmolloy@baylibre.com>,
 	linux-kernel@vger.kernel.org,
 	David Lechner <dlechner@baylibre.com>
-Subject: [PATCH v3 04/27] staging: iio: resolver: ad2s1210: check return of ad2s1210_initial()
-Date: Fri, 29 Sep 2023 12:23:09 -0500
-Message-ID: <20230929-ad2s1210-mainline-v3-4-fa4364281745@baylibre.com>
+Subject: [PATCH v3 05/27] staging: iio: resolver: ad2s1210: remove spi_set_drvdata()
+Date: Fri, 29 Sep 2023 12:23:10 -0500
+Message-ID: <20230929-ad2s1210-mainline-v3-5-fa4364281745@baylibre.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20230929-ad2s1210-mainline-v3-0-fa4364281745@baylibre.com>
 References: <20230929-ad2s1210-mainline-v3-0-fa4364281745@baylibre.com>
@@ -85,8 +85,8 @@ Content-Type: text/plain; charset="utf-8"
 X-Mailer: b4 0.12.3
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
@@ -94,9 +94,7 @@ From: David Lechner <david@lechnology.com>
 
 From: David Lechner <dlechner@baylibre.com>
 
-This adds a check to the return value of ad2s1210_initial() since it
-can fail. The call is also moved before devm_iio_device_register() so
-that we don't have to unregister the device if it fails.
+Since we never call spi_get_drvdata(), we can remove spi_set_drvdata().
 
 Signed-off-by: David Lechner <dlechner@baylibre.com>
 ---
@@ -105,32 +103,22 @@ v3 changes:
 * This is a new patch split out from "staging: iio: resolver: ad2s1210:
  fix probe"
 
- drivers/staging/iio/resolver/ad2s1210.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/staging/iio/resolver/ad2s1210.c | 2 --
+ 1 file changed, 2 deletions(-)
 
 diff --git a/drivers/staging/iio/resolver/ad2s1210.c b/drivers/staging/iio/resolver/ad2s1210.c
-index 8fde08887f7f..b5e071d7c5fd 100644
+index b5e071d7c5fd..28015322f562 100644
 --- a/drivers/staging/iio/resolver/ad2s1210.c
 +++ b/drivers/staging/iio/resolver/ad2s1210.c
-@@ -672,6 +672,10 @@ static int ad2s1210_probe(struct spi_device *spi)
- 	if (ret < 0)
- 		return ret;
+@@ -659,8 +659,6 @@ static int ad2s1210_probe(struct spi_device *spi)
+ 		return -ENOMEM;
+ 	st = iio_priv(indio_dev);
  
-+	ret = ad2s1210_initial(st);
-+	if (ret < 0)
-+		return ret;
-+
- 	indio_dev->info = &ad2s1210_info;
- 	indio_dev->modes = INDIO_DIRECT_MODE;
- 	indio_dev->channels = ad2s1210_channels;
-@@ -683,7 +687,6 @@ static int ad2s1210_probe(struct spi_device *spi)
- 		return ret;
- 
- 	st->fclkin = spi->max_speed_hz;
--	ad2s1210_initial(st);
- 
- 	return 0;
- }
+-	spi_set_drvdata(spi, indio_dev);
+-
+ 	mutex_init(&st->lock);
+ 	st->sdev = spi;
+ 	st->hysteresis = true;
 
 -- 
 2.42.0
