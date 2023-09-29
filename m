@@ -1,104 +1,200 @@
-Return-Path: <devicetree+bounces-4448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 029B77B2A9C
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 05:35:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CAFB7B2AD6
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 06:00:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 1B56F1C2099A
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 03:35:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id B2B7D282D2B
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 04:00:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F155671;
-	Fri, 29 Sep 2023 03:35:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A9C17497;
+	Fri, 29 Sep 2023 04:00:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 328724418
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 03:35:02 +0000 (UTC)
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98A571A1
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 20:35:01 -0700 (PDT)
-Received: by mail-pl1-x630.google.com with SMTP id d9443c01a7336-1c3cbfa40d6so122850525ad.1
-        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 20:35:01 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 199945C99
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 04:00:09 +0000 (UTC)
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AD41113
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 21:00:07 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-406556f9bf9so9599805e9.2
+        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 21:00:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695958501; x=1696563301; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=HP9g/8ujJMa7tWcM5+uRVJlaPLI8TNMtBPHn63AVXHs=;
-        b=Mx9HLuRNsHFjksqrdHk/9cVPVVEY9au+IhVcj6o7kr760wRFVFZcVYnz2UbcSxmssz
-         dqjcoFQjYGO2WbRltiXvLotxuBX12e4kj0vLrWY2RaccZmIxgQCUKeQftikDNOnM7hsb
-         Rqa/MEFTVIdlM0DIoCiGEg3urtZop3rLO96LxtLyqAthHEED6OB92CGmDE3tREbs0Ve0
-         gHdOYz1gtz0BgUXmufUjt1tw0cGwINJRX7ysLls5GTi+HYgTIVU+CI5Fe4r9uIW9TwzH
-         Y+j3ihr9sYO0QrqUrAVs5yBS46MiR8rw7nfzGMwu+L/dRK7iZV4uxtEUstebVYzdNsj0
-         A5fg==
+        d=linaro.org; s=google; t=1695960006; x=1696564806; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=x4ozOJcdMu73UonWYu3Guqxdh+FY56w8y7+K9Ry3OHs=;
+        b=xSJ9ofWLHi3BB8gvbyDk8UwaZNpItes5zrHxhccxlVuooqVMmbPLKSZL7PSSQer3/k
+         yyWirqwd2TITsZ3ED+dRCyZxoSikSoCHy6hSiYzOzJzbp/M0+1tiOvI2kkAAFxzw6Kr0
+         hCrtegHv/CYrPv2AwuPWErbGQaaNYHdudM4blE+MrK+bpWwu1S7VlNE2qiLwXPMqSutA
+         /2FJMdCrwqGCeZcsofhRozmma0oj4NGkrs67CTP4U7iVCMCwvN/Teuwu8Ukg+AABisb6
+         9hzBQ2QYolVP135/fEmBsz2K5eCHIeHAPyqt6l0Ch7bPX+jioeiulaFoyosrhojV4a9N
+         Hdsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695958501; x=1696563301;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HP9g/8ujJMa7tWcM5+uRVJlaPLI8TNMtBPHn63AVXHs=;
-        b=L9m5rN1fozjhRai8SV2XLL2CZw/pQYobYGuLWwtCTuJCGTEIsIm/ESVh7/W+w7Egoz
-         8DTBk9BzlbWuL2HZZ/1DWuSuJQB4F6abFpzWvcfLIcP1KgS7VGmrYqND7DM8YBTjBPhi
-         H7gan7v03AptCeGZkbxx+ct79U4vDw+gcthV6PwlJM0muSdsIuUmv4T2nWF9KSPCi+jm
-         H9CWvmgqRuKn0k8qE6vyzTSRv0GEQL8B/lAHvY9eKNIEen10fK5p/23o1Ec76pj7NnHC
-         aQLkAwq9lRe9BIWzBBxzvVPcK0cWh39krF5R4y5MDMOiLMXt/9vC7HQNBu5mnlYmQHKz
-         G+kw==
-X-Gm-Message-State: AOJu0YypgwZicpQqSB5zH+4dguF4plxTiuvybsT3OIF20lRjro7lJG1Z
-	sTXNcJ9EaxZU83PNsI1MTL4+CQ==
-X-Google-Smtp-Source: AGHT+IG/x1zQDAVplp1UNHm3GUCzQBw8v+D24VTKD/duYQ3xzfbQZ0leD7mWhslO9LgDqys4FVRwig==
-X-Received: by 2002:a17:902:e748:b0:1c3:a4f2:7ca3 with SMTP id p8-20020a170902e74800b001c3a4f27ca3mr3545979plf.66.1695958500990;
-        Thu, 28 Sep 2023 20:35:00 -0700 (PDT)
-Received: from localhost ([122.172.81.92])
-        by smtp.gmail.com with ESMTPSA id j5-20020a170902c3c500b001b7fd27144dsm15898651plj.40.2023.09.28.20.34.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Sep 2023 20:35:00 -0700 (PDT)
-Date: Fri, 29 Sep 2023 09:04:57 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Rob Herring <robh@kernel.org>
-Cc: soc@kernel.org, Viresh Kumar <vireshk@kernel.org>,
-	Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-	Tom Lendacky <thomas.lendacky@amd.com>, Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm/arm64: dts: Removed undocumented and unused
- "pl022,hierarchy" property
-Message-ID: <20230929033457.b743ffge7b26behv@vireshk-i7>
-References: <20230928190859.1072420-1-robh@kernel.org>
+        d=1e100.net; s=20230601; t=1695960006; x=1696564806;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=x4ozOJcdMu73UonWYu3Guqxdh+FY56w8y7+K9Ry3OHs=;
+        b=UL1d93j0pE7OxceYgSAEgrexOTPy3BV+g6frh6J78G/h/5BRDWhKD7UyXoV8kf67eQ
+         d8e7RmNq52wD/1rs8N4jckWmObSVQrI5bCUBG/tvVbbxuto7/UiD1uZ0dghSDtoelrrF
+         bjImyCkQH6ti9e4va6MTX12dJUVbfRWgcTgVOOVlfIxfG5rg0qfAPWf4Zxd5iq7B9bZf
+         qgL3bGFRWIBnrtBev8kT4d5nQr2ARPy4jNW9aEYxcvjHk76pnDkP4RgvGhAflhQFsiVj
+         VwHBuTKbfNnKm5mRWohrKu/K9xskCwk4hjH5PYsGwljDyAXizVlRmlguNrFbniD03ncl
+         68NA==
+X-Gm-Message-State: AOJu0Yy19x/HRRbDbBASx5hX6zdUeQKgjHy9fQp9+2a1XzgXQW+qpEpN
+	AwEE2Ui4PkAY0TpT5AVUI49uIg==
+X-Google-Smtp-Source: AGHT+IHQ6iymJeshnzKwqTkv5k2s0q41LhTpOenBVGc42AXtYrqcr6dfpaeF3Rspa42aAvKDtkuKYg==
+X-Received: by 2002:a7b:c397:0:b0:3fe:3004:1ffd with SMTP id s23-20020a7bc397000000b003fe30041ffdmr2677107wmj.4.1695960005734;
+        Thu, 28 Sep 2023 21:00:05 -0700 (PDT)
+Received: from [192.168.27.65] (home.beaume.starnux.net. [82.66.176.246])
+        by smtp.gmail.com with ESMTPSA id n24-20020a1c7218000000b003fefb94ccc9sm532425wmc.11.2023.09.28.21.00.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Sep 2023 21:00:05 -0700 (PDT)
+Message-ID: <5a8422d7-99a0-7c3b-d0ee-ec3f800ceb6b@linaro.org>
+Date: Fri, 29 Sep 2023 06:00:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230928190859.1072420-1-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.15.1
+Subject: Re: [PATCH] arm64: dts: amlogic: Fix IR Controller register area for
+ Meson-GX/AXG/G12 series SoCs
+Content-Language: en-GB
+To: zelong dong <zelong.dong@amlogic.com>, Sean Young <sean@mess.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Qianggui.Song@amlogic.com, Yonghui.Yu@amlogic.com, kelvin.zhang@amlogic.com
+References: <20230922080546.26442-1-zelong.dong@amlogic.com>
+From: Neil Armstrong <neil.armstrong@linaro.org>
+In-Reply-To: <20230922080546.26442-1-zelong.dong@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 28-09-23, 14:08, Rob Herring wrote:
-> The "pl022,hierarchy" is not documented, all instances use are 0 and
-> isn't handled in the kernel driver, so let's just remove it.
+Hi,
+
+Le 22/09/2023 à 10:05, zelong dong a écrit :
+> From: Zelong Dong <zelong.dong@amlogic.com>
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Amloic Meson-6 SoC only has one IR Controller, since then, there are 2 IR
+> Controllers in every SoCs, one is Legacy IR Controller (same as Meson-6's one),
+> the new one is Multi-Format IR Controller (abbreviated "MF-IR",
+> which supports more than one IR Protocol). MF-IR was updated several times,
+> so different SoCs could be got different register sizes.
+> 
+> There are all IR Controller register areas from upstream's SoCs:
+>                                Legacy IR             MF-IR
+> Meson-6                  | <0xc8100480 0x20> |       NULL        |
+> Meson-8/8B/8M2           | <0xc8100480 0x20> | <0xc8100580 0x30> |
+> Meson-GXBB               | <0xc8100480 0x20> | <0xc8100580 0x44> |
+> Meson-GXM/GXL  	         | <0xc8100480 0x20> | <0xc8100580 0x54> |
+> Meson-AXG/G12A/G12B/SM1  | <0xff808000 0x20> | <0xff808040 0x58> |
+> 
+> About Meson-IR driver, MF-IR was supported from Meson-8, which was distinguished
+> by compatible string (of_device_is_compatible(node, "amlogic,meson6-ir")),
+> and only one register (macro 'IR_DEC_REG2') was added because controller worked
+> in raw decoder mode, later registers are unused, so we recommend that register
+> size should be 0x24 if MF-IR is in use.
+> 
+> There are 2 ways to fix.
+> 
+> MF-IR is in use:
+>    Meson-8/8B/8M2/GXBB/GXM/GXL: <0xc8100580 0x24>
+>    Meson-AXG/G12A/G12B/SM1:     <0xff808040 0x24>
+> 
+> Legacy IR is in use:
+>    Meson-8/8B/8M2/GXBB/GXM/GXL: <0xc8100480 0x20>
+>    Meson-AXG/G12A/G12B/SM1:     <0xff808000 0x20>
+
+This is slighly confusing, so you mean since Meson-8 there's 2 IR controllers
+which have the same register mapping, and both works with the "amlogic,meson6-ir" compatible ?
+
+So why should we switch to the MF-IR address ? what does it exactly change ?
+
+If we want to be clean:
+- both should be added, legacy IR with current address + reg size change
+- a new compatible should be added for the MF IR, with "amlogic,meson6-ir" as fallback to take in account they are compatible
+- a new node should be added for the MR IR
+- DTs should be switch to the MF IR label instead of the legacy IR
+
+With this we would be able to take advantage of the MR IF functionalities while keeping driver functionnal
+with old DTs and new DTs with old kernels.
+
+Thanks,
+Neil
+
+> 
+> Fixes: 2bfe8412c5388a ("arm64: dts: meson-g12a: Add IR nodes")
+> Fixes: 7bd46a79aad549 ("ARM64: dts: meson-axg: enable IR controller")
+> Fixes: c58d77855f0069 ("ARM64: dts: meson-gxbb: Add Infrared Remote Controller decoder")
+> Link: https://lore.kernel.org/all/20160820095424.636-5-martin.blumenstingl@googlemail.com/
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
 > ---
-> Arnd, Please apply this directly.
+>   arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 4 ++--
+>   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 4 ++--
+>   arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 2 +-
+>   3 files changed, 5 insertions(+), 5 deletions(-)
 > 
->  arch/arm/boot/dts/st/spear1310-evb.dts              | 2 --
->  arch/arm/boot/dts/st/spear1340-evb.dts              | 2 --
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index 768d0ed78dbe..dd8c58e74322 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -1705,9 +1705,9 @@ pwm_AO_ab: pwm@7000 {
+>   				status = "disabled";
+>   			};
+>   
+> -			ir: ir@8000 {
+> +			ir: ir@8040 {
+>   				compatible = "amlogic,meson-gxbb-ir";
+> -				reg = <0x0 0x8000 0x0 0x20>;
+> +				reg = <0x0 0x8040 0x0 0x24>;
+>   				interrupts = <GIC_SPI 196 IRQ_TYPE_EDGE_RISING>;
+>   				status = "disabled";
+>   			};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> index ff68b911b729..e12cea5fa889 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> @@ -2084,9 +2084,9 @@ pwm_AO_ab: pwm@7000 {
+>   				status = "disabled";
+>   			};
+>   
+> -			ir: ir@8000 {
+> +			ir: ir@8040 {
+>   				compatible = "amlogic,meson-gxbb-ir";
+> -				reg = <0x0 0x8000 0x0 0x20>;
+> +				reg = <0x0 0x8040 0x0 0x24>;
+>   				interrupts = <GIC_SPI 196 IRQ_TYPE_EDGE_RISING>;
+>   				status = "disabled";
+>   			};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> index 2673f0dbafe7..0c04e34a0923 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> @@ -506,7 +506,7 @@ pwm_AO_ab: pwm@550 {
+>   
+>   			ir: ir@580 {
+>   				compatible = "amlogic,meson-gx-ir", "amlogic,meson-gxbb-ir";
+> -				reg = <0x0 0x00580 0x0 0x40>;
+> +				reg = <0x0 0x00580 0x0 0x24>;
+>   				interrupts = <GIC_SPI 196 IRQ_TYPE_EDGE_RISING>;
+>   				status = "disabled";
+>   			};
 
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
-
--- 
-viresh
 
