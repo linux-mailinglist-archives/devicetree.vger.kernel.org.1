@@ -1,102 +1,110 @@
-Return-Path: <devicetree+bounces-4707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E924C7B382A
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 18:55:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44B8E7B382F
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 18:56:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id C4A6DB20C1E
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 16:55:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 75EEDB20C22
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 16:56:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A617441211;
-	Fri, 29 Sep 2023 16:55:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB32A4122D;
+	Fri, 29 Sep 2023 16:56:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F47215AF2
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 16:55:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18C6BC433C9;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 801B515AF2
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 16:55:58 +0000 (UTC)
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B4681AE
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 09:55:56 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1F11EFF80A;
 	Fri, 29 Sep 2023 16:55:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696006552;
-	bh=uf3unOmquHNeo7Ua/HDausdM3DppGA02+6/jUxVaBPU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=jcv5ZVlkiH0PDq8XbPRd0TeLlyedF1el5RuKNHTtcFvvEv2AxevxgeCp6CqWrYHHI
-	 9R21E0jn2gtFAq7xxMp+ldIceBIij/8NRzCii41Px2RRBVtYvW55MJlhpUEPyN0/OR
-	 e/Z+QMiwnkR5dQqsckubwYTmBD3TPYBlW1rlY7rmFrq8Z0R+Jt5jvyWguRD/IXtlGQ
-	 /6xIQtdZsn9s+wJ/vt22NrALe9PD3CxqLAfS4wxNJQeEn39gnZWUFuuYw7oZ6jilb6
-	 kAOa4ndgt33bjayHekPc9PNCXpFOb62xQG8Er2Umy4q3Pu7K08y5ZG7frnuUEcyvwR
-	 lkl9/EuYCyH5w==
-Received: (nullmailer pid 4105451 invoked by uid 1000);
-	Fri, 29 Sep 2023 16:55:49 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1696006554;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=0s6liZ65S6LcJzLjeut2b8fzES+0W9Bu/QBNIiJjhuo=;
+	b=Srl+Z0pKN0Iy2DbOjmmfz1bA4sj8VMcOUJwle+YTtLygArIYYgu4JmXm4j5U2HmZVffHcT
+	s0jxEaMmKFM1dMUZcM7u1gYTb8qdhuAhHiZ0okSY8dickP3CwH56uV30hcPBxwOtO50fdu
+	tGZsz9kII8WUHXt9IosU8qyThOwREJ33b/GQivWQ3XTydHnw2tw2rOW/BKMQK+MVbZOAub
+	Mrw8RTjfhgeFoWpL1i+uhEkFRlQYtn6hhtjMM1aZokrRxkJNz5hJBsFnNA1/2Gv8Fp7ZdZ
+	rABKnf/VczcqehgJfCZW9d1ttUEL58CqoiH+wDtSe75Hle9IKw9RJxVP4270QA==
+Date: Fri, 29 Sep 2023 18:55:49 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Lucas Stach <l.stach@pengutronix.de>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Liu Ying <victor.liu@nxp.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ patchwork-lst@pengutronix.de, NXP Linux Team <linux-imx@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 2/2] drm/bridge: imx: add driver for HDMI TX Parallel
+ Video Interface
+Message-ID: <20230929185549.18aa57e7@booty>
+In-Reply-To: <20230928125536.1782715-2-l.stach@pengutronix.de>
+References: <20230928125536.1782715-1-l.stach@pengutronix.de>
+	<20230928125536.1782715-2-l.stach@pengutronix.de>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, martink@posteo.de, Steve Longerbeam <slongerbeam@gmail.com>, Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, linux-media@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Fabio Estevam <festevam@gmail.com>, Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20230929151825.6535-6-jacopo.mondi@ideasonboard.com>
-References: <20230929151825.6535-1-jacopo.mondi@ideasonboard.com>
- <20230929151825.6535-6-jacopo.mondi@ideasonboard.com>
-Message-Id: <169600654899.4105435.9416613828918752316.robh@kernel.org>
-Subject: Re: [PATCH 5/7] media: bindings: ovti,ov5640: Fix handling of
- video-interface-device
-Date: Fri, 29 Sep 2023 11:55:49 -0500
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+Hi Lucas,
 
-On Fri, 29 Sep 2023 17:18:23 +0200, Jacopo Mondi wrote:
-> Fix handling of properties from video-interface-device.yaml for
-> Omnivision OV5640 sensor.
+On Thu, 28 Sep 2023 14:55:36 +0200
+Lucas Stach <l.stach@pengutronix.de> wrote:
+
+> This IP block is found in the HDMI subsystem of the i.MX8MP SoC. It has a
+> full timing generator and can switch between different video sources. On
+> the i.MX8MP however the only supported source is the LCDIF. The block
+> just needs to be powered up and told about the polarity of the video
+> sync signals to act in bypass mode.
 > 
-> There is no reason to restrict the allowed rotation degrees to 0 and 180,
-> as the sensor can be mounted with any rotation.
-> 
-> Also, as all the properties described by video-interface-device.yaml are
-> allowed for the image sensor, make them accepted by changing
-> "additionalProperties: false" to "unevaluatedProperties: false" at the
-> schema top-level.
-> 
-> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> ---
->  .../devicetree/bindings/media/i2c/ovti,ov5640.yaml         | 7 +------
->  1 file changed, 1 insertion(+), 6 deletions(-)
-> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I was in Cc on your v3 but not on this v4. Maybe the " (v2)" on these
+lines confuses get_maintainers.pl?
 
-yamllint warnings/errors:
+> Tested-by: Marek Vasut <marex@denx.de> (v1)
+> Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
+> Tested-by: Richard Leitner <richard.leitner@skidata.com> (v2)
+> Tested-by: Frieder Schrempf <frieder.schrempf@kontron.de> (v2)
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com> (v3)
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml: 'unevaluatatedProperties' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'dependentRequired', 'dependentSchemas', 'patternProperties', 'properties', 'not', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select', '$ref']
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml: 'oneOf' conditional failed, one must be fixed:
-	'unevaluatedProperties' is a required property
-	'additionalProperties' is a required property
-	hint: Either unevaluatedProperties or additionalProperties must be present
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+A changelog would be appreciated, especially as a long time has gone
+since I last looked at these patches.
 
-doc reference errors (make refcheckdocs):
+Confirmed for this v4:
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230929151825.6535-6-jacopo.mondi@ideasonboard.com
+Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+[On Avnet MSC SM2-MB-EP1 based on the SMARC module]
+Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Luca
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
