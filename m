@@ -1,109 +1,253 @@
-Return-Path: <devicetree+bounces-4532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D418A7B2FB0
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 12:07:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11D647B2FB5
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 12:08:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 3D1D8B2099F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 10:07:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 42CE61C208A5
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 10:08:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9B21154B3;
-	Fri, 29 Sep 2023 10:07:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8B66156C0;
+	Fri, 29 Sep 2023 10:08:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F714C13E
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 10:07:28 +0000 (UTC)
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 366901A8
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 03:07:23 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-323ef9a8b59so4336263f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 03:07:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695982041; x=1696586841; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=saeVjZKnNIdT5X2zsR9LIVhUYqk+dCAG4klu5qT+Ffg=;
-        b=lRFS8YZw2YXxaLiLUcmc8FelgGsR4YKETDVJ/Fi9XKvFK06VD8bHY2wWojQ65gEfx5
-         7kapsYcNlWnnZh7hmAs8sSu3pPfzSMrV50oa9na/IMavd8nvkRGxvx1Rph0nfyaMPk5j
-         xMNTg1Gcq8phChu5zytFNilTmC5jnOdXyojyglIR7UBLPnuzn8grk5/IykNEO8S5G3/w
-         seWsx0Y4z8oouBHIwO8gy9Ypag+4hQtoETPPrfIJTzm7CcyH7VEZJVI3UvVLxp8FaGzG
-         V8gx+19FQ59FsmOPM55ALeyhHlCJQ2Q7qx9dRV05Q8LtTk+7jo4aDiGn36FiTB8nE3Pu
-         QdOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695982041; x=1696586841;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=saeVjZKnNIdT5X2zsR9LIVhUYqk+dCAG4klu5qT+Ffg=;
-        b=v13Ad7+U3LTIPDcoMTyPjKugTZhSY8It6SnMulaJWvkpO8MSqWEte8JYQq2QbZxFxm
-         gemgNBp9WzvipT5+dR2agijxouTqTOLNxRpOau8s9XMN54RN0C1R4DIaSHp2E3lrbeJt
-         in7ZBTud6n6RJvGQQ5uX1HoE+oLAPdns6SJtqQHe50Wi+IUybVeArdJL88Q3lH8MGAHA
-         /s8rxBBfycyve2Pep6caHeUYXseWhxKVrlqkRprBK+2K/Z3lwxWqIf5XyFtj++NyaRd3
-         4AglQ3wPg4ShtvM2xQFs0b0RaogqPh9lo/czWKmfcI6m2EV023Ic/o6USBXFZ0hrA+4v
-         8QfA==
-X-Gm-Message-State: AOJu0Yyof3WsSOrAzJ+wvHltU0wHp+5pzo13wxTLEZ3mucBjgWk8d89X
-	Rf9pDFdTReuBWZTVn9ko52sUCw==
-X-Google-Smtp-Source: AGHT+IERNMlExukG/RveR36j1SNOU9On3l/LWyUL6FUPZWyOQjBBFEni+g6TLCYEFZZRLr9PU0SzYw==
-X-Received: by 2002:adf:f08f:0:b0:323:1d06:38e5 with SMTP id n15-20020adff08f000000b003231d0638e5mr3438326wro.55.1695982040734;
-        Fri, 29 Sep 2023 03:07:20 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0? ([2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0])
-        by smtp.googlemail.com with ESMTPSA id m4-20020adff384000000b00321673de0d7sm5852687wro.25.2023.09.29.03.07.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Sep 2023 03:07:20 -0700 (PDT)
-Message-ID: <ae6d5f5b-bd06-c55b-b970-f1f7e39fd749@linaro.org>
-Date: Fri, 29 Sep 2023 12:07:19 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E858C13E
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 10:08:32 +0000 (UTC)
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1C67C0;
+	Fri, 29 Sep 2023 03:08:29 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 618121BF20E;
+	Fri, 29 Sep 2023 10:08:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1695982108;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=AjPO62EH//YFUWvJKiXxAinthCQFtLyrypziXtQJIf0=;
+	b=NEUpMGd70slgCjICACDBbtzJqKg9v0nZd0XxFJ429Al5VXejRamwAwdvayubwz74fpjuIO
+	YFsBuqa07xOTRU8Z1tNtWHqPv9l8g1+BBv5+yfLwP2CXZ7b2gnCohWRNztnzdF8EV1zRZC
+	0NvxMt8wYNvlTwKQPZuFK+oHKIchXDkT7LC4S0HZHzE/jtPsO6CM8OJfd7CX1lRBnPWao5
+	lgGLdatYv3V46kUnfxb+wpQ9TrZDHJjyr6SaYkmgwy/spSmUS7Hh15UUgH/wpevWha8sJY
+	Y9vYSNSE3yonAcrISVmsZ0JUufw0TcTjeDKlx7HJ9gFQ4DauZqCn/LkEOod7eQ==
+From: Mehdi Djait <mehdi.djait@bootlin.com>
+To: mchehab@kernel.org,
+	heiko@sntech.de,
+	ezequiel@vanguardiasur.com.ar,
+	hverkuil-cisco@xs4all.nl,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: paul.kocialkowski@bootlin.com,
+	miquel.raynal@bootlin.com,
+	maxime.chevallier@bootlin.com,
+	luca.ceresoli@bootlin.com,
+	thomas.petazzoni@bootlin.com,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Mehdi Djait <mehdi.djait@bootlin.com>
+Subject: [PATCH v6 0/3] media: rockchip: Add a driver for Rockchip's camera interface
+Date: Fri, 29 Sep 2023 12:07:59 +0200
+Message-ID: <cover.1695981374.git.mehdi.djait@bootlin.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: thermal: tsens: Add sa8775p
- compatible
-Content-Language: en-US
-To: Priyansh Jain <quic_priyjain@quicinc.com>, Andy Gross
- <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Amit Kucheria <amitk@kernel.org>,
- Thara Gopinath <thara.gopinath@gmail.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_manafm@quicinc.com, kernel@quicinc.com
-References: <20230926085948.23046-1-quic_priyjain@quicinc.com>
- <20230926085948.23046-2-quic_priyjain@quicinc.com>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20230926085948.23046-2-quic_priyjain@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+X-GND-Sasl: mehdi.djait@bootlin.com
+X-Spam-Status: No, score=-0.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,PDS_OTHER_BAD_TLD,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_PASS,SPF_PASS,URI_HEX autolearn=no autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 26/09/2023 10:59, Priyansh Jain wrote:
-> Add compatibility string for the thermal sensors on sa8775p platform.
-> 
-> Signed-off-by: Priyansh Jain <quic_priyjain@quicinc.com>
-> ---
+Hello everyone,
 
-Applied, thanks
+This series is based on the fifth iteration of the series introducing the
+rockchip vip driver for the PX30 camera interface: sent 29 Dec 2020 [1]
+
+Most of this driver was written following the BSP driver from rockchip,
+removing the parts that either didn't fit correctly the guidelines, or
+that couldn't be tested.
+
+In the BSP, this driver is known as the "cif" driver, but this was
+renamed to "vip" to better fit the controller denomination in the
+datasheet.
+
+This version of the driver supports ONLY the parallel interface BT656
+and was tested/implemented using an SDTV video decoder
+
+base-commit: 2c1bae27df787c9535e48cc27bbd11c3c3e0a235
+
+Changes since fifth iteration in [1]:
+
+vip/capture.c vip/dev.c vip/dev.h
+- added a video g_input_status subdev call, V4L2_IN_CAP_STD and the
+  supported stds in rk_vip_enum_input callback
+- added rk_vip_g_std, rk_vip_s_std and rk_vip_querystd callbacks
+- added the supported video_device->tvnorms
+- s_std will now update the format as this depends on the standard
+  NTSC/PAL (as suggested by Hans in [1])
+- removed STD_ATSC
+- moved the colorimetry information to come from the subdev
+- removed the core s_power subdev calls
+- dropped cropping in rk_vip_stream struct
+
+rockchip-vip.yaml:
+- fixed a mistake in the name of third clock plckin -> plck
+- changed the reg maxItems 2 -> 1
+
+[1] https://lore.kernel.org/linux-media/20201229161724.511102-1-maxime.chevallier@bootlin.com/
+
+I used v4l-utils with HEAD: commit 1ee258e5bb91a12df378e19eb255c5219d6bc36b
+
+# v4l2-compliance  
+v4l2-compliance 1.25.0, 64 bits, 64-bit time_t
+
+Compliance test for rk_vip device /dev/video0:
+
+Driver Info:
+        Driver name      : rk_vip
+        Card type        : rk_vip
+        Bus info         : platform:ff490000.vip
+        Driver version   : 6.6.0
+        Capabilities     : 0x84201000
+                Video Capture Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04201000
+                Video Capture Multiplanar
+                Streaming
+                Extended Pix Format
+Media Driver Info:
+        Driver name      : rk_vip
+        Model            : rk_vip
+        Serial           : 
+        Bus info         : platform:ff490000.vip
+        Media version    : 6.6.0
+        Hardware revision: 0x00000000 (0)
+        Driver version   : 6.6.0
+Interface Info:
+        ID               : 0x03000002
+        Type             : V4L Video
+Entity Info:
+        ID               : 0x00000001 (1)
+        Name             : video_rkvip
+        Function         : V4L2 I/O
+        Pad 0x01000004   : 0: Sink
+          Link 0x02000009: from remote pad 0x1000006 of entity 'tw9900 2-0044' (Digital Video Decoder): Data, Enabled
+
+Required ioctls:
+        test MC information (see 'Media Driver Info' above): OK
+        test VIDIOC_QUERYCAP: OK
+        test invalid ioctls: OK
+
+Allow for multiple opens:
+        test second /dev/video0 open: OK
+        test VIDIOC_QUERYCAP: OK
+        test VIDIOC_G/S_PRIORITY: OK
+        test for unlimited opens: OK
+
+Debug ioctls:
+        test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 1 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls (Input 0):
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+        test VIDIOC_QUERYCTRL: OK (Not Supported)
+        test VIDIOC_G/S_CTRL: OK (Not Supported)
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 0 Private Controls: 0
+
+Format ioctls (Input 0):
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK
+        test VIDIOC_TRY_FMT: OK
+        test VIDIOC_S_FMT: OK
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK (Not Supported)
+
+Codec ioctls (Input 0):
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls (Input 0):
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+        test VIDIOC_EXPBUF: OK
+        test Requests: OK (Not Supported)
+
+Total for rk_vip device /dev/video0: 46, Succeeded: 46, Failed: 0, Warnings: 0
+
+Mehdi Djait (3):
+  media: dt-bindings: media: add rockchip-vip
+  media: rockchip: Add a driver for Rockhip's camera interface
+  arm64: dts: rockchip: Add the camera interface
+
+Mehdi Djait (3):
+  media: dt-bindings: media: add rockchip-vip
+  media: rockchip: Add a driver for Rockhip's camera interface
+  arm64: dts: rockchip: Add the camera interface
+
+ .../bindings/media/rockchip-vip.yaml          |   91 ++
+ arch/arm64/boot/dts/rockchip/px30.dtsi        |   12 +
+ drivers/media/platform/rockchip/Kconfig       |    1 +
+ drivers/media/platform/rockchip/Makefile      |    1 +
+ drivers/media/platform/rockchip/vip/Kconfig   |   14 +
+ drivers/media/platform/rockchip/vip/Makefile  |    3 +
+ drivers/media/platform/rockchip/vip/capture.c | 1197 +++++++++++++++++
+ drivers/media/platform/rockchip/vip/dev.c     |  332 +++++
+ drivers/media/platform/rockchip/vip/dev.h     |  163 +++
+ drivers/media/platform/rockchip/vip/regs.h    |  260 ++++
+ 10 files changed, 2074 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/rockchip-vip.yaml
+ create mode 100644 drivers/media/platform/rockchip/vip/Kconfig
+ create mode 100644 drivers/media/platform/rockchip/vip/Makefile
+ create mode 100644 drivers/media/platform/rockchip/vip/capture.c
+ create mode 100644 drivers/media/platform/rockchip/vip/dev.c
+ create mode 100644 drivers/media/platform/rockchip/vip/dev.h
+ create mode 100644 drivers/media/platform/rockchip/vip/regs.h
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+2.41.0
 
 
