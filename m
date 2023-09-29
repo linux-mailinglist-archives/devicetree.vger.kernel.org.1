@@ -1,145 +1,275 @@
-Return-Path: <devicetree+bounces-4702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAED07B37E4
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 18:27:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEC177B37EF
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 18:28:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id D10991C20936
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 16:27:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 80C76286865
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 16:28:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E89586589C;
-	Fri, 29 Sep 2023 16:27:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00A3D6589D;
+	Fri, 29 Sep 2023 16:28:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9BCD521DA
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 16:27:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 241F2C433C8;
-	Fri, 29 Sep 2023 16:27:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696004824;
-	bh=0vOdoPGe6FGUXb1FbgkvgqLix0R6bNbYbMX5bpwVOVE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=hRzXKTBynfi8SaWpOUj/xUbiqi+Ob5J2eZ9NTd7li8/2pDE+5YMbPl74V8Jso0asq
-	 ianFhBheqcagIVnJ3cnesU1TcBJCbcWNhRA0Jm9sWV1uffLOuojwkNM0i5nTEotiSW
-	 wHpHZ4W0TY1i7Qkx2+HCSRyE2YStYW9voziJ0aNT0FJEbY2ZKle40uY8Eri3DpgeQ8
-	 cFdldoUNEJEd3iZ/V/ee5+zqHxfACrtswudJ3qS9J4D6iC/OW7dMgwXZDNNosgNsYd
-	 0d1TbqymfviC18KxIy/WyKyJsQGBTQcjP8F3IbEX2gseLaalk3T6bTzVxsgK2mzQT7
-	 OCGpQ5W0LyRUg==
-Date: Fri, 29 Sep 2023 11:27:02 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Lizhi Hou <lizhi.hou@amd.com>
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, herve.codina@bootlin.com,
-	Jonathan.Cameron@huawei.com, bhelgaas@google.com, robh@kernel.org
-Subject: Re: [PATCH v1 2/2] PCI: of_property: Fix uninitialized variable when
- of_irq_parse_raw() failed
-Message-ID: <20230929162702.GA511467@bhelgaas>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C5E6521DA
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 16:28:55 +0000 (UTC)
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EE1DBE
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 09:28:53 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-522bd411679so17917077a12.0
+        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 09:28:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696004932; x=1696609732; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=X8mQZtTVeZ33y1fcK4D+RrR6+JupRwQI35yzIof0Q8A=;
+        b=yoo8Sswt1id8qNkT6u4hAjpNQVuUQZXh4WhGsrlZNUdsiVIiHoJ2IAbSUvPrfaqUA+
+         bIlPNzupammYeZwe/P/nJKCYK/5T9Vs8Vw55BgbIjNBEqjIDvC9hghgTFwUYLqrn6+wc
+         9uOxHSepwxFwyDExvUrxRLciDcvMTxiBu+/mH1yd9FZs+qFtvh5C/eESv6I1pSa6i5T9
+         QL9YL8g0bwDOi+QOWSaT5z0WGHK2cTmR/6A87cUQO3bZI0ifhGhtlBaWTYyvz3RZWBEM
+         wqXl0W26kkHvEvgBIKbCmMnLSjBseo4hHFqWGu3g0kHWqzJHte+tmyM9Jio6hsyaakoB
+         9kGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696004932; x=1696609732;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=X8mQZtTVeZ33y1fcK4D+RrR6+JupRwQI35yzIof0Q8A=;
+        b=Flvz1u2Zhm6CbsTyZE3xc8cUnPUXrAROwGYI3zUDB/TNLZx1A3EVGorHO6TXb6P+SY
+         wyVZsA/P2Hlr2LOHLMYH1OVcfxqbUqw77ShKvzHvzZM+s1eUD2tmVos00QlfJuBT1aUl
+         OcPajgRVFAOcbD0Woo2agw9WWlEKdCO1q5LgMamFUKqWWFpHNYv61/B8qybm6t9PDUNg
+         z1gAaIrP22Peun/bsuJWHxRINMNYOapvb8u2c8JE75z0AEXJbEpXp2PJRKMJfR7JERJY
+         XyT0Gu0YfPRBL8vGorL0oHSqGRl9xp5A8Z2kw+cN57RJ4OKMb8K4FtWcnS216E1t8nAy
+         gXSw==
+X-Gm-Message-State: AOJu0YxLJeSAQpFRTb6Uzytl6Wga88qRMl4HaMs2cPezceSDbPUmvQ9T
+	pXAuZ1R6HqI2PxoMKbz9uBd0dg==
+X-Google-Smtp-Source: AGHT+IGzYhpFXCR0EPzBGhIzwNmt9lRnwwgeUPiOpbQaT6s0SYUQITM2AREylz2cWxOB58g0zLCQMg==
+X-Received: by 2002:a17:906:319a:b0:9a9:f17e:412f with SMTP id 26-20020a170906319a00b009a9f17e412fmr4717755ejy.50.1696004931898;
+        Fri, 29 Sep 2023 09:28:51 -0700 (PDT)
+Received: from [192.168.0.219] (178235177217.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.217])
+        by smtp.gmail.com with ESMTPSA id hs35-20020a1709073ea300b009b28ad521f4sm7253315ejc.4.2023.09.29.09.28.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Sep 2023 09:28:51 -0700 (PDT)
+Message-ID: <30aa40c9-b63a-093c-954d-86e4bb232431@linaro.org>
+Date: Fri, 29 Sep 2023 18:28:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1695919631-7661-2-git-send-email-lizhi.hou@amd.com>
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 3/4] thermal: qcom: add qmi-cooling driver
+To: Caleb Connolly <caleb.connolly@linaro.org>, Andy Gross
+ <agross@kernel.org>, Bhupesh Sharma <bhupesh.linux@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Amit Kucheria
+ <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Sibi Sankar <quic_sibis@quicinc.com>, Manivannan Sadhasivam
+ <mani@kernel.org>, Thara Gopinath <thara.gopinath@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20230905-caleb-qmi_cooling-v1-0-5aa39d4164a7@linaro.org>
+ <20230905-caleb-qmi_cooling-v1-3-5aa39d4164a7@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230905-caleb-qmi_cooling-v1-3-5aa39d4164a7@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Thu, Sep 28, 2023 at 09:47:11AM -0700, Lizhi Hou wrote:
-> In function of_pci_prop_intr_map(), addr_sz[i] will be uninitialized if
-> of_irq_parse_raw() returns failure. Add addr_sz array initialization. And
-> when parsing irq failed, skip generating interrupt-map pair for the pin.
 
-Would you mind splitting this into two?  It sounds like it fixes two
-problems: (1) using uninitialized addr_sz[] and (2) skip generating
-interrupt-map pair.
 
-There's also something going on with the pci_swizzle_interrupt_pin()
-change; maybe that should be a third patch so you can explain what's
-going on there?
-
-IIUC this is actually a *v2* (not a v1), since you posted it
-previously as
-https://lore.kernel.org/r/1694801287-17217-2-git-send-email-lizhi.hou@amd.com
-so the next round should be labeled v3.
-
-> Fixes: 407d1a51921e ("PCI: Create device tree node for bridge")
-> Reported-by: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-> Closes: https://lore.kernel.org/all/20230911154856.000076c3@Huawei.com/
-> Reviewed-by: Herve Codina <herve.codina@bootlin.com>
-> Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>
+On 9/29/23 18:16, Caleb Connolly wrote:
+> The Thermal Mitigation Device (TMD) service exposes various platform
+> specific thermal mitigations available on remote subsystems (ie the
+> modem, adsp, cdsp, and sdsp). The service is exposed via the QMI messaging
+> interface, usually over the QRTR transport.
+> 
+> These controls affect things like the power limits of the modem power
+> amplifier and cpu core, skin temperature mitigations, as well as rail
+> voltage restrictions under cold conditions.
+> 
+> Each remote subsystem has its own TMD instance, where each child node
+> represents a single thermal control.
+> 
+> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
 > ---
->  drivers/pci/of_property.c | 25 ++++++++++++++++++-------
->  1 file changed, 18 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/pci/of_property.c b/drivers/pci/of_property.c
-> index 710ec35ba4a1..c2c7334152bc 100644
-> --- a/drivers/pci/of_property.c
-> +++ b/drivers/pci/of_property.c
-> @@ -186,8 +186,8 @@ static int of_pci_prop_interrupts(struct pci_dev *pdev,
->  static int of_pci_prop_intr_map(struct pci_dev *pdev, struct of_changeset *ocs,
->  				struct device_node *np)
->  {
-> +	u32 i, addr_sz[OF_PCI_MAX_INT_PIN] = { 0 }, map_sz = 0;
->  	struct of_phandle_args out_irq[OF_PCI_MAX_INT_PIN];
-> -	u32 i, addr_sz[OF_PCI_MAX_INT_PIN], map_sz = 0;
->  	__be32 laddr[OF_PCI_ADDRESS_CELLS] = { 0 };
->  	u32 int_map_mask[] = { 0xffff00, 0, 0, 7 };
->  	struct device_node *pnode;
-> @@ -213,33 +213,44 @@ static int of_pci_prop_intr_map(struct pci_dev *pdev, struct of_changeset *ocs,
->  		out_irq[i].args[0] = pin;
->  		ret = of_irq_parse_raw(laddr, &out_irq[i]);
->  		if (ret) {
-> -			pci_err(pdev, "parse irq %d failed, ret %d", pin, ret);
-> +			out_irq[i].np = NULL;
-> +			pci_dbg(pdev, "parse irq %d failed, ret %d", pin, ret);
->  			continue;
->  		}
-> -		ret = of_property_read_u32(out_irq[i].np, "#address-cells",
-> -					   &addr_sz[i]);
-> -		if (ret)
-> -			addr_sz[i] = 0;
-> +		of_property_read_u32(out_irq[i].np, "#address-cells",
-> +				     &addr_sz[i]);
->  	}
->  
->  	list_for_each_entry(child, &pdev->subordinate->devices, bus_list) {
->  		for (pin = 1; pin <= OF_PCI_MAX_INT_PIN; pin++) {
->  			i = pci_swizzle_interrupt_pin(child, pin) - 1;
-> +			if (!out_irq[i].np)
-> +				continue;
->  			map_sz += 5 + addr_sz[i] + out_irq[i].args_count;
->  		}
->  	}
->  
-> +	/*
-> +	 * Parsing interrupt failed for all pins. In this case, it does not
-> +	 * need to generate interrupt-map property.
-> +	 */
-> +	if (!map_sz)
+[...]
+
+> +/* Notify the remote subsystem of the requested cooling state */
+> +static int qmi_tmd_send_state_request(struct qmi_tmd *tmd)
+> +{
+> +	struct tmd_set_mitigation_level_resp_msg_v01 tmd_resp;
+> +	struct tmd_set_mitigation_level_req_msg_v01 req;
+> +	struct qmi_tmd_client *client;
+> +	struct qmi_txn txn;
+> +	int ret = 0;
+> +
+> +	client = tmd->client;
+You can assign it at declaration time
+> +
+> +	if (!client->connection_active)
 > +		return 0;
+Is that an expected scenario?
+
 > +
->  	int_map = kcalloc(map_sz, sizeof(u32), GFP_KERNEL);
->  	mapp = int_map;
->  
->  	list_for_each_entry(child, &pdev->subordinate->devices, bus_list) {
->  		for (pin = 1; pin <= OF_PCI_MAX_INT_PIN; pin++) {
-> +			i = pci_swizzle_interrupt_pin(child, pin) - 1;
-> +			if (!out_irq[i].np)
-> +				continue;
+> +	memset(&req, 0, sizeof(req));
+> +	memset(&tmd_resp, 0, sizeof(tmd_resp));
+Since you're declaring them above, you can do = { 0 }; instead, which
+will be faster
+
 > +
->  			*mapp = (child->bus->number << 16) |
->  				(child->devfn << 8);
->  			mapp += OF_PCI_ADDRESS_CELLS;
->  			*mapp = pin;
->  			mapp++;
-> -			i = pci_swizzle_interrupt_pin(child, pin) - 1;
->  			*mapp = out_irq[i].np->phandle;
->  			mapp++;
->  			if (addr_sz[i]) {
-> -- 
-> 2.34.1
-> 
+> +	strscpy(req.mitigation_dev_id.mitigation_dev_id, tmd->qmi_name,
+> +		QMI_TMD_MITIGATION_DEV_ID_LENGTH_MAX_V01 + 1);
+> +	req.mitigation_level = tmd->cur_state;
+> +
+> +	mutex_lock(&client->mutex);
+Look into fancy scoped mutexes https://lwn.net/Articles/934679/
+
+[...]
+
+> +static int qmi_set_cur_state(struct thermal_cooling_device *cdev, unsigned long state)
+> +{
+> +	struct qmi_tmd *tmd = cdev->devdata;
+> +
+> +	if (!tmd)
+> +		return -EINVAL;
+> +
+> +	if (state > tmd->max_state)
+> +		return -EINVAL;Would it be useful if this threw an error in dmesg?
+
+
+> + * When the QMI service starts up on a remote subsystem this function will fetch
+> + * the list of TMDs on the subsystem, match it to the TMDs specified in devicetree
+> + * and call qmi_tmd_init_control() for each
+> + */
+> +static void qmi_tmd_svc_arrive(struct work_struct *work)
+> +{
+> +	struct qmi_tmd_client *client =
+> +		container_of(work, struct qmi_tmd_client, svc_arrive_work);
+> +
+> +	struct tmd_get_mitigation_device_list_req_msg_v01 req;
+> +	struct tmd_get_mitigation_device_list_resp_msg_v01 *resp;
+> +	int ret = 0, i;
+> +	struct qmi_txn txn;
+> +
+> +	memset(&req, 0, sizeof(req));
+= { 0 }
+
+[...]
+
+> +
+> +	pr_info("QMI TMD service reset %s\n", client->name);
+Is it useful to the user? pr_debug?
+
+> +
+> +	list_for_each_entry(tmd, &client->cdev_list, node) {
+> +		qmi_tmd_send_state_request(tmd);
+> +	}
+> +}
+> +
+> +static void thermal_qmi_del_server(struct qmi_handle *qmi, struct qmi_service *service)
+> +{
+> +	struct qmi_tmd_client *client = container_of(qmi, struct qmi_tmd_client, handle);
+> +
+> +	pr_info("QMI TMD service stop %s\n", client->name);
+Ditto
+
+> +
+> +	client->connection_active = false;
+> +}
+> +
+> +static int thermal_qmi_new_server(struct qmi_handle *qmi, struct qmi_service *service)
+> +{
+> +	struct qmi_tmd_client *client = container_of(qmi, struct qmi_tmd_client, handle);
+> +	struct sockaddr_qrtr sq = { AF_QIPCRTR, service->node, service->port };
+> +
+> +	pr_info("QMI TMD service start %s\n", client->name);
+Ditto
+
+> +		tmd->type = devm_kasprintf(client->dev, GFP_KERNEL, "%s:%s",
+> +						client->name, subnode->name);
+> +		if (!tmd->type)
+> +			return dev_err_probe(dev, -ENOMEM, "Cooling device name\n");
+Cooling device name-what? :D
+
+> +
+> +		if (of_property_read_string(subnode, "label", &name)) {
+> +			return dev_err_probe(client->dev, -EINVAL,
+> +					     "Fail to parse dev name for %s\n",
+Failed
+
+[...]
+
+> +static int qmi_tmd_client_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev;
+> +	struct qmi_tmd_client *client;
+> +	const struct qmi_instance_id *match;
+> +	int ret;
+> +
+> +	dev = &pdev->dev;
+Initialize at declaration
+
+> +
+> +	client = devm_kzalloc(dev, sizeof(*client), GFP_KERNEL);
+> +	if (!client)
+> +		return -ENOMEM;
+> +
+> +	client->dev = dev;
+> +
+> +	match = of_device_get_match_data(dev);
+> +	if (!match)
+> +		return dev_err_probe(dev, -EINVAL, "No match data\n");
+> +
+> +	client->id = match->id;
+> +	client->name = match->name;
+> +
+> +	mutex_init(&client->mutex);
+> +	INIT_LIST_HEAD(&client->cdev_list);
+> +	INIT_WORK(&client->svc_arrive_work, qmi_tmd_svc_arrive);
+> +
+> +	ret = qmi_tmd_alloc_cdevs(client);
+> +	if (ret)
+> +		return ret;
+> +
+> +	platform_set_drvdata(pdev, client);
+> +
+> +	ret = qmi_handle_init(&client->handle,
+> +			      TMD_GET_MITIGATION_DEVICE_LIST_RESP_MSG_V01_MAX_MSG_LEN,
+> +			      &thermal_qmi_event_ops, NULL);
+> +	if (ret < 0)
+> +		return dev_err_probe(client->dev, ret, "QMI handle init failed for client %#x\n",
+> +			      client->id);
+> +
+> +	ret = qmi_add_lookup(&client->handle, TMD_SERVICE_ID_V01, TMD_SERVICE_VERS_V01,
+> +			     client->id);
+> +	if (ret < 0) {
+> +		qmi_handle_release(&client->handle);
+> +		return dev_err_probe(client->dev, ret, "QMI register failed for client 0x%x\n",
+> +			      client->id);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int qmi_tmd_client_remove(struct platform_device *pdev)
+void + .remove_new
+
+Konrad
 
