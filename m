@@ -1,350 +1,486 @@
-Return-Path: <devicetree+bounces-4558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77D667B3117
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 13:12:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E7A67B3157
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 13:26:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 585121C209C3
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 11:12:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id D7D5F283627
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 11:26:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7A8A15AFE;
-	Fri, 29 Sep 2023 11:12:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9FEC168A9;
+	Fri, 29 Sep 2023 11:26:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D617B168A7
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 11:12:30 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7535DE;
-	Fri, 29 Sep 2023 04:12:28 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38TAYJ66020854;
-	Fri, 29 Sep 2023 11:12:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=MsNaE9xqvzznArDpHPloWifAkNdpAv7hH6E/eAiBykM=;
- b=DK0RzNYp90AwC3H77YYfOWRaKeGdwjueW2r1vZOg2gGpt/go1aosYXgdf9MUu/Zj3UC+
- jxftg0TYEAT3R9UYZAyvRkXLqqCGXKcFsNIJ6vooEg54xKwckZ8wK6MBHjr4sHvOLgHT
- WUliq6GjafEZvPS+EzLZ0+BVEQNZuU9odUG6ps/1LsmNLzhXmPeFymAFOE5mqbvd5VoB
- DQm6tIRWcuuZFmegRjykAEGCtNQ1gT8FZdtWw6zg3QXZCJTiwmR39CCIETBkDPxbphyv
- J+/J/XEAc6HbYrrhH8PgS434OAq3fdJeDFujSO0mDXclI8ndi/VYiK7W+LNKjfiJuPyK lg== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tda4c25j5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Sep 2023 11:12:23 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38TBCMrX018345
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Sep 2023 11:12:22 GMT
-Received: from [10.214.67.128] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Fri, 29 Sep
- 2023 04:12:18 -0700
-Message-ID: <dc3dd045-27d4-b684-e812-dc95faf0df50@quicinc.com>
-Date: Fri, 29 Sep 2023 16:42:15 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E10BF9CC
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 11:26:44 +0000 (UTC)
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B36A11AE
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 04:26:40 -0700 (PDT)
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 92085413B3
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 11:26:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1695986798;
+	bh=Fxf1lvJPvb3Kv1uSBbUjPweQB0kuuklhii+t73FLamY=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=Dll7TOJfqj/iDYNMNYnSTApCdK4tkMAsaaHvW8Fzxyfak5UsGaigvMlxiURNFGJAV
+	 e/ZDH1ORLFDuwH+xxjpcKu1Nbvusf1ptg2Q0E5Pd1cyNLU+UFoo1+jRHtTpeePEsDz
+	 cKGvwhcpazLEEqlBpBP8LqlSsiVT98Zqp2/7zMF0me3UzrNGOTyePoS7/tntAXh++u
+	 9Ye0oIXPCw9DaK2+2eDiunarQ1UVJkn96UR1BkC1LuLGHT0ekpyBd2XXXPCbIa5/9E
+	 5okiCvtOY+ClwJ3sulkwU3pMzFnkTmPq0TRv8PEvUOxieldytN25xmXR2l08ZivjBs
+	 TRGNDBU1Ky98w==
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-417fd6a8575so201332951cf.2
+        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 04:26:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695986797; x=1696591597;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Fxf1lvJPvb3Kv1uSBbUjPweQB0kuuklhii+t73FLamY=;
+        b=ikj0NNHsJPF3nZS1A3+BoQcottQNOx6psZo09gJXV4sYGwY0qpULhefIpUX5A/vsco
+         Yg/XflfttxgOTzmX9dZP66W12WoHBqF5EudHfsZAy4MxaPomL5mF2YrtlNqiBAEZcX0l
+         6C6+ggIs/LhwRiC4DpyKQ5z4Kne+09vhM+qg1WbhwvkiahgXSiSSqIRdrcaqzW1rnYn3
+         /q72pDjdIToLpZrgn8Wtou+5Z+HPwLfXo+2BvvlEODZBJsJetDfOCodGb2obWpZTzXQc
+         Vp6vxup5ZeHxTx13zZSiP5cBe6UaRVzqLWdukE87ceWAZM1taIRNu8uZI0/w2RTrBvgX
+         PJpw==
+X-Gm-Message-State: AOJu0Yz3X+B6Dx8iAMTgcsfWpFBorjEej/lZDhX7J7PFoMd2MnNlaTQv
+	MKH48wzXbXeJRYD2ppfzAdPx+FrVfUjW+oB8c0boeq/XVsj9vFiM1VTpfUHW95XBc6YfQeDFfTz
+	uJuXPZ9KBnQLVEIeX1e0tcXV69TgCI14Ez0EUZXaqysoaA/3xSuWm9I4=
+X-Received: by 2002:ac8:5b11:0:b0:418:16d6:5a8d with SMTP id m17-20020ac85b11000000b0041816d65a8dmr5210076qtw.19.1695986796959;
+        Fri, 29 Sep 2023 04:26:36 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEg2YS80s8kcYdHWuFJ9syzZApUgYuDHgdtax9I8vSgakg9zGY+D15JXE+dI0icZyE/+yximve2DOD8H5mq6Wc=
+X-Received: by 2002:ac8:5b11:0:b0:418:16d6:5a8d with SMTP id
+ m17-20020ac85b11000000b0041816d65a8dmr5210054qtw.19.1695986796548; Fri, 29
+ Sep 2023 04:26:36 -0700 (PDT)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 29 Sep 2023 04:26:35 -0700
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20230928170254.413-3-jszhang@kernel.org>
+References: <20230928170254.413-1-jszhang@kernel.org> <20230928170254.413-3-jszhang@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: qcm6490: Add qcm6490 dts file
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Luca Weiss <luca.weiss@fairphone.com>
-References: <20230928133312.11371-1-quic_kbajaj@quicinc.com>
- <20230928133312.11371-3-quic_kbajaj@quicinc.com>
- <661bd908-a056-4d46-97a3-d3b12b14c050@linaro.org>
-From: Komal Bajaj <quic_kbajaj@quicinc.com>
-In-Reply-To: <661bd908-a056-4d46-97a3-d3b12b14c050@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: oLK0VdOTMfG83n2XddiRXGOLsZcDFtLF
-X-Proofpoint-ORIG-GUID: oLK0VdOTMfG83n2XddiRXGOLsZcDFtLF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-29_09,2023-09-28_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- mlxlogscore=999 lowpriorityscore=0 spamscore=0 adultscore=0 bulkscore=0
- priorityscore=1501 clxscore=1015 mlxscore=0 impostorscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
- definitions=main-2309290095
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Mime-Version: 1.0
+Date: Fri, 29 Sep 2023 04:26:35 -0700
+Message-ID: <CAJM55Z9sbi5zMPSagDH2Za0mqsBr3004Tn_Zn2Gy90MiKizYcQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] pwm: add T-HEAD PWM driver
+To: Jisheng Zhang <jszhang@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-
-
-On 9/28/2023 7:16 PM, Konrad Dybcio wrote:
-> On 28.09.2023 15:33, Komal Bajaj wrote:
->> Add qcm6490 devicetree file for QCM6490 SoC and QCM6490 IDP
->> platform. QCM6490 is derived from SC7280 meant for various
->> form factor including IoT.
->>
->> Supported features are, as of now:
->> * Debug UART
->> * eMMC
->> * USB
->>
->> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
->> ---
-> [...]
+Jisheng Zhang wrote:
+> T-HEAD SoCs such as the TH1520 contain a PWM controller used
+> among other things to control the LCD backlight, fan and so on.
+> Add driver for it.
 >
->> +/ {
->> +	model = "Qualcomm Technologies, Inc. QCM6490 IDP platform";
-> Isomething Development Platform platform?
-
-Will drop suffix platform.
-
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> ---
+>  MAINTAINERS             |   1 +
+>  drivers/pwm/Kconfig     |  11 ++
+>  drivers/pwm/Makefile    |   1 +
+>  drivers/pwm/pwm-thead.c | 289 ++++++++++++++++++++++++++++++++++++++++
+>  4 files changed, 302 insertions(+)
+>  create mode 100644 drivers/pwm/pwm-thead.c
 >
->> +	compatible = "qcom,qcm6490-idp", "qcom,qcm6490";
->> +
->> +	aliases {
->> +		serial0 = &uart5;
->> +	};
->> +
->> +	chosen {
->> +		stdout-path = "serial0:115200n8";
->> +	};
->> +
->> +};
-> Stray newline above
-
-Noted.
-
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index d55e40060c46..86cf0926dbfc 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -18482,6 +18482,7 @@ L:	linux-riscv@lists.infradead.org
+>  S:	Maintained
+>  F:	arch/riscv/boot/dts/thead/
+>  F:	drivers/usb/dwc3/dwc3-thead.c
+> +F:	drivers/pwm/pwm-thead.c
 >
->> +
->> +&apps_rsc {
->> +	regulators-0 {
->> +		compatible = "qcom,pm7325-rpmh-regulators";
->> +		qcom,pmic-id = "b";
->> +
->> +		vreg_s1b_1p8: smps1 {
->> +			regulator-min-microvolt = <1856000>;
->> +			regulator-max-microvolt = <2040000>;
-> Hm, you didn't specify regulator-initial-mode on any vregs
-
-Okay, will specify it in next patchset.
-
+>  RNBD BLOCK DRIVERS
+>  M:	Md. Haris Iqbal <haris.iqbal@ionos.com>
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 8ebcddf91f7b..428fa365a19a 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -637,6 +637,17 @@ config PWM_TEGRA
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-tegra.
 >
-> [...]
+> +config PWM_THEAD
+> +	tristate "T-HEAD PWM support"
+> +	depends on ARCH_THEAD || COMPILE_TEST
+> +	depends on HAS_IOMEM
+> +	help
+> +	  Generic PWM framework driver for the PWFM controller found on THEAD
+> +	  SoCs.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm-thead.
+> +
+>  config PWM_TIECAP
+>  	tristate "ECAP PWM support"
+>  	depends on ARCH_OMAP2PLUS || ARCH_DAVINCI_DA8XX || ARCH_KEYSTONE || ARCH_K3 || COMPILE_TEST
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index c822389c2a24..4c317e6316e8 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -59,6 +59,7 @@ obj-$(CONFIG_PWM_STMPE)		+= pwm-stmpe.o
+>  obj-$(CONFIG_PWM_SUN4I)		+= pwm-sun4i.o
+>  obj-$(CONFIG_PWM_SUNPLUS)	+= pwm-sunplus.o
+>  obj-$(CONFIG_PWM_TEGRA)		+= pwm-tegra.o
+> +obj-$(CONFIG_PWM_THEAD)		+= pwm-thead.o
+>  obj-$(CONFIG_PWM_TIECAP)	+= pwm-tiecap.o
+>  obj-$(CONFIG_PWM_TIEHRPWM)	+= pwm-tiehrpwm.o
+>  obj-$(CONFIG_PWM_TWL)		+= pwm-twl.o
+> diff --git a/drivers/pwm/pwm-thead.c b/drivers/pwm/pwm-thead.c
+> new file mode 100644
+> index 000000000000..8339f5617b6f
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-thead.c
+> @@ -0,0 +1,289 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * T-HEAD PWM driver
+> + *
+> + * Copyright (C) 2021 Alibaba Group Holding Limited.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bitops.h>
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/err.h>
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/pwm.h>
+> +#include <linux/slab.h>
+> +
+> +#define MAX_PWM_NUM	6
+> +
+> +#define LIGHT_PWM_CHN_BASE(n)		((n) * 0x20)
+> +#define LIGHT_PWM_CTRL(n)		(LIGHT_PWM_CHN_BASE(n) + 0x00)
+> +#define LIGHT_PWM_RPT(n)		(LIGHT_PWM_CHN_BASE(n) + 0x04)
+> +#define LIGHT_PWM_PER(n)		(LIGHT_PWM_CHN_BASE(n) + 0x08)
+> +#define LIGHT_PWM_FP(n)			(LIGHT_PWM_CHN_BASE(n) + 0x0c)
+> +#define LIGHT_PWM_STATUS(n)		(LIGHT_PWM_CHN_BASE(n) + 0x10)
+> +
+> +/* bit definition PWM_CTRL */
+> +#define PWM_START				BIT(0)
+> +#define PWM_SOFT_RST				BIT(1)
+> +#define PWM_CFG_UPDATE				BIT(2)
+> +#define PWM_INT_EN				BIT(3)
+> +#define PWM_ONE_SHOT_MODE			BIT(4)
+> +#define PWM_CONTINUOUS_MODE			BIT(5)
+> +#define PWM_EVT_RISING_TRIG_UNDER_ONE_SHOT	BIT(6)
+> +#define PWM_EVT_FALLING_TRIG_UNDER_ONE_SHOT	BIT(7)
+> +#define PWM_FPOUT				BIT(8)
+> +#define PWM_INFACTOUT				BIT(9)
+
+Hi Jisheng,
+
+I'd be worried that these defines one day clash with the PWM framework. Maybe
+just keep the LIGHT_PWM_ prefix?
+
+> +
+> +struct thead_pwm_chip {
+> +	struct clk *clk;
+> +	void __iomem *mmio_base;
+> +	struct pwm_chip chip;
+> +};
+> +
+> +#define to_thead_pwm_chip(chip)		container_of(chip, struct thead_pwm_chip, chip)
+> +
+> +static int thead_pwm_clk_prepare_enable(struct thead_pwm_chip *pc)
+> +{
+> +	return clk_prepare_enable(pc->clk);
+> +}
+> +
+> +static void thead_pwm_clk_disable_unprepare(struct thead_pwm_chip *pc)
+> +{
+> +	clk_disable_unprepare(pc->clk);
+> +}
+
+These two wrappers don't seem to add a lot of value compared to just writing
+clk_*(pc->clk) directly and they're not used as callbacks.
+
+> +
+> +static int thead_pwm_enable(struct pwm_chip *chip, struct pwm_device *pwm)
+> +{
+> +	struct thead_pwm_chip *pc = to_thead_pwm_chip(chip);
+> +	u32 value;
+> +	int ret;
+> +
+> +	ret = pm_runtime_get_sync(chip->dev);
+> +	if (ret < 0) {
+> +		dev_err(chip->dev, "failed to clock on the pwm device(%d)\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	value = readl(pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
+> +	value |= PWM_START;
+> +	writel(value, pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
+> +
+> +	return 0;
+> +}
+> +
+> +static void thead_pwm_disable(struct pwm_chip *chip, struct pwm_device *pwm)
+> +{
+> +	struct thead_pwm_chip *pc = to_thead_pwm_chip(chip);
+> +	u32 value;
+> +
+> +	value = readl(pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
+> +	value &= ~PWM_START;
+> +	writel(value, pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
+> +
+> +	pm_runtime_put_sync(chip->dev);
+> +}
+> +
+> +static int thead_pwm_config(struct pwm_chip *chip, struct pwm_device *pwm,
+> +			    int duty_ns, int period_ns)
+> +{
+> +	struct thead_pwm_chip *pc = to_thead_pwm_chip(chip);
+> +	unsigned long rate = clk_get_rate(pc->clk);
+> +	unsigned long duty_cycle, period_cycle;
+> +	u32 pwm_cfg = PWM_INFACTOUT | PWM_FPOUT | PWM_CONTINUOUS_MODE | PWM_INT_EN;
+> +	int ret;
+> +
+> +	if (duty_ns > period_ns) {
+> +		dev_err(chip->dev, "invalid pwm configure\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = pm_runtime_get_sync(chip->dev);
+> +	if (ret < 0) {
+> +		dev_err(chip->dev, "failed to clock on the pwm device(%d)\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	writel(pwm_cfg, pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
+> +
+> +	period_cycle = period_ns * rate;
+> +	do_div(period_cycle, NSEC_PER_SEC);
+
+I thought do_div() was only needed to do 64bit by 32bit divisions on
+32bit hardware, but here
+period_cycle is an unsigned long, so only 32bit on 32bit hardware.
+
+> +	writel(period_cycle, pc->mmio_base + LIGHT_PWM_PER(pwm->hwpwm));
+> +
+> +	duty_cycle = duty_ns * rate;
+> +	do_div(duty_cycle, NSEC_PER_SEC);
+
+Same as above.
+
+> +	writel(duty_cycle, pc->mmio_base + LIGHT_PWM_FP(pwm->hwpwm));
+> +
+> +	pwm_cfg = readl(pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
+> +	pwm_cfg |= PWM_CFG_UPDATE;
+> +	writel(pwm_cfg, pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
+> +
+> +	pm_runtime_put_sync(chip->dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static int thead_pwm_set_polarity(struct pwm_chip *chip,
+> +				  struct pwm_device *pwm,
+> +				  enum pwm_polarity polarity)
+> +{
+> +	struct thead_pwm_chip *pc = to_thead_pwm_chip(chip);
+> +	u32 value = readl(pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
+> +	int ret;
+> +
+> +	ret = pm_runtime_get_sync(chip->dev);
+> +	if (ret < 0) {
+> +		dev_err(chip->dev, "failed to clock on the pwm device(%d)\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	if (polarity == PWM_POLARITY_NORMAL)
+> +		value |= PWM_FPOUT;
+> +	else
+> +		value &= ~PWM_FPOUT;
+> +
+> +	writel(value, pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
+> +
+> +	pm_runtime_put_sync(chip->dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static int thead_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> +			   const struct pwm_state *state)
+> +{
+> +	int err;
+> +	bool enabled = pwm->state.enabled;
+> +
+> +	if (state->polarity != pwm->state.polarity)
+> +		thead_pwm_set_polarity(chip, pwm, state->polarity);
+> +
+> +	if (!state->enabled) {
+> +		if (enabled)
+> +			thead_pwm_disable(chip, pwm);
+> +		return 0;
+> +	}
+> +
+> +	err = thead_pwm_config(chip, pwm, state->duty_cycle, state->period);
+> +	if (err)
+> +		return err;
+> +
+> +	if (!enabled)
+> +		return thead_pwm_enable(chip, pwm);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pwm_ops thead_pwm_ops = {
+> +	.apply = thead_pwm_apply,
+> +	.owner = THIS_MODULE,
+> +};
+> +
+> +static int __maybe_unused thead_pwm_runtime_suspend(struct device *dev)
+> +{
+> +	struct thead_pwm_chip *pc = dev_get_drvdata(dev);
+> +
+> +	thead_pwm_clk_disable_unprepare(pc);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused thead_pwm_runtime_resume(struct device *dev)
+> +{
+> +	struct thead_pwm_chip *pc = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	ret = thead_pwm_clk_prepare_enable(pc);
+> +	if (ret) {
+> +		dev_err(dev, "failed to enable pwm clock(%d)\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int thead_pwm_probe(struct platform_device *pdev)
+> +{
+> +	struct thead_pwm_chip *pc;
+> +	int ret;
+> +
+> +	pc = devm_kzalloc(&pdev->dev, sizeof(*pc), GFP_KERNEL);
+> +	if (!pc)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, pc);
+> +
+> +	pc->mmio_base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(pc->mmio_base))
+> +		return PTR_ERR(pc->mmio_base);
+> +
+> +	pc->clk = devm_clk_get(&pdev->dev, NULL);
+> +	if (IS_ERR(pc->clk))
+> +		return PTR_ERR(pc->clk);
+
+A lot of other drivers have something like
+return dev_err_probe(&pdev->dev, PTR_ERR(pc->clk), "failed to get clock\n");
+when failing to get clocks.
+
+> +
+> +	pm_runtime_enable(&pdev->dev);
+> +	pm_runtime_get_noresume(&pdev->dev);
+> +	ret = thead_pwm_clk_prepare_enable(pc);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "failed to enable pwm clock(%d)\n", ret);
+> +		goto err_pm_disable;
+> +	}
+> +
+> +	pc->chip.ops = &thead_pwm_ops;
+> +	pc->chip.dev = &pdev->dev;
+> +	pc->chip.npwm = MAX_PWM_NUM;
+> +
+> +	ret = pwmchip_add(&pc->chip);
+> +	if (ret)
+> +		goto err_clk_disable;
+> +
+> +	pm_runtime_put(&pdev->dev);
+> +
+> +	return 0;
+> +
+> +err_clk_disable:
+> +	thead_pwm_clk_disable_unprepare(pc);
+> +err_pm_disable:
+> +	pm_runtime_disable(&pdev->dev);
+
+Here you disable the clock and then pm_runtime_disable()..
+
+> +	return ret;
+> +}
+> +
+> +static void thead_pwm_remove(struct platform_device *pdev)
+> +{
+> +	struct thead_pwm_chip *pc = platform_get_drvdata(pdev);
+> +
+> +	pm_runtime_disable(&pdev->dev);
+> +	thead_pwm_clk_disable_unprepare(pc);
+
+..but here it's the other way around. It may not make a difference, but let's
+be consistent anyway.
+
+> +	pwmchip_remove(&pc->chip);
+> +}
+> +
+> +static const struct of_device_id thead_pwm_dt_ids[] = {
+> +	{.compatible = "thead,th1520-pwm",},
+> +	{/* sentinel */}
+> +};
+> +
+> +static const struct dev_pm_ops thead_pwm_pm_ops = {
+> +	SET_RUNTIME_PM_OPS(thead_pwm_runtime_suspend, thead_pwm_runtime_resume, NULL)
+> +};
+> +
+> +static struct platform_driver thead_pwm_driver = {
+> +	.driver = {
+> +		.name = "thead-pwm",
+> +		.of_match_table = thead_pwm_dt_ids,
+> +		.pm = &thead_pwm_pm_ops,
+> +	},
+> +	.probe = thead_pwm_probe,
+> +	.remove_new = thead_pwm_remove,
+> +};
+> +module_platform_driver(thead_pwm_driver);
+> +
+> +MODULE_AUTHOR("wei.liu <lw312886@linux.alibaba.com>");
+
+wei.liu is a very uncommon name, do you mean Wei Liu?
+
+> +MODULE_AUTHOR("Jisheng Zhang <jszhang@kernel.org>");
+> +MODULE_DESCRIPTION("T-HEAD pwm driver");
+> +MODULE_LICENSE("GPL v2");
+> --
+> 2.40.1
 >
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/qcm6490.dtsi
->> @@ -0,0 +1,137 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +/*
->> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +
->> +#include "sc7280.dtsi"
->> +
->> +/*
->> + * Delete sc7280 lpass related nodes as qcm6490 intends to move away from
->> + * bypass configuration
->> + */
->> +/delete-node/ &lpass_ag_noc;
->> +/delete-node/ &lpass_aon;
->> +/delete-node/ &lpass_audiocc;
->> +/delete-node/ &lpass_core;
->> +/delete-node/ &lpass_cpu;
->> +/delete-node/ &lpass_hm;
->> +/delete-node/ &lpass_rx_macro;
->> +/delete-node/ &lpass_tx_macro;
->> +/delete-node/ &lpass_va_macro;
->> +/delete-node/ &lpass_tlmm;
->> +/delete-node/ &lpasscc;
->> +/delete-node/ &swr0;
->> +/delete-node/ &swr1;
-> That's very unnecessary, most of these nodes are in use even
-> when routing audio through ADSP.
 >
-> Ones that are not, are set to status = "reserved" and some
-> will need more work to function based on the configuration.
->
-> There was once a series from somebody at qc to introduce ADSP
-> audio on 7280, but it was full of hacks and NAKed
-
-Seeking clarification which nodes will be used and which should be disabled.
-For now, will remove it.
-
->
->
->> +
->> +/*
->> + * Delete unused sc7280 memory nodes and define the memory regions
->> + * required by qcm6490
->> + */
-> That's specific to your board.
-
-No, these are not board specific, it's soc specific.
-
->
->> +/delete-node/ &rmtfs_mem;
->> +/delete-node/ &wlan_ce_mem;
->> +
->> +/{
->> +	reserved-memory {
->> +		secdata_apss_mem: secdata-apss@808ff000 {
->> +			reg = <0x0 0x808ff000 0x0 0x1000>;
->> +			no-map;
->> +		};
-> This is identical to the entry in sc7280.dtsi.
-
-Yeah, right. Will remove it.
-
->
->> +
->> +		cdsp_secure_heap_mem: cdsp-secure-heap@81800000 {
->> +			reg = <0x0 0x81800000 0x0 0x1e00000>;
->> +			no-map;
->> +		};
->> +
->> +		camera_mem: camera@84300000 {
->> +			reg = <0x0 0x84300000 0x0 0x500000>;
->> +			no-map;
->> +		};
->> +
->> +		adsp_mem: adsp@86100000 {
->> +			reg = <0x0 0x86100000 0x0 0x2800000>;
->> +			no-map;
->> +		};
->> +
->> +		cdsp_mem: cdsp@88900000 {
->> +			reg = <0x0 0x88900000 0x0 0x1e00000>;
->> +			no-map;
->> +		};
->> +
->> +		cvp_mem: cvp@8ac00000 {
->> +			reg = <0x0 0x8ac00000 0x0 0x500000>;
->> +			no-map;
->> +		};
->> +
->> +		ipa_gsi_mem: ipa-gsi@8b110000 {
->> +			reg = <0x0 0x8b110000 0x0 0xa000>;
->> +			no-map;
->> +		};
->> +
->> +		gpu_microcode_mem: gpu-microcode@8b11a000 {
->> +			reg = <0x0 0x8b11a000 0x0 0x2000>;
->> +			no-map;
->> +		};
->> +
->> +		mpss_mem: mpss@8b800000 {
->> +			reg = <0x0 0x8b800000 0x0 0xf600000>;
->> +			no-map;
->> +		};
->> +
->> +		wpss_mem: wpss@9ae00000 {
->> +			reg = <0x0 0x9ae00000 0x0 0x1900000>;
->> +			no-map;
->> +		};
-> This entry is in both chrome-common and fairphone (meaning all boards
-> use it), perhaps this one could be moved to 7280.dtsi
-
-Missed to update region for wpss_mem. It's different what's used in 
-chrome-common and fairphone.
-
->
->> +
->> +		tz_stat_mem: tz-stat@c0000000 {
->> +			reg = <0x0 0xc0000000 0x0 0x100000>;
->> +			no-map;
->> +		};
->> +
->> +		tags_mem: tags@c0100000 {
->> +			reg = <0x0 0xc0100000 0x0 0x1200000>;
->> +			no-map;
->> +		};
->> +
->> +		qtee_mem: qtee@c1300000 {
->> +			reg = <0x0 0xc1300000 0x0 0x500000>;
->> +			no-map;
->> +		};
->> +
->> +		trusted_apps_mem: trusted_apps@c1800000 {
->> +			reg = <0x0 0xc1800000 0x0 0x3900000>;
->> +			no-map;
->> +		};
->> +	};
->> +};
->> +
->> +&hyp_mem {
->> +	reg = <0x0 0x80000000 0x0 0x600000>;
-> This is identical to the entry in sc7280.dtsi.
-
-Will remove it.
-
->
->> +};
->> +
->> +&mpss_mem {
->> +	reg = <0x0 0x8b800000 0x0 0xf600000>;
-> You're defining it here and overwriting it with an identical
-> value.
->
-> Looks like CrOS folks don't boot up the modem on non-LTE SKUs.
-> Weird. Normally it would host some more software..
->
->> +};
->> +
->> +&remoteproc_mpss {
->> +	memory-region = <&mpss_mem>;
-> This is identical to the entry in sc7280.dtsi.
-
-Will remove it.
-
->
->> +};
->> +
->> +&video_mem {
->> +	reg = <0x0 0x8a700000 0x0 0x500000>;
->> +};
->> +
->> +&wifi {
->> +	memory-region = <&wlan_fw_mem>;
-> No CE region?
-
-Yes, no CE region is required here.
-
->
->> +};
->> +
->> +&wlan_fw_mem {
->> +	reg = <0x0 0x80c00000 0x0 0xc00000>;
-> This is identical to the entry in sc7280.dtsi.
-
-Will remove it.
-
->
->
-> The memory map generally looks quite different to both chrome
-> and fairphone.. are you sure it's all correct?
-
-Yes, it's correct, it's different than chrome and fairphone.
-
-Thanks
-Komal
-
->
-> Konrad
-
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
