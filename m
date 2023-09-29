@@ -1,120 +1,131 @@
-Return-Path: <devicetree+bounces-4595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD43E7B33A5
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:32:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75C3E7B33B9
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:35:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 6FB6F283A0D
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 13:32:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id D308C283CAC
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 13:35:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8FCB1A712;
-	Fri, 29 Sep 2023 13:32:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE3851A712;
+	Fri, 29 Sep 2023 13:35:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CF7D1A5B6;
-	Fri, 29 Sep 2023 13:32:12 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39B381A8;
-	Fri, 29 Sep 2023 06:32:11 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38TAgi7p001220;
-	Fri, 29 Sep 2023 13:31:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=4psosez0s6ShH4sT2NTMtK8L6V23Vo6YOejUjTs9phE=;
- b=PlDgoFITUbExyWTxlGnHb6CyvS9seUbgi/qUVJTUxHm0KQzTdtfgGEdU6CQcWCrzcfl3
- +fsS2rdfd6zyOyUdu7o8RN+gntlmGPUfBPnfpeMuLtOvG18ZHKQ8VqH6RYIt85OHql9Z
- 2g6i80d9GN/OuYU1eozDp1eooIgjRcA+a6t45aGzBieB+DbavvjvZrKOSXar5fcnTEgg
- IEMQ4HcSEbDfGnigzr2TYFmtUVi3xPh92itOb62ukwf8kdVMMoCvhIen6A6OMn0MHeyJ
- o1dC0dZ9hSpkm0atwUq5HlsIaurWSz1g7S6EDdREHw5lvEgcHvCw99mdIShVtbMVo+/A 5A== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tdfbrsxdp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Sep 2023 13:31:41 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38TDVek8026335
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Sep 2023 13:31:40 GMT
-Received: from [10.216.51.141] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Fri, 29 Sep
- 2023 06:31:30 -0700
-Message-ID: <3f89e0b7-189e-4cf7-bec5-b03c903c46b5@quicinc.com>
-Date: Fri, 29 Sep 2023 19:01:30 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6474811718
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 13:35:19 +0000 (UTC)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B8651A8
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 06:35:17 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9a9cd066db5so1968315566b.0
+        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 06:35:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695994515; x=1696599315; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YlAAhroIKSpL8+fyShtvqU4a0850NAbVSPJtR3BZY+4=;
+        b=WaY5wUNgvCKUIzxujyB0gQfeq17jhI3LlZKWLsy+fDvAe73SivI9fxvp4GLq0qzpk0
+         4vH9TIaVczXttp7p5Z8xzHnJL3e3Hc0LZhvwtBOWnrNrT2qztL7/YooxSDME9fhAHTFs
+         tA59MT75IlhbKs8+z283q2ddFZ154mSYrtfgvjbjEaWnN59nbm/Ne7d73CoYFcwiTDlQ
+         g19ZsszQsne5pTN6b1UjFlL2fB2cag1bQEC/rVfEz8npNLCyYqVyCrf3E5CywAyU/nHk
+         Knurg91QzrwLPv/vpu8i9f/fiY9VxblPKNiMdkfFVvLulfSakoorttimMKm3gMtAIakO
+         qrFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695994515; x=1696599315;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YlAAhroIKSpL8+fyShtvqU4a0850NAbVSPJtR3BZY+4=;
+        b=oxHI3QDNP9Z9kW/TKiQNMKfzaAfdfKldSkm0Vpj4cDtgbl9anX3hOhJ2TpqMVYmbCx
+         Q0TpRxwi4YJCgthFzSPbE5M8Ky+oUJNsd+3niBgZLGOjHxhoBX6E/buCPh+cM11FLlEq
+         XGL4nM6SqC+6VFQF7FacVeaOpn55jU0J4Peg5fBa88jKeIbJGmajmxpxylAvDv9FV+xZ
+         1It2D8qSWYUHMKiYY1qJ/tJdUAwMs685LoiV3fXUeovdnUzfvgjU4k2D+6bBfSbw6pWM
+         jg0YrC4j4O79fONWJCX7GOQWI/eUo5xmtmr/kuYWZDu1RvgI0y6WHHPwiV2S6hEUgVIg
+         2yLw==
+X-Gm-Message-State: AOJu0YxWBE08cKoOJ6hkc2k+JTFZ1VP5MXHbk8Kb9iOJ5Hce8vBtjrUi
+	uopmPHzjc1HrBWg1zSV83meUag==
+X-Google-Smtp-Source: AGHT+IFB0gWCRdIz3y4FpDLEeFeD/l2I4205KcVLY5FFCUf6mhKQfziV+cURqsALwr4kjpJ9713mCQ==
+X-Received: by 2002:a17:906:2189:b0:9b2:7584:80dc with SMTP id 9-20020a170906218900b009b2758480dcmr3707193eju.20.1695994515614;
+        Fri, 29 Sep 2023 06:35:15 -0700 (PDT)
+Received: from [192.168.0.123] (178235177217.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.217])
+        by smtp.gmail.com with ESMTPSA id i22-20020a17090671d600b009a193a5acffsm12231752ejk.121.2023.09.29.06.35.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Sep 2023 06:35:15 -0700 (PDT)
+Message-ID: <8dd470e5-ce33-3d33-98f1-e66935ca7b56@linaro.org>
+Date: Fri, 29 Sep 2023 15:35:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/8] arm64: dts: qcom: ipq5332: Add Super-Speed UNIPHY in
- USB node
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sc7280: Add Camera Control
+ Interface busses
 Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <vkoul@kernel.org>, <kishon@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <gregkh@linuxfoundation.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>, <p.zabel@pengutronix.de>,
-        <geert+renesas@glider.be>, <arnd@arndb.de>,
-        <neil.armstrong@linaro.org>, <nfraprado@collabora.com>,
-        <u-kumar1@ti.com>, <peng.fan@nxp.com>, <quic_wcheng@quicinc.com>,
-        <quic_varada@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC: <quic_kathirav@quicinc.com>, <quic_nsekar@quicinc.com>,
-        <quic_srichara@quicinc.com>
-References: <20230929084209.3033093-1-quic_ipkumar@quicinc.com>
- <20230929084209.3033093-7-quic_ipkumar@quicinc.com>
- <618992fe-4c76-42ef-af47-ee66f74c5bb6@linaro.org>
-From: Praveenkumar I <quic_ipkumar@quicinc.com>
-In-Reply-To: <618992fe-4c76-42ef-af47-ee66f74c5bb6@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Luca Weiss <luca.weiss@fairphone.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230929-sc7280-cci-v1-0-16c7d386f062@fairphone.com>
+ <20230929-sc7280-cci-v1-2-16c7d386f062@fairphone.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230929-sc7280-cci-v1-2-16c7d386f062@fairphone.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: aQMf_Wmi_iMyp-ktWcW02lb7x-KBLhiL
-X-Proofpoint-GUID: aQMf_Wmi_iMyp-ktWcW02lb7x-KBLhiL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-29_11,2023-09-28_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
- malwarescore=0 impostorscore=0 mlxscore=0 suspectscore=0
- priorityscore=1501 lowpriorityscore=0 mlxlogscore=451 adultscore=0
- clxscore=1015 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2309290116
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 
 
-On 9/29/2023 6:44 PM, Konrad Dybcio wrote:
-> On 29.09.2023 10:42, Praveenkumar I wrote:
->> Add UNIPHY node in USB to support Super-speed. As the SS PHY has
->> pipe clock, removed "qcom,select-utmi-as-pipe-clk" flag.
->>
->> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
->> ---
-> Patches 6 and 7 should be swapped, otherwise you may get no
-> USB with this commit. Incremental patches must not break
-> functionality, unless it is truly inevitable.
-Understood. Will swap the 6 and 7 patches in the update.
+On 9/29/23 10:01, Luca Weiss wrote:
+> Add the CCI busses found on sc7280 and their pinctrl states.
+> 
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 136 +++++++++++++++++++++++++++++++++++
+>   1 file changed, 136 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 66f1eb83cca7..65550de2e4ff 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -3793,6 +3793,86 @@ videocc: clock-controller@aaf0000 {
+>   			#power-domain-cells = <1>;
+>   		};
+>   
+> +		cci0: cci@ac4a000 {
+> +			compatible = "qcom,sc7280-cci", "qcom,msm8996-cci";
+> +			reg = <0 0x0ac4a000 0 0x1000>;
+> +			interrupts = <GIC_SPI 460 IRQ_TYPE_EDGE_RISING>;
+> +			power-domains = <&camcc CAM_CC_TITAN_TOP_GDSC>;
+> +
+> +			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
+> +				 <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
+> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
+> +				 <&camcc CAM_CC_CCI_0_CLK>,
+> +				 <&camcc CAM_CC_CCI_0_CLK_SRC>;
+> +			clock-names = "camnoc_axi",
+> +				      "slow_ahb_src",
+> +				      "cpas_ahb",
+> +				      "cci",
+> +				      "cci_src";
+I guess this is more of a question to e.g. Bryan, but are all of these 
+clocks actually necessary?
 
---
-Thanks,
-Praveenkumar
->
-> Konrad
-
+Konrad
 
