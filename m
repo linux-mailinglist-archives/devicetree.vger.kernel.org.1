@@ -1,246 +1,144 @@
-Return-Path: <devicetree+bounces-4593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3A5C7B3396
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:29:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D7427B339E
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:31:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id F0CB21C20A00
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 13:29:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id DD225282C16
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 13:30:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5679E1A5B6;
-	Fri, 29 Sep 2023 13:29:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A25E1A5BA;
+	Fri, 29 Sep 2023 13:30:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AEEB11718
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 13:29:11 +0000 (UTC)
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2046.outbound.protection.outlook.com [40.107.93.46])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C555B9C;
-	Fri, 29 Sep 2023 06:29:09 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EL+RDXWWSi2B7SPJ/IkjjUfH8snj4P+F7mKwWokaKbro0KWa2Qz5ZjBsyM69no3j9SMNPI+v4nxTrtW/VdAbCjAZeDVNUayi8/V7sHN+yHJuG0LXBnaKZTG6B7gHWW1cWfSq4+P0CFa0cp2J55+1GTXHodxoqsL9pVTFk7o/frLRwqdCUfi0d/5FXh0T9I5h+vcJQ4o3NBeVd2mhPaFq1dW7KuIOGZyUpk0xZ88c+GrK/kK8VQqbS3fiHx0OGbRMcdIHKNg8TwsUPSpwhpZrWX4rVMklGRgQez27hLrdeerOl/GL3RxNpFuZB65w2Cme0ECH3QnoGJZEB/VvKTNoOQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=v9Pq2+eoPVZCaISVG5xYIYcEuLvsbKIT9Iq5Xrg8EgY=;
- b=azfRQRpCnVPw6hH2sEvA1dHQ20NYijHxCy+flWoI6dz4M1glsE3NLBdelUS2k9j/xsKUf0B/mE6RyLfgMfoJmRzxwezHGq1sm8LdqMUPGNfKKKdrW7jxZg5RCBqvBIMikIYNsjJEyGHkrqGYV3Q/LFRQKsF+pG7KE9CLvp1Wg0pEjESmpbN6ZaZr4YTKqJO1BAVcIyu5ae7qrcv3Ehf7mWzdNDe9T7F1v4XZH+hQkTIdROuHbalkf987eBalZUa8VYU6SqVk7MxR7Tr4OPF4R0y3O3MzqNMvu4b3xtPyZh8fN1lm17AlPVea1r9b0NOYkZymwg+8nalu7riR4fJjXg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=v9Pq2+eoPVZCaISVG5xYIYcEuLvsbKIT9Iq5Xrg8EgY=;
- b=mEfcguh6W7cAkBz2JdU9BaKNTYhc5tF1pXM1dHMxE5BwBSUafahLGTVNj+nS8A4uS0aogu9r8K06PDEaAtmKYOP5dl/gGDZLMcDZEDGOsfgabbQ0r5u0n2nBGmzjesl0J0YMJMNaFj9HVCN4l1OVb40hVEXA8JWs14wfB9lyma0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB5229.namprd12.prod.outlook.com (2603:10b6:5:398::12)
- by DM6PR12MB4960.namprd12.prod.outlook.com (2603:10b6:5:1bc::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Fri, 29 Sep
- 2023 13:29:07 +0000
-Received: from DM4PR12MB5229.namprd12.prod.outlook.com
- ([fe80::2b54:7ddf:9e2e:751c]) by DM4PR12MB5229.namprd12.prod.outlook.com
- ([fe80::2b54:7ddf:9e2e:751c%3]) with mapi id 15.20.6813.027; Fri, 29 Sep 2023
- 13:29:07 +0000
-Message-ID: <30e381f6-8f7c-a654-255f-ac8410d4fed0@amd.com>
-Date: Fri, 29 Sep 2023 08:29:03 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH] arm/arm64: dts: Removed undocumented and unused
- "pl022,hierarchy" property
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>, soc@kernel.org,
- Viresh Kumar <vireshk@kernel.org>,
- Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20230928190859.1072420-1-robh@kernel.org>
-From: Tom Lendacky <thomas.lendacky@amd.com>
-In-Reply-To: <20230928190859.1072420-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SN7PR04CA0154.namprd04.prod.outlook.com
- (2603:10b6:806:125::9) To DM4PR12MB5229.namprd12.prod.outlook.com
- (2603:10b6:5:398::12)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1359F11718;
+	Fri, 29 Sep 2023 13:30:55 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B3189C;
+	Fri, 29 Sep 2023 06:30:54 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38TChDP0014922;
+	Fri, 29 Sep 2023 13:30:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=rq6yxyFdTOuB7xAYdzQxJoBRTl12pxZCBJrKD+DcNdY=;
+ b=nm9QbwKIKRdTg86NcY3bxclxR6E7Pqh1hEoGn7rCbS8LoMij3bckOC6jXmV3i7gRPNyw
+ x0FOUMNmA5iBVRXzH9Oa539cRlz9PUucNZRaGvILDmBCDx7SUM0+S3Yo4/MowvpxodkZ
+ p9Aptxk4pH6IWyhVgF2bsWWxov7lLoLfJ4XWZF4Yv8RL0TlRUf8BuEpX2s7mC+gJDnLy
+ FiBiNwXebCBi8AD9Bcpm1jQqrDkBwSVzzdbtPNbIidapzBTE8sEJ3OegQBfeCsh0YjzX
+ +9upPp1NCQnaRGjKq3p2FRGFnhP1W06Cm6EAchRLTIY0UXJDLxveYjMnLPCv2lIAoDP+ zw== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tdhru1g2u-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 29 Sep 2023 13:30:29 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38TDUSXH032382
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 29 Sep 2023 13:30:28 GMT
+Received: from [10.216.51.141] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Fri, 29 Sep
+ 2023 06:30:18 -0700
+Message-ID: <cc7a80f7-399e-40ca-ab29-9df3da70412d@quicinc.com>
+Date: Fri, 29 Sep 2023 19:00:14 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5229:EE_|DM6PR12MB4960:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1b65e35e-ed82-4942-95fd-08dbc0f00e88
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	cyIvrZezHKM26xqC/AaRRQXbtuCMrtFeD1N+8PwZSCB/3ngJpgVvs/1c+9qtvb4wYoSfjpIzqJ26f/8dLMBqS6VAz1S/62lz4uZum4KXneQXDczbVUNXSpv73y/XpfurDJjdh1otado4NIN+Wvgpq8YBm84U+8DssJGPJXIAmH7DApmRfq6q9KzFeAIPaS9yimbGyu7e+GLI5Qu0ZIiDGkWSXgCQxUA77zqfk7lWCiPXyD1Z2n//BjpS/rI02h9tEw1ZBI2hQ/v/JrYQ3kTLa+Ohz35BDaYfSOgZvh4zISRRcQAUau5TtfADBq7WW0cfw6o9dJ2hJFKg7WH8vW9m4eOjilGl/yVLlsA/NTXgpN8/TVnYdGbwoomYn+vQh+qn10Wi+6ekEmFYRNZqsr2GzCSLsN9DZYm1zmA0IeE+de1l/fksHqaasAwtwz3fD/u/o3O33+Oksw17JwwhzfN5t93r5P3k/j0bHD+f/jLO7IsTgRpYE2KBod1DPdg+g6/ynKZdJz6bWNDkmRffwNFdSAxhyAap7SVyQbu/jpFVv150BiisRvizxCAD1ACMmH/5zmy3bhg8Kr5KXpPK3HQrBO5Vwl692QWaZo0p6ybeV+jGt/UDcU+c2SFz/sWC7TSMRY52DyREkpefLwnkvrmP9lje0ZC3kKp7ABKvfdAVctM=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5229.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(366004)(39860400002)(396003)(346002)(136003)(230922051799003)(1800799009)(64100799003)(451199024)(186009)(6506007)(6486002)(5660300002)(66946007)(6666004)(7416002)(83380400001)(38100700002)(316002)(921005)(6512007)(53546011)(66476007)(2616005)(26005)(66556008)(110136005)(4326008)(41300700001)(8936002)(478600001)(8676002)(31696002)(86362001)(2906002)(36756003)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?RCtYSzRnVEhLQ1MweTU5aDgvY3R3Y3ZtbFNUdjFLc1Q1SHJZQm1LbDRLM1Zn?=
- =?utf-8?B?Z2NKSFFiZnBvUzJDVi9xR0tWTGlPa3VTY3NBVnlHZEVXcmE0eUtEcGh2K1lw?=
- =?utf-8?B?cjRQZWpZTGtWOWFIS3FDb1h0ZzA3eVNGakExNGhaNWhVR0xCaXhNNldTOEdM?=
- =?utf-8?B?SzlwT2lZSE9XSGNjeXcvdDdhdTNsV1o5dXFWeGNudmlnUkJVdFVIOUgxLytH?=
- =?utf-8?B?SzhUbWF4OGJLOWFhcSt0dnZ4SHdhaGgwbHI5WVNhMUdnNVhvVXQzODRHM2NH?=
- =?utf-8?B?VjNRNUNxRzdqbFY1SzRXR1E2NDZNcFRTRitOTzliSDZtLzl4VDA1VytXdkxT?=
- =?utf-8?B?V0JaVmtMMHhTcm91QTltanRocjVCL29mMkpqUHVBS0o3WFJyRWJiSCtxcjlB?=
- =?utf-8?B?eldSOG5pS3AwdTdJWnNGeG0xWi9nTWtmb205amszY3QySFF3NEl3aXovK0RF?=
- =?utf-8?B?eWlRZVZjckdKQ0Z3eER1TkVKVDFuTlExaGZBNnIrNStmcWZZekVsaTh5UUZY?=
- =?utf-8?B?R1Rya0szWDdjdVJsTVZsQjV1OVdrQ2FaNkVSaUdvamVJaVdXcHBFMVZBSDc5?=
- =?utf-8?B?elhSeTdwSVV4TE1QM2VvSXltTmdqZzlRNUlhbzNobVZhRFVmSGR1U0RsYVo3?=
- =?utf-8?B?ZmU0eVJDVnd4UE1YR0lsR01nUkJMMEVaSXI1cURLNjlsSS9uMFNtMmMvYS9X?=
- =?utf-8?B?K0lvK0VCQ0xPU2M5UnZ5MDhPNmhHVDhhTDM0L09xeEN5ZVJFRlRQRHpzbkZ2?=
- =?utf-8?B?MU9CN1I3Q2xpMlVaOVVUOGl2em0yeTJMVlZ2TGhaRWttaW1qODdMcit3Sjhp?=
- =?utf-8?B?OGhyL3Q0cldLVmFXS1VHbWVoUS9FRTJkV3UvZWxYL2hnZkJDODVIeVhzSkxD?=
- =?utf-8?B?aStkUjdVWHdraGZlLzhhZ1BOWjc1VWFtc2Y2Qmd0bmtuYXowUUdZRmxLSnVZ?=
- =?utf-8?B?TjZPeTBYZ1RXNGxJWk1KenZzRk9hbTNxZUZZTmRzZTNpNVBReHVHM3l0Nksr?=
- =?utf-8?B?dkVNZ1BjZDdwamY3YmRGSU8raUF3MHNOK1dPUFBzaHNWR0hlZmtUUExyeG0z?=
- =?utf-8?B?aHdzYlRKRVB2WHErTGJ2MVBFbVY5R3dnM083Q1h4Ylh2cEFMalVLVHlNbjlS?=
- =?utf-8?B?cldBcWl0RW0ySVdROHBhbEF6Yk53dlRVeHVRYjJYUWh4UVlYNERsdTA0azFz?=
- =?utf-8?B?a1pSZFFLb0RzNFRKZGhVWFlXZkFwdFBibTB1SlhVN2hDNzZoZFp1R2Nsa1dO?=
- =?utf-8?B?Mjk4T1ZGZ2tjaHRpaEM4TDZTQ1NESUJiV29xRFB3T1dSYXZTRng1UWZKSm1w?=
- =?utf-8?B?M1pTMDNJc3VBSVkvMXgvZ0pWUno3OWJ2MEdVcVRVU2ZLNVJSWkR6Ymhhem1k?=
- =?utf-8?B?M2NiUnhaSURUSVhsUXk3Tm5yWlgvWS9xQlU5ZWRzOWdEM1pRL0tuOWhRUHRY?=
- =?utf-8?B?bkNQMmNjcHhoM3luM1JJWnFtZGIrYUY0bjA2LzRlUU0zWC9SL0UzbzgxMUxi?=
- =?utf-8?B?bnVpc2ZaTHRuTisvK3A4NDZoMUpLMUdhMlZ1U255ZTgxeWJjMnRDK3RzZDZG?=
- =?utf-8?B?bkhRdWE5OW9CUVh6bjFQVE1tZDVYZUV4UVhnUy9QSDJQRVp6cDJ4NUhwTUVm?=
- =?utf-8?B?VEY2VFZ4U2ZlNmZsVXF2VENOOW0vanBFVElDS1dLN2RVWVZIYXlFS1lucnFK?=
- =?utf-8?B?TmhvMmF0VzZEUDhkYkRJSDFYZ1ZBazNadHBNMEdpWTNOaERubDl3WXpSSWVL?=
- =?utf-8?B?a091VTdDWkRRcExua0d5cGNNMmc5WWpTVFp2VXJOYW9CckFrZlg5SjNNZVIy?=
- =?utf-8?B?MjlSU2dVMitkaEpBQ0xVYlJHZlRGYW1FQ1dOREVmb2FlRHlQdXprNVpCRHJy?=
- =?utf-8?B?eklyY00xRzZrL1orSWw1ekZocnQ5Y1dIcklOWmMrcm9FTTEwTDhHamRvVjcz?=
- =?utf-8?B?d0d6cnBuYVVsV1ZRUktCYlI3dExrOGV6cXcvbmdjU3hya0pHR2xvZDBNTFky?=
- =?utf-8?B?MUYwZm1GVFF3b3BlZU12NTl1M2NhRWFFbWQ4azJZV3FpMWNDTUlVTkdsSE15?=
- =?utf-8?B?RTNUdHFMdnZYWnkwVFpmVDNJdTk3NXRrQmw0Y2hHQUk1QkZxN1ZGZU9FUHNX?=
- =?utf-8?Q?Lk6R1ScN2UFiYwYEEKu1DICMW?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1b65e35e-ed82-4942-95fd-08dbc0f00e88
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5229.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2023 13:29:07.3358
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: y4I9HPnelxUHxBCGsSbvq1swmb3ntoULAdxXDlFFUAK48BPqvBGt3bUFjvpo9sba1vXU9zYeqLUTTH7/ONxfOA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4960
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-	NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-	SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/8] arm64: dts: qcom: ipq5332: Add USB Super-Speed PHY
+ node
+Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <vkoul@kernel.org>, <kishon@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <gregkh@linuxfoundation.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>, <p.zabel@pengutronix.de>,
+        <geert+renesas@glider.be>, <arnd@arndb.de>,
+        <neil.armstrong@linaro.org>, <nfraprado@collabora.com>,
+        <u-kumar1@ti.com>, <peng.fan@nxp.com>, <quic_wcheng@quicinc.com>,
+        <quic_varada@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC: <quic_kathirav@quicinc.com>, <quic_nsekar@quicinc.com>,
+        <quic_srichara@quicinc.com>
+References: <20230929084209.3033093-1-quic_ipkumar@quicinc.com>
+ <20230929084209.3033093-4-quic_ipkumar@quicinc.com>
+ <9e5ad332-2c04-4024-8321-3a9c66586b64@linaro.org>
+From: Praveenkumar I <quic_ipkumar@quicinc.com>
+In-Reply-To: <9e5ad332-2c04-4024-8321-3a9c66586b64@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: kiprBqOw9GhCKVnOHvCO_KCwiO93qGmz
+X-Proofpoint-GUID: kiprBqOw9GhCKVnOHvCO_KCwiO93qGmz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-29_11,2023-09-28_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 lowpriorityscore=0 suspectscore=0 mlxscore=0
+ mlxlogscore=520 impostorscore=0 spamscore=0 bulkscore=0 adultscore=0
+ clxscore=1015 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2309290115
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 9/28/23 14:08, Rob Herring wrote:
-> The "pl022,hierarchy" is not documented, all instances use are 0 and
-> isn't handled in the kernel driver, so let's just remove it.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Acked-by: Tom Lendacky <thomas.lendacky@amd.com>
 
-> ---
-> Arnd, Please apply this directly.
-> 
->   arch/arm/boot/dts/st/spear1310-evb.dts              | 2 --
->   arch/arm/boot/dts/st/spear1340-evb.dts              | 2 --
->   arch/arm64/boot/dts/amd/amd-overdrive-rev-b0.dts    | 1 -
->   arch/arm64/boot/dts/amd/amd-overdrive-rev-b1.dts    | 1 -
->   arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dts | 2 --
->   5 files changed, 8 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/st/spear1310-evb.dts b/arch/arm/boot/dts/st/spear1310-evb.dts
-> index 05408df38203..18191a87f07c 100644
-> --- a/arch/arm/boot/dts/st/spear1310-evb.dts
-> +++ b/arch/arm/boot/dts/st/spear1310-evb.dts
-> @@ -352,7 +352,6 @@ stmpe610@0 {
->   					#size-cells = <0>;
->   					spi-max-frequency = <1000000>;
->   					spi-cpha;
-> -					pl022,hierarchy = <0>;
->   					pl022,interface = <0>;
->   					pl022,slave-tx-disable;
->   					pl022,com-mode = <0>;
-> @@ -385,7 +384,6 @@ flash@1 {
->   					spi-max-frequency = <12000000>;
->   					spi-cpol;
->   					spi-cpha;
-> -					pl022,hierarchy = <0>;
->   					pl022,interface = <0>;
->   					pl022,slave-tx-disable;
->   					pl022,com-mode = <0x2>;
-> diff --git a/arch/arm/boot/dts/st/spear1340-evb.dts b/arch/arm/boot/dts/st/spear1340-evb.dts
-> index 7700f2afc128..cea624fc745c 100644
-> --- a/arch/arm/boot/dts/st/spear1340-evb.dts
-> +++ b/arch/arm/boot/dts/st/spear1340-evb.dts
-> @@ -445,7 +445,6 @@ flash@0 {
->   					spi-max-frequency = <12000000>;
->   					spi-cpol;
->   					spi-cpha;
-> -					pl022,hierarchy = <0>;
->   					pl022,interface = <0>;
->   					pl022,slave-tx-disable;
->   					pl022,com-mode = <0x2>;
-> @@ -461,7 +460,6 @@ stmpe610@1 {
->   					spi-max-frequency = <1000000>;
->   					spi-cpha;
->   					reg = <1>;
-> -					pl022,hierarchy = <0>;
->   					pl022,interface = <0>;
->   					pl022,slave-tx-disable;
->   					pl022,com-mode = <0>;
-> diff --git a/arch/arm64/boot/dts/amd/amd-overdrive-rev-b0.dts b/arch/arm64/boot/dts/amd/amd-overdrive-rev-b0.dts
-> index 21149acb6b31..1a65f1ec183d 100644
-> --- a/arch/arm64/boot/dts/amd/amd-overdrive-rev-b0.dts
-> +++ b/arch/arm64/boot/dts/amd/amd-overdrive-rev-b0.dts
-> @@ -64,7 +64,6 @@ sdcard0: sdcard@0 {
->   		reg = <0>;
->   		spi-max-frequency = <20000000>;
->   		voltage-ranges = <3200 3400>;
-> -		pl022,hierarchy = <0>;
->   		pl022,interface = <0>;
->   		pl022,com-mode = <0x0>;
->   		pl022,rx-level-trig = <0>;
-> diff --git a/arch/arm64/boot/dts/amd/amd-overdrive-rev-b1.dts b/arch/arm64/boot/dts/amd/amd-overdrive-rev-b1.dts
-> index 99205ae1b46b..52f8d36295a8 100644
-> --- a/arch/arm64/boot/dts/amd/amd-overdrive-rev-b1.dts
-> +++ b/arch/arm64/boot/dts/amd/amd-overdrive-rev-b1.dts
-> @@ -76,7 +76,6 @@ sdcard0: sdcard@0 {
->   		reg = <0>;
->   		spi-max-frequency = <20000000>;
->   		voltage-ranges = <3200 3400>;
-> -		pl022,hierarchy = <0>;
->   		pl022,interface = <0>;
->   		pl022,com-mode = <0x0>;
->   		pl022,rx-level-trig = <0>;
-> diff --git a/arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dts b/arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dts
-> index fbf0392b8371..dec5a110f1e8 100644
-> --- a/arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dts
-> +++ b/arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dts
-> @@ -113,7 +113,6 @@ slic@0 {
->   		spi-max-frequency = <5000000>;
->   		spi-cpha;
->   		spi-cpol;
-> -		pl022,hierarchy = <0>;
->   		pl022,interface = <0>;
->   		pl022,slave-tx-disable = <0>;
->   		pl022,com-mode = <0>;
-> @@ -137,7 +136,6 @@ at25@0 {
->   		at25,page-size = <64>;
->   		spi-cpha;
->   		spi-cpol;
-> -		pl022,hierarchy = <0>;
->   		pl022,interface = <0>;
->   		pl022,slave-tx-disable = <0>;
->   		pl022,com-mode = <0>;
+On 9/29/2023 6:26 PM, Konrad Dybcio wrote:
+> On 29.09.2023 10:42, Praveenkumar I wrote:
+>> Add USB Super-Speed UNIPHY node and populate the phandle on
+>> gcc node for the parent clock map.
+>>
+>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/ipq5332.dtsi | 25 ++++++++++++++++++++++++-
+>>   1 file changed, 24 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+>> index d3fef2f80a81..b08ffd8c094e 100644
+>> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+>> @@ -158,6 +158,29 @@ usbphy0: phy@7b000 {
+>>   			status = "disabled";
+>>   		};
+>>   
+>> +		usbphy1: phy@4b0000 {
+>> +			compatible = "qcom,ipq5332-usb-uniphy";
+>> +			reg = <0x4b0000 0x800>;
+> Please pad the address part to 8 hex digits with leading zeroes.
+Sure, will add.
+>
+>> +
+>> +			clocks = <&gcc GCC_PCIE3X1_PHY_AHB_CLK>,
+>> +				 <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
+>> +				 <&gcc GCC_USB0_PIPE_CLK>;
+>> +			clock-names = "ahb",
+>> +				      "cfg_ahb",
+>> +				      "pipe";
+>> +
+>> +			resets =  <&gcc GCC_USB0_PHY_BCR>;
+> Looks like there's a double space after '='
+Sure, will remove the extra space.
+
+--
+Thanks,
+Praveenkumar
+>
+> Konrad
+
 
