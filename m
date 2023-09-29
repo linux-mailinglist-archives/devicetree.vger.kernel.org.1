@@ -1,138 +1,111 @@
-Return-Path: <devicetree+bounces-4588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ACC37B336F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:20:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A85777B3382
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:25:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 5DE901C20AE7
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 13:20:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 465572831E7
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 13:25:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D087D1A5A5;
-	Fri, 29 Sep 2023 13:20:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 365481A5AB;
+	Fri, 29 Sep 2023 13:25:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 458651A5A6
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 13:20:06 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 756EC1AE;
-	Fri, 29 Sep 2023 06:20:05 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38TC1WVv031729;
-	Fri, 29 Sep 2023 13:19:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=MGd6a1KNha1TtXmvUN6zwjJR/C8IAa1kIOH2EyPjnEg=;
- b=mruuFLnILh37gdWYhodD6KBVuXb9eCVUcwa8p9fqn3yfEpaZNgU6lu3QHvHrP4fts5t/
- dS9gJxI0xj1fRa8ks0SZAAmnBsQV3FqBN+kYx2DIWQqYFUfZaVg5joxm8na8sFqkufeX
- 6tLnxTeDBFo+zk3JNAjL66EkhmIi5yY9hBuMhyv44H1ua806axEYHWj2XdO9ECF0ATUc
- hJJF12UKJN6xYx3iWXhxk4hpxRJW0L9XDbOvJAxehmrIaRzxoq4Kbs1KuGkGfvsYt37r
- WIFsDvhlYE6nvn8/isNv4l4irB0bl9tNJcjuYHK0Prqf5ptyb8kTABp+66VQxpOhrfKU rQ== 
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3td3ggbq4c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Sep 2023 13:19:52 +0000
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 38TDFCS1014667;
-	Fri, 29 Sep 2023 13:19:48 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3t9s3m3gdg-1;
-	Fri, 29 Sep 2023 13:19:48 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 38TDJmSe018582;
-	Fri, 29 Sep 2023 13:19:48 GMT
-Received: from hu-maiyas-hyd.qualcomm.com (hu-nitirawa-hyd.qualcomm.com [10.213.109.152])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 38TDJmYL018580;
-	Fri, 29 Sep 2023 13:19:48 +0000
-Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 2342877)
-	id C5087571638; Fri, 29 Sep 2023 18:49:47 +0530 (+0530)
-From: Nitin Rawat <quic_nitirawa@quicinc.com>
-To: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        mani@kernel.org, alim.akhtar@samsung.com, bvanassche@acm.org,
-        avri.altman@wdc.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        cros-qcom-dts-watchers@chromium.org
-Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Nitin Rawat <quic_nitirawa@quicinc.com>
-Subject: [PATCH V4 4/4] dt-bindings: ufs: qcom: Align clk binding property for Qualcomm UFS
-Date: Fri, 29 Sep 2023 18:49:36 +0530
-Message-Id: <20230929131936.29421-5-quic_nitirawa@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230929131936.29421-1-quic_nitirawa@quicinc.com>
-References: <20230929131936.29421-1-quic_nitirawa@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Emz6c0hyesOza5Re1vJDOOzVHTm0MfXW
-X-Proofpoint-ORIG-GUID: Emz6c0hyesOza5Re1vJDOOzVHTm0MfXW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-29_11,2023-09-28_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- priorityscore=1501 bulkscore=0 malwarescore=0 clxscore=1015
- lowpriorityscore=0 suspectscore=0 mlxscore=0 spamscore=0 adultscore=0
- phishscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2309180000 definitions=main-2309290114
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAF5D11718
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 13:25:02 +0000 (UTC)
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D4DD11F
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 06:25:00 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso1904103366b.1
+        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 06:25:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695993899; x=1696598699; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qagqmXxFav4/9NIFK4762ByrJQt8UaYPm4niYdjtpZs=;
+        b=UhyPKj/6Lfgzj8AUJbDbZ2uX39qMRQN+uf494SanraWUST+olUUTuKzoY4GQQQVA/t
+         kECOgirNcm7aU/WTX1O1STdVdki380GnMO8waBrA3dmtjmQ2XAmD/1AfVaTZBw0Of5Dd
+         g47v/qwSFGzvsBm0BC7dR/mm90l2xs/naFkH67YL0gR+KfGbXN3fqcHO6hSl8WtGgjCH
+         d1TuUdGFfhpQVEhwZjWCtc+8RJXs6Z3x40g2i0eQ94z2a52zX0qLHNcmbNhwE1GDsl5B
+         pzn8iDXs0yXjLEl1wBiXebDkMymH8g8NAs1SbxyFQW51dzYGzsSYhBaRJnhupk0keBtP
+         1IgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695993899; x=1696598699;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qagqmXxFav4/9NIFK4762ByrJQt8UaYPm4niYdjtpZs=;
+        b=ktAeT813mQ7QCQQuafvbCCRG/k+zrLt2xxzKwsqQWFdD241FRrrXKO+XU+NnsvvkJV
+         kWfzZUYH7dAKaVeP0HwF2c8aDl93OTN3530PUYPbqZwRJ7mp8JUjc8cocfTG726XDIgx
+         Otabww4CAYM5GOe2vybGDLr4EDv5f+togDJVPAAeOMK/AOjrmVb5GtJoKGMstmrHmSNz
+         kgmToZboS7QBRsfQVU/P+ebKifnEpqnUNtXmEcH5a5+IP2tZc0I/1v6juoGeaVgREiP7
+         RexfZXSv6OrY/XTEgLiY5jrSHucVyp9QD0PtzU8XApTrtExjChlrkEUH6lQz/dKnI6gu
+         IeIQ==
+X-Gm-Message-State: AOJu0YzZhTuC3WOyMOsWTot5fxX8sv/OgFe+NzekBu40EexhAb5dH/S2
+	fIvVtI8H7xIfGFvN2ZHPAzMMjQ==
+X-Google-Smtp-Source: AGHT+IG85WjZj97kdYjVbN8tWOk2oDGOZdRoVaBMP7/YHT4SQd1vdx4B2NPE04FCujEA10aJrFrTYQ==
+X-Received: by 2002:a17:907:8b8c:b0:9a1:bd33:4389 with SMTP id tb12-20020a1709078b8c00b009a1bd334389mr5309521ejc.74.1695993899056;
+        Fri, 29 Sep 2023 06:24:59 -0700 (PDT)
+Received: from [192.168.0.123] (178235177217.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.217])
+        by smtp.gmail.com with ESMTPSA id h13-20020a170906584d00b00992b8d56f3asm12377832ejs.105.2023.09.29.06.24.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Sep 2023 06:24:58 -0700 (PDT)
+Message-ID: <954ec977-f6a1-b8de-d267-74c86eca5161@linaro.org>
+Date: Fri, 29 Sep 2023 15:25:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH V4 2/4] arm64: dts: qcom: sc7280: Add UFS nodes for sc7280
+ soc
+To: Nitin Rawat <quic_nitirawa@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, mani@kernel.org, alim.akhtar@samsung.com,
+ bvanassche@acm.org, avri.altman@wdc.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ cros-qcom-dts-watchers@chromium.org
+Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230929131936.29421-1-quic_nitirawa@quicinc.com>
+ <20230929131936.29421-3-quic_nitirawa@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230929131936.29421-3-quic_nitirawa@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-Align the binding property for clock such that "clocks" property
-comes first followed by "clock-names" property.
 
-Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- .../devicetree/bindings/ufs/qcom,ufs.yaml        | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-index 802640efa956..d17bdc4e934f 100644
---- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-+++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-@@ -295,14 +295,6 @@ examples:
-                             <&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_UFS_MEM_CFG>;
-             interconnect-names = "ufs-ddr", "cpu-ufs";
+On 9/29/23 15:19, Nitin Rawat wrote:
+> Add UFS host controller and PHY nodes for sc7280 soc.
+> 
+> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+> ---
+Not sure if intentionally, but you didn't include my review tags from v3.
 
--            clock-names = "core_clk",
--                          "bus_aggr_clk",
--                          "iface_clk",
--                          "core_clk_unipro",
--                          "ref_clk",
--                          "tx_lane0_sync_clk",
--                          "rx_lane0_sync_clk",
--                          "rx_lane1_sync_clk";
-             clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
-                      <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
-                      <&gcc GCC_UFS_PHY_AHB_CLK>,
-@@ -311,6 +303,14 @@ examples:
-                      <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
-                      <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
-                      <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
-+            clock-names = "core_clk",
-+                          "bus_aggr_clk",
-+                          "iface_clk",
-+                          "core_clk_unipro",
-+                          "ref_clk",
-+                          "tx_lane0_sync_clk",
-+                          "rx_lane0_sync_clk",
-+                          "rx_lane1_sync_clk";
-             freq-table-hz = <75000000 300000000>,
-                             <0 0>,
-                             <0 0>,
---
-2.17.1
+[...]
 
+> +			interconnects = <&aggre1_noc MASTER_UFS_MEM 0 &mc_virt SLAVE_EBI1 0>,
+> +					<&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_UFS_MEM_CFG 0>;
+include dt-bindings/interconnect/qcom,icc.h
+
+interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
+		 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+		<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+		 &cnoc2 SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ALWAYS>;
+
+Konrad
 
