@@ -1,75 +1,49 @@
-Return-Path: <devicetree+bounces-4667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C2377B3655
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 17:06:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A26507B3681
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 17:18:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 0FE1A282B28
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:06:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 2FF06B20CAF
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:18:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B43D541A83;
-	Fri, 29 Sep 2023 15:06:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C231C51B93;
+	Fri, 29 Sep 2023 15:18:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D87020E0
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 15:06:25 +0000 (UTC)
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDC811A7;
-	Fri, 29 Sep 2023 08:06:22 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id 5b1f17b1804b1-4060b623e64so5166795e9.0;
-        Fri, 29 Sep 2023 08:06:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1695999981; x=1696604781; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=I+HDInQo6A1OIfSQ4kDLBbQAIE/uOQhrvXDem09PR3k=;
-        b=lupwsMhYhrKqD+UUkkiBkP2KN8oPDTsweMZGxSt0FI6jY71+XWypyyRABzACjaFuZc
-         gMh+IbK6iHqyvKr3DgpIMwQIcc5eEHS5A7e1UoNVP+pKHhMJqXfw293J4Qu4H73wuWK1
-         ssUpbX9Im+FNl+z2rthvk4b8+6q4yis0rB/PZtKJq5pDMmwBFEHDq7zQ1o+DP1tzd3dV
-         woknr0MvA+kSl66dtbhFgl4q4k3E9mZm2Kc7LBikzodaLIzG56PXEHU9yZ9NBhaN8Cjv
-         EMvXYeKE8O/8H3Wcb25qLAb2cXm0ZG5PefHdziSFO1Yq2wHaYXC9qlDcRnEIPxcI6aub
-         i69A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695999981; x=1696604781;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=I+HDInQo6A1OIfSQ4kDLBbQAIE/uOQhrvXDem09PR3k=;
-        b=OPQj3w4Q2zQ7OBQUrsL/29dM8iL53ZjqxF7oS4m/NcS3RBnxrXByfBcBrT+UmLLu3C
-         LiX9LvXjKKqdFcqJFemk5x7STFSU+TNXl+4e49pHdkLo8CmmDNEHgj1qewWCof0UCEsz
-         aFGYGnzFKkrEm4SDeRjIlHrO+i30gQLHZN47PYua9kTgvCNd2z91ptKo6rWt6RzAJ8OO
-         v3I7MWXb8y6iVtEx1DAwXnBWJUqLCYpqvyCsKRbsSwKc2buHbhoL74qVggmFt0TtwF3i
-         +bAV3zDSr7Jw3F20EQF40QNalUq0fFIrzHYtZzSBqOZTbXTFaZIYCy0w+cSuaSW2bVT7
-         GyCw==
-X-Gm-Message-State: AOJu0YxXZhZK+DCUcXohq+GjefH2+VWXtYVdnFwYITLfU7awLd8L97Tv
-	hKNaTz/xFwsuWNu+QtNqWjt6/toJ4ZX/8g==
-X-Google-Smtp-Source: AGHT+IFajsTW5J93K/OzzdCwONkeonYv1BhbbEV7MBCbRDZMmPHOe8BVXYC6nzOe54XQkf98bAaeqA==
-X-Received: by 2002:a7b:cd85:0:b0:402:ebe1:7960 with SMTP id y5-20020a7bcd85000000b00402ebe17960mr4202891wmj.2.1695999980586;
-        Fri, 29 Sep 2023 08:06:20 -0700 (PDT)
-Received: from localhost ([2a02:810d:1640:10d8:9259:8ee2:26ea:3669])
-        by smtp.gmail.com with ESMTPSA id y19-20020a1c4b13000000b00405bbfd5d16sm1606110wma.7.2023.09.29.08.06.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Sep 2023 08:06:20 -0700 (PDT)
-From: Joerg Schambacher <joerg.hifiberry@gmail.com>
-To: 
-Cc: a-krasser@ti.com,
-	joerg@hifiberry.com,
-	Joerg Schambacher <joerg.hifiberry@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BAD651B8A
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 15:18:49 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0B5FD6;
+	Fri, 29 Sep 2023 08:18:46 -0700 (PDT)
+Received: from uno.localdomain (mob-5-90-203-152.net.vodafone.it [5.90.203.152])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BBE5D6EF;
+	Fri, 29 Sep 2023 17:17:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1696000621;
+	bh=pNlNSfMaqFoeS/Mcu3IjP7IHmVIxByHOanuSCV9CGxM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=FSKaAgR+lh6QTp5RzDLA9sWE2pgoCxHns9EEiVtYfOXKWCftxDDdRkgN/KL+uWK3x
+	 HDfzAKM4YW11/8YX1Yc9S8gDjrDozt/FLJIwYTy4Gu5RnIGR1hiUnOybrIno/kFf7G
+	 Vyb6i7orCa0RsnrgJynum8fGvIF0j7DhVYpMyfcY=
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	alsa-devel@alsa-project.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/2] ASoC: pcm512x: Adds bindings for TAS575x devices
-Date: Fri, 29 Sep 2023 17:05:55 +0200
-Message-Id: <20230929150555.405388-1-joerg.hifiberry@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	martink@posteo.de
+Subject: [PATCH 0/7] media: bindings: Fix handling of video-interface-device
+Date: Fri, 29 Sep 2023 17:18:18 +0200
+Message-ID: <20230929151825.6535-1-jacopo.mondi@ideasonboard.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,50 +52,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The TAS5754/6 power amplifiers use the same pcm512x driver with
-only minor restictions described in the bindings document.
+As discussed in
+https://patchwork.linuxtv.org/project/linux-media/patch/20230928121424.388019-1-festevam@gmail.com/
 
-Signed-off-by: Joerg Schambacher <joerg.hifiberry@gmail.com>
----
- Documentation/devicetree/bindings/sound/pcm512x.txt | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+all properties specified in video-interface-device.yaml are valid for
+image sensors.
 
-diff --git a/Documentation/devicetree/bindings/sound/pcm512x.txt b/Documentation/devicetree/bindings/sound/pcm512x.txt
-index 3aae3b41bd8e..77006a4aec4a 100644
---- a/Documentation/devicetree/bindings/sound/pcm512x.txt
-+++ b/Documentation/devicetree/bindings/sound/pcm512x.txt
-@@ -1,12 +1,12 @@
--PCM512x audio CODECs
-+PCM512x and TAS575x audio CODECs/amplifiers
- 
- These devices support both I2C and SPI (configured with pin strapping
--on the board).
-+on the board). The TAS575x devices only support I2C.
- 
- Required properties:
- 
--  - compatible : One of "ti,pcm5121", "ti,pcm5122", "ti,pcm5141" or
--                 "ti,pcm5142"
-+  - compatible : One of "ti,pcm5121", "ti,pcm5122", "ti,pcm5141",
-+                 "ti,pcm5142", "ti,tas5754" or "ti,tas5756"
- 
-   - reg : the I2C address of the device for I2C, the chip select
-           number for SPI.
-@@ -25,6 +25,7 @@ Optional properties:
-     through <6>.  The device will be configured for clock input on the
-     given pll-in pin and PLL output on the given pll-out pin.  An
-     external connection from the pll-out pin to the SCLK pin is assumed.
-+    Caution: the TAS-desvices only support gpios 1,2 and 3
- 
- Examples:
- 
--- 
-2.34.1
+Some schema however either allow only some of them one by one, or restrict
+the supported values for no specific reason.
+
+Fix this by allowing all properties from video-interface-device.yaml
+and removing restrictions on the accepted values.
+
+
+Jacopo Mondi (7):
+  media: bindings: hynix,hi846: Add video-interface-device properties
+  media: bindings: hynix,hi846: Restrict endpoint properties
+  media: bindings: ovti,ov02a10: Fix handling of video-interface-device
+  media: bindings: ovti,ov4689: Fix handling of video-interface-device
+  media: bindings: ovti,ov5640: Fix handling of video-interface-device
+  media: bindings: sony,imx214: Fix handling of video-interface-device
+  media: bindings: sony,imx415: Fix handling of video-interface-device
+
+ .../devicetree/bindings/media/i2c/hynix,hi846.yaml     | 10 ++++++++--
+ .../devicetree/bindings/media/i2c/ovti,ov02a10.yaml    |  8 +-------
+ .../devicetree/bindings/media/i2c/ovti,ov4689.yaml     |  6 +-----
+ .../devicetree/bindings/media/i2c/ovti,ov5640.yaml     |  7 +------
+ .../devicetree/bindings/media/i2c/sony,imx214.yaml     |  2 +-
+ .../devicetree/bindings/media/i2c/sony,imx415.yaml     | 10 +---------
+ 6 files changed, 13 insertions(+), 30 deletions(-)
+
+--
+2.42.0
 
 
