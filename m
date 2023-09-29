@@ -1,215 +1,187 @@
-Return-Path: <devicetree+bounces-4494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3194E7B2D11
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 09:32:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 555907B2D4F
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 09:56:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id D5174283475
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 07:32:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id D10962829A8
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 07:56:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF84DC2C2;
-	Fri, 29 Sep 2023 07:32:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B087C2D0;
+	Fri, 29 Sep 2023 07:56:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26058399
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 07:32:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B32C9C2C6
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 07:56:06 +0000 (UTC)
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E20DC1A7;
-	Fri, 29 Sep 2023 00:32:42 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38T743Sl032337;
-	Fri, 29 Sep 2023 07:32:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=1DN22jsaJg5O2CBt7TjgYJ08jbMjYR7N9ig9ufUnkxQ=;
- b=PiGjT8hfZnyU/ld7IbHtZ4Wg6Dzub1ICHd7S0R8WenDGhjYY9oYps/ovaJRhhFKgmfba
- FM+hwv7CYDaPi3kdQ+ehiv1PDdhYKQZ2v6pqYo9sBy93DbncBk4zjCJuLV11TsLC++9a
- fObWEDj3QrUyzBINfYKanf+bQjrWh3FtvlRNj7NYQGJ1E2CWijzEKtEBYXk29F0vaPs6
- uEJv8rp6E+LjyDvA3zbtn29YghjvmJD7HST6wrpiW4X+gP998i6aGs7WfkATwOvef4UU
- C5sD3PYKRk34VVGn6b5lZFJjtKi36OVvu/srx2NwlzdUnX8P4OnM0zUrGxEomY2eC/TE 3A== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tctcnkxcq-1
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D0E219F;
+	Fri, 29 Sep 2023 00:56:05 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38T7Db1L030144;
+	Fri, 29 Sep 2023 07:55:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Aq07fqq33pAukshYyhActJ+ssU9SFqTlkx54bSTgIc4=;
+ b=j8VLwfzBJF18kqqMR0DjV1AUDxcLAom+Xl/EmSkchxKKLuCHNyvm36YMOpjVdRnChm1Z
+ ny7VoLYGRpztrh5Ryp5d3WkYUbKCzqaGKos6v9thhk126UDYHyb2y2dPdNG6yK5ZTHR/
+ UmfW689CrHjS1+E0ih02Ql+dP48ddLkYVTBbbhwSoaBTgRRQMriHJRnd4E/2/1/KtClG
+ 8eo3hMQQ+15cgKeTjGxQI4fpCYY3JvNKgyC0f5KjF3lmimPbYXztsWJB1MsklzZQJSK3
+ ZjLM8AZvyebDu13vOyX8RPJNDbgLh14r+aCiCDSBJb20ryYIrfnR16Oz7DtnecMky9UP Ig== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3td8wdt589-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Sep 2023 07:32:28 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38T7WRRe002804
+	Fri, 29 Sep 2023 07:55:26 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38T7tNpw029488
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Sep 2023 07:32:27 GMT
-Received: from varda-linux.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Fri, 29 Sep 2023 00:32:21 -0700
-Date: Fri, 29 Sep 2023 13:02:17 +0530
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-CC: <ilia.lin@kernel.org>, <agross@kernel.org>, <andersson@kernel.org>,
-        <rafael@kernel.org>, <viresh.kumar@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <quic_kathirav@quicinc.com>, <linux-pm@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
-Subject: Re: [PATCH v1 04/10] clk: qcom: apss-ipq6018: ipq5332: add safe
- source switch for a53pll
-Message-ID: <20230929073216.GB15001@varda-linux.qualcomm.com>
-References: <cover.1693996662.git.quic_varada@quicinc.com>
- <5e3c29df2b42cceb8072b00546a78e1b99b2d374.1693996662.git.quic_varada@quicinc.com>
- <b0508a69-130d-4b05-9dfc-399e482dc2ae@linaro.org>
+	Fri, 29 Sep 2023 07:55:23 GMT
+Received: from [10.216.56.186] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Fri, 29 Sep
+ 2023 00:55:17 -0700
+Message-ID: <59c9dbdb-8673-8dc7-ecca-32ff120ccf80@quicinc.com>
+Date: Fri, 29 Sep 2023 13:25:09 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <b0508a69-130d-4b05-9dfc-399e482dc2ae@linaro.org>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH V12 2/3] dt-bindings: pwm: add IPQ6018 binding
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <thierry.reding@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <ndesaulniers@google.com>,
+        <trix@redhat.com>, <baruch@tkos.co.il>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <llvm@lists.linux.dev>
+CC: <linux-pwm@vger.kernel.org>, <u.kleine-koenig@pengutronix.de>,
+        <nathan@kernel.org>
+References: <20230925065915.3467964-1-quic_devipriy@quicinc.com>
+ <20230925065915.3467964-3-quic_devipriy@quicinc.com>
+ <42338d41-1b90-4f77-958e-479d32e0ce1d@linaro.org>
+Content-Language: en-US
+From: Devi Priya <quic_devipriy@quicinc.com>
+In-Reply-To: <42338d41-1b90-4f77-958e-479d32e0ce1d@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: t8oLmcMdK30vg9q39g9Z7_94n6YfOXsV
-X-Proofpoint-ORIG-GUID: t8oLmcMdK30vg9q39g9Z7_94n6YfOXsV
+X-Proofpoint-ORIG-GUID: AH63YybTtZJ9y3v7PS-rCRW7ELPgjjSP
+X-Proofpoint-GUID: AH63YybTtZJ9y3v7PS-rCRW7ELPgjjSP
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2023-09-29_05,2023-09-28_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- priorityscore=1501 lowpriorityscore=0 phishscore=0 suspectscore=0
- clxscore=1015 impostorscore=0 mlxlogscore=999 malwarescore=0 mlxscore=0
- spamscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2309290062
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ mlxlogscore=999 malwarescore=0 lowpriorityscore=0 impostorscore=0
+ phishscore=0 mlxscore=0 clxscore=1015 suspectscore=0 bulkscore=0
+ adultscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2309290066
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Thu, Sep 07, 2023 at 10:31:55AM +0200, Konrad Dybcio wrote:
-> On 7.09.2023 07:21, Varadarajan Narayanan wrote:
-> > Stromer Plus PLL found on IPQ53xx doesn't support dynamic
-> > frequency scaling. To achieve the same, we need to park the APPS
-> > PLL source to GPLL0, re configure the PLL and then switch the
-> > source to APSS_PLL_EARLY.
-> >
-> > To support this, register a clock notifier to get the PRE_RATE
-> > and POST_RATE notification. Change the APSS PLL source to GPLL0
-> > when PRE_RATE notification is received, then configure the PLL
-> > and then change back the source to APSS_PLL_EARLY.
-> >
-> > Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
-> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > ---
-> >  drivers/clk/qcom/apss-ipq6018.c | 54 ++++++++++++++++++++++++++++++++++++++++-
-> >  1 file changed, 53 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/clk/qcom/apss-ipq6018.c b/drivers/clk/qcom/apss-ipq6018.c
-> > index 4e13a08..ffb6ab5 100644
-> > --- a/drivers/clk/qcom/apss-ipq6018.c
-> > +++ b/drivers/clk/qcom/apss-ipq6018.c
-> > @@ -9,8 +9,11 @@
-> >  #include <linux/clk-provider.h>
-> >  #include <linux/regmap.h>
-> >  #include <linux/module.h>
-> > +#include <linux/clk.h>
-> > +#include <linux/soc/qcom/smem.h>
-> >
-> >  #include <dt-bindings/clock/qcom,apss-ipq.h>
-> > +#include <dt-bindings/arm/qcom,ids.h>
-> >
-> >  #include "common.h"
-> >  #include "clk-regmap.h"
-> > @@ -84,15 +87,64 @@ static const struct qcom_cc_desc apss_ipq6018_desc = {
-> >  	.num_clks = ARRAY_SIZE(apss_ipq6018_clks),
-> >  };
-> >
-> > +static int cpu_clk_notifier_fn(struct notifier_block *nb, unsigned long action,
-> > +				void *data)
-> > +{
-> > +	u8 index;
-> > +	int err;
-> > +
-> > +	if (action == PRE_RATE_CHANGE)
-> > +		index = P_GPLL0;
-> > +	else if (action == POST_RATE_CHANGE)
-> > +		index = P_APSS_PLL_EARLY;
-> > +	else
-> > +		return 0;
-> > +
-> > +	err = clk_rcg2_mux_closest_ops.set_parent(&apcs_alias0_clk_src.clkr.hw,
-> > +						  index);
-> Adding a variable for clk_hw within the apcs_alias0 clock would
-> make this easier to digest, I think.
->
-> And if we wanna be even less error-prone, you can reference the
-> ops of this clock in an indirect way.
 
-Will change it as
 
-	struct clk_hw *hw;
+On 9/25/2023 12:41 PM, Krzysztof Kozlowski wrote:
+> On 25/09/2023 08:59, Devi Priya wrote:
+>> DT binding for the PWM block in Qualcomm IPQ6018 SoC.
+>>
+>> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+>> Co-developed-by: Baruch Siach <baruch.siach@siklu.com>
+>> Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
+>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+> 
+> ...
+> 
+>> diff --git a/Documentation/devicetree/bindings/pwm/ipq-pwm.yaml b/Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
+>> new file mode 100644
+>> index 000000000000..857086ad539e
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
+> 
+> Filename matching compatible, so qcom,ipq6018-pwm.yaml
+okay
+> 
+>> @@ -0,0 +1,53 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pwm/ipq-pwm.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm IPQ6018 PWM controller
+>> +
+>> +maintainers:
+>> +  - Baruch Siach <baruch@tkos.co.il>
+>> +
+>> +properties:
+>> +  "#pwm-cells":
+>> +    const: 2
+>> +
+>> +  compatible:
+>> +    const: qcom,ipq6018-pwm
+> 
+> compatible is always the first property.
+okay
+> 
+>> +
+>> +  reg:
+>> +    description: Offset of PWM register in the TCSR block.
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - "#pwm-cells"
+> 
+> And this order must be the same as in properties.
+okay
+> 
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/qcom,gcc-ipq6018.h>
+>> +
+>> +    syscon@1937000 {
+>> +        compatible = "qcom,tcsr-ipq6018", "syscon", "simple-mfd";
+>> +        reg = <0x01937000 0x21000>;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +        ranges = <0 0x1937000 0x21000>;
+> 
+> Drop this node, not related. The parent binding could have full example,
+> on the other hand. Additionally, I have doubts that you really tested
+> the parent binding.
+Sure, will drop the syscon node
 
-	hw = &apcs_alias0_clk_src.clkr.hw;
-	err = hw->init->ops->set_parent(hw, index);
-
-> > +	return notifier_from_errno(err);
-> > +}
-> > +
-> > +static struct notifier_block cpu_clk_notifier = {
-> > +	.notifier_call = cpu_clk_notifier_fn,
-> > +};
-> > +
-> >  static int apss_ipq6018_probe(struct platform_device *pdev)
-> >  {
-> >  	struct regmap *regmap;
-> > +	u32 soc_id;
-> > +	int ret;
-> > +
-> > +	ret = qcom_smem_get_soc_id(&soc_id);
-> > +	if (ret)
-> > +		return ret;
-> >
-> >  	regmap = dev_get_regmap(pdev->dev.parent, NULL);
-> >  	if (!regmap)
-> >  		return -ENODEV;
-> >
-> > -	return qcom_cc_really_probe(pdev, &apss_ipq6018_desc, regmap);
-> > +	ret = qcom_cc_really_probe(pdev, &apss_ipq6018_desc, regmap);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	switch (soc_id) {
-> > +	/*
-> > +	 * Only below variants of IPQ53xx support scaling
-> > +	 */
-> 1. /* Keep this in a 1-line comment */
-
-Ok
-
-> 2. why? explain the reasoning in the commit message
-
-Ok
-
-Thanks
-Varada
-
-> > +	case QCOM_ID_IPQ5332:
-> > +	case QCOM_ID_IPQ5322:
-> > +	case QCOM_ID_IPQ5300:
-> > +		ret = clk_notifier_register(apcs_alias0_clk_src.clkr.hw.clk,
-> > +						&cpu_clk_notifier);
-> > +		if (ret)
-> > +			return ret;
-> > +		break;
-> > +	default:
-> > +		break;
-> > +	}
-> > +
-> > +	return 0;
-> >  }
-> >
-> >  static struct platform_driver apss_ipq6018_driver = {
+Thanks,
+Devi Priya
+> 
+>> +
+>> +        pwm: pwm@a010 {
+>> +            compatible = "qcom,ipq6018-pwm";
+> 
+> Best regards,
+> Krzysztof
+> 
 
