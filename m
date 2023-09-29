@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-4596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75C3E7B33B9
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:35:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 669087B33BB
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:36:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id D308C283CAC
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 13:35:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 1654B283CBA
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 13:36:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE3851A712;
-	Fri, 29 Sep 2023 13:35:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE84A1A735;
+	Fri, 29 Sep 2023 13:36:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6474811718
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 13:35:19 +0000 (UTC)
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B8651A8
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 06:35:17 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9a9cd066db5so1968315566b.0
-        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 06:35:17 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A54211A71F
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 13:36:11 +0000 (UTC)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7898B1AC
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 06:36:08 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9b2a3fd5764so933522466b.3
+        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 06:36:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695994515; x=1696599315; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1695994566; x=1696599366; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YlAAhroIKSpL8+fyShtvqU4a0850NAbVSPJtR3BZY+4=;
-        b=WaY5wUNgvCKUIzxujyB0gQfeq17jhI3LlZKWLsy+fDvAe73SivI9fxvp4GLq0qzpk0
-         4vH9TIaVczXttp7p5Z8xzHnJL3e3Hc0LZhvwtBOWnrNrT2qztL7/YooxSDME9fhAHTFs
-         tA59MT75IlhbKs8+z283q2ddFZ154mSYrtfgvjbjEaWnN59nbm/Ne7d73CoYFcwiTDlQ
-         g19ZsszQsne5pTN6b1UjFlL2fB2cag1bQEC/rVfEz8npNLCyYqVyCrf3E5CywAyU/nHk
-         Knurg91QzrwLPv/vpu8i9f/fiY9VxblPKNiMdkfFVvLulfSakoorttimMKm3gMtAIakO
-         qrFg==
+        bh=dX3EzbJ03kiWTkjRF5Z0MKioiAU0uGpyTvDAMJfhWR8=;
+        b=mzes1ZywjR/25gy+Ia406hFKM9n0KP+jt1U4BFerJEMcy7hCibiJxUttSNMVn51zj3
+         OcBlBuxjnj+US8oGOtQsiRP/lkN10ukOGYCgeO8M/StEK7ASQr5k0i5L2LfHFtLgFzSG
+         juYrGeKjrPW9mLk3Pq32ZenP3ErYA1TnZGBwyQ46qTbkfWgfAdv8fR4QpzzpX24o5tVQ
+         5O3zqqmfdwkXefovdTx073hGmlG7cf0F5rP8tm8PJadjLwtyOQ/fgHbb4FHkxBMdh5Cy
+         RnTi67WJnH9hYfo827Bghif27oCtpzV4BxqwhpskKCPhur871kHM26RH9kBTVfXVpxp6
+         v8BQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695994515; x=1696599315;
+        d=1e100.net; s=20230601; t=1695994566; x=1696599366;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YlAAhroIKSpL8+fyShtvqU4a0850NAbVSPJtR3BZY+4=;
-        b=oxHI3QDNP9Z9kW/TKiQNMKfzaAfdfKldSkm0Vpj4cDtgbl9anX3hOhJ2TpqMVYmbCx
-         Q0TpRxwi4YJCgthFzSPbE5M8Ky+oUJNsd+3niBgZLGOjHxhoBX6E/buCPh+cM11FLlEq
-         XGL4nM6SqC+6VFQF7FacVeaOpn55jU0J4Peg5fBa88jKeIbJGmajmxpxylAvDv9FV+xZ
-         1It2D8qSWYUHMKiYY1qJ/tJdUAwMs685LoiV3fXUeovdnUzfvgjU4k2D+6bBfSbw6pWM
-         jg0YrC4j4O79fONWJCX7GOQWI/eUo5xmtmr/kuYWZDu1RvgI0y6WHHPwiV2S6hEUgVIg
-         2yLw==
-X-Gm-Message-State: AOJu0YxWBE08cKoOJ6hkc2k+JTFZ1VP5MXHbk8Kb9iOJ5Hce8vBtjrUi
-	uopmPHzjc1HrBWg1zSV83meUag==
-X-Google-Smtp-Source: AGHT+IFB0gWCRdIz3y4FpDLEeFeD/l2I4205KcVLY5FFCUf6mhKQfziV+cURqsALwr4kjpJ9713mCQ==
-X-Received: by 2002:a17:906:2189:b0:9b2:7584:80dc with SMTP id 9-20020a170906218900b009b2758480dcmr3707193eju.20.1695994515614;
-        Fri, 29 Sep 2023 06:35:15 -0700 (PDT)
+        bh=dX3EzbJ03kiWTkjRF5Z0MKioiAU0uGpyTvDAMJfhWR8=;
+        b=sTtSPz6KTvQX+Bob5LDgfyxVSgDiJtbx6VgVMkfZ0X2ORqHjPhFUhuVMap2+Vovut7
+         8JcRQCVyF3BX5KNbNGflpdNvlEuMsKbRRY0rSeXByuG/gK5uW6xM+f2+23mcs2Ur5dM5
+         jpgl4uQCldhcvvxZooJ5Jhv1aPjU306q6FC9XaZvF7cHxO+Ls5rZd0Gy7iSBid2UHqZm
+         l2OaJdMrI9ycISDqlreOBgLUfQ7jiKrXir1ef4hWMZky8V2rgIRZQrR6NjZG5+QNycjJ
+         ZQ97NNM0oAG+Nw8LTSvwj6dPVyQeyhWBoOkDK3MN3rcbcKU02n9fhGZ5YU2ZGEgxm8kD
+         WVUw==
+X-Gm-Message-State: AOJu0Yy0v95ov72mcs1HQETRU5Jm97c5L/vOCGpz5cIuPDbQ99LxX7W3
+	PDSWkxLbpCxsKrQQIfm/0RFa+w==
+X-Google-Smtp-Source: AGHT+IEI3AsAY5gvqlvssgXWfjMGDIL9ozYTysNBuCR2Lsgq307OmkUqGFKI5pXY7nlqcaper59rkw==
+X-Received: by 2002:a17:906:29e:b0:9b0:552c:b36c with SMTP id 30-20020a170906029e00b009b0552cb36cmr4212980ejf.21.1695994566618;
+        Fri, 29 Sep 2023 06:36:06 -0700 (PDT)
 Received: from [192.168.0.123] (178235177217.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.217])
-        by smtp.gmail.com with ESMTPSA id i22-20020a17090671d600b009a193a5acffsm12231752ejk.121.2023.09.29.06.35.13
+        by smtp.gmail.com with ESMTPSA id rf19-20020a1709076a1300b009b2c5363ebasm2289902ejc.26.2023.09.29.06.36.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Sep 2023 06:35:15 -0700 (PDT)
-Message-ID: <8dd470e5-ce33-3d33-98f1-e66935ca7b56@linaro.org>
-Date: Fri, 29 Sep 2023 15:35:17 +0200
+        Fri, 29 Sep 2023 06:36:04 -0700 (PDT)
+Message-ID: <02eb9847-62ea-e453-0745-6f6ff46f3ad0@linaro.org>
+Date: Fri, 29 Sep 2023 15:36:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,68 +64,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.1
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sc7280: Add Camera Control
- Interface busses
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: qcm6490-fairphone-fp5: Enable CCI
+ busses
 Content-Language: en-US
 To: Luca Weiss <luca.weiss@fairphone.com>, Andy Gross <agross@kernel.org>,
  Bjorn Andersson <andersson@kernel.org>,
  Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>,
  Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org
 Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
  linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20230929-sc7280-cci-v1-0-16c7d386f062@fairphone.com>
- <20230929-sc7280-cci-v1-2-16c7d386f062@fairphone.com>
+ <20230929-sc7280-cci-v1-3-16c7d386f062@fairphone.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230929-sc7280-cci-v1-2-16c7d386f062@fairphone.com>
+In-Reply-To: <20230929-sc7280-cci-v1-3-16c7d386f062@fairphone.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 
 
 On 9/29/23 10:01, Luca Weiss wrote:
-> Add the CCI busses found on sc7280 and their pinctrl states.
+> Enable the CCI busses where sensors are connected to.
 > 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
->   arch/arm64/boot/dts/qcom/sc7280.dtsi | 136 +++++++++++++++++++++++++++++++++++
->   1 file changed, 136 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 66f1eb83cca7..65550de2e4ff 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -3793,6 +3793,86 @@ videocc: clock-controller@aaf0000 {
->   			#power-domain-cells = <1>;
->   		};
->   
-> +		cci0: cci@ac4a000 {
-> +			compatible = "qcom,sc7280-cci", "qcom,msm8996-cci";
-> +			reg = <0 0x0ac4a000 0 0x1000>;
-> +			interrupts = <GIC_SPI 460 IRQ_TYPE_EDGE_RISING>;
-> +			power-domains = <&camcc CAM_CC_TITAN_TOP_GDSC>;
-> +
-> +			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-> +				 <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-> +				 <&camcc CAM_CC_CCI_0_CLK>,
-> +				 <&camcc CAM_CC_CCI_0_CLK_SRC>;
-> +			clock-names = "camnoc_axi",
-> +				      "slow_ahb_src",
-> +				      "cpas_ahb",
-> +				      "cci",
-> +				      "cci_src";
-I guess this is more of a question to e.g. Bryan, but are all of these 
-clocks actually necessary?
+> Not covered here is the regulator used for pull-up on the I2C busses.
+> This would be pm8008_l6 (L6P).
+Does it make sense to enable non-functional hw then? Or is it on by default?
 
 Konrad
 
