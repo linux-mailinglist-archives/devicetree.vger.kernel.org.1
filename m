@@ -1,117 +1,141 @@
-Return-Path: <devicetree+bounces-4598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7401F7B33C3
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:38:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD5457B33D1
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:39:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 80A301C209D2
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 13:38:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 762452834AC
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 13:39:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 382211A732;
-	Fri, 29 Sep 2023 13:38:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE7903B28D;
+	Fri, 29 Sep 2023 13:39:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55372154AE;
-	Fri, 29 Sep 2023 13:37:58 +0000 (UTC)
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 360CFDB;
-	Fri, 29 Sep 2023 06:37:56 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B6D1D2000E;
-	Fri, 29 Sep 2023 13:37:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1695994674;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=0omUdsyWTKIT8z37/TUf1W2KPzUVttYv5GHq4MLW7Hk=;
-	b=NqFkjUnFEWqRKoaUAYwyH+pNYNvBfQooTkZRXFxzHZpz4iSMwUstuVYc2lMq4Y4FLqBADn
-	Ud/x2576Ds756gbqgoQl6ZlzNfvlgSyvSFGFO4v40UEYd65d4c7q6ywo5CsDh0ZS+bIIT8
-	FZH8nhyyJ9b0kchaTHAcmbiX0jEFuKMGLjPIC2LvGaFM+tfyWHi2OwSar6vGm3zSLSlBEt
-	YiXliQKKUxinIYsPN31VhGy3xfzGxS+uSO5DI2C8O+gfxznSCuzth/d8+/gCXlGGcWq+bD
-	exOek4IT1pu0wSwNiQs14Pp+JwKM9pTgtUOV23ZPyd85w20vYkjnWCaINqFuig==
-Date: Fri, 29 Sep 2023 15:37:48 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: Francesco Dolcini <francesco@dolcini.it>,
-	Jun Li <jun.li@nxp.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"festevam@gmail.com" <festevam@gmail.com>,
-	"gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>,
-	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	robh+dt@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org,
-	Krzysztof@web.codeaurora.org,
-	"Kozlowski <krzysztof.kozlowski"@linaro.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: Re: [EXT] Re: [PATCH v2 2/3] usb: chipidea: imx: support disabling
- runtime-pm
-Message-ID: <20230929153748.63620770@booty>
-In-Reply-To: <DB7PR04MB450517AD9F25F47320835A5B8C03A@DB7PR04MB4505.eurprd04.prod.outlook.com>
-References: <20230504162312.1506763-1-luca.ceresoli@bootlin.com>
-	<PA4PR04MB96405EE2468555EA900B340189739@PA4PR04MB9640.eurprd04.prod.outlook.com>
-	<ZFjaNzY32x8o2XG7@francesco-nb.int.toradex.com>
-	<20230508151756.785ec07e@booty>
-	<20230529121825.71e9b6d6@booty>
-	<PA4PR04MB96405138465D215C34285F02894B9@PA4PR04MB9640.eurprd04.prod.outlook.com>
-	<ZKaWL3+ClI7iNr/4@francesco-nb.int.toradex.com>
-	<20230717184537.6d6ed607@booty>
-	<DB7PR04MB450573F8EA936E049F053A258C38A@DB7PR04MB4505.eurprd04.prod.outlook.com>
-	<20230718142504.075d0186@booty>
-	<DB7PR04MB4505560E7DCBC2523FD7A0FE8C39A@DB7PR04MB4505.eurprd04.prod.outlook.com>
-	<20230719184831.75ae8658@booty>
-	<DB7PR04MB45050B15EDA7A2A3940840308C3EA@DB7PR04MB4505.eurprd04.prod.outlook.com>
-	<20230720144916.01d49adb@booty>
-	<DB7PR04MB4505F28957A32F09BB84B27A8C3FA@DB7PR04MB4505.eurprd04.prod.outlook.com>
-	<20230721232750.0aea6e0f@booty>
-	<DB7PR04MB450517AD9F25F47320835A5B8C03A@DB7PR04MB4505.eurprd04.prod.outlook.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 575C03AC28
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 13:39:20 +0000 (UTC)
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F7AF1BC2;
+	Fri, 29 Sep 2023 06:38:26 -0700 (PDT)
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+	by mx0b-0016f401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38T27Rjw020569;
+	Fri, 29 Sep 2023 06:38:13 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-transfer-encoding : content-type; s=pfpt0220;
+ bh=nQ9jmefQKGlqK9+7AQO9EX8Ueis1Sn1ppBSTsQ4rQl4=;
+ b=Rv+WkN1PiZa5qr3O0UyLGt9sZNxwNzdYXTT6PfSgBQTqVgTIqtABe/43nJcoHnFYX6SR
+ SxPtBayKn4TaVdS7N/gxSkMNRZ9xARLaJiHP5oL77STd94FnFzVn7Zhhgt+M/Ao60dnP
+ rSLk+L9HquJCQz+wMoQyc2ON3BSLMkEjr61nUOKq7/8MI3K5DTfjy6j5eBLHQ/hFRY34
+ EraOuwdKDXcAEUBBkf9cSVMwEudkqHCwyB98TVg+HmEPtfz610rifxUdEnzxfvU2S75S
+ r2LCYUcecj8rrUN+Ui6hwzQFCGG1j59wgK8qcjGUcJRubtX6WD7tqGAxvJtgLL/2O9ly BQ== 
+Received: from dc5-exch01.marvell.com ([199.233.59.181])
+	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3tcrrs985g-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+	Fri, 29 Sep 2023 06:38:13 -0700
+Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.48; Fri, 29 Sep
+ 2023 06:38:11 -0700
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.48 via Frontend
+ Transport; Fri, 29 Sep 2023 06:38:11 -0700
+Received: from virtx40.. (unknown [10.28.34.196])
+	by maili.marvell.com (Postfix) with ESMTP id 65B435B6923;
+	Fri, 29 Sep 2023 06:38:07 -0700 (PDT)
+From: Linu Cherian <lcherian@marvell.com>
+To: <suzuki.poulose@arm.com>, <mike.leach@linaro.org>, <james.clark@arm.com>,
+        <leo.yan@linaro.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <coresight@lists.linaro.org>,
+        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <sgoutham@marvell.com>,
+        <gcherian@marvell.com>, Linu Cherian <lcherian@marvell.com>
+Subject: [PATCH 1/7] dt-bindings: arm: coresight-tmc: Add "memory-region" property
+Date: Fri, 29 Sep 2023 19:07:48 +0530
+Message-ID: <20230929133754.857678-2-lcherian@marvell.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230929133754.857678-1-lcherian@marvell.com>
+References: <20230929133754.857678-1-lcherian@marvell.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: __Ur6xmz_8T-UUGjlVNa4bhXivX1C75M
+X-Proofpoint-GUID: __Ur6xmz_8T-UUGjlVNa4bhXivX1C75M
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-29_11,2023-09-28_03,2023-05-22_02
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hello Xu,
+memory-region 0: Reserved trace buffer memory
 
-On Tue, 25 Jul 2023 12:23:43 +0000
-Xu Yang <xu.yang_2@nxp.com> wrote:
-...
-> > I tested again now with the 3 patches applied and found that with
-> > CONFIG_USB_OTG=y it works, and detects a device when plugged. Good!
-> > 
-> > However with CONFIG_USB_OTG disabled it is still not working. In this
-> > case obviously mxs_phy_is_otg_host() returns always false, even though
-> > las_event is 2 (USB_EVENT_ID). This is what I get during boot with no
-> > device connected:  
-> 
-> Yes, I may need to remove CONFIG_USB_OTG condifion. Will handle this later.
+  TMC ETR: When available, use this reserved memory region for
+  trace data capture. Same region is used for trace data
+  retention after a panic or watchdog reset.
 
-Did you manage to make progress with this work? It looked like very
-close to be fixed in the proper way with your latest patch iteration.
+  TMC ETF: When available, use this reserved memory region for
+  trace data retention synced from internal SRAM after a panic or
+  watchdog reset.
 
-I'd definitely happy to test new patches as soon as you have any.
+memory-region 1: Reserved meta data memory
 
-Best regards,
-Luca
+  TMC ETR, ETF: When available, use this memory for register
+  snapshot retention synced from hardware registers after a panic
+  or watchdog reset.
 
+Signed-off-by: Linu Cherian <lcherian@marvell.com>
+---
+ .../bindings/arm/arm,coresight-tmc.yaml       | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
+index cb8dceaca70e..45ca4d02d73e 100644
+--- a/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
++++ b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
+@@ -101,6 +101,22 @@ properties:
+           and ETF configurations.
+         $ref: /schemas/graph.yaml#/properties/port
+ 
++  memory-region:
++    items:
++      - description: Reserved trace buffer memory for ETR and ETF sinks.
++          For ETR, this reserved memory region is used for trace data capture.
++          Same region is used for trace data retention as well after a panic
++          or watchdog reset.
++          For ETF, this reserved memory region is used for retention of trace
++          data synced from internal SRAM after a panic or watchdog reset.
++
++      - description: Reserved meta data memory. Used for ETR and ETF sinks.
++
++  memory-region-names:
++    items:
++      - const: trace-mem
++      - const: metadata-mem
++
+ required:
+   - compatible
+   - reg
+@@ -115,6 +131,9 @@ examples:
+     etr@20070000 {
+         compatible = "arm,coresight-tmc", "arm,primecell";
+         reg = <0x20070000 0x1000>;
++        memory-region = <&etr_trace_mem_reserved>,
++                       <&etr_mdata_mem_reserved>;
++        memory-region-names = "trace-mem", "metadata-mem";
+ 
+         clocks = <&oscclk6a>;
+         clock-names = "apb_pclk";
 -- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.34.1
+
 
