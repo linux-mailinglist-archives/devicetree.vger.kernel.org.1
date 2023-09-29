@@ -1,236 +1,110 @@
-Return-Path: <devicetree+bounces-4606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 320BE7B33DE
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:40:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF24B7B33DF
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:40:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id D2FE9283CFB
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 13:40:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id D9A5A1C209C3
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 13:40:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EAE73CD1A;
-	Fri, 29 Sep 2023 13:40:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4B8D405CE;
+	Fri, 29 Sep 2023 13:40:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BE303F4BE
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 13:40:11 +0000 (UTC)
-Received: from mx0b-0016f401.pphosted.com (mx0a-0016f401.pphosted.com [67.231.148.174])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9930172E;
-	Fri, 29 Sep 2023 06:38:52 -0700 (PDT)
-Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
-	by mx0a-0016f401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38TCPdig005320;
-	Fri, 29 Sep 2023 06:38:41 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=pfpt0220;
- bh=wBiVrXmkSOit9cr6Cd8FwgnRt5KotLj2dEmQTFzM9dw=;
- b=hqgAjg4bmxv7/mPRYaoUkl2Mjqrcva2nNTAcuP9heLEoCADKU+uzDMUI0WlL9iW0h/l3
- oDD/DgKJCRKzjBILXZSkz7ymgLfq/BrdPfOEz5yNwIahfflmBPsf/e50krFuW9vfUoaA
- nlrOEDBUchNiMmhzHaf2FfX2Ecp7v6Ty5laB7O5SX0wh2GSTk9Lt9fCkndVpsd6LO8T3
- FqYOq8XUSu8OgVMqOrBN0rrxqmdHS8RzXH+HfjRWd1mP8Ht9D2gTO3//zrl+YrbBYK5/
- 3Bag9PoJI7r+1NsSNDmABLhVvs5bGMXHZVQqZtBfVvuoZ362falsK0g2gqRo3ufuzs6R BA== 
-Received: from dc5-exch02.marvell.com ([199.233.59.182])
-	by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 3tdxk08ej7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-	Fri, 29 Sep 2023 06:38:41 -0700
-Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.48; Fri, 29 Sep
- 2023 06:38:39 -0700
-Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
- (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.48 via Frontend
- Transport; Fri, 29 Sep 2023 06:38:39 -0700
-Received: from virtx40.. (unknown [10.28.34.196])
-	by maili.marvell.com (Postfix) with ESMTP id 7DDC35B6946;
-	Fri, 29 Sep 2023 06:38:35 -0700 (PDT)
-From: Linu Cherian <lcherian@marvell.com>
-To: <suzuki.poulose@arm.com>, <mike.leach@linaro.org>, <james.clark@arm.com>,
-        <leo.yan@linaro.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <coresight@lists.linaro.org>,
-        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <sgoutham@marvell.com>,
-        <gcherian@marvell.com>, Linu Cherian <lcherian@marvell.com>
-Subject: [PATCH 7/7] coresight: config: Add preloaded configuration
-Date: Fri, 29 Sep 2023 19:07:54 +0530
-Message-ID: <20230929133754.857678-8-lcherian@marvell.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230929133754.857678-1-lcherian@marvell.com>
-References: <20230929133754.857678-1-lcherian@marvell.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04DC93D380
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 13:40:17 +0000 (UTC)
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21575CD6
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 06:39:02 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-52fe27898e9so18559058a12.0
+        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 06:39:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1695994740; x=1696599540; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=N80cnpAhKZAQNAt0LvDi0BgqS0Cl+s+lMzHKGl0eRh4=;
+        b=PB8XYtTt/2Krfplz+H6ZYkl33Gsq3y7RiFEHlwN2Fx5sYwSBaxmZHsI6PzDMLixWuc
+         GimMf2klP1e394MhNDSs9zB2qqgttaiSiqf2pRNMMVdLfs/T0o4TWEvl+3e15n66gzM/
+         CYBpPeMZL19lRhu4wjSNwX0iOpA3o2/IbTBsiddzUsZvETt4vrOknQXJx4bZAn5me3lV
+         2Di6xELuCUHCPdiEHOppLqdr84AcwUTWqpX1TkHSz0T2zca84LRYWdF+7py9tG8Ks7eZ
+         HOr0jX4+V2ZHpEXrR/djBjh1OU7DkUHGxdzSBiy1T5JKFCm63nQOaNWhbAI8QOYL2uWL
+         fSNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695994740; x=1696599540;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=N80cnpAhKZAQNAt0LvDi0BgqS0Cl+s+lMzHKGl0eRh4=;
+        b=WKXMo80wnNx2L0tiErnjuhpXajKn055taZgVVlyQ8LI5GmwO300ofg5lQd/rOqothU
+         3HWKzVQBiGEF+K2lc5zbRG+b24PA9I9J8EN89N/yXEySaHnJyJQCV4jCAHe7Fo2zb9YT
+         jIzMTnnwU4k6mFO90Y2juCncHBJP3HJswrTEAgGFLsEKrUQR011fK9d3O6v3JPeHW4VG
+         9z25zBl0jOum9tXyopNBdJi5t9x9rOki8BO0cPDesrl6BNfU23Ts27nhAaRGPY+XnWRw
+         U9YUSeXcqmkVEiLe+YpShUA48iHlAp6FOAel2GLQACEtzPLd5D5qkDypiZtii/MTovGv
+         kRyA==
+X-Gm-Message-State: AOJu0Yyk3edSGMeul8D8M7jVJLrnPNaqTtrMxI7F0RyujxFZ5OppS4pi
+	kfDbWAWduJG+Oalh/rqR+l/NfA==
+X-Google-Smtp-Source: AGHT+IHDZ7g5o9oqgsZvyPyN1QPbuYPFz8FvHA9hu9FRmuuDczT6e2mlFwjshH5KeTJNcUqMM0Qqbg==
+X-Received: by 2002:aa7:c58d:0:b0:530:8d55:9c6f with SMTP id g13-20020aa7c58d000000b005308d559c6fmr3183409edq.2.1695994740560;
+        Fri, 29 Sep 2023 06:39:00 -0700 (PDT)
+Received: from [127.0.1.1] (178235177217.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.217])
+        by smtp.gmail.com with ESMTPSA id cx14-20020a05640222ae00b005362bcc089csm2215701edb.67.2023.09.29.06.38.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Sep 2023 06:39:00 -0700 (PDT)
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 0/2] 8280 display ahb clk fixes
+Date: Fri, 29 Sep 2023 15:38:51 +0200
+Message-Id: <20230929-topic-8280_ahbdisp-v1-0-72bdc38309b9@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-GUID: 2QJ9Jq1-IxtUhb-FTrbKce_ikX04zuCR
-X-Proofpoint-ORIG-GUID: 2QJ9Jq1-IxtUhb-FTrbKce_ikX04zuCR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-29_11,2023-09-28_03,2023-05-22_02
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGvTFmUC/x3MMQqAMAxA0atIZgMxClqvIiK1Rs1SSysiiHe3O
+ L7h/weSRJUEffFAlEuTHj6jKgtwu/WboC7ZwMQ1GTZ4HkEddtzRZPd50RRQqpaEnOWmYchhiLL
+ q/U+H8X0/pz8Sc2QAAAA=
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.13-dev-0438c
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add a preloaded configuration for generating
-external trigger on address match. This can be
-used by CTI and ETR blocks to stop trace capture
-on kernel panic.
+Little fixes to shut down disp ahb clk when dispss is not in use.
 
-Kernel address for panic function to be
-programmed as below.
+If possible, the dt patch should theoretically go in first, but x13s
+worked fine regardless.
 
-$cd /config/cs-syscfg/features/gen_etrig/params
-$echo <panic_address> > address/value
-
-Signed-off-by: Linu Cherian <lcherian@marvell.com>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- drivers/hwtracing/coresight/Makefile          |  2 +-
- .../coresight/coresight-cfg-preload.c         |  2 +
- .../coresight/coresight-cfg-preload.h         |  2 +
- .../hwtracing/coresight/coresight-cfg-pstop.c | 83 +++++++++++++++++++
- 4 files changed, 88 insertions(+), 1 deletion(-)
- create mode 100644 drivers/hwtracing/coresight/coresight-cfg-pstop.c
+Konrad Dybcio (2):
+      arm64: dts: qcom: sc8280xp: Use the correct AHB clock for DISPSS1
+      clk: qcom: gcc-sc8280xp: Don't keep display AHB clocks always-on
 
-diff --git a/drivers/hwtracing/coresight/Makefile b/drivers/hwtracing/coresight/Makefile
-index 995d3b2c76df..68b15c8d9462 100644
---- a/drivers/hwtracing/coresight/Makefile
-+++ b/drivers/hwtracing/coresight/Makefile
-@@ -5,7 +5,7 @@
- obj-$(CONFIG_CORESIGHT) += coresight.o
- coresight-y := coresight-core.o  coresight-etm-perf.o coresight-platform.o \
- 		coresight-sysfs.o coresight-syscfg.o coresight-config.o \
--		coresight-cfg-preload.o coresight-cfg-afdo.o \
-+		coresight-cfg-preload.o coresight-cfg-afdo.o coresight-cfg-pstop.o \
- 		coresight-syscfg-configfs.o coresight-trace-id.o
- obj-$(CONFIG_CORESIGHT_LINK_AND_SINK_TMC) += coresight-tmc.o
- coresight-tmc-y := coresight-tmc-core.o coresight-tmc-etf.o \
-diff --git a/drivers/hwtracing/coresight/coresight-cfg-preload.c b/drivers/hwtracing/coresight/coresight-cfg-preload.c
-index e237a4edfa09..4980e68483c5 100644
---- a/drivers/hwtracing/coresight/coresight-cfg-preload.c
-+++ b/drivers/hwtracing/coresight/coresight-cfg-preload.c
-@@ -13,6 +13,7 @@
- static struct cscfg_feature_desc *preload_feats[] = {
- #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X)
- 	&strobe_etm4x,
-+	&gen_etrig_etm4x,
- #endif
- 	NULL
- };
-@@ -20,6 +21,7 @@ static struct cscfg_feature_desc *preload_feats[] = {
- static struct cscfg_config_desc *preload_cfgs[] = {
- #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X)
- 	&afdo_etm4x,
-+	&pstop_etm4x,
- #endif
- 	NULL
- };
-diff --git a/drivers/hwtracing/coresight/coresight-cfg-preload.h b/drivers/hwtracing/coresight/coresight-cfg-preload.h
-index 21299e175477..291ba530a6a5 100644
---- a/drivers/hwtracing/coresight/coresight-cfg-preload.h
-+++ b/drivers/hwtracing/coresight/coresight-cfg-preload.h
-@@ -10,4 +10,6 @@
- #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X)
- extern struct cscfg_feature_desc strobe_etm4x;
- extern struct cscfg_config_desc afdo_etm4x;
-+extern struct cscfg_feature_desc gen_etrig_etm4x;
-+extern struct cscfg_config_desc pstop_etm4x;
- #endif
-diff --git a/drivers/hwtracing/coresight/coresight-cfg-pstop.c b/drivers/hwtracing/coresight/coresight-cfg-pstop.c
-new file mode 100644
-index 000000000000..037d6773fab8
---- /dev/null
-+++ b/drivers/hwtracing/coresight/coresight-cfg-pstop.c
-@@ -0,0 +1,83 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright(C) 2023  Marvell.
-+ * Based on coresight-cfg-afdo.c
-+ */
-+
-+#include "coresight-config.h"
-+
-+/* ETMv4 includes and features */
-+#if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X)
-+#include "coresight-etm4x-cfg.h"
-+
-+/* preload configurations and features */
-+
-+/* preload in features for ETMv4 */
-+
-+/* panic_stop feature */
-+static struct cscfg_parameter_desc gen_etrig_params[] = {
-+	{
-+		.name = "address",
-+		.value = 0x0,
-+	},
-+};
-+
-+static struct cscfg_regval_desc gen_etrig_regs[] = {
-+	/* resource selector */
-+	{
-+		.type = CS_CFG_REG_TYPE_RESOURCE,
-+		.offset = TRCRSCTLRn(2),
-+		.hw_info = ETM4_CFG_RES_SEL,
-+		.val32 = 0x40001,
-+	},
-+	/* single address comparator */
-+	{
-+		.type = CS_CFG_REG_TYPE_RESOURCE | CS_CFG_REG_TYPE_VAL_64BIT |
-+			CS_CFG_REG_TYPE_VAL_PARAM,
-+		.offset =  TRCACVRn(0),
-+		.val32 = 0x0,
-+	},
-+	{
-+		.type = CS_CFG_REG_TYPE_RESOURCE,
-+		.offset = TRCACATRn(0),
-+		.val64 = 0xf00,
-+	},
-+	/* Driver external output[0] with comparator out */
-+	{
-+		.type = CS_CFG_REG_TYPE_RESOURCE,
-+		.offset = TRCEVENTCTL0R,
-+		.val32 = 0x2,
-+	},
-+	/* end of regs */
-+};
-+
-+struct cscfg_feature_desc gen_etrig_etm4x = {
-+	.name = "gen_etrig",
-+	.description = "Generate external trigger on address match\n"
-+		       "parameter \'address\': address of kernel address\n",
-+	.match_flags = CS_CFG_MATCH_CLASS_SRC_ETM4,
-+	.nr_params = ARRAY_SIZE(gen_etrig_params),
-+	.params_desc = gen_etrig_params,
-+	.nr_regs = ARRAY_SIZE(gen_etrig_regs),
-+	.regs_desc = gen_etrig_regs,
-+};
-+
-+/* create a panic stop configuration */
-+
-+/* the total number of parameters in used features */
-+#define PSTOP_NR_PARAMS	ARRAY_SIZE(gen_etrig_params)
-+
-+static const char *pstop_ref_names[] = {
-+	"gen_etrig",
-+};
-+
-+struct cscfg_config_desc pstop_etm4x = {
-+	.name = "panicstop",
-+	.description = "Stop ETM on kernel panic\n",
-+	.nr_feat_refs = ARRAY_SIZE(pstop_ref_names),
-+	.feat_ref_names = pstop_ref_names,
-+	.nr_total_params = PSTOP_NR_PARAMS,
-+};
-+
-+/* end of ETM4x configurations */
-+#endif	/* IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X) */
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 4 ++--
+ drivers/clk/qcom/gcc-sc8280xp.c        | 6 ++----
+ 2 files changed, 4 insertions(+), 6 deletions(-)
+---
+base-commit: df964ce9ef9fea10cf131bf6bad8658fde7956f6
+change-id: 20230929-topic-8280_ahbdisp-e170e0ca2442
+
+Best regards,
 -- 
-2.34.1
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
 
