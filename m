@@ -1,41 +1,62 @@
-Return-Path: <devicetree+bounces-4573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C9B27B32A8
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 14:34:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 411067B32D2
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 14:51:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id D1AC928251B
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 12:34:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 4B3F11C20980
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 12:51:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A23C2E575;
-	Fri, 29 Sep 2023 12:34:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A967518050;
+	Fri, 29 Sep 2023 12:51:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C88143C1D
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 12:34:10 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C75CA1BB
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 05:34:08 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <j.zink@pengutronix.de>)
-	id 1qmCgq-0008Sf-GH; Fri, 29 Sep 2023 14:33:52 +0200
-Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <j.zink@pengutronix.de>)
-	id 1qmCgp-009oFT-HL; Fri, 29 Sep 2023 14:33:51 +0200
-Received: from localhost ([::1] helo=dude03.red.stw.pengutronix.de)
-	by dude03.red.stw.pengutronix.de with esmtp (Exim 4.94.2)
-	(envelope-from <j.zink@pengutronix.de>)
-	id 1qmCgp-009S7x-81; Fri, 29 Sep 2023 14:33:51 +0200
-From: Johannes Zink <j.zink@pengutronix.de>
-Date: Fri, 29 Sep 2023 14:33:33 +0200
-Subject: [PATCH v5 3/3] drm/panel-simple: allow LVDS format override
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EDD2AD46
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 12:51:28 +0000 (UTC)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92DC31A4
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 05:51:26 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9a9d82d73f9so1825125566b.3
+        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 05:51:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1695991885; x=1696596685; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EI438PYIEEC0yZbJV+nRv633MGKe+mzYP5eVL8hC+74=;
+        b=Juy46aSv4W1nmv0htKDhdDZzEQoRE+4/VIe0kZVYZU8z9OdrRqRR2Eqh7RIoWkrYPW
+         KNICSbfVipxoR9L2Q9E61V+NYP2HbI5nqLbLfV1NKEIknYcd0Ucub54fC+R3o71mf26Z
+         GHbDdOSydOP7xxhW6g4Rw0XZ0RE5ermF7UqF0oH4erqIQU2lvPp77Sxn8tELXD2YMxKi
+         O+2Y337AWv7YAhwCQSjh1Mpjr5SI3Lnu00fjvO5wx/Kl2wZWfSxK7ujoG1kDpvWvWXX9
+         8BYxhCFkCUSF2G0vPMPu+cY0kzM28rfCZcGcLerPjvb5/KM8U436wPEL4FGQUaPmckOz
+         k36g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695991885; x=1696596685;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EI438PYIEEC0yZbJV+nRv633MGKe+mzYP5eVL8hC+74=;
+        b=adlyEw0PNzUs3ZyFZ/hRXuOleH4KjvV+gc0t4IkJukQFvAWKMrAbLbMBmSwBaieMvX
+         HgJKtUBcaPilWZi2bJ7WJA5KY1LzpFFoFZHiOGnseLHUHY08HN2+wn2oJqO6N6ffCf2Y
+         C25A2X/cnsVsmB0xQiqOp3vbkIbgGWUS7DQlT6upuVAEcnMOJilm56xJ4xAtAKrlfKZs
+         sT7xlq2OXWVnOZ/Bixm4aKxbyn6Bn36l3NX/PnpGPSvgjpUj4ZlklX2CYMgrT2GmJxAj
+         XkHFb8XJ59M9J1slGzMjBgPWbFAtV7MZ1jsmWVunqlAGko3YFehr55E5F+tClHbTL1ci
+         LQ5w==
+X-Gm-Message-State: AOJu0Yyon4BKqP656Pkqo1557DcfTh3+0F++lTCoFMEDbrElc2LbPyLz
+	XZG8+Mh2xSSoh26ue984c5eZpg==
+X-Google-Smtp-Source: AGHT+IE+FyINlL0BYhMjlwcWx3oUO/MpcSU9nmTCH6i8a0GlO/Xu2VvK2PSHYJSgwTraUKyqbcDikQ==
+X-Received: by 2002:a17:906:1dd:b0:9ae:6355:64bb with SMTP id 29-20020a17090601dd00b009ae635564bbmr3190165ejj.73.1695991884873;
+        Fri, 29 Sep 2023 05:51:24 -0700 (PDT)
+Received: from otso.luca.vpn.lucaweiss.eu (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id ck17-20020a170906c45100b00982a92a849asm12289551ejb.91.2023.09.29.05.51.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Sep 2023 05:51:24 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Date: Fri, 29 Sep 2023 14:51:22 +0200
+Subject: [PATCH v2] arm64: dts: qcom: sc7280: Add ports subnodes in usb/dp
+ qmpphy node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -44,148 +65,87 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230523-simplepanel_support_nondefault_datamapping-v5-3-0d7928edafab@pengutronix.de>
-References: <20230523-simplepanel_support_nondefault_datamapping-v5-0-0d7928edafab@pengutronix.de>
-In-Reply-To: <20230523-simplepanel_support_nondefault_datamapping-v5-0-0d7928edafab@pengutronix.de>
-To: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Rob Herring <robh+dt@kernel.org>, 
+Message-Id: <20230929-sc7280-qmpphy-ports-v2-1-aae7e9c286b0@fairphone.com>
+X-B4-Tracking: v=1; b=H4sIAEnIFmUC/32NQQ6DIBBFr2Jm3WlgtKF25T0aFwShzEKhYEiN8
+ e6lHqDL95L//g7ZJrYZHs0OyRbOHJYKdGnAeL28LPJUGUhQK3rqMRtFd4HvOUa/YQxpzUhCu6k
+ jSZ0SUJcxWcefs/ocK3vOa0jbeVLkz/7vFYkS1a0lI2WvWu0GpzlFHxZ7NWGG8TiOLxHJGyO6A
+ AAA
+To: cros-qcom-dts-watchers@chromium.org, Andy Gross <agross@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Sam Ravnborg <sam@ravnborg.org>
-Cc: kernel test robot <lkp@intel.com>, Dan Carpenter <error27@gmail.com>, 
- patchwork-jzi@pengutronix.de, kernel@pengutronix.de, 
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Johannes Zink <j.zink@pengutronix.de>
-X-Mailer: b4 0.12.2
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: j.zink@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+ Conor Dooley <conor+dt@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.12.3
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Some panels support multiple LVDS data mapping formats, which can be
-used e.g. run displays on jeida-18 format when only 3 LVDS lanes are
-available.
+Add the USB3+DP Combo QMP PHY port subnodes to facilitate the
+description of the connection between the hardware blocks.
 
-Add parsing of an optional data-mapping devicetree property, which also
-touches up the bits per color to match the bus format.
+Put it in the SoC DTSI to avoid duplication in the device DTs.
 
-Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Changes in v2:
+- Update commit message after feedback from Konrad
+- Pick up tags
+- Link to v1: https://lore.kernel.org/r/20230929-sc7280-qmpphy-ports-v1-1-7532c11973af@fairphone.com
+---
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 66f1eb83cca7..4e34d00e246b 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -3399,6 +3399,32 @@ usb_1_qmpphy: phy@88e8000 {
+ 
+ 			#clock-cells = <1>;
+ 			#phy-cells = <1>;
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++
++					usb_dp_qmpphy_out: endpoint {
++					};
++				};
++
++				port@1 {
++					reg = <1>;
++
++					usb_dp_qmpphy_usb_ss_in: endpoint {
++					};
++				};
++
++				port@2 {
++					reg = <2>;
++
++					usb_dp_qmpphy_dp_in: endpoint {
++					};
++				};
++			};
+ 		};
+ 
+ 		usb_2: usb@8cf8800 {
 
 ---
+base-commit: df964ce9ef9fea10cf131bf6bad8658fde7956f6
+change-id: 20230929-sc7280-qmpphy-ports-20afd4212470
 
-Changes:
-
-  v4 -> v5: none
-
-  v3 -> v4: - worked in Dan's feedback (thanks for reviewing my work):
-                - return with a proper error in case the call to
-		  panel_simple_override_nondefault_lvds_datamapping()
-		  fails
-                - drop the unneeded and ambiguous ret variable
-
-  v2 -> v3: - worked in Laurent's review findings (thanks for reviewing
-              my work):
-	        - extract fixing up the bus format to separate
-		  function
-		- only call function on LVDS panels
-		- fix typos found by Laurent
-		- simplified error handling
-
-  v1 -> v2: - fix missing unwind goto found by test robot
-              Reported-by: kernel test robot <lkp@intel.com>
-              Reported-by: Dan Carpenter <error27@gmail.com>
-              Link: https://lore.kernel.org/r/202304160359.4LHmFOlU-lkp@intel.com/
----
- drivers/gpu/drm/panel/panel-simple.c | 53 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 53 insertions(+)
-
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 857bc01591db..4195cf54934b 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -40,6 +40,7 @@
- #include <drm/drm_edid.h>
- #include <drm/drm_mipi_dsi.h>
- #include <drm/drm_panel.h>
-+#include <drm/drm_of.h>
- 
- /**
-  * struct panel_desc - Describes a simple panel.
-@@ -549,6 +550,51 @@ static void panel_simple_parse_panel_timing_node(struct device *dev,
- 		dev_err(dev, "Reject override mode: No display_timing found\n");
- }
- 
-+static int panel_simple_override_nondefault_lvds_datamapping(struct device *dev,
-+							     struct panel_simple *panel)
-+{
-+	int ret, bpc;
-+
-+	ret = drm_of_lvds_get_data_mapping(dev->of_node);
-+	if (ret < 0) {
-+		if (ret == -EINVAL)
-+			dev_warn(dev, "Ignore invalid data-mapping property\n");
-+
-+		/*
-+		 * Ignore non-existing or malformatted property, fallback to
-+		 * default data-mapping, and return 0.
-+		 */
-+		return 0;
-+	}
-+
-+	switch (ret) {
-+	default:
-+		WARN_ON(1);
-+		fallthrough;
-+	case MEDIA_BUS_FMT_RGB888_1X7X4_SPWG:
-+		fallthrough;
-+	case MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA:
-+		bpc = 8;
-+		break;
-+	case MEDIA_BUS_FMT_RGB666_1X7X3_SPWG:
-+		bpc = 6;
-+	}
-+
-+	if (panel->desc->bpc != bpc || panel->desc->bus_format != ret) {
-+		struct panel_desc *override_desc;
-+
-+		override_desc = devm_kmemdup(dev, panel->desc, sizeof(*panel->desc), GFP_KERNEL);
-+		if (!override_desc)
-+			return -ENOMEM;
-+
-+		override_desc->bus_format = ret;
-+		override_desc->bpc = bpc;
-+		panel->desc = override_desc;
-+	}
-+
-+	return 0;
-+}
-+
- static int panel_simple_probe(struct device *dev, const struct panel_desc *desc)
- {
- 	struct panel_simple *panel;
-@@ -601,6 +647,13 @@ static int panel_simple_probe(struct device *dev, const struct panel_desc *desc)
- 			panel_simple_parse_panel_timing_node(dev, panel, &dt);
- 	}
- 
-+	if (desc->connector_type == DRM_MODE_CONNECTOR_LVDS) {
-+		/* Optional data-mapping property for overriding bus format */
-+		err = panel_simple_override_nondefault_lvds_datamapping(dev, panel);
-+		if (err)
-+			goto free_ddc;
-+	}
-+
- 	connector_type = desc->connector_type;
- 	/* Catch common mistakes for panels. */
- 	switch (connector_type) {
-
+Best regards,
 -- 
-2.39.2
+Luca Weiss <luca.weiss@fairphone.com>
 
 
