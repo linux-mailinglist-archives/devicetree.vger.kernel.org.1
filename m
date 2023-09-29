@@ -1,284 +1,461 @@
-Return-Path: <devicetree+bounces-4542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C2A07B300E
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 12:28:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEB247B303E
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 12:30:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 5A9922832C6
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 10:28:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 596F9282B42
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 10:30:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E272B15ADE;
-	Fri, 29 Sep 2023 10:28:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7292C15AD3;
+	Fri, 29 Sep 2023 10:29:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1413D15AD0
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 10:28:05 +0000 (UTC)
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2049.outbound.protection.outlook.com [40.107.244.49])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE8001B1;
-	Fri, 29 Sep 2023 03:28:02 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=e+F7MyIdsPRr/DVJSntugUvenR/M9DczBxHC4qayN6NYwbv7VHVhL5e9cDKQHPAIXWH3oq3GncOxUzakIj8vy5FXUbQ4vtnrBk4EaLlrZuZSZ+SUnE/fs3UTnj/+JRzxw0DKjsd8NeLweUen3sGqHrzU3oDq2lsjdtBM9NbYmJIUX6QxtVUZEGO+0UUEWw5nikwb9u0xysYmTZBBvhOR/iVVAi+RXZRmVdW5TqHlYmmVlHowUPmF7N1VZR+dT54HPKqd1aGAX3ZPZXb0j3Byuu5ozzPiszlnK6qS4sospB4fQd1rX8uJop045d5LvoC1dJl8UY27zjtBrw/hQBAuTQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2XaPyv2lE5WRYoUdgD23hSpvILDhTeXIhU2mGxCNQbE=;
- b=cYtmnW4STJHYPC9MIedxC+sM8aZGmKfvkXm4N+RPTW6Zico7cd+Tv/F6i7Ben6JYaqfL9htVP21XOYTuJNKo+pX8zW90KbbkS5kCUV2MDROHg9q2LYk3fDgG5XE5ULwyKZ+rN6K2NHojOzUgzwpdKXJvViQI7KdNHalOzVp12zxOitPo8MEDcnHCRedF0GGaGOm3+OKYz6UguFz5hOvnbMHdi7JQ4bCjpoWjCx8b5manQtq/53umJWt3gEllg5uOH1FffwDnnBEET6sl/8rVEAOxLYqT0FksVy5CmBEqxPuS9MC7DykrbFYGMEbfItDbB8KdbXybT7vobkjUx9B6bg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.232) smtp.rcpttodomain=suse.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2XaPyv2lE5WRYoUdgD23hSpvILDhTeXIhU2mGxCNQbE=;
- b=nZuWv+7EJgq71aRzmSqXvWRSjaOIs7suZv6qi8SSokKNxxcrf9MkNul+LvA+IlOomiNShPfqex/CjxS5BfFdtOLbVeDQBBGgMOkIIdLTZhP6v6Zda1ROcmfPc840mcqo2DO+cm8plGkxh8IZghjq34pK6XlSmiGfIFbrrNome2DpUfXy9ShVpVmIcRst8cXbUMADxnY/QwkauPIWYS6QuCgA50PuTtVt1PxgqPAy7Z2ZAzi0El8GnoADoY5kquV77tdt5zws6Jk8jIpy6/nGo24QOjyX6aix+6dPPpoxirCxMOJ167RxCljGhZ2RVRpqO4ULQN+NhH8LAb2SgTMDsg==
-Received: from CH0P221CA0016.NAMP221.PROD.OUTLOOK.COM (2603:10b6:610:11c::18)
- by DS0PR12MB9060.namprd12.prod.outlook.com (2603:10b6:8:c4::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.39; Fri, 29 Sep
- 2023 10:28:00 +0000
-Received: from DS2PEPF0000343C.namprd02.prod.outlook.com
- (2603:10b6:610:11c:cafe::56) by CH0P221CA0016.outlook.office365.com
- (2603:10b6:610:11c::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.26 via Frontend
- Transport; Fri, 29 Sep 2023 10:28:00 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.232) by
- DS2PEPF0000343C.mail.protection.outlook.com (10.167.18.39) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6838.14 via Frontend Transport; Fri, 29 Sep 2023 10:27:59 +0000
-Received: from drhqmail201.nvidia.com (10.126.190.180) by mail.nvidia.com
- (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Fri, 29 Sep
- 2023 03:27:59 -0700
-Received: from drhqmail201.nvidia.com (10.126.190.180) by
- drhqmail201.nvidia.com (10.126.190.180) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.41; Fri, 29 Sep 2023 03:27:58 -0700
-Received: from moonraker.home (10.127.8.9) by mail.nvidia.com (10.126.190.180)
- with Microsoft SMTP Server id 15.2.986.41 via Frontend Transport; Fri, 29 Sep
- 2023 03:27:57 -0700
-From: Jon Hunter <jonathanh@nvidia.com>
-To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, "Rob
- Herring" <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>
-CC: <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-tegra@vger.kernel.org>, Jon Hunter <jonathanh@nvidia.com>
-Subject: [PATCH V4 4/4] arm64: tegra: Add power-sensors for Tegra234 boards
-Date: Fri, 29 Sep 2023 11:27:44 +0100
-Message-ID: <20230929102744.84989-5-jonathanh@nvidia.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230929102744.84989-1-jonathanh@nvidia.com>
-References: <20230929102744.84989-1-jonathanh@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B679156C0;
+	Fri, 29 Sep 2023 10:29:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F8F61718;
+	Fri, 29 Sep 2023 03:29:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1695983383; x=1727519383;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=SzjhW+T92LOd5EAqHe+Fp8FE2qmBxFfnP8zfhpj/fBA=;
+  b=GuXqqhTkk2DGWxG9CbFIplcGT8z9kD3Cw5/mcfHH96fFJzgDgFI9yVKs
+   syftEnTgh7x1GuQpeYhjrLTzsdb1NoEJFBuQ6De5AWf3T4gjvG2sEHjpr
+   4Im4lB9WqVoLCUwcpVaE2H70e6zh9ovLanjQhi7bOOkwpZpXThUrAsg7V
+   QYla0EqdA56EowVGnvRfcsYQPwsXpiREbi8YZQH5kqjHtza+cNGoWgR76
+   36RfUBY9tCw4ncrIrDAOwoLP7viF6yYdM1B8HBA9W0mDWHo6zSDcy966Q
+   y/iZ+JlrUwqj9hdWJuJVoL7lKUbOlmUF5UN+1MkgFZypGoG2p0lO/ZP5g
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="382175146"
+X-IronPort-AV: E=Sophos;i="6.03,187,1694761200"; 
+   d="scan'208";a="382175146"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Sep 2023 03:29:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="840240207"
+X-IronPort-AV: E=Sophos;i="6.03,187,1694761200"; 
+   d="scan'208";a="840240207"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by FMSMGA003.fm.intel.com with SMTP; 29 Sep 2023 03:29:34 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 29 Sep 2023 13:29:33 +0300
+Date: Fri, 29 Sep 2023 13:29:33 +0300
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Abdel Alkuor <alkuor@gmail.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, bryan.odonoghue@linaro.org,
+	gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org, ryan.eleceng@gmail.com,
+	robh+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	Abdel Alkuor <abdelalkuor@geotab.com>
+Subject: Re: [PATCH v7 04/14] USB: typec: tps6598x: Load TPS25750 patch bundle
+Message-ID: <ZRanDS2nN7aMamt+@kuha.fi.intel.com>
+References: <20230927175348.18041-1-alkuor@gmail.com>
+ <20230927175348.18041-5-alkuor@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF0000343C:EE_|DS0PR12MB9060:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8807f0e7-cf72-4b9b-0e39-08dbc0d6c13c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	8sNQcglWK9yuksT8Zi3/A4NcSTv3TXwE2mkO4DdL7+2iIxlchG44p1kph+WvXB3IjBYzWKNglwjBFPER8U3xQpSiaP2GfvYpO5uvxoCTPtjkfYqplkSofMB8kXFDP13jUeBbVy5WTpqwUHEz4jnk83IiIzBrwJN76zC8l5Hfq+A2z5UsaFRm5doYgHLwtW0AqkYp1zbUDXXUQr4i4Tl8xcGzpnfFzRQrozdlK3+I18vg80hY1ndVkEOiASbYv/9saTh40ewmaA8ENtbbvfPnO9R6zGTuSFYzuh5QB+dfjhrIgKsIKNPyYHBM7JW2qA2TfoWw7D78yXpeS7QfvUJeFHxV4ap9yryiRxzLN49zL5Y2K8tYsEuhCEAWZwzv9a/Lyvgq1tT0yBmR2fnoLDlrZuLSyJ77lM8k6sjVYPMvrYx6Rt96sPo9rhJq3d5m4CxaxC6gfBchoz1sIe2vIawCQM/UPLc6Lw+gT+LkA+jePp2XEN8XJgEac/wW4OHKBLOz4W7b30Jjjm8NNYSUSVRDrOjRHF09GgRxjijWs30FPyM8g38f/O09rr4O0Gh/hlDPRIb6DtogT2ky4zGkfMkHzsLXmj0Kj1qVrtO3xXzjLPMPQfDVT6GjfO1D1d7wsqnOEwIdu/Piy2HziSRU+lahaKTghc4tckcQK78zFRWPfcGygIa9f9w0ZXfNuET52hgJvPH8j7BPnRrOBpcxCo6GEIIR7nqQowfPXKG55nOtYMg=
-X-Forefront-Antispam-Report:
-	CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230031)(4636009)(396003)(346002)(136003)(376002)(39860400002)(230922051799003)(186009)(1800799009)(64100799003)(451199024)(82310400011)(36840700001)(46966006)(40470700004)(54906003)(110136005)(26005)(70586007)(70206006)(1076003)(41300700001)(316002)(6666004)(2906002)(478600001)(5660300002)(2616005)(107886003)(336012)(426003)(83380400001)(36860700001)(4326008)(8676002)(8936002)(47076005)(82740400003)(356005)(7636003)(86362001)(40460700003)(36756003)(40480700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2023 10:27:59.9123
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8807f0e7-cf72-4b9b-0e39-08dbc0d6c13c
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DS2PEPF0000343C.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB9060
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-	autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230927175348.18041-5-alkuor@gmail.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+	SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Populate the ina219 and ina3221 power-sensors for the various Tegra234
-boards. These sensors are located on the Tegra234 module boards and the
-configuration of some sensors is common across the different Tegra234
-modules. Therefore, add any common sensor configurations to appropriate
-device tree source file so it can be re-used across modules.
+On Wed, Sep 27, 2023 at 01:53:38PM -0400, Abdel Alkuor wrote:
+> From: Abdel Alkuor <abdelalkuor@geotab.com>
+> 
+> TPS25750 controller requires a binary to be loaded with a configuration
+> binary by an EEPROM or a host.
+> 
+> Appling a patch bundling using a host is implemented based on the flow
+> diagram pg.62 in TPS25750 host interface manual.
+> https://www.ti.com/lit/ug/slvuc05a/slvuc05a.pdf
+> 
+> The flow diagram can be summarized as following:
+> - Start the patch loading sequence with patch bundle information by
+>   executing PBMs
+> - Write the whole patch at once
+> - When writing the patch fails, execute PBMe which instructs the PD controller
+>   to end the patching process
+> - After writing the patch successfully, execute PBMc which verifies the patch
+>   integrity and applies the patch internally
+> - Wait for the device to switch into APP mode (normal operation)
+> 
+> The execuation flow diagram polls the events register and then polls the
+> corresponding register related to the event as well before advancing to the next
+> state. Polling the events register is a redundant step, in this implementation
+> only the corresponding register related to the event is polled.
+> 
+> Signed-off-by: Abdel Alkuor <abdelalkuor@geotab.com>
 
-Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
----
- .../boot/dts/nvidia/tegra234-p3701-0008.dtsi  | 33 ++++++++++++
- .../arm64/boot/dts/nvidia/tegra234-p3701.dtsi | 53 +++++++++++++++++++
- .../arm64/boot/dts/nvidia/tegra234-p3767.dtsi | 29 ++++++++++
- 3 files changed, 115 insertions(+)
+This looks okay, but let's see how the final DT bindings look like.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3701-0008.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3701-0008.dtsi
-index 62c4fdad0b60..553fa4ba1cd4 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234-p3701-0008.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3701-0008.dtsi
-@@ -44,6 +44,39 @@ i2c@c240000 {
- 			status = "okay";
- 		};
- 
-+		i2c@c250000 {
-+			power-sensor@41 {
-+				compatible = "ti,ina3221";
-+				reg = <0x41>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				input@0 {
-+					reg = <0x0>;
-+					label = "CVB_ATX_12V";
-+					shunt-resistor-micro-ohms = <2000>;
-+				};
-+
-+				input@1 {
-+					reg = <0x1>;
-+					label = "CVB_ATX_3V3";
-+					shunt-resistor-micro-ohms = <2000>;
-+				};
-+
-+				input@2 {
-+					reg = <0x2>;
-+					label = "CVB_ATX_5V";
-+					shunt-resistor-micro-ohms = <2000>;
-+				};
-+			};
-+
-+			power-sensor@44 {
-+				compatible = "ti,ina219";
-+				reg = <0x44>;
-+				shunt-resistor = <2000>;
-+			};
-+		};
-+
- 		rtc@c2a0000 {
- 			status = "okay";
- 		};
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3701.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3701.dtsi
-index 5e7797df50c2..db6ef711674a 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234-p3701.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3701.dtsi
-@@ -1987,5 +1987,58 @@ interrupt-controller@2a40000 {
- 				status = "okay";
- 			};
- 		};
-+
-+		i2c@c240000 {
-+			status = "okay";
-+
-+			power-sensor@40 {
-+				compatible = "ti,ina3221";
-+				reg = <0x40>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				input@0 {
-+					reg = <0x0>;
-+					label = "VDD_GPU_SOC";
-+					shunt-resistor-micro-ohms = <2000>;
-+				};
-+
-+				input@1 {
-+					reg = <0x1>;
-+					label = "VDD_CPU_CV";
-+					shunt-resistor-micro-ohms = <2000>;
-+				};
-+
-+				input@2 {
-+					reg = <0x2>;
-+					label = "VIN_SYS_5V0";
-+					shunt-resistor-micro-ohms = <2000>;
-+					ti,summation-disable;
-+				};
-+			};
-+
-+			power-sensor@41 {
-+				compatible = "ti,ina3221";
-+				reg = <0x41>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				input@0 {
-+					reg = <0x0>;
-+					status = "disabled";
-+				};
-+
-+				input@1 {
-+					reg = <0x1>;
-+					label = "VDDQ_VDD2_1V8AO";
-+					shunt-resistor-micro-ohms = <2000>;
-+				};
-+
-+				input@2 {
-+					reg = <0x2>;
-+					status = "disabled";
-+				};
-+			};
-+		};
- 	};
- };
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi
-index fe08e131b7b9..59c14ded5e9f 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi
-@@ -55,6 +55,35 @@ padctl@3520000 {
- 			avdd-usb-supply = <&vdd_3v3_ao>;
- 		};
- 
-+		i2c@c240000 {
-+			status = "okay";
-+
-+			power-sensor@40 {
-+				compatible = "ti,ina3221";
-+				reg = <0x40>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				input@0 {
-+					reg = <0x0>;
-+					label = "VDD_IN";
-+					shunt-resistor-micro-ohms = <5000>;
-+				};
-+
-+				input@1 {
-+					reg = <0x1>;
-+					label = "VDD_CPU_GPU_CV";
-+					shunt-resistor-micro-ohms = <5000>;
-+				};
-+
-+				input@2 {
-+					reg = <0x2>;
-+					label = "VDD_SOC";
-+					shunt-resistor-micro-ohms = <5000>;
-+				};
-+			};
-+		};
-+
- 		rtc@c2a0000 {
- 			status = "okay";
- 		};
+Few nitpicks below:
+
+> ---
+> Changes in v7:
+>   - Add driver name to commit subject
+> Changes in v6:
+>   - Don't check VID for tps25750 as the VID register doesn't exist
+>   - Remove is_tps25750 flag from tps6598x struct
+>   - Get patch address from reg property
+> Changes in v5:
+>   - Incorporating tps25750 into tps6598x driver
+> 
+>  drivers/usb/typec/tipd/core.c | 254 +++++++++++++++++++++++++++++++++-
+>  1 file changed, 250 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
+> index 58679b1c0cfe..f96a9ff07fba 100644
+> --- a/drivers/usb/typec/tipd/core.c
+> +++ b/drivers/usb/typec/tipd/core.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/usb/typec_altmode.h>
+>  #include <linux/usb/role.h>
+>  #include <linux/workqueue.h>
+> +#include <linux/firmware.h>
+>  
+>  #include "tps6598x.h"
+>  #include "trace.h"
+> @@ -43,6 +44,23 @@
+>  /* TPS_REG_SYSTEM_CONF bits */
+>  #define TPS_SYSCONF_PORTINFO(c)		((c) & 7)
+>  
+> +/*
+> + * BPMs task timeout, recommended 5 seconds
+> + * pg.48 TPS2575 Host Interface Technical Reference
+> + * Manual (Rev. A)
+> + * https://www.ti.com/lit/ug/slvuc05a/slvuc05a.pdf
+> + */
+> +#define TPS_BUNDLE_TIMEOUT	0x32
+> +
+> +/* BPMs return code */
+> +#define TPS_TASK_BPMS_INVALID_BUNDLE_SIZE	0x4
+> +#define TPS_TASK_BPMS_INVALID_SLAVE_ADDR	0x5
+> +#define TPS_TASK_BPMS_INVALID_TIMEOUT		0x6
+> +
+> +/* PBMc data out */
+> +#define TPS_PBMC_RC	0 /* Return code */
+> +#define TPS_PBMC_DPCS	2 /* device patch complete status */
+> +
+>  enum {
+>  	TPS_PORTINFO_SINK,
+>  	TPS_PORTINFO_SINK_ACCESSORY,
+> @@ -713,6 +731,213 @@ static int devm_tps6598_psy_register(struct tps6598x *tps)
+>  	return PTR_ERR_OR_ZERO(tps->psy);
+>  }
+>  
+> +static int
+> +tps25750_write_firmware(struct tps6598x *tps,
+> +			u8 bpms_addr, const u8 *data, size_t len)
+> +{
+> +	struct i2c_client *client = to_i2c_client(tps->dev);
+> +	int ret;
+> +	u8 slave_addr;
+> +	int timeout;
+> +
+> +	slave_addr = client->addr;
+> +	timeout = client->adapter->timeout;
+> +
+> +	/*
+> +	 * binary configuration size is around ~16Kbytes
+> +	 * which might take some time to finish writing it
+> +	 */
+> +	client->adapter->timeout = msecs_to_jiffies(5000);
+> +	client->addr = bpms_addr;
+> +
+> +	ret = regmap_raw_write(tps->regmap, data[0], &data[1], len - 1);
+> +
+> +	client->addr = slave_addr;
+> +	client->adapter->timeout = timeout;
+> +
+> +	return ret;
+> +}
+> +
+> +static int
+> +tps25750_exec_pbms(struct tps6598x *tps, u8 *in_data, size_t in_len)
+> +{
+> +	int ret;
+> +	u8 rc;
+> +
+> +	ret = tps6598x_exec_cmd_tmo(tps, "PBMs", in_len, in_data,
+> +				    sizeof(rc), &rc, 4000, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	switch (rc) {
+> +	case TPS_TASK_BPMS_INVALID_BUNDLE_SIZE:
+> +		dev_err(tps->dev, "%s: invalid fw size\n", __func__);
+> +		return -EINVAL;
+> +	case TPS_TASK_BPMS_INVALID_SLAVE_ADDR:
+> +		dev_err(tps->dev, "%s: invalid slave address\n", __func__);
+> +		return -EINVAL;
+> +	case TPS_TASK_BPMS_INVALID_TIMEOUT:
+> +		dev_err(tps->dev, "%s: timed out\n", __func__);
+> +		return -ETIMEDOUT;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int tps25750_abort_patch_process(struct tps6598x *tps)
+> +{
+> +	int ret;
+> +
+> +	ret = tps6598x_exec_cmd(tps, "PBMe", 0, NULL, 0, NULL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = tps6598x_check_mode(tps);
+> +	if (ret != TPS_MODE_PTCH)
+> +		dev_err(tps->dev, "failed to switch to \"PTCH\" mode\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static int tps25750_start_patch_burst_mode(struct tps6598x *tps)
+> +{
+> +	int ret;
+> +	const struct firmware *fw;
+> +	const char *firmware_name;
+> +	struct {
+> +		u32 fw_size;
+> +		u8 addr;
+> +		u8 timeout;
+> +	} __packed bpms_data;
+> +	u32 addr;
+> +	struct device_node *np = tps->dev->of_node;
+> +
+> +	ret = device_property_read_string(tps->dev, "firmware-name",
+> +					  &firmware_name);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = request_firmware(&fw, firmware_name, tps->dev);
+> +	if (ret) {
+> +		dev_err(tps->dev, "failed to retrieve \"%s\"\n", firmware_name);
+> +		return ret;
+> +	}
+> +
+> +	if (fw->size == 0) {
+> +		ret = -EINVAL;
+> +		goto release_fw;
+> +	}
+> +
+> +	ret = of_property_match_string(np, "reg-names", "patch-address");
+> +	if (ret < 0) {
+> +		dev_err(tps->dev, "failed to get patch-address %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = of_property_read_u32_index(np, "reg", ret, &addr);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (addr == 0 || (addr >= 0x20 && addr <= 0x23)) {
+> +		dev_err(tps->dev, "wrong patch address %u\n", addr);
+> +		return -EINVAL;
+> +	}
+> +
+> +	bpms_data.addr = (u8)addr;
+> +	bpms_data.fw_size = fw->size;
+> +	bpms_data.timeout = TPS_BUNDLE_TIMEOUT;
+> +
+> +	ret = tps25750_exec_pbms(tps, (u8 *)&bpms_data, sizeof(bpms_data));
+> +	if (ret)
+> +		goto release_fw;
+> +
+> +	ret = tps25750_write_firmware(tps, bpms_data.addr, fw->data, fw->size);
+> +	if (ret) {
+> +		dev_err(tps->dev, "Failed to write patch %s of %zu bytes\n",
+> +			firmware_name, fw->size);
+> +		goto release_fw;
+> +	}
+> +
+> +	/*
+> +	 * A delay of 500us is required after the firmware is written
+> +	 * based on pg.62 in tps6598x Host Interface Technical
+> +	 * Reference Manual
+> +	 * https://www.ti.com/lit/ug/slvuc05a/slvuc05a.pdf
+> +	 */
+> +	udelay(500);
+> +
+> +release_fw:
+> +	release_firmware(fw);
+> +
+> +	return ret;
+> +}
+> +
+> +static int tps25750_complete_patch_process(struct tps6598x *tps)
+> +{
+> +	int ret;
+> +	u8 out_data[40];
+> +	u8 dummy[2] = { };
+> +
+> +	/*
+> +	 * Without writing something to DATA_IN, this command would
+> +	 * return an error
+> +	 */
+> +	ret = tps6598x_exec_cmd_tmo(tps, "PBMc", sizeof(dummy), dummy,
+> +				    sizeof(out_data), out_data, 2000, 20);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (out_data[TPS_PBMC_RC]) {
+> +		dev_err(tps->dev,
+> +			"%s: pbmc failed: %u\n", __func__,
+> +			out_data[TPS_PBMC_RC]);
+> +		return -EIO;
+> +	}
+> +
+> +	if (out_data[TPS_PBMC_DPCS]) {
+> +		dev_err(tps->dev,
+> +			"%s: failed device patch complete status: %u\n",
+> +			__func__, out_data[TPS_PBMC_DPCS]);
+> +		return -EIO;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int tps25750_apply_patch(struct tps6598x *tps)
+> +{
+> +	int ret;
+> +	unsigned long timeout;
+> +
+> +	ret = tps25750_start_patch_burst_mode(tps);
+> +	if (ret) {
+> +		tps25750_abort_patch_process(tps);
+> +		return ret;
+> +	}
+> +
+> +	ret = tps25750_complete_patch_process(tps);
+> +	if (ret)
+> +		return ret;
+> +
+> +	timeout = jiffies + msecs_to_jiffies(1000);
+> +
+> +	do {
+> +		ret = tps6598x_check_mode(tps);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		if (time_is_before_jiffies(timeout))
+> +			return -ETIMEDOUT;
+> +
+> +	} while (ret != TPS_MODE_APP);
+> +
+> +	dev_info(tps->dev, "controller switched to \"APP\" mode\n");
+> +
+> +	return 0;
+> +};
+> +
+>  static int tps6598x_probe(struct i2c_client *client)
+>  {
+>  	irq_handler_t irq_handler = tps6598x_interrupt;
+> @@ -725,6 +950,7 @@ static int tps6598x_probe(struct i2c_client *client)
+>  	u32 vid;
+>  	int ret;
+>  	u64 mask1;
+> +	bool is_tps25750;
+>  
+>  	tps = devm_kzalloc(&client->dev, sizeof(*tps), GFP_KERNEL);
+>  	if (!tps)
+> @@ -737,9 +963,12 @@ static int tps6598x_probe(struct i2c_client *client)
+>  	if (IS_ERR(tps->regmap))
+>  		return PTR_ERR(tps->regmap);
+>  
+> -	ret = tps6598x_read32(tps, TPS_REG_VID, &vid);
+> -	if (ret < 0 || !vid)
+> -		return -ENODEV;
+> +	is_tps25750 = of_device_is_compatible(np, "ti,tps25750");
+
+Please use the unified device property interface everywhere possible
+so the support is ready for ACPI too. So:
+
+        device_is_compatible(tps->dev, "ti,tps25750")
+
+> +	if (!is_tps25750) {
+> +		ret = tps6598x_read32(tps, TPS_REG_VID, &vid);
+> +		if (ret < 0 || !vid)
+> +			return -ENODEV;
+> +	}
+>  
+>  	/*
+>  	 * Checking can the adapter handle SMBus protocol. If it can not, the
+> @@ -773,9 +1002,15 @@ static int tps6598x_probe(struct i2c_client *client)
+>  	if (ret < 0)
+>  		return ret;
+>  
+> +	if (is_tps25750 && ret == TPS_MODE_PTCH) {
+> +		ret = tps25750_apply_patch(tps);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+>  	ret = tps6598x_write64(tps, TPS_REG_INT_MASK1, mask1);
+>  	if (ret)
+> -		return ret;
+> +		goto err_reset_controller;
+>  
+>  	ret = tps6598x_read32(tps, TPS_REG_STATUS, &status);
+>  	if (ret < 0)
+> @@ -895,19 +1130,29 @@ static int tps6598x_probe(struct i2c_client *client)
+>  	fwnode_handle_put(fwnode);
+>  err_clear_mask:
+>  	tps6598x_write64(tps, TPS_REG_INT_MASK1, 0);
+> +err_reset_controller:
+> +	/* Reset PD controller to remove any applied patch */
+> +	if (is_tps25750)
+> +		tps6598x_exec_cmd_tmo(tps, "GAID", 0, NULL, 0, NULL, 2000, 0);
+>  	return ret;
+>  }
+>  
+>  static void tps6598x_remove(struct i2c_client *client)
+>  {
+>  	struct tps6598x *tps = i2c_get_clientdata(client);
+> +	struct device_node *np = client->dev.of_node;
+>  
+>  	if (!client->irq)
+>  		cancel_delayed_work_sync(&tps->wq_poll);
+>  
+> +	devm_free_irq(tps->dev, client->irq, tps);
+>  	tps6598x_disconnect(tps, 0);
+>  	typec_unregister_port(tps->port);
+>  	usb_role_switch_put(tps->role_sw);
+> +
+> +	/* Reset PD controller to remove any applied patch */
+> +	if (of_device_is_compatible(np, "ti,tps25750"))
+
+Ditto.
+
+> +		tps6598x_exec_cmd_tmo(tps, "GAID", 0, NULL, 0, NULL, 2000, 0);
+>  }
+>  
+>  static int __maybe_unused tps6598x_suspend(struct device *dev)
+> @@ -950,6 +1195,7 @@ static const struct dev_pm_ops tps6598x_pm_ops = {
+>  static const struct of_device_id tps6598x_of_match[] = {
+>  	{ .compatible = "ti,tps6598x", },
+>  	{ .compatible = "apple,cd321x", },
+> +	{ .compatible = "ti,tps25750", },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, tps6598x_of_match);
+
+thanks,
+
 -- 
-2.34.1
-
+heikki
 
