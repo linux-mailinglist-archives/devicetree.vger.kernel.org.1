@@ -1,133 +1,503 @@
-Return-Path: <devicetree+bounces-4680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D1A17B36E3
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 17:35:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4197F7B3705
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 17:40:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 4F43A1C20B4B
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:35:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id E7DA6281319
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:40:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 320ED51BA9;
-	Fri, 29 Sep 2023 15:35:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E13951BB8;
+	Fri, 29 Sep 2023 15:40:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 176C251BA4;
-	Fri, 29 Sep 2023 15:35:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAC20C433B6;
-	Fri, 29 Sep 2023 15:35:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696001734;
-	bh=ti/iY/I8rL5lxV45hGyYfqiTkZyE90nEyx2osM8ZrS4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=LNMo1g0SUF0MshCK7LlJJbQzOUCYhoIrwB0l6YUZb0PbLJcbMcvwykPloDmyIsYoi
-	 xeuehITcBmi1duzE7qO/Gf+8zjPBf4h/K12XsEQitc121OMB5jVeYkH3oXiLB7xWxu
-	 kXUNZMRei9/6rqt0Q0FMOWrglBmLQ6sJLLP/YSybuNwXFYIlkJRtXU6iTpLssd7fwG
-	 O22v6dCSsNK8eDTRkhxq5FT0KmsluuikuLnEg+u32nnRXryeQgN+oHyNvrBL5WohX2
-	 f8izjKJFjvLfLIKunnmccRHUFUKTzmEt2CUc3FVbzHa8YcLJunWI1jUweUpca0UaXk
-	 lp7u+svNF7Etg==
-Received: (nullmailer pid 3601357 invoked by uid 1000);
-	Fri, 29 Sep 2023 15:35:24 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C88D31A71F
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 15:40:35 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9786DB
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 08:40:32 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qmFbS-0000kz-B6; Fri, 29 Sep 2023 17:40:30 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qmFbP-009qYi-Gq; Fri, 29 Sep 2023 17:40:27 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qmFbP-0060Vc-6f; Fri, 29 Sep 2023 17:40:27 +0200
+Date: Fri, 29 Sep 2023 17:40:27 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Jisheng Zhang <jszhang@kernel.org>
+Cc: Thierry Reding <thierry.reding@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+	linux-riscv@lists.infradead.org,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Subject: Re: [PATCH 2/2] pwm: add T-HEAD PWM driver
+Message-ID: <20230929154027.lq77saenadxgry5x@pengutronix.de>
+References: <20230928170254.413-1-jszhang@kernel.org>
+ <20230928170254.413-3-jszhang@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Gatien Chevallier <gatien.chevallier@foss.st.com>
-Cc: ulf.hansson@linaro.org, Frank Rowand <frowand.list@gmail.com>, edumazet@google.com, jic23@kernel.org, richardcochran@gmail.com, krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org, fabrice.gasnier@foss.st.com, linux-mmc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org, davem@davemloft.net, kuba@kernel.org, Oleksii_Moisieiev@epam.com, hugues.fruchet@foss.st.com, linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org, conor+dt@kernel.org, linux-phy@lists.infradead.org, mchehab@kernel.org, linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, linux-i2c@vger.kernel.org, vkoul@kernel.org, linux-spi@vger.kernel.org, olivier.moysan@foss.st.com, linux-serial@vger.kernel.org, arnd@kernel.org, alsa-devel@alsa-project.org, herbert@gondor.apana.org.au, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, gregkh@linuxfoundation.org, dmaengine@vger.kernel.org, alexandre.torgue@foss.st.com, lee@kernel.org, peng.fan@oss.nxp.com, arnaud
- .pouliquen@foss.st.com, catalin.marinas@arm.com, will@kernel.org, pabeni@redhat.com, robh+dt@kernel.org, andi.shyti@kernel.org
-In-Reply-To: <20230929142852.578394-3-gatien.chevallier@foss.st.com>
-References: <20230929142852.578394-1-gatien.chevallier@foss.st.com>
- <20230929142852.578394-3-gatien.chevallier@foss.st.com>
-Message-Id: <169600172300.3601265.2185363377386180804.robh@kernel.org>
-Subject: Re: [PATCH v5 02/11] dt-bindings: treewide: add access-controller
- description
-Date: Fri, 29 Sep 2023 10:35:24 -0500
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7i7o422tklvgxyiz"
+Content-Disposition: inline
+In-Reply-To: <20230928170254.413-3-jszhang@kernel.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
 
-On Fri, 29 Sep 2023 16:28:43 +0200, Gatien Chevallier wrote:
-> access-controller is an optional property that allows a peripheral to
-> refer to one or more domain access controller(s).
-> 
-> Description of this property is added to all peripheral binding files of
-> the peripheral under the STM32 firewall controllers. It allows an accurate
-> representation of the hardware, where various peripherals are connected
-> to this firewall bus. The firewall can then check the peripheral accesses
-> before allowing it to probe.
-> 
-> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+--7i7o422tklvgxyiz
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+On Fri, Sep 29, 2023 at 01:02:54AM +0800, Jisheng Zhang wrote:
+> T-HEAD SoCs such as the TH1520 contain a PWM controller used
+> among other things to control the LCD backlight, fan and so on.
+> Add driver for it.
+>=20
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
 > ---
-> 
-> Changes in V5:
-> 	- Discarded review tags as the content has changed
-> 	- Renamed feature-domains to access-controller
-> 	- Removed extra blank line in st,stm32-timers.yaml
-> 
-> Changes in V4:
-> 	- Added Jonathan's tag for IIO
-> 
-> Changes in V2:
-> 	- Add missing "feature-domains" property declaration
-> 	  in bosch,m_can.yaml and st,stm32-cryp.yaml files
-> 
->  Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml   | 4 ++++
->  Documentation/devicetree/bindings/crypto/st,stm32-hash.yaml   | 4 ++++
->  Documentation/devicetree/bindings/dma/st,stm32-dma.yaml       | 4 ++++
->  Documentation/devicetree/bindings/dma/st,stm32-dmamux.yaml    | 4 ++++
->  Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml       | 4 ++++
->  Documentation/devicetree/bindings/iio/adc/st,stm32-adc.yaml   | 4 ++++
->  .../devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml       | 4 ++++
->  Documentation/devicetree/bindings/iio/dac/st,stm32-dac.yaml   | 4 ++++
->  Documentation/devicetree/bindings/media/cec/st,stm32-cec.yaml | 4 ++++
->  Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml    | 4 ++++
->  .../bindings/memory-controllers/st,stm32-fmc2-ebi.yaml        | 4 ++++
->  Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml   | 4 ++++
->  Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml    | 4 ++++
->  Documentation/devicetree/bindings/mmc/arm,pl18x.yaml          | 4 ++++
->  Documentation/devicetree/bindings/net/can/bosch,m_can.yaml    | 4 ++++
->  Documentation/devicetree/bindings/net/stm32-dwmac.yaml        | 4 ++++
->  Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml  | 4 ++++
->  .../devicetree/bindings/regulator/st,stm32-vrefbuf.yaml       | 4 ++++
->  Documentation/devicetree/bindings/rng/st,stm32-rng.yaml       | 4 ++++
->  Documentation/devicetree/bindings/serial/st,stm32-uart.yaml   | 4 ++++
->  Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml     | 4 ++++
->  Documentation/devicetree/bindings/sound/st,stm32-sai.yaml     | 4 ++++
->  Documentation/devicetree/bindings/sound/st,stm32-spdifrx.yaml | 4 ++++
->  Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml      | 4 ++++
->  Documentation/devicetree/bindings/spi/st,stm32-spi.yaml       | 4 ++++
->  Documentation/devicetree/bindings/usb/dwc2.yaml               | 4 ++++
->  26 files changed, 104 insertions(+)
-> 
+>  MAINTAINERS             |   1 +
+>  drivers/pwm/Kconfig     |  11 ++
+>  drivers/pwm/Makefile    |   1 +
+>  drivers/pwm/pwm-thead.c | 289 ++++++++++++++++++++++++++++++++++++++++
+>  4 files changed, 302 insertions(+)
+>  create mode 100644 drivers/pwm/pwm-thead.c
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index d55e40060c46..86cf0926dbfc 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -18482,6 +18482,7 @@ L:	linux-riscv@lists.infradead.org
+>  S:	Maintained
+>  F:	arch/riscv/boot/dts/thead/
+>  F:	drivers/usb/dwc3/dwc3-thead.c
+> +F:	drivers/pwm/pwm-thead.c
+> =20
+>  RNBD BLOCK DRIVERS
+>  M:	Md. Haris Iqbal <haris.iqbal@ionos.com>
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 8ebcddf91f7b..428fa365a19a 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -637,6 +637,17 @@ config PWM_TEGRA
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-tegra.
+> =20
+> +config PWM_THEAD
+> +	tristate "T-HEAD PWM support"
+> +	depends on ARCH_THEAD || COMPILE_TEST
+> +	depends on HAS_IOMEM
+> +	help
+> +	  Generic PWM framework driver for the PWFM controller found on THEAD
+> +	  SoCs.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm-thead.
+> +
+>  config PWM_TIECAP
+>  	tristate "ECAP PWM support"
+>  	depends on ARCH_OMAP2PLUS || ARCH_DAVINCI_DA8XX || ARCH_KEYSTONE || ARC=
+H_K3 || COMPILE_TEST
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index c822389c2a24..4c317e6316e8 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -59,6 +59,7 @@ obj-$(CONFIG_PWM_STMPE)		+=3D pwm-stmpe.o
+>  obj-$(CONFIG_PWM_SUN4I)		+=3D pwm-sun4i.o
+>  obj-$(CONFIG_PWM_SUNPLUS)	+=3D pwm-sunplus.o
+>  obj-$(CONFIG_PWM_TEGRA)		+=3D pwm-tegra.o
+> +obj-$(CONFIG_PWM_THEAD)		+=3D pwm-thead.o
+>  obj-$(CONFIG_PWM_TIECAP)	+=3D pwm-tiecap.o
+>  obj-$(CONFIG_PWM_TIEHRPWM)	+=3D pwm-tiehrpwm.o
+>  obj-$(CONFIG_PWM_TWL)		+=3D pwm-twl.o
+> diff --git a/drivers/pwm/pwm-thead.c b/drivers/pwm/pwm-thead.c
+> new file mode 100644
+> index 000000000000..8339f5617b6f
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-thead.c
+> @@ -0,0 +1,289 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * T-HEAD PWM driver
+> + *
+> + * Copyright (C) 2021 Alibaba Group Holding Limited.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+If you have a public link to a reference manual, please mention this
+here. Also please add a section that describes hardware (and software)
+limitations sticking to the format in other drivers. The idea is that
 
-yamllint warnings/errors:
+	sed -rn '/Limitations:/,/\*\/?$/p'
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml: access-controller: missing type definition
+tells you about (at least) about the following properties:
 
-doc reference errors (make refcheckdocs):
+ - Can the PWM be updated atomically?
+ - Does it complete the current running period before switching to the
+   new configuration?
+ - How does the output behave when disabled?
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230929142852.578394-3-gatien.chevallier@foss.st.com
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bitops.h>
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/err.h>
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/pwm.h>
+> +#include <linux/slab.h>
+> +
+> +#define MAX_PWM_NUM	6
+> +
+> +#define LIGHT_PWM_CHN_BASE(n)		((n) * 0x20)
+> +#define LIGHT_PWM_CTRL(n)		(LIGHT_PWM_CHN_BASE(n) + 0x00)
+> +#define LIGHT_PWM_RPT(n)		(LIGHT_PWM_CHN_BASE(n) + 0x04)
+> +#define LIGHT_PWM_PER(n)		(LIGHT_PWM_CHN_BASE(n) + 0x08)
+> +#define LIGHT_PWM_FP(n)			(LIGHT_PWM_CHN_BASE(n) + 0x0c)
+> +#define LIGHT_PWM_STATUS(n)		(LIGHT_PWM_CHN_BASE(n) + 0x10)
+> +
+> +/* bit definition PWM_CTRL */
+> +#define PWM_START				BIT(0)
+> +#define PWM_SOFT_RST				BIT(1)
+> +#define PWM_CFG_UPDATE				BIT(2)
+> +#define PWM_INT_EN				BIT(3)
+> +#define PWM_ONE_SHOT_MODE			BIT(4)
+> +#define PWM_CONTINUOUS_MODE			BIT(5)
+> +#define PWM_EVT_RISING_TRIG_UNDER_ONE_SHOT	BIT(6)
+> +#define PWM_EVT_FALLING_TRIG_UNDER_ONE_SHOT	BIT(7)
+> +#define PWM_FPOUT				BIT(8)
+> +#define PWM_INFACTOUT				BIT(9)
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Emil already criticised the naming here (Thanks btw for the review!). I
+also want you to use a consistent prefix, but I wonder about "LIGHT_", I
+would have expected "THEAD_" matching the driver name?!
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+> +struct thead_pwm_chip {
+> +	struct clk *clk;
+> +	void __iomem *mmio_base;
+> +	struct pwm_chip chip;
+> +};
+> +
+> +#define to_thead_pwm_chip(chip)		container_of(chip, struct thead_pwm_chi=
+p, chip)
 
-pip3 install dtschema --upgrade
+This is wrong. Try:
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+	struct pwm_chip *mychip;
+	struct thead_pwm_chip *pc =3D to_thead_pwm_chip(mychip);
 
+=2E (Of course you shouldn't name a pwm_chip "mychip", "chip" is fine.
+Still this is too ugly.) I suggest a static inline here, ideally one
+that has a name starting with "thead_pwm_". thead_pwm_from_chip() comes
+to mind.
+=09
+> +static int thead_pwm_clk_prepare_enable(struct thead_pwm_chip *pc)
+> +{
+> +	return clk_prepare_enable(pc->clk);
+> +}
+> +
+> +static void thead_pwm_clk_disable_unprepare(struct thead_pwm_chip *pc)
+> +{
+> +	clk_disable_unprepare(pc->clk);
+> +}
+
+I agree to Emil here that these wrappers are too thin. (Also you might
+get rid of them completely, see below.)
+
+> +static int thead_pwm_enable(struct pwm_chip *chip, struct pwm_device *pw=
+m)
+> +{
+> +	struct thead_pwm_chip *pc =3D to_thead_pwm_chip(chip);
+> +	u32 value;
+> +	int ret;
+> +
+> +	ret =3D pm_runtime_get_sync(chip->dev);
+
+This function is typically called directly after thead_pwm_config()
+which ended with calling pm_runtime_put_sync(). If you put the logic of
+=2Eapply() in a single function (or move runtime pm handling in there) you
+can prevent some put/get ping-pong.
+
+> +	if (ret < 0) {
+> +		dev_err(chip->dev, "failed to clock on the pwm device(%d)\n", ret);
+
+Please use %pe for better readable error messages.
+
+> +		return ret;
+> +	}
+> +
+> +	value =3D readl(pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
+> +	value |=3D PWM_START;
+> +	writel(value, pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
+> +
+> +	return 0;
+> +}
+> +
+> +static void thead_pwm_disable(struct pwm_chip *chip, struct pwm_device *=
+pwm)
+> +{
+> +	struct thead_pwm_chip *pc =3D to_thead_pwm_chip(chip);
+> +	u32 value;
+> +
+> +	value =3D readl(pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
+> +	value &=3D ~PWM_START;
+> +	writel(value, pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
+> +
+> +	pm_runtime_put_sync(chip->dev);
+> +}
+> +
+> +static int thead_pwm_config(struct pwm_chip *chip, struct pwm_device *pw=
+m,
+> +			    int duty_ns, int period_ns)
+> +{
+> +	struct thead_pwm_chip *pc =3D to_thead_pwm_chip(chip);
+> +	unsigned long rate =3D clk_get_rate(pc->clk);
+> +	unsigned long duty_cycle, period_cycle;
+> +	u32 pwm_cfg =3D PWM_INFACTOUT | PWM_FPOUT | PWM_CONTINUOUS_MODE | PWM_I=
+NT_EN;
+> +	int ret;
+> +
+> +	if (duty_ns > period_ns) {
+> +		dev_err(chip->dev, "invalid pwm configure\n");
+> +		return -EINVAL;
+
+You can assume that won't happen (once you fixed the implicit type cast
+in the call to thead_pwm_config pointed out below).
+
+> +	}
+> +
+> +	ret =3D pm_runtime_get_sync(chip->dev);
+> +	if (ret < 0) {
+> +		dev_err(chip->dev, "failed to clock on the pwm device(%d)\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	writel(pwm_cfg, pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
+> +
+> +	period_cycle =3D period_ns * rate;
+
+This might overflow. Please use mul_u64_u64_div_u64 here together with
+making sure that rate <=3D NSEC_PER_SEC.
+
+> +	do_div(period_cycle, NSEC_PER_SEC);
+> +	writel(period_cycle, pc->mmio_base + LIGHT_PWM_PER(pwm->hwpwm));
+> +	duty_cycle =3D duty_ns * rate;
+> +	do_div(duty_cycle, NSEC_PER_SEC);
+> +	writel(duty_cycle, pc->mmio_base + LIGHT_PWM_FP(pwm->hwpwm));
+> +
+> +	pwm_cfg =3D readl(pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
+> +	pwm_cfg |=3D PWM_CFG_UPDATE;
+> +	writel(pwm_cfg, pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
+
+I assume this means period and duty_cycle are updated atomically (i.e.
+at no time the hardware is configured to emit a wave that has the new
+period but the old duty_cycle)?
+
+Is this needed even if the PWM is currently off and you write PWM_START
+a moment later? Can writing PWM_CFG_UPDATE and PWM_START be done in a
+single step?
+
+> +	pm_runtime_put_sync(chip->dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static int thead_pwm_set_polarity(struct pwm_chip *chip,
+> +				  struct pwm_device *pwm,
+> +				  enum pwm_polarity polarity)
+> +{
+> +	struct thead_pwm_chip *pc =3D to_thead_pwm_chip(chip);
+> +	u32 value =3D readl(pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
+> +	int ret;
+> +
+> +	ret =3D pm_runtime_get_sync(chip->dev);
+> +	if (ret < 0) {
+> +		dev_err(chip->dev, "failed to clock on the pwm device(%d)\n", ret);
+
+Please don't make .apply() emit an error message.
+
+> +		return ret;
+> +	}
+> +
+> +	if (polarity =3D=3D PWM_POLARITY_NORMAL)
+> +		value |=3D PWM_FPOUT;
+> +	else
+> +		value &=3D ~PWM_FPOUT;
+> +
+> +	writel(value, pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
+
+Oh, no PWM_CFG_UPDATE here? So writing the polarity takes effect
+immediately? If so, please note this is the Limitations section I
+asked for above.
+
+> +	pm_runtime_put_sync(chip->dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static int thead_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> +			   const struct pwm_state *state)
+> +{
+> +	int err;
+> +	bool enabled =3D pwm->state.enabled;
+> +
+> +	if (state->polarity !=3D pwm->state.polarity)
+> +		thead_pwm_set_polarity(chip, pwm, state->polarity);
+> +
+> +	if (!state->enabled) {
+> +		if (enabled)
+> +			thead_pwm_disable(chip, pwm);
+> +		return 0;
+> +	}
+> +
+> +	err =3D thead_pwm_config(chip, pwm, state->duty_cycle, state->period);
+
+state->duty_cycle is an u64, but thead_pwm_config takes an int ...
+
+> +	if (err)
+> +		return err;
+> +
+> +	if (!enabled)
+> +		return thead_pwm_enable(chip, pwm);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pwm_ops thead_pwm_ops =3D {
+> +	.apply =3D thead_pwm_apply,
+
+Please implement .get_state() and test with PWM_DEBUG enabled.
+
+> +	.owner =3D THIS_MODULE,
+> +};
+> +
+> +static int __maybe_unused thead_pwm_runtime_suspend(struct device *dev)
+> +{
+> +	struct thead_pwm_chip *pc =3D dev_get_drvdata(dev);
+> +
+> +	thead_pwm_clk_disable_unprepare(pc);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused thead_pwm_runtime_resume(struct device *dev)
+> +{
+> +	struct thead_pwm_chip *pc =3D dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	ret =3D thead_pwm_clk_prepare_enable(pc);
+> +	if (ret) {
+> +		dev_err(dev, "failed to enable pwm clock(%d)\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int thead_pwm_probe(struct platform_device *pdev)
+> +{
+> +	struct thead_pwm_chip *pc;
+> +	int ret;
+> +
+> +	pc =3D devm_kzalloc(&pdev->dev, sizeof(*pc), GFP_KERNEL);
+> +	if (!pc)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, pc);
+> +
+> +	pc->mmio_base =3D devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(pc->mmio_base))
+> +		return PTR_ERR(pc->mmio_base);
+> +
+> +	pc->clk =3D devm_clk_get(&pdev->dev, NULL);
+
+devm_clk_get_enabled()
+
+> +	if (IS_ERR(pc->clk))
+> +		return PTR_ERR(pc->clk);
+> +
+> +	pm_runtime_enable(&pdev->dev);
+> +	pm_runtime_get_noresume(&pdev->dev);
+> +	ret =3D thead_pwm_clk_prepare_enable(pc);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "failed to enable pwm clock(%d)\n", ret);
+> +		goto err_pm_disable;
+> +	}
+> +
+> +	pc->chip.ops =3D &thead_pwm_ops;
+> +	pc->chip.dev =3D &pdev->dev;
+> +	pc->chip.npwm =3D MAX_PWM_NUM;
+> +
+> +	ret =3D pwmchip_add(&pc->chip);
+
+devm_pwmchip_add()
+
+> +	if (ret)
+> +		goto err_clk_disable;
+> +
+> +	pm_runtime_put(&pdev->dev);
+> +
+> +	return 0;
+> +
+> +err_clk_disable:
+> +	thead_pwm_clk_disable_unprepare(pc);
+> +err_pm_disable:
+> +	pm_runtime_disable(&pdev->dev);
+> +	return ret;
+> +}
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--7i7o422tklvgxyiz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmUW7+oACgkQj4D7WH0S
+/k7ALggAhmJTiDR1A8R13CZqNrc/bNOhs+UFYYTpafxG/rk2m3s3WZYP3l4XxHLu
+6kmuQ+3A0FvDTalPkd4DWm9fX2ZfUyf4Kq5+YwipiWkXGf3PATSjhx7e/fYkQmgR
+GK/OC6w41uoUvNYiEqZGzartdCcXpjriSqVpSLdAoxPN308rgH6qBB9EoqweBZGE
+9LGW6yZ/2a8BcJmG2AlBxHSZgK+VdjpkW/mv8AWLcyfvhEWruvQufDzBePSBy/NB
+9U4dkMxSSVxDFXvpLeAj49Q8Fv6+ZkV03vv5yg6NEe/YJdb4M+bY5Q/e4WYnQdLo
+vMZI4WeRrhqZm+PVAm/wZjPcmi8rUw==
+=j5Sk
+-----END PGP SIGNATURE-----
+
+--7i7o422tklvgxyiz--
 
