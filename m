@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-4615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF3F67B342F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 16:05:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 349B37B3434
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 16:06:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 7105B281DF8
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 14:05:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id DB2E6281EB7
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 14:06:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F22E3450DD;
-	Fri, 29 Sep 2023 14:05:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78E77450ED;
+	Fri, 29 Sep 2023 14:06:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E25DD3C37
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 14:05:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B240C433C8;
-	Fri, 29 Sep 2023 14:05:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68D813C37
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 14:06:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F075C433C8;
+	Fri, 29 Sep 2023 14:05:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695996326;
-	bh=tP1APH92nLtf8T7YFL28/R3TCbGHTTmTTaQOdd2zGXg=;
+	s=k20201202; t=1695996361;
+	bh=TbckdWvwK4auFOXas/a0A6Sw7++8w4iMTpEnju2FbpE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=n+MjvEB7dRdldT4nfXOKreJu7PIKU3C48OjQTg0KvQk3mRo9hpdBndfaotDjelmrz
-	 Z1egO5FlHG6OVvsd3BnafqoOFhE0h0QZNvpFLP6n+94Jf1XQazF1LkWTdA3UyKhU0A
-	 qd4lG4878MDE8laeNABtnDuxRe3Ff36uuKwuzhyis6v6/NG/iyHxbNA1+LDLNDOZ1C
-	 /YFAEpW8Ga1ykdO23amVSdTmTf3+91n6fHFGnBIMbJVCnTpKZTfpCXQ1pNwi5aBtmk
-	 Fmk1q8yumywIGqYsuRnAqyPjSxgoRB/EZXQbuKWKSrwb/YHUtyDxoTPdaSafzvTquq
-	 Dl/OOpTYLWbbA==
-Date: Fri, 29 Sep 2023 15:05:19 +0100
+	b=bztEm8/+W8oJ9LY0UW30TZB7TXrWO9ynk2xaHq5c9epgJ+NZWojZSUBeIwdr3Z7QC
+	 WE0Dyw/FenBWk7V2OBPDCLLw70eZ8WCZk2CEfTf/xuhcRV7gK5781EYqrh7zTd6enf
+	 GnXsPwoX6/CNM16nUnQWlwOz9GaFRRb6xqp7RHPyS5N9x6VM04HFmCUlcB8GY4z3oy
+	 u2y5WfgmBgG95p6HdhdqGTgzLxpYfdVai9uKXahC8WbfoWcT1vd84VOIUARo1PNGTG
+	 LJ+9ZB0YfbrH4M6TfD0BZcU7inktZxXMV1XikuK8JEcrXdZM/K0G2Bq5Y+RgwxCSiD
+	 G9nRIhOKJpjeg==
+Date: Fri, 29 Sep 2023 15:05:54 +0100
 From: Conor Dooley <conor@kernel.org>
 To: Claudiu <claudiu.beznea@tuxon.dev>
 Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
@@ -42,11 +42,11 @@ Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
 	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
 	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 26/28] dt-bindings: arm: renesas: document SMARC
- Carrier-II EVK
-Message-ID: <20230929-spud-negotiate-40f630d2c0ae@spud>
+Subject: Re: [PATCH v2 23/28] dt-bindings: arm: renesas: document RZ/G3S
+ SMARC SoM
+Message-ID: <20230929-multiple-scallion-3a6e106e56ac@spud>
 References: <20230929053915.1530607-1-claudiu.beznea@bp.renesas.com>
- <20230929053915.1530607-27-claudiu.beznea@bp.renesas.com>
+ <20230929053915.1530607-24-claudiu.beznea@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,24 +54,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="7a52/xrNV+BUgOSd"
+	protocol="application/pgp-signature"; boundary="vCKR3sYe3VOcj8c0"
 Content-Disposition: inline
-In-Reply-To: <20230929053915.1530607-27-claudiu.beznea@bp.renesas.com>
+In-Reply-To: <20230929053915.1530607-24-claudiu.beznea@bp.renesas.com>
 
 
---7a52/xrNV+BUgOSd
+--vCKR3sYe3VOcj8c0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 29, 2023 at 08:39:13AM +0300, Claudiu wrote:
+On Fri, Sep 29, 2023 at 08:39:10AM +0300, Claudiu wrote:
 > From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >=20
-> Document Renesas SMARC Carrier-II EVK board which is based on RZ/G3S
-> SMARC SoM. The SMARC Carrier-II EVK consists of RZ/G3S SoM module and
-> SMARC Carrier-II carrier board, the SoM module sits on top of carrier
-> board.
+> Document Renesas RZ/G3S SMARC SoM board which is based on RZ/G3S
+> (R9A08G045S33) SoC.
 >=20
+> Suggested-by: Geert Uytterhoeven <geert@linux-m68k.org>
 > Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
@@ -82,24 +81,23 @@ Conor.
 > ---
 >=20
 > Changes in v2:
-> - this patch is new in v2
+> - this patch is new in v2 and added as suggested by Geert
 >=20
->  Documentation/devicetree/bindings/soc/renesas/renesas.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  Documentation/devicetree/bindings/soc/renesas/renesas.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 >=20
 > diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml b=
 /Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> index 31d0539bb168..594a7d7a6ee4 100644
+> index 822faf081e84..31d0539bb168 100644
 > --- a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
 > +++ b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> @@ -486,6 +486,13 @@ properties:
->            - const: renesas,r9a08g045s33 # PCIe support
+> @@ -480,6 +480,12 @@ properties:
+>                - renesas,r9a08g045s33 # PCIe support
 >            - const: renesas,r9a08g045
 > =20
-> +      - description: RZ SMARC Carrier-II Evaluation Kit
+> +      - description: RZ/G3S SMARC Module (SoM)
 > +        items:
-> +          - const: renesas,smarc2-evk # RZ SMARC Carrier-II EVK
-> +          - const: renesas,rzg3s-smarcm # RZ/G3S SMARC SoM
+> +          - const: renesas,rzg3s-smarcm # RZ/G3S SMARC Module (SoM)
 > +          - const: renesas,r9a08g045s33 # PCIe support
 > +          - const: renesas,r9a08g045
 > +
@@ -110,16 +108,16 @@ Conor.
 > 2.39.2
 >=20
 
---7a52/xrNV+BUgOSd
+--vCKR3sYe3VOcj8c0
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRbZnwAKCRB4tDGHoIJi
-0utnAQDDAyM70bskIR+jot5/Uoosxmd3Vo+j0LBWTc2HLt+7tAEAwpX9wgoSxAbO
-QIu3Es/tsf6na3Bwc0oift7ihJBQGgQ=
-=shhc
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRbZwQAKCRB4tDGHoIJi
+0kJ8AP9BDPKe/hn4dFJsq9M6O7qa+VPwhPLyoiOzVm0U9KDxdwD7BsnjNtnFKjUz
+LaSkObGrQi3BGDyei4YqEq6esOx24wg=
+=GBJI
 -----END PGP SIGNATURE-----
 
---7a52/xrNV+BUgOSd--
+--vCKR3sYe3VOcj8c0--
 
