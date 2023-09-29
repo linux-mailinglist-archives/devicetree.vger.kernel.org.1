@@ -1,170 +1,127 @@
-Return-Path: <devicetree+bounces-4451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C92067B2B1E
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 07:18:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0F3D7B2B31
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 07:28:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 72D1328238A
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 05:18:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 851D52824DD
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 05:28:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71888187F;
-	Fri, 29 Sep 2023 05:18:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 683B31FC8;
+	Fri, 29 Sep 2023 05:28:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B9AC399;
-	Fri, 29 Sep 2023 05:18:08 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B3771A2;
-	Thu, 28 Sep 2023 22:18:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1695964687; x=1727500687;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=QE7xX2WezWE3ftoKtKzbLcE6HA7lPFiTOPv5jyc5Dxg=;
-  b=k8Xej6e+XfUBBUh5r1eZGNDVjbkdh8vTGg/hj5JFASW/kB7JCNS1zMWf
-   JSVO7wQLc1u8S4QYgqPFmG1OAFnkXk1tOyt7DQwpzcIckltHHKXhlAM4s
-   DMykTbOhcghXxqiwR499LbX4UPHUrAxRtPTFuc0LIIAj+Dwv7lfw2R0Fe
-   4Nx5tBiwMoA617jnuAWws4tfTqKL3OL/oGClxX3oEzMytVEMXibEBjLDR
-   OBr3MBXXDQpFh+dyrcG80MWsPDE9LZmo9Zmv4mmxqaSCkO9h1ava7XGBg
-   GEY6JQ/UJ4HEg6KkDvS7BQQQZ2oqA/9kAWAsDeY8MJblYHx8Df7zVOrGl
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="3807790"
-X-IronPort-AV: E=Sophos;i="6.03,186,1694761200"; 
-   d="scan'208";a="3807790"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Sep 2023 22:18:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="840171527"
-X-IronPort-AV: E=Sophos;i="6.03,186,1694761200"; 
-   d="scan'208";a="840171527"
-Received: from pglc00352.png.intel.com ([10.221.235.155])
-  by FMSMGA003.fm.intel.com with ESMTP; 28 Sep 2023 22:18:02 -0700
-From: rohan.g.thomas@intel.com
-To: robh@kernel.org
-Cc: alexandre.torgue@foss.st.com,
-	conor+dt@kernel.org,
-	davem@davemloft.net,
-	devicetree@vger.kernel.org,
-	edumazet@google.com,
-	fancer.lancer@gmail.com,
-	joabreu@synopsys.com,
-	krzysztof.kozlowski+dt@linaro.org,
-	kuba@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	mcoquelin.stm32@gmail.com,
-	netdev@vger.kernel.org,
-	pabeni@redhat.com,
-	peppe.cavallaro@st.com,
-	rohan.g.thomas@intel.com
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: snps,dwmac: Time Based Scheduling
-Date: Fri, 29 Sep 2023 13:17:58 +0800
-Message-Id: <20230929051758.21492-1-rohan.g.thomas@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20230928180942.GA932326-robh@kernel.org>
-References: <20230928180942.GA932326-robh@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDA5B17E1
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 05:28:20 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A0B4195;
+	Thu, 28 Sep 2023 22:28:19 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38T4VBtM009375;
+	Fri, 29 Sep 2023 05:28:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=2MmhY5n+x+FttbpEdu4GPZXBa6ZtwaMPVPJou3WoPr8=;
+ b=SYUwlC8Ujf7+MqbvTeXOn1moVxRwIQUH2Z99ANG9Z6TpuX7xLzXS/nIC15dAYMfzab6j
+ w2w7nJMNrHSxmo/Lxhpr+G0BRa1R7hyL8290YVHMdjj2YP0pVsZ0IDSv5jgDZRuwueNW
+ +UecWiNot3VJQuWbIMMCIlM8G4fBzdoxk7kAHg1RWz6ItzjhGh5yasWNnEsmOKB5KgW4
+ IvcGeBPNz1SGuY84VcXdGPnyIHCkGcn4GSntC1nOVj2pMo25t/bxF90QnA2SSBjRjCHh
+ PazsxxY7xVyKuORN0YBtjtX9W3lxksWp8YL6Sd3MQqMVbcMyO/Rk08gY85AlExMGzKkk 4w== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tdfbrrv3w-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 29 Sep 2023 05:28:11 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38T5SAYk024216
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 29 Sep 2023 05:28:10 GMT
+Received: from [10.50.55.181] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 28 Sep
+ 2023 22:28:06 -0700
+Message-ID: <1d74ceae-f337-4062-a93d-bd4a2799dc3f@quicinc.com>
+Date: Fri, 29 Sep 2023 10:58:01 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-	SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: qcom: sa8775p: Add RPMh sleep stats
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <quic_mkshah@quicinc.com>, <quic_lsrao@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20230926044814.535-1-quic_rkakarla@quicinc.com>
+ <149165d9-1c89-45a5-90ab-82ce546f49f5@linaro.org>
+Content-Language: en-US
+From: Raghavendra Kakarla <quic_rkakarla@quicinc.com>
+In-Reply-To: <149165d9-1c89-45a5-90ab-82ce546f49f5@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: gFghcoWSqqqQyGlkFhZQQ4BIQ80p_8zV
+X-Proofpoint-GUID: gFghcoWSqqqQyGlkFhZQQ4BIQ80p_8zV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-29_03,2023-09-28_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
+ malwarescore=0 impostorscore=0 mlxscore=0 suspectscore=0
+ priorityscore=1501 lowpriorityscore=0 mlxlogscore=584 adultscore=0
+ clxscore=1015 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2309290046
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Rohan G Thomas <rohan.g.thomas@intel.com>
 
-On Wed, Sep 27, 2023 at 09:09:18PM +0800, Rohan G Thomas wrote:
->> Add new property tbs-enabled to enable Time Based Scheduling(TBS)
->
->That's not the property you added.
->
->> support per Tx queues. TBS feature can be enabled later using ETF
->> qdisc but for only those queues that have TBS support enabled.
->
->This property defines capable or enabled? 
-
-This property is to enable TBS support for any Tx queue. Why this
-added is because I think TBS need not be enabled for all capable
-Tx queues(Tx DMA channels) because of the following hw limitations.
-1. As per DWMAC QoS and DWXGMAC databooks, TBS cannot coexist with
-TSO. So TBS cannot be enabled for a Tx queue which is for TSO. 
-2. Also as per DWXGMAC databook, "Do not enable time-based scheduling
-(or enhanced descriptors) for the channel for which TSO or transmit
-timestamp or one-step timestamping control correction feature is
-enabled".
-3. As per DWXGMAC databook, "Use separate channel (without TBS
-enabled) for time critical traffic. Mixing such traffic with TBS
-enabled traffic can cause delays in transmitting time critical
-traffic."
-More explanation below...
-
->
->Seems like OS configuration and policy.
-
-Tx queues need to be configured for TBS during hw setup itself as
-special enhanced descriptors are used by the hw for TBS support
-enabled queues. Switching between enhanced and normal descriptors
-on run is not feasible. So this flag is for enabling "Enhanced
-Descriptors for Time Based Scheduling". This I think is a hw specific
-requirement.
-
->
->Doesn't eh DWMAC have capability registers for supported features? Or 
->did they forget per queue capabilities?
-
-Yes, capability registers are available. For DWMAC5 IP, if TBSSEL bit
-is set, then TBS is supported by all Tx queues. For DWXGMAC IP, if
-TBSSEL bit is set, then TBS is supported by TBS_CH number of Tx
-queues starting from the highest Tx queue. But because of the hw
-limitations mentioned above, TBS cannot be enabled for all capable
-queues.
-
->
->> 
->> Commit 7eadf57290ec ("net: stmmac: pci: Enable TBS on GMAC5 IPK PCI
->> entry") enables similar support from the stmmac pci driver.
->
->Why does unconditionally enabling TBS work there, but not here?
-
-There, Tx queue 0 is not enabled for TBS as it is used for TSO.
-
->
->> 
->> Signed-off-by: Rohan G Thomas <rohan.g.thomas@intel.com>
+On 9/27/2023 12:36 AM, Konrad Dybcio wrote:
+> On 26.09.2023 06:48, Raghavendra Kakarla wrote:
+>> Add device node for sleep stats driver which provides various
+>> low power mode stats.
+>>
+>> Cc: devicetree@vger.kernel.org
+>> Signed-off-by: Raghavendra Kakarla <quic_rkakarla@quicinc.com>
 >> ---
->>  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 8 ++++++++
->>  1 file changed, 8 insertions(+)
->> 
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/>devicetree/bindings/net/snps,dwmac.yaml
->> index 5c2769dc689a..db1eb0997602 100644
->> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->> @@ -399,6 +399,14 @@ properties:
->>              type: boolean
->>              description: TX checksum offload is unsupported by the TX queue.
->>  
->> +          snps,tbs-enabled:
->> +            type: boolean
->> +            description:
->> +              Enable Time Based Scheduling(TBS) support for the TX queue. TSO and
->> +              TBS cannot be supported by a queue at the same time. If TSO support
->> +              is enabled, then default TX queue 0 for TSO and in that case don't
->> +              enable TX queue 0 for TBS.
+>>   arch/arm64/boot/dts/qcom/sa8775p.dtsi | 5 +++++
+>>   1 file changed, 5 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+>> index 9f4f58e831a4..cee7491de675 100644
+>> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+>> @@ -1912,6 +1912,11 @@
+>>   			#clock-cells = <0>;
+>>   		};
+>>   
+>> +		sram@c3f0000 {
+>> +			compatible = "qcom,rpmh-stats";
+>> +			reg = <0 0x0c3f0000 0 0x400>;
+> Other nodes (such as the one 5 lines below) use 0x0 instead of
+> 0 to fill out bits 63:32. Please make it consistent.
+Sure, will address this in next patch.
+>
+> Konrad
+>> +		};
 >> +
->>          allOf:
->>            - if:
->>                required:
->> -- 
->> 2.26.2
->> 
+>>   		spmi_bus: spmi@c440000 {
+>>   			compatible = "qcom,spmi-pmic-arb";
+>>   			reg = <0x0 0x0c440000 0x0 0x1100>,
 
