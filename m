@@ -1,167 +1,249 @@
-Return-Path: <devicetree+bounces-4556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78AE27B30BA
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 12:38:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 627637B30C1
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 12:43:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 93E0B1C2090D
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 10:38:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 0BCD9283D2D
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 10:43:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A9F515AD5;
-	Fri, 29 Sep 2023 10:38:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94F7515AF0;
+	Fri, 29 Sep 2023 10:43:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5B49399
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 10:38:53 +0000 (UTC)
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2068.outbound.protection.outlook.com [40.107.93.68])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99EF011F;
-	Fri, 29 Sep 2023 03:38:52 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bhjb0MuGVIXihmQ1RO0OAC66ckzx5LuANe2pHeutHvUtpUppwcY8ZHlGLuKs7wur4+40KlY8KtcXXmXy/RnoQhSHMcvDzmI2iztPe2KW/waVpvruyaAlnfoKuaZA9fX5EZSUHMLbco4BK7tACWzCTUCstmahAa33/EWERO5YnSuQtFoJa2Zqou+CySNmZcckFLHItM+Uj8Fwt/FmBHE3ey4wJCm3JZL/bx95HEDqeBsn3Ur105lHdG7R/mZ0aH9hZsKf4P98x7l2I4XT3Qrp8pdL7svfivP7V8cX3qxaYR0ZfHrC0FG+K1L/53n4ho8VCAzfqEBG7Ey7P2jpjkmUiw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4LfyeFRPyJv1zH/zwSJPA1tXhsshlDnjI75UmUF8aW8=;
- b=iiXbmEeK1wLUd9mgFi1EFaheNN+hxaeKHSQqkLBVCnFztF6nvsWVkLM8NxeTc2nk7yGJyeo5DbctFrvrCabXK2UgYWr/0GkvCPNoGG1VHFVT9lhaZkf/VgGTPh/BNn1XHPnqMYFZYd8byyfIrsbFPD1hep46uW8cT9FwsHgz5vcnUOHCuliMI8U76rtQ+rCSZGLGHdNdd7TmjsuueEtDo2Jh1lKCYYhoBtIaBehLX9DwOVFQqRNt8Ti0eW1UFoKyAfFQbOCyEdfVNUUjiKcMJT87e3FXCUmDwkTX7f4UIviqFxoplMJg8G3xXxxEPVw+60mdNJLn9z/yi+cjDAl74A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4LfyeFRPyJv1zH/zwSJPA1tXhsshlDnjI75UmUF8aW8=;
- b=DYFsUQWBK9DqmgyVq1zl83k8kcwd2BMBHOLpbsPr2kHd7x+y2bqr2bdOiD6I1H8aXH+cdTX10VlhQgmM9BsilzFTwW1l9TRNkT1ULhWwqs9WdOv83XXNG2tNSvp895sb8+D+rJtibyIOC1XRMZ2aKHulF3h/4ARlhvPyrn/iUqc2DZ+5rYv/n1KQ3fCdO6r1J2i7Vh8T+4PdtADvt9BpJyCPJQZpBE7cdE09RBrPIhTlOIRP9pEaBxZ0Tj/I4YhOXu2UNdD2kYy9TeC5810BCrtDdJ7QYiZJJ64VSP04EhTbOCZ2d41ToLtPEG3GfIvvLlejGolS9kiM6d32QC0tkg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
- PH8PR12MB7352.namprd12.prod.outlook.com (2603:10b6:510:214::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.21; Fri, 29 Sep
- 2023 10:38:50 +0000
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::3356:8104:bbc3:69fc]) by CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::3356:8104:bbc3:69fc%6]) with mapi id 15.20.6813.027; Fri, 29 Sep 2023
- 10:38:50 +0000
-Message-ID: <903c1ca9-f1fb-845b-86c4-86f7225901ae@nvidia.com>
-Date: Fri, 29 Sep 2023 11:38:43 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH V4 0/4] hwmon: ina3221: Add selective summation support
-Content-Language: en-US
-To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org
-References: <20230929102744.84989-1-jonathanh@nvidia.com>
-From: Jon Hunter <jonathanh@nvidia.com>
-In-Reply-To: <20230929102744.84989-1-jonathanh@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LNXP265CA0004.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:5e::16) To CO6PR12MB5444.namprd12.prod.outlook.com
- (2603:10b6:5:35e::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF86715AD5;
+	Fri, 29 Sep 2023 10:43:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C74B3199;
+	Fri, 29 Sep 2023 03:43:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1695984198; x=1727520198;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=nIKfg0g+s2/pWaLCuwkR8KFdNJBrossarMDpMiFUMZA=;
+  b=HXmM6uSvflE1iSSToOwM0fUHs/jlu9zUixh8umAMHVw+zxig37TBDB4y
+   NlPjoW6KDMCUimJcc4WiM1G7CzwsMi+CAuXbFXgnCvV/7vayhPF+aJOFi
+   p99wAwcgxOritAVgQiwpwAu1sBaKdmh1k6+HRAmkY0qCpg32DsgOHL7U/
+   PFdh61g9PeLYHZycvwUHzIkCt19VIwvxxmjPx1Qa4Aumx0INlvUp/kr4o
+   p0ByX8Cyqq4OmmV3YGcEbuuQvt7gxYLAtihQ85FjrclHef9Cd+ebqWbCq
+   87c8VWVMKJhXrJw1S3rXvNPrcO4UB2TM11SkYa6sQzGtIyqK9VV1umnZp
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="413177156"
+X-IronPort-AV: E=Sophos;i="6.03,187,1694761200"; 
+   d="scan'208";a="413177156"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Sep 2023 03:43:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="840242522"
+X-IronPort-AV: E=Sophos;i="6.03,187,1694761200"; 
+   d="scan'208";a="840242522"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by FMSMGA003.fm.intel.com with SMTP; 29 Sep 2023 03:43:13 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 29 Sep 2023 13:43:12 +0300
+Date: Fri, 29 Sep 2023 13:43:12 +0300
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Abdel Alkuor <alkuor@gmail.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, bryan.odonoghue@linaro.org,
+	gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org, ryan.eleceng@gmail.com,
+	robh+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	Abdel Alkuor <abdelalkuor@geotab.com>
+Subject: Re: [PATCH v7 08/14] USB: typec: tps6598x: Add interrupt support for
+ TPS25750
+Message-ID: <ZRaqQLKNnMSv3dMk@kuha.fi.intel.com>
+References: <20230927175348.18041-1-alkuor@gmail.com>
+ <20230927175348.18041-9-alkuor@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|PH8PR12MB7352:EE_
-X-MS-Office365-Filtering-Correlation-Id: 768e1a65-aeba-4a21-864a-08dbc0d844ae
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	zikoY2cchbS/5QwZenKQfxLCFdatqHQRqGl9gKVBCV6GdA3Y/6DL46Mqe7/d7dLnAHnJl1p+GimzxNabSf31ctjwmJWIugoKlam1+lYLYf2spar1++Kcma1kaaU8xjpc5aekepQVQOdnecVD/7uOhEp1iStSABDfBSHbT3tobdfAqOgla9k5SpLMgfbxNxbhYWZFYxhP8nN8nWq3fXZ/Ad9ZpuUdJ964hmsAwc1q7K2827RCJHa2Wsio6e4SRhQm2CQFd5E//9F76zp079xczZuXNhRkgty5Cyj/+8wYEfN5chAjLJBLparpP425af/+kNqVRbg8x2tB/1/L0BW0FtzgArOTMCFTD8iiHvmUXYWpH/32A/4KXOZAFHhCcJzFyI8DTmBaZ/evpH9KscT1jD3FndkoG5HpnP2Fwj6uTMqK6HuHyJHJPS+U5aZF9rsMveBGed8cEa5a67QDWwySHq/qRrQZoZtTa1Vmlw/ynCviXiHjJ5e3upa8we1B5XGSMs3IqgOibBIMxD3jr++ZJUe9bI1IMPPVNbNd+tYWlPwjVYCL3dVTB1P2rkC9k0/r/PwkB3z100FUEH40Gz1E6UB3iHx3GsioUh2O4MSuKfO1a5f9cyNNzGXnjTADJz2ng6AesLJ2bhL0vlGR4ZM2Ag==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(346002)(39860400002)(376002)(396003)(136003)(230922051799003)(186009)(1800799009)(451199024)(64100799003)(6666004)(6486002)(478600001)(53546011)(6506007)(6512007)(4744005)(2906002)(41300700001)(316002)(4326008)(5660300002)(66556008)(8676002)(66476007)(8936002)(110136005)(36756003)(66946007)(38100700002)(86362001)(31696002)(83380400001)(2616005)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?ejVzV0lYNEdNckNFR0ZadWJ5RVFObVlOTCtlWDN4SXJ3aUVDS2Q0b1I4RnVC?=
- =?utf-8?B?eDRsK2E2M1lPRVg0UGgzOWJaWjR1dExJUFNlOFJxY3R3SE5Yb0FBWkhTZXhz?=
- =?utf-8?B?ODZhK3FWSTM5OXRZbm4yZ2Z1aFdVZzBvaTIxQVpGbjJQNXdnRDJkdTBkaG1o?=
- =?utf-8?B?RCswSXpmWEtpT3VzWmRDZFBibjFIdVlibW1LRDhENkYrTjJPRjVsdXdRaCsv?=
- =?utf-8?B?T2RlVzBvMzEwdVlucmhNTEwxM2ZnTXJmVWJVejl1eFRieSt1U24zRFpXODRr?=
- =?utf-8?B?TnVNOGJLd3hlTVVxcVkwNWUwa0QxNHZpTjd0K0k1QW9sSXNxUVFPNlBDTlpn?=
- =?utf-8?B?L1lzU2NDYkhPMFFsVGtTRS9Hd1hOV0kxZVVVRGY4RkVnd0kwaG5RWjBjYm1V?=
- =?utf-8?B?azBIRFk1cGNrL0JvTG5uUHVQNGxkS29IVzUwNXJ4N2MvcFBET0ZoenlER2ty?=
- =?utf-8?B?dTREeG1HdndRNmpUeHg4cG41cUpVU0R3aVFHUTRxTnV0bGxGR2NIMHdsbElU?=
- =?utf-8?B?QWRmakRFbENiUmxSNG5EQnJHMVBUZ0JCbisxSW1SejI1SEgzeGJ1QXh1YUtq?=
- =?utf-8?B?dm96TS81bEhvYWxGK1JkaEc2c0ZYaTVUUGRwdXZDU0dnTk9KN2FWWmFSY294?=
- =?utf-8?B?WXNpb3l2YXk2ZnZQb3ZsWm5HUzhEOVdJQzhHaURaZCtDYlFEa0RPUjhlQi9H?=
- =?utf-8?B?cEhjOEg4bzJucm9LbitPRjA2U3o3b2ZUTFVFblFldGcvS24zSEhQZURKOVJy?=
- =?utf-8?B?U09rSzBqZnJFMkxHZFR2QUxmLzY2M3hibUUzL0wyVGJ0T0QxY0NRenJMaDVD?=
- =?utf-8?B?Wmc0bktGa1c4RVJvN2dqc2RlY0dOT0w4SThZOW84Q0dkK2JOWDB1aTQ3V1Nn?=
- =?utf-8?B?akZDekpma3JtNGVPSTBzR0VleHNOMTAyQU5wVmUybFg5ZFhWY1VVR1oyWWlX?=
- =?utf-8?B?U1c1MWc5cFltOThlT21aR3JCdHA4YUYzd0tBd0NYemlvNHlxblF1K2xYa3Ri?=
- =?utf-8?B?N3BiSkNUYW11QkxCODlrcUY1U3VLMGdGdHM0MDJCQ3NTWEg1Y3MvUGExOUQ4?=
- =?utf-8?B?SDNDM3BxSm9tZHltRE9SYisrWGxzVm5Pd05uVnhndVJSNklRci9ZMGxJbzBU?=
- =?utf-8?B?WkYweHY4SDF2azgwUWU2NmFqSlBUVzhxUi9SZUh2aFkzbm43VUF4R25YdUV1?=
- =?utf-8?B?UzBpVGt2bG94K0MzZk03WXcwWE1pMWlkYTlkTHlnaTJ3V05GTUxYTlNTL1F1?=
- =?utf-8?B?STJzSVZKMXR3RnpyK2RGalhndUpqeDVWcSt4c2lDNUllUmdUSlo1MFdvL0w2?=
- =?utf-8?B?bDBUOEhCdW1ZMnNtNzBvS0MvVE5hSTJWZ3ZCMEgrVWZ6dVl3N21wL2U5Slc2?=
- =?utf-8?B?aU1zZVc3U3FOTEZqeXhPZWZJcE1WUEVFcDBsS3lBWmR6R05rMFBaWURKOTFM?=
- =?utf-8?B?L0s1TUxtcUtnLzkrU2xNTXk1VU1LdHhrWlZCU0RNbVBIaW1NS002bncyZnZ6?=
- =?utf-8?B?T05oV3FzYmZFb21yM0xjTXUrSkZMOVJ1bWpqbTloaFVUeUNOZjBBSzJSVHdF?=
- =?utf-8?B?R3dOMlJRRWN6MlcyamRza0IrQVZya2dPZGRXem9DanVJMGMrRWRTaSt1aEhJ?=
- =?utf-8?B?RnFXL0wxcGZqbVh5Smx5OUEzVno2WFR1L0Fab04wZnJnZ1lwSWlsdG1DTGRh?=
- =?utf-8?B?N1gzUTUyOXQ3RXo2WURkZ1krQlFpUi8zSExjUjlBb0JtQ3NPT3N3SkptY29B?=
- =?utf-8?B?NFJrRGd5UjU3ZkdBbmRBTHRaa285MnRNTFlWOWxkbjdoWlVTNzN1cUx5TEQr?=
- =?utf-8?B?YkZEMmsxbFQ3TVhkbjNUSGNsSXlBSlJKZk5INGxyd1Vza1RmdjJaQTY4cGtX?=
- =?utf-8?B?NHk1eWZqOEJXd1Q0WmtwUlpTZXZUUmwxWmNabXNkK3owQTA4ekpvNHRXSXZV?=
- =?utf-8?B?OHRlL1lDUVZ6c2ljaTJhTTNkdU1nMWlHbHRTL0YzcHZYeDhKdXFEamxDanlS?=
- =?utf-8?B?dmE2Y3RQZUVZbVp2V2J0TXE2RSt5ajhKVmt2djJ4bmlQVkhKOHVleWkwa281?=
- =?utf-8?B?WUdUdGRyalExbmxNZkhoeWpYcVNJdEJwWFpJL1V3aG1mM2o0ZlI4dkRpVXY3?=
- =?utf-8?B?bmd0dkw2Z3JpVGpKWGVIMlA3Y0RoZjVWVnRmRCtCYlZSUFhBRzIvWUJ2Sjdo?=
- =?utf-8?Q?0JtqvNbruzPjIRWxPr2HQxwnlFrdyTKtYKs5+hYeL/fO?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 768e1a65-aeba-4a21-864a-08dbc0d844ae
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2023 10:38:50.3195
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: I1AbOICBRHqnsgehkSoCN3zMg2//Ix/yxGWvinm5vx3NohRzxseMixF+qFuCpM/ld7TIgDLN4MCs2lcct2sSUw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7352
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-	NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-	SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230927175348.18041-9-alkuor@gmail.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-
-
-On 29/09/2023 11:27, Jon Hunter wrote:
-> The current INA3221 driver always sums the shunt voltage for all enabled
-> channels regardless of the shunt-resistor used for each channel. Summing
-> the shunt-voltage for channels is only meaningful if the shunt resistor
-> is the same for each channel. This series adds device-tree support to
-> allow which channels are summed in device-tree.
+On Wed, Sep 27, 2023 at 01:53:42PM -0400, Abdel Alkuor wrote:
+> From: Abdel Alkuor <abdelalkuor@geotab.com>
 > 
-> Changes since V3:
-> - Added missing descriptions for new structure members that was reported
->    by the kernel-test-bot.
-> - Added comment in the ina3221 dt-binding doc example to explain why we
->    need to explicitly disable channels.
-> - Added more commentary in the commit message for the new DT property
->    to explain that this property does not change the behaviour of the
->    driver unless it is populated.
+> tps25750 event registers structure is different than tps6598x's,
+> tps25750 has 11 bytes of events which are read at once where
+> tps6598x has two event registers of 8 bytes each which are read
+> separately. Likewise MASK event registers. Also, not all events
+> are supported in both devices.
+> 
+> Create a new handler to accommodate tps25750 interrupt
+> 
+> Signed-off-by: Abdel Alkuor <abdelalkuor@geotab.com>
+> ---
+> Changes in v7:
+>   - Add driver name to commit subject
+>   - Create tps25750 interrupt handler
+> Changes in v6:
+>   - Create tipd callbacks factory 
+> Changes in v5:
+>   - Incorporating tps25750 into tps6598x driver
+> 
+>  drivers/usb/typec/tipd/core.c | 90 ++++++++++++++++++++++++++++++++---
+>  1 file changed, 84 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
+> index 56ffffe225f2..40a76826a44e 100644
+> --- a/drivers/usb/typec/tipd/core.c
+> +++ b/drivers/usb/typec/tipd/core.c
+> @@ -101,6 +101,10 @@ static const char *const modes[] = {
+>  /* Unrecognized commands will be replaced with "!CMD" */
+>  #define INVALID_CMD(_cmd_)		(_cmd_ == 0x444d4321)
+>  
+> +struct tipd_data {
+> +	irq_handler_t irq_handler;
+> +};
+> +
+>  struct tps6598x {
+>  	struct device *dev;
+>  	struct regmap *regmap;
+> @@ -118,9 +122,11 @@ struct tps6598x {
+>  	enum power_supply_usb_type usb_type;
+>  
+>  	int wakeup;
+> +	u32 status; /* status reg */
+>  	u16 pwr_status;
+>  	struct delayed_work	wq_poll;
+> -	irq_handler_t irq_handler;
+> +
+> +	struct tipd_data cb;
+>  };
+>  
+>  static enum power_supply_property tps6598x_psy_props[] = {
+> @@ -545,6 +551,64 @@ static irqreturn_t cd321x_interrupt(int irq, void *data)
+>  	return IRQ_NONE;
+>  }
+>  
+> +static bool tps6598x_has_role_changed(struct tps6598x *tps, u32 status)
+> +{
+> +	status ^= tps->status;
+> +
+> +	return status & (TPS_STATUS_PORTROLE | TPS_STATUS_DATAROLE);
+> +}
+> +
+> +static irqreturn_t tps25750_interrupt(int irq, void *data)
+> +{
+> +	struct tps6598x *tps = data;
+> +	u64 event[2] = { };
+> +	u32 status;
+> +	int ret;
+> +
+> +	mutex_lock(&tps->lock);
+> +
+> +	ret = tps6598x_block_read(tps, TPS_REG_INT_EVENT1, event, 11);
+> +	if (ret) {
+> +		dev_err(tps->dev, "%s: failed to read events\n", __func__);
+> +		goto err_unlock;
+> +	}
+> +
+> +	if (!(event[0] | event[1]))
+> +		goto err_unlock;
+> +
+> +	if (!tps6598x_read_status(tps, &status))
+> +		goto err_clear_ints;
+> +
+> +	if ((event[0] | event[1]) & TPS_REG_INT_POWER_STATUS_UPDATE)
+> +		if (!tps6598x_read_power_status(tps))
+> +			goto err_clear_ints;
+> +
+> +	if ((event[0] | event[1]) & TPS_REG_INT_DATA_STATUS_UPDATE)
+> +		if (!tps6598x_read_data_status(tps))
+> +			goto err_clear_ints;
+> +
+> +	/*
+> +	 * data/port roles could be updated independently after
+> +	 * a plug event. Therefore, we need to check
+> +	 * for pr/dr status change to set TypeC dr/pr accordingly.
+> +	 */
+> +	if ((event[0] | event[1]) & TPS_REG_INT_PLUG_EVENT ||
+> +	    tps6598x_has_role_changed(tps, status))
+> +		tps6598x_handle_plug_event(tps, status);
+> +
+> +	tps->status = status;
+> +
+> +err_clear_ints:
+> +	tps6598x_block_write(tps, TPS_REG_INT_CLEAR1, event, 11);
+> +
+> +err_unlock:
+> +	mutex_unlock(&tps->lock);
+> +
+> +	if (event[0] | event[1])
+> +		return IRQ_HANDLED;
+> +	return IRQ_NONE;
+> +}
+> +
+>  static irqreturn_t tps6598x_interrupt(int irq, void *data)
+>  {
+>  	struct tps6598x *tps = data;
+> @@ -600,7 +664,7 @@ static void tps6598x_poll_work(struct work_struct *work)
+>  	struct tps6598x *tps = container_of(to_delayed_work(work),
+>  					    struct tps6598x, wq_poll);
+>  
+> -	tps->irq_handler(0, tps);
+> +	tps->cb.irq_handler(0, tps);
+>  	queue_delayed_work(system_power_efficient_wq,
+>  			   &tps->wq_poll, msecs_to_jiffies(POLL_INTERVAL));
+>  }
+> @@ -967,9 +1031,20 @@ static int tps25750_apply_patch(struct tps6598x *tps)
+>  	return 0;
+>  };
+>  
+> +static const struct tipd_data cd321x_data = {
+> +	.irq_handler = cd321x_interrupt,
+> +};
+> +
+> +static const struct tipd_data tps6598x_data = {
+> +	.irq_handler = tps6598x_interrupt,
+> +};
+> +
+> +static const struct tipd_data tps25750_data = {
+> +	.irq_handler = tps25750_interrupt,
+> +};
+> +
+>  static int tps6598x_probe(struct i2c_client *client)
+>  {
+> -	irq_handler_t irq_handler = tps6598x_interrupt;
+>  	struct device_node *np = client->dev.of_node;
+>  	struct typec_capability typec_cap = { };
+>  	struct tps6598x *tps;
+> @@ -1017,15 +1092,18 @@ static int tps6598x_probe(struct i2c_client *client)
+>  			APPLE_CD_REG_INT_DATA_STATUS_UPDATE |
+>  			APPLE_CD_REG_INT_PLUG_EVENT;
+>  
+> -		irq_handler = cd321x_interrupt;
+> +		tps->cb = cd321x_data;
+>  	} else {
+> +		if (is_tps25750)
+> +			tps->cb = tps25750_data;
+> +		else
+> +			tps->cb = tps6598x_data;
 
+No. You assing those to the "data" member of your of_device_id:
 
-Ignore this version. I messed up which patch where I added the new 
-comment for the dt-binding doc.
+static const struct of_device_id tps6598x_of_match[] = {
+        { .compatible = "apple,cd321x", .data = &cd321_data },
+        { .compatible = "ti,tps25750", .data = &tps25750_data },
+        { .compatible = "ti,tps6598x", .data = &tps6598x_data },
+        { }
+};
 
-Jon
+thanks,
 
 -- 
-nvpublic
+heikki
 
