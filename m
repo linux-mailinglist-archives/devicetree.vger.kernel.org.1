@@ -1,185 +1,139 @@
-Return-Path: <devicetree+bounces-4565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBC1A7B31BA
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 13:48:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D9D27B3200
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 14:05:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id D84E21C2097A
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 11:48:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2F380282309
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 12:05:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 486E618620;
-	Fri, 29 Sep 2023 11:48:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06DA418642;
+	Fri, 29 Sep 2023 12:05:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 879EC6109
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 11:48:32 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F37BAE7;
-	Fri, 29 Sep 2023 04:48:28 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38TBlwpb026316;
-	Fri, 29 Sep 2023 11:47:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : from : to : cc : references : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=pYbprmru96TQgVBscH484yU7pq/NVL8IwvEoncpQ9s8=;
- b=MjrFf5KkmvjtVJ2KVaseFiHMAfYW27hfrll1+MCwKi5xqSiupPlWBIYLDpI+kce1X6Rx
- Un88Mqehp7g2yuFctBvOKGngIZfQQ2hVPPra6/Xtfk9mjhGDNqsDtaOGEg1qzPS6m9GT
- IMGI0j/NeRy8KBcflJ4vR+u6rhKmDo0rh3KXXCWKZ1Rnqv7fQw3aMwdhAt+pMvvFapLI
- oqCGG/GF+hQLiDBE8WmKPWCGD7k6aZh6KKfFWa4qNnjq1V7jwELcw7gxpsFNZrcGDdHM
- HtRgol+SZ1WbGLZ5ZAHzquEcntH2832XDyYwd8DNjNrvwy0S84dOCX2MMC+ujk6luffI NA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tdx17g00d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Sep 2023 11:47:58 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38TBlvtJ032015
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Sep 2023 11:47:57 GMT
-Received: from [10.216.56.186] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Fri, 29 Sep
- 2023 04:47:51 -0700
-Message-ID: <9155c1e3-d163-b2ad-8a7b-57ffeca2b122@quicinc.com>
-Date: Fri, 29 Sep 2023 17:17:48 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 563B51863A;
+	Fri, 29 Sep 2023 12:05:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D159193;
+	Fri, 29 Sep 2023 05:05:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1695989112; x=1727525112;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=VJMaG13OJcHThIk080sju328yDFylyW8tGrNgtZsgxo=;
+  b=T99rugG+g/W0bpY6iMYXy67u/1mVaCtjZZ/Hng1VXZL9It94hZ+cX3gU
+   2MhJ5/BiQYrN/25WFytzL6uOkz3FTda2zjcsvgWQvg99oD+0jB/RVfJ2A
+   BECOPPbPPVysOMWuWlwDMu1lfIAYBS3f2Us5bsEB0Q26TDL9Vm4iarWwE
+   Ga+uCH8k6NfNIxLP/K+FJ8jr5JpDHb9MzjLS7voHYMVXcz1jOa8TIHDr5
+   5tOHCMpF5Qvouh71PhB8UhJ03RHo729MSf5jKBYiwQETHeaJhjTYGcJQG
+   iQQZJP3mAGfy8Uq0w1N7M/kaZd+Xwf4BNYXWk219bOxXWWL9b+0BZkG1C
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="385099129"
+X-IronPort-AV: E=Sophos;i="6.03,187,1694761200"; 
+   d="scan'208";a="385099129"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Sep 2023 05:05:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="820192781"
+X-IronPort-AV: E=Sophos;i="6.03,187,1694761200"; 
+   d="scan'208";a="820192781"
+Received: from lkp-server02.sh.intel.com (HELO c3b01524d57c) ([10.239.97.151])
+  by fmsmga004.fm.intel.com with ESMTP; 29 Sep 2023 05:05:05 -0700
+Received: from kbuild by c3b01524d57c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qmCEx-0002q2-0n;
+	Fri, 29 Sep 2023 12:05:03 +0000
+Date: Fri, 29 Sep 2023 20:04:44 +0800
+From: kernel test robot <lkp@intel.com>
+To: Herve Codina <herve.codina@bootlin.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Shengjiu Wang <shengjiu.wang@gmail.com>,
+	Xiubo Li <Xiubo.Lee@gmail.com>, Fabio Estevam <festevam@gmail.com>,
+	Nicolin Chen <nicoleotsuka@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Randy Dunlap <rdunlap@infradead.org>
+Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+	Simon Horman <horms@kernel.org>
+Subject: Re: [PATCH v7 25/30] dt-bindings: net: Add the Lantiq PEF2256
+ E1/T1/J1 framer
+Message-ID: <202309291924.OBfdyhXb-lkp@intel.com>
+References: <20230928070652.330429-26-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH V12 3/3] arm64: dts: ipq6018: add pwm node
-Content-Language: en-US
-From: Devi Priya <quic_devipriy@quicinc.com>
-To: <thierry.reding@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <ndesaulniers@google.com>,
-        <trix@redhat.com>, <baruch@tkos.co.il>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <llvm@lists.linux.dev>
-CC: <linux-pwm@vger.kernel.org>, <u.kleine-koenig@pengutronix.de>,
-        <nathan@kernel.org>
-References: <20230925065915.3467964-1-quic_devipriy@quicinc.com>
- <20230925065915.3467964-4-quic_devipriy@quicinc.com>
-In-Reply-To: <20230925065915.3467964-4-quic_devipriy@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: x_oUf14Ecfzf7WDlzoVza8JV0VTKXZwi
-X-Proofpoint-ORIG-GUID: x_oUf14Ecfzf7WDlzoVza8JV0VTKXZwi
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-29_10,2023-09-28_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=999 phishscore=0 clxscore=1015 adultscore=0 priorityscore=1501
- bulkscore=0 malwarescore=0 mlxscore=0 spamscore=0 lowpriorityscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2309290100
-X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230928070652.330429-26-herve.codina@bootlin.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hi Herve,
 
+kernel test robot noticed the following build warnings:
 
-On 9/25/2023 12:29 PM, Devi Priya wrote:
-> Describe the PWM block on IPQ6018.
-> 
-> The PWM is in the TCSR area. Make &tcsr "simple-mfd" compatible, and add
-> &pwm as child of &tcsr.
-> 
-> Add also ipq6018 specific compatible string.
-> 
-> Co-developed-by: Baruch Siach <baruch.siach@siklu.com>
-> Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-> ---
-> v12:
-> 
->    No change
-> 
-> v11:
-> 
->    No change
-> 
-> v10:
-> 
->    No change
-> 
-> v9:
-> 
->    Add 'ranges' property (Rob)
-> 
-> v8:
-> 
->    Add size cell to 'reg' (Rob)
-> 
-> v7:
-> 
->    Use 'reg' instead of 'offset' (Rob)
-> 
->    Add qcom,tcsr-ipq6018 (Rob)
-> 
->    Drop clock-names (Bjorn)
-> 
-> v6:
-> 
->    Make the PWM node child of TCSR (Rob Herring)
-> 
->    Add assigned-clocks/assigned-clock-rates (Uwe Kleine-König)
-> 
-> v5: Use qcom,pwm-regs for TCSR phandle instead of direct regs
-> 
-> v3: s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
-> 
->   arch/arm64/boot/dts/qcom/ipq6018.dtsi | 15 ++++++++++++++-
->   1 file changed, 14 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> index 47b8b1d6730a..cadd2c583526 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> @@ -398,8 +398,21 @@ tcsr_mutex: hwlock@1905000 {
->   		};
->   
->   		tcsr: syscon@1937000 {
-> -			compatible = "qcom,tcsr-ipq6018", "syscon";
-> +			compatible = "qcom,tcsr-ipq6018", "syscon", "simple-mfd";
->   			reg = <0x0 0x01937000 0x0 0x21000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0x0 0x0 0x01937000 0x21000>;
-> +
-Hi Krzysztof,
-Referring to 
-https://lore.kernel.org/all/20220909091056.128949-1-krzysztof.kozlowski@linaro.org/, 
-it seems that the TCSR block should
-not have any child nodes. Could you pls provide your suggestions on pwm
-being added as the child node?
+[auto build test WARNING on linus/master]
+[also build test WARNING on v6.6-rc3 next-20230929]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Thanks,
-Devi Priya
-> +			 pwm: pwm@a010 {
-> +				compatible = "qcom,ipq6018-pwm";
-> +				reg = <0xa010 0x20>;
-> +				clocks = <&gcc GCC_ADSS_PWM_CLK>;
-> +				assigned-clocks = <&gcc GCC_ADSS_PWM_CLK>;
-> +				assigned-clock-rates = <100000000>;
-> +				#pwm-cells = <2>;
-> +				status = "disabled";
-> +			};
->   		};
->   
->   		usb2: usb@70f8800 {
+url:    https://github.com/intel-lab-lkp/linux/commits/Herve-Codina/soc-fsl-cpm1-tsa-Fix-__iomem-addresses-declaration/20230928-151746
+base:   linus/master
+patch link:    https://lore.kernel.org/r/20230928070652.330429-26-herve.codina%40bootlin.com
+patch subject: [PATCH v7 25/30] dt-bindings: net: Add the Lantiq PEF2256 E1/T1/J1 framer
+compiler: loongarch64-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20230929/202309291924.OBfdyhXb-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202309291924.OBfdyhXb-lkp@intel.com/
+
+dtcheck warnings: (new ones prefixed by >>)
+>> Documentation/devicetree/bindings/net/lantiq,pef2256.yaml: properties:lantiq,data-rate-bps: 'oneOf' conditional failed, one must be fixed:
+   	'type' is a required property
+   		hint: A vendor boolean property can use "type: boolean"
+   	Additional properties are not allowed ('default', 'enum' were unexpected)
+   		hint: A vendor boolean property can use "type: boolean"
+   	Additional properties are not allowed ('default' was unexpected)
+   		hint: A vendor string property with exact values has an implicit type
+>> 	Documentation/devicetree/bindings/net/lantiq,pef2256.yaml: properties:lantiq,data-rate-bps: 'oneOf' conditional failed, one must be fixed:
+   		'$ref' is a required property
+   		'allOf' is a required property
+   		hint: A vendor property needs a $ref to types.yaml
+   		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+   	2048000 is not of type 'string'
+   		hint: A vendor string property with exact values has an implicit type
+   	4096000 is not of type 'string'
+   		hint: A vendor string property with exact values has an implicit type
+   	8192000 is not of type 'string'
+   		hint: A vendor string property with exact values has an implicit type
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
