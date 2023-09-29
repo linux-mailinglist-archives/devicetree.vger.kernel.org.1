@@ -1,503 +1,208 @@
-Return-Path: <devicetree+bounces-4683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4197F7B3705
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 17:40:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D00887B3712
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 17:42:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id E7DA6281319
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:40:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id D9CF028260C
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:42:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E13951BB8;
-	Fri, 29 Sep 2023 15:40:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E1CB521A2;
+	Fri, 29 Sep 2023 15:42:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C88D31A71F
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 15:40:35 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9786DB
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 08:40:32 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qmFbS-0000kz-B6; Fri, 29 Sep 2023 17:40:30 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qmFbP-009qYi-Gq; Fri, 29 Sep 2023 17:40:27 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qmFbP-0060Vc-6f; Fri, 29 Sep 2023 17:40:27 +0200
-Date: Fri, 29 Sep 2023 17:40:27 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Jisheng Zhang <jszhang@kernel.org>
-Cc: Thierry Reding <thierry.reding@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	linux-riscv@lists.infradead.org,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Subject: Re: [PATCH 2/2] pwm: add T-HEAD PWM driver
-Message-ID: <20230929154027.lq77saenadxgry5x@pengutronix.de>
-References: <20230928170254.413-1-jszhang@kernel.org>
- <20230928170254.413-3-jszhang@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1246B51BB9
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 15:42:51 +0000 (UTC)
+Received: from mx.skole.hr (mx2.hosting.skole.hr [161.53.165.186])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10CDEB4;
+	Fri, 29 Sep 2023 08:42:48 -0700 (PDT)
+Received: from mx2.hosting.skole.hr (localhost.localdomain [127.0.0.1])
+	by mx.skole.hr (mx.skole.hr) with ESMTP id 946BD83154;
+	Fri, 29 Sep 2023 17:42:46 +0200 (CEST)
+From: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Subject: [PATCH RESEND v5 0/8] Initial Marvell PXA1908 support
+Date: Fri, 29 Sep 2023 17:41:56 +0200
+Message-Id: <20230929-pxa1908-lkml-v5-0-5aa5a1109c5f@skole.hr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7i7o422tklvgxyiz"
-Content-Disposition: inline
-In-Reply-To: <20230928170254.413-3-jszhang@kernel.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+To: Robert Jarzmik <robert.jarzmik@free.fr>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Kees Cook <keescook@chromium.org>, Tony Luck <tony.luck@intel.com>, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>, 
+ =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Cc: linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ afaerber@suse.de, balejk@matfyz.cz, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5852;
+ i=duje.mihanovic@skole.hr; h=from:subject:message-id;
+ bh=Xu1zs3EzUBhG6q84vWkQxTbcKcOZ8g6ssZvbjQ+ejUA=;
+ b=owEBbQKS/ZANAwAIAZoRnrBCLZbhAcsmYgBlFvByxcaleoHfAeq9PwtO+Ygyscd8U2nYa3m3q
+ NKep5tveSqJAjMEAAEIAB0WIQRT351NnD/hEPs2LXiaEZ6wQi2W4QUCZRbwcgAKCRCaEZ6wQi2W
+ 4bTsEACoL3Twg7pVqOr6Bp5HlkWlwwBBEMIM5yfLZlxXppTJjfHJQNzY05/XgdrBYKn/qycAsrK
+ 1nFXPEk/E/vOM1VXKiRLgEWSsWy9Bf6u+RouhSeKCwMJBUUro3N9blqyNHXl/7Prf6HAeFSVMvm
+ 2Kwog/4834UVwidkUHjT0+phkfh+YWbhHneRN7ZfALby8zr7GevSYNFdwDG7Q1bRQIWym/mRT47
+ 4CGdwjHMQLUjWeX188TBGIgE8T5Cj5UXrHbx7kBIW9zhtk4n7Aq2ZRNvM9/wLAssHLoIPW06jkZ
+ 0YkLiUy9MT4oxnvq3gDkKwtumWtdqw1V2ANHS3q5cr1tDNo/xjHcbb1Z8iGskUidUCErh0wKSnt
+ 7aUzObh1oFDIvqX18n2m0OCHl8vB7ULCmwj31cYEfPVI19i6USLWglCEy36hh8ddqaLcdGdfxWH
+ 5T7kOpKaE95xYqdWyYG/3psYqrqnxMZ0IIYtNnAwOmWa+aDNkYQfiB6RFvwAqrFWwqGmCz6DLtY
+ rwxY6YlS0xqBvlkZbBuAYeJIrVjgKUhK1gvajgtV9FvA20hgRLreoyYwQoJ4rk9KzfMendwcPj8
+ 1ty0snP+8Bybdl/NSYQwj5St+QEBi3RJ7Fn9Kn0auyOedLv5P4+4/K3DwIGb/fvAh6jLrGvxh9P
+ hLlqAxW4K1FR5dQ==
+X-Developer-Key: i=duje.mihanovic@skole.hr; a=openpgp;
+ fpr=53DF9D4D9C3FE110FB362D789A119EB0422D96E1
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
 	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-
---7i7o422tklvgxyiz
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
 Hello,
 
-On Fri, Sep 29, 2023 at 01:02:54AM +0800, Jisheng Zhang wrote:
-> T-HEAD SoCs such as the TH1520 contain a PWM controller used
-> among other things to control the LCD backlight, fan and so on.
-> Add driver for it.
->=20
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> ---
->  MAINTAINERS             |   1 +
->  drivers/pwm/Kconfig     |  11 ++
->  drivers/pwm/Makefile    |   1 +
->  drivers/pwm/pwm-thead.c | 289 ++++++++++++++++++++++++++++++++++++++++
->  4 files changed, 302 insertions(+)
->  create mode 100644 drivers/pwm/pwm-thead.c
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d55e40060c46..86cf0926dbfc 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -18482,6 +18482,7 @@ L:	linux-riscv@lists.infradead.org
->  S:	Maintained
->  F:	arch/riscv/boot/dts/thead/
->  F:	drivers/usb/dwc3/dwc3-thead.c
-> +F:	drivers/pwm/pwm-thead.c
-> =20
->  RNBD BLOCK DRIVERS
->  M:	Md. Haris Iqbal <haris.iqbal@ionos.com>
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index 8ebcddf91f7b..428fa365a19a 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -637,6 +637,17 @@ config PWM_TEGRA
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called pwm-tegra.
-> =20
-> +config PWM_THEAD
-> +	tristate "T-HEAD PWM support"
-> +	depends on ARCH_THEAD || COMPILE_TEST
-> +	depends on HAS_IOMEM
-> +	help
-> +	  Generic PWM framework driver for the PWFM controller found on THEAD
-> +	  SoCs.
-> +
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called pwm-thead.
-> +
->  config PWM_TIECAP
->  	tristate "ECAP PWM support"
->  	depends on ARCH_OMAP2PLUS || ARCH_DAVINCI_DA8XX || ARCH_KEYSTONE || ARC=
-H_K3 || COMPILE_TEST
-> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> index c822389c2a24..4c317e6316e8 100644
-> --- a/drivers/pwm/Makefile
-> +++ b/drivers/pwm/Makefile
-> @@ -59,6 +59,7 @@ obj-$(CONFIG_PWM_STMPE)		+=3D pwm-stmpe.o
->  obj-$(CONFIG_PWM_SUN4I)		+=3D pwm-sun4i.o
->  obj-$(CONFIG_PWM_SUNPLUS)	+=3D pwm-sunplus.o
->  obj-$(CONFIG_PWM_TEGRA)		+=3D pwm-tegra.o
-> +obj-$(CONFIG_PWM_THEAD)		+=3D pwm-thead.o
->  obj-$(CONFIG_PWM_TIECAP)	+=3D pwm-tiecap.o
->  obj-$(CONFIG_PWM_TIEHRPWM)	+=3D pwm-tiehrpwm.o
->  obj-$(CONFIG_PWM_TWL)		+=3D pwm-twl.o
-> diff --git a/drivers/pwm/pwm-thead.c b/drivers/pwm/pwm-thead.c
-> new file mode 100644
-> index 000000000000..8339f5617b6f
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-thead.c
-> @@ -0,0 +1,289 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * T-HEAD PWM driver
-> + *
-> + * Copyright (C) 2021 Alibaba Group Holding Limited.
+This series adds initial support for the Marvell PXA1908 SoC and
+"samsung,coreprimevelte", a smartphone using the SoC.
 
-If you have a public link to a reference manual, please mention this
-here. Also please add a section that describes hardware (and software)
-limitations sticking to the format in other drivers. The idea is that
+USB works and the phone can boot a rootfs from an SD card, but there are
+some warnings in the dmesg:
 
-	sed -rn '/Limitations:/,/\*\/?$/p'
+During SMP initialization:
+[    0.006519] CPU features: SANITY CHECK: Unexpected variation in SYS_CNTFRQ_EL0. Boot CPU: 0x000000018cba80, CPU1: 0x00000000000000
+[    0.006542] CPU features: Unsupported CPU feature variation detected.
+[    0.006589] CPU1: Booted secondary processor 0x0000000001 [0x410fd032]
+[    0.010710] Detected VIPT I-cache on CPU2
+[    0.010716] CPU features: SANITY CHECK: Unexpected variation in SYS_CNTFRQ_EL0. Boot CPU: 0x000000018cba80, CPU2: 0x00000000000000
+[    0.010758] CPU2: Booted secondary processor 0x0000000002 [0x410fd032]
+[    0.014849] Detected VIPT I-cache on CPU3
+[    0.014855] CPU features: SANITY CHECK: Unexpected variation in SYS_CNTFRQ_EL0. Boot CPU: 0x000000018cba80, CPU3: 0x00000000000000
+[    0.014895] CPU3: Booted secondary processor 0x0000000003 [0x410fd032]
 
-tells you about (at least) about the following properties:
+SMMU probing fails:
+[    0.101798] arm-smmu c0010000.iommu: probing hardware configuration...
+[    0.101809] arm-smmu c0010000.iommu: SMMUv1 with:
+[    0.101816] arm-smmu c0010000.iommu:         no translation support!
 
- - Can the PWM be updated atomically?
- - Does it complete the current running period before switching to the
-   new configuration?
- - How does the output behave when disabled?
+On Samsung's PXA1908 phones, the bootloader does not start the ARM
+system timer, and my temporary solution (which isn't present in this
+series) was to put the code for starting the timer in the clock driver.
+Would this hack be accepted upstream in the form of a platform or
+clocksource driver such as drivers/clocksource/timer-mediatek-cpux.c?
 
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/bitops.h>
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/err.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/pwm.h>
-> +#include <linux/slab.h>
-> +
-> +#define MAX_PWM_NUM	6
-> +
-> +#define LIGHT_PWM_CHN_BASE(n)		((n) * 0x20)
-> +#define LIGHT_PWM_CTRL(n)		(LIGHT_PWM_CHN_BASE(n) + 0x00)
-> +#define LIGHT_PWM_RPT(n)		(LIGHT_PWM_CHN_BASE(n) + 0x04)
-> +#define LIGHT_PWM_PER(n)		(LIGHT_PWM_CHN_BASE(n) + 0x08)
-> +#define LIGHT_PWM_FP(n)			(LIGHT_PWM_CHN_BASE(n) + 0x0c)
-> +#define LIGHT_PWM_STATUS(n)		(LIGHT_PWM_CHN_BASE(n) + 0x10)
-> +
-> +/* bit definition PWM_CTRL */
-> +#define PWM_START				BIT(0)
-> +#define PWM_SOFT_RST				BIT(1)
-> +#define PWM_CFG_UPDATE				BIT(2)
-> +#define PWM_INT_EN				BIT(3)
-> +#define PWM_ONE_SHOT_MODE			BIT(4)
-> +#define PWM_CONTINUOUS_MODE			BIT(5)
-> +#define PWM_EVT_RISING_TRIG_UNDER_ONE_SHOT	BIT(6)
-> +#define PWM_EVT_FALLING_TRIG_UNDER_ONE_SHOT	BIT(7)
-> +#define PWM_FPOUT				BIT(8)
-> +#define PWM_INFACTOUT				BIT(9)
+A 3.14 based Marvell tree is available on GitHub
+acorn-marvell/brillo_pxa_kernel, and a Samsung one on GitHub
+CoderCharmander/g361f-kernel.
 
-Emil already criticised the naming here (Thanks btw for the review!). I
-also want you to use a consistent prefix, but I wonder about "LIGHT_", I
-would have expected "THEAD_" matching the driver name?!
+Andreas Färber attempted to upstream support for this SoC in 2017:
+https://lore.kernel.org/lkml/20170222022929.10540-1-afaerber@suse.de/
 
-> +struct thead_pwm_chip {
-> +	struct clk *clk;
-> +	void __iomem *mmio_base;
-> +	struct pwm_chip chip;
-> +};
-> +
-> +#define to_thead_pwm_chip(chip)		container_of(chip, struct thead_pwm_chi=
-p, chip)
+Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
+---
+Changes in v5:
+- Address maintainer comments:
+  - Move *_NR_CLKS to clock driver from dt binding file
+- Allocate correct number of clocks for each block instead of blindly
+  allocating 50 for each
+- Link to v4: https://lore.kernel.org/r/20230807-pxa1908-lkml-v4-0-cb387d73b452@skole.hr
 
-This is wrong. Try:
+Changes in v4:
+- Address maintainer comments:
+  - Relicense clock binding file to BSD-2
+- Add pinctrl-names to SD card node
+- Add vgic registers to GIC node
+- Rebase on v6.5-rc5
+- Link to v3: https://lore.kernel.org/r/20230804-pxa1908-lkml-v3-0-8e48fca37099@skole.hr
 
-	struct pwm_chip *mychip;
-	struct thead_pwm_chip *pc =3D to_thead_pwm_chip(mychip);
+Changes in v3:
+- Address maintainer comments:
+  - Drop GPIO dynamic allocation patch
+  - Move clock register offsets into driver (instead of bindings file)
+  - Add missing Tested-by trailer to u32_fract patch
+  - Move SoC binding to arm/mrvl/mrvl.yaml
+- Add serial0 alias and stdout-path to board dts to enable UART
+  debugging
+- Rebase on v6.5-rc4
+- Link to v2: https://lore.kernel.org/r/20230727162909.6031-1-duje.mihanovic@skole.hr
 
-=2E (Of course you shouldn't name a pwm_chip "mychip", "chip" is fine.
-Still this is too ugly.) I suggest a static inline here, ideally one
-that has a name starting with "thead_pwm_". thead_pwm_from_chip() comes
-to mind.
-=09
-> +static int thead_pwm_clk_prepare_enable(struct thead_pwm_chip *pc)
-> +{
-> +	return clk_prepare_enable(pc->clk);
-> +}
-> +
-> +static void thead_pwm_clk_disable_unprepare(struct thead_pwm_chip *pc)
-> +{
-> +	clk_disable_unprepare(pc->clk);
-> +}
+Changes in v2:
+- Remove earlycon patch as it's been merged into tty-next
+- Address maintainer comments:
+  - Clarify GPIO regressions on older PXA platforms
+  - Add Fixes tag to commit disabling GPIO pinctrl calls for this SoC
+  - Add missing includes to clock driver
+  - Clock driver uses HZ_PER_MHZ, u32_fract and GENMASK
+  - Dual license clock bindings
+  - Change clock IDs to decimal
+  - Fix underscores in dt node names
+  - Move chosen node to top of board dts
+  - Clean up documentation
+  - Reorder commits
+  - Drop pxa,rev-id
+- Rename muic-i2c to i2c-muic
+- Reword some commits
+- Move framebuffer node to chosen
+- Add aliases for mmc nodes
+- Rebase on v6.5-rc3
+- Link to v1: https://lore.kernel.org/r/20230721210042.21535-1-duje.mihanovic@skole.hr
 
-I agree to Emil here that these wrappers are too thin. (Also you might
-get rid of them completely, see below.)
+---
+Andy Shevchenko (1):
+      clk: mmp: Switch to use struct u32_fract instead of custom one
 
-> +static int thead_pwm_enable(struct pwm_chip *chip, struct pwm_device *pw=
-m)
-> +{
-> +	struct thead_pwm_chip *pc =3D to_thead_pwm_chip(chip);
-> +	u32 value;
-> +	int ret;
-> +
-> +	ret =3D pm_runtime_get_sync(chip->dev);
+Duje Mihanović (7):
+      gpio: pxa: disable pinctrl calls for MMP_GPIO
+      dt-bindings: clock: Add Marvell PXA1908 clock bindings
+      clk: mmp: Add Marvell PXA1908 clock driver
+      dt-bindings: marvell: Document PXA1908 SoC
+      arm64: Kconfig.platforms: Add config for Marvell PXA1908 platform
+      arm64: dts: Add DTS for Marvell PXA1908 and samsung,coreprimevelte
+      MAINTAINERS: add myself as Marvell PXA1908 maintainer
 
-This function is typically called directly after thead_pwm_config()
-which ended with calling pm_runtime_put_sync(). If you put the logic of
-=2Eapply() in a single function (or move runtime pm handling in there) you
-can prevent some put/get ping-pong.
+ .../devicetree/bindings/arm/mrvl/mrvl.yaml         |   5 +
+ .../devicetree/bindings/clock/marvell,pxa1908.yaml |  48 +++
+ MAINTAINERS                                        |   9 +
+ arch/arm64/Kconfig.platforms                       |  11 +
+ arch/arm64/boot/dts/marvell/Makefile               |   3 +
+ .../dts/marvell/pxa1908-samsung-coreprimevelte.dts | 333 +++++++++++++++++++++
+ arch/arm64/boot/dts/marvell/pxa1908.dtsi           | 295 ++++++++++++++++++
+ drivers/clk/mmp/Makefile                           |   2 +-
+ drivers/clk/mmp/clk-frac.c                         |  57 ++--
+ drivers/clk/mmp/clk-mmp2.c                         |   6 +-
+ drivers/clk/mmp/clk-of-mmp2.c                      |  26 +-
+ drivers/clk/mmp/clk-of-pxa168.c                    |   4 +-
+ drivers/clk/mmp/clk-of-pxa1908.c                   | 328 ++++++++++++++++++++
+ drivers/clk/mmp/clk-of-pxa1928.c                   |   6 +-
+ drivers/clk/mmp/clk-of-pxa910.c                    |   4 +-
+ drivers/clk/mmp/clk-pxa168.c                       |   4 +-
+ drivers/clk/mmp/clk-pxa910.c                       |   4 +-
+ drivers/clk/mmp/clk.h                              |  10 +-
+ drivers/gpio/gpio-pxa.c                            |   1 +
+ include/dt-bindings/clock/marvell,pxa1908.h        |  88 ++++++
+ 20 files changed, 1180 insertions(+), 64 deletions(-)
+---
+base-commit: 52a93d39b17dc7eb98b6aa3edb93943248e03b2f
+change-id: 20230803-pxa1908-lkml-6830e8da45c7
 
-> +	if (ret < 0) {
-> +		dev_err(chip->dev, "failed to clock on the pwm device(%d)\n", ret);
+Best regards,
+-- 
+Duje Mihanović <duje.mihanovic@skole.hr>
 
-Please use %pe for better readable error messages.
 
-> +		return ret;
-> +	}
-> +
-> +	value =3D readl(pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
-> +	value |=3D PWM_START;
-> +	writel(value, pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
-> +
-> +	return 0;
-> +}
-> +
-> +static void thead_pwm_disable(struct pwm_chip *chip, struct pwm_device *=
-pwm)
-> +{
-> +	struct thead_pwm_chip *pc =3D to_thead_pwm_chip(chip);
-> +	u32 value;
-> +
-> +	value =3D readl(pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
-> +	value &=3D ~PWM_START;
-> +	writel(value, pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
-> +
-> +	pm_runtime_put_sync(chip->dev);
-> +}
-> +
-> +static int thead_pwm_config(struct pwm_chip *chip, struct pwm_device *pw=
-m,
-> +			    int duty_ns, int period_ns)
-> +{
-> +	struct thead_pwm_chip *pc =3D to_thead_pwm_chip(chip);
-> +	unsigned long rate =3D clk_get_rate(pc->clk);
-> +	unsigned long duty_cycle, period_cycle;
-> +	u32 pwm_cfg =3D PWM_INFACTOUT | PWM_FPOUT | PWM_CONTINUOUS_MODE | PWM_I=
-NT_EN;
-> +	int ret;
-> +
-> +	if (duty_ns > period_ns) {
-> +		dev_err(chip->dev, "invalid pwm configure\n");
-> +		return -EINVAL;
-
-You can assume that won't happen (once you fixed the implicit type cast
-in the call to thead_pwm_config pointed out below).
-
-> +	}
-> +
-> +	ret =3D pm_runtime_get_sync(chip->dev);
-> +	if (ret < 0) {
-> +		dev_err(chip->dev, "failed to clock on the pwm device(%d)\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	writel(pwm_cfg, pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
-> +
-> +	period_cycle =3D period_ns * rate;
-
-This might overflow. Please use mul_u64_u64_div_u64 here together with
-making sure that rate <=3D NSEC_PER_SEC.
-
-> +	do_div(period_cycle, NSEC_PER_SEC);
-> +	writel(period_cycle, pc->mmio_base + LIGHT_PWM_PER(pwm->hwpwm));
-> +	duty_cycle =3D duty_ns * rate;
-> +	do_div(duty_cycle, NSEC_PER_SEC);
-> +	writel(duty_cycle, pc->mmio_base + LIGHT_PWM_FP(pwm->hwpwm));
-> +
-> +	pwm_cfg =3D readl(pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
-> +	pwm_cfg |=3D PWM_CFG_UPDATE;
-> +	writel(pwm_cfg, pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
-
-I assume this means period and duty_cycle are updated atomically (i.e.
-at no time the hardware is configured to emit a wave that has the new
-period but the old duty_cycle)?
-
-Is this needed even if the PWM is currently off and you write PWM_START
-a moment later? Can writing PWM_CFG_UPDATE and PWM_START be done in a
-single step?
-
-> +	pm_runtime_put_sync(chip->dev);
-> +
-> +	return 0;
-> +}
-> +
-> +static int thead_pwm_set_polarity(struct pwm_chip *chip,
-> +				  struct pwm_device *pwm,
-> +				  enum pwm_polarity polarity)
-> +{
-> +	struct thead_pwm_chip *pc =3D to_thead_pwm_chip(chip);
-> +	u32 value =3D readl(pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
-> +	int ret;
-> +
-> +	ret =3D pm_runtime_get_sync(chip->dev);
-> +	if (ret < 0) {
-> +		dev_err(chip->dev, "failed to clock on the pwm device(%d)\n", ret);
-
-Please don't make .apply() emit an error message.
-
-> +		return ret;
-> +	}
-> +
-> +	if (polarity =3D=3D PWM_POLARITY_NORMAL)
-> +		value |=3D PWM_FPOUT;
-> +	else
-> +		value &=3D ~PWM_FPOUT;
-> +
-> +	writel(value, pc->mmio_base + LIGHT_PWM_CTRL(pwm->hwpwm));
-
-Oh, no PWM_CFG_UPDATE here? So writing the polarity takes effect
-immediately? If so, please note this is the Limitations section I
-asked for above.
-
-> +	pm_runtime_put_sync(chip->dev);
-> +
-> +	return 0;
-> +}
-> +
-> +static int thead_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			   const struct pwm_state *state)
-> +{
-> +	int err;
-> +	bool enabled =3D pwm->state.enabled;
-> +
-> +	if (state->polarity !=3D pwm->state.polarity)
-> +		thead_pwm_set_polarity(chip, pwm, state->polarity);
-> +
-> +	if (!state->enabled) {
-> +		if (enabled)
-> +			thead_pwm_disable(chip, pwm);
-> +		return 0;
-> +	}
-> +
-> +	err =3D thead_pwm_config(chip, pwm, state->duty_cycle, state->period);
-
-state->duty_cycle is an u64, but thead_pwm_config takes an int ...
-
-> +	if (err)
-> +		return err;
-> +
-> +	if (!enabled)
-> +		return thead_pwm_enable(chip, pwm);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct pwm_ops thead_pwm_ops =3D {
-> +	.apply =3D thead_pwm_apply,
-
-Please implement .get_state() and test with PWM_DEBUG enabled.
-
-> +	.owner =3D THIS_MODULE,
-> +};
-> +
-> +static int __maybe_unused thead_pwm_runtime_suspend(struct device *dev)
-> +{
-> +	struct thead_pwm_chip *pc =3D dev_get_drvdata(dev);
-> +
-> +	thead_pwm_clk_disable_unprepare(pc);
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused thead_pwm_runtime_resume(struct device *dev)
-> +{
-> +	struct thead_pwm_chip *pc =3D dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	ret =3D thead_pwm_clk_prepare_enable(pc);
-> +	if (ret) {
-> +		dev_err(dev, "failed to enable pwm clock(%d)\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int thead_pwm_probe(struct platform_device *pdev)
-> +{
-> +	struct thead_pwm_chip *pc;
-> +	int ret;
-> +
-> +	pc =3D devm_kzalloc(&pdev->dev, sizeof(*pc), GFP_KERNEL);
-> +	if (!pc)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, pc);
-> +
-> +	pc->mmio_base =3D devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(pc->mmio_base))
-> +		return PTR_ERR(pc->mmio_base);
-> +
-> +	pc->clk =3D devm_clk_get(&pdev->dev, NULL);
-
-devm_clk_get_enabled()
-
-> +	if (IS_ERR(pc->clk))
-> +		return PTR_ERR(pc->clk);
-> +
-> +	pm_runtime_enable(&pdev->dev);
-> +	pm_runtime_get_noresume(&pdev->dev);
-> +	ret =3D thead_pwm_clk_prepare_enable(pc);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "failed to enable pwm clock(%d)\n", ret);
-> +		goto err_pm_disable;
-> +	}
-> +
-> +	pc->chip.ops =3D &thead_pwm_ops;
-> +	pc->chip.dev =3D &pdev->dev;
-> +	pc->chip.npwm =3D MAX_PWM_NUM;
-> +
-> +	ret =3D pwmchip_add(&pc->chip);
-
-devm_pwmchip_add()
-
-> +	if (ret)
-> +		goto err_clk_disable;
-> +
-> +	pm_runtime_put(&pdev->dev);
-> +
-> +	return 0;
-> +
-> +err_clk_disable:
-> +	thead_pwm_clk_disable_unprepare(pc);
-> +err_pm_disable:
-> +	pm_runtime_disable(&pdev->dev);
-> +	return ret;
-> +}
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---7i7o422tklvgxyiz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmUW7+oACgkQj4D7WH0S
-/k7ALggAhmJTiDR1A8R13CZqNrc/bNOhs+UFYYTpafxG/rk2m3s3WZYP3l4XxHLu
-6kmuQ+3A0FvDTalPkd4DWm9fX2ZfUyf4Kq5+YwipiWkXGf3PATSjhx7e/fYkQmgR
-GK/OC6w41uoUvNYiEqZGzartdCcXpjriSqVpSLdAoxPN308rgH6qBB9EoqweBZGE
-9LGW6yZ/2a8BcJmG2AlBxHSZgK+VdjpkW/mv8AWLcyfvhEWruvQufDzBePSBy/NB
-9U4dkMxSSVxDFXvpLeAj49Q8Fv6+ZkV03vv5yg6NEe/YJdb4M+bY5Q/e4WYnQdLo
-vMZI4WeRrhqZm+PVAm/wZjPcmi8rUw==
-=j5Sk
------END PGP SIGNATURE-----
-
---7i7o422tklvgxyiz--
 
