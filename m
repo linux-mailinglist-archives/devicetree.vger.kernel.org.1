@@ -1,125 +1,176 @@
-Return-Path: <devicetree+bounces-4437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97A477B2990
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 02:30:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9E5B7B29B9
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 02:39:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 23645282595
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 00:30:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 872FC1C20B4C
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 00:39:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA965646;
-	Fri, 29 Sep 2023 00:30:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D049110FA;
+	Fri, 29 Sep 2023 00:39:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 311AE10FA
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 00:30:50 +0000 (UTC)
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F8351A3
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 17:30:48 -0700 (PDT)
-Received: by mail-qv1-xf34.google.com with SMTP id 6a1803df08f44-65af7d102b3so65496276d6.1
-        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 17:30:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1695947447; x=1696552247; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=atEB7wjnfyIdR+cI94PXlHFbCfo6brMiQMFpy3s241U=;
-        b=cijoMD3UATZPstSif7qtw9XrrWff8Ty/4+1i1c3pfR6GeTs2gUOaj5mnaB00ar9TvQ
-         URTXi7rF4JzJ8qWhqSLlgv2mgYJhfEZLZ4QZyjZItSyJLW7EndY16g8IbR7unadVTZWH
-         LNNg8GoXQY2vo/KiiokMnWANnE2yBv5p8nSkcL6yvylsN8768qe/0JrSoqOe8vvn52+p
-         aFir0WFmg9kIe4dboae7okpeSnGyxPdb0wF037m5e3MvSobK+r/mrX2EZ5ZsWPr5Oab9
-         1ym9f4E8A0PFSTabe94Fw2+d3zME1hIJj3k7bHNhj2RHwKmIbWzINuCyglXK5sQ0jv5I
-         pzlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695947447; x=1696552247;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=atEB7wjnfyIdR+cI94PXlHFbCfo6brMiQMFpy3s241U=;
-        b=AAAU0rB6UXz2tU2Vnk56j8j7YfPemlPG49Dli5D5oWI1jdxeL8tT1evmjukzez1BBU
-         CfhvEJYiKpW/uEAssXVcYaPoKwuhJFSMPsNT/O3iseEHfUE3Gg9dqyxdFrdnNp6vYNrn
-         0aeSGo5qGYzKPimIImu9222UiUaXXuqZbkfnKLAshhVk7u+kle2252HlnSIYx/io+d/M
-         rT7VY10UdjYQCRfOxqTN7Js8bozNFqWnr9rSSJi6hk5w+Q/VwlUqjHcwlrPpn/slElU3
-         2qsl7XQsZxuGcLv2x9oPVJKa8A6cuxN6ENDfIgE+rqqS1HlIhzpckoekrw5HBOj4EUYl
-         9wTA==
-X-Gm-Message-State: AOJu0Yx/XtC3BuMfloBkUDeD27kkBnWsSAnfH8OPCzGlBS+L2rexRrdG
-	jIYfk8i8p4ODB8gA7/f9u9z06ycgzYNmfoTL3STLXmZH
-X-Google-Smtp-Source: AGHT+IEYm7+id3//cfxcIDRfW/DYDioXQBn/ZqKu09zqWg0PZQxdEAy8zuztSY5h7LmqGu3r0JstLg==
-X-Received: by 2002:a0c:cb88:0:b0:65b:1468:8210 with SMTP id p8-20020a0ccb88000000b0065b14688210mr2774211qvk.23.1695947447439;
-        Thu, 28 Sep 2023 17:30:47 -0700 (PDT)
-Received: from ?IPV6:2600:1700:2000:b002:5086:8bae:a4b0:bdad? ([2600:1700:2000:b002:5086:8bae:a4b0:bdad])
-        by smtp.gmail.com with ESMTPSA id q5-20020a0cf5c5000000b0065d105f6931sm759933qvm.59.2023.09.28.17.30.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Sep 2023 17:30:47 -0700 (PDT)
-Message-ID: <3d9eb660-e255-4477-a04b-6db8d249a20d@sifive.com>
-Date: Thu, 28 Sep 2023 19:30:46 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB06D10E6
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 00:39:41 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64206194;
+	Thu, 28 Sep 2023 17:39:39 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38T0BwOu009656;
+	Fri, 29 Sep 2023 00:39:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=6q15nGPM0tQmnNYPNotpVcBSBoi2DT5piGxQo/oZHXc=;
+ b=gqmXZ3G9DzkqGp3/0B5dpg1vwqmfFud1PVslbLuqq/E2J/kR6VFKw7oU9f994RkL8r6F
+ yWvmV10Rj0A2h/M7f1J3/rMHzDpdEXGd6BexqmFivi/53bWdBqZCvCJBuZraWC9QZu4K
+ kmXH9Goz/X8nkYY9oUANJ2hKadtLL+d5jUzg3TaUr2yugaMgParPXU87hGHpMl+moSLF
+ n4xoIgrQjbT+i9ptUMKebI2nByIU6WwdgweiauSBnX0Xg02dZYEQy2JZ0U0kpnw6eweH
+ ZSMEIvsHkurTauR5eJBcKQb36Nk50uVYRQCkXWtjwJ6/Svqhnrnm6RIR8I9Pbs9kdKij og== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3td24ua9wk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 29 Sep 2023 00:39:25 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38T0dOnM029326
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 29 Sep 2023 00:39:24 GMT
+Received: from hu-amelende-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Thu, 28 Sep 2023 17:39:22 -0700
+From: Anjelique Melendez <quic_amelende@quicinc.com>
+To: <pavel@ucw.cz>, <lee@kernel.org>, <thierry.reding@gmail.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <agross@kernel.org>, <andersson@kernel.org>
+CC: <luca.weiss@fairphone.com>, <konrad.dybcio@linaro.org>,
+        <u.kleine-koenig@pengutronix.de>, <quic_subbaram@quicinc.com>,
+        <quic_gurus@quicinc.com>, <linux-leds@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
+        <kernel@quicinc.com>, Anjelique Melendez <quic_amelende@quicinc.com>
+Subject: [PATCH v5 0/7] Add support for LUT PPG
+Date: Thu, 28 Sep 2023 17:38:53 -0700
+Message-ID: <20230929003901.15086-1-quic_amelende@quicinc.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] riscv: dts: renesas: rzfive-smarc: Drop dma
- properties from SSI1 node
-Content-Language: en-US
-To: Prabhakar <prabhakar.csengg@gmail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- Biju Das <biju.das.jz@bp.renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20230929000704.53217-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20230929000704.53217-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Samuel Holland <samuel.holland@sifive.com>
-In-Reply-To: <20230929000704.53217-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: SIk62l1MpKXXoy2tfBcNGswaCttq1nEW
+X-Proofpoint-ORIG-GUID: SIk62l1MpKXXoy2tfBcNGswaCttq1nEW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-09-28_23,2023-09-28_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 malwarescore=0
+ suspectscore=0 impostorscore=0 lowpriorityscore=0 spamscore=0
+ priorityscore=1501 mlxscore=0 mlxlogscore=999 adultscore=0 bulkscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2309290002
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Prabhakar,
+In certain PMICs, LUT pattern and LPG configuration is stored in SDAM
+modules instead of LUT peripheral. This feature is called PPG.
 
-On 2023-09-28 7:07 PM, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> With DMA enabled audio capture/playback has some echo noise. So for
-> now switch to PIO mode until fixed.
+This change series adds support for PPG. Thanks!
 
-Is it really appropriate to work around a Linux software bug with a DT change
-like this? Remember, the devicetrees are used by software other than Linux.
+Changes since v4:
+  - Patch 3/7
+    - Get rid of r/w helpers
+    - Use regmap_read_poll_timeout() in qcom_pbs_wait_for_ack()
+    - Update error path in qcom_pbs_trigger_event()
+    - Fix reverse christmas tree
+  - Patch 4/7
+    - Get rid of r/w helpers
+    - Update variables to use "sdam" instead of "nvmem"
+    - Fix comments
+    - Fix reverse christmas tree
+    - Update lpg_pattern_set() logic
+  - Patch 5/7
+    - Removed sdam_lut_base from lpg_data
+Changes since v3:
+  - Patch 4/7
+    - Fix function returns
+    - Move register definition to top of file
+    - Revert max_brightness and probe accidental changes
+    - Combine init_sdam() and parse_sdam()
+    - Change error prints in probe to use dev_err_probe
+    - Remove ppg_en variable
+    - Update when pbs triggers are set/cleared
+  - Patch 6/7
+    - Remove use of nvmem_count
+    - Move register definition to top of file
+    - Remove lpg_get_sdam_lut_idx()
+Changes since v2:
+  - Patch 1/7
+    - Fix dt_binding_check error
+    - Rename binding file to match compatible
+    - Iclude SoC specific comptaibles
+  - Patch 2/7
+    - Update nvmem-names list
+  - Patch 3/7
+    - Update EXPORT_SYMBOL to EXPORT_SYMBOL_GPL
+    - Fix return/break logic in qcom_pbs_wait_for_ack()
+    - Update iterators to be int
+    - Add constants
+    - Fix function calls in qcom_pbs_trigger_event()
+    - Remove unnessary comments
+    - Return -EPROBE_DEFER from get_pbs_client_device()
+Changes since v1:
+  - Patch 1/7
+    - Fix dt_binding_check errors
+    - Update binding description
+  - Path 2/7
+    - Fix dt_binding_check errors
+    - Update per variant constraints
+    - Update nvmem description
+  - Patch 3/7
+    - Update get_pbs_client_device()
+    - Drop use of printk
+    - Remove unused function
 
-Regards,
-Samuel
+Tested-by: Luca Weiss <luca.weiss@fairphone.com> # sdm632-fairphone-fp3 (pmi632)
 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
->  arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi b/arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi
-> index a8573fdfd8b1..85f96e24a96e 100644
-> --- a/arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi
-> +++ b/arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi
-> @@ -6,3 +6,8 @@
->   */
->  
->  #include <arm64/renesas/rzg2ul-smarc.dtsi>
-> +
-> +&ssi1 {
-> +	/delete-property/ dmas;
-> +	/delete-property/ dma-names;
-> +};
+Anjelique Melendez (7):
+  dt-bindings: soc: qcom: Add qcom,pbs bindings
+  dt-bindings: leds: leds-qcom-lpg: Add support for LPG PPG
+  soc: qcom: add QCOM PBS driver
+  leds: rgb: leds-qcom-lpg: Add support for single SDAM PPG
+  leds: rgb: leds-qcom-lpg: Update PMI632 lpg_data to support PPG
+  leds: rgb: leds-qcom-lpg: Include support for PPG with dedicated LUT
+    SDAM
+  leds: rgb: Update PM8350C lpg_data to support two-nvmem PPG Scheme
+
+ .../bindings/leds/leds-qcom-lpg.yaml          |  89 ++++-
+ .../bindings/soc/qcom/qcom,pbs.yaml           |  46 +++
+ drivers/leds/rgb/leds-qcom-lpg.c              | 359 ++++++++++++++++--
+ drivers/soc/qcom/Kconfig                      |   9 +
+ drivers/soc/qcom/Makefile                     |   1 +
+ drivers/soc/qcom/qcom-pbs.c                   | 243 ++++++++++++
+ include/linux/soc/qcom/qcom-pbs.h             |  30 ++
+ 7 files changed, 749 insertions(+), 28 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,pbs.yaml
+ create mode 100644 drivers/soc/qcom/qcom-pbs.c
+ create mode 100644 include/linux/soc/qcom/qcom-pbs.h
+
+-- 
+2.41.0
 
 
