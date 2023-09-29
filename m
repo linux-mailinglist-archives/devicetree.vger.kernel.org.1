@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-4696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DFB57B37A9
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 18:16:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DBB57B37AF
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 18:16:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 83C041C2099F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 16:16:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id D70FBB20BE6
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 16:16:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F05BE521D7;
-	Fri, 29 Sep 2023 16:16:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 656C9521D5;
+	Fri, 29 Sep 2023 16:16:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 796E811C90
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 16:16:52 +0000 (UTC)
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19C7F1A5
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 09:16:50 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-406402933edso59738605e9.2
-        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 09:16:50 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A055C11C90
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 16:16:54 +0000 (UTC)
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 717691B8
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 09:16:51 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-40537481094so147241055e9.0
+        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 09:16:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696004208; x=1696609008; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696004210; x=1696609010; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Ej83W4mJ4xFKDLp6O9qpUy9eRITOjM3WUInuGsR6c3w=;
-        b=ak0wf9kNpN0iI1agnQVQOwZhF2pk+66cAkcCNLgi7okzs+QCyW+93s+ytJsNjtAxcA
-         39tT44EAE8EnltjH25b2bWA6/mXmm4xTOv8XODFCmRJYdHmBBQ+skQWblC3D9ls5yP42
-         LizmiveqO2cnyAiiDH6IqSsgNoQUkvbIEJCsk/Bof11QJyePHw92iqeMTuhlR0w7WpLZ
-         +OWDtR/m+uzDZKrr3Eu6HFEdcDnLMG0MUsGw2OcclnJ9bQlJpqosMYGR0WlMokVXQH0U
-         TKwLbZuxuVW7X8CMhtGXO/WwnFtxAOL1ZUpl7oKZiPbXuT8EsbTL/HG2xgQyHrZJ5ujJ
-         0QUw==
+        bh=H6c/rs6jB3aMqjmJKuUrCClcqTF3WAZZDBGZ7tftjkA=;
+        b=hY92OqVQr+ZfwFKd1o+nXmKgEHveeIxBwq/fm/B8YYtEGoOwoU1ANoQrjYU9NZYhpx
+         UrsKI62HbEH8ysIRjM1oZiEsMZSDPLRbwAFfqTkVKIYr3sHLmE22v2a35Ki2or0a+rSX
+         MHJlw44nQireQ9kak8v2TDEWBArrj+DrZYjU65w55Xr3ddOkTwawoudPkVwpwhxraENd
+         01bXrLgx1gn/6Us2u6h/akPcyRuPslOMmBlpWO86+QV4Xkn+NWOc2PJ0Z8KkdcPp2QFC
+         mjz1LIWr/SPd2xBVGziUpoEZqybenJQRTW2sl2qpFrb0IqEkc/I+PoVH8H0QMzp7mrRg
+         6M/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696004208; x=1696609008;
+        d=1e100.net; s=20230601; t=1696004210; x=1696609010;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Ej83W4mJ4xFKDLp6O9qpUy9eRITOjM3WUInuGsR6c3w=;
-        b=Q5UyU5w+6M2RD+SC8JBHloGPz0P4qyGYvCsavsxm3Oc94j/AOXpaZ8V4NKR/q/p8RQ
-         rLdzcb7aPDJ5H2ltZxspGPslhQMd7Poke4ca5kwU5GRYPIQWbLpgjn4eMb3D4ceBAVWZ
-         9vSapRcHnTG4JX37xn7QE6buStS4n83LyXm0GKG9TILKArbcditzvCpEA/wRivpQ9Cuq
-         EhTjJY9HO0SSWLsWGBZTQoELfXrHX7741aHcGumqRy5grUX58bC6ml7KoGrQRCXGxD/K
-         stglrhId1WVZxFyITGbsM9gX/aiNfUNS+7StR5B/BbuMGCC/XgePj9zjg9QxZ7aLJsd1
-         OUQg==
-X-Gm-Message-State: AOJu0YzMPFPxBAO36IOduzEBMdI7iX85zXVFnBvP8z3oiIEUiTdSQrF8
-	JIY+9wATyVXK2ErgmOwKrXyubA==
-X-Google-Smtp-Source: AGHT+IG6giV2nFlnjxwrVxFGPsqceBnh72gCoBi3Ao0oUlvoYM0LIAOKz3IqprIp0Toig4d4DAxZBg==
-X-Received: by 2002:a5d:674d:0:b0:321:68fa:70aa with SMTP id l13-20020a5d674d000000b0032168fa70aamr4445292wrw.9.1696004208426;
-        Fri, 29 Sep 2023 09:16:48 -0700 (PDT)
+        bh=H6c/rs6jB3aMqjmJKuUrCClcqTF3WAZZDBGZ7tftjkA=;
+        b=QOtirwWb1LCVkbCAGCAoGXfO7bLw8FGJW5IU9Vfoc7tZ3Esng55Eykr26e9pSLT556
+         UteQBGbYE906AuV5TueAaA8qzIQ+gBB6z66Y8WV7sDxG/p6RPuZtd/+2lZFZ3X21Hs62
+         3sA0VWdyHvlqAUA9Zu7qGxbFvUk7m8cn4lDI/H/3hbPUDTJf4+y8/6LhzXr3dqsF/wYk
+         /uKDAZg6fshjmDKIxjPErdE4prMwAwOoKWhZPm6Cd4IJs27BJy+CaEns/bddTomq++Sm
+         nlDV01WvzhDEeryN97yt396QhxSCGhmtt4R6JJPkfYFrU1OXunLcdqIE5TEWUf+0uSX6
+         xbqw==
+X-Gm-Message-State: AOJu0YwmOxD4R6f0XYmBl2Phtyz6ljFnk9ebDoHaHaU9JpquB6DT8tQ5
+	tSw/72aZaV+nAPyIn3VTgdcYHQ==
+X-Google-Smtp-Source: AGHT+IFnWBnJtlPvqMUCRo4ORFYlchXTqDfFCkv5g4n1DcCAAvbigOpXJk39mgpCAARmjx/c4QxnpQ==
+X-Received: by 2002:a1c:6a08:0:b0:405:3455:d603 with SMTP id f8-20020a1c6a08000000b004053455d603mr4411205wmc.17.1696004209374;
+        Fri, 29 Sep 2023 09:16:49 -0700 (PDT)
 Received: from lion.localdomain (host-2-99-112-229.as13285.net. [2.99.112.229])
-        by smtp.gmail.com with ESMTPSA id x15-20020adfcc0f000000b0032330e43590sm10226848wrh.22.2023.09.29.09.16.47
+        by smtp.gmail.com with ESMTPSA id x15-20020adfcc0f000000b0032330e43590sm10226848wrh.22.2023.09.29.09.16.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Sep 2023 09:16:48 -0700 (PDT)
+        Fri, 29 Sep 2023 09:16:49 -0700 (PDT)
 From: Caleb Connolly <caleb.connolly@linaro.org>
-Date: Fri, 29 Sep 2023 17:16:17 +0100
-Subject: [PATCH 1/4] remoteproc: qcom: probe all child devices
+Date: Fri, 29 Sep 2023 17:16:18 +0100
+Subject: [PATCH 2/4] dt-bindings: thermal: Add qcom,qmi-cooling yaml
+ bindings
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,7 +66,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230905-caleb-qmi_cooling-v1-1-5aa39d4164a7@linaro.org>
+Message-Id: <20230905-caleb-qmi_cooling-v1-2-5aa39d4164a7@linaro.org>
 References: <20230905-caleb-qmi_cooling-v1-0-5aa39d4164a7@linaro.org>
 In-Reply-To: <20230905-caleb-qmi_cooling-v1-0-5aa39d4164a7@linaro.org>
 To: Andy Gross <agross@kernel.org>, 
@@ -85,101 +86,255 @@ Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
  devicetree@vger.kernel.org, linux-pm@vger.kernel.org, 
  Caleb Connolly <caleb.connolly@linaro.org>
 X-Mailer: b4 0.13-dev-46309
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2910;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6892;
  i=caleb.connolly@linaro.org; h=from:subject:message-id;
- bh=BQAHBsD8YjKFqwQLawNkTixAQML5hsjMljtR9Bt9PIQ=;
- b=owGbwMvMwCFYaeA6f6eBkTjjabUkhlSxH3mvrc6/vXxmg4XEgePXBIw6shYH5qlN6g3dmLUu0
- ucb/5KKjlIWBkEOBlkxRRbxE8ssm9ZettfYvuACzBxWJpAhDFycAjCR1HsM/+wXLzasPTLlouGD
- KvZTvsd9ln0LCrtw3yXzgGUxw1O5mesY/unmdS7Nl9y+KW99VkH9dt7jyXZMQRF+l/g4+E1u6qw
- 69QkA
+ bh=zW3HWrMT85pnatyJIPEtqsqc6tm+j8grjbjQ5daBbLc=;
+ b=owGbwMvMwCFYaeA6f6eBkTjjabUkhlSxH3n8/Dnpsxq25YX+tV/74oXvzm8P4mukVFu0KyW/O
+ Ld95tfsKGVhEORgkBVTZBE/scyyae1le43tCy7AzGFlAhnCwMUpABMxsGT4K9DGYOn04evGZQ/v
+ 2LXxsZQWBb9dxilYvuibj4OcCrvESUaG5vTa0tDtN7Ty+vqa9n5fE8uz7tBEQ8+pe2/MepTGf+j
+ UGQA=
 X-Developer-Key: i=caleb.connolly@linaro.org; a=openpgp;
  fpr=83B24DA7FE145076BC38BB250CD904EB673A7C47
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Generalise the qcom,bam-dmux child node support by probing all
-remoteproc children with of_platform_populate(). This will be used to
-enable support for devices which are best represented as subnodes of the
-remoteproc, such as those representing QMI clients.
+The cooling subnode of a remoteproc represents a client of the Thermal
+Mitigation Device QMI service running on it. Each subnode of the cooling
+node represents a single control exposed by the service.
 
 Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
 ---
- drivers/remoteproc/qcom_q6v5.c     | 4 ++++
- drivers/remoteproc/qcom_q6v5_mss.c | 8 --------
- 2 files changed, 4 insertions(+), 8 deletions(-)
+ .../bindings/remoteproc/qcom,msm8996-mss-pil.yaml  |  13 ++
+ .../bindings/remoteproc/qcom,pas-common.yaml       |   6 +
+ .../bindings/thermal/qcom,qmi-cooling.yaml         | 168 +++++++++++++++++++++
+ 3 files changed, 187 insertions(+)
 
-diff --git a/drivers/remoteproc/qcom_q6v5.c b/drivers/remoteproc/qcom_q6v5.c
-index 4ee5e67a9f03..8aa5c7b05429 100644
---- a/drivers/remoteproc/qcom_q6v5.c
-+++ b/drivers/remoteproc/qcom_q6v5.c
-@@ -6,6 +6,7 @@
-  * Copyright (C) 2014 Sony Mobile Communications AB
-  * Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
-  */
-+#include <linux/of_platform.h>
- #include <linux/kernel.h>
- #include <linux/platform_device.h>
- #include <linux/interconnect.h>
-@@ -349,6 +350,8 @@ int qcom_q6v5_init(struct qcom_q6v5 *q6v5, struct platform_device *pdev,
- 		return dev_err_probe(&pdev->dev, PTR_ERR(q6v5->path),
- 				     "failed to acquire interconnect path\n");
+diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
+index 0643faae2c39..9d0398764a31 100644
+--- a/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
+@@ -145,6 +145,12 @@ properties:
+       and devices related to the Modem.
+     unevaluatedProperties: false
  
-+	of_platform_populate(q6v5->dev->of_node, NULL, NULL, q6v5->dev);
++  cooling:
++    $ref: /schemas/thermal/qcom,qmi-cooling.yaml#
++    description:
++      Cooling subnode which represents the cooling devices exposed by the Modem.
++    unevaluatedProperties: false
 +
- 	return 0;
- }
- EXPORT_SYMBOL_GPL(qcom_q6v5_init);
-@@ -359,6 +362,7 @@ EXPORT_SYMBOL_GPL(qcom_q6v5_init);
-  */
- void qcom_q6v5_deinit(struct qcom_q6v5 *q6v5)
- {
-+	of_platform_depopulate(q6v5->dev);
- 	qmp_put(q6v5->qmp);
- }
- EXPORT_SYMBOL_GPL(qcom_q6v5_deinit);
-diff --git a/drivers/remoteproc/qcom_q6v5_mss.c b/drivers/remoteproc/qcom_q6v5_mss.c
-index 22fe7b5f5236..ab7e426777c7 100644
---- a/drivers/remoteproc/qcom_q6v5_mss.c
-+++ b/drivers/remoteproc/qcom_q6v5_mss.c
-@@ -230,7 +230,6 @@ struct q6v5 {
- 	struct qcom_rproc_subdev smd_subdev;
- 	struct qcom_rproc_ssr ssr_subdev;
- 	struct qcom_sysmon *sysmon;
--	struct platform_device *bam_dmux;
- 	bool need_mem_protection;
- 	bool has_alt_reset;
- 	bool has_mba_logs;
-@@ -1969,7 +1968,6 @@ static int q6v5_alloc_memory_region(struct q6v5 *qproc)
- static int q6v5_probe(struct platform_device *pdev)
- {
- 	const struct rproc_hexagon_res *desc;
--	struct device_node *node;
- 	struct q6v5 *qproc;
- 	struct rproc *rproc;
- 	const char *mba_image;
-@@ -2113,10 +2111,6 @@ static int q6v5_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto remove_sysmon_subdev;
+   # Deprecated properties
+   mba:
+     type: object
+@@ -386,6 +392,13 @@ examples:
+         qcom,smem-states = <&modem_smp2p_out 0>;
+         qcom,smem-state-names = "stop";
  
--	node = of_get_compatible_child(pdev->dev.of_node, "qcom,bam-dmux");
--	qproc->bam_dmux = of_platform_device_create(node, NULL, &pdev->dev);
--	of_node_put(node);
--
- 	return 0;
++        cooling {
++            vdd {
++              label = "cpuv_restriction_cold";
++              #cooling-cells = <2>;
++            };
++        };
++
+         glink-edge {
+             interrupts = <GIC_SPI 449 IRQ_TYPE_EDGE_RISING>;
+             label = "modem";
+diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
+index 63a82e7a8bf8..bbc82253f76b 100644
+--- a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
+@@ -77,6 +77,12 @@ properties:
+       and devices related to the ADSP.
+     unevaluatedProperties: false
  
- remove_sysmon_subdev:
-@@ -2138,8 +2132,6 @@ static void q6v5_remove(struct platform_device *pdev)
- 	struct q6v5 *qproc = platform_get_drvdata(pdev);
- 	struct rproc *rproc = qproc->rproc;
- 
--	if (qproc->bam_dmux)
--		of_platform_device_destroy(&qproc->bam_dmux->dev, NULL);
- 	rproc_del(rproc);
- 
- 	qcom_q6v5_deinit(&qproc->q6v5);
++  cooling:
++    $ref: /schemas/thermal/qcom,qmi-cooling.yaml#
++    description:
++      Cooling subnode which represents the cooling devices exposed by the Modem.
++    unevaluatedProperties: false
++
+ required:
+   - clocks
+   - clock-names
+diff --git a/Documentation/devicetree/bindings/thermal/qcom,qmi-cooling.yaml b/Documentation/devicetree/bindings/thermal/qcom,qmi-cooling.yaml
+new file mode 100644
+index 000000000000..65b1c7b40c1d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/thermal/qcom,qmi-cooling.yaml
+@@ -0,0 +1,168 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2023 (c), Linaro Limited
++
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/thermal/qcom,qmi-cooling.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm QMI based thermal mitigation (TMD) cooling devices.
++
++maintainers:
++  - Caleb Connolly <caleb.connolly@linaro.org>
++
++description:
++  Qualcomm QMI based TMD cooling device(s) are used for various mitigations for
++  remote subsystem(s) including remote processor mitigation, rail voltage
++  restriction etc. Some devices such as "cpuv_restriction_cold" are for warming,
++  (e.g. by raising minimum voltage on core system rails).
++
++  Each subnode represents a control for a single instance of the TMD service running
++  on a remote subsystem.
++
++definitions:
++  tmd:
++    type: object
++    description: |
++      A single Thermal Mitigation Device exposed by a remote subsystem.
++    properties:
++      label:
++        maxItems: 1
++      "#cooling-cells":
++        $ref: /schemas/thermal/thermal-cooling-devices.yaml#/properties/#cooling-cells
++
++    required:
++      - label
++      - "#cooling-cells"
++
++    additionalProperties: false
++
++properties:
++  compatible:
++    enum:
++      - qcom,qmi-cooling-modem
++      - qcom,qmi-cooling-adsp
++      - qcom,qmi-cooling-cdsp
++      - qcom,qmi-cooling-slpi
++
++  vdd:
++    $ref: "#/definitions/tmd"
++    description:
++      Restrict primary rail minimum voltage to "nominal" setting.
++    properties:
++      label:
++        const: cpuv_restriction_cold
++
++required:
++  - compatible
++  - vdd
++
++# Modem has additional TMDs
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: qcom,qmi-cooling-modem
++    then:
++      properties:
++        pa:
++          $ref: "#/definitions/tmd"
++          description:
++            Power Amplifier TMD
++          properties:
++            label:
++              const: pa
++
++        proc:
++          $ref: "#/definitions/tmd"
++          description:
++            Modem processor temperature TMD
++          properties:
++            label:
++              const: modem
++
++        current:
++          $ref: "#/definitions/tmd"
++          description:
++            Modem peak current TMD
++          properties:
++            label:
++              const: modem_current
++
++        skin:
++          $ref: "#/definitions/tmd"
++          description:
++            Modem skin temperature TMD
++          properties:
++            label:
++              const: modem_skin
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    remoteproc-modem {
++        cooling {
++            compatible = "qcom,qmi-cooling-modem";
++
++            modem_pa: pa {
++              label = "pa";
++              #cooling-cells = <2>;
++            };
++
++            modem_proc: proc {
++              label = "modem";
++              #cooling-cells = <2>;
++            };
++
++            modem_current: current {
++              label = "modem_current";
++              #cooling-cells = <2>;
++            };
++
++            modem_skin: skin {
++              label = "modem_skin";
++              #cooling-cells = <2>;
++            };
++
++            modem_vdd: vdd {
++              label = "cpuv_restriction_cold";
++              #cooling-cells = <2>;
++            };
++        };
++    };
++
++    remoteproc-adsp {
++        cooling {
++            compatible = "qcom,qmi-cooling-adsp";
++
++            adsp_vdd: vdd {
++              label = "cpuv_restriction_cold";
++              #cooling-cells = <2>;
++            };
++        };
++    };
++
++    remoteproc-cdsp {
++        cooling {
++            compatible = "qcom,qmi-cooling-cdsp";
++
++            cdsp_vdd: vdd {
++              label = "cpuv_restriction_cold";
++              #cooling-cells = <2>;
++            };
++        };
++    };
++
++    remoteproc-slpi {
++        cooling {
++            compatible = "qcom,qmi-cooling-slpi";
++
++            slpi_vdd: vdd {
++              label = "cpuv_restriction_cold";
++              #cooling-cells = <2>;
++            };
++        };
++    };
++...
 
 -- 
 2.42.0
