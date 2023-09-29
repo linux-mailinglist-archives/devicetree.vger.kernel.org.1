@@ -1,56 +1,42 @@
-Return-Path: <devicetree+bounces-4701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EDB37B37DD
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 18:23:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAED07B37E4
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 18:27:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 20E03285F74
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 16:23:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id D10991C20936
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 16:27:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C8BA65896;
-	Fri, 29 Sep 2023 16:23:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E89586589C;
+	Fri, 29 Sep 2023 16:27:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 577E165891;
-	Fri, 29 Sep 2023 16:23:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 449B5C433C7;
-	Fri, 29 Sep 2023 16:23:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9BCD521DA
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 16:27:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 241F2C433C8;
+	Fri, 29 Sep 2023 16:27:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696004606;
-	bh=vdHsFS1qwouM+3ZESdMWBKhRRi64cXjRGOWqnTWm4nE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HiKXhd8fVklhkUvZLY/7nVB9NKzzeU+CKrADgeA2VwJVUpuWHiHGUV7uVaUcd3oQz
-	 VRjklVMCsTZ0MT4mgBsdx42amXJ993diG7iv3JZKM78vHl3G2s/muANlcfbmZSBXvv
-	 vsVntbyTdWfsJSiGresmpLIY2AnnnG0HDr6BKSlMzhqGMisPBMOsKdII/RVMX8HzQ1
-	 NmZ7E/PLEudfKlQjsGJROfj/RndTmFX1aaT+jV5ewhGa529PLNG8uBCVeyIlm+MXQW
-	 SPqgJwnCWE+JkFjHlVMZEcQYG+e+JwVWSoLmglreLJJsvVt1fm3WIVrmtafI3V5gYv
-	 iMV8gsUxh6Low==
-Date: Fri, 29 Sep 2023 21:53:22 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Madalin Bucur <madalin.bucur@nxp.com>,
-	Ioana Ciornei <ioana.ciornei@nxp.com>,
-	Camelia Groza <camelia.groza@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor@kernel.org>,
-	Sean Anderson <sean.anderson@seco.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Kishon Vijay Abraham I <kishon@kernel.org>
-Subject: Re: [RFC PATCH v2 net-next 04/15] phy: allow querying the address of
- protocol converters through phy_get_status()
-Message-ID: <ZRb5+h4TnGRKl3/6@matsya>
-References: <20230923134904.3627402-1-vladimir.oltean@nxp.com>
- <20230923134904.3627402-5-vladimir.oltean@nxp.com>
+	s=k20201202; t=1696004824;
+	bh=0vOdoPGe6FGUXb1FbgkvgqLix0R6bNbYbMX5bpwVOVE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=hRzXKTBynfi8SaWpOUj/xUbiqi+Ob5J2eZ9NTd7li8/2pDE+5YMbPl74V8Jso0asq
+	 ianFhBheqcagIVnJ3cnesU1TcBJCbcWNhRA0Jm9sWV1uffLOuojwkNM0i5nTEotiSW
+	 wHpHZ4W0TY1i7Qkx2+HCSRyE2YStYW9voziJ0aNT0FJEbY2ZKle40uY8Eri3DpgeQ8
+	 cFdldoUNEJEd3iZ/V/ee5+zqHxfACrtswudJ3qS9J4D6iC/OW7dMgwXZDNNosgNsYd
+	 0d1TbqymfviC18KxIy/WyKyJsQGBTQcjP8F3IbEX2gseLaalk3T6bTzVxsgK2mzQT7
+	 OCGpQ5W0LyRUg==
+Date: Fri, 29 Sep 2023 11:27:02 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Lizhi Hou <lizhi.hou@amd.com>
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, herve.codina@bootlin.com,
+	Jonathan.Cameron@huawei.com, bhelgaas@google.com, robh@kernel.org
+Subject: Re: [PATCH v1 2/2] PCI: of_property: Fix uninitialized variable when
+ of_irq_parse_raw() failed
+Message-ID: <20230929162702.GA511467@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,107 +45,101 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230923134904.3627402-5-vladimir.oltean@nxp.com>
+In-Reply-To: <1695919631-7661-2-git-send-email-lizhi.hou@amd.com>
 
-On 23-09-23, 16:48, Vladimir Oltean wrote:
-> The bit stream handled by a SerDes lane needs protocol converters to be
-> usable for Ethernet. On Freescale/NXP SoCs, those protocol converters
-> are located on the internal MDIO buses of the Ethernet MACs that need
-> them.
-> 
-> The location on that MDIO bus, on these SoCs, is not fixed, but given by
-> some control registers of the SerDes block itself.
-> 
-> Because no one modifies those addresses from the power-on default, so
-> far we've relied on hardcoding the default values in the device trees,
-> resulting in something like this:
-> 
-> 		pcs_mdio1: mdio@8c07000 {
-> 			compatible = "fsl,fman-memac-mdio";
-> 
-> 			pcs1: ethernet-phy@0 {
-> 				reg = <0>;
-> 			};
-> 		};
-> 
-> where the "reg" of "pcs1" can actually be retrieved from "serdes_1".
-> 
-> That was for the PCS. For AN/LT blocks, that can also be done, but the
-> MAC to PCS to AN/LT block mapping is non-trivial and extremely easy to
-> get wrong, which will confuse and frustrate any device tree writers.
-> 
-> The proposal is to take advantage of the fact that these protocol
-> converters *are* discoverable, and to side-step that entire device tree
-> mapping issue by not putting them in the device tree at all. So, one of
-> the consumers of the SerDes PHY uses the phy_get_status() API to figure
-> out the address on the MDIO bus, it also has a reference to the MDIO bus
-> => it can create the mdio_device in a non OF-based manner.
-> 
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+On Thu, Sep 28, 2023 at 09:47:11AM -0700, Lizhi Hou wrote:
+> In function of_pci_prop_intr_map(), addr_sz[i] will be uninitialized if
+> of_irq_parse_raw() returns failure. Add addr_sz array initialization. And
+> when parsing irq failed, skip generating interrupt-map pair for the pin.
+
+Would you mind splitting this into two?  It sounds like it fixes two
+problems: (1) using uninitialized addr_sz[] and (2) skip generating
+interrupt-map pair.
+
+There's also something going on with the pci_swizzle_interrupt_pin()
+change; maybe that should be a third patch so you can explain what's
+going on there?
+
+IIUC this is actually a *v2* (not a v1), since you posted it
+previously as
+https://lore.kernel.org/r/1694801287-17217-2-git-send-email-lizhi.hou@amd.com
+so the next round should be labeled v3.
+
+> Fixes: 407d1a51921e ("PCI: Create device tree node for bridge")
+> Reported-by: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+> Closes: https://lore.kernel.org/all/20230911154856.000076c3@Huawei.com/
+> Reviewed-by: Herve Codina <herve.codina@bootlin.com>
+> Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>
 > ---
-> v1->v2: patch is new
+>  drivers/pci/of_property.c | 25 ++++++++++++++++++-------
+>  1 file changed, 18 insertions(+), 7 deletions(-)
 > 
->  include/linux/phy/phy.h | 29 +++++++++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
-> 
-> diff --git a/include/linux/phy/phy.h b/include/linux/phy/phy.h
-> index f1f03fa66943..ee721067517b 100644
-> --- a/include/linux/phy/phy.h
-> +++ b/include/linux/phy/phy.h
-> @@ -56,6 +56,33 @@ enum phy_media {
->  enum phy_status_type {
->  	/* Valid for PHY_MODE_ETHERNET and PHY_MODE_ETHTOOL */
->  	PHY_STATUS_CDR_LOCK,
-> +	PHY_STATUS_PCVT_ADDR,
-> +};
-> +
-> +/* enum phy_pcvt_type - PHY protocol converter type
-
-It is not a generic protocol converter but an ethernet phy protocol
-converter, so i guess we should add that here (we are generic phy and
-not ethernet phy here!
-
-> + *
-> + * @PHY_PCVT_ETHERNET_PCS: Ethernet Physical Coding Sublayer, top-most layer of
-> + *			   an Ethernet PHY. Connects through MII to the MAC,
-> + *			   and handles link status detection and the conversion
-> + *			   of MII signals to link-specific code words (8b/10b,
-> + *			   64b/66b etc).
-> + * @PHY_PCVT_ETHERNET_ANLT: Ethernet Auto-Negotiation and Link Training,
-> + *			    bottom-most layer of an Ethernet PHY, beneath the
-> + *			    PMA and PMD. Its activity is only visible on the
-> + *			    physical medium, and it is responsible for
-> + *			    selecting the most adequate PCS/PMA/PMD set that
-> + *			    can operate on that medium.
-> + */
-> +enum phy_pcvt_type {
-> +	PHY_PCVT_ETHERNET_PCS,
-> +	PHY_PCVT_ETHERNET_ANLT,
-> +};
-> +
-> +struct phy_status_opts_pcvt {
-> +	enum phy_pcvt_type type;
-> +	union {
-> +		unsigned int mdio;
-> +	} addr;
->  };
+> diff --git a/drivers/pci/of_property.c b/drivers/pci/of_property.c
+> index 710ec35ba4a1..c2c7334152bc 100644
+> --- a/drivers/pci/of_property.c
+> +++ b/drivers/pci/of_property.c
+> @@ -186,8 +186,8 @@ static int of_pci_prop_interrupts(struct pci_dev *pdev,
+>  static int of_pci_prop_intr_map(struct pci_dev *pdev, struct of_changeset *ocs,
+>  				struct device_node *np)
+>  {
+> +	u32 i, addr_sz[OF_PCI_MAX_INT_PIN] = { 0 }, map_sz = 0;
+>  	struct of_phandle_args out_irq[OF_PCI_MAX_INT_PIN];
+> -	u32 i, addr_sz[OF_PCI_MAX_INT_PIN], map_sz = 0;
+>  	__be32 laddr[OF_PCI_ADDRESS_CELLS] = { 0 };
+>  	u32 int_map_mask[] = { 0xffff00, 0, 0, 7 };
+>  	struct device_node *pnode;
+> @@ -213,33 +213,44 @@ static int of_pci_prop_intr_map(struct pci_dev *pdev, struct of_changeset *ocs,
+>  		out_irq[i].args[0] = pin;
+>  		ret = of_irq_parse_raw(laddr, &out_irq[i]);
+>  		if (ret) {
+> -			pci_err(pdev, "parse irq %d failed, ret %d", pin, ret);
+> +			out_irq[i].np = NULL;
+> +			pci_dbg(pdev, "parse irq %d failed, ret %d", pin, ret);
+>  			continue;
+>  		}
+> -		ret = of_property_read_u32(out_irq[i].np, "#address-cells",
+> -					   &addr_sz[i]);
+> -		if (ret)
+> -			addr_sz[i] = 0;
+> +		of_property_read_u32(out_irq[i].np, "#address-cells",
+> +				     &addr_sz[i]);
+>  	}
 >  
->  /* If the CDR (Clock and Data Recovery) block is able to lock onto the RX bit
-> @@ -71,9 +98,11 @@ struct phy_status_opts_cdr {
->   * union phy_status_opts - Opaque generic phy status
->   *
->   * @cdr:	Configuration set applicable for PHY_STATUS_CDR_LOCK.
-> + * @pcvt:	Configuration set applicable for PHY_STATUS_PCVT_ADDR.
->   */
->  union phy_status_opts {
->  	struct phy_status_opts_cdr		cdr;
-> +	struct phy_status_opts_pcvt		pcvt;
->  };
+>  	list_for_each_entry(child, &pdev->subordinate->devices, bus_list) {
+>  		for (pin = 1; pin <= OF_PCI_MAX_INT_PIN; pin++) {
+>  			i = pci_swizzle_interrupt_pin(child, pin) - 1;
+> +			if (!out_irq[i].np)
+> +				continue;
+>  			map_sz += 5 + addr_sz[i] + out_irq[i].args_count;
+>  		}
+>  	}
 >  
->  /**
+> +	/*
+> +	 * Parsing interrupt failed for all pins. In this case, it does not
+> +	 * need to generate interrupt-map property.
+> +	 */
+> +	if (!map_sz)
+> +		return 0;
+> +
+>  	int_map = kcalloc(map_sz, sizeof(u32), GFP_KERNEL);
+>  	mapp = int_map;
+>  
+>  	list_for_each_entry(child, &pdev->subordinate->devices, bus_list) {
+>  		for (pin = 1; pin <= OF_PCI_MAX_INT_PIN; pin++) {
+> +			i = pci_swizzle_interrupt_pin(child, pin) - 1;
+> +			if (!out_irq[i].np)
+> +				continue;
+> +
+>  			*mapp = (child->bus->number << 16) |
+>  				(child->devfn << 8);
+>  			mapp += OF_PCI_ADDRESS_CELLS;
+>  			*mapp = pin;
+>  			mapp++;
+> -			i = pci_swizzle_interrupt_pin(child, pin) - 1;
+>  			*mapp = out_irq[i].np->phandle;
+>  			mapp++;
+>  			if (addr_sz[i]) {
 > -- 
 > 2.34.1
-
--- 
-~Vinod
+> 
 
