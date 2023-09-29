@@ -1,173 +1,91 @@
-Return-Path: <devicetree+bounces-4745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A7727B3911
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 19:42:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E33167B3924
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 19:50:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 1AEED283CE7
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 17:42:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 4FFFF283EAC
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 17:50:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C34366663;
-	Fri, 29 Sep 2023 17:42:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C04756666D;
+	Fri, 29 Sep 2023 17:49:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0057751B88
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 17:42:35 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BCFB1B1
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 10:42:34 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <l.stach@pengutronix.de>)
-	id 1qmHVR-0006iq-QQ; Fri, 29 Sep 2023 19:42:25 +0200
-Message-ID: <246c5d9c6d591a1f54ac343b5edd4284ad1dd74f.camel@pengutronix.de>
-Subject: Re: [PATCH v4 1/2] dt-bindings: display: imx: add binding for
- i.MX8MP HDMI PVI
-From: Lucas Stach <l.stach@pengutronix.de>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Jonas Karlman <jonas@kwiboo.se>, Liu
- Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org, Jernej Skrabec
- <jernej.skrabec@gmail.com>, patchwork-lst@pengutronix.de, 
- devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Laurent
- Pinchart <Laurent.pinchart@ideasonboard.com>, Andrzej Hajda
- <andrzej.hajda@intel.com>,  Pengutronix Kernel Team
- <kernel@pengutronix.de>, linux-arm-kernel@lists.infradead.org, NXP Linux
- Team <linux-imx@nxp.com>
-Date: Fri, 29 Sep 2023 19:42:24 +0200
-In-Reply-To: <20230929184835.1de69182@booty>
-References: <20230928125536.1782715-1-l.stach@pengutronix.de>
-	 <20230929184835.1de69182@booty>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D29B66663
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 17:49:58 +0000 (UTC)
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCCBB1BC
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 10:49:54 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-5346b64f17aso9693722a12.2
+        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 10:49:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1696009793; x=1696614593; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gVb8bc5h6cYCDb4wln/HVuuicIeKALI/2rEiAT/rv2E=;
+        b=N3HunwXEULDIWeSDpg2dovjPhxxXVkwKQrZIb5WHl7nNtU40aC1xbj9rmgW+rFHDwk
+         JnxSLwB3TRR66HENPjh79s+7UIga1UV54ab7P7gX8aNxy043BBV4vn9m3iDyKkyKtDar
+         8XsVsJJUbKwgYRim+jMm194c5VQ5s+N7l9/jfo+T3gau2BksbRC3/Dpdw9hkKdfbFvMC
+         e0qXhPk5Ck9m76bCnOMDzpbf8W+4GP4lS6dAa8qy4BT+DyOS8ktBNziJjNnqO03R0Bz0
+         w9n6LsnbRqUjyx7shjkL4O/iBRDxJhz3C25gKELqWP8XBKswMZTgDwtiu4hOTI4q2dmB
+         9amA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696009793; x=1696614593;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gVb8bc5h6cYCDb4wln/HVuuicIeKALI/2rEiAT/rv2E=;
+        b=TJXeAP9/TPUh6Ii66chwKgttn7fzAfTicyPrzs8brxylbcTLOqWTIPXUfX1v0dJUDV
+         9elVybGuak4O4clvciTqV1/fVG+tt6gNZU/kj1U8DvWq/oKAIo5tK0SgNGScf09kNBMU
+         QMOrdEYZR1pXTkG0c+FxpbxpNEQpIJVkcL8n3fkb/8GwMENe0lu5rQWaGxF4lFIriqL/
+         8t9UCQEMsgwwJ5pm/fPlHO6/5nnOfqUCELvKtaQ8TBL4OFVCs68LOYGAIeFVclKWJOPj
+         ICg8EtZ/oSPmbIwevS7CULNPxQnaLjBbife16lmbrFziOeWsPCrJhq2IgxALkjUYTYC8
+         NdmA==
+X-Gm-Message-State: AOJu0Yz2Jv7rr4DfKQ+L461zhUvOfDaUZFozBQxh3R70zpSPWi3QJA1L
+	SSXemF0c3ksCLavVni3/F5vez9azdhIB2pQB5d14NA==
+X-Google-Smtp-Source: AGHT+IFrazPWKmZQvejWAgHITohOjWY7XIYytqxFwOWTgz5mw+hIEm2IUh28jJx/1qJjE+rTURLQuJJ8e+d0I3x9+LY=
+X-Received: by 2002:aa7:c549:0:b0:523:4acb:7f41 with SMTP id
+ s9-20020aa7c549000000b005234acb7f41mr4282447edr.14.1696009793077; Fri, 29 Sep
+ 2023 10:49:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230929-ad2s1210-mainline-v3-0-fa4364281745@baylibre.com>
+In-Reply-To: <20230929-ad2s1210-mainline-v3-0-fa4364281745@baylibre.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Fri, 29 Sep 2023 12:49:42 -0500
+Message-ID: <CAMknhBHLwWuuCDSCBZV1bB1MuqDa5ur4GEY+Yqofvn9MPGRcVg@mail.gmail.com>
+Subject: Re: [PATCH v3 00/27] iio: resolver: move ad2s1210 out of staging
+To: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-staging@lists.linux.dev
+Cc: David Lechner <david@lechnology.com>, Jonathan Cameron <jic23@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Axel Haslam <ahaslam@baylibre.com>, Philip Molloy <pmolloy@baylibre.com>, 
+	linux-kernel@vger.kernel.org, Apelete Seketeli <aseketeli@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Luca,
+On Fri, Sep 29, 2023 at 12:25=E2=80=AFPM David Lechner <dlechner@baylibre.c=
+om> wrote:
+>
+> From: David Lechner <david@lechnology.com>
+>
 
-Am Freitag, dem 29.09.2023 um 18:48 +0200 schrieb Luca Ceresoli:
-> Hi Lucas,
->=20
-> On Thu, 28 Sep 2023 14:55:35 +0200
-> Lucas Stach <l.stach@pengutronix.de> wrote:
->=20
-> > Add binding for the i.MX8MP HDMI parallel video interface block.
-> >=20
-> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> >  .../display/imx/fsl,imx8mp-hdmi-pvi.yaml      | 83 +++++++++++++++++++
-> >  1 file changed, 83 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,i=
-mx8mp-hdmi-pvi.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-h=
-dmi-pvi.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdm=
-i-pvi.yaml
-> > new file mode 100644
-> > index 000000000000..df29006b4090
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi=
-.yaml
-> > @@ -0,0 +1,83 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/imx/fsl,imx8mp-hdmi-pvi.yam=
-l#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Freescale i.MX8MP HDMI Parallel Video Interface
-> > +
-> > +maintainers:
-> > +  - Lucas Stach <l.stach@pengutronix.de>
-> > +
-> > +description: |
-> > +  The HDMI parallel video interface is a timing and sync generator blo=
-ck in the
-> > +  i.MX8MP SoC, that sits between the video source and the HDMI TX cont=
-roller.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: fsl,imx8mp-hdmi-pvi
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: Input from the LCDIF controller.
-> > +
-> > +      port@1:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: Output to the HDMI TX controller.
-> > +
-> > +    required:
-> > +      - port@0
-> > +      - port@1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
->=20
-> Sure it is required? In the imx8mp.dtsi I have, which comes for a patch
-> you sent previously, there is no 'interrupts' property, and HDMI works.
->=20
-Yes, the driver doesn't use/enforce this interrupt at the moment and
-will work without it. But since the IRQ is present in the only known HW
-implementation of this IP, I don't see a reason to make it optional in
-the DT, as that's just proper description of the HW.
-
-> > +  - power-domains
-> > +  - ports
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/power/imx8mp-power.h>
-> > +
-> > +    display-bridge@32fc4000 {
-> > +        compatible =3D "fsl,imx8mp-hdmi-pvi";
-> > +        reg =3D <0x32fc4000 0x40>;
->=20
-> The device has up to register 0x40, thus I guess the second value should
-> be 0x44 here. Or maybe 0x100, just to be comfortable. :)
->=20
-Right, I'll fix that.
-
-Regards,
-Lucas
-
+Ugh, an automated tool picked up my personal email on this for some
+reason. This extra From: line can be dropped from any patches that get
+picked up on this round. I will make sure to double-check next time.
 
