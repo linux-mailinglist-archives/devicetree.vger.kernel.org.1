@@ -1,295 +1,222 @@
-Return-Path: <devicetree+bounces-4489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2D2E7B2C9F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 08:49:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9EAA7B2CA8
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 08:54:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 91D792834AE
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 06:49:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2720C2838B4
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 06:54:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25B4B883A;
-	Fri, 29 Sep 2023 06:49:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 623B55662;
+	Fri, 29 Sep 2023 06:54:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 639D88BFB;
-	Fri, 29 Sep 2023 06:49:36 +0000 (UTC)
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2054.outbound.protection.outlook.com [40.107.94.54])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 751E61B2;
-	Thu, 28 Sep 2023 23:49:34 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KffR4c+HPkUYbwmRJMdWAzZaSLYRuvbJXWwpVlGYBHesl88OMHJOKoOPd7qsqwoPrZtTtL8IBkYKj+KgEtkPprmltk4qrF9mkKZ5rku40aho9JnOoXfGO/trDkaw/iU5osTOf0mCs4BBMvhXo8ooJxOQqCiuf3nSUWJAiQEqgdJYBXcaAGLPD29QXNDjuPy5QekB1w0dzJNc5ewHkdmqhRW5LizaOOHnB9YA2FG095evUaQEnqGvJhkpnkXu1FyXn1IhtNhMqJ4e2vskENqj27Fv8h2jelyPyxop4QpM7LuAGhb6J6jXDV3pw9oJi7ePkkeGYyd54E5wfCSkFpp/LQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YgNx1sk26Fi/rLxdQZ2p9EbG5jnFL2lOMM9Dy2C7shc=;
- b=Ym9BOlq16/8r5oYgPDXCyi3Io3pu2x8JzKLVPEzKmXPpj21w62heUY3JjX4VOwfKbkf4cMk+RlTXnzb1ODXpGIMMFkT+QJ1NYikCTj5tJgk2h9dqaePPAng5xMBVf3WXARfom8eT0ZCGHBMbApL1r2YD2VGJS8YIQ0YAUbdD5RIo+j0twaPTZd5IrCW/DfIt38+VTFK8cot3H/U6PvupdDMzS8VhnT21zWEAojXhE+7Dck/VcrLDOHVMN0ERWKkYkj55sa0FVGB7//5tTDhMj/kQboCrEq7GmLzya00eWl8VaIKSOpWJpwiEOV28bPriHGB9eB6C7R7668BNF/LUCA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linuxfoundation.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YgNx1sk26Fi/rLxdQZ2p9EbG5jnFL2lOMM9Dy2C7shc=;
- b=hvdvBo9WcXzLtUsSITG63rYYgbx6UdSDI6TdRfhFwAw4cv7sMiBBBWz58RRGEn6F6tsIdYGGz+6MpjbepUU/H4wYScorevy5PWx92YeR/doTwNn5v6y5mdFPuqPPq1IUHZZJv4f5+kmMRGogK9Gbsr98i1Ov5IcWH4cylU9oaME=
-Received: from DS7PR05CA0057.namprd05.prod.outlook.com (2603:10b6:8:2f::21) by
- SJ1PR12MB6171.namprd12.prod.outlook.com (2603:10b6:a03:45a::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.26; Fri, 29 Sep
- 2023 06:49:30 +0000
-Received: from DS1PEPF00017095.namprd03.prod.outlook.com
- (2603:10b6:8:2f:cafe::d4) by DS7PR05CA0057.outlook.office365.com
- (2603:10b6:8:2f::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.15 via Frontend
- Transport; Fri, 29 Sep 2023 06:49:30 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DS1PEPF00017095.mail.protection.outlook.com (10.167.17.138) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6838.14 via Frontend Transport; Fri, 29 Sep 2023 06:49:29 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 29 Sep
- 2023 01:49:28 -0500
-Received: from xhdpiyushm40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Fri, 29 Sep 2023 01:49:25 -0500
-From: Piyush Mehta <piyush.mehta@amd.com>
-To: <gregkh@linuxfoundation.org>, <michal.simek@amd.com>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <peter.chen@kernel.org>, <linus.walleij@linaro.org>,
-	<paul@crapouillou.net>, <arnd@arndb.de>
-CC: <piyush.mehta@amd.com>, <linux-usb@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, <git@amd.com>
-Subject: [RFC PATCH 3/3] usb: phy: Add platform driver support for ULPI phys
-Date: Fri, 29 Sep 2023 12:18:52 +0530
-Message-ID: <20230929064852.16642-4-piyush.mehta@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230929064852.16642-1-piyush.mehta@amd.com>
-References: <20230929064852.16642-1-piyush.mehta@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34E915245
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 06:54:22 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 161F41A7;
+	Thu, 28 Sep 2023 23:54:20 -0700 (PDT)
+Received: from [IPV6:2a01:e0a:120:3210:df6a:b81:b9d2:d824] (unknown [IPv6:2a01:e0a:120:3210:df6a:b81:b9d2:d824])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: benjamin.gaignard)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id E2E19660732B;
+	Fri, 29 Sep 2023 07:54:18 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1695970459;
+	bh=O8YZ77epx2sINEGgheJrVOCXF6XG6Sc+CjdzPYmY2hE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=eBmLienboXPfmiRedjLIQt1ffMXAggrXq+zZx1IJsOIyP3RC9PV62T0cCiABkKNko
+	 MwF+angSnuoWHcduO3xZPFnT/Q+kSzNhAqGHVBzbsnkM2B1uqBRzJSFJNsHNunp7MO
+	 e0NpAjOsmim/1BJiibClxluNbe62L4K2AaoD+cqcAe+JrWL6C3YzlJ92MEgAjgnt37
+	 v4dgbzsuKgKqKc41/n8Xk+5KjMsiuX2qCoE946nu20K49GYz2TNOyrbLfxP8GqN3QS
+	 vxnBmOkNkPk1VR2YazeL6TXlWNaXCTlYyNJPG8+s6Tk0O/0WvYM96OZp4iy1dQw/7d
+	 RhSAmseeRAg3g==
+Message-ID: <32e515e1-b7a2-de3c-723b-ade3ec760b4d@collabora.com>
+Date: Fri, 29 Sep 2023 08:54:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 5/9] dma-buf: heaps: mtk_sec_heap: Initialise tee session
+To: Jeffrey Kardatzke <jkardatzke@google.com>
+Cc: Joakim Bech <joakim.bech@linaro.org>, =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?=
+ <Yong.Wu@mediatek.com>, "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>,
+ "angelogioacchino.delregno@collabora.com"
+ <angelogioacchino.delregno@collabora.com>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "sumit.semwal@linaro.org" <sumit.semwal@linaro.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "jstultz@google.com" <jstultz@google.com>,
+ "linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ =?UTF-8?B?SmlhbmppYW8gWmVuZyAo5pu+5YGl5aejKQ==?=
+ <Jianjiao.Zeng@mediatek.com>, =?UTF-8?B?S3VvaG9uZyBXYW5nICjnjovlnIvptLsp?=
+ <kuohong.wang@mediatek.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "Brian.Starkey@arm.com" <Brian.Starkey@arm.com>,
+ "tjmercier@google.com" <tjmercier@google.com>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+References: <20230911023038.30649-1-yong.wu@mediatek.com>
+ <20230911023038.30649-6-yong.wu@mediatek.com>
+ <d0373c02-9b22-661f-9930-ca720053c2a0@collabora.com>
+ <a115a2a5d3ac218e6db65ccdb0a1876f9cfca02b.camel@mediatek.com>
+ <d798b15b-6f35-96db-e3f7-5c0bcc5d46a2@collabora.com>
+ <a4ecc2792f3a4d3159e34415be984ff7d5f5e263.camel@mediatek.com>
+ <20230927134614.kp27moxdw72jiu4y@pop-os.localdomain>
+ <3aaafe47-3733-a4d5-038d-a7e439309282@collabora.com>
+ <CA+ddPcP4=p37cV5Tbn5zTUbiL4ou+Yqb=5rS+O_ff8ZUw64D3Q@mail.gmail.com>
+ <80695726-1a98-12d4-ad7d-d731f2f3caeb@collabora.com>
+ <CA+ddPcPES=4FcQRkvVnW=C9mL6hCxVfCcoLDJSjb58UiDmS_Mg@mail.gmail.com>
+Content-Language: en-US
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+In-Reply-To: <CA+ddPcPES=4FcQRkvVnW=C9mL6hCxVfCcoLDJSjb58UiDmS_Mg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF00017095:EE_|SJ1PR12MB6171:EE_
-X-MS-Office365-Filtering-Correlation-Id: ae9c92a4-5f31-4d12-8583-08dbc0b83af4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	G6zRwJJb3MpGu6OlPziYJXLLEsFeG7epjDN/GCPActQy240sw3HdfhMt1oQU1wo6a4FJCBnzPhhjaYfwSkxU50wNkYGHZ+QDbRskcaew9D7DtnRKDlhAs+VVOOGYq20kT0Irg4HeoILkmoQMfCtSX7hx49QMBaW/FRX9xnSxr/PVVuzhVMsmmxy1kBa1SNY5Yn6Qm5eXY9b2FczRjxmwbjWebLnqnbFJUwFyABWRBUZVLMBMF/TwJGptpQ1mHsL/t2QttHjQFKQXRx/xaYdPGt9mO7gtnHjzbI6XdjC26f+OzAWWG2y4TsVhs+40+VTlnajpsNb+Lxdtzxev7xmmDYXY8JIRKGSZgvN2RZGhf2HVuNkqeC+pn3Bx85Jb7vHh0GdiwUmQx2DUqA/2ezFrqRW4AbwLnuoxg3MeeAu7SgqqkQR0eLF7Hl058XrGeIp391VZfuDh2Uxaz01TqoiGY0QujlcdX470PEFksQwA3Ot3+1AhiSzVqNpW4D4JzGm9YGZo9S6GDVr8GlKthkxBxTMD0qt/Yg63mhNaWAmjnWktli3awTKWIt101ctxrQAukupNOwLCsffE/jRYT4aGz5ODDScS+7EdkWv8q9CNDbOqMsBpkyQQv3V25YtU5e8xZOjOA5Di0sT2KbZ/bmqJVqeJ5PlqgKdNZ6AijIo28s6a11o3MuKvqSbrDozf5SD3AZzbkeAMysfs0nZusv2rAkU4qokdp0ZG79uXsno80M/XtrheULhV9kB1cvB8rsQj9mGs7yIBoBCoEGvxU82GPw==
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(346002)(396003)(136003)(39860400002)(376002)(230922051799003)(186009)(1800799009)(82310400011)(64100799003)(451199024)(40470700004)(36840700001)(46966006)(40480700001)(40460700003)(6666004)(2616005)(356005)(81166007)(82740400003)(1076003)(41300700001)(316002)(36756003)(26005)(54906003)(86362001)(70206006)(70586007)(110136005)(44832011)(5660300002)(2906002)(336012)(426003)(47076005)(83380400001)(7416002)(4326008)(8676002)(8936002)(36860700001)(478600001)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2023 06:49:29.7894
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ae9c92a4-5f31-4d12-8583-08dbc0b83af4
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DS1PEPF00017095.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6171
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-	autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Added platform driver support to ULPI Phys for Zynq. This modification
-enables external five volt supply to drive 5-volts on VBUS. This signal
-is or’ed with DrvVbus. Some Phys requires ULPI (OTG Control) register
-DrvVbusExternal and DrvVbus bit to operate properly to drive the CPEN
-pin/ external VBUS power supply.
 
-The ULPI viewport provides a mechanism for software to read and write
-PHY registers with explicit control of the address and data using the
-usb.VIEWPORT register. Zynq platform access ULPI PHY via viewport.
+Le 28/09/2023 à 19:48, Jeffrey Kardatzke a écrit :
+> On Thu, Sep 28, 2023 at 1:30 AM Benjamin Gaignard
+> <benjamin.gaignard@collabora.com> wrote:
+>>
+>> Le 27/09/2023 à 20:56, Jeffrey Kardatzke a écrit :
+>>> On Wed, Sep 27, 2023 at 8:18 AM Benjamin Gaignard
+>>> <benjamin.gaignard@collabora.com> wrote:
+>>>> Le 27/09/2023 à 15:46, Joakim Bech a écrit :
+>>>>> On Mon, Sep 25, 2023 at 12:49:50PM +0000, Yong Wu (吴勇) wrote:
+>>>>>> On Tue, 2023-09-12 at 11:32 +0200, AngeloGioacchino Del Regno wrote:
+>>>>>>> Il 12/09/23 08:17, Yong Wu (吴勇) ha scritto:
+>>>>>>>> On Mon, 2023-09-11 at 11:29 +0200, AngeloGioacchino Del Regno
+>>>>>>>> wrote:
+>>>>>>>>> Il 11/09/23 04:30, Yong Wu ha scritto:
+>>>>>>>>>> The TEE probe later than dma-buf heap, and PROBE_DEDER doesn't
+>>>>>>>>>> work
+>>>>>>>>>> here since this is not a platform driver, therefore initialise
+>>>>>>>>>> the
+>>>>>>>>>> TEE
+>>>>>>>>>> context/session while we allocate the first secure buffer.
+>>>>>>>>>>
+>>>>>>>>>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+>>>>>>>>>> ---
+>>>>>>>>>>       drivers/dma-buf/heaps/mtk_secure_heap.c | 61
+>>>>>>>>>> +++++++++++++++++++++++++
+>>>>>>>>>>       1 file changed, 61 insertions(+)
+>>>>>>>>>>
+>>>>>>>>>> diff --git a/drivers/dma-buf/heaps/mtk_secure_heap.c
+>>>>>>>>>> b/drivers/dma-
+>>>>>>>>>> buf/heaps/mtk_secure_heap.c
+>>>>>>>>>> index bbf1c8dce23e..e3da33a3d083 100644
+>>>>>>>>>> --- a/drivers/dma-buf/heaps/mtk_secure_heap.c
+>>>>>>>>>> +++ b/drivers/dma-buf/heaps/mtk_secure_heap.c
+>>>>>>>>>> @@ -10,6 +10,12 @@
+>>>>>>>>>>       #include <linux/err.h>
+>>>>>>>>>>       #include <linux/module.h>
+>>>>>>>>>>       #include <linux/slab.h>
+>>>>>>>>>> +#include <linux/tee_drv.h>
+>>>>>>>>>> +#include <linux/uuid.h>
+>>>>>>>>>> +
+>>>>>>>>>> +#define TZ_TA_MEM_UUID          "4477588a-8476-11e2-ad15-
+>>>>>>>>>> e41f1390d676"
+>>>>>>>>>> +
+>>>>>>>>> Is this UUID the same for all SoCs and all TZ versions?
+>>>>>>>> Yes. It is the same for all SoCs and all TZ versions currently.
+>>>>>>>>
+>>>>>>> That's good news!
+>>>>>>>
+>>>>>>> Is this UUID used in any userspace component? (example: Android
+>>>>>>> HALs?)
+>>>>>> No. Userspace never use it. If userspace would like to allocate this
+>>>>>> secure buffer, it can achieve through the existing dmabuf IOCTL via
+>>>>>> /dev/dma_heap/mtk_svp node.
+>>>>>>
+>>>>> In general I think as mentioned elsewhere in comments, that there isn't
+>>>>> that much here that seems to be unique for MediaTek in this patch
+>>>>> series, so I think it worth to see whether this whole patch set can be
+>>>>> made more generic. Having said that, the UUID is always unique for a
+>>>>> certain Trusted Application. So, it's not entirely true saying that the
+>>>>> UUID is the same for all SoCs and all TrustZone versions. It might be
+>>>>> true for a family of MediaTek devices and the TEE in use, but not
+>>>>> generically.
+>>>>>
+>>>>> So, if we need to differentiate between different TA implementations,
+>>>>> then we need different UUIDs. If it would be possible to make this patch
+>>>>> set generic, then it sounds like a single UUID would be sufficient, but
+>>>>> that would imply that all TA's supporting such a generic UUID would be
+>>>>> implemented the same from an API point of view. Which also means that
+>>>>> for example Trusted Application function ID's needs to be the same etc.
+>>>>> Not impossible to achieve, but still not easy (different TEE follows
+>>>>> different specifications) and it's not typically something we've done in
+>>>>> the past.
+>>>>>
+>>>>> Unfortunately there is no standardized database of TA's describing what
+>>>>> they implement and support.
+>>>>>
+>>>>> As an alternative, we could implement a query call in the TEE answering,
+>>>>> "What UUID does your TA have that implements secure unmapped heap?".
+>>>>> I.e., something that reminds of a lookup table. Then we wouldn't have to
+>>>>> carry this in UAPI, DT or anywhere else.
+>>>> Joakim does a TA could offer a generic API and hide the hardware specific
+>>>> details (like kernel uAPI does for drivers) ?
+>>> It would have to go through another layer (like the tee driver) to be
+>>> a generic API. The main issue with TAs is that they have UUIDs you
+>>> need to connect to and specific codes for each function; so we should
+>>> abstract at a layer above where those exist in the dma-heap code.
+>>>> Aside that question I wonder what are the needs to perform a 'secure' playback.
+>>>> I have in mind 2 requirements:
+>>>> - secure memory regions, which means configure the hardware to ensure that only
+>>>> dedicated hardware blocks and read or write into it.
+>>>> - set hardware blocks in secure modes so they access to secure memory.
+>>>> Do you see something else ?
+>>> This is more or less what is required, but this is out of scope for
+>>> the Linux kernel since it can't be trusted to do these things...this
+>>> is all done in firmware or the TEE itself.
+>> Yes kernel can't be trusted to do these things but know what we need could help
+>> to define a API for a generic TA.
+>>
+>> Just to brainstorm on mailing list:
+>> What about a TA API like
+>> TA_secure_memory_region() and TA_unsecure_memory_region() with parameters like:
+>> - device identifier (an ID or compatible string maybe)
+>> - memory region (physical address, size, offset)
+>> - requested access rights (read, write)
+>>
+>> and on kernel side a IOMMU driver because it basically have all this information already
+>> (device attachment, kernel map/unmap).
+>>
+>> In my mind it sound like a solution to limit the impact (new controls, new memory type)
+>> inside v4l2. Probably we won't need new heap either.
+>> All hardware dedicated implementations could live inside the TA which can offer a generic
+>> API.
+> The main problem with that type of design is the limitations of
+> TrustZone memory protection. Usually there is a limit to the number of
+> regions you can define for memory protection (and there is on
+> Mediatek). So you can't pass an arbitrary memory region and mark it
+> protected/unprotected at a given time. You need to establish these
+> regions in the firmware instead and then configure those regions for
+> protection in the firmware or the TEE.
 
-Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
----
-On zynq platform chipidea USB controller is capable of fulfilling a wide
-range of applications for USB 2.0 implementations as a host, a device, or
-On-the-Go. The USB controllers are integrated into the PS IOP to bridge
-between the PS interconnect and an external ULPI PHY. The register provides
-indirect access to the ULPI PHY register set. The ULPI PHY register I/O
-interface uses Viewport to access PHY registers.
+The TEE iommu could be aware of these limitations and merge the regions when possible
+plus we can define a CMA region for each device to limit the secured memory fragmentation.
 
-In current approach we have extended generic ulpi phy driver and made it a
-platform driver. This solves the problem, but would like to know if it is
-the right approach? Here, we are modifying the phy-ulpi framework by adapting
-the platform driver to fulfill our requirements. ULPI PHY register read/write
-should be performed via ULPI framework using read/write API call.
-
-The another approach would be to have access to the ULPI register via
-viewport flow by creating a new platform driver at path "driver/usb/phy"
-using "phy-ulpi-zynq-usb.c" source file, where the source driver would be
-particular to the Xilinx/AMD zynq platform. And binding patch [1/3] would
-be specific to Xilinx/AMD-specific.
----
- drivers/usb/phy/Kconfig    |  2 +-
- drivers/usb/phy/Kconfig    |  2 +-
- drivers/usb/phy/phy-ulpi.c | 90 ++++++++++++++++++++++++++++++++++++++
- 2 files changed, 91 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/usb/phy/Kconfig b/drivers/usb/phy/Kconfig
-index 5f629d7cad64..38ae5458528c 100644
---- a/drivers/usb/phy/Kconfig
-+++ b/drivers/usb/phy/Kconfig
-@@ -160,7 +160,7 @@ config USB_TEGRA_PHY
- 
- config USB_ULPI
- 	bool "Generic ULPI Transceiver Driver"
--	depends on ARM || ARM64 || COMPILE_TEST
-+	depends on ARM || ARM64 || COMPILE_TEST || USB_PHY
- 	select USB_ULPI_VIEWPORT
- 	help
- 	  Enable this to support ULPI connected USB OTG transceivers which
-diff --git a/drivers/usb/phy/phy-ulpi.c b/drivers/usb/phy/phy-ulpi.c
-index e683a37e3a7a..61e15a19ea8c 100644
---- a/drivers/usb/phy/phy-ulpi.c
-+++ b/drivers/usb/phy/phy-ulpi.c
-@@ -13,9 +13,16 @@
- #include <linux/kernel.h>
- #include <linux/slab.h>
- #include <linux/export.h>
-+#include <linux/module.h>
-+#include <linux/io.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
- #include <linux/usb.h>
- #include <linux/usb/otg.h>
- #include <linux/usb/ulpi.h>
-+#include <linux/usb/phy.h>
- 
- 
- struct ulpi_info {
-@@ -39,6 +46,13 @@ static struct ulpi_info ulpi_ids[] = {
- 	ULPI_INFO(ULPI_ID(0x0451, 0x1507), "TI TUSB1210"),
- };
- 
-+struct ulpi_phy {
-+	struct usb_phy	*usb_phy;
-+	void __iomem *regs;
-+	unsigned int vp_offset;
-+	unsigned int flags;
-+};
-+
- static int ulpi_set_otg_flags(struct usb_phy *phy)
- {
- 	unsigned int flags = ULPI_OTG_CTRL_DP_PULLDOWN |
-@@ -240,6 +254,23 @@ static int ulpi_set_vbus(struct usb_otg *otg, bool on)
- 	return usb_phy_io_write(phy, flags, ULPI_OTG_CTRL);
- }
- 
-+static int usbphy_set_vbus(struct usb_phy *phy, int on)
-+{
-+	unsigned int flags = usb_phy_io_read(phy, ULPI_OTG_CTRL);
-+
-+	flags &= ~(ULPI_OTG_CTRL_DRVVBUS | ULPI_OTG_CTRL_DRVVBUS_EXT);
-+
-+	if (on) {
-+		if (phy->flags & ULPI_OTG_DRVVBUS)
-+			flags |= ULPI_OTG_CTRL_DRVVBUS;
-+
-+		if (phy->flags & ULPI_OTG_DRVVBUS_EXT)
-+			flags |= ULPI_OTG_CTRL_DRVVBUS_EXT;
-+	}
-+
-+	return usb_phy_io_write(phy, flags, ULPI_OTG_CTRL);
-+}
-+
- static void otg_ulpi_init(struct usb_phy *phy, struct usb_otg *otg,
- 			  struct usb_phy_io_ops *ops,
- 			  unsigned int flags)
-@@ -249,6 +280,7 @@ static void otg_ulpi_init(struct usb_phy *phy, struct usb_otg *otg,
- 	phy->io_ops	= ops;
- 	phy->otg	= otg;
- 	phy->init	= ulpi_init;
-+	phy->set_vbus	= usbphy_set_vbus;
- 
- 	otg->usb_phy	= phy;
- 	otg->set_host	= ulpi_set_host;
-@@ -301,3 +333,61 @@ devm_otg_ulpi_create(struct device *dev,
- 	return phy;
- }
- EXPORT_SYMBOL_GPL(devm_otg_ulpi_create);
-+
-+static int ulpi_phy_probe(struct platform_device *pdev)
-+{
-+	struct device_node *np = pdev->dev.of_node;
-+	struct ulpi_phy *uphy;
-+	int ret;
-+
-+	uphy = devm_kzalloc(&pdev->dev, sizeof(*uphy), GFP_KERNEL);
-+	if (!uphy)
-+		return -ENOMEM;
-+
-+	uphy->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(uphy->regs))
-+		return PTR_ERR(uphy->regs);
-+
-+	if (of_property_read_bool(np, "external-drv-vbus"))
-+		uphy->flags |= ULPI_OTG_DRVVBUS | ULPI_OTG_DRVVBUS_EXT;
-+
-+	ret = of_property_read_u32(np, "view-port", &uphy->vp_offset);
-+	if (ret)
-+		return ret;
-+
-+	uphy->usb_phy = otg_ulpi_create(&ulpi_viewport_access_ops, uphy->flags);
-+	if (!uphy->usb_phy) {
-+		dev_err(&pdev->dev, "Failed to create ULPI OTG\n");
-+		return -ENOMEM;
-+	}
-+
-+	uphy->usb_phy->dev = &pdev->dev;
-+	uphy->usb_phy->io_priv = uphy->regs + uphy->vp_offset;
-+	return usb_add_phy_dev(uphy->usb_phy);
-+}
-+
-+static void ulpi_phy_remove(struct platform_device *pdev)
-+{
-+	struct ulpi_phy *uphy = platform_get_drvdata(pdev);
-+
-+	usb_remove_phy(uphy->usb_phy);
-+}
-+
-+static const struct of_device_id ulpi_phy_table[] = {
-+	{ .compatible = "ulpi-phy" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, ulpi_phy_table);
-+
-+static struct platform_driver ulpi_phy_driver = {
-+	.probe		= ulpi_phy_probe,
-+	.remove_new	= ulpi_phy_remove,
-+	.driver		= {
-+		.name	= "ulpi-phy",
-+		.of_match_table = ulpi_phy_table,
-+	},
-+};
-+module_platform_driver(ulpi_phy_driver);
-+
-+MODULE_DESCRIPTION("ULPI PHY driver");
-+MODULE_LICENSE("GPL");
--- 
-2.17.1
-
+>
+>>>> Regards,
+>>>> Benjamin
+>>>>
 
