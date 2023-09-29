@@ -1,127 +1,110 @@
-Return-Path: <devicetree+bounces-4608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B9C07B33E0
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:40:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3D7B7B33E6
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:41:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 2E4521C20A2B
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 13:40:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 448981C209BF
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 13:41:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18932405D1;
-	Fri, 29 Sep 2023 13:40:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98CB6405F1;
+	Fri, 29 Sep 2023 13:41:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 635373FB28
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 13:40:18 +0000 (UTC)
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B59E01706
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 06:39:05 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-532c81b9adbso18342141a12.1
-        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 06:39:05 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 009B9C8DB
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 13:41:48 +0000 (UTC)
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E09FC1A8
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 06:41:45 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-53627feca49so3054032a12.1
+        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 06:41:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695994743; x=1696599543; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QdNtbM8sg5Uv/4iy/PMTp5TjbGaItzuz9a1/F8ZNl8I=;
-        b=dIwD7hUTtN/uX1H3XDBJ0M250A3L6BflRIb94Plhu4s4H1kvLEgcNYhbJcGrtFpw95
-         q9KuUmdYctmK37DEdeI8BU/8+1xPjo+q1OLE4pQyjnhKiyAHp6ofL9jviO98iljmmbkX
-         ncuz9NTxf1Yr/P0zFq6z00eHNe2fDxvp1WCADnh86GBeTOUD7G7+NgzFNiZX833rxYh4
-         9ei2hAxT07B4A7rsiMIZvjF9q0m5X1B/BluhPN18BR7L8pozlYyJ2gZkantPvOF3TQi0
-         1Do0Gy7Tjt4/brjXYLjy0ggsN7tSXfQ5mNFbgY7tjnkDAvIMWATEH67qM9Simq6XNSa+
-         yHbw==
+        d=fairphone.com; s=fair; t=1695994904; x=1696599704; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GJoYmFRIe+RZCfOkQfBp0KCRM2jWqK/EXH4FGkhcIDQ=;
+        b=OgwoGfdE37BlElKKWimDIUOWPTg/ijZxAA+zYKUbrI1WB60tScS/WbWoiDq1I/Iyg0
+         fy3G99rJjmnS5oI0OsL2QdO7jK2qbHqh7CHHIP7SjsgZYijKDtdbnBtCOKyhl9N01IwZ
+         KnjM28FTINA3KeYOD9JqhCLgQNLuRTcIrdqITrLNA5j0t8XHLmSfABUh0nNlAtdWIEYN
+         iwMab6rOUFvls6u1rrQH33nsL8gWNXYSkod7DhGs2ZmATCWY9Df8M7i9OIVi2AkrziZV
+         Y7OKpqBJ1Zuot4adeZDgrwpu0wjZOK3Mz6wEg+fZmbceKNXQZRRKcfPDYhFiceqpw7VA
+         sbdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695994743; x=1696599543;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QdNtbM8sg5Uv/4iy/PMTp5TjbGaItzuz9a1/F8ZNl8I=;
-        b=o2a6438L9Kyn3fdWhEiw9d4XaPSds9LFRjIQf7lRPsS0qiUi4P8dkKSX+8ERJJCiat
-         yGT9X8H3F835P0DxQcGygciXyrvcKP2q0UbGaZjC/7muXSCSWasVLdaavE/sjNQRl+8o
-         j9AQDXWuwCYoRxUAJxJsv3WNBu1TUltAzhO6ULS23455kHWXaUDE09hJ1UdClXJDvvhp
-         otlfma73ASW7/HJEbQ+fY12wr5f4TmsfBDhl9t4RTeQX4mjqbr45ZfpY+AU6hGDm/Bq5
-         yD67ZSlE7kpsTbql3ABAeSK/soFupbm2zkhbPAg4PQf4M3Vde6XaBg9+jzqvhobc8xkU
-         4dqw==
-X-Gm-Message-State: AOJu0YzPIQkpJYB6hIXBHDewNfQ5mJ2DkUjkQ1aiwUs/QvfaIhJQMLHI
-	RlHmS4E0GiEi8aas5jPFInnb9w==
-X-Google-Smtp-Source: AGHT+IGpBizH8QZwp7ZPEb3difKlOrS1jonPPKtM6duYEQOku2tgSjMYdiD+m7xCfMaKLJvj2w7g3Q==
-X-Received: by 2002:aa7:c746:0:b0:522:564d:6de with SMTP id c6-20020aa7c746000000b00522564d06demr4285089eds.36.1695994743533;
-        Fri, 29 Sep 2023 06:39:03 -0700 (PDT)
-Received: from [127.0.1.1] (178235177217.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.217])
-        by smtp.gmail.com with ESMTPSA id cx14-20020a05640222ae00b005362bcc089csm2215701edb.67.2023.09.29.06.39.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Sep 2023 06:39:03 -0700 (PDT)
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Fri, 29 Sep 2023 15:38:53 +0200
-Subject: [PATCH 2/2] clk: qcom: gcc-sc8280xp: Don't keep display AHB clocks
- always-on
+        d=1e100.net; s=20230601; t=1695994904; x=1696599704;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=GJoYmFRIe+RZCfOkQfBp0KCRM2jWqK/EXH4FGkhcIDQ=;
+        b=P5mwymrXg2Y1kA9DhhidULY80MRC+xH4m2QTx5HDitGjsVyL7MkEYWqwg1FQxznQ7p
+         3ASXKLIgF0kvhOjHzNVtpiCWZhNR2II6CGWQWxLr4FFuaBcxhJmSf1KY3AZRsOXzVXLa
+         L6iqSrSlLD7HgKdR36UryKHgED1zc+4esGUy8E62yMc+fIHyRHmIyZ9oZpB7LWkoAxss
+         H2OLE3862tTGJAK4SueBv/SOZ3vK3BgBGjpxv5wVcyUDYVB0IFW7oh5APgam63hgpnC5
+         D0SjLo3neyE9Q/C5JcCn32ooEQ0Ja52e2z5aDjWlJqX9cCr4VEMADK7ozKCqhCqEfNA1
+         Lwmg==
+X-Gm-Message-State: AOJu0YzP1U7Ayv6l7zf4adWSsMh5MOHwREtJx/jwwQ/xnXrydgrN5ZlC
+	4zLVjd6u9vrsxjMmSQ76o2w0pQ==
+X-Google-Smtp-Source: AGHT+IFvqdi7WSBS4qbFiMpFp6n6en80RTIKym9YcKxklvBr9G0fovRfLJsVZmf09Ope8f7XXrSMng==
+X-Received: by 2002:a05:6402:b3a:b0:51d:f5bd:5a88 with SMTP id bo26-20020a0564020b3a00b0051df5bd5a88mr3527607edb.38.1695994904285;
+        Fri, 29 Sep 2023 06:41:44 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id l14-20020aa7cace000000b0053331f9094dsm11185505edt.52.2023.09.29.06.41.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Sep 2023 06:41:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230929-topic-8280_ahbdisp-v1-2-72bdc38309b9@linaro.org>
-References: <20230929-topic-8280_ahbdisp-v1-0-72bdc38309b9@linaro.org>
-In-Reply-To: <20230929-topic-8280_ahbdisp-v1-0-72bdc38309b9@linaro.org>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.13-dev-0438c
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 29 Sep 2023 15:41:43 +0200
+Message-Id: <CVVG0MQU36EB.17OPE15SGM0HX@otso>
+Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <linux-i2c@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: qcm6490-fairphone-fp5: Enable CCI
+ busses
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Konrad Dybcio" <konrad.dybcio@linaro.org>, "Andy Gross"
+ <agross@kernel.org>, "Bjorn Andersson" <andersson@kernel.org>, "Loic
+ Poulain" <loic.poulain@linaro.org>, "Robert Foss" <rfoss@kernel.org>, "Andi
+ Shyti" <andi.shyti@kernel.org>, "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, <cros-qcom-dts-watchers@chromium.org>
+X-Mailer: aerc 0.15.2
+References: <20230929-sc7280-cci-v1-0-16c7d386f062@fairphone.com>
+ <20230929-sc7280-cci-v1-3-16c7d386f062@fairphone.com>
+ <02eb9847-62ea-e453-0745-6f6ff46f3ad0@linaro.org>
+In-Reply-To: <02eb9847-62ea-e453-0745-6f6ff46f3ad0@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-These clocks are consumed by the dispcc[01] clock controllers, so there's
-no reason to keep them on from gcc probe. Remove that hack.
+On Fri Sep 29, 2023 at 3:36 PM CEST, Konrad Dybcio wrote:
+>
+>
+> On 9/29/23 10:01, Luca Weiss wrote:
+> > Enable the CCI busses where sensors are connected to.
+> >=20
+> > Not covered here is the regulator used for pull-up on the I2C busses.
+> > This would be pm8008_l6 (L6P).
+> Does it make sense to enable non-functional hw then? Or is it on by defau=
+lt?
 
-Fixes: d65d005f9a6c ("clk: qcom: add sc8280xp GCC driver")
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- drivers/clk/qcom/gcc-sc8280xp.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+Without the out-of-tree pm8008 driver you cannot talk to any hardware on
+the i2c busses there, so.. I guess you have a point?
 
-diff --git a/drivers/clk/qcom/gcc-sc8280xp.c b/drivers/clk/qcom/gcc-sc8280xp.c
-index bfb77931e868..bf95f82a3818 100644
---- a/drivers/clk/qcom/gcc-sc8280xp.c
-+++ b/drivers/clk/qcom/gcc-sc8280xp.c
-@@ -7545,18 +7545,16 @@ static int gcc_sc8280xp_probe(struct platform_device *pdev)
- 
- 	/*
- 	 * Keep the clocks always-ON
--	 * GCC_CAMERA_AHB_CLK, GCC_CAMERA_XO_CLK, GCC_DISP_AHB_CLK,
-+	 * GCC_CAMERA_AHB_CLK, GCC_CAMERA_XO_CLK,
- 	 * GCC_DISP_XO_CLK, GCC_GPU_CFG_AHB_CLK, GCC_VIDEO_AHB_CLK,
--	 * GCC_VIDEO_XO_CLK, GCC_DISP1_AHB_CLK, GCC_DISP1_XO_CLK
-+	 * GCC_VIDEO_XO_CLK, GCC_DISP1_XO_CLK
- 	 */
- 	regmap_update_bits(regmap, 0x26004, BIT(0), BIT(0));
- 	regmap_update_bits(regmap, 0x26020, BIT(0), BIT(0));
--	regmap_update_bits(regmap, 0x27004, BIT(0), BIT(0));
- 	regmap_update_bits(regmap, 0x27028, BIT(0), BIT(0));
- 	regmap_update_bits(regmap, 0x71004, BIT(0), BIT(0));
- 	regmap_update_bits(regmap, 0x28004, BIT(0), BIT(0));
- 	regmap_update_bits(regmap, 0x28028, BIT(0), BIT(0));
--	regmap_update_bits(regmap, 0xbb004, BIT(0), BIT(0));
- 	regmap_update_bits(regmap, 0xbb028, BIT(0), BIT(0));
- 
- 	ret = qcom_cc_register_rcg_dfs(regmap, gcc_dfs_clocks, ARRAY_SIZE(gcc_dfs_clocks));
+A little bird told me this week they're working on a new revision for
+pm8008 so hopefully this is coming at some point.
 
--- 
-2.39.2
+>
+> Konrad
 
 
