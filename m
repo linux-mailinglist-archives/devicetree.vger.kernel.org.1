@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-4474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 343EA7B2B7F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 07:40:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D9D27B2B80
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 07:40:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id DAB9528263B
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 05:40:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 51833B20B9C
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 05:40:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 804F2187F;
-	Fri, 29 Sep 2023 05:40:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFBC9399;
+	Fri, 29 Sep 2023 05:40:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4849399
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 05:40:23 +0000 (UTC)
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2417F1FC7
-	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 22:40:01 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so600259a12.1
-        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 22:40:01 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4005F747B
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 05:40:25 +0000 (UTC)
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4020F1FD5
+	for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 22:40:03 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso1825021266b.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Sep 2023 22:40:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1695965999; x=1696570799; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1695966001; x=1696570801; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wor+2ysYovWwz79wDHgf6lw48XDzirr+UHoMWUaKK0I=;
-        b=hv11lyyqdIZllhGvop+tiXsvBx+tCxEzKcTeHASCgpgZ9P2/FvzCwN43vmBXmgW9lU
-         WT5FouJdYvDCClB9VU8nBoiBZb5IbUKYe2aHIZmaGrBOeqt4xX/1SiDuj4zEQF83xA6+
-         XPqTN8YFTydiGU2wCnBNzQDIkhWp6pm6D5htLXIX+W4tzaxfm6A6BkQe2tPyFeyDhDK2
-         qV1AcaIYCZlwbLFSMgIxEdEgpIzgUij3uquB0kjLpJ3FrfUB4hIJD5MZ1mvvdZn+6JQX
-         l3IAv6QWf/bAzaRyzleVx0O5xlLqVd8BCDO6ZDyenLshiMqa12ghthwRxc3vqXZ+egsT
-         wPUQ==
+        bh=2PfMtA30yQarNexzGp0RMbiiUyv2vHbUdK/IH8vIF5k=;
+        b=Mm30P8P4Nln5Dz3i5pwBRvEXMMS8ci/zMEBxwwZspQQHftTP0X9nT6BUFzyxP4r23c
+         9T30ZlWIy58HeYmo5EfDv4nCqtVizNhOJOpXaML/TZt2rwrgqjwY+HxC+vpfFCdz4Sye
+         qGWGNJyWDSgGBFwUYmQSvd+7hBIw9CVtmijpeNhTmsAro/PJNVkkz+271zk/WtChMjTq
+         oFdMUI7No/YEqJI/ZbbfqJQ3KvBxLRUuvqsLnRuFtxx5i1svRMsTpOnWbjWRac5wANXn
+         LAmwxNo9BVsLJnyRmNNTrVYQNhRthg0D6Vqlu2UoQfGEhPza0W7eufRShaKiSBhh39S6
+         9dkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695965999; x=1696570799;
+        d=1e100.net; s=20230601; t=1695966001; x=1696570801;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wor+2ysYovWwz79wDHgf6lw48XDzirr+UHoMWUaKK0I=;
-        b=G4VW4nh/DqAv8RCMgcb2p5zdl/Qv77V4ZFqR8AxXN+blmxlkTARH81Hr9VFc7H7YNu
-         z1YQII9Rwc+I848l/+ar09NMsLsFDqFFfR8mUoDHtTi8xA2Mv/s/olJYu1uz9+FcmI8/
-         umA5Xr4KRdTKSO6jyV0ie54WP3FZdagMa/BCIRWWgH8HjdsOQa9nzOVZ12rnBypMGfMV
-         kembW00YUaSC70M1D/u+vaHzVAY52+zIJQj/bO2/0HtaLMZwAUJ1Bm+uel8Pa2QwbsZ+
-         eupAeLD+CaZkr53jIoQh1gkBBHi0CyFBJmx5pO8mxMa3XCjmQXr7OAH3iTrhDTsD/P7l
-         fsPw==
-X-Gm-Message-State: AOJu0Yx4uKNzyXgO2+FC8NnOwI17ewjdWUMU98asZTlHczOZJ7rO/F+u
-	ODVyC6Vgniotw2ffL0QK0NkPUg==
-X-Google-Smtp-Source: AGHT+IGuHtC57n+o1bpWpASywaDobhLzZbsZm4sa2GVeKsCcbnMjDU8gtdTIYb+NLm0dPD1iTjOvRQ==
-X-Received: by 2002:a17:907:948b:b0:9a5:aa43:1c7c with SMTP id dm11-20020a170907948b00b009a5aa431c7cmr3069995ejc.26.1695965999656;
-        Thu, 28 Sep 2023 22:39:59 -0700 (PDT)
+        bh=2PfMtA30yQarNexzGp0RMbiiUyv2vHbUdK/IH8vIF5k=;
+        b=riB7Cu8eYSbr8t81HtgtjCGExoIH/hgK5Xcehcz7tk7UC2xJWpCkZsONZjCBcpRpha
+         UQvH9HLciBotsNd5UJwYLxqted4LTFMx8Sc/YL1JtkASi/Njxa0j6PsTk+kSN1SnswRQ
+         0VDF/R3jViT98w6bm/rv2VbGzWhrddLG8046qKcYkUjhyXa5omowZyqVx/w2FER8/6Qi
+         KbfFyo8ccDXZn4AnYKKI88w37Ov5CsAHZQR9AKKxVtbxH9lvUvfsVBfNL3dc0XvEL1Ln
+         GODZfeYGsQhyCvz3jjpiW/bmuEdv7J2QwyoEUX9/+O1bwbja81nBR/ocw3UNY/cWiJdh
+         tdaA==
+X-Gm-Message-State: AOJu0YzLpcmG7Odz8rf43TANonO9gWYetYFUzf24EcxyQojid/ft+494
+	0Wzh7W6upQXZmZLWSNL3wI28Ag==
+X-Google-Smtp-Source: AGHT+IFiLBkEUsxDd/kOr/AFMOwfxCGebv9dCLnk6YR2yfJZ12Vk0HKulAaScqCnOkn6q660Cu+Y7Q==
+X-Received: by 2002:a17:907:7886:b0:9ae:3a68:93e8 with SMTP id ku6-20020a170907788600b009ae3a6893e8mr3366738ejc.14.1695966001597;
+        Thu, 28 Sep 2023 22:40:01 -0700 (PDT)
 Received: from claudiu-X670E-Pro-RS.. ([82.78.167.177])
-        by smtp.gmail.com with ESMTPSA id z19-20020a1709063ad300b009a1a653770bsm11971992ejd.87.2023.09.28.22.39.57
+        by smtp.gmail.com with ESMTPSA id z19-20020a1709063ad300b009a1a653770bsm11971992ejd.87.2023.09.28.22.39.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Sep 2023 22:39:59 -0700 (PDT)
+        Thu, 28 Sep 2023 22:40:01 -0700 (PDT)
 From: Claudiu <claudiu.beznea@tuxon.dev>
 X-Google-Original-From: Claudiu <claudiu.beznea@bp.renesas.com>
 To: geert+renesas@glider.be,
@@ -81,9 +81,9 @@ Cc: linux-renesas-soc@vger.kernel.org,
 	linux-gpio@vger.kernel.org,
 	linux-serial@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 20/28] dt-bindings: pinctrl: renesas: document RZ/G3S SoC
-Date: Fri, 29 Sep 2023 08:39:07 +0300
-Message-Id: <20230929053915.1530607-21-claudiu.beznea@bp.renesas.com>
+Subject: [PATCH v2 21/28] pinctrl: renesas: rzg2l: add support for RZ/G3S SoC
+Date: Fri, 29 Sep 2023 08:39:08 +0300
+Message-Id: <20230929053915.1530607-22-claudiu.beznea@bp.renesas.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230929053915.1530607-1-claudiu.beznea@bp.renesas.com>
 References: <20230929053915.1530607-1-claudiu.beznea@bp.renesas.com>
@@ -103,66 +103,208 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 
 From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Add documentation for pin controller found on RZ/G3S (R9A08G045) SoC.
-Compared with RZ/G2{L,UL} RZ/G3S has 82 general-purpose IOs, no slew
-rate and output impedance support and more values for drive strength
-which needs to be expressed in microamp.
+Add basic support for RZ/G3S to be able to boot from SD card, have a
+running console port and use GPIOs. RZ/G3S has 82 general-purpose IO
+ports. Support for the remaining pin functions (e.g. Ethernet, XSPI)
+will be added along with controller specific support.
 
 Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 ---
 
 Changes in v2:
-- defined drive-strength-microamp as general and make if/then schema to
-  not allow specific properties depending on compatible
+- dropped [RZG2L_IOLH_IDX_2V5 ... RZG2L_IOLH_IDX_3V3 - 1] =
+  RZG2L_INVALID_IOLH_VAL initializations from v1 as these are not needed
+  anymore with the new code adjustements
+- added BUILD_BUG_ON() for r9a08g045_gpio_configs[] in
+  rzg2l_pinctrl_probe()
 
- .../pinctrl/renesas,rzg2l-pinctrl.yaml        | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ drivers/pinctrl/renesas/pinctrl-rzg2l.c | 126 +++++++++++++++++++++++-
+ 1 file changed, 124 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
-index eb726770f571..86228ba69aab 100644
---- a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
-@@ -25,6 +25,7 @@ properties:
-           - enum:
-               - renesas,r9a07g043-pinctrl # RZ/G2UL{Type-1,Type-2} and RZ/Five
-               - renesas,r9a07g044-pinctrl # RZ/G2{L,LC}
-+              - renesas,r9a08g045-pinctrl # RZ/G3S
+diff --git a/drivers/pinctrl/renesas/pinctrl-rzg2l.c b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+index 8b74838510ad..57af2db445e1 100644
+--- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
++++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+@@ -58,13 +58,19 @@
+ #define PIN_CFG_IOLH_C			BIT(13)
+ #define PIN_CFG_SOFT_PS			BIT(14)
  
-       - items:
-           - enum:
-@@ -78,6 +79,21 @@ additionalProperties:
-         - $ref: pincfg-node.yaml#
-         - $ref: pinmux-node.yaml#
+-#define RZG2L_MPXED_PIN_FUNCS		(PIN_CFG_IOLH_A | \
+-					 PIN_CFG_SR | \
++#define RZG2L_MPXED_COMMON_PIN_FUNCS(group) \
++					(PIN_CFG_IOLH_##group | \
+ 					 PIN_CFG_PUPD | \
+ 					 PIN_CFG_FILONOFF | \
+ 					 PIN_CFG_FILNUM | \
+ 					 PIN_CFG_FILCLKSEL)
  
-+        - if:
-+            properties:
-+              compatible:
-+                contains:
-+                  enum:
-+                    - renesas,r9a08g045-pinctrl
-+          then:
-+            properties:
-+              drive-strength: false
-+              output-impedance-ohms: false
-+              slew-rate: false
-+          else:
-+            properties:
-+              drive-strength-microamp: false
++#define RZG2L_MPXED_PIN_FUNCS		(RZG2L_MPXED_COMMON_PIN_FUNCS(A) | \
++					 PIN_CFG_SR)
 +
-       description:
-         Pin controller client devices use pin configuration subnodes (children
-         and grandchildren) for desired pin configuration.
-@@ -92,6 +108,10 @@ additionalProperties:
-         pins: true
-         drive-strength:
-           enum: [ 2, 4, 8, 12 ]
-+        drive-strength-microamp:
-+          enum: [ 1900, 2200, 4000, 4400, 4500, 4700, 5200, 5300, 5700,
-+                  5800, 6000, 6050, 6100, 6550, 6800, 7000, 8000, 9000,
-+                  10000 ]
-         output-impedance-ohms:
-           enum: [ 33, 50, 66, 100 ]
-         power-source:
++#define RZG3S_MPXED_PIN_FUNCS(group)	(RZG2L_MPXED_COMMON_PIN_FUNCS(group) | \
++					 PIN_CFG_SOFT_PS)
++
+ #define RZG2L_MPXED_ETH_PIN_FUNCS(x)	((x) | \
+ 					 PIN_CFG_FILONOFF | \
+ 					 PIN_CFG_FILNUM | \
+@@ -1313,6 +1319,36 @@ static const u32 r9a07g043_gpio_configs[] = {
+ 	RZG2L_GPIO_PORT_PACK(6, 0x22, RZG2L_MPXED_PIN_FUNCS),
+ };
+ 
++static const u32 r9a08g045_gpio_configs[] = {
++	RZG2L_GPIO_PORT_PACK(4, 0x20, RZG3S_MPXED_PIN_FUNCS(A)),			/* P0  */
++	RZG2L_GPIO_PORT_PACK(5, 0x30, RZG2L_MPXED_ETH_PIN_FUNCS(PIN_CFG_IOLH_C |
++								PIN_CFG_IO_VMC_ETH0)),	/* P1 */
++	RZG2L_GPIO_PORT_PACK(4, 0x31, RZG2L_MPXED_ETH_PIN_FUNCS(PIN_CFG_IOLH_C |
++								PIN_CFG_IO_VMC_ETH0)),	/* P2 */
++	RZG2L_GPIO_PORT_PACK(4, 0x32, RZG2L_MPXED_ETH_PIN_FUNCS(PIN_CFG_IOLH_C |
++								PIN_CFG_IO_VMC_ETH0)),	/* P3 */
++	RZG2L_GPIO_PORT_PACK(6, 0x33, RZG2L_MPXED_ETH_PIN_FUNCS(PIN_CFG_IOLH_C |
++								PIN_CFG_IO_VMC_ETH0)),	/* P4 */
++	RZG2L_GPIO_PORT_PACK(5, 0x21, RZG3S_MPXED_PIN_FUNCS(A)),			/* P5  */
++	RZG2L_GPIO_PORT_PACK(5, 0x22, RZG3S_MPXED_PIN_FUNCS(A)),			/* P6  */
++	RZG2L_GPIO_PORT_PACK(5, 0x34, RZG2L_MPXED_ETH_PIN_FUNCS(PIN_CFG_IOLH_C |
++								PIN_CFG_IO_VMC_ETH1)),	/* P7 */
++	RZG2L_GPIO_PORT_PACK(5, 0x35, RZG2L_MPXED_ETH_PIN_FUNCS(PIN_CFG_IOLH_C |
++								PIN_CFG_IO_VMC_ETH1)),	/* P8 */
++	RZG2L_GPIO_PORT_PACK(4, 0x36, RZG2L_MPXED_ETH_PIN_FUNCS(PIN_CFG_IOLH_C |
++								PIN_CFG_IO_VMC_ETH1)),	/* P9 */
++	RZG2L_GPIO_PORT_PACK(5, 0x37, RZG2L_MPXED_ETH_PIN_FUNCS(PIN_CFG_IOLH_C |
++								PIN_CFG_IO_VMC_ETH1)),	/* P10 */
++	RZG2L_GPIO_PORT_PACK(4, 0x23, RZG3S_MPXED_PIN_FUNCS(B) | PIN_CFG_IEN),		/* P11  */
++	RZG2L_GPIO_PORT_PACK(2, 0x24, RZG3S_MPXED_PIN_FUNCS(B) | PIN_CFG_IEN),		/* P12  */
++	RZG2L_GPIO_PORT_PACK(5, 0x25, RZG3S_MPXED_PIN_FUNCS(A)),			/* P13  */
++	RZG2L_GPIO_PORT_PACK(3, 0x26, RZG3S_MPXED_PIN_FUNCS(A)),			/* P14  */
++	RZG2L_GPIO_PORT_PACK(4, 0x27, RZG3S_MPXED_PIN_FUNCS(A)),			/* P15  */
++	RZG2L_GPIO_PORT_PACK(2, 0x28, RZG3S_MPXED_PIN_FUNCS(A)),			/* P16  */
++	RZG2L_GPIO_PORT_PACK(4, 0x29, RZG3S_MPXED_PIN_FUNCS(A)),			/* P17  */
++	RZG2L_GPIO_PORT_PACK(6, 0x2a, RZG3S_MPXED_PIN_FUNCS(A)),			/* P18 */
++};
++
+ static const struct {
+ 	struct rzg2l_dedicated_configs common[35];
+ 	struct rzg2l_dedicated_configs rzg2l_pins[7];
+@@ -1399,6 +1435,46 @@ static const struct {
+ 	}
+ };
+ 
++static const struct rzg2l_dedicated_configs rzg3s_dedicated_pins[] = {
++	{ "NMI", RZG2L_SINGLE_PIN_PACK(0x0, 0, (PIN_CFG_FILONOFF | PIN_CFG_FILNUM |
++						PIN_CFG_FILCLKSEL)) },
++	{ "TMS/SWDIO", RZG2L_SINGLE_PIN_PACK(0x1, 0, (PIN_CFG_IOLH_A | PIN_CFG_IEN |
++						      PIN_CFG_SOFT_PS)) },
++	{ "TDO", RZG2L_SINGLE_PIN_PACK(0x1, 1, (PIN_CFG_IOLH_A | PIN_CFG_SOFT_PS)) },
++	{ "WDTOVF_PERROUT#", RZG2L_SINGLE_PIN_PACK(0x6, 0, PIN_CFG_IOLH_A | PIN_CFG_SOFT_PS) },
++	{ "SD0_CLK", RZG2L_SINGLE_PIN_PACK(0x10, 0, (PIN_CFG_IOLH_B | PIN_CFG_IO_VMC_SD0)) },
++	{ "SD0_CMD", RZG2L_SINGLE_PIN_PACK(0x10, 1, (PIN_CFG_IOLH_B | PIN_CFG_IEN |
++						     PIN_CFG_IO_VMC_SD0)) },
++	{ "SD0_RST#", RZG2L_SINGLE_PIN_PACK(0x10, 2, (PIN_CFG_IOLH_B | PIN_CFG_IO_VMC_SD0)) },
++	{ "SD0_DATA0", RZG2L_SINGLE_PIN_PACK(0x11, 0, (PIN_CFG_IOLH_B | PIN_CFG_IEN |
++						       PIN_CFG_IO_VMC_SD0)) },
++	{ "SD0_DATA1", RZG2L_SINGLE_PIN_PACK(0x11, 1, (PIN_CFG_IOLH_B | PIN_CFG_IEN |
++						       PIN_CFG_IO_VMC_SD0)) },
++	{ "SD0_DATA2", RZG2L_SINGLE_PIN_PACK(0x11, 2, (PIN_CFG_IOLH_B | PIN_CFG_IEN |
++						       PIN_CFG_IO_VMC_SD0)) },
++	{ "SD0_DATA3", RZG2L_SINGLE_PIN_PACK(0x11, 3, (PIN_CFG_IOLH_B | PIN_CFG_IEN |
++						       PIN_CFG_IO_VMC_SD0)) },
++	{ "SD0_DATA4", RZG2L_SINGLE_PIN_PACK(0x11, 4, (PIN_CFG_IOLH_B | PIN_CFG_IEN |
++						       PIN_CFG_IO_VMC_SD0)) },
++	{ "SD0_DATA5", RZG2L_SINGLE_PIN_PACK(0x11, 5, (PIN_CFG_IOLH_B | PIN_CFG_IEN |
++						       PIN_CFG_IO_VMC_SD0)) },
++	{ "SD0_DATA6", RZG2L_SINGLE_PIN_PACK(0x11, 6, (PIN_CFG_IOLH_B | PIN_CFG_IEN |
++						       PIN_CFG_IO_VMC_SD0)) },
++	{ "SD0_DATA7", RZG2L_SINGLE_PIN_PACK(0x11, 7, (PIN_CFG_IOLH_B | PIN_CFG_IEN |
++						       PIN_CFG_IO_VMC_SD0)) },
++	{ "SD1_CLK", RZG2L_SINGLE_PIN_PACK(0x12, 0, (PIN_CFG_IOLH_B | PIN_CFG_IO_VMC_SD1)) },
++	{ "SD1_CMD", RZG2L_SINGLE_PIN_PACK(0x12, 1, (PIN_CFG_IOLH_B | PIN_CFG_IEN |
++						     PIN_CFG_IO_VMC_SD1)) },
++	{ "SD1_DATA0", RZG2L_SINGLE_PIN_PACK(0x13, 0, (PIN_CFG_IOLH_B | PIN_CFG_IEN |
++						       PIN_CFG_IO_VMC_SD1)) },
++	{ "SD1_DATA1", RZG2L_SINGLE_PIN_PACK(0x13, 1, (PIN_CFG_IOLH_B | PIN_CFG_IEN |
++						       PIN_CFG_IO_VMC_SD1)) },
++	{ "SD1_DATA2", RZG2L_SINGLE_PIN_PACK(0x13, 2, (PIN_CFG_IOLH_B | PIN_CFG_IEN |
++						       PIN_CFG_IO_VMC_SD1)) },
++	{ "SD1_DATA3", RZG2L_SINGLE_PIN_PACK(0x13, 3, (PIN_CFG_IOLH_B | PIN_CFG_IEN |
++						       PIN_CFG_IO_VMC_SD1)) },
++};
++
+ static int rzg2l_gpio_get_gpioint(unsigned int virq, const struct rzg2l_pinctrl_data *data)
+ {
+ 	unsigned int gpioint;
+@@ -1760,6 +1836,9 @@ static int rzg2l_pinctrl_probe(struct platform_device *pdev)
+ 	BUILD_BUG_ON(ARRAY_SIZE(r9a07g043_gpio_configs) * RZG2L_PINS_PER_PORT >
+ 		     ARRAY_SIZE(rzg2l_gpio_names));
+ 
++	BUILD_BUG_ON(ARRAY_SIZE(r9a08g045_gpio_configs) * RZG2L_PINS_PER_PORT >
++		     ARRAY_SIZE(rzg2l_gpio_names));
++
+ 	pctrl = devm_kzalloc(&pdev->dev, sizeof(*pctrl), GFP_KERNEL);
+ 	if (!pctrl)
+ 		return -ENOMEM;
+@@ -1805,6 +1884,35 @@ static const struct rzg2l_hwcfg rzg2l_hwcfg = {
+ 	.iolh_groupb_oi = { 100, 66, 50, 33, },
+ };
+ 
++static const struct rzg2l_hwcfg rzg3s_hwcfg = {
++	.regs = {
++		.pwpr = 0x3000,
++		.sd_ch = 0x3004,
++	},
++	.iolh_groupa_ua = {
++		/* 1v8 power source */
++		[RZG2L_IOLH_IDX_1V8] = 2200, 4400, 9000, 10000,
++		/* 3v3 power source */
++		[RZG2L_IOLH_IDX_3V3] = 1900, 4000, 8000, 9000,
++	},
++	.iolh_groupb_ua = {
++		/* 1v8 power source */
++		[RZG2L_IOLH_IDX_1V8] = 7000, 8000, 9000, 10000,
++		/* 3v3 power source */
++		[RZG2L_IOLH_IDX_3V3] = 4000, 6000, 8000, 9000,
++	},
++	.iolh_groupc_ua = {
++		/* 1v8 power source */
++		[RZG2L_IOLH_IDX_1V8] = 5200, 6000, 6550, 6800,
++		/* 2v5 source */
++		[RZG2L_IOLH_IDX_2V5] = 4700, 5300, 5800, 6100,
++		/* 3v3 power source */
++		[RZG2L_IOLH_IDX_3V3] = 4500, 5200, 5700, 6050,
++	},
++	.drive_strength_ua = true,
++	.func_base = 1,
++};
++
+ static struct rzg2l_pinctrl_data r9a07g043_data = {
+ 	.port_pins = rzg2l_gpio_names,
+ 	.port_pin_configs = r9a07g043_gpio_configs,
+@@ -1826,6 +1934,16 @@ static struct rzg2l_pinctrl_data r9a07g044_data = {
+ 	.hwcfg = &rzg2l_hwcfg,
+ };
+ 
++static struct rzg2l_pinctrl_data r9a08g045_data = {
++	.port_pins = rzg2l_gpio_names,
++	.port_pin_configs = r9a08g045_gpio_configs,
++	.n_ports = ARRAY_SIZE(r9a08g045_gpio_configs),
++	.dedicated_pins = rzg3s_dedicated_pins,
++	.n_port_pins = ARRAY_SIZE(r9a08g045_gpio_configs) * RZG2L_PINS_PER_PORT,
++	.n_dedicated_pins = ARRAY_SIZE(rzg3s_dedicated_pins),
++	.hwcfg = &rzg3s_hwcfg,
++};
++
+ static const struct of_device_id rzg2l_pinctrl_of_table[] = {
+ 	{
+ 		.compatible = "renesas,r9a07g043-pinctrl",
+@@ -1835,6 +1953,10 @@ static const struct of_device_id rzg2l_pinctrl_of_table[] = {
+ 		.compatible = "renesas,r9a07g044-pinctrl",
+ 		.data = &r9a07g044_data,
+ 	},
++	{
++		.compatible = "renesas,r9a08g045-pinctrl",
++		.data = &r9a08g045_data,
++	},
+ 	{ /* sentinel */ }
+ };
+ 
 -- 
 2.39.2
 
