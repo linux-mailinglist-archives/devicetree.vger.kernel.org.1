@@ -1,199 +1,122 @@
-Return-Path: <devicetree+bounces-4664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DEEC7B35FD
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 16:47:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8214A7B3601
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 16:48:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 10A4F2893F3
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 14:47:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 35F2F289431
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 14:48:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D86DE513DB;
-	Fri, 29 Sep 2023 14:47:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBE1D516D8;
+	Fri, 29 Sep 2023 14:48:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C927A4122F
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 14:47:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13711C433C8;
-	Fri, 29 Sep 2023 14:47:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695998854;
-	bh=Zsc0ozzmruut0k5IrakLREwaGxD6O+/5m5ivceEo3qY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=R9t+ASYXVc2M4MUN9IyaQ52WUcktw5QrtlYarATXNevvslH1FqBVT9dSLixjLX9vf
-	 CGk1ckw3mLXm7OZfizqnFSM9ZMHyqp7U8SOYPoCQRHON7Z4vyBt3cxC/k5W5l57d+s
-	 QYvgH4tLjZGfsqVIOImwplwSz1w6xcYVSrq8BwTWpRHm9FaeYyWQEUQhLZUYTIToZy
-	 xvOukPvsToCHLVpkrMdhh8dCQ8A4BcnvqHGA8HOpDa04OCrZ4l4cp8uIbxUBMXTeI3
-	 Yi/Jqxdg3hV72Twj8KfHhnZbV/OLPJJVv3efsaEeFlm4fO0b8gzIqWg+4cN1bRFDW5
-	 yvDAh+QycImBg==
-Date: Fri, 29 Sep 2023 15:47:28 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Lucas Stach <l.stach@pengutronix.de>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Liu Ying <victor.liu@nxp.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	patchwork-lst@pengutronix.de
-Subject: Re: [PATCH v4 1/2] dt-bindings: display: imx: add binding for
- i.MX8MP HDMI PVI
-Message-ID: <20230929-divisible-recreate-c7631ac0c3fb@spud>
-References: <20230928125536.1782715-1-l.stach@pengutronix.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90A554122F
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 14:48:15 +0000 (UTC)
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37BC3D6;
+	Fri, 29 Sep 2023 07:48:11 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id 98e67ed59e1d1-277317a0528so2226128a91.0;
+        Fri, 29 Sep 2023 07:48:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1695998890; x=1696603690; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jTNBiy+b4zZysuJEIrJMG8P2EeJqZE35ctY7gIAWZ1Y=;
+        b=ZGeKVQ6e1IuXJaLabpOZkHWI/K2svBFA6wu0IBvVzVgI/vmX7QKEYcI8c4PeXsB+2d
+         E1143XeE2LX+s6vCR5wdQfBS972fo0edDDe6WeCkel9iHidR1b6UuyW3uNJ0o2iKL4uF
+         R/O9RgddE54usn37acMtNxjNXqpQQ7GtnMgwsDHr3qUVz6ilce9LUtTxu0ArtsaFxQFz
+         oGnEMlfwzfAW4LIkFogEHig81ZCCVkhm1TEVcqCTMzoL7vnX0A8DQ9vGToV7JSEIPdBD
+         KmGwv3ZH2zYxC6loLUMko1uu4g+tyVsQiX64HS/SKjlV2c1JZrqwu73//Y+HRJ/ekIJR
+         Fg/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1695998890; x=1696603690;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jTNBiy+b4zZysuJEIrJMG8P2EeJqZE35ctY7gIAWZ1Y=;
+        b=mLAb7sgeM3r9voMpH6hb3+P/Hi2LNk1+AuQ5fkNaVqoIepnkDsDmZ3v8yKJ+dx18FI
+         pvcdJ2hYwrx9H4IIm6J79kl/BToxjMVagAokzn7D09OVAw6JGcC1TAgDtwc9rrZxF5Re
+         DircNRhD83elwTNRRLun04t1mdbaxoAVwhXPfSjzwhwLbpsANrvxJlVVybRToPfk1Yzo
+         K2ljGpWUoDrD/axb17lMmtKubFqy6J6jKSlVC/MzIiL8Jsg5WTD5sikZxLqXteahEJVX
+         YnvXfRUObiUtJBC1WFYvb8EwLwizdh3sztgq3Zdefh/BfyDKoCYXfav8M60fKSIGk+rq
+         KRJA==
+X-Gm-Message-State: AOJu0YzPUID0I38ovx9T90HL5Gl6/00n+GTbguujyYu3q8nuwMJ+cau0
+	2xUmGZE6raOykpa1hwOUwgFhen0jq25qHxIEYrQ=
+X-Google-Smtp-Source: AGHT+IGFn5H6xrqEtLWddJIAeFSuCK2EZTNeEwqJLHtNyWg12u4lkVPhWGh3BfBLLp37FVu6g0jzmt0YiRTGdmkuEGQ=
+X-Received: by 2002:a17:90a:4c81:b0:279:e6f:2e4b with SMTP id
+ k1-20020a17090a4c8100b002790e6f2e4bmr4002662pjh.0.1695998890604; Fri, 29 Sep
+ 2023 07:48:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="T02JhtT8tTCvrF+h"
-Content-Disposition: inline
-In-Reply-To: <20230928125536.1782715-1-l.stach@pengutronix.de>
-
-
---T02JhtT8tTCvrF+h
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20230928121424.388019-1-festevam@gmail.com> <avoixz5pqixr366cqks672akniv7h7ewix4edoyikg23dv24fd@bquxelr53t7t>
+ <20230928155446.GA568091-robh@kernel.org> <orsrzyiaykfoqb5uritwbz5bgovxn4wviijinzlim2cy3qffhp@5zuy5ffp7kmo>
+ <aduoeroo7tyhvaeuq4mv4x7ndkrvkm62stwqtxscus5enf4sno@77a2d7asc3pw>
+In-Reply-To: <aduoeroo7tyhvaeuq4mv4x7ndkrvkm62stwqtxscus5enf4sno@77a2d7asc3pw>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Fri, 29 Sep 2023 11:47:58 -0300
+Message-ID: <CAOMZO5B-XVN6k=RU=xy9D31KVrVtOp8Zdq88mLMOj7C7fP3biQ@mail.gmail.com>
+Subject: Re: [PATCH v2] media: dt-bindings: hynix,hi846: Document orientation
+ and rotation
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc: Rob Herring <robh@kernel.org>, mchehab@kernel.org, sakari.ailus@linux.intel.com, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, martink@posteo.de, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	Fabio Estevam <festevam@denx.de>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Thu, Sep 28, 2023 at 02:55:35PM +0200, Lucas Stach wrote:
-> Add binding for the i.MX8MP HDMI parallel video interface block.
->=20
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  .../display/imx/fsl,imx8mp-hdmi-pvi.yaml      | 83 +++++++++++++++++++
->  1 file changed, 83 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx=
-8mp-hdmi-pvi.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdm=
-i-pvi.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-=
-pvi.yaml
-> new file mode 100644
-> index 000000000000..df29006b4090
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.y=
-aml
-> @@ -0,0 +1,83 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/imx/fsl,imx8mp-hdmi-pvi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX8MP HDMI Parallel Video Interface
-> +
-> +maintainers:
-> +  - Lucas Stach <l.stach@pengutronix.de>
-> +
-> +description: |
+Hi Jacopo,
 
-This | is not needed as there's no formatting here requiring
-preservation.
+On Fri, Sep 29, 2023 at 11:36=E2=80=AFAM Jacopo Mondi
+<jacopo.mondi@ideasonboard.com> wrote:
 
-Otherwise, looks grand to me. You can fix that up if you resend I guess.
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Actually, if I'm going to s/additionalProperties/unevaluatedProperties/
+> in this bindings as well, am I wrong this patch is not needed anymore ?
 
-Thanks,
-Conor.
+You can discard this patch.
 
-> +  The HDMI parallel video interface is a timing and sync generator block=
- in the
-> +  i.MX8MP SoC, that sits between the video source and the HDMI TX contro=
-ller.
-> +
-> +properties:
-> +  compatible:
-> +    const: fsl,imx8mp-hdmi-pvi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Input from the LCDIF controller.
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Output to the HDMI TX controller.
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - power-domains
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/power/imx8mp-power.h>
-> +
-> +    display-bridge@32fc4000 {
-> +        compatible =3D "fsl,imx8mp-hdmi-pvi";
-> +        reg =3D <0x32fc4000 0x40>;
-> +        interrupts =3D <12 IRQ_TYPE_LEVEL_HIGH>;
-> +        power-domains =3D <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_PVI>;
-> +
-> +        ports {
-> +            #address-cells =3D <1>;
-> +            #size-cells =3D <0>;
-> +
-> +            port@0 {
-> +                reg =3D <0>;
-> +                pvi_from_lcdif3: endpoint {
-> +                    remote-endpoint =3D <&lcdif3_to_pvi>;
-> +                };
-> +            };
-> +
-> +            port@1 {
-> +                reg =3D <1>;
-> +                pvi_to_hdmi_tx: endpoint {
-> +                    remote-endpoint =3D <&hdmi_tx_from_pvi>;
-> +                };
-> +            };
-> +        };
-> +    };
-> --=20
-> 2.39.2
->=20
+Make sure that the schema warning below is gone:
 
---T02JhtT8tTCvrF+h
-Content-Type: application/pgp-signature; name="signature.asc"
+imx8mq-librem5-r3.dtb: camera@20: 'orientation', 'rotation' do not
+match any of the regexes: 'pinctrl-[0-9]+'
+from schema $id: http://devicetree.org/schemas/media/i2c/hynix,hi846.yaml#
 
------BEGIN PGP SIGNATURE-----
+The diff below works for me:
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRbjgAAKCRB4tDGHoIJi
-0gXBAPwPBDaiYDc8hq6tp4XOeUkvQNTen/BbQbLeJBcno8mVuwEAp+63lm+uYdjb
-3TDKFinQCoyicCVhekpei48NJJ0+NQ8=
-=jfJp
------END PGP SIGNATURE-----
+--- a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+@@ -14,6 +14,9 @@ description: |-
+   interface and CCI (I2C compatible) control bus. The output format
+   is raw Bayer.
 
---T02JhtT8tTCvrF+h--
++allOf:
++  - $ref: /schemas/media/video-interface-devices.yaml#
++
+ properties:
+   compatible:
+     const: hynix,hi846
+@@ -86,7 +89,7 @@ required:
+   - vddd-supply
+   - port
+
+-additionalProperties: false
++unevaluatedProperties: false
+
+ examples:
+   - |
 
