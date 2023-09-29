@@ -1,161 +1,173 @@
-Return-Path: <devicetree+bounces-4743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C97677B38CC
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 19:26:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A7727B3911
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 19:42:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 77166284EA6
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 17:26:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 1AEED283CE7
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 17:42:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F33CD658BC;
-	Fri, 29 Sep 2023 17:26:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C34366663;
+	Fri, 29 Sep 2023 17:42:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77048658A5
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 17:26:19 +0000 (UTC)
-Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6040D1980
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 10:26:12 -0700 (PDT)
-Received: by mail-oo1-xc2a.google.com with SMTP id 006d021491bc7-57bab4e9e1aso5781876eaf.3
-        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 10:26:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1696008371; x=1696613171; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9FmPWGFXlzm/HpDO5LhkisvPrSRbK6I07Ofe/Ps9MCc=;
-        b=T7+ZOeJGFZ8QNiMdX3tgooVzkUHmRUu7PEEqFnfe32Jzxm8us/XFrDjHxwKbyooXqN
-         0FCDWa40QV9dDK1RV8gmldksG9DUHN7twRk6KBQWwAoFjb3Xu43GpKsa7hFBDOZB2sM8
-         5kIzBzaE1f39tlS2A3gsznRU5eeVnGAfh8v5jqsEXZjM2+5YQ8ELbTBh8eQ3ZSEhPZOB
-         3knqF3h2HPF2s7FYcQ930hWEnVmkHMCDsZtfTMb6GxwWfQ6wIjx7ESLCe2wEc0SnYW3G
-         TC/AIpMNzVcp88ZevCmnpBdD9cD4TsROuAUUHSnsEs8UaUTZ0K3MVOBZO4TlVP55EMjc
-         HRxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696008371; x=1696613171;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9FmPWGFXlzm/HpDO5LhkisvPrSRbK6I07Ofe/Ps9MCc=;
-        b=SzqbtPR6qlgi7yqidZv+VVvugPtYFiLho/KlTznByp/IkdhE+JWU5pRxjtelmkRM8L
-         b+B2FxqDYWdYUdaMr8RwtyXEntbncv2jIEs9YA9utaQj67PhqoR2Do825mOQRuB0GBYm
-         S4g1QLVLrLNONXrVFiONoiGuO7iNRP1Q+BpeYmqgelUxQsg6mzp+tsaac0JQjPLwQ8hf
-         XaOwhMWXDobnnbBBgNIURAqHw6wUcGrZoIqGK6hE0ZSPn7tNupkAjDYI6QEBISDda1lR
-         h1in4vvhRXGV2amjzu+kpJFgIN6V4svckSQ4BLLupq2ch8YUs0Bb7CRhT0iP1NXJjyse
-         RRyQ==
-X-Gm-Message-State: AOJu0YyQ+Pox67isR0a34eJEq+jJjsuQ9IR6gB0pbid+q4OzePFqK5Dj
-	ZjTE9qqEwq5lkEZ+jTrn0rR0SA==
-X-Google-Smtp-Source: AGHT+IGo8C13uUAx61E4DnW+F1vNgvyWsHBigt0nkOjFX5gCz6fiLgXMlerkCV5kZCgq3+GpEGMKnA==
-X-Received: by 2002:a4a:ea28:0:b0:57b:eee7:4a40 with SMTP id y8-20020a4aea28000000b0057beee74a40mr5161864ood.7.1696008371561;
-        Fri, 29 Sep 2023 10:26:11 -0700 (PDT)
-Received: from freyr.lechnology.com (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id f128-20020a4a5886000000b0057bb326cad4sm2272915oob.33.2023.09.29.10.26.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Sep 2023 10:26:11 -0700 (PDT)
-From: David Lechner <dlechner@baylibre.com>
-To: linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-staging@lists.linux.dev
-Cc: David Lechner <david@lechnology.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	=?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
-	Axel Haslam <ahaslam@baylibre.com>,
-	Philip Molloy <pmolloy@baylibre.com>,
-	linux-kernel@vger.kernel.org,
-	David Lechner <dlechner@baylibre.com>
-Subject: [PATCH v3 27/27] staging: iio: resolver: ad2s1210: add label attribute support
-Date: Fri, 29 Sep 2023 12:23:32 -0500
-Message-ID: <20230929-ad2s1210-mainline-v3-27-fa4364281745@baylibre.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230929-ad2s1210-mainline-v3-0-fa4364281745@baylibre.com>
-References: <20230929-ad2s1210-mainline-v3-0-fa4364281745@baylibre.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0057751B88
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 17:42:35 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BCFB1B1
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 10:42:34 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <l.stach@pengutronix.de>)
+	id 1qmHVR-0006iq-QQ; Fri, 29 Sep 2023 19:42:25 +0200
+Message-ID: <246c5d9c6d591a1f54ac343b5edd4284ad1dd74f.camel@pengutronix.de>
+Subject: Re: [PATCH v4 1/2] dt-bindings: display: imx: add binding for
+ i.MX8MP HDMI PVI
+From: Lucas Stach <l.stach@pengutronix.de>
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Jonas Karlman <jonas@kwiboo.se>, Liu
+ Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, patchwork-lst@pengutronix.de, 
+ devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Laurent
+ Pinchart <Laurent.pinchart@ideasonboard.com>, Andrzej Hajda
+ <andrzej.hajda@intel.com>,  Pengutronix Kernel Team
+ <kernel@pengutronix.de>, linux-arm-kernel@lists.infradead.org, NXP Linux
+ Team <linux-imx@nxp.com>
+Date: Fri, 29 Sep 2023 19:42:24 +0200
+In-Reply-To: <20230929184835.1de69182@booty>
+References: <20230928125536.1782715-1-l.stach@pengutronix.de>
+	 <20230929184835.1de69182@booty>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.12.3
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: David Lechner <david@lechnology.com>
+Hi Luca,
 
-From: David Lechner <dlechner@baylibre.com>
+Am Freitag, dem 29.09.2023 um 18:48 +0200 schrieb Luca Ceresoli:
+> Hi Lucas,
+>=20
+> On Thu, 28 Sep 2023 14:55:35 +0200
+> Lucas Stach <l.stach@pengutronix.de> wrote:
+>=20
+> > Add binding for the i.MX8MP HDMI parallel video interface block.
+> >=20
+> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > ---
+> >  .../display/imx/fsl,imx8mp-hdmi-pvi.yaml      | 83 +++++++++++++++++++
+> >  1 file changed, 83 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,i=
+mx8mp-hdmi-pvi.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-h=
+dmi-pvi.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdm=
+i-pvi.yaml
+> > new file mode 100644
+> > index 000000000000..df29006b4090
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi=
+.yaml
+> > @@ -0,0 +1,83 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/imx/fsl,imx8mp-hdmi-pvi.yam=
+l#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Freescale i.MX8MP HDMI Parallel Video Interface
+> > +
+> > +maintainers:
+> > +  - Lucas Stach <l.stach@pengutronix.de>
+> > +
+> > +description: |
+> > +  The HDMI parallel video interface is a timing and sync generator blo=
+ck in the
+> > +  i.MX8MP SoC, that sits between the video source and the HDMI TX cont=
+roller.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: fsl,imx8mp-hdmi-pvi
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +
+> > +    properties:
+> > +      port@0:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description: Input from the LCDIF controller.
+> > +
+> > +      port@1:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description: Output to the HDMI TX controller.
+> > +
+> > +    required:
+> > +      - port@0
+> > +      - port@1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+>=20
+> Sure it is required? In the imx8mp.dtsi I have, which comes for a patch
+> you sent previously, there is no 'interrupts' property, and HDMI works.
+>=20
+Yes, the driver doesn't use/enforce this interrupt at the moment and
+will work without it. But since the IRQ is present in the only known HW
+implementation of this IP, I don't see a reason to make it optional in
+the DT, as that's just proper description of the HW.
 
-The ad2s1210 resolver driver has quite a few channels, mostly for
-internal signals for event support. This makes it difficult to know
-which channel is which. This patch adds a label attribute to the
-channels to make it easier to identify them.
+> > +  - power-domains
+> > +  - ports
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    #include <dt-bindings/power/imx8mp-power.h>
+> > +
+> > +    display-bridge@32fc4000 {
+> > +        compatible =3D "fsl,imx8mp-hdmi-pvi";
+> > +        reg =3D <0x32fc4000 0x40>;
+>=20
+> The device has up to register 0x40, thus I guess the second value should
+> be 0x44 here. Or maybe 0x100, just to be comfortable. :)
+>=20
+Right, I'll fix that.
 
-Signed-off-by: David Lechner <dlechner@baylibre.com>
----
-
-v3 changes: This is a new patch in v3
-
- drivers/staging/iio/resolver/ad2s1210.c | 29 +++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
-
-diff --git a/drivers/staging/iio/resolver/ad2s1210.c b/drivers/staging/iio/resolver/ad2s1210.c
-index dc3cc3ab855e..a187fa07d315 100644
---- a/drivers/staging/iio/resolver/ad2s1210.c
-+++ b/drivers/staging/iio/resolver/ad2s1210.c
-@@ -1106,6 +1106,34 @@ static int ad2s1210_initial(struct ad2s1210_state *st)
- 	return ret;
- }
- 
-+static int ad2s1210_read_label(struct iio_dev *indio_dev,
-+			       struct iio_chan_spec const *chan,
-+			       char *label)
-+{
-+	if (chan->type == IIO_ANGL) {
-+		if (chan->channel == 0)
-+			return sprintf(label, "position\n");
-+		if (chan->channel == 1)
-+			return sprintf(label, "tracking error\n");
-+	}
-+	if (chan->type == IIO_ANGL_VEL)
-+		return sprintf(label, "velocity\n");
-+	if (chan->type == IIO_PHASE)
-+		return sprintf(label, "synthetic reference\n");
-+	if (chan->type == IIO_ALTVOLTAGE) {
-+		if (chan->output)
-+			return sprintf(label, "excitation\n");
-+		if (chan->channel == 0)
-+			return sprintf(label, "monitor signal\n");
-+		if (chan->channel == 1 && chan->channel2 == IIO_MOD_X)
-+			return sprintf(label, "cosine\n");
-+		if (chan->channel == 1 && chan->channel2 == IIO_MOD_Y)
-+			return sprintf(label, "sine\n");
-+	}
-+
-+	return -EINVAL;
-+}
-+
- static int ad2s1210_read_event_value(struct iio_dev *indio_dev,
- 				     const struct iio_chan_spec *chan,
- 				     enum iio_event_type type,
-@@ -1256,6 +1284,7 @@ static const struct iio_info ad2s1210_info = {
- 	.read_raw = ad2s1210_read_raw,
- 	.read_avail = ad2s1210_read_avail,
- 	.write_raw = ad2s1210_write_raw,
-+	.read_label = ad2s1210_read_label,
- 	.attrs = &ad2s1210_attribute_group,
- 	.read_event_value = ad2s1210_read_event_value,
- 	.write_event_value = ad2s1210_write_event_value,
-
--- 
-2.42.0
+Regards,
+Lucas
 
 
