@@ -1,66 +1,46 @@
-Return-Path: <devicetree+bounces-4613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDFC97B340C
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 15:58:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B926B7B3428
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 16:04:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id CDC811C20958
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 13:58:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 190D2282B79
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 14:04:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26A3441AB9;
-	Fri, 29 Sep 2023 13:58:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F80042C03;
+	Fri, 29 Sep 2023 14:04:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 167AA3C37
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 13:58:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0392C433C8;
-	Fri, 29 Sep 2023 13:58:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED8533C37;
+	Fri, 29 Sep 2023 14:04:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A273C433C7;
+	Fri, 29 Sep 2023 14:04:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1695995917;
-	bh=CHEXPlpFmHD8rVxXqeAQGRdFG1pNx0Kk9AeUvrx4txE=;
+	s=k20201202; t=1695996273;
+	bh=kllDxxZDnI55vJYq/PxnYJDIVVqb3qsnid1yZ4I5Z7M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jICsUAQdJA2wHFVYpRu0kl90yxId8Gfhtvm1Jl/X6SJ+/DXMq/vjzap5vOuFTtwjh
-	 +QzG99dKnAyH85c+D0/GnH0CxZ4mdGim0f+7MsehocvKAFmSRnkmao0TU1hnCm3td7
-	 wnznvXqRkOfqKzo6wDlV+xrDRrjmKlBSQnVla0W6zbK3aQ+GLbiNaMsqnjUuK0dT2l
-	 EsIcZ7mC4cEw6wRZ3y4PcPckx75TRQDVLRrcrkE691z6isF1B9xWAnYOIRU73y1954
-	 TkddNsCTIAjNYTDQuzD0ZFVdRS3WWXA6EMUhRQ/Q2xanFqKF+ovZKvS4hubVD62yld
-	 y+ZdJ/cft3Q9w==
-Date: Fri, 29 Sep 2023 14:58:31 +0100
+	b=tGbtJU9UV6/I+/s6FSJ4NI759RriRRm7zXnXdUVkMHjlMp5iN5aNZ34iF6DTzZCHx
+	 QpAQjc5q0luFoKWw0ENykWg8mlUbpbgzG2y8cTDsmRDMSC+0pecXc7zlw3LvKXcgmo
+	 erBnuvjNEeOPIb6vRCUqjpeNXO6ckCn7koXPJk2cPQfeUE14WFpY1rnSdgpgRlpjw2
+	 jDE9Q1KyPcuyBGRlvPqUwZdzGZ3E8viByHEf5olOD6Mnsw/XMrN7mAm9vJ03WpnZeX
+	 Gh/JWmKehcF4PgFRXazhbfqoazNx9OiuGSq6qZDQIspEkq1beYJkb+a59JeMD/SbmF
+	 EpJMRmaCguAJA==
+Date: Fri, 29 Sep 2023 15:04:28 +0100
 From: Conor Dooley <conor@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Moudy Ho =?utf-8?B?KOS9leWul+WOnyk=?= <Moudy.Ho@mediatek.com>,
-	"conor.dooley@microchip.com" <conor.dooley@microchip.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"mchehab@kernel.org" <mchehab@kernel.org>,
-	"daniel@ffwll.ch" <daniel@ffwll.ch>,
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-	"airlied@gmail.com" <airlied@gmail.com>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v6 12/16] dt-bindings: display: mediatek: color: add
- compatible for MT8195
-Message-ID: <20230929-renewably-landing-3f5a1d2eb27c@spud>
-References: <20230922072116.11009-1-moudy.ho@mediatek.com>
- <20230922072116.11009-13-moudy.ho@mediatek.com>
- <20230922-zebra-modify-87ff23c70bb3@spud>
- <20230922-overhung-deception-e9b461ba0372@spud>
- <7c445195e17e15d5af5fcb30ae53f76c713e958b.camel@mediatek.com>
- <20230927-crunching-prancing-36fe3eb79607@wendy>
- <825ac03b692043d48563620ad9542a4ee43211e7.camel@mediatek.com>
- <20230928-keep-attractor-1e7cd0df03b2@spud>
- <7dbadd86-f408-bc94-92fc-22f460eebb43@collabora.com>
+To: Piyush Mehta <piyush.mehta@amd.com>
+Cc: gregkh@linuxfoundation.org, michal.simek@amd.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	peter.chen@kernel.org, linus.walleij@linaro.org,
+	paul@crapouillou.net, arnd@arndb.de, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	git@amd.com
+Subject: Re: [RFC PATCH 1/3] dt-binding: usb: ulpi-phy: add ulpi-phy binding
+Message-ID: <20230929-harmonics-chapter-54f1819383fa@spud>
+References: <20230929064852.16642-1-piyush.mehta@amd.com>
+ <20230929064852.16642-2-piyush.mehta@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,170 +48,124 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="/VzKeb9rEqhIUOcg"
+	protocol="application/pgp-signature"; boundary="N1ZSGQNLJzaSLTXk"
 Content-Disposition: inline
-In-Reply-To: <7dbadd86-f408-bc94-92fc-22f460eebb43@collabora.com>
+In-Reply-To: <20230929064852.16642-2-piyush.mehta@amd.com>
 
 
---/VzKeb9rEqhIUOcg
-Content-Type: text/plain; charset=utf-8
+--N1ZSGQNLJzaSLTXk
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 29, 2023 at 10:42:58AM +0200, AngeloGioacchino Del Regno wrote:
-> Il 28/09/23 18:49, Conor Dooley ha scritto:
-> > On Thu, Sep 28, 2023 at 02:52:23AM +0000, Moudy Ho (=E4=BD=95=E5=AE=97=
-=E5=8E=9F) wrote:
-> > > On Wed, 2023-09-27 at 10:47 +0100, Conor Dooley wrote:
-> > > > On Wed, Sep 27, 2023 at 07:19:28AM +0000, Moudy Ho (=E4=BD=95=E5=AE=
-=97=E5=8E=9F) wrote:
-> > > > > On Fri, 2023-09-22 at 16:51 +0100, Conor Dooley wrote:
-> > > > > > On Fri, Sep 22, 2023 at 04:49:14PM +0100, Conor Dooley wrote:
-> > > > > > > On Fri, Sep 22, 2023 at 03:21:12PM +0800, Moudy Ho wrote:
-> > > > > > > > Add a compatible string for the COLOR block in MediaTek
-> > > > > > > > MT8195
-> > > > > > > > that
-> > > > > > > > is controlled by MDP3.
-> > > > > > > >=20
-> > > > > > > > Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> > > > > > > > ---
-> > > > > > > >   .../devicetree/bindings/display/mediatek/mediatek,color.y=
-aml
-> > > > > > > >   | 1 +
-> > > > > > > >   1 file changed, 1 insertion(+)
-> > > > > > > >=20
-> > > > > > > > diff --git
-> > > > > > > > a/Documentation/devicetree/bindings/display/mediatek/mediat=
-ek
-> > > > > > > > ,col
-> > > > > > > > or.yaml
-> > > > > > > > b/Documentation/devicetree/bindings/display/mediatek/mediat=
-ek
-> > > > > > > > ,col
-> > > > > > > > or.yaml
-> > > > > > > > index f21e44092043..b886ca0d89ea 100644
-> > > > > > > > ---
-> > > > > > > > a/Documentation/devicetree/bindings/display/mediatek/mediat=
-ek
-> > > > > > > > ,col
-> > > > > > > > or.yaml
-> > > > > > > > +++
-> > > > > > > > b/Documentation/devicetree/bindings/display/mediatek/mediat=
-ek
-> > > > > > > > ,col
-> > > > > > > > or.yaml
-> > > > > > > > @@ -26,6 +26,7 @@ properties:
-> > > > > > > >             - mediatek,mt2701-disp-color
-> > > > > > > >             - mediatek,mt8167-disp-color
-> > > > > > > >             - mediatek,mt8173-disp-color
-> > > > > > > > +          - mediatek,mt8195-mdp3-color
-> > > > > > >=20
-> > > > > > > How come this one is a "mdp3" not a "disp"?
-> > > > > >=20
-> > > > > > I don't know what mdp3 means & googling gives me no answers.
-> > > > > > What's
-> > > > > > the
-> > > > > > "disp" one controlled by, since it isn't controlled by mdp3?
-> > > > > >=20
-> >=20
-> > > > > Mediatek's Media Data Path ver.3 (MDP3) is associated with MMSYS
-> > > > > and
-> > > > > acts as an independent driver that operates between VDEC and DISP.
-> > > > > By controlling multiple components, it carries out tasks like
-> > > > > converting color formats, resizing, and applying specific Picture
-> > > > > Quality (PQ) effects.
-> > > > > The driver can be found at "driver/media/platform/mediatek/mdp3".
-> > > > > Since the same hardware components are configured in both MDP3 and
-> > > > > DISP, considering previous discussions, I attemped to integrate
-> > > > > into a
-> > > > > single binding, named after the controlling user.
-> > > >=20
-> > > > I'm still kinda struggling to understand this. Do you mean that the
-> > > > hardware can be controlled by either of the disp and mdp3 drivers,
-> > > > and
-> > > > a compatible containing "disp" would use one driver, and one
-> > > > containing
-> > > > "mdp3" would use another?
-> > > >=20
-> >=20
-> > > Sorry for any confusion caused by the software information. In the
-> > > video pipeline, after decoding, the data flows sequentially through t=
-wo
-> > > subsystems: MDP and DISP. Each subsystems has multiple IPs, with some
-> > > serving the same functionality as COLOR mentioned here. However, these
-> > > IPs cannot be controlled by different subsystems. Therefore, I includ=
-ed
-> > > the name of the subsystem after SoC to identify the configuration's
-> > > location. Is this approach feasible?
-> >=20
-> > I'll have to leave things to the likes of Laurent to comment here I
-> > think. I don't understand this hardware well enough to have a useful
-> > opinion. It would seem like a different part of the datapath is a
-> > different device that should be documented separately, but I don't know
-> > enough to say for sure, sorry.
->=20
-> Hardware speaking, it's not a different device: those all reside in the
-> same block, except they are configured to route their I/O *either* to the
-> display pipeline, *or* to the MDP3 pipeline.
+Hey,
 
-Is it runtime configurable?
+On Fri, Sep 29, 2023 at 12:18:50PM +0530, Piyush Mehta wrote:
+> Create an ulpi-phy binding to read and write PHY registers with explicit
+> control of the address and data using the usb.VIEWPORT register.
+>=20
+> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
+> ---
+> This binding patch was created to support generic platforms. This binding
+> will be modified in accordance with patch [3/3] procedures. One of the
+> approch may be Create a zynq phy platform driver in "driver/usb/phy" with
+> driver source "phy-ulpi-zynq-usb.c" and then the binding will be particul=
+ar
+> to the Xilinx/AMD zynq platform.
 
-> I would agree though in that this could be more flexible, as in, not
-> having a requirement to say "mdp3" or "disp", and managing the COLOR
-> blocks generically and letting the drivers to choose the actual path
-> transparently from what the devicetree compatible is, but there's no
-> practical point in doing this in the end, because there is an enough
-> number of (for example, COLOR) blocks such that one can be completely
-> reserved to MDP3 and one completely reserved to DISP.
->=20
-> So, we don't *need* this flexibility, but would be nice to have for
-> different (unexistant, basically) usecases...
->=20
-> The thing is, if we go for the maximum flexibility, the drawback is
-> that we'd see a number of nodes like
->=20
-> shared_block: something@somewhere {
-> 	compatible =3D "mediatek,something";
-> }
->=20
-> mdp3: dma-controller@14001000 {
-> 	......
-> 	mediatek,color =3D <&color0>;
-> 	mediatek,stitch =3D <&stitch0>;
-> 	mediatek,hdr =3D <&hdr0>;
-> 	mediatek,aal =3D <&aal0>;
-> 	....
-> 	long list of another 10 components
-> }
->=20
-> display: something@somewhere {
-> 	......
-> 	an even longer list than the MDP3 one
-> }
->=20
-> ...or perhaps even a graph, which is even longer in the end.
->=20
-> I'm not against this kind of structure, but I wonder if it's worth it.
+I don't understand what the drivers have to do with describing the
+hardware here. You have a zynq platform with this phy, so the compatible
+should reflect that. Whether you create some software that supports
+generic platforms is mostly a separate question IMO.
 
-I have no idea, but it sounds like it isn't. Really what happened here,
-is not me having a particular thing I want to see, is getting a response
-that implied that there were two different compatibles for the same
-hardware, controlled by different drivers.
-It does seem to be that way at present, and this is not something I am
-willing to ack etc. That's not to say that I am _nacking_ it, just that
-I don't understand this enough to ack something that we usually tell
-people not to do.
+> This binding was built with the Zynq hardware design example in considera=
+tion
+> of as a generic platform. The viewport provide access the Chipidea contro=
+ller
+> to interface with the ULPI PHY.
+> ---
+>  .../devicetree/bindings/usb/ulpi-phy.yaml     | 48 +++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/ulpi-phy.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/usb/ulpi-phy.yaml b/Docume=
+ntation/devicetree/bindings/usb/ulpi-phy.yaml
+> new file mode 100644
+> index 000000000000..490b2f610129
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/ulpi-phy.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/ulpi-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ULPI PHY- Generic platform
+> +
+> +maintainers:
+> +  - Piyush Mehta <piyush.mehta@amd.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: ulpi-phy
 
---/VzKeb9rEqhIUOcg
+Please add a device specific compatible here.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#phy-cells':
+> +    const: 0
+> +
+> +  external-drv-vbus:
+> +    description:
+> +      If present, configure ulpi-phy external supply to drive 5V on VBus.
+> +    type: boolean
+> +
+> +  view-port:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Address to read and write PHY registers with explicit control of
+> +      the address and data using the usb.VIEWPORT register.
+
+Why would this not just be a second entry in reg?
+
+Cheers,
+Conor.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - view-port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    phy0@e0002000 {
+> +        compatible =3D "ulpi-phy";
+> +        #phy-cells =3D <0x00>;
+> +        reg =3D <0xe0002000 0x1000>;
+> +        view-port =3D <0x170>;
+> +        external-drv-vbus;
+> +    };
+> --=20
+> 2.17.1
+>=20
+
+--N1ZSGQNLJzaSLTXk
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRbYBwAKCRB4tDGHoIJi
-0gDgAQD4uuPf+CMkS9i8umAoxxX46tlaJiF0ICduWocAJ7z4JwEAmoWZAI0hf7If
-KE6e8+SKB238W6F5JretaCDxsAbF5gU=
-=6dAo
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRbZbAAKCRB4tDGHoIJi
+0o8KAP9OXTDirN/hUstii6+IrAPKuGM6r/lwZKpvExF6Mbf/sgD/eYh+BO5rYspr
+Xm/vVpg8e044cRuShplXfMnQimDUqQI=
+=Lb9Z
 -----END PGP SIGNATURE-----
 
---/VzKeb9rEqhIUOcg--
+--N1ZSGQNLJzaSLTXk--
 
