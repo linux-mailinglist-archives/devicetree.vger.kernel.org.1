@@ -1,118 +1,186 @@
-Return-Path: <devicetree+bounces-4483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1DF07B2C09
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 07:48:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86B9F7B2C4D
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 08:30:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 825F22821E4
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 05:48:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 396602822CA
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 06:30:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17C608825;
-	Fri, 29 Sep 2023 05:48:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D70A2188;
+	Fri, 29 Sep 2023 06:30:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C949F8817
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 05:48:38 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBBE4199;
-	Thu, 28 Sep 2023 22:48:36 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38T5lX3O009328;
-	Fri, 29 Sep 2023 05:48:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=qcppdkim1;
- bh=gHEOCQ+KZd/7IQvR2diOdvIxX/VPJkvjjUCvqh3o2Y8=;
- b=nF8O+DUyuiS9Ym85tgCkmnHY8Zj+cLw0mGAkt/NljwYEH/JbfmRHEfZ+HWRvh8YXLnZD
- FugYfIpqir8wwIetcS7dg8KuuSoxDcsxnsAkm6BvHyZ9wT9dSgAy063LNOIrLFw1jAoz
- EJ/1TRriKZfM6uDzuf6k1RxgAWuiD85TE7c60Vk2dOPoSiNZC/5Hq1atZAghaLY0eu+i
- Oyc2q8qCc5qgzC2DfAf/Q8JuX7VWbN02ELhDGFSKpFL4KXCIMqj35xP6RPAfUFXGobR4
- qUy6lNt4+MGZpwJM1/vOHc+PWtaJS6a/rjHpcpcjgGIVfbTK1CT+QZ0Md+4fQYVwY+a2 nQ== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3td5se26ys-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Sep 2023 05:48:32 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38T5mVoF010141
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Sep 2023 05:48:31 GMT
-Received: from hu-rkakarla-hyd.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Thu, 28 Sep 2023 22:48:27 -0700
-From: Raghavendra Kakarla <quic_rkakarla@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Raghavendra Kakarla <quic_rkakarla@quicinc.com>
-CC: <quic_mkshah@quicinc.com>, <quic_lsrao@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH v3] arm64: dts: qcom: sa8775p: Add RPMh sleep stats
-Date: Fri, 29 Sep 2023 11:18:05 +0530
-Message-ID: <20230929054805.27847-1-quic_rkakarla@quicinc.com>
-X-Mailer: git-send-email 2.17.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB6D01FB4
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 06:30:28 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 103531B0;
+	Thu, 28 Sep 2023 23:30:26 -0700 (PDT)
+Received: from ideasonboard.com (unknown [IPv6:2001:861:388f:1650:2f32:b6ff:a885:7d5e])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id AE094844;
+	Fri, 29 Sep 2023 08:28:40 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1695968920;
+	bh=wHmiBJv2Rg0wYUZ+ffUzk0vEJGF6fWACVyEd9GZDv0k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=srcPCxN30DFBZUtc7tuMLSsT9QfXLl4iNg7xhpiWp/t+rpGZ6G3xj/ANa87k9sll1
+	 8DmopkUXaxEyNd9LZQKnP0NFCWJIbVtrcQhDaJe6R2qzw1RWWmeCo2RdwlZlKv6Cnk
+	 YCdgbtUH8P7gKV6AOHHd3jq9hS0ueSyt5UFtKF/c=
+Date: Fri, 29 Sep 2023 08:30:19 +0200
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+	Fabio Estevam <festevam@gmail.com>, mchehab@kernel.org, sakari.ailus@linux.intel.com, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, martink@posteo.de, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2] media: dt-bindings: hynix,hi846: Document orientation
+ and rotation
+Message-ID: <orsrzyiaykfoqb5uritwbz5bgovxn4wviijinzlim2cy3qffhp@5zuy5ffp7kmo>
+References: <20230928121424.388019-1-festevam@gmail.com>
+ <avoixz5pqixr366cqks672akniv7h7ewix4edoyikg23dv24fd@bquxelr53t7t>
+ <20230928155446.GA568091-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ToimKoCgccWxl4ncmxJXz7ODGRIh-wuJ
-X-Proofpoint-GUID: ToimKoCgccWxl4ncmxJXz7ODGRIh-wuJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-09-29_04,2023-09-28_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 suspectscore=0 impostorscore=0 malwarescore=0
- priorityscore=1501 clxscore=1015 bulkscore=0 mlxlogscore=675 adultscore=0
- mlxscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2309290049
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230928155446.GA568091-robh@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add device node for sleep stats driver which provides various
-low power mode stats.
+Hi Rob, Fabio
 
-Tested-by: Andrew Halaney <ahalaney@redhat.com>
-Signed-off-by: Raghavendra Kakarla <quic_rkakarla@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+On Thu, Sep 28, 2023 at 10:54:46AM -0500, Rob Herring wrote:
+> On Thu, Sep 28, 2023 at 04:57:23PM +0200, Jacopo Mondi wrote:
+> > Hi Fabio, Krzysztof
+> >
+> > On Thu, Sep 28, 2023 at 09:14:24AM -0300, Fabio Estevam wrote:
+> > > From: Fabio Estevam <festevam@denx.de>
+> > >
+> > > Document the 'orientation' and 'rotation' properties, which
+> > > are valid for the SK Hynix Hi-846 sensor.
+> > >
+> > > Their definitions come from video-interface-devices.yaml, so add
+> > > a reference to it.
+> > >
+> > > Signed-off-by: Fabio Estevam <festevam@denx.de>
+> > > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > Acked-by: Martin Kepplinger <martink@posteo.de>
+> > > ---
+> > > Changes since v1:
+> > > - Also pass a ref to video-interface-devices.yaml. (Martin)
+> > >
+> >
+> > This patch is technically correct, so this message is not meant to
+> > delay its integration or anything like that, but I'll take the
+> > occasion to ask for guidance to the DT maintainers, as I think this
+> > approach doesn't scale.
+> >
+> > I count the following sensor bindings that refer to
+> > video-interface-device.yaml
+> >
+> > Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
+> > Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
+> > Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+> > Documentation/devicetree/bindings/media/i2c/ovti,ov5675.yaml
+> > Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+> > Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
+> > Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
+> >
+> > These:
+> >
+> > Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml:additionalProperties: false
+> > Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml:additionalProperties: false
+> > Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml:additionalProperties: false
+> > Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml:additionalProperties: false
+> > Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml:additionalProperties: false
+> >
+> > specify 'additionalProperties: false' at the top-level.
+> > This is correct imho, as it implies that any properties not
+> > specifically allowed by bindings is forbidden.
+> >
+> > This unfortunately applies to  'rotation' and 'orientation' as well.
+> > This is not correct, as those two properties should apply to all
+> > sensors without the requiring the bindings to explicitly allow them.
+> >
+> > Counterproof: It's very easy to break validation of, in example,
+> > ov5640
+> >
+> > --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+> > +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+> > @@ -109,6 +109,7 @@ examples:
+> >                powerdown-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
+> >                reset-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
+> >                rotation = <180>;
+> > +              orientation = <0>;
+> >
+> >                port {
+> >                    /* MIPI CSI-2 bus endpoint */
+> >
+> > $ make ARCH=arm64 dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+> >   DTC_CHK Documentation/devicetree/bindings/media/i2c/ovti,ov5640.example.dtb
+> >   'orientation' does not match any of the regexes: 'pinctrl-[0-9]+'
+> > 	from schema $id: http://devicetree.org/schemas/media/i2c/ovti,ov5640.yaml#
+> >
+> > Is there a way to allow those two properties ('rotation' and
+> > 'orientation') to be accepted by all sensor drivers bindings ?
+>
+> Use unevaluatedProperties instead of additionalProperties and add a $ref
+> to video-interface-devices.yaml in the sensor schemas. However, that
+> will allow all properties in video-interface-devices.yaml (which is just
+> flash-leds and lens-focus which seem fine). If you don't want that, then
+> you will have to split up video-interface-devices.yaml.
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index 9f4f58e831a4..2ce5b592616f 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -1912,6 +1912,11 @@
- 			#clock-cells = <0>;
- 		};
- 
-+		sram@c3f0000 {
-+			compatible = "qcom,rpmh-stats";
-+			reg = <0x0 0x0c3f0000 0x0 0x400>;
-+		};
-+
- 		spmi_bus: spmi@c440000 {
- 			compatible = "qcom,spmi-pmic-arb";
- 			reg = <0x0 0x0c440000 0x0 0x1100>,
--- 
-2.17.1
+ack! I think it's fine to allow all sensors to point to a lens or a
+flash device if they want to.
 
+I'll send a patch for:
+
+Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml:additionalProperties: false
+Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml:additionalProperties: false
+Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml:additionalProperties: false
+Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml:additionalProperties: false
+Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml:additionalProperties: false
+
+to s/additionalProperties/unevaluatedProperties/
+
+On this binding file instead. I noticed it again specifies
+unevaluatedProperties: false both in the and 'endpoint' nodes, which
+refers to /schemas/media/video-interfaces.yaml. This allows all
+properties from that schema to be specified.
+
+Should I send a patch to or is Fabio interested in doing so as
+part of a new version of this patch ?
+
+--- a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+@@ -55,7 +55,7 @@ properties:
+     properties:
+       endpoint:
+         $ref: /schemas/media/video-interfaces.yaml#
+-        unevaluatedProperties: false
++        additionalProperties: false
+
+         properties:
+           data-lanes:
+@@ -70,6 +70,7 @@ properties:
+                   - const: 2
+
+           link-frequencies: true
++          remote-endpoint: true
+
+
+
+>
+> Rob
 
