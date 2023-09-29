@@ -1,118 +1,154 @@
-Return-Path: <devicetree+bounces-4521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA3EE7B2E42
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 10:44:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9FA77B2E67
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 10:52:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 5B3F62842C4
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 08:44:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 5C8C42845FE
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 08:52:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31DE1111BC;
-	Fri, 29 Sep 2023 08:44:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B484811708;
+	Fri, 29 Sep 2023 08:52:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B28511713
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 08:44:08 +0000 (UTC)
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C879D10FA
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 01:44:06 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-406402933edso55088285e9.2
-        for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 01:44:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1695977045; x=1696581845; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=b6Qp6y9nYtGfWeIZZkb4YL1o7pvTbfFEpaXOlB4gSy4=;
-        b=Fji4YadnkHqXTKx9dVJVTK2taQY5IfSMYPmyG7Eazl8meAleJBsSLRWkJ5e50ew56w
-         MB74PJtqSb4ZrUp90yJPsoQGHhTzmSYL41zQk+UiRiybHFRcTUv0w8YLNaqq2VXYzCBi
-         m9ZkYGf1eq/+eUcbiU80gyz7If0OnPlS/8aP0oZsH3RzVFEqCDfZO+Bg2iIrj8LF3ufd
-         Dw6BTn3v3GtaM1KBPRzDaI+8Oab4CGZvbe4kYKrnsIDvdYNYyNRbWWIObeYnGRuEzfho
-         /GkF1tE7y+P99ha8n7cuWSya3feMwgllVxiCYoUHPxVGdwhZU5PIWU1GrNhMORbsAOkn
-         UsyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1695977045; x=1696581845;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b6Qp6y9nYtGfWeIZZkb4YL1o7pvTbfFEpaXOlB4gSy4=;
-        b=LSpOHEdePxhwHl15EHEl3l2w894lm/2r8jvCVLof2XRJwdK5xFS4OdzSpBqCdy2+Ze
-         xUJHpUHHpOd2azQbmVFiXc/+DRxVBEA0Mu+YrEd8wyQEkjwfp4ja9nIVY/1gu+Y4uijB
-         lC9WnEulcDdxEyRuuztKMjr+3FeufQiS9ChRsi22xVocpCcBEWjX+605YBoGKlGebdO/
-         tiMunhMFMVBNyttFM2x3ImgzGby6WBwg5vVk1IZFQxLKnSzE2sCFCAOUcX3mN9bje/Y0
-         miSX39vmx2kodTbYTI5MW4brgJrOQzIT2jMWIp8OqOWrweljc0HKuYOkHFpCMIQa6h3A
-         4qlw==
-X-Gm-Message-State: AOJu0YyJpCtvvSSafutjLQT2aTxqzdTsu1AD3L513OlHArXFAA/co2OJ
-	XxkFOtvfJK3UV4QEVs7PICpKxg==
-X-Google-Smtp-Source: AGHT+IHUEB1LQYQGWJ4qw3MkH7TU+QOAa6gnK1NDNZI1/qGzE2+ETeE+sqUe+xgafIdK1bdFgFk5cQ==
-X-Received: by 2002:adf:fe42:0:b0:317:5747:b955 with SMTP id m2-20020adffe42000000b003175747b955mr3131037wrs.17.1695977045118;
-        Fri, 29 Sep 2023 01:44:05 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id o11-20020a5d4a8b000000b0031ffb51f6f9sm21113634wrq.30.2023.09.29.01.44.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Sep 2023 01:44:04 -0700 (PDT)
-Message-ID: <686dc4d4-778b-4fd6-93e9-e25fd71fc75a@linaro.org>
-Date: Fri, 29 Sep 2023 09:44:04 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9B78AD47;
+	Fri, 29 Sep 2023 08:52:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABF6794;
+	Fri, 29 Sep 2023 01:52:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1695977535; x=1727513535;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=bxjnnMTEfiYHjMl/VzP/xRuB60mcYj1DgtGGuQgN3Hs=;
+  b=g6yYQ+Iefg22lv5yGHgMwWGzRMjvI85SNfTiVUlqSYX70uBMLUwP/Vh0
+   06ryHpQmtlJBdNo2TAh+FP95WQBE09de2GZOgKCax3C7hItnN2oV9NNmr
+   qXOBSEjSmd4a/vGhLBGYagZaErbmFgPuiTZQv5xQrQ0/L3jpDQABLqRVc
+   rOLCvyg/D6p9KBTrLoHgqCQDo9tFcHWf9uRMiBdIXmstY+5ofgRsTuD5w
+   JiAEuPqBgJ44uLaV0R2LrsV3wfSSl+RjFnA0dIri8k/4tdbgrGfXkAHtp
+   9RvkgIRf2/37epaYcWdhmhPYJvQs9k8jcml6aIFxy3U6E3vO4TSX4MDCe
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="863667"
+X-IronPort-AV: E=Sophos;i="6.03,186,1694761200"; 
+   d="scan'208";a="863667"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Sep 2023 01:52:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="743396335"
+X-IronPort-AV: E=Sophos;i="6.03,186,1694761200"; 
+   d="scan'208";a="743396335"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by orsmga007.jf.intel.com with SMTP; 29 Sep 2023 01:52:09 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 29 Sep 2023 11:52:09 +0300
+Date: Fri, 29 Sep 2023 11:52:09 +0300
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Abdel Alkuor <alkuor@gmail.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, bryan.odonoghue@linaro.org,
+	gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org, ryan.eleceng@gmail.com,
+	robh+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	Abdel Alkuor <abdelalkuor@geotab.com>
+Subject: Re: [PATCH v7 02/14] USB: typec: tsp6598x: Add cmd timeout and
+ response delay
+Message-ID: <ZRaQObkJ5kQhhhYs@kuha.fi.intel.com>
+References: <20230927175348.18041-1-alkuor@gmail.com>
+ <20230927175348.18041-3-alkuor@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: qcm6490-fairphone-fp5: Enable venus
- node
-Content-Language: en-US
-To: Luca Weiss <luca.weiss@fairphone.com>,
- Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- cros-qcom-dts-watchers@chromium.org, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230929-sc7280-venus-pas-v1-0-9c6738cf157a@fairphone.com>
- <20230929-sc7280-venus-pas-v1-3-9c6738cf157a@fairphone.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230929-sc7280-venus-pas-v1-3-9c6738cf157a@fairphone.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230927175348.18041-3-alkuor@gmail.com>
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 29/09/2023 09:38, Luca Weiss wrote:
-> Enable the venus node so that the video encoder/decoder will start
-> working.
+On Wed, Sep 27, 2023 at 01:53:36PM -0400, Abdel Alkuor wrote:
+> From: Abdel Alkuor <abdelalkuor@geotab.com>
 > 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> Some commands in tps25750 take longer than 1 second
+> to complete, and some responses need some delay before
+> the result becomes available.
+> 
+> Signed-off-by: Abdel Alkuor <abdelalkuor@geotab.com>
+
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+
 > ---
->   arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 5 +++++
->   1 file changed, 5 insertions(+)
+> Changes in v7:
+>   - Add driver name to commit subject 
+> Changes in v6:
+>   - Use tps6598x_exec_cmd as a wrapper
+> Changes in v5:
+>   - Incorporating tps25750 into tps6598x driver
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-> index 2de0b8c26c35..d29f10f822c9 100644
-> --- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-> @@ -665,3 +665,8 @@ &usb_1_qmpphy {
->   
->   	status = "okay";
->   };
+>  drivers/usb/typec/tipd/core.c | 19 +++++++++++++++----
+>  1 file changed, 15 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
+> index 37b56ce75f39..32420c61660d 100644
+> --- a/drivers/usb/typec/tipd/core.c
+> +++ b/drivers/usb/typec/tipd/core.c
+> @@ -282,9 +282,10 @@ static void tps6598x_disconnect(struct tps6598x *tps, u32 status)
+>  	power_supply_changed(tps->psy);
+>  }
+>  
+> -static int tps6598x_exec_cmd(struct tps6598x *tps, const char *cmd,
+> +static int tps6598x_exec_cmd_tmo(struct tps6598x *tps, const char *cmd,
+>  			     size_t in_len, u8 *in_data,
+> -			     size_t out_len, u8 *out_data)
+> +			     size_t out_len, u8 *out_data,
+> +			     u32 cmd_timeout_ms, u32 res_delay_ms)
+>  {
+>  	unsigned long timeout;
+>  	u32 val;
+> @@ -307,8 +308,7 @@ static int tps6598x_exec_cmd(struct tps6598x *tps, const char *cmd,
+>  	if (ret < 0)
+>  		return ret;
+>  
+> -	/* XXX: Using 1s for now, but it may not be enough for every command. */
+> -	timeout = jiffies + msecs_to_jiffies(1000);
+> +	timeout = jiffies + msecs_to_jiffies(cmd_timeout_ms);
+>  
+>  	do {
+>  		ret = tps6598x_read32(tps, TPS_REG_CMD1, &val);
+> @@ -321,6 +321,9 @@ static int tps6598x_exec_cmd(struct tps6598x *tps, const char *cmd,
+>  			return -ETIMEDOUT;
+>  	} while (val);
+>  
+> +	/* some commands require delay for the result to be available */
+> +	mdelay(res_delay_ms);
 > +
-> +&venus {
-> +	firmware-name = "qcom/qcm6490/fairphone5/venus.mbn";
-> +	status = "okay";
-> +};
-> 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>  	if (out_len) {
+>  		ret = tps6598x_block_read(tps, TPS_REG_DATA1,
+>  					  out_data, out_len);
+> @@ -345,6 +348,14 @@ static int tps6598x_exec_cmd(struct tps6598x *tps, const char *cmd,
+>  	return 0;
+>  }
+>  
+> +static int tps6598x_exec_cmd(struct tps6598x *tps, const char *cmd,
+> +			     size_t in_len, u8 *in_data,
+> +			     size_t out_len, u8 *out_data)
+> +{
+> +	return tps6598x_exec_cmd_tmo(tps, cmd, in_len, in_data,
+> +				     out_len, out_data, 1000, 0);
+> +}
+> +
+>  static int tps6598x_dr_set(struct typec_port *port, enum typec_data_role role)
+>  {
+>  	const char *cmd = (role == TYPEC_DEVICE) ? "SWUF" : "SWDF";
+> -- 
+> 2.34.1
+
+-- 
+heikki
 
