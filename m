@@ -1,125 +1,223 @@
-Return-Path: <devicetree+bounces-4546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 057237B304B
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 12:30:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAE9A7B304D
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 12:30:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id A86E4284036
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 10:30:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id DD4A71C2094A
+	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 10:30:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71AAC14A93;
-	Fri, 29 Sep 2023 10:30:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7113528F5;
+	Fri, 29 Sep 2023 10:30:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB03F15AE2
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 10:30:10 +0000 (UTC)
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55ED21BCD;
-	Fri, 29 Sep 2023 03:29:55 -0700 (PDT)
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id B3C79100009;
-	Fri, 29 Sep 2023 13:29:53 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru B3C79100009
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1695983393;
-	bh=1dTsc7UycRu0AzxWloIWtmkmCrMWxuzh8RJp/Vn8/ks=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=QiAZe+vSEhWTPNx++eMrI4/O1K0a6I6FE7Qwkmq8Affurjc5DuHPP9KoScmyeN+RF
-	 gOmg9ki96ywVqWE2RSPn6kgrXe3AEQfTtGtaKGiElnX38DOZx68UkQmphDJ0BgCQVn
-	 xUGXKWvWJ0qyx9SB0p0njRTU105krcZgF6ZR1L+lTHXu0RoNLRjLs2/oz4NymDAJ4l
-	 Fxpp6wvupVEVEaMaJrQ4DpKcWUwSwuRIGPVQP4i3RM0auUozX00hAUbG3XQKBwoMHP
-	 jF0Td/6t+gezONqOhXxANQtDGRQJpo06OBD6kyBQcn0stKHRB0LJ8JU/xl3pZS3/AA
-	 gonYS9RMNM7Kw==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri, 29 Sep 2023 13:29:53 +0300 (MSK)
-Received: from localhost.localdomain (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Fri, 29 Sep 2023 13:29:53 +0300
-From: Alexey Romanov <avromanov@salutedevices.com>
-To: <narmstrong@baylibre.com>, <neil.armstrong@linaro.org>,
-	<olivia@selenic.com>, <herbert@gondor.apana.org.au>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<conor@kernel.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <f.fainelli@gmail.com>,
-	<hkallweit1@gmail.com>, <lists@kaiser.cx>
-CC: <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
-	<kernel@sberdevices.ru>, Alexey Romanov <avromanov@sberdevices.ru>
-Subject: [PATCH v5 3/3] arch/arm64: dts: meson-s4: add hwrng node
-Date: Fri, 29 Sep 2023 13:29:38 +0300
-Message-ID: <20230929102942.67985-4-avromanov@salutedevices.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230929102942.67985-1-avromanov@salutedevices.com>
-References: <20230929102942.67985-1-avromanov@salutedevices.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AA3015ADE
+	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 10:30:19 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2061.outbound.protection.outlook.com [40.107.244.61])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1DD01BFE;
+	Fri, 29 Sep 2023 03:30:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PaLG0uoCWuTno/jUNYzuIq9XX1NyQFDddZFcSdQyrEiiFMSjb6rThrU+cRNadP7uExEDmpy75UymIoabyPnQ82PqgJkWcHjXbRly10+6dBJ5F30D/pHbThPSZgm4yRwSbMhGn2nIYZ+km8K5XxveTqMOBnOTogklUovOCiMYLqKWEPCp9iZt0L2J0bIiS9NKmhIaWW9MkR4PPEYFlOlm1uO53AKvbX17tP7FP0qb4ENyPxIc2pu5Q8bK2586af9aggaDXWmC82bHJfqqjk3RBtMGpv1NtfL9obmg/9aIzu73Bm8azkHraqTqw8p82tLAojnwOZgWc7VGVfFYXwCcLA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bxBL1gg97Z8Mh5WoN5bctVJjOadrumzTJkD0PZkIYsw=;
+ b=QEDPsYAGPfnvcYnAOMG22+F4YWL2s32UMwW8YbY4X5641CF7idCFwH7LUbn/J2v3RTvaUUOfRkHoBeNo3e9Hoo9Ynj5zL2Fa9PY6T1n1SnGgOw7XYw8NPjihCx76fi8oa6NjLZq5pKLx8XMX7C9H0NAPiBgIyL2+RCv7616O2rcsvMcEORhS+oQ6fmNtCgtGtSePqC7VV5b9cXu0JLnz5L4ONjJgMts+VA06tesme3YZfuxRhTruCMlEzQduWsqODHBJQvgbfkzA6P1BCi9L+/AwqFwqVaOotRihAq/KExz6DuLoYT4MzX9gT/EJ8xRyoEaeozJZVALLk0UHhKzNiQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bxBL1gg97Z8Mh5WoN5bctVJjOadrumzTJkD0PZkIYsw=;
+ b=s7Op2r44Gzd3vHVnssxA1AW784KxxRhyJpRt+AXjpIzoNVZOOTQku3pqlvm9WWK5GMsFLU+tIJpkwE/2ZY5Rg80bLm0qGNeWa/wdPczQGdxOslIJLVktzS6PxyvaBFkx2qwMHcTXsA8XR5KEeT/79hF57L6IV2E+4MzbgaBUQR8l0B6/2t2u+MVKGkFICnQLSLouql1hIOR56zSxcoBh0G7n3BDvk5/DvF0gfYv1MvOngH8FR6iuk/zDGG/tkzPOu4Zl60bSGgBtyARW5BcqJl95ePvliEn8Yhlk8DhcsVxQlXE4xYQcRS8p3WaEq6ohMjDkl8UvAvKVEwA+h8pBXQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
+ CH2PR12MB4310.namprd12.prod.outlook.com (2603:10b6:610:a9::15) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6838.25; Fri, 29 Sep 2023 10:29:59 +0000
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::3356:8104:bbc3:69fc]) by CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::3356:8104:bbc3:69fc%6]) with mapi id 15.20.6813.027; Fri, 29 Sep 2023
+ 10:29:58 +0000
+Message-ID: <99d640c6-f7cc-80ab-f7ae-fe18b9bd4de3@nvidia.com>
+Date: Fri, 29 Sep 2023 11:29:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH V4 2/4] dt-bindings: hwmon: ina3221: Add
+ ti,summation-disable
+Content-Language: en-US
+To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, Ninad Malwade <nmalwade@nvidia.com>
+References: <20230929102744.84989-1-jonathanh@nvidia.com>
+ <20230929102744.84989-3-jonathanh@nvidia.com>
+From: Jon Hunter <jonathanh@nvidia.com>
+In-Reply-To: <20230929102744.84989-3-jonathanh@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO4P123CA0391.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:18f::18) To CO6PR12MB5444.namprd12.prod.outlook.com
+ (2603:10b6:5:35e::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 180231 [Sep 29 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 535 535 da804c0ea8918f802fc60e7a20ba49783d957ba2, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/09/29 07:52:00 #22006267
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|CH2PR12MB4310:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6565d534-23db-4cfc-a31b-08dbc0d707d1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	FQaoTftW0d8AOD4/fqSyI5hVSnL/IEJaqXMFP/GceM8a/AROypxkig7AbwAP0hS2VCT5L/85Sc+P1pX0zJDUE5nwH1QBtNFgw6+KSwOxbxdTRlWe3d3foTa1RuCBIFSvzL7cU4v3XqQmQAEv6bUc49ADntpNfxVL4OCnt4AYbF4TXUDLWNMaVSBej2rNpDK3aKJxTl0GtplZexK5vBNvnGfHUDFdWT8h5nvqkW0oSq56C3YrzIiEvbRHiS5Ane8ZgnLlsoDupabdT4DWFigvCGEeHomLjD8eI2fqrm26XkTmTP/6tQaxwTeqbbjrgdzKv07/JikqQpptSambjg5RUS4t0k49wULqOSWMjZo7KnAqYqAiirmDBNqCndpvnhrZ1ypV4L4Q3+Y2Kua9/8MMj3LhlRqLMsYce7oiUQrdcK+S3v86KyM2DJdkbfKp/eyGZ6RyPuumuK3q9e6ZpqKbn5FMl3yiJ+w6Zx1cLN2EfmUdhUDoE6ctAFbPCYL2ISu1eQniZx8LPzY5BvXpcNe1h6Io51U/xdu70alp7aAD8LISbZixSA0pWVKBCWyF4gJzw0zz1Tw1H8mBQ28A1GdQ86501G58oScB+noWio/uUqHBOS+5TTEGfODZt/86X/lAvyGgAebJpTPNeLY0zbTAnw==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(39860400002)(376002)(366004)(136003)(396003)(230922051799003)(451199024)(1800799009)(186009)(64100799003)(31686004)(2906002)(41300700001)(316002)(4326008)(8676002)(66946007)(8936002)(5660300002)(36756003)(110136005)(66556008)(6512007)(107886003)(478600001)(86362001)(66476007)(31696002)(6666004)(53546011)(6506007)(38100700002)(2616005)(6486002)(83380400001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?NEhmWjRFdmQ4YzVxY2luYURLNnh5MEhya1ViaFBQNlhaQ2NMVjlBZHpuZUwr?=
+ =?utf-8?B?SXZkTG1id1ZBdEhzdkVPT2pvcHE5MjVtblA4MkdYMS9yNmFGaGI2YWtueEs3?=
+ =?utf-8?B?V1g0cmhFMmR4c29CWEpuNE1vR0JoRWJNbE9GaGNjVHphOS92bVlPTXErYldN?=
+ =?utf-8?B?NVl0U0xTWDNuanU4dkNUb041Z1VETXh3VUxmeERWWlFsVm9iRlVQQ1MvSmNm?=
+ =?utf-8?B?VzM3WFd2cmdGVjZlRUxRVWgxYWQvdElyQW5FaUxhb3Z6TXlIVmFZT0tkODAx?=
+ =?utf-8?B?c2d3K2VCelBRTUpXZE5KMTFzMDFPV29uQk04ckdaUFlPOHFFbm1EcTVGQmh4?=
+ =?utf-8?B?SG9OcDB2NTdrcC84bm0wM0E4eE16VzlrVTBwcU1GL0cvV01YajN3UEtiSm5r?=
+ =?utf-8?B?UndiK2JsMFpCcksxaUlaQlliQTFINXRnSWJtZ0FpRlNBcGlIZGxuQkVqN3ZJ?=
+ =?utf-8?B?WktjT2g2U0pLdzk4bVJvTk54b2E5bWFPa05WZjh0OHFRQUxVK2ZJT3ZFaWVK?=
+ =?utf-8?B?ZEdYaDQrd0pVckIzVGxqaU5jblluU0w2VzY4VVNOajdRK1BvbnM2aFNOZ29s?=
+ =?utf-8?B?R1ZySk9LM3FrZVNUVFI1SitXRnY3bmRoblgzN1hRNXJlTjhlcUYzbmtyVVpZ?=
+ =?utf-8?B?VDlsa0ttM2x0dEFMMFBhTjF1Z2xMTi9NckM2RWFOQXp6aW94NGtkMmVxc2lX?=
+ =?utf-8?B?SFdSZ0grTjBNTk4ycWlDdXBtN0pBM2ZSOTE4NzJZN2JISGtMN1pzZmdVeWlU?=
+ =?utf-8?B?eks5bUZnWkU4dk54cjRFWnpoN0twSFpVTk8zUFB6STVkUWtKU05hSHZQRGU0?=
+ =?utf-8?B?RFVxdzhhUVZJTUY5YjdNTnFNeFFlSWVCL212RmF4a2hpcFRPbk5VUkhYajVm?=
+ =?utf-8?B?QnY2blNiQWVPVndwSDJFM2ZFeW1ReXpZeU5FQjFjWFo0bjFPZVF1dmNRY2dQ?=
+ =?utf-8?B?T05nbVVzWFIvaGdRb1cwMmt5M0YxVVJkeDRZOEVLOTh5R3lRdXhmNk5wUXVN?=
+ =?utf-8?B?amtCS2I0ZzI0L01td2pES0xwSk5McG9jaEtaemxWWTlyRVIxazJyOGFva0Z5?=
+ =?utf-8?B?TEdqZTROSFg0QTlkelJRVGw1RExCeXQybk1mSHBLVWVQVFNVUkZ6VnJkYlRG?=
+ =?utf-8?B?dGgxOFRTeS9MNXN4bzZIRFJJT20yaXBBSmFYck1hY3BpWnIrMThlYVFRbVZ6?=
+ =?utf-8?B?anNrK3VwL1czSUp1OGtRZE1jL3NzemZWMXNiVHZjTTVycXBVNHZvVFAvNzl4?=
+ =?utf-8?B?dHlnMzVZVGN3YjFNT2J2c2VNK2g4WU1jSkhjdFk1UTU2VTdXa0tjZG96UTZ6?=
+ =?utf-8?B?SUhBOS9GMXZDSFlXSlVJU3NsaGE0SlNYVkwvaUpoc3ZuTUFuS01ySHFEUGVD?=
+ =?utf-8?B?aUd5ODZaYVpycUFXQTdabkp3b2UzMVNuUU9ISWVhL3RJa3pHKzFXNXB6bXFN?=
+ =?utf-8?B?YXcyK21udmIzdjVnNjU4VkhBQ1E5SGt5WHJMakl0U0NRVG1IZWtZMTJtUkts?=
+ =?utf-8?B?UW9GRGRFZ3pXYThORkdOQWlncGpua2Z0c1FVeDlBNDFjNElmek9Fd3NlbnN0?=
+ =?utf-8?B?QXVXb2FrSnhEWDlBcDUzd21wcGlLLzRWMkVUOVp4UCttMXBXNGNrSGx0UU9O?=
+ =?utf-8?B?ZHRTRHkwbml0dVNxSUpoK3Y2RW1sUnJETk5tUDRaSHFlK0EwVkp2b1BKald4?=
+ =?utf-8?B?eGdEN05YaDg0aC9MV2dyRTExZzR4Sy9VdEdDVVdkb3pSRXU1bWh0Q1hGMVFk?=
+ =?utf-8?B?ZkJFSGJqRlhFcHpPNGdjV0ErYXJEU3haRlNjeEthMEgvekIxa0crZG5pUS9m?=
+ =?utf-8?B?dDRrRWhxYnE3NmVEbjhNZ2lqenVvOE9EdzQwTXVIY2tZcUZDNGk0NTAxVTFP?=
+ =?utf-8?B?bTBKMlhZV1ZrRmdBSDByU09hdTgzSEF4WTFMaEJ4eno2Wng4cEJjTXdSVXR3?=
+ =?utf-8?B?YktDN29COWszcHhXN3pDSGdHZzVMVDdyQ2FFV2YzUW4zUW5IS3d6K3Fhb1RZ?=
+ =?utf-8?B?V1p0aHFNNTNLTjhOYnhkUDFtaEZFc3FGYUlRbzlEN2ZPTDJ6cVRhcUJrK3Fm?=
+ =?utf-8?B?ZVhDWHRwaGxoY1pFMEdqU0VhNmtTcitEMzdGaTZWWDdaRWRrQU1IZUtXZ0Ux?=
+ =?utf-8?B?MXp6ZzdJUVdOektQSHZ0czZTdk9RMzIrTDlYbEtyVGNqcnU4VWdCTEs5bjR4?=
+ =?utf-8?Q?4Rq2Q6sMz599xm205qg7eRE7ng5ZzqMM5SaA8tPcBSaJ?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6565d534-23db-4cfc-a31b-08dbc0d707d1
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2023 10:29:58.7103
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hJZlBgOcBhnQn0ECgXkKY+5EHFEoQf3vqvYMLvPq6RMO2kqBsieJJJ0Qf1Kqqw1AFQ9JDeUlLVEhCm8hrXDSJA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4310
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+	NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+	SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Alexey Romanov <avromanov@sberdevices.ru>
 
-Using this node, we can obtain random numbers via
-hardware random number generator.
 
-Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+On 29/09/2023 11:27, Jon Hunter wrote:
+> The INA3221 has a critical alert pin that can be controlled by the
+> summation control function. This function adds the single
+> shunt-voltage conversions for the desired channels in order to
+> compare the combined sum to the programmed limit. The Shunt-Voltage
+> Sum Limit register contains the programmed value that is compared
+> to the value in the Shunt-Voltage Sum register in order to
+> determine if the total summed limit is exceeded. If the
+> shunt-voltage sum limit value is exceeded, the critical alert pin
+> pulls low.
+> 
+> For the summation limit to have a meaningful value, it is necessary
+> to use the same shunt-resistor value on all included channels. Add a new
+> vendor specific property, 'ti,summation-disable', to allow specific
+> channels to be excluded from the summation control function if the shunt
+> resistor is different to other channels or the channel should not be
+> considered for triggering the critical alert pin.
+> 
+> Note that the ina3221 has always supported summing the various input
+> channels and summation is enabled by default if the shunt-resistor
+> values are the same. This change simply provides a way to exclude
+> inputs from the summation. If this property is not populated, then the
+> functionality of the driver does not change.
+> 
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> Signed-off-by: Ninad Malwade <nmalwade@nvidia.com>
+> ---
+>   .../devicetree/bindings/hwmon/ti,ina3221.yaml | 23 +++++++++++++++++++
+>   1 file changed, 23 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
+> index d0e64a72af5b..d69f50d0e4ab 100644
+> --- a/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
+> @@ -58,6 +58,25 @@ patternProperties:
+>         shunt-resistor-micro-ohms:
+>           description: shunt resistor value in micro-Ohm
+>   
+> +      ti,summation-disable:
+> +        description: |
+> +          The INA3221 has a critical alert pin that can be controlled by the
+> +          summation control function. This function adds the single
+> +          shunt-voltage conversions for the desired channels in order to
+> +          compare the combined sum to the programmed limit. The Shunt-Voltage
+> +          Sum Limit register contains the programmed value that is compared
+> +          to the value in the Shunt-Voltage Sum register in order to
+> +          determine if the total summed limit is exceeded. If the
+> +          shunt-voltage sum limit value is exceeded, the critical alert pin
+> +          is asserted.
+> +
+> +          For the summation limit to have a meaningful value, it is necessary
+> +          to use the same shunt-resistor value on all enabled channels. If
+> +          this is not the case or if a channel should not be used for
+> +          triggering the critical alert pin, then this property can be used
+> +          exclude specific channels from the summation control function.
+> +        type: boolean
+> +
+>       required:
+>         - reg
+>   
+> @@ -81,6 +100,10 @@ examples:
+>   
+>               input@0 {
+>                   reg = <0x0>;
+> +                /*
+> +                 * Input channels are enabled by default in the device and so
+> +                 * to disable, must be explicitly disabled in device-tree.
+> +                 */
+>                   status = "disabled";
+>               };
+>   
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index 5a3abcc08ee5..e0cfc54ebccb 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -148,6 +148,11 @@ ir: ir@84040 {
- 				interrupts = <GIC_SPI 22 IRQ_TYPE_EDGE_RISING>;
- 				status = "disabled";
- 			};
-+
-+			hwrng: rng@440788 {
-+				compatible = "amlogic,meson-s4-rng";
-+				reg = <0x0 0x440788 0x0 0x0c>;
-+			};
- 		};
- 	};
- };
+Ugh, I added this to the wrong patch. Let me correct this and send this 
+again.
+
+Jon
+
 -- 
-2.25.1
-
+nvpublic
 
