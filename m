@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-4867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B6757B41E2
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 17:53:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B3237B41E4
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 17:55:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id EE157283868
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 15:53:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 008F72839CE
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 15:55:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C02517738;
-	Sat, 30 Sep 2023 15:53:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1D611774F;
+	Sat, 30 Sep 2023 15:55:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14D09F9CF
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 15:53:20 +0000 (UTC)
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9A97AC
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 08:53:17 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9a9cd066db5so2150590866b.0
-        for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 08:53:17 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51503171D1
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 15:55:02 +0000 (UTC)
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29E259C
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 08:55:00 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-533d6a8d6b6so16593800a12.2
+        for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 08:55:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696089196; x=1696693996; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696089298; x=1696694098; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/2uVIZFE3aqCQS1tNVd83Z0RiNW7hSOeczOsLxQAFFU=;
-        b=shq+ZTeyMPY+oc3CaoO4atJOOJtMRN8QOjRkBNOSPc6hNIPU15somPdNVNeZPEZk4G
-         pAn2bAaNBb5BXOYtsuIl7bGVx1xz2iAAnmgwHt2lRYJ0JmWX67Q5RBhVjnthLRp1JSIA
-         04cRB95iqQHWXwA2DWUe+itfGcXk0ZRfhfke5+vngPq9HHq0vs6PnCnhKpRiqBzaHSK/
-         Z3oLLwOyXcBG/NV1z+x01uBXTVzC82tA03k4dxFXUm6+05vcD/XgB6PvONyz4S5S34Yf
-         25TN4d4sVeQOMxHnvFpBxSKUbpCWfirLM5hQZEhRSM65v3pISlaCMKc5uVOuvioMsmLZ
-         x+lQ==
+        bh=2B8e2RLbhf6NIZj5B6D1EhLGeVOUc1Kv8+5YDYEVIuY=;
+        b=i3iRxEfWwj4FG0zG8qxGQvd9j0dFXnFqx7NDtP7qfiub/vqg3m8RPmVsFg1uZ7P6Q3
+         PLyZw3aGz8HhAFiWcY8ZQxgjMPctg6kHMHpf3v0jZRXup6ynAok8zXN2rLkmojFUdw04
+         h+7aENdPX+g4PWFtRhYulIB5MWF9tPxe9/2d6wyQsEe+wX6PrzkFnkH/ExRy+hNXMiI7
+         BmLB/Q5+NS2e6s6nJ6dpnzF3Piy5lqSOg9UAkuQJA7kq+oQkXlMWRx/yzoODCs+bMaoL
+         Ew/+wq7Uxp5MTYKgJBjzGAL4U8MB9OI55Un3OpRwL4lQejo4leNRKJEaBBDnuaqv/q+/
+         xLgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696089196; x=1696693996;
+        d=1e100.net; s=20230601; t=1696089298; x=1696694098;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/2uVIZFE3aqCQS1tNVd83Z0RiNW7hSOeczOsLxQAFFU=;
-        b=nyJa4gcnp4SPRytgGO3aBacXls84xUofmImbzoX3VPRxkj4Ycd+my9xCL8TWmiIRK8
-         13kAanfrgSsWgQkswEzy4KWzn2zMb2z8Ug4CXNnM3jv36poKEh1vEU+wZEviAMUhZdZ+
-         pXwYLNlGJ+uWdVHUJYG0gjXi3GBCkJp7TQDY04VbjTL6OAI21Zv72OH02w52xQLIqvfv
-         yEw5vIpfOxBsLRvU+htnQdYSIWSFLgV2uKWRX/SVmSiokiIp4g0qd9OGiKzYjH5nYWbd
-         lK71LXq+PHe3scPw7adOSkN7ne1VhDwmVZuG5z500uHdUT8vAyvBqCmKtXlDjC1Df2pE
-         7FSw==
-X-Gm-Message-State: AOJu0YzXgGBLHbpEzvYzB9yrR1Ygbv2uANDyFVH909I7uEmyPEbE6zME
-	ytKYNSNNaV7kazS1AZkBVl2zLQ==
-X-Google-Smtp-Source: AGHT+IHv04U+mJ7vZ5Z31pa8YFrhhYBt1IRl/UG6TdlATssdiEqeZL9SEyqOLQu437jPM/gAdYnhCw==
-X-Received: by 2002:a17:906:8a47:b0:994:4095:3abf with SMTP id gx7-20020a1709068a4700b0099440953abfmr6288847ejc.14.1696089196387;
-        Sat, 30 Sep 2023 08:53:16 -0700 (PDT)
+        bh=2B8e2RLbhf6NIZj5B6D1EhLGeVOUc1Kv8+5YDYEVIuY=;
+        b=Ut4dWVuTjmtP12W+o+ylThYyX8r7t9tFuJGSs4I3GT4042osaROFrdGW7JroBcqvcP
+         Hn4yKO81cJOjeA+HGZbgC0mHo4jSi3KjDnu80GXJL3u4bz3zvF4HgwlnOOzs6DOwixiw
+         w1Ht/qIqusUtDwHv7gk3DymANDzenGiofQKNkXFm3zx7CloxeAoLov00l5rar4AsH7r7
+         oZHza4lJnedYl308QKHWd/JkPHwGbUkpxW99e2of4b81yXwF6Ok5BOwhB3pOJb1NSeN8
+         406MNL4kXvgXnAckNqyccDREqB13vytki6aJCJUMJ9R1NIcWQLgNQ2bfQG9layvV3599
+         iy1Q==
+X-Gm-Message-State: AOJu0YzMh4b5birEku48WI6lWIEy4BbOx4n8ms6wtrs1ZL7+IGC7x0h8
+	C43PAS7Q32QJ7xU8wIGjLE9pPA==
+X-Google-Smtp-Source: AGHT+IGmbXl1/2UScDwGgCr9q1ZmJ2w/CoNjmjVXdB2aVNh9JO7jT/zLchBfb9kj2s8gmdSuh4sCkw==
+X-Received: by 2002:a17:906:301a:b0:9a1:6318:4d39 with SMTP id 26-20020a170906301a00b009a163184d39mr6169887ejz.29.1696089298440;
+        Sat, 30 Sep 2023 08:54:58 -0700 (PDT)
 Received: from [192.168.8.76] ([88.155.12.231])
-        by smtp.gmail.com with ESMTPSA id lf11-20020a170907174b00b009ad81554c1bsm14108157ejc.55.2023.09.30.08.53.11
+        by smtp.gmail.com with ESMTPSA id lf11-20020a170907174b00b009ad81554c1bsm14108157ejc.55.2023.09.30.08.54.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Sep 2023 08:53:16 -0700 (PDT)
-Message-ID: <51abc760-8d6a-41b6-8a10-e03be5edc486@linaro.org>
-Date: Sat, 30 Sep 2023 17:53:11 +0200
+        Sat, 30 Sep 2023 08:54:57 -0700 (PDT)
+Message-ID: <2720c275-9fc8-426f-b72d-56a06afec6fe@linaro.org>
+Date: Sat, 30 Sep 2023 17:54:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,20 +63,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] Add C3 SoC PLLs and Peripheral clock
+Subject: Re: [PATCH v2 3/3] usb: chipidea: Add support for NPCM
 Content-Language: en-US
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20230928063448.3544464-1-xianwei.zhao@amlogic.com>
+To: Tomer Maimon <tmaimon77@gmail.com>, peter.chen@kernel.org,
+ gregkh@linuxfoundation.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, xu.yang_2@nxp.com, peng.fan@nxp.com,
+ avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
+ venture@google.com, yuenn@google.com, benjaminfair@google.com,
+ j.neuschaefer@gmx.net
+Cc: openbmc@lists.ozlabs.org, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230927095509.267029-1-tmaimon77@gmail.com>
+ <20230927095509.267029-4-tmaimon77@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,7 +120,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230928063448.3544464-1-xianwei.zhao@amlogic.com>
+In-Reply-To: <20230927095509.267029-4-tmaimon77@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -132,24 +130,40 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 28/09/2023 08:34, Xianwei Zhao wrote:
-> Add C3 SoC PLLs and Peripheral clock controller dt-bindings.
-> Add PLLs and Peripheral clock controller driver for C3 SOC.
-> 
-> Xianwei Zhao (4):
->   dt-bindings: clock: add Amlogic C3 PLL clock controller bindings
->   dt-bindings: clock: add Amlogic C3 peripherals clock controller
->     bindings
->   clk: meson: C3: add support for the C3 SoC PLL clock
->   clk: meson: c3: add c3 clock peripherals controller driver
-> 
+On 27/09/2023 11:55, Tomer Maimon wrote:
+> Add Nuvoton NPCM BMC SoCs support to USB ChipIdea driver.
+> NPCM SoC include ChipIdea IP block that used for USB device controller
+> mode.
 
-This was absolutely never tested :(
+...
 
-It does not look like you tested the bindings, at least after quick
-look. Please run `make dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-Maybe you need to update your dtschema and yamllint.
+> +	ci = devm_kzalloc(&pdev->dev, sizeof(*ci), GFP_KERNEL);
+> +	if (!ci)
+> +		return -ENOMEM;
+> +	platform_set_drvdata(pdev, ci);
+> +
+> +	ci->core_clk = devm_clk_get_optional(dev, NULL);
+> +	if (IS_ERR(ci->core_clk))
+> +		return PTR_ERR(ci->core_clk);
+> +
+> +	ret = clk_prepare_enable(ci->core_clk);
+> +	if (ret) {
+> +		dev_err(dev, "failed to enable the clock: %d\n", ret);
+> +		return ret;
+
+return dev_err_probe()
+
+...
+
+> +
+> +module_platform_driver(npcm_udc_driver);
+> +
+> +MODULE_DESCRIPTION("NPCM USB device controller driver");
+> +MODULE_AUTHOR("Tomer Maimon <tomer.maimon@nuvoton.com>");
+> +MODULE_ALIAS("platform:npcm-udc");
+
+Nope... if you need it, your tables are wrong.
+
 
 Best regards,
 Krzysztof
