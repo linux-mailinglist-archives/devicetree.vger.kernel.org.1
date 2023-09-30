@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-4806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B8EF7B40CF
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 16:18:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BAD17B40D1
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 16:21:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3D276281E62
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 14:18:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id D13B3281BB2
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 14:21:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E9B513FFE;
-	Sat, 30 Sep 2023 14:18:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F7851400B;
+	Sat, 30 Sep 2023 14:21:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04E4F2F49
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 14:18:54 +0000 (UTC)
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 924A2CF
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 07:18:52 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-32157c8e4c7so14911434f8f.1
-        for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 07:18:52 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD1C52F49
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 14:21:15 +0000 (UTC)
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB3B0C5
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 07:21:13 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4066241289bso10946675e9.0
+        for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 07:21:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696083531; x=1696688331; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1696083672; x=1696688472; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dbndJi5YFfypa54vy5nBzBG/Wj840NhBH9tsJciX4N0=;
-        b=EaboqiKaBJSfEPMMPEFaSBJYndyRRlzSjk6G3ePF4/nqvEXEX328l6sTpzNXLb/b54
-         WKOEeCP5QCPifxr2bRM6FX9+GXbYVA3mZjviSt7aOk+QA4RVlalYCtUSVJTDafmLnHRZ
-         1aNqcD3Zn+d0FPV+2tI0k9gPSeUpZS9LBZL0DTVh/9rTMH1YJz/pqUIHxts6/vhMJtWC
-         hFoQk96yVwnfXMo+t1mGdAZH9nmKvX25RSEko+CxWhJP512bXgtJGFgQbLw7UZCKs54i
-         DahSARqP9GnrWWbob6fVfViFHNlQkLEK/stIRerKYD/mchGoBEs7dkhyMlWyb32Huz6F
-         VpJA==
+        bh=6ey7GhagyZlaftDb8wbR4DIdFZKjnZH1WMVGlp0akp0=;
+        b=TUlp5XgRUHBKyd078BRbpR638c7VLJev+LOH+yDX3VkDw4hNCLpZc/Ar7orVQBjc8G
+         YXiYQFETLUpPQA0vGMf31pHjIXIJI8g7blQ4Mx5ulAmgi8Gy/h0n2Ni5bb+FNm37QhXH
+         c6dE02foPWSyMSwNRNlEv9kqnXkPI9GtwBztdyBkSj4fzbVtStzg6+gpPczhWGxZ+uem
+         I90151iIoMJCcQ5/nGXoRbd8ts5mB+JQ3yyd3q3sqoI7XHQacqT3OrAtaq17fcvqVExG
+         2QATeAVFXZYv2Je3RYLGEl26isasEb+xmNKnQjHKI7Ee7k7AtUwzD0DdJD9cjUpc98XK
+         TUSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696083531; x=1696688331;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1696083672; x=1696688472;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dbndJi5YFfypa54vy5nBzBG/Wj840NhBH9tsJciX4N0=;
-        b=kw2oH1I2bBwFHejPXj6TEanEkWeXmyvHj5igIULwyaWXjywSHA75vbi2FHciwG6OQM
-         W5ks23ttz5uExJtX7nVSBQywx+k0qj+j+V/5yDOuHcdfWPy4HHIAQeiX1U1YEjm19pXl
-         +MLEKaQFDRSnOUVYe2RFX12rp7PLQQpp8bX0uyAQGPBXUoNKnhUzRbefiAXIfbHA1Imk
-         EE8SuJ4ocK6yLdp9geaz0RMu1jcLafU7iKAAtP7gpgl0UTK9j33VS3WpwMPDdNgayHoS
-         uqZukAEPlvjxC1a64FHgS4aS5pQ2Ae+TeX4pzc2EyTltKjhRyu060/Y/5sPo5wYVLZEZ
-         Mfog==
-X-Gm-Message-State: AOJu0YyjBYJ2Cl0LTZcQas+YQss9H4g0zLhEnJZpteoT+w/weowYYWS7
-	/iPGygqFXQF4qikNqVfKgTkntQ==
-X-Google-Smtp-Source: AGHT+IHih3G2RTH/t2WSx/N9Ziu1QRRP3RWdr0JMxbqO6wO6KvNDOYFFCePqayTuacflmQ7teBkGzA==
-X-Received: by 2002:a5d:564c:0:b0:323:37b4:fbe5 with SMTP id j12-20020a5d564c000000b0032337b4fbe5mr6248488wrw.8.1696083530933;
-        Sat, 30 Sep 2023 07:18:50 -0700 (PDT)
+        bh=6ey7GhagyZlaftDb8wbR4DIdFZKjnZH1WMVGlp0akp0=;
+        b=KExD9ITXWUG/Xe0il/G3Fc0fYbgQpIDE9yEq3zFhitFxBDlMcuLS7bvbYtiystWYD9
+         XBvMjUV1AFBWaNr/NYR4Q2w9dak4n6f9lff62huMaUas2OHRHyH/d/qecTt+W60t8HQX
+         q4TWpnm4FlykZb0cPlKy8I4rRkjNR5Fr1kurCH2S7ADfX9JXEe8VRjp9uaCQh0hqsaoc
+         PGXkcHNdZ058aV1Q1xPjFfMGtRVVWPZto7fZgPZISSll2ju19ED3LhG3zbZptNq7Rc63
+         t3lZdb+F/x1//oInQLxxJ6a97e3bE0fIqd5sHVuNVeHp4NTK/Dfayv2F4DUeWvyntMwA
+         C64w==
+X-Gm-Message-State: AOJu0YxTM0m7Dbqz3D31Pdw5dHYfYluqmwV4fyThR2gqoR0aKqQPQ6/+
+	CPIfQaBTS6kXsaIc+NwO8Toytg==
+X-Google-Smtp-Source: AGHT+IFenFmbQVEGZA3WVBLMRW9XVwuSzJpwdUCF3b59m/NWmBjD28ErTyjUDbE68kFM0effDC2G5Q==
+X-Received: by 2002:a5d:42c5:0:b0:319:8ce0:4e52 with SMTP id t5-20020a5d42c5000000b003198ce04e52mr6884662wrr.67.1696083672132;
+        Sat, 30 Sep 2023 07:21:12 -0700 (PDT)
 Received: from [192.168.8.76] ([88.154.47.206])
-        by smtp.gmail.com with ESMTPSA id b16-20020a5d4d90000000b0031fba0a746bsm3927049wru.9.2023.09.30.07.18.45
+        by smtp.gmail.com with ESMTPSA id p14-20020adfe60e000000b003197b85bad2sm23963175wrm.79.2023.09.30.07.21.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Sep 2023 07:18:50 -0700 (PDT)
-Message-ID: <38b9d6fb-2800-4308-bd9e-7e743aa9f175@linaro.org>
-Date: Sat, 30 Sep 2023 16:18:44 +0200
+        Sat, 30 Sep 2023 07:21:11 -0700 (PDT)
+Message-ID: <b6d74f21-86d1-437b-830a-c6b3162317c5@linaro.org>
+Date: Sat, 30 Sep 2023 16:21:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,16 +63,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: clocks: qcom,gcc-ipq8074: allow QMP
- PCI PHY PIPE clocks
+Subject: Re: [PATCH 1/7] media: bindings: hynix,hi846: Add
+ video-interface-device properties
 Content-Language: en-US
-To: Robert Marko <robimarko@gmail.com>, agross@kernel.org,
- andersson@kernel.org, konrad.dybcio@linaro.org, mturquette@baylibre.com,
- sboyd@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, quic_tdas@quicinc.com, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20230930103316.234103-1-robimarko@gmail.com>
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Fabio Estevam <festevam@gmail.com>, martink@posteo.de
+References: <20230929151825.6535-1-jacopo.mondi@ideasonboard.com>
+ <20230929151825.6535-2-jacopo.mondi@ideasonboard.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,25 +121,31 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230930103316.234103-1-robimarko@gmail.com>
+In-Reply-To: <20230929151825.6535-2-jacopo.mondi@ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 30/09/2023 12:32, Robert Marko wrote:
-> Allow passing QMP PCI PHY PIPE clocks to the IPQ8074 GCC to avoid having
-> to do a global matching by name.
+On 29/09/2023 17:18, Jacopo Mondi wrote:
+> Allow properties from video-interface-device.yaml for the SK Hynix Hi-846
+> sensor.
+> 
+> All properties specified in video-interface-device.yaml schema are
+> valid, so make them accepted by changing "additionalProperties: false"
+> to "unevaluatedProperties: false" at the schema top-level.
+> 
+> Add two properties from video-interface-device.yaml to the example
+> to validate the new schema.
 
-I would prefer commit msg refering to hardware, not driver. Basically
-the PCI PHY pipe clocks are inputs to the clock controller.
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. dt-bindings, not bindings. You mess with all our
+filters...
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
