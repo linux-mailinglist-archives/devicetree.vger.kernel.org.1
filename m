@@ -1,172 +1,282 @@
-Return-Path: <devicetree+bounces-4912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0365A7B4475
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 00:19:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BF617B447D
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 00:34:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 3D03DB20A8F
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 22:19:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id E9455281EF6
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 22:34:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E713199BD;
-	Sat, 30 Sep 2023 22:19:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51F0817C2;
+	Sat, 30 Sep 2023 22:34:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49227199A7
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 22:19:34 +0000 (UTC)
-X-Greylist: delayed 354 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 30 Sep 2023 15:19:31 PDT
-Received: from out-196.mta0.migadu.com (out-196.mta0.migadu.com [91.218.175.196])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8817EB
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 15:19:31 -0700 (PDT)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ansari.sh; s=key1;
-	t=1696112058;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=K8PpjHqxnCO1TKXu1Y9W7JM/e8rCQ40nYFn9Vma7VkA=;
-	b=Eo1bP8butstNCjYbF5824tVmBdlxK1L+zWcxpuGOH2akC+y1XzzMDmIjElV+S8Lf4RUEww
-	9FMqdLjOdTDUHdbKrQgQbKk4CJ+ELrBRzfexuEWGgIB2kbTJ99HBK34h6vGV6cAvz5sGlw
-	5UMnXSN6/LSGiMC9U0Q09REDJe6rI7k=
-From: Rayyan Ansari <rayyan@ansari.sh>
-To: linux-arm-msm@vger.kernel.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht,
-	Rayyan Ansari <rayyan@ansari.sh>,
-	Dominik Kobinski <dominikkobinski314@gmail.com>,
-	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
-	Jack Matthews <jm5112356@gmail.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B01AA5C
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 22:34:26 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11olkn2010.outbound.protection.outlook.com [40.92.20.10])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63FE6CF;
+	Sat, 30 Sep 2023 15:34:24 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=N9a5bGazxXweaihtF5XEKkQT71MLkd13SLyXx0UsDBiZfuEV44HWjAvlrwRx0Ic1bSK/eHSBT989Ip8OV/50SMBHmN8+vuCQm/6xv/tREPq3Z0MQqAAHwgJ+UsSFXlXEweWFj9grmwg+QnknJwkbllwNqev7C9T5ckGChYKE9AMx96i2qBxOdyphislwXMRtZGg9ykDc/zPGCzkQ95VI5QqUa5uKzxY1Oc7ZcghJlT7WeMiHc/6PJJ1JzvE8EPX77ycbyd5ZJCt5PF9d7ztKI/E05fFnP6emhJ2IpMRiYbSq/W95as5Qv7tWkmRep22SBaVNBG2Pd8lCJedvihRZ9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=h2ZUGmPFeIbaa40ikX5CjtX8HrLvG8twnUatfGN+5tQ=;
+ b=c5mAuQ4PzMkQDO7iEJJRiT9i1/3L/+fh+tnGaWg6QezL05/qL5fpWdvHdwWsg05aJz6nBPr4zQFO8ofbfgBT0Q7LrVFl+K5b7Yt4Pb5Zxlz8k67fCd3JUvhoGCuAHDzjK2SXCi/sAJRP55UoI9BufrW1RHP/rMyAlZaXGdRdDSOzJX5seTMwZDhPrbc74jgzYiBN9c79gJ0WPTsIFRGtEMRpYKKaQqit2em8/a3DZU3toOR2sB/DTXG43Pjx+oXFu4M7x+NMNuFKSwVkJMQ799BqkJZURgErZ55TgM8TPaMoHz539fy5AnegRsCjxFJpObEiTaot58tkB9c9tzE/OQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=h2ZUGmPFeIbaa40ikX5CjtX8HrLvG8twnUatfGN+5tQ=;
+ b=eZwLVOXRknEYq3GHNBdn8gCdpeRrjz4bkC6TUflgpzGmT6eSgY5xya7pyJzreGqbBTxb1SfpT8lvvCVkt6fHtu/V9Wsrjq4lXIcVU3AdGMgVpCAMCRGCaO//CurTUqoagrYeZ8BGzg39HXXGz/Gv7xFr79JFRaKiZSkHrrdpDaKwV/V3mPl5DK78oU0O3pf5YvoSw8QKmjSOOwrnYG5//rf8Rl2sI8B4ZspxFt0r+K5FjvJWiUD3yqgdpGz/FawGBoao6TgzjDW1l/92HnOhHKMhy6IudqQp5vPBc6jRCDLkscx0hi1Y1wS5WdvJJb/nZET9JkfSw0ZdyUgXPWF35w==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by DM4PR20MB5631.namprd20.prod.outlook.com (2603:10b6:8:10d::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.29; Sat, 30 Sep
+ 2023 22:34:22 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::d050:882f:a8a7:8263]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::d050:882f:a8a7:8263%5]) with mapi id 15.20.6838.024; Sat, 30 Sep 2023
+ 22:34:22 +0000
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Jisheng Zhang <jszhang@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Marc Zyngier <maz@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Anup Patel <anup@brainfault.org>,
 	linux-kernel@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v3 6/6] ARM: dts: qcom: add device tree for Nokia Lumia 830
-Date: Sat, 30 Sep 2023 23:08:01 +0100
-Message-ID: <20230930221323.101289-7-rayyan@ansari.sh>
-In-Reply-To: <20230930221323.101289-1-rayyan@ansari.sh>
-References: <20230930221323.101289-1-rayyan@ansari.sh>
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	chao.wei@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	Inochi Amaoto <inochiama@outlook.com>
+Subject: [PATCH 4/5] riscv: dts: sophgo: add initial CV1800B SoC device tree
+Date: Sun,  1 Oct 2023 06:34:21 +0800
+Message-ID:
+ <IA1PR20MB4953CFE2FB68704D03082B4EBBC7A@IA1PR20MB4953.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20230930123937.1551-5-jszhang@kernel.org>
+References: <20230930123937.1551-5-jszhang@kernel.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [2L0fNImHv4TNWtWJextpm+Nw8/AdP+PvCtlaEBlfaEA=]
+X-ClientProxiedBy: TYCP286CA0063.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:31a::12) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID: <20230930223421.6878-1-inochiama@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|DM4PR20MB5631:EE_
+X-MS-Office365-Filtering-Correlation-Id: d99653a0-b891-424b-70b2-08dbc20564a9
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	Ezg4vJnp2STOM7k5IKIrsEhMYL6CVNuW3mKbAgrlweRhX/Q0czFPfXILQcKJlv/GcfB8of3a7w8ZimFi5LwjQt8m7AG/OhzL5x0svpfDEtPcpIUm8x+h5Z9EbOgFht5tBRnUbBhIMH8w49ztgw+DgphPwfoIoWuIhB5UO32YUnKhpXW00nJY+ZiAsORodBmAjGrv6zoQLqMXowKsWrOvOIrWCz2zPHP7z8pmzZpiQghT18sQlwKvM+xGty+tz9m0PaRMCJMQR3Q5zNtq2EPcMtuxFkhvyGcWf908jXK5QWp5jBAvtXfc8sbKSZatQBS5ZlhPB13ljZ3TLMWFhGB4i/UrAH6oqN7hoCRgan8UaTOM4fQEoYADHczchRgAX9LELxqc8b/5F+F3MBgFwFRLSxNCtmpog0IChJ8J2tN6YkF32/xAKpeK1QojVaiwlGiUSxB4Z+qEf1755VLHxp1zEvtT7Zdqxn7qFl/87NOYT5Ddnv9fCgmdAIiBn4nMS1Bw2hrcUAtCh1EQhq8wFZ2ctRtUauthafQ3NbUFFbxlR5xmGAWFMW7gk9SzofxZpOan2cGcH4KXk6oRH62k2Cu7OTQyfIYbPuwtyrPihg6mhNQZ2evtyLJ5U+McnQIqduIk
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Ouvd9fuoi2rE/01X6EFXJE7TNUQEXfjZ86EklBEb/ZBvNwj3lJjelNs4ijQo?=
+ =?us-ascii?Q?FLHD+YCBxkLl3LKQQpWIfVYgXhxGK5TRWelthDD4dK9gCDGtsDQ8M/JlxH3N?=
+ =?us-ascii?Q?AO+Znt3lZCWwIjt93NSwvx5zNf+5sH9jvJrhuxmuEznFHCDScH92zuBnat7/?=
+ =?us-ascii?Q?/W7XD+gxrR4mMUV4Jl1Txqq1pZgCCRluDAWP/y5jOYQaO1vIo1A9MIsO6unT?=
+ =?us-ascii?Q?xBv3xJunXhekOFVSZXPlPK6HpdEN1bZ4opHE38YfNgk3HmGQ9NyrlYgMKclT?=
+ =?us-ascii?Q?Ys6DrC9vgG+1G82ZMsFz3M0iNiQ1GWjWfaFShbP7Oy+2U0ELMh8LKGDo+gXJ?=
+ =?us-ascii?Q?Fn0i4+KeEc8ZuVG+WwnoRHf6gAmHCLfLr8hPj6Arla6EOchgpM2MujdnxGra?=
+ =?us-ascii?Q?+gzLB9naFl1j2MkchqOuHBUrIaHZAgoWOdnsYhIvomBtuYQlQDNtHLYDRkVc?=
+ =?us-ascii?Q?PBKAFukTepHdzy8b//06ClvB+j7RJtyHgSslCQx+mp+6tNHPb2oeGU7XtGcb?=
+ =?us-ascii?Q?EvahKjO00KAavDCz8e4H+PsdB/k3I8VyhSsnQUInUODs6FwZHJI4Rj2VFufL?=
+ =?us-ascii?Q?XCGjk7Q8k231VC/D51DGykN2OfqBgiFZAID9Ibk/l4kdGe4EDunZn9Q/2sJB?=
+ =?us-ascii?Q?hDgUMq/hAFjCpu6daIO6h8pVZa4GrSBS+cKByKOJbkKDhfC2fehc164fQcHJ?=
+ =?us-ascii?Q?hRwU//MnXNHyizEdFrqoG4R71BFm5GCs1BmLvmbEKmWJgSKUJgjznaA3GxV+?=
+ =?us-ascii?Q?DOdfDELyRcKDcxp1559Y7Zd6Ty5dFDGNYD1a3pS1jJlRDP24vM+ssBzX9Uxp?=
+ =?us-ascii?Q?h1ff2AkZ4pPiIVE26LoEdDPAGRFUX45+ZXlahGsqKnpcgajFXrorId36GI6e?=
+ =?us-ascii?Q?Dg2NbrxRm4jRLBqa8xhUDvEAz3LrTy7TplHyw2iSgJTWqLe7pqQRFpljRX5R?=
+ =?us-ascii?Q?E/1/wv0p7IhttPhzgA4kDQNvX+IBadlyhmEiJhINPS9zB/iYXZXpglMZIXlN?=
+ =?us-ascii?Q?m9yw3q7AENGm8go7ONFmto9uG3NAA0dpvVlkCZkM0eokwJZG6VsFEAXLd2S6?=
+ =?us-ascii?Q?4qtH8KDEbzWm9y148BVciUv7x5WPVAJ/cEa/rvUtRVdiebMU9YPzMP7iGh9x?=
+ =?us-ascii?Q?UUbVxLIy4SrgaGhfytOUktAl98EoI5aPt41xw8g+V8JdlDCU+sCHlR8CKD1c?=
+ =?us-ascii?Q?VPUKV4z/gWaQBlOgc6x37FkDfquCqWJAkUaVZrJAD1NTiGBEdtbzEWaXQc4?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d99653a0-b891-424b-70b2-08dbc20564a9
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2023 22:34:22.6262
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR20MB5631
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add an initial device tree for the Nokia Lumia 830, codenamed
-"tesla".
+Hi, Jisheng
 
-Co-developed-by: Dominik Kobinski <dominikkobinski314@gmail.com>
-Signed-off-by: Dominik Kobinski <dominikkobinski314@gmail.com>
-Co-developed-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Co-developed-by: Jack Matthews <jm5112356@gmail.com>
-Signed-off-by: Jack Matthews <jm5112356@gmail.com>
-Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
----
- arch/arm/boot/dts/qcom/Makefile               |  1 +
- .../dts/qcom/qcom-msm8926-microsoft-tesla.dts | 67 +++++++++++++++++++
- 2 files changed, 68 insertions(+)
- create mode 100644 arch/arm/boot/dts/qcom/qcom-msm8926-microsoft-tesla.dts
+You add the clint dt-bindings of CV1800B clint, but I don't see the clint
+node in this dt. The SBI needs this clint node to provide timer for linux.
+AFAIK, the dt of SBI comes from the linux or the bootloader, and bootloader
+may load the linux dt and pass it to the SBI. I think it is better to add
+the clint node.
 
-diff --git a/arch/arm/boot/dts/qcom/Makefile b/arch/arm/boot/dts/qcom/Makefile
-index 7982620ec9f9..a3d293e40820 100644
---- a/arch/arm/boot/dts/qcom/Makefile
-+++ b/arch/arm/boot/dts/qcom/Makefile
-@@ -33,6 +33,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
- 	qcom-msm8916-samsung-grandmax.dtb \
- 	qcom-msm8916-samsung-serranove.dtb \
- 	qcom-msm8926-microsoft-superman-lte.dtb \
-+	qcom-msm8926-microsoft-tesla.dtb \
- 	qcom-msm8960-cdp.dtb \
- 	qcom-msm8960-samsung-expressatt.dtb \
- 	qcom-msm8974-lge-nexus5-hammerhead.dtb \
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8926-microsoft-tesla.dts b/arch/arm/boot/dts/qcom/qcom-msm8926-microsoft-tesla.dts
-new file mode 100644
-index 000000000000..53a6d4e85959
---- /dev/null
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8926-microsoft-tesla.dts
-@@ -0,0 +1,67 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2023, Jack Matthews <jm5112356@gmail.com>
-+ * Copyright (c) 2023, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-+ * Copyright (c) 2023, Dominik Kobinski <dominikkobinski314@gmail.com>
-+ * Copyright (c) 2023, Rayyan Ansari <rayyan@ansari.sh>
-+ */
-+
-+/dts-v1/;
-+
-+#include "qcom-msm8226-microsoft-common.dtsi"
-+
-+/* This device has touchscreen on i2c1 instead */
-+/delete-node/ &touchscreen;
-+
-+/ {
-+	model = "Nokia Lumia 830";
-+	compatible = "microsoft,tesla", "qcom,msm8926", "qcom,msm8226";
-+	chassis-type = "handset";
-+};
-+
-+&blsp1_i2c1 {
-+	status = "okay";
-+
-+	touchscreen: touchscreen@4b {
-+		compatible = "syna,rmi4-i2c";
-+		reg = <0x4b>;
-+
-+		interrupts-extended = <&tlmm 17 IRQ_TYPE_EDGE_FALLING>;
-+		vdd-supply = <&pm8226_l15>;
-+		vio-supply = <&pm8226_l6>;
-+
-+		pinctrl-0 = <&touchscreen_default>;
-+		pinctrl-names = "default";
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		rmi4-f01@1 {
-+			reg = <0x01>;
-+			syna,nosleep-mode = <1>;
-+		};
-+
-+		rmi4-f12@12 {
-+			reg = <0x12>;
-+			syna,sensor-type = <1>;
-+		};
-+	};
-+};
-+
-+&blsp1_i2c5 {
-+	status = "disabled";
-+};
-+
-+&gpio_keys {
-+	key-camera-snapshot {
-+		label = "Camera Snapshot";
-+		gpios = <&tlmm 107 GPIO_ACTIVE_LOW>;
-+		linux,code = <KEY_CAMERA>;
-+	};
-+
-+	key-camera-focus {
-+		label = "Camera Focus";
-+		gpios = <&tlmm 108 GPIO_ACTIVE_LOW>;
-+		linux,code = <KEY_CAMERA_FOCUS>;
-+	};
-+};
--- 
-2.42.0
+In addition, please separate the peripheral node to a different file, which
+can be reused by both the CV1800 series and CV1810 series.
 
+Thanks,
+Inochi
+
+>
+>Add initial device tree for the CV1800B RISC-V SoC by SOPHGO.
+>
+>Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+>---
+> arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 117 ++++++++++++++++++++++++
+> 1 file changed, 117 insertions(+)
+> create mode 100644 arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+>
+>diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+>new file mode 100644
+>index 000000000000..8829bebaa017
+>--- /dev/null
+>+++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+>@@ -0,0 +1,117 @@
+>+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>+/*
+>+ * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+>+ */
+>+
+>+#include <dt-bindings/interrupt-controller/irq.h>
+>+
+>+/ {
+>+	compatible = "sophgo,cv1800b";
+>+	#address-cells = <1>;
+>+	#size-cells = <1>;
+>+
+>+	cpus: cpus {
+>+		#address-cells = <1>;
+>+		#size-cells = <0>;
+>+		timebase-frequency = <25000000>;
+>+
+>+		cpu0: cpu@0 {
+>+			compatible = "thead,c906", "riscv";
+>+			device_type = "cpu";
+>+			reg = <0>;
+>+			d-cache-block-size = <64>;
+>+			d-cache-sets = <512>;
+>+			d-cache-size = <65536>;
+>+			i-cache-block-size = <64>;
+>+			i-cache-sets = <128>;
+>+			i-cache-size = <32768>;
+>+			mmu-type = "riscv,sv39";
+>+			riscv,isa = "rv64imafdc";
+>+			riscv,isa-base = "rv64i";
+>+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+>+					       "zifencei", "zihpm";
+>+
+>+			cpu0_intc: interrupt-controller {
+>+				compatible = "riscv,cpu-intc";
+>+				interrupt-controller;
+>+				#address-cells = <0>;
+>+				#interrupt-cells = <1>;
+>+			};
+>+		};
+>+	};
+>+
+>+	osc: oscillator {
+>+		compatible = "fixed-clock";
+>+		clock-output-names = "osc_25m";
+>+		#clock-cells = <0>;
+>+	};
+>+
+>+	soc {
+>+		compatible = "simple-bus";
+>+		interrupt-parent = <&plic>;
+>+		#address-cells = <1>;
+>+		#size-cells = <1>;
+>+		dma-noncoherent;
+>+		ranges;
+>+
+>+		uart0: serial@04140000 {
+>+			compatible = "snps,dw-apb-uart";
+>+			reg = <0x04140000 0x100>;
+>+			interrupts = <44 IRQ_TYPE_LEVEL_HIGH>;
+>+			clocks = <&osc>;
+>+			reg-shift = <2>;
+>+			reg-io-width = <4>;
+>+			status = "disabled";
+>+		};
+>+
+>+		uart1: serial@04150000 {
+>+			compatible = "snps,dw-apb-uart";
+>+			reg = <0x04150000 0x100>;
+>+			interrupts = <45 IRQ_TYPE_LEVEL_HIGH>;
+>+			clocks = <&osc>;
+>+			reg-shift = <2>;
+>+			reg-io-width = <4>;
+>+			status = "disabled";
+>+		};
+>+
+>+		uart2: serial@04160000 {
+>+			compatible = "snps,dw-apb-uart";
+>+			reg = <0x04160000 0x100>;
+>+			interrupts = <46 IRQ_TYPE_LEVEL_HIGH>;
+>+			clocks = <&osc>;
+>+			reg-shift = <2>;
+>+			reg-io-width = <4>;
+>+			status = "disabled";
+>+		};
+>+
+>+		uart3: serial@04170000 {
+>+			compatible = "snps,dw-apb-uart";
+>+			reg = <0x04170000 0x100>;
+>+			interrupts = <47 IRQ_TYPE_LEVEL_HIGH>;
+>+			clocks = <&osc>;
+>+			reg-shift = <2>;
+>+			reg-io-width = <4>;
+>+			status = "disabled";
+>+		};
+>+
+>+		uart4: serial@041c0000 {
+>+			compatible = "snps,dw-apb-uart";
+>+			reg = <0x041c0000 0x100>;
+>+			interrupts = <48 IRQ_TYPE_LEVEL_HIGH>;
+>+			clocks = <&osc>;
+>+			reg-shift = <2>;
+>+			reg-io-width = <4>;
+>+			status = "disabled";
+>+		};
+>+
+>+		plic: interrupt-controller@70000000 {
+>+			compatible = "sophgo,cv1800b-plic", "thead,c900-plic";
+>+			reg = <0x70000000 0x4000000>;
+>+			interrupts-extended = <&cpu0_intc 11>, <&cpu0_intc 9>;
+>+			interrupt-controller;
+>+			#address-cells = <0>;
+>+			#interrupt-cells = <2>;
+>+			riscv,ndev = <101>;
+>+		};
+>+	};
+>+};
+>--
+>2.40.1
+>
+>
 
