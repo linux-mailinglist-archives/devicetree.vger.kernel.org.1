@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-4832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 307387B415C
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 17:00:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B46D7B415F
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 17:00:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 773EDB20973
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 15:00:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id BA6CA1C20A5E
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 15:00:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88E2D16417;
-	Sat, 30 Sep 2023 15:00:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20BBA1641B;
+	Sat, 30 Sep 2023 15:00:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 872E214A8E
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 15:00:14 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F597C6;
-	Sat, 30 Sep 2023 08:00:12 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B344C16417
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 15:00:19 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66FD292;
+	Sat, 30 Sep 2023 08:00:15 -0700 (PDT)
 Received: from uno.internal.cocoon-space.com (lfbn-idf1-1-343-200.w86-195.abo.wanadoo.fr [86.195.61.200])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5A056DD9;
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id AA8AEEBA;
 	Sat, 30 Sep 2023 16:58:26 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
 	s=mail; t=1696085906;
-	bh=6F9PgWLZB6EPyUd4j7VgRyUyQveSGnsgIkKnzukeeBM=;
+	bh=OQ5mIcobfabGgp4HvF5pTY4/RjgYb9ENH7r14UywQIY=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=gRiruWktvMUMo1Tqz925hAqeg2gsPmKHShjeGNdVAFrnLVEbE+qgoyahdpx7ASLlf
-	 cDBIDOx7bgonApO+I52ADL58hcNoZTv/Lku7tS2pmi9VGk8qJdbq27jsPK2m7nMFFN
-	 WJ99GGyiIkqiD1bza9UHxF+kwQ7OtcaZQ+DpwDiI=
+	b=rP6vAOmymqfZrUpRgQSn2XjtAg40/UJPta0r3AVtxb7UbULfZ0mBU6Fkkz/NnGaRr
+	 dEcazP7O4sPWMnERGItaCk5CDlDV76DjnV29fxYSimNJ2Adan0XoaAYoey/aOD5H3r
+	 XNwBo00tFIpyCKLepxznB+Hicd13yAfWznS18c0E=
 From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 To: linux-media@vger.kernel.org,
 	devicetree@vger.kernel.org
@@ -40,9 +40,9 @@ Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
 	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
 	Fabio Estevam <festevam@gmail.com>,
 	martink@posteo.de
-Subject: [PATCH v3 1/7] media: dt-bindings: hynix,hi846: Add video-interface-device properties
-Date: Sat, 30 Sep 2023 16:59:45 +0200
-Message-ID: <20230930145951.23433-2-jacopo.mondi@ideasonboard.com>
+Subject: [PATCH v3 2/7] media: dt-bindings: hynix,hi846: Restrict endpoint properties
+Date: Sat, 30 Sep 2023 16:59:46 +0200
+Message-ID: <20230930145951.23433-3-jacopo.mondi@ideasonboard.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20230930145951.23433-1-jacopo.mondi@ideasonboard.com>
 References: <20230930145951.23433-1-jacopo.mondi@ideasonboard.com>
@@ -59,53 +59,39 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Allow properties from video-interface-device.yaml for the SK Hynix Hi-846
-sensor.
+Only properties explicitly listed in the schema are accepted as
+endpoint properties.
 
-All properties specified in video-interface-device.yaml schema are
-valid, so make them accepted by changing "additionalProperties: false"
-to "unevaluatedProperties: false" at the schema top-level.
-
-Add two properties from video-interface-device.yaml to the example
-to validate the new schema.
+Make sure this is actually enforced by setting 'additionalProperties'
+to false and explicitly allow 'remote-endpoint' in the list of
+endpoint properties.
 
 Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 ---
- .../devicetree/bindings/media/i2c/hynix,hi846.yaml         | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-index 1e2df8cf2937..60f19e1152b3 100644
+index 60f19e1152b3..f2ca86501d3c 100644
 --- a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
 +++ b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-@@ -14,6 +14,9 @@ description: |-
-   interface and CCI (I2C compatible) control bus. The output format
-   is raw Bayer.
+@@ -58,7 +58,7 @@ properties:
+     properties:
+       endpoint:
+         $ref: /schemas/media/video-interfaces.yaml#
+-        unevaluatedProperties: false
++        additionalProperties: false
  
-+allOf:
-+  - $ref: /schemas/media/video-interface-devices.yaml#
-+
- properties:
-   compatible:
-     const: hynix,hi846
-@@ -86,7 +89,7 @@ required:
-   - vddd-supply
-   - port
+         properties:
+           data-lanes:
+@@ -73,6 +73,7 @@ properties:
+                   - const: 2
  
--additionalProperties: false
-+unevaluatedProperties: false
+           link-frequencies: true
++          remote-endpoint: true
  
- examples:
-   - |
-@@ -109,6 +112,8 @@ examples:
-             vddio-supply = <&reg_camera_vddio>;
-             reset-gpios = <&gpio1 25 GPIO_ACTIVE_LOW>;
-             shutdown-gpios = <&gpio5 4 GPIO_ACTIVE_LOW>;
-+            orientation = <0>;
-+            rotation = <0>;
- 
-             port {
-                 camera_out: endpoint {
+         required:
+           - data-lanes
 -- 
 2.42.0
 
