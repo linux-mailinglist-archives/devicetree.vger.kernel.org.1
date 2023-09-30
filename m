@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-4830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A83707B4152
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 16:58:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5788C7B4157
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 16:59:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 5D2CC282C2D
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 14:58:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 6DE711C20C0A
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 14:59:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2675816406;
-	Sat, 30 Sep 2023 14:58:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F41416428;
+	Sat, 30 Sep 2023 14:59:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C670F1549E
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 14:58:32 +0000 (UTC)
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46AD4BA
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 07:58:31 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-5344d996bedso12548208a12.3
-        for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 07:58:31 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 237E9156EB
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 14:59:15 +0000 (UTC)
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0245FC6
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 07:59:13 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9ae75ece209so1901381066b.3
+        for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 07:59:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696085910; x=1696690710; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696085951; x=1696690751; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XhRNLpTtFuwflO9fICmWPN+t7DhTdGCrswb6CHsVjHM=;
-        b=rwl+YwMzHKr+zObCsHxuh/XBCicl8O83O+C/JBo60hdjTJSb+CaJkYxbIZQf1fFiXS
-         r7HxoxMnaGjf7n2oTLeIvuL3dOM90S5ECnSWFSdOQs4HXZT36IGbLonbqorBaWu4DLlC
-         idZ1ZQA+CCYhYZPVU0RexKYI9vn1yjfc2svo9aakhbTBcXoa9qHOtNDS1uh8N2n9c2b5
-         q/A9X8+LSobnO+JKaoowfnx8SmHtUvkyO0S660OrToMnX5qzrjEyxbjcltA1o3qe0qp5
-         kPZty/mtMFDm23YQi7WGdSDbzmZZH7u83IEtupYGy8TqsulZIMHVcEQg5e8uNLffsDQm
-         sNsg==
+        bh=E9B2kQ3iq7p4VksKg+DkVqKQqg7HQD9C40iD0MzBios=;
+        b=TjSW2LIEfbZZvkgS8jo/F8yVBIY8SzyrkboP8EyM3o2pH01Iugoc2ymhdTWNZ9mWzb
+         nuaZBH3F3dHZ1Bi3ynPE7UOePWwLWPXA/nvLdQtYI0n1f98pi4jauWfDG2PO+OLUFUVn
+         H0GKiDBiaq8QvDlvpFI30boa1rsKgM3V5q11nikN7owXTbBY891J47/KEiKDfWbPdOP1
+         jlb6WqTQQSEq01CqlVH//FkY0/jyC6o1H9RNZzw43WTjocBGS2p5roeWg9qb2xdx4BgA
+         CgbCPwsubCilGAYdnC03RSXtHnIywai/HCjii+7qOYs03iDB0UPPoa8nT8iDvIx28ggt
+         D55A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696085910; x=1696690710;
+        d=1e100.net; s=20230601; t=1696085951; x=1696690751;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XhRNLpTtFuwflO9fICmWPN+t7DhTdGCrswb6CHsVjHM=;
-        b=EsNEGWG47vvpNzp8OqgOYffk1XTi9sXlMGCTwN1qT9lMVxO0+lNQvi1NzTUJedTL8e
-         zaZ6vLvhCeMR8wlfrgBd+sUYZtDAh6JfS/yY3gyThcuxIKFN+dbCQGawnvjmDHz4nAsN
-         S8lHjSrNUuZuANLBWVZwy+cNI341VFQZhcqsZmCNJ1ENK8UqK7nU8tIgRTCKvVZMZ193
-         MD8E0PnMbtj+ak4B2fxAO+hPyxM22HdMdNt4L0vfif6kjCW7tAj1aYAgfAJci36R/Ezu
-         O+6LmSVcf64NnxHBCcbgmCe+QHvMi29NrUEAX4IlmVnoLm6r53Spymv8TTq8oC9Hc3D3
-         eNsg==
-X-Gm-Message-State: AOJu0YxEwgoT7VxUXYD2HYheQpAYosGStiIhp2UhXbX9n94mIUFhphdo
-	nYOgE1Fl8YYRINUBgXS/sZJ+Cg==
-X-Google-Smtp-Source: AGHT+IGgy0NCDnxbJzLbMBSjHYuDIDJMISktLeNJAlYutBLBnGDy3EWZDQErpt0F7vKRkY6o3CqJxA==
-X-Received: by 2002:a17:906:3045:b0:9ae:3f7a:f777 with SMTP id d5-20020a170906304500b009ae3f7af777mr6597015ejd.9.1696085909774;
-        Sat, 30 Sep 2023 07:58:29 -0700 (PDT)
+        bh=E9B2kQ3iq7p4VksKg+DkVqKQqg7HQD9C40iD0MzBios=;
+        b=fDZ0W3hWBYD3OfJaKxfzSd0hPpW2/IL2/MYDODnm4ebs8BnGQ/cKR+P/zg3Fw3zeMZ
+         Xl8x2RqlCwUriYEgDcCDTYnd/6PrUQvTD/XNwIdvXbCzUTnQOyPC+ouCmwppTK4WXvum
+         P84a90KI/hxRxOuGAtlihvqYZ5EN2XVMw68TMgPR+D/XPKo0Qf1TeNN2XjI0Wy5po5vw
+         FD2+6NPYeoOG62ZR1ly7xB0FKVCP4BmeohvAdAacmNLJLB6af0PUEMmeIKGOgaGrVqGL
+         252hoN3uIRoVhe0jKMsSBCbQxwAKvwXeI8XJugmCkzBZM4EThUVoAPDPH9TnTDQRASgJ
+         ZSKA==
+X-Gm-Message-State: AOJu0Yw8mg/Pn6sa883oOmjRly21S6oimVIv2DBjR+B+Z5iQ7jWQivrL
+	hVCopb7ysjpYRRiybzPy2iLCmw==
+X-Google-Smtp-Source: AGHT+IH8axa7dnIe/xIWnpxdeRWUiiB26wu/xYmyDnj8UsBBSyQfBUqmeJcpXQ3QelVnDtcM41ngvg==
+X-Received: by 2002:a17:906:8a7a:b0:9ae:3d75:4c83 with SMTP id hy26-20020a1709068a7a00b009ae3d754c83mr6332082ejc.0.1696085951513;
+        Sat, 30 Sep 2023 07:59:11 -0700 (PDT)
 Received: from [192.168.8.76] ([88.154.47.206])
-        by smtp.gmail.com with ESMTPSA id qk7-20020a1709077f8700b009b2b4385db7sm5662953ejc.92.2023.09.30.07.58.19
+        by smtp.gmail.com with ESMTPSA id qk7-20020a1709077f8700b009b2b4385db7sm5662953ejc.92.2023.09.30.07.59.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Sep 2023 07:58:29 -0700 (PDT)
-Message-ID: <854412b9-4993-45a4-b935-037b3b6b9666@linaro.org>
-Date: Sat, 30 Sep 2023 16:58:19 +0200
+        Sat, 30 Sep 2023 07:59:11 -0700 (PDT)
+Message-ID: <99fa3e43-2202-44d4-ae45-0b47568a5758@linaro.org>
+Date: Sat, 30 Sep 2023 16:59:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,8 +63,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/8] dt-bindings: usb: dwc3: Add clocks on Qualcomm
- IPQ5332
+Subject: Re: [PATCH 8/8] arm64: defconfig: Enable qcom USB UNIPHY driver
 Content-Language: en-US
 To: Praveenkumar I <quic_ipkumar@quicinc.com>, agross@kernel.org,
  andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
@@ -80,7 +79,7 @@ To: Praveenkumar I <quic_ipkumar@quicinc.com>, agross@kernel.org,
 Cc: quic_kathirav@quicinc.com, quic_nsekar@quicinc.com,
  quic_srichara@quicinc.com
 References: <20230929084209.3033093-1-quic_ipkumar@quicinc.com>
- <20230929084209.3033093-5-quic_ipkumar@quicinc.com>
+ <20230929084209.3033093-9-quic_ipkumar@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,24 +125,41 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230929084209.3033093-5-quic_ipkumar@quicinc.com>
+In-Reply-To: <20230929084209.3033093-9-quic_ipkumar@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 29/09/2023 10:42, Praveenkumar I wrote:
-> Add aux and lfps clocks in Qualcomm IPQ5332. These clocks are required
-> for USB Super-Speed support.
+> Enable USB UNIPHY driver present in Qualcomm IPQ5332.
 > 
 > Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
 > ---
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+---
+
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
 
 Best regards,
 Krzysztof
