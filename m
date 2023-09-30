@@ -1,110 +1,115 @@
-Return-Path: <devicetree+bounces-4839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E8DD7B4167
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 17:00:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C30277B4169
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 17:00:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 31253283179
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 15:00:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 74A712818D1
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 15:00:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9855B16436;
-	Sat, 30 Sep 2023 15:00:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1579816434;
+	Sat, 30 Sep 2023 15:00:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 317C116417
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 15:00:27 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CA92F9;
-	Sat, 30 Sep 2023 08:00:25 -0700 (PDT)
-Received: from uno.internal.cocoon-space.com (lfbn-idf1-1-343-200.w86-195.abo.wanadoo.fr [86.195.61.200])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6510231B9;
-	Sat, 30 Sep 2023 16:58:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1696085908;
-	bh=yDNG9lescimiVCdDa3Yo4ag2EPpuBl4frfIL53tgkIs=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=NE2qvHUZ+wfIBoo6k6SS8j/JtPnuJXq5tT+CsX2UJLJKI2f1IKUVdyrkmjXODzl/A
-	 8U20Qa/wno6XR+HKc0aVyOu9f4CImGw//BY8btz9V3SFn4ytQHw4qo/XSyZckJKEG5
-	 z3aCm1pS7d79ZhrG7a6MK2ZLnKpkJqaqs+h/K66M=
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	martink@posteo.de,
-	Michael Riesch <michael.riesch@wolfvision.net>
-Subject: [PATCH v3 7/7] media: dt-bindings: sony,imx415: Fix handling of video-interface-device
-Date: Sat, 30 Sep 2023 16:59:51 +0200
-Message-ID: <20230930145951.23433-8-jacopo.mondi@ideasonboard.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230930145951.23433-1-jacopo.mondi@ideasonboard.com>
-References: <20230930145951.23433-1-jacopo.mondi@ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01969156EB;
+	Sat, 30 Sep 2023 15:00:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F33D1C433C7;
+	Sat, 30 Sep 2023 15:00:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696086048;
+	bh=FXz2SREKtf+iI847/DSKV9eCwFUODi1WlM1uajRmxKA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=LhtZ3ey+X77bzCBum1Fj6V+3iNyWT6Ts3CN5CvF6Zemop5a6Hmm+giHf9o+0+c932
+	 qerH2pgVeSyyV0CcVKXPGoDFUKSyhLqir7lCF+wXdGbUq//5AZqkOZpat/ZYkOsiEL
+	 9uxXJk9gOgRZlcwe9vcy3qI0H0rbnwCKKulZCg0leRQaK4VU73XtY9Yzeqs3pJ9B0Q
+	 mL+L7Q9JL8gICvUD5nVg1r8oxiTio7G569MwmeTvkJOGXnvzM0FhkRHGY5Xtg4f8N9
+	 zr0XPcRfYD0aD+nJw/fa8zw78mhFP2fIS8HsQEnL8i0jd3VWLcA+ZaVA089uqEPjuB
+	 djXsKfOYZD3Ig==
+Date: Sat, 30 Sep 2023 16:00:47 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-staging@lists.linux.dev, David Lechner <david@lechnology.com>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Michael Hennerich <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Axel Haslam <ahaslam@baylibre.com>, Philip Molloy
+ <pmolloy@baylibre.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 14/27] staging: iio: resolver: ad2s1210: implement
+ hysteresis as channel attr
+Message-ID: <20230930160047.0c5a5388@jic23-huawei>
+In-Reply-To: <CAMknhBGFBwQQouhsPMgCuMn6+eQfDCcSzJvF-DwJAnoEPvMLAA@mail.gmail.com>
+References: <20230929-ad2s1210-mainline-v3-0-fa4364281745@baylibre.com>
+	<20230929-ad2s1210-mainline-v3-14-fa4364281745@baylibre.com>
+	<CAMknhBGFBwQQouhsPMgCuMn6+eQfDCcSzJvF-DwJAnoEPvMLAA@mail.gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Fix handling of properties from video-interface-device.yaml for
-Sony IMX415.
+On Fri, 29 Sep 2023 12:53:00 -0500
+David Lechner <dlechner@baylibre.com> wrote:
 
-All the properties described by video-interface-device.yaml are
-allowed for the image sensor, make them accepted by changing
-"additionalProperties: false" to "unevaluatedProperties: false" at the
-schema top-level.
+> On Fri, Sep 29, 2023 at 12:25=E2=80=AFPM David Lechner <dlechner@baylibre=
+.com> wrote:
+> >
+> > The AD2S1210 resolver has a hysteresis feature that can be used to
+> > prevent flicker in the LSB of the position register. This can be either
+> > enabled or disabled. Disabling hysteresis is useful for increasing
+> > precision by oversampling.
+> >
+> > Signed-off-by: David Lechner <dlechner@baylibre.com>
+> > --- =20
+>=20
+> ...
+>=20
+> > +static int ad2s1210_read_avail(struct iio_dev *indio_dev,
+> > +                              struct iio_chan_spec const *chan,
+> > +                              const int **vals, int *type,
+> > +                              int *length, long mask)
+> > +{
+> > +       static const int hysteresis_available[] =3D { 0, 1 }; =20
+>=20
+> This is basically an enable/disable. Should the 1 value be changed to the
+> appropriate radians value since this is hysteresis on the position
+> (angle) channel?
 
-Because all properties are now accepted, there is no need to explicitly
-allow them in the schema.
+Good point. However it should be in the _raw units. The text is
+slightly more explicit on this for
+the variant of hysteresis applied to threshold events as it's
+added or substracted from a threshold (and thresholds are in
+_raw readings unless only _processed is available).
 
-Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
----
- .../devicetree/bindings/media/i2c/sony,imx415.yaml     | 10 +---------
- 1 file changed, 1 insertion(+), 9 deletions(-)
+Does that make 0, 1 correct as we are talking about LSB only?
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
-index ffccf5f3c9e3..8ea3ddd251f6 100644
---- a/Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
-@@ -44,14 +44,6 @@ properties:
-     description: Sensor reset (XCLR) GPIO
-     maxItems: 1
+Jonathan
 
--  flash-leds: true
--
--  lens-focus: true
--
--  orientation: true
--
--  rotation: true
--
-   port:
-     $ref: /schemas/graph.yaml#/$defs/port-base
 
-@@ -88,7 +80,7 @@ required:
-   - ovdd-supply
-   - port
-
--additionalProperties: false
-+unevaluatedProperties: false
-
- examples:
-   - |
---
-2.42.0
+>=20
+> > +
+> > +       switch (mask) {
+> > +       case IIO_CHAN_INFO_HYSTERESIS:
+> > +               switch (chan->type) {
+> > +               case IIO_ANGL:
+> > +                       *vals =3D hysteresis_available;
+> > +                       *type =3D IIO_VAL_INT;
+> > +                       *length =3D ARRAY_SIZE(hysteresis_available);
+> > +                       return IIO_AVAIL_LIST;
+> > +               default:
+> > +                       return -EINVAL;
+> > +               }
+> > +       default:
+> > +               return -EINVAL;
+> > +       }
+> > +}
+> > =20
 
 
