@@ -1,42 +1,69 @@
-Return-Path: <devicetree+bounces-4761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B6C77B3CA8
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 00:37:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 506677B3D2E
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 02:15:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 31004B209A2
-	for <lists+devicetree@lfdr.de>; Fri, 29 Sep 2023 22:37:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id EF855281F18
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 00:15:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1162943AAB;
-	Fri, 29 Sep 2023 22:37:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C4B238E;
+	Sat, 30 Sep 2023 00:15:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0242433E7
-	for <devicetree@vger.kernel.org>; Fri, 29 Sep 2023 22:37:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29AD2C433C8;
-	Fri, 29 Sep 2023 22:37:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696027040;
-	bh=+FQSIscV9bqF6D32g6rcCgdI77KM9F6e8NRJftItj7k=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=nHTf1To0ChjzbhV1T/9z1W1L5KJpJqgPQ/nDjvgh2b2zZTkOjJ+jM7SpH5f8Sh9ma
-	 AQeyYKoWeOfqHnJVSZofA8QWDN1GT695GJf0glmYDxw0w+drOuUTjr9yul2v8Bziav
-	 5Oq4SLHYkZtprKmZWIoexApRS1txHTfzueQq9lQao54pWDtUThjhjAo/9ZyYI4L0pI
-	 3leK2elL54RqphCRfdXLA3R8ppBQUtDyBNwLOwaQzsnLk27oJHa6xXuFjlVGZ/i9p7
-	 Tpz2gfVgcSYyja4qC0C3TRJEpCxvGGJUaHzLrqQfvDt5vmjo9Xe8sHk8zvDd673/ed
-	 zHO9EzwaH/bLA==
-Date: Fri, 29 Sep 2023 17:37:18 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Lizhi Hou <lizhi.hou@amd.com>
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, herve.codina@bootlin.com,
-	Jonathan.Cameron@huawei.com, bhelgaas@google.com, robh@kernel.org
-Subject: Re: [PATCH v3] PCI: of: Fix memory leak when
- of_changeset_create_node() failed
-Message-ID: <20230929223718.GA558826@bhelgaas>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D848A623
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 00:15:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 585021A7;
+	Fri, 29 Sep 2023 17:15:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1696032913; x=1727568913;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=6cS0OOOzJy+TWm+pONxiMK/YecABXrBmw59B3VTqqx4=;
+  b=fanfr7LPw6dw2VrNLOC6bD8etqxSxZcKFLGE8QNUxdcN7NY/mx0FkZ9c
+   S5uRSqQP6rGBhsBmTay4SRCAY/CMkx5GsEZJCvqdrWJ7AXFcMR8f009Hi
+   htEuUF5YYbiC9rm2yiaXpr1mAFcl5MRH5JB9CrJQbC4cVxTt/DP8yMDVI
+   mlu3HC/BSvFFW1q1hARl3HF0IjeYl2ZGQhPZYs2JP7JIbEIzsP4Pj6vt9
+   X8CjKlWFF8P9u3snMyewQ1nhKYs6pwkU2eGr5pGVm6uPc1gapsHmxU4Ex
+   whBbX631zxmEQjyn6zeROXyomnvKto7m7yaSZEa/K7lZ9l/qRxJWSwSMR
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="381286453"
+X-IronPort-AV: E=Sophos;i="6.03,188,1694761200"; 
+   d="scan'208";a="381286453"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Sep 2023 17:15:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="743585064"
+X-IronPort-AV: E=Sophos;i="6.03,188,1694761200"; 
+   d="scan'208";a="743585064"
+Received: from lkp-server02.sh.intel.com (HELO c3b01524d57c) ([10.239.97.151])
+  by orsmga007.jf.intel.com with ESMTP; 29 Sep 2023 17:15:09 -0700
+Received: from kbuild by c3b01524d57c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qmNdT-0003Sf-0H;
+	Sat, 30 Sep 2023 00:15:07 +0000
+Date: Sat, 30 Sep 2023 08:15:01 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Fabio Estevam <festevam@gmail.com>, martink@posteo.de,
+	Steve Longerbeam <slongerbeam@gmail.com>
+Subject: Re: [PATCH 5/7] media: bindings: ovti,ov5640: Fix handling of
+ video-interface-device
+Message-ID: <202309300855.B0j1LqGe-lkp@intel.com>
+References: <20230929151825.6535-6-jacopo.mondi@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -45,71 +72,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1696007417-42059-1-git-send-email-lizhi.hou@amd.com>
+In-Reply-To: <20230929151825.6535-6-jacopo.mondi@ideasonboard.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Fri, Sep 29, 2023 at 10:10:17AM -0700, Lizhi Hou wrote:
-> In function of_pci_make_dev_node(), the cset needs to be destroyed and
-> freed when of_changeset_create_node() returns null.
-> 
-> Fixes: 407d1a51921e ("PCI: Create device tree node for bridge")
-> Reported-by: Herve Codina <herve.codina@bootlin.com>
-> Closes: https://lore.kernel.org/all/20230911171319.495bb837@bootlin.com/
-> Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>
+Hi Jacopo,
 
-Applied with Herve's Reviewed-by to for-linus for v6.6, since
-407d1a51921e appeared in v6.6-rc1, thanks!
+kernel test robot noticed the following build warnings:
 
-> ---
->  drivers/pci/of.c | 19 +++++++++++--------
->  1 file changed, 11 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-> index 2af64bcb7da3..51e3dd0ea5ab 100644
-> --- a/drivers/pci/of.c
-> +++ b/drivers/pci/of.c
-> @@ -657,30 +657,33 @@ void of_pci_make_dev_node(struct pci_dev *pdev)
->  
->  	cset = kmalloc(sizeof(*cset), GFP_KERNEL);
->  	if (!cset)
-> -		goto failed;
-> +		goto out_free_name;
->  	of_changeset_init(cset);
->  
->  	np = of_changeset_create_node(cset, ppnode, name);
->  	if (!np)
-> -		goto failed;
-> -	np->data = cset;
-> +		goto out_destroy_cset;
->  
->  	ret = of_pci_add_properties(pdev, cset, np);
->  	if (ret)
-> -		goto failed;
-> +		goto out_free_node;
->  
->  	ret = of_changeset_apply(cset);
->  	if (ret)
-> -		goto failed;
-> +		goto out_free_node;
->  
-> +	np->data = cset;
->  	pdev->dev.of_node = np;
->  	kfree(name);
->  
->  	return;
->  
-> -failed:
-> -	if (np)
-> -		of_node_put(np);
-> +out_free_node:
-> +	of_node_put(np);
-> +out_destroy_cset:
-> +	of_changeset_destroy(cset);
-> +	kfree(cset);
-> +out_free_name:
->  	kfree(name);
->  }
->  #endif
-> -- 
-> 2.34.1
-> 
+[auto build test WARNING on media-tree/master]
+[also build test WARNING on sailus-media-tree/streams linus/master v6.6-rc3 next-20230929]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Jacopo-Mondi/media-bindings-hynix-hi846-Add-video-interface-device-properties/20230929-232019
+base:   git://linuxtv.org/media_tree.git master
+patch link:    https://lore.kernel.org/r/20230929151825.6535-6-jacopo.mondi%40ideasonboard.com
+patch subject: [PATCH 5/7] media: bindings: ovti,ov5640: Fix handling of video-interface-device
+compiler: loongarch64-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20230930/202309300855.B0j1LqGe-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202309300855.B0j1LqGe-lkp@intel.com/
+
+dtcheck warnings: (new ones prefixed by >>)
+>> Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml: 'unevaluatatedProperties' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'dependentRequired', 'dependentSchemas', 'patternProperties', 'properties', 'not', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select', '$ref']
+   	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+>> Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml: 'oneOf' conditional failed, one must be fixed:
+   	'unevaluatedProperties' is a required property
+   	'additionalProperties' is a required property
+   	hint: Either unevaluatedProperties or additionalProperties must be present
+   	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
