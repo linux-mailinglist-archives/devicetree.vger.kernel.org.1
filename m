@@ -1,73 +1,183 @@
-Return-Path: <devicetree+bounces-4811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0300F7B40DC
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 16:26:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 591D67B40E2
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 16:27:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id A540E2822CA
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 14:26:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 7C5051C20878
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 14:27:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 349EABE4B;
-	Sat, 30 Sep 2023 14:26:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E68FBE4B;
+	Sat, 30 Sep 2023 14:27:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DD33AD59;
-	Sat, 30 Sep 2023 14:26:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69F5FC433C7;
-	Sat, 30 Sep 2023 14:26:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696083982;
-	bh=yuwOzBUFuSwro3iLAXmu5vHp060VKlPzw+sS1DN/psQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=gN6TdBPQW4a4A7FKUNC89QbM1sXXGeJ9DRdM/WQVvPWvCICxOc9h4CTptGmrH/yIU
-	 ZEftsQqfwDBVArdY/BNw4j27WzvwcWT7c5ygu+9jn7cwtw1k0P3Z/57qh7PbT9C+TV
-	 UJE2DL7RJicTHhod17AOLG3hEak5mlVR/2e5XpBmuBo3EFV8HRfG0CMhYucnfEnBVC
-	 UVCkULtPfoYY5IZ4mbIzYSsx2bF5jKiI3nNKh9motE+3xt9j8Rix0mGGr96/KcAgDW
-	 e0yAYexrCH8hkQEy8h2DDz6e6lsiiaGllHVQW83nw0ifBTgFxkqa6rpQvvX2Bv1bYu
-	 l6F56tUBt546g==
-Date: Sat, 30 Sep 2023 15:26:21 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-staging@lists.linux.dev, David Lechner <david@lechnology.com>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Michael Hennerich <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Axel Haslam <ahaslam@baylibre.com>, Philip Molloy
- <pmolloy@baylibre.com>, linux-kernel@vger.kernel.org, Apelete Seketeli
- <aseketeli@baylibre.com>
-Subject: Re: [PATCH v3 00/27] iio: resolver: move ad2s1210 out of staging
-Message-ID: <20230930152603.6b188798@jic23-huawei>
-In-Reply-To: <CAMknhBHLwWuuCDSCBZV1bB1MuqDa5ur4GEY+Yqofvn9MPGRcVg@mail.gmail.com>
-References: <20230929-ad2s1210-mainline-v3-0-fa4364281745@baylibre.com>
-	<CAMknhBHLwWuuCDSCBZV1bB1MuqDa5ur4GEY+Yqofvn9MPGRcVg@mail.gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4003FA95A
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 14:27:30 +0000 (UTC)
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.50])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09A5FC2;
+	Sat, 30 Sep 2023 07:27:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1696084044; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=gIwwlm1+Rusy92TdYGeJTtdOVkw2QzsTy3OkTn+dEcxiorsyVIh/Xfpc7/8bOqRHTf
+    Ss62UXgPyQQXkAjK9SroXnRkzGtVFjw0targ3aAOQccKOXO2qZmALBUVASxStWbD1Mi9
+    TEs57b5XFY8kRnF+isCHjPYPBRHkTnJTOviXR5pJQDat/nSst6WtL8lsfSWQHs9/Ah7A
+    Ap29W76UnnuqAP/cZvn/Ee5whNJU+ISx9AELfp0WTsEcmjdXNjjfYMVLADNwGy3X+Vx+
+    /nNEOx8/LCA19MHmuj7WCVQaWuhbYnzAEhn73ZGses/u2AKwts8G9XfOc6uzg3Y5J/NI
+    tOuA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1696084044;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=AxtyPLGRhQTS8BpvKTA8jX8YlndiVDqwSlUJLb0qHkE=;
+    b=Ht2nRr1ZKlKmQJxAvxBdNzA+hT8xRR2zbmx6IP1TGzaYADVJUKWid1RZIEAfkfV4GX
+    doPElfUJ3RjM10/jT09+ya0f8Pl+kJCmDRvTOzoZfigixONvCpvW/nrzjA2UkZ9c2+pj
+    T7+MzNS8f3yoWDHq6ooRMk0Jb+vnHN+gmp6hCnQmvcS9x8nZu1thouoI818R2xOgGvvv
+    SQmOyKzmxITYbqPDZUTwg+YY6HDNYaKq3lQzxWyLF5rb7QgwYMYgSVQgqsbFQPzNPWit
+    bZAB0avLdmtNFvdCsJh4Q0Utq3o3kb+Hgq1/pODQlIxabt308poTvprxtIh8ZDQClq0z
+    6nvg==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1696084044;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=AxtyPLGRhQTS8BpvKTA8jX8YlndiVDqwSlUJLb0qHkE=;
+    b=T3Iky+q56W8678CSwVDZWotWi7wYuaeR8VGvpcmAKPwIcV501ja1rtbPP8i646eI5N
+    +jsHyZ2AcvhfNuWWsgTuJClWy9LSrQNgn5LYQvtYH5F2eI5LvJnUVrquVBErwQqM9idL
+    LerEIdhWbJ9I7k5DLxYbsQ6b8e+w4vsK9NJKlkCQJ9MVnlzkp+uv53uYbtSVI8roCYrZ
+    eP7YyV4DLvqt+W4i683v4cdM3EXYLvMgikP5mCbm8SFxvV1978qCoVbDcKqWODcLyij8
+    4u7wiAprHPZga8fEg1tQ+uYlGMCVHKA8ndhHzba/9vTGOAbg2Wv47zR9EZ/hibkQPKXM
+    itxw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1696084044;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=AxtyPLGRhQTS8BpvKTA8jX8YlndiVDqwSlUJLb0qHkE=;
+    b=ohybLTvLrCb/veQvjxLSg7l6yet9xWL4aQSCwu5MtQL8VNGBTPNkUSu1jBEJGMyHiB
+    +IF3V+3td81YoWJ90ADQ==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8paF1A=="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.8.2 DYNA|AUTH)
+    with ESMTPSA id R04c57z8UEROtSZ
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Sat, 30 Sep 2023 16:27:24 +0200 (CEST)
+Date: Sat, 30 Sep 2023 16:27:17 +0200
+From: Stephan Gerhold <stephan@gerhold.net>
+To: Jeff LaBundy <jeff@labundy.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Jonathan Albrieux <jonathan.albrieux@gmail.com>
+Subject: Re: [PATCH 2/2] Input: add Himax HX852x(ES) touchscreen driver
+Message-ID: <ZRgwRfr7aW_Ww0oL@gerhold.net>
+References: <20230913-hx852x-v1-0-9c1ebff536eb@gerhold.net>
+ <20230913-hx852x-v1-2-9c1ebff536eb@gerhold.net>
+ <ZQYUe46/rj8jqNvg@nixie71>
+ <ZQcx7oQyL6RM06Jt@gerhold.net>
+ <ZROaqRiWa6ReVH/D@nixie71>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZROaqRiWa6ReVH/D@nixie71>
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Fri, 29 Sep 2023 12:49:42 -0500
-David Lechner <dlechner@baylibre.com> wrote:
+Hi Jeff,
 
-> On Fri, Sep 29, 2023 at 12:25=E2=80=AFPM David Lechner <dlechner@baylibre=
-.com> wrote:
-> >
-> > From: David Lechner <david@lechnology.com>
-> > =20
->=20
-> Ugh, an automated tool picked up my personal email on this for some
-> reason. This extra From: line can be dropped from any patches that get
-> picked up on this round. I will make sure to double-check next time.
+On Tue, Sep 26, 2023 at 09:59:53PM -0500, Jeff LaBundy wrote:
+> On Sun, Sep 17, 2023 at 07:05:50PM +0200, Stephan Gerhold wrote:
+> > On Sat, Sep 16, 2023 at 03:47:55PM -0500, Jeff LaBundy wrote:
+> > > On Wed, Sep 13, 2023 at 03:25:30PM +0200, Stephan Gerhold wrote:
+> > > > From: Jonathan Albrieux <jonathan.albrieux@gmail.com>
+> [...]
+> > > > +static int hx852x_probe(struct i2c_client *client)
+> > > > +{
+> > > > +	struct device *dev = &client->dev;
+> > > > +	struct hx852x *hx;
+> > > > +	int error, i;
+> > > > +
+> > > > +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C |
+> > > > +				     I2C_FUNC_SMBUS_WRITE_BYTE |
+> > > > +				     I2C_FUNC_SMBUS_WRITE_BYTE_DATA |
+> > > > +				     I2C_FUNC_SMBUS_WRITE_WORD_DATA)) {
+> > > > +		dev_err(dev, "not all i2c functionality supported\n");
+> > > > +		return -ENXIO;
+> > > > +	}
+> > > > +
+> > > > +	hx = devm_kzalloc(dev, sizeof(*hx), GFP_KERNEL);
+> > > > +	if (!hx)
+> > > > +		return -ENOMEM;
+> > > > +
+> > > > +	hx->client = client;
+> > > > +	hx->input_dev = devm_input_allocate_device(dev);
+> > > > +	if (!hx->input_dev)
+> > > > +		return -ENOMEM;
+> > > > +
+> > > > +	hx->input_dev->name = "Himax HX852x";
+> > > > +	hx->input_dev->id.bustype = BUS_I2C;
+> > > > +	hx->input_dev->open = hx852x_input_open;
+> > > > +	hx->input_dev->close = hx852x_input_close;
+> > > > +
+> > > > +	i2c_set_clientdata(client, hx);
+> > > > +	input_set_drvdata(hx->input_dev, hx);
+> > > > +
+> > > > +	hx->supplies[0].supply = "vcca";
+> > > > +	hx->supplies[1].supply = "vccd";
+> > > > +	error = devm_regulator_bulk_get(dev, ARRAY_SIZE(hx->supplies), hx->supplies);
+> > > > +	if (error < 0)
+> > > > +		return dev_err_probe(dev, error, "failed to get regulators");
+> > > > +
+> > > > +	hx->reset_gpiod = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> > > > +	if (IS_ERR(hx->reset_gpiod))
+> > > > +		return dev_err_probe(dev, error, "failed to get reset gpio");
+> > > 
+> > > Can the reset GPIO be optional?
+> > > 
+> > 
+> > I'm afraid I have no idea if the controller needs this or not. Would it
+> > be better to keep it required until someone confirms otherwise or have
+> > it optional for the other way around?
+> 
+> If you have a datasheet handy, or your hardware provides a means for you to
+> test and confirm whether reset can be left out, I would make the reset GPIO
+> optional. Often times, these controllers are part of a module and reset may
+> be tied high locally as opposed to adding another signal to a flex cable.
+> 
+> If you have no way to confirm, I would keep it as required for now; it is not
+> too cumbersome to be changed later if the need arises on different hardware.
+> 
 
-Seems b4 picks up the second, correct From anyway which is handy ;)
+I don't have a datasheet unfortunately. :(
 
-Jonathan
+However, I tried to simulate this case on my board by keeping the reset
+GPIO permanently de-asserted (i.e. high because of active-low). The
+results are not entirely conclusive: The controller seems to respond to
+commands and the initial configuration is read correctly. However, it
+does not report any touch events. As soon as I add the temporary
+assertion of the reset signal back it works fine again.
+
+I suspect toggling the reset signal might be required to make the
+controller come properly out of reset. I'll keep it required to be sure.
+
+Thanks,
+Stephan
 
