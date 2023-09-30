@@ -1,166 +1,261 @@
-Return-Path: <devicetree+bounces-4775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 042A37B3F93
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 11:03:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6A1B7B3FAF
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 11:30:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id A2B13281D65
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 09:02:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id B41CE1C20859
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 09:30:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD6BD23AD;
-	Sat, 30 Sep 2023 09:02:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAB66B658;
+	Sat, 30 Sep 2023 09:30:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 562D617ED
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 09:02:55 +0000 (UTC)
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF4371A5
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 02:02:53 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-99c1c66876aso2049282466b.2
-        for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 02:02:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696064572; x=1696669372; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Q0hizBBm4A8wjMZ1piqiDjr9gInhzk36CKnQSjY0ZpQ=;
-        b=MqgondFe0Uu0H3HEYZgqefdjdyxZdyTjT8y55ZkDMsPO7kMFgwLJFQf7jFHPA4wdFh
-         X5pfb2tqwIXV0KH4PgZtqU/nohpYPdztpZAuRxFcccPjqGWff0DtXISQB90S3uJb6yKJ
-         HGHXSeLFtNQkXNl1aUFzrCWXS6yQUKLnnutEQ+p5m29WHGggzxM4lVN5yR8awvE/N8aY
-         RNRTMdN+RuAWSP4GuiSYKUywLhpiPQaoaEt2YZJTL9FtHDCDmakBNzVE3WcibXF5n4Td
-         +zAAn7DmmJr1ggvmOqY1fcW15B8skqc85IUp/I74rechxAgdBaS40C5lg/+6t9C+brtW
-         NyaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696064572; x=1696669372;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q0hizBBm4A8wjMZ1piqiDjr9gInhzk36CKnQSjY0ZpQ=;
-        b=nqf1ZXXb2rqRKit4AcAQ3wq7FlZJ2ZlMA/Lo1TbHG/ac2Ah9faQekZGpPclkYTfydo
-         zdDpCYQLmCuL2v6jMVfGrwfS+knwDBk3CyJCjUlDe9uE+bjUwLZQLLuM7vH3q1f/UHMH
-         YCn8CLIyK6ykAFwxiBb/IB0H1AXIB55yrTf7rW5EwbBGx1grv+accUO7h8VpfJEpzya4
-         xkXhdrXZ7k4Og/ViIx318P+5fixWGEeYwJpfjGEeG1OwnSKd81g29kYy3lHMCqDul6IM
-         PwIT10PBez/TIFlSDI6UrbzSMla97AcSevnp0DzkmSUBSMCF4ulMoIyLrmqO/3WqgUzt
-         8IFA==
-X-Gm-Message-State: AOJu0Yyj/3XVPqfmxhnKSBwlp23Jx1D/FLO1/9uiwQMZRl0IK3jEOIrM
-	WFhhH2G7UJrVUoLgA5I7XMR4
-X-Google-Smtp-Source: AGHT+IHr952WuR/z5EU6Gyhdfd/SNEYlnNbdjLVbmblbMVw53N3v3z8rJmOSwHR0BANmLPzAn2RjbA==
-X-Received: by 2002:a17:907:985b:b0:9ae:6a08:6f53 with SMTP id jj27-20020a170907985b00b009ae6a086f53mr5637893ejc.63.1696064572153;
-        Sat, 30 Sep 2023 02:02:52 -0700 (PDT)
-Received: from thinkpad ([88.128.88.98])
-        by smtp.gmail.com with ESMTPSA id bv13-20020a170906b1cd00b00993a37aebc5sm13708153ejb.50.2023.09.30.02.02.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Sep 2023 02:02:51 -0700 (PDT)
-Date: Sat, 30 Sep 2023 11:02:49 +0200
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: aisheng.dong@nxp.com, bhelgaas@google.com, devicetree@vger.kernel.org,
-	festevam@gmail.com, imx@lists.linux.dev, jdmason@kudzu.us,
-	kernel@pengutronix.de, kishon@kernel.org, kw@linux.com,
-	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	lorenzo.pieralisi@arm.com, lpieralisi@kernel.org, maz@kernel.org,
-	s.hauer@pengutronix.de, shawnguo@kernel.org, tglx@linutronix.de
-Subject: Re: [PATCH v2 0/5] Add RC-to-EP doorbell with platform MSI controller
-Message-ID: <20230930090249.GB3564@thinkpad>
-References: <20230911220920.1817033-1-Frank.Li@nxp.com>
- <ZQtmpL2vCMgR+Upu@lizhi-Precision-Tower-5810>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B28EB23AA;
+	Sat, 30 Sep 2023 09:30:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E4FFC433C7;
+	Sat, 30 Sep 2023 09:30:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696066232;
+	bh=tin0U19Nf4ANHDkcJXK1cl2YnmWbZlWUAWYQns6q95A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GrJMGkZXrPIT7StjOmeW+Fl8xwgebNyjtUdAOXRb7MJ/TkKMz13DPx5Qoi0HwXWp1
+	 Mj2c9yfx7SVQvUXsKfnq2P+RHMAyI6mccAk8fKyDW4gULxhlZPGShSX0WB+iPaLSr7
+	 mUiK0T0ddtqYsPPd0h1y920r2619heC5HkItOvuIA5vB7ZbXGsO9h6OwebpZKIXYfF
+	 cpzqp4c9klicbTpjXdFyqmWoSxM1g9gXG3Rv/6g0U6gQbBYq5kpvOkn71X4pJA4cJz
+	 KBit/mnJ2hHesyHyAhpoqwuKWDve8VIIRBfPJ7YgW7vnqnXZCqNQXymd7meZ+Cwm2y
+	 ZlR+A2h8PKMfg==
+Date: Sat, 30 Sep 2023 10:30:24 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Cc: Robert Jarzmik <robert.jarzmik@free.fr>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Andy Shevchenko <andy@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Kees Cook <keescook@chromium.org>,
+	Tony Luck <tony.luck@intel.com>,
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-hardening@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	afaerber@suse.de, balejk@matfyz.cz
+Subject: Re: [PATCH RESEND v5 3/8] dt-bindings: clock: Add Marvell PXA1908
+ clock bindings
+Message-ID: <20230930-purr-catchable-7149ee271df9@spud>
+References: <20230929-pxa1908-lkml-v5-0-5aa5a1109c5f@skole.hr>
+ <20230929-pxa1908-lkml-v5-3-5aa5a1109c5f@skole.hr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="xztbYI3ipS2Vh9bj"
+Content-Disposition: inline
+In-Reply-To: <20230929-pxa1908-lkml-v5-3-5aa5a1109c5f@skole.hr>
+
+
+--xztbYI3ipS2Vh9bj
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZQtmpL2vCMgR+Upu@lizhi-Precision-Tower-5810>
-X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SORTED_RECIPS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Sep 20, 2023 at 05:39:48PM -0400, Frank Li wrote:
-> On Mon, Sep 11, 2023 at 06:09:15PM -0400, Frank Li wrote:
-> > ┌────────────┐   ┌───────────────────────────────────┐   ┌────────────────┐
-> > │            │   │                                   │   │                │
-> > │            │   │ PCI Endpoint                      │   │ PCI Host       │
-> > │            │   │                                   │   │                │
-> > │            │◄──┤ 1.platform_msi_domain_alloc_irqs()│   │                │
-> > │            │   │                                   │   │                │
-> > │ MSI        ├──►│ 2.write_msi_msg()                 ├──►├─BAR<n>         │
-> > │ Controller │   │   update doorbell register address│   │                │
-> > │            │   │   for BAR                         │   │                │
-> > │            │   │                                   │   │ 3. Write BAR<n>│
-> > │            │◄──┼───────────────────────────────────┼───┤                │
-> > │            │   │                                   │   │                │
-> > │            ├──►│ 4.Irq Handle                      │   │                │
-> > │            │   │                                   │   │                │
-> > │            │   │                                   │   │                │
-> > └────────────┘   └───────────────────────────────────┘   └────────────────┘
-> 
-> @mani:
-> 	Do you have chance to review this patch again?
+On Fri, Sep 29, 2023 at 05:41:59PM +0200, Duje Mihanovi=C4=87 wrote:
+> Add dt bindings and documentation for the Marvell PXA1908 clock
+> controller.
+>=20
+> Signed-off-by: Duje Mihanovi=C4=87 <duje.mihanovic@skole.hr>
 
-I was on vacation for past few weeks. Will take a look in the coming week.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-- Mani
+Thanks,
+Conor.
 
-> 
-> Frank
-> 
-> > 
-> > This patches based on old https://lore.kernel.org/imx/20221124055036.1630573-1-Frank.Li@nxp.com/
-> > 
-> > Original patch only target to vntb driver. But actually it is common
-> > method.
-> > 
-> > This patches add new API to pci-epf-core, so any EP driver can use it.
-> > 
-> > The key point is comments from Thomas Gleixner, who suggest use new
-> > PCI/IMS. But arm platform change still not be merged yet.
-> > 
-> > git://git.kernel.org/pub/scm/linux/kernel/git/tglx/devel.git devmsi-v2-arm
-> > 
-> > So I still use existed method implement RC to EP doorbell.
-> > 
-> > If Thomas Gleixner want to continue work on devmsi-v2-arm, I can help test
-> > and update this patch.
-> > 
-> > Change from v1 to v2
-> > - Add missed patch for endpont/pci-epf-test.c
-> > - Move alloc and free to epc driver from epf.
-> > - Provide general help function for EPC driver to alloc platform msi irq.
-> > - Fixed manivannan's comments.
-> > 
-> > Frank Li (5):
-> >   PCI: endpoint: Add RC-to-EP doorbell support using platform MSI
-> >     controller
-> >   PCI: dwc: add doorbell support by use MSI controller
-> >   PCI: endpoint: pci-epf-test: add doorbell test
-> >   misc: pci_endpoint_test: Add doorbell test case
-> >   tools: PCI: Add 'B' option for test doorbell
-> > 
-> >  drivers/misc/pci_endpoint_test.c              |  48 +++++
-> >  .../pci/controller/dwc/pcie-designware-ep.c   |   2 +
-> >  drivers/pci/endpoint/functions/pci-epf-test.c |  59 +++++-
-> >  drivers/pci/endpoint/pci-epc-core.c           | 192 ++++++++++++++++++
-> >  drivers/pci/endpoint/pci-epf-core.c           |  44 ++++
-> >  include/linux/pci-epc.h                       |   6 +
-> >  include/linux/pci-epf.h                       |   7 +
-> >  include/uapi/linux/pcitest.h                  |   1 +
-> >  tools/pci/pcitest.c                           |  16 +-
-> >  9 files changed, 373 insertions(+), 2 deletions(-)
-> > 
-> > -- 
-> > 2.34.1
-> > 
+> ---
+>  .../devicetree/bindings/clock/marvell,pxa1908.yaml | 48 ++++++++++++
+>  include/dt-bindings/clock/marvell,pxa1908.h        | 88 ++++++++++++++++=
+++++++
+>  2 files changed, 136 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/marvell,pxa1908.yaml=
+ b/Documentation/devicetree/bindings/clock/marvell,pxa1908.yaml
+> new file mode 100644
+> index 000000000000..4e78933232b6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/marvell,pxa1908.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/marvell,pxa1908.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell PXA1908 Clock Controllers
+> +
+> +maintainers:
+> +  - Duje Mihanovi=C4=87 <duje.mihanovic@skole.hr>
+> +
+> +description: |
+> +  The PXA1908 clock subsystem generates and supplies clock to various
+> +  controllers within the PXA1908 SoC. The PXA1908 contains numerous clock
+> +  controller blocks, with the ones currently supported being APBC, APBCP=
+, MPMU
+> +  and APMU roughly corresponding to internal buses.
+> +
+> +  All these clock identifiers could be found in <include/dt-bindings/mar=
+vell,pxa1908.h>.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - marvell,pxa1908-apbc
+> +      - marvell,pxa1908-apbcp
+> +      - marvell,pxa1908-mpmu
+> +      - marvell,pxa1908-apmu
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#clock-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  # APMU block:
+> +  - |
+> +    clock-controller@d4282800 {
+> +      compatible =3D "marvell,pxa1908-apmu";
+> +      reg =3D <0xd4282800 0x400>;
+> +      #clock-cells =3D <1>;
+> +    };
+> diff --git a/include/dt-bindings/clock/marvell,pxa1908.h b/include/dt-bin=
+dings/clock/marvell,pxa1908.h
+> new file mode 100644
+> index 000000000000..fb15b0d0cd4c
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/marvell,pxa1908.h
+> @@ -0,0 +1,88 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+> +#ifndef __DTS_MARVELL_PXA1908_CLOCK_H
+> +#define __DTS_MARVELL_PXA1908_CLOCK_H
+> +
+> +/* plls */
+> +#define PXA1908_CLK_CLK32		1
+> +#define PXA1908_CLK_VCTCXO		2
+> +#define PXA1908_CLK_PLL1_624		3
+> +#define PXA1908_CLK_PLL1_416		4
+> +#define PXA1908_CLK_PLL1_499		5
+> +#define PXA1908_CLK_PLL1_832		6
+> +#define PXA1908_CLK_PLL1_1248		7
+> +#define PXA1908_CLK_PLL1_D2		8
+> +#define PXA1908_CLK_PLL1_D4		9
+> +#define PXA1908_CLK_PLL1_D8		10
+> +#define PXA1908_CLK_PLL1_D16		11
+> +#define PXA1908_CLK_PLL1_D6		12
+> +#define PXA1908_CLK_PLL1_D12		13
+> +#define PXA1908_CLK_PLL1_D24		14
+> +#define PXA1908_CLK_PLL1_D48		15
+> +#define PXA1908_CLK_PLL1_D96		16
+> +#define PXA1908_CLK_PLL1_D13		17
+> +#define PXA1908_CLK_PLL1_32		18
+> +#define PXA1908_CLK_PLL1_208		19
+> +#define PXA1908_CLK_PLL1_117		20
+> +#define PXA1908_CLK_PLL1_416_GATE	21
+> +#define PXA1908_CLK_PLL1_624_GATE	22
+> +#define PXA1908_CLK_PLL1_832_GATE	23
+> +#define PXA1908_CLK_PLL1_1248_GATE	24
+> +#define PXA1908_CLK_PLL1_D2_GATE	25
+> +#define PXA1908_CLK_PLL1_499_EN		26
+> +#define PXA1908_CLK_PLL2VCO		27
+> +#define PXA1908_CLK_PLL2		28
+> +#define PXA1908_CLK_PLL2P		29
+> +#define PXA1908_CLK_PLL2VCODIV3		30
+> +#define PXA1908_CLK_PLL3VCO		31
+> +#define PXA1908_CLK_PLL3		32
+> +#define PXA1908_CLK_PLL3P		33
+> +#define PXA1908_CLK_PLL3VCODIV3		34
+> +#define PXA1908_CLK_PLL4VCO		35
+> +#define PXA1908_CLK_PLL4		36
+> +#define PXA1908_CLK_PLL4P		37
+> +#define PXA1908_CLK_PLL4VCODIV3		38
+> +
+> +/* apb (apbc) peripherals */
+> +#define PXA1908_CLK_UART0		1
+> +#define PXA1908_CLK_UART1		2
+> +#define PXA1908_CLK_GPIO		3
+> +#define PXA1908_CLK_PWM0		4
+> +#define PXA1908_CLK_PWM1		5
+> +#define PXA1908_CLK_PWM2		6
+> +#define PXA1908_CLK_PWM3		7
+> +#define PXA1908_CLK_SSP0		8
+> +#define PXA1908_CLK_SSP1		9
+> +#define PXA1908_CLK_IPC_RST		10
+> +#define PXA1908_CLK_RTC			11
+> +#define PXA1908_CLK_TWSI0		12
+> +#define PXA1908_CLK_KPC			13
+> +#define PXA1908_CLK_SWJTAG		14
+> +#define PXA1908_CLK_SSP2		15
+> +#define PXA1908_CLK_TWSI1		16
+> +#define PXA1908_CLK_THERMAL		17
+> +#define PXA1908_CLK_TWSI3		18
+> +
+> +/* apb (apbcp) peripherals */
+> +#define PXA1908_CLK_UART2		1
+> +#define PXA1908_CLK_TWSI2		2
+> +#define PXA1908_CLK_AICER		3
+> +
+> +/* axi (apmu) peripherals */
+> +#define PXA1908_CLK_CCIC1		1
+> +#define PXA1908_CLK_ISP			2
+> +#define PXA1908_CLK_DSI1		3
+> +#define PXA1908_CLK_DISP1		4
+> +#define PXA1908_CLK_CCIC0		5
+> +#define PXA1908_CLK_SDH0		6
+> +#define PXA1908_CLK_SDH1		7
+> +#define PXA1908_CLK_USB			8
+> +#define PXA1908_CLK_NF			9
+> +#define PXA1908_CLK_CORE_DEBUG		10
+> +#define PXA1908_CLK_VPU			11
+> +#define PXA1908_CLK_GC			12
+> +#define PXA1908_CLK_SDH2		13
+> +#define PXA1908_CLK_GC2D		14
+> +#define PXA1908_CLK_TRACE		15
+> +#define PXA1908_CLK_DVC_DFC_DEBUG	16
+> +
+> +#endif
+>=20
+> --=20
+> 2.42.0
+>=20
+>=20
 
--- 
-மணிவண்ணன் சதாசிவம்
+--xztbYI3ipS2Vh9bj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRfqsAAKCRB4tDGHoIJi
+0jIyAQClD4BtPUpM5qBMvLM7SmIKbmSXy1dLhn3+zWj1ceg1kgD/XLaUdvmI7W0U
+Itc9gfrWaDvaBLCZSGLLCFp10gm07AE=
+=eaix
+-----END PGP SIGNATURE-----
+
+--xztbYI3ipS2Vh9bj--
 
