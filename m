@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-4807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BAD17B40D1
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 16:21:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C60C7B40D5
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 16:22:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id D13B3281BB2
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 14:21:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id B2179281C00
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 14:22:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F7851400B;
-	Sat, 30 Sep 2023 14:21:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1A851401C;
+	Sat, 30 Sep 2023 14:22:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD1C52F49
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 14:21:15 +0000 (UTC)
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB3B0C5
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 07:21:13 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4066241289bso10946675e9.0
-        for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 07:21:13 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E4602F49
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 14:22:21 +0000 (UTC)
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C0FEC5
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 07:22:16 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-405497850dbso131195175e9.0
+        for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 07:22:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696083672; x=1696688472; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696083735; x=1696688535; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6ey7GhagyZlaftDb8wbR4DIdFZKjnZH1WMVGlp0akp0=;
-        b=TUlp5XgRUHBKyd078BRbpR638c7VLJev+LOH+yDX3VkDw4hNCLpZc/Ar7orVQBjc8G
-         YXiYQFETLUpPQA0vGMf31pHjIXIJI8g7blQ4Mx5ulAmgi8Gy/h0n2Ni5bb+FNm37QhXH
-         c6dE02foPWSyMSwNRNlEv9kqnXkPI9GtwBztdyBkSj4fzbVtStzg6+gpPczhWGxZ+uem
-         I90151iIoMJCcQ5/nGXoRbd8ts5mB+JQ3yyd3q3sqoI7XHQacqT3OrAtaq17fcvqVExG
-         2QATeAVFXZYv2Je3RYLGEl26isasEb+xmNKnQjHKI7Ee7k7AtUwzD0DdJD9cjUpc98XK
-         TUSA==
+        bh=tmWoBEvDsZo+e0om3qRJkcAT9R6+73QWglFrdYXAq8Q=;
+        b=abwEmbI4X7kocLwgSnqgpPOYSmR7K9dr0eVU9ORPgkTYMAzxufw6EGjYlCxFLbc+Sg
+         df5FSXwmzRWGHo+V523+Wgc3/P5y2SE3sdVHDyJ6OmM5xZmwdwIyLlNwxCjh6Cv6gK9J
+         Bi1mois5inNmiFUniKtXdeuxdHuap8pHnAuzYhc6Hyb7HJRjNAqcitRXnWArIhZpWeM2
+         CZsZglbmP3Bum42rfJ0LyBukgBLQO3R1OauwETRoj+dImXmSZbZGf/EIPm936Mr+eyfS
+         eOf68TVuBVvlga3SeX8Jk2pVNKtUUEtkkA58u+Wm9UJ6gNr1dmC/FiEaBcpmabAZq+/i
+         1cBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696083672; x=1696688472;
+        d=1e100.net; s=20230601; t=1696083735; x=1696688535;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6ey7GhagyZlaftDb8wbR4DIdFZKjnZH1WMVGlp0akp0=;
-        b=KExD9ITXWUG/Xe0il/G3Fc0fYbgQpIDE9yEq3zFhitFxBDlMcuLS7bvbYtiystWYD9
-         XBvMjUV1AFBWaNr/NYR4Q2w9dak4n6f9lff62huMaUas2OHRHyH/d/qecTt+W60t8HQX
-         q4TWpnm4FlykZb0cPlKy8I4rRkjNR5Fr1kurCH2S7ADfX9JXEe8VRjp9uaCQh0hqsaoc
-         PGXkcHNdZ058aV1Q1xPjFfMGtRVVWPZto7fZgPZISSll2ju19ED3LhG3zbZptNq7Rc63
-         t3lZdb+F/x1//oInQLxxJ6a97e3bE0fIqd5sHVuNVeHp4NTK/Dfayv2F4DUeWvyntMwA
-         C64w==
-X-Gm-Message-State: AOJu0YxTM0m7Dbqz3D31Pdw5dHYfYluqmwV4fyThR2gqoR0aKqQPQ6/+
-	CPIfQaBTS6kXsaIc+NwO8Toytg==
-X-Google-Smtp-Source: AGHT+IFenFmbQVEGZA3WVBLMRW9XVwuSzJpwdUCF3b59m/NWmBjD28ErTyjUDbE68kFM0effDC2G5Q==
-X-Received: by 2002:a5d:42c5:0:b0:319:8ce0:4e52 with SMTP id t5-20020a5d42c5000000b003198ce04e52mr6884662wrr.67.1696083672132;
-        Sat, 30 Sep 2023 07:21:12 -0700 (PDT)
+        bh=tmWoBEvDsZo+e0om3qRJkcAT9R6+73QWglFrdYXAq8Q=;
+        b=Qv/kxzZ8dVxKr4BCGlrIz20PplzK0/8utkKEYzlrtMT2OVzJjmVPu2Scl5qTyJPA++
+         wn5YiygaZTq2a3i9UWgSfd+21QEcO90q4uzRj6/Zq5cfJG8EsDiezsBbLDFZscu6PiuU
+         ImNu3E0DGbdlwJdcUyGfld/uV+qsPJpJ398l0TuyxFbGoo9n1h6/bofcHZi4LcP/IGdU
+         5sD5MaHacBpK9Uzvd3WME8Qy88CEO1b1Dico7+79K5XIKcBX57QIb6UVjRB3qp3OGsJT
+         KpxMoq/o87DEcX6VFIHCZXdR31UUgiux4xoCrGAcch2JPd8rWi48PQjKiVjzQ/4cd6j/
+         2uQA==
+X-Gm-Message-State: AOJu0YzRpdKlTTsS974o3O0MBrysGz7UpvYKmIKWNiV0iVsy4IlFXhWP
+	n52W/fXGtoXtBKGNXA+pMlRIAw==
+X-Google-Smtp-Source: AGHT+IEeOLZjQRlPTA2YJ4zNm6tK9BdP1lPn6tu9mG+qkL95RPggeetZ4BN4mEQD6tyVTR9TnnAd5Q==
+X-Received: by 2002:a1c:7211:0:b0:405:367d:4656 with SMTP id n17-20020a1c7211000000b00405367d4656mr6670092wmc.29.1696083734983;
+        Sat, 30 Sep 2023 07:22:14 -0700 (PDT)
 Received: from [192.168.8.76] ([88.154.47.206])
-        by smtp.gmail.com with ESMTPSA id p14-20020adfe60e000000b003197b85bad2sm23963175wrm.79.2023.09.30.07.21.07
+        by smtp.gmail.com with ESMTPSA id p14-20020adfe60e000000b003197b85bad2sm23963175wrm.79.2023.09.30.07.22.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Sep 2023 07:21:11 -0700 (PDT)
-Message-ID: <b6d74f21-86d1-437b-830a-c6b3162317c5@linaro.org>
-Date: Sat, 30 Sep 2023 16:21:00 +0200
+        Sat, 30 Sep 2023 07:22:14 -0700 (PDT)
+Message-ID: <c5753cf5-044c-4494-b58e-0c133e7a4a42@linaro.org>
+Date: Sat, 30 Sep 2023 16:22:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,19 +63,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] media: bindings: hynix,hi846: Add
- video-interface-device properties
+Subject: Re: [PATCH 1/3] dt-bindings: i2c: qcom-cci: Document SC7280
+ compatible
 Content-Language: en-US
-To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>,
+To: Luca Weiss <luca.weiss@fairphone.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Fabio Estevam <festevam@gmail.com>, martink@posteo.de
-References: <20230929151825.6535-1-jacopo.mondi@ideasonboard.com>
- <20230929151825.6535-2-jacopo.mondi@ideasonboard.com>
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230929-sc7280-cci-v1-0-16c7d386f062@fairphone.com>
+ <20230929-sc7280-cci-v1-1-16c7d386f062@fairphone.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,31 +123,35 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230929151825.6535-2-jacopo.mondi@ideasonboard.com>
+In-Reply-To: <20230929-sc7280-cci-v1-1-16c7d386f062@fairphone.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 29/09/2023 17:18, Jacopo Mondi wrote:
-> Allow properties from video-interface-device.yaml for the SK Hynix Hi-846
-> sensor.
+On 29/09/2023 10:01, Luca Weiss wrote:
+> Document the compatible for the CCI block found on SC7280 SoC.
 > 
-> All properties specified in video-interface-device.yaml schema are
-> valid, so make them accepted by changing "additionalProperties: false"
-> to "unevaluatedProperties: false" at the schema top-level.
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+>  Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> Add two properties from video-interface-device.yaml to the example
-> to validate the new schema.
+> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+> index 042d4dc636ee..158588236749 100644
+> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+> @@ -25,6 +25,7 @@ properties:
+>  
+>        - items:
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. dt-bindings, not bindings. You mess with all our
-filters...
+This is not enough.
 
+You miss constraining clocks.
 
 Best regards,
 Krzysztof
