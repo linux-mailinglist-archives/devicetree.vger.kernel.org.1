@@ -1,192 +1,119 @@
-Return-Path: <devicetree+bounces-4882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1F9B7B4258
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 18:51:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A33457B4267
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 18:54:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 9550328222D
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 16:51:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 02D6E282E05
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 16:54:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FD1C11717;
-	Sat, 30 Sep 2023 16:51:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0170A17732;
+	Sat, 30 Sep 2023 16:54:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5D1D8833
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 16:51:00 +0000 (UTC)
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B42DEF1;
-	Sat, 30 Sep 2023 09:50:59 -0700 (PDT)
-Received: by mail-oi1-x234.google.com with SMTP id 5614622812f47-3ae35773a04so7229755b6e.0;
-        Sat, 30 Sep 2023 09:50:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696092659; x=1696697459; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=BD+dNoaQ5Ko9mEneN4hRLVbcmg6MeMpXyWLNg0tAORY=;
-        b=SfF+0E4rd6UZXXeJMTdm2OftGotJYsDLWaXQ+4mK2V/YSkSO9ZdelUBEEI4jWiwIkP
-         eeYyDnFulJzlo/H6MkB+pcybsJnAOEoRVlmyQ414Vn8X1qqhQ6n4NpdVYzlAbGMaIy6L
-         cXnVURUZgR8vsAAkxV+TIhHmy5OvtbFFlbCwXBmFuWntCn5GPQFUKM5a1dttCPDQFR9I
-         S2oBjMMASFUAYqsPhzlkkn6E0ZtDQmGaGQawpmh6hRArS4Xq/pqhJYanAGroSgXvUP4V
-         2P1V3n88e4k+F7imDQfKWWdQROuZ4GriTWQZAzrUl+rdDHKZotKXxoCyR7EsYV/oAqbC
-         vwyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696092659; x=1696697459;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BD+dNoaQ5Ko9mEneN4hRLVbcmg6MeMpXyWLNg0tAORY=;
-        b=wMgpPIZKn670R9xnsh6Ilj7M+pS7meSk8A2YoJ9VbYk4XbboTSzKeYyYPqPuLBYSNJ
-         TS+ohY1KYAKBM3JuAUwN33Rv4Z7BocCWPAYd9LeIEXx8I50eJ2pEvxbr2JQlQPIwOUT/
-         GVNWbjPgBezILalqs5M1Y/ZO3HaACNbUZ8xrToGcMU+rm7wRoWEHdUUz/HT/L/47sPD/
-         EkD8Tlnu46ylEscDaC9MKBE/ZXcjAcalkpMJvUGl7YN/yCphkp1WqUON7YuPyGYnzWJS
-         0ed3hvfkyow8O85J/Y2tbC0pXkQ034nOAJMioHUgRex8OsccPB0xBsILvd+XiBDccCEi
-         fmeQ==
-X-Gm-Message-State: AOJu0YzYZxeAqNGNaO80nMog8PXcUqsuL96XLd7QQMZAq+YIEUx4e4/9
-	GZGTIstX0Lwlvot39xbNzCMytGGVLo4WBQ==
-X-Google-Smtp-Source: AGHT+IFFpZXmqz2lsFQCuPTwDpRXOkoC6NFk3863nEWuEFjRiK/iEe8dVToBwEgKuWVFEMN/pCTBOg==
-X-Received: by 2002:a05:6870:c08e:b0:1d5:6161:76f3 with SMTP id c14-20020a056870c08e00b001d5616176f3mr8349420oad.3.1696092658868;
-        Sat, 30 Sep 2023 09:50:58 -0700 (PDT)
-Received: from brag-vm.localdomain ([157.51.87.154])
-        by smtp.gmail.com with ESMTPSA id f15-20020aa78b0f000000b0068fe7c4148fsm16583055pfd.57.2023.09.30.09.50.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Sep 2023 09:50:58 -0700 (PDT)
-From: Bragatheswaran Manickavel <bragathemanick0908@gmail.com>
-To: lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: Bragatheswaran Manickavel <bragathemanick0908@gmail.com>,
-	alsa-devel@alsa-project.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] ASoC: dt-bindings: rt5616: Convert to dtschema
-Date: Sat, 30 Sep 2023 22:20:50 +0530
-Message-Id: <20230930165050.7793-1-bragathemanick0908@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E62E223D8
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 16:54:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 128B0C433C8;
+	Sat, 30 Sep 2023 16:54:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696092846;
+	bh=3FWZ2qW2Ezn08XF7jE/SiC+XcEI8boNjlLaX2s5XXj0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=kBH/u9QrsdIL0Bc2HrdOfgtLT/lqXpGNTnTlP69fi8Ump94+jFCr03KYTSTcgwWqz
+	 D7aqfgDQ5XlSm9YyBQO2awR/goy7ZwHYh4JZRnmADYJo1L6yICx1oPxsnBpn8w3J5O
+	 ULJSYJQ3nAEHb8UklF1lAGbT+3l28/JWZwx2gcbUXX4RqPZ6Cx8MeoKo4Ra7aEjYy8
+	 jChr7f1OByeRMIhuUiLftT2zRpa8m5IvY+x2/ncjIwT/q8ESLOLQlJCLKq9oILfSCc
+	 JP45pFa7h62dXuBF/uK2KGjFk/XdmAYdvoMTwagoHsaxuvQU7f+YgS9Z/6OuEqTYy4
+	 mzqktP+JjH8Qw==
+Date: Sat, 30 Sep 2023 17:54:04 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Angel Iglesias
+ <ang.iglesiasg@gmail.com>, Andreas Klinger <ak@it-klinger.de>, Benjamin
+ Bara <bbara93@gmail.com>, Christophe JAILLET
+ <christophe.jaillet@wanadoo.fr>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/5] iio: improve doc for available_scan_mask
+Message-ID: <20230930175404.033da19e@jic23-huawei>
+In-Reply-To: <4e43bf0186df5c8a56b470318b4827605f9cad6c.1695727471.git.mazziesaccount@gmail.com>
+References: <cover.1695727471.git.mazziesaccount@gmail.com>
+	<4e43bf0186df5c8a56b470318b4827605f9cad6c.1695727471.git.mazziesaccount@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Convert the rt5616 audio CODEC bindings to DT schema
+On Wed, 27 Sep 2023 11:27:41 +0300
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 
-Signed-off-by: Bragatheswaran Manickavel <bragathemanick0908@gmail.com>
----
-V1 -> V2: Changes codec to audio-codec and added spacing above
+> The available_scan_mask is an array of bitmaps representing the channels
+> which can be simultaneously enabled by the driver. In many cases, the
+> hardware can offer more channels than what the user is interested in
+> obtaining. In such cases, it may be preferred that only a subset of
+> channels are enabled, and the driver reads only a subset of the channels
+> from the hardware.
+> 
+> Some devices can't support all channel combinations. For example, the
+> BM1390 pressure sensor must always read the pressure data in order to
+> acknowledge the watermark IRQ, while reading temperature can be omitted.
+> So, the available scan masks would be 'pressure and temperature' and
+> 'pressure only'.
+> 
+> When IIO searches for the scan mask it asks the driver to use, it will
+> pick the first suitable one from the 'available_scan_mask' array. Hence,
+> ordering the masks in the array makes a difference. We should 'prefer'
+> reading just the pressure from the hardware (as it is a cheaper operation
+> than reading both pressure and temperature) over reading both pressure
+> and temperature. Hence, we should set the 'only pressure' as the first
+> scan mask in available_scan_mask array. If we set the 'pressure and
+> temperature' as first in the array, then the 'only temperature' will never
+> get used as 'pressure and temperature' can always serve the user's
+> needs.
+> 
+> Add (minimal) kerneldoc to the 'available_scan_mask' to hint the user
+> that the ordering of masks matters.
+> 
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
- .../bindings/sound/realtek,rt5616.yaml        | 49 +++++++++++++++++++
- .../devicetree/bindings/sound/rt5616.txt      | 32 ------------
- 2 files changed, 49 insertions(+), 32 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/realtek,rt5616.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/rt5616.txt
+Applied this patch to the togreg branch of iio.git
+If you fancy turning the patch description into some more formal
+documentation under Documentation/... that might be a good thing in the
+long run. I always mean to spend some time working on that, but too manyt
+things to do :(
 
-diff --git a/Documentation/devicetree/bindings/sound/realtek,rt5616.yaml b/Documentation/devicetree/bindings/sound/realtek,rt5616.yaml
-new file mode 100644
-index 000000000000..a387f802afd1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/realtek,rt5616.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/realtek,rt5616.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Realtek rt5616 ALSA SoC audio codec driver
-+
-+description: |
-+  Pins on the device (for linking into audio routes) for RT5616:
-+
-+      * IN1P
-+      * IN2P
-+      * IN2N
-+      * LOUTL
-+      * LOUTR
-+      * HPOL
-+      * HPOR
-+
-+maintainers:
-+  - Bard Liao <bardliao@realtek.com>
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: realtek,rt5616
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        audio-codec@1b {
-+            compatible = "realtek,rt5616";
-+            reg = <0x1b>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/sound/rt5616.txt b/Documentation/devicetree/bindings/sound/rt5616.txt
-deleted file mode 100644
-index 540a4bf252e4..000000000000
---- a/Documentation/devicetree/bindings/sound/rt5616.txt
-+++ /dev/null
-@@ -1,32 +0,0 @@
--RT5616 audio CODEC
--
--This device supports I2C only.
--
--Required properties:
--
--- compatible : "realtek,rt5616".
--
--- reg : The I2C address of the device.
--
--Optional properties:
--
--- clocks: The phandle of the master clock to the CODEC.
--
--- clock-names: Should be "mclk".
--
--Pins on the device (for linking into audio routes) for RT5616:
--
--  * IN1P
--  * IN2P
--  * IN2N
--  * LOUTL
--  * LOUTR
--  * HPOL
--  * HPOR
--
--Example:
--
--rt5616: codec@1b {
--	compatible = "realtek,rt5616";
--	reg = <0x1b>;
--};
--- 
-2.34.1
+Thanks,
+
+Jonathan
+
+> ---
+>  include/linux/iio/iio.h | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/linux/iio/iio.h b/include/linux/iio/iio.h
+> index 202e55b0a28b..7bfa1b9bc8a2 100644
+> --- a/include/linux/iio/iio.h
+> +++ b/include/linux/iio/iio.h
+> @@ -556,7 +556,9 @@ struct iio_buffer_setup_ops {
+>   *			and owner
+>   * @buffer:		[DRIVER] any buffer present
+>   * @scan_bytes:		[INTERN] num bytes captured to be fed to buffer demux
+> - * @available_scan_masks: [DRIVER] optional array of allowed bitmasks
+> + * @available_scan_masks: [DRIVER] optional array of allowed bitmasks. Sort the
+> + *			   array in order of preference, the most preferred
+> + *			   masks first.
+>   * @masklength:		[INTERN] the length of the mask established from
+>   *			channels
+>   * @active_scan_mask:	[INTERN] union of all scan masks requested by buffers
 
 
