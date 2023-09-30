@@ -1,126 +1,160 @@
-Return-Path: <devicetree+bounces-4793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B9577B4079
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 15:29:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 942C07B4092
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 15:41:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id E0A30281C64
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 13:29:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 1494F282113
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 13:41:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78DC2F9DB;
-	Sat, 30 Sep 2023 13:29:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89DF411C81;
+	Sat, 30 Sep 2023 13:41:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 639F9524E;
-	Sat, 30 Sep 2023 13:29:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 786BCC433C8;
-	Sat, 30 Sep 2023 13:29:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696080572;
-	bh=i0Cj8+zi1/vHkGVilLWk62xFTOKNFQoM8Abg5edGgjc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=p94r9rVQFN59iFpiWFk/ENZwkqmWs6JRBQpTRt8RXhyJDU9eq8FlMSrDiKouQETgV
-	 cxBaBQnGh+LxbFWKKn5F+QdBNP866Cgt648s0IXD1+OiM9SwOzdgpLdGnYpA8mkng2
-	 EdJK1EhghA2oD4utaE28AgzOU2TM22OwlCUBqEK6eZqGHWtJpfbvuBB/XtilQWkzbq
-	 V3+euyGGhH/RPxXfl4xFnj0GYs+s97l9fGpmTKIFa5kyMSqhoxisD8F3nJlRsJLaWo
-	 gW93BzsnzvPQT85Udhr0/X5Rrw/rrksBBOgukJp7n8D0lWVhnaKt0bBiFy/FLzX32M
-	 hfOkUgGHj9mgA==
-Date: Sat, 30 Sep 2023 14:29:21 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: kernel test robot <lkp@intel.com>
-Cc: Dumitru Ceclan <mitrutzceclan@gmail.com>, oe-kbuild-all@lists.linux.dev,
- linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
- linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Michael Walle <michael@walle.cc>, Andy
- Shevchenko <andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
- ChiaEn Wu <chiaen_wu@richtek.com>, Niklas Schnelle
- <schnelle@linux.ibm.com>, Leonard =?UTF-8?B?R8O2aHJz?=
- <l.goehrs@pengutronix.de>, Mike Looijmans <mike.looijmans@topic.nl>, Haibo
- Chen <haibo.chen@nxp.com>, Hugo Villeneuve <hvilleneuve@dimonoff.com>,
- Ceclan Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] iio: adc: ad7173: add AD7173 driver
-Message-ID: <20230930142921.38006137@jic23-huawei>
-In-Reply-To: <202309290756.MgmIdaDl-lkp@intel.com>
-References: <20230928125443.615006-2-mitrutzceclan@gmail.com>
-	<202309290756.MgmIdaDl-lkp@intel.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3227711727
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 13:41:21 +0000 (UTC)
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C5C41B0
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 06:41:19 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4060b623e64so9859335e9.0
+        for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 06:41:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696081277; x=1696686077; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eJoM3geBcjIHXCFO0Ynx9CVYJRwKfnB5miGTvqrYdhk=;
+        b=tK58F9UKxKSwe82qYH36VvXnCUX/LK+rl/4MI+2TBezzm4rv99VVrW3tu9sbJF8pYx
+         9gw05SlYF07Ocx+MIj2CYiG7LnlOQ3eEQysZ3FmWp1K+32olejuRPbGuvNgp8iQl8uZt
+         aBqsjrON894bDy/p3oEZIOKKBhmKxaAiIH634JSUGve4+f1/OMfwNJ2trMolbZQ7//3k
+         ObTF9Ns4oRKxQuM8RMtatWfOpoKlU+dmKFngZ+dftPY9F0BpaIL3cW3kiLnsHCwMjcvs
+         GrFCDKjpSagvwiL5yTokE5n4VLgACRNtOj5Tn/whYmc4u/2GDnZ2GqyOlXSEV68T9L1l
+         wnOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696081277; x=1696686077;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eJoM3geBcjIHXCFO0Ynx9CVYJRwKfnB5miGTvqrYdhk=;
+        b=vpv7ub3sSUwwDrkJ48AWvfumnd2++Jw1xUVKxxiFV9St07P2p6GEGp341OxWbDGtOD
+         lYiYf5n2fdQZuinf9Hy3VebfJcyUvJnwu4MBrvQMeb3xgAtx96Dotvky9kWyNyML2o9e
+         l6yTnf0j3gTk1eWGyoimANeZE1QmLs4K2gd9ezR/+fReJgZBpUBulNrCFKWy9N83t4IN
+         B/rkYKZsSlUQADqF0wVTuL66BrX2yKiQHhZFLGHSMp1m0OYZeU7crdQQu1Ek2n+8Gy1N
+         Z9A3OJV1QZEv/xHrhw9X/TV1VvCQImi283Ft1SKknvLNvV1Fbr9L6djMbrynJujL53f3
+         4d2Q==
+X-Gm-Message-State: AOJu0Yw9iypZG0M/11hVsxVNem9FJhSRmho9Z9jDsv0G8VYiU8+j/9Cl
+	Pn/jEY9qYbJ89dkWM/lQin26gA==
+X-Google-Smtp-Source: AGHT+IG0ZqV8SkamgfW0teCI7xDdzqKl/VtV8Y3kgDHuWYbc7Bq94TWbYn2TXcXcqhLHj2Fvtk8c+Q==
+X-Received: by 2002:a05:600c:2287:b0:405:409e:1fcb with SMTP id 7-20020a05600c228700b00405409e1fcbmr6276169wmf.5.1696081277381;
+        Sat, 30 Sep 2023 06:41:17 -0700 (PDT)
+Received: from x13s-linux.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id 11-20020a05600c020b00b003fe2b081661sm3408261wmi.30.2023.09.30.06.41.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 30 Sep 2023 06:41:16 -0700 (PDT)
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To: andersson@kernel.org,
+	agross@kernel.org,
+	konrad.dybcio@linaro.org,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	jonathan@marek.ca,
+	quic_tdas@quicinc.com,
+	vladimir.zapolskiy@linaro.org
+Cc: linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	bryan.odonoghue@linaro.org
+Subject: [PATCH v2 0/5] Add sc8280xp CAMCC bindings and driver
+Date: Sat, 30 Sep 2023 14:41:09 +0100
+Message-Id: <20230930134114.1816590-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Fri, 29 Sep 2023 07:29:01 +0800
-kernel test robot <lkp@intel.com> wrote:
+V2:
 
-> Hi Dumitru,
-> 
-> kernel test robot noticed the following build warnings:
-> 
-> [auto build test WARNING on jic23-iio/togreg]
-> [also build test WARNING on linus/master v6.6-rc3 next-20230928]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Dumitru-Ceclan/iio-adc-ad7173-add-AD7173-driver/20230928-205802
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-> patch link:    https://lore.kernel.org/r/20230928125443.615006-2-mitrutzceclan%40gmail.com
-> patch subject: [PATCH v2 2/2] iio: adc: ad7173: add AD7173 driver
-> config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230929/202309290756.MgmIdaDl-lkp@intel.com/config)
-> compiler: sparc64-linux-gcc (GCC) 13.2.0
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230929/202309290756.MgmIdaDl-lkp@intel.com/reproduce)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202309290756.MgmIdaDl-lkp@intel.com/
-> 
-> All warnings (new ones prefixed by >>):
-> 
-> >> drivers/iio/adc/ad7173.c:829:23: warning: initialization of 'long unsigned int' from 'const struct ad7173_device_info *' makes integer from pointer without a cast [-Wint-conversion]  
->      829 |         { "ad7172-2", &ad7173_device_info[ID_AD7172_2], },
->          |                       ^
->    drivers/iio/adc/ad7173.c:829:23: note: (near initialization for 'ad7173_id_table[0].driver_data')
->    drivers/iio/adc/ad7173.c:830:23: warning: initialization of 'long unsigned int' from 'const struct ad7173_device_info *' makes integer from pointer without a cast [-Wint-conversion]
->      830 |         { "ad7173-8", &ad7173_device_info[ID_AD7173_8], },
->          |                       ^
->    drivers/iio/adc/ad7173.c:830:23: note: (near initialization for 'ad7173_id_table[1].driver_data')
->    drivers/iio/adc/ad7173.c:831:23: warning: initialization of 'long unsigned int' from 'const struct ad7173_device_info *' makes integer from pointer without a cast [-Wint-conversion]
->      831 |         { "ad7175-2", &ad7173_device_info[ID_AD7175_2], },
->          |                       ^
->    drivers/iio/adc/ad7173.c:831:23: note: (near initialization for 'ad7173_id_table[2].driver_data')
->    drivers/iio/adc/ad7173.c:832:23: warning: initialization of 'long unsigned int' from 'const struct ad7173_device_info *' makes integer from pointer without a cast [-Wint-conversion]
->      832 |         { "ad7176-2", &ad7173_device_info[ID_AD7176_2], },
->          |                       ^
->    drivers/iio/adc/ad7173.c:832:23: note: (near initialization for 'ad7173_id_table[3].driver_data')
-> 
-> 
-> vim +829 drivers/iio/adc/ad7173.c
-> 
->    827	
->    828	static const struct spi_device_id ad7173_id_table[] = {
->  > 829		{ "ad7172-2", &ad7173_device_info[ID_AD7172_2], },  
->    830		{ "ad7173-8", &ad7173_device_info[ID_AD7173_8], },
->    831		{ "ad7175-2", &ad7173_device_info[ID_AD7175_2], },
->    832		{ "ad7176-2", &ad7173_device_info[ID_AD7176_2], },
-Cast these to kernel_ulong_t as done in similar drivers like the ad7192
+I've expanded the scope of this series to include some fixups for the
+camcc.yaml in general.
 
-Jonathan
+- Adds qcom,camcc-common.yaml
+  There are a number of repeated patterns in the various camcc yaml
+  files which we can contain in a common camcc .yaml instead.
+  I used gcc.yaml as a base per Krzysztof's suggestion.
 
+- Adding the common values file I noticed that sm8450 and sm8550 were
+  both listed as compatible strings in qcom,sm8450-camcc.yaml.
 
->    833		{ },
->    834	};
->    835	MODULE_DEVICE_TABLE(spi, ad7173_id_table);
->    836	
-> 
+  This appears to be in error though since sm8450 and sm8550 are
+  not compat strings of the same driver but different drivers entirely.
+
+- Switches to indexing, instead of fw_name for clocks - Konrad
+
+- Adds the GCC AHB to the clock index - Bod/Konrad
+
+- Changes reference "cam_cc" to "camcc" throughout camcc-sc8280xp.c
+
+Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-26-10-23-sc8280xp-camcc-v2
+
+V1:
+This is a bog-standard series to add in the CAMCC for 8280xp.
+As a precursor to adding in sc8280xp I thought a bit of tidy up on the
+existing yaml for the camcc controllers in general would be worthwhile.
+
+As a result there's a precursor patch which aggregates the various camcc
+yaml files into one location.
+
+The sc8280xp looks like sdm845 with more blocks. Similar to sc8280xp we
+park GDSC to CXO. Thanks to Dmitry for the suggestion the GDSC parking.
+
+Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-23-09-23-sc8280xp-camcc
+
+Bryan O'Donoghue (5):
+  dt-bindings: clock: qcom,camcc-common.yaml: Add a common file for
+    camcc
+  dt-bindings: clock: Add SM8550 CAMCC yaml
+  dt-bindings: clock: Add SC8280XP CAMCC
+  clk: qcom: camcc-sc8280xp: Add sc8280xp CAMCC
+  arm64: boot: dts: qcom: sc8280xp: Add in CAMCC for sc8280xp
+
+ .../bindings/clock/qcom,camcc-common.yaml     |   44 +
+ .../bindings/clock/qcom,camcc-sm8250.yaml     |   32 +-
+ .../bindings/clock/qcom,sc7180-camcc.yaml     |   23 +-
+ .../bindings/clock/qcom,sc7280-camcc.yaml     |   23 +-
+ .../bindings/clock/qcom,sc8280xp-camcc.yaml   |   57 +
+ .../bindings/clock/qcom,sdm845-camcc.yaml     |   23 +-
+ .../bindings/clock/qcom,sm6350-camcc.yaml     |   13 +-
+ .../bindings/clock/qcom,sm8450-camcc.yaml     |   33 +-
+ .../bindings/clock/qcom,sm8550-camcc.yaml     |   56 +
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        |   16 +
+ drivers/clk/qcom/Kconfig                      |    9 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/camcc-sc8280xp.c             | 3052 +++++++++++++++++
+ .../dt-bindings/clock/qcom,sc8280xp-camcc.h   |  179 +
+ 14 files changed, 3437 insertions(+), 124 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,camcc-common.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sc8280xp-camcc.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8550-camcc.yaml
+ create mode 100644 drivers/clk/qcom/camcc-sc8280xp.c
+ create mode 100644 include/dt-bindings/clock/qcom,sc8280xp-camcc.h
+
+-- 
+2.40.1
 
 
