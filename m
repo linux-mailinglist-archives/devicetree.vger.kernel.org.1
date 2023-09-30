@@ -1,174 +1,95 @@
-Return-Path: <devicetree+bounces-4764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BFD77B3DEE
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 05:56:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96B6D7B3E7D
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 07:51:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id CBE84281B4C
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 03:56:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 426C7281E76
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 05:51:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DA3F9CA4B;
-	Sat, 30 Sep 2023 03:56:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62677525A;
+	Sat, 30 Sep 2023 05:51:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 297CC1FD8
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 03:56:36 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6695EB;
-	Fri, 29 Sep 2023 20:56:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1696046193; x=1727582193;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=hZVCEshJL42nV27/fp4ItNiYdD2yoQb0af/3+hY1wDA=;
-  b=MFbe0DgPWCA5H1wLoJh/i26kh60DtW6ziqO0qMJGExchsZBVtU8YdNkZ
-   INxmWhInLtyoykRJZnj9+mh8lWqg95QU2aFGgDrj8KGTxvMTalAqLBFTl
-   Ckw066GC1NpuRjqYwsEDUmMH6n7Ta8wGwACms/XkEp0JQyT5QXIq3vgvO
-   WaRclATpmJUD/KhgZCwPJgNOnNuL95cAmWmLsTS95Xe1hvW32/DjLBspn
-   Hkhrq+ByeVn39lsulPWkelYnhKcOf7FFMn2AOLz0MXBtRWDENgGzjmFwY
-   4cir+PEnnVGKAPAUuMu0PZiC7kJAFZkUaE5aUWFXKrcnEQqRtwiWfiwiP
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="362677811"
-X-IronPort-AV: E=Sophos;i="6.03,189,1694761200"; 
-   d="scan'208";a="362677811"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Sep 2023 20:56:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="820369067"
-X-IronPort-AV: E=Sophos;i="6.03,189,1694761200"; 
-   d="scan'208";a="820369067"
-Received: from lkp-server02.sh.intel.com (HELO c3b01524d57c) ([10.239.97.151])
-  by fmsmga004.fm.intel.com with ESMTP; 29 Sep 2023 20:56:29 -0700
-Received: from kbuild by c3b01524d57c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qmR5f-0003fn-1I;
-	Sat, 30 Sep 2023 03:56:27 +0000
-Date: Sat, 30 Sep 2023 11:55:57 +0800
-From: kernel test robot <lkp@intel.com>
-To: David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-staging@lists.linux.dev
-Cc: oe-kbuild-all@lists.linux.dev, David Lechner <david@lechnology.com>,
-	Jonathan Cameron <jic23@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4CBC1FA8
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 05:51:37 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF3DA1A7;
+	Fri, 29 Sep 2023 22:51:34 -0700 (PDT)
+Received: from uno.lan (unknown [IPv6:2001:861:388f:1650:2f32:b6ff:a885:7d5e])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id EDCFC8D;
+	Sat, 30 Sep 2023 07:49:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1696052989;
+	bh=vMGZHJvmuyL9BBK61IAhhBPP4I9hFANCfHoWe7Ga6qY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=ZfyJTCqT/d9nRwJYotjvIRcJU/cJDyhIdpVlMpApb0GiB5KKdhamVNEFf4ZHqcvb+
+	 L2NeFbHKJR6aCreCfztY1Ui3JDR7oTybAs0Ciqdr28PUFOe2UVtOx9YBICB64dTGco
+	 FyZWfAGH/lnvxKyzva7FUwm306Fzply43NIXm5qQ=
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Axel Haslam <ahaslam@baylibre.com>,
-	Philip Molloy <pmolloy@baylibre.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 26/27] staging: iio: resolver: ad2s1210: implement
- fault events
-Message-ID: <202309301112.XWUnLqJ3-lkp@intel.com>
-References: <20230929-ad2s1210-mainline-v3-26-fa4364281745@baylibre.com>
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	martink@posteo.de
+Subject: [PATCH v2 0/7] media: bindings: Fix handling of video-interface-device
+Date: Sat, 30 Sep 2023 07:51:02 +0200
+Message-ID: <20230930055110.1986-1-jacopo.mondi@ideasonboard.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230929-ad2s1210-mainline-v3-26-fa4364281745@baylibre.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi David,
+v1->v2:
+- Fix a typo in the ov5640 bindings
 
-kernel test robot noticed the following build warnings:
+As discussed in
+https://patchwork.linuxtv.org/project/linux-media/patch/20230928121424.388019-1-festevam@gmail.com/
 
-[auto build test WARNING on 5e99f692d4e32e3250ab18d511894ca797407aec]
+all properties specified in video-interface-device.yaml are valid for
+image sensors.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/David-Lechner/dt-bindings-iio-resolver-add-devicetree-bindings-for-ad2s1210/20230930-014031
-base:   5e99f692d4e32e3250ab18d511894ca797407aec
-patch link:    https://lore.kernel.org/r/20230929-ad2s1210-mainline-v3-26-fa4364281745%40baylibre.com
-patch subject: [PATCH v3 26/27] staging: iio: resolver: ad2s1210: implement fault events
-config: i386-randconfig-003-20230930 (https://download.01.org/0day-ci/archive/20230930/202309301112.XWUnLqJ3-lkp@intel.com/config)
-compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230930/202309301112.XWUnLqJ3-lkp@intel.com/reproduce)
+Some schema however either allow only some of them one by one, or restrict
+the supported values for no specific reason.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202309301112.XWUnLqJ3-lkp@intel.com/
+Fix this by allowing all properties from video-interface-device.yaml
+and removing restrictions on the accepted values.
 
-All warnings (new ones prefixed by >>):
+Jacopo Mondi (7):
+  media: bindings: hynix,hi846: Add video-interface-device properties
+  media: bindings: hynix,hi846: Restrict endpoint properties
+  media: bindings: ovti,ov02a10: Fix handling of video-interface-device
+  media: bindings: ovti,ov4689: Fix handling of video-interface-device
+  media: bindings: ovti,ov5640: Fix handling of video-interface-device
+  media: bindings: sony,imx214: Fix handling of video-interface-device
+  media: bindings: sony,imx415: Fix handling of video-interface-device
 
-   drivers/staging/iio/resolver/ad2s1210.c:1452:34: warning: 'ad2s1210_of_match' defined but not used [-Wunused-const-variable=]
-    1452 | static const struct of_device_id ad2s1210_of_match[] = {
-         |                                  ^~~~~~~~~~~~~~~~~
-   drivers/staging/iio/resolver/ad2s1210.c: In function 'ad2s1210_read_raw':
->> drivers/staging/iio/resolver/ad2s1210.c:436:40: warning: array subscript 2 is above array bounds of 'u8[2]' {aka 'unsigned char[2]'} [-Warray-bounds]
-     436 |  ad2s1210_push_events(indio_dev, st->rx[2], timestamp);
-         |                                  ~~~~~~^~~
+ .../devicetree/bindings/media/i2c/hynix,hi846.yaml     | 10 ++++++++--
+ .../devicetree/bindings/media/i2c/ovti,ov02a10.yaml    |  8 +-------
+ .../devicetree/bindings/media/i2c/ovti,ov4689.yaml     |  6 +-----
+ .../devicetree/bindings/media/i2c/ovti,ov5640.yaml     |  7 +------
+ .../devicetree/bindings/media/i2c/sony,imx214.yaml     |  2 +-
+ .../devicetree/bindings/media/i2c/sony,imx415.yaml     | 10 +---------
+ 6 files changed, 13 insertions(+), 30 deletions(-)
 
+--
+2.42.0
 
-vim +436 drivers/staging/iio/resolver/ad2s1210.c
-
-   390	
-   391	static int ad2s1210_single_conversion(struct iio_dev *indio_dev,
-   392					      struct iio_chan_spec const *chan,
-   393					      int *val)
-   394	{
-   395		struct ad2s1210_state *st = iio_priv(indio_dev);
-   396		s64 timestamp;
-   397		int ret;
-   398	
-   399		mutex_lock(&st->lock);
-   400		gpiod_set_value(st->sample_gpio, 1);
-   401		timestamp = iio_get_time_ns(indio_dev);
-   402		/* delay (6 * tck + 20) nano seconds */
-   403		udelay(1);
-   404	
-   405		switch (chan->type) {
-   406		case IIO_ANGL:
-   407			ret = ad2s1210_set_mode(st, MOD_POS);
-   408			break;
-   409		case IIO_ANGL_VEL:
-   410			ret = ad2s1210_set_mode(st, MOD_VEL);
-   411			break;
-   412		default:
-   413			ret = -EINVAL;
-   414			break;
-   415		}
-   416		if (ret < 0)
-   417			goto error_ret;
-   418		ret = spi_read(st->sdev, &st->sample, 3);
-   419		if (ret < 0)
-   420			goto error_ret;
-   421	
-   422		switch (chan->type) {
-   423		case IIO_ANGL:
-   424			*val = be16_to_cpu(st->sample.raw);
-   425			ret = IIO_VAL_INT;
-   426			break;
-   427		case IIO_ANGL_VEL:
-   428			*val = (s16)be16_to_cpu(st->sample.raw);
-   429			ret = IIO_VAL_INT;
-   430			break;
-   431		default:
-   432			ret = -EINVAL;
-   433			break;
-   434		}
-   435	
- > 436		ad2s1210_push_events(indio_dev, st->rx[2], timestamp);
-   437	
-   438	error_ret:
-   439		gpiod_set_value(st->sample_gpio, 0);
-   440		/* delay (2 * tck + 20) nano seconds */
-   441		udelay(1);
-   442		mutex_unlock(&st->lock);
-   443		return ret;
-   444	}
-   445	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
