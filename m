@@ -1,117 +1,126 @@
-Return-Path: <devicetree+bounces-4792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8E847B405E
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 15:01:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B9577B4079
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 15:29:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 62A96281D3E
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 13:01:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id E0A30281C64
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 13:29:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AAC863A4;
-	Sat, 30 Sep 2023 13:01:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78DC2F9DB;
+	Sat, 30 Sep 2023 13:29:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C82E29461
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 13:01:39 +0000 (UTC)
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58BA0E6
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 06:01:38 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-1c746bc3bceso3520815ad.1
-        for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 06:01:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696078898; x=1696683698; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=LmYgX7BL5Yak5oQpgfXtsfulm672VZZiBhNC2u4UzfY=;
-        b=lCWcVyp6r5VLD8gOlwuJiIZhZd7kP2ke+sEekT88TnnJxTCql7J+KH1jdwqK9/OWZA
-         ON3VKqhZnu0Rf08WNzjCR/WKZUgQRG1xD9G59fR+ZFfP5nQFOAWQ7yaHcUV9PQz2BfD6
-         daiBjeJ7CKZ1BgirL9bZmca5bSXyyf5tuN7jnPwoCLvAKUDNl5NjHjBJmCYAWuFl5hIO
-         o1XEfteG3k+9JbNkuWSb9K0UQ6IdWUPF8ykdMjCpxAlNHKZuECDbE/1lPBrcgJVO0W3F
-         g2X07isTPiqUZAn0YDWgsByN8Fe37PH9jxb0TFM+etybhY7azmLD/m1qFbUPXMJs7nrI
-         xVsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696078898; x=1696683698;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LmYgX7BL5Yak5oQpgfXtsfulm672VZZiBhNC2u4UzfY=;
-        b=akWw/4z4moDMUkZRJKeeH52dTaEscfqhsUFD+UnWCi9QoJQq8kVb4b05/FKXlux51q
-         A96dYHA7vXLXfyVryo9V1jT5/ATuUFVbuog1YQm8tacWzxkglaPGI4s9bbGfKLsPpXeY
-         h3yXfH1YCa9gqQXC4ozeEuKBOmEucZ6aMioXg6WNWhaPMq4gEOkLb01YdOefxT6BsqwD
-         zJZ8WaI6LgwTvZ+iJstWwmg2BYHnpL42CUTZK54qSrW9dvprYiFs36JUYd8xd7/yZsSP
-         NOtnR9SO2ZGBJYu8K4ULmiq1xWB4Vb0zVmkfKdH/aW8NRjY05nH4zcHvgNI5Rd5hzhgF
-         hW9g==
-X-Gm-Message-State: AOJu0Yz4cbOyiprmP5Z2XrbaGSL0IjNQDdRHqisTv2zo7TGbVMDZVxSj
-	wt1oTkhCgm/u74BGcehcpM0SnqQr4uE=
-X-Google-Smtp-Source: AGHT+IHqZJT/snJoVf0cMhy8miKyFmGz3DHF93hzHe8fMGXyWWeqhhz5lpLolovaudCzWlT7jWWmzA==
-X-Received: by 2002:a17:902:b618:b0:1c7:5581:f9c with SMTP id b24-20020a170902b61800b001c755810f9cmr2008137pls.0.1696078897620;
-        Sat, 30 Sep 2023 06:01:37 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:ec70:c4d5:afd8:ac4e])
-        by smtp.gmail.com with ESMTPSA id x10-20020a170902820a00b001c1f161949fsm18577513pln.96.2023.09.30.06.01.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Sep 2023 06:01:37 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: p.zabel@pengutronix.de
-Cc: mripard@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] dt-bindings: display: fsl,imx6-hdmi: Change to 'unevaluatedProperties: false'
-Date: Sat, 30 Sep 2023 10:01:02 -0300
-Message-Id: <20230930130102.798822-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 639F9524E;
+	Sat, 30 Sep 2023 13:29:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 786BCC433C8;
+	Sat, 30 Sep 2023 13:29:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696080572;
+	bh=i0Cj8+zi1/vHkGVilLWk62xFTOKNFQoM8Abg5edGgjc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=p94r9rVQFN59iFpiWFk/ENZwkqmWs6JRBQpTRt8RXhyJDU9eq8FlMSrDiKouQETgV
+	 cxBaBQnGh+LxbFWKKn5F+QdBNP866Cgt648s0IXD1+OiM9SwOzdgpLdGnYpA8mkng2
+	 EdJK1EhghA2oD4utaE28AgzOU2TM22OwlCUBqEK6eZqGHWtJpfbvuBB/XtilQWkzbq
+	 V3+euyGGhH/RPxXfl4xFnj0GYs+s97l9fGpmTKIFa5kyMSqhoxisD8F3nJlRsJLaWo
+	 gW93BzsnzvPQT85Udhr0/X5Rrw/rrksBBOgukJp7n8D0lWVhnaKt0bBiFy/FLzX32M
+	 hfOkUgGHj9mgA==
+Date: Sat, 30 Sep 2023 14:29:21 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: kernel test robot <lkp@intel.com>
+Cc: Dumitru Ceclan <mitrutzceclan@gmail.com>, oe-kbuild-all@lists.linux.dev,
+ linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
+ linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Michael Walle <michael@walle.cc>, Andy
+ Shevchenko <andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
+ ChiaEn Wu <chiaen_wu@richtek.com>, Niklas Schnelle
+ <schnelle@linux.ibm.com>, Leonard =?UTF-8?B?R8O2aHJz?=
+ <l.goehrs@pengutronix.de>, Mike Looijmans <mike.looijmans@topic.nl>, Haibo
+ Chen <haibo.chen@nxp.com>, Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Ceclan Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] iio: adc: ad7173: add AD7173 driver
+Message-ID: <20230930142921.38006137@jic23-huawei>
+In-Reply-To: <202309290756.MgmIdaDl-lkp@intel.com>
+References: <20230928125443.615006-2-mitrutzceclan@gmail.com>
+	<202309290756.MgmIdaDl-lkp@intel.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-From: Fabio Estevam <festevam@denx.de>
+On Fri, 29 Sep 2023 07:29:01 +0800
+kernel test robot <lkp@intel.com> wrote:
 
-fsl,imx6-hdmi.yaml makes a reference to synopsys,dw-hdmi.yaml.
+> Hi Dumitru,
+> 
+> kernel test robot noticed the following build warnings:
+> 
+> [auto build test WARNING on jic23-iio/togreg]
+> [also build test WARNING on linus/master v6.6-rc3 next-20230928]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> 
+> url:    https://github.com/intel-lab-lkp/linux/commits/Dumitru-Ceclan/iio-adc-ad7173-add-AD7173-driver/20230928-205802
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+> patch link:    https://lore.kernel.org/r/20230928125443.615006-2-mitrutzceclan%40gmail.com
+> patch subject: [PATCH v2 2/2] iio: adc: ad7173: add AD7173 driver
+> config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230929/202309290756.MgmIdaDl-lkp@intel.com/config)
+> compiler: sparc64-linux-gcc (GCC) 13.2.0
+> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230929/202309290756.MgmIdaDl-lkp@intel.com/reproduce)
+> 
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202309290756.MgmIdaDl-lkp@intel.com/
+> 
+> All warnings (new ones prefixed by >>):
+> 
+> >> drivers/iio/adc/ad7173.c:829:23: warning: initialization of 'long unsigned int' from 'const struct ad7173_device_info *' makes integer from pointer without a cast [-Wint-conversion]  
+>      829 |         { "ad7172-2", &ad7173_device_info[ID_AD7172_2], },
+>          |                       ^
+>    drivers/iio/adc/ad7173.c:829:23: note: (near initialization for 'ad7173_id_table[0].driver_data')
+>    drivers/iio/adc/ad7173.c:830:23: warning: initialization of 'long unsigned int' from 'const struct ad7173_device_info *' makes integer from pointer without a cast [-Wint-conversion]
+>      830 |         { "ad7173-8", &ad7173_device_info[ID_AD7173_8], },
+>          |                       ^
+>    drivers/iio/adc/ad7173.c:830:23: note: (near initialization for 'ad7173_id_table[1].driver_data')
+>    drivers/iio/adc/ad7173.c:831:23: warning: initialization of 'long unsigned int' from 'const struct ad7173_device_info *' makes integer from pointer without a cast [-Wint-conversion]
+>      831 |         { "ad7175-2", &ad7173_device_info[ID_AD7175_2], },
+>          |                       ^
+>    drivers/iio/adc/ad7173.c:831:23: note: (near initialization for 'ad7173_id_table[2].driver_data')
+>    drivers/iio/adc/ad7173.c:832:23: warning: initialization of 'long unsigned int' from 'const struct ad7173_device_info *' makes integer from pointer without a cast [-Wint-conversion]
+>      832 |         { "ad7176-2", &ad7173_device_info[ID_AD7176_2], },
+>          |                       ^
+>    drivers/iio/adc/ad7173.c:832:23: note: (near initialization for 'ad7173_id_table[3].driver_data')
+> 
+> 
+> vim +829 drivers/iio/adc/ad7173.c
+> 
+>    827	
+>    828	static const struct spi_device_id ad7173_id_table[] = {
+>  > 829		{ "ad7172-2", &ad7173_device_info[ID_AD7172_2], },  
+>    830		{ "ad7173-8", &ad7173_device_info[ID_AD7173_8], },
+>    831		{ "ad7175-2", &ad7173_device_info[ID_AD7175_2], },
+>    832		{ "ad7176-2", &ad7173_device_info[ID_AD7176_2], },
+Cast these to kernel_ulong_t as done in similar drivers like the ad7192
 
-The 'interrupts'and 'reg' properties are described in synopsys,dw-hdmi.yaml,
-so use 'unevaluatedProperties: false' so that these two properties can
-be accepted. 
+Jonathan
 
-This fixes the following schema warnings:
 
-hdmi@120000: 'interrupts', 'reg' do not match any of the regexes: 'pinctrl-[0-9]+'
-from schema $id: http://devicetree.org/schemas/display/imx/fsl,imx6-hdmi.yaml#
-
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- .../devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml          | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml
-index af7fe9c4d196..7979cf07f119 100644
---- a/Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml
-@@ -87,7 +87,7 @@ required:
-   - interrupts
-   - ports
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
--- 
-2.34.1
+>    833		{ },
+>    834	};
+>    835	MODULE_DEVICE_TABLE(spi, ad7173_id_table);
+>    836	
+> 
 
 
