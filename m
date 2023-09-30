@@ -1,155 +1,144 @@
-Return-Path: <devicetree+bounces-4876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 529F37B422D
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 18:34:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3BE07B423E
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 18:39:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 0464E28230D
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 16:34:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id A6E60282EE5
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 16:39:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBE481FC5;
-	Sat, 30 Sep 2023 16:34:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADCCF5699;
+	Sat, 30 Sep 2023 16:39:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA48E1FA0
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 16:34:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4D08C433C7;
-	Sat, 30 Sep 2023 16:34:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696091651;
-	bh=QN0DUz4XIKMWjuArId5bSKDyvo7SIQjTXOmmbnVcF2c=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Bg5jvZOg4EwLkYjOit6uHQNqkYetAyeY6BTDCJCxARC9rJIpM5LcvOXPdwO+rN9uD
-	 WwYMGYPHn9ZuEnyHhRfxNGajCg0FsVr8sC5eroaysbHPZCy9OzyRSqF9y92XplA59E
-	 Nv3+larLCI3pyNkQpq6aAZd2NW7sL4448cSWtQ9KAoMHV6Nwy4qWODuSjUQrb8nVKJ
-	 BpcA1/WJBIlqOKkDABqecfDEzT+ZVf1iAi3w9icXGrJlGG5AIMgyfEseKGXndU06ap
-	 uPG7A0GtGG7E56jcXBGm9qjAoOnSjMAptDoC3ddbinSNbrUuyMsy+IlyX6Qefy9Ts0
-	 X4e/2Ba8wkawA==
-Date: Sat, 30 Sep 2023 17:34:09 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Angel Iglesias
- <ang.iglesiasg@gmail.com>, Andreas Klinger <ak@it-klinger.de>, Benjamin
- Bara <bbara93@gmail.com>, Christophe JAILLET
- <christophe.jaillet@wanadoo.fr>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/5] tools: iio: iio_generic_buffer ensure alignment
-Message-ID: <20230930173409.4fe38d94@jic23-huawei>
-In-Reply-To: <e986b4562ca663e19ea30b81d15221c15bd87227.1695727471.git.mazziesaccount@gmail.com>
-References: <cover.1695727471.git.mazziesaccount@gmail.com>
-	<e986b4562ca663e19ea30b81d15221c15bd87227.1695727471.git.mazziesaccount@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 704A81FC5
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 16:39:42 +0000 (UTC)
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BA07E5
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 09:39:39 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2c12ae20a5cso236720101fa.2
+        for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 09:39:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696091978; x=1696696778; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YsYBBmmijjJDdkK90sdg+zbm+nxIwxTrAlWHp+1fd+Y=;
+        b=tKfzMxouj0rTv7eFFPkSoAy5jZG53xL9Di7sLREnIWQ359Kd/4SbaHXTuw825QOVLL
+         xAn1JpUdC9yhcC3RpUNp76QafwEC5qfrRC42TDECWViN/VbEK8480KaDNdC51yWUPn05
+         CTxO8kGSN96lmcF4Syu0KYkYmtKccTTGIkqpyQxNZrZVog6cNE1L+sNR0jDEHk/i2NvB
+         s5+tLbx6dxBWhG/uM3UHEO8Sh4qiIkfrwg3CCgv4dGPn+AvUCM7wVDmK1a9gEWkeczVz
+         L65xGTZfw9X3synDM8oUM8gBgLfaKLqbimDry9Oe3v19H6A7bUYocPb9cG/M+hMhgA5o
+         7ZdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696091978; x=1696696778;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YsYBBmmijjJDdkK90sdg+zbm+nxIwxTrAlWHp+1fd+Y=;
+        b=GGEi51knD0Hd62YWX6P0jwVv+8IqNwwyicOkhCdAxRxHRcZB30thnX2PfGaIP+K5KD
+         7oUSiEj7zHvmFROTYjQUQUIyATKxEv96sl/En0ViM6vsNZY4ck1zKQLKwa0GAffk0tQp
+         i8g/g2jHwVw4mw0wjJbTxD0CWLlmha1wUiy83PpDWzpFm4v/XlCf3WUGeoE7lkxR9LRE
+         zXOtpbiX+SkCSjw2A0ulJkIQQmR4ojqS4JbMjXqV2jVa2HyAlKKbqfOXOSqJjwXmewpy
+         8aym3HUBVXzAa6YVfifv/zRqH7QtoJ1CU1A34egZXPg6qDPIcolOhBY8TFiG6sN2d9dS
+         bOdg==
+X-Gm-Message-State: AOJu0YyKUScrUd/QiYSTDDsRIiPsVIR6lKVPrdBOSzvGtx2C1neWp0Df
+	RA74rbeiWOF1tLmhKR6bl8vaFQ==
+X-Google-Smtp-Source: AGHT+IFr3dQkMdLil9aL+fiLH6DJaCxg6l8S9ad5Yn5oom2bZvCmuy/LmStKXHHz+8npOZLwHjMfzA==
+X-Received: by 2002:a05:6512:3e20:b0:503:28cb:c073 with SMTP id i32-20020a0565123e2000b0050328cbc073mr7954114lfv.58.1696091977744;
+        Sat, 30 Sep 2023 09:39:37 -0700 (PDT)
+Received: from ?IPV6:2a00:f41:906b:9c4e:a878:12c9:4d61:a6f2? ([2a00:f41:906b:9c4e:a878:12c9:4d61:a6f2])
+        by smtp.gmail.com with ESMTPSA id c19-20020a197613000000b005033948f108sm3895415lff.272.2023.09.30.09.39.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 30 Sep 2023 09:39:37 -0700 (PDT)
+Message-ID: <ba0399d3-c3a5-0458-3668-e734fafe2f1a@linaro.org>
+Date: Sat, 30 Sep 2023 18:39:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2 4/5] clk: qcom: camcc-sc8280xp: Add sc8280xp CAMCC
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, andersson@kernel.org,
+ agross@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ jonathan@marek.ca, quic_tdas@quicinc.com, vladimir.zapolskiy@linaro.org
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230930134114.1816590-1-bryan.odonoghue@linaro.org>
+ <20230930134114.1816590-5-bryan.odonoghue@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230930134114.1816590-5-bryan.odonoghue@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Wed, 27 Sep 2023 11:26:07 +0300
-Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 
-> The iio_generic_buffer can return garbage values when the total size of
-> scan data is not a multiple of the largest element in the scan. This can be
-> demonstrated by reading a scan, consisting, for example of one 4-byte and
-> one 2-byte element, where the 4-byte element is first in the buffer.
+
+On 9/30/23 15:41, Bryan O'Donoghue wrote:
+> Add the sc8280xp CAMCC driver which follows the sdm845 CAMCC lineage
+> with additional CCI and IFE blocks and more granular clock parentage.
 > 
-> The IIO generic buffer code does not take into account the last two
-> padding bytes that are needed to ensure that the 4-byte data for next
-> scan is correctly aligned.
-> 
-> Add the padding bytes required to align the next sample with the scan size.
-> 
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > ---
-> I think the whole alignment code could be revised here, but I am unsure
-> what kind of alignment is expected, and if it actually depends on the
-> architecture. Anyways, I'll quote myself from another mail to explain
-> how this patch handles things:
-> 
-> > For non power of2 sizes, the alignment code will result strange alignments.
-> > For example, scan consisting of two 6-byte elements would be packed -
-> > meaning the second element would probably break the alignment rules by
-> > starting from address '6'. I think that on most architectures the proper
-> > access would require 2 padding bytes to be added at the end of the first
-> > sample. Current code wouldn't do that.  
-> 
-> > If we allow only power of 2 sizes - I would expect a scan consisting of a
-> > 8 byte element followed by a 16 byte element to be tightly packed. I'd
-> > assume that for the 16 byte data, it'd be enough to ensure 8 byte alignment.
-> > Current code would however add 8 bytes of padding at the end of the first
-> > 8 byte element to make the 16 byte scan element to be aligned at 16 byte
-> > address. To my uneducated mind this is not needed - but maybe I just don't
-> > know what I am writing about :)  
-> 
-> Revision history
-> v3 => v4:
->  - drop extra print and TODO coment
->  - add comment clarifying alignment sizes
-> ---
->  tools/iio/iio_generic_buffer.c | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
-> 
-> diff --git a/tools/iio/iio_generic_buffer.c b/tools/iio/iio_generic_buffer.c
-> index 44bbf80f0cfd..c07c49397b19 100644
-> --- a/tools/iio/iio_generic_buffer.c
-> +++ b/tools/iio/iio_generic_buffer.c
-> @@ -54,9 +54,12 @@ enum autochan {
->  static unsigned int size_from_channelarray(struct iio_channel_info *channels, int num_channels)
->  {
->  	unsigned int bytes = 0;
-> -	int i = 0;
-> +	int i = 0, max = 0;
-> +	unsigned int misalignment;
->  
->  	while (i < num_channels) {
-> +		if (channels[i].bytes > max)
-> +			max = channels[i].bytes;
->  		if (bytes % channels[i].bytes == 0)
->  			channels[i].location = bytes;
->  		else
-> @@ -66,6 +69,19 @@ static unsigned int size_from_channelarray(struct iio_channel_info *channels, in
->  		bytes = channels[i].location + channels[i].bytes;
->  		i++;
->  	}
-> +	/*
-> +	 * We wan't the data in next sample to also be properly aligned so
-> +	 * we'll add padding at the end if needed.
-> +	 *
-> +	 * Please note, this code does ensure alignment to maximum channel
-> +	 * size. It works only as long as the channel sizes are 1, 2, 4 or 8
-> +	 * bytes. Also, on 32 bit platforms it might be enough to align also
-> +	 * the 8 byte elements to 4 byte boundary - which this code is not
-> +	 * doing.
-Very much not!  We need to present same data alignment to userspace
-indpendent of what architecture is running. 
+[...]
 
-It's annoyingly inconsistent how 8 byte elements are handled on 32 bit
-architectures as some have optimized aligned access routines and others
-will read as 2 32 bit fields.  Hence we just stick to 8 byte value is
-8 byte aligned which is always fine but wastes a bit of space on x86 32
-bit - which I don't care about ;)
+> +static struct clk_branch camcc_gdsc_clk = {
+> +	.halt_reg = 0xc1e4,
+> +	.halt_check = BRANCH_HALT,
+> +	.clkr = {
+> +		.enable_reg = 0xc1e4,
+> +		.enable_mask = BIT(0),
+> +		.hw.init = &(struct clk_init_data){
+> +			.name = "camcc_gdsc_clk",
+> +			.parent_hws = (const struct clk_hw*[]){
+> +				&camcc_xo_clk_src.clkr.hw,
+> +			},
+> +			.num_parents = 1,
+> +			.flags = CLK_IS_CRITICAL | CLK_SET_RATE_PARENT,
+"meh"
 
-Please drop this last bit of the comment as we should just say what it
-does, not conjecture what it might do!
+Is this clock only necessary for the GDSC to turn on?
+
+I wanted to say "just chuck it into gdsc.cxcs", but upon actually 
+reading the code, I realized that just doing so doesn't event turn the 
+referenced clocks on.. That's.. a realization.. I think I'll be able to 
+solve a couple bugs with this knowledge..
 
 
 
-> +	 */
-> +	misalignment = bytes % max;
-> +	if (misalignment)
-> +		bytes += max - misalignment;
->  
->  	return bytes;
->  }
+[...]
 
+> +	ret = qcom_cc_really_probe(pdev, &camcc_sc8280xp_desc, regmap);
+This conflicts with [1]
+
+> +	if (ret)
+> +		goto err_put_rpm;
+
+[...]
+
+> +
+> +static int __init camcc_sc8280xp_init(void)
+> +{
+> +	return platform_driver_register(&camcc_sc8280xp_driver);
+> +}
+> +subsys_initcall(camcc_sc8280xp_init);
+  module_platform_driver, please
+
+Konrad
+
+[1] 
+https://lore.kernel.org/linux-arm-msm/20230923112105.18102-4-quic_luoj@quicinc.com/
 
