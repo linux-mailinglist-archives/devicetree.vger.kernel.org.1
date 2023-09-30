@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-4862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 082197B41CC
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 17:43:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADCD27B41D0
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 17:46:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id AB8A528330A
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 15:43:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id CB28E1C20A5E
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 15:46:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF226171B8;
-	Sat, 30 Sep 2023 15:43:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BCD3171CB;
+	Sat, 30 Sep 2023 15:46:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7BBF2C9E
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 15:43:37 +0000 (UTC)
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E74D5E5
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 08:43:33 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-405361bb94eso154977135e9.0
-        for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 08:43:33 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 858722C9E
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 15:46:16 +0000 (UTC)
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2BBF9C
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 08:46:14 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9a648f9d8e3so2153050566b.1
+        for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 08:46:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696088612; x=1696693412; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=rpJwZ/O5D+w7gTj35MHhdDWNOzuh12Ykm9AX9FueopQ=;
-        b=McUnrxQ3So2eCd1jap8GGU9/FRW7jiMQE/Paj5RlmtvYeAEi7ByeiDU+ndbU107biL
-         OcDiJ4faFmVyMX9ZToXahVc76v2vPO+kLwTFql/1Ztdz3xtVbwV0Pbyk3vpNdrvuNy4F
-         LSHqEXBMKejSqCHZYTtvAoKi10dFPdA+ALMsU3BmfFpafVeDSJHgUgCfqlCuVzXEsqvY
-         9nL/ic46B1opnPbDWtiNzYSy7OeEVgTDGUd+uQMszyxaQDJHDmKlw3QOCZhH+PuAWlst
-         drxgcJBRmtqMAFi/iyj6wU2dEt9lCx8XHHHhXxVpgLEuRisLN5uLM/a9LL6r5va0MzVW
-         2Zbw==
+        d=linaro.org; s=google; t=1696088773; x=1696693573; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5ujdxOyRm+3K6e9nLkeJUMVVREpdNXy+Z3KatQc5Dzc=;
+        b=ctGlMlUernaKzdFt9KovEgxVzSsdvvr4SPq3ptspKyt9KIneFqOw8G3rISxMjbwrNK
+         JWjNBI9pEgDHSkjr1MXQTuf5AE3yRvSDoai/aEmS2+k+me9mz7QxEB0MH8wO//5ONoiH
+         8wv3zBQO5+d/jx5bgJ/l+Og44conQ2JtzrUrkMmpBaHQCnTS5lFuwWKZdiI2TunrL3lI
+         MJsB/EChTULAVkdpwLGcbK80thZcwh2Lbs3sSpIYxdwcBQJMrIDFXnrohkqlUT15J9QV
+         q9lkcyf/xGWL7xLqBkurQa1o7kfIZouJ0ZbFWQcqHFEpouxpkAi9AZGvrzKuIGxrpB4s
+         eApQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696088612; x=1696693412;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rpJwZ/O5D+w7gTj35MHhdDWNOzuh12Ykm9AX9FueopQ=;
-        b=hBYko16wAl39INedv5PpjQeKLXCHYEv7KvzHRNn2xf7xHsF/A3PKOw71ERtp/Cq6ct
-         Hr55J4uHFiDyjllvwjKdvNE75U53Pc5Suz2olCyce+VxdUt7XYzxxzYT6FqVSEF0KiXg
-         BCiCnLFrT+15QpgS6h8NHGe8Ee7iu7CQyfo7cWlIfqmSmWl/5QbkkwD8Ibs1SfRz97vI
-         IQJdJbPAk31JYDVVDbrRGhqCY+ye9IUtu9yRh1VdrxH/RUeXEv7cRi3XyjehND5Qf0eS
-         d9Lk2zhWdNf/tHVKtwLhagu7nHY1OJGMnfXKNUWf9MhD8k8rMBtP/7/pMfACRMUUh14X
-         2Zdg==
-X-Gm-Message-State: AOJu0YyO5wVrQKT0Oei2DXCQHJQRh5SFlqpay+HSm9TfiilOD0iEELPY
-	hhGxTttpcjsULohtiVjweWci3g==
-X-Google-Smtp-Source: AGHT+IHBq0A1GV/uKEn5Dbe2EqEO3ahsL1lnc8MsERH0V4ewH6kYowohffEcproNRiE/7+eQu7FyIQ==
-X-Received: by 2002:a5d:68cf:0:b0:31f:e761:d47c with SMTP id p15-20020a5d68cf000000b0031fe761d47cmr5853700wrw.32.1696088611958;
-        Sat, 30 Sep 2023 08:43:31 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1696088773; x=1696693573;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5ujdxOyRm+3K6e9nLkeJUMVVREpdNXy+Z3KatQc5Dzc=;
+        b=d1P+fyZiEDniy8fx08uARg6kLZTTMKl9NF0KOZkkJbcaRT5eSJ9NA1IkYEYyknEWdU
+         mhBc4a56z9VLjXiatPC1947DyxCVmV4ntdllTerHvnGNWeiLwOIF4n/NB2AEd6xZwLmG
+         zpRXaFb4jRZ53CKeOxLfxmUWmVlbg8usWXBnqqtKx6xtM+oZpRAz3qNV1+2wlOD8++xG
+         Gx09s/ox58UgpC0WJ7VCyMB8APxHx+tzyApjuELeksgsRpe1Sxv2RdaVI74S2vbJm17J
+         g7b5e7Q12UuDSv1g1T0fpuawaQs5tEqF73WgizBnJrXaE6uZRL4SCex3MDY/3yX7Gwtf
+         yX+Q==
+X-Gm-Message-State: AOJu0YzguNLb4FArJSvjMmfpT2gw3+gQ9woe3Rmuaw/dPSakpZN1s8c6
+	7oSx5XQ/FsQX38vdeIc6QCkbjg==
+X-Google-Smtp-Source: AGHT+IEIN3wdGQcE8k9/BpQuuwTdvqrpeAd3381PFLxNMRZawSPe538s4aHO6XJHBqOO9ma0aqy0rA==
+X-Received: by 2002:a17:906:292a:b0:9a1:d29c:6a9d with SMTP id v10-20020a170906292a00b009a1d29c6a9dmr6636278ejd.46.1696088773121;
+        Sat, 30 Sep 2023 08:46:13 -0700 (PDT)
 Received: from [192.168.8.76] ([88.154.66.190])
-        by smtp.gmail.com with ESMTPSA id x11-20020a5d490b000000b00325aca09ad1sm3439703wrq.24.2023.09.30.08.43.28
+        by smtp.gmail.com with ESMTPSA id d2-20020a17090694c200b00977cad140a8sm14034618ejy.218.2023.09.30.08.46.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Sep 2023 08:43:31 -0700 (PDT)
-Message-ID: <04ec1e03-a5c2-43a1-a1df-04e1441eeaf9@linaro.org>
-Date: Sat, 30 Sep 2023 17:43:23 +0200
+        Sat, 30 Sep 2023 08:46:12 -0700 (PDT)
+Message-ID: <46cf84f1-060b-4f9f-9c9c-edf504bf03ca@linaro.org>
+Date: Sat, 30 Sep 2023 17:46:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,17 +63,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Add QCM6490 IDP board
-To: Komal Bajaj <quic_kbajaj@quicinc.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
-References: <20230928133312.11371-1-quic_kbajaj@quicinc.com>
- <20230928133312.11371-2-quic_kbajaj@quicinc.com>
+Subject: Re: [PATCH v3 01/12] dt-bindings: net: add STM32MP13 compatible in
+ documentation for stm32
 Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>,
+ Christophe Roullier <christophe.roullier@foss.st.com>
+Cc: "David S . Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Richard Cochran <richardcochran@gmail.com>, Jose Abreu
+ <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230928151512.322016-1-christophe.roullier@foss.st.com>
+ <20230928151512.322016-2-christophe.roullier@foss.st.com>
+ <20230928-footwork-padlock-524173c3e205@spud>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,24 +128,97 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230928133312.11371-2-quic_kbajaj@quicinc.com>
+In-Reply-To: <20230928-footwork-padlock-524173c3e205@spud>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 28/09/2023 15:33, Komal Bajaj wrote:
-> Document the qcom,qcm6490-idp board based off qcm6490 SoC.
+On 28/09/2023 22:39, Conor Dooley wrote:
+> Hey,
 > 
-> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
-> ---
+> On Thu, Sep 28, 2023 at 05:15:01PM +0200, Christophe Roullier wrote:
+>> New STM32 SOC have 2 GMACs instances.
+>> GMAC IP version is SNPS 4.20.
+>>
+>> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
+>> ---
+>>  .../devicetree/bindings/net/stm32-dwmac.yaml  | 78 +++++++++++++++++--
+>>  1 file changed, 70 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+>> index fc8c96b08d7dc..ca976281bfc22 100644
+>> --- a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+>> +++ b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+>> @@ -22,18 +22,17 @@ select:
+>>          enum:
+>>            - st,stm32-dwmac
+>>            - st,stm32mp1-dwmac
+>> +          - st,stm32mp13-dwmac
+>>    required:
+>>      - compatible
+>>  
+>> -allOf:
+>> -  - $ref: snps,dwmac.yaml#
+>> -
+>>  properties:
+>>    compatible:
+>>      oneOf:
+>>        - items:
+>>            - enum:
+>>                - st,stm32mp1-dwmac
+>> +              - st,stm32mp13-dwmac
+>>            - const: snps,dwmac-4.20a
+>>        - items:
+>>            - enum:
+>> @@ -74,13 +73,10 @@ properties:
+>>  
+>>    st,syscon:
+>>      $ref: /schemas/types.yaml#/definitions/phandle-array
+>> -    items:
+>> -      - items:
+>> -          - description: phandle to the syscon node which encompases the glue register
+>> -          - description: offset of the control register
+>>      description:
+>>        Should be phandle/offset pair. The phandle to the syscon node which
+>> -      encompases the glue register, and the offset of the control register
+>> +      encompases the glue register, the offset of the control register and
+>> +      the mask to set bitfield in control register
+>>  
+>>    st,eth-clk-sel:
+>>      description:
+>> @@ -101,6 +97,38 @@ required:
+>>  
+>>  unevaluatedProperties: false
+>>  
+>> +allOf:
+>> +  - $ref: snps,dwmac.yaml#
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - st,stm32mp1-dwmac
+>> +              - st,stm32-dwmac
+>> +    then:
+>> +      properties:
+>> +        st,syscon:
+>> +          items:
+>> +            items:
+>> +              - description: phandle to the syscon node which encompases the glue register
+>> +              - description: offset of the control register
+> 
+> These descriptions should, IMO, be moved back out to the st,syscon
+> definition. If you put the 3 descriptions there, with "minItems: 2" &
+> put "maxItems: 2" and "minItems: 3" in each of the if/then clauses.
+> Also, it should be sufficient to simplify to if/then/else.
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+What's more, same property should not have different types. This syscon
+property was way too generic, thus now you have trouble of conflicting
+types.
 
 Best regards,
 Krzysztof
