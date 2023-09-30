@@ -1,33 +1,33 @@
-Return-Path: <devicetree+bounces-4787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE55C7B404D
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 14:52:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A92A67B404E
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 14:52:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 00BE6281DBB
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 12:51:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 61DCE281D04
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 12:52:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42EE29CA4B;
-	Sat, 30 Sep 2023 12:51:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6BE65CBC;
+	Sat, 30 Sep 2023 12:52:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 328315CBC
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 12:51:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3A34C433CC;
-	Sat, 30 Sep 2023 12:51:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B682223D0
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 12:52:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25FA9C433CB;
+	Sat, 30 Sep 2023 12:51:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696078316;
-	bh=IOW8Qy8WgXjW/pu+Hsiy+A9zCuQxJj+mnIrMdCsos4M=;
+	s=k20201202; t=1696078320;
+	bh=fQTDtT9gnWgXUs+I9buDYmY6imSxTfJ5hIWH/nKngUA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=N7P+Uc3HY8yOIulo2M6D0Z/azUsN0Gk5ZdZxddChXOOQzRDWJKD4VBDIk4K40wZ4m
-	 Ic6VD7noeijn8iAKvm2P7DTmwoxMBpc1M2VTLb9tcH9dMPHPsiSoJEVHKgFbJI42dq
-	 uy/gCJ5NytKS1DopBhSI2mK+0++GlS/dg/lULaqsk8V799Zpu3Eg3aVsBfIQO4GHBj
-	 bw9LzOyKHlE5TKjV/ShB3g+YwlYurhL2h+GRCbKaUSk8USPDOVb9djIdsA5dVdgWAC
-	 pOk2q/wX+IFzKk+2bkdTBYxEkS5K5xZfdWPBj7YixIi9C0kSzjTJO2sDboG12Jb+PX
-	 tnuscWhFhFn3w==
+	b=cgjrlymuo0WltimOMkmuXz4oV1+bt9qfmo/hhNyXcikzu7EaGa4n/wgk3XwktQTCN
+	 SknjOXRlAENSX/2931edHNrX93SFp8kSZSAgBS2Dfq84VmxdmnkC7iRdLNHn4QGjGr
+	 OnYippK2hUgXFApgGby73dVAgX1a+T23DLZqgVtaXipteIfRBzCKt3J14h9489ZnoU
+	 hY/wC7LmF8I4YrvI+8jU4R8I/pZNKq1Da7by1qheFDABExAZ5YRBgwehNtZZMBWYIM
+	 e4Ds4ctkJIgdnzipElalZr0Dd+g8izrTw3U4STXCsLch6LaF2TbCL0tu50+Yr3dHQE
+	 +2qkDcwE9i8tg==
 From: Jisheng Zhang <jszhang@kernel.org>
 To: Thomas Gleixner <tglx@linutronix.de>,
 	Marc Zyngier <maz@kernel.org>,
@@ -45,9 +45,9 @@ Cc: linux-kernel@vger.kernel.org,
 	Inochi Amaoto <inochiama@outlook.com>,
 	chao.wei@sophgo.com,
 	xiaoguang.xing@sophgo.com
-Subject: [PATCH 1/5] dt-bindings: interrupt-controller: Add SOPHGO CV1800B plic
-Date: Sat, 30 Sep 2023 20:39:33 +0800
-Message-Id: <20230930123937.1551-2-jszhang@kernel.org>
+Subject: [PATCH 2/5] dt-bindings: timer: Add SOPHGO CV1800B clint
+Date: Sat, 30 Sep 2023 20:39:34 +0800
+Message-Id: <20230930123937.1551-3-jszhang@kernel.org>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230930123937.1551-1-jszhang@kernel.org>
 References: <20230930123937.1551-1-jszhang@kernel.org>
@@ -59,25 +59,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add compatible string for SOPHGO CV1800B plic.
+Add compatible string for the SOPHGO CV1800B clint.
 
 Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
 ---
- .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml         | 1 +
+ Documentation/devicetree/bindings/timer/sifive,clint.yaml | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-index 16f9c4760c0f..5c4539881a22 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-@@ -65,6 +65,7 @@ properties:
+diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+index a0185e15a42f..98c76d5893ac 100644
+--- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
++++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+@@ -37,6 +37,7 @@ properties:
        - items:
            - enum:
-               - allwinner,sun20i-d1-plic
-+              - sophgo,cv1800-plic
-               - sophgo,sg2042-plic
-               - thead,th1520-plic
-           - const: thead,c900-plic
+               - allwinner,sun20i-d1-clint
++              - sophgo,cv1800-clint
+               - thead,th1520-clint
+           - const: thead,c900-clint
+       - items:
 -- 
 2.40.1
 
