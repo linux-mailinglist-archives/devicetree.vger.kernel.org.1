@@ -1,272 +1,209 @@
-Return-Path: <devicetree+bounces-4779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DA877B3FC2
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 11:45:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0499D7B3FE3
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 12:22:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2D7BE281E4D
-	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 09:45:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 74B2A281C3C
+	for <lists+devicetree@lfdr.de>; Sat, 30 Sep 2023 10:22:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7316F23AA;
-	Sat, 30 Sep 2023 09:45:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AAA59463;
+	Sat, 30 Sep 2023 10:22:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61482138C
-	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 09:45:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A4A3C433C8;
-	Sat, 30 Sep 2023 09:45:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696067123;
-	bh=35Y4iJHA+yWQnYr6BMS/v8x2kCyZKak1olZ7h4RwhS8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u3gL4nunRXW7dTiVTMu0dEo9arEeorI4G1OLEqJ1KTOc3z6kOPDTzyjmCBlYU61+n
-	 btC0IHLO/zCfRLv5/b5+i5rQyayKe0L+Lc1FkCpMMJ+YzNAR2+CWOQpZUTybP2uNFB
-	 I/j/fP3f85Mzn4BxXEYRp++DT3K3PFekRnniXhjzWFQOS7/i6pk2oeuHsDXIqus7BH
-	 hMGn/0ai5UFCm/hgZK4y9xRj0s9Kz1w8WskYi37Eq9WYdPsFGCrM6JN+cbftf8x/Mc
-	 DPWlWqrC/zIgjkFXvg5I6LUfMGnfVa6uD2qcoVvK/+UbUfu/nkwhmno9E2oKdjYx0L
-	 q40fsAVAs7XXQ==
-Date: Sat, 30 Sep 2023 10:45:17 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Dumitru Ceclan <mitrutzceclan@gmail.com>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
-	linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Walle <michael@walle.cc>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>,
-	Niklas Schnelle <schnelle@linux.ibm.com>,
-	Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
-	Mike Looijmans <mike.looijmans@topic.nl>,
-	Haibo Chen <haibo.chen@nxp.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Ceclan Dumitru <dumitru.ceclan@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: adc: add AD7173
-Message-ID: <20230930-grief-clapper-1c8f4d058969@spud>
-References: <20230928125443.615006-1-mitrutzceclan@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 069572F5F
+	for <devicetree@vger.kernel.org>; Sat, 30 Sep 2023 10:22:24 +0000 (UTC)
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D232193;
+	Sat, 30 Sep 2023 03:22:23 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5362bcc7026so4627367a12.1;
+        Sat, 30 Sep 2023 03:22:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696069341; x=1696674141; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2cw31Dklv6LbIdS/IsVHOoHw1kB38CKqlZS0s3OaLsA=;
+        b=ZsgEtLfqgmGHkIGx4MtMKbdwnTroxkKr0De5EOUCs9eOb4XMbJTcN6LjIf3OrZwBUm
+         dXTmg9ccNxraOO/lJ7BeRy3ZYKqYuCR1wUVDJhRzf1LmGNomZ2akZqnU+aXpbpJahZJw
+         RApqBjTIL62O63gve7pmt2ymzUZ1aMVIn2QHHSTsAE/2i1FRehoAx/x27mP2wDIlh3vw
+         6vxKAerdYXoP0QJ3DjK86Rkw26aqsipaMEWKE2ppAwz7COkSh7sEGXZ9CjNvoT8Eu5G0
+         nOWYSjfQjBAxgJffO9G9tNVntt2QfQUibb/bVYprMcMf/Rr4OSlLo5OiAVhqhAbtfv6o
+         CJNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696069341; x=1696674141;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2cw31Dklv6LbIdS/IsVHOoHw1kB38CKqlZS0s3OaLsA=;
+        b=XKeO1GnvUiCUoJ9qMr5++LfiXeUcMQcspXBX5fEesbScHjYppZxxH6+pl/GzivHsxd
+         1AJRRZi/NT4aS45FX6V41WJJ0PSGnGGJtp5j6LTeJaAIFcZuzuQpYwi0e81oJoMAmBae
+         hjthDsp+KUyIVSF8bOUMeqvLDNk1c1MYEqHIFq6y0A/uEDN5ixX1corXjRc9mOm3N8x7
+         vMVwK5FvNcZq22DwuCjuiH1LHotXXMA1Dp+nDL7pL5VuEqzTUNqIWlLjW/RS76zOMP4X
+         VCOdxlpJK2QIK5KmSb/WQL60AnW7Z9EEn2WV1/FtPnarm/V01+TRCdg96zsNiV1MC/rh
+         8cFw==
+X-Gm-Message-State: AOJu0YxuL3Gii3oWYPYySPMwJtyF7HlrI40Vtdd23plICqzhSfMGOMLe
+	/Zc76FVfi1ptBTH0EDo+MTA=
+X-Google-Smtp-Source: AGHT+IFPaOzMep6Ta1wNJ5ZEFYYnN+5naZP3Mq/f/gUdSLTk4k8Jd9dajDC275ZkuPBe0WnIWrr2iw==
+X-Received: by 2002:a17:906:51c9:b0:9ae:6355:5ef4 with SMTP id v9-20020a17090651c900b009ae63555ef4mr5432600ejk.3.1696069341055;
+        Sat, 30 Sep 2023 03:22:21 -0700 (PDT)
+Received: from fedora.. (dh207-96-216.xnet.hr. [88.207.96.216])
+        by smtp.googlemail.com with ESMTPSA id j25-20020a170906255900b0099bcf1c07c6sm13716547ejb.138.2023.09.30.03.22.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 30 Sep 2023 03:22:20 -0700 (PDT)
+From: Robert Marko <robimarko@gmail.com>
+To: ilia.lin@kernel.org,
+	vireshk@kernel.org,
+	nm@ti.com,
+	sboyd@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	agross@kernel.org,
+	andersson@kernel.org,
+	konrad.dybcio@linaro.org,
+	rafael@kernel.org,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Cc: Robert Marko <robimarko@gmail.com>
+Subject: [PATCH v5 1/4] cpufreq: qcom-nvmem: add support for IPQ8074
+Date: Sat, 30 Sep 2023 12:21:16 +0200
+Message-ID: <20230930102218.229613-1-robimarko@gmail.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="jOZehTjmQKbhopAK"
-Content-Disposition: inline
-In-Reply-To: <20230928125443.615006-1-mitrutzceclan@gmail.com>
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+IPQ8074 comes in 2 families:
+* IPQ8070A/IPQ8071A (Acorn) up to 1.4GHz
+* IPQ8072A/IPQ8074A/IPQ8076A/IPQ8078A (Hawkeye) up to 2.2GHz
 
---jOZehTjmQKbhopAK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+So, in order to be able to share one OPP table lets add support for IPQ8074
+family based of SMEM SoC ID-s as speedbin fuse is always 0 on IPQ8074.
 
-Hey,
+IPQ8074 compatible is blacklisted from DT platdev as the cpufreq device
+will get created by NVMEM CPUFreq driver.
 
-On Thu, Sep 28, 2023 at 03:54:42PM +0300, Dumitru Ceclan wrote:
-> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
-> which can be used in high precision, low noise single channel applications
-> or higher speed multiplexed applications. The Sigma-Delta ADC is intended
-> primarily for measurement of signals close to DC but also delivers
-> outstanding performance with input bandwidths out to ~10kHz.
->=20
-> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
-> ---
->  .../bindings/iio/adc/adi,ad7173.yaml          | 139 ++++++++++++++++++
->  1 file changed, 139 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7173.=
-yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml b/=
-Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> new file mode 100644
-> index 000000000000..a0f437297a23
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> @@ -0,0 +1,139 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2023 Analog Devices Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7173.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD7173 ADC device driver
-> +
-> +maintainers:
-> +  - Ceclan Dumitru <dumitru.ceclan@analog.com>
-> +
-> +description: |
-> +  Bindings for the Analog Devices AD717X ADC's. Datasheets for supported=
- chips:
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7172-2.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7173-8.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7175-2.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7176-2.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad7172-2
-> +      - adi,ad7173-8
-> +      - adi,ad7175-2
-> +      - adi,ad7176-2
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  spi-max-frequency:
-> +    maximum: 20000000
-> +
-> +  spi-cpol:
-> +    type: boolean
-> +
-> +  spi-cpha:
-> +    type: boolean
-> +
-> +  required:
-> +    - compatible
-> +    - reg
-> +    - interrupts
-> +
-> +patternProperties:
-> +  "^channel@[0-9a-f]$":
-> +    type: object
-> +    $ref: adc.yaml
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        description: Channel number
-> +        minimum: 0
-> +        maximum: 15
-> +
-> +      diff-channels:
-> +        description:
-> +          Analog input pins
+Signed-off-by: Robert Marko <robimarko@gmail.com>
+---
+Changes in v4:
+* Add support for IPQ8174 (Oak) family
 
-These descriptions are redundant AFAICT, since youre just constraining
-properties defined in adc.yaml.
+Changes in v3:
+* Use enum for SoC versions
 
-> +        items:
-> +          minimum: 0
-> +          maximum: 31
-> +
-> +      adi,bipolar:
-> +        description: Specify if the channel should measure in bipolar mo=
-de.
-> +        type: boolean
+Changes in v2:
+* Print an error if SMEM ID is not part of the IPQ8074 family
+and restrict the speed to Acorn variant (1.4GHz)
 
-You have a ref here to adc.yaml, but do not appear to be making use of
-"bipolar" property:
-  bipolar:
-    $ref: /schemas/types.yaml#/definitions/flag
-    description: If provided, the channel is to be used in bipolar mode.
+ drivers/cpufreq/cpufreq-dt-platdev.c |  1 +
+ drivers/cpufreq/qcom-cpufreq-nvmem.c | 45 ++++++++++++++++++++++++++++
+ 2 files changed, 46 insertions(+)
 
-> +
-> +    required:
-> +      - reg
-> +      - diff-channels
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    spi {
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +
-> +      adc@0 {
-> +        compatible =3D "adi,ad7173-8";
-> +        reg =3D <0>;
-> +
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        interrupts =3D <25 IRQ_TYPE_EDGE_FALLING>;
-> +        interrupt-parent =3D <&gpio>;
-> +        spi-max-frequency =3D <5000000>;
-> +
-> +        channel@0 {
-> +          reg =3D <0>;
-> +          adi,bipolar;
-> +
+diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufreq-dt-platdev.c
+index 2016d47889c0..157c91b9962c 100644
+--- a/drivers/cpufreq/cpufreq-dt-platdev.c
++++ b/drivers/cpufreq/cpufreq-dt-platdev.c
+@@ -180,6 +180,7 @@ static const struct of_device_id blocklist[] __initconst = {
+ 	{ .compatible = "ti,am62a7", },
+ 
+ 	{ .compatible = "qcom,ipq8064", },
++	{ .compatible = "qcom,ipq8074", },
+ 	{ .compatible = "qcom,apq8064", },
+ 	{ .compatible = "qcom,msm8974", },
+ 	{ .compatible = "qcom,msm8960", },
+diff --git a/drivers/cpufreq/qcom-cpufreq-nvmem.c b/drivers/cpufreq/qcom-cpufreq-nvmem.c
+index 84d7033e5efe..ba9e1d60e5b5 100644
+--- a/drivers/cpufreq/qcom-cpufreq-nvmem.c
++++ b/drivers/cpufreq/qcom-cpufreq-nvmem.c
+@@ -30,6 +30,11 @@
+ 
+ #include <dt-bindings/arm/qcom,ids.h>
+ 
++enum ipq8074_versions {
++	IPQ8074_HAWKEYE_VERSION = 0,
++	IPQ8074_ACORN_VERSION,
++};
++
+ struct qcom_cpufreq_drv;
+ 
+ struct qcom_cpufreq_match_data {
+@@ -203,6 +208,41 @@ static int qcom_cpufreq_krait_name_version(struct device *cpu_dev,
+ 	return ret;
+ }
+ 
++static int qcom_cpufreq_ipq8074_name_version(struct device *cpu_dev,
++					     struct nvmem_cell *speedbin_nvmem,
++					     char **pvs_name,
++					     struct qcom_cpufreq_drv *drv)
++{
++	u32 msm_id;
++	int ret;
++	*pvs_name = NULL;
++
++	ret = qcom_smem_get_soc_id(&msm_id);
++	if (ret)
++		return ret;
++
++	switch (msm_id) {
++	case QCOM_ID_IPQ8070A:
++	case QCOM_ID_IPQ8071A:
++		drv->versions = BIT(IPQ8074_ACORN_VERSION);
++		break;
++	case QCOM_ID_IPQ8072A:
++	case QCOM_ID_IPQ8074A:
++	case QCOM_ID_IPQ8076A:
++	case QCOM_ID_IPQ8078A:
++		drv->versions = BIT(IPQ8074_HAWKEYE_VERSION);
++		break;
++	default:
++		dev_err(cpu_dev,
++			"SoC ID %u is not part of IPQ8074 family, limiting to 1.4GHz!\n",
++			msm_id);
++		drv->versions = BIT(IPQ8074_ACORN_VERSION);
++		break;
++	}
++
++	return 0;
++}
++
+ static const struct qcom_cpufreq_match_data match_data_kryo = {
+ 	.get_version = qcom_cpufreq_kryo_name_version,
+ };
+@@ -217,6 +257,10 @@ static const struct qcom_cpufreq_match_data match_data_qcs404 = {
+ 	.genpd_names = qcs404_genpd_names,
+ };
+ 
++static const struct qcom_cpufreq_match_data match_data_ipq8074 = {
++	.get_version = qcom_cpufreq_ipq8074_name_version,
++};
++
+ static int qcom_cpufreq_probe(struct platform_device *pdev)
+ {
+ 	struct qcom_cpufreq_drv *drv;
+@@ -360,6 +404,7 @@ static const struct of_device_id qcom_cpufreq_match_list[] __initconst = {
+ 	{ .compatible = "qcom,msm8996", .data = &match_data_kryo },
+ 	{ .compatible = "qcom,qcs404", .data = &match_data_qcs404 },
+ 	{ .compatible = "qcom,ipq8064", .data = &match_data_krait },
++	{ .compatible = "qcom,ipq8074", .data = &match_data_ipq8074 },
+ 	{ .compatible = "qcom,apq8064", .data = &match_data_krait },
+ 	{ .compatible = "qcom,msm8974", .data = &match_data_krait },
+ 	{ .compatible = "qcom,msm8960", .data = &match_data_krait },
+-- 
+2.41.0
 
-Why the odd newlines?
-
-Mostly looks good to me, cheers,
-Conor.
-
-> +          diff-channels =3D <0 1>;
-> +        };
-> +
-> +        channel@1 {
-> +          reg =3D <1>;
-> +
-> +          diff-channels =3D <2 3>;
-> +        };
-> +
-> +        channel@2 {
-> +          reg =3D <2>;
-> +          adi,bipolar;
-> +
-> +          diff-channels =3D <4 5>;
-> +        };
-> +
-> +        channel@3 {
-> +          reg =3D <3>;
-> +          adi,bipolar;
-> +
-> +          diff-channels =3D <6 7>;
-> +        };
-> +
-> +        channel@4 {
-> +          reg =3D <4>;
-> +
-> +          diff-channels =3D <8 9>;
-> +        };
-> +      };
-> +    };
-> --=20
-> 2.39.2
->=20
-
---jOZehTjmQKbhopAK
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRfuLQAKCRB4tDGHoIJi
-0r+UAP9rtIVQ87EPicIl2kqOobvXvlAxgnYsfHa4HQKS4Np1QQD/ca0SFP9n+6uN
-XZsNzknuXMWToXtnh8f7OvH8rKeeUgQ=
-=BSNn
------END PGP SIGNATURE-----
-
---jOZehTjmQKbhopAK--
 
