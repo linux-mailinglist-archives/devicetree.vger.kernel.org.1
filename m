@@ -1,241 +1,94 @@
-Return-Path: <devicetree+bounces-4966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E55E7B4857
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 17:16:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FAF67B4863
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 17:21:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 0CF8528221D
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 15:16:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id AE69228223C
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 15:21:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27860182AC;
-	Sun,  1 Oct 2023 15:16:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AF8F182B5;
+	Sun,  1 Oct 2023 15:21:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 450B6FC06
-	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 15:15:58 +0000 (UTC)
-Received: from smtp.smtpout.orange.fr (smtp-26.smtpout.orange.fr [80.12.242.26])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22691DA
-	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 08:15:53 -0700 (PDT)
-Received: from [192.168.1.18] ([86.243.2.178])
-	by smtp.orange.fr with ESMTPA
-	id myAfqkZQbLlS2myAfqSMkx; Sun, 01 Oct 2023 17:15:51 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1696173351;
-	bh=s9zNeGcUp6rxWc5bIvwRI6IHocNoez6uxE5BmBexyxE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=MXUFQXTgA2gPJJV+Ninme+tO/tcG6lqJyAv/YkFpKVR3AmZwEp4mHcjJhd7AZOu88
-	 EN3RtdzT4KgJ5Ov4bbq3jcLlUrUF4VA0eugk4EzlwzPk2j9Rl2Pw5krdYBoSxZtV6l
-	 9dEI5oywiTkDn+ORpwAKDFiMBULkBvFiX90+W7Fd6td5/eFpXALk+xAKXMyQDMW1+Z
-	 hklhwfuG8dRCfQAEEGhAWHZfy0xquW18RFDoiSXtIWh8y5djort4a/4i3lz2jeFdM3
-	 jTdTNELFkQSC8NiaJkT7uqEeJVKPtH+WdCNJV45GPWaUjlDj7S+Wrk730JNBAXNhZF
-	 OSModPOP/8YMA==
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Sun, 01 Oct 2023 17:15:51 +0200
-X-ME-IP: 86.243.2.178
-Message-ID: <a2380c93-42a5-9de5-3be9-9ebb50a965a3@wanadoo.fr>
-Date: Sun, 1 Oct 2023 17:15:49 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A75C171CE
+	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 15:21:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 143A1C433C8;
+	Sun,  1 Oct 2023 15:21:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696173707;
+	bh=Pcid93qlZOziU6QAuWsUqgL3T/hz96UA6NSdFcYv2gA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=WFRc6ICXH9pmMNC90RDePARwjYzjp/5Ph4dMMzp4HRjMOtXqMoAELm4sAEfBTDmzM
+	 rYAq29O9nxcaLwIyEeu2VtOGd/KN7CEb0Yk9E3MtL0sFkYgAuYr4MGqY7sG/KBZdcb
+	 9bSWd5Zu5NwH+PlKkmCNLF/7HzLOtxZeSQCxvkxzloVoAM1XacHvPVW43eK0XaqzOQ
+	 VrJ7XuszE3Mwo0+ReEm7WSOIQvquuGRzcC09OvId6JUW3WZpRrX5TehaelTjx/+dd3
+	 IOkizea1pa3ET+FmZHCPXTixP/th2w4OUSP5i7CoQ6g6nlHJjqKy1EPvn9NJXjMWye
+	 EYm4R6TZbeuSw==
+Received: (nullmailer pid 4073099 invoked by uid 1000);
+	Sun, 01 Oct 2023 15:21:45 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v5 2/2] leds: add ktd202x driver
-Content-Language: fr
-To: git@apitzsch.eu
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
- linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org, pavel@ucw.cz,
- phone-devel@vger.kernel.org, robh+dt@kernel.org,
- u.kleine-koenig@pengutronix.de, ~postmarketos/upstreaming@lists.sr.ht
-References: <20231001-ktd202x-v5-0-f544a1d0510d@apitzsch.eu>
- <20231001-ktd202x-v5-2-f544a1d0510d@apitzsch.eu>
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20231001-ktd202x-v5-2-f544a1d0510d@apitzsch.eu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,
-	RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+From: Rob Herring <robh@kernel.org>
+To: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org, Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh+dt@kernel.org>, linux-phy@lists.infradead.org
+In-Reply-To: <20231001-pxa1928-usb-yaml-v1-1-9309a8c0c03f@skole.hr>
+References: <20231001-pxa1928-usb-yaml-v1-1-9309a8c0c03f@skole.hr>
+Message-Id: <169617370596.4073083.7671485602396327173.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: phy: Convert PXA1928 USB/HSIC PHY to DT
+ schema
+Date: Sun, 01 Oct 2023 10:21:45 -0500
 
-Le 01/10/2023 à 15:52, André Apitzsch a écrit :
-> This commit adds support for Kinetic KTD2026/7 RGB/White LED driver.
+
+On Sun, 01 Oct 2023 15:05:43 +0200, Duje Mihanović wrote:
+> Convert the binding for the Marvell PXA1928 USB and HSIC PHYs from TXT
+> to DT schema.
 > 
-> Signed-off-by: André Apitzsch <git-AtRKszJ1oGPsq35pWSNszA@public.gmane.org>
+> Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
+> ---
+>  .../bindings/phy/marvell,pxa1928-hsic-phy.yaml     | 37 +++++++++++++++++
+>  .../bindings/phy/marvell,pxa1928-usb-phy.yaml      | 46 ++++++++++++++++++++++
+>  .../devicetree/bindings/phy/pxa1928-usb-phy.txt    | 18 ---------
+>  3 files changed, 83 insertions(+), 18 deletions(-)
+> 
 
-...
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> +static int ktd202x_setup_led_rgb(struct ktd202x *chip, struct device_node *np,
-> +				 struct ktd202x_led *led, struct led_init_data *init_data)
-> +{
-> +	struct led_classdev *cdev;
-> +	struct device_node *child;
-> +	struct mc_subled *info;
-> +	int num_channels;
-> +	int i = 0;
-> +	u32 reg;
-> +	int ret;
-> +
-> +	num_channels = of_get_available_child_count(np);
-> +	if (!num_channels || num_channels > chip->num_leds)
-> +		return -EINVAL;
-> +
-> +	info = devm_kcalloc(chip->dev, num_channels, sizeof(*info), GFP_KERNEL);
-> +	if (!info)
-> +		return -ENOMEM;
-> +
-> +	for_each_available_child_of_node(np, child) {
-> +		u32 mono_color = 0;
+yamllint warnings/errors:
 
-Un-needed init.
-And, why is it defined here, while reg is defined out-side the loop?
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/phy/marvell,pxa1928-usb-phy.example.dts:21.34-35 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/phy/marvell,pxa1928-usb-phy.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1427: dt_binding_check] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
 
-> +
-> +		ret = of_property_read_u32(child, "reg", &reg);
-> +		if (ret != 0 || reg >= chip->num_leds) {
-> +			dev_err(chip->dev, "invalid 'reg' of %pOFn\n", np);
+doc reference errors (make refcheckdocs):
 
-Mossing of_node_put(np);?
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231001-pxa1928-usb-yaml-v1-1-9309a8c0c03f@skole.hr
 
-> +			return -EINVAL;
-> +		}
-> +
-> +		ret = of_property_read_u32(child, "color", &mono_color);
-> +		if (ret < 0 && ret != -EINVAL) {
-> +			dev_err(chip->dev, "failed to parse 'color' of %pOF\n", np);
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-Mossing of_node_put(np);?
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-> +			return ret;
-> +		}
-> +
-> +		info[i].color_index = mono_color;
-> +		info[i].channel = reg;
-> +		info[i].intensity = KTD202X_MAX_BRIGHTNESS;
-> +		i++;
-> +	}
-> +
-> +	led->mcdev.subled_info = info;
-> +	led->mcdev.num_colors = num_channels;
-> +
-> +	cdev = &led->mcdev.led_cdev;
-> +	cdev->brightness_set_blocking = ktd202x_brightness_mc_set;
-> +	cdev->blink_set = ktd202x_blink_mc_set;
-> +
-> +	return devm_led_classdev_multicolor_register_ext(chip->dev, &led->mcdev, init_data);
-> +}
-> +
-> +static int ktd202x_setup_led_single(struct ktd202x *chip, struct device_node *np,
-> +				    struct ktd202x_led *led, struct led_init_data *init_data)
-> +{
-> +	struct led_classdev *cdev;
-> +	u32 reg;
-> +	int ret;
-> +
-> +	ret = of_property_read_u32(np, "reg", &reg);
-> +	if (ret != 0 || reg >= chip->num_leds) {
-> +		dev_err(chip->dev, "invalid 'reg' of %pOFn\n", np);
-> +		return -EINVAL;
-> +	}
-> +	led->index = reg;
-> +
-> +	cdev = &led->cdev;
-> +	cdev->brightness_set_blocking = ktd202x_brightness_single_set;
-> +	cdev->blink_set = ktd202x_blink_single_set;
-> +
-> +	return devm_led_classdev_register_ext(chip->dev, &led->cdev, init_data);
-> +}
-> +
-> +static int ktd202x_add_led(struct ktd202x *chip, struct device_node *np, unsigned int index)
-> +{
-> +	struct ktd202x_led *led = &chip->leds[index];
-> +	struct led_init_data init_data = {};
-> +	struct led_classdev *cdev;
-> +	u32 color = 0;
-Un-needed init.
+pip3 install dtschema --upgrade
 
-> +	int ret;
-> +
-> +	/* Color property is optional in single color case */
-> +	ret = of_property_read_u32(np, "color", &color);
-> +	if (ret < 0 && ret != -EINVAL) {
-> +		dev_err(chip->dev, "failed to parse 'color' of %pOF\n", np);
-> +		return ret;
-> +	}
-> +
-> +	led->chip = chip;
-> +	init_data.fwnode = of_fwnode_handle(np);
-> +
-> +	if (color == LED_COLOR_ID_RGB) {
-> +		cdev = &led->mcdev.led_cdev;
-> +		ret = ktd202x_setup_led_rgb(chip, np, led, &init_data);
-> +	} else {
-> +		cdev = &led->cdev;
-> +		ret = ktd202x_setup_led_single(chip, np, led, &init_data);
-> +	}
-> +
-> +	if (ret) {
-> +		dev_err(chip->dev, "unable to register %s\n", cdev->name);
-> +		of_node_put(np);
-
-This is strange to have it here.
-Why not above after "if (ret < 0 && ret != -EINVAL) {"?
-
-It would look much more natural to have it a few lines below, ... [1]
-
-> +		return ret;
-> +	}
-> +
-> +	cdev->max_brightness = KTD202X_MAX_BRIGHTNESS;
-> +
-> +	return 0;
-> +}
-> +
-> +static int ktd202x_probe_dt(struct ktd202x *chip)
-> +{
-> +	struct device_node *np = dev_of_node(chip->dev), *child;
-> +	unsigned int i;
-> +	int count, ret;
-> +
-> +	chip->num_leds = (int)(unsigned long)of_device_get_match_data(chip->dev);
-> +
-> +	count = of_get_available_child_count(np);
-> +	if (!count || count > chip->num_leds)
-> +		return -EINVAL;
-> +
-> +	regmap_write(chip->regmap, KTD202X_REG_RESET_CONTROL, KTD202X_RSTR_RESET);
-> +
-> +	/* Allow the device to execute the complete reset */
-> +	usleep_range(200, 300);
-> +
-> +	i = 0;
-> +	for_each_available_child_of_node(np, child) {
-> +		ret = ktd202x_add_led(chip, child, i);
-> +		if (ret)
-
-[1] ... here.
-
-Otherwise, it is likely that, thanks to a static checker, an additionnal 
-of_node_put() will be added on early exit of the loop.
-
-CJ
-
-> +			return ret;
-> +		i++;
-> +	}
-> +
-> +	return 0;
-> +}
-
-...
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
