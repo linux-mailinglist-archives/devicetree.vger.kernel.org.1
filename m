@@ -1,149 +1,147 @@
-Return-Path: <devicetree+bounces-4920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AEBE7B44FF
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 05:00:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F7597B454F
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 07:25:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 4CDE02815C6
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 03:00:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 7EF73281BE4
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 05:25:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F01681E;
-	Sun,  1 Oct 2023 03:00:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09E9C1870;
+	Sun,  1 Oct 2023 05:25:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A345E80C
-	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 03:00:35 +0000 (UTC)
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 775DCDA;
-	Sat, 30 Sep 2023 20:00:31 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-1c72e235debso9342365ad.0;
-        Sat, 30 Sep 2023 20:00:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696129231; x=1696734031; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=47dEmse1a5JMP/Qf4cGHMz4JqlEGe3n1j3cZCwSDWPw=;
-        b=PC9x+UTDkQH/kPPQNpOs+zv9NfYp74lxerQKQACjiFdMalzEV6vuYLe1j38QrPJncx
-         SHHFCRLddtiDcxIMD1V+9/oeofeSVmE/K3K5yO2wujykqdFPKJbJaGP1GSTmnmg44cjd
-         oP9KTlsd04Yflfj6B+Qy4fitb269eI8khCXI2LWONTNG1xFK8duDz+KJkYeR0MKaf9wG
-         ol/W5f0zHv1vJATnSyw6+stoMlB+Nqv5rfOC5KPmZICVT7uelTBVJUXM0vBcJ01oqlBo
-         O34Y4Uba65Q3abtMR9ZmmmcUUO7yTQxek67f0uehl6YC3M6p4q0uphpiReo+0UjDtZOq
-         /tYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696129231; x=1696734031;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=47dEmse1a5JMP/Qf4cGHMz4JqlEGe3n1j3cZCwSDWPw=;
-        b=RjRDBANKvMg97rX2PPtLwxVulAC4KYl7iaKnseUF8lsdGcX0xp2ggFWYm0GxxOt87X
-         AIe0QeZ3cJgGJNZiXgyHJ4RhGLr3mtJn7VT7cbTbXnwsoVL0GuydP/rpe9PPdyhdGeyZ
-         bTwN0aCNbjuOvQpht47Wq/CRZykBRSf9eJHUItSt6nBsg7QJzckWWcJlW/UKYyaFmYoZ
-         RRD0NkHEUiZF8lZtEB84DS6nBCNRDgep90i22b4CtJQ78zyqPR0we/sSfEoHICjrXtPM
-         MO3aUna920/AQJHMhNos+J98GYFbfrvVQlhQ99V8TIer55QL4RC3a0fB3yXMJDgiVWpo
-         viiQ==
-X-Gm-Message-State: AOJu0YwMFwkXIZKGSldWivE+kWMio5rRqWCD/Y5NRQuLZtcuiX1Auw+A
-	pZ7uDeGddS08GjWxypKx1vw7dPxXgvs=
-X-Google-Smtp-Source: AGHT+IGVyovU5d0ySaMIGltgKTxvHOQy+zCkoECdIDZR4mm6kpi7TxiSnh77OTvWIpfzw1O48wA7cw==
-X-Received: by 2002:a17:902:da8d:b0:1c1:fbec:bc3f with SMTP id j13-20020a170902da8d00b001c1fbecbc3fmr9147248plx.5.1696129230855;
-        Sat, 30 Sep 2023 20:00:30 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:355a:d2a5:90:39d5])
-        by smtp.gmail.com with ESMTPSA id az4-20020a170902a58400b001b8baa83639sm6801788plb.200.2023.09.30.20.00.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Sep 2023 20:00:30 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: daniel.lezcano@linaro.org
-Cc: rafael@kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F85D17E3
+	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 05:25:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E636C5;
+	Sat, 30 Sep 2023 22:25:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1696137940; x=1727673940;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=joegzXhg5L+b8SSVj6+0MYAuuAUqG6uDyIMOODbsjGY=;
+  b=ExooD7mBh5ckcp8WZcyfsedY2PMX5brWHa2NNPMUvflikakYmnW8NtSH
+   Vqyghp58z0cNKh25NBISezA4dvWKhXPcV1xN8+/Ku+fRC60B3DrZDV59l
+   PKthGaLCj7ouh+zxrcnAAUIB+YRk1LMpYaH6spZZZFU77uDpe+KMYYuPi
+   X1jFBRoSSWLvXJg2/S5gEJr4NEe5hwJ3WM5uzePtEQQphIz2wzloDKj0j
+   Nz3iN16mBa13F8By1oij/IzWsF480HTYOlDb10a0Qe4oDAijiPHEPkAge
+   dvNvwfQ3aKSPgoZEjl9aCfZzmgHbVozE8Rk6YMeMsnu32vXv4Mg7HssVc
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10849"; a="448984491"
+X-IronPort-AV: E=Sophos;i="6.03,191,1694761200"; 
+   d="scan'208";a="448984491"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Sep 2023 22:25:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10849"; a="750282701"
+X-IronPort-AV: E=Sophos;i="6.03,191,1694761200"; 
+   d="scan'208";a="750282701"
+Received: from lkp-server02.sh.intel.com (HELO c3b01524d57c) ([10.239.97.151])
+  by orsmga002.jf.intel.com with ESMTP; 30 Sep 2023 22:25:34 -0700
+Received: from kbuild by c3b01524d57c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qmoxQ-0004mf-0m;
+	Sun, 01 Oct 2023 05:25:32 +0000
+Date: Sun, 1 Oct 2023 13:25:08 +0800
+From: kernel test robot <lkp@intel.com>
+To: Pankaj Gupta <pankaj.gupta@nxp.com>, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, clin@suse.com,
+	conor+dt@kernel.org, pierre.gondois@arm.com, festevam@gmail.com,
+	linux-imx@nxp.com, davem@davemloft.net, robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v9 3/3] thermal: thermal_core: Allow rebooting after critical temp
-Date: Sun,  1 Oct 2023 00:00:14 -0300
-Message-Id: <20231001030014.1244633-3-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231001030014.1244633-1-festevam@gmail.com>
-References: <20231001030014.1244633-1-festevam@gmail.com>
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, gaurav.jain@nxp.com,
+	alexander.stein@ew.tq-group.com, V.Sethi@nxp.com
+Cc: oe-kbuild-all@lists.linux.dev, Pankaj Gupta <pankaj.gupta@nxp.com>
+Subject: Re: [PATCH v6 09/11] firmware: imx: enable trng
+Message-ID: <202310011350.nKG627KP-lkp@intel.com>
+References: <20230927175401.1962733-10-pankaj.gupta@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230927175401.1962733-10-pankaj.gupta@nxp.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Fabio Estevam <festevam@denx.de>
+Hi Pankaj,
 
-Currently, the default mechanism is to trigger a shutdown after the
-critical temperature is reached.
+kernel test robot noticed the following build errors:
 
-In some embedded cases, such behavior does not suit well, as the board may
-be unattended in the field and rebooting may be a better approach.
+[auto build test ERROR on shawnguo/for-next]
+[also build test ERROR on robh/for-next linus/master v6.6-rc3]
+[cannot apply to next-20230929]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-The bootloader may also check the temperature and only allow the boot to
-proceed when the temperature is below a certain threshold.
+url:    https://github.com/intel-lab-lkp/linux/commits/Pankaj-Gupta/Documentation-firmware-added-imx-se-fw-to-other_interfaces/20230927-202918
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230927175401.1962733-10-pankaj.gupta%40nxp.com
+patch subject: [PATCH v6 09/11] firmware: imx: enable trng
+config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20231001/202310011350.nKG627KP-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231001/202310011350.nKG627KP-lkp@intel.com/reproduce)
 
-Introduce support for allowing a reboot to be triggered after the
-critical temperature is reached.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202310011350.nKG627KP-lkp@intel.com/
 
-If the "critical-action" devicetree property is not found, fall back to
-the shutdown action to preserve the existing default behavior.
+All errors (new ones prefixed by >>):
 
-If a custom ops->critical exists, then it takes preference over
-critical-actions.
+>> drivers/firmware/imx/ele_trng.c:16:5: error: redefinition of 'ele_trng_init'
+      16 | int ele_trng_init(struct device *dev)
+         |     ^~~~~~~~~~~~~
+   In file included from drivers/firmware/imx/ele_trng.c:8:
+   drivers/firmware/imx/ele_common.h:25:19: note: previous definition of 'ele_trng_init' with type 'int(struct device *)'
+      25 | static inline int ele_trng_init(struct device *dev)
+         |                   ^~~~~~~~~~~~~
 
-Tested on a i.MX8MM board with the following devicetree changes:
 
-	thermal-zones {
-		cpu-thermal {
-			critical-action = "reboot";
-		};
-	};
+vim +/ele_trng_init +16 drivers/firmware/imx/ele_trng.c
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
-Changes since v8:
-- Simplify the logic for calling thermal_zone_device_critical_reboot(). (Daniel).
+    15	
+  > 16	int ele_trng_init(struct device *dev)
+    17	{
+    18		struct ele_trng *trng;
+    19		int ret;
+    20	
+    21		trng = devm_kzalloc(dev, sizeof(*trng), GFP_KERNEL);
+    22		if (!trng)
+    23			return -ENOMEM;
+    24	
+    25		trng->dev         = dev;
+    26		trng->rng.name    = "ele-trng";
+    27		trng->rng.read    = ele_get_hwrng;
+    28		trng->rng.priv    = (unsigned long)trng;
+    29		trng->rng.quality = 1024;
+    30	
+    31		dev_dbg(dev, "registering ele-trng\n");
+    32	
+    33		ret = devm_hwrng_register(dev, &trng->rng);
+    34		if (ret)
+    35			return ret;
+    36	
+    37		dev_info(dev, "Successfully registered ele-trng\n");
+    38		return 0;
+    39	}
+    40	
 
- drivers/thermal/thermal_of.c | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/drivers/thermal/thermal_of.c b/drivers/thermal/thermal_of.c
-index 1e0655b63259..4d6c22e0ed85 100644
---- a/drivers/thermal/thermal_of.c
-+++ b/drivers/thermal/thermal_of.c
-@@ -475,6 +475,7 @@ static struct thermal_zone_device *thermal_of_zone_register(struct device_node *
- 	struct thermal_zone_params tzp = {};
- 	struct thermal_zone_device_ops *of_ops;
- 	struct device_node *np;
-+	const char *action;
- 	int delay, pdelay;
- 	int ntrips, mask;
- 	int ret;
-@@ -511,6 +512,11 @@ static struct thermal_zone_device *thermal_of_zone_register(struct device_node *
- 
- 	mask = GENMASK_ULL((ntrips) - 1, 0);
- 
-+	ret = of_property_read_string(np, "critical-action", &action);
-+	if (!ret)
-+		if (!of_ops->critical && !strcasecmp(action, "reboot"))
-+			of_ops->critical = thermal_zone_device_critical_reboot;
-+
- 	tz = thermal_zone_device_register_with_trips(np->name, trips, ntrips,
- 						     mask, data, of_ops, &tzp,
- 						     pdelay, delay);
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
