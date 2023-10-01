@@ -1,160 +1,169 @@
-Return-Path: <devicetree+bounces-4978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6955C7B48DE
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 19:25:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A10B7B48E5
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 19:26:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 0D2792819B4
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 17:25:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3D83A281790
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 17:26:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92CED17747;
-	Sun,  1 Oct 2023 17:25:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFFCA171D5;
+	Sun,  1 Oct 2023 17:26:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15438EEAD
-	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 17:25:30 +0000 (UTC)
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D418D9
-	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 10:25:29 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-40535597f01so159437005e9.3
-        for <devicetree@vger.kernel.org>; Sun, 01 Oct 2023 10:25:28 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 447EB659
+	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 17:26:21 +0000 (UTC)
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30893DA
+	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 10:26:19 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-40572aeb673so129110035e9.0
+        for <devicetree@vger.kernel.org>; Sun, 01 Oct 2023 10:26:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696181127; x=1696785927; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696181177; x=1696785977; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=q0LkkpQjrn6eJhxNp5lGODoZfg5LRJ818kW+fRmI0ys=;
-        b=BOMkvk2tMPVLR87NBc9ZBwh1oRSuE/wkfMRAGKwMzLkC1urRsAdw/wJfuPJsSH+KXO
-         JVRlfOoCKlD9rdZg5sNgYnIuSImz3vrT/9urPT7159nE8+bj7k2JK07RWwaXD0/h7ewS
-         XuPmRAgF3qLOy8739ee5OfeyYBt4xv770CZuuvuMdvJI6X2P1UX5AIbRxFk2f5HI3Lm8
-         Wy8QwLsSatSmTzsGkxjIxdhyxQMnlCWOh5KP5we3lmUQIkZNpZ79/nnldwu92fH0GipF
-         f0+oOOur6j8eithfsH7jGiV3UOOnfckUcm6S0P9tJcMAx3tU496gavpEPObSX60VGazy
-         vYdw==
+        bh=nT7pagqUgpEeHd/BYI3RWZkltric+Zk6n3iICPRwFfU=;
+        b=RoR2bGPVzdnCnLviXBwKLH0RYVLeBzo3Ny1WQnEUEDetUkV0aCkOPAvY/lp1XMy2jn
+         O4/qzenLcabTHRb2Gmt+dEsI1oaVUWgpfn0AO9wKeYyiLIK+UOWiX3xrDfSjJD62U/Yf
+         LFBKa9zDuNy/D1nt5s8PcQeBYI7hg2TcE7l4I9s0AMFgbijKZ+Wb+xTOGQy8HxRVUiOw
+         WgPbZJxLnlz6RyVwpSKZY5sdYFUuUC76Rv5zNo996YoyslWduXxKb9HN2+m9SZaaCS8q
+         DKDBTcY2BVnG1D/kVLLd6pxjBr2ZWkhLzwf+ey6K6HcP+ZcmTnAjUrvteCI2NgK9RZfN
+         dfsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696181127; x=1696785927;
+        d=1e100.net; s=20230601; t=1696181177; x=1696785977;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=q0LkkpQjrn6eJhxNp5lGODoZfg5LRJ818kW+fRmI0ys=;
-        b=xP4nSjAEM20ajr5scY3bgYSOH2oh5B2JAZ5tU6b2AAKPBNfmPhSYZw+qbYOldwNkm7
-         TaLkFEQMkh/nKUpJQWBJuK3wyxKhy3wFU7V/gppFll5UxAYkLUOD7Rue4WDIulH6pXzT
-         mUo7gDcsOouPJRJQqS6Wd0rhKle/YZJXEETWHHZ0WJlDE3dvR5Cp3rbh4ylbOXyS3d9w
-         vobiZHxpFeFYlNv/4NAf2WWv64xvuEm9mB15NTiCD3AL1qnoONp6AR0B7eOCbmcFCaSn
-         Cdlg3SLjq/+DIvLr069ApSdC5Zv5WiPGLupYtqaJp51hRl6D/t6KlTiixGyxiH+dRvfa
-         rzBg==
-X-Gm-Message-State: AOJu0YxLvxuVWQ9+Ml2Q9SWzP10aeoho81JWquHktgja+MHNufV87mzX
-	TQGFMRz3yIO9hPsdlVTJMXILLg==
-X-Google-Smtp-Source: AGHT+IGYHakqFMaViMMURrFGAKEgD1Qxlpso/sSjIQ2nORM7MODmEZmMRzopyncWwAHsIf01+IC4XQ==
-X-Received: by 2002:a7b:c7d5:0:b0:404:fc51:4e9f with SMTP id z21-20020a7bc7d5000000b00404fc514e9fmr9206615wmk.38.1696181127383;
-        Sun, 01 Oct 2023 10:25:27 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0? ([2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0])
-        by smtp.googlemail.com with ESMTPSA id o11-20020a056000010b00b0031c52e81490sm26296984wrx.72.2023.10.01.10.25.26
+        bh=nT7pagqUgpEeHd/BYI3RWZkltric+Zk6n3iICPRwFfU=;
+        b=Fs143Hyxuv5K/P4L0B0zaXxAT5pryvDm1CpWFqO2LY3xyU8fK5RwMidqdS7KgWTmNL
+         89WiS0ZmK4WvKpM7TKlSM5SOZrJ+J3zTEh6h5u1bxXxEX32He/wK/wrhT7Bwl2mcH+jG
+         PZ4HPzruwxxSdGl+qQOQOPnFO6EjlcdcIRyp+zsD18pefM0Y+dh+gCWamAFZA2shPeGK
+         Jol7KDJVt/o/Ehx2rtoSWgnTGXbfupMByPXOgNgG/AF3r7JdNop+7DF0T6LgCfneuoy0
+         xsbaG+a346MWb++9sYbj9EovDGaSbI1ulQMfPtdtALBMQGKvPYKJiVtgCLsxM+A7HNK4
+         qRVA==
+X-Gm-Message-State: AOJu0Yyptb8WSYUW7TybuZ/86tb7R+HTbbHRtQyWlj1DdLOVkA8ZFCab
+	vDUWyFdP6YlEnNrhdONH1KBX+A==
+X-Google-Smtp-Source: AGHT+IEGshf6p+xcOYqgQe106M5j/2Y9oSZ+muu0yMArZnkd7QanlgZUiL7HO9rxkphXyNvCHdRCXQ==
+X-Received: by 2002:a05:600c:b4e:b0:402:95a0:b2ae with SMTP id k14-20020a05600c0b4e00b0040295a0b2aemr8211234wmr.32.1696181177528;
+        Sun, 01 Oct 2023 10:26:17 -0700 (PDT)
+Received: from [192.168.1.23] (host-2-99-112-229.as13285.net. [2.99.112.229])
+        by smtp.gmail.com with ESMTPSA id z20-20020a7bc7d4000000b0040640073d25sm5586923wmk.16.2023.10.01.10.26.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 01 Oct 2023 10:25:27 -0700 (PDT)
-Message-ID: <3d1c6755-6a8b-d82d-d31d-3a71f83fba96@linaro.org>
-Date: Sun, 1 Oct 2023 19:25:26 +0200
+        Sun, 01 Oct 2023 10:26:17 -0700 (PDT)
+Message-ID: <cefe711b-d274-4d83-9dda-01f33b342387@linaro.org>
+Date: Sun, 1 Oct 2023 18:26:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v9 3/3] thermal: thermal_core: Allow rebooting after
- critical temp
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/4] thermal: Introduce Qualcomm Thermal Mitigation Device
+ support
 Content-Language: en-US
-To: Fabio Estevam <festevam@gmail.com>
-Cc: rafael@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- conor+dt@kernel.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- Fabio Estevam <festevam@denx.de>
-References: <20231001030014.1244633-1-festevam@gmail.com>
- <20231001030014.1244633-3-festevam@gmail.com>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20231001030014.1244633-3-festevam@gmail.com>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Andy Gross <agross@kernel.org>, Bhupesh Sharma <bhupesh.linux@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Amit Kucheria
+ <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Sibi Sankar <quic_sibis@quicinc.com>,
+ Thara Gopinath <thara.gopinath@gmail.com>, linux-arm-msm@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20230905-caleb-qmi_cooling-v1-0-5aa39d4164a7@linaro.org>
+ <20231001155701.GA53767@thinkpad>
+From: Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <20231001155701.GA53767@thinkpad>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 01/10/2023 05:00, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> Currently, the default mechanism is to trigger a shutdown after the
-> critical temperature is reached.
-> 
-> In some embedded cases, such behavior does not suit well, as the board may
-> be unattended in the field and rebooting may be a better approach.
-> 
-> The bootloader may also check the temperature and only allow the boot to
-> proceed when the temperature is below a certain threshold.
-> 
-> Introduce support for allowing a reboot to be triggered after the
-> critical temperature is reached.
-> 
-> If the "critical-action" devicetree property is not found, fall back to
-> the shutdown action to preserve the existing default behavior.
-> 
-> If a custom ops->critical exists, then it takes preference over
-> critical-actions.
-> 
-> Tested on a i.MX8MM board with the following devicetree changes:
-> 
-> 	thermal-zones {
-> 		cpu-thermal {
-> 			critical-action = "reboot";
-> 		};
-> 	};
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
-
-Sounds good to me
 
 
-> Changes since v8:
-> - Simplify the logic for calling thermal_zone_device_critical_reboot(). (Daniel).
+On 01/10/2023 16:57, Manivannan Sadhasivam wrote:
+> On Fri, Sep 29, 2023 at 05:16:16PM +0100, Caleb Connolly wrote:
+>> The Thermal Mitigation Device (TMD) Service is a QMI service that runs
+>> on remote subsystems (the modem and DSPs) on Qualcomm SoCs.
+>> It exposes various mitigations including passive thermal controls and
+>> rail voltage restrictions.
+>>
+>> This series introduces support for exposing TMDs as cooling devices
+>> in the kernel through the thermal framework, using the QMI interface.
+>>
+>> Each TMD client is described as a child of the remoteproc node in
+>> devicetree. With subnodes for each control.
+>>
 > 
->   drivers/thermal/thermal_of.c | 6 ++++++
->   1 file changed, 6 insertions(+)
+> Daniel expressed concerns in the past aganist representing TMD driver as a
+> cooling device since it is not tied to thermal zones and the governors cannot
+> use it. Instead he suggested to represent it as a powercap device with thermal
+> constraints.
+
+Hi Mani,
+
+Forgive me as I'm not yet super familiar with the thermal subsystem.
+
+As I understand it, the DT layout here enables each control to be 
+referenced under the thermal zones, at least this is the approach taken 
+in CAF 4.9.
+
+Maybe I don't quite understand what you mean, are you saying that using 
+thermal zones is the wrong approach?
 > 
-> diff --git a/drivers/thermal/thermal_of.c b/drivers/thermal/thermal_of.c
-> index 1e0655b63259..4d6c22e0ed85 100644
-> --- a/drivers/thermal/thermal_of.c
-> +++ b/drivers/thermal/thermal_of.c
-> @@ -475,6 +475,7 @@ static struct thermal_zone_device *thermal_of_zone_register(struct device_node *
->   	struct thermal_zone_params tzp = {};
->   	struct thermal_zone_device_ops *of_ops;
->   	struct device_node *np;
-> +	const char *action;
->   	int delay, pdelay;
->   	int ntrips, mask;
->   	int ret;
-> @@ -511,6 +512,11 @@ static struct thermal_zone_device *thermal_of_zone_register(struct device_node *
->   
->   	mask = GENMASK_ULL((ntrips) - 1, 0);
->   
-> +	ret = of_property_read_string(np, "critical-action", &action);
-> +	if (!ret)
-> +		if (!of_ops->critical && !strcasecmp(action, "reboot"))
-> +			of_ops->critical = thermal_zone_device_critical_reboot;
-> +
->   	tz = thermal_zone_device_register_with_trips(np->name, trips, ntrips,
->   						     mask, data, of_ops, &tzp,
->   						     pdelay, delay);
+> So please look into that approach.
+
+Any recommended reading? Or drivers I can use as a reference?
+
+Thanks
+> 
+> - Mani
+> 
+>> This series is based on previous work by Bhupesh Sharma which can be
+>> found at [1]. I'm sending this as a fresh series as it has been a
+>> year since the original version and I have rewritten most of the driver.
+>>
+>> [1]: https://lore.kernel.org/linux-arm-msm/20220912085049.3517140-1-bhupesh.sharma@linaro.org/
+>>
+>> ---
+>> Caleb Connolly (4):
+>>        remoteproc: qcom: probe all child devices
+>>        dt-bindings: thermal: Add qcom,qmi-cooling yaml bindings
+>>        thermal: qcom: add qmi-cooling driver
+>>        MAINTAINERS: Add entry for Qualcomm Cooling Driver
+>>
+>>   .../bindings/remoteproc/qcom,msm8996-mss-pil.yaml  |  13 +
+>>   .../bindings/remoteproc/qcom,pas-common.yaml       |   6 +
+>>   .../bindings/thermal/qcom,qmi-cooling.yaml         | 168 +++++++
+>>   MAINTAINERS                                        |   8 +
+>>   drivers/remoteproc/qcom_q6v5.c                     |   4 +
+>>   drivers/remoteproc/qcom_q6v5_mss.c                 |   8 -
+>>   drivers/thermal/qcom/Kconfig                       |  13 +
+>>   drivers/thermal/qcom/Makefile                      |   1 +
+>>   drivers/thermal/qcom/qmi-cooling.c                 | 520 +++++++++++++++++++++
+>>   drivers/thermal/qcom/qmi-cooling.h                 | 428 +++++++++++++++++
+>>   10 files changed, 1161 insertions(+), 8 deletions(-)
+>> ---
+>> base-commit: 9067f80db58bbce81d5f0703aa2fd261e88bc812
+>>
+>> // Caleb (they/them)
+>>
+> 
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+// Caleb (they/them)
 
