@@ -1,177 +1,212 @@
-Return-Path: <devicetree+bounces-4959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D15157B4754
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 14:22:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A84577B4783
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 15:06:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 83A4D281AEB
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 12:22:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 530B3281835
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 13:06:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B817C17726;
-	Sun,  1 Oct 2023 12:22:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93178171BB;
+	Sun,  1 Oct 2023 13:06:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEDB3168B6
-	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 12:22:08 +0000 (UTC)
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04olkn2083.outbound.protection.outlook.com [40.92.47.83])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47764D3;
-	Sun,  1 Oct 2023 05:22:07 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TiZCvnll+lOQbdx2I52YzHM01xrNiRBMvoU4o6HWQ/5U4ACXesRJPCPFjyjtER/0vV+W2hOeeek3bZxTYRCDo3iQHsDkkTfAALMGD+pKZ5nA+EXSzbu71n2k6kbs1/dzHrWV8AkP7sv6iquZkQnUWhjYIf/IFXO0+t4q0ZndeORKWRd2Q/utCGIARFTWBjFjSs1xatqayX5Ih/I90H7VORujR/vwlGBpLrSHceLcGNR3xXAEsLZycehWE/459C7lJr+bINUHTJ06gJBIp5tLMJjadHBm9B8ov+ot1NK3I1zVvHq2wvCLngzIsAkaB0dSHnNBZ5g63/ieOH/tBYJerw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WVBUo3p24GgQUtBibRkqhWjwdDb/T/sOhy7YsPHkl2U=;
- b=mABEY+9CHu2OIZ7WPu/hDvNtdHD7axxtLiYel6dtvhuSm4PC0YyZDqwDphfwxPykRYg3+mmyNY4KnVhJJsWOmjw7fTlijDQc7sqRgx58BaegctSVEF7ij5aHIKzMnZVkiIlKZgita4/kIreSv0R16M79OJtLUr+nyeNNsqaGt5xg6fM029+oYC5nIIhKlSuS3Cyyu5fTqUPRCNtHHyn/IwhjZucxbOmTt8edyOzWO8dBMgDKre0tUUufoA83zYeOgjbtV0X9Y2KIjpF8YM0X25xeoPyD65C0en6vXIuMRXu0xuQ27cQzOPYV/tqBXM6QIxu70P1/xeSh3so5FHV/0w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WVBUo3p24GgQUtBibRkqhWjwdDb/T/sOhy7YsPHkl2U=;
- b=JDcJdlMl2TKwg7QzTvbZNZVJeaAQVlM39FihCYw5MEPggVrBjkRJVrTi3SMWp2S24BP45npWre8nMOvY49F0bYkK4JxLg4sxy8ARKin/Qdw/sTEABd/Ab2j4zYMBZBmfVlRwqwM6qhACMj1wSDuis4j1cxjmm3vMAyC2g9qK+ociLZjIXqhsFaTJ924eBoo8ZvxJAKjFbhyFU8XTCqbBYFOXyzRkoAJZrN8LjpCa+C59FXdx8UnCMFpqsHMCATv5+DUlTZ6yvMG0e/05JrN8H9l+2tYYhbURUe6xl52SEm2IBAkIJojYJNZcZwdtq7oYjJtUEqf/3EksU5H8JksQxA==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by PH0PR20MB6018.namprd20.prod.outlook.com (2603:10b6:510:293::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.28; Sun, 1 Oct
- 2023 12:22:04 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::d050:882f:a8a7:8263]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::d050:882f:a8a7:8263%5]) with mapi id 15.20.6838.024; Sun, 1 Oct 2023
- 12:22:04 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Conor Dooley <conor+dt@kernel.org>
-Cc: Jisheng Zhang <jszhang@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Marc Zyngier <maz@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Anup Patel <anup@brainfault.org>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	chao.wei@sophgo.com,
-	xiaoguang.xing@sophgo.com,
-	Inochi Amaoto <inochiama@outlook.com>
-Subject: Re: [PATCH 4/5] riscv: dts: sophgo: add initial CV1800B SoC device tree
-Date: Sun,  1 Oct 2023 20:22:04 +0800
-Message-ID:
- <IA1PR20MB4953967F34C7C48C74313B74BBC6A@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <IA1PR20MB4953D58BA3ECFD487918E3A4BBC6A@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB4953D58BA3ECFD487918E3A4BBC6A@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [iYGVfm2TugDtMqnoXpUuB6MSQ/wtXzkTgONF4rj6jH8=]
-X-ClientProxiedBy: BYAPR05CA0037.namprd05.prod.outlook.com
- (2603:10b6:a03:74::14) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20231001122204.667415-1-inochiama@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ADD39CA61
+	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 13:06:12 +0000 (UTC)
+Received: from mx.skole.hr (mx1.hosting.skole.hr [161.53.165.185])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72C19AC;
+	Sun,  1 Oct 2023 06:06:10 -0700 (PDT)
+Received: from mx1.hosting.skole.hr (localhost.localdomain [127.0.0.1])
+	by mx.skole.hr (mx.skole.hr) with ESMTP id 1B139836AB;
+	Sun,  1 Oct 2023 15:06:08 +0200 (CEST)
+From: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Date: Sun, 01 Oct 2023 15:05:43 +0200
+Subject: [PATCH] dt-bindings: phy: Convert PXA1928 USB/HSIC PHY to DT
+ schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|PH0PR20MB6018:EE_
-X-MS-Office365-Filtering-Correlation-Id: 994a52a4-3f7f-40bf-2a2b-08dbc2790566
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	W7Rnvk7fGGujICnDVBsxz1VYCXvKvgUbciQEdXKx0IiCgDeR6UXwFN/PBDA29a68sPORVkdzV0ftPxmp4mLSl6iKX+iy0+mAt5d5or9zIo7COor7ltBLlJHXSj43IsiHSqbyc06GfdsCNDo7HYMSsv0Nbdh8tyh4GgJ/uQDJbqYkf3TGqutpfF0tfJQSAFBmpDhAoCLbA811gaaV7nA2dSiiONeVCfV9iH5CiO8B4kB/wTkFpCub/kfcLZ1qgM1GZQWtigPDo3inKI4vw1PPTZ8rC6FqnnvdKYw3DwPiVBwIOwsBS5l9RD+RvMMX04ODqLZuZlthpwLPUa+P+/aZBi273Q4RFB87NVwmsESjdd1N5dIQcFid5pyN3m+r7kH2RdBAL3evPDF+EB/fhABeGRaPMp/2svA+irEn4eaV2CfVUwYJZoNI0TNxS94kITkLt6HtqgYs/rxuw7K9dQeedkJbBB3D2q/leh2srv9agKLrkbOW0ttkp4udeRI1s+Bf54/83Ot9uZB4ZrJgbjX2p44r20rJIb5uINbTAw7+kYgLRJvNIOYjfgs6T3b9DzTBZaQZh5EyBfmjLQaH/ys+QaBQd6iqDPNcjqLsNWNqxLpDfvSARaLtJnDXc+afE9a/
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?2UKJZiEhxTyH+OF/3mH0dhR1DmuNFG9prfA539wxnKpXsooGPc6KYSwy3tj2?=
- =?us-ascii?Q?NQnFAEJ5AzqWtzE3TLG8nwITkpuCP3i+/UYuM9F7UvBYivT6Vh4waKI3jKbf?=
- =?us-ascii?Q?5uqlzqsw5+Osw6iIwjsRXU+uOSbckZLDSMtyMljlpOWYJqh3BJopxzPkQKU8?=
- =?us-ascii?Q?8O0ryPmBuG2p/HvxkSYFOLw3nymiYoaMRFXVHlGDDaNjyeH93JjS63RfPZmw?=
- =?us-ascii?Q?hTfQZkuj6d882QLXFfHkwbXt37hYCs8BCMOQCXrArs804jcPSWJQN7LeSvOr?=
- =?us-ascii?Q?dHWlS7C6VlSkxsQZIIBFNOiczxKwMgQeKplceGpdTsa2bbmiWqyD3vh3qJyf?=
- =?us-ascii?Q?CynQGoDzwVsFpsdzPMXYDmMF7xOOF57AvKTmrkZyVW9duDIYpsz6HFOHWl6C?=
- =?us-ascii?Q?8DH+XpBncq8OwOt6SocRghTk6/V22wkBm1PUUjFRX/2M03iskazbR+GeNVFb?=
- =?us-ascii?Q?fRDWuWexFpBEWeznpEowrW1RGWrJSHcQ7n+g1/XOEDANWnK9SSTPhCW0ZC3B?=
- =?us-ascii?Q?zkVp0gwfK1PmhZdMrlTKwhCJk9tgmPYnI8nuujpFrkJqT3UHy2/iByHrUtqk?=
- =?us-ascii?Q?VgluCnEZZ+1DsW+iLzABrNGiBwp2wlfo2TTirdzA/uriElafTiYBqAhdG45s?=
- =?us-ascii?Q?Olxuwd+RsFk80+9Yay4Fn1gDvtUYLVifi3TxUsYpfY0B+FuLTMx6hGSkruhE?=
- =?us-ascii?Q?hZpfOxKcW9tejFpIMWEJpc4SEqZg0PJggoFtiv/RRhTU3yLnd9KgWS4fcl15?=
- =?us-ascii?Q?yXfQBOts6CisUKbQwgnIgsp8fkx7A9rBJBeXXoiJo83729N5wt+nQz7rqjNS?=
- =?us-ascii?Q?/hDAMjAdHzcCVgCxDCTwB3ZXQ4fB0WDYV8YqlxuynQxo3JUjACM/tyJ7WG0C?=
- =?us-ascii?Q?eeGQioymEG8L+x4YN14+bTbYK2vj/ZKPpYXtiL2TwNUAEU5DpeFbVNF+sMqK?=
- =?us-ascii?Q?7r46pA+j9SxP1FgTHpP3OlGgPAYpBjo3iGx3+whhy9zgpMGuksDrZwXtnkQG?=
- =?us-ascii?Q?7jRs2Hglc6liOh9TxQEYwqz3ZFjs8pY3VyhSRNu4XQQP6jgtJPIGc25IGELv?=
- =?us-ascii?Q?nVku0Clg5JbJLSpic9MNRcNvvGsWRoD3TdbXpPEoxLL5hEjTntdcOnBTfTd+?=
- =?us-ascii?Q?inSfCnEu61ydBlIWvp6h8DjsjHdQg1BThxjp7wmq+5Ax5+HA+YWNQo8cvCDA?=
- =?us-ascii?Q?QgqZFaovM8aGzL0PmURTdIX2Fm75XE8r9AKudW0FxypTDop/ZEy0Asi4+fs?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 994a52a4-3f7f-40bf-2a2b-08dbc2790566
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2023 12:22:04.2697
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR20MB6018
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20231001-pxa1928-usb-yaml-v1-1-9309a8c0c03f@skole.hr>
+X-B4-Tracking: v=1; b=H4sIAKZuGWUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2NDAwND3YKKRENLIwvd0uIk3crE3BxdCwNLUzMTAwsjIxNDJaC2gqLUtMw
+ KsJHRsbW1AK6be61iAAAA
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-phy@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3570;
+ i=duje.mihanovic@skole.hr; h=from:subject:message-id;
+ bh=I+pbp2+i8AspnSOzhEB7DM4scts9Z1G4HFcpQJwppxo=;
+ b=owEBbQKS/ZANAwAIAZoRnrBCLZbhAcsmYgBlGW66YEEOs7V4Nt7C6695WePETUl6I4sGxSPXM
+ TO4kVoEI3yJAjMEAAEIAB0WIQRT351NnD/hEPs2LXiaEZ6wQi2W4QUCZRluugAKCRCaEZ6wQi2W
+ 4fqPD/9CPGtH4kaj0opR4bH3hGO8NuQZ8lAdbJ5MGteS7xF63/cx2bfpGHEWvZOKTOAU16ktE25
+ fRuxELhRXSbKiilPyVJVZtgxXMcWVSVNQSbZuO7CTgmoCLRzTEC+HwcZPKPrRb2fNn2/fmGjfoB
+ iA5c1wM8VOFXLoCRQ7HaqZmXIYiMydKuB2a0fUXWhlHCs5jRQ3BqzGFST7QNvza04e5IlSAxjGd
+ MfOnaSmtVO2Rbdo7QoysK7VPCeYs9XPEO2/iKHjg8fndpL7Npwnxx7KXrAVpOLRo/tJ+ToMUitG
+ M1tmJ9TJJ2M536h0JFIRah/77CUy+XXVqHAOZ4dMtKycQBGHKAOKeB0X6EXdwEd8eVVpr1lowO6
+ Sg2Ad7nzPqBGt5qB4wUfSmyhU0yKk+KxbIBeXH/Ynv1jCMFmOmO7GBTS08Ck0ypHfP1cQkdfQQW
+ +gNG1YySskfQlvhc5XugyZAWooe0paQed6V7eW4/EIbPtkQ3HgR1zfYwbiBm5Q/ghl/wmdmBg2N
+ GUC9poYcjfH84jqaeI14D3V4qXtBmlPhcoNPWMpMz4FkytVihpLry0TJcneDAMUNhO3Jg1SPxGK
+ u4eczvMIoB5qck1fUzEaMIih1ZvgsHPHOfeF+6sNsIqA+iUiQku9sTRae4lZesvcSWn7Iy6pux9
+ DcPB0K/qohQWpJw==
+X-Developer-Key: i=duje.mihanovic@skole.hr; a=openpgp;
+ fpr=53DF9D4D9C3FE110FB362D789A119EB0422D96E1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
->
->>On Sun, Oct 01, 2023 at 06:34:21AM +0800, Inochi Amaoto wrote:
->>> Hi, Jisheng
->>
->>>> Add initial device tree for the CV1800B RISC-V SoC by SOPHGO.
->>
->>>
->>> You add the clint dt-bindings of CV1800B clint, but I don't see the clint
->>> node in this dt. The SBI needs this clint node to provide timer for linux.
->>> AFAIK, the dt of SBI comes from the linux or the bootloader, and bootloader
->>> may load the linux dt and pass it to the SBI. I think it is better to add
->>> the clint node.
->>
->>> In addition, please separate the peripheral node to a different file, which
->>> can be reused by both the CV1800 series and CV1810 series.
->>
->>How do these SoCs differ?
->
->AFAIK, the most peripheral of CV1800 and CV1810 are the same. there are
->only a few difference between CV1800 and CV1810:
->1. CV1810 have mmc interrupt, but CV1800 have none
->2. CV1810 have more RAM and a more powerful TPU.
->3. Some models of CV1810 support I2S.
->
->Also is some you have already mentioned, the video capabilities (including
->encoding, output steam number, input steam number) are different.
->
->The only board with a CV1800 soc is Huashan Pi (CV1812H).
->
+Convert the binding for the Marvell PXA1928 USB and HSIC PHYs from TXT
+to DT schema.
 
-A mistake, I mean CV1810 soc, not the CV1800 one.
+Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
+---
+ .../bindings/phy/marvell,pxa1928-hsic-phy.yaml     | 37 +++++++++++++++++
+ .../bindings/phy/marvell,pxa1928-usb-phy.yaml      | 46 ++++++++++++++++++++++
+ .../devicetree/bindings/phy/pxa1928-usb-phy.txt    | 18 ---------
+ 3 files changed, 83 insertions(+), 18 deletions(-)
 
->>Documentation seems rather lacking, but I was able to find something on
->>github that suggests there is also a cv180zb. The difference between the
->>three seems to, from a quick look, be their video encoding capabilities.
->>Is that correct?
->>
->
->Yes. it is correct.
->It seems like you have forgot a chip called CV1801B, which has 128MB
->RAM. But I see no board with this soc, so at now it is not necessary to
->care it.
->
->
+diff --git a/Documentation/devicetree/bindings/phy/marvell,pxa1928-hsic-phy.yaml b/Documentation/devicetree/bindings/phy/marvell,pxa1928-hsic-phy.yaml
+new file mode 100644
+index 000000000000..a477afd11329
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/marvell,pxa1928-hsic-phy.yaml
+@@ -0,0 +1,37 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/marvell,pxa1928-hsic-phy.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Marvell PXA1928 HSIC PHY
++
++maintainers:
++  - devicetree@vger.kernel.org
++
++properties:
++  $nodename:
++    pattern: '^phy@[a-f0-9]+$'
++
++  compatible:
++    const: "marvell,pxa1928-hsic-phy"
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  '#phy-cells':
++    const: 0
++
++  resets:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - '#phy-cells'
++
++additionalProperties: false
+diff --git a/Documentation/devicetree/bindings/phy/marvell,pxa1928-usb-phy.yaml b/Documentation/devicetree/bindings/phy/marvell,pxa1928-usb-phy.yaml
+new file mode 100644
+index 000000000000..4ae9201767ed
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/marvell,pxa1928-usb-phy.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/marvell,pxa1928-usb-phy.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Marvell PXA1928 USB PHY
++
++maintainers:
++  - devicetree@vger.kernel.org
++
++properties:
++  $nodename:
++    pattern: '^phy@[a-f0-9]+$'
++
++  compatible:
++    const: "marvell,pxa1928-usb-phy"
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  '#phy-cells':
++    const: 0
++
++  resets:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - '#phy-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    phy@7000 {
++      compatible = "marvell,pxa1928-usb-phy";
++      reg = <0x7000 0xe0>;
++      clocks = <&apmu_clocks PXA1928_CLK_USB>;
++      #phy-cells = <0>;
++    };
+diff --git a/Documentation/devicetree/bindings/phy/pxa1928-usb-phy.txt b/Documentation/devicetree/bindings/phy/pxa1928-usb-phy.txt
+deleted file mode 100644
+index da94426aa694..000000000000
+--- a/Documentation/devicetree/bindings/phy/pxa1928-usb-phy.txt
++++ /dev/null
+@@ -1,18 +0,0 @@
+-* Marvell PXA1928 USB and HSIC PHYs
+-
+-Required properties:
+-- compatible: "marvell,pxa1928-usb-phy" or "marvell,pxa1928-hsic-phy"
+-- reg: base address and length of the registers
+-- clocks - A single clock. From common clock binding.
+-- #phys-cells: should be 0. From common phy binding.
+-- resets: reference to the reset controller
+-
+-Example:
+-
+-	usbphy: phy@7000 {
+-		compatible = "marvell,pxa1928-usb-phy";
+-		reg = <0x7000 0xe0>;
+-		clocks = <&apmu_clocks PXA1928_CLK_USB>;
+-		#phy-cells = <0>;
+-	};
+-
+
+---
+base-commit: 6465e260f48790807eef06b583b38ca9789b6072
+change-id: 20231001-pxa1928-usb-yaml-809564082241
+
+Best regards,
+-- 
+Duje Mihanović <duje.mihanovic@skole.hr>
+
+
 
