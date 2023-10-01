@@ -1,143 +1,279 @@
-Return-Path: <devicetree+bounces-4976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC97D7B48CE
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 19:19:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D001B7B48D7
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 19:23:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2F14A281DBE
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 17:19:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id EE2FE1C20410
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 17:23:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 111AA1798C;
-	Sun,  1 Oct 2023 17:19:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AE6A17728;
+	Sun,  1 Oct 2023 17:23:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8F29FBE5
-	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 17:19:10 +0000 (UTC)
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F52383
-	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 10:19:09 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-406618d0991so19147675e9.2
-        for <devicetree@vger.kernel.org>; Sun, 01 Oct 2023 10:19:09 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FB23171D5
+	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 17:23:34 +0000 (UTC)
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07E3883
+	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 10:23:32 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-3231df68584so11573116f8f.1
+        for <devicetree@vger.kernel.org>; Sun, 01 Oct 2023 10:23:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696180747; x=1696785547; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=N9kK3xz4P/eX7Le3jl9/AW07O1aDO3RSdht/nTqRVdY=;
-        b=VtDVSFLm5oQrjzQFvRjQO3kqUvu04tn8pB+KcbVX1N0OjHDhhM53niIcfT78i1qyup
-         HYx5BjocNNtWO9mNajxgEgdy/ay7z/oZY2jIvtZUTW476lEXLj0wq04W58Af1eXPIjvr
-         JjUhW4p+QOFXkeB6pcv9pmjFfAPtudwEmldC5+/dxcL16p1vdmhvmk/TgplGM7H5vb7S
-         t5rhyVUodxTW6soh5iPuXbX0+tD1f6J899Go8k2wbnPwus7oLkg9WqiF3Q4FlKZUtANA
-         oWA10J4VHCfUSZ5vrvv0U6/QDh3u7rVCcAxJ6Rf4ExhrvcNUX6gPdHkXIy8GdC9ImBi1
-         c0Yw==
+        d=linaro.org; s=google; t=1696181010; x=1696785810; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lVcvUquxHdmjQIU2ZMCOPdkvoH50IfeVGs0t8Iidi64=;
+        b=pZwda/mmM7i2HcOVY/usRVi8kThvlB45KAU1yUmSHjHXiuf0c0O2JObgiAEwPkEpCY
+         co/R+QYjfM8BkQfBIY0u5DfVRmOngmjI5rfDM3Saeij1ZrzvQRzSZGp8Vza7AUIHZ2JR
+         o5yOeNA9XsLToO3FE+Fl+pWC9E3aki78zkMtkwM4qTHNbtrM59c2XEr3Ynp1TIdY6hpA
+         uHG9mCJYiKPvm90IMlKUM6ZaR7Bf79roqPBXG+eSvHZZ4pf8AsYpqMjU8sBDNCSfTgaE
+         zfp5LvnOF8EE1yaBZheH4eyW5DPWCoXq3ZkvTY18m050dEfBK9eOUw/qEiPzg5J/KiIF
+         Z5Cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696180747; x=1696785547;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=N9kK3xz4P/eX7Le3jl9/AW07O1aDO3RSdht/nTqRVdY=;
-        b=dvW9MZ0DCVs717mR5iGUtHoaPdMitQp2k0oN8zTpZhW2hIcAkL7yUh2CTdr8i2AruV
-         UKluxkhrDTdILl37Ic8JuCUSeU0aMoL9wf6n8qBLBMH6Vs0BNZwrOpYqhRaBNubd1Kk1
-         /WqwCFSRWvFkgGW5YuLjJPcfL3Rf3o46f5RfvipJckpLbCNlVWLFn45H4tsFbP09DC7V
-         mDrTMYGn6tqatLpYJStITod7m77vPyM7/ganvScv2xeh5HRSTiNswJ4XOmG3kKwtU2fu
-         Z2vgQJ0NUIPwI9m0sDEe+UYzXAsH7F0nKuCOj89xdU4TaasJy6zlz7D4kvkuTnpSRny6
-         zZfg==
-X-Gm-Message-State: AOJu0YyVjkU9pOds5Q1cEDQvRHTojbjLL0p/x+Aep3pbfyF3UWLy6XxR
-	V5qXssiL2zbmOVRVB9cV+V7y9RI/qujkeBbWZ2avNA==
-X-Google-Smtp-Source: AGHT+IHIB0SpJbf0xXHuk1VkGpM+Jm6rRCg8f1bsuc4iyDLaThzDkvU0xHssP3o6ngwAk7EkNMh0Yg==
-X-Received: by 2002:a7b:c84d:0:b0:405:1bbd:aa9c with SMTP id c13-20020a7bc84d000000b004051bbdaa9cmr9330111wml.34.1696180747646;
-        Sun, 01 Oct 2023 10:19:07 -0700 (PDT)
-Received: from lion.localdomain (host-2-99-112-229.as13285.net. [2.99.112.229])
-        by smtp.gmail.com with ESMTPSA id n9-20020a05600c294900b00401c595fcc7sm5613042wmd.11.2023.10.01.10.19.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Oct 2023 10:19:07 -0700 (PDT)
-From: Caleb Connolly <caleb.connolly@linaro.org>
-Date: Sun, 01 Oct 2023 18:19:04 +0100
-Subject: [PATCH 2/2] arm64: dts: qcom: sdm845-xiaomi-beryllium: enable
- flash led
+        d=1e100.net; s=20230601; t=1696181010; x=1696785810;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lVcvUquxHdmjQIU2ZMCOPdkvoH50IfeVGs0t8Iidi64=;
+        b=Az4ADukLgZPoR0pSQRjkR5kFrm4L20Nd3lcJ21RXo2lGJRDHYspfxmLDYzznjnnJuz
+         voPOmReZO+nkkonCzK+qDj6KGXldqHq3MDjYSiVaiMA9HXZ1OqOrPLe34Jr/nY+RiWYN
+         gM7b+PjUWz5YTHZQITmaG5miV+9W14+k+ybL0i/7Kbr+txbc+gBuPzvBvbeBh7FCBmJy
+         H0eO9jNJ0NXGv41wXDjkZoiVaksmrXt4lNBP+52NrUBl6se3/GBtdFMHSRR7c9JnEEn5
+         xZyAglchKB16qmwmHHg+cj5jqFwMS/SImP/Oq/Lx7cqoNOMJhmCKkQnhT03sw4ddrm9f
+         NUEA==
+X-Gm-Message-State: AOJu0Yx4Zfg5lQD1E4urpjkHkpy5bZWTfMMSN77h0rRMF+zDy5o6joVT
+	lavhG5FmxwGDUJiosNc8sgtuwQ==
+X-Google-Smtp-Source: AGHT+IHHyItEhoBAUvL8rOXyPqfID6RmltJJGDZGpCFAwvc6Si6wAcy6OlkEtHmE9tS6WM4RblP9nA==
+X-Received: by 2002:adf:e54e:0:b0:31a:e744:1297 with SMTP id z14-20020adfe54e000000b0031ae7441297mr8189570wrm.50.1696181010262;
+        Sun, 01 Oct 2023 10:23:30 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0? ([2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0])
+        by smtp.googlemail.com with ESMTPSA id k13-20020adfb34d000000b0031ae8d86af4sm13788829wrd.103.2023.10.01.10.23.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 01 Oct 2023 10:23:29 -0700 (PDT)
+Message-ID: <8200e5e5-440b-b842-b995-4cbb8344ed02@linaro.org>
+Date: Sun, 1 Oct 2023 19:23:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231001-b4-sdm845-flash-dts-v1-2-275a3abb0b10@linaro.org>
-References: <20231001-b4-sdm845-flash-dts-v1-0-275a3abb0b10@linaro.org>
-In-Reply-To: <20231001-b4-sdm845-flash-dts-v1-0-275a3abb0b10@linaro.org>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- Joel Selvaraj <joelselvaraj.oss@gmail.com>, 
- Caleb Connolly <caleb.connolly@linaro.org>
-X-Mailer: b4 0.13-dev-46309
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1256;
- i=caleb.connolly@linaro.org; h=from:subject:message-id;
- bh=evdVYIXgQSOtBTuRnl5BDevEMjhQURNfxR9UNO8Qn8w=;
- b=owGbwMvMwCFYaeA6f6eBkTjjabUkhlTJVRyhR/fmTj3ed+VE4qI8v+tH7h/bGC0efcEj8X/Lx
- ReB6z/YdJSyMAhyMMiKKbKIn1hm2bT2sr3G9gUXYOawMoEMYeDiFICJmJ5lZNjRkB7558qeWbPm
- zsvW2rOuK4DrZv2+S3pCEyYeYHo3I7eQ4X983pPbFeHXKko9XnBohmWI3o4p814XGhqvnyv7SFG
- uZQkA
-X-Developer-Key: i=caleb.connolly@linaro.org; a=openpgp;
- fpr=83B24DA7FE145076BC38BB250CD904EB673A7C47
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v9 2/3] reboot: Introduce
+ thermal_zone_device_critical_reboot()
+Content-Language: en-US
+To: Fabio Estevam <festevam@gmail.com>
+Cc: rafael@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ conor+dt@kernel.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ Fabio Estevam <festevam@denx.de>
+References: <20231001030014.1244633-1-festevam@gmail.com>
+ <20231001030014.1244633-2-festevam@gmail.com>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20231001030014.1244633-2-festevam@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+On 01/10/2023 05:00, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+> 
+> Introduce thermal_zone_device_critical_reboot() to trigger an
+> emergency reboot.
+> 
+> It is a counterpart of thermal_zone_device_critical() with the
+> difference that it will force a reboot instead of shutdown.
+> 
+> The motivation for doing this is to allow the thermal subystem
+> to trigger a reboot when the temperature reaches the critical
+> temperature.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+> Changes since v8:
+> - Introduce thermal_zone_device_critical_reboot() to accomodate
+> Daniel's suggestions.
+> 
+>   drivers/thermal/thermal_core.c | 19 +++++++++++++++++--
+>   include/linux/reboot.h         | 13 ++++++++++++-
+>   include/linux/thermal.h        |  1 +
+>   kernel/reboot.c                | 32 +++++++++++++++++++-------------
+>   4 files changed, 49 insertions(+), 16 deletions(-)
+> 
+> diff --git a/drivers/thermal/thermal_core.c b/drivers/thermal/thermal_core.c
+> index 38d393f139d8..277aafb294db 100644
+> --- a/drivers/thermal/thermal_core.c
+> +++ b/drivers/thermal/thermal_core.c
+> @@ -313,21 +313,36 @@ static void handle_non_critical_trips(struct thermal_zone_device *tz, int trip)
+>   		       def_governor->throttle(tz, trip);
+>   }
+>   
+> -void thermal_zone_device_critical(struct thermal_zone_device *tz)
+> +static void thermal_zone_device_shutdown(struct thermal_zone_device *tz, bool shutdown)
 
-Configure and enable the dual-tone on the PocoPhone F1
+Probably nit picking but is it possible to rename to:
 
-Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
-Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
----
- .../dts/qcom/sdm845-xiaomi-beryllium-common.dtsi   | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+static void thermal_zone_device_halt(struct thermal_zone_device *tz, 
+bool shutdown)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-index 93b1582e807d..617b17b2d7d9 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-@@ -355,6 +355,28 @@ &pmi8998_charger {
- 	status = "okay";
- };
- 
-+&pmi8998_flash {
-+	status = "okay";
-+
-+	led-0 {
-+		function = LED_FUNCTION_FLASH;
-+		color = <LED_COLOR_ID_WHITE>;
-+		led-sources = <1>;
-+		led-max-microamp = <500000>;
-+		flash-max-microamp = <1500000>;
-+		flash-max-timeout-us = <1280000>;
-+	};
-+
-+	led-1 {
-+		function = LED_FUNCTION_FLASH;
-+		color = <LED_COLOR_ID_YELLOW>;
-+		led-sources = <2>;
-+		led-max-microamp = <500000>;
-+		flash-max-microamp = <1500000>;
-+		flash-max-timeout-us = <1280000>;
-+	};
-+};
-+
- &pm8998_resin {
- 	linux,code = <KEY_VOLUMEDOWN>;
- 	status = "okay";
+
+>   {
+>   	/*
+>   	 * poweroff_delay_ms must be a carefully profiled positive value.
+>   	 * Its a must for forced_emergency_poweroff_work to be scheduled.
+>   	 */
+>   	int poweroff_delay_ms = CONFIG_THERMAL_EMERGENCY_POWEROFF_DELAY_MS;
+> +	static const char *msg = "Temperature too high";
+
+Why use 'static' ?
+
+>   	dev_emerg(&tz->device, "%s: critical temperature reached, "
+>   		  "shutting down\n", tz->type);
+
+Now the function can do 'shutdown' or 'reboot', so the message should 
+reflect that.
+
+However, the reason will be displayed in the 
+hw_protection_shutdown/reboot, so having:
+
+dev_emerg(&tz->device, "%s: critical temperature reached\n", tz->type);
+
+> -	hw_protection_shutdown("Temperature too high", poweroff_delay_ms);
+> +	if (shutdown)
+> +		hw_protection_shutdown(msg, poweroff_delay_ms);
+> +	else
+> +		hw_protection_reboot(msg, poweroff_delay_ms);
+> +}
+> +
+> +void thermal_zone_device_critical(struct thermal_zone_device *tz)
+> +{
+> +	thermal_zone_device_shutdown(tz, true);
+>   }
+>   EXPORT_SYMBOL(thermal_zone_device_critical);
+
+Rename to thermal_zone_device_critical_shutdown() for consistency (in a 
+separate patch).
+
+>   
+> +void thermal_zone_device_critical_reboot(struct thermal_zone_device *tz)
+> +{
+> +	thermal_zone_device_shutdown(tz, false);
+> +}
+> +EXPORT_SYMBOL(thermal_zone_device_critical_reboot);
+> +
+>   static void handle_critical_trips(struct thermal_zone_device *tz,
+>   				  int trip, int trip_temp, enum thermal_trip_type trip_type)
+>   {
+> diff --git a/include/linux/reboot.h b/include/linux/reboot.h
+> index c4cc3b89ced1..4683e117c753 100644
+> --- a/include/linux/reboot.h
+> +++ b/include/linux/reboot.h
+> @@ -177,7 +177,18 @@ void ctrl_alt_del(void);
+>   
+>   extern void orderly_poweroff(bool force);
+>   extern void orderly_reboot(void);
+> -void hw_protection_shutdown(const char *reason, int ms_until_forced);
+> +
+> +void __hw_protection_shutdown(const char *reason, int ms_until_forced, bool shutdown);
+> +
+> +static inline void hw_protection_reboot(const char *reason, int ms_until_forced)
+> +{
+> +	__hw_protection_shutdown(reason, ms_until_forced, false);
+> +}
+> +
+> +static inline void hw_protection_shutdown(const char *reason, int ms_until_forced)
+> +{
+> +	__hw_protection_shutdown(reason, ms_until_forced, true);
+> +}
+
+
+Those changes should be in a separate patch.
+
+>   /*
+>    * Emergency restart, callable from an interrupt handler.
+> diff --git a/include/linux/thermal.h b/include/linux/thermal.h
+> index 6cfcae22ba12..c5ebb44ae8a6 100644
+> --- a/include/linux/thermal.h
+> +++ b/include/linux/thermal.h
+> @@ -353,6 +353,7 @@ int thermal_zone_get_offset(struct thermal_zone_device *tz);
+>   int thermal_zone_device_enable(struct thermal_zone_device *tz);
+>   int thermal_zone_device_disable(struct thermal_zone_device *tz);
+>   void thermal_zone_device_critical(struct thermal_zone_device *tz);
+> +void thermal_zone_device_critical_reboot(struct thermal_zone_device *tz);
+>   #else
+>   static inline struct thermal_zone_device *thermal_zone_device_register_with_trips(
+>   					const char *type,
+> diff --git a/kernel/reboot.c b/kernel/reboot.c
+> index 395a0ea3c7a8..8b3010b88ed6 100644
+> --- a/kernel/reboot.c
+> +++ b/kernel/reboot.c
+> @@ -957,21 +957,25 @@ static void hw_failure_emergency_poweroff(int poweroff_delay_ms)
+>   }
+>   
+>   /**
+> - * hw_protection_shutdown - Trigger an emergency system poweroff
+> + * __hw_protection_shutdown - Trigger an emergency system shutdown or reboot
+>    *
+> - * @reason:		Reason of emergency shutdown to be printed.
+> - * @ms_until_forced:	Time to wait for orderly shutdown before tiggering a
+> - *			forced shudown. Negative value disables the forced
+> - *			shutdown.
+> + * @reason:		Reason of emergency shutdown or reboot to be printed.
+> + * @ms_until_forced:	Time to wait for orderly shutdown or reboot before
+> + *			triggering it. Negative value disables the forced
+> + *			shutdown or reboot.
+> + * @shutdown:		If true, indicates that a shutdown will happen
+> + *			after the critical tempeature is reached.
+> + *			If false, indicates that a reboot will happen
+> + *			after the critical tempeature is reached.
+>    *
+> - * Initiate an emergency system shutdown in order to protect hardware from
+> - * further damage. Usage examples include a thermal protection or a voltage or
+> - * current regulator failures.
+> - * NOTE: The request is ignored if protection shutdown is already pending even
+> - * if the previous request has given a large timeout for forced shutdown.
+> + * Initiate an emergency system shutdown or reboot in order to protect
+> + * hardware from further damage. Usage examples include a thermal protection.
+> + * NOTE: The request is ignored if protection shutdown or reboot is already
+> + * pending even if the previous request has given a large timeout for forced
+> + * shutdown/reboot.
+>    * Can be called from any context.
+>    */
+> -void hw_protection_shutdown(const char *reason, int ms_until_forced)
+> +void __hw_protection_shutdown(const char *reason, int ms_until_forced, bool shutdown)
+>   {
+>   	static atomic_t allow_proceed = ATOMIC_INIT(1);
+>   
+> @@ -986,9 +990,11 @@ void hw_protection_shutdown(const char *reason, int ms_until_forced)
+>   	 * orderly_poweroff failure
+>   	 */
+>   	hw_failure_emergency_poweroff(ms_until_forced);
+> -	orderly_poweroff(true);
+> +	if (shutdown)
+> +		orderly_poweroff(true);
+> +	else
+> +		orderly_reboot();
+>   }
+> -EXPORT_SYMBOL_GPL(hw_protection_shutdown);
+Same comment
+
+>   static int __init reboot_setup(char *str)
+>   {
 
 -- 
-2.42.0
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
 
