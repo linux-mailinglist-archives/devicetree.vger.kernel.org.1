@@ -1,122 +1,93 @@
-Return-Path: <devicetree+bounces-4992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C910D7B49A0
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 22:57:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 274047B4A44
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 01:02:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 9F026B20920
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 20:57:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id DB13C28178B
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 23:02:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 778A3D2E7;
-	Sun,  1 Oct 2023 20:57:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2819733ED;
+	Sun,  1 Oct 2023 23:02:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7837C8F78
-	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 20:57:48 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F19F4BD;
-	Sun,  1 Oct 2023 13:57:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1696193867; x=1727729867;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=758DrSEcuFaG2JVSDrnKrxCHgbC5DHZC/ey5mhM5Dx0=;
-  b=H2OOruPZnha5kZzTjWSDW+Sww0gesDJ5HRLRSeCpJ5xjuNN6zCME5UPY
-   LbxgUlQt4JEm6o75jKa9u4/N5b4v1YfwBw+OC8PNAsHWAle2XiuF6HhXv
-   MVW4niMxRq4Jlxfufrjq+olMU/ANIa9/E41qjr+LKNUlrTNvcnYKbRqt1
-   BIeUcintNMIGdqd1ydQc1363DlaYZckHgmS/uvFqSCJnRQeEwxrrVJ9qJ
-   SqFG0EAZGcqWDBK067Swv7vFWp10W/+ZPFZs4XTsDMnGrhJVZoKYUFEdH
-   Pe9ikdSOxbrWQT1weQ9QsZsfLRiy6/20fNCuHEvd0WjIrg6ix4Dm2BoOt
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10850"; a="372902409"
-X-IronPort-AV: E=Sophos;i="6.03,191,1694761200"; 
-   d="scan'208";a="372902409"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Oct 2023 13:57:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10850"; a="785612314"
-X-IronPort-AV: E=Sophos;i="6.03,191,1694761200"; 
-   d="scan'208";a="785612314"
-Received: from lkp-server02.sh.intel.com (HELO c3b01524d57c) ([10.239.97.151])
-  by orsmga001.jf.intel.com with ESMTP; 01 Oct 2023 13:57:43 -0700
-Received: from kbuild by c3b01524d57c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qn3VT-0005Ow-0Z;
-	Sun, 01 Oct 2023 20:57:39 +0000
-Date: Mon, 2 Oct 2023 04:56:33 +0800
-From: kernel test robot <lkp@intel.com>
-To: Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	dmitry.baryshkov@linaro.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Rohit Agarwal <quic_rohiagar@quicinc.com>
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: Add interconnect nodes for SDX75
-Message-ID: <202310020405.aU033fMG-lkp@intel.com>
-References: <1695720564-2978-2-git-send-email-quic_rohiagar@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 460D433D4
+	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 23:02:33 +0000 (UTC)
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97131A7
+	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 16:02:30 -0700 (PDT)
+Received: from i53875a3c.versanet.de ([83.135.90.60] helo=phil.fritz.box)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1qn5SF-0002tX-Vy; Mon, 02 Oct 2023 01:02:28 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Jagan Teki <jagan@edgeble.ai>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: (subset) [PATCH 00/13] arm64: rockchip: Add more RV1126 DT nodes
+Date: Mon,  2 Oct 2023 01:02:33 +0200
+Message-Id: <169620134724.283788.8556096916301682585.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230731103518.2906147-1-jagan@edgeble.ai>
+References: <20230731103518.2906147-1-jagan@edgeble.ai>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1695720564-2978-2-git-send-email-quic_rohiagar@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,SPF_PASS,T_SPF_HELO_TEMPERROR autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Rohit,
+On Mon, 31 Jul 2023 16:05:05 +0530, Jagan Teki wrote:
+> Patchset adds more DT nodes for Rockchip RV1126.
+> 
+> Jagan Teki (12):
+>   dt-bindings: pwm: rockchip: Document rv1126-pwm
+>   ARM: dts: rockchip: rv1126: Add pwm2m0 pins
+>   ARM: dts: rockchip: rv1126: Add pwm2 node
+>   ARM: dts: rockchip: rv1126: Add pwm11m0 pins
+>   ARM: dts: rockchip: rv1126: Add pwm11 node
+>   ARM: dts: rockchip: rv1126: Add SFC node
+>   ARM: dts: rockchip: rv1126: Add FSPI pins
+>   ARM: dts: rockchip: rv1126: Add uart5m2_xfer pins
+>   ARM: dts: rv1126: Enable pwm fan for edgeble-neu2
+>   ARM: dts: rv1126: Drop EMMC_RSTN for edgeble-neu2
+>   ARM: dts: rv1126: Add 3V3_SYS regulator for edgeble-neu2
+>   ARM: dts: rv1126: Add 12V main supply for edgeble-neu2
+> 
+> [...]
 
-kernel test robot noticed the following build errors:
+Applied, thanks!
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.6-rc3 next-20230929]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+[01/13] dt-bindings: pwm: rockchip: Document rv1126-pwm
+        commit: b0d587be2407ae7319098339034296370a851939
+[02/13] ARM: dts: rockchip: rv1126: Add pwm2m0 pins
+        commit: 32cd0ebf1f7961ef049cf9e286568f8e2dfbb88b
+[03/13] ARM: dts: rockchip: rv1126: Add pwm2 node
+        commit: 8625206d7c3811dfdaef1df9a0bd134f17098b5f
+[04/13] ARM: dts: rockchip: rv1126: Add pwm11m0 pins
+        commit: 19d79ef9faad6cc15315c3bb0d5fc3594c869d71
+[05/13] ARM: dts: rockchip: rv1126: Add pwm11 node
+        commit: 8cc85fa1b7640a5de02a3697aaaef4491cf8dba3
+[09/13] ARM: dts: rv1126: Enable pwm fan for edgeble-neu2
+        commit: 9b201229814fd8d77cc069962b43c4f451592217
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Rohit-Agarwal/arm64-dts-qcom-Add-interconnect-nodes-for-SDX75/20230926-173336
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/1695720564-2978-2-git-send-email-quic_rohiagar%40quicinc.com
-patch subject: [PATCH v2 1/3] arm64: dts: qcom: Add interconnect nodes for SDX75
-config: arm64-randconfig-002-20230930 (https://download.01.org/0day-ci/archive/20231002/202310020405.aU033fMG-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231002/202310020405.aU033fMG-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310020405.aU033fMG-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from arch/arm64/boot/dts/qcom/sdx75-idp.dts:9:
->> arch/arm64/boot/dts/qcom/sdx75.dtsi:11:10: fatal error: dt-bindings/interconnect/qcom,sdx75.h: No such file or directory
-      11 | #include <dt-bindings/interconnect/qcom,sdx75.h>
-         |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   compilation terminated.
-
-
-vim +11 arch/arm64/boot/dts/qcom/sdx75.dtsi
-
-  > 11	#include <dt-bindings/interconnect/qcom,sdx75.h>
-    12	#include <dt-bindings/interrupt-controller/arm-gic.h>
-    13	#include <dt-bindings/power/qcom,rpmhpd.h>
-    14	#include <dt-bindings/power/qcom-rpmpd.h>
-    15	#include <dt-bindings/soc/qcom,rpmh-rsc.h>
-    16	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Heiko Stuebner <heiko@sntech.de>
 
