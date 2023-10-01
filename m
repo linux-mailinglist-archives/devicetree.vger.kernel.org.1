@@ -1,732 +1,136 @@
-Return-Path: <devicetree+bounces-4963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF0577B47C0
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 15:52:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14F6B7B47C6
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 15:54:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 98B451C20899
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 13:52:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id AAE06281855
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 13:54:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C535C168CD;
-	Sun,  1 Oct 2023 13:52:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F54F14F8E;
+	Sun,  1 Oct 2023 13:54:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74FED14F8E
-	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 13:52:49 +0000 (UTC)
-Received: from smtprelay05.ispgateway.de (smtprelay05.ispgateway.de [80.67.31.94])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07C56B0;
-	Sun,  1 Oct 2023 06:52:45 -0700 (PDT)
-Received: from [92.206.139.21] (helo=note-book.lan)
-	by smtprelay05.ispgateway.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <git@apitzsch.eu>)
-	id 1qmwsE-0004h3-L3; Sun, 01 Oct 2023 15:52:42 +0200
-From: =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-Date: Sun, 01 Oct 2023 15:52:13 +0200
-Subject: [PATCH v5 2/2] leds: add ktd202x driver
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F2948F67
+	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 13:54:02 +0000 (UTC)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B941791;
+	Sun,  1 Oct 2023 06:53:59 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9a64619d8fbso2195560566b.0;
+        Sun, 01 Oct 2023 06:53:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696168438; x=1696773238; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=TdJ8puCnck5Qjx/oIgi0cgvE0Anaq9Q2XGGDoV+48xY=;
+        b=Pv8s63G2r6M1aJYw+wtK4YpqJ8+G9W9cNrmBlfj2ogU064bXz8DR3377/JOvI/TW57
+         qsT+vdJtiratH3jUkYkz8y0hUDcIiBKmdin0T7JoPZ4A7FkaXAm8txHFCVUDXra5n7TL
+         RWy46LkbOHvkTRhJCHG6C8bS+egGJN62jMbK66cgUtHFDXgXvfs+aeX3yG2yXowiZy6r
+         LEXzFTrd+YrdkNipfvdojE9dL7WcygZMcQSftnFuLG/V6v65oZiZ+ce9ducHLWqbyrrc
+         8XhKbC5S+bgJSR/j0cG9hrsLlC7PBHWKlfht+PIu2hJvM7cbHqWQodJJYYZIAYsxHiLl
+         hukg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696168438; x=1696773238;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TdJ8puCnck5Qjx/oIgi0cgvE0Anaq9Q2XGGDoV+48xY=;
+        b=GTwocAmFefStmVDxUWOiv6jmPWoN1qQ/FchLXGM4beFunVJiYFQNWjmRPV2PGXMNfd
+         kR/kdFmI9te2X1dQf9i6NA/GhXS8xpdY5kJEEmzkJSKHlgdFWMSSVVEqB7MW0bTBvsFv
+         sbazPnnQXx5CSNl8SahN5HNK25pYIQbwIITmrozRBFQ6p3d7b8BVG8HqEnZVToSwByXS
+         mpF0Nc+NmkctEjCgk5vrKXzoyPNGXcS06qLjKZL51f393VvXjAmCZXonwp1TRcSWrSYc
+         +dNIz8NIWusZ5nKfWhKMC1/iW5XEbhcDxyjymR+zPeau+EoUlT7+xW8uptJlyNvES0ZE
+         RC2w==
+X-Gm-Message-State: AOJu0YzcsJyXFJHssEl+5h7Ybw4JEFUsQGZV8tmTfpcnkDLh0+LQajs5
+	N1kQTLj2PlTEzDe0oYJzdMk=
+X-Google-Smtp-Source: AGHT+IEr6ZT/FRqIBF+eOoIFBpPXyz4h1VClRjtJrhFotkWjWchOvZQSbHB6CzeK3J2VQa6Jpkk1KA==
+X-Received: by 2002:a17:907:75e1:b0:9b2:a769:8afc with SMTP id jz1-20020a17090775e100b009b2a7698afcmr7558571ejc.77.1696168437857;
+        Sun, 01 Oct 2023 06:53:57 -0700 (PDT)
+Received: from [192.168.1.99] ([151.95.145.183])
+        by smtp.gmail.com with ESMTPSA id l5-20020a170906a40500b009ae4ead6c01sm15400407ejz.163.2023.10.01.06.53.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 01 Oct 2023 06:53:57 -0700 (PDT)
+Message-ID: <833fc809-b1d4-471e-afa3-68ded78b20f0@gmail.com>
+Date: Sun, 1 Oct 2023 15:53:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+From: Denis Benato <benato.denis96@gmail.com>
+Subject: Re: [RFC 2/2] iio: imu: Add driver for BMI323 IMU
+To: Jagath Jog J <jagathjog1996@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, andriy.shevchenko@linux.intel.com,
+ lars@metafoo.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20230918080314.11959-1-jagathjog1996@gmail.com>
+ <20230918080314.11959-3-jagathjog1996@gmail.com>
+ <20230924153055.0b3486f9@jic23-huawei>
+ <CAM+2EuJBxj7P-ymu84u308g8LCemSEsYi_TSHYtaK9PyrhqrfA@mail.gmail.com>
+ <5eb148b4-25eb-460d-9ec8-0a40bec1dc6f@gmail.com>
+ <CAM+2EuJUGu4QUCdZ7d28RaLNipJRVuASP9wSzF14k=oBoC4e_Q@mail.gmail.com>
+Content-Language: en-US, en-US-large
+In-Reply-To: <CAM+2EuJUGu4QUCdZ7d28RaLNipJRVuASP9wSzF14k=oBoC4e_Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Message-Id: <20231001-ktd202x-v5-2-f544a1d0510d@apitzsch.eu>
-References: <20231001-ktd202x-v5-0-f544a1d0510d@apitzsch.eu>
-In-Reply-To: <20231001-ktd202x-v5-0-f544a1d0510d@apitzsch.eu>
-To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
- =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-X-Mailer: b4 0.12.3
-X-Df-Sender: YW5kcmVAYXBpdHpzY2guZXU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-This commit adds support for Kinetic KTD2026/7 RGB/White LED driver.
+Hello Jagath,
 
-Signed-off-by: André Apitzsch <git@apitzsch.eu>
----
- drivers/leds/rgb/Kconfig        |  13 +
- drivers/leds/rgb/Makefile       |   1 +
- drivers/leds/rgb/leds-ktd202x.c | 619 ++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 633 insertions(+)
+On 9/29/23 09:59, Jagath Jog J wrote:
+> Hi Denis,
+> 
+> On Thu, Sep 28, 2023 at 2:55 AM Denis Benato <benato.denis96@gmail.com> wrote:
+>>
+>> Hello,
+>>
+>> Some devices (as my asus rog ally) have an ACPI node describing a BOSC0200 sensor. The IC being used in those devices is a  bmi323 but as a result of how the ACPI table reports that device, it is detected by the existing kernel module and we have no way of differentiating until after the chip ID probe.
+>>
+>> The module loaded is bmc150-accel-i2c.c which currently doesn't support the bmi323 and the loading of the module just fails at chip check.
+> 
+> bmc150 driver supports multiple accelerometer sensors such as
+> bma222, bma280, bmi055 and all of them are having similar
+> register map, but the bmi323 register map is completely different
+> from bmc150.
 
-diff --git a/drivers/leds/rgb/Kconfig b/drivers/leds/rgb/Kconfig
-index 183bccc06cf3..a6a21f564673 100644
---- a/drivers/leds/rgb/Kconfig
-+++ b/drivers/leds/rgb/Kconfig
-@@ -14,6 +14,19 @@ config LEDS_GROUP_MULTICOLOR
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called leds-group-multicolor.
- 
-+config LEDS_KTD202X
-+	tristate "LED support for KTD202x Chips"
-+	depends on I2C
-+	depends on OF
-+	select REGMAP_I2C
-+	help
-+	  This option enables support for the Kinetic KTD2026/KTD2027
-+	  RGB/White LED driver found in different BQ mobile phones.
-+	  It is a 3 or 4 channel LED driver programmed via an I2C interface.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called leds-ktd202x.
-+
- config LEDS_PWM_MULTICOLOR
- 	tristate "PWM driven multi-color LED Support"
- 	depends on PWM
-diff --git a/drivers/leds/rgb/Makefile b/drivers/leds/rgb/Makefile
-index c11cc56384e7..243f31e4d70d 100644
---- a/drivers/leds/rgb/Makefile
-+++ b/drivers/leds/rgb/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- 
- obj-$(CONFIG_LEDS_GROUP_MULTICOLOR)	+= leds-group-multicolor.o
-+obj-$(CONFIG_LEDS_KTD202X)		+= leds-ktd202x.o
- obj-$(CONFIG_LEDS_PWM_MULTICOLOR)	+= leds-pwm-multicolor.o
- obj-$(CONFIG_LEDS_QCOM_LPG)		+= leds-qcom-lpg.o
- obj-$(CONFIG_LEDS_MT6370_RGB)		+= leds-mt6370-rgb.o
-diff --git a/drivers/leds/rgb/leds-ktd202x.c b/drivers/leds/rgb/leds-ktd202x.c
-new file mode 100644
-index 000000000000..57f69d2c30f8
---- /dev/null
-+++ b/drivers/leds/rgb/leds-ktd202x.c
-@@ -0,0 +1,619 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Kinetic KTD2026/7 RGB/White LED driver with I2C interface
-+ *
-+ * Copyright 2023 André Apitzsch <git@apitzsch.eu>
-+ *
-+ * Datasheet: https://www.kinet-ic.com/uploads/KTD2026-7-04h.pdf
-+ */
-+
-+#include <linux/i2c.h>
-+#include <linux/led-class-multicolor.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+
-+#define KTD2026_NUM_LEDS 3
-+#define KTD2027_NUM_LEDS 4
-+#define KTD202X_MAX_LEDS 4
-+
-+/* Register bank */
-+#define KTD202X_REG_RESET_CONTROL	0x00
-+#define KTD202X_REG_FLASH_PERIOD	0x01
-+#define KTD202X_REG_PWM1_TIMER		0x02
-+#define KTD202X_REG_PWM2_TIMER		0x03
-+#define KTD202X_REG_CHANNEL_CTRL	0x04
-+#define KTD202X_REG_TRISE_FALL		0x05
-+#define KTD202X_REG_LED_IOUT(x)		(0x06 + (x))
-+
-+/* Register 0 */
-+#define KTD202X_TIMER_SLOT_CONTROL_TSLOT1	0x00
-+#define KTD202X_TIMER_SLOT_CONTROL_TSLOT2	0x01
-+#define KTD202X_TIMER_SLOT_CONTROL_TSLOT3	0x02
-+#define KTD202X_TIMER_SLOT_CONTROL_TSLOT4	0x03
-+#define KTD202X_RSTR_RESET			0x07
-+
-+#define KTD202X_ENABLE_CTRL_WAKE	0x00 /* SCL High & SDA High */
-+#define KTD202X_ENABLE_CTRL_SLEEP	0x08 /* SCL High & SDA Toggling */
-+
-+#define KTD202X_TRISE_FALL_SCALE_NORMAL		0x00
-+#define KTD202X_TRISE_FALL_SCALE_SLOW_X2	0x20
-+#define KTD202X_TRISE_FALL_SCALE_SLOW_X4	0x40
-+#define KTD202X_TRISE_FALL_SCALE_FAST_X8	0x60
-+
-+/* Register 1 */
-+#define KTD202X_FLASH_PERIOD_256_MS_LOG_RAMP	0x00
-+
-+/* Register 2-3 */
-+#define KTD202X_FLASH_ON_TIME_0_4_PERCENT	0x01
-+
-+/* Register 4 */
-+#define KTD202X_CHANNEL_CTRL_MASK(x) (BIT(2 * (x)) | BIT(2 * (x) + 1))
-+#define KTD202X_CHANNEL_CTRL_OFF 0x00
-+#define KTD202X_CHANNEL_CTRL_ON(x) BIT(2 * (x))
-+#define KTD202X_CHANNEL_CTRL_PWM1(x) BIT(2 * (x) + 1)
-+#define KTD202X_CHANNEL_CTRL_PWM2(x) (BIT(2 * (x)) | BIT(2 * (x) + 1))
-+
-+/* Register 5 */
-+#define KTD202X_RAMP_TIMES_2_MS			0x00
-+
-+/* Register 6-9 */
-+#define KTD202X_LED_CURRENT_10_mA		0x4f
-+
-+#define KTD202X_FLASH_PERIOD_MIN_MS 256
-+#define KTD202X_FLASH_PERIOD_STEP_MS 128
-+#define KTD202X_FLASH_PERIOD_MAX_STEPS 126
-+#define KTD202X_FLASH_ON_MAX 256
-+
-+#define KTD202X_MAX_BRIGHTNESS 192
-+
-+static const struct reg_default ktd202x_reg_defaults[] = {
-+	{ KTD202X_REG_RESET_CONTROL, KTD202X_TIMER_SLOT_CONTROL_TSLOT1 |
-+		KTD202X_ENABLE_CTRL_WAKE | KTD202X_TRISE_FALL_SCALE_NORMAL },
-+	{ KTD202X_REG_FLASH_PERIOD, KTD202X_FLASH_PERIOD_256_MS_LOG_RAMP },
-+	{ KTD202X_REG_PWM1_TIMER, KTD202X_FLASH_ON_TIME_0_4_PERCENT },
-+	{ KTD202X_REG_PWM2_TIMER, KTD202X_FLASH_ON_TIME_0_4_PERCENT },
-+	{ KTD202X_REG_CHANNEL_CTRL, KTD202X_CHANNEL_CTRL_OFF },
-+	{ KTD202X_REG_TRISE_FALL, KTD202X_RAMP_TIMES_2_MS },
-+	{ KTD202X_REG_LED_IOUT(0), KTD202X_LED_CURRENT_10_mA },
-+	{ KTD202X_REG_LED_IOUT(1), KTD202X_LED_CURRENT_10_mA },
-+	{ KTD202X_REG_LED_IOUT(2), KTD202X_LED_CURRENT_10_mA },
-+	{ KTD202X_REG_LED_IOUT(3), KTD202X_LED_CURRENT_10_mA },
-+};
-+
-+struct ktd202x_led {
-+	struct ktd202x *chip;
-+	union {
-+		struct led_classdev cdev;
-+		struct led_classdev_mc mcdev;
-+	};
-+	u32 index;
-+};
-+
-+struct ktd202x {
-+	struct mutex mutex;
-+	struct regulator_bulk_data regulators[2];
-+	struct device *dev;
-+	struct regmap *regmap;
-+	bool enabled;
-+	int num_leds;
-+	struct ktd202x_led leds[] __counted_by(num_leds);
-+};
-+
-+static int ktd202x_chip_disable(struct ktd202x *chip)
-+{
-+	int ret;
-+
-+	if (!chip->enabled)
-+		return 0;
-+
-+	regmap_write(chip->regmap, KTD202X_REG_RESET_CONTROL, KTD202X_ENABLE_CTRL_SLEEP);
-+
-+	ret = regulator_bulk_disable(ARRAY_SIZE(chip->regulators), chip->regulators);
-+	if (ret) {
-+		dev_err(chip->dev, "Failed to disable regulators: %d\n", ret);
-+		return ret;
-+	}
-+
-+	chip->enabled = false;
-+	return 0;
-+}
-+
-+static int ktd202x_chip_enable(struct ktd202x *chip)
-+{
-+	int ret;
-+
-+	if (chip->enabled)
-+		return 0;
-+
-+	ret = regulator_bulk_enable(ARRAY_SIZE(chip->regulators), chip->regulators);
-+	if (ret) {
-+		dev_err(chip->dev, "Failed to enable regulators: %d\n", ret);
-+		return ret;
-+	}
-+	chip->enabled = true;
-+
-+	ret = regmap_write(chip->regmap, KTD202X_REG_RESET_CONTROL, KTD202X_ENABLE_CTRL_WAKE);
-+
-+	if (ret) {
-+		dev_err(chip->dev, "Failed to enable the chip: %d\n", ret);
-+		ktd202x_chip_disable(chip);
-+	}
-+
-+	return ret;
-+}
-+
-+static bool ktd202x_chip_in_use(struct ktd202x *chip)
-+{
-+	int i;
-+
-+	for (i = 0; i < chip->num_leds; i++) {
-+		if (chip->leds[i].cdev.brightness)
-+			return true;
-+	}
-+
-+	return false;
-+}
-+
-+static int ktd202x_brightness_set(struct ktd202x_led *led,
-+				  struct mc_subled *subleds,
-+				  unsigned int num_channels)
-+{
-+	enum led_brightness brightness;
-+	bool mode_blink = false;
-+	int channel_state;
-+	int channel;
-+	int state;
-+	int mode;
-+	int ret;
-+	int i;
-+
-+	if (ktd202x_chip_in_use(led->chip)) {
-+		ret = ktd202x_chip_enable(led->chip);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	ret = regmap_read(led->chip->regmap, KTD202X_REG_CHANNEL_CTRL, &state);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * In multicolor case, assume blink mode if PWM is set for at least one
-+	 * channel because another channel cannot be in state ON at the same time
-+	 */
-+	for (i = 0; i < num_channels; i++) {
-+		channel = subleds[i].channel;
-+		channel_state = (state >> 2 * channel) & KTD202X_CHANNEL_CTRL_MASK(0);
-+		if (channel_state == KTD202X_CHANNEL_CTRL_OFF)
-+			continue;
-+		mode_blink = channel_state == KTD202X_CHANNEL_CTRL_PWM1(0);
-+		break;
-+	}
-+
-+	for (i = 0; i < num_channels; i++) {
-+		brightness = subleds[i].brightness;
-+		channel = subleds[i].channel;
-+
-+		if (brightness) {
-+			/* Register expects brightness between 0 and MAX_BRIGHTNESS - 1 */
-+			ret = regmap_write(led->chip->regmap, KTD202X_REG_LED_IOUT(channel),
-+					   brightness - 1);
-+			if (ret)
-+				return ret;
-+
-+			if (mode_blink)
-+				mode = KTD202X_CHANNEL_CTRL_PWM1(channel);
-+			else
-+				mode = KTD202X_CHANNEL_CTRL_ON(channel);
-+		} else {
-+			mode = KTD202X_CHANNEL_CTRL_OFF;
-+		}
-+		ret = regmap_update_bits(led->chip->regmap, KTD202X_REG_CHANNEL_CTRL,
-+					 KTD202X_CHANNEL_CTRL_MASK(channel), mode);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	if (!ktd202x_chip_in_use(led->chip))
-+		return ktd202x_chip_disable(led->chip);
-+
-+	return 0;
-+}
-+
-+static int ktd202x_brightness_single_set(struct led_classdev *cdev,
-+					 enum led_brightness value)
-+{
-+	struct ktd202x_led *led = container_of(cdev, struct ktd202x_led, cdev);
-+	struct mc_subled info;
-+	int ret;
-+
-+	cdev->brightness = value;
-+
-+	mutex_lock(&led->chip->mutex);
-+
-+	info.brightness = value;
-+	info.channel = led->index;
-+	ret = ktd202x_brightness_set(led, &info, 1);
-+
-+	mutex_unlock(&led->chip->mutex);
-+
-+	return ret;
-+}
-+
-+static int ktd202x_brightness_mc_set(struct led_classdev *cdev,
-+				     enum led_brightness value)
-+{
-+	struct led_classdev_mc *mc = lcdev_to_mccdev(cdev);
-+	struct ktd202x_led *led = container_of(mc, struct ktd202x_led, mcdev);
-+	int ret;
-+
-+	cdev->brightness = value;
-+
-+	mutex_lock(&led->chip->mutex);
-+
-+	led_mc_calc_color_components(mc, value);
-+	ret = ktd202x_brightness_set(led, mc->subled_info, mc->num_colors);
-+
-+	mutex_unlock(&led->chip->mutex);
-+
-+	return ret;
-+}
-+
-+static int ktd202x_blink_set(struct ktd202x_led *led, unsigned long *delay_on,
-+			     unsigned long *delay_off, struct mc_subled *subleds,
-+			     unsigned int num_channels)
-+{
-+	unsigned long delay_total_ms;
-+	int ret, num_steps, on;
-+	u8 ctrl_mask = 0;
-+	u8 ctrl_pwm1 = 0;
-+	u8 ctrl_on = 0;
-+	int i, channel;
-+
-+	mutex_lock(&led->chip->mutex);
-+
-+	for (i = 0; i < num_channels; i++) {
-+		channel = subleds[i].channel;
-+		ctrl_mask |= KTD202X_CHANNEL_CTRL_MASK(channel);
-+		ctrl_on |= KTD202X_CHANNEL_CTRL_ON(channel);
-+		ctrl_pwm1 |= KTD202X_CHANNEL_CTRL_PWM1(channel);
-+	}
-+
-+	/* Never off - brightness is already set, disable blinking */
-+	if (!*delay_off) {
-+		ret = regmap_update_bits(led->chip->regmap, KTD202X_REG_CHANNEL_CTRL,
-+					 ctrl_mask, ctrl_on);
-+		goto out;
-+	}
-+
-+	/* Convert into values the HW will understand. */
-+
-+	/* Integer representation of time of flash period */
-+	num_steps = (*delay_on + *delay_off - KTD202X_FLASH_PERIOD_MIN_MS) /
-+		    KTD202X_FLASH_PERIOD_STEP_MS;
-+	num_steps = clamp(num_steps, 0, KTD202X_FLASH_PERIOD_MAX_STEPS);
-+
-+	/* Integer representation of percentage of LED ON time */
-+	on = (*delay_on * KTD202X_FLASH_ON_MAX) / (*delay_on + *delay_off);
-+
-+	/* Actually used delay_{on,off} values */
-+	delay_total_ms = num_steps * KTD202X_FLASH_PERIOD_STEP_MS + KTD202X_FLASH_PERIOD_MIN_MS;
-+	*delay_on = (delay_total_ms * on) / KTD202X_FLASH_ON_MAX;
-+	*delay_off = delay_total_ms - *delay_on;
-+
-+	/* Set timings */
-+	ret = regmap_write(led->chip->regmap, KTD202X_REG_FLASH_PERIOD, num_steps);
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_write(led->chip->regmap, KTD202X_REG_PWM1_TIMER, on);
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_update_bits(led->chip->regmap, KTD202X_REG_CHANNEL_CTRL,
-+				 ctrl_mask, ctrl_pwm1);
-+out:
-+	mutex_unlock(&led->chip->mutex);
-+	return ret;
-+}
-+
-+static int ktd202x_blink_single_set(struct led_classdev *cdev,
-+				    unsigned long *delay_on,
-+				    unsigned long *delay_off)
-+{
-+	struct ktd202x_led *led = container_of(cdev, struct ktd202x_led, cdev);
-+	struct mc_subled info;
-+	int ret;
-+
-+	if (!cdev->brightness) {
-+		ret = ktd202x_brightness_single_set(cdev, KTD202X_MAX_BRIGHTNESS);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	/* If no blink specified, default to 1 Hz. */
-+	if (!*delay_off && !*delay_on) {
-+		*delay_off = 500;
-+		*delay_on = 500;
-+	}
-+
-+	/* Never on - just set to off */
-+	if (!*delay_on)
-+		return ktd202x_brightness_single_set(cdev, LED_OFF);
-+
-+	info.channel = led->index;
-+
-+	return ktd202x_blink_set(led, delay_on, delay_off, &info, 1);
-+}
-+
-+static int ktd202x_blink_mc_set(struct led_classdev *cdev,
-+				unsigned long *delay_on,
-+				unsigned long *delay_off)
-+{
-+	struct led_classdev_mc *mc = lcdev_to_mccdev(cdev);
-+	struct ktd202x_led *led = container_of(mc, struct ktd202x_led, mcdev);
-+	int ret;
-+
-+	if (!cdev->brightness) {
-+		ret = ktd202x_brightness_mc_set(cdev, KTD202X_MAX_BRIGHTNESS);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	/* If no blink specified, default to 1 Hz. */
-+	if (!*delay_off && !*delay_on) {
-+		*delay_off = 500;
-+		*delay_on = 500;
-+	}
-+
-+	/* Never on - just set to off */
-+	if (!*delay_on)
-+		return ktd202x_brightness_mc_set(cdev, LED_OFF);
-+
-+	return ktd202x_blink_set(led, delay_on, delay_off, mc->subled_info,
-+				 mc->num_colors);
-+}
-+
-+static int ktd202x_setup_led_rgb(struct ktd202x *chip, struct device_node *np,
-+				 struct ktd202x_led *led, struct led_init_data *init_data)
-+{
-+	struct led_classdev *cdev;
-+	struct device_node *child;
-+	struct mc_subled *info;
-+	int num_channels;
-+	int i = 0;
-+	u32 reg;
-+	int ret;
-+
-+	num_channels = of_get_available_child_count(np);
-+	if (!num_channels || num_channels > chip->num_leds)
-+		return -EINVAL;
-+
-+	info = devm_kcalloc(chip->dev, num_channels, sizeof(*info), GFP_KERNEL);
-+	if (!info)
-+		return -ENOMEM;
-+
-+	for_each_available_child_of_node(np, child) {
-+		u32 mono_color = 0;
-+
-+		ret = of_property_read_u32(child, "reg", &reg);
-+		if (ret != 0 || reg >= chip->num_leds) {
-+			dev_err(chip->dev, "invalid 'reg' of %pOFn\n", np);
-+			return -EINVAL;
-+		}
-+
-+		ret = of_property_read_u32(child, "color", &mono_color);
-+		if (ret < 0 && ret != -EINVAL) {
-+			dev_err(chip->dev, "failed to parse 'color' of %pOF\n", np);
-+			return ret;
-+		}
-+
-+		info[i].color_index = mono_color;
-+		info[i].channel = reg;
-+		info[i].intensity = KTD202X_MAX_BRIGHTNESS;
-+		i++;
-+	}
-+
-+	led->mcdev.subled_info = info;
-+	led->mcdev.num_colors = num_channels;
-+
-+	cdev = &led->mcdev.led_cdev;
-+	cdev->brightness_set_blocking = ktd202x_brightness_mc_set;
-+	cdev->blink_set = ktd202x_blink_mc_set;
-+
-+	return devm_led_classdev_multicolor_register_ext(chip->dev, &led->mcdev, init_data);
-+}
-+
-+static int ktd202x_setup_led_single(struct ktd202x *chip, struct device_node *np,
-+				    struct ktd202x_led *led, struct led_init_data *init_data)
-+{
-+	struct led_classdev *cdev;
-+	u32 reg;
-+	int ret;
-+
-+	ret = of_property_read_u32(np, "reg", &reg);
-+	if (ret != 0 || reg >= chip->num_leds) {
-+		dev_err(chip->dev, "invalid 'reg' of %pOFn\n", np);
-+		return -EINVAL;
-+	}
-+	led->index = reg;
-+
-+	cdev = &led->cdev;
-+	cdev->brightness_set_blocking = ktd202x_brightness_single_set;
-+	cdev->blink_set = ktd202x_blink_single_set;
-+
-+	return devm_led_classdev_register_ext(chip->dev, &led->cdev, init_data);
-+}
-+
-+static int ktd202x_add_led(struct ktd202x *chip, struct device_node *np, unsigned int index)
-+{
-+	struct ktd202x_led *led = &chip->leds[index];
-+	struct led_init_data init_data = {};
-+	struct led_classdev *cdev;
-+	u32 color = 0;
-+	int ret;
-+
-+	/* Color property is optional in single color case */
-+	ret = of_property_read_u32(np, "color", &color);
-+	if (ret < 0 && ret != -EINVAL) {
-+		dev_err(chip->dev, "failed to parse 'color' of %pOF\n", np);
-+		return ret;
-+	}
-+
-+	led->chip = chip;
-+	init_data.fwnode = of_fwnode_handle(np);
-+
-+	if (color == LED_COLOR_ID_RGB) {
-+		cdev = &led->mcdev.led_cdev;
-+		ret = ktd202x_setup_led_rgb(chip, np, led, &init_data);
-+	} else {
-+		cdev = &led->cdev;
-+		ret = ktd202x_setup_led_single(chip, np, led, &init_data);
-+	}
-+
-+	if (ret) {
-+		dev_err(chip->dev, "unable to register %s\n", cdev->name);
-+		of_node_put(np);
-+		return ret;
-+	}
-+
-+	cdev->max_brightness = KTD202X_MAX_BRIGHTNESS;
-+
-+	return 0;
-+}
-+
-+static int ktd202x_probe_dt(struct ktd202x *chip)
-+{
-+	struct device_node *np = dev_of_node(chip->dev), *child;
-+	unsigned int i;
-+	int count, ret;
-+
-+	chip->num_leds = (int)(unsigned long)of_device_get_match_data(chip->dev);
-+
-+	count = of_get_available_child_count(np);
-+	if (!count || count > chip->num_leds)
-+		return -EINVAL;
-+
-+	regmap_write(chip->regmap, KTD202X_REG_RESET_CONTROL, KTD202X_RSTR_RESET);
-+
-+	/* Allow the device to execute the complete reset */
-+	usleep_range(200, 300);
-+
-+	i = 0;
-+	for_each_available_child_of_node(np, child) {
-+		ret = ktd202x_add_led(chip, child, i);
-+		if (ret)
-+			return ret;
-+		i++;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct regmap_config ktd202x_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = 0x09,
-+	.cache_type = REGCACHE_FLAT,
-+	.reg_defaults = ktd202x_reg_defaults,
-+	.num_reg_defaults = ARRAY_SIZE(ktd202x_reg_defaults),
-+};
-+
-+static int ktd202x_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct ktd202x *chip;
-+	int count;
-+	int ret;
-+
-+	count = device_get_child_node_count(dev);
-+	if (!count || count > KTD202X_MAX_LEDS)
-+		return dev_err_probe(dev, -EINVAL, "Incorrect number of leds (%d)", count);
-+
-+	chip = devm_kzalloc(dev, struct_size(chip, leds, count), GFP_KERNEL);
-+	if (!chip)
-+		return -ENOMEM;
-+
-+	chip->dev = dev;
-+	i2c_set_clientdata(client, chip);
-+
-+	chip->regmap = devm_regmap_init_i2c(client, &ktd202x_regmap_config);
-+	if (IS_ERR(chip->regmap)) {
-+		ret = dev_err_probe(dev, PTR_ERR(chip->regmap),
-+				    "Failed to allocate register map.\n");
-+		return ret;
-+	}
-+
-+	chip->regulators[0].supply = "vin";
-+	chip->regulators[1].supply = "vio";
-+	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(chip->regulators), chip->regulators);
-+	if (ret < 0) {
-+		dev_err_probe(dev, ret, "Failed to request regulators.\n");
-+		return ret;
-+	}
-+
-+	ret = regulator_bulk_enable(ARRAY_SIZE(chip->regulators), chip->regulators);
-+	if (ret) {
-+		dev_err_probe(dev, ret, "Failed to enable regulators.\n");
-+		return ret;
-+	}
-+
-+	ret = ktd202x_probe_dt(chip);
-+	if (ret < 0) {
-+		regulator_bulk_disable(ARRAY_SIZE(chip->regulators), chip->regulators);
-+		return ret;
-+	}
-+
-+	ret = regulator_bulk_disable(ARRAY_SIZE(chip->regulators), chip->regulators);
-+	if (ret) {
-+		dev_err_probe(dev, ret, "Failed to disable regulators.\n");
-+		return ret;
-+	}
-+
-+	mutex_init(&chip->mutex);
-+
-+	return 0;
-+}
-+
-+static void ktd202x_remove(struct i2c_client *client)
-+{
-+	struct ktd202x *chip = i2c_get_clientdata(client);
-+
-+	ktd202x_chip_disable(chip);
-+
-+	mutex_destroy(&chip->mutex);
-+}
-+
-+static void ktd202x_shutdown(struct i2c_client *client)
-+{
-+	struct ktd202x *chip = i2c_get_clientdata(client);
-+
-+	/* Reset registers to make sure all LEDs are off before shutdown */
-+	regmap_write(chip->regmap, KTD202X_REG_RESET_CONTROL, KTD202X_RSTR_RESET);
-+}
-+
-+static const struct of_device_id ktd202x_match_table[] = {
-+	{ .compatible = "kinetic,ktd2026", .data = (void *)KTD2026_NUM_LEDS },
-+	{ .compatible = "kinetic,ktd2027", .data = (void *)KTD2027_NUM_LEDS },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, ktd202x_match_table);
-+
-+static struct i2c_driver ktd202x_driver = {
-+	.driver = {
-+		.name = "leds-ktd202x",
-+		.of_match_table = ktd202x_match_table,
-+	},
-+	.probe = ktd202x_probe,
-+	.remove = ktd202x_remove,
-+	.shutdown = ktd202x_shutdown,
-+};
-+module_i2c_driver(ktd202x_driver);
-+
-+MODULE_AUTHOR("André Apitzsch <git@apitzsch.eu>");
-+MODULE_DESCRIPTION("Kinetic KTD2026/7 LED driver");
-+MODULE_LICENSE("GPL");
+I apologize for the confusion.
 
--- 
-2.42.0
+What I was trying to say is that to have the bmi323 working in those aforementioned devices bmc150 will need to be modified: that is the probe function that ends up being executed, fact that cannot be changed because it depends on the ACPI implementation shipped on those devices. 
 
+Therefore I was asking about the best way of handing control to the new driver and how that should be organized: in my implementation the new bmi323 code was written inside the bmc150-accel-core.c and only shares sleep/suspend, probe and removal functions in addition to checking for the new chip presence before checking for any bmc150 chip as that issues an i2c write, while the check for the bmi323 only requires an i2c read.
+
+We also have done duplicate work as I have written a driver for that chip myself, but it's not as good as yours because my hardware didn't come with the IRQ pin connected and so I couldn't develop triggers and I only got the i2c interface working.
+
+> 
+> 
+>>
+>> I have solved the problem by expanding the current bmc150-accel-i2c.c and bmc150-accel-core.c files to handle that IC in almost every part: gyroscope, accelerometer and temperature sensor.
+>>
+>> What is the best way of organizing code to have this module mainlined? Is it correct leaving files called bmc150-accel-* even if it is managing another IC and and not just the accelerometer part anymore?
+>>
+>> TIA for your time.
+>>
+>> Best regards,
+>> Denis Benato
+> 
+> Regards
+> 
+> Jagath
+
+TIA for your time.
+
+Best regards,
+Denis Benato
 
