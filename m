@@ -1,233 +1,106 @@
-Return-Path: <devicetree+bounces-4935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3158C7B4610
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 10:16:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E42CA7B4621
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 10:20:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 357801C20AF5
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 08:16:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 94EFA281330
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 08:20:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 029C814F8B;
-	Sun,  1 Oct 2023 08:15:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C2E714A93;
+	Sun,  1 Oct 2023 08:20:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4795714AB1;
-	Sun,  1 Oct 2023 08:15:57 +0000 (UTC)
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4521112;
-	Sun,  1 Oct 2023 01:15:44 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99c3c8adb27so2163070066b.1;
-        Sun, 01 Oct 2023 01:15:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696148143; x=1696752943; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rhlGRH7X7YHOrcRNVN9EVkoiyHqqCPmAlgcebPmFLo8=;
-        b=AU+hOTjasd/4MciaWhSvKzAhLkPgbHHO6nSv7VIBG8zQZZfuu1CJTiEp7DFK6T0mS/
-         vvFtlLl4pio/fCANs9P2GBqRB228FKMKhwTAz+wEGS0y5OKhgbkjcKwolJL9RX2AQgU2
-         oMtp9L5fLPs0BLWxuYjOb+n+940p86ElCg9DjJJxD/IkD8fcjv/j+OCHC+trjMtZaJOw
-         9OTrwDSFaTJdQQeZh5a0CHl1dDKdviMq8UTCzxE4THO8uLufmCScWqb0/RybesQ7qYcJ
-         NnV+O7Xk6R2kcRByi40agn033Vh1SIV4nGr8AO8DZu2jO2U3D0i7DgcTFYYzrYbDp2ki
-         PsIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696148143; x=1696752943;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rhlGRH7X7YHOrcRNVN9EVkoiyHqqCPmAlgcebPmFLo8=;
-        b=KoJ15vdNGexiKlx0ecUxmkA4vpan4B0WDtFpSQR0OUdzwRXgR/yhoJaytvsxlz2BXz
-         BFlUwzuK0pfRrkxjEQVKYltfOBiFCdYn0An0BuCMBHownBRKL2eh9nuO5a5pMowtZY2U
-         0wtHltIEHNw0fHQSkLha59WBbQmK6thdPOD2BYkL82cJZ+7ZX3h8XwZdiIyGHDZiIh0T
-         nh5ZXIn/AmYY7xED8kycHdQaEZ3DCWXkiDijm4yWJvLMikU6NWeNpUUVcgRfh6kBkL9O
-         3Cw1r0u4DEN0wKB0/Yw22PKmW/8eSgMDPhyOh0966/slKpFx2cCN5Zi5lgqv93tyr8wE
-         hHcQ==
-X-Gm-Message-State: AOJu0YwzRBNaYIRRp2EoyNXatnwGo0TMesEeeODdid8K9BLwtdhnQkUU
-	j9FFxB0mIx28w2BSRMqtBHo=
-X-Google-Smtp-Source: AGHT+IHJ3ty8zSrVoeci1CsprfxSBa9M7N2Yd+u7+n51Nmf1n6MJYy3BBiFXUF20e6Q475rHJe1EPw==
-X-Received: by 2002:a17:907:1dca:b0:9ae:43be:e5f5 with SMTP id og10-20020a1709071dca00b009ae43bee5f5mr7639080ejc.4.1696148143008;
-        Sun, 01 Oct 2023 01:15:43 -0700 (PDT)
-Received: from primary.. ([213.139.52.198])
-        by smtp.gmail.com with ESMTPSA id e8-20020a170906374800b0099cf840527csm15121841ejc.153.2023.10.01.01.15.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Oct 2023 01:15:42 -0700 (PDT)
-From: Abdel Alkuor <alkuor@gmail.com>
-To: heikki.krogerus@linux.intel.com,
-	krzysztof.kozlowski+dt@linaro.org,
-	bryan.odonoghue@linaro.org
-Cc: gregkh@linuxfoundation.org,
-	linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	ryan.eleceng@gmail.com,
-	robh+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	Abdel Alkuor <abdelalkuor@geotab.com>
-Subject: [PATCH v9 14/14] USB: typec: tps6598x: Add status trace for tps25750
-Date: Sun,  1 Oct 2023 04:11:34 -0400
-Message-Id: <20231001081134.37101-15-alkuor@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231001081134.37101-1-alkuor@gmail.com>
-References: <20231001081134.37101-1-alkuor@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C3789464
+	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 08:20:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B1F59C;
+	Sun,  1 Oct 2023 01:20:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1696148435; x=1727684435;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=o+KVW1rLaOn0lxFyk+mJJT0IABPC8pRmelGMvaMNn4g=;
+  b=VnctnJQwx54nVGH8W1/mOmh6bfFuHnZ0gpz7coAbjbkNPqj1TdNYUYbX
+   MAYuqPvUD7bP4MiuA9XobZUse8OcrPytLy3tpU06G1Nor1C8YSD6lwb3F
+   BNnB2BPNpJt+4sOhvB8p0JWvUX8m6ICZm/0qadq41bBr5GSdFrN5AlZRS
+   pFHvh33csyxsklktvI85L8iWKjclUbV0rKuhJcKuYW9z58U4qwhbw1yEt
+   eTw/Was1bu5m38rSXfktzfrUfQQZGmk6EGaJ/cmdUhXnjFV1X+wlMmXSn
+   JCBb+PC/Pe+vqGo9S2Jf9thnGPJvT4zPO1jh+41QflMzYT7DP8/k6qN8h
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10849"; a="468782309"
+X-IronPort-AV: E=Sophos;i="6.03,191,1694761200"; 
+   d="scan'208";a="468782309"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Oct 2023 01:20:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10849"; a="815989669"
+X-IronPort-AV: E=Sophos;i="6.03,191,1694761200"; 
+   d="scan'208";a="815989669"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Oct 2023 01:20:32 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC0)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1qmrgj-00000001qri-1Gm8;
+	Sun, 01 Oct 2023 11:20:29 +0300
+Date: Sun, 1 Oct 2023 11:20:28 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
+Cc: Jagath Jog J <jagathjog1996@gmail.com>, jic23@kernel.org,
+	lars@metafoo.de, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC 2/2] iio: imu: Add driver for BMI323 IMU
+Message-ID: <ZRkrzCcPqmiaNZqK@smile.fi.intel.com>
+References: <20230918080314.11959-1-jagathjog1996@gmail.com>
+ <20230918080314.11959-3-jagathjog1996@gmail.com>
+ <20230927095708.l57kmdc3mmrtaco7@pengutronix.de>
+ <ZRQhdkVNFdCfPseY@smile.fi.intel.com>
+ <20230927143443.f4xpfzkwylipo25g@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+In-Reply-To: <20230927143443.f4xpfzkwylipo25g@pengutronix.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Abdel Alkuor <abdelalkuor@geotab.com>
+On Wed, Sep 27, 2023 at 04:34:43PM +0200, Uwe Kleine-König wrote:
+> On Wed, Sep 27, 2023 at 03:35:02PM +0300, Andy Shevchenko wrote:
+> > On Wed, Sep 27, 2023 at 11:57:08AM +0200, Uwe Kleine-König wrote:
+> > > On Mon, Sep 18, 2023 at 01:33:14PM +0530, Jagath Jog J wrote:
 
-tps25750 status register is a subset of tps6598x status register, hence
-a trace for tps25750 status register is added.
+...
 
-Signed-off-by: Abdel Alkuor <abdelalkuor@geotab.com>
----
-Changes in v9:
-  - Move device data structs to the top of of_device_id
-Changes in v8:
-  - Change tps->cb to tps->data
-Changes in v7:
-  - Add driver name to commit subject
-Changes in v6:
- - Add trace status to tipd data factory
-Changes in v5:
-  - Incorporating tps25750 into tps6598x driver
+> > > > Datasheet: https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi323-ds000.pdf
+> > > 
+> > > Maybe put this link better in the driver.
+> > 
+> > Why? We have a handful commits with this and it's better to see the link
+> > to the datasheet without browsing the source code.
+> 
+> But if you later work on a problem in the driver, it's better to see the
+> link without browsing git history. :-)
 
- drivers/usb/typec/tipd/core.c  | 12 +++++++----
- drivers/usb/typec/tipd/trace.h | 37 ++++++++++++++++++++++++++++++++++
- 2 files changed, 45 insertions(+), 4 deletions(-)
+Both make sense.
 
-diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
-index a114e786b1a7..4f2bfa19d2f5 100644
---- a/drivers/usb/typec/tipd/core.c
-+++ b/drivers/usb/typec/tipd/core.c
-@@ -110,6 +110,7 @@ struct tipd_data {
- 	irq_handler_t irq_handler;
- 	int (*register_port)(struct tps6598x *tps, struct fwnode_handle *node);
- 	void (*trace_power_status)(u16 status);
-+	void (*trace_status)(u32 status);
- };
- 
- struct tps6598x {
-@@ -469,7 +470,9 @@ static bool tps6598x_read_status(struct tps6598x *tps, u32 *status)
- 		dev_err(tps->dev, "%s: failed to read status\n", __func__);
- 		return false;
- 	}
--	trace_tps6598x_status(*status);
-+
-+	if (tps->data->trace_status)
-+		tps->data->trace_status(*status);
- 
- 	return true;
- }
-@@ -1243,10 +1246,8 @@ static int tps6598x_probe(struct i2c_client *client)
- 	if (ret)
- 		goto err_reset_controller;
- 
--	ret = tps6598x_read32(tps, TPS_REG_STATUS, &status);
--	if (ret < 0)
-+	if (!tps6598x_read_status(tps, &status))
- 		goto err_clear_mask;
--	trace_tps6598x_status(status);
- 
- 	/*
- 	 * This fwnode has a "compatible" property, but is never populated as a
-@@ -1396,18 +1397,21 @@ static const struct tipd_data cd321x_data = {
- 	.irq_handler = cd321x_interrupt,
- 	.register_port = tps6598x_register_port,
- 	.trace_power_status = trace_tps6598x_power_status,
-+	.trace_status = trace_tps6598x_status,
- };
- 
- static const struct tipd_data tps6598x_data = {
- 	.irq_handler = tps6598x_interrupt,
- 	.register_port = tps6598x_register_port,
- 	.trace_power_status = trace_tps6598x_power_status,
-+	.trace_status = trace_tps6598x_status,
- };
- 
- static const struct tipd_data tps25750_data = {
- 	.irq_handler = tps25750_interrupt,
- 	.register_port = tps25750_register_port,
- 	.trace_power_status = trace_tps25750_power_status,
-+	.trace_status = trace_tps25750_status,
- };
- 
- static const struct of_device_id tps6598x_of_match[] = {
-diff --git a/drivers/usb/typec/tipd/trace.h b/drivers/usb/typec/tipd/trace.h
-index 739b0a2a867d..0669cca12ea1 100644
---- a/drivers/usb/typec/tipd/trace.h
-+++ b/drivers/usb/typec/tipd/trace.h
-@@ -91,6 +91,14 @@
- 						      TPS_STATUS_USB_HOST_PRESENT_MASK | \
- 						      TPS_STATUS_LEGACY_MASK))
- 
-+#define TPS25750_STATUS_FLAGS_MASK (GENMASK(31, 0) ^ (TPS_STATUS_CONN_STATE_MASK | \
-+						      GENMASK(19, 7) | \
-+						      TPS_STATUS_VBUS_STATUS_MASK | \
-+						      TPS_STATUS_USB_HOST_PRESENT_MASK | \
-+						      TPS_STATUS_LEGACY_MASK | \
-+						      BIT(26) | \
-+						      GENMASK(31, 28)))
-+
- #define show_status_conn_state(status) \
- 	__print_symbolic(TPS_STATUS_CONN_STATE((status)), \
- 		{ TPS_STATUS_CONN_STATE_CONN_WITH_R_A,	"conn-Ra"  }, \
-@@ -148,6 +156,14 @@
- 		      { TPS_STATUS_HIGH_VOLAGE_WARNING,	"HIGH_VOLAGE_WARNING" }, \
- 		      { TPS_STATUS_HIGH_LOW_VOLTAGE_WARNING, "HIGH_LOW_VOLTAGE_WARNING" })
- 
-+#define show_tps25750_status_flags(flags) \
-+	__print_flags((flags & TPS25750_STATUS_FLAGS_MASK), "|", \
-+		      { TPS_STATUS_PLUG_PRESENT,	"PLUG_PRESENT" }, \
-+		      { TPS_STATUS_PLUG_UPSIDE_DOWN,	"UPSIDE_DOWN" }, \
-+		      { TPS_STATUS_PORTROLE,		"PORTROLE" }, \
-+		      { TPS_STATUS_DATAROLE,		"DATAROLE" }, \
-+		      { TPS_STATUS_BIST,		"BIST" })
-+
- #define show_power_status_source_sink(power_status) \
- 	__print_symbolic(TPS_POWER_STATUS_SOURCESINK(power_status), \
- 		{ 1, "sink" }, \
-@@ -292,6 +308,27 @@ TRACE_EVENT(tps6598x_status,
- 		    )
- );
- 
-+TRACE_EVENT(tps25750_status,
-+	    TP_PROTO(u32 status),
-+	    TP_ARGS(status),
-+
-+	    TP_STRUCT__entry(
-+			     __field(u32, status)
-+			     ),
-+
-+	    TP_fast_assign(
-+			   __entry->status = status;
-+			   ),
-+
-+	    TP_printk("conn: %s, vbus: %s, usb-host: %s, legacy: %s, flags: %s",
-+		      show_status_conn_state(__entry->status),
-+		      show_status_vbus_status(__entry->status),
-+		      show_status_usb_host_present(__entry->status),
-+		      show_status_legacy(__entry->status),
-+		      show_tps25750_status_flags(__entry->status)
-+		    )
-+);
-+
- TRACE_EVENT(tps6598x_power_status,
- 	    TP_PROTO(u16 power_status),
- 	    TP_ARGS(power_status),
+
 -- 
-2.34.1
+With Best Regards,
+Andy Shevchenko
+
 
 
