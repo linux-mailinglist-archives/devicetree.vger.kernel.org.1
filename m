@@ -1,76 +1,72 @@
-Return-Path: <devicetree+bounces-4948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DD117B46B4
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 12:22:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0D1E7B46E6
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 12:34:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 45BF91C2048A
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 10:22:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id AEA8E1C20987
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 10:34:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0D9A14A8D;
-	Sun,  1 Oct 2023 10:22:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 851E815AC3;
+	Sun,  1 Oct 2023 10:34:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D0C12F32
-	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 10:22:08 +0000 (UTC)
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on2082.outbound.protection.outlook.com [40.107.14.82])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F67FBF;
-	Sun,  1 Oct 2023 03:22:06 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 768A2BA3E
+	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 10:34:22 +0000 (UTC)
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2050.outbound.protection.outlook.com [40.107.21.50])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DA40D9;
+	Sun,  1 Oct 2023 03:34:21 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZY+GDIBEs8HcmGgtyPge5aw4/bg0FGBl3Q0GLbPBOr2eGUJ9uc+tebhrTYNbjWh7qEGvch464sf/5Zr/EKrjwEg9rqdSYt0KFA7pcYf2WvuZVr4YHQmHBqMJfog9M3YnEbnUAkkwBU5Q3sz2AOoB/Cfj8zr2DxynPQpP/0DQCY2MfA3ChAN8ADM0ooQTgn5bYMj7D+2ZcgSSYh3jlTXjfhzIM9IFnNC1Y02tN2odXeNvfzm40BZwzdiDMSLsNzBGATUDwZQgAdMPvnrRvuTdiXffKNBBvQ6izRxRhZ3neYpDE6XNWKwkmii1AWOo2/N1xQe9UVVjt34yka3ESap+7w==
+ b=NprmKl1Vgs+MnSfUlWmrdx7IEhC1JXwTgpXSdTvanqhf/mq3IkN3Gv2lpdEqmIK5wxO5UyVw/ilTbIPnHxEejRy5QMN8YxB3U+xjfXzGsUnxjMCEmqmXmInIrK97bzaavgxgde4Y2cHgCGvZLfl8Swn9ELQHydwshkh2/+mIii9LoHpEYeDUYqrP6OBpBfUH+9BYojyqzIqDLzCP9VAP0WVV9iKPok4kwfaoMvq9k5+WdWXkW3DmD4qWFKWxny5dCL61seqNSDJGoJzapqWe6G+NX50MJyZHybCv5L/u9wgkBUKbu4FTBsrhXbyieAEe3Xoqc8pxLME0assjMc17Ig==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8I3Wm1gCpmAOcloO1vKTDi9TUAO5nwN474Xs835CPi4=;
- b=HrYG7tAV9jkty+y4JnszwnYTVuYN2Xb/UuMVVoeSd+e0d1oqqeUy2/TZVBrIrw0f1hNJHHMhePrZmYhlzYoCAHncgwPLT99ukPugjYtw/T235MTae/6FvlMo3RvQajewuZzFRq8A/JdPxs6cGSeVX2lDL2EVpDzcLk8mC8ReyeLrzRyHqRqAUqkW4kTy5EHnA8Dzj93xhSTRQAomn9TBAOwQ7d9G4CtXiyvZBDyaPbTgezsGMwO2FVdxprxfc/VGCTdYT0z+/CFajTnPjxJ790WtOHnAC4arFMmVYe1tETHUz0Je9zoj09LnfqACBFJmgsVvhrPgDjacEXINZxdRMg==
+ bh=8BKfi0uFF3/iYFK1Gxm4h3Gy20CylZyi/9jXV9iwfF8=;
+ b=X2FzNU4smzx6MT5t3KLR4D1H2AEGtLawT33DnD7KQpbTDozz2pv02w1Qi12ZVyT1a4j/yp4GWIIjSLyDz+N3L4r8kEGMAVQDqUGTQ/L7Ozggp6rZTEOd5lxQ6jup6SONJfCtyhT4vFwVcxshKySAQrL+J7Inj/1+tBrioi3Qpql+Fc0Jsg198CpXBx5kpoIPQG2Qkc6wkLK1kfZBS/dEctFyAcmzk73AcEdqUcsEjh+o3tm7mzz6RKpYwy+Vr3yAct9ox4Z7gmZkbMSZUb0JfmbDyhC3R0jD9/VAVACbuhE43XB+TMNbW2v3kAqqAyWrTIdQpFYMt7ySgLuT1Q8VPw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=solid-run.com; dmarc=pass action=none
  header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8I3Wm1gCpmAOcloO1vKTDi9TUAO5nwN474Xs835CPi4=;
- b=ocdvQykNDI65Albq/FA9oXSlpqqf7Pc9gW6XgmNIfZVujEG6qQo++2KxCXoBtszXT2SDA99QiZeeoAnyqn0WTybh46i4Oc/OrBvMmp78gIAkh5auYwudgYFMBVZJ8SuCGdlfvN6nyHt8ZWXoJqT6NyXrQK/A30nmRI2TjB349gw=
+ bh=8BKfi0uFF3/iYFK1Gxm4h3Gy20CylZyi/9jXV9iwfF8=;
+ b=UaPRs24eGqowvjwaH+qyMDC+ooD3Gek29S2qK5zR7aULEw5tKARwJEdaVygkIW5CEVsanrR17aoZrXyu8VKIcJ2P1dIt3yzgFwihOqcd3xmZBBEoI72J9flmhrTtid2tYLPipcO4VXKgr7gpF6U3xXpLfV0GHq6u2+x7Uo2/UbY=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=solid-run.com;
 Received: from AS8PR04MB8963.eurprd04.prod.outlook.com (2603:10a6:20b:42e::18)
- by AM9PR04MB8714.eurprd04.prod.outlook.com (2603:10a6:20b:43d::8) with
+ by PA4PR04MB7584.eurprd04.prod.outlook.com (2603:10a6:102:ed::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.28; Sun, 1 Oct
- 2023 10:22:03 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Sun, 1 Oct
+ 2023 10:34:17 +0000
 Received: from AS8PR04MB8963.eurprd04.prod.outlook.com
  ([fe80::cc84:fc7a:cffe:985a]) by AS8PR04MB8963.eurprd04.prod.outlook.com
  ([fe80::cc84:fc7a:cffe:985a%7]) with mapi id 15.20.6838.024; Sun, 1 Oct 2023
- 10:22:02 +0000
-Message-ID: <15d382c5-ad09-4532-ab30-7b19e8786d00@solid-run.com>
-Date: Sun, 1 Oct 2023 12:21:57 +0200
-User-Agent: Mozilla Thunderbird
+ 10:34:17 +0000
 From: Josua Mayer <josua@solid-run.com>
-Subject: Re: [PATCH v5 4/4] arm64: dts: freescale: Add support for LX2162 SoM
- & Clearfog Board
-To: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
- Philippe Schenker <philippe.schenker@toradex.com>,
- Fabio Estevam <festevam@denx.de>,
- Aishwarya Kothari <aishwarya.kothari@toradex.com>,
- Marco Felsch <m.felsch@pengutronix.de>, Tim Harvey <tharvey@gateworks.com>,
- Frieder Schrempf <frieder.schrempf@kontron.de>, Marek Vasut <marex@denx.de>,
- Marcel Ziswiler <marcel.ziswiler@toradex.com>,
- Alexander Stein <alexander.stein@ew.tq-group.com>
-References: <20230818111016.11271-1-josua@solid-run.com>
- <20230818111016.11271-5-josua@solid-run.com> <20230924135111.GJ7231@dragon>
-Content-Language: en-US
-In-Reply-To: <20230924135111.GJ7231@dragon>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: TL2P290CA0002.ISRP290.PROD.OUTLOOK.COM
- (2603:1096:950:2::12) To AS8PR04MB8963.eurprd04.prod.outlook.com
+To: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: Josua Mayer <josua@solid-run.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Li Yang <leoyang.li@nxp.com>
+Subject: [v6 0/4] arm64: dts: freescale: Add support for LX2162 SoM & Clearfog Board
+Date: Sun,  1 Oct 2023 12:32:55 +0200
+Message-Id: <20231001103259.11762-1-josua@solid-run.com>
+X-Mailer: git-send-email 2.35.3
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: ZR0P278CA0151.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:41::12) To AS8PR04MB8963.eurprd04.prod.outlook.com
  (2603:10a6:20b:42e::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -79,114 +75,133 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8963:EE_|AM9PR04MB8714:EE_
-X-MS-Office365-Filtering-Correlation-Id: da8e6d47-1fe7-415b-1cd3-08dbc26840f5
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8963:EE_|PA4PR04MB7584:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3922198e-f45e-4058-8127-08dbc269f6d8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	mKapZFd1LCclHLMb0ZOjUIGgAVpYa4rIcF/m1JKPvA2BQKQr7wLHW6c/Iv5aJ24DpKPSZ541F0110AtzjhVnE8i1Icua6rB0x8iA7JXR2O3bSE/o2tT0CVvtnrQ8pJv+zEhGup8yG47yB6ESYoP0MMfenn0anrcvMOs8xKqPhvIiBSCLyXQy2bG/2oxEi1RiD4bkumezKzDjKdh7ZPJlGfwL4K1SqF4s3SX+I1ZOL0O4AISaapVAeKjjStnFfj8iTHTd4EDiTuV2neU/vOYYQ+350We6sSkrSK0Wh6YEuZbv3DwzSz1hB6WROmluW/ZvxI+VVVfcmVzl6vOj2wFQdMqZx0ZHtQCnrPs68GeLw5vV1EfnHxwe9xOpYG9IrNBK+bSYsAPADFzVjVvdn96JzhRR1bEU/MIyUJbzoWDwQ+qEHBKEG/hZbv5vR9Y6hPVc5ykShErvwYSsO4tPemeEgvxahmOAPRAaVo/5Yu2Q2uK7xHC6w5jcQMxYJbHsaXiszOMG3IYoTwIN0+UHxt93lNjzxtOf2ID6Bziv85dFFteZLfJdsQWgp+olIsu335ukoP+FVflkx4vz/5XOmWCHnJabCzi5T1ftqsJ58WgIPBuEo3uZec5H/uQEvSxTCXo+GTZzWxFTLvxxAzP+I5cvaA==
+	0sVxLVd0S/D+PG6HhcYBaQbOpQBVYft9Wg42WWgZoR9Ghk/e+J7WNwduChxRFhqYuHKwPfEjV+g5RuJtKAMzdpKY4R/rqNOHaHYxzQ9k0Acg3qyi9oqdSEI1fTgSM39HObe8ar7N6Es1dkZv8jUl1Rmd4FyDE+7Q8Np2o4TGdmARiWaR0PgAy5gi0u6hQAT9kF+dKIpjyLAULTrrhcsGRw3obdiJ8eZOeGDcnbVCIk3ZCqam7+R2mE/CNTpUH/VHqdhwyov7wogliSNpKXuh78Ez09lqIPTGNvieeho4Tnvwm2P6OB3XaX9W/ONdygFRtmYVtihWd2n3QFCtZefKk/JrhSCSb0LJgSWaNK1Wxk9zBW4NpRFMMMt16Q1qTh0YxG0D8nXe+fXQ246ZCIbKsdpnehLTS9oL77h3fH3BCAHivYkpWZQVoztZ6jh7iwyttxDiAgg4cvM+7JusEpuQ4xgtqldop0kKoSrLIyrq7rrSLetkUuT+i3tMEiPG7bwwOMD5Dg+yQvAjJmNv36hZ/VxYaun+XqGczxRJzXmzfSe/ih/a/T4oCEPUe/j5Wl2DCDGnOFqisoL4ss6mRhuTlQg+QoKxoZcpV8KEzbRDfHkPtq2ujhg6Amv4pmfaduVO
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8963.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(346002)(396003)(366004)(376002)(39840400004)(230922051799003)(64100799003)(186009)(451199024)(1800799009)(31686004)(36756003)(41300700001)(5660300002)(31696002)(8676002)(4326008)(8936002)(83380400001)(26005)(2616005)(6512007)(6666004)(6506007)(6486002)(86362001)(66556008)(7416002)(2906002)(66946007)(38100700002)(66476007)(54906003)(316002)(478600001)(6916009)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8963.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(366004)(39840400004)(136003)(346002)(376002)(230922051799003)(64100799003)(451199024)(186009)(1800799009)(41300700001)(52116002)(6506007)(26005)(5660300002)(8936002)(54906003)(7416002)(2906002)(8676002)(4326008)(316002)(36756003)(86362001)(1076003)(83380400001)(6512007)(6486002)(2616005)(66946007)(66556008)(478600001)(38350700002)(38100700002)(6666004)(66476007);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?WEJpN3pJWWp1UkZXTjE4ZzFKblY0TSt0ajhqQ2VzejlpUUpYM2o4Y0Vzd0pp?=
- =?utf-8?B?dGtaQVVpTzlXbEg1VVk4OUxZSEx0aEhtSVRaa2EwZUwyc1k4V24vMHVOdktW?=
- =?utf-8?B?UUZaeWpBYUNoZEQ5T29WTDNxZXlhbWc3d1JzeDc4SGo5M3F4VW1lVFdsQXhQ?=
- =?utf-8?B?NjB6ZXdIb0dPY3F2bUtqazJ5MHJUeUk0OFJaRGUyRGNrcXovT1FrbFJ2ZDRj?=
- =?utf-8?B?UVRZai9Odi92MlF1K3djZHZJeEdnS1BCR0t5dkFJc2VaY0RWNzVOUnBHdVVB?=
- =?utf-8?B?SFZPazVjOTNoT08wV3Y3MFVlTmc1ZlBuSFViY0VneDRwU0VpQ05TbVFLekpz?=
- =?utf-8?B?MlFFNUNoVUNxcHVMY3JtS01EWUhvaEhCU3JmT0lUUEd0alVNclBRNmFCWkVE?=
- =?utf-8?B?b21TVTRSSVduZ1h0Vk1XejNaa2l2SS9EaUc5Z3BLSkF5TVlYNzJKcWlZZElz?=
- =?utf-8?B?Slp6VG9panRKelZicXdCa2dSZXNaZ0tEV3lNdVdjMTFwU2RPNFh0L3YwUnh5?=
- =?utf-8?B?K2V6MzBpU09Fb1F1L0d5S00rRVJpbWFqV1U4N0dhRVNBNmxabkpPbmlhODZj?=
- =?utf-8?B?OW9KQzBTVGEzZDlBZnk2YjhGRzlxR2ljOWVkN1dlQXgxVTdrUUtaSXNEVnRL?=
- =?utf-8?B?eU51RE1IVzlwN1g0dk5iQml6RzlUUUFoS1MwM0MvZFdZUzk4N2N3ZXViUlI2?=
- =?utf-8?B?WU9hbU9UdHQ2NjlaNmtTMGNpb3ErcEhZeWQ2RDh1ZUdwVk9DSVJiazVmWjVZ?=
- =?utf-8?B?SEtQRXRCdmpxL0N5REFwSSs3RXBzaUlKWVg0c0IxZEI2ZUN4MmlVaGJOQzhp?=
- =?utf-8?B?R3Z3Rlo2YVAzMk9RWDJ1MUVjVXJWSmNRZVNVMmdsZzhhSFUzRDBZc2pHbmxh?=
- =?utf-8?B?Q1pRU2x0MlJiTHZPRXVOem9vME9yNVIzdzhGSld0UE5rWDIwcENBc1RYRTZF?=
- =?utf-8?B?cldGQmY1Mi9rYUI4aXVnMXBudytmUW9NVDZVVTZmeDhMNWVnUXJJS2gySDNV?=
- =?utf-8?B?M0JBR0IrUFFiMUlnSW84Rnc5NnV6YWZ2ZkJSQnFpUm5aTiszRGR1WGhvSzFP?=
- =?utf-8?B?S1MwRnNvNjNaeFRQVTd6R3FnZVhFc1hiYlhWV1o3ZW5DS0U0eFJyQXFFYVln?=
- =?utf-8?B?ZEFkc1cwM2tPL0h0VkpKTnd5VUhHWWlvVnhId2tLT0xEem1obnRwMTJFVTVm?=
- =?utf-8?B?V3NyOWpUeUcvTFo3c2ViMFE2ZDBONnBIR2k2MzVkcXNXNXRjbVJVQzllcklv?=
- =?utf-8?B?UlNTdW9DZmM5MEhCbEEvdFdML2hTdVQzT3dnL1gwdEFrWHkrZUMvQi81OXZ1?=
- =?utf-8?B?UjE0bHNlMUtzZG1yL1UydGJ3c1JuSXcyQllxb0ozTzlnUmlaaHBEUGh1Tjht?=
- =?utf-8?B?aEdDeU41bXgzUVJna0RrYzVrWU52QXUwNy8yaXh1dWpmS0plSXpnOE9lODBi?=
- =?utf-8?B?ZVFQcnY3Z2VFUGZoYXVuOEN6OUMxSFRUZmtSREJSNk9SZW5iRCtsQlhwTW12?=
- =?utf-8?B?MkZzcGJmMTZmdGdad0dLaysxdStjeXdkV28wczM4b0Z3cHphVkp1L1NMVGtI?=
- =?utf-8?B?cHR0TDVETW56OHh0M2M4d3FvcUxFdWtkWVpBZlREV0tIOFl2WERFZy9DYTVV?=
- =?utf-8?B?YXdXK0liNXgrY1BKZHlONXFzYlhmWHA0c0FDMis0Ujl2WXhCSHhBUlRWb3NH?=
- =?utf-8?B?a0JMcjRPSW16U0RuL1U3cGxGYS9jMkI1dEw0YW54YVhMTTluUHBrNFNDWWhF?=
- =?utf-8?B?ZDlzQlRqR2NyZTVjU1VtbGdwd0xaZmxrUXovd3dUajU2aW0zOGZhYkR4SUZJ?=
- =?utf-8?B?V3dKNTJGL0l0amI0TVJIeWt5a0poREV3czFaTDVidmJQWEtDNElLR01kRWx6?=
- =?utf-8?B?VSsxKzNkQm9paVNkV3B3MEdUV1hzRFNoQmk0SXdmOURveHpEMjJvazQwbmtu?=
- =?utf-8?B?eHppUGRsM2dBcEJQOXE1VmV2SGlJQlVGVmlweDREUVNtRHJIQXlqRldjb3dI?=
- =?utf-8?B?MXdHcFV4KzVsV2dJQWxEV3MzSE9ZbXFzUnVuUnlxVnVtNUZNWVJZbHBweGdv?=
- =?utf-8?B?ZEE0VldSMWxuYkZ6ZHF3b29mdVRIa3h5RFFRVGhIeG9XYURjN3ZSbHBmWk5m?=
- =?utf-8?Q?m6qh63bLsWXbipqATCccIBLbO?=
+	=?us-ascii?Q?FzKfpJ0ae1242WE1P1iQUI7jsJfFhj1dKlE3qmoY6zYP3XBE9RgAL/kD82jR?=
+ =?us-ascii?Q?QS2i4USTENkmwqIN+xXyRE56D4FJkltBXU+ue9Zu35J059LowzmUhrJWqswT?=
+ =?us-ascii?Q?oUnyfdBKmFNkUizsgd79nnS0G2AArqXg6bAjoFlhX+Yrl8HPBoui+HjofABt?=
+ =?us-ascii?Q?p7AwqGMqVjuj7F8fzHTM7R4aHj04ROoJ6jKM7okZlTKGOtPkaeB8LQTEDQ9X?=
+ =?us-ascii?Q?y1n9AK4r6Xisuz+4wCkSIWiFlBR78aQYOg9AoWvVb2vb106nsBZZmn88A/ir?=
+ =?us-ascii?Q?ysqohfd6c+SMJrslgDzh3uMFfs4QCEeLlYmnLR5PKsgcaGKw6W7c9kSniEFT?=
+ =?us-ascii?Q?enifx0AynCNG0MHOyXHAoJb3ZutcAOGOn8Go9pIMau2TKFAE41SKopGQ4mJp?=
+ =?us-ascii?Q?rmPU97Zw1FtZNed3xgHBiQCRik7zFYXIb8XzIMr5kO2soHSFTrxmM2IU6LAO?=
+ =?us-ascii?Q?iUsen9e/EEb37faHWOijhC4G0ZOblG7F/6uuQa+Lt9zo1K1Y+sMmsMFvYVHg?=
+ =?us-ascii?Q?0ICGrFpQ0GJMyNxfFvxbfO0T9qWMY+fctynSDMB7x3HjhbCDCmG3aKNvdqrQ?=
+ =?us-ascii?Q?eUx1K+hmdnu2KqqbTYw6WLoN30VFXcjWMZnhFl/ExFQ/vXcriUyukK9uypdN?=
+ =?us-ascii?Q?UHCTpiWF+Sm1FqwiyhGBd1OCGpH5JgUQGUfD+ZLtgTA05Kv1wjwA/hkOrcDw?=
+ =?us-ascii?Q?jlhBZtXM7Xhr+RTFwKDs9Zn8Mo/Jxf/FojYI6oUqLn3AFg/8hiMoFceIycr2?=
+ =?us-ascii?Q?AT08buKXLuwE4Q1DI7Y2zW+3ss5NmZ+wZfFx2LV4RuxWQ9Dl54mL2bfuBkOf?=
+ =?us-ascii?Q?pO2Px/u6Wr6SmFI1OSRcYFCxgObmATKtex2zoeFP9KVc6is9ptIBJ0xvDwQD?=
+ =?us-ascii?Q?6PvSzjZ1ahY6WdhwtMudIehNJ/ado8GbpejGC97JgKfwTtLmMsN2x8hc/Hhk?=
+ =?us-ascii?Q?jzf7H0hLREdnX/u38AdJ4qOXNpN6gCuwbMA/mcYsuASyI+6IiG+sev8WFqZn?=
+ =?us-ascii?Q?CZBqSpwN9kTEQsUoJ9r0Q+E49efuNQIGEGr/z0wx6pxcd6yM7KNjWwpBIOE1?=
+ =?us-ascii?Q?OUh0ZvHSnBX2LQX4uX1wUhi2bVa6otba/yl0tMwLqLFGZaQoV2LhciV9B8kE?=
+ =?us-ascii?Q?XJNXtveLB6rQnRm5YLv2SjXgxzlyjlhKgkch/c3KNP4VxIAUMjB/MqtQWVlQ?=
+ =?us-ascii?Q?SfuSHwy7Q15Hj3pnyKCd/KmSgrWskd1rm8zayAStgM5mEkeG9mvORRUJajqI?=
+ =?us-ascii?Q?AlVMYYLkm5rRhUSHOVDU/4c6eefJE19b8x64ebLHq3sqMy+gaMzRgW2dn0hO?=
+ =?us-ascii?Q?ocIkM2y8uxjtCRwZPcWKCrkvhFeNc+LNaRrcE1mQRCySP1I6j3fkusMz/Xks?=
+ =?us-ascii?Q?cSbqTFoHLi2faGkeLof493XV9sLB3dTzP9fB3p2nyECdSlSBtgWP54HMwUZk?=
+ =?us-ascii?Q?3j+fltvYo2JA33fIZHDE1cciKqaKladaRkDIOHvZNmV7AXKjxSinksJWW3Og?=
+ =?us-ascii?Q?TH2Hkq5Zb6cH+4C81UiyJYH0EKllAkIjPKJBQPy0fjWZXaT7rD+naXkCzYe2?=
+ =?us-ascii?Q?TZxB7Bm02nBLg+VTRdSC3C2HkJLUcDZNLTnsu4kH?=
 X-OriginatorOrg: solid-run.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: da8e6d47-1fe7-415b-1cd3-08dbc26840f5
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3922198e-f45e-4058-8127-08dbc269f6d8
 X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8963.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2023 10:22:02.8310
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2023 10:34:17.3366
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NABt0csFRWVY87Z0e5g6/AaDye+CT4McywH8+lRD7T5myNyBEr7hSlYFX//Jd0j0tzxIsSbYWTws780oDem+pg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8714
+X-MS-Exchange-CrossTenant-UserPrincipalName: qEywXAp8VDkDplWZwfrmAj0aOxdKAwUkXdNDdvG5Ai6y5gPOb+mdIZgssk00k7/7MFBE/2xdbGdI1Nqaw5xWlA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7584
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
 	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Shawn,
+Add support for the SolidRun LX2162A System on Module (SoM), and the
+Clearfog evaluation board.
 
-Thank you for the review.
+This patch-set introduces:
+- dt node for lx2160a serdes block #2
+- dtsi for lx2162a system on module
+- dts for lx2162 clearfog
 
-@all - some of you have received this email including HTML,
-this is attempted resend as plain text ...
+Firstly Please note that checkpatch was complaining about the EEPROMS:
+- DT compatible string "st,24c02" appears un-documented
+- DT compatible string "st,24c2048" appears un-documented
+- DT compatible string "atmel,24c2048" appears un-documented
+However to my eyes these *are* already documented in at24.yaml,
+and are also used in existing device-tree.
 
-Am 24.09.23 um 15:51 schrieb Shawn Guo:
-> On Fri, Aug 18, 2023 at 01:10:16PM +0200, Josua Mayer wrote:
->> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
->> index a750be13ace8..9448d2effd8a 100644
->> --- a/arch/arm64/boot/dts/freescale/Makefile
->> +++ b/arch/arm64/boot/dts/freescale/Makefile
->> @@ -34,6 +34,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-honeycomb.dtb
->>   dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-qds.dtb
->>   dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-rdb.dtb
->>   dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2162a-qds.dtb
->> +dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2162a-clearfog.dtb
-> Out of alphabetical order.
-Ack.
->> +
->> +		led_sfp_at: led-sfp-at {
->> +			gpios = <&gpio2 5 GPIO_ACTIVE_HIGH>; /* PROC_IRQ5 */
->> +			default-state = "off";
->> +		};
-> Have a newline between nodes.
-Ack.
->> +&i2c2 {
-> This label node seems out of alphabetical order.
-Ack.
->> +&esdhc1 {
->> +	status = "okay";
->> +	bus-width = <8>;
->> +	mmc-hs200-1_8v;
->> +	mmc-hs400-1_8v;
-> We usually have 'status' be the last property.
+checkpatch is also complaining about various parts of lx2160a.dtsi,
+as well as the use of "sfp" property in dpmac nodes - which are common
+across layerscape based dts.
 
-You are not the first to notice this, but somehow in each version I 
-forgot about changing it :(.
-v6 will for sure put this status property in last place!
+Secondly the MAINTAINERS file has not been modified.
+Is it required I add myself or *someone* for these new dts?
 
-> Shawn
+Changes since v5:
+- moved status property to be last in esdhc1 node
+- added empty lines between led nodes
+- moved i2c2 node according to alphabetical order
+- lx2160a.dtsi: disable serdes_2 node by default
 
-sincerely
-Josua Mayer
+Changes since v4:
+- extended commit hash reference to 12 characters in description
+
+Changes since v3:
+- moved status properties to be last
+- changed ethernet-phy on som from /delete-node/ to disabled,
+
+Changes since v2:
+- fixed property order in som dts such that compatible is first property
+- added reviewed-by tags to bindings patches
+
+Changes since v1:
+- fixed DT binding changes to not break existing boards
+- explained new board / som DT binding in commit message
+- added missing DT binding for dpaa2 mac "phys" property
+- reordered "compatible" and "reg" properties: first "compatible", then "reg"
+- replaced chip-specific DT node names with generic ones
+
+Josua Mayer (4):
+  arm64: dts: lx2160a: describe the SerDes block #2
+  dt-bindings: net: dpaa2 mac: add phys property
+  dt-bindings: arm: Add SolidRun LX2162A SoM & Clearfog Board
+  arm64: dts: freescale: Add support for LX2162 SoM & Clearfog Board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   9 +-
+ .../bindings/net/fsl,qoriq-mc-dpmac.yaml      |   4 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../arm64/boot/dts/freescale/fsl-lx2160a.dtsi |   7 +
+ .../dts/freescale/fsl-lx2162a-clearfog.dts    | 376 ++++++++++++++++++
+ .../dts/freescale/fsl-lx2162a-sr-som.dtsi     |  73 ++++
+ 6 files changed, 469 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/fsl-lx2162a-sr-som.dtsi
+
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Li Yang <leoyang.li@nxp.com>
+-- 
+2.35.3
 
 
