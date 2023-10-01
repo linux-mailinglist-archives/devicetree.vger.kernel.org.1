@@ -1,114 +1,223 @@
-Return-Path: <devicetree+bounces-4971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F71F7B48B8
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 19:05:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E43247B48BD
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 19:07:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3BFA82810C9
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 17:05:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 070DE1C20777
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 17:07:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AA85D2F2;
-	Sun,  1 Oct 2023 17:05:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E4A6D518;
+	Sun,  1 Oct 2023 17:07:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E4F8659
-	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 17:05:47 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09E79C9
-	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 10:05:46 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qmzsz-0005mK-QE; Sun, 01 Oct 2023 19:05:41 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qmzsy-00AKWJ-OL; Sun, 01 Oct 2023 19:05:40 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qmzsy-0079qX-Eu; Sun, 01 Oct 2023 19:05:40 +0200
-Date: Sun, 1 Oct 2023 19:05:40 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: =?utf-8?B?QW5kcsOp?= Apitzsch <git@apitzsch.eu>
-Cc: Christophe JAILLET <christophe.jaillet@wanadoo.fr>, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	lee@kernel.org, linux-kernel@vger.kernel.org,
-	linux-leds@vger.kernel.org, pavel@ucw.cz,
-	phone-devel@vger.kernel.org, robh+dt@kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v5 2/2] leds: add ktd202x driver
-Message-ID: <20231001170540.yiouho2lrzrioxns@pengutronix.de>
-References: <20231001-ktd202x-v5-0-f544a1d0510d@apitzsch.eu>
- <20231001-ktd202x-v5-2-f544a1d0510d@apitzsch.eu>
- <a2380c93-42a5-9de5-3be9-9ebb50a965a3@wanadoo.fr>
- <250d0e681e7bbb750464338fb3a1a4a3199ce6ef.camel@apitzsch.eu>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29FC8D2FC
+	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 17:07:44 +0000 (UTC)
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09B5EC9;
+	Sun,  1 Oct 2023 10:07:41 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 2CBD760006;
+	Sun,  1 Oct 2023 17:07:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1696180060;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=OhbZnwWf71+UUTHRQ8xN/7PXzLXHc8GR+wwelJyyT+I=;
+	b=oT2ZWjimx5qHzixIKM7c7VWYaAj1uOO65Ya3XyLsWoPaf2VxZNCgELNFEHIeV4aEAe2tmV
+	pkJBP5ox4+dWXfG5X0GGTGvQxQt+YiJE9xoxqHlKHWuwMiY2uqiBEkFONTkwuc0cgedgsv
+	Rx4KvBirWej1myOJeDy0qyPWl3lrfpwKmBsGkWcOfUEY9wKrVNMVBfUrpq3FH2w8XH+nOc
+	91RqaVUj9CB0esMCwFnOW6G4goNVVhsEbe+cu+2g9Wcsp7GIr5O35n8ohCULxiovkCPtbL
+	+4fvJLMv6kdJl+yyzndjwEDD9PgoSTzOuRvt7/PhEsB3lOmz27zKixa1mPmfZQ==
+Date: Sun, 1 Oct 2023 19:07:36 +0200
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Simon Glass <sjg@chromium.org>
+Cc: devicetree@vger.kernel.org, linux-mtd@lists.infradead.org, U-Boot
+ Mailing List <u-boot@lists.denx.de>, Tom Rini <trini@konsulko.com>, Rob
+ Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Dhruva Gole
+ <d-gole@ti.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Pratyush Yadav <ptyadav@amazon.de>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>, Richard Weinberger <richard@nod.at>, Rob Herring
+ <robh+dt@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: mtd: fixed-partitions: Add binman
+ compatible
+Message-ID: <20231001190736.4f007796@xps-13>
+In-Reply-To: <20230927202057.3676497-1-sjg@chromium.org>
+References: <20230927202057.3676497-1-sjg@chromium.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="byfsp32mttsymf7l"
-Content-Disposition: inline
-In-Reply-To: <250d0e681e7bbb750464338fb3a1a4a3199ce6ef.camel@apitzsch.eu>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hi Simon,
 
---byfsp32mttsymf7l
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+sjg@chromium.org wrote on Wed, 27 Sep 2023 14:20:51 -0600:
 
-Hello Andr=E9,
-
-On Sun, Oct 01, 2023 at 06:56:20PM +0200, Andr=E9 Apitzsch wrote:
-> Am Sonntag, dem 01.10.2023 um 17:15 +0200 schrieb Christophe JAILLET:
-> > Le 01/10/2023 =E0 15:52, Andr=E9 Apitzsch a =E9crit=A0:
-> > > +=A0=A0=A0=A0=A0=A0=A0for_each_available_child_of_node(np, child) {
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0u32 mono_color =3D 0;
-> >=20
-> > Un-needed init.
-> > And, why is it defined here, while reg is defined out-side the loop?
+> Add a compatible string for binman, so we can extend fixed-partitions
+> in various ways.
 >=20
-> I'll move it out-side the loop (without initialization).
+> Signed-off-by: Simon Glass <sjg@chromium.org>
+> ---
+>=20
+>  .../bindings/mtd/partitions/binman.yaml       | 49 +++++++++++++++++++
+>  .../mtd/partitions/fixed-partitions.yaml      |  6 +++
+>  .../bindings/mtd/partitions/partitions.yaml   |  1 +
+>  MAINTAINERS                                   |  5 ++
+>  4 files changed, 61 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/binm=
+an.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/mtd/partitions/binman.yaml=
+ b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
+> new file mode 100644
+> index 000000000000..34fd10c1a318
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2023 Google LLC
+> +
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/partitions/binman.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Binman firmware layout
+> +
+> +maintainers:
+> +  - Simon Glass <sjg@chromium.org>
+> +
+> +select: false
+> +
+> +description: |
+> +  The binman node provides a layout for firmware, used when packaging fi=
+rmware
+> +  from multiple projects. It is based on fixed-partitions, with some
+> +  extensions.
 
-In my book a variable with a narrow scope is better. I didn't check, but
-if you can restrict both variables to the for loop, that's nicer.
+Could you mention the input file vs. output file and which one this
+binding describes?
 
-Best regards
-Uwe
+> +
+> +  Documentation for Binman is available at:
+> +
+> +  https://u-boot.readthedocs.io/en/latest/develop/package/binman.html
+> +
+> +  with the current image-description format at:
+> +
+> +  https://u-boot.readthedocs.io/en/latest/develop/package/binman.html#im=
+age-description-format
+> +
+> +allOf:
+> +  - $ref: /schemas/mtd/partitions/fixed-partitions.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: binman
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    partitions {
+> +        compatible =3D "binman", "fixed-partitions";
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <1>;
+> +
+> +        partition-u-boot@100000 {
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+Do you mind if we avoid playing with the node name? I would prefer:
 
---byfsp32mttsymf7l
-Content-Type: application/pgp-signature; name="signature.asc"
+	partition@100000 {
+		label =3D "foo";
 
------BEGIN PGP SIGNATURE-----
+> +            label =3D "u-boot";
+> +            reg =3D <0x100000 0xf00000>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/mtd/partitions/fixed-parti=
+tions.yaml b/Documentation/devicetree/bindings/mtd/partitions/fixed-partiti=
+ons.yaml
+> index 331e564f29dc..1c04bc2b95af 100644
+> --- a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.y=
+aml
+> +++ b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.y=
+aml
+> @@ -14,6 +14,9 @@ description: |
+>    The partition table should be a node named "partitions". Partitions ar=
+e then
+>    defined as subnodes.
+> =20
+> +  The Binman tool provides some enhanced features, so provides a compati=
+ble
+> +  string to indicate that these are permitted.
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmUZpuMACgkQj4D7WH0S
-/k4UrAgAsqfphLfBJY2x0Nxsf8Wj657r8d8qYHsMPFBaWGtTTAmORhde68d7oG2y
-ZBFbwx6uFFqh+uL005zE/MFzujknV/8ymncUxQUBDyh9oqXfq1K+c9flpwS9rZ13
-LhQTu+akTLmSO2KdZEG9qxUP66+T36XyTppUPXCr2xVJtNOELSd6avAno4BkfwP6
-0Y29zuL+JILfcd96yBUdUPvGjFpvsX0+qSCPtdckuWGZ34Amw0E/NVtwLfKP1ZSL
-FbNn4SJ6n7VAhAKlNkXjdhMmw/vTPBeiWmRN5EHX1eBW2bWkx86rWfvhM6FNP8YO
-6ZWLbPc0HblCtiHRhRM+06PrNYcvpQ==
-=WKZx
------END PGP SIGNATURE-----
+I believe this is not necessary and is implied by the $ref in
+partitions.yaml.
 
---byfsp32mttsymf7l--
+>  maintainers:
+>    - Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> =20
+> @@ -24,6 +27,9 @@ properties:
+>        - items:
+>            - const: sercomm,sc-partitions
+>            - const: fixed-partitions
+> +      - items:
+> +          - const: binman
+> +          - const: fixed-partitions
+> =20
+>    "#address-cells": true
+> =20
+> diff --git a/Documentation/devicetree/bindings/mtd/partitions/partitions.=
+yaml b/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
+> index 1dda2c80747b..849fd15d085c 100644
+> --- a/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
+> @@ -15,6 +15,7 @@ maintainers:
+> =20
+>  oneOf:
+>    - $ref: arm,arm-firmware-suite.yaml
+> +  - $ref: binman.yaml
+>    - $ref: brcm,bcm4908-partitions.yaml
+>    - $ref: brcm,bcm947xx-cfe-partitions.yaml
+>    - $ref: fixed-partitions.yaml
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 5f18c6ba3c3c..367c843ec348 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -3517,6 +3517,11 @@ F:	Documentation/filesystems/bfs.rst
+>  F:	fs/bfs/
+>  F:	include/uapi/linux/bfs_fs.h
+> =20
+> +BINMAN
+> +M:	Simon Glass <sjg@chromium.org>
+> +S:	Supported
+> +F:	Documentation/devicetree/bindings/mtd/partitions/binman*
+> +
+>  BITMAP API
+>  M:	Yury Norov <yury.norov@gmail.com>
+>  R:	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+
+The rest of the series otherwise lgtm.
+
+Thanks,
+Miqu=C3=A8l
 
