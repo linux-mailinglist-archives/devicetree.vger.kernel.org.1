@@ -1,31 +1,33 @@
-Return-Path: <devicetree+bounces-4960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A84577B4783
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 15:06:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C1C17B47BE
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 15:52:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 530B3281835
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 13:06:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id F282628184D
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 13:52:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93178171BB;
-	Sun,  1 Oct 2023 13:06:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FC958F67;
+	Sun,  1 Oct 2023 13:52:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ADD39CA61
-	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 13:06:12 +0000 (UTC)
-Received: from mx.skole.hr (mx1.hosting.skole.hr [161.53.165.185])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72C19AC;
-	Sun,  1 Oct 2023 06:06:10 -0700 (PDT)
-Received: from mx1.hosting.skole.hr (localhost.localdomain [127.0.0.1])
-	by mx.skole.hr (mx.skole.hr) with ESMTP id 1B139836AB;
-	Sun,  1 Oct 2023 15:06:08 +0200 (CEST)
-From: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Date: Sun, 01 Oct 2023 15:05:43 +0200
-Subject: [PATCH] dt-bindings: phy: Convert PXA1928 USB/HSIC PHY to DT
- schema
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 108895247
+	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 13:52:46 +0000 (UTC)
+Received: from smtprelay05.ispgateway.de (smtprelay05.ispgateway.de [80.67.18.28])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8F21AB;
+	Sun,  1 Oct 2023 06:52:44 -0700 (PDT)
+Received: from [92.206.139.21] (helo=note-book.lan)
+	by smtprelay05.ispgateway.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <git@apitzsch.eu>)
+	id 1qmwsD-0004h3-Cy; Sun, 01 Oct 2023 15:52:41 +0200
+From: =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
+Subject: [PATCH v5 0/2] leds: Add a driver for KTD202x
+Date: Sun, 01 Oct 2023 15:52:11 +0200
+Message-Id: <20231001-ktd202x-v5-0-f544a1d0510d@apitzsch.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -34,179 +36,102 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20231001-pxa1928-usb-yaml-v1-1-9309a8c0c03f@skole.hr>
-X-B4-Tracking: v=1; b=H4sIAKZuGWUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI2NDAwND3YKKRENLIwvd0uIk3crE3BxdCwNLUzMTAwsjIxNDJaC2gqLUtMw
- KsJHRsbW1AK6be61iAAAA
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
+X-B4-Tracking: v=1; b=H4sIAIt5GWUC/2XNQW7DIBAF0KtErEsEA8ZOV71HFEUDDAW1dVJwr
+ TSR7x6cjRN5x0f/zb+xQjlRYe+bG8s0ppJOfQ3N24a5iP0n8eRrZiBACSM7/jX4+r7wRhsL2Hr
+ QwrLatliI24y9i3Pf/v40x/CNJR4zYZ4b50whXR5b+0PNMZXhlP8f06Ocf9cro+SCByc7CBTQ+
+ /YDz2m4Fhe39MfmKyMscifkIqFK5WxnhUMB5NdSPUuzSFVlG5zdSWcar3At9ZMEtUhdpdShBR2
+ M18q+ymma7usZgAlwAQAA
+To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
  Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
  Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-phy@lists.infradead.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+ =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3570;
- i=duje.mihanovic@skole.hr; h=from:subject:message-id;
- bh=I+pbp2+i8AspnSOzhEB7DM4scts9Z1G4HFcpQJwppxo=;
- b=owEBbQKS/ZANAwAIAZoRnrBCLZbhAcsmYgBlGW66YEEOs7V4Nt7C6695WePETUl6I4sGxSPXM
- TO4kVoEI3yJAjMEAAEIAB0WIQRT351NnD/hEPs2LXiaEZ6wQi2W4QUCZRluugAKCRCaEZ6wQi2W
- 4fqPD/9CPGtH4kaj0opR4bH3hGO8NuQZ8lAdbJ5MGteS7xF63/cx2bfpGHEWvZOKTOAU16ktE25
- fRuxELhRXSbKiilPyVJVZtgxXMcWVSVNQSbZuO7CTgmoCLRzTEC+HwcZPKPrRb2fNn2/fmGjfoB
- iA5c1wM8VOFXLoCRQ7HaqZmXIYiMydKuB2a0fUXWhlHCs5jRQ3BqzGFST7QNvza04e5IlSAxjGd
- MfOnaSmtVO2Rbdo7QoysK7VPCeYs9XPEO2/iKHjg8fndpL7Npwnxx7KXrAVpOLRo/tJ+ToMUitG
- M1tmJ9TJJ2M536h0JFIRah/77CUy+XXVqHAOZ4dMtKycQBGHKAOKeB0X6EXdwEd8eVVpr1lowO6
- Sg2Ad7nzPqBGt5qB4wUfSmyhU0yKk+KxbIBeXH/Ynv1jCMFmOmO7GBTS08Ck0ypHfP1cQkdfQQW
- +gNG1YySskfQlvhc5XugyZAWooe0paQed6V7eW4/EIbPtkQ3HgR1zfYwbiBm5Q/ghl/wmdmBg2N
- GUC9poYcjfH84jqaeI14D3V4qXtBmlPhcoNPWMpMz4FkytVihpLry0TJcneDAMUNhO3Jg1SPxGK
- u4eczvMIoB5qck1fUzEaMIih1ZvgsHPHOfeF+6sNsIqA+iUiQku9sTRae4lZesvcSWn7Iy6pux9
- DcPB0K/qohQWpJw==
-X-Developer-Key: i=duje.mihanovic@skole.hr; a=openpgp;
- fpr=53DF9D4D9C3FE110FB362D789A119EB0422D96E1
+X-Df-Sender: YW5kcmVAYXBpdHpzY2guZXU=
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Convert the binding for the Marvell PXA1928 USB and HSIC PHYs from TXT
-to DT schema.
+Add the binding description and the corresponding driver for
+the Kinetic KTD2026 and KTD2027.
 
-Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
+Signed-off-by: André Apitzsch <git@apitzsch.eu>
 ---
- .../bindings/phy/marvell,pxa1928-hsic-phy.yaml     | 37 +++++++++++++++++
- .../bindings/phy/marvell,pxa1928-usb-phy.yaml      | 46 ++++++++++++++++++++++
- .../devicetree/bindings/phy/pxa1928-usb-phy.txt    | 18 ---------
- 3 files changed, 83 insertions(+), 18 deletions(-)
+Changes in v5:
+- Restructure brightness_set() + add comments to it to be easier understandable
+- Add some line breaks + remove little line-wraps to improve readability
+- Move parts of add_led() to setup_led_{rgb,single}()
+- Move mutex_init() to the end of probe to omit gotos
+- Fix grammar
+- Set initial intensity to max brightness to avoid LED staying off when
+  brightness is changed after switching to timer trigger, because of zero
+  intensity
+- Link to v4: https://lore.kernel.org/r/20230923-ktd202x-v4-0-14f724f6d43b@apitzsch.eu
 
-diff --git a/Documentation/devicetree/bindings/phy/marvell,pxa1928-hsic-phy.yaml b/Documentation/devicetree/bindings/phy/marvell,pxa1928-hsic-phy.yaml
-new file mode 100644
-index 000000000000..a477afd11329
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/marvell,pxa1928-hsic-phy.yaml
-@@ -0,0 +1,37 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/marvell,pxa1928-hsic-phy.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Marvell PXA1928 HSIC PHY
-+
-+maintainers:
-+  - devicetree@vger.kernel.org
-+
-+properties:
-+  $nodename:
-+    pattern: '^phy@[a-f0-9]+$'
-+
-+  compatible:
-+    const: "marvell,pxa1928-hsic-phy"
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  '#phy-cells':
-+    const: 0
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - '#phy-cells'
-+
-+additionalProperties: false
-diff --git a/Documentation/devicetree/bindings/phy/marvell,pxa1928-usb-phy.yaml b/Documentation/devicetree/bindings/phy/marvell,pxa1928-usb-phy.yaml
-new file mode 100644
-index 000000000000..4ae9201767ed
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/marvell,pxa1928-usb-phy.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/marvell,pxa1928-usb-phy.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Marvell PXA1928 USB PHY
-+
-+maintainers:
-+  - devicetree@vger.kernel.org
-+
-+properties:
-+  $nodename:
-+    pattern: '^phy@[a-f0-9]+$'
-+
-+  compatible:
-+    const: "marvell,pxa1928-usb-phy"
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  '#phy-cells':
-+    const: 0
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - '#phy-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    phy@7000 {
-+      compatible = "marvell,pxa1928-usb-phy";
-+      reg = <0x7000 0xe0>;
-+      clocks = <&apmu_clocks PXA1928_CLK_USB>;
-+      #phy-cells = <0>;
-+    };
-diff --git a/Documentation/devicetree/bindings/phy/pxa1928-usb-phy.txt b/Documentation/devicetree/bindings/phy/pxa1928-usb-phy.txt
-deleted file mode 100644
-index da94426aa694..000000000000
---- a/Documentation/devicetree/bindings/phy/pxa1928-usb-phy.txt
-+++ /dev/null
-@@ -1,18 +0,0 @@
--* Marvell PXA1928 USB and HSIC PHYs
--
--Required properties:
--- compatible: "marvell,pxa1928-usb-phy" or "marvell,pxa1928-hsic-phy"
--- reg: base address and length of the registers
--- clocks - A single clock. From common clock binding.
--- #phys-cells: should be 0. From common phy binding.
--- resets: reference to the reset controller
--
--Example:
--
--	usbphy: phy@7000 {
--		compatible = "marvell,pxa1928-usb-phy";
--		reg = <0x7000 0xe0>;
--		clocks = <&apmu_clocks PXA1928_CLK_USB>;
--		#phy-cells = <0>;
--	};
--
+Changes in v4:
+- Annotate struct ktd202x with __counted_by
+- Link to v3: https://lore.kernel.org/r/20230906-ktd202x-v3-0-7fcb91c65d3a@apitzsch.eu
+
+Changes in v3:
+- Add r-b to bindings patch
+- Replace .probe_new by .probe
+- Link to v2: https://lore.kernel.org/r/20230901-ktd202x-v2-0-3cb8b0ca02ed@apitzsch.eu
+
+Changes in v2:
+- Make binding description filename match compatible
+- Address comments by Lee Jones
+  - Extend driver description in Kconfig
+  - Add copyright + link to datasheet
+  - Add unit to definition/variable names, where needed
+  - Define magic numbers
+  - Remove forward declaration of 'struct ktd202x'
+  - Remove superfluous comments
+  - Get rid of struct ktd202x_info
+  - Join ktd202x_chip_init() with ktd202x_chip_enable()
+  - Return the error on ktd202x_chip_disable()
+  - Remove unreachable case from chip_in_use()
+  - Rename ktd202x_brightness_set() argument from num_colors to num_channels
+  - Forward errors received in ktd202x_brightness_set()
+  - Remove variable for 'num_channels = 1'
+  - Add some explanations to blink time calculation
+  - Remove unneeded lcdev from ktd202x_blink_*_set()
+  - Add define for max brightness and replace deprecated LED_FULL by it
+  - Move setting led_classdev.brightness to ktd202x_brightness_*_set()
+  - Move mutex_lock inside ktd202x_blink_set()
+  - Add comment that 'color' property is optional (allow EINVAL)
+  - Replace escaped double quotes by single quotes
+  - Avoid overloading variable 'color'
+  - Do not lock during probe
+  - Remove usage of 'of_match_ptr'
+- Document interrupt and pull-up supply, like done for aw2013[1]
+- Fix error in num_steps calculation
+- Link to v1: https://lore.kernel.org/r/20230618-ktd202x-v1-0-fc182fefadd7@apitzsch.eu
+
+[1] https://lore.kernel.org/linux-leds/20230815-aw2013-vio-v3-0-2505296b0856@gerhold.net/
 
 ---
-base-commit: 6465e260f48790807eef06b583b38ca9789b6072
-change-id: 20231001-pxa1928-usb-yaml-809564082241
+André Apitzsch (2):
+      dt-bindings: leds: Add Kinetic KTD2026/2027 LED
+      leds: add ktd202x driver
+
+ .../devicetree/bindings/leds/kinetic,ktd202x.yaml  | 171 ++++++
+ drivers/leds/rgb/Kconfig                           |  13 +
+ drivers/leds/rgb/Makefile                          |   1 +
+ drivers/leds/rgb/leds-ktd202x.c                    | 619 +++++++++++++++++++++
+ 4 files changed, 804 insertions(+)
+---
+base-commit: 165adeea3617ea22dc49f8880474ebf3a98b696d
+change-id: 20230618-ktd202x-546b2a7d240b
 
 Best regards,
 -- 
-Duje Mihanović <duje.mihanovic@skole.hr>
-
+André Apitzsch <git@apitzsch.eu>
 
 
