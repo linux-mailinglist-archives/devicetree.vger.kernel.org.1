@@ -1,223 +1,161 @@
-Return-Path: <devicetree+bounces-4972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-4973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E43247B48BD
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 19:07:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEB7B7B48C3
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 19:09:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 070DE1C20777
-	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 17:07:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id A188B281825
+	for <lists+devicetree@lfdr.de>; Sun,  1 Oct 2023 17:09:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E4A6D518;
-	Sun,  1 Oct 2023 17:07:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EFD1EAC9;
+	Sun,  1 Oct 2023 17:09:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29FC8D2FC
-	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 17:07:44 +0000 (UTC)
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09B5EC9;
-	Sun,  1 Oct 2023 10:07:41 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 2CBD760006;
-	Sun,  1 Oct 2023 17:07:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1696180060;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=OhbZnwWf71+UUTHRQ8xN/7PXzLXHc8GR+wwelJyyT+I=;
-	b=oT2ZWjimx5qHzixIKM7c7VWYaAj1uOO65Ya3XyLsWoPaf2VxZNCgELNFEHIeV4aEAe2tmV
-	pkJBP5ox4+dWXfG5X0GGTGvQxQt+YiJE9xoxqHlKHWuwMiY2uqiBEkFONTkwuc0cgedgsv
-	Rx4KvBirWej1myOJeDy0qyPWl3lrfpwKmBsGkWcOfUEY9wKrVNMVBfUrpq3FH2w8XH+nOc
-	91RqaVUj9CB0esMCwFnOW6G4goNVVhsEbe+cu+2g9Wcsp7GIr5O35n8ohCULxiovkCPtbL
-	+4fvJLMv6kdJl+yyzndjwEDD9PgoSTzOuRvt7/PhEsB3lOmz27zKixa1mPmfZQ==
-Date: Sun, 1 Oct 2023 19:07:36 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Simon Glass <sjg@chromium.org>
-Cc: devicetree@vger.kernel.org, linux-mtd@lists.infradead.org, U-Boot
- Mailing List <u-boot@lists.denx.de>, Tom Rini <trini@konsulko.com>, Rob
- Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Dhruva Gole
- <d-gole@ti.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Pratyush Yadav <ptyadav@amazon.de>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>, Richard Weinberger <richard@nod.at>, Rob Herring
- <robh+dt@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: mtd: fixed-partitions: Add binman
- compatible
-Message-ID: <20231001190736.4f007796@xps-13>
-In-Reply-To: <20230927202057.3676497-1-sjg@chromium.org>
-References: <20230927202057.3676497-1-sjg@chromium.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8767D290
+	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 17:09:21 +0000 (UTC)
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1636C9
+	for <devicetree@vger.kernel.org>; Sun,  1 Oct 2023 10:09:16 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-405361bb94eso162029645e9.0
+        for <devicetree@vger.kernel.org>; Sun, 01 Oct 2023 10:09:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696180155; x=1696784955; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iGjxhc44hdrvQoM5w8Uq24pZZMJyLPViDXSpaz6LUOQ=;
+        b=PIrWCK20VhQnRFhZLr8BJYgxF/9V0YAiFV+Hf2M42fFiU6i6NlNbUOIdhkBoA8GdsY
+         zNOuW8IIgIgDl92FAjwa+W/NsPbj8PL4jYSQ3jomZJBb/e+DuBbVUGnu1ettlNDtYikY
+         qfea85hn+jGHoDjtvsV42Pd/Cwu5ilujoGbwMN9R6/P3qm4HCes2B08UdRyDf7oZEdb5
+         sZ8//Oj+0QhuFzJq/dvZ5M4jotszsWfndcgSE1TpCJqDyeR2v3YeB7U3YxojSWa8EPGb
+         LfTVUmMCwTU/U/YietH9/fGzRxhC07vtnOqo/lUwBUo4xnbUNTaid11ktNK3eKKzOyFd
+         A1ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696180155; x=1696784955;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iGjxhc44hdrvQoM5w8Uq24pZZMJyLPViDXSpaz6LUOQ=;
+        b=tn/EOYMMi722SlZiR52nQ1kVWDNJiEvZpWTu6FrYAwOqL+O2eeqeDREgsYOUhsFDD7
+         qk0cy/m93XdPVowERiggvXk+qbs9ZpeaV0OmFbNDGEJz5YhJw5ZnGPQlJYqxx95H932w
+         YprOkeBH7u6XjYSuRPl1mCaU0Ia68pTLJiyKJdMyWO6Z0TMr/KdZImUGhyVQfXIYH9Wz
+         mwGyIi5CMpAvEZ3DWMkK91A30DFc9IHAZ6sokXdZVexWMgoAvChuCe05s/beTOvFZI8g
+         R6UEizGsdBbjJbtDHiZ610KEwT25VDbDsUX90y6SGVkpOuAb4PAoHf2l2Y/zE+kzdVsT
+         4M/g==
+X-Gm-Message-State: AOJu0YwDkQJsWViRqIR8N6xdJsddp/SvMAjW9paXxeDz4rqZFX3DgeRP
+	LGQ4nOMq8+MJkR/Mpt79MqAKWg==
+X-Google-Smtp-Source: AGHT+IErXNESmLvpSluBTQaeEKIBaDfH+rb1+56PY8TrOtE//KDX39aZDf59DzicoUbwO7c7i7IrKA==
+X-Received: by 2002:a1c:f717:0:b0:402:e68f:888e with SMTP id v23-20020a1cf717000000b00402e68f888emr8686832wmh.4.1696180154771;
+        Sun, 01 Oct 2023 10:09:14 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0? ([2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0])
+        by smtp.googlemail.com with ESMTPSA id u5-20020a05600c00c500b004047ac770d1sm5631296wmm.8.2023.10.01.10.09.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 01 Oct 2023 10:09:14 -0700 (PDT)
+Message-ID: <958bad88-c36b-0003-c12f-223d5bc16448@linaro.org>
+Date: Sun, 1 Oct 2023 19:09:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v9 1/3] dt-bindings: thermal-zones: Document
+ critical-action
+Content-Language: en-US
+To: Fabio Estevam <festevam@gmail.com>
+Cc: rafael@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ conor+dt@kernel.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ Fabio Estevam <festevam@denx.de>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20231001030014.1244633-1-festevam@gmail.com>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20231001030014.1244633-1-festevam@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Simon,
-
-sjg@chromium.org wrote on Wed, 27 Sep 2023 14:20:51 -0600:
-
-> Add a compatible string for binman, so we can extend fixed-partitions
-> in various ways.
->=20
-> Signed-off-by: Simon Glass <sjg@chromium.org>
+On 01/10/2023 05:00, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+> 
+> Document the critical-action property to describe the thermal action
+> the OS should perform after the critical temperature is reached.
+> 
+> The possible values are "shutdown" and "reboot".
+> 
+> The motivation for introducing the critical-action property is that
+> different systems may need different thermal actions when the critical
+> temperature is reached.
+> 
+> For example, a desktop PC may want the OS to trigger a shutdown
+> when the critical temperature is reached.
+> 
+> However, in some embedded cases, such behavior does not suit well,
+> as the board may be unattended in the field and rebooting may be a
+> better approach.
+> 
+> The bootloader may also benefit from this new property as it can check
+> the SoC temperature and in case the temperature is above the critical
+> point, it can trigger a shutdown or reboot accordingly.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->=20
->  .../bindings/mtd/partitions/binman.yaml       | 49 +++++++++++++++++++
->  .../mtd/partitions/fixed-partitions.yaml      |  6 +++
->  .../bindings/mtd/partitions/partitions.yaml   |  1 +
->  MAINTAINERS                                   |  5 ++
->  4 files changed, 61 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/binm=
-an.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/mtd/partitions/binman.yaml=
- b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-> new file mode 100644
-> index 000000000000..34fd10c1a318
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2023 Google LLC
+> Changes since v8:
+> - Go back to putting critical-action as a thermal-zone property. (Daniel)
+> 
+>   .../devicetree/bindings/thermal/thermal-zones.yaml       | 9 +++++++++
+>   1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> index 4f3acdc4dec0..c2e4d28f885b 100644
+> --- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> @@ -75,6 +75,15 @@ patternProperties:
+>             framework and assumes that the thermal sensors in this zone
+>             support interrupts.
+>   
+> +      critical-action:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        description:
+> +          The action the OS should perform after the critical temperature is reached.
 > +
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mtd/partitions/binman.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Binman firmware layout
-> +
-> +maintainers:
-> +  - Simon Glass <sjg@chromium.org>
-> +
-> +select: false
-> +
-> +description: |
-> +  The binman node provides a layout for firmware, used when packaging fi=
-rmware
-> +  from multiple projects. It is based on fixed-partitions, with some
-> +  extensions.
+> +        enum:
+> +          - shutdown
+> +          - reboot
 
-Could you mention the input file vs. output file and which one this
-binding describes?
+This option is dangerous and should be more documented.
 
-> +
-> +  Documentation for Binman is available at:
-> +
-> +  https://u-boot.readthedocs.io/en/latest/develop/package/binman.html
-> +
-> +  with the current image-description format at:
-> +
-> +  https://u-boot.readthedocs.io/en/latest/develop/package/binman.html#im=
-age-description-format
-> +
-> +allOf:
-> +  - $ref: /schemas/mtd/partitions/fixed-partitions.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: binman
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    partitions {
-> +        compatible =3D "binman", "fixed-partitions";
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <1>;
-> +
-> +        partition-u-boot@100000 {
+"The action the OS should perform after the critical temperature is 
+reached. By default the system will shutdown as a safe action to prevent 
+to damage the hardware if the property is not set. The shutdown action 
+should be always the default. Choose carefully 'reboot' as the hardware 
+may be in thermal stress, thus leading to infinite reboots damaging the 
+hardware. Make sure the firmware will act as the last resort and take 
+over the thermal control."
 
-Do you mind if we avoid playing with the node name? I would prefer:
+[ and more info if needed ]
 
-	partition@100000 {
-		label =3D "foo";
+(written with best effort with my non native language ;)
 
-> +            label =3D "u-boot";
-> +            reg =3D <0x100000 0xf00000>;
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/mtd/partitions/fixed-parti=
-tions.yaml b/Documentation/devicetree/bindings/mtd/partitions/fixed-partiti=
-ons.yaml
-> index 331e564f29dc..1c04bc2b95af 100644
-> --- a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.y=
-aml
-> +++ b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.y=
-aml
-> @@ -14,6 +14,9 @@ description: |
->    The partition table should be a node named "partitions". Partitions ar=
-e then
->    defined as subnodes.
-> =20
-> +  The Binman tool provides some enhanced features, so provides a compati=
-ble
-> +  string to indicate that these are permitted.
+>         thermal-sensors:
+>           $ref: /schemas/types.yaml#/definitions/phandle-array
+>           maxItems: 1
 
-I believe this is not necessary and is implied by the $ref in
-partitions.yaml.
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
->  maintainers:
->    - Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> =20
-> @@ -24,6 +27,9 @@ properties:
->        - items:
->            - const: sercomm,sc-partitions
->            - const: fixed-partitions
-> +      - items:
-> +          - const: binman
-> +          - const: fixed-partitions
-> =20
->    "#address-cells": true
-> =20
-> diff --git a/Documentation/devicetree/bindings/mtd/partitions/partitions.=
-yaml b/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
-> index 1dda2c80747b..849fd15d085c 100644
-> --- a/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
-> @@ -15,6 +15,7 @@ maintainers:
-> =20
->  oneOf:
->    - $ref: arm,arm-firmware-suite.yaml
-> +  - $ref: binman.yaml
->    - $ref: brcm,bcm4908-partitions.yaml
->    - $ref: brcm,bcm947xx-cfe-partitions.yaml
->    - $ref: fixed-partitions.yaml
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 5f18c6ba3c3c..367c843ec348 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -3517,6 +3517,11 @@ F:	Documentation/filesystems/bfs.rst
->  F:	fs/bfs/
->  F:	include/uapi/linux/bfs_fs.h
-> =20
-> +BINMAN
-> +M:	Simon Glass <sjg@chromium.org>
-> +S:	Supported
-> +F:	Documentation/devicetree/bindings/mtd/partitions/binman*
-> +
->  BITMAP API
->  M:	Yury Norov <yury.norov@gmail.com>
->  R:	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
-The rest of the series otherwise lgtm.
-
-Thanks,
-Miqu=C3=A8l
 
