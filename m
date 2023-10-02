@@ -1,130 +1,240 @@
-Return-Path: <devicetree+bounces-5150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2D2E7B5709
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 18:00:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 741D07B5708
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 18:00:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 74526282242
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 16:00:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 91EAA1C2084A
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 16:00:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F0841D693;
-	Mon,  2 Oct 2023 16:00:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA35E1D68E;
+	Mon,  2 Oct 2023 16:00:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1683E182CF
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 16:00:50 +0000 (UTC)
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 227C6BD
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 09:00:49 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9ae7383b7ecso732547566b.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 09:00:49 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25371182CF
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 16:00:43 +0000 (UTC)
+Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 800F6C9
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 09:00:40 -0700 (PDT)
+Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-5a2379a8b69so41707647b3.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 09:00:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1696262445; x=1696867245; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696262439; x=1696867239; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=O+6tSuZGsJ8MLmUkhQ/q6aX6p0H5mimnkA642RTbylo=;
-        b=f4C2hTxCkxrb0R0Kf8tOr/+7s4xgm5l92EIxycloLqEtyB+khxf7KP9LlTybOhMCHQ
-         qmoAhWw//iNt1r552BPZgpn8RM4WFEQmko/AOk5RtLRoFt5O0aBs0FW/JqG3wGTbBFdF
-         yFfNiTdfe1/EUZYZQ4dWnXPdlEKjv0SanoRig=
+        bh=D+V/XZ/GBu2X13qk+lVWA+BHXaXbkkjFzVNvIc6hVho=;
+        b=X0zY5BAii5sSfS5PbfyX9gkW4Kd5wdftt0bThJKDqX66/SSrcaH5ZshIj76vjT65gp
+         yRADAUZrjVJajI+Q1zwmudO+N5MUWbHX1SJyVQWeamFP8nGdLDnSgJebBGf8IDbNZpwM
+         bzIf5TX3l5WD6opTJcRIbLOZaeT9LFnBuf/Kh0OU1UXsTdsCJBtPQi0wTmBcL1C2qGhD
+         PBfk/TluvFGJZEAKYvYTmmeWsnMFyDetWIfQW0fFiWCDTyxp7lR3sA9cmnQpdCcmIhTc
+         2D+k+fiP9hVLbzZLuGijIKX84Zeac3eBKy8otXdDz4C/qDqmBhYCGlnXuHxp8TiwMnlH
+         2KZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696262445; x=1696867245;
+        d=1e100.net; s=20230601; t=1696262439; x=1696867239;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=O+6tSuZGsJ8MLmUkhQ/q6aX6p0H5mimnkA642RTbylo=;
-        b=Xt+P4IWcUEXrBQuTb08VUrEahTT90nz1h0Z5LksXgLzi7YmsCJgwOtWFW1xhZVzPYx
-         nZTAXz+WlDyI9U2fbKvKiR10TwjY+YCSfVa2MpSi/jcqYyMAFsF9w86XNEl+pl9fiei3
-         wPIV+9uRXEsG+5SAXfTbsJEL6nm26E6Va42SDOuP4muTeejaNwmzMG9K/map8SF3xyk0
-         QAKGyQOxoDxPo7n5J9B29DQhWDZ84TTKoY23uX65It99hzLeyl3B53wOCquAUL1V1EAO
-         hRKmeWrLHgwo++1DD0UExRNvVyoJwEBf4Mbo2N3+SGL/iTa+p73DfmqUkTqCMewkIWgi
-         Qviw==
-X-Gm-Message-State: AOJu0YxQ/Wv5G/c3rots/MKmZVFIP2GMJSeCy3N6TEjYEjY7lH82G2m1
-	hzT6UOAcRLl7YZrXucVPohhhno/VQ0AAHih4MPbGtU3W
-X-Google-Smtp-Source: AGHT+IGidsNxY0Joi1G2XZO42VIwi5ivnneNZya+BsMnEuhkuxVvPsJ8dFYbaqcVPrHVj/Qv5ZqOBw==
-X-Received: by 2002:a17:907:c24:b0:9a1:8993:9532 with SMTP id ga36-20020a1709070c2400b009a189939532mr60742ejc.30.1696262445054;
-        Mon, 02 Oct 2023 09:00:45 -0700 (PDT)
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com. [209.85.208.44])
-        by smtp.gmail.com with ESMTPSA id q26-20020a1709064c9a00b009ad87fd4e65sm17199925eju.108.2023.10.02.09.00.44
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Oct 2023 09:00:44 -0700 (PDT)
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-537f07dfe8eso14917a12.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 09:00:44 -0700 (PDT)
-X-Received: by 2002:a50:9b19:0:b0:522:4741:d992 with SMTP id
- o25-20020a509b19000000b005224741d992mr156294edi.4.1696262443982; Mon, 02 Oct
- 2023 09:00:43 -0700 (PDT)
+        bh=D+V/XZ/GBu2X13qk+lVWA+BHXaXbkkjFzVNvIc6hVho=;
+        b=X3HQWSF2kvhImANcXrijdql7bim4ial+q8oDLjyCdlJDKdPx329co26Jv26Q3ISJR1
+         PzozbNkDj8IhbF4bAHlwIrv6cH/e41I/SkFxxcKW1Lom8t/5BT/cnQL9A6Z6Wtzgj5QT
+         RdInkV/OKkkVhuYFgYLrA4TWazz79OKo6A273aPWxzMXLw1+d1zisIIjyqMuM7x1hAey
+         k7yJH1ioIeFlnlJh3966lHqHWemR0HDSK1/shffVqim89UC39DFZmHjiOG7x900Q6aXB
+         ZB4442WwvwhSEVlrxxfBsvpPmowpHrdTmcB0KQbz1+6oaggiY3seec8/5NNdKhhIFCPN
+         +Cow==
+X-Gm-Message-State: AOJu0Yz/3jn016PwpDlZYMjoEprEvdcHGa9muTFmIj91021HW5KU9Ta1
+	cOx+fMFFug1TqjXP88EEOMWEmA9NeG/Y0NDO9cMNYA==
+X-Google-Smtp-Source: AGHT+IEpjQ9liIVFx32qRUTSbZz+I8jC2x+161aRlKeXDuRGa/A6OsadJbefZK8pH8hB4Z/EJSy9KcEWN1pKq7rvpvg=
+X-Received: by 2002:a25:c551:0:b0:d81:89e9:9f48 with SMTP id
+ v78-20020a25c551000000b00d8189e99f48mr11301435ybe.63.1696262439593; Mon, 02
+ Oct 2023 09:00:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230918125851.310-1-johan+linaro@kernel.org> <CAD=FV=Wfwvp-SbGrdO5VJcjG42njkApJPB7wnY-YYa1_-O0JWQ@mail.gmail.com>
- <ZQlIveJVdvyV2Ygy@hovoldconsulting.com> <CAD=FV=XBG7auVVyHn5uvahSZZxp5qBfp4+A9NwFqahdN6XrbZA@mail.gmail.com>
- <ZQqemN8P2VKgxhsV@hovoldconsulting.com> <CAD=FV=XK87TZuPy+d2r2g5QhowmghE-m9pGHe9-X7jnXAw9z1g@mail.gmail.com>
- <ZQ1Zm6ec9NuBvqpl@hovoldconsulting.com> <CAD=FV=USBJRzqxX9kBP8pp4LKRGpBee+jkHL=KmeQvyfBk2CVQ@mail.gmail.com>
- <ZRqzGA1F6JV-mlRL@hovoldconsulting.com> <CAD=FV=UHEeu3crTFEZDY+LDQZk07H8un7gCSs0jyCQJrGYkV=Q@mail.gmail.com>
- <ZRrmVN3Rbz9PY8FW@hovoldconsulting.com>
-In-Reply-To: <ZRrmVN3Rbz9PY8FW@hovoldconsulting.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Mon, 2 Oct 2023 09:00:26 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WcUKPezcp2dUQHW2vhrvvdo9=GSAOeML1JPLhEyG3WqA@mail.gmail.com>
-Message-ID: <CAD=FV=WcUKPezcp2dUQHW2vhrvvdo9=GSAOeML1JPLhEyG3WqA@mail.gmail.com>
-Subject: Re: [PATCH] HID: i2c-hid: fix handling of unpopulated devices
-To: Johan Hovold <johan@kernel.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Jiri Kosina <jikos@kernel.org>, 
-	Benjamin Tissoires <benjamin.tissoires@redhat.com>, linux-input@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, LinusW <linus.walleij@linaro.org>, 
+References: <20230905-caleb-qmi_cooling-v1-0-5aa39d4164a7@linaro.org>
+ <20231001155701.GA53767@thinkpad> <cefe711b-d274-4d83-9dda-01f33b342387@linaro.org>
+ <20231002145239.GA12041@thinkpad> <CAA8EJppn-f6R3ObGvagqkg1_KtXGgtNAgRn-LQiN3ORSHQY3-Q@mail.gmail.com>
+ <20231002155814.GB12041@thinkpad>
+In-Reply-To: <20231002155814.GB12041@thinkpad>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Mon, 2 Oct 2023 19:00:27 +0300
+Message-ID: <CAA8EJpowGjnecOjr9h4r3=UXSrE4VdptoLADpQq3gDv_W9D3OQ@mail.gmail.com>
+Subject: Re: [PATCH 0/4] thermal: Introduce Qualcomm Thermal Mitigation Device support
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Caleb Connolly <caleb.connolly@linaro.org>, Andy Gross <agross@kernel.org>, 
+	Bhupesh Sharma <bhupesh.linux@gmail.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
 	Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+	"Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Sibi Sankar <quic_sibis@quicinc.com>, Thara Gopinath <thara.gopinath@gmail.com>, 
+	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-pm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi,
-
-On Mon, Oct 2, 2023 at 8:48=E2=80=AFAM Johan Hovold <johan@kernel.org> wrot=
-e:
+On Mon, 2 Oct 2023 at 18:58, Manivannan Sadhasivam <mani@kernel.org> wrote:
 >
-> > In any case, the fact that there is a shared power rail / shared power
-> > sequence is because the hardware designer intended them to either be
-> > both off or both on. Whenever I asked the EEs that designed these
-> > boards about leaving the touchscreen on while turning the panel power
-> > off they always looked at me incredulously and asked why I would ever
-> > do that. Although we can work around the hardware by powering the
-> > panel in order to allow the touchscreen to be on, it's just not the
-> > intention.
+> On Mon, Oct 02, 2023 at 06:00:37PM +0300, Dmitry Baryshkov wrote:
+> > On Mon, 2 Oct 2023 at 17:52, Manivannan Sadhasivam <mani@kernel.org> wr=
+ote:
+> > >
+> > > On Sun, Oct 01, 2023 at 06:26:14PM +0100, Caleb Connolly wrote:
+> > > >
+> > > >
+> > > > On 01/10/2023 16:57, Manivannan Sadhasivam wrote:
+> > > > > On Fri, Sep 29, 2023 at 05:16:16PM +0100, Caleb Connolly wrote:
+> > > > > > The Thermal Mitigation Device (TMD) Service is a QMI service th=
+at runs
+> > > > > > on remote subsystems (the modem and DSPs) on Qualcomm SoCs.
+> > > > > > It exposes various mitigations including passive thermal contro=
+ls and
+> > > > > > rail voltage restrictions.
+> > > > > >
+> > > > > > This series introduces support for exposing TMDs as cooling dev=
+ices
+> > > > > > in the kernel through the thermal framework, using the QMI inte=
+rface.
+> > > > > >
+> > > > > > Each TMD client is described as a child of the remoteproc node =
+in
+> > > > > > devicetree. With subnodes for each control.
+> > > > > >
+> > > > >
+> > > > > Daniel expressed concerns in the past aganist representing TMD dr=
+iver as a
+> > > > > cooling device since it is not tied to thermal zones and the gove=
+rnors cannot
+> > > > > use it. Instead he suggested to represent it as a powercap device=
+ with thermal
+> > > > > constraints.
+> > > >
+> > > > Hi Mani,
+> > > >
+> > > > Forgive me as I'm not yet super familiar with the thermal subsystem=
+.
+> > > >
+> > > > As I understand it, the DT layout here enables each control to be r=
+eferenced
+> > > > under the thermal zones, at least this is the approach taken in CAF=
+ 4.9.
+> > > >
+> > > > Maybe I don't quite understand what you mean, are you saying that u=
+sing
+> > > > thermal zones is the wrong approach?
+> > >
+> > > Thermal framework expects each thermal zone represented in DT to have=
+ atleast
+> > > one corresponding thermal sensor defined using "thermal-sensors" prop=
+erty. But
+> > > with TMD, there is no thermal sensor AFAIK.
+> >
+> > As far as I understand, no. It is perfectly fine to have 'cooling'
+> > devices, which react to external thermal monitoring events. I might be
+> > mistaken, but I think that is the case here, isn't it?
+> >
 >
-> I hear you, but users sometimes want do things with their hardware which
-> may not have originally been intended (e.g. your kiosk example).
+> Yes it is represented as cooling device(s). But I do not see any cognizan=
+t way
+> to plug it with thermal zones i.e., unless TMD itself reports temperature=
+ of the
+> modem, using it as a cooling device for external temperature events doesn=
+'t
+> sound good to me.
 
-...and they can. I don't think it's totally unreasonable for userspace
-in this case to take into account that they need to keep the panel
-powered on (maybe with the screen black and the backlight off) if they
-want the touchscreen kept on. If I was coding up userspace it wouldn't
-surprise me at all if the touchscreen stopped working when the panel
-was off.
+Why? We have compute, q6, wlan tsens sensors. So it seems natural to
+tell CDSP to slow down if compute sensor reports overheating.
 
-I will further note that there is actually hardware where it's even
-more difficult. On the same sc7180-trogdor laptops (and others as
-well) the USB webcam is _also_ powered by the same power rail. When
-you power the screen off then the USB webcam deenumerates. When you
-power the screen on then it shows back up. It would be really weird if
-somehow the USB webcam driver needed a link to the panel to try to
-keep it powered.
+>
+> - Mani
+>
+> > >
+> > > > >
+> > > > > So please look into that approach.
+> > > >
+> > > > Any recommended reading? Or drivers I can use as a reference?
+> > > >
+> > >
+> > > drivers/powercap/arm_scmi_powercap.c seems to be a good reference.
+> > >
+> > > - Mani
+> > >
+> > > > Thanks
+> > > > >
+> > > > > - Mani
+> > > > >
+> > > > > > This series is based on previous work by Bhupesh Sharma which c=
+an be
+> > > > > > found at [1]. I'm sending this as a fresh series as it has been=
+ a
+> > > > > > year since the original version and I have rewritten most of th=
+e driver.
+> > > > > >
+> > > > > > [1]: https://lore.kernel.org/linux-arm-msm/20220912085049.35171=
+40-1-bhupesh.sharma@linaro.org/
+> > > > > >
+> > > > > > ---
+> > > > > > Caleb Connolly (4):
+> > > > > >        remoteproc: qcom: probe all child devices
+> > > > > >        dt-bindings: thermal: Add qcom,qmi-cooling yaml bindings
+> > > > > >        thermal: qcom: add qmi-cooling driver
+> > > > > >        MAINTAINERS: Add entry for Qualcomm Cooling Driver
+> > > > > >
+> > > > > >   .../bindings/remoteproc/qcom,msm8996-mss-pil.yaml  |  13 +
+> > > > > >   .../bindings/remoteproc/qcom,pas-common.yaml       |   6 +
+> > > > > >   .../bindings/thermal/qcom,qmi-cooling.yaml         | 168 ++++=
++++
+> > > > > >   MAINTAINERS                                        |   8 +
+> > > > > >   drivers/remoteproc/qcom_q6v5.c                     |   4 +
+> > > > > >   drivers/remoteproc/qcom_q6v5_mss.c                 |   8 -
+> > > > > >   drivers/thermal/qcom/Kconfig                       |  13 +
+> > > > > >   drivers/thermal/qcom/Makefile                      |   1 +
+> > > > > >   drivers/thermal/qcom/qmi-cooling.c                 | 520 ++++=
++++++++++++++++++
+> > > > > >   drivers/thermal/qcom/qmi-cooling.h                 | 428 ++++=
++++++++++++++
+> > > > > >   10 files changed, 1161 insertions(+), 8 deletions(-)
+> > > > > > ---
+> > > > > > base-commit: 9067f80db58bbce81d5f0703aa2fd261e88bc812
+> > > > > >
+> > > > > > // Caleb (they/them)
+> > > > > >
+> > > > >
+> > > >
+> > > > --
+> > > > // Caleb (they/them)
+> > >
+> > > --
+> > > =E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=
+=A9=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=
+=AE=E0=AF=8D
+> >
+> >
+> >
+> > --
+> > With best wishes
+> > Dmitry
+>
+> --
+> =E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=
+=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=
+=E0=AF=8D
 
 
--Doug
+
+--=20
+With best wishes
+Dmitry
 
