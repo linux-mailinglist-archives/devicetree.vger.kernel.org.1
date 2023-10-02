@@ -1,107 +1,113 @@
-Return-Path: <devicetree+bounces-5014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E8A37B4BDF
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 08:56:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DEE57B4BF9
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 09:00:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id DC14228148D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 06:56:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id E3F082817AB
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 07:00:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24CEF9CA44;
-	Mon,  2 Oct 2023 06:56:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E31F9CA50;
+	Mon,  2 Oct 2023 07:00:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24F607FB
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 06:56:02 +0000 (UTC)
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B97541B9;
-	Sun,  1 Oct 2023 23:55:59 -0700 (PDT)
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-59f7f46b326so130935027b3.0;
-        Sun, 01 Oct 2023 23:55:59 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6BAC17F0
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 07:00:23 +0000 (UTC)
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4065BC
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 00:00:18 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-532c81b9adbso21877825a12.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 00:00:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1696230017; x=1696834817; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=b4mI7wPjfIFJjRgS4m9j0vBzf0bhNyvH1PWkrNn+YUw=;
+        b=KNhAsxmL87TmGWjswS8Q41/DmigVAE4iZak/ipzI/ysf6WxNXOLgZ0txZLG9x6Mke+
+         SjvQMv3FjAsZGfWP5J4L6bZyHHJSlhsdELtr2OcEaJUbi8+fyCHDZD7v/t2vOHH4Qlm6
+         tQLWabA7cOcYK/sSz69VcHWkh+GkignjqbuyIhp+ZwXscx+iGEomGn68DYqIV9Mp/7N7
+         vYZSXrzEqGyERtvdZIZgsipgSMV0Q1Fkez5q9hD48xJbrMuf0Gjzk5XprmzhrtuBLjs3
+         HHHh+Rf72qoV3Vl1duKMhnoStvYCU3RGL/+vdFAr9TC5uFOG27NMxutOqhQoN0AgySsc
+         AqsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696229758; x=1696834558;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Mroo4u9dUunFLXQiBkd+nT/yozwsDeLEUlSVenP9iqQ=;
-        b=Nt6cAIkdSSZLrAoGW7ZwcLfrrRYmQ/zP5eZbhUZHHBvoTS/2WOqyF6ZllVp6mBGTuL
-         +XHPT4CKSsqGnpHYLStpBbbNzltc7aCIke6lVactw2lsqAHNETCbWLOcefmE7LjTaUvo
-         GRZ+qUOf0qSahgIPvEV0p3U1+336I0Ih3oN3qSGj/+FZ/ivGP7OL9zDdvPCqIMG3jNIw
-         Ub9j6fKQsgqlr248W0LfaFBztPL8tMx5MEUvkld0RKLjd5jlSevudndtf4hzF74BuH+T
-         SitNaJdAZglDXmsqLt1812lobJOv8nSfKMt1zoa4EHV9pDplqxoDa76SpZPYCTmoRtJ/
-         CTMg==
-X-Gm-Message-State: AOJu0YyBHW6FRysv87oXgfdelr3UhRICOc4OFv8ls4hfvrjYf1BOGZwu
-	aXz4oWKDWhEPH6kvAVdL9SZZY9XeR0QZ2g==
-X-Google-Smtp-Source: AGHT+IFkUA8MULCP6p5AlPlp5OBGD8Ruh+QZ8PTrlDVOwDCtPOfVx7QWfkQXrhRA/FBaCZ0kTbExSA==
-X-Received: by 2002:a81:4783:0:b0:592:2a17:9d88 with SMTP id u125-20020a814783000000b005922a179d88mr10115307ywa.47.1696229758542;
-        Sun, 01 Oct 2023 23:55:58 -0700 (PDT)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id x2-20020a818702000000b005869ca8da8esm7510300ywf.146.2023.10.01.23.55.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 01 Oct 2023 23:55:58 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-59f4f80d084so156442127b3.1;
-        Sun, 01 Oct 2023 23:55:58 -0700 (PDT)
-X-Received: by 2002:a81:9250:0:b0:583:d1fa:1fc4 with SMTP id
- j77-20020a819250000000b00583d1fa1fc4mr10160161ywg.26.1696229758085; Sun, 01
- Oct 2023 23:55:58 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1696230017; x=1696834817;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=b4mI7wPjfIFJjRgS4m9j0vBzf0bhNyvH1PWkrNn+YUw=;
+        b=aLpiGvakzqPUMTiOOJuzyOmZUujOLfs8GuXlj+ZPmh+v0xLTJvnPvaPQdK+bmeb9be
+         zTTCi5X9VIQREeB4rmmm2LtbHw084SaE/QMgBx9Yo/EK5z66KhgMrxaTTUHVDNN9B+XR
+         iI8FmVWYb9YAlxl089X//MvLQzAyEXNoePBvMibtSKiGEO3UDZwx4SmpZJbg8d4zDYSb
+         4SGBSS/phl7p5YSRicXx/zSR+5KCaKZeNREgjAyiaoiYm8WDeJ9lrlYYqorzp8ZX3iQj
+         eStq2/dFbOe17GBpIQDUcNFyWhKebGoQ06UiEqti4f4flWRyXUHIu6VhaphhwO+Yz2Cy
+         g3Cw==
+X-Gm-Message-State: AOJu0YyVtQWB5GEl0JrHFF09w7rrz57BEjxHhvtOYYz8KVCHBlMS1G5V
+	yx568Fpx5CTFrIyxFfTNMSCW2w==
+X-Google-Smtp-Source: AGHT+IGHstSSOjwQORJoy/Ro5XBc08vqCnp7VSvvKVm9VrTRh96OXqE6aYHnx6tEAm9+uPnY2S3fOA==
+X-Received: by 2002:a17:906:3116:b0:9a2:16e2:353 with SMTP id 22-20020a170906311600b009a216e20353mr9427422ejx.6.1696230017331;
+        Mon, 02 Oct 2023 00:00:17 -0700 (PDT)
+Received: from otso.luca.vpn.lucaweiss.eu (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id z10-20020a170906714a00b0098ce63e36e9sm16692013ejj.16.2023.10.02.00.00.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Oct 2023 00:00:17 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH v2 0/2] Small updates / fixups for PMIC spmi-gpio
+Date: Mon, 02 Oct 2023 09:00:10 +0200
+Message-Id: <20231002-pm7250b-gpio-fixup-v2-0-debb8b599989@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230927130734.9921-1-changhuang.liang@starfivetech.com> <20230927130734.9921-2-changhuang.liang@starfivetech.com>
-In-Reply-To: <20230927130734.9921-2-changhuang.liang@starfivetech.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 2 Oct 2023 08:55:44 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWOyxnFSjG3Sg2mBUJRdoMFYdUu9H_iZmCSX_0-jd1vnA@mail.gmail.com>
-Message-ID: <CAMuHMdWOyxnFSjG3Sg2mBUJRdoMFYdUu9H_iZmCSX_0-jd1vnA@mail.gmail.com>
-Subject: Re: [-next v1 1/2] dt-bindings: power: Update prefixes for AON power domain
-To: Changhuang Liang <changhuang.liang@starfivetech.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Walker Chen <walker.chen@starfivetech.com>, 
-	Hal Feng <hal.feng@starfivetech.com>, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHpqGmUC/32NOw6DMBBEr4K2zkbGmPCpco+IAswabwG27MRKh
+ Lh7HA6Q8s1o3uwQKTBF6IsdAiWO7LYM8lKAtuO2EPKcGaSQlehkh35tZC0mXDw7NPx+eTRKNER
+ dq2Q9Qh76QLk4pY8hs+X4dOFzfqTyl/7VpRIFkrm1tap0OVfT3YwcvHUbXbVbYTiO4wvnuraNu
+ AAAAA==
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.12.3
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Changhuang,
+Update the schema to use plural _gpios label in the example. And fix a
+dtbs_check warning in pm7250b.dtsi.
 
-Thanks for your patch!
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Changes in v2:
+- Remove labels instead of updating them in documentation patch
+- Link to v1: https://lore.kernel.org/r/20230929-pm7250b-gpio-fixup-v1-0-ef68543c1d3b@fairphone.com
 
-On Wed, Sep 27, 2023 at 3:07=E2=80=AFPM Changhuang Liang
-<changhuang.liang@starfivetech.com> wrote:
-> Use "JH7110_AON_PD_" prefix for AON power doamin for JH7110 SoC.
+---
+Luca Weiss (2):
+      dt-bindings: mfd: qcom,spmi-pmic: Drop unused labels from examples
+      arm64: dts: qcom: pm7250b: Use correct node name for gpios
 
-domain
+ Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 6 +++---
+ arch/arm64/boot/dts/qcom/pm7250b.dtsi                     | 2 +-
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+---
+base-commit: df964ce9ef9fea10cf131bf6bad8658fde7956f6
+change-id: 20230929-pm7250b-gpio-fixup-f407ee98425a
 
->
-> Reviewed-by: Walker Chen <walker.chen@starfivetech.com>
-> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
