@@ -1,87 +1,152 @@
-Return-Path: <devicetree+bounces-5127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2930D7B5573
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 16:51:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13EE17B5577
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 16:52:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id D3530281E6C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 14:50:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id A65A9281EFD
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 14:52:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6F291A709;
-	Mon,  2 Oct 2023 14:50:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CC41A70C;
+	Mon,  2 Oct 2023 14:52:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7120468C
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 14:50:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54D86C433C7;
-	Mon,  2 Oct 2023 14:50:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0CAB1A271
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 14:52:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C14BC433C8;
+	Mon,  2 Oct 2023 14:52:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696258257;
-	bh=oCle2xQolRrS//2ZNzGCyX4K5r5ldYzVf098n5iryoE=;
+	s=k20201202; t=1696258370;
+	bh=Etqxxf/D+cQv+It0W6UkjfNaCRmxy8NfOCgMspxGg4A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rSNx8wAfhzbmf/rAkSYfSy/g8xcgWARkygitgnHKqBk9ZlLNmvkU9oOQwDMnuuISM
-	 joWE7C6FpMYCmGV6g7WRft+g9fryeTXIaadTKb9XNcYOBz8Vvhpou3M1uVOz2oCr/o
-	 TQaWKZnmG1YX9g7lEJlB4YOCrOsr33MWRnoPjXxrwTJYf1tw1QS0lGGDlOELUrkNE5
-	 DSABcVScP8VSVSNlfcsyERWsPEzFHkBac/COj4Dqxpc4WQRsOds9YUhUXuabBvoyWL
-	 s6uG4f+ojpQx94Z/EAO06S/3U/I4rSC5ub7qsn9JXnt5CBm1ZdbFPTj17CyHX1626Q
-	 oZdyS6Op+gcIQ==
-Received: (nullmailer pid 1694626 invoked by uid 1000);
-	Mon, 02 Oct 2023 14:50:52 -0000
-Date: Mon, 2 Oct 2023 09:50:52 -0500
-From: Rob Herring <robh@kernel.org>
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linus.walleij@linaro.org, gregkh@linuxfoundation.org, jirislaby@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, will@kernel.org, quic_bjorande@quicinc.com, konrad.dybcio@linaro.org, arnd@arndb.de, neil.armstrong@linaro.org, prabhakar.mahadev-lad.rj@bp.renesas.com, biju.das.jz@bp.renesas.com, linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 19/28] dt-bindings: pinctrl: renesas: set
- additionalProperties: false
-Message-ID: <20231002145052.GA1690001-robh@kernel.org>
-References: <20230929053915.1530607-1-claudiu.beznea@bp.renesas.com>
- <20230929053915.1530607-20-claudiu.beznea@bp.renesas.com>
+	b=MsHyhGPdNFcCYSuzntBAkFqGejwIzlUuGDxKha2iPiGz/eh7uaLHH0+6ZGjddbxtD
+	 b/OQPeDqUsB3GGSGwo0Jr/RlK97mCdMXtv+XaKXXlRYTz7HRtXgwOINlmSJL1uzPNC
+	 uPOQXNXCufurO8XH4tu3OolpBWCfTbR6Z9DR5kSk7IYosRdvB8yR+oiS2yaqnlA8Si
+	 VmDpdUCOvmX1yFW20Z34mcHiVH+7tS0tF2UYophMM38N4LgJKoPmcSfodHkncBnHXL
+	 tZ366z+H33h/kxztAeTRHxfpnAzfJ8miO3TNzZQ6687NGwIFR/qAfhkpKtyWiSll3k
+	 EK9i13cD9y/PA==
+Date: Mon, 2 Oct 2023 20:22:39 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Caleb Connolly <caleb.connolly@linaro.org>
+Cc: Manivannan Sadhasivam <mani@kernel.org>, Andy Gross <agross@kernel.org>,
+	Bhupesh Sharma <bhupesh.linux@gmail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+	Sibi Sankar <quic_sibis@quicinc.com>,
+	Thara Gopinath <thara.gopinath@gmail.com>,
+	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 0/4] thermal: Introduce Qualcomm Thermal Mitigation
+ Device support
+Message-ID: <20231002145239.GA12041@thinkpad>
+References: <20230905-caleb-qmi_cooling-v1-0-5aa39d4164a7@linaro.org>
+ <20231001155701.GA53767@thinkpad>
+ <cefe711b-d274-4d83-9dda-01f33b342387@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230929053915.1530607-20-claudiu.beznea@bp.renesas.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cefe711b-d274-4d83-9dda-01f33b342387@linaro.org>
 
-On Fri, Sep 29, 2023 at 08:39:06AM +0300, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On Sun, Oct 01, 2023 at 06:26:14PM +0100, Caleb Connolly wrote:
 > 
-> Set additionalProperties: false.
 > 
-> Suggested-by: Rob Herring <robh@kernel.org>
+> On 01/10/2023 16:57, Manivannan Sadhasivam wrote:
+> > On Fri, Sep 29, 2023 at 05:16:16PM +0100, Caleb Connolly wrote:
+> > > The Thermal Mitigation Device (TMD) Service is a QMI service that runs
+> > > on remote subsystems (the modem and DSPs) on Qualcomm SoCs.
+> > > It exposes various mitigations including passive thermal controls and
+> > > rail voltage restrictions.
+> > > 
+> > > This series introduces support for exposing TMDs as cooling devices
+> > > in the kernel through the thermal framework, using the QMI interface.
+> > > 
+> > > Each TMD client is described as a child of the remoteproc node in
+> > > devicetree. With subnodes for each control.
+> > > 
+> > 
+> > Daniel expressed concerns in the past aganist representing TMD driver as a
+> > cooling device since it is not tied to thermal zones and the governors cannot
+> > use it. Instead he suggested to represent it as a powercap device with thermal
+> > constraints.
+> 
+> Hi Mani,
+> 
+> Forgive me as I'm not yet super familiar with the thermal subsystem.
+> 
+> As I understand it, the DT layout here enables each control to be referenced
+> under the thermal zones, at least this is the approach taken in CAF 4.9.
+> 
+> Maybe I don't quite understand what you mean, are you saying that using
+> thermal zones is the wrong approach?
 
-I did?
+Thermal framework expects each thermal zone represented in DT to have atleast
+one corresponding thermal sensor defined using "thermal-sensors" property. But
+with TMD, there is no thermal sensor AFAIK.
 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
+> > 
+> > So please look into that approach.
 > 
-> Changes in v2:
-> - this patch is new in v2 and added as suggested by Rob
+> Any recommended reading? Or drivers I can use as a reference?
 > 
->  .../devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml     | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
-> index 4782f96feb7e..eb726770f571 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
-> @@ -106,8 +106,7 @@ additionalProperties:
->          line-name: true
->  
->      - type: object
-> -      additionalProperties:
-> -        $ref: "#/additionalProperties/anyOf/0"
-> +      additionalProperties: false
 
-With no properties defined, this only allows an empty node which is 
-probably not what you want. It's the other anyOf entry that needed it, 
-but I already sent a fix which Linus applied.
+drivers/powercap/arm_scmi_powercap.c seems to be a good reference.
 
-Rob
+- Mani
+
+> Thanks
+> > 
+> > - Mani
+> > 
+> > > This series is based on previous work by Bhupesh Sharma which can be
+> > > found at [1]. I'm sending this as a fresh series as it has been a
+> > > year since the original version and I have rewritten most of the driver.
+> > > 
+> > > [1]: https://lore.kernel.org/linux-arm-msm/20220912085049.3517140-1-bhupesh.sharma@linaro.org/
+> > > 
+> > > ---
+> > > Caleb Connolly (4):
+> > >        remoteproc: qcom: probe all child devices
+> > >        dt-bindings: thermal: Add qcom,qmi-cooling yaml bindings
+> > >        thermal: qcom: add qmi-cooling driver
+> > >        MAINTAINERS: Add entry for Qualcomm Cooling Driver
+> > > 
+> > >   .../bindings/remoteproc/qcom,msm8996-mss-pil.yaml  |  13 +
+> > >   .../bindings/remoteproc/qcom,pas-common.yaml       |   6 +
+> > >   .../bindings/thermal/qcom,qmi-cooling.yaml         | 168 +++++++
+> > >   MAINTAINERS                                        |   8 +
+> > >   drivers/remoteproc/qcom_q6v5.c                     |   4 +
+> > >   drivers/remoteproc/qcom_q6v5_mss.c                 |   8 -
+> > >   drivers/thermal/qcom/Kconfig                       |  13 +
+> > >   drivers/thermal/qcom/Makefile                      |   1 +
+> > >   drivers/thermal/qcom/qmi-cooling.c                 | 520 +++++++++++++++++++++
+> > >   drivers/thermal/qcom/qmi-cooling.h                 | 428 +++++++++++++++++
+> > >   10 files changed, 1161 insertions(+), 8 deletions(-)
+> > > ---
+> > > base-commit: 9067f80db58bbce81d5f0703aa2fd261e88bc812
+> > > 
+> > > // Caleb (they/them)
+> > > 
+> > 
+> 
+> -- 
+> // Caleb (they/them)
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
