@@ -1,47 +1,48 @@
-Return-Path: <devicetree+bounces-5252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CEBB7B5B3D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 21:27:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 715C57B5B41
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 21:28:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 5EBD4281AB7
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 19:27:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id C8763B20B33
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 19:28:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17B761F936;
-	Mon,  2 Oct 2023 19:27:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 258C51F939;
+	Mon,  2 Oct 2023 19:28:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0775915BD
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 19:27:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7611C433C7;
-	Mon,  2 Oct 2023 19:27:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15BE215BD
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 19:28:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68EE2C433C8;
+	Mon,  2 Oct 2023 19:28:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696274828;
-	bh=M3xDfvFGJJ/XkEcT9JbDKrkZISYSg+CslZeqm002CB8=;
+	s=k20201202; t=1696274913;
+	bh=DTzvUs0KqeAyeGZdDVyKaq81DLkJ0Wi12W8H+fLzRaM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=i/DPb7cvsilLk1Me6VqMIkpZXQltZmNhVfkH1ND/tlty7MKbI65nGb/5L7x8FiLEZ
-	 trFegEA7SOIy2qJ2oUDGbKZn2UsnPB61coGpOzRaEiWVmXmLQdpPCAwM3JZuSoqxhg
-	 1Gxxb1eUlUjWkPZ5PvaUap7PyuWWBh5P6lu4V4obRTi2XfJn1Bv4By4q2fjJ/3IMzZ
-	 nDo+EWy9TDxxRRlVxema8XVH9+Z8SG5yMfFDia+5BUYEDbpikZKgCod/Paepuucp1Q
-	 2aucm/MFeL8GA6tz0bg5dLULejYY8gvl7LFbm/XtcJKequQEcDmJGtiAXwxJBZsGnN
-	 Rnp/Z/IfcKQRw==
-Date: Mon, 2 Oct 2023 20:27:04 +0100
+	b=mTCg/LoAQIWzMEcNBiQE3bqpot0aKuijy6y3hhtsTP39ys8Rwn/9kCxVJ7ScY/s5q
+	 p5nwVXzvEP8J87qlAfTWxSxn9hWzbmsbEbgkVhyDF+pI8AYHgN8aJYaZ9ZcgLVRq3G
+	 HTU2NU//2/XcI2Jw8mGGYuCflfJXUZ6UgWWb2lt+ATGUpaHW/jz32NvV1wfbhPghSc
+	 NdTE/nPXlof1lqKW0Sth9jGSwRC62NbZS9A3mKeIka6tgTTlrATQxwTg7HrsoKVkYR
+	 ZX8SU8wd/Jx1g66GLLL8qz6ONEN0Viaxsk6NsHU/REuC7SKelc0tbh2/dWsVZJ/98e
+	 TtMPrVbGEn6vg==
+Date: Mon, 2 Oct 2023 20:28:29 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Cc: Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: phy: Convert PXA1928 USB/HSIC PHY to DT
- schema
-Message-ID: <20231002-lividly-cameo-d8f8b3a0d8e5@spud>
-References: <20231001-pxa1928-usb-yaml-v1-1-9309a8c0c03f@skole.hr>
- <20231002143619.GA1651295-robh@kernel.org>
- <4849448.GXAFRqVoOG@radijator>
+	Conor Dooley <conor+dt@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>, Da Xue <da.xue@libretech.co>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: amlogic: add libretech cottonwood
+ support
+Message-ID: <20231002-confront-footsore-f56df1d5781f@spud>
+References: <20231002141020.2403652-1-jbrunet@baylibre.com>
+ <20231002141020.2403652-2-jbrunet@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,42 +50,67 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="JfifZB+kbj7ENI+C"
+	protocol="application/pgp-signature"; boundary="SimhZxifrGJHd/f/"
 Content-Disposition: inline
-In-Reply-To: <4849448.GXAFRqVoOG@radijator>
+In-Reply-To: <20231002141020.2403652-2-jbrunet@baylibre.com>
 
 
---JfifZB+kbj7ENI+C
-Content-Type: text/plain; charset=utf-8
+--SimhZxifrGJHd/f/
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 02, 2023 at 04:55:08PM +0200, Duje Mihanovi=C4=87 wrote:
-> On Monday, October 2, 2023 4:36:19 PM CEST Rob Herring wrote:
-> > On Sun, Oct 01, 2023 at 03:05:43PM +0200, Duje Mihanovi=C4=87 wrote:
-> > > +maintainers:
-> > > +  - devicetree@vger.kernel.org
-> >=20
-> > No, should be someone with hardware or familar with it. I added this,
-> > but no longer have h/w or documentation. IMO, it should probably be
-> > removed.
+On Mon, Oct 02, 2023 at 04:10:19PM +0200, Jerome Brunet wrote:
+> Add compatibles for the Libretech cottonwood board family
 >=20
-> My samsung,coreprimevelte's PXA1908 uses this PHY, is it fine if I add my=
-self=20
-> there instead of the devicetree list?
+> Co-developed-by: Da Xue <da.xue@libretech.co>
+> Signed-off-by: Da Xue <da.xue@libretech.co>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 
-I would say, please do add yourself!
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---JfifZB+kbj7ENI+C
+Thanks,
+Conor.
+
+> ---
+>  Documentation/devicetree/bindings/arm/amlogic.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documen=
+tation/devicetree/bindings/arm/amlogic.yaml
+> index b7b0eda4164a..caab7ceeda45 100644
+> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
+> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> @@ -155,6 +155,7 @@ properties:
+>            - enum:
+>                - bananapi,bpi-m2s
+>                - khadas,vim3
+> +              - libretech,aml-a311d-cc
+>                - radxa,zero2
+>            - const: amlogic,a311d
+>            - const: amlogic,g12b
+> @@ -196,6 +197,7 @@ properties:
+>                - hardkernel,odroid-hc4
+>                - haochuangyi,h96-max
+>                - khadas,vim3l
+> +              - libretech,aml-s905d3-cc
+>                - seirobotics,sei610
+>            - const: amlogic,sm1
+> =20
+> --=20
+> 2.40.1
+>=20
+
+--SimhZxifrGJHd/f/
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRsZiAAKCRB4tDGHoIJi
-0pYRAP4h8UzkWugenlTljc1mHc6xiEIv6TodIDuceuZiVozMiwD/eAfn8S2aLBVn
-M4fP3xq30F7v6BjCzJ3ft3dU0b/Lhwo=
-=Zns+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRsZ3QAKCRB4tDGHoIJi
+0k1tAQCChJTIKr2OLLOiqbTzALOY6K7cO7F4Z1lKtxnGAyKePwD/U3Dkqeb0+IJA
+R/7fMwjIzviUEVaOQCLLHG1V9kDEKg8=
+=MQQl
 -----END PGP SIGNATURE-----
 
---JfifZB+kbj7ENI+C--
+--SimhZxifrGJHd/f/--
 
