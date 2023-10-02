@@ -1,174 +1,162 @@
-Return-Path: <devicetree+bounces-5102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EDA27B53AD
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 15:11:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7F807B53F8
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 15:32:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 048A42836F9
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 13:11:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 7F3F81C20980
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 13:32:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEBC718C11;
-	Mon,  2 Oct 2023 13:11:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77315199B4;
+	Mon,  2 Oct 2023 13:32:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C0F6179BF;
-	Mon,  2 Oct 2023 13:11:22 +0000 (UTC)
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2083.outbound.protection.outlook.com [40.107.21.83])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B897EB0;
-	Mon,  2 Oct 2023 06:11:17 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Y6K2IXUpNGg2j1r/iBl362B9zP212ecD0jgmoAlQWaya8mTg7Sww0xREtAERiAOszJRcU35w2I02i7TAYj1lyHTwJ48d0Sn5daDdPikkUGhPpJ9U0s108XWxtqQQPEDtBw1/qVxHojmrT7TYFDvLHkenYMpFOkDedeE5jGdm4OI8dpjHgksQRRLcDqWOzIVzEek+Eouyqh3USQoq6q8YP4XGJKEuv9jJkmjTuIl3s8LuoZBKQhG0S2M5XuoxJO1KwMAvA94Khe3toXVXtqDlCzefZI+5nBe2QO0kp0Ut0PNT+SIttOLIxzIWKe2wtJNSHuz1aalLdctwikw2CpBgww==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3VrFUZhFXyPR4hIjgtY0cHd2Mcjy3483MCHW9uouLYk=;
- b=G5VydtPYlauh5RTykETXWsSpTZyptROecOhFlJZQj33XOXcXcc+97yRXYMn70qL/t+Z0y6pH7k4fNdriyWtOOd4i31T5Z/PQeXRBpVO79oWf6Atfl6pvDYYOoFskXNRRJPZSqJ8Z6sNHkageU460vuWhezXU97lIJ9d/qkwRRqP+zTu+Is6L4L8UPBEUddNiG51AERA3Ke8V1fZBXb54+0hYKZFBAYzCGaBXpUaCeqFAzgFlAin/hc2Ea+GIcCAnAxoYPfjpqEbQbIe6m5KqG2ZeHsNFqlPCMIRaaxwnMA67ZkBQLHFX6ArM5E0PSiy0yi0IC4fjw2Qc3CDnlqLJGg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3VrFUZhFXyPR4hIjgtY0cHd2Mcjy3483MCHW9uouLYk=;
- b=fvbO47aXXH9ZRw9IIpx0S9SiJ9ATJIEfb+TlvX/JWnPiMLkIOPT/uFt7iPRYS16QHf/8rusvK6QXPapV6VcBCISrlM2XmOqKrt/e0JZ59X1fF7jxwOdd76qeIDvTMrPtd3M+MqeaLlf9rjh9SNXuGw2eg98uPCjZKpF6qW5dQjU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR04MB6452.eurprd04.prod.outlook.com (2603:10a6:208:16d::21)
- by AM8PR04MB7329.eurprd04.prod.outlook.com (2603:10a6:20b:1d0::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.37; Mon, 2 Oct
- 2023 13:11:14 +0000
-Received: from AM0PR04MB6452.eurprd04.prod.outlook.com
- ([fe80::568a:57ee:35b5:e454]) by AM0PR04MB6452.eurprd04.prod.outlook.com
- ([fe80::568a:57ee:35b5:e454%3]) with mapi id 15.20.6838.024; Mon, 2 Oct 2023
- 13:11:14 +0000
-Date: Mon, 2 Oct 2023 16:11:10 +0300
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: Simon Horman <horms@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Madalin Bucur <madalin.bucur@nxp.com>,
-	Ioana Ciornei <ioana.ciornei@nxp.com>,
-	Camelia Groza <camelia.groza@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E3EC179BF;
+	Mon,  2 Oct 2023 13:32:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF3F494;
+	Mon,  2 Oct 2023 06:32:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1696253553; x=1727789553;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=IAF3ppOCz/aKQLdQ1DG/jiVmbimLG/74kbOGxZWwpS8=;
+  b=JbhMa85JLfTKUbnBkegAt91KAyBCW7SYAHX4/QjGeElPRgVCT4C5xhvg
+   JOe2mv6Yl4Rh5Z30/67AQzrVb8YeVW4U2IGmJ6eZferMwGt8Q+hK4n368
+   krHRLFp90cNLuzuVGs62xRshSURGz5mWDTXAcSvzEFjFHXe/ODzzDJrFa
+   Ls5Fr6HS5AlEF2mhcdd+DYI+5z6zbiTHBAUnrnQxnlDyrYpnt/o+37IcS
+   IYtqoUcpZo8kq86DxgB3dpgvlUiuELcvrZZWiQNnd1HZ99JvpRJv0pd1B
+   C7FUcwgmGj+XoxrQJ6TrI5HlgT9vXh/KEjiR8pizmUOsL2l+GwH5QuxBk
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="379923423"
+X-IronPort-AV: E=Sophos;i="6.03,194,1694761200"; 
+   d="scan'208";a="379923423"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Oct 2023 06:26:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="754048987"
+X-IronPort-AV: E=Sophos;i="6.03,194,1694761200"; 
+   d="scan'208";a="754048987"
+Received: from black.fi.intel.com ([10.237.72.28])
+  by fmsmga007.fm.intel.com with ESMTP; 02 Oct 2023 06:26:42 -0700
+Received: by black.fi.intel.com (Postfix, from userid 1003)
+	id 216472FF; Mon,  2 Oct 2023 16:26:41 +0300 (EEST)
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Rob Herring <robh@kernel.org>,
+	linux-acpi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Len Brown <lenb@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor@kernel.org>,
-	Sean Anderson <sean.anderson@seco.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>
-Subject: Re: [RFC PATCH v2 net-next 03/15] phy: ethernet: add configuration
- interface for copper backplane Ethernet PHYs
-Message-ID: <20231002131110.4kjkinc2xyxtdwbv@skbuf>
-References: <20230923134904.3627402-1-vladimir.oltean@nxp.com>
- <20230923134904.3627402-4-vladimir.oltean@nxp.com>
- <20230928190536.GO24230@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230928190536.GO24230@kernel.org>
-X-ClientProxiedBy: VI1PR04CA0131.eurprd04.prod.outlook.com
- (2603:10a6:803:f0::29) To AM0PR04MB6452.eurprd04.prod.outlook.com
- (2603:10a6:208:16d::21)
+	Frank Rowand <frowand.list@gmail.com>,
+	Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH v2 1/2] amba: bus: balance firmware node reference counting
+Date: Mon,  2 Oct 2023 16:26:34 +0300
+Message-Id: <20231002132635.2595382-1-andriy.shevchenko@linux.intel.com>
+X-Mailer: git-send-email 2.40.0.1.gaa8946217a0b
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB6452:EE_|AM8PR04MB7329:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5290f201-f662-4de1-ce34-08dbc3490e6a
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
- kL8LOMOxs4IdNIDSHHW5Mqm/LNMpfileZ7mkdj4vD0XKpPTRCRAsGENwEa4qdPit2cGdaSdUjBIJPUEDryeq1gVj4ZGwfXJg3DSpygYdrAr8tMICujBd7W71UIiBTdO2UglV+4UpaGZ0iqBwhOv17Rcsuz/jBU4+ogSGx9hBmst1DYjzzhgy9LGTMbWCUY+c9XkaY6ahe0ruD4NJ4vrfiVqjDT1Ep9CbpVFmPRolXCvD/R14+9t1wIA/d/ox92RrdV5OdwZ7OAJ3IT/cL+29OCprMeJ3A56hMTvpp5gWZeMGSkoKvcJpWqKl8MWP077yybDMbp9Li5E6nYLf5pr6ctLjroAYnVQ4RkXWyo3EtI7JpipAdJmmH6WK6IJq5SBPWuc4Pg3r1hiswUJAhb4Ro9Tgv6N/oYrzDUUDhPu9VRlSBikmtIvT5gCYnLsWBG63In5ksRec1ZG0BzkR1j/7z7Bf3D007r7boIwlIJyKW77HhI8BkiKAWFneeRD+WvQx4cXadxNR3EgPN7t/BzQjmJssFIHayG+JeWARlCbnZyDbDHzi4v9H+RWXrbwndOxn
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6452.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(376002)(366004)(396003)(136003)(346002)(39860400002)(230922051799003)(64100799003)(451199024)(1800799009)(186009)(6506007)(6512007)(478600001)(86362001)(26005)(8936002)(38100700002)(1076003)(2906002)(7416002)(6666004)(9686003)(83380400001)(6486002)(44832011)(8676002)(4326008)(41300700001)(33716001)(316002)(6916009)(66946007)(66476007)(5660300002)(54906003)(66556008);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?85CkgoUJl32dgQ4hDhxKg/X6UIjXYgDuopLYKekGLrKF6oR+POOEeexH+8Jh?=
- =?us-ascii?Q?w1nFyhfjlQiOpSzT8WmyePnp+SlHNfWOyMeh/km1TfE69gPlI0HEH1KCfLFT?=
- =?us-ascii?Q?/JDwvDBDJK0S1rPg+Hl4XuU+gnq492zODbJXBcpGVI94nwZkO7izxJ+r9Whq?=
- =?us-ascii?Q?L3c2SnXboMjH+AOPaXQPNLGyVBVDF/Q9pXhQk20ADjmQBVkDPngCl1lpVOlb?=
- =?us-ascii?Q?w/6+yyOU/iIhhwyKV/x83mzIqZ+HuYVbifc2D5LIPCH3Nwdqqb+2pfQ5pLMP?=
- =?us-ascii?Q?VkvKDwdD6v7JzTTgXwVEFB1FjYf7aaTfmTe3/A3YpovYWte76oJ3h1pBxqe5?=
- =?us-ascii?Q?12Jf/RZyAwRMD8tyMtbXXyRWTZbgtKTnCH27gUUUR0zG9cWScFEQBqP1JDO9?=
- =?us-ascii?Q?gq8pJQOHF1AKTb7zx40sjDwbYYGjsGov8J9B4UH86yy+lbTKlxoyixQS5p7G?=
- =?us-ascii?Q?ZoShlDCwKnaypba/aRg80TGCUAB2Go/SFRcmuJdWEr9UHETbtynDcPrgZAeI?=
- =?us-ascii?Q?Oo8kY1RqIT/67FrI4Sn8rDtuv+oXt3TieVxef+/PU/NHsX+Q+Hm0qr3iBc3A?=
- =?us-ascii?Q?+y4vRsT48MFcbZsvBmY1Rj7tx5qOxLKQB88a1BPQG6n+nuyGGEfpnGA/s/7T?=
- =?us-ascii?Q?5rvJgeY5UxpZlTDTnL6pHn6P6sDmauTo4F1UE/Hmm7EnYSpqY2xubodOPnAR?=
- =?us-ascii?Q?x9wM1HbPXtImBOfqKsTWeyIZKx4St46oR06A6CE2iGp5RIxPDfQHBYanGE0e?=
- =?us-ascii?Q?4Njf2wlukznsuXBDSi488FJCfTq5wFRlXw3DwZ9W/NTdA0/BHvqw3tHQEhXH?=
- =?us-ascii?Q?OKwKiFiKi9CJ21UdSWHvDS8xc3u7Gnw6eOkRVmHwN8hoDaYI8Ye3TRJBzCxG?=
- =?us-ascii?Q?7oAFME30ilxwKg6gc7Q1iGigL1eNFj3lR9as6ASwcqNlkIiBQD5jRPhLqTXs?=
- =?us-ascii?Q?ptPKt3A814QFPWGoC2WmtpO0mrwp52fTJx7GGEwbZOufUnvkT8HOAYjmDIjc?=
- =?us-ascii?Q?MG+7d9v3oPMOSJCRJdrxEwOM3OreA39+rj78kwytnHgV1xnbggs3SfHmi8Cw?=
- =?us-ascii?Q?LX+Fe+gEyONYthfQkxWQ2dVwcP8sN2gM4Auya9QuMb1ufTxXfom0YAFXAs5Q?=
- =?us-ascii?Q?qjk1DDKT5ihEa9rRhdrv2qOyofZem4vzm2nw5dxTL29DB6ctUh0NRGNka6Vf?=
- =?us-ascii?Q?8ytjtHJjE83ceMy3wJVuR3B/iWapT8n2Pb+ajEfKaFkYAmrlZ15ldJDR4SYt?=
- =?us-ascii?Q?injjuBhL/sv+6dSeCixEjCDNZ8M9euBYX1dnnELudlBTf0TN9dIwZW59cl8h?=
- =?us-ascii?Q?s7n9GTJz0cOHL4QbjyBGx/gsOgqR+6IOWveI75TecEjTcvmnLT/rHsa/uDr3?=
- =?us-ascii?Q?48+CrafbbtHDQLYtDW6eDMqbZPduR6y5kJDvLV0Ls0QNxvFI2N0V0TE5iZ3v?=
- =?us-ascii?Q?9yXIPiy5HZA9y/+rqQW7wMdyJ/MIBXwXJ0G6LSg6j/QxOG3gZmpLKZUDhE5O?=
- =?us-ascii?Q?UVsb+zodHl1WazxtpelB0fDpoX+TsleTKvUnRVjY9JWhoLaO50S8vKCI4QaJ?=
- =?us-ascii?Q?mHuQZi0xUIMyrqNWybtWxta5EpNA+YYzBen5U0Skjxae7xv29UeLBITY/Dmi?=
- =?us-ascii?Q?Zw=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5290f201-f662-4de1-ce34-08dbc3490e6a
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6452.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2023 13:11:14.6376
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cVrGd9YchViSDDN36wGHWbkEMhACSUEcDw78aEqKgaHWUvBPKRt8Pk4TdZCAZFGCSXd7kD8YPXdjhC+Uws7OOw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7329
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Simon,
+Currently the ACPI code doesn't bump the reference count of
+the firmware node, while OF counter part does. Not that it's
+a problem right now, since ACPI doesn't really use the reference
+counting for firmware nodes, it still makes sense to make code
+robust against any changes done there. For this,
+ - switch ACPI case to use device_set_node() to be unified with OF
+ - move reference counting to amba_device_add()
+ - switch to use firmware nodes instead of OF ones
 
-On Thu, Sep 28, 2023 at 09:05:36PM +0200, Simon Horman wrote:
-> On Sat, Sep 23, 2023 at 04:48:52PM +0300, Vladimir Oltean wrote:
-> 
-> ...
-> 
-> > +/**
-> > + * coef_update_opposite - return the opposite of one C72 coefficient update
-> > + *			  request
-> > + *
-> > + * @update:	original coefficient update
-> > + *
-> > + * Helper to transform the update request of one equalization tap into a
-> > + * request of the same tap in the opposite direction. May be used by C72
-> > + * phy remote TX link training algorithms.
-> > + */
-> > +static inline enum coef_update coef_update_opposite(enum coef_update update)
-> 
-> Hi Vladimir,
-> 
-> another nit from me.
-> 
-> Please put the inline keyword first.
-> Likewise elsewhere in this patch.
-> 
-> Tooling, including gcc-13 with W=1, complains about this.
+In the result we will have reference counting done in the same module
+for all callers independently on the nature of firmware node behind.
 
-Thanks for pointing this out. I guess you are talking about the c72_coef_update_print()
-function, whose prototype is mistakenly "static void inline" instead of
-"static inline void". I cannot find the problem with the quoted coef_update_opposite().
+Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+---
+
+v2: fixed compilation error (LKP), all dependencies are in v6.6-rcX (Rob)
+
+ drivers/acpi/arm64/amba.c | 2 +-
+ drivers/amba/bus.c        | 5 ++++-
+ drivers/of/platform.c     | 2 +-
+ 3 files changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/acpi/arm64/amba.c b/drivers/acpi/arm64/amba.c
+index 60be8ee1dbdc..171b5c2c7edd 100644
+--- a/drivers/acpi/arm64/amba.c
++++ b/drivers/acpi/arm64/amba.c
+@@ -101,7 +101,7 @@ static int amba_handler_attach(struct acpi_device *adev,
+ 	if (parent)
+ 		dev->dev.parent = acpi_get_first_physical_node(parent);
+ 
+-	ACPI_COMPANION_SET(&dev->dev, adev);
++	device_set_node(&dev->dev, acpi_fwnode_handle(adev));
+ 
+ 	ret = amba_device_add(dev, &iomem_resource);
+ 	if (ret) {
+diff --git a/drivers/amba/bus.c b/drivers/amba/bus.c
+index 09e72967b8ab..a24c152bfaac 100644
+--- a/drivers/amba/bus.c
++++ b/drivers/amba/bus.c
+@@ -18,6 +18,7 @@
+ #include <linux/limits.h>
+ #include <linux/clk/clk-conf.h>
+ #include <linux/platform_device.h>
++#include <linux/property.h>
+ #include <linux/reset.h>
+ #include <linux/of_irq.h>
+ #include <linux/of_device.h>
+@@ -528,7 +529,7 @@ static void amba_device_release(struct device *dev)
+ {
+ 	struct amba_device *d = to_amba_device(dev);
+ 
+-	of_node_put(d->dev.of_node);
++	fwnode_handle_put(dev_fwnode(&d->dev));
+ 	if (d->res.parent)
+ 		release_resource(&d->res);
+ 	mutex_destroy(&d->periphid_lock);
+@@ -548,6 +549,8 @@ int amba_device_add(struct amba_device *dev, struct resource *parent)
+ {
+ 	int ret;
+ 
++	fwnode_handle_get(dev_fwnode(&dev->dev));
++
+ 	ret = request_resource(parent, &dev->res);
+ 	if (ret)
+ 		return ret;
+diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+index f235ab55b91e..126d265aa7d8 100644
+--- a/drivers/of/platform.c
++++ b/drivers/of/platform.c
+@@ -273,7 +273,7 @@ static struct amba_device *of_amba_device_create(struct device_node *node,
+ 	dev->dev.dma_mask = &dev->dev.coherent_dma_mask;
+ 
+ 	/* setup generic device info */
+-	device_set_node(&dev->dev, of_fwnode_handle(of_node_get(node)));
++	device_set_node(&dev->dev, of_fwnode_handle(node));
+ 	dev->dev.parent = parent ? : &platform_bus;
+ 	dev->dev.platform_data = platform_data;
+ 	if (bus_id)
+-- 
+2.40.0.1.gaa8946217a0b
+
 
