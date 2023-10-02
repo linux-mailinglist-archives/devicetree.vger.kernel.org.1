@@ -1,294 +1,212 @@
-Return-Path: <devicetree+bounces-5202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAF787B5973
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 19:51:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88C797B5977
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 19:54:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 5B6F4B20E00
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 17:51:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id DD7072832F5
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 17:54:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB7C61E532;
-	Mon,  2 Oct 2023 17:51:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A086E1E537;
+	Mon,  2 Oct 2023 17:54:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DFC51DA38
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 17:51:09 +0000 (UTC)
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01hn2240.outbound.protection.outlook.com [52.100.164.240])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FB6EE1;
-	Mon,  2 Oct 2023 10:51:05 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oPFGyhGmFlNLjjw0PtZzDxS/9UR5cOap0RrWGq3PNCR727X3ctjbbEIBmcgiPU+9GllOdwWq/3BVuw5xEUsoiiwUblxHEB8mXBnFeE9MTsmSgHVSLLiaQM4oIgCImVwqv+W6rVB7o+oOm9Kja+6XRvgR+OhHd9XPRw4X7hcmo3RjErA81zGnNcwpXr0pLXmXg0jhOe+bfc72+oXra0/5O8mal7PYL7yWlODKgWzrFbYQWNgVMBlrxIQg0yqumvDTTdeUgWkiT91hVoKa++gNqgSAjstkxl8Zj+qKH3zNJIeGi4SQUX2PAdgnTwZuya+XePm6cD28AN49uAxf/gYeEQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YNdCNyEyfuQDtFJE3Cjrvnh7+4h91mtJqxr4SvCDxU8=;
- b=aphAqqrW4VFfBH09RlRGKMQJKVDo65qHng7MFKwVHRURPA7BL6sCUTuFnf32YaFQ6TQLoKFs+qZmTrC2ixdvnR8DMyZtSYRX6WgNtMRDeQf+HY4lj2AV1AnKFb5F7pAsp/lkMEZMuT+3DqfTWhLY0wywNE/7MW9ZIziMCFUym1jIi3/2TN6WKNA7xku3k4dioS9CxmNu90uPELhx4ngdBQS8w9eA2dgPtyyff9INDdx9pVnalu9LdPfEFIbkL0N4qd80btz0NnSYbpS6pxvvj8TND6DtFZw/Ciiqr00mYjmDPYEsmoezse8XRnHZ40v3eps4zMtwM4sY0OQDWy4i2w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 175.98.123.7) smtp.rcpttodomain=antmicro.com smtp.mailfrom=nuvoton.com;
- dmarc=fail (p=none sp=quarantine pct=100) action=none header.from=gmail.com;
- dkim=none (message not signed); arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 528A21E523
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 17:54:12 +0000 (UTC)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5C56101
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 10:54:09 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9ad8bf9bfabso2404119066b.3
+        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 10:54:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=nuvoton.onmicrosoft.com; s=selector2-nuvoton-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YNdCNyEyfuQDtFJE3Cjrvnh7+4h91mtJqxr4SvCDxU8=;
- b=fRVO3goujv4a/QqVzN/gLslmlpXOuK5wM6KtzOPxgGIZ2uc4GOwfa81uIGe8qwr+KJcgtalf89nsop1XsTjDNtPIBnflF9M3QmdDXXyuR9Cf5esaZnojsRvG3UNwz1dgCZpOXmv9HnSHXcA9witBivHn6j3f5DRjYrXAmWi6hrg=
-Received: from SI2PR01CA0047.apcprd01.prod.exchangelabs.com
- (2603:1096:4:193::10) by SEZPR03MB8184.apcprd03.prod.outlook.com
- (2603:1096:101:19f::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Mon, 2 Oct
- 2023 17:51:00 +0000
-Received: from HK2PEPF00006FB2.apcprd02.prod.outlook.com
- (2603:1096:4:193:cafe::3b) by SI2PR01CA0047.outlook.office365.com
- (2603:1096:4:193::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.32 via Frontend
- Transport; Mon, 2 Oct 2023 17:50:59 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 175.98.123.7)
- smtp.mailfrom=nuvoton.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=gmail.com;
-Received-SPF: Pass (protection.outlook.com: domain of nuvoton.com designates
- 175.98.123.7 as permitted sender) receiver=protection.outlook.com;
- client-ip=175.98.123.7; helo=NTHCCAS04.nuvoton.com; pr=C
-Received: from NTHCCAS04.nuvoton.com (175.98.123.7) by
- HK2PEPF00006FB2.mail.protection.outlook.com (10.167.8.8) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
- 15.20.6838.22 via Frontend Transport; Mon, 2 Oct 2023 17:50:59 +0000
-Received: from NTHCCAS02.nuvoton.com (10.1.9.121) by NTHCCAS04.nuvoton.com
- (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.14; Tue, 3
- Oct 2023 01:50:57 +0800
-Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS02.nuvoton.com
- (10.1.9.121) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Tue, 3 Oct
- 2023 01:50:56 +0800
-Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS01.nuvoton.com
- (10.1.8.28) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Tue, 3 Oct 2023 01:50:56 +0800
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
-	id BBFDE64742; Mon,  2 Oct 2023 20:50:55 +0300 (IDT)
-From: Tomer Maimon <tmaimon77@gmail.com>
-To: <ulf.hansson@linaro.org>, <avifishman70@gmail.com>,
-	<tali.perry1@gmail.com>, <joel@jms.id.au>, <venture@google.com>,
-	<yuenn@google.com>, <benjaminfair@google.com>, <adrian.hunter@intel.com>,
-	<skhan@linuxfoundation.org>, <davidgow@google.com>, <pbrobinson@gmail.com>,
-	<gsomlo@gmail.com>, <briannorris@chromium.org>, <arnd@arndb.de>,
-	<krakoczy@antmicro.com>, <andy.shevchenko@gmail.com>
-CC: <openbmc@lists.ozlabs.org>, <linux-mmc@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Tomer Maimon
-	<tmaimon77@gmail.com>
-Subject: [PATCH v3 2/2] mmc: sdhci-npcm: Add NPCM SDHCI driver
-Date: Mon, 2 Oct 2023 20:50:52 +0300
-Message-ID: <20231002175052.112406-3-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20231002175052.112406-1-tmaimon77@gmail.com>
-References: <20231002175052.112406-1-tmaimon77@gmail.com>
+        d=chromium.org; s=google; t=1696269248; x=1696874048; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=TsD3ZHZijN9S1sfcV2n15VGsYEU63cv+c2MU+o+0ccc=;
+        b=hCohXojvHeopXE/R8GCPb3l8JenKcOrvA6MruOmeJY55F6clvMr6OV9fylmNDcV3hP
+         pIU7B4LuvkNC0JLdk4hww8juxlx0GYz/SBaUZCLNkKhmDYlFPOh/2ClWfUQ+hliY9c10
+         0A3fytBmOOcIouJxzmYu158tWJESEMkubpIf4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696269248; x=1696874048;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TsD3ZHZijN9S1sfcV2n15VGsYEU63cv+c2MU+o+0ccc=;
+        b=RFpQrmlFJz/gSX3kdlRRlBeE7ScyKZSDLnhSWRDHiT/xqdQj5lUaIVk7FVEk5DkRZK
+         kfqwITVYqZ7hyfFKUylIlJIkG/kDU4AngFCr10w001m5yyKSyXMJ+oh6QxxC70yj6UCb
+         /J6BxzMYHU9LJFM6sqNSeag1cHHI9b9zDCq+N5lNlyCL+8dkApfPaLbLNCL48rEx/QuH
+         tkEJdUMfBaqyTp5X0cVjzOV/5YYiw9kYeoaTpsqlHVpYAGC5nhDE+gIzxVWCOpXKldDH
+         0h0PqoJzNgT95iYX+Vv+7S8ZvKue2UtFmq/kyNyDW9zJadoNfen2aR5gQeqaZ/ofpJgm
+         wbLQ==
+X-Gm-Message-State: AOJu0Yydrv45iLcRU0jXrNOWfKUK1Nly9SDhrZu8APtAV2UoLPas/IHO
+	RXvBUC94zaZ646pEg7mZKmpkGwqr/0Ar12HCJfj/ytM72x55E0Owl7o=
+X-Google-Smtp-Source: AGHT+IEtCxySMkh42I2CvgUj5aqq7h5MglNyXJ6gmXIzyE5bAMfwobhiZlavHruHjwW8M3Pas9ZdXj3GPE0ymKFjY74=
+X-Received: by 2002:a17:906:19:b0:9a3:c4f4:12de with SMTP id
+ 25-20020a170906001900b009a3c4f412demr11349374eja.37.1696269247617; Mon, 02
+ Oct 2023 10:54:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NotSetDelaration: True
-X-EOPAttributedMessage: 0
-X-MS-Exchange-SkipListedInternetSender:
- ip=[175.98.123.7];domain=NTHCCAS04.nuvoton.com
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: HK2PEPF00006FB2:EE_|SEZPR03MB8184:EE_
-X-MS-Office365-Filtering-Correlation-Id: 493b3bc1-0c9a-49af-6aa5-08dbc37022e2
-X-MS-Exchange-SenderADCheck: 0
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Ntk3xqhcErfoMkyK/9L3bCLRm4E0dxVt4qAVcXjlZDQWZ6Ek020qRAQXaNiy?=
- =?us-ascii?Q?hocGFTTezJi0Fuu4/+M4aT8DXN+NpIx5Eulq+rA1ZZWcUGllqcqvXbL3JJ5p?=
- =?us-ascii?Q?PaTbzC6uV2IfW+hdzyQd8NRM5tgORIKR6SkckgPbe6BReaQaDqWsWKOImQCc?=
- =?us-ascii?Q?VtQoF0F0qLvJ5cupgzozzaD2bUh3GLDmA/+TFZumOicZR1dkwnnWtYYsGnY8?=
- =?us-ascii?Q?lDoBCjwUgEDq6XWEcJgslBHTvtaiFW14K2Zy2SuS/j5rfxBLKxwxZT/37kjz?=
- =?us-ascii?Q?fAzFuiIu2jIOqqn63WpIGxuH8IZbgPmcMppKzrJ8E4dyD/VFmgvwMKFfco7M?=
- =?us-ascii?Q?8PxWyN776mVV4N6odYqyjltnATi1r+eIvY8deyebrHaOxq+rc6A+CoaNgo+g?=
- =?us-ascii?Q?FZu2y4Z2PY41zrKumEiZy1lBv2HOx7Gh4bJSARFR0Xk02ES5QEo0Gibrvlob?=
- =?us-ascii?Q?KUP7c12jWFR1uwKJnItLHwPCIUYMRHQ0Ei9rYsbya7FlrMPTs6Sg24Q5b5oG?=
- =?us-ascii?Q?2woDKJuXhijxRbFI7vQbLgKREv9E4EJob1+ns5YelJch5db+PYBObVHX9Oyk?=
- =?us-ascii?Q?CutyQo/5CGz6qPF3V9eDupFFM5Arfpl0YXGfUtxkUsX8XTSoWhcc9yvESXzF?=
- =?us-ascii?Q?bf4jIAC/+Nx0pKf5/s+bkX0bX48qS9rSAlY96grxTQC+DyFRG2zoBXePC0cm?=
- =?us-ascii?Q?qK3hMP/fbb+sLXqj/HPbbT/9vb0sXZIEFmyx4BEUtvZ7fvYGu20QZ8yvy+V1?=
- =?us-ascii?Q?i1ZRl+U0SpYuZedV50IzdERJhSrLbiCvNGiJrBTOAz0a7IOL5BVgZhDNuBmo?=
- =?us-ascii?Q?4OnxRAfDKOrtgvSq0s+oOz0z57A3lh64LrS2Jg6C0OxE9wWqKsFRUtvOfaqg?=
- =?us-ascii?Q?+YdkziI4wyR50NdgAwiDCkZvn9hE5d3rlcTKY3tYt99G2/DDX3o/Y179jXAA?=
- =?us-ascii?Q?18ca9oqUQaun+6DhSuooJ1dVic+z7d6dfJjk1F+TbaM=3D?=
-X-Forefront-Antispam-Report:
-	CIP:175.98.123.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS04.nuvoton.com;PTR:175-98-123-7.static.tfn.net.tw;CAT:NONE;SFS:(13230031)(4636009)(346002)(396003)(39860400002)(376002)(136003)(230922051799003)(186009)(82310400011)(64100799003)(48200799006)(451199024)(61400799006)(5400799018)(36840700001)(46966006)(40470700004)(8676002)(34020700004)(42882007)(40460700003)(55446002)(76482006)(2906002)(6266002)(6666004)(81166007)(5660300002)(921005)(36756003)(73392003)(478600001)(82740400003)(47076005)(356005)(40480700001)(83170400001)(4326008)(8936002)(1076003)(2616005)(82202003)(36860700001)(41300700001)(336012)(110136005)(26005)(70206006)(54906003)(6636002)(7416002)(42186006)(316002)(70586007)(45356006)(35450700002)(84790400001)(12100799045);DIR:OUT;SFP:1501;
-X-OriginatorOrg: nuvoton.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2023 17:50:59.1605
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 493b3bc1-0c9a-49af-6aa5-08dbc37022e2
-X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[175.98.123.7];Helo=[NTHCCAS04.nuvoton.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	HK2PEPF00006FB2.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB8184
-X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+References: <20230926194242.2732127-1-sjg@chromium.org> <20230926194242.2732127-2-sjg@chromium.org>
+In-Reply-To: <20230926194242.2732127-2-sjg@chromium.org>
+From: Simon Glass <sjg@chromium.org>
+Date: Mon, 2 Oct 2023 11:53:56 -0600
+Message-ID: <CAPnjgZ0Xf3U1aj32LbU-xiU1AqwnM3JL1F8xX-wZ18oEmg+irw@mail.gmail.com>
+Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory usages
+To: devicetree@vger.kernel.org
+Cc: Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>, 
+	Lean Sheng Tan <sheng.tan@9elements.com>, lkml <linux-kernel@vger.kernel.org>, 
+	Dhaval Sharma <dhaval@rivosinc.com>, Maximilian Brune <maximilian.brune@9elements.com>, 
+	Yunhui Cui <cuiyunhui@bytedance.com>, Guo Dong <guo.dong@intel.com>, 
+	Tom Rini <trini@konsulko.com>, ron minnich <rminnich@gmail.com>, Gua Guo <gua.guo@intel.com>, 
+	Chiu Chasel <chasel.chiu@intel.com>, linux-acpi@vger.kernel.org, 
+	U-Boot Mailing List <u-boot@lists.denx.de>, Ard Biesheuvel <ardb@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
 	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add Nuvoton NPCM BMC sdhci-pltfm controller driver.
+Hi Rob,
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
----
- drivers/mmc/host/Kconfig      |  8 +++
- drivers/mmc/host/Makefile     |  1 +
- drivers/mmc/host/sdhci-npcm.c | 99 +++++++++++++++++++++++++++++++++++
- 3 files changed, 108 insertions(+)
- create mode 100644 drivers/mmc/host/sdhci-npcm.c
+On Tue, 26 Sept 2023 at 13:42, Simon Glass <sjg@chromium.org> wrote:
+>
+> It is common to split firmware into 'Platform Init', which does the
+> initial hardware setup and a "Payload" which selects the OS to be booted.
+> Thus an handover interface is required between these two pieces.
+>
+> Where UEFI boot-time services are not available, but UEFI firmware is
+> present on either side of this interface, information about memory usage
+> and attributes must be presented to the "Payload" in some form.
+>
+> This aims to provide an small schema addition for the memory mapping
+> needed to keep these two pieces working together well.
+>
+> Signed-off-by: Simon Glass <sjg@chromium.org>
+> ---
+>
+> Changes in v7:
+> - Rename acpi-reclaim to acpi
+> - Drop individual mention of when memory can be reclaimed
+> - Rewrite the item descriptions
+> - Add back the UEFI text (with trepidation)
 
-diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-index 554e67103c1a..3999d4fddc73 100644
---- a/drivers/mmc/host/Kconfig
-+++ b/drivers/mmc/host/Kconfig
-@@ -429,6 +429,14 @@ config MMC_SDHCI_IPROC
- 
- 	  If unsure, say N.
- 
-+config MMC_SDHCI_NPCM
-+	tristate "Secure Digital Host Controller Interface support for NPCM"
-+	depends on ARCH_NPCM || COMPILE_TEST
-+	depends on MMC_SDHCI_PLTFM
-+	help
-+	  This provides support for the SD/eMMC controller found in
-+	  NPCM BMC family SoCs.
-+
- config MMC_MESON_GX
- 	tristate "Amlogic S905/GX*/AXG SD/MMC Host Controller support"
- 	depends on ARCH_MESON|| COMPILE_TEST
-diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
-index a693fa3d3f1c..d0be4465f3ec 100644
---- a/drivers/mmc/host/Makefile
-+++ b/drivers/mmc/host/Makefile
-@@ -89,6 +89,7 @@ obj-$(CONFIG_MMC_SDHCI_OF_DWCMSHC)	+= sdhci-of-dwcmshc.o
- obj-$(CONFIG_MMC_SDHCI_OF_SPARX5)	+= sdhci-of-sparx5.o
- obj-$(CONFIG_MMC_SDHCI_BCM_KONA)	+= sdhci-bcm-kona.o
- obj-$(CONFIG_MMC_SDHCI_IPROC)		+= sdhci-iproc.o
-+obj-$(CONFIG_MMC_SDHCI_NPCM)		+= sdhci-npcm.o
- obj-$(CONFIG_MMC_SDHCI_MSM)		+= sdhci-msm.o
- obj-$(CONFIG_MMC_SDHCI_ST)		+= sdhci-st.o
- obj-$(CONFIG_MMC_SDHCI_MICROCHIP_PIC32)	+= sdhci-pic32.o
-diff --git a/drivers/mmc/host/sdhci-npcm.c b/drivers/mmc/host/sdhci-npcm.c
-new file mode 100644
-index 000000000000..59ccadb05aa2
---- /dev/null
-+++ b/drivers/mmc/host/sdhci-npcm.c
-@@ -0,0 +1,99 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * NPCM SDHC MMC host controller driver.
-+ *
-+ * Copyright (c) 2020 Nuvoton Technology corporation.
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/err.h>
-+#include <linux/io.h>
-+#include <linux/mmc/host.h>
-+#include <linux/mmc/mmc.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+
-+#include "sdhci-pltfm.h"
-+
-+static const struct sdhci_pltfm_data npcm7xx_sdhci_pdata = {
-+	.quirks  = SDHCI_QUIRK_DELAY_AFTER_POWER,
-+	.quirks2 = SDHCI_QUIRK2_STOP_WITH_TC |
-+		   SDHCI_QUIRK2_NO_1_8_V,
-+};
-+
-+static const struct sdhci_pltfm_data npcm8xx_sdhci_pdata = {
-+	.quirks  = SDHCI_QUIRK_DELAY_AFTER_POWER,
-+	.quirks2 = SDHCI_QUIRK2_STOP_WITH_TC,
-+};
-+
-+static int npcm_sdhci_probe(struct platform_device *pdev)
-+{
-+	const struct sdhci_pltfm_data *data;
-+	struct sdhci_pltfm_host *pltfm_host;
-+	struct device *dev = &pdev->dev;
-+	struct sdhci_host *host;
-+	u32 caps;
-+	int ret;
-+
-+	data = of_device_get_match_data(dev);
-+	if (!data)
-+		return -EINVAL;
-+
-+	host = sdhci_pltfm_init(pdev, data, 0);
-+	if (IS_ERR(host))
-+		return PTR_ERR(host);
-+
-+	pltfm_host = sdhci_priv(host);
-+
-+	pltfm_host->clk = devm_clk_get_optional(&pdev->dev, NULL);
-+	if (IS_ERR(pltfm_host->clk)) {
-+		ret = PTR_ERR(pltfm_host->clk);
-+		goto err_sdhci;
-+	}
-+
-+	ret = clk_prepare_enable(pltfm_host->clk);
-+	if (ret)
-+		goto err_sdhci;
-+
-+	caps = sdhci_readl(host, SDHCI_CAPABILITIES);
-+	if (caps & SDHCI_CAN_DO_8BIT)
-+		host->mmc->caps |= MMC_CAP_8_BIT_DATA;
-+
-+	ret = mmc_of_parse(host->mmc);
-+	if (ret)
-+		goto err_sdhci_clk;
-+
-+	ret = sdhci_add_host(host);
-+	if (ret)
-+		goto err_sdhci_clk;
-+
-+	return 0;
-+
-+err_sdhci_clk:
-+	clk_disable_unprepare(pltfm_host->clk);
-+err_sdhci:
-+	sdhci_pltfm_free(pdev);
-+	return ret;
-+}
-+
-+static const struct of_device_id npcm_sdhci_of_match[] = {
-+	{ .compatible = "nuvoton,npcm750-sdhci", .data = &npcm7xx_sdhci_pdata, },
-+	{ .compatible = "nuvoton,npcm845-sdhci", .data = &npcm8xx_sdhci_pdata, },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, npcm_sdhci_of_match);
-+
-+static struct platform_driver npcm_sdhci_driver = {
-+	.driver = {
-+		.name	= "npcm-sdhci",
-+		.of_match_table = npcm_sdhci_of_match,
-+		.pm	= &sdhci_pltfm_pmops,
-+	},
-+	.probe		= npcm_sdhci_probe,
-+	.remove_new	= sdhci_pltfm_remove,
-+};
-+module_platform_driver(npcm_sdhci_driver);
-+
-+MODULE_DESCRIPTION("NPCM Secure Digital Host Controller Interface driver");
-+MODULE_AUTHOR("Tomer Maimon <tomer.maimon@nuvoton.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.33.0
+I am again checking on this series. Can it be applied, please?
 
+
+>
+> Changes in v6:
+> - Drop mention of UEFI
+> - Use compatible strings instead of node names
+>
+> Changes in v5:
+> - Drop the memory-map node (should have done that in v4)
+> - Tidy up schema a bit
+>
+> Changes in v4:
+> - Make use of the reserved-memory node instead of creating a new one
+>
+> Changes in v3:
+> - Reword commit message again
+> - cc a lot more people, from the FFI patch
+> - Split out the attributes into the /memory nodes
+>
+> Changes in v2:
+> - Reword commit message
+>
+>  .../reserved-memory/common-reserved.yaml      | 71 +++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+>  create mode 100644 dtschema/schemas/reserved-memory/common-reserved.yaml
+>
+> diff --git a/dtschema/schemas/reserved-memory/common-reserved.yaml b/dtschema/schemas/reserved-memory/common-reserved.yaml
+> new file mode 100644
+> index 0000000..f7fbdfd
+> --- /dev/null
+> +++ b/dtschema/schemas/reserved-memory/common-reserved.yaml
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/reserved-memory/common-reserved.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Common memory reservations
+> +
+> +description: |
+> +  Specifies that the reserved memory region can be used for the purpose
+> +  indicated by its compatible string.
+> +
+> +  Clients may reuse this reserved memory if they understand what it is for,
+> +  subject to the notes below.
+> +
+> +maintainers:
+> +  - Simon Glass <sjg@chromium.org>
+> +
+> +allOf:
+> +  - $ref: reserved-memory.yaml
+> +
+> +properties:
+> +  compatible:
+> +    description: |
+> +      This describes some common memory reservations, with the compatible
+> +      string indicating what it is used for:
+> +
+> +         acpi: Advanced Configuration and Power Interface (ACPI) tables
+> +         acpi-nvs: ACPI Non-Volatile-Sleeping Memory (NVS). This is reserved by
+> +           the firmware for its use and is required to be saved and restored
+> +           across an NVS sleep
+> +         boot-code: Contains code used for booting which is not needed by the OS
+> +         boot-code: Contains data used for booting which is not needed by the OS
+> +         runtime-code: Contains code used for interacting with the system when
+> +           running the OS
+> +         runtime-data: Contains data used for interacting with the system when
+> +           running the OS
+> +
+> +    enum:
+> +      - acpi
+> +      - acpi-nvs
+> +      - boot-code
+> +      - boot-data
+> +      - runtime-code
+> +      - runtime-data
+> +
+> +  reg:
+> +    description: region of memory that is reserved for the purpose indicated
+> +      by the compatible string.
+> +
+> +required:
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    reserved-memory {
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +
+> +        reserved@12340000 {
+> +            compatible = "boot-code";
+> +            reg = <0x12340000 0x00800000>;
+> +        };
+> +
+> +        reserved@43210000 {
+> +            compatible = "boot-data";
+> +            reg = <0x43210000 0x00800000>;
+> +        };
+> +    };
+> --
+> 2.42.0.515.g380fc7ccd1-goog
+>
+
+Regards,
+Simon
 
