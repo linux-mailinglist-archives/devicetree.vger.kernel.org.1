@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-5256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC5507B5B4A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 21:30:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35BC47B5B4B
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 21:30:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 39D4CB20DD1
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 57B08282CD8
 	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 19:30:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BBF91F94E;
-	Mon,  2 Oct 2023 19:30:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 127AE1F953;
+	Mon,  2 Oct 2023 19:30:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E90CE1F946
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFAFB1F948
 	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 19:30:24 +0000 (UTC)
-Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 369D3B4
+Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90DF9BF
 	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 12:30:22 -0700 (PDT)
-Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-1e10507a4d6so61565fac.1
+Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-1e1a2e26afcso57925fac.1
         for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 12:30:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696275021; x=1696879821; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1696275022; x=1696879822; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9iDaa4X1Y5jbfjT705OCLqkQocAlwvZHx6AeV5vDqY4=;
-        b=ipuwDMeMPF5g/lo8U/jHCAMGIMXZ9kXlHQzQTWTwT7DwxbVqEcWfSRylwR3ztqdle4
-         D5fpLQmwf2FLGLz7Ju4iEeT9AGKEyy0YNpwt0HlJQ210S3iMsj+VDFI82cMpnSDn5PpG
-         nOrq3Ij3q7kVTB+TNkwk680yNpJEpQCIwlnw1FI8HJLoAEbCTD54NN3tHL4Hq3sdG2rd
-         ehFoxDeF1ichC7EsSaEDkRESCxzhLZGWeZE/oNuBMWjaNWqePEpdvSwOH9z1Q5Dd5mGh
-         oty8Dfklxj65sHxml4Cn3RTzYxg1XOiDDJpIy03nhmI5bfwTrSlouBv+B5uTVc2HwjXY
-         cBLQ==
+        bh=3jHvZe6aosJuHasAj0ipH38kAgmnBv9GPeYuxoWs7zI=;
+        b=Bx+5fboPc/uHIw+oY73mz16A4upNlLwAf43gf/B1rnSrjHfpQ76l1vLwg5Cqp59PPi
+         vjGd9J1mTmymhuDA4o/c5DBkUdX/Gms6n0vKBtwLARw3+gcI1JsbDWwjho+5cv8RMwMZ
+         T6jI8NzvysP9YLpYTg454j9t0DjEka1AB4hKm5ochK55ZutqPMBs9yMnaEr6yuvY7SrV
+         HBCLMED1cdflBLTt95kuhWY+zS8DH/ESGsJy8hLMahGJXD7tSy+czD5etyEbwHKraGId
+         vUUARMxhbuAfcJL1MhjYjew3HtG9nBazfGHIERNTB/Pko73O5ZLyQm86zt4emW7pfGg1
+         katg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696275021; x=1696879821;
+        d=1e100.net; s=20230601; t=1696275022; x=1696879822;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9iDaa4X1Y5jbfjT705OCLqkQocAlwvZHx6AeV5vDqY4=;
-        b=Nm7wzcxkmbcEVgDATgRi+lrCkbgILEX7/SQjgH6mtVS2PwXG91lkeTf/6LOVHyL3ih
-         3t9pU/x7pBIsuWsJKRzW+jrsjlz6+ZnOwxBvxUD0Vuq96QIcL0QyCD7tmk1FRDYVC4kb
-         3ZWGNkYS2HNb8v4mTy59z84Z8exty4HytSq2IMoDSnmn/BxUT3tma920EsO6tl/dB3cq
-         c3lpfzoe6GXihXyrbPshiU/JHG2qtIUD62lYhYXtKg7fzrMti5q2iC9sQ0uox1y9UByE
-         4/L/JSVj/eJnba7w6M6l+zyzimHptgsnq8DsXC/nMoPO9BwRybmgIglW0DRkh63TUPSe
-         DI2g==
-X-Gm-Message-State: AOJu0YzZCTFDkgX+8AIUQyhPK8If8tn5Ag/p2vNY1jaxP8Hh1AqV24Wa
-	8C6MK13y29XKog7OrFIQ68ckBDMg51s=
-X-Google-Smtp-Source: AGHT+IFQ14kyhnh9jyNXU1XNyvfZ+NtqgSeetcqSg/d4XXhYF/3quwOPM/3WxnwJ+k+UEdPTTre9rQ==
-X-Received: by 2002:a05:6870:a10d:b0:1be:d3a1:fd9 with SMTP id m13-20020a056870a10d00b001bed3a10fd9mr15934272oae.9.1696275021208;
+        bh=3jHvZe6aosJuHasAj0ipH38kAgmnBv9GPeYuxoWs7zI=;
+        b=QH3er43SBop+GORHGKb9/1CRSXhCvhwrSadW3in3gNgUX2yjGoOHmCxCOibSH1dOPE
+         OCLAhiRDIPZq9EWz6E9knnafV1HtdQ31wM3s5PvhSjyAHdl/03yWXt3i0VQAdYSyt7a+
+         u0RAc6hJFDqhdb5FMgYq7HzHg1+ma5fcfAD3ExV973PIuhj6lKe1gfrvgD7rASVLfDIs
+         omRnY1DOWoYi61S2iDQVXTXV1KkeuWgmeGrdbJU63GT9PCbHl1WsJgdGTSKUaA1ouPJb
+         pCuJhMeuiy1Wybh/LuWCHu30c9j+hEvnTc/Pl5Kfkv2dZPQ/eCZCKASJ0Rrz3DMC2P7c
+         e0Pg==
+X-Gm-Message-State: AOJu0YzXjLFGQxhIAv0PVhbtx9WsuslwpjTo4UwDPZlPYoWxWLGx+58Y
+	ATIy8Qhra+WpiEE920zK7hqWfdtd2ZY=
+X-Google-Smtp-Source: AGHT+IEkqL6FTSuOMDJWac6sXEEHotCWHKEG4suprh91GcPG0WolwrnoAp7zBJ43Mtswbigkp1sdCQ==
+X-Received: by 2002:a05:6870:2102:b0:1d0:f5bd:6cf with SMTP id f2-20020a056870210200b001d0f5bd06cfmr14611000oae.43.1696275021683;
         Mon, 02 Oct 2023 12:30:21 -0700 (PDT)
 Received: from localhost.localdomain ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id ep35-20020a056870a9a300b001dc8b2f06a1sm4846398oab.55.2023.10.02.12.30.20
+        by smtp.gmail.com with ESMTPSA id ep35-20020a056870a9a300b001dc8b2f06a1sm4846398oab.55.2023.10.02.12.30.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Mon, 02 Oct 2023 12:30:21 -0700 (PDT)
 From: Chris Morgan <macroalpha82@gmail.com>
@@ -65,9 +65,9 @@ Cc: dri-devel@lists.freedesktop.org,
 	sam@ravnborg.org,
 	neil.armstrong@linaro.org,
 	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH V3 1/2] dt-bindings: display: newvision,nv3051d: Add Anbernic 351V
-Date: Mon,  2 Oct 2023 14:30:15 -0500
-Message-Id: <20231002193016.139452-2-macroalpha82@gmail.com>
+Subject: [PATCH V3 2/2] drm/panel: nv3051d: Add Support for Anbernic 351V
+Date: Mon,  2 Oct 2023 14:30:16 -0500
+Message-Id: <20231002193016.139452-3-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231002193016.139452-1-macroalpha82@gmail.com>
 References: <20231002193016.139452-1-macroalpha82@gmail.com>
@@ -87,38 +87,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Document the Anbernic RG351V panel, which is identical to the panel
-used in their 353 series except for in inclusion of an additional DSI
-format flag.
+Add support for the Anbernic 351V. Just like the 353 series the
+underlying vendor is unknown/unmarked (at least not visible in a
+non-destructive manner). The panel had slightly different init
+sequences and timings in the BSP kernel, but works fine with the
+same ones used in the existing driver. The panel will not work without
+the inclusion of the MIPI_DSI_CLOCK_NON_CONTINUOUS flag, and this flag
+prevents the 353 series from working correctly, so a new compatible
+string is added.
+
+Tested colors and timings using modetest and all seem to work identical
+to the 353 otherwise.
 
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 ---
- .../devicetree/bindings/display/panel/newvision,nv3051d.yaml | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/panel/panel-newvision-nv3051d.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
-index 116c1b6030a2..cce775a87f87 100644
---- a/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
-@@ -7,9 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: NewVision NV3051D based LCD panel
+diff --git a/drivers/gpu/drm/panel/panel-newvision-nv3051d.c b/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
+index ad98dd9322b4..f644dbc8ee8a 100644
+--- a/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
++++ b/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
+@@ -354,6 +354,7 @@ static const struct drm_panel_funcs panel_nv3051d_funcs = {
+ static int panel_nv3051d_probe(struct mipi_dsi_device *dsi)
+ {
+ 	struct device *dev = &dsi->dev;
++	struct device_node *np = dev->of_node;
+ 	struct panel_nv3051d *ctx;
+ 	int ret;
  
- description: |
--  The NewVision NV3051D is a driver chip used to drive DSI panels. For now,
--  this driver only supports the 640x480 panels found in the Anbernic RG353
--  based devices.
-+  The NewVision NV3051D is a driver chip used to drive DSI panels.
+@@ -388,6 +389,13 @@ static int panel_nv3051d_probe(struct mipi_dsi_device *dsi)
+ 	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
+ 			  MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_NO_EOT_PACKET;
  
- maintainers:
-   - Chris Morgan <macromorgan@hotmail.com>
-@@ -21,6 +19,7 @@ properties:
-   compatible:
-     items:
-       - enum:
-+          - anbernic,rg351v-panel
-           - anbernic,rg353p-panel
-           - anbernic,rg353v-panel
-       - const: newvision,nv3051d
++	/*
++	 * The panel in the RG351V is identical to the 353P, except it
++	 * requires MIPI_DSI_CLOCK_NON_CONTINUOUS to operate correctly.
++	 */
++	if (of_device_is_compatible(np, "anbernic,rg351v-panel"))
++		dsi->mode_flags |= MIPI_DSI_CLOCK_NON_CONTINUOUS;
++
+ 	drm_panel_init(&ctx->panel, &dsi->dev, &panel_nv3051d_funcs,
+ 		       DRM_MODE_CONNECTOR_DSI);
+ 
 -- 
 2.34.1
 
