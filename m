@@ -1,384 +1,153 @@
-Return-Path: <devicetree+bounces-5106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77BD47B543B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 15:47:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 978997B544C
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 15:49:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 7B0331C20866
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 13:47:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id E68CDB209B9
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 13:49:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 972FF199B2;
-	Mon,  2 Oct 2023 13:47:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ED02199BC;
+	Mon,  2 Oct 2023 13:49:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94A8E2106
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 13:47:23 +0000 (UTC)
-Received: from mx0b-00128a01.pphosted.com (mx0b-00128a01.pphosted.com [148.163.139.77])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACDDA9E;
-	Mon,  2 Oct 2023 06:47:21 -0700 (PDT)
-Received: from pps.filterd (m0167090.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 392D155w027436;
-	Mon, 2 Oct 2023 09:46:57 -0400
-Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2043.outbound.protection.outlook.com [104.47.66.43])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 3tf173p1s3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 02 Oct 2023 09:46:57 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GFsKxbTdSKc6NuFx7Ls2UMeJ264YTmAntoYvB5zzQPo7eVH238yXMFHIelh/6Y7Ih9jfHZGTqknN9HNajFL50on2ksxjvdAx9sJ2ARldXg3E3thFJvVBllOApA24KqkpoCfHaWctyvLNC7ae9c5NfIewlJc20dmfTiDPmEojN1lytSDiJSoPv0fST6L+MRplTTYD756AJxrgqRGLd78qyStw1KsyzGf8M5+ilMwlivjYK/KTBP/coYR4b23kivBfYimyekFdmFL/I8llMmIw8swiZ+5yQ2nCsJrIopqdh7rn9B0Z7t4bnm/DoQI2DdP6SUln7vu7C8wGQ78Y/38pvQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=J8aEZcv02SFjVt7ogqapx+RI7Xm8ZPWY1e7xx6Nli9E=;
- b=L/QWzI/t70PBwA8vmx8txCWRZ3VFxeGmjJLOvYqjawq6ARVXMflSw2Y9KEEg6tO0tR1Ur5qWGGoRipHyGnchF4iUZgAUZoRNgNGbKlM8l67u9G/+XK5ojuYQcC6Z4GRD+CR3e1+i7f7s5m14+9HJTjj/KQowOzC0XDNaNPD9Sp35DeZzIGE8uBbfZSlsAmBKfxdYCaPmuExbkIv2PTrz4vtljQ5cKUsOJfj3SjFT2FkBm7bCBUsFgWNks1pClpxTyEuKhnOCmhfEg9vWuh8UjHvx7AQCYQfwcPkebW6W57XCfiZIGaD5UzHIeR+H/lE5KH4NGR6YgDKCmRymnFCKDQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
- dkim=pass header.d=analog.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58FDEAC5
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 13:49:19 +0000 (UTC)
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2483B0
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 06:49:16 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9b27bc8b65eso1691813566b.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 06:49:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=J8aEZcv02SFjVt7ogqapx+RI7Xm8ZPWY1e7xx6Nli9E=;
- b=0dmlrWbwS4VOVYPWfDHM9rJbB36KBTG7JNg6hJ7WoofRTmnmIAKf+0brqCon2A+AyzfOhcwLxVfJeichj67pNgHSlA34kQJHou5I9pKzkmoEZkns65alpBmJf4nMyaaF/mzuV/pf7wUlCYU+ctT13+Rse0KAwsLAxlZBsv4SMKI=
-Received: from CY4PR03MB3399.namprd03.prod.outlook.com (2603:10b6:910:57::13)
- by CH2PR03MB5206.namprd03.prod.outlook.com (2603:10b6:610:a3::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.30; Mon, 2 Oct
- 2023 13:46:54 +0000
-Received: from CY4PR03MB3399.namprd03.prod.outlook.com
- ([fe80::ed02:8279:265d:e00f]) by CY4PR03MB3399.namprd03.prod.outlook.com
- ([fe80::ed02:8279:265d:e00f%4]) with mapi id 15.20.6813.027; Mon, 2 Oct 2023
- 13:46:53 +0000
-From: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
-        Rob
- Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        "linux-hwmon@vger.kernel.org"
-	<linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "linux-doc@vger.kernel.org"
-	<linux-doc@vger.kernel.org>
-Subject: RE: [PATCH v2 1/2] dt-bindings: hwmon: ltc2991: add bindings
-Thread-Topic: [PATCH v2 1/2] dt-bindings: hwmon: ltc2991: add bindings
-Thread-Index: AQHZ9RneaXApFz9wS0W13c9REV1TnrA2dqyAgAALTVA=
-Date: Mon, 2 Oct 2023 13:46:53 +0000
-Message-ID: 
- <CY4PR03MB33990FB22E1BB8686AC0CF509BC5A@CY4PR03MB3399.namprd03.prod.outlook.com>
-References: <20231002101835.39624-1-antoniu.miclaus@analog.com>
- <20231002-babbling-justice-73d3601a71aa@spud>
-In-Reply-To: <20231002-babbling-justice-73d3601a71aa@spud>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-dg-ref: 
- =?iso-8859-2?Q?PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNcYW1pY2xhdX?=
- =?iso-8859-2?Q?NcYXBwZGF0YVxyb2FtaW5nXDA5ZDg0OWI2LTMyZDMtNGE0MC04NWVlLTZi?=
- =?iso-8859-2?Q?ODRiYTI5ZTM1Ylxtc2dzXG1zZy0yMzAyNzE3OS02MTJhLTExZWUtYWU1YS?=
- =?iso-8859-2?Q?1kNDgxZDc1MDZkZGVcYW1lLXRlc3RcMjMwMjcxN2ItNjEyYS0xMWVlLWFl?=
- =?iso-8859-2?Q?NWEtZDQ4MWQ3NTA2ZGRlYm9keS50eHQiIHN6PSI2MDA5IiB0PSIxMzM0MD?=
- =?iso-8859-2?Q?cyODAxMDkyMjgxOTgiIGg9IlhJeFpUNS90ZlZHN3pEV1I1UENGMUJoYUIy?=
- =?iso-8859-2?Q?QT0iIGlkPSIiIGJsPSIwIiBibz0iMSIgY2k9ImNBQUFBRVJIVTFSU1JVRk?=
- =?iso-8859-2?Q?5DZ1VBQUVvQ0FBQ21rRnpsTnZYWkFRaHUvZ1hKVVBrSENHNytCY2xRK1Fj?=
- =?iso-8859-2?Q?REFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFIQUFBQURhQVFBQUFBQUFBQU?=
- =?iso-8859-2?Q?FBQUFBQUFBQUFBQUFBQUFFQUFRQUJBQUFBRU9wbE9nQUFBQUFBQUFBQUFB?=
- =?iso-8859-2?Q?QUFBSjRBQUFCaEFHUUFhUUJmQUhNQVpRQmpBSFVBY2dCbEFGOEFjQUJ5QU?=
- =?iso-8859-2?Q?c4QWFnQmxBR01BZEFCekFGOEFaZ0JoQUd3QWN3QmxBRjhBWmdCdkFITUFh?=
- =?iso-8859-2?Q?UUIwQUdrQWRnQmxBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU?=
- =?iso-8859-2?Q?FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?iso-8859-2?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUVBQUFBQUFBQUFBZ0FBQUFBQW5nQU?=
- =?iso-8859-2?Q?FBR0VBWkFCcEFGOEFjd0JsQUdNQWRRQnlBR1VBWHdCd0FISUFid0JxQUdV?=
- =?iso-8859-2?Q?QVl3QjBBSE1BWHdCMEFHa0FaUUJ5QURFQUFBQUFBQUFBQUFBQUFBQUFBQU?=
- =?iso-8859-2?Q?FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?iso-8859-2?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU?=
- =?iso-8859-2?Q?FBQUFBQUFBQUFBQUFBQUFRQUFBQUFBQUFBQ0FBQUFBQUNlQUFBQVlRQmtB?=
- =?iso-8859-2?Q?R2tBWHdCekFHVUFZd0IxQUhJQVpRQmZBSEFBY2dCdkFHb0FaUUJqQUhRQW?=
- =?iso-8859-2?Q?N3QmZBSFFBYVFCbEFISUFNZ0FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?iso-8859-2?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU?=
- =?iso-8859-2?Q?FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?iso-8859-2?Q?QUFBQUFBQUFCQUFBQUFBQUFBQUlBQUFBQUFBPT0iLz48L21ldGE+?=
-x-dg-rorf: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY4PR03MB3399:EE_|CH2PR03MB5206:EE_
-x-ms-office365-filtering-correlation-id: 6704a007-650b-4005-a7c3-08dbc34e0999
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- 3oVCuqlKbNBzqUS+DaYnYee+ylJpjtBje40GomP84xGWtjCgFpxEfKPLKK7xe/VtpwHHf41M5AbC+FixlB+y47z9Sj1McpwAgqGUeUKOE0Pl+C1HLPBTuvnLasEpEvCHrOSqrirNIjDQKdNbUB44ChRsfOiaNV/QCUtgECEtGgnLlro3dQcq4EN5PdZhEAoea3nhZb/RgKSg/8yslKMkEMup2LEjOK5Q5tJiVSEGhInSVb8VfGbym8DX3dO8LQxW0tRT6/q5AZVTPrraRDTX7P+i3+CJZGPb6IjBPk2ZIOcVddyqw0swpiDhxbDYyL1MltYYMeQNSx4pUgMSHvWH6yYP/EMqyvBzvSX6gnnECq8S1SjlI4LjviyeKuQt2Q2RSv6dQABtTGKN5+/p1IQi/rVcIxP1X5APQU5q59/Wxx8N6b9HENPeaLBuHthwjuzVgRv1rPKo4qiLgCge8aeWMgOIsmRe2MTlqhDEvB7A5nGdkmMgA+eMGau2GeC4c2Ce7Zwtgn8k/MBbYR/Vk1V4k4avSWesGWanpe8ZxQGhLzSD5T/vjmVgFmzIvVdEZ8Qps0e7KhwwZVxX7HI5dphN8n7gBOWwHBbyzbHzyzmM/jY=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY4PR03MB3399.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(366004)(136003)(39860400002)(346002)(396003)(230922051799003)(64100799003)(186009)(1800799009)(451199024)(9686003)(26005)(38070700005)(122000001)(33656002)(86362001)(38100700002)(83380400001)(55016003)(66556008)(66446008)(66476007)(478600001)(7416002)(76116006)(316002)(6916009)(64756008)(54906003)(5660300002)(66946007)(52536014)(966005)(8676002)(8936002)(4326008)(7696005)(6506007)(41300700001)(53546011)(71200400001)(2906002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-2?Q?BMWbaU77BOg2IXgD17ZwBLIHmMnVdiPbDTT/wm0JmixKq9jmhmEjy//hgI?=
- =?iso-8859-2?Q?q9r3yb/qmY1PetBJqfpS7P21c3ZHp2Ksjld2h9oiXnzxA47KuQuByFUZaK?=
- =?iso-8859-2?Q?8V2Ysxx1rz/sRw8GjVrD6STYSnwvWQBOWGxq3JMXFiKvcwdFCxdI8A4u/C?=
- =?iso-8859-2?Q?AcbXQvQvmkUkjGPnK85Fx7dn8jhnyv2PEyyW02BfBNUXHZW6AKc28yw59P?=
- =?iso-8859-2?Q?alE3qo7LVmDwQeggS0ATni3Y7PpiW7lY8HxNwRQdpoB9+KLxLgt2DMzRhm?=
- =?iso-8859-2?Q?f44bxx7ziyxU+MIN4b7irgA8dujPheAcTOy+r1DpIzd7fQJC4hj2asT2Ia?=
- =?iso-8859-2?Q?GDlOlq373sp1f/MB+vacdYwMAUWB3zmxJu9y+htca78tJu94KzV4RWxAbI?=
- =?iso-8859-2?Q?BqLaJdu9+XhHPIwGg9cDRu+7wqUrEqPQlEr2zs/Ik2yeTvdhTEpsIfr3ET?=
- =?iso-8859-2?Q?ZYawHWsf6v3sF0fQkZilYRIYVitMbclwH4QBdOxMpemEMRREJCsyjDs6gf?=
- =?iso-8859-2?Q?me9CHw8elkpIKCj+6AqEB5FR8O/DtLi1b1vJrQMLIe2I44p4IXJqRmd9XR?=
- =?iso-8859-2?Q?8RXv6c0X6zSBWzQ4YxEt+4eHrZuUWb/esEBpBfmdHjK4NgUxVnoERBqjzy?=
- =?iso-8859-2?Q?yFayYsNzndbIj6OuE+mb8bcN+zC8sF7TNOufHRKADTejHLJgbn7YcevsyK?=
- =?iso-8859-2?Q?lxclaHeR9G3800JRPU2/nbU6MPSwTAl4jxXj2ZKhhoEtsJ8GoE52cdzUnH?=
- =?iso-8859-2?Q?BfiR77SJ0m4Uo4kbPjgOYgyYyjGM65BU8HoLLLxU5bC0TtKHpD7Oeqvv4T?=
- =?iso-8859-2?Q?QMx5/ZT/MLjXd9/8EoU5YvgcSH+gSgRaaDBnAIbI3FqkfU6MQMEYxZw4u2?=
- =?iso-8859-2?Q?P4K5YGAa4L9ZmKEz9nEm89jLrBtDJ67OPBp9cgfJlIOLyuwaKC9m8GHXud?=
- =?iso-8859-2?Q?nQrqWoPShqPo0rOEH3DQcrPqMT3RKf8v2wfXoTIHr0NZ2hduMjVI2e+JXV?=
- =?iso-8859-2?Q?Jukg+yyRTbeNBfjcC9YmOhfw/Nlsjj9XCGPrroHQQlTtcXAvGx9fTsSIE9?=
- =?iso-8859-2?Q?lqYZlXSDiKl6dpcbFl4Uhqv+3lIXGtdzdb8HKWfOx5zspWKOZEpX871kLB?=
- =?iso-8859-2?Q?El5fz/nxF89SjQmdNy3HsJNHF/46lAzKSSpdyvgbI5MZsChGY9QuCD1YWe?=
- =?iso-8859-2?Q?BYvwu4Vg0aCvflNMd6GpA1Xi5NW5wc2ykUoyMQLLBsmts/r1G5eAs24Ln0?=
- =?iso-8859-2?Q?Ipp8U9XicRDGcgZWu+mmckeitCsS86P4OJjWGcqxPFf1Zt9AilWXNsJGEf?=
- =?iso-8859-2?Q?9QsDK3IBhXRA2Je02DPePzn+A7IBQU6dyafqYEk/mgck6vTWIo0Ya+7PiO?=
- =?iso-8859-2?Q?CNUMWJKfLgSm0ic02yiqiNwEXByxZHuIwMcJlRM+LPib7XMjvgT+2TFiNS?=
- =?iso-8859-2?Q?4oO8aB9btlL0pzD4Q7ZoEU/FL5LnPalXvy557VvPy5/86pNfSDxwGw1x1V?=
- =?iso-8859-2?Q?ZyPmQ1AE9HdAB8lHGKtu59hAOVIedxc2my+C5LiOGwTshTjbQM2+ITJzQP?=
- =?iso-8859-2?Q?1BYOTAhRf3ovXEomtax653WBmwIZ4moTZju23rDDxxDxpok5adJpgQ7xLo?=
- =?iso-8859-2?Q?h+a2FxIu4yBRMIzbhB55/EW2ZXMdJIait4OqexNuckjQPIP32iadoyKw?=
- =?iso-8859-2?Q?=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+        d=linaro.org; s=google; t=1696254555; x=1696859355; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xty2hjrI0rUBwt6hciFpO785hSratICpEH6GmITOrmY=;
+        b=nPWvEbWi24k3iMR8R3oNeK4iqMOQupp8pTY55DrOmqycxcb3cS2gknlMQH6l6mYjgH
+         N380taxuo6eoP1qiDbofBFRDysilmnuZLYmxbEqJTfn+YLLDpWDFJ19m52M5G5XKREq7
+         DRyGCNrEkA/y57dqd5aHH7zJq3QfJHYHtyJ2183ZanZPMmnvnTa+utcDedebpy7/0st4
+         qqQn5W2CTjfxZI/BxmLIhVT4MoowuXOQfLbEHHPi6DUewrqUtH2xsHKPGmJsoKEkAVhb
+         IueyTikHEN0SyG/+/3M7LnkgKbXTPMyL8cHkSXvFus3NpoYiHeyB9JZ5PwDVZGdBWRbA
+         PVAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696254555; x=1696859355;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Xty2hjrI0rUBwt6hciFpO785hSratICpEH6GmITOrmY=;
+        b=X1Li8V7o+lubPRZ0hsA2E2OYri70cDC4uSZ27ia/hkDfliNu03Y63f47yi1MPtL78+
+         IvcnmbqeeiXjIgQjJEvvOPl2MZPKSrI7zB3Z/SZd/VFjXkGnnkbfZBDHVB62dVk3cOw8
+         eluUL/nByT5eLtEYqkbjeGZkmA75dPrsq3p0ErjVFDmM7xhOQMPBp5DxINrBFZ77q2lv
+         UqV8OAVo3mAF9C5PkJ7/vYUZkVp+y7WqnJbeT+Irm0YeYs84XCV9cRgzzhcTn0JlfNef
+         BSZj1FtyoCRMURNdmhZS1iyj/Vx4LNd3PZMV6oBrvuWlolk/ysPxJh7FCbud3/yrXxbn
+         jlpg==
+X-Gm-Message-State: AOJu0YyLATQP+B/0A1W80DW457uCMezzOzmliWWcuI+uANIpJGCi8C7Q
+	9MmO+Q8AAM4Blc5pPKQ0sgtCbg==
+X-Google-Smtp-Source: AGHT+IETS5hDzPJJ8t+72ICyq1R9SLNSuaLJXKC/3tvPE/8bRhg8x7jridIpwkTKhuCdTCrqni9G+w==
+X-Received: by 2002:a17:907:770d:b0:9ae:5370:81d5 with SMTP id kw13-20020a170907770d00b009ae537081d5mr10086083ejc.41.1696254555327;
+        Mon, 02 Oct 2023 06:49:15 -0700 (PDT)
+Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
+        by smtp.gmail.com with ESMTPSA id h13-20020a170906584d00b00992b8d56f3asm17008467ejs.105.2023.10.02.06.49.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Oct 2023 06:49:14 -0700 (PDT)
+Message-ID: <9f09757e-1ab6-4e5f-8c70-fbb9acd179e8@linaro.org>
+Date: Mon, 2 Oct 2023 15:49:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY4PR03MB3399.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6704a007-650b-4005-a7c3-08dbc34e0999
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Oct 2023 13:46:53.8503
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: FfiuSn2C9kGq55A1mrGnn8kviW0vtnxsWG6vbr0TnL+uvY85DL56amXZ5yrdZf+z+twkyo63bGfJ/rMHKatBhAbRu/Uqsv7pyJAXdj9LXMU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR03MB5206
-X-Proofpoint-GUID: JdjIp7aeAMsiqjV7Yht-YOCeq86yFVUB
-X-Proofpoint-ORIG-GUID: JdjIp7aeAMsiqjV7Yht-YOCeq86yFVUB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-02_08,2023-10-02_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
- clxscore=1011 suspectscore=0 adultscore=0 mlxscore=0 mlxlogscore=999
- lowpriorityscore=0 malwarescore=0 priorityscore=1501 bulkscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2309180000 definitions=main-2310020104
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-	autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: qcom-cci: Document SC7280
+ compatible
+To: Luca Weiss <luca.weiss@fairphone.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+References: <20231002-sc7280-cci-v2-0-9333fda4612a@fairphone.com>
+ <20231002-sc7280-cci-v2-1-9333fda4612a@fairphone.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231002-sc7280-cci-v2-1-9333fda4612a@fairphone.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+On 02/10/2023 08:55, Luca Weiss wrote:
+> Document the compatible for the CCI block found on SC7280 SoC.
+> 
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+
+Thanks, looks good now.
 
 
---
-Antoniu Micl=E3u=BA
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> -----Original Message-----
-> From: Conor Dooley <conor@kernel.org>
-> Sent: Monday, October 2, 2023 4:01 PM
-> To: Miclaus, Antoniu <Antoniu.Miclaus@analog.com>
-> Cc: Jean Delvare <jdelvare@suse.com>; Guenter Roeck <linux@roeck-
-> us.net>; Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
-> <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
-> <conor+dt@kernel.org>; Jonathan Corbet <corbet@lwn.net>; linux-
-> hwmon@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; linux-doc@vger.kernel.org
-> Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: ltc2991: add bindings
->=20
-> [External]
->=20
-> Hey,
->=20
-> On Mon, Oct 02, 2023 at 01:18:14PM +0300, Antoniu Miclaus wrote:
-> > Add dt-bindings for ltc2991 octal i2c voltage, current and temperature
-> > monitor.
-> >
-> > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> > ---
-> > changes in v2:
-> >  - make compatible const type
-> >  - remove `|` where not necessary
-> >  - switch to micro-ohms for the shunt resistor property
-> >  - add vendor prefix for temperature-enable
->=20
-> Thanks for the updates...
->=20
-> >  .../bindings/hwmon/adi,ltc2991.yaml           | 114 ++++++++++++++++++
-> >  1 file changed, 114 insertions(+)
-> >  create mode 100644
-> Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml
-> b/Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml
-> > new file mode 100644
-> > index 000000000000..3811ea07a04f
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml
-> > @@ -0,0 +1,114 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +
-> > +$id: http://devicetree.org/schemas/hwmon/adi,ltc2991.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Analog Devices LTC2991 Octal I2C Voltage, Current and Temperatu=
-re
-> Monitor
-> > +
-> > +maintainers:
-> > +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
-> > +
-> > +description: |
-> > +  The LTC2991 is used to monitor system temperatures, voltages and
-> currents.
-> > +  Through the I2C serial interface, the eight monitors can individuall=
-y
-> measure
-> > +  supply voltages and can be paired for differential measurements of
-> current
-> > +  sense resistors or temperature sensing transistors.
-> > +
-> > +  Datasheet:
-> > +    https://www.analog.com/en/products/ltc2991.html
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: adi,ltc2991
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
-> > +
-> > +  vcc-supply: true
-> > +
-> > +patternProperties:
-> > +  "^channel@[0-3]$":
-> > +    type: object
-> > +    description:
-> > +      Represents the differential/temperature channels.
-> > +
-> > +    properties:
-> > +      reg:
-> > +        description:
-> > +          The channel number. LTC2991 can monitor 4 currents/temperatu=
-res.
-> > +        items:
-> > +          minimum: 0
-> > +          maximum: 3
-> > +
-> > +      shunt-resistor-micro-ohms:
-> > +        description:
-> > +          The value of curent sense resistor in miliohms. Enables diff=
-erential
-> > +          input pair.
-> > +
-> > +      adi,temperature-enable:
-> > +        description:
-> > +          Enables temperature readings for a input pair.
-> > +        type: boolean
->=20
-> ...but I did not see an answer to my question on v1:
-> 	TBH, this seems like it is used just to control software behaviour.
-> 	Why would you want to actually disable this in DT?
-> In other words, is there something in that hardware that precludes
-> measuring temperature for channels that do not contain this property?
->=20
-> Thanks,
-> Conor.
->=20
-Sorry for missing that. I took in consideration this approach based on the =
-pin functions
-described in the datasheet (page 8 of 32). For example the V1 pin of the pa=
-rt can support
-3 different configurations: "V1 (Pin 1): First Monitor Input. This pin can =
-be configured
-as a single-ended input (0V to 4.9V) or the positive inputfor a differentia=
-l or remote diode
-temperature measurement (in combination with V2)."
-Moreover, looking at the multiple typical applications examples at the end =
-of the datasheet
-there is a specific adjacent hardware circuit connected to this part for th=
-e temperature
-measurements configurations.
+Best regards,
+Krzysztof
 
-Thank you,
-Antoniu
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - vcc-supply
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        hwmon@48 {
-> > +            compatible =3D "adi,ltc2991";
-> > +            reg =3D <0x48>;
-> > +            vcc-supply =3D <&vcc>;
-> > +        };
-> > +    };
-> > +  - |
-> > +    i2c {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        hwmon@48 {
-> > +            #address-cells =3D <1>;
-> > +            #size-cells =3D <0>;
-> > +
-> > +            compatible =3D "adi,ltc2991";
-> > +            reg =3D <0x48>;
-> > +            vcc-supply =3D <&vcc>;
-> > +
-> > +            channel@0 {
-> > +                    reg =3D <0x0>;
-> > +                    shunt-resistor-micro-ohms =3D <100000>;
-> > +            };
-> > +
-> > +            channel@1 {
-> > +                    reg =3D <0x1>;
-> > +                    shunt-resistor-micro-ohms =3D <100000>;
-> > +            };
-> > +
-> > +            channel@2 {
-> > +                    reg =3D <0x2>;
-> > +                    temperature-enable;
-> > +            };
-> > +
-> > +            channel@3 {
-> > +                    reg =3D <0x3>;
-> > +                    temperature-enable;
-> > +            };
-> > +        };
-> > +    };
-> > +...
-> > --
-> > 2.42.0
-> >
 
