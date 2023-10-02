@@ -1,140 +1,128 @@
-Return-Path: <devicetree+bounces-5113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F1297B5467
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 16:00:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FF787B54C0
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 16:10:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 0A393282E69
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 14:00:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id CFFC7280D3F
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 14:10:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38F1419BAF;
-	Mon,  2 Oct 2023 14:00:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63DD319BB6;
+	Mon,  2 Oct 2023 14:10:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C1C719BA7
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 14:00:19 +0000 (UTC)
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ACEFC6
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 07:00:18 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-504b84d59cbso7364156e87.3
-        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 07:00:17 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4533199D7
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 14:10:39 +0000 (UTC)
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 698589B
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 07:10:37 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-4066692ad35so19229125e9.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 07:10:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1696255216; x=1696860016; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=V2/riLchQZtPTs/BC596zGkjlTIrNRPztVzIEa24L10=;
-        b=i4sYvwRvLnl2fno42q3AI9/S19leUfadmvKoHdGuwzX6j34KYZXQqXXbn627a26scC
-         bv6hILU4ebmYE6vrRDC9+UxIkcSOZqUE60NHGRBNUSXQhJIUcYRafUa5+rg8MT6kbPsW
-         UiAbo4dEqCgnaAteu6F2H+fWWCHABXV+9M5EFLUHDqmwYcOhB6kY/8UfnqvLXb3+BxB4
-         c+uerfuYPQRAqZBr40qdw6F1hJBdBG3zKr+x/0cctJiEzo7mkI5OCXnYWOn2YcQQX2j+
-         AT9TGk3rNNMIQihCH+zJu7E0lAEqhkfUcTrchpcsP+q5k9ZIHDk94l7pj0NbUy9xKI06
-         yuJQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1696255836; x=1696860636; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7wbehdpfeTskgBGeNboTr1Vt3I7y4UPyUbI3qTqn6yY=;
+        b=qbe+GG1k4scQTfjMY0gNish5fb0uflshUS9QfF0/TnG4dqjayTkAGAXiMso/zT0YeG
+         n/qFr8hUxkwETbq2StvC55t78FLNAN3hYAxeDkRWVdnANHNTtHMvLDCfMWCdRBjXDS/a
+         tjvnGS81crq6gLA9MNR5TglsQzxGzxFGjzDsy6DgBMqwH20VRgWEhpGUl7DlLoaCiPBt
+         9iqt2Icv0XIUAXiUWLKGwhXuA/p6IZkRm/75ejjCinIZdBz2fFV3l1BIIUs3bc0BMy5q
+         7Z0MDMEmMd5D/FgqDSuncc0vS+x48ZPI1u4+Zzrbfr7bUGwl6/dUBDQ6mk3ccq6CA40U
+         Cjew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696255216; x=1696860016;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=V2/riLchQZtPTs/BC596zGkjlTIrNRPztVzIEa24L10=;
-        b=EyMKYx4IlOMUc8sfz+vY9nrmjGnRYAIeWJXeTuBviWbXiY4JZyPvf9y7sdaGoO22px
-         RA0w2U6EfXchN5JDSKwwggyQp3oIUtXXK0+gNzeIhVyUz4qUIq1Hr5cyUNGGcyMzDpCA
-         hBAXhZa8Ca9em9AX74N8+rpo4nUVrsn6sNd/fl+7IqMBOdkAuia3UTCFuhVGy6QJR/p6
-         aRyTDfO6Gc4Mwt2+LKuHazCOGsZBG/4yr6OhWf10qDW4gzl6dewC3Qdjl8r/uc/ni7MB
-         INvKcZKTm/3S3T8fQ1TRSrXJv4kqz32FyXcS43H72NlYXn0vrE2SSo1oFAUY5kG1ok7S
-         YJbA==
-X-Gm-Message-State: AOJu0YxVw2UiYeJqBVjYy6zoEoMAHXkcqtp9ZDrG3QMaePCbJcf+VziP
-	tOPnquKu9iIS/0jquZDU/gqygA==
-X-Google-Smtp-Source: AGHT+IFYahe9QM9GSXykZIjClH00JSYu2bdXsSeQxdK1Yb2R7fBZkn9KvfTGct/URjQfs9lMQOMdJQ==
-X-Received: by 2002:a05:6512:617:b0:503:19d9:4b6f with SMTP id b23-20020a056512061700b0050319d94b6fmr8505095lfe.0.1696255216212;
-        Mon, 02 Oct 2023 07:00:16 -0700 (PDT)
-Received: from otso.luca.vpn.lucaweiss.eu (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id q13-20020a056402518d00b005346925a474sm9350377edd.43.2023.10.02.07.00.15
+        d=1e100.net; s=20230601; t=1696255836; x=1696860636;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7wbehdpfeTskgBGeNboTr1Vt3I7y4UPyUbI3qTqn6yY=;
+        b=OmjF7VxVIb6AzAnTKE7ofbSDz0m6hA3PMZHnlkaYVSdJPbHcPfVYTVMECJqx8C4ECK
+         jFT9y1m8GFa/m6M2j4wG+8RJovIjFPkRNqn9xo4V1ZxrfoALTTRAnjXg1rpiRtOGazgr
+         hgWHQNFMyOb3l4CD++GDTVSG5/ifG1QfRujbVDeLKieAamVjtd6QyibWovxSuknNQmPM
+         JlYU2cPBSJhxQQrMomQoNqX7VmQnklP+YH5ye5pj4GCVt7igvl8EK8NC7WZxgwh5VkjO
+         HYfua98z49bqrqCKX+y+Teg93W6Bm8OfeM53oJHvqyQDIOLwCmVVKfhihVcZyZ/YaC8W
+         04yA==
+X-Gm-Message-State: AOJu0YxQ2BKv9EiJ8wq6519hhK5/E0PTsDy2aVTNS0sqsO5DS7UkX5Uf
+	WPQQYMRpPMjchYDQABq1YldTBQ==
+X-Google-Smtp-Source: AGHT+IHak2pzWxI31EARsFs3PYfLjm4QWGcS1E6hRazzJjbQPUoLCM7VWxR3/LzQtmwlQLZKnGLI1A==
+X-Received: by 2002:a05:600c:2214:b0:3f7:cb42:fa28 with SMTP id z20-20020a05600c221400b003f7cb42fa28mr9119350wml.28.1696255835696;
+        Mon, 02 Oct 2023 07:10:35 -0700 (PDT)
+Received: from toaster.lan ([2a01:e0a:3c5:5fb1:fcf2:65f1:853c:13be])
+        by smtp.googlemail.com with ESMTPSA id k3-20020a05600c0b4300b003fe1fe56202sm7361911wmr.33.2023.10.02.07.10.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Oct 2023 07:00:15 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Mon, 02 Oct 2023 16:00:12 +0200
-Subject: [PATCH v2 2/2] ASoC: codecs: aw88261: Remove non-existing reset
- gpio
+        Mon, 02 Oct 2023 07:10:35 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Da Xue <da.xue@libretech.co>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org
+Subject: [PATCH 0/2] arm64: dts: amlogic: add libretech cottonwood support
+Date: Mon,  2 Oct 2023 16:10:18 +0200
+Message-Id: <20231002141020.2403652-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231002-aw88261-reset-v2-2-837cb1e7b95c@fairphone.com>
-References: <20231002-aw88261-reset-v2-0-837cb1e7b95c@fairphone.com>
-In-Reply-To: <20231002-aw88261-reset-v2-0-837cb1e7b95c@fairphone.com>
-To: Weidong Wang <wangweidong.a@awinic.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.12.3
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-According to the AW88261 datasheet (V1.1) and device schematics I have
-access to, there is no reset gpio present on the AW88261. Remove it.
+This patchset adds support for the Libretech cottonwood board family.
+The 2 boards are based on the same PCB, with an RPi B form factor.
 
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- sound/soc/codecs/aw88261.c | 15 ---------------
- 1 file changed, 15 deletions(-)
+The "Alta" board uses an a311d while the "Solitude" variant uses an s905d3.
 
-diff --git a/sound/soc/codecs/aw88261.c b/sound/soc/codecs/aw88261.c
-index 45eaf931a69c..e7683f70c2ef 100644
---- a/sound/soc/codecs/aw88261.c
-+++ b/sound/soc/codecs/aw88261.c
-@@ -10,7 +10,6 @@
- 
- #include <linux/i2c.h>
- #include <linux/firmware.h>
--#include <linux/of_gpio.h>
- #include <linux/regmap.h>
- #include <sound/soc.h>
- #include "aw88261.h"
-@@ -1175,14 +1174,6 @@ static const struct snd_soc_component_driver soc_codec_dev_aw88261 = {
- 	.remove = aw88261_codec_remove,
- };
- 
--static void aw88261_hw_reset(struct aw88261 *aw88261)
--{
--	gpiod_set_value_cansleep(aw88261->reset_gpio, 0);
--	usleep_range(AW88261_1000_US, AW88261_1000_US + 10);
--	gpiod_set_value_cansleep(aw88261->reset_gpio, 1);
--	usleep_range(AW88261_1000_US, AW88261_1000_US + 10);
--}
--
- static void aw88261_parse_channel_dt(struct aw88261 *aw88261)
- {
- 	struct aw_device *aw_dev = aw88261->aw_pa;
-@@ -1254,12 +1245,6 @@ static int aw88261_i2c_probe(struct i2c_client *i2c)
- 
- 	i2c_set_clientdata(i2c, aw88261);
- 
--	aw88261->reset_gpio = devm_gpiod_get_optional(&i2c->dev, "reset", GPIOD_OUT_LOW);
--	if (IS_ERR(aw88261->reset_gpio))
--		dev_info(&i2c->dev, "reset gpio not defined\n");
--	else
--		aw88261_hw_reset(aw88261);
--
- 	aw88261->regmap = devm_regmap_init_i2c(i2c, &aw88261_remap_config);
- 	if (IS_ERR(aw88261->regmap)) {
- 		ret = PTR_ERR(aw88261->regmap);
+This patchset depends on the usb support for the gl3510 [0]
+Without it, there will be dt check warnings and usb may not come up properly.
+
+Early u-boot support may be found here [1]. It will be submitted after
+DT is accepted in Linux. As usual with Amlogic, u-boot must be packaged
+with closed source binaries ([2] for the a311d, [3] for the s905d3)
+
+Prebuilt bootloaders are available from libretech [4].
+
+The devices are shipped with libretech's u-boot pre-flashed in SPI NOR.
+If necessary, the boot source may be changed to MMC using the onboard
+switch.
+
+Happy hacking ...
+
+[0]: https://lore.kernel.org/all/20231002122909.2338049-1-jbrunet@baylibre.com
+[1]: https://gitlab.com/jbrunet/u-boot/-/tree/cottonwood
+[2]: https://jbrunet.baylibre.com/pub/amlogic/fips/fip-collect-aml-a311d-cc-20230701.tar.gz
+[3]: https://jbrunet.baylibre.com/pub/amlogic/fips/fip-collect-aml-s905d3-cc-20230820.tar.gz
+[4]: https://boot.libre.computer/ci/
+
+Jerome Brunet (2):
+  dt-bindings: arm: amlogic: add libretech cottonwood support
+  arm64: dts: amlogic: add libretech cottonwood support
+
+ .../devicetree/bindings/arm/amlogic.yaml      |   2 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   2 +
+ .../amlogic/meson-g12b-a311d-libretech-cc.dts | 133 ++++
+ .../amlogic/meson-libretech-cottonwood.dtsi   | 610 ++++++++++++++++++
+ .../amlogic/meson-sm1-s905d3-libretech-cc.dts |  89 +++
+ 5 files changed, 836 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-libretech-cottonwood.dtsi
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-s905d3-libretech-cc.dts
 
 -- 
-2.42.0
+2.40.1
 
 
