@@ -1,141 +1,100 @@
-Return-Path: <devicetree+bounces-5089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F05A67B52D7
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 14:21:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19EFF7B52DF
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 14:22:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id A4381282B8A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 12:21:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id C3CEE282FE9
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 12:22:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5589C171C9;
-	Mon,  2 Oct 2023 12:21:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B10D0171CC;
+	Mon,  2 Oct 2023 12:22:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B44710A0D;
-	Mon,  2 Oct 2023 12:21:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D79BCC433C7;
-	Mon,  2 Oct 2023 12:21:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1696249279;
-	bh=j6GCwRHciLgjRT87l8yg8vMEZ+mk/SUuffwOzm0R1xs=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0D4914013
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 12:22:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4F28C433C9;
+	Mon,  2 Oct 2023 12:22:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696249328;
+	bh=9JTxOS4Ez5ORtaTea5hqlBqSPR3EmYOiqEikAVo0TJc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DKYQ8mdZOgKw8zZeEEHwVzD2dedtzq2hQK80iOXudNyaRmZDYwknuXEObVp2rLKa5
-	 29voMfvZ84T8EQaRhGSryhRZaeQ6lRUtS/I36rAxAwXjOfeJlp25ZwvRa5zzSehzC+
-	 R7235RFh0t5yBQ66nKLx2cyDoNJOGs2NS3UG170A=
-Date: Mon, 2 Oct 2023 14:21:15 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: richard.yu@hpe.com
-Cc: verdun@hpe.com, nick.hawkins@hpe.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] usb: gadget: udc: gxp-udc: add HPE GXP USB HUB
- support
-Message-ID: <2023100212-hyperlink-prolonged-3e18@gregkh>
-References: <20230907210601.25284-1-richard.yu@hpe.com>
- <20230907210601.25284-3-richard.yu@hpe.com>
+	b=YVAMnLqlATfqsZoU4xC+VSc696gPnBhDzh+6lCcGUTLWPOZcc9NkVoFkULvKW0ju9
+	 CBYXtRW7/U1chaU1zBEs7VdXxqqy48g2GGnIAQ3WOHn8RJCMRLkwFprgvfS27ZZz2r
+	 wY/HBEu09y7WvyjS5BIsYJdAuw2tMEeco8Ffexm2ILLuWlaEFKAcFk9b6LKWGTlOID
+	 gDp3doFvolTvfUVvqt4U9hLdBPZtD+2N/sKwYSSLCIKJFLtHM4HmCu43N/osd4/Pwo
+	 nLMfa83Hk1HT6x0e7QG9n2lzASKpnZJNi4XAFF1lScaFD5nR3seURCsrDYICj+m+o9
+	 7qUA38wrlwUWA==
+Date: Mon, 2 Oct 2023 13:22:02 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Jisheng Zhang <jszhang@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Anup Patel <anup@brainfault.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Inochi Amaoto <inochiama@outlook.com>, chao.wei@sophgo.com,
+	xiaoguang.xing@sophgo.com
+Subject: Re: [PATCH 0/5] Add Milk-V Duo board support
+Message-ID: <20231002-slurp-anime-a2308245174e@spud>
+References: <20230930123937.1551-1-jszhang@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="7PRu9BiGWpbVBTj7"
+Content-Disposition: inline
+In-Reply-To: <20230930123937.1551-1-jszhang@kernel.org>
+
+
+--7PRu9BiGWpbVBTj7
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230907210601.25284-3-richard.yu@hpe.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 07, 2023 at 04:06:00PM -0500, richard.yu@hpe.com wrote:
-> +struct gxp_udc_drvdata {
-> +	void __iomem *base;
-> +	struct platform_device *pdev;
-> +	struct regmap *udcg_map;
-> +	struct gxp_udc_ep ep[GXP_UDC_MAX_NUM_EP];
-> +
-> +	int irq;
-> +
-> +	/* sysfs enclosure for the gadget gunk */
-> +	struct device *port_dev;
+Hey,
 
-A "raw" struct device?  That's not ok.  It's also going to break things,
-how was this tested?  What does it look like in sysfs with this device?
+On Sat, Sep 30, 2023 at 08:39:32PM +0800, Jisheng Zhang wrote:
+> Milk-V Duo[1] board is an embedded development platform based on the
+> CV1800B[2] chip. Add minimal device tree files for the development board.
+> Currently, now it's supported to boot to a basic shell.
+>=20
+> NOTE: this series is based on the SG2042 upstream series for the vendor
+> prefix and ARCH_SOPHGO option.
+>=20
+> Link: https://milkv.io/duo [1]
+> Link: https://en.sophgo.com/product/introduce/cv180xB.html [2]
+> Link: https://lore.kernel.org/linux-riscv/cover.1695804418.git.unicornxw@=
+gmail.com/ [3]
 
-> +	/*
-> +	 * The UDC core really needs us to have separate and uniquely
-> +	 * named "parent" devices for each port so we create a sub device
-> +	 * here for that purpose
-> +	 */
-> +	drvdata->port_dev = kzalloc(sizeof(*drvdata->port_dev), GFP_KERNEL);
-> +	if (!drvdata->port_dev) {
-> +		rc = -ENOMEM;
-> +		goto fail_alloc;
-> +	}
-> +	device_initialize(drvdata->port_dev);
-> +	drvdata->port_dev->release = gxp_udc_dev_release;
-> +	drvdata->port_dev->parent = parent;
-> +	dev_set_name(drvdata->port_dev, "%s:p%d", dev_name(parent), idx + 1);
-> +
-> +	/* DMA setting */
-> +	drvdata->port_dev->dma_mask = parent->dma_mask;
-> +	drvdata->port_dev->coherent_dma_mask = parent->coherent_dma_mask;
-> +	drvdata->port_dev->bus_dma_limit = parent->bus_dma_limit;
-> +	drvdata->port_dev->dma_range_map = parent->dma_range_map;
-> +	drvdata->port_dev->dma_parms = parent->dma_parms;
-> +	drvdata->port_dev->dma_pools = parent->dma_pools;
-> +
-> +	rc = device_add(drvdata->port_dev);
+Other than the comment I left, this seems fine to me. I'd be happy
+enough to pick up the pre-reqs from the other series & this one if one
+of the Sophgo maintainers acked these patches.
 
-So you createad a "raw" device that does not belong to any bus or type
-and add it to sysfs?  Why?  Shouldn't it be a "virtual" device if you
-really want/need one?
+Thanks,
+Conor.
 
-> +	if (rc)
-> +		goto fail_add;
-> +
-> +	/* Populate gadget */
-> +	gxp_udc_init(drvdata);
-> +
-> +	rc = usb_add_gadget_udc(drvdata->port_dev, &drvdata->gadget);
-> +	if (rc != 0) {
-> +		dev_err(drvdata->port_dev, "add gadget failed\n");
-> +		goto fail_udc;
-> +	}
-> +	rc = devm_request_irq(drvdata->port_dev,
-> +			      drvdata->irq,
-> +			      gxp_udc_irq,
-> +			      IRQF_SHARED,
-> +			      gxp_udc_name[drvdata->vdevnum],
-> +			      drvdata);
+--7PRu9BiGWpbVBTj7
+Content-Type: application/pgp-signature; name="signature.asc"
 
-devm_request_irq() is _very_ tricky, are you _SURE_ you got it right
-here?  Why do you need to use it?
+-----BEGIN PGP SIGNATURE-----
 
-> +	if (rc < 0) {
-> +		dev_err(drvdata->port_dev, "irq request failed\n");
-> +		goto fail_udc;
-> +	}
-> +
-> +	return 0;
-> +
-> +	/* ran code to simulate these three error exit, no double free */
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRq16gAKCRB4tDGHoIJi
+0hPiAQDbufi/xai4dSO3amSl9rZppK2+0zKPHMA4SBi3nyrj2gEA2gOHga+VuE+6
+cQyX0Y96P/ro+L1m7PljdpadXG5/swQ=
+=G7RO
+-----END PGP SIGNATURE-----
 
-What does this comment mean?
-
-> +fail_udc:
-> +	device_del(drvdata->port_dev);
-> +fail_add:
-> +	put_device(drvdata->port_dev);
-> +fail_alloc:
-> +	devm_kfree(parent, drvdata);
-> +
-> +	return rc;
-> +}
-
-Where is the device removed from the system when done?
-
-thanks,
-
-greg k-h
+--7PRu9BiGWpbVBTj7--
 
