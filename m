@@ -1,204 +1,176 @@
-Return-Path: <devicetree+bounces-5155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B70A7B578F
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 18:13:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02A0C7B57BD
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 18:14:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 99E611C20430
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 16:13:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3628D281C56
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 16:14:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 844FF1DA2B;
-	Mon,  2 Oct 2023 16:13:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8B171DA34;
+	Mon,  2 Oct 2023 16:14:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72D621B263
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 16:13:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE267C433C8;
-	Mon,  2 Oct 2023 16:13:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696263198;
-	bh=2AhxNB9y4CAj10wO6SqmAvx8T0zDv4B5wRePDqiQfFU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HMt7tIOaqfw5ucrZiQRpSgoqlRlLwx2fiJGfyEtScKgUrUQd+yzl/Hq1wW+Rp4i6/
-	 to0AwbuyXnVMLo/BNUE+7PUdKyVnd/Gagit2X1t9whYMWmQ3MvX3TYLTGKL42Ls/by
-	 EZ5HjRzk/4oij2aQ4JfdfJnpRSZXHF5kPG3+gYNoLsZnwD50qtVHxZwYDQvm9R8g/V
-	 FVGb4Ziuv/iPEMWNt/cXIIqvpnLWKAsWKGJMa0L6J3dPx7gvEo5+hxaf2Gb8ZieKwy
-	 TlfxgaiF+ORJ/h70UQBI2bMhaZ8OS61FIJBeV7SmTKR9+eDPC3DXfcjCjEppIWTpjE
-	 K2/FYsDV1GlXQ==
-Date: Mon, 2 Oct 2023 21:43:08 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Caleb Connolly <caleb.connolly@linaro.org>,
-	Andy Gross <agross@kernel.org>,
-	Bhupesh Sharma <bhupesh.linux@gmail.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Thara Gopinath <thara.gopinath@gmail.com>,
-	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH 0/4] thermal: Introduce Qualcomm Thermal Mitigation
- Device support
-Message-ID: <20231002161308.GC12041@thinkpad>
-References: <20230905-caleb-qmi_cooling-v1-0-5aa39d4164a7@linaro.org>
- <20231001155701.GA53767@thinkpad>
- <cefe711b-d274-4d83-9dda-01f33b342387@linaro.org>
- <20231002145239.GA12041@thinkpad>
- <CAA8EJppn-f6R3ObGvagqkg1_KtXGgtNAgRn-LQiN3ORSHQY3-Q@mail.gmail.com>
- <20231002155814.GB12041@thinkpad>
- <CAA8EJpowGjnecOjr9h4r3=UXSrE4VdptoLADpQq3gDv_W9D3OQ@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 406931B263;
+	Mon,  2 Oct 2023 16:13:59 +0000 (UTC)
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01hn2203.outbound.protection.outlook.com [52.100.0.203])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ACD2B8;
+	Mon,  2 Oct 2023 09:13:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=U+ZbfGDwbr6AM9qsTkfYKBNyUTOihWuhoDPuhTYV+CF4uDXI6KYIbKxHljwDFzck9cwxQlnmeeFGIqWPu2iTunXvx4l8nlxKf6ARZP4wKt62HdUZ/uGPE4KxEvA8p3SVHU7hyMQ9qf+05SWgXdddd5DUqmqXrKm8H3hACcOPewkrLCWeFLjuWQfoTgSnUePVbYxmaMT2JdQK9FpDrQOOG1yUyk0qUY6Vt2zG5Em98iRfhzHE75b/wiVQ0z4p0EyX8oldU2NZgL04zGyXhk7wOfSmZyru7P0X7IMjilsZqzHxaBVvS87oGhli5+l7taAmTDGA+Z8a5I8RhWGkf9KcQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kz+pGrPTo6Q9RvIRMbYVOzaNL3wCvgPOckPVvpbShwk=;
+ b=OLxSMRZwaWnXDLXX3gt0NYMP+5WHa8m3N5yqhM9QW1xBj5YNQpdJa30lIBvwYQeRIDmPHDzwXeM5zsoC3sd5nwaQgdyM6CBT5P9uP/uUlh1Offbr/qyhez17QdAeZT4S4tJwF/WUJaYvTlxSOnoadlRx63ZoQRevB1VQQOY7FP6ZPltpNXmZsKQX8WtFQx2WvyTkqJM8pyervPlc8F9aidDGi23PsuffYwhpY9sXKaH7a2cZgm370gPgXtccYEoclErva3DY1MaYSrNK1u6DUEVIbxTdSui5lE/5NJD10V+ZhEZ2ZAA9w6XEadyw91LLCnATwSUAmZLlPD0/wEONfQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 211.75.126.7) smtp.rcpttodomain=gmail.com smtp.mailfrom=nuvoton.com;
+ dmarc=fail (p=none sp=quarantine pct=100) action=none header.from=gmail.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=nuvoton.onmicrosoft.com; s=selector2-nuvoton-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kz+pGrPTo6Q9RvIRMbYVOzaNL3wCvgPOckPVvpbShwk=;
+ b=HCTONKSQOKFtP+s9pnqpRy1quQEDzp0zjA+9y4x0jiIo5D2Nq/IHOTpbpKaeLb8HnAnY6o8ar8G63xVX1u5TRMCLdUAvv6lJKggw7Og7l9PwSPz31+o+WsoKQ7iiloWWXtZwAtlMQmvqO//IpDL2QSBVRY/baAnbNzZVltpMP+Y=
+Received: from SG2PR02CA0025.apcprd02.prod.outlook.com (2603:1096:3:18::13) by
+ KL1PR03MB7526.apcprd03.prod.outlook.com (2603:1096:820:e6::10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6838.25; Mon, 2 Oct 2023 16:13:54 +0000
+Received: from SG2PEPF000B66CD.apcprd03.prod.outlook.com
+ (2603:1096:3:18:cafe::90) by SG2PR02CA0025.outlook.office365.com
+ (2603:1096:3:18::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.32 via Frontend
+ Transport; Mon, 2 Oct 2023 16:13:54 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 211.75.126.7)
+ smtp.mailfrom=nuvoton.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=gmail.com;
+Received-SPF: Pass (protection.outlook.com: domain of nuvoton.com designates
+ 211.75.126.7 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.75.126.7; helo=NTHCCAS01.nuvoton.com; pr=C
+Received: from NTHCCAS01.nuvoton.com (211.75.126.7) by
+ SG2PEPF000B66CD.mail.protection.outlook.com (10.167.240.27) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6838.19 via Frontend Transport; Mon, 2 Oct 2023 16:13:54 +0000
+Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 3 Oct
+ 2023 00:13:53 +0800
+Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Tue, 3 Oct 2023 00:13:53 +0800
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+	id 70CF36473F; Mon,  2 Oct 2023 19:13:52 +0300 (IDT)
+From: Tomer Maimon <tmaimon77@gmail.com>
+To: <peter.chen@kernel.org>, <gregkh@linuxfoundation.org>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<xu.yang_2@nxp.com>, <peng.fan@nxp.com>, <avifishman70@gmail.com>,
+	<tali.perry1@gmail.com>, <joel@jms.id.au>, <venture@google.com>,
+	<yuenn@google.com>, <benjaminfair@google.com>, <j.neuschaefer@gmx.net>
+CC: <openbmc@lists.ozlabs.org>, <linux-usb@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Tomer Maimon
+	<tmaimon77@gmail.com>
+Subject: [PATCH RESEND v3 0/3] usb: ChipIdea: add Nuvoton NPCM UDC support
+Date: Mon, 2 Oct 2023 19:13:47 +0300
+Message-ID: <20231002161350.64229-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.33.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAA8EJpowGjnecOjr9h4r3=UXSrE4VdptoLADpQq3gDv_W9D3OQ@mail.gmail.com>
+Content-Type: text/plain
+X-NotSetDelaration: True
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CD:EE_|KL1PR03MB7526:EE_
+X-MS-Office365-Filtering-Correlation-Id: c3e4942d-1d7c-4b44-2a72-08dbc3629312
+X-MS-Exchange-SenderADCheck: 0
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?K3Q8IBneLAipaLw0qw9GzcuEiEUs23ID4A6y05G+TvwLzcOsxIbkPBKU1IYY?=
+ =?us-ascii?Q?jyDD34NRRXP9pfCbRDUQC0GHA8r11XDHeZp1JkC8aP8g/7DeeOi9mTE7BYvk?=
+ =?us-ascii?Q?crh4R44Eto93mYOjxl8fBYNgNysaNlJflm4+FIU62mtRgelkbxc1qGo8GLkw?=
+ =?us-ascii?Q?ykf4i2sACW8UpbgQ1rqOmPkIh6H66m6fKSa4GhKF7ostgjxHBOjIlzjeqWzX?=
+ =?us-ascii?Q?yEWlfxdhYK1+RwLVT8uENgpqXXLmKL/Qzk+7DkcbYRUa3HtBs3lvrYxdXwgM?=
+ =?us-ascii?Q?k9Gl1abHlg/GjtPbXP9S4JzfGsiTDDd+NPAK2UNn2jFupnQIvpsgQgK7GycM?=
+ =?us-ascii?Q?S2V6gszbfD4rO/R60LdnnM7DwULKc6f/pdZz8heNLTuLdmEblJuD9yDcypT3?=
+ =?us-ascii?Q?UewJi2OfcsbzHbQQVvO6qEttxaCaW+mslxWnXnm3mBQxXp3Gt3GUvTZkV5r0?=
+ =?us-ascii?Q?YceQEXKTUMOQMfQTLwG9g82vn5t3hQ5oAViPY1DWxMhK7yd90h7XKv6PRyaO?=
+ =?us-ascii?Q?/zhfjPfjwvqw26jJ7Bu5+wPfIzC8xu8awarkJ8NMgYyxmYTS18OMJFVasQVM?=
+ =?us-ascii?Q?XL3LKjevolkngsOZxnN2YCNTIBxSZom6bsFUuKRXo+JrNso2gVYfLN0EHdzF?=
+ =?us-ascii?Q?CQzpVPHdp7TRW5IIUdFo5r3d4m4pz4PHLP1FPtsbu+mbJSc5bI3P0oyM/GYE?=
+ =?us-ascii?Q?k6Bpn/SgNxidJbCurKYV3wwFOvZiQ+PCOQvwEPZwDCAUHW4HtfwQet2ReOOF?=
+ =?us-ascii?Q?sndiW7ix2QhaP1abylIGbtjd19m9zhYnlDwR6mQhpY+qtncXMbFmxIKYCnAL?=
+ =?us-ascii?Q?rmxxHfp5HCi4BH5knzaCOD5oIpg2CxYIudtB1phdixvIbnO2zEJdyMTer6Wb?=
+ =?us-ascii?Q?EhBe5ocu5YM65y8aGE2q9HhUzr8VRkaHMN5q9LlDZM0T5x+viCz3pZjWUjfH?=
+ =?us-ascii?Q?FQRozRGB98OtX2my9/589A=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:211.75.126.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS01.nuvoton.com;PTR:211-75-126-7.hinet-ip.hinet.net;CAT:NONE;SFS:(13230031)(4636009)(376002)(396003)(346002)(136003)(39860400002)(230922051799003)(82310400011)(64100799003)(451199024)(5400799018)(186009)(61400799006)(48200799006)(46966006)(40470700004)(36840700001)(42882007)(73392003)(6266002)(336012)(34020700004)(8936002)(8676002)(5660300002)(4326008)(921005)(47076005)(356005)(82740400003)(83380400001)(82202003)(2616005)(41300700001)(83170400001)(1076003)(81166007)(26005)(36860700001)(478600001)(6666004)(966005)(54906003)(70586007)(70206006)(316002)(76482006)(110136005)(42186006)(40480700001)(55446002)(36756003)(7416002)(40460700003)(2906002)(45356006)(35450700002)(84790400001)(12100799045);DIR:OUT;SFP:1501;
+X-OriginatorOrg: nuvoton.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2023 16:13:54.3615
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c3e4942d-1d7c-4b44-2a72-08dbc3629312
+X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[211.75.126.7];Helo=[NTHCCAS01.nuvoton.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG2PEPF000B66CD.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR03MB7526
+X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Mon, Oct 02, 2023 at 07:00:27PM +0300, Dmitry Baryshkov wrote:
-> On Mon, 2 Oct 2023 at 18:58, Manivannan Sadhasivam <mani@kernel.org> wrote:
-> >
-> > On Mon, Oct 02, 2023 at 06:00:37PM +0300, Dmitry Baryshkov wrote:
-> > > On Mon, 2 Oct 2023 at 17:52, Manivannan Sadhasivam <mani@kernel.org> wrote:
-> > > >
-> > > > On Sun, Oct 01, 2023 at 06:26:14PM +0100, Caleb Connolly wrote:
-> > > > >
-> > > > >
-> > > > > On 01/10/2023 16:57, Manivannan Sadhasivam wrote:
-> > > > > > On Fri, Sep 29, 2023 at 05:16:16PM +0100, Caleb Connolly wrote:
-> > > > > > > The Thermal Mitigation Device (TMD) Service is a QMI service that runs
-> > > > > > > on remote subsystems (the modem and DSPs) on Qualcomm SoCs.
-> > > > > > > It exposes various mitigations including passive thermal controls and
-> > > > > > > rail voltage restrictions.
-> > > > > > >
-> > > > > > > This series introduces support for exposing TMDs as cooling devices
-> > > > > > > in the kernel through the thermal framework, using the QMI interface.
-> > > > > > >
-> > > > > > > Each TMD client is described as a child of the remoteproc node in
-> > > > > > > devicetree. With subnodes for each control.
-> > > > > > >
-> > > > > >
-> > > > > > Daniel expressed concerns in the past aganist representing TMD driver as a
-> > > > > > cooling device since it is not tied to thermal zones and the governors cannot
-> > > > > > use it. Instead he suggested to represent it as a powercap device with thermal
-> > > > > > constraints.
-> > > > >
-> > > > > Hi Mani,
-> > > > >
-> > > > > Forgive me as I'm not yet super familiar with the thermal subsystem.
-> > > > >
-> > > > > As I understand it, the DT layout here enables each control to be referenced
-> > > > > under the thermal zones, at least this is the approach taken in CAF 4.9.
-> > > > >
-> > > > > Maybe I don't quite understand what you mean, are you saying that using
-> > > > > thermal zones is the wrong approach?
-> > > >
-> > > > Thermal framework expects each thermal zone represented in DT to have atleast
-> > > > one corresponding thermal sensor defined using "thermal-sensors" property. But
-> > > > with TMD, there is no thermal sensor AFAIK.
-> > >
-> > > As far as I understand, no. It is perfectly fine to have 'cooling'
-> > > devices, which react to external thermal monitoring events. I might be
-> > > mistaken, but I think that is the case here, isn't it?
-> > >
-> >
-> > Yes it is represented as cooling device(s). But I do not see any cognizant way
-> > to plug it with thermal zones i.e., unless TMD itself reports temperature of the
-> > modem, using it as a cooling device for external temperature events doesn't
-> > sound good to me.
-> 
-> Why? We have compute, q6, wlan tsens sensors. So it seems natural to
-> tell CDSP to slow down if compute sensor reports overheating.
-> 
+This patch set add USB device controller for the NPCM Baseboard
+Management Controllers (BMC).
 
-TMD is for external devices such as PCIe modems as well. Is there a temperature
-sensor for that?
+NPCM UDC driver is a part of the USB ChipIdea driver.
 
-- Mani
+Adding CI_HDRC_FORCE_VBUS_ACTIVE_ALWAYS flag to modify the vbus_active
+parameter to active in case the ChipIdea USB IP role is device-only and
+there is no otgsc register.
 
-> >
-> > - Mani
-> >
-> > > >
-> > > > > >
-> > > > > > So please look into that approach.
-> > > > >
-> > > > > Any recommended reading? Or drivers I can use as a reference?
-> > > > >
-> > > >
-> > > > drivers/powercap/arm_scmi_powercap.c seems to be a good reference.
-> > > >
-> > > > - Mani
-> > > >
-> > > > > Thanks
-> > > > > >
-> > > > > > - Mani
-> > > > > >
-> > > > > > > This series is based on previous work by Bhupesh Sharma which can be
-> > > > > > > found at [1]. I'm sending this as a fresh series as it has been a
-> > > > > > > year since the original version and I have rewritten most of the driver.
-> > > > > > >
-> > > > > > > [1]: https://lore.kernel.org/linux-arm-msm/20220912085049.3517140-1-bhupesh.sharma@linaro.org/
-> > > > > > >
-> > > > > > > ---
-> > > > > > > Caleb Connolly (4):
-> > > > > > >        remoteproc: qcom: probe all child devices
-> > > > > > >        dt-bindings: thermal: Add qcom,qmi-cooling yaml bindings
-> > > > > > >        thermal: qcom: add qmi-cooling driver
-> > > > > > >        MAINTAINERS: Add entry for Qualcomm Cooling Driver
-> > > > > > >
-> > > > > > >   .../bindings/remoteproc/qcom,msm8996-mss-pil.yaml  |  13 +
-> > > > > > >   .../bindings/remoteproc/qcom,pas-common.yaml       |   6 +
-> > > > > > >   .../bindings/thermal/qcom,qmi-cooling.yaml         | 168 +++++++
-> > > > > > >   MAINTAINERS                                        |   8 +
-> > > > > > >   drivers/remoteproc/qcom_q6v5.c                     |   4 +
-> > > > > > >   drivers/remoteproc/qcom_q6v5_mss.c                 |   8 -
-> > > > > > >   drivers/thermal/qcom/Kconfig                       |  13 +
-> > > > > > >   drivers/thermal/qcom/Makefile                      |   1 +
-> > > > > > >   drivers/thermal/qcom/qmi-cooling.c                 | 520 +++++++++++++++++++++
-> > > > > > >   drivers/thermal/qcom/qmi-cooling.h                 | 428 +++++++++++++++++
-> > > > > > >   10 files changed, 1161 insertions(+), 8 deletions(-)
-> > > > > > > ---
-> > > > > > > base-commit: 9067f80db58bbce81d5f0703aa2fd261e88bc812
-> > > > > > >
-> > > > > > > // Caleb (they/them)
-> > > > > > >
-> > > > > >
-> > > > >
-> > > > > --
-> > > > > // Caleb (they/them)
-> > > >
-> > > > --
-> > > > மணிவண்ணன் சதாசிவம்
-> > >
-> > >
-> > >
-> > > --
-> > > With best wishes
-> > > Dmitry
-> >
-> > --
-> > மணிவண்ணன் சதாசிவம்
-> 
-> 
-> 
-> -- 
-> With best wishes
-> Dmitry
+BMC NPCM7XX and BMC NPCM8XX has ten identical NPCM UDC modules,
+
+The NPCM UDC were tested on NPCM845 evaluation board.
+
+Addressed comments from:
+ - Krzysztof Kozlowski : https://www.spinics.net/lists/kernel/msg4951321.html
+
+Changes since version 2:
+ - Use dev_err_probe.
+ - Remove MODULE_ALIAS.
+
+Changes since version 1:
+ - Add SoC specific compatible.
+ - Remove USB phy mux property from dt-binding, will be handled differently.
+ - Add CI_HDRC_FORCE_VBUS_ACTIVE_ALWAYS commit to this patch set.
+
+Tomer Maimon (3):
+  usb: chipidea: add CI_HDRC_FORCE_VBUS_ACTIVE_ALWAYS flag
+  dt-bindings: usb: ci-hdrc-usb2: add npcm750 and npcm845 compatible
+  usb: chipidea: Add support for NPCM
+
+ .../devicetree/bindings/usb/ci-hdrc-usb2.yaml |   4 +
+ drivers/usb/chipidea/Kconfig                  |   4 +
+ drivers/usb/chipidea/Makefile                 |   1 +
+ drivers/usb/chipidea/ci_hdrc_npcm.c           | 114 ++++++++++++++++++
+ drivers/usb/chipidea/otg.c                    |   5 +-
+ include/linux/usb/chipidea.h                  |   1 +
+ 6 files changed, 128 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/usb/chipidea/ci_hdrc_npcm.c
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.33.0
+
 
