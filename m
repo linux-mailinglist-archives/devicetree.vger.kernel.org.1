@@ -1,112 +1,164 @@
-Return-Path: <devicetree+bounces-5098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E68157B5348
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 14:33:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C8A27B5354
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 14:36:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 9AB64285159
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 12:33:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 450EB1C20821
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 12:36:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EFF063A0;
-	Mon,  2 Oct 2023 12:33:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F598CA74;
+	Mon,  2 Oct 2023 12:36:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7013B323D
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 12:33:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC60EC433C7;
-	Mon,  2 Oct 2023 12:33:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696250000;
-	bh=zfM1FqvsBwWNXsM+SVd6ihu1DKnhV/P5iAlzz0qeemA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=m2RSUZGpGw9lATIoLt4u3m/ZV8mhpV8IrIGxhGHrXCRX+Nd0hyaWxSivGnZOAAQZG
-	 jjkPr8+uLuYIAEx8otwRk/IkYJJGZaY/frffJsC4Q6KRjfdxib+tscwOVtNdfsdWU8
-	 qtvyv6Oj+2wELOc7F9hK0Y9wZCE42R3wnndkMH23+jwyznYbIb00XIbsNJaoxIwSF4
-	 NGsWPFmp2mwiz6vp9A0rpIqbH2QiQqH0eNZFAMPKW/reuC90k1itfL5zrho6DYjRm0
-	 h9QqbeQI427K9AcqWyZOti50by70FXRLJjV/XScTmXnYWm3pdCOFCCBWsXqap6rYsZ
-	 SKfV1aUa6vNAg==
-Date: Mon, 2 Oct 2023 13:33:16 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Jason A. Donenfeld" <Jason@zx2c4.com>,
-	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-	Vincent Huang <vincent.huang@tw.synaptics.com>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: input: syna,rmi4: Make
- "additionalProperties: true" explicit
-Message-ID: <20231002-reluctant-justice-0c3f63a12ac3@spud>
-References: <20230926144249.4053202-1-robh@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9753037A
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 12:36:54 +0000 (UTC)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95A55AC;
+	Mon,  2 Oct 2023 05:36:52 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-5a1f00b75aaso84068577b3.2;
+        Mon, 02 Oct 2023 05:36:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696250211; x=1696855011;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=j9j0PpNIdrPUDtiR3cxgxShKWUlwOhB2yoLPPXuZS+o=;
+        b=qo612oQLkfCv8FAxj7uOfw5mzS3yuOPNZ7FQsggpL2/xha/U2ngpIL4XbX0SZq9su3
+         iCIw1TzRKMQxI57f3LTHOoZkVLLQ9xsE3s5vQhVqEQnSpwBxzRuk8ZES8oOg6caSaTAK
+         9COjLNjMXZxm9AME8zIstqD72OGxVrbvgj3E+zGSlWqLSZVO+d2+jDvX52WZQXYwl4Ah
+         wqy5nJ4DzcMW8akgxPFuG6wuJPHALPv1o6+t/gTo8KsZVCyWlHRgpg82feKu/3bgt9ij
+         3TPu3lnsSa+yXE8t+hpoGoX5TdAS7fMY3AnlK9k32n00sLjv7TvgJWbPpYCNJrOpoSG0
+         8xsg==
+X-Gm-Message-State: AOJu0YxRvbhticg71WU6bUT4rtVH7eqsVD/sRfjOVnyPa0w3erNz2Wfn
+	zSec9Wcco4rXx1p4wtUtFQP4gUrO1NRkDQ==
+X-Google-Smtp-Source: AGHT+IGIQEyVkOFi0f9ckQusV9TVcCdn4dnHOQcVN3IVkvJrsy/p3A5iU6i576jsl/jzsFEUYQ6Psg==
+X-Received: by 2002:a81:df11:0:b0:59b:dbb7:5c74 with SMTP id c17-20020a81df11000000b0059bdbb75c74mr9932795ywn.32.1696250211439;
+        Mon, 02 Oct 2023 05:36:51 -0700 (PDT)
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
+        by smtp.gmail.com with ESMTPSA id d64-20020a0df443000000b0059511008958sm7700588ywf.76.2023.10.02.05.36.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Oct 2023 05:36:51 -0700 (PDT)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-5a1f00b75aaso84068407b3.2;
+        Mon, 02 Oct 2023 05:36:51 -0700 (PDT)
+X-Received: by 2002:a81:df11:0:b0:59b:dbb7:5c74 with SMTP id
+ c17-20020a81df11000000b0059bdbb75c74mr9932772ywn.32.1696250210751; Mon, 02
+ Oct 2023 05:36:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ofFuOQomLN1dqN2A"
-Content-Disposition: inline
-In-Reply-To: <20230926144249.4053202-1-robh@kernel.org>
-
-
---ofFuOQomLN1dqN2A
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20231002113441.19571-1-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20231002113441.19571-1-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 2 Oct 2023 14:36:37 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXa7BBKzhLAcruCk7YKumNcCuRLk8bRfXAL+fKWOPkkOA@mail.gmail.com>
+Message-ID: <CAMuHMdXa7BBKzhLAcruCk7YKumNcCuRLk8bRfXAL+fKWOPkkOA@mail.gmail.com>
+Subject: Re: [PATCH RESEND] arm64: dts: renesas: r8a77990: Add Ebisu-4D board support
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, 
+	Takeshi Kihara <takeshi.kihara.df@renesas.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Tue, Sep 26, 2023 at 09:42:44AM -0500, Rob Herring wrote:
-> Make it explicit that the not yet documented child nodes have additional
-> properties and the child node schema is not complete.
+Hi Wolfram,
 
-Guess I missed this patch while reviewing the other additional property
-stuff. Seems like an odd binding with the "Other functions, not
-documented yet", but seems to be a relic of the original text bindings?
-Patch seems reasonable in that context..
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On Mon, Oct 2, 2023 at 1:35=E2=80=AFPM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> From: Takeshi Kihara <takeshi.kihara.df@renesas.com>
+>
+> Add initial support for the Renesas Ebisu-4D development board.
+>
+> The Ebisu-4D board is very similar to the Ebisu board, but the memory
+> configuration is different.
+>
+>   - The memory map of Ebisu-4D board is as follows:
+>       Bank0: 2 GiB RAM : 0x000048000000 -> 0x000bfffffff
+>
+>   - The memory map of Ebisu board is as follows:
+>       Bank0: 1 GiB RAM : 0x000048000000 -> 0x0007fffffff
+>
+> Signed-off-by: Takeshi Kihara <takeshi.kihara.df@renesas.com>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> [wsa: rebased]
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-Thanks,
-Conor.
+Thanks for your patch!
 
->=20
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/input/syna,rmi4.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/input/syna,rmi4.yaml b/Doc=
-umentation/devicetree/bindings/input/syna,rmi4.yaml
-> index 4d4e1a8e36be..b522c8d3ce0d 100644
-> --- a/Documentation/devicetree/bindings/input/syna,rmi4.yaml
-> +++ b/Documentation/devicetree/bindings/input/syna,rmi4.yaml
-> @@ -164,6 +164,8 @@ patternProperties:
-> =20
->    "^rmi4-f[0-9a-f]+@[0-9a-f]+$":
->      type: object
-> +    additionalProperties: true
-> +
->      description:
->        Other functions, not documented yet.
-> =20
-> --=20
-> 2.40.1
->=20
+> Resending this patch because I want to utilize all 2GB of memory on my
+> Ebisu. Since nobody updated U-Boot to handle different RAM sizes on
+> Ebisu in the last 4.5 years, let's add the Ebisu-4D as a seperate board.
 
---ofFuOQomLN1dqN2A
-Content-Type: application/pgp-signature; name="signature.asc"
+This patch is not needed: TF-A passes the memory size to U-Boot,
+which updates the /memory node in the DTB passed to Linux:
 
------BEGIN PGP SIGNATURE-----
+$ dtc -O ebisu/r8a77990-ebisu.dtb | grep -A2 -w memory
+    memory@48000000 {
+            device_type =3D "memory";
+            reg =3D <0x00 0x48000000 0x00 0x38000000>;
+    };
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRq4jAAKCRB4tDGHoIJi
-0i7xAP4h0c0cCWdV4Op0A+o6eLbX18g5HkRKL/jiSzOzCzfMpgD9Gls2PjWYu+b2
-H9lHe1cmUy4dpxo4eaoB8nVVK0fatQk=
-=EiZ4
------END PGP SIGNATURE-----
+When booting:
 
---ofFuOQomLN1dqN2A--
+    NOTICE:  BL2: R-Car Gen3 Initial Program Loader(CA53) Rev.3.0.3
+    NOTICE:  BL2: PRR is R-Car E3 Ver.1.0
+    NOTICE:  BL2: PLL1 nonSSCG Clock select
+    NOTICE:  BL2: Board is Ebisu-4D Rev.1.0
+    ...
+    NOTICE:  BL2: CH0: 400000000 - 47fffffff, 2 GiB
+    ..
+    U-Boot 2022.04-rc4-00082-g54082b91f22f7a49 (Mar 25 2022 - 11:25:09 +010=
+0)
+
+    CPU:   Renesas Electronics R8A77990 rev 1.0
+    Model: Renesas Ebisu-4D board rev 1.0
+    DRAM:  1.9 GiB
+    ...
+    Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+    Linux version 6.6.0-rc3-ebisu-03722-g180199a69b82 (geert@rox)
+(aarch64-linux-gnu-gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, GNU ld
+(GNU Binutils for Ubuntu) 2.38) #546 SMP Tue Sep 26 13:26:12 CEST 2023
+    Machine model: Renesas Ebisu board based on r8a77990
+    printk: debug: ignoring loglevel setting.
+    efi: UEFI not found.
+    Zone ranges:
+       DMA      [mem 0x0000000048000000-0x00000000bfffffff]
+    ...
+    Memory: 1755932K/1966080K available (9088K kernel code, 2496K
+rwdata, 4188K rodata, 3072K init, 17571K bss, 144612K reserved, 65536K
+cma-reserved)
+
+root@ebisu:~# hd /sys/firmware/devicetree/base/memory@48000000/reg
+00000000  00 00 00 00 48 00 00 00  00 00 00 00 78 00 00 00  |....H.......x.=
+..|
+00000010
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
