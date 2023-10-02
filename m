@@ -1,213 +1,134 @@
-Return-Path: <devicetree+bounces-5193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0F3A7B58C2
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 19:30:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B58C7B58C6
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 19:32:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id A36B91C20843
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 17:30:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 16A5C28284D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 17:32:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D9061E507;
-	Mon,  2 Oct 2023 17:30:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE8591E500;
+	Mon,  2 Oct 2023 17:32:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CB85199B2;
-	Mon,  2 Oct 2023 17:30:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19B79C433C7;
-	Mon,  2 Oct 2023 17:30:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696267825;
-	bh=OdlZ5THuUArLfRy0wPc5UG7mfiwyH1fEuvpKiBXwcrk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WLDvTlVrxZp+ubgMERGBLIgHk6VMW4gyrqvh6mAAY+mHvtfSK005LoanH0gVddMIF
-	 dv6MrJ8iXIX8S5kE74NfsNKvWsSgPX0bl4B/psz3ESsD5XzS7o4s96vlCPREA25czC
-	 tijyU5A+aReBkq0z80oyP9APXu6XkA7ib7irSiLHoPG9kzDlpUYeOMLna/gyLBZz8Q
-	 tcAgkYfXWtiFK93iad2cRXQY12s76l3zqk3dF2u2o8+S58OpoSymvEwH5IRF1I4g2t
-	 PUu/LV3ItEkvomp2fk/sFlrkgrkeKKqHFuyIkMgWKp3SENERPcMqNcLi2GvRCK8K2E
-	 q4ZQpq6SN+/+A==
-Received: (nullmailer pid 2046960 invoked by uid 1000);
-	Mon, 02 Oct 2023 17:30:19 -0000
-Date: Mon, 2 Oct 2023 12:30:19 -0500
-From: Rob Herring <robh@kernel.org>
-To: Gatien Chevallier <gatien.chevallier@foss.st.com>
-Cc: Oleksii_Moisieiev@epam.com, gregkh@linuxfoundation.org,
-	herbert@gondor.apana.org.au, davem@davemloft.net,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	alexandre.torgue@foss.st.com, vkoul@kernel.org, jic23@kernel.org,
-	olivier.moysan@foss.st.com, arnaud.pouliquen@foss.st.com,
-	mchehab@kernel.org, fabrice.gasnier@foss.st.com,
-	andi.shyti@kernel.org, ulf.hansson@linaro.org, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, hugues.fruchet@foss.st.com,
-	lee@kernel.org, will@kernel.org, catalin.marinas@arm.com,
-	arnd@kernel.org, richardcochran@gmail.com,
-	Frank Rowand <frowand.list@gmail.com>, peng.fan@oss.nxp.com,
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
-	linux-iio@vger.kernel.org, alsa-devel@alsa-project.org,
-	linux-media@vger.kernel.org, linux-mmc@vger.kernel.org,
-	netdev@vger.kernel.org, linux-p@web.codeaurora.org,
-	hy@lists.infradead.org, linux-serial@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v5 01/11] dt-bindings: document generic access controller
-Message-ID: <20231002173019.GA2037244-robh@kernel.org>
-References: <20230929142852.578394-1-gatien.chevallier@foss.st.com>
- <20230929142852.578394-2-gatien.chevallier@foss.st.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67BAC1A711
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 17:32:05 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACDB494;
+	Mon,  2 Oct 2023 10:32:03 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 392GmiMl029262;
+	Mon, 2 Oct 2023 17:31:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=p2VU07VW0j7CLsz+/d+8HTh3nDeofti/dtnqmepD624=;
+ b=jfV+RugfkH84cHiPJdaXdgCPgL6TiqUDKjDfaPnkOD5nb7Av39LC6oHq6fz0Tv51u+3j
+ WuoqjuWK+rv8wclBEk4jjsJmkrDe8SkCgIDazTX5Uqtb9JXyAWaCMD1wr/53mJJf+JG3
+ xdiTvcsFWELXD6CeZPKEF9AY9HVcdBDwkHeJLIjyCn2eFuSEMvsgrb9Ly4dQH8THyBiW
+ NamzEP13l0uKlPfI10Jawdm4naD/tXIBQYprO/expXErmd2g05uGjP+qDdLzW4aVkOS0
+ 7BcxyaEik5JloYUIJ1W/Q3s7HC4JpqYGpYVNAkJk6yTrOhMm3vREBzkNX+nFkLoPPfpC XA== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3te9cmmgwj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 02 Oct 2023 17:31:45 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 392HVjYt014078
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 2 Oct 2023 17:31:45 GMT
+Received: from [10.110.71.113] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 2 Oct
+ 2023 10:31:44 -0700
+Message-ID: <74725381-bb13-2550-efd3-224e51af49d2@quicinc.com>
+Date: Mon, 2 Oct 2023 10:31:27 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230929142852.578394-2-gatien.chevallier@foss.st.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v4 0/4] Add qcom hvc/shmem transport support
+To: Sudeep Holla <sudeep.holla@arm.com>, Brian Masney <bmasney@redhat.com>
+CC: "cristian.marussi@arm.com" <cristian.marussi@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "andersson@kernel.org"
+	<andersson@kernel.org>,
+        "konrad.dybcio@linaro.org"
+	<konrad.dybcio@linaro.org>,
+        "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "linux-arm-msm@vger.kernel.org"
+	<linux-arm-msm@vger.kernel.org>
+References: <20230718160833.36397-1-quic_nkela@quicinc.com>
+ <20230911194359.27547-1-quic_nkela@quicinc.com>
+ <0efe305e-031b-bdf5-0268-ca1c6d562653@quicinc.com>
+ <20230918151552.n3jvw2qqi5tmyfbb@bogus> <ZQhysWhFtR68iVMa@brian-x1>
+ <20230919085612.gdmpze6c6stvammg@bogus>
+Content-Language: en-US
+From: Nikunj Kela <quic_nkela@quicinc.com>
+In-Reply-To: <20230919085612.gdmpze6c6stvammg@bogus>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: S5wDj1sQVnzaFZDD8F1Yurru0f_aDLQk
+X-Proofpoint-ORIG-GUID: S5wDj1sQVnzaFZDD8F1Yurru0f_aDLQk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-02_12,2023-10-02_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
+ lowpriorityscore=0 adultscore=0 suspectscore=0 bulkscore=0 impostorscore=0
+ mlxlogscore=698 priorityscore=1501 mlxscore=0 malwarescore=0 clxscore=1011
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310020136
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Fri, Sep 29, 2023 at 04:28:42PM +0200, Gatien Chevallier wrote:
-> From: Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
-> 
-> Introducing of the generic access controller bindings for the
-> access controller provider and consumer devices. Those bindings are
-> intended to allow a better handling of accesses to resources in a
-> hardware architecture supporting several compartments.
-> 
-> This patch is based on [1]. It is integrated in this patchset as it
-> provides a use-case for it.
-> 
-> Diffs with [1]:
-> 	- Rename feature-domain* properties to access-control* to narrow
-> 	  down the scope of the binding
-> 	- YAML errors and typos corrected.
-> 	- Example updated
-> 	- Some rephrasing in the binding description
-> 
-> [1]: https://lore.kernel.org/lkml/0c0a82bb-18ae-d057-562b
-> 
-> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
-> 
-> ---
-> Changes in V5:
-> 	- Diffs with [1]
-> 	- Discarded the [IGNORE] tag as the patch is now part of the
-> 	  patchset
-> 
->  .../access-controllers/access-controller.yaml | 90 +++++++++++++++++++
->  1 file changed, 90 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/access-controllers/access-controller.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/access-controllers/access-controller.yaml b/Documentation/devicetree/bindings/access-controllers/access-controller.yaml
-> new file mode 100644
-> index 000000000000..9d305fccc333
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/access-controllers/access-controller.yaml
-> @@ -0,0 +1,90 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/access-controllers/access-controller.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Generic Domain Access Controller
-> +
-> +maintainers:
-> +  - Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-> +
-> +description: |+
-> +  Common access controllers properties
-> +
-> +  Access controllers are in charge of stating which of the hardware blocks under
-> +  their responsibility (their domain) can be accesssed by which compartment. A
-> +  compartment can be a cluster of CPUs (or coprocessors), a range of addresses
-> +  or a group of hardware blocks. An access controller's domain is the set of
-> +  resources covered by the access controller.
-> +
-> +  This device tree bindings can be used to bind devices to their access
-> +  controller provided by access-controller property. In this case, the device is
-> +  a consumer and the access controller is the provider.
-> +
-> +  An access controller can be represented by any node in the device tree and
-> +  can provide one or more configuration parameters, needed to control parameters
-> +  of the consumer device. A consumer node can refer to the provider by phandle
-> +  and a set of phandle arguments, specified by '#access-controller-cells'
-> +  property in the access controller node.
-> +
-> +  Access controllers are typically used to set/read the permissions of a
-> +  hardware block and grant access to it. Any of which depends on the access
-> +  controller. The capabilities of each access controller are defined by the
-> +  binding of the access controller device.
-> +
-> +  Each node can be a consumer for the several access controllers.
-> +
-> +# always select the core schema
-> +select: true
-> +
-> +properties:
-> +  "#access-controller-cells":
-> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-Drop. "#.*-cells" already defines the type.
-
-> +    description:
-> +      Number of cells in a access-controller specifier;
-> +      Can be any value as specified by device tree binding documentation
-> +      of a particular provider.
-> +
-> +  access-control-provider:
-> +    description:
-> +      Indicates that the node is an access controller.
-
-Drop. The presence of "#access-controller-cells" is enough to do that.
-
-> +
-> +  access-controller-names:
-> +    $ref: /schemas/types.yaml#/definitions/string-array
-> +    description:
-> +      A list of access-controller names, sorted in the same order as
-> +      access-controller entries. Consumer drivers will use
-> +      access-controller-names to match with existing access-controller entries.
-> +
-> +  access-controller:
-
-For consistency with other provider bindings: access-controllers
-
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description:
-> +      A list of access controller specifiers, as defined by the
-> +      bindings of the access-controller provider.
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    uart_controller: access-controller@50000 {
-> +        reg = <0x50000 0x10>;
-> +        access-control-provider;
-> +        #access-controller-cells = <2>;
-> +    };
-> +
-> +    bus_controller: bus@60000 {
-> +        reg = <0x60000 0x10000>;
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges;
-> +        access-control-provider;
-> +        #access-controller-cells = <3>;
-> +
-> +        uart4: serial@60100 {
-> +            reg = <0x60100 0x400>;
-> +            access-controller = <&uart_controller 1 2>,
-> +                                <&bus_controller 1 3 5>;
-> +            access-controller-names = "controller", "bus-controller";
-
-Not great names. It should indicate what access is being controlled 
-locally. Perhaps "reg" for register access, "dma" or "bus" for bus 
-master access. (Not sure what your uart_controller is controlling access 
-to.)
-
-Rob
+On 9/19/2023 1:56 AM, Sudeep Holla wrote:
+> On Mon, Sep 18, 2023 at 11:54:25AM -0400, Brian Masney wrote:
+>> On Mon, Sep 18, 2023 at 04:15:52PM +0100, Sudeep Holla wrote:
+>>> On Mon, Sep 18, 2023 at 08:01:26AM -0700, Nikunj Kela wrote:
+>>>> Gentle Ping!
+>>>>
+>>> I will take a look at this later this week. That said, I am unable be
+>>> gauge the urgency based on you ping here. You have shown the same urgency
+>>> last time for a feature that I queued promptly just to know that it was
+>>> abandon within couple of days. So I don't want to rush here simply based
+>>> on the number of pings here. I need to understand that it is really that
+>>> important. For now, I am thinking of skipping even v6.7 just to allow
+>>> some time for Qcom to make up its mind and be absolutely sure this is what
+>>> they *really* want this time.
+>> Hi Sudeep,
+>>
+>> Red Hat is interested in this patch set. Qualcomm is moving one of their
+>> automotive platforms over to use SCMI and this will appear in that
+>> product.
+>>
+> Thanks Brian, I trust Redhat over Qcom 😄. I will try to review and enable
+> progress later this week. We can try to target next merge window.
+>
+> --
+> Regards,
+> Sudeep
+Gentle Ping...
 
