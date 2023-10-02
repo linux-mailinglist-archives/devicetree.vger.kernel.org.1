@@ -1,152 +1,106 @@
-Return-Path: <devicetree+bounces-5140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 476F47B563C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 17:28:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1DDB7B563F
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 17:36:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id E0633281E82
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 15:28:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 33068B20A4B
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 15:36:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C9AA1CF83;
-	Mon,  2 Oct 2023 15:28:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7223F1CF9B;
+	Mon,  2 Oct 2023 15:36:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39425199B2
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 15:28:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99F18C433C8;
-	Mon,  2 Oct 2023 15:28:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696260504;
-	bh=cBsXuH+waMnbRb4zU7K8v3UB85/p7ufJUV9Y1AvcxRI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VdKIGKKOTx6RCCphHOtVS/Dr/s/B5hcvTW3AukByt1zrZOIpZJw0DS+x9GQjStAVx
-	 C77Au3XeTTzvbiNUtG824gBmuwqXxgloskfVs+S8AN5nOCfpzi9SbnZlU1arCJREee
-	 DcvqT5Ki92KBnFv/YHTsXVpzOQEybww5AmVYUGhwoKPQ5htUUorEwjW05u5sy0w48M
-	 cmePtZHUeuyQERcJBWGnU1Khdvf0qyCeiccLQFn6c4n+YyfyBtj3BKI1MIZMT/iA2i
-	 7MpJXE3H6AmIGBwDLUkrn6GiJIO50tbZga685E62N1w/+R8n+l0CWpro5kNA+Rijku
-	 EJNvViksJFWgw==
-Received: (nullmailer pid 1757850 invoked by uid 1000);
-	Mon, 02 Oct 2023 15:28:19 -0000
-Date: Mon, 2 Oct 2023 10:28:19 -0500
-From: Rob Herring <robh@kernel.org>
-To: Billy Tsai <billy_tsai@aspeedtech.com>
-Cc: jdelvare@suse.com, linux@roeck-us.net, krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au, corbet@lwn.net, thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de, p.zabel@pengutronix.de, naresh.solanki@9elements.com, linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org, BMC-SW@aspeedtech.com, patrick@stwcx.xyz
-Subject: Re: [PATCH v9 2/3] dt-bindings: hwmon: Support Aspeed g6 PWM TACH
- Control
-Message-ID: <20231002152819.GB1747496-robh@kernel.org>
-References: <20230918064111.2221594-1-billy_tsai@aspeedtech.com>
- <20230918064111.2221594-3-billy_tsai@aspeedtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB0741A715
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 15:36:23 +0000 (UTC)
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAB83D8
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 08:36:21 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id 41be03b00d2f7-578d791dd91so2227847a12.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 08:36:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1696260981; x=1696865781; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+RgMLD9dSESZx52XLswNxjXiae7bjz6p9TOP3CQJHyA=;
+        b=oky/oqG2dLxveE0LCaeozY/1eKrsOFkx/QIfqtBzkf9wQXi+RSSxI+IAzKe5SePCIR
+         +SgKbhHh0n1FeXE76779o5YLUAGOwVkyoDt78Wwzp6L2ZjdGArDi9UumFpkQNRLd3/21
+         m4LE0R1onuyCZvn0aW9y5JwsVdnD4AWxKO5dSn1jkg2ttlWrYFy2WrJY3e2F1badcnYU
+         bZSgJldjWYsHLhchTN6VOdlYvrQEcaAo/KHm2i8v6fe0Dws64FE58UJvgqvNB48MtmJf
+         +1n2VuC4RC4gTrQ8EK7uEyUUejfCa5lSPo+efD/TVTsa6zYh7GpWVLnkzb4OhwcbF2eR
+         zM/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696260981; x=1696865781;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+RgMLD9dSESZx52XLswNxjXiae7bjz6p9TOP3CQJHyA=;
+        b=NKkRZ8ZyGB/wp2b9I0rpeP3/qkjGmuYgxICXZEh5C7jOs06zcGMLAXxM0A8utuhySa
+         6lfN1F0aBJdGVEEaavd+mPJtBboGWWqsv1B2H7d5JfSHyTYR+3s6v5zk67h14M0Zl/3P
+         JvabuDgtl9EM5UxctnXLhPyeLWqpUEuj4W4FatKPGPnoOLX3BtKk4agCJvF7c2YnttMM
+         4y1Y32HtYt2US/A2Wv6tJtt1dd4uJUR2qAa6An20/TTBFtcuaH+Aq8HUqfmI64eznaIQ
+         7EHvKW20HsPzkBhZ+/sQpbg+M689UqxBJoi2wpGIqt6EfmrhoYfetsMSdiD2J+HDLtPF
+         AVFQ==
+X-Gm-Message-State: AOJu0YxJLHdsC0GLkueHnXrAWzyo2MunLHCcvkGcs0Km+W/CGIUEEbGZ
+	Pl9KR/V1p03FhKiN1/5SFfblcth8gsDjTuMBrxp+Kg==
+X-Google-Smtp-Source: AGHT+IHdUbkKZ2bTW3F9Qg4PjCMCpRtqgGBYo+9VzsIQ8Arz7Ddo4OzAJxCLa36qrqP4KqitPbbTePoaUqx96PBwxCI=
+X-Received: by 2002:a17:90a:b396:b0:277:422d:3a0f with SMTP id
+ e22-20020a17090ab39600b00277422d3a0fmr18387610pjr.17.1696260981095; Mon, 02
+ Oct 2023 08:36:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230918064111.2221594-3-billy_tsai@aspeedtech.com>
+References: <20230919035343.1399389-1-apatel@ventanamicro.com>
+ <20230919035343.1399389-2-apatel@ventanamicro.com> <ZRpitP5y1yhzKwbE@infradead.org>
+In-Reply-To: <ZRpitP5y1yhzKwbE@infradead.org>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Mon, 2 Oct 2023 21:06:08 +0530
+Message-ID: <CAK9=C2XyQtHy3__i+fahbi49=j5Z3Z_Bv5s3Ptqjmuaa5q18LA@mail.gmail.com>
+Subject: Re: [PATCH 1/7] RISC-V: Detect XVentanaCondOps from ISA string
+To: Christoph Hellwig <hch@infradead.org>
+Cc: Paolo Bonzini <pbonzini@redhat.com>, Atish Patra <atishp@atishpatra.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Shuah Khan <shuah@kernel.org>, 
+	Andrew Jones <ajones@ventanamicro.com>, Mayuresh Chitale <mchitale@ventanamicro.com>, 
+	devicetree@vger.kernel.org, kvm@vger.kernel.org, 
+	kvm-riscv@lists.infradead.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Mon, Sep 18, 2023 at 02:41:10PM +0800, Billy Tsai wrote:
-> Document the compatible for aspeed,ast2600-pwm-tach device, which can
-> support up to 16 PWM outputs and 16 fan tach input.
-> 
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> ---
->  .../bindings/hwmon/aspeed,g6-pwm-tach.yaml    | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml b/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
-> new file mode 100644
-> index 000000000000..5a679f4ad2fa
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2023 Aspeed, Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/aspeed,g6-pwm-tach.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ASPEED G6 PWM and Fan Tach controller device driver
+On Mon, Oct 2, 2023 at 11:57=E2=80=AFAM Christoph Hellwig <hch@infradead.or=
+g> wrote:
+>
+> On Tue, Sep 19, 2023 at 09:23:37AM +0530, Anup Patel wrote:
+> > The Veyron-V1 CPU supports custom conditional arithmetic and
+> > conditional-select/move operations referred to as XVentanaCondOps
+> > extension. In fact, QEMU RISC-V also has support for emulating
+> > XVentanaCondOps extension.
+> >
+> > Let us detect XVentanaCondOps extension from ISA string available
+> > through DT or ACPI.
+>
+> Umm, I though Linux/riscv would never support vendor specific
+> extensions?
+>
 
-This is binding for the h/w, not a 'device driver'.
+We already have few T-Head specific extensions so Linux RISC-V
+does allow vendor extensions.
 
-> +
-> +maintainers:
-> +  - Billy Tsai <billy_tsai@aspeedtech.com>
-> +
-> +description: |
-> +  The ASPEED PWM controller can support up to 16 PWM outputs.
-> +  The ASPEED Fan Tacho controller can support up to 16 fan tach input.
-> +  They are independent hardware blocks, which are different from the
-> +  previous version of the ASPEED chip.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - aspeed,ast2600-pwm-tach
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  "#pwm-cells":
-> +    const: 3
-> +
-> +patternProperties:
-> +  "^fan-[0-9a-f]+$":
-
-foo-<index> naming is decimal, not hex. (unit-addresses are hex)
-
-But if 0 and 1 correspond to something in the h/w, then you should 
-probably be using 'reg' instead (which means a unit-address too).
-
-> +    $ref: fan-common.yaml#
-> +    unevaluatedProperties: false
-> +    required:
-> +      - tach-ch
-> +
-> +required:
-> +  - reg
-> +  - clocks
-> +  - resets
-> +  - "#pwm-cells"
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/aspeed-clock.h>
-> +    pwm_tach: pwm-tach-controller@1e610000 {
-> +      compatible = "aspeed,ast2600-pwm-tach";
-> +      reg = <0x1e610000 0x100>;
-> +      clocks = <&syscon ASPEED_CLK_AHB>;
-> +      resets = <&syscon ASPEED_RESET_PWM>;
-> +      #pwm-cells = <3>;
-> +
-> +      fan-0 {
-> +        tach-ch = /bits/ 8 <0x0>;
-
-What about the PWM connection?
-
-> +      };
-> +
-> +      fan-1 {
-> +        tach-ch = /bits/ 8 <0x1 0x2>;
-> +      };
-> +    };
-> -- 
-> 2.25.1
-> 
+Regards,
+Anup
 
