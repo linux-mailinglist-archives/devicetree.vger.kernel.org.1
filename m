@@ -1,979 +1,249 @@
-Return-Path: <devicetree+bounces-5116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00EF87B54C2
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 16:10:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 399F07B54CF
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 16:17:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 9EE222810E6
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 14:10:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 5E2891C20849
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 14:17:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABACC19BB0;
-	Mon,  2 Oct 2023 14:10:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC0D019BCF;
+	Mon,  2 Oct 2023 14:17:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5427919BC3
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 14:10:43 +0000 (UTC)
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47324B7
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 07:10:39 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-406589e5765so34487315e9.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 07:10:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1696255837; x=1696860637; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Hp8lCCmPEvd3/TBKZ6aysOZHZw0bHPdZ0CJJ0IzTjyo=;
-        b=b83Axjn6j6/WmPJhdWN7sma6CbOUdrYJdyapi6s5p/FhZtGNggZx3fS05w/n2quTPK
-         iyiiRPPGXteVDdB9X+38Mv8t79JRflzWYm7T2axaa0zbU/85DxMC4tiS795EZD2Abn29
-         IAMl17vXH01zIedL5roFO6NogRFwnXgmoTlisl5ExUaSVRDPj4OD+bLVaJsurZMbp+LH
-         8oPOTajcdH2kAE7FtipPY21rTkq+O/M/5aNQNjpdWqezz5CV4cUZp5wGLG5kMF3rxXXr
-         GPIu89Y8EQpPjFFSWZWGUW5eVEXt6YmVzJHuxX2DbXzifG1Gl+M+M8wstV/PJq3LLIKe
-         k3DA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696255838; x=1696860638;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Hp8lCCmPEvd3/TBKZ6aysOZHZw0bHPdZ0CJJ0IzTjyo=;
-        b=q3k9CPWLzv/iiCNvpbY3ADo09KgOrwoNPtNOOBnsqbTdpBC6T2uifmKjSpxu0kGnaz
-         bRv/W4OkqLlIjarmUEefST0QHKs2udWPe2gsEghG6FxOhIB2ZwK2LrNMUA0d3eGWSkfr
-         9ozCrHmg27BpFe+er2+mdWwlFEx4fdt223VGedK13O0r8c/1qP9F0qs47ocZ6NaB7Okd
-         G4IWh1xMp+Wp5nvF7BmaolEu0IqHCxuAG/GjxaOZ3nn1m3/Y2cqEfPLuUJJVZfZ9JjB2
-         NL4rriRFcpQ9LHx8tbyVOFgdMXHoU3WjojGE37EviZkY3ieluXX2q9lyYbP5Qn4vOeKV
-         Peqw==
-X-Gm-Message-State: AOJu0YxgKvb2cc833BXn+GbeEzjXqrYz8pZVEvOgiYpy66rJabcTosPy
-	yusHKTdazgRmLziHiFbakvZAEQ==
-X-Google-Smtp-Source: AGHT+IG0Wxk6FNmMjVQxsa2PEzxMuqYinS93YV/5jX8WYmsSi3pQ7g6XUPIIEEptlhhOqyWsjgS5vg==
-X-Received: by 2002:a7b:c8c4:0:b0:401:b493:f7c1 with SMTP id f4-20020a7bc8c4000000b00401b493f7c1mr9782808wml.35.1696255837464;
-        Mon, 02 Oct 2023 07:10:37 -0700 (PDT)
-Received: from toaster.lan ([2a01:e0a:3c5:5fb1:fcf2:65f1:853c:13be])
-        by smtp.googlemail.com with ESMTPSA id k3-20020a05600c0b4300b003fe1fe56202sm7361911wmr.33.2023.10.02.07.10.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Oct 2023 07:10:37 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A03C19BCE
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 14:17:53 +0000 (UTC)
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2083.outbound.protection.outlook.com [40.107.247.83])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA028B8;
+	Mon,  2 Oct 2023 07:17:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hmVtV1rkK2tm1a6Yn03WG6rxQaWMtwijDS5+GbjQNS+H2q7s48oFQP9BqF1uBdwSEpZ7q5Q2fbxiIPFNrvCZBQiVMWwXT+lcSsNjfTm/0GoPN5Zoopcqgf0JZRGLxZ+Fwn/X4D4wTVnTIpX8fpR0Hj/BO8tICdsRsiy3mLUWy/EEpg8Py8W8I/26izrfA72ZfTJ7LUMhEMlRhwGuEirBRhOO372jZJoWmj/ElW0iIfpAIcgERFXDyH6qvESXN0ZeaGr+C27siV6M7qRfV12jOS3aIGXngonoALXTAIKOX7c3eTUZL4m4D+6RErRamg6cAgwpMm44rkeXnM9aTqig9Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WkW5rQEpz9ByPpH0Ovd5WBwSu3H5nZ9FRIsaPdpQW30=;
+ b=TGsjoGQLT4KMYGCGu0VpILHtIV5Uq0PzVP+mPABH2gtJG4j57duXeoHIF1SqNs4JclWGTR6z7Q2AeZU+3WbjBbpD6XRY6Wka5I9FaiJLJCh08P2hTyRAjjPAtghPMqOOJVm1HptddP9aOvcO4BH028fO+CJ7h3fFhVlzL2lwZjYunXe6Qv4JDBquBIYKe8RqTXhUrwjpkg0akNrm9huSifBGDmh46cqyOg5igiuQc5SMP6xyrophge5TZnoByEkSMc8toAfiiqSr3CfWbUUJbjFaT9Iv5e7yLf4sIBypV5IOi+3MlZEKHNflXsT7SUTNz/ygZRAjs8Rn4NlhkSVhSA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WkW5rQEpz9ByPpH0Ovd5WBwSu3H5nZ9FRIsaPdpQW30=;
+ b=VMFGmu6n06c5dyVIAK2/I420jOt8m2zF1PM93BumQKPHF8YKkAEbZX+9EsksxUIh0fDqr+8xGcOWEEMtNRLIzLhHC2ZjN2hP8l6Mh1CvqsK+HGojNH/A6E2kQW6G5sZr6gwAq+g43y+4JTECKqxiJBLSKgQiDLFpPyT07wFNzR4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM0PR04MB6452.eurprd04.prod.outlook.com (2603:10a6:208:16d::21)
+ by AS4PR04MB9241.eurprd04.prod.outlook.com (2603:10a6:20b:4e0::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.25; Mon, 2 Oct
+ 2023 14:17:47 +0000
+Received: from AM0PR04MB6452.eurprd04.prod.outlook.com
+ ([fe80::568a:57ee:35b5:e454]) by AM0PR04MB6452.eurprd04.prod.outlook.com
+ ([fe80::568a:57ee:35b5:e454%3]) with mapi id 15.20.6838.024; Mon, 2 Oct 2023
+ 14:17:47 +0000
+Date: Mon, 2 Oct 2023 17:17:43 +0300
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Madalin Bucur <madalin.bucur@nxp.com>,
+	Ioana Ciornei <ioana.ciornei@nxp.com>,
+	Camelia Groza <camelia.groza@nxp.com>, Li Yang <leoyang.li@nxp.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Da Xue <da.xue@libretech.co>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH 2/2] arm64: dts: amlogic: add libretech cottonwood support
-Date: Mon,  2 Oct 2023 16:10:20 +0200
-Message-Id: <20231002141020.2403652-3-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20231002141020.2403652-1-jbrunet@baylibre.com>
-References: <20231002141020.2403652-1-jbrunet@baylibre.com>
+	Conor Dooley <conor@kernel.org>,
+	Sean Anderson <sean.anderson@seco.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>
+Subject: Re: [RFC PATCH v2 net-next 08/15] net: phylink: allow PCS to handle
+ C73 autoneg for phy-mode = "internal"
+Message-ID: <20231002141743.lbmb66q22dmuyi6f@skbuf>
+References: <20230923134904.3627402-1-vladimir.oltean@nxp.com>
+ <20230923134904.3627402-9-vladimir.oltean@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230923134904.3627402-9-vladimir.oltean@nxp.com>
+X-ClientProxiedBy: BE1P281CA0135.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:b10:7a::6) To AM0PR04MB6452.eurprd04.prod.outlook.com
+ (2603:10a6:208:16d::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR04MB6452:EE_|AS4PR04MB9241:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8e852864-3730-4902-991c-08dbc35259ff
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+ HLINLyk0ecOXMr+KT6e7mO7/8lKjO34Tv2I1OLxe/13YwtEVH6i73HSzNtFA/bfYCA9IbXpj4dOns5MC0ehO8BAP+e9vWChnpQ0weMs5t1aWxkISA9OfMqZMycc/iGrppU+bPWBLGFZMY4oOym2MfhNn7eD1RU9oqcrzbhPd5TSzNUeoL3pQyLuDWEwro8niFzWbeZZEczki3Ol+HjTQKmiapIDUuw+6c/lzppMrMenKvKUafMNRZhT4sLp4bKn4Ro8G9hb4nHVVhhmKtWF+xHtRhE0SSI+Iqtd+S5Q0S7QrM1p74l+PXI7SQw7AMFZ6rHaSl5YuvlvokRUx4B0IotWOvS4EvKyHp7lmyQPWkhbdaiTFL+yhgnF1PUMK3R52f/RRCK03yC4lI9LoATaWT30jk8Qsg/gUfjohqidly1xSubFk2DDDybilpsFIhgBTKMdNjAnwuGTzS7u6J2gSjSljRPq7IJMQAh8sWlL40szYVS77TZdan1Q6RpuE7OWgf+QO0HsO3f9Sf8KwMqcdMwKTUa1xQQ7G4H2tZrkE7s8=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6452.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(366004)(376002)(346002)(39860400002)(136003)(396003)(230922051799003)(186009)(64100799003)(1800799009)(451199024)(26005)(9686003)(19627235002)(4326008)(1076003)(38100700002)(86362001)(83380400001)(2906002)(7416002)(6506007)(478600001)(6512007)(8936002)(966005)(316002)(41300700001)(6666004)(8676002)(44832011)(33716001)(66946007)(6486002)(54906003)(66556008)(66476007)(5660300002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?nm+WNycursyGMmuqogr404BbmbGYImxbq55Nh/IheJ7rH1CpP+0OGQL8ywJY?=
+ =?us-ascii?Q?TolEgSbZoyabmXWNTLvvv/tpgaZOnLfZwNvDD3TQqkQXcUvduMfjTwN4qelm?=
+ =?us-ascii?Q?xhGPXy2rWrgElHG/OR5EEAisrGHmlss79+5Mc89TueEWRrWknTaXTKHWC+bt?=
+ =?us-ascii?Q?Y6EXtlI6v0tQoDW1d631EEDu1TjvxaDmmmf1FUP4Et2eeUCYUQOYl8EUxNq2?=
+ =?us-ascii?Q?HZ6rpSTGYp6GXuKzAo5TGL93Uvk+K2o844wQn4Kpumc5GIG6AtE+G4EHyPJ7?=
+ =?us-ascii?Q?fWaeV5zGhczhzSo49Jvnh17sP49lxt7ZgXz92E0g+zWXQq4IccL74C/BysVR?=
+ =?us-ascii?Q?vZ5rcjCQewPSwqkK/lHxut/59YFrB89ilB2PRBrOmM6xmcV1SrN0pK7oEY1m?=
+ =?us-ascii?Q?7mK2pHjKlHdvhNkxbLffXWW0OSaLwBz96NZC5xicK7w74FhKuP9aY9AirrCQ?=
+ =?us-ascii?Q?vnwHMs86qStOORhZBHQcv6Ks+rWYnXrvRH1MX+04S/yB15J6LrRVP4KBDrIX?=
+ =?us-ascii?Q?r30YAZIZhT54d/L6U1xR2CtTaEyvDiLya9IitJH9TZcAIZ8Sehjp4xiiVScR?=
+ =?us-ascii?Q?Fhq5WGyF2c/8pyYo51mYJlswB/39PqMcyXSMhLVqt5eZc+AURPYq5Pw50O8B?=
+ =?us-ascii?Q?E+6xTqaGAa8kte1Pje9byDQfw3yebAX8nKj6B1FGNaSAVevVv/NxRjmVdU9F?=
+ =?us-ascii?Q?akhSd0g0lXlaj1q5D5dEoaiYl3o/jAKSA3JBp/7Y0dL/5DIJh4gyoIC8JxN5?=
+ =?us-ascii?Q?rZD4AI+SnHG3osBOFE1s9Sl32dpxH75ASyGuZN/FDnCQpIc6uK1RsGQr52od?=
+ =?us-ascii?Q?sza7FaTzl7DQnhmZQS6UXzc4bg7Or9BRVTv2Zys2ihNBKLhxoZUiALVDZsVo?=
+ =?us-ascii?Q?mUx+A/JmFSwW6xWNucgmZwv6/szdollQbervatgX1Sjx3hobja5NviIr0FXn?=
+ =?us-ascii?Q?YXVc5OvzhENI0MMqIJ+fJhdMxQxGf4NDduKhfkLLBBfYKUu18+sFtsqJFMAY?=
+ =?us-ascii?Q?Rqw9Lp26dtVSlCMbC2XVl2aBdi7joT/wXHlDAatsUW5wvkB9LEnqpK1CRXxL?=
+ =?us-ascii?Q?K03LaGR0/wjUVpye/J3KXaJOjHp6FIHHq6k/waLVKlUUf1WtfKZFYbG0fOj2?=
+ =?us-ascii?Q?Kg3DdHfxpOrKK3GOX7+INzcPfa17xA8QEv8lHv8c1ao+g/ObwwYD7FOxg6Gn?=
+ =?us-ascii?Q?jddQdJoiIuQ5feQgMVpfCHNFzOrpzmn+ofd3Lj+sCzVnE0f0gJ0PbawawHri?=
+ =?us-ascii?Q?mtIDYMRIgnYqjHDtAJ+n1P73aglgafm8oLiWo/B3AE1ULgwg7lE2YVTXPT+P?=
+ =?us-ascii?Q?+rOja1eBz6P3++IGrjaCcLq7pTTIEkUV2kiP+68WW+yQy7EcRXtAoZ2CdrIz?=
+ =?us-ascii?Q?Faf/8bH05UvRebqAHMWKnGJfEj+2DrGiYTBeuK7cDigSj8mbMBxsYL4N3z4U?=
+ =?us-ascii?Q?tbfgz/1F8tcZ1Qcy9w7LYXUnsZdzh0JYHHWeW/aTTC0iHwni7HojLaRWR/F8?=
+ =?us-ascii?Q?n5se9bMU6fAAWIrzQ6ZvvCC34WdyzTpna7hHBAO2SA/AEfxPl2nTvIz2LkQ4?=
+ =?us-ascii?Q?zoFifWDsg0P6fB++4H3rKbhVpBhFXmshlFj+y6oBFklsslJNaEXELSbmC7yb?=
+ =?us-ascii?Q?mQ=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8e852864-3730-4902-991c-08dbc35259ff
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6452.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2023 14:17:46.9807
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XwdxKyNADi6P5RaipMkyHAF8jK6CCT0YWXZg1tEs591lmtQuXeCJPU22naheRJrS+6iUXNu8jbui1ihfCAlmww==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9241
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add support for the Libretech cottonwood board family.
-These 2 boards are based on the same PCB, with an RPi B form factor.
+Hi Russell,
 
-The "Alta" board uses an a311d while the "Solitude" variant uses an s905d3.
+On Sat, Sep 23, 2023 at 04:48:57PM +0300, Vladimir Oltean wrote:
+> Some phylink and phylib based systems might want to operate on backplane
+> media types ("K" in the name), and thus, picking a phy_interface_t for
+> them becomes a challenge.
+> 
+> phy_interface_t is a description of the connection between the MAC and
+> the PHY, or if a MAC-side PCS is present, the connection between that
+> and the next link segment (which can be remote).
+> 
+> A MAC-side PCS is so far considered to be a PCS handling link modes with
+> optional C37 autoneg. But C73 autoneg (for backplanes and SFP28 modules)
+> is not at the same level in the OSI layering, so that existing model may
+> or may not apply.
+> 
+> (a) If we say that the PCS is MAC-side for C73 modes as well, the
+>     implication seems to be that the phy-mode should be one of
+>     PHY_INTERFACE_MODE_10GBASEKR, PHY_INTERFACE_MODE_1000BASEKX, etc.
+>     Similar to PHY_INTERFACE_MODE_1000BASEX which imitates the link mode
+>     ETHTOOL_LINK_MODE_1000baseX_Full_BIT.
+> 
+> (b) If we say that the PCS is not MAC-side, but rather that the
+>     phylink_pcs represents an entire non-phylib backplane PHY which may
+>     negotiate one of many link modes (like a copper phylib PHY), then
+>     the phy-mode should probably be one of PHY_INTERFACE_MODE_XGMII,
+>     XLGMII etc. Or rather, because there is no MII pinout per se and the
+>     backplane PHY / phylink_pcs is internal, we can also use
+>     PHY_INTERFACE_MODE_INTERNAL.
+> 
+> The trouble with (a), in my opinion, is that if we let the phy_interface_t
+> follow the link mode like in the case of Base-X fiber modes, we have to
+> consider the fact that C73 PHYs can advertise multiple link modes, so
+> the phy_interface_t selection will be arbitrary, and any phy_interface_t
+> selection will have to leave in the "supported" and "advertised" masks
+> of link modes all the other backplane modes. This may be hard to justify.
+> 
+> That is the reasoning based on which I selected this phy-mode to
+> describe the setup in Layerscape SoCs which have integrated backplane
+> autoneg support. The changes in phylink permit the managed =
+> "in-band-status" fwnode property to be extended for C73 autoneg, which
+> is then controllable through ethtool. With phy-mode = "internal" in an
+> in-band autoneg mode, we advertise all backplane link modes. The list is
+> not exhaustive and may be extended in the future.
+> 
+> Link: https://lore.kernel.org/netdev/ZOXlpkbcAZ4okric@shell.armlinux.org.uk/
+> Link: https://lore.kernel.org/netdev/ZGIkGmyL8yL1q1zp@shell.armlinux.org.uk/
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> ---
+> v1->v2: patch is new
+> 
+>  drivers/net/phy/phylink.c | 19 ++++++++++++++++++-
+>  include/linux/phylink.h   |  1 +
+>  2 files changed, 19 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/net/phy/phylink.c b/drivers/net/phy/phylink.c
+> index 548130d77302..88ace7e203c3 100644
+> --- a/drivers/net/phy/phylink.c
+> +++ b/drivers/net/phy/phylink.c
+> @@ -972,6 +972,21 @@ static int phylink_parse_mode(struct phylink *pl,
+>  			phylink_set(pl->supported, 100000baseDR2_Full);
+>  			break;
+>  
+> +		case PHY_INTERFACE_MODE_INTERNAL:
+> +			phylink_set(pl->supported, 1000baseKX_Full);
+> +			phylink_set(pl->supported, 10000baseKX4_Full);
+> +			phylink_set(pl->supported, 10000baseKR_Full);
+> +			phylink_set(pl->supported, 25000baseCR_Full);
+> +			phylink_set(pl->supported, 25000baseKR_Full);
+> +			phylink_set(pl->supported, 25000baseCR_S_Full);
+> +			phylink_set(pl->supported, 25000baseKR_S_Full);
+> +			phylink_set(pl->supported, 40000baseKR4_Full);
+> +			phylink_set(pl->supported, 50000baseKR2_Full);
+> +			phylink_set(pl->supported, 50000baseKR_Full);
+> +			phylink_set(pl->supported, 100000baseKR4_Full);
+> +			phylink_set(pl->supported, 100000baseKR2_Full);
+> +			break;
+> +
+>  		default:
+>  			phylink_err(pl,
+>  				    "incorrect link mode %s for in-band status\n",
+> @@ -1109,7 +1124,9 @@ static void phylink_mac_config(struct phylink *pl,
+>  
+>  static bool phylink_pcs_handles_an(phy_interface_t iface, unsigned int mode)
+>  {
+> -	return phy_interface_mode_is_8023z(iface) && phylink_autoneg_inband(mode);
+> +	return (phy_interface_mode_is_8023z(iface) ||
+> +		iface == PHY_INTERFACE_MODE_INTERNAL) &&
+> +	       phylink_autoneg_inband(mode);
+>  }
+>  
+>  static void phylink_pcs_an_restart(struct phylink *pl)
+> diff --git a/include/linux/phylink.h b/include/linux/phylink.h
+> index 2b886ea654bb..7e8e26001587 100644
+> --- a/include/linux/phylink.h
+> +++ b/include/linux/phylink.h
+> @@ -141,6 +141,7 @@ static inline unsigned int phylink_pcs_neg_mode(unsigned int mode,
+>  
+>  	case PHY_INTERFACE_MODE_1000BASEX:
+>  	case PHY_INTERFACE_MODE_2500BASEX:
+> +	case PHY_INTERFACE_MODE_INTERNAL:
+>  		/* 1000base-X is designed for use media-side for Fibre
+>  		 * connections, and thus the Autoneg bit needs to be
+>  		 * taken into account. We also do this for 2500base-X
+> -- 
+> 2.34.1
+>
 
-Co-developed-by: Da Xue <da.xue@libretech.co>
-Signed-off-by: Da Xue <da.xue@libretech.co>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/Makefile          |   2 +
- .../amlogic/meson-g12b-a311d-libretech-cc.dts | 133 ++++
- .../amlogic/meson-libretech-cottonwood.dtsi   | 610 ++++++++++++++++++
- .../amlogic/meson-sm1-s905d3-libretech-cc.dts |  89 +++
- 4 files changed, 834 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-libretech-cottonwood.dtsi
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-s905d3-libretech-cc.dts
-
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 4ce401d17b63..cc8b34bd583d 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -18,6 +18,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-bananapi-cm4-cm4io.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gsking-x.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-libretech-cc.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-go-ultra.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2-plus.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2.dtb
-@@ -73,6 +74,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-bananapi-m2-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-bananapi-m5.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-h96-max.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-khadas-vim3l.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-sm1-s905d3-libretech-cc.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-c4.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts
-new file mode 100644
-index 000000000000..fc890e235dbd
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts
-@@ -0,0 +1,133 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2023 BayLibre, SAS.
-+ * Author: Jerome Brunet <jbrunet@baylibre.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/clock/g12a-clkc.h>
-+#include "meson-g12b-a311d.dtsi"
-+#include "meson-libretech-cottonwood.dtsi"
-+
-+/ {
-+	compatible = "libretech,aml-a311d-cc", "amlogic,a311d", "amlogic,g12b";
-+	model = "Libre Computer AML-A311D-CC Alta";
-+
-+	vddcpu_a: regulator-vddcpu-a {
-+		compatible = "pwm-regulator";
-+		regulator-name = "VDDCPU_A";
-+		regulator-min-microvolt = <730000>;
-+		regulator-max-microvolt = <1011000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+		pwm-supply = <&dc_in>;
-+		pwms = <&pwm_ab 0 1250 0>;
-+		pwm-dutycycle-range = <100 0>;
-+	};
-+
-+	sound {
-+		model = "Alta";
-+		audio-routing = "TDMOUT_A IN 0", "FRDDR_A OUT 0",
-+				"TDMOUT_A IN 1", "FRDDR_B OUT 0",
-+				"TDMOUT_A IN 2", "FRDDR_C OUT 0",
-+				"TDM_A Playback", "TDMOUT_A OUT",
-+				"TDMOUT_B IN 0", "FRDDR_A OUT 1",
-+				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-+				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+				"TDM_B Playback", "TDMOUT_B OUT",
-+				"TDMOUT_C IN 0", "FRDDR_A OUT 2",
-+				"TDMOUT_C IN 1", "FRDDR_B OUT 2",
-+				"TDMOUT_C IN 2", "FRDDR_C OUT 2",
-+				"TDM_C Playback", "TDMOUT_C OUT",
-+				"TDMIN_A IN 0", "TDM_A Capture",
-+				"TDMIN_B IN 0", "TDM_A Capture",
-+				"TDMIN_C IN 0", "TDM_A Capture",
-+				"TDMIN_A IN 3", "TDM_A Loopback",
-+				"TDMIN_B IN 3", "TDM_A Loopback",
-+				"TDMIN_C IN 3", "TDM_A Loopback",
-+				"TDMIN_A IN 1", "TDM_B Capture",
-+				"TDMIN_B IN 1", "TDM_B Capture",
-+				"TDMIN_C IN 1", "TDM_B Capture",
-+				"TDMIN_A IN 4", "TDM_B Loopback",
-+				"TDMIN_B IN 4", "TDM_B Loopback",
-+				"TDMIN_C IN 4", "TDM_B Loopback",
-+				"TDMIN_A IN 2", "TDM_C Capture",
-+				"TDMIN_B IN 2", "TDM_C Capture",
-+				"TDMIN_C IN 2", "TDM_C Capture",
-+				"TDMIN_A IN 5", "TDM_C Loopback",
-+				"TDMIN_B IN 5", "TDM_C Loopback",
-+				"TDMIN_C IN 5", "TDM_C Loopback",
-+				"TODDR_A IN 0", "TDMIN_A OUT",
-+				"TODDR_B IN 0", "TDMIN_A OUT",
-+				"TODDR_C IN 0", "TDMIN_A OUT",
-+				"TODDR_A IN 1", "TDMIN_B OUT",
-+				"TODDR_B IN 1", "TDMIN_B OUT",
-+				"TODDR_C IN 1", "TDMIN_B OUT",
-+				"TODDR_A IN 2", "TDMIN_C OUT",
-+				"TODDR_B IN 2", "TDMIN_C OUT",
-+				"TODDR_C IN 2", "TDMIN_C OUT",
-+				"Lineout", "ACODEC LOLP",
-+				"Lineout", "ACODEC LORP";
-+	};
-+};
-+
-+&cpu_opp_table_0 {
-+		opp-1800000000 {
-+			opp-hz = /bits/ 64 <1800000000>;
-+			opp-microvolt = <1001000>;
-+		};
-+
-+		opp-2016000000 {
-+			opp-hz = /bits/ 64 <2016000000>;
-+			opp-microvolt = <1011000>;
-+		};
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vddcpu_b>;
-+	operating-points-v2 = <&cpu_opp_table_0>;
-+	clocks = <&clkc CLKID_CPU_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&vddcpu_b>;
-+	operating-points-v2 = <&cpu_opp_table_0>;
-+	clocks = <&clkc CLKID_CPU_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu100 {
-+	cpu-supply = <&vddcpu_a>;
-+	operating-points-v2 = <&cpub_opp_table_1>;
-+	clocks = <&clkc CLKID_CPUB_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu101 {
-+	cpu-supply = <&vddcpu_a>;
-+	operating-points-v2 = <&cpub_opp_table_1>;
-+	clocks = <&clkc CLKID_CPUB_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu102 {
-+	cpu-supply = <&vddcpu_a>;
-+	operating-points-v2 = <&cpub_opp_table_1>;
-+	clocks = <&clkc CLKID_CPUB_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu103 {
-+	cpu-supply = <&vddcpu_a>;
-+	operating-points-v2 = <&cpub_opp_table_1>;
-+	clocks = <&clkc CLKID_CPUB_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&pwm_ab {
-+	pinctrl-0 = <&pwm_a_e_pins>, <&pwm_b_x7_pins>;
-+	clocks = <&xtal>, <&xtal>;
-+	clock-names = "clkin0", "clkin1";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-libretech-cottonwood.dtsi b/arch/arm64/boot/dts/amlogic/meson-libretech-cottonwood.dtsi
-new file mode 100644
-index 000000000000..a7fc8963ff54
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-libretech-cottonwood.dtsi
-@@ -0,0 +1,610 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2023 BayLibre, SAS.
-+ * Author: Jerome Brunet <jbrunet@baylibre.com>
-+ */
-+
-+#include <dt-bindings/clock/g12a-clkc.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/gpio/meson-g12a-gpio.h>
-+#include <dt-bindings/sound/meson-g12a-toacodec.h>
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-+
-+/ {
-+	aliases {
-+		serial0 = &uart_AO;
-+		ethernet0 = &ethmac;
-+		spi0 = &spifc;
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x80000000>;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	dioo2133: audio-amplifier-0 {
-+		compatible = "simple-audio-amplifier";
-+		enable-gpios = <&gpio GPIOX_0 GPIO_ACTIVE_HIGH>;
-+		VCC-supply = <&vcc_5v>;
-+		sound-name-prefix = "10U2";
-+	};
-+
-+	/* TOFIX: handle CVBS_DET on SARADC channel 0 */
-+	cvbs-connector {
-+		compatible = "composite-video-connector";
-+
-+		port {
-+			cvbs_connector_in: endpoint {
-+				remote-endpoint = <&cvbs_vdac_out>;
-+			};
-+		};
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+
-+	leds-pwm {
-+		compatible = "pwm-leds";
-+
-+		led-green {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_STATUS;
-+			linux,default-trigger = "default-on";
-+			panic-indicator;
-+			max-brightness = <255>;
-+			pwms = <&pwm_cd 1 1250 0>;
-+			active-low;
-+		};
-+
-+		led-blue {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_ACTIVITY;
-+			linux,default-trigger = "activity";
-+			max-brightness = <255>;
-+			pwms = <&pwm_ab 1 1250 0>;
-+			active-low;
-+		};
-+	};
-+
-+	leds-gpio {
-+		compatible = "gpio-leds";
-+
-+		led-orange {
-+			color = <LED_COLOR_ID_AMBER>;
-+			function = LED_FUNCTION_STANDBY;
-+			gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	dc_in: regulator-dc-in {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5V_IN";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	flash_1v8: regulator-flash-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "FLASH_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+		vin-supply = <&vcc_3v3>;
-+	};
-+
-+	vcc_card: regulator-vcc-card {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_CARD";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vddao_3v3>;
-+		gpio = <&gpio GPIOX_2 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+		enable-active-high;
-+		gpio-open-drain;
-+	};
-+
-+	vcc_3v3: regulator-vcc-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		vin-supply = <&vddao_3v3>;
-+
-+		/* FIXME: controlled by TEST_N */
-+	};
-+
-+	vcc_5v: regulator-vcc-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		vin-supply = <&dc_in>;
-+		gpio = <&gpio GPIOH_8 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+		enable-active-high;
-+		gpio-open-drain;
-+	};
-+
-+	vddao_3v3: regulator-vddao_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		vin-supply = <&dc_in>;
-+	};
-+
-+	vddcpu_b: regulator-vddcpu-b {
-+		compatible = "pwm-regulator";
-+		regulator-name = "VDDCPU_B";
-+		regulator-min-microvolt = <730000>;
-+		regulator-max-microvolt = <1011000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+		pwm-supply = <&dc_in>;
-+		pwms = <&pwm_AO_cd 1 1250 0>;
-+		pwm-dutycycle-range = <100 0>;
-+	};
-+
-+	vddio_ao18: regulator-vddio_ao18 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_AO18";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+		vin-supply = <&vddao_3v3>;
-+	};
-+
-+	vddio_c: regulator-vddio_c {
-+		compatible = "regulator-gpio";
-+		regulator-name = "VDDIO_C";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-settling-time-up-us = <200>;
-+		regulator-settling-time-down-us = <50000>;
-+		vin-supply = <&vddao_3v3>;
-+		gpios = <&gpio GPIOX_4 GPIO_ACTIVE_HIGH>;
-+		states = <3300000 0>,
-+			 <1800000 1>;
-+	};
-+
-+	sound {
-+		compatible = "amlogic,axg-sound-card";
-+		audio-widgets = "Line", "Lineout";
-+		audio-aux-devs = <&tdmout_a>, <&tdmout_b>, <&tdmout_c>,
-+				 <&tdmin_a>, <&tdmin_b>, <&tdmin_c>,
-+				 <&dioo2133>;
-+
-+		assigned-clocks = <&clkc CLKID_MPLL2>,
-+				  <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+
-+		dai-link-0 {
-+			sound-dai = <&frddr_a>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&frddr_b>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&frddr_c>;
-+		};
-+
-+		dai-link-3 {
-+			sound-dai = <&toddr_a>;
-+		};
-+
-+		dai-link-4 {
-+			sound-dai = <&toddr_b>;
-+		};
-+
-+		dai-link-5 {
-+			sound-dai = <&toddr_c>;
-+		};
-+
-+		/*
-+		 * Audio setup: The 40 pins header provides access to 2 TDMs,
-+		 * SPDIF In/Out and PDM inputs.
-+		 * - TDM A: 2 lanes
-+		 *    D0:    40/X9
-+		 *    D1:    38/X8
-+		 *    BCLK:  12/X11
-+		 *    FS:    35/X10
-+		 * - TDM B: 4 lanes
-+		 *    D0:    37/A3
-+		 *    D1:    16/A4
-+		 *    D2:    18/A5 or 7/AO6
-+		 *    D3:    22/A6 or 21/H5
-+		 *    BCLK:  29/A1 or 8/AO8
-+		 *    FS:    31/A2 or 11/AO7
-+		 * - 2 Master Clocks:
-+		 *    MCLK0: 15/A0 or 10/AO9
-+		 *    MCLK1: 33/X15
-+		 * - SPDIF:
-+		 *    OUT:   32/A11
-+		 *    IN:    21/H5
-+		 * - PDM Input:
-+		 *    DO:    13/A8
-+		 *    D1:    26/A9
-+		 *    D2:    22/A6
-+		 *    D3:    18/A5
-+		 *    DCLK:  36/A7
-+		 *
-+		 * TDM C is not usable on the 40 pins connector so it is
-+		 * setup for the HDMI 4 lanes i2s.
-+		 *
-+		 * No pinctrl is enabled by default to preserve the
-+		 * genericity of the 40 pins header. Many configurations are
-+		 * possible based on the desired use case. Please adjust TDM
-+		 * masks, clock setups and pinctrl accordingly.
-+		 */
-+
-+		dai-link-6 {
-+			sound-dai = <&tdmif_a>;
-+			dai-format = "dsp_a";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_A>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&toacodec TOACODEC_IN_A>;
-+			};
-+		};
-+
-+		dai-link-7 {
-+			sound-dai = <&tdmif_b>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			dai-tdm-slot-rx-mask-1 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&toacodec TOACODEC_IN_B>;
-+			};
-+		};
-+
-+		dai-link-8 {
-+			sound-dai = <&tdmif_c>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			dai-tdm-slot-tx-mask-1 = <1 1>;
-+			dai-tdm-slot-tx-mask-2 = <1 1>;
-+			dai-tdm-slot-tx-mask-3 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_C>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&toacodec TOACODEC_IN_C>;
-+			};
-+		};
-+
-+		dai-link-9 {
-+			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-+
-+			codec {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+
-+		dai-link-10 {
-+			sound-dai = <&toacodec TOACODEC_OUT>;
-+
-+			codec {
-+				sound-dai = <&acodec>;
-+			};
-+		};
-+	};
-+};
-+
-+&acodec {
-+	status = "okay";
-+	AVDD-supply = <&vddio_ao18>;
-+};
-+
-+&arb {
-+	status = "okay";
-+};
-+
-+&cecb_AO {
-+	status = "okay";
-+	pinctrl-0 = <&cec_ao_b_h_pins>;
-+	pinctrl-names = "default";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&clkc_audio {
-+	status = "okay";
-+};
-+
-+&cvbs_vdac_port {
-+	cvbs_vdac_out: endpoint {
-+		remote-endpoint = <&cvbs_connector_in>;
-+	};
-+};
-+
-+&ethmac {
-+	pinctrl-0 = <&eth_pins>, <&eth_rgmii_pins>, <&eth_phy_irq_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	phy-mode = "rgmii";
-+	phy-handle = <&external_phy>;
-+	amlogic,tx-delay-ns = <2>;
-+};
-+
-+&ext_mdio {
-+	external_phy: ethernet-phy@0 {
-+		/* Realtek RTL8211F (0x001cc916) */
-+		reg = <0>;
-+		max-speed = <1000>;
-+
-+		reset-assert-us = <100000>;
-+		reset-deassert-us = <100000>;
-+		reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
-+
-+		interrupt-parent = <&gpio_intc>;
-+		/* MAC_INTR on GPIOZ_14 */
-+		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
-+
-+&frddr_a {
-+	status = "okay";
-+};
-+
-+&frddr_b {
-+	status = "okay";
-+};
-+
-+&frddr_c {
-+	status = "okay";
-+};
-+
-+&hdmi_tx {
-+	status = "okay";
-+	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
-+	pinctrl-names = "default";
-+	hdmi-supply = <&vcc_5v>;
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
-+&ir {
-+	status = "okay";
-+	pinctrl-0 = <&remote_input_ao_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&npu {
-+	status = "okay";
-+};
-+
-+&periphs_pinctrl {
-+	spi_cs_disable_pins: spi-cs-disable {
-+		mux {
-+			groups = "BOOT_14";
-+			function = "gpio_periphs";
-+			bias-disable;
-+			output-high;
-+		};
-+	};
-+
-+	eth_phy_irq_pins: eth-phy-irq {
-+		mux {
-+			groups = "GPIOZ_14";
-+			function = "gpio_periphs";
-+			bias-pull-up;
-+			output-disable;
-+		};
-+	};
-+};
-+
-+&pwm_AO_cd {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_ao_d_e_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&xtal>;
-+	clock-names = "clkin1";
-+};
-+
-+&pwm_ab {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_b_x7_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&xtal>;
-+	clock-names = "clkin1";
-+};
-+
-+&pwm_cd {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_d_x3_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&xtal>;
-+	clock-names = "clkin1";
-+};
-+
-+&saradc {
-+	status = "okay";
-+	vref-supply = <&vddio_ao18>;
-+};
-+
-+/* SD card */
-+&sd_emmc_b {
-+	status = "okay";
-+	pinctrl-0 = <&sdcard_c_pins>;
-+	pinctrl-1 = <&sdcard_clk_gate_c_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	max-frequency = <200000000>;
-+	disable-wp;
-+
-+	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&vcc_card>;
-+	vqmmc-supply = <&vddio_c>;
-+};
-+
-+/*
-+ * EMMC_D4, EMMC_D5, EMMC_D6 and EMMC_D7 pins are shared between SPI NOR CS
-+ * and eMMC Data 4 to 7 pins.
-+ * Replace emmc_data_8b_pins to emmc_data_4b_pins from sd_emmc_c pinctrl-0,
-+ * and change bus-width to 4 then spifc can be enabled.
-+ */
-+&sd_emmc_c {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_ctrl_pins>, <&emmc_data_8b_pins>, <&emmc_ds_pins>,
-+		    <&spi_cs_disable_pins>;
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	mmc-hs200-1_8v;
-+	max-frequency = <200000000>;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&flash_1v8>;
-+};
-+
-+&spifc {
-+	status = "disabled";
-+	pinctrl-0 = <&nor_pins>;
-+	pinctrl-names = "default";
-+	cs-gpios = <&gpio BOOT_14 GPIO_ACTIVE_LOW>;
-+
-+	w25lq128d: flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		spi-max-frequency = <80000000>;
-+	};
-+};
-+
-+&tdmif_a {
-+	status = "okay";
-+};
-+
-+&tdmif_b {
-+	status = "okay";
-+};
-+
-+&tdmif_c {
-+	status = "okay";
-+};
-+
-+&tdmin_a {
-+	status = "okay";
-+};
-+
-+&tdmin_b {
-+	status = "okay";
-+};
-+
-+&tdmin_c {
-+	status = "okay";
-+};
-+
-+&tdmout_a {
-+	status = "okay";
-+};
-+
-+&tdmout_b {
-+	status = "okay";
-+};
-+
-+&tdmout_c {
-+	status = "okay";
-+};
-+
-+&toacodec {
-+	status = "okay";
-+};
-+
-+&toddr_a {
-+	status = "okay";
-+};
-+
-+&toddr_b {
-+	status = "okay";
-+};
-+
-+&toddr_c {
-+	status = "okay";
-+};
-+
-+&tohdmitx {
-+	status = "okay";
-+};
-+
-+&uart_AO {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_a_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&usb2_phy1 {
-+	phy-supply = <&dc_in>;
-+};
-+
-+&usb3_pcie_phy {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	phy-supply = <&vcc_5v>;
-+
-+	hub: hub@1 {
-+		compatible = "usb5e3,626";
-+		reg = <1>;
-+		reset-gpios = <&gpio GPIOC_7 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
-+	};
-+};
-+
-+&usb {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-s905d3-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-s905d3-libretech-cc.dts
-new file mode 100644
-index 000000000000..077e7506ce4f
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-s905d3-libretech-cc.dts
-@@ -0,0 +1,89 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2023 BayLibre, SAS.
-+ * Author: Jerome Brunet <jbrunet@baylibre.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/clock/g12a-clkc.h>
-+#include "meson-sm1.dtsi"
-+#include "meson-libretech-cottonwood.dtsi"
-+
-+/ {
-+	compatible = "libretech,aml-s905d3-cc", "amlogic,sm1";
-+	model = "Libre Computer AML-S905D3-CC Solitude";
-+
-+	sound {
-+		model = "Solitude";
-+		audio-routing = "TDMOUT_A IN 0", "FRDDR_A OUT 0",
-+				"TDMOUT_A IN 1", "FRDDR_B OUT 0",
-+				"TDMOUT_A IN 2", "FRDDR_C OUT 0",
-+				"TDM_A Playback", "TDMOUT_A OUT",
-+				"TDMOUT_B IN 0", "FRDDR_A OUT 1",
-+				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-+				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+				"TDM_B Playback", "TDMOUT_B OUT",
-+				"TDMOUT_C IN 0", "FRDDR_A OUT 2",
-+				"TDMOUT_C IN 1", "FRDDR_B OUT 2",
-+				"TDMOUT_C IN 2", "FRDDR_C OUT 2",
-+				"TDM_C Playback", "TDMOUT_C OUT",
-+				"TDMIN_A IN 0", "TDM_A Capture",
-+				"TDMIN_B IN 0", "TDM_A Capture",
-+				"TDMIN_C IN 0", "TDM_A Capture",
-+				"TDMIN_A IN 13", "TDM_A Loopback",
-+				"TDMIN_B IN 13", "TDM_A Loopback",
-+				"TDMIN_C IN 13", "TDM_A Loopback",
-+				"TDMIN_A IN 1", "TDM_B Capture",
-+				"TDMIN_B IN 1", "TDM_B Capture",
-+				"TDMIN_C IN 1", "TDM_B Capture",
-+				"TDMIN_A IN 14", "TDM_B Loopback",
-+				"TDMIN_B IN 14", "TDM_B Loopback",
-+				"TDMIN_C IN 14", "TDM_B Loopback",
-+				"TDMIN_A IN 2", "TDM_C Capture",
-+				"TDMIN_B IN 2", "TDM_C Capture",
-+				"TDMIN_C IN 2", "TDM_C Capture",
-+				"TDMIN_A IN 15", "TDM_C Loopback",
-+				"TDMIN_B IN 15", "TDM_C Loopback",
-+				"TDMIN_C IN 15", "TDM_C Loopback",
-+				"TODDR_A IN 0", "TDMIN_A OUT",
-+				"TODDR_B IN 0", "TDMIN_A OUT",
-+				"TODDR_C IN 0", "TDMIN_A OUT",
-+				"TODDR_A IN 1", "TDMIN_B OUT",
-+				"TODDR_B IN 1", "TDMIN_B OUT",
-+				"TODDR_C IN 1", "TDMIN_B OUT",
-+				"TODDR_A IN 2", "TDMIN_C OUT",
-+				"TODDR_B IN 2", "TDMIN_C OUT",
-+				"TODDR_C IN 2", "TDMIN_C OUT",
-+				"Lineout", "ACODEC LOLP",
-+				"Lineout", "ACODEC LORP";
-+	};
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vddcpu_b>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&vddcpu_b>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU1_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu2 {
-+	cpu-supply = <&vddcpu_b>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU2_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu3 {
-+	cpu-supply = <&vddcpu_b>;
-+	operating-points-v2 = <&cpu_opp_table>;
-+	clocks = <&clkc CLKID_CPU3_CLK>;
-+	clock-latency = <50000>;
-+};
--- 
-2.40.1
-
+What do you think about this change?
 
