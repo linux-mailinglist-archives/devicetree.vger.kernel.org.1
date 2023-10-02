@@ -1,84 +1,90 @@
-Return-Path: <devicetree+bounces-5251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E0217B5B3C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 21:26:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CEBB7B5B3D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 21:27:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 93B8D1C204F9
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 19:26:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 5EBD4281AB7
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 19:27:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A9E41F936;
-	Mon,  2 Oct 2023 19:26:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17B761F936;
+	Mon,  2 Oct 2023 19:27:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE2BB1F182
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 19:26:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A19A1C433C7;
-	Mon,  2 Oct 2023 19:26:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0775915BD
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 19:27:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7611C433C7;
+	Mon,  2 Oct 2023 19:27:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696274779;
-	bh=/VXK0Doi2ugIAsDtjX5XrQhNXO4ojTZSscjv1xrbOgY=;
+	s=k20201202; t=1696274828;
+	bh=M3xDfvFGJJ/XkEcT9JbDKrkZISYSg+CslZeqm002CB8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TtMPJxUtQO0dOH9Uvp6l6vEzpDyAKTrN8TNJlla6L305ICOCwsVaKVnsOwLo+JV7b
-	 X2sMBl5PXWCISRXb/a2dMeaiK/hag/v7pOpat7R1JK2UG78soGgVMez0BCkvxAYO8i
-	 9r0znZgdgG7iYlNUFp5OGwVW14epjuvc7MgQcwzAaw49U2+7B98H+uFxddpabod7o3
-	 TZh8qMATF6IsSsNHQ3A9qas+IwJs2BLElmgnifE+s8gsgYHuMBlB20sS1MsZyaNM2r
-	 MlW1aCmOK4wRy3RCBG9tc1AxVU9WBvNVh/cNLf814vdrGaMnkoDoIGgTqwDgCZkkV5
-	 IlfNyT6hNKItw==
-Received: (nullmailer pid 2386735 invoked by uid 1000);
-	Mon, 02 Oct 2023 19:26:17 -0000
-Date: Mon, 2 Oct 2023 14:26:17 -0500
-From: Rob Herring <robh@kernel.org>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org, linux-pm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org, Lee Jones <lee@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v3] dt-bindings: power: mfd: max8925: Convert to DT
- schema format
-Message-ID: <169627477713.2386676.2358148175794895273.robh@kernel.org>
-References: <20230930202743.214631-1-sebastian.reichel@collabora.com>
+	b=i/DPb7cvsilLk1Me6VqMIkpZXQltZmNhVfkH1ND/tlty7MKbI65nGb/5L7x8FiLEZ
+	 trFegEA7SOIy2qJ2oUDGbKZn2UsnPB61coGpOzRaEiWVmXmLQdpPCAwM3JZuSoqxhg
+	 1Gxxb1eUlUjWkPZ5PvaUap7PyuWWBh5P6lu4V4obRTi2XfJn1Bv4By4q2fjJ/3IMzZ
+	 nDo+EWy9TDxxRRlVxema8XVH9+Z8SG5yMfFDia+5BUYEDbpikZKgCod/Paepuucp1Q
+	 2aucm/MFeL8GA6tz0bg5dLULejYY8gvl7LFbm/XtcJKequQEcDmJGtiAXwxJBZsGnN
+	 Rnp/Z/IfcKQRw==
+Date: Mon, 2 Oct 2023 20:27:04 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Cc: Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: phy: Convert PXA1928 USB/HSIC PHY to DT
+ schema
+Message-ID: <20231002-lividly-cameo-d8f8b3a0d8e5@spud>
+References: <20231001-pxa1928-usb-yaml-v1-1-9309a8c0c03f@skole.hr>
+ <20231002143619.GA1651295-robh@kernel.org>
+ <4849448.GXAFRqVoOG@radijator>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="JfifZB+kbj7ENI+C"
 Content-Disposition: inline
-In-Reply-To: <20230930202743.214631-1-sebastian.reichel@collabora.com>
+In-Reply-To: <4849448.GXAFRqVoOG@radijator>
 
 
-On Sat, 30 Sep 2023 22:27:43 +0200, Sebastian Reichel wrote:
-> Convert the binding to DT schema format.
-> 
-> The sub-functions of this MFD device do not have their own compatible
-> string and are thus described directly in the MFD binding document
-> after being converted to YAML.
-> 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
-> Changes since PATCHv2:
->  * https://lore.kernel.org/all/20230922233142.1479677-1-sebastian.reichel@collabora.com/
->  * Add unevaluatedProperties: false to regulators subnode (Krzysztof Kozlowski)
->  * Use "pmic" for nodename (Krzysztof Kozlowski)
-> 
-> Changes since PATCHv1:
->  * https://lore.kernel.org/all/20210413153407.GA1707829@robh.at.kernel.org/
->  * Update License to GPL OR BSD
->  * Add missing type references pointed out by Rob
-> ---
->  .../leds/backlight/max8925-backlight.txt      |  10 --
->  .../devicetree/bindings/mfd/max8925.txt       |  64 --------
->  .../bindings/mfd/maxim,max8925.yaml           | 145 ++++++++++++++++++
->  .../bindings/power/supply/max8925_battery.txt |  18 ---
->  4 files changed, 145 insertions(+), 92 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/leds/backlight/max8925-backlight.txt
->  delete mode 100644 Documentation/devicetree/bindings/mfd/max8925.txt
->  create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max8925.yaml
->  delete mode 100644 Documentation/devicetree/bindings/power/supply/max8925_battery.txt
-> 
+--JfifZB+kbj7ENI+C
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Mon, Oct 02, 2023 at 04:55:08PM +0200, Duje Mihanovi=C4=87 wrote:
+> On Monday, October 2, 2023 4:36:19 PM CEST Rob Herring wrote:
+> > On Sun, Oct 01, 2023 at 03:05:43PM +0200, Duje Mihanovi=C4=87 wrote:
+> > > +maintainers:
+> > > +  - devicetree@vger.kernel.org
+> >=20
+> > No, should be someone with hardware or familar with it. I added this,
+> > but no longer have h/w or documentation. IMO, it should probably be
+> > removed.
+>=20
+> My samsung,coreprimevelte's PXA1908 uses this PHY, is it fine if I add my=
+self=20
+> there instead of the devicetree list?
 
+I would say, please do add yourself!
+
+--JfifZB+kbj7ENI+C
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRsZiAAKCRB4tDGHoIJi
+0pYRAP4h8UzkWugenlTljc1mHc6xiEIv6TodIDuceuZiVozMiwD/eAfn8S2aLBVn
+M4fP3xq30F7v6BjCzJ3ft3dU0b/Lhwo=
+=Zns+
+-----END PGP SIGNATURE-----
+
+--JfifZB+kbj7ENI+C--
 
