@@ -1,191 +1,186 @@
-Return-Path: <devicetree+bounces-5287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 173C77B5DAD
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 01:22:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 312B87B5DB8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 01:27:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id BC3602812FE
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 23:22:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 7CE4C2813D3
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 23:27:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87177208C1;
-	Mon,  2 Oct 2023 23:22:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01301208C8;
+	Mon,  2 Oct 2023 23:27:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 407FF1E521
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 23:22:40 +0000 (UTC)
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE267D9
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 16:22:38 -0700 (PDT)
-Received: by mail-pg1-x534.google.com with SMTP id 41be03b00d2f7-578b4981526so172542a12.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 16:22:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1696288957; x=1696893757; darn=vger.kernel.org;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Lz1WUPakV+CyHNmOkEUCseX9s2XHI2CmbOZz4PiNmQo=;
-        b=LeugIY2QvprR5sXWw/kM0LWFmDOYLWErl1evCWVtOjb8G2mTG1jDZ7ru2G+hqgfZjy
-         CfNf78+LoghPiAgXcJ6Mx4ArcCnNa2fAdzNvVs8SLhkElGjPITt9zHY+kOuyVUvamGV2
-         SGhxCGBsCom6wXIcHYt4UeCZBNOWhYiXwMAc4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696288957; x=1696893757;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Lz1WUPakV+CyHNmOkEUCseX9s2XHI2CmbOZz4PiNmQo=;
-        b=oTGdeuow0CrIw8oBQK0o5rr7hS0IYYsIdmNxP4qKtA7KIRrOWCttpiZYLz34+RdYTB
-         lGlrtAx/ylo3g0ZC1Mla0N6oQ58e42qsFgVu+PS/goAyKksd0BVT84banmatE6vSg87L
-         SZuhXE81DYThYj1ogh9FpK5kMs/64/dxIT+ILUnWICEjgUYv2DsgzMs3qm40Xkk9gPNZ
-         bD63ThXueqgq+zk0qzhiChWV0fKZ9FIrhN9P4ftyQH91MYaCrtwyDxN6d3jHT9nawHbO
-         YHG92xpZdE/P+Ts5WGEuVquIVACIlKgzx47x0F3XCvpVur5BhVsvtThajpQMVaH1rtDl
-         GYMA==
-X-Gm-Message-State: AOJu0YyXNoE4d4ldLKjOwmtxjGRxHO30+mCMDodAS2Sk/8C13jCh3k2D
-	OqXnc8Mc/H/rIzNArLNNbqH+uw==
-X-Google-Smtp-Source: AGHT+IFq0VjxrY8Vj/z8NHmNfYXrLOvXKlTGi5k2c7GerckjIWItAbz8PfFXuynlGg5xLO/3qmugzg==
-X-Received: by 2002:a05:6a20:4425:b0:14d:5580:8ff0 with SMTP id ce37-20020a056a20442500b0014d55808ff0mr14254101pzb.25.1696288957390;
-        Mon, 02 Oct 2023 16:22:37 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id c1-20020a170903234100b001b9c960ffeasm8836plh.47.2023.10.02.16.22.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Oct 2023 16:22:36 -0700 (PDT)
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: bcm-kernel-feedback-list@broadcom.com,
-	=?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Florian Fainelli <f.fainelli@gmail.com>,
-	Hauke Mehrtens <hauke@hauke-m.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	=?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>,
-	Vivek Unune <npcomplete13@gmail.com>
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Relicense Vivek's code to the GPL 2.0+ / MIT
-Date: Mon,  2 Oct 2023 16:22:35 -0700
-Message-Id: <20231002232235.1290201-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230916085855.28375-1-zajec5@gmail.com>
-References: <20230916085855.28375-1-zajec5@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EF041E521
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 23:27:52 +0000 (UTC)
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04olkn2081.outbound.protection.outlook.com [40.92.46.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0AB4AD
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 16:27:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=P6LPwDCI1VNvg8RONYn2qRnvxiB87qRbgpm6t4tnooKWbTbNM2NBehGGi5aYdegeIHScRLWlHo9lGasDhaa4OsdPo4pmzvygGVOjpk8jqbqhjF3ZBroOAZpdHnoxydu8z11v/Oc5ZsoY1gvUPprEpWCNSA+LelKpKnYTmVS13X25HuyZlotvIx7G06DV+tHd7diTi7faTxYQACphIiAYUPP1GW2P0enjbFDKPnshAGKBM96zGucd/V+5zJfJZfQZ8dN5atWQmfEyicCVVkKxC2y8MRgVQ/raByXWnyCmwbdgk9pkNevRZes/mUbReoMq7xCQXCtBCp//zWpTmpDEXA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pBRg8LgMHw5pnExKQkb8R1iNuzrJQQoHjOxQyQafWGs=;
+ b=GLv4uvYQ7nJkgKvvSar8WHlwaCc/IXF2mfY7niqtegFDueUfisCtaCS1Rz9rN6Q/0jk37PSGE7ywbkAknFqExMfCp87QSDVJjnffGsPMhEPsI8Ub3SZAmIRgjulgHKkjEYiGBlKapdZrwzW2Yl2BwQomgVIShr94c7E44fCmrNTbzrTOZp8BcG574lF1sBVvAdEHPjstZWfAS2Ev40WPQ8DH6CNhYEFJQsBM7u6V8pRIVpguwT526GkMX3r755o5Ep8pJFtrdMbY52wva97eX0XAHng0lmSc9exR2aK++P7YoaDqDvdvdjIIbJjBlFnSTQ4/hRdfp4OL2JTjRYA79A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pBRg8LgMHw5pnExKQkb8R1iNuzrJQQoHjOxQyQafWGs=;
+ b=tnfo4kUlvJALWklq6/OV9EjG9V10KlyHXBvzAFoVwUg8JIhcFYAhaVfDeuh3MWRp/GMKCZDoZgohCzO8rRudA0deFyqq8/c4VHd05byhIqVBJnvExEtfq/AHldum7pF48Ft7ukZijkKfV44md1OiPrOkGEkyzhzlANBgOdU63NVOfa3I1m0O9V2eCUacB5ynB5lxyW/+RzjkVcoRHiEiQ4LhisF3R4fsPEHFcaMJrgT34B/NSxYA1HDSkRSbREPAICZKW2DqMnsHLh+afb9O7N/Z7sdxl5EowHxSzTpExfwXvmYt9Yqs/Ns/4QvpL10FVpSQAbzTiV6RcTpX1kUkWw==
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
+ by CO6PR06MB7426.namprd06.prod.outlook.com (2603:10b6:303:ae::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.20; Mon, 2 Oct
+ 2023 23:27:48 +0000
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::c40c:bbc8:b103:459c]) by SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::c40c:bbc8:b103:459c%2]) with mapi id 15.20.6813.027; Mon, 2 Oct 2023
+ 23:27:48 +0000
+Date: Mon, 2 Oct 2023 18:27:45 -0500
+From: Chris Morgan <macromorgan@hotmail.com>
+To: Jessica Zhang <quic_jesszhan@quicinc.com>
+Cc: Chris Morgan <macroalpha82@gmail.com>, neil.armstrong@linaro.org,
+	conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	sam@ravnborg.org, dri-devel@lists.freedesktop.org,
+	robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH V3 2/2] drm/panel: nv3051d: Add Support for Anbernic 351V
+Message-ID:
+ <SN6PR06MB5342D22FB6DC47A509976293A5C5A@SN6PR06MB5342.namprd06.prod.outlook.com>
+References: <20231002193016.139452-1-macroalpha82@gmail.com>
+ <20231002193016.139452-3-macroalpha82@gmail.com>
+ <c0b56123-7ce3-4975-aa68-ff50a616a578@quicinc.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c0b56123-7ce3-4975-aa68-ff50a616a578@quicinc.com>
+X-TMN: [r22YtD9pj5CD1RpFK8CYYw7lESwOhbTp]
+X-ClientProxiedBy: SN7PR04CA0034.namprd04.prod.outlook.com
+ (2603:10b6:806:120::9) To SN6PR06MB5342.namprd06.prod.outlook.com
+ (2603:10b6:805:f9::31)
+X-Microsoft-Original-Message-ID: <ZRtR8aO7YtGXpwMX@wintermute.localhost.fail>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000c2b6f00606c40c2f"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-	autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|CO6PR06MB7426:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3d9e1317-18a3-4be1-14c7-08dbc39f305c
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	hKpVw0QiHiy37IoJf7tRT9JhGo5gM4N82bcrrZ2V3FIz6N5FJjDKBBHcAmXYnhNFy/xH3VjZmNDS1lxy7tPgKFJAH47B1J5hgjbzRjh9vbgeFyq/X6eOSPQHjYCwPokFNycO33q/JqxUFo4YfLiiE8vzku2fIjiEmf7Dhh/M9Mzyzc7oyHYRbyWLxZ5kDZDIq+pfhpEttJxCDP3pGhQbD7QAhHO56AcpHFB4n27Azx9TlOAnWCOMrlOORU7uqXICs+2CpzPThnigCoQ280kFygeTnbDk1rfuPNBQ1TKATGx76icpNdIVf62ARYMiLcGmYV7R5GligW71+/yomcWuiP5SRXIHhvzsZhU7/mWRPgSZKlmR9oeUm0hEntJaMA6xEdlJJZ4goPohH39AMy6oxy767vY8VAbDCOFlNe45LjHqW8YEZ3lE+nUYL1R+Jt7dHrE/Z++Ls+/hqg78JnXszCD3tq/2rdBDHrr1FDNS784CdGqCpKPran0IqcCAWt0zJ5BL/11WpNu/BvusyzRyc0JBHEencbIYDmEYqZinkK2mZpr7YZAzGOCkPC4OyOjh
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Ar3rIdOStjHn2lopvD3fJcTgmJXwCL8ISguywLnaUB5eeXkmPn/n2vcq/NJw?=
+ =?us-ascii?Q?0MM2HzpDW8JAFR6KYhHRMa+bEX3+Yj4FxrZSJb/cvWXy4zRtdgEmxjwL1oKg?=
+ =?us-ascii?Q?D0stFbSOnKrOvliztNh7kg15Sbs8h5Rx2OBdAPQBUwbFl0gshn3hQFVwwabO?=
+ =?us-ascii?Q?nb1wHcEy2myFbY2MvEyOfbu6ygwBPZ/H9WyQHhLAkIwYJlkiDi2DWnH62D4J?=
+ =?us-ascii?Q?LabhMViyBcd1v5Tc3h0xnITBqBNZIRJKq0Z0GpfuJFls2wWyLpPVK3xfjGsW?=
+ =?us-ascii?Q?uHqpToG7597J4IH/rPq0RfBAhop5UpOLJPNNp3Ca/V7VV2y5+TmpMgu0WKnN?=
+ =?us-ascii?Q?0i7Mn6CiPLyjJE+G96F96SbiRBy4CS0lzmhI3jqHEaGjsIkWaxsDeSa+eqhE?=
+ =?us-ascii?Q?AwCXpgIIbSgtAxb7OVtt1m0nTnMjr9PkST9w/jYKkPieCzMfJwpWzNThPU61?=
+ =?us-ascii?Q?VDwtgAHHPLXFSTPU+9hpsTzA9KqQYPWe8+R2TdbhjNO8D0khAcg8Bv/1oyKR?=
+ =?us-ascii?Q?tkUcb5tyYNyJNCkCbsDBraTPBjoR24kg2UulPisbizGtM45cld7FwiE/x7pO?=
+ =?us-ascii?Q?vOhdI6wR5V7xnGT2wPWX1YBiwISHZO97dYgIgyVOO2wZnuBM0pMAKWcFfgtL?=
+ =?us-ascii?Q?YSBemGcxluQE7X16vqsCPld0snYENKGznhvAwMiEhm1i6G1+X7Gt0rvRC8i0?=
+ =?us-ascii?Q?gSRoJKxcfvfOYyE2zARmpoL9hNf18UnbFVq+ocEgAdhObBh1Jk8t0j1xFHyd?=
+ =?us-ascii?Q?FqAp41on8bsAmxu6Lodcj9SbwcAL2jhYdbaxBqx3TOdQLKwQ1q+NSwVZXUcw?=
+ =?us-ascii?Q?8JoRLQr9iFV8lnXr3oZTiV99M2Q6lByaqN78F5ga0yjja6UjxbSDkU0RXVOg?=
+ =?us-ascii?Q?xkB7Hq0Nj3yO2TelaqBfrJAM7fT6b/zLDCsMjj9xBX9W26RXliwJv4IwH/cf?=
+ =?us-ascii?Q?IPZGMtr4GUcdNqs7V69Of7NyMXqKeZjsp37nWactuEjudg3hr0+fOMX3tXlL?=
+ =?us-ascii?Q?PhChqWRPCPhufyqVvKkgnb67NvX77vaVS3zgY71CsmKcns6pyDihhgs23sOu?=
+ =?us-ascii?Q?kXxWgtx+D1nIiTJrjcR/VwpSHAsjEroQDoOJXuO3UzjGHxAGdJ+Bq9PKoTGR?=
+ =?us-ascii?Q?GtwcVU+VuZbXC2HzXh80Jhn4r4i0Gp8Xf/+vtURrw4wn7Ng7nvH2ZKcmP4Dw?=
+ =?us-ascii?Q?Lvc9vGDof5ZMobKviWRxZQdkLd4hyYQlBtQuzQG63+v/FA1n6IkxBBoDEaY?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3d9e1317-18a3-4be1-14c7-08dbc39f305c
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2023 23:27:48.7695
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR06MB7426
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
---000000000000c2b6f00606c40c2f
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-From: Florian Fainelli <f.fainelli@gmail.com>
-
-On Sat, 16 Sep 2023 10:58:55 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Mon, Oct 02, 2023 at 01:33:03PM -0700, Jessica Zhang wrote:
 > 
-> Move code added by Vivek to the bcm-ns.dtsi which uses dual licensing.
-> That syncs more Northstar code to be based on the same licensing schema.
 > 
-> This code was added in the commit 37f6130ec39f ("ARM: dts: BCM5301X:
-> Make USB 3.0 PHY use MDIO PHY driver").
+> On 10/2/2023 12:30 PM, Chris Morgan wrote:
+> > From: Chris Morgan <macromorgan@hotmail.com>
+> > 
+> > Add support for the Anbernic 351V. Just like the 353 series the
+> > underlying vendor is unknown/unmarked (at least not visible in a
+> > non-destructive manner). The panel had slightly different init
+> > sequences and timings in the BSP kernel, but works fine with the
+> > same ones used in the existing driver. The panel will not work without
+> > the inclusion of the MIPI_DSI_CLOCK_NON_CONTINUOUS flag, and this flag
+> > prevents the 353 series from working correctly, so a new compatible
+> > string is added.
+> > 
+> > Tested colors and timings using modetest and all seem to work identical
+> > to the 353 otherwise.
+> > 
+> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > ---
+> >   drivers/gpu/drm/panel/panel-newvision-nv3051d.c | 8 ++++++++
+> >   1 file changed, 8 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/panel/panel-newvision-nv3051d.c b/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
+> > index ad98dd9322b4..f644dbc8ee8a 100644
+> > --- a/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
+> > +++ b/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
+> > @@ -354,6 +354,7 @@ static const struct drm_panel_funcs panel_nv3051d_funcs = {
+> >   static int panel_nv3051d_probe(struct mipi_dsi_device *dsi)
+> >   {
+> >   	struct device *dev = &dsi->dev;
+> > +	struct device_node *np = dev->of_node;
 > 
-> Cc: Vivek Unune <npcomplete13@gmail.com>
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
+> Hi Chris,
+> 
+> Thanks for the patch.
+> 
+> It mostly looks good to me, but just one question here -- why not pass in
+> `dev->of_node` directly into `of_device_is_compatible()`?
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
-Florian
+It was an oversight on my part. I'll modify and resend, sorry about that.
 
---000000000000c2b6f00606c40c2f
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+Thank you.
 
-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
-riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
-QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
-UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
-M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
-Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
-14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
-a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
-XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
-RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
-UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
-MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
-BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
-9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
-AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
-UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
-KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
-nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
-Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
-VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
-ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
-CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
-MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
-d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
-hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
-bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
-BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
-KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
-kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
-2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
-3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
-NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
-AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
-LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEII0C1T3vs1As/+G5
-OC3B/gcbVCPlA+oVQB3DRt8bI4FuMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMTAwMjIzMjIzN1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
-AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQCGPeNRVA6xLq+3P4rteLQ2eNVQuDTclaTN
-K06W94isAOBbiaZFbn9kl97WsBRd3LsqAtjuKMB8cv7+P1PY+HGynI+5WiLe4rmWPYqDH4pwyRH5
-w2jlfNnYesh6L5SpaZe1IE0qteFMzRCNRPRPsxLU2FiYtNYOTbQKWGAlUUbSt2BpV7U4dNZc01vP
-ZCIdQq9Ney13t6TtFrV+0qWkEb3Ltg78og/hOQcJJ/KQLmKhgnf3Nl9MJQMKCidYs+bFWrisUrJK
-2kz6L6/XTI7S/WzGYLBEPlNkrX1dYTjp9kNewox2hO4U5e7YmD++JeGLhzWdOMGW56Q1DyjUFmuL
-+dUe
---000000000000c2b6f00606c40c2f--
+> 
+> Thanks,
+> 
+> Jessica Zhang
+> 
+> >   	struct panel_nv3051d *ctx;
+> >   	int ret;
+> > @@ -388,6 +389,13 @@ static int panel_nv3051d_probe(struct mipi_dsi_device *dsi)
+> >   	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
+> >   			  MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_NO_EOT_PACKET;
+> > +	/*
+> > +	 * The panel in the RG351V is identical to the 353P, except it
+> > +	 * requires MIPI_DSI_CLOCK_NON_CONTINUOUS to operate correctly.
+> > +	 */
+> > +	if (of_device_is_compatible(np, "anbernic,rg351v-panel"))
+> > +		dsi->mode_flags |= MIPI_DSI_CLOCK_NON_CONTINUOUS; > +
+> >   	drm_panel_init(&ctx->panel, &dsi->dev, &panel_nv3051d_funcs,
+> >   		       DRM_MODE_CONNECTOR_DSI);
+> > -- 
+> > 2.34.1
+> > 
 
