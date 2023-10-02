@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-5108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F76D7B5455
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 15:51:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C216A7B545D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 15:55:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id A3544B209BD
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 13:51:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id DBC151C204F8
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 13:55:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73635199B9;
-	Mon,  2 Oct 2023 13:51:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A57E199DA;
+	Mon,  2 Oct 2023 13:55:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 346ADEAC5
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 13:51:28 +0000 (UTC)
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E429C6
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 06:51:26 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9ad8bf9bfabso2354632466b.3
-        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 06:51:26 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4590F15E97
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 13:54:59 +0000 (UTC)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73499DC
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 06:54:57 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9ae2cc4d17eso2331894666b.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 06:54:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696254685; x=1696859485; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696254896; x=1696859696; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=j6x75uujKlzJ+W/bfTzwEmKqMbmIlgOpqe2m1PV3yfQ=;
-        b=T6k4fgKN3OKZNLRj2hZ7PqwXE/G8OUgIj/Zx+LC106uIsgbhEPgvwUZNQW8xxqOkTX
-         m7TcLYdt/WYA+A55LXugwUQ19XLYtMTkyJACdmSDXM6iD0ZxP6HdCr/+Zh4fQqSCcF9Q
-         iepueX0mXrC4Ynz2rtdW3FI04VOdUo/NxZ0VLrnhxea2+ZED+CjznKzp0jbMLQmZIHtP
-         fvd9DfDcvb5ZMJL8J0A2clYcm/2M88CkHGUppI3yhL+WWwVVxOm4cjSiidjKW0fX23Uc
-         0GG0CguTwZLaZlwtys0Flo9e4F84iRoaZQldFJKPl3baWGTEOGRh4xDNqTTW4IlZDV4W
-         qQyA==
+        bh=7TPy5OXdxGXkOF5NkG2BaNgpvs7RNm3dPQYOlkwRqQI=;
+        b=eS2qCZhILxliwOX2FjdrETgUbbYrnTqEQz89T+Y/ZgmQ4WxTJ4jUIakdkldei8OH2y
+         I+oCGfX9SMwKUqxE8lX17vgDUkQaAxegF/X/2QY3b+Xl/frBIUYDSiQ9GjsctMV9Jqud
+         SqgFi6FpbqdY3JcNxDL391GBL3BlvSioxRIb2R2pu9PFxyj+3OJJPwW4+JarV4ZuhHOA
+         SFegaE3gi5YtL6edlMmDGeG1+DbtsSl9QjfABe0ZXtC40AB+0gHnmhs6+CBf+cxU8e8C
+         WMPCxiQP7HnauXEjGk02dU4w6e1jKJyx7kxeVsBCqtI9q1JoNuUXvkiZFc3w07JKCF7t
+         8WRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696254685; x=1696859485;
+        d=1e100.net; s=20230601; t=1696254896; x=1696859696;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j6x75uujKlzJ+W/bfTzwEmKqMbmIlgOpqe2m1PV3yfQ=;
-        b=K+L/8qsUbCy39Q+vEeqDZ2TNU3KpgYyC7rhi7TYrUMgnjyX1YFcYXhM+bKi58QkEFn
-         KWl2pioWyqA8s2lPClGvYenK9xHv+Tug19j10z3bUS4EYM6hCnHdiHdhT5MNMfMZYGYk
-         AROgI5695d+qG1fOiMJJLmmMM6mw75GZ+ZZsNW7/Z7R3SYdLdMqTEq3e+UcRpGX7ZQi1
-         IQJaVvmMQaXpgVzJGbNTo9pyyxfth7NjM5FFTgrNteeNpvVDZg7GVidleroK0FibDz/Z
-         Zj6/76p38MMM9mUJeLUxSRxK0EcvfmSTsT2KWoaclYlf7U2QqXUYjBEq/30KFNGHoBQS
-         Q93A==
-X-Gm-Message-State: AOJu0YyNvA1o9VIw1/lL/LxwtvmbGhVT1sA/L6115msBM4lmw/k+359g
-	EVMwKluoz3ziZpRTjNmmwPnjtw==
-X-Google-Smtp-Source: AGHT+IFAjAwD1atyAZ0A8/o+1fJemYcy10FOrb6f5i8p0MQihHFZGOWuA6MKJRrMbXKUyYpewgNE/Q==
-X-Received: by 2002:a17:906:108f:b0:9b2:b71f:83af with SMTP id u15-20020a170906108f00b009b2b71f83afmr10525307eju.20.1696254684729;
-        Mon, 02 Oct 2023 06:51:24 -0700 (PDT)
+        bh=7TPy5OXdxGXkOF5NkG2BaNgpvs7RNm3dPQYOlkwRqQI=;
+        b=Eq/NaETZ573UGW8dpMb/xgtrrDxCRfvEWh58s/7v/a/evwq6CAFSrnTCIg+iUl9Re+
+         CssG+uj0D1rB8PYp2IuXaUWAy1YsOyxe5Yw1SQWE+Bwv5IhBHqot1Z1WvNvlipCiFBgP
+         ttulPETrFjCz4IZNkHT7VPK0J6laMQaTDGCxlvMs0JcGpFPJb4/PPG+gJySsaaoA3N8j
+         GDJvvAJcclMRTRTVrSilB9uZGkHpIxhtwe8EGGCz1bAD4nmMwG/GJqPNpX4ukpKny1TP
+         ijBXObrSVfD/EEqnkqpJ0tDFsbLfpJv5ZiTVezo0PF4Nd712W41Q+Qc9ORPiFyT1VDlG
+         hFrA==
+X-Gm-Message-State: AOJu0YwN1W/q5GzWegfzuhv6IKZ80AxqXfqRKW10gNCY27xHDJQH3Dka
+	bQK/xiS8XUPF9e/7YBDvu8a+joKSAh09135IhOX6Llye
+X-Google-Smtp-Source: AGHT+IHQtXACmY84x7mDj9zOmBhv/fzHfqzmzgeiuNL1je7vJF86OELXC9DhMZEvCwCIH1y4xxNTvA==
+X-Received: by 2002:a17:907:2711:b0:9b2:a7e1:3708 with SMTP id w17-20020a170907271100b009b2a7e13708mr10092419ejk.21.1696254895955;
+        Mon, 02 Oct 2023 06:54:55 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id i22-20020a17090671d600b009a193a5acffsm16803638ejk.121.2023.10.02.06.51.23
+        by smtp.gmail.com with ESMTPSA id bn23-20020a170906c0d700b0099cd1c0cb21sm17019317ejb.129.2023.10.02.06.54.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Oct 2023 06:51:24 -0700 (PDT)
-Message-ID: <ab06133b-10ee-4953-82ad-e6a6a2aaef9d@linaro.org>
-Date: Mon, 2 Oct 2023 15:51:22 +0200
+        Mon, 02 Oct 2023 06:54:55 -0700 (PDT)
+Message-ID: <856c87b4-7c7c-4a62-8013-5afd75535ae5@linaro.org>
+Date: Mon, 2 Oct 2023 15:54:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,19 +63,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] greybus: Add BeaglePlay Linux Driver
+Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: qcom,spmi-pmic: Drop unused
+ labels from examples
 Content-Language: en-US
-To: Ayush Singh <ayushdevel1325@gmail.com>, greybus-dev@lists.linaro.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- gregkh@linuxfoundation.org, vaishnav@beagleboard.org,
- jkridner@beagleboard.org, nm@ti.com, krzysztof.kozlowski+dt@linaro.org,
- johan@kernel.org, elder@kernel.org
-References: <20230924113725.164948-1-ayushdevel1325@gmail.com>
- <20230924113725.164948-3-ayushdevel1325@gmail.com>
- <6ce74c42-d1d0-d9cb-9d90-68989933d1d4@linaro.org>
- <62f5671d-738b-997c-798f-7e6cc00f7ef9@gmail.com>
- <11888c25-466b-2c28-1265-578736182846@linaro.org>
- <66fbd8d1-8b1a-50b5-c442-23847dc3d42f@gmail.com>
+To: Luca Weiss <luca.weiss@fairphone.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231002-pm7250b-gpio-fixup-v2-0-debb8b599989@fairphone.com>
+ <20231002-pm7250b-gpio-fixup-v2-1-debb8b599989@fairphone.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,7 +122,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <66fbd8d1-8b1a-50b5-c442-23847dc3d42f@gmail.com>
+In-Reply-To: <20231002-pm7250b-gpio-fixup-v2-1-debb8b599989@fairphone.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -130,35 +131,19 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 01/10/2023 20:13, Ayush Singh wrote:
+On 02/10/2023 09:00, Luca Weiss wrote:
+> There's not much point in having unused labels in the binding example,
+> so drop them.
+> 
+> This patch was originally motivated by ea25d61b448a ("arm64: dts: qcom:
+> Use plural _gpios node label for PMIC gpios") updating all dts files to
+> use the plural _gpios label instead of the singular _gpio as label but
+> this example wasn't updated. But since we should just drop the label
+> alltogether, do that.
+> 
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 
->>>>> +};
->>>>> +MODULE_DEVICE_TABLE(of, gb_beagleplay_of_match);
->>>>> +
->>>>> +static struct serdev_device_driver gb_beagleplay_driver = {
->>>>> +	.probe = gb_beagleplay_probe,
->>>>> +	.remove = gb_beagleplay_remove,
->>>>> +	.driver = {
->>>>> +	      .name = "gb_beagleplay",
->>>>> +	      .of_match_table = gb_beagleplay_of_match,
->>>> This is still wrongly aligned. Spaces after tab. Are you sure checkpatch
->>>> does not complain bout it?
->>> Again, it doesn't seem to for me. Am I missing some environment
->>> variables or options? Or maybe something wrong with my editor config
->>> (neovim)?
->> You have spaces after tab, so how can this be properly aligned?
->>
->> Best regards,
->> Krzysztof
->>
-> So I just wanted to confirm, but I think spaces after tab are fine for 
-> alignment, right? I found this 
-> (https://www.mail-archive.com/kernelnewbies@kernelnewbies.org/msg13354.html) 
-> message in mailing list stating that it is fine.
-
-Spaces after tab are fine *when needed* for proper alignment. You do not
-have proper alignment here, so just drop them. Please open any other
-existing driver (although not something old...).
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
