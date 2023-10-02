@@ -1,104 +1,160 @@
-Return-Path: <devicetree+bounces-5071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E346E7B504B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 12:28:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C021E7B5089
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 12:45:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 946B7283803
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 10:28:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 6B39A282228
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 10:45:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88D6CEAE4;
-	Mon,  2 Oct 2023 10:28:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA562D2E9;
+	Mon,  2 Oct 2023 10:45:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E78FEACD
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 10:28:19 +0000 (UTC)
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C4FEEB
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 03:28:17 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2c12fc235fbso36630341fa.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 03:28:17 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0337DC2DF
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 10:44:58 +0000 (UTC)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 969FDB0
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 03:44:55 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-5346b64f17aso13215495a12.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 03:44:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696242495; x=1696847295; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=y9uiHFCMzLlJe5x4a/5rmxmhTkPKOnSgYN/+M4Z494U=;
-        b=MVSKxw//4l4FwnaPHIDIlsZIbwPjXgHVNTCaZ22IfTskD3ul+7o93Ls9F2d6JFY6Gm
-         UTq5wiT1nT9jrqWaExrzSf6KmNsG6+KIcKQUC4Vgyc7zhoEPdj9vXCkEX0NOTjMKP068
-         xEhmf5mo3s+hYFRH5b8DkF0aOK5FxT4WFxO1NEU09e9TgRElvifaQlqiHnb78cJRCfAU
-         n/UB6PSw1PTMdCoV4uWXxgPG860JJkl9pqRQw8p4uBfKMtZ79UlquwB9Iy+bjIJIx4YQ
-         KuvSV1raKIsVZ6rVNX9oRhh1ezRAQUOloJ7lCkYawLJ45kkpGqMT77prC/rGaYAlDCBY
-         WmAQ==
+        d=google.com; s=20230601; t=1696243494; x=1696848294; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8DgRy9wyELYkrXoesMhy/Irg2NSJ9BDo37kM0qeNRsk=;
+        b=jhWeJtKMIt6ajuW4m9ZKv7UEqcspMu2FNEpFeVs+uwVcUzLe1GOEI34i7TLgu4GgZ8
+         70HJCSzov3bx082aF8VyFblPebvzqLayHDWCnB/omElRChLlseTLc0afUn3sz+xcJ+Y0
+         cLA5DlY/2OSSY3ldUvHisaVmOsGkBLdrMGfdMBJfKVFEU6AY2IhIqF7WR7WuUcC9zIDp
+         pnIdV5PpPpNF8M1WPbCTxBVGBeFxLhPF+QjpOkrcSGEHOgWZeELyYqMsiWKglkD+ttYX
+         QeybnkqP2f8PGhGDXiOuHJGQsLyaHXc6nLmYywcHrJGXyQviLNaKti+19tzIZPq3krNj
+         R3YQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696242495; x=1696847295;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=y9uiHFCMzLlJe5x4a/5rmxmhTkPKOnSgYN/+M4Z494U=;
-        b=E0LMgkal3s33zRObT0nRt3CKsSNRkhhLJe6v44xTZGwfJbsEnGnktLnDEBDJ027v45
-         6VMisaZfmvYaiFR835POcUpQIXOGCkxVhcSJjpXO2IO75RbXtYsWEng9tBtWlU9ZOFZX
-         x9HFBFQ0tj2hzLM2n0yx0t3jtR18MZwFVuD9AhI2f2CZvj416RaShYSvpir+sE2Yupyv
-         xYYvZiHT7VSJFnVsYeuq0pFdVajTdBt9KfiYLmGTb8gQKDK+Crl+iiinWGLA8RZEsGYO
-         Dw437sOijb7A9ZGr6bU35BZAqYoVfwPfJOb9KDHbdXsRKw7xyVIKg3q+R5Jg53kF1sxN
-         CINg==
-X-Gm-Message-State: AOJu0YxHCgTz/CBTzhUe1NJxUi8AECfZhynKYbQq6CKRhVB8Ul959ZrY
-	Gs+KcCHUzkMBJMfKeCfU6YlugQ==
-X-Google-Smtp-Source: AGHT+IFW0+gwOlLqYNeZ7mETu3Pd+ABKNdjIkutZF+3SdjfoqKiO6ARmXcfuf4v6kQQrsTNkCCKXZA==
-X-Received: by 2002:a2e:9956:0:b0:2c1:7e15:dca6 with SMTP id r22-20020a2e9956000000b002c17e15dca6mr9135945ljj.0.1696242495619;
-        Mon, 02 Oct 2023 03:28:15 -0700 (PDT)
-Received: from [172.30.204.164] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id u9-20020a2e9b09000000b002bff98b3080sm5123147lji.60.2023.10.02.03.28.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Oct 2023 03:28:15 -0700 (PDT)
-Message-ID: <175c4782-94a7-c1f5-16d2-2df117a4b5dd@linaro.org>
-Date: Mon, 2 Oct 2023 12:28:12 +0200
+        d=1e100.net; s=20230601; t=1696243494; x=1696848294;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8DgRy9wyELYkrXoesMhy/Irg2NSJ9BDo37kM0qeNRsk=;
+        b=r2grWTC0MsactZ0wMRaUbXZBscNLVEOdWLL85ahPLls1PHmtcF4GDXL+RlBcOessE7
+         atvu5BzoSrAXuv/b1oevOSfPk4wWoFHy5F4LBVag64o0bZQI8z2qWacd+wpxMu8C0Rh+
+         HZJ23bQhiB/mqWZ/z/E9ibxDYHJgZp7xsR2hrP52EAUYF6MWhBb93U85x4SXOal2JAno
+         gJBUuSSFjmqd2LgslEGumMNdYgU5ukXET+BxpKkvfgNpGmA7a5t40v/nkAst1fwbefhB
+         oONLBdBwEA7z8/vT/onKDZJb67tDucpuP+YX5edVIWbLaMr4ZwVa2GhmVl1V33Z0KoLq
+         WxTw==
+X-Gm-Message-State: AOJu0Yx7CoAg0hOFpitsONZyUgkpsHMYJBECcIYo5/6MDpv7L7INx+Do
+	F3dV2HjwvDRhIUda3D4zS4QcndbjrJpmL9gm6Vj9Qg==
+X-Google-Smtp-Source: AGHT+IFfEHZYAoCIgoYnJV9808N/Wza8FLcB832L+PSoW0VoXZBH3SP/z2HN19oDwKOYQiS0ViJiuQtLXo4v1DWwk9c=
+X-Received: by 2002:a05:6402:68e:b0:523:2e0e:5462 with SMTP id
+ f14-20020a056402068e00b005232e0e5462mr7843842edy.42.1696243493936; Mon, 02
+ Oct 2023 03:44:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sm8550-qrd: add orientation gpio
-Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
- <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-References: <20231002-topic-sm8550-upstream-type-c-orientation-v2-0-125410d3ff95@linaro.org>
- <20231002-topic-sm8550-upstream-type-c-orientation-v2-4-125410d3ff95@linaro.org>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20231002-topic-sm8550-upstream-type-c-orientation-v2-4-125410d3ff95@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+References: <20230922-unclothed-bottom-5531329f9724@spud> <CAGD2q_YsFdDVhE4JCmQSGMWOdpe_yzG8-CdWYPXtjeZsManvgQ@mail.gmail.com>
+ <20230922-removable-footwork-f1d4d96d38dd@spud> <CAGD2q_Y467jJJnwCVH+3F-hh6a-1-OYRugcy0DdjPnTCC77Z8A@mail.gmail.com>
+ <20230925-cod-vacancy-08dc8d88f90e@wendy> <CAGD2q_a1nLtFj7H42f+u+J5Bih59MGS0aJLHCFJy5gM2ydys4w@mail.gmail.com>
+ <20230926-action-sludge-ec8e51fdd6d4@spud> <CAGD2q_YBfDT950tyxEF87ZeiANgea_x8S16Ud5K2bcQ+eL9T=w@mail.gmail.com>
+ <20230926-reverence-unlit-d0027225cc43@spud> <CAGD2q_ZzNPOL+Mhg7aWFTQd+UJJYVLz1ZE9hbNb0roS2M6y34g@mail.gmail.com>
+ <20230928-spectacle-civic-339c0d71d8d7@spud>
+In-Reply-To: <20230928-spectacle-civic-339c0d71d8d7@spud>
+From: yang tylor <tylor_yang@himax.corp-partner.google.com>
+Date: Mon, 2 Oct 2023 18:44:41 +0800
+Message-ID: <CAGD2q_b1gn8XAfgfzuNn3Jo6gEguBEacxERyRM5ms-V=+hWS+g@mail.gmail.com>
+Subject: Re: [PATCH V2 1/2] dt-bindings: input: Introduce Himax HID-over-SPI device
+To: Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, dmitry.torokhov@gmail.com, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	jikos@kernel.org, benjamin.tissoires@redhat.com, linux-input@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	poyuan_chang@himax.corp-partner.google.com, hbarnor@chromium.org, 
+	"jingyliang@chromium.org" <jingyliang@chromium.org>, wuxy23@lenovo.com, luolm1@lenovo.com, 
+	hung poyu <poyu_hung@himax.corp-partner.google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+On Fri, Sep 29, 2023 at 12:56=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
+ote:
+>
+> On Thu, Sep 28, 2023 at 10:12:41AM +0800, yang tylor wrote:
+> > On Tue, Sep 26, 2023 at 8:53=E2=80=AFPM Conor Dooley <conor@kernel.org>=
+ wrote:
+> > > On Tue, Sep 26, 2023 at 05:52:39PM +0800, yang tylor wrote:
+> > > > On Tue, Sep 26, 2023 at 5:02=E2=80=AFPM Conor Dooley <conor@kernel.=
+org> wrote:
+> > > > > On Mon, Sep 25, 2023 at 06:16:29PM +0800, yang tylor wrote:
+> > > > > > On Mon, Sep 25, 2023 at 4:41=E2=80=AFPM Conor Dooley <conor.doo=
+ley@microchip.com> wrote:
+> > > > > > We have a default prefix firmware name(like himax_xxxx.bin) in =
+the driver code.
+> > > > >
+> > > > > How do you intend generating the name of the firmware file? I ass=
+ume the
+> > > > > same firmware doesn't work on every IC, so you'll need to pick a
+> > > > > different one depending on the compatible?
+> > > > >
+> > > > If considering a firmware library line-up for all the incoming pane=
+ls
+> > > > of this driver.
+> > > > We would use PID as part of the file name. Because all the support =
+panels would
+> > > > have a unique PID associated. Which will make the firmware name lik=
+e
+> > > > himax_xxx_{$PID}.bin. The problem is, we need to know PID before fi=
+rmware load
+> > > > at no flash condition. Thus PID information is required in dts when
+> > > > no-flash-flag
+> > > > is specified.
+> > >
+> > > Firstly, where does the "xxx" come from?
+> > > And you're making it sound more like having firmware-name is suitable
+> > > for this use case, given you need to determine the name of the file t=
+o
+> > > use based on something that is hardware specific but is not
+> > > dynamically detectable.
+> > Current driver patch uses a prefix name "himax_i2chid" which comes
+> > from the previous project
+> >  and seems not suitable for this condition, so I use "xxx" and plan to
+> > replace it in the next version.
+> > For finding firmware, I think both solutions are reasonable.
+> > - provide firmware name directly: implies no-flash and use user
+> > specified firmware, no PID info.
+> > - provide no-flash-flag and PID info: loading firmware from organized
+> > names with PID info.
+> > I prefer the 2nd solution, but it needs more properties in dts. 1st
+> > has less properties and more
+> > intuitive.
+> >
+> > I don't know which one is more acceptable by the community, as you
+> > know I'm a newbie here.
+>
+> To be honest, I am not all that sure either! Does the panel id have
+> value in its own right, or is that only used to determine the firmware
+> filename?
+Currently, PID stands for Panel/Project ID and is used for determining
+the firmware filename only. We haven't come up with any new attribute that
+may attach to it. The differences between panels are handled in firmware
+dedicated to its PID.
 
+> Also, if it does have value in its own right, rather than a "pid",
+> should the panel be a child node of this hid device with its own
+> compatible?
+It may need a child node if we find it necessary to add attributes to each =
+PID.
+But currently we have no idea about it.
 
-On 10/2/23 12:20, Neil Armstrong wrote:
-> Specify orientation GPIO to the PMIC GLINK node.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
-w/ fixed commit msg
-
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
+Thanks,
+Tylor
 
