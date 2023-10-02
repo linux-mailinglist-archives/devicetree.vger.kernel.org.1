@@ -1,204 +1,373 @@
-Return-Path: <devicetree+bounces-5273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ADF57B5BE3
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 22:17:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B23587B5BEF
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 22:23:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id C26D7281D69
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 20:17:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 6C638281F6D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 20:23:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D915200D8;
-	Mon,  2 Oct 2023 20:17:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 065B2200DB;
+	Mon,  2 Oct 2023 20:23:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4022200A9
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 20:17:25 +0000 (UTC)
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80554BF
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 13:17:23 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-3215f19a13aso186024f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 13:17:23 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD4D01F19B
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 20:23:49 +0000 (UTC)
+Received: from mx0b-00128a01.pphosted.com (mx0b-00128a01.pphosted.com [148.163.139.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33F5FB7;
+	Mon,  2 Oct 2023 13:23:47 -0700 (PDT)
+Received: from pps.filterd (m0167091.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 392IRgL2030101;
+	Mon, 2 Oct 2023 16:23:39 -0400
+Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2046.outbound.protection.outlook.com [104.47.66.46])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 3tfpccc705-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 02 Oct 2023 16:23:39 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=apcvwC/+miDW5H7x7M5YYIi8cxIxmuk8m6sLwiMK8DbjjP3Cwcjjlu8dP90FIsKFW4XKX89SKcCzURAQv9Q82nQLI2pnOojyEVyvAVjGwCAzUvnIQm2GDYDa7/nGgNq8XZ6WDnbOFh7It/vkGrpRPUcwLfhI/+UZj3+fvG3FkthNDLj/Z7SbgF/z1VrgTq2MIiKXcvWCnItEeyNVJPXO+jC2MfbAscCNAHHJvFLHagRc47NPk+fVT6mj5UiNG0lKNd2JP8UmnYsjrw/8BXHgp2mrMjqhHSgEBBkBOlprxMmRQe7NXQxfoPXi9sen1sU7akRra3XA8yIGBOfWN4UeCA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LfnsJ2UOCuutYORiKgssUQ8dkoSHDXaCvLmkNfdcwL4=;
+ b=aWh65WKB30pJJaNmFcoWbLuOmkuhEhdvBd0dHqnt4Wdth/ZVGwHSFyPLpWkleTw3I0XNy+mZnzi20XdceZufSn/0rlar0uBMm/xftzZHDnrxvKQrEH9dC07aMG6OZ7ZtYa+ChXld2JOxYL3lZNSuxk0CZtyqx+Lh9WnWCLgfgBgihnQ6L+rR+5dQ5o5poMGCfnEnJctw7kXFAfW71YJGZW/5qjJFObOrqExv5v8PIwapPMi6JAhndiQdAr087wLj+XHzbzqwyxtWCb9JcXhiGlqOyH8btnW5CeKZ3L5YbdIXxP8ZN+w/Tr+vV7H70nrqSe/3ywkx/1C8zEFYWS2HDw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
+ dkim=pass header.d=analog.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696277842; x=1696882642; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=2Jiwef6PF99bw+KHSh/onf/J/Fu4vkEvTueVIVaMs5g=;
-        b=F3TSSb0vmhGZa66aW2+hThwiwNUisVkj5mUwIPBg0PNgouqkYLH5BpiPNnLsBEGpPl
-         QiQfLYLJXD2pP5+3RSO4Fdl2kE8KK6fDIIBTXvHVq6pblreeRk2c0hUT8GEYKQptnMNE
-         TAwNXZY4GR1ahEcqW4roPOU9itksSsyMNTXA76i5bN6NMsBtH/GMy0BRVHV1FY5u6cYL
-         7o6Za7k18HS0pjfZpeF0kcV4H25LwzBkhoNNLJ3Njwoa6Gy2SHfKyXhEr//Qww7+YPvC
-         AEsZkVe5amAZomLeHCivnWNMJgT2OFV7hQ/NvZ8cLkgUhqfYe6QEhxo0xj7V6Z9tLQPj
-         tx6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696277842; x=1696882642;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2Jiwef6PF99bw+KHSh/onf/J/Fu4vkEvTueVIVaMs5g=;
-        b=Cy2xnYljwtSTIwpZ33/dKfGMNPfZIQtMEyd1ABIOHjoJgBp3fl5VNtsuiLwdZvUMxl
-         uLuJarnljJJ/qiZFdYhniwrHOeTwJ9cvNZtuhyzv0iqGh+BCaAEQLruLY7TDH/H5Jo6p
-         TZM04e6f5qUc2gv11e9aMcpFS5Jc3nOEckMgvarHuOD4rCqYel1WmDljQoiO8GdAu26A
-         K58wMyd5hhrKaSC77LfO1URs82WafgC3HT4YlakzHFG7+LnOu+8HO5xQzbbi0VQIraot
-         P2iDbKkcOWm0asRkx8SFCVCFYRwy8PdFlcrXRnvwLP9xxz836V66+6WWFSlbfKoeRhKd
-         Aikw==
-X-Gm-Message-State: AOJu0YxCz6D6u/TrFw/crkw+ay5DfkGpRmQ+f5zh4Q7Y5nZKQVSghNaq
-	nHiwnaqNfQceDkrn6qPTu/dwpQa7yZQOmYy3timoIA==
-X-Google-Smtp-Source: AGHT+IFF9GAf+xLviSSFA2s+sJKtTHrHbjabjKHNE4/ue+dIwDJl0YtlsgE2IigdJA/bujdNoQGKCRxOL3114HDXFCg=
-X-Received: by 2002:adf:ee48:0:b0:321:4790:bb5e with SMTP id
- w8-20020adfee48000000b003214790bb5emr12170248wro.38.1696277841718; Mon, 02
- Oct 2023 13:17:21 -0700 (PDT)
+ d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LfnsJ2UOCuutYORiKgssUQ8dkoSHDXaCvLmkNfdcwL4=;
+ b=HYwFREISvqFp+J6TUboYc+8v7RkZ0xpVhLLYkv9Qx9hl98yuj7kEDNJVLYo1meJ/xYokJIvzW6DXYXTrz06+BwAj4mGTK9YrUYPeNDuoYyKQlTeHnlSxJ3IZAD7NiZvrjx4DKSQEmKzsuGxyKA89E2INs10aKDhz2b9fkKcee2Y=
+Received: from BN7PR03MB4545.namprd03.prod.outlook.com (2603:10b6:408:e::31)
+ by DS7PR03MB5509.namprd03.prod.outlook.com (2603:10b6:5:2cb::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.23; Mon, 2 Oct
+ 2023 20:23:35 +0000
+Received: from BN7PR03MB4545.namprd03.prod.outlook.com
+ ([fe80::e1d5:636a:bda7:1c81]) by BN7PR03MB4545.namprd03.prod.outlook.com
+ ([fe80::e1d5:636a:bda7:1c81%2]) with mapi id 15.20.6813.027; Mon, 2 Oct 2023
+ 20:23:35 +0000
+From: "Balas, Eliza" <Eliza.Balas@analog.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Derek Kiernan <derek.kiernan@amd.com>,
+        Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>
+Subject: RE: [PATCH v2 1/2] dt-bindings: misc: adi,axi-tdd: Add device-tree
+ binding for TDD engine
+Thread-Topic: [PATCH v2 1/2] dt-bindings: misc: adi,axi-tdd: Add device-tree
+ binding for TDD engine
+Thread-Index: 
+ AQHZ8e6/zUxp0vYDHECkHhwPalTB6rA2uEYAgAABCqCAAC37AIAAA+iAgAAI/ACAAALAMA==
+Date: Mon, 2 Oct 2023 20:23:35 +0000
+Message-ID: 
+ <BN7PR03MB4545715CBC44232EEA81FF7697C5A@BN7PR03MB4545.namprd03.prod.outlook.com>
+References: <20230928092804.22612-1-eliza.balas@analog.com>
+ <20230928092804.22612-2-eliza.balas@analog.com>
+ <20231002163244.GA1886905-robh@kernel.org>
+ <BN7PR03MB454508AF350D2DC96FE1743A97C5A@BN7PR03MB4545.namprd03.prod.outlook.com>
+ <20231002-aggregate-scanner-3ca2ae69cf0c@spud>
+ <BN7PR03MB4545090CC2F859333E9C3AB297C5A@BN7PR03MB4545.namprd03.prod.outlook.com>
+ <20231002-carnivore-clapped-33140a07ff67@spud>
+In-Reply-To: <20231002-carnivore-clapped-33140a07ff67@spud>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-dg-ref: 
+ =?us-ascii?Q?PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNcZWJhbGFzXGFw?=
+ =?us-ascii?Q?cGRhdGFccm9hbWluZ1wwOWQ4NDliNi0zMmQzLTRhNDAtODVlZS02Yjg0YmEy?=
+ =?us-ascii?Q?OWUzNWJcbXNnc1xtc2ctOGRmZjgzMWUtNjE2MS0xMWVlLThkYjMtNzQwNGYx?=
+ =?us-ascii?Q?NTcwNWY3XGFtZS10ZXN0XDhkZmY4MzFmLTYxNjEtMTFlZS04ZGIzLTc0MDRm?=
+ =?us-ascii?Q?MTU3MDVmN2JvZHkudHh0IiBzej0iMTYxOTgiIHQ9IjEzMzQwNzUxODEyOTc2?=
+ =?us-ascii?Q?OTM1MCIgaD0ibk04Qi9CUkxZVFRjbG5TQ0RZUC9OMm1DR2g0PSIgaWQ9IiIg?=
+ =?us-ascii?Q?Ymw9IjAiIGJvPSIxIiBjaT0iY0FBQUFFUkhVMVJTUlVGTkNnVUFBRW9DQUFD?=
+ =?us-ascii?Q?R3kzMVFidlhaQVg4eHJRKzJHd0VuZnpHdEQ3WWJBU2NEQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUhBQUFBRGFBUUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUVBQVFBQkFBQUFsR1RHVmdBQUFBQUFBQUFBQUFBQUFKNEFBQUJoQUdRQWFR?=
+ =?us-ascii?Q?QmZBSE1BWlFCakFIVUFjZ0JsQUY4QWNBQnlBRzhBYWdCbEFHTUFkQUJ6QUY4?=
+ =?us-ascii?Q?QVpnQmhBR3dBY3dCbEFGOEFaZ0J2QUhNQWFRQjBBR2tBZGdCbEFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?RUFBQUFBQUFBQUFnQUFBQUFBbmdBQUFHRUFaQUJwQUY4QWN3QmxBR01BZFFC?=
+ =?us-ascii?Q?eUFHVUFYd0J3QUhJQWJ3QnFBR1VBWXdCMEFITUFYd0IwQUdrQVpRQnlBREVB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQVFBQUFBQUFBQUFDQUFB?=
+ =?us-ascii?Q?QUFBQ2VBQUFBWVFCa0FHa0FYd0J6QUdVQVl3QjFBSElBWlFCZkFIQUFjZ0J2?=
+ =?us-ascii?Q?QUdvQVpRQmpBSFFBY3dCZkFIUUFhUUJsQUhJQU1nQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUJBQUFBQUFBQUFBSUFBQUFBQUE9PSIvPjwvbWV0?=
+ =?us-ascii?Q?YT4=3D?=
+x-dg-rorf: true
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN7PR03MB4545:EE_|DS7PR03MB5509:EE_
+x-ms-office365-filtering-correlation-id: 6634390d-855d-4ed3-35ff-08dbc3857492
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ Jk0S8iO5ENAx9mUZozSlbcyLYvI42PLCegu9v5nAlJXfrUwLFdYJTO8PClxQVytvOGoWsGVwCXOtW4YaVT4gbCUzx2WoYF1Z4FipAjBg8D86V88AqZTkjD/6iYOYOKT6paFozqBlMVHJaAl4Uc/UV4rCOycGvhveOxs5/cUeG2nNtc2fifgYBg7pDZluOFFG1D402Z5Y0oXmtz2NRfSKcZiLRDgVEZZ8X/NlR3s3ggeR4cizSUyqnmRwc9ySQ7EEVDfzrghF9gB2jIX+8D5zHeqxm18paVMITbtVckHek8AOU928adzy+AO3h+osREk571yYspjJwC/AuH5PnIPPFBsEmUc4Q092AwAxkX63KYdrVTDFnOMQVe7iDUTfGWdbheczrEMSA7/0EFCDdMwhBeqHieFuVOHjkDWkI6i/0QWI/X6QVMK77Gpty+EdWqCvvaLs9xYYOnMH6yGxq0IVwNXD0NxH+jOmJXQ8L6Y2MzRyHQBZnDHQ/kxob0/EXliEK32TBlNqQP7JJ2XKrwfAUBH/wKHUHKtA/+5zwxaSphtV5zsdtVcHelnWfONJcRwax6DOT+KCVZuFozgaMAPLmfTIZAbe7AwAdlRsjAPT3Xi1lxuSaNiDFpOtM0VHUs1iKEfwVxSafmp6A76jGDlHzQ==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN7PR03MB4545.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(376002)(366004)(396003)(346002)(39860400002)(230922051799003)(64100799003)(186009)(451199024)(1800799009)(52536014)(7696005)(5660300002)(8936002)(2906002)(6916009)(8676002)(7416002)(6506007)(41300700001)(64756008)(76116006)(9686003)(478600001)(66476007)(966005)(66946007)(316002)(66446008)(4326008)(66556008)(53546011)(54906003)(71200400001)(26005)(83380400001)(38070700005)(38100700002)(86362001)(33656002)(122000001)(55016003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?wULEzZeFloAd8j5fRbcXTzWszlQKNCKs8S6OktvxSj/oROjohy+nig9PONNd?=
+ =?us-ascii?Q?G92bnm18268rXvZI0EHQreDt0OxGFFcDQ0thrqeoAUo4c8YZQzDI1ysHYEIv?=
+ =?us-ascii?Q?pRYYacawfN8Zx46aSy9zNLFx5nW7XipCGYchmCE0LLzGH3v00SteOaUSS7nN?=
+ =?us-ascii?Q?SjaC/uY6hC2YuILSAvPbbtOC1ZOBh9PPpBG8j5bugSGSvXnbnVoH/QJZ7v9P?=
+ =?us-ascii?Q?edxDGHaRVy5TC+mgNmCuWbB8bGEnWrfGLiBofY7n23Tua9905wksnylbkf8g?=
+ =?us-ascii?Q?N7B477stLxC06eTkskJWwn+n44WB//NEGgJx3lcl0hm3kxN8xGX/xiA1NYcl?=
+ =?us-ascii?Q?Sny0alXsSAXXfvpaYmFNUsn/zd9LCi2YwsNlBT72LoYgyl5imZORj+0gO4uu?=
+ =?us-ascii?Q?oifnMUwjXT6ZysEiR+ct1XsOPf1ZmBXdV3fhMMOsGTPUx/y5V0ho9i7Emrms?=
+ =?us-ascii?Q?MlDk2zHe1B/IDbK5GGl9rPmjvv78R89PlYOz0Y1ncgnOZ6mqy4dH9yYVqgQq?=
+ =?us-ascii?Q?/rgdruaoaES5oijX7EBiF5i5IjlMDKV/7kSa002mdA0Fy3IrgNuKWI9WrBN7?=
+ =?us-ascii?Q?trswxHLj1XVOiy6yejAcnRBZITftfTM3088jnlro9mEPXuxbkXNk1eZtqfCQ?=
+ =?us-ascii?Q?Qojkxm8B7DL8JLl1et3P6/zZ2pHS08L5eLvFs81iU/FT0coYNVLaSXa6EwH9?=
+ =?us-ascii?Q?0XleLhsdIGZk+VkWjpLBoucmGhE8lPGcvf6aQafR/mz1yrMuM8nvlARDrhlz?=
+ =?us-ascii?Q?GIkHiAp8B65Z3JJ6pz39vwZo8DikLlSANdpTgBxu7aJACp7BI9oQkF4/ljrO?=
+ =?us-ascii?Q?CC4qKHlt9tXwPkFr+Pj7aA1lm22FtWPgGru+pLcSFWn18TLVPpESKwv5Q99e?=
+ =?us-ascii?Q?8hTdQExqlzdv8UR1IlKXC+FsNzu5kSCdzEJi72E68NPsRu2TDNMsZ2goImmh?=
+ =?us-ascii?Q?QTMIM6uS2LiOxHFULoHZ36VpnxlDfnjEtd8Hd2xLg7nRvvQsMtPHNFj4XfFB?=
+ =?us-ascii?Q?mIj40m1RviWphZ/JU+oWR5T6iKVQ9eXgkspGzmq6weSTOLGQ+v3MIDmeQi/L?=
+ =?us-ascii?Q?TMsRAR2NmIrG+0KraewF9u7jJoR5suVJm8dceLjZOwrsX9yaVoAvI+26acxM?=
+ =?us-ascii?Q?mseIyjOcQdeKEqETq8N/TH+GHmiCADnz1MN5EpHC/UaS3YPXpytW6VOMpyH7?=
+ =?us-ascii?Q?kYLa+sH0DGgRCucq/H+dWz+nuax5AAZsedk+ktwTitRQIfHaP7PuirShMVEq?=
+ =?us-ascii?Q?/+OrTUFZwWWpO8xStFO8z1jaT1OTHOzRkkxCuJbbyf7GPNMcLVRe1oojOY+i?=
+ =?us-ascii?Q?acJShTGWhlpilS0d9MHWtyvvWFXC/3xAEytJ9piOQalyM9gYDKivlgy4atnz?=
+ =?us-ascii?Q?qmxqlxRGogAh4WnxAfqaRb9X9iAvXDrVE0hUYcDs2piBDrfOuREUWwYhrObD?=
+ =?us-ascii?Q?OjaXym1u+UN9TX82RLrbfD/WeK659fVTe1R8arr1KOhKEoootce8xq7s1H1F?=
+ =?us-ascii?Q?Xi2Fp8vct4xGixDafSGuzZm3jmHlDgxJkzT2ugPRLNbNW/AWHxo4wBbLbcqm?=
+ =?us-ascii?Q?QrTq8CiyJlzIqU512htJnqMtYonFWAItkJnjgk1/?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230928155900.3987103-1-tanmay.shah@amd.com> <20230928155900.3987103-3-tanmay.shah@amd.com>
- <ZRrn5Gj1qvKMBNmx@p14s> <dd0e02bc-38ba-441d-8b22-5be7094fcf91@amd.com> <eb42f224-5406-47ea-9de3-84593de0e470@amd.com>
-In-Reply-To: <eb42f224-5406-47ea-9de3-84593de0e470@amd.com>
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-Date: Mon, 2 Oct 2023 14:17:10 -0600
-Message-ID: <CANLsYkwc71m4qm0yoqAWsAZwJbX80pOYMnB2s_fD=t_TsSZnvQ@mail.gmail.com>
-Subject: Re: [PATCH v5 2/4] dts: zynqmp: add properties for TCM in remoteproc
-To: Tanmay Shah <tanmay.shah@amd.com>
-Cc: andersson@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, michal.simek@amd.com, 
-	radhey.shyam.pandey@amd.com, ben.levinsky@amd.com, 
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN7PR03MB4545.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6634390d-855d-4ed3-35ff-08dbc3857492
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Oct 2023 20:23:35.6329
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: hcNRAN7diml6euYAjf5KoJmEesK54MigcbiW28Q1ciOJFME9/wYv3V1n8C7WSDhrmJ84181zyN3HedJxr3HFSg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR03MB5509
+X-Proofpoint-GUID: zFGki6lHDycCWqKdi88wLAcTcOaI9eFj
+X-Proofpoint-ORIG-GUID: zFGki6lHDycCWqKdi88wLAcTcOaI9eFj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-02_15,2023-10-02_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
+ mlxlogscore=999 mlxscore=0 phishscore=0 suspectscore=0 impostorscore=0
+ adultscore=0 spamscore=0 priorityscore=1501 bulkscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2309180000
+ definitions=main-2310020157
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, 2 Oct 2023 at 11:12, Tanmay Shah <tanmay.shah@amd.com> wrote:
->
->
-> On 10/2/23 11:25 AM, Tanmay Shah wrote:
-> > Hi Mathieu,
-> >
-> > Thanks for the reviews. Please find my comments below.
-> >
-> > On 10/2/23 10:55 AM, Mathieu Poirier wrote:
-> > > On Thu, Sep 28, 2023 at 08:58:58AM -0700, Tanmay Shah wrote:
-> > > > Add properties as per new bindings in zynqmp remoteproc node
-> > > > to represent TCM address and size. This patch configures
-> > > > RPU in split mode and adds TCM information accordingly.
-> > > >
+
+
+> -----Original Message-----
+> From: Conor Dooley <conor@kernel.org>
+> Sent: Monday, October 2, 2023 23:07
+> To: Balas, Eliza <Eliza.Balas@analog.com>
+> Cc: Rob Herring <robh@kernel.org>; Krzysztof Kozlowski <krzysztof.kozlows=
+ki+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>;
+> Derek Kiernan <derek.kiernan@amd.com>; Dragan Cvetic <dragan.cvetic@amd.c=
+om>; Arnd Bergmann <arnd@arndb.de>; Greg
+> Kroah-Hartman <gregkh@linuxfoundation.org>; linux-kernel@vger.kernel.org;=
+ devicetree@vger.kernel.org
+> Subject: Re: [PATCH v2 1/2] dt-bindings: misc: adi,axi-tdd: Add device-tr=
+ee binding for TDD engine
+>=20
+> [External]
+>=20
+> On Mon, Oct 02, 2023 at 07:48:42PM +0000, Balas, Eliza wrote:
+> > > -----Original Message-----
+> > > From: Conor Dooley <conor@kernel.org>
+> > > Sent: Monday, October 2, 2023 22:21
+> > > To: Balas, Eliza <Eliza.Balas@analog.com>
+> > > Cc: Rob Herring <robh@kernel.org>; Krzysztof Kozlowski <krzysztof.koz=
+lowski+dt@linaro.org>; Conor Dooley
+> <conor+dt@kernel.org>;
+> > > Derek Kiernan <derek.kiernan@amd.com>; Dragan Cvetic <dragan.cvetic@a=
+md.com>; Arnd Bergmann <arnd@arndb.de>; Greg
+> > > Kroah-Hartman <gregkh@linuxfoundation.org>; linux-kernel@vger.kernel.=
+org; devicetree@vger.kernel.org
+> > > Subject: Re: [PATCH v2 1/2] dt-bindings: misc: adi,axi-tdd: Add devic=
+e-tree binding for TDD engine
 > > >
-> > > Why is this changed from lockstep to split mode?  What about all the people out
-> > > there that are expecting a lockstep mode?
-> >
-> > I agree, this should have been in split mode in the first place as we would like to demonstrate use of both
-> >
-> > RPUs with two separate demo firmwares which is the best use of the
-> >
-> > hardware and the most preferred use of zynqmp platform by people. That motivates to change
-> >
-> > this to split mode.
-> >
-> >
-> > Now changing this may not be problem for lot of people with following reasons.
-> >
-> > The firmwares that are only using first 64KB of TCM memory, they can easily run in split mode as well.
-> >
-> > Also rpmsg vring information isn't available in device-tree yet, so I am hoping that firmware that
-> >
-> > are using upstream device-tree are not that big yet.
-> >
-> > If we change this to split mode before introducing rpmsg related nodes, I bet it will affect very less number of people.
-> >
-> >
-> > For lockstep mode the example is available in dt-bindings document.
-> >
-
-I could use the same argument for the split mode, i.e default is
-lockstep and there is an example in the dt-bindings document for split
-mode.
-
-> > So, if people need lockstep mode for any reason, all they need to change is xlnx,cluster-mode property from 0 to 1 and TCM nodes
-> >
-> > from bindings document.
-> >
-> >
-> > If you think it's crucial to mention all above, I can send new patch with all above info in commit message.
->
-> Something to add to this. So, let's say if we don't change it now, what would be good time to change it?
->
-
-The best way to go about this is to introduce another DT that is
-tailored for split mode.  That way people can choose to boot their
-device in a specific mode using the DT.  If you decide to go this way,
-look at how ST has split their DT for different boards - search for
-"m4_rproc" under " arch/arm/boot/dts/st".
-
-> As I am hopping to use RPU1 as well with upstream device-tree. Please let me know some suggestion to work this.
->
-> Thanks and again as always appreciate complete reviews,
->
-> Tanmay
->
->
-> >
-> >
+> > > [External]
 > > >
-> > > > Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
-> > > > ---
-> > > >  arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 28 ++++++++++++++++++++------
-> > > >  1 file changed, 22 insertions(+), 6 deletions(-)
+> > > On Mon, Oct 02, 2023 at 04:46:26PM +0000, Balas, Eliza wrote:
+> > > > > -----Original Message-----
+> > > > > From: Rob Herring <robh@kernel.org>
+> > > > > Sent: Monday, October 2, 2023 19:33
+> > > > > To: Balas, Eliza <Eliza.Balas@analog.com>
+> > > > > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Cono=
+r Dooley <conor+dt@kernel.org>; Derek Kiernan
+> > > > > <derek.kiernan@amd.com>; Dragan Cvetic <dragan.cvetic@amd.com>; A=
+rnd Bergmann <arnd@arndb.de>; Greg Kroah-
+> Hartman
+> > > > > <gregkh@linuxfoundation.org>; linux-kernel@vger.kernel.org; devic=
+etree@vger.kernel.org
+> > > > > Subject: Re: [PATCH v2 1/2] dt-bindings: misc: adi,axi-tdd: Add d=
+evice-tree binding for TDD engine
+> > > > >
+> > > > > [External]
+> > > > >
+> > > > > On Thu, Sep 28, 2023 at 12:28:03PM +0300, Eliza Balas wrote:
+> > > > > > Add device tree documentation for the AXI TDD Core.
+> > > > > > The generic TDD controller is in essence a waveform generator
+> > > > > > capable of addressing RF applications which require Time Divisi=
+on
+> > > > > > Duplexing, as well as controlling other modules of general
+> > > > > > applications through its dedicated 32 channel outputs.
+> > > > > >
+> > > > > > The reason of creating the generic TDD controller was to reduce
+> > > > > > the naming confusion around the existing repurposed TDD core
+> > > > > > built for AD9361, as well as expanding its number of output
+> > > > > > channels for systems which require more than six controlling si=
+gnals.
+> > > > > >
+> > > > > > Signed-off-by: Eliza Balas <eliza.balas@analog.com>
+> > > > > > ---
+> > > > > >  .../devicetree/bindings/misc/adi,axi-tdd.yaml | 65 +++++++++++=
+++++++++
+> > > > > >  MAINTAINERS                                   |  7 ++
+> > > > > >  2 files changed, 72 insertions(+)
+> > > > > >  create mode 100644 Documentation/devicetree/bindings/misc/adi,=
+axi-tdd.yaml
+> > > > > >
+> > > > > > diff --git a/Documentation/devicetree/bindings/misc/adi,axi-tdd=
+.yaml b/Documentation/devicetree/bindings/misc/adi,axi-
+> > > tdd.yaml
+> > > > > > new file mode 100644
+> > > > > > index 000000000000..8938da801b95
+> > > > > > --- /dev/null
+> > > > > > +++ b/Documentation/devicetree/bindings/misc/adi,axi-tdd.yaml
+> > > > > > @@ -0,0 +1,65 @@
+> > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > > +# Copyright 2023 Analog Devices Inc.
+> > > > > > +%YAML 1.2
+> > > > > > +---
+> > > > > > +$id: https://urldefense.com/v3/__http://devicetree.org/schemas=
+/misc/adi,axi-
+> > > > > tdd.yaml*__;Iw!!A3Ni8CS0y2Y!5Cxus2huppjhkiJZLWTpJEgA0IXdLZx4t0fS9=
+J1yt0xgjp9g3Y1N5PbZ7pAcIkKU4WPbS_TR9yjTKw$
+> > > > > > +$schema: https://urldefense.com/v3/__http://devicetree.org/met=
+a-
+> > > > >
+> > >
+> schemas/core.yaml*__;Iw!!A3Ni8CS0y2Y!5Cxus2huppjhkiJZLWTpJEgA0IXdLZx4t0fS=
+9J1yt0xgjp9g3Y1N5PbZ7pAcIkKU4WPbS_RK8aQ9xw$
+> > > > > > +
+> > > > > > +title: Analog Devices AXI TDD Core
+> > > > > > +
+> > > > > > +maintainers:
+> > > > > > +  - Eliza Balas <eliza.balas@analog.com>
+> > > > > > +
+> > > > > > +description: |
+> > > > > > +  The TDD controller is a waveform generator capable of addres=
+sing RF
+> > > > > > +  applications which require Time Division Duplexing, as well =
+as controlling
+> > > > > > +  other modules of general applications through its dedicated =
+32 channel
+> > > > > > +  outputs. It solves the synchronization issue when transmitti=
+ng and receiving
+> > > > > > +  multiple frames of data through multiple buffers.
+> > > > > > +  The TDD IP core is part of the Analog Devices hdl reference =
+designs and has
+> > > > > > +  the following features:
+> > > > > > +    * Up to 32 independent output channels
+> > > > > > +    * Start/stop time values per channel
+> > > > > > +    * Enable and polarity bit values per channel
+> > > > > > +    * 32 bit-max internal reference counter
+> > > > > > +    * Initial startup delay before waveform generation
+> > > > > > +    * Configurable frame length and number of frames per burst
+> > > > > > +    * 3 sources of synchronization: external, internal and sof=
+tware generated
+> > > > > > +  For more information see the wiki:
+> > > > > > +  https://wiki.analog.com/resources/fpga/docs/axi_tdd
+> > > > > > +
+> > > > > > +properties:
+> > > > > > +  compatible:
+> > > > > > +    enum:
+> > > > > > +      - adi,axi-tdd-2.00.a
+> > > > >
+> > > > > Where does this version number come from? I looked at the above l=
+ink and
+> > > > > see versions such as '2021_R2', '2019_r2', etc. I didn't dig deep=
+er
+> > > > > whether there's some per IP version.
+> > > > >
+> > > > > If you want to use version numbers, please document the versionin=
+g
+> > > > > scheme. For example, see
+> > > > > Documentation/devicetree/bindings/sifive/sifive-blocks-ip-version=
+ing.txt.
+> > > > >
+> > > > > Rob
 > > > >
-> > > > diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> > > > index b61fc99cd911..01e12894c88e 100644
-> > > > --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> > > > +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> > > > @@ -247,19 +247,35 @@ fpga_full: fpga-full {
-> > > >           ranges;
-> > > >   };
-> > > >
-> > > > - remoteproc {
-> > > > + remoteproc@ffe00000 {
-> > > >           compatible = "xlnx,zynqmp-r5fss";
-> > > > -         xlnx,cluster-mode = <1>;
-> > > > +         xlnx,cluster-mode = <0>;
-> > > >
-> > > > -         r5f-0 {
-> > > > +         #address-cells = <2>;
-> > > > +         #size-cells = <2>;
-> > > > +
-> > > > +         ranges = <0x0 0x0 0x0 0xffe00000 0x0 0x10000>,
-> > > > +                  <0x0 0x20000 0x0 0xffe20000 0x0 0x10000>,
-> > > > +                  <0x1 0x0 0x0 0xffe90000 0x0 0x10000>,
-> > > > +                  <0x1 0x20000 0x0 0xffeb0000 0x0 0x10000>;
-> > > > +
-> > > > +         r5f@0 {
-> > > >                   compatible = "xlnx,zynqmp-r5f";
-> > > > -                 power-domains = <&zynqmp_firmware PD_RPU_0>;
-> > > > +                 reg = <0x0 0x0 0x0 0x10000>, <0x0 0x20000 0x0 0x10000>;
-> > > > +                 reg-names = "atcm", "btcm";
-> > > > +                 power-domains = <&zynqmp_firmware PD_RPU_0>,
-> > > > +                                 <&zynqmp_firmware PD_R5_0_ATCM>,
-> > > > +                                 <&zynqmp_firmware PD_R5_0_BTCM>;
-> > > >                   memory-region = <&rproc_0_fw_image>;
-> > > >           };
-> > > >
-> > > > -         r5f-1 {
-> > > > +         r5f@1 {
-> > > >                   compatible = "xlnx,zynqmp-r5f";
-> > > > -                 power-domains = <&zynqmp_firmware PD_RPU_1>;
-> > > > +                 reg = <0x1 0x0 0x0 0x10000>, <0x1 0x20000 0x0 0x10000>;
-> > > > +                 reg-names = "atcm", "btcm";
-> > > > +                 power-domains = <&zynqmp_firmware PD_RPU_1>,
-> > > > +                                 <&zynqmp_firmware PD_R5_1_ATCM>,
-> > > > +                                 <&zynqmp_firmware PD_R5_1_BTCM>;
-> > > >                   memory-region = <&rproc_1_fw_image>;
-> > > >           };
-> > > >   };
-> > > > --
-> > > > 2.25.1
-> > > >
+> > > > The version refers to the IP version. The version of the IP is also
+> > > > specified in its VERSION register (there is a drop down to expand t=
+he
+> > > > register map on the wiki page) which is verified by the driver duri=
+ng
+> > > > probe. "2021_R2" refers to the compatible tool version used for
+> > > > creating the FPGAIP Core.
+> > >
+> > > If you have version registers in these IPs, what benefit does version
+> > > numbers in the compatible string bring?
+> > > Rather than using the version numbers to validate what the DT gave yo=
+u,
+> > > which not the kernel's job IMO, why not just use the information from
+> > > the register to determine the version?
+> > >
+> > > Cheers,
+> > > Conor.
+> >
+> > As the description of this patch says, we want to resolve the naming co=
+nfusion around the existing repurposed TDD core
+> (https://wiki.analog.com/resources/eval/user-guides/ad-pzsdr2400tdd-eb/re=
+ference_hdl#tdd_controller)
+> > built for AD9361 and this TDD Engine IP core (https://wiki.analog.com/r=
+esources/fpga/docs/axi_tdd) which is a similar core, with
+> more output channels and some extra features. The version numbers in the =
+compatible string are used to differentiate between the
+> two IPs.
+>=20
+> Firstly, please fix your mail client to wrap text at a sane width :)
+> Secondly, where is the binding for that TDD ad9361 specific core that
+> calling this generic one "adi,axi-tdd" would conflict with?
+> Grepping the bindings directory of the kernel tree for "adi.*tdd" returns
+> nothing. If there is an ad9361 specific tdd, I would expect it to have a
+> compatible like "adi,ad9361-tdd".
+
+We didn't upstream the ad9361 tdd driver, but we are using it
+in our internal kernel. If this is an issue, I will change the=20
+compatible string to "adi,axi-tdd".
+
 
