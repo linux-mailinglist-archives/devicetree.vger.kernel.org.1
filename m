@@ -1,216 +1,250 @@
-Return-Path: <devicetree+bounces-5047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01B657B4EDC
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 11:19:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4714E7B4EF3
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 11:22:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 1F6FE1C201EE
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 09:19:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 4C36B1C20864
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 09:22:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84D78C14;
-	Mon,  2 Oct 2023 09:19:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2EBE468B;
+	Mon,  2 Oct 2023 09:22:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B70A779E4
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 09:19:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17E22C433C7;
-	Mon,  2 Oct 2023 09:18:57 +0000 (UTC)
-Message-ID: <c835120d-8a2f-4542-8df9-4d6a2218ddf1@xs4all.nl>
-Date: Mon, 2 Oct 2023 11:18:56 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A77C579DB
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 09:22:00 +0000 (UTC)
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7CF699;
+	Mon,  2 Oct 2023 02:21:58 -0700 (PDT)
+Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.207])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Rzb7K3QN6z6K6dl;
+	Mon,  2 Oct 2023 17:21:49 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Mon, 2 Oct
+ 2023 10:21:56 +0100
+Date: Mon, 2 Oct 2023 10:21:55 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Ivan Mikhaylov <fr0st61te@gmail.com>
+CC: Conor Dooley <conor@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: adc: provide max34408/9 device tree
+ binding document
+Message-ID: <20231002102155.000030bb@Huawei.com>
+In-Reply-To: <591e8c9a4018938df17cdfb55306813858904d9d.camel@gmail.com>
+References: <20230929200844.23316-1-fr0st61te@gmail.com>
+	<20230929200844.23316-2-fr0st61te@gmail.com>
+	<20230930-lusty-antihero-f381434ab682@spud>
+	<591e8c9a4018938df17cdfb55306813858904d9d.camel@gmail.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] dt-bindings: media: imx-jpeg: Add clocks property
-Content-Language: en-US, nl
-To: Mirela Rabulea <mirela.rabulea@nxp.com>, Rob Herring <robh@kernel.org>,
- Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Conor Dooley <conor@kernel.org>, Ming Qian <ming.qian@nxp.com>,
- Shijie Qin <shijie.qin@nxp.com>, Eagle Zhou <eagle.zhou@nxp.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Mark Brown <broonie@kernel.org>, Anson Huang <Anson.Huang@nxp.com>,
- dl-linux-imx <linux-imx@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>
-References: <20230724122101.2903318-1-alexander.stein@ew.tq-group.com>
- <20230724122101.2903318-3-alexander.stein@ew.tq-group.com>
- <20230724-unscrew-bonnet-3c86da806df3@spud> <1908243.taCxCBeP46@steina-w>
- <20230726170141.GA1568248-robh@kernel.org>
- <AS4PR04MB9244D1BD535A188356683DD58F12A@AS4PR04MB9244.eurprd04.prod.outlook.com>
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Autocrypt: addr=hverkuil@xs4all.nl; keydata=
- xsFNBFQ84W0BEAC7EF1iL4s3tY8cRTVkJT/297h0Hz0ypA+ByVM4CdU9sN6ua/YoFlr9k0K4
- BFUlg7JzJoUuRbKxkYb8mmqOe722j7N3HO8+ofnio5cAP5W0WwDpM0kM84BeHU0aPSTsWiGR
- yw55SOK2JBSq7hueotWLfJLobMWhQii0Zd83hGT9SIt9uHaHjgwmtTH7MSTIiaY6N14nw2Ud
- C6Uykc1va0Wqqc2ov5ihgk/2k2SKa02ookQI3e79laOrbZl5BOXNKR9LguuOZdX4XYR3Zi6/
- BsJ7pVCK9xkiVf8svlEl94IHb+sa1KrlgGv3fn5xgzDw8Z222TfFceDL/2EzUyTdWc4GaPMC
- E/c1B4UOle6ZHg02+I8tZicjzj5+yffv1lB5A1btG+AmoZrgf0X2O1B96fqgHx8w9PIpVERN
- YsmkfxvhfP3MO3oHh8UY1OLKdlKamMneCLk2up1Zlli347KMjHAVjBAiy8qOguKF9k7HOjif
- JCLYTkggrRiEiE1xg4tblBNj8WGyKH+u/hwwwBqCd/Px2HvhAsJQ7DwuuB3vBAp845BJYUU3
- 06kRihFqbO0vEt4QmcQDcbWINeZ2zX5TK7QQ91ldHdqJn6MhXulPKcM8tCkdD8YNXXKyKqNl
- UVqXnarz8m2JCbHgjEkUlAJCNd6m3pfESLZwSWsLYL49R5yxIwARAQABzSFIYW5zIFZlcmt1
- aWwgPGh2ZXJrdWlsQHhzNGFsbC5ubD7CwZUEEwECACgFAlQ84W0CGwMFCRLMAwAGCwkIBwMC
- BhUIAgkKCwQWAgMBAh4BAheAACEJEL0tYUhmFDtMFiEEBSzee8IVBTtonxvKvS1hSGYUO0wT
- 7w//frEmPBAwu3OdvAk9VDkH7X+7RcFpiuUcJxs3Xl6jpaA+SdwtZra6W1uMrs2RW8eXXiq/
- 80HXJtYnal1Y8MKUBoUVhT/+5+KcMyfVQK3VFRHnNxCmC9HZV+qdyxAGwIscUd4hSlweuU6L
- 6tI7Dls6NzKRSTFbbGNZCRgl8OrF01TBH+CZrcFIoDgpcJA5Pw84mxo+wd2BZjPA4TNyq1od
- +slSRbDqFug1EqQaMVtUOdgaUgdlmjV0+GfBHoyCGedDE0knv+tRb8v5gNgv7M3hJO3Nrl+O
- OJVoiW0G6OWVyq92NNCKJeDy8XCB1yHCKpBd4evO2bkJNV9xcgHtLrVqozqxZAiCRKN1elWF
- 1fyG8KNquqItYedUr+wZZacqW+uzpVr9pZmUqpVCk9s92fzTzDZcGAxnyqkaO2QTgdhPJT2m
- wpG2UwIKzzi13tmwakY7OAbXm76bGWVZCO3QTHVnNV8ku9wgeMc/ZGSLUT8hMDZlwEsW7u/D
- qt+NlTKiOIQsSW7u7h3SFm7sMQo03X/taK9PJhS2BhhgnXg8mOa6U+yNaJy+eU0Lf5hEUiDC
- vDOI5x++LD3pdrJVr/6ZB0Qg3/YzZ0dk+phQ+KlP6HyeO4LG662toMbFbeLcBjcC/ceEclII
- 90QNEFSZKM6NVloM+NaZRYVO3ApxWkFu+1mrVTXOwU0EVDzhbQEQANzLiI6gHkIhBQKeQaYs
- p2SSqF9c++9LOy5x6nbQ4s0X3oTKaMGfBZuiKkkU6NnHCSa0Az5ScRWLaRGu1PzjgcVwzl5O
- sDawR1BtOG/XoPRNB2351PRp++W8TWo2viYYY0uJHKFHML+ku9q0P+NkdTzFGJLP+hn7x0RT
- DMbhKTHO3H2xJz5TXNE9zTJuIfGAz3ShDpijvzYieY330BzZYfpgvCllDVM5E4XgfF4F/N90
- wWKu50fMA01ufwu+99GEwTFVG2az5T9SXd7vfSgRSkzXy7hcnxj4IhOfM6Ts85/BjMeIpeqy
- TDdsuetBgX9DMMWxMWl7BLeiMzMGrfkJ4tvlof0sVjurXibTibZyfyGR2ricg8iTbHyFaAzX
- 2uFVoZaPxrp7udDfQ96sfz0hesF9Zi8d7NnNnMYbUmUtaS083L/l2EDKvCIkhSjd48XF+aO8
- VhrCfbXWpGRaLcY/gxi2TXRYG9xCa7PINgz9SyO34sL6TeFPSZn4bPQV5O1j85Dj4jBecB1k
- z2arzwlWWKMZUbR04HTeAuuvYvCKEMnfW3ABzdonh70QdqJbpQGfAF2p4/iCETKWuqefiOYn
- pR8PqoQA1DYv3t7y9DIN5Jw/8Oj5wOeEybw6vTMB0rrnx+JaXvxeHSlFzHiD6il/ChDDkJ9J
- /ejCHUQIl40wLSDRABEBAAHCwXwEGAECAA8FAlQ84W0CGwwFCRLMAwAAIQkQvS1hSGYUO0wW
- IQQFLN57whUFO2ifG8q9LWFIZhQ7TA1WD/9yxJvQrpf6LcNrr8uMlQWCg2iz2q1LGt1Itkuu
- KaavEF9nqHmoqhSfZeAIKAPn6xuYbGxXDrpN7dXCOH92fscLodZqZtK5FtbLvO572EPfxneY
- UT7JzDc/5LT9cFFugTMOhq1BG62vUm/F6V91+unyp4dRlyryAeqEuISykhvjZCVHk/woaMZv
- c1Dm4Uvkv0Ilelt3Pb9J7zhcx6sm5T7v16VceF96jG61bnJ2GFS+QZerZp3PY27XgtPxRxYj
- AmFUeF486PHx/2Yi4u1rQpIpC5inPxIgR1+ZFvQrAV36SvLFfuMhyCAxV6WBlQc85ArOiQZB
- Wm7L0repwr7zEJFEkdy8C81WRhMdPvHkAIh3RoY1SGcdB7rB3wCzfYkAuCBqaF7Zgfw8xkad
- KEiQTexRbM1sc/I8ACpla3N26SfQwrfg6V7TIoweP0RwDrcf5PVvwSWsRQp2LxFCkwnCXOra
- gYmkrmv0duG1FStpY+IIQn1TOkuXrciTVfZY1cZD0aVxwlxXBnUNZZNslldvXFtndxR0SFat
- sflovhDxKyhFwXOP0Rv8H378/+14TaykknRBIKEc0+lcr+EMOSUR5eg4aURb8Gc3Uc7fgQ6q
- UssTXzHPyj1hAyDpfu8DzAwlh4kKFTodxSsKAjI45SLjadSc94/5Gy8645Y1KgBzBPTH7Q==
-In-Reply-To: <AS4PR04MB9244D1BD535A188356683DD58F12A@AS4PR04MB9244.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+X-Originating-IP: [10.202.227.76]
+X-ClientProxiedBy: lhrpeml500006.china.huawei.com (7.191.161.198) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-Rob, Conor,
+On Sat, 30 Sep 2023 22:38:58 +0300
+Ivan Mikhaylov <fr0st61te@gmail.com> wrote:
 
-On 09/08/2023 22:43, Mirela Rabulea wrote:
->> -----Original Message-----
->> From: Rob Herring <robh@kernel.org>
->> Sent: Wednesday, July 26, 2023 8:02 PM
->> To: Alexander Stein <alexander.stein@ew.tq-group.com>
->> Cc: Conor Dooley <conor@kernel.org>; Mirela Rabulea
->> <mirela.rabulea@nxp.com>; Ming Qian <ming.qian@nxp.com>; Shijie Qin
->> <shijie.qin@nxp.com>; Eagle Zhou <eagle.zhou@nxp.com>; Mauro Carvalho
->> Chehab <mchehab@kernel.org>; Krzysztof Kozlowski
->> <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>;
->> Shawn Guo <shawnguo@kernel.org>; Sascha Hauer <s.hauer@pengutronix.de>;
->> Fabio Estevam <festevam@gmail.com>; Mark Brown <broonie@kernel.org>;
->> Anson Huang <Anson.Huang@nxp.com>; dl-linux-imx <linux-imx@nxp.com>;
->> Pengutronix Kernel Team <kernel@pengutronix.de>; linux-
->> media@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
->> kernel@lists.infradead.org; linux-spi@vger.kernel.org
->> Subject: [EXT] Re: [PATCH v2 3/3] dt-bindings: media: imx-jpeg: Add clocks
->> property
->>
->> Caution: This is an external email. Please take care when clicking links or
->> opening attachments. When in doubt, report the message using the 'Report this
->> email' button
->>
->>
->> On Tue, Jul 25, 2023 at 07:31:55AM +0200, Alexander Stein wrote:
->>> Am Montag, 24. Juli 2023, 20:26:15 CEST schrieb Conor Dooley:
->>>> On Mon, Jul 24, 2023 at 02:21:00PM +0200, Alexander Stein wrote:
->>>>> i.MX8 and i.MX8X both use two clocks for accessing the periphery.
->>>>> Add clocks and clock-names properties accordingly.
->>>>>
->>>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> On Sat, 2023-09-30 at 10:37 +0100, Conor Dooley wrote:
+> > Hey,
+> >=20
+> > On Fri, Sep 29, 2023 at 11:08:43PM +0300, Ivan Mikhaylov wrote: =20
+> > > The hardware binding for i2c current monitoring device with
+> > > overcurrent
+> > > control.
+> > >=20
+> > > Signed-off-by: Ivan Mikhaylov <fr0st61te@gmail.com>
+> > > ---
+> > > =A0.../bindings/iio/adc/maxim,max34408.yaml=A0=A0=A0=A0=A0 | 101
+> > > ++++++++++++++++++
+> > > =A01 file changed, 101 insertions(+)
+> > > =A0create mode 100644
+> > > Documentation/devicetree/bindings/iio/adc/maxim,max34408.yaml
+> > >=20
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/iio/adc/maxim,max34408.yaml
+> > > b/Documentation/devicetree/bindings/iio/adc/maxim,max34408.yaml
+> > > new file mode 100644
+> > > index 000000000000..cdf89fa4c80e
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/iio/adc/maxim,max34408.yaml
+> > > @@ -0,0 +1,101 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/iio/adc/maxim,max34408.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Two- and four-channel current monitors with overcurrent
+> > > control
+> > > +
+> > > +maintainers:
+> > > +=A0 - Ivan Mikhaylov <fr0st61te@gmail.com>
+> > > +
+> > > +description: |
+> > > +=A0 The MAX34408/MAX34409 are two- and four-channel current monitors
+> > > that are
+> > > +=A0 configured and monitored with a standard I2C/SMBus serial
+> > > interface. Each
+> > > +=A0 unidirectional current sensor offers precision high-side
+> > > operation with a
+> > > +=A0 low full-scale sense voltage. The devices automatically sequence
+> > > through
+> > > +=A0 two or four channels and collect the current-sense samples and
+> > > average them
+> > > +=A0 to reduce the effect of impulse noise. The raw ADC samples are
+> > > compared to
+> > > +=A0 user-programmable digital thresholds to indicate overcurrent
+> > > conditions.
+> > > +=A0 Overcurrent conditions trigger a hardware output to provide an
+> > > immediate
+> > > +=A0 indication to shut down any necessary external circuitry.
+> > > +
+> > > +=A0 Specifications about the devices can be found at:
+> > > +=A0
+> > > https://www.analog.com/media/en/technical-documentation/data-sheets/M=
+AX34408-MAX34409.pdf
+> > > +
+> > > +properties:
+> > > +=A0 compatible:
+> > > +=A0=A0=A0 enum:
+> > > +=A0=A0=A0=A0=A0 - maxim,max34408
+> > > +=A0=A0=A0=A0=A0 - maxim,max34409
+> > > +
+> > > +=A0 reg:
+> > > +=A0=A0=A0 maxItems: 1
+> > > +
+> > > +=A0 interrupts:
+> > > +=A0=A0=A0 maxItems: 1
+> > > +
+> > > +=A0 maxim,input1-rsense-val-micro-ohms:
+> > > +=A0=A0=A0 description:
+> > > +=A0=A0=A0=A0=A0 Adjust the Rsense value to monitor higher or lower c=
+urrent
+> > > levels for
+> > > +=A0=A0=A0=A0=A0 input 1.
+> > > +=A0=A0=A0 enum: [250, 500, 1000, 5000, 10000, 50000, 100000, 200000,
+> > > 500000]
+> > > +=A0=A0=A0 default: 1000
+> > > +
+> > > +=A0 maxim,input2-rsense-val-micro-ohms:
+> > > +=A0=A0=A0 description:
+> > > +=A0=A0=A0=A0=A0 Adjust the Rsense value to monitor higher or lower c=
+urrent
+> > > levels for
+> > > +=A0=A0=A0=A0=A0 input 2.
+> > > +=A0=A0=A0 enum: [250, 500, 1000, 5000, 10000, 50000, 100000, 200000,
+> > > 500000]
+> > > +=A0=A0=A0 default: 1000
+> > > +
+> > > +=A0 maxim,input3-rsense-val-micro-ohms:
+> > > +=A0=A0=A0 description:
+> > > +=A0=A0=A0=A0=A0 Adjust the Rsense value to monitor higher or lower c=
+urrent
+> > > levels for
+> > > +=A0=A0=A0=A0=A0 input 3.
+> > > +=A0=A0=A0 enum: [250, 500, 1000, 5000, 10000, 50000, 100000, 200000,
+> > > 500000]
+> > > +=A0=A0=A0 default: 1000
+> > > +
+> > > +=A0 maxim,input4-rsense-val-micro-ohms:
+> > > +=A0=A0=A0 description:
+> > > +=A0=A0=A0=A0=A0 Adjust the Rsense value to monitor higher or lower c=
+urrent
+> > > levels for
+> > > +=A0=A0=A0=A0=A0 input 4.
+> > > +=A0=A0=A0 enum: [250, 500, 1000, 5000, 10000, 50000, 100000, 200000,
+> > > 500000]
+> > > +=A0=A0=A0 default: 1000 =20
+> >=20
+> > Having 4 almost identical properties makes it seem like this should
+> > have
+> > some channel nodes, each containing an rsense-micro-ohms type
+> > property. =20
+>=20
+> Conor, I'll look through.
+>=20
+> >  =20
+> > > +
+> > > +=A0 maxim,shtdn:
+> > > +=A0=A0=A0 description:
+> > > +=A0=A0=A0=A0=A0 Shutdown Output. Open-drain output. This output tran=
+sitions
+> > > to high impedance
+> > > +=A0=A0=A0=A0=A0 when any of the digital comparator thresholds are ex=
+ceeded
+> > > as long as the ENA
+> > > +=A0=A0=A0=A0=A0 pin is high.
+> > > +=A0=A0=A0 type: boolean =20
+> >=20
+> > I don't understand what this property is used for. The description
+> > here,
+> > and below for "ena", read like they are the descriptions in the
+> > datasheet for the pin, rather than how to use the property.
+> >=20
+> > The drivers don't appear to contain users either - what is the point
+> > of
+> > these properties? =20
+>=20
+> ena and shtdn physical pins of hardware, in the previous version
+> Jonathan asked about adding them into yaml even if it's not used in
+> code. should I do it in some other way?
 
-Is this patch OK or do you want changes?
+Yes, use the gpio bindings.
 
-It's a bit unclear.
+enable-gpios, isshutdown-gpios=20
+perhaps - though try and find a similar example for the naming.
 
-Regards,
+The shutdown one is a bit unusual in that it indicates the device
+has shutdown for one of several possible reasons (IIRC)
 
-	Hans
+Jonathan
 
->>>>> ---
->>>>> Changes in v2:
->>>>> * None
->>>>>
->>>>>  .../devicetree/bindings/media/nxp,imx8-jpeg.yaml          | 8 ++++++++
->>>>>  1 file changed, 8 insertions(+)
->>>>>
->>>>> diff --git
->>>>> a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
->>>>> b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml index
->>>>> 3d9d1db37040..2533e16720f2 100644
->>>>> --- a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
->>>>> +++ b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
->>>>>
->>>>> @@ -46,6 +46,14 @@ properties:
->>>>>      minItems: 2               # Wrapper and 1 slot
->>>>>      maxItems: 5               # Wrapper and 4 slots
->>>>>
->>>>> +  clocks:
->>>>> +    maxItems: 2
->>>>> +
->>>>> +  clock-names:
->>>>> +    items:
->>>>> +      - const: per
->>>>> +      - const: ipg
->>>>
->>>> What do "per" and "ipg" mean? I assume "per" is peripheral?
->>>
->>> Actually I don't know what "ipg" stands for. It's a quite common name
->>> on i.MX platforms though. I opted for the names currently used in the
->>> DT. The driver doesn't care for the names currently.
-> 
-> Hi,
-> Sorry for the late response.
-> Yes, the driver uses now the clk_bulk functions, so it does not care for the names anymore (in the past it used the per/ipg names to get the clocks).
-> 
->>
->> Those names date back about 25 years to Motorola Mcore GSM SoCs. IPG came
->> from IPG bus which IIRC stood for IP gasket. Essentially the bus was something
->> like Arm APB being slave only. The IPG clock is essentially the bus and register
->> access clock. 'per' is the functional clock in cases that need a defined clock rate
->> such as UART baud clock.
->>
->> There is also a shared (between CPU and DSP) bus called SPBA from the same
->> time which still lives on even though it isn't shared in i.MX chips.
-> 
-> Unfortunately, I cannot provide an explanation for the IPG acronym, I asked around, will come back if I get an answer.
-> 
->>
->>> But cross-checking the reference manual these clocks seems to be called
->> "jpeg"
->>> and "ips", individually for both jpeg encoder and decoder.
->>
->> Given this block is probably licensed IP, seems like it would use something
->> different and be directly connected to AHB or AXI.
-> 
-> Yes, the Cast JPEG Decoder/Encoder is a licensed core, and it there is also an NXP JPEG Decoder/Encoder Wrapper, which provides the interface for the Cast JPEG Decoder/Encoder. The wrapper also provides AXI DMA engines for fetching Jpeg bitstream from memory and feed it to the Cast Jpeg or for storing the decoded pixel data into system memory through AXI bus. The wrapper also provides APB interface for wrapper and Cast Jpeg register access.
-> 
-> From our hardware team, I got the information that: for jpeg wrapper, it has two clocks(axi and apb), for CAST IP it has one clock(axi, whose clock source is same with wrapper on chip).
-> 
->>
->>> Mirela (added to recipients): As the original author of the DT nodes,
->>> could you provide additional information regarding the clock names?
-> 
-> I understand that "ipg" usually is IP bus clk for register access, but I am not sure. Experimentally, I was not able to get register access unless both clocks were enabled. I'll get back if I get more details.
-> 
-> Regards,
-> Mirela
-> 
->>>
->>> Best regards,
->>> Alexander
+>=20
+> >  =20
+> > > +
+> > > +=A0 maxim,ena:
+> > > +=A0=A0=A0 description:
+> > > +=A0=A0=A0=A0=A0 SHTDN Enable Input. CMOS digital input. Connect to G=
+ND to
+> > > clear the latch and
+> > > +=A0=A0=A0=A0=A0 unconditionally deassert (force low) the SHTDN outpu=
+t and
+> > > reset the shutdown
+> > > +=A0=A0=A0=A0=A0 delay. Connect to VDD to enable normal latch operati=
+on of
+> > > the SHTDN output.
+> > > +=A0=A0=A0 type: boolean
+> > > +
+> > > +=A0 supply-vdd: true =20
+> >=20
+> > As pointed out by the bot, this is not correct. You need to use a
+> > -supply affix, not a supply-prefix. =20
+>=20
+> Oops.
+>=20
+> Thanks.
+>=20
+>=20
 
 
