@@ -1,186 +1,98 @@
-Return-Path: <devicetree+bounces-5288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 312B87B5DB8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 01:27:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 925967B5DBE
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 01:33:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 7CE4C2813D3
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 23:27:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id C4DBFB20920
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 23:33:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01301208C8;
-	Mon,  2 Oct 2023 23:27:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3297E208CB;
+	Mon,  2 Oct 2023 23:33:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EF041E521
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 23:27:52 +0000 (UTC)
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04olkn2081.outbound.protection.outlook.com [40.92.46.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0AB4AD
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 16:27:50 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=P6LPwDCI1VNvg8RONYn2qRnvxiB87qRbgpm6t4tnooKWbTbNM2NBehGGi5aYdegeIHScRLWlHo9lGasDhaa4OsdPo4pmzvygGVOjpk8jqbqhjF3ZBroOAZpdHnoxydu8z11v/Oc5ZsoY1gvUPprEpWCNSA+LelKpKnYTmVS13X25HuyZlotvIx7G06DV+tHd7diTi7faTxYQACphIiAYUPP1GW2P0enjbFDKPnshAGKBM96zGucd/V+5zJfJZfQZ8dN5atWQmfEyicCVVkKxC2y8MRgVQ/raByXWnyCmwbdgk9pkNevRZes/mUbReoMq7xCQXCtBCp//zWpTmpDEXA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pBRg8LgMHw5pnExKQkb8R1iNuzrJQQoHjOxQyQafWGs=;
- b=GLv4uvYQ7nJkgKvvSar8WHlwaCc/IXF2mfY7niqtegFDueUfisCtaCS1Rz9rN6Q/0jk37PSGE7ywbkAknFqExMfCp87QSDVJjnffGsPMhEPsI8Ub3SZAmIRgjulgHKkjEYiGBlKapdZrwzW2Yl2BwQomgVIShr94c7E44fCmrNTbzrTOZp8BcG574lF1sBVvAdEHPjstZWfAS2Ev40WPQ8DH6CNhYEFJQsBM7u6V8pRIVpguwT526GkMX3r755o5Ep8pJFtrdMbY52wva97eX0XAHng0lmSc9exR2aK++P7YoaDqDvdvdjIIbJjBlFnSTQ4/hRdfp4OL2JTjRYA79A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pBRg8LgMHw5pnExKQkb8R1iNuzrJQQoHjOxQyQafWGs=;
- b=tnfo4kUlvJALWklq6/OV9EjG9V10KlyHXBvzAFoVwUg8JIhcFYAhaVfDeuh3MWRp/GMKCZDoZgohCzO8rRudA0deFyqq8/c4VHd05byhIqVBJnvExEtfq/AHldum7pF48Ft7ukZijkKfV44md1OiPrOkGEkyzhzlANBgOdU63NVOfa3I1m0O9V2eCUacB5ynB5lxyW/+RzjkVcoRHiEiQ4LhisF3R4fsPEHFcaMJrgT34B/NSxYA1HDSkRSbREPAICZKW2DqMnsHLh+afb9O7N/Z7sdxl5EowHxSzTpExfwXvmYt9Yqs/Ns/4QvpL10FVpSQAbzTiV6RcTpX1kUkWw==
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
- by CO6PR06MB7426.namprd06.prod.outlook.com (2603:10b6:303:ae::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.20; Mon, 2 Oct
- 2023 23:27:48 +0000
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::c40c:bbc8:b103:459c]) by SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::c40c:bbc8:b103:459c%2]) with mapi id 15.20.6813.027; Mon, 2 Oct 2023
- 23:27:48 +0000
-Date: Mon, 2 Oct 2023 18:27:45 -0500
-From: Chris Morgan <macromorgan@hotmail.com>
-To: Jessica Zhang <quic_jesszhan@quicinc.com>
-Cc: Chris Morgan <macroalpha82@gmail.com>, neil.armstrong@linaro.org,
-	conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	sam@ravnborg.org, dri-devel@lists.freedesktop.org,
-	robh+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH V3 2/2] drm/panel: nv3051d: Add Support for Anbernic 351V
-Message-ID:
- <SN6PR06MB5342D22FB6DC47A509976293A5C5A@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20231002193016.139452-1-macroalpha82@gmail.com>
- <20231002193016.139452-3-macroalpha82@gmail.com>
- <c0b56123-7ce3-4975-aa68-ff50a616a578@quicinc.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c0b56123-7ce3-4975-aa68-ff50a616a578@quicinc.com>
-X-TMN: [r22YtD9pj5CD1RpFK8CYYw7lESwOhbTp]
-X-ClientProxiedBy: SN7PR04CA0034.namprd04.prod.outlook.com
- (2603:10b6:806:120::9) To SN6PR06MB5342.namprd06.prod.outlook.com
- (2603:10b6:805:f9::31)
-X-Microsoft-Original-Message-ID: <ZRtR8aO7YtGXpwMX@wintermute.localhost.fail>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EEF81E521
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 23:33:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92BE1C433C7;
+	Mon,  2 Oct 2023 23:33:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696289604;
+	bh=x7E5rRwIO9QzR2zAUVHOPZNxzyfVQczJI3WiJU6auLM=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=M4d6wjuAVuXg/vxLhw6h0arwR2nr6kVBjfBVz4C3044a8Erf3OEPA7H5iELfe1hQ6
+	 xsKXNMEchKBjug/iYewoGySgyoWCjhQYCAE3YPcfzb+GEu59RvZgAr6As+UkmiF68Q
+	 JisCP5stZBK8fwmU6Hjg1tilrjC4oKDASSzQp9MuQhlRIl8VVc6pJgvQjlxE/cfao7
+	 E1FAYmDmvXO2JgAYBqIDpeXgtgqS0BrKrapLGsrH4nOJmZc7cqbgRfytYNGq4rMVk6
+	 YyxwC7cLRsx3lm3ItR6y7UNXQgDaBTreHEem4p8Bdtn60E7g7F6Xmw97HxGJohH2bg
+	 fyEbZILG86HIg==
+Received: (nullmailer pid 2855035 invoked by uid 1000);
+	Mon, 02 Oct 2023 23:33:21 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|CO6PR06MB7426:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3d9e1317-18a3-4be1-14c7-08dbc39f305c
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	hKpVw0QiHiy37IoJf7tRT9JhGo5gM4N82bcrrZ2V3FIz6N5FJjDKBBHcAmXYnhNFy/xH3VjZmNDS1lxy7tPgKFJAH47B1J5hgjbzRjh9vbgeFyq/X6eOSPQHjYCwPokFNycO33q/JqxUFo4YfLiiE8vzku2fIjiEmf7Dhh/M9Mzyzc7oyHYRbyWLxZ5kDZDIq+pfhpEttJxCDP3pGhQbD7QAhHO56AcpHFB4n27Azx9TlOAnWCOMrlOORU7uqXICs+2CpzPThnigCoQ280kFygeTnbDk1rfuPNBQ1TKATGx76icpNdIVf62ARYMiLcGmYV7R5GligW71+/yomcWuiP5SRXIHhvzsZhU7/mWRPgSZKlmR9oeUm0hEntJaMA6xEdlJJZ4goPohH39AMy6oxy767vY8VAbDCOFlNe45LjHqW8YEZ3lE+nUYL1R+Jt7dHrE/Z++Ls+/hqg78JnXszCD3tq/2rdBDHrr1FDNS784CdGqCpKPran0IqcCAWt0zJ5BL/11WpNu/BvusyzRyc0JBHEencbIYDmEYqZinkK2mZpr7YZAzGOCkPC4OyOjh
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Ar3rIdOStjHn2lopvD3fJcTgmJXwCL8ISguywLnaUB5eeXkmPn/n2vcq/NJw?=
- =?us-ascii?Q?0MM2HzpDW8JAFR6KYhHRMa+bEX3+Yj4FxrZSJb/cvWXy4zRtdgEmxjwL1oKg?=
- =?us-ascii?Q?D0stFbSOnKrOvliztNh7kg15Sbs8h5Rx2OBdAPQBUwbFl0gshn3hQFVwwabO?=
- =?us-ascii?Q?nb1wHcEy2myFbY2MvEyOfbu6ygwBPZ/H9WyQHhLAkIwYJlkiDi2DWnH62D4J?=
- =?us-ascii?Q?LabhMViyBcd1v5Tc3h0xnITBqBNZIRJKq0Z0GpfuJFls2wWyLpPVK3xfjGsW?=
- =?us-ascii?Q?uHqpToG7597J4IH/rPq0RfBAhop5UpOLJPNNp3Ca/V7VV2y5+TmpMgu0WKnN?=
- =?us-ascii?Q?0i7Mn6CiPLyjJE+G96F96SbiRBy4CS0lzmhI3jqHEaGjsIkWaxsDeSa+eqhE?=
- =?us-ascii?Q?AwCXpgIIbSgtAxb7OVtt1m0nTnMjr9PkST9w/jYKkPieCzMfJwpWzNThPU61?=
- =?us-ascii?Q?VDwtgAHHPLXFSTPU+9hpsTzA9KqQYPWe8+R2TdbhjNO8D0khAcg8Bv/1oyKR?=
- =?us-ascii?Q?tkUcb5tyYNyJNCkCbsDBraTPBjoR24kg2UulPisbizGtM45cld7FwiE/x7pO?=
- =?us-ascii?Q?vOhdI6wR5V7xnGT2wPWX1YBiwISHZO97dYgIgyVOO2wZnuBM0pMAKWcFfgtL?=
- =?us-ascii?Q?YSBemGcxluQE7X16vqsCPld0snYENKGznhvAwMiEhm1i6G1+X7Gt0rvRC8i0?=
- =?us-ascii?Q?gSRoJKxcfvfOYyE2zARmpoL9hNf18UnbFVq+ocEgAdhObBh1Jk8t0j1xFHyd?=
- =?us-ascii?Q?FqAp41on8bsAmxu6Lodcj9SbwcAL2jhYdbaxBqx3TOdQLKwQ1q+NSwVZXUcw?=
- =?us-ascii?Q?8JoRLQr9iFV8lnXr3oZTiV99M2Q6lByaqN78F5ga0yjja6UjxbSDkU0RXVOg?=
- =?us-ascii?Q?xkB7Hq0Nj3yO2TelaqBfrJAM7fT6b/zLDCsMjj9xBX9W26RXliwJv4IwH/cf?=
- =?us-ascii?Q?IPZGMtr4GUcdNqs7V69Of7NyMXqKeZjsp37nWactuEjudg3hr0+fOMX3tXlL?=
- =?us-ascii?Q?PhChqWRPCPhufyqVvKkgnb67NvX77vaVS3zgY71CsmKcns6pyDihhgs23sOu?=
- =?us-ascii?Q?kXxWgtx+D1nIiTJrjcR/VwpSHAsjEroQDoOJXuO3UzjGHxAGdJ+Bq9PKoTGR?=
- =?us-ascii?Q?GtwcVU+VuZbXC2HzXh80Jhn4r4i0Gp8Xf/+vtURrw4wn7Ng7nvH2ZKcmP4Dw?=
- =?us-ascii?Q?Lvc9vGDof5ZMobKviWRxZQdkLd4hyYQlBtQuzQG63+v/FA1n6IkxBBoDEaY?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3d9e1317-18a3-4be1-14c7-08dbc39f305c
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2023 23:27:48.7695
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR06MB7426
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+From: Rob Herring <robh@kernel.org>
+To: Shawn Anastasio <sanastasio@raptorengineering.com>
+Cc: Timothy Pearson <tpearson@raptorengineering.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org, lee@kernel.org, linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <8b014f8b302f8b41c45c4f6fb114cf18e84a76fa.1696285339.git.sanastasio@raptorengineering.com>
+References: <cover.1696285339.git.sanastasio@raptorengineering.com>
+ <8b014f8b302f8b41c45c4f6fb114cf18e84a76fa.1696285339.git.sanastasio@raptorengineering.com>
+Message-Id: <169628960125.2855019.8844044849290949450.robh@kernel.org>
+Subject: Re: [PATCH 2/3] dt-bindings: mfd: sie,cronos-cpld: Add initial DT
+ binding
+Date: Mon, 02 Oct 2023 18:33:21 -0500
 
-On Mon, Oct 02, 2023 at 01:33:03PM -0700, Jessica Zhang wrote:
-> 
-> 
-> On 10/2/2023 12:30 PM, Chris Morgan wrote:
-> > From: Chris Morgan <macromorgan@hotmail.com>
-> > 
-> > Add support for the Anbernic 351V. Just like the 353 series the
-> > underlying vendor is unknown/unmarked (at least not visible in a
-> > non-destructive manner). The panel had slightly different init
-> > sequences and timings in the BSP kernel, but works fine with the
-> > same ones used in the existing driver. The panel will not work without
-> > the inclusion of the MIPI_DSI_CLOCK_NON_CONTINUOUS flag, and this flag
-> > prevents the 353 series from working correctly, so a new compatible
-> > string is added.
-> > 
-> > Tested colors and timings using modetest and all seem to work identical
-> > to the 353 otherwise.
-> > 
-> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > ---
-> >   drivers/gpu/drm/panel/panel-newvision-nv3051d.c | 8 ++++++++
-> >   1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/panel/panel-newvision-nv3051d.c b/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
-> > index ad98dd9322b4..f644dbc8ee8a 100644
-> > --- a/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
-> > +++ b/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
-> > @@ -354,6 +354,7 @@ static const struct drm_panel_funcs panel_nv3051d_funcs = {
-> >   static int panel_nv3051d_probe(struct mipi_dsi_device *dsi)
-> >   {
-> >   	struct device *dev = &dsi->dev;
-> > +	struct device_node *np = dev->of_node;
-> 
-> Hi Chris,
-> 
-> Thanks for the patch.
-> 
-> It mostly looks good to me, but just one question here -- why not pass in
-> `dev->of_node` directly into `of_device_is_compatible()`?
 
-It was an oversight on my part. I'll modify and resend, sorry about that.
+On Mon, 02 Oct 2023 17:32:21 -0500, Shawn Anastasio wrote:
+> The SIE Cronos Platform Controller CPLD is a multi-purpose platform
+> controller that provides both a watchdog timer and an LED controller. As
+> both functions are provided by the same CPLD, a multi-function device is
+> exposed as the parent of both functions.
+> 
+> Add a DT binding for this device.
+> 
+> Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
+> ---
+>  .../bindings/mfd/sie,cronos-cpld.yaml         | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/sie,cronos-cpld.yaml
+> 
 
-Thank you.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> 
-> Thanks,
-> 
-> Jessica Zhang
-> 
-> >   	struct panel_nv3051d *ctx;
-> >   	int ret;
-> > @@ -388,6 +389,13 @@ static int panel_nv3051d_probe(struct mipi_dsi_device *dsi)
-> >   	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-> >   			  MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_NO_EOT_PACKET;
-> > +	/*
-> > +	 * The panel in the RG351V is identical to the 353P, except it
-> > +	 * requires MIPI_DSI_CLOCK_NON_CONTINUOUS to operate correctly.
-> > +	 */
-> > +	if (of_device_is_compatible(np, "anbernic,rg351v-panel"))
-> > +		dsi->mode_flags |= MIPI_DSI_CLOCK_NON_CONTINUOUS; > +
-> >   	drm_panel_init(&ctx->panel, &dsi->dev, &panel_nv3051d_funcs,
-> >   		       DRM_MODE_CONNECTOR_DSI);
-> > -- 
-> > 2.34.1
-> > 
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/mfd/sie,cronos-cpld.example.dts:20.11-24: Warning (reg_format): /example-0/cpld@3f:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/mfd/sie,cronos-cpld.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/mfd/sie,cronos-cpld.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/mfd/sie,cronos-cpld.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/mfd/sie,cronos-cpld.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/mfd/sie,cronos-cpld.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/8b014f8b302f8b41c45c4f6fb114cf18e84a76fa.1696285339.git.sanastasio@raptorengineering.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
