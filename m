@@ -1,152 +1,249 @@
-Return-Path: <devicetree+bounces-5083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C5CF7B52BA
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 14:09:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC81A7B52BB
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 14:09:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id E48D6B20B77
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 12:09:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 7F214283E25
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 12:09:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7706115EA8;
-	Mon,  2 Oct 2023 12:09:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AD9315EAC;
+	Mon,  2 Oct 2023 12:09:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6433017981
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 12:09:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D81DC433C9;
-	Mon,  2 Oct 2023 12:09:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B8C615EA8
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 12:09:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 962B7C433C7;
+	Mon,  2 Oct 2023 12:09:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696248583;
-	bh=XF2JWUI7upFEWvpMLleiS+AFi4n6n/o2bBoXGwL6lk4=;
+	s=k20201202; t=1696248593;
+	bh=Q2dI86gLoM9qmguLVEYaXAHM2kQPybZFLgpNQ9YzSws=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BecpC1VYEdSlAGMnwJk1z8khG//CgJLN0SwRus9GT82CKiB7g/tbumWSmDLt0FJke
-	 oLiLsb8Vb4QWoTjlHWfOrKu7z5MGtTb086eMcu1FWrGG+Sio6gs18EwlMaHt0aG0Hj
-	 bwXKNTQuOsAjQ6aBI4WQYiuZiUGZeKKSYu4mfMVEXgPMxXazT5mm77UwSV4L40cEbh
-	 Htp754cmmiGJoyjKjbiwPisxe6JPTbpXHD1KNI1fBF0goFDGAs2tLAExKbsstW99U1
-	 nu6BrQyyDn/M7NR7BM2SqqRcUNWhqGtLONpWzVVbODbuslYRijBSqz/s2JUNbMPq7r
-	 6CaR5wQk84OOA==
-Date: Mon, 2 Oct 2023 13:09:38 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jisheng Zhang <jszhang@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	b=I/GZjwnZfS1nqGDGvcpErzbFDlZs3Uj7Zmp7kyW/+ORKIoNDC+W22qrTyWBMkhxDM
+	 RcjlDJYFJDlZTVgFBU4i4pobrCVEK2e6AI3Lx5GqbkdaYlwYqWwaIm56C8ivgVgasJ
+	 gLKrgAvEYzd6e2TZ4Y9Y416Ku2GqBADYRSykQi0vlhaBNyaMj/saePJHjANTg8nJxn
+	 LjQDKzeFYyp1duggbzAyN7kjQq4+IVwS9TWyZwOtX8YGxj6+vy85jCG0Ds18KC5kzA
+	 FzHK5BYNp/cnBmocWC6QkLHJ0aDZ5HnuLCEr9NJ0FpAuF4AQ4F1p2TvlpW0cx87/zW
+	 haB1RXBAUJVLg==
+Received: from johan by xi.lan with local (Exim 4.96)
+	(envelope-from <johan@kernel.org>)
+	id 1qnHkO-0005fO-1N;
+	Mon, 02 Oct 2023 14:10:01 +0200
+Date: Mon, 2 Oct 2023 14:10:00 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Doug Anderson <dianders@chromium.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+	linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Maxime Ripard <mripard@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	LinusW <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Anup Patel <anup@brainfault.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Inochi Amaoto <inochiama@outlook.com>, chao.wei@sophgo.com,
-	xiaoguang.xing@sophgo.com
-Subject: Re: [PATCH 4/5] riscv: dts: sophgo: add initial CV1800B SoC device
- tree
-Message-ID: <20231002-pessimism-sycamore-a854a098cf43@spud>
-References: <20230930123937.1551-1-jszhang@kernel.org>
- <20230930123937.1551-5-jszhang@kernel.org>
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH] HID: i2c-hid: fix handling of unpopulated devices
+Message-ID: <ZRqzGA1F6JV-mlRL@hovoldconsulting.com>
+References: <20230918125851.310-1-johan+linaro@kernel.org>
+ <CAD=FV=Wfwvp-SbGrdO5VJcjG42njkApJPB7wnY-YYa1_-O0JWQ@mail.gmail.com>
+ <ZQlIveJVdvyV2Ygy@hovoldconsulting.com>
+ <CAD=FV=XBG7auVVyHn5uvahSZZxp5qBfp4+A9NwFqahdN6XrbZA@mail.gmail.com>
+ <ZQqemN8P2VKgxhsV@hovoldconsulting.com>
+ <CAD=FV=XK87TZuPy+d2r2g5QhowmghE-m9pGHe9-X7jnXAw9z1g@mail.gmail.com>
+ <ZQ1Zm6ec9NuBvqpl@hovoldconsulting.com>
+ <CAD=FV=USBJRzqxX9kBP8pp4LKRGpBee+jkHL=KmeQvyfBk2CVQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="7ADpDYkm6P9PW77/"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230930123937.1551-5-jszhang@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAD=FV=USBJRzqxX9kBP8pp4LKRGpBee+jkHL=KmeQvyfBk2CVQ@mail.gmail.com>
 
+On Fri, Sep 22, 2023 at 09:37:43AM -0700, Doug Anderson wrote:
+> On Fri, Sep 22, 2023 at 2:08 AM Johan Hovold <johan@kernel.org> wrote:
+> > On Wed, Sep 20, 2023 at 08:41:12AM -0700, Doug Anderson wrote:
+> > > On Wed, Sep 20, 2023 at 12:26 AM Johan Hovold <johan@kernel.org> wrote:
+> > > > On Tue, Sep 19, 2023 at 11:15:46AM -0700, Doug Anderson wrote:
+> > > > > On Tue, Sep 19, 2023 at 12:07 AM Johan Hovold <johan@kernel.org> wrote:
+> >
+> > > > As I alluded to in the commit message, you probably want to be able to
+> > > > support second-source touchscreen panel followers as well at some point
+> > > > and then deferring checking whether device is populated until the panel
+> > > > is powered on is not going to work.
 
---7ADpDYkm6P9PW77/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> > > > I skimmed the thread were you added this, but I'm not sure I saw any
+> > > > reason for why powering on the panel follower temporarily during probe
+> > > > would not work?
+> > >
+> > > My first instinct says we can't do this, but let's think about it...
+> > >
+> > > In general the "panel follower" API is designed to give all the
+> > > decision making about when to power things on and off to the panel
+> > > driver, which is controlled by DRM.
+> > >
+> > > The reason for this is from experience I had when dealing with the
+> > > Samsung ATNA33XC20 panel that's on "sc7180-trogdor-homestar". The TCON
+> > > on that panel tended to die if you didn't sequence it just right.
+> > > Specifically, if you were sending pixels to the panel and then stopped
+> > > then you absolutely needed to power the panel off and on again. Folks
+> > > I talked to even claimed that the panel was working "to spec" since,
+> > > in the "Power Sequencing" section of the eDP spec it clearly shows
+> > > that you _must_ turn the panel off and on again after you stop giving
+> > > it bits. ...this is despite the fact that no other panel I've worked
+> > > with cares. ;-)
+> > >
+> > > On homestar, since we didn't have the "panel follower" API, we ended
+> > > up adding cost to the hardware and putting the panel and touchscreens
+> > > on different power rails. However, I wanted to make sure that if we
+> > > ran into a similar situation in the future (or maybe if we were trying
+> > > to make hardware work that we didn't have control over) that we could
+> > > solve it.
 
-On Sat, Sep 30, 2023 at 08:39:36PM +0800, Jisheng Zhang wrote:
-> Add initial device tree for the CV1800B RISC-V SoC by SOPHGO.
->=20
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> ---
->  arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 117 ++++++++++++++++++++++++
->  1 file changed, 117 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/sophgo/cv1800b.dtsi
->=20
-> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dt=
-s/sophgo/cv1800b.dtsi
-> new file mode 100644
-> index 000000000000..8829bebaa017
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> @@ -0,0 +1,117 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +/ {
-> +	compatible =3D "sophgo,cv1800b";
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <1>;
-> +
-> +	cpus: cpus {
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +		timebase-frequency =3D <25000000>;
-> +
-> +		cpu0: cpu@0 {
-> +			compatible =3D "thead,c906", "riscv";
-> +			device_type =3D "cpu";
-> +			reg =3D <0>;
-> +			d-cache-block-size =3D <64>;
-> +			d-cache-sets =3D <512>;
-> +			d-cache-size =3D <65536>;
-> +			i-cache-block-size =3D <64>;
-> +			i-cache-sets =3D <128>;
-> +			i-cache-size =3D <32768>;
-> +			mmu-type =3D "riscv,sv39";
-> +			riscv,isa =3D "rv64imafdc";
-> +			riscv,isa-base =3D "rv64i";
-> +			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "zicntr", "zic=
-sr",
-> +					       "zifencei", "zihpm";
-> +
-> +			cpu0_intc: interrupt-controller {
-> +				compatible =3D "riscv,cpu-intc";
-> +				interrupt-controller;
-> +				#address-cells =3D <0>;
-> +				#interrupt-cells =3D <1>;
-> +			};
-> +		};
-> +	};
-> +
-> +	osc: oscillator {
-> +		compatible =3D "fixed-clock";
-> +		clock-output-names =3D "osc_25m";
-> +		#clock-cells =3D <0>;
-> +	};
+Out of curiosity, are there any machines that actually need this
+"panel-follower" API today, or are saying above that this is just
+something that may be needed one day?
 
-Is this a stub that will later be replaced by a real clock controller
-node, or is this actually a fixed oscillator? If it is the former, could
-you add it to the commit message if there is a respin?
+> > > The other reason for giving full control to the panel driver is just
+> > > how userspace usually works. Right now userspace tends to power off
+> > > panels if they're not used (like if a lid is closed on a laptop) but
+> > > doesn't necessarily power off the touchscreen. Thus if the touchscreen
+> > > has the ability to keep things powered on then we'd never get to a low
+> > > power state.
+> >
+> > Don't you need to keep the touchscreen powered to support wakeup events
+> > (e.g. when not closing the lid)?
+> 
+> No. The only reason you'd use panel follower is if the hardware was
+> designed such that the touchscreen needed to be power sequenced with
+> the panel. If the touchscreen can stay powered when the panel is off
+> then it is, by definition, not a panel follower.
+> 
+> For a laptop I don't think most people expect the touchscreen to stay
+> powered when the screen is off. I certainly wouldn't expect it. If the
+> screen was off and I wanted to interact with the device, I would hit a
+> key on the keyboard or touch the trackpad. When the people designing
+> sc7180-trogdor chose to have the display and touchscreen share a power
+> rail they made a conscious choice that they didn't need the
+> touchscreen active when the screen was off.
 
-Thanks,
-Conor.
+Sure, but that's a policy decision and not something that should be
+hard-coded in our drivers.
 
---7ADpDYkm6P9PW77/
-Content-Type: application/pgp-signature; name="signature.asc"
+> For the other hardware I'm aware of that needs panel-follower there is
+> a single external chip on the board that handles driving the panel and
+> the touchscreen. The power sequencing requirements for this chip
+> simply don't allow the touchscreen to be powered on while the display
+> is off.
+> 
+> One use case where I could intuitively think I might touch a
+> touchscreen of a screen that was "off" would be a kiosk of some sort.
+> It would make sense there to have two power rails. ...or, I suppose,
+> userspace could just choose to turn the backlight off but keep the
+> screen (and touchscreen) powered.
 
------BEGIN PGP SIGNATURE-----
+Right.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRqzAQAKCRB4tDGHoIJi
-0pUpAQCeg85iTvHhxt7N5JpBUouXbz8728VXeHIyIz55IAQEtQEAgvB4/xg9EGuu
-tvn8dqb7SzCgq/xW6fGN6uoZFBmJUQI=
-=Jjvq
------END PGP SIGNATURE-----
+> > And if you close the lid with wakeup disabled, you should still be able
+> > to power down the touchscreen as part of suspend, right?
+> >
+> > > The above all explains why panel followers like the touchscreen
+> > > shouldn't be able to keep power on. However, you are specifically
+> > > suggesting that we just turn the power on temporarily during probe. As
+> > > I think about that, it might be possible? I guess you'd have to
+> > > temporarily block DRM from changing the state of the panel while the
+> > > touchscreen is probing. Then if the panel was off then you'd turn it
+> > > on briefly, do your probe, and then turn it off again. If the panel
+> > > was on then by blocking DRM you'd ensure that it stayed on. I'm not
+> > > sure how palatable that would be or if there are any other tricky
+> > > parts I'm not thinking about.
+> >
+> > As this would allow actually probing the touchscreen during probe(), as
+> > the driver model expects, this seems like a better approach then
+> > deferring probe and registration if it's at all doable.
+> 
+> Yeah, I don't 100% know if it's doable but it seems possible.
+> Certainly it's something for future investigation.
+> 
+> Luckily, at the moment anything I'm aware of that truly needs panel
+> follower also doesn't have multiple sources for a touchscreen.
 
---7ADpDYkm6P9PW77/--
+Ok, so with the current panel-follower implementation you essentially
+only waste a bit of memory in case of a non-populated touchscreen (e.g.
+by keeping the platform and follower devices registered).
+
+> > > > > Thinking that way, is there any reason you can't just move the
+> > > > > i2c_hid_init_irq() into __do_i2c_hid_core_initial_power_up()? You
+> > > > > could replace the call to enable_irq() with it and then remove the
+> > > > > `IRQF_NO_AUTOEN` flag? I think that would also solve the issue if you
+> > > > > wanted to use a 2nd source + the panel follower concept? Both devices
+> > > > > would probe, but only one of them would actually grab the interrupt
+> > > > > and only one of them would actually create real HID devices. We might
+> > > > > need to do some work to keep from trying again at every poweron of the
+> > > > > panel, but it would probably be workable? I think this would also be a
+> > > > > smaller change...
+> > > >
+> > > > That was my first idea as well, but conceptually it is more correct to
+> > > > request resources at probe time and not at some later point when you can
+> > > > no longer fail probe.
+> > > >
+> > > > You'd also need to handle the fact that the interrupt may never have
+> > > > been requested when remove() is called, which adds unnecessary
+> > > > complexity.
+> > >
+> > > I don't think it's a lot of complexity, is it? Just an extra "if" statement...
+> >
+> > Well you'd need keep track of whether the interrupt has been requested
+> > or not (and manage serialisation) yourself for a start.
+> 
+> Sure. So I guess an "if" test plus a boolean state variable. I still
+> don't think it's a lot of complexity.
+
+I never said "a lot", I used the word "unnecessary". But how much it
+adds also depends on whether you need additional synchronisation.
+
+But again, the main point is that the "panel-follower" feature should
+not complicate and obfuscate the driver's probe implementation. And
+looking up resources belongs in probe().
+
+> > But the main reason is still that requesting resources belongs in
+> > probe() and should not be deferred to some later random time where you
+> > cannot inform driver core of failures (e.g. for probe deferral if the
+> > interrupt controller is not yet available).
+> 
+> OK, I guess the -EPROBE_DEFER is technically possible though probably
+> not likely in practice. ...so that's a good reason to make sure we
+> request the IRQ in probe even in the "panel follower" case. I still
+> beleive Benjamin would prefer that this was abstracted out and not in
+> the actual probe() routine, but I guess we can wait to hear from him.
+
+I talked to Benjamin at Kernel Recipes last week and I don't think he
+has any fundamental objections to the fix I'm proposing.
+
+I prefer it as it makes the code easier to reason about and clearly
+marks the code paths that differ in case the device is a "panel
+follower". And since you said it also makes the code look more like what
+you originally intended, then I guess you should be ok with it too?
+
+Looking at the patch again, I may do a v2 to only look up the "panel"
+property once even if that's a really minor optimisation.
+
+> One last idea I had while digging would be to wonder if we could
+> somehow solve this case with "IRQF_PROBE_SHARED". I guess that doesn't
+> work well together with "IRQF_NO_AUTOEN", but conceivably we could
+> have the interrupt handler return "IRQ_NONE" if the initial power up
+> never happened? I haven't spent much time poking with shared
+> interrupts though, so I don't know if there are other side effects...
+
+Yeah, that doesn't seem right, though. The interrupt line is not really
+shared, it's just that we need to check whether the device is populated
+before requesting the interrupt.
+
+Johan
 
