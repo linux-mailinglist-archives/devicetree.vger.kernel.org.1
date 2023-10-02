@@ -1,141 +1,110 @@
-Return-Path: <devicetree+bounces-5021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8087C7B4C1B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 09:02:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A4167B4C56
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 09:12:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 99F9E1C203E0
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 07:02:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id C00272816C0
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 07:12:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EF1F17C3;
-	Mon,  2 Oct 2023 07:02:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D51517C3;
+	Mon,  2 Oct 2023 07:11:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E35D69CA44
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 07:02:43 +0000 (UTC)
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF601F9
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 00:02:40 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-98377c5d53eso2158626266b.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 00:02:40 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CB43633
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 07:11:58 +0000 (UTC)
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63E28B7
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 00:11:56 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-50567477b29so4914096e87.3
+        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 00:11:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1696230159; x=1696834959; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1696230714; x=1696835514; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PeSmx0D2O0/a7oNGI2vszLu5YKBAPoxdy4aY0mQYyUI=;
-        b=gBee/ib04lb8Su5dE1/csNqk7QhGlcoWLm257hjst94+6JplyfreEF1J7Pg0azyqtG
-         semeU2l/YR+vdQg3JxOEAYI+fB9O4moXqGQBRChnyAvz2gFnI/J7mcLgB5O1PjWVyldf
-         zJIzZ64zzvZCxAN8QY3USX5+Nm3FWWM15VaYzvniOuyrDQZA+EWUcoavvVOa/BR5W2lV
-         D0OIVcLiXVAvbWxiYPOU5b8DDLSP4Iq3WG1jLzUtp9q0B0WB0cuQjoFm9qdmjfxg5jfG
-         MAaE0o/lWmynDU4sCCkLl5yMG86qwApHeT1k84pHBYV+MiwcJIPUigXNIasznIYsTFHD
-         0rpg==
+        bh=ebhLT7Bk8BegSoKqGP/uGHgUFUu9P9Y8HhtEWWMfVHo=;
+        b=xq0S0horA4OdXjx1Os3JqPE8SdoHKDJiKvFhGHQiZ0fMbl8uoU/86R9/AwVfp0CJlu
+         Wl5DFuctcXIXqSwxcXH/ppXO87s+OpWRHQuBcqmO2NbtrrM7HwIcqli5GdqoTYmxQ5bP
+         qiSFyjZmNDmgTWgav4HLT+KpdG/didiJZvXJWN6QXnz+hMAr5NBz0wlKrh/kwKJr3pMf
+         cuQhCOHSeV56v1llzBy+lsaZJ3MroXpvwAfmBPQcMxyMzzQOnSqAH1GatJ5I9yzg7BFb
+         wFfuV3FP0tOni7lBJLz31AT+Hl3RCZDUTCucr7PCIEJBzYB8dSafGITd++4CnT/Q5BA2
+         DwQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696230159; x=1696834959;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=PeSmx0D2O0/a7oNGI2vszLu5YKBAPoxdy4aY0mQYyUI=;
-        b=FGJ5wud0qjSOJHTWknqXWess1XvMslTjattOYoK9SwHgHfwsmodh+PiIsik6WVz1fy
-         Ijsv30iNxUEjEqBq/NpmaETJ6dICqYHgNiNJi5bO5YtYmnp0KzpbXHOG/uBajI/8ICTg
-         kM5DdzA4eojpUq/ODWRNxTeIrzcfGb/YEnPPHX4r/NDpjdiS0IDujMdmU6AtbeyouenP
-         iG/kWhCndEjZJCXX4KyhpNY8S5hz8/Mx4fLhUi5ky24V379O1Ng5Y/6kGJFU7c5FRguJ
-         bwbBEV41SvweolAEZP2jJP6qe4jibcrJjyv0BXC1NXLsvGMrB5lI/M+OQThozEgQAgh0
-         vOug==
-X-Gm-Message-State: AOJu0YziX5HVIdGivc1fiK6SW4ZLlIxqNJlL+F5B8eKYK79qC8YNnWaq
-	YkDn9SFe8KSFgaTLLOPptYYMoQ==
-X-Google-Smtp-Source: AGHT+IH37QpKi/pRabAVwX8WI7qczpBr3LGNV8QJIAxW4evWS9WWvOYpM3vfLk1f8Jvg8ql7AlYMlA==
-X-Received: by 2002:a17:906:76d1:b0:9ae:729c:f651 with SMTP id q17-20020a17090676d100b009ae729cf651mr9070622ejn.17.1696230159028;
-        Mon, 02 Oct 2023 00:02:39 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id t15-20020a170906608f00b009a9fbeb15f2sm16459798ejj.62.2023.10.02.00.02.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Oct 2023 00:02:38 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1696230714; x=1696835514;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ebhLT7Bk8BegSoKqGP/uGHgUFUu9P9Y8HhtEWWMfVHo=;
+        b=w+RUCSF6kHtlYg0aChw6mpXarOycdcfDcC/GPS/yxtVh6O1zRLEel/9DmB+zG6irsz
+         0XNpNOKiG7fP1Iel6qvZqcXMh+bjdjlRdV9R+uktjIaJ9z+xfP4SSX2NOZlo+8XDRbIW
+         3baH67Xjrjr/XJHo0xIjd4rMwgMZ6guyEoihxRpS/C4mbPy1UhJSfnxQC00ZDiCIxciN
+         QgXnj6s/v+DtDv/KwIVZN9nKpyeNJpTim48SxmaV1JKjLue4Hwl4RBFmAv2SHbG1jouq
+         fgH4ycKTOGDS9tcq+I+InC1MsIp82hpa4qMqcYKF73fW+V+Q1ZvIgv0wGA2234S36HQs
+         qTBA==
+X-Gm-Message-State: AOJu0Yz/CRXhOmO0yZqu34AiUr51cADY7dO+XbgO0ZcxEY/bGzCOk1J/
+	n0LXt3QXaFqDAC5qXFCJE0Bmkw==
+X-Google-Smtp-Source: AGHT+IHuSrV2k6DA9B2OyyK5jQodlrfkuCDECVUkCMO3P3mkH1WF48HtXVeYwdF/JDJumnd9eE3aWQ==
+X-Received: by 2002:a05:6512:3986:b0:501:bd6f:7c1e with SMTP id j6-20020a056512398600b00501bd6f7c1emr10840429lfu.33.1696230714694;
+        Mon, 02 Oct 2023 00:11:54 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 25-20020a05600c025900b00405623e0186sm6601371wmj.26.2023.10.02.00.11.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Oct 2023 00:11:54 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Jessica Zhang <quic_jesszhan@quicinc.com>, 
+ Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>, 
+ Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
+ Luca Weiss <luca.weiss@fairphone.com>
+In-Reply-To: <20230927-topic-fp5_disp-v2-0-7b5e1d1662a6@linaro.org>
+References: <20230927-topic-fp5_disp-v2-0-7b5e1d1662a6@linaro.org>
+Subject: Re: [PATCH v2 0/2] Raydium RM692E5-based BOE panel driver
+Message-Id: <169623071357.3600226.13335704878597295966.b4-ty@linaro.org>
+Date: Mon, 02 Oct 2023 09:11:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 02 Oct 2023 09:02:38 +0200
-Message-Id: <CVXREP4FCX4E.3M77P8JP1T27M@otso>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: qcm6490-fairphone-fp5: Enable UFS
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Konrad Dybcio" <konrad.dybcio@linaro.org>, "Andy Gross"
- <agross@kernel.org>, "Bjorn Andersson" <andersson@kernel.org>, "Rob
- Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Nitin Rawat" <quic_nitirawa@quicinc.com>
-X-Mailer: aerc 0.15.2
-References: <20230929-fp5-ufs-v1-1-122941e28b06@fairphone.com>
- <cac1b912-e08b-4643-b081-834fdee30ea7@linaro.org>
-In-Reply-To: <cac1b912-e08b-4643-b081-834fdee30ea7@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.3
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Fri Sep 29, 2023 at 3:12 PM CEST, Konrad Dybcio wrote:
-> On 29.09.2023 11:52, Luca Weiss wrote:
-> > Enable the UFS phy and controller so that we can access the internal
-> > storage of the phone.
-> >=20
-> > At the same time we need to bump the minimum voltage used for UFS VCC,
-> > otherwise it doesn't initialize properly. The new range is taken from
-> > the vcc-voltage-level property downstream.
-> >=20
-> > See also the following link for more information about the VCCQ/VCCQ2:
-> > https://gerrit-public.fairphone.software/plugins/gitiles/kernel/msm-ext=
-ra/devicetree/+/1590a3739e7dc29d2597307881553236d492f188/fp5/yupik-idp-pm72=
-50b.dtsi#207
-> >=20
-> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > ---
-> > I'm not 100% convinced about the regulator range change. For sure with
-> > the original voltage range the UFS fails to initialize, but looking at
-> > downstream kernel during runtime (debugfs) we see the VCC voltage
-> > switches between 2.4V (idle?) and 2.952V (active?). But even with this
-> > change in mainline the regulator would always stay at 2.504V which is
-> > for sure lower than the downstream operating voltage of 2.952V. Behavio=
-r
-> > wise I don't see a difference between ~2.5V and ~2.9V.
-> >=20
-> > Should I just constrain the regulator here to min=3Dmax=3D2.952V? Or ju=
-st
-> > say it's okay as-is?
-> >=20
-> > Depends on: https://lore.kernel.org/linux-arm-msm/20230927081858.15961-=
-1-quic_nitirawa@quicinc.com/
-> > ---
-> There's a little funny hack inside the driver
->
-> #if defined(CONFIG_SCSI_UFSHCD_QTI)
->                         if (vreg->low_voltage_sup && !vreg->low_voltage_a=
-ctive && on)
->                                 min_uV =3D vreg->max_uV;
-> #endif
->
-> so, when the ufs is in use, it's pinned to vmax
+Hi,
 
-Hi Konrad,
+On Fri, 29 Sep 2023 14:54:19 +0200, Konrad Dybcio wrote:
+> The Fairphone 5 smartphone ships with a BOE AMOLED panel in conjunction
+> with a Raydium RM692E5 driver IC. This series adds the bindings and driver
+> for that.
+> 
+> 
 
-Are you implying I *should* or *should not* pin the voltage range to
-2.952V-2.952V for mainline?
+Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
 
-Regards
-Luca
+[1/2] dt-bindings: display: panel: Add Raydium RM692E5
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=d1fd19e6bd7d276cf2290300cc563e2e5ac4ebf7
+[2/2] drm/panel: Add driver for BOE RM692E5 AMOLED panel
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=988d0ff29ecf7ab750b9be29fddae588156c3d03
 
->
-> Konrad
+-- 
+Neil
 
 
