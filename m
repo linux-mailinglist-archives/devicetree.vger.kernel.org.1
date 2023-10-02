@@ -1,189 +1,146 @@
-Return-Path: <devicetree+bounces-5142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E38947B56E2
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 17:48:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73F737B56F6
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 17:55:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id E33851C20805
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 15:48:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 90EA11C20490
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 15:55:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E21411D52C;
-	Mon,  2 Oct 2023 15:48:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCE911D540;
+	Mon,  2 Oct 2023 15:55:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D14111A29C
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 15:48:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86986C433C7;
-	Mon,  2 Oct 2023 15:48:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696261709;
-	bh=rFA173u7TYSSDdMiO8zMnnvXrhNdNsDs7EeyJiXp5SQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JNn2CsXENcCuXB0l7pfRk1AHPhE9B5i3OL6CajMgO6oipyPQcW3EFZjDSbGpRtreA
-	 ZsghJsMFo4FunNaGoaNP2aus9jKDiV05cInibJ6bzCMYYLeOzme746dD9HBliMbFCw
-	 Dh50CNFM0FAF0orjaLK/BZZ0AFuOAmpgEUYqFFiDDt0zOuXxAPLpkWleQCJRKygeIK
-	 VtYBqZAYgxiaqemoK36acKkWaHVVa8vhJ3+H0IVC/t7vg6hyTyd4XqKFdMykXKKmDQ
-	 UUvmJpHx4p6Gcz7pIPeNJ4/Os02Jd7CEB83ujSFTQ+ihm0NGCWljsH9kN4NWytRK4k
-	 rJ/84ulmyrkYA==
-Received: from johan by xi.lan with local (Exim 4.96)
-	(envelope-from <johan@kernel.org>)
-	id 1qnL9w-0005a9-2L;
-	Mon, 02 Oct 2023 17:48:37 +0200
-Date: Mon, 2 Oct 2023 17:48:36 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Doug Anderson <dianders@chromium.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-	linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Maxime Ripard <mripard@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	LinusW <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH] HID: i2c-hid: fix handling of unpopulated devices
-Message-ID: <ZRrmVN3Rbz9PY8FW@hovoldconsulting.com>
-References: <20230918125851.310-1-johan+linaro@kernel.org>
- <CAD=FV=Wfwvp-SbGrdO5VJcjG42njkApJPB7wnY-YYa1_-O0JWQ@mail.gmail.com>
- <ZQlIveJVdvyV2Ygy@hovoldconsulting.com>
- <CAD=FV=XBG7auVVyHn5uvahSZZxp5qBfp4+A9NwFqahdN6XrbZA@mail.gmail.com>
- <ZQqemN8P2VKgxhsV@hovoldconsulting.com>
- <CAD=FV=XK87TZuPy+d2r2g5QhowmghE-m9pGHe9-X7jnXAw9z1g@mail.gmail.com>
- <ZQ1Zm6ec9NuBvqpl@hovoldconsulting.com>
- <CAD=FV=USBJRzqxX9kBP8pp4LKRGpBee+jkHL=KmeQvyfBk2CVQ@mail.gmail.com>
- <ZRqzGA1F6JV-mlRL@hovoldconsulting.com>
- <CAD=FV=UHEeu3crTFEZDY+LDQZk07H8un7gCSs0jyCQJrGYkV=Q@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 428A21CFAA
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 15:55:21 +0000 (UTC)
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EFA4A4
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 08:55:20 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1c5cd27b1acso148390595ad.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 08:55:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696262119; x=1696866919; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=/TliF0IcnDDut/Hmb+cIXBD25FLUVIAU119XJHwJn24=;
+        b=aSk+truUmK9dCaJzjsvYyPA2p1ASVSTCsDEfVAJHr8cdyzmO56NRyGBVPcjJ8lMcx7
+         Tb4x9zhQaz90Zw9OKBXT/WG8PxEKBcglB2xas/b0ICNvb8pcTWx1YI1HI6ctV306ORzi
+         LzxAy8XMwSc5M+YCo+zsvW8X9yK0MOaEQVGhquH64LGSwV+bPiLWjYui8s6QqQcb/W6m
+         9eFxuUWuoYoMGklDigaIJGI6paQaOrMKRGqcVVzNM0HMsxuqQTHFCJN9van7jwLaJOM3
+         zNJEYiluxg4v5/MMQ6F8Ia5lyBnImCutEPgCyjZ9hgk0etCc9SsyWGCoG75ppIx2ZsDv
+         skRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696262119; x=1696866919;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/TliF0IcnDDut/Hmb+cIXBD25FLUVIAU119XJHwJn24=;
+        b=QxS0vO5wZhUFY9dM72bWcr7gyN2tPc1M38th12RoYIGvBPgehVawiNWR5d4Pyym1x+
+         FAB3kgKITbXYUO2fvshTYow9Ak4ln50FL60LJ7dy8GUJSqb7axVzMWPUayavJVc4kje5
+         vxsWmSLhUy5WLcnEeHckGJMheSPI0OY1vmNycDhRnni6QnM8GtIolI2m75tM0bNg2F80
+         tKbEoA8wRJXG+uZHIPwv2BhMwhmDWqvIogwAldZpSMQ93NZRbX7aXW7nQkp43a+Wxj/b
+         J2EyIxa9zsWl/JIN3Fs407wOcLPHFOgbZbbrys2E/zfkd+txikY6KRnJQzW+MZfw8lLN
+         jesQ==
+X-Gm-Message-State: AOJu0YyHs/MpHKfO1ktQHCyM+mYr5Epe/mgFXqiy5XER9lVq8FeZcFoP
+	dBlpSpGXSYt3RuFIugzOkUmiRQ==
+X-Google-Smtp-Source: AGHT+IGokh6jvr3Bmxk6tUGV+zrXHR9d1b+yagVVS76bh5D/AqXdhn98ZRv039FQnPEyA/a7vnzfdg==
+X-Received: by 2002:a17:90a:e409:b0:268:ca76:64a with SMTP id hv9-20020a17090ae40900b00268ca76064amr5335954pjb.49.1696262119332;
+        Mon, 02 Oct 2023 08:55:19 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:fa62:edba:ab23:c762])
+        by smtp.gmail.com with ESMTPSA id ch23-20020a17090af41700b002790423f66fsm6465259pjb.26.2023.10.02.08.55.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Oct 2023 08:55:18 -0700 (PDT)
+Date: Mon, 2 Oct 2023 09:55:16 -0600
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Tanmay Shah <tanmay.shah@amd.com>
+Cc: andersson@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, michal.simek@amd.com,
+	radhey.shyam.pandey@amd.com, ben.levinsky@amd.com,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 2/4] dts: zynqmp: add properties for TCM in remoteproc
+Message-ID: <ZRrn5Gj1qvKMBNmx@p14s>
+References: <20230928155900.3987103-1-tanmay.shah@amd.com>
+ <20230928155900.3987103-3-tanmay.shah@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=UHEeu3crTFEZDY+LDQZk07H8un7gCSs0jyCQJrGYkV=Q@mail.gmail.com>
+In-Reply-To: <20230928155900.3987103-3-tanmay.shah@amd.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Mon, Oct 02, 2023 at 07:35:06AM -0700, Doug Anderson wrote:
-> On Mon, Oct 2, 2023 at 5:09 AM Johan Hovold <johan@kernel.org> wrote:
+On Thu, Sep 28, 2023 at 08:58:58AM -0700, Tanmay Shah wrote:
+> Add properties as per new bindings in zynqmp remoteproc node
+> to represent TCM address and size. This patch configures
+> RPU in split mode and adds TCM information accordingly.
+>
 
-> > Out of curiosity, are there any machines that actually need this
-> > "panel-follower" API today, or are saying above that this is just
-> > something that may be needed one day?
+Why is this changed from lockstep to split mode?  What about all the people out
+there that are expecting a lockstep mode?
+
+> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+> ---
+>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 28 ++++++++++++++++++++------
+>  1 file changed, 22 insertions(+), 6 deletions(-)
 > 
-> Yes. See commit de0874165b83 ("drm/panel: Add a way for other devices
-> to follow panel state") where I point to Cong Yang's original patch
-> [1]. In that patch Cong was trying to make things work by assuming
-> probe ordering and manually taking some of the power sequencing stuff
-> out of some of the drivers in order to get things to work.
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> index b61fc99cd911..01e12894c88e 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> @@ -247,19 +247,35 @@ fpga_full: fpga-full {
+>  		ranges;
+>  	};
+>  
+> -	remoteproc {
+> +	remoteproc@ffe00000 {
+>  		compatible = "xlnx,zynqmp-r5fss";
+> -		xlnx,cluster-mode = <1>;
+> +		xlnx,cluster-mode = <0>;
+>  
+> -		r5f-0 {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +
+> +		ranges = <0x0 0x0 0x0 0xffe00000 0x0 0x10000>,
+> +			 <0x0 0x20000 0x0 0xffe20000 0x0 0x10000>,
+> +			 <0x1 0x0 0x0 0xffe90000 0x0 0x10000>,
+> +			 <0x1 0x20000 0x0 0xffeb0000 0x0 0x10000>;
+> +
+> +		r5f@0 {
+>  			compatible = "xlnx,zynqmp-r5f";
+> -			power-domains = <&zynqmp_firmware PD_RPU_0>;
+> +			reg = <0x0 0x0 0x0 0x10000>, <0x0 0x20000 0x0 0x10000>;
+> +			reg-names = "atcm", "btcm";
+> +			power-domains = <&zynqmp_firmware PD_RPU_0>,
+> +					<&zynqmp_firmware PD_R5_0_ATCM>,
+> +					<&zynqmp_firmware PD_R5_0_BTCM>;
+>  			memory-region = <&rproc_0_fw_image>;
+>  		};
+>  
+> -		r5f-1 {
+> +		r5f@1 {
+>  			compatible = "xlnx,zynqmp-r5f";
+> -			power-domains = <&zynqmp_firmware PD_RPU_1>;
+> +			reg = <0x1 0x0 0x0 0x10000>, <0x1 0x20000 0x0 0x10000>;
+> +			reg-names = "atcm", "btcm";
+> +			power-domains = <&zynqmp_firmware PD_RPU_1>,
+> +					<&zynqmp_firmware PD_R5_1_ATCM>,
+> +					<&zynqmp_firmware PD_R5_1_BTCM>;
+>  			memory-region = <&rproc_1_fw_image>;
+>  		};
+>  	};
+> -- 
+> 2.25.1
 > 
-> [1] https://lore.kernel.org/r/20230519032316.3464732-1-yangcong5@huaqin.corp-partner.google.com
-
-Ok, thanks for the pointer.
-
-> > > > Don't you need to keep the touchscreen powered to support wakeup events
-> > > > (e.g. when not closing the lid)?
-> > >
-> > > No. The only reason you'd use panel follower is if the hardware was
-> > > designed such that the touchscreen needed to be power sequenced with
-> > > the panel. If the touchscreen can stay powered when the panel is off
-> > > then it is, by definition, not a panel follower.
-> > >
-> > > For a laptop I don't think most people expect the touchscreen to stay
-> > > powered when the screen is off. I certainly wouldn't expect it. If the
-> > > screen was off and I wanted to interact with the device, I would hit a
-> > > key on the keyboard or touch the trackpad. When the people designing
-> > > sc7180-trogdor chose to have the display and touchscreen share a power
-> > > rail they made a conscious choice that they didn't need the
-> > > touchscreen active when the screen was off.
-> >
-> > Sure, but that's a policy decision and not something that should be
-> > hard-coded in our drivers.
-> 
-> If the touchscreen and panel can be powered separately then, sure,
-> it's a policy decision.
-> 
-> In the cases where the touchscreen and panel need to be powered
-> together I'd say it's more than a policy decision. Even if it wasn't,
-> you have to make _some_ decision in the kernel. One could also argue
-> that if you say that you're going to force the panel to be powered on
-> whenever the touchscreen is on then that's just as much of a policy
-> decision, isn't it?
-
-I get your point, but with runtime pm suspending the touchpad after a
-timeout it seems that would still be the most flexible alternative
-which allows deferring the decision whether to support wakeup on
-touch events to the user.
-
-> In any case, the fact that there is a shared power rail / shared power
-> sequence is because the hardware designer intended them to either be
-> both off or both on. Whenever I asked the EEs that designed these
-> boards about leaving the touchscreen on while turning the panel power
-> off they always looked at me incredulously and asked why I would ever
-> do that. Although we can work around the hardware by powering the
-> panel in order to allow the touchscreen to be on, it's just not the
-> intention.
-
-I hear you, but users sometimes want do things with their hardware which
-may not have originally been intended (e.g. your kiosk example).
-
-> > > > But the main reason is still that requesting resources belongs in
-> > > > probe() and should not be deferred to some later random time where you
-> > > > cannot inform driver core of failures (e.g. for probe deferral if the
-> > > > interrupt controller is not yet available).
-> > >
-> > > OK, I guess the -EPROBE_DEFER is technically possible though probably
-> > > not likely in practice. ...so that's a good reason to make sure we
-> > > request the IRQ in probe even in the "panel follower" case. I still
-> > > beleive Benjamin would prefer that this was abstracted out and not in
-> > > the actual probe() routine, but I guess we can wait to hear from him.
-> >
-> > I talked to Benjamin at Kernel Recipes last week and I don't think he
-> > has any fundamental objections to the fix I'm proposing.
-> 
-> Sure. I don't either though I'm hoping that we can come up with a more
-> complete solution long term.
-> 
-> 
-> > I prefer it as it makes the code easier to reason about and clearly
-> > marks the code paths that differ in case the device is a "panel
-> > follower". And since you said it also makes the code look more like what
-> > you originally intended, then I guess you should be ok with it too?
-> 
-> It looks OK to me. The biggest objection I have is just that I dislike
-> it when code churns because two people disagree what the nicer style
-> is. It just makes for bigger diffs and more work to review things.
-
-Ok, but this isn't just about style as that initial_power_on() function
-which does all the magic needs to be broken up to fix the regression
-(unless you want to convolute the driver and defer resource lookups
-until panel power-on).
-
-I'll respin a v2 with that panel-property lookup change I mentioned and
-hopefully we can get this fixed this week.
-
-> > > One last idea I had while digging would be to wonder if we could
-> > > somehow solve this case with "IRQF_PROBE_SHARED". I guess that doesn't
-> > > work well together with "IRQF_NO_AUTOEN", but conceivably we could
-> > > have the interrupt handler return "IRQ_NONE" if the initial power up
-> > > never happened? I haven't spent much time poking with shared
-> > > interrupts though, so I don't know if there are other side effects...
-> >
-> > Yeah, that doesn't seem right, though. The interrupt line is not really
-> > shared, it's just that we need to check whether the device is populated
-> > before requesting the interrupt.
-> 
-> I'm not convinced that marking it as shared is any "less right" than
-> extra work to request the interrupt after we've probed the device.
-> Fundamentally both are taking into account that another touchscreen
-> might be trying to probe with the same interrupt line.
-
-If you need to start to thinking about rewriting your interrupt handler,
-I'd say that qualifies as "less right". ;)
-
-Johan
 
