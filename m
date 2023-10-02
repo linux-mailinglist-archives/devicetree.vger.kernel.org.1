@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-5286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D7A27B5DA9
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 01:21:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 173C77B5DAD
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 01:22:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 097D3281335
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 23:21:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id BC3602812FE
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 23:22:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68C90208C8;
-	Mon,  2 Oct 2023 23:21:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87177208C1;
+	Mon,  2 Oct 2023 23:22:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F4BE208B5
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 23:21:12 +0000 (UTC)
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4523B0
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 16:21:09 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-1c760b34d25so2390565ad.3
-        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 16:21:09 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 407FF1E521
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 23:22:40 +0000 (UTC)
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE267D9
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 16:22:38 -0700 (PDT)
+Received: by mail-pg1-x534.google.com with SMTP id 41be03b00d2f7-578b4981526so172542a12.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 16:22:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1696288869; x=1696893669; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1696288957; x=1696893757; darn=vger.kernel.org;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HG7h3ba2wL/iXr/c+xSi5Owb8hPKK0FjcwVQEk+uRwo=;
-        b=Me2uKxFnQeKfA9PYKD4vWjBisd/P9Mro+BFRUxVOZSp1Nh9xjHRe96F3IF0dSE3/HJ
-         TornWxoHvPG7obkwsaDEYwHpOw8Qr3uZnEvbX1Xy6C8v1ICx87GU0rnVP3S1tZCaZAsH
-         yGJ5JxXKCTT02JgSk9xwdziAwq9gSub5O7bO4=
+        bh=Lz1WUPakV+CyHNmOkEUCseX9s2XHI2CmbOZz4PiNmQo=;
+        b=LeugIY2QvprR5sXWw/kM0LWFmDOYLWErl1evCWVtOjb8G2mTG1jDZ7ru2G+hqgfZjy
+         CfNf78+LoghPiAgXcJ6Mx4ArcCnNa2fAdzNvVs8SLhkElGjPITt9zHY+kOuyVUvamGV2
+         SGhxCGBsCom6wXIcHYt4UeCZBNOWhYiXwMAc4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696288869; x=1696893669;
+        d=1e100.net; s=20230601; t=1696288957; x=1696893757;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HG7h3ba2wL/iXr/c+xSi5Owb8hPKK0FjcwVQEk+uRwo=;
-        b=KsHYgwwry7lzXqBKvMUrhWBfKy0GXZyQ9qauX1LxzaSFhWQNPfpGFg8icuMzgDsy9X
-         RTJU6M/RxZKQ+VPm+6ipTjAx5fSMnF74cJjkVtekdIsjC609ObYXrKv8bqEfXMQjfcNi
-         /P7rWULBWhDz3LYJMi9c8496irXbAGMPWzJag5Hrkfl3S+DcMXEzuWjqEkKsxirfafpK
-         LPgS2Qa894jqJwM2D0bW/SdDYH07oV7aJbGIdfjvph1wiC59YbUuuaKoAGqrfnGCaHTb
-         d71juHNBmWfPE/xlPPeVNrWW7JD/ix3GewEC/oaF3D7BHCq+rWOhS9mqZ2W3drf35pQt
-         rZQQ==
-X-Gm-Message-State: AOJu0Ywd6HjwONmJ3xEi7Vz0FnG7hjocH6roV2ax8Azc8FfH1c/ziLZP
-	7lb7KUOR/Ljoc2G/FcuE8KslVg==
-X-Google-Smtp-Source: AGHT+IG0mpgicD2XhJjyvl0978Lo2iaEWrsHv6iEckUMDZipKWILbGRSCcj7Ii6KXqpfMNF10p0+oA==
-X-Received: by 2002:a17:903:1246:b0:1c3:6163:210a with SMTP id u6-20020a170903124600b001c36163210amr12225305plh.60.1696288869200;
-        Mon, 02 Oct 2023 16:21:09 -0700 (PDT)
+        bh=Lz1WUPakV+CyHNmOkEUCseX9s2XHI2CmbOZz4PiNmQo=;
+        b=oTGdeuow0CrIw8oBQK0o5rr7hS0IYYsIdmNxP4qKtA7KIRrOWCttpiZYLz34+RdYTB
+         lGlrtAx/ylo3g0ZC1Mla0N6oQ58e42qsFgVu+PS/goAyKksd0BVT84banmatE6vSg87L
+         SZuhXE81DYThYj1ogh9FpK5kMs/64/dxIT+ILUnWICEjgUYv2DsgzMs3qm40Xkk9gPNZ
+         bD63ThXueqgq+zk0qzhiChWV0fKZ9FIrhN9P4ftyQH91MYaCrtwyDxN6d3jHT9nawHbO
+         YHG92xpZdE/P+Ts5WGEuVquIVACIlKgzx47x0F3XCvpVur5BhVsvtThajpQMVaH1rtDl
+         GYMA==
+X-Gm-Message-State: AOJu0YyXNoE4d4ldLKjOwmtxjGRxHO30+mCMDodAS2Sk/8C13jCh3k2D
+	OqXnc8Mc/H/rIzNArLNNbqH+uw==
+X-Google-Smtp-Source: AGHT+IFq0VjxrY8Vj/z8NHmNfYXrLOvXKlTGi5k2c7GerckjIWItAbz8PfFXuynlGg5xLO/3qmugzg==
+X-Received: by 2002:a05:6a20:4425:b0:14d:5580:8ff0 with SMTP id ce37-20020a056a20442500b0014d55808ff0mr14254101pzb.25.1696288957390;
+        Mon, 02 Oct 2023 16:22:37 -0700 (PDT)
 Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id l8-20020a170903244800b001bc2831e1a9sm4390pls.90.2023.10.02.16.21.07
+        by smtp.gmail.com with ESMTPSA id c1-20020a170903234100b001b9c960ffeasm8836plh.47.2023.10.02.16.22.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Oct 2023 16:21:08 -0700 (PDT)
+        Mon, 02 Oct 2023 16:22:36 -0700 (PDT)
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 To: bcm-kernel-feedback-list@broadcom.com,
 	=?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
@@ -61,13 +61,13 @@ Cc: Florian Fainelli <f.fainelli@gmail.com>,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	=?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>,
-	Felix Fietkau <nbd@nbd.name>
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Relicense Felix's code to the GPL 2.0+ / MIT
-Date: Mon,  2 Oct 2023 16:21:07 -0700
-Message-Id: <20231002232107.1289945-1-florian.fainelli@broadcom.com>
+	Vivek Unune <npcomplete13@gmail.com>
+Subject: Re: [PATCH] ARM: dts: BCM5301X: Relicense Vivek's code to the GPL 2.0+ / MIT
+Date: Mon,  2 Oct 2023 16:22:35 -0700
+Message-Id: <20231002232235.1290201-1-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230916083057.10458-1-zajec5@gmail.com>
-References: <20230916083057.10458-1-zajec5@gmail.com>
+In-Reply-To: <20230916085855.28375-1-zajec5@gmail.com>
+References: <20230916085855.28375-1-zajec5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,7 +75,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000817cae0606c407e5"
+	boundary="000000000000c2b6f00606c40c2f"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
@@ -83,22 +83,22 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
---000000000000817cae0606c407e5
+--000000000000c2b6f00606c40c2f
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Sat, 16 Sep 2023 10:30:57 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
+On Sat, 16 Sep 2023 10:58:55 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
 > From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Move code added by Felix to the bcm-ns.dtsi which uses dual licensing.
+> Move code added by Vivek to the bcm-ns.dtsi which uses dual licensing.
 > That syncs more Northstar code to be based on the same licensing schema.
 > 
-> This code was added in the commit 1ff80363524c ("ARM: BCM5301X: Add
-> profiling support").
+> This code was added in the commit 37f6130ec39f ("ARM: dts: BCM5301X:
+> Make USB 3.0 PHY use MDIO PHY driver").
 > 
-> Cc: Felix Fietkau <nbd@nbd.name>
+> Cc: Vivek Unune <npcomplete13@gmail.com>
 > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
 
@@ -106,7 +106,7 @@ Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
 --
 Florian
 
---000000000000817cae0606c407e5
+--000000000000c2b6f00606c40c2f
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -177,15 +177,15 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIKoOL1ADOVdaPAa9
-AzcRlxKWGvzOAGJKnMUytATZBN6+MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMTAwMjIzMjEwOVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEII0C1T3vs1As/+G5
+OC3B/gcbVCPlA+oVQB3DRt8bI4FuMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMTAwMjIzMjIzN1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQCIVHOjpABtQ1vRl6G6D1HdpHmQ0sr/c0em
-Zo6sOAu1yKuTP/46yuReveophQAiPDSuFR3nEpMRzSKCeMFCoZt7UqrERD6WnnaEVBcLjlQoRJt0
-fEZZ0GYIFNneD4F5gci7arc2YIZcwNYeePHNBNA8Fw4h/hOQyBwVMozJEOVlKVxZeISOc8BjvI2C
-fxi0LPNopDb9Fwpg5kogs3ZDbUgPS0JeWE+qdxf/ZuM8GFn9AcXP92FTpz5vjjj9RjiA3kUyRZJn
-cHtN6W3HyBBD9M9I2ave5cmTLbWPyY9hpoA9o60M/5w0u+OJjtyxKonwvMhwhuQoawVS5q7u17VE
-5rpz
---000000000000817cae0606c407e5--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQCGPeNRVA6xLq+3P4rteLQ2eNVQuDTclaTN
+K06W94isAOBbiaZFbn9kl97WsBRd3LsqAtjuKMB8cv7+P1PY+HGynI+5WiLe4rmWPYqDH4pwyRH5
+w2jlfNnYesh6L5SpaZe1IE0qteFMzRCNRPRPsxLU2FiYtNYOTbQKWGAlUUbSt2BpV7U4dNZc01vP
+ZCIdQq9Ney13t6TtFrV+0qWkEb3Ltg78og/hOQcJJ/KQLmKhgnf3Nl9MJQMKCidYs+bFWrisUrJK
+2kz6L6/XTI7S/WzGYLBEPlNkrX1dYTjp9kNewox2hO4U5e7YmD++JeGLhzWdOMGW56Q1DyjUFmuL
++dUe
+--000000000000c2b6f00606c40c2f--
 
