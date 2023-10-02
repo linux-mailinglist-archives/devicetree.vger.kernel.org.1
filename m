@@ -1,140 +1,117 @@
-Return-Path: <devicetree+bounces-5081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C358E7B51C4
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 13:55:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 705C87B5214
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 14:04:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 744BC283C1A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 11:55:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 8DEDC1C2040E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 12:04:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 149DD1548A;
-	Mon,  2 Oct 2023 11:55:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A58515EA6;
+	Mon,  2 Oct 2023 12:04:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFA1C14F6B;
-	Mon,  2 Oct 2023 11:55:14 +0000 (UTC)
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE8E7D3;
-	Mon,  2 Oct 2023 04:55:09 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 7D7EAC0007;
-	Mon,  2 Oct 2023 11:54:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1696247707;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ZauemzlB2GLs7I7VeZeMr7YTRfLhZitHrMbmBgYpBFo=;
-	b=Y+TMpJzrSEayNtrQ1/UBUfMpH1c7s5l736WL9S3/lFbOXcx0BTUCPb/erG9k+osScJSt0y
-	2tbeBT7/SGnbvouwlGDLERC25y4ZcvayWFzdg/+PfokEDbKflSRhLVWeR40woW8xPlw8Ox
-	8YG1Fvh6sY+27HWsp2z15RKmQUl5kLV9dzDDPUB0zbgmVCPFeznmRQGhJQOZ2xTSYzAjGe
-	NoJzak3j4Py4dzMatBXdC8yNKY3MdQrC208MwQiapP6gCOc8Tx0NARPrBEWIeXgMu71pdE
-	KxUkEfL+NLoKzt+j+Ski75iX7InerKkxpp5uKvWbQdzBuBTRaaRAlf+3yYfmTA==
-Date: Mon, 2 Oct 2023 13:54:58 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: kernel test robot <lkp@intel.com>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Qiang Zhao
- <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Jaroslav Kysela
- <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Shengjiu Wang
- <shengjiu.wang@gmail.com>, Xiubo Li <Xiubo.Lee@gmail.com>, Fabio Estevam
- <festevam@gmail.com>, Nicolin Chen <nicoleotsuka@gmail.com>, Christophe
- Leroy <christophe.leroy@csgroup.eu>, Randy Dunlap <rdunlap@infradead.org>,
- oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org, Simon
- Horman <horms@kernel.org>
-Subject: Re: [PATCH v7 25/30] dt-bindings: net: Add the Lantiq PEF2256
- E1/T1/J1 framer
-Message-ID: <20231002135458.420f6ae4@bootlin.com>
-In-Reply-To: <202309291924.OBfdyhXb-lkp@intel.com>
-References: <20230928070652.330429-26-herve.codina@bootlin.com>
-	<202309291924.OBfdyhXb-lkp@intel.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0928C612E
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 12:04:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98808C433C7;
+	Mon,  2 Oct 2023 12:04:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696248265;
+	bh=t/JoZKBtiCmunUvWnl+umF9d9R9RF5wZ0yG+OcRgIzc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LikAXwdfSRngVjW00SxTTaGA9D2gis2qmIOVDdqSX1cn7TgcY7VpLVxPKeAY3Uh9S
+	 1GIE16alLVrBDc47cLiNQRn9HAEXZhfMjhU11VQhEgB03NwZxmrhPejpDZAzVF1kAB
+	 j9jOHDMWssc0CafOoS2Ih+fhh42U/0GOFi54FGFDsg7t1OQA9AnHJ8aBoQpFe7gSk6
+	 kGQA5qRQ7ohIbyUeoObiUCJ3WxW35TraoevXAPCLih1YJh/VnzD9PdIZscUHCgTp58
+	 HL1k9ykCmUWwnsaJGqN6jbxWvfYYTE9nx9oP9QPtLwnIXporllzBlpDtaEuDIE+t6X
+	 mJkgWLLgpoGdw==
+Date: Mon, 2 Oct 2023 13:04:21 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: p.zabel@pengutronix.de, mripard@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH] dt-bindings: display: fsl,imx6-hdmi: Change to
+ 'unevaluatedProperties: false'
+Message-ID: <20231002-reversing-huntsman-55f9ab2d8108@spud>
+References: <20230930130102.798822-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="LraE7CjsrwJNOYcR"
+Content-Disposition: inline
+In-Reply-To: <20230930130102.798822-1-festevam@gmail.com>
 
-Hi Rob, all,
 
-On Fri, 29 Sep 2023 20:04:44 +0800
-kernel test robot <lkp@intel.com> wrote:
+--LraE7CjsrwJNOYcR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Hi Herve,
-> 
-> kernel test robot noticed the following build warnings:
-> 
-> [auto build test WARNING on linus/master]
-> [also build test WARNING on v6.6-rc3 next-20230929]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Herve-Codina/soc-fsl-cpm1-tsa-Fix-__iomem-addresses-declaration/20230928-151746
-> base:   linus/master
-> patch link:    https://lore.kernel.org/r/20230928070652.330429-26-herve.codina%40bootlin.com
-> patch subject: [PATCH v7 25/30] dt-bindings: net: Add the Lantiq PEF2256 E1/T1/J1 framer
-> compiler: loongarch64-linux-gcc (GCC) 13.2.0
-> reproduce: (https://download.01.org/0day-ci/archive/20230929/202309291924.OBfdyhXb-lkp@intel.com/reproduce)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202309291924.OBfdyhXb-lkp@intel.com/
-> 
-> dtcheck warnings: (new ones prefixed by >>)
-> >> Documentation/devicetree/bindings/net/lantiq,pef2256.yaml: properties:lantiq,data-rate-bps: 'oneOf' conditional failed, one must be fixed:  
->    	'type' is a required property
->    		hint: A vendor boolean property can use "type: boolean"
->    	Additional properties are not allowed ('default', 'enum' were unexpected)
->    		hint: A vendor boolean property can use "type: boolean"
->    	Additional properties are not allowed ('default' was unexpected)
->    		hint: A vendor string property with exact values has an implicit type
-> >> 	Documentation/devicetree/bindings/net/lantiq,pef2256.yaml: properties:lantiq,data-rate-bps: 'oneOf' conditional failed, one must be fixed:  
->    		'$ref' is a required property
->    		'allOf' is a required property
->    		hint: A vendor property needs a $ref to types.yaml
->    		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
->    	2048000 is not of type 'string'
->    		hint: A vendor string property with exact values has an implicit type
->    	4096000 is not of type 'string'
->    		hint: A vendor string property with exact values has an implicit type
->    	8192000 is not of type 'string'
->    		hint: A vendor string property with exact values has an implicit type
-> 
+On Sat, Sep 30, 2023 at 10:01:02AM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+>=20
+> fsl,imx6-hdmi.yaml makes a reference to synopsys,dw-hdmi.yaml.
+>=20
+> The 'interrupts'and 'reg' properties are described in synopsys,dw-hdmi.ya=
+ml,
+> so use 'unevaluatedProperties: false' so that these two properties can
+> be accepted.=20
+>=20
+> This fixes the following schema warnings:
+>=20
+> hdmi@120000: 'interrupts', 'reg' do not match any of the regexes: 'pinctr=
+l-[0-9]+'
+> from schema $id: http://devicetree.org/schemas/display/imx/fsl,imx6-hdmi.=
+yaml#
 
-This issue is related to '-bps' standard suffix not yet available in the
-dt-schema release.
-The commit adding '-pbs' suffix is
-  commit 033d0b1 ("Add '-bps' as a standard unit suffix for bits per second")
-present in https://github.com/devicetree-org/dt-schema/
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-This point was previously discussed with Rob [1] and mentioned in the cover
-letter of the series.
+Thanks,
+Conor.
 
-[1]: https://lore.kernel.org/linux-kernel/CAL_JsqJTruTExc=uHCPCp3q-fo+fB-wAJ-ggPpHpWcHSoGALdw@mail.gmail.com/
+>=20
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+>  .../devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml          | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.=
+yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml
+> index af7fe9c4d196..7979cf07f119 100644
+> --- a/Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml
+> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml
+> @@ -87,7 +87,7 @@ required:
+>    - interrupts
+>    - ports
+> =20
+> -additionalProperties: false
+> +unevaluatedProperties: false
+> =20
+>  examples:
+>    - |
+> --=20
+> 2.34.1
+>=20
 
-Best regards,
-Hervé
+--LraE7CjsrwJNOYcR
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZRqxxQAKCRB4tDGHoIJi
+0kpqAQCvouSSJ598ztgMpCb10c5uqqsUXnRT+B9zedetLA4AMgEAu/7rRAVCillx
+Z7HyaEMVJQ29wAWDRITfQY71IUij+w4=
+=GK57
+-----END PGP SIGNATURE-----
+
+--LraE7CjsrwJNOYcR--
 
