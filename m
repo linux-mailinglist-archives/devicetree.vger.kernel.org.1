@@ -1,196 +1,125 @@
-Return-Path: <devicetree+bounces-5238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 678CE7B5AE5
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 21:10:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 598407B5B0C
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 21:16:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 81EC21C2048B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 19:10:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 21B8D1C208B7
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 19:16:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 333E21F18F;
-	Mon,  2 Oct 2023 19:10:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 245521F61B;
+	Mon,  2 Oct 2023 19:16:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4D5E1C688
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 19:10:43 +0000 (UTC)
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80A72B0;
-	Mon,  2 Oct 2023 12:10:41 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-3248aa5cf4eso138805f8f.1;
-        Mon, 02 Oct 2023 12:10:41 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54F2B1F5E1;
+	Mon,  2 Oct 2023 19:16:19 +0000 (UTC)
+Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F4DDB3;
+	Mon,  2 Oct 2023 12:16:17 -0700 (PDT)
+Received: by mail-vs1-xe2a.google.com with SMTP id ada2fe7eead31-4527d65354bso88163137.0;
+        Mon, 02 Oct 2023 12:16:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696273840; x=1696878640; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=44FhHyZPxS1vHToE3Ph6Ff+aUwnP7tsx1/bNDklylBk=;
-        b=af4dQ5GPr0grGJ/4Da9/eTQyPcr6ruhWK+Y0KGjL4Dhvfe351J0qIwlgtX/fozfzFy
-         wja0/chXNlCblrb3v4AYxBop1Jxy7HIH4mjOSmQb9FV8EFFdtZs4Pli95SXlPisy2CSU
-         cHa8z55ywP70TEcz6+AuU4sc87L2ZUi8GaqYeGIBG3yCq/+n2mj28fh0BVr8nCZ/t+sk
-         5IM8+K2EgPLB6s1qIcC60V8duIU9CfT8xq3V0IlqAybPMAQif6NmMTGN4HFKtxrT79wl
-         al1soDmfC6lDAnMfV73kQXlcivjZcUpUWH+QjD3I6QSX3eDsVtBRBsL8smCAcIY4FOCq
-         pZtw==
+        d=gmail.com; s=20230601; t=1696274176; x=1696878976; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7Tr1XYfZFQPwOIGZkao0xDKBVDpd/yFY9b0CTr+HCmI=;
+        b=fG8Lk0qhIQ9sgBk798MAYtZLMMNfcPDOVCC0CpCe7i3XpsRF7tEScj/ldnV79b91Rj
+         Ip41w2YhjKbY9PykpLqYXhDQzE1vOBiWpqyMQTOzhYL3apgFZW1zRoYokZKpG3oWC+E6
+         v24X0nLYLJkK6CsDBH/C/VBI/epdehsas0OrFS7uoSXpoRyiUPJt9rqt1iXOz/byznKm
+         6Kgj9PjFKAOguAINhI/d/6kkMEQg3jV/j3YrKVgSAFM6srkuPxUI8IRAvmk2bEdthyJo
+         qOTLFJE/6/jUAwyisNI9UCnwcbdFuRc9ru1qk4wz6TTNdBcVggNz26eKJiA+vhpvrucg
+         1/KA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696273840; x=1696878640;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=44FhHyZPxS1vHToE3Ph6Ff+aUwnP7tsx1/bNDklylBk=;
-        b=PRIRtzOM/vZk5GVrobRCpJBfr4LwKA0f9JgzOr6xb9OF7iTTvcuBS4vDOrVO5FR0BZ
-         9qa3XZ82wdQaVbhNd8B4pJPGDnWPxCjbnLgwVG97qKkAQIlaobpu6jwXhFX2S95pzUDW
-         HRxOt1UUpSNvkx7xWt/UvgNRTfnC4l7Zj2ubeyckmOYqisJCHb/GdSrdD2HOS+/Kv2Es
-         MDPQniy4oqIaR9HM2alR+I2IV+iT7mZ1O+Y7EGlOQAFkBhAK4sdYQm8dfexY5uSUgBk2
-         R/MRqQuRfUukn7TWE9QRIu/zYz1wpAHg0gFHE+T/x6PYlCfyVxtx1Nx+GO0YK2cRR0P7
-         F/lQ==
-X-Gm-Message-State: AOJu0YzYUnEHSnoD4H3ffuzn28jM5kr3sVwRw+wmyr2SNDCgC02ABs60
-	GOVJ7wS8ZaDDlSXVeFz9DReG0cPdFd9/hg==
-X-Google-Smtp-Source: AGHT+IH8shIsZ+MgbnvuEhD2JazMM/bWGtTS3eaqp9pEQaLr3Wa4NykjKWTMpppzMKosL9z6dcTmnA==
-X-Received: by 2002:adf:e892:0:b0:319:731f:748c with SMTP id d18-20020adfe892000000b00319731f748cmr10571937wrm.34.1696273839520;
-        Mon, 02 Oct 2023 12:10:39 -0700 (PDT)
-Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
-        by smtp.gmail.com with ESMTPSA id i3-20020adfdec3000000b00327bf4f2f16sm4326118wrn.30.2023.10.02.12.10.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Oct 2023 12:10:38 -0700 (PDT)
-Message-ID: <651b15ae.df0a0220.c5688.0c40@mx.google.com>
-X-Google-Original-Message-ID: <ZRsVqwJVHgJj6u/s@Ansuel-xps.>
-Date: Mon, 2 Oct 2023 21:10:35 +0200
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Robert Marko <robimarko@gmail.com>, ilia.lin@kernel.org,
-	vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-	rafael@kernel.org, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v5 2/4] dt-bindings: opp: opp-v2-kryo-cpu: Document named
- opp-microvolt property
-References: <20230930102218.229613-1-robimarko@gmail.com>
- <20230930102218.229613-2-robimarko@gmail.com>
- <CAA8EJpoTsHhAVT3b84BC7Brvh=AUOUYSB_Z+_R-9OQ-u9BpH8A@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1696274176; x=1696878976;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7Tr1XYfZFQPwOIGZkao0xDKBVDpd/yFY9b0CTr+HCmI=;
+        b=tpzlZQbbKX5mC9ZKRMyJViyEGcxsLl2iEu+QmxOWtJjtyUktDjcukGskb4KDa/NLsp
+         sIDymMG0dox1SeNVoU43FQlBeVJpi9L/xnyFp4onRrd49a7FTyleSuVtZqMNdOmeP/6b
+         0Jk/9ukyfZ9veAzdPnZW8OiEm64avcO10e7Buu35DSsvS8AYLw4FH4ubE70+uFbOR7H5
+         Pxdxsv0+gBscC9azb6dQgMOd5bjP6a0/anVrU6lnznrm6zhuCsUSMES+hg0FvPipQN+f
+         vVBHnArTuH39F8AeoRDPa2MjNjtpXghoVi0m7zaoYzBOpq0+J1FZxuWDp3X9gmfmSwUM
+         kk/w==
+X-Gm-Message-State: AOJu0YyDpN1+/TDOtTAwAJbuzL8xonWvdm2JTpe0G8cA2gqHZnFAzNrg
+	+CF5LuuP7EvpbV1IfwzsgKU=
+X-Google-Smtp-Source: AGHT+IFv1LL4hAxRrpJUw0BnAkrSJG1KrOzUpd35rSgjuWaSyLrINoESA3s18Z8/hb4VtPYwVgEJ0g==
+X-Received: by 2002:a05:6102:1cb:b0:454:6ccc:ab79 with SMTP id s11-20020a05610201cb00b004546cccab79mr10882242vsq.11.1696274176341;
+        Mon, 02 Oct 2023 12:16:16 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id o20-20020a0cf4d4000000b00656329bb3b1sm7686722qvm.10.2023.10.02.12.16.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Oct 2023 12:16:15 -0700 (PDT)
+Message-ID: <4351a85a-ab53-acf8-9e80-e65b2ebfab66@gmail.com>
+Date: Mon, 2 Oct 2023 12:16:12 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA8EJpoTsHhAVT3b84BC7Brvh=AUOUYSB_Z+_R-9OQ-u9BpH8A@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [RFC PATCH v2 net-next 01/15] phy: introduce phy_get_status() and
+ use it to report CDR lock
+Content-Language: en-US
+To: Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org
+Cc: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+ Madalin Bucur <madalin.bucur@nxp.com>, Ioana Ciornei
+ <ioana.ciornei@nxp.com>, Camelia Groza <camelia.groza@nxp.com>,
+ Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor@kernel.org>, Sean Anderson <sean.anderson@seco.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>
+References: <20230923134904.3627402-1-vladimir.oltean@nxp.com>
+ <20230923134904.3627402-2-vladimir.oltean@nxp.com>
+From: Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20230923134904.3627402-2-vladimir.oltean@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
 	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Oct 02, 2023 at 10:07:44PM +0300, Dmitry Baryshkov wrote:
-> On Sat, 30 Sept 2023 at 13:22, Robert Marko <robimarko@gmail.com> wrote:
-> >
-> > From: Christian Marangi <ansuelsmth@gmail.com>
-> >
-> > Document named opp-microvolt property for opp-v2-kryo-cpu schema.
-> > This property is used to declare multiple voltage ranges selected on the
-> > different values read from efuses. The selection is done based on the
-> > speed pvs values and the named opp-microvolt property is selected by the
-> > qcom-cpufreq-nvmem driver.
-> >
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > Signed-off-by: Robert Marko <robimarko@gmail.com>
-> > ---
-> > Changes v5:
-> > * Fix typo in opp items
-> >
-> > Changes v4:
-> > * Address comments from Rob (meaning of pvs, drop of
-> >   driver specific info, drop of legacy single voltage OPP,
-> >   better specify max regulators supported)
-> >
-> >  .../bindings/opp/opp-v2-kryo-cpu.yaml         | 39 +++++++++++++++++++
-> >  1 file changed, 39 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml b/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
-> > index 27ea7eca73e5..8d2a47e9a854 100644
-> > --- a/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
-> > +++ b/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
-> > @@ -65,6 +65,12 @@ patternProperties:
-> >            5:  MSM8996SG, speedbin 1
-> >            6:  MSM8996SG, speedbin 2
-> >            7-31:  unused
-> > +
-> > +          Bitmap for IPQ806X SoC:
-> > +          0:  IPQ8062
-> > +          1:  IPQ8064/IPQ8066/IPQ8068
-> > +          2:  IPQ8065/IPQ8069
-> > +          3-31:  unused
-> >          enum: [0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7,
-> >                 0x9, 0xd, 0xe, 0xf,
-> >                 0x10, 0x20, 0x30, 0x70]
-> > @@ -73,6 +79,23 @@ patternProperties:
-> >
-> >        required-opps: true
-> >
-> > +    patternProperties:
-> > +      '^opp-microvolt-speed[0-9]+-pvs[0-9]+$':
-> > +        description: |
-> > +          Named opp-microvolt property following the same generic
-> > +          binding for named opp-microvolt.
-> > +
-> > +          The correct voltage range is selected based on the values
-> > +          in the efuse for the speed and the pvs (power variable
-> > +          scaling).
+On 9/23/23 06:48, Vladimir Oltean wrote:
+> Some modules, like the MTIP AN/LT block used as a copper backplane PHY
+> driver, need this extra information from the SerDes PHY as another
+> source of "link up" information.
 > 
-> I suppose that simple 'true' schema should be enough since this is
-> already mostly described in opp/opp-v2-base.yaml
->
-
-Mhhh an example of the following implementation?
-
-> > +        minItems: 1
-> > +        maxItems: 4 # Up to 4 regulators: Core, Mem, Dig and HFPLL
-> > +        items:
-> > +          items:
-> > +            - description: nominal voltage
-> > +            - description: minimum voltage
-> > +            - description: maximum voltage
-> > +
-> >      required:
-> >        - opp-hz
-> >
-> > @@ -258,6 +281,22 @@ examples:
-> >              };
-> >          };
-> >
-> > +        /* Dummy opp table to give example for named opp-microvolt */
-> > +        opp-table-2 {
-> > +            compatible = "operating-points-v2-kryo-cpu";
-> > +            nvmem-cells = <&speedbin_efuse>;
-> > +
-> > +            opp-384000000 {
-> > +                opp-hz = /bits/ 64 <384000000>;
-> > +                opp-microvolt-speed0-pvs0 = <1000000 950000 1050000>;
-> > +                opp-microvolt-speed0-pvs1 = <925000 878750 971250>;
-> > +                opp-microvolt-speed0-pvs2 = <875000 831250 918750>;
-> > +                opp-microvolt-speed0-pvs3 = <800000 760000 840000>;
-> > +                opp-supported-hw = <0x7>;
-> > +                clock-latency-ns = <100000>;
-> > +            };
-> > +        };
-> > +
-> >          smem {
-> >              compatible = "qcom,smem";
-> >              memory-region = <&smem_mem>;
-> > --
-> > 2.41.0
-> >
+> Namely, the 25GBase-R PCS does not have a MDIO_CTRL1_LPOWER bit
+> implemented in its MDIO_MMD_PCS:MDIO_CTRL1 register. That bit is
+> typically set from phy_suspend() or phylink_pcs_disable() implementations,
+> and that is supposed to cause a link drop event on the link partner.
+> But here it does not happen.
 > 
+> By implementing the networking phylink_pcs_disable() as phy_power_off(),
+> we are able to actually power down the lane in a way that is visible to
+> the remote end. Where it is visible is the CDR lock, so we introduce
+> PHY_STATUS_TYPE_CDR_LOCK as an extra link indication, we are able to
+> detect that condition and signal it to upper layers of the network
+> stack.
 > 
-> -- 
-> With best wishes
-> Dmitry
+> A more high-level and generic phy_get_status() operation was chosen
+> instead of the more specific phy_get_cdr_lock() alternative, because I
+> saw this as being more in the spirit of the generic PHY API.
+> Also, phy_get_status() is more extensible and reusable for other
+> purposes as well.
+> 
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 
+Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
 -- 
-	Ansuel
+Florian
+
 
