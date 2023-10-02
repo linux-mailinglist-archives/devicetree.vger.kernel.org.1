@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-5053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 982F97B4F62
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 11:48:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BBC27B4F83
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 11:51:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 4A148282551
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 09:48:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 171892829C9
+	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 09:51:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDA0FCA7C;
-	Mon,  2 Oct 2023 09:47:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82926D260;
+	Mon,  2 Oct 2023 09:51:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFEA78F78
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 09:47:58 +0000 (UTC)
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3805EB3
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 02:47:56 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2c12fc235fbso36137171fa.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 02:47:56 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3470C2EB
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 09:51:24 +0000 (UTC)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E9F4A7
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 02:51:21 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-50433d8385cso24445778e87.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 02:51:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696240074; x=1696844874; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696240279; x=1696845079; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=68CSLoMUk/xsQxJmYczMbK1aUNl1yG9wbG7lfg9/RhI=;
-        b=SCYcD/sE2mB21crD+Wt5cGyZCLkx4C+qtO8wxTiXs51VJHY17soV9+pamfHdUlWuhL
-         NTgdtp/rhNdIuMF0wHYiuyAg2vrTNBDt/1s/Wzfr44KaloVGG5L++8hbpkd/TitsZhDP
-         UnQlqR911izMMhEwi4AvAVknbPOB2ANeG42QtuehJxy0rdnA3aWB0xmfQIvCuk7/60me
-         NDimCOrrjX3+s1Gz1KWHMWMy5Ia2/+aNmczc51UJVenvi1qoUh60P/QNoWUwJ/FB+1AJ
-         gGiUylI4iKXdYWFF5Zlwxdk9QhUkUBO5AgwX/XMzFoU7BupKmnNCcKxmQb9m8A7fl3aA
-         shdg==
+        bh=JLs1VktsLlk8jSlnRreaZgQ/QeUwdA55Dkd4Kqx1630=;
+        b=BHtwBdkxkL7W1WgGrLta0pVAoOEjgWTOWh+BBejwMR9JGzoGXydElJAZ43tN+KUYH+
+         H0Cd6l4UMBImAsIutTmywKSBWzScrylM2/pD+drsDMXucffDFJojuXu4ZNm3ozrqbeyL
+         sB7KEZn+ULgUP3atPyknsMYt24lRXOszT0LfkXmBMRGlR1ElNPfkv10HfdTE3p2WpbbL
+         ZDXqIW0i5sXgJqzczRFhw9T6btwcQStbn8S4C50OX7uTzoKmudPFI0aWIp1vf0+Nok5a
+         +Ejj4JST8ps0svZ7Jen0igygXwXr+o0fIyIfsO/YklVAjMCXtqHpq9q3/x+y8Y1uUOyz
+         w3NQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696240074; x=1696844874;
+        d=1e100.net; s=20230601; t=1696240279; x=1696845079;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=68CSLoMUk/xsQxJmYczMbK1aUNl1yG9wbG7lfg9/RhI=;
-        b=obT8Ya4fNjwqnJmrp7zDjbLKJyA1zPm44W9bk2liQRhZZObjj8SKQJfodC0QjauRS/
-         r5pxeSAthJISoVtp6VXy9AlK4xVaZMSomD2ZvbuxB6IX2psDF7MFN0qN64LAfhjYt6nu
-         WP5h7VuPiVmXOSYEM0WsD1E2h3D9imJYeRKbHP0o7EIRAzzlJGVQ0mQq+BUa43z9cxVs
-         rRkzxNOU2ThhG0p0osbWNnOHUBJvx4XpKzrYz8+bvv/VJeNAKQoiqN4++0FrhSgGYDf8
-         WvWp0spHkxx2ObwWRaCoJEXBkNjdQWzmE1Nv3p2Hx05tCm5bC+/FTiNC93FYImt0Pp2m
-         euJA==
-X-Gm-Message-State: AOJu0Yzak7KCs8iAv0gTWVc4Anx3zwu+wXDn6XxQEiU2UK0DJZWM6JvO
-	03yasloSFZZgRD/uC6k0+LgB9g==
-X-Google-Smtp-Source: AGHT+IFB6wUw1P1R09s+FBtCrJG65I4cwdpFA9MfqSjU6aDZA99s8Ne+18Wsp42LniSmzSCz4sF4yA==
-X-Received: by 2002:a2e:9d50:0:b0:2c0:1eea:d9c0 with SMTP id y16-20020a2e9d50000000b002c01eead9c0mr7066747ljj.25.1696240074339;
-        Mon, 02 Oct 2023 02:47:54 -0700 (PDT)
+        bh=JLs1VktsLlk8jSlnRreaZgQ/QeUwdA55Dkd4Kqx1630=;
+        b=Tc2pHL2cTbivZIW1SxJs+jmlobu3NM02ZAiVEt8UadwI4X4E3ZYazhW6hfENL0xFTW
+         LScVv/nlCyDv/k9LPXcZYZaeVkTbsp8ZjG60QeslH+jBIJKfuCzDW/RZ8Nx42jLjyiUX
+         2oCf/hzeoupYsWP1BfeGaGMkyptDnnX/9R18skYl4pfOqYEgys1Sb8k7XOoOjMsWfZx9
+         pPmWvnl28OPJGhrlF91G0ITG9JqqGEN3s1w39HE8KQnJjBDn16rEYfG2V3pFnPf9NyW9
+         fK1eUWhBgha6pL1f4QvoX66IoBJFnd/at67MTpm2NLCPpF3XCOmJiONlMGaJUKrxL0fQ
+         8lsg==
+X-Gm-Message-State: AOJu0YwtyR9ZS1nLiv7YGO9kIoJSg3o1b2mAuqzgV2G9Aoaf9nQdevn2
+	9dH1xs3qzynySQFmeGOa1r73+Q==
+X-Google-Smtp-Source: AGHT+IFOVOzVdjRKpbSkAlo6qh4MyGHDzKp2cGIoMm270v1GTGrFuVJwWEg8an2N9lHrz99nrbSpnw==
+X-Received: by 2002:a05:6512:23a4:b0:500:c765:bbe with SMTP id c36-20020a05651223a400b00500c7650bbemr11447285lfv.0.1696240279333;
+        Mon, 02 Oct 2023 02:51:19 -0700 (PDT)
 Received: from [172.30.204.164] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id x20-20020a2e7c14000000b002b6c61bac2esm5253876ljc.92.2023.10.02.02.47.53
+        by smtp.gmail.com with ESMTPSA id a16-20020a056512021000b0050315aa36fbsm4685416lfo.282.2023.10.02.02.51.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Oct 2023 02:47:53 -0700 (PDT)
-Message-ID: <77eff01f-082e-d7a7-2d6c-2abcc8665c59@linaro.org>
-Date: Mon, 2 Oct 2023 11:47:52 +0200
+        Mon, 02 Oct 2023 02:51:18 -0700 (PDT)
+Message-ID: <5f3c8a66-aba3-cef0-8df9-f897487f1098@linaro.org>
+Date: Mon, 2 Oct 2023 11:51:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,70 +64,94 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.1
-Subject: Re: [PATCH v11 13/13] arm64: dts: qcom: sa8540-ride: Enable first
- port of tertiary usb controller
+Subject: Re: [PATCH 4/5] phy: qcom: edp: Introduce support for DisplayPort
 Content-Language: en-US
-To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: Johan Hovold <johan@kernel.org>,
+ Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Felipe Balbi <balbi@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
- Johan Hovold <johan@kernel.org>, Mathias Nyman <mathias.nyman@intel.com>
-Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
- ahalaney@redhat.com, quic_shazhuss@quicinc.com
-References: <20230828133033.11988-1-quic_kriskura@quicinc.com>
- <20230828133033.11988-14-quic_kriskura@quicinc.com>
- <f19fa545-0ccb-4670-af77-7c034b1016ef@linaro.org>
- <e7bd3aa9-b8ee-4b8a-2354-e786f9a9ff47@quicinc.com>
- <3920bc96-fe58-4e3b-96ab-706f00edb2ee@linaro.org>
- <e7e4fc1e-661a-fd62-e8b1-1e173cbfcd3e@quicinc.com>
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, quic_jesszhan@quicinc.com
+References: <20220810040745.3582985-1-bjorn.andersson@linaro.org>
+ <20220810040745.3582985-5-bjorn.andersson@linaro.org>
+ <ZRqIHSetajQf7Um1@hovoldconsulting.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <e7e4fc1e-661a-fd62-e8b1-1e173cbfcd3e@quicinc.com>
+In-Reply-To: <ZRqIHSetajQf7Um1@hovoldconsulting.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 
 
-On 9/14/23 17:45, Krishna Kurapati PSSNV wrote:
-> 
-> 
-> On 9/13/2023 5:40 PM, Konrad Dybcio wrote:
->> On 7.09.2023 05:36, Krishna Kurapati PSSNV wrote:
->>>
->>>
->>>> Is there any benefit to removing the other ports?
->>>>
->>>> i.e. are ports 1-3 not parked properly by the dwc3 driver if
->>>> they're never connected to anything?
->>>>
->>> Hi Konrad,
->>>
->>>   Whether or not the phy is connected to a port, the controller would 
->>> modify the GUSB2PHYCFG/GUSB3PIPECTL registers. But if we don't 
->>> specify only one phy and let phys from base DTSI take effect (4 HS / 
->>> 2 SS), we would end up initializing and powering on phy's which are 
->>> never connected to a port. To avoid that we need to specify only one 
->>> phy for this platform.
->> And does that have any major effect on power use?
+On 10/2/23 11:06, Johan Hovold wrote:
+> On Tue, Aug 09, 2022 at 09:07:44PM -0700, Bjorn Andersson wrote:
+>> The eDP phy can be used to drive either eDP or DP output, with some
+>> minor variations in some of the configuration and seemingly a need for
+>> implementing swing and pre_emphasis calibration.
 >>
->> Do these PHYs not have some dormant/low power mode?
+>> Introduce a config object, indicating if the phy is operating in eDP or
+>> DP mode and swing/pre-emphasis calibration to support this.
 >>
-> Hi Konrad,
+>> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+>> ---
+>>   drivers/phy/qualcomm/phy-qcom-edp.c | 80 +++++++++++++++++++++++++++--
+>>   1 file changed, 76 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/phy/qualcomm/phy-qcom-edp.c b/drivers/phy/qualcomm/phy-qcom-edp.c
+>> index 32614fb838b5..301ac422d2fe 100644
+>> --- a/drivers/phy/qualcomm/phy-qcom-edp.c
+>> +++ b/drivers/phy/qualcomm/phy-qcom-edp.c
+>> @@ -70,8 +70,19 @@
+>>   
+>>   #define TXn_TRAN_DRVR_EMP_EN                    0x0078
+>>   
+>> +struct qcom_edp_cfg {
+>> +	bool is_dp;
+>> +
+>> +	/* DP PHY swing and pre_emphasis tables */
+>> +	const u8 (*swing_hbr_rbr)[4][4];
+>> +	const u8 (*swing_hbr3_hbr2)[4][4];
+>> +	const u8 (*pre_emphasis_hbr_rbr)[4][4];
+>> +	const u8 (*pre_emphasis_hbr3_hbr2)[4][4];
+>> +};
+>   
+>>   static int qcom_edp_configure_ssc(const struct qcom_edp *edp)
+>> @@ -315,7 +381,9 @@ static int qcom_edp_set_vco_div(const struct qcom_edp *edp)
+>>   static int qcom_edp_phy_power_on(struct phy *phy)
+>>   {
+>>   	const struct qcom_edp *edp = phy_get_drvdata(phy);
+>> +	const struct qcom_edp_cfg *cfg = edp->cfg;
+>>   	u32 bias0_en, drvr0_en, bias1_en, drvr1_en;
+>> +	u8 ldo_config;
+>>   	int timeout;
+>>   	int ret;
+>>   	u32 val;
+>> @@ -332,8 +400,11 @@ static int qcom_edp_phy_power_on(struct phy *phy)
+>>   	if (timeout)
+>>   		return timeout;
+>>   
+>> -	writel(0x01, edp->tx0 + TXn_LDO_CONFIG);
+>> -	writel(0x01, edp->tx1 + TXn_LDO_CONFIG);
+>> +
+>> +	ldo_config = (cfg && cfg->is_dp) ? 0x1 : 0x0;
+>> +
+>> +	writel(ldo_config, edp->tx0 + TXn_LDO_CONFIG);
+>> +	writel(ldo_config, edp->tx1 + TXn_LDO_CONFIG);
 > 
->   I believe there will be some minimal power use. IMO its best to keep 
-> only one phy enabled for this variant instead of giving all and 
-> initializing/powering-on all 4 of them.
-Okay let's not waste power..
+> When reviewing a patch from Konrad which will start using the eDP
+> configuration on the X13s, I noticed that this patch inverted these bits
+> for older SoCs (e.g. sc7280 and sc8180xp). They used to be set to 1,
+> but after this patch they will be set to 0.
+> 
+> Was that intentional even if it was never mentioned in the commit
+> message? Or was it a mistake that should be fixed?
++Abhinav, Jessica
 
 Konrad
 
