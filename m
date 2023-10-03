@@ -1,86 +1,174 @@
-Return-Path: <devicetree+bounces-5460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EA817B66B5
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 12:48:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE24A7B66BA
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 12:48:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id E4AB1281646
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 10:48:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 216D01C20456
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 10:48:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD0151CF91;
-	Tue,  3 Oct 2023 10:48:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D6841E532;
+	Tue,  3 Oct 2023 10:48:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 186987ED
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 10:48:06 +0000 (UTC)
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85F84AC
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 03:48:03 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:5b9d:c703:a536:8d7b])
-	by michel.telenet-ops.be with bizsmtp
-	id tNo02A00M0Gl2EY06No0kY; Tue, 03 Oct 2023 12:48:01 +0200
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1qncwB-00587Y-Ax;
-	Tue, 03 Oct 2023 12:48:00 +0200
-Received: from geert by rox.of.borg with local (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1qncwa-00FjVc-7T;
-	Tue, 03 Oct 2023 12:48:00 +0200
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Palmer Dabbelt <palmer@rivosinc.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc: devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: cache: andestech,ax45mp-cache: Fix unit address in example
-Date: Tue,  3 Oct 2023 12:47:59 +0200
-Message-Id: <7b93655219a6ad696dd3faa9f36fde6b094694a9.1696330005.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E1BD7ED
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 10:48:31 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5609BAC;
+	Tue,  3 Oct 2023 03:48:30 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8ECA5C15;
+	Tue,  3 Oct 2023 03:49:08 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 903193F5A1;
+	Tue,  3 Oct 2023 03:48:28 -0700 (PDT)
+Date: Tue, 3 Oct 2023 11:48:26 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Nikunj Kela <quic_nkela@quicinc.com>
+Cc: Brian Masney <bmasney@redhat.com>, cristian.marussi@arm.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v4 4/4] firmware: arm_scmi: Add qcom hvc/shmem transport
+ support
+Message-ID: <20231003104826.g6gcgirra7gcoxd7@bogus>
+References: <20230718160833.36397-1-quic_nkela@quicinc.com>
+ <20230911194359.27547-1-quic_nkela@quicinc.com>
+ <20230911194359.27547-5-quic_nkela@quicinc.com>
+ <ZRsNHnuUdGl+vuqz@brian-x1>
+ <9684a5fc-f981-bc4b-5d3a-3cd539bdb421@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
-	SPF_NONE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9684a5fc-f981-bc4b-5d3a-3cd539bdb421@quicinc.com>
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The unit address in the example does not match the reg property.
-Correct the unit address to match reality.
+On Mon, Oct 02, 2023 at 11:42:22AM -0700, Nikunj Kela wrote:
+> 
+> On 10/2/2023 11:34 AM, Brian Masney wrote:
+> > On Mon, Sep 11, 2023 at 12:43:59PM -0700, Nikunj Kela wrote:
+> > > This change adds the support for SCMI message exchange on Qualcomm
+> > > virtual platforms.
+> > > 
+> > > The hypervisor associates an object-id also known as capability-id
+> > > with each hvc doorbell object. The capability-id is used to identify the
+> > > doorbell from the VM's capability namespace, similar to a file-descriptor.
+> > > 
+> > > The hypervisor, in addition to the function-id, expects the capability-id
+> > > to be passed in x1 register when HVC call is invoked.
+> > > 
+> > > The function-id & capability-id are allocated by the hypervisor on bootup
+> > > and are stored in the shmem region by the firmware before starting Linux.
+> > > 
+> > > Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+> > > ---
+> > >   drivers/firmware/arm_scmi/driver.c |  1 +
+> > >   drivers/firmware/arm_scmi/smc.c    | 47 ++++++++++++++++++++++++++----
+> > >   2 files changed, 43 insertions(+), 5 deletions(-)
+> > > 
+> > > diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
+> > > index 87383c05424b..ea344bc6ae49 100644
+> > > --- a/drivers/firmware/arm_scmi/driver.c
+> > > +++ b/drivers/firmware/arm_scmi/driver.c
+> > > @@ -2915,6 +2915,7 @@ static const struct of_device_id scmi_of_match[] = {
+> > >   #ifdef CONFIG_ARM_SCMI_TRANSPORT_SMC
+> > >   	{ .compatible = "arm,scmi-smc", .data = &scmi_smc_desc},
+> > >   	{ .compatible = "arm,scmi-smc-param", .data = &scmi_smc_desc},
+> > > +	{ .compatible = "qcom,scmi-hvc-shmem", .data = &scmi_smc_desc},
+> > >   #endif
+> > >   #ifdef CONFIG_ARM_SCMI_TRANSPORT_VIRTIO
+> > >   	{ .compatible = "arm,scmi-virtio", .data = &scmi_virtio_desc},
+> > > diff --git a/drivers/firmware/arm_scmi/smc.c b/drivers/firmware/arm_scmi/smc.c
+> > > index 0a0b7e401159..94ec07fdc14a 100644
+> > > --- a/drivers/firmware/arm_scmi/smc.c
+> > > +++ b/drivers/firmware/arm_scmi/smc.c
+> > > @@ -50,6 +50,9 @@
+> > >    * @func_id: smc/hvc call function id
+> > >    * @param_page: 4K page number of the shmem channel
+> > >    * @param_offset: Offset within the 4K page of the shmem channel
+> > > + * @cap_id: hvc doorbell's capability id to be used on Qualcomm virtual
+> > > + *	    platforms
+> > > + * @qcom_xport: Flag to indicate the transport on Qualcomm virtual platforms
+> > >    */
+> > >   struct scmi_smc {
+> > > @@ -63,6 +66,8 @@ struct scmi_smc {
+> > >   	u32 func_id;
+> > >   	u32 param_page;
+> > >   	u32 param_offset;
+> > > +	u64 cap_id;
+> > > +	bool qcom_xport;
+> > >   };
+> > [snip]
+> > 
+> > >   static irqreturn_t smc_msg_done_isr(int irq, void *data)
+> > > @@ -129,6 +134,7 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
+> > >   	struct resource res;
+> > >   	struct device_node *np;
+> > >   	u32 func_id;
+> > > +	u64 cap_id;
+> > >   	int ret;
+> > [snip]
+> > 
+> > > +		func_id = readl((void __iomem *)(scmi_info->shmem) + size - 16);
+> > > +#ifdef CONFIG_ARM64
+> > > +		cap_id = readq((void __iomem *)(scmi_info->shmem) + size - 8);
+> > > +#else
+> > > +		/* capability-id is 32 bit wide on 32bit machines */
+> > > +		cap_id = readl((void __iomem *)(scmi_info->shmem) + size - 8);
+> > > +#endif
+> > The 32 bit case is defined as a u64 in two places above.
+> 
+> That is done to make sure the size of the structure in memory is not
+> architecture dependent. This was recommended in one of the previous version
+> of this patch.
+> 
+> 
+> > 
+> > > +
+> > > +		/* The func-id & capability-id are kept in last 16 bytes of shmem.
+> > > +		 *     +-------+
+> > > +		 *     |       |
+> > > +		 *     | shmem |
+> > > +		 *     |       |
+> > > +		 *     |       |
+> > > +		 *     +-------+ <-- (size - 16)
+> > > +		 *     | funcId|
+> > > +		 *     +-------+ <-- (size - 8)
+> > > +		 *     | capId |
+> > > +		 *     +-------+ <-- size
+> > > +		 */
+> > Personally I'd add one more space to the right side of the table after
+> > funcId.
+> 
+> I could do that but then in 32bit case, you would want one more space right
+> after cap-id since it is 32 bit on 32 bit platform. If it helps, I can have
+> two lay out one for 32bit and one for 64 bit.
+>
 
-Fixes: 3e7bf4685e42786d ("dt-bindings: cache: andestech,ax45mp-cache: Add DT binding documentation for L2 cache controller")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- .../devicetree/bindings/cache/andestech,ax45mp-cache.yaml       | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+IIUC, it was just a cosmetic change requested. Instead of this,
 
-diff --git a/Documentation/devicetree/bindings/cache/andestech,ax45mp-cache.yaml b/Documentation/devicetree/bindings/cache/andestech,ax45mp-cache.yaml
-index 9ab5f0c435d4df16..d2cbe49f4e15fdc4 100644
---- a/Documentation/devicetree/bindings/cache/andestech,ax45mp-cache.yaml
-+++ b/Documentation/devicetree/bindings/cache/andestech,ax45mp-cache.yaml
-@@ -69,7 +69,7 @@ examples:
-   - |
-     #include <dt-bindings/interrupt-controller/irq.h>
- 
--    cache-controller@2010000 {
-+    cache-controller@13400000 {
-         compatible = "andestech,ax45mp-cache", "cache";
-         reg = <0x13400000 0x100000>;
-         interrupts = <508 IRQ_TYPE_LEVEL_HIGH>;
+		+-------+ <-- (size - 16)
+		| funcId|
+		+-------+ <-- (size - 8)
+
+something like this, just a extra space after 'funcId' text.
+
+		+--------+ <-- (size - 16)
+		| funcId |
+		+--------+ <-- (size - 8)
 -- 
-2.34.1
-
+Regards,
+Sudeep
 
