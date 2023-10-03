@@ -1,191 +1,323 @@
-Return-Path: <devicetree+bounces-5392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBD557B6296
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 09:36:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD99D7B629A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 09:39:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 6F20C280F9C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 07:36:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 2EC3BB2098A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 07:39:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15123D28A;
-	Tue,  3 Oct 2023 07:36:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5E56D28B;
+	Tue,  3 Oct 2023 07:38:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C9E66AB4
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 07:36:33 +0000 (UTC)
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C0B0AC
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 00:36:30 -0700 (PDT)
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id A62CD3F66F
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 07:36:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1696318588;
-	bh=lZyLBflGA1l7hiEVfFkxQiwJT+7Gv/7fvNwXxJdKogA=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=FXG/Gw1m3Tw3AThdLOQhCdv8Wt1JtPLNb71tJkwjUsAgH7KArvUQbQCWTPhE8l5zp
-	 cEgUab2ER1XJuv62+hBrQkXkSzoAxa1SqR6aNlm9IZu3/XVM448Nv31HvP52R5yG+0
-	 JkCPVF8DBLiD9XapHPCVM0AQ7JaelE585S8bufFW0yXX9NsE2u9HS91Z+uv8YqJejr
-	 r6P/zOW8n0i667o8wgTfQzhtSwLnB/Z2VqTHcFh7NkRl7SuvVs5SnmVRkmULHR0fz6
-	 Uyy6pLPwfBes3eVAwiWXJF+yIffOwJaZ5f1M8kS8MKCWko5crUXkEBKDPHTVYVGHy/
-	 0l0hK5vn94bJQ==
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-774307520a2so92533085a.2
-        for <devicetree@vger.kernel.org>; Tue, 03 Oct 2023 00:36:28 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 063666AB4
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 07:38:56 +0000 (UTC)
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1C07AB
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 00:38:53 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4064867903cso6127815e9.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Oct 2023 00:38:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696318732; x=1696923532; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/2zaEJuMhIXZx+nYYP28IqzkKzzc2Oq+CJMYbt4pRr4=;
+        b=XpDqpWyUIouN9riV7lhbA22P+Io2ohpQcibw2tSiJUE2VW+DgErkR7CFO1VWVgrwlR
+         jzmuk83YLqklHDA9X/IaqhTuk9POeqFoPgeUPMYF+21MFuP33uOqDa6GzICfqIJHVOgG
+         dzKffwvd9iw/i1VLT6mxb2/xHnD6jdypH6IbDzytCRufI6M+NbAYyu6vHk1zchPsZD9c
+         SIVvp3Hha69rpNnpWkio/P1VhPsu7lnnETBvZO7h9WgZFYHqs1KUdSV0VHLAKOEknoc3
+         N88Sv0NSj4jFl4b0a2/HaRLRSRtkZGC0empAZfoC10u0lA/fIJFl0gLOOCuKjTMkoIVu
+         L8/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696318587; x=1696923387;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lZyLBflGA1l7hiEVfFkxQiwJT+7Gv/7fvNwXxJdKogA=;
-        b=jktPKkzmJXs+ptw0Wgsq3DA5BFkAu8L2cz+DNqJzUS5+Oqxkd1vlQArq9WhJKdv5Uv
-         SUPnfg1jdli6IDX9gljB9OSILnKthFn9V8aUKf2LYjMCakdBnkvSSmUfcI86BIPJ6BAb
-         Njp3wZJY38aIli6LGJqBT5KXaj1MpBENtmfCdbAAJHT6d2bjP6uSlS2CdBVGmUaLPtlJ
-         Uw0/TmKin8KQ4dYzOj6X2Ijmz31p0EWi3n2kAkOzrPVryXIrgaf6wv3GYvcKgDf0sm0L
-         IcXSBnNh5Ht8+N51w1hjPR69gDt9K4kBpaHa35WPPZ8TmvjEEgE0LXqVVJrPLStH6n2u
-         jwFg==
-X-Gm-Message-State: AOJu0YzPm9akZTiYuyKQP97/31COgBA3kzLt3OdgAtongoV1foQH6KVd
-	1rGqaT6CTrwWcaRSk90DZHpedqcXBgGk6+vm8/73zH+kwDCmlVOcFiNKp0bX9MUywwiBBPtYz9Y
-	sKfS8yoSJBU9hSP0srxPFasH1ymUbYI+VWfPhvGAu/vlzRF63Ffy2Exo=
-X-Received: by 2002:ac8:5990:0:b0:417:eb3c:494e with SMTP id e16-20020ac85990000000b00417eb3c494emr16180650qte.59.1696318587820;
-        Tue, 03 Oct 2023 00:36:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEj6SIXevimzokJVJXdsT4sE7rHESw1Wq+iHG4vgfpb3Vs/mWTK4xl1+YKBWHa12KFSBQhHVO0+qIfHciWDbuM=
-X-Received: by 2002:ac8:5990:0:b0:417:eb3c:494e with SMTP id
- e16-20020ac85990000000b00417eb3c494emr16180640qte.59.1696318587540; Tue, 03
- Oct 2023 00:36:27 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 3 Oct 2023 00:36:27 -0700
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20231003042215.142678-2-shravan.chippa@microchip.com>
-References: <20231003042215.142678-1-shravan.chippa@microchip.com> <20231003042215.142678-2-shravan.chippa@microchip.com>
+        d=1e100.net; s=20230601; t=1696318732; x=1696923532;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=/2zaEJuMhIXZx+nYYP28IqzkKzzc2Oq+CJMYbt4pRr4=;
+        b=KY5r/+Z9zI3WUL/EhIL0FTbo7/sqNvWOz7LPWvgqB9Nbhrn5BBovqtQDnoDsQyqOLE
+         6S08/Q6M/CkNPgK/jC0bN9baUgAwJKU2pF/HKE7yEGKflwwduCASjWdecHPHEZaAbyxG
+         ZVgq1nfmfCUzaZVtGIrYtUejnhKJAI+gDKq0DuM4m670SDBbT8yGEi8IeALw4ypaUkhR
+         Fn0eieVeY/gl+r/uCfaj0EJHhvz87JxRcz6eoojpEq8dhdoXpezbEoB6wSAamMXmPPld
+         Ywe9sCtkiArLihb/PF69CeXeECAye7d96TPQn7OKMCLSvAPeTYtAzAvcR5NW+7gzWXC0
+         ZjjQ==
+X-Gm-Message-State: AOJu0YxhpTdheiDmXpcCzlFrLYFcpcyaaO/RhhpvsAvSrC2wQCYyaK3X
+	0M6SGmcMo4z6t91xn3qUewo1O2SgCZplm7J+R/oL4oM3
+X-Google-Smtp-Source: AGHT+IG6ZuhB5Ba66MQyZQ1zB2heVFV/sP35jhRiX5ppQH8wYVBmIaBHmHpdMC5YHNEH4K3Ugp199Q==
+X-Received: by 2002:a7b:ce98:0:b0:3fe:2bb1:11ba with SMTP id q24-20020a7bce98000000b003fe2bb111bamr12780977wmj.27.1696318732102;
+        Tue, 03 Oct 2023 00:38:52 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:e31a:fe1c:e925:9858? ([2a01:e0a:982:cbb0:e31a:fe1c:e925:9858])
+        by smtp.gmail.com with ESMTPSA id l7-20020a05600012c700b0031c52e81490sm884647wrx.72.2023.10.03.00.38.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Oct 2023 00:38:51 -0700 (PDT)
+Message-ID: <57059b74-9442-4657-a4ef-22a84d228356@linaro.org>
+Date: Tue, 3 Oct 2023 09:38:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Tue, 3 Oct 2023 00:36:27 -0700
-Message-ID: <CAJM55Z9ae_W7JvOHEFPNP491cexz5MbpBSFUOzuvbQK=HiftOw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dmaengine: sf-pdma: Support of_dma_controller_register()
-To: shravan chippa <shravan.chippa@microchip.com>, green.wan@sifive.com, vkoul@kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com, 
-	paul.walmsley@sifive.com, conor+dt@kernel.org
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	nagasuresh.relli@microchip.com, praveen.kumar@microchip.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 2/2] arm64: dts: amlogic: add libretech cottonwood support
+Content-Language: en-US, fr
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Christian Hewitt <christianshewitt@gmail.com>, Da Xue <da@lessconfused.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Da Xue <da.xue@libretech.co>, devicetree <devicetree@vger.kernel.org>,
+ LKML <linux-kernel@vger.kernel.org>, linux-amlogic@lists.infradead.org
+References: <20231002141020.2403652-1-jbrunet@baylibre.com>
+ <20231002141020.2403652-3-jbrunet@baylibre.com>
+ <b81a296d-0640-4b2e-aab6-c9de37d10206@linaro.org>
+ <1j5y3ozvmk.fsf@starbuckisacylon.baylibre.com>
+ <CACdvmAgzBxja-oJkS9c88=P0Wmc1ptkJExz6YjaJUyyv6yxh0Q@mail.gmail.com>
+ <DF61DA82-29E4-4504-B548-14F880A6221E@gmail.com>
+ <1j1qecyxt4.fsf@starbuckisacylon.baylibre.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <1j1qecyxt4.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-shravan chippa wrote:
-> From: Shravan Chippa <shravan.chippa@microchip.com>
->
-> Update sf-pdma driver to adopt generic DMA device tree bindings.
-> It calls of_dma_controller_register() with sf-pdma specific
-> of_dma_xlate to get the generic DMA device tree helper support
-> and the DMA clients can look up the sf-pdma controller using
-> standard APIs.
->
-> Signed-off-by: Shravan Chippa <shravan.chippa@microchip.com>
-> ---
->  drivers/dma/sf-pdma/sf-pdma.c | 44 +++++++++++++++++++++++++++++++++++
->  1 file changed, 44 insertions(+)
->
-> diff --git a/drivers/dma/sf-pdma/sf-pdma.c b/drivers/dma/sf-pdma/sf-pdma.c
-> index d1c6956af452..06a0912a12a1 100644
-> --- a/drivers/dma/sf-pdma/sf-pdma.c
-> +++ b/drivers/dma/sf-pdma/sf-pdma.c
-> @@ -20,6 +20,7 @@
->  #include <linux/mod_devicetable.h>
->  #include <linux/dma-mapping.h>
->  #include <linux/of.h>
-> +#include <linux/of_dma.h>
->  #include <linux/slab.h>
->
->  #include "sf-pdma.h"
-> @@ -490,6 +491,33 @@ static void sf_pdma_setup_chans(struct sf_pdma *pdma)
->  	}
->  }
->
-> +static struct dma_chan *sf_pdma_of_xlate(struct of_phandle_args *dma_spec,
-> +					 struct of_dma *ofdma)
-> +{
-> +	struct sf_pdma *pdma = ofdma->of_dma_data;
-> +	struct device *dev = pdma->dma_dev.dev;
-> +	struct sf_pdma_chan  *chan;
+On 03/10/2023 09:21, Jerome Brunet wrote:
+> 
+> On Tue 03 Oct 2023 at 05:23, Christian Hewitt <christianshewitt@gmail.com> wrote:
+> 
+>>> On 3 Oct 2023, at 1:15 am, Da Xue <da@lessconfused.com> wrote:
+>>>
+>>> On Tue, Oct 3, 2023 at 3:13 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
+>>>>
+>>>>
+>>>> On Mon 02 Oct 2023 at 18:45, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>>>>
+>>>>> Hi,
+>>>>>
+>>>>> On 02/10/2023 16:10, Jerome Brunet wrote:
+>>>>>> Add support for the Libretech cottonwood board family.
+>>>>>> These 2 boards are based on the same PCB, with an RPi B form factor.
+>>>>>> The "Alta" board uses an a311d while the "Solitude" variant uses an
+>>>>>> s905d3.
+>>>>>> Co-developed-by: Da Xue <da.xue@libretech.co>
+>>>>>> Signed-off-by: Da Xue <da.xue@libretech.co>
+>>>>>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>>>>>> ---
+>>>>>>   arch/arm64/boot/dts/amlogic/Makefile          |   2 +
+>>>>>>   .../amlogic/meson-g12b-a311d-libretech-cc.dts | 133 ++++
+>>>>>>   .../amlogic/meson-libretech-cottonwood.dtsi   | 610 ++++++++++++++++++
+>>>>>>   .../amlogic/meson-sm1-s905d3-libretech-cc.dts |  89 +++
+>>>>>>   4 files changed, 834 insertions(+)
+>>>>>>   create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts
+>>>>>>   create mode 100644 arch/arm64/boot/dts/amlogic/meson-libretech-cottonwood.dtsi
+>>>>>>   create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-s905d3-libretech-cc.dts
+>>>>>> diff --git a/arch/arm64/boot/dts/amlogic/Makefile
+>>>>>> b/arch/arm64/boot/dts/amlogic/Makefile
+>>>>>> index 4ce401d17b63..cc8b34bd583d 100644
+>>>>>> --- a/arch/arm64/boot/dts/amlogic/Makefile
+>>>>>> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+>>>>>> @@ -18,6 +18,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-bananapi-cm4-cm4io.dtb
+>>>>>>   dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gsking-x.dtb
+>>>>>>   dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking-pro.dtb
+>>>>>>   dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking.dtb
+>>>>>> +dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-libretech-cc.dtb
+>>>>>>   dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-go-ultra.dtb
+>>>>>>   dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2-plus.dtb
+>>>>>>   dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2.dtb
+>>>>>> @@ -73,6 +74,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-bananapi-m2-pro.dtb
+>>>>>>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-bananapi-m5.dtb
+>>>>>>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-h96-max.dtb
+>>>>>>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-khadas-vim3l.dtb
+>>>>>> +dtb-$(CONFIG_ARCH_MESON) += meson-sm1-s905d3-libretech-cc.dtb
+>>>>>>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-c4.dtb
+>>>>>>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
+>>>>>>   dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
+>>>>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts
+>>>>>> new file mode 100644
+>>>>>> index 000000000000..fc890e235dbd
+>>>>>> --- /dev/null
+>>>>>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts
+>>>>>> @@ -0,0 +1,133 @@
+>>>>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>>>>> +/*
+>>>>>> + * Copyright (c) 2023 BayLibre, SAS.
+>>>>>> + * Author: Jerome Brunet <jbrunet@baylibre.com>
+>>>>>> + */
+>>>>>> +
+>>>>>> +/dts-v1/;
+>>>>>> +
+>>>>>> +#include <dt-bindings/clock/g12a-clkc.h>
+>>>>>> +#include "meson-g12b-a311d.dtsi"
+>>>>>> +#include "meson-libretech-cottonwood.dtsi"
+>>>>>> +
+>>>>>> +/ {
+>>>>>> +    compatible = "libretech,aml-a311d-cc", "amlogic,a311d", "amlogic,g12b";
+>>>>>> +    model = "Libre Computer AML-A311D-CC Alta";
+>>>>>> +
+>>>>>> +    vddcpu_a: regulator-vddcpu-a {
+>>>>>> +            compatible = "pwm-regulator";
+>>>>>> +            regulator-name = "VDDCPU_A";
+>>>>>> +            regulator-min-microvolt = <730000>;
+>>>>>> +            regulator-max-microvolt = <1011000>;
+>>>>>> +            regulator-boot-on;
+>>>>>> +            regulator-always-on;
+>>>>>> +            pwm-supply = <&dc_in>;
+>>>>>> +            pwms = <&pwm_ab 0 1250 0>;
+>>>>>> +            pwm-dutycycle-range = <100 0>;
+>>>>>> +    };
+>>>>>> +
+>>>>>> +    sound {
+>>>>>> +            model = "Alta";
+>>>>>
+>>>>> I think those sound model properties should be coherent with the
+>>>>> other Libre Computer boards:
+>>>>> arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi:         model = "LIBRETECH-PC";
+>>>>> arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts:           model = "LIBRETECH-AC";
+>>>>> arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts:                model = "LIBRETECH-CC-V2";
+>>>>> arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts:           model = "LIBRETECH-CC";
+>>>>
+>>>> "LIBRETECH-CC-" leave very little room to play with
+>>>> That's not really something that could have been anticipated 5+ years ago
+>>>>
+>>>
+>>> I think the formal model name is best, maybe with LC prefix.
+>>> eg. LC-AML-A311D-CC and LC-AML-S905D3-CC
+>>
+>> The first is valid. The second will be truncated to LC-AML-S905D3-C by the
+>> alsa 15-character naming limit (mentioned below).
+>>
+>> So name/rename them to:
+>>
+>> LC-XXXXXXXXXXXX <= MAX SIZE (15 Chars)
+>> LC-LEPOTATO
+>> LC-LEPOTATO-V2
+>> LC-LAFRITE
+>> LC-TARTIFLETTE
+>> LC-ALTA
+>> LC-SOLITUDE
+>>
+>> Personally I think the plain codenames (no "LC-“) work best as they are all
+>> distinctive. Whenever I see lists of the official board names they look/read
+>> the same at first glance and then I have to spot-the-difference to tell them
+>> apart.
+>>
+>> At the moment AFAIK these names are just cosmetic as there’s no Amlogic alsa
+>> ucm confs using board model (only downstream confs based on driver name). So
+>> IMHO rework the names now before the confs go upstream.
+>>
+> 
+> No they are not cosmetic. It can be used to match the card.
+> Changing old names may break userspace.
 
-If you're respinning this series anyway, you have two spaces here.
+We changed them already because there was a clash from the 15 characters max width,
+but now it's different.
 
-> +	struct dma_chan *c;
-> +	u32 channel_id;
-> +
-> +	if (dma_spec->args_count != 1) {
-> +		dev_err(dev, "Bad number of cells\n");
-> +		return NULL;
-> +	}
-> +
-> +	channel_id = dma_spec->args[0];
-> +
-> +	chan = &pdma->chans[channel_id];
-> +
-> +	c = dma_get_slave_channel(&chan->vchan.chan);
-> +	if (!c) {
-> +	dev_err(dev, "No more channels available\n");
-> +		return NULL;
-> +	}
-> +
-> +	return c;
-> +}
-> +
->  static int sf_pdma_probe(struct platform_device *pdev)
->  {
->  	struct sf_pdma *pdma;
-> @@ -563,7 +591,20 @@ static int sf_pdma_probe(struct platform_device *pdev)
->  		return ret;
->  	}
->
-> +	ret = of_dma_controller_register(pdev->dev.of_node,
-> +					 sf_pdma_of_xlate, pdma);
-> +	if (ret < 0) {
-> +		dev_err(&pdev->dev,
-> +			"Can't register SiFive Platform OF_DMA. (%d)\n", ret);
-> +		goto err_unregister;
-> +	}
-> +
->  	return 0;
-> +
-> +err_unregister:
-> +	dma_async_device_unregister(&pdma->dma_dev);
-> +
-> +	return ret;
->  }
->
->  static int sf_pdma_remove(struct platform_device *pdev)
-> @@ -583,6 +624,9 @@ static int sf_pdma_remove(struct platform_device *pdev)
->  		tasklet_kill(&ch->err_tasklet);
->  	}
->
-> +	if (pdev->dev.of_node)
-> +		of_dma_controller_free(pdev->dev.of_node);
-> +
->  	dma_async_device_unregister(&pdma->dma_dev);
->
->  	return 0;
-> --
-> 2.34.1
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+So I think it's time to start a new clean scheme for the future LC boards, so:
+LC-ALTA
+LC-SOLITUDE
+
+seems ok for me.
+
+Using LC-AML-A311D-CC and LC-AML-S905D3-CC goes beyond the 15 chars limit.
+
+Neil
+
+> 
+>> CH.
+>>
+>>> https://hub.libre.computer/t/libre-computer-board-naming-and-conventions/100
+>>>
+>>>>>
+>>>>> It's ok to change the scheme since it's tried to keep the name under the 15 characters limit,
+>>>>> will the next board keep this naming ?
+>>>>
+>>>> I don't know what the next board will be so I can hardly make any prediction
+>>>> I'm open to suggestion if you prefer something else
+>>>>
+>>>>>
+>>>>>
+>>>>>> +            audio-routing = "TDMOUT_A IN 0", "FRDDR_A OUT 0",
+>>>>>> +                            "TDMOUT_A IN 1", "FRDDR_B OUT 0",
+>>>>>> +                            "TDMOUT_A IN 2", "FRDDR_C OUT 0",
+>>>>>> +                            "TDM_A Playback", "TDMOUT_A OUT",
+>>>>>> +                            "TDMOUT_B IN 0", "FRDDR_A OUT 1",
+>>>>>> +                            "TDMOUT_B IN 1", "FRDDR_B OUT 1",
+>>>>>> +                            "TDMOUT_B IN 2", "FRDDR_C OUT 1",
+>>>>>> +                            "TDM_B Playback", "TDMOUT_B OUT",
+>>>>>> +                            "TDMOUT_C IN 0", "FRDDR_A OUT 2",
+>>>>>> +                            "TDMOUT_C IN 1", "FRDDR_B OUT 2",
+>>>>>> +                            "TDMOUT_C IN 2", "FRDDR_C OUT 2",
+>>>>>> +                            "TDM_C Playback", "TDMOUT_C OUT",
+>>>>>> +                            "TDMIN_A IN 0", "TDM_A Capture",
+>>>>>> +                            "TDMIN_B IN 0", "TDM_A Capture",
+>>>>>> +                            "TDMIN_C IN 0", "TDM_A Capture",
+>>>>>> +                            "TDMIN_A IN 3", "TDM_A Loopback",
+>>>>>> +                            "TDMIN_B IN 3", "TDM_A Loopback",
+>>>>>> +                            "TDMIN_C IN 3", "TDM_A Loopback",
+>>>>>> +                            "TDMIN_A IN 1", "TDM_B Capture",
+>>>>>> +                            "TDMIN_B IN 1", "TDM_B Capture",
+>>>>>> +                            "TDMIN_C IN 1", "TDM_B Capture",
+>>>>>> +                            "TDMIN_A IN 4", "TDM_B Loopback",
+>>>>>> +                            "TDMIN_B IN 4", "TDM_B Loopback",
+>>>>>> +                            "TDMIN_C IN 4", "TDM_B Loopback",
+>>>>>> +                            "TDMIN_A IN 2", "TDM_C Capture",
+>>>>>> +                            "TDMIN_B IN 2", "TDM_C Capture",
+>>>>>> +                            "TDMIN_C IN 2", "TDM_C Capture",
+>>>>>> +                            "TDMIN_A IN 5", "TDM_C Loopback",
+>>>>>> +                            "TDMIN_B IN 5", "TDM_C Loopback",
+>>>>>> +                            "TDMIN_C IN 5", "TDM_C Loopback",
+>>>>>> +                            "TODDR_A IN 0", "TDMIN_A OUT",
+>>>>>> +                            "TODDR_B IN 0", "TDMIN_A OUT",
+>>>>>> +                            "TODDR_C IN 0", "TDMIN_A OUT",
+>>>>>> +                            "TODDR_A IN 1", "TDMIN_B OUT",
+>>>>>> +                            "TODDR_B IN 1", "TDMIN_B OUT",
+>>>>>> +                            "TODDR_C IN 1", "TDMIN_B OUT",
+>>>>>> +                            "TODDR_A IN 2", "TDMIN_C OUT",
+>>>>>> +                            "TODDR_B IN 2", "TDMIN_C OUT",
+>>>>>> +                            "TODDR_C IN 2", "TDMIN_C OUT",
+>>>>>> +                            "Lineout", "ACODEC LOLP",
+>>>>>> +                            "Lineout", "ACODEC LORP";
+>>>>>> +    };
+>>>>>> +};
+>>>>>> +
+
+<snip>
+
 
