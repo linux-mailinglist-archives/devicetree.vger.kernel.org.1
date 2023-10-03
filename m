@@ -1,180 +1,113 @@
-Return-Path: <devicetree+bounces-5649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C773B7B7204
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 21:47:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F3CC7B7259
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 22:09:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 7E4AC28127B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 19:47:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 0DEA9280E04
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 20:09:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 478B03CD0C;
-	Tue,  3 Oct 2023 19:47:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D4B73D3B8;
+	Tue,  3 Oct 2023 20:09:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC5F5D2EB
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 19:46:59 +0000 (UTC)
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62ED693;
-	Tue,  3 Oct 2023 12:46:58 -0700 (PDT)
-Received: by mail-oi1-x229.google.com with SMTP id 5614622812f47-3aec067556dso816926b6e.2;
-        Tue, 03 Oct 2023 12:46:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696362417; x=1696967217; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pY2LDZHNDqV7zpWUtoTSx1wThf0F8639D8i3IHWrzhs=;
-        b=IpiZbxeXw6R5bvJxkjN9CdFb2Z0SMyXpb3ZyfgtiYQhFdqjVRkyJ0NF4lHtwLebXMu
-         nbTIxbLA5HJHcDjDtXqdlrXz93j3my+YzJWRr8y/PYGj7kWHjJXCQEleGjLtdCNJPCre
-         aVTCFgNwRwi8fDJ+LJcm9cWyxRBLVFa+qwVd0lPswVcSd/yXTZa4YOvwGx5ugwjdIOQd
-         wiNzoOxJwB+JZ/LKB0CgGcrXm19Xf3bXXTY3hHSwzVjqUn/0BSWYhmAIkKCNZi12dI8t
-         tRkt1r9/9KaqiAjHj7zBPm52+/DvfT6/wFdBeBwDZBvBjdHopv8U+DC/AuibgJN2kvP2
-         lDKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696362417; x=1696967217;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pY2LDZHNDqV7zpWUtoTSx1wThf0F8639D8i3IHWrzhs=;
-        b=iiEwF03j2QgFvFf10PMW1FjOrRQGLPDS9sfVkj7+w7PY+1JWXdiZGCPIb6jjM0VVS3
-         hVRzgNZZVKQAcw1fDrMnTAUElKXvdKh9ZuBSj9QlbxkVGC6qMygTA/focABdhRdtmoOR
-         fgUp29Wm0YMcLmFOdc/umJEcHrDVydKXKk9CILXuNZ1tQ4c8bk3ExBR5UYZz82KwCmeJ
-         WTaREV2fKVcntqTjgZoKGD2OBKiQrrE/YVQ9/Yn+Uymi7/p+ia7MNax/9ilfFYE0V5na
-         sQaZwbN5m+2ZQjqSjeOx/Fe/GMuECdZVe8UJ+8gB7ZWTz1RcTa9Sk8CO0NCVSNg9Wmkq
-         9Xog==
-X-Gm-Message-State: AOJu0YxVG1/LY0lOReOlbB03r6A1KQzY+CTC6gSPiAWcpMdgOPjHW13X
-	l4ipDD5lHF1FNA8qiCJjYxqMNBVoIcbOh4YLXc4=
-X-Google-Smtp-Source: AGHT+IFPbj9xPn7d7oWYbjF2MkTvfQjOn7EaNQAKqYjhsPrdfO2VPAp2ZoEYA2CjApca+d14W6rDVw4WitfCqcHXAq8=
-X-Received: by 2002:aca:170a:0:b0:3a8:29a9:e4d0 with SMTP id
- j10-20020aca170a000000b003a829a9e4d0mr500620oii.34.1696362417592; Tue, 03 Oct
- 2023 12:46:57 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C8513D39E
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 20:09:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71610AB;
+	Tue,  3 Oct 2023 13:09:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1696363751; x=1727899751;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=m1jzLPKVwohtVS0OdopZyn0iGeijh4uOxRMQpSXsukI=;
+  b=OL4v7ZHnqM2jcCNwXqroGe921w6x+WdJTD4WvPtfY8ZrXdyflfoXFQBQ
+   8HNkE4SMZx2EAMQzIoHYsuYVPeK26H5Pjaw7I/VTfSJXDpP4yIavEkHaF
+   eKcWzQ54Exo+VlSMWD+rn/z9Cibc74X0t1M7LtlXjs8+MJtpAeqfw3xQN
+   zpDkkQK3W2MRZhfGTfWky+GJLf1qNL9H7ck2bFM2u/MViC5a0glYlBcUN
+   a2YRxm9UY+sM0uudWQWQ2rGJvpYoudjRaVerxoB487lFk+9213WFfYLhn
+   Oy2p7/v6StF0SOOcRR8cRtP5KrXGoeO1IoK/jFghupLe4CmQrQ3yIdWin
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="386840389"
+X-IronPort-AV: E=Sophos;i="6.03,198,1694761200"; 
+   d="scan'208";a="386840389"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2023 13:09:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="841494545"
+X-IronPort-AV: E=Sophos;i="6.03,198,1694761200"; 
+   d="scan'208";a="841494545"
+Received: from lkp-server02.sh.intel.com (HELO c3b01524d57c) ([10.239.97.151])
+  by FMSMGA003.fm.intel.com with ESMTP; 03 Oct 2023 13:09:07 -0700
+Received: from kbuild by c3b01524d57c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qnlhY-0008t2-0L;
+	Tue, 03 Oct 2023 20:09:04 +0000
+Date: Wed, 4 Oct 2023 04:08:06 +0800
+From: kernel test robot <lkp@intel.com>
+To: David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-staging@lists.linux.dev
+Cc: oe-kbuild-all@lists.linux.dev, David Lechner <david@lechnology.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Axel Haslam <ahaslam@baylibre.com>,
+	Philip Molloy <pmolloy@baylibre.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 24/27] staging: iio: resolver: ad2s1210: convert DOS
+ mismatch threshold to event attr
+Message-ID: <202310040309.rX4s31l7-lkp@intel.com>
+References: <20230929-ad2s1210-mainline-v3-24-fa4364281745@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230928151631.149333-1-jcmvbkbc@gmail.com> <20230928151631.149333-6-jcmvbkbc@gmail.com>
- <2023100326-crushing-septic-4856@gregkh>
-In-Reply-To: <2023100326-crushing-septic-4856@gregkh>
-From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Tue, 3 Oct 2023 12:46:46 -0700
-Message-ID: <CAMo8BfJgpP-=tNEChcyR3z6i_QeJ9Ywq7EOjjC5i7Uq4OrgXNA@mail.gmail.com>
-Subject: Re: [PATCH v4 5/5] drivers/tty/serial: add ESP32S3 ACM device driver
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
-	devicetree@vger.kernel.org, Jiri Slaby <jirislaby@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	FROM_LOCAL_NOVOWEL,HK_RANDOM_ENVFROM,HK_RANDOM_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=no
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230929-ad2s1210-mainline-v3-24-fa4364281745@baylibre.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, Oct 3, 2023 at 5:55=E2=80=AFAM Greg Kroah-Hartman
-<gregkh@linuxfoundation.org> wrote:
->
-> On Thu, Sep 28, 2023 at 08:16:31AM -0700, Max Filippov wrote:
-> > Add driver for the ACM  controller of the Espressif ESP32S3 Soc.
->
-> Odd extra space :(
+Hi David,
 
-Ok.
+kernel test robot noticed the following build warnings:
 
-> > Hardware specification is available at the following URL:
-> >
-> >   https://www.espressif.com/sites/default/files/documentation/esp32-s3_=
-technical_reference_manual_en.pdf
-> >   (Chapter 33 USB Serial/JTAG Controller)
->
-> I don't understand this driver, "ACM" is a USB host <-> gadget protocol,
-> why do you need a platform serial driver for this?
+[auto build test WARNING on 5e99f692d4e32e3250ab18d511894ca797407aec]
 
-The USB part of this piece of hardware is fixed and not controllable, so
-all we have is a very limited UART interface. But to the outside world
-it's a USB device with the CDC-ACM interface.
+url:    https://github.com/intel-lab-lkp/linux/commits/David-Lechner/dt-bindings-iio-resolver-add-devicetree-bindings-for-ad2s1210/20230930-014031
+base:   5e99f692d4e32e3250ab18d511894ca797407aec
+patch link:    https://lore.kernel.org/r/20230929-ad2s1210-mainline-v3-24-fa4364281745%40baylibre.com
+patch subject: [PATCH v3 24/27] staging: iio: resolver: ad2s1210: convert DOS mismatch threshold to event attr
+config: i386-randconfig-062-20231003 (https://download.01.org/0day-ci/archive/20231004/202310040309.rX4s31l7-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231004/202310040309.rX4s31l7-lkp@intel.com/reproduce)
 
-> > diff --git a/drivers/tty/serial/esp32_acm.c b/drivers/tty/serial/esp32_=
-acm.c
-> > new file mode 100644
-> > index 000000000000..f02abd2ac65e
-> > --- /dev/null
-> > +++ b/drivers/tty/serial/esp32_acm.c
-> > @@ -0,0 +1,459 @@
-> > +// SPDX-License-Identifier: GPL-2.0-or-later
->
-> Why "or later"?  I have to ask, sorry.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202310040309.rX4s31l7-lkp@intel.com/
 
-I don't really have a preference here. Is there a reason to choose
-GPL-2.0 only for a new code?
+sparse warnings: (new ones prefixed by >>)
+   drivers/staging/iio/resolver/ad2s1210.c:901:1: sparse: sparse: symbol 'iio_const_attr_in_phase0_mag_value_available' was not declared. Should it be static?
+   drivers/staging/iio/resolver/ad2s1210.c:906:1: sparse: sparse: symbol 'iio_const_attr_in_altvoltage0_thresh_falling_value_available' was not declared. Should it be static?
+   drivers/staging/iio/resolver/ad2s1210.c:907:1: sparse: sparse: symbol 'iio_const_attr_in_altvoltage0_thresh_rising_value_available' was not declared. Should it be static?
+>> drivers/staging/iio/resolver/ad2s1210.c:908:1: sparse: sparse: symbol 'iio_const_attr_in_altvoltage0_mag_value_available' was not declared. Should it be static?
+   drivers/staging/iio/resolver/ad2s1210.c:909:1: sparse: sparse: symbol 'iio_dev_attr_in_angl1_thresh_rising_value_available' was not declared. Should it be static?
+   drivers/staging/iio/resolver/ad2s1210.c:910:1: sparse: sparse: symbol 'iio_dev_attr_in_angl1_thresh_rising_hysteresis_available' was not declared. Should it be static?
 
-> And no copyright information?  That's fine, but be sure your company's
-> lawyers are ok with it...
-
-There's no company behind this, just myself.
-
-> > +
-> > +#include <linux/bitfield.h>
-> > +#include <linux/bits.h>
-> > +#include <linux/console.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/io.h>
-> > +#include <linux/irq.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/serial_core.h>
-> > +#include <linux/slab.h>
-> > +#include <linux/tty_flip.h>
-> > +#include <asm/serial.h>
-> > +
-> > +#define DRIVER_NAME  "esp32s3-acm"
-> > +#define DEV_NAME     "ttyACM"
->
-> There is already a ttyACM driver in the kernel, will this conflict with
-> that one?  And are you using the same major/minor numbers for it as
-> well?  If so, how is this going to work?
-
-I'll rename it to ttyS. I see that it coexists with the other driver that c=
-alls
-its devices ttyS just fine.
-
-> > +static void esp32s3_acm_set_mctrl(struct uart_port *port, unsigned int=
- mctrl)
-> > +{
-> > +}
->
-> Do you have to have empty functions for callbacks that do nothing?
-
-The serial core has unconditional calls to these callbacks.
-
-> > --- a/include/uapi/linux/serial_core.h
-> > +++ b/include/uapi/linux/serial_core.h
-> > @@ -248,4 +248,7 @@
-> >  /* Espressif ESP32 UART */
-> >  #define PORT_ESP32UART       124
-> >
-> > +/* Espressif ESP32 ACM */
-> > +#define PORT_ESP32ACM        125
->
-> Why are these defines needed?  What in userspace is going to require
-> them?  If nothing, please do not add them.
-
-I don't understand what the alternatives are. The comment for the
-uart_ops::config_port() callback says that port->type should be set
-to the type of the port found, and I see that almost every serial driver
-defines a unique PORT_* for that.
-
---=20
-Thanks.
--- Max
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
