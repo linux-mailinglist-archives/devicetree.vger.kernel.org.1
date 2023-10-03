@@ -1,107 +1,117 @@
-Return-Path: <devicetree+bounces-5403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37AF67B6317
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 10:04:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BA157B631B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 10:04:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id D755428162A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 08:04:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id D065A2815D4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 08:04:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52666D52B;
-	Tue,  3 Oct 2023 08:04:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75093D52A;
+	Tue,  3 Oct 2023 08:04:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AB786AC0
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 08:04:09 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2E97A1;
-	Tue,  3 Oct 2023 01:04:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1696320248; x=1727856248;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3K4aURGVYOaf5OVDO2plBOvkP7ewKrn9eW1RfQj1b6I=;
-  b=L7jj7pgNQ2qO7camTwfPOGoGn1etZr5CB7V1SevmQPQePfG9875L59xI
-   n7b3mwJFL4zi2LsInF3XvnR9a8q9EmEZD+gz0AH89rGHxW5gUbNpZaHkX
-   ZnPgs82+lMSxgKo9vFtNWHMISVBM/CG8asis/feV6FRsBW+XlcbMUa7E9
-   e8hBYIurJ9hc6deUb8a9c5nUY0cJGZDwhILsWfYe06vEjpZV/Et1WCutt
-   T0XXdNDcesqIiupb3aUvbgHh+9LxG5tjoeZxd25gwYm3a8PB21apNyvNV
-   dJAxD11DePmgo1saCkqfYstFmW4/PHx6aWo1lj8HUcHLVCoKsrUK6ZBSX
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="1408400"
-X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; 
-   d="scan'208";a="1408400"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2023 01:04:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="866781970"
-X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; 
-   d="scan'208";a="866781970"
-Received: from lkp-server02.sh.intel.com (HELO c3b01524d57c) ([10.239.97.151])
-  by fmsmga002.fm.intel.com with ESMTP; 03 Oct 2023 01:04:03 -0700
-Received: from kbuild by c3b01524d57c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qnaNt-0006uN-12;
-	Tue, 03 Oct 2023 08:04:01 +0000
-Date: Tue, 3 Oct 2023 16:03:12 +0800
-From: kernel test robot <lkp@intel.com>
-To: David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-staging@lists.linux.dev
-Cc: oe-kbuild-all@lists.linux.dev, David Lechner <david@lechnology.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Axel Haslam <ahaslam@baylibre.com>,
-	Philip Molloy <pmolloy@baylibre.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 19/27] staging: iio: resolver: ad2s1210: add phase
- lock range support
-Message-ID: <202310031533.yGtxQ3t0-lkp@intel.com>
-References: <20230929-ad2s1210-mainline-v3-19-fa4364281745@baylibre.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10FA76AC0
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 08:04:40 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DC2FA3;
+	Tue,  3 Oct 2023 01:04:39 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3937UXkH029952;
+	Tue, 3 Oct 2023 08:04:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=/VgCu5h1nT1rdcGyJuB5n5ilmO0Vmv6JYljZEWurec0=;
+ b=Dy3D6+GWlqV0MLxGJJwCA/glEYktMe5ihNFbs6SAnoUI9iSpIMuL+oeTpsNOJj2tu+Q/
+ ktxJiZOxMB2WMEog/UYmYH2aUsy+n5qQ4p1sWvJTnrzt+mTJN5DeAp+6A1BpUUP41UTf
+ LPsl2anTHYoeS1eWY61Gy+WdGIHA9EHCcjHd/eFiKolAniOJ4Kmz+Ljo4sGTTjdlYgVQ
+ wjrQ1j6Y3bx/Gl/vL8oUpfjNGA1F9etvFd8JDeOMU4CopjEYwTccUdLSFhCFAffY166r
+ kZ3Y3OoYQWFIHolzc/8CSbD6N92fCVtXn3UIckeqHjD28ctZlk+/Z2BFdmY6rDci8pID 0Q== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tgbjgrd21-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 03 Oct 2023 08:04:31 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39384UjL025473
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 3 Oct 2023 08:04:30 GMT
+Received: from [10.214.66.58] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Tue, 3 Oct
+ 2023 01:04:26 -0700
+Message-ID: <5d99708e-95a0-401b-b636-4f535fdd5905@quicinc.com>
+Date: Tue, 3 Oct 2023 13:34:23 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230929-ad2s1210-mainline-v3-19-fa4364281745@baylibre.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-	SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: Add interconnect nodes for SDX75
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <dmitry.baryshkov@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <1695720564-2978-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1695720564-2978-2-git-send-email-quic_rohiagar@quicinc.com>
+ <35703a29-5c5a-47a8-9a4b-04953dc3faba@linaro.org>
+Content-Language: en-US
+From: Rohit Agarwal <quic_rohiagar@quicinc.com>
+In-Reply-To: <35703a29-5c5a-47a8-9a4b-04953dc3faba@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: voej0zTun7aGK_ecJJ7QpyWL5kctmoBL
+X-Proofpoint-GUID: voej0zTun7aGK_ecJJ7QpyWL5kctmoBL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-03_04,2023-10-02_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ lowpriorityscore=0 spamscore=0 priorityscore=1501 adultscore=0
+ suspectscore=0 bulkscore=0 impostorscore=0 mlxlogscore=694 phishscore=0
+ malwarescore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310030056
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi David,
 
-kernel test robot noticed the following build warnings:
+On 9/27/2023 4:17 PM, Konrad Dybcio wrote:
+> On 26.09.2023 11:29, Rohit Agarwal wrote:
+>> Add interconnect nodes to support interconnects on SDX75.
+>> Also parallely add the interconnect property for UART required
+>> so that the bootup to shell does not break with interconnects
+>> in place.
+>>
+>> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+>> ---
+> [...]
+>
+>>   		scm: scm {
+>>   			compatible = "qcom,scm-sdx75", "qcom,scm";
+>> @@ -434,6 +448,8 @@
+>>   			clock-names = "m-ahb",
+>>   				      "s-ahb";
+>>   			iommus = <&apps_smmu 0xe3 0x0>;
+>> +			interconnects = <&clk_virt MASTER_QUP_CORE_0 0 &clk_virt SLAVE_QUP_CORE_0 0>;
+> 0 -> QCOM_ICC_TAG_ALWAYS (dt-bindings/interconnect/qcom,icc.h)
+Ok, Let me update this.
 
-[auto build test WARNING on 5e99f692d4e32e3250ab18d511894ca797407aec]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/David-Lechner/dt-bindings-iio-resolver-add-devicetree-bindings-for-ad2s1210/20230930-014031
-base:   5e99f692d4e32e3250ab18d511894ca797407aec
-patch link:    https://lore.kernel.org/r/20230929-ad2s1210-mainline-v3-19-fa4364281745%40baylibre.com
-patch subject: [PATCH v3 19/27] staging: iio: resolver: ad2s1210: add phase lock range support
-config: i386-randconfig-062-20231003 (https://download.01.org/0day-ci/archive/20231003/202310031533.yGtxQ3t0-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231003/202310031533.yGtxQ3t0-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310031533.yGtxQ3t0-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/staging/iio/resolver/ad2s1210.c:667:1: sparse: sparse: symbol 'iio_const_attr_in_phase0_mag_value_available' was not declared. Should it be static?
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks,
+Rohit.
+>
+> Konrad
 
