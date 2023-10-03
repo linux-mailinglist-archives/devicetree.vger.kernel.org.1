@@ -1,174 +1,135 @@
-Return-Path: <devicetree+bounces-5601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B0C17B6CEE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 17:20:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F06187B6CF5
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 17:21:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 36EE82813A8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 15:20:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 9D018280C3D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 15:21:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A81734CCF;
-	Tue,  3 Oct 2023 15:20:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97DDD34CEC;
+	Tue,  3 Oct 2023 15:20:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BCAF34CC4
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 15:20:05 +0000 (UTC)
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86B19B4
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 08:20:02 -0700 (PDT)
-Received: by mail-yb1-xb35.google.com with SMTP id 3f1490d57ef6-d849df4f1ffso1141060276.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Oct 2023 08:20:02 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1911DDC7
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 15:20:56 +0000 (UTC)
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BFD2B7
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 08:20:55 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-1c735473d1aso8086015ad.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Oct 2023 08:20:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696346401; x=1696951201; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=J9n7qJH5dKjKjDWMds6U5WZJV1JGy3FQs/DoOpcjJEw=;
-        b=fFQF0jkbn7DKjchBzN3FTOYcPOY0MEy2MpkeqN1hl95gciUl3nP29yReXqmjM0xKl8
-         yFabwr1lo6ypLc5uKzWmbEjLU5UvL1b4eC3l9TNefvY0tAU1LObsLm7/JhCNRaUBNipA
-         hvvIR8gah8NeOytW20Lgd/jLDtjbAq/AbhvyLi53TrCkkrxtoD9HWNWv5TzUzJwWXt1k
-         YpsQGB7Gb3D61onie4hmRWwL88gH7gy1T0w6xHkzI3bHdIz5hw61RdOP36H+W2zrUjsn
-         v0elWjdY3Ltt9dVcUSblFJqXetUxzn7dPeIj0YLAYaGAmkPFapsZRwSdRwcl3vsmyju6
-         1Tmg==
+        d=linaro.org; s=google; t=1696346454; x=1696951254; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+Fi0GvVL1UlJlWvA6+wPBTvjnYAhizI6Olhrf8X5QnE=;
+        b=jYWxL9eXcRXRPLUxOd7IetRBizK/L8Wos1jlIpu8XpdOntEIg096Nqtl0/ArP/BPpJ
+         2EWTeBf1zZo4ZH0cOE9v9EesI5H/EkG7/2Q0RlJmjpCNAFPu2CEHtshC8IcHoVJzqTUw
+         b2F1iVKbbrAVby/eotyeJSBeMMCYLCNHxbxk1fTqdO2UtczNQYsx4ksJq8goNd9euZ81
+         RXH+30LAzuWbhiSY2LOm59o/bmEp3IUfOM9XtUNVGXtSX2c7s+CFVort8qv3TZTM7QFB
+         yiWwQQhP2aI1U+yuGbaC4OLSIwygP5zhlSpDKUUMvuxHXk2e7StSyLe/Xor51PBZRyaf
+         14cQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696346401; x=1696951201;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=J9n7qJH5dKjKjDWMds6U5WZJV1JGy3FQs/DoOpcjJEw=;
-        b=I2syE7k7jy54XsEVoHu+dWc/EEsDMtF9F5BA1JwrRql9g87eqgS38p0k4VtNtubbE6
-         VEZ0KYSINyL5a1S8w/SjIZyV6QFwSkmMVLaoX0D6G0jBxZN2wuQIA/qLa4bCUUtXP09j
-         XG1uIwiOHF7JDi1f5lWABI1cL5jpKYcEzsT374mpFvwYqz4u+Q75O8NmFTYlThwb+gUV
-         WGDEWxg0wWqqkNBs8edNzOUJWsyJtb6U4IQL8i6nuiJRkk/BZu7HTLZi7FPH/3S95sY8
-         KMsX8Cmk29sQEk4OyECM9Ilot5YXobklEgvjdolgpToFqWnGosNikfnNQAKdkFcTmpKU
-         8G+g==
-X-Gm-Message-State: AOJu0YwRJrpHwf3neP0eQkaJtO7N8FyU2p9WHC3HomuzrUj9eeWW9W/v
-	oVnUxuFFj0cMzwl1ATqbpNQLPz4zLKJ4ARxCfni8jQ==
-X-Google-Smtp-Source: AGHT+IHylk+ABoXP1gkWE01a+0EpIeQSeiPnSh4yQB5nw6TcBeX1Cvei99wpL6PTinUs/7vO4T3ns4RM4Rw5j2VOiwE=
-X-Received: by 2002:a25:86cf:0:b0:d62:9b77:a41a with SMTP id
- y15-20020a2586cf000000b00d629b77a41amr13626504ybm.31.1696346401567; Tue, 03
- Oct 2023 08:20:01 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1696346454; x=1696951254;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+Fi0GvVL1UlJlWvA6+wPBTvjnYAhizI6Olhrf8X5QnE=;
+        b=QPRfXvPhDmqQRwIDNoTJCL/DuNoduY5K2fBgj8vtrLaLRIbFzMZYX1i1WSBB9EmISx
+         rssY9k76JqGtEjxc4Qa9Lsk/gitWjsBV06oAsUDPu0WxQvSH2tyUZOVv2J8A1hb/yUCh
+         bexI+f/xXaAefGh1szxAbVUIFA9zZmJcMBmA9t+Nslldogwz1sMvc2AIdgxV2U3revZQ
+         fdkFHlI1uY7TL4cD6w/wPFaoa6FRgMlcx97Qb6TlAWtelj2VLSJ2ydPfbUd6+7bZuMSd
+         pLn/PE9WlQWkNFekpWtj9paQk1Ksl4z8VBlDCD0nN0B4PaOtD6DAcQRKcpfQ2JGMI+mK
+         M5mw==
+X-Gm-Message-State: AOJu0YyoM4N3qI1P1sj1e1J2pbJ4hMgdJS74YmmhibzNoRnmySasS9rO
+	nf4qMyogf0FyydTgt4H1h4jP3Q==
+X-Google-Smtp-Source: AGHT+IHbk4360AQXMEM8OHKJjDDmSkblY5FgQIBA5Fra9XDJdxKFPKgQIzSaAMDLRapNNLqBYtu7wQ==
+X-Received: by 2002:a17:902:d512:b0:1c4:c5d:d7fa with SMTP id b18-20020a170902d51200b001c40c5dd7famr13112626plg.45.1696346454478;
+        Tue, 03 Oct 2023 08:20:54 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:9379:e1e1:dd3c:a271])
+        by smtp.gmail.com with ESMTPSA id w5-20020a170902d3c500b001c74df14e72sm1684106plb.212.2023.10.03.08.20.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Oct 2023 08:20:53 -0700 (PDT)
+Date: Tue, 3 Oct 2023 09:20:51 -0600
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabien Parent <fparent@baylibre.com>,
+	Miles Chen <miles.chen@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Sam Shih <sam.shih@mediatek.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	Jieyy Yang <jieyy.yang@mediatek.com>,
+	Tinghan Shen <tinghan.shen@mediatek.com>,
+	Seiya Wang <seiya.wang@mediatek.com>, soc@kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/5] MAINTAINERS: Add Angelo as MediaTek SoC co-maintainer
+Message-ID: <ZRwxUz+K1SwGVQU3@p14s>
+References: <20231003-mediatek-fixes-v6-7-v1-0-dad7cd62a8ff@collabora.com>
+ <20231003-mediatek-fixes-v6-7-v1-1-dad7cd62a8ff@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231003120846.28626-1-quic_nsekar@quicinc.com> <20231003120846.28626-5-quic_nsekar@quicinc.com>
-In-Reply-To: <20231003120846.28626-5-quic_nsekar@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 3 Oct 2023 18:19:50 +0300
-Message-ID: <CAA8EJpqbBRGEQ7ZFsngwivkovycOt97SU1Pge7JEHhCs+aQe=Q@mail.gmail.com>
-Subject: Re: [PATCH 4/6] PCI: qcom: Add support for IPQ5018
-To: Nitheesh Sekar <quic_nsekar@quicinc.com>
-Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, 
-	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, bhelgaas@google.com, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, vkoul@kernel.org, 
-	kishon@kernel.org, mani@kernel.org, p.zabel@pengutronix.de, 
-	quic_srichara@quicinc.com, quic_varada@quicinc.com, quic_ipkumar@quicinc.com, 
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org, Anusha Rao <quic_anusha@quicinc.com>, 
-	Devi Priya <quic_devipriy@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231003-mediatek-fixes-v6-7-v1-1-dad7cd62a8ff@collabora.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, 3 Oct 2023 at 15:10, Nitheesh Sekar <quic_nsekar@quicinc.com> wrote:
->
-> Added a new compatible 'qcom,pcie-ipq5018' and modified
-> get_resources of 'ops 2_9_0' to get the clocks from the
-> device-tree.
->
-> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
-> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
-> Co-developed-by: Devi Priya <quic_devipriy@quicinc.com>
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+On Tue, Oct 03, 2023 at 01:13:43PM +0200, AngeloGioacchino Del Regno wrote:
+> I am a top reviewer mainly for MediaTek SoC related patches in most
+> subsystems and I've also been upstreaming both improvements, fixes
+> and new drivers and devicetrees when required.
+> 
+> The MediaTek scene saw a generous increase in number of patches that
+> are sent to the lists every week, increasing the amount of required
+> efforts to maintain the MTK bits overall, and we will possibly see
+> even more of that.
+> 
+> For this reason, and also because of suggestions and encouragement
+> coming from the community, I'm stepping up to be a co-maintainer of
+> MediaTek SoCs support.
+> 
+> Acked-by: Matthias Brugger <matthias.bgg@gmail.com>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Link: https://lore.kernel.org/r/20230929082009.71843-1-angelogioacchino.delregno@collabora.com
 > ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 22 ++++++++--------------
->  1 file changed, 8 insertions(+), 14 deletions(-)
->
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index e2f29404c84e..bb0717190920 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -197,10 +197,10 @@ struct qcom_pcie_resources_2_7_0 {
->         struct reset_control *rst;
->  };
->
-> -#define QCOM_PCIE_2_9_0_MAX_CLOCKS             5
->  struct qcom_pcie_resources_2_9_0 {
-> -       struct clk_bulk_data clks[QCOM_PCIE_2_9_0_MAX_CLOCKS];
-> +       struct clk_bulk_data *clks;
->         struct reset_control *rst;
-> +       int num_clks;
->  };
->
->  union qcom_pcie_resources {
-> @@ -1048,17 +1048,10 @@ static int qcom_pcie_get_resources_2_9_0(struct qcom_pcie *pcie)
->         struct qcom_pcie_resources_2_9_0 *res = &pcie->res.v2_9_0;
->         struct dw_pcie *pci = pcie->pci;
->         struct device *dev = pci->dev;
-> -       int ret;
->
-> -       res->clks[0].id = "iface";
-> -       res->clks[1].id = "axi_m";
-> -       res->clks[2].id = "axi_s";
-> -       res->clks[3].id = "axi_bridge";
-> -       res->clks[4].id = "rchng";
-> -
-> -       ret = devm_clk_bulk_get(dev, ARRAY_SIZE(res->clks), res->clks);
+>  MAINTAINERS | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 90f13281d297..57f82fcea1e7 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2327,7 +2327,7 @@ F:	drivers/rtc/rtc-mt7622.c
+>  
+>  ARM/Mediatek SoC support
+>  M:	Matthias Brugger <matthias.bgg@gmail.com>
+> -R:	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> +M:	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Changing this to devm_clk_bulk_get_optional would be easier and will
-follow the design of the driver.
+Acked-by: Mathieu Poirier <mathieu.poirier@linaro.org>
 
-> -       if (ret < 0)
-> -               return ret;
-> +       res->num_clks = devm_clk_bulk_get_all(dev, &res->clks);
-> +       if (res->num_clks < 0)
-> +               return res->num_clks;
->
->         res->rst = devm_reset_control_array_get_exclusive(dev);
->         if (IS_ERR(res->rst))
-> @@ -1071,7 +1064,7 @@ static void qcom_pcie_deinit_2_9_0(struct qcom_pcie *pcie)
->  {
->         struct qcom_pcie_resources_2_9_0 *res = &pcie->res.v2_9_0;
->
-> -       clk_bulk_disable_unprepare(ARRAY_SIZE(res->clks), res->clks);
-> +       clk_bulk_disable_unprepare(res->num_clks, res->clks);
->  }
->
->  static int qcom_pcie_init_2_9_0(struct qcom_pcie *pcie)
-> @@ -1100,7 +1093,7 @@ static int qcom_pcie_init_2_9_0(struct qcom_pcie *pcie)
->
->         usleep_range(2000, 2500);
->
-> -       return clk_bulk_prepare_enable(ARRAY_SIZE(res->clks), res->clks);
-> +       return clk_bulk_prepare_enable(res->num_clks, res->clks);
->  }
->
->  static int qcom_pcie_post_init_2_9_0(struct qcom_pcie *pcie)
-> @@ -1605,6 +1598,7 @@ static const struct of_device_id qcom_pcie_match[] = {
->         { .compatible = "qcom,pcie-apq8064", .data = &cfg_2_1_0 },
->         { .compatible = "qcom,pcie-apq8084", .data = &cfg_1_0_0 },
->         { .compatible = "qcom,pcie-ipq4019", .data = &cfg_2_4_0 },
-> +       { .compatible = "qcom,pcie-ipq5018", .data = &cfg_2_9_0 },
->         { .compatible = "qcom,pcie-ipq6018", .data = &cfg_2_9_0 },
->         { .compatible = "qcom,pcie-ipq8064", .data = &cfg_2_1_0 },
->         { .compatible = "qcom,pcie-ipq8064-v2", .data = &cfg_2_1_0 },
-> --
-> 2.17.1
->
-
-
--- 
-With best wishes
-Dmitry
+>  L:	linux-kernel@vger.kernel.org
+>  L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+>  L:	linux-mediatek@lists.infradead.org (moderated for non-subscribers)
+> 
+> -- 
+> 2.42.0
+> 
+> 
 
