@@ -1,45 +1,68 @@
-Return-Path: <devicetree+bounces-5512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26D287B67BC
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 13:19:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2CCB7B67BE
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 13:20:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 0C31D1C20380
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 11:19:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 83E562816C3
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 11:19:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF6322111C;
-	Tue,  3 Oct 2023 11:19:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DA6021342;
+	Tue,  3 Oct 2023 11:19:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3F5B1A286
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 11:19:20 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0D1899E;
-	Tue,  3 Oct 2023 04:19:19 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 41F69C15;
-	Tue,  3 Oct 2023 04:19:57 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3FB283F762;
-	Tue,  3 Oct 2023 04:19:17 -0700 (PDT)
-Date: Tue, 3 Oct 2023 12:19:14 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Nikunj Kela <quic_nkela@quicinc.com>
-Cc: cristian.marussi@arm.com, robh+dt@kernel.org,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v4 4/4] firmware: arm_scmi: Add qcom hvc/shmem transport
- support
-Message-ID: <20231003111914.63z35sn3r3k7drtp@bogus>
-References: <20230718160833.36397-1-quic_nkela@quicinc.com>
- <20230911194359.27547-1-quic_nkela@quicinc.com>
- <20230911194359.27547-5-quic_nkela@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D230421111;
+	Tue,  3 Oct 2023 11:19:55 +0000 (UTC)
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7955DA7;
+	Tue,  3 Oct 2023 04:19:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=3WQtsnIMGU3EZC75/U7lh4It7npmOBkHEQvs4xM/XDs=; b=aavn7HoNfrpw9SVa81FqPKDf4a
+	rkJiu/tRdgeUXh/cuL2QtIkZcKvjWiTqq6en38DvV2HNkpAykI5bBM0o2MrVZg2wlYpofS28FmgFO
+	MxVyVfaulb+pQ/XkcZwVzIBHI7sWOr+S885g77Cxh/MOzpB+lEDpPqmX/YiUyh8FcMJddBxgR83cB
+	jFKMebHrdXPTpyhZT7C+36PB3yMyeM9zL424iBQNgW2PtEkfOdGL42Q3WlHXKSMZWauNr/EQtqkd0
+	p27nqbQEV3fORj6PVCRrtAlbayUFDamfgr9F2RtFvthe1dzG6Sxq5DmxuxShJQrCvW3kQs3G2bUfa
+	TAdgqKSg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:47706)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1qndRO-0001ak-2X;
+	Tue, 03 Oct 2023 12:19:50 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1qndRP-0007px-9b; Tue, 03 Oct 2023 12:19:51 +0100
+Date: Tue, 3 Oct 2023 12:19:51 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Madalin Bucur <madalin.bucur@nxp.com>,
+	Ioana Ciornei <ioana.ciornei@nxp.com>,
+	Camelia Groza <camelia.groza@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor@kernel.org>,
+	Sean Anderson <sean.anderson@seco.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>
+Subject: Re: [RFC PATCH v2 net-next 05/15] net: add 25GBase-KR-S and
+ 25GBase-CR-S to ethtool link mode UAPI
+Message-ID: <ZRv4162uJ9pUVpR6@shell.armlinux.org.uk>
+References: <20230923134904.3627402-1-vladimir.oltean@nxp.com>
+ <20230923134904.3627402-6-vladimir.oltean@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,179 +71,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230911194359.27547-5-quic_nkela@quicinc.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-	autolearn_force=no version=3.4.6
+In-Reply-To: <20230923134904.3627402-6-vladimir.oltean@nxp.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Sep 11, 2023 at 12:43:59PM -0700, Nikunj Kela wrote:
-> This change adds the support for SCMI message exchange on Qualcomm
-> virtual platforms.
-> 
-> The hypervisor associates an object-id also known as capability-id
-> with each hvc doorbell object. The capability-id is used to identify the
-> doorbell from the VM's capability namespace, similar to a file-descriptor.
-> 
-> The hypervisor, in addition to the function-id, expects the capability-id
-> to be passed in x1 register when HVC call is invoked.
-> 
-> The function-id & capability-id are allocated by the hypervisor on bootup
-> and are stored in the shmem region by the firmware before starting Linux.
-> 
-> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
-> ---
->  drivers/firmware/arm_scmi/driver.c |  1 +
->  drivers/firmware/arm_scmi/smc.c    | 47 ++++++++++++++++++++++++++----
->  2 files changed, 43 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
-> index 87383c05424b..ea344bc6ae49 100644
-> --- a/drivers/firmware/arm_scmi/driver.c
-> +++ b/drivers/firmware/arm_scmi/driver.c
-> @@ -2915,6 +2915,7 @@ static const struct of_device_id scmi_of_match[] = {
->  #ifdef CONFIG_ARM_SCMI_TRANSPORT_SMC
->  	{ .compatible = "arm,scmi-smc", .data = &scmi_smc_desc},
->  	{ .compatible = "arm,scmi-smc-param", .data = &scmi_smc_desc},
-> +	{ .compatible = "qcom,scmi-hvc-shmem", .data = &scmi_smc_desc},
->  #endif
->  #ifdef CONFIG_ARM_SCMI_TRANSPORT_VIRTIO
->  	{ .compatible = "arm,scmi-virtio", .data = &scmi_virtio_desc},
-> diff --git a/drivers/firmware/arm_scmi/smc.c b/drivers/firmware/arm_scmi/smc.c
-> index 0a0b7e401159..94ec07fdc14a 100644
-> --- a/drivers/firmware/arm_scmi/smc.c
-> +++ b/drivers/firmware/arm_scmi/smc.c
-> @@ -50,6 +50,9 @@
->   * @func_id: smc/hvc call function id
->   * @param_page: 4K page number of the shmem channel
->   * @param_offset: Offset within the 4K page of the shmem channel
-> + * @cap_id: hvc doorbell's capability id to be used on Qualcomm virtual
-> + *	    platforms
-> + * @qcom_xport: Flag to indicate the transport on Qualcomm virtual platforms
->   */
->  
->  struct scmi_smc {
-> @@ -63,6 +66,8 @@ struct scmi_smc {
->  	u32 func_id;
->  	u32 param_page;
->  	u32 param_offset;
-> +	u64 cap_id;
+On Sat, Sep 23, 2023 at 04:48:54PM +0300, Vladimir Oltean wrote:
+> diff --git a/include/uapi/linux/ethtool.h b/include/uapi/linux/ethtool.h
+> index f7fba0dc87e5..421eb57fb6e9 100644
+> --- a/include/uapi/linux/ethtool.h
+> +++ b/include/uapi/linux/ethtool.h
+> @@ -1787,6 +1787,8 @@ enum ethtool_link_mode_bit_indices {
+>  	ETHTOOL_LINK_MODE_10baseT1S_Full_BIT		 = 99,
+>  	ETHTOOL_LINK_MODE_10baseT1S_Half_BIT		 = 100,
+>  	ETHTOOL_LINK_MODE_10baseT1S_P2MP_Half_BIT	 = 101,
+> +	ETHTOOL_LINK_MODE_25000baseCR_S_Full_BIT	 = 102,
+> +	ETHTOOL_LINK_MODE_25000baseKR_S_Full_BIT	 = 103,
 
-Can it be unsigned long instead so that it just works for both 32 and 64 bit.
-
-> +	bool qcom_xport;
-
-Do we really need this ?
-
->  };
->  
->  static irqreturn_t smc_msg_done_isr(int irq, void *data)
-> @@ -129,6 +134,7 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
->  	struct resource res;
->  	struct device_node *np;
->  	u32 func_id;
-> +	u64 cap_id;
-
-Ditto..
-
->  	int ret;
->  
->  	if (!tx)
-> @@ -158,9 +164,34 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
->  		return -EADDRNOTAVAIL;
->  	}
->  
-> -	ret = of_property_read_u32(dev->of_node, "arm,smc-id", &func_id);
-> -	if (ret < 0)
-> -		return ret;
-> +	if (of_device_is_compatible(dev->of_node, "qcom,scmi-hvc-shmem")) {
-> +		scmi_info->qcom_xport = true;
-> +
-> +		/* The func-id & capability-id are kept in last 16 bytes of shmem.
-> +		 *     +-------+
-> +		 *     |       |
-> +		 *     | shmem |
-> +		 *     |       |
-> +		 *     |       |
-> +		 *     +-------+ <-- (size - 16)
-> +		 *     | funcId|
-> +		 *     +-------+ <-- (size - 8)
-> +		 *     | capId |
-> +		 *     +-------+ <-- size
-> +		 */
-> +
-> +		func_id = readl((void __iomem *)(scmi_info->shmem) + size - 16);
-
-So unlike 'arm,scmi-smc', you don't want 'arm,smc-id' in the DT ? Any
-particular reason ? Just to get both FID and cap ID from shmem ?
-
-> +#ifdef CONFIG_ARM64
-
-I would rather make this arch agnostic using CONFIG_64BIT
-
-> +		cap_id = readq((void __iomem *)(scmi_info->shmem) + size - 8);
-
-Do you need __iomem typecast here ? Is scmi_info->shmem not already __iomem ?
-Also scmi_info->shmem is ioremapped just few steps above and you are using
-read* here, is that safe ?
-
-> +#else
-> +		/* capability-id is 32 bit wide on 32bit machines */
-> +		cap_id = rieadl((void __iomem *)(scmi_info->shmem) + size - 8);
-
-Other thought once you move for u64 to unsigned long you need not have
-#ifdeffery, just do copy of sizeof(unsigned long)
-
-> +#endif
-> +	} else {
-> +		ret = of_property_read_u32(dev->of_node, "arm,smc-id", &func_id);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
->  
->  	if (of_device_is_compatible(dev->of_node, "arm,scmi-smc-param")) {
->  		scmi_info->param_page = SHMEM_PAGE(res.start);
-> @@ -184,6 +215,7 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
->  	}
->  
->  	scmi_info->func_id = func_id;
-> +	scmi_info->cap_id = cap_id;
->  	scmi_info->cinfo = cinfo;
->  	smc_channel_lock_init(scmi_info);
->  	cinfo->transport_info = scmi_info;
-> @@ -213,6 +245,7 @@ static int smc_send_message(struct scmi_chan_info *cinfo,
->  	struct arm_smccc_res res;
->  	unsigned long page = scmi_info->param_page;
->  	unsigned long offset = scmi_info->param_offset;
-> +	unsigned long cap_id = (unsigned long)scmi_info->cap_id;
->  
->  	/*
->  	 * Channel will be released only once response has been
-> @@ -222,8 +255,12 @@ static int smc_send_message(struct scmi_chan_info *cinfo,
->  
->  	shmem_tx_prepare(scmi_info->shmem, xfer, cinfo);
->  
-> -	arm_smccc_1_1_invoke(scmi_info->func_id, page, offset, 0, 0, 0, 0, 0,
-> -			     &res);
-> +	if (scmi_info->qcom_xport)
-
-Just make sure cap_id is set only for qcom and just use that as your flag.
-No point in setting always true scmi_info->qcom_xport and using it here.
-
-> +		arm_smccc_1_1_hvc(scmi_info->func_id, cap_id, 0, 0, 0, 0, 0, 0,
-> +				  &res);
-> +	else
-> +		arm_smccc_1_1_invoke(scmi_info->func_id, page, offset, 0, 0, 0,
-> +				     0, 0, &res);
->  
->  	/* Only SMCCC_RET_NOT_SUPPORTED is valid error code */
->  	if (res.a0) {
-> -- 
-> 2.17.1
-> 
+Should these also be add to phylink_caps_to_linkmodes()'s MAC_25000FD
+conditional block?
 
 -- 
-Regards,
-Sudeep
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
