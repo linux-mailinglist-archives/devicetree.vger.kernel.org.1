@@ -1,82 +1,114 @@
-Return-Path: <devicetree+bounces-5455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA6D07B667A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 12:33:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4016A7B6680
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 12:33:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 8235E28175B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 10:33:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id E76DF281720
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 10:33:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 065265667;
-	Tue,  3 Oct 2023 10:33:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5FD85667;
+	Tue,  3 Oct 2023 10:33:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 345D2199B2
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 10:33:24 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id A0C4EAC;
-	Tue,  3 Oct 2023 03:33:22 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 958B8C15;
-	Tue,  3 Oct 2023 03:33:59 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7B0133F5A1;
-	Tue,  3 Oct 2023 03:33:19 -0700 (PDT)
-Date: Tue, 3 Oct 2023 11:33:17 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Nikunj Kela <quic_nkela@quicinc.com>
-Cc: cristian.marussi@arm.com, robh+dt@kernel.org,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Brian Masney <bmasney@redhat.com>,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v4 1/4] firmware: arm_scmi: Add polling support for
- completion in smc
-Message-ID: <20231003103317.pjfmf6uisahowmom@bogus>
-References: <20230718160833.36397-1-quic_nkela@quicinc.com>
- <20230911194359.27547-1-quic_nkela@quicinc.com>
- <20230911194359.27547-2-quic_nkela@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82B631FBA
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 10:33:42 +0000 (UTC)
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98EE2B3;
+	Tue,  3 Oct 2023 03:33:40 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-533cbbd0153so1207978a12.0;
+        Tue, 03 Oct 2023 03:33:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696329219; x=1696934019; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=J/WhFVjfA28clBMUuGiPeq+RU/kn5UwfaZNEZffja6o=;
+        b=Ckg/6iY3LPQp0Q0jQvFiQrKLTbnIzAGBtd2IP1uSwXxqVgcs5TkCybmFpjdwi6C/TG
+         1L1ObxgsCPiG76gR9/0iPyWy8lX89HmAcit4FmxBZ4zxVNjl3Mt0eIFgeFH2HQRZEqgT
+         HUGZuik0FU1uwIN6PBTnsXOD0nE61WqFtcXHiD30sVwt618owRy20J/7Cz6xycbYfGoZ
+         iR4Z7KGzYo9jNJLfOiMXFi+1kVZq9f7MLy7vGb4J20WjMKmdMrQByFpupQwq5SfEmIag
+         FLkf9htJ4oFPbhkv6oYGhaj9UMB6Kg2TFG5FluwEh2hcSEs58++TU5+/Aoggxd9NINs1
+         ZhDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696329219; x=1696934019;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=J/WhFVjfA28clBMUuGiPeq+RU/kn5UwfaZNEZffja6o=;
+        b=ToFLjjTZh6vwUxfvh09IjQW+l7wAt6K3AV7F075/YfRGQ64KLUyRe2eVNW6ZCRbsi/
+         QQwBX7k+QNqtpE0I8xPYiNvz+8j9NktIFbcwKI0Hbc+2JJtzx73pIROzmAf9tDPn3Cv7
+         Xe+rNXvdKJE0IYlawUJ3GQ7+gPw8am+xV6gZCwLEGJAb5Q+IAu2AjaU/GgLseQjMHaMq
+         Q/H+1oqNMzA1tZ0aQdSofmm/5/Fd1zwAlXCERtDVry7M7e46Dl9azqnjbiGYY6XbNKVw
+         9MPuWlCfaP+qDwSEoAEWJem7aJcP4k88CZElYjb1MVHjs4EbA6yNLW0ZlGyWyd7blhd8
+         xtVQ==
+X-Gm-Message-State: AOJu0YxnsMxuFsgaQMGFqcXhh/pA6ropTPRmPY9CmZkYt421e78Nk9nj
+	fbXfH5sjzgbjIz3yB4yN/Wb4OLbFLg7fAQLV
+X-Google-Smtp-Source: AGHT+IFfx16hk+3TKsdvFVRiT8Hmfx8XAO9TSLCnESlY/wH2HQ9arzhYWBibHzQolmpk/cd4rMuhSQ==
+X-Received: by 2002:a17:906:101a:b0:9b2:babb:5fe9 with SMTP id 26-20020a170906101a00b009b2babb5fe9mr12719211ejm.23.1696329218778;
+        Tue, 03 Oct 2023 03:33:38 -0700 (PDT)
+Received: from [10.76.84.110] ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id h27-20020a170906261b00b0099bd86f9248sm835102ejc.63.2023.10.03.03.33.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Oct 2023 03:33:38 -0700 (PDT)
+Message-ID: <c52afe87-eaa0-eb7f-090f-b22aec95e49d@gmail.com>
+Date: Tue, 3 Oct 2023 13:33:36 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230911194359.27547-2-quic_nkela@quicinc.com>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2 2/2] iio: adc: ad7173: add AD7173 driver
+Content-Language: en-US
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
+ linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Michael Walle <michael@walle.cc>,
+ Andy Shevchenko <andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
+ ChiaEn Wu <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>,
+ =?UTF-8?Q?Leonard_G=c3=b6hrs?= <l.goehrs@pengutronix.de>,
+ Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Ceclan Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230928125443.615006-1-mitrutzceclan@gmail.com>
+ <20230928125443.615006-2-mitrutzceclan@gmail.com>
+ <20230930150531.083c51d4@jic23-huawei>
+From: Ceclan Dumitru-Ioan <mitrutzceclan@gmail.com>
+In-Reply-To: <20230930150531.083c51d4@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, Sep 11, 2023 at 12:43:56PM -0700, Nikunj Kela wrote:
-> Currently, the return from the smc call assumes the completion of
-> the scmi request. However this may not be true in virtual platforms
-> that are using hvc doorbell.
->
+On 9/30/23 17:05, Jonathan Cameron wrote:
+> On Thu, 28 Sep 2023 15:54:43 +0300
+> Dumitru Ceclan <mitrutzceclan@gmail.com> wrote>> +config AD7173
+>> +	tristate "Analog Devices AD7173 driver"
+>> +	depends on SPI_MASTER
+>> +	select AD_SIGMA_DELTA
+>> +	select GPIO_REGMAP
+> If you are selecting it, why does it have if guards in the driver.
+> I prefer the select here, so drop this if guards.
 
-Hmm, it is expectation from SMCCC for the fast calls. Is you HVC FID
-not a fast call. AFAIK, only TOS use yielding calls. Are you using them
-here ? If not, this must complete when the SMC/HVC returns. We added
-support for platforms indicating the same via interrupt.
 
-I would like to avoid adding this build config. Why does it require polling ?
-Broken firmware ? I would add a compatible for that. Or if the qcom always
-wants to do this way, just make it specific to the qcom compatible.
+From what i checked, selecting GPIO_REGMAP does not select GPIOLIB but only REGMAP.
 
-I would avoid a config flag as it needs to be always enabled for single
-image and affects other platforms as well. So please drop this change.
-If this is absolutely needed, just add additional property which DT
-maintainers may not like as it is more like a policy or just make it
-compatible specific.
-
---
-Regards,
-Sudeep
+Also, in the thread from V1 Arnd Bergmann suggested:
+	" I think the best way to handle these is to remove both
+	 the 'select' and the #ifdef in the driver and instead use
+	 'if (IS_ENABLED(CONFIG_GPIOLIB))' to handle optional gpio
+	 providers in the code. "
 
