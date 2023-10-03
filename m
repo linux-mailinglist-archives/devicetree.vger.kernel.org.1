@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-5472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A291A7B66FB
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 13:01:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B14877B670A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 13:02:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 511492814B1
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 11:01:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 61A6F281646
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 11:02:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6941D20B28;
-	Tue,  3 Oct 2023 11:01:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DE6F20B36;
+	Tue,  3 Oct 2023 11:02:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 071FCFBFF
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 11:01:27 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4B529B;
-	Tue,  3 Oct 2023 04:01:25 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 393B1IgJ089750;
-	Tue, 3 Oct 2023 06:01:18 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3705DF5E
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 11:02:28 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77312D8;
+	Tue,  3 Oct 2023 04:02:19 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 393B20YZ047633;
+	Tue, 3 Oct 2023 06:02:00 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1696330878;
-	bh=qBTy0JATJk++8UogQ04Q4Tt3EI8iQmg8anAF9xb4KKg=;
+	s=ti-com-17Q1; t=1696330920;
+	bh=cQPq8MdExEGe56leWHY4Jf/jNnuTL4aKNjCc7eO1SH4=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=D1JOypT7ktu6QzytGqDcRC0q89Inh09DRpVlqU9d9jqUbgpYEt16beKpV/YP8TLJI
-	 z148qqiMLy+f9Ufug9v19DKQIIE62AcWxh4OLZyyAa2ETwfNRtYudYmWhOBaU4H4uY
-	 MRBkFT1mvufG7+rYkNo5BEvrxsmppjglVwbvaieI=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 393B1IQr096637
+	b=y72XnFDH3XMV3jVlb9i/dkZIrsn5JZ5I/quGD/yR8ALlWi74V2aNKKYvAsKffeZkr
+	 oEzPdOZEgPPFoDJgB5KU7+c/0ZrnsC47QHR1i7d2yUEOX66rZvRLkOKBmtHexFbAs3
+	 J5Vg3G/+vIFG2BXICkOfO+FYxpYU2HifZhHqcH4U=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 393B209H001850
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 3 Oct 2023 06:01:18 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 3 Oct 2023 06:02:00 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 3
- Oct 2023 06:01:17 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2023 06:02:00 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 3 Oct 2023 06:01:17 -0500
+ Frontend Transport; Tue, 3 Oct 2023 06:02:00 -0500
 Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 393B1Dvf129223;
-	Tue, 3 Oct 2023 06:01:14 -0500
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 393B1Dvg129223;
+	Tue, 3 Oct 2023 06:01:57 -0500
 From: Vignesh Raghavendra <vigneshr@ti.com>
 To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
         Rob Herring
@@ -51,17 +51,18 @@ To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
         Krzysztof Kozlowski
 	<krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Francesco Dolcini
+	<francesco@dolcini.it>
+CC: Vignesh Raghavendra <vigneshr@ti.com>,
         <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Hari Nagalla <hnagalla@ti.com>,
-        Udit Kumar
-	<u-kumar1@ti.com>, Apurva Nandan <a-nandan@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH v5 0/9] Add R5F and C7x DSP node for K3 J721S2, AM68 and AM69 SoCs
-Date: Tue, 3 Oct 2023 16:30:42 +0530
-Message-ID: <169633065057.2221719.1284860999650506339.b4-ty@ti.com>
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1] arm64: dts: ti: verdin-am62: disable MIPI DSI bridge
+Date: Tue, 3 Oct 2023 16:30:43 +0530
+Message-ID: <169633065055.2221719.5628262920940888457.b4-ty@ti.com>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231001181417.743306-1-a-nandan@ti.com>
-References: <20231001181417.743306-1-a-nandan@ti.com>
+In-Reply-To: <20230922123003.25002-1-francesco@dolcini.it>
+References: <20230922123003.25002-1-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,46 +72,32 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Apurva Nandan,
+Hi Francesco Dolcini,
 
-On Sun, 01 Oct 2023 23:44:08 +0530, Apurva Nandan wrote:
-> This series adds the R5F processor nodes and C7x DSP nodes for
-> J721S2, AM68 and AM69 SoCs to align these nodes with other K3 SOC's node.
+On Fri, 22 Sep 2023 14:30:03 +0200, Francesco Dolcini wrote:
+> Keep the DPI to MIPI-DSI bridge disabled in the SoM dtsi file.
 > 
-> The first three patches adds the remote proc nodes to the SoC device
-> tree, remaining patches reserves the memory for remote proc IPCs
-> on K3 J721S2 EVM, AM68 SK, AM69 boards.
+> The display chain is not wholly described in the device tree file, on
+> Verdin product family the displays are additional accessories that are
+> configured/enabled using DT overlays.
+> 
+> With this enabled we have issues when a display is enabled on
+> TIDSS port1 (LVDS) and port0 (DSI) is not used.
 > 
 > [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/9] arm64: dts: ti: k3-j721s2-mcu: Add MCU R5F cluster nodes
-      commit: bc1a339df22013761fc8cda603209cb9f5eb291f
-[2/9] arm64: dts: ti: k3-j721s2-main: Add MAIN R5F remote processsor nodes
-      commit: ce43999a6f2bb556d3a4526fbe73dcde58817ce7
-[3/9] arm64: dts: ti: k3-j721s2-main: Add C7x remote processsor nodes
-      commit: 10e9c99259ba183224199b41f455aa2c357a531a
-[4/9] arm64: dts : ti: k3-j721s2-som-p0: Add DDR carveout memory nodes for R5F
-      commit: 69411bc675242bf998f88daddd5f3ae1293a5818
-[5/9] arm64: dts : ti: k3-j721s2-som-p0: Add DDR carveout memory nodes for C71x DSPs
-      commit: c0e346900bcb9f833d96a9b1da1fe45848046247
-[6/9] arm64: dts : ti: k3-am68-sk-som: Add DDR carveout memory nodes for R5F
-      commit: 1dd5b602c9b3d9762f29eab861238e1333c0c73c
-[7/9] arm64: dts : ti: k3-am68-sk-som: Add DDR carveout memory nodes for C71x DSP
-      commit: ecbc784801d78fd000723d24197c9172aa5d3449
-[8/9] arm64: dts : ti: k3-am69-sk: Add DDR carveout memory nodes for R5F
-      commit: 61a779412cb7a752ad15c6dae9b2c69f94486dc5
-[9/9] arm64: dts : ti: k3-am69-sk: Add DDR carveout memory nodes for C71x DSP
-      commit: ee89d4e60ba7f9fa91fa73e1af3e2c1461700449
+[1/1] arm64: dts: ti: verdin-am62: disable MIPI DSI bridge
+      commit: 664e2852aa9142193c2e241327631f032b966742
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
