@@ -1,111 +1,276 @@
-Return-Path: <devicetree+bounces-5398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C114D7B62E0
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 09:56:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4770A7B62F8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 09:58:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 6FC762814FD
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 07:56:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id E637C28159A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 07:58:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBF7DD30F;
-	Tue,  3 Oct 2023 07:56:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 497F2D50F;
+	Tue,  3 Oct 2023 07:58:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC48B6AC0
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 07:56:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CB0BC433C8;
-	Tue,  3 Oct 2023 07:56:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696319789;
-	bh=WJrq9pvqjjq+UgwdFJc03n5UstUwK2CTaZTIfJNnE60=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:From;
-	b=Qy6vYmF91Ai1mQb1GLlAghMU9z7UOEwYSDAVtsMuuyoKVY3/ox60QqCsxrAstnMiU
-	 nSJ1yDf2h0X534Nj2e1OjKiDXV6z35/fipVku89/CG41TGN2yGqklL4VpB7Zy7/fZb
-	 Tx6F7i8e4DT/b8zeDxFppHMi2AWzvUTtdziyrh8QT6617OXE8qmKbdwqwCQAt9C1k/
-	 01z2JGboHR7C8sidyXX2ZH6C8NxGcXa9C1+/iCBqR2e3zRtfsBRlqGYy/RsjutjGX7
-	 5IrqOR3/DQL8f6CJC83npj6u6AaQlMUeIDQye9JfLRb2VPh2xUPOp6UtRE4OKWpf31
-	 QdbCvFPG3iqCw==
-Date: Tue, 03 Oct 2023 08:56:25 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Chen Wang <unicorn_wang@outlook.com>, Jisheng Zhang <jszhang@kernel.org>
-CC: Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Anup Patel <anup@brainfault.org>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, Inochi Amaoto <inochiama@outlook.com>,
- chao.wei@sophgo.com, xiaoguang.xing@sophgo.com
-Subject: Re: [PATCH 0/5] Add Milk-V Duo board support
-User-Agent: K-9 Mail for Android
-In-Reply-To: <MA0P287MB03323A58B068D400E8225E80FEC4A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
-References: <20230930123937.1551-1-jszhang@kernel.org> <20231002-slurp-anime-a2308245174e@spud> <MA0P287MB03323A58B068D400E8225E80FEC4A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
-Message-ID: <F026F534-26E6-4EEC-BC93-2C85D6F9E446@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6662D27B;
+	Tue,  3 Oct 2023 07:58:08 +0000 (UTC)
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFF7890;
+	Tue,  3 Oct 2023 00:58:06 -0700 (PDT)
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39354RYX021850;
+	Tue, 3 Oct 2023 09:57:28 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=2y5VWljP34AhFxfwuXFEGUJY8eirMnibqQLHOoorPbE=; b=fa
+	R320QQYh6hKcFinrg870rQe7h0GoXbzAPslv70ug5D/eA+R8ih3Xs94oiISEkK6B
+	+lVN0Nk0RWDanLNzOlVYVNXoVC3ylH/TR6SkGucS1gcPw7FozvY41TLJnEVq1maw
+	Jl6Eziv6CXtKt7MA3JP2LjxAGGwZhycpeAquJPFY02PW+RyneA8UuzdwjLuc2TLb
+	C9VlpRVVgHLOWIyRNtcpjQgKBqCrRy6rnZcMMhIH05RrLAiA3z+B1mGpbD7TMDLg
+	lm/a6IQSsoxIMoQfUPRokZlwPSqQ1ylCSIFMXzh4BEOWLA7H9P1siSHgVyaetmgZ
+	OCu6sQeMWTJ6KW6XuqMg==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3texmj0e7j-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 03 Oct 2023 09:57:28 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 9D9B9100057;
+	Tue,  3 Oct 2023 09:57:27 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 88D7222D164;
+	Tue,  3 Oct 2023 09:57:27 +0200 (CEST)
+Received: from [10.201.20.32] (10.201.20.32) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 3 Oct
+ 2023 09:57:25 +0200
+Message-ID: <1d33a7ee-3966-5c2e-5a6c-08a6e56d0f75@foss.st.com>
+Date: Tue, 3 Oct 2023 09:57:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v5 03/11] dt-bindings: bus: document RIFSC
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+CC: <Oleksii_Moisieiev@epam.com>, <gregkh@linuxfoundation.org>,
+        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <alexandre.torgue@foss.st.com>, <vkoul@kernel.org>, <jic23@kernel.org>,
+        <olivier.moysan@foss.st.com>, <arnaud.pouliquen@foss.st.com>,
+        <mchehab@kernel.org>, <fabrice.gasnier@foss.st.com>,
+        <andi.shyti@kernel.org>, <ulf.hansson@linaro.org>,
+        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+        <hugues.fruchet@foss.st.com>, <lee@kernel.org>, <will@kernel.org>,
+        <catalin.marinas@arm.com>, <arnd@kernel.org>,
+        <richardcochran@gmail.com>, Frank Rowand <frowand.list@gmail.com>,
+        <peng.fan@oss.nxp.com>, <linux-crypto@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-media@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-p.hy@lists.infradead.org>,
+        <linux-serial@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>
+References: <20230929142852.578394-1-gatien.chevallier@foss.st.com>
+ <20230929142852.578394-4-gatien.chevallier@foss.st.com>
+ <20231002183041.GA2062984-robh@kernel.org>
+From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+In-Reply-To: <20231002183041.GA2062984-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.20.32]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-03_05,2023-10-02_01,2023-05-22_02
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
 
 
-On 3 October 2023 03:32:20 IST, Chen Wang <unicorn_wang@outlook=2Ecom> wro=
-te:
->
->=E5=9C=A8 2023/10/2 20:22, Conor Dooley =E5=86=99=E9=81=93:
->> Hey,
->>=20
->> On Sat, Sep 30, 2023 at 08:39:32PM +0800, Jisheng Zhang wrote:
->>> Milk-V Duo[1] board is an embedded development platform based on the
->>> CV1800B[2] chip=2E Add minimal device tree files for the development b=
-oard=2E
->>> Currently, now it's supported to boot to a basic shell=2E
->>>=20
->>> NOTE: this series is based on the SG2042 upstream series for the vendo=
-r
->>> prefix and ARCH_SOPHGO option=2E
->>>=20
->>> Link: https://milkv=2Eio/duo [1]
->>> Link: https://en=2Esophgo=2Ecom/product/introduce/cv180xB=2Ehtml [2]
->>> Link: https://lore=2Ekernel=2Eorg/linux-riscv/cover=2E1695804418=2Egit=
-=2Eunicornxw@gmail=2Ecom/ [3]
->> Other than the comment I left, this seems fine to me=2E I'd be happy
->> enough to pick up the pre-reqs from the other series & this one if one
->> of the Sophgo maintainers acked these patches=2E
->
->Conor, just FYI, sophgo maintainers are located in China, and they are in=
- National holiday vacation these days=2E I think they may reply to emails l=
-ater this weekend=2E
+On 10/2/23 20:30, Rob Herring wrote:
+> On Fri, Sep 29, 2023 at 04:28:44PM +0200, Gatien Chevallier wrote:
+>> Document RIFSC (RIF security controller). RIFSC is a firewall controller
+>> composed of different kinds of hardware resources.
+>>
+>> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+>> ---
+>>
+>> Changes in V5:
+>> 	- Renamed feature-domain* to access-control*
+>>
+>> Changes in V2:
+>> 	- Corrected errors highlighted by Rob's robot
+>> 	- No longer define the maxItems for the "feature-domains"
+>> 	  property
+>> 	- Fix example (node name, status)
+>> 	- Declare "feature-domain-names" as an optional
+>> 	  property for child nodes
+>> 	- Fix description of "feature-domains" property
+>>
+>>   .../bindings/bus/st,stm32mp25-rifsc.yaml      | 105 ++++++++++++++++++
+>>   1 file changed, 105 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml b/Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml
+>> new file mode 100644
+>> index 000000000000..c28fceff3036
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml
+>> @@ -0,0 +1,105 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/bus/st,stm32mp25-rifsc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: STM32 Resource isolation framework security controller
+>> +
+>> +maintainers:
+>> +  - Gatien Chevallier <gatien.chevallier@foss.st.com>
+>> +
+>> +description: |
+>> +  Resource isolation framework (RIF) is a comprehensive set of hardware blocks
+>> +  designed to enforce and manage isolation of STM32 hardware resources like
+>> +  memory and peripherals.
+>> +
+>> +  The RIFSC (RIF security controller) is composed of three sets of registers,
+>> +  each managing a specific set of hardware resources:
+>> +    - RISC registers associated with RISUP logic (resource isolation device unit
+>> +      for peripherals), assign all non-RIF aware peripherals to zero, one or
+>> +      any security domains (secure, privilege, compartment).
+>> +    - RIMC registers: associated with RIMU logic (resource isolation master
+>> +      unit), assign all non RIF-aware bus master to one security domain by
+>> +      setting secure, privileged and compartment information on the system bus.
+>> +      Alternatively, the RISUP logic controlling the device port access to a
+>> +      peripheral can assign target bus attributes to this peripheral master port
+>> +      (supported attribute: CID).
+>> +    - RISC registers associated with RISAL logic (resource isolation device unit
+>> +      for address space - Lite version), assign address space subregions to one
+>> +      security domains (secure, privilege, compartment).
+>> +
+>> +properties:
+>> +  compatible:
+>> +    contains:
+>> +      const: st,stm32mp25-rifsc
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  "#address-cells":
+>> +    const: 1
+>> +
+>> +  "#size-cells":
+>> +    const: 1
+>> +
+>> +  ranges: true
+>> +
+>> +  "#access-controller-cells":
+>> +    const: 1
+> 
+> You should define what the cells contain here.
+> 
 
-Firstly, there isn't some super rush here that a few days holiday will int=
-erfere with=2E
-I'm actually on holidays myself at the moment :)
-Secondly, you're one of the sophgo maintainers,
-right? It's the people listed in MAINTAINERS that I am talking about here,
-being an employee doesn't matter=2E
+Ok, I'll do this as well for the ETZPC binding
 
-Cheers,
-Conor=2E
+>> +
+>> +  access-control-provider: true
+>> +
 
->
->Thanks,
->
->Chen
->
->>=20
->> Thanks,
->> Conor=2E
->>=20
->> _______________________________________________
->> linux-riscv mailing list
->> linux-riscv@lists=2Einfradead=2Eorg
->> http://lists=2Einfradead=2Eorg/mailman/listinfo/linux-riscv
+Will be dropped, ditto for ETZPC.
+
+>> +patternProperties:
+>> +  "^.*@[0-9a-f]+$":
+>> +    description: Peripherals
+>> +    type: object
+> 
+>         additionalProperties: true
+> 
+>> +    properties:
+>> +      access-controller:
+>> +        minItems: 1
+>> +        description:
+>> +          The phandle of the firewall controller of the peripheral and the
+>> +          platform-specific firewall ID of the peripheral.
+>> +
+>> +      access-controller-names:
+>> +        minItems: 1
+> 
+> Drop all this. You have to define these in the specific device schemas
+> anyways.
+> 
+
+I guess that:
+
+patternProperties:
+   "^.*@[0-9a-f]+$":
+     description: Peripherals
+     type: object
+
+     required:
+       - access-controller
+
+is sufficient if I describe what the content of the cells will be in the
+"#access-controller-cells" above. It avoids redundant information. I'll
+make the change for V6, thank you.
+
+Best regards,
+Gatien
+
+>> +
+>> +    required:
+>> +      - access-controller
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - "#address-cells"
+>> +  - "#size-cells"
+>> +  - access-control-provider
+>> +  - "#access-controller-cells"
+>> +  - ranges
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    // In this example, the usart2 device refers to rifsc as its domain
+>> +    // controller.
+>> +    // Access rights are verified before creating devices.
+>> +
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +
+>> +    rifsc: bus@42080000 {
+>> +        compatible = "st,stm32mp25-rifsc";
+>> +        reg = <0x42080000 0x1000>;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +        access-control-provider;
+>> +        #access-controller-cells = <1>;
+>> +        ranges;
+>> +
+>> +        usart2: serial@400e0000 {
+>> +              compatible = "st,stm32h7-uart";
+>> +              reg = <0x400e0000 0x400>;
+>> +              interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
+>> +              clocks = <&ck_flexgen_08>;
+>> +              access-controller = <&rifsc 32>;
+>> +        };
+>> +    };
+>> -- 
+>> 2.25.1
+>>
 
