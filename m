@@ -1,117 +1,125 @@
-Return-Path: <devicetree+bounces-5404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BA157B631B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 10:04:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 365147B632B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 10:06:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id D065A2815D4
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 08:04:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 5365A1C20836
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 08:06:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75093D52A;
-	Tue,  3 Oct 2023 08:04:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8AB8D52F;
+	Tue,  3 Oct 2023 08:06:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10FA76AC0
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 08:04:40 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DC2FA3;
-	Tue,  3 Oct 2023 01:04:39 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3937UXkH029952;
-	Tue, 3 Oct 2023 08:04:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=/VgCu5h1nT1rdcGyJuB5n5ilmO0Vmv6JYljZEWurec0=;
- b=Dy3D6+GWlqV0MLxGJJwCA/glEYktMe5ihNFbs6SAnoUI9iSpIMuL+oeTpsNOJj2tu+Q/
- ktxJiZOxMB2WMEog/UYmYH2aUsy+n5qQ4p1sWvJTnrzt+mTJN5DeAp+6A1BpUUP41UTf
- LPsl2anTHYoeS1eWY61Gy+WdGIHA9EHCcjHd/eFiKolAniOJ4Kmz+Ljo4sGTTjdlYgVQ
- wjrQ1j6Y3bx/Gl/vL8oUpfjNGA1F9etvFd8JDeOMU4CopjEYwTccUdLSFhCFAffY166r
- kZ3Y3OoYQWFIHolzc/8CSbD6N92fCVtXn3UIckeqHjD28ctZlk+/Z2BFdmY6rDci8pID 0Q== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tgbjgrd21-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 03 Oct 2023 08:04:31 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39384UjL025473
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 3 Oct 2023 08:04:30 GMT
-Received: from [10.214.66.58] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Tue, 3 Oct
- 2023 01:04:26 -0700
-Message-ID: <5d99708e-95a0-401b-b636-4f535fdd5905@quicinc.com>
-Date: Tue, 3 Oct 2023 13:34:23 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F9C76AB4
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 08:06:05 +0000 (UTC)
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAD85BB
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 01:06:03 -0700 (PDT)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-59f7cc71e2eso8057617b3.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Oct 2023 01:06:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696320363; x=1696925163; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=2+dCxHj9loHzO3/aljEjxLeeImmE0ebS+6n0wzTNDMU=;
+        b=I/EdAr8xPZWXLEEj62X7a+wuYdYVmzHNiLeAyTv2FArjpMBUx0uGw2ianIOXSMc9Zi
+         a4Ezx2ZvE7g6rnUWVVLXkFf0IYF9hlcP9jl4pPsQWAQ09vaqVeyxDiAxmzbCaxOorj7R
+         z9PRrXzFe0z+pQK1sutAW2dJDrR14aMZp6SQsXEfoYeQbolzNCECf7fJjAxGN9IJ+3Ny
+         gz3btNXbcowBBUAyCRBO1d8nz3+bqKJ2TXOsHzxd1giAkCS8cXv8yrUdxm09eFa2v8s4
+         s2BAT/yOcg82Nxb8DzxYU1XnHaBwrMRA7vAFiovpHvYbu1O+KW9xCrqEiU4p72k45TVR
+         6Vdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696320363; x=1696925163;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2+dCxHj9loHzO3/aljEjxLeeImmE0ebS+6n0wzTNDMU=;
+        b=t9ec2l4clZtMd7BhtQ1Kf0sUzjQIrCLtHzxtJ3CMA14ZUBx9N6K4Gt4zVoJ3Ini0bC
+         mvsBxAeW/A037HwHuqTWG+Yht3Qnq3b8EkHAxhMj7JTSaa5q+mVa5djz1HIIao9hLRsk
+         Vq53w2vEzzV39cWJk/fCNcdBukwWqVdhr51SUkUHijN/eoYALGbtT5X/8IYRbZGC1HTl
+         e6YOGUfKjOmhLZ/xRUaV+TX8knqswkMC3ysQDDWbC2zLlyYPpUQMKYIx/a2Sy2Sgnfsn
+         yFZ149/gOYT2rAwtr4H4ZNcafGqZv6emMq3Z0rJcmbwnmL/IKChgZKEO8iweXVf/HUH2
+         VIVg==
+X-Gm-Message-State: AOJu0YxwnfOCtL4Mc8PAnyxo4X/MAtKxY/wH7Zsz34hgdZuECS7ZW2F0
+	Km+AQ40BF/nTKGKPvVU9rfcvlip2ugz9clg6cJLUhw==
+X-Google-Smtp-Source: AGHT+IEqOjI+FF8gpM0hRv7J/2E2f4vH+CKbR/ppRY5K+RPqgRFAcoDQY30fbiDlg5LJV3atYQuY9xVgWztpUkkKYdo=
+X-Received: by 2002:a0d:d54f:0:b0:59b:be67:84cb with SMTP id
+ x76-20020a0dd54f000000b0059bbe6784cbmr13900277ywd.26.1696320362957; Tue, 03
+ Oct 2023 01:06:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: Add interconnect nodes for SDX75
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <dmitry.baryshkov@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1695720564-2978-1-git-send-email-quic_rohiagar@quicinc.com>
- <1695720564-2978-2-git-send-email-quic_rohiagar@quicinc.com>
- <35703a29-5c5a-47a8-9a4b-04953dc3faba@linaro.org>
-Content-Language: en-US
-From: Rohit Agarwal <quic_rohiagar@quicinc.com>
-In-Reply-To: <35703a29-5c5a-47a8-9a4b-04953dc3faba@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: voej0zTun7aGK_ecJJ7QpyWL5kctmoBL
-X-Proofpoint-GUID: voej0zTun7aGK_ecJJ7QpyWL5kctmoBL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-03_04,2023-10-02_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- lowpriorityscore=0 spamscore=0 priorityscore=1501 adultscore=0
- suspectscore=0 bulkscore=0 impostorscore=0 mlxlogscore=694 phishscore=0
- malwarescore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310030056
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20231002-topic-sm8550-upstream-type-c-orientation-v2-0-125410d3ff95@linaro.org>
+ <20231002-topic-sm8550-upstream-type-c-orientation-v2-2-125410d3ff95@linaro.org>
+ <CAA8EJpp2_eW+YukTq3eAFGXxtZ+YWYVkzEP9Qhs20TxoXy-v7A@mail.gmail.com> <a30c60f0-1710-405a-bb18-813ce30d975b@linaro.org>
+In-Reply-To: <a30c60f0-1710-405a-bb18-813ce30d975b@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 3 Oct 2023 11:05:51 +0300
+Message-ID: <CAA8EJpqUQCXJB6V=aMnXxU_tmpefMiDno61WEvCL+HuewH3c9g@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] usb: ucsi: glink: use the connector orientation
+ GPIO to provide switch events
+To: neil.armstrong@linaro.org
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-usb@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-
-On 9/27/2023 4:17 PM, Konrad Dybcio wrote:
-> On 26.09.2023 11:29, Rohit Agarwal wrote:
->> Add interconnect nodes to support interconnects on SDX75.
->> Also parallely add the interconnect property for UART required
->> so that the bootup to shell does not break with interconnects
->> in place.
->>
->> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
->> ---
-> [...]
+On Tue, 3 Oct 2023 at 10:13, Neil Armstrong <neil.armstrong@linaro.org> wrote:
 >
->>   		scm: scm {
->>   			compatible = "qcom,scm-sdx75", "qcom,scm";
->> @@ -434,6 +448,8 @@
->>   			clock-names = "m-ahb",
->>   				      "s-ahb";
->>   			iommus = <&apps_smmu 0xe3 0x0>;
->> +			interconnects = <&clk_virt MASTER_QUP_CORE_0 0 &clk_virt SLAVE_QUP_CORE_0 0>;
-> 0 -> QCOM_ICC_TAG_ALWAYS (dt-bindings/interconnect/qcom,icc.h)
-Ok, Let me update this.
-
-Thanks,
-Rohit.
+> On 02/10/2023 19:26, Dmitry Baryshkov wrote:
+> > On Mon, 2 Oct 2023 at 13:21, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+> >>
+> >> On SM8550, the non-altmode orientation is not given anymore within
+> >> altmode events, even with USB SVIDs events.
+> >>
+> >> On the other side, the Type-C connector orientation is correctly
+> >> reported by a signal from the PMIC.
+> >>
+> >> Take this gpio signal when we detect some Type-C port activity
+> >> to notify any Type-C switches tied to the Type-C port connectors.
+> >
+> > Have you checked, which UCSI version is implemented on SM8550?
+> > Is there any chance of GET_CONNECTOR_STATUS / bit 86 actually
+> > reflecting the correct orientation?
 >
-> Konrad
+> I checked, and no, the UCSI implementation is based on the UCSI 1.x spec,
+> and doesn't have the UCSI 2.x new bits.
+
+Ack, thanks for the confirmation.
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+>
+> Neil
+>
+> >
+> >>
+> >> Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+> >> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> >> ---
+> >
+> >
+>
+
+
+-- 
+With best wishes
+Dmitry
 
