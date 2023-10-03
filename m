@@ -1,135 +1,203 @@
-Return-Path: <devicetree+bounces-5359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E306C7B60AD
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 08:21:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81C2A7B60CD
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 08:31:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 6F2AF2816D8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 06:21:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 90F05B20993
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 06:31:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 431A44A15;
-	Tue,  3 Oct 2023 06:21:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEEC510FC;
+	Tue,  3 Oct 2023 06:31:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 416EA3FFE;
-	Tue,  3 Oct 2023 06:21:15 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AE8DCE;
-	Mon,  2 Oct 2023 23:21:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1696314073; x=1727850073;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=aZY00p5Zs6evElTgNGG3NrD4dyDiLSahudswiJ1LeXk=;
-  b=A9KtoCkT/hQw6Do0WapGZOfmqUQA29KiucFV902C3OI51Xf1wJnWOeCV
-   Vy2+q8FMyghdMyJOM1mXxU86t4Q3x2IipAjenVAm7YLQDlxyauh7ymwKz
-   EsoXjJotYI7TTD6rH3DP9jhX4784Fq5YpObtiz5z90PGu1OYaXMZi79jK
-   ZdN4PMYMWIJ9BtyP8qaABdB7WsTad+scvRoAIw0rq2OcO9KLQyhg12OV5
-   WucwCHjrETlDMWELH67Fa542Ci4z/uly4GvJErqbFJvfXypsC9FV6E/C5
-   9yNeh7WpOKxM5TmBeq56gDZMvLPP0oP5EhrAzuIHDPqh2lBqQNSAYbGBI
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="380079960"
-X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; 
-   d="scan'208";a="380079960"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Oct 2023 23:21:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="1081895650"
-X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; 
-   d="scan'208";a="1081895650"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga005.fm.intel.com with SMTP; 02 Oct 2023 23:21:08 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 03 Oct 2023 09:21:08 +0300
-Date: Tue, 3 Oct 2023 09:21:08 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Abdel Alkuor <alkuor@gmail.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, bryan.odonoghue@linaro.org,
-	gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, ryan.eleceng@gmail.com,
-	robh+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	Abdel Alkuor <abdelalkuor@geotab.com>
-Subject: Re: [PATCH v9 07/14] USB: typec: tps6598x: Apply patch again after
- power resume
-Message-ID: <ZRuy1NqA/VfWbBWn@kuha.fi.intel.com>
-References: <20231001081134.37101-1-alkuor@gmail.com>
- <20231001081134.37101-8-alkuor@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A666A38
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 06:31:38 +0000 (UTC)
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9679FB8
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 23:31:35 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99c3c8adb27so90404866b.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 23:31:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696314694; x=1696919494; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Wl4i5GUbRFBV0EmtTs7RvF9qxfnbhF5NMh+Rtk9x0rg=;
+        b=u7ld3tyIrOmvYVns9yqh99UZ9l6ztFLhnrTj54n70BdJxacliAZJ0GogKajH/nEA8O
+         Pa6cMf3kenQQeh4Iu10mfYYm7h83aTjY0Cqftkj6wMsVqpwPRKvsMLC/5s2BJ8npIyaR
+         zcFTiYDDSmuX6EnvfEyIx4c4Bi44wmhPcnOZw1ZqorNZdwl384V8sdcK3Z/ScN6BuxNM
+         Eg57arBEkFT1SjJTdHB7UDIHa2qO3ucQwtJBMacEm1MkgqTVGSXeAcbBFo4o+89RhF6m
+         UhtxN/vSLbQ2FdGzAhn4r9MMWIR3YrjP4IWgxaV0ZMUrufGPJpUn8ghF4XzguD+t8Hkj
+         /38w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696314694; x=1696919494;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Wl4i5GUbRFBV0EmtTs7RvF9qxfnbhF5NMh+Rtk9x0rg=;
+        b=tAQgsNoKBXPs+DM8llQi82DViNCEXx7mL7mdNjUS+QXLXG9lLZRIlMlKPFbf3307lX
+         zmtWZeHgwnKMxwOZz6oGmT2reOZXQZukMYVSB1f/iBnZyYBwCwOUQ9dDRu5qQarRi64H
+         9fJMmbNXkGBX43Rzg++2kRx78hL5sJxJHL2/oykTd57/MjZkhVGuczZFJezoKmAQsMDr
+         lPgByiCj4ByXwTGQpLQ1542TcdjCkjvvhd6I7QhovWjvvxyQxL1GaZdy0ACJBGCpztw+
+         QgkFE/jNrXBmQijcGTR0dplC6PUxwAdIWGS4vH4BPVSsj6u4JqeR0HqnrvMf1K4cqGCG
+         l0sw==
+X-Gm-Message-State: AOJu0YyaUz0j/mIagtlqOMhcFoSU6ra4WZ1Hz3R4b9G0yBiAL6bW5s8v
+	WgBYyH3Br9Kfu6N+Q+VGl2LXEw==
+X-Google-Smtp-Source: AGHT+IHGAfxeGSub9yo0QsL2dKbBPljLcG5xqC2yNoJOX9V9HSYEcaoKAlI2IoUckhTd4A9C1tsAuQ==
+X-Received: by 2002:a17:906:8a74:b0:9ae:3e72:7c72 with SMTP id hy20-20020a1709068a7400b009ae3e727c72mr10215436ejc.58.1696314694088;
+        Mon, 02 Oct 2023 23:31:34 -0700 (PDT)
+Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
+        by smtp.gmail.com with ESMTPSA id h22-20020a17090619d600b009ad8796a6aesm483673ejd.56.2023.10.02.23.31.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Oct 2023 23:31:33 -0700 (PDT)
+Message-ID: <fa467359-85d6-4847-b956-db793811d304@linaro.org>
+Date: Tue, 3 Oct 2023 08:31:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231001081134.37101-8-alkuor@gmail.com>
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [EXT] Re: [PATCH 1/7] dt-bindings: arm: coresight-tmc: Add
+ "memory-region" property
+Content-Language: en-US
+To: Linu Cherian <lcherian@marvell.com>,
+ "suzuki.poulose@arm.com" <suzuki.poulose@arm.com>,
+ "mike.leach@linaro.org" <mike.leach@linaro.org>,
+ "james.clark@arm.com" <james.clark@arm.com>,
+ "leo.yan@linaro.org" <leo.yan@linaro.org>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "coresight@lists.linaro.org" <coresight@lists.linaro.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Sunil Kovvuri Goutham <sgoutham@marvell.com>,
+ George Cherian <gcherian@marvell.com>
+References: <20230929133754.857678-1-lcherian@marvell.com>
+ <20230929133754.857678-2-lcherian@marvell.com>
+ <e5663ac2-e197-4667-8c70-28951628920a@linaro.org>
+ <PH0PR18MB50028D5A8AA48036974D45A2CEC4A@PH0PR18MB5002.namprd18.prod.outlook.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <PH0PR18MB50028D5A8AA48036974D45A2CEC4A@PH0PR18MB5002.namprd18.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Sun, Oct 01, 2023 at 04:11:27AM -0400, Abdel Alkuor wrote:
-> From: Abdel Alkuor <abdelalkuor@geotab.com>
+On 03/10/2023 06:33, Linu Cherian wrote:
+> Hi Krzysztof,
 > 
-> TPS25750 PD controller might be powered off externally at power suspend,
-> after resuming PD controller power back, apply the patch again.
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Saturday, September 30, 2023 8:59 PM
+>> To: Linu Cherian <lcherian@marvell.com>; suzuki.poulose@arm.com;
+>> mike.leach@linaro.org; james.clark@arm.com; leo.yan@linaro.org
+>> Cc: linux-arm-kernel@lists.infradead.org; coresight@lists.linaro.org; linux-
+>> kernel@vger.kernel.org; robh+dt@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+>> devicetree@vger.kernel.org; Sunil Kovvuri Goutham
+>> <sgoutham@marvell.com>; George Cherian <gcherian@marvell.com>
+>> Subject: [EXT] Re: [PATCH 1/7] dt-bindings: arm: coresight-tmc: Add
+>> "memory-region" property
+>>
+>> External Email
+>>
+>> ----------------------------------------------------------------------
+>> On 29/09/2023 15:37, Linu Cherian wrote:
+>>> memory-region 0: Reserved trace buffer memory
+>>>
+>>>   TMC ETR: When available, use this reserved memory region for
+>>>   trace data capture. Same region is used for trace data
+>>>   retention after a panic or watchdog reset.
+>>>
+>>>   TMC ETF: When available, use this reserved memory region for
+>>>   trace data retention synced from internal SRAM after a panic or
+>>>   watchdog reset.
+>>>
+>>> memory-region 1: Reserved meta data memory
+>>>
+>>>   TMC ETR, ETF: When available, use this memory for register
+>>>   snapshot retention synced from hardware registers after a panic
+>>>   or watchdog reset.
+>>>
+>>> Signed-off-by: Linu Cherian <lcherian@marvell.com>
+>>> ---
+>>
+>> Where is the changelog? This is supposed to be v4 or something later.
+>> Please, keep proper versioning and changelog.
 > 
-> Signed-off-by: Abdel Alkuor <abdelalkuor@geotab.com>
-
-This one looks also like something that should be part of the patch 4.
-
-My concern is that with these separated features you are creating points
-into the kernel git tree where TPS25750 is enabled, but it's not fully
-functional, or even broken in scenarious like this (suspend/resume).
-You can't do that unless you have some really good reason.
-
-Since all of these add only a bit of code each, I think it would be
-better to just merge these into the initial patch that enabled
-TPS25750 - so I belive patch 4/14.
-
-> ---
-> Changes in v9:
->   - No changes
-> Changes in v8:
->   - Use device_is_compatible instead of of_device_is_compatible
-> Changes in v7:
->   - Add driver name to commit subject
-> Changes in v6:
->   - Check tps25750 using is_compatiable device node
-> Changes in v5:
->   - Incorporating tps25750 into tps6598x driver
->  drivers/usb/typec/tipd/core.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+> Sure, will add the changelog from next version onwards. 
 > 
-> diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
-> index 2598433a69cf..32e42798688f 100644
-> --- a/drivers/usb/typec/tipd/core.c
-> +++ b/drivers/usb/typec/tipd/core.c
-> @@ -1203,6 +1203,17 @@ static int __maybe_unused tps6598x_resume(struct device *dev)
->  {
->  	struct i2c_client *client = to_i2c_client(dev);
->  	struct tps6598x *tps = i2c_get_clientdata(client);
-> +	int ret;
-> +
-> +	ret = tps6598x_check_mode(tps);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (device_is_compatible(tps->dev, "ti,tps25750") && ret == TPS_MODE_PTCH) {
-> +		ret = tps25750_apply_patch(tps);
-> +		if (ret)
-> +			return ret;
-> +	}
->  
->  	if (tps->wakeup) {
->  		disable_irq_wake(client->irq);
-> -- 
-> 2.34.1
+> Yeah, the last version was RFC v3 and the RFC tag has been dropped from this version onwards.
+> Hence started this version with V1.
 
--- 
-heikki
+v1 says it is the first version, but you already had three others.
+Please keep continuous version log, regardless whether you call it RFC
+or RFT or RFsomething.
+
+> 
+>>
+>>>  .../bindings/arm/arm,coresight-tmc.yaml       | 19 +++++++++++++++++++
+>>>  1 file changed, 19 insertions(+)
+>>>
+
+Best regards,
+Krzysztof
+
 
