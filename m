@@ -1,149 +1,263 @@
-Return-Path: <devicetree+bounces-5395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C0ED7B62A5
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 09:41:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 775B27B62C0
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 09:46:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id D5FC0B209AD
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 07:40:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2A8822813A4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 07:46:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BCF7D29B;
-	Tue,  3 Oct 2023 07:40:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8120D2F3;
+	Tue,  3 Oct 2023 07:46:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BA0FD28A
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 07:40:54 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D9F6BB;
-	Tue,  3 Oct 2023 00:40:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1696318852; x=1727854852;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=oAHPwKBx2VXXhwErA1g4BrQu3mmm/TsAggXL8ezzFFM=;
-  b=kPasbqhgYFdiYPbhJSee95HEwFkfEp7+/bfDgc/j/KztMVRfr8bKJb2p
-   /18zFSH0ECL3NfIwFmxg7d0zLfG/1ihf1h9cVoPq2rW7ssyKkijFFd9q+
-   wVEuzdvurJfPgTs0gla4n0I8WGyH6L3GudL7Iut1ZdC3kYwYljUWm98q4
-   uTfIgGHq9n3/UKG6ZyRZ2OnCSCk7aEXzaS+vH7NrX7keLVtZRRaEDfVAp
-   PRbwYPmkUq0IFbR926LT1WIxchgKZS8UDRwwaJpI7JGcIrFM3sj9sYxvz
-   SCD9C4O4izA2vh5L9B2vuSqUPLBWRxeJkzcg80HSG7QECTacVywVPoo+U
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="446974838"
-X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; 
-   d="scan'208";a="446974838"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2023 00:40:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="821140725"
-X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; 
-   d="scan'208";a="821140725"
-Received: from lkp-server02.sh.intel.com (HELO c3b01524d57c) ([10.239.97.151])
-  by fmsmga004.fm.intel.com with ESMTP; 03 Oct 2023 00:40:48 -0700
-Received: from kbuild by c3b01524d57c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qna1O-0006tZ-25;
-	Tue, 03 Oct 2023 07:40:46 +0000
-Date: Tue, 3 Oct 2023 15:40:31 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ayush Singh <ayushdevel1325@gmail.com>, greybus-dev@lists.linaro.org
-Cc: oe-kbuild-all@lists.linux.dev, Ayush Singh <ayushdevel1325@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	gregkh@linuxfoundation.org, vaishnav@beagleboard.org,
-	jkridner@beagleboard.org, nm@ti.com,
-	krzysztof.kozlowski+dt@linaro.org, johan@kernel.org,
-	elder@kernel.org
-Subject: Re: [PATCH v6 2/3] greybus: Add BeaglePlay Linux Driver
-Message-ID: <202310031521.Iq3S1RE9-lkp@intel.com>
-References: <20231002182454.211165-3-ayushdevel1325@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49E536AB4;
+	Tue,  3 Oct 2023 07:46:35 +0000 (UTC)
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7289F90;
+	Tue,  3 Oct 2023 00:46:32 -0700 (PDT)
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39353va3021962;
+	Tue, 3 Oct 2023 09:45:56 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=x3zvFTP/cLetsfZPkK+gIr/Q1D7D0ztqpwYaPZYqEI8=; b=uO
+	k9aJK7R1840fb0b3pBnvZI/Q+sO/3kzxpReIyl8a2WtjvEs45JT6XTDrlHMrsGPn
+	Io4kdlT3zs4GfXE3bNHXaM0035fkGjMAqp2uMreLcEPQiYepILPOa+cc7NCAPguM
+	XG/+aAp+4tKUhiooqE+RCJHYp2y7MjmaJGdf1IMZoAa94a14CtlOeJUBnEw8dsgw
+	u6oWujro9NzuU9qeHL/ppQLDYgxAEDr6y873+ikT+KJq7Fg4e8TZp7c+qkB+QmPp
+	mFyCfe1vyeHFUsZQmgUNkpuoVew6YGy6z2Wppfm2ptuSn7pxaIHLo+x4mVReKTrQ
+	5oexx004P/dDF0l4T6kQ==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3texmj0c3h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 03 Oct 2023 09:45:56 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 787F8100057;
+	Tue,  3 Oct 2023 09:45:54 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1D361229A9D;
+	Tue,  3 Oct 2023 09:45:54 +0200 (CEST)
+Received: from [10.201.20.32] (10.201.20.32) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 3 Oct
+ 2023 09:45:52 +0200
+Message-ID: <1a48fce4-0faf-5e26-c57a-064307573c69@foss.st.com>
+Date: Tue, 3 Oct 2023 09:45:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231002182454.211165-3-ayushdevel1325@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-	autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v5 01/11] dt-bindings: document generic access controller
+To: Rob Herring <robh@kernel.org>
+CC: <Oleksii_Moisieiev@epam.com>, <gregkh@linuxfoundation.org>,
+        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <alexandre.torgue@foss.st.com>, <vkoul@kernel.org>, <jic23@kernel.org>,
+        <olivier.moysan@foss.st.com>, <arnaud.pouliquen@foss.st.com>,
+        <mchehab@kernel.org>, <fabrice.gasnier@foss.st.com>,
+        <andi.shyti@kernel.org>, <ulf.hansson@linaro.org>,
+        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+        <hugues.fruchet@foss.st.com>, <lee@kernel.org>, <will@kernel.org>,
+        <catalin.marinas@arm.com>, <arnd@kernel.org>,
+        <richardcochran@gmail.com>, Frank Rowand <frowand.list@gmail.com>,
+        <peng.fan@oss.nxp.com>, <linux-crypto@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-media@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-p.hy@lists.infradead.org>,
+        <linux-serial@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>
+References: <20230929142852.578394-1-gatien.chevallier@foss.st.com>
+ <20230929142852.578394-2-gatien.chevallier@foss.st.com>
+ <20231002173019.GA2037244-robh@kernel.org>
+Content-Language: en-US
+From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+In-Reply-To: <20231002173019.GA2037244-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.20.32]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-03_04,2023-10-02_01,2023-05-22_02
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Ayush,
+Hi Rob,
 
-kernel test robot noticed the following build warnings:
+On 10/2/23 19:30, Rob Herring wrote:
+> On Fri, Sep 29, 2023 at 04:28:42PM +0200, Gatien Chevallier wrote:
+>> From: Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
+>>
+>> Introducing of the generic access controller bindings for the
+>> access controller provider and consumer devices. Those bindings are
+>> intended to allow a better handling of accesses to resources in a
+>> hardware architecture supporting several compartments.
+>>
+>> This patch is based on [1]. It is integrated in this patchset as it
+>> provides a use-case for it.
+>>
+>> Diffs with [1]:
+>> 	- Rename feature-domain* properties to access-control* to narrow
+>> 	  down the scope of the binding
+>> 	- YAML errors and typos corrected.
+>> 	- Example updated
+>> 	- Some rephrasing in the binding description
+>>
+>> [1]: https://lore.kernel.org/lkml/0c0a82bb-18ae-d057-562b
+>>
+>> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+>> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+>>
+>> ---
+>> Changes in V5:
+>> 	- Diffs with [1]
+>> 	- Discarded the [IGNORE] tag as the patch is now part of the
+>> 	  patchset
+>>
+>>   .../access-controllers/access-controller.yaml | 90 +++++++++++++++++++
+>>   1 file changed, 90 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/access-controllers/access-controller.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/access-controllers/access-controller.yaml b/Documentation/devicetree/bindings/access-controllers/access-controller.yaml
+>> new file mode 100644
+>> index 000000000000..9d305fccc333
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/access-controllers/access-controller.yaml
+>> @@ -0,0 +1,90 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/access-controllers/access-controller.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Generic Domain Access Controller
+>> +
+>> +maintainers:
+>> +  - Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+>> +
+>> +description: |+
+>> +  Common access controllers properties
+>> +
+>> +  Access controllers are in charge of stating which of the hardware blocks under
+>> +  their responsibility (their domain) can be accesssed by which compartment. A
+>> +  compartment can be a cluster of CPUs (or coprocessors), a range of addresses
+>> +  or a group of hardware blocks. An access controller's domain is the set of
+>> +  resources covered by the access controller.
+>> +
+>> +  This device tree bindings can be used to bind devices to their access
+>> +  controller provided by access-controller property. In this case, the device is
+>> +  a consumer and the access controller is the provider.
+>> +
+>> +  An access controller can be represented by any node in the device tree and
+>> +  can provide one or more configuration parameters, needed to control parameters
+>> +  of the consumer device. A consumer node can refer to the provider by phandle
+>> +  and a set of phandle arguments, specified by '#access-controller-cells'
+>> +  property in the access controller node.
+>> +
+>> +  Access controllers are typically used to set/read the permissions of a
+>> +  hardware block and grant access to it. Any of which depends on the access
+>> +  controller. The capabilities of each access controller are defined by the
+>> +  binding of the access controller device.
+>> +
+>> +  Each node can be a consumer for the several access controllers.
+>> +
+>> +# always select the core schema
+>> +select: true
+>> +
+>> +properties:
+>> +  "#access-controller-cells":
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> 
+> Drop. "#.*-cells" already defines the type.
+> 
 
-[auto build test WARNING on 6269320850097903b30be8f07a5c61d9f7592393]
+Ok, I will drop it for V6
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ayush-Singh/dt-bindings-Add-beaglecc1352/20231003-031225
-base:   6269320850097903b30be8f07a5c61d9f7592393
-patch link:    https://lore.kernel.org/r/20231002182454.211165-3-ayushdevel1325%40gmail.com
-patch subject: [PATCH v6 2/3] greybus: Add BeaglePlay Linux Driver
-config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20231003/202310031521.Iq3S1RE9-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231003/202310031521.Iq3S1RE9-lkp@intel.com/reproduce)
+>> +    description:
+>> +      Number of cells in a access-controller specifier;
+>> +      Can be any value as specified by device tree binding documentation
+>> +      of a particular provider.
+>> +
+>> +  access-control-provider:
+>> +    description:
+>> +      Indicates that the node is an access controller.
+> 
+> Drop. The presence of "#access-controller-cells" is enough to do that.
+> 
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310031521.Iq3S1RE9-lkp@intel.com/
+Ok, I wasn't sure. I'll will drop it for V6
 
-All warnings (new ones prefixed by >>):
+>> +
+>> +  access-controller-names:
+>> +    $ref: /schemas/types.yaml#/definitions/string-array
+>> +    description:
+>> +      A list of access-controller names, sorted in the same order as
+>> +      access-controller entries. Consumer drivers will use
+>> +      access-controller-names to match with existing access-controller entries.
+>> +
+>> +  access-controller:
+> 
+> For consistency with other provider bindings: access-controllers
+> 
 
->> drivers/greybus/gb-beagleplay.c:45: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    * BeaglePlay Greybus driver
-   drivers/greybus/gb-beagleplay.c:78: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    * Structure to represent part of HDCL frame payload data.
-   drivers/greybus/gb-beagleplay.c:107: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    * Consume HDLC Buffer. This function assumes that consumer lock has been acquired.
-   drivers/greybus/gb-beagleplay.c:127: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    * Queue HDLC data for sending. This function assumes that producer lock as been acquired.
+Ack
 
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +    description:
+>> +      A list of access controller specifiers, as defined by the
+>> +      bindings of the access-controller provider.
+>> +
+>> +additionalProperties: true
+>> +
+>> +examples:
+>> +  - |
+>> +    uart_controller: access-controller@50000 {
+>> +        reg = <0x50000 0x10>;
+>> +        access-control-provider;
+>> +        #access-controller-cells = <2>;
+>> +    };
+>> +
+>> +    bus_controller: bus@60000 {
+>> +        reg = <0x60000 0x10000>;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +        ranges;
+>> +        access-control-provider;
+>> +        #access-controller-cells = <3>;
+>> +
+>> +        uart4: serial@60100 {
+>> +            reg = <0x60100 0x400>;
+>> +            access-controller = <&uart_controller 1 2>,
+>> +                                <&bus_controller 1 3 5>;
+>> +            access-controller-names = "controller", "bus-controller";
+> 
+> Not great names. It should indicate what access is being controlled
+> locally. Perhaps "reg" for register access, "dma" or "bus" for bus
+> master access. (Not sure what your uart_controller is controlling access
+> to.)
+> 
+> Rob
 
-vim +45 drivers/greybus/gb-beagleplay.c
+Yes, I agree it's poor naming. I'll come up with something more
+adequate. Thank you for the input.
 
-    43	
-    44	/**
-  > 45	 * BeaglePlay Greybus driver
-    46	 *
-    47	 * @sd: underlying serdev device
-    48	 *
-    49	 * @gb_hd: greybus host device of this driver
-    50	 *
-    51	 * @tx_work: hdlc transmit work
-    52	 * @tx_producer_lock: hdlc transmit data producer lock. acquired when appending data to buffer.
-    53	 * @tx_consumer_lock: hdlc transmit data consumer lock. acquired when sending data over uart.
-    54	 * @tx_circ_buf: hdlc transmit circular buffer.
-    55	 * @tx_crc: hdlc transmit crc-ccitt fcs
-    56	 *
-    57	 * @rx_buffer_len: length of receive buffer filled.
-    58	 * @rx_buffer: hdlc frame receive buffer
-    59	 * @rx_in_esc: hdlc rx flag to indicate ESC frame
-    60	 */
-    61	struct gb_beagleplay {
-    62		struct serdev_device *sd;
-    63	
-    64		struct gb_host_device *gb_hd;
-    65	
-    66		struct work_struct tx_work;
-    67		spinlock_t tx_producer_lock;
-    68		spinlock_t tx_consumer_lock;
-    69		struct circ_buf tx_circ_buf;
-    70		u16 tx_crc;
-    71	
-    72		u16 rx_buffer_len;
-    73		bool rx_in_esc;
-    74		u8 rx_buffer[MAX_RX_HDLC];
-    75	};
-    76	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best regards,
+Gatien
 
