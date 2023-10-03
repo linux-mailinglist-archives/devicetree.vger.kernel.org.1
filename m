@@ -1,182 +1,110 @@
-Return-Path: <devicetree+bounces-5547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90FD07B69B2
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 15:02:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 839B37B69C8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 15:04:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id D3EF1B20970
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 13:02:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3DB9B2815DC
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 13:04:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77F752420D;
-	Tue,  3 Oct 2023 13:02:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB17B24210;
+	Tue,  3 Oct 2023 13:04:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAB1023767
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 13:02:02 +0000 (UTC)
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E257BD;
-	Tue,  3 Oct 2023 06:02:01 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id 41be03b00d2f7-53fa455cd94so534854a12.2;
-        Tue, 03 Oct 2023 06:02:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696338120; x=1696942920; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KOSJ1LD4bOqUpxIFjxXpNvYG4tETz6JJkPH8DncEASw=;
-        b=Q0euPap9gQxXxqis9T5E/DCrDxaFW50eDkILnExesUzzQJhff7kt8VQCOcgE1eer43
-         XqFWloh0RILmC/3bMSvmshyD3mAZF0hOjmWg+IlJ57U+vh79vDNCi69ROQEaKkH7ygUw
-         7d6+pol0EQslwo11EyzEJcijlJ3lK5UaaRyeUqSKhJ5iLYhPHcVJ/HwWHIC1lJMHMdcA
-         CSIIuji3l9Do4J1GkXU753Mj5k/UiDdbOgjzopdvvmI9UCq6u7jVXIh2sX7tUDg7Z9lK
-         CJ5RrmqFHfeas91xA5eSdLXaEy0DruujuQrbVbTYQpR5QYX2WmPT0YB+2QL8cPZXtpSb
-         og0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696338120; x=1696942920;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KOSJ1LD4bOqUpxIFjxXpNvYG4tETz6JJkPH8DncEASw=;
-        b=UQq22MeQFjaDbNMSQLxby5D7gn8EprNLtEbVanE9SVSZMg7t9DXiqGQKGEAazimUKl
-         C3RwBJfWuqOsFOa9onamijO5jGoLbKSao0iQS5YJTcaTMZEDu/E67vD37WVCB3qXfC6y
-         dWda53mVkRFkQRSnXMOqKHj5ePHhywiwyP3RYHwSYxIGHERGMRwcBEChb3IIpZ3w9MkG
-         RuY1xXbUtcNrttXQw1MoJS9ad1DFV1QO07z36N2URoiBkGd14h70QCSB62K89rxTkHxI
-         mLcRPD+Jq1wyElNwtENxnobWBaM84tLqHY3qAeyJOwttDO98ASOTp5ysff251qFT6iMz
-         r9OA==
-X-Gm-Message-State: AOJu0YzOQIQADPs4gjXKOoe9Y18dFD/jobQr0AdcJU4Yzyldsgloimf/
-	xiRIPM6IehVWeP1cctPzVx8//4BHGj58paQaaOs=
-X-Google-Smtp-Source: AGHT+IEu16w6ytf2IPuNE3nxhAFN87R51szRBqXUKJrqIGlckFiZFrvkEdHL/wOHt+LUrSqZd4mUJhAX6D2olpMX8zo=
-X-Received: by 2002:a17:90a:fe8d:b0:269:3cdb:4edf with SMTP id
- co13-20020a17090afe8d00b002693cdb4edfmr12043422pjb.16.1696338120302; Tue, 03
- Oct 2023 06:02:00 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C970724209
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 13:04:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1F7BC433C8;
+	Tue,  3 Oct 2023 13:04:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696338254;
+	bh=bA0Ut3nVDiQXKnStgAyERYPBt7Oi/q19lCr71SL/2BA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tZpjUgAT4HqQx2KhKcPsJVNJAAbAgmJMXuv59sK2WNZeShHFTA75j4a7zF50smxgL
+	 Mi65VFGalmBlJz/2EMC2iW1/9VZFds3PD8rrKKmzTTHS0bqrFCk2ry3uqaqULsRk2O
+	 s0S94gWTFzSOVbEWQ+GmX9Z8xA67Ax3KrFy7mp2ShKQKfG69h//+IXrnAbvyRaK2my
+	 1UqD+WLEi78Uhk4r4gESWxh+vDjk3ps46XtGPYJpbqMmffCGk5S9etOo7sscv3/WKQ
+	 yZ3UvkIs2koQPDzaHWo2EbT8jCIvzgWTogkX25zebN1b8D9Kp/nMGsZOWEDT9si/2h
+	 Nox7Kwt/zH8jA==
+Date: Tue, 3 Oct 2023 15:04:11 +0200
+From: Wolfram Sang <wsa@kernel.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Jacopo Mondi <jacopo+renesas@jmondi.org>,
+	linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: media: renesas,vin: Fix field-even-active
+ spelling
+Message-ID: <ZRwRS4lP+ixDxcaa@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Jacopo Mondi <jacopo+renesas@jmondi.org>,
+	linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org
+References: <c999eef0a14c8678f56eb698d27b2243e09afed4.1696328563.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230918-imx8mp-dtsi-v1-0-1d008b3237c0@skidata.com> <20230918-imx8mp-dtsi-v1-2-1d008b3237c0@skidata.com>
-In-Reply-To: <20230918-imx8mp-dtsi-v1-2-1d008b3237c0@skidata.com>
-From: Adam Ford <aford173@gmail.com>
-Date: Tue, 3 Oct 2023 08:01:49 -0500
-Message-ID: <CAHCN7x+TCxbaE7Y41Yn5SpG0G5V57hwXQ7HX_ExLF1EXKtZs4w@mail.gmail.com>
-Subject: Re: [PATCH 02/13] arm64: dts: imx8mp: re-parent IMX8MP_CLK_MEDIA_MIPI_PHY1_REF
-To: Benjamin Bara <bbara93@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	NXP Linux Team <linux-imx@nxp.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Russell King <linux@armlinux.org.uk>, 
-	Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
-	Frank Oltmanns <frank@oltmanns.dev>, Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, Benjamin Bara <benjamin.bara@skidata.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ldUZkgBUcVKbMqLP"
+Content-Disposition: inline
+In-Reply-To: <c999eef0a14c8678f56eb698d27b2243e09afed4.1696328563.git.geert+renesas@glider.be>
+
+
+--ldUZkgBUcVKbMqLP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
-On Sun, Sep 17, 2023 at 5:40=E2=80=AFPM Benjamin Bara <bbara93@gmail.com> w=
-rote:
->
-> From: Benjamin Bara <benjamin.bara@skidata.com>
->
-> Similar to commit 07bb2e368820 ("arm64: dts: imx8mp: Fix video clock
-> parents") the parent of IMX8MP_CLK_MEDIA_MIPI_PHY1_REF should be set in
-> the media_blk_ctrl. Currently, if mipi_dsi is not in use, its parent is
-> set to IMX8MP_VIDEO_PLL1_OUT, and might therefore clash with the
-> constraints coming from a panel.
+On Tue, Oct 03, 2023 at 12:22:57PM +0200, Geert Uytterhoeven wrote:
+> make dt_binding_check:
+>=20
+>     field-active-even: missing type definition
+>=20
+> The property is named "field-even-active", not "field-active-even".
+>=20
+> Fixes: 3ab7801dfab998a2 ("media: dt-bindings: media: rcar-vin: Describe o=
+ptional ep properties")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-From what I can see, it looks like the IMX8MP_CLK_MEDIA_MIPI_PHY1_REF
-parent is being set to IMX8MP_CLK_24M.  Isn't that the default? I also
-don't think we need to set a 24MHz clock to 24MHz if that's the
-default.
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-If that is the case, I would suggest we try to remove the assignment
-altogether to make the device tree simpler and less to untangle if a
-board needs to manually manipulate the clocks for some specific
-reason.
 
-adam
+--ldUZkgBUcVKbMqLP
+Content-Type: application/pgp-signature; name="signature.asc"
 
->
-> Cc: Adam Ford <aford173@gmail.com>
-> Signed-off-by: Benjamin Bara <benjamin.bara@skidata.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 14 ++++++--------
->  1 file changed, 6 insertions(+), 8 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/=
-dts/freescale/imx8mp.dtsi
-> index c946749a3d73..9539d747e28e 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -1640,11 +1640,6 @@ mipi_dsi: dsi@32e60000 {
->                                 clocks =3D <&clk IMX8MP_CLK_MEDIA_APB_ROO=
-T>,
->                                          <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1=
-_REF>;
->                                 clock-names =3D "bus_clk", "sclk_mipi";
-> -                               assigned-clocks =3D <&clk IMX8MP_CLK_MEDI=
-A_APB>,
-> -                                                 <&clk IMX8MP_CLK_MEDIA_=
-MIPI_PHY1_REF>;
-> -                               assigned-clock-parents =3D <&clk IMX8MP_S=
-YS_PLL1_800M>,
-> -                                                        <&clk IMX8MP_CLK=
-_24M>;
-> -                               assigned-clock-rates =3D <200000000>, <24=
-000000>;
->                                 samsung,pll-clock-frequency =3D <24000000=
->;
->                                 interrupts =3D <GIC_SPI 18 IRQ_TYPE_LEVEL=
-_HIGH>;
->                                 power-domains =3D <&media_blk_ctrl IMX8MP=
-_MEDIABLK_PD_MIPI_DSI_1>;
-> @@ -1747,13 +1742,16 @@ media_blk_ctrl: blk-ctrl@32ec0000 {
->                                                   <&clk IMX8MP_CLK_MEDIA_=
-APB>,
->                                                   <&clk IMX8MP_CLK_MEDIA_=
-DISP1_PIX>,
->                                                   <&clk IMX8MP_CLK_MEDIA_=
-DISP2_PIX>,
-> -                                                 <&clk IMX8MP_VIDEO_PLL1=
->;
-> +                                                 <&clk IMX8MP_VIDEO_PLL1=
->,
-> +                                                 <&clk IMX8MP_CLK_MEDIA_=
-MIPI_PHY1_REF>;
->                                 assigned-clock-parents =3D <&clk IMX8MP_S=
-YS_PLL2_1000M>,
->                                                          <&clk IMX8MP_SYS=
-_PLL1_800M>,
->                                                          <&clk IMX8MP_VID=
-EO_PLL1_OUT>,
-> -                                                        <&clk IMX8MP_VID=
-EO_PLL1_OUT>;
-> +                                                        <&clk IMX8MP_VID=
-EO_PLL1_OUT>,
-> +                                                        <&clk IMX8MP_CLK=
-_24M>;
->                                 assigned-clock-rates =3D <500000000>, <20=
-0000000>,
-> -                                                      <0>, <0>, <1039500=
-000>;
-> +                                                      <0>, <0>, <1039500=
-000>,
-> +                                                      <24000000>;
->                                 #power-domain-cells =3D <1>;
->
->                                 lvds_bridge: bridge@5c {
->
-> --
-> 2.34.1
->
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmUcEUcACgkQFA3kzBSg
+Kbb71RAAhm5KptvNhLpYsx7o9i9Zrks+1giKtS9RcFU+YeFpDPjIO4P4aKDaeeFn
+VkpnnNxxyRTy1DZMTChdzhBl/n7cX6jxRBMj3nz2HR8ZAVJ+vh4nhB5s/Yxt3uXz
+q57QAmKVRvWsMojE84BQW3/z38vShL4wFmOknwQFEzdx9X8P2H4wGGm6DkiIZewn
+y+vgrOSVR52ElmHsBC+pkqlih+sRYT6WhuX39D2CJJtd8msI7oNH9wl2Rig0j6Iv
+n0jGaRUx6/mXknlkUMx/zw3j1MPx5m8gFF6mlASwD3/zuZtPxcH+yHS+BAUzqIY4
+vKp+TXU8Z86NLuganfixaSDaKzBs7sNTtFWl7SJIcp0qSvCcUyZClPQJmfSACDh2
+tPRtKV+dBAWGwdvCMaxv0YLLRv7/2J1Xg0lyR5NROU9s6iY9fFVsSvuI7Ic1ZmJS
+K3lObW7ubrlMkithR3yuFwGcRLbaeu0OnCTYE9OoH02RcRezFQQ3pO0PWb/GrdQJ
+AnRXP4O0XOjkmeLAXb3bk/mPh5jKBr8YyxqrA197q/vJdhn/79bx64WUni2UyOvu
+dcJIHOAQkDbkjXO58atqB9zJUp7yHXs5Zn3PTG31k8pumWONpmeCAzvUXvmcv+HA
+CN8PxSQMGf4bceyU6acBPz/r+H8PQkGD/TW2U7Tn19suMMudX/4=
+=9VtW
+-----END PGP SIGNATURE-----
+
+--ldUZkgBUcVKbMqLP--
 
