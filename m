@@ -1,130 +1,139 @@
-Return-Path: <devicetree+bounces-5579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE41F7B6AAD
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 15:37:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDFE97B6A9F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 15:36:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 333A7B2096E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 13:36:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 9F950281630
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 13:36:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C85522940D;
-	Tue,  3 Oct 2023 13:36:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7ACB29405;
+	Tue,  3 Oct 2023 13:36:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFF73F505
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 13:36:54 +0000 (UTC)
-Received: from nikam.ms.mff.cuni.cz (nikam.ms.mff.cuni.cz [195.113.20.16])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0821BEA;
-	Tue,  3 Oct 2023 06:36:48 -0700 (PDT)
-Received: from gimli.ms.mff.cuni.cz (gimli.ms.mff.cuni.cz [195.113.20.176])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by nikam.ms.mff.cuni.cz (Postfix) with ESMTPS id 0EDDC284EB5;
-	Tue,  3 Oct 2023 15:36:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gimli.ms.mff.cuni.cz;
-	s=gen1; t=1696340207;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=thWfmTP97NwgtX66q57euOOe3X/YCYqAS2eCf0ja7RU=;
-	b=vIBVuWI1quTQ9rMlFiQaa6noo//RXYf7+9ZT6LHLF7MdH/P6zq592OAkyWsibvRii3rDrL
-	VCvCTyTpitq7TcgVyS0lqqSTOEIbMBF3BU6kNoK1CsgNNVPMCHc+fh5jKcIH9vlpDWGpyk
-	D7J2ea1Fhaue5PJMxZ/+SFl3VSZX4dM=
-Received: from localhost (koleje-wifi-0029.koleje.cuni.cz [78.128.191.29])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: karelb)
-	by gimli.ms.mff.cuni.cz (Postfix) with ESMTPSA id B879F441AC5;
-	Tue,  3 Oct 2023 15:36:46 +0200 (CEST)
-From: karelb@gimli.ms.mff.cuni.cz
-To: Markuss Broks <markuss.broks@gmail.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Henrik Rydberg <rydberg@bitmath.org>,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht
-Cc: =?UTF-8?q?Duje=20Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-	Karel Balej <karelb@gimli.ms.mff.cuni.cz>,
-	Karel Balej <balejk@matfyz.cz>
-Subject: [PATCH v2 5/5] input/touchscreen: imagis: add support for IST3032C
-Date: Tue,  3 Oct 2023 15:34:19 +0200
-Message-ID: <20231003133440.4696-6-karelb@gimli.ms.mff.cuni.cz>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231003133440.4696-1-karelb@gimli.ms.mff.cuni.cz>
-References: <20231003133440.4696-1-karelb@gimli.ms.mff.cuni.cz>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7327A29409
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 13:36:25 +0000 (UTC)
+Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 225DFC9
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 06:36:23 -0700 (PDT)
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-5a229ac185aso11339877b3.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Oct 2023 06:36:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696340182; x=1696944982; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=IRR3rv2KDWXmsB0Ix3ijU7n/jybq/13X5CydsHsyIcU=;
+        b=vqagwEwMD1LKeRPBe0/2Zv9u6la+KK0MjdGhxmbSuYFfSncfJ0kV+q+hv2q0zwWSGr
+         hA+mc5QNdDMqoXb3drq9zalG0i+LvRaoMz/3v0Dom+vnJBo/Xn7Ovtui7/FJOAuX3o8c
+         tYI/Jwn7W46EHZZYjrpCdOMluZiKiQr7YDeDxiqRv4n/4hnuxScVF+xR9OJSy5b8wbSO
+         nQBH0fQ1SrQgWpYBKwLnouAFoSOmEtto5UdyO5qVCsLZFWuAFeaYH3EkzgHDSBEG3gsH
+         TR3Crc5XdTVL1BL8Ka3YnKaMsd1tAsprojV6zYQcJnLcgaqFMJq85ksQhK3tndYgEXZo
+         XHSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696340182; x=1696944982;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IRR3rv2KDWXmsB0Ix3ijU7n/jybq/13X5CydsHsyIcU=;
+        b=NC92JreVHqF36sm9Kiai7wdpFRHCyNUzTwKyqBNid7lkdaFJtbjZdDYwn4w5XdseUb
+         xs+TU3VfIXY7qO2ZSk/IgHJSRlxMHYisDcDD3DJkm+MeJ396jNxgKu15T7i/IzMHyoQE
+         mcKijFk/FceEs24SjeihLaJ53QzslL2WvcYR/1kG7EG3XD6prenDI+V02REI/JstoPqZ
+         TB6MPTIBoX8La1qS0t+uWmiL8O3NrC0DO5CqmPt45iU1IlSbmfWWhiSlrDh3X6PswN9u
+         JkWQmKPOEHwgpmBF/+t35Hi7I24ENoUoJLQoTZG8O09DEcoAuWn1VSqyRzHjJghrHpCx
+         2anw==
+X-Gm-Message-State: AOJu0YwVuA8pmkZFpqFA7E54vkUae/HgHNfS8qGrX83VMtrag5BS3p6y
+	dtRc5co6Qh3NxhFjGJ4DCu724ojAXaxkFYEi7POLnS6s0L6Hd7X9+po=
+X-Google-Smtp-Source: AGHT+IG6YMLVfihSCcX3qLX7ge5fFIGHKpnjN5f2nZxD04+vvfmGOZWNVnWdqRL4QhQ9K3xPrTMKY1PYBCFY7JRW808=
+X-Received: by 2002:a0d:d891:0:b0:58f:a19f:2b79 with SMTP id
+ a139-20020a0dd891000000b0058fa19f2b79mr16157767ywe.9.1696340182327; Tue, 03
+ Oct 2023 06:36:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,
-	RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+References: <20230827115033.935089-1-dmitry.baryshkov@linaro.org>
+ <20230827115033.935089-6-dmitry.baryshkov@linaro.org> <493aff10d698c9ca5bdbeae45250f5fe.sboyd@kernel.org>
+ <7312633f-3b53-43a1-b6e3-010513c2a1e2@linaro.org> <ZRwQvP_GbvwvLAn8@gerhold.net>
+In-Reply-To: <ZRwQvP_GbvwvLAn8@gerhold.net>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 3 Oct 2023 16:36:11 +0300
+Message-ID: <CAA8EJpr9WH+MQdOJQ5yockg9TsUnDcenGbs=dq4Nt0SSBaK=0A@mail.gmail.com>
+Subject: Re: [PATCH v4 05/23] interconnect: icc-clk: add support for scaling
+ using OPP
+To: Stephan Gerhold <stephan@gerhold.net>
+Cc: Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Georgi Djakov <djakov@kernel.org>, Ilia Lin <ilia.lin@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Nishanth Menon <nm@ti.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Viresh Kumar <vireshk@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-pm@vger.kernel.org, 
+	linux-clk@vger.kernel.org, Christian Marangi <ansuelsmth@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Karel Balej <karelb@gimli.ms.mff.cuni.cz>
+On Tue, 3 Oct 2023 at 16:02, Stephan Gerhold <stephan@gerhold.net> wrote:
+>
+> On Tue, Oct 03, 2023 at 11:30:28AM +0300, Dmitry Baryshkov wrote:
+> > On 28/08/2023 21:09, Stephen Boyd wrote:
+> > > Quoting Dmitry Baryshkov (2023-08-27 04:50:15)
+> > > > diff --git a/drivers/interconnect/icc-clk.c b/drivers/interconnect/icc-clk.c
+> > > > index d787f2ea36d9..45ffb068979d 100644
+> > > > --- a/drivers/interconnect/icc-clk.c
+> > > > +++ b/drivers/interconnect/icc-clk.c
+> > > > @@ -25,12 +28,16 @@ struct icc_clk_provider {
+> > > >   static int icc_clk_set(struct icc_node *src, struct icc_node *dst)
+> > > >   {
+> > > >          struct icc_clk_node *qn = src->data;
+> > > > +       unsigned long rate = icc_units_to_bps(src->peak_bw);
+> > > >          int ret;
+> > > >          if (!qn || !qn->clk)
+> > > >                  return 0;
+> > > > -       if (!src->peak_bw) {
+> > > > +       if (qn->opp)
+> > > > +               return dev_pm_opp_set_rate(qn->dev, rate);
+> > >
+> > > Just curious how does lockdep do with this? Doesn't OPP call into
+> > > interconnect code, so lockdep will complain about ABBA?
+> >
+> > Unfortunately it does. It seems, the icc-clk is not a proper way to go here.
+> > I will take a look at reusing set_required_opps for this case.
+> >
+>
+> Could you elaborate a bit which locks exactly cause trouble here?
+> I'm probably missing something here.
+>
+> From a quick look at the OPP code I don't see a global lock taken there
+> for the entire OPP switch sequence, so I'm not sure how this could cause
+> an ABBA deadlock.
 
-From: Karel Balej <balejk@matfyz.cz>
+For example:
 
-IST3032C is a touchscreen chip used for instance in the
-samsung,coreprimevelte smartphone, with which this was tested. Add the
-chip specific information to the driver.
+[    7.680041] Chain exists of:
+[    7.680041]   icc_bw_lock --> regulator_ww_class_acquire --> fs_reclaim
+[    7.680041]
+[    7.687955]  Possible unsafe locking scenario:
+[    7.687955]
+[    7.699039]        CPU0                    CPU1
+[    7.704752]        ----                    ----
+[    7.709266]   lock(fs_reclaim);
+[    7.713779]                                lock(regulator_ww_class_acquire);
+[    7.716919]                                lock(fs_reclaim);
+[    7.724204]   lock(icc_bw_lock);
 
-Signed-off-by: Karel Balej <balejk@matfyz.cz>
----
- drivers/input/touchscreen/imagis.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/drivers/input/touchscreen/imagis.c b/drivers/input/touchscreen/imagis.c
-index 84a02672ac47..41f28e6e9cb1 100644
---- a/drivers/input/touchscreen/imagis.c
-+++ b/drivers/input/touchscreen/imagis.c
-@@ -35,6 +35,8 @@
- #define IST3038B_REG_CHIPID		0x30
- #define IST3038B_WHOAMI			0x30380b
- 
-+#define IST3032C_WHOAMI			0x32c
-+
- struct imagis_properties {
- 	unsigned int interrupt_msg_cmd;
- 	unsigned int touch_coord_cmd;
-@@ -363,6 +365,13 @@ static int imagis_resume(struct device *dev)
- 
- static DEFINE_SIMPLE_DEV_PM_OPS(imagis_pm_ops, imagis_suspend, imagis_resume);
- 
-+static const struct imagis_properties imagis_3032c_data = {
-+	.interrupt_msg_cmd = IST3038C_REG_INTR_MESSAGE,
-+	.touch_coord_cmd = IST3038C_REG_TOUCH_COORD,
-+	.whoami_cmd = IST3038C_REG_CHIPID,
-+	.whoami_val = IST3032C_WHOAMI,
-+};
-+
- static const struct imagis_properties imagis_3038b_data = {
- 	.interrupt_msg_cmd = IST3038B_REG_STATUS,
- 	.touch_coord_cmd = IST3038B_REG_STATUS,
-@@ -380,6 +389,7 @@ static const struct imagis_properties imagis_3038c_data = {
- 
- #ifdef CONFIG_OF
- static const struct of_device_id imagis_of_match[] = {
-+	{ .compatible = "imagis,ist3032c", .data = &imagis_3032c_data },
- 	{ .compatible = "imagis,ist3038b", .data = &imagis_3038b_data },
- 	{ .compatible = "imagis,ist3038c", .data = &imagis_3038c_data },
- 	{ },
 -- 
-2.42.0
-
+With best wishes
+Dmitry
 
