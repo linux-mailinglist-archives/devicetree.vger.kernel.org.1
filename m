@@ -1,276 +1,236 @@
-Return-Path: <devicetree+bounces-5399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4770A7B62F8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 09:58:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3F0A7B630D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 10:01:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id E637C28159A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 07:58:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id DF58E1C20823
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 08:01:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 497F2D50F;
-	Tue,  3 Oct 2023 07:58:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B5B5D51D;
+	Tue,  3 Oct 2023 08:01:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6662D27B;
-	Tue,  3 Oct 2023 07:58:08 +0000 (UTC)
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFF7890;
-	Tue,  3 Oct 2023 00:58:06 -0700 (PDT)
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39354RYX021850;
-	Tue, 3 Oct 2023 09:57:28 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=2y5VWljP34AhFxfwuXFEGUJY8eirMnibqQLHOoorPbE=; b=fa
-	R320QQYh6hKcFinrg870rQe7h0GoXbzAPslv70ug5D/eA+R8ih3Xs94oiISEkK6B
-	+lVN0Nk0RWDanLNzOlVYVNXoVC3ylH/TR6SkGucS1gcPw7FozvY41TLJnEVq1maw
-	Jl6Eziv6CXtKt7MA3JP2LjxAGGwZhycpeAquJPFY02PW+RyneA8UuzdwjLuc2TLb
-	C9VlpRVVgHLOWIyRNtcpjQgKBqCrRy6rnZcMMhIH05RrLAiA3z+B1mGpbD7TMDLg
-	lm/a6IQSsoxIMoQfUPRokZlwPSqQ1ylCSIFMXzh4BEOWLA7H9P1siSHgVyaetmgZ
-	OCu6sQeMWTJ6KW6XuqMg==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3texmj0e7j-1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 758B8D313
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 08:01:50 +0000 (UTC)
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12E3BA1;
+	Tue,  3 Oct 2023 01:01:49 -0700 (PDT)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39376Fua020801;
+	Tue, 3 Oct 2023 04:01:27 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3tegk3ypcy-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 03 Oct 2023 09:57:28 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 9D9B9100057;
-	Tue,  3 Oct 2023 09:57:27 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 88D7222D164;
-	Tue,  3 Oct 2023 09:57:27 +0200 (CEST)
-Received: from [10.201.20.32] (10.201.20.32) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 3 Oct
- 2023 09:57:25 +0200
-Message-ID: <1d33a7ee-3966-5c2e-5a6c-08a6e56d0f75@foss.st.com>
-Date: Tue, 3 Oct 2023 09:57:24 +0200
+	Tue, 03 Oct 2023 04:01:26 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 39381PvK027344
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 3 Oct 2023 04:01:25 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Tue, 3 Oct 2023
+ 04:01:24 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Tue, 3 Oct 2023 04:01:24 -0400
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.194])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 393814Mx012373;
+	Tue, 3 Oct 2023 04:01:07 -0400
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
+        Jean Delvare
+	<jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
+Subject: [PATCH v3 1/2] dt-bindings: hwmon: ltc2991: add bindings
+Date: Tue, 3 Oct 2023 11:00:39 +0300
+Message-ID: <20231003080059.8041-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v5 03/11] dt-bindings: bus: document RIFSC
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-CC: <Oleksii_Moisieiev@epam.com>, <gregkh@linuxfoundation.org>,
-        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <alexandre.torgue@foss.st.com>, <vkoul@kernel.org>, <jic23@kernel.org>,
-        <olivier.moysan@foss.st.com>, <arnaud.pouliquen@foss.st.com>,
-        <mchehab@kernel.org>, <fabrice.gasnier@foss.st.com>,
-        <andi.shyti@kernel.org>, <ulf.hansson@linaro.org>,
-        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
-        <hugues.fruchet@foss.st.com>, <lee@kernel.org>, <will@kernel.org>,
-        <catalin.marinas@arm.com>, <arnd@kernel.org>,
-        <richardcochran@gmail.com>, Frank Rowand <frowand.list@gmail.com>,
-        <peng.fan@oss.nxp.com>, <linux-crypto@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-media@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-p.hy@lists.infradead.org>,
-        <linux-serial@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>
-References: <20230929142852.578394-1-gatien.chevallier@foss.st.com>
- <20230929142852.578394-4-gatien.chevallier@foss.st.com>
- <20231002183041.GA2062984-robh@kernel.org>
-From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
-In-Reply-To: <20231002183041.GA2062984-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.20.32]
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: RnXSYrQcCB2MDOXZu0k9c1grQvddaMBY
+X-Proofpoint-GUID: RnXSYrQcCB2MDOXZu0k9c1grQvddaMBY
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-03_05,2023-10-02_01,2023-05-22_02
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+ definitions=2023-10-03_04,2023-10-02_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 clxscore=1015
+ bulkscore=0 impostorscore=0 lowpriorityscore=0 malwarescore=0 spamscore=0
+ priorityscore=1501 mlxscore=0 suspectscore=0 adultscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2309180000
+ definitions=main-2310030056
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Add dt-bindings for ltc2991 octal i2c voltage, current and temperature
+monitor.
 
+Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+---
+changes in v3:
+ - expand description for differential channels and temperature channels by
+   mentioning the pin configuration that is set via these properties.
+ - add `additionalProperties: false` for the channel properties
+ - make `reg` required for channel properties
+ - make `adi,temperature-enable` and `shunt-resistor-micro-ohms` mutually
+   exclusive following the approach suggested in review.
+ .../bindings/hwmon/adi,ltc2991.yaml           | 128 ++++++++++++++++++
+ 1 file changed, 128 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml
 
-On 10/2/23 20:30, Rob Herring wrote:
-> On Fri, Sep 29, 2023 at 04:28:44PM +0200, Gatien Chevallier wrote:
->> Document RIFSC (RIF security controller). RIFSC is a firewall controller
->> composed of different kinds of hardware resources.
->>
->> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
->> ---
->>
->> Changes in V5:
->> 	- Renamed feature-domain* to access-control*
->>
->> Changes in V2:
->> 	- Corrected errors highlighted by Rob's robot
->> 	- No longer define the maxItems for the "feature-domains"
->> 	  property
->> 	- Fix example (node name, status)
->> 	- Declare "feature-domain-names" as an optional
->> 	  property for child nodes
->> 	- Fix description of "feature-domains" property
->>
->>   .../bindings/bus/st,stm32mp25-rifsc.yaml      | 105 ++++++++++++++++++
->>   1 file changed, 105 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml b/Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml
->> new file mode 100644
->> index 000000000000..c28fceff3036
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml
->> @@ -0,0 +1,105 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/bus/st,stm32mp25-rifsc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: STM32 Resource isolation framework security controller
->> +
->> +maintainers:
->> +  - Gatien Chevallier <gatien.chevallier@foss.st.com>
->> +
->> +description: |
->> +  Resource isolation framework (RIF) is a comprehensive set of hardware blocks
->> +  designed to enforce and manage isolation of STM32 hardware resources like
->> +  memory and peripherals.
->> +
->> +  The RIFSC (RIF security controller) is composed of three sets of registers,
->> +  each managing a specific set of hardware resources:
->> +    - RISC registers associated with RISUP logic (resource isolation device unit
->> +      for peripherals), assign all non-RIF aware peripherals to zero, one or
->> +      any security domains (secure, privilege, compartment).
->> +    - RIMC registers: associated with RIMU logic (resource isolation master
->> +      unit), assign all non RIF-aware bus master to one security domain by
->> +      setting secure, privileged and compartment information on the system bus.
->> +      Alternatively, the RISUP logic controlling the device port access to a
->> +      peripheral can assign target bus attributes to this peripheral master port
->> +      (supported attribute: CID).
->> +    - RISC registers associated with RISAL logic (resource isolation device unit
->> +      for address space - Lite version), assign address space subregions to one
->> +      security domains (secure, privilege, compartment).
->> +
->> +properties:
->> +  compatible:
->> +    contains:
->> +      const: st,stm32mp25-rifsc
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  "#address-cells":
->> +    const: 1
->> +
->> +  "#size-cells":
->> +    const: 1
->> +
->> +  ranges: true
->> +
->> +  "#access-controller-cells":
->> +    const: 1
-> 
-> You should define what the cells contain here.
-> 
+diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml b/Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml
+new file mode 100644
+index 000000000000..011e5b65c79c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml
+@@ -0,0 +1,128 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++
++$id: http://devicetree.org/schemas/hwmon/adi,ltc2991.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices LTC2991 Octal I2C Voltage, Current and Temperature Monitor
++
++maintainers:
++  - Antoniu Miclaus <antoniu.miclaus@analog.com>
++
++description: |
++  The LTC2991 is used to monitor system temperatures, voltages and currents.
++  Through the I2C serial interface, the eight monitors can individually measure
++  supply voltages and can be paired for differential measurements of current
++  sense resistors or temperature sensing transistors.
++
++  Datasheet:
++    https://www.analog.com/en/products/ltc2991.html
++
++properties:
++  compatible:
++    const: adi,ltc2991
++
++  reg:
++    maxItems: 1
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++  vcc-supply: true
++
++patternProperties:
++  "^channel@[0-3]$":
++    type: object
++    description:
++      Represents the differential/temperature channels.
++
++    properties:
++      reg:
++        description:
++          The channel number. LTC2991 can monitor 4 currents/temperatures.
++        items:
++          minimum: 0
++          maximum: 3
++
++      shunt-resistor-micro-ohms:
++        description:
++          The value of curent sense resistor in micro ohms. Pin configuration is
++          set for differential input pair.
++
++      adi,temperature-enable:
++        description:
++          Enables temperature readings. Pin configuration is set for remote
++          diode temperature measurement.
++        type: boolean
++
++    required:
++      - reg
++
++    allOf:
++      - if:
++          required:
++            - shunt-resistor-micro-ohms
++        then:
++          properties:
++            adi,temperature-enable: false
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - vcc-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        hwmon@48 {
++            compatible = "adi,ltc2991";
++            reg = <0x48>;
++            vcc-supply = <&vcc>;
++        };
++    };
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        hwmon@48 {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            compatible = "adi,ltc2991";
++            reg = <0x48>;
++            vcc-supply = <&vcc>;
++
++            channel@0 {
++                    reg = <0x0>;
++                    shunt-resistor-micro-ohms = <100000>;
++            };
++
++            channel@1 {
++                    reg = <0x1>;
++                    shunt-resistor-micro-ohms = <100000>;
++            };
++
++            channel@2 {
++                    reg = <0x2>;
++                    adi,temperature-enable;
++            };
++
++            channel@3 {
++                    reg = <0x3>;
++                    adi,temperature-enable;
++            };
++        };
++    };
++...
+-- 
+2.42.0
 
-Ok, I'll do this as well for the ETZPC binding
-
->> +
->> +  access-control-provider: true
->> +
-
-Will be dropped, ditto for ETZPC.
-
->> +patternProperties:
->> +  "^.*@[0-9a-f]+$":
->> +    description: Peripherals
->> +    type: object
-> 
->         additionalProperties: true
-> 
->> +    properties:
->> +      access-controller:
->> +        minItems: 1
->> +        description:
->> +          The phandle of the firewall controller of the peripheral and the
->> +          platform-specific firewall ID of the peripheral.
->> +
->> +      access-controller-names:
->> +        minItems: 1
-> 
-> Drop all this. You have to define these in the specific device schemas
-> anyways.
-> 
-
-I guess that:
-
-patternProperties:
-   "^.*@[0-9a-f]+$":
-     description: Peripherals
-     type: object
-
-     required:
-       - access-controller
-
-is sufficient if I describe what the content of the cells will be in the
-"#access-controller-cells" above. It avoids redundant information. I'll
-make the change for V6, thank you.
-
-Best regards,
-Gatien
-
->> +
->> +    required:
->> +      - access-controller
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - "#address-cells"
->> +  - "#size-cells"
->> +  - access-control-provider
->> +  - "#access-controller-cells"
->> +  - ranges
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    // In this example, the usart2 device refers to rifsc as its domain
->> +    // controller.
->> +    // Access rights are verified before creating devices.
->> +
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +
->> +    rifsc: bus@42080000 {
->> +        compatible = "st,stm32mp25-rifsc";
->> +        reg = <0x42080000 0x1000>;
->> +        #address-cells = <1>;
->> +        #size-cells = <1>;
->> +        access-control-provider;
->> +        #access-controller-cells = <1>;
->> +        ranges;
->> +
->> +        usart2: serial@400e0000 {
->> +              compatible = "st,stm32h7-uart";
->> +              reg = <0x400e0000 0x400>;
->> +              interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
->> +              clocks = <&ck_flexgen_08>;
->> +              access-controller = <&rifsc 32>;
->> +        };
->> +    };
->> -- 
->> 2.25.1
->>
 
