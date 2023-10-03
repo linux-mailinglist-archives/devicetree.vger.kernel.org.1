@@ -1,211 +1,174 @@
-Return-Path: <devicetree+bounces-5464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F4AF7B66CA
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 12:53:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E18EA7B66CE
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 12:53:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3262B28161A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 10:53:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 67D011C20842
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 10:53:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 475D01F18C;
-	Tue,  3 Oct 2023 10:52:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A26B4208AC;
+	Tue,  3 Oct 2023 10:53:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A12F57ED
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 10:52:55 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CDC4B0;
-	Tue,  3 Oct 2023 03:52:53 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 393AjLNV031991;
-	Tue, 3 Oct 2023 10:52:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=InmKVGM1KLLAk6jQd8wSrFaEvqZwF/oNWUzAeh/qEqI=;
- b=DDN9zv9cQeiWaxQQ0w6UtECF0C4Shy+aV6lPh86LWFbhS9FFAZftEGjJoCAsB++Y1QeJ
- gJZ1ZNbSjLzwriu+Ta4xxeB0NFJio9fxeQVGqLxyHzt2KKKAYbGTInH4cLp4vqop/OQt
- TNxI4gCQHyeXDFm5UgIDGA40BgpwZoknzh8x6bJt1+gQcqCFjC82AV5LH4YahCzeROn8
- v7axzXYahabrqorlwGoPoG/gifXRFqXEdJamo1M+sdNwHOG3pvfBUwMz7y7e6WdUVhlK
- iPOQn7wRR8rKOnXjDXzyp6DDz8HbXnB0GuGe3NwFSmwQGNtvqA7mquH5/PW6Up4r8uZw Tw== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tgaw5gsdf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 03 Oct 2023 10:52:46 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 393Aqjma017666
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 3 Oct 2023 10:52:45 GMT
-Received: from [10.214.66.58] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Tue, 3 Oct
- 2023 03:52:41 -0700
-Message-ID: <8218d393-7840-49b9-b6d6-055a6ed372de@quicinc.com>
-Date: Tue, 3 Oct 2023 16:22:38 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB6E22030E
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 10:53:32 +0000 (UTC)
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 906DAB7
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 03:53:30 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-40572aeb6d0so7310715e9.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Oct 2023 03:53:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696330409; x=1696935209; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y1zEdiBl0ExGGXae3livewx7OK91KyMJUhCwm90pFhU=;
+        b=dAbVnjeTtuGXmH22VTPslFg0+3MgTbf3jbQKWpVP+DHFK3FWL0t8nt7whadL1q6jxy
+         B/RJDH0gr8ojdF0iZ9enlqVsCi4T+yco3zI11rJUsigsg2P9i5sCVisGpdPLxp3fpuZq
+         IlHjgmaqhkDoEj0HBiLjeHwhW3A+Pl8pjw94lZNk8QJx/hn05zjsDzCLRJMac4Y77FYE
+         Ek2qMkkaYSFdCRc+w0zL9Vi26rQsyzDxEHDZPlwLyf+PKW3mGOOgEMBin9Kr8m+k7pC/
+         bLmppTep3yMcYgBJ46Gj91iTuySEhCVyofp6CpUKNoPwTNw3yR0Y4+6I5tXzbHVGjB6L
+         m83g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696330409; x=1696935209;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Y1zEdiBl0ExGGXae3livewx7OK91KyMJUhCwm90pFhU=;
+        b=BCFTSnrLuzL12y6S3hm84P5NQ6elka26Zdwrook+JnSQORBLmKd/t75/wOBYOWT5OZ
+         mTtx5pMIKZdRaz8WdIhu/KbMhuA/htAM+ra9j5fAfdrmrsrGv1mINBUsPmXoHa7GBsL2
+         9Vhiuhw3U8VaIWsXVCzAyK4x/KLx35ezZovgRkE2/ttTApVx1W/Celts9+uJUMNKcj7l
+         VA7yO42Fql1iJrmxYp4WdfdmosMcE/v4YebH5ZA0Q4rQIUlYwXEXliLWdU8iiAkttCUt
+         Y6HvEB6LTH8/R91qlJ05cpMvo0oPzmCz+5ounc2T/yZOs5Nlb77AOIZmqzYo6F603Sol
+         bP9Q==
+X-Gm-Message-State: AOJu0Yyujf4QZRh6vxSEdZJ4OVSHupOwmGjsOZZiRvlFzqHqyHCg095P
+	uSBQ9EEvk9UezVnlpv7vpDYZsg==
+X-Google-Smtp-Source: AGHT+IFrlFTbWNC8M7mfAowD4//qf9eH7koPKNnANa5WAno4xaY32Mn62vsE1r4OcW8lmx133LVOGQ==
+X-Received: by 2002:a5d:4951:0:b0:31f:fb02:4dcd with SMTP id r17-20020a5d4951000000b0031ffb024dcdmr12544705wrs.4.1696330408555;
+        Tue, 03 Oct 2023 03:53:28 -0700 (PDT)
+Received: from localhost ([102.36.222.112])
+        by smtp.gmail.com with ESMTPSA id e11-20020a056000194b00b0032320a9b010sm1305878wry.28.2023.10.03.03.53.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Oct 2023 03:53:27 -0700 (PDT)
+Date: Tue, 3 Oct 2023 13:53:25 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, David Lechner <dlechner@baylibre.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-staging@lists.linux.dev
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	David Lechner <david@lechnology.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Axel Haslam <ahaslam@baylibre.com>,
+	Philip Molloy <pmolloy@baylibre.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 26/27] staging: iio: resolver: ad2s1210: implement
+ fault events
+Message-ID: <d54a43ad-0044-465c-92f4-2ffd46ccf983@kadam.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] arm64: dts: qcom: Add interconnect nodes for SDX75
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <1696327472-21776-1-git-send-email-quic_rohiagar@quicinc.com>
- <1696327472-21776-2-git-send-email-quic_rohiagar@quicinc.com>
- <CAA8EJpp0+8FBtrmC7MGRkAdiavGSBUH7oAcQ0rN1OzLCWnsk8Q@mail.gmail.com>
-From: Rohit Agarwal <quic_rohiagar@quicinc.com>
-In-Reply-To: <CAA8EJpp0+8FBtrmC7MGRkAdiavGSBUH7oAcQ0rN1OzLCWnsk8Q@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 6tnEZ5wUJn3u5FpiGNuWsO0RV0tsTAVV
-X-Proofpoint-GUID: 6tnEZ5wUJn3u5FpiGNuWsO0RV0tsTAVV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-03_07,2023-10-02_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
- phishscore=0 priorityscore=1501 clxscore=1015 impostorscore=0 mlxscore=0
- lowpriorityscore=0 mlxlogscore=919 adultscore=0 spamscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
- definitions=main-2310030076
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230929-ad2s1210-mainline-v3-26-fa4364281745@baylibre.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hi David,
 
-On 10/3/2023 3:35 PM, Dmitry Baryshkov wrote:
-> On Tue, 3 Oct 2023 at 13:04, Rohit Agarwal <quic_rohiagar@quicinc.com> wrote:
->> Add interconnect nodes to support interconnects on SDX75.
->> Also parallely add the interconnect property for UART required
->> so that the bootup to shell does not break with interconnects
->> in place.
->>
->> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sdx75.dtsi | 52 +++++++++++++++++++++++++++++++++++++
->>   1 file changed, 52 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdx75.dtsi b/arch/arm64/boot/dts/qcom/sdx75.dtsi
->> index e180aa4..ac0b785 100644
->> --- a/arch/arm64/boot/dts/qcom/sdx75.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sdx75.dtsi
->> @@ -8,6 +8,8 @@
->>
->>   #include <dt-bindings/clock/qcom,rpmh.h>
->>   #include <dt-bindings/clock/qcom,sdx75-gcc.h>
->> +#include <dt-bindings/interconnect/qcom,icc.h>
->> +#include <dt-bindings/interconnect/qcom,sdx75.h>
->>   #include <dt-bindings/interrupt-controller/arm-gic.h>
->>   #include <dt-bindings/power/qcom,rpmhpd.h>
->>   #include <dt-bindings/power/qcom-rpmpd.h>
->> @@ -197,6 +199,19 @@
->>                  };
->>          };
->>
->> +       clk_virt: interconnect-0 {
->> +               compatible = "qcom,sdx75-clk-virt";
->> +               #interconnect-cells = <2>;
->> +               qcom,bcm-voters = <&apps_bcm_voter>;
->> +               clocks = <&rpmhcc RPMH_QPIC_CLK>;
->> +       };
->> +
->> +       mc_virt: interconnect-1 {
->> +               compatible = "qcom,sdx75-mc-virt";
->> +               #interconnect-cells = <2>;
->> +               qcom,bcm-voters = <&apps_bcm_voter>;
->> +       };
-> Interconnect comes after firmware, 'i' > 'f'.
-Will update this.
+kernel test robot noticed the following build warnings:
 
-Thanks,
-Rohit.
->
->> +
->>          firmware {
->>                  scm: scm {
->>                          compatible = "qcom,scm-sdx75", "qcom,scm";
->> @@ -434,6 +449,9 @@
->>                          clock-names = "m-ahb",
->>                                        "s-ahb";
->>                          iommus = <&apps_smmu 0xe3 0x0>;
->> +                       interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
->> +                                        &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>;
->> +                       interconnect-names = "qup-core";
->>                          #address-cells = <2>;
->>                          #size-cells = <2>;
->>                          ranges;
->> @@ -444,6 +462,12 @@
->>                                  reg = <0x0 0x00984000 0x0 0x4000>;
->>                                  clocks = <&gcc GCC_QUPV3_WRAP0_S1_CLK>;
->>                                  clock-names = "se";
->> +                               interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
->> +                                                &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
->> +                                               <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
->> +                                                &system_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
->> +                               interconnect-names = "qup-core",
->> +                                                    "qup-config";
->>                                  interrupts = <GIC_SPI 338 IRQ_TYPE_LEVEL_HIGH>;
->>                                  pinctrl-0 = <&qupv3_se1_2uart_active>;
->>                                  pinctrl-1 = <&qupv3_se1_2uart_sleep>;
->> @@ -453,6 +477,20 @@
->>                          };
->>                  };
->>
->> +               system_noc: interconnect@1640000 {
->> +                       compatible = "qcom,sdx75-system-noc";
->> +                       reg = <0x0 0x01640000 0x0 0x4b400>;
->> +                       #interconnect-cells = <2>;
->> +                       qcom,bcm-voters = <&apps_bcm_voter>;
->> +               };
->> +
->> +               pcie_anoc: interconnect@16c0000 {
->> +                       compatible = "qcom,sdx75-pcie-anoc";
->> +                       reg = <0x0 0x016c0000 0x0 0x14200>;
->> +                       #interconnect-cells = <2>;
->> +                       qcom,bcm-voters = <&apps_bcm_voter>;
->> +               };
->> +
->>                  tcsr_mutex: hwlock@1f40000 {
->>                          compatible = "qcom,tcsr-mutex";
->>                          reg = <0x0 0x01f40000 0x0 0x40000>;
->> @@ -733,6 +771,20 @@
->>                          #freq-domain-cells = <1>;
->>                          #clock-cells = <1>;
->>                  };
->> +
->> +               dc_noc: interconnect@190e0000 {
->> +                       compatible = "qcom,sdx75-dc-noc";
->> +                       reg = <0x0 0x190e0000 0x0 0x8200>;
->> +                       #interconnect-cells = <2>;
->> +                       qcom,bcm-voters = <&apps_bcm_voter>;
->> +               };
->> +
->> +               gem_noc: interconnect@19100000 {
->> +                       compatible = "qcom,sdx75-gem-noc";
->> +                       reg = <0x0 0x19100000 0x0 0x34080>;
->> +                       #interconnect-cells = <2>;
->> +                       qcom,bcm-voters = <&apps_bcm_voter>;
->> +               };
->>          };
->>
->>          timer {
->> --
->> 2.7.4
->>
->
+url:    https://github.com/intel-lab-lkp/linux/commits/David-Lechner/dt-bindings-iio-resolver-add-devicetree-bindings-for-ad2s1210/20230930-014031
+base:   5e99f692d4e32e3250ab18d511894ca797407aec
+patch link:    https://lore.kernel.org/r/20230929-ad2s1210-mainline-v3-26-fa4364281745%40baylibre.com
+patch subject: [PATCH v3 26/27] staging: iio: resolver: ad2s1210: implement fault events
+config: x86_64-randconfig-161-20231002 (https://download.01.org/0day-ci/archive/20231003/202310031839.tKR53HoP-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20231003/202310031839.tKR53HoP-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202310031839.tKR53HoP-lkp@intel.com/
+
+smatch warnings:
+drivers/staging/iio/resolver/ad2s1210.c:436 ad2s1210_single_conversion() error: buffer overflow 'st->rx' 2 <= 2
+
+vim +436 drivers/staging/iio/resolver/ad2s1210.c
+
+ecf16f4922f691 David Lechner    2023-09-29  391  static int ad2s1210_single_conversion(struct iio_dev *indio_dev,
+29148543c52146 Jonathan Cameron 2011-10-05  392  				      struct iio_chan_spec const *chan,
+e9336a85ceb885 David Lechner    2023-09-29  393  				      int *val)
+817e5c65c511d4 Graf Yang        2010-10-27  394  {
+ecf16f4922f691 David Lechner    2023-09-29  395  	struct ad2s1210_state *st = iio_priv(indio_dev);
+ecf16f4922f691 David Lechner    2023-09-29  396  	s64 timestamp;
+69cc7fbdcdf2e3 David Lechner    2023-09-29  397  	int ret;
+817e5c65c511d4 Graf Yang        2010-10-27  398  
+817e5c65c511d4 Graf Yang        2010-10-27  399  	mutex_lock(&st->lock);
+69cc7fbdcdf2e3 David Lechner    2023-09-29  400  	gpiod_set_value(st->sample_gpio, 1);
+ecf16f4922f691 David Lechner    2023-09-29  401  	timestamp = iio_get_time_ns(indio_dev);
+817e5c65c511d4 Graf Yang        2010-10-27  402  	/* delay (6 * tck + 20) nano seconds */
+817e5c65c511d4 Graf Yang        2010-10-27  403  	udelay(1);
+817e5c65c511d4 Graf Yang        2010-10-27  404  
+29148543c52146 Jonathan Cameron 2011-10-05  405  	switch (chan->type) {
+29148543c52146 Jonathan Cameron 2011-10-05  406  	case IIO_ANGL:
+69cc7fbdcdf2e3 David Lechner    2023-09-29  407  		ret = ad2s1210_set_mode(st, MOD_POS);
+29148543c52146 Jonathan Cameron 2011-10-05  408  		break;
+29148543c52146 Jonathan Cameron 2011-10-05  409  	case IIO_ANGL_VEL:
+69cc7fbdcdf2e3 David Lechner    2023-09-29  410  		ret = ad2s1210_set_mode(st, MOD_VEL);
+29148543c52146 Jonathan Cameron 2011-10-05  411  		break;
+29148543c52146 Jonathan Cameron 2011-10-05  412  	default:
+29148543c52146 Jonathan Cameron 2011-10-05  413  		ret = -EINVAL;
+29148543c52146 Jonathan Cameron 2011-10-05  414  		break;
+29148543c52146 Jonathan Cameron 2011-10-05  415  	}
+29148543c52146 Jonathan Cameron 2011-10-05  416  	if (ret < 0)
+29148543c52146 Jonathan Cameron 2011-10-05  417  		goto error_ret;
+ecf16f4922f691 David Lechner    2023-09-29  418  	ret = spi_read(st->sdev, &st->sample, 3);
+29148543c52146 Jonathan Cameron 2011-10-05  419  	if (ret < 0)
+817e5c65c511d4 Graf Yang        2010-10-27  420  		goto error_ret;
+29148543c52146 Jonathan Cameron 2011-10-05  421  
+29148543c52146 Jonathan Cameron 2011-10-05  422  	switch (chan->type) {
+29148543c52146 Jonathan Cameron 2011-10-05  423  	case IIO_ANGL:
+ecf16f4922f691 David Lechner    2023-09-29  424  		*val = be16_to_cpu(st->sample.raw);
+29148543c52146 Jonathan Cameron 2011-10-05  425  		ret = IIO_VAL_INT;
+29148543c52146 Jonathan Cameron 2011-10-05  426  		break;
+29148543c52146 Jonathan Cameron 2011-10-05  427  	case IIO_ANGL_VEL:
+ecf16f4922f691 David Lechner    2023-09-29  428  		*val = (s16)be16_to_cpu(st->sample.raw);
+29148543c52146 Jonathan Cameron 2011-10-05  429  		ret = IIO_VAL_INT;
+29148543c52146 Jonathan Cameron 2011-10-05  430  		break;
+29148543c52146 Jonathan Cameron 2011-10-05  431  	default:
+5e99f692d4e32e David Lechner    2023-09-21  432  		ret = -EINVAL;
+5e99f692d4e32e David Lechner    2023-09-21  433  		break;
+29148543c52146 Jonathan Cameron 2011-10-05  434  	}
+29148543c52146 Jonathan Cameron 2011-10-05  435  
+ecf16f4922f691 David Lechner    2023-09-29 @436  	ad2s1210_push_events(indio_dev, st->rx[2], timestamp);
+                                                                                          ^^^^^^
+Apparently ->rx only has 2 elements.
+
+ecf16f4922f691 David Lechner    2023-09-29  437  
+817e5c65c511d4 Graf Yang        2010-10-27  438  error_ret:
+69cc7fbdcdf2e3 David Lechner    2023-09-29  439  	gpiod_set_value(st->sample_gpio, 0);
+817e5c65c511d4 Graf Yang        2010-10-27  440  	/* delay (2 * tck + 20) nano seconds */
+817e5c65c511d4 Graf Yang        2010-10-27  441  	udelay(1);
+817e5c65c511d4 Graf Yang        2010-10-27  442  	mutex_unlock(&st->lock);
+29148543c52146 Jonathan Cameron 2011-10-05  443  	return ret;
+817e5c65c511d4 Graf Yang        2010-10-27  444  }
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
 
