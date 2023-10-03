@@ -1,122 +1,203 @@
-Return-Path: <devicetree+bounces-5552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EDB57B69DA
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 15:08:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 292937B69F0
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 15:14:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id C18DA28157E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 13:08:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 320D11C2089C
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 13:14:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C6D824218;
-	Tue,  3 Oct 2023 13:08:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 598B1250ED;
+	Tue,  3 Oct 2023 13:14:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BDDB2915
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 13:08:12 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D985F90;
-	Tue,  3 Oct 2023 06:08:10 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 393D7xtu090568;
-	Tue, 3 Oct 2023 08:07:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1696338479;
-	bh=Zp1B+zFrIeVSClx3EFpcOSTc44sv/meIKlkORkGW3I4=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=GW2og72aWeylJQLIaR5npYOz2CojwYHS2ZG3DOegeb26K5qc5vB8YUqNyucAcUqZG
-	 X9Lk31lKtTeNENwkIz9Oj57R0kSdCSHOg/8sMbw/WHoehoXuXeUhRTJ56EUqu0Ga8a
-	 eMN5cq6GULauidqPkGFNU5QD8nzMnbyE4OD6D5fA=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 393D7xEG013176
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 3 Oct 2023 08:07:59 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 3
- Oct 2023 08:07:59 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 3 Oct 2023 08:07:59 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 393D7xQD010350;
-	Tue, 3 Oct 2023 08:07:59 -0500
-Date: Tue, 3 Oct 2023 08:07:59 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Ayush Singh <ayushdevel1325@gmail.com>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <greybus-dev@lists.linaro.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <gregkh@linuxfoundation.org>,
-        <vaishnav@beagleboard.org>, <jkridner@beagleboard.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v6 1/3] dt-bindings: Add beaglecc1352
-Message-ID: <20231003130759.ipr5s7n573c3ijyn@sponge>
-References: <20231002182454.211165-1-ayushdevel1325@gmail.com>
- <20231002182454.211165-2-ayushdevel1325@gmail.com>
- <55f63415-781a-4107-8643-9f77c7ee38d1@linaro.org>
- <2105b93c-0502-e909-ea09-dba73d43b912@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E4BF2375E;
+	Tue,  3 Oct 2023 13:14:47 +0000 (UTC)
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E05F90;
+	Tue,  3 Oct 2023 06:14:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=ZBWxmjNd8vCby7186bpocAw7l6dn7FqP/N8fvvIhwNQ=; b=ZbZ5sNuyOVjEKuk2Kc6owm9Oi+
+	CVbKdlROVMemxNuPYLOm079PCNAxkqdn4FkkzHPaSiU9q0vd2xEwwJTLyUjb7sxEkJ9v6Se+YR+mO
+	hyMHF6d2oMlZaBrzFAiWx0N5ARTRfQipZyGr28fZWLkAQfYIy1bRiOaRD2/jWOamKQD5/W8Rodx1t
+	EZXxuHLGJBUvOFkHWeqIOCy45AXwGibkSc0bqIy27Um1+1UC0vQzlqX6CSDkf9vPyCSvEZPDhz9WV
+	cui5XvDfIapsKVW+mDOebBgACDtLVTHwl3AlSmnPOOB/5KoWZS3z7Y3ZT3iGso8tvkovDyikqzr49
+	EwUqFH0Q==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:38818)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1qnfEW-0001l1-2j;
+	Tue, 03 Oct 2023 14:14:40 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1qnfEX-0007v4-3o; Tue, 03 Oct 2023 14:14:41 +0100
+Date: Tue, 3 Oct 2023 14:14:41 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Madalin Bucur <madalin.bucur@nxp.com>,
+	Ioana Ciornei <ioana.ciornei@nxp.com>,
+	Camelia Groza <camelia.groza@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor@kernel.org>,
+	Sean Anderson <sean.anderson@seco.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>
+Subject: Re: [RFC PATCH v2 net-next 15/15] net: pcs: lynx: use MTIP AN/LT
+ block for copper backplanes
+Message-ID: <ZRwTwd18xWczDnur@shell.armlinux.org.uk>
+References: <20230923134904.3627402-1-vladimir.oltean@nxp.com>
+ <20230923134904.3627402-16-vladimir.oltean@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2105b93c-0502-e909-ea09-dba73d43b912@gmail.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+In-Reply-To: <20230923134904.3627402-16-vladimir.oltean@nxp.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 17:39-20231003, Ayush Singh wrote:
-> > > driver.
-> > > 
-> > > Signed-off-by: Ayush Singh <ayushdevel1325@gmail.com>
-> > > ---
-> > >   .../devicetree/bindings/net/ti,cc1352p7.yaml  | 48 +++++++++++++++++++
-> > >   MAINTAINERS                                   |  6 +++
-> > >   2 files changed, 54 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
-> > > new file mode 100644
-> > > index 000000000000..57bc2c43e5b1
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
-> > > @@ -0,0 +1,48 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/net/ti,cc1352p7.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Texas Instruments Simplelink CC1352P7 wireless MCU
-> > > +
-> > > +description:
-> > > +  The cc1352p7 mcu can be connected via SPI or UART.
-> > If over SPI, then the binding is incomplete. This is fine for now, I guess.
-> > 
-> > Best regards,
-> > Krzysztof
-> 
-> Well, I added the line about SPI because the data sheet states that CC1352P7
-> can be connected over SPI or UART when used as wireless MCU. But yes, I do
-> not have much knowledge about SPI itself, so the bindings might be
-> incomplete for SPI usage. Should I remove it or leave it be?
+On Sat, Sep 23, 2023 at 04:49:04PM +0300, Vladimir Oltean wrote:
+> +static int lynx_pcs_parse_fwnode(struct lynx_pcs *lynx)
+> +{
+> +	struct fwnode_handle *node = lynx->mdio->dev.fwnode;
+> +	enum mtip_model model = MTIP_MODEL_AUTODETECT;
+> +	struct device_node *np = to_of_node(node);
+> +	struct mdio_device *mdio = lynx->mdio;
+> +	struct device *dev = &mdio->dev;
+> +	struct phy *phy;
+> +	int i, err;
+> +
+> +	if (!node)
+> +		return 0;
+> +
+> +	lynx->backplane_mode = fwnode_property_present(node, "fsl,backplane-mode");
+> +	if (!lynx->backplane_mode)
+> +		return 0;
+> +
+> +	if (fwnode_device_is_compatible(node, "fsl,lx2160a-lynx-pcs"))
+> +		model = MTIP_MODEL_LX2160A;
+> +
+> +	lynx->num_lanes = of_count_phandle_with_args(np, "phys", "#phy-cells");
+> +	if (lynx->num_lanes < 0)
+> +		return lynx->num_lanes;
 
-I'd suggest to leave it for now, we can expand as there is a need.
+Is it possible for ->num_lanes to be zero at this point? If that is
+possible, then ->anlt[PRIMARY_LANE] will be NULL but ->backplane_mode
+will be set, so won't that cause the mtip_* calls above to pass a
+NULL pointer into those functions? Is that safe? Should we trap that
+case here?
+
+If that's correct, then I don't see any point in storing
+->backplane_mode, since we can then use ->num_lanes > PRIMARY_LANE
+or similar instead.
+
+> +
+> +	if (WARN_ON(lynx->num_lanes > MAX_NUM_LANES))
+> +		return -EINVAL;
+
+Do we need to use WARN_ON() here, or would it be better to print a short
+error-level message?
+
+> +
+> +	for (i = 0; i < lynx->num_lanes; i++) {
+> +		phy = devm_of_phy_get_by_index(dev, np, i);
+> +		if (IS_ERR(phy))
+> +			return dev_err_probe(dev, PTR_ERR(phy),
+> +					     "Failed to get SerDes PHY %d\n", i);
+> +
+> +		lynx->anlt[i] = mtip_backplane_create(mdio, phy, model);
+> +		if (IS_ERR(lynx->anlt[i])) {
+> +			err = PTR_ERR(lynx->anlt[i]);
+> +
+> +			while (i-- > 0)
+> +				mtip_backplane_destroy(lynx->anlt[i]);
+> +
+> +			return err;
+> +		}
+> +	}
+> +
+> +	for (i = 1; i < lynx->num_lanes; i++) {
+> +		err = mtip_backplane_add_subordinate(lynx->anlt[PRIMARY_LANE],
+> +						     lynx->anlt[i]);
+> +		if (WARN_ON(err)) {
+
+Again, does this need to be a backtrace-producing WARN_ON()?
+
+> +			/* Too many SerDes lanes in the device tree? */
+> +			for (i = 0; i < lynx->num_lanes; i++)
+> +				mtip_backplane_destroy(lynx->anlt[i]);
+> +			return err;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static struct phylink_pcs *lynx_pcs_create(struct mdio_device *mdio)
+>  {
+>  	struct lynx_pcs *lynx;
+> +	int err;
+>  
+>  	lynx = kzalloc(sizeof(*lynx), GFP_KERNEL);
+>  	if (!lynx)
+> @@ -327,6 +451,12 @@ static struct phylink_pcs *lynx_pcs_create(struct mdio_device *mdio)
+>  	lynx->pcs.neg_mode = true;
+>  	lynx->pcs.poll = true;
+>  
+> +	err = lynx_pcs_parse_fwnode(lynx);
+> +	if (err) {
+> +		kfree(lynx);
+> +		return ERR_PTR(err);
+> +	}
+> +
+>  	return lynx_to_phylink_pcs(lynx);
+>  }
+>  
+> @@ -392,6 +522,11 @@ EXPORT_SYMBOL_GPL(lynx_pcs_create_fwnode);
+>  void lynx_pcs_destroy(struct phylink_pcs *pcs)
+>  {
+>  	struct lynx_pcs *lynx = phylink_pcs_to_lynx(pcs);
+> +	int i;
+> +
+> +	if (lynx->backplane_mode)
+> +		for (i = 0; i < lynx->num_lanes; i++)
+> +			mtip_backplane_destroy(lynx->anlt[i]);
+
+Won't ->num_lanes only be non-zero when ->backplane_mode is set, so
+isn't the test for ->backplane_mode redundant here?
+
+>  
+>  	mdio_device_put(lynx->mdio);
+>  	kfree(lynx);
+> -- 
+> 2.34.1
+> 
+> 
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
