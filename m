@@ -1,143 +1,203 @@
-Return-Path: <devicetree+bounces-5555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE06F7B6A0E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 15:17:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DB757B6A21
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 15:18:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 17E9FB208CC
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 13:17:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id A077C28166C
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 13:18:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CA8A26286;
-	Tue,  3 Oct 2023 13:17:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B02266A8;
+	Tue,  3 Oct 2023 13:18:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31E9F2915
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 13:17:06 +0000 (UTC)
-Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDBAAA7
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 06:17:01 -0700 (PDT)
-Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-59e88a28b98so7927317b3.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Oct 2023 06:17:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696339021; x=1696943821; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3faYxTgXuQnbhfWmmQf6OvVCP1SKSiKoB+6fW+6tcM8=;
-        b=rgCXF9YlZVF1mKGpOjsFZ6n6NbmsxkU/nHt96zv/q4NDZWzCvLgFLJLEGKUhA5Pfrk
-         QFDU44UUNgMbVh76hmF/51RRZMYpmBfI9Zi/X1uPnjCdx8+/ZF+HzAnII0R9opZbuJmC
-         oQxFOVUaOR80Osyqrge/kraKygaZSgTq3m9sXzcrM6ddMrg3j4sZVJJOSRNk/+mR6Isi
-         MT1DOnJQQbIZoX6D9Q3SkitRNXwL7iCgmcsZargWqV6cKgS0fsLoAbw/6CbmZzdv235p
-         srd5TcqXQmrMXZ/RxGT8+85AqUAYCk3MR1ARHO+snb+g+vSUttqjz6C+mHKKnZg5ZohI
-         2dpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696339021; x=1696943821;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3faYxTgXuQnbhfWmmQf6OvVCP1SKSiKoB+6fW+6tcM8=;
-        b=J+eX6XaZaxcQrl4FjWAs/fq4Tt2hM8GeMHuN/4wpRvzRJ0uRBsd35ewAlC9Cs0614T
-         FUgS92wXdzDUeOMAQ7va37OQLszUPk+Toj7PgF2JUPhQIVZWriHea7apSPyykro8Np/f
-         BYwcsf+vCOCzlfBsj41SEpuNsLimlBEbToeSBsBcI82ENCQj8BPX8S1EDfQTZ11zsu6J
-         35yHH736VveFPCwlVC2GW3fmVspnu1HMKJLLp9WAIPBXbDzLNO8N3256nGqMXepVwkFD
-         5QRCX6jUf0+c1JixBsPI+w7suhvQi4w6jzkzSetFXyNrI6GmeVujEx/TODPrWKfAAJmW
-         wsKw==
-X-Gm-Message-State: AOJu0YwWgtVidzyPy0kas1kSzXmaWfeyPmDM/v892tPo3SAT4AwjBaAV
-	0APFtajgUe9vf5yGpnKTS3sShAPnSrZDP2DDLlmnRA==
-X-Google-Smtp-Source: AGHT+IE7Y5KY9v77qq2SLyZ9BmZE77wqCusEmGoWV7nr2/Yf2hTAHCmxeNHeDb7ceRs3GwoInM+bm/dSk8igGsuHkh4=
-X-Received: by 2002:a05:690c:23ca:b0:5a4:dde3:6db5 with SMTP id
- do10-20020a05690c23ca00b005a4dde36db5mr1806691ywb.10.1696339020779; Tue, 03
- Oct 2023 06:17:00 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4FFA25107
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 13:18:48 +0000 (UTC)
+Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.169])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6306FA1;
+	Tue,  3 Oct 2023 06:18:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1696339124; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=NuJc32Qgcf/R9KCLq0zXtrk67XNqWNKhoXIojXg91E7m5haFPeKCZKL3FYAVmRBU85
+    WgKBhr1VHBUJLZOzbLdCRpuOa3Lt6BealM7r9BMzLncVG3T6L0FmgzKVwcBOYucMgpjh
+    Tr3s+4gCxGeqfazGr2l3OHldil3baik5bGJuTLrP1iMLP6s8oA8ptr5Id7wQzeKx4YrJ
+    rmQ5GaHGsXLKa0xq28kIHD7WDpLBoaRANTNeuPhpZD0Lel18teKuV5N7DIRDjcdY/SWo
+    CE4kgB61XHtcpfqYYiajN/spA7jdKRbVRi/02pg5l2yxdww9nrxYCPl5kd0NdOxdlgw8
+    SXPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1696339124;
+    s=strato-dkim-0002; d=strato.com;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=y/6S4nMoO4T7ksu2UG4ZmhUfqYCihjRfVEMaHE5bdN8=;
+    b=JowxvgwaZxb57wCfjeWY4Neu/8MlcolGYrj7AO4O14t0PyckCdtJG0sS+XKBjABdAN
+    JMszYVG42YlmRAm9r1jAOo+QtIVkoP1fsBKDx6zL8MZOjyZjXNIVCB+bq0C3cknVTctO
+    SOFHn5LJb6wxoxDRKhAZyycXce0x2KFtn4tB0K6C5U0QgZ7cM9drEMoe17fLd7H8sMEJ
+    Y0HQhh8YOmkmIZFn/ndCokBnRwxHgY5XfplhNNwOn9wC6/wuDekqTwRwFrg0TyIwMfdJ
+    TbHXXeMMGorMQbmUjJO6zvsIo4zrgCydx0QSFW74GHil4We1oM01BJmHdlGAYeC4BIUg
+    HvBA==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo02
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1696339124;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=y/6S4nMoO4T7ksu2UG4ZmhUfqYCihjRfVEMaHE5bdN8=;
+    b=pnX4wGgt7JHaZdlGiIFyQy7kWkFzcI809bTEuVu+N9e4BUcnrfXuiUpU+aG2ZX3bPm
+    zGGe9TDEs6lH9962fyhfFhUn0Gg5m0OuiYSMwF+GBwe0mTl2QRXgy+t+mUtbexeeVHQ0
+    kwRS3nRgDLnAD+iXDWFF/6l82cMWKebOb+65TFGlYTWMwCKVFR39alETwLUwn1WaOQrp
+    PQW9KO18Dgpw9Q+pUZK0IRbq3Aar9Hms1LGNKiGFiPl9bVC1QFW1lE4AQ7agL6AOPJia
+    rGRM5oe8zff9XDV8YHaNidWigRxvrGBiF+2rBlDlCFllq2QTB1KOx1A04uf7hVMcMXZJ
+    gO7Q==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1696339124;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=y/6S4nMoO4T7ksu2UG4ZmhUfqYCihjRfVEMaHE5bdN8=;
+    b=RCtyPs/vV4FkdKcPUJfWnPZFz4j7a2E+F/H0bIap5b2bnXKwvJG5+T81EQQ/WYhNPK
+    +ln6FbWUrHH/eh3aTdDA==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQjVd4CteZ/7jYgS+mLFY+H0JAn8u4l+/zY="
+Received: from [192.168.244.3]
+    by smtp.strato.de (RZmta 49.8.2 DYNA|AUTH)
+    with ESMTPSA id R04c57z93DIh2OC
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Tue, 3 Oct 2023 15:18:43 +0200 (CEST)
+From: Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH v2 00/14] arm64: dts: qcom: msm8916/39: Enable sound and
+ modem with QDSP6
+Date: Tue, 03 Oct 2023 15:18:18 +0200
+Message-Id: <20231003-msm8916-modem-v2-0-61b684be55c0@gerhold.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231002021602.260100-1-takahiro.akashi@linaro.org> <20231002021602.260100-5-takahiro.akashi@linaro.org>
-In-Reply-To: <20231002021602.260100-5-takahiro.akashi@linaro.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 3 Oct 2023 15:16:49 +0200
-Message-ID: <CACRpkdZgmwhGYH43iAq=cERaGO9a-mVHXG8sQ2htPw0DcrnuNA@mail.gmail.com>
-Subject: Re: [RFC 4/4] dt-bindings: gpio: Add bindings for SCMI pinctrl based gpio
-To: AKASHI Takahiro <takahiro.akashi@linaro.org>
-Cc: sudeep.holla@arm.com, cristian.marussi@arm.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	Oleksii_Moisieiev@epam.com, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJsUHGUC/13MQQrDIBRF0a2EP67FmGK0o+6jZBD1JwpViwZpC
+ e69NtBJh/fBOztkTA4zXLsdEhaXXQwt2KkDbeewInGmNTDKBioZIz57IXtOfDToCTVCcS1mtYw
+ c2ueZcHGvw7tPra3LW0zvgy/9d/1J/E8qPaFkkAJRjxc1a3lbMdn4MOeAG0y11g9wk7SerAAAA
+ A==
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Andy Gross <agross@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Stephan Gerhold <stephan@gerhold.net>, 
+ Vincent Knecht <vincent.knecht@mailoo.org>, 
+ "Lin, Meng-Bo" <linmengbo0689@protonmail.com>, 
+ "J.R. Divya Antony" <d.antony.jr@gmail.com>, 
+ Nikita Travkin <nikita@trvn.ru>, 
+ Jonathan Albrieux <jonathan.albrieux@gmail.com>, 
+ Jasper Korten <jja2000@gmail.com>, 
+ Siddharth Manthan <siddharth.manthan@gmail.com>, 
+ Markuss Broks <markuss.broks@gmail.com>
+X-Mailer: b4 0.12.3
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Takahiro,
+Enable sound and modem on most of the MSM8916/MSM8939 
+smartphones/tablets supported upstream by:
 
-first, thanks for working on this important and crucial driver!
+ - Adding the BAM-DMUX DT nodes to msm8939.dtsi for WWAN Internet
+ - Adding the QDSP6 DT nodes to both msm8916.dtsi and msm8939.dtsi.
+   This is needed because audio must be routed through the QDSP6 
+   services provided by the modem firmware when the modem is active.
+ - Setting up the sound/codec related nodes for all the devices.
 
-I'll try to clarify and also explain something of what the others
-are saying (unless I misunderstand them...)
+Most of the sound/modem setup is very similar on all MSM8916/MSM8939 
+devices because the device-specific details are abstracted by the modem 
+firmware. Reduce duplication by adding "msm8916-modem-qdsp6.dtsi" which 
+contains most of the common definitions. The board-specific DT part is 
+limited to extra codecs or board-specific sound setup.
 
-On Mon, Oct 2, 2023 at 4:17=E2=80=AFAM AKASHI Takahiro
-<takahiro.akashi@linaro.org> wrote:
+With this patch set, the following functionality works on most 
+MSM8916/MSM8939 devices supported upstream:
 
-> A dt binding for SCMI pinctrl based gpio driver is defined in this
-> commit. It basically conforms to generic pinctrl-gpio mapping framework.
->
-> Signed-off-by: AKASHI Takahiro <takahiro.akashi@linaro.org>
+ - Sound: Speaker/earpiece/headphones/microphones
+ - Modem: Calls, SMS, WWAN Internet (e.g. with ModemManager)
 
-I think like Christian says that SCMI maybe has nothing to do
-with this binding? It is just one possible use case (though we don't know
-of any others.) The resource it is using is generic functionality that exis=
-t
-in any pin controller that provides ways to drive lines high and low
-etc.
+And with extra pending patches also:
 
-Would it be named a generic pin control-based GPIO?
+ - Voice call audio
+ - GPS
 
-(...)
-> +++ b/Documentation/devicetree/bindings/gpio/arm,scmi-gpio.yaml
-(...)
-> +$id: http://devicetree.org/schemas/gpio/arm,scmi-gpio.yaml#
+These patches have been contributed by different people and have been 
+used/tested in postmarketOS for several years. Until now they had to 
+wait for other changes to be upstreamed (QDSP6 audio support for 
+MSM8916, dynamic reserved memory, ...).
 
-So no ARM, no scmi, just pin-control-gpio.yaml, be bold!
+Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+---
+Changes in v2:
+- msm8916-modem-qdsp6.dtsi: Add some missing new lines (Konrad)
+- msm8916-modem-qdsp6.dtsi: Avoid unused template nodes (Konrad)
+  - Refactored/cleaned up dai-link nodes a bit to fix this
+- Split up msm8916.dtsi and msm8939.dtsi QDSP6 patch (Konrad)
+- Clarify purpose of &lpass node with a comment (Konrad)
+- Move around status properties a bit for more clarity (Konrad)
+- Link to v1: https://lore.kernel.org/r/20230926-msm8916-modem-v1-0-398eec74bac9@gerhold.net
 
-(I like this long unabbreviated name)
+---
+J.R. Divya Antony (1):
+      arm64: dts: qcom: msm8916-asus-z00l: Add sound and modem
 
-> +title: SCMI pinctrl based generic GPIO controller
+Jasper Korten (1):
+      arm64: dts: qcom: msm8916-samsung-gt5: Add sound and modem
 
-Pin control-based generic GPIO controller
+Jonathan Albrieux (1):
+      arm64: dts: qcom: msm8916-longcheer-l8910: Add sound and modem
 
-Add
+Lin, Meng-Bo (2):
+      arm64: dts: qcom: msm8916-samsung-j5: Add sound and modem
+      arm64: dts: qcom: msm8939-samsung-a7: Add sound and modem
 
-description:
-  The pin control-based GPIO will facilitate a pin controllers ability
-  to drive electric lines high/low and other generic properties of a
-  pin controller to perform general-purpose one-bit binary I/O.
+Nikita Travkin (1):
+      arm64: dts: qcom: msm8916-longcheer-l8150: Add sound and modem
 
-(At least I think this is the idea, I hope I understand correctly.)
+Stephan Gerhold (6):
+      arm64: dts: qcom: msm8916: Add QDSP6
+      arm64: dts: qcom: msm8939: Add QDSP6
+      arm64: dts: qcom: msm8916: Add common msm8916-modem-qdsp6.dtsi
+      arm64: dts: qcom: msm8916-samsung-a2015: Add sound and modem
+      arm64: dts: qcom: msm8916-samsung-serranove: Add sound and modem
+      arm64: dts: qcom: msm8916-wingtech-wt88047: Add sound and modem
 
-> +properties:
-> +  $nodename:
-> +    pattern: "^scmi_gpio(@[0-9a-f]+)$"
+Vincent Knecht (2):
+      arm64: dts: qcom: msm8939: Add BAM-DMUX WWAN
+      arm64: dts: qcom: msm8916-alcatel-idol347: Add sound and modem
 
-These nodes are always just named gpio@...
-the resource marker is "this is a GPIO" that's all it means.
+ .../boot/dts/qcom/msm8916-alcatel-idol347.dts      | 171 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts     |  21 +++
+ .../boot/dts/qcom/msm8916-longcheer-l8150.dts      |  31 +++-
+ .../boot/dts/qcom/msm8916-longcheer-l8910.dts      |  52 +++++++
+ arch/arm64/boot/dts/qcom/msm8916-modem-qdsp6.dtsi  | 148 ++++++++++++++++++
+ .../dts/qcom/msm8916-samsung-a2015-common.dtsi     |  71 +++++++++
+ .../dts/qcom/msm8916-samsung-e2015-common.dtsi     |   4 +
+ .../boot/dts/qcom/msm8916-samsung-grandmax.dts     |   4 +
+ .../boot/dts/qcom/msm8916-samsung-gt5-common.dtsi  |  54 +++++++
+ arch/arm64/boot/dts/qcom/msm8916-samsung-gt510.dts |  22 +++
+ arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dts  |  42 +++++
+ .../boot/dts/qcom/msm8916-samsung-j5-common.dtsi   |  14 ++
+ arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts    |   4 +
+ .../boot/dts/qcom/msm8916-samsung-serranove.dts    |  13 ++
+ .../boot/dts/qcom/msm8916-wingtech-wt88047.dts     |  74 +++++++++
+ arch/arm64/boot/dts/qcom/msm8916.dtsi              |  49 ++++++
+ arch/arm64/boot/dts/qcom/msm8939-samsung-a7.dts    |  70 +++++++++
+ arch/arm64/boot/dts/qcom/msm8939.dtsi              |  79 ++++++++++
+ 18 files changed, 920 insertions(+), 3 deletions(-)
+---
+change-id: 20230922-msm8916-modem-0d8b6c8abf76
 
-> +  compatible:
-> +    const: arm,scmi-gpio-generic
+Best regards,
+-- 
+Stephan Gerhold <stephan@gerhold.net> 
 
-const: pin-control-gpio
-
-Other than that I am aboard with the solution!
-
-Yours,
-Linus Walleij
 
