@@ -1,713 +1,178 @@
-Return-Path: <devicetree+bounces-5401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 442887B630F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 10:02:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 371DE7B6314
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 10:02:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id E60912815F2
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 08:01:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 6C1E9B209B1
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 08:02:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4A48D520;
-	Tue,  3 Oct 2023 08:01:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7698AD521;
+	Tue,  3 Oct 2023 08:02:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5DC7D313
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 08:01:55 +0000 (UTC)
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED610A1;
-	Tue,  3 Oct 2023 01:01:52 -0700 (PDT)
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3936q77d006789;
-	Tue, 3 Oct 2023 04:01:32 -0400
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3tf0tfcvx4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 03 Oct 2023 04:01:32 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 39381UgJ027350
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 3 Oct 2023 04:01:30 -0400
-Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Tue, 3 Oct 2023 04:01:29 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Tue, 3 Oct 2023 04:01:29 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Tue, 3 Oct 2023 04:01:29 -0400
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.194])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 393814N0012373;
-	Tue, 3 Oct 2023 04:01:24 -0400
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
-        Jean Delvare
-	<jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
-Subject: [PATCH v3 2/2] drivers: hwmon: ltc2991: add driver support
-Date: Tue, 3 Oct 2023 11:00:40 +0300
-Message-ID: <20231003080059.8041-2-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231003080059.8041-1-antoniu.miclaus@analog.com>
-References: <20231003080059.8041-1-antoniu.miclaus@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D32406AC0
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 08:02:50 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1412AA9;
+	Tue,  3 Oct 2023 01:02:47 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39382UnV010136;
+	Tue, 3 Oct 2023 03:02:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1696320150;
+	bh=gVMDmNcDdk5Xjzv4wzSLdgAeNMqZ5fMGaXgl5cQg44M=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=mm+FxZfpZQpBNiHmrqZlCFphntnOlN6X3pdnvQUPXZKEbmVpcor7E/ifdgZDdqvID
+	 R/fOBXR8KMZtQwiyaELohrlZmqeCdmC0bQpKtkAJkJEo0phMSzW+/HPFs4MxbOfiic
+	 I07ryWHnyRO15bDpK5q8r5hNmSbS8Ca33M7dRo/k=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39382Utk120065
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 3 Oct 2023 03:02:30 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 3
+ Oct 2023 03:02:29 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 3 Oct 2023 03:02:29 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39382Suv101819;
+	Tue, 3 Oct 2023 03:02:29 -0500
+Date: Tue, 3 Oct 2023 13:32:26 +0530
+From: Jai Luthra <j-luthra@ti.com>
+To: Aradhya Bhatia <a-bhatia1@ti.com>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon
+	<will@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devarsht@ti.com>
+Subject: Re: [PATCH v2 3/6] arm64: dts: ti: k3-am62a7-sk: Drop i2c-1 to 100Khz
+Message-ID: <tstb2fxrio26yhu4cbeblq6rpo7hsqfa3ydrz54lmk2gbbegnl@qsvfevchllkd>
+References: <20230928-mcasp_am62a-v2-0-ce9f0e1ba22b@ti.com>
+ <20230928-mcasp_am62a-v2-3-ce9f0e1ba22b@ti.com>
+ <1ad3087c-c9aa-9a67-46c7-4969c97041d8@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: UpdYXxe3QVaMoZlMzaUeuJ0Vl1ziXSuY
-X-Proofpoint-ORIG-GUID: UpdYXxe3QVaMoZlMzaUeuJ0Vl1ziXSuY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-03_04,2023-10-02_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
- malwarescore=0 bulkscore=0 phishscore=0 clxscore=1015 adultscore=0
- suspectscore=0 mlxlogscore=999 priorityscore=1501 spamscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2309180000 definitions=main-2310030056
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="uvdysceesknkyl3p"
+Content-Disposition: inline
+In-Reply-To: <1ad3087c-c9aa-9a67-46c7-4969c97041d8@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add support for LTC2991 Octal I2C Voltage, Current, and Temperature
-Monitor.
+--uvdysceesknkyl3p
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The LTC2991 is used to monitor system temperatures, voltages and
-currents. Through the I2C serial interface, the eight monitors can
-individually measure supply voltages and can be paired for
-differential measurements of current sense resistors or temperature
-sensing transistors. Additional measurements include internal
-temperature and internal VCC.
+Hi Aradhya,
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
- Documentation/hwmon/index.rst   |   1 +
- Documentation/hwmon/ltc2991.rst |  43 +++
- MAINTAINERS                     |   8 +
- drivers/hwmon/Kconfig           |  11 +
- drivers/hwmon/Makefile          |   1 +
- drivers/hwmon/ltc2991.c         | 479 ++++++++++++++++++++++++++++++++
- 6 files changed, 543 insertions(+)
- create mode 100644 Documentation/hwmon/ltc2991.rst
- create mode 100644 drivers/hwmon/ltc2991.c
+On Oct 03, 2023 at 10:54:12 +0530, Aradhya Bhatia wrote:
+>=20
+>=20
+> On 28-Sep-23 14:54, Jai Luthra wrote:
+> > The TLV320AIC3106 audio codec is interfaced on the i2c-1 bus. With the
+> > default rate of 400Khz the i2c register writes fail to sync:
+> >=20
+> > [   36.026387] tlv320aic3x 1-001b: Unable to sync registers 0x16-0x16. =
+-110
+> > [   38.101130] omap_i2c 20010000.i2c: controller timed out
+> >=20
+> > Dropping the rate to 100Khz fixes the issue.
+> >=20
+> > Reviewed-by: Devarsh Thakkar <devarsht@ti.com>
+> > Signed-off-by: Jai Luthra <j-luthra@ti.com>
+>=20
+> Since the codec wouldn't have worked with the 400KHz, the initial DT
+> configuration is wrong, which makes this patch a fix, and should be
+> indicated as such.
 
-diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-index 88dadea85cfc..0ec96abe3f7d 100644
---- a/Documentation/hwmon/index.rst
-+++ b/Documentation/hwmon/index.rst
-@@ -121,6 +121,7 @@ Hardware Monitoring Kernel Drivers
-    ltc2947
-    ltc2978
-    ltc2990
-+   ltc2991
-    ltc3815
-    ltc4151
-    ltc4215
-diff --git a/Documentation/hwmon/ltc2991.rst b/Documentation/hwmon/ltc2991.rst
-new file mode 100644
-index 000000000000..9ab29dd85012
---- /dev/null
-+++ b/Documentation/hwmon/ltc2991.rst
-@@ -0,0 +1,43 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+Kernel driver ltc2991
-+=====================
-+
-+Supported chips:
-+
-+  * Analog Devices LTC2991
-+
-+    Prefix: 'ltc2991'
-+
-+    Addresses scanned: I2C 0x48 - 0x4f
-+
-+    Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/2991ff.pdf
-+
-+Authors:
-+
-+  - Antoniu Miclaus <antoniu.miclaus@analog.com>
-+
-+
-+Description
-+-----------
-+
-+This driver supports hardware monitoring for Analog Devices LTC2991 Octal I2C
-+Voltage, Current and Temperature Monitor.
-+
-+The LTC2991 is used to monitor system temperatures, voltages and currents.
-+Through the I2C serial interface, the eight monitors can individually measure
-+supply voltages and can be paired for differential measurements of current sense
-+resistors or temperature sensing transistors. Additional measurements include
-+internal temperatureand internal VCC.
-+
-+
-+sysfs-Interface
-+-------------
-+
-+The following attributes are supported. Limits are read-only.
-+
-+=============== =================
-+inX_input:      voltage input
-+currX_input:    current input
-+tempX_input:    temperature input
-+=============== =================
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b19995690904..98dd8a8e1f84 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12451,6 +12451,14 @@ F:	drivers/hwmon/ltc2947-i2c.c
- F:	drivers/hwmon/ltc2947-spi.c
- F:	drivers/hwmon/ltc2947.h
- 
-+LTC2991 HARDWARE MONITOR DRIVER
-+M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
-+L:	linux-hwmon@vger.kernel.org
-+S:	Supported
-+W:	https://ez.analog.com/linux-software-drivers
-+F:	Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml
-+F:	drivers/hwmon/ltc2991.c
-+
- LTC2983 IIO TEMPERATURE DRIVER
- M:	Nuno Sá <nuno.sa@analog.com>
- L:	linux-iio@vger.kernel.org
-diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index ec38c8892158..818a67328fcd 100644
---- a/drivers/hwmon/Kconfig
-+++ b/drivers/hwmon/Kconfig
-@@ -932,6 +932,17 @@ config SENSORS_LTC2990
- 	  This driver can also be built as a module. If so, the module will
- 	  be called ltc2990.
- 
-+config SENSORS_LTC2991
-+	tristate "Analog Devices LTC2991"
-+	depends on I2C
-+	help
-+	  If you say yes here you get support for Analog Devices LTC2991
-+	  Octal I2C Voltage, Current, and Temperature Monitor. The LTC2991
-+	  supports a combination of voltage, current and temperature monitoring.
-+
-+	  This driver can also be built as a module. If so, the module will
-+	  be called ltc2991.
-+
- config SENSORS_LTC2992
- 	tristate "Linear Technology LTC2992"
- 	depends on I2C
-diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-index 4ac9452b5430..f324d057535a 100644
---- a/drivers/hwmon/Makefile
-+++ b/drivers/hwmon/Makefile
-@@ -127,6 +127,7 @@ obj-$(CONFIG_SENSORS_LTC2947)	+= ltc2947-core.o
- obj-$(CONFIG_SENSORS_LTC2947_I2C) += ltc2947-i2c.o
- obj-$(CONFIG_SENSORS_LTC2947_SPI) += ltc2947-spi.o
- obj-$(CONFIG_SENSORS_LTC2990)	+= ltc2990.o
-+obj-$(CONFIG_SENSORS_LTC2991)	+= ltc2991.o
- obj-$(CONFIG_SENSORS_LTC2992)	+= ltc2992.o
- obj-$(CONFIG_SENSORS_LTC4151)	+= ltc4151.o
- obj-$(CONFIG_SENSORS_LTC4215)	+= ltc4215.o
-diff --git a/drivers/hwmon/ltc2991.c b/drivers/hwmon/ltc2991.c
-new file mode 100644
-index 000000000000..b5333c25cb31
---- /dev/null
-+++ b/drivers/hwmon/ltc2991.c
-@@ -0,0 +1,479 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2023 Analog Devices, Inc.
-+ * Author: Antoniu Miclaus <antoniu.miclaus@analog.com>
-+ */
-+
-+#include <linux/bitops.h>
-+#include <linux/err.h>
-+#include <linux/hwmon.h>
-+#include <linux/hwmon-sysfs.h>
-+#include <linux/i2c.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <asm/unaligned.h>
-+
-+#define LTC2991_STATUS_LOW		0x00
-+#define LTC2991_CH_EN_TRIGGER		0x01
-+#define LTC2991_V1_V4_CTRL		0x06
-+#define LTC2991_V5_V8_CTRL		0x07
-+#define LTC2991_PWM_TH_LSB_T_INT	0x08
-+#define LTC2991_PWM_TH_MSB		0x09
-+#define LTC2991_CHANNEL_V_MSB(x)	(0x0A + ((x) * 2))
-+#define LTC2991_CHANNEL_T_MSB(x)	(0x0A + ((x) * 4))
-+#define LTC2991_CHANNEL_C_MSB(x)	(0x0C + ((x) * 4))
-+#define LTC2991_T_INT_MSB		0x1A
-+#define LTC2991_VCC_MSB			0x1C
-+
-+#define LTC2991_V7_V8_EN		BIT(7)
-+#define LTC2991_V5_V6_EN		BIT(6)
-+#define LTC2991_V3_V4_EN		BIT(5)
-+#define LTC2991_V1_V2_EN		BIT(4)
-+#define LTC2991_T_INT_VCC_EN		BIT(3)
-+
-+#define LTC2991_V3_V4_FILT_EN		BIT(7)
-+#define LTC2991_V3_V4_TEMP_EN		BIT(5)
-+#define LTC2991_V3_V4_DIFF_EN		BIT(4)
-+#define LTC2991_V1_V2_FILT_EN		BIT(3)
-+#define LTC2991_V1_V2_TEMP_EN		BIT(1)
-+#define LTC2991_V1_V2_DIFF_EN		BIT(0)
-+
-+#define LTC2991_V7_V8_FILT_EN		BIT(7)
-+#define LTC2991_V7_V8_TEMP_EN		BIT(5)
-+#define LTC2991_V7_V8_DIFF_EN		BIT(4)
-+#define LTC2991_V5_V6_FILT_EN		BIT(7)
-+#define LTC2991_V5_V6_TEMP_EN		BIT(5)
-+#define LTC2991_V5_V6_DIFF_EN		BIT(4)
-+
-+#define LTC2991_REPEAT_ACQ_EN		BIT(4)
-+#define LTC2991_T_INT_FILT_EN		BIT(3)
-+
-+#define LTC2991_MAX_CHANNEL		4
-+#define LTC2991_T_INT_CH_NR		4
-+#define LTC2991_VCC_CH_NR		0
-+
-+static const char *const label_voltages[] = {
-+	"vcc",
-+	"voltage1",
-+	"voltage2",
-+	"voltage3",
-+	"voltage4",
-+	"voltage5",
-+	"voltage6",
-+	"voltage7",
-+	"voltage8"
-+};
-+
-+static const char *const label_temp[] = {
-+	"t1",
-+	"t2",
-+	"t3",
-+	"t4",
-+	"t_int"
-+};
-+
-+static const char *const label_curr[] = {
-+	"v1-v2",
-+	"v3-v4",
-+	"v5-v6",
-+	"v7-v8"
-+};
-+
-+struct ltc2991_state {
-+	struct i2c_client	*client;
-+	struct regmap		*regmap;
-+	u32			r_sense_uohm[LTC2991_MAX_CHANNEL];
-+	bool			temp_en[LTC2991_MAX_CHANNEL];
-+};
-+
-+static int ltc2991_read_reg(struct ltc2991_state *st, u8 addr, u8 reg_len,
-+			    int *val)
-+{
-+	u8 regvals[2];
-+	int ret;
-+
-+	if (reg_len > 2 || !reg_len)
-+		return -EINVAL;
-+
-+	ret = regmap_bulk_read(st->regmap, addr, regvals, reg_len);
-+	if (ret)
-+		return ret;
-+
-+	if (reg_len == 2)
-+		*val = get_unaligned_be16(&regvals[0]);
-+	else
-+		*val = regvals[0];
-+
-+	return 0;
-+}
-+
-+static int ltc2991_get_voltage(struct ltc2991_state *st, u32 reg, long *val)
-+{
-+	int reg_val, ret, offset = 0;
-+
-+	ret = ltc2991_read_reg(st, reg, 2, &reg_val);
-+	if (ret)
-+		return ret;
-+
-+	if (reg == LTC2991_VCC_MSB)
-+		/* Vcc 2.5V offset */
-+		offset = 2500;
-+
-+	/* Vx, 305.18uV/LSB */
-+	*val = DIV_ROUND_CLOSEST(sign_extend32(reg_val, 14) * 30518,
-+				 1000 * 100) + offset;
-+
-+	return 0;
-+}
-+
-+static int ltc2991_read_in(struct device *dev, u32 attr, int channel, long *val)
-+{
-+	struct ltc2991_state *st = dev_get_drvdata(dev);
-+	u32 reg;
-+
-+	switch (attr) {
-+	case hwmon_in_input:
-+		if (channel == LTC2991_VCC_CH_NR)
-+			reg = LTC2991_VCC_MSB;
-+		else
-+			reg = LTC2991_CHANNEL_V_MSB(channel - 1);
-+		break;
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+
-+	return ltc2991_get_voltage(st, reg, val);
-+}
-+
-+static int ltc2991_get_curr(struct ltc2991_state *st, u32 reg, int channel,
-+			    long *val)
-+{
-+	int reg_val, ret;
-+
-+	ret = ltc2991_read_reg(st, reg, 2, &reg_val);
-+	if (ret)
-+		return ret;
-+
-+	/* Vx-Vy, 19.075uV/LSB */
-+	*val = DIV_ROUND_CLOSEST(sign_extend32(reg_val, 14) * 19075, 1000)
-+				 / (st->r_sense_uohm[channel] / 1000);
-+
-+	return 0;
-+}
-+
-+static int ltc2991_read_curr(struct device *dev, u32 attr, int channel,
-+			     long *val)
-+{
-+	struct ltc2991_state *st = dev_get_drvdata(dev);
-+	u32 reg;
-+
-+	switch (attr) {
-+	case hwmon_curr_input:
-+		reg = LTC2991_CHANNEL_C_MSB(channel);
-+		return ltc2991_get_curr(st, reg, channel, val);
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static int ltc2991_get_temp(struct ltc2991_state *st, u32 reg, int channel,
-+			    long *val)
-+{
-+	int reg_val, ret;
-+
-+	ret = ltc2991_read_reg(st, reg, 2, &reg_val);
-+	if (ret)
-+		return ret;
-+
-+	/* Temp LSB = 0.0625 Degrees */
-+	*val = DIV_ROUND_CLOSEST(sign_extend32(reg_val, 12) * 1000, 16);
-+
-+	return 0;
-+}
-+
-+static int ltc2991_read_temp(struct device *dev, u32 attr, int channel,
-+			     long *val)
-+{
-+	struct ltc2991_state *st = dev_get_drvdata(dev);
-+	u32 reg;
-+
-+	switch (attr) {
-+	case hwmon_temp_input:
-+		if (channel == LTC2991_T_INT_CH_NR)
-+			reg = LTC2991_T_INT_MSB;
-+		else
-+			reg = LTC2991_CHANNEL_T_MSB(channel);
-+
-+		return ltc2991_get_temp(st, reg, channel, val);
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static int ltc2991_read(struct device *dev, enum hwmon_sensor_types type,
-+			u32 attr, int channel, long *val)
-+{
-+	switch (type) {
-+	case hwmon_in:
-+		return ltc2991_read_in(dev, attr, channel, val);
-+	case hwmon_curr:
-+		return ltc2991_read_curr(dev, attr, channel, val);
-+	case hwmon_temp:
-+		return ltc2991_read_temp(dev, attr, channel, val);
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static umode_t ltc2991_is_visible(const void *data,
-+				  enum hwmon_sensor_types type, u32 attr,
-+				  int channel)
-+{
-+	const struct ltc2991_state *st = data;
-+
-+	switch (type) {
-+	case hwmon_in:
-+		switch (attr) {
-+		case hwmon_in_input:
-+		case hwmon_in_label:
-+			return 0444;
-+		}
-+		break;
-+	case hwmon_curr:
-+		switch (attr) {
-+		case hwmon_curr_input:
-+		case hwmon_curr_label:
-+			if (st->r_sense_uohm[channel])
-+				return 0444;
-+			break;
-+		}
-+		break;
-+	case hwmon_temp:
-+		switch (attr) {
-+		case hwmon_temp_input:
-+		case hwmon_temp_label:
-+			if (st->temp_en[channel] ||
-+			    channel == LTC2991_T_INT_CH_NR)
-+				return 0444;
-+			break;
-+		}
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	return 0;
-+}
-+
-+static int ltc2991_read_string(struct device *dev, enum hwmon_sensor_types type,
-+			       u32 attr, int channel, const char **str)
-+{
-+	switch (type) {
-+	case hwmon_temp:
-+		*str = label_temp[channel];
-+		break;
-+	case hwmon_curr:
-+		*str = label_curr[channel];
-+		break;
-+	case hwmon_in:
-+		*str = label_voltages[channel];
-+		break;
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct hwmon_ops ltc2991_hwmon_ops = {
-+	.is_visible = ltc2991_is_visible,
-+	.read = ltc2991_read,
-+	.read_string = ltc2991_read_string,
-+};
-+
-+static const struct hwmon_channel_info *ltc2991_info[] = {
-+	HWMON_CHANNEL_INFO(temp,
-+			   HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_INPUT | HWMON_T_LABEL
-+			   ),
-+	HWMON_CHANNEL_INFO(curr,
-+			   HWMON_C_INPUT | HWMON_C_LABEL,
-+			   HWMON_C_INPUT | HWMON_C_LABEL,
-+			   HWMON_C_INPUT | HWMON_C_LABEL,
-+			   HWMON_C_INPUT | HWMON_C_LABEL
-+			   ),
-+	HWMON_CHANNEL_INFO(in,
-+			   HWMON_I_INPUT | HWMON_I_LABEL,
-+			   HWMON_I_INPUT | HWMON_I_LABEL,
-+			   HWMON_I_INPUT | HWMON_I_LABEL,
-+			   HWMON_I_INPUT | HWMON_I_LABEL,
-+			   HWMON_I_INPUT | HWMON_I_LABEL,
-+			   HWMON_I_INPUT | HWMON_I_LABEL,
-+			   HWMON_I_INPUT | HWMON_I_LABEL,
-+			   HWMON_I_INPUT | HWMON_I_LABEL,
-+			   HWMON_I_INPUT | HWMON_I_LABEL
-+			   ),
-+	NULL
-+};
-+
-+static const struct hwmon_chip_info ltc2991_chip_info = {
-+	.ops = &ltc2991_hwmon_ops,
-+	.info = ltc2991_info,
-+};
-+
-+static const struct regmap_config ltc2991_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = 0x1D,
-+};
-+
-+static int ltc2991_init(struct ltc2991_state *st)
-+{
-+	struct fwnode_handle *child;
-+	int ret;
-+	u32 val, addr;
-+	u8 v5_v8_reg_data = 0, v1_v4_reg_data = 0;
-+
-+	ret = devm_regulator_get_enable(&st->client->dev, "vcc");
-+	if (ret)
-+		return dev_err_probe(&st->client->dev, ret,
-+				     "failed to enable regulator\n");
-+
-+	device_for_each_child_node(&st->client->dev, child) {
-+		ret = fwnode_property_read_u32(child, "reg", &addr);
-+		if (ret < 0) {
-+			fwnode_handle_put(child);
-+			return ret;
-+		}
-+
-+		if (addr > 3) {
-+			fwnode_handle_put(child);
-+			return -EINVAL;
-+		}
-+
-+		ret = fwnode_property_read_u32(child, "shunt-resistor-micro-ohms", &val);
-+		if (!ret) {
-+			st->r_sense_uohm[addr] = val;
-+			switch (addr) {
-+			case 0:
-+				v1_v4_reg_data |= LTC2991_V1_V2_DIFF_EN;
-+				break;
-+			case 1:
-+				v1_v4_reg_data |= LTC2991_V3_V4_DIFF_EN;
-+				break;
-+			case 2:
-+				v5_v8_reg_data |= LTC2991_V5_V6_DIFF_EN;
-+				break;
-+			case 3:
-+				v5_v8_reg_data |= LTC2991_V7_V8_DIFF_EN;
-+				break;
-+			default:
-+				break;
-+			}
-+		}
-+
-+		ret = fwnode_property_read_bool(child, "adi,temperature-enable");
-+		if (ret) {
-+			st->temp_en[addr] = ret;
-+			switch (addr) {
-+			case 0:
-+				v1_v4_reg_data |= LTC2991_V1_V2_TEMP_EN;
-+				break;
-+			case 1:
-+				v1_v4_reg_data |= LTC2991_V3_V4_TEMP_EN;
-+				break;
-+			case 2:
-+				v5_v8_reg_data |= LTC2991_V5_V6_TEMP_EN;
-+				break;
-+			case 3:
-+				v5_v8_reg_data |= LTC2991_V7_V8_TEMP_EN;
-+				break;
-+			default:
-+				break;
-+			}
-+		}
-+	}
-+
-+	ret = regmap_write(st->regmap, LTC2991_V5_V8_CTRL, v5_v8_reg_data);
-+	if (ret)
-+		return dev_err_probe(&st->client->dev, ret,
-+				     "Error: Failed to set V5-V8 CTRL reg.\n");
-+
-+	ret = regmap_write(st->regmap, LTC2991_V1_V4_CTRL, v1_v4_reg_data);
-+	if (ret)
-+		return dev_err_probe(&st->client->dev, ret,
-+				     "Error: Failed to set V1-V4 CTRL reg.\n");
-+
-+	ret = regmap_write(st->regmap, LTC2991_PWM_TH_LSB_T_INT,
-+			   LTC2991_REPEAT_ACQ_EN);
-+	if (ret)
-+		return dev_err_probe(&st->client->dev, ret,
-+				     "Error: Failed to set contiuous mode.\n");
-+
-+	/* Enable all channels and trigger conversions */
-+	return regmap_write(st->regmap, LTC2991_CH_EN_TRIGGER,
-+			    LTC2991_V7_V8_EN | LTC2991_V5_V6_EN |
-+			    LTC2991_V3_V4_EN | LTC2991_V1_V2_EN |
-+			    LTC2991_T_INT_VCC_EN);
-+}
-+
-+static int ltc2991_i2c_probe(struct i2c_client *client)
-+{
-+	int ret;
-+	struct device *hwmon_dev;
-+	struct ltc2991_state *st;
-+
-+	st = devm_kzalloc(&client->dev, sizeof(*st), GFP_KERNEL);
-+	if (!st)
-+		return -ENOMEM;
-+
-+	st->client = client;
-+	st->regmap = devm_regmap_init_i2c(client, &ltc2991_regmap_config);
-+	if (IS_ERR(st->regmap))
-+		return PTR_ERR(st->regmap);
-+
-+	ret = ltc2991_init(st);
-+	if (ret)
-+		return ret;
-+
-+	hwmon_dev = devm_hwmon_device_register_with_info(&client->dev,
-+							 client->name, st,
-+							 &ltc2991_chip_info,
-+							 NULL);
-+
-+	return PTR_ERR_OR_ZERO(hwmon_dev);
-+}
-+
-+static const struct of_device_id ltc2991_of_match[] = {
-+	{ .compatible = "adi,ltc2991" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, ltc2991_of_match);
-+
-+static const struct i2c_device_id ltc2991_i2c_id[] = {
-+	{ "ltc2991", 0 },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, ltc2991_i2c_id);
-+
-+static struct i2c_driver ltc2991_i2c_driver = {
-+	.driver = {
-+		.name = "ltc2991",
-+		.of_match_table = ltc2991_of_match,
-+	},
-+	.probe = ltc2991_i2c_probe,
-+	.id_table = ltc2991_i2c_id,
-+};
-+
-+module_i2c_driver(ltc2991_i2c_driver);
-+
-+MODULE_AUTHOR("Antoniu Miclaus <antoniu.miclaus@analog.com>");
-+MODULE_DESCRIPTION("Analog Devices LTC2991 HWMON Driver");
-+MODULE_LICENSE("GPL");
--- 
-2.42.0
+I am slightly confused, as the codec node was not enumerated before this=20
+series, and i2c-1 configuration @ 400Khz works for the GPIO expanders=20
+present.
 
+My understanding is that a Fixes: tag would mean we backport this patch=20
+to older releases, but that would not really be necessary here as=20
+nothing was per se "broken" before this series.
+
+Will discuss this offline with you and Vignesh and send a v3.
+
+>=20
+> With the Fixes tag added,
+>=20
+> Reviewed-by: Aradhya Bhatia <a-bhatia1@ti.com>
+>=20
+> Regards
+> Aradhya
+>=20
+> > ---
+> >  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/=
+dts/ti/k3-am62a7-sk.dts
+> > index c689d3da2def..866b2725f775 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> > +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> > @@ -261,7 +261,7 @@ &main_i2c1 {
+> >  	status =3D "okay";
+> >  	pinctrl-names =3D "default";
+> >  	pinctrl-0 =3D <&main_i2c1_pins_default>;
+> > -	clock-frequency =3D <400000>;
+> > +	clock-frequency =3D <100000>;
+> > =20
+> >  	exp1: gpio@22 {
+> >  		compatible =3D "ti,tca6424";
+> >=20
+>=20
+
+--=20
+Thanks,
+Jai
+
+GPG Fingerprint: 4DE0 D818 E5D5 75E8 D45A AFC5 43DE 91F9 249A 7145
+
+--uvdysceesknkyl3p
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmUbyo8ACgkQQ96R+SSa
+cUUMmA/+N/E2rMFbxy2zfGYWL2ach8I1kkxOnoZBgLbw9TeSp9uyVrLA4JvM4ZYM
+FSpxYw82Hze4O4X7xa7dV0b42y9HZF8brW7SwRSrdgAIPQFRpqjna+/gcxLz3UL6
+mHiGLD44kpJYbFcV0nyQLgvy7x3x6g843LurprkRrgUgA/jOfiYKIsIB8HRH3oNY
+tzpAVwlwn9qKDc5D2TcdTbstZgJdOcH2XtHoAEi91qxbpciUTObmPqYCyEHw2DBD
+QV78vzIS/hdimwxFh7PXiCINRVKWpRvIV5ccCaeJ9rjiq/9A+JPhXFHFkYqB6SHk
+Bt6z+W4bkuRJlhNXquEX1mPtWSbvHYd1MTBJrASoxZ36FRJn1xo7XXnp7PMyCWHG
+mhNJByZ3CMiatYWL0aQWJgNneDL3haXZFYrJHoM1cheBob7dosnctC+u4vhSLY9N
+kJcubku6F6KmVFP9U5EABh5LKsN/eIgb28K0HHi9Dq6WYdASfE0lQ6wJX2a9c9yF
+iUH1M52+eArXdBiqbuqUzzq3S4lWe1qHufQc54Dd02STxyQbwojGy7pQ012PqpJ6
+QdrU4ONAyHF1XpM1Z8rlTyyJ2nkpJN+XMKkiJeNCb+VYXvP/mFVuISxrOUb1Yx+1
+wre0nsxlWIZmfRJJfQeOG4/fV98rZ1ZQ7Tl6YG+S0lpvrE+VT3w=
+=MzXC
+-----END PGP SIGNATURE-----
+
+--uvdysceesknkyl3p--
 
