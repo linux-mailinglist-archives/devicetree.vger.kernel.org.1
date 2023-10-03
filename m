@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-5336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 284337B5FFD
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 06:45:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0CC77B5FFE
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 06:45:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id CDEB62816B0
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 04:45:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 9B56F1C2084E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 04:45:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 451411366;
-	Tue,  3 Oct 2023 04:45:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6443E1370;
+	Tue,  3 Oct 2023 04:45:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF23F10FE
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 04:45:05 +0000 (UTC)
-Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80813DD
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 21:44:59 -0700 (PDT)
-Received: by mail-oo1-xc29.google.com with SMTP id 006d021491bc7-57bab4e9e1aso296560eaf.3
-        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 21:44:59 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6998645
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 04:45:09 +0000 (UTC)
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B9A0D3
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 21:45:04 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-690b7cb71aeso353763b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 21:45:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1696308298; x=1696913098; darn=vger.kernel.org;
+        d=ventanamicro.com; s=google; t=1696308303; x=1696913103; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=u1xL9ry/qVc8LB9ADTXQzYyB8xKqzcFMAT7WOD9fcwk=;
-        b=Nrremw6ugL1jK9/kYnev15EfcJM2opR5SRVcjfOqQVkR6bKwBPreLXZNKoy+071xt9
-         2LB5l27RAfLLqpiG/Wl7vXp4qdCXTABI2z6DMB8wMe7/+G9EMekWui2D2RFaaoVFMu5q
-         8kOSsiBb3Wr8T89lNCJIlj8xiODEmurRJGexET2IcLSRveZNGR0FZk7PsHboC8nA/RQ0
-         cGxbJfUf3i6OydmFsXqgjuLJIRHCQkmM0tG0ANUvjO36na4JjWYQSEGw/qdsJjCzlWCF
-         63PlRWld60WF3xNMXXzZYQGMB1lslZTtMD12zmlIj/BqCeU9zjosfWqG28rZFzzPSSde
-         SgbQ==
+        bh=2RNpF/CWjVyq2jAidq9g4JrMuQdRaRtl2xGmvH6ydPA=;
+        b=k+aamnU/xegf8QrsvQn3Zw1j4q9ezVrwK1rVrMFr7XkcotzI/pPuXKnYpK1EqDGU2h
+         RvxDMo/Ep+4NfuvVSiQR6nlvHH59F1zaA52tTIjmJPK7BisPHXE+L9B/zImzwXHMIlb2
+         KTxxOPg4nXnIA2AEpcJIvVk4yHZLi8f5MgBola0dDllGo72ktzHcbxs63d2Spiuk/qCU
+         ygDiJBEyj9erreX9XaP2YyV8nTDn41bsLuwrh99pRhjyGroPQc5UPwOMkk6sXWpUcKUp
+         GuntxnKYnQrndQAExRzyBGPlMhCzoiCpGRs8/cYUKLNXcM3n4tSnS6aFCCUZJbd23szf
+         p9OQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696308298; x=1696913098;
+        d=1e100.net; s=20230601; t=1696308303; x=1696913103;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=u1xL9ry/qVc8LB9ADTXQzYyB8xKqzcFMAT7WOD9fcwk=;
-        b=d2LxJOwBKkzVjb2fLa5P/ZoikJj14h7FDAg314AAZbMHSvYSITR0wg33fDACudUjNa
-         CdSjF2t3FOukkOVmJ0zALpn0xYCRUaMpzs6w4rrFa7oBVfjamDzmXjKHTEOdRdALuq+s
-         7NOQHHv2GnjLa/ftW4dzRm5zpmnEvPtN/nS2Fl/ptGb5VKxRFO5Q58OIu9y2IC/qjmlW
-         Qw7w2GMSWrp809Vlkxyy/l4eAqQDFhA78sz0BiqGFEc/IeonLWU2dOdDLASQT0Yq+Na9
-         AdXFP9aLTnd1RNfyfy92v4zBcRrL21rpUWCqqksAs01a+n/z0JzqEBR1w/Xk0T+qSWMC
-         tqhQ==
-X-Gm-Message-State: AOJu0YziM9MXxXXURzLJ4gWety5gD6GNzaf/7NAYTVqisHh5TBsEsXSa
-	BDgxB4J5XWnQoVAfjDaTU6F9Yw==
-X-Google-Smtp-Source: AGHT+IFyRpOgdHYeZLOyIvPA9wf57u8ThabB53N8oiK8yaJGP5/0RtKTxYis3WNH6OtvpRyu5t4ycw==
-X-Received: by 2002:a05:6358:8813:b0:143:5eaf:d6fa with SMTP id hv19-20020a056358881300b001435eafd6famr14137082rwb.9.1696308298270;
-        Mon, 02 Oct 2023 21:44:58 -0700 (PDT)
+        bh=2RNpF/CWjVyq2jAidq9g4JrMuQdRaRtl2xGmvH6ydPA=;
+        b=E4JW3sRU6AS3uK8q4IeNEKm5EBE9zUtx3mZwzF5IjasFFaLQFzQXoH4vu2whzZlh5h
+         12cpMJEcPaEyDyvvweMvdXAWzZsedmVqoSm/u4PJ/Iyn4y+fOdKXrmFGhvC5GNj5jekp
+         AlBwJvaqSlzocW3ICIzepgKMQZeW/8v9YyUsejyv8p32LLkom//560LyXwN004SjHW0r
+         nBZqxByryeLLOkelAt9u3SKuTa6mDQbZ5ct6KrRm66fWZ+IWGB25DSEV2n917SKwgOr4
+         xz43B2N87aNHO3/X6OSVGpcqwQ8u6xkZVmj/G8RAoBKECYcZRmsifLc4GhffqnWb/YV1
+         HvXA==
+X-Gm-Message-State: AOJu0YyaWkL5Oz1uyyL8S2wYA1eH2gUZJvBYIYj/lk+w7sY8UmBTattN
+	BcoJsSSEwt6SGXbAUXUDZkBmCA==
+X-Google-Smtp-Source: AGHT+IG/Wp0pe3mxTS0qRgMZuqi2/oc2AwsUXkS16/9T8AJqBsR6vFzMhpHcjJWRci/pF5CllP/yVg==
+X-Received: by 2002:a05:6a00:b55:b0:68f:cb69:8e66 with SMTP id p21-20020a056a000b5500b0068fcb698e66mr2518288pfo.15.1696308303308;
+        Mon, 02 Oct 2023 21:45:03 -0700 (PDT)
 Received: from anup-ubuntu-vm.localdomain ([171.76.84.132])
-        by smtp.gmail.com with ESMTPSA id h9-20020aa786c9000000b0068e49cb1692sm346421pfo.1.2023.10.02.21.44.53
+        by smtp.gmail.com with ESMTPSA id h9-20020aa786c9000000b0068e49cb1692sm346421pfo.1.2023.10.02.21.44.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Oct 2023 21:44:57 -0700 (PDT)
+        Mon, 02 Oct 2023 21:45:02 -0700 (PDT)
 From: Anup Patel <apatel@ventanamicro.com>
 To: Palmer Dabbelt <palmer@dabbelt.com>,
 	Paul Walmsley <paul.walmsley@sifive.com>,
@@ -72,9 +72,9 @@ Cc: Atish Patra <atishp@atishpatra.org>,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH v10 05/15] irqchip/sifive-plic: Convert PLIC driver into a platform driver
-Date: Tue,  3 Oct 2023 10:13:53 +0530
-Message-Id: <20231003044403.1974628-6-apatel@ventanamicro.com>
+Subject: [PATCH v10 06/15] irqchip/riscv-intc: Add support for RISC-V AIA
+Date: Tue,  3 Oct 2023 10:13:54 +0530
+Message-Id: <20231003044403.1974628-7-apatel@ventanamicro.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231003044403.1974628-1-apatel@ventanamicro.com>
 References: <20231003044403.1974628-1-apatel@ventanamicro.com>
@@ -86,372 +86,110 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The PLIC driver does not require very early initialization so let
-us convert it into a platform driver.
+The RISC-V advanced interrupt architecture (AIA) extends the per-HART
+local interrupts in following ways:
+1. Minimum 64 local interrupts for both RV32 and RV64
+2. Ability to process multiple pending local interrupts in same
+   interrupt handler
+3. Priority configuration for each local interrupts
+4. Special CSRs to configure/access the per-HART MSI controller
 
-As part of the conversion, the PLIC probing undergoes the following
-changes:
-1. Use dev_info(), dev_err() and dev_warn() instead of pr_info(),
-   pr_err() and pr_warn()
-2. Use devm_xyz() APIs wherever applicable
-3. PLIC is now probed after CPUs are brought-up so we have to
-   setup cpuhp state after context handler of all online CPUs
-   are initialized otherwise we see crash on multi-socket systems
+We add support for #1 and #2 described above in the RISC-V intc driver.
 
 Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 ---
- drivers/irqchip/irq-sifive-plic.c | 239 ++++++++++++++++++------------
- 1 file changed, 148 insertions(+), 91 deletions(-)
+ drivers/irqchip/irq-riscv-intc.c | 34 ++++++++++++++++++++++++++------
+ 1 file changed, 28 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
-index 5b7bc4fd9517..c8f8a8cdcce1 100644
---- a/drivers/irqchip/irq-sifive-plic.c
-+++ b/drivers/irqchip/irq-sifive-plic.c
-@@ -3,7 +3,6 @@
-  * Copyright (C) 2017 SiFive
-  * Copyright (C) 2018 Christoph Hellwig
-  */
--#define pr_fmt(fmt) "plic: " fmt
- #include <linux/cpu.h>
- #include <linux/interrupt.h>
- #include <linux/io.h>
-@@ -64,6 +63,7 @@
- #define PLIC_QUIRK_EDGE_INTERRUPT	0
+diff --git a/drivers/irqchip/irq-riscv-intc.c b/drivers/irqchip/irq-riscv-intc.c
+index e8d01b14ccdd..bab536bbaf2c 100644
+--- a/drivers/irqchip/irq-riscv-intc.c
++++ b/drivers/irqchip/irq-riscv-intc.c
+@@ -17,6 +17,7 @@
+ #include <linux/module.h>
+ #include <linux/of.h>
+ #include <linux/smp.h>
++#include <asm/hwcap.h>
  
- struct plic_priv {
-+	struct device *dev;
- 	struct cpumask lmask;
- 	struct irq_domain *irqdomain;
- 	void __iomem *regs;
-@@ -85,7 +85,6 @@ struct plic_handler {
- 	struct plic_priv	*priv;
- };
- static int plic_parent_irq __ro_after_init;
--static bool plic_cpuhp_setup_done __ro_after_init;
- static DEFINE_PER_CPU(struct plic_handler, plic_handlers);
+ static struct irq_domain *intc_domain;
  
- static int plic_irq_set_type(struct irq_data *d, unsigned int type);
-@@ -371,7 +370,8 @@ static void plic_handle_irq(struct irq_desc *desc)
- 		int err = generic_handle_domain_irq(handler->priv->irqdomain,
- 						    hwirq);
- 		if (unlikely(err))
--			pr_warn_ratelimited("can't find mapping for hwirq %lu\n",
-+			dev_warn_ratelimited(handler->priv->dev,
-+					"can't find mapping for hwirq %lu\n",
- 					hwirq);
- 	}
- 
-@@ -406,57 +406,126 @@ static int plic_starting_cpu(unsigned int cpu)
- 	return 0;
+@@ -30,6 +31,15 @@ static asmlinkage void riscv_intc_irq(struct pt_regs *regs)
+ 	generic_handle_domain_irq(intc_domain, cause);
  }
  
--static int __init __plic_init(struct device_node *node,
--			      struct device_node *parent,
--			      unsigned long plic_quirks)
-+static const struct of_device_id plic_match[] = {
-+	{ .compatible = "sifive,plic-1.0.0" },
-+	{ .compatible = "riscv,plic0" },
-+	{ .compatible = "andestech,nceplic100",
-+	  .data = (const void *)BIT(PLIC_QUIRK_EDGE_INTERRUPT) },
-+	{ .compatible = "thead,c900-plic",
-+	  .data = (const void *)BIT(PLIC_QUIRK_EDGE_INTERRUPT) },
-+	{}
-+};
++static asmlinkage void riscv_intc_aia_irq(struct pt_regs *regs)
++{
++	unsigned long topi;
 +
-+static int plic_parse_nr_irqs_and_contexts(struct platform_device *pdev,
-+					   u32 *nr_irqs, u32 *nr_contexts)
++	while ((topi = csr_read(CSR_TOPI)))
++		generic_handle_domain_irq(intc_domain,
++					  topi >> TOPI_IID_SHIFT);
++}
++
+ /*
+  * On RISC-V systems local interrupts are masked or unmasked by writing
+  * the SIE (Supervisor Interrupt Enable) CSR.  As CSRs can only be written
+@@ -39,12 +49,18 @@ static asmlinkage void riscv_intc_irq(struct pt_regs *regs)
+ 
+ static void riscv_intc_irq_mask(struct irq_data *d)
  {
--	int error = 0, nr_contexts, nr_handlers = 0, i;
--	u32 nr_irqs;
--	struct plic_priv *priv;
-+	struct device *dev = &pdev->dev;
-+	int rc;
-+
-+	/*
-+	 * Currently, only OF fwnode is supported so extend this
-+	 * function for ACPI support.
-+	 */
-+	if (!is_of_node(dev->fwnode))
-+		return -EINVAL;
-+
-+	rc = of_property_read_u32(to_of_node(dev->fwnode),
-+				  "riscv,ndev", nr_irqs);
-+	if (rc) {
-+		dev_err(dev, "riscv,ndev property not available\n");
-+		return rc;
-+	}
-+
-+	*nr_contexts = of_irq_count(to_of_node(dev->fwnode));
-+	if (WARN_ON(!(*nr_contexts))) {
-+		dev_err(dev, "no PLIC context available\n");
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int plic_parse_context_parent_hwirq(struct platform_device *pdev,
-+					   u32 context, u32 *parent_hwirq,
-+					   unsigned long *parent_hartid)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct of_phandle_args parent;
-+	int rc;
-+
-+	/*
-+	 * Currently, only OF fwnode is supported so extend this
-+	 * function for ACPI support.
-+	 */
-+	if (!is_of_node(dev->fwnode))
-+		return -EINVAL;
-+
-+	rc = of_irq_parse_one(to_of_node(dev->fwnode), context, &parent);
-+	if (rc)
-+		return rc;
-+
-+	rc = riscv_of_parent_hartid(parent.np, parent_hartid);
-+	if (rc)
-+		return rc;
-+
-+	*parent_hwirq = parent.args[0];
-+	return 0;
-+}
-+
-+static int plic_probe(struct platform_device *pdev)
-+{
-+	int rc, nr_contexts, nr_handlers = 0, i, cpu;
-+	unsigned long plic_quirks = 0, hartid;
-+	struct device *dev = &pdev->dev;
- 	struct plic_handler *handler;
--	unsigned int cpu;
-+	u32 nr_irqs, parent_hwirq;
-+	struct irq_domain *domain;
-+	struct plic_priv *priv;
-+	irq_hw_number_t hwirq;
-+	struct resource *res;
-+	bool cpuhp_setup;
-+
-+	if (is_of_node(dev->fwnode)) {
-+		const struct of_device_id *id;
-+
-+		id = of_match_node(plic_match, to_of_node(dev->fwnode));
-+		if (id)
-+			plic_quirks = (unsigned long)id->data;
-+	}
- 
--	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
- 		return -ENOMEM;
--
-+	priv->dev = dev;
- 	priv->plic_quirks = plic_quirks;
- 
--	priv->regs = of_iomap(node, 0);
--	if (WARN_ON(!priv->regs)) {
--		error = -EIO;
--		goto out_free_priv;
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	if (!res) {
-+		dev_err(dev, "failed to get MMIO resource\n");
-+		return -EINVAL;
-+	}
-+	priv->regs = devm_ioremap(dev, res->start, resource_size(res));
-+	if (!priv->regs) {
-+		dev_err(dev, "failed map MMIO registers\n");
-+		return -EIO;
- 	}
- 
--	error = -EINVAL;
--	of_property_read_u32(node, "riscv,ndev", &nr_irqs);
--	if (WARN_ON(!nr_irqs))
--		goto out_iounmap;
--
-+	rc = plic_parse_nr_irqs_and_contexts(pdev, &nr_irqs, &nr_contexts);
-+	if (rc) {
-+		dev_err(dev, "failed to parse irqs and contexts\n");
-+		return rc;
-+	}
- 	priv->nr_irqs = nr_irqs;
- 
--	priv->prio_save = bitmap_alloc(nr_irqs, GFP_KERNEL);
-+	priv->prio_save = devm_bitmap_zalloc(dev, nr_irqs, GFP_KERNEL);
- 	if (!priv->prio_save)
--		goto out_free_priority_reg;
--
--	nr_contexts = of_irq_count(node);
--	if (WARN_ON(!nr_contexts))
--		goto out_free_priority_reg;
--
--	error = -ENOMEM;
--	priv->irqdomain = irq_domain_add_linear(node, nr_irqs + 1,
--			&plic_irqdomain_ops, priv);
--	if (WARN_ON(!priv->irqdomain))
--		goto out_free_priority_reg;
-+		return -ENOMEM;
- 
- 	for (i = 0; i < nr_contexts; i++) {
--		struct of_phandle_args parent;
--		irq_hw_number_t hwirq;
--		int cpu;
--		unsigned long hartid;
--
--		if (of_irq_parse_one(node, i, &parent)) {
--			pr_err("failed to parse parent for context %d.\n", i);
-+		rc = plic_parse_context_parent_hwirq(pdev, i,
-+						     &parent_hwirq, &hartid);
-+		if (rc) {
-+			dev_warn(dev, "hwirq for context%d not found\n", i);
- 			continue;
- 		}
- 
-@@ -464,7 +533,7 @@ static int __init __plic_init(struct device_node *node,
- 		 * Skip contexts other than external interrupts for our
- 		 * privilege level.
- 		 */
--		if (parent.args[0] != RV_IRQ_EXT) {
-+		if (parent_hwirq != RV_IRQ_EXT) {
- 			/* Disable S-mode enable bits if running in M-mode. */
- 			if (IS_ENABLED(CONFIG_RISCV_M_MODE)) {
- 				void __iomem *enable_base = priv->regs +
-@@ -477,21 +546,17 @@ static int __init __plic_init(struct device_node *node,
- 			continue;
- 		}
- 
--		error = riscv_of_parent_hartid(parent.np, &hartid);
--		if (error < 0) {
--			pr_warn("failed to parse hart ID for context %d.\n", i);
--			continue;
--		}
--
- 		cpu = riscv_hartid_to_cpuid(hartid);
- 		if (cpu < 0) {
--			pr_warn("Invalid cpuid for context %d\n", i);
-+			dev_warn(dev, "Invalid cpuid for context %d\n", i);
- 			continue;
- 		}
- 
- 		/* Find parent domain and register chained handler */
--		if (!plic_parent_irq && irq_find_host(parent.np)) {
--			plic_parent_irq = irq_of_parse_and_map(node, i);
-+		domain = irq_find_matching_fwnode(riscv_get_intc_hwnode(),
-+						  DOMAIN_BUS_ANY);
-+		if (!plic_parent_irq && domain) {
-+			plic_parent_irq = irq_create_mapping(domain, RV_IRQ_EXT);
- 			if (plic_parent_irq)
- 				irq_set_chained_handler(plic_parent_irq,
- 							plic_handle_irq);
-@@ -504,7 +569,7 @@ static int __init __plic_init(struct device_node *node,
- 		 */
- 		handler = per_cpu_ptr(&plic_handlers, cpu);
- 		if (handler->present) {
--			pr_warn("handler already present for context %d.\n", i);
-+			dev_warn(dev, "handler already present for context%d.\n", i);
- 			plic_set_threshold(handler, PLIC_DISABLE_THRESHOLD);
- 			goto done;
- 		}
-@@ -518,10 +583,13 @@ static int __init __plic_init(struct device_node *node,
- 			i * CONTEXT_ENABLE_SIZE;
- 		handler->priv = priv;
- 
--		handler->enable_save =  kcalloc(DIV_ROUND_UP(nr_irqs, 32),
--						sizeof(*handler->enable_save), GFP_KERNEL);
-+		handler->enable_save =  devm_kcalloc(dev,
-+						DIV_ROUND_UP(nr_irqs, 32),
-+						sizeof(*handler->enable_save),
-+						GFP_KERNEL);
- 		if (!handler->enable_save)
--			goto out_free_enable_reg;
-+			return -ENOMEM;
-+
- done:
- 		for (hwirq = 1; hwirq <= nr_irqs; hwirq++) {
- 			plic_toggle(handler, hwirq, 0);
-@@ -531,52 +599,41 @@ static int __init __plic_init(struct device_node *node,
- 		nr_handlers++;
- 	}
- 
-+	priv->irqdomain = irq_domain_create_linear(dev->fwnode, nr_irqs + 1,
-+						   &plic_irqdomain_ops, priv);
-+	if (WARN_ON(!priv->irqdomain))
-+		return -ENOMEM;
-+
- 	/*
- 	 * We can have multiple PLIC instances so setup cpuhp state
--	 * and register syscore operations only when context handler
--	 * for current/boot CPU is present.
-+	 * and register syscore operations only after context handlers
-+	 * of all online CPUs are initialized.
- 	 */
--	handler = this_cpu_ptr(&plic_handlers);
--	if (handler->present && !plic_cpuhp_setup_done) {
-+	cpuhp_setup = true;
-+	for_each_online_cpu(cpu) {
-+		handler = per_cpu_ptr(&plic_handlers, cpu);
-+		if (!handler->present) {
-+			cpuhp_setup = false;
-+			break;
-+		}
-+	}
-+	if (cpuhp_setup) {
- 		cpuhp_setup_state(CPUHP_AP_IRQ_SIFIVE_PLIC_STARTING,
- 				  "irqchip/sifive/plic:starting",
- 				  plic_starting_cpu, plic_dying_cpu);
- 		register_syscore_ops(&plic_irq_syscore_ops);
--		plic_cpuhp_setup_done = true;
- 	}
- 
--	pr_info("%pOFP: mapped %d interrupts with %d handlers for"
--		" %d contexts.\n", node, nr_irqs, nr_handlers, nr_contexts);
-+	dev_info(dev, "mapped %d interrupts with %d handlers for"
-+		" %d contexts.\n", nr_irqs, nr_handlers, nr_contexts);
- 	return 0;
--
--out_free_enable_reg:
--	for_each_cpu(cpu, cpu_present_mask) {
--		handler = per_cpu_ptr(&plic_handlers, cpu);
--		kfree(handler->enable_save);
--	}
--out_free_priority_reg:
--	kfree(priv->prio_save);
--out_iounmap:
--	iounmap(priv->regs);
--out_free_priv:
--	kfree(priv);
--	return error;
+-	csr_clear(CSR_IE, BIT(d->hwirq));
++	if (IS_ENABLED(CONFIG_32BIT) && d->hwirq >= BITS_PER_LONG)
++		csr_clear(CSR_IEH, BIT(d->hwirq - BITS_PER_LONG));
++	else
++		csr_clear(CSR_IE, BIT(d->hwirq));
  }
  
--static int __init plic_init(struct device_node *node,
--			    struct device_node *parent)
--{
--	return __plic_init(node, parent, 0);
--}
--
--IRQCHIP_DECLARE(sifive_plic, "sifive,plic-1.0.0", plic_init);
--IRQCHIP_DECLARE(riscv_plic0, "riscv,plic0", plic_init); /* for legacy systems */
--
--static int __init plic_edge_init(struct device_node *node,
--				 struct device_node *parent)
--{
--	return __plic_init(node, parent, BIT(PLIC_QUIRK_EDGE_INTERRUPT));
--}
--
--IRQCHIP_DECLARE(andestech_nceplic100, "andestech,nceplic100", plic_edge_init);
--IRQCHIP_DECLARE(thead_c900_plic, "thead,c900-plic", plic_edge_init);
-+static struct platform_driver plic_driver = {
-+	.driver = {
-+		.name		= "riscv-plic",
-+		.of_match_table	= plic_match,
-+	},
-+	.probe = plic_probe,
-+};
-+builtin_platform_driver(plic_driver);
+ static void riscv_intc_irq_unmask(struct irq_data *d)
+ {
+-	csr_set(CSR_IE, BIT(d->hwirq));
++	if (IS_ENABLED(CONFIG_32BIT) && d->hwirq >= BITS_PER_LONG)
++		csr_set(CSR_IEH, BIT(d->hwirq - BITS_PER_LONG));
++	else
++		csr_set(CSR_IE, BIT(d->hwirq));
+ }
+ 
+ static void riscv_intc_irq_eoi(struct irq_data *d)
+@@ -115,16 +131,20 @@ static struct fwnode_handle *riscv_intc_hwnode(void)
+ 
+ static int __init riscv_intc_init_common(struct fwnode_handle *fn)
+ {
+-	int rc;
++	int rc, nr_irqs = riscv_isa_extension_available(NULL, SxAIA) ?
++			  64 : BITS_PER_LONG;
+ 
+-	intc_domain = irq_domain_create_linear(fn, BITS_PER_LONG,
++	intc_domain = irq_domain_create_linear(fn, nr_irqs,
+ 					       &riscv_intc_domain_ops, NULL);
+ 	if (!intc_domain) {
+ 		pr_err("unable to add IRQ domain\n");
+ 		return -ENXIO;
+ 	}
+ 
+-	rc = set_handle_irq(&riscv_intc_irq);
++	if (riscv_isa_extension_available(NULL, SxAIA))
++		rc = set_handle_irq(&riscv_intc_aia_irq);
++	else
++		rc = set_handle_irq(&riscv_intc_irq);
+ 	if (rc) {
+ 		pr_err("failed to set irq handler\n");
+ 		return rc;
+@@ -132,7 +152,9 @@ static int __init riscv_intc_init_common(struct fwnode_handle *fn)
+ 
+ 	riscv_set_intc_hwnode_fn(riscv_intc_hwnode);
+ 
+-	pr_info("%d local interrupts mapped\n", BITS_PER_LONG);
++	pr_info("%d local interrupts mapped%s\n",
++		nr_irqs, riscv_isa_extension_available(NULL, SxAIA) ?
++			 " using AIA" : "");
+ 
+ 	return 0;
+ }
 -- 
 2.34.1
 
