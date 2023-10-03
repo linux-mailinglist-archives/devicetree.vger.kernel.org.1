@@ -1,190 +1,158 @@
-Return-Path: <devicetree+bounces-5619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 331D37B6DDE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 18:01:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E49A37B6DBA
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 18:00:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id D78AD2817DE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 16:01:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id A1A502811E3
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 16:00:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2888F3AC05;
-	Tue,  3 Oct 2023 16:01:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AD7837147;
+	Tue,  3 Oct 2023 16:00:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64CCD38DEA;
-	Tue,  3 Oct 2023 16:01:16 +0000 (UTC)
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E873D8;
-	Tue,  3 Oct 2023 09:01:09 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9ad8a822508so201894866b.0;
-        Tue, 03 Oct 2023 09:01:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696348868; x=1696953668; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7JiuLEh/EFeAiwa7GG3VhbS7idJtkE2WcLfe5eSvI9M=;
-        b=VMgtQUGqg4yClX4Fj9ypQGjwGtsKLsvboRXwDG/gptgGRNJWiZ5+Pv/uDXxYbRPbZ1
-         g0ohsZsOJHeBbREEfSYTMoI7xBSDAl5GnGUBrBhPg6KznNZZY+5XgPAGjwvQ3nZRNyHJ
-         0a+Kh4dkj72MjgX+IfhRUh8uhH1WcPk+6+Hjk/qYBMs4317tCG9NLtB/ibyLgt0ub93i
-         bXVA3PyH15ySMTSpzeJdv/xQtxnMLAe8+d603IFY1o+kA6Jugp2A5qvt9/vP4u5o1EVG
-         VNKeBXm8RVPzeiNeEaQpJEZmDhKFxBFOFNfLwEXEr6Zmypuw62URGcrOESanIfps+7za
-         yxqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696348868; x=1696953668;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7JiuLEh/EFeAiwa7GG3VhbS7idJtkE2WcLfe5eSvI9M=;
-        b=S0uzVmH0PoQTgvx9NBKzKn9KK0F51I1Se4d9jrTp3iHa7BYvYQhg+2lQPfI4QqjjbA
-         JSdDighInttE2BXyVmZZ3/oTgp1R6FiJsoztsxz69PJTRJRNAN2Q5Psf/s02rcYR8lDw
-         yaRBOfqvec+UFeX8wHpcT8GV1+YFGq+elNo7kQSjXZ/hALSjExI98Pce6v2mNcdtWprN
-         vQ/c+5MWOStUDvEjIAwtNag9kNtckpBnfxHuSdOD5Q5bQCfJRw0+ofezD0jA7rxtlbsA
-         FYryY6narU5EMF1Le2IksL/il94x8mKIvfDOP+k4Er4k9FPme/jZYQxQ60hzhAMm3jNG
-         X0Tw==
-X-Gm-Message-State: AOJu0Yymz1dassj6pXClYi0ZDS9Lmsxw6G381jgvn22jP/DRY5eMRyNl
-	QwB6SInFfdjt7ZPhbJNECmk=
-X-Google-Smtp-Source: AGHT+IGhK7wJSetq7gxvJEf+CENG+M6shmXrxbwZPXDLJB+pwvhRNkB4Z/nZvun9LwBueEyrTM5nJw==
-X-Received: by 2002:a17:906:28e:b0:9ae:552a:3d3f with SMTP id 14-20020a170906028e00b009ae552a3d3fmr13530474ejf.28.1696348866722;
-        Tue, 03 Oct 2023 09:01:06 -0700 (PDT)
-Received: from primary.. ([213.139.52.198])
-        by smtp.gmail.com with ESMTPSA id jo3-20020a170906f6c300b0099df2ddfc37sm1270526ejb.165.2023.10.03.09.01.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Oct 2023 09:01:06 -0700 (PDT)
-From: Abdel Alkuor <alkuor@gmail.com>
-To: heikki.krogerus@linux.intel.com,
-	krzysztof.kozlowski+dt@linaro.org,
-	bryan.odonoghue@linaro.org
-Cc: gregkh@linuxfoundation.org,
-	linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	ryan.eleceng@gmail.com,
-	robh+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	Abdel Alkuor <abdelalkuor@geotab.com>
-Subject: [PATCH v10 9/9] USB: typec: tps6598x: Add status trace for tps25750
-Date: Tue,  3 Oct 2023 11:58:42 -0400
-Message-Id: <20231003155842.57313-10-alkuor@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231003155842.57313-1-alkuor@gmail.com>
-References: <20231003155842.57313-1-alkuor@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FB4D36B16
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 16:00:00 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2C51114;
+	Tue,  3 Oct 2023 08:59:58 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 393Dtihq014212;
+	Tue, 3 Oct 2023 15:59:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=ADaA/9nF9XWLSlIH/V1+7qMot+xDTDjD4TBk10pSGI0=;
+ b=DWL+1lhiby6lsHUzhFN+3eiWLLkHmFPnxn1CZYV/hkpFAGYQg33qauXpj3c0CczXqc8i
+ Sy+771zoE6r9oF5jQEWtsIgHQhDgJ2sBcV9MMt8M6kKhsNf2QkSWo5ErbIBbIW3bPeD3
+ pF49BtILMs63wJnmcemMy7niXpYGqNasPjXhQWxqB3siJ6QsBi9Ebh5TOcNk3GapMrGS
+ p71xpK7QktDhi1SVfGkNDFzyfeFxmifoNVTgb77vzICZKXi3evPct0UHA1tzcD/JGIQb
+ LR1oUbCsgbhqUGiHwB1Ix5OskmPHPY4jdnu/qBV3MfuJd0XWXiy4JxQEm6TDtcv0bfYX vw== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tg98rhsbx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 03 Oct 2023 15:59:47 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 393FxkvX000946
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 3 Oct 2023 15:59:46 GMT
+Received: from [10.110.20.163] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 3 Oct
+ 2023 08:59:45 -0700
+Message-ID: <7c871b23-5544-6604-257d-f0c8fd5afd06@quicinc.com>
+Date: Tue, 3 Oct 2023 08:59:45 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v4 3/4] dt-bindings: arm: Add new compatible for smc/hvc
+ transport for SCMI
+Content-Language: en-US
+To: Sudeep Holla <sudeep.holla@arm.com>
+CC: <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20230718160833.36397-1-quic_nkela@quicinc.com>
+ <20230911194359.27547-1-quic_nkela@quicinc.com>
+ <20230911194359.27547-4-quic_nkela@quicinc.com>
+ <20231003104404.o7yxg3y7dn7uhrq4@bogus>
+From: Nikunj Kela <quic_nkela@quicinc.com>
+In-Reply-To: <20231003104404.o7yxg3y7dn7uhrq4@bogus>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: LCfrz6QFLV8u2SOKqyuHcQWBXIMu85DO
+X-Proofpoint-GUID: LCfrz6QFLV8u2SOKqyuHcQWBXIMu85DO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-03_12,2023-10-02_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ suspectscore=0 bulkscore=0 adultscore=0 impostorscore=0 lowpriorityscore=0
+ clxscore=1015 spamscore=0 mlxscore=0 malwarescore=0 phishscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310030119
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Abdel Alkuor <abdelalkuor@geotab.com>
 
-tps25750 status register is a subset of tps6598x status register, hence
-a trace for tps25750 status register is added.
+On 10/3/2023 3:44 AM, Sudeep Holla wrote:
+> On Mon, Sep 11, 2023 at 12:43:58PM -0700, Nikunj Kela wrote:
+>> Introduce compatible "qcom,scmi-hvc-shmem" for SCMI smc/hvc
+>> transport channel for Qualcomm virtual platforms.
+>> The compatible mandates a shared memory channel.
+>>
+>> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>   .../devicetree/bindings/firmware/arm,scmi.yaml       | 12 ++++++++++++
+>>   1 file changed, 12 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+>> index 8d54ea768d38..4090240f45b1 100644
+>> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+>> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+>> @@ -45,6 +45,9 @@ properties:
+>>         - description: SCMI compliant firmware with OP-TEE transport
+>>           items:
+>>             - const: linaro,scmi-optee
+>> +      - description: SCMI compliant firmware with Qualcomm hvc/shmem transport
+>> +        items:
+>> +          - const: qcom,scmi-hvc-shmem
+> Can it be simply "qcom,scmi-smc" for 2 reasons ?
+> 1. We don't support SMC/HVC without shmem, so what is your argument to add
+>     '-shmem' in the compatible here ?
 
-Signed-off-by: Abdel Alkuor <abdelalkuor@geotab.com>
----
-Changes in v10:
-  - Move 0014-USB-typec-tps6598x-Add-status-trace-for-tps25750.patch to patch 9
-  - Remove status trace prototype from device data
-Changes in v9:
-  - No changes
-Changes in v8:
-  - No changes
-Changes in v7:
-  - Add driver name to commit subject
-Changes in v6:
-  - No changes
-Changes in v5:
-  - Incorporating tps25750 into tps6598x driver
- drivers/usb/typec/tipd/core.c  |  1 +
- drivers/usb/typec/tipd/trace.h | 37 ++++++++++++++++++++++++++++++++++
- 2 files changed, 38 insertions(+)
+In our platforms, there are multiple ways to allocate memory. One is 
+preallocated shmem as used here, another is dynamically by hypervisor 
+APIs. shmem was to just to indicate it is preallocated.
 
-diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
-index 7bdf1ef5dd1a..0e867f531d34 100644
---- a/drivers/usb/typec/tipd/core.c
-+++ b/drivers/usb/typec/tipd/core.c
-@@ -1412,6 +1412,7 @@ static const struct tipd_data tps25750_data = {
- 	.irq_handler = tps25750_interrupt,
- 	.register_port = tps25750_register_port,
- 	.trace_power_status = trace_tps25750_power_status,
-+	.trace_status = trace_tps25750_status,
- 	.apply_patch = tps25750_apply_patch,
- };
- 
-diff --git a/drivers/usb/typec/tipd/trace.h b/drivers/usb/typec/tipd/trace.h
-index 739b0a2a867d..0669cca12ea1 100644
---- a/drivers/usb/typec/tipd/trace.h
-+++ b/drivers/usb/typec/tipd/trace.h
-@@ -91,6 +91,14 @@
- 						      TPS_STATUS_USB_HOST_PRESENT_MASK | \
- 						      TPS_STATUS_LEGACY_MASK))
- 
-+#define TPS25750_STATUS_FLAGS_MASK (GENMASK(31, 0) ^ (TPS_STATUS_CONN_STATE_MASK | \
-+						      GENMASK(19, 7) | \
-+						      TPS_STATUS_VBUS_STATUS_MASK | \
-+						      TPS_STATUS_USB_HOST_PRESENT_MASK | \
-+						      TPS_STATUS_LEGACY_MASK | \
-+						      BIT(26) | \
-+						      GENMASK(31, 28)))
-+
- #define show_status_conn_state(status) \
- 	__print_symbolic(TPS_STATUS_CONN_STATE((status)), \
- 		{ TPS_STATUS_CONN_STATE_CONN_WITH_R_A,	"conn-Ra"  }, \
-@@ -148,6 +156,14 @@
- 		      { TPS_STATUS_HIGH_VOLAGE_WARNING,	"HIGH_VOLAGE_WARNING" }, \
- 		      { TPS_STATUS_HIGH_LOW_VOLTAGE_WARNING, "HIGH_LOW_VOLTAGE_WARNING" })
- 
-+#define show_tps25750_status_flags(flags) \
-+	__print_flags((flags & TPS25750_STATUS_FLAGS_MASK), "|", \
-+		      { TPS_STATUS_PLUG_PRESENT,	"PLUG_PRESENT" }, \
-+		      { TPS_STATUS_PLUG_UPSIDE_DOWN,	"UPSIDE_DOWN" }, \
-+		      { TPS_STATUS_PORTROLE,		"PORTROLE" }, \
-+		      { TPS_STATUS_DATAROLE,		"DATAROLE" }, \
-+		      { TPS_STATUS_BIST,		"BIST" })
-+
- #define show_power_status_source_sink(power_status) \
- 	__print_symbolic(TPS_POWER_STATUS_SOURCESINK(power_status), \
- 		{ 1, "sink" }, \
-@@ -292,6 +308,27 @@ TRACE_EVENT(tps6598x_status,
- 		    )
- );
- 
-+TRACE_EVENT(tps25750_status,
-+	    TP_PROTO(u32 status),
-+	    TP_ARGS(status),
-+
-+	    TP_STRUCT__entry(
-+			     __field(u32, status)
-+			     ),
-+
-+	    TP_fast_assign(
-+			   __entry->status = status;
-+			   ),
-+
-+	    TP_printk("conn: %s, vbus: %s, usb-host: %s, legacy: %s, flags: %s",
-+		      show_status_conn_state(__entry->status),
-+		      show_status_vbus_status(__entry->status),
-+		      show_status_usb_host_present(__entry->status),
-+		      show_status_legacy(__entry->status),
-+		      show_tps25750_status_flags(__entry->status)
-+		    )
-+);
-+
- TRACE_EVENT(tps6598x_power_status,
- 	    TP_PROTO(u16 power_status),
- 	    TP_ARGS(power_status),
--- 
-2.34.1
 
+> 2. The exact conduit(SMC/HVC) used is detected runtime, so I prefer to keep
+>    '-smc' instead of '-hvc' in the compatible just to avoid giving an illusion
+>    that HVC is the conduit chosen here based on the compatible. It can be true
+>    for other reason but I don't want to mislead here by using HVC.
+
+IUUC, currently, conduit comes from PSCI dt node. We have been using smc 
+for PSCI but want to use hvc here. That being said, I am fine to explore 
+if we can change PSCI to use hvc too.
+
+
+>>     interrupts:
+>>       description:
+>> @@ -320,6 +323,15 @@ allOf:
+>>         required:
+>>           - linaro,optee-channel-id
+>>   
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: qcom,scmi-hvc-shmem
+>> +    then:
+>> +      required:
+>> +        - shmem
+>> +
+>>   examples:
+>>     - |
+>>       firmware {
+>> -- 
+>> 2.17.1
+>>
 
