@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-5449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD9637B6604
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39E1B7B6603
 	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 12:04:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 7994728180A
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 471BE1C208B2
 	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 10:04:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F9081C2B4;
-	Tue,  3 Oct 2023 10:04:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24B2C15E9C;
+	Tue,  3 Oct 2023 10:04:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E3E4171C9
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 10:04:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DAD915EBF
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 10:04:46 +0000 (UTC)
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0015EAD;
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FBC7AC;
 	Tue,  3 Oct 2023 03:04:45 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3938S0ER002399;
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3939M8Fn029146;
 	Tue, 3 Oct 2023 10:04:39 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=lXNCKGVZc3wHmsTdl1ABDP6tn/EYZxtD4AldkPwBsis=;
- b=Y7M05yn6lSAb9A51dIO9O7SrbGikDSjMJJR0eF148ufhORLUD3j0mRyS6slNWM9N2xpS
- IHc0WNnWs/73Gcp605Ccd/78sOHnB9UfYDi/me1/XzH+BZGElk50XY/icPG+kJb117J6
- kXIKcXB7CaaLIO+lY6J+z9F2ZAmusz1rf8jfPdCYjOqC0yhd+T2cq3A5DW9BJpdLYDDV
- LdQylc4CkCJKS956n2o4Ctxboz7FdUJN9kQGnmY8LjA+Cki0ggrdWHIT7S2sD4rBcm5X
- MRDPTq+oVoJMh7K8RtYqJbTAVNnKJNMAOOH2zWw5qFpvV7+Ybgv28CNz4PmFjwxqwYtv gQ== 
+ bh=f5inFJnXbum2m2FYBZiHNKdIg4LY5yKF6CnPbxeHeLs=;
+ b=hMpIztcgNTyHS5FqPSi1HdCSiLpXsvDE/4pIx0kJ8rZPJ2ktaLwHjnKNbY8O8F2J2eOf
+ 5SZv82g/oLVKElWgAm8lGaiGE1qtk0Rza+XPB6cSn4v5RiEC4yx5bGCPSQT+Ee+euADR
+ H/ROD5bioOxJxXdN/zjQSO3gBPM/MR2c7K7mFNFlCVXd6uEzpPC7ZU9GMLEwufU32LA1
+ 8gzj5MgIdNwWxLFnmN1+RZxKjAkC5hPl40Kp6Hsc7xbDI1UqS5EEqynuQUOZ2BUYBL6F
+ Vz6Z2hYJlqYsMwT9PR2CjBVMsc8aN5aHef1ySAIrFalzkbX+uUmpsWhpVpywNtnp/ccO Tg== 
 Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tec2enpbd-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tgaw5gpp6-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
 	Tue, 03 Oct 2023 10:04:38 +0000
 Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 393A4ZI5032596;
+	by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 393A4ZpR032591;
 	Tue, 3 Oct 2023 10:04:35 GMT
 Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3tecrkqvrh-1;
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3tecrkqvrp-1;
 	Tue, 03 Oct 2023 10:04:35 +0000
 Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 393A4Y18032587;
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 393A4ZmV032607;
 	Tue, 3 Oct 2023 10:04:35 GMT
 Received: from hu-sgudaval-hyd.qualcomm.com (hu-rohiagar-hyd.qualcomm.com [10.213.106.138])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 393A4Yfe032582;
-	Tue, 03 Oct 2023 10:04:34 +0000
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 393A4Z4x032606;
+	Tue, 03 Oct 2023 10:04:35 +0000
 Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3970568)
-	id BD9F11ED0; Tue,  3 Oct 2023 15:34:33 +0530 (+0530)
+	id 687991ED5; Tue,  3 Oct 2023 15:34:34 +0530 (+0530)
 From: Rohit Agarwal <quic_rohiagar@quicinc.com>
 To: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -55,9 +55,9 @@ To: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Rohit Agarwal <quic_rohiagar@quicinc.com>
-Subject: [PATCH v3 2/3] arm64: dts: qcom: Add USB3 and PHY support on SDX75
-Date: Tue,  3 Oct 2023 15:34:31 +0530
-Message-Id: <1696327472-21776-3-git-send-email-quic_rohiagar@quicinc.com>
+Subject: [PATCH v3 3/3] arm64: dts: qcom: sdx75-idp: Enable USB3 and PHY support
+Date: Tue,  3 Oct 2023 15:34:32 +0530
+Message-Id: <1696327472-21776-4-git-send-email-quic_rohiagar@quicinc.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1696327472-21776-1-git-send-email-quic_rohiagar@quicinc.com>
 References: <1696327472-21776-1-git-send-email-quic_rohiagar@quicinc.com>
@@ -65,16 +65,16 @@ X-QCInternal: smtphost
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 1YsoX2cMsXWGFQTD3HSNhGJo7eraEmcp
-X-Proofpoint-ORIG-GUID: 1YsoX2cMsXWGFQTD3HSNhGJo7eraEmcp
+X-Proofpoint-ORIG-GUID: 7A16kFPDJ3povBPpVV4GcT9gAmtdgGei
+X-Proofpoint-GUID: 7A16kFPDJ3povBPpVV4GcT9gAmtdgGei
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2023-10-03_06,2023-10-02_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
- adultscore=0 priorityscore=1501 malwarescore=0 suspectscore=0
- mlxlogscore=999 spamscore=0 bulkscore=0 clxscore=1015 lowpriorityscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310030070
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ phishscore=0 priorityscore=1501 clxscore=1015 impostorscore=0 mlxscore=0
+ lowpriorityscore=0 mlxlogscore=396 adultscore=0 spamscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
+ definitions=main-2310030070
 X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
 	SPF_NONE autolearn=no autolearn_force=no version=3.4.6
@@ -86,150 +86,59 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 
-Add devicetree nodes for enabling USB3 controller, Qcom QMP PHY and
-HS PHY on SDX75.
+Enable the support for USB3 controller, QMP PHY and HS PHY
+on SDX75 IDP.
 
 Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdx75.dtsi | 118 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 118 insertions(+)
+ arch/arm64/boot/dts/qcom/sdx75-idp.dts | 29 +++++++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdx75.dtsi b/arch/arm64/boot/dts/qcom/sdx75.dtsi
-index ac0b785..43c2c62 100644
---- a/arch/arm64/boot/dts/qcom/sdx75.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdx75.dtsi
-@@ -477,6 +477,47 @@
- 			};
- 		};
+diff --git a/arch/arm64/boot/dts/qcom/sdx75-idp.dts b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
+index 10d1587..5f2ebe3 100644
+--- a/arch/arm64/boot/dts/qcom/sdx75-idp.dts
++++ b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
+@@ -250,6 +250,11 @@
+ 	stdout-path = "serial0:115200n8";
+ };
  
-+		usb_hsphy: phy@ff4000 {
-+			compatible = "qcom,sdx75-snps-eusb2-phy", "qcom,sm8550-snps-eusb2-phy";
-+			reg = <0x0 0x00ff4000 0x0 0x154>;
-+			#phy-cells = <0>;
++&pm7550ba_eusb2_repeater {
++	vdd18-supply = <&vreg_l5b_1p776>;
++	vdd3-supply = <&vreg_l10b_3p08>;
++};
 +
-+			clocks = <&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "ref";
+ &qupv3_id_0 {
+ 	status = "okay";
+ };
+@@ -261,3 +266,27 @@
+ &uart1 {
+ 	status = "okay";
+ };
 +
-+			resets = <&gcc GCC_QUSB2PHY_BCR>;
++&usb {
++	status = "okay";
++};
 +
-+			status = "disabled";
-+		};
++&usb_dwc3 {
++	dr_mode = "peripheral";
++};
 +
-+		usb_qmpphy: phy@ff6000 {
-+			compatible = "qcom,sdx75-qmp-usb3-uni-phy";
-+			reg = <0x0 0x00ff6000 0x0 0x2000>;
++&usb_hsphy {
++	vdd-supply = <&vreg_l4b_0p88>;
++	vdda12-supply = <&vreg_l1b_1p2>;
 +
-+			clocks = <&gcc GCC_USB3_PHY_AUX_CLK>,
-+				 <&gcc GCC_USB2_CLKREF_EN>,
-+				 <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>,
-+				 <&gcc GCC_USB3_PHY_PIPE_CLK>;
-+			clock-names = "aux",
-+				      "ref",
-+				      "cfg_ahb",
-+				      "pipe";
++	phys = <&pm7550ba_eusb2_repeater>;
 +
-+			power-domains = <&gcc GCC_USB3_PHY_GDSC>;
++	status = "okay";
++};
 +
-+			resets = <&gcc GCC_USB3_PHY_BCR>,
-+				 <&gcc GCC_USB3PHY_PHY_BCR>;
-+			reset-names = "phy",
-+				      "phy_phy";
++&usb_qmpphy {
++	vdda-phy-supply = <&vreg_l4b_0p88>;
++	vdda-pll-supply = <&vreg_l1b_1p2>;
 +
-+			#clock-cells = <0>;
-+			clock-output-names = "usb3_uni_phy_pipe_clk_src";
-+
-+			#phy-cells = <0>;
-+
-+			status = "disabled";
-+		};
-+
- 		system_noc: interconnect@1640000 {
- 			compatible = "qcom,sdx75-system-noc";
- 			reg = <0x0 0x01640000 0x0 0x4b400>;
-@@ -497,6 +538,83 @@
- 			#hwlock-cells = <1>;
- 		};
- 
-+		usb: usb@a6f8800 {
-+			compatible = "qcom,sdx75-dwc3", "qcom,dwc3";
-+			reg = <0x0 0x0a6f8800 0x0 0x400>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			clocks = <&gcc GCC_USB30_SLV_AHB_CLK>,
-+				 <&gcc GCC_USB30_MASTER_CLK>,
-+				 <&gcc GCC_USB30_MSTR_AXI_CLK>,
-+				 <&gcc GCC_USB30_SLEEP_CLK>,
-+				 <&gcc GCC_USB30_MOCK_UTMI_CLK>;
-+			clock-names = "cfg_noc",
-+				      "core",
-+				      "iface",
-+				      "sleep",
-+				      "mock_utmi";
-+
-+			assigned-clocks = <&gcc GCC_USB30_MOCK_UTMI_CLK>,
-+					  <&gcc GCC_USB30_MASTER_CLK>;
-+			assigned-clock-rates = <19200000>, <200000000>;
-+
-+			interrupts-extended = <&intc GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
-+					      <&pdc 17 IRQ_TYPE_LEVEL_HIGH>,
-+					      <&pdc 9 IRQ_TYPE_EDGE_RISING>,
-+					      <&pdc 10 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "hs_phy_irq",
-+					  "ss_phy_irq",
-+					  "dm_hs_phy_irq",
-+					  "dp_hs_phy_irq";
-+
-+			power-domains = <&gcc GCC_USB30_GDSC>;
-+
-+			resets = <&gcc GCC_USB30_BCR>;
-+
-+			interconnects = <&system_noc MASTER_USB3_0 QCOM_ICC_TAG_ALWAYS
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+					 &system_noc SLAVE_USB3 QCOM_ICC_TAG_ALWAYS>;
-+			interconnect-names = "usb-ddr",
-+					     "apps-usb";
-+
-+			status = "disabled";
-+
-+			usb_dwc3: usb@a600000 {
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0x0a600000 0x0 0xcd00>;
-+				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
-+				iommus = <&apps_smmu 0x80 0x0>;
-+				snps,dis_u2_susphy_quirk;
-+				snps,dis_enblslpm_quirk;
-+				phys = <&usb_hsphy>,
-+				       <&usb_qmpphy>;
-+				phy-names = "usb2-phy",
-+					    "usb3-phy";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+
-+						usb_1_dwc3_hs: endpoint {
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+
-+						usb_1_dwc3_ss: endpoint {
-+						};
-+					};
-+				};
-+			};
-+		};
-+
- 		pdc: interrupt-controller@b220000 {
- 			compatible = "qcom,sdx75-pdc", "qcom,pdc";
- 			reg = <0x0 0xb220000 0x0 0x30000>,
++	status = "okay";
++};
 -- 
 2.7.4
 
