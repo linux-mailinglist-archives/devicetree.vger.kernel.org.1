@@ -1,195 +1,138 @@
-Return-Path: <devicetree+bounces-5581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C8267B6AF7
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 16:00:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F6197B6B01
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 16:04:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id D18D02816B8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 14:00:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 7C7631C208E0
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 14:04:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEDB42E640;
-	Tue,  3 Oct 2023 14:00:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C9512E650;
+	Tue,  3 Oct 2023 14:04:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7322F505;
-	Tue,  3 Oct 2023 14:00:51 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D589BAF;
-	Tue,  3 Oct 2023 07:00:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1696341648; x=1727877648;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=s30GRJRYo+hm6YhVGNnw6HtgOobxap3zx2uU/nc+4gs=;
-  b=KjxPr03NV52026kSpL9ax4zGErpjdIatIGUMoi32LSS24zHqhXTu4tYu
-   JFoGlo7taF323BJr/KwJRDsmK7SSCjY6xteL0LjeMZppByldQeeOi6ZAV
-   tfJq72by24BGcpjtDeIt65d8qv90s3TQBRMHvCw/BOvmwJ85frge8Ib25
-   Cmyh99aBc6AsIvgWi/dCHNlJMMYbTQGKEz4+W1dV2Oi71ZfURf6H6aumx
-   bL+pJoNRXXzktj9u4vX32LWXrYK/h1gzA+y9hSlL/HBVIEGd49h0wC0sK
-   9rx2pCP4zKkc2wljUBe1LGgD9zdCPYAjggHVskc+mDGa0oMoIY5dTlEyw
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="363143839"
-X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; 
-   d="scan'208";a="363143839"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2023 07:00:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="1082019676"
-X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; 
-   d="scan'208";a="1082019676"
-Received: from lkp-server02.sh.intel.com (HELO c3b01524d57c) ([10.239.97.151])
-  by fmsmga005.fm.intel.com with ESMTP; 03 Oct 2023 07:00:13 -0700
-Received: from kbuild by c3b01524d57c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qnfwZ-0007AW-0c;
-	Tue, 03 Oct 2023 14:00:11 +0000
-Date: Tue, 3 Oct 2023 21:59:32 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matt Johnston <matt@codeconstruct.com.au>,
-	linux-i3c@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>,
-	Jeremy Kerr <jk@codeconstruct.com.au>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH net-next v3 3/3] mctp i3c: MCTP I3C driver
-Message-ID: <202310032142.NaWYwlZc-lkp@intel.com>
-References: <20231003063624.126723-4-matt@codeconstruct.com.au>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B30DF2940B;
+	Tue,  3 Oct 2023 14:04:37 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EC16A9;
+	Tue,  3 Oct 2023 07:04:36 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 393CtFvq024974;
+	Tue, 3 Oct 2023 14:03:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=KW2J+DS9oHYENFNLmqwrDgX6qwBY0QVYINMUCr7I9Yw=;
+ b=XK4rIydXnhdLo2yarTHTscnIJdElJzth/Ep8SXoVI6+uYwiVuaTGFEw+uc4TMXW78MIj
+ cCrLu5JhjbeAPGffL3QE5Z+TDMCWHt4nc+joXxCqSaYrsX5t8XG8OmFLwhFOZDiRapX9
+ KZ5P4CsNBR+QUxIUYo0qpib3c21kOiQYLGirz5aMAwEXUogs41MrYBgf7v5sGg/7+hFT
+ 6vKnl8A20HSchdW7hlR07TyOn7uVx7woWemxTXZrYiofyowHr1V87ltwn4ldB/t1KIyd
+ C/jfR2Pz/mNjToHgx6dF5dv7b0t8PCq8UGF8gUpFIYoBRUIWAXFI+fO6aVEdiOQNmtKJ 0g== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tgbjgs659-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 03 Oct 2023 14:03:56 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 393E3tq2012896
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 3 Oct 2023 14:03:55 GMT
+Received: from [10.216.32.208] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 3 Oct
+ 2023 07:03:01 -0700
+Message-ID: <7d01eadc-4395-4871-91d4-a3d33d119921@quicinc.com>
+Date: Tue, 3 Oct 2023 19:32:46 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231003063624.126723-4-matt@codeconstruct.com.au>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/8] arm64: dts: qcom: ipq5332: Add Super-Speed UNIPHY in
+ USB node
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <vkoul@kernel.org>, <kishon@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <gregkh@linuxfoundation.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>, <p.zabel@pengutronix.de>,
+        <geert+renesas@glider.be>, <arnd@arndb.de>,
+        <neil.armstrong@linaro.org>, <nfraprado@collabora.com>,
+        <u-kumar1@ti.com>, <peng.fan@nxp.com>, <quic_wcheng@quicinc.com>,
+        <quic_varada@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC: <quic_kathirav@quicinc.com>, <quic_nsekar@quicinc.com>,
+        <quic_srichara@quicinc.com>
+References: <20230929084209.3033093-1-quic_ipkumar@quicinc.com>
+ <20230929084209.3033093-7-quic_ipkumar@quicinc.com>
+ <618992fe-4c76-42ef-af47-ee66f74c5bb6@linaro.org>
+ <3f89e0b7-189e-4cf7-bec5-b03c903c46b5@quicinc.com>
+ <1e3af927-52b0-42ab-9643-db4bf3f2d2c4@linaro.org>
+From: Praveenkumar I <quic_ipkumar@quicinc.com>
+In-Reply-To: <1e3af927-52b0-42ab-9643-db4bf3f2d2c4@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Wd7JrN6cM8dnplHkB29Q3HpCe5dE3cnM
+X-Proofpoint-GUID: Wd7JrN6cM8dnplHkB29Q3HpCe5dE3cnM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-03_11,2023-10-02_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
+ lowpriorityscore=0 spamscore=0 priorityscore=1501 adultscore=0
+ suspectscore=0 bulkscore=0 impostorscore=0 mlxlogscore=443 phishscore=0
+ malwarescore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310030102
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Matt,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on net-next/main]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Matt-Johnston/dt-bindings-i3c-Add-mctp-controller-property/20231003-144037
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/20231003063624.126723-4-matt%40codeconstruct.com.au
-patch subject: [PATCH net-next v3 3/3] mctp i3c: MCTP I3C driver
-config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20231003/202310032142.NaWYwlZc-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231003/202310032142.NaWYwlZc-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310032142.NaWYwlZc-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/net/mctp/mctp-i3c.c: In function 'mctp_i3c_read':
->> drivers/net/mctp/mctp-i3c.c:121:9: error: implicit declaration of function 'put_unaligned_be48' [-Werror=implicit-function-declaration]
-     121 |         put_unaligned_be48(mi->pid, ihdr->source);
-         |         ^~~~~~~~~~~~~~~~~~
-   drivers/net/mctp/mctp-i3c.c: In function 'mctp_i3c_xmit':
->> drivers/net/mctp/mctp-i3c.c:380:15: error: implicit declaration of function 'get_unaligned_be48'; did you mean 'get_unalign_ctl'? [-Werror=implicit-function-declaration]
-     380 |         pid = get_unaligned_be48(ihdr->dest);
-         |               ^~~~~~~~~~~~~~~~~~
-         |               get_unalign_ctl
-   cc1: some warnings being treated as errors
 
 
-vim +/put_unaligned_be48 +121 drivers/net/mctp/mctp-i3c.c
+On 9/30/2023 10:56 PM, Dmitry Baryshkov wrote:
+> On 29/09/2023 16:31, Praveenkumar I wrote:
+>>
+>>
+>> On 9/29/2023 6:44 PM, Konrad Dybcio wrote:
+>>> On 29.09.2023 10:42, Praveenkumar I wrote:
+>>>> Add UNIPHY node in USB to support Super-speed. As the SS PHY has
+>>>> pipe clock, removed "qcom,select-utmi-as-pipe-clk" flag.
+>>>>
+>>>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+>>>> ---
+>>> Patches 6 and 7 should be swapped, otherwise you may get no
+>>> USB with this commit. Incremental patches must not break
+>>> functionality, unless it is truly inevitable.
+>> Understood. Will swap the 6 and 7 patches in the update.
+>
+> But just swapping the patches will not work, the patch for the board 
+> file will break compilation. I think you have to squash them.
+I think swapping will work as the PHY node in the base dtsi added 
+separately in patch 3. If compilation fails, will squash them.
 
-    98	
-    99	static int mctp_i3c_read(struct mctp_i3c_device *mi)
-   100	{
-   101		struct i3c_priv_xfer xfer = { .rnw = 1, .len = mi->mrl };
-   102		struct net_device_stats *stats = &mi->mbus->ndev->stats;
-   103		struct mctp_i3c_internal_hdr *ihdr = NULL;
-   104		struct sk_buff *skb = NULL;
-   105		struct mctp_skb_cb *cb;
-   106		int net_status, rc;
-   107		u8 pec, addr;
-   108	
-   109		skb = netdev_alloc_skb(mi->mbus->ndev,
-   110				       mi->mrl + sizeof(struct mctp_i3c_internal_hdr));
-   111		if (!skb) {
-   112			stats->rx_dropped++;
-   113			rc = -ENOMEM;
-   114			goto err;
-   115		}
-   116	
-   117		skb->protocol = htons(ETH_P_MCTP);
-   118		/* Create a header for internal use */
-   119		skb_reset_mac_header(skb);
-   120		ihdr = skb_put(skb, sizeof(struct mctp_i3c_internal_hdr));
- > 121		put_unaligned_be48(mi->pid, ihdr->source);
-   122		put_unaligned_be48(mi->mbus->pid, ihdr->dest);
-   123		skb_pull(skb, sizeof(struct mctp_i3c_internal_hdr));
-   124	
-   125		xfer.data.in = skb_put(skb, mi->mrl);
-   126	
-   127		rc = i3c_device_do_priv_xfers(mi->i3c, &xfer, 1);
-   128		if (rc < 0)
-   129			goto err;
-   130	
-   131		if (WARN_ON_ONCE(xfer.len > mi->mrl)) {
-   132			/* Bad i3c bus driver */
-   133			rc = -EIO;
-   134			goto err;
-   135		}
-   136		if (xfer.len < MCTP_I3C_MINLEN) {
-   137			stats->rx_length_errors++;
-   138			rc = -EIO;
-   139			goto err;
-   140		}
-   141	
-   142		/* check PEC, including address byte */
-   143		addr = mi->addr << 1 | 1;
-   144		pec = i2c_smbus_pec(0, &addr, 1);
-   145		pec = i2c_smbus_pec(pec, xfer.data.in, xfer.len - 1);
-   146		if (pec != ((u8 *)xfer.data.in)[xfer.len - 1]) {
-   147			stats->rx_crc_errors++;
-   148			rc = -EINVAL;
-   149			goto err;
-   150		}
-   151	
-   152		/* Remove PEC */
-   153		skb_trim(skb, xfer.len - 1);
-   154	
-   155		cb = __mctp_cb(skb);
-   156		cb->halen = PID_SIZE;
-   157		put_unaligned_be48(mi->pid, cb->haddr);
-   158	
-   159		net_status = netif_rx(skb);
-   160	
-   161		if (net_status == NET_RX_SUCCESS) {
-   162			stats->rx_packets++;
-   163			stats->rx_bytes += xfer.len - 1;
-   164		} else {
-   165			stats->rx_dropped++;
-   166		}
-   167	
-   168		return 0;
-   169	err:
-   170		kfree_skb(skb);
-   171		return rc;
-   172	}
-   173	
+- Praveenkumar
+>
+>>
+>> -- 
+>> Thanks,
+>> Praveenkumar
+>>>
+>>> Konrad
+>>
+>
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
