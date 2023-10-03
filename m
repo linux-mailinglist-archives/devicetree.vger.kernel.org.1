@@ -1,159 +1,116 @@
-Return-Path: <devicetree+bounces-5352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D74CD7B606E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 07:34:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 253D57B6095
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 07:57:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 81C0C2816C7
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 05:34:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 3A6461C20847
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 05:57:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B9341FDA;
-	Tue,  3 Oct 2023 05:34:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D7FE4437;
+	Tue,  3 Oct 2023 05:57:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CF6A1375;
-	Tue,  3 Oct 2023 05:34:19 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3819B3;
-	Mon,  2 Oct 2023 22:34:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1696311257; x=1727847257;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=RCj7WyluIUsq7v8E4Prf3L0fuZhckvzQbOsAkGXe6P8=;
-  b=fRBZXueXaHfsatylMxW1vle489ts7zRZ5Z63i70PzX02IXEsyfTNon/k
-   4MrSj2LXnj9EbHaDhqvZ7I26OSMpmF6Ogo7SaxybSecHP1vJPWs/6mwio
-   nwbApRDH66W9Ber1KvySnIsDFYv2iNDpC+onEo7I3YgEGNsS1firD/CuZ
-   D7IM2ANnHVEXu/WuZ2WDyHmaHMaelW6wQhygpWn2xqEhIQh9PO/jhcvLO
-   IBLlMknZBlU2LL+wvNHnEjr8xTGK+l1rSNtBrZbHEuezeiyH9La6FXZ/y
-   5Irr2BJ60P6MmKMPnuKgAP8HvHoynvaKkk526ddxfIhG7H3SIPuWc0hpd
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="449284644"
-X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; 
-   d="scan'208";a="449284644"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Oct 2023 22:34:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="841211944"
-X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; 
-   d="scan'208";a="841211944"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by FMSMGA003.fm.intel.com with SMTP; 02 Oct 2023 22:34:12 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 03 Oct 2023 08:34:11 +0300
-Date: Tue, 3 Oct 2023 08:34:11 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Abdel Alkuor <alkuor@gmail.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, bryan.odonoghue@linaro.org,
-	gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, ryan.eleceng@gmail.com,
-	robh+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	Abdel Alkuor <abdelalkuor@geotab.com>
-Subject: Re: [PATCH v9 05/14] USB: typec: tps6598x: Check for EEPROM present
-Message-ID: <ZRun0+pBJ8n6tMZU@kuha.fi.intel.com>
-References: <20231001081134.37101-1-alkuor@gmail.com>
- <20231001081134.37101-6-alkuor@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12BAA3FC7
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 05:57:31 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49645B7;
+	Mon,  2 Oct 2023 22:57:30 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3935vOrx010103;
+	Tue, 3 Oct 2023 05:57:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=65lNO2xipthuSI9gqYy2bjtb3vn9FOveyb5eLRthTpU=;
+ b=PvyMAi3m+B7ChrbxXXbD/Qp+ahHHzKUrqztKCyQKPMFxMSsqBNJSKdwovnv8LkVHmAGQ
+ rcmSR3yowSJ0J8StXIpL6V7QoTjdP2jqprqxxWCtknCT/yICWpU49UsgGiNzt7gP0HUR
+ 2dFQ/uSn/WJENOIXHGGUzLytoDXGIv5YmNa1Nnaq4mxjOtxPz8zb3I0RpQGF0AT17MTO
+ W5LT8TzWZKH2pvXse05rN8lK5L7QWA8x+u6E9KUJGWTAI89ViSvnko8kfYbwAqcjjMrD
+ 5ljQv4DJtDRZqRfWKMuu1ruwcq1ELspY2FwAHaLtStJ77edxPLuIfinE3qOUOrfMCq1F Lg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tgaw5g7t8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 03 Oct 2023 05:57:24 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3935vNgZ002596
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 3 Oct 2023 05:57:23 GMT
+Received: from hu-kbajaj-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Mon, 2 Oct 2023 22:57:19 -0700
+From: Komal Bajaj <quic_kbajaj@quicinc.com>
+To: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <luca.weiss@fairphone.com>,
+        Komal Bajaj
+	<quic_kbajaj@quicinc.com>
+Subject: [PATCH v2 0/2] Initial support for the QCM6490 IDP
+Date: Tue, 3 Oct 2023 11:26:53 +0530
+Message-ID: <20231003055655.30994-1-quic_kbajaj@quicinc.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231001081134.37101-6-alkuor@gmail.com>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-	SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: J_AKpSvRlNOyAj0cHyCv2Pz4dyUu9COt
+X-Proofpoint-GUID: J_AKpSvRlNOyAj0cHyCv2Pz4dyUu9COt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-03_02,2023-10-02_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ phishscore=0 priorityscore=1501 clxscore=1015 impostorscore=0 mlxscore=0
+ lowpriorityscore=0 mlxlogscore=751 adultscore=0 spamscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
+ definitions=main-2310030047
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Sun, Oct 01, 2023 at 04:11:25AM -0400, Abdel Alkuor wrote:
-> From: Abdel Alkuor <abdelalkuor@geotab.com>
-> 
-> When an EEPROM is present, tps25750 loads the binary configuration from
-> EEPROM. Hence, all we need to do is wait for the device to switch to APP
-> mode
-> 
-> Signed-off-by: Abdel Alkuor <abdelalkuor@geotab.com>
+Add dt-binding and devicetree files for QCM6490 IDP.
 
-I'm not sure I understand why this needs separate patch, but in any
-case:
+This patch depends-on:
+https://lore.kernel.org/lkml/20230919-fp5-initial-v2-0-14bb7cedadf5@fairphone.com/
 
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+----
+Changes from v1:
+* Dropped suffix platform from model name
+* Removed few nodes as they were identical to ones in sc7280
+* Specified regulator-initial-mode property to vregs
+* Dropped deletion of lpass and swr nodes
+* Link to v1: https://lore.kernel.org/lkml/20230928133312.11371-1-quic_kbajaj@quicinc.com/
 
-> ---
-> Changes in v9:
->   - No changes
-> Changes in v8:
->   - No changes
-> Changes in v7:
->   - Add driver name to commit subject
-> Changes in v6: 
->   - Update eeprom macro to use TPS instead
-> Changes in v5:
->   - Incorporating tps25750 into tps6598x driver
-> 
->  drivers/usb/typec/tipd/core.c     | 13 +++++++++++++
->  drivers/usb/typec/tipd/tps6598x.h |  3 +++
->  2 files changed, 16 insertions(+)
-> 
-> diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
-> index 2e7b9eafaf04..21b0ea2c9627 100644
-> --- a/drivers/usb/typec/tipd/core.c
-> +++ b/drivers/usb/typec/tipd/core.c
-> @@ -37,6 +37,7 @@
->  #define TPS_REG_STATUS			0x1a
->  #define TPS_REG_SYSTEM_CONF		0x28
->  #define TPS_REG_CTRL_CONF		0x29
-> +#define TPS_REG_BOOT_STATUS		0x2D
->  #define TPS_REG_POWER_STATUS		0x3f
->  #define TPS_REG_RX_IDENTITY_SOP		0x48
->  #define TPS_REG_DATA_STATUS		0x5f
-> @@ -910,6 +911,17 @@ static int tps25750_apply_patch(struct tps6598x *tps)
->  {
->  	int ret;
->  	unsigned long timeout;
-> +	u64 status = 0;
-> +
-> +	ret = tps6598x_block_read(tps, TPS_REG_BOOT_STATUS, &status, 5);
-> +	if (ret)
-> +		return ret;
-> +	/*
-> +	 * Nothing to be done if the configuration
-> +	 * is being loaded from EERPOM
-> +	 */
-> +	if (status & TPS_BOOT_STATUS_I2C_EEPROM_PRESENT)
-> +		goto wait_for_app;
->  
->  	ret = tps25750_start_patch_burst_mode(tps);
->  	if (ret) {
-> @@ -921,6 +933,7 @@ static int tps25750_apply_patch(struct tps6598x *tps)
->  	if (ret)
->  		return ret;
->  
-> +wait_for_app:
->  	timeout = jiffies + msecs_to_jiffies(1000);
->  
->  	do {
-> diff --git a/drivers/usb/typec/tipd/tps6598x.h b/drivers/usb/typec/tipd/tps6598x.h
-> index 527857549d69..a80d0929f3ee 100644
-> --- a/drivers/usb/typec/tipd/tps6598x.h
-> +++ b/drivers/usb/typec/tipd/tps6598x.h
-> @@ -199,4 +199,7 @@
->  #define TPS_DATA_STATUS_DP_SPEC_PIN_ASSIGNMENT_A    BIT(2)
->  #define TPS_DATA_STATUS_DP_SPEC_PIN_ASSIGNMENT_B    (BIT(2) | BIT(1))
->  
-> +/* BOOT STATUS REG*/
-> +#define TPS_BOOT_STATUS_I2C_EEPROM_PRESENT	BIT(3)
-> +
->  #endif /* __TPS6598X_H__ */
-> -- 
-> 2.34.1
+---
+Komal Bajaj (2):
+  dt-bindings: arm: qcom: Add QCM6490 IDP board
+  arm64: dts: qcom: qcm6490: Add qcm6490 dts file
 
--- 
-heikki
+ .../devicetree/bindings/arm/qcom.yaml         |   1 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ arch/arm64/boot/dts/qcom/qcm6490-idp.dts      | 335 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/qcm6490.dtsi         |  94 +++++
+ 4 files changed, 431 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/qcm6490.dtsi
+
+--
+2.42.0
+
 
