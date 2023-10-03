@@ -1,169 +1,145 @@
-Return-Path: <devicetree+bounces-5651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BF277B7298
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 22:35:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BB337B72A6
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 22:46:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 4AE99280C72
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 20:35:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id BB4031F213A9
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 20:45:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DC3A339A4;
-	Tue,  3 Oct 2023 20:35:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 825C63B7BF;
+	Tue,  3 Oct 2023 20:45:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30ED9F517
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 20:35:48 +0000 (UTC)
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CBF6AB;
-	Tue,  3 Oct 2023 13:35:47 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-534659061afso2292452a12.3;
-        Tue, 03 Oct 2023 13:35:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696365345; x=1696970145; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WqdB+JUHcFiGktTAMBzkuM441kM6m0DdlaLG8beYiPI=;
-        b=g9ctOq66oJCRGqrTObc/vmDlcYLgxodnOlStf+YDsazSVp8PGcQ7wNzCOO4PzEUQ1F
-         GFFPlosdJsEv4WSt1UMzARs0LJaFbiZf8KCgspP+Bcctxsv2RVnTAjg0dDJ3UMjxALfI
-         0eFTbvrYsLc9ZbnX3kl6D1Y4j3iiqs8Zsw4Urte6991nXiENzfRdm2o2HdYfhX/7VGE6
-         s4kzc64WLY1l8UpBRfVFJh70NNGaiNF1Fb9lq/d339nd+Hi2NxS5IOq2xyEnc7IYCjmI
-         2DLRiLZQKXvE6B4ca0WfClrgH/onRcpyBv/5p4MPBCJz6S+6rUseMYkVoKzl48ScmfmE
-         82Kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696365345; x=1696970145;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WqdB+JUHcFiGktTAMBzkuM441kM6m0DdlaLG8beYiPI=;
-        b=NmWI70cLVzjtPY7LLGMPxxSJZ3BsTvO8kxXSp6Sp063SW7ygbdpq/RR9leLrxmTVvL
-         sVPi2QNWLRD5H1Z9er7HNkDZhLEeXhr7il49Gv++2YT0x/ezXy2YOPlDEt1LT+h7bi8b
-         vxlB7CqRtTsNjPZ5PP5/ugEslo9INP8mAUm2hEdim/Ay5cHmQX4bD7cBxGzjEam+/TAf
-         xASWPKat/g6yteBqHJBKkWItSNd6T9hcZLE5Gql0b/FoyvTxMskFu0Ej6N9Kyv+8N+6K
-         18tUAbTky9HOfciI6q2+CeF57VzoChjucwF6SwvDG6wyGzljgCV+vE1eXwoXglvPaDtX
-         uhBw==
-X-Gm-Message-State: AOJu0YzFYZzYFLNEqF+4fsPrdoMsyUfqWVYmIxfp/lnSAvuUnlOnlr4m
-	xGpALfbHpFq6u+/0jVUT2pbKTEdXtB5ZOoejo9sndsnKwM8u0g==
-X-Google-Smtp-Source: AGHT+IFtz3sRHIiHBp0ES9GvQG+rFCC7YNSRi0k8np6ylSpW+5DQTBzH7jeF5qdF+RpJKkYX0W/losyCF7NajUlo4Fw=
-X-Received: by 2002:aa7:d503:0:b0:538:ae5:6138 with SMTP id
- y3-20020aa7d503000000b005380ae56138mr259035edq.34.1696365345398; Tue, 03 Oct
- 2023 13:35:45 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF20E3B2BF
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 20:45:54 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B661AC
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 13:45:53 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 393JZIYF027134;
+	Tue, 3 Oct 2023 20:45:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Bg6E8dl/nMy8TcXSBpDZcgI1rn2FGNvN5jUDCVIHNmY=;
+ b=dBA4JrB1poe003ghY47oJz1/J64yjJSE93F8nj+tXqUNSy/tsUI9PXrn1XuWfuXOkuKQ
+ y7WSFrrv4XBwo8sT+fqz/LecLkJD95NAqO/7rVaLygROb8hWz75lHTMJ+UIhcFq7drUl
+ lP5zqQLfIWHgCxHnCCNPVteNqMjV7294bncRmdtApiy1ut8r6eIBXnYe+flsh1ioARj6
+ rTaGFNYqXQ1lafi5FEd6ZvZ4FXw/yFz/MjopoJ1Hs6rFcPwSl887XAebxQ3nBfmM7TNq
+ FzH2MSDOc3gvPC1JM9KYmUMeR/0EoqWAO5A9yo3JSNeWQIiOlbJzCmTcPgm0jH60l7EY zw== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tgqr18br7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 03 Oct 2023 20:45:38 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 393KjbDt027720
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 3 Oct 2023 20:45:37 GMT
+Received: from [10.71.110.254] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Tue, 3 Oct
+ 2023 13:45:37 -0700
+Message-ID: <8984b95e-d671-4828-8d75-2ef7eb800b7d@quicinc.com>
+Date: Tue, 3 Oct 2023 13:45:37 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230918080314.11959-1-jagathjog1996@gmail.com>
- <20230918080314.11959-3-jagathjog1996@gmail.com> <20230924153055.0b3486f9@jic23-huawei>
- <CAM+2EuJBxj7P-ymu84u308g8LCemSEsYi_TSHYtaK9PyrhqrfA@mail.gmail.com>
- <5eb148b4-25eb-460d-9ec8-0a40bec1dc6f@gmail.com> <CAM+2EuJUGu4QUCdZ7d28RaLNipJRVuASP9wSzF14k=oBoC4e_Q@mail.gmail.com>
- <833fc809-b1d4-471e-afa3-68ded78b20f0@gmail.com>
-In-Reply-To: <833fc809-b1d4-471e-afa3-68ded78b20f0@gmail.com>
-From: Jagath Jog J <jagathjog1996@gmail.com>
-Date: Wed, 4 Oct 2023 02:05:33 +0530
-Message-ID: <CAM+2EuKJwW8i9-1Y4v7ccaT3HUHJ9E79j7cPWqzbig_tcFWxSA@mail.gmail.com>
-Subject: Re: [RFC 2/2] iio: imu: Add driver for BMI323 IMU
-To: Denis Benato <benato.denis96@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, andriy.shevchenko@linux.intel.com, lars@metafoo.de, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V4 2/2] drm/panel: nv3051d: Add Support for Anbernic 351V
+Content-Language: en-US
+To: Chris Morgan <macroalpha82@gmail.com>
+CC: <neil.armstrong@linaro.org>, <conor+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <sam@ravnborg.org>,
+        Chris Morgan
+	<macromorgan@hotmail.com>,
+        <dri-devel@lists.freedesktop.org>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20231003163355.143704-1-macroalpha82@gmail.com>
+ <20231003163355.143704-3-macroalpha82@gmail.com>
+From: Jessica Zhang <quic_jesszhan@quicinc.com>
+In-Reply-To: <20231003163355.143704-3-macroalpha82@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: aC7YovR8wxPSFlprbdwp5GFEasXhUoha
+X-Proofpoint-GUID: aC7YovR8wxPSFlprbdwp5GFEasXhUoha
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-03_17,2023-10-02_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ lowpriorityscore=0 spamscore=0 clxscore=1015 impostorscore=0
+ suspectscore=0 mlxscore=0 phishscore=0 adultscore=0 mlxlogscore=713
+ bulkscore=0 priorityscore=1501 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2309180000 definitions=main-2310030157
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Denis, Jonathan
 
-On Sun, Oct 1, 2023 at 7:23=E2=80=AFPM Denis Benato <benato.denis96@gmail.c=
-om> wrote:
->
-> Hello Jagath,
->
-> On 9/29/23 09:59, Jagath Jog J wrote:
-> > Hi Denis,
-> >
-> > On Thu, Sep 28, 2023 at 2:55=E2=80=AFAM Denis Benato <benato.denis96@gm=
-ail.com> wrote:
-> >>
-> >> Hello,
-> >>
-> >> Some devices (as my asus rog ally) have an ACPI node describing a BOSC=
-0200 sensor. The IC being used in those devices is a  bmi323 but as a resul=
-t of how the ACPI table reports that device, it is detected by the existing=
- kernel module and we have no way of differentiating until after the chip I=
-D probe.
-> >>
-> >> The module loaded is bmc150-accel-i2c.c which currently doesn't suppor=
-t the bmi323 and the loading of the module just fails at chip check.
-> >
-> > bmc150 driver supports multiple accelerometer sensors such as
-> > bma222, bma280, bmi055 and all of them are having similar
-> > register map, but the bmi323 register map is completely different
-> > from bmc150.
->
-> I apologize for the confusion.
->
-> What I was trying to say is that to have the bmi323 working in those afor=
-ementioned devices bmc150 will need to be modified: that is the probe funct=
-ion that ends up being executed, fact that cannot be changed because it dep=
-ends on the ACPI implementation shipped on those devices.
->
-> Therefore I was asking about the best way of handing control to the new d=
-river and how that should be organized: in my implementation the new bmi323=
- code was written inside the bmc150-accel-core.c and only shares sleep/susp=
-end, probe and removal functions in addition to checking for the new chip p=
-resence before checking for any bmc150 chip as that issues an i2c write, wh=
-ile the check for the bmi323 only requires an i2c read.
 
-Means you want to handle control to the standalone driver from bmc150.
-Sorry, I didn't find any examples.
+On 10/3/2023 9:33 AM, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Add support for the Anbernic 351V. Just like the 353 series the
+> underlying vendor is unknown/unmarked (at least not visible in a
+> non-destructive manner). The panel had slightly different init
+> sequences and timings in the BSP kernel, but works fine with the
+> same ones used in the existing driver. The panel will not work without
+> the inclusion of the MIPI_DSI_CLOCK_NON_CONTINUOUS flag, and this flag
+> prevents the 353 series from working correctly, so a new compatible
+> string is added.
+> 
+> Tested colors and timings using modetest and all seem to work identical
+> to the 353 otherwise.
 
-Important thing to handle is the bmi323 private structure and call required
-exported functions from another driver.
+Hi Chris,
 
-Jonathan: Can you suggest any example wrapper drivers which handle that way=
-?
+LGTM, thanks!
 
->
-> We also have done duplicate work as I have written a driver for that chip=
- myself, but it's not as good as yours because my hardware didn't come with=
- the IRQ pin connected and so I couldn't develop triggers and I only got th=
-e i2c interface working.
->
-> >
-> >
-> >>
-> >> I have solved the problem by expanding the current bmc150-accel-i2c.c =
-and bmc150-accel-core.c files to handle that IC in almost every part: gyros=
-cope, accelerometer and temperature sensor.
-> >>
-> >> What is the best way of organizing code to have this module mainlined?=
- Is it correct leaving files called bmc150-accel-* even if it is managing a=
-nother IC and and not just the accelerometer part anymore?
-> >>
-> >> TIA for your time.
-> >>
-> >> Best regards,
-> >> Denis Benato
-> >
-> > Regards
-> >
-> > Jagath
->
-> TIA for your time.
->
-> Best regards,
-> Denis Benato
+Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>
 
-Regards
-Jagath
+BR,
+
+Jessica Zhang
+
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
+>   drivers/gpu/drm/panel/panel-newvision-nv3051d.c | 7 +++++++
+>   1 file changed, 7 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-newvision-nv3051d.c b/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
+> index ad98dd9322b4..79de6c886292 100644
+> --- a/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
+> +++ b/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
+> @@ -388,6 +388,13 @@ static int panel_nv3051d_probe(struct mipi_dsi_device *dsi)
+>   	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
+>   			  MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_NO_EOT_PACKET;
+>   
+> +	/*
+> +	 * The panel in the RG351V is identical to the 353P, except it
+> +	 * requires MIPI_DSI_CLOCK_NON_CONTINUOUS to operate correctly.
+> +	 */
+> +	if (of_device_is_compatible(dev->of_node, "anbernic,rg351v-panel"))
+> +		dsi->mode_flags |= MIPI_DSI_CLOCK_NON_CONTINUOUS;
+> +
+>   	drm_panel_init(&ctx->panel, &dsi->dev, &panel_nv3051d_funcs,
+>   		       DRM_MODE_CONNECTOR_DSI);
+>   
+> -- 
+> 2.34.1
+> 
 
