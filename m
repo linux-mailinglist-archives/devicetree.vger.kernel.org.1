@@ -1,187 +1,119 @@
-Return-Path: <devicetree+bounces-5630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 565E17B6EA2
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 18:34:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE3E27B6E95
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 18:34:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 04B5B281269
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 16:34:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id F158A1C203BF
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 16:34:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CF5A2AB3D;
-	Tue,  3 Oct 2023 16:34:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6EF629415;
+	Tue,  3 Oct 2023 16:34:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB0192510C;
-	Tue,  3 Oct 2023 16:34:38 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50B5CAF;
-	Tue,  3 Oct 2023 09:34:37 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 393Erddk013142;
-	Tue, 3 Oct 2023 16:34:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=FF73pH/SYbmbjDDOjovosivE4VxvLNDlhTfVVV+K1bM=;
- b=B7bHcW7RReBs1ljd7qMkUPf9w6CBSvDNz93NOjt9t9BNJJteUMM4WuByNLMCKQYgTkWc
- Z68I1dE8jSXy5sLmxFdDc/tZ6zE6l2Vz8ucaTSSXzMleB5RE26AlU6xa6W9ykPJmA4oC
- b3vEU0GjDaFjKhP7EztMl4nkp5YqWdV0TUwfTA3OUxL+kxpHPo38mu93J+j1dvVNSTNo
- L9pnWNYrZBrEl7WkAbZ+wxLv1/hj6p0lril4sYH+XMrB46p0WGhPYVXJBycoGqs07ddY
- zT/b4+N7717LCB7J2XgOP1LU1eOPyuh5Fn5coJtdurjNikHp7kFdD5L/ICvwWhSj1i6O bg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tg98rhx6u-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 03 Oct 2023 16:34:06 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 393GY50m030027
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 3 Oct 2023 16:34:05 GMT
-Received: from [10.216.32.208] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 3 Oct
- 2023 09:33:55 -0700
-Message-ID: <a44fcc7b-0a79-4755-87a1-1d1704fd3e58@quicinc.com>
-Date: Tue, 3 Oct 2023 22:03:51 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47191154A1
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 16:34:03 +0000 (UTC)
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 414F3A7
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 09:34:02 -0700 (PDT)
+Received: by mail-ot1-x32b.google.com with SMTP id 46e09a7af769-6c4e7951dddso750007a34.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Oct 2023 09:34:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696350841; x=1696955641; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tj7w41rLlWbL1bmav/8tesoiRg3+S5FpObDj9wp+gt0=;
+        b=XHQTXo7LLNFdckN4snslkD0cCAvkaonJ872Sxzb5HNIV65En7jnlTKn2am8fZfMMHc
+         nwAT8FQWQqJW0KLi9wBJFnwPef2kKNJEsar54OcSvjhRpg64bQm/s5m654rZ+ocqz8OD
+         QUNH/FnKXYRLIMw/7CUKg13Wm8kQWmMJ+7O9UkTSokgbvngfqtMKxKHGGH5x/sjBGECG
+         Py9FnrGTrSgDdQqlcj9FwsZAapy6psAoITkOQKCsE9maveVKGzYjtQdnfQi9PhnHqNaU
+         D3Pir2pCNsw/pGI5yMjeuerntzzUxQa8cVAVjcNBJs7x1DiMKZAMVuhGmoaVbrtZvltj
+         gopw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696350841; x=1696955641;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tj7w41rLlWbL1bmav/8tesoiRg3+S5FpObDj9wp+gt0=;
+        b=KkZxJIN7i1+0y1Zaue/6WbOXigkcvIVGt0lKS3AS23yP8h9chwQHEqRH1IcyOwE3iK
+         h9hMr8ZhUnT+jObvPGC7IJGKKfhxTTZ05LkhS823YijPYz84mtbzCVLESM0aOXac43Jf
+         X0vyl5S25O9sfc4EPWpsXb8eMi4j2r9omflhuYWRMxj/Um3dAAZu60YUnV1JMUSyQdER
+         +r+AbApEcbet0Vfyne+tIjQgYsouMnPOToRfe1C8DyeCP54khg3SNtyQMiqPboOyReD4
+         As2MwbaUcYh8sMXVl9UyPGqldiE9wM2O88Bzqhc5nn6GhGWaVIsHRHTAs70xckbI8VRt
+         kLSw==
+X-Gm-Message-State: AOJu0YwWJMkhzgYZbSXY0yEe1EQbmX/jSCClNLiOkvDFUKaAo5ca7uXF
+	WMr9sY5FWc7hFPJET8NLy52NGR2lF6I=
+X-Google-Smtp-Source: AGHT+IGp7ehnwYSxxxzmEOMYdK8NZTQFwuki8TORAjFYRAYbS2A6pnXFwZ+F3msj0e+Sv+GHMfXdcg==
+X-Received: by 2002:a05:6830:3d17:b0:6c4:cdce:5de8 with SMTP id eu23-20020a0568303d1700b006c4cdce5de8mr14687043otb.26.1696350841276;
+        Tue, 03 Oct 2023 09:34:01 -0700 (PDT)
+Received: from localhost.localdomain ([75.28.21.198])
+        by smtp.gmail.com with ESMTPSA id k6-20020a056830150600b006b74bea76c0sm198567otp.47.2023.10.03.09.34.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Oct 2023 09:34:00 -0700 (PDT)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org,
+	conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	daniel@ffwll.ch,
+	airlied@gmail.com,
+	sam@ravnborg.org,
+	neil.armstrong@linaro.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V4 0/2] Support Anbernic RG351V Panel
+Date: Tue,  3 Oct 2023 11:33:53 -0500
+Message-Id: <20231003163355.143704-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/8] phy: qcom: Introduce Super-Speed USB UNIPHY driver
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <vkoul@kernel.org>, <kishon@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <gregkh@linuxfoundation.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <p.zabel@pengutronix.de>, <geert+renesas@glider.be>,
-        <arnd@arndb.de>, <neil.armstrong@linaro.org>,
-        <nfraprado@collabora.com>, <u-kumar1@ti.com>, <peng.fan@nxp.com>,
-        <quic_wcheng@quicinc.com>, <quic_varada@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <quic_kathirav@quicinc.com>, <quic_nsekar@quicinc.com>,
-        <quic_srichara@quicinc.com>
-References: <20230929084209.3033093-1-quic_ipkumar@quicinc.com>
- <20230929084209.3033093-3-quic_ipkumar@quicinc.com>
- <412492d1-fcc9-481c-9d28-b208a644ba1d@linaro.org>
- <7975c638-29cf-45ce-9d76-b8a93d750eb7@quicinc.com>
- <CAA8EJprhQz_Tj0Bhv6zhGa7h37Ug-Fp6Tof9tNscTFyZzkbJvw@mail.gmail.com>
-From: Praveenkumar I <quic_ipkumar@quicinc.com>
-In-Reply-To: <CAA8EJprhQz_Tj0Bhv6zhGa7h37Ug-Fp6Tof9tNscTFyZzkbJvw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: KukSnE5ys9HRpl3qozM40BtNCj8Gai-o
-X-Proofpoint-GUID: KukSnE5ys9HRpl3qozM40BtNCj8Gai-o
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-03_13,2023-10-02_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- suspectscore=0 bulkscore=0 adultscore=0 impostorscore=0 lowpriorityscore=0
- clxscore=1015 spamscore=0 mlxscore=0 malwarescore=0 phishscore=0
- mlxlogscore=554 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310030125
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+From: Chris Morgan <macromorgan@hotmail.com>
+
+Add support for the Anbernic RG351V panel. This panel is mostly
+identical to the one used in the 353 series, except it has a different
+panel ID when queried (0x4000 for the 351V, 0x3052 for the 353 panel)
+and will not work without the inclusion of the
+MIPI_DSI_CLOCK_NON_CONTINUOUS flag.
+
+Updates from V3:
+ - Removed need for defined variable in probe function.
+
+Updates from V2:
+ - Modified the driver so that we only apply the
+   MIPI_DSI_CLOCK_NON_CONTINUOUS flag when the compatible matches
+   a panel (the 351v) that needs it.
+ - Updated the binding documentation to be consistent with existing
+   panels.
+
+Updates from V1:
+ - Revised text in devicetree documentation to remove references to
+   specific hardware.
 
 
-On 10/3/2023 8:24 PM, Dmitry Baryshkov wrote:
-> On Tue, 3 Oct 2023 at 17:22, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
->>
->>
->> On 9/30/2023 10:48 PM, Dmitry Baryshkov wrote:
->>> On 29/09/2023 11:42, Praveenkumar I wrote:
->>>> Adds Qualcomm 22ull Super-Speed USB UNIPHY driver support which
->>>> is present in Qualcomm IPQ5332 SoC. This PHY is interfaced with
->>>> SNPS DWC3 USB and SNPS DWC PCIe. Either one of the interface
->>>> can use the it and selection is done via mux present in TCSR
->>>> register. This driver selects the PHY for DWC3 USB and handles
->>>> the reset, clocks and regulator.
->>>>
->>>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
->>>> ---
->>>>    drivers/phy/qualcomm/Kconfig               |  11 +
->>>>    drivers/phy/qualcomm/Makefile              |   1 +
->>>>    drivers/phy/qualcomm/phy-qcom-uniphy-usb.c | 322 +++++++++++++++++++++
->>>>    3 files changed, 334 insertions(+)
->>>>    create mode 100644 drivers/phy/qualcomm/phy-qcom-uniphy-usb.c
->>>>
->>>> diff --git a/drivers/phy/qualcomm/Kconfig b/drivers/phy/qualcomm/Kconfig
->>>> index d891058b7c39..7257c8455c53 100644
->>>> --- a/drivers/phy/qualcomm/Kconfig
->>>> +++ b/drivers/phy/qualcomm/Kconfig
->>>> @@ -154,6 +154,17 @@ config PHY_QCOM_M31_USB
->>>>          management. This driver is required even for peripheral only or
->>>>          host only mode configurations.
->>>>    +config PHY_QCOM_UNIPHY_USB
->>>> +    tristate "Qualcomm USB Super-Speed UNIPHY driver"
->>> Can we please have more specific driver name? As I wrote earlier,
->>> there are two other (different) kinds of Qualcomm UNI PHY devices:
->>> - DSI / HDMI UNIPHY on apq8064 / msm8974 / msm8960 (?)
->>> - USB QMP UNI PHY drivers
->>>
->>> Adding a driver called UNIPHY, which is not related to those two kinds
->>> sounds pretty confusing to me.
->> This UNIPHY is different from above mentioned ones. This a custom
->> version for 22nm on Qualcomm IPQ5332.
->> Can we name the driver as phy-qcom-uniphy-usb-ss-22ull.c /
->> phy-qcom-usb-ss-22ull.c ?
-> usb-ss-22ull sounds better. Or maybe usb-ipq-ss
-Sure, will rename it to phy-qcom-usb-ss-22ull.c
->
->>>> +    depends on USB && (ARCH_QCOM || COMPILE_TEST)
->>>> +    select GENERIC_PHY
->>>> +    help
->>>> +      Enable this to support the Qualcomm USB Super-Speed UNIPHY
->>>> transceiver
->>>> +      with DWC3 USB core. It handles PHY initialization, clock
->>>> +      management required after resetting the hardware and power
->>>> +      management. This driver is required even for peripheral only or
->>>> +      host only mode configurations.
->>>> +
->>>>    config PHY_QCOM_USB_HS
->>>>        tristate "Qualcomm USB HS PHY module"
->>>>        depends on USB_ULPI_BUS
->>>> diff --git a/drivers/phy/qualcomm/Makefile
->>>> b/drivers/phy/qualcomm/Makefile
->>>> index ffd609ac6233..c3e0112a7a70 100644
->>>> --- a/drivers/phy/qualcomm/Makefile
->>>> +++ b/drivers/phy/qualcomm/Makefile
->>>> @@ -17,6 +17,7 @@ obj-$(CONFIG_PHY_QCOM_QMP_USB_LEGACY)    +=
->>>> phy-qcom-qmp-usb-legacy.o
->>>>    obj-$(CONFIG_PHY_QCOM_QUSB2)        += phy-qcom-qusb2.o
->>>>    obj-$(CONFIG_PHY_QCOM_SNPS_EUSB2)    += phy-qcom-snps-eusb2.o
->>>>    obj-$(CONFIG_PHY_QCOM_EUSB2_REPEATER)    += phy-qcom-eusb2-repeater.o
->>>> +obj-$(CONFIG_PHY_QCOM_UNIPHY_USB)    += phy-qcom-uniphy-usb.o
->>>>    obj-$(CONFIG_PHY_QCOM_USB_HS)         += phy-qcom-usb-hs.o
->>>>    obj-$(CONFIG_PHY_QCOM_USB_HSIC)     += phy-qcom-usb-hsic.o
->>>>    obj-$(CONFIG_PHY_QCOM_USB_HS_28NM)    += phy-qcom-usb-hs-28nm.o
->>>> diff --git a/drivers/phy/qualcomm/phy-qcom-uniphy-usb.c
->>>> b/drivers/phy/qualcomm/phy-qcom-uniphy-usb.c
->>>> new file mode 100644
->>>> index 000000000000..fdfc9c225995
->>>> --- /dev/null
->>>> +++ b/drivers/phy/qualcomm/phy-qcom-uniphy-usb.c
->>> So, is it a USB PHY or UNI PHY (where I would expect that it handles
->>> USB and PCIe?)
->> It is a USB PHY and the PHY name is UNIPHY. Added the usb in the file
->> name to differentiate it.
---
-Thanks,
-Praveenkumar
+Chris Morgan (2):
+  dt-bindings: display: newvision,nv3051d: Add Anbernic  351V
+  drm/panel: nv3051d: Add Support for Anbernic 351V
+
+ .../bindings/display/panel/newvision,nv3051d.yaml          | 5 ++---
+ drivers/gpu/drm/panel/panel-newvision-nv3051d.c            | 7 +++++++
+ 2 files changed, 9 insertions(+), 3 deletions(-)
+
+-- 
+2.34.1
+
 
