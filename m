@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-5419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB6B17B648A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 10:43:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3CBC7B64A8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 10:48:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 4EA9428128B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 08:43:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 8AB1A2815E4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 08:48:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13BBBDDA9;
-	Tue,  3 Oct 2023 08:43:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71BE4DDB1;
+	Tue,  3 Oct 2023 08:48:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7596F3FC2
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 08:43:40 +0000 (UTC)
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC3AEA7
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 01:43:35 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9b2f73e3af3so101638766b.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Oct 2023 01:43:35 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C652D3FC2
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 08:48:29 +0000 (UTC)
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 442A2A9
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 01:48:27 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-533e7d127d4so1021343a12.3
+        for <devicetree@vger.kernel.org>; Tue, 03 Oct 2023 01:48:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696322614; x=1696927414; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696322906; x=1696927706; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SL97zAxIUC9k1IlgpaOnwdtJoVdfWSEq6aWQGA8726w=;
-        b=UavXr8+dG7sEVWzswx8sHPDVXI/4uXgY6ufNiyYp//dvWWZ6AGDIAO5sioNyaGct/Q
-         BwHnpo8QsPtJvLbWMbdRA/2tMes3lm/sS7BSYt/MWrL68oneuwyduOgof/SGoDNBdlid
-         P5XsdJGhAKSJf7aaY9LlAJ6vm0J5Myx8THdq8VMo1QqcpNHjdUDSp9xwEGwytoXP3K93
-         c/wjQozCWLrkIvT6Ljw3Nlpyi1/05T1pGuSCojuqQ7FgZiBqiahftfD/dzM/Z/yJeteV
-         Ssx7eM7ygZ+UjTRYBXtTByy/I3nm8w3GBqUBTpk8MhX8wOy923DCUQ5g086aXLft8ePg
-         zUGg==
+        bh=qTcWqA2vsTFKtEgPZaGtKswQTXArLPU951N5/Ch92Cw=;
+        b=PctZ7u3TQwdU0EGoHdIIgXxduo8Hokhr/3iG7ELsuReRTCE23dQirENhrJwv34hg1y
+         o9FBzGAw1j2/BDDVdKYm53lDz46bDaQtpnGNrcirBzwf90vZ96Xn+awt+fxvEUgajdBW
+         uc6Jh9b65Jmp40oVttv1OXgk60zctKE9UzdwrTm/zwyEFR+LeqD/npUsI9080WtR7oHC
+         ditsYpYa4NNCsFnmjAFiwEcbiI7jQJd/yheU/Ub+TYkQh4EBGZv4zOHfRzFK8fujn3+A
+         lSyxSx9IV7rcLnQvH3Fw3vQh9+TOcNM0IyPEXc0lwxr3JD24X/PBESogXcYykafwHrGO
+         i4nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696322614; x=1696927414;
+        d=1e100.net; s=20230601; t=1696322906; x=1696927706;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SL97zAxIUC9k1IlgpaOnwdtJoVdfWSEq6aWQGA8726w=;
-        b=xHIAiRA7Rr7iW7CzpSYqU4E3JzxRAJNqWuQTgOaEOJ9IR9sQJNQztv5sIFLaDH4fgr
-         6TNpOy6Q9uQ+0CWM3M42/KVXmMAQC/IjWEkKMscVHD8WFmNpWbps5xczKLtv5Qd80ijC
-         KW8wA48eODWqjR28C7f5ugBJ00UIOH69/72j+KkRU4otBeBH+F98gx21HM1hr82OiUtR
-         vka/VpbFSSoxBX+ZPV6QbgtAni0vq0y2DoLWdzTLs7h/FXP35/mDCULeVFvlqjUg2jQZ
-         9w/TIRsV25AY0nPYH+HlIOTZAJEteG2kRXPQgUypyKOV7Rr3vrzf776YYCOn9T4g5qAJ
-         Io9g==
-X-Gm-Message-State: AOJu0YwL4OSrcd61Oe3pEq1yuIBCRvx8xlKZLLHaYIDA8XYdXZdq/aQr
-	WfbQIsUn5POFWWW0U4ykqHxmMg==
-X-Google-Smtp-Source: AGHT+IFGr95v474knEptRc4sLKxzKmvwMMtESgm8+6/Pm/LNuwEWolFDlu+ZB8H9cPZ3SjLCKg69PQ==
-X-Received: by 2002:a17:906:24d:b0:9ae:5db5:149 with SMTP id 13-20020a170906024d00b009ae5db50149mr14054363ejl.35.1696322614150;
-        Tue, 03 Oct 2023 01:43:34 -0700 (PDT)
+        bh=qTcWqA2vsTFKtEgPZaGtKswQTXArLPU951N5/Ch92Cw=;
+        b=pkSFNb+fjBnxFvOW4LpLCC5b54L+S5NqXxMT0TU2PaiOBFAgl9EpbrPznkunQ1UH0v
+         EUvQemRZCV8SCZaRyVAk38Z2U+D/0tnvbv/S78Irm41qUmu6/Hia0mxaw/1ZGuchsMnd
+         xJDtVr3bqDAY/OUajDwyY/dw+Sf9rfh7xM2zi3qHIgT5Ame7wTfCyN+ZD3x4oHMllKCg
+         P72NDSty26KL4rrEGJ0Pc+9zOUvktXBt6tiCGbXOjDUZ+gJgCma6ZNGiHGN6+UbGQy2l
+         LWlgUslXMlt6BLbUZFvKdX9UMMO8aL2VBvYS+Wj5FVEVaV/YYgMUXNo0AaJPho8VNHz4
+         uxhA==
+X-Gm-Message-State: AOJu0YysTK3G22RYCmUGEX94XlFS7KrQvdfu8k0pRY/D4a5TGDg6H5DF
+	0wCs7tS6zwfHQz/3tdITwWhVWQ==
+X-Google-Smtp-Source: AGHT+IHXR9RhgBYz0tuezZk3uuqteFyHlD9+xcQtR+vV2iKN8TOWV2B9/HM+IIjGy1hGhw9Z9R/dZA==
+X-Received: by 2002:aa7:d492:0:b0:522:2782:537 with SMTP id b18-20020aa7d492000000b0052227820537mr11860149edr.15.1696322905726;
+        Tue, 03 Oct 2023 01:48:25 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id v8-20020a1709063bc800b009ad8338aafasm693458ejf.13.2023.10.03.01.43.32
+        by smtp.gmail.com with ESMTPSA id d18-20020a50fb12000000b0053801ca9a09sm512238edq.33.2023.10.03.01.48.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Oct 2023 01:43:33 -0700 (PDT)
-Message-ID: <ca6f8f30-c305-42bf-a812-b43561c4da2b@linaro.org>
-Date: Tue, 3 Oct 2023 10:43:31 +0200
+        Tue, 03 Oct 2023 01:48:25 -0700 (PDT)
+Message-ID: <fa926d91-f748-4886-ae6d-f55541e40f5c@linaro.org>
+Date: Tue, 3 Oct 2023 10:48:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,18 +63,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 4/4] dt-bindings: gpio: Add bindings for SCMI pinctrl based
- gpio
+Subject: Re: [PATCH v2 3/6] dt-bindings: display: msm: Add SDM670 MDSS
 Content-Language: en-US
-To: AKASHI Takahiro <takahiro.akashi@linaro.org>,
- Rob Herring <robh@kernel.org>, sudeep.holla@arm.com,
- cristian.marussi@arm.com, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, linus.walleij@linaro.org, Oleksii_Moisieiev@epam.com,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20231002021602.260100-1-takahiro.akashi@linaro.org>
- <20231002021602.260100-5-takahiro.akashi@linaro.org>
- <20231002144155.GA1675188-robh@kernel.org> <ZRtjVnWhAK2CZaRM@octopus>
+To: Richard Acayan <mailingradian@gmail.com>, Rob Clark
+ <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Kuogee Hsieh <quic_khsieh@quicinc.com>,
+ Vinod Polimera <quic_vpolimer@quicinc.com>,
+ Ryan McCann <quic_rmccann@quicinc.com>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Liu Shixin
+ <liushixin2@huawei.com>, Krishna Manikandan <quic_mkrishn@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+References: <20231003012119.857198-9-mailingradian@gmail.com>
+ <20231003012119.857198-12-mailingradian@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,146 +130,148 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZRtjVnWhAK2CZaRM@octopus>
+In-Reply-To: <20231003012119.857198-12-mailingradian@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 03/10/2023 02:41, AKASHI Takahiro wrote:
-> Hi Rob,
+On 03/10/2023 03:21, Richard Acayan wrote:
+> Add documentation for the SDM670 display subsystem, adapted from the
+> SDM845 and SM6125 documentation.
 > 
-> On Mon, Oct 02, 2023 at 09:41:55AM -0500, Rob Herring wrote:
->> On Mon, Oct 02, 2023 at 11:16:02AM +0900, AKASHI Takahiro wrote:
->>> A dt binding for SCMI pinctrl based gpio driver is defined in this
->>> commit. It basically conforms to generic pinctrl-gpio mapping framework.
->>
->> What is "generic pinctrl-gpio mapping framework"? DT doesn't have 
->> frameworks.
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> ---
+>  .../display/msm/qcom,sdm670-mdss.yaml         | 287 ++++++++++++++++++
+>  1 file changed, 287 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sdm670-mdss.yaml
 > 
-> I meant to refer to section 2.1-2.3 in "Documentation/devicetree/bindings/gpio/gpio.txt". The semantics is implemented in drivers/gpio/gpiolib(-of).c.
+> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sdm670-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sdm670-mdss.yaml
+> new file mode 100644
+> index 000000000000..9995b018cd9e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sdm670-mdss.yaml
+> @@ -0,0 +1,287 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/msm/qcom,sdm670-mdss.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm SDM670 Display MDSS
+> +
+> +maintainers:
+> +  - Richard Acayan <mailingradian@gmail.com>
+> +
+> +description:
+> +  SDM670 MSM Mobile Display Subsystem (MDSS), which encapsulates sub-blocks
+> +  like DPU display controller, DSI and DP interfaces etc.
+> +
+> +$ref: /schemas/display/msm/mdss-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,sdm670-mdss
+> +
+> +  clocks:
+> +    items:
+> +      - description: Display AHB clock from gcc
+> +      - description: Display core clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: iface
+> +      - const: core
+> +
+> +  iommus:
+> +    maxItems: 2
+> +
+> +  interconnects:
+> +    maxItems: 2
+> +
+> +  interconnect-names:
+> +    maxItems: 2
+> +
+> +patternProperties:
+> +  "^display-controller@[0-9a-f]+$":
+> +    type: object
+> +    additionalProperties: true
+> +
+> +    properties:
+> +      compatible:
+> +        const: qcom,sdm670-dpu
+> +
+> +  "^displayport-controller@[0-9a-f]+$":
+> +    type: object
+> +    additionalProperties: true
+> +
+> +    properties:
+> +      compatible:
+> +        const: qcom,sdm670-dp
+> +
+> +  "^dsi@[0-9a-f]+$":
+> +    type: object
+> +    additionalProperties: true
+> +
+> +    properties:
+> +      compatible:
+> +        contains:
+> +          const: qcom,sdm670-dsi-ctrl
+> +
+> +  "^phy@[0-9a-f]+$":
+> +    type: object
+> +    additionalProperties: true
+> +
+> +    properties:
+> +      compatible:
+> +        const: qcom,dsi-phy-10nm
 
-Linux specific GPIO library is as well outside of DT scope. Please focus
-here on hardware, not Linux specifics.
+This does not look right. Why the compatible is generic, not SoC-specific?
 
-> 
->>>
->>> Signed-off-by: AKASHI Takahiro <takahiro.akashi@linaro.org>
->>> ---
->>>  .../bindings/gpio/arm,scmi-gpio.yaml          | 71 +++++++++++++++++++
->>>  1 file changed, 71 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/gpio/arm,scmi-gpio.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/gpio/arm,scmi-gpio.yaml b/Documentation/devicetree/bindings/gpio/arm,scmi-gpio.yaml
->>> new file mode 100644
->>> index 000000000000..2601c5594567
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/gpio/arm,scmi-gpio.yaml
->>> @@ -0,0 +1,71 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/gpio/arm,scmi-gpio.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: SCMI pinctrl based generic GPIO controller
->>> +
->>> +maintainers:
->>> +  - AKASHI Takahiro <akashi.takahiro@linaro.org>
->>> +
->>> +properties:
->>> +  $nodename:
->>> +    pattern: "^scmi_gpio(@[0-9a-f]+)$"
->>
->> Not the correct name.
-> 
-> How not?
+> +
+> +required:
+> +  - compatible
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,dispcc-sdm845.h>
+> +    #include <dt-bindings/clock/qcom,gcc-sdm845.h>
+> +    #include <dt-bindings/clock/qcom,rpmh.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/power/qcom-rpmpd.h>
+> +
+> +    display-subsystem@ae00000 {
+> +        compatible = "qcom,sdm670-mdss";
+> +        reg = <0x0ae00000 0x1000>;
+> +        reg-names = "mdss";
+> +        power-domains = <&dispcc MDSS_GDSC>;
+> +
+> +        clocks = <&gcc GCC_DISP_AHB_CLK>,
+> +                 <&dispcc DISP_CC_MDSS_MDP_CLK>;
+> +        clock-names = "iface", "core";
+> +
+> +        interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> +        interrupt-controller;
+> +        #interrupt-cells = <1>;
+> +
 
-Underscores are no allowed and are pointed by dtc (W=2). scmi is
-redundant here, because names should be generic. Anyway, we do not add
-node name requirements to device schema.
+Please add interconnects. They do not have to be 100% exact with DTS
+(unless interconnect header is not merged?). This is just an example.
 
-> 
->>> +
->>> +  compatible:
->>> +    const: arm,scmi-gpio-generic
->>
->> What makes it generic? No such thing. Just drop '-generic'.
-> 
-> I will discuss this issue in following Cristian's comment.
-> 
->>
->>> +
->>> +  gpio-controller: true
->>> +
->>> +  "#gpio-cells":
->>> +    const: 2
->>> +
->>> +  gpio-ranges: true
->>> +
->>> +  gpio-ranges-group-names: true
->>> +
->>> +patternProperties:
->>> +  "^.+-hog(-[0-9]+)?$":
->>> +    type: object
->>> +    properties:
->>> +      gpio-hog: true
->>> +      gpios: true
->>> +      input: true
->>> +      output-high: true
->>> +      output-low: true
->>> +      line-name: true
->>> +
->>> +    required:
->>> +      - gpio-hog
->>> +      - gpios
->>
->> You don't need all this just 'required: [ gpio-hog ]'. Then the hog 
->> schema will check the rest.
-> 
-> Okay.
-> 
->>> +
->>> +    additionalProperties: false
->>> +
->>> +required:
->>> +  - compatible
->>> +  - gpio-controller
->>> +  - "#gpio-cells"
->>> +  - gpio-ranges
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/gpio/gpio.h>
->>> +
->>> +    scmi_gpio_0: scmi_gpio@0 {
->>
->> gpio {
->>
->> But doesn't SCMI have protocol numbers?
->>
->>> +        compatible = "arm,scmi-gpio";
->>> +        gpio-controller;
->>> +        #gpio-cells = <2>;
->>> +        gpio-ranges = <&scmi_pinctrl 0 10 5>,
->>> +                      <&scmi_pinctrl 5 0 0>;
->>> +        gpio-ranges-group-names = "",
->>> +                                  "pinmux_gpio";
->>> +    };
->>> +
->>> +    // Consumer:
->>
->> Outside the scope of this binding. Drop this node.
-> 
-> Even though it's in an example?
-> "#gpio-cells" has a meaning in consumer side.
+> +        iommus = <&apps_smmu 0x880 0x8>,
+> +                 <&apps_smmu 0xc80 0x8>;
 
-Just look at any other bindings.
+> +
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        ranges;
+> +
 
 Best regards,
 Krzysztof
