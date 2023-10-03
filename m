@@ -1,459 +1,91 @@
-Return-Path: <devicetree+bounces-5632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7A6A7B6ED0
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 18:44:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D61977B6F42
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 19:08:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 5A17228129E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 16:44:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 85B3F281297
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 17:08:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E979C328BF;
-	Tue,  3 Oct 2023 16:44:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EFE83AC15;
+	Tue,  3 Oct 2023 17:08:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA9C02510C
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 16:44:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5008BC433C8;
-	Tue,  3 Oct 2023 16:44:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFDF538DDD
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 17:08:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A67FCC433C8;
+	Tue,  3 Oct 2023 17:08:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696351470;
-	bh=Z8k7r0SijCjAWC/bx4pqU4oVDof5/D3bwuNqj8zQNcU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=EQ1YDltin6EW6+MPO+IOB0YPm/E1ZgJIZfSCOyxrE1vxpU4lVSMGfr1PeAele94Rv
-	 hFfOtktmD1SdgZB1yB32a5YzAEDkE6kMA6kIf0VcogYwSQwqUdGLRsF779G4uXHG0c
-	 ExytAmPRKBclSSHiNVEz/j1yfyCRxFheU5bxOrDd+xmwDb6iOzMfc6zr/o3jTEAQy8
-	 sDBaWqjE/TQKpS16flKHNp7f/Pa7+Wtm7ocVYcITk38Xq8ddW6JsVMrJYJemWww+yo
-	 x3fGT+MO+dFTc4PCxJE1yqUvrpc3H4SvKYQeJHLkCV2HD9FMjoOFwTa1N3dVC/6KMC
-	 fOkUhGVwdj/sQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1qniVX-000nOY-Ou;
-	Tue, 03 Oct 2023 17:44:27 +0100
-Date: Tue, 03 Oct 2023 17:44:27 +0100
-Message-ID: <86r0mboduc.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: linux-kernel@vger.kernel.org,
-	Robin Murphy <robin.murphy@arm.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Fang Xiang <fangxiang3@xiaomi.com>
-Subject: Re: [PATCH 2/2] irqchip/gic-v3: Enable non-coherent redistributors/ITSes probing
-In-Reply-To: <ZRwonK+01HKJkKXa@lpieralisi>
-References: <20230905104721.52199-1-lpieralisi@kernel.org>
-	<20230905104721.52199-3-lpieralisi@kernel.org>
-	<86msy0etul.wl-maz@kernel.org>
-	<ZRwonK+01HKJkKXa@lpieralisi>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=k20201202; t=1696352915;
+	bh=z0khdQB11BoA0tQ40lKmz5sxH1m9xC78cFe/yLn2g6o=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=oIucdHjiAoMeu9S2B2ofb7H1+u6bLJgvxIzwxoJhO5ggZBy5WKoRWI6T/dVPA55vU
+	 x8abIexv0M0heossk7yTWtHBnA4FXmaLLqsN/ypGorLlRpzY/2oIhdHjnnYE9ZA2Lb
+	 csq7Di/OPv8lTrB5UVU91m3/6IZZAm3RFPP/8yZz2ayqOCntxWpkcrnlkxbe1QrnFb
+	 PF2LCKBuCD2tEvmvRi6YpVntehrK9uC1+TOjXNPaSerqQfzDcfDD7YC2uMLnZufN2D
+	 6kbBR+Q67GVa9Ca7sv3l6UWKsCgY+/LRZC1iE3aHXM11qu5OXJDU5kJoAEfOUJKDWJ
+	 I20U96sourupg==
+From: Mark Brown <broonie@kernel.org>
+To: Weidong Wang <wangweidong.a@awinic.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Luca Weiss <luca.weiss@fairphone.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org
+In-Reply-To: <20231002-aw88261-reset-v2-0-837cb1e7b95c@fairphone.com>
+References: <20231002-aw88261-reset-v2-0-837cb1e7b95c@fairphone.com>
+Subject: Re: [PATCH v2 0/2] Remove reset GPIO for AW88261
+Message-Id: <169635291227.42044.6654746210996061480.b4-ty@kernel.org>
+Date: Tue, 03 Oct 2023 18:08:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: lpieralisi@kernel.org, linux-kernel@vger.kernel.org, robin.murphy@arm.com, mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, robh+dt@kernel.org, fangxiang3@xiaomi.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-0438c
 
-On Tue, 03 Oct 2023 15:43:40 +0100,
-Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
->=20
-> On Tue, Sep 05, 2023 at 12:34:58PM +0100, Marc Zyngier wrote:
->=20
-> [...]
->=20
-> > >  	 * Make sure *all* the ITS are reset before we probe any, as
-> > >  	 * they may be sharing memory. If any of the ITS fails to
-> > > @@ -5396,7 +5405,8 @@ static int __init its_of_probe(struct device_no=
-de *node)
-> > >  			continue;
-> > >  		}
-> > > =20
-> > > -		its_probe_one(&res, &np->fwnode, of_node_to_nid(np));
-> > > +		its_probe_one(&res, &np->fwnode, of_node_to_nid(np),
-> > > +			      of_property_read_bool(np, "dma-noncoherent"));
-> > >  	}
-> > >  	return 0;
-> > >  }
-> > > @@ -5533,7 +5543,8 @@ static int __init gic_acpi_parse_madt_its(union=
- acpi_subtable_headers *header,
-> > >  	}
-> > > =20
-> > >  	err =3D its_probe_one(&res, dom_handle,
-> > > -			acpi_get_its_numa_node(its_entry->translation_id));
-> > > +			acpi_get_its_numa_node(its_entry->translation_id),
-> > > +			false);
-> >=20
-> > I came up with the following alternative approach, which is as usual
-> > completely untested. It is entirely based on the quirk infrastructure,
-> > and doesn't touch the ACPI path at all.
->=20
-> Writing the ACPI bits. We can't use the quirks framework for ACPI (we
-> don't have "properties" and I don't think we want to attach any to the
-> fwnode_handle) that's why I generalized its_probe_one() above with an
-> extra param, that would have simplified ACPI parsing:
->=20
-> - we alloc struct its_node in its_probe_one() but at that stage
->   ACPI parsing was already done. If we have to parse the MADT(ITS) again
->   just to scan for non-coherent we then have to match the MADT entries
->   to the *current* struct its_node* we are handling (MADT parsing
->   callbacks don't even take a param - we have to resort to global
->   variables - definitely doable but it is a bit ugly).
+On Mon, 02 Oct 2023 16:00:10 +0200, Luca Weiss wrote:
+> The AW88261 chip doesn't have a reset gpio, so remove it from the
+> bindings and from the driver.
+> 
+> 
 
-Well, a more acceptable approach would be for its_probe_one() to take
-an allocated and possibly pre-populated its_node structure (crucially,
-with the quirk flags set), which itself results in a bunch of low
-hanging cleanups, see the patch below.
+Applied to
 
-I have boot tested it in a DT guest, so it is obviously perfect.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-	M.
+Thanks!
 
-=46rom 978f654d4459adf0b8f3f8e896ca37035b3b114c Mon Sep 17 00:00:00 2001
-From: Marc Zyngier <maz@kernel.org>
-Date: Tue, 3 Oct 2023 17:35:27 +0100
-Subject: [PATCH] irqchip/gic-v3-its: Split allocation from initialisation of
- its_node
+[1/2] ASoC: dt-bindings: awinic,aw88395: Remove reset-gpios from AW88261
+      commit: c7b94e8614e35f1919b51c23fe590884149ae341
+[2/2] ASoC: codecs: aw88261: Remove non-existing reset gpio
+      commit: 4eed047b76fa8f56af478ca7e6d56ca7e5330cf2
 
-In order to pave the way for more fancy quirk handling without making
-more of a mess of this terrible driver, split the allocation of the
-ITS descriptor (its_node) from the actual probing.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-This will allow firmware-specific hooks to be added between these
-two points.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-Signed-off-by: Marc Zyngier <maz@kernel.org>
----
- drivers/irqchip/irq-gic-v3-its.c | 151 +++++++++++++++++++------------
- 1 file changed, 91 insertions(+), 60 deletions(-)
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-=
-its.c
-index e0c2b10d154d..bf21383b714e 100644
---- a/drivers/irqchip/irq-gic-v3-its.c
-+++ b/drivers/irqchip/irq-gic-v3-its.c
-@@ -4952,7 +4952,7 @@ static void __init __iomem *its_map_one(struct resour=
-ce *res, int *err)
- 	return NULL;
- }
-=20
--static int its_init_domain(struct fwnode_handle *handle, struct its_node *=
-its)
-+static int its_init_domain(struct its_node *its)
- {
- 	struct irq_domain *inner_domain;
- 	struct msi_domain_info *info;
-@@ -4966,7 +4966,7 @@ static int its_init_domain(struct fwnode_handle *hand=
-le, struct its_node *its)
-=20
- 	inner_domain =3D irq_domain_create_hierarchy(its_parent,
- 						   its->msi_domain_flags, 0,
--						   handle, &its_domain_ops,
-+						   its->fwnode_handle, &its_domain_ops,
- 						   info);
- 	if (!inner_domain) {
- 		kfree(info);
-@@ -5017,8 +5017,7 @@ static int its_init_vpe_domain(void)
- 	return 0;
- }
-=20
--static int __init its_compute_its_list_map(struct resource *res,
--					   void __iomem *its_base)
-+static int __init its_compute_its_list_map(struct its_node *its)
- {
- 	int its_number;
- 	u32 ctlr;
-@@ -5032,15 +5031,15 @@ static int __init its_compute_its_list_map(struct r=
-esource *res,
- 	its_number =3D find_first_zero_bit(&its_list_map, GICv4_ITS_LIST_MAX);
- 	if (its_number >=3D GICv4_ITS_LIST_MAX) {
- 		pr_err("ITS@%pa: No ITSList entry available!\n",
--		       &res->start);
-+		       &its->phys_base);
- 		return -EINVAL;
- 	}
-=20
--	ctlr =3D readl_relaxed(its_base + GITS_CTLR);
-+	ctlr =3D readl_relaxed(its->base + GITS_CTLR);
- 	ctlr &=3D ~GITS_CTLR_ITS_NUMBER;
- 	ctlr |=3D its_number << GITS_CTLR_ITS_NUMBER_SHIFT;
--	writel_relaxed(ctlr, its_base + GITS_CTLR);
--	ctlr =3D readl_relaxed(its_base + GITS_CTLR);
-+	writel_relaxed(ctlr, its->base + GITS_CTLR);
-+	ctlr =3D readl_relaxed(its->base + GITS_CTLR);
- 	if ((ctlr & GITS_CTLR_ITS_NUMBER) !=3D (its_number << GITS_CTLR_ITS_NUMBE=
-R_SHIFT)) {
- 		its_number =3D ctlr & GITS_CTLR_ITS_NUMBER;
- 		its_number >>=3D GITS_CTLR_ITS_NUMBER_SHIFT;
-@@ -5048,75 +5047,50 @@ static int __init its_compute_its_list_map(struct r=
-esource *res,
-=20
- 	if (test_and_set_bit(its_number, &its_list_map)) {
- 		pr_err("ITS@%pa: Duplicate ITSList entry %d\n",
--		       &res->start, its_number);
-+		       &its->phys_base, its_number);
- 		return -EINVAL;
- 	}
-=20
- 	return its_number;
- }
-=20
--static int __init its_probe_one(struct resource *res,
--				struct fwnode_handle *handle, int numa_node)
-+static int __init its_probe_one(struct its_node *its)
- {
--	struct its_node *its;
--	void __iomem *its_base;
--	u64 baser, tmp, typer;
-+	u64 baser, tmp;
- 	struct page *page;
- 	u32 ctlr;
- 	int err;
-=20
--	its_base =3D its_map_one(res, &err);
--	if (!its_base)
--		return err;
--
--	pr_info("ITS %pR\n", res);
--
--	its =3D kzalloc(sizeof(*its), GFP_KERNEL);
--	if (!its) {
--		err =3D -ENOMEM;
--		goto out_unmap;
--	}
--
--	raw_spin_lock_init(&its->lock);
--	mutex_init(&its->dev_alloc_lock);
--	INIT_LIST_HEAD(&its->entry);
--	INIT_LIST_HEAD(&its->its_device_list);
--	typer =3D gic_read_typer(its_base + GITS_TYPER);
--	its->typer =3D typer;
--	its->base =3D its_base;
--	its->phys_base =3D res->start;
- 	if (is_v4(its)) {
--		if (!(typer & GITS_TYPER_VMOVP)) {
--			err =3D its_compute_its_list_map(res, its_base);
-+		if (!(its->typer & GITS_TYPER_VMOVP)) {
-+			err =3D its_compute_its_list_map(its);
- 			if (err < 0)
--				goto out_free_its;
-+				goto out;
-=20
- 			its->list_nr =3D err;
-=20
- 			pr_info("ITS@%pa: Using ITS number %d\n",
--				&res->start, err);
-+				&its->phys_base, err);
- 		} else {
--			pr_info("ITS@%pa: Single VMOVP capable\n", &res->start);
-+			pr_info("ITS@%pa: Single VMOVP capable\n", &its->phys_base);
- 		}
-=20
- 		if (is_v4_1(its)) {
--			u32 svpet =3D FIELD_GET(GITS_TYPER_SVPET, typer);
-+			u32 svpet =3D FIELD_GET(GITS_TYPER_SVPET, its->typer);
-=20
--			its->sgir_base =3D ioremap(res->start + SZ_128K, SZ_64K);
-+			its->sgir_base =3D ioremap(its->phys_base + SZ_128K, SZ_64K);
- 			if (!its->sgir_base) {
- 				err =3D -ENOMEM;
--				goto out_free_its;
-+				goto out;
- 			}
-=20
--			its->mpidr =3D readl_relaxed(its_base + GITS_MPIDR);
-+			its->mpidr =3D readl_relaxed(its->base + GITS_MPIDR);
-=20
- 			pr_info("ITS@%pa: Using GICv4.1 mode %08x %08x\n",
--				&res->start, its->mpidr, svpet);
-+				&its->phys_base, its->mpidr, svpet);
- 		}
- 	}
-=20
--	its->numa_node =3D numa_node;
--
- 	page =3D alloc_pages_node(its->numa_node, GFP_KERNEL | __GFP_ZERO,
- 				get_order(ITS_CMD_QUEUE_SZ));
- 	if (!page) {
-@@ -5125,12 +5099,9 @@ static int __init its_probe_one(struct resource *res,
- 	}
- 	its->cmd_base =3D (void *)page_address(page);
- 	its->cmd_write =3D its->cmd_base;
--	its->fwnode_handle =3D handle;
- 	its->get_msi_base =3D its_irq_get_msi_base;
- 	its->msi_domain_flags =3D IRQ_DOMAIN_FLAG_ISOLATED_MSI;
-=20
--	its_enable_quirks(its);
--
- 	err =3D its_alloc_tables(its);
- 	if (err)
- 		goto out_free_cmd;
-@@ -5174,7 +5145,7 @@ static int __init its_probe_one(struct resource *res,
- 		ctlr |=3D GITS_CTLR_ImDe;
- 	writel_relaxed(ctlr, its->base + GITS_CTLR);
-=20
--	err =3D its_init_domain(handle, its);
-+	err =3D its_init_domain(its);
- 	if (err)
- 		goto out_free_tables;
-=20
-@@ -5191,11 +5162,8 @@ static int __init its_probe_one(struct resource *res,
- out_unmap_sgir:
- 	if (its->sgir_base)
- 		iounmap(its->sgir_base);
--out_free_its:
--	kfree(its);
--out_unmap:
--	iounmap(its_base);
--	pr_err("ITS@%pa: failed probing (%d)\n", &res->start, err);
-+out:
-+	pr_err("ITS@%pa: failed probing (%d)\n", &its->phys_base, err);
- 	return err;
- }
-=20
-@@ -5356,10 +5324,53 @@ static const struct of_device_id its_device_id[] =
-=3D {
- 	{},
- };
-=20
-+static struct its_node __init *its_node_init(struct resource *res,
-+					     struct fwnode_handle *handle, int numa_node)
-+{
-+	void __iomem *its_base;
-+	struct its_node *its;
-+	int err;
-+
-+	its_base =3D its_map_one(res, &err);
-+	if (!its_base)
-+		return NULL;
-+
-+	pr_info("ITS %pR\n", res);
-+
-+	its =3D kzalloc(sizeof(*its), GFP_KERNEL);
-+	if (!its)
-+		goto out_unmap;
-+
-+	raw_spin_lock_init(&its->lock);
-+	mutex_init(&its->dev_alloc_lock);
-+	INIT_LIST_HEAD(&its->entry);
-+	INIT_LIST_HEAD(&its->its_device_list);
-+
-+	its->typer =3D gic_read_typer(its_base + GITS_TYPER);
-+	its->base =3D its_base;
-+	its->phys_base =3D res->start;
-+
-+	its->numa_node =3D numa_node;
-+	its->fwnode_handle =3D handle;
-+
-+	return its;
-+
-+out_unmap:
-+	iounmap(its_base);
-+	return NULL;
-+}
-+
-+static void its_node_destroy(struct its_node *its)
-+{
-+	iounmap(its->base);
-+	kfree(its);
-+}
-+
- static int __init its_of_probe(struct device_node *node)
- {
- 	struct device_node *np;
- 	struct resource res;
-+	int err;
-=20
- 	/*
- 	 * Make sure *all* the ITS are reset before we probe any, as
-@@ -5369,8 +5380,6 @@ static int __init its_of_probe(struct device_node *no=
-de)
- 	 */
- 	for (np =3D of_find_matching_node(node, its_device_id); np;
- 	     np =3D of_find_matching_node(np, its_device_id)) {
--		int err;
--
- 		if (!of_device_is_available(np) ||
- 		    !of_property_read_bool(np, "msi-controller") ||
- 		    of_address_to_resource(np, 0, &res))
-@@ -5383,6 +5392,8 @@ static int __init its_of_probe(struct device_node *no=
-de)
-=20
- 	for (np =3D of_find_matching_node(node, its_device_id); np;
- 	     np =3D of_find_matching_node(np, its_device_id)) {
-+		struct its_node *its;
-+
- 		if (!of_device_is_available(np))
- 			continue;
- 		if (!of_property_read_bool(np, "msi-controller")) {
-@@ -5396,7 +5407,17 @@ static int __init its_of_probe(struct device_node *n=
-ode)
- 			continue;
- 		}
-=20
--		its_probe_one(&res, &np->fwnode, of_node_to_nid(np));
-+
-+		its =3D its_node_init(&res, &np->fwnode, of_node_to_nid(np));
-+		if (!its)
-+			return -ENOMEM;
-+
-+		its_enable_quirks(its);
-+		err =3D its_probe_one(its);
-+		if (err)  {
-+			its_node_destroy(its);
-+			return err;
-+		}
- 	}
- 	return 0;
- }
-@@ -5508,6 +5529,7 @@ static int __init gic_acpi_parse_madt_its(union acpi_=
-subtable_headers *header,
- {
- 	struct acpi_madt_generic_translator *its_entry;
- 	struct fwnode_handle *dom_handle;
-+	struct its_node *its;
- 	struct resource res;
- 	int err;
-=20
-@@ -5532,11 +5554,20 @@ static int __init gic_acpi_parse_madt_its(union acp=
-i_subtable_headers *header,
- 		goto dom_err;
- 	}
-=20
--	err =3D its_probe_one(&res, dom_handle,
--			acpi_get_its_numa_node(its_entry->translation_id));
-+	its =3D its_node_init(&res, dom_handle,
-+			    acpi_get_its_numa_node(its_entry->translation_id));
-+	if (!its) {
-+		err =3D -ENOMEM;
-+		goto node_err;
-+	}
-+
-+	/* Stick ACPI quirk handling here */
-+
-+	err =3D its_probe_one(its);
- 	if (!err)
- 		return 0;
-=20
-+node_err:
- 	iort_deregister_domain_token(its_entry->translation_id);
- dom_err:
- 	irq_domain_free_fwnode(dom_handle);
---=20
-2.34.1
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
---=20
-Without deviation from the norm, progress is not possible.
+Thanks,
+Mark
+
 
