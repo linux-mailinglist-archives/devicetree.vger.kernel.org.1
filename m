@@ -1,114 +1,104 @@
-Return-Path: <devicetree+bounces-5533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 478737B68DA
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 14:18:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 923137B68E6
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 14:24:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id EEB88281607
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 12:18:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 450CB2811E3
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 12:24:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 458BB22F0A;
-	Tue,  3 Oct 2023 12:18:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 851BF22F0E;
+	Tue,  3 Oct 2023 12:24:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34DE822F06
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 12:18:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B8DCC433C7;
-	Tue,  3 Oct 2023 12:18:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696335496;
-	bh=Tk+5BElhw0VeC3CF5j+uL3ic7k6gB1Cu7d+eticsVEs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=db/atGkE18xakAECbQv0Zu+0Xr/j9j/OZ0SV8aMRAWWVFoefJY6lheoceS32py1u6
-	 GYKc2FVjfIFM0iPdw22ZiPSRLw2KCoFAE70CZhSg36f/sYwhrwfzTsLV8LxSq16RmR
-	 UoRyQvYQ+IroMbY8SvyA1kY1qD5YXbRRsPSnAfhdl6gRy3rOH+vhVMGpP7BQp/P7m8
-	 aVwcpllCZ4aL5TEo/y6ZclM/fzPIuUeeVD4jJOB/PlOiWdlpvfkFYQJa1y1as0E0x/
-	 UGfhkonQaT3LdHldDwS+AdAFrss9Buba6UxHIEmpSPKBj4JxM6B72DRtbzkET8EHs1
-	 g/LaWzPn8ejTQ==
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Chen-Yu Tsai <wenst@chromium.org>
-Cc: Lee Jones <lee@kernel.org>, Zhiyong Tao <zhiyong.tao@mediatek.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-In-Reply-To: <20230928085537.3246669-1-wenst@chromium.org>
-References: <20230928085537.3246669-1-wenst@chromium.org>
-Subject: Re: (subset) [PATCH v4 00/12] regulator: mt6366: Split out of
- MT6358 and cleanup
-Message-Id: <169633549178.30169.17284129467278150573.b4-ty@kernel.org>
-Date: Tue, 03 Oct 2023 13:18:11 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7225224FE
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 12:24:06 +0000 (UTC)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5C9CA6;
+	Tue,  3 Oct 2023 05:24:05 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-5a229ac185aso10444227b3.1;
+        Tue, 03 Oct 2023 05:24:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696335845; x=1696940645;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kbgVutEnkgEx27MAC0tB+cw33CIkZ02T6S63P3EhqRg=;
+        b=P4O2qebG6Pf4JUjqCQE6bwi2tKcxlUUxotQR/hfIhJ0Xn5FaEcytTUKYjewB63Qbh+
+         MgBU6co+KInvQN9GK7eJw8bzgPOovEeIBoEaD7Vsuk1SZvkWyxu0PMFKu/fzaITCFZPD
+         o95IUlOQqynWWWo7C/2tQ8NJnisWWkNTAypiUm5oQvjLruq0bU7xaoqIAvzZRUnbOp3l
+         eWAjIrd4ZGqXwTwwPyKFnS9dcwAc5rMGBSZcXB7rHbDKhAGfYU3eG5NmzEz07nwXSWMH
+         J7BLiXL9cLTTlJzkQO1quXkLHDOrAz30zuK9YorSRlSFk27z2ieNneiaMkl+gPI9RI4m
+         1NQA==
+X-Gm-Message-State: AOJu0Yzdu5hPkqns26l/JzsDJ0A+WLb0Jz4nbTgVW8jOIOFBw1kQWbc5
+	iyE150wfzfukwzjLvVFf1AZuB4gWBSZ7rA==
+X-Google-Smtp-Source: AGHT+IErLWszO7Dr15uTI5/gVs0Cz/JTIL+AcNE/TbCew3eCbyiPYaGf1ptyN8g48IybnN06+SWCwg==
+X-Received: by 2002:a05:6902:20b:b0:d81:a0c5:f275 with SMTP id j11-20020a056902020b00b00d81a0c5f275mr12022699ybs.15.1696335844656;
+        Tue, 03 Oct 2023 05:24:04 -0700 (PDT)
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
+        by smtp.gmail.com with ESMTPSA id x10-20020a25ce0a000000b00d8168e226e6sm366802ybe.47.2023.10.03.05.24.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Oct 2023 05:24:04 -0700 (PDT)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-59c268676a9so10583527b3.0;
+        Tue, 03 Oct 2023 05:24:03 -0700 (PDT)
+X-Received: by 2002:a81:5b02:0:b0:59b:2be2:3560 with SMTP id
+ p2-20020a815b02000000b0059b2be23560mr13292322ywb.48.1696335843190; Tue, 03
+ Oct 2023 05:24:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-0438c
+References: <20230929000704.53217-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20230929000704.53217-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20230929000704.53217-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 3 Oct 2023 14:23:51 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWizNPWTdAkBTbmaDbPWNT9w14r2=oBhMeq_DNBdcuQjQ@mail.gmail.com>
+Message-ID: <CAMuHMdWizNPWTdAkBTbmaDbPWNT9w14r2=oBhMeq_DNBdcuQjQ@mail.gmail.com>
+Subject: Re: [PATCH 1/5] riscv: dts: renesas: r9a07g043f: Add L2 cache node
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Thu, 28 Sep 2023 16:55:23 +0800, Chen-Yu Tsai wrote:
-> This is v4 of my MT6366 PMIC split-out-of-MT6358 cleanup series. The two
-> PMICs are mostly identical, except for the regulator bits. The MT6366 is
-> missing the VCAM* (camera related) LDOs, but in their place has a few
-> other ones. This thus requires a separate compatible to handle the
-> binding differences. The hardware however does have a chip ID register
-> that can be used to differentiate the variants within the driver. Thus
-> a fallback compatible to the base (MT6358) model is included.
-> 
-> [...]
+On Fri, Sep 29, 2023 at 2:07=E2=80=AFAM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add L2 cache node for RZ/Five SoC.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Applied to
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.7.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+Gr{oetje,eeting}s,
 
-Thanks!
+                        Geert
 
-[02/12] regulator: dt-bindings: mt6358: Convert to DT schema
-        commit: 93880f7e5c8c864309a57c47669ac0bc432524d5
-[03/12] regulator: dt-bindings: mt6358: Add regulator-allowed-modes property
-        commit: 0bf4b56b5ecaf711865f313476f91c18338307bb
-[04/12] regulator: dt-bindings: mt6358: Add regulator supplies
-        commit: 2f384e60acbac140732367d037c5f08db21513a0
-[05/12] regulator: dt-bindings: mt6358: Add MT6366 PMIC
-        commit: c631494a69c55301a03af9c028892c9098019652
-[06/12] regulator: mt6358: Use mt6397-regulator.h binding header for buck mode macros
-        commit: 9f3bec54d06f1eb4b47c7f78ef1401bc71977e9e
-[07/12] regulator: mt6358: Add supply names for MT6358 regulators
-        commit: 3dfa8a7071d4e748d5a59566f9a96e381a9fccb2
-[08/12] regulator: mt6358: fix and drop type prefix in MT6366 regulator node names
-        commit: 0c3697b8980dd44df05ed77222c09bd8fe729626
-[09/12] regulator: mt6358: Make MT6366 vcn18 LDO configurable
-        commit: b7f3b89848b3bae3b1e3a97e75b82c65a4952cfc
-[10/12] regulator: mt6358: Add missing regulators for MT6366
-        commit: b7768e67af9a5b6d6101cbfc146969fedf8df4be
-[11/12] regulator: mt6358: Add supply names for MT6366 regulators
-        commit: ce8ab92e66ccc99591b9cbb6630d720d5e6ad6ec
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
