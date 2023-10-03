@@ -1,174 +1,111 @@
-Return-Path: <devicetree+bounces-5397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD4427B62DA
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 09:54:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C114D7B62E0
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 09:56:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id C67D1281499
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 07:54:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 6FC762814FD
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 07:56:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5242FD30D;
-	Tue,  3 Oct 2023 07:54:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBF7DD30F;
+	Tue,  3 Oct 2023 07:56:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 780853FE4
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 07:54:04 +0000 (UTC)
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03646B3;
-	Tue,  3 Oct 2023 00:54:01 -0700 (PDT)
-Received: by codeconstruct.com.au (Postfix, from userid 10001)
-	id 0876120239; Tue,  3 Oct 2023 15:54:00 +0800 (AWST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1696319640;
-	bh=vsBp77p7CDhHRULJIIRilyCY9D7df8p0W5nYzOmlxYk=;
-	h=From:To:Cc:Subject:Date;
-	b=dIb2/5uzvw6ksgomcS/2UUZ3ci7UKGcfHjSx3urC/mT6neS33iN3PVpajlxoKLVFT
-	 zO9xv1n/2YhMYfUfiBTcFnksIBcaLJAbkrVqRt22hffdjm6LpUZUgw5OPMCOCJNY1+
-	 WGcyb14aDdOeLKI0sX9WaK0xRQFbCxjUVgleH1BFSTxf5at4PPY7yO6sFAeMdzTiRW
-	 /YRElUnBycEep4xzDzivLjYlRJ4aHqIPlLvC1csGgDUFU2fakHLWjWSI5vRzIYaRm1
-	 P7jbrKRDbINMGIwCoN5oCAI0wzU6w/ZTKVZ/W+qgtCGZRKjZJoZUaeiFlKFwScsNzI
-	 pKKJlIbVPSS6g==
-From: Matt Johnston <matt@codeconstruct.com.au>
-To: linux-i3c@lists.infradead.org
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Conor Culhane <conor.culhane@silvaco.com>,
-	linux-kernel@vger.kernel.org (open list),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-doc@vger.kernel.org (open list:DOCUMENTATION)
-Subject: [PATCH] i3c: Fix typo "Provisional ID" to "Provisioned ID"
-Date: Tue,  3 Oct 2023 15:53:39 +0800
-Message-Id: <20231003075339.197099-1-matt@codeconstruct.com.au>
-X-Mailer: git-send-email 2.39.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC48B6AC0
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 07:56:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CB0BC433C8;
+	Tue,  3 Oct 2023 07:56:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696319789;
+	bh=WJrq9pvqjjq+UgwdFJc03n5UstUwK2CTaZTIfJNnE60=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:From;
+	b=Qy6vYmF91Ai1mQb1GLlAghMU9z7UOEwYSDAVtsMuuyoKVY3/ox60QqCsxrAstnMiU
+	 nSJ1yDf2h0X534Nj2e1OjKiDXV6z35/fipVku89/CG41TGN2yGqklL4VpB7Zy7/fZb
+	 Tx6F7i8e4DT/b8zeDxFppHMi2AWzvUTtdziyrh8QT6617OXE8qmKbdwqwCQAt9C1k/
+	 01z2JGboHR7C8sidyXX2ZH6C8NxGcXa9C1+/iCBqR2e3zRtfsBRlqGYy/RsjutjGX7
+	 5IrqOR3/DQL8f6CJC83npj6u6AaQlMUeIDQye9JfLRb2VPh2xUPOp6UtRE4OKWpf31
+	 QdbCvFPG3iqCw==
+Date: Tue, 03 Oct 2023 08:56:25 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Chen Wang <unicorn_wang@outlook.com>, Jisheng Zhang <jszhang@kernel.org>
+CC: Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Anup Patel <anup@brainfault.org>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, Inochi Amaoto <inochiama@outlook.com>,
+ chao.wei@sophgo.com, xiaoguang.xing@sophgo.com
+Subject: Re: [PATCH 0/5] Add Milk-V Duo board support
+User-Agent: K-9 Mail for Android
+In-Reply-To: <MA0P287MB03323A58B068D400E8225E80FEC4A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+References: <20230930123937.1551-1-jszhang@kernel.org> <20231002-slurp-anime-a2308245174e@spud> <MA0P287MB03323A58B068D400E8225E80FEC4A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+Message-ID: <F026F534-26E6-4EEC-BC93-2C85D6F9E446@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-The MIPI I3C spec refers to a Provisioned ID, since it is (sometimes)
-provisioned at device manufacturing.
 
-Signed-off-by: Matt Johnston <matt@codeconstruct.com.au>
----
- Documentation/ABI/testing/sysfs-bus-i3c        | 4 ++--
- Documentation/devicetree/bindings/i3c/i3c.yaml | 4 ++--
- Documentation/driver-api/i3c/protocol.rst      | 4 ++--
- drivers/i3c/master/svc-i3c-master.c            | 2 +-
- include/linux/i3c/device.h                     | 2 +-
- include/linux/i3c/master.h                     | 2 +-
- 6 files changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-i3c b/Documentation/ABI/testing/sysfs-bus-i3c
-index 1f4a2662335b..e5248fd67a56 100644
---- a/Documentation/ABI/testing/sysfs-bus-i3c
-+++ b/Documentation/ABI/testing/sysfs-bus-i3c
-@@ -67,7 +67,7 @@ What:		/sys/bus/i3c/devices/i3c-<bus-id>/pid
- KernelVersion:  5.0
- Contact:	linux-i3c@vger.kernel.org
- Description:
--		PID stands for Provisional ID and is used to uniquely identify
-+		PID stands for Provisioned ID and is used to uniquely identify
- 		a device on a bus. This PID contains information about the
- 		vendor, the part and an instance ID so that several devices of
- 		the same type can be connected on the same bus.
-@@ -123,7 +123,7 @@ What:		/sys/bus/i3c/devices/i3c-<bus-id>/<bus-id>-<device-pid>/pid
- KernelVersion:  5.0
- Contact:	linux-i3c@vger.kernel.org
- Description:
--		PID stands for Provisional ID and is used to uniquely identify
-+		PID stands for Provisioned ID and is used to uniquely identify
- 		a device on a bus. This PID contains information about the
- 		vendor, the part and an instance ID so that several devices of
- 		the same type can be connected on the same bus.
-diff --git a/Documentation/devicetree/bindings/i3c/i3c.yaml b/Documentation/devicetree/bindings/i3c/i3c.yaml
-index ab69f4115de4..f8ac7a3e3123 100644
---- a/Documentation/devicetree/bindings/i3c/i3c.yaml
-+++ b/Documentation/devicetree/bindings/i3c/i3c.yaml
-@@ -119,12 +119,12 @@ patternProperties:
-                 minimum: 0
-                 maximum: 0x7f
-               - description: |
--                  First half of the Provisional ID (following the PID
-+                  First half of the Provisioned ID (following the PID
-                   definition provided by the I3C specification).
- 
-                   Contains the manufacturer ID left-shifted by 1.
-               - description: |
--                  Second half of the Provisional ID (following the PID
-+                  Second half of the Provisioned ID (following the PID
-                   definition provided by the I3C specification).
- 
-                   Contains the ORing of the part ID left-shifted by 16,
-diff --git a/Documentation/driver-api/i3c/protocol.rst b/Documentation/driver-api/i3c/protocol.rst
-index 02653defa011..23a0b93c62b1 100644
---- a/Documentation/driver-api/i3c/protocol.rst
-+++ b/Documentation/driver-api/i3c/protocol.rst
-@@ -71,8 +71,8 @@ During DAA, each I3C device reports 3 important things:
-   related capabilities
- * DCR: Device Characteristic Register. This 8-bit register describes the
-   functionalities provided by the device
--* Provisional ID: A 48-bit unique identifier. On a given bus there should be no
--  Provisional ID collision, otherwise the discovery mechanism may fail.
-+* Provisioned ID: A 48-bit unique identifier. On a given bus there should be no
-+  Provisioned ID collision, otherwise the discovery mechanism may fail.
- 
- I3C slave events
- ================
-diff --git a/drivers/i3c/master/svc-i3c-master.c b/drivers/i3c/master/svc-i3c-master.c
-index 32eca2d6caf0..e23d7900c5a1 100644
---- a/drivers/i3c/master/svc-i3c-master.c
-+++ b/drivers/i3c/master/svc-i3c-master.c
-@@ -765,7 +765,7 @@ static int svc_i3c_master_do_daa_locked(struct svc_i3c_master *master,
- 			u8 data[6];
- 
- 			/*
--			 * We only care about the 48-bit provisional ID yet to
-+			 * We only care about the 48-bit provisioned ID yet to
- 			 * be sure a device does not nack an address twice.
- 			 * Otherwise, we would just need to flush the RX FIFO.
- 			 */
-diff --git a/include/linux/i3c/device.h b/include/linux/i3c/device.h
-index 90fa83464f00..84ed77c04940 100644
---- a/include/linux/i3c/device.h
-+++ b/include/linux/i3c/device.h
-@@ -96,7 +96,7 @@ enum i3c_dcr {
- 
- /**
-  * struct i3c_device_info - I3C device information
-- * @pid: Provisional ID
-+ * @pid: Provisioned ID
-  * @bcr: Bus Characteristic Register
-  * @dcr: Device Characteristic Register
-  * @static_addr: static/I2C address
-diff --git a/include/linux/i3c/master.h b/include/linux/i3c/master.h
-index 0b52da4f2346..4fd6a777150f 100644
---- a/include/linux/i3c/master.h
-+++ b/include/linux/i3c/master.h
-@@ -166,7 +166,7 @@ struct i3c_device_ibi_info {
-  *		 assigned a dynamic address by the master. Will be used during
-  *		 bus initialization to assign it a specific dynamic address
-  *		 before starting DAA (Dynamic Address Assignment)
-- * @pid: I3C Provisional ID exposed by the device. This is a unique identifier
-+ * @pid: I3C Provisioned ID exposed by the device. This is a unique identifier
-  *	 that may be used to attach boardinfo to i3c_dev_desc when the device
-  *	 does not have a static address
-  * @of_node: optional DT node in case the device has been described in the DT
--- 
-2.39.2
+On 3 October 2023 03:32:20 IST, Chen Wang <unicorn_wang@outlook=2Ecom> wro=
+te:
+>
+>=E5=9C=A8 2023/10/2 20:22, Conor Dooley =E5=86=99=E9=81=93:
+>> Hey,
+>>=20
+>> On Sat, Sep 30, 2023 at 08:39:32PM +0800, Jisheng Zhang wrote:
+>>> Milk-V Duo[1] board is an embedded development platform based on the
+>>> CV1800B[2] chip=2E Add minimal device tree files for the development b=
+oard=2E
+>>> Currently, now it's supported to boot to a basic shell=2E
+>>>=20
+>>> NOTE: this series is based on the SG2042 upstream series for the vendo=
+r
+>>> prefix and ARCH_SOPHGO option=2E
+>>>=20
+>>> Link: https://milkv=2Eio/duo [1]
+>>> Link: https://en=2Esophgo=2Ecom/product/introduce/cv180xB=2Ehtml [2]
+>>> Link: https://lore=2Ekernel=2Eorg/linux-riscv/cover=2E1695804418=2Egit=
+=2Eunicornxw@gmail=2Ecom/ [3]
+>> Other than the comment I left, this seems fine to me=2E I'd be happy
+>> enough to pick up the pre-reqs from the other series & this one if one
+>> of the Sophgo maintainers acked these patches=2E
+>
+>Conor, just FYI, sophgo maintainers are located in China, and they are in=
+ National holiday vacation these days=2E I think they may reply to emails l=
+ater this weekend=2E
 
+Firstly, there isn't some super rush here that a few days holiday will int=
+erfere with=2E
+I'm actually on holidays myself at the moment :)
+Secondly, you're one of the sophgo maintainers,
+right? It's the people listed in MAINTAINERS that I am talking about here,
+being an employee doesn't matter=2E
+
+Cheers,
+Conor=2E
+
+>
+>Thanks,
+>
+>Chen
+>
+>>=20
+>> Thanks,
+>> Conor=2E
+>>=20
+>> _______________________________________________
+>> linux-riscv mailing list
+>> linux-riscv@lists=2Einfradead=2Eorg
+>> http://lists=2Einfradead=2Eorg/mailman/listinfo/linux-riscv
 
