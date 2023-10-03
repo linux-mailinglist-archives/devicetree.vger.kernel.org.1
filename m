@@ -1,109 +1,155 @@
-Return-Path: <devicetree+bounces-5623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 311037B6E3E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 18:19:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0830C7B6E58
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 18:24:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id D61D7281103
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 16:19:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id AE0EB28117B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 16:24:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A03238DE8;
-	Tue,  3 Oct 2023 16:19:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE5F13AC0C;
+	Tue,  3 Oct 2023 16:24:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5870731A82
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 16:19:06 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 59824BF;
-	Tue,  3 Oct 2023 09:19:05 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AE6C0C15;
-	Tue,  3 Oct 2023 09:19:43 -0700 (PDT)
-Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2A5393F762;
-	Tue,  3 Oct 2023 09:19:04 -0700 (PDT)
-Message-ID: <e0855325-37be-63ac-a0d5-9cd4cd4d375d@arm.com>
-Date: Tue, 3 Oct 2023 17:18:55 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4808238DEB;
+	Tue,  3 Oct 2023 16:24:20 +0000 (UTC)
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2053.outbound.protection.outlook.com [40.107.8.53])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C17B6C4;
+	Tue,  3 Oct 2023 09:24:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WGRS4cHmVTLcjrwZV59JVF/c4Tj0MiYVnz7tVD12w5+q0pVYSMtIR3Vxdga7+Faep3VYnyjDtELqwlBAUP3K39Fzyem+J4Q44YeGfQsDrr4D3MAs58BqZ8IOZ5CG4pErIwnWZZkWRPfnCNyw2+t+554xfkACP3XULPtN56mVDR7i/hZC37ZswbYFS9+V7lKsNgr1eGBZ+kOzEdQviz5XvsqHmElMTHmPOdersYrFZecLkgg7lermC7bw8P2m0gHhzkpbipJpyp1yYB9nmQQweYKJFplfWQz7Jhs9ZrNoxPklCPbBUi2kwdyLRwvchwml4zEyepc4RgYdmVNQRMM6Pw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0P8jYZGDPZ8G/D0sJ0KJUt1cJiYPX1b7OrSJgTHbN9g=;
+ b=lHFMtf30NRv17HqJetO1R7anTbEi8Egcy/Z4utP4QVA302KENdVydjDmQnp5Sy5RtrCIXUAb0x5TQq16nICwXf6mA6qd2WdpDJjYT8YADyTO9f9+M/Wv7Pbbp2XXBb7nfAhG+3i4E6BQpkv2zueDtBPaIeqIc3BEDMOeYXVYA1PS/HbVLv+ImUgWaLpQ6N4WD5SoJZfb9NXyz4P1V104qhKGqs3OOQHr36KynBngMCdfXSzlbEvg4F1Hp/wwkSszBPsxq3Q3Etd8L/pUWNF6Yue3ELdaIrnrpGCfZIAAu3lLjjdMnUyYHpdGFo0g6E94fIB+5GFd2kyZgqxWJnatog==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0P8jYZGDPZ8G/D0sJ0KJUt1cJiYPX1b7OrSJgTHbN9g=;
+ b=hvY01SBiks9zyXx9WO2PJHAzPXyZnyLJiwQDJr7K4XBNlw2xaI9KWcN+1yRyjWkBi6QiAhYhnbPiRQDl5E0C2xnCulceGhsAS9p+lFsECqPobjsP/QCmpReKoVKoJT8EMP2/aRt8txGU6Rcho8RStqvrz5+jk+Wa9eNEeQwXupI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM0PR04MB6452.eurprd04.prod.outlook.com (2603:10a6:208:16d::21)
+ by VI1PR04MB6815.eurprd04.prod.outlook.com (2603:10a6:803:130::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Tue, 3 Oct
+ 2023 16:24:15 +0000
+Received: from AM0PR04MB6452.eurprd04.prod.outlook.com
+ ([fe80::568a:57ee:35b5:e454]) by AM0PR04MB6452.eurprd04.prod.outlook.com
+ ([fe80::568a:57ee:35b5:e454%3]) with mapi id 15.20.6838.024; Tue, 3 Oct 2023
+ 16:24:14 +0000
+Date: Tue, 3 Oct 2023 19:24:10 +0300
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Madalin Bucur <madalin.bucur@nxp.com>,
+	Ioana Ciornei <ioana.ciornei@nxp.com>,
+	Camelia Groza <camelia.groza@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor@kernel.org>,
+	Sean Anderson <sean.anderson@seco.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>
+Subject: Re: [RFC PATCH v2 net-next 11/15] net: phylink: support the
+ 25GBase-KR-S and 25GBase-CR-S link modes too
+Message-ID: <20231003162410.lnugwuooxd25o4ax@skbuf>
+References: <20230923134904.3627402-1-vladimir.oltean@nxp.com>
+ <20230923134904.3627402-12-vladimir.oltean@nxp.com>
+ <ZRv7oicdAgyzZYPi@shell.armlinux.org.uk>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZRv7oicdAgyzZYPi@shell.armlinux.org.uk>
+X-ClientProxiedBy: FR2P281CA0122.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:9d::11) To AM0PR04MB6452.eurprd04.prod.outlook.com
+ (2603:10a6:208:16d::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 2/2] irqchip/gic-v3: Enable non-coherent
- redistributors/ITSes probing
-Content-Language: en-GB
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>, Marc Zyngier <maz@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, Fang Xiang <fangxiang3@xiaomi.com>
-References: <20230905104721.52199-1-lpieralisi@kernel.org>
- <20230905104721.52199-3-lpieralisi@kernel.org> <86msy0etul.wl-maz@kernel.org>
- <ZRwonK+01HKJkKXa@lpieralisi>
-From: Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <ZRwonK+01HKJkKXa@lpieralisi>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-	RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR04MB6452:EE_|VI1PR04MB6815:EE_
+X-MS-Office365-Filtering-Correlation-Id: 121e5db6-dbd9-42df-dc48-08dbc42d2f1b
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+ fTBTh2wxwEwnGjsRkMiNXuMwGA9Toj9t4+/o/rVlYt/nRUJAotUSxve7zxVxdoFb/zdYbrT4OxXBfPx2i0Jj24vtsfzdRfMT0w7XNk+5fUFzsgR21zmFSA6mvodMD1DgYPKjGw3ia5eoiqtXOpexOpVLLMCBYQ8bSKaGtu+jFze33NeYM7VYhgfpBioAhSFQmypafc3BLmlk+U4hP6r4iWGiZgXZ0gavbhNbpJ0gvO8XMEnMYQPsO1MR2vO/J/ZvXz2YqKF7Tt10KmGFEUGSrVsLNLuVnwg2SrO2u+4uO40dRuM9//Rg1M63Igax0EkSJnD8IoNXIIHNg+AO1VHByVt51AzvfhS1Gjncf+4VtQ4sVv2H3T7nGGZEeHPrkAMNDOaXtzIuRrJojRUaG88J/2jOR73CvC5BxHm0kJ+ljqGO+RAQ4STVBrYWkofEg+BnyBn8ldANDWjXi+/SaPtC5DwoZhaJ/ijWrdFoGvilEtgWW5i6t8HB2gC7jR04nO4DUfF9r4uBTXGpXQxdn2ydNmCZ0TgtYQcEl0EXUdHxv2+qRpxmeAOSMF0HlRPhUos3
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6452.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(346002)(136003)(39860400002)(366004)(396003)(376002)(230922051799003)(186009)(451199024)(64100799003)(1800799009)(2906002)(86362001)(4744005)(33716001)(6486002)(6506007)(6666004)(6512007)(478600001)(9686003)(38100700002)(41300700001)(8676002)(5660300002)(4326008)(1076003)(8936002)(44832011)(26005)(66476007)(7416002)(54906003)(6916009)(66556008)(66946007)(316002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?ItA9V5l47LeSUlfGF8h0F+5zGOQUuOJLKmVdwn3U+YH3fa+5836PWE12Ukgj?=
+ =?us-ascii?Q?aT0k9O0HZ0Sigv3TOgDcv67yffhEMTI4aYxS2WOOA+KiG2bNCpg4tnX7m1Aw?=
+ =?us-ascii?Q?anLvjK45xNa5QGzlU9tdB/IqRq43Pzw1g0RBCrQ47BxCutKHqDA6f94ccpvH?=
+ =?us-ascii?Q?2fIBAydz8LxLpmVaCmXPQiUNrD26e5jfuQUb3MnTnCMU03pSJOLCml6s91UB?=
+ =?us-ascii?Q?FjTyL8KXaL0hot2ik9op82rRa060dndoxaLJMkJH1/MQEeoK46WuXv/LXDe7?=
+ =?us-ascii?Q?6GwML3BKw1yTAjPX1RrzyzhQcOHqf9f0gi814xoWN/oYoZM9TicErOQ2RXMM?=
+ =?us-ascii?Q?sfpT15FNZfbAKa0vUWf+xkFpEEd+VsghN0MwiDh/nhnCsoEoWrWOKsRYv8a3?=
+ =?us-ascii?Q?G3QwmTeJNZY7m5UPO78kdvV1tfWwKYa9JTnyJAkgdE7U2l2VHIcc6nyzd6C1?=
+ =?us-ascii?Q?6QGu12PLGdODMeneCL8jn0fSuLtR9nd1FulKCebgxtrM4UL2dJAtC64m4iM4?=
+ =?us-ascii?Q?hptk350fU+jlYS3hrQlDSfbuHckI4SS4eDG4t5PbkXzWQXMBTxT+v1iXbJH4?=
+ =?us-ascii?Q?qzWjizfYXvS6Qq0yYlP/k0BmwtrzhNjUJ75gWuDqQVcs3DmEB2hqsCfGVsUs?=
+ =?us-ascii?Q?igN8VCqH2XYaiYExUFnGZVJFz9RoxqQoAxCwpCwrOUs/eUjPtBzxnaLB35H4?=
+ =?us-ascii?Q?zEPiXVUnXVcmFzbH127mmGbYVtwtGT95tr1tW+XSRn29I4efhRoXxAHkV4VV?=
+ =?us-ascii?Q?uHeybpYYHXtmEg3S2cPBcLtqsLk0aEiGPxsstsFvmR1Pedo6+lPCNqNZ9F8j?=
+ =?us-ascii?Q?ZCSSETDgFlEn8y2xTA/rkFO9jCfhyCH6y5Fm/dNA3LzzkXErwll3061+xccy?=
+ =?us-ascii?Q?mnBvnQ7jDCzjnH/QU17J/pnFDXIGfi8A4u+mLcNvAg2OHhYAwUNEunx5qJUO?=
+ =?us-ascii?Q?vJ/VEbz5oEqmRDApsVv3sBbyRc3htKRMvUq4Ev84A6cT0TXwC4ZlIBbqrPxC?=
+ =?us-ascii?Q?3nTuVgcKUn/6agqtMoKzvsxNpuDeXRvUSZV0EzuBAGybHyCTXfhQqbAbr5Vq?=
+ =?us-ascii?Q?nX3gvm6+gFw246DhxByWXsSeMAEtp5QgrrKIyRUMMkyZI8Lq5LzSgAwDXkWv?=
+ =?us-ascii?Q?EmOSfacdRpOVhTCVzVqWbeftuXWvlpukyJSsy+k+KzkxLa2epNYM/jwOUutV?=
+ =?us-ascii?Q?V38WwrqK301+hhqnhqf3COqP2RFLb2AtKQ7qdZ16Q1YFwZ/Fbh/1hhPMi7KF?=
+ =?us-ascii?Q?NKir0tBn90o2rIafJJT/+EGO/WBxUVbz69aWPhrzzmVEBwdlHTBn4Vn8X5+4?=
+ =?us-ascii?Q?f0rSjSbwauhvmmhbFPlzb/662/+cXx5fon3vIHwEGAAo21gtKG+zVicR5Xms?=
+ =?us-ascii?Q?GXX8K4a6f9q31LL6ROnkRy4YtnzKmyqX5cADxTQVyrAXbzuOWt+RS+JPJi91?=
+ =?us-ascii?Q?MNLcJLd5dIFnml5d4YzKN8kIUJtPDE6N3lUi66NlHK9TkBXPW7H5yaBOyzpP?=
+ =?us-ascii?Q?T8L1pcV1VkSFU0hHFNOBDTlnUTnkIwkiHWvF1qOyHa0C2yXvBbFAopOZBFxy?=
+ =?us-ascii?Q?ufPXnsNNp5GsGHgdyleumZLfmq+tb//aTHb/Yf/hB73TV9qXtPOEYBEzUgfs?=
+ =?us-ascii?Q?SQ=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 121e5db6-dbd9-42df-dc48-08dbc42d2f1b
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6452.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2023 16:24:14.9467
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: IWx0YSynUU1rwXnqn28ydfkxE1Y+vNWP64ZJ1hwNKt+HOFN7K8XkducfKtuKo7O54ioO2TNag35gV8ziGRSF5Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6815
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 03/10/2023 3:43 pm, Lorenzo Pieralisi wrote:
-> On Tue, Sep 05, 2023 at 12:34:58PM +0100, Marc Zyngier wrote:
-> 
-> [...]
-> 
->>>   	 * Make sure *all* the ITS are reset before we probe any, as
->>>   	 * they may be sharing memory. If any of the ITS fails to
->>> @@ -5396,7 +5405,8 @@ static int __init its_of_probe(struct device_node *node)
->>>   			continue;
->>>   		}
->>>   
->>> -		its_probe_one(&res, &np->fwnode, of_node_to_nid(np));
->>> +		its_probe_one(&res, &np->fwnode, of_node_to_nid(np),
->>> +			      of_property_read_bool(np, "dma-noncoherent"));
->>>   	}
->>>   	return 0;
->>>   }
->>> @@ -5533,7 +5543,8 @@ static int __init gic_acpi_parse_madt_its(union acpi_subtable_headers *header,
->>>   	}
->>>   
->>>   	err = its_probe_one(&res, dom_handle,
->>> -			acpi_get_its_numa_node(its_entry->translation_id));
->>> +			acpi_get_its_numa_node(its_entry->translation_id),
->>> +			false);
->>
->> I came up with the following alternative approach, which is as usual
->> completely untested. It is entirely based on the quirk infrastructure,
->> and doesn't touch the ACPI path at all.
-> 
-> Writing the ACPI bits. We can't use the quirks framework for ACPI (we
-> don't have "properties" and I don't think we want to attach any to the
-> fwnode_handle) that's why I generalized its_probe_one() above with an
-> extra param, that would have simplified ACPI parsing:
-> 
-> - we alloc struct its_node in its_probe_one() but at that stage
->    ACPI parsing was already done. If we have to parse the MADT(ITS) again
->    just to scan for non-coherent we then have to match the MADT entries
->    to the *current* struct its_node* we are handling (MADT parsing
->    callbacks don't even take a param - we have to resort to global
->    variables - definitely doable but it is a bit ugly).
+Hi Russell,
 
-How about a compromise of passing a whole MADT flags field into 
-its_probe_one() (where its_of_probe() can just pass 0), to pass through 
-to its_enable_quirks() to then match against an madt_flags field in the 
-gic_quirk? gic_acpi_init() could then do something similar for the 
-redistributor quirk, although I guess it would then need to distinguish 
-GICC and GICR-based quirks cases since the respective flags are in 
-different formats.
+On Tue, Oct 03, 2023 at 12:31:46PM +0100, Russell King (Oracle) wrote:
+> On Sat, Sep 23, 2023 at 04:49:00PM +0300, Vladimir Oltean wrote:
+> > Treat the newly introduced subsets of 25GBase-KR and 25GBase-CR the same
+> > way as the fully-featured link modes. The difference only consists in
+> > RS-FEC support.
+> 
+> As mentioned in the patch adding these new linkmodes, I wonder whether
+> this should be part of that patch. Is there a reason to keep it
+> separate?
 
-Thanks,
-Robin.
+I can squash this into the other CR-S/KR-S patch.
 
