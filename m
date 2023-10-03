@@ -1,146 +1,492 @@
-Return-Path: <devicetree+bounces-5492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 522FB7B674A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 13:12:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57AB97B674D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 13:12:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 048932814C2
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 11:12:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 010F81C208CB
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 11:12:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE7BF2110D;
-	Tue,  3 Oct 2023 11:12:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8992421116;
+	Tue,  3 Oct 2023 11:12:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 885DD208D7
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 11:12:05 +0000 (UTC)
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E4D8A7
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 04:12:03 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-99c3d3c3db9so123852466b.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Oct 2023 04:12:03 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A578120B3B;
+	Tue,  3 Oct 2023 11:12:23 +0000 (UTC)
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E80F9E;
+	Tue,  3 Oct 2023 04:12:21 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-503065c4b25so997088e87.1;
+        Tue, 03 Oct 2023 04:12:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696331522; x=1696936322; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Z88+R7R5Ilel4HV2isUrj7tyiUHylVYcAvcUJT48+Go=;
-        b=TOeeGPgBDssuWOUbubfYNy8sn36SvelEPkMPpiHPL8g/0P64B5TaOYQnBwunZStlGL
-         bYRHOasXl3pMGsMkkKpGlTf67ZYi7BhMu124H63U9KTQMi8q//WrisDm3kVsRHIfIDY+
-         F/W3ltV7cw8GiIBuhYCxygbbsYIlroKFGd7H37CsVqVMHbIlv4joL+2Z38xD58pkj3yl
-         RBzgWvpmdX8+CLh6CbHbv2oE1/0rnFaLGMomf+V9MgDLeryhbI7MIe5Z8DMBKWlfM2Xc
-         DRXll8RMC0RJo45Pk6foJSFUdZ4vJmobCXztDXkkUO2cotjUl6PmXVTNKnJkWZpA1o+i
-         s/mg==
+        d=gmail.com; s=20230601; t=1696331539; x=1696936339; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3Uea/n7CBgI0sI/pNuGOUCH8+/XQkTv8PWUAIW6S7u8=;
+        b=aVJY2yIPtVqglOJIBl4rde+5PACvpmFwfOrKZze453lJkae8YEyjWLQtCgfdd9DARB
+         K7onloCSXoiFJSHaiSN/Uhog4Z8F5ZqRRm0IgbnC+k9OU6y01RauJXhJualdImIsIEYX
+         q2Vj85kH9JoCTKYrk6cbMDWxLVo9YblIIuNJrM2uMNFQHWuFYf7G5i/0nFi/bbv8mi8M
+         8NDdXO4JQ09wnik0fBKYcy51+kPsYrSXWKPpKOdPUHsV3vAZytQ7eD2Gl22SqPa4e/5h
+         d/kBT0TSBu8oc1mY379VTWpkg/abhprhBS4HYw2swzQeVPQnFNzKR1xylH55sJckbFeU
+         Q/Aw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696331522; x=1696936322;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z88+R7R5Ilel4HV2isUrj7tyiUHylVYcAvcUJT48+Go=;
-        b=CEDW2eaQem/alF41rX+QSuNSrvWb8sqVct70OB34EJqXZ/SdbVsJcRSetkddVSBJVc
-         HAXJ/t7YDshFXmL7xLRsyy5O5BKrGEmvo3U+tsUkV0YvylkNLJZZGLjvMu+3M7cvmOAc
-         bvCjsHLXXa9MRoyZx+I19/XbNPkdNjBDvhA68hwZ4eq82+5ysMj0HSrjzc5VWgwOF306
-         raEfiqeY+GiPrBUoHTXA0g5O9bxg+dxOaGjUambSj9DzWlIHlN6WK1A4Oeu2t26oqbWF
-         4FZ24Lvt5Q/cZOjG4ZuJaOcpqhMWpnznuUPmMaUnb8laTEa5SHYFbMvbprnlUkLdOZT8
-         tmdA==
-X-Gm-Message-State: AOJu0YxF8QigRah1cOLhSTef5sT2A/L7n/cThCctim6xSyKe8rQtQNq9
-	MJIsBrd0QGMgqBxobETWuZarrQ==
-X-Google-Smtp-Source: AGHT+IGNlGHE/AMA2R0aaUfJnrliFqmfIbQ0BxRNaXFisaxXEp2+u1nCNCalAH9J+AcjFTjQlt39PQ==
-X-Received: by 2002:a17:906:8447:b0:9a5:cab0:b050 with SMTP id e7-20020a170906844700b009a5cab0b050mr12375128ejy.13.1696331521777;
-        Tue, 03 Oct 2023 04:12:01 -0700 (PDT)
-Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id gh18-20020a170906e09200b009b27d4153cfsm894576ejb.176.2023.10.03.04.12.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Oct 2023 04:12:01 -0700 (PDT)
-Message-ID: <50d46733-32e5-439c-9eac-bc8275447946@linaro.org>
-Date: Tue, 3 Oct 2023 13:11:58 +0200
+        d=1e100.net; s=20230601; t=1696331539; x=1696936339;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3Uea/n7CBgI0sI/pNuGOUCH8+/XQkTv8PWUAIW6S7u8=;
+        b=R7E0UM8SPDjfL4CQ+NJFMJKMxY0iyTWsy0H2PzZRfSSfn38ODWvg+KpM2tSw2OAVfN
+         7zk8tunU9qF0xjW/fXHASY2mIUkuoVOrDgUcjw5/WtRIOraWUop4+UxSCtz7yX3ZIYg1
+         nCZECe+2RwjXezrJd+BlDpzGapQfgafvkhJbRkU/De1Okbw1yDnf2bwdnfkOZnj7ZDs5
+         MgMjeBHJ8iciN1ljbisR++7617Ajkd7MazWCsMjjJ1rNnHZrHFUXJOgGFabS/Fp/1NbW
+         5+xwXALN04iJkxKnxcXUEEdI2f48uUjqXHo48aKyKT0NTK2G0mYJyaVbHefvSfO0AYUF
+         xMdQ==
+X-Gm-Message-State: AOJu0YxKTVE16IAz3CPr/BB+je7mhyo5jzeHb910HQxFpftl+1cIp7Tv
+	iJ8CDlfpe6gU2sK31h+7/g8=
+X-Google-Smtp-Source: AGHT+IGYY2nQq/lGKgQhk1UQy9uGl+2o0sgL/qWAiVCC5CIC/aEr7o/cAnve/MosSSTy6Ro66rkKcg==
+X-Received: by 2002:ac2:58ca:0:b0:505:783f:bc65 with SMTP id u10-20020ac258ca000000b00505783fbc65mr6917176lfo.66.1696331539210;
+        Tue, 03 Oct 2023 04:12:19 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id u7-20020ac25187000000b00505664242cbsm151495lfi.223.2023.10.03.04.12.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Oct 2023 04:12:18 -0700 (PDT)
+Date: Tue, 3 Oct 2023 14:12:15 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Rohan G Thomas <rohan.g.thomas@intel.com>, 
+	"David S . Miller" <davem@davemloft.net>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Eric Dumazet <edumazet@google.com>, 
+	Paolo Abeni <pabeni@redhat.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH net-next 1/1] net: stmmac: xgmac: EST interrupts handling
+Message-ID: <vwdy5d3xirgioeac3mo7ditkfxevwmwmweput3xziq6tafa3zl@vtxddkiv2tux>
+References: <20230923031031.21434-1-rohan.g.thomas@intel.com>
+ <xwcwjtyy5yx6pruoa3vmssnjzkbeahmfyym4e5lrq2efcwwiym@2upf4ko4mah5>
+ <20231002135551.020f180c@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: cache: andestech,ax45mp-cache: Fix unit
- address in example
-Content-Language: en-US
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Palmer Dabbelt <palmer@rivosinc.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc: devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <7b93655219a6ad696dd3faa9f36fde6b094694a9.1696330005.git.geert+renesas@glider.be>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <7b93655219a6ad696dd3faa9f36fde6b094694a9.1696330005.git.geert+renesas@glider.be>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="65askapwumtpuhk6"
+Content-Disposition: inline
+In-Reply-To: <20231002135551.020f180c@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 03/10/2023 12:47, Geert Uytterhoeven wrote:
-> The unit address in the example does not match the reg property.
-> Correct the unit address to match reality.
+
+--65askapwumtpuhk6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi Jakub
+
+On Mon, Oct 02, 2023 at 01:55:51PM -0700, Jakub Kicinski wrote:
+> On Tue, 26 Sep 2023 14:25:56 +0300 Serge Semin wrote:
+> > On Sat, Sep 23, 2023 at 11:10:31AM +0800, Rohan G Thomas wrote:
+> > > Enabled the following EST related interrupts:
+> > >   1) Constant Gate Control Error (CGCE)
+> > >   2) Head-of-Line Blocking due to Scheduling (HLBS)
+> > >   3) Head-of-Line Blocking due to Frame Size (HLBF)
+> > >   4) Base Time Register error (BTRE)
+> > >   5) Switch to S/W owned list Complete (SWLC)
+> > > Also, add EST errors into the ethtool statistic.
+> > > 
+> > > The commit e49aa315cb01 ("net: stmmac: EST interrupts handling and
+> > > error reporting") and commit 9f298959191b ("net: stmmac: Add EST
+> > > errors into ethtool statistic") add EST interrupts handling and error
+> > > reporting support to DWMAC4 core. This patch enables the same support
+> > > for XGMAC.  
+> > 
+> > So, this is basically a copy of what was done for the DW QoS Eth
+> > IP-core (DW GMAC v4.x/v5.x). IMO it would be better to factor it out
+> > into a separate module together with the rest of the setup methods
+> > like it's done for TC or PTP. But since it implies some much more work
+> > I guess we can leave it as is for now...
 > 
-> Fixes: 3e7bf4685e42786d ("dt-bindings: cache: andestech,ax45mp-cache: Add DT binding documentation for L2 cache controller")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
 
+> I think we can push back a little harder. At the very least we should
+> get a clear explanation why this copy'n'paste is needed, i.e. what are
+> the major differences. No?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+AFAICS there are only two firm differences between the DW QoS Eth v5.x
+and DW XGMAC v3.x ESTs implementations I managed to spot from the
+currently available code (My DW XGMAC _v2.11a_ HW manual doesn't have
+such feature described):
 
-Best regards,
-Krzysztof
+1. MTL_EST_CONTROL.PTOV field offset and width: QoS [31;24], XGMAC [31;23];
 
+2. EST CSRs base addresses: QoS 0x0c50, XGMAC 0x1050.
+
+After the patch in subject is applied the EST config method and EST
+IRQ status handlers will look almost identical except the next two
+things:
+
+1. XGMAC EST-write implementation performs atomic
+MTL_EST_GCL_CONTROL.SRWO flag polling. Initially added by Jose. Not
+sure whether the sleepless polling is really needed because the
+stmmac_est_configure() is always called within the est->lock mutex
+being taken.
+
+2. PTP time offset setup performed by means of the
+MTL_EST_CONTROL.PTOV field. DW QoS Eth v5.x HW manual claims it's "The
+value of PTP Clock period multiplied by 6 in nanoseconds." So either
+Jose got mistaken by using _9_ for DW XGMAC v3.x or the DW XGMAC
+indeed is different in that aspect.
+
+The rest of the differences is in the macros and functions names.
+Please see the attached diff-file I collected for the EST-related code
+in the DW QoS Eth v5.x and DW XGMAC v3.x modules.
+
+Getting back to the refactoring. So basically the EST part can be
+factored out in a similar way as it's done for instance for TC/PTP:
+
+1. Define EST_GMAC4_OFFSET and EST_XGMAC_OFFSET macros in the new
+header file "stmmac_est.h" (I'd prefer to drop the stmmac_-prefix but
+all the sub-modules except "mmc" tends to have it).
+
+2. Add stmmac_regs_off.est field and initialize it with the respective
+offsets for the QoS and XGMAC IP-cores in the stmmac_hw static array
+(hwif.c).
+
+3. Add stmmac_priv.estaddr field and initialize it with 
+(ioaddr + stmmac_regs_off.est) in the stmmac_hwif_init() function (hwif.c).
+
+4. Define stmmac_est_ops structure in "hwif.h" with two
+callbacks: .est_configure and .est_irq_status. Add the
+stmmac_hwif_entry.est field of the const-pointer type to that
+structure instance.
+
+5. Redefined the stmmac_est_configure() and stmmac_est_irq_status()
+macro-functions to using the callbacks from the stmmac_priv->hw->est
+(hwif.h).
+
+6. Drop the stmmac_ops.est_configure and stmmac_ops.est_irq_status.
+fields (hwif.h).
+
+7. Move all the EST-related macros to the "stmmac_est.h" file. Make
+sure they are defined with EST_-prefix and the CSRs are based from
+zero address since they will be utilized as the offsets for the
+stmmac_priv.estaddr field.
+
+8. Move all the EST-related functions to the new "stmmac_est.c"
+module. Make sure they use the new generic EST CSRs macros and the
+stmmac_priv.estaddr field as the base address of the EST CSRs. Take
+into account the possible differences in the MTL_EST_CONTROL.PTOV
+field initialization for the DW QoS and DW XGMAC IP-cores. Add
+stmmac_est.o to stmmac-objs list in the Makefile.
+
+9. Define stmmac_est_ops structure instance (dwmac410_est_ops) in
+"stmmac_est.c" and initialize its fields with the est_configure() and
+est_irq_status() functions define in 8.
+
+10. Use the stmmac_est_ops structure instance (dwmac410_est_ops) to
+initialize the stmmac_hwif_entry.est field to point to that instance
+for the DW Eth QoS and DW XGMAC IP-cores.
+
+If I didn't miss some details after that we'll have a common EST
+module utilized for both DW QoS Eth and DW XGMAC IP-cores.
+
+-Serge(y)
+
+--65askapwumtpuhk6
+Content-Type: text/x-patch; charset=us-ascii
+Content-Disposition: attachment; filename="dwmac_est.diff"
+
+--- drivers/net/ethernet/stmicro/stmmac/dwmac5_est.c	2023-10-03 13:08:04.149201098 +0300
++++ drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core_est.c	2023-10-03 13:11:30.034936292 +0300
+@@ -1,186 +1,187 @@
+-#define MTL_EST_CONTROL			0x00000c50
+-#define PTOV				GENMASK(31, 24)
+-#define PTOV_SHIFT			24
+-#define SSWL				BIT(1)
+-#define EEST				BIT(0)
+-
+-#define MTL_EST_STATUS			0x00000c58
+-#define BTRL				GENMASK(11, 8)
+-#define BTRL_SHIFT			8
+-#define BTRL_MAX			(0xF << BTRL_SHIFT)
+-#define SWOL				BIT(7)
+-#define SWOL_SHIFT			7
+-#define CGCE				BIT(4)
+-#define HLBS				BIT(3)
+-#define HLBF				BIT(2)
+-#define BTRE				BIT(1)
+-#define SWLC				BIT(0)
+-
+-#define MTL_EST_SCH_ERR			0x00000c60
+-#define MTL_EST_FRM_SZ_ERR		0x00000c64
+-#define MTL_EST_FRM_SZ_CAP		0x00000c68
+-#define SZ_CAP_HBFS_MASK		GENMASK(14, 0)
+-#define SZ_CAP_HBFQ_SHIFT		16
+-#define SZ_CAP_HBFQ_MASK(_val)	\
++#define XGMAC_MTL_EST_CONTROL		0x00001050
++#define XGMAC_PTOV			GENMASK(31, 23)
++#define XGMAC_PTOV_SHIFT		23
++#define XGMAC_SSWL			BIT(1)
++#define XGMAC_EEST			BIT(0)
++
++#define XGMAC_MTL_EST_STATUS		0x00001058
++#define XGMAC_BTRL			GENMASK(15, 8)
++#define XGMAC_BTRL_SHIFT		8
++#define XGMAC_BTRL_MAX			GENMASK(15, 8)
++#define XGMAC_CGCE			BIT(4)
++#define XGMAC_HLBS			BIT(3)
++#define XGMAC_HLBF			BIT(2)
++#define XGMAC_BTRE			BIT(1)
++#define XGMAC_SWLC			BIT(0)
++
++#define XGMAC_MTL_EST_SCH_ERR		0x00001060
++#define XGMAC_MTL_EST_FRM_SZ_ERR	0x00001064
++#define XGMAC_MTL_EST_FRM_SZ_CAP	0x00001068
++#define XGMAC_SZ_CAP_HBFS_MASK		GENMASK(14, 0)
++#define XGMAC_SZ_CAP_HBFQ_SHIFT		16
++#define XGMAC_SZ_CAP_HBFQ_MASK(val)	\
+ 	({					\
+-		typeof(_val) (val) = (_val);	\
+-		((val) > 4 ? GENMASK(18, 16) :	\
+-		 (val) > 2 ? GENMASK(17, 16) :	\
++		typeof(val) _val = (val);	\
++		(_val > 4 ? GENMASK(18, 16) :	\
++		 _val > 2 ? GENMASK(17, 16) :	\
+ 		 BIT(16));			\
+ 	})
+ 
+-#define MTL_EST_INT_EN			0x00000c70
+-#define IECGCE				CGCE
+-#define IEHS				HLBS
+-#define IEHF				HLBF
+-#define IEBE				BTRE
+-#define IECC				SWLC
+-
+-#define MTL_EST_GCL_CONTROL		0x00000c80
+-#define BTR_LOW				0x0
+-#define BTR_HIGH			0x1
+-#define CTR_LOW				0x2
+-#define CTR_HIGH			0x3
+-#define TER				0x4
+-#define LLR				0x5
+-#define ADDR_SHIFT			8
+-#define GCRR				BIT(2)
+-#define SRWO				BIT(0)
+-#define MTL_EST_GCL_DATA		0x00000c84
++#define XGMAC_MTL_EST_INT_EN		0x00001070
++#define XGMAC_IECGCE			BIT(4)
++#define XGMAC_IEHS			BIT(3)
++#define XGMAC_IEHF			BIT(2)
++#define XGMAC_IEBE			BIT(1)
++#define XGMAC_IECC			BIT(0)
++
++#define XGMAC_MTL_EST_GCL_CONTROL	0x00001080
++#define XGMAC_BTR_LOW			0x0
++#define XGMAC_BTR_HIGH			0x1
++#define XGMAC_CTR_LOW			0x2
++#define XGMAC_CTR_HIGH			0x3
++#define XGMAC_TER			0x4
++#define XGMAC_LLR			0x5
++#define XGMAC_ADDR_SHIFT		8
++#define XGMAC_GCRR			BIT(2)
++#define XGMAC_SRWO			BIT(0)
++#define XGMAC_MTL_EST_GCL_DATA		0x00001084
+ 
+-static int dwmac5_est_write(void __iomem *ioaddr, u32 reg, u32 val, bool gcl)
++static int dwxgmac3_est_write(void __iomem *ioaddr, u32 reg, u32 val, bool gcl)
+ {
+ 	u32 ctrl;
+ 
+-	writel(val, ioaddr + MTL_EST_GCL_DATA);
++	writel(val, ioaddr + XGMAC_MTL_EST_GCL_DATA);
+ 
+-	ctrl = (reg << ADDR_SHIFT);
+-	ctrl |= gcl ? 0 : GCRR;
++	ctrl = (reg << XGMAC_ADDR_SHIFT);
++	ctrl |= gcl ? 0 : XGMAC_GCRR;
+ 
+-	writel(ctrl, ioaddr + MTL_EST_GCL_CONTROL);
++	writel(ctrl, ioaddr + XGMAC_MTL_EST_GCL_CONTROL);
+ 
+-	ctrl |= SRWO;
+-	writel(ctrl, ioaddr + MTL_EST_GCL_CONTROL);
++	ctrl |= XGMAC_SRWO;
++	writel(ctrl, ioaddr + XGMAC_MTL_EST_GCL_CONTROL);
+ 
+-	return readl_poll_timeout(ioaddr + MTL_EST_GCL_CONTROL,
+-				  ctrl, !(ctrl & SRWO), 100, 5000);
++	return readl_poll_timeout_atomic(ioaddr + XGMAC_MTL_EST_GCL_CONTROL,
++					 ctrl, !(ctrl & XGMAC_SRWO), 100, 5000);
+ }
+ 
+-int dwmac5_est_configure(void __iomem *ioaddr, struct stmmac_est *cfg,
+-			 unsigned int ptp_rate)
++static int dwxgmac3_est_configure(void __iomem *ioaddr, struct stmmac_est *cfg,
++				  unsigned int ptp_rate)
+ {
+ 	int i, ret = 0x0;
+ 	u32 ctrl;
+ 
+-	ret |= dwmac5_est_write(ioaddr, BTR_LOW, cfg->btr[0], false);
+-	ret |= dwmac5_est_write(ioaddr, BTR_HIGH, cfg->btr[1], false);
+-	ret |= dwmac5_est_write(ioaddr, TER, cfg->ter, false);
+-	ret |= dwmac5_est_write(ioaddr, LLR, cfg->gcl_size, false);
+-	ret |= dwmac5_est_write(ioaddr, CTR_LOW, cfg->ctr[0], false);
+-	ret |= dwmac5_est_write(ioaddr, CTR_HIGH, cfg->ctr[1], false);
++	ret |= dwxgmac3_est_write(ioaddr, XGMAC_BTR_LOW, cfg->btr[0], false);
++	ret |= dwxgmac3_est_write(ioaddr, XGMAC_BTR_HIGH, cfg->btr[1], false);
++	ret |= dwxgmac3_est_write(ioaddr, XGMAC_TER, cfg->ter, false);
++	ret |= dwxgmac3_est_write(ioaddr, XGMAC_LLR, cfg->gcl_size, false);
++	ret |= dwxgmac3_est_write(ioaddr, XGMAC_CTR_LOW, cfg->ctr[0], false);
++	ret |= dwxgmac3_est_write(ioaddr, XGMAC_CTR_HIGH, cfg->ctr[1], false);
+ 	if (ret)
+ 		return ret;
+ 
+ 	for (i = 0; i < cfg->gcl_size; i++) {
+-		ret = dwmac5_est_write(ioaddr, i, cfg->gcl[i], true);
++		ret = dwxgmac3_est_write(ioaddr, i, cfg->gcl[i], true);
+ 		if (ret)
+ 			return ret;
+ 	}
+ 
+-	ctrl = readl(ioaddr + MTL_EST_CONTROL);
+-	ctrl &= ~PTOV;
+-	ctrl |= ((1000000000 / ptp_rate) * 6) << PTOV_SHIFT;
++	ctrl = readl(ioaddr + XGMAC_MTL_EST_CONTROL);
++	ctrl &= ~XGMAC_PTOV;
++	ctrl |= ((1000000000 / ptp_rate) * 9) << XGMAC_PTOV_SHIFT;
+ 	if (cfg->enable)
+-		ctrl |= EEST | SSWL;
++		ctrl |= XGMAC_EEST | XGMAC_SSWL;
+ 	else
+-		ctrl &= ~EEST;
++		ctrl &= ~XGMAC_EEST;
+ 
+-	writel(ctrl, ioaddr + MTL_EST_CONTROL);
++	writel(ctrl, ioaddr + XGMAC_MTL_EST_CONTROL);
+ 
+ 	/* Configure EST interrupt */
+ 	if (cfg->enable)
+-		ctrl = (IECGCE | IEHS | IEHF | IEBE | IECC);
++		ctrl = XGMAC_IECGCE | XGMAC_IEHS | XGMAC_IEHF | XGMAC_IEBE |
++			XGMAC_IECC;
+ 	else
+ 		ctrl = 0;
+ 
+-	writel(ctrl, ioaddr + MTL_EST_INT_EN);
++	writel(ctrl, ioaddr + XGMAC_MTL_EST_INT_EN);
+ 
+ 	return 0;
+ }
+ 
+-void dwmac5_est_irq_status(void __iomem *ioaddr, struct net_device *dev,
+-			  struct stmmac_extra_stats *x, u32 txqcnt)
++static void dwxgmac3_est_irq_status(void __iomem *ioaddr,
++				    struct net_device *dev,
++				    struct stmmac_extra_stats *x, u32 txqcnt)
+ {
+ 	u32 status, value, feqn, hbfq, hbfs, btrl;
+-	u32 txqcnt_mask = (1 << txqcnt) - 1;
++	u32 txqcnt_mask = BIT(txqcnt) - 1;
+ 
+-	status = readl(ioaddr + MTL_EST_STATUS);
++	status = readl(ioaddr + XGMAC_MTL_EST_STATUS);
+ 
+-	value = (CGCE | HLBS | HLBF | BTRE | SWLC);
++	value = XGMAC_CGCE | XGMAC_HLBS | XGMAC_HLBF | XGMAC_BTRE | XGMAC_SWLC;
+ 
+ 	/* Return if there is no error */
+ 	if (!(status & value))
+ 		return;
+ 
+-	if (status & CGCE) {
++	if (status & XGMAC_CGCE) {
+ 		/* Clear Interrupt */
+-		writel(CGCE, ioaddr + MTL_EST_STATUS);
++		writel(XGMAC_CGCE, ioaddr + XGMAC_MTL_EST_STATUS);
+ 
+ 		x->mtl_est_cgce++;
+ 	}
+ 
+-	if (status & HLBS) {
+-		value = readl(ioaddr + MTL_EST_SCH_ERR);
++	if (status & XGMAC_HLBS) {
++		value = readl(ioaddr + XGMAC_MTL_EST_SCH_ERR);
+ 		value &= txqcnt_mask;
+ 
+ 		x->mtl_est_hlbs++;
+ 
+ 		/* Clear Interrupt */
+-		writel(value, ioaddr + MTL_EST_SCH_ERR);
++		writel(value, ioaddr + XGMAC_MTL_EST_SCH_ERR);
+ 
+ 		/* Collecting info to shows all the queues that has HLBS
+ 		 * issue. The only way to clear this is to clear the
+-		 * statistic
++		 * statistic.
+ 		 */
+ 		if (net_ratelimit())
+ 			netdev_err(dev, "EST: HLB(sched) Queue 0x%x\n", value);
+ 	}
+ 
+-	if (status & HLBF) {
+-		value = readl(ioaddr + MTL_EST_FRM_SZ_ERR);
++	if (status & XGMAC_HLBF) {
++		value = readl(ioaddr + XGMAC_MTL_EST_FRM_SZ_ERR);
+ 		feqn = value & txqcnt_mask;
+ 
+-		value = readl(ioaddr + MTL_EST_FRM_SZ_CAP);
+-		hbfq = (value & SZ_CAP_HBFQ_MASK(txqcnt)) >> SZ_CAP_HBFQ_SHIFT;
+-		hbfs = value & SZ_CAP_HBFS_MASK;
++		value = readl(ioaddr + XGMAC_MTL_EST_FRM_SZ_CAP);
++		hbfq = (value & XGMAC_SZ_CAP_HBFQ_MASK(txqcnt)) >>
++			XGMAC_SZ_CAP_HBFQ_SHIFT;
++		hbfs = value & XGMAC_SZ_CAP_HBFS_MASK;
+ 
+ 		x->mtl_est_hlbf++;
+ 
+ 		/* Clear Interrupt */
+-		writel(feqn, ioaddr + MTL_EST_FRM_SZ_ERR);
++		writel(feqn, ioaddr + XGMAC_MTL_EST_FRM_SZ_ERR);
+ 
+ 		if (net_ratelimit())
+ 			netdev_err(dev, "EST: HLB(size) Queue %u Size %u\n",
+ 				   hbfq, hbfs);
+ 	}
+ 
+-	if (status & BTRE) {
+-		if ((status & BTRL) == BTRL_MAX)
++	if (status & XGMAC_BTRE) {
++		if ((status & XGMAC_BTRL) == XGMAC_BTRL_MAX)
+ 			x->mtl_est_btrlm++;
+ 		else
+ 			x->mtl_est_btre++;
+ 
+-		btrl = (status & BTRL) >> BTRL_SHIFT;
++		btrl = (status & XGMAC_BTRL) >> XGMAC_BTRL_SHIFT;
+ 
+ 		if (net_ratelimit())
+ 			netdev_info(dev, "EST: BTR Error Loop Count %u\n",
+ 				    btrl);
+ 
+-		writel(BTRE, ioaddr + MTL_EST_STATUS);
++		writel(XGMAC_BTRE, ioaddr + XGMAC_MTL_EST_STATUS);
+ 	}
+ 
+-	if (status & SWLC) {
+-		writel(SWLC, ioaddr + MTL_EST_STATUS);
++	if (status & XGMAC_SWLC) {
++		writel(XGMAC_SWLC, ioaddr + XGMAC_MTL_EST_STATUS);
+ 		netdev_info(dev, "EST: SWOL has been switched\n");
+ 	}
+ }
+
+--65askapwumtpuhk6--
 
