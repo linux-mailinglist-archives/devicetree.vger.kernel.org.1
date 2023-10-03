@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-5317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42E087B5F8F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 05:52:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E47207B5F90
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 05:53:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id E8E9E2815C3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 03:52:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 96BB32815BA
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 03:53:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D1C6EC4;
-	Tue,  3 Oct 2023 03:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BB2A7F5;
+	Tue,  3 Oct 2023 03:53:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D23AB7F5
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 03:52:52 +0000 (UTC)
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C1CEE3
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 20:52:51 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-1c0ecb9a075so3480285ad.2
-        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 20:52:51 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D769A59
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 03:52:59 +0000 (UTC)
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31FE4C4
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 20:52:56 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-1c3d6d88231so3530185ad.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 20:52:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1696305170; x=1696909970; darn=vger.kernel.org;
+        d=ventanamicro.com; s=google; t=1696305175; x=1696909975; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=yycPMI9rC/acogS1vs0h8BRUvc4a6Kod+MRuzLqJ/0g=;
-        b=eYod/e1R9rPAN+Lcj0so8LwAml04Wl/WzcFrIfCgC81dpEoK7EcH5aHxlKTX95tJxP
-         mHIYp7ajloshl6RkNrEWp8HdYDoNolaS1bzGcOmkEfKQ65rsKDB+iiDgIN/TxBl6mvXX
-         HvUyMyzIpI08lAO1nFzzHTVR3U+wfR0UtT91zT0LjPutA73nn8uHnc6Ced+ZTKyUbWiY
-         bC9MasG0uW+u/3aG5OGaGTRVpbDG68m1ZyiLbAllgJGF9a91iUkKY8RhQetRk00RzuP0
-         4MQml9OBOeYoeo6KO14UwkfYKVYuFqM4wcZO6KsvuXdCsfGJigCb9BIX29CI/ZG2fGA0
-         eiFA==
+        bh=PR9YD+pr7hv0tmO2NOz2gpQmVbaE/cJ/IAsO/LYC7Pc=;
+        b=XndW1qrhTVSGZgMXpNzg31W8cUV7jQiFtUtpcG8iZmQmgibFRs4af+6llaF/WgscTR
+         bhJU3jLvF+1MzNzf9MvoXDAIRAaGy0ZCx34pMBVh0fmoN+p+Xl7GxQ9CZDg69mXsglzz
+         K4JAYafHcHA8Xr4efF83MALAK0eOgEy779VYsKIqwLwfjt8BK16vzHq1XcC01lXA/g3C
+         sDHOQmdxdYvWocjiPuKgXiDg1n8544wAEOIxl6Lk1SN8oD39k5AdClp3DLMlW7lZZ/Wb
+         bRVVBsobZ0hYOdI5ruv6WejKVSNrCpn90ar8weL6zY7dRQ6tEtoFMdm5VRtp9om0PEnh
+         29Kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696305170; x=1696909970;
+        d=1e100.net; s=20230601; t=1696305175; x=1696909975;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=yycPMI9rC/acogS1vs0h8BRUvc4a6Kod+MRuzLqJ/0g=;
-        b=jfx1q3LAuntIYadJVVHh6po27ZYeIwHfrkmJRXE9Mv7Hmn+RMaPNSN1O7zyrMZfPn9
-         xJZPdJnZVxTef7X3c29aqQpgaYOp1nnIdoAnH/hkDpLqfYAulbOMYLUl964ZXCQPFZHt
-         OxmU7nWtGqUO90twyQcVhT/OtfuykaUAmum+Y7qnc6mecUA75f8l+HF/jRNQKqa15zg+
-         P7qBGOnTjpHJupa9ZEMyVLK+0PzJMFgjOcKMUJr5zOJy9LeExO/siQdo9YjY78fYfGjL
-         ml/8lfQaA6boI+UUYAWgjgw6IVAcePHVKMlzXLtWjOMzPk/vguW3ZlgfHlu+BFjJqyMb
-         4SCg==
-X-Gm-Message-State: AOJu0YwRhkK/bLDEhxwAd05qMhA0MS2H9FFmgWf0B2/WTekWCcSKtGlS
-	D0tBqIiw/EF583CKczaVycSsiA==
-X-Google-Smtp-Source: AGHT+IFTxF070rx7YJkcoy2/BdnPUrtJEvwz7nDRRqveimSHvcZ4nNWjTlHA1gEQmD/xbZ6UMOx4KQ==
-X-Received: by 2002:a17:902:f7d1:b0:1bc:10cf:50d8 with SMTP id h17-20020a170902f7d100b001bc10cf50d8mr10607315plw.23.1696305170384;
-        Mon, 02 Oct 2023 20:52:50 -0700 (PDT)
+        bh=PR9YD+pr7hv0tmO2NOz2gpQmVbaE/cJ/IAsO/LYC7Pc=;
+        b=gJJsC30Y91eV0tgSlvKqf/W7k7IvHhGDpjbUB5/LgdKdCTRCFkY6TeGGNK1Oy50iOX
+         /gB0szRb9Gb8aDpEDGgConZ3aGoQdowGQAe1kI0rxe0qFtefHNc8FuaYvXPrxk0x93X+
+         iapsbMKymZN+wWXvNYM7rrSwrXK8j4m5TrRCmZG3VeFTZ8Tc5OcC8YXxikPehb6SI21j
+         PWF0cv7sM/O5BbWF2dzkOgJCAGRSQD8oC1ehxa+rIakMfNfUyMiiV+Uk1h1MSSxmuBpQ
+         Z2McbOYP7b4F+4ToRYGVzTCI8ZM5uQdMuu3G0R5RXBQU4Pk3FcXlQVOLvCRi8AIeVxdI
+         q3Cw==
+X-Gm-Message-State: AOJu0Yzttwg3JtAmpQw4i6Mn1qayUhhYLQ1Yc4MWycTA6/DcY3p5YFcX
+	jlT4SN1v53FCkRSznfn8TynjXw==
+X-Google-Smtp-Source: AGHT+IHVWdwg/sK94Dq4Rgb1USUh5bXBpGZ0ZnKGbSP+03oAaRBZUxn2NXa8Zq60ZS2d7KJ4sbaXhg==
+X-Received: by 2002:a17:903:244d:b0:1c3:2ee6:3802 with SMTP id l13-20020a170903244d00b001c32ee63802mr13278709pls.47.1696305175387;
+        Mon, 02 Oct 2023 20:52:55 -0700 (PDT)
 Received: from anup-ubuntu-vm.localdomain ([171.76.84.132])
-        by smtp.gmail.com with ESMTPSA id ja7-20020a170902efc700b001bf846dd2d0sm277381plb.13.2023.10.02.20.52.45
+        by smtp.gmail.com with ESMTPSA id ja7-20020a170902efc700b001bf846dd2d0sm277381plb.13.2023.10.02.20.52.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Oct 2023 20:52:49 -0700 (PDT)
+        Mon, 02 Oct 2023 20:52:54 -0700 (PDT)
 From: Anup Patel <apatel@ventanamicro.com>
 To: Paolo Bonzini <pbonzini@redhat.com>,
 	Atish Patra <atishp@atishpatra.org>,
@@ -71,11 +71,10 @@ Cc: Andrew Jones <ajones@ventanamicro.com>,
 	linux-riscv@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	linux-kselftest@vger.kernel.org,
-	Anup Patel <apatel@ventanamicro.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v3 2/6] RISC-V: Detect Zicond from ISA string
-Date: Tue,  3 Oct 2023 09:22:22 +0530
-Message-Id: <20231003035226.1945725-3-apatel@ventanamicro.com>
+	Anup Patel <apatel@ventanamicro.com>
+Subject: [PATCH v3 3/6] RISC-V: KVM: Allow Zicond extension for Guest/VM
+Date: Tue,  3 Oct 2023 09:22:23 +0530
+Message-Id: <20231003035226.1945725-4-apatel@ventanamicro.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231003035226.1945725-1-apatel@ventanamicro.com>
 References: <20231003035226.1945725-1-apatel@ventanamicro.com>
@@ -92,46 +91,48 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The RISC-V integer conditional (Zicond) operation extension defines
-standard conditional arithmetic and conditional-select/move operations
-which are inspired from the XVentanaCondOps extension. In fact, QEMU
-RISC-V also has support for emulating Zicond extension.
-
-Let us detect Zicond extension from ISA string available through
-DT or ACPI.
+We extend the KVM ISA extension ONE_REG interface to allow KVM
+user space to detect and enable Zicond extension for Guest/VM.
 
 Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- arch/riscv/include/asm/hwcap.h | 1 +
- arch/riscv/kernel/cpufeature.c | 1 +
- 2 files changed, 2 insertions(+)
+ arch/riscv/include/uapi/asm/kvm.h | 1 +
+ arch/riscv/kvm/vcpu_onereg.c      | 2 ++
+ 2 files changed, 3 insertions(+)
 
-diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-index 0f520f7d058a..6fc51c1b34cf 100644
---- a/arch/riscv/include/asm/hwcap.h
-+++ b/arch/riscv/include/asm/hwcap.h
-@@ -59,6 +59,7 @@
- #define RISCV_ISA_EXT_ZIFENCEI		41
- #define RISCV_ISA_EXT_ZIHPM		42
- #define RISCV_ISA_EXT_SMSTATEEN		43
-+#define RISCV_ISA_EXT_ZICOND		44
+diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uapi/asm/kvm.h
+index b1baf6f096a3..917d8cc2489e 100644
+--- a/arch/riscv/include/uapi/asm/kvm.h
++++ b/arch/riscv/include/uapi/asm/kvm.h
+@@ -138,6 +138,7 @@ enum KVM_RISCV_ISA_EXT_ID {
+ 	KVM_RISCV_ISA_EXT_ZIFENCEI,
+ 	KVM_RISCV_ISA_EXT_ZIHPM,
+ 	KVM_RISCV_ISA_EXT_SMSTATEEN,
++	KVM_RISCV_ISA_EXT_ZICOND,
+ 	KVM_RISCV_ISA_EXT_MAX,
+ };
  
- #define RISCV_ISA_EXT_MAX		64
- 
-diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-index 3755a8c2a9de..e3803822ab5a 100644
---- a/arch/riscv/kernel/cpufeature.c
-+++ b/arch/riscv/kernel/cpufeature.c
-@@ -167,6 +167,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
- 	__RISCV_ISA_EXT_DATA(zicbom, RISCV_ISA_EXT_ZICBOM),
- 	__RISCV_ISA_EXT_DATA(zicboz, RISCV_ISA_EXT_ZICBOZ),
- 	__RISCV_ISA_EXT_DATA(zicntr, RISCV_ISA_EXT_ZICNTR),
-+	__RISCV_ISA_EXT_DATA(zicond, RISCV_ISA_EXT_ZICOND),
- 	__RISCV_ISA_EXT_DATA(zicsr, RISCV_ISA_EXT_ZICSR),
- 	__RISCV_ISA_EXT_DATA(zifencei, RISCV_ISA_EXT_ZIFENCEI),
- 	__RISCV_ISA_EXT_DATA(zihintpause, RISCV_ISA_EXT_ZIHINTPAUSE),
+diff --git a/arch/riscv/kvm/vcpu_onereg.c b/arch/riscv/kvm/vcpu_onereg.c
+index 388599fcf684..c6ebce6126b5 100644
+--- a/arch/riscv/kvm/vcpu_onereg.c
++++ b/arch/riscv/kvm/vcpu_onereg.c
+@@ -46,6 +46,7 @@ static const unsigned long kvm_isa_ext_arr[] = {
+ 	KVM_ISA_EXT_ARR(ZICBOM),
+ 	KVM_ISA_EXT_ARR(ZICBOZ),
+ 	KVM_ISA_EXT_ARR(ZICNTR),
++	KVM_ISA_EXT_ARR(ZICOND),
+ 	KVM_ISA_EXT_ARR(ZICSR),
+ 	KVM_ISA_EXT_ARR(ZIFENCEI),
+ 	KVM_ISA_EXT_ARR(ZIHINTPAUSE),
+@@ -93,6 +94,7 @@ static bool kvm_riscv_vcpu_isa_disable_allowed(unsigned long ext)
+ 	case KVM_RISCV_ISA_EXT_ZBB:
+ 	case KVM_RISCV_ISA_EXT_ZBS:
+ 	case KVM_RISCV_ISA_EXT_ZICNTR:
++	case KVM_RISCV_ISA_EXT_ZICOND:
+ 	case KVM_RISCV_ISA_EXT_ZICSR:
+ 	case KVM_RISCV_ISA_EXT_ZIFENCEI:
+ 	case KVM_RISCV_ISA_EXT_ZIHINTPAUSE:
 -- 
 2.34.1
 
