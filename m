@@ -1,157 +1,135 @@
-Return-Path: <devicetree+bounces-5471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 819D67B66EE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 12:58:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A291A7B66FB
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 13:01:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 318DE281671
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 10:58:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 511492814B1
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 11:01:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C44F820B10;
-	Tue,  3 Oct 2023 10:57:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6941D20B28;
+	Tue,  3 Oct 2023 11:01:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FED71EA95
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 10:57:58 +0000 (UTC)
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D83D7DD;
-	Tue,  3 Oct 2023 03:57:53 -0700 (PDT)
-Received: by mail-io1-xd2a.google.com with SMTP id ca18e2360f4ac-7a269637b98so24786939f.3;
-        Tue, 03 Oct 2023 03:57:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696330673; x=1696935473; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qThTQ2EndUgzuynlyMsCB3sIEKXBzP2bceTtmpfh6iQ=;
-        b=ATa9ZjEq6U2y9yUCTuJ5G9b9vdDkS73kO3fA+7g2pwHxQouLw3BqTe8DuLbjL2WPs0
-         9hrcvSEncSiBqmFTxn6Xz1VQ8vKDD0DLSx1h3q++2qw8t9voImMnrKaiekUwYDa7ORen
-         UeOcBnJr/yqi9Fym7EICwtbJqBfT9MzcABgEngpsD9zslqg2V2qXfyo7L6xmwVWNQItp
-         /WS+VsV7yVXOPvXEqQzKpE6W6UbQYglU6zGk5IqKZncLICF62m8R30GpHKuV62oohw+k
-         DtlubXn3AEX2FSj89jvk4WY5XpuFlh9NuecBcEDggqDo8WpF+OKNpafB+gMO8K5u6Z/B
-         3M+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696330673; x=1696935473;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qThTQ2EndUgzuynlyMsCB3sIEKXBzP2bceTtmpfh6iQ=;
-        b=oujiQNuc0GKpt61NhrXfyVB6o0Ox5vWLLuIviOEwAnoOAo8B2YEvMFBQjyZINf9jtE
-         wOSQ3bCfMGFaX5Nr/C1947CuRxwVqdB+37Hd3Q9PcnL4Uz6Euz++L3g16YoaWTwPDU91
-         4WuY99OnWJnoSEPqFoHzaFRWHQR0XfW81o2Hg7965burA3qYU8QxoON8RQgmUX9CnEUZ
-         leDh3ZYuEbhWUAatn8F9r4wxNDw6KGdeEw/XHapNlz5RT/1DfU46LKxKWbNrBijWj43b
-         fo82V/8ACA+z4WMJFRsN9yTyAsgihyL08TTWpGd37+mpQAckaiwNHvVG0cISknv7H+fs
-         aPoQ==
-X-Gm-Message-State: AOJu0YzQz0ohupq0HbX7G3Njr3G3oM0ia4C6VmLFHUdBHaZkeRM50WAI
-	eYFU1IOWBLyE72+Xv5qTdnM=
-X-Google-Smtp-Source: AGHT+IGttW4UKMJ5ur0fccwnHqXX3X6oJOU8nZcdsSYnBv+UUPjdTwMwO+7FbE7T/xEg3gJRLc9FhA==
-X-Received: by 2002:a5d:9cd5:0:b0:786:2125:a034 with SMTP id w21-20020a5d9cd5000000b007862125a034mr15217606iow.18.1696330672860;
-        Tue, 03 Oct 2023 03:57:52 -0700 (PDT)
-Received: from [10.76.84.110] ([5.2.194.157])
-        by smtp.gmail.com with ESMTPSA id p18-20020a0566380e9200b00430bb70004dsm280745jas.103.2023.10.03.03.57.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Oct 2023 03:57:52 -0700 (PDT)
-Message-ID: <303d2869-2273-f643-e8ff-e27675f929dc@gmail.com>
-Date: Tue, 3 Oct 2023 13:57:45 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 071FCFBFF
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 11:01:27 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4B529B;
+	Tue,  3 Oct 2023 04:01:25 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 393B1IgJ089750;
+	Tue, 3 Oct 2023 06:01:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1696330878;
+	bh=qBTy0JATJk++8UogQ04Q4Tt3EI8iQmg8anAF9xb4KKg=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=D1JOypT7ktu6QzytGqDcRC0q89Inh09DRpVlqU9d9jqUbgpYEt16beKpV/YP8TLJI
+	 z148qqiMLy+f9Ufug9v19DKQIIE62AcWxh4OLZyyAa2ETwfNRtYudYmWhOBaU4H4uY
+	 MRBkFT1mvufG7+rYkNo5BEvrxsmppjglVwbvaieI=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 393B1IQr096637
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 3 Oct 2023 06:01:18 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 3
+ Oct 2023 06:01:17 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 3 Oct 2023 06:01:17 -0500
+Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 393B1Dvf129223;
+	Tue, 3 Oct 2023 06:01:14 -0500
+From: Vignesh Raghavendra <vigneshr@ti.com>
+To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Hari Nagalla <hnagalla@ti.com>,
+        Udit Kumar
+	<u-kumar1@ti.com>, Apurva Nandan <a-nandan@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH v5 0/9] Add R5F and C7x DSP node for K3 J721S2, AM68 and AM69 SoCs
+Date: Tue, 3 Oct 2023 16:30:42 +0530
+Message-ID: <169633065057.2221719.1284860999650506339.b4-ty@ti.com>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231001181417.743306-1-a-nandan@ti.com>
+References: <20231001181417.743306-1-a-nandan@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v2 2/2] iio: adc: ad7173: add AD7173 driver
-Content-Language: en-US
-To: Andy Shevchenko <andy@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, linus.walleij@linaro.org,
- brgl@bgdev.pl, linux-gpio@vger.kernel.org,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Michael Walle <michael@walle.cc>,
- Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>,
- Niklas Schnelle <schnelle@linux.ibm.com>,
- =?UTF-8?Q?Leonard_G=c3=b6hrs?= <l.goehrs@pengutronix.de>,
- Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>,
- Hugo Villeneuve <hvilleneuve@dimonoff.com>,
- Ceclan Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230928125443.615006-1-mitrutzceclan@gmail.com>
- <20230928125443.615006-2-mitrutzceclan@gmail.com>
- <20230930150531.083c51d4@jic23-huawei>
- <c52afe87-eaa0-eb7f-090f-b22aec95e49d@gmail.com>
- <ZRvwrDcT770sJXkd@smile.fi.intel.com>
-From: Ceclan Dumitru-Ioan <mitrutzceclan@gmail.com>
-In-Reply-To: <ZRvwrDcT770sJXkd@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 10/3/23 13:45, Andy Shevchenko wrote:
-> Subject:
-> Re: [PATCH v2 2/2] iio: adc: ad7173: add AD7173 driver
-> From:
-> Andy Shevchenko <andy@kernel.org>
-> Date:
-> 10/3/23, 13:45
+Hi Apurva Nandan,
+
+On Sun, 01 Oct 2023 23:44:08 +0530, Apurva Nandan wrote:
+> This series adds the R5F processor nodes and C7x DSP nodes for
+> J721S2, AM68 and AM69 SoCs to align these nodes with other K3 SOC's node.
 > 
-> To:
-> Ceclan Dumitru-Ioan <mitrutzceclan@gmail.com>
-> CC:
-> Jonathan Cameron <jic23@kernel.org>, linus.walleij@linaro.org, brgl@bgdev.pl, linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Michael Walle <michael@walle.cc>, Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>, Leonard Göhrs <l.goehrs@pengutronix.de>, Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, Hugo Villeneuve <hvilleneuve@dimonoff.com>, Ceclan Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+> The first three patches adds the remote proc nodes to the SoC device
+> tree, remaining patches reserves the memory for remote proc IPCs
+> on K3 J721S2 EVM, AM68 SK, AM69 boards.
 > 
-> 
-> On Tue, Oct 03, 2023 at 01:33:36PM +0300, Ceclan Dumitru-Ioan wrote:
->> On 9/30/23 17:05, Jonathan Cameron wrote:
->>> On Thu, 28 Sep 2023 15:54:43 +0300
->>> Dumitru Ceclan <mitrutzceclan@gmail.com> wrote>> +config AD7173
->>>> +	tristate "Analog Devices AD7173 driver"
->>>> +	depends on SPI_MASTER
->>>> +	select AD_SIGMA_DELTA
->>>> +	select GPIO_REGMAP
->>> If you are selecting it, why does it have if guards in the driver.
->>> I prefer the select here, so drop this if guards.
->> From what i checked, selecting GPIO_REGMAP does not select GPIOLIB but only REGMAP.
->>
->> Also, in the thread from V1 Arnd Bergmann suggested:
->> 	" I think the best way to handle these is to remove both
->> 	 the 'select' and the #ifdef in the driver and instead use
->> 	 'if (IS_ENABLED(CONFIG_GPIOLIB))' to handle optional gpio
->> 	 providers in the code. "
-> Why not simply to be dependent on GPIOLIB like other drivers do in this folder?
+> [...]
 
-I followed the suggestion given by Arnd. The full argument:
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-"From a Kconfig perspective, any user-visible symbol ideally only uses
-'depends on', while hidden symbols usually use 'select'.
+[1/9] arm64: dts: ti: k3-j721s2-mcu: Add MCU R5F cluster nodes
+      commit: bc1a339df22013761fc8cda603209cb9f5eb291f
+[2/9] arm64: dts: ti: k3-j721s2-main: Add MAIN R5F remote processsor nodes
+      commit: ce43999a6f2bb556d3a4526fbe73dcde58817ce7
+[3/9] arm64: dts: ti: k3-j721s2-main: Add C7x remote processsor nodes
+      commit: 10e9c99259ba183224199b41f455aa2c357a531a
+[4/9] arm64: dts : ti: k3-j721s2-som-p0: Add DDR carveout memory nodes for R5F
+      commit: 69411bc675242bf998f88daddd5f3ae1293a5818
+[5/9] arm64: dts : ti: k3-j721s2-som-p0: Add DDR carveout memory nodes for C71x DSPs
+      commit: c0e346900bcb9f833d96a9b1da1fe45848046247
+[6/9] arm64: dts : ti: k3-am68-sk-som: Add DDR carveout memory nodes for R5F
+      commit: 1dd5b602c9b3d9762f29eab861238e1333c0c73c
+[7/9] arm64: dts : ti: k3-am68-sk-som: Add DDR carveout memory nodes for C71x DSP
+      commit: ecbc784801d78fd000723d24197c9172aa5d3449
+[8/9] arm64: dts : ti: k3-am69-sk: Add DDR carveout memory nodes for R5F
+      commit: 61a779412cb7a752ad15c6dae9b2c69f94486dc5
+[9/9] arm64: dts : ti: k3-am69-sk: Add DDR carveout memory nodes for C71x DSP
+      commit: ee89d4e60ba7f9fa91fa73e1af3e2c1461700449
 
-For the GPIOLIB symbol specifically, we have a mix of both, but the
-overall usage is that gpio consumers only use 'depends on',
-while some of the providers use 'select'. This risks causing build
-breakage from a dependency loop when combined with other symbols
-that have the same problem (e.g. I2C), but it tends to work out
-as long as a strong hierarchy is kept. In particular, using 'select'
-from an arch/*/Kconfig platform option is generally harmless as
-long as those don't depend on anything else.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-The new driver is a gpio provider and at least ad4130 and
-ad5592r uses 'select' here, but then again ad74115 and
-ad74113 use 'depends on' and ads7950 uses neither.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-I think the best way to handle these is to remove both
-the 'select' and the #ifdef in the driver and instead use
-'if (IS_ENABLED(CONFIG_GPIOLIB))' to handle optional gpio
-providers in the code."
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-I do not have a lot of experience with this subject.
-As such, if you consider the argument invalid, mention it and i will
-change to 'depends on'.
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
+
 
