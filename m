@@ -1,215 +1,223 @@
-Return-Path: <devicetree+bounces-5290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD6487B5DE4
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 01:51:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A60247B5E53
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 02:42:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id E4D42B20813
-	for <lists+devicetree@lfdr.de>; Mon,  2 Oct 2023 23:51:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id A9719B20951
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 00:42:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E23C720B14;
-	Mon,  2 Oct 2023 23:51:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CA03634;
+	Tue,  3 Oct 2023 00:42:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3541B1F952
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 23:51:37 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43B39BD;
-	Mon,  2 Oct 2023 16:51:35 -0700 (PDT)
-Received: from localhost (node-1w7jr9sthgf5xzr3piazikqnn.ipv6.telus.net [IPv6:2001:569:befe:8000:ef1c:8591:564c:a1f3])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dbrouwer)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 7175B66072AE;
-	Tue,  3 Oct 2023 00:51:33 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1696290693;
-	bh=T9qfIyypSwGKAnZmRqXjeU/52cPdy4ah1kmYs3GXtoc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lGWpuLxZpe70s1gCjhjtWChNdiGUuU+zqv043kgfK/tVtRWzvAtsacxLQuDYzB9NQ
-	 q8uBo/sJ99Kq0FuEY7wOmiAtc+tNmgLljfjZJO3Ggq2Xw1P0SDxUgdbSJJh9qzmMQO
-	 sV2sfle+Y81AMVH7sdVsCeVhXL0gf8Sg5c49hBlmpKZZjSZCsthtgHnUw9oxXRJbz3
-	 +PnJGnzYB53WIC8w9OxjMhG0Vrss3AHmqxBLXM3tlIHmTzbtOy5Ly6OlVE641AVKca
-	 3jRAxFeVQkKqtrlDA3Ndiwyk0v1mcSxLJpclecj+DtCNCNfqM6/4D4nr2gKq5dwoAE
-	 80qGb8WxALXnw==
-Date: Mon, 2 Oct 2023 16:51:28 -0700
-From: Deborah Brouwer <deborah.brouwer@collabora.com>
-To: Hans Verkuil <hverkuil@xs4all.nl>
-Cc: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Sebastian Fricke <sebastian.fricke@collabora.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Nas Chung <nas.chung@chipsnmedia.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Jackson Lee <jackson.lee@chipsnmedia.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Robert Beckett <bob.beckett@collabora.com>,
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kernel@collabora.com
-Subject: Re: [PATCH v12 5/7] media: chips-media: wave5: Add the v4l2 layer
-Message-ID: <ZRtXgMhSS3D6H3/4@db550>
-References: <20230915-wave5_v12_on_media_master-v12-0-92fc66cd685d@collabora.com>
- <20230915-wave5_v12_on_media_master-v12-5-92fc66cd685d@collabora.com>
- <b7aa9a5a-018a-4d78-b001-4ba84acb1e24@xs4all.nl>
- <7b159731dfbc2ab8243396eaec8f41be10af5160.camel@collabora.com>
- <6ae8a639-b9f5-4426-be49-5340a8b8b5e9@xs4all.nl>
- <330a177320fd766af8eddb76f57ea728b2e36afe.camel@collabora.com>
- <d9af2b98-8da5-4487-8125-3c68eefcf77c@xs4all.nl>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0D32632
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 00:42:05 +0000 (UTC)
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0C66B0
+	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 17:42:03 -0700 (PDT)
+Received: by mail-oi1-x236.google.com with SMTP id 5614622812f47-3a707bc2397so58650b6e.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 17:42:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696293723; x=1696898523; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6NUDE2+H89he6BS9I3HNkP9B+FIe1jpB9GTuSekloXo=;
+        b=vBL9U+8nnThHF7jmPYJB9EkvqZL2i7Nu1Ayg8VDxn4pNVMnJMlHeRmXe1i0KYdIh5D
+         7fpmzF/73jQinW2lL4rG4Sv3HZK4cwDbcYACZxBpOyGWo/R9NlZgMtMy1uKXK+aW+Uew
+         aIoE7hzrOtYOxZkEfLLY5MNpr+6iJO10cLkk+OjdnWSmG85GQuHC0ozkXna4HnblhL11
+         /iG1jtqIIgHSNjI2ZSkMJ/XumEn84TMNj5bDJ3KFsukcNz493xbfcG3dXpFGHZA7aZRl
+         DD/v/fpnOwsQXECQIbcy5FALWHzN3lN1iF2P5+CDQbvhZIFMgnhbu9qnTl10siywpBr9
+         K0TA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696293723; x=1696898523;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6NUDE2+H89he6BS9I3HNkP9B+FIe1jpB9GTuSekloXo=;
+        b=oGHC/Ql0D/3TKibxEmAbHzVd98sOFWl/SRnodyVBYPWbQkmDEs0g2BYabs9kZNyn3n
+         HDrtthfNu/nZdisTegmOcgYeK+yby3gkzE8G1YLLdFZ6qy+T6MmB6wwCUg93abI5w2Ty
+         Y8+C+/YuV8WQoaXEERgnd2i0fe8bWbap/cq59mNzYUeeLhEOvPoUNYRvhfTEHCWjFHwk
+         MYXJRptb7A6Xx1Aod/r2MzfKR9PQSkp7ANUdRlqMFYQcVtqbkqvsXkfmaVhnmVFYAxXX
+         4+d5uIOFDYgL/Ss/hj7nIalbh2Wgqy847r27O2r/4ZPxMIhn8OcomZJSSKN6rl7QC0oT
+         15NQ==
+X-Gm-Message-State: AOJu0YwUse/IloasoaX3HGHgSHpeCxLNk/HLE1Ljhu8daXk1UqJ9/CZy
+	KsD2lltzd00rYDnGm1cE/u2bnQ==
+X-Google-Smtp-Source: AGHT+IGlw1kZKdt+UyAH31lC9JsO/OzHGFTE0E91BQ34s5sGYXbhHt7x/H/hFaTuM1t44AIWZKwO6w==
+X-Received: by 2002:a05:6808:3614:b0:3ad:f5d8:2da9 with SMTP id ct20-20020a056808361400b003adf5d82da9mr10798904oib.4.1696293722812;
+        Mon, 02 Oct 2023 17:42:02 -0700 (PDT)
+Received: from octopus ([2400:4050:c3e1:100:783d:e8bb:e013:a869])
+        by smtp.gmail.com with ESMTPSA id a20-20020a637f14000000b0057d86bb613esm75006pgd.45.2023.10.02.17.41.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Oct 2023 17:42:02 -0700 (PDT)
+Date: Tue, 3 Oct 2023 09:41:58 +0900
+From: AKASHI Takahiro <takahiro.akashi@linaro.org>
+To: Rob Herring <robh@kernel.org>
+Cc: sudeep.holla@arm.com, cristian.marussi@arm.com,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linus.walleij@linaro.org, Oleksii_Moisieiev@epam.com,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [RFC 4/4] dt-bindings: gpio: Add bindings for SCMI pinctrl based
+ gpio
+Message-ID: <ZRtjVnWhAK2CZaRM@octopus>
+Mail-Followup-To: AKASHI Takahiro <takahiro.akashi@linaro.org>,
+	Rob Herring <robh@kernel.org>, sudeep.holla@arm.com,
+	cristian.marussi@arm.com, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, linus.walleij@linaro.org,
+	Oleksii_Moisieiev@epam.com, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+References: <20231002021602.260100-1-takahiro.akashi@linaro.org>
+ <20231002021602.260100-5-takahiro.akashi@linaro.org>
+ <20231002144155.GA1675188-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d9af2b98-8da5-4487-8125-3c68eefcf77c@xs4all.nl>
+In-Reply-To: <20231002144155.GA1675188-robh@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, Sep 27, 2023 at 09:19:46AM +0200, Hans Verkuil wrote:
-> On 27/09/2023 01:29, Nicolas Dufresne wrote:
-> > Le vendredi 22 septembre 2023 à 09:33 +0200, Hans Verkuil a écrit :
-> >> On 21/09/2023 21:11, Nicolas Dufresne wrote:
-> >>> Le mercredi 20 septembre 2023 à 17:13 +0200, Hans Verkuil a écrit :
-> >>>> On 15/09/2023 23:11, Sebastian Fricke wrote:
-> >>>>> From: Nas Chung <nas.chung@chipsnmedia.com>
-> >>>>>
-> >>>>> Add the decoder and encoder implementing the v4l2
-> >>>>> API. This patch also adds the Makefile and the VIDEO_WAVE_VPU config
-> >>>>>
-> >>>>> Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
-> >>>>> Signed-off-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> >>>>> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
-> >>>>> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-> >>>>> Signed-off-by: Nas Chung <nas.chung@chipsnmedia.com>
-> >>>>> ---
-> >>>>>  drivers/media/platform/chips-media/Kconfig         |    1 +
-> >>>>>  drivers/media/platform/chips-media/Makefile        |    1 +
-> >>>>>  drivers/media/platform/chips-media/wave5/Kconfig   |   12 +
-> >>>>>  drivers/media/platform/chips-media/wave5/Makefile  |   10 +
-> >>>>>  .../platform/chips-media/wave5/wave5-helper.c      |  196 ++
-> >>>>>  .../platform/chips-media/wave5/wave5-helper.h      |   30 +
-> >>>>>  .../platform/chips-media/wave5/wave5-vpu-dec.c     | 1965 ++++++++++++++++++++
-> >>>>>  .../platform/chips-media/wave5/wave5-vpu-enc.c     | 1825 ++++++++++++++++++
-> >>>>>  .../media/platform/chips-media/wave5/wave5-vpu.c   |  331 ++++
-> >>>>>  .../media/platform/chips-media/wave5/wave5-vpu.h   |   83 +
-> >>>>>  10 files changed, 4454 insertions(+)
-> >>>>>
-> >>
-> >> <snip>
-> >>
-> >>>>> +static int wave5_vpu_dec_set_eos_on_firmware(struct vpu_instance *inst)
-> >>>>> +{
-> >>>>> +	int ret;
-> >>>>> +
-> >>>>> +	ret = wave5_vpu_dec_update_bitstream_buffer(inst, 0);
-> >>>>> +	if (ret) {
-> >>>>> +		dev_err(inst->dev->dev,
-> >>>>> +			"Setting EOS for the bitstream, fail: %d\n", ret);
-> >>>>
-> >>>> Is this an error due to a driver problem, or because a bad bitstream is
-> >>>> fed from userspace? In the first case, dev_err would be right, in the
-> >>>> second dev_dbg would be more appropriate. Bad userspace input should not
-> >>>> spam the kernel log in general.
-> >>>
-> >>> Its the first. To set the EOS flag, a command is sent to the firmware. That
-> >>> command may never return (timeout) or may report an error. For this specific
-> >>> command, if that happens we are likely facing firmware of driver problem (or
-> >>> both).
-> >>
-> >> OK, I'd add that as a comment here as this is unexpected behavior.
-> >>
-> >>>
-> >>>>
-> >>>>> +		return ret;
-> >>>>> +	}
-> >>>>> +	return 0;
-> >>>>> +}
-> >>
-> >> <snip>
-> >>
-> >>>>> +static int wave5_vpu_dec_create_bufs(struct file *file, void *priv,
-> >>>>> +				     struct v4l2_create_buffers *create)
-> >>>>> +{
-> >>>>> +	struct v4l2_format *f = &create->format;
-> >>>>> +
-> >>>>> +	if (f->type == V4L2_BUF_TYPE_VIDEO_CAPTURE)
-> >>>>> +		return -ENOTTY;
-> >>>>
-> >>>> Huh? Why is this needed?
-> >>>
-> >>> Minimally a comment should be added. The why is that we support CREATE_BUF for
-> >>> OUTPUT queue (bitstream) but not for CAPTURE queues. This is simply not
-> >>> supported by Wave5 firmware. Do you have any suggestion how this asymmetry can
-> >>> be implemented better ?
-> >>
-> >> Certainly not with ENOTTY: the ioctl exists, it is just not supported for
-> >> CAPTURE queues.
-> >>
-> >> How about -EPERM? And document this error as well in the VIDIOC_CREATE_BUFS
-> >> documentation. And you want a dev_dbg here too.
-> > 
-> > The suggestion cannot be used since there is documentation for that one already,
-> > and it does not match "unsupported".
-> > 
-> > "Permission denied. Can be returned if the device needs write permission, or
-> > some special capabilities is needed (e. g. root)"
-> > 
-> > What about using the most logical error code, which name is actually obvious,
-> > like ENOTSUP ?
-> > 
-> >    #define ENOTSUPP	524	/* Operation is not supported */
-> > 
+Hi Rob,
+
+On Mon, Oct 02, 2023 at 09:41:55AM -0500, Rob Herring wrote:
+> On Mon, Oct 02, 2023 at 11:16:02AM +0900, AKASHI Takahiro wrote:
+> > A dt binding for SCMI pinctrl based gpio driver is defined in this
+> > commit. It basically conforms to generic pinctrl-gpio mapping framework.
 > 
-> Let's go with EOPNOTSUPP. That seems to be the more commonly used error
-> code in drivers.
+> What is "generic pinctrl-gpio mapping framework"? DT doesn't have 
+> frameworks.
 
-Hi Hans,
+I meant to refer to section 2.1-2.3 in "Documentation/devicetree/bindings/gpio/gpio.txt". The semantics is implemented in drivers/gpio/gpiolib(-of).c.
 
-Sorry to belabour this issue but when I change the return value
-to EOPNOTSUPP, it now causes v4l2-compliance to fail because
-v4l2-test-buffers.cpp expects ENOTTY if CREATE_BUFS is not supported.
+> > 
+> > Signed-off-by: AKASHI Takahiro <takahiro.akashi@linaro.org>
+> > ---
+> >  .../bindings/gpio/arm,scmi-gpio.yaml          | 71 +++++++++++++++++++
+> >  1 file changed, 71 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/gpio/arm,scmi-gpio.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/gpio/arm,scmi-gpio.yaml b/Documentation/devicetree/bindings/gpio/arm,scmi-gpio.yaml
+> > new file mode 100644
+> > index 000000000000..2601c5594567
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/gpio/arm,scmi-gpio.yaml
+> > @@ -0,0 +1,71 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/gpio/arm,scmi-gpio.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: SCMI pinctrl based generic GPIO controller
+> > +
+> > +maintainers:
+> > +  - AKASHI Takahiro <akashi.takahiro@linaro.org>
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: "^scmi_gpio(@[0-9a-f]+)$"
+> 
+> Not the correct name.
 
-We didn't get this warning before because there was a typo in the
-buffer check and it was only checking for single-planar buffers.
+How not?
 
-How would you prefer to handle this? The options seem like
-keep ENOTTY in this driver or
-patch v4l2-compliance to warn if it also receives EOPNOTSUPP?
+> > +
+> > +  compatible:
+> > +    const: arm,scmi-gpio-generic
+> 
+> What makes it generic? No such thing. Just drop '-generic'.
+
+I will discuss this issue in following Cristian's comment.
 
 > 
-> >>
-> >> So I would propose that EPERM is returned if CREATE_BUFS is only supported
-> >> for for one of the two queues of an M2M device.
+> > +
+> > +  gpio-controller: true
+> > +
+> > +  "#gpio-cells":
+> > +    const: 2
+> > +
+> > +  gpio-ranges: true
+> > +
+> > +  gpio-ranges-group-names: true
+> > +
+> > +patternProperties:
+> > +  "^.+-hog(-[0-9]+)?$":
+> > +    type: object
+> > +    properties:
+> > +      gpio-hog: true
+> > +      gpios: true
+> > +      input: true
+> > +      output-high: true
+> > +      output-low: true
+> > +      line-name: true
+> > +
+> > +    required:
+> > +      - gpio-hog
+> > +      - gpios
+> 
+> You don't need all this just 'required: [ gpio-hog ]'. Then the hog 
+> schema will check the rest.
+
+Okay.
+
+> > +
+> > +    additionalProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - gpio-controller
+> > +  - "#gpio-cells"
+> > +  - gpio-ranges
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    scmi_gpio_0: scmi_gpio@0 {
+> 
+> gpio {
+> 
+> But doesn't SCMI have protocol numbers?
+> 
+> > +        compatible = "arm,scmi-gpio";
+> > +        gpio-controller;
+> > +        #gpio-cells = <2>;
+> > +        gpio-ranges = <&scmi_pinctrl 0 10 5>,
+> > +                      <&scmi_pinctrl 5 0 0>;
+> > +        gpio-ranges-group-names = "",
+> > +                                  "pinmux_gpio";
+> > +    };
+> > +
+> > +    // Consumer:
+> 
+> Outside the scope of this binding. Drop this node.
+
+Even though it's in an example?
+"#gpio-cells" has a meaning in consumer side.
+
+-Takahiro Akashi
+
+
+> > +    sdhci0_pwrseq {
+> > +        compatible = "mmc-pwrseq-emmc";
+> > +        reset-gpios = <&scmi_gpio_0 0 GPIO_ACTIVE_LOW>;
+> > +    };
+> > -- 
+> > 2.34.1
 > > 
-> > Note that userspace does not care of the difference between an ioctl not being
-> > implemented at all or not being implement for one queue. GStreamer have been
-> > testing with both queue type for couple of years now. Adding this distinction is
-> > just leaking an implementation details to userspace. I'm fine to just do what
-> > you'd like, just stating the obvious that while it may look logical inside the
-> > kernel, its a bit of a non-sense for our users.
-> 
-> I don't agree with that. If an ioctl returns ENOTTY, then userspace can be certain
-> that that ioctl is not implemented for the given file descriptor. That's not the case
-> here: it is implemented, the operation is just not supported for one of the queues.
-> 
-> Regards,
-> 
-> 	Hans
 
