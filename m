@@ -1,180 +1,459 @@
-Return-Path: <devicetree+bounces-5631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 734977B6ECA
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 18:43:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7A6A7B6ED0
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 18:44:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 83DC3B207A6
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 16:43:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 5A17228129E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 16:44:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3D9F328B3;
-	Tue,  3 Oct 2023 16:43:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E979C328BF;
+	Tue,  3 Oct 2023 16:44:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23086273F6
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 16:43:38 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 85FE79E;
-	Tue,  3 Oct 2023 09:43:37 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D04B8C15;
-	Tue,  3 Oct 2023 09:44:15 -0700 (PDT)
-Received: from [192.168.1.3] (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 722483F762;
-	Tue,  3 Oct 2023 09:43:35 -0700 (PDT)
-Message-ID: <acc2a406-2cff-eb3b-7661-1a93d4749bf2@arm.com>
-Date: Tue, 3 Oct 2023 17:43:34 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA9C02510C
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 16:44:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5008BC433C8;
+	Tue,  3 Oct 2023 16:44:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696351470;
+	bh=Z8k7r0SijCjAWC/bx4pqU4oVDof5/D3bwuNqj8zQNcU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=EQ1YDltin6EW6+MPO+IOB0YPm/E1ZgJIZfSCOyxrE1vxpU4lVSMGfr1PeAele94Rv
+	 hFfOtktmD1SdgZB1yB32a5YzAEDkE6kMA6kIf0VcogYwSQwqUdGLRsF779G4uXHG0c
+	 ExytAmPRKBclSSHiNVEz/j1yfyCRxFheU5bxOrDd+xmwDb6iOzMfc6zr/o3jTEAQy8
+	 sDBaWqjE/TQKpS16flKHNp7f/Pa7+Wtm7ocVYcITk38Xq8ddW6JsVMrJYJemWww+yo
+	 x3fGT+MO+dFTc4PCxJE1yqUvrpc3H4SvKYQeJHLkCV2HD9FMjoOFwTa1N3dVC/6KMC
+	 fOkUhGVwdj/sQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1qniVX-000nOY-Ou;
+	Tue, 03 Oct 2023 17:44:27 +0100
+Date: Tue, 03 Oct 2023 17:44:27 +0100
+Message-ID: <86r0mboduc.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: linux-kernel@vger.kernel.org,
+	Robin Murphy <robin.murphy@arm.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Fang Xiang <fangxiang3@xiaomi.com>
+Subject: Re: [PATCH 2/2] irqchip/gic-v3: Enable non-coherent redistributors/ITSes probing
+In-Reply-To: <ZRwonK+01HKJkKXa@lpieralisi>
+References: <20230905104721.52199-1-lpieralisi@kernel.org>
+	<20230905104721.52199-3-lpieralisi@kernel.org>
+	<86msy0etul.wl-maz@kernel.org>
+	<ZRwonK+01HKJkKXa@lpieralisi>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 5/7] coresight: tmc: Add support for reading tracedata
- from previous boot
-Content-Language: en-US
-To: Linu Cherian <lcherian@marvell.com>, suzuki.poulose@arm.com,
- mike.leach@linaro.org, leo.yan@linaro.org
-Cc: linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, sgoutham@marvell.com, gcherian@marvell.com,
- Anil Kumar Reddy <areddy3@marvell.com>, Tanmay Jagdale <tanmay@marvell.com>
-References: <20230929133754.857678-1-lcherian@marvell.com>
- <20230929133754.857678-6-lcherian@marvell.com>
-From: James Clark <james.clark@arm.com>
-In-Reply-To: <20230929133754.857678-6-lcherian@marvell.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-	RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: lpieralisi@kernel.org, linux-kernel@vger.kernel.org, robin.murphy@arm.com, mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, robh+dt@kernel.org, fangxiang3@xiaomi.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
+On Tue, 03 Oct 2023 15:43:40 +0100,
+Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+>=20
+> On Tue, Sep 05, 2023 at 12:34:58PM +0100, Marc Zyngier wrote:
+>=20
+> [...]
+>=20
+> > >  	 * Make sure *all* the ITS are reset before we probe any, as
+> > >  	 * they may be sharing memory. If any of the ITS fails to
+> > > @@ -5396,7 +5405,8 @@ static int __init its_of_probe(struct device_no=
+de *node)
+> > >  			continue;
+> > >  		}
+> > > =20
+> > > -		its_probe_one(&res, &np->fwnode, of_node_to_nid(np));
+> > > +		its_probe_one(&res, &np->fwnode, of_node_to_nid(np),
+> > > +			      of_property_read_bool(np, "dma-noncoherent"));
+> > >  	}
+> > >  	return 0;
+> > >  }
+> > > @@ -5533,7 +5543,8 @@ static int __init gic_acpi_parse_madt_its(union=
+ acpi_subtable_headers *header,
+> > >  	}
+> > > =20
+> > >  	err =3D its_probe_one(&res, dom_handle,
+> > > -			acpi_get_its_numa_node(its_entry->translation_id));
+> > > +			acpi_get_its_numa_node(its_entry->translation_id),
+> > > +			false);
+> >=20
+> > I came up with the following alternative approach, which is as usual
+> > completely untested. It is entirely based on the quirk infrastructure,
+> > and doesn't touch the ACPI path at all.
+>=20
+> Writing the ACPI bits. We can't use the quirks framework for ACPI (we
+> don't have "properties" and I don't think we want to attach any to the
+> fwnode_handle) that's why I generalized its_probe_one() above with an
+> extra param, that would have simplified ACPI parsing:
+>=20
+> - we alloc struct its_node in its_probe_one() but at that stage
+>   ACPI parsing was already done. If we have to parse the MADT(ITS) again
+>   just to scan for non-coherent we then have to match the MADT entries
+>   to the *current* struct its_node* we are handling (MADT parsing
+>   callbacks don't even take a param - we have to resort to global
+>   variables - definitely doable but it is a bit ugly).
 
+Well, a more acceptable approach would be for its_probe_one() to take
+an allocated and possibly pre-populated its_node structure (crucially,
+with the quirk flags set), which itself results in a bunch of low
+hanging cleanups, see the patch below.
 
-On 29/09/2023 14:37, Linu Cherian wrote:
-> * Introduce a new mode CS_MODE_READ_PREVBOOT for reading tracedata
->   captured in previous boot.
-> 
-> * Add special handlers for preparing ETR/ETF for this special mode
-> 
-> * User can read the trace data as below
-> 
->   For example, for reading trace data from tmc_etf sink
-> 
->   1. cd /sys/bus/coresight/devices/tmc_etfXX/
-> 
->   2. Change mode to READ_PREVBOOT
-> 
->      #echo 1 > read_prevboot
-> 
->   3. Dump trace buffer data to a file,
-> 
->      #dd if=/dev/tmc_etrXX of=~/cstrace.bin
-> 
->   4. Reset back to normal mode
-> 
->      #echo 0 > read_prevboot
-> 
-> Signed-off-by: Anil Kumar Reddy <areddy3@marvell.com>
-> Signed-off-by: Tanmay Jagdale <tanmay@marvell.com>
-> Signed-off-by: Linu Cherian <lcherian@marvell.com>
-> ---
->  .../coresight/coresight-etm4x-core.c          |   1 +
->  .../hwtracing/coresight/coresight-tmc-core.c  |  81 +++++++++-
->  .../hwtracing/coresight/coresight-tmc-etf.c   |  62 ++++++++
->  .../hwtracing/coresight/coresight-tmc-etr.c   | 145 +++++++++++++++++-
->  drivers/hwtracing/coresight/coresight-tmc.h   |   6 +
->  include/linux/coresight.h                     |  13 ++
->  6 files changed, 306 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c b/drivers/hwtracing/coresight/coresight-etm4x-core.c
-> index 77b0271ce6eb..513baf681280 100644
-> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
-> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
-> @@ -1010,6 +1010,7 @@ static void etm4_disable(struct coresight_device *csdev,
->  
->  	switch (mode) {
->  	case CS_MODE_DISABLED:
-> +	case CS_MODE_READ_PREVBOOT:
->  		break;
->  	case CS_MODE_SYSFS:
->  		etm4_disable_sysfs(csdev);
-> diff --git a/drivers/hwtracing/coresight/coresight-tmc-core.c b/drivers/hwtracing/coresight/coresight-tmc-core.c
-> index 6658ce76777b..65c15c9f821b 100644
-> --- a/drivers/hwtracing/coresight/coresight-tmc-core.c
-> +++ b/drivers/hwtracing/coresight/coresight-tmc-core.c
-> @@ -103,6 +103,45 @@ u32 tmc_get_memwidth_mask(struct tmc_drvdata *drvdata)
->  	return mask;
->  }
->  
-> +int tmc_read_prepare_prevboot(struct tmc_drvdata *drvdata)
-> +{
-> +	int ret = 0;
-> +	struct tmc_register_snapshot *reg_ptr;
-> +	struct coresight_device *csdev = drvdata->csdev;
-> +
-> +	if (!drvdata->metadata.vaddr) {
-> +		ret = -ENOMEM;
-> +		goto out;
-> +	}
-> +
-> +	reg_ptr = drvdata->metadata.vaddr;
-> +	if (!reg_ptr->valid) {
-> +		dev_err(&drvdata->csdev->dev,
-> +			"Invalid metadata captured from previous boot\n");
-> +		ret = -EINVAL;
-> +		goto out;
-> +	}
+I have boot tested it in a DT guest, so it is obviously perfect.
 
-I'm wondering if a more robust check is needed than the valid flag, like
-a checksum or something. I didn't debug it yet but I ended up with an
-invalid set of metadata after a panic reboot, see below. I'm not sure if
-it's just a logic bug or something got lost during the reboot, I didn't
-debug it yet. But I suppose unless you assume the panic didn't affect
-writing the metadata, then it could be partially written and shouldn't
-be trusted?
+	M.
 
-[...]
-> +
-> +static int tmc_etr_sync_prevboot_buf(struct tmc_drvdata *drvdata)
-> +{
-> +	u32 status;
-> +	u64 rrp, rwp, dba;
-> +	struct tmc_register_snapshot *reg_ptr;
-> +	struct etr_buf *etr_buf = drvdata->prevboot_buf;
-> +
-> +	reg_ptr = drvdata->metadata.vaddr;
-> +
-> +	rrp = reg_ptr->rrp;
-> +	rwp = reg_ptr->rwp;
-> +	dba = reg_ptr->dba;
-> +	status = reg_ptr->sts;
-> +
-> +	etr_buf->full = !!(status & TMC_STS_FULL);
-> +
-> +	/* Sync the buffer pointers */
-> +	etr_buf->offset = rrp - dba;
-> +	if (etr_buf->full)
-> +		etr_buf->len = etr_buf->size;
-> +	else
-> +		etr_buf->len = rwp - rrp;
-> +
-> +	/* Sanity checks for validating metadata */
-> +	if ((etr_buf->offset > etr_buf->size) ||
-> +	    (etr_buf->len > etr_buf->size))
-> +		return -EINVAL;
+=46rom 978f654d4459adf0b8f3f8e896ca37035b3b114c Mon Sep 17 00:00:00 2001
+From: Marc Zyngier <maz@kernel.org>
+Date: Tue, 3 Oct 2023 17:35:27 +0100
+Subject: [PATCH] irqchip/gic-v3-its: Split allocation from initialisation of
+ its_node
 
-The values I got here are 0x781b67182aa346f9 0x8000000 0x8000000 for
-offset, size and len respectively. This fails the first check. It would
-also be nice to have a dev_dbg here as well, it's basically the same as
-the valid check above which does have one.
+In order to pave the way for more fancy quirk handling without making
+more of a mess of this terrible driver, split the allocation of the
+ITS descriptor (its_node) from the actual probing.
 
+This will allow firmware-specific hooks to be added between these
+two points.
+
+Signed-off-by: Marc Zyngier <maz@kernel.org>
+---
+ drivers/irqchip/irq-gic-v3-its.c | 151 +++++++++++++++++++------------
+ 1 file changed, 91 insertions(+), 60 deletions(-)
+
+diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-=
+its.c
+index e0c2b10d154d..bf21383b714e 100644
+--- a/drivers/irqchip/irq-gic-v3-its.c
++++ b/drivers/irqchip/irq-gic-v3-its.c
+@@ -4952,7 +4952,7 @@ static void __init __iomem *its_map_one(struct resour=
+ce *res, int *err)
+ 	return NULL;
+ }
+=20
+-static int its_init_domain(struct fwnode_handle *handle, struct its_node *=
+its)
++static int its_init_domain(struct its_node *its)
+ {
+ 	struct irq_domain *inner_domain;
+ 	struct msi_domain_info *info;
+@@ -4966,7 +4966,7 @@ static int its_init_domain(struct fwnode_handle *hand=
+le, struct its_node *its)
+=20
+ 	inner_domain =3D irq_domain_create_hierarchy(its_parent,
+ 						   its->msi_domain_flags, 0,
+-						   handle, &its_domain_ops,
++						   its->fwnode_handle, &its_domain_ops,
+ 						   info);
+ 	if (!inner_domain) {
+ 		kfree(info);
+@@ -5017,8 +5017,7 @@ static int its_init_vpe_domain(void)
+ 	return 0;
+ }
+=20
+-static int __init its_compute_its_list_map(struct resource *res,
+-					   void __iomem *its_base)
++static int __init its_compute_its_list_map(struct its_node *its)
+ {
+ 	int its_number;
+ 	u32 ctlr;
+@@ -5032,15 +5031,15 @@ static int __init its_compute_its_list_map(struct r=
+esource *res,
+ 	its_number =3D find_first_zero_bit(&its_list_map, GICv4_ITS_LIST_MAX);
+ 	if (its_number >=3D GICv4_ITS_LIST_MAX) {
+ 		pr_err("ITS@%pa: No ITSList entry available!\n",
+-		       &res->start);
++		       &its->phys_base);
+ 		return -EINVAL;
+ 	}
+=20
+-	ctlr =3D readl_relaxed(its_base + GITS_CTLR);
++	ctlr =3D readl_relaxed(its->base + GITS_CTLR);
+ 	ctlr &=3D ~GITS_CTLR_ITS_NUMBER;
+ 	ctlr |=3D its_number << GITS_CTLR_ITS_NUMBER_SHIFT;
+-	writel_relaxed(ctlr, its_base + GITS_CTLR);
+-	ctlr =3D readl_relaxed(its_base + GITS_CTLR);
++	writel_relaxed(ctlr, its->base + GITS_CTLR);
++	ctlr =3D readl_relaxed(its->base + GITS_CTLR);
+ 	if ((ctlr & GITS_CTLR_ITS_NUMBER) !=3D (its_number << GITS_CTLR_ITS_NUMBE=
+R_SHIFT)) {
+ 		its_number =3D ctlr & GITS_CTLR_ITS_NUMBER;
+ 		its_number >>=3D GITS_CTLR_ITS_NUMBER_SHIFT;
+@@ -5048,75 +5047,50 @@ static int __init its_compute_its_list_map(struct r=
+esource *res,
+=20
+ 	if (test_and_set_bit(its_number, &its_list_map)) {
+ 		pr_err("ITS@%pa: Duplicate ITSList entry %d\n",
+-		       &res->start, its_number);
++		       &its->phys_base, its_number);
+ 		return -EINVAL;
+ 	}
+=20
+ 	return its_number;
+ }
+=20
+-static int __init its_probe_one(struct resource *res,
+-				struct fwnode_handle *handle, int numa_node)
++static int __init its_probe_one(struct its_node *its)
+ {
+-	struct its_node *its;
+-	void __iomem *its_base;
+-	u64 baser, tmp, typer;
++	u64 baser, tmp;
+ 	struct page *page;
+ 	u32 ctlr;
+ 	int err;
+=20
+-	its_base =3D its_map_one(res, &err);
+-	if (!its_base)
+-		return err;
+-
+-	pr_info("ITS %pR\n", res);
+-
+-	its =3D kzalloc(sizeof(*its), GFP_KERNEL);
+-	if (!its) {
+-		err =3D -ENOMEM;
+-		goto out_unmap;
+-	}
+-
+-	raw_spin_lock_init(&its->lock);
+-	mutex_init(&its->dev_alloc_lock);
+-	INIT_LIST_HEAD(&its->entry);
+-	INIT_LIST_HEAD(&its->its_device_list);
+-	typer =3D gic_read_typer(its_base + GITS_TYPER);
+-	its->typer =3D typer;
+-	its->base =3D its_base;
+-	its->phys_base =3D res->start;
+ 	if (is_v4(its)) {
+-		if (!(typer & GITS_TYPER_VMOVP)) {
+-			err =3D its_compute_its_list_map(res, its_base);
++		if (!(its->typer & GITS_TYPER_VMOVP)) {
++			err =3D its_compute_its_list_map(its);
+ 			if (err < 0)
+-				goto out_free_its;
++				goto out;
+=20
+ 			its->list_nr =3D err;
+=20
+ 			pr_info("ITS@%pa: Using ITS number %d\n",
+-				&res->start, err);
++				&its->phys_base, err);
+ 		} else {
+-			pr_info("ITS@%pa: Single VMOVP capable\n", &res->start);
++			pr_info("ITS@%pa: Single VMOVP capable\n", &its->phys_base);
+ 		}
+=20
+ 		if (is_v4_1(its)) {
+-			u32 svpet =3D FIELD_GET(GITS_TYPER_SVPET, typer);
++			u32 svpet =3D FIELD_GET(GITS_TYPER_SVPET, its->typer);
+=20
+-			its->sgir_base =3D ioremap(res->start + SZ_128K, SZ_64K);
++			its->sgir_base =3D ioremap(its->phys_base + SZ_128K, SZ_64K);
+ 			if (!its->sgir_base) {
+ 				err =3D -ENOMEM;
+-				goto out_free_its;
++				goto out;
+ 			}
+=20
+-			its->mpidr =3D readl_relaxed(its_base + GITS_MPIDR);
++			its->mpidr =3D readl_relaxed(its->base + GITS_MPIDR);
+=20
+ 			pr_info("ITS@%pa: Using GICv4.1 mode %08x %08x\n",
+-				&res->start, its->mpidr, svpet);
++				&its->phys_base, its->mpidr, svpet);
+ 		}
+ 	}
+=20
+-	its->numa_node =3D numa_node;
+-
+ 	page =3D alloc_pages_node(its->numa_node, GFP_KERNEL | __GFP_ZERO,
+ 				get_order(ITS_CMD_QUEUE_SZ));
+ 	if (!page) {
+@@ -5125,12 +5099,9 @@ static int __init its_probe_one(struct resource *res,
+ 	}
+ 	its->cmd_base =3D (void *)page_address(page);
+ 	its->cmd_write =3D its->cmd_base;
+-	its->fwnode_handle =3D handle;
+ 	its->get_msi_base =3D its_irq_get_msi_base;
+ 	its->msi_domain_flags =3D IRQ_DOMAIN_FLAG_ISOLATED_MSI;
+=20
+-	its_enable_quirks(its);
+-
+ 	err =3D its_alloc_tables(its);
+ 	if (err)
+ 		goto out_free_cmd;
+@@ -5174,7 +5145,7 @@ static int __init its_probe_one(struct resource *res,
+ 		ctlr |=3D GITS_CTLR_ImDe;
+ 	writel_relaxed(ctlr, its->base + GITS_CTLR);
+=20
+-	err =3D its_init_domain(handle, its);
++	err =3D its_init_domain(its);
+ 	if (err)
+ 		goto out_free_tables;
+=20
+@@ -5191,11 +5162,8 @@ static int __init its_probe_one(struct resource *res,
+ out_unmap_sgir:
+ 	if (its->sgir_base)
+ 		iounmap(its->sgir_base);
+-out_free_its:
+-	kfree(its);
+-out_unmap:
+-	iounmap(its_base);
+-	pr_err("ITS@%pa: failed probing (%d)\n", &res->start, err);
++out:
++	pr_err("ITS@%pa: failed probing (%d)\n", &its->phys_base, err);
+ 	return err;
+ }
+=20
+@@ -5356,10 +5324,53 @@ static const struct of_device_id its_device_id[] =
+=3D {
+ 	{},
+ };
+=20
++static struct its_node __init *its_node_init(struct resource *res,
++					     struct fwnode_handle *handle, int numa_node)
++{
++	void __iomem *its_base;
++	struct its_node *its;
++	int err;
++
++	its_base =3D its_map_one(res, &err);
++	if (!its_base)
++		return NULL;
++
++	pr_info("ITS %pR\n", res);
++
++	its =3D kzalloc(sizeof(*its), GFP_KERNEL);
++	if (!its)
++		goto out_unmap;
++
++	raw_spin_lock_init(&its->lock);
++	mutex_init(&its->dev_alloc_lock);
++	INIT_LIST_HEAD(&its->entry);
++	INIT_LIST_HEAD(&its->its_device_list);
++
++	its->typer =3D gic_read_typer(its_base + GITS_TYPER);
++	its->base =3D its_base;
++	its->phys_base =3D res->start;
++
++	its->numa_node =3D numa_node;
++	its->fwnode_handle =3D handle;
++
++	return its;
++
++out_unmap:
++	iounmap(its_base);
++	return NULL;
++}
++
++static void its_node_destroy(struct its_node *its)
++{
++	iounmap(its->base);
++	kfree(its);
++}
++
+ static int __init its_of_probe(struct device_node *node)
+ {
+ 	struct device_node *np;
+ 	struct resource res;
++	int err;
+=20
+ 	/*
+ 	 * Make sure *all* the ITS are reset before we probe any, as
+@@ -5369,8 +5380,6 @@ static int __init its_of_probe(struct device_node *no=
+de)
+ 	 */
+ 	for (np =3D of_find_matching_node(node, its_device_id); np;
+ 	     np =3D of_find_matching_node(np, its_device_id)) {
+-		int err;
+-
+ 		if (!of_device_is_available(np) ||
+ 		    !of_property_read_bool(np, "msi-controller") ||
+ 		    of_address_to_resource(np, 0, &res))
+@@ -5383,6 +5392,8 @@ static int __init its_of_probe(struct device_node *no=
+de)
+=20
+ 	for (np =3D of_find_matching_node(node, its_device_id); np;
+ 	     np =3D of_find_matching_node(np, its_device_id)) {
++		struct its_node *its;
++
+ 		if (!of_device_is_available(np))
+ 			continue;
+ 		if (!of_property_read_bool(np, "msi-controller")) {
+@@ -5396,7 +5407,17 @@ static int __init its_of_probe(struct device_node *n=
+ode)
+ 			continue;
+ 		}
+=20
+-		its_probe_one(&res, &np->fwnode, of_node_to_nid(np));
++
++		its =3D its_node_init(&res, &np->fwnode, of_node_to_nid(np));
++		if (!its)
++			return -ENOMEM;
++
++		its_enable_quirks(its);
++		err =3D its_probe_one(its);
++		if (err)  {
++			its_node_destroy(its);
++			return err;
++		}
+ 	}
+ 	return 0;
+ }
+@@ -5508,6 +5529,7 @@ static int __init gic_acpi_parse_madt_its(union acpi_=
+subtable_headers *header,
+ {
+ 	struct acpi_madt_generic_translator *its_entry;
+ 	struct fwnode_handle *dom_handle;
++	struct its_node *its;
+ 	struct resource res;
+ 	int err;
+=20
+@@ -5532,11 +5554,20 @@ static int __init gic_acpi_parse_madt_its(union acp=
+i_subtable_headers *header,
+ 		goto dom_err;
+ 	}
+=20
+-	err =3D its_probe_one(&res, dom_handle,
+-			acpi_get_its_numa_node(its_entry->translation_id));
++	its =3D its_node_init(&res, dom_handle,
++			    acpi_get_its_numa_node(its_entry->translation_id));
++	if (!its) {
++		err =3D -ENOMEM;
++		goto node_err;
++	}
++
++	/* Stick ACPI quirk handling here */
++
++	err =3D its_probe_one(its);
+ 	if (!err)
+ 		return 0;
+=20
++node_err:
+ 	iort_deregister_domain_token(its_entry->translation_id);
+ dom_err:
+ 	irq_domain_free_fwnode(dom_handle);
+--=20
+2.34.1
+
+--=20
+Without deviation from the norm, progress is not possible.
 
