@@ -1,109 +1,97 @@
-Return-Path: <devicetree+bounces-5442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F3DD7B6569
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 11:24:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ADA27B656F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 11:24:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 3DD8D1C20803
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 09:24:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 85EF51C203B8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 09:24:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0F1FDF60;
-	Tue,  3 Oct 2023 09:24:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE82DF60;
+	Tue,  3 Oct 2023 09:24:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ACE6DDAC;
-	Tue,  3 Oct 2023 09:24:01 +0000 (UTC)
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24EC2AB;
-	Tue,  3 Oct 2023 02:24:00 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2c00df105f8so8236731fa.2;
-        Tue, 03 Oct 2023 02:24:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696325038; x=1696929838; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=o02q/FIkDaGrgLqoN/Aj/vG1/YJOsTbj5fKhJBGnD2E=;
-        b=MnxE3v6QRLo92+y+2fiAfySUbDOh6InYpNKU1hzuWvyyhtYdOS1bOQL+43d+Zt5+ho
-         jTvp2EKPSrdktA8XrJwZwrhf6K+xLXkeWiFSG77AmouKm4SHO/fW4jU/FQmjMDfXe1YF
-         Znx/mXwcHj0mOT3+Bmwmc/d+Cl65Uou9qIX9Q/x62buBnIzZV7NCcQUr+MFB7GOAFVim
-         mh7WOAAGw4E+PgFCgmmDtO/Y9Q/Od+kv3kFfT+hkA9IcnzHq5a6uYB9o/Bd+aIMIDajA
-         VUZgvxX/+fIHWfM0EZLIper7c4as0lnMfKhKL3CTpaRSTfaf2pXjcbtGRaWnKQXzbgvO
-         XoIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696325038; x=1696929838;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=o02q/FIkDaGrgLqoN/Aj/vG1/YJOsTbj5fKhJBGnD2E=;
-        b=Bjwyv0hEuuxT1ynUg00yvCKfTKOBxs+lsmKMqfZC7dgKXfYmDlOk6Q2sXg8wWwdD+k
-         DNyoDBtZFwIkjp87P29U6CRstouzco5bFCETqepyLh/uxz0xundvlGxBE65WGXDBEgZB
-         PfyMpJidJyLrFNLu3A/9Rr40giQLbhKSL8FyRF/eZAob+9ZRfuDL82Xr+HM3YBuOkmI3
-         fUwqfD174cThIn6MtZGI+5O9P8L/Va3xzH+WN9XxH4TsNK5Y0hzhi2k0sunNJ5fPM6G6
-         1utmFzonQAEOOlzaNyfmXBMm+Vo/4Oy/teXUYdLOoIzXrTFE+T3Dm2Ag81Na8u2d+gGf
-         lRtA==
-X-Gm-Message-State: AOJu0Yxfq7PlOlhEFJ0SXj0eRtssFDjTYk2bsyU8136gpsN/9q0X4Q47
-	lBZ0LYFSobyi7jUlmF5AbunudclfmfFueyCxMoE=
-X-Google-Smtp-Source: AGHT+IG3BDQNI/pILbidS9xryMvAbSkn6Y/6bkHT63bOwqPMoRRoTSL7+zz03ry1Fl2f/uI9CfxqrOri93gbzoU0eQc=
-X-Received: by 2002:a2e:9b04:0:b0:2bd:e3e:1a23 with SMTP id
- u4-20020a2e9b04000000b002bd0e3e1a23mr10574736lji.45.1696325038173; Tue, 03
- Oct 2023 02:23:58 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6CFCD278
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 09:24:44 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5858090;
+	Tue,  3 Oct 2023 02:24:43 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 407F16607181;
+	Tue,  3 Oct 2023 10:24:41 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1696325081;
+	bh=fglFS8/SJTxax6nKCOPR+u+mqyIQq4V/6eD+bn6enag=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LscWssJW+MqsWczsrw3nIOSf0rtr6/nbmR7RS2yUbx4aYtZh7s4RCjGNaV3QD6wRu
+	 QTaHmxzxgPNanqdk82VRO4ntuWMg/MJTewnabeFJibpNUhYJ8mxZZrhqZ61k1tngh5
+	 M8snckqZak/z4MzsCIfhP+LIFCMaZ9xyx6L1wzxnjameAwUwmvpEwcfRR8mIxakkNZ
+	 uLj9ZU6lp/D5zdfjSG64mY+kpUMITVqJ275VLFeoWvjsc8XnDAg3aeC97JHefwbgBz
+	 176JTJWl1BYwnXq/ssMSysUxoSm/zqSF+ORF564joj8juOqkv0Er33JYejrco6J3Az
+	 GjqvtvLS4QchA==
+Message-ID: <1c639f51-a444-c8c8-8585-2e413243c3a6@collabora.com>
+Date: Tue, 3 Oct 2023 11:24:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231002161350.64229-1-tmaimon77@gmail.com> <2023100323-reunite-upfront-8922@gregkh>
- <CAP6Zq1jHzRP1Ytzk8YXyR8ppAP=ZoPvPkYvC2yMRfTt5140zqw@mail.gmail.com> <0298e4a7-0f40-41d6-82f3-327d2fe493cc@linaro.org>
-In-Reply-To: <0298e4a7-0f40-41d6-82f3-327d2fe493cc@linaro.org>
-From: Tomer Maimon <tmaimon77@gmail.com>
-Date: Tue, 3 Oct 2023 12:23:46 +0300
-Message-ID: <CAP6Zq1ghiUhecvtC7gpKtbP11QTU8Js0wCk_sTFqjUf=d6KK1A@mail.gmail.com>
-Subject: Re: [PATCH RESEND v3 0/3] usb: ChipIdea: add Nuvoton NPCM UDC support
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Greg KH <gregkh@linuxfoundation.org>, peter.chen@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, xu.yang_2@nxp.com, peng.fan@nxp.com, 
-	avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au, 
-	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
-	j.neuschaefer@gmx.net, openbmc@lists.ozlabs.org, linux-usb@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Set DSU PMU status to fail
+Content-Language: en-US
+To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: kernel@collabora.com, Chen-Yu Tsai <wenst@chromium.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, Seiya Wang <seiya.wang@mediatek.com>,
+ Tinghan Shen <tinghan.shen@mediatek.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-mediatek@lists.infradead.org
+References: <20230720200753.322133-1-nfraprado@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230720200753.322133-1-nfraprado@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Krzysztof,
+Il 20/07/23 22:07, Nícolas F. R. A. Prado ha scritto:
+> The DSU PMU allows monitoring performance events in the DSU cluster,
+> which is done by configuring and reading back values from the DSU PMU
+> system registers. However, for write-access to be allowed by ELs lower
+> than EL3, the EL3 firmware needs to update the setting on the ACTLR3_EL3
+> register, as it is disallowed by default.
+> 
+> That configuration is not done on the firmware used by the MT8195 SoC,
+> as a consequence, booting a MT8195-based machine like
+> mt8195-cherry-tomato-r2 with CONFIG_ARM_DSU_PMU enabled hangs the kernel
+> just as it writes to the CLUSTERPMOVSCLR_EL1 register, since the
+> instruction faults to EL3, and BL31 apparently just re-runs the
+> instruction over and over.
+> 
+> Mark the DSU PMU node in the Devicetree with status "fail", as the
+> machine doesn't have a suitable firmware to make use of it from the
+> kernel, and allowing its driver to probe would hang the kernel.
+> 
+> Fixes: 37f2582883be ("arm64: dts: Add mediatek SoC mt8195 and evaluation board")
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> 
 
-Appreciate your clarifications
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Thanks,
 
-Tomer
-
-On Tue, 3 Oct 2023 at 11:32, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 03/10/2023 08:56, Tomer Maimon wrote:
-> > Hi Greg,
-> >
-> > Forgot to add in Acked-by: Peter Chen <peter.chen@kernel.org> in V3,
-> > Resend the patch set with the Ack.
-> >
-> > Should I do it differently?
->
-> If it is RESEND after some time (min. 2 weeks), then it is fine. If you
-> added tags or changed something, make a new version. If you resend for
-> any other reason (assuming resend is valid), please mention shortly why
-> do you resend (e.g. "My company email servers maybe blocked it, so
-> resending without changes").
->
-> Best regards,
-> Krzysztof
->
 
