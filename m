@@ -1,130 +1,179 @@
-Return-Path: <devicetree+bounces-5522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93A157B689C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 14:09:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCEFE7B68BD
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 14:12:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 9FB7F1C2099E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 12:09:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id C4DED1C204F5
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 12:12:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDD1022EFB;
-	Tue,  3 Oct 2023 12:09:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E19822F08;
+	Tue,  3 Oct 2023 12:12:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3629D21373
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 12:09:17 +0000 (UTC)
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E06ABF;
-	Tue,  3 Oct 2023 05:09:14 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-1bf6ea270b2so6068295ad.0;
-        Tue, 03 Oct 2023 05:09:14 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53CBC22EFE
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 12:12:18 +0000 (UTC)
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AAF8A9
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 05:12:16 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-3231d67aff2so899777f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Oct 2023 05:12:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696334954; x=1696939754; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CmBs73lcWD9k98KqGPVGwvpI7hbBVTH4u02wod8lyZo=;
-        b=ixFNqrNHH3d4CrSin6INAObfBGGxgmbK7HqdAx4ud8rBYdPyXLbhxPt64A1kgPeEi6
-         lsKxjOSfc7SAh792T27QuuvMNzVsT3O7IRCUA//waIJxfnpSak39NF/0LnefvBSLE/WN
-         2U0rNmljK4mEPWd42D+nzjWlCVIlHCblcAIh7G+SpwKwacm2HGEvtbyA/Sw7CgROfOy4
-         yYFfM/Hd82XQ6Q3Stf0ukCtX6an3wEwfo++SfqBHhQHrz6uZy/kSWCGa87cgRs3oHss8
-         QnYQyMBQzHR6FPUgsqE/4w6rOz3Iv/70B+VSL7g6FD/VdqHgm4b82vDGLzCqhv+tTPJ0
-         LJcQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1696335134; x=1696939934; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ndmM4JbR+kmn5XX/WNfIjfT5Y4Gu1IiD0B/toAwyHcg=;
+        b=xObIzQhTXlIe4EE/ixIfSmE6P2LVWz/8+Fn00lBJVtLn46m+50bqywm3ShWx6Y0HJ0
+         SK2GVDP9AryB0e48G3FRBj/kXWBrPHIzuiiY0aC9OXFNeEDYSeN9lmrK5WqCuug6icpZ
+         n8Ut39vr6jzTj6unxSraUwH6UqxcHaBwZOFPhsJPqvV4ET7qw932SgcuDo06J2yhTW/U
+         mOd8QFGxvSlhx5AnDzDE0V4+o+Bmo5bQAnFMz9W2MQrNw3pc/wRKmOXuaFtrVCm5zh0U
+         Ky13XJY8VdxUXbw6eHO5CORmxKbIeIm0YlTiAtkNwpuUJYh9APtQd3kNAnEL/XAFBgRa
+         3Imw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696334954; x=1696939754;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CmBs73lcWD9k98KqGPVGwvpI7hbBVTH4u02wod8lyZo=;
-        b=P5IdWhht/+MdSZuNzQCarr8fYSv1v4irakX2YDsO/6sNVlBZ7nbjpkGfTlgpmSptQA
-         2Nk5kYwmPYIjEjWIaDTblNTru9BqJ9pY0SQoqKP1c399FYHA7mcjinUHXKIWBUZcQYkJ
-         g5bUi7/3bWdX8tGYfLltPZdtGxYnYpqPJ/FGUXzfEunMMU4il81Ae52aD3HTdymSh5uk
-         J5/YoHfSwSNVhT9yIJtdN5LhYc3LQQeZ10V9vCYgzNA+3w+d0BU/TQ+8G7wsAFq1HgOL
-         022ZcJVlbQhbtAdSPbtIQcpCeAtIXliSOqiCXfEMl8F4DMUvSOLTh7f8cP3tfYa0TXwl
-         qKqA==
-X-Gm-Message-State: AOJu0Ywx1aHYJ5Ql4k+uzGLdFjUzTdsDgYaLRRlj3fzA2qh98mSgHEiy
-	ovAc/gHtg5XNeesRVvQCspE=
-X-Google-Smtp-Source: AGHT+IEvC0m8WS0q071UtHrbTqvrtJ1b6c+LAX2fqhcw9n+G09+3gQmOUEgpwf0QKSpzk4WcWWzTNw==
-X-Received: by 2002:a17:902:8649:b0:1c3:5f05:922a with SMTP id y9-20020a170902864900b001c35f05922amr11025143plt.60.1696334953970;
-        Tue, 03 Oct 2023 05:09:13 -0700 (PDT)
-Received: from [172.16.116.58] ([103.15.228.93])
-        by smtp.gmail.com with ESMTPSA id ja7-20020a170902efc700b001bf846dd2d0sm1393813plb.13.2023.10.03.05.09.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Oct 2023 05:09:13 -0700 (PDT)
-Message-ID: <2105b93c-0502-e909-ea09-dba73d43b912@gmail.com>
-Date: Tue, 3 Oct 2023 17:39:08 +0530
+        d=1e100.net; s=20230601; t=1696335134; x=1696939934;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ndmM4JbR+kmn5XX/WNfIjfT5Y4Gu1IiD0B/toAwyHcg=;
+        b=PC0Ny5kAcDXmlkSgSZxT3QYZPqTbAzfWaUVMvaYzxq7vvdv8U6p6i9/yZSGWSqrZop
+         /f5wuJzCQ6uw0CLXgeKF60jaTGl/BrnfR7vwSM7zz8hM3BufEXUhKZEbU/eYbjZf03la
+         WQuweTQrO2tiqkUD0SFo+Ff+0qlOU7AldtuM5Zr5AkUfPYUiJpSsm8F/WVW69GsL8Eh1
+         iyaY97YkCA0d//RYiOI5UtIyCyqYSoySeyVEW3k+GFSYV2TxvEF5fhqQ2c0leUh8ApM7
+         PGy20/nXaNT4i0d73Kf7z0JHcp/C8uXUqgRZWNqt84u99p28Pi1jWGDKGyhTkxcHZGx1
+         39BQ==
+X-Gm-Message-State: AOJu0YwmkrC3Fa+k2FQ5rz8WJww4VzwhDxyPmzBefk3NDb6Q7+etGmD7
+	D7BA4DugqN2SCANwhZEPazvG9Q==
+X-Google-Smtp-Source: AGHT+IGxM9GQG5hZXhtn4gzyjVX9e5VJ9hbuqnhWi1ArsHR5MP/tYUrn4k11rz6jZV4/HWXFyPRcRA==
+X-Received: by 2002:a5d:4385:0:b0:321:677d:98b0 with SMTP id i5-20020a5d4385000000b00321677d98b0mr12588341wrq.11.1696335134390;
+        Tue, 03 Oct 2023 05:12:14 -0700 (PDT)
+Received: from toaster.lan ([2a01:e0a:3c5:5fb1:15bf:5b59:3e24:71fe])
+        by smtp.googlemail.com with ESMTPSA id p3-20020a05600c204300b0040648217f4fsm9269649wmg.39.2023.10.03.05.12.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Oct 2023 05:12:13 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Da Xue <da.xue@libretech.co>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org
+Subject: [PATCH] arm64: dts: amlogic: add spdifout on libretech potatoes
+Date: Tue,  3 Oct 2023 14:12:04 +0200
+Message-Id: <20231003121205.2870923-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v6 1/3] dt-bindings: Add beaglecc1352
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- greybus-dev@lists.linaro.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- gregkh@linuxfoundation.org, vaishnav@beagleboard.org,
- jkridner@beagleboard.org, nm@ti.com, krzysztof.kozlowski+dt@linaro.org,
- vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20231002182454.211165-1-ayushdevel1325@gmail.com>
- <20231002182454.211165-2-ayushdevel1325@gmail.com>
- <55f63415-781a-4107-8643-9f77c7ee38d1@linaro.org>
-From: Ayush Singh <ayushdevel1325@gmail.com>
-In-Reply-To: <55f63415-781a-4107-8643-9f77c7ee38d1@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
->> driver.
->>
->> Signed-off-by: Ayush Singh <ayushdevel1325@gmail.com>
->> ---
->>   .../devicetree/bindings/net/ti,cc1352p7.yaml  | 48 +++++++++++++++++++
->>   MAINTAINERS                                   |  6 +++
->>   2 files changed, 54 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
->> new file mode 100644
->> index 000000000000..57bc2c43e5b1
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
->> @@ -0,0 +1,48 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/net/ti,cc1352p7.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Texas Instruments Simplelink CC1352P7 wireless MCU
->> +
->> +description:
->> +  The cc1352p7 mcu can be connected via SPI or UART.
-> If over SPI, then the binding is incomplete. This is fine for now, I guess.
->
-> Best regards,
-> Krzysztof
+SPDIF output is available libretech's Potato v1 and v2, on a dedicated
+header. Add the codec, pinmux and dai link to enable it on the sound card.
 
-Well, I added the line about SPI because the data sheet states that 
-CC1352P7 can be connected over SPI or UART when used as wireless MCU. 
-But yes, I do not have much knowledge about SPI itself, so the bindings 
-might be incomplete for SPI usage. Should I remove it or leave it be?
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ .../amlogic/meson-gxl-s905x-libretech-cc-v2.dts | 17 +++++++++++++++++
+ .../amlogic/meson-gxl-s905x-libretech-cc.dts    | 17 +++++++++++++++++
+ 2 files changed, 34 insertions(+)
 
-
-Sincerely,
-
-Ayush Singh
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
+index 2825db91e462..ca6f922d162d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
+@@ -23,6 +23,13 @@ aliases {
+ 		spi0 = &spifc;
+ 	};
+ 
++	spdif_dit: audio-codec {
++		#sound-dai-cells = <0>;
++		compatible = "linux,spdif-dit";
++		status = "okay";
++		sound-name-prefix = "9J2";
++	};
++
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+@@ -189,11 +196,21 @@ codec-0 {
+ 				sound-dai = <&hdmi_tx>;
+ 			};
+ 		};
++
++		dai-link-3 {
++			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
++
++			codec-0 {
++				sound-dai = <&spdif_dit>;
++			};
++		};
+ 	};
+ };
+ 
+ &aiu {
+ 	status = "okay";
++	pinctrl-0 = <&spdif_out_h_pins>;
++	pinctrl-names = "default";
+ };
+ 
+ &cec_AO {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+index 27093e6ac9e2..8b3234a9cb45 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+@@ -29,6 +29,13 @@ dio2133: analog-amplifier {
+ 		enable-gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
+ 	};
+ 
++	spdif_dit: audio-codec {
++		#sound-dai-cells = <0>;
++		compatible = "linux,spdif-dit";
++		status = "okay";
++		sound-name-prefix = "9J1";
++	};
++
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+@@ -183,6 +190,14 @@ codec-0 {
+ 				sound-dai = <&acodec>;
+ 			};
+ 		};
++
++		dai-link-4 {
++			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
++
++			codec-0 {
++				sound-dai = <&spdif_dit>;
++			};
++		};
+ 	};
+ };
+ 
+@@ -193,6 +208,8 @@ &acodec {
+ 
+ &aiu {
+ 	status = "okay";
++	pinctrl-0 = <&spdif_out_h_pins>;
++	pinctrl-names = "default";
+ };
+ 
+ &cec_AO {
+-- 
+2.40.1
 
 
