@@ -1,46 +1,47 @@
-Return-Path: <devicetree+bounces-5573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E63A7B6A9A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 15:35:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACA467B6A9D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 15:36:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2FD2228164D
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 13:35:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 8BF0A1C20456
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 13:36:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1026029402;
-	Tue,  3 Oct 2023 13:35:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 763FA29408;
+	Tue,  3 Oct 2023 13:36:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60D7824218
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 13:35:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B08F324218
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 13:36:11 +0000 (UTC)
 Received: from nikam.ms.mff.cuni.cz (nikam.ms.mff.cuni.cz [195.113.20.16])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88597A6;
-	Tue,  3 Oct 2023 06:35:37 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32EB2A6;
+	Tue,  3 Oct 2023 06:36:09 -0700 (PDT)
 Received: from gimli.ms.mff.cuni.cz (gimli.ms.mff.cuni.cz [195.113.20.176])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by nikam.ms.mff.cuni.cz (Postfix) with ESMTPS id 76537284EB5;
-	Tue,  3 Oct 2023 15:35:34 +0200 (CEST)
+	by nikam.ms.mff.cuni.cz (Postfix) with ESMTPS id BABFE284EB5;
+	Tue,  3 Oct 2023 15:36:08 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gimli.ms.mff.cuni.cz;
-	s=gen1; t=1696340134;
+	s=gen1; t=1696340168;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=B4vTHC41c5OG36z6s8T2SbcOR+HJgCfAGARZnZUjEAE=;
-	b=VBOMG7Q81Jman43aAtHd0D7FWgWK9uNi9aK2KNa84U0a0n99AsmTQB6iKZfHUUOg906Up/
-	nIW/pq22xKx+ivGtYFKZrrUgMqChcPLqzvAZHoQgZTNo9unTPT5gi+ZJNgJEojI/ItnXEi
-	SlbuoJIxlgpl2tOYRNn8wYEAUZRqrTs=
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=sSWXFK5fznh9k1wuhf10rBvApinHNhYCMSoTw3z7xE8=;
+	b=NtlRk73eviFn4Dabz7c0+xb9RPqQSxQzR0V09dD0gYB/Eg2l2AruAFr/kWJS5xdU1Tla+Q
+	dFDWfyktBnKpl9FuiBSaJIBI8tAhgAJLZQpUUDDvsjeU0hYy7IQ33lEu3GWHw2ui8qXWk0
+	I4n/SJet8r4JVv5nE8TUE5Us2MWAQWQ=
 Received: from localhost (koleje-wifi-0029.koleje.cuni.cz [78.128.191.29])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(Client did not present a certificate)
 	(Authenticated sender: karelb)
-	by gimli.ms.mff.cuni.cz (Postfix) with ESMTPSA id 541BE441AC5;
-	Tue,  3 Oct 2023 15:35:34 +0200 (CEST)
+	by gimli.ms.mff.cuni.cz (Postfix) with ESMTPSA id 69792441AC5;
+	Tue,  3 Oct 2023 15:36:08 +0200 (CEST)
 From: karelb@gimli.ms.mff.cuni.cz
 To: Markuss Broks <markuss.broks@gmail.com>,
 	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
@@ -53,11 +54,14 @@ To: Markuss Broks <markuss.broks@gmail.com>,
 	linux-kernel@vger.kernel.org,
 	~postmarketos/upstreaming@lists.sr.ht
 Cc: =?UTF-8?q?Duje=20Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-	Karel Balej <karelb@gimli.ms.mff.cuni.cz>
-Subject: [PATCH v2 0/5] input/touchscreen: imagis: add support for IST3032C
-Date: Tue,  3 Oct 2023 15:34:14 +0200
-Message-ID: <20231003133440.4696-1-karelb@gimli.ms.mff.cuni.cz>
+	Karel Balej <karelb@gimli.ms.mff.cuni.cz>,
+	Karel Balej <balejk@matfyz.cz>
+Subject: [PATCH v2 1/5] input/touchscreen: imagis: Correct the maximum touch area value
+Date: Tue,  3 Oct 2023 15:34:15 +0200
+Message-ID: <20231003133440.4696-2-karelb@gimli.ms.mff.cuni.cz>
 X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231003133440.4696-1-karelb@gimli.ms.mff.cuni.cz>
+References: <20231003133440.4696-1-karelb@gimli.ms.mff.cuni.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,41 +78,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 
 From: Karel Balej <karelb@gimli.ms.mff.cuni.cz>
 
-This patch series generalizes the Imagis touchscreen driver to support
-other Imagis chips, namely IST3038B, which use a slightly different
-protocol.
+From: Markuss Broks <markuss.broks@gmail.com>
 
-It also adds necessary information to the driver so that the IST3032C
-touchscreen can be used with it. The motivation for this is the
-samsung,coreprimevelte smartphone with which this series has been
-tested. However, the support for this device is not yet in-tree, the
-effort is happening at [1]. In particular, the driver for the regulator
-needed by the touchscreen on this device has not been rewritten for
-mainline yet.
+As specified in downstream IST3038B driver and proved by testing,
+the correct maximum reported value of touch area is 16.
 
-[1] https://lore.kernel.org/all/20230812-pxa1908-lkml-v5-0-a5d51937ee34@skole.hr/
+Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+Signed-off-by: Karel Balej <balejk@matfyz.cz>
 ---
-Changes in v2:
-- Do not rename the driver.
-- Do not hardcode voltage required by the IST3032C.
-- Use Markuss' series which generalizes the driver.
-- Separate bindings into separate patch.
-- v1: https://lore.kernel.org/all/20230926173531.18715-1-balejk@matfyz.cz/
----
+ drivers/input/touchscreen/imagis.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Karel Balej (2):
-  dt-bindings: input/touchscreen: imagis: add compatible for IST3032C
-  input/touchscreen: imagis: add support for IST3032C
-
-Markuss Broks (3):
-  input/touchscreen: imagis: Correct the maximum touch area value
-  dt-bindings: input/touchscreen: Add compatible for IST3038B
-  input/touchscreen: imagis: Add support for Imagis IST3038B
-
- .../input/touchscreen/imagis,ist3038c.yaml    |  2 +
- drivers/input/touchscreen/imagis.c            | 70 +++++++++++++++----
- 2 files changed, 60 insertions(+), 12 deletions(-)
-
+diff --git a/drivers/input/touchscreen/imagis.c b/drivers/input/touchscreen/imagis.c
+index 07111ca24455..e67fd3011027 100644
+--- a/drivers/input/touchscreen/imagis.c
++++ b/drivers/input/touchscreen/imagis.c
+@@ -210,7 +210,7 @@ static int imagis_init_input_dev(struct imagis_ts *ts)
+ 
+ 	input_set_capability(input_dev, EV_ABS, ABS_MT_POSITION_X);
+ 	input_set_capability(input_dev, EV_ABS, ABS_MT_POSITION_Y);
+-	input_set_abs_params(input_dev, ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0);
++	input_set_abs_params(input_dev, ABS_MT_TOUCH_MAJOR, 0, 16, 0, 0);
+ 
+ 	touchscreen_parse_properties(input_dev, true, &ts->prop);
+ 	if (!ts->prop.max_x || !ts->prop.max_y) {
 -- 
 2.42.0
 
