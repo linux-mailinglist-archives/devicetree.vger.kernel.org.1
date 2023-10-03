@@ -1,118 +1,135 @@
-Return-Path: <devicetree+bounces-5361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C30B37B60D3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 08:34:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 316287B60D9
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 08:39:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id DA1C91C208A5
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 06:34:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id CFF0A2816C5
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 06:39:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1B8B4C6A;
-	Tue,  3 Oct 2023 06:34:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A8044C8C;
+	Tue,  3 Oct 2023 06:39:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADB91111E;
-	Tue,  3 Oct 2023 06:34:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C39E1C433C7;
-	Tue,  3 Oct 2023 06:34:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696314855;
-	bh=Ryqz7zCojcMrEL8UuOL0v/jyNiV/Tvh9g3eXU1LCU2I=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=AAlRSjy+ZPVXdvA0otoocH+MR4mkmlZiwM0Qq6ROZJEyMmGSGE+A6KbaKGSezpi7l
-	 ZTCzUND2LpxuvzOLyksaUm3ZDB1hgsSeDh4FinK07Ps+wIPBZYy6/s52s3OAShctPi
-	 oSJivSz33iUYk+CvBwUzAN2lo/UMZ6SwbE3KgL3zWAjTv+OI6flkEJpNWxSZsWcqOF
-	 Wva207ke7oNtBOrUUwVzyft4pGJ7y8gF3mfcv1xM/yoh27FwGVvUGCSW8xLT0ui+MJ
-	 whJmGLWJ9L6giK/J1zon59LVlMfeQlHhGpfbnQlvBThtC8UATKTjTXR52pTYAYcEc7
-	 yekHR3gUSzE5w==
-Received: (nullmailer pid 3548862 invoked by uid 1000);
-	Tue, 03 Oct 2023 06:34:09 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E39944C6A;
+	Tue,  3 Oct 2023 06:39:18 +0000 (UTC)
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01A26B8;
+	Mon,  2 Oct 2023 23:39:15 -0700 (PDT)
+Received: by codeconstruct.com.au (Postfix, from userid 10001)
+	id F0FCE20141; Tue,  3 Oct 2023 14:39:08 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1696315148;
+	bh=wE1y/0uR75zUR155cxXByfX4Fp6lOFAIQbc2wf3iWk0=;
+	h=From:To:Cc:Subject:Date;
+	b=XG1OeY6dk4t+K7fAOHAqMrgRSbLKctXJ5w24PeZcJtNf3yKhC4fWYyitJLNtDLlfx
+	 f72LcaWtJQfkQURqMPK7HgsSv8ZESqXyHvDjDZQyzg21YCWyp/FNag42fSoK6kF7u2
+	 ttSaGb2RO+16nZQpqo7tONlZvIRAdPEsVmSycjy5hl7Dafugh3n/TIdQAl6XRp6V7u
+	 6gx2LW53UdGfaxi5N+PVJbUZtEyy6GE0I0gonilqXeZ4OhoSLk2urdtz162T5My5Gt
+	 Wo5nHhz3j5qun3j2zwDi14lIfWEj42gBbaWER/604jN5nAhWbrz549o1GBzZiDlCq/
+	 QThFmUyvwaJPA==
+From: Matt Johnston <matt@codeconstruct.com.au>
+To: linux-i3c@lists.infradead.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Eric Dumazet <edumazet@google.com>,
+	Jeremy Kerr <jk@codeconstruct.com.au>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH net-next v3 0/3] I3C MCTP net driver
+Date: Tue,  3 Oct 2023 14:36:21 +0800
+Message-Id: <20231003063624.126723-1-matt@codeconstruct.com.au>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, Christian Marangi <ansuelsmth@gmail.com>, Hector Martin <marcan@marcan.st>, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, NXP Linux Team <linux-imx@nxp.com>, Komal Bajaj <quic_kbajaj@quicinc.com>, linux-rtc@vger.kernel.org, Claudiu Beznea <claudiu.beznea@tuxon.dev>, Alexandre Belloni <alexandre.belloni@bootlin.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-mtd@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>, Vincent Shih <vincent.sunplus@gmail.com>, asahi@lists.linux.dev, Rob Herring <robh+dt@kernel.org>, Anson Huang <Anson.Huang@nxp.com>, Andy Gross <agross@kernel.org>, linux-rockchip@lists.infradead.org, Vignesh Raghavendra <vigneshr@ti.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Andrew-CT Chen <andrew-ct.chen@mediatek.com>, Sascha Hauer <s.hauer@pengutronix.de>,
-  Richard Weinberger <richard@nod.at>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, Heiko Stuebner <heiko@sntech.de>, Fabio Estevam <festevam@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Bjorn Andersson <andersson@kernel.org>, Alessandro Zummo <a.zummo@towertech.it>, Sven Peter <sven@svenpeter.dev>, linux-arm-kernel@lists.infradead.org, Miquel Raynal <miquel.raynal@bootlin.com>, Shawn Guo <shawnguo@kernel.org>, Kumar Thella <sthella@codeaurora.org>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, devicetree@vger.kernel.org, Masami Hiramatsu <mhiramat@kernel.org>, linux-arm-msm@vger.kernel.org, Keiji Hayashibara <hayashibara.keiji@socionext.com>, Kevin Hilman <khilman@baylibre.com>, =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, linux-mediatek@lists.infradead.org, Lala Lin <lala.lin@mediatek.com>
-In-Reply-To: <20231003050355.1631-1-zajec5@gmail.com>
-References: <20231003050355.1631-1-zajec5@gmail.com>
-Message-Id: <169631484962.3548819.1223779643388796546.robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: nvmem: move deprecated cells binding to
- its own file
-Date: Tue, 03 Oct 2023 01:34:09 -0500
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
+This series adds an I3C transport for the kernel's MCTP network
+protocol. MCTP is a communication protocol between system components
+(BMCs, drives, NICs etc), with higher level protocols such as NVMe-MI or
+PLDM built on top of it (in userspace). It runs over various transports
+such as I2C, PCIe, or I3C.
 
-On Tue, 03 Oct 2023 07:03:55 +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> Support for old NVMEM fixed cells was deprecated in favour of
-> "fixed-layout". It's still part of the nvmem.yaml though and may be
-> unknowingly used by new bindings added without much of analyze.
-> 
-> To make it more difficult to accidentally support old syntax move its
-> binding to separated file with "deprecated" in its name.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
->  .../devicetree/bindings/mtd/mtd.yaml          |  7 ++++-
->  .../bindings/mtd/partitions/nvmem-cells.yaml  |  1 +
->  .../nvmem/amlogic,meson-gxbb-efuse.yaml       |  1 +
->  .../bindings/nvmem/amlogic,meson6-efuse.yaml  |  1 +
->  .../bindings/nvmem/apple,efuses.yaml          |  1 +
->  .../devicetree/bindings/nvmem/imx-ocotp.yaml  |  1 +
->  .../bindings/nvmem/mediatek,efuse.yaml        |  1 +
->  .../nvmem/microchip,sama7g5-otpc.yaml         |  1 +
->  .../devicetree/bindings/nvmem/mxs-ocotp.yaml  |  1 +
->  .../nvmem/nvmem-deprecated-cells.yaml         | 28 +++++++++++++++++++
->  .../devicetree/bindings/nvmem/nvmem.yaml      |  9 ------
->  .../bindings/nvmem/qcom,qfprom.yaml           |  1 +
->  .../bindings/nvmem/qcom,sec-qfprom.yaml       |  1 +
->  .../bindings/nvmem/qcom,spmi-sdam.yaml        |  1 +
->  .../bindings/nvmem/rockchip,otp.yaml          |  1 +
->  .../bindings/nvmem/rockchip-efuse.yaml        |  1 +
->  .../nvmem/socionext,uniphier-efuse.yaml       |  1 +
->  .../bindings/nvmem/sunplus,sp7021-ocotp.yaml  |  1 +
->  .../bindings/rtc/amlogic,meson6-rtc.yaml      |  1 +
->  19 files changed, 50 insertions(+), 10 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/nvmem-deprecated-cells.yaml
-> 
+The mctp-i3c driver follows a similar approach to the kernel's existing
+mctp-i2c driver, creating a "mctpi3cX" network interface for each
+numbered I3C bus. Busses opt in to support by adding a "mctp-controller"
+property to the devicetree:
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+&i3c0 {
+        mctp-controller;
+}
 
-yamllint warnings/errors:
+The driver will bind to MCTP class devices (DCR 0xCC) that are on a
+supported I3C bus. Each bus is represented by a `struct mctp_i3c_bus`
+that keeps state for the network device. An individual I3C device
+(struct mctp_i3c_device) performs operations using the "parent"
+mctp_i3c_bus object. The I3C notify/enumeration patch is needed so that
+the mctp-i3c driver can handle creating/removing mctp_i3c_bus objects as
+required.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/rtc/amlogic,meson6-rtc.yaml:
-Error in referenced schema matching $id: http://devicetree.org/schemas/rtc/nvmem-deprecated-cells.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/rtc/amlogic,meson6-rtc.example.dtb: rtc@740: False schema does not allow {'compatible': ['amlogic,meson6-rtc'], 'reg': [[1856, 20]], 'interrupts': [[0, 72, 1]], 'clocks': [[4294967295]], 'vdd-supply': [[4294967295]], 'resets': [[4294967295]], '#address-cells': [[1]], '#size-cells': [[1]], 'mac@0': {'reg': [[0, 6]]}, '$nodename': ['rtc@740']}
-	from schema $id: http://devicetree.org/schemas/rtc/amlogic,meson6-rtc.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/rtc/amlogic,meson6-rtc.example.dtb: rtc@740: Unevaluated properties are not allowed ('mac@0' was unexpected)
-	from schema $id: http://devicetree.org/schemas/rtc/amlogic,meson6-rtc.yaml#
+The mctp-i3c driver is using the Provisioned ID as an identifier for
+target I3C devices (the neighbour address), as that will be more stable
+than the I3C dynamic address. The driver internally translates that to a
+dynamic address for bus operations.
 
-doc reference errors (make refcheckdocs):
+The driver has been tested using an AST2600 platform. A remote endpoint 
+has been tested against QEMU, as well as using the target mode support 
+in Aspeed's vendor tree.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231003050355.1631-1-zajec5@gmail.com
+I3C maintainers have acked merging this through net-next tree.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Thanks,
+Matt
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+---
 
-pip3 install dtschema --upgrade
+v3:
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+- Use get_unaligned_be48()
+- Use kthread_run()
+- Don't set net namespace
+
+v2:
+
+- Rebased to net-next
+- Removed unnecessary pr_ printing
+- Fixed reverse christmas tree ordering
+- Reworded DT property description to match I2C
+
+Jeremy Kerr (1):
+  i3c: Add support for bus enumeration & notification
+
+Matt Johnston (2):
+  dt-bindings: i3c: Add mctp-controller property
+  mctp i3c: MCTP I3C driver
+
+ .../devicetree/bindings/i3c/i3c.yaml          |   6 +
+ drivers/i3c/master.c                          |  35 +
+ drivers/net/mctp/Kconfig                      |   9 +
+ drivers/net/mctp/Makefile                     |   1 +
+ drivers/net/mctp/mctp-i3c.c                   | 760 ++++++++++++++++++
+ include/linux/i3c/master.h                    |  11 +
+ 6 files changed, 822 insertions(+)
+ create mode 100644 drivers/net/mctp/mctp-i3c.c
+
+-- 
+2.39.2
 
 
