@@ -1,127 +1,157 @@
-Return-Path: <devicetree+bounces-5470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FF4E7B66E2
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 12:56:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 819D67B66EE
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 12:58:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 664E91C208C6
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 10:56:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 318DE281671
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 10:58:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AA5E20B10;
-	Tue,  3 Oct 2023 10:56:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C44F820B10;
+	Tue,  3 Oct 2023 10:57:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9159A208D5
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 10:56:43 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33858EA;
-	Tue,  3 Oct 2023 03:56:40 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 393AuF0X088168;
-	Tue, 3 Oct 2023 05:56:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1696330575;
-	bh=J+Q0ZtjZFk83NaGx62OOqN/1axfwRqE1uczTFxxZV3A=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=pn3ZxkgqVRt8kjoIQnvSUQNrgl8dHwi45CvkUdg0c7zcojZsIDA0zQBM3oo1uPbEP
-	 E71N//Icf/gjTDGVMzsNwze92QvM8+EtcxjadDUcuW805CbO3IkjMFr9fGNnsW1KuX
-	 Eq89FCcPGkQN3BGomxB9nGQD2pT/OX3n6m/qXbmk=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 393AuFvH093753
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 3 Oct 2023 05:56:15 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 3
- Oct 2023 05:56:15 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 3 Oct 2023 05:56:15 -0500
-Received: from fllv0122.itg.ti.com (fllv0122.itg.ti.com [10.247.120.72])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 393AuEdJ123329;
-	Tue, 3 Oct 2023 05:56:14 -0500
-Received: from localhost (danish-tpc.dhcp.ti.com [10.24.69.199])
-	by fllv0122.itg.ti.com (8.14.7/8.14.7) with ESMTP id 393AuEbo007928;
-	Tue, 3 Oct 2023 05:56:14 -0500
-From: MD Danish Anwar <danishanwar@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
-CC: Peng Fan <peng.fan@nxp.com>, Udit Kumar <u-kumar1@ti.com>,
-        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?=
-	<nfraprado@collabora.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Arnd
- Bergmann <arnd@arndb.de>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Geert
- Uytterhoeven <geert+renesas@glider.be>,
-        Bjorn Andersson
-	<quic_bjorande@quicinc.com>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>, <linux-omap@vger.kernel.org>,
-        <srk@ti.com>, <r-gunasekaran@ti.com>,
-        MD Danish
- Anwar <danishanwar@ti.com>
-Subject: [PATCH v4 4/4] arm64: defconfig: Enable TI_ICSSG_PRUETH
-Date: Tue, 3 Oct 2023 16:25:39 +0530
-Message-ID: <20231003105539.1698436-5-danishanwar@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231003105539.1698436-1-danishanwar@ti.com>
-References: <20231003105539.1698436-1-danishanwar@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FED71EA95
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 10:57:58 +0000 (UTC)
+Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D83D7DD;
+	Tue,  3 Oct 2023 03:57:53 -0700 (PDT)
+Received: by mail-io1-xd2a.google.com with SMTP id ca18e2360f4ac-7a269637b98so24786939f.3;
+        Tue, 03 Oct 2023 03:57:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696330673; x=1696935473; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qThTQ2EndUgzuynlyMsCB3sIEKXBzP2bceTtmpfh6iQ=;
+        b=ATa9ZjEq6U2y9yUCTuJ5G9b9vdDkS73kO3fA+7g2pwHxQouLw3BqTe8DuLbjL2WPs0
+         9hrcvSEncSiBqmFTxn6Xz1VQ8vKDD0DLSx1h3q++2qw8t9voImMnrKaiekUwYDa7ORen
+         UeOcBnJr/yqi9Fym7EICwtbJqBfT9MzcABgEngpsD9zslqg2V2qXfyo7L6xmwVWNQItp
+         /WS+VsV7yVXOPvXEqQzKpE6W6UbQYglU6zGk5IqKZncLICF62m8R30GpHKuV62oohw+k
+         DtlubXn3AEX2FSj89jvk4WY5XpuFlh9NuecBcEDggqDo8WpF+OKNpafB+gMO8K5u6Z/B
+         3M+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696330673; x=1696935473;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qThTQ2EndUgzuynlyMsCB3sIEKXBzP2bceTtmpfh6iQ=;
+        b=oujiQNuc0GKpt61NhrXfyVB6o0Ox5vWLLuIviOEwAnoOAo8B2YEvMFBQjyZINf9jtE
+         wOSQ3bCfMGFaX5Nr/C1947CuRxwVqdB+37Hd3Q9PcnL4Uz6Euz++L3g16YoaWTwPDU91
+         4WuY99OnWJnoSEPqFoHzaFRWHQR0XfW81o2Hg7965burA3qYU8QxoON8RQgmUX9CnEUZ
+         leDh3ZYuEbhWUAatn8F9r4wxNDw6KGdeEw/XHapNlz5RT/1DfU46LKxKWbNrBijWj43b
+         fo82V/8ACA+z4WMJFRsN9yTyAsgihyL08TTWpGd37+mpQAckaiwNHvVG0cISknv7H+fs
+         aPoQ==
+X-Gm-Message-State: AOJu0YzQz0ohupq0HbX7G3Njr3G3oM0ia4C6VmLFHUdBHaZkeRM50WAI
+	eYFU1IOWBLyE72+Xv5qTdnM=
+X-Google-Smtp-Source: AGHT+IGttW4UKMJ5ur0fccwnHqXX3X6oJOU8nZcdsSYnBv+UUPjdTwMwO+7FbE7T/xEg3gJRLc9FhA==
+X-Received: by 2002:a5d:9cd5:0:b0:786:2125:a034 with SMTP id w21-20020a5d9cd5000000b007862125a034mr15217606iow.18.1696330672860;
+        Tue, 03 Oct 2023 03:57:52 -0700 (PDT)
+Received: from [10.76.84.110] ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id p18-20020a0566380e9200b00430bb70004dsm280745jas.103.2023.10.03.03.57.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Oct 2023 03:57:52 -0700 (PDT)
+Message-ID: <303d2869-2273-f643-e8ff-e27675f929dc@gmail.com>
+Date: Tue, 3 Oct 2023 13:57:45 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2 2/2] iio: adc: ad7173: add AD7173 driver
+Content-Language: en-US
+To: Andy Shevchenko <andy@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, linus.walleij@linaro.org,
+ brgl@bgdev.pl, linux-gpio@vger.kernel.org,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Michael Walle <michael@walle.cc>,
+ Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>,
+ Niklas Schnelle <schnelle@linux.ibm.com>,
+ =?UTF-8?Q?Leonard_G=c3=b6hrs?= <l.goehrs@pengutronix.de>,
+ Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Ceclan Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230928125443.615006-1-mitrutzceclan@gmail.com>
+ <20230928125443.615006-2-mitrutzceclan@gmail.com>
+ <20230930150531.083c51d4@jic23-huawei>
+ <c52afe87-eaa0-eb7f-090f-b22aec95e49d@gmail.com>
+ <ZRvwrDcT770sJXkd@smile.fi.intel.com>
+From: Ceclan Dumitru-Ioan <mitrutzceclan@gmail.com>
+In-Reply-To: <ZRvwrDcT770sJXkd@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The Programmable Real-time Unit and Industrial Communication Subsystem
-Gigabit (PRU_ICSSG) is a low-latency microcontroller subsystem in the TI
-K3 SoCs such as AM654x, AM64x. This subsystem is provided for the use
-cases like implementation of custom peripheral interfaces, offloading of
-tasks from the other processor cores of the SoC, etc.
+On 10/3/23 13:45, Andy Shevchenko wrote:
+> Subject:
+> Re: [PATCH v2 2/2] iio: adc: ad7173: add AD7173 driver
+> From:
+> Andy Shevchenko <andy@kernel.org>
+> Date:
+> 10/3/23, 13:45
+> 
+> To:
+> Ceclan Dumitru-Ioan <mitrutzceclan@gmail.com>
+> CC:
+> Jonathan Cameron <jic23@kernel.org>, linus.walleij@linaro.org, brgl@bgdev.pl, linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Michael Walle <michael@walle.cc>, Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>, Leonard Göhrs <l.goehrs@pengutronix.de>, Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, Hugo Villeneuve <hvilleneuve@dimonoff.com>, Ceclan Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+> 
+> 
+> On Tue, Oct 03, 2023 at 01:33:36PM +0300, Ceclan Dumitru-Ioan wrote:
+>> On 9/30/23 17:05, Jonathan Cameron wrote:
+>>> On Thu, 28 Sep 2023 15:54:43 +0300
+>>> Dumitru Ceclan <mitrutzceclan@gmail.com> wrote>> +config AD7173
+>>>> +	tristate "Analog Devices AD7173 driver"
+>>>> +	depends on SPI_MASTER
+>>>> +	select AD_SIGMA_DELTA
+>>>> +	select GPIO_REGMAP
+>>> If you are selecting it, why does it have if guards in the driver.
+>>> I prefer the select here, so drop this if guards.
+>> From what i checked, selecting GPIO_REGMAP does not select GPIOLIB but only REGMAP.
+>>
+>> Also, in the thread from V1 Arnd Bergmann suggested:
+>> 	" I think the best way to handle these is to remove both
+>> 	 the 'select' and the #ifdef in the driver and instead use
+>> 	 'if (IS_ENABLED(CONFIG_GPIOLIB))' to handle optional gpio
+>> 	 providers in the code. "
+> Why not simply to be dependent on GPIOLIB like other drivers do in this folder?
 
-Currently AM654x-EVM uses ICSSG driver.
+I followed the suggestion given by Arnd. The full argument:
 
-Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+"From a Kconfig perspective, any user-visible symbol ideally only uses
+'depends on', while hidden symbols usually use 'select'.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 66bfbef73324..b7cbc7b38d63 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -368,6 +368,7 @@ CONFIG_SNI_NETSEC=y
- CONFIG_STMMAC_ETH=m
- CONFIG_DWMAC_TEGRA=m
- CONFIG_TI_K3_AM65_CPSW_NUSS=y
-+CONFIG_TI_ICSSG_PRUETH=m
- CONFIG_QCOM_IPA=m
- CONFIG_MESON_GXL_PHY=m
- CONFIG_AQUANTIA_PHY=y
--- 
-2.34.1
+For the GPIOLIB symbol specifically, we have a mix of both, but the
+overall usage is that gpio consumers only use 'depends on',
+while some of the providers use 'select'. This risks causing build
+breakage from a dependency loop when combined with other symbols
+that have the same problem (e.g. I2C), but it tends to work out
+as long as a strong hierarchy is kept. In particular, using 'select'
+from an arch/*/Kconfig platform option is generally harmless as
+long as those don't depend on anything else.
 
+The new driver is a gpio provider and at least ad4130 and
+ad5592r uses 'select' here, but then again ad74115 and
+ad74113 use 'depends on' and ads7950 uses neither.
+
+I think the best way to handle these is to remove both
+the 'select' and the #ifdef in the driver and instead use
+'if (IS_ENABLED(CONFIG_GPIOLIB))' to handle optional gpio
+providers in the code."
+
+I do not have a lot of experience with this subject.
+As such, if you consider the argument invalid, mention it and i will
+change to 'depends on'.
 
