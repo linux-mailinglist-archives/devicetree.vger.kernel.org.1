@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-5599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 366677B6CDE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 17:18:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F3EA7B6CE8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 17:19:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 48E3C1C20818
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 15:18:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id 903451F20986
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 15:19:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 757A834CC6;
-	Tue,  3 Oct 2023 15:18:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79C7034CCF;
+	Tue,  3 Oct 2023 15:19:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1636DDC7
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 15:18:24 +0000 (UTC)
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 675EBA7;
-	Tue,  3 Oct 2023 08:18:22 -0700 (PDT)
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-59c215f2f4aso13103047b3.1;
-        Tue, 03 Oct 2023 08:18:22 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C33EDDC7
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 15:19:31 +0000 (UTC)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67CA3AD;
+	Tue,  3 Oct 2023 08:19:29 -0700 (PDT)
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-d8162698f0dso1132636276.0;
+        Tue, 03 Oct 2023 08:19:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696346301; x=1696951101;
+        d=1e100.net; s=20230601; t=1696346368; x=1696951168;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=llcysd4Rlfv/obk2nm1Hbq1W0IWft6DG1QN8/F4FkXk=;
-        b=ZIysWZHQTdLUY2BYBdWpcFYrN6Z0YWILUU2hvEuv5XTU7Gslv/iWaOnBdUv5gh3Ip9
-         KLBWf5LaK+sLeq114VXqz8Rr2uKT7k0EpiAD3YQ3GXhG/xFbDBcP2/rKEPs41puljEnR
-         x0/ybSgTh5bYULdxlH480tjoTb2WCRQcjZhhM4aI8v2g6OszCw72mNk+1ef/N3bGkCGV
-         QcCJr1pdIC0YEu3F/4b4XtOl+ox4nUPC4Cqzh72x/nF15MsPurJnS/WRomuufsgWSMIy
-         6Anb7N7XZG/WfrsYJI3ZNpqrxJcWqkpof2s56PnFwjqB+20dqFFg85UYfi4EmcGCI8LP
-         ZozQ==
-X-Gm-Message-State: AOJu0YyXos/IWeptcZuaB2+DRAVXod9sdKoOSMvL3QNEw6nxYR3mN3IT
-	TyUcds2JfzmWJ5Cyjq8geicQ/OrRReo7fA==
-X-Google-Smtp-Source: AGHT+IGUXDzgkRzROCBSWu+UWz3s89Pbvpoo/nALrPfk15m9n5ZuZhq/FRYKAPEOMZG10D5JYCQNnw==
-X-Received: by 2002:a0d:e688:0:b0:5a1:d0fe:e44b with SMTP id p130-20020a0de688000000b005a1d0fee44bmr14197971ywe.11.1696346301345;
-        Tue, 03 Oct 2023 08:18:21 -0700 (PDT)
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
-        by smtp.gmail.com with ESMTPSA id x9-20020a814a09000000b005463e45458bsm443078ywa.123.2023.10.03.08.18.18
+        bh=BBKViIdg/9cDLzuM95X5V6V6ZzYcdpIf1IK/GDtHoe0=;
+        b=XQEdsdt8nFLPyUMPfeTEYr4ILJbJo8SxtdDg6re9zcrsrH49no2NKFsJzltloln0mN
+         n/vXwsTSon1terKNTQRRuI8nyjrNyZf93V/O0jn7UvV5u0sIn0cfCsFYD3b6MNZ6gFJ4
+         v2A4oMZnzmvnFg7CrGsBeXcSQzdtzfqvQYZ+0hXvhsnY5faNOhBR9oTRYMcXFQhVw18u
+         FL9o4zBHseUUBvu83no6N+UPS+xVfYA2fGOQ6uQ/1LZ53m3vz6ns9CIZ1qXgkG+8is7R
+         sYeqObLy6FCa7g5/6E7dug8cYPa8KrvwEQWIPrcoiMq/Hx/qtUQvpnX9zv7LeQTg9Nh1
+         Lk0g==
+X-Gm-Message-State: AOJu0Ywvo/Sn59aZsUhZPW7Suy+lrwb7aQFla3LY7XUNjoMbZcE696Az
+	dDKAVNlszl6v39fdWU7KCYHEI3gzEoGwSQ==
+X-Google-Smtp-Source: AGHT+IHFnV1zRGLHP66GQTrNH644jljVi4HcTMCI/GaAXQTCckrj7rGC2KB68Ym7wD6dC6pVbLn7Xw==
+X-Received: by 2002:a25:ae21:0:b0:d7f:c4ed:d6af with SMTP id a33-20020a25ae21000000b00d7fc4edd6afmr14373219ybj.40.1696346368281;
+        Tue, 03 Oct 2023 08:19:28 -0700 (PDT)
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
+        by smtp.gmail.com with ESMTPSA id t1-20020a252d01000000b00d7e339ada01sm460433ybt.20.2023.10.03.08.19.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Oct 2023 08:18:19 -0700 (PDT)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-59bf1dde73fso12950057b3.3;
-        Tue, 03 Oct 2023 08:18:18 -0700 (PDT)
-X-Received: by 2002:a25:213:0:b0:d80:1604:f6e9 with SMTP id
- 19-20020a250213000000b00d801604f6e9mr12784141ybc.44.1696346298461; Tue, 03
- Oct 2023 08:18:18 -0700 (PDT)
+        Tue, 03 Oct 2023 08:19:27 -0700 (PDT)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-59c268676a9so12899207b3.0;
+        Tue, 03 Oct 2023 08:19:27 -0700 (PDT)
+X-Received: by 2002:a25:553:0:b0:d36:58a6:3281 with SMTP id
+ 80-20020a250553000000b00d3658a63281mr11873855ybf.39.1696346367086; Tue, 03
+ Oct 2023 08:19:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230929053915.1530607-1-claudiu.beznea@bp.renesas.com> <20230929053915.1530607-4-claudiu.beznea@bp.renesas.com>
-In-Reply-To: <20230929053915.1530607-4-claudiu.beznea@bp.renesas.com>
+References: <20230929053915.1530607-1-claudiu.beznea@bp.renesas.com> <20230929053915.1530607-5-claudiu.beznea@bp.renesas.com>
+In-Reply-To: <20230929053915.1530607-5-claudiu.beznea@bp.renesas.com>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 3 Oct 2023 17:18:06 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWQJBYhhEYDBYqek_h_0a7b1iSDK6cjBTiD-xqNrWrhNQ@mail.gmail.com>
-Message-ID: <CAMuHMdWQJBYhhEYDBYqek_h_0a7b1iSDK6cjBTiD-xqNrWrhNQ@mail.gmail.com>
-Subject: Re: [PATCH v2 03/28] clk: renesas: rzg2l: lock around writes to mux register
+Date: Tue, 3 Oct 2023 17:19:15 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXM7=sMgLJVXpa7maa0ybc=KsOt7-RpdPL6OpMeW6aULw@mail.gmail.com>
+Message-ID: <CAMuHMdXM7=sMgLJVXpa7maa0ybc=KsOt7-RpdPL6OpMeW6aULw@mail.gmail.com>
+Subject: Re: [PATCH v2 04/28] clk: renesas: rzg2l: trust value returned by hardware
 To: Claudiu <claudiu.beznea@tuxon.dev>
 Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
 	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
@@ -84,21 +84,20 @@ On Fri, Sep 29, 2023 at 7:39=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
 wrote:
 > From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >
-> SD MUX output (SD0) is further divided by 4 in G2{L, UL}. The divided
-> clock is SD0_DIV4. SD0_DIV4 is registered with CLK_SET_RATE_PARENT which
-> means a rate request for it is propagated to the MUX and could reach
-> rzg2l_cpg_sd_clk_mux_set_parent() concurrently with the users of SD0.
-> Add proper locking to avoid concurrent access on SD MUX set rate
-> registers.
+> Initial value of CPG_PL2SDHI_DSEL bits 0..1 or 4..6 is 01b. Hardware user=
+'s
+> manual (r01uh0914ej0130-rzg2l-rzg2lc.pdf) specifies that setting 0 is
+> prohibited. The rzg2l_cpg_sd_clk_mux_get_parent() should just read
+> CPG_PL2SDHI_DSEL, trust the value and return the proper clock parent inde=
+x
+> based on the read value. Do this.
 >
 > Fixes: eaff33646f4cb ("clk: renesas: rzg2l: Add SDHI clk mux support")
 > Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 > ---
 >
 > Changes in v2:
-> - adapted delay_us to 10us
-> - adapted CPG_SDHI_CLK_SWITCH_STATUS_TIMEOUT_US to 200us; tested
->   with this adjustements on RZ/G3S and RZ/G2L SoCs
+> - Used "return val ? val - 1 : 0;"
 
 Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 i.e. will queue in renesas-clk-for-v6.7.
