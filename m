@@ -1,244 +1,210 @@
-Return-Path: <devicetree+bounces-5368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 411627B60EB
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 08:43:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2CCA7B60F6
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 08:48:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 527631C2084A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 06:43:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 927612816C7
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 06:48:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64CAB6123;
-	Tue,  3 Oct 2023 06:43:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54F6C613D;
+	Tue,  3 Oct 2023 06:48:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCD7162D;
-	Tue,  3 Oct 2023 06:43:37 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5922BAC;
-	Mon,  2 Oct 2023 23:43:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1696315414; x=1727851414;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=AvOwi0cnTJOn8GMWGwytu1+ms7MaRvbJQFq+zu+RxOg=;
-  b=ATwFqnzEHUpKwrErHlY6Muyo6C8ORLONN2pTTTk+c4Z7XAHMulmvFFE1
-   vw9WhmgTbRCsFkczTFCAm2D3R/uaBna/ixHB4L3iD3Uhg7GgHHPqCGGE7
-   bT35AAOOsLxKUiOJer4SaK7+G2uWyH8qIpyOu+aFDAPrPxjcFhWcNI20X
-   IDxAxl64Z6jWWTJHZoXr9fwSm9nmnANB6/YnAKeNzXxOCj8oYO4eMeTg7
-   nH2LcLW44K64AgwxYBgYJt5k5nZ1MdrnhvQkZo2pl6gaqTod7hpA/8IZI
-   yMeIOtXxqJ4Lqq3sv/MzE9+734pdT1R62eoSUAtCu7qVD6UyomnzpzOqM
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="1395689"
-X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; 
-   d="scan'208";a="1395689"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Oct 2023 23:43:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="894369495"
-X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; 
-   d="scan'208";a="894369495"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 02 Oct 2023 23:42:07 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 03 Oct 2023 09:43:28 +0300
-Date: Tue, 3 Oct 2023 09:43:28 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Abdel Alkuor <alkuor@gmail.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, bryan.odonoghue@linaro.org,
-	gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, ryan.eleceng@gmail.com,
-	robh+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	Abdel Alkuor <abdelalkuor@geotab.com>
-Subject: Re: [PATCH v9 09/14] USB: typec: tps6598x: Refactor tps6598x port
- registration
-Message-ID: <ZRu4EGVcZU+r0H0I@kuha.fi.intel.com>
-References: <20231001081134.37101-1-alkuor@gmail.com>
- <20231001081134.37101-10-alkuor@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D2D962D
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 06:48:49 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEF96AC;
+	Mon,  2 Oct 2023 23:48:47 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3936mV70002180;
+	Tue, 3 Oct 2023 01:48:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1696315711;
+	bh=L8cq9ILA9YOFfOTbj/R2hPdyw38+X5l8GX2variqNi8=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=nTaMkc6+Vl+dsPdyJQfH6ifS+pfB2L1XQlQ+8ZNFPNqXppaG9FQsQ8e5yJmyLwloD
+	 TbymWz5VZLfBMH71yZQl9iMdhC/YiROE3OJrKAtYUvbGBFYZRbKsAWhLxn/yICC54h
+	 CyquA27Vpmru/8AZQtpZa9xI8HybKQvT2D3NtP7Q=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3936mU7G077467
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 3 Oct 2023 01:48:30 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 3
+ Oct 2023 01:48:30 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 3 Oct 2023 01:48:30 -0500
+Received: from [172.24.227.94] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3936mRUx021423;
+	Tue, 3 Oct 2023 01:48:27 -0500
+Message-ID: <a8749e98-7ead-939e-6fa6-35779593a5f4@ti.com>
+Date: Tue, 3 Oct 2023 12:18:26 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231001081134.37101-10-alkuor@gmail.com>
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-	autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v6 4/7] arm64: dts: ti: k3-j784s4-main: Add the main
+ domain watchdog instances
+Content-Language: en-US
+To: Keerthy <j-keerthy@ti.com>, <robh+dt@kernel.org>, <nm@ti.com>,
+        <conor+dt@kernel.org>, <kristo@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC: <u-kumar1@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230927023357.9883-1-j-keerthy@ti.com>
+ <20230927023357.9883-5-j-keerthy@ti.com>
+From: Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <20230927023357.9883-5-j-keerthy@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Sun, Oct 01, 2023 at 04:11:29AM -0400, Abdel Alkuor wrote:
-> From: Abdel Alkuor <abdelalkuor@geotab.com>
-> 
-> tps6598x and cd321x use TPS_REG_SYSTEM_CONF to get dr/pr roles
-> where other similar devices don't have this register such as tps25750.
-> 
-> Move tps6598x port registration to its own function
-> 
-> Signed-off-by: Abdel Alkuor <abdelalkuor@geotab.com>
 
-This one can be moved to the beginning of the series.
 
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+On 27/09/23 08:03, Keerthy wrote:
+> +	/*
+> +	 * The following RTI instances are coupled with MCU R5Fs, c7x and
+> +	 * GPU so keeping them disabled as these will be used by their
+> +	 * respective firmware
+> +	 */
+> +	watchdog16: watchdog@2300000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x2300000 0x00 0x100>;
+> +		clocks = <&k3_clks 356 1>;
+> +		power-domains = <&k3_pds 356 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 356 0>;
+> +		assigned-clock-parents = <&k3_clks 356 4>;
+> +		status = "disabled";
+> +	};
+> +
+> +	watchdog17: watchdog@2310000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x2310000 0x00 0x100>;
+> +		clocks = <&k3_clks 357 1>;
+> +		power-domains = <&k3_pds 357 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 357 0>;
+> +		assigned-clock-parents = <&k3_clks 357 4>;
+> +		status = "disabled";
+> +	};
+> +
+> +	watchdog18: watchdog@2320000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x2320000 0x00 0x100>;
+> +		clocks = <&k3_clks 358 1>;
+> +		power-domains = <&k3_pds 358 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 358 0>;
+> +		assigned-clock-parents = <&k3_clks 358 4>;
+> +		status = "disabled";
+> +	};
+> +
+> +	watchdog19: watchdog@2330000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x2330000 0x00 0x100>;
+> +		clocks = <&k3_clks 359 1>;
+> +		power-domains = <&k3_pds 359 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 359 0>;
+> +		assigned-clock-parents = <&k3_clks 359 4>;
+> +		status = "disabled";
+> +	};
+> +
+> +	watchdog15: watchdog@22f0000 {
 
-> ---
-> Changes in v9:
->   - No changes
-> Changes in v8:
->   - No changes
-> Changes in v7:
->   - Add driver name to commit subject
-> Changes in v6:
->   - No changes
-> Changes in v5:
->   - Incorporating tps25750 into tps6598x driver
-> 
->  drivers/usb/typec/tipd/core.c | 99 +++++++++++++++++++----------------
->  1 file changed, 54 insertions(+), 45 deletions(-)
-> 
-> diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
-> index 52dc1cc16bed..0195eabd96bf 100644
-> --- a/drivers/usb/typec/tipd/core.c
-> +++ b/drivers/usb/typec/tipd/core.c
-> @@ -1032,14 +1032,64 @@ static int tps25750_apply_patch(struct tps6598x *tps)
->  	return 0;
+
+I understand you are arranging based on Firmware Device ID. But these
+numbers don't have much meaning when user maps to TRM. So, I suggest
+nodes to be arranged by TRM numbering or ascending order of register
+address so that its easier for end user to map the nodes to IP  instance
+in TRM.
+
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x22f0000 0x00 0x100>;
+> +		clocks = <&k3_clks 360 1>;
+> +		power-domains = <&k3_pds 360 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 360 0>;
+> +		assigned-clock-parents = <&k3_clks 360 4>;
+> +		status = "disabled";
+> +	};
+> +
+> +	watchdog28: watchdog@23c0000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x23c0000 0x00 0x100>;
+> +		clocks = <&k3_clks 361 1>;
+> +		power-domains = <&k3_pds 361 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 361 0>;
+> +		assigned-clock-parents = <&k3_clks 361 4>;
+> +		status = "disabled";
+> +	};
+> +
+> +	watchdog29: watchdog@23d0000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x23d0000 0x00 0x100>;
+> +		clocks = <&k3_clks 362 1>;
+> +		power-domains = <&k3_pds 362 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 362 0>;
+> +		assigned-clock-parents = <&k3_clks 362 4>;
+> +		status = "disabled";
+> +	};
+> +
+> +	watchdog30: watchdog@23e0000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x23e0000 0x00 0x100>;
+> +		clocks = <&k3_clks 363 1>;
+> +		power-domains = <&k3_pds 363 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 363 0>;
+> +		assigned-clock-parents = <&k3_clks 363 4>;
+> +		status = "disabled";
+> +	};
+> +
+> +	watchdog31: watchdog@23f0000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x23f0000 0x00 0x100>;
+> +		clocks = <&k3_clks 364 1>;
+> +		power-domains = <&k3_pds 364 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 364 0>;
+> +		assigned-clock-parents = <&k3_clks 364 4>;
+> +		status = "disabled";
+> +	};
+> +
+> +	watchdog32: watchdog@2540000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x2540000 0x00 0x100>;
+> +		clocks = <&k3_clks 365 1>;
+> +		power-domains = <&k3_pds 365 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 365 0>;
+> +		assigned-clock-parents = <&k3_clks 366 4>;
+> +		status = "disabled";
+> +	};
+> +
+> +	watchdog33: watchdog@2550000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x2550000 0x00 0x100>;
+> +		clocks = <&k3_clks 366 1>;
+> +		power-domains = <&k3_pds 366 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 366 0>;
+> +		assigned-clock-parents = <&k3_clks 366 4>;
+> +		status = "disabled";
+> +	};
 >  };
->  
-> +static int
-> +tps6598x_register_port(struct tps6598x *tps, struct fwnode_handle *fwnode)
-> +{
-> +	int ret;
-> +	u32 conf;
-> +	struct typec_capability typec_cap = { };
-> +
-> +	ret = tps6598x_read32(tps, TPS_REG_SYSTEM_CONF, &conf);
-> +	if (ret)
-> +		return ret;
-> +
-> +	typec_cap.revision = USB_TYPEC_REV_1_2;
-> +	typec_cap.pd_revision = 0x200;
-> +	typec_cap.prefer_role = TYPEC_NO_PREFERRED_ROLE;
-> +	typec_cap.driver_data = tps;
-> +	typec_cap.ops = &tps6598x_ops;
-> +	typec_cap.fwnode = fwnode;
-> +
-> +	switch (TPS_SYSCONF_PORTINFO(conf)) {
-> +	case TPS_PORTINFO_SINK_ACCESSORY:
-> +	case TPS_PORTINFO_SINK:
-> +		typec_cap.type = TYPEC_PORT_SNK;
-> +		typec_cap.data = TYPEC_PORT_UFP;
-> +		break;
-> +	case TPS_PORTINFO_DRP_UFP_DRD:
-> +	case TPS_PORTINFO_DRP_DFP_DRD:
-> +		typec_cap.type = TYPEC_PORT_DRP;
-> +		typec_cap.data = TYPEC_PORT_DRD;
-> +		break;
-> +	case TPS_PORTINFO_DRP_UFP:
-> +		typec_cap.type = TYPEC_PORT_DRP;
-> +		typec_cap.data = TYPEC_PORT_UFP;
-> +		break;
-> +	case TPS_PORTINFO_DRP_DFP:
-> +		typec_cap.type = TYPEC_PORT_DRP;
-> +		typec_cap.data = TYPEC_PORT_DFP;
-> +		break;
-> +	case TPS_PORTINFO_SOURCE:
-> +		typec_cap.type = TYPEC_PORT_SRC;
-> +		typec_cap.data = TYPEC_PORT_DFP;
-> +		break;
-> +	default:
-> +		return -ENODEV;
-> +	}
-> +
-> +	tps->port = typec_register_port(tps->dev, &typec_cap);
-> +	if (IS_ERR(tps->port))
-> +		return PTR_ERR(tps->port);
-> +
-> +	return 0;
-> +}
-> +
->  static int tps6598x_probe(struct i2c_client *client)
->  {
->  	struct device_node *np = client->dev.of_node;
-> -	struct typec_capability typec_cap = { };
->  	struct tps6598x *tps;
->  	struct fwnode_handle *fwnode;
->  	u32 status;
-> -	u32 conf;
->  	u32 vid;
->  	int ret;
->  	u64 mask1;
-> @@ -1112,10 +1162,6 @@ static int tps6598x_probe(struct i2c_client *client)
->  		goto err_clear_mask;
->  	trace_tps6598x_status(status);
->  
-> -	ret = tps6598x_read32(tps, TPS_REG_SYSTEM_CONF, &conf);
-> -	if (ret < 0)
-> -		goto err_clear_mask;
-> -
->  	/*
->  	 * This fwnode has a "compatible" property, but is never populated as a
->  	 * struct device. Instead we simply parse it to read the properties.
-> @@ -1133,50 +1179,13 @@ static int tps6598x_probe(struct i2c_client *client)
->  		goto err_fwnode_put;
->  	}
->  
-> -	typec_cap.revision = USB_TYPEC_REV_1_2;
-> -	typec_cap.pd_revision = 0x200;
-> -	typec_cap.prefer_role = TYPEC_NO_PREFERRED_ROLE;
-> -	typec_cap.driver_data = tps;
-> -	typec_cap.ops = &tps6598x_ops;
-> -	typec_cap.fwnode = fwnode;
-> -
-> -	switch (TPS_SYSCONF_PORTINFO(conf)) {
-> -	case TPS_PORTINFO_SINK_ACCESSORY:
-> -	case TPS_PORTINFO_SINK:
-> -		typec_cap.type = TYPEC_PORT_SNK;
-> -		typec_cap.data = TYPEC_PORT_UFP;
-> -		break;
-> -	case TPS_PORTINFO_DRP_UFP_DRD:
-> -	case TPS_PORTINFO_DRP_DFP_DRD:
-> -		typec_cap.type = TYPEC_PORT_DRP;
-> -		typec_cap.data = TYPEC_PORT_DRD;
-> -		break;
-> -	case TPS_PORTINFO_DRP_UFP:
-> -		typec_cap.type = TYPEC_PORT_DRP;
-> -		typec_cap.data = TYPEC_PORT_UFP;
-> -		break;
-> -	case TPS_PORTINFO_DRP_DFP:
-> -		typec_cap.type = TYPEC_PORT_DRP;
-> -		typec_cap.data = TYPEC_PORT_DFP;
-> -		break;
-> -	case TPS_PORTINFO_SOURCE:
-> -		typec_cap.type = TYPEC_PORT_SRC;
-> -		typec_cap.data = TYPEC_PORT_DFP;
-> -		break;
-> -	default:
-> -		ret = -ENODEV;
-> -		goto err_role_put;
-> -	}
-> -
->  	ret = devm_tps6598_psy_register(tps);
->  	if (ret)
->  		goto err_role_put;
->  
-> -	tps->port = typec_register_port(&client->dev, &typec_cap);
-> -	if (IS_ERR(tps->port)) {
-> -		ret = PTR_ERR(tps->port);
-> +	ret = tps6598x_register_port(tps, fwnode);
-> +	if (ret)
->  		goto err_role_put;
-> -	}
->  
->  	if (status & TPS_STATUS_PLUG_PRESENT) {
->  		ret = tps6598x_read16(tps, TPS_REG_POWER_STATUS, &tps->pwr_status);
-> -- 
-> 2.34.1
+> -- 2.17.1
 
 -- 
-heikki
+Regards
+Vignesh
 
