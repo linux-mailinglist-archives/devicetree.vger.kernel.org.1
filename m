@@ -1,50 +1,51 @@
-Return-Path: <devicetree+bounces-5348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AF967B603B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 07:09:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CA387B6057
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 07:24:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 8F3952816C9
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 05:09:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 8BCF81C20863
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 05:24:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFB66139F;
-	Tue,  3 Oct 2023 05:09:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7B4417E4;
+	Tue,  3 Oct 2023 05:24:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FDBE1375
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 05:09:34 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 042DFA9;
-	Mon,  2 Oct 2023 22:09:32 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3934JecJ024965;
-	Tue, 3 Oct 2023 05:09:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=APyqbOeY3JUwP/mrqXaV6eKWfacch9S+zZjNV+vSlp0=;
- b=SPDdo8fu7r5gVFtBJzWI1jOy/XMrpnZy9sndipRxr5e/vr1TMFOUzuoJ3wc6qmO/Pkp9
- W+qe2CdsnBpYKP6Vlurwo8zCRaamdIERTPXuwgTCrBXUvq26F1r5hitkAxMC8RfrbroX
- sjq+4XXk0TY3RcwyawptRh4+IriuhJjTPrW9aeTmUOBkf8dlr8MEKtIRR5Ea4ddwQq+b
- 1oVwiXmbTM9t2hN6EJ0vsckC3H6VIo3knvk3VxkRKIO9t6ky24LuEtwuE5+iYeZyF4LA
- wsqXOSTyJQES8qHEj3BBkRoWaaETa+4SyM8YxT7/5K9QpT1SSbp21Vwd7PA7CQ7dG9E2 lA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tgbjkg39a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 03 Oct 2023 05:09:26 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39359Ap8006230
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 3 Oct 2023 05:09:10 GMT
-Received: from [10.216.33.128] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 2 Oct
- 2023 22:09:06 -0700
-Message-ID: <eaf9759c-946b-a2fd-042d-235709201908@quicinc.com>
-Date: Tue, 3 Oct 2023 10:39:02 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B184F17DB
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 05:24:37 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA3F3AC;
+	Mon,  2 Oct 2023 22:24:34 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3935OHkU003026;
+	Tue, 3 Oct 2023 00:24:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1696310657;
+	bh=z13FM/FhQO9TGboXVWTOAYm2uOxotLYexsVKcrzQFBc=;
+	h=Date:From:Subject:To:CC:References:In-Reply-To;
+	b=d1kK7YDrDZGfmnISe3fv+NTSb8RWGQMBtTaXRwNPSokZub6Tb/83lWlye8gbXp7nk
+	 AUl5Mo0ERqUrMlXI5jq17b027sKuLlQOKtWxX9OxmWarJ2gnOyIFEkboSKuxmNR6oK
+	 Gqh8wUyQxGpE2CN6bB87HD8tG4vnygl3Kom1LloU=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3935OH2a015400
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 3 Oct 2023 00:24:17 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 3
+ Oct 2023 00:24:17 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 3 Oct 2023 00:24:17 -0500
+Received: from [172.24.227.252] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3935OCjv094166;
+	Tue, 3 Oct 2023 00:24:13 -0500
+Message-ID: <1ad3087c-c9aa-9a67-46c7-4969c97041d8@ti.com>
+Date: Tue, 3 Oct 2023 10:54:12 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,94 +53,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH] dt-bindings: arm: qcom: drop the IPQ board types
+ Thunderbird/102.15.1
+From: Aradhya Bhatia <a-bhatia1@ti.com>
+Subject: Re: [PATCH v2 3/6] arm64: dts: ti: k3-am62a7-sk: Drop i2c-1 to 100Khz
+To: Jai Luthra <j-luthra@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devarsht@ti.com>
+References: <20230928-mcasp_am62a-v2-0-ce9f0e1ba22b@ti.com>
+ <20230928-mcasp_am62a-v2-3-ce9f0e1ba22b@ti.com>
 Content-Language: en-US
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230927093130.4098385-1-quic_sridsn@quicinc.com>
- <3b7a6266-e2fc-4b56-8b41-a26042248c64@linaro.org>
-From: Sridharan S N <quic_sridsn@quicinc.com>
-In-Reply-To: <3b7a6266-e2fc-4b56-8b41-a26042248c64@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: y4kYZUoYcOqwTzT9s0RmF-rVO9o4g1cJ
-X-Proofpoint-GUID: y4kYZUoYcOqwTzT9s0RmF-rVO9o4g1cJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-03_02,2023-10-02_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
- impostorscore=0 lowpriorityscore=0 mlxlogscore=877 spamscore=0
- malwarescore=0 clxscore=1015 priorityscore=1501 mlxscore=0 adultscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310030041
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+In-Reply-To: <20230928-mcasp_am62a-v2-3-ce9f0e1ba22b@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 
-On 9/27/2023 5:01 PM, Bryan O'Donoghue wrote:
-> On 27/09/2023 10:31, Sridharan S N wrote:
->> IPQ bootloaders do not need these information to select the
->> the DTB blob. So dropping the board names from board section.
->>
->> Signed-off-by: Sridharan S N <quic_sridsn@quicinc.com>
->> ---
->>   Documentation/devicetree/bindings/arm/qcom.yaml | 14 --------------
->>   1 file changed, 14 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml 
->> b/Documentation/devicetree/bindings/arm/qcom.yaml
->> index 7f80f48a0954..5b56f3d90d4d 100644
->> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
->> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
->> @@ -91,24 +91,10 @@ description: |
->>     The 'board' element must be one of the following strings:
->>             adp
->> -        ap-al02-c2
->> -        ap-al02-c6
->> -        ap-al02-c7
->> -        ap-al02-c8
->> -        ap-al02-c9
->> -        ap-mi01.2
->> -        ap-mi01.3
->> -        ap-mi01.6
->> -        ap-mi01.9
->>           cdp
->> -        cp01-c1
->>           dragonboard
->> -        hk01
->> -        hk10-c1
->> -        hk10-c2
->>           idp
->>           liquid
->> -        rdp432-c2
->>           mtp
->>           qrd
->>           rb2
->
-> All bootloaders ? You are 100% sure that all versions of downstream 
-> u-boot don't rely on these strings ? Upstream u-boot too ?
->
+
+On 28-Sep-23 14:54, Jai Luthra wrote:
+> The TLV320AIC3106 audio codec is interfaced on the i2c-1 bus. With the
+> default rate of 400Khz the i2c register writes fail to sync:
+> 
+> [   36.026387] tlv320aic3x 1-001b: Unable to sync registers 0x16-0x16. -110
+> [   38.101130] omap_i2c 20010000.i2c: controller timed out
+> 
+> Dropping the rate to 100Khz fixes the issue.
+> 
+> Reviewed-by: Devarsh Thakkar <devarsht@ti.com>
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+
+Since the codec wouldn't have worked with the 400KHz, the initial DT
+configuration is wrong, which makes this patch a fix, and should be
+indicated as such.
+
+With the Fixes tag added,
+
+Reviewed-by: Aradhya Bhatia <a-bhatia1@ti.com>
+
+Regards
+Aradhya
+
 > ---
-> bod
-
-Yes , we don't rely on these strings , instead downstream u-boot uses 
-machid to identify the DTB.
-
-Thanks,
-
-Sridharan S N
+>  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> index c689d3da2def..866b2725f775 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> @@ -261,7 +261,7 @@ &main_i2c1 {
+>  	status = "okay";
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&main_i2c1_pins_default>;
+> -	clock-frequency = <400000>;
+> +	clock-frequency = <100000>;
+>  
+>  	exp1: gpio@22 {
+>  		compatible = "ti,tca6424";
+> 
 
 
