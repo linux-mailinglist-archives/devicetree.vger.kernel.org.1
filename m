@@ -1,43 +1,94 @@
-Return-Path: <devicetree+bounces-5546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FBAB7B6991
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 14:56:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5EB77B69B3
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 15:02:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 926861C20456
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 12:56:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id D8AA5281749
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 13:02:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AFB024201;
-	Tue,  3 Oct 2023 12:56:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33D0424213;
+	Tue,  3 Oct 2023 13:02:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BA3F2915
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 12:56:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82E43C433C7;
-	Tue,  3 Oct 2023 12:56:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1696337766;
-	bh=P59DIcTo4FzG58FgS8nftjaP4bwHuF5VoRmUVEhZMPk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=0eREALR8VLdselMS61TC2lTtnDrh36evlgLQL8Iawi3p1KRu7WY/ivxtWvsIZQzuS
-	 78twgbM3ck7Nn97GeX3k8BiHm4Mlop3yiEE/l3mpEqCFVLrwOvbHb+wCfk3C37oyFq
-	 z5lIRsM/Dox4yZ7nSSjY8CRkwkjMqh83vfAPEwS8=
-Date: Tue, 3 Oct 2023 14:56:04 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Max Filippov <jcmvbkbc@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org, Jiri Slaby <jirislaby@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DE7724209
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 13:02:04 +0000 (UTC)
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.164])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C194BB;
+	Tue,  3 Oct 2023 06:01:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1696338115; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=K6+CPrYO0ApXPmGEp8FHGc+LNByfwIPuVTAHxEoBcg3p1DPvvdaFdYoCc6+z5oheCX
+    4XhaCyB/anVeeFCU4fiEAIKQaf0rsXmxTEdowb/1Fe87XMGw8xNEJPq6nYqId02gfuJh
+    w2/pSpLl9eyeim+LQRAIf0EFAqZt9hzFmIhrhrSUKO/GoSTl3Hta3s7e5nNONzNFLEM9
+    Dj9xSkF1/aK8m2UOCGT0fT2dHdQ6F2Q9MJC0okdJ/MadBvdPem4hD8i7pLbJXr5f7s/5
+    D/xPSzLwMAPuSgfZULd0SjLT3xcpsebVy3MpzFU71aKpQQFV2VDCcFS3bogGtIW2HyIB
+    Cosg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1696338115;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=AvW+X7TnuvQSmOQWBDMXpfLpHp0X0rQYKQIMVG8JkH8=;
+    b=kbLGHLsDn9OOxnyTXp0jYcGCyAPdSCJ9d+sZFfH7x1Y/LJQKusCj9ub35aJmZo5cNF
+    W/XULx9gJooj2VjmMFWRabVW8Byp9FsjM3VJl9VDxPPrU9LArjL+NIPCMiJFQ8jvjBxi
+    Txybm1d6reFAAllbpxGD9syLdSvsBvjQaNyuwTZnDkhO1XSXUNa9uKPjpoMG1ZYLOx7i
+    u5YMnVdNs5iTiFxIQcPspTUj+/E650yscVX8PfTc1MxP/tJYzAF1NNhbKTtLNAFWv6T1
+    hdpTC6j8SrS+vZ4n7Jj+eZWlypQsnizLTTF+HoS8b401aMEkS4CFq+aufQE6yYS8x4nI
+    Dfvw==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1696338115;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=AvW+X7TnuvQSmOQWBDMXpfLpHp0X0rQYKQIMVG8JkH8=;
+    b=feZ+cqNwotdO3KEoXEawSFD/lJNElCylDGN5F+Y64jbK5AUmxzqcr/g18yj5oRxrQP
+    kyJ87Qykgwge5XYZMa92W/gkuFI5UkdSyNvmozR9XDBz2xTP8CTz5OzhencnFSU2TM8L
+    rjPtsHF9amIEQa2mT8DIgjGZJDf3aHqgxXZfvZimkiJISsjE/93UtjQ0GuZXdyBTuQyB
+    +v1V7hEOAKgrhbNZ54/MsjDEBiT69igvSeXChDgNTk1s4SVyziy4Cg46SLAN3h8K7FTO
+    Gr0CfYOvywQcR8hBQuGOmLZg9TIgCkbDsnYL7N5rEy1aqfFPL3aFopY+kFK5Q9vGK3uC
+    3zWQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1696338115;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=AvW+X7TnuvQSmOQWBDMXpfLpHp0X0rQYKQIMVG8JkH8=;
+    b=GdV0/i8ao1XAWoe0l249j8oEISXEw5v65hSiDlVEhuGGCJUf32aObuXz+mYZvz2NW/
+    TYxc0BZ2JH0N7bBJuBDw==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8paF1A=="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.8.2 DYNA|AUTH)
+    with ESMTPSA id R04c57z93D1s2Me
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Tue, 3 Oct 2023 15:01:54 +0200 (CEST)
+Date: Tue, 3 Oct 2023 15:01:48 +0200
+From: Stephan Gerhold <stephan@gerhold.net>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Subject: Re: [PATCH v4 3/5] drivers/tty/serial: add driver for the ESP32 UART
-Message-ID: <2023100348-visitor-browse-3142@gregkh>
-References: <20230928151631.149333-1-jcmvbkbc@gmail.com>
- <20230928151631.149333-4-jcmvbkbc@gmail.com>
+	Georgi Djakov <djakov@kernel.org>, Ilia Lin <ilia.lin@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Nishanth Menon <nm@ti.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
+	Christian Marangi <ansuelsmth@gmail.com>
+Subject: Re: [PATCH v4 05/23] interconnect: icc-clk: add support for scaling
+ using OPP
+Message-ID: <ZRwQvP_GbvwvLAn8@gerhold.net>
+References: <20230827115033.935089-1-dmitry.baryshkov@linaro.org>
+ <20230827115033.935089-6-dmitry.baryshkov@linaro.org>
+ <493aff10d698c9ca5bdbeae45250f5fe.sboyd@kernel.org>
+ <7312633f-3b53-43a1-b6e3-010513c2a1e2@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,105 +97,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230928151631.149333-4-jcmvbkbc@gmail.com>
+In-Reply-To: <7312633f-3b53-43a1-b6e3-010513c2a1e2@linaro.org>
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Thu, Sep 28, 2023 at 08:16:29AM -0700, Max Filippov wrote:
-> Add driver for the UART controllers of the Espressif ESP32 and ESP32S3
-> SoCs. Hardware specification is available at the following URLs:
+On Tue, Oct 03, 2023 at 11:30:28AM +0300, Dmitry Baryshkov wrote:
+> On 28/08/2023 21:09, Stephen Boyd wrote:
+> > Quoting Dmitry Baryshkov (2023-08-27 04:50:15)
+> > > diff --git a/drivers/interconnect/icc-clk.c b/drivers/interconnect/icc-clk.c
+> > > index d787f2ea36d9..45ffb068979d 100644
+> > > --- a/drivers/interconnect/icc-clk.c
+> > > +++ b/drivers/interconnect/icc-clk.c
+> > > @@ -25,12 +28,16 @@ struct icc_clk_provider {
+> > >   static int icc_clk_set(struct icc_node *src, struct icc_node *dst)
+> > >   {
+> > >          struct icc_clk_node *qn = src->data;
+> > > +       unsigned long rate = icc_units_to_bps(src->peak_bw);
+> > >          int ret;
+> > >          if (!qn || !qn->clk)
+> > >                  return 0;
+> > > -       if (!src->peak_bw) {
+> > > +       if (qn->opp)
+> > > +               return dev_pm_opp_set_rate(qn->dev, rate);
+> > 
+> > Just curious how does lockdep do with this? Doesn't OPP call into
+> > interconnect code, so lockdep will complain about ABBA?
 > 
->   https://www.espressif.com/sites/default/files/documentation/esp32_technical_reference_manual_en.pdf
->   (Chapter 13 UART Controller)
->   https://www.espressif.com/sites/default/files/documentation/esp32-s3_technical_reference_manual_en.pdf
->   (Chapter 26 UART Controller)
+> Unfortunately it does. It seems, the icc-clk is not a proper way to go here.
+> I will take a look at reusing set_required_opps for this case.
 > 
-> Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
-> ---
-> Changes v2->v3:
-> - rework brk handling in esp32_uart_rxint
-> - only increment port->icount.rx in case insert_flip_char() is called
-> - use HZ instead of msecs_to_jiffies(1000) in esp32_uart_put_char_sync
-> - add early return to esp32_uart_transmit_buffer
-> - use request_irq/free_irq instead of devm_* versions
-> - add blank lines before certain return statements
-> 
-> Changes v1->v2:
-> - redefine register fields using BIT and GENMASK
-> - drop _MASK suffix from register field definitions
-> - drop *_SHIFT definitions where possible
-> - drop unused rxfifo_full_thrhd_mask and txfifo_empty_thrhd_mask
-> - split register reads/writes and bitwise operations into multiple lines
-> - use u8 instead of unsigned char in internal functions
-> - add timeout to esp32_uart_put_char_sync
-> - use uart_port_tx_limited in esp32_uart_transmit_buffer
-> - use IRQ_RETVAL in esp32_uart_int
-> - disable clock in esp32_uart_startup in case devm_request_irq fails
-> - rearrange devm_request_irq with enabling IRQs in the UART registers
-> - drop empty esp32_uart_release_port and esp32_uart_request_port
-> - simplify esp32_uart_tx_empty
-> - mask out unsupported CMSPAR flag in termios->c_cflag in
->   esp32_uart_set_termios
-> - invoke uart_update_timeout in esp32_uart_set_termios
-> - drop MODULE_DESCRIPTION
-> - rearrange esp32_uart_set_baud: return bool indicating whether baud
->   rate was set or not, use it in the esp32_uart_set_termios to set the
->   default 115200
-> - turn 'locked' into bool in esp32_uart_console_write
-> - turn num_read into unsigned int in esp32_uart_earlycon_read
-> 
->  drivers/tty/serial/Kconfig       |  13 +
->  drivers/tty/serial/Makefile      |   1 +
->  drivers/tty/serial/esp32_uart.c  | 741 +++++++++++++++++++++++++++++++
->  include/uapi/linux/serial_core.h |   3 +
->  4 files changed, 758 insertions(+)
->  create mode 100644 drivers/tty/serial/esp32_uart.c
-> 
-> diff --git a/drivers/tty/serial/Kconfig b/drivers/tty/serial/Kconfig
-> index bdc568a4ab66..d9ca6b268f01 100644
-> --- a/drivers/tty/serial/Kconfig
-> +++ b/drivers/tty/serial/Kconfig
-> @@ -1578,6 +1578,19 @@ config SERIAL_NUVOTON_MA35D1_CONSOLE
->  	  but you can alter that using a kernel command line option such as
->  	  "console=ttyNVTx".
->  
-> +config SERIAL_ESP32
-> +	tristate "Espressif ESP32 UART support"
-> +	depends on XTENSA_PLATFORM_ESP32 || (COMPILE_TEST && OF)
-> +	select SERIAL_CORE
-> +	select SERIAL_CORE_CONSOLE
-> +	select SERIAL_EARLYCON
-> +	help
-> +	  Driver for the UART controllers of the Espressif ESP32xx SoCs.
-> +	  When earlycon option is enabled the following kernel command line
-> +	  snippets may be used:
-> +	    earlycon=esp32s3uart,mmio32,0x60000000,115200n8,40000000
-> +	    earlycon=esp32uart,mmio32,0x3ff40000,115200n8
-> +
->  endmenu
->  
->  config SERIAL_MCTRL_GPIO
-> diff --git a/drivers/tty/serial/Makefile b/drivers/tty/serial/Makefile
-> index 138abbc89738..7b73137df7f3 100644
-> --- a/drivers/tty/serial/Makefile
-> +++ b/drivers/tty/serial/Makefile
-> @@ -88,6 +88,7 @@ obj-$(CONFIG_SERIAL_MILBEAUT_USIO) += milbeaut_usio.o
->  obj-$(CONFIG_SERIAL_SIFIVE)	+= sifive.o
->  obj-$(CONFIG_SERIAL_LITEUART) += liteuart.o
->  obj-$(CONFIG_SERIAL_SUNPLUS)	+= sunplus-uart.o
-> +obj-$(CONFIG_SERIAL_ESP32)	+= esp32_uart.o
->  
->  # GPIOLIB helpers for modem control lines
->  obj-$(CONFIG_SERIAL_MCTRL_GPIO)	+= serial_mctrl_gpio.o
-> diff --git a/drivers/tty/serial/esp32_uart.c b/drivers/tty/serial/esp32_uart.c
-> new file mode 100644
-> index 000000000000..bb5471e8b6b6
-> --- /dev/null
-> +++ b/drivers/tty/serial/esp32_uart.c
-> @@ -0,0 +1,741 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
 
-Same license and copyright question as I had on the ACM patch.
+Could you elaborate a bit which locks exactly cause trouble here?
+I'm probably missing something here.
 
-thanks,
+From a quick look at the OPP code I don't see a global lock taken there
+for the entire OPP switch sequence, so I'm not sure how this could cause
+an ABBA deadlock.
 
-greg k-h
+Thanks,
+Stephan
 
