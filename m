@@ -1,181 +1,226 @@
-Return-Path: <devicetree+bounces-5301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A0F47B5EB8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 03:34:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B9397B5EFF
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 04:17:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id B5372B2095E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 01:34:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id EF081281649
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 02:17:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FBC0655;
-	Tue,  3 Oct 2023 01:34:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F06D7ED;
+	Tue,  3 Oct 2023 02:17:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73EBF63D
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 01:34:16 +0000 (UTC)
-Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F1DFBD
-	for <devicetree@vger.kernel.org>; Mon,  2 Oct 2023 18:34:14 -0700 (PDT)
-Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-1dd2e4f744dso76617fac.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Oct 2023 18:34:14 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D987665B
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 02:17:15 +0000 (UTC)
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0547AD;
+	Mon,  2 Oct 2023 19:17:13 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-50305abe5f0so465416e87.2;
+        Mon, 02 Oct 2023 19:17:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696296853; x=1696901653; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=I7nyeV1Yn2yP8Ggds9eqnE7ec2vBo1fUqwlgRN2c/0g=;
-        b=y0Ge++je358a66UI8vjzZA3ztSBnlYcrePO5jpI/hBpFCwsQzbVDKlSitLhcDdltuj
-         Pz05wimlwDbO3E4YV2al65IHstG00no1946dQSrtiiZ82pfWnjfGtKNYG47S3kxc5wHu
-         3XbXqjcFDu6rtJQtNiPOVs+qdG2Cp3cEKvt+rBJBUWwTyWCfZsQkvIOA5oBt8QOvcnT3
-         p+GRtlFNLo4yHkxKwRFc5C+dZNH38XmV5nK0s/B/XgOMl17XhWKFpd/zwpnB14m8Ib/l
-         0h8tdSSrpESjc8iFMDa+Q86DZoTTd92T+2RK4D0e7DGnQpCuII5yAjom3Rj1+gtkw1G+
-         F9HQ==
+        d=gmail.com; s=20230601; t=1696299432; x=1696904232; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=2vy7HP7S+bIn4v9pIEd0dIc0fwjXzhU2HqPC7qUpnLI=;
+        b=FBJW8xNl1igx46yD016YT2TUFSemd7HNidr6igybyqi1iVe7l9ZeZw1N4F6wgAZErx
+         z89LG0gZA5uBDdRIPZu/bl3fzTTxy2ywQ7CTB34CRCrU0WuaEpwfypmnri2W1jlWYwwb
+         HREOlRjmePYdGncN8af/wqxo2uAkS/opXcWBV5oqSmSOFEMiJbiKwuRaU5hh5QQ69+dZ
+         Zny1VuCs+O1XnoOKG7/ZDc5vEkifDbGHOZ8icBYIhlqLzOgCB+FQUPC7jc/UtlPjWlx8
+         8rV2V6l9/805L1n9ZSMQ8VKRjJB4BCso9R6uJkFusGm3lvH9Z/nruEsyZBAvnXqSoLmD
+         D4lQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696296853; x=1696901653;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=I7nyeV1Yn2yP8Ggds9eqnE7ec2vBo1fUqwlgRN2c/0g=;
-        b=qUBxUrQuJaY2mKrpwQaLbNzvvB62wj2yg9GN7N9POBC+Pv0G0uaUiy5UiJyhy6vKNp
-         uCBarzVzqYvINT7APcrvhdlz7rpR8N0b9GhtWOcztxF+g1zJvLkAtAp9K1qD9aab90ac
-         4SsltjDSfoQSrybxIhKjYVXFUfsSWSdTv/E49yIZWl6SGfIxYWjdOIGOlgsDhcA9cc4C
-         VApGQ0v3rUR7w519ta8vrpgAs1BE1VpYu76ojJwRcRTN6eOduv94zgbd/KmRj7mztkxr
-         COpwD40gE37Rq2nl+TT7D/PBEeOLaWRkS/W/aJXfzmy1LF3UODLJsia28F06I3eI1yk8
-         q3IA==
-X-Gm-Message-State: AOJu0YybgvXqochY/MyIq62WJqiCAGMs+KOrva6vMelnEYVSkcuI/lLs
-	sZfkcl/5xkjzqntwzh6LcLMESw==
-X-Google-Smtp-Source: AGHT+IFl7MKPdUyLdYV+664LiWNT6GvamIQT6n7BLip/4YiuwCVklAkskqnxLOqewP8BEXYfSrxH5g==
-X-Received: by 2002:a05:6808:1997:b0:3af:6453:2d83 with SMTP id bj23-20020a056808199700b003af64532d83mr16345408oib.2.1696296853242;
-        Mon, 02 Oct 2023 18:34:13 -0700 (PDT)
-Received: from octopus ([2400:4050:c3e1:100:783d:e8bb:e013:a869])
-        by smtp.gmail.com with ESMTPSA id fv21-20020a17090b0e9500b002775281b9easm6931241pjb.50.2023.10.02.18.34.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Oct 2023 18:34:12 -0700 (PDT)
-Date: Tue, 3 Oct 2023 10:34:08 +0900
-From: AKASHI Takahiro <takahiro.akashi@linaro.org>
-To: Cristian Marussi <cristian.marussi@arm.com>
-Cc: Rob Herring <robh@kernel.org>, sudeep.holla@arm.com,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linus.walleij@linaro.org, Oleksii_Moisieiev@epam.com,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [RFC 4/4] dt-bindings: gpio: Add bindings for SCMI pinctrl based
- gpio
-Message-ID: <ZRtvkO56iM9JgHTS@octopus>
-Mail-Followup-To: AKASHI Takahiro <takahiro.akashi@linaro.org>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Rob Herring <robh@kernel.org>, sudeep.holla@arm.com,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linus.walleij@linaro.org, Oleksii_Moisieiev@epam.com,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20231002021602.260100-1-takahiro.akashi@linaro.org>
- <20231002021602.260100-5-takahiro.akashi@linaro.org>
- <20231002144155.GA1675188-robh@kernel.org>
- <ZRrak57Vg0X0Aqf3@pluto>
+        d=1e100.net; s=20230601; t=1696299432; x=1696904232;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2vy7HP7S+bIn4v9pIEd0dIc0fwjXzhU2HqPC7qUpnLI=;
+        b=ozGz1xfzJCMLj80U7WuNeWhbI9hwMy7CSDJ2G3A04siDwRgcKiP2NBOnzuFLSAsYNU
+         MNRNvny/83SNxldcFuG2Vtc/YSdXzbEmenEvn28wb6hOlZc/SnJ2/57g/winOLzDoRxE
+         raDEs5Xbf1PSaW2fMFkf19RMpWy/2CzxvvNY7VzHMJr04AYygFeSC0tPJviwI/7hDSe1
+         BPW/7zDxL7ur2tfISlMOk3VGOyZ4O1uSwfI/tutY6NhNbMEig2VxNqdSBC+UuY5FEBSb
+         Vd/GSOmKy1fQAV3h28cxo28TKEOfXqozzoVb5SGYiBE/Wc/+CKSMOpmigfUZ4KvZ3ceR
+         R+3g==
+X-Gm-Message-State: AOJu0YyEfm2OgJhVLXhhaAsjU/zGkxkYNG5x+BfKF55gpf3tL2m/uAA+
+	RKQFRf7GnpzXOHS6RRYHevnt7jdao9nbxL60BKo=
+X-Google-Smtp-Source: AGHT+IHJS1T/GroG+DU47CRG6NyZHgzyeh+7aBS/B7HZ38LrhMLxPXT3GdPENECEp/F88DUlqojOhqZNFzy6blEiAUI=
+X-Received: by 2002:a19:8c43:0:b0:4fe:1681:9377 with SMTP id
+ i3-20020a198c43000000b004fe16819377mr10120810lfj.44.1696299431581; Mon, 02
+ Oct 2023 19:17:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZRrak57Vg0X0Aqf3@pluto>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From: Sophon Wu <wuxilin123@gmail.com>
+Date: Tue, 3 Oct 2023 10:17:01 +0800
+Message-ID: <CAEPPPKu=yxS6SgdLZiuhbF2DRURKVUBNgNbUQ96LxHHbtsJ6Sg@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] clk: qcom: add SM8550 DISPCC driver
+To: neil.armstrong@linaro.org
+Cc: Andy Gross <agross@kernel.org>, andersson@kernel.org, devicetree@vger.kernel.org, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-msm@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	mturquette@baylibre.com, Rob Herring <robh+dt@kernel.org>, sboyd@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Rob, Cristian,
+On 09/01/2023 16:47, Neil Armstrong wrote:
 
-On Mon, Oct 02, 2023 at 03:58:27PM +0100, Cristian Marussi wrote:
-> On Mon, Oct 02, 2023 at 09:41:55AM -0500, Rob Herring wrote:
-> > On Mon, Oct 02, 2023 at 11:16:02AM +0900, AKASHI Takahiro wrote:
-> > > A dt binding for SCMI pinctrl based gpio driver is defined in this
-> > > commit. It basically conforms to generic pinctrl-gpio mapping framework.
-> 
-> [ snip]
-> 
-> > > +    additionalProperties: false
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - gpio-controller
-> > > +  - "#gpio-cells"
-> > > +  - gpio-ranges
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/gpio/gpio.h>
-> > > +
-> > > +    scmi_gpio_0: scmi_gpio@0 {
-> > 
-> > gpio {
-> > 
-> > But doesn't SCMI have protocol numbers?
-> > 
-> 
-> My understanding is that this RFC GPIO driver from Akashi is built
-> completely on Pinctrl facilities (as he says in the cover), it is not
-> indeed a typical pure SCMI driver, it just happen to trigger the use
-> of SCMI if the underlying backend pinctrl driver is pinctrl-scmi;
-> but this driver does not really call directly into any SCMI API by
-> itself, i.e. it does not get and call any SCMI protocol ops.
-> (but it could indeed trigger the backend Pinctrl SCMI driver to issue
->  such call on its behalf AFAIU...)
+> Add support for the display clock controller found in SM8550
+> based devices.
 
-It would be possible to implement this driver by directly using SCMI
-pinctrl interfaces (I mean drivers/firmware/arm,scmi/pinctrl.c)
-if the system wants to utilize SCMI solely for GPIO accesses and doesn't
-need pinctrl support.
-(Even so, "protocol@19" will be required due to the current SCMI binding.)
+> This clock controller feeds the Multimedia Display SubSystem (MDSS).
+> This driver is based on the SM8450 support.
 
-But I didn't take this approach because the kernel's pinctrl framework
-(and many existing pinctrl drivers) instead adopts standard pinctrl-
-gpio mapping (I mean gpiolib(-of).c) and it just seems to work well.
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
 
-> I wonder why it has even a dependency on PINCTRL_SCMI at this point;
-> is not that it could work (generically) even if the backend Pinctrl
-> driver is NOT SCMI ?
-> What makes it usable only against an SCMI Pinctrl backend ?
-> Cannot be a generic GPIO driver based on top of Pinctrl, no matter which
-> Pinctrl backend driver has been configured ?
+Hi Neil,
 
-That is one of my questions (See the issue (3) in my cover letter.)
-Why doesn't there exist a generic GPIO driver of this kind (based on gpiolib
-framework) even though it could apparently be possible?
+I'm trying to enable display on SM8550 but having trouble with clocks. Do you
+have any idea on this maybe? Full dmesg here: https://bpa.st/7E6Q
 
-I guess that there a couple of reasons:
-1) As I mentioned in the issue (1) in my cover letter, the current
-  framework doesn't present an interface, especially for obtaining
-  a value on a gpio input pin. Then it enforces each pinctrl-based gpio
-  driver needs to have its own driver.
-2) Furthermore, there may be driver-specific semantics required,
-  say, for pinconf-related configurations? (I don't come up with any
-  example, though)
+Regards,
+Xilin
 
-If my driver is good enough for applying to other gpio controllers as well,
-I would not hesitate to name it a genuine generic driver whether the backend
-may be SCMI or not.
-        -> Linus, comment here please.
-
-Due to possible cases of (2), I still added "-generic" postfix to the
-"compatibles" property so that other variant drivers may be tagged as
-"arm,scmi-gpio-some-system" or "some-vendor,scmi-gpio".
-
-Thanks,
--Takahiro Akashi
-
-> 
-> ...I maybe missing something here about Pinctrl AND GPIO frameworks :P
-> 
-> Thanks,
-> Cristian
+ ------------[ cut here ]------------
+ disp_cc_mdss_mdp_clk_src: rcg didn't update its configuration.
+ WARNING: CPU: 4 PID: 73 at drivers/clk/qcom/clk-rcg2.c:133
+update_config+0xd4/0xf0
+ Modules linked in:
+ CPU: 4 PID: 73 Comm: kworker/u16:2 Tainted: G S
+6.6.0-rc3-next-20230929-00006-g019d41d2e78e-dirty #252
+d692e32c53d7001f1537e28f80b45291db95a48f
+ Hardware name: AYN Odin 2 (DT)
+ Workqueue: events_unbound deferred_probe_work_func
+ pstate: 614000c5 (nZCv daIF +PAN -UAO -TCO +DIT -SSBS BTYPE=--)
+ pc : update_config+0xd4/0xf0
+ lr : update_config+0xd4/0xf0
+ sp : ffff8000861435d0
+ x29: ffff8000861435d0 x28: 0000000000000000 x27: 0000000000000000
+ x26: ffff0008011da0f4 x25: 0000000000000000 x24: 0000000000000000
+ x23: 0000000000000004 x22: ffff000804f0eac0 x21: ffff800082395f68
+ x20: ffff800085109c20 x19: 0000000000000000 x18: 0000000000000014
+ x17: 0000000043567dcd x16: 00000000c6ba16a0 x15: 0000000040b16970
+ x14: 0000000000000001 x13: 2e6e6f6974617275 x12: 6769666e6f632073
+ x11: 7469206574616470 x10: 752074276e646964 x9 : ffff8000801bfc5c
+ x8 : 2073746920657461 x7 : 6470752074276e64 x6 : 0000000000000010
+ x5 : 40000000ffff0254 x4 : ffff8000848907d0 x3 : 00000000ffffffff
+ x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff000801320000
+ Call trace:
+  update_config+0xd4/0xf0
+  clk_rcg2_shared_enable+0x58/0x98
+  clk_core_enable+0x78/0x1f8
+  clk_core_enable+0x58/0x1f8
+  clk_enable+0x34/0x60
+  clk_bulk_enable+0x54/0xe8
+  msm_mdss_enable+0xac/0x250
+  mdss_runtime_resume+0x3c/0x58
+  pm_generic_runtime_resume+0x34/0x58
+  __genpd_runtime_resume+0x38/0x90
+  genpd_runtime_resume+0x11c/0x2b0
+  __rpm_callback+0x50/0x1f0
+  rpm_callback+0x74/0x88
+  rpm_resume+0x534/0x760
+  __pm_runtime_resume+0x64/0xc0
+  __device_attach+0x8c/0x1c0
+  device_initial_probe+0x1c/0x30
+  bus_probe_device+0xb4/0xc0
+  device_add+0x64c/0x848
+  of_device_add+0x4c/0x70
+  of_platform_device_create_pdata+0x94/0x130
+  of_platform_bus_create+0x188/0x4c8
+  of_platform_populate+0x60/0x160
+  mdss_probe+0x278/0x398
+  platform_probe+0x70/0xd8
+  really_probe+0x190/0x3d8
+  __driver_probe_device+0x84/0x180
+  driver_probe_device+0x44/0x120
+  __device_attach_driver+0xc4/0x168
+  bus_for_each_drv+0x8c/0xf0
+  __device_attach+0xa4/0x1c0
+  device_initial_probe+0x1c/0x30
+  bus_probe_device+0xb4/0xc0
+  deferred_probe_work_func+0xbc/0x118
+  process_one_work+0x154/0x3c8
+  worker_thread+0x2bc/0x3e0
+  kthread+0x118/0x128
+  ret_from_fork+0x10/0x20
+ ---[ end trace 0000000000000000 ]---
+ Failed to enable clk '(null)': -16
+ msm-mdss ae00000.display-subsystem: clock enable failed, ret:-16
+ ------------[ cut here ]------------
+ disp_cc_mdss_ahb_clk status stuck at 'off'
+ WARNING: CPU: 4 PID: 73 at drivers/clk/qcom/clk-branch.c:86
+clk_branch_wait+0x148/0x168
+ Modules linked in:
+ CPU: 4 PID: 73 Comm: kworker/u16:2 Tainted: G S      W
+6.6.0-rc3-next-20230929-00006-g019d41d2e78e-dirty #252
+d692e32c53d7001f1537e28f80b45291db95a48f
+ Hardware name: AYN Odin 2 (DT)
+ Workqueue: events_unbound deferred_probe_work_func
+ pstate: 614000c5 (nZCv daIF +PAN -UAO -TCO +DIT -SSBS BTYPE=--)
+ pc : clk_branch_wait+0x148/0x168
+ lr : clk_branch_wait+0x148/0x168
+ sp : ffff800086143650
+ x29: ffff800086143650 x28: 0000000000000000 x27: 0000000000000000
+ x26: 0000000000000000 x25: ffff000a7e7b50d8 x24: ffff80008517ac90
+ x23: ffff800082395ed0 x22: 0000000000000001 x21: ffff800080bb09f0
+ x20: 0000000000000000 x19: ffff8000851094d0 x18: 0000000000000006
+ x17: 0000000000000000 x16: 0000000000000020 x15: 0000000000000002
+ x14: 0000000000000001 x13: 0000000000000004 x12: 0000000000000000
+ x11: 0000000000000000 x10: 0000000000000020 x9 : ffff8000801bfc5c
+ x8 : 0000000000000020 x7 : 00000000ffffffff x6 : 0000000000000000
+ x5 : 0000000000000050 x4 : ffff800083df7e80 x3 : 00000000ffffffff
+ x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff000801320000
+ Call trace:
+  clk_branch_wait+0x148/0x168
+  clk_branch2_enable+0x38/0x50
+  clk_core_enable+0x78/0x1f8
+  clk_enable+0x34/0x60
+  dsi_phy_enable_resource+0x98/0xb8
+  dsi_phy_driver_probe+0x26c/0x408
+  platform_probe+0x70/0xd8
+  really_probe+0x190/0x3d8
+  __driver_probe_device+0x84/0x180
+  driver_probe_device+0x44/0x120
+  __device_attach_driver+0xc4/0x168
+  bus_for_each_drv+0x8c/0xf0
+  __device_attach+0xa4/0x1c0
+  device_initial_probe+0x1c/0x30
+  bus_probe_device+0xb4/0xc0
+  device_add+0x64c/0x848
+  of_device_add+0x4c/0x70
+  of_platform_device_create_pdata+0x94/0x130
+  of_platform_bus_create+0x188/0x4c8
+  of_platform_populate+0x60/0x160
+  mdss_probe+0x278/0x398
+  platform_probe+0x70/0xd8
+  really_probe+0x190/0x3d8
+  __driver_probe_device+0x84/0x180
+  driver_probe_device+0x44/0x120
+  __device_attach_driver+0xc4/0x168
+  bus_for_each_drv+0x8c/0xf0
+  __device_attach+0xa4/0x1c0
+  device_initial_probe+0x1c/0x30
+  bus_probe_device+0xb4/0xc0
+  deferred_probe_work_func+0xbc/0x118
+  process_one_work+0x154/0x3c8
+  worker_thread+0x2bc/0x3e0
+  kthread+0x118/0x128
+  ret_from_fork+0x10/0x20
+ ---[ end trace 0000000000000000 ]---
+ msm_dsi_phy ae97000.phy: [drm:dsi_phy_enable_resource] *ERROR*
+dsi_phy_enable_resource: can't enable ahb clk, -16
+ msm_dsi_phy: probe of ae97000.phy failed with error -16
 
