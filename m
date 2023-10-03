@@ -1,157 +1,109 @@
-Return-Path: <devicetree+bounces-5441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 394987B6565
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 11:23:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F3DD7B6569
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 11:24:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 5420F1C204F8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 09:23:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 3DD8D1C20803
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 09:24:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25781DF5D;
-	Tue,  3 Oct 2023 09:23:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0F1FDF60;
+	Tue,  3 Oct 2023 09:24:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D41B9DDAC
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 09:23:30 +0000 (UTC)
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF1B5B8
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 02:23:28 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99de884ad25so112296566b.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Oct 2023 02:23:28 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ACE6DDAC;
+	Tue,  3 Oct 2023 09:24:01 +0000 (UTC)
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24EC2AB;
+	Tue,  3 Oct 2023 02:24:00 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2c00df105f8so8236731fa.2;
+        Tue, 03 Oct 2023 02:24:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696325007; x=1696929807; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=L/8988bsHO7VZbVQGcwNyBOiBSlIOehOK1VmntptBpg=;
-        b=WqmZdZSH3J+d6Sc3cy2Ad/fk6c7VQI+RxHsAEvj+H0F3UyyA2rqE8o4rEVUCwHf/zW
-         C4hKnWRluBZmCorAWVS6Mr2yciSh99QsMCyQkGEssI7Ua3Xyb53DkpJwroCtqyqZWeC0
-         Ex96Z9JvUen5HOkD4sycpBojKcfvUcWzD9dR5VeXXobB19OJFN0Rg31JqHGNHY5Gf+s+
-         kWL8tTbAKvKyaa2OnIknkw0K05FWCjEiXJp3p33a4BJwT2FQ6DemCnOtU6OqEeP5qtgE
-         oz+3gpmPKuJjwJpJh0NHVWrJxY7OL2isX2zwiz59GdhmTlAu6iCo888QfEcP3kfzaiLw
-         DsXQ==
+        d=gmail.com; s=20230601; t=1696325038; x=1696929838; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=o02q/FIkDaGrgLqoN/Aj/vG1/YJOsTbj5fKhJBGnD2E=;
+        b=MnxE3v6QRLo92+y+2fiAfySUbDOh6InYpNKU1hzuWvyyhtYdOS1bOQL+43d+Zt5+ho
+         jTvp2EKPSrdktA8XrJwZwrhf6K+xLXkeWiFSG77AmouKm4SHO/fW4jU/FQmjMDfXe1YF
+         Znx/mXwcHj0mOT3+Bmwmc/d+Cl65Uou9qIX9Q/x62buBnIzZV7NCcQUr+MFB7GOAFVim
+         mh7WOAAGw4E+PgFCgmmDtO/Y9Q/Od+kv3kFfT+hkA9IcnzHq5a6uYB9o/Bd+aIMIDajA
+         VUZgvxX/+fIHWfM0EZLIper7c4as0lnMfKhKL3CTpaRSTfaf2pXjcbtGRaWnKQXzbgvO
+         XoIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696325007; x=1696929807;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=L/8988bsHO7VZbVQGcwNyBOiBSlIOehOK1VmntptBpg=;
-        b=OWm23pUVzi6Qm+GuICAXfZE2Lp0MKoZdDeI7fgt8WvPHd5vCpzyUHuS9kZiABQb3dR
-         POkqdiTU4Etyj50EwbviIEPFJG+ms07SRlaEDo7cpBMpscZie1cJZ4bcCnSFAh02DHm2
-         jmV1E8kLMB9K/uktYXF50VhWhYWuAPOm3biBPPPVOyId7Pbgdiq3grIxzBU+CWyWmPIO
-         DTvXspqvSt2TaDE09WalD+sqiE9a2gsbWoFLyfSNUatmrUrlNPjYaAzVSpeIwaAuQyne
-         J3z9Gw+wrw7LON8HivXCTla06fbpXT9Ta2/aTwdAqLpkA3X5IFm3ULLpSBaAPpF54WIW
-         8Nbg==
-X-Gm-Message-State: AOJu0YzXM9i1MXj9xfc6Eqtjy677vbbBOMvRje3D8oNyJRINCqMYLTFk
-	Caym0j1cAMgioegGnWUNSmWthQ==
-X-Google-Smtp-Source: AGHT+IHlGvUfYdcparkMPqBt5faFetbC37VlguOCcOg9LfpZ+nPcXWy83/RU+GbbVQtg5mY2cvmKqQ==
-X-Received: by 2002:a17:906:3050:b0:9ad:e0e0:d6ab with SMTP id d16-20020a170906305000b009ade0e0d6abmr12491229ejd.12.1696325007359;
-        Tue, 03 Oct 2023 02:23:27 -0700 (PDT)
-Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id fy33-20020a1709069f2100b009ae4ead6c01sm718636ejc.163.2023.10.03.02.23.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Oct 2023 02:23:26 -0700 (PDT)
-Message-ID: <55870f8f-db70-424d-9de5-bce87800dd1f@linaro.org>
-Date: Tue, 3 Oct 2023 11:23:25 +0200
+        d=1e100.net; s=20230601; t=1696325038; x=1696929838;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=o02q/FIkDaGrgLqoN/Aj/vG1/YJOsTbj5fKhJBGnD2E=;
+        b=Bjwyv0hEuuxT1ynUg00yvCKfTKOBxs+lsmKMqfZC7dgKXfYmDlOk6Q2sXg8wWwdD+k
+         DNyoDBtZFwIkjp87P29U6CRstouzco5bFCETqepyLh/uxz0xundvlGxBE65WGXDBEgZB
+         PfyMpJidJyLrFNLu3A/9Rr40giQLbhKSL8FyRF/eZAob+9ZRfuDL82Xr+HM3YBuOkmI3
+         fUwqfD174cThIn6MtZGI+5O9P8L/Va3xzH+WN9XxH4TsNK5Y0hzhi2k0sunNJ5fPM6G6
+         1utmFzonQAEOOlzaNyfmXBMm+Vo/4Oy/teXUYdLOoIzXrTFE+T3Dm2Ag81Na8u2d+gGf
+         lRtA==
+X-Gm-Message-State: AOJu0Yxfq7PlOlhEFJ0SXj0eRtssFDjTYk2bsyU8136gpsN/9q0X4Q47
+	lBZ0LYFSobyi7jUlmF5AbunudclfmfFueyCxMoE=
+X-Google-Smtp-Source: AGHT+IG3BDQNI/pILbidS9xryMvAbSkn6Y/6bkHT63bOwqPMoRRoTSL7+zz03ry1Fl2f/uI9CfxqrOri93gbzoU0eQc=
+X-Received: by 2002:a2e:9b04:0:b0:2bd:e3e:1a23 with SMTP id
+ u4-20020a2e9b04000000b002bd0e3e1a23mr10574736lji.45.1696325038173; Tue, 03
+ Oct 2023 02:23:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add prefix for SIE
-Content-Language: en-US
-To: Shawn Anastasio <sanastasio@raptorengineering.com>,
- devicetree@vger.kernel.org, lee@kernel.org,
- Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Chris Morgan <macromorgan@hotmail.com>, Jagan Teki <jagan@edgeble.ai>,
- Icenowy Zheng <uwu@icenowy.me>, linux-kernel@vger.kernel.org
-References: <cover.1696285339.git.sanastasio@raptorengineering.com>
- <e2fb7a1924bf5642204c50d73d414b5d41e09e93.1696285339.git.sanastasio@raptorengineering.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <e2fb7a1924bf5642204c50d73d414b5d41e09e93.1696285339.git.sanastasio@raptorengineering.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+References: <20231002161350.64229-1-tmaimon77@gmail.com> <2023100323-reunite-upfront-8922@gregkh>
+ <CAP6Zq1jHzRP1Ytzk8YXyR8ppAP=ZoPvPkYvC2yMRfTt5140zqw@mail.gmail.com> <0298e4a7-0f40-41d6-82f3-327d2fe493cc@linaro.org>
+In-Reply-To: <0298e4a7-0f40-41d6-82f3-327d2fe493cc@linaro.org>
+From: Tomer Maimon <tmaimon77@gmail.com>
+Date: Tue, 3 Oct 2023 12:23:46 +0300
+Message-ID: <CAP6Zq1ghiUhecvtC7gpKtbP11QTU8Js0wCk_sTFqjUf=d6KK1A@mail.gmail.com>
+Subject: Re: [PATCH RESEND v3 0/3] usb: ChipIdea: add Nuvoton NPCM UDC support
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Greg KH <gregkh@linuxfoundation.org>, peter.chen@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, xu.yang_2@nxp.com, peng.fan@nxp.com, 
+	avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au, 
+	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
+	j.neuschaefer@gmx.net, openbmc@lists.ozlabs.org, linux-usb@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 03/10/2023 00:32, Shawn Anastasio wrote:
-> Add a vendor prefix for Sony Interactive Entertainment LLC (SIE).
-> 
-> Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 573578db9509..cff35e68a34d 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -1211,6 +1211,8 @@ patternProperties:
->      description: Si-En Technology Ltd.
->    "^si-linux,.*":
->      description: Silicon Linux Corporation
-> +  "^sie,.*":
-> +    description: Sony Interactive Entertainment LLC
+Hi Krzysztof,
 
-Is this different company than Sony?
+Appreciate your clarifications
 
-Best regards,
-Krzysztof
+Thanks,
 
+Tomer
+
+On Tue, 3 Oct 2023 at 11:32, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 03/10/2023 08:56, Tomer Maimon wrote:
+> > Hi Greg,
+> >
+> > Forgot to add in Acked-by: Peter Chen <peter.chen@kernel.org> in V3,
+> > Resend the patch set with the Ack.
+> >
+> > Should I do it differently?
+>
+> If it is RESEND after some time (min. 2 weeks), then it is fine. If you
+> added tags or changed something, make a new version. If you resend for
+> any other reason (assuming resend is valid), please mention shortly why
+> do you resend (e.g. "My company email servers maybe blocked it, so
+> resending without changes").
+>
+> Best regards,
+> Krzysztof
+>
 
