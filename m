@@ -1,567 +1,145 @@
-Return-Path: <devicetree+bounces-5424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 805C77B64EE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 11:03:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE1CD7B650E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 11:12:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 29BE3281600
-	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 09:03:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id DBAB12816A0
+	for <lists+devicetree@lfdr.de>; Tue,  3 Oct 2023 09:12:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8070DDD3;
-	Tue,  3 Oct 2023 09:03:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D701BDF47;
+	Tue,  3 Oct 2023 09:12:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08871DDCA
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 09:03:50 +0000 (UTC)
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6035D9E
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 02:03:48 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40652e570d9so6914835e9.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Oct 2023 02:03:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696323827; x=1696928627; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/39EBDm+NLaDpcdMYuUMSA4Uh3XQIv7WfmI2H8M+ZKE=;
-        b=x2DZaf8IgSYVhk8D63/+IK2HVPtGeB92TdJfQCHXGdtwksjU0a3jekJ6Zf3zezFePm
-         8mNbwG1E4ClWC/8/6XjTis5VHxtlxggdJWx1/mdGwSAekuu5esrU5N6hDPDi29B3Yws9
-         CsI/l/dbVBbieWZ7tPZsVCEZzK5cb2qSkuNclnuWDVIrA5T75x/V55ahE06HfQqpK/+0
-         nKhll/CtfOQJhv8x8OV4hCfse3aw1Fe8pK6t0S6wniloy9RpKoXIySTRaUch/dEcKklH
-         WOWwazc+DEg+0WzMrwT7EJqlIHiKbfw38kD8ihlc3LnbCzXsypyXe8gO8SOBEsbIsySj
-         gyRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696323827; x=1696928627;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/39EBDm+NLaDpcdMYuUMSA4Uh3XQIv7WfmI2H8M+ZKE=;
-        b=cCl4yVBD4rwoF9/jbHjRHaFh2zQ8/Z0RJNagjSaqPJAKWEbazGOMNPdDI7qAYJ55s4
-         8HWKWuVv/QkoJ0xENxhoLTS+flcex8SnHTMFQd9TB6DLaJaHYd9jYO2QRNhs0U2yVDJM
-         2HDPqzZEmE1X/A1r0jaaXTCUVPnl70/ocQftuGcHFc8Ek6c1LBYWj40lEwKJ7XYVM1EQ
-         r9eb2Su/5u1hgbH81RWzP030sCK9ZukoYm4SHIvMz8P+d+XKy3sKoTydS/VDTa2gCgr0
-         EVySQ0N+DYoOu5xffITAUlLnQj0lqIKAEUnCe//sn/KYz4ugOviJ26BNxsrl/SrYftMF
-         gw7Q==
-X-Gm-Message-State: AOJu0YxdQoXbmtNwzNO8k7BeBRmarwoL03CXHxIiK+uu/TZE9iep/SUP
-	nXn9SJvLRmsaPWuiFMw9IH6J1g==
-X-Google-Smtp-Source: AGHT+IHWoaamDOfqS4VDqB14bvXa4EGX1DZUSMwteMfOgAaAisj23A26UyYQ9Dv7BZmnnUn22wQazA==
-X-Received: by 2002:a05:600c:294a:b0:3f5:fff8:d4f3 with SMTP id n10-20020a05600c294a00b003f5fff8d4f3mr12572046wmd.7.1696323826733;
-        Tue, 03 Oct 2023 02:03:46 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id n9-20020a7bcbc9000000b004060f0a0fdbsm8936873wmi.41.2023.10.03.02.03.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Oct 2023 02:03:46 -0700 (PDT)
-Message-ID: <14afec80-3616-4ae1-a9a4-51f9b7c51a31@linaro.org>
-Date: Tue, 3 Oct 2023 10:03:45 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A164DDD3
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 09:12:10 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 073A39E;
+	Tue,  3 Oct 2023 02:12:07 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3939BpKn023068;
+	Tue, 3 Oct 2023 04:11:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1696324311;
+	bh=Cg7DT8ln9TJjE5CRUv3uGyQwdTEo56UtERpBKDIvvgI=;
+	h=From:Subject:Date:To:CC;
+	b=vzwH2PcUDgzSMMBrtpwCqQ35EO1CqAH2Wv87LumubX+4k8+ppWFME4bQZvN0XQmZj
+	 At4od2PCyyqYUT0C2+MHxukfUY5VHauMgVlDfHz94/XieJNX8bCtr87nZZYaCMP/kS
+	 cNnMHrUAL/qvVbxhxFjk6N2fimQ+HQTNAGlMvuq4=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3939BpQf034676
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 3 Oct 2023 04:11:51 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 3
+ Oct 2023 04:11:51 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 3 Oct 2023 04:11:51 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3939BowH019159;
+	Tue, 3 Oct 2023 04:11:50 -0500
+From: Jai Luthra <j-luthra@ti.com>
+Subject: [PATCH v3 0/6] arm64: ti: Enable audio on AM62A
+Date: Tue, 3 Oct 2023 14:41:29 +0530
+Message-ID: <20231003-mcasp_am62a-v3-0-2b631ff319ca@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: qcm6490: Add qcm6490 dts file
-Content-Language: en-US
-To: Komal Bajaj <quic_kbajaj@quicinc.com>, agross@kernel.org,
- andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, luca.weiss@fairphone.com
-References: <20231003055655.30994-1-quic_kbajaj@quicinc.com>
- <20231003055655.30994-3-quic_kbajaj@quicinc.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20231003055655.30994-3-quic_kbajaj@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-B4-Tracking: v=1; b=H4sIAMHaG2UC/23MywrCMBCF4VcpWRtJJpK2rnwPEZmmEzuLXkhKU
+ Erf3bQLRXB5Dnz/IiIFpijOxSICJY48DnmYQyFch8ODJLd5C1BgVGm07B3G6Y69BZTotbXKwsn
+ XpchiCuT5udeut7w7jvMYXns86e3930laKlk1rTal91h5fZn56MZebJEEX1hD9QshQ0e1V6QbB
+ Gg+cF3XN2V5RtLcAAAA
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon
+	<will@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devarsht@ti.com>, <a-bhatia1@ti.com>,
+        Jai
+ Luthra <j-luthra@ti.com>, Jayesh Choudhary <j-choudhary@ti.com>,
+        Julien Panis
+	<jpanis@baylibre.com>,
+        Esteban Blanc <eblanc@baylibre.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1517; i=j-luthra@ti.com;
+ h=from:subject:message-id; bh=smsj/lq+tZbmsGHZBLqMjtgta5PFDiLSddmPTUv51H8=;
+ b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBlG9rN9SU04IQJXWGOOZOKYwJip7op/Ac/XXDQH
+ FRE0SHGz+GJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZRvazQAKCRBD3pH5JJpx
+ RREhD/0ZuK3NUjvduE4sxoAVyishxZdyZMYpJ6S/dBxNt7Zt6IOZXqx6iNgzXCJtvTUzgZNdJ2N
+ C0j7jgjsgI7ewvO3z3eyACnS2/+SdVKIj2MsU4uDvccd2LVJsPfNL/WbsVS4oTgZ6lFZ1uIatNo
+ hImab2C+xyMW1U3dBbz/DytgtE/NPQN7Y5fHRYP7kLCAq6YuL1xr4NgmwQ9icRQZln2HKPJ0deh
+ oCc/MDMjvU4ZZ1dRa8oXA0jA1Mc+5X353QswItnLJwLHi7BK6iB59seAxdox3eapzu028QhNnm8
+ nqoyiY3dG4mC+Nc8HXRl5UlpHbIpRz5bnkamekOMTcbpKQAmrncpHi9YYe0uSiL+IBvlQyAE6un
+ +g3wRkI+s1LRRFb7CmdxE2FPptmZ8MrRpOU+WLiKXmqsTHpjn7h17bo7g6PWRSKHmx9URI/frH3
+ Lg8WIphUsR0OJ+xAZuR2ztGOx0MErCH0L05x+0dhpRgpRk1toOKM+/hD7P0Usjl9YVZtnUe7s0Q
+ 5vlzkZjKWg2/4grxBNpN/iv4y2zU/ZOgFn74Qf8t7L3jjHHQ3Sn45EAEgeWpWirGTH25cYCEJkZ
+ ehhlF2OxnkL09uV5Im/rjQ8nZLrNEVnuNSbce3wftbug5NfvFU6dM7YuGb1LlBJUmWweA7y4ly2
+ rz1cpyOHqg3UCeQ==
+X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
+ fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 03/10/2023 06:56, Komal Bajaj wrote:
-> Add qcm6490 devicetree file for QCM6490 SoC and QCM6490 IDP
-> platform. QCM6490 is derived from SC7280 meant for various
-> form factor including IoT.
-> 
-> Supported features are, as of now:
-> * Debug UART
-> * eMMC
-> * USB
-> 
-> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
-> ---
->   arch/arm64/boot/dts/qcom/Makefile        |   1 +
->   arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 335 +++++++++++++++++++++++
->   arch/arm64/boot/dts/qcom/qcm6490.dtsi    |  94 +++++++
->   3 files changed, 430 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/qcom/qcm6490-idp.dts
->   create mode 100644 arch/arm64/boot/dts/qcom/qcm6490.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 73c3be0f8872..3a2d9dbaacce 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -82,6 +82,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-sony-xperia-yoshino-maple.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-sony-xperia-yoshino-poplar.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-xiaomi-sagit.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-fairphone-fp5.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-idp.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> new file mode 100644
-> index 000000000000..ab9fa9197fe3
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> @@ -0,0 +1,335 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
-> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +#include "qcm6490.dtsi"
-This include should go last
+This patch series adds support for audio via headphone jack on
+SK-AM62A-LP. The jack is wired to TLV320AIC3106 (codec), which is
+connected to McASP1 (serializer) on the SoC.
 
-> +#include "pm7325.dtsi"
-> +#include "pm8350c.dtsi"
-> +#include "pmk8350.dtsi"
-> +
-> +/ {
-> +	model = "Qualcomm Technologies, Inc. QCM6490 IDP";
-> +	compatible = "qcom,qcm6490-idp", "qcom,qcm6490";
-> +
-> +	aliases {
-> +		serial0 = &uart5;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +};
-> +
-> +&apps_rsc {
-> +	regulators-0 {
-> +		compatible = "qcom,pm7325-rpmh-regulators";
-> +		qcom,pmic-id = "b";
-> +
-> +		vreg_s1b_1p8: smps1 {
-> +			regulator-min-microvolt = <1856000>;
-> +			regulator-max-microvolt = <2040000>;
-> +		};
-> +
-> +		vreg_s7b_0p9: smps7 {
-> +			regulator-min-microvolt = <535000>;
-> +			regulator-max-microvolt = <1120000>;
-> +		};
-> +
-> +		vreg_s8b_1p2: smps8 {
-> +			regulator-min-microvolt = <1256000>;
-> +			regulator-max-microvolt = <1500000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_RET>;
-> +		};
-> +
-> +		vreg_l1b_0p8: ldo1 {
-> +			regulator-min-microvolt = <825000>;
-> +			regulator-max-microvolt = <925000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l2b_3p0: ldo2 {
-> +			regulator-min-microvolt = <2700000>;
-> +			regulator-max-microvolt = <3544000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l6b_1p2: ldo6 {
-> +			regulator-min-microvolt = <1140000>;
-> +			regulator-max-microvolt = <1260000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l7b_2p9: ldo7 {
-> +			regulator-min-microvolt = <2960000>;
-> +			regulator-max-microvolt = <2960000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l8b_0p9: ldo8 {
-> +			regulator-min-microvolt = <870000>;
-> +			regulator-max-microvolt = <970000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l9b_1p2: ldo9 {
-> +			regulator-min-microvolt = <1080000>;
-> +			regulator-max-microvolt = <1304000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l11b_1p7: ldo11 {
-> +			regulator-min-microvolt = <1504000>;
-> +			regulator-max-microvolt = <2000000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l12b_0p8: ldo12 {
-> +			regulator-min-microvolt = <751000>;
-> +			regulator-max-microvolt = <824000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l13b_0p8: ldo13 {
-> +			regulator-min-microvolt = <530000>;
-> +			regulator-max-microvolt = <824000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l14b_1p2: ldo14 {
-> +			regulator-min-microvolt = <1080000>;
-> +			regulator-max-microvolt = <1304000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l15b_0p8: ldo15 {
-> +			regulator-min-microvolt = <765000>;
-> +			regulator-max-microvolt = <1020000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l16b_1p2: ldo16 {
-> +			regulator-min-microvolt = <1100000>;
-> +			regulator-max-microvolt = <1300000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l17b_1p8: ldo17 {
-> +			regulator-min-microvolt = <1700000>;
-> +			regulator-max-microvolt = <1900000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l18b_1p8: ldo18 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2000000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l19b_1p8: ldo19 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +	};
-> +
-> +	regulators-1 {
-> +		compatible = "qcom,pm8350c-rpmh-regulators";
-> +		qcom,pmic-id = "c";
-> +
-> +		vreg_s1c_2p2: smps1 {
-> +			regulator-min-microvolt = <2190000>;
-> +			regulator-max-microvolt = <2210000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_s9c_1p0: smps9 {
-> +			regulator-min-microvolt = <1010000>;
-> +			regulator-max-microvolt = <1170000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l1c_1p8: ldo1 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1980000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l2c_1p8: ldo2 {
-> +			regulator-min-microvolt = <1620000>;
-> +			regulator-max-microvolt = <1980000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l3c_3p0: ldo3 {
-> +			regulator-min-microvolt = <2800000>;
-> +			regulator-max-microvolt = <3540000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l4c_1p8: ldo4 {
-> +			regulator-min-microvolt = <1620000>;
-> +			regulator-max-microvolt = <3300000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l5c_1p8: ldo5 {
-> +			regulator-min-microvolt = <1620000>;
-> +			regulator-max-microvolt = <3300000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l6c_2p9: ldo6 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2950000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l7c_3p0: ldo7 {
-> +			regulator-min-microvolt = <3000000>;
-> +			regulator-max-microvolt = <3544000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l8c_1p8: ldo8 {
-> +			regulator-min-microvolt = <1620000>;
-> +			regulator-max-microvolt = <2000000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l9c_2p9: ldo9 {
-> +			regulator-min-microvolt = <2960000>;
-> +			regulator-max-microvolt = <2960000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l10c_0p8: ldo10 {
-> +			regulator-min-microvolt = <720000>;
-> +			regulator-max-microvolt = <1050000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l11c_2p8: ldo11 {
-> +			regulator-min-microvolt = <2800000>;
-> +			regulator-max-microvolt = <3544000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l12c_1p8: ldo12 {
-> +			regulator-min-microvolt = <1650000>;
-> +			regulator-max-microvolt = <2000000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l13c_3p0: ldo13 {
-> +			regulator-min-microvolt = <2700000>;
-> +			regulator-max-microvolt = <3544000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_bob: bob {
-> +			regulator-min-microvolt = <3008000>;
-> +			regulator-max-microvolt = <3960000>;
-> +		};
-> +	};
-> +};
-> +
-> +&gpi_dma0 {
-> +	status = "okay";
-> +};
-> +
-> +&gpi_dma1 {
-> +	status = "okay";
-> +};
-> +
-> +&qupv3_id_0 {
-> +	status = "okay";
-> +};
-> +
-> +&qupv3_id_1 {
-> +	status = "okay";
-> +};
-> +
-> +&sdhc_1 {
-> +	non-removable;
-> +	no-sd;
-> +	no-sdio;
-> +
-> +	vmmc-supply = <&vreg_l7b_2p9>;
-> +	vqmmc-supply = <&vreg_l19b_1p8>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&uart5 {
-> +	compatible = "qcom,geni-debug-uart";
-> +	status = "okay";
-> +};
-> +
-> +&usb_1 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_dwc3 {
-> +	dr_mode = "peripheral";
-> +};
-> +
-> +&usb_1_hsphy {
-> +	vdda-pll-supply = <&vreg_l10c_0p8>;
-> +	vdda33-supply = <&vreg_l2b_3p0>;
-> +	vdda18-supply = <&vreg_l1c_1p8>;
-> +	qcom,hs-rise-fall-time-bp = <0>;
-> +	qcom,squelch-detector-bp = <(-2090)>;
-> +	qcom,hs-disconnect-bp = <1743>;
-> +	qcom,hs-amplitude-bp = <1780>;
-> +	qcom,hs-crossover-voltage-microvolt = <(-31000)>;
-> +	qcom,hs-output-impedance-micro-ohms = <2600000>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_qmpphy {
-> +	vdda-phy-supply = <&vreg_l6b_1p2>;
-> +	vdda-pll-supply = <&vreg_l1b_0p8>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +/* PINCTRL - additions to nodes defined in sc7280.dtsi */
-> +
-> +&pm8350c_pwm {
-> +	status = "okay";
-> +};
-> +
-> +&qup_uart5_tx {
-> +	drive-strength = <2>;
-> +	bias-disable;
-> +};
-> +
-> +&qup_uart5_rx {
-> +	drive-strength = <2>;
-> +	bias-pull-up;
-> +};
-> +
-> +&sdc1_clk {
-> +	bias-disable;
-> +	drive-strength = <16>;
-> +};
-> +
-> +&sdc1_cmd {
-> +	bias-pull-up;
-> +	drive-strength = <10>;
-> +};
-> +
-> +&sdc1_data {
-> +	bias-pull-up;
-> +	drive-strength = <10>;
-> +};
-> +
-> +&sdc1_rclk {
-> +	bias-pull-down;
-> +};
+The TRRS 3.5mm jack can be used for simultaneous playback and recording.
 
-These nodes are out-of-order too, you should sort these in 
-alphanumerically. q before r before s etc.
+Signed-off-by: Jai Luthra <j-luthra@ti.com>
+---
+Changes in v3:
+- Add Fixes tag in PATCH [3/6], along with Aradhya's R-by
+- Fix node names for mcasp1 pins (should end with -pins to match regex)
+- Link to v2: https://lore.kernel.org/r/20230928-mcasp_am62a-v2-0-ce9f0e1ba22b@ti.com
 
-> diff --git a/arch/arm64/boot/dts/qcom/qcm6490.dtsi b/arch/arm64/boot/dts/qcom/qcm6490.dtsi
-> new file mode 100644
-> index 000000000000..b93270cae9ae
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/qcm6490.dtsi
-> @@ -0,0 +1,94 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include "sc7280.dtsi"
-> +
-> +/*
-> + * Delete unused sc7280 memory nodes and define the memory regions
-> + * required by qcm6490
-> + */
-> +/delete-node/ &rmtfs_mem;
-> +/delete-node/ &wlan_ce_mem;
-> +
-> +/{
-> +	reserved-memory {
-> +		cdsp_secure_heap_mem: cdsp-secure-heap@81800000 {
-> +			reg = <0x0 0x81800000 0x0 0x1e00000>;
-> +			no-map;
-> +		};
-> +
-> +		camera_mem: camera@84300000 {
-> +			reg = <0x0 0x84300000 0x0 0x500000>;
-> +			no-map;
-> +		};
-> +
-> +		wpss_mem: wpss@0x84800000 {
-> +			reg = <0x0 0x84800000 0x0 0x1900000>;
-> +			no-map;
-> +		};
-> +
-> +		adsp_mem: adsp@86100000 {
-> +			reg = <0x0 0x86100000 0x0 0x2800000>;
-> +			no-map;
-> +		};
-> +
-> +		cdsp_mem: cdsp@88900000 {
-> +			reg = <0x0 0x88900000 0x0 0x1e00000>;
-> +			no-map;
-> +		};
-> +
-> +		cvp_mem: cvp@8ac00000 {
-> +			reg = <0x0 0x8ac00000 0x0 0x500000>;
-> +			no-map;
-> +		};
-> +
-> +		ipa_gsi_mem: ipa-gsi@8b110000 {
-> +			reg = <0x0 0x8b110000 0x0 0xa000>;
-> +			no-map;
-> +		};
-> +
-> +		gpu_microcode_mem: gpu-microcode@8b11a000 {
-> +			reg = <0x0 0x8b11a000 0x0 0x2000>;
-> +			no-map;
-> +		};
-> +
-> +		mpss_mem: mpss@8b800000 {
-> +			reg = <0x0 0x8b800000 0x0 0xf600000>;
-> +			no-map;
-> +		};
-> +
-> +		tz_stat_mem: tz-stat@c0000000 {
-> +			reg = <0x0 0xc0000000 0x0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		tags_mem: tags@c0100000 {
-> +			reg = <0x0 0xc0100000 0x0 0x1200000>;
-> +			no-map;
-> +		};
-> +
-> +		qtee_mem: qtee@c1300000 {
-> +			reg = <0x0 0xc1300000 0x0 0x500000>;
-> +			no-map;
-> +		};
-> +
-> +		trusted_apps_mem: trusted_apps@c1800000 {
-> +			reg = <0x0 0xc1800000 0x0 0x3900000>;
-> +			no-map;
-> +		};
-> +	};
-> +};
-> +
-> +&video_mem {
-> +	reg = <0x0 0x8a700000 0x0 0x500000>;
-> +};
-> +
-> +&wifi {
-> +	memory-region = <&wlan_fw_mem>;
-> +};
-> +
-> +&xbl_mem {
-> +	reg = <0x0 0x80700000 0x0 0x100000>;
-> +};
-> --
-> 2.42.0
-> 
+Changes in v2:
+- Move the patch that enables TPS6593 PMIC to this series
+- Link to v1: https://lore.kernel.org/r/20230731-mcasp_am62a-v1-0-8bd137ffa8f1@ti.com
+
+---
+Jai Luthra (5):
+      arm64: dts: ti: k3-am62a-main: Add nodes for McASP
+      arm64: dts: ti: k3-am62a7-sk: Split vcc_3v3 regulators
+      arm64: dts: ti: k3-am62a7-sk: Drop i2c-1 to 100Khz
+      arm64: dts: ti: k3-am62a7-sk: Enable audio on AM62A
+      arm64: defconfig: Enable TPS6593 PMIC for SK-AM62A
+
+Julien Panis (1):
+      arm64: dts: ti: k3-am62a7-sk: Add support for TPS6593 PMIC
+
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi |  60 ++++++++++
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts   | 189 +++++++++++++++++++++++++++++-
+ arch/arm64/configs/defconfig              |   1 +
+ 3 files changed, 247 insertions(+), 3 deletions(-)
+---
+base-commit: c9f2baaa18b5ea8f006a2b3a616da9597c71d15e
+change-id: 20230731-mcasp_am62a-af1660624f97
+
+Best regards,
+-- 
+Jai Luthra <j-luthra@ti.com>
 
 
