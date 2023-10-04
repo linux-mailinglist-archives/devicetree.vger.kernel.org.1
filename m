@@ -1,159 +1,220 @@
-Return-Path: <devicetree+bounces-5714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 970B07B7972
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 10:03:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7001B7B797F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 10:04:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id AF1BEB207C2
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 08:03:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 47E90B20997
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 08:04:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7C65101E0;
-	Wed,  4 Oct 2023 08:03:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADF5D101EF;
+	Wed,  4 Oct 2023 08:04:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FB8D79F8
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 08:03:40 +0000 (UTC)
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5207A6
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 01:03:38 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99c3d3c3db9so300872766b.3
-        for <devicetree@vger.kernel.org>; Wed, 04 Oct 2023 01:03:38 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB57EDDBF
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 08:04:47 +0000 (UTC)
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C070AC;
+	Wed,  4 Oct 2023 01:04:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696406617; x=1697011417; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eLN3YMd6CT22tWM20pImL4XGhG7GHBb9qZ2LV6tnqrE=;
-        b=nNmHeDA6vAeTVcQcT1acInMYEqMFEr/oGWTK/7EhAdE2NQPDZiPpBw8ANYZECpWTu7
-         6Uhu0nDjppVmjODJYGN5aiMsQRfxZqCR7FN4YPYWRp0mIhB14N6Gqhbf77hT5IeFco71
-         nAg/cJfwRdGKPzGXvkzF61drunhMIxXOwzDy3RlGN4c9iHJK+lIIWjaSOCX5dbkr4iLi
-         2opYT6siLlz7KoQ6fMBZOggxcj2f5qFgeyuyrWbJbhRik997w6QNbaMSZiD27FKL+QuO
-         3baeM/6zrzb6NcXRtRUPhe6NVlndPF89sIKT+ajzTNHR5k/oDz/aEWMj+MKOK1YUr7AP
-         dJ9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696406617; x=1697011417;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eLN3YMd6CT22tWM20pImL4XGhG7GHBb9qZ2LV6tnqrE=;
-        b=YeSSMVl39pb46UDG6YA7aGjpDePVNBBldFMu1fDBqbSFL1t1P7OPoVKdEtIZ1WY61P
-         CtpOwBjRJz5DJNeWxE5/8JcP3CtXupmbTeuO923IDTTX69rlmqtQ4MW7MlJ+/qrxNMsp
-         1xSHau4F3IU48GXW78iNxTCKXIW1Va0lO6El4NHOe2al2oGr3nEENrbeCQEJ1LAYLZ3i
-         grrIdwo3xP0ruDkCUL0//F16fv54sn5EdE+Hb/P728mvsSz0reXbqRLABcYVh+10kbwT
-         1E3qBLmWQkEf/N7MA3bYPlZnQfeUkMHh9Bp3kPl27ZwC540gtAKeTrmgbDj7M3FKudsc
-         8F/Q==
-X-Gm-Message-State: AOJu0Yz+/zZXf+vVD3GOmmmGeQqTFDsyiqQWOOszKEFhSkrCON2IiNbn
-	gi7FRonKVppZFSnSndMWip7/AA==
-X-Google-Smtp-Source: AGHT+IGWB6/WHk2xtPh/icUapO409yUJMC0JV+MOc+E0lUPW7YYPGSxmERovok8WmZMUvpYuWw6vAg==
-X-Received: by 2002:a17:907:7ea0:b0:9a5:9038:b1e7 with SMTP id qb32-20020a1709077ea000b009a59038b1e7mr1507149ejc.36.1696406617319;
-        Wed, 04 Oct 2023 01:03:37 -0700 (PDT)
-Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id lf17-20020a170906ae5100b0099d45ed589csm2318542ejb.125.2023.10.04.01.03.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Oct 2023 01:03:36 -0700 (PDT)
-Message-ID: <25e8c953-8bf1-4107-9531-263d68c41128@linaro.org>
-Date: Wed, 4 Oct 2023 10:03:34 +0200
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1696406684; x=1727942684;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=uNd+HACguCoZjwveAU7kMZ/dp20g63cdWpbDWpo8YEo=;
+  b=aL5werJQuCu2LVaK3cwCvJ/FTBAf8lfUgB2cvjTEmOAkytr53UdFgYUT
+   1g3YQu0WXbWR/3hQGOzeGFNRV4xHRXeJpyTZmn/qm25/uCCZbbv62UFgx
+   m3oMvqc+R1299hL65AKkqJx6wcBjSK2yGdJ445EsN+1K+k9wwx6tviaoT
+   jATxgIqgC+2SI1SCARE0AzW8Rq/T1xjpLo481hPmhzZPh3BUaqUXGCegq
+   6RHmUAM/uRUs7fRZVSy5bQrhT5lTkAqxX9/R/+iYXEOcGvF+0MUT9SoaX
+   fSuPMrhmbMOckDn++p6uHZho29W8fJDjkG2RexkNq8YZL4tqHkj5bTxqO
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.03,199,1694728800"; 
+   d="scan'208";a="33270753"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 04 Oct 2023 10:04:41 +0200
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 57403280075;
+	Wed,  4 Oct 2023 10:04:41 +0200 (CEST)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Benjamin Bara <bbara93@gmail.com>, Adam Ford <aford173@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Russell King <linux@armlinux.org.uk>, Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, Frank Oltmanns <frank@oltmanns.dev>, Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, Benjamin Bara <benjamin.bara@skidata.com>, Lucas Stach <l.stach@pengutronix.de>
+Subject: Re: [PATCH 00/13] imx8mp: first clock propagation attempt (for LVDS)
+Date: Wed, 04 Oct 2023 10:04:41 +0200
+Message-ID: <12810050.O9o76ZdvQC@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <CAHCN7x+WesF5Dac=9THtHR7Y=LJwzAEsZ9aD1B7Lppc2vQSnJQ@mail.gmail.com>
+References: <20230918-imx8mp-dtsi-v1-0-1d008b3237c0@skidata.com> <CAHCN7x+WesF5Dac=9THtHR7Y=LJwzAEsZ9aD1B7Lppc2vQSnJQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] dt-bindings: usb: ci-hdrc-usb2: add npcm750 and
- npcm845 compatible
-Content-Language: en-US
-To: Tomer Maimon <tmaimon77@gmail.com>, peter.chen@kernel.org,
- gregkh@linuxfoundation.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, xu.yang_2@nxp.com, peng.fan@nxp.com,
- avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
- venture@google.com, yuenn@google.com, benjaminfair@google.com,
- j.neuschaefer@gmx.net
-Cc: openbmc@lists.ozlabs.org, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20231003110130.229711-1-tmaimon77@gmail.com>
- <20231003110130.229711-3-tmaimon77@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231003110130.229711-3-tmaimon77@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 03/10/2023 13:01, Tomer Maimon wrote:
-> Add a compatible string for Nuvoton BMC NPCM750 and Nuvoton BMC NPCM845.
-> 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> ---
->  Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-> index 1394557517b1..a9e173432002 100644
-> --- a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-> +++ b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-> @@ -16,6 +16,8 @@ properties:
->        - enum:
->            - chipidea,usb2
->            - lsi,zevio-usb
-> +          - nuvoton,npcm750-udc
-> +          - nuvoton,npcm845-udc
+Hi Adam,
 
-Your driver clearly suggests these are compatible. If they are not, why
-commit msg does no explain anything here?
+Am Dienstag, 3. Oktober 2023, 15:28:05 CEST schrieb Adam Ford:
+> On Sun, Sep 17, 2023 at 5:40=E2=80=AFPM Benjamin Bara <bbara93@gmail.com>=
+ wrote:
+> > Hi!
+> >=20
+> > Target of this series is to dynamically set the rate of video_pll1 to
+> > the required LVDS clock rate(s), which are configured by the panel, and
+> > the lvds-bridge respectively.
+> >=20
+> > Some background:
+> > The LVDS panel requires two clocks: the crtc clock and the lvds clock.
+> > The lvds rate is always 7x the crtc rate. On the imx8mp, these are
+> > assigned to media_disp2_pix and media_ldb, which are both
+>=20
+> Could the LDB driver be updated to take in the crtc clock as a
+> parameter, then set the media_ldb to 7x crct clock.  I wonder if that
+> might simplify the task a bit.
+
+I'm not sure if you had something different in mind, but I guess this happe=
+ns=20
+already in fsl_ldb_atomic_enable(), although using the mode clock.
+As this might not always be possible, commit bd43a9844bc6f ("drm: bridge: l=
+db:=20
+Warn if LDB clock does not match requested link frequency") was added to=20
+indicate something might be wrong.
+The main problem here is that both media_ldb and crct clock are not in a=20
+parent<->child relationship, but are siblings, configurable individually.
 
 Best regards,
-Krzysztof
+Alexander
+
+> > clk-composite-8m. The rates are set by drm_client_modeset_commit() (and
+> > later by fsl_ldb_atomic_enable()), and the fsl-ldb driver, first crtc,
+> > then lvds. The parent is typically assigned to video_pll1, which is a
+> > clk-pll14xx (pll1443x).
+> >=20
+> > The main problem:
+> > As the clk-composite-8m currently doesn't support CLK_SET_RATE_PARENT,
+> > the crtc rate is not propagated to video_pll1, and therefore must be
+> > assigned in the device-tree manually.
+> >=20
+> > The idea:
+> > Enable CLK_SET_RATE_PARENT, at least for media_disp2_pix and media_ldb.
+> > When this is done, ensure that the pll1443x can be re-configured,
+> > meaning it ensures that an already configured rate (crtc rate) is still
+> > supported when a second child requires a different rate (lvds rate). As
+>=20
+> I still have concerns that the CLK_SET_RATE_PARENT may break the
+> media_disp1_pix if media_disp2_pix is changing it.
+>=20
+> I think we should consider adding some sort of configurable flag to
+> the CCM that lets people choose  if CLK_SET_RATE_PARENT should be set
+> or not in the device tree instead of hard-coding it either on or off.
+> This would give people the flexibility of stating whether
+> media_disp1_pix, media_disp2_pix, both or neither could set
+> CLK_SET_RATE_PARENT.
+>=20
+> I believe the imx8mp-evk can support both LVDS-> HDMI and DSI->HDMI
+> bridges, and I fear that if they are trying to both set different
+> clock rates, this may break something and the clocks need to be
+> selected in advance to give people a bunch of HDMI options as well as
+> being able to divide down to support the LVDS.
+>=20
+> I think some of the displays could be tied to one of the Audio PLL's,
+> so I might experiment with splitting the media_disp1_pix and
+> media_disp2_pix from each other to see how well .
+>=20
+> > the children have divider, the current approach is straight forward by
+> > calculating the LCM of the required rates. During the rate change of the
+> > PLL, it must ensure that all children still have the configured rate at
+> > the end (and maybe also bypass the clock while doing so?). This is done
+> > by implementing a notifier function for the clk-composite-8m. The tricky
+> > part is now to find out if the rate change was intentional or not. This
+> > is done by adding the "change trigger" to the notify data. In our case,
+> > we now can infer if we aren't the change trigger, we need to keep the
+> > existing rate after the PLL's rate change. We keep the existing rate by
+> > modifying the new_rate of the clock's core, as we are quite late in an
+> > already ongoing clock change process.
+> >=20
+> > Future work:
+> > The re-configuration of the PLL can definitely be improved for other use
+> > cases where the children have more fancy inter-dependencies. That's one
+> > of the main reasons I currently only touched the mentioned clocks.
+> > Additionally, it might make sense to automatically re-parent if a
+> > different possible parent suits better.
+> > For the core part, I thought about extending my "unintentional change
+> > check" so that the core ensures that the children keep the configured
+> > rate, which might not be easy as the parent could be allowed to "round",
+> > but it's not clear (at least to me yet) how much rounding is allowed. I
+> > found a similar discussion posted here[1], therefore added Frank and
+> > Maxime.
+> >=20
+> > Thanks & regards,
+> > Benjamin
+> >=20
+> > [1]
+> > https://lore.kernel.org/lkml/20230825-pll-mipi_keep_rate-v1-0-35bc43570=
+73
+> > 0@oltmanns.dev/
+> >=20
+> > ---
+> >=20
+> > Benjamin Bara (13):
+> >       arm64: dts: imx8mp: lvds_bridge: use root instead of composite
+> >       arm64: dts: imx8mp: re-parent IMX8MP_CLK_MEDIA_MIPI_PHY1_REF
+> >       clk: implement clk_hw_set_rate()
+> >       clk: print debug message if parent change is ignored
+> >       clk: keep track of the trigger of an ongoing clk_set_rate
+> >       clk: keep track if a clock is explicitly configured
+> >       clk: detect unintended rate changes
+> >       clk: divider: stop early if an optimal divider is found
+> >       clk: imx: pll14xx: consider active rate for re-config
+> >       clk: imx: composite-8m: convert compute_dividers to void
+> >       clk: imx: composite-8m: implement CLK_SET_RATE_PARENT
+> >       clk: imx: imx8mp: allow LVDS clocks to set parent rate
+> >       arm64: dts: imx8mp: remove assigned-clock-rate of IMX8MP_VIDEO_PL=
+L1
+> > =20
+> >  arch/arm64/boot/dts/freescale/imx8mp.dtsi |  14 +--
+> >  drivers/clk/clk-divider.c                 |   9 ++
+> >  drivers/clk/clk.c                         | 146
+> >  +++++++++++++++++++++++++++++- drivers/clk/imx/clk-composite-8m.c     =
+ =20
+> >  |  89 +++++++++++++++--- drivers/clk/imx/clk-imx8mp.c              |  =
+ 4
+> >  +-
+> >  drivers/clk/imx/clk-pll14xx.c             |  20 ++++
+> >  drivers/clk/imx/clk.h                     |   4 +
+> >  include/linux/clk-provider.h              |   2 +
+> >  include/linux/clk.h                       |   2 +
+> >  9 files changed, 261 insertions(+), 29 deletions(-)
+> >=20
+> > ---
+> > base-commit: e143016b56ecb0fcda5bb6026b0a25fe55274f56
+> > change-id: 20230913-imx8mp-dtsi-7c6e25907e0e
+> >=20
+> > Best regards,
+> > --
+> > Benjamin Bara <benjamin.bara@skidata.com>
+
+
+=2D-=20
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+http://www.tq-group.com/
+
 
 
