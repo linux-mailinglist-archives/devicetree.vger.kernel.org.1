@@ -1,119 +1,181 @@
-Return-Path: <devicetree+bounces-5722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E93F87B79C6
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 10:11:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC44A7B79D5
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 10:14:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 9A8D4281452
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 08:11:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 562CA281460
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 08:14:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FD95101E9;
-	Wed,  4 Oct 2023 08:11:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65F29101EC;
+	Wed,  4 Oct 2023 08:14:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20CD2D2E6
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 08:11:28 +0000 (UTC)
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E01A4A6;
-	Wed,  4 Oct 2023 01:11:27 -0700 (PDT)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-59e77e4f707so22540467b3.0;
-        Wed, 04 Oct 2023 01:11:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696407087; x=1697011887;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VNgqb3ogEHljK/s/zCJeiDzbGvte6UXqv8/D2qJ2ym4=;
-        b=ZYK5m64MOnGA8YTAeV2tiORL9AdLx+4BXWrpEWgCPvGU1iFdKoTSHRV8jLvzlLSWLq
-         LLfTGWFxXqh5vjm8fw69MPC0XJkLEI3Ig5V21BIdk3BA1T9CIs4VxwE9+UdyZCNpfi+A
-         zs09hajQpWTwDVY+vdKZFqlDQJI3oYwR+yXBd9KtgOatUkapR1bMWi8P9p0eRNIlBrm8
-         Ea3pWSDExvuXZjnJub+dXDCS4NZzYNXrUtx/KUkoZebs3S9qAhnBeGIAk6l3zoVqMNzC
-         LLOYWGj3Nh6QzABN3WXGquzF2o+sILLslqrptA5AwVFOvV7R2pg3zN/v76agdAm6Ae+F
-         1LYw==
-X-Gm-Message-State: AOJu0YwY5mCRbNBSyEGQpnYEUuoUK2nLzETetO/ssUue5KuB04T6GIQP
-	BKgt0oiSkVXQwuJA2ak0/42A/2e7wIWPDA==
-X-Google-Smtp-Source: AGHT+IFeroNisVnSgtZNX1YFfffHyQZ0Z4NTkeg2rgkAf7MQgLzryT6LktpCzDxf7u83desFvnesWQ==
-X-Received: by 2002:a81:a008:0:b0:59f:5041:bedb with SMTP id x8-20020a81a008000000b0059f5041bedbmr1838913ywg.8.1696407086812;
-        Wed, 04 Oct 2023 01:11:26 -0700 (PDT)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
-        by smtp.gmail.com with ESMTPSA id a74-20020a0dd84d000000b005a20ab8a184sm995752ywe.31.2023.10.04.01.11.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Oct 2023 01:11:26 -0700 (PDT)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-59e77e4f707so22540287b3.0;
-        Wed, 04 Oct 2023 01:11:26 -0700 (PDT)
-X-Received: by 2002:a0d:d7cc:0:b0:584:4bbb:963b with SMTP id
- z195-20020a0dd7cc000000b005844bbb963bmr1795264ywd.15.1696407085921; Wed, 04
- Oct 2023 01:11:25 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5359ED2E6
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 08:14:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CD46C433C7;
+	Wed,  4 Oct 2023 08:13:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696407242;
+	bh=UPqOSLYhH7npzWNNSeA82XKeFXdrUVJstVbJYeo2EaA=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=uYuHGwrE5OxB82TgQSr5LMX4noPjfoLvkxmKL8OrfQkG+7N5uXHIZtAhHMPnlbV5B
+	 Fx0MgdGd1Vj94JYaFk7zvtk0c1Z7S/N9Zokz0DEqxn7v0LexXaZvSkGZXqOsq0zUOg
+	 GvBJTpTYyfoOcD6aj1gt2ECThArU3Au5y9TcxJ2tyOgO8Drw9QgZqg3crNTAdWEE28
+	 eqLYE0WyskczES/GsoIPjPknXtBIQgoxM9dcv8kNzTxYAHNen7iSjwFykpgf2z3GWU
+	 c1npePM7PD+txXmFftPA0e3vXTMa05KfkXpt3Ib31Ys2cwOqSNWlmI4xPDQKmkel7n
+	 RuTIGY+SvY8Ow==
+Message-ID: <959363c6-9ecb-4e5f-960d-65dd23b74ce2@kernel.org>
+Date: Wed, 4 Oct 2023 10:13:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230929053915.1530607-1-claudiu.beznea@bp.renesas.com> <20230929053915.1530607-7-claudiu.beznea@bp.renesas.com>
-In-Reply-To: <20230929053915.1530607-7-claudiu.beznea@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 4 Oct 2023 10:11:13 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUgVfxWrVP51b3nbeDThedjzWGJb95-oU5bdPeTTjWu8Q@mail.gmail.com>
-Message-ID: <CAMuHMdUgVfxWrVP51b3nbeDThedjzWGJb95-oU5bdPeTTjWu8Q@mail.gmail.com>
-Subject: Re: [PATCH v2 06/28] clk: renesas: rzg2l: remove critical area
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linus.walleij@linaro.org, gregkh@linuxfoundation.org, jirislaby@kernel.org, 
-	magnus.damm@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
-	quic_bjorande@quicinc.com, konrad.dybcio@linaro.org, arnd@arndb.de, 
-	neil.armstrong@linaro.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	biju.das.jz@bp.renesas.com, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/6] phy: qcom: Introduce PCIe UNIPHY 28LP driver
+Content-Language: en-US
+To: Nitheesh Sekar <quic_nsekar@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, lpieralisi@kernel.org,
+ kw@linux.com, robh@kernel.org, bhelgaas@google.com,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, vkoul@kernel.org,
+ kishon@kernel.org, mani@kernel.org, p.zabel@pengutronix.de,
+ quic_srichara@quicinc.com, quic_varada@quicinc.com,
+ quic_ipkumar@quicinc.com, linux-arm-msm@vger.kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+References: <20231003120846.28626-1-quic_nsekar@quicinc.com>
+ <20231003120846.28626-4-quic_nsekar@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20231003120846.28626-4-quic_nsekar@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Sep 29, 2023 at 7:39=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> spinlock in rzg2l_mod_clock_endisable() is intended to protect the access=
-es
-> to hardware register. There is no need to protect the instructions that s=
-et
-> temporary variable which will be then written to register. With this only
-> one write to one clock register is executed thus locking/unlocking rmw_lo=
-ck
-> is removed.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On 03/10/2023 14:08, Nitheesh Sekar wrote:
+> Add Qualcomm PCIe UNIPHY 28LP driver support present
+> in Qualcomm IPQ5018 SoC and the phy init sequence.
+> 
+> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
 > ---
->
-> Changes in v2:
-> - removed also the spinlock
-> - s/reduce/remove in patch title
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-clk-for-v6.7.
+...
 
-Gr{oetje,eeting}s,
+> +static int qcom_uniphy_pcie_probe(struct platform_device *pdev)
+> +{
+> +	struct qcom_uniphy_pcie *phy;
+> +	int ret;
+> +	struct phy *generic_phy;
+> +	struct phy_provider *phy_provider;
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *np = of_node_get(dev->of_node);
+> +
+> +	phy = devm_kzalloc(&pdev->dev, sizeof(*phy), GFP_KERNEL);
+> +	if (!phy)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, phy);
+> +	phy->dev = &pdev->dev;
+> +
+> +	phy->data = of_device_get_match_data(dev);
+> +	if (!phy->data)
+> +		return -EINVAL;
+> +
+> +	ret = qcom_uniphy_pcie_get_resources(pdev, phy);
+> +	if (ret < 0) {
+> +		dev_err(&pdev->dev, "failed to get resources: %d\n", ret);
+> +		return ret;
 
-                        Geert
+Syntax is:
+return dev_err_probe()
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> +	}
+> +
+> +	ret = phy_pipe_clk_register(phy, np);
+> +	if (ret)
+> +		dev_err(&pdev->dev, "failed to register phy pipe clk\n");
+> +
+> +	generic_phy = devm_phy_create(phy->dev, NULL, &pcie_ops);
+> +	if (IS_ERR(generic_phy))
+> +		return PTR_ERR(generic_phy);
+> +
+> +	phy_set_drvdata(generic_phy, phy);
+> +	phy_provider = devm_of_phy_provider_register(phy->dev,
+> +						     of_phy_simple_xlate);
+> +	if (IS_ERR(phy_provider))
+> +		return PTR_ERR(phy_provider);
+> +
+> +	return 0;
+> +}
+> +
+> +static struct platform_driver qcom_uniphy_pcie_driver = {
+> +	.probe		= qcom_uniphy_pcie_probe,
+> +	.driver		= {
+> +		.name	= "qcom-uniphy-pcie",
+> +		.owner	= THIS_MODULE,
+
+Run coccinelle/coccicheck.
+
+> +		.of_match_table = qcom_uniphy_pcie_id_table,
+> +	},
+> +};
+> +
+> +module_platform_driver(qcom_uniphy_pcie_driver);
+> +
+> +MODULE_ALIAS("platform:qcom-uniphy-pcie");
+
+You should not need MODULE_ALIAS() in normal cases. If you need it,
+usually it means your device ID table is wrong.
+
+
+Best regards,
+Krzysztof
+
 
