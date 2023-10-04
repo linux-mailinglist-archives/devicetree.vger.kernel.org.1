@@ -1,40 +1,40 @@
-Return-Path: <devicetree+bounces-5957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 344E77B97D7
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F5DE7B97D8
 	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 00:22:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id D3F03281A70
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 22:22:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id 9EB121F2317E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 22:22:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A87FD250FA;
-	Wed,  4 Oct 2023 22:22:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3892A250FF;
+	Wed,  4 Oct 2023 22:22:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BPiBIONn"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="cQd6LjNl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47ED7250E5
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 22:22:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C1F024208
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 22:22:49 +0000 (UTC)
 Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 218AAC6;
-	Wed,  4 Oct 2023 15:22:44 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 94E6E1C0003;
-	Wed,  4 Oct 2023 22:22:41 +0000 (UTC)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84554D8;
+	Wed,  4 Oct 2023 15:22:47 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id EF33E1C0008;
+	Wed,  4 Oct 2023 22:22:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1696458163;
+	t=1696458166;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=ek8z6qq1VdvF44JDUEP0S5+gwXqIdO59LstVSiFw/0A=;
-	b=BPiBIONnJ4kwPMVYv2jbJi/LNkcG9Ev49Vo6odDIAP8o7aPJscIu3fIPYGXSpsGEWwrjoq
-	CcwIfOHnbIlD99ahsGEEkbQkl32iulIEmpUtbkBxvWsNu1TGVhCjtAUeBDqEJv8tFE15ly
-	8GCIHBv+ywYfGugBT12FDspJMw0EQRw9caJR+lWkzBF6FuY3tWVKZJPlQJfFkscXGpXzm2
-	cfgPscTeeb92lsXlrzwaMIRtBozAdKnsWKjQXAFO0obsEvI6IlLqZLuDLSdNSxZirVC2Rb
-	fpJ1AIkDin0AgBKstjX8TUQkz+3g1Xz2Yc/4Z/x85p8euS4DelholIiyMJ43Iw==
+	bh=ozTgRpH7t0hBveOF8yXGnBl2vT15HtovIkhQFtR9B74=;
+	b=cQd6LjNlsF+BeoUk5ZXFpdCXxeLsrgtit+isxZblQAIm+u0fis071wiB28G/L1Zz1WDzQo
+	V49sfOGDgm9EasASWJkh35SANIbV2rLjPSOpUw4VBSaRChVqqQ/gSSvEpHG3+dINiDwagi
+	j7piMSDMXA0HUPkfDf+PfDzPRlvRL1sK5xwKkPEsgguRmwmSTZC3Zh9h1uShJLeybEF0ai
+	qnt8HdDjLAdjPDAVx5hEhLDZZlpnPa1dYTiifRAJZFVkBJCx1j/5meSksA/IwNIHuNjdcT
+	sz5FSx5NHXaDOOYUs/wLZq7qF2lEn6nVtAA/sZT6WqkdchcGnftsEi/rOYMYxg==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
 To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
 	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
@@ -51,9 +51,9 @@ Cc: Michael Walle <michael@walle.cc>,
 	Chen-Yu Tsai <wenst@chromium.org>,
 	Daniel Golle <daniel@makrotopia.org>,
 	Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v11 1/7] of: device: Export of_device_make_bus_id()
-Date: Thu,  5 Oct 2023 00:22:30 +0200
-Message-Id: <20231004222236.411248-2-miquel.raynal@bootlin.com>
+Subject: [PATCH v11 2/7] nvmem: Clarify the situation when there is no DT node available
+Date: Thu,  5 Oct 2023 00:22:31 +0200
+Message-Id: <20231004222236.411248-3-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231004222236.411248-1-miquel.raynal@bootlin.com>
 References: <20231004222236.411248-1-miquel.raynal@bootlin.com>
@@ -71,143 +71,34 @@ X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-This helper is really handy to create unique device names based on their
-device tree path, we may need it outside of the OF core (in the NVMEM
-subsystem) so let's export it. As this helper has nothing patform
-specific, let's move it to of/device.c instead of of/platform.c so we
-can add its prototype to of_device.h.
+At a first look it might seem that the presence of the of_node pointer
+in the nvmem device does not matter much, but in practice, after looking
+deep into the DT core, nvmem_add_cells_from_dt() will simply and always
+return NULL if this field is not provided. As most mtd devices don't
+populate this field (this could evolve later), it means none of their
+children cells will be populated unless no_of_node is explicitly set to
+false. In order to clarify the logic, let's add clear check at the
+beginning of this helper.
 
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- drivers/of/device.c       | 41 +++++++++++++++++++++++++++++++++++++++
- drivers/of/platform.c     | 40 --------------------------------------
- include/linux/of_device.h |  6 ++++++
- 3 files changed, 47 insertions(+), 40 deletions(-)
+ drivers/nvmem/core.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/of/device.c b/drivers/of/device.c
-index 1ca42ad9dd15..6e9572c4af83 100644
---- a/drivers/of/device.c
-+++ b/drivers/of/device.c
-@@ -304,3 +304,44 @@ int of_device_uevent_modalias(const struct device *dev, struct kobj_uevent_env *
- 	return 0;
- }
- EXPORT_SYMBOL_GPL(of_device_uevent_modalias);
-+
-+/**
-+ * of_device_make_bus_id - Use the device node data to assign a unique name
-+ * @dev: pointer to device structure that is linked to a device tree node
-+ *
-+ * This routine will first try using the translated bus address to
-+ * derive a unique name. If it cannot, then it will prepend names from
-+ * parent nodes until a unique name can be derived.
-+ */
-+void of_device_make_bus_id(struct device *dev)
-+{
-+	struct device_node *node = dev->of_node;
-+	const __be32 *reg;
-+	u64 addr;
-+	u32 mask;
-+
-+	/* Construct the name, using parent nodes if necessary to ensure uniqueness */
-+	while (node->parent) {
-+		/*
-+		 * If the address can be translated, then that is as much
-+		 * uniqueness as we need. Make it the first component and return
-+		 */
-+		reg = of_get_property(node, "reg", NULL);
-+		if (reg && (addr = of_translate_address(node, reg)) != OF_BAD_ADDR) {
-+			if (!of_property_read_u32(node, "mask", &mask))
-+				dev_set_name(dev, dev_name(dev) ? "%llx.%x.%pOFn:%s" : "%llx.%x.%pOFn",
-+					     addr, ffs(mask) - 1, node, dev_name(dev));
-+
-+			else
-+				dev_set_name(dev, dev_name(dev) ? "%llx.%pOFn:%s" : "%llx.%pOFn",
-+					     addr, node, dev_name(dev));
-+			return;
-+		}
-+
-+		/* format arguments only used if dev_name() resolves to NULL */
-+		dev_set_name(dev, dev_name(dev) ? "%s:%s" : "%s",
-+			     kbasename(node->full_name), dev_name(dev));
-+		node = node->parent;
-+	}
-+}
-+EXPORT_SYMBOL_GPL(of_device_make_bus_id);
-diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-index f235ab55b91e..be32e28c6f55 100644
---- a/drivers/of/platform.c
-+++ b/drivers/of/platform.c
-@@ -97,46 +97,6 @@ static const struct of_device_id of_skipped_node_table[] = {
-  * mechanism for creating devices from device tree nodes.
-  */
+diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
+index eaf6a3fe8ca6..286efd3f5a31 100644
+--- a/drivers/nvmem/core.c
++++ b/drivers/nvmem/core.c
+@@ -743,6 +743,9 @@ static int nvmem_add_cells_from_dt(struct nvmem_device *nvmem, struct device_nod
  
--/**
-- * of_device_make_bus_id - Use the device node data to assign a unique name
-- * @dev: pointer to device structure that is linked to a device tree node
-- *
-- * This routine will first try using the translated bus address to
-- * derive a unique name. If it cannot, then it will prepend names from
-- * parent nodes until a unique name can be derived.
-- */
--static void of_device_make_bus_id(struct device *dev)
--{
--	struct device_node *node = dev->of_node;
--	const __be32 *reg;
--	u64 addr;
--	u32 mask;
--
--	/* Construct the name, using parent nodes if necessary to ensure uniqueness */
--	while (node->parent) {
--		/*
--		 * If the address can be translated, then that is as much
--		 * uniqueness as we need. Make it the first component and return
--		 */
--		reg = of_get_property(node, "reg", NULL);
--		if (reg && (addr = of_translate_address(node, reg)) != OF_BAD_ADDR) {
--			if (!of_property_read_u32(node, "mask", &mask))
--				dev_set_name(dev, dev_name(dev) ? "%llx.%x.%pOFn:%s" : "%llx.%x.%pOFn",
--					     addr, ffs(mask) - 1, node, dev_name(dev));
--
--			else
--				dev_set_name(dev, dev_name(dev) ? "%llx.%pOFn:%s" : "%llx.%pOFn",
--					     addr, node, dev_name(dev));
--			return;
--		}
--
--		/* format arguments only used if dev_name() resolves to NULL */
--		dev_set_name(dev, dev_name(dev) ? "%s:%s" : "%s",
--			     kbasename(node->full_name), dev_name(dev));
--		node = node->parent;
--	}
--}
--
- /**
-  * of_device_alloc - Allocate and initialize an of_device
-  * @np: device node to assign to device
-diff --git a/include/linux/of_device.h b/include/linux/of_device.h
-index 2c7a3d4bc775..a72661e47faa 100644
---- a/include/linux/of_device.h
-+++ b/include/linux/of_device.h
-@@ -40,6 +40,9 @@ static inline int of_dma_configure(struct device *dev,
+ static int nvmem_add_cells_from_legacy_of(struct nvmem_device *nvmem)
  {
- 	return of_dma_configure_id(dev, np, force_dma, NULL);
++	if (!nvmem->dev.of_node)
++		return 0;
++
+ 	return nvmem_add_cells_from_dt(nvmem, nvmem->dev.of_node);
  }
-+
-+void of_device_make_bus_id(struct device *dev);
-+
- #else /* CONFIG_OF */
  
- static inline int of_driver_match_device(struct device *dev,
-@@ -82,6 +85,9 @@ static inline int of_dma_configure(struct device *dev,
- {
- 	return 0;
- }
-+
-+static inline void of_device_make_bus_id(struct device *dev) {}
-+
- #endif /* CONFIG_OF */
- 
- #endif /* _LINUX_OF_DEVICE_H */
 -- 
 2.34.1
 
