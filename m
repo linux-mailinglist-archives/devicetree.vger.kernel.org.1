@@ -1,65 +1,114 @@
-Return-Path: <devicetree+bounces-5826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED2517B8100
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 15:33:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C95D7B810A
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 15:34:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 272B11C20444
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 13:33:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2E66C28141A
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 13:34:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4FF814A97;
-	Wed,  4 Oct 2023 13:33:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B963514A99;
+	Wed,  4 Oct 2023 13:34:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B099C14A8A
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 13:33:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B6A3C433C8;
-	Wed,  4 Oct 2023 13:33:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696426395;
-	bh=nUcn/SlnQa7X885HtLaaj+Ehd4Cyq5smiyYTDJ4O40Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IYEXDVerwn8gbQaZr8uT9xcS9c3Qc/reUSTFLxs1Bqu28thOJ3w5dYndFwZQTGkUw
-	 ep2ha8cryDL+wXVEHO6OCQfTZhlUMIcyHL8Ef5m6stL+evB4pnTYf4Cag6eq6z/hUl
-	 eYLswZBEdCCNVe9T8E8nKxEvP/rQL+VGSG840n0sL4z0ytlX8uCX/l7HtrytJQE9bT
-	 T+RLjk0pQK0aq3H5L72gQRuH3zxIxGKBdWj/ehxdxZlkshTqyodo/w2gbMRK7XsvJH
-	 aVh/lsZsc9Nc+Rmrz87zw6KdltOwdJLT4VIxw+zWfvieS7vTSG7qD5bEjWDHvbQXg7
-	 z+Fu/BlgnsdsQ==
-Received: (nullmailer pid 2758981 invoked by uid 1000);
-	Wed, 04 Oct 2023 13:33:13 -0000
-Date: Wed, 4 Oct 2023 08:33:13 -0500
-From: Rob Herring <robh@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Conor Dooley <conor+dt@kernel.org>, linux-riscv@lists.infradead.org, Palmer Dabbelt <palmer@rivosinc.com>, linux-renesas-soc@vger.kernel.org, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: cache: andestech,ax45mp-cache: Fix unit
- address in example
-Message-ID: <169642639171.2758908.6583867428160039532.robh@kernel.org>
-References: <7b93655219a6ad696dd3faa9f36fde6b094694a9.1696330005.git.geert+renesas@glider.be>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 292C113AF9
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 13:34:00 +0000 (UTC)
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A45DAD;
+	Wed,  4 Oct 2023 06:33:59 -0700 (PDT)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-59f6492b415so8883227b3.0;
+        Wed, 04 Oct 2023 06:33:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696426438; x=1697031238;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vWliRVyDflCaQ0ibzTdSksrcW2qMke8NU2ExNZSvp74=;
+        b=apPIulPo3JIKY6zwXTei2+3MDuwCse5BpReIfePDK7FDHPryb04kODujXZ924Wn4pB
+         KFgVpQRvdHn/TP+IwOtU09PzyPrM5lsvvj447k4mkjciTpBnv37RJF+qys+03NZlJSwF
+         ugi84IrEtxtccTmN9eX4SIKeUtqCPTx635q6WXc8FUgk8eyQI5FTiFNdmV9hnBTEPJ6n
+         eKHwEYNVeZph/AlbSFqWJ7huIhPKS+YxmVWL9eC9Rb+vnMyzqh7KOPrkh2AP3MsooXJm
+         7cmjOQtFT9VPU3on82TfumJft4tf620QNPC+KIGPhNIyxZvMfEJOAa2oVCxtoaBONIcI
+         x+pQ==
+X-Gm-Message-State: AOJu0Yy0P7v7PH+MZN8Sc4nNJnBvHoe7EYiPP8iOMNPZpD80IpKXoCFV
+	M+0m4WEjR9gjN1DxKI4x0JE6jNruPmE6DQ==
+X-Google-Smtp-Source: AGHT+IEyNbDtO9wLGuzSBbbR79dXUAD/sxOUgtSNul5Amb2wli+nEGNPHbuuZMTC6sR/aRqi2qUhxg==
+X-Received: by 2002:a05:690c:4706:b0:59f:6a25:959e with SMTP id gz6-20020a05690c470600b0059f6a25959emr3957416ywb.10.1696426438562;
+        Wed, 04 Oct 2023 06:33:58 -0700 (PDT)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
+        by smtp.gmail.com with ESMTPSA id y126-20020a0def84000000b0054bfc94a10dsm1146182ywe.47.2023.10.04.06.33.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Oct 2023 06:33:58 -0700 (PDT)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-59e88a28b98so8783357b3.1;
+        Wed, 04 Oct 2023 06:33:58 -0700 (PDT)
+X-Received: by 2002:a0d:df8a:0:b0:59b:ca32:7460 with SMTP id
+ i132-20020a0ddf8a000000b0059bca327460mr4104751ywe.3.1696426438040; Wed, 04
+ Oct 2023 06:33:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7b93655219a6ad696dd3faa9f36fde6b094694a9.1696330005.git.geert+renesas@glider.be>
+References: <20230929053915.1530607-1-claudiu.beznea@bp.renesas.com> <20230929053915.1530607-28-claudiu.beznea@bp.renesas.com>
+In-Reply-To: <20230929053915.1530607-28-claudiu.beznea@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 4 Oct 2023 15:33:45 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWAhKzdSUtcC-3jZ=wy2Oz2q+Gx0EzUKQzFMBgSMu_UEw@mail.gmail.com>
+Message-ID: <CAMuHMdWAhKzdSUtcC-3jZ=wy2Oz2q+Gx0EzUKQzFMBgSMu_UEw@mail.gmail.com>
+Subject: Re: [PATCH v2 27/28] arm64: dts: renesas: r9a08g045s33-smarc: add
+ initial device tree for RZ/G3S SMARC EVK board
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linus.walleij@linaro.org, gregkh@linuxfoundation.org, jirislaby@kernel.org, 
+	magnus.damm@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
+	quic_bjorande@quicinc.com, konrad.dybcio@linaro.org, arnd@arndb.de, 
+	neil.armstrong@linaro.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	biju.das.jz@bp.renesas.com, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-
-On Tue, 03 Oct 2023 12:47:59 +0200, Geert Uytterhoeven wrote:
-> The unit address in the example does not match the reg property.
-> Correct the unit address to match reality.
-> 
-> Fixes: 3e7bf4685e42786d ("dt-bindings: cache: andestech,ax45mp-cache: Add DT binding documentation for L2 cache controller")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Fri, Sep 29, 2023 at 7:40=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Add initial device tree for RZ/G3S SMARC EVK board.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 > ---
->  .../devicetree/bindings/cache/andestech,ax45mp-cache.yaml       | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+>
+> Changes in v2:
+> - modified compatible
+> - @Geert: I haven't added you Rb tag as I've added
+>   "renesas,rzg3s-smarcm" to the compatible list
 
-Applied, thanks!
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.7.
 
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
