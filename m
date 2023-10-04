@@ -1,107 +1,604 @@
-Return-Path: <devicetree+bounces-5913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 998997B857B
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 18:39:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 984F87B8589
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 18:42:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 99FDC281839
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 16:39:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3C14228158E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 16:42:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DA9E1C287;
-	Wed,  4 Oct 2023 16:39:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 746B01C28F;
+	Wed,  4 Oct 2023 16:42:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C97A31BDFF
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 16:39:37 +0000 (UTC)
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE980C0;
-	Wed,  4 Oct 2023 09:39:34 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C8488240002;
-	Wed,  4 Oct 2023 16:39:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1696437573;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=MoL7tK/sFHlVwmkaF58wS2KqlyZYUgDZWDR3PVlkupE=;
-	b=EeIP1pmbPB4UEYGgstYTh/lmdthejHe4/FFLflsZRL+bQMujIgkkiA5LkFtc1qnlK11wjZ
-	n/THbQQkDOa88yXwfGKTa1fQbZKoHcze/VmgaCP/Rtw58Y9/3sTNbaM0Tooy6nn86su1F/
-	C4iNR3Vz/wB22JnadJdYpeOM4JhhON1crG3J6DMHaxBPIccUp5ToUBOrQf25bzwBhEflaH
-	SD13HVFaWua+Futq9F5QRi8pe1/vHKBhFjKbsYm1Z3cuDI8fsLR46Sz2+RXc5BdAQf4SUN
-	2sVnc/1HqBgwg6kgMfpNTJn/AEUZIY1f8YCgvs4UtIELD9MQfMZyfO8d3bEnUQ==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Wed, 04 Oct 2023 18:39:28 +0200
-Subject: [PATCH 2/2] iio: accel: mxc4005: allow module autoloading via OF
- compatible
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64BF51BDC8
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 16:42:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8ADAC433C8;
+	Wed,  4 Oct 2023 16:42:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696437723;
+	bh=cOSQJWllP4aYeJX1DUlmEFmmDtebjoyE+Tqkf1v/0ew=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=qIkNqKjZ3ne+OHobmRB/I8FfEChqXmF9xIpUVdFROOgZMIDEk9QlH2SaJIcJSNDO7
+	 T4RKr6q9FmT0pC7oZVx9rI2qCyvB/O1WxKtX3RTZGqzu6EzORJiYaHlyIdZVrFYPxP
+	 XK7PzK9JsOuQQ74iGRUTZP9LOf1LOKgvfWhU4Gmw95/OT1gzuqMhayD7i5HF44f1iE
+	 HLfRrufLeGGhNEi+hoYUyUeaHlHNfa4dyP5gL0jmK8W5wqYaIO134lPv1V9u8icsZb
+	 7Cb5oXOKU+fv9A87QLn7oOjV11gDMgYO1dd4qXEDfS4nRoicBMfH+zZASrIo0mlUxM
+	 /QCTu4fpRUibg==
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-502e7d66c1eso37965e87.1;
+        Wed, 04 Oct 2023 09:42:03 -0700 (PDT)
+X-Gm-Message-State: AOJu0YxLQw0FMCaVENycSR60qFyoAV0CTszJ68s7E9xgoUM2qF9sYVvh
+	h+jv1dxLzSvTeQtBuKuINiRrLiy9LED/2/Yh6Q==
+X-Google-Smtp-Source: AGHT+IF2TARL1jD5V/rUrVVE0E0RQH01x3eWrJhLlB24MSAvXT9vdGIheK7aaMZgUlf14HUt5HFHpPI2FCp7VCWhPTg=
+X-Received: by 2002:a19:7114:0:b0:503:9eb:47f0 with SMTP id
+ m20-20020a197114000000b0050309eb47f0mr2427204lfc.59.1696437721782; Wed, 04
+ Oct 2023 09:42:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231004-mxc4005-device-tree-support-v1-2-e7c0faea72e4@bootlin.com>
-References: <20231004-mxc4005-device-tree-support-v1-0-e7c0faea72e4@bootlin.com>
-In-Reply-To: <20231004-mxc4005-device-tree-support-v1-0-e7c0faea72e4@bootlin.com>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>
-X-Mailer: b4 0.12.3
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+References: <20231004161038.2818327-1-gregory.clement@bootlin.com> <20231004161038.2818327-9-gregory.clement@bootlin.com>
+In-Reply-To: <20231004161038.2818327-9-gregory.clement@bootlin.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Wed, 4 Oct 2023 11:41:48 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+Pn=kWFL32Cit-vnyJg2pnap2TMn4LPVr9nTmyK-FrZw@mail.gmail.com>
+Message-ID: <CAL_Jsq+Pn=kWFL32Cit-vnyJg2pnap2TMn4LPVr9nTmyK-FrZw@mail.gmail.com>
+Subject: Re: [PATCH 08/11] MIPS: mobileye: Add EyeQ5 dtsi
+To: Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc: Paul Burton <paulburton@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	linux-mips@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Vladimir Kondratiev <vladimir.kondratiev@intel.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, =?UTF-8?B?VGjDqW8gTGVicnVu?= <theo.lebrun@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add OF device table with compatible strings to allow automatic module
-loading.
+On Wed, Oct 4, 2023 at 11:11=E2=80=AFAM Gregory CLEMENT
+<gregory.clement@bootlin.com> wrote:
+>
+> Add a device tree include file for the Mobileye EyeQ5 SoC.
+>
+> Based on the work of Slava Samsonov <stanislav.samsonov@intel.com>
+>
+> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+> ---
+>  arch/mips/boot/dts/Makefile                   |   1 +
+>  arch/mips/boot/dts/mobileye/Makefile          |   4 +
+>  .../boot/dts/mobileye/eyeq5-fixed-clocks.dtsi | 315 ++++++++++++++++++
+>  arch/mips/boot/dts/mobileye/eyeq5.dtsi        | 138 ++++++++
+>  4 files changed, 458 insertions(+)
+>  create mode 100644 arch/mips/boot/dts/mobileye/Makefile
+>  create mode 100644 arch/mips/boot/dts/mobileye/eyeq5-fixed-clocks.dtsi
+>  create mode 100644 arch/mips/boot/dts/mobileye/eyeq5.dtsi
+>
+> diff --git a/arch/mips/boot/dts/Makefile b/arch/mips/boot/dts/Makefile
+> index 928f38a79dff..edb8e8dee758 100644
+> --- a/arch/mips/boot/dts/Makefile
+> +++ b/arch/mips/boot/dts/Makefile
+> @@ -8,6 +8,7 @@ subdir-$(CONFIG_LANTIQ)                 +=3D lantiq
+>  subdir-$(CONFIG_MACH_LOONGSON64)       +=3D loongson
+>  subdir-$(CONFIG_SOC_VCOREIII)          +=3D mscc
+>  subdir-$(CONFIG_MIPS_MALTA)            +=3D mti
+> +subdir-$(CONFIG_SOC_EYEQ5)             +=3D mobileye
+>  subdir-$(CONFIG_LEGACY_BOARD_SEAD3)    +=3D mti
+>  subdir-$(CONFIG_FIT_IMAGE_FDT_NI169445)        +=3D ni
+>  subdir-$(CONFIG_MACH_PIC32)            +=3D pic32
+> diff --git a/arch/mips/boot/dts/mobileye/Makefile b/arch/mips/boot/dts/mo=
+bileye/Makefile
+> new file mode 100644
+> index 000000000000..99c4124fd4c0
+> --- /dev/null
+> +++ b/arch/mips/boot/dts/mobileye/Makefile
+> @@ -0,0 +1,4 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +# Copyright 2023 Mobileye Vision Technologies Ltd.
+> +
+> +obj-$(CONFIG_BUILTIN_DTB)      +=3D $(addsuffix .o, $(dtb-y))
 
-Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
----
- drivers/iio/accel/mxc4005.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+You didn't add anything to 'dtb-y'. Did you test this?
 
-diff --git a/drivers/iio/accel/mxc4005.c b/drivers/iio/accel/mxc4005.c
-index 75d142bc14b4..41182531feb5 100644
---- a/drivers/iio/accel/mxc4005.c
-+++ b/drivers/iio/accel/mxc4005.c
-@@ -476,6 +476,13 @@ static const struct acpi_device_id mxc4005_acpi_match[] = {
- };
- MODULE_DEVICE_TABLE(acpi, mxc4005_acpi_match);
- 
-+static const struct of_device_id mxc4005_of_match[] = {
-+	{ .compatible = "memsic,mxc4005", },
-+	{ .compatible = "memsic,mxc6655", },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, mxc4005_of_match);
-+
- static const struct i2c_device_id mxc4005_id[] = {
- 	{"mxc4005",	0},
- 	{"mxc6655",	0},
-@@ -487,6 +494,7 @@ static struct i2c_driver mxc4005_driver = {
- 	.driver = {
- 		.name = MXC4005_DRV_NAME,
- 		.acpi_match_table = ACPI_PTR(mxc4005_acpi_match),
-+		.of_match_table = mxc4005_of_match,
- 	},
- 	.probe		= mxc4005_probe,
- 	.id_table	= mxc4005_id,
+Also, CONFIG_BUILTIN_DTB is supposed to be for legacy bootloaders
+which don't understand DT. For a new SoC, fix the bootloader.
 
--- 
-2.34.1
+> diff --git a/arch/mips/boot/dts/mobileye/eyeq5-fixed-clocks.dtsi b/arch/m=
+ips/boot/dts/mobileye/eyeq5-fixed-clocks.dtsi
+> new file mode 100644
+> index 000000000000..a0066465ac8b
+> --- /dev/null
+> +++ b/arch/mips/boot/dts/mobileye/eyeq5-fixed-clocks.dtsi
+> @@ -0,0 +1,315 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +/*
+> + * Copyright 2023 Mobileye Vision Technologies Ltd.
+> + */
 
+I assume these aren't all really fixed, but just 'I don't have a clock
+driver yet'. That creates an ABI issue when you add the clock
+driver(s). Just FYI.
+
+> +
+> +/ {
+> +       /* Fixed clock */
+> +       pll_cpu: pll_cpu {
+
+Don't use _ in node names.
+
+> +               compatible =3D "fixed-clock";
+> +               #clock-cells =3D <0>;
+> +               clock-frequency =3D <1500000000>;
+> +       };
+> +
+> +       pll_vdi: pll_vdi {
+> +               compatible =3D "fixed-clock";
+> +               #clock-cells =3D <0>;
+> +               clock-frequency =3D <1280000000>;
+> +       };
+> +
+> +       pll_per: pll_per {
+> +               compatible =3D "fixed-clock";
+> +               #clock-cells =3D <0>;
+> +               clock-frequency =3D <2000000000>;
+> +       };
+> +
+> +       pll_ddr0: pll_ddr0 {
+> +               compatible =3D "fixed-clock";
+> +               #clock-cells =3D <0>;
+> +               clock-frequency =3D <1857210000>;
+> +       };
+> +
+> +       pll_ddr1: pll_ddr1 {
+> +               compatible =3D "fixed-clock";
+> +               #clock-cells =3D <0>;
+> +               clock-frequency =3D <1857210000>;
+> +       };
+> +
+> +/* PLL_CPU derivatives */
+> +       occ_cpu: occ_cpu {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&pll_cpu>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "occ_cpu";
+
+Isn't the default name the node name? Drop these unless you really
+have a need and they aren't redundant.
+
+> +       };
+> +       si_css0_ref_clk: si_css0_ref_clk { /* gate ClkRstGen_si_css0_ref =
+*/
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&occ_cpu>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "si_css0_ref_clk";
+> +       };
+> +       cpc_clk: cpc_clk {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&si_css0_ref_clk>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "cpc_clk";
+> +       };
+> +       core0_clk: core0_clk {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&si_css0_ref_clk>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "core0_clk";
+> +       };
+> +       core1_clk: core1_clk {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&si_css0_ref_clk>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "core1_clk";
+> +       };
+> +       core2_clk: core2_clk {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&si_css0_ref_clk>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "core2_clk";
+> +       };
+> +       core3_clk: core3_clk {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&si_css0_ref_clk>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "core3_clk";
+> +       };
+> +       cm_clk: cm_clk {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&si_css0_ref_clk>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "cm_clk";
+> +       };
+> +       mem_clk: mem_clk {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&si_css0_ref_clk>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "mem_clk";
+> +       };
+> +       occ_isram: occ_isram {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&pll_cpu>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <2>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "occ_isram";
+> +       };
+> +       isram_clk: isram_clk { /* gate ClkRstGen_isram */
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&occ_isram>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "isram_clk";
+> +       };
+> +       occ_dbu: occ_dbu {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&pll_cpu>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <10>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "occ_dbu";
+> +       };
+> +       si_dbu_tp_pclk: si_dbu_tp_pclk { /* gate ClkRstGen_dbu */
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&occ_dbu>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "si_dbu_tp_pclk";
+> +       };
+> +/* PLL_VDI derivatives */
+> +       occ_vdi: occ_vdi {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&pll_vdi>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <2>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "occ_vdi";
+> +       };
+> +       vdi_clk: vdi_clk { /* gate ClkRstGen_vdi */
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&occ_vdi>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "vdi_clk";
+> +       };
+> +       occ_can_ser: occ_can_ser {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&pll_vdi>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <16>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "occ_can_ser";
+> +       };
+> +       can_ser_clk: can_ser_clk { /* gate ClkRstGen_can_ser */
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&occ_can_ser>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "can_ser_clk";
+> +       };
+> +       i2c_ser_clk: i2c_ser_clk {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&pll_vdi>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <20>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "i2c_ser_clk";
+> +       };
+> +/* PLL_PER derivatives */
+> +       occ_periph: occ_periph {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&pll_per>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <16>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "occ_periph";
+> +       };
+> +       periph_clk: periph_clk {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&occ_periph>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "periph_clk";
+> +       };
+> +       can_clk: can_clk {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&occ_periph>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "can_clk";
+> +       };
+> +       spi_clk: spi_clk {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&occ_periph>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "spi_clk";
+> +       };
+> +       uart_clk: uart_clk {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&occ_periph>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "uart_clk";
+> +       };
+> +       i2c_clk: i2c_clk {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&occ_periph>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "i2c_clk";
+> +       };
+> +       timer_clk: timer_clk {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&occ_periph>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "timer_clk";
+> +       };
+> +       gpio_clk: gpio_clk {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&occ_periph>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "gpio_clk";
+> +       };
+> +       emmc_sys_clk: emmc_sys_clk {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&pll_per>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <10>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "emmc_sys_clk";
+> +       };
+> +       ccf_ctrl_clk: ccf_ctrl_clk {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&pll_per>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <4>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "ccf_ctrl_clk";
+> +       };
+> +       occ_mjpeg_core: occ_mjpeg_core {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&pll_per>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <2>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "occ_mjpeg_core";
+> +       };
+> +       hsm_clk: hsm_clk { /* gate ClkRstGen_hsm */
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&occ_mjpeg_core>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "hsm_clk";
+> +       };
+> +       mjpeg_core_clk: mjpeg_core_clk { /* gate ClkRstGen_mjpeg_gen */
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&occ_mjpeg_core>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <1>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "mjpeg_core_clk";
+> +       };
+> +       fcmu_a_clk: fcmu_a_clk {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&pll_per>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <20>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "fcmu_a_clk";
+> +       };
+> +       occ_pci_sys: occ_pci_sys {
+> +               compatible =3D "fixed-factor-clock";
+> +               clocks =3D <&pll_per>;
+> +               #clock-cells =3D <0>;
+> +               clock-div =3D <8>;
+> +               clock-mult =3D <1>;
+> +               clock-output-names =3D "occ_pci_sys";
+> +       };
+> +       pclk: pclk {
+> +               compatible =3D "fixed-clock";
+> +               #clock-cells =3D <0>;
+> +               clock-frequency =3D <250000000>;  /* 250MHz */
+> +       };
+> +       tsu_clk: tsu_clk {
+> +               compatible =3D "fixed-clock";
+> +               #clock-cells =3D <0>;
+> +               clock-frequency =3D <125000000>;  /* 125MHz */
+> +       };
+> +};
+> diff --git a/arch/mips/boot/dts/mobileye/eyeq5.dtsi b/arch/mips/boot/dts/=
+mobileye/eyeq5.dtsi
+> new file mode 100644
+> index 000000000000..0504c2fb3ad5
+> --- /dev/null
+> +++ b/arch/mips/boot/dts/mobileye/eyeq5.dtsi
+> @@ -0,0 +1,138 @@
+> +// SPDX-License-Identifier: GPL-2.0
+
+Doesn't match eyeq5-fixed-clocks.dtsi
+
+> +/*
+> + * Copyright 2023 Mobileye Vision Technologies Ltd.
+> + */
+> +
+> +#include <dt-bindings/interrupt-controller/mips-gic.h>
+> +#include <dt-bindings/soc/mobileye,eyeq5.h>
+> +
+> +/memreserve/ 0x40000000 0xc0000000; /* DDR32 */
+> +/memreserve/ 0x08000000 0x08000000; /* DDR_LOW */
+> +
+> +#include "eyeq5-fixed-clocks.dtsi"
+> +
+> +/* almost all GIC IRQs has the same characteristics. provide short form =
+*/
+
+Maybe so, but I prefer not having 2 levels of lookup to figure out values.
+
+> +#define GIC_IRQ(x) GIC_SHARED (x) IRQ_TYPE_LEVEL_HIGH
+> +
+> +/ {
+> +       #address-cells =3D <2>;
+> +       #size-cells =3D <2>;
+> +       cpus {
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <0>;
+> +               cpu@0 {
+> +                       device_type =3D "cpu";
+> +                       compatible =3D "mti,i6500";
+> +                       reg =3D <0>;
+> +                       clocks =3D <&core0_clk>;
+> +               };
+> +       };
+> +
+> +       reserved-memory {
+> +               #address-cells =3D <2>;
+> +               #size-cells =3D <2>;
+> +               ranges;
+> +
+> +/* These reserved memory regions are also defined in bootmanager
+> + * for configuring inbound translation for BARS, don't change
+> + * these without syncing with bootmanager
+> + */
+
+Indent with the rest of the node.
+
+> +               shmem0_reserved: shmem@804000000 {
+> +                       reg =3D <0x8 0x04000000 0x0 0x1000000>;
+> +               };
+> +               shmem1_reserved: shmem@805000000 {
+> +                       reg =3D <0x8 0x05000000 0x0 0x1000000>;
+> +               };
+> +               pci0_msi_reserved: pci0_msi@806000000 {
+> +                       reg =3D <0x8 0x06000000 0x0 0x100000>;
+> +               };
+> +               pci1_msi_reserved: pci1_msi@806100000 {
+> +                       reg =3D <0x8 0x06100000 0x0 0x100000>;
+> +               };
+> +
+> +               mini_coredump0_reserved: mini_coredump0@806200000 {
+> +                       reg =3D <0x8 0x06200000 0x0 0x100000>;
+> +               };
+> +               mhm_reserved_0: the_mhm_reserved_0@0 {
+> +                       reg =3D <0x8 0x00000000 0x0 0x0000800>;
+> +               };
+> +       };
+> +
+> +       aliases {
+> +               serial0 =3D &uart0;
+> +               serial1 =3D &uart1;
+> +               serial2 =3D &uart2;
+> +       };
+> +
+> +       cpu_intc: interrupt-controller {
+> +               compatible =3D "mti,cpu-interrupt-controller";
+> +               interrupt-controller;
+> +               #address-cells =3D <0>;
+> +               #interrupt-cells =3D <1>;
+> +       };
+> +
+> +       gic: interrupt-controller@140000 {
+> +               compatible =3D "mti,gic";
+> +               reg =3D <0x0 0x140000 0x0 0x20000>;
+> +               interrupt-controller;
+> +               #interrupt-cells =3D <3>;
+> +
+> +               /*
+> +                * Declare the interrupt-parent even though the mti,gic
+> +                * binding doesn't require it, such that the kernel can
+> +                * figure out that cpu_intc is the root interrupt
+> +                * controller & should be probed first.
+> +                */
+> +               interrupt-parent =3D <&cpu_intc>;
+> +
+> +               timer {
+> +                       compatible =3D "mti,gic-timer";
+> +                       interrupts =3D <GIC_LOCAL 1 IRQ_TYPE_NONE>;
+> +                       clocks =3D <&core0_clk>;
+> +               };
+> +       };
+> +
+> +       soc: soc {
+> +               #address-cells =3D <2>;
+> +               #size-cells =3D <2>;
+> +               ranges;
+> +               compatible =3D "simple-bus";
+> +
+> +               uart0: serial@800000 {
+> +                       compatible =3D "arm,pl011", "arm,primecell";
+> +                       reg =3D <0 0x800000 0x0 0x1000>;
+> +                       reg-io-width =3D <4>;
+> +                       interrupt-parent =3D <&gic>;
+> +                       interrupts =3D <GIC_IRQ(NUM_INT_UART)>;
+> +                       clocks  =3D <&uart_clk>, <&occ_periph>;
+> +                       clock-names =3D "uartclk", "apb_pclk";
+> +               };
+> +
+> +               uart1: serial@900000 {
+> +                       compatible =3D "arm,pl011", "arm,primecell";
+> +                       reg =3D <0 0x900000 0x0 0x1000>;
+> +                       reg-io-width =3D <4>;
+> +                       interrupt-parent =3D <&gic>;
+> +                       interrupts =3D <GIC_IRQ(NUM_INT_UART)>;
+> +                       clocks  =3D <&uart_clk>, <&occ_periph>;
+> +                       clock-names =3D "uartclk", "apb_pclk";
+> +               };
+> +
+> +               uart2: serial@a00000 {
+> +                       compatible =3D "arm,pl011", "arm,primecell";
+> +                       reg =3D <0 0xa00000 0x0 0x1000>;
+> +                       reg-io-width =3D <4>;
+> +                       interrupt-parent =3D <&gic>;
+> +                       interrupts =3D <GIC_IRQ(NUM_INT_UART)>;
+> +                       clocks  =3D <&uart_clk>, <&occ_periph>;
+> +                       clock-names =3D "uartclk", "apb_pclk";
+> +               };
+> +
+> +               olb: olb@e00000 {
+> +                       compatible =3D "mobileye,eyeq5-olb", "syscon", "s=
+imple-mfd";
+> +                       reg =3D <0 0xe00000 0x0 0x400>;
+> +                       reg-io-width =3D <4>;
+> +               };
+> +
+> +       };
+> +};
+> --
+> 2.40.1
+>
 
