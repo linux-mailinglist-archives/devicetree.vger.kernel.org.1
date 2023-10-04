@@ -1,234 +1,175 @@
-Return-Path: <devicetree+bounces-5937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C9AD7B8D89
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 21:39:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55DF17B8DCF
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 22:03:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id BC60FB2084A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 19:39:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 06E582817CA
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 20:03:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F78121A1A;
-	Wed,  4 Oct 2023 19:38:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 762BF224D4;
+	Wed,  4 Oct 2023 20:03:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="UuN/D/Nq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 994221B29D
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 19:38:56 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id EFD31AB;
-	Wed,  4 Oct 2023 12:38:52 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3BC50C15;
-	Wed,  4 Oct 2023 12:39:31 -0700 (PDT)
-Received: from [10.57.67.242] (unknown [10.57.67.242])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 89C933F762;
-	Wed,  4 Oct 2023 12:38:47 -0700 (PDT)
-Message-ID: <498ffcef-2ff9-495b-8544-b87c5c2eb6e1@arm.com>
-Date: Wed, 4 Oct 2023 20:38:39 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC0B61B27F
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 20:03:07 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CC3DA6;
+	Wed,  4 Oct 2023 13:03:05 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 72D99512;
+	Wed,  4 Oct 2023 22:01:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1696449676;
+	bh=0STMK2shPjMjsQukEfpqITFlDa95uBPhYrYGLXI0PEY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UuN/D/NqSW5H3isdNNa8PFd9VnukkabGY/Q9HzuvWLRRJ9ovArpfwP1staoCVqKcF
+	 reog/uTRvO3jJWkWfg7rJXw4Q7HvoeYzF+ZsGfXYQnbTxQ1+17XPwGT/JaZyuhOHPA
+	 Xo7yuPzSK2GC4A+3TEcfzCeOXBKu7SlmSp7+GFhU=
+Date: Wed, 4 Oct 2023 23:03:12 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Vinod Koul <vkoul@kernel.org>
+Cc: Jai Luthra <j-luthra@ti.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	niklas.soderlund+renesas@ragnatech.se,
+	Benoit Parrot <bparrot@ti.com>, Vaishnav Achath <vaishnav.a@ti.com>,
+	nm@ti.com, devarsht@ti.com, a-bhatia1@ti.com,
+	Martyn Welch <martyn.welch@collabora.com>,
+	Julien Massot <julien.massot@collabora.com>
+Subject: Re: [PATCH v9 13/13] media: ti: Add CSI2RX support for J721E
+Message-ID: <20231004200312.GE30342@pendragon.ideasonboard.com>
+References: <20230811-upstream_csi-v9-0-8943f7a68a81@ti.com>
+ <20230811-upstream_csi-v9-13-8943f7a68a81@ti.com>
+ <ad042065-33a2-d42e-ce2e-628464102fc3@ideasonboard.com>
+ <wgkjek77bolf5wabki7uhm6cxjy5g5z2ncoc6urr7dv5y6wnaw@yfh7ccogxfea>
+ <20230829155513.GG6477@pendragon.ideasonboard.com>
+ <ZR1txMVk+4oHLEKU@matsya>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/6] RISC-V: Add eMMC support for TH1520 boards
-Content-Language: en-GB
-To: Samuel Holland <samuel.holland@sifive.com>,
- "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Jisheng Zhang <jszhang@kernel.org>,
- Drew Fustini <dfustini@baylibre.com>, linux-kernel@vger.kernel.org,
- Linux-MM <linux-mm@kvack.org>, Guo Ren <guoren@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-riscv@lists.infradead.org, Christoph Hellwig <hch@lst.de>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alexghiti@rivosinc.com>,
- Arnd Bergmann <arnd@arndb.de>, Han Gao <gaohan@iscas.ac.cn>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Jason Kridner <jkridner@beagleboard.org>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Robert Nelson <robertcnelson@gmail.com>, linux-mmc@vger.kernel.org,
- Adrian Hunter <adrian.hunter@intel.com>, Conor Dooley <conor@kernel.org>,
- =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>,
- Rob Herring <robh+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Xi Ruoyao <xry111@xry111.site>, Fu Wei <wefu@redhat.com>
-References: <20230921-th1520-mmc-v1-0-49f76c274fb3@baylibre.com>
- <CAOCHtYhnx1EpBM+o3xhdsicx5uqLidojK3f0HQ+VfyVv1ZXnVQ@mail.gmail.com>
- <CAOCHtYi5Ab5ppCmaQV3QuKQcpmJX+sHdAmtuEXhfq8xf5fFCYQ@mail.gmail.com>
- <ZRuamJuShOnvP1pr@x1> <ZR1M3FcdXrDmIGu2@xhacker>
- <CA+V-a8ugwqkQxnX-wwWCHVtBBtG=aVv=MZTc53LbpxtFA=N1_A@mail.gmail.com>
- <bc2b0b30-ab37-f336-c90e-eab570d393a2@arm.com>
- <c2ea3f34bb919293b850fab6ed42b61e3517ba35.camel@icenowy.me>
- <a568a9dd-bab2-1e23-c4d5-9f6475bdcc3b@arm.com>
- <CA+V-a8s1S4yTH19PVNSznAgUFoHRNoye9CfwjW6iy6PbQ9thew@mail.gmail.com>
- <CA+V-a8vbWW6=HTfR+FCPOB0bAa8M3Bbm_k=7+XbjOc3ybo6VNQ@mail.gmail.com>
- <20075b03-e3b0-4f29-9ba1-98eed361a44f@sifive.com>
-From: Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20075b03-e3b0-4f29-9ba1-98eed361a44f@sifive.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <ZR1txMVk+4oHLEKU@matsya>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 2023-10-04 19:49, Samuel Holland wrote:
-> On 2023-10-04 12:16 PM, Lad, Prabhakar wrote:
->> On Wed, Oct 4, 2023 at 5:03 PM Lad, Prabhakar
->> <prabhakar.csengg@gmail.com> wrote:
->>>
->>> On Wed, Oct 4, 2023 at 3:18 PM Robin Murphy <robin.murphy@arm.com> wrote:
->>>>
->>>> On 04/10/2023 3:02 pm, Icenowy Zheng wrote:
->>>> [...]
->>>>>>>> I believe commit 484861e09f3e ("soc: renesas: Kconfig: Select the
->>>>>>>> required configs for RZ/Five SoC") can cause regression on all
->>>>>>>> non-dma-coherent riscv platforms with generic defconfig. This is
->>>>>>>> a common issue. The logic here is: generic riscv defconfig
->>>>>>>> selects
->>>>>>>> ARCH_R9A07G043 which selects DMA_GLOBAL_POOL, which assumes all
->>>>>>>> non-dma-coherent riscv platforms have a dma global pool, this
->>>>>>>> assumption
->>>>>>>> seems not correct. And I believe DMA_GLOBAL_POOL should not be
->>>>>>>> selected by ARCH_SOCFAMILIY, instead, only ARCH under some
->>>>>>>> specific
->>>>>>>> conditions can select it globaly, for example NOMMU ARM and so
->>>>>>>> on.
->>>>>>>>
->>>>>>>> Since this is a regression, what's proper fix? any suggestion is
->>>>>>>> appreciated.
->>>>>>
->>>>>> I think the answer is to not select DMA_GLOBAL_POOL, since that is
->>>>>> only
->>>>>
->>>>> Well I think for RISC-V, it's not NOMMU only but applicable for every
->>>>> core that does not support Svpbmt or vendor-specific alternatives,
->>>>> because the original RISC-V priv spec does not define memory attributes
->>>>> in page table entries.
->>>>>
->>>>> For the Renesas/Andes case I think a pool is set by OpenSBI with
->>>>> vendor-specific M-mode facility and then passed in DT, and the S-mode
->>>>> (which MMU is enabled in) just sees fixed memory attributes, in this
->>>>> case I think DMA_GLOBAL_POOL is needed.
->>>>
->>>> Oh wow, is that really a thing? In that case, either you just can't
->>>> support this platform in a multi-platform kernel, or someone needs to do
->>>> some fiddly work in dma-direct to a) introduce the notion of an optional
->>>> global pool,
->>> Looking at the code [0] we do have compile time check for
->>> CONFIG_DMA_GLOBAL_POOL irrespective of this being present in DT or
->>> not, instead if we make it compile time and runtime check ie either
->>> check for DT node or see if pool is available and only then proceed
->>> for allocation form this pool.
->>>
->>> What are your thoughts on this?
->>>
->> Something like the below:
->>
->> diff --git a/include/linux/dma-map-ops.h b/include/linux/dma-map-ops.h
->> index f2fc203fb8a1..7bf41a4634a4 100644
->> --- a/include/linux/dma-map-ops.h
->> +++ b/include/linux/dma-map-ops.h
->> @@ -198,6 +198,7 @@ int dma_release_from_global_coherent(int order,
->> void *vaddr);
->>   int dma_mmap_from_global_coherent(struct vm_area_struct *vma, void *cpu_addr,
->>                  size_t size, int *ret);
->>   int dma_init_global_coherent(phys_addr_t phys_addr, size_t size);
->> +bool dma_global_pool_available(void);
->>   #else
->>   static inline void *dma_alloc_from_global_coherent(struct device *dev,
->>                  ssize_t size, dma_addr_t *dma_handle)
->> @@ -213,6 +214,10 @@ static inline int
->> dma_mmap_from_global_coherent(struct vm_area_struct *vma,
->>   {
->>          return 0;
->>   }
->> +static inline bool dma_global_pool_available(void)
->> +{
->> +       return false;
->> +}
->>   #endif /* CONFIG_DMA_GLOBAL_POOL */
->>
->>   /*
->> diff --git a/kernel/dma/coherent.c b/kernel/dma/coherent.c
->> index c21abc77c53e..605f243b8262 100644
->> --- a/kernel/dma/coherent.c
->> +++ b/kernel/dma/coherent.c
->> @@ -277,6 +277,14 @@ int dma_mmap_from_dev_coherent(struct device
->> *dev, struct vm_area_struct *vma,
->>   #ifdef CONFIG_DMA_GLOBAL_POOL
->>   static struct dma_coherent_mem *dma_coherent_default_memory __ro_after_init;
->>
->> +bool dma_global_pool_available(void)
->> +{
->> +       if (!dma_coherent_default_memory)
->> +               return false;
->> +
->> +       return true;
->> +}
->> +
->>   void *dma_alloc_from_global_coherent(struct device *dev, ssize_t size,
->>                                       dma_addr_t *dma_handle)
->>   {
->> diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
->> index 9596ae1aa0da..a599bb731ceb 100644
->> --- a/kernel/dma/direct.c
->> +++ b/kernel/dma/direct.c
->> @@ -235,7 +235,7 @@ void *dma_direct_alloc(struct device *dev, size_t size,
->>                   * If there is a global pool, always allocate from it for
->>                   * non-coherent devices.
->>                   */
->> -               if (IS_ENABLED(CONFIG_DMA_GLOBAL_POOL))
->> +               if (IS_ENABLED(CONFIG_DMA_GLOBAL_POOL) &&
->> dma_global_pool_available())
->>                          return dma_alloc_from_global_coherent(dev, size,
->>                                          dma_handle);
+On Wed, Oct 04, 2023 at 07:21:00PM +0530, Vinod Koul wrote:
+> On 29-08-23, 18:55, Laurent Pinchart wrote:
+> > Hi Jai,
+> > 
+> > (CC'ing Vinod, the maintainer of the DMA engine subsystem, for a
+> > question below)
 > 
-> dma_alloc_from_global_coherent() already checks dma_coherent_default_memory, so
-> the solution could be even simpler:
-> 
-> --- a/kernel/dma/direct.c
-> +++ b/kernel/dma/direct.c
-> @@ -232,12 +232,12 @@ void *dma_direct_alloc(struct device *dev, size_t size,
->   					      attrs);
-> 
->   		/*
-> -		 * If there is a global pool, always allocate from it for
-> +		 * If there is a global pool, always try to allocate from it for
->   		 * non-coherent devices.
->   		 */
-> -		if (IS_ENABLED(CONFIG_DMA_GLOBAL_POOL))
-> -			return dma_alloc_from_global_coherent(dev, size,
-> -					dma_handle);
-> +		ret = dma_alloc_from_global_coherent(dev, size, dma_handle);
-> +		if (ret)
-> +			return ret;
+> Sorry this got lost
 
-So if allocation fails because the pool is full, we should go ahead and 
-remap something that can't work? ;)
+No worries.
 
-The dma_global_pool_available() idea sort of works, but I'm still 
-concerned about the case where it *should* have been available but the 
-platform has been misconfigured, so again we fall through to 
-DMA_DIRECT_REMAP "successfully" returning a coherent buffer that isn't, 
-and the user's filesystem gets corrupted. Or at best, they get confused 
-by weird errors from random devices going wrong. That's why I said it 
-would be fiddly - the current state of DMA_GLOBAL_POOL as a binary 
-arch-wide thing is relatively robust and easy to reason about, but 
-attempting to generalise it further is... less so.
+> > On Fri, Aug 18, 2023 at 03:55:06PM +0530, Jai Luthra wrote:
+> > > On Aug 15, 2023 at 16:00:51 +0300, Tomi Valkeinen wrote:
+> > > > On 11/08/2023 13:47, Jai Luthra wrote:
+> > > > > From: Pratyush Yadav <p.yadav@ti.com>
+> > 
+> > [snip]
+> > 
+> > > > > +static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
+> > > > > +{
+> > > > > +	struct ti_csi2rx_dev *csi = vb2_get_drv_priv(vq);
+> > > > > +	struct ti_csi2rx_dma *dma = &csi->dma;
+> > > > > +	struct ti_csi2rx_buffer *buf;
+> > > > > +	unsigned long flags;
+> > > > > +	int ret = 0;
+> > > > > +
+> > > > > +	spin_lock_irqsave(&dma->lock, flags);
+> > > > > +	if (list_empty(&dma->queue))
+> > > > > +		ret = -EIO;
+> > > > > +	spin_unlock_irqrestore(&dma->lock, flags);
+> > > > > +	if (ret)
+> > > > > +		return ret;
+> > > > > +
+> > > > > +	dma->drain.len = csi->v_fmt.fmt.pix.sizeimage;
+> > > > > +	dma->drain.vaddr = dma_alloc_coherent(csi->dev, dma->drain.len,
+> > > > > +					      &dma->drain.paddr, GFP_KERNEL);
+> > > > > +	if (!dma->drain.vaddr)
+> > > > > +		return -ENOMEM;
+> > > > 
+> > > > This is still allocating a large buffer every time streaming is started (and
+> > > > with streams support, a separate buffer for each stream?).
+> > > > 
+> > > > Did you check if the TI DMA can do writes to a constant address? That would
+> > > > be the best option, as then the whole buffer allocation problem goes away.
+> > > 
+> > > I checked with Vignesh, the hardware can support a scenario where we 
+> > > flush out all the data without allocating a buffer, but I couldn't find 
+> > > a way to signal that via the current dmaengine framework APIs. Will look 
+> > > into it further as it will be important for multi-stream support.
+> > 
+> > That would be the best option. It's not immediately apparent to me if
+> > the DMA engine API supports such a use case.
+> > dmaengine_prep_interleaved_dma() gives you finer grain control on the
+> > source and destination increments, but I haven't seen a way to instruct
+> > the DMA engine to direct writes to /dev/null (so to speak). Vinod, is
+> > this something that is supported, or could be supported ?
+> 
+> Write to a dummy buffer could have the same behaviour, no?
 
-Thanks,
-Robin.
+Yes, but if the DMA engine can write to /dev/null, that avoids
+allocating a dummy buffer, which is nicer. For video use cases, dummy
+buffers are often large.
 
-> 
->   		/*
->   		 * Otherwise remap if the architecture is asking for it.  But
-> 
-> Regards,
-> Samuel
-> 
+> > > > Alternatively, can you flush the buffers with multiple one line transfers?
+> > > > The flushing shouldn't be performance critical, so even if that's slower
+> > > > than a normal full-frame DMA, it shouldn't matter much. And if that can be
+> > > > done, a single probe time line-buffer allocation should do the trick.
+> > > 
+> > > There will be considerable overhead if we queue many DMA transactions 
+> > > (in the order of 1000s or even 100s), which might not be okay for the 
+> > > scenarios where we have to drain mid-stream. Will have to run some 
+> > > experiments to see if that is worth it.
+> > > 
+> > > But one optimization we can for sure do is re-use a single drain buffer 
+> > > for all the streams. We will need to ensure to re-allocate the buffer 
+> > > for the "largest" framesize supported across the different streams at 
+> > > stream-on time.
+> > 
+> > If you implement .device_prep_interleaved_dma() in the DMA engine driver
+> > you could write to a single line buffer, assuming that the hardware would
+> > support so in a generic way.
+> > 
+> > > My guess is the endpoint is not buffering a full-frame's worth of data, 
+> > > I will also check if we can upper bound that size to something feasible.
+> > > 
+> > > > Other than this drain buffer topic, I think this looks fine. So, I'm going
+> > > > to give Rb, but I do encourage you to look more into optimizing this drain
+> > > > buffer.
+> > > 
+> > > Thank you!
+> > > 
+> > > > Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+
+-- 
+Regards,
+
+Laurent Pinchart
 
