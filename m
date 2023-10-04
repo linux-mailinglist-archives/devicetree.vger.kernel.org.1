@@ -1,239 +1,175 @@
-Return-Path: <devicetree+bounces-5726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C3A57B7A22
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 10:35:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AC567B7A32
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 10:37:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id 7C9F61F21E5E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 08:35:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3753128145E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 08:37:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40FDCDDAF;
-	Wed,  4 Oct 2023 08:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC4E6101EC;
+	Wed,  4 Oct 2023 08:37:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AAB31FD9
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 08:35:20 +0000 (UTC)
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8471EA6
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 01:35:18 -0700 (PDT)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-5a200028437so22698527b3.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Oct 2023 01:35:18 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E7602116
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 08:36:58 +0000 (UTC)
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6121E83;
+	Wed,  4 Oct 2023 01:36:56 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4060b623e64so3761945e9.0;
+        Wed, 04 Oct 2023 01:36:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696408517; x=1697013317; darn=vger.kernel.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1696408615; x=1697013415; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=V9Pvz5wjW4nQEQ8U042AuTMhwGm2vJJWl+JdrrFRANE=;
-        b=mOp6+SvvY1EPvyAmrP0haBzCOHQTDIV2iQyA6NxNWzZBRqFsLTRbkuUV9Cr60uliXn
-         z8YIx4lW/6DaL17qylB0Kv+lXip64aEMiKrGyDbl3VFSBdgxujoZO0NE7VVKZrBgW7kp
-         DFWhxJenY0juQNs0L9xbvs0EGaoJT+y3KUR4ccdQbyZ33WMl3YVJVgQoYM+AF6QCZDxK
-         Rc7H6rNcF3qgZpW6ysEoDREtyLh1dnwP8WoitzfglPCwG7oQVO+BfFQGEw/6ErfV8hWc
-         PXIiiYXGc0uRXdwhT2UfB4ez5Mi/iBp64HYVf6/UJ4z/dWgRHOSz2hm9zbMicMGZffnn
-         snzA==
+        bh=RkfAdr3F5jJkOyznGJa/M5SZW3t5nD9ld59JmHneym0=;
+        b=YDjDZJfAJCH3BcaPs570WA9qoZ5XKQP9ubMdbJX5athTtjPVLYyhx3NQ/Msau6EVRy
+         GeORU3vvrAJ61K1qaSxTvlWX14BJQNUY9JOTZ02Rf7zs/OIKN+JG4PsQKzfLTEkDuvhd
+         s0p+z8XHryXWtjMSaO+mqtp2zZG+mKuM5owcgBbBcTTtT48kE97Fco/ltVtHjkI8hJoI
+         a+Gt+8C/zqJCPeY3V8x+1HMhm1dc6GbazWW+R38VQuzGaJXVOXxrR46TL7mj4aD6NC7A
+         U48VEZ0QoQiCt7Dfq++/UjpKCR7i5J3gqRMTid0rG0Wr/v6bX/Yt+goix25kvbLL73pD
+         vZmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696408517; x=1697013317;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1696408615; x=1697013415;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=V9Pvz5wjW4nQEQ8U042AuTMhwGm2vJJWl+JdrrFRANE=;
-        b=s3olRwEIs2CUxmOv8w7TUwxD0WG58lDRraLTttyAv6BfqBWtp2kTUU9gD5+2Xm7pGh
-         KCbVAJXNPneA0B6HmCKp1BG4JRssl0DGXjsjYZePa57Y5uQjYxzWsapUa/XLtVgiFLyB
-         9uQP8GNFLG25BVAtzTOLhKf07b7yjnMgO1fDYXev/BJDQsE6GeV1g2yPuj8GleCN0DCS
-         YUOgoT7VR69VdqyuktW9nCM9mNo76WozOkXLVz5WZt38rVcHjB7QefkvWmsVKIMkwkV7
-         GzLBdsdlLwYEcAbSJLEe2hgiEX8vckyLjEfS6Y6ovD4Etr5FugEjHigs+r0tEGl4+led
-         NZQA==
-X-Gm-Message-State: AOJu0YwrZS1TnZkxDGe1V17YSgQ7bE4cfAeU3NjczWsWSCKMkIZQdKP+
-	MJ+y7T5DEs2iqZmg4O/Wp5tZhMAtjwalNzYaagTABta0SFjVBWOuCJI=
-X-Google-Smtp-Source: AGHT+IH5ngf97qNt6bu22r6TovmZpeCObZ1P4vs+ZHMOMTu1yaL2qGufLWfX5gIBKVU2oIFa2UbP+oCYEwSXWYxeI0o=
-X-Received: by 2002:a0d:d203:0:b0:58d:7ec3:16c4 with SMTP id
- u3-20020a0dd203000000b0058d7ec316c4mr1815920ywd.34.1696408517703; Wed, 04 Oct
- 2023 01:35:17 -0700 (PDT)
+        bh=RkfAdr3F5jJkOyznGJa/M5SZW3t5nD9ld59JmHneym0=;
+        b=BrCMTfDE4UwrGng17rBWYsx9aYdWXrTlZw3gt/A6Qe43uirNRChY5FrygchaWJ+awO
+         anEqQfCrNQsVRMhKiWdRnU0AtSJrnSZ4kYkBZh7rDd6XH9LARqnNEJnqYQ0abKblMxRm
+         K3sfiC3eNttxfUbrRQC+YnrmVx7ohyvzwzVCkxsk4Xw+gRtXmT0/NjkmUDGuNL4QRk1E
+         egpexhEBEFZ70nIlh8/iXRQhNoTrGRJwX6jONtOr9ZCd3rniFoJiiQA23h2UCqo6w+XN
+         YiQQmW7Wj8P/FB+5MCwAh+SExt1EkTAsUrZRKtqIwi2D80kKk9QmwrXbvfCAVOVaUOxa
+         XL0g==
+X-Gm-Message-State: AOJu0YxdS8d2/hiXeUJ4fUrU/NVwaTe0DEaLHXxBtk4EgMGOltTm8ks6
+	FmcetHzyMNmfya/Z+vqMrKc=
+X-Google-Smtp-Source: AGHT+IEjoO8o6Ujp6u7Rku5wwKxupS9sA4x8/wplpXvxlJ/7kFVD2nsNBV21tG3XuLT18o/k1a2lYA==
+X-Received: by 2002:a05:600c:b8d:b0:401:609f:7f9a with SMTP id fl13-20020a05600c0b8d00b00401609f7f9amr4275071wmb.8.1696408614641;
+        Wed, 04 Oct 2023 01:36:54 -0700 (PDT)
+Received: from PCBABN.skidata.net ([91.230.2.244])
+        by smtp.gmail.com with ESMTPSA id l16-20020a7bc450000000b0040536dcec17sm918596wmi.27.2023.10.04.01.36.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Oct 2023 01:36:54 -0700 (PDT)
+From: Benjamin Bara <bbara93@gmail.com>
+To: aford173@gmail.com
+Cc: abelvesa@kernel.org,
+	bbara93@gmail.com,
+	benjamin.bara@skidata.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	festevam@gmail.com,
+	frank@oltmanns.dev,
+	kernel@pengutronix.de,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-imx@nxp.com,
+	linux-kernel@vger.kernel.org,
+	linux@armlinux.org.uk,
+	mripard@kernel.org,
+	mturquette@baylibre.com,
+	peng.fan@nxp.com,
+	robh+dt@kernel.org,
+	s.hauer@pengutronix.de,
+	sboyd@kernel.org,
+	shawnguo@kernel.org
+Subject: Re: [PATCH 02/13] arm64: dts: imx8mp: re-parent IMX8MP_CLK_MEDIA_MIPI_PHY1_REF
+Date: Wed,  4 Oct 2023 10:36:39 +0200
+Message-Id: <20231004083639.2895890-1-bbara93@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <CAHCN7x+TCxbaE7Y41Yn5SpG0G5V57hwXQ7HX_ExLF1EXKtZs4w@mail.gmail.com>
+References: <CAHCN7x+TCxbaE7Y41Yn5SpG0G5V57hwXQ7HX_ExLF1EXKtZs4w@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231002021602.260100-1-takahiro.akashi@linaro.org>
- <20231002021602.260100-4-takahiro.akashi@linaro.org> <CACRpkdZojfC2qr7gfzL9fj=DEYJcuPR=a1+zVWTMysK9BH_m_Q@mail.gmail.com>
- <ZR0L5Oe9oT/sEF2p@octopus>
-In-Reply-To: <ZR0L5Oe9oT/sEF2p@octopus>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 4 Oct 2023 10:35:05 +0200
-Message-ID: <CACRpkdY=5hYONDcXW4omcX7=r-JtH=AvOSVMkj72LKiaF_wJuA@mail.gmail.com>
-Subject: Re: [RFC 3/4] gpio: scmi: add SCMI pinctrl based gpio driver
-To: AKASHI Takahiro <takahiro.akashi@linaro.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	sudeep.holla@arm.com, cristian.marussi@arm.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	Oleksii_Moisieiev@epam.com, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Takahiro,
+Hi Adam,
 
-I see you are on track with this!
+thanks for the feedback!
 
-Some clarifications:
+On Tue, 3 Oct 2023 at 15:02, Adam Ford <aford173@gmail.com> wrote:
+> From what I can see, it looks like the IMX8MP_CLK_MEDIA_MIPI_PHY1_REF
+> parent is being set to IMX8MP_CLK_24M.  Isn't that the default? I also
+> don't think we need to set a 24MHz clock to 24MHz if that's the
+> default.
 
-On Wed, Oct 4, 2023 at 8:53=E2=80=AFAM AKASHI Takahiro
-<takahiro.akashi@linaro.org> wrote:
+I can retry (have the patch applied since then), but as far as I
+remember, it was not. What was even funnier was that media_mipi_phy1_ref
+hat a divider != 1 set (it is a composite), so it wasn't sufficient to
+just re-parent it to OSC_24M - probably because set_rate() was called
+before it was re-parented to OSC_24M. But thanks for the catch, I will
+take a look again and adapt it if possible.
 
-> I'm still not sure whether my approach can be applied to any other
-> pinctrl-based gpio drivers, in which extra (driver-specific) operations
-> might be needed around the generic pinctrl_gpio helpers (i.e. gpiolib.c).
-> For instance, look at gpio-tegra.c:
+Regards
+Benjamin
 
-Yeah, it kind of requires a "pure" pin controller underneath that don't
-want to do anything else on any operations, otherwise we are back
-to a per-soc pin control driver.
-
-But I think it is appropriate for abstractions that strive to provide
-"total abstraction behind a firmware", so such as SCMI or ACPI (heh).
-
-> > Skip this, let's use device properties instead. They will anyways just =
-translate
-> > to OF properties in the OF case.
+> If that is the case, I would suggest we try to remove the assignment
+> altogether to make the device tree simpler and less to untangle if a
+> board needs to manually manipulate the clocks for some specific
+> reason.
 >
-> Okay, I don't know how device properties work, though.
-
-They are pretty much 1-to-1 slot-ins for the corresponding of_*
-functions, passing struct device * instead of struct device_node *,
-if you look in include/linux/property.h you will feel at home very
-quickly.
-
-> > > +static int scmi_gpio_get_direction(struct gpio_chip *chip, unsigned =
-int offset)
+> adam
+>
 > >
-> > Rename all functions pinctrl_gpio_*
->
-> Well, this change will result in name conflicts against existing
-> pinctrl_gpio_direction_[in|out]out(). So use "pin_control_gpio_" prefix.
-
-Yeah that works, or pincontro_by_gpio_ or such.
-
-> Not sure how the last case (in_en && out_en && DRIVE_OPEN_DRAIN) works.
-
-I wrote some documentation! But it is hidden deep in the docs:
-https://docs.kernel.org/driver-api/gpio/driver.html#gpio-lines-with-open-dr=
-ain-source-support
-
-> In order to be able to read a value as an input pin, I think, we need
-> to set the output status to Hi-Z. Then we should recognize it as "INPUT"?
-> In this case, however, we cannot distinguish the other case where we want
-> to use the pin as OUTPUT and drive it to (active) high.
-
-With open drain, on GPIO controllers that do not support a native
-open drain mode, we emulate open drain output high by switching
-the line into input mode. The line in this case has a pull-up resistor
-(internal or external) and as input mode is high-Z the pull up resistor
-will pull the signal high, to any level - could be e.g 48V which is
-helpful for some serial links.
-
-But this case is really tricky so it can be hard to get things right,
-I get a bit confused and so we need to think about it a few times.
-
-> > > +static void scmi_gpio_set(struct gpio_chip *chip, unsigned int offse=
-t, int val)
+> > Cc: Adam Ford <aford173@gmail.com>
+> > Signed-off-by: Benjamin Bara <benjamin.bara@skidata.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 14 ++++++--------
+> >  1 file changed, 6 insertions(+), 8 deletions(-)
 > >
-> > static int?
->
-> Unfortunately, the function prototype of "set" in struct gpio_device is
->         void (*set)(struct gpio_chip *gc, unsigned int offset, int value)=
-;
->
-> So we cannot propagate an error to the caller.
-
-Grrr that must be my fault. Sorry about not fixing this :(
-
-> > No need to add & 0x01, the gpiolib core already does this.
->
-> Which part of gpiolib core?
-
-chip->set =3D scmi_gpio_set; gets called like this in gpiolib:
-
- gpiod_direction_output_raw_commit(..., int value)
-{
-    int val =3D !!value;
-(...)
-    gc->set(gc, gpio_chip_hwgpio(desc), val);
-
-Notice clamping int val =3D !!value; will make the passed val 0 or 1.
-
-> > > +static u16 sum_up_ngpios(struct gpio_chip *chip)
-> > > +{
-> > > +       struct gpio_pin_range *range;
-> > > +       struct gpio_device *gdev =3D chip->gpiodev;
-> > > +       u16 ngpios =3D 0;
-> > > +
-> > > +       list_for_each_entry(range, &gdev->pin_ranges, node) {
-> > > +               ngpios +=3D range->range.npins;
-> > > +       }
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > index c946749a3d73..9539d747e28e 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > @@ -1640,11 +1640,6 @@ mipi_dsi: dsi@32e60000 {
+> >                                 clocks = <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
+> >                                          <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF>;
+> >                                 clock-names = "bus_clk", "sclk_mipi";
+> > -                               assigned-clocks = <&clk IMX8MP_CLK_MEDIA_APB>,
+> > -                                                 <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF>;
+> > -                               assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>,
+> > -                                                        <&clk IMX8MP_CLK_24M>;
+> > -                               assigned-clock-rates = <200000000>, <24000000>;
+> >                                 samsung,pll-clock-frequency = <24000000>;
+> >                                 interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
+> >                                 power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_DSI_1>;
+> > @@ -1747,13 +1742,16 @@ media_blk_ctrl: blk-ctrl@32ec0000 {
+> >                                                   <&clk IMX8MP_CLK_MEDIA_APB>,
+> >                                                   <&clk IMX8MP_CLK_MEDIA_DISP1_PIX>,
+> >                                                   <&clk IMX8MP_CLK_MEDIA_DISP2_PIX>,
+> > -                                                 <&clk IMX8MP_VIDEO_PLL1>;
+> > +                                                 <&clk IMX8MP_VIDEO_PLL1>,
+> > +                                                 <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF>;
+> >                                 assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>,
+> >                                                          <&clk IMX8MP_SYS_PLL1_800M>,
+> >                                                          <&clk IMX8MP_VIDEO_PLL1_OUT>,
+> > -                                                        <&clk IMX8MP_VIDEO_PLL1_OUT>;
+> > +                                                        <&clk IMX8MP_VIDEO_PLL1_OUT>,
+> > +                                                        <&clk IMX8MP_CLK_24M>;
+> >                                 assigned-clock-rates = <500000000>, <200000000>,
+> > -                                                      <0>, <0>, <1039500000>;
+> > +                                                      <0>, <0>, <1039500000>,
+> > +                                                      <24000000>;
+> >                                 #power-domain-cells = <1>;
 > >
-> > This works but isn't really the intended use case of the ranges.
-> > Feel a bit uncertain about it, but I can't think of anything better.
-> > And I guess these come directly out of SCMI so it's first hand
-> > information about all GPIOs.
->
-> I don't get your point.
-> However many pins SCMI firmware (or other normal pin controllers) might
-> expose, the total number of pins available by this driver is limited by
-> "gpio-ranges" property.
-> So the sum as "ngpios" should make sense unless a user accidentally
-> specifies a wrong range of pins.
-
-Yes.
-
-And it is this fact that the same number need to appear in two places
-and double-specification will sooner or later bring us to the situation
-where the two do not agree, and what do we do then?
-
-If the ranges come from firmware, which is subject to change such
-as "oops we forgot this pin", the GPIO number will just insert itself
-among the already existing ones: say we have two ranges:
-
-1: 0..5
-2: 6..9
-
-Ooops forgot a GPIO in the first range, it has to be bumped to
-0..6.
-
-But somewhere in the device tree there is:
-
-foo-gpios =3D <&scmi_gpio 7 GPIO_OUT_LOW>;
-
-So now this is wrong (need to be changed to 8) and we have zero tooling
-to detect this, the author just has to be very careful all the time.
-
-But I honestly do not know any better way.
-
-> > which in turn becomes just pinctrl_gpio_set_config(), which
-> > is what we want.
+> >                                 lvds_bridge: bridge@5c {
 > >
-> > The second cell in two-cell GPIOs already supports passing
-> > GPIO_PUSH_PULL, GPIO_OPEN_DRAIN, GPIO_OPEN_SOURCE,
-> > GPIO_PULL_UP, GPIO_PULL_DOWN, GPIO_PULL_DISABLE,
-> > which you can this way trivially pass down to the pin control driver.
+> > --
+> > 2.34.1
 > >
-> > NB: make sure the scmi pin control driver returns error for
-> > unknown configs.
->
-> Well, the error will be determined by SCMI firmware(server)
-> not the driver itself :)
-
-Hehe, I think it is good that the SCMI firmware gets some exercise
-from day 1!
-
-Yours,
-Linus Walleij
 
