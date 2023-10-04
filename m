@@ -1,190 +1,238 @@
-Return-Path: <devicetree+bounces-5955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66BE57B972E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 00:09:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 758CC7B97D6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 00:22:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 5C1281C208EF
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 22:09:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 24D32281822
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 22:22:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94B5324212;
-	Wed,  4 Oct 2023 22:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 884CF250F5;
+	Wed,  4 Oct 2023 22:22:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r0NfUJhL"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="XchKfmi1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C33C023750
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 22:09:45 +0000 (UTC)
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83C8BC9
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 15:09:43 -0700 (PDT)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-59f1dff5298so3194607b3.3
-        for <devicetree@vger.kernel.org>; Wed, 04 Oct 2023 15:09:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696457382; x=1697062182; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=cGtL9ni/bmY+k+XLO0zZ//MJWYpwr9WdA7Lq88K11GI=;
-        b=r0NfUJhLIWnl8d+T7mPYNKKQ5OaUUvMwYuOd5fUR6kaXxUmQzYdU4b0aRxDb0UX3/y
-         pCBnCAYwBBhxZbV1a/fMJtBH2BgwZKcbe1IZP9eciOm9DmvFlrdZACNoQFrIt+z2v+EP
-         Ne25ID5PulMrmmW3NDK77YU/2Oc+PLxRh/zlIm+yYQYSmidmXsLl8E94anAt7yt6wrs/
-         +HryNABdKJuOEQtnTEmXt8mHBP9BeaVGyvA10t1QwDj8w8Aw8z2We8e+OIeG0CweWT6g
-         +6t0w0i63818BPSwD2N0bEDaL+lbSzYh2ifq6bEncN21HHji2dVfAlwk7/MLoS/VT66x
-         Ys/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696457382; x=1697062182;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cGtL9ni/bmY+k+XLO0zZ//MJWYpwr9WdA7Lq88K11GI=;
-        b=Qlar+AcMOg4gFIUDQ1fWTWe1JiVBvWDTcYfZCzn6YS8q8NT2J7EWH+IGduXI/vvdwf
-         qer4/BbYtCEWK3goalTQh3zQKMOimeBY/s+be/Imt9bpRUE0SlxJPrnnLZQuiYaZkhox
-         ECqG/ir+HMkOFdwP7R1lDAASbxsqpjdG1+0ZJhm8SNe01i0VOhtDJmamCTxmiUH0OKpG
-         HJ45h8dPSvGehOls+Bsd+442rjXmg1wtMP9eQBSkp2Gj2bP76CKIJdAiTFHvDeiGbx7j
-         bNgbKM9FremP9d5wNL+taN/UJzFYpV3tFyZbaO6cNSoBglPBNTPbEE1aswidq1A+cMxy
-         p6GA==
-X-Gm-Message-State: AOJu0YweqjC2y+AhFRR2jlPL1/9//mvVJjwMmdwKz0lAt+MetUgLFN+D
-	m6+P9V2Rz6arman3y+VWTfg8Y/EN1Pfb2wPxjN4N+g==
-X-Google-Smtp-Source: AGHT+IG2vlQncNwaL0mmf9ziNDQ+6c9ln+am4OcVzZ69yv7TcOY3i+q6gckxUGP152XYVi1xj1I6LdPgzXEO0LROnnE=
-X-Received: by 2002:a25:d707:0:b0:d8d:5dc1:b463 with SMTP id
- o7-20020a25d707000000b00d8d5dc1b463mr3381310ybg.64.1696457382451; Wed, 04 Oct
- 2023 15:09:42 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54E3524208
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 22:22:46 +0000 (UTC)
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4207D7;
+	Wed,  4 Oct 2023 15:22:42 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id C84DA1C0006;
+	Wed,  4 Oct 2023 22:22:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1696458161;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=5K8QplFQ57sQhVbN/dIE83RWR/O0r6O2Z07hmV2gtJc=;
+	b=XchKfmi1Vcw2fTrLWBRVK9rrHhT9EajmiDnXodWlVgkp4GUUWRvDkDGwQLtbjEq7/05Vkg
+	TsuPpgmLx7Pz22InyEGf4YHBefaZ5YNYm9zefXvIW8qJvBtAHeGkf77oz9yljN/TytwfrK
+	i0p8xwY2k1SSPW0SpRzwk5Xmn21FfqVprEOqDqo6mVfDJjiw+wIbwEkpyFysuG/KpTw3kR
+	dvigZ5P1YtrxCeNR8SwlGXTN9e2Pr+9aa1EpM+kf1tutN2iiAjgtaP9W139HjYbriHiBB5
+	CR7qgesPvGj6T7SCE0bnSy4Y92iYAJ22WADEoAO44vXBA3itCrXSVIGZHQ+UYQ==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Michael Walle <michael@walle.cc>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	Rob Herring <robh+dt@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	devicetree@vger.kernel.org,
+	<linux-kernel@vger.kernel.org>,
+	Robert Marko <robert.marko@sartura.hr>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Luka Perkov <luka.perkov@sartura.hr>,
+	Randy Dunlap <rdunlap@infradead.org>,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH v11 0/7] NVMEM cells in sysfs
+Date: Thu,  5 Oct 2023 00:22:29 +0200
+Message-Id: <20231004222236.411248-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230918093751.1188668-1-msp@baylibre.com>
-In-Reply-To: <20230918093751.1188668-1-msp@baylibre.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 5 Oct 2023 00:09:06 +0200
-Message-ID: <CAPDyKFrUbWBQgMm6wYwFfybiRQKhBpwH7wwcXaT+KrQJLevq3w@mail.gmail.com>
-Subject: Re: [PATCH v8 0/8] soc: mediatek: MT8365 power support
-To: Markus Schneider-Pargmann <msp@baylibre.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Alexandre Mergnat <amergnat@baylibre.com>, 
-	Chun-Jie Chen <chun-jie.chen@mediatek.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Tinghan Shen <tinghan.shen@mediatek.com>, Fabien Parent <parent.f@gmail.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Mon, 18 Sept 2023 at 11:38, Markus Schneider-Pargmann
-<msp@baylibre.com> wrote:
->
-> Hi,
->
-> no real changes in this update. Rebase to v6.6-rc2 and according change
-> of directory.
->
-> Thanks for any feedback!
->
-> Best,
-> Markus
->
-> Based on v6.6-rc2
->
-> Changes in v8:
-> - Rebased to v6.6-rc2
-> - Moved changes from drivers/soc to drivers/pmdomain
->
-> Changes in v7:
-> - Rebased to v6.5-rc1
-> - Fixed a couple of small style issues pointed out by Angelo
->
-> Changes in v6:
-> - Change flags field to be u8 instead of u32
-> - Use macro concatenation to simplify BUS_PROT macros:
->   BUS_PROT_WR(_hwip, ...) etc.
-> - Use the final bit values for scpsys_bus_prot_flags from the beginning
->   of the series.
-> - Changed scpsys_domain_data->caps to be u16 to accommodate the new flag
->   MTK_SCPD_STRICT_BUS_PROTECTION.
->
-> Changes in v5:
-> - Create defines for all registers and bits in mt8365 power domain patch
-> - Redesign scpsys_bus_prot_data to use flags to store reg_update,
->   clr_ack as well as the difference between SMI and INFRACFG. The code
->   uses the appropriate regmap depending on the flags.
-> - The WAY_EN patch now uses two flags, one for inverted operations
->   'BUS_PROT_INVERTED' and one to use infracfg-nao for the status flags
->   'BUS_PROT_STA_COMPONENT_INFRA_NAO'.
->
-> Changes in v4:
-> - Redesigned WAY_EN patch and split it up in smaller patches.
-> - Added two documentation patches.
-> - Added mediatek,infracfg-nao field to the binding.
->
-> Changes in v3:
-> - Mainly redesigned WAY_EN patch to be easier to understand
-> - Rebased onto v6.0-rc1
-> - Several other stuff that is described in the individual patches
->
-> Changes in v2:
-> - Updated error handling path for scpsys_power_on()
-> - Minor updates described in each patch
->
-> Previous versions:
-> v1 - https://lore.kernel.org/linux-mediatek/20220530204214.913251-1-fparent@baylibre.com/
-> v2 - https://lore.kernel.org/linux-mediatek/20220725081853.1636444-1-msp@baylibre.com/
-> v3 - https://lore.kernel.org/linux-mediatek/20220822144303.3438467-1-msp@baylibre.com/
-> v4 - https://lore.kernel.org/linux-arm-kernel/20230105170735.1637416-1-msp@baylibre.com/
-> v5 - https://lore.kernel.org/linux-arm-kernel/20230619085344.2885311-1-msp@baylibre.com/
-> v6 - https://lore.kernel.org/linux-arm-kernel/20230627131040.3418538-1-msp@baylibre.com/
-> v7 - https://lore.kernel.org/linux-arm-kernel/20230713150414.891893-1-msp@baylibre.com
->
-> Alexandre Bailon (2):
->   soc: mediatek: Add support for WAY_EN operations
->   soc: mediatek: Add support for MTK_SCPD_STRICT_BUS_PROTECTION cap
->
-> Fabien Parent (2):
->   dt-bindings: power: Add MT8365 power domains
->   soc: mediatek: pm-domains: Add support for MT8365
->
-> Markus Schneider-Pargmann (4):
->   soc: mediatek: pm-domains: Move bools to a flags field
->   soc: mediatek: pm-domains: Split bus_prot_mask
->   soc: mediatek: pm-domains: Create bus protection operation functions
->   soc: mediatek: pm-domains: Unify configuration for infracfg and smi
->
->  .../power/mediatek,power-controller.yaml      |   6 +
->  drivers/pmdomain/mediatek/mt6795-pm-domains.h |  16 +-
->  drivers/pmdomain/mediatek/mt8167-pm-domains.h |  20 +-
->  drivers/pmdomain/mediatek/mt8173-pm-domains.h |  16 +-
->  drivers/pmdomain/mediatek/mt8183-pm-domains.h | 125 ++++++----
->  drivers/pmdomain/mediatek/mt8186-pm-domains.h | 236 ++++++++++--------
->  drivers/pmdomain/mediatek/mt8188-pm-domains.h | 223 +++++++++++------
->  drivers/pmdomain/mediatek/mt8192-pm-domains.h | 112 ++++++---
->  drivers/pmdomain/mediatek/mt8195-pm-domains.h | 199 +++++++++------
->  drivers/pmdomain/mediatek/mt8365-pm-domains.h | 197 +++++++++++++++
->  drivers/pmdomain/mediatek/mtk-pm-domains.c    | 157 ++++++++----
->  drivers/pmdomain/mediatek/mtk-pm-domains.h    |  51 ++--
->  .../dt-bindings/power/mediatek,mt8365-power.h |  19 ++
->  include/linux/soc/mediatek/infracfg.h         |  41 +++
->  14 files changed, 972 insertions(+), 446 deletions(-)
->  create mode 100644 drivers/pmdomain/mediatek/mt8365-pm-domains.h
->  create mode 100644 include/dt-bindings/power/mediatek,mt8365-power.h
->
+Hello,
 
-Applied for next, thanks!
+As part of a previous effort, support for dynamic NVMEM layouts was
+brought into mainline, helping a lot in getting information from NVMEM
+devices at non-static locations. One common example of NVMEM cell is the
+MAC address that must be used. Sometimes the cell content is mainly (or
+only) useful to the kernel, and sometimes it is not. Users might also
+want to know the content of cells such as: the manufacturing place and
+date, the hardware version, the unique ID, etc. Two possibilities in
+this case: either the users re-implement their own parser to go through
+the whole device and search for the information they want, or the kernel
+can expose the content of the cells if deemed relevant. This second
+approach sounds way more relevant than the first one to avoid useless
+code duplication, so here is a series bringing NVMEM cells content to
+the user through sysfs.
 
-Note that while applying I amended the patch-prefix for patch 2->8 to
-"pmdomain: mediatek:", please try to conform to this when going
-forward, as it help me to better filter emails.
+Here is a real life example with a Marvell Armada 7040 TN48m switch:
 
-Kind regards
-Uffe
+$ nvmem=/sys/bus/nvmem/devices/1-00563/
+$ for i in `ls -1 $nvmem/cells/*`; do basename $i; hexdump -C $i | head -n1; done
+country-code@77
+00000000  54 57                                             |TW|
+crc32@88
+00000000  bb cd 51 98                                       |..Q.|
+device-version@49
+00000000  02                                                |.|
+diag-version@80
+00000000  56 31 2e 30 2e 30                                 |V1.0.0|
+label-revision@4c
+00000000  44 31                                             |D1|
+mac-address@2c
+00000000  18 be 92 13 9a 00                                 |......|
+manufacture-date@34
+00000000  30 32 2f 32 34 2f 32 30  32 31 20 31 38 3a 35 39  |02/24/2021 18:59|
+manufacturer@72
+00000000  44 4e 49                                          |DNI|
+num-macs@6e
+00000000  00 40                                             |.@|
+onie-version@61
+00000000  32 30 32 30 2e 31 31 2d  56 30 31                 |2020.11-V01|
+platform-name@50
+00000000  38 38 46 37 30 34 30 2f  38 38 46 36 38 32 30     |88F7040/88F6820|
+product-name@d
+00000000  54 4e 34 38 4d 2d 50 2d  44 4e                    |TN48M-P-DN|
+serial-number@19
+00000000  54 4e 34 38 31 50 32 54  57 32 30 34 32 30 33 32  |TN481P2TW2042032|
+vendor@7b
+00000000  44 4e 49                                          |DNI|
+
+Current support does not include:
+* The knowledge of the type of data (binary vs. ASCII), so by default
+  all cells are exposed in binary form.
+* Write support.
+
+Changes in v11:
+* The nvmem layouts are now regular devices and not platform devices
+  anymore. They are registered into the nvmem-layout bus (so there is a
+  new /sysfs/bus/nvmem-layouts entry that gets created. All the code for
+  this new bus is located under drivers/nvmem/layouts.c and is part of
+  the main core. The core device-driver logic applies without too much
+  additional code besides the registration of the bus and a bit of
+  glue. I see no need for more detailed structures for now but this can
+  be improved later as needed.
+
+Changes in v10:
+* All preparation patches have been picked-up by Srinivas.
+* Rebased on top of v6.6-rc1.
+* Fix an error path in the probe due to the recent additions.
+
+Changes in v9:
+* Hopefully fixed the creation of sysfs entries when describing the
+  cells using the legacy layout, as reported by Chen-Yu.
+* Dropped the nvmem-specific device list and used the driver core list
+  instead as advised by Greg.
+
+Changes in v8:
+* Fix a compilation warning whith !CONFIG_NVMEM_SYSFS.
+* Add a patch to return NULL when no layout is found (reported by Dan
+  Carpenter).
+* Fixed the documentation as well as the cover letter regarding the
+  addition of addresses in the cell names.
+
+Changes in v7:
+* Rework the layouts registration mechanism to use the platform devices
+  logic.
+* Fix the two issues reported by Daniel Golle and Chen-Yu Tsai, one of
+  them consist in suffixing '@<offset>' to the cell name to create the
+  sysfs files in order to be sure they are all unique.
+* Update the doc.
+
+Changes in v6:
+* ABI documentation style fixes reported by Randy Dunlap:
+  s|cells/ folder|"cells" folder|
+  Missing period at the end of the final note.
+  s|Ex::|Example::|
+* Remove spurious patch from the previous resubmission.
+
+Resending v5:
+* I forgot the mailing list in my former submission, both are absolutely
+  identical otherwise.
+
+Changes in v5:
+* Rebased on last -rc1, fixing a conflict and skipping the first two
+patches already taken by Greg.
+* Collected tags from Greg.
+* Split the nvmem patch into two, one which just moves the cells
+  creation and the other which adds the cells.
+
+Changes in v4:
+* Use a core helper to count the number of cells in a list.
+* Provide sysfs attributes a private member which is the entry itself to
+  avoid the need for looking up the nvmem device and then looping over
+  all the cells to find the right one.
+
+Changes in v3:
+* Patch 1 is new: fix a style issue which bothered me when reading the
+  core.
+* Patch 2 is new: Don't error out when an attribute group does not
+  contain any attributes, it's easier for developers to handle "empty"
+  directories this way. It avoids strange/bad solutions to be
+  implemented and does not cost much.
+* Drop the is_visible hook as it is no longer needed.
+* Stop allocating an empty attribute array to comply with the sysfs core
+  checks (this check has been altered in the first commits).
+* Fix a missing tab in the ABI doc.
+
+Changes in v2:
+* Do not mention the cells might become writable in the future in the
+  ABI documentation.
+* Fix a wrong return value reported by Dan and kernel test robot.
+* Implement .is_bin_visible().
+* Avoid overwriting the list of attribute groups, but keep the cells
+  attribute group writable as we need to populate it at run time.
+* Improve the commit messages.
+* Give a real life example in the cover letter.
+
+Miquel Raynal (7):
+  of: device: Export of_device_make_bus_id()
+  nvmem: Clarify the situation when there is no DT node available
+  nvmem: Move of_nvmem_layout_get_container() in another header
+  nvmem: Create a header for internal sharing
+  nvmem: core: Rework layouts to become regular devices
+  ABI: sysfs-nvmem-cells: Expose cells through sysfs
+  nvmem: core: Expose cells through sysfs
+
+ Documentation/ABI/testing/sysfs-nvmem-cells |  21 ++
+ drivers/nvmem/Makefile                      |   2 +-
+ drivers/nvmem/core.c                        | 308 +++++++++++++++-----
+ drivers/nvmem/internals.h                   |  40 +++
+ drivers/nvmem/layouts.c                     | 171 +++++++++++
+ drivers/nvmem/layouts/onie-tlv.c            |  37 ++-
+ drivers/nvmem/layouts/sl28vpd.c             |  37 ++-
+ drivers/of/device.c                         |  41 +++
+ drivers/of/platform.c                       |  40 ---
+ include/linux/nvmem-consumer.h              |   7 -
+ include/linux/nvmem-provider.h              |  38 ++-
+ include/linux/of_device.h                   |   6 +
+ 12 files changed, 614 insertions(+), 134 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-nvmem-cells
+ create mode 100644 drivers/nvmem/internals.h
+ create mode 100644 drivers/nvmem/layouts.c
+
+-- 
+2.34.1
+
 
