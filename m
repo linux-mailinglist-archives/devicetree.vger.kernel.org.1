@@ -1,250 +1,121 @@
-Return-Path: <devicetree+bounces-5808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCC3B7B7FC1
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 14:50:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6D0E7B7FC5
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 14:50:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id D8A3D1C20444
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 12:50:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 578A22813C0
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 12:50:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7D0E13FEE;
-	Wed,  4 Oct 2023 12:50:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8793C13FF0;
+	Wed,  4 Oct 2023 12:50:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B1D813FE3
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 12:50:43 +0000 (UTC)
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.54])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 742C9A6;
-	Wed,  4 Oct 2023 05:50:40 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1696423831; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=G/+Y78j+TnQSG034HncO/+EMPJEyanQsdIXLcYPxTkb+xZjEPKlBcGvdYKRHXlS3pb
-    1LH24Xg5P8ZnL5U1ggkySAx5PbsJ1aTiFY9mppJ1Vc57ZIEtIYlnZIsdtXFAerG5SPGz
-    +FRWTp/hviKLv1UpciOQxAlV5p3GxjaW3uTFtqu2VMFDC0YA/JzHHT0rC/zUo6YW/AzD
-    Kg7n4ykrkBjcbu27b/XEceUbT2shYtOKGzPob046IU02ZwxFtYgkrcO5vIdkvIUCGbzv
-    EOxrTeHOk0f9T1bidLh7A1KtdIVQUYhP/6jijn/AdDesYQ8mKTm855O9Wr0euU0e4Hw8
-    dhvA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1696423831;
-    s=strato-dkim-0002; d=strato.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=4w3ts48X7eZ6ydMiR/OMyQRliO+hTozCQIcKRpSezrU=;
-    b=BZ+SLxrej5baOZeZE2tHezC2T29dMkwHKx0rvc/O7pI+ZzL7hea97NWTy4fGJ0sIHf
-    7Qfe586t38AcE53fLxPVY3V7YyvgpzuwrLP3LrVGCEpPP9KhKAD8Ss6fvaa/p/dBEp+/
-    RUvzX0RQHls5jVdwYhhTTN9wfZzl/42Z0RoBMHaLU84OKoTd/Yan4EgQehuaeLGrxNZs
-    sQJcvdLQeBpdFjE4Nh1WXj9l7wOsBxyR2ZwbJka661ybxVBfWddSjX4iA4rYv/A/1EEW
-    4MMazbVad1F2DpVrZgAy/gItsAWEAzlEq9eOiIFsC8T4zIqcFMteB7LtyamgapmgzPw3
-    /F5w==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1696423831;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=4w3ts48X7eZ6ydMiR/OMyQRliO+hTozCQIcKRpSezrU=;
-    b=peRdb80hI0aDXh5TdtDwv4pKBwHxyypLfekPGJfQJXLq4ptcDyqt0pkIR3En0gsAbU
-    vpwY68bJVrhxEGt6495hRzAfu2GirMadczN8SdhoravCBimm7TEC+Jvnh11VuNC6LjXu
-    sazTeUkoHrFt+0gGg9IfGUTT1SfuezMxbKUOcjfao+yiU55vzIGOToyEHiBpCqqeZPNz
-    EOj1FDqzoFOxofGbWAN1hBfADz0/DFOEJ1YPm0FpvKABLaB+WffPhTWmh25pvzKlEHC9
-    oqnxv272hNYjz0tG6AI7PXzaCZjXTYgImirVZh9A7hLmRKLm0fHKpW0umS49dtkpU0ks
-    5j8w==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1696423831;
-    s=strato-dkim-0003; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=4w3ts48X7eZ6ydMiR/OMyQRliO+hTozCQIcKRpSezrU=;
-    b=5/8JS2gcmNbwBITHRNrbB5vH8gYKHKhW6Opez0C5nVkrIz05A+WjpettRsSfo8Y5Sz
-    rxpTAbArt5cecvEkaFAw==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj5Apz9PSN6LgsXcGeo3Q="
-Received: from smtpclient.apple
-    by smtp.strato.de (RZmta 49.8.2 DYNA|AUTH)
-    with ESMTPSA id Y04dd7z94CoVjSY
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-	(Client did not present a certificate);
-    Wed, 4 Oct 2023 14:50:31 +0200 (CEST)
-Content-Type: text/plain;
-	charset=us-ascii
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8691A13FE3
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 12:50:51 +0000 (UTC)
+Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com [IPv6:2607:f8b0:4864:20::c2b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76C5BF9
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 05:50:49 -0700 (PDT)
+Received: by mail-oo1-xc2b.google.com with SMTP id 006d021491bc7-57ba2cd3507so1184125eaf.2
+        for <devicetree@vger.kernel.org>; Wed, 04 Oct 2023 05:50:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696423849; x=1697028649; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7JJDQBnBL5OpSHnZeFWSOHsKz7Vu0XjLjDoRLw0uoAM=;
+        b=YmRMP2yQEuuV2AXCkQco/qsJOe2DS8UElZVEJVlXoRWcKkAtU//IrZkBqhj95IgsNX
+         3KZKTAUKKq6vMs1CtoUnEtFzuT0N3lqiU6ph9l57kciaQntsuxN+qhIC8MV/RKHEipzt
+         JZsQOKMJGbEghNsSW/AB7CeFJce/Vfhk4B8WAM8SH7RwYdvwI65r4QEr6n4FaOLcRDtl
+         Reai0cgWBoJ0qTJ4ACcTXLFjIPHTTIRLN94VvohL4zc9KvqvQ4yxYLNIufdrW581xsQv
+         klumqYjk6WCskr0VaApq5iPaiQY6frrtlUb9EcNKtK8J8EQtpdMK0EO5I2oIQOOq/lLn
+         zSWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696423849; x=1697028649;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7JJDQBnBL5OpSHnZeFWSOHsKz7Vu0XjLjDoRLw0uoAM=;
+        b=F3P/lzqdxPT5g9T3ycD+DOz3ghtCvcFA1nNng2iTSwZkigkI4/Vb5Gl38j0Gr7UQh9
+         495L720JZvaBEceQ5hbeI/vzhdVbVeDKeatLgkLARX6Mu4FxhjyUHYcxWc2TwjAjNSgm
+         vKrCiBTw745IfOehZRu7ay6rPJsmwk3qed4p8N4k9a5Ig0qkfTRtn0ulU2s1YwLnAK+0
+         4bWqQpqVIE5MM45CyS+7c2rCW9on8MWw5fKhDYzb7BplEpnEpF2py2GxjGb2Hzn5F63O
+         zFAVvFXtSRchLscY4ZzGZ8A7b3nfI1QhkFa1rYPU4KhE2LQhCVns6Z2Zg1HPkMmSsEB4
+         yhdw==
+X-Gm-Message-State: AOJu0YzR/R1z/ABo+JXd7ZCRDaxCN5gSIVqmLic535MpV29DYZXz+BGd
+	aS33Oe13efMH87UK4OpJoWDcO1xqHzVIMx1MsSM=
+X-Google-Smtp-Source: AGHT+IFP2VHVG8ZZhl48jAMzQt9MI4WSt35NkKpkfiQ7hhc4V4Gf4yGHxHUIi3UsX+H72PGVDWgCdmXe+EnAB8G+0dU=
+X-Received: by 2002:a05:6358:e49d:b0:133:a8e:6feb with SMTP id
+ by29-20020a056358e49d00b001330a8e6febmr2061553rwb.12.1696423848474; Wed, 04
+ Oct 2023 05:50:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.4\))
-Subject: Re: [PATCH] ARM: dts: omap3-gta04: Drop superfluous omap36xx
- compatible
-From: "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <42806B60-E48B-4AA9-B375-E9F65F59AB87@goldelico.com>
-Date: Wed, 4 Oct 2023 14:50:30 +0200
-Cc: bcousson@baylibre.com,
- Tony Lindgren <tony@atomide.com>,
- robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org,
- linux-omap@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
+MIME-Version: 1.0
+References: <20231004122935.2250889-1-festevam@gmail.com>
+In-Reply-To: <20231004122935.2250889-1-festevam@gmail.com>
+From: Adam Ford <aford173@gmail.com>
+Date: Wed, 4 Oct 2023 07:50:37 -0500
+Message-ID: <CAHCN7xK=2RcJX4GhKOOD=AsTHP810Ndd3-zF-Dkg781ApzG_QQ@mail.gmail.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: fsl,micfil: Document #sound-dai-cells
+To: Fabio Estevam <festevam@gmail.com>
+Cc: broonie@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, shengjiu.wang@nxp.com, alsa-devel@alsa-project.org, 
+	devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <6B245439-F9FE-4931-A0DE-81F825BB5FE5@goldelico.com>
-References: <20231004065323.2408615-1-andreas@kemnade.info>
- <12323F42-3611-4685-8981-F6A18C4A5862@goldelico.com>
- <20231004130353.01228376@aktux>
- <FF3A3F35-E264-4D28-AFAC-EFA2ADB69F40@goldelico.com>
- <20231004135449.591b3f6c@aktux>
- <42806B60-E48B-4AA9-B375-E9F65F59AB87@goldelico.com>
-To: Andreas Kemnade <andreas@kemnade.info>
-X-Mailer: Apple Mail (2.3696.120.41.1.4)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
 	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+On Wed, Oct 4, 2023 at 7:30=E2=80=AFAM Fabio Estevam <festevam@gmail.com> w=
+rote:
+>
+> From: Fabio Estevam <festevam@denx.de>
+>
+> imx8mp.dtsi passes #sound-dai-cells =3D <0> in the micfil node.
+>
+> Document #sound-dai-cells to fix the following schema warning:
+>
+> audio-controller@30ca0000: '#sound-dai-cells' does not match any of the r=
+egexes: 'pinctrl-[0-9]+'
+> from schema $id: http://devicetree.org/schemas/sound/fsl,micfil.yaml#
+>
+Should we add a fixes tag, so it gets back-ported to stable branches?
+It seems like patch 02d91fe47100 ("ASoC: dt-bindings: fsl,micfil:
+Convert format to json-schema") may be appropriate.
 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+Reviewed-by: Adam Ford <aford173@gmail.com>
 
-> Am 04.10.2023 um 14:42 schrieb H. Nikolaus Schaller =
-<hns@goldelico.com>:
->=20
->=20
->=20
->> Am 04.10.2023 um 13:54 schrieb Andreas Kemnade =
-<andreas@kemnade.info>:
->>=20
->> On Wed, 4 Oct 2023 13:39:03 +0200
->> "H. Nikolaus Schaller" <hns@goldelico.com> wrote:
->>=20
->>>> Am 04.10.2023 um 13:03 schrieb Andreas Kemnade =
-<andreas@kemnade.info>:
->>>>=20
->>>> On Wed, 4 Oct 2023 12:50:16 +0200
->>>> "H. Nikolaus Schaller" <hns@goldelico.com> wrote:
->>>>=20
->>>>> Hi Andreas,
->>>>>=20
->>>>>> Am 04.10.2023 um 08:53 schrieb Andreas Kemnade =
-<andreas@kemnade.info>:
->>>>>>=20
->>>>>> Drop omap36xx compatible as done in other omap3630 devices.
->>>>>> This has apparently fallen through the lattice.
->>>>>>=20
->>>>>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
->>>>>> ---
->>>>>> arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi | 2 +-
->>>>>> 1 file changed, 1 insertion(+), 1 deletion(-)
->>>>>>=20
->>>>>> diff --git a/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi =
-b/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
->>>>>> index b6b27e93857f..3661340009e7 100644
->>>>>> --- a/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
->>>>>> +++ b/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
->>>>>> @@ -11,7 +11,7 @@
->>>>>>=20
->>>>>> / {
->>>>>> 	model =3D "OMAP3 GTA04";
->>>>>> -	compatible =3D "goldelico,gta04", "ti,omap3630", =
-"ti,omap36xx", "ti,omap3";   =20
->>>>>=20
->>>>> there seem to be some more references to ti,omap36xx:
->>>>>=20
->>>>> arch/arm/boot/dts/ti/omap/omap3-lilly-a83x.dtsi:	compatible =3D =
-"incostartec,omap3-lilly-a83x", "ti,omap3630", "ti,omap36xx", =
-"ti,omap3"; =20
->>>>=20
->>>> apperently all the dtsi are fallen through the lattice when =
-handling the dts.
->>>>=20
->>>>=20
->>>>> arch/arm/mach-omap2/board-generic.c:	"ti,omap36xx",
->>>>> drivers/clk/ti/dpll.c:	     =
-of_machine_is_compatible("ti,omap36xx")) &&
->>>>> drivers/cpufreq/ti-cpufreq.c:	{ .compatible =3D "ti,omap36xx", =
-.data =3D &omap36xx_soc_data, },
->>>>>=20
->>>>> So are you sure that we can remove it without replacement or code =
-fixes in dpll and cpufreq (board-generic is probably no issue)?
->>>>>=20
->>>> see discussion of:
->>>>=20
->>>> commit e341f338180c84cd98af3016cf5bcfde45a041fb
->>>> Author: Andrew Davis <afd@ti.com>
->>>> Date:   Thu Feb 16 09:33:38 2023 -0600
->>>>=20
->>>>  ARM: dts: omap: Drop ti,omap36xx compatible =20
->>>=20
->>> Ah, I wasn't aware of this.
->>>=20
->>>>=20
->>>> all the places also basically check for omap36xx || omap3630. =20
->>>=20
->>>=20
->>> Yes, I have checked but drivers/cpufreq/ti-cpufreq.c seems to be an
->>> exception (unless I am missing some other patch).
->>>=20
->> No:
->>       { .compatible =3D "ti,omap36xx", .data =3D &omap36xx_soc_data, =
-},
->>       { .compatible =3D "ti,omap3630", .data =3D &omap36xx_soc_data, =
-},
->=20
-> Well, in v6.6-rc4 I see:
->=20
-> static const struct of_device_id ti_cpufreq_of_match[] =3D {
-> 	{ .compatible =3D "ti,am33xx", .data =3D &am3x_soc_data, },
-> 	{ .compatible =3D "ti,am3517", .data =3D &am3517_soc_data, },
-> 	{ .compatible =3D "ti,am43", .data =3D &am4x_soc_data, },
-> 	{ .compatible =3D "ti,dra7", .data =3D &dra7_soc_data },
-> 	{ .compatible =3D "ti,omap34xx", .data =3D &omap34xx_soc_data, =
-},
-> 	{ .compatible =3D "ti,omap36xx", .data =3D &omap36xx_soc_data, =
-},
-> 	{ .compatible =3D "ti,am625", .data =3D &am625_soc_data, },
-> 	{ .compatible =3D "ti,am62a7", .data =3D &am625_soc_data, },
-> 	/* legacy */
-> 	{ .compatible =3D "ti,omap3430", .data =3D &omap34xx_soc_data, =
-},
-> 	{ .compatible =3D "ti,omap3630", .data =3D &omap36xx_soc_data, =
-},
-> 	{},
-> };
->=20
-> Either the "/* legacy */" or the "ti,omap36xx" seems as if it should =
-be removed.
-> But it seems to break the systematic approach of this table.
->=20
->> The bindings also only specify omap3630.
->=20
-> What I think is that the background was (before bindings documentation
-> was invented) that there are drivers covering all variants of omap36xx
-> (incl. am37xx and dm37xx) and some parts specific to a single version.
-
-Ah, there is indeed an issue with removing omap36xx and replacing by
-omap3630.
-
-What about the PVR/SGX driver. This needs a compatible that can =
-distinguish
-between the DM3725 and DM3730. The first is w/o SGX and the second one
-with. Having all summarized as omap3630 does not allow to load the
-PVR/SGX driver based on the board specific compatible entry.
-
-AFAIR this was the original idea behind=20
-
-	compatible =3D "goldelico,gta04", "ti,omap3630", "ti,omap36xx", =
-"ti,omap3";=20
-
-Only with this we can make the SGX driver depend on "ti,omap3630" and =
-all
-other general omap36xx stuff on "ti,omap36xx".
-
-So it seems as if there was a reason to have both, and the omap36xx is =
-not
-completely superflous to be dropped.
-
-BR,
-Nikolaus
-
+> ---
+>  Documentation/devicetree/bindings/sound/fsl,micfil.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/sound/fsl,micfil.yaml b/Do=
+cumentation/devicetree/bindings/sound/fsl,micfil.yaml
+> index 4b99a18c79a0..b7e605835639 100644
+> --- a/Documentation/devicetree/bindings/sound/fsl,micfil.yaml
+> +++ b/Documentation/devicetree/bindings/sound/fsl,micfil.yaml
+> @@ -56,6 +56,9 @@ properties:
+>        - const: clkext3
+>      minItems: 2
+>
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+>  required:
+>    - compatible
+>    - reg
+> --
+> 2.34.1
+>
 
