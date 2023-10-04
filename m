@@ -1,396 +1,171 @@
-Return-Path: <devicetree+bounces-5755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 680A67B7C63
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 11:39:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 643E97B7C83
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 11:43:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 5BD1B1C2074D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 09:39:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 826C21C204F7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 09:43:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 920D010A25;
-	Wed,  4 Oct 2023 09:39:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0202F10A2F;
+	Wed,  4 Oct 2023 09:43:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8304610A0B
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 09:39:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30E46C433CA;
-	Wed,  4 Oct 2023 09:39:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696412381;
-	bh=4ajcit5MVNwNqk7UmDG2b6bY1LbxWQvlNoVe1fvg9IA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Ims8XDRoyUD3oeLcgnPFMWaBeaAneh2h40MOP+L/ZTO2BzRApBMifys9j2It9KKel
-	 ePb+CjdRmn5NybVP+PE+LdLA1XXngctaQv70C267sNNj38HBZBV6/v0V5H56EUNmor
-	 CuGkP0jSls0xfBxhsrtq+3Eg39vjacxIxiPE4tw1MkVA9UBZYiK3E7U9v+blCywtS/
-	 Ev/HWfP5AfOoxYTUgR0wskci9mSnfqxJtxEvO4RZ9dEtozDlWucf3129Fc8strtcKk
-	 Jb1dCDh/AcIIwLsDDXep9zBiCefa95e1mDIwM6/1h0qX0/0El+/Qi0+zt0XTNfusZl
-	 7J3M2joDAim6w==
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Thierry Reding <thierry.reding@gmail.com>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v2 2/2] pwm: add T-HEAD PWM driver
-Date: Wed,  4 Oct 2023 17:27:31 +0800
-Message-Id: <20231004092731.1362-3-jszhang@kernel.org>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20231004092731.1362-1-jszhang@kernel.org>
-References: <20231004092731.1362-1-jszhang@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD18510A28
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 09:43:47 +0000 (UTC)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFD63C1
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 02:43:31 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-9b6559cbd74so359816466b.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Oct 2023 02:43:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696412609; x=1697017409; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=oNzpxnuMZ/miZzwSyxCfaJDodlzZy1A1WhYd4Y5wPLU=;
+        b=HEDre2okIRYE9MR4+shtrqPawfx8vA6RTtYFUPxwCDrRO2WlbOptA9se4V+AnfFXMR
+         b6ldjl2bLcZM1kCOtARylRWi+xeEFsdJ/p46sFgNqu/DmG4UAABrWRll0ae+sa+BJRvU
+         z9/lIxn2Md4fe87klVJqegQDSibtDk4q1FPg87q9DqTv5WP2Yk45NSzYXDQdEceNsV0e
+         OkUlBNKGTUrUtkwpvhvEeaIKK0VhighXjEMEwHvnjbeztGyo7ogq7arq5qLEjkUhkGOR
+         mspDwnKv9MdcEKyosR+IJK2/HSI4J7UvTfIaaMkbp/q4jT+/bkWfp8i42a6IMx7bMC+q
+         B1nQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696412609; x=1697017409;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oNzpxnuMZ/miZzwSyxCfaJDodlzZy1A1WhYd4Y5wPLU=;
+        b=v34OmTdLFD1r+tCLGCYJzPhY1W8dGWSvFpc+0OfJ2YYvlnPolV2T0etYUVyfS5zSNj
+         UKdTRNgNYcQ0gSX6vOVOFzOg97RXC7asfwi5TVv41MKoXcGxP3RE/OoqtFHlujtdOdjg
+         BAACRmMyfP0j8bMnGwbUwiGbc3eYngaw54XCkELtpnpXNkhn3F8/lmhTX7LnuIqBdzkz
+         ihHFXNTzZ050OS57/MngXTmfLFCyhRZWJORb/lpjrHEG0C8b4H5CXIh+uqFU8E385jDl
+         Fpp15F4nSIlOGYy7/cuQT/tVrzH+2L1Gu0yx32eITOJcc97PlsmjRNHzmsQMcSPO+IeZ
+         m2PQ==
+X-Gm-Message-State: AOJu0YxDCqBCvPPQmLpCgbsD3GKD4LVqQPJ3tDm8GQ1abYynthxxnHnc
+	BxSQeZl4+b5y7Z5mQr4b0Wp3ag==
+X-Google-Smtp-Source: AGHT+IFyztyJgi6sZwphR1RuKCOnL6Du5UavZWLdiOr4KP0nOaBdbrUqF3B3wYPPEaoFdz/pK5L+BQ==
+X-Received: by 2002:a17:906:3f5d:b0:9b2:b2f8:85dd with SMTP id f29-20020a1709063f5d00b009b2b2f885ddmr1445920ejj.34.1696412609341;
+        Wed, 04 Oct 2023 02:43:29 -0700 (PDT)
+Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
+        by smtp.gmail.com with ESMTPSA id p24-20020a170906a01800b009b28ad521f4sm2504181ejy.4.2023.10.04.02.43.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Oct 2023 02:43:28 -0700 (PDT)
+Message-ID: <bcc7ba00-8a45-4ba6-8691-6420782054ff@linaro.org>
+Date: Wed, 4 Oct 2023 11:43:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V13 4/4] arm64: dts: ipq6018: add pwm node
+To: Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, lee@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ thierry.reding@gmail.com, ndesaulniers@google.com, trix@redhat.com,
+ baruch@tkos.co.il, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ llvm@lists.linux.dev
+References: <20231004090449.256229-1-quic_devipriy@quicinc.com>
+ <20231004090449.256229-5-quic_devipriy@quicinc.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231004090449.256229-5-quic_devipriy@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-T-HEAD SoCs such as the TH1520 contain a PWM controller used
-to control the LCD backlight, fan and so on. Add driver for it.
+On 04/10/2023 11:04, Devi Priya wrote:
+> Describe the PWM block on IPQ6018.
+> 
+> The PWM is in the TCSR area. Make &tcsr "simple-mfd" compatible, and add
+> &pwm as child of &tcsr.
+> 
 
-Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
----
- MAINTAINERS             |   1 +
- drivers/pwm/Kconfig     |  11 ++
- drivers/pwm/Makefile    |   1 +
- drivers/pwm/pwm-thead.c | 274 ++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 287 insertions(+)
- create mode 100644 drivers/pwm/pwm-thead.c
+...
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d55e40060c46..86cf0926dbfc 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18482,6 +18482,7 @@ L:	linux-riscv@lists.infradead.org
- S:	Maintained
- F:	arch/riscv/boot/dts/thead/
- F:	drivers/usb/dwc3/dwc3-thead.c
-+F:	drivers/pwm/pwm-thead.c
- 
- RNBD BLOCK DRIVERS
- M:	Md. Haris Iqbal <haris.iqbal@ionos.com>
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 8ebcddf91f7b..428fa365a19a 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -637,6 +637,17 @@ config PWM_TEGRA
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-tegra.
- 
-+config PWM_THEAD
-+	tristate "T-HEAD PWM support"
-+	depends on ARCH_THEAD || COMPILE_TEST
-+	depends on HAS_IOMEM
-+	help
-+	  Generic PWM framework driver for the PWFM controller found on THEAD
-+	  SoCs.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-thead.
-+
- config PWM_TIECAP
- 	tristate "ECAP PWM support"
- 	depends on ARCH_OMAP2PLUS || ARCH_DAVINCI_DA8XX || ARCH_KEYSTONE || ARCH_K3 || COMPILE_TEST
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index c822389c2a24..4c317e6316e8 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -59,6 +59,7 @@ obj-$(CONFIG_PWM_STMPE)		+= pwm-stmpe.o
- obj-$(CONFIG_PWM_SUN4I)		+= pwm-sun4i.o
- obj-$(CONFIG_PWM_SUNPLUS)	+= pwm-sunplus.o
- obj-$(CONFIG_PWM_TEGRA)		+= pwm-tegra.o
-+obj-$(CONFIG_PWM_THEAD)		+= pwm-thead.o
- obj-$(CONFIG_PWM_TIECAP)	+= pwm-tiecap.o
- obj-$(CONFIG_PWM_TIEHRPWM)	+= pwm-tiehrpwm.o
- obj-$(CONFIG_PWM_TWL)		+= pwm-twl.o
-diff --git a/drivers/pwm/pwm-thead.c b/drivers/pwm/pwm-thead.c
-new file mode 100644
-index 000000000000..ba1e3a4f1027
---- /dev/null
-+++ b/drivers/pwm/pwm-thead.c
-@@ -0,0 +1,274 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * T-HEAD PWM driver
-+ *
-+ * Copyright (C) 2021 Alibaba Group Holding Limited.
-+ * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-+ *
-+ * Limitations:
-+ * - The THEAD_PWM_START bit is only effective when 0 -> 1, which is used to
-+ *   start the channel, 1 -> 0 doesn't change anything. so 0 % duty cycle is
-+ *   used to "disable" the channel.
-+ * - The PWM_CFG_UPDATE atomically updates and only updates period and duty.
-+ * - To update period and duty, PWM_CFG_UPDATE needs to go through 0 -> 1 step,
-+ *   I.E if PWM_CFG_UPDATE is already 1, it's necessary to clear it to 0
-+ *   beforehand.
-+ * - Polarity can only be changed if never started before.
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bitops.h>
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/pwm.h>
-+#include <linux/slab.h>
-+
-+#define THEAD_PWM_MAX_NUM		6
-+#define THEAD_PWM_MAX_PERIOD		GENMASK(31, 0)
-+#define THEAD_PWM_MAX_DUTY		GENMASK(31, 0)
-+
-+#define THEAD_PWM_CHN_BASE(n)		((n) * 0x20)
-+#define THEAD_PWM_CTRL(n)		(THEAD_PWM_CHN_BASE(n) + 0x00)
-+#define THEAD_PWM_RPT(n)		(THEAD_PWM_CHN_BASE(n) + 0x04)
-+#define THEAD_PWM_PER(n)		(THEAD_PWM_CHN_BASE(n) + 0x08)
-+#define THEAD_PWM_FP(n)			(THEAD_PWM_CHN_BASE(n) + 0x0c)
-+#define THEAD_PWM_STATUS(n)		(THEAD_PWM_CHN_BASE(n) + 0x10)
-+
-+/* bit definition PWM_CTRL */
-+#define THEAD_PWM_START			BIT(0)
-+#define THEAD_PWM_SOFT_RST		BIT(1)
-+#define THEAD_PWM_CFG_UPDATE		BIT(2)
-+#define THEAD_PWM_INT_EN		BIT(3)
-+#define THEAD_PWM_MODE_MASK		GENMASK(5, 4)
-+#define THEAD_PWM_ONE_SHOT_MODE		FIELD_PREP(THEAD_PWM_MODE_MASK, 1)
-+#define THEAD_PWM_CONTINUOUS_MODE	FIELD_PREP(THEAD_PWM_MODE_MASK, 2)
-+#define THEAD_PWM_EVTRIG_MASK		GENMASK(7, 6)
-+#define THEAD_PWM_FPOUT			BIT(8)
-+#define THEAD_PWM_INFACTOUT		BIT(9)
-+
-+struct thead_pwm_chip {
-+	struct pwm_chip chip;
-+	void __iomem *mmio_base;
-+	struct clk *clk;
-+	bool ever_started;
-+};
-+
-+static inline struct thead_pwm_chip *thead_pwm_from_chip(struct pwm_chip *chip)
-+{
-+	return container_of(chip, struct thead_pwm_chip, chip);
-+}
-+
-+static int thead_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-+			   const struct pwm_state *state)
-+{
-+	struct thead_pwm_chip *priv = thead_pwm_from_chip(chip);
-+	u64 period_cycle, duty_cycle, rate;
-+	u32 val;
-+
-+	/* if ever started, can't change the polarity */
-+	if (priv->ever_started && state->polarity != pwm->state.polarity)
-+		return -EINVAL;
-+
-+	if (!state->enabled) {
-+		if (pwm->state.enabled) {
-+			val = readl(priv->mmio_base + THEAD_PWM_CTRL(pwm->hwpwm));
-+			val &= ~THEAD_PWM_CFG_UPDATE;
-+			writel(val, priv->mmio_base + THEAD_PWM_CTRL(pwm->hwpwm));
-+
-+			writel(0, priv->mmio_base + THEAD_PWM_FP(pwm->hwpwm));
-+
-+			val |= THEAD_PWM_CFG_UPDATE;
-+			writel(val, priv->mmio_base + THEAD_PWM_CTRL(pwm->hwpwm));
-+		}
-+		return 0;
-+	}
-+
-+	if (!pwm->state.enabled)
-+		pm_runtime_get_sync(chip->dev);
-+
-+	val = readl(priv->mmio_base + THEAD_PWM_CTRL(pwm->hwpwm));
-+	val &= ~THEAD_PWM_CFG_UPDATE;
-+
-+	if (state->polarity == PWM_POLARITY_INVERSED)
-+		val &= ~THEAD_PWM_FPOUT;
-+	else
-+		val |= THEAD_PWM_FPOUT;
-+
-+	writel(val, priv->mmio_base + THEAD_PWM_CTRL(pwm->hwpwm));
-+
-+	rate = clk_get_rate(priv->clk);
-+	/*
-+	 * The following calculations might overflow if clk is bigger
-+	 * than 1 GHz. In practise it's 24MHz, so this limitation
-+	 * is only theoretic.
-+	 */
-+	if (rate > (u64)NSEC_PER_SEC)
-+		return -EINVAL;
-+
-+	period_cycle = mul_u64_u64_div_u64(rate, state->period, NSEC_PER_SEC);
-+	if (period_cycle > THEAD_PWM_MAX_PERIOD)
-+		period_cycle = THEAD_PWM_MAX_PERIOD;
-+	/*
-+	 * With limitation above we have period_cycle <= THEAD_PWM_MAX_PERIOD,
-+	 * so this cannot overflow.
-+	 */
-+	writel((u32)period_cycle, priv->mmio_base + THEAD_PWM_PER(pwm->hwpwm));
-+
-+	duty_cycle = mul_u64_u64_div_u64(rate, state->duty_cycle, NSEC_PER_SEC);
-+	if (duty_cycle > THEAD_PWM_MAX_DUTY)
-+		duty_cycle = THEAD_PWM_MAX_DUTY;
-+	/*
-+	 * With limitation above we have duty_cycle <= THEAD_PWM_MAX_PERIOD,
-+	 * so this cannot overflow.
-+	 */
-+	writel((u32)duty_cycle, priv->mmio_base + THEAD_PWM_FP(pwm->hwpwm));
-+
-+	val |= THEAD_PWM_CFG_UPDATE;
-+	writel(val, priv->mmio_base + THEAD_PWM_CTRL(pwm->hwpwm));
-+
-+	if (!pwm->state.enabled) {
-+		val |= THEAD_PWM_START;
-+		writel(val, priv->mmio_base + THEAD_PWM_CTRL(pwm->hwpwm));
-+		priv->ever_started = true;
-+	}
-+
-+	return 0;
-+}
-+
-+static int thead_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-+			       struct pwm_state *state)
-+{
-+	struct thead_pwm_chip *priv = thead_pwm_from_chip(chip);
-+	u64 rate = clk_get_rate(priv->clk);
-+	u32 val;
-+
-+	pm_runtime_get_sync(chip->dev);
-+
-+	val = readl(priv->mmio_base + THEAD_PWM_CTRL(pwm->hwpwm));
-+	state->enabled = !!(val & THEAD_PWM_START);
-+	if (val & THEAD_PWM_FPOUT)
-+		state->polarity = PWM_POLARITY_NORMAL;
-+	else
-+		state->polarity = PWM_POLARITY_INVERSED;
-+
-+	val = readl(priv->mmio_base + THEAD_PWM_PER(pwm->hwpwm));
-+	/*
-+	 * val 32 bits, multiply NSEC_PER_SEC, won't overflow.
-+	 */
-+	state->period = DIV64_U64_ROUND_UP((u64)val * NSEC_PER_SEC, rate);
-+
-+	val = readl(priv->mmio_base + THEAD_PWM_FP(pwm->hwpwm));
-+	/*
-+	 * val 32 bits, multiply NSEC_PER_SEC, won't overflow.
-+	 */
-+	state->duty_cycle = DIV64_U64_ROUND_UP((u64)val * NSEC_PER_SEC, rate);
-+
-+	pm_runtime_put_sync(chip->dev);
-+
-+	return 0;
-+}
-+
-+static const struct pwm_ops thead_pwm_ops = {
-+	.apply = thead_pwm_apply,
-+	.get_state = thead_pwm_get_state,
-+	.owner = THIS_MODULE,
-+};
-+
-+static int __maybe_unused thead_pwm_runtime_suspend(struct device *dev)
-+{
-+	struct thead_pwm_chip *priv = dev_get_drvdata(dev);
-+
-+	clk_disable_unprepare(priv->clk);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused thead_pwm_runtime_resume(struct device *dev)
-+{
-+	struct thead_pwm_chip *priv = dev_get_drvdata(dev);
-+	int ret;
-+
-+	ret = clk_prepare_enable(priv->clk);
-+	if (ret) {
-+		dev_err(dev, "failed to enable pwm clock(%d)\n", ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int thead_pwm_probe(struct platform_device *pdev)
-+{
-+	u32 val = THEAD_PWM_INFACTOUT | THEAD_PWM_FPOUT | THEAD_PWM_CONTINUOUS_MODE;
-+	struct thead_pwm_chip *priv;
-+	int ret, i;
-+
-+	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, priv);
-+
-+	priv->mmio_base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(priv->mmio_base))
-+		return PTR_ERR(priv->mmio_base);
-+
-+	priv->clk = devm_clk_get_enabled(&pdev->dev, NULL);
-+	if (IS_ERR(priv->clk))
-+		return PTR_ERR(priv->clk);
-+
-+	priv->chip.ops = &thead_pwm_ops;
-+	priv->chip.dev = &pdev->dev;
-+	priv->chip.npwm = THEAD_PWM_MAX_NUM;
-+
-+	/* set normal polarity and other proper bits for all channels */
-+	for (i = 0; i < priv->chip.npwm; i++)
-+		writel(val, priv->mmio_base + THEAD_PWM_CTRL(i));
-+
-+	ret = devm_pwmchip_add(&pdev->dev, &priv->chip);
-+	if (ret)
-+		return ret;
-+
-+	pm_runtime_enable(&pdev->dev);
-+
-+	return 0;
-+}
-+
-+static void thead_pwm_remove(struct platform_device *pdev)
-+{
-+	pm_runtime_disable(&pdev->dev);
-+}
-+
-+static const struct of_device_id thead_pwm_dt_ids[] = {
-+	{.compatible = "thead,th1520-pwm",},
-+	{/* sentinel */}
-+};
-+MODULE_DEVICE_TABLE(of, thead_pwm_dt_ids);
-+
-+static const struct dev_pm_ops thead_pwm_pm_ops = {
-+	SET_RUNTIME_PM_OPS(thead_pwm_runtime_suspend, thead_pwm_runtime_resume, NULL)
-+};
-+
-+static struct platform_driver thead_pwm_driver = {
-+	.driver = {
-+		.name = "thead-pwm",
-+		.of_match_table = thead_pwm_dt_ids,
-+		.pm = &thead_pwm_pm_ops,
-+	},
-+	.probe = thead_pwm_probe,
-+	.remove_new = thead_pwm_remove,
-+};
-+module_platform_driver(thead_pwm_driver);
-+
-+MODULE_AUTHOR("Wei Liu <lw312886@linux.alibaba.com>");
-+MODULE_AUTHOR("Jisheng Zhang <jszhang@kernel.org>");
-+MODULE_DESCRIPTION("T-HEAD pwm driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.40.1
+> v3: s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
+> 
+>  arch/arm64/boot/dts/qcom/ipq6018.dtsi | 15 ++++++++++++++-
+>  1 file changed, 14 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> index e59b9df96c7e..429ad7cb681c 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> @@ -390,8 +390,21 @@ tcsr_mutex: hwlock@1905000 {
+>  		};
+>  
+>  		tcsr: syscon@1937000 {
+> -			compatible = "qcom,tcsr-ipq6018", "syscon";
+> +			compatible = "qcom,tcsr-ipq6018", "syscon", "simple-mfd";
+>  			reg = <0x0 0x01937000 0x0 0x21000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0x0 0x0 0x01937000 0x21000>;
+
+Please put ranges just after reg.
+
+With that:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
 
