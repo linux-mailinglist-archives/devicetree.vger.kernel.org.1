@@ -1,156 +1,127 @@
-Return-Path: <devicetree+bounces-5800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D0A67B7ECF
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 14:12:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C5757B7F01
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 14:25:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id DBFD51F223CF
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 12:12:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 167BA281572
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 12:25:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD62F13ACA;
-	Wed,  4 Oct 2023 12:12:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B8C413AE7;
+	Wed,  4 Oct 2023 12:25:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E4D91119B
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 12:12:15 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C555A9;
-	Wed,  4 Oct 2023 05:12:13 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 394CC2Ha058447;
-	Wed, 4 Oct 2023 07:12:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1696421522;
-	bh=2U6X4ob8Upv4VW4rnfSzUjHvNGpb82svTBKA67ZIUPw=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=n7N3Du2uuoeDUrp36mBcNPMVmZZ1Kz2i2cLdpjW7/2IzG97cBZzXzpJ2ShOeWAG3e
-	 k48ZhXxwtN+B31HOG9kYxZy9CqVXUupyVBdO8CfvzUcIPVsX+XXud0Y/74JeGvlfik
-	 mDd8/b8sdFWQjLeNvT4W89AaK1KJtay3YjwtufTM=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 394CC2VO025067
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 4 Oct 2023 07:12:02 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 4
- Oct 2023 07:12:02 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 4 Oct 2023 07:12:02 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 394CC2I8061790;
-	Wed, 4 Oct 2023 07:12:02 -0500
-Date: Wed, 4 Oct 2023 07:12:02 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Nitin Yadav <n-yadav@ti.com>
-CC: <vigneshr@ti.com>, <rogerq@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <conor+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/3] arm64: dts: ti: Add GPMC support for AM62x LP SK
-Message-ID: <20231004121202.rqrpp6izwcpdggm5@obtrusive>
-References: <20231004111238.3968984-1-n-yadav@ti.com>
- <20231004111238.3968984-2-n-yadav@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3444813AE3;
+	Wed,  4 Oct 2023 12:25:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D73F4C433C7;
+	Wed,  4 Oct 2023 12:25:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696422338;
+	bh=rz8nsBRJGgdImTfTRQ7iHKEAJLSF4eOEhtWc3FE31aQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qFisLVHo4xPOWe0fhwbNCUkMQeehaqaQXzmq2gwElyLHbB+hlPM+w9q/A0UhGISeJ
+	 XLwrKX8yClJIjpyp/MgG2+FzVp4HbGidJDj27Qhk6bHe9ekNtsmcOdr694CD8OVgQB
+	 h9QT4RlLtaSjpNEEEpGynpT+4dB2V0FBd6wa1j06w0CzJdCNXlxt828HbuYFsaiAf9
+	 EnSNtXjnPRJzG1NhD28ZBLk4yaP6fqQ8O90x0kok38bopHI6fclkb2kLzmFXGrug71
+	 dDoSSsGPefEsebjfIQQMnU4FvUWAeBm37gqRnq+BYBGmk+Y82OopJUFOFfsOQheNJD
+	 /GW2ghyf2ITqQ==
+Date: Wed, 4 Oct 2023 20:13:30 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-riscv@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Emil Renner Berthing <kernel@esmil.dk>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Chen Wang <unicorn_wang@outlook.com>,
+	devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [RFC v2 6/6] riscv: dts: thead: convert isa detection to new
+ properties
+Message-ID: <ZR1W6lI3O6Pkjxm3@xhacker>
+References: <20230922081351.30239-2-conor@kernel.org>
+ <20230922081351.30239-8-conor@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20231004111238.3968984-2-n-yadav@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+In-Reply-To: <20230922081351.30239-8-conor@kernel.org>
 
-On 16:42-20231004, Nitin Yadav wrote:
-> Add gpmc0 and elm0 nodes in k3-am62-main. Add GPMC0_CFG and
-
-s/gpmc0/GPMC and elm0/ELM
-Also a oneliner as to what GPMC and ELM are will be helpful.
-
-> GPMC0_DATA entry in cbass_main node.
+On Fri, Sep 22, 2023 at 09:13:51AM +0100, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> Signed-off-by: Nitin Yadav <n-yadav@ti.com>
+> Convert the th1520 devicetrees to use the new properties
+> "riscv,isa-base" & "riscv,isa-extensions".
+> For compatibility with other projects, "riscv,isa" remains.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+
+Reviewed-by: Jisheng Zhang <jszhang@kernel.org>
 > ---
->  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 29 ++++++++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-am62.dtsi      |  2 ++
->  2 files changed, 31 insertions(+)
+>  arch/riscv/boot/dts/thead/th1520.dtsi | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> index ac760d9b831d..f854369dfc27 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> @@ -965,4 +965,33 @@ mcasp2: audio-controller@2b20000 {
->  		power-domains = <&k3_pds 192 TI_SCI_PD_EXCLUSIVE>;
->  		status = "disabled";
->  	};
-> +	gpmc0: memory-controller@3b000000 {
-> +		compatible = "ti,am64-gpmc";
-> +		reg = <0x00 0x03b000000 0x00 0x400>,
-> +		      <0x00 0x050000000 0x00 0x8000000>;
-> +		reg-names = "cfg", "data";
-> +		interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&k3_clks 80 0>;
-> +		clock-names = "fck";
-> +		power-domains = <&k3_pds 80 TI_SCI_PD_EXCLUSIVE>;
-> +		gpmc,num-cs = <3>;
-> +		gpmc,num-waitpins = <2>;
-> +		#address-cells = <2>;
-> +		#size-cells = <1>;
-> +		interrupt-controller;
-> +		#interrupt-cells = <2>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +		status = "disabled";
-
-As mentioned - document why disabled by default.
-
-> +	};
-> +
-> +	elm0: ecc@25010000 {
-> +		compatible = "ti,am3352-elm";
-> +		reg = <0x00 0x25010000 0x00 0x2000>;
-> +		interrupts = <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&k3_clks 54 0>;
-> +		clock-names = "fck";
-> +		power-domains = <&k3_pds 54 TI_SCI_PD_EXCLUSIVE>;
-> +		status = "disabled";
-
-As mentioned - document why disabled by default.
-> +	};
->  };
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62.dtsi b/arch/arm64/boot/dts/ti/k3-am62.dtsi
-> index f1e15206e1ce..b9b1e522d74c 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62.dtsi
-> @@ -77,6 +77,8 @@ cbass_main: bus@f0000 {
->  			 <0x00 0x70000000 0x00 0x70000000 0x00 0x00010000>, /* OCSRAM */
->  			 <0x01 0x00000000 0x01 0x00000000 0x00 0x00310000>, /* A53 PERIPHBASE */
->  			 <0x05 0x00000000 0x05 0x00000000 0x01 0x00000000>, /* FSS0 DAT3 */
-> +			 <0x00 0x3b000000 0x00 0x3b000000 0x00 0x00000400>, /* GPMC0 CFG */
-> +			 <0x00 0x50000000 0x00 0x50000000 0x00 0x08000000>, /* GPMC0 DATA */
-
-Why not keep it sorted?
->  
->  			 /* MCU Domain Range */
->  			 <0x00 0x04000000 0x00 0x04000000 0x00 0x01ff1400>,
+> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+> index ce708183b6f6..723f65487246 100644
+> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> @@ -20,6 +20,9 @@ c910_0: cpu@0 {
+>  			compatible = "thead,c910", "riscv";
+>  			device_type = "cpu";
+>  			riscv,isa = "rv64imafdc";
+> +			riscv,isa-base = "rv64i";
+> +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+> +					       "zifencei", "zihpm";
+>  			reg = <0>;
+>  			i-cache-block-size = <64>;
+>  			i-cache-size = <65536>;
+> @@ -41,6 +44,9 @@ c910_1: cpu@1 {
+>  			compatible = "thead,c910", "riscv";
+>  			device_type = "cpu";
+>  			riscv,isa = "rv64imafdc";
+> +			riscv,isa-base = "rv64i";
+> +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+> +					       "zifencei", "zihpm";
+>  			reg = <1>;
+>  			i-cache-block-size = <64>;
+>  			i-cache-size = <65536>;
+> @@ -62,6 +68,9 @@ c910_2: cpu@2 {
+>  			compatible = "thead,c910", "riscv";
+>  			device_type = "cpu";
+>  			riscv,isa = "rv64imafdc";
+> +			riscv,isa-base = "rv64i";
+> +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+> +					       "zifencei", "zihpm";
+>  			reg = <2>;
+>  			i-cache-block-size = <64>;
+>  			i-cache-size = <65536>;
+> @@ -83,6 +92,9 @@ c910_3: cpu@3 {
+>  			compatible = "thead,c910", "riscv";
+>  			device_type = "cpu";
+>  			riscv,isa = "rv64imafdc";
+> +			riscv,isa-base = "rv64i";
+> +			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+> +					       "zifencei", "zihpm";
+>  			reg = <3>;
+>  			i-cache-block-size = <64>;
+>  			i-cache-size = <65536>;
 > -- 
-> 2.25.1
+> 2.41.0
 > 
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
