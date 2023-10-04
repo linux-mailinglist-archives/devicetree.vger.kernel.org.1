@@ -1,192 +1,166 @@
-Return-Path: <devicetree+bounces-5927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF9A27B8A85
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 20:36:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 743767B8B17
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 20:46:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 6AD96281297
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 18:36:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2879D2816DF
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 18:46:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AED61C2A8;
-	Wed,  4 Oct 2023 18:36:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF89D1F16E;
+	Wed,  4 Oct 2023 18:46:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AfcnYAjL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aRB7CKIc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B83391C291;
-	Wed,  4 Oct 2023 18:36:28 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8487A7;
-	Wed,  4 Oct 2023 11:36:26 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 394FBLvr028282;
-	Wed, 4 Oct 2023 18:35:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=6M3YAebF9rrs3opK3mpTD1jmedIyRT/cMOQ6DDH1tyM=;
- b=AfcnYAjLVk8hVxmWmdF/yylUGqfIZ7FeD1F4DB9WeY2hh1UuUaO8K8wzGq8ENxXacTBv
- +rXSm3UKVxoh9zjzKMby24VOV44iXS4UiH+RgCqYC8p/eg4/8vz4et4tjPoOwYPM4B4q
- duDpI5J0Dr9MHLh4hLwsjAQZOps3/HLypCaDY9fIcuMU6YyyGj6OgzDanbRsqcki2GAi
- 2ujp+RKWMC8xWFH56kRquJsGwybxookOCZVxSPiNqMMm/Z89gpgUGFNEdLbTr4ZyTIdm
- WvAqoiCoOL9fA3OTtsRUCuK3AydDvMiu0GhTgKM0stQKqOcKGtZuH+vz4/U4Wny8iARN Jw== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3th2gq1t4n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 04 Oct 2023 18:35:45 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 394IZhC3025160
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 4 Oct 2023 18:35:44 GMT
-Received: from [10.71.112.36] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 4 Oct
- 2023 11:35:10 -0700
-Message-ID: <2127ef61-e263-2a0e-438a-6baa125aa70d@quicinc.com>
-Date: Wed, 4 Oct 2023 11:35:06 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 424FC1EA87
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 18:46:50 +0000 (UTC)
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B318C9;
+	Wed,  4 Oct 2023 11:46:48 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-1c5ff5f858dso600295ad.2;
+        Wed, 04 Oct 2023 11:46:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696445208; x=1697050008; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PXD3JwB7k7KInA/zPG1O5KwkNXcpwCRiREJJeHB9B40=;
+        b=aRB7CKIc7N5Q7HE9xr1TdpNijJNGtEW3lYi62HSuPvTwqw6gox6jBc9YCG/JV9pCvh
+         PzTqNMHZGMhPfnVlJLLiOCsHf0zRBA/rRCg+rqu8KBR0Vtg72XWjVF4q6lf/IEtHg3yS
+         lsgIowYVjROnDZ62TFMkrVJ3lT10XL7LiDkKxKLVrva1c2UV7PQRhzvjtalPqx3HzLqF
+         4dHmIoleDCL+qjjhdSLffCNTvUNFPmSQ7E8XvRb+GYovBSPwNJjrqmspauiWBGkYPrQH
+         Tla+0hPk1sc696r9uqu1wUznVLyD4KeWN54vZ8GYnLQMAEpBH9CiqSw5mhX0uGCAmYzh
+         f5ZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696445208; x=1697050008;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PXD3JwB7k7KInA/zPG1O5KwkNXcpwCRiREJJeHB9B40=;
+        b=m/VwWFbkKWkPp4p0FQVpoVpT9xfMe8zQWje7oy0rlx+JlTEb2PybMOirLlO50Re1y1
+         RNN1/mhLjmpXDp+rIXERQv6gL4mikbEww6kNPZR9yhx60xR0/1Z2t4geCHbcaHMTzI71
+         Pa/BopBGN0FWDs1PxlTH+4bAVBhu7EYoEk4OOUKfme/xqnMP/aY3pHAQtU7DOv1+h3XL
+         +UVZoK9oI0BeuPfPsbCdkLxOntnZdx4etE5VX02eHDi5/8nQErss8XfKTCN6bFVBAtvE
+         R+NNvYerd2uBXm9/FAlUJB/Ii4CWyMn8kFyZZJaTGrT5FZFhCM+unlU/yZ2YL1wRV861
+         o1YQ==
+X-Gm-Message-State: AOJu0YxvRLVTWBl6IhaR1JNLQCLN3Pwtfaoe0xc4TYck2xiZqgnUnF4M
+	aKP1QE2gtc22uUA9GUYmbbM9b2nDYfQ=
+X-Google-Smtp-Source: AGHT+IGTFkvIxDDTNFDTn1be9zBor9vq4zlQ3n+WWE9iG14rKAErWEsBVhxYkRKjGo8y/JF8XD8WrA==
+X-Received: by 2002:a17:903:110d:b0:1c1:fe97:bf34 with SMTP id n13-20020a170903110d00b001c1fe97bf34mr3774660plh.24.1696445207671;
+        Wed, 04 Oct 2023 11:46:47 -0700 (PDT)
+Received: from toolbox.iitism.net ([103.15.228.93])
+        by smtp.gmail.com with ESMTPSA id j13-20020a170902c3cd00b001b9d95945afsm4063903plj.155.2023.10.04.11.46.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Oct 2023 11:46:46 -0700 (PDT)
+From: Ayush Singh <ayushdevel1325@gmail.com>
+To: greybus-dev@lists.linaro.org
+Cc: Ayush Singh <ayushdevel1325@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	gregkh@linuxfoundation.org,
+	vaishnav@beagleboard.org,
+	jkridner@beagleboard.org,
+	nm@ti.com,
+	krzysztof.kozlowski+dt@linaro.org
+Subject: [PATCH v7 0/3] greybus: Add BeaglePlay Greybus Driver
+Date: Thu,  5 Oct 2023 00:16:35 +0530
+Message-ID: <20231004184639.462510-1-ayushdevel1325@gmail.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v7 01/33] xhci: add support to allocate several
- interrupters
-Content-Language: en-US
-To: Mathias Nyman <mathias.nyman@intel.com>,
-        Mathias Nyman
-	<mathias.nyman@linux.intel.com>,
-        <gregkh@linuxfoundation.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <perex@perex.cz>, <tiwai@suse.com>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <srinivas.kandagatla@linaro.org>, <bgoswami@quicinc.com>,
-        <Thinh.Nguyen@synopsys.com>
-CC: <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20230921214843.18450-1-quic_wcheng@quicinc.com>
- <20230921214843.18450-2-quic_wcheng@quicinc.com>
- <10ad0613-7e88-dbe8-c5a2-d535f8e9db03@linux.intel.com>
- <e3f3c8cd-6338-da08-d988-4d2ed68280e6@quicinc.com>
- <843897f1-3ce5-f8da-5f10-7d8a68849fd2@intel.com>
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <843897f1-3ce5-f8da-5f10-7d8a68849fd2@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 6qI8t9feb8uXz-ckzPnXYaJeZ5ViYC9L
-X-Proofpoint-ORIG-GUID: 6qI8t9feb8uXz-ckzPnXYaJeZ5ViYC9L
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-04_10,2023-10-02_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- lowpriorityscore=0 phishscore=0 mlxlogscore=598 mlxscore=0 impostorscore=0
- malwarescore=0 suspectscore=0 clxscore=1015 bulkscore=0 adultscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310040136
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Mathias,
+BeagleConnect is both a technology concept and a line of board designs
+that implement the technology. Born from Greybus, a mechanism for
+dynamically extending a Linux system with embedded peripherals,
+BeagleConnect adds two key elements: a 6LoWPAN transport and mikroBUS
+manifests. The 6LoWPAN transport provides for arbitrary connections,
+including the IEEE802.15.4g long-range wireless transport supported
+between BeaglePlay and BeagleConnect Freedom (the first BeagleConnect
+board design). The mikroBUS manifests provide for rapid prototyping
+and low-node-count production with sensor boards following the
+mikroBUS freely-licensable embedded bus standard such that existing
+Linux drivers can be loaded upon Greybus discovery of the nodes.
+This patch set provides the Linux-side hooks required for the 6LoWPAN
+transport for BeagleConnect on BeaglePlay. Also adds required devicetree
+additions.
 
-On 10/4/2023 7:02 AM, Mathias Nyman wrote:
-> On 2.10.2023 23.07, Wesley Cheng wrote:
->> Hi Mathias,
->>
->> On 9/28/2023 3:31 AM, Mathias Nyman wrote:
->>> On 22.9.2023 0.48, Wesley Cheng wrote:
->>>> From: Mathias Nyman <mathias.nyman@linux.intel.com>
->>>>
->>>> Modify the XHCI drivers to accommodate for handling multiple event 
->>>> rings in
->>>> case there are multiple interrupters.  Add the required APIs so 
->>>> clients are
->>>> able to allocate/request for an interrupter ring, and pass this 
->>>> information
->>>> back to the client driver.  This allows for users to handle the 
->>>> resource
->>>> accordingly, such as passing the event ring base address to an audio 
->>>> DSP.
->>>> There is no actual support for multiple MSI/MSI-X vectors.
->>>>
->>>> Factoring out XHCI interrupter APIs and structures done by Wesley 
->>>> Cheng, in
->>>> order to allow for USB class drivers to utilze them.
->>>>
->>>>   }
->>>> +void xhci_remove_secondary_interrupter(struct usb_hcd *hcd, struct 
->>>> xhci_interrupter *ir)
->>>> +{
->>>> +    struct xhci_hcd *xhci = hcd_to_xhci(hcd);
->>>> +    unsigned int intr_num;
->>>> +
->>>> +    /* interrupter 0 is primary interrupter, don't touchit */
->>>> +    if (!ir || !ir->intr_num || ir->intr_num >= 
->>>> xhci->max_interrupters) {
->>>> +        xhci_dbg(xhci, "Invalid secondary interrupter, can't 
->>>> remove\n");
->>>> +        return;
->>>> +    }
->>>> +
->>>> +    /* fixme, should we check xhci->interrupter[intr_num] == ir */
->>>> +    spin_lock(&xhci->lock);
->>>
->>> Needs to be spin_lock_irq() ir spin_lock_irqsave() as xhci->lock is 
->>> used in interrupt handler.
->>>
->>>
->>>> +    intr_num = ir->intr_num;
->>>> +    xhci_free_interrupter(xhci, ir);
->>>> +    xhci->interrupters[intr_num] = NULL;
->>>> +    spin_unlock(&xhci->lock);
->>>
->>> likewise
->>>
->>
->> Let me check these again.  In general, I think I will use both the 
->> xhci->mutex and xhci->lock where needed, because I believe we'd run 
->> into sleep while atomic issues
->> while freeing the DMA memory.  Will rework this and submit in the next 
->> rev.
->>
-> 
-> Maybe we need to split xhci_free_interrupter() into separate remove and 
-> free functions
-> 
+Tested over `next-20230825`.
 
-Thanks for sharing the work you've been doing.  Yes, I did something 
-similar as well on my end, but will refactor in your code and re-test.
+Link: https://programmershideaway.xyz/tags/gsoc23/ GSoC23 Blog
+Link: https://git.beagleboard.org/gsoc/greybus/cc1352-firmware Zephyr App
+Link: https://github.com/Ayush1325/linux/tree/gb-beagleplay GitHub Branch
+Link: https://docs.beagleboard.org/latest/boards/beagleconnect/index.html BeagleConnect
+Link: https://docs.beagleboard.org/latest/boards/beagleplay/index.html BeaglePlay
+Link: https://github.com/Ayush1325/linux/tree/gb-beagleplay Github Repo
+Link: https://lists.linaro.org/archives/list/greybus-dev@lists.linaro.org/thread/NYA3N2JYG3WIRCDXHYINNXYOCSVYRTSF/ Patch v6
 
-> Did some work on this, and on the sideband api in general.
-> 
-> Code still has a lot of FIXMEs, and it's completely untested, but to 
-> avoid us
-> from doing duplicate work I pushed it to my feature_interrupters branch 
-> anyway
-> 
-> git://git.kernel.org/pub/scm/linux/kernel/git/mnyman/xhci.git 
-> feature_interrupters
-> https://git.kernel.org/pub/scm/linux/kernel/git/mnyman/xhci.git/log/?h=feature_interrupters 
-> 
+Changes in Patch v7
+v6 -> v7:
+- Drop speed variable
+- Fix commit message
+- add clock-names and descriptions
+- fix power lines
 
-Ok.  Initial look at it seems like it will be fine, but will integrate 
-and make changes where needed.
+v5 -> v6:
+- Rename compatible to `ti,cc1352p7`
+- Fix formatting
+- Use kerneldoc
+- Add clocks, power-gpios, reset-gpios to dt bindings
 
-Thanks
-Wesley Cheng
+v4 -> v5:
+- Move DT Bindings to net
+- Rename compatible to `beagle,play-cc1352`
+- Expose CC1352 as MCU
+- Remove redundant tracing messages
+- Fix memory leaks
+
+v3 -> v4:
+- Add DT Bindings
+- Reorder commits
+- Improve commit messages
+
+v2 -> v3:
+- Move gb-beagleplay out of staging
+
+v1 -> v2:
+- Combine the driver into a single file
+- Remove redundant code
+- Fix Checkpatch complaints
+- Other suggested changes
+
+
+Ayush Singh (3):
+  dt-bindings: net: Add ti,cc1352p7
+  greybus: Add BeaglePlay Linux Driver
+  dts: ti: k3-am625-beagleplay: Add beaglecc1352
+
+ .../devicetree/bindings/net/ti,cc1352p7.yaml  |  51 ++
+ MAINTAINERS                                   |   7 +
+ .../arm64/boot/dts/ti/k3-am625-beagleplay.dts |   4 +
+ drivers/greybus/Kconfig                       |  10 +
+ drivers/greybus/Makefile                      |   2 +
+ drivers/greybus/gb-beagleplay.c               | 501 ++++++++++++++++++
+ 6 files changed, 575 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
+ create mode 100644 drivers/greybus/gb-beagleplay.c
+
+
+base-commit: 6269320850097903b30be8f07a5c61d9f7592393
+-- 
+2.41.0
+
 
