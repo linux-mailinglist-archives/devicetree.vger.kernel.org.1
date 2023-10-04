@@ -1,128 +1,497 @@
-Return-Path: <devicetree+bounces-5661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3B017B7626
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 03:12:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A25B47B7699
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 04:23:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id CF2ED1C20473
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 01:12:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id 059901F21B29
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 02:23:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 013CB376;
-	Wed,  4 Oct 2023 01:12:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73E6BA51;
+	Wed,  4 Oct 2023 02:23:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABB6F182
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 01:12:33 +0000 (UTC)
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E458AB;
-	Tue,  3 Oct 2023 18:12:32 -0700 (PDT)
-Received: by mail-pg1-x52a.google.com with SMTP id 41be03b00d2f7-58949a142bfso60456a12.1;
-        Tue, 03 Oct 2023 18:12:32 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ADAEA29
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 02:23:49 +0000 (UTC)
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34996AF;
+	Tue,  3 Oct 2023 19:23:47 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id d2e1a72fcca58-690b7cb71aeso370183b3a.0;
+        Tue, 03 Oct 2023 19:23:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696381952; x=1696986752; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fas0XW9KdFPhCRYKtIjUyg9fUjXrDBEyScssVvJXH/A=;
-        b=UqVyN9seF/pKtvdft4Eo0V+0P0hWx5L8c2TUqMA/z6WeEtwSrNjlb2aoAY8bwYKEvC
-         BQPCRGlQmvPaw6k1YYRd+z+U1+SQEtsHyQ84DBQu+eiuQqqQf+wSCxHnsf0KWlXQMPql
-         qkRz1wPvYgj/dV7Fpa56KKYNzLzQD0t3iSmYXabYbw5Df7iGEN30n87XnGUNryPbniBv
-         CJhq/SefBb+C/QORiPbhtNlBYTTCgld4CzkSVr+h4aV27lCWovSmNyrfWL/oC83j6Foc
-         xi6qHyOH2XEoHv1tDPZMfzwLLrUh7DUdWvXjni0YyB3AVu6wVG2yoDv6O2xdYQCuAStc
-         Asfw==
+        d=gmail.com; s=20230601; t=1696386226; x=1696991026; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5AxRDVC6vFOTOhTeIWXyy4DMe0oh9ZHTrLAq3N1EqvU=;
+        b=STInohuPt3q5ijgdcHyt+JawH7p544IC29mLcZGl+w/7YpsLU2S+KZGGC6FJE6CMzL
+         Bxf2VHYvFumxVpLFCFhfKm90CziyDQ6zgZsYDLHUWZbDbsGjEF0fsX2V0Gww5gl/S73g
+         aO6c6viQ3EcxoxH+Y/jjECjEhgCo9OmnOiIgbv2lad+poGlqrTavdkUrw+BL0Lytv8L1
+         ijFavvAI2E85Ji+dggbZs59axg6vKiRdJ4TQ6pwevRTUGLCqVwdKj+ALhWD1R5G5h/cn
+         lbG0+gVEK5x5G5kpI/u6r5wNsMmQA99oDxCuN0BsRVvcNA8cnPst8yJMX+1JVb/sYB63
+         NVng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696381952; x=1696986752;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fas0XW9KdFPhCRYKtIjUyg9fUjXrDBEyScssVvJXH/A=;
-        b=PIcfljMI9KMIlKYBhUvToctU2OfbbUs0u81hXV4KD3GXdHNidipdoXbA0R6qXyf/w7
-         3IM5O9nS6sCCB5qqPsVRV1k2SQRwt57rnvxN/SKwVLPwfpwdMBRYypgu8erYykIa/dk9
-         CJin+irIheZFMhjLoiAeBTlNggEF/xUvuLUDnbVV/KXD0ZV1O33XLn91+8ql9PwNYxev
-         SmAb/XnRWqDkxzTeJxjfrYvwzmY/vd4tlhtLWwVDz7hqFEg3StcD2JJ8RDx02sjBCO5M
-         c3RweDJvIzgS5NFBdk30DLn4LZnaAP2cEhtlKvcPRAJrRHUAzCNXuMD/TXXh2qXFzPU2
-         DNjg==
-X-Gm-Message-State: AOJu0YzLZF6MfxvYgfDxftyf6rxbLxpdrEkRKnMyqhfs93iDTkrzSali
-	JP3DNVA5mvf/8T5AR6helEDSnXpBq909TW/03gE=
-X-Google-Smtp-Source: AGHT+IFen0a+X+gv/rudm9g2ZVTwJtB9njJO1Lz/cEwq0MQEtgeUeeSEuWPSIwYeovwRMb7oV3/tUMeNH3CCdZ3MKcc=
-X-Received: by 2002:a05:6a00:10c2:b0:68f:c9f6:f366 with SMTP id
- d2-20020a056a0010c200b0068fc9f6f366mr1240061pfu.0.1696381951815; Tue, 03 Oct
- 2023 18:12:31 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1696386226; x=1696991026;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5AxRDVC6vFOTOhTeIWXyy4DMe0oh9ZHTrLAq3N1EqvU=;
+        b=dwfP/ItAS5UMa2vmIn+hPYsOXLqrdfoe16YasRY8JoZpKrEECq+1Y3tMuW6GHD5Xgf
+         kpufUtcskQ24UmmvXBVNqGyFb75UF/KBI8rxXbTqJsRk59WfJ1QYFSpirTe9DYbIr7bH
+         k1LCTWBpi6M6h1SuqMFabBantsDvqyUV7fUaogTH1MVITwpR8KYYaGATpcuyCARNBaHf
+         WMONtpDQSVDsuMNMwtOvLMnwjDfv5NbKifMGcw3iA/Fh7A69nb1S5bi6vFgVUq55NZXi
+         hoIwAFwILnnn5rlUGHX9WhmB3EFBlFq0/LD+7zL6ru4cBrpKoM6NtXRoRGFNpkqv+BbC
+         rZ8A==
+X-Gm-Message-State: AOJu0Yx5uQrPUKHT7+KzcO4lfLLxJH5ZfFoGo0srdv2Dv+XhSRy2DV4D
+	4c4iaJpQbXCoce5+rAMXhH4=
+X-Google-Smtp-Source: AGHT+IHr43C9UpuPjijwGKWCPZ2JzQZLnm2P/0H9xaztkMXZt/aiLspYKZvNXILMFKzqzx2QCLK4GA==
+X-Received: by 2002:a05:6a00:15c5:b0:690:9a5a:e34e with SMTP id o5-20020a056a0015c500b006909a5ae34emr7938626pfu.12.1696386226465;
+        Tue, 03 Oct 2023 19:23:46 -0700 (PDT)
+Received: from [10.10.14.80] (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
+        by smtp.gmail.com with ESMTPSA id s18-20020a62e712000000b006878cc942f1sm2046801pfh.54.2023.10.03.19.23.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Oct 2023 19:23:46 -0700 (PDT)
+Message-ID: <634eefdd-b3af-8f8b-ab43-6037194ad522@gmail.com>
+Date: Wed, 4 Oct 2023 10:22:03 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230831044431.250338-1-aford173@gmail.com> <20230831044431.250338-2-aford173@gmail.com>
-In-Reply-To: <20230831044431.250338-2-aford173@gmail.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Tue, 3 Oct 2023 22:12:20 -0300
-Message-ID: <CAOMZO5DyZJuqYswLYhf1f3zP7Rc1ZhnPfq26dpyU2m5mhvRtVw@mail.gmail.com>
-Subject: Re: [PATCH V3 2/3] arm64: dts: imx8mp: Add micfil node
-To: Adam Ford <aford173@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, marex@denx.de, 
-	aford@beaconembedded.com, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, 
-	Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v9 1/2] ARM: dts: aspeed: Minerva: Add Facebook Minerva
+ (AST2600) BMC
+To: patrick@stwcx.xyz, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Cc: peter.yin@quantatw.com
+References: <20230907064514.1764010-1-peteryin.openbmc@gmail.com>
+ <20230907064514.1764010-2-peteryin.openbmc@gmail.com>
+Content-Language: en-US
+From: PeterYin <peteryin.openbmc@gmail.com>
+In-Reply-To: <20230907064514.1764010-2-peteryin.openbmc@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,WEIRD_QUOTING
 	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Adam and devicetree folks,
 
-On Thu, Aug 31, 2023 at 1:44=E2=80=AFAM Adam Ford <aford173@gmail.com> wrot=
-e:
->
-> The i.MX8MP has a micfil controller which is used for interfacing
-> with a pulse density microphone. Add the node and mark it as
-> disabled by default.
->
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+
+Peter Yin 於 9/7/23 14:45 寫道:
+> Add linux device tree entry related to Minerva
+> specific devices connected to BMC SoC.
+> 
+> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
 > ---
-> V3:  The AUDIOMIX_PDM_ROOT doesn't exist and the real clock is
->      called IMX8MP_CLK_AUDIOMIX_PDM_SEL, so swap it out.
->
-> V2:  No change
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/=
-dts/freescale/imx8mp.dtsi
-> index 3167706d81e1..341fd0369ce9 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -1479,6 +1479,27 @@ easrc: easrc@30c90000 {
->                                         fsl,asrc-format =3D <2>;
->                                         status =3D "disabled";
->                                 };
+>   arch/arm/boot/dts/aspeed/Makefile             |   1 +
+>   .../aspeed/aspeed-bmc-facebook-minerva.dts    | 371 ++++++++++++++++++
+>   2 files changed, 372 insertions(+)
+>   create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts
+> 
+> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
+> index 23cbc7203a8e..b1da302dbcd6 100644
+> --- a/arch/arm/boot/dts/aspeed/Makefile
+> +++ b/arch/arm/boot/dts/aspeed/Makefile
+> @@ -19,6 +19,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>   	aspeed-bmc-facebook-fuji.dtb \
+>   	aspeed-bmc-facebook-galaxy100.dtb \
+>   	aspeed-bmc-facebook-greatlakes.dtb \
+> +	aspeed-bmc-facebook-minerva.dtb \
+>   	aspeed-bmc-facebook-minipack.dtb \
+>   	aspeed-bmc-facebook-tiogapass.dtb \
+>   	aspeed-bmc-facebook-wedge40.dtb \
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts
+> new file mode 100644
+> index 000000000000..4834473c3c39
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts
+> @@ -0,0 +1,371 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +// Copyright (c) 2023 Facebook Inc.
+> +/dts-v1/;
 > +
-> +                               micfil: audio-controller@30ca0000 {
-> +                                       compatible =3D "fsl,imx8mp-micfil=
-";
-> +                                       reg =3D <0x30ca0000 0x10000>;
-> +                                       #sound-dai-cells =3D <0>;
+> +#include "aspeed-g6.dtsi"
+> +#include <dt-bindings/gpio/aspeed-gpio.h>
+> +#include <dt-bindings/i2c/i2c.h>
+> +
+> +/ {
+> +	model = "Facebook Minerva";
+> +	compatible = "facebook,minerva-bmc", "aspeed,ast2600";
+> +
+> +	aliases {
+> +		serial0 = &uart1;
+> +		serial4 = &uart5;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = &uart5;
+> +	};
+> +
+> +	memory@80000000 {
+> +		device_type = "memory";
+> +		reg = <0x80000000 0x80000000>;
+> +	};
+> +
+> +	iio-hwmon {
+> +		compatible = "iio-hwmon";
+> +		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
+> +			<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
+> +			<&adc1 2>;
+> +	};
+> +};
+> +
+> +// HOST BIOS Debug
+> +&uart1 {
+> +	status = "okay";
+> +};
+> +
+> +// SOL Host Console
+> +&uart2 {
+> +	status = "okay";
+> +	pinctrl-0 = <>;
+> +};
+> +
+> +// SOL BMC Console
+> +&uart4 {
+> +	status = "okay";
+> +	pinctrl-0 = <>;
+> +};
+> +
+> +// BMC Debug Console
+> +&uart5 {
+> +	status = "okay";
+> +};
+> +
+> +// MTIA
+> +&uart6 {
+> +	status = "okay";
+> +};
+> +
+> +&uart_routing {
+> +	status = "okay";
+> +};
+> +
+> +&vuart1 {
+> +	status = "okay";
+> +	virtual;
+> +	port=<0x3e8>;
+> +	sirq = <7>;
+> +	sirq-polarity = <0>;
+> +	dma-mode;
+> +	dma-channel = <12>;
+> +};
+> +
+> +&wdt1 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_wdtrst1_default>;
+> +	aspeed,reset-type = "soc";
+> +	aspeed,external-signal;
+> +	aspeed,ext-push-pull;
+> +	aspeed,ext-active-high;
+> +	aspeed,ext-pulse-duration = <256>;
+> +};
+> +
+> +&mac3 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_rmii4_default>;
+> +	no-hw-checksum;
+> +	use-ncsi;
+> +	ncsi-ctrl,start-redo-probe;
+> +	ncsi-ctrl,no-channel-monitor;
+> +	mlx,multi-host;
+> +	ncsi-package = <1>;
+> +	ncsi-channel = <1>;
+> +	ncsi-rexmit = <1>;
+> +	ncsi-timeout = <2>;
+> +};
+> +
+> +&rtc {
+> +	status = "okay";
+> +};
+> +
+> +&fmc {
+> +	status = "okay";
+> +
+> +	flash@0 {
+> +		status = "okay";
+> +		m25p,fast-read;
+> +		label = "bmc";
+> +		spi-max-frequency = <50000000>;
+> +#include "openbmc-flash-layout-128.dtsi"
+> +	};
+> +
+> +	flash@1 {
+> +		status = "okay";
+> +		m25p,fast-read;
+> +		label = "alt-bmc";
+> +		spi-max-frequency = <50000000>;
+> +	};
+> +};
+> +
+> +// BIOS Flash
+> +&spi2 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_spi2_default>;
+> +
+> +	flash@0 {
+> +		status = "okay";
+> +		m25p,fast-read;
+> +		label = "pnor";
+> +		spi-max-frequency = <12000000>;
+> +		spi-tx-bus-width = <2>;
+> +		spi-rx-bus-width = <2>;
+> +	};
+> +};
+> +
+> +&kcs2 {
+> +	status = "okay";
+> +	aspeed,lpc-io-reg = <0xca8>;
+> +};
+> +
+> +&kcs3 {
+> +	status = "okay";
+> +	aspeed,lpc-io-reg = <0xca2>;
+> +};
+> +
+> +&lpc_snoop {
+> +	status = "okay";
+> +	snoop-ports = <0x80>;
+> +};
+> +
+> +&peci0 {
+> +	status = "okay";
+> +	clock-frequency = <1000000>;
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c1 {
+> +	status = "okay";
+> +
+> +	tmp75@4B {
+> +		compatible = "ti,tmp75";
+> +		reg = <0x4B>;
+> +	};
+> +};
+> +
+> +&i2c2 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c3 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c4 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c5 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c6 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c7 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c8 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c9 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c11 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c12 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c13 {
+> +	status = "okay";
+> +};
+> +
+> +// To Debug card
+> +&i2c14 {
+> +	status = "okay";
+> +	multi-master;
+> +
+> +	ipmb@10 {
+> +		compatible = "ipmb-dev";
+> +		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
+> +		i2c-protocol;
+> +	};
+> +};
+> +
+> +&i2c15 {
+> +	status = "okay";
+> +
+> +	// SCM FRU
+> +	eeprom@50 {
+> +		compatible = "atmel,24c64";
+> +		reg = <0x50>;
+> +	};
+> +	// BSM FRU
+> +	eeprom@56 {
+> +		compatible = "atmel,24c64";
+> +		reg = <0x56>;
+> +	};
+> +};
+> +
+> +&adc0 {
+> +	ref_voltage = <2500>;
+> +	status = "okay";
+> +	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
+> +		&pinctrl_adc2_default &pinctrl_adc3_default
+> +		&pinctrl_adc4_default &pinctrl_adc5_default
+> +		&pinctrl_adc6_default &pinctrl_adc7_default>;
+> +};
+> +
+> +&adc1 {
+> +	ref_voltage = <2500>;
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_adc10_default>;
+> +};
+> +
+> +&ehci1 {
+> +	status = "okay";
+> +};
+> +
+> +&gpio0 {
+> +	pinctrl-names = "default";
+> +	gpio-line-names =
+> +	/*A0-A7*/	"","","","","","","","",
+> +	/*B0-B7*/	"","","","","","FM_ID_LED_N","","",
+> +	/*C0-C7*/	"","","","","","","","",
+> +	/*D0-D7*/	"","","SOL_UART_SET","","","","","",
+> +	/*E0-E7*/	"","","","","","","","",
+> +	/*F0-F7*/	"","","","","","","","",
+> +	/*G0-G7*/	"","","","","","","","",
+> +	/*H0-H7*/	"","","","","","","","",
+> +	/*I0-I7*/	"","","","","","","","",
+> +	/*J0-J7*/	"","","","","","","","",
+> +	/*K0-K7*/	"","","","","","","","",
+> +	/*L0-L7*/	"","","","","","","","",
+> +	/*M0-M7*/	"","","","","","","","",
+> +	/*N0-N7*/	"LED_POSTCODE_0","LED_POSTCODE_1",
+> +			"LED_POSTCODE_2","LED_POSTCODE_3",
+> +			"LED_POSTCODE_4","LED_POSTCODE_5",
+> +			"LED_POSTCODE_6","LED_POSTCODE_7",
+> +	/*O0-O7*/	"","","","","","","","",
+> +	/*P0-P7*/	"FP_SYS_PWRBTN_IN_N","BMC_SYS_PWRBTN_OUT_N",
+> +			"FP_RST_BTN_IN_N","","","","","",
+> +	/*Q0-Q7*/	"","","","","","","","",
+> +	/*R0-R7*/	"","","","","","","","",
+> +	/*S0-S7*/	"","","","","","","","",
+> +	/*T0-T7*/	"","","","","","","","",
+> +	/*U0-U7*/	"","","","","","","","",
+> +	/*V0-V7*/	"","","","","","","","",
+> +	/*W0-W7*/	"","","","","","","","",
+> +	/*X0-X7*/	"","","","","","","","",
+> +	/*Y0-Y7*/	"","","","","","","","",
+> +	/*Z0-Z7*/	"","","","","","","","";
+> +};
+> +
+> +&sgpiom0 {
+> +	status = "okay";
+> +	max-ngpios = <128>;
+> +	ngpios = <128>;
+> +	bus-frequency = <2000000>;
+> +	gpio-line-names =
+> +	/*in - out - in - out */
+> +	/*A0-A3 line 0-7*/
+> +	"","","","","","ENABLE_SENSORS","","",
+> +	/*A4-A7 line 8-15*/
+> +	"","","","","","","","",
+> +	/*B0-B3 line 16-23*/
+> +	"","","","","","BMC_RST_BTN_OUT_N","","",
+> +	/*B4-B7 line 24-31*/
+> +	"","","","","","","","",
+> +	/*C0-C3 line 32-39*/
+> +	"","","","","","","","",
+> +	/*C4-C7 line 40-47*/
+> +	"","","","","","","","",
+> +	/*D0-D3 line 48-55*/
+> +	"","","","","","","","",
+> +	/*D4-D7 line 56-63*/
+> +	"","","","","","","","",
+> +	/*E0-E3 line 64-71*/
+> +	"","","","","","","","",
+> +	/*E4-E7 line 72-79*/
+> +	"","","","","","","","",
+> +	/*F0-F3 line 80-87*/
+> +	"","","","","","","","",
+> +	/*F4-F7 line 88-95*/
+> +	"","","","","","","","",
+> +	/*G0-G3 line 96-103*/
+> +	"","","","","","","","",
+> +	/*G4-G7 line 104-111*/
+> +	"","","","","","","","",
+> +	/*H0-H3 line 112-119*/
+> +	"","","","","PLD_SYS_POWER_GOOD","","","",
+> +	/*H4-H7 line 120-127*/
+> +	"","","","","","","","",
+> +	/*I0-I3 line 128-135*/
+> +	"","","","","","","","",
+> +	/*I4-I7 line 136-143*/
+> +	"","","","","","","","",
+> +	/*J0-J3 line 144-151*/
+> +	"","","PLD_BIOS_POST_CMPLT_N","","","","","",
+> +	/*J4-J7 line 152-159*/
+> +	"","","","","","","","",
+> +	/*K0-K3 line 160-167*/
+> +	"","","","","","","","",
+> +	/*K4-K7 line 168-175*/
+> +	"","","","","","","","",
+> +	/*L0-L3 line 176-183*/
+> +	"","","","","","","","",
+> +	/*L4-L7 line 184-191*/
+> +	"","","","","","","","",
+> +	/*M0-M3 line 192-199*/
+> +	"","","","","","","","",
+> +	/*M4-M7 line 200-207*/
+> +	"","","","","","","","",
+> +	/*N0-N3 line 208-215*/
+> +	"","","","","","","","",
+> +	/*N4-N7 line 216-223*/
+> +	"","","","","","","","",
+> +	/*O0-O3 line 224-231*/
+> +	"","","","","","","","",
+> +	/*O4-O7 line 232-239*/
+> +	"","","","","","","","",
+> +	/*P0-P3 line 240-247*/
+> +	"","","","","","","","",
+> +	/*P4-P7 line 248-255*/
+> +	"","","","","","","","";
+> +};
+Hello Maintainer,
+  Are there any recommendations or modifications that you consider 
+necessary?
 
-After this patch, the following schema warning is seen:
+Thanks.
 
-imx8mp-beacon-kit.dtb: audio-controller@30ca0000: '#sound-dai-cells'
-does not match any of the regexes: 'pinctrl-[0-9]+'
-from schema $id: http://devicetree.org/schemas/sound/fsl,micfil.yaml#
-
-What is the correct way to solve this?
-
-- Document #sound-dai-cells in fsl,micfil.yaml as an optional property
-- Remove #sound-dai-cells from imx8mp.dtsi
-- Document #sound-dai-cells in fsl,micfil.yaml as a required property
-and pass #sound-dai-cells to imx8mm/imx8mn/imx83.dtsi?
 
