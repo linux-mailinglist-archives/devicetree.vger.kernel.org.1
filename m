@@ -1,383 +1,212 @@
-Return-Path: <devicetree+bounces-5710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA1707B78E8
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 09:43:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C67D37B78F2
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 09:45:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 1395F1C203DD
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 07:43:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 25193281460
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 07:45:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39CEDD304;
-	Wed,  4 Oct 2023 07:43:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84E5CD307;
+	Wed,  4 Oct 2023 07:45:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 271E779FF
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 07:43:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D76DEC433C7;
-	Wed,  4 Oct 2023 07:43:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696405431;
-	bh=HfgYTp0WssHEnePmDkQCGt5XcFpdT2hvV0snW81vExs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bXPCIXQqmxiDqSEwBLhtixM/suy318GVMRJ6EGuhPk1PnYSGAmkDDPIMJWPfN27pF
-	 U5LY9+sywq7Emw7feUDXBeMaD4hSGs6HAgDBgKaJhaL25Wv3t5M8vgcKqaJn7RWOT7
-	 oAZPadzYPulUBsoEJZGj2zwfW9XTqWJuih/5Jp4L+uXlR/WoSvYPiDzaB/pltBLfo4
-	 d9UoNx0EO+x4NzNm744oFmDisOggRVwgAm2otbs2tY6knjZaWkTQKzl+6JFvXCUTGb
-	 RHByqlw0miOJpeCdHCbBhot6BVmwyO13QQcIunviXxGry09JzUeIv4j/dv9C1NZHg+
-	 EOzJewi7K5Zww==
-Date: Wed, 4 Oct 2023 13:13:47 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Keguang Zhang <keguang.zhang@gmail.com>
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v5 2/2] dmaengine: Loongson1: Add Loongson1 dmaengine
- driver
-Message-ID: <ZR0Xs1IGA3v+EJE/@matsya>
-References: <20230928121953.524608-1-keguang.zhang@gmail.com>
- <20230928121953.524608-3-keguang.zhang@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32CD17483
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 07:45:02 +0000 (UTC)
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 062AE9B;
+	Wed,  4 Oct 2023 00:44:59 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id DE763E0010;
+	Wed,  4 Oct 2023 07:44:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1696405498;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=VBA0XNaTJ/GmTYAgKn/HyRrIiXhJIs4Y4o8burTOcdA=;
+	b=eHmtNjrgLvEZb0H5aTAt5rVWa9YJ34C6Zk+y1qUhwwnyX8RGB7xwNdigpW5TDuseT1ErJC
+	O2TLcu1Q13w9Xz+cZrreXdX2AwAl8hLZHTmdpF2e/fx7B9lWB9gEGjS2SQxfcQ30MPIxpZ
+	C+mLSLLb/Yfs+xNtNGphamBiHOMkRgZ+qlc2VGIlNk2RGDoEIOpHisxUyax0FGggLP4d2J
+	AkE2jAP2msO8fl3FV8x+FynJUx36e0tixmwC/C83AuzOp4eevww3/YUbic9MJXNLeAF7Lc
+	HASsplzEoE3dpkjvQxp9v9kUiXMBhf99j4zO6WUPgzTpHKS4M2cY+u385RPqhg==
+Date: Wed, 4 Oct 2023 09:44:55 +0200
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: niravkumar.l.rabara@intel.com
+Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra
+ <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mtd: cadence: convert
+ cadence-nand-controller.txt to yaml
+Message-ID: <20231004094455.1a6a19e1@xps-13>
+In-Reply-To: <20231004061214.17176-1-niravkumar.l.rabara@intel.com>
+References: <20231004061214.17176-1-niravkumar.l.rabara@intel.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230928121953.524608-3-keguang.zhang@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On 28-09-23, 20:19, Keguang Zhang wrote:
-> This patch adds DMA Engine driver for Loongson1 SoCs.
-> 
-> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+Hello,
+
+niravkumar.l.rabara@intel.com wrote on Wed,  4 Oct 2023 14:12:14 +0800:
+
+> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+>=20
+> Convert cadence-nand-controller.txt to yaml format.
+
+Looks good to me, one question below.
+
+> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 > ---
-> V4 -> V5:
->    Add DT support
->    Use DT data instead of platform data
->    Use chan_id of struct dma_chan instead of own id
->    Use of_dma_xlate_by_chan_id() instead of ls1x_dma_filter()
->    Update the author information to my official name
-> V3 -> V4:
->    Use dma_slave_map to find the proper channel.
->    Explicitly call devm_request_irq() and tasklet_kill().
->    Fix namespace issue.
->    Some minor fixes and cleanups.
-> V2 -> V3:
->    Rename ls1x_dma_filter_fn to ls1x_dma_filter.
-> V1 -> V2:
->    Change the config from 'DMA_LOONGSON1' to 'LOONGSON1_DMA',
->    and rearrange it in alphabetical order in Kconfig and Makefile.
->    Fix comment style.
-> 
->  drivers/dma/Kconfig         |   9 +
->  drivers/dma/Makefile        |   1 +
->  drivers/dma/loongson1-dma.c | 492 ++++++++++++++++++++++++++++++++++++
->  3 files changed, 502 insertions(+)
->  create mode 100644 drivers/dma/loongson1-dma.c
-> 
-> diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
-> index 4ccae1a3b884..0b0d5c61b4a0 100644
-> --- a/drivers/dma/Kconfig
-> +++ b/drivers/dma/Kconfig
-> @@ -369,6 +369,15 @@ config K3_DMA
->  	  Support the DMA engine for Hisilicon K3 platform
->  	  devices.
->  
-> +config LOONGSON1_DMA
-> +	tristate "Loongson1 DMA support"
-> +	depends on MACH_LOONGSON32
-> +	select DMA_ENGINE
-> +	select DMA_VIRTUAL_CHANNELS
-> +	help
-> +	  This selects support for the DMA controller in Loongson1 SoCs,
-> +	  which is required by Loongson1 NAND and AC97 support.
-> +
->  config LPC18XX_DMAMUX
->  	bool "NXP LPC18xx/43xx DMA MUX for PL080"
->  	depends on ARCH_LPC18XX || COMPILE_TEST
-> diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
-> index 83553a97a010..887103db5ee3 100644
-> --- a/drivers/dma/Makefile
-> +++ b/drivers/dma/Makefile
-> @@ -47,6 +47,7 @@ obj-$(CONFIG_INTEL_IDMA64) += idma64.o
->  obj-$(CONFIG_INTEL_IOATDMA) += ioat/
->  obj-y += idxd/
->  obj-$(CONFIG_K3_DMA) += k3dma.o
-> +obj-$(CONFIG_LOONGSON1_DMA) += loongson1-dma.o
->  obj-$(CONFIG_LPC18XX_DMAMUX) += lpc18xx-dmamux.o
->  obj-$(CONFIG_MILBEAUT_HDMAC) += milbeaut-hdmac.o
->  obj-$(CONFIG_MILBEAUT_XDMAC) += milbeaut-xdmac.o
-> diff --git a/drivers/dma/loongson1-dma.c b/drivers/dma/loongson1-dma.c
+>  .../devicetree/bindings/mtd/cadence,nand.yaml | 73 +++++++++++++++++++
+>  .../bindings/mtd/cadence-nand-controller.txt  | 53 --------------
+>  2 files changed, 73 insertions(+), 53 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/cadence,nand.ya=
+ml
+>  delete mode 100644 Documentation/devicetree/bindings/mtd/cadence-nand-co=
+ntroller.txt
+>=20
+> diff --git a/Documentation/devicetree/bindings/mtd/cadence,nand.yaml b/Do=
+cumentation/devicetree/bindings/mtd/cadence,nand.yaml
 > new file mode 100644
-> index 000000000000..b589103d5ae0
+> index 000000000000..781812ac702f
 > --- /dev/null
-> +++ b/drivers/dma/loongson1-dma.c
-> @@ -0,0 +1,492 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * DMA Driver for Loongson-1 SoC
-> + *
-> + * Copyright (C) 2015-2023 Keguang Zhang <keguang.zhang@gmail.com>
-> + */
+> +++ b/Documentation/devicetree/bindings/mtd/cadence,nand.yaml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/cadence,nand.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#include <linux/dmapool.h>
-> +#include <linux/init.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_dma.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
+> +title: Cadence NAND controller
 > +
-> +#include "dmaengine.h"
-> +#include "virt-dma.h"
+> +maintainers:
+> +  - Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 > +
-> +/* Loongson 1 DMA Register Definitions */
-> +#define LS1X_DMA_CTRL		0x0
+> +allOf:
+> +  - $ref: nand-controller.yaml
 > +
-> +/* DMA Control Register Bits */
-> +#define LS1X_DMA_STOP		BIT(4)
-> +#define LS1X_DMA_START		BIT(3)
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: cdns,hp-nfc
 > +
-> +#define LS1X_DMA_ADDR_MASK	GENMASK(31, 6)
+> +  reg:
+> +    items:
+> +      - description: Address and length of the controller register set
+> +      - description: Address and length of the Slave DMA data port
 > +
-> +/* DMA Command Register Bits */
-> +#define LS1X_DMA_RAM2DEV		BIT(12)
-> +#define LS1X_DMA_TRANS_OVER		BIT(3)
-> +#define LS1X_DMA_SINGLE_TRANS_OVER	BIT(2)
-> +#define LS1X_DMA_INT			BIT(1)
-> +#define LS1X_DMA_INT_MASK		BIT(0)
+> +  reg-names:
+> +    items:
+> +      - const: reg
+> +      - const: sdma
 > +
-> +#define LS1X_DMA_MAX_CHANNELS	3
+> +  interrupts:
+> +    maxItems: 1
 > +
-> +struct ls1x_dma_lli {
-> +	u32 next;		/* next descriptor address */
-> +	u32 saddr;		/* memory DMA address */
-> +	u32 daddr;		/* device DMA address */
-> +	u32 length;
-> +	u32 stride;
-> +	u32 cycles;
-> +	u32 cmd;
-> +} __aligned(64);
+> +  clocks:
+> +    maxItems: 1
 > +
-> +struct ls1x_dma_hwdesc {
-> +	struct ls1x_dma_lli *lli;
-> +	dma_addr_t phys;
-> +};
+> +  dmas:
+> +    maxItems: 1
 > +
-> +struct ls1x_dma_desc {
-> +	struct virt_dma_desc vdesc;
-> +	struct ls1x_dma_chan *chan;
+> +  cdns,board-delay-ps:
+> +    description: |
+> +      Estimated Board delay. The value includes the total round trip
+> +      delay for the signals and is used for deciding on values associated
+> +      with data read capture. The example formula for SDR mode is the
+> +      following.
+> +      board delay =3D RE#PAD delay + PCB trace to device + PCB trace fro=
+m device
+> +      + DQ PAD delay
 > +
-> +	enum dma_transfer_direction dir;
-> +	enum dma_transaction_type type;
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +  - clocks
 > +
-> +	unsigned int nr_descs;	/* number of descriptors */
-> +	unsigned int nr_done;	/* number of completed descriptors */
-> +	struct ls1x_dma_hwdesc hwdesc[];	/* DMA coherent descriptors */
-> +};
+> +unevaluatedProperties: false
 > +
-> +struct ls1x_dma_chan {
-> +	struct virt_dma_chan vchan;
-> +	struct dma_pool *desc_pool;
-> +	struct dma_slave_config cfg;
+> +examples:
+> +  - |
+> +      nand-controller@10b80000 {
+> +        compatible =3D "cdns,hp-nfc";
+> +        reg =3D <0x10b80000 0x10000>,
+> +            <0x10840000 0x10000>;
+> +        reg-names =3D "reg", "sdma";
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +        interrupts =3D <0 97 4>;
+> +        clocks =3D <&nf_clk>;
+> +        cdns,board-delay-ps =3D <4830>;
 > +
-> +	void __iomem *reg_base;
-> +	int irq;
-> +
-> +	struct ls1x_dma_desc *desc;
-> +};
-> +
-> +struct ls1x_dma {
-> +	struct dma_device ddev;
-> +	void __iomem *reg_base;
-> +
-> +	unsigned int nr_chans;
-> +	struct ls1x_dma_chan chan[];
-> +};
-> +
-> +#define to_ls1x_dma_chan(dchan)		\
-> +	container_of(dchan, struct ls1x_dma_chan, vchan.chan)
-> +
-> +#define to_ls1x_dma_desc(vdesc)		\
-> +	container_of(vdesc, struct ls1x_dma_desc, vdesc)
-> +
-> +/* macros for registers read/write */
-> +#define chan_readl(chan, off)		\
-> +	readl((chan)->reg_base + (off))
-> +
-> +#define chan_writel(chan, off, val)	\
-> +	writel((val), (chan)->reg_base + (off))
-> +
-> +static inline struct device *chan2dev(struct dma_chan *chan)
-> +{
-> +	return &chan->dev->device;
-> +}
-> +
-> +static void ls1x_dma_free_chan_resources(struct dma_chan *dchan)
-> +{
-> +	struct ls1x_dma_chan *chan = to_ls1x_dma_chan(dchan);
-> +
-> +	vchan_free_chan_resources(&chan->vchan);
-> +	dma_pool_destroy(chan->desc_pool);
-> +	chan->desc_pool = NULL;
-> +}
-> +
-> +static int ls1x_dma_alloc_chan_resources(struct dma_chan *dchan)
-> +{
-> +	struct ls1x_dma_chan *chan = to_ls1x_dma_chan(dchan);
-> +
-> +	chan->desc_pool = dma_pool_create(dma_chan_name(dchan),
-> +					  dchan->device->dev,
-> +					  sizeof(struct ls1x_dma_lli),
-> +					  __alignof__(struct ls1x_dma_lli), 0);
-> +	if (!chan->desc_pool)
-> +		return -ENOMEM;
-> +
-> +	return 0;
-> +}
-> +
-> +static void ls1x_dma_free_desc(struct virt_dma_desc *vdesc)
-> +{
-> +	struct ls1x_dma_desc *desc = to_ls1x_dma_desc(vdesc);
-> +
-> +	if (desc->nr_descs) {
-> +		unsigned int i = desc->nr_descs;
-> +		struct ls1x_dma_hwdesc *hwdesc;
-> +
-> +		do {
-> +			hwdesc = &desc->hwdesc[--i];
-> +			dma_pool_free(desc->chan->desc_pool, hwdesc->lli,
-> +				      hwdesc->phys);
-> +		} while (i);
-> +	}
-> +
-> +	kfree(desc);
-> +}
-> +
-> +static struct ls1x_dma_desc *ls1x_dma_alloc_desc(struct ls1x_dma_chan *chan,
-> +						 int sg_len)
-> +{
-> +	struct ls1x_dma_desc *desc;
-> +
-> +	desc = kzalloc(struct_size(desc, hwdesc, sg_len), GFP_NOWAIT);
+> +        nand@0 {
+> +            reg =3D <0>;
+> +        };
+> +      };
+> diff --git a/Documentation/devicetree/bindings/mtd/cadence-nand-controlle=
+r.txt b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+> deleted file mode 100644
+> index d2eada5044b2..000000000000
+> --- a/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+> +++ /dev/null
+> @@ -1,53 +0,0 @@
+> -* Cadence NAND controller
+> -
+> -Required properties:
+> -  - compatible : "cdns,hp-nfc"
+> -  - reg : Contains two entries, each of which is a tuple consisting of a
+> -	  physical address and length. The first entry is the address and
+> -	  length of the controller register set. The second entry is the
+> -	  address and length of the Slave DMA data port.
+> -  - reg-names: should contain "reg" and "sdma"
+> -  - #address-cells: should be 1. The cell encodes the chip select connec=
+tion.
+> -  - #size-cells : should be 0.
+> -  - interrupts : The interrupt number.
+> -  - clocks: phandle of the controller core clock (nf_clk).
+> -
+> -Optional properties:
+> -  - dmas: shall reference DMA channel associated to the NAND controller
+> -  - cdns,board-delay-ps : Estimated Board delay. The value includes the =
+total
+> -    round trip delay for the signals and is used for deciding on values
+> -    associated with data read capture. The example formula for SDR mode =
+is
+> -    the following:
+> -    board delay =3D RE#PAD delay + PCB trace to device + PCB trace from =
+device
+> -    + DQ PAD delay
+> -
+> -Child nodes represent the available NAND chips.
 
-why do you need a helper to do kzalloc?
+This is not fully pictured in the current schema, by referencing
+nand-controller.yaml I believe you allow all kind of direct
+partitioning (which is legacy, and not supposed to be supported here).
+Can you try to define a partition directly within the controller node
+in the example and see whether it still passes the checks?
 
-> +
-> +	return desc;
-> +}
-> +
-> +static struct dma_async_tx_descriptor *
-> +ls1x_dma_prep_slave_sg(struct dma_chan *dchan, struct scatterlist *sgl,
-> +		       unsigned int sg_len,
-> +		       enum dma_transfer_direction direction,
-> +		       unsigned long flags, void *context)
-> +{
-> +	struct ls1x_dma_chan *chan = to_ls1x_dma_chan(dchan);
-> +	struct dma_slave_config *cfg = &chan->cfg;
-> +	struct ls1x_dma_desc *desc;
-> +	struct scatterlist *sg;
-> +	unsigned int dev_addr, bus_width, cmd, i;
-> +
-> +	if (!is_slave_direction(direction)) {
-> +		dev_err(chan2dev(dchan), "invalid DMA direction!\n");
-> +		return NULL;
-> +	}
-> +
-> +	dev_dbg(chan2dev(dchan), "sg_len=%d, dir=%s, flags=0x%lx\n", sg_len,
-> +		direction == DMA_MEM_TO_DEV ? "to device" : "from device",
-> +		flags);
-> +
-> +	switch (direction) {
-> +	case DMA_MEM_TO_DEV:
-> +		dev_addr = cfg->dst_addr;
-> +		bus_width = cfg->dst_addr_width;
-> +		cmd = LS1X_DMA_RAM2DEV | LS1X_DMA_INT;
-> +		break;
-> +	case DMA_DEV_TO_MEM:
-> +		dev_addr = cfg->src_addr;
-> +		bus_width = cfg->src_addr_width;
-> +		cmd = LS1X_DMA_INT;
-> +		break;
-> +	default:
-> +		dev_err(chan2dev(dchan),
-> +			"unsupported DMA transfer direction! %d\n", direction);
-> +		return NULL;
-> +	}
-> +
-> +	/* allocate DMA descriptor */
-> +	desc = ls1x_dma_alloc_desc(chan, sg_len);
-> +	if (!desc)
-> +		return NULL;
-> +
-> +	for_each_sg(sgl, sg, sg_len, i) {
-> +		dma_addr_t buf_addr = sg_dma_address(sg);
-> +		size_t buf_len = sg_dma_len(sg);
-> +		struct ls1x_dma_hwdesc *hwdesc = &desc->hwdesc[i];
-> +		struct ls1x_dma_lli *lli;
-> +
-> +		if (!is_dma_copy_aligned(dchan->device, buf_addr, 0, buf_len)) {
-> +			dev_err(chan2dev(dchan), "%s: buffer is not aligned!\n",
-> +				__func__);
-> +			goto err;
-> +		}
-> +
-> +		/* allocate HW DMA descriptors */
-> +		lli = dma_pool_alloc(chan->desc_pool, GFP_NOWAIT,
-> +				     &hwdesc->phys);
-> +		if (!lli) {
-> +			dev_err(chan2dev(dchan),
-> +				"%s: failed to alloc HW DMA descriptor!\n",
-> +				__func__);
-> +			goto err;
-> +		}
-> +		hwdesc->lli = lli;
-> +
-> +		/* config HW DMA descriptors */
-> +		lli->saddr = buf_addr;
-> +		lli->daddr = dev_addr;
-> +		lli->length = buf_len / bus_width;
-> +		lli->stride = 0;
-> +		lli->cycles = 1;
-> +		lli->cmd = cmd;
-> +		lli->next = 0;
-> +
-> +		if (i)
-> +			desc->hwdesc[i - 1].lli->next = hwdesc->phys;
-> +
-> +		dev_dbg(chan2dev(dchan),
-> +			"hwdesc=%px, saddr=%08x, daddr=%08x, length=%u\n",
-> +			hwdesc, buf_addr, dev_addr, buf_len);
-> +	}
-> +
-> +	/* config DMA descriptor */
-> +	desc->chan = chan;
-> +	desc->dir = direction;
-> +	desc->type = DMA_SLAVE;
-> +	desc->nr_descs = sg_len;
-> +	desc->nr_done = 0;
-> +
-> +	return vchan_tx_prep(&chan->vchan, &desc->vdesc, flags);
-> +err:
-> +	desc->nr_descs = i;
-> +	ls1x_dma_free_desc(&desc->vdesc);
-> +	return NULL;
-> +}
-> +
-> +static int ls1x_dma_slave_config(struct dma_chan *dchan,
-> +				 struct dma_slave_config *config)
-> +{
-> +	struct ls1x_dma_chan *chan = to_ls1x_dma_chan(dchan);
-> +
-> +	chan->cfg = *config;
-
-You are using only addr and width, why keep full structure?
--- 
-~Vinod
+Thanks,
+Miqu=C3=A8l
 
