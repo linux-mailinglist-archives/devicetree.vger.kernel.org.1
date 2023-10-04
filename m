@@ -1,248 +1,227 @@
-Return-Path: <devicetree+bounces-5932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFC8C7B8B41
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 20:50:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F272E7B8C47
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 21:07:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id 37ACD1F22D6A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 18:50:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 3B365B207F0
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 19:07:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 233311F61A;
-	Wed,  4 Oct 2023 18:50:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06F31219EF;
+	Wed,  4 Oct 2023 19:07:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="QsbIpSBU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b3VtB/EK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7108A1B27F
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 18:50:05 +0000 (UTC)
-Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D25CDA7
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 11:50:00 -0700 (PDT)
-Received: by mail-qv1-xf33.google.com with SMTP id 6a1803df08f44-668d9c1f70fso475006d6.3
-        for <devicetree@vger.kernel.org>; Wed, 04 Oct 2023 11:50:00 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2A3721112
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 19:07:45 +0000 (UTC)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA18D10C7;
+	Wed,  4 Oct 2023 12:07:39 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-53829312d12so2886594a12.0;
+        Wed, 04 Oct 2023 12:07:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1696445399; x=1697050199; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aLxg9fH8T1y0yGnPhHcUGUL8dVs76BY9tqGI34u50Bs=;
-        b=QsbIpSBUs1v250EisypmrLo1xZypuMbM2kchknnKaBXNugEvZGKHS6ZnC5LkKIA5HI
-         RkNexXThTo4uZDmP+CH6Ji+frDRYT03SSYNxeH8cmgKaFZgLuaZqX/HbgNhxWazpTJIg
-         SF6OygLNnaOuJHMh42k3lP8vRcYQajUk/goQhWKFF+i0ZBHt33ijTvL+/epwkIPGC3N5
-         kfE8oiE8pqHarj89/dSVZjC4/XDcGT1Z7eXDvbMyPRhbMVFgerGtkdGOX/5XxhygmSrM
-         VB7mvIWAeLmnsgDnLlICZA725CgpfasFEMSovzPw2eifNm5Hi1e31G4HvHW9gAp1cXq9
-         ++/g==
+        d=gmail.com; s=20230601; t=1696446458; x=1697051258; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=LfKbENQF1OCDpyRozcLgcbIFYekG+q6fUxVUaA/+cFk=;
+        b=b3VtB/EKY2wwAsSWeMt2BAqctndLxxPkiM9CLeN3v025aqwFW6KxJMueyd0P4B73pf
+         p1VhqXJ3V07VCyPpsZ+QOQpRbWI36TCYZ2z25t28zmlpLX+IBmzdqNaWtkY4ju0TMW2T
+         8m/yHoQmqN9ltqnKDCZn7/XFkuhstZdKyhJDSo7wJICr4TZY+9A4njqhPuN/xg9LxOD5
+         h8Nyy8bsJJ8hoHaWqODP09BxclXHw+IAv5yE6nAsFiJxuOFACFaVI5DpFXQlNcr4Wqtx
+         Y1zEujuKNPKpczSANlA0xrfBU+x+3w2PFen35B5AfjDNIoQfNOvJpmO5gLKABNFsDdC3
+         DZYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696445399; x=1697050199;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1696446458; x=1697051258;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aLxg9fH8T1y0yGnPhHcUGUL8dVs76BY9tqGI34u50Bs=;
-        b=prhvSwv2wR+OYFUtCfaHhgEIIjRSzECx94Phpk8N9wFJbKcZLv/dt7pDQlFAnb37Lw
-         BVLmITS12qThPkpvyvk5uXzirVHjq+JGYA/cVGg7J1Sy6gBSGOG9PMoD4VysC26Or3Rt
-         xhiIvgLpzTfVXizOl32X29YBmfYhJ4DhVp5oihfM/v7lrODQ5AkAqULBiCsUNuiVlPSI
-         /oqlN36qJar6NE8wnrPDuk4obuKkuhaYpr9YzcDWrgvZOPJ9b+adiOy7GsoZ4AypiV+x
-         tzO5vVql9Y2VlIC4WsEMwvEugbnPWbS2/pjqyIH8h3WlPJLU6Wir5sECk2fTewOvbQqC
-         v0bA==
-X-Gm-Message-State: AOJu0YyBOBsK3JVks5ko+s2iJ+9o0leyzkWb4szx4WHFCBvAe0jEPend
-	uazHXhC6k+jJ5Yg4Ldr1bLBamA==
-X-Google-Smtp-Source: AGHT+IENGPIAeevR+++9VNUaDLPyKIYbr+kdZo6T203e5mzPMqSIxUqcJDFLq+tp33c+F3IchycJlQ==
-X-Received: by 2002:a0c:e54f:0:b0:64a:92e9:10e4 with SMTP id n15-20020a0ce54f000000b0064a92e910e4mr2602325qvm.63.1696445399373;
-        Wed, 04 Oct 2023 11:49:59 -0700 (PDT)
-Received: from ?IPV6:2600:1700:2000:b002:1d3e:176c:909c:5aed? ([2600:1700:2000:b002:1d3e:176c:909c:5aed])
-        by smtp.gmail.com with ESMTPSA id x1-20020a0ce241000000b0065d89f4d537sm1516928qvl.45.2023.10.04.11.49.57
+        bh=LfKbENQF1OCDpyRozcLgcbIFYekG+q6fUxVUaA/+cFk=;
+        b=pxH3bE57OMhi50foVjhso/T/7R1SzRIYwKedd89ix5tsuKzH+SvkOyo48YJmlNN4Tu
+         7VO+1SoHlcgJyd+lr8yRbc1q2flsxG6T32DOUdRd2NlqIJohl3eDm+pH+zgz/4mP3kNJ
+         gMqBAqWiNlVE6myvYF+NZQDiazFPJDkFjjFLGSWDdXcOxqw6WsXpD0W4nG9Q+jZshR0a
+         L5+RKdWesxdRutnpoV8SxXeHZx+5Ni0fDBNdtKP1VyaMfXTrFIrm9Flw8j79KA497dvk
+         MZIS/oRqtJb225g+kWwu+wuUf6KHSFKZa0MUTPa0u3znY16OOSPZj68z8UjlonlLe2Ss
+         U8oQ==
+X-Gm-Message-State: AOJu0YxRS9AEKT+mgL5kqDiWLoPmN8PU9BnjackTwC8CCj3gY7ReuePv
+	rY5bFJizr30bSjZlVjJC3m4+mVQtWbfnww==
+X-Google-Smtp-Source: AGHT+IHqhJ4GZi6aYGamS04rmL30PBsqdW0lHsZ2cwUiZHgmls26+BclzmYEh0miTmW7ThqWmgJIAA==
+X-Received: by 2002:a17:906:3109:b0:9b6:3be9:a8f with SMTP id 9-20020a170906310900b009b63be90a8fmr497677ejx.20.1696446457879;
+        Wed, 04 Oct 2023 12:07:37 -0700 (PDT)
+Received: from [192.168.3.32] (cpezg-94-253-131-161-cbl.xnet.hr. [94.253.131.161])
+        by smtp.gmail.com with ESMTPSA id p24-20020a170906a01800b009b28ad521f4sm3261380ejy.4.2023.10.04.12.07.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Oct 2023 11:49:58 -0700 (PDT)
-Message-ID: <20075b03-e3b0-4f29-9ba1-98eed361a44f@sifive.com>
-Date: Wed, 4 Oct 2023 13:49:56 -0500
+        Wed, 04 Oct 2023 12:07:37 -0700 (PDT)
+Message-ID: <cbe6eae5-3490-eb3e-7f28-87ec2c600875@gmail.com>
+Date: Wed, 4 Oct 2023 21:07:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/6] RISC-V: Add eMMC support for TH1520 boards
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH V3 3/4] thermal/drivers/tsens: Add support for IPQ5018
+ tsens
+To: Sricharan R <srichara@win-platform-upstream01.qualcomm.com>,
+ krzysztof.kozlowski@linaro.org, agross@kernel.org, andersson@kernel.org,
+ konrad.dybcio@linaro.org, srinivas.kandagatla@linaro.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ thara.gopinath@gmail.com, rafael@kernel.org, daniel.lezcano@linaro.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ dmitry.baryshkov@linaro.org, quic_srichara@quicinc.com
+References: <20230922115116.2748804-1-srichara@win-platform-upstream01.qualcomm.com>
+ <20230922115116.2748804-4-srichara@win-platform-upstream01.qualcomm.com>
 Content-Language: en-US
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
- Robin Murphy <robin.murphy@arm.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Jisheng Zhang <jszhang@kernel.org>,
- Drew Fustini <dfustini@baylibre.com>, linux-kernel@vger.kernel.org,
- Linux-MM <linux-mm@kvack.org>, Guo Ren <guoren@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-riscv@lists.infradead.org, Christoph Hellwig <hch@lst.de>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alexghiti@rivosinc.com>,
- Arnd Bergmann <arnd@arndb.de>, Han Gao <gaohan@iscas.ac.cn>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Jason Kridner <jkridner@beagleboard.org>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Robert Nelson <robertcnelson@gmail.com>, linux-mmc@vger.kernel.org,
- Adrian Hunter <adrian.hunter@intel.com>, Conor Dooley <conor@kernel.org>,
- =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>,
- Rob Herring <robh+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Xi Ruoyao <xry111@xry111.site>, Fu Wei <wefu@redhat.com>
-References: <20230921-th1520-mmc-v1-0-49f76c274fb3@baylibre.com>
- <CAOCHtYhnx1EpBM+o3xhdsicx5uqLidojK3f0HQ+VfyVv1ZXnVQ@mail.gmail.com>
- <CAOCHtYi5Ab5ppCmaQV3QuKQcpmJX+sHdAmtuEXhfq8xf5fFCYQ@mail.gmail.com>
- <ZRuamJuShOnvP1pr@x1> <ZR1M3FcdXrDmIGu2@xhacker>
- <CA+V-a8ugwqkQxnX-wwWCHVtBBtG=aVv=MZTc53LbpxtFA=N1_A@mail.gmail.com>
- <bc2b0b30-ab37-f336-c90e-eab570d393a2@arm.com>
- <c2ea3f34bb919293b850fab6ed42b61e3517ba35.camel@icenowy.me>
- <a568a9dd-bab2-1e23-c4d5-9f6475bdcc3b@arm.com>
- <CA+V-a8s1S4yTH19PVNSznAgUFoHRNoye9CfwjW6iy6PbQ9thew@mail.gmail.com>
- <CA+V-a8vbWW6=HTfR+FCPOB0bAa8M3Bbm_k=7+XbjOc3ybo6VNQ@mail.gmail.com>
-From: Samuel Holland <samuel.holland@sifive.com>
-In-Reply-To: <CA+V-a8vbWW6=HTfR+FCPOB0bAa8M3Bbm_k=7+XbjOc3ybo6VNQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+From: Robert Marko <robimarko@gmail.com>
+In-Reply-To: <20230922115116.2748804-4-srichara@win-platform-upstream01.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 2023-10-04 12:16 PM, Lad, Prabhakar wrote:
-> On Wed, Oct 4, 2023 at 5:03 PM Lad, Prabhakar
-> <prabhakar.csengg@gmail.com> wrote:
->>
->> On Wed, Oct 4, 2023 at 3:18 PM Robin Murphy <robin.murphy@arm.com> wrote:
->>>
->>> On 04/10/2023 3:02 pm, Icenowy Zheng wrote:
->>> [...]
->>>>>>> I believe commit 484861e09f3e ("soc: renesas: Kconfig: Select the
->>>>>>> required configs for RZ/Five SoC") can cause regression on all
->>>>>>> non-dma-coherent riscv platforms with generic defconfig. This is
->>>>>>> a common issue. The logic here is: generic riscv defconfig
->>>>>>> selects
->>>>>>> ARCH_R9A07G043 which selects DMA_GLOBAL_POOL, which assumes all
->>>>>>> non-dma-coherent riscv platforms have a dma global pool, this
->>>>>>> assumption
->>>>>>> seems not correct. And I believe DMA_GLOBAL_POOL should not be
->>>>>>> selected by ARCH_SOCFAMILIY, instead, only ARCH under some
->>>>>>> specific
->>>>>>> conditions can select it globaly, for example NOMMU ARM and so
->>>>>>> on.
->>>>>>>
->>>>>>> Since this is a regression, what's proper fix? any suggestion is
->>>>>>> appreciated.
->>>>>
->>>>> I think the answer is to not select DMA_GLOBAL_POOL, since that is
->>>>> only
->>>>
->>>> Well I think for RISC-V, it's not NOMMU only but applicable for every
->>>> core that does not support Svpbmt or vendor-specific alternatives,
->>>> because the original RISC-V priv spec does not define memory attributes
->>>> in page table entries.
->>>>
->>>> For the Renesas/Andes case I think a pool is set by OpenSBI with
->>>> vendor-specific M-mode facility and then passed in DT, and the S-mode
->>>> (which MMU is enabled in) just sees fixed memory attributes, in this
->>>> case I think DMA_GLOBAL_POOL is needed.
->>>
->>> Oh wow, is that really a thing? In that case, either you just can't
->>> support this platform in a multi-platform kernel, or someone needs to do
->>> some fiddly work in dma-direct to a) introduce the notion of an optional
->>> global pool,
->> Looking at the code [0] we do have compile time check for
->> CONFIG_DMA_GLOBAL_POOL irrespective of this being present in DT or
->> not, instead if we make it compile time and runtime check ie either
->> check for DT node or see if pool is available and only then proceed
->> for allocation form this pool.
->>
->> What are your thoughts on this?
->>
-> Something like the below:
-> 
-> diff --git a/include/linux/dma-map-ops.h b/include/linux/dma-map-ops.h
-> index f2fc203fb8a1..7bf41a4634a4 100644
-> --- a/include/linux/dma-map-ops.h
-> +++ b/include/linux/dma-map-ops.h
-> @@ -198,6 +198,7 @@ int dma_release_from_global_coherent(int order,
-> void *vaddr);
->  int dma_mmap_from_global_coherent(struct vm_area_struct *vma, void *cpu_addr,
->                 size_t size, int *ret);
->  int dma_init_global_coherent(phys_addr_t phys_addr, size_t size);
-> +bool dma_global_pool_available(void);
->  #else
->  static inline void *dma_alloc_from_global_coherent(struct device *dev,
->                 ssize_t size, dma_addr_t *dma_handle)
-> @@ -213,6 +214,10 @@ static inline int
-> dma_mmap_from_global_coherent(struct vm_area_struct *vma,
->  {
->         return 0;
->  }
-> +static inline bool dma_global_pool_available(void)
-> +{
-> +       return false;
-> +}
->  #endif /* CONFIG_DMA_GLOBAL_POOL */
-> 
->  /*
-> diff --git a/kernel/dma/coherent.c b/kernel/dma/coherent.c
-> index c21abc77c53e..605f243b8262 100644
-> --- a/kernel/dma/coherent.c
-> +++ b/kernel/dma/coherent.c
-> @@ -277,6 +277,14 @@ int dma_mmap_from_dev_coherent(struct device
-> *dev, struct vm_area_struct *vma,
->  #ifdef CONFIG_DMA_GLOBAL_POOL
->  static struct dma_coherent_mem *dma_coherent_default_memory __ro_after_init;
-> 
-> +bool dma_global_pool_available(void)
-> +{
-> +       if (!dma_coherent_default_memory)
-> +               return false;
+
+On 22. 09. 2023. 13:51, Sricharan R wrote:
+> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>
+> IPQ5018 has tsens IP V1.0, 4 sensors and 1 interrupt.
+> The soc does not have a RPM, hence tsens has to be reset and
+> enabled in the driver init. Adding the driver support for same.
+>
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> ---
+>   [v3] Fixed Dmitry's comments for error checks in init_ipq5018
+>
+>   drivers/thermal/qcom/tsens-v1.c | 60 +++++++++++++++++++++++++++++++++
+>   drivers/thermal/qcom/tsens.c    |  3 ++
+>   drivers/thermal/qcom/tsens.h    |  2 +-
+>   3 files changed, 64 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/thermal/qcom/tsens-v1.c b/drivers/thermal/qcom/tsens-v1.c
+> index dc1c4ae2d8b0..acee2064f83e 100644
+> --- a/drivers/thermal/qcom/tsens-v1.c
+> +++ b/drivers/thermal/qcom/tsens-v1.c
+> @@ -79,6 +79,18 @@ static struct tsens_features tsens_v1_feat = {
+>   	.trip_max_temp	= 120000,
+>   };
+>   
+> +static struct tsens_features tsens_v1_ipq5018_feat = {
+> +	.ver_major	= VER_1_X,
+> +	.crit_int	= 0,
+> +	.combo_int	= 0,
+> +	.adc		= 1,
+> +	.srot_split	= 1,
+> +	.max_sensors	= 11,
+> +	.trip_min_temp	= -40000,
+> +	.trip_max_temp	= 120000,
+> +	.ignore_enable	= 1,
+> +};
 > +
-> +       return true;
-> +}
-> +
->  void *dma_alloc_from_global_coherent(struct device *dev, ssize_t size,
->                                      dma_addr_t *dma_handle)
->  {
-> diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
-> index 9596ae1aa0da..a599bb731ceb 100644
-> --- a/kernel/dma/direct.c
-> +++ b/kernel/dma/direct.c
-> @@ -235,7 +235,7 @@ void *dma_direct_alloc(struct device *dev, size_t size,
->                  * If there is a global pool, always allocate from it for
->                  * non-coherent devices.
->                  */
-> -               if (IS_ENABLED(CONFIG_DMA_GLOBAL_POOL))
-> +               if (IS_ENABLED(CONFIG_DMA_GLOBAL_POOL) &&
-> dma_global_pool_available())
->                         return dma_alloc_from_global_coherent(dev, size,
->                                         dma_handle);
+>   static const struct reg_field tsens_v1_regfields[MAX_REGFIELDS] = {
+>   	/* ----- SROT ------ */
+>   	/* VERSION */
+> @@ -150,6 +162,41 @@ static int __init init_8956(struct tsens_priv *priv) {
+>   	return init_common(priv);
+>   }
+>   
+> +static int init_ipq5018(struct tsens_priv *priv)
 
-dma_alloc_from_global_coherent() already checks dma_coherent_default_memory, so
-the solution could be even simpler:
-
---- a/kernel/dma/direct.c
-+++ b/kernel/dma/direct.c
-@@ -232,12 +232,12 @@ void *dma_direct_alloc(struct device *dev, size_t size,
- 					      attrs);
-
- 		/*
--		 * If there is a global pool, always allocate from it for
-+		 * If there is a global pool, always try to allocate from it for
- 		 * non-coherent devices.
- 		 */
--		if (IS_ENABLED(CONFIG_DMA_GLOBAL_POOL))
--			return dma_alloc_from_global_coherent(dev, size,
--					dma_handle);
-+		ret = dma_alloc_from_global_coherent(dev, size, dma_handle);
-+		if (ret)
-+			return ret;
-
- 		/*
- 		 * Otherwise remap if the architecture is asking for it.  But
+__init is missing after int, otherwise I get modpost warning while building:
+WARNING: modpost: vmlinux: section mismatch in reference: 
+init_ipq5018+0x14 (section: .text) -> init_common (section: .init.text)
 
 Regards,
-Samuel
+Robert
 
+> +{
+> +	int ret;
+> +	u32 mask;
+> +
+> +	ret = init_common(priv);
+> +	if (ret < 0) {
+> +		dev_err(priv->dev, "Init common failed %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = regmap_field_write(priv->rf[TSENS_SW_RST], 1);
+> +	if (ret) {
+> +		dev_err(priv->dev, "Reset failed\n");
+> +		return ret;
+> +	}
+> +
+> +	mask = GENMASK(priv->num_sensors, 0);
+> +	ret = regmap_field_update_bits(priv->rf[SENSOR_EN], mask, mask);
+> +	if (ret) {
+> +		dev_err(priv->dev, "Sensor Enable failed\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = regmap_field_write(priv->rf[TSENS_EN], 1);
+> +	if (ret) {
+> +		dev_err(priv->dev, "Enable failed\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = regmap_field_write(priv->rf[TSENS_SW_RST], 0);
+> +
+> +	return ret;
+> +}
+> +
+>   static const struct tsens_ops ops_generic_v1 = {
+>   	.init		= init_common,
+>   	.calibrate	= calibrate_v1,
+> @@ -187,3 +234,16 @@ struct tsens_plat_data data_8976 = {
+>   	.feat		= &tsens_v1_feat,
+>   	.fields		= tsens_v1_regfields,
+>   };
+> +
+> +const struct tsens_ops ops_ipq5018 = {
+> +	.init		= init_ipq5018,
+> +	.calibrate	= tsens_calibrate_common,
+> +	.get_temp	= get_temp_tsens_valid,
+> +};
+> +
+> +struct tsens_plat_data data_ipq5018 = {
+> +	.num_sensors	= 5,
+> +	.ops		= &ops_ipq5018,
+> +	.feat		= &tsens_v1_ipq5018_feat,
+> +	.fields		= tsens_v1_regfields,
+> +};
+> diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
+> index 0a43ccf02ec4..c792b9dc6676 100644
+> --- a/drivers/thermal/qcom/tsens.c
+> +++ b/drivers/thermal/qcom/tsens.c
+> @@ -1101,6 +1101,9 @@ static SIMPLE_DEV_PM_OPS(tsens_pm_ops, tsens_suspend, tsens_resume);
+>   
+>   static const struct of_device_id tsens_table[] = {
+>   	{
+> +		.compatible = "qcom,ipq5018-tsens",
+> +		.data = &data_ipq5018,
+> +	}, {
+>   		.compatible = "qcom,ipq8064-tsens",
+>   		.data = &data_8960,
+>   	}, {
+> diff --git a/drivers/thermal/qcom/tsens.h b/drivers/thermal/qcom/tsens.h
+> index e254cd2df904..b6594b546d11 100644
+> --- a/drivers/thermal/qcom/tsens.h
+> +++ b/drivers/thermal/qcom/tsens.h
+> @@ -645,7 +645,7 @@ extern struct tsens_plat_data data_8960;
+>   extern struct tsens_plat_data data_8226, data_8909, data_8916, data_8939, data_8974, data_9607;
+>   
+>   /* TSENS v1 targets */
+> -extern struct tsens_plat_data data_tsens_v1, data_8976, data_8956;
+> +extern struct tsens_plat_data data_tsens_v1, data_8976, data_8956, data_ipq5018;
+>   
+>   /* TSENS v2 targets */
+>   extern struct tsens_plat_data data_8996, data_ipq8074, data_tsens_v2;
 
