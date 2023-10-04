@@ -1,75 +1,170 @@
-Return-Path: <devicetree+bounces-5763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C2F27B7D40
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 12:36:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 083927B7D4C
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 12:38:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id D08BF1F2217D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 10:36:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 2C17D1C208DD
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 10:37:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23C02107AA;
-	Wed,  4 Oct 2023 10:36:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E23710A17;
+	Wed,  4 Oct 2023 10:37:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8388E29A5
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 10:36:39 +0000 (UTC)
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B4D5A1;
-	Wed,  4 Oct 2023 03:36:38 -0700 (PDT)
-Received: from pd9e2f797.dip0.t-ipconnect.de ([217.226.247.151] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <andreas@kemnade.info>)
-	id 1qnzF3-004Vf9-BE; Wed, 04 Oct 2023 12:36:33 +0200
-Date: Wed, 4 Oct 2023 12:36:31 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] ARM: dts: omap4-embt2ws: Add Bluetooth
-Message-ID: <20231004123631.3827ab26@aktux>
-In-Reply-To: <8e37d1ff-be19-4f70-a1a6-9a013a61782b@linaro.org>
-References: <20231004070309.2408745-1-andreas@kemnade.info>
-	<8e37d1ff-be19-4f70-a1a6-9a013a61782b@linaro.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C8DD847A
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 10:37:55 +0000 (UTC)
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 515D4AF;
+	Wed,  4 Oct 2023 03:37:53 -0700 (PDT)
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 394AEoCZ026784;
+	Wed, 4 Oct 2023 12:37:30 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=CpI7neB
+	XhCSjFx6tMjeMOMf+DEVU5RTw/WINZZr8x8k=; b=FqfspHoPTMg+H9TBxgX/CzP
+	VNndxrfDVRa6vRMPU6nwgIXSd+U8PcGRsqkPZHK5dFOzoMmyflPjedA2mgruxcJZ
+	pYvUIj5V+k97SEde0mkLRy32PHpx+ZSBgsE5s0V5n2xcM4ncc0wXPYX96HY5Pp6i
+	sCp/JCVyyITge+04lBPa1sKNYuq2NJ3eK6xCcvnsl2ixgg5mcM+Rcbxbuse8T2Us
+	YaV94BKrXQn+AiOmPs1kdCnkIhbovL2GI6aeBKiaeldxJOeBY3akHUohKj5zx0so
+	e0EYyVN9DpdL1pBiPVJmljU6T8ePUo/J5a0/DJqSIKiNWzWNRDyc7fK84hrxuag=
+	=
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3tew80p71d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Oct 2023 12:37:29 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1C0B1100053;
+	Wed,  4 Oct 2023 12:37:28 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0CDEC231510;
+	Wed,  4 Oct 2023 12:37:28 +0200 (CEST)
+Received: from localhost (10.201.20.120) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 4 Oct
+ 2023 12:37:27 +0200
+From: Hugues Fruchet <hugues.fruchet@foss.st.com>
+To: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>,
+        Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
+        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        Sakari Ailus
+	<sakari.ailus@linux.intel.com>,
+        Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>,
+        Laurent Pinchart
+	<laurent.pinchart+renesas@ideasonboard.com>,
+        Daniel Almeida
+	<daniel.almeida@collabora.com>,
+        Benjamin Mugnier
+	<benjamin.mugnier@foss.st.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Mauro
+ Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>, <linux-media@vger.kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-rockchip@lists.infradead.org>
+CC: Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        Marco Felsch
+	<m.felsch@pengutronix.de>,
+        Adam Ford <aford173@gmail.com>
+Subject: [RFC 0/6] VP8 H1 stateless encoding
+Date: Wed, 4 Oct 2023 12:37:14 +0200
+Message-ID: <20231004103720.3540436-1-hugues.fruchet@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.201.20.120]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-04_02,2023-10-02_01,2023-05-22_02
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-[...]
-> > -	/*
-> > -	 * BT + GPS in WL1283 in WG7500 requiring CLK32KAUDIO of pmic
-> > -	 * which does not have a driver
-> > -	 */
-> > +	bluetooth-gnss {  
-> 
-> If you changed the bindings, please share a link. If not, this is not
-> currently accepted and dtbs_check should point it out.
-> 
+Hi all,
 
-$ make dtbs_check &>dtbs.log
-$ grep -q omap4-epson-embt2ws.dtb dtbs.log  && echo yes
-yes
-$ grep bluetooth-gnss dtbs.log
-$
+Here is an RFC to support VP8 encoding using Hantro H1 hardware
+of STM32MP25 SoCs (Verisilicon VC8000NanoE IP).
+This work is derived from work done to support Rockchip RK3399
+VPU2 in RFC [1] with a reshuffling of registers to match H1
+register set.
 
-So no complaints...
+This has been tested on STM32MP257F-EV1 evaluation board using
+GStreamer userspace [2]:
+gst-launch-1.0 videotestsrc num-buffers=500 ! video/x-raw,width=640,height=480 \
+! v4l2slvp8enc ! queue ! matroskamux ! filesink location=test_vp8.mkv
 
-Regards,
-Andreas
+For the sake of simplicity I have embedded here the RFC [1] before the
+changes related to this exact RFC, all rebased on v6.6 + STM32MP25
+hardware codecs support [3].
+
+[1] https://lwn.net/ml/linux-media/20230309125651.23911-1-andrzej.p@collabora.com/
+[2] https://gitlab.freedesktop.org/gstreamer/gstreamer/-/merge_requests/3736
+[3] https://patchwork.kernel.org/project/linux-media/list/?series=789861
+
+Best regards,
+Hugues.
+
+
+Andrzej Pietrasiewicz (2):
+  media: uapi: Add VP8 stateless encoder controls
+  media: hantro: add VP8 encode support for Rockchip RK3399 VPU2
+
+Hugues Fruchet (4):
+  media: hantro: add h1 vp8 encode support
+  media: hantro: add VP8 encode support for STM32MP25 VENC
+  media: hantro: h1: NV12 single-plane support
+  media: hantro: add NV12 single-plane support for STM32MP25 VENC
+
+ drivers/media/platform/verisilicon/Makefile   |    3 +
+ drivers/media/platform/verisilicon/hantro.h   |   10 +
+ .../platform/verisilicon/hantro_boolenc.c     |   69 +
+ .../platform/verisilicon/hantro_boolenc.h     |   21 +
+ .../media/platform/verisilicon/hantro_drv.c   |   15 +-
+ .../platform/verisilicon/hantro_h1_jpeg_enc.c |   42 +-
+ .../platform/verisilicon/hantro_h1_regs.h     |   71 +-
+ .../platform/verisilicon/hantro_h1_vp8_enc.c  | 1589 +++++++++++++++++
+ .../media/platform/verisilicon/hantro_hw.h    |   93 +
+ .../media/platform/verisilicon/hantro_v4l2.c  |    5 +-
+ .../media/platform/verisilicon/hantro_vp8.c   |  118 ++
+ .../verisilicon/rockchip_vpu2_hw_vp8_enc.c    | 1574 ++++++++++++++++
+ .../platform/verisilicon/rockchip_vpu2_regs.h |    1 +
+ .../platform/verisilicon/rockchip_vpu_hw.c    |   23 +-
+ .../platform/verisilicon/stm32mp25_venc_hw.c  |   35 +-
+ drivers/media/v4l2-core/v4l2-ctrls-core.c     |   13 +
+ drivers/media/v4l2-core/v4l2-ctrls-defs.c     |    5 +
+ include/media/v4l2-ctrls.h                    |    2 +
+ include/uapi/linux/v4l2-controls.h            |   91 +
+ include/uapi/linux/videodev2.h                |    3 +
+ 20 files changed, 3755 insertions(+), 28 deletions(-)
+ create mode 100644 drivers/media/platform/verisilicon/hantro_boolenc.c
+ create mode 100644 drivers/media/platform/verisilicon/hantro_boolenc.h
+ create mode 100644 drivers/media/platform/verisilicon/hantro_h1_vp8_enc.c
+ create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu2_hw_vp8_enc.c
+
+-- 
+2.25.1
+
 
