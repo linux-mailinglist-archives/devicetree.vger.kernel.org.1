@@ -1,113 +1,115 @@
-Return-Path: <devicetree+bounces-5728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54D797B7A4A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 10:40:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE8B07B7A76
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 10:45:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 7CA331C203DE
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 08:40:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 2E8F6B207C7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 08:45:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 220FB101FD;
-	Wed,  4 Oct 2023 08:40:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F59F10790;
+	Wed,  4 Oct 2023 08:45:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7E64A21
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 08:40:12 +0000 (UTC)
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF4BDAD
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 01:40:10 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9ae75ece209so334857366b.3
-        for <devicetree@vger.kernel.org>; Wed, 04 Oct 2023 01:40:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696408809; x=1697013609; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YVHhdkhp4eR4frDUkO6xbt9ArHtMALGKAATK2ZDSFtc=;
-        b=HKj2aZ7MXAxzWjyKDR842YOhCXbR29ilf3dFH0wxG6/cvcLFgwo4s6aUO8RK9Vq/5J
-         UkXhvNBuZbVIsbkZo+znOU8BQLrXsCyY+u7sn/YmGR4CkUXYnGux9eIiGSuCbNn+y+hq
-         QOpAwFfU7F9tgQOMDCyI44cl9FBpHv9fCcRIVlXU3GmKIEmON4x/tkPLFB3273xUU/yp
-         pCD7PwfQr9TwZtSgcNyU0Jh5ktWkjihBagEw5iqVE/kuvboInoqHYsi9oLZHgcQQIvED
-         nXtbTWLEI48Tg9oy7D98knBCATdPYY1baW8ghL+UpaQkPL2XXJKLbh8wr0dhi0808uuA
-         vhVA==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C62101E2
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 08:45:25 +0000 (UTC)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73BF498;
+	Wed,  4 Oct 2023 01:45:23 -0700 (PDT)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-5a1f00b75aaso21367537b3.2;
+        Wed, 04 Oct 2023 01:45:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696408809; x=1697013609;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1696409122; x=1697013922;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YVHhdkhp4eR4frDUkO6xbt9ArHtMALGKAATK2ZDSFtc=;
-        b=Fq5s3V6PBMq8kukEBNfxgpFo7nusQdqvrtkkFOrxMVH7TjbxJf1gD0tI7UnmpI3uqP
-         NTAPLGh72oi2OY77UDet3NcKqWI//S58X6qt/vLnIQjMnVnObxzxLhDOmSl4A3ndu+ww
-         Eo1XAHYxxmzsdi8BTnlOd1YX2qznLYXi6wpwr12vrgY2ncUjR+V7dVunJGvt8Beijz7n
-         NySPZJ0Je6TYrm9p3Vlth6tu1U1VA6FQdVunJnmzUfhl3xJKV/p7Ah7KlfL+e4oxXbKm
-         YxFKO2EO6gat56fff3ztfgkm4lkYIKCVptQnz/5cqp4d09o8duIbwUWPyIZlFD2RIZmy
-         c2MA==
-X-Gm-Message-State: AOJu0YzISwWDlxXYf/VAflm06ERJ6AJqWNjig5A8+w6bD0Bj+eytfKwi
-	XXrYfrT4Ps+FZyeQSP4lhrcZlw==
-X-Google-Smtp-Source: AGHT+IGxGxUBlwF4Y53MwDjX8nT5oc9ijNUlqTAgeGKz6abn9IpaJEhrWZXPB7ixkM3kL1CsQzJt5A==
-X-Received: by 2002:a17:906:31d6:b0:99b:ed44:1a79 with SMTP id f22-20020a17090631d600b0099bed441a79mr1376838ejf.3.1696408809253;
-        Wed, 04 Oct 2023 01:40:09 -0700 (PDT)
-Received: from hackbox.lan ([86.123.99.172])
-        by smtp.gmail.com with ESMTPSA id j24-20020a170906411800b009b65a698c16sm2351094ejk.220.2023.10.04.01.40.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Oct 2023 01:40:08 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-To: linux-arm-kernel@lists.infradead.org,
-	Adam Ford <aford173@gmail.com>
-Cc: marex@denx.de,
-	aford@beaconembedded.com,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Abel Vesa <abelvesa@kernel.org>,
-	Peng Fan <peng.fan@nxp.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: Re: (subset) [PATCH V3 1/3] arm64: dts: imx8mp: Add easrc node
-Date: Wed,  4 Oct 2023 11:39:40 +0300
-Message-Id: <169640874933.222477.9945058108264507999.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230831044431.250338-1-aford173@gmail.com>
-References: <20230831044431.250338-1-aford173@gmail.com>
+        bh=0QS1tAk6LjG5Jt/45jTq2YMqP8RLS9Ds70OkCJABKH4=;
+        b=g7pAN6F3R5XD3TG3mKL7OLhTaUlw46IC8HB771O/OfrO3rI33pfiyVfVQ/GbcmcwYX
+         ygGwETZtjSw3iRTaRsYSJytvJ8xlrm/J0L10Q9MKEpPmNVbNuyeotbsHDA8P17SN4QSY
+         Ii8eo+9zJ660FTVs1dP47TwQAgJzhR+x92tdtCOWCzbgabDo/f0LhmCafoHIPMJdcl4B
+         gqwbXe7MXOjWE2rtZMyFvS0uoYz3frdAFIm76ZUyvSs/JjpwdKJ+/dPxGWkgn1ddlxtc
+         I8mCEbd2gbtmRRVmnG2R2TJkYsjyd9qU1WNNxcWUJZdE2vwbwsw8JDScgCXEkv/uSFfo
+         mayw==
+X-Gm-Message-State: AOJu0YzKOKY4hwg2taAJZZUdnCwRiOcFDzWRmING+UgtMOrI+S68JA+U
+	U40L3DLkaSSOU1ipISNa6ruonNvzKSZuyQ==
+X-Google-Smtp-Source: AGHT+IHsBOX4ymOiykmRsvZfOEbM7vxfLOpztb9oWDxXTxofqY5o1/EfP1cH451pwv/8pamsgn8eGg==
+X-Received: by 2002:a81:a24a:0:b0:59f:7f8e:dc4a with SMTP id z10-20020a81a24a000000b0059f7f8edc4amr2314373ywg.22.1696409122403;
+        Wed, 04 Oct 2023 01:45:22 -0700 (PDT)
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
+        by smtp.gmail.com with ESMTPSA id d15-20020a81ab4f000000b0057a8de72338sm985000ywk.68.2023.10.04.01.45.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Oct 2023 01:45:22 -0700 (PDT)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-59f57ad6126so21249167b3.3;
+        Wed, 04 Oct 2023 01:45:22 -0700 (PDT)
+X-Received: by 2002:a0d:fa07:0:b0:591:15a6:c11f with SMTP id
+ k7-20020a0dfa07000000b0059115a6c11fmr1619406ywf.50.1696409121846; Wed, 04 Oct
+ 2023 01:45:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+References: <20230929053915.1530607-1-claudiu.beznea@bp.renesas.com> <20230929053915.1530607-8-claudiu.beznea@bp.renesas.com>
+In-Reply-To: <20230929053915.1530607-8-claudiu.beznea@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 4 Oct 2023 10:45:09 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWLoPUZw-HBsk3bELmfyTC-wF9q3CN-ouexR-Nvfqjkzw@mail.gmail.com>
+Message-ID: <CAMuHMdWLoPUZw-HBsk3bELmfyTC-wF9q3CN-ouexR-Nvfqjkzw@mail.gmail.com>
+Subject: Re: [PATCH v2 07/28] clk: renesas: rzg2l: add support for RZ/G3S PLL
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linus.walleij@linaro.org, gregkh@linuxfoundation.org, jirislaby@kernel.org, 
+	magnus.damm@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
+	quic_bjorande@quicinc.com, konrad.dybcio@linaro.org, arnd@arndb.de, 
+	neil.armstrong@linaro.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	biju.das.jz@bp.renesas.com, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+On Fri, Sep 29, 2023 at 7:39=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Add support for reading the frequency of PLL1/4/6 available on RZ/G3S.
+> The computation formula for PLL frequency is as follows:
+> Fout =3D (nir + nfr / 4096) * Fin / (mr * pr)
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>
+> Changes in v2:
+> - added GENMASK() defines for DIV_P, DIV_M, DIV_NI, DIV_NF
+> - used mul_u64_u32_shr() as suggested by Geert on v1
+> - s/CLK_TYPE_G3S_SAM_PLL/CLK_TYPE_G3S_PLL/g
 
-On Wed, 30 Aug 2023 23:44:29 -0500, Adam Ford wrote:
-> The i.MX8MP has an asynchronous sample rate converter which seems
-> to be the same as what is available on the i.MX8M Nano.
-> 
-> 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-clk-for-v6.7.
 
-Applied, thanks!
+Gr{oetje,eeting}s,
 
-[3/3] clk: imx8mp: Remove non-existent IMX8MP_CLK_AUDIOMIX_PDM_ROOT
-      commit: 05eeeff22b216e871be76dcf216a2fdda48880e2
+                        Geert
 
-Best regards,
--- 
-Abel Vesa <abel.vesa@linaro.org>
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
