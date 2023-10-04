@@ -1,136 +1,207 @@
-Return-Path: <devicetree+bounces-5833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 063FD7B813A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 15:46:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D192B7B814C
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 15:48:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 7881428124A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 13:46:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 78C462815AD
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 13:48:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CC3815E8D;
-	Wed,  4 Oct 2023 13:46:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0749A156C2;
+	Wed,  4 Oct 2023 13:48:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13D8915E82;
-	Wed,  4 Oct 2023 13:46:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13389C433C7;
-	Wed,  4 Oct 2023 13:46:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696427166;
-	bh=HFpyoczoeu93B+eyyu6aLGqXz6EFGkxrIUbFli4Gm9Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=R9wnh80R+hyC3UCzgdQOevuIaFw10AHaxEtnkhDeM9CZVHt5suUFQbRfVqoBG0NfN
-	 YvOVJtocj4W1zPS5tY6h++IK+YC1Ry+VQly3iHEyBj7oVIcj8BOfNh9YghmGBR93iG
-	 HA0npNiH6hS+aZsvwYuw2W9obVnKMSlfhaX7kB4E8HG2/y41qD4PUMKOg90/BNtC30
-	 D2w/qzlxcwEi3KLRV3G3wn7adzEFWgnVyzBz7qoT5wbTwvrpaFPBsUU5aZr5BrRoDT
-	 qGoKCmg4yFlxJaxIh/WBQ8KxBZSUj1sZYCthploXGKeZyjKmeEN/O/HIzd4ZZ3PK2L
-	 DUyDfQY1PhKGg==
-Date: Wed, 4 Oct 2023 19:16:01 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dmaengine: apple-sio: Add Apple SIO driver
-Message-ID: <ZR1smXBXyx7xDEmg@matsya>
-References: <20230828170013.75820-1-povik+lin@cutebit.org>
- <20230828170013.75820-3-povik+lin@cutebit.org>
- <ZR1kz7Sil8onc1uC@matsya>
- <06444557-414A-4710-88A0-620975BB258A@cutebit.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1301A13FF9
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 13:48:08 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2E98BA1;
+	Wed,  4 Oct 2023 06:48:07 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7708DDA7;
+	Wed,  4 Oct 2023 06:48:45 -0700 (PDT)
+Received: from [192.168.1.3] (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 15BB73F59C;
+	Wed,  4 Oct 2023 06:48:04 -0700 (PDT)
+Message-ID: <9b519a19-548c-dec0-ed69-52695ff12a69@arm.com>
+Date: Wed, 4 Oct 2023 14:48:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <06444557-414A-4710-88A0-620975BB258A@cutebit.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 5/7] coresight: tmc: Add support for reading tracedata
+ from previous boot
+Content-Language: en-US
+From: James Clark <james.clark@arm.com>
+To: Linu Cherian <lcherian@marvell.com>, suzuki.poulose@arm.com,
+ mike.leach@linaro.org, leo.yan@linaro.org
+Cc: linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, sgoutham@marvell.com, gcherian@marvell.com,
+ Anil Kumar Reddy <areddy3@marvell.com>, Tanmay Jagdale <tanmay@marvell.com>
+References: <20230929133754.857678-1-lcherian@marvell.com>
+ <20230929133754.857678-6-lcherian@marvell.com>
+ <acc2a406-2cff-eb3b-7661-1a93d4749bf2@arm.com>
+In-Reply-To: <acc2a406-2cff-eb3b-7661-1a93d4749bf2@arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On 04-10-23, 15:32, Martin Povišer wrote:
 
-> >> + * There are two kinds of 'transaction descriptors' in play here.
-> >> + *
-> >> + * There's the struct sio_tx, and the struct dma_async_tx_descriptor embedded
-> >> + * inside, which jointly represent a transaction to the dmaengine subsystem.
-> >> + * At this time we only support those transactions to be cyclic.
-> >> + *
-> >> + * Then there are the coprocessor descriptors, which is what the coprocessor
-> >> + * knows and understands. These don't seem to have a cyclic regime, so we can't
-> >> + * map the dmaengine transaction on an exact coprocessor counterpart. Instead
-> >> + * we continually queue up many coprocessor descriptors to implement a cyclic
-> >> + * transaction.
-> >> + *
-> >> + * The number below is the maximum of how far ahead (how many) coprocessor
-> >> + * descriptors we should be queuing up, per channel, for a cyclic transaction.
-> >> + * Basically it's a made-up number.
-> >> + */
-> >> +#define SIO_MAX_NINFLIGHT 4
-> > 
-> > you meant SIO_MAX_INFLIGHT if not what is NINFLIGHT?
+
+On 03/10/2023 17:43, James Clark wrote:
 > 
-> I mean the number is arbitrary, it doesn’t reflect any coprocessor limit since
-> I haven’t run the tests to figure one out. It's supposed to be a small reasonable
-> number.
-
-Sorry that was not my question. Should this macro be SIO_MAX_NINFLIGHT
-or SIO_MAX_INFLIGHT..?
-
-> >> +static int sio_device_config(struct dma_chan *chan,
-> >> +      struct dma_slave_config *config)
-> >> +{
-> >> + struct sio_chan *siochan = to_sio_chan(chan);
-> >> + struct sio_data *sio = siochan->host;
-> >> + bool is_tx = sio_chan_direction(siochan->no) == DMA_MEM_TO_DEV;
-> >> + struct sio_shmem_chan_config *cfg = sio->shmem;
-> >> + int ret;
-> >> +
-> >> + switch (is_tx ? config->dst_addr_width : config->src_addr_width) {
-> >> + case DMA_SLAVE_BUSWIDTH_1_BYTE:
-> >> + cfg->datashape = 0;
-> >> + break;
-> >> + case DMA_SLAVE_BUSWIDTH_2_BYTES:
-> >> + cfg->datashape = 1;
-> >> + break;
-> >> + case DMA_SLAVE_BUSWIDTH_4_BYTES:
-> >> + cfg->datashape = 2;
-> >> + break;
-> >> + default:
-> >> + return -EINVAL;
-> >> + }
-> >> +
-> >> + cfg->fifo = 0x800;
-> >> + cfg->limit = 0x800;
-> >> + cfg->threshold = 0x800;
-> >> + dma_wmb();
-> > 
-> > ??
 > 
-> Again, shared memory
+> On 29/09/2023 14:37, Linu Cherian wrote:
+>> * Introduce a new mode CS_MODE_READ_PREVBOOT for reading tracedata
+>>   captured in previous boot.
+>>
+>> * Add special handlers for preparing ETR/ETF for this special mode
+>>
+>> * User can read the trace data as below
+>>
+>>   For example, for reading trace data from tmc_etf sink
+>>
+>>   1. cd /sys/bus/coresight/devices/tmc_etfXX/
+>>
+>>   2. Change mode to READ_PREVBOOT
+>>
+>>      #echo 1 > read_prevboot
+>>
+>>   3. Dump trace buffer data to a file,
+>>
+>>      #dd if=/dev/tmc_etrXX of=~/cstrace.bin
+>>
+>>   4. Reset back to normal mode
+>>
+>>      #echo 0 > read_prevboot
+>>
+>> Signed-off-by: Anil Kumar Reddy <areddy3@marvell.com>
+>> Signed-off-by: Tanmay Jagdale <tanmay@marvell.com>
+>> Signed-off-by: Linu Cherian <lcherian@marvell.com>
+>> ---
+>>  .../coresight/coresight-etm4x-core.c          |   1 +
+>>  .../hwtracing/coresight/coresight-tmc-core.c  |  81 +++++++++-
+>>  .../hwtracing/coresight/coresight-tmc-etf.c   |  62 ++++++++
+>>  .../hwtracing/coresight/coresight-tmc-etr.c   | 145 +++++++++++++++++-
+>>  drivers/hwtracing/coresight/coresight-tmc.h   |   6 +
+>>  include/linux/coresight.h                     |  13 ++
+>>  6 files changed, 306 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c b/drivers/hwtracing/coresight/coresight-etm4x-core.c
+>> index 77b0271ce6eb..513baf681280 100644
+>> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
+>> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
+>> @@ -1010,6 +1010,7 @@ static void etm4_disable(struct coresight_device *csdev,
+>>  
+>>  	switch (mode) {
+>>  	case CS_MODE_DISABLED:
+>> +	case CS_MODE_READ_PREVBOOT:
+>>  		break;
+>>  	case CS_MODE_SYSFS:
+>>  		etm4_disable_sysfs(csdev);
+>> diff --git a/drivers/hwtracing/coresight/coresight-tmc-core.c b/drivers/hwtracing/coresight/coresight-tmc-core.c
+>> index 6658ce76777b..65c15c9f821b 100644
+>> --- a/drivers/hwtracing/coresight/coresight-tmc-core.c
+>> +++ b/drivers/hwtracing/coresight/coresight-tmc-core.c
+>> @@ -103,6 +103,45 @@ u32 tmc_get_memwidth_mask(struct tmc_drvdata *drvdata)
+>>  	return mask;
+>>  }
+>>  
+>> +int tmc_read_prepare_prevboot(struct tmc_drvdata *drvdata)
+>> +{
+>> +	int ret = 0;
+>> +	struct tmc_register_snapshot *reg_ptr;
+>> +	struct coresight_device *csdev = drvdata->csdev;
+>> +
+>> +	if (!drvdata->metadata.vaddr) {
+>> +		ret = -ENOMEM;
+>> +		goto out;
+>> +	}
+>> +
+>> +	reg_ptr = drvdata->metadata.vaddr;
+>> +	if (!reg_ptr->valid) {
+>> +		dev_err(&drvdata->csdev->dev,
+>> +			"Invalid metadata captured from previous boot\n");
+>> +		ret = -EINVAL;
+>> +		goto out;
+>> +	}
 > 
-> >> +
-> >> + ret = sio_call(sio, FIELD_PREP(SIOMSG_TYPE, MSG_CONFIGURE) |
-> >> +     FIELD_PREP(SIOMSG_EP, siochan->no));
-> > 
-> > this does not sound okay, can you explain why this call is here
+> I'm wondering if a more robust check is needed than the valid flag, like
+> a checksum or something. I didn't debug it yet but I ended up with an
+> invalid set of metadata after a panic reboot, see below. I'm not sure if
+> it's just a logic bug or something got lost during the reboot, I didn't
+> debug it yet. But I suppose unless you assume the panic didn't affect
+> writing the metadata, then it could be partially written and shouldn't
+> be trusted?
 > 
-> We are sending the configuration to the coprocessor, it will NACK
-> it if invalid, seems very fitting here.
+> [...]
+>> +
+>> +static int tmc_etr_sync_prevboot_buf(struct tmc_drvdata *drvdata)
+>> +{
+>> +	u32 status;
+>> +	u64 rrp, rwp, dba;
+>> +	struct tmc_register_snapshot *reg_ptr;
+>> +	struct etr_buf *etr_buf = drvdata->prevboot_buf;
+>> +
+>> +	reg_ptr = drvdata->metadata.vaddr;
+>> +
+>> +	rrp = reg_ptr->rrp;
+>> +	rwp = reg_ptr->rwp;
+>> +	dba = reg_ptr->dba;
+>> +	status = reg_ptr->sts;
+>> +
+>> +	etr_buf->full = !!(status & TMC_STS_FULL);
+>> +
+>> +	/* Sync the buffer pointers */
+>> +	etr_buf->offset = rrp - dba;
+>> +	if (etr_buf->full)
+>> +		etr_buf->len = etr_buf->size;
+>> +	else
+>> +		etr_buf->len = rwp - rrp;
+>> +
+>> +	/* Sanity checks for validating metadata */
+>> +	if ((etr_buf->offset > etr_buf->size) ||
+>> +	    (etr_buf->len > etr_buf->size))
+>> +		return -EINVAL;
+> 
+> The values I got here are 0x781b67182aa346f9 0x8000000 0x8000000 for
+> offset, size and len respectively. This fails the first check. It would
+> also be nice to have a dev_dbg here as well, it's basically the same as
+> the valid check above which does have one.
+> 
 
-I dont this so, purpose of the device_config() is to send peripheral
-config to driver for use on the next descriptor which is submitted. So
-sending to co-processor now (when we might even have a txn going on)
-does not seem right
+So I debugged it and the issue is that after the panic I was doing a
+cold boot rather than a warm boot and the memory was being randomised.
 
-What would be the behaviour if already a txn is progressing on the
-co-processor
+The reason that 0x8000000 seemed to be initialised is because they are
+based on the reserved region size, rather than anything from the
+metadata. When I examined the metadata it was all randomised.
 
--- 
-~Vinod
+That leads me to think that the single bit for 'valid' is insufficient.
+There is a simple hashing function in include/linux/stringhash.h that we
+could use on the whole metadata struct, but that specifically says:
+
+ * These hash functions are NOT GUARANTEED STABLE between kernel
+ * versions, architectures, or even repeated boots of the same kernel.
+ * (E.g. they may depend on boot-time hardware detection or be
+ * deliberately randomized.)
+
+Although I'm not sure how true the repeated boots of the same kernel
+part is.
+
+Maybe something in include/crypto/hash.h could be used instead, or make
+our own simple hash.
+
 
