@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-5796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D26EF7B7EAE
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 14:07:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B20F57B7EBF
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 14:08:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 5F4E3281515
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 12:07:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 6EF8728155E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 12:08:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A8D6134DF;
-	Wed,  4 Oct 2023 12:07:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBF9013ACA;
+	Wed,  4 Oct 2023 12:08:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 137C6134A2
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 12:07:09 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 856E5A1;
-	Wed,  4 Oct 2023 05:07:08 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 394C6vq6057376;
-	Wed, 4 Oct 2023 07:06:57 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDBDF134A2
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 12:08:02 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F9F0C1;
+	Wed,  4 Oct 2023 05:08:00 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 394C7onA033627;
+	Wed, 4 Oct 2023 07:07:50 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1696421217;
-	bh=EPTKeFglX7dM/p2v3QBKBbMq4tebhRuV4spzJSVfp+g=;
+	s=ti-com-17Q1; t=1696421270;
+	bh=cTaWn7aOQQcRdP4FK4kIyAVEm6ejG7Aq4t2yBjw0M6c=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=YjJEnsdkh7x6gve/XK9o3dNkUKTlJ/eiWJj8S2CCwi5i93yhrz4MBnDhyIjOP8lJC
-	 Owd4wHOCs92M871q6cgdr4Sgti9c7095ihik7pECSJfdKNgZIONygj9874Y/a2z8Ee
-	 aOPm6e5BpjaqkzMzjKddE1OLyoKpVvIY5ZKSqJLI=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 394C6vN1085320
+	b=SJjFbI9/XFAAuNHoRqqiHLiK8LyCtzbmLgmvgQw+EEX0W5WEkhj+MHi+xl5NJi+af
+	 mpN8NOoEkkXRAjmwGe4Quq/E0BWpPno3o48rYkjn4dW5cpSGt1oHfgsMG/daciaqU/
+	 hG057+ceCWCt14yN2I/qPB/oSsougrE+3xkzSzuY=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 394C7oaW022964
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 4 Oct 2023 07:06:57 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 4 Oct 2023 07:07:50 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 4
- Oct 2023 07:06:57 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2023 07:07:49 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 4 Oct 2023 07:06:57 -0500
+ Frontend Transport; Wed, 4 Oct 2023 07:07:49 -0500
 Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 394C6vFJ019726;
-	Wed, 4 Oct 2023 07:06:57 -0500
-Date: Wed, 4 Oct 2023 07:06:57 -0500
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 394C7nZF020338;
+	Wed, 4 Oct 2023 07:07:49 -0500
+Date: Wed, 4 Oct 2023 07:07:49 -0500
 From: Nishanth Menon <nm@ti.com>
 To: Roger Quadros <rogerq@ti.com>
 CC: Nitin Yadav <n-yadav@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
@@ -52,11 +52,11 @@ CC: Nitin Yadav <n-yadav@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
         <krzysztof.kozlowski+dt@linaro.org>, <catalin.marinas@arm.com>,
         <will@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] arm64: defconfig: Enable GPMC NAND support
-Message-ID: <20231004120657.hdmo5r6lzyohiodq@gauging>
+Subject: Re: [PATCH v2 1/3] arm64: dts: ti: Add GPMC support for AM62x LP SK
+Message-ID: <20231004120749.p253uqn43s47qjud@blend>
 References: <20231004111238.3968984-1-n-yadav@ti.com>
- <20231004111238.3968984-4-n-yadav@ti.com>
- <6ad28b45-815c-723a-117e-84782753a361@ti.com>
+ <20231004111238.3968984-2-n-yadav@ti.com>
+ <34845445-91d7-1cb9-3a75-bc591c6c1560@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,58 +65,91 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <6ad28b45-815c-723a-117e-84782753a361@ti.com>
+In-Reply-To: <34845445-91d7-1cb9-3a75-bc591c6c1560@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 14:26-20231004, Roger Quadros wrote:
+On 14:27-20231004, Roger Quadros wrote:
 > 
 > 
 > On 4.10.2023 14.12, Nitin Yadav wrote:
-> > Enable config required to support GPMC NAND on
-> > AM62x LP SK and AM64x SKEVM.
+> > Add gpmc0 and elm0 nodes in k3-am62-main. Add GPMC0_CFG and
+> > GPMC0_DATA entry in cbass_main node.
 > > 
 > > Signed-off-by: Nitin Yadav <n-yadav@ti.com>
 > > ---
-> >   arch/arm64/configs/defconfig | 3 +++
-> >   1 file changed, 3 insertions(+)
+> >   arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 29 ++++++++++++++++++++++++
+> >   arch/arm64/boot/dts/ti/k3-am62.dtsi      |  2 ++
+> >   2 files changed, 31 insertions(+)
 > > 
-> > diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> > index 66bfbef73324..a2758ac73f87 100644
-> > --- a/arch/arm64/configs/defconfig
-> > +++ b/arch/arm64/configs/defconfig
-> > @@ -270,6 +270,8 @@ CONFIG_MTD_DATAFLASH=y
-> >   CONFIG_MTD_SST25L=y
-> >   CONFIG_MTD_RAW_NAND=y
-> >   CONFIG_MTD_NAND_DENALI_DT=y
-> > +CONFIG_MTD_NAND_OMAP2=m
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> > index ac760d9b831d..f854369dfc27 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> > @@ -965,4 +965,33 @@ mcasp2: audio-controller@2b20000 {
+> >   		power-domains = <&k3_pds 192 TI_SCI_PD_EXCLUSIVE>;
+> >   		status = "disabled";
+> >   	};
 > 
-> If rootfs is required on NAND, it is better to be built-in.
+> Please add blank line here.
 > 
-> > +CONFIG_MTD_NAND_OMAP_BCH=y
-> >   CONFIG_MTD_NAND_MARVELL=y
-> >   CONFIG_MTD_NAND_BRCMNAND=m
-> >   CONFIG_MTD_NAND_FSL_IFC=y
-> > @@ -1357,6 +1359,7 @@ CONFIG_ARM_MEDIATEK_CCI_DEVFREQ=m
-> >   CONFIG_EXTCON_PTN5150=m
-> >   CONFIG_EXTCON_USB_GPIO=y
-> >   CONFIG_EXTCON_USBC_CROS_EC=y
-> > +CONFIG_OMAP_GPMC=m
-> 
-> This is a memory controller so better to be built-in.
-> 
-> >   CONFIG_RENESAS_RPCIF=m
-> >   CONFIG_IIO=y
-> >   CONFIG_EXYNOS_ADC=y
+> > +	gpmc0: memory-controller@3b000000 {
+> > +		compatible = "ti,am64-gpmc";
+> > +		reg = <0x00 0x03b000000 0x00 0x400>,
+> > +		      <0x00 0x050000000 0x00 0x8000000>;
+> > +		reg-names = "cfg", "data";
+> > +		interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
+> > +		clocks = <&k3_clks 80 0>;
+> > +		clock-names = "fck";
+> > +		power-domains = <&k3_pds 80 TI_SCI_PD_EXCLUSIVE>;
+> > +		gpmc,num-cs = <3>;
+> > +		gpmc,num-waitpins = <2>;
+> > +		#address-cells = <2>;
+> > +		#size-cells = <1>;
+> > +		interrupt-controller;
+> > +		#interrupt-cells = <2>;
+> > +		gpio-controller;
+> > +		#gpio-cells = <2>;
+> > +		status = "disabled";
 
-For the boards mentioned, NAND is optional and not a primary rootfs
-storage media - I'd rather leave it as "m" and not impact the size of
-generic Image file.
+Document why disabled by default.
+
+> > +	};
+> > +
+> > +	elm0: ecc@25010000 {
+> > +		compatible = "ti,am3352-elm";
+> > +		reg = <0x00 0x25010000 0x00 0x2000>;
+> > +		interrupts = <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
+> > +		clocks = <&k3_clks 54 0>;
+> > +		clock-names = "fck";
+> > +		power-domains = <&k3_pds 54 TI_SCI_PD_EXCLUSIVE>;
+> > +		status = "disabled";
+
+Document why disabled by default.
+
+> > +	};
+> >   };
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am62.dtsi b/arch/arm64/boot/dts/ti/k3-am62.dtsi
+> > index f1e15206e1ce..b9b1e522d74c 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am62.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-am62.dtsi
+> > @@ -77,6 +77,8 @@ cbass_main: bus@f0000 {
+> >   			 <0x00 0x70000000 0x00 0x70000000 0x00 0x00010000>, /* OCSRAM */
+> >   			 <0x01 0x00000000 0x01 0x00000000 0x00 0x00310000>, /* A53 PERIPHBASE */
+> >   			 <0x05 0x00000000 0x05 0x00000000 0x01 0x00000000>, /* FSS0 DAT3 */
+> > +			 <0x00 0x3b000000 0x00 0x3b000000 0x00 0x00000400>, /* GPMC0 CFG */
+> > +			 <0x00 0x50000000 0x00 0x50000000 0x00 0x08000000>, /* GPMC0 DATA */
+> >   			 /* MCU Domain Range */
+> >   			 <0x00 0x04000000 0x00 0x04000000 0x00 0x01ff1400>,
+> 
+> -- 
+> cheers,
+> -roger
 
 -- 
 Regards,
