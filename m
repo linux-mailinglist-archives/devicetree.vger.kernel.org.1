@@ -1,142 +1,115 @@
-Return-Path: <devicetree+bounces-5801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76D2E7B7EDA
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 14:15:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18E157B7F1C
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 14:30:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 28F0D280E41
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 12:15:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id 7F05F1F22442
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 12:30:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E007413AD4;
-	Wed,  4 Oct 2023 12:15:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34B723D64;
+	Wed,  4 Oct 2023 12:30:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D05261119B
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 12:15:44 +0000 (UTC)
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 062E0A1;
-	Wed,  4 Oct 2023 05:15:43 -0700 (PDT)
-Received: by mail-pg1-x530.google.com with SMTP id 41be03b00d2f7-5859b06509cso1404264a12.2;
-        Wed, 04 Oct 2023 05:15:43 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE8A013FE0
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 12:30:04 +0000 (UTC)
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6729FA9
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 05:30:02 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-692af7b641cso279772b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Oct 2023 05:30:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696421742; x=1697026542; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4giBNd39dk0FzKD/nLSuY8CIxKBu7ZMBGsAWAOjFNuQ=;
-        b=j86Zff6+FW5jSkvVhYzXSomqSIzqANHU5ShrQecPnXwiLaJOREx/RtLggwWw9knQ3u
-         OcIaiU9Nl84bDjB/Z3LQ6+vVusTJbtc1Cvv8GR2iqEZa8Nci+BqHRbLSG6W9EwMF588I
-         gd+24Q8Xdwm4MnnMCs6bfy2jy+hkv9+s1kioStKYM0vSHAK1rNF89+UEoIPLxovc83Iu
-         hMorQ9iCxasvfshSTD90ApkgyBeB9wqjryTAq/m0WId9avWumVdmESJFv3NYK7cw0y3d
-         mL4C2MvqjaifDRZo4GKfC3PRDFyrfQnIZ4bNT8TAXEdtLzsDtjSaayRRDFrk4EydXVal
-         YDCw==
+        d=gmail.com; s=20230601; t=1696422602; x=1697027402; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qqogagIVQK4Hvl5PXKLkI1QUrc0BeTTIHfTFQDllF/U=;
+        b=LQcSvqbb2RuiOxpdNWz7697c+kbvNDU3Tewym5B1LKl3rrk8JFNnSlVntu6lxKllLb
+         hbW7qNnqR2WTJVOjInuw28gYHC/LgRFLK+1Lm4OVcs74JN3UFTTSUYz5pW7L5ebs+MUP
+         9/Ne9bdLavsx5pQ9JA7bFc0UavFJINoJtj+Xy0dE7pHVTMatIY+tOtCpTyW4bhF0ovXT
+         DeoMlzSMInL5btA0nBTVAzZWUF4nBkkbL/MJip23qsdh7HNB7OFhFLBMmATzCEko5qxp
+         pnRBJ5Ec6W3sfSW7QQcW3lt84dvlTkUGqXTx4HPCvuHy+5m00spAtnXf4R9A9+r+1lHo
+         s8OQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696421742; x=1697026542;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4giBNd39dk0FzKD/nLSuY8CIxKBu7ZMBGsAWAOjFNuQ=;
-        b=J+zkHmvO0Hxpb1TO2Blazb8Qh2V7MM88WB1oBCWbaujedIr56mqWWBOW0xMzDn6aY9
-         DcvG5aZkxEnEpIKYWyS6eslfPk3CclE/YGcWj0k2IDR6CKYqPCBc411nt2pedz3WhUnA
-         DmD8HdMI/FTuqA9juxt8rBzo3IR2nKGlONCKJ1riSyq8WAM+2p2ahvXgXrb4S8ZV26ax
-         kN3N0UgSIhRDGcFYvaKZYznuprtASiDY+1Wdy53ApJG6cylkf+cWtznjjxRGnOlZ3G2A
-         QI43FbV2POVfzVUBKnSZKBi4Ss81Faq+Auy/y6OBqdhKh3N6vOVO7XwYrGOT0TMMk/ZQ
-         i6uA==
-X-Gm-Message-State: AOJu0YxMstJWRcgfTPnwUJ6nqCiwLgUky6Fa0uwlepQ5GqpG0q/30AST
-	i5TJYE0pF8a3qHN3DPZ9L2HVop6T/2ds+fYBvjaYhg3k
-X-Google-Smtp-Source: AGHT+IHpGLrw+FW27qMuwyN096JOkfzCeLmiQELADbhINgTOrUv+G+Slf5JmJK26zur239okf9jmcxlor49kJxvS8co=
-X-Received: by 2002:a17:90b:1bc7:b0:26d:4ab3:fe11 with SMTP id
- oa7-20020a17090b1bc700b0026d4ab3fe11mr1774905pjb.24.1696421742135; Wed, 04
- Oct 2023 05:15:42 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1696422602; x=1697027402;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qqogagIVQK4Hvl5PXKLkI1QUrc0BeTTIHfTFQDllF/U=;
+        b=EP5wa5PZRe8HpW9CT7lDfKsHcVl4Mz2pJlYkePwgmDSAsBgOPvh65oXLJSwIm98VFA
+         6h6WcNQVsVksQ9NWN1YLnOUU2ILJH5/JDBFNeoS/1RA+XCkLs9It0P4lO2eXTTc1zY7p
+         wovoHki5jGJ8AA+sVS+D93sYwTZGWC8PNyTGkpcAULxhHZDRDiQdiLud7n8XSvGuyIj+
+         wi68z396cz8zQ9SIjMvVHbLF3BWgvJ6QvunmpSI5JWqS163MobkBDXuY+29r8KRTzWb/
+         liHaImpA8CvR0wU2PcZA98uH1Eb6UiRCyYsoBz4xG93Dc2gTkYTPw8DcakoqqU6gIo6w
+         gpMw==
+X-Gm-Message-State: AOJu0Yz2/pgcHMei+OcjEKpExgaEeXcAr9iusjhmU8f9m+Q1mOwB7B7y
+	F0M2iEH26HRwVCLiWQmaxO8=
+X-Google-Smtp-Source: AGHT+IH3k3edhJlkn+t2g3LCoLGyPVCNhz2pyYu1LJmGzhbJOcj8x798/FUy/iByXRsWI4a+KdhHHg==
+X-Received: by 2002:a05:6a21:a588:b0:163:ab09:196d with SMTP id gd8-20020a056a21a58800b00163ab09196dmr2562313pzc.1.1696422601794;
+        Wed, 04 Oct 2023 05:30:01 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:cb87:d6f:eb43:afca])
+        by smtp.gmail.com with ESMTPSA id fm18-20020a056a002f9200b00684ca1b45b9sm3217502pfb.149.2023.10.04.05.29.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Oct 2023 05:30:01 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: broonie@kernel.org
+Cc: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shengjiu.wang@nxp.com,
+	alsa-devel@alsa-project.org,
+	devicetree@vger.kernel.org,
+	aford173@gmail.com,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] ASoC: dt-bindings: fsl,micfil: Document #sound-dai-cells
+Date: Wed,  4 Oct 2023 09:29:35 -0300
+Message-Id: <20231004122935.2250889-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230831044431.250338-1-aford173@gmail.com> <20230831044431.250338-2-aford173@gmail.com>
- <CAOMZO5DyZJuqYswLYhf1f3zP7Rc1ZhnPfq26dpyU2m5mhvRtVw@mail.gmail.com>
-In-Reply-To: <CAOMZO5DyZJuqYswLYhf1f3zP7Rc1ZhnPfq26dpyU2m5mhvRtVw@mail.gmail.com>
-From: Adam Ford <aford173@gmail.com>
-Date: Wed, 4 Oct 2023 07:15:30 -0500
-Message-ID: <CAHCN7xLxsKPp2LpeDXg8_63W17Qn28i2y72GfhScSFOLG7Re_A@mail.gmail.com>
-Subject: Re: [PATCH V3 2/3] arm64: dts: imx8mp: Add micfil node
-To: Fabio Estevam <festevam@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, marex@denx.de, 
-	aford@beaconembedded.com, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, 
-	Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Tue, Oct 3, 2023 at 8:12=E2=80=AFPM Fabio Estevam <festevam@gmail.com> w=
-rote:
->
-> Hi Adam and devicetree folks,
->
-> On Thu, Aug 31, 2023 at 1:44=E2=80=AFAM Adam Ford <aford173@gmail.com> wr=
-ote:
-> >
-> > The i.MX8MP has a micfil controller which is used for interfacing
-> > with a pulse density microphone. Add the node and mark it as
-> > disabled by default.
-> >
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > ---
-> > V3:  The AUDIOMIX_PDM_ROOT doesn't exist and the real clock is
-> >      called IMX8MP_CLK_AUDIOMIX_PDM_SEL, so swap it out.
-> >
-> > V2:  No change
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boo=
-t/dts/freescale/imx8mp.dtsi
-> > index 3167706d81e1..341fd0369ce9 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > @@ -1479,6 +1479,27 @@ easrc: easrc@30c90000 {
-> >                                         fsl,asrc-format =3D <2>;
-> >                                         status =3D "disabled";
-> >                                 };
-> > +
-> > +                               micfil: audio-controller@30ca0000 {
-> > +                                       compatible =3D "fsl,imx8mp-micf=
-il";
-> > +                                       reg =3D <0x30ca0000 0x10000>;
-> > +                                       #sound-dai-cells =3D <0>;
->
-> After this patch, the following schema warning is seen:
->
-> imx8mp-beacon-kit.dtb: audio-controller@30ca0000: '#sound-dai-cells'
-> does not match any of the regexes: 'pinctrl-[0-9]+'
-> from schema $id: http://devicetree.org/schemas/sound/fsl,micfil.yaml#
->
-> What is the correct way to solve this?
->
-> - Document #sound-dai-cells in fsl,micfil.yaml as an optional property
-> - Remove #sound-dai-cells from imx8mp.dtsi
-> - Document #sound-dai-cells in fsl,micfil.yaml as a required property
-> and pass #sound-dai-cells to imx8mm/imx8mn/imx83.dtsi?
+From: Fabio Estevam <festevam@denx.de>
 
-I am not an expert on yaml, in fact they quite confuse me, but I
-believe the proper solution is likely to document them in the yaml.
-When I built the device tree without the sound-dai-cells, it threw a
-message indicating that it needed to be there when it is configured to
-operate.  I didn't see the schema warning that you noted, but my
-schema could have been out of date.  Looking at the sai nodes and the
-yaml file, it appears that the sound-dai-cells is listed in the yaml.
+imx8mp.dtsi passes #sound-dai-cells = <0> in the micfil node.
 
-adam
+Document #sound-dai-cells to fix the following schema warning:
+
+audio-controller@30ca0000: '#sound-dai-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
+from schema $id: http://devicetree.org/schemas/sound/fsl,micfil.yaml#
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ Documentation/devicetree/bindings/sound/fsl,micfil.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/sound/fsl,micfil.yaml b/Documentation/devicetree/bindings/sound/fsl,micfil.yaml
+index 4b99a18c79a0..b7e605835639 100644
+--- a/Documentation/devicetree/bindings/sound/fsl,micfil.yaml
++++ b/Documentation/devicetree/bindings/sound/fsl,micfil.yaml
+@@ -56,6 +56,9 @@ properties:
+       - const: clkext3
+     minItems: 2
+ 
++  "#sound-dai-cells":
++    const: 0
++
+ required:
+   - compatible
+   - reg
+-- 
+2.34.1
+
 
