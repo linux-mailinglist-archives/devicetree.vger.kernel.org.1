@@ -1,151 +1,155 @@
-Return-Path: <devicetree+bounces-5924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C08F17B87C8
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 20:09:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AED677B8804
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 20:12:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id A91BA1C20506
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 18:09:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 68F9928162F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 18:12:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3647B1D559;
-	Wed,  4 Oct 2023 18:09:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CA131D68D;
+	Wed,  4 Oct 2023 18:12:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 964961D555
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 18:09:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=google.com
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1F51E8
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 11:09:05 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9b27bc8b65eso22738566b.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Oct 2023 11:09:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1696442944; x=1697047744; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=w5W+DRsl6OjglAC7XyeJBSxFDq32iO4B/LzeqS+l/1s=;
-        b=aa9wCVS2i5XUdXgaQDFA6kDjW/L00W/8n1tNM9VBP4BHS/p7IuhrwERB/HLZ75Babt
-         emhPvL0eFVI+XaPfT8gR7VHkOOUO6Bv157gumpDmFngXYzHanZrFVUUG0pJhwwGM31H4
-         fsNOmLS/9YfuyWR99zt5bNwvuW1MNEm4SMrHE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696442944; x=1697047744;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=w5W+DRsl6OjglAC7XyeJBSxFDq32iO4B/LzeqS+l/1s=;
-        b=fp1m79o4ADSgW4HTXXZBZ5rAGjNAb2Fvhpn12wikydAqNg0tWMHXQqenR0lws/pZF/
-         fbDt62+xUTYQuy/F4REAPchtiC2wUIVn2z6Z/VBK6WNuI2myt6zVJC8hnLWCJoe7aL4N
-         YEmmqdK0rtOfwnvINiMgpnYqWr3Z+Ql8gs6zNkKZ/w8kQnkzSyg3Ox/NYo0feI+REjhU
-         yW1fVwwxARN79u2mnc03SXz9gj8pVoMI8j/s0L10Hl5ZYRdLTDZIS7sGxfqyeowm2aIV
-         V7arUQ+Qx87wkOcq6yADEUWZnzOJRwY4/d/WxbCBf7/VCvbNh01pVLhrO0AaYQwZXQB4
-         c7GA==
-X-Gm-Message-State: AOJu0Yx7M66VM1HI0AyJN6g0vFfZr7Ratg/QS2SMFnH8V8wYwM8E1UKG
-	LDDtuZJjCV36mrip1fmS8R3cpQp7SlN7T7wKdD6NTA==
-X-Google-Smtp-Source: AGHT+IHJlWNCUprSTsy/mi7E27yDL7LOdfmyTuqtZ+hKQqyfalMc4s2i7/u3zX2OuEnZBbKnARbShh/CVYkbdMcM8rE=
-X-Received: by 2002:a17:907:7f26:b0:99d:ddae:f5d4 with SMTP id
- qf38-20020a1709077f2600b0099dddaef5d4mr3289336ejc.44.1696442943851; Wed, 04
- Oct 2023 11:09:03 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64C3C1D555
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 18:12:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09782106;
+	Wed,  4 Oct 2023 11:12:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1696443121; x=1727979121;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Q5SYOhqLdxaR92zgm6FSzeZ8MvQQ9xSbq8CZ1FP69ks=;
+  b=lykKlD9KH4/8f17bZOP9IqILs5OCGkbqg+u9ysjhZT5hV2EsZNJYNUER
+   p3SU9JPmuM3LuioV7QHIvK3hoaWWSQCTRO/qVHq8uylXgGIPT7rm0USph
+   AcSeyKstIor09aJ/GgDeA3DMZ77vAjov2nuea/5uuvOlfFTx/kiqatAKg
+   SNTJrOwl8sd4qAF9IKBhIPATQQZNkdF+wuy6/0ao7uXKt+/wCLfg2kpS2
+   PEas38GI+qmqkiRCvQfUP5rtfOo5daSyMrGnWqV466V9UjQdVQa/LQ2Xh
+   err6SgGHdxk5XSIXp57L1jXAB/B/AgdcW8EZoG9B34KqDNCPuQYMmbZop
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="383162317"
+X-IronPort-AV: E=Sophos;i="6.03,201,1694761200"; 
+   d="scan'208";a="383162317"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Oct 2023 11:11:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="895085119"
+X-IronPort-AV: E=Sophos;i="6.03,201,1694761200"; 
+   d="scan'208";a="895085119"
+Received: from lkp-server02.sh.intel.com (HELO c3b01524d57c) ([10.239.97.151])
+  by fmsmga001.fm.intel.com with ESMTP; 04 Oct 2023 11:10:29 -0700
+Received: from kbuild by c3b01524d57c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qo6Li-000KU9-0E;
+	Wed, 04 Oct 2023 18:11:54 +0000
+Date: Thu, 5 Oct 2023 02:11:49 +0800
+From: kernel test robot <lkp@intel.com>
+To: werneazc@gmail.com, jic23@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	lars@metafoo.de
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Andre Werner <andre.werner@systec-electronic.com>
+Subject: Re: [PATCH 2/2] iio: adc: ads7038: Add driver support for 12bit ADC
+Message-ID: <202310050120.yV1We3RG-lkp@intel.com>
+References: <20231004102330.3713-2-andre.werner@systec-electronic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231004093620.2b1d6917@xps-13> <20231004113458.531124-1-mwalle@kernel.org>
- <CAPnjgZ2hWE6Sc=rg55W=-r-TnoWP7Y5gSpn41kwoyja-AMVw+w@mail.gmail.com> <9e588e3ec8c0c321a2861723d0d42b9a@kernel.org>
-In-Reply-To: <9e588e3ec8c0c321a2861723d0d42b9a@kernel.org>
-From: Simon Glass <sjg@chromium.org>
-Date: Wed, 4 Oct 2023 12:08:52 -0600
-Message-ID: <CAPnjgZ20ezipPWAj6bUM9_oCTcX1XzuLqQ7b7-nKjXf1t4p9-Q@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: mtd: fixed-partitions: Add binman compatible
-To: Michael Walle <mwalle@kernel.org>
-Cc: miquel.raynal@bootlin.com, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org, 
-	linux-mtd@lists.infradead.org, ptyadav@amazon.de, rafal@milecki.pl, 
-	richard@nod.at, robh+dt@kernel.org, robh@kernel.org, trini@konsulko.com, 
-	u-boot@lists.denx.de, vigneshr@ti.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_IN_DEF_SPF_WL autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231004102330.3713-2-andre.werner@systec-electronic.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Michael,
+Hi,
 
-On Wed, 4 Oct 2023 at 11:17, Michael Walle <mwalle@kernel.org> wrote:
->
-> Hi,
->
-> >> >> Add a compatible string for binman, so we can extend fixed-partitions
-> >> >> in various ways.
-> >> >
-> >> > I've been thinking at the proper way to describe the binman partitions.
-> >> > I am wondering if we should really extend the fixed-partitions
-> >> > schema. This description is really basic and kind of supposed to remain
-> >> > like that. Instead, I wonder if we should not just keep the binman
-> >> > compatible alone, like many others already. This way it would be very clear
-> >> > what is expected and allowed in both cases. I am thinking about
-> >> > something like that:
-> >> >
-> >> >       Documentation/devicetree/bindings/mtd/partitions/brcm,bcm4908-partitions.yaml
-> >> >
-> >> > this file is also referenced there (but this patch does the same, which
-> >> > is what I'd expect):
-> >> >
-> >> >       Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
-> >> >
-> >> > I'll let the binding maintainers judge whether they think it's
-> >> > relevant, it's not a strong opposition.
-> >>
-> >> What is the overall goal here? To replace the current binman node
-> >> which is
-> >> usually contained in the -u-boot.dtsi files? If one is using binman to
-> >> create an image, is it expected that one needs to adapt the DT in
-> >> linux?
-> >> Or will it still be a seperate -u-boot.dtsi? > Because in the latter
-> >> case
-> >> I see that there will be conflicts because you have to overwrite the
-> >> flash node. Or will it be a seperate node with all the information
-> >> duplicated?
-> >
-> > The goal is simply to have a full binding for firmware layout, such
-> > that firmware images can be created, examined and updated. The
-> > -u-boot.dtsi files are a stopgap while we sort out a real binding.
-> > They should eventually go away.
->
-> You haven't answered whether this node should be a seperate binman
-> node - or if you'll reuse the existing flash (partitions) node(s) and
-> add any missing property there. If it's the latter, I don't think
-> compatible = "binman", "fixed-partitions"; is correct.
+kernel test robot noticed the following build warnings:
 
-My intent is to make it compatible, so wouldn't it make sense to have
-binman as the first compatible, then falling back to fixed-partitions
-as the second?
+[auto build test WARNING on jic23-iio/togreg]
+[also build test WARNING on robh/for-next linus/master v6.6-rc4 next-20231004]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
->
-> >> Maybe (a more complete) example would be helpful.
-> >
-> > Can you please be a bit more specific? What is missing from the
-> > example?
->
-> Like a complete (stripped) DTS. Right now I just see how the individual
-> node looks like. But with a complete example DTS, my question from above
-> would have been answered.
->
-> What if a board uses eMMC to store the firmware binaries? Will that then
-> be a subnode to the eMMC device?
+url:    https://github.com/intel-lab-lkp/linux/commits/werneazc-gmail-com/iio-adc-ads7038-Add-driver-support-for-12bit-ADC/20231004-182531
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20231004102330.3713-2-andre.werner%40systec-electronic.com
+patch subject: [PATCH 2/2] iio: adc: ads7038: Add driver support for 12bit ADC
+config: csky-allmodconfig (https://download.01.org/0day-ci/archive/20231005/202310050120.yV1We3RG-lkp@intel.com/config)
+compiler: csky-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231005/202310050120.yV1We3RG-lkp@intel.com/reproduce)
 
-I thought there was a way to link the partition nodes and the device
-using a property, without having the partition info as a subnode of
-the device. But I may have imagined it as I cannot find it now. So
-yes, it will be a subnode of the eMMC device.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202310050120.yV1We3RG-lkp@intel.com/
 
-Regards,
-Simon
+All warnings (new ones prefixed by >>):
+
+>> drivers/iio/adc/ti-ads7038-core.c:46:5: warning: no previous prototype for 'ads7038_read_raw' [-Wmissing-prototypes]
+      46 | int ads7038_read_raw(struct iio_dev *indio_dev,
+         |     ^~~~~~~~~~~~~~~~
+
+
+vim +/ads7038_read_raw +46 drivers/iio/adc/ti-ads7038-core.c
+
+    45	
+  > 46	int ads7038_read_raw(struct iio_dev *indio_dev,
+    47			     struct iio_chan_spec const *chan,
+    48			     int *val, int *val2,
+    49			     long mask)
+    50	{
+    51		unsigned int ret;
+    52		struct ads7038_ch_meas_result tmp_val;
+    53		struct ads7038_data *const data = (struct ads7038_data *)iio_priv(indio_dev);
+    54		struct ads7038_info *const info = (struct ads7038_info *)data->info;
+    55	
+    56		ret = info->read_channel(indio_dev, chan->channel, &tmp_val);
+    57	
+    58		if (ret < 0) {
+    59			dev_err(&indio_dev->dev, "Read channel returned with error %d", ret);
+    60			return ret;
+    61		}
+    62	
+    63		switch (mask) {
+    64		case IIO_CHAN_INFO_RAW:
+    65			*val = tmp_val.raw;
+    66	
+    67			ret = IIO_VAL_INT;
+    68			break;
+    69		case IIO_CHAN_INFO_SCALE:
+    70			ret = regulator_get_voltage(data->reg);
+    71			if (ret < 0)
+    72				break;
+    73	
+    74			*val = ret / 1000;	/* uV -> mV */
+    75			*val2 = (1 << chan->scan_type.realbits) - 1;
+    76	
+    77			ret = IIO_VAL_FRACTIONAL;
+    78			break;
+    79		default:
+    80			ret = -EINVAL;
+    81			break;
+    82		}
+    83	
+    84		return ret;
+    85	}
+    86	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
