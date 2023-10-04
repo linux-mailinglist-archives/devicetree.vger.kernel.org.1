@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-5731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F404B7B7A8C
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 10:47:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 301DE7B7AA4
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 10:50:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 7CFD228145C
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 08:47:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id B7EDB1F21EEA
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 08:50:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29B7C10791;
-	Wed,  4 Oct 2023 08:47:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6037F10797;
+	Wed,  4 Oct 2023 08:50:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE848101E2
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 08:47:28 +0000 (UTC)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6F9198;
-	Wed,  4 Oct 2023 01:47:27 -0700 (PDT)
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-d865db5b4c7so1925318276.1;
-        Wed, 04 Oct 2023 01:47:27 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8785E101E2
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 08:50:35 +0000 (UTC)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D41098;
+	Wed,  4 Oct 2023 01:50:33 -0700 (PDT)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-59f1dff5298so22558247b3.3;
+        Wed, 04 Oct 2023 01:50:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696409246; x=1697014046;
+        d=1e100.net; s=20230601; t=1696409432; x=1697014232;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YooWuKVd1rh+nYG5HBqqiBiWwSOKPBjK/oiwvdElrQQ=;
-        b=ErxKcxvT1rQIBgUnzFdDWtrJ0f4WJgZjA0dcmbYf6AZBIKUuAINlxFLJl7RBt8F6yO
-         tyGZc1c8pKZ+6CMFjm/zZ9Wmwv/HTwmHL5ALnyUtdfaS1c43mc9fEwsC4x1tqgryz7W+
-         CPJ/xFD4h3f/mD7UfKj4sohpQHiiZbItG2T8oTB76QjMtVOAFogCtnpCFxziBWBPMbsS
-         uGDoEDyntjqicoe64n3kCgI8JWTKaXo7j3Ki+1MZIsRChjLuxGC0m2YqaNQcfLv9Tbtv
-         YBpABIHJtGk53lY9PwjmxScoHmtCbHNezG2egxzAVvFYCvMfi+tkkg5ui1tIO26jUFuG
-         AVpA==
-X-Gm-Message-State: AOJu0YzdpL8SrayoLIe8T0CTpRFR3ctqINSqZQ9BXZR2eEQdvHdms+Dr
-	Fyaq1dtce++5Zo1arZ61U6w3HzYexMgRvw==
-X-Google-Smtp-Source: AGHT+IFaUl9sjwH3kv88nWiZ3YM2n1Kmqz42U1G1ewwhPQXsH4sFtojPrh8nbMnQm6AL10k4ddF4BQ==
-X-Received: by 2002:a25:b34d:0:b0:d7e:b88b:1de8 with SMTP id k13-20020a25b34d000000b00d7eb88b1de8mr1327228ybg.9.1696409246709;
-        Wed, 04 Oct 2023 01:47:26 -0700 (PDT)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id w7-20020a05690202c700b00d7ba4c5e31fsm906073ybh.39.2023.10.04.01.47.26
+        bh=PFuSqJ9+W4ZgbXfB+tqrUVzIf0qDtWz3bUcjRAbmN+0=;
+        b=qehOtHxS5w04ZJhzQooxV3EFHeTuycIWCQAiiA3WEuNpNWj+ty8l2m1Vv0o2UxaC4Y
+         wx0amcBISS30OzHdQLbl3A2TkxoDwrzfRYwhX/624ns261U8kpel0d29z0WbaO+aL4DM
+         Q1+Z98EtA8VA+20DPSqVV+w9wjqMSVEnWvObUc+M5pho0z8VNQvor+Uvn1mRlcdm+6V4
+         SHqGZTHTJlciFiDpY3IxTUWqgmNS2i+zwJZNJI2zy+1zY2p5XihyXK3TjZ3r4eAy8aWF
+         hg2GPATE0+ZSMxBp2ajb8RKYdOagQfyZuxOX3PYOzM8qwi+oJ5iq2iObpltuRMknpRMQ
+         ojzg==
+X-Gm-Message-State: AOJu0YzF8p1kOUCHN83GETWyKew6RcPdAofTe00CPmKPQi3dkxUniW4Q
+	dfzq1l9RCz0g9dsFDpJkaIdH9rPBEEMQ3g==
+X-Google-Smtp-Source: AGHT+IH09ObB6fueO6GOHufTRFzHS7YLBPYlXCOcao4kkF11gPWDm7KFBadpF+cOqmnlDmWV3G9sZA==
+X-Received: by 2002:a81:6289:0:b0:59b:eb8:c38a with SMTP id w131-20020a816289000000b0059b0eb8c38amr2006607ywb.30.1696409432367;
+        Wed, 04 Oct 2023 01:50:32 -0700 (PDT)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
+        by smtp.gmail.com with ESMTPSA id m12-20020a819e0c000000b0058c4e33b2d6sm991571ywj.90.2023.10.04.01.50.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Oct 2023 01:47:26 -0700 (PDT)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-5a2536adaf3so22614267b3.2;
-        Wed, 04 Oct 2023 01:47:26 -0700 (PDT)
-X-Received: by 2002:a81:4ec9:0:b0:59f:7110:936a with SMTP id
- c192-20020a814ec9000000b0059f7110936amr1849241ywb.1.1696409246245; Wed, 04
- Oct 2023 01:47:26 -0700 (PDT)
+        Wed, 04 Oct 2023 01:50:31 -0700 (PDT)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-5a2536adaf3so22645547b3.2;
+        Wed, 04 Oct 2023 01:50:31 -0700 (PDT)
+X-Received: by 2002:a81:5c86:0:b0:59f:4f56:59bc with SMTP id
+ q128-20020a815c86000000b0059f4f5659bcmr1915893ywb.42.1696409431412; Wed, 04
+ Oct 2023 01:50:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230929053915.1530607-1-claudiu.beznea@bp.renesas.com> <20230929053915.1530607-9-claudiu.beznea@bp.renesas.com>
-In-Reply-To: <20230929053915.1530607-9-claudiu.beznea@bp.renesas.com>
+References: <20230929053915.1530607-1-claudiu.beznea@bp.renesas.com> <20230929053915.1530607-10-claudiu.beznea@bp.renesas.com>
+In-Reply-To: <20230929053915.1530607-10-claudiu.beznea@bp.renesas.com>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 4 Oct 2023 10:47:14 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWY_28uT39XhgwPtm=dKmxAmohRPjUGD1r_ZP3ev8c_pw@mail.gmail.com>
-Message-ID: <CAMuHMdWY_28uT39XhgwPtm=dKmxAmohRPjUGD1r_ZP3ev8c_pw@mail.gmail.com>
-Subject: Re: [PATCH v2 08/28] clk: renesas: rzg2l: add struct clk_hw_data
+Date: Wed, 4 Oct 2023 10:50:19 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVJw8t9QyhFaE38cfP=joLjkQn=jRqYWw-98i9VhCWpdQ@mail.gmail.com>
+Message-ID: <CAMuHMdVJw8t9QyhFaE38cfP=joLjkQn=jRqYWw-98i9VhCWpdQ@mail.gmail.com>
+Subject: Re: [PATCH v2 09/28] clk: renesas: rzg2l: remove CPG_SDHI_DSEL from
+ generic header
 To: Claudiu <claudiu.beznea@tuxon.dev>
 Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
 	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
@@ -84,16 +85,16 @@ On Fri, Sep 29, 2023 at 7:39=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
 wrote:
 > From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >
-> Add clk_hw_data struct that keeps the core part of a clock data. The
-> sd_hw_data embeds a member of type struct clk_hw_data along with other
-> members (in the next commits). This commit prepares the field for
-> refactoring the SD MUX clock driver.
+> Remove CPG_SDHI_DSEL and its bits from generic header as RZ/G3S has
+> different offset register and bits for this, thus avoid mixing them.
 >
 > Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
 >
 > Changes in v2:
+> - s/form/from in commit description
+> - removed "G2UL_" prefix from macros' names
 > - collected tags
 
 Thanks, will queue in renesas-clk-for-v6.7.
