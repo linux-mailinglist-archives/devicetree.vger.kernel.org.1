@@ -1,355 +1,224 @@
-Return-Path: <devicetree+bounces-5671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DFA17B7704
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 06:11:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A383D7B7754
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 07:04:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 0883E1C20311
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 04:11:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id 1E8281F21C9C
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 05:04:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23BA7110E;
-	Wed,  4 Oct 2023 04:11:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34EB41856;
+	Wed,  4 Oct 2023 05:04:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7A4FECD
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 04:11:06 +0000 (UTC)
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2068.outbound.protection.outlook.com [40.107.20.68])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 631F7AC;
-	Tue,  3 Oct 2023 21:11:04 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mOA1iML0k4sDRFNlgBC7KR8OZ+KxtgoLt2PHc5+Vean4o/lFpMJOn4HbxHYTXJ/Di7uBR92Lj+grTUMMC7CsAMbwLd2RHKRc7tw3K4dJnkOMMkhJLoMIwB7/L7FmHx2gsbOkazreAyf2c1bSJB+FriqUkbNlAWiC6d0dsnIRLrHWr6bO4KxsFzc5rBLRYNe7SfEfyD/u6ibomH7Kz6phAfh4YmqhZ6SrgbQektjHpF1Tvr4/OBWZ5A1lUNAHqJuRSU578zHoeGbhvIAPv5YHeR4gFI/6ZYteuxF0RfR6xxOLBxf48zlLF6EWQ4BDBO3mVV1hRGk8zEz3uk+MSCivpw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WS6qMWBAXWqEXvvCOWzZS0T8G87xOX2Gmz1Hj0QfUx4=;
- b=NNpl12rTOkRuR6htGPGcCK2JBtrm+LE6JnwB5xgmLRYxEN7l0KWhXnAGYtBv6fGgagI9kLq/nNp8EHA65dWyDCj7vk76JPWa8PPD1IKa77XZ/yYSKWJ1TJzAW0YxkHAsrwJRG1FBAvPjj1/iBvbBZ+hkMdS5nW70cLJtLpqqY37d4ITNELnek0+tvaIW/rSwqCqSpxotzmYNtnD9w8F03MNyfj37pra01W9ZXSfA79KT/LNhlCYH/9+jFsX4G4NImWILpydnAvA8xXd/NIyGzCAl4E257XFaAErVgnyI0ENgXE2RrAuabHLMv/68ssoryGjueImoOUUh+Ad9o0eIBA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WS6qMWBAXWqEXvvCOWzZS0T8G87xOX2Gmz1Hj0QfUx4=;
- b=A9G6QyRNfTJfeYPFuDnm9XxVfrlM4TiaRvRTJMhx1PwddQE2Me+TxRPq8AElievOiLGhatysNckAE6e6U51wQRx1g9uX0z9zGZEfB2pL0Qgx1198KgkKtWZS1o9uxvZL7iPAX2S8TGExQQuThMnx2aooKHo2VGZ86VUQ9THWaT4=
-Received: from DU2PR04MB8630.eurprd04.prod.outlook.com (2603:10a6:10:2dd::15)
- by VI1PR04MB7024.eurprd04.prod.outlook.com (2603:10a6:800:124::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Wed, 4 Oct
- 2023 04:10:57 +0000
-Received: from DU2PR04MB8630.eurprd04.prod.outlook.com
- ([fe80::dbc:99b7:7808:f82e]) by DU2PR04MB8630.eurprd04.prod.outlook.com
- ([fe80::dbc:99b7:7808:f82e%7]) with mapi id 15.20.6838.033; Wed, 4 Oct 2023
- 04:10:56 +0000
-From: Pankaj Gupta <pankaj.gupta@nxp.com>
-To: Rob Herring <robh@kernel.org>
-CC: "shawnguo@kernel.org" <shawnguo@kernel.org>, "s.hauer@pengutronix.de"
-	<s.hauer@pengutronix.de>, "kernel@pengutronix.de" <kernel@pengutronix.de>,
-	"clin@suse.com" <clin@suse.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"pierre.gondois@arm.com" <pierre.gondois@arm.com>, "festevam@gmail.com"
-	<festevam@gmail.com>, dl-linux-imx <linux-imx@nxp.com>, "davem@davemloft.net"
-	<davem@davemloft.net>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, Gaurav Jain <gaurav.jain@nxp.com>,
-	"alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>, Varun
- Sethi <V.Sethi@nxp.com>
-Subject: RE: [EXT] Re: [PATCH v6 02/11] dt-bindings: arm: fsl: add imx-se-fw
- binding doc
-Thread-Topic: [EXT] Re: [PATCH v6 02/11] dt-bindings: arm: fsl: add imx-se-fw
- binding doc
-Thread-Index: AQHZ8T3cp/FWHmHt10GsVHBXrCASpLAwlzyAgAdf5cA=
-Date: Wed, 4 Oct 2023 04:10:55 +0000
-Message-ID:
- <DU2PR04MB8630FF5994D65A5404E8B9B095CBA@DU2PR04MB8630.eurprd04.prod.outlook.com>
-References: <20230927175401.1962733-1-pankaj.gupta@nxp.com>
- <20230927175401.1962733-3-pankaj.gupta@nxp.com>
- <20230928185159.GA1035361-robh@kernel.org>
-In-Reply-To: <20230928185159.GA1035361-robh@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU2PR04MB8630:EE_|VI1PR04MB7024:EE_
-x-ms-office365-filtering-correlation-id: 91506adb-95ec-4eb5-2c5c-08dbc48fe86d
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- oCaoS7KUJWmxlbCDqxYhmblNlg6FQ7VqeXVPUR4E7mCOmqDXjLRgEMTtE1DdqWApKwdixSF5FxHfhH1RqNm5OC4ukgIFtbxOsm/C8kRNY0Wh4KsRbWjIpiTHp7SxOSh1yTPlLWELF6qOA6x4CcAnm6txGAtyRnZSsz4t0pzv5/MgvGTq3etWFcFQseRpfDiBOVK6J1CS3OZWk20YO8NcZU47S1cGP+8Yj0VGYq4A93lDxavC3jIxt8SGlpTJ4EAMYStj3hxO2XZYqleMN7hd5upilyMZZzKaXeqFKjZhhbvC2EvU0EpjRuNMCrvbXIJhNJdFc2ZKA/860didO6xvb6gLs2836nayZAqNq/RS7n6hZD6GlX+R1ZVU7d1LufWFWyVPAclFnmrjXtuqgd37LNYG/NVvKyBZCkCOqBIivdyTLAeEZ2q/DX14wZ8Fw1OW260huPNsqVvHEPNMrBEzRg6ugobTdUvHe7+BF1fck+/XpqgNOqcxfuB6C587NFzqjtZlZwjwYe4j/0HyOiDK0sShHBb0SAP+RyUM8hkz5EONBYCa1UeeAkdtypdYVbMJwW88K3n2d7z7JydKvLrcmF5z0Z6UGEiu8YCDicK9q2Ixhc6CGtrZx2Qavv7vMeBL
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8630.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(366004)(39860400002)(136003)(396003)(376002)(230922051799003)(64100799003)(451199024)(1800799009)(186009)(33656002)(86362001)(55016003)(54906003)(7696005)(66556008)(71200400001)(52536014)(45080400002)(64756008)(66446008)(4326008)(53546011)(44832011)(66946007)(6506007)(76116006)(9686003)(66476007)(55236004)(8676002)(41300700001)(316002)(6916009)(8936002)(26005)(5660300002)(2906002)(7416002)(478600001)(38100700002)(83380400001)(122000001)(38070700005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?8OA7kaSLDivzDyNmUjOFlLkZTGYMElIMrafUxW1RldIi3Z7gYC6MkUrXqPJb?=
- =?us-ascii?Q?pt5uLespZYeliTOWjKs+hBVkNUOj/yc6EXbEG7UNj92Jir2hsrQERhyg2Gl4?=
- =?us-ascii?Q?ol//F/TxQY73//3UZthpZ7/AMprj6u1ol9B079cxi2Z/u/zITexUaxs/Oii5?=
- =?us-ascii?Q?FZT18vWv2Iqu/Iwsz7KdjE703Wj9dYAzD/xpcgwQmYAA7tRvtZvVbusc8Mg9?=
- =?us-ascii?Q?oIlgtXCEvsqo9WJB2/dU/xQuhgqKPhiMKkTsjpm4Qwb9VkO+ujS9O/RRpeeG?=
- =?us-ascii?Q?aoLklJkAOpeeo9HSPVzN0N2nLJbgwDbqC+3oOrChfAimVgS7O/Ix0K/H5d6I?=
- =?us-ascii?Q?LEFCVF5EjSBql9NBa9ra1iOpFI0PaYIm5GC6HDErCrZnwdViCTARIWHJ8I0j?=
- =?us-ascii?Q?pe91kmcv2xPIPUJOfmMgr9yd7/EBpsKbI+Ixj0A1/izBpaNGWIFtF5POw2wb?=
- =?us-ascii?Q?ZiCFX2VzNLznun6ovS1QBsc3e/EY4yctgeuFL5sWechlMRYbGT7JRFiG/keh?=
- =?us-ascii?Q?iAednByFobEQykLBZvaGt1JF7JUyhHm+uOqcR6cOeQcJ5/gfofyZFeinx7IK?=
- =?us-ascii?Q?sNLW04o2BX54LiBViSTQxF+XoPcOWYFFTOECeCEHHwI8GBh0JajtlYTFB9aR?=
- =?us-ascii?Q?/xVJlfcRekoFIjqpwcH2KLoWU0SU+//7JLO4Z1ubf9sjzyrAs1uuTysBTvuR?=
- =?us-ascii?Q?4Cs0eQpMUteGsxCMDdB9Nuv9XUAa2pgiJQ3ykkS2if8AhbmOhQ5TzGEx80sx?=
- =?us-ascii?Q?VxS2gnJs8vkCS7jmzr1I4RgLyvUduUt2PB/7PJ1wcWMN7j36MBiZjXDvjgvV?=
- =?us-ascii?Q?uNp50waEzD2DiecRkme3n5BD1IMqd3pjGoCKK2XO3af7oWHmmT5RnH8bh2Sb?=
- =?us-ascii?Q?EkpmLuGydPesC4KJXuTUfQ0Hie8Fx7BCFriyXy+lOGE5qmi5cl/sBW594fsG?=
- =?us-ascii?Q?6T5UNJB61yzRSckBt0g8+Xezg9z9mB1bBeJx25GGSVu6Lvw9JdBGrmv0bI2d?=
- =?us-ascii?Q?lA4CFYRPwvppmwkxEl+vNYorPKi0MAcppF2IF6IOjgW8fqHwuBV/1ICpp1T0?=
- =?us-ascii?Q?6KalEJhrkBwCgMMjkZBxU6cG1au6FHuLb+h6SfHndRa4rte5p4+AVa1XfSFe?=
- =?us-ascii?Q?zrqAZEFzBXtAWrU8DKIpaR/GPQFWyWPWKfOA9Dpp4mXkrmDeUJF3MsjK7Iiy?=
- =?us-ascii?Q?YDp0Xfy/ahiDPVW6k0mdHCephcKL5jOzgbW3g4fsz+5c5LiYvGhpQYRMDdaU?=
- =?us-ascii?Q?YEJQ02qILMgQGeU3kf0qD3VBZ2T+UwY2E5rwOA73YEM1BW5E/prbGjtwUP8Q?=
- =?us-ascii?Q?A5wEmYtHb/rEZzKq2kN1fk6eacDy7DADGzDM0yVhF1S9TRXH05UEY8/0KSH8?=
- =?us-ascii?Q?dS2M6rIGbMpd1zMMqZdrFNQT2fcMNIdyes1GaFlhoMoBH6sHjUVtbhy8oa/T?=
- =?us-ascii?Q?JKJYOAyW+EOR6UsIYujN9wmJ4kdn0AcvR3Gh2Vljm7qvaVuj7V20UAhOWaHt?=
- =?us-ascii?Q?OTJhS33+pIINe4pMiHh5QdUdmi8Z5MPjqqWWIpr4XRy9EVPRV0ERKRLWeVgF?=
- =?us-ascii?Q?hzj7NlLL/NlTSBCp2swM8mdsEjbYVK2XLJTDl93i?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B13AF17F8
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 05:04:48 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AD32BB
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 22:04:46 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1qnu3i-0002VK-99; Wed, 04 Oct 2023 07:04:30 +0200
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1qnu3g-00Ax5H-J1; Wed, 04 Oct 2023 07:04:28 +0200
+Received: from mfe by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1qnu3g-00ChlX-Fh; Wed, 04 Oct 2023 07:04:28 +0200
+Date: Wed, 4 Oct 2023 07:04:28 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Peng Fan <peng.fan@nxp.com>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
+	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Stefan Agner <stefan@agner.ch>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	dl-linux-imx <linux-imx@nxp.com>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v5 4/7] gpio: vf610: add i.MX8ULP of_device_id entry
+Message-ID: <20231004050428.o7l2e23xjcjkzzck@pengutronix.de>
+References: <20231001-vf610-gpio-v5-0-8d873a8f224a@nxp.com>
+ <20231001-vf610-gpio-v5-4-8d873a8f224a@nxp.com>
+ <CAMRc=MdXkFBWMuyr8sbetyP2sJX2QG6Ce=Tsb7RVMguvGdC3TA@mail.gmail.com>
+ <DU0PR04MB9417594B2DFDA6056AEC4CB988C5A@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8630.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 91506adb-95ec-4eb5-2c5c-08dbc48fe86d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Oct 2023 04:10:56.1633
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: owIKo2/5y9PLOwZSct81Mo6i5vBZKlOHjS5lTcQXpLtdTq0yWF0mqF1mcfEM/vKI/8+3sica60FP8X+h4Vr10g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7024
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <DU0PR04MB9417594B2DFDA6056AEC4CB988C5A@DU0PR04MB9417.eurprd04.prod.outlook.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hi Peng,
 
+On 23-10-02, Peng Fan wrote:
+> > Subject: Re: [PATCH v5 4/7] gpio: vf610: add i.MX8ULP of_device_id entry
+> > 
+> > On Sun, Oct 1, 2023 at 10:23 AM Peng Fan (OSS) <peng.fan@oss.nxp.com>
+> > wrote:
+> > >
+> > > From: Peng Fan <peng.fan@nxp.com>
+> > >
+> > > i.MX8ULP/93 GPIO supports similar feature as i.MX7ULP GPIO, but
+> > > i.MX8ULP is actually not hardware compatible with i.MX7ULP. i.MX8ULP
+> > > only has one register base, not two bases. i.MX8ULP and i.MX93
+> > > actually has two interrupts for each gpio controller, one for
+> > > Trustzone non-secure world, one for secure world.
+> > >
+> > > Although the Linux Kernel driver gpio-vf610.c could work with
+> > > fsl,imx7ulp-gpio compatible, it is based on some tricks did in device
+> > > tree with some offset added to base address.
+> > >
+> > > Add a new of_device_id entry for i.MX8ULP. But to make the driver
+> > > could also support old bindings, check the compatible string first,
+> > > before check the device data.
+> > >
+> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > ---
+> > >  drivers/gpio/gpio-vf610.c | 47
+> > > ++++++++++++++++++++++++++++++++++++++++-------
+> > >  1 file changed, 40 insertions(+), 7 deletions(-)
+> > >
+> > > diff --git a/drivers/gpio/gpio-vf610.c b/drivers/gpio/gpio-vf610.c
+> > > index dbc7ba0ee72c..8e12706c0b22 100644
+> > > --- a/drivers/gpio/gpio-vf610.c
+> > > +++ b/drivers/gpio/gpio-vf610.c
+> > > @@ -25,6 +25,7 @@
+> > >  struct fsl_gpio_soc_data {
+> > >         /* SoCs has a Port Data Direction Register (PDDR) */
+> > >         bool have_paddr;
+> > > +       bool have_dual_base;
+> > >  };
+> > >
+> > >  struct vf610_gpio_port {
+> > > @@ -60,13 +61,26 @@ struct vf610_gpio_port {
+> > >  #define PORT_INT_EITHER_EDGE   0xb
+> > >  #define PORT_INT_LOGIC_ONE     0xc
+> > >
+> > > +#define IMX8ULP_GPIO_BASE_OFF  0x40
+> > > +#define IMX8ULP_BASE_OFF       0x80
+> > > +
+> > > +static const struct fsl_gpio_soc_data vf610_data = {
+> > > +       .have_dual_base = true,
+> > > +};
+> > > +
+> > >  static const struct fsl_gpio_soc_data imx_data = {
+> > >         .have_paddr = true,
+> > > +       .have_dual_base = true,
+> > > +};
+> > > +
+> > > +static const struct fsl_gpio_soc_data imx8ulp_data = {
+> > > +       .have_paddr = true,
+> > >  };
+> > >
+> > >  static const struct of_device_id vf610_gpio_dt_ids[] = {
+> > > -       { .compatible = "fsl,vf610-gpio",       .data = NULL, },
+> > > +       { .compatible = "fsl,vf610-gpio",       .data = &vf610_data },
+> > >         { .compatible = "fsl,imx7ulp-gpio",     .data = &imx_data, },
+> > > +       { .compatible = "fsl,imx8ulp-gpio",     .data = &imx8ulp_data, },
+> > >         { /* sentinel */ }
+> > >  };
+> > >
+> > > @@ -263,19 +277,38 @@ static int vf610_gpio_probe(struct
+> > platform_device *pdev)
+> > >         struct gpio_irq_chip *girq;
+> > >         int i;
+> > >         int ret;
+> > > +       bool dual_base;
+> > >
+> > >         port = devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
+> > >         if (!port)
+> > >                 return -ENOMEM;
+> > >
+> > >         port->sdata = of_device_get_match_data(dev);
+> > > -       port->base = devm_platform_ioremap_resource(pdev, 0);
+> > > -       if (IS_ERR(port->base))
+> > > -               return PTR_ERR(port->base);
+> > >
+> > > -       port->gpio_base = devm_platform_ioremap_resource(pdev, 1);
+> > > -       if (IS_ERR(port->gpio_base))
+> > > -               return PTR_ERR(port->gpio_base);
+> > > +       dual_base = port->sdata->have_dual_base;
+> > > +
+> > > +       /* support old compatible strings */
+> > > +       if (device_is_compatible(dev, "fsl,imx7ulp-gpio") &&
+> > > +           (device_is_compatible(dev, "fsl,imx93-gpio") ||
+> > 
+> > Why not just add this compatible to vf610_gpio_dt_ids?
+> 
+> "fsl,imx93-gpio", "fsl,imx7ulp-gpio" is not a correct entry
+> combination. This is to support legacy old compatible
+> strings.
 
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: Friday, September 29, 2023 12:22 AM
-> To: Pankaj Gupta <pankaj.gupta@nxp.com>
-> Cc: shawnguo@kernel.org; s.hauer@pengutronix.de;
-> kernel@pengutronix.de; clin@suse.com; conor+dt@kernel.org;
-> pierre.gondois@arm.com; festevam@gmail.com; dl-linux-imx <linux-
-> imx@nxp.com>; davem@davemloft.net; krzysztof.kozlowski+dt@linaro.org;
-> linux-arm-kernel@lists.infradead.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; Gaurav Jain <gaurav.jain@nxp.com>;
-> alexander.stein@ew.tq-group.com; Varun Sethi <V.Sethi@nxp.com>
-> Subject: [EXT] Re: [PATCH v6 02/11] dt-bindings: arm: fsl: add imx-se-fw
-> binding doc
->=20
-> Caution: This is an external email. Please take care when clicking links =
-or
-> opening attachments. When in doubt, report the message using the 'Report
-> this email' button
->=20
->=20
-> On Wed, Sep 27, 2023 at 11:23:52PM +0530, Pankaj Gupta wrote:
-> > The NXP's i.MX EdgeLock Enclave, a HW IP creating an embedded secure
-> > enclave within the SoC boundary to enable features like
-> > - HSM
-> > - SHE
-> > - V2X
-> >
-> > Communicates via message unit with linux kernel. This driver is
-> > enables communication ensuring well defined message sequence protocol
-> > between Application Core and enclave's firmware.
-> >
-> > Driver configures multiple misc-device on the MU, for multiple
-> > user-space applications can communicate on single MU.
-> >
-> > It exists on some i.MX processors. e.g. i.MX8ULP, i.MX93 etc.
-> >
-> > Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
-> > ---
-> >  .../bindings/firmware/fsl,imx-se-fw.yaml      | 73 +++++++++++++++++++
-> >  1 file changed, 73 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/firmware/fsl,imx-se-fw.yaml
-> >
-> > diff --git
-> > a/Documentation/devicetree/bindings/firmware/fsl,imx-se-fw.yaml
-> > b/Documentation/devicetree/bindings/firmware/fsl,imx-se-fw.yaml
-> > new file mode 100644
-> > index 000000000000..d250794432b3
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/firmware/fsl,imx-se-fw.yaml
-> > @@ -0,0 +1,73 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
-> > +---
-> > +$id:
-> >
-> +https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdevi
-> > +cetree.org%2Fschemas%2Ffirmware%2Ffsl%2Cimx-se-
-> fw.yaml%23&data=3D05%7C0
-> >
-> +1%7Cpankaj.gupta%40nxp.com%7C5ec9b97100834814d30608dbc054010a%7
-> C686ea
-> >
-> +1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C638315239256248220%7CUnk
-> nown%7C
-> >
-> +TWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwi
-> LCJXV
-> >
-> +CI6Mn0%3D%7C3000%7C%7C%7C&sdata=3D5%2BuUxUzFCRHsi17vX83tGcJijp
-> HsNAxd5Fu
-> > +Ws4qT9Lw%3D&reserved=3D0
-> > +$schema:
-> >
-> +https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdevi
-> > +cetree.org%2Fmeta-
-> schemas%2Fcore.yaml%23&data=3D05%7C01%7Cpankaj.gupta%
-> >
-> +40nxp.com%7C5ec9b97100834814d30608dbc054010a%7C686ea1d3bc2b4c6f
-> a92cd9
-> >
-> +9c5c301635%7C0%7C0%7C638315239256248220%7CUnknown%7CTWFpbGZ
-> sb3d8eyJWI
-> >
-> +joiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7
-> C3000%
-> >
-> +7C%7C%7C&sdata=3Do1LjAT7gJVTb66L21HyhfY9dGh8uKIFNHWKg%2FLNBMO
-> 8%3D&reser
-> > +ved=3D0
-> > +
-> > +title: NXP i.MX EdgeLock Enclave Firmware (ELEFW)
-> > +
-> > +maintainers:
-> > +  - Pankaj Gupta <pankaj.gupta@nxp.com>
-> > +
-> > +description:
->=20
-> Need '|' to preserve formatting.
+The "/* support old compatible strings */" may a bit misleading here?
+Should we be a bit more verbose for the reader of the code, e.g.:
 
-Accepted.
->=20
-> > +  The NXP's i.MX EdgeLock Enclave, a HW IP creating an embedded
-> > + secure enclave within the SoC boundary to enable features like
-> > +  - HSM
-> > +  - SHE
-> > +  - V2X
-> > +
-> > +  It uses message unit to communicate and coordinate to pass messages
-> > + (e.g., data,  status and control) through its interfaces.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - fsl,imx8ulp-se-fw
-> > +      - fsl,imx93-se-fw
->=20
-> The firmware is not compatible across chips?
-=09
-The secure-enclave hardware varies from one SoC to another.
-Hence, FW varies too, from one SoC, to other.
+		/*
+		 * Handle legacy compatible combinations which used two
+		 * reg values for the i.MX8ULP and i.MX93.
+		 */
 
->=20
-> > +
-> > +  mboxes:
-> > +    description:
-> > +      All MU channels must be within the same MU instance. Cross insta=
-nces
-> are
-> > +      not allowed. Users need to ensure that used MU instance does not
-> conflict
-> > +      with other execution environments.
-> > +    items:
-> > +      - description: TX0 MU channel
-> > +      - description: RX0 MU channel
-> > +
-> > +  mbox-names:
-> > +    items:
-> > +      - const: tx
-> > +      - const: rx
-> > +
-> > +  fsl,mu-id:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      Identifier to the message-unit among the multiple message-unit t=
-hat
-> exists on SoC.
-> > +      Per message-unit, multiple misc-devices are created, that are
-> > + used by userspace
->=20
-> Extra space in there.
+Regards,
+  Marco
 
-Accepted.
->=20
-> Wrap lines at 80 unless there's a benefit to going to 100.
->=20
-Accepted.
-
-> > +      application as logical-waiter and logical-receiver.
-> > +
-> > +  memory-region:
-> > +    items:
-> > +      - description: Reserved memory region that can be accessed by
-> firmware. Used for
-> > +          exchanging the buffers between driver and firmware.
-> > +
-> > +  fsl,sram:
->=20
-> Just the common 'sram' property.
-Ok
-
->=20
-> > +    description: Phandle to the device SRAM
->=20
-> Used for what?
-Accepted and will add the details on the usage.
-
->=20
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +
-> > +required:
-> > +  - compatible
-> > +  - mboxes
-> > +  - mbox-names
-> > +  - fsl,mu-id
->=20
-> How is memory-region optional?
-Depending on the type of enclave IP and the FW, memory-region is configured=
- optionally.
-For i.MX8ULP and i.MX93, it is required. For i.MX8DXL, it is not required.
->=20
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    ele_fw: se-fw {
->=20
-> Drop unused labels.
-I am sorry, if I am not able to understand your point here.
-But, all the below labels are getting used.
-I can remove the fsl,mu-id. Will do it in V7.
-
->=20
-> > +      compatible =3D "fsl,imx8ulp-se-fw";
-> > +      mbox-names =3D "tx", "rx";
-> > +      mboxes =3D <&s4muap 0 0>, <&s4muap 1 0>;
-> > +      fsl,mu-id =3D <2>;
-> > +    };
-> > --
-> > 2.34.1
-> >
+> 
+> Thanks,
+> Peng.
+> > 
+> > Bart
+> > 
+> > > +           (device_is_compatible(dev, "fsl,imx8ulp-gpio"))))
+> > > +               dual_base = true;
+> > > +
+> > > +       if (dual_base) {
+> > > +               port->base = devm_platform_ioremap_resource(pdev, 0);
+> > > +               if (IS_ERR(port->base))
+> > > +                       return PTR_ERR(port->base);
+> > > +
+> > > +               port->gpio_base = devm_platform_ioremap_resource(pdev, 1);
+> > > +               if (IS_ERR(port->gpio_base))
+> > > +                       return PTR_ERR(port->gpio_base);
+> > > +       } else {
+> > > +               port->base = devm_platform_ioremap_resource(pdev, 0);
+> > > +               if (IS_ERR(port->base))
+> > > +                       return PTR_ERR(port->base);
+> > > +
+> > > +               port->gpio_base = port->base + IMX8ULP_GPIO_BASE_OFF;
+> > > +               port->base = port->base + IMX8ULP_BASE_OFF;
+> > > +       }
+> > >
+> > >         port->irq = platform_get_irq(pdev, 0);
+> > >         if (port->irq < 0)
+> > >
+> > > --
+> > > 2.37.1
+> > >
 
