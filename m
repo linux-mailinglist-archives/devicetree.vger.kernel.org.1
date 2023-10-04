@@ -1,122 +1,243 @@
-Return-Path: <devicetree+bounces-5812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A97507B8008
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 14:59:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 570497B8021
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 15:03:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 5A15C281417
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 12:59:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 0C8D1B207C9
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 13:03:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B823B13FF9;
-	Wed,  4 Oct 2023 12:59:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27D5114006;
+	Wed,  4 Oct 2023 13:03:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E0E513FE3
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 12:59:14 +0000 (UTC)
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 514A9A6;
-	Wed,  4 Oct 2023 05:59:13 -0700 (PDT)
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-d89491dab33so2182655276.0;
-        Wed, 04 Oct 2023 05:59:13 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E20C10966
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 13:03:05 +0000 (UTC)
+Received: from mail-vk1-xa2f.google.com (mail-vk1-xa2f.google.com [IPv6:2607:f8b0:4864:20::a2f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD11198;
+	Wed,  4 Oct 2023 06:03:03 -0700 (PDT)
+Received: by mail-vk1-xa2f.google.com with SMTP id 71dfb90a1353d-49d39f07066so892997e0c.0;
+        Wed, 04 Oct 2023 06:03:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696424583; x=1697029383; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bSv0fnQiWGKznN7qc7Hk8Fhlm64nM7lW3Q5OIBrznfA=;
+        b=H+igHGaN5bbNzPtAgI1fO6uV+0NUl5Z54c6IulgddYTl0afPLchRIeyOERrrHfEuBh
+         1JqKbFMx6BbXp5EMKgvhfRAtmZx4TLRMbQa6G4xSba895Y0l8ssAKCerOf+OA7lpuE1K
+         bZqli2vsG4kyuOKiuswsOKc3Lt6FhI74SZU6zmzikS7oJcwtZF2CxCpRJkQBjA2aWb8M
+         sOjaa95qvjtBbjh/grWdq4go09ALZez3gaw6RvGHqqvR8YByjf5S4FFJqtvvtwTyv1WG
+         HJ+KEFzEwIC0o5rMkzOAhX+PqJGpVX+IImsNwWvbVXV/ex3Mt+KhOYknAJmyxUooEN2I
+         wVAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696424352; x=1697029152;
+        d=1e100.net; s=20230601; t=1696424583; x=1697029383;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NbgEznJD4TxRTKE9Bc/b9u/1IzvkC4JvJP2YJ9vkopw=;
-        b=lfQDhnsxLgTrB6jRezT4dlsiS8wJcq7AoYIJYW3laTnz/YpghgpVJ03noGdXDdvzrb
-         uu0af5RaEqQxiei0bS55IcGuJi7i/bOA0HPYDyB8witJlU5M/okkbtiRn0A5+zXzePO4
-         OCxf+fkmTYSCXW+Vfq0tbyKVUcIdHngBaBIzvG1rZHNNdCpaMzA3i0Mu4i3jsm9ADp5F
-         bKonSOOkXdaJXpqP0KHGeJ7Ft0vKHWC+CQdNLKN2IvPwIxEtxtMqzNWd8w3H2dO+fkQj
-         KJRu6j2dX9se1fLB2G8AOxdCyS4sBLko4aPqJJZ+G7AiFI9hjE1vH29tL+Thd7xBWpZ8
-         b64Q==
-X-Gm-Message-State: AOJu0YynTpl8aYZzbK1iymrf2tDZODRF7gs83eHUahDA4KmDF1LhM0EJ
-	3vibofHfTKOjQ/4JIFtqeHUwlDsYBacsmg==
-X-Google-Smtp-Source: AGHT+IGsis2eiRNkfZaBiG2hxgU5EHbRXHs/4ge/BaczYf4peAUMgu7vCUyhU9CY1OPC5qOqHo2WOg==
-X-Received: by 2002:a25:d8cb:0:b0:d85:aa2f:5718 with SMTP id p194-20020a25d8cb000000b00d85aa2f5718mr1954416ybg.51.1696424351950;
-        Wed, 04 Oct 2023 05:59:11 -0700 (PDT)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
-        by smtp.gmail.com with ESMTPSA id x7-20020a5b0287000000b00d7b9fab78bfsm1011959ybl.7.2023.10.04.05.59.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Oct 2023 05:59:11 -0700 (PDT)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-59f6041395dso25233857b3.1;
-        Wed, 04 Oct 2023 05:59:11 -0700 (PDT)
-X-Received: by 2002:a81:c24d:0:b0:58f:bda3:8dd with SMTP id
- t13-20020a81c24d000000b0058fbda308ddmr2392331ywg.32.1696424351066; Wed, 04
- Oct 2023 05:59:11 -0700 (PDT)
+        bh=bSv0fnQiWGKznN7qc7Hk8Fhlm64nM7lW3Q5OIBrznfA=;
+        b=U4kb1gd4d2avqPxOrSSAsok7nXO53nN6V/YbhI0sKzfL0dSjScVpO+bGa49h10IrpK
+         6yPRFEnVGGsdBiu2a7DdhZgOPtuaQqzoxDnLXc55HIaF0aYOk4LqtMb4mZmJ6w28wxZk
+         Ox8t2hQM+fwyPiLNJj6mMABqekTcuAD9uzDo1Vo9OX1KIlPgESyEi44zSY41rKrYFPUx
+         5QopXE95fZ5TSyO7yKI7uJVeGudlYuW9cfWfY9uCwtox3yiHXmSZoXtJbPl0XEBVQiPY
+         vKacCpWw3LXcB0kasTl15BVocIkMNA6BRKnVzKhUdnjWW72F0Xx5V8MFTi9bWVnH9me8
+         MjrA==
+X-Gm-Message-State: AOJu0Yx8cJPzPrXz3n1ER9UxYUXFrkio8N+SXtypaio5Nebgxaw9bvPb
+	8wUmk5fG1OeqV4ik6jYRl8NtEeGpsDcZbJu9GkI=
+X-Google-Smtp-Source: AGHT+IEmmj5kDwjfmLxuhp+KqCie3sEBZRH8qhFF3JL8qvtcD8WJmGUdKav7/FUfeLhBloT9LJ8hb0kuH7HP2pQD718=
+X-Received: by 2002:a1f:4bc4:0:b0:47e:8a9:478c with SMTP id
+ y187-20020a1f4bc4000000b0047e08a9478cmr1789874vka.16.1696424582835; Wed, 04
+ Oct 2023 06:03:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230929053915.1530607-1-claudiu.beznea@bp.renesas.com> <20230929053915.1530607-17-claudiu.beznea@bp.renesas.com>
-In-Reply-To: <20230929053915.1530607-17-claudiu.beznea@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 4 Oct 2023 14:58:58 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXv6-u6zktHe_cUOKpWnzyLRRowdjQRWv42GMnx1pkKjQ@mail.gmail.com>
-Message-ID: <CAMuHMdXv6-u6zktHe_cUOKpWnzyLRRowdjQRWv42GMnx1pkKjQ@mail.gmail.com>
-Subject: Re: [PATCH v2 16/28] pinctrl: renesas: rzg2l: adapt function number
- for RZ/G3S
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linus.walleij@linaro.org, gregkh@linuxfoundation.org, jirislaby@kernel.org, 
-	magnus.damm@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
-	quic_bjorande@quicinc.com, konrad.dybcio@linaro.org, arnd@arndb.de, 
-	neil.armstrong@linaro.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	biju.das.jz@bp.renesas.com, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230921-th1520-mmc-v1-0-49f76c274fb3@baylibre.com>
+ <CAOCHtYhnx1EpBM+o3xhdsicx5uqLidojK3f0HQ+VfyVv1ZXnVQ@mail.gmail.com>
+ <CAOCHtYi5Ab5ppCmaQV3QuKQcpmJX+sHdAmtuEXhfq8xf5fFCYQ@mail.gmail.com>
+ <ZRuamJuShOnvP1pr@x1> <ZR1M3FcdXrDmIGu2@xhacker>
+In-Reply-To: <ZR1M3FcdXrDmIGu2@xhacker>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Wed, 4 Oct 2023 14:02:36 +0100
+Message-ID: <CA+V-a8ugwqkQxnX-wwWCHVtBBtG=aVv=MZTc53LbpxtFA=N1_A@mail.gmail.com>
+Subject: Re: [PATCH 0/6] RISC-V: Add eMMC support for TH1520 boards
+To: Jisheng Zhang <jszhang@kernel.org>
+Cc: Drew Fustini <dfustini@baylibre.com>, Christoph Hellwig <hch@lst.de>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Robert Nelson <robertcnelson@gmail.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Adrian Hunter <adrian.hunter@intel.com>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, 
+	Jason Kridner <jkridner@beagleboard.org>, Xi Ruoyao <xry111@xry111.site>, 
+	Han Gao <gaohan@iscas.ac.cn>, Icenowy Zheng <uwu@icenowy.me>, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>, 
+	Alexandre Ghiti <alexghiti@rivosinc.com>, Linux-MM <linux-mm@kvack.org>, 
+	Robin Murphy <robin.murphy@arm.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Fri, Sep 29, 2023 at 7:39=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
++ CC linux-mm and Robin Murphy
+
+On Wed, Oct 4, 2023 at 12:42=E2=80=AFPM Jisheng Zhang <jszhang@kernel.org> =
 wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >
-> On RZ/G3S PFC register allow setting 8 functions for individual ports
-> (function1 to function8). For function1 register need to be configured
-> with 0, for function8 register need to be configured with 7.
-> We cannot use zero based addressing when requesting functions from
-> different code places as documentation (RZG3S_pinfunction_List_r1.0.xlsx)
-> states explicitly that function0 is GPIO.
->
-> For this add a new member to struct rzg2l_hwcfg that will keep the
-> offset that need to be substracted before applying a value to PFC registe=
-r.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->
-> Changes in v2:
-> - in commit description mentioned that function0 is GPIO
-> - collected tags
-
-Thanks, will queue in renesas-pinctrl-for-v6.7.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
+> On Mon, Oct 02, 2023 at 09:37:44PM -0700, Drew Fustini wrote:
+> > On Fri, Sep 22, 2023 at 05:48:21PM -0500, Robert Nelson wrote:
+> > > On Fri, Sep 22, 2023 at 2:08=E2=80=AFPM Robert Nelson <robertcnelson@=
+gmail.com> wrote:
+> > > >
+> > > > On Thu, Sep 21, 2023 at 8:51=E2=80=AFPM Drew Fustini <dfustini@bayl=
+ibre.com> wrote:
+> > > > >
+> > > > > This series adds support for the eMMC on the BeagleV Ahead and th=
+e
+> > > > > Sipeed LicheePi 4A. This allows the kernel to boot with the rootf=
+s on
+> > > > > eMMC.
+> > > > >
+> > > > > I tested on top of v6.6-rc2 with this config [1]. I was able to b=
+oot
+> > > > > both the Ahead [2] and LPi4a [3] from eMMC. The following prerequ=
+isites
+> > > > > are required:
+> > > > >
+> > > > >   [PATCH v2] riscv: dts: thead: set dma-noncoherent to soc bus [4=
+]
+> > > > >
+> > > > > I pushed a branch [5] with this patch series and the above patch =
+for
+> > > > > those that find a git branch easier to test.
+> > > > >
+> > > > > Please note that only the MMC controller connected to the eMMC de=
+vice
+> > > > > is enabled in the device trees for these two boards. I did not ye=
 t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> > > > > attempt to configure and use the microSD card slot. My preference=
+ is to
+> > > > > address that in a future patch series.
+> > > > >
+> > > > > References:
+> > > > > [1] https://gist.github.com/pdp7/5fbdcf2a65eb1abdd3a29d519c19cdd2
+> > > > > [2] https://gist.github.com/pdp7/91a801a5f8d1070c53509eda9800ad78
+> > > > > [3] https://gist.github.com/pdp7/1445c3c991e88fd69c60165cef65726a
+> > > > > [4] https://lore.kernel.org/linux-riscv/20230912072232.2455-1-jsz=
+hang@kernel.org/
+> > > > > [5] https://github.com/pdp7/linux/tree/b4/th1520-mmc
+> > > >
+> > > > This patchset came out very nice!
+> > > >
+> > > > v6.6-rc2 with Last RFC v2:
+> > > >
+> > > > [    4.066630] mmc0: SDHCI controller on ffe7080000.mmc
+> > > > [ffe7080000.mmc] using PIO
+> > > >
+> > > > debian@BeagleV:~$ sudo hdparm -tT /dev/mmcblk0
+> > > >
+> > > > /dev/mmcblk0:
+> > > >  Timing cached reads:   1516 MB in  2.00 seconds =3D 758.09 MB/sec
+> > > >  Timing buffered disk reads:  84 MB in  3.01 seconds =3D  27.94 MB/=
+sec
+> > > >
+> > > > vs v6.6-rc2 with this patchset:
+> > > >
+> > > >  [    4.096837] mmc0: SDHCI controller on ffe7080000.mmc
+> > > > [ffe7080000.mmc] using DMA
+> > > >
+> > > > debian@BeagleV:~$ sudo hdparm -tT /dev/mmcblk0
+> > > >
+> > > > /dev/mmcblk0:
+> > > >  Timing cached reads:   1580 MB in  2.00 seconds =3D 790.97 MB/sec
+> > > >  Timing buffered disk reads: 418 MB in  3.00 seconds =3D 139.11 MB/=
+sec
+> > >
+> > > Drew pointed out on Slack, this was not quite right.. After more
+> > > digging by Drew, CONFIG_DMA_GLOBAL_POOL is causing a DMA limitation
+> > > with the multiplatform defconfig. so with,
+> > >
+> > > ./scripts/config --disable CONFIG_ARCH_R9A07G043
+> > >
+> > > (to remove CONFIG_DMA_GLOBAL_POOL)... another 2x in buffered reads..
+> > >
+> > > [    4.059242] mmc0: SDHCI controller on ffe7080000.mmc
+> > > [ffe7080000.mmc] using ADMA 64-bit
+> > >
+> > > debian@BeagleV:~$ sudo hdparm -tT /dev/mmcblk0
+> > >
+> > > /dev/mmcblk0:
+> > >  Timing cached reads:   1600 MB in  2.00 seconds =3D 800.93 MB/sec
+> > >  Timing buffered disk reads: 892 MB in  3.00 seconds =3D 297.06 MB/se=
+c
+> >
+> > It seems CONFIG_DMA_GLOBAL_POOL=3Dy causes ADMA buffer alloc to fail [1=
+]:
+> >
+> >   mmc0: Unable to allocate ADMA buffers - falling back to standard DMA
+> >
+> > Prabhakar's AX45MP non-coherent DMA support [2] series introduced the
+> > selection of DMA_GLOBAL_POOL for ARCH_R9A07G043 and the riscv defconfig
+> > selects ARCH_R9A07G043.
+> >
+> > Patch 5 in the series [3] states that:
+> >
+> >   With DMA_GLOBAL_POOL enabled all DMA allocations happen from this
+> >   region and synchronization callbacks are implemented to synchronize
+> >   when doing DMA transactions.
+> >
+> > This example of a "shared-dma-pool" node was given:
+> >
+> >         pma_resv0@58000000 {
+> >             compatible =3D "shared-dma-pool";
+> >             reg =3D <0x0 0x58000000 0x0 0x08000000>;
+> >             no-map;
+> >             linux,dma-default;
+> >         };
+> >
+> > I've copied that to th1520-beaglev-ahead.dts. The address of 0x58000000
+> > has no significance on th1520, but the existence of shared-dma-pool
+> > seems to fix the problem. ADMA mode [4] is now working even though
+> > CONFIG_DMA_GLOBAL_POOL=3Dy.
+>
+> + Christoph, Lad
+>
+> IMHO, this is not TH1520 specific but a generic issue.
+>
+> I believe commit 484861e09f3e ("soc: renesas: Kconfig: Select the
+> required configs for RZ/Five SoC") can cause regression on all
+> non-dma-coherent riscv platforms with generic defconfig. This is
+> a common issue. The logic here is: generic riscv defconfig selects
+> ARCH_R9A07G043 which selects DMA_GLOBAL_POOL, which assumes all
+> non-dma-coherent riscv platforms have a dma global pool, this assumption
+> seems not correct. And I believe DMA_GLOBAL_POOL should not be
+> selected by ARCH_SOCFAMILIY, instead, only ARCH under some specific
+> conditions can select it globaly, for example NOMMU ARM and so on.
+>
+> Since this is a regression, what's proper fix? any suggestion is
+> appreciated.
+>
+> Thanks
+>
+> >
+> > Thanks,
+> > Drew
+> >
+> > [1] https://gist.github.com/pdp7/73041ed808bbc7dd445836fb90574979
+> > [2] https://lore.kernel.org/linux-riscv/20230818135723.80612-1-prabhaka=
+r.mahadev-lad.rj@bp.renesas.com/
+> > [3] https://lore.kernel.org/linux-riscv/20230818135723.80612-6-prabhaka=
+r.mahadev-lad.rj@bp.renesas.com/
+> > [4] https://gist.github.com/pdp7/91e72a663d3bb73eb28182337ad8bbcb
 
