@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-5678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 947567B77F2
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 08:37:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F7717B77F7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 08:37:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id B67341C20865
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 06:37:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 54B6BB209A3
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 06:37:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53CC569C;
-	Wed,  4 Oct 2023 06:37:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB94B5695;
+	Wed,  4 Oct 2023 06:37:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BD645698
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 06:37:40 +0000 (UTC)
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10D1DB0
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 23:37:37 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-9ae75ece209so315331766b.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Oct 2023 23:37:36 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F07805698
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 06:37:42 +0000 (UTC)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7724FB8
+	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 23:37:39 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9a58dbd5daeso310501466b.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Oct 2023 23:37:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pqrs.dk; s=google; t=1696401455; x=1697006255; darn=vger.kernel.org;
+        d=pqrs.dk; s=google; t=1696401458; x=1697006258; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=p7tjP/kNvFdirVdEdO+zKKMbLGQyGDvV/p73al1OJ6o=;
-        b=J1h+REUPf/DWpLP0Tx+f7HWOn5cab89djUvdMpb94WvRETFjFD5/BHGVWaKX0+viTe
-         jkpU9CHvkUpkwxYJUAiGiz2ORgpMhCkSvY5+bAtcSspZ0MniNP8HBwuWEre9TmKc9lVz
-         rT+86CZugEyKl3KiLXlv+5Tlzwnglrf2PNu1O4M5iRsWgyQkLOFMBnps+3ix8XfsTN3W
-         xDL14VmvYo1CbZEpgAwNNKKvOiHEoXix4njYSrBvUhwM0cnnKAZNw7I/W4Hq36OwMCD3
-         wRvMKnlt5SdzeZOPPSM4ZWjwRYWT/MaEr9OkiZ2KOCAZVhZWY6U2c8HBfXNGQrgU30BE
-         EcBA==
+        bh=+QGSDNn6mvgk3D6FylGr3G9S7gB7eM4JL0YqBrEuXRo=;
+        b=cgmX09quanarZet8h2P8+bVl4u5yT293Uyg+CS01qEtYIdB5Ll1Uoylfwku5GapOAF
+         iSvfccmHbYCWkAxZPpbNsqdK1CWQO9Wa+FNGWRamNFwLI+9W3uY/ErB93u4MhKZWV9MT
+         NxxVZH0pHIoajQZrrcC/kGxr0lhUB6JhzrAD1iqfjWXh9RV6WK06rRDBHYkGxzJuB5t/
+         Yb2ZkODMkoX6RlXdhRTaiN4XNDtQ4f9V0RMPnS2X/qqlET8ZFSSvf8RzBD8PdShRBwFZ
+         pX0beRB3nQIJd0Mx4FzrU9NBNGlAoLqsglGCwY7ljeZnUDKXOXQPN6qbUWMl6X1H7ybf
+         ojYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696401455; x=1697006255;
+        d=1e100.net; s=20230601; t=1696401458; x=1697006258;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=p7tjP/kNvFdirVdEdO+zKKMbLGQyGDvV/p73al1OJ6o=;
-        b=G07MBrZA4V2jX2v7cLuZ+xdDlqtshSe6Qjd0ugI0v1yHWyI5L4ins6DwM+NZQ9pamA
-         Djz9tC5TcUTPjTrcXnsgVWHCIAxnuAQecFuQEs0ZQfB9Ch4PVIpQbq/2yeCKZbQtlzHQ
-         W2s9EDAiJna0xzmAJpoRHgWNN6CvwnJKnrSEQHz7Tx2pa3qSzBPPgrA6Dr2Usm0QFLBV
-         5rdJxA33masLi0LbNzvD+1Crcc1EUIvg8qazFIP6HPyZ5MQrBazosGWZkVvL08WQ/cta
-         BlZ+EfzJZaYB8lprCl1itmlV8jAGMjTG6CXk6GPY7a3GPMorUnyUQywzlGUEgZko7VyC
-         iHhA==
-X-Gm-Message-State: AOJu0Yw2amBic31zsoxdLZrteIoYp8rBhte5G/a6QfYDBnB50rl0qwFS
-	FHrebMj8ZvywVRoVrc0xK85eY7FaZjNOmBe+/OtIRA==
-X-Google-Smtp-Source: AGHT+IGLapIb4nj4ZcigiKiclJwBDD7Fs6WqXJRbY2zCs9wk0EgcSlXwJuT4bHJBOsXGkpLAkKWNew==
-X-Received: by 2002:a17:907:d047:b0:9ae:6744:4591 with SMTP id vb7-20020a170907d04700b009ae67444591mr1105255ejc.43.1696401455571;
-        Tue, 03 Oct 2023 23:37:35 -0700 (PDT)
+        bh=+QGSDNn6mvgk3D6FylGr3G9S7gB7eM4JL0YqBrEuXRo=;
+        b=Gbr1Da8ojF0tc2B0uEvEZ/IVocgpkElEiUWdPil+c8RzOwHkPKJlTmFUrPK4c0D6JC
+         VHtpDTivKoBjAbt66IyaJAqycWvJVgoaaQz8HBr7yzFzK+4ryq1UHEvHvpe+0BC6Za+8
+         n/vObY0eu6fo+RCock4xLLeQSQ3oSuXi3qtyqfMXvdp1RDbNViOaAigtMKEdJvaoLjnb
+         tMhwW8fT+LD7D3UxyM03RKSpSoD+lDc0EDfHY8LU43zYDF6aGkO/xoS1hnAaKtPLgpuI
+         ngoLt5moaQwIPD5qevutP8l6BZgREr8znqmJk3nFnaw5VeqfMDBC9RWOID2KiOJdj/Ky
+         sCHQ==
+X-Gm-Message-State: AOJu0YxqmTpWSHsVjZIHQ4Hsa89Sqq90cjzGpqK7j956GywSYbVDrOn7
+	Fver97Pw1mu6jg6Cniia+drTeg==
+X-Google-Smtp-Source: AGHT+IFndInI3ROJr7Xma3uL1HuF3MxWN7W2vtrRlnwhIYSMbBbuFCG3VE4WjMo60/MNXEXTe2yByQ==
+X-Received: by 2002:a17:906:7492:b0:9b2:d018:20b2 with SMTP id e18-20020a170906749200b009b2d01820b2mr1372868ejl.39.1696401458083;
+        Tue, 03 Oct 2023 23:37:38 -0700 (PDT)
 Received: from capella.localdomain ([193.89.194.60])
-        by smtp.gmail.com with ESMTPSA id jx14-20020a170906ca4e00b009ade1a4f795sm2193507ejb.168.2023.10.03.23.37.34
+        by smtp.gmail.com with ESMTPSA id jx14-20020a170906ca4e00b009ade1a4f795sm2193507ejb.168.2023.10.03.23.37.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Oct 2023 23:37:35 -0700 (PDT)
+        Tue, 03 Oct 2023 23:37:37 -0700 (PDT)
 From: =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alvin@pqrs.dk>
 To: Michael Turquette <mturquette@baylibre.com>,
 	Stephen Boyd <sboyd@kernel.org>,
@@ -64,14 +64,16 @@ To: Michael Turquette <mturquette@baylibre.com>,
 	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
 	Gregory Clement <gregory.clement@bootlin.com>,
 	=?UTF-8?q?=A0ipraga?= <alsi@bang-olufsen.dk>
-Cc: Rob Herring <robh@kernel.org>,
+Cc: Rabeeh Khoury <rabeeh@solid-run.com>,
+	Jacob Siverskog <jacob@teenage.engineering>,
+	Sergej Sawazki <sergej@taudac.com>,
 	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 2/4] ARM: dts: dove-cubox: fix si5351 node names
-Date: Wed,  4 Oct 2023 08:35:28 +0200
-Message-ID: <20231004063712.3348978-3-alvin@pqrs.dk>
+Subject: [PATCH v2 3/4] dt-bindings: clock: si5351: add PLL reset mode property
+Date: Wed,  4 Oct 2023 08:35:29 +0200
+Message-ID: <20231004063712.3348978-4-alvin@pqrs.dk>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231004063712.3348978-1-alvin@pqrs.dk>
 References: <20231004063712.3348978-1-alvin@pqrs.dk>
@@ -92,37 +94,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 
 From: Alvin Šipraga <alsi@bang-olufsen.dk>
 
-Correct the device tree to conform with the bindings. The node name and
-index should be separated with an @.
+For applications where the PLL must be adjusted without glitches in the
+clock output(s), a new silabs,pll-reset-mode property is added. It
+can be used to specify whether or not the PLL should be reset after
+adjustment. Resetting is known to cause glitches.
 
-Suggested-by: Rob Herring <robh@kernel.org>
+For compatibility with older device trees, it must be assumed that the
+default PLL reset mode is to unconditionally reset after adjustment.
+
+Cc: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+Cc: Rabeeh Khoury <rabeeh@solid-run.com>
+Cc: Jacob Siverskog <jacob@teenage.engineering>
+Cc: Sergej Sawazki <sergej@taudac.com>
 Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
 ---
- arch/arm/boot/dts/marvell/dove-cubox.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../bindings/clock/silabs,si5351.yaml         | 24 +++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-diff --git a/arch/arm/boot/dts/marvell/dove-cubox.dts b/arch/arm/boot/dts/marvell/dove-cubox.dts
-index bfde99486a87..bcaaf8320c45 100644
---- a/arch/arm/boot/dts/marvell/dove-cubox.dts
-+++ b/arch/arm/boot/dts/marvell/dove-cubox.dts
-@@ -101,7 +101,7 @@ si5351: clock-generator@60 {
- 		/* connect xtal input as source of pll0 and pll1 */
- 		silabs,pll-source = <0 0>, <1 0>;
+diff --git a/Documentation/devicetree/bindings/clock/silabs,si5351.yaml b/Documentation/devicetree/bindings/clock/silabs,si5351.yaml
+index 400c8cec2a3a..f1be09b5c48c 100644
+--- a/Documentation/devicetree/bindings/clock/silabs,si5351.yaml
++++ b/Documentation/devicetree/bindings/clock/silabs,si5351.yaml
+@@ -53,6 +53,27 @@ properties:
+         - description: PLL source, XTAL (0) or CLKIN (1, Si5351C only).
+           enum: [ 0, 1 ]
  
--		clkout0 {
-+		clkout@0 {
- 			reg = <0>;
- 			silabs,drive-strength = <8>;
- 			silabs,multisynth-source = <0>;
-@@ -109,7 +109,7 @@ clkout0 {
- 			silabs,pll-master;
- 		};
++  silabs,pll-reset-mode:
++    $ref: /schemas/types.yaml#/definitions/uint32-matrix
++    minItems: 1
++    description: |
++      A list of cell pairs containing a PLL index and its reset mode.
++    items:
++      items:
++        - description: PLL A (0) or PLL B (1)
++          enum: [ 0, 1 ]
++        - description: |
++            Reset mode for the PLL. Mode can be one of:
++
++                0 - reset whenever PLL rate is adjusted (default mode)
++                1 - do not reset when PLL rate is adjusted
++
++            In mode 1, the PLL is only reset if the silabs,pll-reset is
++            specified in one of the clock output child nodes that also sources
++            the PLL. This mode may be preferable if output clocks are expected
++            to be adjusted without glitches.
++          enum: [ 0, 1 ]
++
+ patternProperties:
+   "^clkout@[0-7]$":
+     type: object
+@@ -207,6 +228,9 @@ examples:
+         /* Use XTAL input as source of PLL0 and PLL1 */
+         silabs,pll-source = <0 0>, <1 0>;
  
--		clkout2 {
-+		clkout@2 {
- 			reg = <2>;
- 			silabs,drive-strength = <8>;
- 			silabs,multisynth-source = <1>;
++        /* Don't reset PLL1 on rate adjustment */
++        silabs,pll-reset-mode = <1 1>;
++
+         /*
+          * Overwrite CLK0 configuration with:
+          * - 8 mA output drive strength
 -- 
 2.42.0
 
