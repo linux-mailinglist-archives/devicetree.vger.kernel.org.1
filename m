@@ -1,181 +1,174 @@
-Return-Path: <devicetree+bounces-5723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC44A7B79D5
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 10:14:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E2A07B7A07
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 10:28:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 562CA281460
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 08:14:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 82324281455
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 08:28:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65F29101EC;
-	Wed,  4 Oct 2023 08:14:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B17C101FD;
+	Wed,  4 Oct 2023 08:28:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5359ED2E6
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 08:14:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CD46C433C7;
-	Wed,  4 Oct 2023 08:13:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696407242;
-	bh=UPqOSLYhH7npzWNNSeA82XKeFXdrUVJstVbJYeo2EaA=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=uYuHGwrE5OxB82TgQSr5LMX4noPjfoLvkxmKL8OrfQkG+7N5uXHIZtAhHMPnlbV5B
-	 Fx0MgdGd1Vj94JYaFk7zvtk0c1Z7S/N9Zokz0DEqxn7v0LexXaZvSkGZXqOsq0zUOg
-	 GvBJTpTYyfoOcD6aj1gt2ECThArU3Au5y9TcxJ2tyOgO8Drw9QgZqg3crNTAdWEE28
-	 eqLYE0WyskczES/GsoIPjPknXtBIQgoxM9dcv8kNzTxYAHNen7iSjwFykpgf2z3GWU
-	 c1npePM7PD+txXmFftPA0e3vXTMa05KfkXpt3Ib31Ys2cwOqSNWlmI4xPDQKmkel7n
-	 RuTIGY+SvY8Ow==
-Message-ID: <959363c6-9ecb-4e5f-960d-65dd23b74ce2@kernel.org>
-Date: Wed, 4 Oct 2023 10:13:52 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EDCE101F6
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 08:28:16 +0000 (UTC)
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E83883;
+	Wed,  4 Oct 2023 01:28:15 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-31f71b25a99so1807353f8f.2;
+        Wed, 04 Oct 2023 01:28:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696408094; x=1697012894; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=R2yRwJ/7iREzqBe4BdcV/tJQGnF/hrf8riPhHgSOhEw=;
+        b=WD9ZQZI7WBN5r8Y6gItR+IEq/sBg/xMiuoYLfPimuyp0RWIwfERDcCmnMAYbkFPNog
+         Xm2Gh4uoM0uyueXbI3ziQK7V7yWWfYXsBug4fkEHQfSJDL+KS1SbS6fPufB6bEN9j3pl
+         TuZfR/HCk0EjKZTCV1EOKrNIAWj7Y3VzlBhCR2wS6khZuxkzAxfd+opWmI9npU5qt4Xx
+         8jtgootzP2vfKeTfDnzrp/QWz7d6VfWjajDbkAOTbKD6ZqRLIRmRJSXYlr7hSimFx7PW
+         lA0sNnfohDCHw5KRJF8mp6oflZ5Gecz5J9eAk3+VXCQaviKDaxAfDQ1L8ulmWKjBorw5
+         7ejw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696408094; x=1697012894;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=R2yRwJ/7iREzqBe4BdcV/tJQGnF/hrf8riPhHgSOhEw=;
+        b=ROIdAjDjbsQyLLnGd8FqAqUwOPN9u3rFgFW3a1sfYVYSX67C+DnY+vbBIftq86Tw9S
+         hCTFCLAR/sE0mnARGqgBPxVc7F/Q2pYCnKeJWevpxP4vospWc4kQPYNZ1K3kSlHuZkJS
+         iFqJrWZ5Hj8zv2JTDIZwYd/aArrEXaKv5fMnZWHDPyN4l6xISj0nlIGn5zMIt6XtECiz
+         +9sjbgGZ3apQPGjZhYwOkaecNbPPFLLR8/OqCBwMkcop2cNavxKCLlD511fza7gNrt6d
+         t5a/1uJrIK9vQQ5CxepodlN1O5SDn1SpIqVFLaAt5NxetgsqKbdGE3/cyjj4TatiMoOV
+         XIKw==
+X-Gm-Message-State: AOJu0YyhFWaSRvKDU9JAqLLEJMqQYmqMqHIoNs6d5nsnljLg/IHBcrwF
+	7GbUB/49Dbxbf1ia24E5qkE=
+X-Google-Smtp-Source: AGHT+IFxQd2U1GXGAXigVpqGDqbCkb54Gqt1CaOxUHcHY0qZp3vpcOLh5uMbRNt0Tm7+Xvt6dWYbcg==
+X-Received: by 2002:a5d:61ce:0:b0:31a:d8c0:cb8b with SMTP id q14-20020a5d61ce000000b0031ad8c0cb8bmr1522942wrv.25.1696408093617;
+        Wed, 04 Oct 2023 01:28:13 -0700 (PDT)
+Received: from PCBABN.skidata.net ([91.230.2.244])
+        by smtp.gmail.com with ESMTPSA id r2-20020a5d4982000000b00323330edbc7sm3432701wrq.20.2023.10.04.01.28.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Oct 2023 01:28:13 -0700 (PDT)
+From: Benjamin Bara <bbara93@gmail.com>
+To: alexander.stein@ew.tq-group.com
+Cc: abelvesa@kernel.org,
+	aford173@gmail.com,
+	bbara93@gmail.com,
+	benjamin.bara@skidata.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	festevam@gmail.com,
+	frank@oltmanns.dev,
+	kernel@pengutronix.de,
+	krzysztof.kozlowski+dt@linaro.org,
+	l.stach@pengutronix.de,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-imx@nxp.com,
+	linux-kernel@vger.kernel.org,
+	linux@armlinux.org.uk,
+	mripard@kernel.org,
+	mturquette@baylibre.com,
+	peng.fan@nxp.com,
+	robh+dt@kernel.org,
+	s.hauer@pengutronix.de,
+	sboyd@kernel.org,
+	shawnguo@kernel.org
+Subject: Re: [PATCH 00/13] imx8mp: first clock propagation attempt (for LVDS)
+Date: Wed,  4 Oct 2023 10:28:06 +0200
+Message-Id: <20231004082806.2895789-1-bbara93@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <12810050.O9o76ZdvQC@steina-w>
+References: <12810050.O9o76ZdvQC@steina-w>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] phy: qcom: Introduce PCIe UNIPHY 28LP driver
-Content-Language: en-US
-To: Nitheesh Sekar <quic_nsekar@quicinc.com>, agross@kernel.org,
- andersson@kernel.org, konrad.dybcio@linaro.org, lpieralisi@kernel.org,
- kw@linux.com, robh@kernel.org, bhelgaas@google.com,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, vkoul@kernel.org,
- kishon@kernel.org, mani@kernel.org, p.zabel@pengutronix.de,
- quic_srichara@quicinc.com, quic_varada@quicinc.com,
- quic_ipkumar@quicinc.com, linux-arm-msm@vger.kernel.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-References: <20231003120846.28626-1-quic_nsekar@quicinc.com>
- <20231003120846.28626-4-quic_nsekar@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20231003120846.28626-4-quic_nsekar@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On 03/10/2023 14:08, Nitheesh Sekar wrote:
-> Add Qualcomm PCIe UNIPHY 28LP driver support present
-> in Qualcomm IPQ5018 SoC and the phy init sequence.
-> 
-> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
-> ---
+Hi Adam, Alexander!
 
-...
+On Wed, 4 Oct 2023 at 10:04, Alexander Stein <alexander.stein@ew.tq-group.com> wrote:
+> Am Dienstag, 3. Oktober 2023, 15:28:05 CEST schrieb Adam Ford:
+> > On Sun, Sep 17, 2023 at 5:40 PM Benjamin Bara <bbara93@gmail.com> wrote:
+> > > Hi!
+> > >
+> > > Target of this series is to dynamically set the rate of video_pll1 to
+> > > the required LVDS clock rate(s), which are configured by the panel, and
+> > > the lvds-bridge respectively.
+> > >
+> > > Some background:
+> > > The LVDS panel requires two clocks: the crtc clock and the lvds clock.
+> > > The lvds rate is always 7x the crtc rate. On the imx8mp, these are
+> > > assigned to media_disp2_pix and media_ldb, which are both
+> >
+> > Could the LDB driver be updated to take in the crtc clock as a
+> > parameter, then set the media_ldb to 7x crct clock.  I wonder if that
+> > might simplify the task a bit.
+>
+> I'm not sure if you had something different in mind, but I guess this happens
+> already in fsl_ldb_atomic_enable(), although using the mode clock.
+> As this might not always be possible, commit bd43a9844bc6f ("drm: bridge: ldb:
+> Warn if LDB clock does not match requested link frequency") was added to
+> indicate something might be wrong.
+> The main problem here is that both media_ldb and crct clock are not in a
+> parent<->child relationship, but are siblings, configurable individually.
 
-> +static int qcom_uniphy_pcie_probe(struct platform_device *pdev)
-> +{
-> +	struct qcom_uniphy_pcie *phy;
-> +	int ret;
-> +	struct phy *generic_phy;
-> +	struct phy_provider *phy_provider;
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = of_node_get(dev->of_node);
-> +
-> +	phy = devm_kzalloc(&pdev->dev, sizeof(*phy), GFP_KERNEL);
-> +	if (!phy)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, phy);
-> +	phy->dev = &pdev->dev;
-> +
-> +	phy->data = of_device_get_match_data(dev);
-> +	if (!phy->data)
-> +		return -EINVAL;
-> +
-> +	ret = qcom_uniphy_pcie_get_resources(pdev, phy);
-> +	if (ret < 0) {
-> +		dev_err(&pdev->dev, "failed to get resources: %d\n", ret);
-> +		return ret;
+Yes, this already happens. First, the mode is set (which sets the CRTC
+rate). Next, LDB sets the LVDS rate. Both do not have "access" to the
+PLL, because the clocks haven't configured CLK_SET_RATE_PARENT. What
+might be a working (but IMHO dirty) hack, is to give the LDB the PLL
+clock as input too. Then it could set the PLL, LDB, CRTC rate (CRTC rate
+must be set again after PLL is set!).
 
-Syntax is:
-return dev_err_probe()
+> > I still have concerns that the CLK_SET_RATE_PARENT may break the
+> > media_disp1_pix if media_disp2_pix is changing it.
+> > I think we should consider adding some sort of configurable flag to
+> > the CCM that lets people choose  if CLK_SET_RATE_PARENT should be set
+> > or not in the device tree instead of hard-coding it either on or off.
+> > This would give people the flexibility of stating whether
+> > media_disp1_pix, media_disp2_pix, both or neither could set
+> > CLK_SET_RATE_PARENT.
 
+Probably we could do that (for now) by adding a second (optional) clock
+to LDB. If it is set, the LDB driver should also set the LVDS rate on
+this clock. This would then be set to the parent PLL.
 
-> +	}
-> +
-> +	ret = phy_pipe_clk_register(phy, np);
-> +	if (ret)
-> +		dev_err(&pdev->dev, "failed to register phy pipe clk\n");
-> +
-> +	generic_phy = devm_phy_create(phy->dev, NULL, &pcie_ops);
-> +	if (IS_ERR(generic_phy))
-> +		return PTR_ERR(generic_phy);
-> +
-> +	phy_set_drvdata(generic_phy, phy);
-> +	phy_provider = devm_of_phy_provider_register(phy->dev,
-> +						     of_phy_simple_xlate);
-> +	if (IS_ERR(phy_provider))
-> +		return PTR_ERR(phy_provider);
-> +
-> +	return 0;
-> +}
-> +
-> +static struct platform_driver qcom_uniphy_pcie_driver = {
-> +	.probe		= qcom_uniphy_pcie_probe,
-> +	.driver		= {
-> +		.name	= "qcom-uniphy-pcie",
-> +		.owner	= THIS_MODULE,
+> > I believe the imx8mp-evk can support both LVDS-> HDMI and DSI->HDMI
+> > bridges, and I fear that if they are trying to both set different
+> > clock rates, this may break something and the clocks need to be
+> > selected in advance to give people a bunch of HDMI options as well as
+> > being able to divide down to support the LVDS.
+> >
+> > I think some of the displays could be tied to one of the Audio PLL's,
+> > so I might experiment with splitting the media_disp1_pix and
+> > media_disp2_pix from each other to see how well .
 
-Run coccinelle/coccicheck.
+Yes, you probably could also tie them to one of the other available
+PLLs. We "could" also do that automatically, by not setting
+CLK_SET_RATE_REPARENT and adapting the clk-divider driver to look for a
+better suitable parent. However, I guess the outcome is currently quite
+unpredictable, so this would require a lot of additional work. Just to
+mention it here too: I created a small spin-off of this series[1] with
+the changes of this series which affect the core.
 
-> +		.of_match_table = qcom_uniphy_pcie_id_table,
-> +	},
-> +};
-> +
-> +module_platform_driver(qcom_uniphy_pcie_driver);
-> +
-> +MODULE_ALIAS("platform:qcom-uniphy-pcie");
+Probably using the optional clock for LDB is a suitable short-term
+solution?
 
-You should not need MODULE_ALIAS() in normal cases. If you need it,
-usually it means your device ID table is wrong.
-
-
-Best regards,
-Krzysztof
-
+Regards
+Benjamin
 
