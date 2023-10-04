@@ -1,120 +1,144 @@
-Return-Path: <devicetree+bounces-5953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1CDE7B96A0
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 23:47:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6710A7B970E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 00:03:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id A3E7D281830
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 21:47:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 82390B208B7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 22:03:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B2B0241FB;
-	Wed,  4 Oct 2023 21:47:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73A9F250E2;
+	Wed,  4 Oct 2023 22:03:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cxH1nUU6"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aGA2Ju/d"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1C1123750
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 21:47:00 +0000 (UTC)
-Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDCAFD9
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 14:46:58 -0700 (PDT)
-Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-5a1d0fee86aso3005257b3.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Oct 2023 14:46:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696456018; x=1697060818; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tpTnpDJ8m5u92YyzRJIrb4UFVgAGSfyLUUGh9QrCbEs=;
-        b=cxH1nUU6x2vefMLkWSdvBIHTVHCwhRcorKMT7bToAafoDfONZ1TQcx1h/Hk/4IqR0V
-         D9aSi0+aTp1z/LgiZAPab01nNv0v7YCyMJxH5VN7HYeV2QirqyOI5MpkNTLnorxkbigJ
-         eV2q8CfaQbut00/10H5G4wdRh5bcL0zWp+oRAW/mzJhX7Scnh5lByoJgJx7q2VWdptTd
-         0WaqwQRqa5FggbzDakARe99KG2zY+pXkbtfueU7DJAEbkuUH6gHqae7hfsMVnKmXF4Hi
-         a5mxZ/AW49dC8PqxofQ/hxAPkZks3i+EXbfLFcxYXUSbiPpiWoSjnpf3z/7/kri+lIjT
-         0Xqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696456018; x=1697060818;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tpTnpDJ8m5u92YyzRJIrb4UFVgAGSfyLUUGh9QrCbEs=;
-        b=oqaIp8Kv/iH6/ti3rcEW6HHZG8wuq2Ulz9XWyXrjPkyFVT9+SClGSvP7PSdoqFQ/DJ
-         F7pvINAoiaRx3Dkle8GVhu8s3ZSCZZMJSjI3+XfxMsGCHAyUobAo/j54oOgNY+uBhjrX
-         xGiB+B8DIui57DPqjONzmoYaWRwInQkXXBu52+c4fCJ2LU5yIl0p8lPq+p4DxJnLcsul
-         iv6NoztwBgizT5g45iVXL08a7qcGAahqizYRhzH9lov0Pw98eqlIXLmlnQmNBolw1vVm
-         +uI5I9d6AG3vjxa6PrAU3VKUPBJFe6CXkCCE21u0xVHt0CXfKfL3EMS6+IY6/eL2iqh6
-         ExzQ==
-X-Gm-Message-State: AOJu0Yx176nXhFGNjxZUyHW2fHfq0PF0un9S9zXhnENPqA5p6xRa0q1b
-	Uhg2ThGKCkqjnx3NJEDlTwyls7q6iHcG7YM7SrFj9g==
-X-Google-Smtp-Source: AGHT+IGRAT6txNT8z5BHKJlzrsBs/tEhnvh+ByZd2oleUCBulCvOS6ym+tk5iY2/WHH1JuKvU7PVGteknDPUUHfWA/w=
-X-Received: by 2002:a25:9cc2:0:b0:d85:abce:3f43 with SMTP id
- z2-20020a259cc2000000b00d85abce3f43mr3251502ybo.38.1696456018079; Wed, 04 Oct
- 2023 14:46:58 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A08324203
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 22:03:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5E8FBD;
+	Wed,  4 Oct 2023 15:03:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1696457019; x=1727993019;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=9cBg1srJbGdmQ36/Me/28e8gGP+MspxyR+FDEJ6Nxl0=;
+  b=aGA2Ju/deTtMVZ4h8b3F4TRnCyhxv2kwcOL0AJ3zzpxNSgcAiYj5S9zX
+   p0UW31kDhaoze+b41Rmp6yf+pbneL0cEnrkVCYb6VqftdUEy9PlKN0oII
+   4usv6h5Vcjnrm98oD4g4DK+LK0XAgjEra404f1TSMzOxWyf4ld0Dxz6a2
+   3kLWOeygnDitT26qKtzORGdKjcjE6PYy+glJ5dAO9JLTHAsEcLZp7qEUX
+   nPj9HSv9lPXHgrNL92X8xovqa6Qz3Wgd5/7V5NNjE6Pg2/gwvHtfg9lHj
+   OPXSxaV+4aaZ1qtIQr5zbXRhgyJOtsGf+qIn+FTPyb7cuxbnVxk/m2JPN
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="368380951"
+X-IronPort-AV: E=Sophos;i="6.03,201,1694761200"; 
+   d="scan'208";a="368380951"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Oct 2023 15:03:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="817302103"
+X-IronPort-AV: E=Sophos;i="6.03,201,1694761200"; 
+   d="scan'208";a="817302103"
+Received: from lkp-server02.sh.intel.com (HELO c3b01524d57c) ([10.239.97.151])
+  by fmsmga008.fm.intel.com with ESMTP; 04 Oct 2023 15:03:33 -0700
+Received: from kbuild by c3b01524d57c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qo9xr-000Kex-1d;
+	Wed, 04 Oct 2023 22:03:31 +0000
+Date: Thu, 5 Oct 2023 06:02:51 +0800
+From: kernel test robot <lkp@intel.com>
+To: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Cc: oe-kbuild-all@lists.linux.dev, linus.walleij@linaro.org, brgl@bgdev.pl,
+	andy@kernel.org, linux-gpio@vger.kernel.org,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Walle <michael@walle.cc>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
+	Mike Looijmans <mike.looijmans@topic.nl>,
+	Haibo Chen <haibo.chen@nxp.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] iio: adc: ad7173: add AD7173 driver
+Message-ID: <202310050520.VEIzHNiM-lkp@intel.com>
+References: <20230928125443.615006-2-mitrutzceclan@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230927130734.9921-1-changhuang.liang@starfivetech.com> <20230927130734.9921-3-changhuang.liang@starfivetech.com>
-In-Reply-To: <20230927130734.9921-3-changhuang.liang@starfivetech.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 4 Oct 2023 23:46:22 +0200
-Message-ID: <CAPDyKFpQr87+SxGpX=KBYF6sCJJqcE84ugttQ9Zkuqf3iZDLmw@mail.gmail.com>
-Subject: Re: [-next v1 2/2] pmdomain: starfive: Update prefixes for AON power domain
-To: Changhuang Liang <changhuang.liang@starfivetech.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Walker Chen <walker.chen@starfivetech.com>, Hal Feng <hal.feng@starfivetech.com>, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230928125443.615006-2-mitrutzceclan@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+	SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, 27 Sept 2023 at 15:07, Changhuang Liang
-<changhuang.liang@starfivetech.com> wrote:
->
-> Use "JH7110_AON_PD_" prefix for AON power doamin for JH7110 SoC.
->
-> Reviewed-by: Walker Chen <walker.chen@starfivetech.com>
-> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+Hi Dumitru,
 
-Applied for next, thanks!
+kernel test robot noticed the following build warnings:
 
-Kind regards
-Uffe
+[auto build test WARNING on jic23-iio/togreg]
+[also build test WARNING on linus/master v6.6-rc4 next-20231004]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Dumitru-Ceclan/iio-adc-ad7173-add-AD7173-driver/20230928-205802
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20230928125443.615006-2-mitrutzceclan%40gmail.com
+patch subject: [PATCH v2 2/2] iio: adc: ad7173: add AD7173 driver
+config: i386-randconfig-063-20231005 (https://download.01.org/0day-ci/archive/20231005/202310050520.VEIzHNiM-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231005/202310050520.VEIzHNiM-lkp@intel.com/reproduce)
 
-> ---
->  drivers/pmdomain/starfive/jh71xx-pmu.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/pmdomain/starfive/jh71xx-pmu.c b/drivers/pmdomain/starfive/jh71xx-pmu.c
-> index 2724bee7e85f..74720c09a6e3 100644
-> --- a/drivers/pmdomain/starfive/jh71xx-pmu.c
-> +++ b/drivers/pmdomain/starfive/jh71xx-pmu.c
-> @@ -419,11 +419,11 @@ static const struct jh71xx_pmu_match_data jh7110_pmu = {
->  };
->
->  static const struct jh71xx_domain_info jh7110_aon_power_domains[] = {
-> -       [JH7110_PD_DPHY_TX] = {
-> +       [JH7110_AON_PD_DPHY_TX] = {
->                 .name = "DPHY-TX",
->                 .bit = 30,
->         },
-> -       [JH7110_PD_DPHY_RX] = {
-> +       [JH7110_AON_PD_DPHY_RX] = {
->                 .name = "DPHY-RX",
->                 .bit = 31,
->         },
-> --
-> 2.25.1
->
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202310050520.VEIzHNiM-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/iio/adc/ad7173.c:829:42: sparse: sparse: incorrect type in initializer (different base types) @@     expected unsigned long [usertype] driver_data @@     got struct ad7173_device_info const * @@
+   drivers/iio/adc/ad7173.c:829:42: sparse:     expected unsigned long [usertype] driver_data
+   drivers/iio/adc/ad7173.c:829:42: sparse:     got struct ad7173_device_info const *
+   drivers/iio/adc/ad7173.c:830:42: sparse: sparse: incorrect type in initializer (different base types) @@     expected unsigned long [usertype] driver_data @@     got struct ad7173_device_info const * @@
+   drivers/iio/adc/ad7173.c:830:42: sparse:     expected unsigned long [usertype] driver_data
+   drivers/iio/adc/ad7173.c:830:42: sparse:     got struct ad7173_device_info const *
+   drivers/iio/adc/ad7173.c:831:42: sparse: sparse: incorrect type in initializer (different base types) @@     expected unsigned long [usertype] driver_data @@     got struct ad7173_device_info const * @@
+   drivers/iio/adc/ad7173.c:831:42: sparse:     expected unsigned long [usertype] driver_data
+   drivers/iio/adc/ad7173.c:831:42: sparse:     got struct ad7173_device_info const *
+   drivers/iio/adc/ad7173.c:832:42: sparse: sparse: incorrect type in initializer (different base types) @@     expected unsigned long [usertype] driver_data @@     got struct ad7173_device_info const * @@
+   drivers/iio/adc/ad7173.c:832:42: sparse:     expected unsigned long [usertype] driver_data
+   drivers/iio/adc/ad7173.c:832:42: sparse:     got struct ad7173_device_info const *
+
+vim +829 drivers/iio/adc/ad7173.c
+
+   827	
+   828	static const struct spi_device_id ad7173_id_table[] = {
+ > 829		{ "ad7172-2", &ad7173_device_info[ID_AD7172_2], },
+   830		{ "ad7173-8", &ad7173_device_info[ID_AD7173_8], },
+   831		{ "ad7175-2", &ad7173_device_info[ID_AD7175_2], },
+   832		{ "ad7176-2", &ad7173_device_info[ID_AD7176_2], },
+   833		{ },
+   834	};
+   835	MODULE_DEVICE_TABLE(spi, ad7173_id_table);
+   836	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
