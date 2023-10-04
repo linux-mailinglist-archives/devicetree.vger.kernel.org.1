@@ -1,121 +1,192 @@
-Return-Path: <devicetree+bounces-5926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 483717B88F1
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 20:21:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF9A27B8A85
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 20:36:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id CC9682815CC
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 18:21:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 6AD96281297
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 18:36:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECAF01D6A1;
-	Wed,  4 Oct 2023 18:21:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AED61C2A8;
+	Wed,  4 Oct 2023 18:36:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K8us2Mhl"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AfcnYAjL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A785E1D68D
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 18:21:06 +0000 (UTC)
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04016A7
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 11:21:02 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id 98e67ed59e1d1-27730028198so13367a91.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Oct 2023 11:21:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696443661; x=1697048461; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xNktNHJu0QjD0BkyX34jEUdptlmtFvn/WAMHoM1gwjg=;
-        b=K8us2Mhl8H7O5A2INv29R0g8t77E/MKNCAvkX/MJhzTTKrVbs03bgPbfvCazNoJ3RH
-         DAg4j8rH7LADsMy3PrQ9977+qnnCVJyOd5arLaMl/vDJ87p1QVDSaxgIzAOEO1lCZs2m
-         cH1mcBCR4kic76xrgmzt5wMxHySVbYNo2slazglR87S5W2PsDwyUtoGSBXkLRBCfwaMO
-         toFFwHMvBWOFtOqAXroXmEzuomZtt4Kgz5o/6gjfhdXZ1trwoXSxNMoDjQXoDOJGO+V+
-         so6S/Siu0LJdyuDKCfNI6RN7aynSssRANhdb+2cHCOIrmxdUb8B8cQ8MQI3TNsHZQVvN
-         gVtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696443661; x=1697048461;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xNktNHJu0QjD0BkyX34jEUdptlmtFvn/WAMHoM1gwjg=;
-        b=ic4u0ARQnhslpNh+Kpj0J+x8Zr6vzIHayUheT3b6nTksKNQTR7zUlWXc2Zcl2pm5gz
-         0c95SfFAKlQWM6rjQxOmQwdy9sgMeQioqKVhsR1/d422YmiEp8Sy89OGkF/EJmhFZM+X
-         ea+blgmLBz+z2OLqDA4RY+B0yDcnlmWhmVDwEiMr+BNn9AafqBHfUvXOey2nMuXdG9Jw
-         Y6A8FHcInXFdI8lHWUBPc+CN62jqwneCpd37ixk9wGQ9z7FP/VKMw/5ozFl3yGx0q1CZ
-         egao5aJt4AwFE0viTeCGzkdahs29E5yTnXfnUDWOP9knVdC3LUTa6DiMMKDC/TjJeXmS
-         XtTw==
-X-Gm-Message-State: AOJu0YzDoQO4ZomCyNtEofEfAvIm07v0j4YaQU9ZGOYjOt2Uw7v64PS7
-	uuW82IGcwEG1bfCIoxSFmlQ=
-X-Google-Smtp-Source: AGHT+IHNw5YYqllXwgc899wVWMCWx62QnXG3TBEhf3kw7nBIrjJDqn129vlkceYj3tXaDUqaLOR47g==
-X-Received: by 2002:a17:90a:43c2:b0:278:f656:ca0e with SMTP id r60-20020a17090a43c200b00278f656ca0emr2894122pjg.0.1696443661394;
-        Wed, 04 Oct 2023 11:21:01 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:cb87:d6f:eb43:afca])
-        by smtp.gmail.com with ESMTPSA id m20-20020a17090a7f9400b00262ca945cecsm1859794pjl.54.2023.10.04.11.20.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Oct 2023 11:21:00 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: robh+dt@kernel.org
-Cc: krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v2] dt-bindings: watchdog: fsl,scu-wdt: Document imx8dl
-Date: Wed,  4 Oct 2023 15:20:43 -0300
-Message-Id: <20231004182043.2309790-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B83391C291;
+	Wed,  4 Oct 2023 18:36:28 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8487A7;
+	Wed,  4 Oct 2023 11:36:26 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 394FBLvr028282;
+	Wed, 4 Oct 2023 18:35:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=6M3YAebF9rrs3opK3mpTD1jmedIyRT/cMOQ6DDH1tyM=;
+ b=AfcnYAjLVk8hVxmWmdF/yylUGqfIZ7FeD1F4DB9WeY2hh1UuUaO8K8wzGq8ENxXacTBv
+ +rXSm3UKVxoh9zjzKMby24VOV44iXS4UiH+RgCqYC8p/eg4/8vz4et4tjPoOwYPM4B4q
+ duDpI5J0Dr9MHLh4hLwsjAQZOps3/HLypCaDY9fIcuMU6YyyGj6OgzDanbRsqcki2GAi
+ 2ujp+RKWMC8xWFH56kRquJsGwybxookOCZVxSPiNqMMm/Z89gpgUGFNEdLbTr4ZyTIdm
+ WvAqoiCoOL9fA3OTtsRUCuK3AydDvMiu0GhTgKM0stQKqOcKGtZuH+vz4/U4Wny8iARN Jw== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3th2gq1t4n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Oct 2023 18:35:45 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 394IZhC3025160
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 4 Oct 2023 18:35:44 GMT
+Received: from [10.71.112.36] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 4 Oct
+ 2023 11:35:10 -0700
+Message-ID: <2127ef61-e263-2a0e-438a-6baa125aa70d@quicinc.com>
+Date: Wed, 4 Oct 2023 11:35:06 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v7 01/33] xhci: add support to allocate several
+ interrupters
+Content-Language: en-US
+To: Mathias Nyman <mathias.nyman@intel.com>,
+        Mathias Nyman
+	<mathias.nyman@linux.intel.com>,
+        <gregkh@linuxfoundation.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <perex@perex.cz>, <tiwai@suse.com>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <srinivas.kandagatla@linaro.org>, <bgoswami@quicinc.com>,
+        <Thinh.Nguyen@synopsys.com>
+CC: <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20230921214843.18450-1-quic_wcheng@quicinc.com>
+ <20230921214843.18450-2-quic_wcheng@quicinc.com>
+ <10ad0613-7e88-dbe8-c5a2-d535f8e9db03@linux.intel.com>
+ <e3f3c8cd-6338-da08-d988-4d2ed68280e6@quicinc.com>
+ <843897f1-3ce5-f8da-5f10-7d8a68849fd2@intel.com>
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <843897f1-3ce5-f8da-5f10-7d8a68849fd2@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 6qI8t9feb8uXz-ckzPnXYaJeZ5ViYC9L
+X-Proofpoint-ORIG-GUID: 6qI8t9feb8uXz-ckzPnXYaJeZ5ViYC9L
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-04_10,2023-10-02_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ lowpriorityscore=0 phishscore=0 mlxlogscore=598 mlxscore=0 impostorscore=0
+ malwarescore=0 suspectscore=0 clxscore=1015 bulkscore=0 adultscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310040136
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Fabio Estevam <festevam@denx.de>
+Hi Mathias,
 
-imx8dxl also contains the SCU watchdog block.
+On 10/4/2023 7:02 AM, Mathias Nyman wrote:
+> On 2.10.2023 23.07, Wesley Cheng wrote:
+>> Hi Mathias,
+>>
+>> On 9/28/2023 3:31 AM, Mathias Nyman wrote:
+>>> On 22.9.2023 0.48, Wesley Cheng wrote:
+>>>> From: Mathias Nyman <mathias.nyman@linux.intel.com>
+>>>>
+>>>> Modify the XHCI drivers to accommodate for handling multiple event 
+>>>> rings in
+>>>> case there are multiple interrupters.  Add the required APIs so 
+>>>> clients are
+>>>> able to allocate/request for an interrupter ring, and pass this 
+>>>> information
+>>>> back to the client driver.  This allows for users to handle the 
+>>>> resource
+>>>> accordingly, such as passing the event ring base address to an audio 
+>>>> DSP.
+>>>> There is no actual support for multiple MSI/MSI-X vectors.
+>>>>
+>>>> Factoring out XHCI interrupter APIs and structures done by Wesley 
+>>>> Cheng, in
+>>>> order to allow for USB class drivers to utilze them.
+>>>>
+>>>>   }
+>>>> +void xhci_remove_secondary_interrupter(struct usb_hcd *hcd, struct 
+>>>> xhci_interrupter *ir)
+>>>> +{
+>>>> +    struct xhci_hcd *xhci = hcd_to_xhci(hcd);
+>>>> +    unsigned int intr_num;
+>>>> +
+>>>> +    /* interrupter 0 is primary interrupter, don't touchit */
+>>>> +    if (!ir || !ir->intr_num || ir->intr_num >= 
+>>>> xhci->max_interrupters) {
+>>>> +        xhci_dbg(xhci, "Invalid secondary interrupter, can't 
+>>>> remove\n");
+>>>> +        return;
+>>>> +    }
+>>>> +
+>>>> +    /* fixme, should we check xhci->interrupter[intr_num] == ir */
+>>>> +    spin_lock(&xhci->lock);
+>>>
+>>> Needs to be spin_lock_irq() ir spin_lock_irqsave() as xhci->lock is 
+>>> used in interrupt handler.
+>>>
+>>>
+>>>> +    intr_num = ir->intr_num;
+>>>> +    xhci_free_interrupter(xhci, ir);
+>>>> +    xhci->interrupters[intr_num] = NULL;
+>>>> +    spin_unlock(&xhci->lock);
+>>>
+>>> likewise
+>>>
+>>
+>> Let me check these again.  In general, I think I will use both the 
+>> xhci->mutex and xhci->lock where needed, because I believe we'd run 
+>> into sleep while atomic issues
+>> while freeing the DMA memory.  Will rework this and submit in the next 
+>> rev.
+>>
+> 
+> Maybe we need to split xhci_free_interrupter() into separate remove and 
+> free functions
+> 
 
-Add an entry for 'fsl,imx8dxl-sc-wdt'.
+Thanks for sharing the work you've been doing.  Yes, I did something 
+similar as well on my end, but will refactor in your code and re-test.
 
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
-Cc: Guenter Roeck <linux@roeck-us.net>
-Signed-off-by: Fabio Estevam <festevam@denx.de>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
----
-Changes since v1:
-- Sent it as a standalone patch to the DT folks.
-- Collected Conor's ack.
+> Did some work on this, and on the sideband api in general.
+> 
+> Code still has a lot of FIXMEs, and it's completely untested, but to 
+> avoid us
+> from doing duplicate work I pushed it to my feature_interrupters branch 
+> anyway
+> 
+> git://git.kernel.org/pub/scm/linux/kernel/git/mnyman/xhci.git 
+> feature_interrupters
+> https://git.kernel.org/pub/scm/linux/kernel/git/mnyman/xhci.git/log/?h=feature_interrupters 
+> 
 
- Documentation/devicetree/bindings/watchdog/fsl,scu-wdt.yaml | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Ok.  Initial look at it seems like it will be fine, but will integrate 
+and make changes where needed.
 
-diff --git a/Documentation/devicetree/bindings/watchdog/fsl,scu-wdt.yaml b/Documentation/devicetree/bindings/watchdog/fsl,scu-wdt.yaml
-index 47701248cd8d..8b7aa922249b 100644
---- a/Documentation/devicetree/bindings/watchdog/fsl,scu-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/fsl,scu-wdt.yaml
-@@ -18,7 +18,9 @@ allOf:
- properties:
-   compatible:
-     items:
--      - const: fsl,imx8qxp-sc-wdt
-+      - enum:
-+          - fsl,imx8dxl-sc-wdt
-+          - fsl,imx8qxp-sc-wdt
-       - const: fsl,imx-sc-wdt
- 
- required:
--- 
-2.34.1
-
+Thanks
+Wesley Cheng
 
