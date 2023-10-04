@@ -1,224 +1,228 @@
-Return-Path: <devicetree+bounces-5672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A383D7B7754
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 07:04:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E76F7B77AB
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 08:15:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id 1E8281F21C9C
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 05:04:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 19E6D28131D
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 06:15:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34EB41856;
-	Wed,  4 Oct 2023 05:04:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63A795677;
+	Wed,  4 Oct 2023 06:14:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B13AF17F8
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 05:04:48 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AD32BB
-	for <devicetree@vger.kernel.org>; Tue,  3 Oct 2023 22:04:46 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1qnu3i-0002VK-99; Wed, 04 Oct 2023 07:04:30 +0200
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1qnu3g-00Ax5H-J1; Wed, 04 Oct 2023 07:04:28 +0200
-Received: from mfe by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1qnu3g-00ChlX-Fh; Wed, 04 Oct 2023 07:04:28 +0200
-Date: Wed, 4 Oct 2023 07:04:28 +0200
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Peng Fan <peng.fan@nxp.com>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
-	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C873E23C8
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 06:14:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56A0CA6;
+	Tue,  3 Oct 2023 23:14:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1696400095; x=1727936095;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=g3qhwjm1v949ji/360/hMlwzoSwFbjiqduhc4qJAhGM=;
+  b=EHsA33iGB5T4xwxJdmiVNcJkoA2csciGcHtnsJhwmhfbhOJIXbqFLp+w
+   1Fjf2ASXNR5E2PolwxqtSXjpIXea2h3oBpURjMzuz6ig0YffuCbHeMKA8
+   R0veEZQNPyBNcIonf7QOT4lGJ8mNltWhXfeveITaftGBtQsrXWs3v/L5l
+   nYsw/YaaUSNtgMisUiym6XhmTSO+ttd8s+TMTbAUYDZrr59grQAPblnjg
+   5KPsf9wQ6zRMp8To6OiP1qnJeENqHTOlCUJR8DwXGewg5kJJJcXMSs9Z0
+   8uS+qmWVKBFMkGL+6TN4VorngWvZ97zdyBtq8dIRMJC9v5247/3PSR3NO
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="368128160"
+X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; 
+   d="scan'208";a="368128160"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2023 23:14:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="744807083"
+X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; 
+   d="scan'208";a="744807083"
+Received: from unknown (HELO localhost.localdomain) ([10.226.216.116])
+  by orsmga007.jf.intel.com with ESMTP; 03 Oct 2023 23:14:51 -0700
+From: niravkumar.l.rabara@intel.com
+To: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Stefan Agner <stefan@agner.ch>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	dl-linux-imx <linux-imx@nxp.com>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v5 4/7] gpio: vf610: add i.MX8ULP of_device_id entry
-Message-ID: <20231004050428.o7l2e23xjcjkzzck@pengutronix.de>
-References: <20231001-vf610-gpio-v5-0-8d873a8f224a@nxp.com>
- <20231001-vf610-gpio-v5-4-8d873a8f224a@nxp.com>
- <CAMRc=MdXkFBWMuyr8sbetyP2sJX2QG6Ce=Tsb7RVMguvGdC3TA@mail.gmail.com>
- <DU0PR04MB9417594B2DFDA6056AEC4CB988C5A@DU0PR04MB9417.eurprd04.prod.outlook.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+Cc: linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: mtd: cadence: convert cadence-nand-controller.txt to yaml
+Date: Wed,  4 Oct 2023 14:12:14 +0800
+Message-Id: <20231004061214.17176-1-niravkumar.l.rabara@intel.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <DU0PR04MB9417594B2DFDA6056AEC4CB988C5A@DU0PR04MB9417.eurprd04.prod.outlook.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Peng,
+From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 
-On 23-10-02, Peng Fan wrote:
-> > Subject: Re: [PATCH v5 4/7] gpio: vf610: add i.MX8ULP of_device_id entry
-> > 
-> > On Sun, Oct 1, 2023 at 10:23 AM Peng Fan (OSS) <peng.fan@oss.nxp.com>
-> > wrote:
-> > >
-> > > From: Peng Fan <peng.fan@nxp.com>
-> > >
-> > > i.MX8ULP/93 GPIO supports similar feature as i.MX7ULP GPIO, but
-> > > i.MX8ULP is actually not hardware compatible with i.MX7ULP. i.MX8ULP
-> > > only has one register base, not two bases. i.MX8ULP and i.MX93
-> > > actually has two interrupts for each gpio controller, one for
-> > > Trustzone non-secure world, one for secure world.
-> > >
-> > > Although the Linux Kernel driver gpio-vf610.c could work with
-> > > fsl,imx7ulp-gpio compatible, it is based on some tricks did in device
-> > > tree with some offset added to base address.
-> > >
-> > > Add a new of_device_id entry for i.MX8ULP. But to make the driver
-> > > could also support old bindings, check the compatible string first,
-> > > before check the device data.
-> > >
-> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > > ---
-> > >  drivers/gpio/gpio-vf610.c | 47
-> > > ++++++++++++++++++++++++++++++++++++++++-------
-> > >  1 file changed, 40 insertions(+), 7 deletions(-)
-> > >
-> > > diff --git a/drivers/gpio/gpio-vf610.c b/drivers/gpio/gpio-vf610.c
-> > > index dbc7ba0ee72c..8e12706c0b22 100644
-> > > --- a/drivers/gpio/gpio-vf610.c
-> > > +++ b/drivers/gpio/gpio-vf610.c
-> > > @@ -25,6 +25,7 @@
-> > >  struct fsl_gpio_soc_data {
-> > >         /* SoCs has a Port Data Direction Register (PDDR) */
-> > >         bool have_paddr;
-> > > +       bool have_dual_base;
-> > >  };
-> > >
-> > >  struct vf610_gpio_port {
-> > > @@ -60,13 +61,26 @@ struct vf610_gpio_port {
-> > >  #define PORT_INT_EITHER_EDGE   0xb
-> > >  #define PORT_INT_LOGIC_ONE     0xc
-> > >
-> > > +#define IMX8ULP_GPIO_BASE_OFF  0x40
-> > > +#define IMX8ULP_BASE_OFF       0x80
-> > > +
-> > > +static const struct fsl_gpio_soc_data vf610_data = {
-> > > +       .have_dual_base = true,
-> > > +};
-> > > +
-> > >  static const struct fsl_gpio_soc_data imx_data = {
-> > >         .have_paddr = true,
-> > > +       .have_dual_base = true,
-> > > +};
-> > > +
-> > > +static const struct fsl_gpio_soc_data imx8ulp_data = {
-> > > +       .have_paddr = true,
-> > >  };
-> > >
-> > >  static const struct of_device_id vf610_gpio_dt_ids[] = {
-> > > -       { .compatible = "fsl,vf610-gpio",       .data = NULL, },
-> > > +       { .compatible = "fsl,vf610-gpio",       .data = &vf610_data },
-> > >         { .compatible = "fsl,imx7ulp-gpio",     .data = &imx_data, },
-> > > +       { .compatible = "fsl,imx8ulp-gpio",     .data = &imx8ulp_data, },
-> > >         { /* sentinel */ }
-> > >  };
-> > >
-> > > @@ -263,19 +277,38 @@ static int vf610_gpio_probe(struct
-> > platform_device *pdev)
-> > >         struct gpio_irq_chip *girq;
-> > >         int i;
-> > >         int ret;
-> > > +       bool dual_base;
-> > >
-> > >         port = devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
-> > >         if (!port)
-> > >                 return -ENOMEM;
-> > >
-> > >         port->sdata = of_device_get_match_data(dev);
-> > > -       port->base = devm_platform_ioremap_resource(pdev, 0);
-> > > -       if (IS_ERR(port->base))
-> > > -               return PTR_ERR(port->base);
-> > >
-> > > -       port->gpio_base = devm_platform_ioremap_resource(pdev, 1);
-> > > -       if (IS_ERR(port->gpio_base))
-> > > -               return PTR_ERR(port->gpio_base);
-> > > +       dual_base = port->sdata->have_dual_base;
-> > > +
-> > > +       /* support old compatible strings */
-> > > +       if (device_is_compatible(dev, "fsl,imx7ulp-gpio") &&
-> > > +           (device_is_compatible(dev, "fsl,imx93-gpio") ||
-> > 
-> > Why not just add this compatible to vf610_gpio_dt_ids?
-> 
-> "fsl,imx93-gpio", "fsl,imx7ulp-gpio" is not a correct entry
-> combination. This is to support legacy old compatible
-> strings.
+Convert cadence-nand-controller.txt to yaml format.
 
-The "/* support old compatible strings */" may a bit misleading here?
-Should we be a bit more verbose for the reader of the code, e.g.:
+Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+---
+ .../devicetree/bindings/mtd/cadence,nand.yaml | 73 +++++++++++++++++++
+ .../bindings/mtd/cadence-nand-controller.txt  | 53 --------------
+ 2 files changed, 73 insertions(+), 53 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/cadence,nand.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
 
-		/*
-		 * Handle legacy compatible combinations which used two
-		 * reg values for the i.MX8ULP and i.MX93.
-		 */
+diff --git a/Documentation/devicetree/bindings/mtd/cadence,nand.yaml b/Documentation/devicetree/bindings/mtd/cadence,nand.yaml
+new file mode 100644
+index 000000000000..781812ac702f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mtd/cadence,nand.yaml
+@@ -0,0 +1,73 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mtd/cadence,nand.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Cadence NAND controller
++
++maintainers:
++  - Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
++
++allOf:
++  - $ref: nand-controller.yaml
++
++properties:
++  compatible:
++    items:
++      - const: cdns,hp-nfc
++
++  reg:
++    items:
++      - description: Address and length of the controller register set
++      - description: Address and length of the Slave DMA data port
++
++  reg-names:
++    items:
++      - const: reg
++      - const: sdma
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  dmas:
++    maxItems: 1
++
++  cdns,board-delay-ps:
++    description: |
++      Estimated Board delay. The value includes the total round trip
++      delay for the signals and is used for deciding on values associated
++      with data read capture. The example formula for SDR mode is the
++      following.
++      board delay = RE#PAD delay + PCB trace to device + PCB trace from device
++      + DQ PAD delay
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - interrupts
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++      nand-controller@10b80000 {
++        compatible = "cdns,hp-nfc";
++        reg = <0x10b80000 0x10000>,
++            <0x10840000 0x10000>;
++        reg-names = "reg", "sdma";
++        #address-cells = <1>;
++        #size-cells = <0>;
++        interrupts = <0 97 4>;
++        clocks = <&nf_clk>;
++        cdns,board-delay-ps = <4830>;
++
++        nand@0 {
++            reg = <0>;
++        };
++      };
+diff --git a/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+deleted file mode 100644
+index d2eada5044b2..000000000000
+--- a/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
++++ /dev/null
+@@ -1,53 +0,0 @@
+-* Cadence NAND controller
+-
+-Required properties:
+-  - compatible : "cdns,hp-nfc"
+-  - reg : Contains two entries, each of which is a tuple consisting of a
+-	  physical address and length. The first entry is the address and
+-	  length of the controller register set. The second entry is the
+-	  address and length of the Slave DMA data port.
+-  - reg-names: should contain "reg" and "sdma"
+-  - #address-cells: should be 1. The cell encodes the chip select connection.
+-  - #size-cells : should be 0.
+-  - interrupts : The interrupt number.
+-  - clocks: phandle of the controller core clock (nf_clk).
+-
+-Optional properties:
+-  - dmas: shall reference DMA channel associated to the NAND controller
+-  - cdns,board-delay-ps : Estimated Board delay. The value includes the total
+-    round trip delay for the signals and is used for deciding on values
+-    associated with data read capture. The example formula for SDR mode is
+-    the following:
+-    board delay = RE#PAD delay + PCB trace to device + PCB trace from device
+-    + DQ PAD delay
+-
+-Child nodes represent the available NAND chips.
+-
+-Required properties of NAND chips:
+-  - reg: shall contain the native Chip Select ids from 0 to max supported by
+-    the cadence nand flash controller
+-
+-See Documentation/devicetree/bindings/mtd/nand-controller.yaml for more details on
+-generic bindings.
+-
+-Example:
+-
+-nand_controller: nand-controller@60000000 {
+-	  compatible = "cdns,hp-nfc";
+-	  #address-cells = <1>;
+-	  #size-cells = <0>;
+-	  reg = <0x60000000 0x10000>, <0x80000000 0x10000>;
+-	  reg-names = "reg", "sdma";
+-	  clocks = <&nf_clk>;
+-	  cdns,board-delay-ps = <4830>;
+-	  interrupts = <2 0>;
+-	  nand@0 {
+-	      reg = <0>;
+-	      label = "nand-1";
+-	  };
+-	  nand@1 {
+-	      reg = <1>;
+-	      label = "nand-2";
+-	  };
+-
+-};
+-- 
+2.25.1
 
-Regards,
-  Marco
-
-> 
-> Thanks,
-> Peng.
-> > 
-> > Bart
-> > 
-> > > +           (device_is_compatible(dev, "fsl,imx8ulp-gpio"))))
-> > > +               dual_base = true;
-> > > +
-> > > +       if (dual_base) {
-> > > +               port->base = devm_platform_ioremap_resource(pdev, 0);
-> > > +               if (IS_ERR(port->base))
-> > > +                       return PTR_ERR(port->base);
-> > > +
-> > > +               port->gpio_base = devm_platform_ioremap_resource(pdev, 1);
-> > > +               if (IS_ERR(port->gpio_base))
-> > > +                       return PTR_ERR(port->gpio_base);
-> > > +       } else {
-> > > +               port->base = devm_platform_ioremap_resource(pdev, 0);
-> > > +               if (IS_ERR(port->base))
-> > > +                       return PTR_ERR(port->base);
-> > > +
-> > > +               port->gpio_base = port->base + IMX8ULP_GPIO_BASE_OFF;
-> > > +               port->base = port->base + IMX8ULP_BASE_OFF;
-> > > +       }
-> > >
-> > >         port->irq = platform_get_irq(pdev, 0);
-> > >         if (port->irq < 0)
-> > >
-> > > --
-> > > 2.37.1
-> > >
 
