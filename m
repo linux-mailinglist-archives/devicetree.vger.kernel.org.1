@@ -1,228 +1,129 @@
-Return-Path: <devicetree+bounces-5848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0E4B7B8211
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 16:18:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A8D17B81CC
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 16:07:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 815E028168F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 14:18:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 25841281582
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 14:07:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC56218C30;
-	Wed,  4 Oct 2023 14:18:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D48215EB5;
+	Wed,  4 Oct 2023 14:07:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD8BB15EAE
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 14:18:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29B4AC433C7;
-	Wed,  4 Oct 2023 14:18:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696429094;
-	bh=lneHq+ASicfa1NYo5LSBGIqLFAZQwUrpIzoaUPbVdX8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GByqZwZSWTBoMUWZd4ip6aQ/g+od7RJqstH+fCYHMETJdaH9oEQIgdqkTbhCsM5Gu
-	 a5EKlOxrxtutzNM1OjVtdluHAg02Swhb6yZjLeWNiU4+3sfzJp6qVTUFZ3qONksapD
-	 WZmJgNtCPuynPvN2QJRoQl+2gsvBndMPCgqi7jHzF+GpVjYUhg93lvW12HO5Oap3j5
-	 2o0RjZDynGQX/LPjZ4Ecizli/lir4Tws4hKkPA99LJSYaFcMLWyRx5C64yZ8gdxRdM
-	 2GJB7bgplpmbtQJmYZfEgLv1yjPEoeE8CsvMtkzcQ6gA+T7xYFg5ZoZzf6BIKunYle
-	 gkMNFpW0Y8CFQ==
-Date: Wed, 4 Oct 2023 22:06:03 +0800
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-	Drew Fustini <dfustini@baylibre.com>,
-	Christoph Hellwig <hch@lst.de>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Robert Nelson <robertcnelson@gmail.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
-	Jason Kridner <jkridner@beagleboard.org>,
-	Xi Ruoyao <xry111@xry111.site>, Han Gao <gaohan@iscas.ac.cn>,
-	Icenowy Zheng <uwu@icenowy.me>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	=?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>,
-	Alexandre Ghiti <alexghiti@rivosinc.com>,
-	Linux-MM <linux-mm@kvack.org>
-Subject: Re: [PATCH 0/6] RISC-V: Add eMMC support for TH1520 boards
-Message-ID: <ZR1xSw47Z1/SEIwz@xhacker>
-References: <20230921-th1520-mmc-v1-0-49f76c274fb3@baylibre.com>
- <CAOCHtYhnx1EpBM+o3xhdsicx5uqLidojK3f0HQ+VfyVv1ZXnVQ@mail.gmail.com>
- <CAOCHtYi5Ab5ppCmaQV3QuKQcpmJX+sHdAmtuEXhfq8xf5fFCYQ@mail.gmail.com>
- <ZRuamJuShOnvP1pr@x1>
- <ZR1M3FcdXrDmIGu2@xhacker>
- <CA+V-a8ugwqkQxnX-wwWCHVtBBtG=aVv=MZTc53LbpxtFA=N1_A@mail.gmail.com>
- <bc2b0b30-ab37-f336-c90e-eab570d393a2@arm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD8543FF1
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 14:07:16 +0000 (UTC)
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB377D9
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 07:07:14 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-693375d2028so1685973b3a.2
+        for <devicetree@vger.kernel.org>; Wed, 04 Oct 2023 07:07:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20230601.gappssmtp.com; s=20230601; t=1696428434; x=1697033234; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0z/r1d+J5gtLqP5W7ywKcBZnz9e1tR93kK5cuzURK+U=;
+        b=cL7TMIHvZGILyvQKlG8/69OWPtzvqfwMYHT6bhdpd0Xiot1qkWGebg+HONm1NJG2T1
+         FXl8d6+z6Vp+L6nK1TfmMDLmwFgbnxEdG55WthmMNNUaBqS9t6Znn9UhaW5jUb30CgzU
+         c7NEhpH9UYLE3ds2I61eoIMWuYcekbZbxlylI3faAyahjtr4B3uX8IWjYJlgyvtefOpa
+         kJ6LgbtfM6AMJxux3ptSYePlndpQIsfEJwPwvJITYfUfRyw9SV/QyTNuci2tyzVws7UW
+         CsVx+DMQtR2H0XQrTIGOjGA4j4odKJM/nTThLTYyH9KUUsyHv3Py9Kt5pFEwdozlN6LJ
+         Mi6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696428434; x=1697033234;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0z/r1d+J5gtLqP5W7ywKcBZnz9e1tR93kK5cuzURK+U=;
+        b=r9SOh6kRqihdFmZ85C7JVBikLryvIVmlTmDPOj35ks9HiPbmMjktzR+ZcG9aksvVNd
+         y7NotN9hp5rHTneUhM2ltDJVdFIqNCpG2GjOAUG7Q7LAn4X1DdG+FzIZFEsIeE/LuzLS
+         +yJasJONRJmhuG/5uZq+Ww5U+OHWX7ShORdhcQ1CramD3UMIAjqFgxYNrj+17P8Sw3s5
+         J79qjhVfpSletcalruDKqDBIxd4xOkupPgSl7+DLnbMn9IE/pAUgIRpldL3OXFGejBKJ
+         G5iqXbubZZgx52dKSeVAjlRqemqT8eGHpQcO/alagjVkpQmg4amdayM1ZVbIKAot9cXA
+         W9rQ==
+X-Gm-Message-State: AOJu0YykwTI4zS/AsjX2JVi/S/HBN40mht2B2OlEfYjwNLkI7mGPz7BY
+	rhMw8Onms8VsAfHXdJXCsiLpyw==
+X-Google-Smtp-Source: AGHT+IF0Ml8pf6AjMo5zAtun1w9ROsE0vABhFnVNgCEYK5oMomt4HYMJTvQ3YEhZmBv+2hEuxsmApA==
+X-Received: by 2002:a05:6a00:b8b:b0:68f:d1a7:1a3a with SMTP id g11-20020a056a000b8b00b0068fd1a71a3amr2957250pfj.8.1696428432808;
+        Wed, 04 Oct 2023 07:07:12 -0700 (PDT)
+Received: from localhost ([192.184.165.199])
+        by smtp.gmail.com with ESMTPSA id bm2-20020a056a00320200b0068a13b0b300sm3384998pfb.11.2023.10.04.07.07.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Oct 2023 07:07:11 -0700 (PDT)
+Date: Wed, 04 Oct 2023 07:07:11 -0700 (PDT)
+X-Google-Original-Date: Wed, 04 Oct 2023 07:07:09 PDT (-0700)
+Subject:     Re: [PATCH v3 2/6] RISC-V: Detect Zicond from ISA string
+In-Reply-To: <20231003035226.1945725-3-apatel@ventanamicro.com>
+CC: pbonzini@redhat.com, atishp@atishpatra.org,
+  Paul Walmsley <paul.walmsley@sifive.com>, Conor Dooley <conor@kernel.org>, robh+dt@kernel.org,
+  krzysztof.kozlowski+dt@linaro.org, shuah@kernel.org, ajones@ventanamicro.com, mchitale@ventanamicro.com,
+  devicetree@vger.kernel.org, kvm@vger.kernel.org, kvm-riscv@lists.infradead.org,
+  linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+  apatel@ventanamicro.com, Conor Dooley <conor.dooley@microchip.com>
+From: Palmer Dabbelt <palmer@dabbelt.com>
+To: apatel@ventanamicro.com
+Message-ID: <mhng-4ec1093a-4542-429e-a9f0-8a976cff9ac4@palmer-ri-x1c9>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <bc2b0b30-ab37-f336-c90e-eab570d393a2@arm.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Wed, Oct 04, 2023 at 02:49:56PM +0100, Robin Murphy wrote:
-> On 04/10/2023 2:02 pm, Lad, Prabhakar wrote:
-> > + CC linux-mm and Robin Murphy
-> > 
-> > On Wed, Oct 4, 2023 at 12:42 PM Jisheng Zhang <jszhang@kernel.org> wrote:
-> > > 
-> > > On Mon, Oct 02, 2023 at 09:37:44PM -0700, Drew Fustini wrote:
-> > > > On Fri, Sep 22, 2023 at 05:48:21PM -0500, Robert Nelson wrote:
-> > > > > On Fri, Sep 22, 2023 at 2:08 PM Robert Nelson <robertcnelson@gmail.com> wrote:
-> > > > > > 
-> > > > > > On Thu, Sep 21, 2023 at 8:51 PM Drew Fustini <dfustini@baylibre.com> wrote:
-> > > > > > > 
-> > > > > > > This series adds support for the eMMC on the BeagleV Ahead and the
-> > > > > > > Sipeed LicheePi 4A. This allows the kernel to boot with the rootfs on
-> > > > > > > eMMC.
-> > > > > > > 
-> > > > > > > I tested on top of v6.6-rc2 with this config [1]. I was able to boot
-> > > > > > > both the Ahead [2] and LPi4a [3] from eMMC. The following prerequisites
-> > > > > > > are required:
-> > > > > > > 
-> > > > > > >    [PATCH v2] riscv: dts: thead: set dma-noncoherent to soc bus [4]
-> > > > > > > 
-> > > > > > > I pushed a branch [5] with this patch series and the above patch for
-> > > > > > > those that find a git branch easier to test.
-> > > > > > > 
-> > > > > > > Please note that only the MMC controller connected to the eMMC device
-> > > > > > > is enabled in the device trees for these two boards. I did not yet
-> > > > > > > attempt to configure and use the microSD card slot. My preference is to
-> > > > > > > address that in a future patch series.
-> > > > > > > 
-> > > > > > > References:
-> > > > > > > [1] https://gist.github.com/pdp7/5fbdcf2a65eb1abdd3a29d519c19cdd2
-> > > > > > > [2] https://gist.github.com/pdp7/91a801a5f8d1070c53509eda9800ad78
-> > > > > > > [3] https://gist.github.com/pdp7/1445c3c991e88fd69c60165cef65726a
-> > > > > > > [4] https://lore.kernel.org/linux-riscv/20230912072232.2455-1-jszhang@kernel.org/
-> > > > > > > [5] https://github.com/pdp7/linux/tree/b4/th1520-mmc
-> > > > > > 
-> > > > > > This patchset came out very nice!
-> > > > > > 
-> > > > > > v6.6-rc2 with Last RFC v2:
-> > > > > > 
-> > > > > > [    4.066630] mmc0: SDHCI controller on ffe7080000.mmc
-> > > > > > [ffe7080000.mmc] using PIO
-> > > > > > 
-> > > > > > debian@BeagleV:~$ sudo hdparm -tT /dev/mmcblk0
-> > > > > > 
-> > > > > > /dev/mmcblk0:
-> > > > > >   Timing cached reads:   1516 MB in  2.00 seconds = 758.09 MB/sec
-> > > > > >   Timing buffered disk reads:  84 MB in  3.01 seconds =  27.94 MB/sec
-> > > > > > 
-> > > > > > vs v6.6-rc2 with this patchset:
-> > > > > > 
-> > > > > >   [    4.096837] mmc0: SDHCI controller on ffe7080000.mmc
-> > > > > > [ffe7080000.mmc] using DMA
-> > > > > > 
-> > > > > > debian@BeagleV:~$ sudo hdparm -tT /dev/mmcblk0
-> > > > > > 
-> > > > > > /dev/mmcblk0:
-> > > > > >   Timing cached reads:   1580 MB in  2.00 seconds = 790.97 MB/sec
-> > > > > >   Timing buffered disk reads: 418 MB in  3.00 seconds = 139.11 MB/sec
-> > > > > 
-> > > > > Drew pointed out on Slack, this was not quite right.. After more
-> > > > > digging by Drew, CONFIG_DMA_GLOBAL_POOL is causing a DMA limitation
-> > > > > with the multiplatform defconfig. so with,
-> > > > > 
-> > > > > ./scripts/config --disable CONFIG_ARCH_R9A07G043
-> > > > > 
-> > > > > (to remove CONFIG_DMA_GLOBAL_POOL)... another 2x in buffered reads..
-> > > > > 
-> > > > > [    4.059242] mmc0: SDHCI controller on ffe7080000.mmc
-> > > > > [ffe7080000.mmc] using ADMA 64-bit
-> > > > > 
-> > > > > debian@BeagleV:~$ sudo hdparm -tT /dev/mmcblk0
-> > > > > 
-> > > > > /dev/mmcblk0:
-> > > > >   Timing cached reads:   1600 MB in  2.00 seconds = 800.93 MB/sec
-> > > > >   Timing buffered disk reads: 892 MB in  3.00 seconds = 297.06 MB/sec
-> > > > 
-> > > > It seems CONFIG_DMA_GLOBAL_POOL=y causes ADMA buffer alloc to fail [1]:
-> > > > 
-> > > >    mmc0: Unable to allocate ADMA buffers - falling back to standard DMA
-> > > > 
-> > > > Prabhakar's AX45MP non-coherent DMA support [2] series introduced the
-> > > > selection of DMA_GLOBAL_POOL for ARCH_R9A07G043 and the riscv defconfig
-> > > > selects ARCH_R9A07G043.
-> > > > 
-> > > > Patch 5 in the series [3] states that:
-> > > > 
-> > > >    With DMA_GLOBAL_POOL enabled all DMA allocations happen from this
-> > > >    region and synchronization callbacks are implemented to synchronize
-> > > >    when doing DMA transactions.
-> > > > 
-> > > > This example of a "shared-dma-pool" node was given:
-> > > > 
-> > > >          pma_resv0@58000000 {
-> > > >              compatible = "shared-dma-pool";
-> > > >              reg = <0x0 0x58000000 0x0 0x08000000>;
-> > > >              no-map;
-> > > >              linux,dma-default;
-> > > >          };
-> > > > 
-> > > > I've copied that to th1520-beaglev-ahead.dts. The address of 0x58000000
-> > > > has no significance on th1520, but the existence of shared-dma-pool
-> > > > seems to fix the problem. ADMA mode [4] is now working even though
-> > > > CONFIG_DMA_GLOBAL_POOL=y.
-> > > 
-> > > + Christoph, Lad
-> > > 
-> > > IMHO, this is not TH1520 specific but a generic issue.
-> > > 
-> > > I believe commit 484861e09f3e ("soc: renesas: Kconfig: Select the
-> > > required configs for RZ/Five SoC") can cause regression on all
-> > > non-dma-coherent riscv platforms with generic defconfig. This is
-> > > a common issue. The logic here is: generic riscv defconfig selects
-> > > ARCH_R9A07G043 which selects DMA_GLOBAL_POOL, which assumes all
-> > > non-dma-coherent riscv platforms have a dma global pool, this assumption
-> > > seems not correct. And I believe DMA_GLOBAL_POOL should not be
-> > > selected by ARCH_SOCFAMILIY, instead, only ARCH under some specific
-> > > conditions can select it globaly, for example NOMMU ARM and so on.
-> > > 
-> > > Since this is a regression, what's proper fix? any suggestion is
-> > > appreciated.
-> 
-> I think the answer is to not select DMA_GLOBAL_POOL, since that is only
-> designed for nommu cases where non-cacheable memory lives in a fixed place
-> in the physical address map, and regular kernel pages can't be remapped. As
-> far as I'm aware, RISCV_DMA_NONCOHERENT is the thing you want, such that
-> DMA_DIRECT_REMAP can dynamically provide non-cacheable coherent buffers for
-> non-hardware-coherent devices.
+On Mon, 02 Oct 2023 20:52:22 PDT (-0700), apatel@ventanamicro.com wrote:
+> The RISC-V integer conditional (Zicond) operation extension defines
+> standard conditional arithmetic and conditional-select/move operations
+> which are inspired from the XVentanaCondOps extension. In fact, QEMU
+> RISC-V also has support for emulating Zicond extension.
+>
+> Let us detect Zicond extension from ISA string available through
+> DT or ACPI.
+>
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  arch/riscv/include/asm/hwcap.h | 1 +
+>  arch/riscv/kernel/cpufeature.c | 1 +
+>  2 files changed, 2 insertions(+)
+>
+> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+> index 0f520f7d058a..6fc51c1b34cf 100644
+> --- a/arch/riscv/include/asm/hwcap.h
+> +++ b/arch/riscv/include/asm/hwcap.h
+> @@ -59,6 +59,7 @@
+>  #define RISCV_ISA_EXT_ZIFENCEI		41
+>  #define RISCV_ISA_EXT_ZIHPM		42
+>  #define RISCV_ISA_EXT_SMSTATEEN		43
+> +#define RISCV_ISA_EXT_ZICOND		44
+>
+>  #define RISCV_ISA_EXT_MAX		64
+>
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+> index 3755a8c2a9de..e3803822ab5a 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -167,6 +167,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
+>  	__RISCV_ISA_EXT_DATA(zicbom, RISCV_ISA_EXT_ZICBOM),
+>  	__RISCV_ISA_EXT_DATA(zicboz, RISCV_ISA_EXT_ZICBOZ),
+>  	__RISCV_ISA_EXT_DATA(zicntr, RISCV_ISA_EXT_ZICNTR),
+> +	__RISCV_ISA_EXT_DATA(zicond, RISCV_ISA_EXT_ZICOND),
+>  	__RISCV_ISA_EXT_DATA(zicsr, RISCV_ISA_EXT_ZICSR),
+>  	__RISCV_ISA_EXT_DATA(zifencei, RISCV_ISA_EXT_ZIFENCEI),
+>  	__RISCV_ISA_EXT_DATA(zihintpause, RISCV_ISA_EXT_ZIHINTPAUSE),
 
-Thank Robin!
-AFAIK, ARCH_R9A07G043 needs the dma global pool to handle its CMO. So
-it looks like ARCH_R9A07G043 can't be enabled in riscv generic
-defconfig. And we also need a special solution to prevent random config
-from selecting ARCH_R9A07G043 by chance for other platforms
+Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
 
-Thanks
-> 
-> Thanks,
-> Robin.
-> 
-> > > 
-> > > Thanks
-> > > 
-> > > > 
-> > > > Thanks,
-> > > > Drew
-> > > > 
-> > > > [1] https://gist.github.com/pdp7/73041ed808bbc7dd445836fb90574979
-> > > > [2] https://lore.kernel.org/linux-riscv/20230818135723.80612-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> > > > [3] https://lore.kernel.org/linux-riscv/20230818135723.80612-6-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> > > > [4] https://gist.github.com/pdp7/91e72a663d3bb73eb28182337ad8bbcb
+Can we do a shared tag, though?  These will conflict.
 
