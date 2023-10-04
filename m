@@ -1,124 +1,248 @@
-Return-Path: <devicetree+bounces-5931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C96D47B8B1F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 20:47:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFC8C7B8B41
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 20:50:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 7FAC91C208EF
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 18:47:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id 37ACD1F22D6A
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 18:50:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B1FD1F61F;
-	Wed,  4 Oct 2023 18:47:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 233311F61A;
+	Wed,  4 Oct 2023 18:50:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OitOqkD0"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="QsbIpSBU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5DD61B27F
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 18:47:03 +0000 (UTC)
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D04DE10C;
-	Wed,  4 Oct 2023 11:47:01 -0700 (PDT)
-Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-1c5db4925f9so1609535ad.1;
-        Wed, 04 Oct 2023 11:47:01 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7108A1B27F
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 18:50:05 +0000 (UTC)
+Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D25CDA7
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 11:50:00 -0700 (PDT)
+Received: by mail-qv1-xf33.google.com with SMTP id 6a1803df08f44-668d9c1f70fso475006d6.3
+        for <devicetree@vger.kernel.org>; Wed, 04 Oct 2023 11:50:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696445221; x=1697050021; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oVKOeyfzPTqe/CUiQ9KqX2upeUQqv3i7YeBbchF99cg=;
-        b=OitOqkD0QjTGzvQF29q1oNudgSYliIUeM7GXFmdeOrX3sZjRBNmJMRrb13huiX3b3C
-         nJolSpLlP+6Jn4BbzkakYamo+egMysTnn2nppyqFMjXD31aL1pUYAJYRbH7dhhVwxbNy
-         ZugMF3kkkR7ixehftRdqhLgnWV+Tlu/F2oBQiHB+ZPBDodmbGs6TXdqHLSt41tXNkyw2
-         l/2SaCUPHOKJKFp0F5Hva6VDmxgACdbCIxMsolrbC8/YclHUD8l336kAEQLuXrt3DS3Z
-         qkaiBMAmHqsRNzdCjp4MXWTyQZ2DT4Ql8HHrMqWI0WvoKk4Ne6J73QH/J3uftJ97+nxN
-         4rOQ==
+        d=sifive.com; s=google; t=1696445399; x=1697050199; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aLxg9fH8T1y0yGnPhHcUGUL8dVs76BY9tqGI34u50Bs=;
+        b=QsbIpSBUs1v250EisypmrLo1xZypuMbM2kchknnKaBXNugEvZGKHS6ZnC5LkKIA5HI
+         RkNexXThTo4uZDmP+CH6Ji+frDRYT03SSYNxeH8cmgKaFZgLuaZqX/HbgNhxWazpTJIg
+         SF6OygLNnaOuJHMh42k3lP8vRcYQajUk/goQhWKFF+i0ZBHt33ijTvL+/epwkIPGC3N5
+         kfE8oiE8pqHarj89/dSVZjC4/XDcGT1Z7eXDvbMyPRhbMVFgerGtkdGOX/5XxhygmSrM
+         VB7mvIWAeLmnsgDnLlICZA725CgpfasFEMSovzPw2eifNm5Hi1e31G4HvHW9gAp1cXq9
+         ++/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696445221; x=1697050021;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oVKOeyfzPTqe/CUiQ9KqX2upeUQqv3i7YeBbchF99cg=;
-        b=A1EkiHbR13Q+x8YcOFUlPdm91riMiV5cy49xuqjNSQOMbNt9yBzvynvOmclA/xAGo3
-         dN14siP5+UJ78cuTl5yK8C1IHS7xF8HJxQ9GrG4FkEqWZJyuFrA9rw1zRSfJNLRPnH4b
-         Hai/u2pp8kyR3/aqi3HI11xGG2c9N3cWEHZHoSENXp32m1qAV5jrzcguvYwHG5y+qf8x
-         knigyvYsmreQcsp+72OHIwUJuelda6B29W8Yk8XVEmdvAoJo+KWs5oK4C6kvm7cis75L
-         nsnPHsdMxlJvET6ycbogJ5es8mIhlwbBo3bs16cHz6aYevYpcprv4a5czQ5QgdTbbMzm
-         T13A==
-X-Gm-Message-State: AOJu0YwhXlc6bbALL/boZt/eslbp+bd35nmXp37Oq8oPGBNfQ9I9BGNL
-	vNDAPxLAkXZ4QCs7zLoVDoo=
-X-Google-Smtp-Source: AGHT+IH5EysKla9gMnaPAFHRGkBdj66Ujtdad+jmPuEGAF4TxRvkG3qWjbp6PhDIh9aPwK9b657aJg==
-X-Received: by 2002:a17:902:e80a:b0:1bc:4415:3c1 with SMTP id u10-20020a170902e80a00b001bc441503c1mr681699plg.7.1696445221141;
-        Wed, 04 Oct 2023 11:47:01 -0700 (PDT)
-Received: from toolbox.iitism.net ([103.15.228.93])
-        by smtp.gmail.com with ESMTPSA id j13-20020a170902c3cd00b001b9d95945afsm4063903plj.155.2023.10.04.11.46.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Oct 2023 11:47:00 -0700 (PDT)
-From: Ayush Singh <ayushdevel1325@gmail.com>
-To: greybus-dev@lists.linaro.org
-Cc: Ayush Singh <ayushdevel1325@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	gregkh@linuxfoundation.org,
-	vaishnav@beagleboard.org,
-	jkridner@beagleboard.org,
-	nm@ti.com,
-	krzysztof.kozlowski+dt@linaro.org,
-	vigneshr@ti.com,
-	kristo@kernel.org,
-	robh+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v7 3/3] dts: ti: k3-am625-beagleplay: Add beaglecc1352
-Date: Thu,  5 Oct 2023 00:16:38 +0530
-Message-ID: <20231004184639.462510-4-ayushdevel1325@gmail.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231004184639.462510-1-ayushdevel1325@gmail.com>
-References: <20231004184639.462510-1-ayushdevel1325@gmail.com>
+        d=1e100.net; s=20230601; t=1696445399; x=1697050199;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aLxg9fH8T1y0yGnPhHcUGUL8dVs76BY9tqGI34u50Bs=;
+        b=prhvSwv2wR+OYFUtCfaHhgEIIjRSzECx94Phpk8N9wFJbKcZLv/dt7pDQlFAnb37Lw
+         BVLmITS12qThPkpvyvk5uXzirVHjq+JGYA/cVGg7J1Sy6gBSGOG9PMoD4VysC26Or3Rt
+         xhiIvgLpzTfVXizOl32X29YBmfYhJ4DhVp5oihfM/v7lrODQ5AkAqULBiCsUNuiVlPSI
+         /oqlN36qJar6NE8wnrPDuk4obuKkuhaYpr9YzcDWrgvZOPJ9b+adiOy7GsoZ4AypiV+x
+         tzO5vVql9Y2VlIC4WsEMwvEugbnPWbS2/pjqyIH8h3WlPJLU6Wir5sECk2fTewOvbQqC
+         v0bA==
+X-Gm-Message-State: AOJu0YyBOBsK3JVks5ko+s2iJ+9o0leyzkWb4szx4WHFCBvAe0jEPend
+	uazHXhC6k+jJ5Yg4Ldr1bLBamA==
+X-Google-Smtp-Source: AGHT+IENGPIAeevR+++9VNUaDLPyKIYbr+kdZo6T203e5mzPMqSIxUqcJDFLq+tp33c+F3IchycJlQ==
+X-Received: by 2002:a0c:e54f:0:b0:64a:92e9:10e4 with SMTP id n15-20020a0ce54f000000b0064a92e910e4mr2602325qvm.63.1696445399373;
+        Wed, 04 Oct 2023 11:49:59 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2000:b002:1d3e:176c:909c:5aed? ([2600:1700:2000:b002:1d3e:176c:909c:5aed])
+        by smtp.gmail.com with ESMTPSA id x1-20020a0ce241000000b0065d89f4d537sm1516928qvl.45.2023.10.04.11.49.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Oct 2023 11:49:58 -0700 (PDT)
+Message-ID: <20075b03-e3b0-4f29-9ba1-98eed361a44f@sifive.com>
+Date: Wed, 4 Oct 2023 13:49:56 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/6] RISC-V: Add eMMC support for TH1520 boards
+Content-Language: en-US
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+ Robin Murphy <robin.murphy@arm.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Jisheng Zhang <jszhang@kernel.org>,
+ Drew Fustini <dfustini@baylibre.com>, linux-kernel@vger.kernel.org,
+ Linux-MM <linux-mm@kvack.org>, Guo Ren <guoren@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-riscv@lists.infradead.org, Christoph Hellwig <hch@lst.de>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alexghiti@rivosinc.com>,
+ Arnd Bergmann <arnd@arndb.de>, Han Gao <gaohan@iscas.ac.cn>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Jason Kridner <jkridner@beagleboard.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Robert Nelson <robertcnelson@gmail.com>, linux-mmc@vger.kernel.org,
+ Adrian Hunter <adrian.hunter@intel.com>, Conor Dooley <conor@kernel.org>,
+ =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Xi Ruoyao <xry111@xry111.site>, Fu Wei <wefu@redhat.com>
+References: <20230921-th1520-mmc-v1-0-49f76c274fb3@baylibre.com>
+ <CAOCHtYhnx1EpBM+o3xhdsicx5uqLidojK3f0HQ+VfyVv1ZXnVQ@mail.gmail.com>
+ <CAOCHtYi5Ab5ppCmaQV3QuKQcpmJX+sHdAmtuEXhfq8xf5fFCYQ@mail.gmail.com>
+ <ZRuamJuShOnvP1pr@x1> <ZR1M3FcdXrDmIGu2@xhacker>
+ <CA+V-a8ugwqkQxnX-wwWCHVtBBtG=aVv=MZTc53LbpxtFA=N1_A@mail.gmail.com>
+ <bc2b0b30-ab37-f336-c90e-eab570d393a2@arm.com>
+ <c2ea3f34bb919293b850fab6ed42b61e3517ba35.camel@icenowy.me>
+ <a568a9dd-bab2-1e23-c4d5-9f6475bdcc3b@arm.com>
+ <CA+V-a8s1S4yTH19PVNSznAgUFoHRNoye9CfwjW6iy6PbQ9thew@mail.gmail.com>
+ <CA+V-a8vbWW6=HTfR+FCPOB0bAa8M3Bbm_k=7+XbjOc3ybo6VNQ@mail.gmail.com>
+From: Samuel Holland <samuel.holland@sifive.com>
+In-Reply-To: <CA+V-a8vbWW6=HTfR+FCPOB0bAa8M3Bbm_k=7+XbjOc3ybo6VNQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The BeaglePlay board by BeagleBoard.org has a CC1352P7 co-processor
-connected to the main AM62 (running Linux) over UART. In the BeagleConnect
-Technology, CC1352 is responsible for handling 6LoWPAN communication with
-beagleconnect freedom nodes as well as their discovery.
+On 2023-10-04 12:16 PM, Lad, Prabhakar wrote:
+> On Wed, Oct 4, 2023 at 5:03 PM Lad, Prabhakar
+> <prabhakar.csengg@gmail.com> wrote:
+>>
+>> On Wed, Oct 4, 2023 at 3:18 PM Robin Murphy <robin.murphy@arm.com> wrote:
+>>>
+>>> On 04/10/2023 3:02 pm, Icenowy Zheng wrote:
+>>> [...]
+>>>>>>> I believe commit 484861e09f3e ("soc: renesas: Kconfig: Select the
+>>>>>>> required configs for RZ/Five SoC") can cause regression on all
+>>>>>>> non-dma-coherent riscv platforms with generic defconfig. This is
+>>>>>>> a common issue. The logic here is: generic riscv defconfig
+>>>>>>> selects
+>>>>>>> ARCH_R9A07G043 which selects DMA_GLOBAL_POOL, which assumes all
+>>>>>>> non-dma-coherent riscv platforms have a dma global pool, this
+>>>>>>> assumption
+>>>>>>> seems not correct. And I believe DMA_GLOBAL_POOL should not be
+>>>>>>> selected by ARCH_SOCFAMILIY, instead, only ARCH under some
+>>>>>>> specific
+>>>>>>> conditions can select it globaly, for example NOMMU ARM and so
+>>>>>>> on.
+>>>>>>>
+>>>>>>> Since this is a regression, what's proper fix? any suggestion is
+>>>>>>> appreciated.
+>>>>>
+>>>>> I think the answer is to not select DMA_GLOBAL_POOL, since that is
+>>>>> only
+>>>>
+>>>> Well I think for RISC-V, it's not NOMMU only but applicable for every
+>>>> core that does not support Svpbmt or vendor-specific alternatives,
+>>>> because the original RISC-V priv spec does not define memory attributes
+>>>> in page table entries.
+>>>>
+>>>> For the Renesas/Andes case I think a pool is set by OpenSBI with
+>>>> vendor-specific M-mode facility and then passed in DT, and the S-mode
+>>>> (which MMU is enabled in) just sees fixed memory attributes, in this
+>>>> case I think DMA_GLOBAL_POOL is needed.
+>>>
+>>> Oh wow, is that really a thing? In that case, either you just can't
+>>> support this platform in a multi-platform kernel, or someone needs to do
+>>> some fiddly work in dma-direct to a) introduce the notion of an optional
+>>> global pool,
+>> Looking at the code [0] we do have compile time check for
+>> CONFIG_DMA_GLOBAL_POOL irrespective of this being present in DT or
+>> not, instead if we make it compile time and runtime check ie either
+>> check for DT node or see if pool is available and only then proceed
+>> for allocation form this pool.
+>>
+>> What are your thoughts on this?
+>>
+> Something like the below:
+> 
+> diff --git a/include/linux/dma-map-ops.h b/include/linux/dma-map-ops.h
+> index f2fc203fb8a1..7bf41a4634a4 100644
+> --- a/include/linux/dma-map-ops.h
+> +++ b/include/linux/dma-map-ops.h
+> @@ -198,6 +198,7 @@ int dma_release_from_global_coherent(int order,
+> void *vaddr);
+>  int dma_mmap_from_global_coherent(struct vm_area_struct *vma, void *cpu_addr,
+>                 size_t size, int *ret);
+>  int dma_init_global_coherent(phys_addr_t phys_addr, size_t size);
+> +bool dma_global_pool_available(void);
+>  #else
+>  static inline void *dma_alloc_from_global_coherent(struct device *dev,
+>                 ssize_t size, dma_addr_t *dma_handle)
+> @@ -213,6 +214,10 @@ static inline int
+> dma_mmap_from_global_coherent(struct vm_area_struct *vma,
+>  {
+>         return 0;
+>  }
+> +static inline bool dma_global_pool_available(void)
+> +{
+> +       return false;
+> +}
+>  #endif /* CONFIG_DMA_GLOBAL_POOL */
+> 
+>  /*
+> diff --git a/kernel/dma/coherent.c b/kernel/dma/coherent.c
+> index c21abc77c53e..605f243b8262 100644
+> --- a/kernel/dma/coherent.c
+> +++ b/kernel/dma/coherent.c
+> @@ -277,6 +277,14 @@ int dma_mmap_from_dev_coherent(struct device
+> *dev, struct vm_area_struct *vma,
+>  #ifdef CONFIG_DMA_GLOBAL_POOL
+>  static struct dma_coherent_mem *dma_coherent_default_memory __ro_after_init;
+> 
+> +bool dma_global_pool_available(void)
+> +{
+> +       if (!dma_coherent_default_memory)
+> +               return false;
+> +
+> +       return true;
+> +}
+> +
+>  void *dma_alloc_from_global_coherent(struct device *dev, ssize_t size,
+>                                      dma_addr_t *dma_handle)
+>  {
+> diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
+> index 9596ae1aa0da..a599bb731ceb 100644
+> --- a/kernel/dma/direct.c
+> +++ b/kernel/dma/direct.c
+> @@ -235,7 +235,7 @@ void *dma_direct_alloc(struct device *dev, size_t size,
+>                  * If there is a global pool, always allocate from it for
+>                  * non-coherent devices.
+>                  */
+> -               if (IS_ENABLED(CONFIG_DMA_GLOBAL_POOL))
+> +               if (IS_ENABLED(CONFIG_DMA_GLOBAL_POOL) &&
+> dma_global_pool_available())
+>                         return dma_alloc_from_global_coherent(dev, size,
+>                                         dma_handle);
 
-This mcu is used by gb-beagleplay, a Greybus driver for BeaglePlay.
+dma_alloc_from_global_coherent() already checks dma_coherent_default_memory, so
+the solution could be even simpler:
 
-Signed-off-by: Ayush Singh <ayushdevel1325@gmail.com>
----
- arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+--- a/kernel/dma/direct.c
++++ b/kernel/dma/direct.c
+@@ -232,12 +232,12 @@ void *dma_direct_alloc(struct device *dev, size_t size,
+ 					      attrs);
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-index 7cfdf562b53b..5160923b4dc2 100644
---- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-@@ -870,6 +870,10 @@ &main_uart6 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&wifi_debug_uart_pins_default>;
- 	status = "okay";
-+
-+	mcu {
-+		compatible = "ti,cc1352p7";
-+	};
- };
- 
- &dss {
--- 
-2.41.0
+ 		/*
+-		 * If there is a global pool, always allocate from it for
++		 * If there is a global pool, always try to allocate from it for
+ 		 * non-coherent devices.
+ 		 */
+-		if (IS_ENABLED(CONFIG_DMA_GLOBAL_POOL))
+-			return dma_alloc_from_global_coherent(dev, size,
+-					dma_handle);
++		ret = dma_alloc_from_global_coherent(dev, size, dma_handle);
++		if (ret)
++			return ret;
+
+ 		/*
+ 		 * Otherwise remap if the architecture is asking for it.  But
+
+Regards,
+Samuel
 
 
