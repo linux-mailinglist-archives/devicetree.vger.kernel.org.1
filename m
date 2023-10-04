@@ -1,60 +1,53 @@
-Return-Path: <devicetree+bounces-5665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FC297B76C5
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 05:10:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 324B67B76C9
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 05:13:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id C0CFA2812B7
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 03:10:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 8C1E428131D
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 03:13:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51E5EEC0;
-	Wed,  4 Oct 2023 03:10:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27536ECD;
+	Wed,  4 Oct 2023 03:13:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A74F7811
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 03:10:03 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91824A6;
-	Tue,  3 Oct 2023 20:10:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1696389001; x=1727925001;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=mJnhoo943eKVTSYrVP9yvYUDpIcrgWMkHfVZOqgfH5k=;
-  b=SuvijANy3V00euQbJcJHFHElhVyO/QfkFqbklw9bMUybWmo1x2KFpUhw
-   gXIVQh7wV0x94AMy0Mc+QZXzVzbeFaapGZo2nQwmoQjVOCd58gdESAB/B
-   yNEPFrOgEFPYR5/U1KQAxaCupF38/OanlhHu9B3bxYD9IPZMxXFVJZckp
-   AF1+7HRcjmTTE3DmCj4AGHr0rRHxhvTETZg+T5LNJBYZmcVq9tte/ySSg
-   WdJ0lz3C6or18DCxN1TQEyB/U9mEZFM5V9A2YsKjBMLrkjWLZsgAdc4dx
-   DNntWCrvtpS8zrGMyHvf7uAAXajoIYGkN8dROIMAzMlOqfkoZ4Y3S2hyF
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="362395999"
-X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; 
-   d="scan'208";a="362395999"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2023 20:10:01 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="924889221"
-X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; 
-   d="scan'208";a="924889221"
-Received: from unknown (HELO localhost.localdomain) ([10.226.216.116])
-  by orsmga005.jf.intel.com with ESMTP; 03 Oct 2023 20:09:56 -0700
-From: niravkumar.l.rabara@intel.com
-To: Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9FDEA57;
+	Wed,  4 Oct 2023 03:13:29 +0000 (UTC)
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8483A6;
+	Tue,  3 Oct 2023 20:13:25 -0700 (PDT)
+Received: by codeconstruct.com.au (Postfix, from userid 10001)
+	id 1C94A2009E; Wed,  4 Oct 2023 11:13:23 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1696389203;
+	bh=ny0tqbgMnonpXUjor//ALDMSkh1FdO54mddDOeMRe10=;
+	h=From:To:Cc:Subject:Date;
+	b=L56utQZZTWzVoOwGF4aENga3q85J7njOlCpyhvmMsSyH+Ev5DWpzX3D2G4tSoFBDs
+	 n6dPm3+1e4y75U+jubsIzH0IJrBUi2JgufZjFonDtG+cBIA8tFJfj9pJnuZXgcXOG5
+	 zsMEXUUg3WBFI/CE1D8GtTRjHXMseWS2JGgB0oun5QizHmkOBNGSOci2pefBD05/z+
+	 /WQien5wf2uCb3PPBvXKE/KDKcEDH3/uIQcU9+aIBtjHfvXiLmrblOo/XqOrAcAsuE
+	 ws+OyF88shIUoA7Wz81+qVBgE5hpi6i+8e2WIyC9/hDfju0lLwywaNlGHO1RegAdgJ
+	 LZOGyFyx89Sdw==
+From: Matt Johnston <matt@codeconstruct.com.au>
+To: linux-i3c@lists.infradead.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Eric Dumazet <edumazet@google.com>,
+	Jeremy Kerr <jk@codeconstruct.com.au>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Niravkumar L Rabara <niravkumar.l.rabara@intel.com>,
-	Dinh Nguyen <dinguyen@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: arm: altera: convert socfpga-system.txt to yaml
-Date: Wed,  4 Oct 2023 11:07:23 +0800
-Message-Id: <20231004030723.11082-1-niravkumar.l.rabara@intel.com>
-X-Mailer: git-send-email 2.25.1
+	Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH net-next v4 0/3] I3C MCTP net driver
+Date: Wed,  4 Oct 2023 11:13:13 +0800
+Message-Id: <20231004031316.725107-1-matt@codeconstruct.com.au>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,113 +55,86 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+This series adds an I3C transport for the kernel's MCTP network
+protocol. MCTP is a communication protocol between system components
+(BMCs, drives, NICs etc), with higher level protocols such as NVMe-MI or
+PLDM built on top of it (in userspace). It runs over various transports
+such as I2C, PCIe, or I3C.
 
-Convert socfpga-system.txt to altr,sys-mgr.yaml.
+The mctp-i3c driver follows a similar approach to the kernel's existing
+mctp-i2c driver, creating a "mctpi3cX" network interface for each
+numbered I3C bus. Busses opt in to support by adding a "mctp-controller"
+property to the devicetree:
 
-Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+&i3c0 {
+        mctp-controller;
+}
+
+The driver will bind to MCTP class devices (DCR 0xCC) that are on a
+supported I3C bus. Each bus is represented by a `struct mctp_i3c_bus`
+that keeps state for the network device. An individual I3C device
+(struct mctp_i3c_device) performs operations using the "parent"
+mctp_i3c_bus object. The I3C notify/enumeration patch is needed so that
+the mctp-i3c driver can handle creating/removing mctp_i3c_bus objects as
+required.
+
+The mctp-i3c driver is using the Provisioned ID as an identifier for
+target I3C devices (the neighbour address), as that will be more stable
+than the I3C dynamic address. The driver internally translates that to a
+dynamic address for bus operations.
+
+The driver has been tested using an AST2600 platform. A remote endpoint 
+has been tested against QEMU, as well as using the target mode support 
+in Aspeed's vendor tree.
+
+I3C maintainers have acked merging this through net-next tree.
+
+Thanks,
+Matt
+
 ---
- .../bindings/arm/altera/altr,sys-mgr.yaml     | 50 +++++++++++++++++++
- .../bindings/arm/altera/socfpga-system.txt    | 25 ----------
- 2 files changed, 50 insertions(+), 25 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/arm/altera/altr,sys-mgr.yaml
- delete mode 100644 Documentation/devicetree/bindings/arm/altera/socfpga-system.txt
 
-diff --git a/Documentation/devicetree/bindings/arm/altera/altr,sys-mgr.yaml b/Documentation/devicetree/bindings/arm/altera/altr,sys-mgr.yaml
-new file mode 100644
-index 000000000000..8deb70aef664
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/altera/altr,sys-mgr.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/altera/altr,sys-mgr.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Altera SOCFPGA System Manager
-+
-+maintainers:
-+  - Dinh Nguyen <dinguyen@kernel.org>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - description: Cyclone5/Arria5/Arria10
-+        const: altr,sys-mgr
-+      - description: Stratix10 SoC
-+        items:
-+          - const: altr,sys-mgr-s10
-+          - const: altr,sys-mgr
-+
-+  reg:
-+    maxItems: 1
-+
-+  cpu1-start-addr:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: CPU1 start address in hex
-+
-+required:
-+  - compatible
-+  - reg
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: altr,sys-mgr-s10
-+then:
-+  properties:
-+    cpu1-start-addr: false
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    sysmgr@ffd08000 {
-+      compatible = "altr,sys-mgr";
-+      reg = <0xffd08000 0x1000>;
-+      cpu1-start-addr = <0xffd080c4>;
-+    };
-diff --git a/Documentation/devicetree/bindings/arm/altera/socfpga-system.txt b/Documentation/devicetree/bindings/arm/altera/socfpga-system.txt
-deleted file mode 100644
-index 82edbaaa3f85..000000000000
---- a/Documentation/devicetree/bindings/arm/altera/socfpga-system.txt
-+++ /dev/null
-@@ -1,25 +0,0 @@
--Altera SOCFPGA System Manager
--
--Required properties:
--- compatible : "altr,sys-mgr"
--- reg : Should contain 1 register ranges(address and length)
--- cpu1-start-addr : CPU1 start address in hex.
--
--Example:
--	 sysmgr@ffd08000 {
--		compatible = "altr,sys-mgr";
--		reg = <0xffd08000 0x1000>;
--		cpu1-start-addr = <0xffd080c4>;
--	};
--
--ARM64 - Stratix10
--Required properties:
--- compatible : "altr,sys-mgr-s10"
--- reg : Should contain 1 register range(address and length)
--        for system manager register.
--
--Example:
--	 sysmgr@ffd12000 {
--		compatible = "altr,sys-mgr-s10";
--		reg = <0xffd12000 0x228>;
--	};
+v4:
+
+- Add asm/unaligned.h include
+
+v3:
+
+- Use get_unaligned_be48()
+- Use kthread_run()
+- Don't set net namespace
+
+v2:
+
+- Rebased to net-next
+- Removed unnecessary pr_ printing
+- Fixed reverse christmas tree ordering
+- Reworded DT property description to match I2C
+
+Jeremy Kerr (1):
+  i3c: Add support for bus enumeration & notification
+
+Matt Johnston (2):
+  dt-bindings: i3c: Add mctp-controller property
+  mctp i3c: MCTP I3C driver
+
+ .../devicetree/bindings/i3c/i3c.yaml          |   6 +
+ drivers/i3c/master.c                          |  35 +
+ drivers/net/mctp/Kconfig                      |   9 +
+ drivers/net/mctp/Makefile                     |   1 +
+ drivers/net/mctp/mctp-i3c.c                   | 761 ++++++++++++++++++
+ include/linux/i3c/master.h                    |  11 +
+ 6 files changed, 823 insertions(+)
+ create mode 100644 drivers/net/mctp/mctp-i3c.c
+
 -- 
-2.25.1
+2.39.2
 
 
