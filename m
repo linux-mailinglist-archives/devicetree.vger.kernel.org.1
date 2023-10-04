@@ -1,197 +1,258 @@
-Return-Path: <devicetree+bounces-5792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 387717B7E67
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 13:42:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A54B87B7E34
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 13:31:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 495B61C203DD
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 11:42:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id 39AD91F222FD
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 11:31:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BCEB134A6;
-	Wed,  4 Oct 2023 11:42:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DD7B12B71;
+	Wed,  4 Oct 2023 11:31:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29D3012B8B
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 11:42:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0385EC433C7;
-	Wed,  4 Oct 2023 11:42:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696419764;
-	bh=fyfWdnLL1in84snsB7P+H9eun3ijbjisxGk16TwTc9U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=F4e7oRS6CgYtSKUDfmtLJhKBv08S3FB82BJNHFH7bS9u7LpfroBlPZ7GjxdEUk2k7
-	 Ukzd9Udbh/Dr6wjGvD5uQ+1sUnh7bohewHVUrglOdCAVei1OzBpMCM++2o47yEBWnj
-	 oRCU5/lGRSaeTTgiw6DeyD1QCjBUe3KHFM/MB8qe+UpDmGoHn4nQZeM0v74idTF+SJ
-	 SIyEKyT+529xt/CdmbRDj2WCnDw5WFrP6t4Zss7kqKfTywDNODWJ4InBtVjHXkVYOq
-	 1BgfpHrn0tIV1vYoqAzEzOlD+TkhlopU0Tz7UamhDitPF9luEmQYR90NtOT6/0HY8X
-	 9emfIJVTnjEAw==
-Date: Wed, 4 Oct 2023 19:30:36 +0800
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Drew Fustini <dfustini@baylibre.com>, Christoph Hellwig <hch@lst.de>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc: Robert Nelson <robertcnelson@gmail.com>,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
-	Jason Kridner <jkridner@beagleboard.org>,
-	Xi Ruoyao <xry111@xry111.site>, Han Gao <gaohan@iscas.ac.cn>,
-	Icenowy Zheng <uwu@icenowy.me>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	=?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>,
-	Alexandre Ghiti <alexghiti@rivosinc.com>
-Subject: Re: [PATCH 0/6] RISC-V: Add eMMC support for TH1520 boards
-Message-ID: <ZR1M3FcdXrDmIGu2@xhacker>
-References: <20230921-th1520-mmc-v1-0-49f76c274fb3@baylibre.com>
- <CAOCHtYhnx1EpBM+o3xhdsicx5uqLidojK3f0HQ+VfyVv1ZXnVQ@mail.gmail.com>
- <CAOCHtYi5Ab5ppCmaQV3QuKQcpmJX+sHdAmtuEXhfq8xf5fFCYQ@mail.gmail.com>
- <ZRuamJuShOnvP1pr@x1>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E20C7111AF
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 11:31:10 +0000 (UTC)
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59809A7;
+	Wed,  4 Oct 2023 04:31:08 -0700 (PDT)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-1dd1db54d42so1319762fac.3;
+        Wed, 04 Oct 2023 04:31:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696419067; x=1697023867;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Rm6sz8FblgWT0YVLOcQ3cK2z8WT9exIQjwp4AMuRqJQ=;
+        b=FIvDkeol9jRBgalEZ6+OnqMqfJ+PNpgzlPg/zN7Fyk7JBZviSEsrhOMy7gq4u9+e+K
+         4ytDSPBTfFkiOVPt5cJegsd4jMiY4tFAzHNQReyAoA4X+zssNz+nS0OjdcP3MZPSX8n+
+         MVSlOrFlzCb0XiHF2zMwBhj02GY0T8fFHiyvO3gZrJwl/h6Psug1TlG2ggQAcJyjWqNy
+         SiOqB2Nh03q46mC7JQZzE8wXf8MPxs7EJ1+evuQZDZPGgoDNGJNaNN1gFlXVeVThgW6L
+         kBikTCbFO9I7z30++o0Y+n4QK1dLqw/Tc3i0LDioTB5EkoFj7qAX9KetVn1gujbjSQ44
+         ZJ1g==
+X-Gm-Message-State: AOJu0YzZJj/FhN6/eGsfWcyww+Ahw/h/+aoLS+sdxzge/Z0xHuU9t88R
+	tSOfFnBZyw83DQBmZLZsc+cJFs3uqyvqhw==
+X-Google-Smtp-Source: AGHT+IES6mTASs6ofGmEqPVGSEReAyYSPsGg1luXSNH6ohNwi2o6Wgu50apUx7iRhw74tV/1Ya3I9w==
+X-Received: by 2002:a05:6870:c6a4:b0:1b0:3637:2bbe with SMTP id cv36-20020a056870c6a400b001b036372bbemr2302083oab.54.1696419067022;
+        Wed, 04 Oct 2023 04:31:07 -0700 (PDT)
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
+        by smtp.gmail.com with ESMTPSA id s185-20020a8182c2000000b00582b239674esm1076693ywf.129.2023.10.04.04.31.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Oct 2023 04:31:06 -0700 (PDT)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-59f1dff5298so24256647b3.3;
+        Wed, 04 Oct 2023 04:31:06 -0700 (PDT)
+X-Received: by 2002:a81:918f:0:b0:59b:51d9:1d6e with SMTP id
+ i137-20020a81918f000000b0059b51d91d6emr2122018ywg.6.1696419065791; Wed, 04
+ Oct 2023 04:31:05 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZRuamJuShOnvP1pr@x1>
+References: <20230929053915.1530607-1-claudiu.beznea@bp.renesas.com> <20230929053915.1530607-11-claudiu.beznea@bp.renesas.com>
+In-Reply-To: <20230929053915.1530607-11-claudiu.beznea@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 4 Oct 2023 13:30:53 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUJj+h5LfhQXTNkN3Cp2wP62SX6fY3frzytJQBcKXDJJQ@mail.gmail.com>
+Message-ID: <CAMuHMdUJj+h5LfhQXTNkN3Cp2wP62SX6fY3frzytJQBcKXDJJQ@mail.gmail.com>
+Subject: Re: [PATCH v2 10/28] clk: renesas: rzg2l: refactor sd mux driver
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linus.walleij@linaro.org, gregkh@linuxfoundation.org, jirislaby@kernel.org, 
+	magnus.damm@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
+	quic_bjorande@quicinc.com, konrad.dybcio@linaro.org, arnd@arndb.de, 
+	neil.armstrong@linaro.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	biju.das.jz@bp.renesas.com, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Mon, Oct 02, 2023 at 09:37:44PM -0700, Drew Fustini wrote:
-> On Fri, Sep 22, 2023 at 05:48:21PM -0500, Robert Nelson wrote:
-> > On Fri, Sep 22, 2023 at 2:08 PM Robert Nelson <robertcnelson@gmail.com> wrote:
-> > >
-> > > On Thu, Sep 21, 2023 at 8:51 PM Drew Fustini <dfustini@baylibre.com> wrote:
-> > > >
-> > > > This series adds support for the eMMC on the BeagleV Ahead and the
-> > > > Sipeed LicheePi 4A. This allows the kernel to boot with the rootfs on
-> > > > eMMC.
-> > > >
-> > > > I tested on top of v6.6-rc2 with this config [1]. I was able to boot
-> > > > both the Ahead [2] and LPi4a [3] from eMMC. The following prerequisites
-> > > > are required:
-> > > >
-> > > >   [PATCH v2] riscv: dts: thead: set dma-noncoherent to soc bus [4]
-> > > >
-> > > > I pushed a branch [5] with this patch series and the above patch for
-> > > > those that find a git branch easier to test.
-> > > >
-> > > > Please note that only the MMC controller connected to the eMMC device
-> > > > is enabled in the device trees for these two boards. I did not yet
-> > > > attempt to configure and use the microSD card slot. My preference is to
-> > > > address that in a future patch series.
-> > > >
-> > > > References:
-> > > > [1] https://gist.github.com/pdp7/5fbdcf2a65eb1abdd3a29d519c19cdd2
-> > > > [2] https://gist.github.com/pdp7/91a801a5f8d1070c53509eda9800ad78
-> > > > [3] https://gist.github.com/pdp7/1445c3c991e88fd69c60165cef65726a
-> > > > [4] https://lore.kernel.org/linux-riscv/20230912072232.2455-1-jszhang@kernel.org/
-> > > > [5] https://github.com/pdp7/linux/tree/b4/th1520-mmc
-> > >
-> > > This patchset came out very nice!
-> > >
-> > > v6.6-rc2 with Last RFC v2:
-> > >
-> > > [    4.066630] mmc0: SDHCI controller on ffe7080000.mmc
-> > > [ffe7080000.mmc] using PIO
-> > >
-> > > debian@BeagleV:~$ sudo hdparm -tT /dev/mmcblk0
-> > >
-> > > /dev/mmcblk0:
-> > >  Timing cached reads:   1516 MB in  2.00 seconds = 758.09 MB/sec
-> > >  Timing buffered disk reads:  84 MB in  3.01 seconds =  27.94 MB/sec
-> > >
-> > > vs v6.6-rc2 with this patchset:
-> > >
-> > >  [    4.096837] mmc0: SDHCI controller on ffe7080000.mmc
-> > > [ffe7080000.mmc] using DMA
-> > >
-> > > debian@BeagleV:~$ sudo hdparm -tT /dev/mmcblk0
-> > >
-> > > /dev/mmcblk0:
-> > >  Timing cached reads:   1580 MB in  2.00 seconds = 790.97 MB/sec
-> > >  Timing buffered disk reads: 418 MB in  3.00 seconds = 139.11 MB/sec
-> > 
-> > Drew pointed out on Slack, this was not quite right.. After more
-> > digging by Drew, CONFIG_DMA_GLOBAL_POOL is causing a DMA limitation
-> > with the multiplatform defconfig. so with,
-> > 
-> > ./scripts/config --disable CONFIG_ARCH_R9A07G043
-> > 
-> > (to remove CONFIG_DMA_GLOBAL_POOL)... another 2x in buffered reads..
-> > 
-> > [    4.059242] mmc0: SDHCI controller on ffe7080000.mmc
-> > [ffe7080000.mmc] using ADMA 64-bit
-> > 
-> > debian@BeagleV:~$ sudo hdparm -tT /dev/mmcblk0
-> > 
-> > /dev/mmcblk0:
-> >  Timing cached reads:   1600 MB in  2.00 seconds = 800.93 MB/sec
-> >  Timing buffered disk reads: 892 MB in  3.00 seconds = 297.06 MB/sec
-> 
-> It seems CONFIG_DMA_GLOBAL_POOL=y causes ADMA buffer alloc to fail [1]:
-> 
->   mmc0: Unable to allocate ADMA buffers - falling back to standard DMA
-> 
-> Prabhakar's AX45MP non-coherent DMA support [2] series introduced the
-> selection of DMA_GLOBAL_POOL for ARCH_R9A07G043 and the riscv defconfig
-> selects ARCH_R9A07G043. 
-> 
-> Patch 5 in the series [3] states that:
-> 
->   With DMA_GLOBAL_POOL enabled all DMA allocations happen from this
->   region and synchronization callbacks are implemented to synchronize
->   when doing DMA transactions.
-> 
-> This example of a "shared-dma-pool" node was given:
-> 
->         pma_resv0@58000000 {
->             compatible = "shared-dma-pool";
->             reg = <0x0 0x58000000 0x0 0x08000000>;
->             no-map;
->             linux,dma-default;
->         };
-> 
-> I've copied that to th1520-beaglev-ahead.dts. The address of 0x58000000
-> has no significance on th1520, but the existence of shared-dma-pool
-> seems to fix the problem. ADMA mode [4] is now working even though
-> CONFIG_DMA_GLOBAL_POOL=y.
+Hi Claudiu,
 
-+ Christoph, Lad
+On Fri, Sep 29, 2023 at 7:39=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Refactor SD MUX driver to be able to reuse the same code on RZ/G3S.
+> RZ/G2{L, UL} has a limitation with regards to switching the clock source
+> for SD MUX (MUX clock source has to be switched to 266MHz before switchin=
+g
+> b/w 533MHz and 400MHz). This limitation has been introduced as a clock
+> notifier that is registered on platform based initialization data thus th=
+e
+> SD MUX code could be reused on RZ/G3S.
+>
+> As both RZ/G2{L, UL} and RZ/G3S has specific bits in specific registers
+> to check if the clock switching has been done, this configuration (regist=
+er
+> offset, register bits and bits width) is now passed though
+> struct cpg_core_clk::sconf (status configuration) from platform specific
+> initialization code.
+>
+> Along with struct cpg_core_clk::sconf the mux table indices are also
+> passed from platform specific initialization code.
+>
+> Also, mux flags are now passed to DEF_SD_MUX() as they will be later
+> used by RZ/G3S.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>
+> Changes in v2:
+> - s/indexes/indices in commit description
+> - mentioned in commit description that mux flags can now be passed to
+>   driver though DEF_SD_MUX() macro
+> - removed SoC specific names from macros' names
+> - added spaces after { and before } when initializing arrays
+> - preserved the order of .[gs]set_parent() API definitions for simpler
+>   diff b/w versions
+> - removed SD_MUX_NOTIF macro
 
-IMHO, this is not TH1520 specific but a generic issue.
+Thanks for the update!
 
-I believe commit 484861e09f3e ("soc: renesas: Kconfig: Select the
-required configs for RZ/Five SoC") can cause regression on all
-non-dma-coherent riscv platforms with generic defconfig. This is
-a common issue. The logic here is: generic riscv defconfig selects
-ARCH_R9A07G043 which selects DMA_GLOBAL_POOL, which assumes all
-non-dma-coherent riscv platforms have a dma global pool, this assumption
-seems not correct. And I believe DMA_GLOBAL_POOL should not be
-selected by ARCH_SOCFAMILIY, instead, only ARCH under some specific
-conditions can select it globaly, for example NOMMU ARM and so on.
+> --- a/drivers/clk/renesas/rzg2l-cpg.c
+> +++ b/drivers/clk/renesas/rzg2l-cpg.c
 
-Since this is a regression, what's proper fix? any suggestion is
-appreciated.
+> @@ -142,6 +146,77 @@ static void rzg2l_cpg_del_clk_provider(void *data)
+>         of_clk_del_provider(data);
+>  }
+>
+> +/* Must be called in atomic context. */
+> +static int rzg2l_cpg_wait_clk_update_done(void __iomem *base, u32 conf)
+> +{
+> +       u32 bitmask =3D GENMASK(GET_WIDTH(conf) - 1, 0) << GET_SHIFT(conf=
+);
+> +       u32 off =3D GET_REG_OFFSET(conf);
+> +       u32 val;
+> +
+> +       return readl_poll_timeout_atomic(base + off, val, !(val & bitmask=
+), 10, 200);
+> +}
+> +
+> +int rzg2l_cpg_sd_mux_clk_notifier(struct notifier_block *nb, unsigned lo=
+ng event,
+> +                                 void *data)
+> +{
+> +       struct clk_notifier_data *cnd =3D data;
+> +       struct clk_hw *hw =3D __clk_get_hw(cnd->clk);
+> +       struct clk_hw_data *clk_hw_data =3D to_clk_hw_data(hw);
+> +       struct rzg2l_cpg_priv *priv =3D clk_hw_data->priv;
+> +       u32 off =3D GET_REG_OFFSET(clk_hw_data->conf);
+> +       u32 shift =3D GET_SHIFT(clk_hw_data->conf);
+> +       const u32 clk_src_266 =3D 3;
+> +       unsigned long flags;
+> +       u32 bitmask;
+> +       int ret;
+> +
+> +       if (event !=3D PRE_RATE_CHANGE || (cnd->new_rate / MEGA =3D=3D 26=
+6))
+> +               return 0;
 
-Thanks
+include/linux/clk.h:
 
-> 
-> Thanks,
-> Drew
-> 
-> [1] https://gist.github.com/pdp7/73041ed808bbc7dd445836fb90574979
-> [2] https://lore.kernel.org/linux-riscv/20230818135723.80612-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> [3] https://lore.kernel.org/linux-riscv/20230818135723.80612-6-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> [4] https://gist.github.com/pdp7/91e72a663d3bb73eb28182337ad8bbcb
+ * PRE_RATE_CHANGE - called immediately before the clk rate is changed,
+ *     to indicate that the rate change will proceed.  Drivers must
+ *     immediately terminate any operations that will be affected by the
+ *     rate change.  Callbacks may either return NOTIFY_DONE, NOTIFY_OK,
+ *     NOTIFY_STOP or NOTIFY_BAD.
+
+> +
+> +       spin_lock_irqsave(&priv->rmw_lock, flags);
+> +
+> +       /*
+> +        * As per the HW manual, we should not directly switch from 533 M=
+Hz to
+> +        * 400 MHz and vice versa. To change the setting from 2=E2=80=99b=
+01 (533 MHz)
+> +        * to 2=E2=80=99b10 (400 MHz) or vice versa, Switch to 2=E2=80=99=
+b11 (266 MHz) first,
+> +        * and then switch to the target setting (2=E2=80=99b01 (533 MHz)=
+ or 2=E2=80=99b10
+> +        * (400 MHz)).
+> +        * Setting a value of '0' to the SEL_SDHI0_SET or SEL_SDHI1_SET c=
+lock
+> +        * switching register is prohibited.
+> +        * The clock mux has 3 input clocks(533 MHz, 400 MHz, and 266 MHz=
+), and
+> +        * the index to value mapping is done by adding 1 to the index.
+> +        */
+> +       bitmask =3D (GENMASK(GET_WIDTH(clk_hw_data->conf) - 1, 0) << shif=
+t) << 16;
+> +       writel(bitmask | (clk_src_266 << shift), priv->base + off);
+> +
+> +       /* Wait for the update done. */
+> +       ret =3D rzg2l_cpg_wait_clk_update_done(priv->base, clk_hw_data->s=
+conf);
+> +
+> +       spin_unlock_irqrestore(&priv->rmw_lock, flags);
+> +
+> +       if (ret)
+> +               dev_err(priv->dev, "failed to switch to safe clk source\n=
+");
+> +
+> +       return ret;
+
+Likewise.
+
+> +}
+
+>
+>  static const struct clk_ops rzg2l_cpg_sd_clk_mux_ops =3D {
+>         .determine_rate =3D __clk_mux_determine_rate_closest,
+> -       .set_parent     =3D rzg2l_cpg_sd_clk_mux_set_parent,
+> -       .get_parent     =3D rzg2l_cpg_sd_clk_mux_get_parent,
+> +       .set_parent     =3D rzg2l_cpg_sd_mux_clk_set_parent,
+> +       .get_parent     =3D rzg2l_cpg_sd_mux_clk_get_parent,
+
+Please keep the old names, for consistency with
+__clk_mux_determine_rate_closest() and drivers/clk/clk-mux.c, and to
+reduce the diff.
+
+Any existing inconsistent use of "clk_mux" vs. "mux_clk" can be resolved
+later with a separate patch, if anyone cares.
+
+> --- a/drivers/clk/renesas/rzg2l-cpg.h
+> +++ b/drivers/clk/renesas/rzg2l-cpg.h
+
+> @@ -272,4 +276,6 @@ extern const struct rzg2l_cpg_info r9a07g044_cpg_info=
+;
+>  extern const struct rzg2l_cpg_info r9a07g054_cpg_info;
+>  extern const struct rzg2l_cpg_info r9a09g011_cpg_info;
+>
+> +int rzg2l_cpg_sd_mux_clk_notifier(struct notifier_block *nb, unsigned lo=
+ng event, void *data);
+
+rzg2l_cpg_sd_clk_mux_notifier()?
+
+> +
+>  #endif
+
+The rest LGTM.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
