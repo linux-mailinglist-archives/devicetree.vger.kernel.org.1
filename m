@@ -1,115 +1,68 @@
-Return-Path: <devicetree+bounces-5851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B3227B821C
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 16:18:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 642C47B821B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 16:18:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id D690B281ABB
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 9A68F2816F4
 	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 14:18:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD03718E0D;
-	Wed,  4 Oct 2023 14:18:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D58F818E0A;
+	Wed,  4 Oct 2023 14:18:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CEDA182AE
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C473318E06
 	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 14:18:30 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 58743AB;
-	Wed,  4 Oct 2023 07:18:28 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6C5C7DA7;
-	Wed,  4 Oct 2023 07:19:06 -0700 (PDT)
-Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8454B3F59C;
-	Wed,  4 Oct 2023 07:18:24 -0700 (PDT)
-Message-ID: <a568a9dd-bab2-1e23-c4d5-9f6475bdcc3b@arm.com>
-Date: Wed, 4 Oct 2023 15:18:23 +0100
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A485C433C9;
+	Wed,  4 Oct 2023 14:18:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696429110;
+	bh=1K/ESMwnOEMlbEG9ktb1fmA9mzOtZ+tcyEgq1mER8VQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EKeXBf043zVs66pXD4O0UHu/p2vS+VtUJoZpZnPe3MFu7kuCfxXHTK/pn5LcZEU+K
+	 unMw32EXe+VpIjDIvFS3HL9RWjcI1xZGri6/Ze2X3BVT7+nrXnjoTvCJ4Xe3vKcrPt
+	 Vh6w95bg3VaB7uYsheFHoFDifHDZj3JDsYd8GBKwJPventY43RU5eZgCaLnm24ReOJ
+	 G3UYBbpdyenoDpKRSiuhBO6FZdh3mswiL7ss4VgqUSWYH5su1IAU0Pxd0uT/mIy8+v
+	 BoK3t4VzubAhNqdF1P43Vu9RTHmJxX3bk7tmi8BCozslpy8M/+uKGtqr/3w6JK3bTf
+	 O6ggqxvpyj2uA==
+Received: (nullmailer pid 2974241 invoked by uid 1000);
+	Wed, 04 Oct 2023 14:18:28 -0000
+Date: Wed, 4 Oct 2023 09:18:28 -0500
+From: Rob Herring <robh@kernel.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>, Sakari Ailus <sakari.ailus@linux.intel.com>, Jacopo Mondi <jacopo+renesas@jmondi.org>
+Subject: Re: [PATCH] dt-bindings: media: renesas,vin: Fix field-even-active
+ spelling
+Message-ID: <169642910594.2973718.8843179693428717704.robh@kernel.org>
+References: <c999eef0a14c8678f56eb698d27b2243e09afed4.1696328563.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 0/6] RISC-V: Add eMMC support for TH1520 boards
-Content-Language: en-GB
-To: Icenowy Zheng <uwu@icenowy.me>,
- "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
- Jisheng Zhang <jszhang@kernel.org>
-Cc: Drew Fustini <dfustini@baylibre.com>, Christoph Hellwig <hch@lst.de>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Robert Nelson <robertcnelson@gmail.com>, Ulf Hansson
- <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>,
- Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Conor Dooley <conor@kernel.org>, Jason Kridner <jkridner@beagleboard.org>,
- Xi Ruoyao <xry111@xry111.site>, Han Gao <gaohan@iscas.ac.cn>,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>,
- Alexandre Ghiti <alexghiti@rivosinc.com>, Linux-MM <linux-mm@kvack.org>
-References: <20230921-th1520-mmc-v1-0-49f76c274fb3@baylibre.com>
- <CAOCHtYhnx1EpBM+o3xhdsicx5uqLidojK3f0HQ+VfyVv1ZXnVQ@mail.gmail.com>
- <CAOCHtYi5Ab5ppCmaQV3QuKQcpmJX+sHdAmtuEXhfq8xf5fFCYQ@mail.gmail.com>
- <ZRuamJuShOnvP1pr@x1> <ZR1M3FcdXrDmIGu2@xhacker>
- <CA+V-a8ugwqkQxnX-wwWCHVtBBtG=aVv=MZTc53LbpxtFA=N1_A@mail.gmail.com>
- <bc2b0b30-ab37-f336-c90e-eab570d393a2@arm.com>
- <c2ea3f34bb919293b850fab6ed42b61e3517ba35.camel@icenowy.me>
-From: Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <c2ea3f34bb919293b850fab6ed42b61e3517ba35.camel@icenowy.me>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c999eef0a14c8678f56eb698d27b2243e09afed4.1696328563.git.geert+renesas@glider.be>
 
-On 04/10/2023 3:02 pm, Icenowy Zheng wrote:
-[...]
->>>> I believe commit 484861e09f3e ("soc: renesas: Kconfig: Select the
->>>> required configs for RZ/Five SoC") can cause regression on all
->>>> non-dma-coherent riscv platforms with generic defconfig. This is
->>>> a common issue. The logic here is: generic riscv defconfig
->>>> selects
->>>> ARCH_R9A07G043 which selects DMA_GLOBAL_POOL, which assumes all
->>>> non-dma-coherent riscv platforms have a dma global pool, this
->>>> assumption
->>>> seems not correct. And I believe DMA_GLOBAL_POOL should not be
->>>> selected by ARCH_SOCFAMILIY, instead, only ARCH under some
->>>> specific
->>>> conditions can select it globaly, for example NOMMU ARM and so
->>>> on.
->>>>
->>>> Since this is a regression, what's proper fix? any suggestion is
->>>> appreciated.
->>
->> I think the answer is to not select DMA_GLOBAL_POOL, since that is
->> only
+
+On Tue, 03 Oct 2023 12:22:57 +0200, Geert Uytterhoeven wrote:
+> make dt_binding_check:
 > 
-> Well I think for RISC-V, it's not NOMMU only but applicable for every
-> core that does not support Svpbmt or vendor-specific alternatives,
-> because the original RISC-V priv spec does not define memory attributes
-> in page table entries.
+>     field-active-even: missing type definition
 > 
-> For the Renesas/Andes case I think a pool is set by OpenSBI with
-> vendor-specific M-mode facility and then passed in DT, and the S-mode
-> (which MMU is enabled in) just sees fixed memory attributes, in this
-> case I think DMA_GLOBAL_POOL is needed.
+> The property is named "field-even-active", not "field-active-even".
+> 
+> Fixes: 3ab7801dfab998a2 ("media: dt-bindings: media: rcar-vin: Describe optional ep properties")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  Documentation/devicetree/bindings/media/renesas,vin.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
 
-Oh wow, is that really a thing? In that case, either you just can't 
-support this platform in a multi-platform kernel, or someone needs to do 
-some fiddly work in dma-direct to a) introduce the notion of an optional 
-global pool, and b) make it somehow cope with DMA_DIRECT_REMAP being 
-enabled but non-functional.
+Applied, thanks!
 
-Thanks,
-Robin.
 
