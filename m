@@ -1,139 +1,174 @@
-Return-Path: <devicetree+bounces-5664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2B667B76B3
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 04:50:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FC297B76C5
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 05:10:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 9D67CB207D5
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 02:50:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id C0CFA2812B7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 03:10:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36382EBF;
-	Wed,  4 Oct 2023 02:50:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51E5EEC0;
+	Wed,  4 Oct 2023 03:10:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2682A57
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 02:50:24 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D419B0;
-	Tue,  3 Oct 2023 19:50:23 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A74F7811
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 03:10:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91824A6;
+	Tue,  3 Oct 2023 20:10:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1696387823; x=1727923823;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ClnmhsCaFZlRhEZGTnrJ+4K60cvJZGFBAonbTN8b/Ns=;
-  b=mYP9kx4jJ/V7ONPjZkpE4i0P7e+gO9awOPVpM7cX3QLVTXvXxIUd7POt
-   zimNXAxb8t2v/8dqBlg84Ly4M8fqdzJALw9s6Nqq2aTPVLREfD2M3nFr3
-   uMDZ7Hmhy22efEmUNgRldOP3HDQtv2LdNzrOMR5vwnbnFjc94eLBJJydR
-   s993rvZZpsp0ttHPmEEgZVViznpH/OKiN5J4Onw4P/rfUZvpgJmNAT1Jf
-   A951ZqfxLLUWmwWrfbZ4Ol2MLh4aF0Rpi+YLdqS9CWxI90Uip9JFJFl4T
-   t01+aRgdA2+FpQvrZgQuo3ZokcdEQRgOYdEvWTEBxjm+4qfel5hba5P2z
+  t=1696389001; x=1727925001;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=mJnhoo943eKVTSYrVP9yvYUDpIcrgWMkHfVZOqgfH5k=;
+  b=SuvijANy3V00euQbJcJHFHElhVyO/QfkFqbklw9bMUybWmo1x2KFpUhw
+   gXIVQh7wV0x94AMy0Mc+QZXzVzbeFaapGZo2nQwmoQjVOCd58gdESAB/B
+   yNEPFrOgEFPYR5/U1KQAxaCupF38/OanlhHu9B3bxYD9IPZMxXFVJZckp
+   AF1+7HRcjmTTE3DmCj4AGHr0rRHxhvTETZg+T5LNJBYZmcVq9tte/ySSg
+   WdJ0lz3C6or18DCxN1TQEyB/U9mEZFM5V9A2YsKjBMLrkjWLZsgAdc4dx
+   DNntWCrvtpS8zrGMyHvf7uAAXajoIYGkN8dROIMAzMlOqfkoZ4Y3S2hyF
    w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="413955805"
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="362395999"
 X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; 
-   d="scan'208";a="413955805"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2023 19:50:23 -0700
+   d="scan'208";a="362395999"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2023 20:10:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="867135637"
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="924889221"
 X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; 
-   d="scan'208";a="867135637"
-Received: from lkp-server02.sh.intel.com (HELO c3b01524d57c) ([10.239.97.151])
-  by fmsmga002.fm.intel.com with ESMTP; 03 Oct 2023 19:50:19 -0700
-Received: from kbuild by c3b01524d57c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qnrxp-000AOs-0N;
-	Wed, 04 Oct 2023 02:50:17 +0000
-Date: Wed, 4 Oct 2023 10:50:17 +0800
-From: kernel test robot <lkp@intel.com>
-To: karelb@gimli.ms.mff.cuni.cz, Markuss Broks <markuss.broks@gmail.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+   d="scan'208";a="924889221"
+Received: from unknown (HELO localhost.localdomain) ([10.226.216.116])
+  by orsmga005.jf.intel.com with ESMTP; 03 Oct 2023 20:09:56 -0700
+From: niravkumar.l.rabara@intel.com
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht
-Cc: oe-kbuild-all@lists.linux.dev,
-	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-	Karel Balej <karelb@gimli.ms.mff.cuni.cz>
-Subject: Re: [PATCH v2 3/5] input/touchscreen: imagis: Add support for Imagis
- IST3038B
-Message-ID: <202310041036.tddy1jGm-lkp@intel.com>
-References: <20231003133440.4696-4-karelb@gimli.ms.mff.cuni.cz>
+	Niravkumar L Rabara <niravkumar.l.rabara@intel.com>,
+	Dinh Nguyen <dinguyen@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: arm: altera: convert socfpga-system.txt to yaml
+Date: Wed,  4 Oct 2023 11:07:23 +0800
+Message-Id: <20231004030723.11082-1-niravkumar.l.rabara@intel.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231003133440.4696-4-karelb@gimli.ms.mff.cuni.cz>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi,
+From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 
-kernel test robot noticed the following build warnings:
+Convert socfpga-system.txt to altr,sys-mgr.yaml.
 
-[auto build test WARNING on dtor-input/next]
-[also build test WARNING on dtor-input/for-linus robh/for-next linus/master v6.6-rc4 next-20231003]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+---
+ .../bindings/arm/altera/altr,sys-mgr.yaml     | 50 +++++++++++++++++++
+ .../bindings/arm/altera/socfpga-system.txt    | 25 ----------
+ 2 files changed, 50 insertions(+), 25 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/altera/altr,sys-mgr.yaml
+ delete mode 100644 Documentation/devicetree/bindings/arm/altera/socfpga-system.txt
 
-url:    https://github.com/intel-lab-lkp/linux/commits/karelb-gimli-ms-mff-cuni-cz/input-touchscreen-imagis-Correct-the-maximum-touch-area-value/20231003-213739
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
-patch link:    https://lore.kernel.org/r/20231003133440.4696-4-karelb%40gimli.ms.mff.cuni.cz
-patch subject: [PATCH v2 3/5] input/touchscreen: imagis: Add support for Imagis IST3038B
-config: x86_64-randconfig-004-20231004 (https://download.01.org/0day-ci/archive/20231004/202310041036.tddy1jGm-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231004/202310041036.tddy1jGm-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310041036.tddy1jGm-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/input/touchscreen/imagis.c:374:39: warning: 'imagis_3038c_data' defined but not used [-Wunused-const-variable=]
-     374 | static const struct imagis_properties imagis_3038c_data = {
-         |                                       ^~~~~~~~~~~~~~~~~
->> drivers/input/touchscreen/imagis.c:366:39: warning: 'imagis_3038b_data' defined but not used [-Wunused-const-variable=]
-     366 | static const struct imagis_properties imagis_3038b_data = {
-         |                                       ^~~~~~~~~~~~~~~~~
-
-
-vim +/imagis_3038c_data +374 drivers/input/touchscreen/imagis.c
-
-   365	
- > 366	static const struct imagis_properties imagis_3038b_data = {
-   367		.interrupt_msg_cmd = IST3038B_REG_STATUS,
-   368		.touch_coord_cmd = IST3038B_REG_STATUS,
-   369		.whoami_cmd = IST3038B_REG_CHIPID,
-   370		.whoami_val = IST3038B_WHOAMI,
-   371		.protocol_b = true,
-   372	};
-   373	
- > 374	static const struct imagis_properties imagis_3038c_data = {
-   375		.interrupt_msg_cmd = IST3038C_REG_INTR_MESSAGE,
-   376		.touch_coord_cmd = IST3038C_REG_TOUCH_COORD,
-   377		.whoami_cmd = IST3038C_REG_CHIPID,
-   378		.whoami_val = IST3038C_WHOAMI,
-   379	};
-   380	
-
+diff --git a/Documentation/devicetree/bindings/arm/altera/altr,sys-mgr.yaml b/Documentation/devicetree/bindings/arm/altera/altr,sys-mgr.yaml
+new file mode 100644
+index 000000000000..8deb70aef664
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/altera/altr,sys-mgr.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/altera/altr,sys-mgr.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Altera SOCFPGA System Manager
++
++maintainers:
++  - Dinh Nguyen <dinguyen@kernel.org>
++
++properties:
++  compatible:
++    oneOf:
++      - description: Cyclone5/Arria5/Arria10
++        const: altr,sys-mgr
++      - description: Stratix10 SoC
++        items:
++          - const: altr,sys-mgr-s10
++          - const: altr,sys-mgr
++
++  reg:
++    maxItems: 1
++
++  cpu1-start-addr:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: CPU1 start address in hex
++
++required:
++  - compatible
++  - reg
++
++if:
++  properties:
++    compatible:
++      contains:
++        const: altr,sys-mgr-s10
++then:
++  properties:
++    cpu1-start-addr: false
++
++additionalProperties: false
++
++examples:
++  - |
++    sysmgr@ffd08000 {
++      compatible = "altr,sys-mgr";
++      reg = <0xffd08000 0x1000>;
++      cpu1-start-addr = <0xffd080c4>;
++    };
+diff --git a/Documentation/devicetree/bindings/arm/altera/socfpga-system.txt b/Documentation/devicetree/bindings/arm/altera/socfpga-system.txt
+deleted file mode 100644
+index 82edbaaa3f85..000000000000
+--- a/Documentation/devicetree/bindings/arm/altera/socfpga-system.txt
++++ /dev/null
+@@ -1,25 +0,0 @@
+-Altera SOCFPGA System Manager
+-
+-Required properties:
+-- compatible : "altr,sys-mgr"
+-- reg : Should contain 1 register ranges(address and length)
+-- cpu1-start-addr : CPU1 start address in hex.
+-
+-Example:
+-	 sysmgr@ffd08000 {
+-		compatible = "altr,sys-mgr";
+-		reg = <0xffd08000 0x1000>;
+-		cpu1-start-addr = <0xffd080c4>;
+-	};
+-
+-ARM64 - Stratix10
+-Required properties:
+-- compatible : "altr,sys-mgr-s10"
+-- reg : Should contain 1 register range(address and length)
+-        for system manager register.
+-
+-Example:
+-	 sysmgr@ffd12000 {
+-		compatible = "altr,sys-mgr-s10";
+-		reg = <0xffd12000 0x228>;
+-	};
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.25.1
+
 
