@@ -1,129 +1,200 @@
-Return-Path: <devicetree+bounces-5845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A8D17B81CC
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 16:07:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 921A37B81FA
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 16:15:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 25841281582
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 14:07:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 43D09281686
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 14:15:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D48215EB5;
-	Wed,  4 Oct 2023 14:07:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95436182AE;
+	Wed,  4 Oct 2023 14:15:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD8543FF1
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 14:07:16 +0000 (UTC)
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB377D9
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 07:07:14 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-693375d2028so1685973b3a.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Oct 2023 07:07:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20230601.gappssmtp.com; s=20230601; t=1696428434; x=1697033234; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0z/r1d+J5gtLqP5W7ywKcBZnz9e1tR93kK5cuzURK+U=;
-        b=cL7TMIHvZGILyvQKlG8/69OWPtzvqfwMYHT6bhdpd0Xiot1qkWGebg+HONm1NJG2T1
-         FXl8d6+z6Vp+L6nK1TfmMDLmwFgbnxEdG55WthmMNNUaBqS9t6Znn9UhaW5jUb30CgzU
-         c7NEhpH9UYLE3ds2I61eoIMWuYcekbZbxlylI3faAyahjtr4B3uX8IWjYJlgyvtefOpa
-         kJ6LgbtfM6AMJxux3ptSYePlndpQIsfEJwPwvJITYfUfRyw9SV/QyTNuci2tyzVws7UW
-         CsVx+DMQtR2H0XQrTIGOjGA4j4odKJM/nTThLTYyH9KUUsyHv3Py9Kt5pFEwdozlN6LJ
-         Mi6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696428434; x=1697033234;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0z/r1d+J5gtLqP5W7ywKcBZnz9e1tR93kK5cuzURK+U=;
-        b=r9SOh6kRqihdFmZ85C7JVBikLryvIVmlTmDPOj35ks9HiPbmMjktzR+ZcG9aksvVNd
-         y7NotN9hp5rHTneUhM2ltDJVdFIqNCpG2GjOAUG7Q7LAn4X1DdG+FzIZFEsIeE/LuzLS
-         +yJasJONRJmhuG/5uZq+Ww5U+OHWX7ShORdhcQ1CramD3UMIAjqFgxYNrj+17P8Sw3s5
-         J79qjhVfpSletcalruDKqDBIxd4xOkupPgSl7+DLnbMn9IE/pAUgIRpldL3OXFGejBKJ
-         G5iqXbubZZgx52dKSeVAjlRqemqT8eGHpQcO/alagjVkpQmg4amdayM1ZVbIKAot9cXA
-         W9rQ==
-X-Gm-Message-State: AOJu0YykwTI4zS/AsjX2JVi/S/HBN40mht2B2OlEfYjwNLkI7mGPz7BY
-	rhMw8Onms8VsAfHXdJXCsiLpyw==
-X-Google-Smtp-Source: AGHT+IF0Ml8pf6AjMo5zAtun1w9ROsE0vABhFnVNgCEYK5oMomt4HYMJTvQ3YEhZmBv+2hEuxsmApA==
-X-Received: by 2002:a05:6a00:b8b:b0:68f:d1a7:1a3a with SMTP id g11-20020a056a000b8b00b0068fd1a71a3amr2957250pfj.8.1696428432808;
-        Wed, 04 Oct 2023 07:07:12 -0700 (PDT)
-Received: from localhost ([192.184.165.199])
-        by smtp.gmail.com with ESMTPSA id bm2-20020a056a00320200b0068a13b0b300sm3384998pfb.11.2023.10.04.07.07.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Oct 2023 07:07:11 -0700 (PDT)
-Date: Wed, 04 Oct 2023 07:07:11 -0700 (PDT)
-X-Google-Original-Date: Wed, 04 Oct 2023 07:07:09 PDT (-0700)
-Subject:     Re: [PATCH v3 2/6] RISC-V: Detect Zicond from ISA string
-In-Reply-To: <20231003035226.1945725-3-apatel@ventanamicro.com>
-CC: pbonzini@redhat.com, atishp@atishpatra.org,
-  Paul Walmsley <paul.walmsley@sifive.com>, Conor Dooley <conor@kernel.org>, robh+dt@kernel.org,
-  krzysztof.kozlowski+dt@linaro.org, shuah@kernel.org, ajones@ventanamicro.com, mchitale@ventanamicro.com,
-  devicetree@vger.kernel.org, kvm@vger.kernel.org, kvm-riscv@lists.infradead.org,
-  linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-  apatel@ventanamicro.com, Conor Dooley <conor.dooley@microchip.com>
-From: Palmer Dabbelt <palmer@dabbelt.com>
-To: apatel@ventanamicro.com
-Message-ID: <mhng-4ec1093a-4542-429e-a9f0-8a976cff9ac4@palmer-ri-x1c9>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 856B4171C3
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 14:15:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21FC7C433C7;
+	Wed,  4 Oct 2023 14:15:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696428952;
+	bh=YMXqF2086IHwMBRj5Tp+vck/KJO+L/Ns77eunTZpu38=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uZz1Ace7zromvNOtNZ4hnSiqZPOUIaULVa4vxoBbHhvOuGOMTIOuIzV/RPeRnVWSz
+	 ciCvK8IxHezXNuDNVQfeTMV9cjOCh57h59zDgjLyBfpXnCttUtH0Qpzp04DbhIG5c2
+	 Tl2EQHyN9vyR4pWZEwlSL1LIPToxRkouQnigK3O6R1OUgRfR8bULuWJcZFenCNIKQu
+	 RaKjttfSLv1YS7L8yaDpVgYSE5HmDgAE6h6SPbdIaPKCJcbLKCYaqBgXCA/rT1zqZH
+	 QLrhs5eIEqqUf0A9OXNHbSfl62diFVdPccWV5hLZQlKyKvtE7I9oOdFxapi8AoZna0
+	 bL4v/mRfteS1g==
+Received: (nullmailer pid 2947266 invoked by uid 1000);
+	Wed, 04 Oct 2023 14:15:49 -0000
+Date: Wed, 4 Oct 2023 09:15:49 -0500
+From: Rob Herring <robh@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Lizhi Hou <lizhi.hou@amd.com>, Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>, Horatiu Vultur <horatiu.vultur@microchip.com>, Steen Hegelund <steen.hegelund@microchip.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 1/1] of: address: Fix address translation when
+ address-size is greater than 2
+Message-ID: <20231004141549.GA2793277-robh@kernel.org>
+References: <20231003065236.121987-1-herve.codina@bootlin.com>
+ <CAL_Jsq+O245=TZQG5UsQS2xxBp0BRC2szg9vgbNsxKFBpPcvag@mail.gmail.com>
+ <20231004110701.0c9aa467@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+In-Reply-To: <20231004110701.0c9aa467@bootlin.com>
 
-On Mon, 02 Oct 2023 20:52:22 PDT (-0700), apatel@ventanamicro.com wrote:
-> The RISC-V integer conditional (Zicond) operation extension defines
-> standard conditional arithmetic and conditional-select/move operations
-> which are inspired from the XVentanaCondOps extension. In fact, QEMU
-> RISC-V also has support for emulating Zicond extension.
->
-> Let us detect Zicond extension from ISA string available through
-> DT or ACPI.
->
-> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  arch/riscv/include/asm/hwcap.h | 1 +
->  arch/riscv/kernel/cpufeature.c | 1 +
->  2 files changed, 2 insertions(+)
->
-> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-> index 0f520f7d058a..6fc51c1b34cf 100644
-> --- a/arch/riscv/include/asm/hwcap.h
-> +++ b/arch/riscv/include/asm/hwcap.h
-> @@ -59,6 +59,7 @@
->  #define RISCV_ISA_EXT_ZIFENCEI		41
->  #define RISCV_ISA_EXT_ZIHPM		42
->  #define RISCV_ISA_EXT_SMSTATEEN		43
-> +#define RISCV_ISA_EXT_ZICOND		44
->
->  #define RISCV_ISA_EXT_MAX		64
->
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> index 3755a8c2a9de..e3803822ab5a 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -167,6 +167,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
->  	__RISCV_ISA_EXT_DATA(zicbom, RISCV_ISA_EXT_ZICBOM),
->  	__RISCV_ISA_EXT_DATA(zicboz, RISCV_ISA_EXT_ZICBOZ),
->  	__RISCV_ISA_EXT_DATA(zicntr, RISCV_ISA_EXT_ZICNTR),
-> +	__RISCV_ISA_EXT_DATA(zicond, RISCV_ISA_EXT_ZICOND),
->  	__RISCV_ISA_EXT_DATA(zicsr, RISCV_ISA_EXT_ZICSR),
->  	__RISCV_ISA_EXT_DATA(zifencei, RISCV_ISA_EXT_ZIFENCEI),
->  	__RISCV_ISA_EXT_DATA(zihintpause, RISCV_ISA_EXT_ZIHINTPAUSE),
+On Wed, Oct 04, 2023 at 11:07:01AM +0200, Herve Codina wrote:
+> On Tue, 3 Oct 2023 16:12:25 -0500
+> Rob Herring <robh+dt@kernel.org> wrote:
+> 
+> > On Tue, Oct 3, 2023 at 1:53 AM Herve Codina <herve.codina@bootlin.com> wrote:
+> > >
+> > > With the recent addition of of_pci_prop_ranges() in commit 407d1a51921e
+> > > ("PCI: Create device tree node for bridge"), the ranges property can
+> > > have a 3 cells child address, a 3 cells parent address and a 2 cells
+> > > child size.  
+> > 
+> > Sigh. I'm starting to regret applying this for 6.6... You failed to Cc
+> > the AMD folks too. Lizhi now added.
+> > 
+> > What's different here from the test cases? The having 3 cells in
+> > parent and child?
+> 
+> Are you talking about of_unittest_pci_node()?
 
-Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+That and there's a non-PCI one.
 
-Can we do a shared tag, though?  These will conflict.
+> I so, only BAR0 is used and the DT overlay  is
+> 	fragment@0 {
+> 		target-path="";
+> 		__overlay__ {
+> 			#address-cells = <3>;
+> 			#size-cells = <2>;
+> 			pci-ep-bus@0 {
+> 				compatible = "simple-bus";
+> 				#address-cells = <1>;
+> 				#size-cells = <1>;
+> 				ranges = <0x0 0x0 0x0 0x0 0x1000>;
+> 				reg = <0 0 0 0 0>;
+> 				unittest-pci@100 {
+> 					compatible = "unittest-pci";
+> 					reg = <0x100 0x200>;
+> 				};
+> 			};
+> 		};
+> 	};
+> 
+> > 
+> > >
+> > > A range item property for a PCI device is filled as follow:
+> > >   <BAR_nbr> 0 0 <phys.hi> <phys.mid> <phys.low> <BAR_sizeh> <BAR_sizel>
+> > >   <-- Child --> <-- Parent (PCI definition) --> <- BAR size (64bit) -->
+> > >
+> > > This allow to translate BAR addresses from the DT. For instance:
+> > > pci@0,0 {
+> > >   #address-cells = <0x03>;
+> > >   #size-cells = <0x02>;
+> > >   device_type = "pci";
+> > >   compatible = "pci11ab,100\0pciclass,060400\0pciclass,0604";
+> > >   ranges = <0x82000000 0x00 0xe8000000
+> > >             0x82000000 0x00 0xe8000000
+> > >             0x00 0x4400000>;
+> > >   ...
+> > >   dev@0,0 {
+> > >     #address-cells = <0x03>;
+> > >     #size-cells = <0x02>;
+> > >     compatible = "pci1055,9660\0pciclass,020000\0pciclass,0200";
+> > >     /* Translations for BAR0 to BAR5 */
+> > >     ranges = <0x00 0x00 0x00 0x82010000 0x00 0xe8000000 0x00 0x2000000
+> > >               0x01 0x00 0x00 0x82010000 0x00 0xea000000 0x00 0x1000000
+> > >               0x02 0x00 0x00 0x82010000 0x00 0xeb000000 0x00 0x800000
+> > >               0x03 0x00 0x00 0x82010000 0x00 0xeb800000 0x00 0x800000
+> > >               0x04 0x00 0x00 0x82010000 0x00 0xec000000 0x00 0x20000
+> > >               0x05 0x00 0x00 0x82010000 0x00 0xec020000 0x00 0x2000>;
+> > >     ...
+> > >     pci-ep-bus@0 {
+> > >       #address-cells = <0x01>;
+> > >       #size-cells = <0x01>;
+> > >       compatible = "simple-bus";
+> > >       /* Translate 0xe2000000 to BAR0 and 0xe0000000 to BAR1 */
+> > >       ranges = <0xe2000000 0x00 0x00 0x00 0x20000000
+> > >                 0xe0000000 0x01 0x00 0x00 0x1000000>;  
+> > 
+> > Why are you reusing a PCI bus address value for the child bus? I'm
+> > wondering if this is some hackery because the child devices need PCI
+> > addresses to work. What address does a device need for DMA for
+> > example?
+> 
+> I don't think I re-use a PCI bus address.
+
+Okay, I guess they happen to be similar. It depends on the host bridge, 
+but often the PCI addresses are arbitrary. Often platforms just reuse 
+the CPU address, but really they are independent.
+
+> In my device datasheet, 0xe2000000 to 0xe3ffffff are mapped to BAR0 and
+> 0xe0000000 to 0xe0FFFFFF are mapped to BAR1.
+> And so, all devices use this kind of addresses in their 'reg' property.
+
+Okay, your size is off. For 0xe2000000, you have 0x2000_0000 rather than 
+0x0200_0000. (It would be good if this mistake triggered a warning)
+
+> 
+> > 
+> > Also, I think each BAR should be a separate child. We need to
+> > formalize this BAR addressing in a schema.
+> 
+> I am not sure that we should describe the hardware with a tree based on
+> BAR. On my system, some devices use two BARs.
+> For instance, I have a 'microchip,lan966x-switch'
+> https://elixir.bootlin.com/linux/v6.5/source/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
+> 
+> This devices use two values (two reg set) for its reg property.
+> On my system, this device is accessed through the PCI bus and one reg set
+> should be accessed using BAR0 and the other set using BAR1.
+
+Okay, if the h/w is like that, then I agree.
+
+> 
+> Having a tree based on BARs will break this kind of devices.
+> 
+> > 
+> > >       ...
+> > >     };
+> > >   };
+> > > };
+> > >
+> > > During the translation process, the "default-flags" map() function is
+> > > used to select the matching item in the ranges table and determine the
+> > > address offset from this matching item.
+> > > This map() function simply calls of_read_number() and when address-size
+> > > is greater than 2, the map() function skips the extra high address part
+> > > (ie part over 64bit). This lead to a wrong matching item and a wrong
+> > > offset computation.
+> > > Also during the translation itself, the extra high part related to the
+> > > parent address is not present in the translated address.
+> > >
+> > > Fix the "default-flags" map() and translate() in order to take into
+> > > account the child extra high address part in map() and the parent extra
+> > > high address part in translate() and so having a correct address
+> > > translation for ranges patterns such as the one given in the example
+> > > above.  
+> > 
+> > Please add a test case for this.
+> 
+> Should I add it in the of_unittest_pci_node() or create a new unittest
+> dedicated to this translation test?
+
+Extending the existing tests is fine. If you can make the non-PCI one 
+fail, that would be better as it doesn't depend on the QEMU PCI test 
+device.
+
+Rob
 
