@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-5713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAE037B7959
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 10:00:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 970B07B7972
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 10:03:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id C91011C203D6
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 08:00:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id AF1BEB207C2
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 08:03:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E52F101DB;
-	Wed,  4 Oct 2023 08:00:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7C65101E0;
+	Wed,  4 Oct 2023 08:03:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD594D307
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 08:00:06 +0000 (UTC)
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91A3BAD
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 01:00:04 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2bff776fe0bso21173301fa.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Oct 2023 01:00:04 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FB8D79F8
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 08:03:40 +0000 (UTC)
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5207A6
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 01:03:38 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99c3d3c3db9so300872766b.3
+        for <devicetree@vger.kernel.org>; Wed, 04 Oct 2023 01:03:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696406403; x=1697011203; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1696406617; x=1697011417; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=baUr/148IxTjNYknX8oJbzHcg5qa02yGV28QGje7jx4=;
-        b=IAEgoq1tcBt6yr1DggAYJfasysS5UaT2RHv1FMgutzmGDiaW2gQbtLGTc6tia/PFrB
-         sSJdIAF1+Xh97fYzkHd4m/57yNZnt3qoJUAcgJMwaqzZtRAjI6mO+DYFwNplgEiz87sg
-         wBq1GlSU96b5N708ugKX1nkT7kU9LaijQ9A/4HrcyxddRH/nPNxzA+wqugimgRx5uJXV
-         5owfN7dPCM1wP8DxxNDbizRmWsw2etGbnsO5oEUeXbE0B88IX1MHTvCAhGKxy5AdK7n3
-         /f2Xei9S+Ye4q9MB8Ow+ajbYCTOu5MS8vWi8t6LZhHlQb9TyKbJeTEW/r/VYEhPwxABx
-         s//A==
+        bh=eLN3YMd6CT22tWM20pImL4XGhG7GHBb9qZ2LV6tnqrE=;
+        b=nNmHeDA6vAeTVcQcT1acInMYEqMFEr/oGWTK/7EhAdE2NQPDZiPpBw8ANYZECpWTu7
+         6Uhu0nDjppVmjODJYGN5aiMsQRfxZqCR7FN4YPYWRp0mIhB14N6Gqhbf77hT5IeFco71
+         nAg/cJfwRdGKPzGXvkzF61drunhMIxXOwzDy3RlGN4c9iHJK+lIIWjaSOCX5dbkr4iLi
+         2opYT6siLlz7KoQ6fMBZOggxcj2f5qFgeyuyrWbJbhRik997w6QNbaMSZiD27FKL+QuO
+         3baeM/6zrzb6NcXRtRUPhe6NVlndPF89sIKT+ajzTNHR5k/oDz/aEWMj+MKOK1YUr7AP
+         dJ9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696406403; x=1697011203;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1696406617; x=1697011417;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=baUr/148IxTjNYknX8oJbzHcg5qa02yGV28QGje7jx4=;
-        b=qo9YjuT0rxxbtLUPe6ZFHb7zwiIUVUjhRNAFTBynBHaCPbn48+BRVobGi2IEA2Y1UU
-         9p165NRMLR9HJIzDCMa5lBKeb/fL7/HE69zuIG14LeQjNpa7BFJeqaeAXaqSMXCLTwhf
-         qUyehpDXD9h/rvZgq7sUhD9v7P7PLdXNaE4X7tH9fGT2tPdS48haEs4VUhd5fPov1kxd
-         ch76ZLHoxuiknFhg+3b20LaSrducSQa9dbPYNdg1bC+tAR481d8CFNJZLKgBeRxrGStS
-         PaF7drEkY26gFa6VJJR+ZPGtStaEiyWUqf6TV13goT57ATaybvutBVQmNo7yGc/WRIlY
-         Q5sQ==
-X-Gm-Message-State: AOJu0YyS5W+PSXauUraLQi4b7F0TCZCbfXCwu3c13lTLSxUIKzc0CnEZ
-	ep6wDy9UAuGhMOCIGj+i8ktSkA==
-X-Google-Smtp-Source: AGHT+IG1po29BBHOdepV7JQ8eGLD77qHkLqybpO3BbEORjNmy04gGeqpiMglDInK1X1KLGB+g8I5iw==
-X-Received: by 2002:a05:6512:1052:b0:503:c51:74e1 with SMTP id c18-20020a056512105200b005030c5174e1mr1843697lfb.15.1696406402706;
-        Wed, 04 Oct 2023 01:00:02 -0700 (PDT)
+        bh=eLN3YMd6CT22tWM20pImL4XGhG7GHBb9qZ2LV6tnqrE=;
+        b=YeSSMVl39pb46UDG6YA7aGjpDePVNBBldFMu1fDBqbSFL1t1P7OPoVKdEtIZ1WY61P
+         CtpOwBjRJz5DJNeWxE5/8JcP3CtXupmbTeuO923IDTTX69rlmqtQ4MW7MlJ+/qrxNMsp
+         1xSHau4F3IU48GXW78iNxTCKXIW1Va0lO6El4NHOe2al2oGr3nEENrbeCQEJ1LAYLZ3i
+         grrIdwo3xP0ruDkCUL0//F16fv54sn5EdE+Hb/P728mvsSz0reXbqRLABcYVh+10kbwT
+         1E3qBLmWQkEf/N7MA3bYPlZnQfeUkMHh9Bp3kPl27ZwC540gtAKeTrmgbDj7M3FKudsc
+         8F/Q==
+X-Gm-Message-State: AOJu0Yz+/zZXf+vVD3GOmmmGeQqTFDsyiqQWOOszKEFhSkrCON2IiNbn
+	gi7FRonKVppZFSnSndMWip7/AA==
+X-Google-Smtp-Source: AGHT+IGWB6/WHk2xtPh/icUapO409yUJMC0JV+MOc+E0lUPW7YYPGSxmERovok8WmZMUvpYuWw6vAg==
+X-Received: by 2002:a17:907:7ea0:b0:9a5:9038:b1e7 with SMTP id qb32-20020a1709077ea000b009a59038b1e7mr1507149ejc.36.1696406617319;
+        Wed, 04 Oct 2023 01:03:37 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id q9-20020a19a409000000b0050234d02e64sm497671lfc.15.2023.10.04.01.00.01
+        by smtp.gmail.com with ESMTPSA id lf17-20020a170906ae5100b0099d45ed589csm2318542ejb.125.2023.10.04.01.03.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Oct 2023 01:00:02 -0700 (PDT)
-Message-ID: <8e37d1ff-be19-4f70-a1a6-9a013a61782b@linaro.org>
-Date: Wed, 4 Oct 2023 09:59:59 +0200
+        Wed, 04 Oct 2023 01:03:36 -0700 (PDT)
+Message-ID: <25e8c953-8bf1-4107-9531-263d68c41128@linaro.org>
+Date: Wed, 4 Oct 2023 10:03:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,13 +63,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] ARM: dts: omap4-embt2ws: Add Bluetooth
+Subject: Re: [PATCH v4 2/3] dt-bindings: usb: ci-hdrc-usb2: add npcm750 and
+ npcm845 compatible
 Content-Language: en-US
-To: Andreas Kemnade <andreas@kemnade.info>, bcousson@baylibre.com,
- tony@atomide.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231004070309.2408745-1-andreas@kemnade.info>
+To: Tomer Maimon <tmaimon77@gmail.com>, peter.chen@kernel.org,
+ gregkh@linuxfoundation.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, xu.yang_2@nxp.com, peng.fan@nxp.com,
+ avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
+ venture@google.com, yuenn@google.com, benjaminfair@google.com,
+ j.neuschaefer@gmx.net
+Cc: openbmc@lists.ozlabs.org, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20231003110130.229711-1-tmaimon77@gmail.com>
+ <20231003110130.229711-3-tmaimon77@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -115,50 +121,37 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231004070309.2408745-1-andreas@kemnade.info>
+In-Reply-To: <20231003110130.229711-3-tmaimon77@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 04/10/2023 09:03, Andreas Kemnade wrote:
-> Since the required clock is now available, add bluetooth.
+On 03/10/2023 13:01, Tomer Maimon wrote:
+> Add a compatible string for Nuvoton BMC NPCM750 and Nuvoton BMC NPCM845.
 > 
-> Note: Firmware (bts file) from device vendor reroutes tx for some time
-> during initialisation and later put it back, producing timeouts in
-> bluetooth initialisation but ignoring that command leads to proper
-> initialisation.
-> 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
 > ---
-> Depends on: https://lore.kernel.org/linux-omap/20230916100515.1650336-6-andreas@kemnade.info/T/#u
+>  Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> Changes in V2:
-> - more standard node name, removing unneeded label
-> 
->  arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts | 10 ++++++----
->  1 file changed, 6 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-> index 46a80eacf771..6a790124bcf5 100644
-> --- a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-> +++ b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-> @@ -447,10 +447,12 @@ &uart2 {
->  	interrupts-extended = <&wakeupgen GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH
->  			       &omap4_pmx_core OMAP4_UART2_RX>;
->  
-> -	/*
-> -	 * BT + GPS in WL1283 in WG7500 requiring CLK32KAUDIO of pmic
-> -	 * which does not have a driver
-> -	 */
-> +	bluetooth-gnss {
+> diff --git a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
+> index 1394557517b1..a9e173432002 100644
+> --- a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
+> +++ b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
+> @@ -16,6 +16,8 @@ properties:
+>        - enum:
+>            - chipidea,usb2
+>            - lsi,zevio-usb
+> +          - nuvoton,npcm750-udc
+> +          - nuvoton,npcm845-udc
 
-If you changed the bindings, please share a link. If not, this is not
-currently accepted and dtbs_check should point it out.
+Your driver clearly suggests these are compatible. If they are not, why
+commit msg does no explain anything here?
 
 Best regards,
 Krzysztof
