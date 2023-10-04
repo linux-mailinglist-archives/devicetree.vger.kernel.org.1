@@ -1,67 +1,174 @@
-Return-Path: <devicetree+bounces-5910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D44A77B8512
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 18:26:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BE497B8592
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 18:44:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 88B9A28160F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 16:26:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3C6F82816BB
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 16:44:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E55D1BDFE;
-	Wed,  4 Oct 2023 16:26:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE0B91C29E;
+	Wed,  4 Oct 2023 16:44:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B8CC1BDE3;
-	Wed,  4 Oct 2023 16:26:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70BA5C433C9;
-	Wed,  4 Oct 2023 16:26:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9931B1BDC8;
+	Wed,  4 Oct 2023 16:44:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC080C433C8;
+	Wed,  4 Oct 2023 16:44:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696436775;
-	bh=qcglxAxRgYQIz8E0bCy+wEqQLr5U4t9luHiOQaUV2Fo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=jxa2ZLLsxGRvLwcvTQldZ96adZlICmJQJRLEB/ssJiEoxmM9MPQTVgiIQ3XkDC7fM
-	 bdogyPB07dsycbtlyP2aSNKv6SPPCpDh9joLzDX0roO/N1X+uFhAFmbVoW6mpAf3qx
-	 lVNe3tqlHYazhWBRPb641wMYKdzKEOgrLArUd7/fPhLs6VplRj54mSUps/tOf9KoXO
-	 0b2qnNSzPrqwl+tLXEuyhDgPH94MxcRn0W/pk/BLl985bNouApvERtFuaSgnqGOriS
-	 OuwBw5rcjYuoZ5+6Z2EkEHNSeIC3GKPDFMGFknU4z0Fx/sv5cNZHBttoIDdgrKtKlE
-	 CYTTNiuLLXwNw==
-Date: Wed, 4 Oct 2023 09:26:13 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Serge Semin <fancer.lancer@gmail.com>
-Cc: Rohan G Thomas <rohan.g.thomas@intel.com>, "David S . Miller"
- <davem@davemloft.net>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Jose Abreu <joabreu@synopsys.com>, Eric Dumazet <edumazet@google.com>,
- Paolo Abeni <pabeni@redhat.com>, Maxime Coquelin
- <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH net-next 1/1] net: stmmac: xgmac: EST interrupts
- handling
-Message-ID: <20231004092613.07cb393f@kernel.org>
-In-Reply-To: <vwdy5d3xirgioeac3mo7ditkfxevwmwmweput3xziq6tafa3zl@vtxddkiv2tux>
-References: <20230923031031.21434-1-rohan.g.thomas@intel.com>
-	<xwcwjtyy5yx6pruoa3vmssnjzkbeahmfyym4e5lrq2efcwwiym@2upf4ko4mah5>
-	<20231002135551.020f180c@kernel.org>
-	<vwdy5d3xirgioeac3mo7ditkfxevwmwmweput3xziq6tafa3zl@vtxddkiv2tux>
+	s=k20201202; t=1696437870;
+	bh=bJUdCu4n8Q616ruuLdWGE4yAQa292y0ym8neR1k201A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=J0goTKf7yenCuo1njZMrdo0wDTZQ5t1AC2tPHka97g2Tw8m49Gbju3yP3QFrztt7U
+	 PN/0QG/WY1onVRnFunFTmiV9QhcIcASYT19N+va3cryvt4q6+Z/cxMIAidJ0kNOF6w
+	 Wb6oOuXTJuD/I8RpVkWvMcI6ZlSMYBsAhNIz3SnnCzNfffbYTB2YrbsY0PUk90MCpe
+	 2XKJDz2xfxe/JJuLwx14ZYyXc7RqfTlkL3KlVH/Bsg2k18iK1dSy93uImyHWmQyRvG
+	 g5ANS9iQg3CvKRycbtbSuhZny1k3bnQKtZBxX2WwR2Ycjzan5KB/Tk8fCQBuv1mTh4
+	 cNatltJeDS8HA==
+Date: Thu, 5 Oct 2023 00:32:23 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Samuel Holland <samuel.holland@sifive.com>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, linux-riscv@lists.infradead.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Subject: Re: [PATCH 1/2] dt-bindings: usb: Add T-HEAD TH1520 USB controller
+Message-ID: <ZR2Tl1rkRdIG+fQa@xhacker>
+References: <20230927164222.3505-1-jszhang@kernel.org>
+ <20230927164222.3505-2-jszhang@kernel.org>
+ <cf68f6f1-e405-4c20-b4e1-da04189d0e2f@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <cf68f6f1-e405-4c20-b4e1-da04189d0e2f@sifive.com>
 
-On Tue, 3 Oct 2023 14:12:15 +0300 Serge Semin wrote:
-> If I didn't miss some details after that we'll have a common EST
-> module utilized for both DW QoS Eth and DW XGMAC IP-cores.
+On Wed, Sep 27, 2023 at 03:00:59PM -0500, Samuel Holland wrote:
+> On 2023-09-27 11:42 AM, Jisheng Zhang wrote:
+> > T-HEAD TH1520 platform's USB has a wrapper module around
+> > the DesignWare USB3 DRD controller. Add binding information doc for
+> > it.
+> > 
+> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> > ---
+> >  .../bindings/usb/thead,th1520-usb.yaml        | 73 +++++++++++++++++++
+> >  1 file changed, 73 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/usb/thead,th1520-usb.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/usb/thead,th1520-usb.yaml b/Documentation/devicetree/bindings/usb/thead,th1520-usb.yaml
+> > new file mode 100644
+> > index 000000000000..afb618eb5013
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/usb/thead,th1520-usb.yaml
+> > @@ -0,0 +1,73 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/usb/thead,th1520-usb.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: T-HEAD TH1520 DWC3 USB Controller Glue
+> > +
+> > +maintainers:
+> > +  - Jisheng Zhang <jszhang@kernel.org>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: thead,th1520-usb
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 4
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: ref
+> > +      - const: bus_early
+> > +      - const: phy
+> > +      - const: suspend
+> 
+> Except for "phy", these clocks are already documented in snps,dwc3.yaml. Are
+> they necessary for the glue/PHY, or do they belong only in the controller node?
 
-So the question now is whether we want Rohan to do this conversion
-_first_, in DW QoS 5, and then add xgmac part. Or the patch should
-go in as is and you'll follow up with the conversion?
+Hi Samuel,
+
+Enabling ref, bus_early clks are necessary for the glue layer, because
+we program the glue registers before calling of_platform_populate()
+
+> They are not used by the driver in patch 2. Also, the PHY clock probably belongs
+> with the PHY node.
+
+Except enabling the phy clk, we don't need to touch the phy, so I'm not
+sure how to handle this if we have a dedicated phy driver thus a phy node.
+or use the usb-nop-xceiv?
+
+Thanks
+> 
+> > +
+> > +  ranges: true
+> > +
+> > +  '#address-cells':
+> > +    enum: [ 1, 2 ]
+> > +
+> > +  '#size-cells':
+> > +    enum: [ 1, 2 ]
+> > +
+> > +# Required child node:
+> > +
+> > +patternProperties:
+> > +  "^usb@[0-9a-f]+$":
+> > +    $ref: snps,dwc3.yaml#
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - clock-names
+> > +  - ranges
+> > +
+> > +additionalProperties: false
+> 
+> The driver in patch 2 uses the thead,misc-sysreg and vbus-supply properties,
+> neither of which is documented here. Also, depending on the other bindings, the
+> VBUS supply should be referenced from the USB PHY or connector node, not here.
+> 
+> Regards,
+> Samuel
+> 
+> > +examples:
+> > +  - |
+> > +
+> > +    usb {
+> > +          compatible = "thead,th1520-usb";
+> > +          reg = <0xec03f000 0x1000>;
+> > +          clocks = <&clk 1>,
+> > +                   <&clk 2>,
+> > +                   <&clk 3>,
+> > +                   <&clk 4>;
+> > +          clock-names = "ref", "bus_early", "phy", "suspend";
+> > +          ranges;
+> > +          #address-cells = <1>;
+> > +          #size-cells = <1>;
+> > +
+> > +          usb@e7040000 {
+> > +                compatible = "snps,dwc3";
+> > +                reg = <0xe7040000 0x10000>;
+> > +                interrupts = <68>;
+> > +                dr_mode = "host";
+> > +          };
+> > +    };
+> 
 
