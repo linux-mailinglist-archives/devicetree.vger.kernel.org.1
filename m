@@ -1,145 +1,100 @@
-Return-Path: <devicetree+bounces-5788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C2737B7E3B
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 13:32:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B030A7B7E41
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 13:34:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 2B83F1C20506
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 11:32:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 62EAD281517
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 11:34:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A4C212B79;
-	Wed,  4 Oct 2023 11:32:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE9612B8B;
+	Wed,  4 Oct 2023 11:34:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4669312B6A
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 11:32:32 +0000 (UTC)
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96A3690;
-	Wed,  4 Oct 2023 04:32:29 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D535160004;
-	Wed,  4 Oct 2023 11:32:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1696419148;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=jiGdNZliZJFxAotjLXsFjydngfAocFp3/JRLhQoNFiw=;
-	b=Q2yyudk2DeopG4p/IJKJNvz/uUKI7L36/M+bfZvjO2okJ7jIuoKVMEUwQ6pbqN6uwNgGm3
-	ew+0dgaPuzhqPTV/Z6kO1X/4Ll3VjaXd3wP/96HWhhfZYHXlIA8Cv0pm33+uzmJoK3vJ4j
-	2/RCWmSDgs4fvpAl5v82tLPeg5ASmofwjH2wKpcoUUwVXaSc5Lu9NyS+mOFqKhSFUoTS7Z
-	F1AxubzkvrfW0z+C4uKsZMNtLoDGrmNTO6i2lwKBCru+AyRMk6PtE0xfPTXMubReQ6sbte
-	v48enjubU5DdXQYvSgeSb3GTiEV9k0fYmlUCZRskOCdk/n3bQJepsib/6BlcnQ==
-Date: Wed, 4 Oct 2023 13:32:25 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: "Rabara, Niravkumar L" <niravkumar.l.rabara@intel.com>
-Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra
- <vigneshr@ti.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: mtd: cadence: convert
- cadence-nand-controller.txt to yaml
-Message-ID: <20231004133225.4a770789@xps-13>
-In-Reply-To: <BL3PR11MB6532AC02EA46C2D861438A29A2CBA@BL3PR11MB6532.namprd11.prod.outlook.com>
-References: <20231004061214.17176-1-niravkumar.l.rabara@intel.com>
-	<20231004094455.1a6a19e1@xps-13>
-	<BL3PR11MB6532AC02EA46C2D861438A29A2CBA@BL3PR11MB6532.namprd11.prod.outlook.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0D1C11190
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 11:34:01 +0000 (UTC)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99F0CB0;
+	Wed,  4 Oct 2023 04:34:00 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 394BXoIB020720;
+	Wed, 4 Oct 2023 06:33:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1696419230;
+	bh=gvkfpYUXSs08HkjljItKTkfyHQ5gojnXFO0RRMu0sM4=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=Qb0M+4lh0hDfw7tMXaqsM0+/AUTmeuazCOtXyvkPfG2KziBJtNjLq8IKpNfxFCEUx
+	 kfvP5ERQD4etfnnrnePG13REiv61N/tSqELdJx2F4LDoj+1TeQszD503mGGnAx/0Oi
+	 DN7IYFeqzw0wzTZiTNxcRpeET1F8e4SOd767hGmg=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 394BXoZ9004246
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 4 Oct 2023 06:33:50 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 4
+ Oct 2023 06:33:49 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 4 Oct 2023 06:33:49 -0500
+Received: from [10.250.135.44] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 394BXgrt040139;
+	Wed, 4 Oct 2023 06:33:44 -0500
+Message-ID: <238c71c9-98cd-bb1d-65d6-316678759333@ti.com>
+Date: Wed, 4 Oct 2023 14:33:42 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2 2/3] arm64: dts: ti: Add overlay for NAND daughter card
+Content-Language: en-US
+To: Nitin Yadav <n-yadav@ti.com>, <nm@ti.com>, <vigneshr@ti.com>
+CC: <kristo@kernel.org>, <robh+dt@kernel.org>, <conor+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20231004111238.3968984-1-n-yadav@ti.com>
+ <20231004111238.3968984-3-n-yadav@ti.com>
+From: Roger Quadros <rogerq@ti.com>
+In-Reply-To: <20231004111238.3968984-3-n-yadav@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hello,
 
-> > > -Child nodes represent the available NAND chips. =20
-> >=20
-> > This is not fully pictured in the current schema, by referencing nand-
-> > controller.yaml I believe you allow all kind of direct partitioning (wh=
-ich is legacy,
-> > and not supposed to be supported here).
-> > Can you try to define a partition directly within the controller node i=
-n the example
-> > and see whether it still passes the checks?
-> >=20
-> > Thanks,
-> > Miqu=C3=A8l =20
->=20
-> Hi Miquel,
->=20
-> I tried below in the controller node in example,
->=20
->        ...
->         clocks =3D <&nf_clk>;
->         cdns,board-delay-ps =3D <4830>;
->=20
->         partition@0 {
->           label =3D "boot";
->           reg =3D <0 0x00200000>;
->          };
->=20
->         nand@0 {
->             reg =3D <0>;
->         };
->=20
-> It shows  'partition@0' was unexpected.
->=20
-> DTC_CHK Documentation/devicetree/bindings/mtd/cadence,nand.example.dtb
-> Documentation/devicetree/bindings/mtd/cadence,nand.example.dts:35.23-38.1=
-4: Warning (unique_unit_address_if_enabled): /example-0/nand-controller@10b=
-80000/partition@0: duplicate unit-address (also used in node /example-0/nan=
-d-controller@10b80000/nand@0)
-> /mnt/newvolume/users/nrabara/kernel.org/3oct23/Documentation/devicetree/b=
-indings/mtd/cadence,nand.example.dtb: nand-controller@10b80000: Unevaluated=
- properties are not allowed ('partition@0' was unexpected)
->         From schema: /mnt/newvolume/users/nrabara/kernel.org/3oct23/Docum=
-entation/devicetree/bindings/mtd/cadence,nand.yaml
->=20
-> However using partition in nand node is OK.
->         nand@0 {
->             reg =3D <0>;
->            =20
->             #address-cells =3D <1>;
->             #size-cells =3D <1>;
->=20
->             partition@0 {
->               label =3D "boot";
->               reg =3D <0 0x00200000>;
->             };
->=20
->             partition@200000 {
->               label =3D "env";
->               reg =3D <0x00200000 0x00400000>;
->             };
->         };
->=20
-> "make dt_binding_check DT_SCHEMA_FILES=3Dmtd/cadence,nand.yaml"  is OK wi=
-thout any warnings.=20
->=20
-> DTEX    Documentation/devicetree/bindings/mtd/cadence,nand.example.dts
-> DTC_CHK Documentation/devicetree/bindings/mtd/cadence,nand.example.dtb
->=20
-> Any additional changes required for this patch?
 
-No, should be fine then.
+On 4.10.2023 14.12, Nitin Yadav wrote:
+> Introduce k3-am62-lp-sk-nand.dtso overlay file to support
+> the X8 NAND EXPANSION BOARD card (PROC143E1) for AM62x LP SK
+> board. NAND has partitions for different boot components as
+> below:
+> 
+> 0x000000000000-0x000000200000 : "NAND.tiboot3
+> 0x000000200000-0x000000400000 : "NAND.tispl
+> 0x000000400000-0x000000600000 : "NAND.tiboot3.backup
+> 0x000000600000-0x000000a00000 : "NAND.u-boot
+> 0x000000a00000-0x000000a40000 : "NAND.u-boot-env
+> 0x000000a40000-0x000000a80000 : "NAND.u-boot-env.backup
+> 0x000000a80000-0x000040000000 : "NAND.file-system
+> 
+> Disable mcasp1 node in DT to avoid pinmux conflict. Update
+> Makefile to include k3-am62-lp-sk-nand.dtso.
+> 
+> Signed-off-by: Nitin Yadav <n-yadav@ti.com>
 
-Thanks,
-Miqu=C3=A8l
+Reviewed-by: Roger Quadros <rogerq@kernel.org>
 
