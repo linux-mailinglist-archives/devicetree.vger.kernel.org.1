@@ -1,187 +1,185 @@
-Return-Path: <devicetree+bounces-5751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBBA87B7BC9
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 11:20:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E6817B7C01
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 11:24:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id 358501F22039
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 09:20:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 5226D280F8A
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 09:24:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A44F010979;
-	Wed,  4 Oct 2023 09:20:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5F8610A0F;
+	Wed,  4 Oct 2023 09:24:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C0BB10963
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 09:20:41 +0000 (UTC)
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EE46C4
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 02:20:39 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4056ce55e7eso18265385e9.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Oct 2023 02:20:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696411238; x=1697016038; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FYUpaA39Zc2Claj+3mSht0h7QLhWJIDPOIO7TJqJpH4=;
-        b=c3y7TEm2ns6Fo86W7TilwzCTcitSQWD9By2zrRXJFiNVBvIwUfgd9FDHlKMIi2XY98
-         r1n59QM432V5sRzJvIwBFHaeE9lzAuLxkYQWHHTiyq4sLWIAvH4HXeAobny1ERKdQsBm
-         l+nyrfejQHD/xzxdmt3/lNvYMe+TSHc8DzdEsmZ2kuj6jFM2i3FO5j8EGNshagn2P7qX
-         P9XPCCTM5+QsxbO4RH7C/Ld2BS4KR5SmDR8UlSNjBrhKZu5ZlNgVMAYC1WfSwf9EIhSB
-         K0iZImUk8+aKO2Qe/WykjbiRtRupK2GyeL5msc0liSHad4pgwPruIgcZ1HlPR24DqMf1
-         HOUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696411238; x=1697016038;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=FYUpaA39Zc2Claj+3mSht0h7QLhWJIDPOIO7TJqJpH4=;
-        b=BEB91gm3k8cYK4YT1P0B7w++C59NkDLSfzEgYJ9IQ7MViPhswUkEnfjxTCsHnsttwj
-         vev0i36ZJOfGoYDZQYMDNezP2lLF72z2OCWqSqoly0Kf8/XSRH5pBEsXMSKCPdY8egIG
-         +0sUqUAX59VxzDlXdZO0lmIUkGeBrOBJ4+oEOJgC2pni4RlQiRGhRMjfG4CqUSFXRZ2q
-         r8EEOdwH5Qor9u2qdHa/w0dkMkp6kPOfPhbRpmoej/d0YTZ9C/01TiJKSd+nyTlWCneO
-         37/zs5n5jUorG4VjiSuyD/U685n98gpDNqm9JufsRyWWvHp9O+hQ/FRHx1G42O3+bM3z
-         /FCw==
-X-Gm-Message-State: AOJu0YwSlD3DY9qjaSItIMad5INRsGL5PvRTtstlNmBSTgQpnNFa/RhV
-	30CKUiERQGo5QObPMSpGe3GVSg==
-X-Google-Smtp-Source: AGHT+IGhb5sZH7KTL52JvEolZHRy2oJ4mfpdYcXphWQZvT1QqIVd+xEVOW+XeIPHs63dgbbvXQ+zEg==
-X-Received: by 2002:a1c:4c13:0:b0:406:7d74:a29b with SMTP id z19-20020a1c4c13000000b004067d74a29bmr1709008wmf.13.1696411237969;
-        Wed, 04 Oct 2023 02:20:37 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:5bcc:9741:3ed2:97f5? ([2a01:e0a:982:cbb0:5bcc:9741:3ed2:97f5])
-        by smtp.gmail.com with ESMTPSA id t14-20020a05600c198e00b0040531f5c51asm1032465wmq.5.2023.10.04.02.20.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Oct 2023 02:20:37 -0700 (PDT)
-Message-ID: <2248b34e-d755-4142-986c-0ead80796e13@linaro.org>
-Date: Wed, 4 Oct 2023 11:20:36 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E73710978
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 09:24:49 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D751CAC;
+	Wed,  4 Oct 2023 02:24:47 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3946vqNe014209;
+	Wed, 4 Oct 2023 09:24:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=CPKY0KHDc27eErZGiD+w0+dVq/2NlzHvFtu3lSawsVg=;
+ b=SiNN/LXxJCPGICklCDS1k169miOBJF0eQmwDg13SdQqNZi0cre4dnqcgQDxv0IOX0zcK
+ px5Xxsoi6oVprCzDqQ9uLHfQwJSDfwOcGYZvJUAT/HBmoHijr3lNM62ILJ6OP7EpGr1V
+ jGfde1inx1qps3ma7TbwbhJDJsimuaV7/xLTxWL9mnbKLa9G1ypuHy0qNhPRn0gK7xKu
+ 1LUKVKyhx0x5QELRnKwb3x6K7o0giPWNh97xfzxpjHWKbge7cg5DKv7Srkbd3iZTJVYk
+ gMCe4z0peQ/HDDC5PSkZDNWrHLg9odpu2lhPKvsQ+BNYgr58YZNsquVWMc5CBmsuKSlV nQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3th2gq0bux-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Oct 2023 09:24:14 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3949NtFc005407
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 4 Oct 2023 09:23:55 GMT
+Received: from [10.216.40.132] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 4 Oct
+ 2023 02:23:49 -0700
+Message-ID: <5d31facd-8942-d159-a1f1-cd7cae6c09a5@quicinc.com>
+Date: Wed, 4 Oct 2023 14:53:45 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/2] arm64: dts: amlogic: add libretech cottonwood support
-To: Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Kevin Hilman <khilman@baylibre.com>, Da Xue <da.xue@libretech.co>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org
-References: <20231002141020.2403652-1-jbrunet@baylibre.com>
- <20231002141020.2403652-3-jbrunet@baylibre.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20231002141020.2403652-3-jbrunet@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH V13 3/4] dt-bindings: mfd: qcom,tcsr: Add simple-mfd
+ support for IPQ6018
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <lee@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <thierry.reding@gmail.com>,
+        <ndesaulniers@google.com>, <trix@redhat.com>, <baruch@tkos.co.il>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <llvm@lists.linux.dev>
+References: <20231004090449.256229-1-quic_devipriy@quicinc.com>
+ <20231004090449.256229-4-quic_devipriy@quicinc.com>
+ <60da3633-61f6-49c1-b656-2804c35d3e82@linaro.org>
+From: Devi Priya <quic_devipriy@quicinc.com>
+In-Reply-To: <60da3633-61f6-49c1-b656-2804c35d3e82@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: poa95C6L0UdTS1Fdu1GyMSQWiZJbkn-7
+X-Proofpoint-ORIG-GUID: poa95C6L0UdTS1Fdu1GyMSQWiZJbkn-7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-04_01,2023-10-02_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ lowpriorityscore=0 phishscore=0 mlxlogscore=999 mlxscore=0 impostorscore=0
+ malwarescore=0 suspectscore=0 clxscore=1015 bulkscore=0 adultscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310040067
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 02/10/2023 16:10, Jerome Brunet wrote:
-> Add support for the Libretech cottonwood board family.
-> These 2 boards are based on the same PCB, with an RPi B form factor.
+
+
+On 10/4/2023 2:50 PM, Krzysztof Kozlowski wrote:
+> On 04/10/2023 11:04, Devi Priya wrote:
+>> Update the binding to include pwm as the child node to TCSR block and
+>> add simple-mfd support for IPQ6018.
+>>
+>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+>> ---
 > 
-> The "Alta" board uses an a311d while the "Solitude" variant uses an s905d3.
+> Thank you for your patch. There is something to discuss/improve.
 > 
-> Co-developed-by: Da Xue <da.xue@libretech.co>
-> Signed-off-by: Da Xue <da.xue@libretech.co>
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->   arch/arm64/boot/dts/amlogic/Makefile          |   2 +
->   .../amlogic/meson-g12b-a311d-libretech-cc.dts | 133 ++++
->   .../amlogic/meson-libretech-cottonwood.dtsi   | 610 ++++++++++++++++++
->   .../amlogic/meson-sm1-s905d3-libretech-cc.dts |  89 +++
->   4 files changed, 834 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts
->   create mode 100644 arch/arm64/boot/dts/amlogic/meson-libretech-cottonwood.dtsi
->   create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-s905d3-libretech-cc.dts
 > 
+>>     reg:
+>>       maxItems: 1
+>>   
+>> +  ranges: true
+>> +
+>> +  "#address-cells":
+>> +    const: 1
+>> +
+>> +  "#size-cells":
+>> +    const: 1
+>> +
+>> +patternProperties:
+>> +  "pwm@[a-f0-9]+$":
+> 
+> type: object
+Okay
+> 
+>> +    $ref: ../pwm/qcom,ipq6018-pwm.yaml
+> 
+> This should be full patch, so:
+> $ref: /schemas/pwm/qcom.......
+okay
+> 
+> 
+>> +
+>>   required:
+>>     - compatible
+>>     - reg
+> 
+> After required (but before additionalProperties), please add:
+> 
+> allOf:if:then: for other compatible (so use keyword "not:") which will
+> disallow pwm for them. Disallowing is via:
+> 
+>      patternProperties:
+>        "pwm@[a-f0-9]+$": false
+> 
+> See   Documentation/devicetree/bindings/interconnect/qcom,rpm.yaml
+> around line 240. We need something similar.
+Sure, will add!
+> 
+> 
+>> @@ -57,8 +74,29 @@ required:
+>>   additionalProperties: false
+>>   
+>>   examples:
+>> +  # Example 1 - Syscon node found on MSM8960
+>>     - |
+>>       syscon@1a400000 {
+>>           compatible = "qcom,tcsr-msm8960", "syscon";
+>>           reg = <0x1a400000 0x100>;
+>>       };
+>> +  # Example 2 - Syscon node found on IPQ6018
+>> +  - |
+>> +    #include <dt-bindings/clock/qcom,gcc-ipq6018.h>
+>> +
+>> +    syscon@1937000 {
+>> +        compatible = "qcom,tcsr-ipq6018", "syscon", "simple-mfd";
+>> +        reg = <0x01937000 0x21000>;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +        ranges = <0 0x1937000 0x21000>;
+> 
+> Please put ranges just after reg.
+Sure,okay
 
-<snip>
-
-> +
-> +	leds-pwm {
-> +		compatible = "pwm-leds";
-> +
-> +		led-green {
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			function = LED_FUNCTION_STATUS;
-> +			linux,default-trigger = "default-on";
-> +			panic-indicator;
-> +			max-brightness = <255>;
-> +			pwms = <&pwm_cd 1 1250 0>;
-> +			active-low;
-> +		};
-> +
-> +		led-blue {
-> +			color = <LED_COLOR_ID_BLUE>;
-> +			function = LED_FUNCTION_ACTIVITY;
-> +			linux,default-trigger = "activity";
-
-"activity" isn't documented, perhaps heartbeat instead ?
-
-> +			max-brightness = <255>;
-> +			pwms = <&pwm_ab 1 1250 0>;
-> +			active-low;
-> +		};
-
-leds subnodes should be named as led(-[0-9a-f]+)
-
-see Documentation/devicetree/bindings/leds/leds-pwm.yaml
-
-> +	};
-> +
-> +	leds-gpio {
-> +		compatible = "gpio-leds";
-> +
-> +		led-orange {
-> +			color = <LED_COLOR_ID_AMBER>;
-> +			function = LED_FUNCTION_STANDBY;
-> +			gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-> +		};
-
-Ditto, but you can simply use "led" since it's the only one.
-
-See Documentation/devicetree/bindings/leds/leds-gpio.yaml
-
-Neil
-
-
-<snip>
-
+Thanks,
+Devi Priya
+> 
+>> +
+>> +        pwm: pwm@a010 {
+>> +            compatible = "qcom,ipq6018-pwm";
+>> +            reg = <0xa010 0x20>;
+> 
+> Best regards,
+> Krzysztof
+> 
 
