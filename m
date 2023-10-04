@@ -1,121 +1,70 @@
-Return-Path: <devicetree+bounces-5939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20CF77B8DE1
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 22:11:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48EE37B8E3B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 22:41:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id C1A74281772
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 20:11:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id F42362817AA
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 20:41:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 005B7224D0;
-	Wed,  4 Oct 2023 20:11:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD4D1224E3;
+	Wed,  4 Oct 2023 20:41:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NTK3hn1r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="atmaCxJF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37AF11F61F
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 20:11:41 +0000 (UTC)
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC55BF;
-	Wed,  4 Oct 2023 13:11:39 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1c746bc3bceso286125ad.1;
-        Wed, 04 Oct 2023 13:11:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696450299; x=1697055099; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=NhDdNi3g5C1VlVNO0OVGqb7ZJFMfPpJmBhwKqaNZakk=;
-        b=NTK3hn1rEerjtMl0Tq8DCjNqltj/leXLZTyM3LKjytjrtHa1YSkl/xvQpydx30FsQr
-         xfEY4xfK3oDosB05ze12yGxyCjtLee3qwbhyh7wNt0FfwRUgHeuh0XhXEUghlU81CP+x
-         MTFnVbpFv5AR+mcQxLHpcvhqFGn996HdVKRN8Q0OJS6cR+Yf4g6YcexN1oxhrDFjHkMD
-         CDQnHrQnjeTyI+8TSE+MwnpgAS10E7rfLcOSk779SozNC/9KR+InHv4aJfYcofWRG+5v
-         yMmBAszIQUZocxwiEzrLDZfptJJtAbsSIq1bmbx7X5WB/YZgaGHqOLpgTzyHpUQC7xzK
-         nU/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696450299; x=1697055099;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NhDdNi3g5C1VlVNO0OVGqb7ZJFMfPpJmBhwKqaNZakk=;
-        b=xB3WcZ/FBwWc/f32obGuHSnxG3fW1nM+st9/pJgVFgMY+Nv41SKMOg40LnBUlBRmw2
-         P34DvFnPc9+sxK32x5ABd9bVWbl2odUSa7Hr6UIqqhAIML2sDJtCxe47K56PB0K1cvuR
-         uIVyOxV53Igz4UvXLGMfimc+1xvnCOEdn5+S7sQw4QUZS+6sQ6orkxznUumfKfYtVlWy
-         HRnOQUzxVTb/D/VrZ90GCKpWW+tKXlVdVvz8xbsjVpTdR57TOahafe+AiUh2KqiKg70R
-         63AmaNbZa2vXw0s5qBx9TjELrrlZ/5UgcDIIR83hPrj09+j5dQokOcmhr1cRP4JUVL9o
-         JdFA==
-X-Gm-Message-State: AOJu0Yxe2VptQ2x6cxeWnMsVTASelU/Nxneab7AHsITwbz+wxgEZOwon
-	GXB2acqoj5xj8j8TuE1zmow=
-X-Google-Smtp-Source: AGHT+IGHesDAysb9gsPgwNg7V+XH8O51hmKjy1rEmnD3n/nOTfCDxjcWCW0xa6dDjiuWsAh0t/VIwA==
-X-Received: by 2002:a17:90a:1f86:b0:26d:1eff:619f with SMTP id x6-20020a17090a1f8600b0026d1eff619fmr2994132pja.2.1696450299070;
-        Wed, 04 Oct 2023 13:11:39 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:cb87:d6f:eb43:afca])
-        by smtp.gmail.com with ESMTPSA id go16-20020a17090b03d000b00276a58e37c1sm1946987pjb.38.2023.10.04.13.11.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Oct 2023 13:11:38 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: laurent.pinchart@ideasonboard.com
-Cc: rmfrfs@gmail.com,
-	martink@posteo.de,
-	mchehab@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	marex@denx.de,
-	linux-media@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] media: dt-bindings: imx7-csi: Make power-domains not required for imx8mq
-Date: Wed,  4 Oct 2023 17:11:05 -0300
-Message-Id: <20231004201105.2323758-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB1721BDD2;
+	Wed,  4 Oct 2023 20:41:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 650C3C433C8;
+	Wed,  4 Oct 2023 20:41:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696452068;
+	bh=72lPpExPa7/l8tL0qUn7j7l+TWc7n+AL+YkQK0hH4Rs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=atmaCxJFjkuoGabbdB9Yr5oZJNjn/Bdzqi3HITjYF6aqnSMDpHMH5bfp99hp4hu9S
+	 ZLej3ZVqDIlgcOCVWEh/z1TfL0JlJy7ejY/tVkUEWh1lkzML859fY26D21NbzrJ6oS
+	 mZcJ+vs7HWLQWYMCkiilFAeuUE/i91yUMQRGVUSmATPRArfZ/68UMXOIcLCjXFgITR
+	 wVUTJ633op4v50sGt+9IYH/R3RFQhOsfrKs39O9GDD2IyBBuYeIH5PxlHeeAI3bdao
+	 DlShNOOgHT0wJGGHJbTENeMzo8Da3kPKTYi2A+7IvcTnZxvavLahGW7enZIs7mVro3
+	 9tzhl8wqhc7fQ==
+Date: Wed, 4 Oct 2023 13:41:06 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+Cc: <davem@davemloft.net>, <edumazet@google.com>, <pabeni@redhat.com>,
+ <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+ <conor+dt@kernel.org>, <michal.simek@amd.com>, <linux@armlinux.org.uk>,
+ <f.fainelli@gmail.com>, <netdev@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <git@amd.com>, "Sarath Babu Naidu
+ Gaddam" <sarath.babu.naidu.gaddam@amd.com>
+Subject: Re: [PATCH net-next v7 2/3] net: axienet: Preparatory changes for
+ dmaengine support
+Message-ID: <20231004134106.7779c29c@kernel.org>
+In-Reply-To: <1695843151-1919509-3-git-send-email-radhey.shyam.pandey@amd.com>
+References: <1695843151-1919509-1-git-send-email-radhey.shyam.pandey@amd.com>
+	<1695843151-1919509-3-git-send-email-radhey.shyam.pandey@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-From: Fabio Estevam <festevam@denx.de>
+On Thu, 28 Sep 2023 01:02:30 +0530 Radhey Shyam Pandey wrote:
+>   */
+> -static int axienet_open(struct net_device *ndev)
+> +
 
-On i.MX8MQ the MIPI CSI block does have an associated power-domain, but
-the CSI bridge does not.
+nit: spurious new line
 
-Remove the power-domains requirement from the i.MX8MQ CSI bridge
-to fix the following schema warning:
+> +static inline int axienet_init_legacy_dma(struct net_device *ndev)
 
-imx8mq-librem5-r4.dtb: csi@30a90000: 'power-domains' is a required property
-from schema $id: http://devicetree.org/schemas/media/nxp,imx7-csi.yaml#
-
-Fixes: de655386845a ("media: dt-bindings: media: imx7-csi: Document i.MX8M power-domains property")
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
-
- Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml b/Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
-index 358019e85d90..326284e151f6 100644
---- a/Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
-+++ b/Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
-@@ -59,7 +59,6 @@ allOf:
-         compatible:
-           contains:
-             enum:
--              - fsl,imx8mq-csi
-               - fsl,imx8mm-csi
-     then:
-       required:
--- 
-2.34.1
+nit: no need for the inline, it has one caller and isn't on the fast
+path
 
 
