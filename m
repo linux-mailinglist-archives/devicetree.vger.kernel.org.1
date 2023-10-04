@@ -1,276 +1,111 @@
-Return-Path: <devicetree+bounces-5963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E70F57B97E6
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 00:23:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEBD87B9880
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 01:02:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 0B6791C208A8
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 22:23:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 7EEF628198B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 23:02:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FBA3250F7;
-	Wed,  4 Oct 2023 22:23:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39B62266A4;
+	Wed,  4 Oct 2023 23:02:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="CPLsLqOe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lElSiQs6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFB012510F
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 22:23:02 +0000 (UTC)
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36D93DC;
-	Wed,  4 Oct 2023 15:22:59 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A07521C0009;
-	Wed,  4 Oct 2023 22:22:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1696458177;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=MJSnkDzDxHMCQetZ/+skPNzc1TJhICAJggt8E2GoXhw=;
-	b=CPLsLqOebwAUKFkOPiza6wA07lk29WukSFnS52exZjJL4ZU7H3NOxXhGZ8B+dOhM2iAT0V
-	wHiWFeTKF/DYA1w7OJWouhLys9jF7I3roD/dXL9rIp1TXlyaecPGfi2opEgyYqL3wv8e9Y
-	pZG+qU/5Y9Dv32w+TpUSkRhyv6HCZnj2lGBRQ+ZxmD7c8XnmsKKx3UfJmZ/ZMJFLsYe88K
-	XnP1uSLb59r5cRFbFdp75vhL9vwJDhUNWsJzxO8RJ9Y90bx4qy++VvTPgWsi6Ihf98bS4U
-	slEAIz97JW2UyXSwfc47Lpju1WPB2PzBVlPmqWpX57VKMgl5jWprM2IVuzZaJQ==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Michael Walle <michael@walle.cc>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81800224F5
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 23:02:25 +0000 (UTC)
+Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com [IPv6:2607:f8b0:4864:20::12f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 242EEC6;
+	Wed,  4 Oct 2023 16:02:24 -0700 (PDT)
+Received: by mail-il1-x12f.google.com with SMTP id e9e14a558f8ab-35164833a21so4621715ab.0;
+        Wed, 04 Oct 2023 16:02:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696460543; x=1697065343; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eyDFBdDSwc/aV3pCxDfoJRjaHTCxVHMOU9DnJAZzdz8=;
+        b=lElSiQs6ZEeOMBX5KtJW+/ZyM5+fcqMNt1ZBPfaCmSw9H2RIMXo+uWUXB/zvj6pP29
+         29h//POEqe2Uzz47c012iazFBIDyDJcVyHpgxVl+L01DEagUVXBabWq2sZYqoX560a2/
+         WOXfJmHqoDsXZiSMd9UYg6XSF0fAe0s8mSgVJhVNHCiYtfud44NWM6YPjtgFXPQ/cNxT
+         7w5v1MHrKNnei+sgC1+1ve0oLO2Vn58T4zUoHbrCpHYcvoIiP2Wu1ynMZFac7lTWkNBj
+         l3J5RW/hJDyUjlHvh0WRI5z52ZB6H9LpsaHKzPNuNiwjxztB04U1cP9m1G2LFzWRNw/r
+         Qlfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696460543; x=1697065343;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eyDFBdDSwc/aV3pCxDfoJRjaHTCxVHMOU9DnJAZzdz8=;
+        b=HnqBuMnsWeple3aBTUXugBGHnmz6vGVgAJoIIBnOhVDJzeHpIzdRAYqgBXgW2cD8mC
+         BLuy4pWZOPXs9iCFkidIFzC0wJa3CzJ3mJ3G1PM1b9MEtGvXyaxIZZS+KHt6ML5756Ea
+         fqAYvY4C08F4sL2JaDoH096TgLIHgg45CrRargBPbc5HRZ3aPSN9i1oAl4d3prziN8Ek
+         vZ13we35jY+1rvJx9Y3j6W8UsT2Fdasf3jWZ/LqzoJqFyfH4/Swy4NmLJgkZKkbmhGi5
+         y/JAL/ycqTrO3qHnvvTLk1O26Tz8BQdW5jA0q9CJ3MSCTvJEvg3DvBekRVOoeWehBP9x
+         auvg==
+X-Gm-Message-State: AOJu0YyeXq2o48CFf9bRyZGV+iHStoba+DECk3/j9r/z3JaoAtDMlGNB
+	yKW6BZCfbTvnk90rzTLoP2I=
+X-Google-Smtp-Source: AGHT+IF5ij7AhHKXM8NjXvBBLvKUZF7LOnAmU3Rqi/H9ksvyKTtjoqgx0dXROpuMn7MY9aoW4svEjQ==
+X-Received: by 2002:a05:6e02:1d96:b0:34f:20d9:74a9 with SMTP id h22-20020a056e021d9600b0034f20d974a9mr793445ila.11.1696460542962;
+        Wed, 04 Oct 2023 16:02:22 -0700 (PDT)
+Received: from aford-System-Version.lan (c-75-72-166-104.hsd1.mn.comcast.net. [75.72.166.104])
+        by smtp.gmail.com with ESMTPSA id u25-20020a02cbd9000000b0042b3bb542aesm82688jaq.168.2023.10.04.16.02.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Oct 2023 16:02:22 -0700 (PDT)
+From: Adam Ford <aford173@gmail.com>
+To: linux-arm-kernel@lists.infradead.org
+Cc: aford@beaconembedded.com,
+	Adam Ford <aford173@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
 	devicetree@vger.kernel.org,
-	<linux-kernel@vger.kernel.org>,
-	Robert Marko <robert.marko@sartura.hr>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Luka Perkov <luka.perkov@sartura.hr>,
-	Randy Dunlap <rdunlap@infradead.org>,
-	Chen-Yu Tsai <wenst@chromium.org>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v11 7/7] nvmem: core: Expose cells through sysfs
-Date: Thu,  5 Oct 2023 00:22:36 +0200
-Message-Id: <20231004222236.411248-8-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231004222236.411248-1-miquel.raynal@bootlin.com>
-References: <20231004222236.411248-1-miquel.raynal@bootlin.com>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: imx8mm: Add sound-dai-cells to micfil node
+Date: Wed,  4 Oct 2023 18:01:58 -0500
+Message-Id: <20231004230159.33527-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The binary content of nvmem devices is available to the user so in the
-easiest cases, finding the content of a cell is rather easy as it is
-just a matter of looking at a known and fixed offset. However, nvmem
-layouts have been recently introduced to cope with more advanced
-situations, where the offset and size of the cells is not known in
-advance or is dynamic. When using layouts, more advanced parsers are
-used by the kernel in order to give direct access to the content of each
-cell, regardless of its position/size in the underlying
-device. Unfortunately, these information are not accessible by users,
-unless by fully re-implementing the parser logic in userland.
+Per the DT bindings, the micfil node should have a sound-dai-cells
+entry.
 
-Let's expose the cells and their content through sysfs to avoid these
-situations. Of course the relevant NVMEM sysfs Kconfig option must be
-enabled for this support to be available.
+Fixes: 3bd0788c43d9 ("arm64: dts: imx8mm: Add support for micfil")
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-Not all nvmem devices expose cells. Indeed, the .bin_attrs attribute
-group member will be filled at runtime only when relevant and will
-remain empty otherwise. In this case, as the cells attribute group will
-be empty, it will not lead to any additional folder/file creation.
-
-Exposed cells are read-only. There is, in practice, everything in the
-core to support a write path, but as I don't see any need for that, I
-prefer to keep the interface simple (and probably safer). The interface
-is documented as being in the "testing" state which means we can later
-add a write attribute if though relevant.
-
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-Tested-by: Rafał Miłecki <rafal@milecki.pl>
----
- drivers/nvmem/core.c      | 116 ++++++++++++++++++++++++++++++++++++++
- drivers/nvmem/internals.h |   1 +
- 2 files changed, 117 insertions(+)
-
-diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-index 1f311c899ae1..bb29cfe11334 100644
---- a/drivers/nvmem/core.c
-+++ b/drivers/nvmem/core.c
-@@ -303,6 +303,43 @@ static umode_t nvmem_bin_attr_is_visible(struct kobject *kobj,
- 	return nvmem_bin_attr_get_umode(nvmem);
- }
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+index 236fe44f779d..738024baaa57 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+@@ -399,6 +399,7 @@ micfil: audio-controller@30080000 {
+ 						      "pll8k", "pll11k", "clkext3";
+ 					dmas = <&sdma2 24 25 0x80000000>;
+ 					dma-names = "rx";
++					#sound-dai-cells = <0>;
+ 					status = "disabled";
+ 				};
  
-+static struct nvmem_cell *nvmem_create_cell(struct nvmem_cell_entry *entry,
-+					    const char *id, int index);
-+
-+static ssize_t nvmem_cell_attr_read(struct file *filp, struct kobject *kobj,
-+				    struct bin_attribute *attr, char *buf,
-+				    loff_t pos, size_t count)
-+{
-+	struct nvmem_cell_entry *entry;
-+	struct nvmem_cell *cell = NULL;
-+	size_t cell_sz, read_len;
-+	void *content;
-+
-+	entry = attr->private;
-+	cell = nvmem_create_cell(entry, entry->name, 0);
-+	if (IS_ERR(cell))
-+		return PTR_ERR(cell);
-+
-+	if (!cell)
-+		return -EINVAL;
-+
-+	content = nvmem_cell_read(cell, &cell_sz);
-+	if (IS_ERR(content)) {
-+		read_len = PTR_ERR(content);
-+		goto destroy_cell;
-+	}
-+
-+	read_len = min_t(unsigned int, cell_sz - pos, count);
-+	memcpy(buf, content + pos, read_len);
-+	kfree(content);
-+
-+destroy_cell:
-+	kfree_const(cell->id);
-+	kfree(cell);
-+
-+	return read_len;
-+}
-+
- /* default read/write permissions */
- static struct bin_attribute bin_attr_rw_nvmem = {
- 	.attr	= {
-@@ -324,11 +361,21 @@ static const struct attribute_group nvmem_bin_group = {
- 	.is_bin_visible = nvmem_bin_attr_is_visible,
- };
- 
-+/* Cell attributes will be dynamically allocated */
-+static struct attribute_group nvmem_cells_group = {
-+	.name		= "cells",
-+};
-+
- static const struct attribute_group *nvmem_dev_groups[] = {
- 	&nvmem_bin_group,
- 	NULL,
- };
- 
-+static const struct attribute_group *nvmem_cells_groups[] = {
-+	&nvmem_cells_group,
-+	NULL,
-+};
-+
- static struct bin_attribute bin_attr_nvmem_eeprom_compat = {
- 	.attr	= {
- 		.name	= "eeprom",
-@@ -384,6 +431,69 @@ static void nvmem_sysfs_remove_compat(struct nvmem_device *nvmem,
- 		device_remove_bin_file(nvmem->base_dev, &nvmem->eeprom);
- }
- 
-+static int nvmem_dev_populate_sysfs_cells(struct device *dev, void *data)
-+{
-+	struct nvmem_device *nvmem = to_nvmem_device(dev);
-+	struct bin_attribute **cells_attrs, *attrs;
-+	struct nvmem_cell_entry *entry;
-+	unsigned int ncells = 0, i = 0;
-+	int ret = 0;
-+
-+	mutex_lock(&nvmem_mutex);
-+
-+	if (list_empty(&nvmem->cells) || nvmem->sysfs_cells_populated) {
-+		nvmem_cells_group.bin_attrs = NULL;
-+		goto unlock_mutex;
-+	}
-+
-+	/* Allocate an array of attributes with a sentinel */
-+	ncells = list_count_nodes(&nvmem->cells);
-+	cells_attrs = devm_kcalloc(&nvmem->dev, ncells + 1,
-+				   sizeof(struct bin_attribute *), GFP_KERNEL);
-+	if (!cells_attrs) {
-+		ret = -ENOMEM;
-+		goto unlock_mutex;
-+	}
-+
-+	attrs = devm_kcalloc(&nvmem->dev, ncells, sizeof(struct bin_attribute), GFP_KERNEL);
-+	if (!attrs) {
-+		ret = -ENOMEM;
-+		goto unlock_mutex;
-+	}
-+
-+	/* Initialize each attribute to take the name and size of the cell */
-+	list_for_each_entry(entry, &nvmem->cells, node) {
-+		sysfs_bin_attr_init(&attrs[i]);
-+		attrs[i].attr.name = devm_kasprintf(&nvmem->dev, GFP_KERNEL,
-+						    "%s@%x", entry->name,
-+						    entry->offset);
-+		attrs[i].attr.mode = 0444;
-+		attrs[i].size = entry->bytes;
-+		attrs[i].read = &nvmem_cell_attr_read;
-+		attrs[i].private = entry;
-+		if (!attrs[i].attr.name) {
-+			ret = -ENOMEM;
-+			goto unlock_mutex;
-+		}
-+
-+		cells_attrs[i] = &attrs[i];
-+		i++;
-+	}
-+
-+	nvmem_cells_group.bin_attrs = cells_attrs;
-+
-+	ret = devm_device_add_groups(&nvmem->dev, nvmem_cells_groups);
-+	if (ret)
-+		goto unlock_mutex;
-+
-+	nvmem->sysfs_cells_populated = true;
-+
-+unlock_mutex:
-+	mutex_unlock(&nvmem_mutex);
-+
-+	return ret;
-+}
-+
- #else /* CONFIG_NVMEM_SYSFS */
- 
- static int nvmem_sysfs_setup_compat(struct nvmem_device *nvmem,
-@@ -2151,6 +2261,12 @@ static int nvmem_notifier_call(struct notifier_block *notifier,
- 	if (ret)
- 		return notifier_from_errno(ret);
- 
-+#ifdef CONFIG_NVMEM_SYSFS
-+	ret = nvmem_for_each_dev(nvmem_dev_populate_sysfs_cells);
-+	if (ret)
-+		return notifier_from_errno(ret);
-+#endif
-+
- 	return NOTIFY_OK;
- }
- 
-diff --git a/drivers/nvmem/internals.h b/drivers/nvmem/internals.h
-index eb73b59d1fd9..baa1c173be1c 100644
---- a/drivers/nvmem/internals.h
-+++ b/drivers/nvmem/internals.h
-@@ -30,6 +30,7 @@ struct nvmem_device {
- 	struct gpio_desc	*wp_gpio;
- 	struct nvmem_layout	*layout;
- 	void *priv;
-+	bool			sysfs_cells_populated;
- };
- 
- int nvmem_layout_bus_register(void);
 -- 
-2.34.1
+2.40.1
 
 
