@@ -1,114 +1,191 @@
-Return-Path: <devicetree+bounces-6108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 511857B9DB1
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:54:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80C687B9D65
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:38:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id EEA442825CB
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 13:54:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 8D7801C208A3
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 13:38:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A2B526E10;
-	Thu,  5 Oct 2023 13:54:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HikMK4ts"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB0CD1C29A;
+	Thu,  5 Oct 2023 13:38:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECBD5266BD;
-	Thu,  5 Oct 2023 13:54:27 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC455273C;
-	Thu,  5 Oct 2023 06:54:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1696514066; x=1728050066;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=WT2vF2g6ySQ88OnBsaROozLS1/K+Uk2umLsgnTugo4g=;
-  b=HikMK4ts2LgVHHpFAoKBy/afRCgUWTyNkt7XIvTxTbctujN9aqgBhYvJ
-   N0XR6P8DPcUyG1fwfyBLudGQkcEJbwQ+mKXBQc0BREv+dxdsc5tn5FucB
-   SDX3D2JjjTxV/VhMASL9QRuDe4wzQkkIQvitylHdvyC8wAmloYmhGsiA5
-   1obxGhvooAhmjZzlaSjWAOMfyMP01PRHaD9NsyKBPPAPgJa/qaCZ7+gNY
-   N4HgYAwb5tdqldphW8xYfoXBkJUppzkxc42/LT77z3WSiyuzNTwXu8bAx
-   AqMxOBNyQFO7hIyWWc5gLGH9ZfFXip/MTE0hkz94pezNeBeMx1mfGLZLa
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="414443730"
-X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; 
-   d="scan'208";a="414443730"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Oct 2023 05:15:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="728425237"
-X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; 
-   d="scan'208";a="728425237"
-Received: from ppglcf2090.png.intel.com ([10.126.160.96])
-  by orsmga006.jf.intel.com with ESMTP; 05 Oct 2023 05:14:59 -0700
-From: Rohan G Thomas <rohan.g.thomas@intel.com>
-To: kuba@kernel.org
-Cc: alexandre.torgue@foss.st.com,
-	andriy.shevchenko@linux.intel.com,
-	davem@davemloft.net,
-	devicetree@vger.kernel.org,
-	edumazet@google.com,
-	fancer.lancer@gmail.com,
-	joabreu@synopsys.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	mcoquelin.stm32@gmail.com,
-	netdev@vger.kernel.org,
-	pabeni@redhat.com,
-	rohan.g.thomas@intel.com
-Subject: Re: [PATCH net-next 1/1] net: stmmac: xgmac: EST interrupts handling
-Date: Thu,  5 Oct 2023 20:14:41 +0800
-Message-Id: <20231005121441.22916-1-rohan.g.thomas@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20231004092613.07cb393f@kernel.org>
-References: <20231004092613.07cb393f@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BCF81B28D
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 13:38:28 +0000 (UTC)
+X-Greylist: delayed 3745 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 05 Oct 2023 06:38:25 PDT
+Received: from mo-csw-fb.securemx.jp (mo-csw-fb1801.securemx.jp [IPv6:2001:240:bb81::4:1141])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DF4C27B1A;
+	Thu,  5 Oct 2023 06:38:25 -0700 (PDT)
+Received: by mo-csw-fb.securemx.jp (mx-mo-csw-fb1801) id 395Ca0dC042974; Thu, 5 Oct 2023 21:36:00 +0900
+Received: by mo-csw.securemx.jp (mx-mo-csw1802) id 395CZLco1883460; Thu, 5 Oct 2023 21:35:22 +0900
+X-Iguazu-Qid: 2yAbOubUDSqMlhOYnA
+X-Iguazu-QSIG: v=2; s=0; t=1696509321; q=2yAbOubUDSqMlhOYnA; m=VUNHFsTl1nPRmHHKyWIAxdZZizjOhBpf8fNEBA6DF1c=
+Received: from imx12-a.toshiba.co.jp ([38.106.60.135])
+	by relay.securemx.jp (mx-mr1802) id 395CZJfT478147
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Thu, 5 Oct 2023 21:35:20 +0900
+X-SA-MID: 8267000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=I/gDJmnEfUTjKQL1GbHdo2ER/NNpAbZO+N3Y6P6ki2zVmEp2TFhogo7vSiEaMrVRY7yZT720RkKTuVKA53AXR5EV1ObZ8NmsTXzZQF7MxdsLHEdLmiWigIgeRhjpwdHjtbmePnu08xLO7KE02uv0zI/xYCZWsVlyPGW22vQt6OOfBwbqjqrJBVYKhI2u36jRu4C5qVkhr7OJTfkuHGx/zfFOpocmDrn5htZTlWK6+a/7jOVjSn4sZg6WJLBVnXNxbMbQJRtXnONwHl/IdyuWuz2XjaWUcSYRWWAjziFGe4OKBLFtUm7rRYR2vgsZ5HtdINnUsKyFlMUSMdoARA+Qqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AvR4HrchB1Poci4oVJ7RnkW6XdQC34xfe/uScxUkVnY=;
+ b=Ymsff+r5Eld6OyOFQtJJv8bntkZGPKH5TH+zpWRTCvnZG2V0dGJNl6SsZyB3kHuEYbe0kVlbC/7Jl2XViMGmhxW/249kQ99GCeQ7jWw7+r+WHUb66ih7sfVyUHtId1wZFfvq10uxDCSF35sLmytCWGYvubt/Rvy6NgrPOHNpSE9yb9tSGeVj2whl0kBf46JGiWoV5s4gWb9P/+MUA8saaGaNl8QsVqCJ+xzYS79xh6Q52jYJduKzisWDFI6E1llaPjFP8A9OigAcJ9RpJep2ZEmoiykecK0syjGVIhGaeIKjYVPuDcfGAr6uwvD369v62e+ToTHOq5+7F/eQVUOmzw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=toshiba.co.jp; dmarc=pass action=none
+ header.from=toshiba.co.jp; dkim=pass header.d=toshiba.co.jp; arc=none
+From: <yuji2.ishikawa@toshiba.co.jp>
+To: <krzysztof.kozlowski@linaro.org>, <hverkuil@xs4all.nl>,
+        <laurent.pinchart@ideasonboard.com>, <mchehab@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <nobuhiro1.iwamatsu@toshiba.co.jp>
+CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v8 1/5] dt-bindings: media: platform: visconti: Add
+ Toshiba Visconti Video Input Interface
+Thread-Topic: [PATCH v8 1/5] dt-bindings: media: platform: visconti: Add
+ Toshiba Visconti Video Input Interface
+Thread-Index: AQHZ8AgkTX0oYXPBH0yGWNLApT8XbbAvujwAgAE7bHCACEiggIAAH5Xw
+Date: Thu, 5 Oct 2023 12:30:13 +0000
+X-TSB-HOP2: ON
+Message-ID: 
+ <TYAPR01MB62017DD4EEF22EF91D9FA03892CAA@TYAPR01MB6201.jpnprd01.prod.outlook.com>
+References: <20230925232806.950683-1-yuji2.ishikawa@toshiba.co.jp>
+ <20230925232806.950683-2-yuji2.ishikawa@toshiba.co.jp>
+ <c58ffc72-59d9-49f5-be22-18588f7df1e3@linaro.org>
+ <TYAPR01MB6201C2E34B969197C9E9DFB492C4A@TYAPR01MB6201.jpnprd01.prod.outlook.com>
+ <8a936a54-9c20-4a3b-ac2c-ae65cd22698f@linaro.org>
+In-Reply-To: <8a936a54-9c20-4a3b-ac2c-ae65cd22698f@linaro.org>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=toshiba.co.jp;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYAPR01MB6201:EE_|TYCPR01MB12110:EE_
+x-ms-office365-filtering-correlation-id: 5ffac6fb-53a7-4bcf-9e2d-08dbc59ed31f
+x-ld-processed: f109924e-fb71-4ba0-b2cc-65dcdf6fbe4f,ExtAddr,ExtFwd
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ SQDBDtlmJG64MLnC1oBkcHMXRaX0fVVs2ezJODvJ5/GHMT7NKoY8FqKn/P/9mjoS6U659nLTsIUbxNa0BJVrFXYXLjqga+nC5+AIrhR74R9TDn7F2T2DYei5ozLFyfTqZLs35e3DG6n7/kIXIWs5a0jWZi04b3vQ6En9i9ho1oqg/K4urfyUgIrm8ozJzZCg/TVu29q+CBX2jHOxe6FfVDt2JoqULcG1y8kPJki4D86FbKI0tnsZhq5dYAzLspAnON6rp//eMmkHdZf70h0qt5WrGqBLAjFWyYSW6AVZSgyEyDc9m/K+ds5NmdKX04JRB8cvl8cFTUvSK5nZXG5riMWB9RaYdjl+5B/2LGllkXGhgUmQRFfDwIfbATlTDZM/LXbK0q4ELi+orWwoLaazGoQJc8NnGQiCawxUCl5NKwO2EIsVVdvfBvkNXY284KkSbiUpO+VCGygiVa+WHS0chthjTmF+0uoKvzFUjlU7UFGQBNnD1drBieG+EZCSHr69cbhpWOpYpATNCHQ+wFlkgDbt3z6qX2BvRd2X6VDshw+OHdvhCBcBAZ3J0VJCZtiR9NXEXQxSEyAKL6cHKp++m6+fbLl1C86KfzpqS+MrwZHL1IGIDDfsjfQ+s9F9z5uC
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYAPR01MB6201.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(376002)(136003)(366004)(396003)(346002)(230922051799003)(186009)(451199024)(64100799003)(1800799009)(83380400001)(478600001)(966005)(6506007)(26005)(33656002)(55016003)(7696005)(53546011)(122000001)(9686003)(2906002)(5660300002)(54906003)(4326008)(8936002)(38070700005)(71200400001)(38100700002)(6636002)(8676002)(64756008)(316002)(52536014)(41300700001)(66556008)(66946007)(66446008)(76116006)(110136005)(66476007)(7416002)(86362001)(21314003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?RjNqU1hQOUFER3hJMUxkaGZua3F6RlFQdkVXZnZFaU1FcGdBRFlRenVzdjg2?=
+ =?utf-8?B?ck1TZVlNVDcwbUNrS1ZKRGNyRFBwU1dsQWxsSnE2U1ZaWUVLb3RQa2V6V1ZS?=
+ =?utf-8?B?RkptRTlOMkQzaUhValFOZzBEZ1RpbjZrS2xzN1VueENBaGc1RXhpNUlvemdv?=
+ =?utf-8?B?S2dFZUloc28rbkdvY1RoTm1qenRNQUw1MDVqK3UvZlhaS2xRVjE4MXhHbXZU?=
+ =?utf-8?B?TmY2TTloYnVjMnRmb3NYWlFoVnd6b2xtVUtYMDZLSHg0eFdrL2NGVXNHcER5?=
+ =?utf-8?B?TFhOTGNISEZpYUkzMGlhSU1iNzdrUUJqQVZRTUVVQklRSGNsRTg0ZjFkWjFx?=
+ =?utf-8?B?VTBhRExrOTd5RGNQeUxGNTgzUS85QnplZ0xNSWpjRU94QjFpUlNkemhhc25H?=
+ =?utf-8?B?TE81NEFiakFKVGdVTzZNUWgrMjQ1WjlBZ3RzOHZndytocDRLYnBWU3B3OWcr?=
+ =?utf-8?B?UzhCVXZ4TFRxcVJyTjFtenFqb2grZVRtWFdBMEVGdzRLdjIrSkJHTWt1N3p3?=
+ =?utf-8?B?Z0xJSWlRZGpQc3dhMkpUdk9ma0NhL2k0UUZsdjN1bnBYK3pDU2FqMFNOMENz?=
+ =?utf-8?B?SGpSZ0UrMG9YNFV4QmdQaEdWdDlvNGZNT2VkRnhJeUg1QWVYYzhmUmk4NnNW?=
+ =?utf-8?B?V2JJTGxvNDV4QUlaUlRPQXYxR1dlTHgzamp0NkVFQmpMQ0Y1eGhaOVMzMGtQ?=
+ =?utf-8?B?endmLzdoaUdRVWxLKzROa2lHZm5tM1l6VXh2dnpReTJEZjJCL0pXZFNKWlVR?=
+ =?utf-8?B?WnFMcWxPZlRibGpock5QdjdXazlJK1Uva01HdCtJUHExNHJFTEw1aE1mUUNv?=
+ =?utf-8?B?NXRDaW1BcDU1R1djY3lRRDhOWWNyMngrWTBtV2ZhVldVKzc2V0tDMGpuYXEx?=
+ =?utf-8?B?S3AwNm1mb3dpVkVXeDlkVC8yU0ZPVFZSMm4yZGJsZkEzN2xvWkF2Y2RLcmxR?=
+ =?utf-8?B?TTBOeExzdWxSbmcwTjZydEliN1FieVkwUTFMYlVsbFNZeDIrZDNEYndvTUp5?=
+ =?utf-8?B?YWQrTUpvSy9JU3VJejNRU3FOQU9kOGJMNTNVTTFLU1BmanBUNTZkRFdkKzgz?=
+ =?utf-8?B?eXBFWHBVbEZvWXpHRENNclRVSWFvWWFvZUozcDExQys4UHVBdlFRNmpkU2dU?=
+ =?utf-8?B?K05yQXFzZk1qSFhZdXc4eEt2VUgxUWxsb1Q3a2RlZXpMV0RjalJ5QjJpRHFr?=
+ =?utf-8?B?Y3dyZUk4MXNUYUNzY2M0b3I5d1d3L3NQV21RRjhzVzBNYlJ2MnZSeG9mSE9r?=
+ =?utf-8?B?T0sxV2V2ckREbDgzLzBvM2dGbmtORUlvN0ZYbEtSbThjS0xLN2pIZjI3RGpz?=
+ =?utf-8?B?V2MxMVR4ZTVuNjdJVVlra1gxVElreG9xTWJGcTFGRUpUL1lNNXhqdm5YN05t?=
+ =?utf-8?B?NUZUa1dBTkZGdGdqMlFtMjJJQkNQeG9rRktDdkZQTTdZa2xPbUwzTWJybUJS?=
+ =?utf-8?B?WWlia05IanVPdHp4RFdDdFRMVGdPMHlFK1lmK0VMTlluQnFtZ0R3V3dlMW4w?=
+ =?utf-8?B?Y29aSVFjU1MyVi9VdVdqWHp3blJRbDAxZk14bm53dThXd0tEYUpYVnhHcUxN?=
+ =?utf-8?B?bk1mSjJhYkt6dmRCQzVMTC9Jc1NXRExsVlZZbVdudE13cTJVbExZWlYzcGU3?=
+ =?utf-8?B?VzJoOXJjbXpVYzBKSzRnOW1YNjBkMmZIUHJFUk5rRU41WjFOZ3V4S1JodUpk?=
+ =?utf-8?B?VmVIT2w3VW9rZ0x6RHQ0ZmhHWW5GaWlKbE9PMnhTOXlQSHZ0K1RRVXFqTW9q?=
+ =?utf-8?B?ZGhob1daVytRV3Y5Z1U2a2c3RnN6VWRRcVpGVnB3QklqbytGL0FUMktlOEVY?=
+ =?utf-8?B?eGkrbmNFS2p0RFVSeGM2dDE0U2JvL1JwMEN1TXd0RjM3OHRMYnB1K0hLWTRP?=
+ =?utf-8?B?VzBmaHRlODUzZ3ZNYzJjNGRMRHBzQ0tYK1F3cWVIb21OeWdWZ3hSVmpsMmp0?=
+ =?utf-8?B?bEw2a3dFcnNRaGJsbDdsekYveGRkYkZrcWVFVE83MXNSSGJjYzlTckdrZ2ZO?=
+ =?utf-8?B?NHc5YkJtWFJ3aXkwNW51Vlg5T3YxSzhoYTB0NE5URG81QmxFVHp5ZGJWL0xT?=
+ =?utf-8?B?T3RHeGxOMCt0K1EzWVdURVdRUW1CenEydXdjbndGLzMvVG10MmlxV3ljWEgv?=
+ =?utf-8?B?RHE2NGhQcW02L09oeEVhQzVlS3ZHeDdLRTZjbDQwUHZIUHBwREJ0VzhvWnls?=
+ =?utf-8?B?WEE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+X-OriginatorOrg: toshiba.co.jp
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYAPR01MB6201.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ffac6fb-53a7-4bcf-9e2d-08dbc59ed31f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Oct 2023 12:30:14.0162
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: f109924e-fb71-4ba0-b2cc-65dcdf6fbe4f
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: egDAuK0kh3g1Bp0c0MIys3gywDAMa87LZm66cwRnTdGucQNHAlnlAIXmVS48dDAKDJ8D+Qhm4FWL5A/gq8bkPtIlMzlPd/7z+u2/z4WmwvE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB12110
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, 4 Oct 2023 09:26:13 -0700 Jakub Kicinski wrote:
-> On Tue, 3 Oct 2023 14:12:15 +0300 Serge Semin wrote:
-> > If I didn't miss some details after that we'll have a common EST
-> > module utilized for both DW QoS Eth and DW XGMAC IP-cores.
-> 
-> So the question now is whether we want Rohan to do this conversion _first_,
-> in DW QoS 5, and then add xgmac part. Or the patch should go in as is and
-> you'll follow up with the conversion?
+SGVsbG8gS3J6eXN6dG9mLA0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206
+IEtyenlzenRvZiBLb3psb3dza2kgPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4NCj4g
+U2VudDogV2VkbmVzZGF5LCBPY3RvYmVyIDQsIDIwMjMgMzo1MSBQTQ0KPiBUbzogaXNoaWthd2Eg
+eXVqaSjnn7Plt50g5oKg5Y+4IOKXi++8su+8pO+8o+KWoe+8oe+8qe+8tO+8o+KXi++8pe+8oemW
+iykNCj4gPHl1amkyLmlzaGlrYXdhQHRvc2hpYmEuY28uanA+OyBodmVya3VpbEB4czRhbGwubmw7
+DQo+IGxhdXJlbnQucGluY2hhcnRAaWRlYXNvbmJvYXJkLmNvbTsgbWNoZWhhYkBrZXJuZWwub3Jn
+Ow0KPiByb2JoK2R0QGtlcm5lbC5vcmc7IGtyenlzenRvZi5rb3psb3dza2krZHRAbGluYXJvLm9y
+ZzsgY29ub3IrZHRAa2VybmVsLm9yZzsNCj4gaXdhbWF0c3Ugbm9idWhpcm8o5bKp5p2+IOS/oea0
+iyDil4vvvKTvvKnvvLTvvKPilqHvvKTvvKnvvLTil4vvvK/vvLPvvLQpDQo+IDxub2J1aGlybzEu
+aXdhbWF0c3VAdG9zaGliYS5jby5qcD4NCj4gQ2M6IGxpbnV4LW1lZGlhQHZnZXIua2VybmVsLm9y
+ZzsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7DQo+IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMu
+aW5mcmFkZWFkLm9yZzsgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZw0KPiBTdWJqZWN0OiBS
+ZTogW1BBVENIIHY4IDEvNV0gZHQtYmluZGluZ3M6IG1lZGlhOiBwbGF0Zm9ybTogdmlzY29udGk6
+IEFkZCBUb3NoaWJhDQo+IFZpc2NvbnRpIFZpZGVvIElucHV0IEludGVyZmFjZQ0KPiANCj4gT24g
+MDQvMTAvMjAyMyAwMToxMCwgeXVqaTIuaXNoaWthd2FAdG9zaGliYS5jby5qcCB3cm90ZToNCj4g
+Pj4+ICsgICAgcHJvcGVydGllczoNCj4gPj4+ICsgICAgICBlbmRwb2ludDoNCj4gPj4+ICsgICAg
+ICAgICRyZWY6IHZpZGVvLWludGVyZmFjZXMueWFtbCMNCj4gPj4+ICsgICAgICAgIGFkZGl0aW9u
+YWxQcm9wZXJ0aWVzOiBmYWxzZQ0KPiA+Pg0KPiA+PiBUaGlzIGlzIGEgZnJpZW5kbHkgcmVtaW5k
+ZXIgZHVyaW5nIHRoZSByZXZpZXcgcHJvY2Vzcy4NCj4gPj4NCj4gPj4gSXQgc2VlbXMgbXkgcHJl
+dmlvdXMgY29tbWVudHMgd2VyZSBub3QgZnVsbHkgYWRkcmVzc2VkLiBNYXliZSBteQ0KPiA+PiBm
+ZWVkYmFjayBnb3QgbG9zdCBiZXR3ZWVuIHRoZSBxdW90ZXMsIG1heWJlIHlvdSBqdXN0IGZvcmdv
+dCB0byBhcHBseSBpdC4NCj4gPj4gUGxlYXNlIGdvIGJhY2sgdG8gdGhlIHByZXZpb3VzIGRpc2N1
+c3Npb24gYW5kIGVpdGhlciBpbXBsZW1lbnQgYWxsDQo+ID4+IHJlcXVlc3RlZCBjaGFuZ2VzIG9y
+IGtlZXAgZGlzY3Vzc2luZyB0aGVtLg0KPiA+Pg0KPiA+PiBUaGFuayB5b3UuDQo+ID4NCj4gPiBJ
+J20gdmVyeSBzb3JyeSB0aGF0IEkgbWlzdW5kZXJzdG9vZCB0aGUgaW50ZW50IG9mIHRoZSBsYXN0
+IGNvbnZlcnNpb24uDQo+ID4gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsLzBhYTQ3MWNlLWRh
+ODMtMTcyZC1kODcwLTFlYzdhNTYyYmFmN0BsaW5hcg0KPiA+IG8ub3JnLyBJIHRob3VnaHQgImFk
+ZGl0aW9uYWxQcm9wZXJ0aWVzOiBmYWxzZSIgY2FuIGJlIHVzZWQgYW5kDQo+ID4gInh4eDp0cnVl
+IiBzaG91bGQgc3RheS4NCj4gPg0KPiA+IExldCBtZSBjb25maXJtIHlvdXIgaW50ZW50aW9uczoN
+Cj4gPiAgIC0gInVuZXZhbHVhdGVkUHJvcGVydGllczogZmFsc2UiIHNob3VsZCBiZSB1c2VkIGlu
+c3RlYWQgb2YNCj4gImFkZGl0aW9uYWxQcm9wZXJ0aWVzOiBmYWxzZSINCj4gPiAgIC0gQWxsIG9m
+ICJ4eHg6IHRydWUiIHNob3VsZCBiZSByZW1vdmVkIEFyZSB0aGVzZSB0d28gY29ycmVjdA0KPiA+
+IHVuZGVyc3RhbmRpbmdzPw0KPiANCj4gQWgsIHRydWUsIEkgbWlzc2VkIHRoYXQuIEl0IGlzIGlu
+ZGVlZCBmaW5lLCBhcG9sb2dpZXMuDQo+IA0KDQpJIHVuZGVyc3RhbmQuIEknbGwgdXNlICJhZGRp
+dGlvbmFsUHJvcGVydGllczogZmFsc2UiLg0KDQo+ID4NCj4gPj4+ICsNCj4gPj4+ICsgICAgICAg
+IHByb3BlcnRpZXM6DQo+ID4+PiArICAgICAgICAgIGRhdGEtbGFuZXM6DQo+ID4+PiArICAgICAg
+ICAgICAgZGVzY3JpcHRpb246IFZJSUYgc3VwcG9ydHMgMSwgMiwgMyBvciA0IGRhdGEgbGFuZXMN
+Cj4gPj4+ICsgICAgICAgICAgICBtaW5JdGVtczogMQ0KPiA+Pj4gKyAgICAgICAgICAgIGl0ZW1z
+Og0KPiA+Pj4gKyAgICAgICAgICAgICAgLSBjb25zdDogMQ0KPiA+Pj4gKyAgICAgICAgICAgICAg
+LSBjb25zdDogMg0KPiA+Pj4gKyAgICAgICAgICAgICAgLSBjb25zdDogMw0KPiA+Pj4gKyAgICAg
+ICAgICAgICAgLSBjb25zdDogNA0KPiA+Pj4gKw0KPiA+Pj4gKyAgICAgICAgICBjbG9jay1ub25j
+b250aW51b3VzOiB0cnVlDQo+ID4+DQo+ID4+IERyb3ANCj4gDQo+IFRoaXMgYW5kIGZ1cnRoZXIg
+Y2FuIGJlIGlnbm9yZWQuDQoNCkknbGwga2VlcCAieHh4OiB0cnVlIi4NCg0KPiBCZXN0IHJlZ2Fy
+ZHMsDQo+IEtyenlzenRvZg0KDQpCZXN0IHJlZ2FyZHMsDQpZdWppDQo=
 
-Hi Jakub, Serge,
-
-If agreed, this commit can go in. I can submit another patch with the
-refactoring suggested by Serge.
-
-Again, thanks Serge for the prompt response. Regarding the below point in your
-earlier response,
-
-> > 2. PTP time offset setup performed by means of the
-> > MTL_EST_CONTROL.PTOV field. DW QoS Eth v5.x HW manual claims it's "The
-> > value of PTP Clock period multiplied by 6 in nanoseconds." So either Jose got
-> > mistaken by using _9_ for DW XGMAC v3.x or the DW XGMAC indeed is
-> > different in that aspect.
-
-This is a little confusing...
-I referred databooks for DW QoS Eth v5.30a and DW XGMAC v3.10a. In both this is
-mentioned as "The value of PTP Clock period multiplied by 9 in nanoseconds".
-
-Best Regards,
-Rohan
 
