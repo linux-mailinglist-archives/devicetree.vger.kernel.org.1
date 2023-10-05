@@ -1,139 +1,244 @@
-Return-Path: <devicetree+bounces-6211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECF657BA38B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:58:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0D707BA3CD
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:59:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 404B9B2099B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:58:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 8F096282D57
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:59:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41F5F328D7;
-	Thu,  5 Oct 2023 15:58:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8ED733989;
+	Thu,  5 Oct 2023 15:59:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ydfAtw60"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Ex+cT3Wf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DAAC31A96
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 15:57:59 +0000 (UTC)
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CE9C87D68
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 08:57:53 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-3247cefa13aso1122513f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 08:57:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696521472; x=1697126272; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JZcQdif16KIsV/1ocyIAmtjZ1yEW/jfAGT5DH5ZGevU=;
-        b=ydfAtw60OWL+MeRlKNROR1ncikbGd18YQDLHq8VqCl0/mgP9xq9u1/kUFAcACinLyu
-         Dv0SJp8uqDPzbRuPO4oxImaFN+fVg0mU3WQXCC8Q6ozSh9Ci5ah7inxI6928b4TRyC1Y
-         xqiOUkEcYhbRsZMMzsThmEvldu23ufg0ykUg3ijrIWLcdQ1hdysyufsCAgJGfbbQjLap
-         RvCY+RfgJRRQrMi7Zvz3G1M63nAEA/a4t8jsatmPap9u0d1sJzBt7q1votYjDlpCoVSP
-         lVm+j4YYERYkFLUee53glOWD1yJwzk9Ko3NC7YLVCsJipvWmYKuXvFemee+o12lMvSWz
-         wp/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696521472; x=1697126272;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JZcQdif16KIsV/1ocyIAmtjZ1yEW/jfAGT5DH5ZGevU=;
-        b=TKbDVkHrX30QN/M6CDPCUk4eZz91ObzAL7rEFe8mTSnlvrTmEt7aD9kT6kNm2xu0bI
-         TNBeEGM50mONEBBJ3h4C4bZlVyWOAc2WerRKpHTMZ2TqRMVSEKxYc7hKZtSAMSLf9Xx7
-         rGufxj0JIDtBQycN02LQDx8KTNw46LlZG1drtMTuZRW3A0NURDsq8hj7XOdDj+1cQpoX
-         nqxGzNO30nwdPkFMpz/wlphX1OxmXYqzOU63O3hhFA66scJlv0sv7k1fjvNwol23PM8Z
-         tDkOoXcgNMbnQVRt1+O8USci5vhxgU2C12J/RHsudGiE7yD0fwm81Dx6I/Mq2QPsOZrB
-         Rvmg==
-X-Gm-Message-State: AOJu0Ywv7rLRBw8Ykl9bQ7gtLd0+g2yxvhx2BDT+PRUK28D1wbuFlX30
-	XpYIHFQyDMyy22YCw/z7lGPGmQ==
-X-Google-Smtp-Source: AGHT+IHj3KgFg4X3Xr+ezMStBQo1fMmV89Ktlr/kyhx9iyz1eOIitC1QjlqKnhb/zdCiKAYFtNDLWg==
-X-Received: by 2002:adf:e9d0:0:b0:31f:f432:b541 with SMTP id l16-20020adfe9d0000000b0031ff432b541mr5241309wrn.69.1696521471952;
-        Thu, 05 Oct 2023 08:57:51 -0700 (PDT)
-Received: from gpeter-l.lan (host-92-12-225-146.as13285.net. [92.12.225.146])
-        by smtp.gmail.com with ESMTPSA id t9-20020a5d4609000000b0031f8a59dbeasm2084336wrq.62.2023.10.05.08.57.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Oct 2023 08:57:51 -0700 (PDT)
-From: Peter Griffin <peter.griffin@linaro.org>
-To: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	mturquette@baylibre.com,
-	conor+dt@kernel.org,
-	sboyd@kernel.org,
-	tomasz.figa@gmail.com,
-	s.nawrocki@samsung.com,
-	linus.walleij@linaro.org,
-	wim@linux-watchdog.org,
-	linux@roeck-us.net,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	arnd@arndb.de,
-	olof@lixom.net,
-	cw00.choi@samsung.com
-Cc: peter.griffin@linaro.org,
-	tudor.ambarus@linaro.org,
-	andre.draszik@linaro.org,
-	semen.protsenko@linaro.org,
-	soc@kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 926C7328A8
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 15:59:18 +0000 (UTC)
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 744A98C21;
+	Thu,  5 Oct 2023 08:59:14 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 247EF1BF20E;
+	Thu,  5 Oct 2023 15:59:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1696521551;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=xm4Wx/6Mlre7HBOv1y73fYdaPWmn9CyAXUbuHr8uTdo=;
+	b=Ex+cT3Wf8JWJOybPy+8uTW3z1aeFcknj4KRfO3Nwth8jzYv6RWx0l437XTujsAr9JbGk+I
+	p8kRntIbtuMeNfk5SalYJPAGiR634NDrAKFKI3nOBdbdjA0xjf6S1igQfBE7Rcp00uTTRc
+	kGbubZ1g64OCpiU+E6C0HhdbojcD8a3QzHMxT+IRcAM2B6QrZyNVivLy0q6ZlnThm72F1J
+	pIdswoorcnx8wLvZnRot/wg13Ln5PT6jNdniQ12QZ1LacHyAQhuhYUrUvjXikQXpL9xtzk
+	OVGq9aR2JrXm1DmtS3runRQBSLxdF85eVD33wkbK1A9SnF1nkngiedmAqXLiUw==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Michael Walle <michael@walle.cc>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	Rob Herring <robh+dt@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	linux-watchdog@vger.kernel.org
-Subject: [PATCH 21/21] MAINTAINERS: add entry for Google Tensor SoC
-Date: Thu,  5 Oct 2023 16:56:18 +0100
-Message-ID: <20231005155618.700312-22-peter.griffin@linaro.org>
-X-Mailer: git-send-email 2.42.0.582.g8ccd20d70d-goog
-In-Reply-To: <20231005155618.700312-1-peter.griffin@linaro.org>
-References: <20231005155618.700312-1-peter.griffin@linaro.org>
+	<linux-kernel@vger.kernel.org>,
+	Robert Marko <robert.marko@sartura.hr>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Luka Perkov <luka.perkov@sartura.hr>,
+	Randy Dunlap <rdunlap@infradead.org>,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH v12 0/7] NVMEM cells in sysfs
+Date: Thu,  5 Oct 2023 17:59:00 +0200
+Message-Id: <20231005155907.2701706-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-GND-Sasl: miquel.raynal@bootlin.com
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add maintainers entry for the Google tensor SoC based
-platforms.
+Hello,
 
-Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
----
- MAINTAINERS | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+As part of a previous effort, support for dynamic NVMEM layouts was
+brought into mainline, helping a lot in getting information from NVMEM
+devices at non-static locations. One common example of NVMEM cell is the
+MAC address that must be used. Sometimes the cell content is mainly (or
+only) useful to the kernel, and sometimes it is not. Users might also
+want to know the content of cells such as: the manufacturing place and
+date, the hardware version, the unique ID, etc. Two possibilities in
+this case: either the users re-implement their own parser to go through
+the whole device and search for the information they want, or the kernel
+can expose the content of the cells if deemed relevant. This second
+approach sounds way more relevant than the first one to avoid useless
+code duplication, so here is a series bringing NVMEM cells content to
+the user through sysfs.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 90f13281d297..23cfc0799c04 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8836,6 +8836,17 @@ S:	Maintained
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/chrome-platform/linux.git
- F:	drivers/firmware/google/
- 
-+GOOGLE TENSOR SoC SUPPORT
-+M:	Peter Griffin <peter.griffin@linaro.org>
-+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-+L:	linux-samsung-soc@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
-+F:	arch/arm64/boot/dts/google/
-+F:	drivers/clk/samsung/clk-gs101.c
-+F:	include/dt-bindings/clock/clk-gs101.h
-+F:	include/dt-bindings/interrupt-controller/gs101.h
-+
- GPD POCKET FAN DRIVER
- M:	Hans de Goede <hdegoede@redhat.com>
- L:	platform-driver-x86@vger.kernel.org
+Here is a real life example with a Marvell Armada 7040 TN48m switch:
+
+$ nvmem=/sys/bus/nvmem/devices/1-00563/
+$ for i in `ls -1 $nvmem/cells/*`; do basename $i; hexdump -C $i | head -n1; done
+country-code@77
+00000000  54 57                                             |TW|
+crc32@88
+00000000  bb cd 51 98                                       |..Q.|
+device-version@49
+00000000  02                                                |.|
+diag-version@80
+00000000  56 31 2e 30 2e 30                                 |V1.0.0|
+label-revision@4c
+00000000  44 31                                             |D1|
+mac-address@2c
+00000000  18 be 92 13 9a 00                                 |......|
+manufacture-date@34
+00000000  30 32 2f 32 34 2f 32 30  32 31 20 31 38 3a 35 39  |02/24/2021 18:59|
+manufacturer@72
+00000000  44 4e 49                                          |DNI|
+num-macs@6e
+00000000  00 40                                             |.@|
+onie-version@61
+00000000  32 30 32 30 2e 31 31 2d  56 30 31                 |2020.11-V01|
+platform-name@50
+00000000  38 38 46 37 30 34 30 2f  38 38 46 36 38 32 30     |88F7040/88F6820|
+product-name@d
+00000000  54 4e 34 38 4d 2d 50 2d  44 4e                    |TN48M-P-DN|
+serial-number@19
+00000000  54 4e 34 38 31 50 32 54  57 32 30 34 32 30 33 32  |TN481P2TW2042032|
+vendor@7b
+00000000  44 4e 49                                          |DNI|
+
+Current support does not include:
+* The knowledge of the type of data (binary vs. ASCII), so by default
+  all cells are exposed in binary form.
+* Write support.
+
+Changes in v12:
+* Fixed the issues reported by kernel test robot.
+* Reworked even deeper the registration of layout devices and dropped
+  all the research and matching code that was previously needed as
+  suggested by Srinivas. This way, we no longer use the notifiers.
+
+Changes in v11:
+* The nvmem layouts are now regular devices and not platform devices
+  anymore. They are registered into the nvmem-layout bus (so there is a
+  new /sysfs/bus/nvmem-layouts entry that gets created. All the code for
+  this new bus is located under drivers/nvmem/layouts.c and is part of
+  the main core. The core device-driver logic applies without too much
+  additional code besides the registration of the bus and a bit of
+  glue. I see no need for more detailed structures for now but this can
+  be improved later as needed.
+
+Changes in v10:
+* All preparation patches have been picked-up by Srinivas.
+* Rebased on top of v6.6-rc1.
+* Fix an error path in the probe due to the recent additions.
+
+Changes in v9:
+* Hopefully fixed the creation of sysfs entries when describing the
+  cells using the legacy layout, as reported by Chen-Yu.
+* Dropped the nvmem-specific device list and used the driver core list
+  instead as advised by Greg.
+
+Changes in v8:
+* Fix a compilation warning whith !CONFIG_NVMEM_SYSFS.
+* Add a patch to return NULL when no layout is found (reported by Dan
+  Carpenter).
+* Fixed the documentation as well as the cover letter regarding the
+  addition of addresses in the cell names.
+
+Changes in v7:
+* Rework the layouts registration mechanism to use the platform devices
+  logic.
+* Fix the two issues reported by Daniel Golle and Chen-Yu Tsai, one of
+  them consist in suffixing '@<offset>' to the cell name to create the
+  sysfs files in order to be sure they are all unique.
+* Update the doc.
+
+Changes in v6:
+* ABI documentation style fixes reported by Randy Dunlap:
+  s|cells/ folder|"cells" folder|
+  Missing period at the end of the final note.
+  s|Ex::|Example::|
+* Remove spurious patch from the previous resubmission.
+
+Resending v5:
+* I forgot the mailing list in my former submission, both are absolutely
+  identical otherwise.
+
+Changes in v5:
+* Rebased on last -rc1, fixing a conflict and skipping the first two
+patches already taken by Greg.
+* Collected tags from Greg.
+* Split the nvmem patch into two, one which just moves the cells
+  creation and the other which adds the cells.
+
+Changes in v4:
+* Use a core helper to count the number of cells in a list.
+* Provide sysfs attributes a private member which is the entry itself to
+  avoid the need for looking up the nvmem device and then looping over
+  all the cells to find the right one.
+
+Changes in v3:
+* Patch 1 is new: fix a style issue which bothered me when reading the
+  core.
+* Patch 2 is new: Don't error out when an attribute group does not
+  contain any attributes, it's easier for developers to handle "empty"
+  directories this way. It avoids strange/bad solutions to be
+  implemented and does not cost much.
+* Drop the is_visible hook as it is no longer needed.
+* Stop allocating an empty attribute array to comply with the sysfs core
+  checks (this check has been altered in the first commits).
+* Fix a missing tab in the ABI doc.
+
+Changes in v2:
+* Do not mention the cells might become writable in the future in the
+  ABI documentation.
+* Fix a wrong return value reported by Dan and kernel test robot.
+* Implement .is_bin_visible().
+* Avoid overwriting the list of attribute groups, but keep the cells
+  attribute group writable as we need to populate it at run time.
+* Improve the commit messages.
+* Give a real life example in the cover letter.
+
+Miquel Raynal (7):
+  of: device: Export of_device_make_bus_id()
+  nvmem: Clarify the situation when there is no DT node available
+  nvmem: Move of_nvmem_layout_get_container() in another header
+  nvmem: Create a header for internal sharing
+  nvmem: core: Rework layouts to become regular devices
+  ABI: sysfs-nvmem-cells: Expose cells through sysfs
+  nvmem: core: Expose cells through sysfs
+
+ Documentation/ABI/testing/sysfs-nvmem-cells |  21 ++
+ drivers/nvmem/Makefile                      |   2 +-
+ drivers/nvmem/core.c                        | 288 +++++++++++---------
+ drivers/nvmem/internals.h                   |  58 ++++
+ drivers/nvmem/layouts.c                     | 201 ++++++++++++++
+ drivers/nvmem/layouts/onie-tlv.c            |  36 ++-
+ drivers/nvmem/layouts/sl28vpd.c             |  36 ++-
+ drivers/of/device.c                         |  41 +++
+ drivers/of/platform.c                       |  40 ---
+ include/linux/nvmem-consumer.h              |   7 -
+ include/linux/nvmem-provider.h              |  39 ++-
+ include/linux/of_device.h                   |   6 +
+ 12 files changed, 581 insertions(+), 194 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-nvmem-cells
+ create mode 100644 drivers/nvmem/internals.h
+ create mode 100644 drivers/nvmem/layouts.c
+
 -- 
-2.42.0.582.g8ccd20d70d-goog
+2.34.1
 
 
