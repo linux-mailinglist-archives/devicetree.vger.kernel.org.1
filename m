@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-6286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FB267BA9F7
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 21:21:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFB017BA9FC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 21:22:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 8A438281E1A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 19:21:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 8EF86281B54
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 19:22:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9918941742;
-	Thu,  5 Oct 2023 19:21:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 425FC4123B;
+	Thu,  5 Oct 2023 19:22:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NykbaJ9z"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Lza5/yCd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 177C1266D5
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 19:21:52 +0000 (UTC)
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30B9498
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 12:21:51 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9b9a494cc59so246591466b.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 12:21:51 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1A3C405FE
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 19:22:45 +0000 (UTC)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D18298
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 12:22:44 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-99de884ad25so246836066b.3
+        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 12:22:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696533709; x=1697138509; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696533763; x=1697138563; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zC5nmhOEkk98rezBT2eL5gPDYlMqNoJcj52hTWs3iUg=;
-        b=NykbaJ9zUW0rzDtgUsFY8vwHSe9X0zKpj/ApIXLdDLm7exPrQjBmP1VZXU9oscFApk
-         4ukmYWSAJg83kQtN17BMtk96pANKyvcWp5Y1F728e8IGqZlpJ4uBWltGAWVzI6kxSKiz
-         Lg3zKfmlko6+O7eNqBkCitJWVU+VLQikNudQXVL/OD+NOBslNn2Te7e0nnoh+TX66VEj
-         w6NDo8J5XVtyJ0HDcyzc5aNz6eUdPkpRCombIxD9b46JGmsZi+nsANDdoxZVTb0kYq3s
-         EqZC4qKB7YGQIXBbgSkSQJhn01yVFt52XmKNYa09WtX3SpFcguQK7jT/oN0Gni/Msayc
-         14WA==
+        bh=H2RLmB7g+8qx4harkihCsHRe2Jxdu/epelEM4mwXVSM=;
+        b=Lza5/yCd8OlmWY4bmAEdxNSACxV7Sfm/gDo/KMK/IeDo/WAL7qDWFckzBowjTcgZDH
+         rfhfR5JyIsLKPMjBDRAiN6AMKvPgkkAL1RbzdBHzZfq1yCjuf0SKowYnoxiMNfmbb9us
+         Z12aUNDS42Fqmg+hARkFV58NMhdV016+28FY/nn4gWdKNcoP4qGh9Ds8Irh2WnDzkEtK
+         TZX2B9odY+dGfyn9Bc6yK9O/DjPz6A/boiKfB3BPOCrP/FvGUgdHTD1UM8J+v9MtVOW/
+         IeLlARuDHgI1TUjc8LrDDMqY9407J7vbObOZ1PWg8imBfmfdkVRHQISMHx+H4fPdG7v9
+         g5Og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696533709; x=1697138509;
+        d=1e100.net; s=20230601; t=1696533763; x=1697138563;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zC5nmhOEkk98rezBT2eL5gPDYlMqNoJcj52hTWs3iUg=;
-        b=Ir2omDp81mNXDKNRzjNrptGeqSJDzZBOdbxbeGdwG08LogzM1OBKcdZNjIDOo3HbDW
-         EA+t74M+fqhBbCgIms4hTf/Ug3kSt7AWnygY76HFCI7FURCm+KBpBWT4IiZY/KBR/z3w
-         onviHkddnZbbcqrbarvupkHLnSFlaNCAp3bscyFLxFQyFpoKFEHV8v6HRnOFO1tgqGL1
-         sSUhuiON0Ln4iGGRkLQ6XGaXL4+C7sgiC88V1okwUGQ8ml0OJIIE9bCm3HJyJgyFYzSu
-         Kg3xg3m0vmEAAsfoAmRjtnpPaSJFzNY0a2TqlhpGH4NqFY+IeDQH1dn1XuvLgjYlxjVl
-         EbeA==
-X-Gm-Message-State: AOJu0YypwjeWQgHFSAuMjPfDmqCenDpn3ZjW75Sm0sBUlVX8SGZIduCf
-	qwn5vi5T+Zs99/+aF0xYvg0rjQ==
-X-Google-Smtp-Source: AGHT+IEsAQS65ajEAkvqirYG2lP79o5Xp6M15XP9UKihrzfeVYblRVgcZVLCMPbVyNs07EDBpyOXGQ==
-X-Received: by 2002:a17:906:31c5:b0:9a2:5bf:8b14 with SMTP id f5-20020a17090631c500b009a205bf8b14mr6089768ejf.22.1696533709605;
-        Thu, 05 Oct 2023 12:21:49 -0700 (PDT)
+        bh=H2RLmB7g+8qx4harkihCsHRe2Jxdu/epelEM4mwXVSM=;
+        b=HejHr76v6h6L7xMHBsWaD22IGQdOna5u4FodVNyAbYnRTFxVWLqYVbAyGxpdH5Tn6P
+         GpD4kQbmou+ca+L5SUVs0LQolAP+f2zsNCxNApzZParzfjoiXelXkzIuZ2TuYaF8cpkx
+         h8Wy/iWUkfQuRe1PkH1YIHU2qCC5TQn91vEkiRReyrYCxjMyenzlAF0aNOXeY6/MkZxP
+         jifghLv/5QvP1ifC+CY3ZlAlxuf5dLrfeXe0zDTyxmyAUVncq7SZ+93dDisiA0RA/koU
+         H/X8SawnKQz/+sDG4VF4ksc87XdQKDApOopRFmjVKu6Me2LgKrNaJBr7ff46vBtxj4k1
+         uajw==
+X-Gm-Message-State: AOJu0Yznr6TP3o32KIZqL6PDWoxsM4BpaViHiN6bd4huwvQo5I8G5WeQ
+	UR/xNot3e4McHWHT39T2QU/jMg==
+X-Google-Smtp-Source: AGHT+IHzCMPH6GCYxav68JKuM4RFSuedz3bF6GTUfGGj4Q7LE6xtvJ+89OJMdsC5nnk7tPBAuRv26A==
+X-Received: by 2002:a17:906:2da:b0:9b7:1e26:e2ea with SMTP id 26-20020a17090602da00b009b71e26e2eamr5297358ejk.41.1696533762679;
+        Thu, 05 Oct 2023 12:22:42 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id rn4-20020a170906d92400b0099bc038eb2bsm1613889ejb.58.2023.10.05.12.21.47
+        by smtp.gmail.com with ESMTPSA id rn4-20020a170906d92400b0099bc038eb2bsm1613889ejb.58.2023.10.05.12.22.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Oct 2023 12:21:49 -0700 (PDT)
-Message-ID: <20c6070e-edeb-4a9d-863d-143abc840874@linaro.org>
-Date: Thu, 5 Oct 2023 21:21:46 +0200
+        Thu, 05 Oct 2023 12:22:42 -0700 (PDT)
+Message-ID: <db02684f-c32b-4e09-8752-8d07dcb518c3@linaro.org>
+Date: Thu, 5 Oct 2023 21:22:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -134,8 +134,8 @@ Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
@@ -154,76 +154,15 @@ On 05/10/2023 19:59, William McVicker wrote:
 >> It has been tested with a minimal busybox initramfs and boots to
 >> a shell.
 >>
->> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
->> ---
->>  arch/arm64/Kconfig.platforms                  |    6 +
->>  arch/arm64/boot/dts/Makefile                  |    1 +
->>  arch/arm64/boot/dts/google/Makefile           |    6 +
->>  arch/arm64/boot/dts/google/gs101-oriole.dts   |   68 +
->>  arch/arm64/boot/dts/google/gs101-pinctrl.dtsi | 1134 +++++++++++++++++
->>  arch/arm64/boot/dts/google/gs101-pinctrl.h    |   17 +
->>  arch/arm64/boot/dts/google/gs101.dtsi         |  501 ++++++++
->>  7 files changed, 1733 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/google/Makefile
->>  create mode 100644 arch/arm64/boot/dts/google/gs101-oriole.dts
->>  create mode 100644 arch/arm64/boot/dts/google/gs101-pinctrl.dtsi
->>  create mode 100644 arch/arm64/boot/dts/google/gs101-pinctrl.h
->>  create mode 100644 arch/arm64/boot/dts/google/gs101.dtsi
->>
->> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
->> index 6069120199bb..a5ed1b719488 100644
->> --- a/arch/arm64/Kconfig.platforms
->> +++ b/arch/arm64/Kconfig.platforms
->> @@ -107,6 +107,12 @@ config ARCH_EXYNOS
->>  	help
->>  	  This enables support for ARMv8 based Samsung Exynos SoC family.
->>  
->> +config ARCH_GOOGLE_TENSOR
->> +	bool "Google Tensor SoC fmaily"
->> +	depends on ARCH_EXYNOS
->> +	help
->> +	  Support for ARMv8 based Google Tensor platforms.
-> 
-> I'd like to bring up this thread and discuss the option of not introducing
-> another ARCH_* config:
-> 
->   https://lore.kernel.org/all/20200306103652.GA3634389@kroah.com/
-> 
-> I especially don't like the "depends on ARCH_EXYNOS" because that forces one to
-> include all the other Exynos drivers that ARCH_EXYNOS selects that Google
 
-Since we are creating unified kernel images, having other drivers is not
-a problem.
+William,
 
-> Tensor SoCs don't need. Can we consider using SOC_GOOGLE instead and for all
+Please do not Cc non-existing mailboxes. You added Cc kernel-team and we
+all got awesome bounces now:
 
-SOC_GOOGLE will work exactly the same and depend on ARCH_EXYNOS or
-appear everywhere as ARCH_EXYNOS. We already had this talk with Tesla.
-
-
-> drivers that actually depend on the SoC hardware, we can just add "depends on
-> SOC_GOOGLE"?
-> 
-> The idea is that drivers should be tied to hardware -- not a specific vendor.
-
-And hardware is Exynos. Tesla FSD and Google Tensor is Exynos, even if
-you do no like calling it.
-
-> By making drivers depend on ARCH_*, you are introducing an arbitrary vendor
-> dependency and not a hardware dependency.
-
-There is no arbitrary dependency. We call it all Exynos hardware,
-because this is Exynos.
-
-I remember what you were pushing for removal of ARCH_EXYNOS and there
-waas clear feedback, not only from me: this is against communities goals.
-
-> 
-> Thanks,
-> Will
-
-Please trim the replies from unrelated context.
-
+"We're writing to let you know that the group you tried to contact
+(kernel-team) may not exist, or you may not have permission to post
+messages to the group. A few more details on why you weren't able to post:"
 
 Best regards,
 Krzysztof
