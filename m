@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-6037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECB5D7B9BE0
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 10:44:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C91977B9BE1
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 10:45:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 99DF3281AA3
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 08:44:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 77DA9280DAE
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 08:45:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE8F6AB0;
-	Thu,  5 Oct 2023 08:44:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FDE563C9;
+	Thu,  5 Oct 2023 08:45:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GCC+5IIs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IaiCchk8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED3CE15C5
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 08:44:04 +0000 (UTC)
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF8109012
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 01:44:02 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso136022466b.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 01:44:02 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 841FF15C5
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 08:45:44 +0000 (UTC)
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 418679018
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 01:45:42 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-9b974955474so128150966b.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 01:45:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696495441; x=1697100241; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696495541; x=1697100341; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=y0L35y+stI7KZbvgM2VZ8NAXw9EH+jdit+R3Duj9I5w=;
-        b=GCC+5IIsSyoYRnu6SNMdqWlhHn+pWJPOn5+uRS5dP046ji2iWy9YleGfHjoNztQZzG
-         n7Xw7J6tD1wDpfHH9OdfEFzHXCQhRFu9bFqyThm2FYIzLXBTqJsOTlZJ/ZTmH7QPQvug
-         OMwINsZbhEw/93phYeSnUun4g7hHeQr7Sq+Sx9g+IMcT4FdA25t2wnXnrD5WZoOvzNUP
-         0y1k6jIFWzRiLmJlO3pyeYdWImFyzaKEw9UH5+KPd3HbN72Efv7IRZh5ExUy1E2DIKJ2
-         rk9aYcrKteItMLMUv/sQF6pxiBFXzJ5F2mgqz7fY5IqfbAoD25oQ+XLYbQNOjw9SK+If
-         XHQg==
+        bh=+4P4b96UdXQbXmBFJo6wRwH4nx/RGhKjCusuMDEpgm8=;
+        b=IaiCchk81SKtI+qBVw4jZEUBplOweq5ikh0cpn0Z1ee4qpObt9ATd+n+Tbi65BqG3G
+         cdjpr3ERb+477kslh7X2vLhy6FHdsfJHn3LRn+IMKO39SY0IpGQ90t7RbnQIm7V3Wrty
+         lUGIDCh22l2/xCasIBdQSYYH7WumCJMkmXCHBP+Yl0apc0GCfRTPME+PXLAe3pwtMhuk
+         qB/rCte3MBEuQa8bwGmlwwFe2MyLi2lU31fae9c7mdjPb5RshVqEIAHO3K/05mkCrHe/
+         T1JnJ2AFtMk8aPhYay/jxm9oONm0tATfCnlbg+6W8LCfOqcxfdAT4cSiVZjNkYuBEkP8
+         OqNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696495441; x=1697100241;
+        d=1e100.net; s=20230601; t=1696495541; x=1697100341;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=y0L35y+stI7KZbvgM2VZ8NAXw9EH+jdit+R3Duj9I5w=;
-        b=SCNQnv9QGGLanCGR4ldqg7CeE3vYK/a3A8yWBJ2V4BedldoVBP+9hQyxOTKpIJ0X4i
-         xoAf3ygg+enm0CbKAVgaSlLXJPnxG0wZNGEZyBq2KkUdiVxzR3EWoyZtoZ8JDm4u+2VS
-         GhrqVkDnG9MkMiPKYthANVP9zrOyZi6yDZus0v6xonqm3Or/57dMdwv7pZeve4be5tuO
-         bDEhxV5SGXCMohpD89aAagcdRD4bX03MHBbuel5fiuOn1AenogKGwkO1mJxGj3N1asxf
-         7Y+p5xHEWYsYWfCAmQeTbm98VD5xaXIyNZrm9gUZXGt9qjDurYTC3tCgthGU7ChIT2X5
-         UvMw==
-X-Gm-Message-State: AOJu0YwMS/RpE4mwEiNSzH3C9O36ypk5Cm0RcRIOip/oXIeL4ROhfqUe
-	gKDSP9XVyGJH3fVzWUNPisSyMw==
-X-Google-Smtp-Source: AGHT+IGjCf/FcdHo3a1SPZqTpDwGEEdidrEOsCFEMm8SJn8XoZccFUYrLl+7jeQlcI4oeQRCoC5LdA==
-X-Received: by 2002:a17:906:5341:b0:9a1:f21e:cdff with SMTP id j1-20020a170906534100b009a1f21ecdffmr4667886ejo.23.1696495441180;
-        Thu, 05 Oct 2023 01:44:01 -0700 (PDT)
+        bh=+4P4b96UdXQbXmBFJo6wRwH4nx/RGhKjCusuMDEpgm8=;
+        b=HmKNGd/sk1oeqN6HAe0ZPYP9X240AEiRrTVa0nO/LTC7/ppVzHVGCDoVYSred5RVqH
+         fwKXpPwy2j51nX11/cuqjMzzxIaceIZcvujCBY4+zz/sfpOSxnNUFz/xnIPwqoRjY+Sn
+         JCL951fUaNTeTkJ7HSDMXqFEvqQVA3wODt91184o5vdlCdBiOjq26Al7VrnXYBTbwooM
+         wOGuol7DfDgc2+N31jyarX6qzfehqW+k5tYiWvzJ1IKgDxSzzPtlhGWHLlHwMkKkQWDo
+         iNSBtadodZVAuUb3qc+6DurKz2ATWjUxjZDYYTy9578NeZA41tp6eti3TlXxKFR/0ufE
+         o7FA==
+X-Gm-Message-State: AOJu0Yw568MlKj064/SHgYZwN4m0S6WOEItz4aL33ZEBjWNVUHQjTAcK
+	U9mZzelMbIJCYB+1ygfkNrQ49Q==
+X-Google-Smtp-Source: AGHT+IFIYpuS8ITCn8vKA9+EFXwFRJjNpinVTzMkXbu7BuMUtTrludu2valwtbzVgOkOTEJTCZDjeg==
+X-Received: by 2002:a17:906:31c5:b0:9a2:5bf:8b14 with SMTP id f5-20020a17090631c500b009a205bf8b14mr4453180ejf.22.1696495540590;
+        Thu, 05 Oct 2023 01:45:40 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id a1-20020a1709064a4100b009b65a698c5csm815655ejv.57.2023.10.05.01.43.59
+        by smtp.gmail.com with ESMTPSA id a1-20020a1709064a4100b009b65a698c5csm815655ejv.57.2023.10.05.01.45.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Oct 2023 01:44:00 -0700 (PDT)
-Message-ID: <824fedea-f36a-4657-b173-757824ed52bd@linaro.org>
-Date: Thu, 5 Oct 2023 10:43:59 +0200
+        Thu, 05 Oct 2023 01:45:40 -0700 (PDT)
+Message-ID: <2699d3eb-f0c4-453c-8fa0-cb88fba7926e@linaro.org>
+Date: Thu, 5 Oct 2023 10:45:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,8 +65,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: trivial-devices: Fix MEMSIC MXC4005
- compatible string
+Subject: Re: [PATCH 2/2] iio: accel: mxc4005: allow module autoloading via OF
+ compatible
 Content-Language: en-US
 To: Luca Ceresoli <luca.ceresoli@bootlin.com>,
  Rob Herring <robh+dt@kernel.org>,
@@ -78,7 +78,7 @@ Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
  Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
 References: <20231004-mxc4005-device-tree-support-v1-0-e7c0faea72e4@bootlin.com>
- <20231004-mxc4005-device-tree-support-v1-1-e7c0faea72e4@bootlin.com>
+ <20231004-mxc4005-device-tree-support-v1-2-e7c0faea72e4@bootlin.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,26 +124,24 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231004-mxc4005-device-tree-support-v1-1-e7c0faea72e4@bootlin.com>
+In-Reply-To: <20231004-mxc4005-device-tree-support-v1-2-e7c0faea72e4@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 04/10/2023 18:39, Luca Ceresoli wrote:
-> The correct name of this chip is MXC4005, not MX4005. This is confirmed
-> both by the manufacturer website and by the title of the original commit,
-> which added other MXCxxxx devices as well but only this one misses a "c" in
-> the compatible string.
+> Add OF device table with compatible strings to allow automatic module
+> loading.
 > 
 > Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> Fixes: d9bf5d37fd58 ("dt-bindings:trivial-devices: Add memsic,mxc4005/mxc6255/mxc6655 entries")
-> 
 > ---
+>  drivers/iio/accel/mxc4005.c | 8 ++++++++
+
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
