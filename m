@@ -1,70 +1,70 @@
-Return-Path: <devicetree+bounces-6269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DB4C7BA921
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 20:31:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F44E7BA924
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 20:31:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 735E7B20987
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 18:31:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 21412281E72
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 18:31:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EC5534CF3;
-	Thu,  5 Oct 2023 18:31:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 779D53AC2F;
+	Thu,  5 Oct 2023 18:31:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VsJrgtg4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QzZSAK95"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B061F3FB18
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 18:31:34 +0000 (UTC)
-Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B166793;
-	Thu,  5 Oct 2023 11:31:33 -0700 (PDT)
-Received: by mail-oo1-xc29.google.com with SMTP id 006d021491bc7-57b83ff7654so76636eaf.1;
-        Thu, 05 Oct 2023 11:31:33 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F2243FB25
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 18:31:56 +0000 (UTC)
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E829C9F;
+	Thu,  5 Oct 2023 11:31:53 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id 98e67ed59e1d1-27909dabf1cso296524a91.1;
+        Thu, 05 Oct 2023 11:31:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696530693; x=1697135493; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1696530713; x=1697135513; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=k9EgV7tZVbtR5SndWMS10yNqMtDpb2mLG5N2vupKW7s=;
-        b=VsJrgtg4WjznYqh9y1GcAosYcY1+6FO0e79HrpQfsNtU8JlqEDJrVRc6/bZ2MEQ47N
-         AGMugyyaQ6pXC5Iv8TJnG/Md3p/HaKq/3P6/9vIIiRPA+smY/a+HPLEbC/VsYNxaNyP8
-         2tLRx8CRQg81fIRGAEbD4fb7M/d6F32WtWrPDEz742Qa0u56rni6Cl4UDdIuypZ9wTda
-         7PBXV2uLlDHQ6VKVwE4K9z5sqgXNM80/kwrln93LZweS/fQu0IsiT2hzuH3Z5qonllE7
-         OVZabHUvGfNI+29MgJ5rp5Ksjt9LMnHDR3GYlYoKIE82VfgDGK+BQnjR/Ih6aQlVRXBX
-         oE3A==
+        bh=q2WQ61S9JRRXerRwVjcd6ONvIOqeXxJCrw12591ed3o=;
+        b=QzZSAK95Og2ss03Rv2PBHEn/XN9JCK1/6rLiuGNDb+ISAPP8tI+S1Qh19IJUxOIRwi
+         itLaCbhPo0uGn8nv6bvxitAQGyGEnufx3RA/N+19GQAU2Stybyif9TQXwePUtshWyXQ3
+         tI50POa/V8rxdZ8X+t5ZyStaMPb+FDk625YECuB94eooOAgBga4LtC28ucVCHyaxkRzp
+         YnjIGU1sCCXEka7WqHTwl54xxt8UsqGMMkb+ksY9jKFtrrD5RyVJOJdLvCNgi4jbSiOd
+         AVmRSJ+mxn23RoQcjlGwug4EMdr2j3502y08ogyy2rCPvxpqxr8pysNiUJ9LWQLZ0oyX
+         NMvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696530693; x=1697135493;
+        d=1e100.net; s=20230601; t=1696530713; x=1697135513;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=k9EgV7tZVbtR5SndWMS10yNqMtDpb2mLG5N2vupKW7s=;
-        b=DJVnL7TV1Zi9cBhAZaHvHGlAgsDNxtZ8eEnEHWzzYsbdaXSbazLxr1TWnut2x1wYKg
-         P6SshzyVyHGLbUVCEBOkUiwd08gpUMYztm5VGFGpM69ZTXvFdGAlG/3uZk3N0WcxA/W2
-         hhqFPSNTMIKAy2ecbgpwtTQ+DWY5T5J3tigypk8FWOyGf4dK2SEV/pzDC+sC7CUlfP0X
-         p34ILk66nWnhO2MefdOPJDwSCaptBjN+xCRk0x037pwd2dIpyh0YPlfB7L4OSSp4AjPm
-         eGykgeQiREXxw8zD9ftbphfCAbkldyYJdNMAlwHvdDV7/8XKoocbo+hWXo1I6T+fw30y
-         k0Kg==
-X-Gm-Message-State: AOJu0Yy3+0wziKxP4FWS8NqLHW6yS7GONlrAkZ45m6IY6jiLZtnTLLLw
-	tkd1jYgmAjMBDaETGOdly11EDBe2dY7st0M9B8U=
-X-Google-Smtp-Source: AGHT+IFvd2hc7PErEbHkKVIONk4K3gxIbSTgtgz5g+KRd76BkIjZhSp6A2x3i4wHwZb2i0rlrr2iUCEK8vskipLHsj0=
-X-Received: by 2002:a05:6358:e908:b0:147:47f2:2d54 with SMTP id
- gk8-20020a056358e90800b0014747f22d54mr5444671rwb.0.1696530692891; Thu, 05 Oct
- 2023 11:31:32 -0700 (PDT)
+        bh=q2WQ61S9JRRXerRwVjcd6ONvIOqeXxJCrw12591ed3o=;
+        b=pJBkyASGDDSnO8683/B+i1nrI2GyPenruj7JodVutRv9TQMHCEm3G4T2KROb4bziAv
+         xumc0d9V7PIWzgJ7AD9jukgltkk1k+8RsLmBv/anLkkLGbPc7Bi/V5l8Duxrql+9HciY
+         gzaPaNJ6i99zF4aIACMDYuWXcvnkAy8TMDHsV5cX+7RJ/q45bfULmEx/j/fqPoVoSSQ4
+         WfDRT438DxR8XBzFFwXYjEuOdxWuaNwLH5myOk0GH3/kXsHfgwTmy4uFBAtaUMFSXeBH
+         fsR+I90x66xeRCeBzAJj6DE8LcQ4Bfq3Q8x9uzxkSJN0/LjFgJg2oaxcYTrSkkQ1ALs4
+         uEcw==
+X-Gm-Message-State: AOJu0YxXkU2j+iMJF9qvpTj5WFX/QaxK33V9sKmkeeXJ6qiSj6ngronD
+	GWH0z5bSMTa7ttKPlA4IygCIaJxf413xzh1ka1A=
+X-Google-Smtp-Source: AGHT+IHxE2O9h14dUVLPYcRAdpVlJ/GL9fvrASEtVvxA3peFJ/TbCgJE5wW6732gSn9p/IzRkvbEezsQMg9tUA50OlU=
+X-Received: by 2002:a17:90a:4143:b0:268:ca63:e412 with SMTP id
+ m3-20020a17090a414300b00268ca63e412mr5453128pjg.4.1696530713317; Thu, 05 Oct
+ 2023 11:31:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231004234657.44592-1-aford173@gmail.com>
-In-Reply-To: <20231004234657.44592-1-aford173@gmail.com>
+References: <20231004234657.44592-1-aford173@gmail.com> <20231004234657.44592-2-aford173@gmail.com>
+In-Reply-To: <20231004234657.44592-2-aford173@gmail.com>
 From: Fabio Estevam <festevam@gmail.com>
-Date: Thu, 5 Oct 2023 15:31:21 -0300
-Message-ID: <CAOMZO5DQmw5y8mnk-tUqTtkeJpH3xcvOR9HtK_FYFjB1H=2fEQ@mail.gmail.com>
-Subject: Re: [PATCH V2 1/4] arm64: dts: imx8mm-beacon: Migrate sound card to simple-audio-card
+Date: Thu, 5 Oct 2023 15:31:41 -0300
+Message-ID: <CAOMZO5A1fWvoz_Dv8ou9sYucJB5a1pbx0+sAdKkyVCstJ2WRvQ@mail.gmail.com>
+Subject: Re: [PATCH V2 2/4] arm64: dts: imx8mm-beacon: Add DMIC support
 To: Adam Ford <aford173@gmail.com>
 Cc: linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com, 
 	Rob Herring <robh+dt@kernel.org>, 
@@ -84,10 +84,9 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 On Wed, Oct 4, 2023 at 8:47=E2=80=AFPM Adam Ford <aford173@gmail.com> wrote=
 :
 >
-> Instead of using a custom glue layer connecting the wm8962 CODEC
-> to the SAI3 sound-dai, migrate the sound card to simple-audio-card.
-> This also brings this board in line with the imx8mn-beacon and
-> imx8mp-beacon.
+> The baseboard has a connector for a pulse density microphone.
+> This is connected via the micfil interface and uses the DMIC
+> audio codec with the simple-audio-card.
 >
 > Signed-off-by: Adam Ford <aford173@gmail.com>
 
