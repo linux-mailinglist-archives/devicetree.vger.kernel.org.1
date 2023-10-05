@@ -1,293 +1,127 @@
-Return-Path: <devicetree+bounces-6277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BC147BA971
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 20:49:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 841507BA985
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 20:56:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 33D36281F43
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 18:49:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 35F05281AF1
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 18:56:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78B19405D7;
-	Thu,  5 Oct 2023 18:49:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C8F8405DE;
+	Thu,  5 Oct 2023 18:55:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FJZ6/yTx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28898405C0
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 18:49:53 +0000 (UTC)
-Received: from mx.skole.hr (mx2.hosting.skole.hr [161.53.165.186])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7555298;
-	Thu,  5 Oct 2023 11:49:49 -0700 (PDT)
-Received: from mx2.hosting.skole.hr (localhost.localdomain [127.0.0.1])
-	by mx.skole.hr (mx.skole.hr) with ESMTP id 1A9D58635B;
-	Thu,  5 Oct 2023 20:49:48 +0200 (CEST)
-From: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Date: Thu, 05 Oct 2023 20:49:09 +0200
-Subject: [PATCH 2/2] backlight: Add Kinetic KTD2801 driver
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14D2D37CA9
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 18:55:56 +0000 (UTC)
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8629798;
+	Thu,  5 Oct 2023 11:55:54 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-5043a01ee20so1695157e87.0;
+        Thu, 05 Oct 2023 11:55:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696532153; x=1697136953; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MWYpFdaVGut5Npp6T7pkp8bwOXgHapwNlMwFZnUGk7w=;
+        b=FJZ6/yTxRuzOMR6Sweo4Pazyb130kOqWqIcCddCKv0ahnIeDA9jE4MJhrjfSBBVlgM
+         FG/w/dvl8os8jAZkyOeX9rmyGkRz++bcprYu0ocUlKhB5lWTLEiXV+RDbbFc4B73OnaP
+         DKAhebanyXaPO0iVFwZ8VG14aGhXmNJJvsWfM6oxzu9eIIczUjpNnEvKDB6CsfIe97eL
+         0Bp6xzxSuRIUTlWpuUpOQ8DLDSsgcl7uSPEyKUvlflaSP5yMXpKkXrFXe+MlZgcctTW6
+         2TR+DTk/7G2VyoL4aCIoj/8TkgwfxlLE6TaQZIBuO+ygyJku5exVEPvS1vH5pWixdgeJ
+         hj0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696532153; x=1697136953;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MWYpFdaVGut5Npp6T7pkp8bwOXgHapwNlMwFZnUGk7w=;
+        b=B6kk7UqamgBfsGboqSPchVzbH6RhQAKVeBFri6jd9DHXmlLrLh72ZotQ+a3/ijxa3r
+         JDOSbeZ0OBzXP8t6WV+4IfjNG/oXLhqsBVB4t/K5esPWm0STOMJOWgRxgTg6m+APRraf
+         bawxL33bFBtJcBIMiBmGrRHRBa9avmVzSODKPJZMBJ+STWpGygEvwKoi7Mo+c3oYSdBX
+         iYWzHN6tKv9crLDd/9qOSyGbD23Bl1pz+t6ZdPhCQCPnkxDcenOmkcBKe66y8vBUpsNh
+         OO1SL3i29IaoKpyRyBn5xWTNk1rfgTvBzuH0G9tuuFWTQqbj1sWVo74Zn3rSDT5v+yOq
+         9UUg==
+X-Gm-Message-State: AOJu0Ywlzl0Q3U5vsZYXJZ5NqXA2QnH245m1EKivEqsmJqG6LEYkoTLT
+	EJPRhVoYRvmvEGy1RhWfgIA=
+X-Google-Smtp-Source: AGHT+IFqJ0U55JaSS9dVubIT2L7uAnCK33QG8H5yiAfzQX6CIEcmXkxhfi0/H3PS/DK9qIQv6VV5iQ==
+X-Received: by 2002:a05:6512:523:b0:500:9a45:638 with SMTP id o3-20020a056512052300b005009a450638mr5397514lfc.2.1696532152323;
+        Thu, 05 Oct 2023 11:55:52 -0700 (PDT)
+Received: from fr.lan ([46.31.31.132])
+        by smtp.googlemail.com with ESMTPSA id q1-20020ac246e1000000b004fe48d0b639sm402341lfo.83.2023.10.05.11.55.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Oct 2023 11:55:51 -0700 (PDT)
+From: Ivan Mikhaylov <fr0st61te@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Ivan Mikhaylov <fr0st61te@gmail.com>
+Subject: [PATCH v4 0/2] Add maxim max34408/34409 ADC driver and yaml
+Date: Thu,  5 Oct 2023 21:55:35 +0300
+Message-ID: <20231005185537.32267-1-fr0st61te@gmail.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20231005-ktd2801-v1-2-43cd85b0629a@skole.hr>
-References: <20231005-ktd2801-v1-0-43cd85b0629a@skole.hr>
-In-Reply-To: <20231005-ktd2801-v1-0-43cd85b0629a@skole.hr>
-To: Lee Jones <lee@kernel.org>, 
- Daniel Thompson <daniel.thompson@linaro.org>, 
- Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>
-Cc: Karel Balej <balejk@matfyz.cz>, dri-devel@lists.freedesktop.org, 
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, 
- =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6777;
- i=duje.mihanovic@skole.hr; h=from:subject:message-id;
- bh=aBBnS1XZnXv76Hv6XBS+QCbv+h+s/Wh7qXIwLBioodk=;
- b=owEBbQKS/ZANAwAIAZoRnrBCLZbhAcsmYgBlHwVCHOlK47dVdMIuw8iHIb9VR7ioJlIpKVkcF
- sp+p1BaZv+JAjMEAAEIAB0WIQRT351NnD/hEPs2LXiaEZ6wQi2W4QUCZR8FQgAKCRCaEZ6wQi2W
- 4Qb3D/9XJX34c37Ey93a56OrsyQXnw0RkbolK6On8eELGebAItBFIgAY00gXbAU/ktEcX9bJxQB
- NvqToszGEDBlwoBGBVULzIBaeUpeCgrIlxiJ3ULkG2MSNtEAuvp4g72OReHBKEo5V7eJzavze2j
- KL0uM1f1jwvNHZ3Hzu6f+FnduxmB024+6Tvb6NaWNhZAvTXPWHi3JHe/cHI7RbJP/AC33tTKgz0
- WxaEhoFiRLeZz9kaQpwnYKRb0eB1rk5GRoS6cWVeWVEv9NJEUpG7M7+JSsycQVzhD4tIUOF/f4b
- t9HXUHKJAs1FN4I/vkbdsq23RgBTZvmj3+76uc4mI+kZQkLD1ZAVksvMaX8OsJpHPkKzJ1zbmj+
- 5TqQR4XxGUXcWvvas9PWx0C29jXghHpgt3dVpVvYquAb5PWXMWLMbUXKPhzZobMJK4KnO/j6MVt
- dLPmUTcL0Rkh5ysrZX0YWtcitawtRrscLOxvJy1uObdxqk8iT9ZdUgcH8hpfh6xMaOHEQ7kGCdI
- uKuGui2O4vc2rYlmWJ1ZTK8Pc16Y0l09LcHoz0GVEuwcnJSRLlpz269CS2if06s4MXucwSBMr84
- 8hsUqmpz/9rT4Gtzl5vDls4e10ZZZWNEiXAiNhC76MR1r3vUc5JR2y9Qwo/yIFTcH1xD8OJPJ77
- dIVWNGgdPgmLfjA==
-X-Developer-Key: i=duje.mihanovic@skole.hr; a=openpgp;
- fpr=53DF9D4D9C3FE110FB362D789A119EB0422D96E1
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add driver for the Kinetic KTD2801 backlight driver.
+Add Maxim max34408/34409 ADC driver and yaml for it. Until now it
+supports only current monitioring function without overcurrent
+threshold/delay, shutdown delay configuration, alert interrupt.
 
-Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
----
- MAINTAINERS                                 |   6 ++
- drivers/video/backlight/Kconfig             |   7 ++
- drivers/video/backlight/Makefile            |   1 +
- drivers/video/backlight/ktd2801-backlight.c | 151 ++++++++++++++++++++++++++++
- 4 files changed, 165 insertions(+)
+Changes from v1:
+   - minor changes from Rob's comments for yaml
+   - add ena, shtdn and make 4 inputs for R sense from Jonathan's comments for yaml
+   - add _REG suffix and make prefix for bitmasks and statuses
+   - add SCALE/OFFSET instead of AVG/PROCESSED from Jonathan and
+     Lars-Peter comments
+   - add chip data from Jonathan and Lars-Peter comments
+   - minor changes from Lars-Peter and Jonathan comments for driver
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 35977b269d5e..7da78f06a65d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11777,6 +11777,12 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/leds/backlight/kinetic,ktd253.yaml
- F:	drivers/video/backlight/ktd253-backlight.c
- 
-+KTD2801 BACKLIGHT DRIVER
-+M:	Duje Mihanović <duje.mihanovic@skole.hr>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/leds/backlight/kinetic,ktd2801.yaml
-+F:	drivers/video/backlight/ktd2801-backlight.c
-+
- KTEST
- M:	Steven Rostedt <rostedt@goodmis.org>
- M:	John Hawley <warthog9@eaglescrag.net>
-diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
-index 51387b1ef012..a2b268293345 100644
---- a/drivers/video/backlight/Kconfig
-+++ b/drivers/video/backlight/Kconfig
-@@ -183,6 +183,13 @@ config BACKLIGHT_KTD253
- 	  which is a 1-wire GPIO-controlled backlight found in some mobile
- 	  phones.
- 
-+config BACKLIGHT_KTD2801
-+	tristate "Backlight Driver for Kinetic KTD2801"
-+	depends on GPIOLIB || COMPILE_TEST
-+	help
-+	  Say Y to enable the backlight driver for the Kinetic KTD2801 1-wire
-+	  GPIO-controlled backlight found in Samsung Galaxy Core Prime VE LTE.
-+
- config BACKLIGHT_KTZ8866
- 	tristate "Backlight Driver for Kinetic KTZ8866"
- 	depends on I2C
-diff --git a/drivers/video/backlight/Makefile b/drivers/video/backlight/Makefile
-index f72e1c3c59e9..b33b647f31ca 100644
---- a/drivers/video/backlight/Makefile
-+++ b/drivers/video/backlight/Makefile
-@@ -35,6 +35,7 @@ obj-$(CONFIG_BACKLIGHT_HP680)		+= hp680_bl.o
- obj-$(CONFIG_BACKLIGHT_HP700)		+= jornada720_bl.o
- obj-$(CONFIG_BACKLIGHT_IPAQ_MICRO)	+= ipaq_micro_bl.o
- obj-$(CONFIG_BACKLIGHT_KTD253)		+= ktd253-backlight.o
-+obj-$(CONFIG_BACKLIGHT_KTD2801)		+= ktd2801-backlight.o
- obj-$(CONFIG_BACKLIGHT_KTZ8866)		+= ktz8866.o
- obj-$(CONFIG_BACKLIGHT_LM3533)		+= lm3533_bl.o
- obj-$(CONFIG_BACKLIGHT_LM3630A)		+= lm3630a_bl.o
-diff --git a/drivers/video/backlight/ktd2801-backlight.c b/drivers/video/backlight/ktd2801-backlight.c
-new file mode 100644
-index 000000000000..24a5f9e5d606
---- /dev/null
-+++ b/drivers/video/backlight/ktd2801-backlight.c
-@@ -0,0 +1,151 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+#include <linux/backlight.h>
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+
-+#define EW_DELAY	150
-+#define EW_DET		270
-+#define LOW_BIT_HIGH	5
-+#define LOW_BIT_LOW	(4 * HIGH_BIT_LOW)
-+#define HIGH_BIT_LOW	5
-+#define HIGH_BIT_HIGH	(4 * HIGH_BIT_LOW)
-+#define DS		5
-+#define EOD_L		10
-+#define EOD_H		350
-+#define PWR_DOWN_DELAY	2600
-+
-+#define KTD2801_DEFAULT_BRIGHTNESS	100
-+#define KTD2801_MAX_BRIGHTNESS		255
-+
-+struct ktd2801_backlight {
-+	struct device *dev;
-+	struct backlight_device *bd;
-+	struct gpio_desc *desc;
-+	bool was_on;
-+};
-+
-+static int ktd2801_update_status(struct backlight_device *bd)
-+{
-+	struct ktd2801_backlight *ktd2801 = bl_get_data(bd);
-+	u8 brightness = (u8) backlight_get_brightness(bd);
-+
-+	if (backlight_is_blank(bd)) {
-+		gpiod_set_value(ktd2801->desc, 1);
-+		udelay(PWR_DOWN_DELAY);
-+		ktd2801->was_on = false;
-+		return 0;
-+	}
-+
-+	if (!ktd2801->was_on) {
-+		gpiod_set_value(ktd2801->desc, 0);
-+		udelay(EW_DELAY);
-+		gpiod_set_value(ktd2801->desc, 1);
-+		udelay(EW_DET);
-+		gpiod_set_value(ktd2801->desc, 0);
-+		ktd2801->was_on = true;
-+	}
-+
-+	gpiod_set_value(ktd2801->desc, 0);
-+	udelay(DS);
-+
-+	for (int i = 0; i < 8; i++) {
-+		u8 next_bit = (brightness & 0x80) >> 7;
-+
-+		if (!next_bit) {
-+			gpiod_set_value(ktd2801->desc, 1);
-+			udelay(LOW_BIT_LOW);
-+			gpiod_set_value(ktd2801->desc, 0);
-+			udelay(LOW_BIT_HIGH);
-+		} else {
-+			gpiod_set_value(ktd2801->desc, 1);
-+			udelay(HIGH_BIT_LOW);
-+			gpiod_set_value(ktd2801->desc, 0);
-+			udelay(HIGH_BIT_HIGH);
-+		}
-+		brightness <<= 1;
-+	}
-+	gpiod_set_value(ktd2801->desc, 1);
-+	udelay(EOD_L);
-+	gpiod_set_value(ktd2801->desc, 0);
-+	udelay(EOD_H);
-+	return 0;
-+}
-+
-+static const struct backlight_ops ktd2801_backlight_ops = {
-+	.update_status = ktd2801_update_status,
-+};
-+
-+static int ktd2801_backlight_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct backlight_device *bd;
-+	struct ktd2801_backlight *ktd2801;
-+	u32 brightness, max_brightness;
-+	int ret;
-+
-+	ktd2801 = devm_kzalloc(dev, sizeof(*ktd2801), GFP_KERNEL);
-+	if (!ktd2801)
-+		return -ENOMEM;
-+	ktd2801->dev = dev;
-+	ktd2801->was_on = true;
-+
-+	ret = device_property_read_u32(dev, "max-brightness", &max_brightness);
-+	if (ret)
-+		max_brightness = KTD2801_MAX_BRIGHTNESS;
-+	if (max_brightness > KTD2801_MAX_BRIGHTNESS) {
-+		dev_err(dev, "illegal max brightness specified\n");
-+		max_brightness = KTD2801_MAX_BRIGHTNESS;
-+	}
-+
-+	ret = device_property_read_u32(dev, "default-brightness", &brightness);
-+	if (ret)
-+		brightness = KTD2801_DEFAULT_BRIGHTNESS;
-+	if (brightness > max_brightness) {
-+		dev_err(dev, "default brightness exceeds max\n");
-+		brightness = max_brightness;
-+	}
-+
-+	ktd2801->desc = devm_gpiod_get(dev, "enable", GPIOD_OUT_LOW);
-+	if (IS_ERR(ktd2801->desc))
-+		return dev_err_probe(dev, PTR_ERR(ktd2801->desc),
-+				"failed to get backlight GPIO");
-+	gpiod_set_consumer_name(ktd2801->desc, dev_name(dev));
-+
-+	bd = devm_backlight_device_register(dev, dev_name(dev), dev, ktd2801,
-+			&ktd2801_backlight_ops, NULL);
-+	if (IS_ERR(bd))
-+		return dev_err_probe(dev, PTR_ERR(bd),
-+				"failed to register backlight");
-+
-+	bd->props.max_brightness = max_brightness;
-+	bd->props.brightness = brightness;
-+
-+	ktd2801->bd = bd;
-+	platform_set_drvdata(pdev, bd);
-+	backlight_update_status(bd);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id ktd2801_of_match[] = {
-+	{ .compatible = "kinetic,ktd2801" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, ktd2801_of_match);
-+
-+static struct platform_driver ktd2801_backlight_driver = {
-+	.driver = {
-+		.name = "ktd2801-backlight",
-+		.of_match_table = ktd2801_of_match,
-+	},
-+	.probe = ktd2801_backlight_probe,
-+};
-+module_platform_driver(ktd2801_backlight_driver);
-+
-+MODULE_AUTHOR("Duje Mihanović <duje.mihanovic@skole.hr>");
-+MODULE_DESCRIPTION("Kinetic KTD2801 Backlight Driver");
-+MODULE_LICENSE("GPL");
-+MODULE_ALIAS("platform:ktd2801-backlight");
+Changes from v2:
+   - add channels into hardware description into yaml
+   - add rsense property per channel
+   - rename pins for shtdn and ena pins
+   - make one array for input_rsense values
+
+Changes from v3:
+   - change *_34408_OCT3 and 4 to *_34409_OCT3 and 4
+   - change of_property_read_u32 to fwnode family calls
+   - add i2c dev table
+   - change of_match_device to i2c_of_match_device
+   - change match->data to i2c_get_match_data 
+
+Ivan Mikhaylov (2):
+  dt-bindings: adc: provide max34408/9 device tree binding document
+  iio: adc: Add driver support for MAX34408/9
+
+ .../bindings/iio/adc/maxim,max34408.yaml      | 137 +++++++++
+ drivers/iio/adc/Kconfig                       |  11 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/max34408.c                    | 278 ++++++++++++++++++
+ 4 files changed, 427 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/maxim,max34408.yaml
+ create mode 100644 drivers/iio/adc/max34408.c
 
 -- 
 2.42.0
-
 
 
