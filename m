@@ -1,147 +1,109 @@
-Return-Path: <devicetree+bounces-6302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 957D87BAAAD
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 21:49:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 352247BAAC1
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 21:56:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 4573E281CAC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 19:49:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id DB400280E17
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 19:56:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE73241755;
-	Thu,  5 Oct 2023 19:49:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06E9841768;
+	Thu,  5 Oct 2023 19:56:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v+3fBkq7"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="IVyNesMW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 956BA266D5
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 19:49:11 +0000 (UTC)
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1710E5
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 12:49:07 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-5363227cc80so2276655a12.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 12:49:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696535346; x=1697140146; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=r5WhV7dH92WyGL0q8Wa0O/BUy3x/4ibZVoKDqGM8Nqo=;
-        b=v+3fBkq705HZzxSa8wUuDtTy4jo+S0XplCSwx8CT5UNhokwT4NP2Rjt5mz+0uaSb0R
-         iEnzI/RecHz3i8rhRKvg8K70tRQvyAy9H4OH4jfuplgpSi7oW134HIHQcwsBfRzjeBAy
-         pB6WpZMq23BWzPT0tcfVHqW6Bz96BTRpnDeROW6w5mhf7glL0x9Ifosp8u827YFp5LFV
-         NL6KFqckwoVJ+Q5Bf7xz3hReC+VacbujWxXIaoz6UJksOQy4YYV5+UJz3ALMJ0ELRATH
-         KzYpetYwdox7bUei67Ox1ZscO62XyMWvAJT4KkIpVwGaRl9QlTN2QUEYuDSDe1Fy4W7p
-         tQQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696535346; x=1697140146;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=r5WhV7dH92WyGL0q8Wa0O/BUy3x/4ibZVoKDqGM8Nqo=;
-        b=JEcOL/4RYNTMVnco5+rwIkxiCLMe6UlMGoae574f6ongfNseVJ0Docy/oImTc/JYM5
-         IntYNUn0rUdbFJt/sZlTV+ffFPGGcXDjKUJVaZYhcBuGHNE8ssdBfGKlw7s0F5AfAxQy
-         XhDW4X+Fm0ij5ZKX8P4ufInIfooF8R6XGO00MGxhDoRdvsbSS8hjwF5cyE1PHVT4uJFs
-         n9Zj9SDMVy2d0WZJH98sm0kKaAVhakRQ82LKxTwzGA4uhCAAY71FWTjqufp1iqNPrZR7
-         frC98boWx8Sf5I0VCAnevUj9SX0ZJvDqxdS0eo/zbzJpANVq5tRKYkQqyxgQximPy4eD
-         /1ZQ==
-X-Gm-Message-State: AOJu0YxpKJAOYmMyJ9IV/IDOyIygvoLC7vBT6quHlTGazl90/qFrFNIa
-	px+E1jjwdyuoReyOaKGprx311A==
-X-Google-Smtp-Source: AGHT+IEJX8nvyypIy7SFqhTEK21/AKGJ5yeInE0z9RFgurCcjpq7gofRv6C8ygCDos1pf3LJSKFk2w==
-X-Received: by 2002:a17:906:51d1:b0:9ae:4843:66ee with SMTP id v17-20020a17090651d100b009ae484366eemr5538745ejk.36.1696535346403;
-        Thu, 05 Oct 2023 12:49:06 -0700 (PDT)
-Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id jw5-20020a170906e94500b009ae6a6451fdsm1651578ejb.35.2023.10.05.12.49.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Oct 2023 12:49:06 -0700 (PDT)
-Message-ID: <0e914bd2-148f-49f7-be23-42a4b066d4bc@linaro.org>
-Date: Thu, 5 Oct 2023 21:49:05 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB9B138F83
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 19:56:02 +0000 (UTC)
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E0C911B;
+	Thu,  5 Oct 2023 12:55:59 -0700 (PDT)
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 10071120002;
+	Thu,  5 Oct 2023 22:55:57 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 10071120002
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1696535757;
+	bh=GFVOVJuxSXMmj0iXYprQcoTAJINrQ+vTEeNVJ0+O/kM=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=IVyNesMWP2yA/afFXt/+smVB8oN19ETBVQs2XKvke2PhmMSCVCC0hmPJyN+2DrNIj
+	 IZneBZIeOAQ4do0PWg8W9+JW5iq81SXferNdtqmYjCt+nYRYCibDDXYQ8EWPPu/lys
+	 BeyTBhvDGeJg6SkergXIw3OS9ZZVNLDXJKfNudNAqgEL1E+kEaEmzxpJlNdT6N95WX
+	 0SKObIy1lGPzFeymtEFVWJZcLwapCazQSCn/3LmKeJP74SRCyLlgj/Y21s+foThaRi
+	 FsXE74rHs0B5YxoJE6o5AbiLNxVi0EUyoZ9qQwQagUdLnAYRlxD/5d6exxjxM25ejM
+	 bircYzUxXtS5Q==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Thu,  5 Oct 2023 22:55:56 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Thu, 5 Oct 2023 22:55:56 +0300
+From: Igor Prusov <ivprusov@salutedevices.com>
+To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>
+CC: <prusovigor@gmail.com>, <kernel@sberdevices.ru>, Igor Prusov
+	<ivprusov@salutedevices.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v1 0/2] arm64: dts: meson-a1-ad402: Add SPIFC pins
+Date: Thu, 5 Oct 2023 22:55:41 +0300
+Message-ID: <20231005195543.380273-1-ivprusov@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: phy: Convert PXA1928 USB/HSIC PHY to DT
- schema
-Content-Language: en-US
-To: =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20231004-pxa1928-usb-yaml-v3-1-150c9ef3ab9d@skole.hr>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231004-pxa1928-usb-yaml-v3-1-150c9ef3ab9d@skole.hr>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 180400 [Oct 05 2023]
+X-KSMG-AntiSpam-Version: 6.0.0.2
+X-KSMG-AntiSpam-Envelope-From: ivprusov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 535 535 da804c0ea8918f802fc60e7a20ba49783d957ba2, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/10/05 18:34:00 #22065600
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 04/10/2023 16:34, Duje Mihanović wrote:
-> Convert the binding for the Marvell PXA1928 USB and HSIC PHYs from TXT
-> to DT schema.
-> 
-> Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
-> ---
+This series adds SPIFC pins description to A1 pinctrl node and selects
+them in AD402's SPIFC node to make sure that muxed GPIO is properly
+configured.
 
+Igor Prusov (2):
+  arm64: dts: meson: a1: Add SPIFC mux pins
+  arm64: dts: meson-a1-ad402: set SPIFC pins
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts |  2 ++
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi      | 12 ++++++++++++
+ 2 files changed, 14 insertions(+)
 
-Best regards,
-Krzysztof
+-- 
+2.34.1
 
 
