@@ -1,221 +1,245 @@
-Return-Path: <devicetree+bounces-6096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 725AE7B9D7B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:45:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB70C7B9D82
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:48:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 242FF281AA7
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 13:45:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id C9B151C20942
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 13:48:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9272020B31;
-	Thu,  5 Oct 2023 13:45:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 790CF25110;
+	Thu,  5 Oct 2023 13:48:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="T2bMfJeS"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lXOW4IYt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE6131A27F
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 13:45:52 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F49628126;
-	Thu,  5 Oct 2023 06:45:51 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3952Wv5l000725;
-	Thu, 5 Oct 2023 04:31:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=aNc/qQqVLrd5xCqMkKsIbyqjupUyO0PkNQXzy7ahMHA=;
- b=T2bMfJeSlP+bWY+aPttMPiUF7rC/gMuqJ42qsO0bYvxjWrEz+mLZyWkEEY+cX+wi1cP/
- 0C4YVlBpN1JId0nBVc8wW7tU8X4BBpcppHnrZUVX7TPT3ppG6ORaX4ST64kDVuSLRqT9
- GzH3d0/5gJw4i9e4GOO818F6POEqb4X6xIfbIr1M/8E3Xu6688pY94DeRR3vtOJNv5ZB
- ql+6RpO77DOOcHgpgtvr/PLhM39tCzSab2M9OpFhb9mnfM9sSSDTsC+NQSWyGur98gNu
- 1LD38eK/P5fhD4JCtSAQoK1gJLgsgnQYvR3QDZzbc8k17U9BnYwz71Jmy+GSQ9++hgdi CA== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tgqth3th1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 05 Oct 2023 04:31:58 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3954VvpI011499
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 5 Oct 2023 04:31:57 GMT
-Received: from hu-devipriy-blr.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Wed, 4 Oct 2023 21:31:51 -0700
-From: Devi Priya <quic_devipriy@quicinc.com>
-To: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <thierry.reding@gmail.com>, <ndesaulniers@google.com>,
-        <trix@redhat.com>, <baruch@tkos.co.il>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <llvm@lists.linux.dev>
-CC: <linux-pwm@vger.kernel.org>, <u.kleine-koenig@pengutronix.de>,
-        <nathan@kernel.org>
-Subject: [PATCH V14 2/4] dt-bindings: pwm: add IPQ6018 binding
-Date: Thu, 5 Oct 2023 10:01:25 +0530
-Message-ID: <20231005043127.2690639-3-quic_devipriy@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231005043127.2690639-1-quic_devipriy@quicinc.com>
-References: <20231005043127.2690639-1-quic_devipriy@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFE5324205
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 13:48:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80BACE7;
+	Thu,  5 Oct 2023 06:48:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1696513710; x=1728049710;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=v+okn4KDE0Jh/SeH/Yc5Kcs3VNsIMzK5+c32V9VGkMY=;
+  b=lXOW4IYtbiAuhuGql4XYHJDG8paGuU3srPxZDvpA+46juc8Ww4LL+1A+
+   +GXTTU7ZPcxeoZGY1YK1NRByTwxJz6Gz4AoVXTbNtyZSVjsHZH8+ussEM
+   gqzmeh3uIBBuPVPKlPBuYMbzdNcJDDHR1lKvZUN6wWzV3FeW3nHMguj1O
+   xl5BsmaJDKEIn2F7ADlXEfxPHsyB4+l1n6NhiWHnoqayBDBsHS6ZZgmbh
+   juOT6NXFP6M5WQ3kMIR1powre5jjSJxMZFAVCoDss3ATmoSI8SFb30FiY
+   cOi6aPJkM/TqmqY7URT4WYmmOOrxDLIpA51/873d+xEXjR3TaLSqNU6C9
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="469675367"
+X-IronPort-AV: E=Sophos;i="6.03,202,1694761200"; 
+   d="scan'208";a="469675367"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Oct 2023 22:18:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="867737716"
+X-IronPort-AV: E=Sophos;i="6.03,202,1694761200"; 
+   d="scan'208";a="867737716"
+Received: from unknown (HELO localhost.localdomain) ([10.226.216.116])
+  by fmsmga002.fm.intel.com with ESMTP; 04 Oct 2023 22:18:35 -0700
+From: niravkumar.l.rabara@intel.com
+To: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+Cc: linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: mtd: cadence: convert cadence-nand-controller.txt to yaml
+Date: Thu,  5 Oct 2023 13:15:48 +0800
+Message-Id: <20231005051548.55122-1-niravkumar.l.rabara@intel.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: lhP7K0QSAbvAMaOZtoyHr8rw6AgOtNox
-X-Proofpoint-GUID: lhP7K0QSAbvAMaOZtoyHr8rw6AgOtNox
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-05_01,2023-10-02_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- adultscore=0 suspectscore=0 phishscore=0 spamscore=0 mlxlogscore=999
- impostorscore=0 bulkscore=0 clxscore=1015 malwarescore=0 mlxscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310050037
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+	SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-DT binding for the PWM block in Qualcomm IPQ6018 SoC.
+From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Co-developed-by: Baruch Siach <baruch.siach@siklu.com>
-Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
-Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+Convert cadence-nand-controller.txt to yaml format.
+Update cadence-nand-controller.txt to cadence,nand.yaml in MAINTAINER file.
+
+Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 ---
-v14:
+ .../devicetree/bindings/mtd/cadence,nand.yaml | 73 +++++++++++++++++++
+ .../bindings/mtd/cadence-nand-controller.txt  | 53 --------------
+ MAINTAINERS                                   |  2 +-
+ 3 files changed, 74 insertions(+), 54 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/cadence,nand.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
 
-  Picked up the R-b tag
-
-v13:
-
-  Updated the file name to match the compatible
-  
-  Sorted the properties and updated the order in the required field
-
-  Dropped the syscon node from examples
-
-v12:
-
-  Picked up the R-b tag
-
-v11:
-
-  No change
-
-v10:
-
-  No change
-
-v9:
-
-  Add 'ranges' property to example (Rob)
-
-  Drop label in example (Rob)
-
-v8:
-
-  Add size cell to 'reg' (Rob)
-
-v7:
-
-  Use 'reg' instead of 'offset' (Rob)
-
-  Drop 'clock-names' and 'assigned-clock*' (Bjorn)
-
-  Use single cell address/size in example node (Bjorn)
-
-  Move '#pwm-cells' lower in example node (Bjorn)
-
-  List 'reg' as required
-
-v6:
-
-  Device node is child of TCSR; remove phandle (Rob Herring)
-
-  Add assigned-clocks/assigned-clock-rates (Uwe Kleine-König)
-
-v5: Use qcom,pwm-regs for phandle instead of direct regs (Bjorn
-    Andersson, Kathiravan T)
-
-v4: Update the binding example node as well (Rob Herring's bot)
-
-v3: s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
-
-v2: Make #pwm-cells const (Rob Herring)
-
- .../bindings/pwm/qcom,ipq6018-pwm.yaml        | 45 +++++++++++++++++++
- 1 file changed, 45 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pwm/qcom,ipq6018-pwm.yaml
-
-diff --git a/Documentation/devicetree/bindings/pwm/qcom,ipq6018-pwm.yaml b/Documentation/devicetree/bindings/pwm/qcom,ipq6018-pwm.yaml
+diff --git a/Documentation/devicetree/bindings/mtd/cadence,nand.yaml b/Documentation/devicetree/bindings/mtd/cadence,nand.yaml
 new file mode 100644
-index 000000000000..6d0d7ed271f7
+index 000000000000..781812ac702f
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/qcom,ipq6018-pwm.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++++ b/Documentation/devicetree/bindings/mtd/cadence,nand.yaml
+@@ -0,0 +1,73 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/pwm/qcom,ipq6018-pwm.yaml#
++$id: http://devicetree.org/schemas/mtd/cadence,nand.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Qualcomm IPQ6018 PWM controller
++title: Cadence NAND controller
 +
 +maintainers:
-+  - Baruch Siach <baruch@tkos.co.il>
++  - Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
++
++allOf:
++  - $ref: nand-controller.yaml
 +
 +properties:
 +  compatible:
-+    const: qcom,ipq6018-pwm
++    items:
++      - const: cdns,hp-nfc
 +
 +  reg:
-+    description: Offset of PWM register in the TCSR block.
++    items:
++      - description: Address and length of the controller register set
++      - description: Address and length of the Slave DMA data port
++
++  reg-names:
++    items:
++      - const: reg
++      - const: sdma
++
++  interrupts:
 +    maxItems: 1
 +
 +  clocks:
 +    maxItems: 1
 +
-+  "#pwm-cells":
-+    const: 2
++  dmas:
++    maxItems: 1
++
++  cdns,board-delay-ps:
++    description: |
++      Estimated Board delay. The value includes the total round trip
++      delay for the signals and is used for deciding on values associated
++      with data read capture. The example formula for SDR mode is the
++      following.
++      board delay = RE#PAD delay + PCB trace to device + PCB trace from device
++      + DQ PAD delay
 +
 +required:
 +  - compatible
 +  - reg
++  - reg-names
++  - interrupts
 +  - clocks
-+  - "#pwm-cells"
 +
-+additionalProperties: false
++unevaluatedProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/clock/qcom,gcc-ipq6018.h>
++      nand-controller@10b80000 {
++        compatible = "cdns,hp-nfc";
++        reg = <0x10b80000 0x10000>,
++            <0x10840000 0x10000>;
++        reg-names = "reg", "sdma";
++        #address-cells = <1>;
++        #size-cells = <0>;
++        interrupts = <0 97 4>;
++        clocks = <&nf_clk>;
++        cdns,board-delay-ps = <4830>;
 +
-+    pwm: pwm@a010 {
-+        compatible = "qcom,ipq6018-pwm";
-+        reg = <0xa010 0x20>;
-+        clocks = <&gcc GCC_ADSS_PWM_CLK>;
-+        assigned-clocks = <&gcc GCC_ADSS_PWM_CLK>;
-+        assigned-clock-rates = <100000000>;
-+        #pwm-cells = <2>;
-+    };
++        nand@0 {
++            reg = <0>;
++        };
++      };
+diff --git a/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+deleted file mode 100644
+index d2eada5044b2..000000000000
+--- a/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
++++ /dev/null
+@@ -1,53 +0,0 @@
+-* Cadence NAND controller
+-
+-Required properties:
+-  - compatible : "cdns,hp-nfc"
+-  - reg : Contains two entries, each of which is a tuple consisting of a
+-	  physical address and length. The first entry is the address and
+-	  length of the controller register set. The second entry is the
+-	  address and length of the Slave DMA data port.
+-  - reg-names: should contain "reg" and "sdma"
+-  - #address-cells: should be 1. The cell encodes the chip select connection.
+-  - #size-cells : should be 0.
+-  - interrupts : The interrupt number.
+-  - clocks: phandle of the controller core clock (nf_clk).
+-
+-Optional properties:
+-  - dmas: shall reference DMA channel associated to the NAND controller
+-  - cdns,board-delay-ps : Estimated Board delay. The value includes the total
+-    round trip delay for the signals and is used for deciding on values
+-    associated with data read capture. The example formula for SDR mode is
+-    the following:
+-    board delay = RE#PAD delay + PCB trace to device + PCB trace from device
+-    + DQ PAD delay
+-
+-Child nodes represent the available NAND chips.
+-
+-Required properties of NAND chips:
+-  - reg: shall contain the native Chip Select ids from 0 to max supported by
+-    the cadence nand flash controller
+-
+-See Documentation/devicetree/bindings/mtd/nand-controller.yaml for more details on
+-generic bindings.
+-
+-Example:
+-
+-nand_controller: nand-controller@60000000 {
+-	  compatible = "cdns,hp-nfc";
+-	  #address-cells = <1>;
+-	  #size-cells = <0>;
+-	  reg = <0x60000000 0x10000>, <0x80000000 0x10000>;
+-	  reg-names = "reg", "sdma";
+-	  clocks = <&nf_clk>;
+-	  cdns,board-delay-ps = <4830>;
+-	  interrupts = <2 0>;
+-	  nand@0 {
+-	      reg = <0>;
+-	      label = "nand-1";
+-	  };
+-	  nand@1 {
+-	      reg = <1>;
+-	      label = "nand-2";
+-	  };
+-
+-};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 90f13281d297..502963390646 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -4474,7 +4474,7 @@ F:	drivers/media/platform/cadence/cdns-csi2*
+ CADENCE NAND DRIVER
+ L:	linux-mtd@lists.infradead.org
+ S:	Orphan
+-F:	Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
++F:	Documentation/devicetree/bindings/mtd/cadence,nand.yaml
+ F:	drivers/mtd/nand/raw/cadence-nand-controller.c
+ 
+ CADENCE USB3 DRD IP DRIVER
 -- 
-2.34.1
+2.25.1
 
 
