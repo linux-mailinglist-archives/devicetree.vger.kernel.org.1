@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-6298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3670C7BAA8C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 21:45:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7272D7BAA93
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 21:46:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id BFB17281BE8
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 19:45:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 24A79281BD8
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 19:46:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3620A4175F;
-	Thu,  5 Oct 2023 19:45:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C39744176A;
+	Thu,  5 Oct 2023 19:46:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DQbZHPgk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OSKXEq4Q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 320B9266D5
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 19:45:27 +0000 (UTC)
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD86BDB
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 12:45:24 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9b27bc8b65eso239013266b.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 12:45:24 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65FF141742
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 19:46:00 +0000 (UTC)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D96BFDE
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 12:45:58 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9ada2e6e75fso257924666b.2
+        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 12:45:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696535123; x=1697139923; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696535157; x=1697139957; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=iljXuYUAjELF3JTZfU540yBCvcXAVIxHWaJlcxhjXfE=;
-        b=DQbZHPgk0wkWjkgZqwUBebYNs1EHmLAqDmkTmDCKap0tNctjyQ80lwhqLJAZwQc4DF
-         zmCLT7yzJSCdds2H0wLVvNN7io/8SwQZd7eqikCU2OVDZSS8jznN9RdNilZP2Ybi3bhl
-         FhIexvdSjJrJh+athrxhxZXHzM5IlEfNhJY85/6P7dcLfeMK1PXAVsACK1LlPBAB739I
-         io8wk0Y9TtIbxt0ZZuyiLTphG/3MvExdIeKF4iBlvxDgVBrx059t2W8w6thlw3OO1IzF
-         D2JIgbbm2OcRv3W3+NWRvMTBnh5pxGam9elmqsr513pTHMtSxwS3vHZihkDreU9WwXfK
-         1f6w==
+        bh=Ik9YL8VnNpg1lJ/vbd7jFsLiLi0RhkEzGwr++CWAbHQ=;
+        b=OSKXEq4Qp8RtOWcTpzJiyyDSoJfUV3FcDfLKxuieOZSt9Pncr7wcDKBiWZugcad3QJ
+         14KsvLZMph/RSPABoZfsTq3aT/hGEyLXmVYdEFZLIEQlRMdp38RM0R89HGNUIgy0q0Wq
+         baQTjsWlNJaiQ0Csl6QJwIMhQ652v7/9+o2Tfg3GzzqJtPQSMIJbFPZi2PQ7M6g5gage
+         nYsmn0fB+yvfQSDYW1YcBScN7duGqKbMw+8xAiBwCzDZ/rqT63S6uRd1jyl3uW3jJKG1
+         dLyxKvHHc3XLHQ2nc/bpKGCPQ+WCe9Jkd2PnTRDgQ3s50nmQRqmkKfATpSHhIydHG8yU
+         uhWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696535123; x=1697139923;
+        d=1e100.net; s=20230601; t=1696535157; x=1697139957;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iljXuYUAjELF3JTZfU540yBCvcXAVIxHWaJlcxhjXfE=;
-        b=cT/qKVooLUPzHGZciv6XaCcEDFGZnKGzSw1BijAuH3/PjICa8vcct93gWfqJpkPgFi
-         RxY7hUkNbik03qJzi/kutNqMrHNd6CSq1M8elA+xl2tKHskZEC7zAhX/nWXvqHSk/VxO
-         +UUGFp3mepneVOVtOYfgHUXLUPl0yf4rOukwnQn65xW/0FQRTLQxsTE0nuaXbj7HOVmM
-         4NEK5v/H/PyIWODHAr/nq/Zonn9AHT4Bl6Do33WTmHjsUQyYi7BunrvgKA1G4SNXZhT4
-         rOPCFNvU+3UuNQFJP6GBtrOEL0E5pWKO3tYo/Fsr7Z+no4l4D8hPn2S1ET72KhuKurme
-         xiNg==
-X-Gm-Message-State: AOJu0YyVh9ekSD97ZqsMfGIM82atWj+TOH4UQjVWmbDGn4Og8o9SRork
-	Q/Ljk4GivZecf6wCJoHQyFku1g==
-X-Google-Smtp-Source: AGHT+IFYWezR6E7QYDCKulrXN21ehyHEbyujbkBa6odFyVFazs2vbFMzKlAnOs2zqFt3/Ql5EY0S3A==
-X-Received: by 2002:a17:907:7ea0:b0:9a5:9038:b1e7 with SMTP id qb32-20020a1709077ea000b009a59038b1e7mr7179350ejc.36.1696535122861;
-        Thu, 05 Oct 2023 12:45:22 -0700 (PDT)
+        bh=Ik9YL8VnNpg1lJ/vbd7jFsLiLi0RhkEzGwr++CWAbHQ=;
+        b=VAHejeYinIG8OiZYOHwDFYWRxVR1rR+OL2FtbMpWMK/qJokPyZ31PUUGiZNDHCTMoK
+         /0+SywQ+/8mwX/p8stm2YnTAfsDVv2TaeHbTTxL4C+NgFRv78BptP9xxRzE4EeRxQyIm
+         8kd3ST5VPTaW/Q7jXOUaoNw/9bnr1ZicXpLxYO7vVS99qcT+/5sSaCmZ9wQImi+E0Mb3
+         /DzuPTWuaUkde/Dfwh8BPi40UrJRsFr847/bHU+gVBUwksCTgy7pY8KAqDuhepvn3/Zn
+         lgKzgwEpmCJYo8n9nbuiw9LBCOJmV9Z7ISG/CphgGjCHnu/OJfeIPopZGrijDSmT73+3
+         hfSw==
+X-Gm-Message-State: AOJu0Yw17vooVSmO9m33SN4C7hg8a8HOWBsTPv6zCIFgDtkgQNNKhDUc
+	EZp/h9Y2yCzOghIpNm3t5RdCHw==
+X-Google-Smtp-Source: AGHT+IHMWpBKneJvc9b9ZE30LKT+kjlsnIAA831v7xOsC61FcEvROazvXapZ3Yh/FlOK+oT/ZEZzUg==
+X-Received: by 2002:a17:906:844a:b0:9ae:73ca:bbae with SMTP id e10-20020a170906844a00b009ae73cabbaemr4882997ejy.62.1696535157416;
+        Thu, 05 Oct 2023 12:45:57 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id jw5-20020a170906e94500b009ae6a6451fdsm1651578ejb.35.2023.10.05.12.45.20
+        by smtp.gmail.com with ESMTPSA id jw5-20020a170906e94500b009ae6a6451fdsm1651578ejb.35.2023.10.05.12.45.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Oct 2023 12:45:22 -0700 (PDT)
-Message-ID: <d5dc9b70-00b5-4bda-8fe9-9438f19ecba6@linaro.org>
-Date: Thu, 5 Oct 2023 21:45:19 +0200
+        Thu, 05 Oct 2023 12:45:56 -0700 (PDT)
+Message-ID: <6bc60e4a-ddf1-4125-ba27-53ab55a553d2@linaro.org>
+Date: Thu, 5 Oct 2023 21:45:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,8 +65,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] dt-bindings: media: Document STM32MP25 VDEC video
- decoder
+Subject: Re: [PATCH 3/7] dt-bindings: media: Document STM32MP25 VENC video
+ encoder
 Content-Language: en-US
 To: Hugues Fruchet <hugues.fruchet@foss.st.com>,
  Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
@@ -82,7 +82,7 @@ To: Hugues Fruchet <hugues.fruchet@foss.st.com>,
  linux-rockchip@lists.infradead.org
 Cc: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
 References: <20231004091552.3531659-1-hugues.fruchet@foss.st.com>
- <20231004091552.3531659-2-hugues.fruchet@foss.st.com>
+ <20231004091552.3531659-4-hugues.fruchet@foss.st.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -128,94 +128,22 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231004091552.3531659-2-hugues.fruchet@foss.st.com>
+In-Reply-To: <20231004091552.3531659-4-hugues.fruchet@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 04/10/2023 11:15, Hugues Fruchet wrote:
-> Add STM32MP25 VDEC video decoder bindings.
+> Add STM32MP25 VENC video encoder bindings.
 > 
-> Signed-off-by: Hugues Fruchet <hugues.fruchet@foss.st.com>
-> ---
->  .../bindings/media/st,stm32mp25-vdec.yaml     | 56 +++++++++++++++++++
->  1 file changed, 56 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/st,stm32mp25-vdec.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/st,stm32mp25-vdec.yaml b/Documentation/devicetree/bindings/media/st,stm32mp25-vdec.yaml
-> new file mode 100644
-> index 000000000000..cf41f704113f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/st,stm32mp25-vdec.yaml
-> @@ -0,0 +1,56 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/st,stm32mp25-vdec.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STMicroelectronics STM32MP25 VDEC video decoder
-> +
-> +maintainers:
-> +  - Hugues Fruchet <hugues.fruchet@foss.st.com>
-> +
-> +description:
-> +  The STMicroelectronics STM32MP25 SOCs embeds a VDEC video hardware decoder
-> +  peripheral based on Verisilicon VC8000NanoD IP (former Hantro G1).
-> +
-> +properties:
-> +  compatible:
-> +    const: st,stm32mp25-vdec
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-names:
-> +    maxItems: 1
 
-This must be specific or just drop (little use of names for one entry)
-
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    maxItems: 1
-
-Same problem.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-names
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    vdec: vdec@580d0000 {
-
-Drop label. Node name: video-codec
-(assuming this is video coder/decoder)
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
+I don't understand why this binding is separate from video decoder.
+Merge them.
 
 Best regards,
 Krzysztof
