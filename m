@@ -1,139 +1,157 @@
-Return-Path: <devicetree+bounces-6322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E89B7BAED2
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 00:33:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC9187BAEE2
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 00:39:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id 06A721F23541
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 22:33:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id 37BAF1F2355E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 22:39:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7650B8479;
-	Thu,  5 Oct 2023 22:33:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29EEE42BF8;
+	Thu,  5 Oct 2023 22:39:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gQh1G/y9"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="E1XFAgsZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D46BD110B
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 22:33:33 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AE95DB;
-	Thu,  5 Oct 2023 15:33:32 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 395MSP5j009713;
-	Thu, 5 Oct 2023 22:33:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=6g9Cyjl5K6OG1jkcqwrpcexPvXh/RcSiBX825pOgneQ=;
- b=gQh1G/y9mUJFUoQgZK/H8e1Y/Q6hSsUHp5u0VMTmfMLqJB4vtfJVo+c+FqIRZwif46U6
- KEJ8SPGnm6JvOw8Yy/lrLKHHqA4cCRRxNSphq05XsyJSanSiTy0C85na3jIQCjccMCia
- tLhdaFzacbv3KlsbQ5rv9oytCorAHsNNokBw29QGERufl1p/rLA9rrGoT79oQhCz435u
- 1fj5wlnh2WqxlvWkiFSMfWvPtg0/KtHotCOA40/7YwJWv75ZJmwfu4ZaBkXyJmUrmtcG
- zRoAWtEXnKy7q3JnJ+T4SzYIQ0lRI/jRU8SO1cXhqcfF5TeAeWl7S/rxmsqCthIPJ+lf yQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3th8e1v2js-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 05 Oct 2023 22:33:16 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 395MXGXg028924
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 5 Oct 2023 22:33:16 GMT
-Received: from [10.110.20.163] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 5 Oct
- 2023 15:33:15 -0700
-Message-ID: <69b8ded0-7648-80bd-c41b-c591b0f861ef@quicinc.com>
-Date: Thu, 5 Oct 2023 15:33:14 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF790154AB
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 22:39:11 +0000 (UTC)
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC8BDE9
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 15:39:08 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id DDFD42C07F0;
+	Fri,  6 Oct 2023 11:39:04 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1696545544;
+	bh=Jln0tzUpoR2xr/aeOoHAnxoXo48BHvn0YAHWLviV5iA=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=E1XFAgsZxIZ6ukokAFv30wxjhY9eMRuvSAg2OsJM5WbeqXUceAeGCbXvFbE4C3aNv
+	 8klwjIHEbo6/BIj8NSnYX7dz7ZiT8saxcrtGtLf4fqZrkma/krIK48VqCkNPZvjmCv
+	 iy2nPoAhbv83VU5ICi+PddeFUfnnjx3ZCVdCkQCha4nwBUvGjIS5TLYXivjA4FwWaA
+	 THaCSdMa12jUmqHp3bW00gTibJ0DiMoMg9qhEFPrJcLD2qMUb7K1000Lu3bbiqi6eq
+	 XlgnJnjCREXpNtpx9YPsIn7TQdfAKOxUqsFWMlSqVWOlcTcMF7U1jurWvZVWEtBAAd
+	 ZfcrAiho28kog==
+Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B651f3b080001>; Fri, 06 Oct 2023 11:39:04 +1300
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
+ svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.1118.37; Fri, 6 Oct 2023 11:39:04 +1300
+Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
+ svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
+ (TLS) id 15.0.1497.48; Fri, 6 Oct 2023 11:39:04 +1300
+Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
+ svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
+ 15.02.1118.037; Fri, 6 Oct 2023 11:39:04 +1300
+From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To: Andi Shyti <andi.shyti@kernel.org>
+CC: "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "pierre.gondois@arm.com"
+	<pierre.gondois@arm.com>, "linux-i2c@vger.kernel.org"
+	<linux-i2c@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 3/3] i2c: mv64xxx: add support for FSM based recovery
+Thread-Topic: [PATCH 3/3] i2c: mv64xxx: add support for FSM based recovery
+Thread-Index: AQHZ8NPnYKzvy/9jwESCWo7X3TBvqLA68pMAgAALUoA=
+Date: Thu, 5 Oct 2023 22:39:03 +0000
+Message-ID: <57c27eb5-1145-4a84-a7b6-ff785d7a1eeb@alliedtelesis.co.nz>
+References: <20230926234801.4078042-1-chris.packham@alliedtelesis.co.nz>
+ <20230926234801.4078042-4-chris.packham@alliedtelesis.co.nz>
+ <20231005215832.p4mxov6occzqmj2k@zenone.zhora.eu>
+In-Reply-To: <20231005215832.p4mxov6occzqmj2k@zenone.zhora.eu>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-originating-ip: [10.33.22.30]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <EFDC78327C2D514A97030AEF06C8B8A5@atlnz.lc>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v4 4/4] firmware: arm_scmi: Add qcom hvc/shmem transport
- support
-To: Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Sudeep Holla
-	<sudeep.holla@arm.com>
-CC: <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20230718160833.36397-1-quic_nkela@quicinc.com>
- <20230911194359.27547-1-quic_nkela@quicinc.com>
- <20230911194359.27547-5-quic_nkela@quicinc.com>
- <20231003111914.63z35sn3r3k7drtp@bogus>
- <6246714a-3b40-e1b6-640e-560ba55b6436@quicinc.com>
- <20231004160630.pxspafszlt6o7oj6@bogus>
- <20231005222016.GI3553829@hu-bjorande-lv.qualcomm.com>
-Content-Language: en-US
-From: Nikunj Kela <quic_nkela@quicinc.com>
-In-Reply-To: <20231005222016.GI3553829@hu-bjorande-lv.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: zWNE7LW-QekoHznHQ7t6FM-CyQDjR4op
-X-Proofpoint-ORIG-GUID: zWNE7LW-QekoHznHQ7t6FM-CyQDjR4op
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-05_17,2023-10-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
- adultscore=0 priorityscore=1501 mlxscore=0 lowpriorityscore=0 spamscore=0
- bulkscore=0 mlxlogscore=999 malwarescore=0 impostorscore=0 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
- definitions=main-2310050171
-X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.6
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=Vf2Jw2h9 c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=bhdUkHdE2iEA:10 a=FqOU3ekQ0Ek1LeW_-iAA:9 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-
-On 10/5/2023 3:20 PM, Bjorn Andersson wrote:
-> On Wed, Oct 04, 2023 at 05:06:30PM +0100, Sudeep Holla wrote:
->> On Tue, Oct 03, 2023 at 09:16:27AM -0700, Nikunj Kela wrote:
->>> On 10/3/2023 4:19 AM, Sudeep Holla wrote:
->>>> On Mon, Sep 11, 2023 at 12:43:59PM -0700, Nikunj Kela wrote:
->>>>> diff --git a/drivers/firmware/arm_scmi/smc.c b/drivers/firmware/arm_scmi/smc.c
-> [..]
->>>>> @@ -63,6 +66,8 @@ struct scmi_smc {
->>>>>    	u32 func_id;
->>>>>    	u32 param_page;
->>>>>    	u32 param_offset;
->>>>> +	u64 cap_id;
->>>> Can it be unsigned long instead so that it just works for both 32 and 64 bit.
->>> My first version of this patch was ulong but Bjorn suggested to make this
->>> structure size fixed i.e. architecture independent. Hence changed it to u64.
->>> If you are ok with ulong, I can change it back to ulong.
->>>
->> SMCCC pre-v1.2 used the common structure in that way. I don't see any issue
->> with that. I haven't followed Bjorn suggestions/comments though.
->>
-> My request was that funcId and capId is an ABI between the firmware and
-> the OS, so I'd like for that to use well defined, fixed sized, data
-> types - if nothing else just for documentation purpose.
->
-> These values will be truncated when passed to arm_smccc_1_1_invoke()
-> anyways, so I don't have any opinion against using unsigned long here...
->
->
-> PS. I understand why func_id is u32, but why are param_page and
-> param_offset u32?
-
-That was done to keep it uniform across smc32/smc64 conventions.
-
->
-> Regards,
-> Bjorn
+DQpPbiA2LzEwLzIzIDEwOjU4LCBBbmRpIFNoeXRpIHdyb3RlOg0KPiBIaSBDaHJpcywNCj4NCj4g
+TG9va3MgZ29vZCwganVzdCBhIGZldyBxdWVzdGlvbnMuDQo+DQo+PiArc3RhdGljIGludA0KPj4g
+K212NjR4eHhfaTJjX3JlY292ZXJfYnVzKHN0cnVjdCBpMmNfYWRhcHRlciAqYWRhcCkNCj4+ICt7
+DQo+PiArCXN0cnVjdCBtdjY0eHh4X2kyY19kYXRhICpkcnZfZGF0YSA9IGkyY19nZXRfYWRhcGRh
+dGEoYWRhcCk7DQo+PiArCWludCByZXQ7DQo+PiArCXUzMiB2YWw7DQo+PiArDQo+PiArCWRldl9k
+YmcoJmFkYXAtPmRldiwgIlRyeWluZyBpMmMgYnVzIHJlY292ZXJ5XG4iKTsNCj4+ICsJd3JpdGVs
+KE1WNjRYWFhfSTJDX1VOU1RVQ0tfVFJJR0dFUiwgZHJ2X2RhdGEtPnVuc3R1Y2tfcmVnKTsNCj4+
+ICsJcmV0ID0gcmVhZGxfcG9sbF90aW1lb3V0X2F0b21pYyhkcnZfZGF0YS0+dW5zdHVja19yZWcs
+IHZhbCwNCj4+ICsJCQkJCSEodmFsICYgTVY2NFhYWF9JMkNfVU5TVFVDS19JTlBST0dSRVNTKSwN
+Cj4+ICsJCQkJCTEwMDAsIDUwMDApOw0KPiBoZXJlIHlvdSBhcmUgYnVzeSBsb29waW5nIGZvciAx
+bXMgYmV0d2VlbiByZWFkcyB3aGljaCBpcyBhIGxvbmcNCj4gdGltZS4gV2h5IG5vdCB1c2luZyBy
+ZWFkX3BvbGxfdGltZW91dCgpIGluc3RlYWQ/DQoNCkkgbmVlZGVkIHRvIHVzZSB0aGUgYXRvbWlj
+IHZhcmlhbnQgYmVjYXVzZSB0aGlzIGVuZHMgdXAgZ2V0dGluZyBjYWxsZWQgDQpmcm9tIGFuIGlu
+dGVycnVwdCBoYW5kbGVyIChtdjY0eHh4X2kyY19pbnRyKCkgLT4gbXY2NHh4eF9pMmNfZnNtKCkp
+LiBJIA0KcHJvYmFibHkgZG9uJ3QgbmVlZCB0byB3YWl0IHNvIGxvbmcgYmV0d2VlbiByZWFkcyB0
+aG9zZSB0aW1lcyB3ZXJlIGp1c3QgDQpwdWxsZWQgb3V0IG9mIHRoaW4gYWlyLiBJbiBteSBleHBl
+cmltZW50YXRpb24gdGhlIGZhdWx0cyB0aGF0IGNhbiBiZSANCmNsZWFyZWQgZG8gc28gd2l0aGlu
+IGEgY291cGxlIG9mIGNsb2NrcywgaWYgaXQgaGFzbid0IGNsZWFyZWQgd2l0aGluIDggDQpjbG9j
+a3MgaXQncyBub3QgZ29pbmcgdG8uDQoNCj4+ICsJaWYgKHJldCkgew0KPj4gKwkJZGV2X2Vycigm
+YWRhcC0+ZGV2LCAicmVjb3ZlcnkgdGltZW91dFxuIik7DQo+PiArCQlyZXR1cm4gcmV0Ow0KPj4g
+Kwl9DQo+PiArDQo+PiArCWlmICh2YWwgJiBNVjY0WFhYX0kyQ19VTlNUVUNLX0VSUk9SKSB7DQo+
+PiArCQlkZXZfZXJyKCZhZGFwLT5kZXYsICJyZWNvdmVyeSBmYWlsZWRcbiIpOw0KPj4gKwkJcmV0
+dXJuIC1FQlVTWTsNCj4+ICsJfQ0KPj4gKw0KPj4gKwlkZXZfaW5mbygmYWRhcC0+ZGV2LCAicmVj
+b3ZlcnkgY29tcGxldGUgYWZ0ZXIgJWQgcHVsc2VzXG4iLCBNVjY0WFhYX0kyQ19VTlNUVUNLX0NP
+VU5UKHZhbCkpOw0KPiBkZXZfZGJnPw0KYWNrLg0KPj4gKwlyZXR1cm4gMDsNCj4+ICt9DQo+PiAr
+DQo+IFsuLi5dDQo+DQo+PiAtCWlmIChvZl9kZXZpY2VfaXNfY29tcGF0aWJsZShucCwgIm1hcnZl
+bGwsbXY3ODIzMC1hMC1pMmMiKSkgew0KPj4gKwlpZiAob2ZfZGV2aWNlX2lzX2NvbXBhdGlibGUo
+bnAsICJtYXJ2ZWxsLG12NzgyMzAtYTAtaTJjIikgfHwNCj4+ICsJICAgIG9mX2RldmljZV9pc19j
+b21wYXRpYmxlKG5wLCAibWFydmVsbCxhcm1hZGEtOGstaTJjIikpIHsNCj4gc2hvdWxkIHRoaXMg
+YmUgcGFydCBvZiBhIGRpZmZlcmVudCBwYXRjaD8NCg0KWWVzIHNvcnJ5LiBPcmlnaW5hbGx5IEkg
+d2FzIGdvaW5nIHRvIHVzZSBhIG5ldyBjb21wYXRpYmxlIHRvIGluZGljYXRlIA0KdGhlIHVuc3R1
+Y2sgc3VwcG9ydCBidXQgd2VudCB3aXRoIHRoZSAybmQgcmVnIGNlbGwgc28gdGhpcyBpcyB1bm5l
+Y2Vzc2FyeS4NCg0KPg0KPj4gICAJCWRydl9kYXRhLT5vZmZsb2FkX2VuYWJsZWQgPSBmYWxzZTsN
+Cj4+ICAgCQkvKiBUaGUgZGVsYXkgaXMgb25seSBuZWVkZWQgaW4gc3RhbmRhcmQgbW9kZSAoMTAw
+a0h6KSAqLw0KPj4gICAJCWlmIChidXNfZnJlcSA8PSBJMkNfTUFYX1NUQU5EQVJEX01PREVfRlJF
+USkNCj4+IEBAIC05MzYsOCArOTczLDIxIEBAIG12NjR4eHhfb2ZfY29uZmlnKHN0cnVjdCBtdjY0
+eHh4X2kyY19kYXRhICpkcnZfZGF0YSwNCj4+ICAgfQ0KPj4gICAjZW5kaWYgLyogQ09ORklHX09G
+ICovDQo+PiAgIA0KPj4gLXN0YXRpYyBpbnQgbXY2NHh4eF9pMmNfaW5pdF9yZWNvdmVyeV9pbmZv
+KHN0cnVjdCBtdjY0eHh4X2kyY19kYXRhICpkcnZfZGF0YSwNCj4+IC0JCQkJCSAgc3RydWN0IGRl
+dmljZSAqZGV2KQ0KPj4gK3N0YXRpYyBpbnQgbXY2NHh4eF9pMmNfaW5pdF9mc21fcmVjb3Zlcnlf
+aW5mbyhzdHJ1Y3QgbXY2NHh4eF9pMmNfZGF0YSAqZHJ2X2RhdGEsDQo+PiArCQkJCQkgICAgICBz
+dHJ1Y3QgZGV2aWNlICpkZXYpDQo+PiArew0KPj4gKwlzdHJ1Y3QgaTJjX2J1c19yZWNvdmVyeV9p
+bmZvICpyaW5mbyA9ICZkcnZfZGF0YS0+cmluZm87DQo+PiArDQo+PiArCWRldl9pbmZvKGRldiwg
+InVzaW5nIEZTTSBmb3IgcmVjb3ZlcnlcbiIpOw0KPiBkZXZfZGJnPw0KPg0KPj4gKwlyaW5mby0+
+cmVjb3Zlcl9idXMgPSBtdjY0eHh4X2kyY19yZWNvdmVyX2J1czsNCj4+ICsJZHJ2X2RhdGEtPmFk
+YXB0ZXIuYnVzX3JlY292ZXJ5X2luZm8gPSByaW5mbzsNCj4+ICsNCj4+ICsJcmV0dXJuIDA7DQo+
+PiArDQo+PiArfQ0KPj4gKw0KPiBbLi4uXQ0KPg0KPj4gKwkvKiBvcHRpb25hbCB1bnN0dWNrIHN1
+cHBvcnQgKi8NCj4+ICsJcmVzID0gcGxhdGZvcm1fZ2V0X3Jlc291cmNlKHBkLCBJT1JFU09VUkNF
+X01FTSwgMSk7DQo+PiArCWlmIChyZXMpIHsNCj4+ICsJCWRydl9kYXRhLT51bnN0dWNrX3JlZyA9
+IGRldm1faW9yZW1hcF9yZXNvdXJjZSgmcGQtPmRldiwgcmVzKTsNCj4+ICsJCWlmIChJU19FUlIo
+ZHJ2X2RhdGEtPnVuc3R1Y2tfcmVnKSkNCj4+ICsJCQlyZXR1cm4gUFRSX0VSUihkcnZfZGF0YS0+
+dW5zdHVja19yZWcpOw0KPiBPSywgd2UgZmFpbGVkIHRvIGlvcmVtYXAuLi4gYnV0IGluc3RlYWQg
+b2YgcmV0dXJuaW5nIGFuIGVycm9yLA0KPiB3b3VsZG4ndCBpdCBiZSBiZXR0ZXIgdG8ganVzdCBz
+ZXQgdW5zdHVja19yZWcgdG8gTlVMTCBhbmQgbW92ZQ0KPiBmb3J3YXJkIHdpdGhvdXQgdW5zdHVj
+ayBzdXBwb3J0Pw0KPg0KPiBNYXliZSB5b3Ugd2lsbCBzdGlsIGNyYXNoIGxhdGVyIGJlY2F1c2Ug
+c29tZXRoaW5nIG1pZ2h0IGhhdmUNCj4gaGFwcGVuZWQsIGJ1dCBmYWlsaW5nIG9uIHB1cnBvc2Ug
+b24gYW4gb3B0aW9uYWwgZmVhdHVyZSBsb29rcyBhDQo+IGJpdCB0b28gZHJhc3RpYyB0byBtZS4g
+V2hhdCBkbyB5b3UgdGhpbms/DQoNClBlcnNvbmFsbHkgSSB0aGluayBpZiB0aGUgcmVnIHByb3Bl
+cnR5IGlzIHN1cHBsaWVkIGluIHRoZSBkdHMgd2UnZCANCmJldHRlciBiZSBhYmxlIHRvIHVzZSBp
+dC4gSWYgdGhlIGZlYXR1cmUgaXMgbm90IHdhbnRlZCB0aGVuIHRoZSB3YXkgdG8gDQppbmRpY2F0
+ZSB0aGlzIGlzIGJ5IHN1cHBseWluZyBvbmx5IG9uZSByZWcgY2VsbC4NCg0KSSdkIGJlIGhhcHB5
+IHdpdGggYSBkZXZfd2FybigpIGFuZCB1bnN0dWNrX3JlZyA9IE5VTEwgaWYgdGhhdCBoZWxwcyBn
+ZXQgDQp0aGlzIGxhbmRlZC4NCg0KPg0KPiBUaGFua3MsDQo+IEFuZGk=
 
