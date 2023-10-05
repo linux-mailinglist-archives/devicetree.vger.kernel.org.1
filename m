@@ -1,170 +1,164 @@
-Return-Path: <devicetree+bounces-6077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BED527B9CC5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 13:40:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8FB57B9CD6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 13:55:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 56874B20959
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 11:40:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id A7C371C20909
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 11:55:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B09F134A4;
-	Thu,  5 Oct 2023 11:39:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oUq2raYX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43702134B8;
+	Thu,  5 Oct 2023 11:55:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C12DB11CA6
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 11:39:57 +0000 (UTC)
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55AF224EB9
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 04:39:55 -0700 (PDT)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-59f6767a15dso17633067b3.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 04:39:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696505994; x=1697110794; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=0IYhvMB+/tYsbO1if1548hQ+c5ri7I00N34cZT67haM=;
-        b=oUq2raYXSnEPlgXt9I4U8k/ylLqsjxW7iy19qYuBTNdQNuQgMb3A7Dpz1OpTKmXVpZ
-         bsMOeRUoimciF283mTMFn2aX+N2iDW5xlSkEBBPqawFIl6M/UxoJVSWEsyTulKgmfPRs
-         SaU9+JOqJTJPx4MyVA4FiY5en+miU2dTVehnKbFJ5R+cLqZ547vuBbmgyp0VqL0FATmR
-         ZbywQHrc3+dm1lA+tG/gYeLz+vkztGYrG8fNPF7egVXjnxqQNu1swsvhbDZlGbr75sid
-         kF/Z2tBOpOx57v+pW3Y/YqqpsycOPdvliwuUJbC0UpWPTnev5H22Y+rUIV+UBWMOHiCv
-         k1UQ==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8086F134A7
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 11:55:45 +0000 (UTC)
+Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 829262572F;
+	Thu,  5 Oct 2023 04:55:43 -0700 (PDT)
+Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-5a1d0fee86aso9792567b3.2;
+        Thu, 05 Oct 2023 04:55:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696505994; x=1697110794;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0IYhvMB+/tYsbO1if1548hQ+c5ri7I00N34cZT67haM=;
-        b=oDB9Bd4rHqbMDxbqbdlzLDmNA24n1xU3pGPlvQRwnLDbU2G0K8E15z5gUzoSJC755n
-         dW/2ikfdJNifQiXbEZVgHnimVccfm3u4cSs8s0/k+OiaoumqXow1FSM85O4NIEETtBCA
-         2m3wZagrKwCB/p7nnPMhC85C7it0I53PUmIOa2As265JcL/hYgyhc7G5SfctizifQYpa
-         sYE6ON9c2zCbNsDCS32KhCS1VrKPLw5CXFq54leBW1ffQVdThycfbCFYDJS/GT+dxQSc
-         8yeu/ecKDcZzcHf5CDti1z9Bb6MULnZyO3YvCg8xe31KcMAgTBIVyJNO3wteRYapO3qP
-         Luxw==
-X-Gm-Message-State: AOJu0Yx8dK6HoXizRyk5FE25zxLYCqZCwrYnBx/rb0ug/uEbjrfbsydl
-	MG1J7uSHST3ImXLbguNo93MhDRWCSQhVqTPv/RQEwg==
-X-Google-Smtp-Source: AGHT+IGz2SaLD3aU6BIPbHvTjKIKQ4LlW6fB/f1GiSxG/rP9irvPSE52u5ik65BnlAY9ONpAHojoUO4fqPhRZjJyZyE=
-X-Received: by 2002:a0d:d711:0:b0:59f:79e7:6e5d with SMTP id
- z17-20020a0dd711000000b0059f79e76e5dmr716346ywd.15.1696505994365; Thu, 05 Oct
- 2023 04:39:54 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1696506940; x=1697111740;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wfh44W/W9192NRXUjtg9r/H6uVn53dQXRsrSz8XlQCQ=;
+        b=ec/QTW0ftKxQMoypqlbN5hJQzUbrxr6JMqAztg5YN4ARZUaRDOUFaaG5OboFCaA5+v
+         lVQfsa5vQzeL3XNbLhs2i+D6VukUKplsEeJIcvh1YMBXZGg8X8L20JHUTi83GRV94mCq
+         I0rOQJb8VZPRabT/liVPFvp3dsuf5UFzV3bFtpr3xD47PglFj0k4Ii/ladmbqTbC73++
+         Bio24XQwuemw2B/oIyISSRIEhxs23h2/y40LtBTc6y/nHzaAtQsILTorXwcavFWkysAc
+         5Aao1eJUxF+u6XViokw5Mhq2S9aYlllkwuwoxEeGA+OAEn/GKTz9vkvNMyCSnM8UDkIW
+         FG+A==
+X-Gm-Message-State: AOJu0YzvoWpoM+jedWnRpxIP8mDsibNYay1xAlTBAW33KrwQKMeZaVFh
+	RCvhvK7QXep/hbV8Z8P3rprMLAcTrr5dJg==
+X-Google-Smtp-Source: AGHT+IEGm4x31KdTdpLX23XLA/l+elkcLcUPInSV3IW/nYogW0bhqLyG3r0od3qkBH9xkyODwsZL3Q==
+X-Received: by 2002:a81:778b:0:b0:59b:ca2f:6eff with SMTP id s133-20020a81778b000000b0059bca2f6effmr5165133ywc.40.1696506940351;
+        Thu, 05 Oct 2023 04:55:40 -0700 (PDT)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
+        by smtp.gmail.com with ESMTPSA id v12-20020a81a54c000000b0059a34cfa2a8sm448652ywg.62.2023.10.05.04.55.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Oct 2023 04:55:40 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-59bebd5bdadso9966737b3.0;
+        Thu, 05 Oct 2023 04:55:40 -0700 (PDT)
+X-Received: by 2002:a0d:e3c6:0:b0:5a1:635e:e68 with SMTP id
+ m189-20020a0de3c6000000b005a1635e0e68mr5446457ywe.46.1696506939824; Thu, 05
+ Oct 2023 04:55:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1693996662.git.quic_varada@quicinc.com> <a6d12e3b253d6a55d85f66979ba8b7d9c9ff6072.1693996662.git.quic_varada@quicinc.com>
- <CAA8EJppNsgUNgwadq9oM0_KyORNR5PBZGVZukN6MzAm2KPzC9g@mail.gmail.com> <20231005095744.GA29795@varda-linux.qualcomm.com>
-In-Reply-To: <20231005095744.GA29795@varda-linux.qualcomm.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 5 Oct 2023 14:39:43 +0300
-Message-ID: <CAA8EJpr124fymnbZ1bO=Dbbxavn3Z=1xOPmFRPnfSp-UB3p6OQ@mail.gmail.com>
-Subject: Re: [PATCH v1 07/10] arm64: dts: qcom: ipq5332: populate the opp
- table based on the eFuse
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: ilia.lin@kernel.org, agross@kernel.org, andersson@kernel.org, 
-	konrad.dybcio@linaro.org, rafael@kernel.org, viresh.kumar@linaro.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	mturquette@baylibre.com, sboyd@kernel.org, quic_kathirav@quicinc.com, 
-	linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org
+References: <20230825090518.87394-1-biju.das.jz@bp.renesas.com>
+ <CAMuHMdVEBREj_Y-wQ=fRQu9mnYyCF6Ut7ZhvRkM0N6eWFXp0Qw@mail.gmail.com> <OS0PR01MB592246E77539C513C1A7FCD686E5A@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS0PR01MB592246E77539C513C1A7FCD686E5A@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 5 Oct 2023 13:55:28 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXEEshPhaJCsmkTCagTcwv813CdaY1h0ORdoYe5RCTUNw@mail.gmail.com>
+Message-ID: <CAMuHMdXEEshPhaJCsmkTCagTcwv813CdaY1h0ORdoYe5RCTUNw@mail.gmail.com>
+Subject: Re: [PATCH v4] arm64: dts: renesas: rz-smarc-common: Use versa3 clk
+ for audio mclk
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Thu, 5 Oct 2023 at 12:58, Varadarajan Narayanan
-<quic_varada@quicinc.com> wrote:
->
-> On Thu, Sep 07, 2023 at 04:59:28PM +0300, Dmitry Baryshkov wrote:
-> > On Thu, 7 Sept 2023 at 08:23, Varadarajan Narayanan
-> > <quic_varada@quicinc.com> wrote:
+On Thu, Aug 31, 2023 at 7:05=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
+m> wrote:
+> > Subject: Re: [PATCH v4] arm64: dts: renesas: rz-smarc-common: Use versa=
+3
+> > clk for audio mclk
+> > On Fri, Aug 25, 2023 at 11:05=E2=80=AFAM Biju Das <biju.das.jz@bp.renes=
+as.com>
+> > wrote:
+> > > Currently audio mclk uses a fixed clk of 11.2896MHz (multiple of
+> > 44.1kHz).
+> > > Replace this fixed clk with the programmable versa3 clk that can
+> > > provide the clocking to support both 44.1kHz (with a clock of
+> > > 11.2896MHz) and 48kHz (with a clock of 12.2880MHz), based on audio
+> > > sampling rate for playback and record.
 > > >
-> > > IPQ53xx have different OPPs available for the CPU based on
-> > > SoC variant. This can be determined through use of an eFuse
-> > > register present in the silicon.
-> > >
-> > > Add support to read the eFuse and populate the OPPs based on it.
-> > >
-> > > Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
-> > > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 > > > ---
-> > >  arch/arm64/boot/dts/qcom/ipq5332.dtsi | 34 +++++++++++++++++++++++++++++++---
-> > >  1 file changed, 31 insertions(+), 3 deletions(-)
+> > > v3->v4:
+> > >  * Dropped clock-output-names from dtsi files.
+> > >  * Updated example with dropping clock-output-names.
+> >
+> > Thanks for the update!
+> >
+> > > --- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+> > > +++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+> > > @@ -105,6 +105,26 @@ &i2c3 {
 > > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> > > index 82761ae..3ca3f34 100644
-> > > --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> > > @@ -91,11 +91,34 @@
-> > >         };
+> > >         status =3D "okay";
 > > >
-> > >         cpu_opp_table: opp-table-cpu {
-> > > -               compatible = "operating-points-v2";
-> > > +               compatible = "operating-points-v2-kryo-cpu";
-> > >                 opp-shared;
-> > > +               nvmem-cells = <&cpu_speed_bin>;
-> > > +               nvmem-cell-names = "speed_bin";
+> > > +       versa3: versa3@68 {
+> >
+> > clock-generator@ (everywhere)
+> OK.
+>
+> >
+> > > +               compatible =3D "renesas,5p35023";
+> > > +               reg =3D <0x68>;
+> > > +               #clock-cells =3D <1>;
+> > > +               clocks =3D <&x1>;
 > > > +
-> > > +               /*
-> > > +                * Listed all supported CPU frequencies and opp-supported-hw
-> > > +                * values to select CPU frequencies based on the limits fused.
-> > > +                * ------------------------------------------------------------
-> > > +                * Frequency     BIT3   BIT2   BIT1    BIT0    opp-supported-hw
-> > > +                *              1.0GHz 1.2GHz 1.5GHz No Limit
-> > > +                * ------------------------------------------------------------
-> > > +                * 1100000000     1      1      1       1            0xF
-> > > +                * 1500000000     0      0      1       1            0x3
-> > > +                * -----------------------------------------------------------
-> > > +                */
-> >
-> > This can probably go to the commit message instead.
->
-> Ok
->
+> > > +               renesas,settings =3D [
+> > > +                       80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 =
+bf
+> > > +                       00 14 7a e1 00 00 00 00 01 55 59 bb 3f 30 90 =
+b6
+> > > +                       80 b0 45 c4 95
+> > > +               ];
 > > > +
-> > > +               opp-1100000000 {
-> > > +                       opp-hz = /bits/ 64 <1100000000>;
+> > > +               assigned-clocks =3D <&versa3 0>, <&versa3 1>,
+> > > +                                 <&versa3 2>, <&versa3 3>,
+> > > +                                 <&versa3 4>, <&versa3 5>;
+> > > +               assigned-clock-rates =3D <24000000>, <11289600>,
+> > > +                                      <11289600>, <12000000>,
+> > > +                                      <25000000>, <12288000>;
+> > > +       };
 > >
-> > But your table shows 1.0 GHz and 1.2 GHz instead of 1.1 GHz
->
-> Will update it.
->
-> > > +                       opp-microvolt = <850000>;
-> > > +                       opp-supported-hw = <0xF>;
-> > > +                       clock-latency-ns = <200000>;
-> > > +               };
-> > >
-> > > -               opp-1488000000 {
-> > > -                       opp-hz = /bits/ 64 <1488000000>;
-> > > +               opp-1500000000 {
-> > > +                       opp-hz = /bits/ 64 <1500000000>;
+> > Please move this node down, to preserve sort order (by unit-address).
 > >
-> > So, 1.488 GHz or 1.5 GHz?
->
-> 1.5 GHz
->
-> > > +                       opp-microvolt = <950000>;
+> > Same comments arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
 > >
-> > Which regulator is controlled by this microvolt?
->
-> Based on the SKU, the XBL sets up the regulator to provide 950000uV
-> on CPUs capable of running 1.5G and 850000uV on other SKUs. Linux
-> doesn't control it.
+> > Unless we're gonna need a new iteration for some other reason (the
+> > corresponding fixes for the clock index order are not yet in linux-next=
+), I
+> > can fix the above while applying...
 
-Then why do you need this property here in the first place?
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.7, now the driver dependency
+is in v6.6-rc4.
 
+Gr{oetje,eeting}s,
 
--- 
-With best wishes
-Dmitry
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
