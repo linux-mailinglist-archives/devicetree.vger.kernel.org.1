@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-5976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF0927B9909
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 02:04:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A35EA7B990A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 02:04:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 8A96628196C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 00:04:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 72FAE281B66
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 00:04:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27B89173;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 558A7366;
 	Thu,  5 Oct 2023 00:04:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BgHKVhAU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kG64eVOq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 762637F
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B70A310EE
 	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 00:04:12 +0000 (UTC)
-Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE5F4D8;
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1960CE;
 	Wed,  4 Oct 2023 17:04:10 -0700 (PDT)
-Received: by mail-io1-xd30.google.com with SMTP id ca18e2360f4ac-79faf4210b2so19620239f.2;
+Received: by mail-io1-xd2d.google.com with SMTP id ca18e2360f4ac-7a2cc9ee64cso18396239f.1;
         Wed, 04 Oct 2023 17:04:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20230601; t=1696464249; x=1697069049; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HGDDpzqsvW7aOeRzDYWTlcuECFrpOSpEIaC/TB+7ynk=;
-        b=BgHKVhAUGBrVl9agIOKNnfthmVpQDQZ1mH0B1KqBKc1Ax2v6FvmtuGb/WHwM6XXiag
-         JHXS1OlwcdR2MMBw8yhSDONpBqys/X4h0gOfRoRorP2HM+mQqXeGl3hc+ETWHyB/dneN
-         tPy9fgifXkJoWtEhZmVtBGMvZe3U8MfFjBrK9y4aoFvUiFhn1beOVbSad4uDAsUsBD/3
-         PakHBusnpSj9v0/aXY+8g6+pW5V+USAlosArlcH9jQfLolY9RYLJxV9mDp51Ka8t38De
-         uN+ywsEnqaHyQYNcKbwNBjfJqoF7lf3gzzUDhpb8vC/KhT3cqU0B9arAlbPA74aoPtLt
-         jA+g==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xHepvuDvDnHmuTSCWiPic5GpIEisZ00JylNY2qD1gZ4=;
+        b=kG64eVOqYT7srvclvU6HA1/qAmIpVFoufCQQ4hthYqUIjwVamwZiH1wSCb7pUP2Nab
+         4oui0/EqK/w74MOsJKvXhRF/4mFHdMMD+tkDT1tCwt4sgUvNJTs5tM5BGrOQWtgtlAJB
+         kHjKmM5HctGP1zKiaCpuXmtmTiLry+/jqzXtfouxkXl3+xo80IXcSs7aPPWoeThfQnNL
+         jyolHtWILxxUj93H6jGV8OibsFkX60pXKpIN5E4vyBsPH3jhTO+lkIVs2A2g1GFaD2pd
+         +X3i3WJ/oeTnGutY1aWSzKvu9mJQzcd4kbLzHTjz78vsXT5EX727Ziuvy7OFfyHQxJAd
+         0Vuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1696464249; x=1697069049;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HGDDpzqsvW7aOeRzDYWTlcuECFrpOSpEIaC/TB+7ynk=;
-        b=mEGzrf3Z2SoM35T7L29tq5OqWSmvBDpSR36p1nV3+QJRDAzqFkNqT4vxyX2A/PrATa
-         sgfUF1haFFwa1VUC+tMUlLXOUhP9O0YSWLFBk6PHPG4iScUV+7o5gUOxu/vJcaFYNc8f
-         m4vy6j3DAaM8yXMCfwRiAg9E/dY4NvtVj1wdFwQ3zc3ILGd5JjgxDsM7zlKckgScvpNS
-         jO/yEICFrEh5b1/kAlh3gWWerHFje3+iwimPw11fc9uA8bRXZVNwm0QTd/QZG4MSjpMV
-         qTa9WmvVnkuEBB/F67kgjp4SSANPrEgjF2wWII/NYdQwV+aXTdyZaLKP3OitUjbNgF/r
-         BqXw==
-X-Gm-Message-State: AOJu0YxOdzD/p35dCJ5wjBA5mZ7J3xAIQ0Qlc/ESj3CE/690Klfe9b+C
-	5FSobWJ01JWUgCUy8N16t9czm1TdnuM0hA==
-X-Google-Smtp-Source: AGHT+IHwwtYO6TvyCdx9Peqr4gYUFiN1LWR9IJlByaOKxfxPSvI3ifyR2TuGn1lSyJO46a8TxB4zdQ==
-X-Received: by 2002:a6b:dd0d:0:b0:791:1b1c:b758 with SMTP id f13-20020a6bdd0d000000b007911b1cb758mr3785561ioc.19.1696464248186;
-        Wed, 04 Oct 2023 17:04:08 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xHepvuDvDnHmuTSCWiPic5GpIEisZ00JylNY2qD1gZ4=;
+        b=c1DRW3xNrdwbz7HNlgQifPVZvKqp03ynRFC4J7jaLrtgHwz+TZGN/TNZ16juc4sqwE
+         2aNQkvhyrNwTSJRp8XMwQzFqDhnCTYOKs+h36OL5EhH/nAsLPJvBA7W7iHOuEiUZGSqb
+         YWMou+6bFPBEo2OYIdfAV3Pm7fG95WTPdEAwaYOG+BpUkPemZn/jNVz3BpH2a36U/FO2
+         XxfOwPsOxEUUdtcoEM0hjolcm4MI4llk2iJRmwDrnY46FazH+4fXIzVr0mhXQxxnaDph
+         hv3YWmZ9lSlfvKNEcArRLObT95bsqXR/RRVLlZowlj97BaI+qqZfXHKa1T99cSB46j/2
+         MTuA==
+X-Gm-Message-State: AOJu0Yy3FlIJUxf2/JAZFARrrhf1GIxlLqR6YaeaCGc1AYflRwIUbn2K
+	Q1X54w0mObXQtT79yeWFTGD1RUw2baZ2aw==
+X-Google-Smtp-Source: AGHT+IFO3eAUYPtMwyaWQxEAv8UyDyRrouwbdaXoULyX47Tx6bmZsg/kFcYqtUUPVyFzmKrOq/n2fA==
+X-Received: by 2002:a5e:8d10:0:b0:792:8c52:b3b8 with SMTP id m16-20020a5e8d10000000b007928c52b3b8mr3951032ioj.14.1696464249358;
+        Wed, 04 Oct 2023 17:04:09 -0700 (PDT)
 Received: from aford-System-Version.lan (c-75-72-166-104.hsd1.mn.comcast.net. [75.72.166.104])
-        by smtp.gmail.com with ESMTPSA id h3-20020a5ecb43000000b0079fdeed3ab6sm56895iok.40.2023.10.04.17.04.07
+        by smtp.gmail.com with ESMTPSA id h3-20020a5ecb43000000b0079fdeed3ab6sm56895iok.40.2023.10.04.17.04.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Oct 2023 17:04:07 -0700 (PDT)
+        Wed, 04 Oct 2023 17:04:08 -0700 (PDT)
 From: Adam Ford <aford173@gmail.com>
 To: linux-omap@vger.kernel.org
 Cc: aford@beaconembedded.com,
@@ -67,10 +68,12 @@ Cc: aford@beaconembedded.com,
 	"Derald D. Woods" <woods.technical@gmail.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH V3 1/2] arm:dts: am3517-evm: Fix LED3/4 pinmux
-Date: Wed,  4 Oct 2023 19:04:01 -0500
-Message-Id: <20231005000402.50879-1-aford173@gmail.com>
+Subject: [PATCH V3 2/2] arm: dts: am3517-evm: Enable Ethernet PHY Interrupt
+Date: Wed,  4 Oct 2023 19:04:02 -0500
+Message-Id: <20231005000402.50879-2-aford173@gmail.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20231005000402.50879-1-aford173@gmail.com>
+References: <20231005000402.50879-1-aford173@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,55 +83,62 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+	FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The pinmux for LED3 and LED4 are incorrectly attached to the
-omap3_pmx_core when they should be connected to the omap3_pmx_wkup
-pin mux.  This was likely masked by the fact that the bootloader
-used to do all the pinmuxing.
+The Ethernet PHY interrupt pin is routed to GPIO_58.  Create a
+PHY node to configure this GPIO for the interrupt to avoid polling.
 
-Fixes: 0dbf99542caf ("ARM: dts: am3517-evm: Add User LEDs and Pushbutton")
 Signed-off-by: Adam Ford <aford173@gmail.com>
 ---
-V3:  No Change
-V2:  Use current device tree naming convention for led-pins
+V3:  Fix issue where V2 wasn't properly properly commit-ammended, so V2 patch didn't properly generate
 
-This likely will require a separate patch to apply to previous file location.
+V2:  Attempted (but failed) to fix ethernet-phy-pins naming
 
 diff --git a/arch/arm/boot/dts/ti/omap/am3517-evm.dts b/arch/arm/boot/dts/ti/omap/am3517-evm.dts
-index af9df15274be..866f68c5b504 100644
+index 866f68c5b504..40f15da81043 100644
 --- a/arch/arm/boot/dts/ti/omap/am3517-evm.dts
 +++ b/arch/arm/boot/dts/ti/omap/am3517-evm.dts
-@@ -271,13 +271,6 @@ OMAP3_CORE1_IOPAD(0x21c4, PIN_INPUT_PULLUP | MUX_MODE0)  /* i2c3_sda */
+@@ -172,11 +172,24 @@ hsusb1_phy: hsusb1_phy {
+ &davinci_emac {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&ethernet_pins>;
++	phy-mode = "rmii";
++	phy-handle = <&ethphy0>;
+ 	status = "okay";
+ };
+ 
+ &davinci_mdio {
++	#address-cells = <1>;
++	#size-cells = <0>;
+ 	status = "okay";
++
++	ethphy0: ethernet-phy@0 {
++		pinctrl-names = "default";
++		pinctrl-0 = <&enet_phy_pins>;
++		compatible = "ethernet-phy-ieee802.3-c22";
++		reg = <0>;
++		interrupt-parent = <&gpio2>;
++		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;	/* gpio_58 */
++	};
+ };
+ 
+ &dss {
+@@ -257,6 +270,12 @@ OMAP3_CORE1_IOPAD(0x2210, PIN_INPUT_PULLDOWN | MUX_MODE0) /* rmii_50mhz_clk */
  		>;
  	};
  
--	leds_pins: leds-pins {
--		pinctrl-single,pins = <
--			OMAP3_WKUP_IOPAD(0x2a24, PIN_OUTPUT_PULLUP | MUX_MODE4)	/* jtag_emu0.gpio_11 */
--			OMAP3_WKUP_IOPAD(0x2a26, PIN_OUTPUT_PULLUP | MUX_MODE4)	/* jtag_emu1.gpio_31 */
--		>;
--	};
--
- 	mmc1_pins: mmc1-pins {
- 		pinctrl-single,pins = <
- 			OMAP3_CORE1_IOPAD(0x2144, PIN_INPUT_PULLUP | MUX_MODE0)	/* sdmmc1_clk.sdmmc1_clk */
-@@ -355,3 +348,12 @@ OMAP3430_CORE2_IOPAD(0x25e2, PIN_INPUT | MUX_MODE3)	/* etk_d3.hsusb1_data7 */
- 		>;
- 	};
- };
-+
-+&omap3_pmx_wkup {
-+	leds_pins: leds-pins {
++	enet_phy_pins: ethernet-phy-pins {
 +		pinctrl-single,pins = <
-+			OMAP3_WKUP_IOPAD(0x2a24, PIN_OUTPUT_PULLUP | MUX_MODE4)	/* jtag_emu0.gpio_11 */
-+			OMAP3_WKUP_IOPAD(0x2a26, PIN_OUTPUT_PULLUP | MUX_MODE4)	/* jtag_emu1.gpio_31 */
++			OMAP3_CORE1_IOPAD(0x20bc, PIN_INPUT | MUX_MODE4)	/* gpmc_ncs7.gpio_57 */
 +		>;
 +	};
-+};
++
+ 	i2c2_pins: i2c2-pins {
+ 		pinctrl-single,pins = <
+ 			OMAP3_CORE1_IOPAD(0x21be, PIN_INPUT_PULLUP | MUX_MODE0)  /* i2c2_scl */
 -- 
 2.40.1
 
