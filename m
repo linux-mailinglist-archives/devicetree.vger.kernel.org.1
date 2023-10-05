@@ -1,229 +1,137 @@
-Return-Path: <devicetree+bounces-6246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7D1F7BA6A8
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 18:40:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74B0A7BA6C2
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 18:42:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 584E0281D17
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:40:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 249B4281C4D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:42:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB1F6358B5;
-	Thu,  5 Oct 2023 16:40:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDAE93716F;
+	Thu,  5 Oct 2023 16:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YPOsfm3d"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="kg8KlkaV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDAD329425
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 16:40:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5CEEC433C8;
-	Thu,  5 Oct 2023 16:40:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696524019;
-	bh=FraLcijUUXSrhwCjVGKMA6/d/tnxwhF8Lifa4MCNTko=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=YPOsfm3dz4RhG6KFDOBX06PgLcOSfC8N9+axto3f9Q5LK7NfgS4u2rz0Ofx2EYa9h
-	 VRD5qWebBKzQAVWkgxg/69adP22bA1IAM0a87Nzh9RMopUlrNheoSsKGDm/yBY5keM
-	 a1ryheuz5i77op0cAOazjOYaZyR8GZnavKh+g5algWCLZsaiNghS5ftVJC7p5zboFK
-	 4wI3nlnDXngW+1GxX1RorwQZ6kDXKDZCMVhrYoYNFXo1msUSIAemsswkigLPc0RKob
-	 bqUL+prZ2WCFkkppvc+cBwWvBL8VqEyBgdCHtqzV1mCQFTt0TQUks1Ed/Fa3bx1yE2
-	 +1f2sXN70Q08w==
-Date: Thu, 5 Oct 2023 17:40:19 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Dumitru Ceclan <mitrutzceclan@gmail.com>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
- linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Michael Walle <michael@walle.cc>, Andy Shevchenko
- <andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu
- <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>, Leonard
- =?UTF-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>, Mike Looijmans
- <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, Hugo Villeneuve
- <hvilleneuve@dimonoff.com>, Ceclan Dumitru <dumitru.ceclan@analog.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: adc: add AD7173
-Message-ID: <20231005174019.4a9bf090@jic23-huawei>
-In-Reply-To: <20231005105921.460657-1-mitrutzceclan@gmail.com>
-References: <20231005105921.460657-1-mitrutzceclan@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20A031A580
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 16:41:56 +0000 (UTC)
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2084.outbound.protection.outlook.com [40.107.101.84])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30AB2A6;
+	Thu,  5 Oct 2023 09:41:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CDT7PPEHwFeBNYWbzscAt95VPGKoTEjHZqZVgGa9D4RvjQrHIA/ur3WDKq5zLwzKEIaNjFzltgrh76NznhgleTz0zTM6xtZB10mFFkT28+nJuC+BBYZna/8ObGzTT6cpfo1t4P6aoQ+YrJFDGla2v+yflCbBkDifBD+aLnzFJGi1s5qStITddZOj3I+FN7AJRZ8CmYjU6YiZetP8+/DvOgCC7ECWYfTkCFDPWbIcVMHoxD4XhkaIxWshR8N1alVd9MMAsfydmkbPkaYhhmOWwWEuWpxWbyTK7cXKg12tRJfL7U7nL9ZIq+HWrCY2i8TD8VQ/MlDiPL1fERL9G4eQig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pDp1xSqJUy/X3KgfO2i7a/7rznbyqcW3efpc1pzhCAA=;
+ b=PotOJMU8i3aoVROGSG1HcymnJWJUv+aKEmmlzM1KK6BICHRQd9j9wTUaK50zAQG+VTHmArZDaEvOVDwDGkfugcMjHjzgsfHDHunxAaU4BaLrSBR99ZcW8bVeD+kBf3xzwM9JuO1s+1jK//4xg1oWEuN4PdyqO9SqXYpWwBFb/4tg4yfMLVQJQA08+vDIBiu2mQHKocRwSGVNwQJjk71YXFtBE+CimRG6fSwQfzcYwV/Y/8raeYwBG/ftMzujYkVy5TWXDYLwJ4wemHBt3tKB06nLu6z0GLLobiMVysZtzhyoGBlPsADBjzzoG7Bzb3bzmcSV5fUNKIH7L1cIyjciDg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pDp1xSqJUy/X3KgfO2i7a/7rznbyqcW3efpc1pzhCAA=;
+ b=kg8KlkaVTj1GF0wfuaYquAcgHeG4kWvaG1++ETZLcmJUgsOtsFCUiV3gICokm9iO/qP7OaP5OLhNDGdZ2SAzaFf96+4li11Q8INI0MjusrrZtoiWmrsBkqHHT1DdHokRi8UJ6Rk3bD9rTP0IF2xY21n6yU1TEGpyH0BO/kIzhL0=
+Received: from DS7P222CA0013.NAMP222.PROD.OUTLOOK.COM (2603:10b6:8:2e::22) by
+ SA1PR12MB8841.namprd12.prod.outlook.com (2603:10b6:806:376::5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6838.33; Thu, 5 Oct 2023 16:41:53 +0000
+Received: from DS3PEPF000099D6.namprd04.prod.outlook.com
+ (2603:10b6:8:2e:cafe::cb) by DS7P222CA0013.outlook.office365.com
+ (2603:10b6:8:2e::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.37 via Frontend
+ Transport; Thu, 5 Oct 2023 16:41:52 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DS3PEPF000099D6.mail.protection.outlook.com (10.167.17.7) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6838.14 via Frontend Transport; Thu, 5 Oct 2023 16:41:52 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 5 Oct
+ 2023 11:41:52 -0500
+Received: from xhdthippesw40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
+ Transport; Thu, 5 Oct 2023 11:41:49 -0500
+From: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+To: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+CC: <lpieralisi@kernel.org>, <kw@linux.com>, <robh@kernel.org>,
+	<bhelgaas@google.com>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <michal.simek@amd.com>, <bharat.kumar.gogada@amd.com>,
+	Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+Subject: [PATCH v5 RESEND 0/4] ncrease ecam size value to discover 256 buses during
+Date: Thu, 5 Oct 2023 22:10:47 +0530
+Message-ID: <20231005164051.984254-1-thippeswamy.havalige@amd.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS3PEPF000099D6:EE_|SA1PR12MB8841:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0b205d80-53c2-4a7d-1d30-08dbc5c1fab8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	dnxP2bIq7omJ1yo9T86PcCJ2H04IBYLGe9ccojepafgxlWwIQVrWsppVc9BXM0+QjfxBL+OYdWlJWwuLDWkWldE3MGxrU0+Dwfge+UJ6WPT7VX+ihH/KhobMtTSeKgjBOKUWlaCVV932OICpQZ/1qiuJMUwvjpYGfu2wTKjDsVheB4/y0S+d4QhMjb0pvUwSIt3/Qk+55y9zfK4SyIYbGeRtHEcoviZP/NQlvENfVhbUYeHLcakketjphuP0qSoRpcTEdn+n466tf4m7Me5mwvOLlFllkjthinuUlFwuzvGGfg0nSHo5HD5zIWB+ectLa/0YDPkiQPVt898srccH21gJxjkgVAQMqhtww2asr4NxcKAueFh9pbfTLn8fFpHADhRQ3u86TNSKTGJM8/NB5FTImWABBYQbflVvWdSImbC3c7ZDc39U5/5Fd1OmuwCBUoyQVsd7p6PIwfdqpiLyw4B3ZdllrDRjMvL3kdihvOpVw9vRqG1ptt7kxEji1AywQ9P6F1ExAa9gKqQh40M32j4fydzWsur62OC75ySbXyLMHRAi3j6H/jf0E7iaL+pMQbYpPyebDZ92P8uULjk2W0Shvh8QUhl4rGPCiEbgYm/AqiEyjHdMuqpUfJYV5d84opDZlSNvwrSlruv024Ai+dWFdoTw3YXqB/+IleUWhwxi9/hK03/vI0k//LWCbazQgnU3dBbc5jAAHj9U3/xwYt0s7itpLZQDP0lcAHGla0vPPXhaAQwQCZrlHBcQVJxLt0RlMn9OI9riv6nJppQlKtE2L30ncItNwDLO99Wy/Fk=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(396003)(39860400002)(346002)(376002)(136003)(230922051799003)(186009)(64100799003)(1800799009)(451199024)(82310400011)(36840700001)(46966006)(40470700004)(4744005)(47076005)(2906002)(83380400001)(40460700003)(7416002)(82740400003)(86362001)(81166007)(36756003)(356005)(36860700001)(40480700001)(54906003)(316002)(70586007)(110136005)(70206006)(41300700001)(1076003)(2616005)(336012)(478600001)(426003)(4326008)(44832011)(8676002)(5660300002)(26005)(8936002)(36900700001)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Oct 2023 16:41:52.8005
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b205d80-53c2-4a7d-1d30-08dbc5c1fab8
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DS3PEPF000099D6.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8841
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Thu,  5 Oct 2023 13:59:21 +0300
-Dumitru Ceclan <mitrutzceclan@gmail.com> wrote:
+Current driver is supports up to 16 buses. The following code fixes 
+to support up to 256 buses.
 
-> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
-> which can be used in high precision, low noise single channel applications
-> or higher speed multiplexed applications. The Sigma-Delta ADC is intended
-> primarily for measurement of signals close to DC but also delivers
-> outstanding performance with input bandwidths out to ~10kHz.
-> 
-> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
+update "NWL_ECAM_VALUE_DEFAULT " to 16  can access up to 256MB ECAM
+region to detect 256 buses.
 
-Seems the family is a bit wider than covered here as there is at least
-an ad7172-4 device.  It might be nice to support that if not too hard.
+Update ecam size to 256MB in device tree binding example.
 
-> ---
-> V2 -> V3
->  - remove redundant descriptions
->  - use referenced 'bipolar' property
->  - remove newlines from example
-> 
->  .../bindings/iio/adc/adi,ad7173.yaml          | 130 ++++++++++++++++++
->  1 file changed, 130 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> new file mode 100644
-> index 000000000000..bf9e3cbf842e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> @@ -0,0 +1,130 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2023 Analog Devices Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7173.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD7173 ADC device driver
-> +
-> +maintainers:
-> +  - Ceclan Dumitru <dumitru.ceclan@analog.com>
-> +
-> +description: |
-> +  Bindings for the Analog Devices AD717X ADC's. Datasheets for supported chips:
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7172-2.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7173-8.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7175-2.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7176-2.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad7172-2
-> +      - adi,ad7173-8
-> +      - adi,ad7175-2
-> +      - adi,ad7176-2
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  spi-max-frequency:
-> +    maximum: 20000000
-> +
-> +  spi-cpol:
-> +    type: boolean
-> +
-> +  spi-cpha:
-> +    type: boolean
+Remove unwanted code.
 
-I'd like to see supplies listed here as well.
+Thippeswamy Havalige (4):
+  PCI: xilinx-nwl: Remove unnecessary code which updates primary,
+    secondary and sub-ordinate bus numbers
+  dt-bindings: PCI: xilinx-nwl: Modify ECAM size in example
+  PCI: xilinx-nwl: Rename ECAM size default macro
+  PCI: xilinx-nwl: Increase ECAM size to accommodate 256 buses
 
-> +
-> +  required:
-> +    - compatible
-> +    - reg
-> +    - interrupts
-> +
-> +patternProperties:
-> +  "^channel@[0-9a-f]$":
-> +    type: object
-> +    $ref: adc.yaml
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 15
-> +
-> +      diff-channels:
-> +        items:
-> +          minimum: 0
-> +          maximum: 31
+ .../devicetree/bindings/pci/xlnx,nwl-pcie.yaml |  2 +-
+ drivers/pci/controller/pcie-xilinx-nwl.c       | 18 +++---------------
+ 2 files changed, 4 insertions(+), 16 deletions(-)
 
-How can this go to 31? Do we have devices with 32 input lines?
-
-> +
-> +      bipolar:
-> +        type: boolean
-> +
-> +    required:
-> +      - reg
-> +      - diff-channels
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    spi {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      adc@0 {
-> +        compatible = "adi,ad7173-8";
-> +        reg = <0>;
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
-> +        interrupt-parent = <&gpio>;
-> +        spi-max-frequency = <5000000>;
-> +
-> +        channel@0 {
-> +          reg = <0>;
-> +          bipolar;
-> +          diff-channels = <0 1>;
-> +        };
-> +
-> +        channel@1 {
-> +          reg = <1>;
-> +          diff-channels = <2 3>;
-> +        };
-> +
-> +        channel@2 {
-> +          reg = <2>;
-> +          bipolar;
-> +          diff-channels = <4 5>;
-> +        };
-> +
-> +        channel@3 {
-> +          reg = <3>;
-> +          bipolar;
-> +          diff-channels = <6 7>;
-> +        };
-> +
-> +        channel@4 {
-> +          reg = <4>;
-> +          diff-channels = <8 9>;
-> +        };
-> +      };
-> +    };
+-- 
+2.25.1
 
 
