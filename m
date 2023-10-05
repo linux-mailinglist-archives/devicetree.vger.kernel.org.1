@@ -1,145 +1,131 @@
-Return-Path: <devicetree+bounces-6320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D39DF7BAE3F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 23:58:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46BE97BAEC4
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 00:21:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 1F142B2099B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 21:58:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 5DB811C208EB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 22:20:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA36F42C10;
-	Thu,  5 Oct 2023 21:58:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE8EF42C08;
+	Thu,  5 Oct 2023 22:20:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lG/Y1i8O"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="R/W7+3H1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA98E42BF4
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 21:58:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44926C433C8;
-	Thu,  5 Oct 2023 21:58:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696543119;
-	bh=wg9da7L1CQtw+tuYOmZfz5J+NgLFvScI+3C0EoG/geo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lG/Y1i8OpAQPQat88kfyzi7NWqcNQ9Cz13NjQkWCQDOP2ullmbktnb7+j7T7OUkOb
-	 f5JlDNF7/gNrGv6WsIbY9PvLXmfivEukYrAgLUezsgB+ory5ukH15S8Xv4FryuoHvm
-	 cV6XP4Z6Hh8AKexq5/ZCHA5kDyDTcR1bhFJGILAMXqivj54d0rEwKfK6rNAAZDIKju
-	 4UmdJQrB8vGY0vpbClN4hFjfJpvZNUa0FqIuD82KqRjuSbdHiAIHw7AxVLYJ98X3s9
-	 Ahf54l68UPAnMvovAyIJZLRuXff0bqHURlk7YlgOcDStezWyy6odd8F6NpHTigPFWo
-	 88Q1dlHsLuGAw==
-Date: Thu, 5 Oct 2023 23:58:32 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: gregory.clement@bootlin.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	pierre.gondois@arm.com, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] i2c: mv64xxx: add support for FSM based recovery
-Message-ID: <20231005215832.p4mxov6occzqmj2k@zenone.zhora.eu>
-References: <20230926234801.4078042-1-chris.packham@alliedtelesis.co.nz>
- <20230926234801.4078042-4-chris.packham@alliedtelesis.co.nz>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3A4612B74
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 22:20:39 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DAC79E;
+	Thu,  5 Oct 2023 15:20:38 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 395MCovx011432;
+	Thu, 5 Oct 2023 22:20:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=VtvUZyDxaVYZXARp1Fmae+hVYKfon/wKrJEtk7Yz5n0=;
+ b=R/W7+3H1VDQnr9rMxOa3pi7dbl06gMlwgYgRlIh3CdwhFFt4vIyvwtoLhyNX/KwhDkjb
+ BwE4Ze2/oQXahoKOxyoVSM1y8E0k2Vtmf5wXvi/SJx1781NunhrkLuDUUlNMoNHG4V8i
+ yeU0OwcIgHo01OSMFQeke+OJ34VWL4hewOm6JyNKSS6zd0Lw66u4N6oQMVFyeliTNKIu
+ ewrsjSzwXuM9lvDtIo1Ymqs40eC5J/extRj2CWfMJqFrhXhm6cdh9jEQ4PhNyR8eIo+a
+ J4M1ospAJIMb0nW/waPvUYchgg76P14JsLZudE3Brdgjr9UCy37bJrNN0wKLr4Lyunsl 9g== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3thn05a3wu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 05 Oct 2023 22:20:18 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 395MKHlg017242
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 5 Oct 2023 22:20:17 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Thu, 5 Oct 2023 15:20:17 -0700
+Date: Thu, 5 Oct 2023 15:20:16 -0700
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+To: Sudeep Holla <sudeep.holla@arm.com>
+CC: Nikunj Kela <quic_nkela@quicinc.com>, <cristian.marussi@arm.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH v4 4/4] firmware: arm_scmi: Add qcom hvc/shmem transport
+ support
+Message-ID: <20231005222016.GI3553829@hu-bjorande-lv.qualcomm.com>
+References: <20230718160833.36397-1-quic_nkela@quicinc.com>
+ <20230911194359.27547-1-quic_nkela@quicinc.com>
+ <20230911194359.27547-5-quic_nkela@quicinc.com>
+ <20231003111914.63z35sn3r3k7drtp@bogus>
+ <6246714a-3b40-e1b6-640e-560ba55b6436@quicinc.com>
+ <20231004160630.pxspafszlt6o7oj6@bogus>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230926234801.4078042-4-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20231004160630.pxspafszlt6o7oj6@bogus>
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: UDw0cKnzIBCJJ4L7j24wEV5YOwKBRLD4
+X-Proofpoint-GUID: UDw0cKnzIBCJJ4L7j24wEV5YOwKBRLD4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-05_16,2023-10-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
+ impostorscore=0 bulkscore=0 spamscore=0 mlxlogscore=999 priorityscore=1501
+ mlxscore=0 malwarescore=0 lowpriorityscore=0 phishscore=0 clxscore=1011
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
+ definitions=main-2310050169
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-Hi Chris,
+On Wed, Oct 04, 2023 at 05:06:30PM +0100, Sudeep Holla wrote:
+> On Tue, Oct 03, 2023 at 09:16:27AM -0700, Nikunj Kela wrote:
+> > On 10/3/2023 4:19 AM, Sudeep Holla wrote:
+> > > On Mon, Sep 11, 2023 at 12:43:59PM -0700, Nikunj Kela wrote:
+> > > > diff --git a/drivers/firmware/arm_scmi/smc.c b/drivers/firmware/arm_scmi/smc.c
+[..]
+> > > > @@ -63,6 +66,8 @@ struct scmi_smc {
+> > > >   	u32 func_id;
+> > > >   	u32 param_page;
+> > > >   	u32 param_offset;
+> > > > +	u64 cap_id;
+> > > Can it be unsigned long instead so that it just works for both 32 and 64 bit.
+> > 
+> > My first version of this patch was ulong but Bjorn suggested to make this
+> > structure size fixed i.e. architecture independent. Hence changed it to u64.
+> > If you are ok with ulong, I can change it back to ulong.
+> >
+> 
+> SMCCC pre-v1.2 used the common structure in that way. I don't see any issue
+> with that. I haven't followed Bjorn suggestions/comments though.
+> 
 
-Looks good, just a few questions.
+My request was that funcId and capId is an ABI between the firmware and
+the OS, so I'd like for that to use well defined, fixed sized, data
+types - if nothing else just for documentation purpose.
 
-> +static int
-> +mv64xxx_i2c_recover_bus(struct i2c_adapter *adap)
-> +{
-> +	struct mv64xxx_i2c_data *drv_data = i2c_get_adapdata(adap);
-> +	int ret;
-> +	u32 val;
-> +
-> +	dev_dbg(&adap->dev, "Trying i2c bus recovery\n");
-> +	writel(MV64XXX_I2C_UNSTUCK_TRIGGER, drv_data->unstuck_reg);
-> +	ret = readl_poll_timeout_atomic(drv_data->unstuck_reg, val,
-> +					!(val & MV64XXX_I2C_UNSTUCK_INPROGRESS),
-> +					1000, 5000);
+These values will be truncated when passed to arm_smccc_1_1_invoke()
+anyways, so I don't have any opinion against using unsigned long here...
 
-here you are busy looping for 1ms between reads which is a long
-time. Why not using read_poll_timeout() instead?
 
-> +	if (ret) {
-> +		dev_err(&adap->dev, "recovery timeout\n");
-> +		return ret;
-> +	}
-> +
-> +	if (val & MV64XXX_I2C_UNSTUCK_ERROR) {
-> +		dev_err(&adap->dev, "recovery failed\n");
-> +		return -EBUSY;
-> +	}
-> +
-> +	dev_info(&adap->dev, "recovery complete after %d pulses\n", MV64XXX_I2C_UNSTUCK_COUNT(val));
+PS. I understand why func_id is u32, but why are param_page and
+param_offset u32?
 
-dev_dbg?
-
-> +	return 0;
-> +}
-> +
-
-[...]
-
-> -	if (of_device_is_compatible(np, "marvell,mv78230-a0-i2c")) {
-> +	if (of_device_is_compatible(np, "marvell,mv78230-a0-i2c") ||
-> +	    of_device_is_compatible(np, "marvell,armada-8k-i2c")) {
-
-should this be part of a different patch?
-
->  		drv_data->offload_enabled = false;
->  		/* The delay is only needed in standard mode (100kHz) */
->  		if (bus_freq <= I2C_MAX_STANDARD_MODE_FREQ)
-> @@ -936,8 +973,21 @@ mv64xxx_of_config(struct mv64xxx_i2c_data *drv_data,
->  }
->  #endif /* CONFIG_OF */
->  
-> -static int mv64xxx_i2c_init_recovery_info(struct mv64xxx_i2c_data *drv_data,
-> -					  struct device *dev)
-> +static int mv64xxx_i2c_init_fsm_recovery_info(struct mv64xxx_i2c_data *drv_data,
-> +					      struct device *dev)
-> +{
-> +	struct i2c_bus_recovery_info *rinfo = &drv_data->rinfo;
-> +
-> +	dev_info(dev, "using FSM for recovery\n");
-
-dev_dbg?
-
-> +	rinfo->recover_bus = mv64xxx_i2c_recover_bus;
-> +	drv_data->adapter.bus_recovery_info = rinfo;
-> +
-> +	return 0;
-> +
-> +}
-> +
-
-[...]
-
-> +	/* optional unstuck support */
-> +	res = platform_get_resource(pd, IORESOURCE_MEM, 1);
-> +	if (res) {
-> +		drv_data->unstuck_reg = devm_ioremap_resource(&pd->dev, res);
-> +		if (IS_ERR(drv_data->unstuck_reg))
-> +			return PTR_ERR(drv_data->unstuck_reg);
-
-OK, we failed to ioremap... but instead of returning an error,
-wouldn't it be better to just set unstuck_reg to NULL and move
-forward without unstuck support?
-
-Maybe you will stil crash later because something might have
-happened, but failing on purpose on an optional feature looks a
-bit too drastic to me. What do you think?
-
-Thanks,
-Andi
+Regards,
+Bjorn
 
