@@ -1,157 +1,158 @@
-Return-Path: <devicetree+bounces-6051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAEE87B9C48
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 11:43:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D0A67B9C55
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 11:48:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 5B562281BAE
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 09:43:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 470D81C2091F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 09:48:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94807107BA;
-	Thu,  5 Oct 2023 09:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41FE1111A0;
+	Thu,  5 Oct 2023 09:48:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qan5Z/GK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PylU08CQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BC807F
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 09:43:32 +0000 (UTC)
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBF7B21D01;
-	Thu,  5 Oct 2023 02:43:30 -0700 (PDT)
-Received: by mail-ed1-x541.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so4129652a12.1;
-        Thu, 05 Oct 2023 02:43:30 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E60A20E3
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 09:48:23 +0000 (UTC)
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3EA121D20;
+	Thu,  5 Oct 2023 02:48:21 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1c752caeaa6so5564995ad.1;
+        Thu, 05 Oct 2023 02:48:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696499009; x=1697103809; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yFk1hMyZRR6j/Q7MSUiSQpNux3PKUHqj/LJOWiGIaOc=;
-        b=Qan5Z/GKLo1blKcuGgBwMCp0WOHAo/yDJuTzlDQPwAxR0RhTDs1dK5Yz6Af8PiJozm
-         r2pSeHQTCGv9+PqJNxESy4eWiJsVAGXEexJ1XoDJTY7v/J/95JFI/uVIRuVWRcYmxJ1k
-         zP1/xq4pxt1EqbxEEjvx4hKN6DcHkZ8guYW2TP7vWYvk2er8bNS0RrSgQwuGOXaDDpzC
-         OyRVvWBX9jsUcKWo3QgBboqnpf7tGEseXF1GEoCADqoCWQkP8lk3O9v7DulbNhsHhLGx
-         GHBFuKWrTTvTvTFl6d7Horu/l8DHCan/lihdYCj0pTXmF77+h2cKszNFEnR3v7MdZT0f
-         1EhQ==
+        d=gmail.com; s=20230601; t=1696499301; x=1697104101; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QcyG87vnGIKlXKSx5LziVXN0LYxk39g/b0gLezLySXE=;
+        b=PylU08CQs8icxPqED8Ff+QQ4pSWtPCGBq9g5Cb3tzv1K1vTYAPfbaqjAtGc8RprwrL
+         jNaQpBO6gtXAOEbnOo8g8QKFPPEPSPBhnzLJgmgXbQXfwI3ZpKmJ37bCT+xKIWrKZPVz
+         KpWhp6IuQo3bwuDvGkcVJBvWTKvdSoEo5/FFvGjYlzEjZyHssfMbD6J31t/pFqDMIvNg
+         ErLMK8QXycqN3crrt82l+/SaQgT6fdzhz77qVyLBEC6WQamTWR3tNWh5DSmjoj3Ca9lg
+         HvMzehZlEC+AhufJRCM+eAkcfsKPIpd5roozpuYYrKXv4hSeSg1149ga136Zlu0b0jqW
+         1ICg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696499009; x=1697103809;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yFk1hMyZRR6j/Q7MSUiSQpNux3PKUHqj/LJOWiGIaOc=;
-        b=dMaxldNOieM9KCdpMK9Sf2GCVWR/TCkIn4EB8n7s82njw2jDElToqwEKAELEk0xZkw
-         X6UBZim7JhdUDtkoOlWcA6ylaz8RJCuS6zSh8u/6vQGyVK3USupAo0YSFaZrcsbdM7uH
-         UeoYsLjzgqHnd8z5I5vWZM6zbBQMeohD9+9VT/574zNfXeJdR3LYl0iqHuj+5WP0vyE5
-         eLWx4iyAj6mQdQU20g2JK2WxdIGBI5+GsRfbY3gMWY5ecR/6bVSg8RXGq+kXA9aXwT+g
-         CDWqlgiY2bwRapMVs0mr8yEP0F81rIhmlf7sNTS2SEjfnEdvybMJJMdiebvPFZDwtNOb
-         Z7aA==
-X-Gm-Message-State: AOJu0YxA3TBh2SajVOZlmZzzHOOhXy8Q0RKS7CQxvApGLgJH4n75KV6X
-	gbxYoLg22snWnFTmjuGwarLxtyxc3vbfL6wHT3knLH/8aTw=
-X-Google-Smtp-Source: AGHT+IEUPEfNrlvMx3t5Sfp8v/9vGMhpyGjbTnVN6udKEfGdXvyew0SV3xmGgz4HOrJ5XMN/i8O1g6gCEDL32l2P1mg=
-X-Received: by 2002:a05:6402:2037:b0:534:2e37:dfd4 with SMTP id
- ay23-20020a056402203700b005342e37dfd4mr1824893edb.1.1696499009070; Thu, 05
- Oct 2023 02:43:29 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1696499301; x=1697104101;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QcyG87vnGIKlXKSx5LziVXN0LYxk39g/b0gLezLySXE=;
+        b=c2RZBpWRaHWGlnKZ3VnNlVz/t/jE7Ud/Fw330voyQY0qJxXR1UaCIMmyUUGpfGBmda
+         goJLJPeA26dAQtq9prkqMz865d1G28JZuL3drZipj4wA91hhuqupzaI+bAe/iUGB7ifB
+         +hj/ld3xQlb51yPW/Z6EITyKQpGtCnAQ7ItCRZvRK9bXphxr+Vq5bTnuSwPaEEKcK91x
+         uTTGi8C4Z3e5CKgcJqhSGWfs6ejQWki4zm38CikeeBhG7wf0sMB0TvSVvaeCTctP9peF
+         1tBwZ6lvjQiRs6Svg3nxL+TqqbjIZwLP/1sRAKP1tjS76cT0jsBys41/FuAjyTu8zvAu
+         zgrw==
+X-Gm-Message-State: AOJu0YzXBkVT+J0hoVkkkWQjh76Uf/8CG+G4tUqP+57f3iau7eNYm/W9
+	TZcjfIhWYltQpxxQj8ifvJR26uRNxGSNkg==
+X-Google-Smtp-Source: AGHT+IFHteCKHlFnIrAXryMfRgG8kLNi9ULfUt0La9S8bxQi1xPwievTd5m2v28x0y6Gsz7yvjUaUw==
+X-Received: by 2002:a17:902:e881:b0:1c4:4c10:6ae3 with SMTP id w1-20020a170902e88100b001c44c106ae3mr6150889plg.23.1696499300891;
+        Thu, 05 Oct 2023 02:48:20 -0700 (PDT)
+Received: from [172.16.116.58] ([103.15.228.93])
+        by smtp.gmail.com with ESMTPSA id a4-20020a170902ecc400b001c74df14e6esm1189773plh.51.2023.10.05.02.48.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Oct 2023 02:48:20 -0700 (PDT)
+Message-ID: <795ee959-abdd-02c5-40b9-b7bb0d54c2f7@gmail.com>
+Date: Thu, 5 Oct 2023 15:18:15 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231005035933.31016-1-andre.werner@systec-electronic.com> <f2e2d122-f5a7-401e-a429-0a86c2c0b3ab@linaro.org>
-In-Reply-To: <f2e2d122-f5a7-401e-a429-0a86c2c0b3ab@linaro.org>
-From: werneazc <werneazc@gmail.com>
-Date: Thu, 5 Oct 2023 11:43:18 +0200
-Message-ID: <CAKDJRcczo+8FAfDzNBhdZb8uBx_q5zP+f_X+jdZTr0qENj6vuA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: ti,ads7038: Add description
- for ADS7038
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: jic23@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, lars@metafoo.de, devicetree@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Andre Werner <andre.werner@systec-electronic.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v7 2/3] greybus: Add BeaglePlay Linux Driver
+Content-Language: en-US
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: greybus-dev@lists.linaro.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, vaishnav@beagleboard.org,
+ jkridner@beagleboard.org, nm@ti.com, krzysztof.kozlowski+dt@linaro.org,
+ johan@kernel.org, elder@kernel.org
+References: <20231004184639.462510-1-ayushdevel1325@gmail.com>
+ <20231004184639.462510-3-ayushdevel1325@gmail.com>
+ <2023100501-siesta-dictate-132e@gregkh>
+From: Ayush Singh <ayushdevel1325@gmail.com>
+In-Reply-To: <2023100501-siesta-dictate-132e@gregkh>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Renaming is done and will be published in v3 version of the patch.
-Waiting for remarks for the second patch file before publishing the
-next version of the patch set.
 
-Regards,
-Andr=C3=A9
+On 10/5/23 14:38, Greg KH wrote:
+> On Thu, Oct 05, 2023 at 12:16:37AM +0530, Ayush Singh wrote:
+>> Add the Greybus host driver for BeaglePlay board by BeagleBoard.org.
+>>
+>> The current greybus setup involves running SVC in a user-space
+>> application (GBridge) and using netlink to communicate with kernel
+>> space. GBridge itself uses wpanusb kernel driver, so the greybus messages
+>> travel from kernel space (gb_netlink) to user-space (GBridge) and then
+>> back to kernel space (wpanusb) before reaching CC1352.
+>>
+>> This driver directly communicates with CC1352 (running SVC Zephyr
+>> application). Thus, it simplifies the complete greybus setup eliminating
+>> user-space GBridge.
+>>
+>> This driver is responsible for the following:
+>> - Start SVC (CC1352) on driver load.
+>> - Send/Receive Greybus messages to/from CC1352 using HDLC over UART.
+>> - Print Logs from CC1352.
+>> - Stop SVC (CC1352) on driver load.
+>>
+>> Signed-off-by: Ayush Singh <ayushdevel1325@gmail.com>
+>> ---
+>>   MAINTAINERS                     |   1 +
+>>   drivers/greybus/Kconfig         |  10 +
+>>   drivers/greybus/Makefile        |   2 +
+>>   drivers/greybus/gb-beagleplay.c | 501 ++++++++++++++++++++++++++++++++
+>>   4 files changed, 514 insertions(+)
+>>   create mode 100644 drivers/greybus/gb-beagleplay.c
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 5467669d7963..d87e30626a6a 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -8974,6 +8974,7 @@ M:	Ayush Singh <ayushdevel1325@gmail.com>
+>>   L:	greybus-dev@lists.linaro.org (moderated for non-subscribers)
+>>   S:	Maintained
+>>   F:	Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
+>> +F:	drivers/greybus/gb-beagleplay.c
+>>   
+>>   GREYBUS SUBSYSTEM
+>>   M:	Johan Hovold <johan@kernel.org>
+>> diff --git a/drivers/greybus/Kconfig b/drivers/greybus/Kconfig
+>> index 78ba3c3083d5..fd4f26d09c53 100644
+>> --- a/drivers/greybus/Kconfig
+>> +++ b/drivers/greybus/Kconfig
+>> @@ -17,6 +17,16 @@ menuconfig GREYBUS
+>>   
+>>   if GREYBUS
+>>   
+>> +config GREYBUS_BEAGLEPLAY
+>> +	tristate "Greybus BeaglePlay driver"
+>> +	depends on TTY
+> What you want to depend on here is serdev, not tty, right?  Or am I
+> mis-reading the code requirements?
+>
+> thanks,
+>
+> greg k-h
 
-On Thu, Oct 5, 2023 at 9:33=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 05/10/2023 05:54, werneazc@gmail.com wrote:
-> > From: Andre Werner <andre.werner@systec-electronic.com>
-> >
-> > Add basic description for ADS7x38 ADC devices. The driver does only
-> > support a very basic set of functionalities provided by the chip.
-> > Also, the example in the description covers only a setup for ADS7038 de=
-vices
-> > while the driver structure will support both ADS7038 (SPI) and ADS7138 =
-(I2C) devices.
-> >
-> > Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
-> > ---
-> > - v2: Add commit message and correct vref-description copy-paste-error.
-> > ---
-> >  .../bindings/iio/adc/ti,ads7038.yaml          | 51 +++++++++++++++++++
-> >  1 file changed, 51 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads703=
-8.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml =
-b/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml
-> > new file mode 100644
-> > index 000000000000..d40869b9a604
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml
-> > @@ -0,0 +1,51 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/adc/ti,ads7038.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Texas Instruments ADS7038 and similar ADCs
-> > +
-> > +maintainers:
-> > +  - Andre Werner <andre.werner@systec-electronic.com>
-> > +
-> > +description: |
-> > +  Family of 7 channel, 12 bit ADCs with SPI/I2C interface.
-> > +
-> > +  Datasheet: https://www.ti.com/lit/gpn/ads7038
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - ti,ads7038
-> > +      - ti,ads7138
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  spi-max-frequency:
-> > +    maximum: 60000000
-> > +
-> > +  vref-supply:
-> > +    description: Supplies the reference voltage AVDD
->
-> Didn't you already get a comment that there is no vref but avdd, so
-> avdd-supply?
->
->
-> Best regards,
-> Krzysztof
->
+Yes, it was dependent on tty in the past, but not anymore. I think it 
+should be changed to `SERIAL_DEV_BUS` now?
+
+
+Sincerely,
+
+Ayush Singh
+
 
