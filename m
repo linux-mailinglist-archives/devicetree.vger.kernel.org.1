@@ -1,265 +1,163 @@
-Return-Path: <devicetree+bounces-5984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C25D7B9993
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 03:27:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F67C7B99D9
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 04:04:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 0E456281C7E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 01:27:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 13C78281CCE
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 02:04:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A3D0EA9;
-	Thu,  5 Oct 2023 01:26:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0009137B;
+	Thu,  5 Oct 2023 02:04:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="bQzuYddD"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hJLJSK0c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B3321112
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 01:26:56 +0000 (UTC)
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2093.outbound.protection.outlook.com [40.107.255.93])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C994D8;
-	Wed,  4 Oct 2023 18:26:53 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KieloMr7msAi/kRXM10L0MakpZ3NJS4olFuwNCV+oY47f8cEmZLMIuEzam9AsNUM+k+eVbAh4RYNm/tzioCQ+j2riwRQGEupP2T3OOAnEVubHEjF7hov5KXxQ4AkTcu/9bjDfM4zVGLpks7hezo/RsdUOgCV+bxEgyqlO7FHJjlK2en3+R//lmS5mAnXAq7oFjCXsE12C7ANiap+O2xBfIIwsb6Fuscz5pSuoVmEel+3RyH/xszl0mkS8D8qzdZ/SqhTK5czXKBkwLsJ6ykr4Y0p7Ev8tB/4wvMXiz46pV5y6orsU9590kfIgxcVogtOEL4ln/4XdGG5UmB/dMfvtw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=noo/fEzBt1fE2C1J8OnDvTdtPkofJlbXwvy1xaBOZic=;
- b=kELIoEHfKYiLpyfiUHiuB0YmuTirVm9tF1LEIsAyJueBSbZc1wZSKbdL2c0cfiUmuSFMPHEeQv15JnNuZ+JfSI94k7+QW680GIGdZr8AWkq216jPFCLTfvCVQHxOWVtcxFtuhMxAxCN309b8cVHq76U+7MulRxJOEEw2ZAYop9kF9z+g4wIx6e5r4an0K+09IbJq3B9Y6KndbHJI1uCh5rzi+FtEY4L/xqDvGcynyVU6K2bM8YxpUtOGuFOx3wDJXR2wmgnzDDew1f8//aNZSbU7Os6EHqgNGQ6FqisBTeE9OGxBO2ES+kkb+jmTqB2nMEGJe94dEVTscK7x3cRMVA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=noo/fEzBt1fE2C1J8OnDvTdtPkofJlbXwvy1xaBOZic=;
- b=bQzuYddDZedRVxiouZy+LdPJpbhjtor8CmxuwR71r6qkonygoSbky/m2wb81++EtNaTzwnYjp9LmJbaxwLcOz0E8hBOQxuCPCBoqoQ83IMMeTGwzp81UW9bTuIH5QxIGJ+NPaqls1DdGiWLpgfLySr7PZUovYo0aT2VFQ52bIilnTRnNg0bKVk/XynS8DOea8FRTNEtGmS7bcwE0sqr0KZyDCJ5gYkqkjMmx/lwHfc1OlG10/GPdXZyFgEavxs/YXNShOZSR/QkpvPEMNurMGa6ipJeILx2/cvtzzPfbjpjWAZ8op0+wwPCnUcwPLrFWneZUcVXOocHUqbN5nJJ3vQ==
-Received: from SG2PR06MB3365.apcprd06.prod.outlook.com (2603:1096:4:69::12) by
- SEYPR06MB5648.apcprd06.prod.outlook.com (2603:1096:101:c0::14) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6838.30; Thu, 5 Oct 2023 01:26:46 +0000
-Received: from SG2PR06MB3365.apcprd06.prod.outlook.com
- ([fe80::956c:2f06:be93:fc3e]) by SG2PR06MB3365.apcprd06.prod.outlook.com
- ([fe80::956c:2f06:be93:fc3e%5]) with mapi id 15.20.6838.033; Thu, 5 Oct 2023
- 01:26:46 +0000
-From: Billy Tsai <billy_tsai@aspeedtech.com>
-To: Rob Herring <robh@kernel.org>
-CC: "jdelvare@suse.com" <jdelvare@suse.com>, "linux@roeck-us.net"
-	<linux@roeck-us.net>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "joel@jms.id.au" <joel@jms.id.au>,
-	"andrew@aj.id.au" <andrew@aj.id.au>, "corbet@lwn.net" <corbet@lwn.net>,
-	"thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-	"u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-	"naresh.solanki@9elements.com" <naresh.solanki@9elements.com>,
-	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-doc@vger.kernel.org"
-	<linux-doc@vger.kernel.org>, "linux-pwm@vger.kernel.org"
-	<linux-pwm@vger.kernel.org>, BMC-SW <BMC-SW@aspeedtech.com>,
-	"patrick@stwcx.xyz" <patrick@stwcx.xyz>
-Subject: Re: [PATCH v9 2/3] dt-bindings: hwmon: Support Aspeed g6 PWM TACH
- Control
-Thread-Topic: [PATCH v9 2/3] dt-bindings: hwmon: Support Aspeed g6 PWM TACH
- Control
-Thread-Index: AQHZ6fsiTLYVIVnDjUKnszXE1xHHwrA2ti6AgAPFqCE=
-Date: Thu, 5 Oct 2023 01:26:45 +0000
-Message-ID:
- <SG2PR06MB33650A58039DF915E4E868E68BCAA@SG2PR06MB3365.apcprd06.prod.outlook.com>
-References: <20230918064111.2221594-1-billy_tsai@aspeedtech.com>
- <20230918064111.2221594-3-billy_tsai@aspeedtech.com>
- <20231002152819.GB1747496-robh@kernel.org>
-In-Reply-To: <20231002152819.GB1747496-robh@kernel.org>
-Accept-Language: en-US, zh-TW
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SG2PR06MB3365:EE_|SEYPR06MB5648:EE_
-x-ms-office365-filtering-correlation-id: fd25256c-f524-46dd-0e0f-08dbc54223aa
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- FD25v1BddKoQXWF4XhVSoYWiaftdubRg3vIAQCC3GpJZgxAlw6oiInMz1VxFDyPzk04f3xqmu3crsnL4ShJn1hlujo1DRLEltsOULngJwiuGj++AJnGuMyv7imEA6pitzDLdNbiuA+uW9N7++6ULH0/ZbQeKRn52LPZJFAdku8SlI2VQIexhObj4C0KZ6EUJVpnJFTZOApuLp1uvIYH8/DHC/YKC04ycpFbNQ+etdybFSZgdAXKPhTwWC4pCryxpDYBQAfUmE7dTGXyFhLMkeRnpzgKuWLGHZO/piPDu0oa/D5c8tgWS75vH2Ci3WPmDaOo4M5iwlPhhPZ3g3exs3B/TQoAfGHgp11zU/EmaALllrC5Loq6HNieIsBK2Qnf9X967XI6+XhyA9XZRb/ogmdcosmiN3ILWuoesGMCllbl9u57EL3CNojS0MBTbuRDzNa3r7YBUmM4+wqzdESENCn9mhVCvw/dP0CxiubeNyZTC20q8sX4+rOfT/NdX77Lqwk4hBJ/Z4SeUelVIDYES0ZmXS01Wosuua9olyi3+x/ZMkQnTH3sd1zc9UVVHcGgxXxP8QHh/r4PdWcet96uNRaoT2X0SdhZJX5ukcvENFYk=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SG2PR06MB3365.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(376002)(346002)(39850400004)(396003)(136003)(230922051799003)(451199024)(186009)(64100799003)(1800799009)(9686003)(55016003)(6506007)(478600001)(966005)(7696005)(71200400001)(86362001)(122000001)(38070700005)(38100700002)(2906002)(7416002)(91956017)(41300700001)(6916009)(316002)(83380400001)(26005)(54906003)(66946007)(66476007)(76116006)(66556008)(52536014)(33656002)(8936002)(8676002)(5660300002)(4326008)(64756008)(66446008);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?0gqIfTS5scHL7t1hTYG3Y4L2aCvp27cZrdnOyXg4lxjP5RBL+5qh3/AWb+?=
- =?iso-8859-1?Q?iavrfKPgRKapcyXgYMNzjcFy33IWij1gpmftcrHzS7ZIR4ejK+La/5ZWi6?=
- =?iso-8859-1?Q?67j1eShZw8lx6Mcmqgj/75xKOcmatzDUsQWMrs1WMdiTPTI7B8rFCf8+LD?=
- =?iso-8859-1?Q?+UBrLM7HGgY8KJBmQyKjVG4ZMtL4OOs6/H1gqp88IvzhXOunAAyfeOMpaO?=
- =?iso-8859-1?Q?vrRgj93UKUZ22U5VILhAc0mr1jlcURGmo+NU3NsuaoKs9V93LMNlmDY+/d?=
- =?iso-8859-1?Q?0RNOZmTK3tpHf/YtgobDh0CVOoCElY/Xum8uc74DVFAEtQQPtmRXCyIxXg?=
- =?iso-8859-1?Q?onzMRHRYz/ZTpIDaogM9VaWeNuTJjKtnGPHHUCIUY9MMFmRT46nEIIuypp?=
- =?iso-8859-1?Q?o2X5OkmLUiFw68K6L5skXBib48XxzWUKCFWsQJRu2YQ/PxJ73eSgd3nvX4?=
- =?iso-8859-1?Q?EM8HFIzXAQA47ur+HcUorcpwdc49aZLC+tSuhF9LwDs8Pzs4BzcD4EbDiY?=
- =?iso-8859-1?Q?+VNph5FLBhbgAtR7LBGCY5TXFmnnDCLX1Ly8e2kX8y+HCFGClF8Fj22zwJ?=
- =?iso-8859-1?Q?fOAetJay7bOj+tKBynMTrVx47SHkq1hYwThcq7oZruxxq4oHV6YztnBeVk?=
- =?iso-8859-1?Q?Ku2eliS4Bu6P3KgWFRKazz7SFdwsh52GtRCISfRU01pDZim+x508C+p48z?=
- =?iso-8859-1?Q?pnfcbA0PWHBtBuHo/bUnjWgxCrV717gHQ2Edrw2YnZuvdNz9dynfWVGlrt?=
- =?iso-8859-1?Q?TrRQxELSAUFRV9kv4C4kDuG+VPeE9q9AOT9gpxDIRmwRQW0FJ5bD5elXJc?=
- =?iso-8859-1?Q?umAsq4jYx89r3kWnkwtYLpPYC4vl0pM4P3uU/Mzj0I2fyVOFdIdyfn+yrc?=
- =?iso-8859-1?Q?Ph8hEomKmAL1yrNWC2hv1Zlul271BzWT9qtPq6204vS3JhtRJ577OH/at7?=
- =?iso-8859-1?Q?07GVXRMlPiBzgY75cQZ4VHrEdCzgAyLBU2Gw3wGgLh9sYzStYqDofyOsKx?=
- =?iso-8859-1?Q?bOdcYC40E949Y67HNPt7MgSWtZJKztnkwq6mHCUo2bEIOVYxJtRh2r5y59?=
- =?iso-8859-1?Q?A1UpkcuLSBXkKDdLCp1C25FaVsn8pn7A7KO2ePwUxDjcXT7l45r8uVueUG?=
- =?iso-8859-1?Q?jUeDrDJzJnT1HNp8JmG67rf1n4qICTgBjGjzqYdjrS5RPqtutis/lXEL5K?=
- =?iso-8859-1?Q?IRZkb8+uYPyzhCtkC2WMUoS/dA/yal7/PWFbSp9H1ZmCe3JTexTGhZsO3u?=
- =?iso-8859-1?Q?B95YqXz+ITuwunnTpf5zU5kc5znd19ofgbpIPYtTdSROPB4gAjqzl90apx?=
- =?iso-8859-1?Q?6eVcjFhudE4/IODXjaOC9WJg9KQdZJUndz8BoIWArjGxMtyrA93aRvmP6o?=
- =?iso-8859-1?Q?JkpYfvc8zNh2D7DRi/FYUzcE+3PfsaXjX5FUmrynIrPLvVsmlzgCOcDldF?=
- =?iso-8859-1?Q?BHNn97z+OdLsl+/fbJ1DSMI888aPC9K9RpcNkpWJUO9OPcDJIWaJ9Ka6ND?=
- =?iso-8859-1?Q?dFhFjBcoXZZcyuBOqhLT9F9lgkt9YfY/io2tKMULb5GMWmBwbcCHUwY7FA?=
- =?iso-8859-1?Q?7Q42DB0uhnmItQ3CiohobOFLlCGajFCc4U5pHQRiNATQk7K6jDFCxO2fAD?=
- =?iso-8859-1?Q?TXIfJJu7+zg7+xu1g+yU0VxRhEBCXGcknM?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C13DE15B3
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 02:04:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B429AB;
+	Wed,  4 Oct 2023 19:04:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1696471481; x=1728007481;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7f2TlIXBIJjbSNeuOq7FE3Xuyd7JTillqKjxVDak1fY=;
+  b=hJLJSK0csq69DUU4LIHCOSiKCkhZrlAodmog5YQEj7rGChJ0ufoTSXNe
+   cwLUgM6eFn1XVxRZaKPfvB+/FPxV6e6W5sJTusef5bcWH4NL78QYbJFE/
+   9w3M69zAYfVODnWKynGXL+6SbD5qWXqy1UkKsl1PA+rkZ2NrZxAtyr0dJ
+   AWmMdAZ/dR2OezPNWvjojgqvatskEY9dDI9IL1CongYOOzvahGCoSKsut
+   xvc48S5n+TZV13Ajowio5H7OxJgr1h9k1F/W4uMyU3pb3SalP2wenUBtB
+   mV2PHzToSQoLdKT+eqVswhucOwNbUYUDEt5YnLF2Rk2jLt5PI3Z/dRFrY
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="449865051"
+X-IronPort-AV: E=Sophos;i="6.03,201,1694761200"; 
+   d="scan'208";a="449865051"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Oct 2023 19:04:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="875366247"
+X-IronPort-AV: E=Sophos;i="6.03,201,1694761200"; 
+   d="scan'208";a="875366247"
+Received: from lkp-server02.sh.intel.com (HELO c3b01524d57c) ([10.239.97.151])
+  by orsmga004.jf.intel.com with ESMTP; 04 Oct 2023 19:04:37 -0700
+Received: from kbuild by c3b01524d57c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qoDj9-000Krs-0E;
+	Thu, 05 Oct 2023 02:04:35 +0000
+Date: Thu, 5 Oct 2023 10:04:17 +0800
+From: kernel test robot <lkp@intel.com>
+To: werneazc@gmail.com, jic23@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	lars@metafoo.de
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Andre Werner <andre.werner@systec-electronic.com>
+Subject: Re: [PATCH 2/2] iio: adc: ads7038: Add driver support for 12bit ADC
+Message-ID: <202310050917.qrpQA2nb-lkp@intel.com>
+References: <20231004102330.3713-2-andre.werner@systec-electronic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SG2PR06MB3365.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fd25256c-f524-46dd-0e0f-08dbc54223aa
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Oct 2023 01:26:45.9544
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Iy8IpYEJzb+RPXwDTe2T5MorytOpwspc8bezfasxT4J0mk+GX1QkAehqQTXRCdhMF14Bsfk/cvDpIiwlLHWMTZ8lc6TqgexCBNUVOKDvstY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB5648
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231004102330.3713-2-andre.werner@systec-electronic.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+	SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
->> Document the compatible for aspeed,ast2600-pwm-tach device, which can=0A=
->> support up to 16 PWM outputs and 16 fan tach input.=0A=
->>=0A=
->> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>=0A=
->> ---=0A=
->>  .../bindings/hwmon/aspeed,g6-pwm-tach.yaml    | 69 +++++++++++++++++++=
-=0A=
->>  1 file changed, 69 insertions(+)=0A=
->>  create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,g6-pw=
-m-tach.yaml=0A=
->>=0A=
->> diff --git a/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.=
-yaml b/Documentation/devicetree/>bindings/hwmon/aspeed,g6-pwm-tach.yaml=0A=
->> new file mode 100644=0A=
->> index 000000000000..5a679f4ad2fa=0A=
->> --- /dev/null=0A=
->> +++ b/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml=0A=
->> @@ -0,0 +1,69 @@=0A=
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)=0A=
->> +# Copyright (C) 2023 Aspeed, Inc.=0A=
->> +%YAML 1.2=0A=
->> +---=0A=
->> +$id: http://devicetree.org/schemas/hwmon/aspeed,g6-pwm-tach.yaml#=0A=
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#=0A=
->> +=0A=
->> +title: ASPEED G6 PWM and Fan Tach controller device driver=0A=
-=0A=
-> This is binding for the h/w, not a 'device driver'.=0A=
-=0A=
-Okay, I will remove the 'device driver'.=0A=
-=0A=
->> +=0A=
->> +maintainers:=0A=
->> +  - Billy Tsai <billy_tsai@aspeedtech.com>=0A=
->> +=0A=
->> +description: |=0A=
->> +  The ASPEED PWM controller can support up to 16 PWM outputs.=0A=
->> +  The ASPEED Fan Tacho controller can support up to 16 fan tach input.=
-=0A=
->> +  They are independent hardware blocks, which are different from the=0A=
->> +  previous version of the ASPEED chip.=0A=
->> +=0A=
->> +properties:=0A=
->> +  compatible:=0A=
->> +    enum:=0A=
->> +      - aspeed,ast2600-pwm-tach=0A=
->> +=0A=
->> +  reg:=0A=
->> +    maxItems: 1=0A=
->> +=0A=
->> +  clocks:=0A=
->> +    maxItems: 1=0A=
->> +=0A=
->> +  resets:=0A=
->> +    maxItems: 1=0A=
->> +=0A=
->> +  "#pwm-cells":=0A=
->> +    const: 3=0A=
->> +=0A=
->> +patternProperties:=0A=
->> +  "^fan-[0-9a-f]+$":=0A=
-=0A=
-> foo-<index> naming is decimal, not hex. (unit-addresses are hex)=0A=
-=0A=
-Okay, I will change it to the decimal.=0A=
-=0A=
-> But if 0 and 1 correspond to something in the h/w, then you should=0A=
-> probably be using 'reg' instead (which means a unit-address too).=0A=
-=0A=
-The number doesn't unrelate to the hardware.=0A=
-=0A=
->> +    $ref: fan-common.yaml#=0A=
->> +    unevaluatedProperties: false=0A=
->> +    required:=0A=
->> +      - tach-ch=0A=
->> +=0A=
->> +required:=0A=
->> +  - reg=0A=
->> +  - clocks=0A=
->> +  - resets=0A=
->> +  - "#pwm-cells"=0A=
->> +  - compatible=0A=
->> +=0A=
->> +additionalProperties: false=0A=
->> +=0A=
->> +examples:=0A=
->> +  - |=0A=
->> +    #include <dt-bindings/clock/aspeed-clock.h>=0A=
->> +    pwm_tach: pwm-tach-controller@1e610000 {=0A=
->> +      compatible =3D "aspeed,ast2600-pwm-tach";=0A=
->> +      reg =3D <0x1e610000 0x100>;=0A=
->> +      clocks =3D <&syscon ASPEED_CLK_AHB>;=0A=
->> +      resets =3D <&syscon ASPEED_RESET_PWM>;=0A=
->> +      #pwm-cells =3D <3>;=0A=
->> +=0A=
->> +      fan-0 {=0A=
->> +        tach-ch =3D /bits/ 8 <0x0>;=0A=
-=0A=
-> What about the PWM connection?=0A=
-=0A=
-I only want to create the fan monitor without fan control.=0A=
-So, the PWM connection is unnecessary.=0A=
-=0A=
-Thanks=0A=
-=0A=
->> +      };=0A=
->> +=0A=
->> +      fan-1 {=0A=
->> +        tach-ch =3D /bits/ 8 <0x1 0x2>;=0A=
->> +      };=0A=
->> +    };=0A=
->> --=0A=
->> 2.25.1=0A=
->>=0A=
+Hi,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on jic23-iio/togreg]
+[also build test WARNING on robh/for-next linus/master v6.6-rc4 next-20231004]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/werneazc-gmail-com/iio-adc-ads7038-Add-driver-support-for-12bit-ADC/20231004-182531
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20231004102330.3713-2-andre.werner%40systec-electronic.com
+patch subject: [PATCH 2/2] iio: adc: ads7038: Add driver support for 12bit ADC
+config: powerpc64-allyesconfig (https://download.01.org/0day-ci/archive/20231005/202310050917.qrpQA2nb-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231005/202310050917.qrpQA2nb-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202310050917.qrpQA2nb-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/iio/adc/ti-ads7038-core.c:46:5: warning: no previous prototype for function 'ads7038_read_raw' [-Wmissing-prototypes]
+      46 | int ads7038_read_raw(struct iio_dev *indio_dev,
+         |     ^
+   drivers/iio/adc/ti-ads7038-core.c:46:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+      46 | int ads7038_read_raw(struct iio_dev *indio_dev,
+         | ^
+         | static 
+   1 warning generated.
+
+
+vim +/ads7038_read_raw +46 drivers/iio/adc/ti-ads7038-core.c
+
+    45	
+  > 46	int ads7038_read_raw(struct iio_dev *indio_dev,
+    47			     struct iio_chan_spec const *chan,
+    48			     int *val, int *val2,
+    49			     long mask)
+    50	{
+    51		unsigned int ret;
+    52		struct ads7038_ch_meas_result tmp_val;
+    53		struct ads7038_data *const data = (struct ads7038_data *)iio_priv(indio_dev);
+    54		struct ads7038_info *const info = (struct ads7038_info *)data->info;
+    55	
+    56		ret = info->read_channel(indio_dev, chan->channel, &tmp_val);
+    57	
+    58		if (ret < 0) {
+    59			dev_err(&indio_dev->dev, "Read channel returned with error %d", ret);
+    60			return ret;
+    61		}
+    62	
+    63		switch (mask) {
+    64		case IIO_CHAN_INFO_RAW:
+    65			*val = tmp_val.raw;
+    66	
+    67			ret = IIO_VAL_INT;
+    68			break;
+    69		case IIO_CHAN_INFO_SCALE:
+    70			ret = regulator_get_voltage(data->reg);
+    71			if (ret < 0)
+    72				break;
+    73	
+    74			*val = ret / 1000;	/* uV -> mV */
+    75			*val2 = (1 << chan->scan_type.realbits) - 1;
+    76	
+    77			ret = IIO_VAL_FRACTIONAL;
+    78			break;
+    79		default:
+    80			ret = -EINVAL;
+    81			break;
+    82		}
+    83	
+    84		return ret;
+    85	}
+    86	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
