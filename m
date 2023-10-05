@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-6196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B1DA7BA374
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:57:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90D297BA372
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:57:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 86A6E1C20927
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:57:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 05E09282A55
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:57:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A015631A9E;
-	Thu,  5 Oct 2023 15:57:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A06DC31A93;
+	Thu,  5 Oct 2023 15:57:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AbQZamJf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EuT6SeXl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81D3030FB8
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 15:57:31 +0000 (UTC)
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7D3186811
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 08:57:28 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-40537481094so10222105e9.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 08:57:28 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 045AE31A63
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 15:57:32 +0000 (UTC)
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B72DD86823
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 08:57:29 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-3226b8de467so1171393f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 08:57:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696521446; x=1697126246; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696521448; x=1697126248; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xm1Xoms6oZd6xtVAii0x+Ehd7QscBFZjC7N/3rM4L+E=;
-        b=AbQZamJfp1IPbiUPXSmmAsLLQmEA3T1t7xh+w7asSiyjfiE0qjoH4Fs3u1UeeohUq9
-         Czuk9yuTlYjzysGOe1Dv2pJJDCwqk+bnkU3KxitfjpRolhLh96/upJYn0QjqTaI2UT+0
-         yNWNKTIeVxp+JvfjMGhxjyWY7+kXbXJmNejWwM5ScUD3Ac3fhRSW6hz4HN6C7bmIMpsa
-         A9LaTEeTK2NEMwyD0SGk0BaVHaKFygv/QObVt5C8Ck4GObzbPCFw9fKvNtPHprgOfZ6j
-         mmDCpjq1nQE6DpAsz4oGQ64JH9DbjDx8MBEvMw+xWQ9y6oX8d3dmsqm3d3MMKWaA7MFg
-         uA4A==
+        bh=yMWnJU8MsW38YqwezPXC42C6b/YrhBHi3/ZxSDJgFAQ=;
+        b=EuT6SeXl8O87yIT6gGd/t4GMSiDJVxyJV0+GlwI+qknSf22O+r1szlTGz3AsB6S727
+         piWP5sVc4scD39t2JxilQdHg5uA8/ti+LM4TKhgAdxPqlvEhMkQBFk+AXrx7nU7L0mrZ
+         vZzl/umboZSChsG1CxmzOhOVzkMQVZ460bcftFrBYlggKtswZf9e4ahNUoc7W1CFvodw
+         mOtolivfM/UXBmJXp/V83p8JxVix3YmFg2qWH+2yb3ensMKCfXT4xJ+DNRkqSqP9ESiL
+         etqaxW5yjBxilnX7g8aS6/ge+KrNChoMSZbx+GE00I+dTXSeVWZUMGExfB/KjHOGCKeO
+         LkVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696521446; x=1697126246;
+        d=1e100.net; s=20230601; t=1696521448; x=1697126248;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xm1Xoms6oZd6xtVAii0x+Ehd7QscBFZjC7N/3rM4L+E=;
-        b=WkhCzzP6yjtezKXLl9THRW95flHB8rpO/qlYmvDkbvYLHIb7LC9PVFr1Yy3vezrNYZ
-         LqmFyWjEOOyFh9s/TigYIGUMjxWDmKlPCUse2e+vj4G5Kh7A6BfhxNGX3s92HVT9WExh
-         lTYmMKFhao0U48X0ErB9pL6je4PbJ5kU7rYV+Ef+7ARGM3fQaJqTLBern6FSO3xNC8zE
-         cSYwd7VT6FMOa8VikgsxTFmodPM5lftVKAQLyyrDsdA1wh6Pn8P49EW3Qci5qup9J8T3
-         0L550OXgfoj1TT1c53b1UZprSeOoPZniUPlmpqUN+u/dwfhljtnuKXvzdyKoiiRANjJF
-         PZNQ==
-X-Gm-Message-State: AOJu0Yxj0o9dZzPwt5CKpGWfDpsPd0EvZD31Z4wYdvEv0R+edNJwfIgD
-	4+qQ4QLVkMlTtP6xGM4nTyelmw==
-X-Google-Smtp-Source: AGHT+IEMvnjwfd4IeLtIJsxbXTd4pMr2IsgDm+E4xxpemwktFFHqJeH+cuxPlOWDyzgeNbQFbEBaMA==
-X-Received: by 2002:a5d:4c4a:0:b0:322:478b:2be9 with SMTP id n10-20020a5d4c4a000000b00322478b2be9mr5294165wrt.25.1696521446692;
-        Thu, 05 Oct 2023 08:57:26 -0700 (PDT)
+        bh=yMWnJU8MsW38YqwezPXC42C6b/YrhBHi3/ZxSDJgFAQ=;
+        b=jOC7xcyRPbDT8kvo5iVqWs6udD65BXTww9u2tSRbUtmXDhUmSDENC3sMa42J9niJMG
+         kWjwpSaxk06Q5BXjCK7WKZml6B/I74Iyqj+dZOrdTFIazO1eZENgVQ+OEpNQb+Ss34OZ
+         N4JWqSWRMwzp9/JUHM7FgIRqA0o7efXvfd95zcO6Uiv1knSY6Al6S08sgJgW4Ln0vHCb
+         0RhcSjYOt0djRW3Ncg7uYE5oyUWD7B2cQmc3qvpmkZ9IfT4Lvszb0yFKNo3LXFyY9BN1
+         VWakAnOTEF6ApFXBYxzuFfcMCAUDMIzTVG0CKsZMsKg3lsP/V5iRmig4n+bUwBMYbFLc
+         x/YA==
+X-Gm-Message-State: AOJu0YzMC3zlncIuI0xaHXVNtnHQoZXu+N5hNwx83P8bBDV5/4WOiSKp
+	fSzUmtj5mO1SyFG+GpPxGxK+fA==
+X-Google-Smtp-Source: AGHT+IElw6k3YNkDW9u8nFOA5PsXxz5xE+xMGpuB2fgKZPK0gtuloOqBwjzaNH/QHLmyKFBNlfOM0g==
+X-Received: by 2002:a5d:4286:0:b0:321:651b:4651 with SMTP id k6-20020a5d4286000000b00321651b4651mr5358186wrq.29.1696521448129;
+        Thu, 05 Oct 2023 08:57:28 -0700 (PDT)
 Received: from gpeter-l.lan (host-92-12-225-146.as13285.net. [92.12.225.146])
-        by smtp.gmail.com with ESMTPSA id t9-20020a5d4609000000b0031f8a59dbeasm2084336wrq.62.2023.10.05.08.57.25
+        by smtp.gmail.com with ESMTPSA id t9-20020a5d4609000000b0031f8a59dbeasm2084336wrq.62.2023.10.05.08.57.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Oct 2023 08:57:26 -0700 (PDT)
+        Thu, 05 Oct 2023 08:57:27 -0700 (PDT)
 From: Peter Griffin <peter.griffin@linaro.org>
 To: robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
@@ -83,9 +83,9 @@ Cc: peter.griffin@linaro.org,
 	linux-clk@vger.kernel.org,
 	linux-gpio@vger.kernel.org,
 	linux-watchdog@vger.kernel.org
-Subject: [PATCH 05/21] dt-bindings: watchdog: Document Google gs101 & gs201 watchdog bindings
-Date: Thu,  5 Oct 2023 16:56:02 +0100
-Message-ID: <20231005155618.700312-6-peter.griffin@linaro.org>
+Subject: [PATCH 06/21] dt-bindings: arm: google: Add bindings for Google ARM platforms
+Date: Thu,  5 Oct 2023 16:56:03 +0100
+Message-ID: <20231005155618.700312-7-peter.griffin@linaro.org>
 X-Mailer: git-send-email 2.42.0.582.g8ccd20d70d-goog
 In-Reply-To: <20231005155618.700312-1-peter.griffin@linaro.org>
 References: <20231005155618.700312-1-peter.griffin@linaro.org>
@@ -97,73 +97,73 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add the "google,gs101-wdt" and "google,gs201-wdt" compatibles to the
-dt-schema documentation.
-
-gs101 SoC has two CPU clusters and each cluster has its own dedicated
-watchdog timer (similar to exynos850 and exynosautov9 SoCs).
-
-These WDT instances are controlled using different bits in PMU
-registers.
+This introduces bindings and dt-schema for the Google tensor SoCs.
+Currently just gs101 and pixel 6 are supported.
 
 Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 ---
- .../devicetree/bindings/watchdog/samsung-wdt.yaml      | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ .../devicetree/bindings/arm/google.yaml       | 46 +++++++++++++++++++
+ 1 file changed, 46 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/google.yaml
 
-diff --git a/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
-index 8fb6656ba0c2..30f5949037fc 100644
---- a/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
-@@ -24,6 +24,8 @@ properties:
-       - samsung,exynos7-wdt                   # for Exynos7
-       - samsung,exynos850-wdt                 # for Exynos850
-       - samsung,exynosautov9-wdt              # for Exynosautov9
-+      - google,gs101-wdt                      # for Google gs101
-+      - google,gs201-wdt                      # for Google gs101
- 
-   reg:
-     maxItems: 1
-@@ -42,13 +44,13 @@ properties:
-   samsung,cluster-index:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description:
--      Index of CPU cluster on which watchdog is running (in case of Exynos850)
-+      Index of CPU cluster on which watchdog is running (in case of Exynos850 or Google gsx01)
- 
-   samsung,syscon-phandle:
-     $ref: /schemas/types.yaml#/definitions/phandle
-     description:
-       Phandle to the PMU system controller node (in case of Exynos5250,
--      Exynos5420, Exynos7 and Exynos850).
-+      Exynos5420, Exynos7, Exynos850 and gsx01).
- 
- required:
-   - compatible
-@@ -69,6 +71,8 @@ allOf:
-               - samsung,exynos7-wdt
-               - samsung,exynos850-wdt
-               - samsung,exynosautov9-wdt
-+              - google,gs101-wdt
-+              - google,gs201-wdt
-     then:
-       required:
-         - samsung,syscon-phandle
-@@ -79,6 +83,8 @@ allOf:
-             enum:
-               - samsung,exynos850-wdt
-               - samsung,exynosautov9-wdt
-+              - google,gs101-wdt
-+              - google,gs201-wdt
-     then:
-       properties:
-         clocks:
+diff --git a/Documentation/devicetree/bindings/arm/google.yaml b/Documentation/devicetree/bindings/arm/google.yaml
+new file mode 100644
+index 000000000000..3759d423d9cb
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/google.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/google.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Google Tensor platforms
++
++maintainers:
++  - Peter Griffin <peter.griffin@linaro.org>
++
++description: |
++  ARM platforms using SoCs designed by Google branded "Tensor"
++  used in Pixel devices.
++
++  Currently upstream this is devices using "gs101" SoC which
++  is found in Pixel 6, Pixel 6 Pro and Pixel 6a.
++
++  Google have a few different names for the SoC.
++  - Marketing name ("Tensor")
++  - Codename ("Whitechapel")
++  - SoC ID ("gs101")
++  - Die ID ("S5P9845");
++
++  Likewise there are a couple of names for the actual device
++  - Marketing name ("Pixel 6")
++  - Codename ("Oriole")
++
++  Devicetrees should use the lowercased SoC ID and lowercased
++  board codename. e.g. gs101 and gs101-oriole
++
++properties:
++  $nodename:
++    const: '/'
++  compatible:
++    oneOf:
++
++      - description: Google Pixel 6 / Oriole
++        items:
++          - enum:
++              - google,gs101-oriole
++          - const: google,gs101
++
++additionalProperties: true
++
++...
 -- 
 2.42.0.582.g8ccd20d70d-goog
 
