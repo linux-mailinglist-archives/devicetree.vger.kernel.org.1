@@ -1,35 +1,35 @@
-Return-Path: <devicetree+bounces-6083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8DC77B9D45
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:17:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2520B7B9D46
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:17:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 021981C208BA
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 13:17:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 7CD1C281E6A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 13:17:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6958C1A262;
-	Thu,  5 Oct 2023 13:17:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12B541A280;
+	Thu,  5 Oct 2023 13:17:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m0lFGNiY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qi5hmaZI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B88D125A3
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 13:17:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87B76C4AF1E;
-	Thu,  5 Oct 2023 13:17:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA23E125A3
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 13:17:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EB11C4AF6B;
+	Thu,  5 Oct 2023 13:17:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696511856;
-	bh=ZwEQQmVK4H+n0kW8nvtsgTP5t8H63QSZoM2++l8ORYY=;
-	h=From:To:Cc:Subject:Date:From;
-	b=m0lFGNiYYtQacsuitgnC26c/xEIuGTF/d6mEg7LZMwELnEp3XYveg4lfDBtdX2+j2
-	 d7B8QrU/W3DMi2xCWjB/9uI7Dkryi+iLeXYy0JWjn2rHv/jmhsvCGYF/zO6krKtwcy
-	 8DwMpxMvpIiFEMlrQUwymiCvcPd9E9l+DMvBW7FFVpYGdV550bPgIWYhp775uhf/+X
-	 bja4ti7neGfPaLxCxXH069V/YM+kK22qms2sb7Z56wMva1jMbOAEPQTHGVRaCsph+W
-	 Mw+7PC1Zji87wvazHUlRfbPRBX5XQatdaN1RKilOXxi/FtWpjlyRLin1LlcdlucBCL
-	 QJIt99BtOQk2A==
+	s=k20201202; t=1696511860;
+	bh=FvFYza5x9SIIDMnc6LuiyfJJi2ON+p3o+hoKtpoSL5I=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=Qi5hmaZIDtPlhx2c4ALDQ6HJp7a6DS5QaACOaPvXm9Peip64ktVO7rkq7sY2CqBLH
+	 3jhSX7WGpwuu/CeP5gJMMec9URMsQS1vHw+aeLnGPuQMN5OPgiQe7H1/q2Q+FcGCVA
+	 tPpIPk780sm0c0ffpNso4bodCzRqQs5DO7KygBy4di0vd8D5FUfdH71YXKpgdSQ2PF
+	 l9wNoJRynwa13m9nISzrrenPgZINkDcbosYmPMdpKfuyWIBK37dCoJ0FZyBf8Z3mfZ
+	 d8DzQCpSkWnppxRoKJ8+qoJRNkZw2wIXuqT65slTyuz+SpqEeZa4T+TE+R9IKYDYS9
+	 jqDcq92N4O8Qw==
 From: Jisheng Zhang <jszhang@kernel.org>
 To: Thierry Reding <thierry.reding@gmail.com>,
 	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
@@ -41,11 +41,14 @@ To: Thierry Reding <thierry.reding@gmail.com>,
 Cc: linux-pwm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v3 0/2] pwm: add driver for T-THEAD TH1520 SoC
-Date: Thu,  5 Oct 2023 21:05:17 +0800
-Message-Id: <20231005130519.3864-1-jszhang@kernel.org>
+	linux-riscv@lists.infradead.org,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 1/2] dt-bindings: pwm: Add T-HEAD PWM controller
+Date: Thu,  5 Oct 2023 21:05:18 +0800
+Message-Id: <20231005130519.3864-2-jszhang@kernel.org>
 X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20231005130519.3864-1-jszhang@kernel.org>
+References: <20231005130519.3864-1-jszhang@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,49 +57,66 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-T-HEAD SoCs such as the TH1520 contain a PWM controller used to
-control the LCD backlight, fan and so on. Add the PWM driver support
-for it.
+T-HEAD SoCs such as the TH1520 contain a PWM controller used
+to control the LCD backlight, fan and so on.
 
-Since the clk part isn't mainlined, so SoC dts(i) changes are not
-included in this series. However, it can be tested by using fixed-clock.
-
-since v2:
- - collect Reviewed-by tag
- - add CTRL_ prefix for THEAD_PWM_CTRL register bit macros
- - use pm_runtime_resume_and_get() instead of pm_runtime_get_sync() and
-   check its return value.
- - remove unnecessary casts
- - call pm_runtime_put_sync() when pwm channel is disabled
- - use devm_pm_runtime_enable() and then drop .remove()
- - properly consider if pwm is programmed by bootloader or other
-   pre-linux env.
- - simplify thead_pwm_runtime_resume() code as Uwe suggested
- - bool ever_started -> u8 channel_ever_started since we have 6 channels
- - use 3 for #pwm-cells 
-
-since v1:
- - update commit msg and yaml filename to address Conor's comment
- - use devm_clk_get_enabled() and devm_pwmchip_add()
- - implement .get_state()
- - properly handle overflow
- - introduce thead_pwm_from_chip() inline function
- - document Limitations
- - address pm_runtime_get/put pingpong comment
-
-
-Jisheng Zhang (2):
-  dt-bindings: pwm: Add T-HEAD PWM controller
-  pwm: add T-HEAD PWM driver
-
- .../bindings/pwm/thead,th1520-pwm.yaml        |  44 +++
- drivers/pwm/Kconfig                           |  11 +
- drivers/pwm/Makefile                          |   1 +
- drivers/pwm/pwm-thead.c                       | 270 ++++++++++++++++++
- 4 files changed, 326 insertions(+)
+Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/pwm/thead,th1520-pwm.yaml        | 44 +++++++++++++++++++
+ 1 file changed, 44 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/pwm/thead,th1520-pwm.yaml
- create mode 100644 drivers/pwm/pwm-thead.c
 
+diff --git a/Documentation/devicetree/bindings/pwm/thead,th1520-pwm.yaml b/Documentation/devicetree/bindings/pwm/thead,th1520-pwm.yaml
+new file mode 100644
+index 000000000000..e75d8e9f24c5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/thead,th1520-pwm.yaml
+@@ -0,0 +1,44 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pwm/thead,th1520-pwm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: T-HEAD TH1520 PWM
++
++maintainers:
++  - Jisheng Zhang <jszhang@kernel.org>
++
++allOf:
++  - $ref: pwm.yaml#
++
++properties:
++  compatible:
++    enum:
++      - thead,th1520-pwm
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  "#pwm-cells":
++    const: 3
++
++required:
++  - compatible
++  - reg
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++
++    pwm@ec01c000 {
++        compatible = "thead,th1520-pwm";
++        reg = <0xec01c000 0x1000>;
++        clocks = <&clk 1>;
++        #pwm-cells = <3>;
++    };
 -- 
 2.40.1
 
