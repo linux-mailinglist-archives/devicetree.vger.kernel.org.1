@@ -1,124 +1,144 @@
-Return-Path: <devicetree+bounces-5980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18BA47B9979
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 03:13:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 386737B9980
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 03:15:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id BC6FD281CB0
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 01:13:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 4D0781C20911
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 01:15:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54961EA6;
-	Thu,  5 Oct 2023 01:13:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 434B110F2;
+	Thu,  5 Oct 2023 01:15:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VXHGi3H6"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pymHi7fy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C62F910EE
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 01:13:08 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4899CCE;
-	Wed,  4 Oct 2023 18:13:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1696468381; x=1728004381;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VVynd+E2oXjDW4eXcmQeX+pxzwLJmpuXmxCEdtwoB5c=;
-  b=VXHGi3H6aEouyCzzJbvcQOavccVoRbQQyXH8jPZFoXBlexwJYED9hny3
-   +ODQtC0wY9Y6Oy43UzJm+oiTuL3uEmqjD8CheG6otNbi9kE7ZLf6mvhvh
-   iwXan6/K6MnTEWup4EUmxCsedK0tEd+QtfVp0mgLhYBCTeVlXaVkMiukX
-   9pWpS1c5wSQiO86daqRwLVdCGorsafpjBAfa5iSB7J7exsrEiRx2QmXpH
-   bouHpbOMiBIabedEfZsTDL/ZFaIRWw7gdIcw86lyRLBeHC5F2I3X8uTuV
-   ewYGqpDT76ewsAHY1SQTVVrY+lqARquuvSt4B/SHrxlz7N/TaSijjUoS3
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="387236015"
-X-IronPort-AV: E=Sophos;i="6.03,201,1694761200"; 
-   d="scan'208";a="387236015"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Oct 2023 18:13:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="745231792"
-X-IronPort-AV: E=Sophos;i="6.03,201,1694761200"; 
-   d="scan'208";a="745231792"
-Received: from lkp-server02.sh.intel.com (HELO c3b01524d57c) ([10.239.97.151])
-  by orsmga007.jf.intel.com with ESMTP; 04 Oct 2023 18:12:58 -0700
-Received: from kbuild by c3b01524d57c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qoCum-000Kpc-1g;
-	Thu, 05 Oct 2023 01:12:45 +0000
-Date: Thu, 5 Oct 2023 09:11:57 +0800
-From: kernel test robot <lkp@intel.com>
-To: Shawn Anastasio <sanastasio@raptorengineering.com>,
-	devicetree@vger.kernel.org, lee@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev,
-	Timothy Pearson <tpearson@raptorengineering.com>,
-	linux-kernel@vger.kernel.org,
-	Georgy Yakovlev <Georgy.Yakovlev@sony.com>,
-	Shawn Anastasio <sanastasio@raptorengineering.com>
-Subject: Re: [PATCH 3/3] mfd: sie-cronos-cpld: Add driver for SIE cronos CPLD
-Message-ID: <202310050807.eDZkgFy5-lkp@intel.com>
-References: <2e9763cb4fa258fe11769a4ff1544d96c536a4a2.1696285339.git.sanastasio@raptorengineering.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE62910EE
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 01:15:43 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 619B0C1;
+	Wed,  4 Oct 2023 18:15:41 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3951FVmU115567;
+	Wed, 4 Oct 2023 20:15:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1696468531;
+	bh=wCBg4ugqCCT7W/oxSKmGmK6LDonWeiEU4MK6Ya1qG1I=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=pymHi7fyCA+H1LlaQFAc5kHRvwnsq6sjgFZ6r5lOPAo1/hNdgacDUXVdZ8Q0vSYe5
+	 uENPOsvkKUxS1kS8uTRCsiZLhinX0xe/aCLziZcWEq+/zK3pZls17c+U5OefR25wda
+	 dLdF5cRu1mAC6H94lZQVgMTMadKYE5nLf+em7dlE=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3951FVOI107436
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 4 Oct 2023 20:15:31 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 4
+ Oct 2023 20:15:31 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 4 Oct 2023 20:15:31 -0500
+Received: from [10.249.131.134] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3951FQMa058551;
+	Wed, 4 Oct 2023 20:15:27 -0500
+Message-ID: <c7c32ec5-d0c1-443d-9851-3bb8e772c8fc@ti.com>
+Date: Thu, 5 Oct 2023 06:45:26 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2e9763cb4fa258fe11769a4ff1544d96c536a4a2.1696285339.git.sanastasio@raptorengineering.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/7] arm64: dts: ti: k3-j784s4: Add ESM instances
+Content-Language: en-US
+To: Vignesh Raghavendra <vigneshr@ti.com>, <robh+dt@kernel.org>, <nm@ti.com>,
+        <conor+dt@kernel.org>, <kristo@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC: <u-kumar1@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230927023357.9883-1-j-keerthy@ti.com>
+ <20230927023357.9883-3-j-keerthy@ti.com>
+ <4eb50f24-b6c8-790e-91b0-5646ebbb2d10@ti.com>
+From: "J, KEERTHY" <j-keerthy@ti.com>
+In-Reply-To: <4eb50f24-b6c8-790e-91b0-5646ebbb2d10@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Shawn,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on lee-mfd/for-mfd-next]
-[also build test WARNING on robh/for-next linus/master v6.6-rc4 next-20231004]
-[cannot apply to lee-leds/for-leds-next lee-mfd/for-mfd-fixes]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Shawn-Anastasio/dt-bindings-mfd-sie-cronos-cpld-Add-initial-DT-binding/20231003-073243
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
-patch link:    https://lore.kernel.org/r/2e9763cb4fa258fe11769a4ff1544d96c536a4a2.1696285339.git.sanastasio%40raptorengineering.com
-patch subject: [PATCH 3/3] mfd: sie-cronos-cpld: Add driver for SIE cronos CPLD
-config: i386-randconfig-063-20231005 (https://download.01.org/0day-ci/archive/20231005/202310050807.eDZkgFy5-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231005/202310050807.eDZkgFy5-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310050807.eDZkgFy5-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/mfd/sie-cronos-cpld.c:509:34: warning: 'cronos_cpld_dt_ids' defined but not used [-Wunused-const-variable=]
-     509 | static const struct of_device_id cronos_cpld_dt_ids[] = {
-         |                                  ^~~~~~~~~~~~~~~~~~
 
 
-vim +/cronos_cpld_dt_ids +509 drivers/mfd/sie-cronos-cpld.c
+On 10/3/2023 12:20 PM, Vignesh Raghavendra wrote:
+> 
+> 
+> On 27/09/23 08:03, Keerthy wrote:
+>> Patch adds the ESM instances for j784s4. It has 3 instances.
+>> One in the main domain and two in the mcu-wakeup domian.
+>>
+>> Signed-off-by: Keerthy <j-keerthy@ti.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi       |  8 ++++++++
+>>   arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi | 14 ++++++++++++++
+>>   2 files changed, 22 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> index efed2d683f63..26dc3776f911 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> @@ -1568,4 +1568,12 @@
+>>   		firmware-name = "j784s4-c71_3-fw";
+>>   		status = "disabled";
+>>   	};
+>> +
+>> +	main_esm: esm@700000 {
+>> +		compatible = "ti,j721e-esm";
+>> +		reg = <0x00 0x700000 0x00 0x1000>;
+>> +		ti,esm-pins = <688>, <689>, <690>, <691>, <692>, <693>, <694>,
+>> +			      <695>;
+>> +		bootph-pre-ram;
+> 
+> Similar to other nodes in this file, here and elsewhere use
+> 		bootph-all
 
-   508	
- > 509	static const struct of_device_id cronos_cpld_dt_ids[] = {
-   510		{ .compatible = "sie,cronos-cpld", },
-   511		{ }
-   512	};
-   513	MODULE_DEVICE_TABLE(of, cronos_cpld_dt_ids);
-   514	
+Okay. I will switch to bootph-all
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> 
+> 
+>> +	};
+>>   };
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+>> index 4ab4018d3695..a7b5c4cb7d3e 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+>> @@ -700,4 +700,18 @@
+>>   			status = "disabled";
+>>   		};
+>>   	};
+>> +
+>> +	mcu_esm: esm@40800000 {
+>> +		compatible = "ti,j721e-esm";
+>> +		reg = <0x00 0x40800000 0x00 0x1000>;
+>> +		ti,esm-pins = <95>;
+>> +		bootph-pre-ram;
+>> +	};
+>> +
+>> +	wkup_esm: esm@42080000 {
+>> +		compatible = "ti,j721e-esm";
+>> +		reg = <0x00 0x42080000 0x00 0x1000>;
+>> +		ti,esm-pins = <63>;
+>> +		bootph-pre-ram;
+>> +	};
+>>   };
+> 
 
