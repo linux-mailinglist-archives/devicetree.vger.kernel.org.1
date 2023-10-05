@@ -1,433 +1,142 @@
-Return-Path: <devicetree+bounces-6006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2D6B7B9A85
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 05:57:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A32217B9AA6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 06:10:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 81F152816D1
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 03:57:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id E1CE0B207DF
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 04:10:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CDA41868;
-	Thu,  5 Oct 2023 03:57:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 617801871;
+	Thu,  5 Oct 2023 04:10:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=os.amperecomputing.com header.i=@os.amperecomputing.com header.b="BAK6BAoM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cUGQPMVm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E8061865
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 03:56:59 +0000 (UTC)
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2070e.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe59::70e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F9C91FD3;
-	Wed,  4 Oct 2023 20:56:57 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IqwY4uTEL9brdAlqm/A7WGHGR9ynQTgfcS4IoK54mGrt1hWu2qbIUHtCAyix77gw7xn+JZJggYBr05jhhZTqC0Vqw/zO6jcH83/cfWU6HosGsXhYB/aPhUEay2MnMaD/VMnvNj96JLgsH1tU2azUhewWjbJw3zFcLCb7N+4CbODmk2PYfUqQ9T0mr8nWYqNf+HTT1TNi1c+7rgFpvbZiL4W311l8GI64cIO/nO+bG0yEaL1PPNGwos8Yjwh3TccI0+FS0SD3tabUQQ4m+uk4JlNEi3SggiZ1Fn+ArZQvUyOsukf6y4xugcS+mH1nctnjTL7Xso9alPyLAD2xIRnCLw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ScHazmtWs1dBZVqysRXeNBkQ/bWLkqxG903XHakVtEo=;
- b=VjT8EaWxLeqjRd1Ta0Q2fg96ne5dYL5rz58FYV2103B7tNKbLqcmTJSAq1yGbcSXqgJZ0W0sRr5Tjq7yMVSIAsdaBRHZjrSo0fDfGwrCnkgkuUQeiGaFKshCCVyFthOaLcl91/VAJbg5LkICUIDXCpWy1RKmoOhLUlLAkV2xjkaZArPjnJy7IGaGYjwb6lvj/QXWlI1NTuaPDYUpe6vmbBcNM96GhbIj0r5897ffV+3CjEnp32/tWkKtSB+lI6PeWAQfjH3EMVtowrDvAoUTqQ3ZTJXgx3U+nNo8Hfu0z0TgAww4OmDesuUeO87wcTXTtRgwJTpW7caGPt6VUHz1Iw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=os.amperecomputing.com; dkim=pass
- header.d=os.amperecomputing.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=os.amperecomputing.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ScHazmtWs1dBZVqysRXeNBkQ/bWLkqxG903XHakVtEo=;
- b=BAK6BAoMECXEVovnBS/UKAa/YxTphjeHNB4SXhsojcvuqmZiwMStaYWKWhpzHAl8FfROvb9QlOMqQNG0xRtsxV/ImjbEEm4Rh1LOhYAjqXwQREG5YWbcOxi/C9cQI9/Z6+oM64P6gbsHGTgeNFd+2vk/cGfHFGi6C8HK/jn44KE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
-Received: from DS0PR01MB8010.prod.exchangelabs.com (2603:10b6:8:151::19) by
- BL1PR01MB7649.prod.exchangelabs.com (2603:10b6:208:394::22) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6813.25; Thu, 5 Oct 2023 03:56:41 +0000
-Received: from DS0PR01MB8010.prod.exchangelabs.com
- ([fe80::6a3d:61d7:133b:9eb9]) by DS0PR01MB8010.prod.exchangelabs.com
- ([fe80::6a3d:61d7:133b:9eb9%4]) with mapi id 15.20.6838.033; Thu, 5 Oct 2023
- 03:56:41 +0000
-From: Chanh Nguyen <chanh@os.amperecomputing.com>
-To: OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F2481863
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 04:10:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1BB1C433CB;
+	Thu,  5 Oct 2023 04:10:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696479019;
+	bh=tvQ6HmqskzVwBQufXqWAzijK9xLx9i/yIFRHr3dsOjg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cUGQPMVmdNnKQ0RoWKzH79W5T8AWaX52R5iZQaBiaKi+e773J54Ahe6zZ3s7p6pzB
+	 WtHdPYGr1LFupPbB+ZUJHOVLwqBeJcNuVaAgf2Vvwwy1uSv28lE6HX9NRGq87B6o7a
+	 Zab4J1b51rBp2Dz+Z5xRryrrFhRn5XE6a9VBlk/YCHq2OrREr9bBjDnTIpO2cfd0XP
+	 CXadHlD2fzWFoS+FrMbrYO/ncV/jrXyO+QQ354YZO2Bl0VdsYTI7n3L+UO3wc6FAWf
+	 F3ZgLzlbZwKm1ej4WRH/RHNWsUY2mPVvDBLyXar3PUyTQ8rrqsg+EQnloOmdkoJbhH
+	 +DN+dx1Jhy6Fw==
+Date: Thu, 5 Oct 2023 09:40:14 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Jai Luthra <j-luthra@ti.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@aj.id.au>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Cc: Chanh Nguyen <chanh@os.amperecomputing.com>
-Subject: [PATCH 7/7] ARM: dts: aspeed: mtmitchell: Add I2C NVMe alias port
-Date: Thu,  5 Oct 2023 10:55:25 +0700
-Message-Id: <20231005035525.19036-8-chanh@os.amperecomputing.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20231005035525.19036-1-chanh@os.amperecomputing.com>
-References: <20231005035525.19036-1-chanh@os.amperecomputing.com>
-Content-Type: text/plain
-X-ClientProxiedBy: SGXP274CA0016.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b8::28)
- To DS0PR01MB8010.prod.exchangelabs.com (2603:10b6:8:151::19)
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	niklas.soderlund+renesas@ragnatech.se,
+	Benoit Parrot <bparrot@ti.com>, Vaishnav Achath <vaishnav.a@ti.com>,
+	nm@ti.com, devarsht@ti.com, a-bhatia1@ti.com,
+	Martyn Welch <martyn.welch@collabora.com>,
+	Julien Massot <julien.massot@collabora.com>
+Subject: Re: [PATCH v9 13/13] media: ti: Add CSI2RX support for J721E
+Message-ID: <ZR43Jre2j51j0mFk@matsya>
+References: <20230811-upstream_csi-v9-0-8943f7a68a81@ti.com>
+ <20230811-upstream_csi-v9-13-8943f7a68a81@ti.com>
+ <ad042065-33a2-d42e-ce2e-628464102fc3@ideasonboard.com>
+ <wgkjek77bolf5wabki7uhm6cxjy5g5z2ncoc6urr7dv5y6wnaw@yfh7ccogxfea>
+ <20230829155513.GG6477@pendragon.ideasonboard.com>
+ <ZR1txMVk+4oHLEKU@matsya>
+ <20231004200312.GE30342@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR01MB8010:EE_|BL1PR01MB7649:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5ba0df36-14fe-44db-a836-08dbc557155a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	1ey8IaZ1owf+YerlyWMsrHiG7YLqeUJBJlpbZd/ckX1EyPC0FvgOKqBr/sqbrvj+CgFvPvFwA/Kmzcz7q8GZspIAl9KVe78O4utxnmyx5eczIOtITtw49EEDsFpAKx/1sXhIzuYf+i6aAhKXcvgTzUFe92p+6Kr2xmMbsaFVycoYbG+/YtWkan+wL7ZcIYZ3JVX/VAKsq6hxa8PUnoVKKQf0Eds2ZgfJww80AUWbnSCTFj39mF4t78vDnoaEiGgkzDjTB4hgg2nD7frwtC46KY/z2Qzxkly4UBE5WxaqCYEeEazZh+l1sBuWAI//DjOUfFHkUd8k4XIfOY1Ct5JmhwY3z9lXdF/gLWWef/QpZj+kLM9ZyIFJJJoaUL4TibPwNTWXgkCiTh11VsuELhqmXGIxmGWtJOSDgsVd7Wbg1CwlWfc8kQmG2gWeczSbFI7poZTfWkPmvEX5WnPhFVY8NHA+XokCgyqluRoEgKiUSar3gZs+xqy4mQPRA2oCTrci212YmhembutJ2z7N5KMfTn4pOEE/jHHYIKrdsgmOUy1Sc6p17N5T8IXDFyolZoRHLn0wLNtnlLdv/JCGcXDx6YnrrUCbKAQqnK+yTQbJUAF8OkQno6bF4+AkllzyFyW2
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR01MB8010.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(376002)(39850400004)(396003)(346002)(366004)(230922051799003)(1800799009)(186009)(64100799003)(451199024)(38350700002)(38100700002)(6666004)(478600001)(6512007)(921005)(6486002)(6506007)(52116002)(7416002)(86362001)(8676002)(4326008)(8936002)(5660300002)(26005)(316002)(41300700001)(66946007)(66556008)(66476007)(2906002)(110136005)(1076003)(107886003)(2616005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?h/7v0AF9Fy+4Bp8R1wE6KbayqeACDD6KgnShhIMkYpEghLSPoHcp5zD9snDM?=
- =?us-ascii?Q?8USiiUJR93CnVmqjFdZG4E6wreVOPvx+eA46IKPFlZ8WkkJEzGAN4wBHcw1l?=
- =?us-ascii?Q?rb2Y2eSMukvg1rRCJR1QTUZ6ERCrP/5ujUUcWWTGbxvYZCGE3+8K59Q7mX14?=
- =?us-ascii?Q?hxgpxhtl4ayg/cNtsSquJ/xkAjx0HjN38lWOCkLCFy8NS5JMS4NMOR8nGelj?=
- =?us-ascii?Q?xRjaACL25l3ApLFyaD1ueJFq4QCVaTxIvcjeEOtclueOw2k51Pnr+hHfbaJ6?=
- =?us-ascii?Q?bF/XyI/1pO24IewryS7Xxn2Pb5boplKE9xg38ttGMJ52XqGVc+Ekk1+HcYuA?=
- =?us-ascii?Q?QQdF2XROjwRzNOooOJy6UrjyLMmm0UO9cMKacaetmaOcLj+o/ZDw4QELHKqK?=
- =?us-ascii?Q?5AtaQLdwhP+D6UUnkBSv7lnyWpt3ztmOnQcjaRKEmWOHWHJYe3Gvx7W3PFkS?=
- =?us-ascii?Q?X83ev6Rvcm8Eg48m9jq2LGAH74eLXm0pkvxQib6akTXqbsQVfy2CirCmtARO?=
- =?us-ascii?Q?ON1AIQDFFjutJ4LX/rS8CA0a83Ay2sAw3/oDQ8B7i8Ba0bTJdrfo9IxkWtnI?=
- =?us-ascii?Q?q1dUnLNGCXn1ECoxqG4fgP6MgnhSek3U7ocSfem/gCV7EYtU6T7JG3jRpTDZ?=
- =?us-ascii?Q?LirPvN52OQ0xvmWY6VX5b+Mlya8GhOWdracPWydEhgQInZxNXVQmX+I03BFf?=
- =?us-ascii?Q?vliErxuCqA+b3xBGMkRJCjjC37LRCfQBpDMwOc66JQKaTVhPk8S8BcGuJKLz?=
- =?us-ascii?Q?VCNfNoRBN6Ku3pn4NDD0EVwE7/SkqXuXVJmFnnu1lAQWUPw+pRyQQZ4/dQlC?=
- =?us-ascii?Q?NQKdJD9ASUv9B6xvnYT3EvHEkphTuplGBNOvgptlSepsDpjoBKC/cIm2ip1A?=
- =?us-ascii?Q?4LS2HhB8yBj83FkP1nN1LR9YrGNnqc5t4AtBDzCQJv9hOizkfR2gzlWGwyPW?=
- =?us-ascii?Q?EdDYMaqzyl2tyaKTNw5yL7gAadZHQq+VBmPVm29gUgTnJv7EEUO00iOqPvOg?=
- =?us-ascii?Q?gpH2vtl+/B3GJHww/KDdo1UAW54sPu/a11oq3Nt9W/O0SxKTjKanFN5JIKEO?=
- =?us-ascii?Q?kmiFYXieWFnMzL+yiwsl+UHg4WHlccKW1rgN7P8iRWk2qrCL7rnRfP4wlIhX?=
- =?us-ascii?Q?XmeW3m69ZiTTIrYJwhNHZBhKGThdidJek5qQWhYEYtz0uuUgnzUlHvpPowvc?=
- =?us-ascii?Q?wcs6gXVf6XtIQobWQy82dmQoufPOifbHvuM2I1u2R+kgkWonTNJuggZ7gAvo?=
- =?us-ascii?Q?gbsa39Ldu7LRAJw0+3H0JHWWbhyyL3ObLsW+ZHZaaNdm1lwlaPivgRFloiC6?=
- =?us-ascii?Q?H4mWqdAauYumveVBjZ2yJFhabNEyoCLjjJHgD5NZrWrZOjIVWQDeaU99p9d8?=
- =?us-ascii?Q?T8U5XFICaI+Wo/qWY8nsOrXYMBkIdno9dUKXo42bZVhDWRdmWMNY1aPlBwBT?=
- =?us-ascii?Q?CvmTo2vBOotNXO8TqriXlFd3ihok/SUIxPqiME1zXiYbKxEYwp+IFPfkHHOs?=
- =?us-ascii?Q?PwjYC4RuDCLUpmlvq8EOTTcVh2jJV00aw5oQCl7tCf8TkUN6ckO7EdzQIgYs?=
- =?us-ascii?Q?kyTXe29mPEeKQjombxGgmm4HyPVeW4q0f8+eVmCYw0OEYTJSxum0RHYD6NQR?=
- =?us-ascii?Q?pC9HsDh9idJeNyyYYnwRZpA=3D?=
-X-OriginatorOrg: os.amperecomputing.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5ba0df36-14fe-44db-a836-08dbc557155a
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR01MB8010.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Oct 2023 03:56:41.6890
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YM3Nc8A7B4QrvzifuJW+oBBGpH1hynDt8P67kAlzcBT/DPOiOuZkP49EZn6OHnUFNUL5dG+d9zWqBUKV6dr9duKR12MU9WukaOw7+0YY5pLheTZ+bwkz99G5OQYvAYA+
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR01MB7649
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231004200312.GE30342@pendragon.ideasonboard.com>
 
-Adds the I2C alias ports to each NVMe drive via the
-backplane card.
+On 04-10-23, 23:03, Laurent Pinchart wrote:
+> On Wed, Oct 04, 2023 at 07:21:00PM +0530, Vinod Koul wrote:
+> > On 29-08-23, 18:55, Laurent Pinchart wrote:
+> > > Hi Jai,
+> > > 
+> > > (CC'ing Vinod, the maintainer of the DMA engine subsystem, for a
+> > > question below)
+> > 
+> > Sorry this got lost
+> 
+> No worries.
+> 
+> > > On Fri, Aug 18, 2023 at 03:55:06PM +0530, Jai Luthra wrote:
+> > > > On Aug 15, 2023 at 16:00:51 +0300, Tomi Valkeinen wrote:
+> > > > > On 11/08/2023 13:47, Jai Luthra wrote:
+> > > > > > From: Pratyush Yadav <p.yadav@ti.com>
+> > > 
+> > > [snip]
+> > > 
+> > > > > > +static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
+> > > > > > +{
+> > > > > > +	struct ti_csi2rx_dev *csi = vb2_get_drv_priv(vq);
+> > > > > > +	struct ti_csi2rx_dma *dma = &csi->dma;
+> > > > > > +	struct ti_csi2rx_buffer *buf;
+> > > > > > +	unsigned long flags;
+> > > > > > +	int ret = 0;
+> > > > > > +
+> > > > > > +	spin_lock_irqsave(&dma->lock, flags);
+> > > > > > +	if (list_empty(&dma->queue))
+> > > > > > +		ret = -EIO;
+> > > > > > +	spin_unlock_irqrestore(&dma->lock, flags);
+> > > > > > +	if (ret)
+> > > > > > +		return ret;
+> > > > > > +
+> > > > > > +	dma->drain.len = csi->v_fmt.fmt.pix.sizeimage;
+> > > > > > +	dma->drain.vaddr = dma_alloc_coherent(csi->dev, dma->drain.len,
+> > > > > > +					      &dma->drain.paddr, GFP_KERNEL);
+> > > > > > +	if (!dma->drain.vaddr)
+> > > > > > +		return -ENOMEM;
+> > > > > 
+> > > > > This is still allocating a large buffer every time streaming is started (and
+> > > > > with streams support, a separate buffer for each stream?).
+> > > > > 
+> > > > > Did you check if the TI DMA can do writes to a constant address? That would
+> > > > > be the best option, as then the whole buffer allocation problem goes away.
+> > > > 
+> > > > I checked with Vignesh, the hardware can support a scenario where we 
+> > > > flush out all the data without allocating a buffer, but I couldn't find 
+> > > > a way to signal that via the current dmaengine framework APIs. Will look 
+> > > > into it further as it will be important for multi-stream support.
+> > > 
+> > > That would be the best option. It's not immediately apparent to me if
+> > > the DMA engine API supports such a use case.
+> > > dmaengine_prep_interleaved_dma() gives you finer grain control on the
+> > > source and destination increments, but I haven't seen a way to instruct
+> > > the DMA engine to direct writes to /dev/null (so to speak). Vinod, is
+> > > this something that is supported, or could be supported ?
+> > 
+> > Write to a dummy buffer could have the same behaviour, no?
+> 
+> Yes, but if the DMA engine can write to /dev/null, that avoids
+> allocating a dummy buffer, which is nicer. For video use cases, dummy
+> buffers are often large.
 
-Besides that, it also adds the eeprom and temperature sensor
-on the backplane card.
+hmmm maybe I haven't comprehended it full, would you mind explaining the
+details on how such a potential interleaved transfer would look like so
+that we can model it or change apis to model this
 
-Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
----
- .../aspeed/aspeed-bmc-ampere-mtmitchell.dts   | 267 ++++++++++++++++++
- 1 file changed, 267 insertions(+)
-
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
-index eb8d5e367276..1f70e3e4e83b 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
-@@ -14,6 +14,42 @@
- 	aliases {
- 		serial7 = &uart8;
- 		serial8 = &uart9;
-+
-+		/*
-+		 *  I2C NVMe alias port
-+		 */
-+		i2c100 = &backplane_0;
-+		i2c48 = &nvmeslot_0;
-+		i2c49 = &nvmeslot_1;
-+		i2c50 = &nvmeslot_2;
-+		i2c51 = &nvmeslot_3;
-+		i2c52 = &nvmeslot_4;
-+		i2c53 = &nvmeslot_5;
-+		i2c54 = &nvmeslot_6;
-+		i2c55 = &nvmeslot_7;
-+
-+		i2c101 = &backplane_1;
-+		i2c56 = &nvmeslot_8;
-+		i2c57 = &nvmeslot_9;
-+		i2c58 = &nvmeslot_10;
-+		i2c59 = &nvmeslot_11;
-+		i2c60 = &nvmeslot_12;
-+		i2c61 = &nvmeslot_13;
-+		i2c62 = &nvmeslot_14;
-+		i2c63 = &nvmeslot_15;
-+
-+		i2c102 = &backplane_2;
-+		i2c64 = &nvmeslot_16;
-+		i2c65 = &nvmeslot_17;
-+		i2c66 = &nvmeslot_18;
-+		i2c67 = &nvmeslot_19;
-+		i2c68 = &nvmeslot_20;
-+		i2c69 = &nvmeslot_21;
-+		i2c70 = &nvmeslot_22;
-+		i2c71 = &nvmeslot_23;
-+
-+		i2c80 = &nvme_m2_0;
-+		i2c81 = &nvme_m2_1;
- 	};
- 
- 	chosen {
-@@ -534,6 +570,237 @@
- 
- &i2c9 {
- 	status = "okay";
-+	i2c-mux@70 {
-+		compatible = "nxp,pca9548";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x70>;
-+		i2c-mux-idle-disconnect;
-+
-+		backplane_1: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x0>;
-+
-+			eeprom@50 {
-+				compatible = "atmel,24c64";
-+				reg = <0x50>;
-+				pagesize = <32>;
-+			};
-+
-+			i2c-mux@71 {
-+				compatible = "nxp,pca9548";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				reg = <0x71>;
-+				i2c-mux-idle-disconnect;
-+
-+				nvmeslot_8: i2c@0 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x0>;
-+				};
-+				nvmeslot_9: i2c@1 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x1>;
-+				};
-+				nvmeslot_10: i2c@2 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x2>;
-+				};
-+				nvmeslot_11: i2c@3 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x3>;
-+				};
-+				nvmeslot_12: i2c@4 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x4>;
-+				};
-+				nvmeslot_13: i2c@5 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x5>;
-+				};
-+				nvmeslot_14: i2c@6 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x6>;
-+				};
-+				nvmeslot_15: i2c@7 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x7>;
-+				};
-+			};
-+
-+			tmp432@4c {
-+				compatible = "ti,tmp75";
-+				reg = <0x4c>;
-+			};
-+		};
-+
-+		backplane_2: i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x2>;
-+
-+			eeprom@50 {
-+				compatible = "atmel,24c64";
-+				reg = <0x50>;
-+				pagesize = <32>;
-+			};
-+
-+			i2c-mux@71 {
-+				compatible = "nxp,pca9548";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				reg = <0x71>;
-+				i2c-mux-idle-disconnect;
-+
-+				nvmeslot_16: i2c@0 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x0>;
-+				};
-+				nvmeslot_17: i2c@1 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x1>;
-+				};
-+				nvmeslot_18: i2c@2 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x2>;
-+				};
-+				nvmeslot_19: i2c@3 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x3>;
-+				};
-+				nvmeslot_20: i2c@4 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x4>;
-+				};
-+				nvmeslot_21: i2c@5 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x5>;
-+				};
-+				nvmeslot_22: i2c@6 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x6>;
-+				};
-+				nvmeslot_23: i2c@7 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x7>;
-+				};
-+			};
-+
-+			tmp432@4c {
-+				compatible = "ti,tmp75";
-+				reg = <0x4c>;
-+			};
-+		};
-+
-+		backplane_0: i2c@4 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x4>;
-+
-+			eeprom@50 {
-+				compatible = "atmel,24c64";
-+				reg = <0x50>;
-+				pagesize = <32>;
-+			};
-+
-+			i2c-mux@71 {
-+				compatible = "nxp,pca9548";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				reg = <0x71>;
-+				i2c-mux-idle-disconnect;
-+
-+				nvmeslot_0: i2c@0 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x0>;
-+				};
-+				nvmeslot_1: i2c@1 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x1>;
-+				};
-+				nvmeslot_2: i2c@2 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x2>;
-+				};
-+				nvmeslot_3: i2c@3 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x3>;
-+				};
-+				nvmeslot_4: i2c@4 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x4>;
-+				};
-+				nvmeslot_5: i2c@5 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x5>;
-+				};
-+				nvmeslot_6: i2c@6 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x6>;
-+				};
-+				nvmeslot_7: i2c@7 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x7>;
-+				};
-+			};
-+
-+			tmp432@4c {
-+				compatible = "ti,tmp75";
-+				reg = <0x4c>;
-+			};
-+		};
-+
-+		i2c@7 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x7>;
-+
-+			i2c-mux@71 {
-+				compatible = "nxp,pca9546";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				reg = <0x71>;
-+				i2c-mux-idle-disconnect;
-+
-+				nvme_m2_0: i2c@0 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x0>;
-+				};
-+
-+				nvme_m2_1: i2c@1 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0x1>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &i2c11 {
 -- 
-2.17.1
-
+~Vinod
 
