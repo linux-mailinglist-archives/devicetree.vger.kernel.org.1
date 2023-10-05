@@ -1,444 +1,159 @@
-Return-Path: <devicetree+bounces-6252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 869A77BA737
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 19:01:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D90A7BA74D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 19:08:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3789A28188D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:01:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id ED079281D16
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:08:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A046C374FB;
-	Thu,  5 Oct 2023 17:01:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A70EA38BC8;
+	Thu,  5 Oct 2023 17:08:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WhAcT0gK"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="QFilA7SA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F935374EC
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 17:01:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C3ECC433C8;
-	Thu,  5 Oct 2023 17:01:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696525291;
-	bh=/yWYHiHjPRMphg2rFhP1rzHAhfL881K0RkUaaFEJJpw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=WhAcT0gKqgdGjvVMqP1HqFuLUxHmpeR75lFrzRBzryHeMQYDte5RKo9Zr8y2om/An
-	 NUQDOGHaWkEnBmQI0dQ9RPyUN0aP47zpCP2nCJQN+Hp8T9cBxbpQdX1ISWe+pfJOXZ
-	 INcKTELK+yrzWLNavITSOGhjI5LmnzIETTpEoReV5TogipYwCK5O+TV2LhWHCQGQ+d
-	 /pNwR+NP8oDQK9PJGoq/gOvs9gWYAVLcKusHBKdOgqE2flh1jMJ6r73AB8qMErKB6N
-	 JxA0jUVuSO364yLcUryTNsgVF0Eb14OwZC8yGF10wJsWOye1uUsolXDKrq/WhhPrQC
-	 51bZ3us5UVWAA==
-Date: Thu, 5 Oct 2023 18:01:31 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Dumitru Ceclan <mitrutzceclan@gmail.com>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
- linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Michael Walle <michael@walle.cc>, Andy Shevchenko
- <andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu
- <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>, Leonard
- =?UTF-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>, Mike Looijmans
- <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, Hugo Villeneuve
- <hvilleneuve@dimonoff.com>, Ceclan Dumitru <dumitru.ceclan@analog.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] iio: adc: ad7173: add AD7173 driver
-Message-ID: <20231005180131.0518f46c@jic23-huawei>
-In-Reply-To: <20231005105921.460657-2-mitrutzceclan@gmail.com>
-References: <20231005105921.460657-1-mitrutzceclan@gmail.com>
-	<20231005105921.460657-2-mitrutzceclan@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E34C2AB5C
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 17:08:36 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2070.outbound.protection.outlook.com [40.107.94.70])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE1193C21;
+	Thu,  5 Oct 2023 10:08:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JJn9H12hm33qb8AfVsITpZagOpklg3iRgNWAsLj7PeiBeroO8dPzMKf/K6+99iqg7Z5EQxgjjtPU0UbmzVUq+I30F6vcjYIcgCZHM/ZSLKRJly0d/al4gNiB0+wKbKD0aChyQKSum7WLeamK4YeU+OrSICnvGY+vxRb4zVA9N0wPKVCLeomZK83fW7ovqCAfFwFeHpEg67vBDEQ51LWqJvXLPJD7wqXucli974HFtcxSomX6ZwdPivnlto18MZHqi3N5W1WGynq/lTvRvbLxKYj9NdAiTF6Boyb+Vtdfx7rlB/6ArKi7TZzuqyx1o3Ka7akJdcmHGLkzSLaC39/Ksw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8fARynZEkDekkmFowUCvsHCy4vqQHBcdF9dXBSZWAcc=;
+ b=NEYupdgscCcWznXGJqFcWUjMSlS580aaTr7OsnPWLWLuiFAcUYWC/X8jQou2N/z4fGO/sXk9HNSUr5rsNmpsBdySKluY+ImHfdDQbvXO89rviMogxbB9dyKcUGMvcKk5lek+yHEq2yX/fiiNGmVfrqGP7lZlSFr35QdoVj28z5Q315KkrO52+nm8nUCyKBouQ3ev0XGC5gEbtB11vDUc3FBYAkXIZY9w7gVVyZTwvaJAmsxrYw6x1+S46amH0hnYhhu3WgAaC408eI5IPuHyEYn9DdYM1el/qnBt2ws1g9bYrzo9rLrL7QothEYf047Ot35H5ZYeDZfTCmZmfQ4WEA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=gmail.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8fARynZEkDekkmFowUCvsHCy4vqQHBcdF9dXBSZWAcc=;
+ b=QFilA7SAyVWFgotkRAVbHmqBvFBi1nb80UyDfqjFOkqhaow7/yM9Gl02PrQ5SNNwFJSWwl9fEfmLtZJkh7qYWp1DQbyRDGz9sY/04aGs5wbxK4ViqgC9vWVbbFtulmZlF4wshsGsgpWKP4e9gcWyMCAeipwaDdDjzxrqSvj8DLk=
+Received: from BL1PR13CA0196.namprd13.prod.outlook.com (2603:10b6:208:2be::21)
+ by MN2PR12MB4517.namprd12.prod.outlook.com (2603:10b6:208:267::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.33; Thu, 5 Oct
+ 2023 17:08:33 +0000
+Received: from BL6PEPF0001AB76.namprd02.prod.outlook.com
+ (2603:10b6:208:2be:cafe::49) by BL1PR13CA0196.outlook.office365.com
+ (2603:10b6:208:2be::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.11 via Frontend
+ Transport; Thu, 5 Oct 2023 17:08:33 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL6PEPF0001AB76.mail.protection.outlook.com (10.167.242.169) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6838.14 via Frontend Transport; Thu, 5 Oct 2023 17:08:33 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 5 Oct
+ 2023 12:08:33 -0500
+Received: from xsjtanmays50.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
+ Transport; Thu, 5 Oct 2023 12:08:32 -0500
+From: Tanmay Shah <tanmay.shah@amd.com>
+To: <jassisinghbrar@gmail.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<michal.simek@amd.com>, <shubhrajyoti.datta@amd.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, Tanmay Shah <tanmay.shah@amd.com>
+Subject: [PATCH 1/2] dt-bindings: zynqmp: add destination mailbox compatible
+Date: Thu, 5 Oct 2023 10:08:24 -0700
+Message-ID: <20231005170825.3521669-1-tanmay.shah@amd.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB76:EE_|MN2PR12MB4517:EE_
+X-MS-Office365-Filtering-Correlation-Id: b256843d-ada8-46f5-fa25-08dbc5c5b4b8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	HiNnQ8++5pdIrvJTFM90/cZHRgg/wgg2Jz26VLIJ2bVAB0+ECdrkRGPFZLhbDVqwwLglN1RxQwEapWMAyzjkg1BZiwGbiJr8tB3GmmiC1TSF7Vve3EEyICm2Xt8mPxkM8kHuN6DFv9KyQTfmqQrLvHIjp3LxNeXK7R/OuEjjD6jqEuZG/VgVN2/2PcNuFvbV6vmtop5m/T1tEB7LmKfa8qwI/nBFnC5D586IEKl4+/WTmH9Eum1Nlp1ubSAsk0Rw7tgq7H9q9BFa5/jbqXol9QR63fVC6pSrviI6PYaUSjCR02vinswSZ4iRAIFdON6slCfK8rxJBZt09hUjG5i2j/MGnOlb42gH+WeSptDTxY31LecDLJKkwmQ7WbZy5jTjlkaRwxgH1fFSAIXvvsBOCYOzfLPeI/6qCJJiHCcxWiW/CsdDscl1B6EX+x8hE52iphHve7kDhhH64XYSJxWXHIsfyeUHkZe6XES5EtrriWtBbgER+jDUHUOozxwZdqSpPLUqbK6KKVR2ZCBF8gi6V81Sr/7fkyfqLeZxcSYL937WnNJ7xWmSP7ntswGXwC7eIg13F1nVy/LFCUEP2wpXfEp4H4UnrdpSNnDXRGmXYujZA3M+fthV0TiFSIimI6JZgq3/4dSw7fKt7/jMkjq3tpfY9OpaaJr94t8fdHc27VeYoAvQ5mI2pSgyjgyvonj8lez8sgfEkK0PQb98MAbDjsD6QDUUOTKarsrBfmem6hcxUzLKCNZ9BJSvGq9xz+hrhT5oQxZhyitN6wjR/OvuqA==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(39860400002)(346002)(396003)(136003)(376002)(230922051799003)(1800799009)(64100799003)(186009)(451199024)(82310400011)(40470700004)(46966006)(36840700001)(8676002)(426003)(5660300002)(83380400001)(4326008)(336012)(8936002)(47076005)(6636002)(36860700001)(41300700001)(70586007)(70206006)(54906003)(316002)(478600001)(2616005)(6666004)(26005)(2906002)(1076003)(110136005)(15650500001)(82740400003)(356005)(81166007)(44832011)(86362001)(36756003)(40480700001)(40460700003)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Oct 2023 17:08:33.3839
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b256843d-ada8-46f5-fa25-08dbc5c5b4b8
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL6PEPF0001AB76.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4517
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Thu,  5 Oct 2023 13:59:22 +0300
-Dumitru Ceclan <mitrutzceclan@gmail.com> wrote:
+Current dt-bindings does not contain compatible property
+for child mailbox node. Child mailbox nodes are used
+to represent destination (remote) IPI agents. The compatible
+property for all destination mailboxes must be required.
 
-> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
-> which can be used in high precision, low noise single channel
-> applications or higher speed multiplexed applications. The Sigma-Delta
-> ADC is intended primarily for measurement of signals close to DC but also
-> delivers outstanding performance with input bandwidths out to ~10kHz.
-> 
-> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+---
+ .../bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml           | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Hi Dumitru,
+diff --git a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
+index aeaddbf574b0..8b15a0532120 100644
+--- a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
++++ b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
+@@ -74,6 +74,10 @@ patternProperties:
+     type: object  # DT nodes are json objects
+     additionalProperties: false
+     properties:
++
++      compatible:
++        const: xlnx,zynqmp-ipi-dest-mailbox
++
+       xlnx,ipi-id:
+         description:
+           Remote Xilinx IPI agent ID of which the mailbox is connected to.
+@@ -95,6 +99,7 @@ patternProperties:
+           - const: remote_response_region
+ 
+     required:
++      - compatible
+       - reg
+       - reg-names
+       - "#mbox-cells"
+@@ -124,6 +129,7 @@ examples:
+         ranges;
+ 
+         mailbox: mailbox@ff9905c0 {
++          compatible = "xlnx,zynqmp-ipi-dest-mailbox";
+           reg = <0x0 0xff9905c0 0x0 0x20>,
+                 <0x0 0xff9905e0 0x0 0x20>,
+                 <0x0 0xff990e80 0x0 0x20>,
 
-Getting close, but a few more comments on things I noticed this time
-around.
-
-Thanks,
-
-Jonathan
-
-
-> diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
-> new file mode 100644
-> index 000000000000..5f9ab6023b09
-> --- /dev/null
-> +++ b/drivers/iio/adc/ad7173.c
-> @@ -0,0 +1,843 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * AD7172-2/AD7173-8/AD7175-2/AD7176-2 SPI ADC driver
-> + * Copyright (C) 2015-2023 Analog Devices, Inc.
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/bitmap.h>
-> +#include <linux/bits.h>
-> +#include <linux/delay.h>
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/gpio/driver.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/property.h>
-> +#include <linux/regmap.h>
-> +#include <linux/gpio/regmap.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/slab.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/units.h>
-> +
-> +#include <linux/iio/buffer.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/sysfs.h>
-
-Needed?  It's pretty rare that it is these days as the IIO core handles
-most attrs.
-
-> +#include <linux/iio/trigger_consumer.h>
-> +#include <linux/iio/triggered_buffer.h>
-> +
-> +#include <linux/iio/adc/ad_sigma_delta.h>
-
-
-...
-
-> +
-> +struct ad7173_state {
-> +	const struct ad7173_device_info *info;
-> +	struct ad_sigma_delta sd;
-> +	struct ad7173_channel *channels;
-> +	struct regulator *reg;
-
-Here but not used.. (it should be!)
-
-> +	unsigned int adc_mode;
-> +	unsigned int interface_mode;
-> +	unsigned int num_channels;
-> +	DECLARE_BITMAP(cfg_slots_status, AD7173_MAX_CONFIGS); /* slots usage status */
-> +	unsigned long long config_usage_counter;
-> +	unsigned long long *config_cnts;
-> +#if IS_ENABLED(CONFIG_GPIOLIB)
-> +	struct regmap *reg_gpiocon_regmap;
-> +	struct gpio_regmap *gpio_regmap;
-> +#endif
-> +};
-
-> +#if IS_ENABLED(CONFIG_GPIOLIB)
-
-...
-
-> +
-> +static int ad7173_gpio_init(struct ad7173_state *st)
-> +{
-> +	struct gpio_regmap_config gpio_regmap = {};
-> +	struct device *dev = &st->sd.spi->dev;
-> +	unsigned int mask;
-> +
-> +	st->reg_gpiocon_regmap = devm_regmap_init_spi(st->sd.spi, &ad7173_regmap_config);
-> +	if (IS_ERR(st->reg_gpiocon_regmap)) {
-> +		return dev_err_probe(dev, PTR_ERR(st->reg_gpiocon_regmap),
-> +				     "Unable to init regmap\n");
-> +	}
-> +
-> +	mask = AD7173_GPIO_OP_EN0 | AD7173_GPIO_OP_EN1 | AD7173_GPIO_OP_EN2_3;
-> +	regmap_update_bits(st->reg_gpiocon_regmap, AD7173_REG_GPIO, mask, mask);
-
-Does this get 'undone' anywhere? I'd imagine there is power cost to setting these
-bits that we want to stop in remove.
-Perhaps a devm_add_action_or_reset() needed here.
-
-> +
-> +	gpio_regmap.parent = dev;
-> +	gpio_regmap.regmap = st->reg_gpiocon_regmap;
-> +	gpio_regmap.ngpio = st->info->num_gpios;
-> +	gpio_regmap.reg_set_base = AD7173_REG_GPIO;
-> +	gpio_regmap.reg_mask_xlate = ad7173_mask_xlate;
-> +
-> +	st->gpio_regmap = devm_gpio_regmap_register(dev, &gpio_regmap);
-> +	if (IS_ERR(st->gpio_regmap)) {
-> +		return dev_err_probe(dev, PTR_ERR(st->gpio_regmap),
-> +				     "Unable to init gpio-regmap\n");
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +#endif /* CONFIG_GPIOLIB */
-
-...
-
-
-> +static int ad7173_read_raw(struct iio_dev *indio_dev,
-> +			   struct iio_chan_spec const *chan,
-> +			   int *val, int *val2, long info)
-> +{
-> +	struct ad7173_state *st = iio_priv(indio_dev);
-> +	unsigned int reg;
-> +	int ret;
-> +
-> +	switch (info) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		ret = ad_sigma_delta_single_conversion(indio_dev, chan, val);
-
-It's fairly usual for it to be safe to grab a single conversion when the
-buffered mode might be enabled.  Do you need an iio_device_claim_direct_mode()
-here?
-
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		/* disable channel after single conversion */
-> +		ret = ad_sd_write_reg(&st->sd, AD7173_REG_CH(chan->address), 2, 0);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_SCALE:
-> +		if (chan->type == IIO_TEMP) {
-> +			*val = 250000000;
-> +			*val2 = 800273203; /* (2^24 * 477) / 10 */
-> +			return IIO_VAL_FRACTIONAL;
-> +		} else {
-> +			*val = 2500;
-> +			if (chan->differential)
-> +				*val2 = 23;
-> +			else
-> +				*val2 = 24;
-> +			return IIO_VAL_FRACTIONAL_LOG2;
-> +		}
-> +	case IIO_CHAN_INFO_OFFSET:
-> +		if (chan->type == IIO_TEMP) {
-> +			*val = -874379;
-> +		} else {
-> +			if (chan->differential)
-> +				/* (1<<31) is UB for a 32bit channel*/
-> +				*val = (chan->scan_type.realbits == 32) ?
-> +					-(1 << (chan->scan_type.realbits - 1)) :
-> +					INT_MIN;
-> +			else
-> +				*val = 0;
-> +		}
-> +		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		reg = st->channels[chan->address].cfg.odr;
-> +
-> +		*val = st->info->sinc5_data_rates[reg] / (MICRO/MILLI);
-> +		*val2 = (st->info->sinc5_data_rates[reg] % MILLI) * (MICRO/MILLI);
-> +
-> +		return IIO_VAL_INT_PLUS_MICRO;
-> +	}
-> +	return -EINVAL;
-> +}
-> +
-
-> +
-> +static int ad7173_update_scan_mode(struct iio_dev *indio_dev,
-> +				   const unsigned long *scan_mask)
-> +{
-> +	struct ad7173_state *st = iio_priv(indio_dev);
-> +	int i, ret = 0;
-> +
-> +	iio_device_claim_direct_mode(indio_dev);
-
-This looks wrong.
-Firstly iio_device_claim_direct_mode() can fail so you always have
-to check the return value. If it does fail and you then call
-iio_release_direct_mode() it is unbalanced release of a mutex.
-
-Secondly update_scan_mode is only called as part of buffer setup
-and there should be no races around that (and the mutex this
-tries to grab is already held.
-https://elixir.bootlin.com/linux/latest/source/drivers/iio/industrialio-buffer.c#L1265
-)
-
-If you are protecting something device specific (rather than
-the mode) then a device specific lock should be taken.
-
-
-> +	for (i = 0; i < indio_dev->num_channels; i++) {
-> +		if (test_bit(i, scan_mask))
-> +			ret = ad7173_set_channel(&st->sd, i);
-> +		else
-> +			ret = ad_sd_write_reg(&st->sd, AD7173_REG_CH(i), 2, 0);
-> +
-> +		if (ret < 0)
-> +			goto out;
-> +	}
-> +
-> +out:
-> +	iio_device_release_direct_mode(indio_dev);
-> +	return ret;
-> +}
-
-> +
-> +static int ad7173_fw_parse_channel_config(struct iio_dev *indio_dev)
-> +{
-> +	struct ad7173_state *st = iio_priv(indio_dev);
-> +	struct ad7173_channel *channels_st_priv;
-> +	struct fwnode_handle *child;
-> +	struct device *dev = indio_dev->dev.parent;
-> +	struct iio_chan_spec *chan;
-> +	unsigned int num_channels;
-> +	unsigned int ain[2], chan_index = 0;
-> +	int ret;
-> +
-> +	num_channels = device_get_child_node_count(dev);
-> +
-> +	if (st->info->has_temp)
-> +		num_channels++;
-> +
-> +	if (num_channels == 0)
-> +		return 0;
-> +	st->num_channels = num_channels;
-> +
-> +	chan = devm_kcalloc(dev, sizeof(*chan), num_channels,
-> +			    GFP_KERNEL);
-> +	if (!chan)
-> +		return -ENOMEM;
-> +
-> +	channels_st_priv = devm_kcalloc(dev, num_channels,
-> +					sizeof(*channels_st_priv), GFP_KERNEL);
-> +	if (!channels_st_priv)
-> +		return -ENOMEM;
-> +
-> +	indio_dev->channels = chan;
-> +	indio_dev->num_channels = num_channels;
-> +	st->channels = channels_st_priv;
-> +
-> +	if (st->info->has_temp) {
-> +		chan[chan_index] = ad7173_temp_iio_channel_template;
-> +		channels_st_priv[chan_index].ain =
-> +			AD7173_CH_ADDRESS(chan[chan_index].channel, chan[chan_index].channel2);
-> +		channels_st_priv[chan_index].cfg.bipolar = false;
-> +		channels_st_priv[chan_index].cfg.input_buf = true;
-> +		chan_index++;
-> +	}
-> +
-> +	device_for_each_child_node(dev, child) {
-> +		ret = fwnode_property_read_u32_array(child, "diff-channels",
-> +						     ain, ARRAY_SIZE(ain));
-> +		if (ret) {
-> +			fwnode_handle_put(child);
-> +			return ret;
-> +		}
-> +
-> +		if (ain[0] >= st->info->num_inputs ||
-> +		    ain[1] >= st->info->num_inputs) {
-> +			fwnode_handle_put(child);
-> +			return dev_err_probe(dev, -EINVAL,
-> +				"Input pin number out of range for pair (%d %d).", ain[0], ain[1]);
-> +		}
-> +
-> +		chan[chan_index] = ad7173_channel_template;
-> +		chan[chan_index].address = chan_index;
-> +		chan[chan_index].scan_index = chan_index;
-> +		chan[chan_index].channel = ain[0];
-> +		chan[chan_index].channel2 = ain[1];
-> +
-> +		channels_st_priv[chan_index].ain = AD7173_CH_ADDRESS(ain[0], ain[1]);
-> +		channels_st_priv[chan_index].chan_reg = chan_index;
-> +		channels_st_priv[chan_index].cfg.input_buf = true;
-> +		channels_st_priv[chan_index].cfg.odr = 0;
-> +
-> +		chan[chan_index].differential = fwnode_property_read_bool(child, "bipolar");
-
-bipolar doesn't normally == differential. 
-You can have unipolar differential (just that you can't get a negative answer)
-Perhaps just a terminology thing?
-
-> +		if (chan[chan_index].differential) {
-> +			chan[chan_index].info_mask_separate |= BIT(IIO_CHAN_INFO_OFFSET);
-> +			channels_st_priv[chan_index].cfg.bipolar = true;
-> +		}
-> +
-> +		chan_index++;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int ad7173_probe(struct spi_device *spi)
-> +{
-> +	struct ad7173_state *st;
-> +	struct iio_dev *indio_dev;
-> +	struct device *dev = &spi->dev;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	st = iio_priv(indio_dev);
-> +	st->info = device_get_match_data(dev);
-> +	if (!st->info)
-> +		return -ENODEV;
-This works for the cases of DT and ACPI but not for anyone just
-using the spi_device_id table. 
-There is spi_device_get_match_data() to cover all options.
-
-> +
-> +	indio_dev->name = spi_get_device_id(spi)->name;
-
-I'd avoid mixing and matching across different access methods for
-firmware type info.  Just embed the name in the st->info structure.
-
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->info = &ad7173_info;
-> +
-> +	spi->mode = SPI_MODE_3;
-> +
-> +	ad7173_sigma_delta_info.num_slots = st->info->num_configs;
-> +	ret = ad_sd_init(&st->sd, indio_dev, spi, &ad7173_sigma_delta_info);
-> +	if (ret)
-> +		return ret;
-> +
-> +	spi_set_drvdata(spi, indio_dev);
-> +
-> +	ret = ad7173_fw_parse_channel_config(indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_ad_sd_setup_buffer_and_trigger(dev, indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ad7173_setup(indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_iio_device_register(dev, indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (IS_ENABLED(CONFIG_GPIOLIB))
-> +		return ad7173_gpio_init(st);
-> +
-> +	return 0;
-> +}
+base-commit: 7d730f1bf6f39ece2d9f3ae682f12e5b593d534d
+-- 
+2.25.1
 
 
