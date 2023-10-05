@@ -1,180 +1,185 @@
-Return-Path: <devicetree+bounces-6056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFCC97B9C68
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 12:07:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87D0D7B9C6E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 12:13:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 6FE5B281CA6
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 10:07:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3A3A1281D0D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 10:13:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD26811CB5;
-	Thu,  5 Oct 2023 10:07:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2177811CBB;
+	Thu,  5 Oct 2023 10:13:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UcLbykxS"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="AOSkNsIq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343FE5690
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 10:07:05 +0000 (UTC)
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76BC01FED9;
-	Thu,  5 Oct 2023 03:07:01 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9b6559cbd74so148899466b.1;
-        Thu, 05 Oct 2023 03:07:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696500420; x=1697105220; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZhNCejINv/rvRMnwXFbkozy89uWTZdk6L4MDx6KXZ3M=;
-        b=UcLbykxScrw5D1eskgwDNWoREKFPtLji+FLIErYXo/MJhBbqqT4w3QmjfNXztdREbj
-         D1qPOVeU6KsJYOcjsaoKRVgWMEC3bzh0RAL5k89Gqh/RoWVAad/DZGtIgnh+OlwLrpzL
-         imqtDXfLy3HkPlw/AizBUfJFzekL4WkZDnDwjxDTI0nzd9ryDVRT16X0EHPhnEbBKD41
-         AjLu0F2i7kDdWWIPrHLorxmmqcRVrbP4sK7EUCmWTfry7odd0Z0Kc0KovYRKPJcCjCrq
-         arQoitlwglF90Zo0zgVUJ8SGWGf7rddrywMHIryGCT0eSrMRJtbLbmiHStfbMr+DpVye
-         x5tA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696500420; x=1697105220;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZhNCejINv/rvRMnwXFbkozy89uWTZdk6L4MDx6KXZ3M=;
-        b=v0x1ygP28Sz8BdM108Z/O693PM7ApwzNDpkbIA7RXhNDGELJdb1dKrZMjjOT3SB3N3
-         7g2TwM5m6baYkrpM1MXI++lLFzgUsQPMMkAxPfKzZyNNnMPt18CaMUKVHKDmVNAYlmUA
-         fWSzPPgsXzxU93e6Xnr+gvUsEX5+s6kr8+RbqEVykogyDCXCKHF2hIJYDFT5uQcIaNEa
-         jbqoTgoqwZxFXVuS2ZswelaaHf+3KZhrKpLTelEnGlOEH7gtGbu3eHLsG+X96PT0Lbp9
-         ga/xj8bIhiUCUkV/IP/lPsNETmUexqH76z7SdrpN8ml18jlAOF0V5lwdVQcLT15wMSjc
-         BExQ==
-X-Gm-Message-State: AOJu0YyeqiM6dTuGRwoN01SwKS6w7Zp9JiloL+C+wrW4o8IPsewdfT+f
-	SbhjJspD9Is940bc/aQRhuQUMD3elg==
-X-Google-Smtp-Source: AGHT+IGtUzYRQnJzanS5pJVO4ZNw7dC55MP4rIku1b1FoShJe1HuVaSF4EtOHELw98Bx/KD+mJHU+g==
-X-Received: by 2002:a17:906:220c:b0:9b8:a556:87a5 with SMTP id s12-20020a170906220c00b009b8a55687a5mr3963317ejs.22.1696500419691;
-        Thu, 05 Oct 2023 03:06:59 -0700 (PDT)
-Received: from ?IPV6:2a02:810b:f40:4300:8342:fd16:599d:c630? ([2a02:810b:f40:4300:8342:fd16:599d:c630])
-        by smtp.gmail.com with ESMTPSA id q23-20020a17090622d700b009930308425csm915447eja.31.2023.10.05.03.06.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Oct 2023 03:06:59 -0700 (PDT)
-Message-ID: <db6476ad-361c-427e-8f57-1ad51861b2ed@gmail.com>
-Date: Thu, 5 Oct 2023 12:06:58 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61F0211CB4
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 10:13:09 +0000 (UTC)
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02on20609.outbound.protection.outlook.com [IPv6:2a01:111:f400:7eb2::609])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7A9F1FEFF;
+	Thu,  5 Oct 2023 03:13:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BhlL5y714dGS8lW2WEd6uLP0NwHPRjV+2ZaZe6I0Gy/tQTA09KHe+bKO1tiWx52L9IJiC0ZOeUVz6YwtwAUWwPBXB5zH5Sx9WRTr4Efwqg0PC7FhgvhvTSG+VnJqtcYoY2gI14ZerRRtW2XB+TipZLdn+tdGp/bJICgXEznO+hvdPxQ1NRe9XtCuqOC4YzGNM4TuDbrI1tVThlwm/5VxHkuFEbySaT0xRuLezXNrD2CZMw7ETt1GmJlpPQ5qddXlX6xK4rTE+0bwHqYIkoRP+8HqkBWjet8ifAHMPKK0oVHx6XzySWIz7k82pitsBUz/bAwPy07Axd51Ak8EkPyPXQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vAdPP6AGOMVIHpt6SpOq9y5zuWl/2/h364Ql4ng3v1U=;
+ b=Hsqi0agJP3+SjTMYrNC7QK0ShNVVDGelTZWj/IU9wl7I+Di62mgmMYoLcxL099H5Ianq08DMtJnOzzMr/Na+yTaHvpQc8MRA2rYV6EkjZE7mrFi4wT6JPp7ORSDr3GkONPc01zkddqgRvg++UQjdiG8P/0R2NJxxsoC+AZlhVHb1rUkS8Adx0Sa18qLA5w8JHIxQ7N8s7wfi349JlRZ1t3yxF5GhGlMkZjxBhTZGuf22ywW4p9+THpznyN03JdWW+6S0syAK5PWDtuUTJYGPe3e/1EVaTNbtDOlDHPi6M5XpHSbY5CLPIMxRX05jtMLF9ehugyc0dca35CzRoH4XyQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vAdPP6AGOMVIHpt6SpOq9y5zuWl/2/h364Ql4ng3v1U=;
+ b=AOSkNsIqYO4D7ZM2qJe82K8Wz9Y+Xq0exwPeSJ0EDHleWxGDKIFjrfXydad3bNK4RYeSFZNUWcmxnw42X3dMLiFqBWrz0mjvjdO2pRVCuN58l8l2zoHSRe7TB/k+f6OkUPW0UOJlgEYYSl8oGC0g8wQv7uWLLS+JxvKQ3bMLLXE=
+Received: from BL0PR05CA0029.namprd05.prod.outlook.com (2603:10b6:208:91::39)
+ by LV2PR12MB5895.namprd12.prod.outlook.com (2603:10b6:408:173::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.25; Thu, 5 Oct
+ 2023 10:12:52 +0000
+Received: from MN1PEPF0000F0E1.namprd04.prod.outlook.com
+ (2603:10b6:208:91:cafe::9e) by BL0PR05CA0029.outlook.office365.com
+ (2603:10b6:208:91::39) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.26 via Frontend
+ Transport; Thu, 5 Oct 2023 10:12:52 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ MN1PEPF0000F0E1.mail.protection.outlook.com (10.167.242.39) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6838.21 via Frontend Transport; Thu, 5 Oct 2023 10:12:52 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 5 Oct
+ 2023 05:12:51 -0500
+Received: from xhdshubhraj40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
+ Transport; Thu, 5 Oct 2023 05:12:48 -0500
+From: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+To: <linux-edac@vger.kernel.org>
+CC: <git@amd.com>, <devicetree@vger.kernel.org>,
+	<sai.krishna.potthuri@amd.com>, <krzysztof.kozlowski@linaro.org>,
+	<robh+dt@kernel.org>, <conor+dt@kernel.org>, <bp@alien8.de>,
+	<tony.luck@intel.com>, <james.morse@arm.com>, <mchehab@kernel.org>,
+	<rric@kernel.org>, <michal.simek@amd.com>
+Subject: [PATCH v9 0/2] edac: xilinx: Added EDAC support for Xilinx DDR controller
+Date: Thu, 5 Oct 2023 15:42:40 +0530
+Message-ID: <20231005101242.14621-1-shubhrajyoti.datta@amd.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] ARM: dts: rockchip: Disable non-required timers
- for RK3128
-To: Robin Murphy <robin.murphy@arm.com>, Heiko Stuebner <heiko@sntech.de>
-Cc: Johan Jonker <jbx6244@gmail.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20230829203721.281455-4-knaerzche@gmail.com>
- <20230829203721.281455-14-knaerzche@gmail.com>
- <101f3b88-7151-af5c-3bd4-feb13763228b@arm.com>
-Content-Language: en-US
-From: Alex Bee <knaerzche@gmail.com>
-In-Reply-To: <101f3b88-7151-af5c-3bd4-feb13763228b@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0E1:EE_|LV2PR12MB5895:EE_
+X-MS-Office365-Filtering-Correlation-Id: c26fe05d-a57b-4a9d-bd26-08dbc58ba288
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	7JwftEMjinYYs+RPIbHRny9NeCXMbkLiPNnSpM+Z9P9T7hZbgqR50V4ZwXN0U93xpicooWS8ruTcmd2H4tB4qgUa1QoLJrx4qpjyJ8IW+/MO5ohdKrGdV679vopEvJVc+Nl4B1rgj3ZLl3IiZWwFQQIHPjNUzIvVx6lSkUedHz4gJHXqjzu5IGm18Rxb086C978gq+/wD5xKqQkZMivheKUZasrxnaCP7ipcBIuPLT4l02zW+FUcAZVIEO4T4rKm2mCbVBQMLxkXhiMRqy6ghNtd0dKqdGN/jI+rX/QcrKK9QSLmMZsQ0R0X1A3wIbrkzIzLxBDX0FjYhHWXUBOBxDdBkpmk2jErRkGeVbSBsVBA8iGGGrY5wYbXsytIX9Acuw5bcNsTqAGFMO5GAWdUgLmbTiLLdUe/m9Iu1BrYiYoNEaOTy8hzVsduXrLYUFfajUNQ0Z//DqafHSv/t+j53bP6dwQZnOK8DPaDiIRrMb+vqUxydhDo/mMNHPqNbNU3bvDERUBn+EM9HyAkTKVRTHNxjPnfXvpDmBSXnaU2/f1tTCtZVQKq7Uy8nHfvjg6nvuNJAG9YLbFQkQLvhoRrCpv5I4mhZGdFUuTCXmlVDVDrtrelEORWz4pzy9N2Au8Q/RPiTEOrMMy4taJm21fBEY94OWJzz/UrqRDgi/52IpZCDC8fUTIVPLY9ZPsYPaT7whEfvax0v/fODRa+4DSdXuuRd0MxgubCAXYrjpXo1PWoNTXb/q/ick7GVTFI7LQgK/SJnGrwwNnghBLHWuAZDA==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(136003)(346002)(376002)(396003)(39860400002)(230922051799003)(451199024)(186009)(82310400011)(1800799009)(64100799003)(40470700004)(36840700001)(46966006)(83380400001)(356005)(40480700001)(26005)(1076003)(336012)(426003)(81166007)(82740400003)(44832011)(8936002)(41300700001)(70206006)(5660300002)(2906002)(8676002)(316002)(86362001)(4326008)(6916009)(2616005)(7416002)(36756003)(54906003)(70586007)(6666004)(478600001)(47076005)(40460700003)(36860700001)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Oct 2023 10:12:52.0740
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c26fe05d-a57b-4a9d-bd26-08dbc58ba288
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	MN1PEPF0000F0E1.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5895
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_NONE,URIBL_BLOCKED
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Robin, Hi Heiko,
 
-Am 30.08.23 um 20:17 schrieb Robin Murphy:
-> On 2023-08-29 21:37, Alex Bee wrote:
->> The Rockchip timer linux driver can handle a maximum of 2 timers and 
->> will
->> get confused if more of them exist.
->
-> Wouldn't it be better to fix that? It looks trivial to do, and frankly 
-> it's a behaviour that doesn't make sense anyway. Of course a system 
-> can have more hardware available than Linux wants to use; that's not 
-> an error, it's just Linux's choice to not use it! See commit 
-> a98399cbc1e0 ("clocksource/drivers/sp804: Avoid error on multiple 
-> instances") for example.
->
-> DTs shouldn't be treated like Linux board files, so curating them 
-> around Linux-specific driver behaviour is inappropriate; FreeBSD or 
-> U-Boot or whatever are perfectly entitled to make use of 5 timers at 
-> once if they can.
+The integrated DDR Memory Controllers (DDRMCs) support both DDR4 and
+LPDDR4/4X memory interfaces. It has four programmable NoC interface
+ports and is designed to handle multiple streams of traffic.
 
-That's fully true, thanks for the hint.
+Optional external interface reliability include ECC error
+detection/correction and command address parity.
 
-The common Rockchip workaround currently seems to be to just expose the 
-timer(s) in the DT which can be handled by the linux driver.  RK3288, 
-for instance, has 7 timers but there's a single one present in the SoC 
-DT ... and another one is enabled in the common RK mach-code, .... ups
+Adding edac support for DDR Memory controller.
 
-Anyway: I'll have a look in the RK timer driver and try to fix it. 
-Though, I'm not sure if just ignoring the others like sp804 driver does 
-is sufficient, as we still will have to add workarounds to the clock 
-driver in order to keep the clocks enabled for those timers which are 
-not used by linux, but are required (as source for the arm timer, for 
-instance).
 
-The dw_apb_timer driver seems to register the second timer as 
-clocksource- and all others as clockevent-timers .... that looks like 
-the "better" approach around that issue.
+Changes in v9:
+Update put the disable_irq out of DEBUG flag.
+Make the union packed
+Update the wording in the Kconfig
 
-Regards,
+Changes in v8:
+remove disabling all interrupts
 
-Alex
+Changes in v7:
+Update the subject to add memory-controllers instead of edac
+Update the message
+Clear status after handling the error
+At probe disable all the unrequested interrupts.
+Alphabetically sorted diff
+Rename unCorrectable to uncorrectable
+Use mask0 for  GENMASK(0,5)
+Add a processbit function
 
->
-> Thanks,
-> Robin.
->
->> RK3128 only needs timer0, timer1 and timer5. The latter is the source
->> for the arm-timer and it's clock is prevented from being disabled in the
->> clock driver so it can get disabled in the device tree, too.
->>
->> Fixes: a0201bff6259 ("ARM: dts: rockchip: add rk3128 soc dtsi")
->> Signed-off-by: Alex Bee <knaerzche@gmail.com>
->> ---
->>   arch/arm/boot/dts/rockchip/rk3128.dtsi | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
->> diff --git a/arch/arm/boot/dts/rockchip/rk3128.dtsi 
->> b/arch/arm/boot/dts/rockchip/rk3128.dtsi
->> index 88a4b0d6d928..f3f0788195d2 100644
->> --- a/arch/arm/boot/dts/rockchip/rk3128.dtsi
->> +++ b/arch/arm/boot/dts/rockchip/rk3128.dtsi
->> @@ -252,6 +252,7 @@ timer2: timer@20044040 {
->>           interrupts = <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
->>           clocks = <&cru PCLK_TIMER>, <&cru SCLK_TIMER2>;
->>           clock-names = "pclk", "timer";
->> +        status = "disabled";
->>       };
->>         timer3: timer@20044060 {
->> @@ -260,6 +261,7 @@ timer3: timer@20044060 {
->>           interrupts = <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>;
->>           clocks = <&cru PCLK_TIMER>, <&cru SCLK_TIMER3>;
->>           clock-names = "pclk", "timer";
->> +        status = "disabled";
->>       };
->>         timer4: timer@20044080 {
->> @@ -268,6 +270,7 @@ timer4: timer@20044080 {
->>           interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
->>           clocks = <&cru PCLK_TIMER>, <&cru SCLK_TIMER4>;
->>           clock-names = "pclk", "timer";
->> +        status = "disabled";
->>       };
->>         timer5: timer@200440a0 {
->> @@ -276,6 +279,7 @@ timer5: timer@200440a0 {
->>           interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
->>           clocks = <&cru PCLK_TIMER>, <&cru SCLK_TIMER5>;
->>           clock-names = "pclk", "timer";
->> +        status = "disabled";
->>       };
->>         watchdog: watchdog@2004c000 {
+Changes in v6:
+Fix the warn.
+
+Changes in v5:
+Update subject
+
+Changes in v4:
+Update the reviewed by tag
+Update the subject
+rename the driver file.
+fix the debugfs file.
+fix unneeded capitalisation.
+refactor code
+
+Changes in v3:
+Rebased and resent.
+
+Changes in v2:
+remove edac from compatible
+Update the description
+update the ddrmc_base and ddrmc_noc_base names
+Update a missed out file
+remove edac from compatible name
+rename ddrmc_noc_base and ddrmc_base
+
+Shubhrajyoti Datta (2):
+  dt-bindings: memory-controllers: Add support for Xilinx Versal EDAC
+    for DDRMC
+  EDAC/versal: Add a Xilinx Versal memory controller driver
+
+ .../xlnx,versal-ddrmc-edac.yaml               |   57 +
+ MAINTAINERS                                   |    7 +
+ drivers/edac/Kconfig                          |   12 +
+ drivers/edac/Makefile                         |    1 +
+ drivers/edac/versal_edac.c                    | 1065 +++++++++++++++++
+ include/linux/firmware/xlnx-zynqmp.h          |   12 +
+ 6 files changed, 1154 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/xlnx,versal-ddrmc-edac.yaml
+ create mode 100644 drivers/edac/versal_edac.c
+
+-- 
+2.17.1
+
 
