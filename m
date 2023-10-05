@@ -1,157 +1,121 @@
-Return-Path: <devicetree+bounces-6323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC9187BAEE2
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 00:39:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1FA17BAF06
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 01:07:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id 37BAF1F2355E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 22:39:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 26390281F33
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 23:07:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29EEE42BF8;
-	Thu,  5 Oct 2023 22:39:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D14242C1F;
+	Thu,  5 Oct 2023 23:07:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="E1XFAgsZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eqVpbGcZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF790154AB
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 22:39:11 +0000 (UTC)
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC8BDE9
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 15:39:08 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id DDFD42C07F0;
-	Fri,  6 Oct 2023 11:39:04 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1696545544;
-	bh=Jln0tzUpoR2xr/aeOoHAnxoXo48BHvn0YAHWLviV5iA=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=E1XFAgsZxIZ6ukokAFv30wxjhY9eMRuvSAg2OsJM5WbeqXUceAeGCbXvFbE4C3aNv
-	 8klwjIHEbo6/BIj8NSnYX7dz7ZiT8saxcrtGtLf4fqZrkma/krIK48VqCkNPZvjmCv
-	 iy2nPoAhbv83VU5ICi+PddeFUfnnjx3ZCVdCkQCha4nwBUvGjIS5TLYXivjA4FwWaA
-	 THaCSdMa12jUmqHp3bW00gTibJ0DiMoMg9qhEFPrJcLD2qMUb7K1000Lu3bbiqi6eq
-	 XlgnJnjCREXpNtpx9YPsIn7TQdfAKOxUqsFWMlSqVWOlcTcMF7U1jurWvZVWEtBAAd
-	 ZfcrAiho28kog==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B651f3b080001>; Fri, 06 Oct 2023 11:39:04 +1300
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.1118.37; Fri, 6 Oct 2023 11:39:04 +1300
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
- (TLS) id 15.0.1497.48; Fri, 6 Oct 2023 11:39:04 +1300
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1118.037; Fri, 6 Oct 2023 11:39:04 +1300
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Andi Shyti <andi.shyti@kernel.org>
-CC: "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CF7314001
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 23:07:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66543C433C7;
+	Thu,  5 Oct 2023 23:07:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696547262;
+	bh=SLxoCaj8+sjzohhZAKAeitCTwO69mwCyvpBXx/t3mn8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eqVpbGcZYRKBnm1peUNSFdaEbGBkiVzzK9XT0+U9GtZSBzyVT0XT1/fzM3QYQIzD7
+	 vp5vXGgdVO60OwsJDq2ekLnAWy6jMdflpjNR1ZN3hZKSUSyrOJ73vLU/ULSgUW2etD
+	 a6R32TzhXCg0Z6lGQ+QIsQK5IWGpCKZ/cfWr147n68P4T5zOZVA8QQhjLNJkFwM5Jg
+	 sSbEJ+TXGxZSgB87hJpTNNdNav1mL6YthEqe8ZqDpehIRgd8kIwFyavyJt62J1DMH7
+	 Q3k4e3SEynwm59DGiIZoUlRjI4/+Ho2UFrFfg7y/HV5HJt98OtESzPpgP6bHyId4GA
+	 1i0TZKOZ/Mjew==
+Date: Fri, 6 Oct 2023 01:07:37 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+Cc: "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
 	"robh+dt@kernel.org" <robh+dt@kernel.org>,
 	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "pierre.gondois@arm.com"
-	<pierre.gondois@arm.com>, "linux-i2c@vger.kernel.org"
-	<linux-i2c@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"pierre.gondois@arm.com" <pierre.gondois@arm.com>,
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Subject: Re: [PATCH 3/3] i2c: mv64xxx: add support for FSM based recovery
-Thread-Topic: [PATCH 3/3] i2c: mv64xxx: add support for FSM based recovery
-Thread-Index: AQHZ8NPnYKzvy/9jwESCWo7X3TBvqLA68pMAgAALUoA=
-Date: Thu, 5 Oct 2023 22:39:03 +0000
-Message-ID: <57c27eb5-1145-4a84-a7b6-ff785d7a1eeb@alliedtelesis.co.nz>
+Message-ID: <20231005230737.6j57y7d27vnsbws3@zenone.zhora.eu>
 References: <20230926234801.4078042-1-chris.packham@alliedtelesis.co.nz>
  <20230926234801.4078042-4-chris.packham@alliedtelesis.co.nz>
  <20231005215832.p4mxov6occzqmj2k@zenone.zhora.eu>
-In-Reply-To: <20231005215832.p4mxov6occzqmj2k@zenone.zhora.eu>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-originating-ip: [10.33.22.30]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <EFDC78327C2D514A97030AEF06C8B8A5@atlnz.lc>
-Content-Transfer-Encoding: base64
+ <57c27eb5-1145-4a84-a7b6-ff785d7a1eeb@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=Vf2Jw2h9 c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=bhdUkHdE2iEA:10 a=FqOU3ekQ0Ek1LeW_-iAA:9 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <57c27eb5-1145-4a84-a7b6-ff785d7a1eeb@alliedtelesis.co.nz>
 
-DQpPbiA2LzEwLzIzIDEwOjU4LCBBbmRpIFNoeXRpIHdyb3RlOg0KPiBIaSBDaHJpcywNCj4NCj4g
-TG9va3MgZ29vZCwganVzdCBhIGZldyBxdWVzdGlvbnMuDQo+DQo+PiArc3RhdGljIGludA0KPj4g
-K212NjR4eHhfaTJjX3JlY292ZXJfYnVzKHN0cnVjdCBpMmNfYWRhcHRlciAqYWRhcCkNCj4+ICt7
-DQo+PiArCXN0cnVjdCBtdjY0eHh4X2kyY19kYXRhICpkcnZfZGF0YSA9IGkyY19nZXRfYWRhcGRh
-dGEoYWRhcCk7DQo+PiArCWludCByZXQ7DQo+PiArCXUzMiB2YWw7DQo+PiArDQo+PiArCWRldl9k
-YmcoJmFkYXAtPmRldiwgIlRyeWluZyBpMmMgYnVzIHJlY292ZXJ5XG4iKTsNCj4+ICsJd3JpdGVs
-KE1WNjRYWFhfSTJDX1VOU1RVQ0tfVFJJR0dFUiwgZHJ2X2RhdGEtPnVuc3R1Y2tfcmVnKTsNCj4+
-ICsJcmV0ID0gcmVhZGxfcG9sbF90aW1lb3V0X2F0b21pYyhkcnZfZGF0YS0+dW5zdHVja19yZWcs
-IHZhbCwNCj4+ICsJCQkJCSEodmFsICYgTVY2NFhYWF9JMkNfVU5TVFVDS19JTlBST0dSRVNTKSwN
-Cj4+ICsJCQkJCTEwMDAsIDUwMDApOw0KPiBoZXJlIHlvdSBhcmUgYnVzeSBsb29waW5nIGZvciAx
-bXMgYmV0d2VlbiByZWFkcyB3aGljaCBpcyBhIGxvbmcNCj4gdGltZS4gV2h5IG5vdCB1c2luZyBy
-ZWFkX3BvbGxfdGltZW91dCgpIGluc3RlYWQ/DQoNCkkgbmVlZGVkIHRvIHVzZSB0aGUgYXRvbWlj
-IHZhcmlhbnQgYmVjYXVzZSB0aGlzIGVuZHMgdXAgZ2V0dGluZyBjYWxsZWQgDQpmcm9tIGFuIGlu
-dGVycnVwdCBoYW5kbGVyIChtdjY0eHh4X2kyY19pbnRyKCkgLT4gbXY2NHh4eF9pMmNfZnNtKCkp
-LiBJIA0KcHJvYmFibHkgZG9uJ3QgbmVlZCB0byB3YWl0IHNvIGxvbmcgYmV0d2VlbiByZWFkcyB0
-aG9zZSB0aW1lcyB3ZXJlIGp1c3QgDQpwdWxsZWQgb3V0IG9mIHRoaW4gYWlyLiBJbiBteSBleHBl
-cmltZW50YXRpb24gdGhlIGZhdWx0cyB0aGF0IGNhbiBiZSANCmNsZWFyZWQgZG8gc28gd2l0aGlu
-IGEgY291cGxlIG9mIGNsb2NrcywgaWYgaXQgaGFzbid0IGNsZWFyZWQgd2l0aGluIDggDQpjbG9j
-a3MgaXQncyBub3QgZ29pbmcgdG8uDQoNCj4+ICsJaWYgKHJldCkgew0KPj4gKwkJZGV2X2Vycigm
-YWRhcC0+ZGV2LCAicmVjb3ZlcnkgdGltZW91dFxuIik7DQo+PiArCQlyZXR1cm4gcmV0Ow0KPj4g
-Kwl9DQo+PiArDQo+PiArCWlmICh2YWwgJiBNVjY0WFhYX0kyQ19VTlNUVUNLX0VSUk9SKSB7DQo+
-PiArCQlkZXZfZXJyKCZhZGFwLT5kZXYsICJyZWNvdmVyeSBmYWlsZWRcbiIpOw0KPj4gKwkJcmV0
-dXJuIC1FQlVTWTsNCj4+ICsJfQ0KPj4gKw0KPj4gKwlkZXZfaW5mbygmYWRhcC0+ZGV2LCAicmVj
-b3ZlcnkgY29tcGxldGUgYWZ0ZXIgJWQgcHVsc2VzXG4iLCBNVjY0WFhYX0kyQ19VTlNUVUNLX0NP
-VU5UKHZhbCkpOw0KPiBkZXZfZGJnPw0KYWNrLg0KPj4gKwlyZXR1cm4gMDsNCj4+ICt9DQo+PiAr
-DQo+IFsuLi5dDQo+DQo+PiAtCWlmIChvZl9kZXZpY2VfaXNfY29tcGF0aWJsZShucCwgIm1hcnZl
-bGwsbXY3ODIzMC1hMC1pMmMiKSkgew0KPj4gKwlpZiAob2ZfZGV2aWNlX2lzX2NvbXBhdGlibGUo
-bnAsICJtYXJ2ZWxsLG12NzgyMzAtYTAtaTJjIikgfHwNCj4+ICsJICAgIG9mX2RldmljZV9pc19j
-b21wYXRpYmxlKG5wLCAibWFydmVsbCxhcm1hZGEtOGstaTJjIikpIHsNCj4gc2hvdWxkIHRoaXMg
-YmUgcGFydCBvZiBhIGRpZmZlcmVudCBwYXRjaD8NCg0KWWVzIHNvcnJ5LiBPcmlnaW5hbGx5IEkg
-d2FzIGdvaW5nIHRvIHVzZSBhIG5ldyBjb21wYXRpYmxlIHRvIGluZGljYXRlIA0KdGhlIHVuc3R1
-Y2sgc3VwcG9ydCBidXQgd2VudCB3aXRoIHRoZSAybmQgcmVnIGNlbGwgc28gdGhpcyBpcyB1bm5l
-Y2Vzc2FyeS4NCg0KPg0KPj4gICAJCWRydl9kYXRhLT5vZmZsb2FkX2VuYWJsZWQgPSBmYWxzZTsN
-Cj4+ICAgCQkvKiBUaGUgZGVsYXkgaXMgb25seSBuZWVkZWQgaW4gc3RhbmRhcmQgbW9kZSAoMTAw
-a0h6KSAqLw0KPj4gICAJCWlmIChidXNfZnJlcSA8PSBJMkNfTUFYX1NUQU5EQVJEX01PREVfRlJF
-USkNCj4+IEBAIC05MzYsOCArOTczLDIxIEBAIG12NjR4eHhfb2ZfY29uZmlnKHN0cnVjdCBtdjY0
-eHh4X2kyY19kYXRhICpkcnZfZGF0YSwNCj4+ICAgfQ0KPj4gICAjZW5kaWYgLyogQ09ORklHX09G
-ICovDQo+PiAgIA0KPj4gLXN0YXRpYyBpbnQgbXY2NHh4eF9pMmNfaW5pdF9yZWNvdmVyeV9pbmZv
-KHN0cnVjdCBtdjY0eHh4X2kyY19kYXRhICpkcnZfZGF0YSwNCj4+IC0JCQkJCSAgc3RydWN0IGRl
-dmljZSAqZGV2KQ0KPj4gK3N0YXRpYyBpbnQgbXY2NHh4eF9pMmNfaW5pdF9mc21fcmVjb3Zlcnlf
-aW5mbyhzdHJ1Y3QgbXY2NHh4eF9pMmNfZGF0YSAqZHJ2X2RhdGEsDQo+PiArCQkJCQkgICAgICBz
-dHJ1Y3QgZGV2aWNlICpkZXYpDQo+PiArew0KPj4gKwlzdHJ1Y3QgaTJjX2J1c19yZWNvdmVyeV9p
-bmZvICpyaW5mbyA9ICZkcnZfZGF0YS0+cmluZm87DQo+PiArDQo+PiArCWRldl9pbmZvKGRldiwg
-InVzaW5nIEZTTSBmb3IgcmVjb3ZlcnlcbiIpOw0KPiBkZXZfZGJnPw0KPg0KPj4gKwlyaW5mby0+
-cmVjb3Zlcl9idXMgPSBtdjY0eHh4X2kyY19yZWNvdmVyX2J1czsNCj4+ICsJZHJ2X2RhdGEtPmFk
-YXB0ZXIuYnVzX3JlY292ZXJ5X2luZm8gPSByaW5mbzsNCj4+ICsNCj4+ICsJcmV0dXJuIDA7DQo+
-PiArDQo+PiArfQ0KPj4gKw0KPiBbLi4uXQ0KPg0KPj4gKwkvKiBvcHRpb25hbCB1bnN0dWNrIHN1
-cHBvcnQgKi8NCj4+ICsJcmVzID0gcGxhdGZvcm1fZ2V0X3Jlc291cmNlKHBkLCBJT1JFU09VUkNF
-X01FTSwgMSk7DQo+PiArCWlmIChyZXMpIHsNCj4+ICsJCWRydl9kYXRhLT51bnN0dWNrX3JlZyA9
-IGRldm1faW9yZW1hcF9yZXNvdXJjZSgmcGQtPmRldiwgcmVzKTsNCj4+ICsJCWlmIChJU19FUlIo
-ZHJ2X2RhdGEtPnVuc3R1Y2tfcmVnKSkNCj4+ICsJCQlyZXR1cm4gUFRSX0VSUihkcnZfZGF0YS0+
-dW5zdHVja19yZWcpOw0KPiBPSywgd2UgZmFpbGVkIHRvIGlvcmVtYXAuLi4gYnV0IGluc3RlYWQg
-b2YgcmV0dXJuaW5nIGFuIGVycm9yLA0KPiB3b3VsZG4ndCBpdCBiZSBiZXR0ZXIgdG8ganVzdCBz
-ZXQgdW5zdHVja19yZWcgdG8gTlVMTCBhbmQgbW92ZQ0KPiBmb3J3YXJkIHdpdGhvdXQgdW5zdHVj
-ayBzdXBwb3J0Pw0KPg0KPiBNYXliZSB5b3Ugd2lsbCBzdGlsIGNyYXNoIGxhdGVyIGJlY2F1c2Ug
-c29tZXRoaW5nIG1pZ2h0IGhhdmUNCj4gaGFwcGVuZWQsIGJ1dCBmYWlsaW5nIG9uIHB1cnBvc2Ug
-b24gYW4gb3B0aW9uYWwgZmVhdHVyZSBsb29rcyBhDQo+IGJpdCB0b28gZHJhc3RpYyB0byBtZS4g
-V2hhdCBkbyB5b3UgdGhpbms/DQoNClBlcnNvbmFsbHkgSSB0aGluayBpZiB0aGUgcmVnIHByb3Bl
-cnR5IGlzIHN1cHBsaWVkIGluIHRoZSBkdHMgd2UnZCANCmJldHRlciBiZSBhYmxlIHRvIHVzZSBp
-dC4gSWYgdGhlIGZlYXR1cmUgaXMgbm90IHdhbnRlZCB0aGVuIHRoZSB3YXkgdG8gDQppbmRpY2F0
-ZSB0aGlzIGlzIGJ5IHN1cHBseWluZyBvbmx5IG9uZSByZWcgY2VsbC4NCg0KSSdkIGJlIGhhcHB5
-IHdpdGggYSBkZXZfd2FybigpIGFuZCB1bnN0dWNrX3JlZyA9IE5VTEwgaWYgdGhhdCBoZWxwcyBn
-ZXQgDQp0aGlzIGxhbmRlZC4NCg0KPg0KPiBUaGFua3MsDQo+IEFuZGk=
+Hi Chris,
+
+> >> +static int
+> >> +mv64xxx_i2c_recover_bus(struct i2c_adapter *adap)
+> >> +{
+> >> +	struct mv64xxx_i2c_data *drv_data = i2c_get_adapdata(adap);
+> >> +	int ret;
+> >> +	u32 val;
+> >> +
+> >> +	dev_dbg(&adap->dev, "Trying i2c bus recovery\n");
+> >> +	writel(MV64XXX_I2C_UNSTUCK_TRIGGER, drv_data->unstuck_reg);
+> >> +	ret = readl_poll_timeout_atomic(drv_data->unstuck_reg, val,
+> >> +					!(val & MV64XXX_I2C_UNSTUCK_INPROGRESS),
+> >> +					1000, 5000);
+> > here you are busy looping for 1ms between reads which is a long
+> > time. Why not using read_poll_timeout() instead?
+> 
+> I needed to use the atomic variant because this ends up getting called 
+> from an interrupt handler (mv64xxx_i2c_intr() -> mv64xxx_i2c_fsm()). I 
+> probably don't need to wait so long between reads those times were just 
+> pulled out of thin air. In my experimentation the faults that can be 
+> cleared do so within a couple of clocks, if it hasn't cleared within 8 
+> clocks it's not going to.
+
+It's still a long time to wait in atomic context...
+readl_poll_timeout_atomic() waits in udelays, where the maximum
+accepted waiting time is 10us. Here you are waiting 100 times
+more.
+
+If we can't be within that value I would rather use a thread.
+
+Or, you could also consider using threaded_irq()... but this
+might have a bit of a higher impact.
+
+[...]
+
+> >> +	/* optional unstuck support */
+> >> +	res = platform_get_resource(pd, IORESOURCE_MEM, 1);
+> >> +	if (res) {
+> >> +		drv_data->unstuck_reg = devm_ioremap_resource(&pd->dev, res);
+> >> +		if (IS_ERR(drv_data->unstuck_reg))
+> >> +			return PTR_ERR(drv_data->unstuck_reg);
+> > OK, we failed to ioremap... but instead of returning an error,
+> > wouldn't it be better to just set unstuck_reg to NULL and move
+> > forward without unstuck support?
+> >
+> > Maybe you will stil crash later because something might have
+> > happened, but failing on purpose on an optional feature looks a
+> > bit too drastic to me. What do you think?
+> 
+> Personally I think if the reg property is supplied in the dts we'd 
+> better be able to use it. If the feature is not wanted then the way to 
+> indicate this is by supplying only one reg cell.
+> 
+> I'd be happy with a dev_warn() and unstuck_reg = NULL if that helps get 
+> this landed.
+
+Don't ahve a strong opinion... as you like. Mine is just an
+opinion and your argument is valid :-)
+
+Andi
 
