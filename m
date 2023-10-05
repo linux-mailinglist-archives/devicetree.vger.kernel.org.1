@@ -1,145 +1,149 @@
-Return-Path: <devicetree+bounces-6012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7E597B9ADC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 07:05:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3E867B9AFB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 07:51:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2C4802817FC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 05:05:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id 29FD01F22E58
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 05:51:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C64891C28;
-	Thu,  5 Oct 2023 05:05:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 017054A31;
+	Thu,  5 Oct 2023 05:51:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="deQ7A4mY"
+	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="ZXubW7/Q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79D3415C9
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 05:05:48 +0000 (UTC)
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C382146BF
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 22:05:46 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-534659061afso808031a12.3
-        for <devicetree@vger.kernel.org>; Wed, 04 Oct 2023 22:05:46 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1C327FA
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 05:51:03 +0000 (UTC)
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E38D5B80
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 22:51:00 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id 98e67ed59e1d1-279150bad13so420939a91.3
+        for <devicetree@vger.kernel.org>; Wed, 04 Oct 2023 22:51:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1696482345; x=1697087145; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tumpG4fZu91mYpt2qQbWwuFfddli9/TW76sKXIYzTOk=;
-        b=deQ7A4mY5ePOw4jHVnPJCqadPHGXWot17MfTlsuzPmL1tAKWWcgtfIzYCl6Y26RH/2
-         Tg5vtPBAu0gJKO7CFEu7p2di+9Zo7ZnGiByuPZRH4rVpEmvI6Ad5Z1u3CH752De5xk+b
-         6k6CTfr0mgVEyVtkEVStiiy6ER34FpSe0ONd2J1hDIrOt+KFaJzkK7e2ZCnkgu2oFmTx
-         hJYJmKEe1oqQ26KbG9i+ATT9szB+0wzhWfDLnsox8IPOw7cn1kAP95Htmm4YSPIftgTn
-         WIV57dECWvJJjG2shxvBLoZgUjtRC3J09TgpgpGGMiZclNTXmV2XoELeTgvgyRXZqaUB
-         pGSA==
+        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1696485060; x=1697089860; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IAn7kTF76MX4baCsjz/DD87LgbEJOFPnszS1gD87MLo=;
+        b=ZXubW7/QRu9lfTWrHyJPGHvyKFEbmAjEGsA43lpb7Aa1B5q0XjQmR8aY6/JMLTFW6d
+         LPSWr2Ds4/22GFtcQ/9KzR28OoFbFkzZuaf/Cr1iE7cPrQre79m0GookUWiIvChHBIyD
+         nwi6+MkCNAcKtTcb18oWw9GtyZ4cxW2Or03HqHrNSE3OY4b777U/GoD/PFu5kxxK0VQi
+         bFuyj6U47r4kUsPOlP4MYPFSubLZEb0fCnFgIByCYMoXS79N9lpdNH5AftJZuOuRPM3l
+         bpY9o14EBhXWKmB5o1ri0uEmRyy+3BYQPNVsmgKJoz2UgwcKGHU96ndyPlbaFh5YHpaU
+         ge2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696482345; x=1697087145;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tumpG4fZu91mYpt2qQbWwuFfddli9/TW76sKXIYzTOk=;
-        b=CtH9ANy/15Mme8Q0uStdpu/NvjKIzoSrL+Htx0k6inxxHGMHTMk4h6Hycs7j4JpD+f
-         IBAJwOfaPjj9p++tju6pnKX8a7H9/nD6DT4mj0e+R+tP+dYqm+RsG8hbqqbwMmjV/fMb
-         Pbg1QbU0geLsbbkViazamoIOfLtzH7Haa9mi31Na98vPXSqhYUvPJYhzrJuHa/Hb99R5
-         9edlqZbDBZOTB0ZHym50o+qjG9ySk7exuJFnHzaYLWAZrdxBqAUi7FOHEJvGpTbzeycB
-         GxlFBsGCsKtoV0291ElOLlYsaLuNK9nGxrh7c2we0PyKjJ1nky2sqIJuztHbRoxBiFcS
-         +hog==
-X-Gm-Message-State: AOJu0Yz8NsGNPPWSsql6Bc8AnmssW4kQukE9dSadELtDboKI6htuy9nx
-	jkbUM3+yLGly5b0S1hypZNv6Ng==
-X-Google-Smtp-Source: AGHT+IE54MO+fhgdky4xkVipD6Wj3FDv6iN+CshxB2o1CFdPuoVHF2KKTNg0ZjphMiuqlQstCFMd7w==
-X-Received: by 2002:aa7:da8c:0:b0:530:9b94:96e with SMTP id q12-20020aa7da8c000000b005309b94096emr3525467eds.41.1696482345190;
-        Wed, 04 Oct 2023 22:05:45 -0700 (PDT)
-Received: from [192.168.32.2] ([147.161.130.252])
-        by smtp.gmail.com with ESMTPSA id u15-20020aa7d98f000000b00533bab9d9f1sm434409eds.1.2023.10.04.22.05.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Oct 2023 22:05:44 -0700 (PDT)
-Message-ID: <08ed16ff-14ca-a7e2-59c2-da949ceaa608@tuxon.dev>
-Date: Thu, 5 Oct 2023 08:05:42 +0300
+        d=1e100.net; s=20230601; t=1696485060; x=1697089860;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IAn7kTF76MX4baCsjz/DD87LgbEJOFPnszS1gD87MLo=;
+        b=bzozkThtkefepmsTv4xG1JiQJzalgCajyNMZEXgAtXVzOiiBlHjAy3VSjlcPZgH+IU
+         LPIhTIX0B24lXE3xS0hZXAv9jjtOW39RRTrh/Y5+ykds4W99UTEv1mGDl/e3U9Mj5AuT
+         1GdTHgQMal4XHMnxI8ISV1WGmvlt4DGs8v86eQjvP9CC3+R/CLS5HHJMmJcHb6ToG5wS
+         c0CLzk7ur3O4YveNm8mqGH7M0bmB1L2kqyjyIYzc41Sf/kYIoL7ndh9l2GgKzxdK21ib
+         re6pcQA0IwYSubiMAsBaGxdRdU7e8ZQvirVIE19orTIUCFPLsE9VxYrBoC6MGNRSpN7V
+         vgGg==
+X-Gm-Message-State: AOJu0Yztr+FUh7gn+rrmkpU/moRHxZrURj7m4D/zjOfg4jeN9L93i5ep
+	y3OsnDlAwYTAmjemsAtPe/T68PybUIXw0ied0KCRyQ==
+X-Google-Smtp-Source: AGHT+IEtGbIHdTfL2yZTTDLPgQj3me/hsvVuKvB4XaXv1nNxUCov3SGcpN7sdI1I388p/AKgKTr/0lfdATge9YktJw8=
+X-Received: by 2002:a17:90b:a04:b0:26d:416a:b027 with SMTP id
+ gg4-20020a17090b0a0400b0026d416ab027mr4208863pjb.31.1696485059836; Wed, 04
+ Oct 2023 22:50:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v2 18/28] pinctrl: renesas: rzg2l: add support for
- different ds values on different groups
-Content-Language: en-US
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linus.walleij@linaro.org, gregkh@linuxfoundation.org, jirislaby@kernel.org,
- magnus.damm@gmail.com, catalin.marinas@arm.com, will@kernel.org,
- quic_bjorande@quicinc.com, konrad.dybcio@linaro.org, arnd@arndb.de,
- neil.armstrong@linaro.org, prabhakar.mahadev-lad.rj@bp.renesas.com,
- biju.das.jz@bp.renesas.com, linux-renesas-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230929053915.1530607-1-claudiu.beznea@bp.renesas.com>
- <20230929053915.1530607-19-claudiu.beznea@bp.renesas.com>
- <CAMuHMdWQVtroKntVamANrWiheDYa6+=L8K53__1WUZg3bF8EFQ@mail.gmail.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <CAMuHMdWQVtroKntVamANrWiheDYa6+=L8K53__1WUZg3bF8EFQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+References: <20231003035226.1945725-3-apatel@ventanamicro.com> <mhng-4ec1093a-4542-429e-a9f0-8a976cff9ac4@palmer-ri-x1c9>
+In-Reply-To: <mhng-4ec1093a-4542-429e-a9f0-8a976cff9ac4@palmer-ri-x1c9>
+From: Anup Patel <anup@brainfault.org>
+Date: Thu, 5 Oct 2023 11:20:48 +0530
+Message-ID: <CAAhSdy2CxWw9ny7vdBoEzsXkm_J882NGKTDQ7BfykrjuB1QR+w@mail.gmail.com>
+Subject: Re: [PATCH v3 2/6] RISC-V: Detect Zicond from ISA string
+To: Palmer Dabbelt <palmer@dabbelt.com>
+Cc: apatel@ventanamicro.com, pbonzini@redhat.com, atishp@atishpatra.org, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Conor Dooley <conor@kernel.org>, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, shuah@kernel.org, ajones@ventanamicro.com, 
+	mchitale@ventanamicro.com, devicetree@vger.kernel.org, kvm@vger.kernel.org, 
+	kvm-riscv@lists.infradead.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+	Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
 	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+On Wed, Oct 4, 2023 at 7:37=E2=80=AFPM Palmer Dabbelt <palmer@dabbelt.com> =
+wrote:
+>
+> On Mon, 02 Oct 2023 20:52:22 PDT (-0700), apatel@ventanamicro.com wrote:
+> > The RISC-V integer conditional (Zicond) operation extension defines
+> > standard conditional arithmetic and conditional-select/move operations
+> > which are inspired from the XVentanaCondOps extension. In fact, QEMU
+> > RISC-V also has support for emulating Zicond extension.
+> >
+> > Let us detect Zicond extension from ISA string available through
+> > DT or ACPI.
+> >
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> >  arch/riscv/include/asm/hwcap.h | 1 +
+> >  arch/riscv/kernel/cpufeature.c | 1 +
+> >  2 files changed, 2 insertions(+)
+> >
+> > diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hw=
+cap.h
+> > index 0f520f7d058a..6fc51c1b34cf 100644
+> > --- a/arch/riscv/include/asm/hwcap.h
+> > +++ b/arch/riscv/include/asm/hwcap.h
+> > @@ -59,6 +59,7 @@
+> >  #define RISCV_ISA_EXT_ZIFENCEI               41
+> >  #define RISCV_ISA_EXT_ZIHPM          42
+> >  #define RISCV_ISA_EXT_SMSTATEEN              43
+> > +#define RISCV_ISA_EXT_ZICOND         44
+> >
+> >  #define RISCV_ISA_EXT_MAX            64
+> >
+> > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeat=
+ure.c
+> > index 3755a8c2a9de..e3803822ab5a 100644
+> > --- a/arch/riscv/kernel/cpufeature.c
+> > +++ b/arch/riscv/kernel/cpufeature.c
+> > @@ -167,6 +167,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] =3D=
+ {
+> >       __RISCV_ISA_EXT_DATA(zicbom, RISCV_ISA_EXT_ZICBOM),
+> >       __RISCV_ISA_EXT_DATA(zicboz, RISCV_ISA_EXT_ZICBOZ),
+> >       __RISCV_ISA_EXT_DATA(zicntr, RISCV_ISA_EXT_ZICNTR),
+> > +     __RISCV_ISA_EXT_DATA(zicond, RISCV_ISA_EXT_ZICOND),
+> >       __RISCV_ISA_EXT_DATA(zicsr, RISCV_ISA_EXT_ZICSR),
+> >       __RISCV_ISA_EXT_DATA(zifencei, RISCV_ISA_EXT_ZIFENCEI),
+> >       __RISCV_ISA_EXT_DATA(zihintpause, RISCV_ISA_EXT_ZIHINTPAUSE),
+>
+> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+>
+> Can we do a shared tag, though?  These will conflict.
 
+Thanks Palmer.
 
-On 04.10.2023 16:17, Geert Uytterhoeven wrote:
-> On Fri, Sep 29, 2023 at 7:39 AM Claudiu <claudiu.beznea@tuxon.dev> wrote:
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> RZ/G3S supports different drive strength values for different power sources
->> and pin groups (A, B, C). On each group there could be up to 4 drive
->> strength values per power source. Available power sources are 1v8, 2v5,
->> 3v3. Drive strength values are fine tuned than what was previously
->> available on the driver thus the necessity of having micro-amp support.
->> As drive strength and power source values are linked together the
->> hardware setup for these was moved at the end of
->> rzg2l_pinctrl_pinconf_set() to ensure proper validation of the new
->> values.
->>
->> The drive strength values are expected to be initialized though SoC
->> specific hardware configuration data structure.
->>
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->> ---
->>
->> Changes in v2:
->> - s/strenght/strength, s/togheter/together in commit description
->> - got rid of RZG2L_INVALID_IOLH_VAL macro and consider zero as invalid
->>   value for entries in struct rzg2l_hwcfg::iolh_group[abc]_ua[] arrays
->> - removed spinlock in rzg2l_[sg]et_power_source()
->> - introduced caps_to_pwr_reg() and simplified the code in
->>   rzg2l_[sg]et_power_source()
->> - changed return type of rzg2l_iolh_ua_to_val() to int and return
->>   -EINVAL on failure cases
->> - s/rzg2l_ds_supported/rzg2l_ds_is_supported
->> - inverted the logic in rzg2l_pinctrl_pinconf_set() when applying drive
->>   strength and power source to hardware registers and thus simplified the
->>   code
->> - used devm_kcalloc() instead of devm_kzalloc()
->> - adderessed the rest of the review comments
-> 
-> Thanks, will queue in renesas-pinctrl-for-v6.7, with Paul's comment
-> addresses.
+I will provide a shared tag based on 6.6-rc5 sometime
+next week. I hope this is okay for you.
 
-Thank you Geert and Paul!
+Regards,
+Anup
 
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
+>
+> --
+> kvm-riscv mailing list
+> kvm-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/kvm-riscv
 
