@@ -1,303 +1,104 @@
-Return-Path: <devicetree+bounces-6170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76DE87BA1DF
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:02:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6B7B7BA1FA
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:09:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 26E4E281C8D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:02:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 7506C281D3E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:09:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4CD82E631;
-	Thu,  5 Oct 2023 15:02:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3224B30CEF;
+	Thu,  5 Oct 2023 15:09:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="f7cqxCzh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hPvGxVPo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBD2F2E62F
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 15:01:59 +0000 (UTC)
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7742016AA6
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 08:01:57 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9a9f139cd94so186253166b.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 08:01:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1696518116; x=1697122916; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=h8XSo8vWm36LWZ3rSW1zGfYcKapAXqlUUdfuMgk7jlw=;
-        b=f7cqxCzhCWl+McwN/L6frKO5pXV0+jJErdlQn7loB+WtZ82U7+KdT+nty3T0TbXuV7
-         xJW0+9H1E/Gvt/IIx5oLny1eojtuZDpDcuoqHJSbbb1yC/Ya5jOyKFFIS7+e8f1C1ELY
-         xEdsMSDMwEwahji9ycILz0yRMvZJXC9EjZBHQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696518116; x=1697122916;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=h8XSo8vWm36LWZ3rSW1zGfYcKapAXqlUUdfuMgk7jlw=;
-        b=K800qWlk3yDqqa4Lb2WKMWnyfQNDQKSjYLo52m9/tBYaPsTimxKl5chbmY4kwOmEuV
-         0aoP1WG+mSJzhBWPYyTwKwu/GaHbS06p+LEXh+JApEo/uby8+cvziYXCzXNVfbN5TfW9
-         RSeSGiOvwUufbfLNl98Uocuxo2Ndeyr27FtbBe6FpgM7dMqDpv52KPyXHrFt3UwSvLB4
-         bvslWfozR4NLCVUoDbr7f/3xrFrrI5+qFnyHRd3lLBG+xUYCeuVKEgJOHberxhEs5Hb3
-         y1l6mQppWZ9JKfWTByXYkyKydIFQNnHWXnS6cunUADy/+qNmvj5jg4uDH2aY097zhguS
-         j/8Q==
-X-Gm-Message-State: AOJu0Yz0qw2f0Pl9+RtbvOzuoWzyKYy0+8aMD9oKIenKWEdDjt+XMfyj
-	QSpLsRhOHmyMhBZkkXuukL5uVpt6/t6/jljAsAibZQ==
-X-Google-Smtp-Source: AGHT+IFI48BhuG1G9AcuKAA3kW3STHzt2tYWan2TMR0zXe+CE2tzMeLHhTwaWbF+UTvq43r1Tk83kFqtaBcaiUN3uyg=
-X-Received: by 2002:a17:907:9802:b0:9ae:56ad:65a7 with SMTP id
- ji2-20020a170907980200b009ae56ad65a7mr5692569ejc.45.1696518115514; Thu, 05
- Oct 2023 08:01:55 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15F5730CEC
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 15:09:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05297C433C8;
+	Thu,  5 Oct 2023 15:09:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696518549;
+	bh=5YVMBG6JswPWpw0WjpEGMYStxOrvWp+YdPZGxHSzB60=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=hPvGxVPoi3bmo4IgBvP0RsxJoNzqNanBnL7XLsRPatP1wWERT5+V2Yf2EZuj4+uMH
+	 LJgqH5n3JHOsByOiMd/bhO/mBlH7xfu/AegztZaA2HC+zHoJFnzPFVfTkzpp8CAzm1
+	 FbDQPGD3C8iywGD6p2MOJgO4adX7pI/Eb5U9BL0AtJH8/zTli+0U1vUWW6BGFQRRHd
+	 u6r5G0aL706HLTxljz6xFD1uLqqAyoNMidzplDf9M7+33ZWYU2ZX+L7z1W8V5Z9fqo
+	 ej1wyjqq9fJajpBh0VvX6owPFKLQZ7mmDZF0HTFtb4ZhaY+bx2d/rz4uPonNc1Cbgz
+	 UT/AizHg3tjog==
+Date: Thu, 5 Oct 2023 10:09:07 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, jingoohan1@gmail.com,
+	gustavo.pimentel@synopsys.com, mani@kernel.org,
+	marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Serge Semin <fancer.lancer@gmail.com>
+Subject: Re: [PATCH v23 13/16] PCI: dwc: rcar-gen4: Add R-Car Gen4 PCIe
+ controller support for host mode
+Message-ID: <20231005150907.GA746291@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231004093620.2b1d6917@xps-13> <20231004113458.531124-1-mwalle@kernel.org>
- <CAPnjgZ2hWE6Sc=rg55W=-r-TnoWP7Y5gSpn41kwoyja-AMVw+w@mail.gmail.com>
- <9e588e3ec8c0c321a2861723d0d42b9a@kernel.org> <CAPnjgZ20ezipPWAj6bUM9_oCTcX1XzuLqQ7b7-nKjXf1t4p9-Q@mail.gmail.com>
- <a581ef73fa09c6ffeb83a1c1780053bd@kernel.org> <CAPnjgZ2PnKD5m0EgTdEAf-gcK3wuBZvWw_AO2iehb1dmfdoz3A@mail.gmail.com>
-In-Reply-To: <CAPnjgZ2PnKD5m0EgTdEAf-gcK3wuBZvWw_AO2iehb1dmfdoz3A@mail.gmail.com>
-From: Simon Glass <sjg@chromium.org>
-Date: Thu, 5 Oct 2023 09:01:38 -0600
-Message-ID: <CAPnjgZ1rbXgAK94KfMi4wp3=jcug9CHyDzZuhqbuzrBiMmrhTA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: mtd: fixed-partitions: Add binman compatible
-To: Michael Walle <mwalle@kernel.org>
-Cc: miquel.raynal@bootlin.com, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org, 
-	linux-mtd@lists.infradead.org, ptyadav@amazon.de, rafal@milecki.pl, 
-	richard@nod.at, robh+dt@kernel.org, robh@kernel.org, trini@konsulko.com, 
-	u-boot@lists.denx.de, vigneshr@ti.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_IN_DEF_SPF_WL autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230926122431.3974714-14-yoshihiro.shimoda.uh@renesas.com>
 
-Hi Michael,
+On Tue, Sep 26, 2023 at 09:24:28PM +0900, Yoshihiro Shimoda wrote:
+> Add R-Car Gen4 PCIe controller support for host mode.
+> 
+> This controller is based on Synopsys DesignWare PCIe. However, this
+> particular controller has a number of vendor-specific registers, and as
+> such, requires initialization code like mode setting and retraining and
+> so on.
+> 
+> [kwilczynski: commit log]
+> Link: https://lore.kernel.org/linux-pci/20230825093219.2685912-17-yoshihiro.shimoda.uh@renesas.com
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Signed-off-by: Krzysztof Wilczyński <kwilczynski@kernel.org>
 
-On Thu, 5 Oct 2023 at 07:28, Simon Glass <sjg@chromium.org> wrote:
->
-> Hi Michael,
->
-> On Thu, 5 Oct 2023 at 02:54, Michael Walle <mwalle@kernel.org> wrote:
-> >
-> > Hi,
-> >
-> > >> >> >> Add a compatible string for binman, so we can extend fixed-partitions
-> > >> >> >> in various ways.
-> > >> >> >
-> > >> >> > I've been thinking at the proper way to describe the binman partitions.
-> > >> >> > I am wondering if we should really extend the fixed-partitions
-> > >> >> > schema. This description is really basic and kind of supposed to remain
-> > >> >> > like that. Instead, I wonder if we should not just keep the binman
-> > >> >> > compatible alone, like many others already. This way it would be very clear
-> > >> >> > what is expected and allowed in both cases. I am thinking about
-> > >> >> > something like that:
-> > >> >> >
-> > >> >> >       Documentation/devicetree/bindings/mtd/partitions/brcm,bcm4908-partitions.yaml
-> > >> >> >
-> > >> >> > this file is also referenced there (but this patch does the same, which
-> > >> >> > is what I'd expect):
-> > >> >> >
-> > >> >> >       Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
-> > >> >> >
-> > >> >> > I'll let the binding maintainers judge whether they think it's
-> > >> >> > relevant, it's not a strong opposition.
-> > >> >>
-> > >> >> What is the overall goal here? To replace the current binman node
-> > >> >> which is
-> > >> >> usually contained in the -u-boot.dtsi files? If one is using binman to
-> > >> >> create an image, is it expected that one needs to adapt the DT in
-> > >> >> linux?
-> > >> >> Or will it still be a seperate -u-boot.dtsi? > Because in the latter
-> > >> >> case
-> > >> >> I see that there will be conflicts because you have to overwrite the
-> > >> >> flash node. Or will it be a seperate node with all the information
-> > >> >> duplicated?
-> > >> >
-> > >> > The goal is simply to have a full binding for firmware layout, such
-> > >> > that firmware images can be created, examined and updated. The
-> > >> > -u-boot.dtsi files are a stopgap while we sort out a real binding.
-> > >> > They should eventually go away.
-> > >>
-> > >> You haven't answered whether this node should be a seperate binman
-> > >> node - or if you'll reuse the existing flash (partitions) node(s) and
-> > >> add any missing property there. If it's the latter, I don't think
-> > >> compatible = "binman", "fixed-partitions"; is correct.
-> > >
-> > > My intent is to make it compatible, so wouldn't it make sense to have
-> > > binman as the first compatible, then falling back to fixed-partitions
-> > > as the second?
-> >
-> > As far as I know, the compatibles should get more specific with each
-> > string.
->
-> That's the opposite to what I understood.
->
-> > But "binman" seems to be used as a kind of tag which could be
-> > added to any compatible under the flash node. What if one wants to build
-> > an image which isn't compatible = "fixed-partitions"? E.g.
-> > "linksys,ns-partitions", will it then have
-> > compatible = "binman", "linksys,ns-partitions"?
->
-> I suppose so.
->
-> >
-> >
-> > >> >> Maybe (a more complete) example would be helpful.
-> > >> >
-> > >> > Can you please be a bit more specific? What is missing from the
-> > >> > example?
-> > >>
-> > >> Like a complete (stripped) DTS. Right now I just see how the
-> > >> individual
-> > >> node looks like. But with a complete example DTS, my question from
-> > >> above
-> > >> would have been answered.
-> >
-> > So to give an example myself, please correct it if it's wrong. From
-> > our board (kontron-sl28):
-> >
-> > &fspi {
-> >          status = "okay";
-> >
-> >          flash@0 {
-> >                  compatible = "jedec,spi-nor";
-> >                  m25p,fast-read;
-> >                  spi-max-frequency = <133000000>;
-> >                  reg = <0>;
-> >                  /* The following setting enables 1-1-2 (CMD-ADDR-DATA)
-> > mode */
-> >                  spi-rx-bus-width = <2>; /* 2 SPI Rx lines */
-> >                  spi-tx-bus-width = <1>; /* 1 SPI Tx line */
-> >
-> >                  partitions {
-> >                          compatible = "fixed-partitions";
-> >                          #address-cells = <1>;
-> >                          #size-cells = <1>;
-> >
-> >                          partition@0 {
-> >                                  reg = <0x000000 0x010000>;
-> >                                  label = "rcw";
-> >                                  read-only;
-> >                          };
-> >
-> >                          partition@10000 {
-> >                                  reg = <0x010000 0x1d0000>;
-> >                                  label = "failsafe bootloader";
-> >                                  read-only;
-> >                          };
-> >
-> >                          partition@200000 {
-> >                                  reg = <0x200000 0x010000>;
-> >                                  label = "configuration store";
-> >                          };
-> >
-> >                          partition@210000 {
-> >                                  reg = <0x210000 0x1d0000>;
-> >                                  label = "bootloader";
-> >                          };
-> >
-> >                          partition@3e0000 {
-> >                                  reg = <0x3e0000 0x020000>;
-> >                                  label = "bootloader environment";
-> >                          };
-> >                  };
-> >          };
-> > };
-> >
-> > In u-boot we use binman, see
-> > arch/arm/dts/fsl-ls1028a-kontron-sl28-u-boot.dtsi
-> > in the u-boot repository.
-> >
-> > Now to use the new method, am I expected to adapt the dts in the
-> > linux kernel? As far as I understand that is the case. So that node
-> > from above would look something like the following:
-> >
-> > &fspi {
-> >          status = "okay";
-> >
-> >          flash@0 {
-> >                  compatible = "jedec,spi-nor";
-> >                  m25p,fast-read;
-> >                  spi-max-frequency = <133000000>;
-> >                  reg = <0>;
-> >                  /* The following setting enables 1-1-2 (CMD-ADDR-DATA)
-> > mode */
-> >                  spi-rx-bus-width = <2>; /* 2 SPI Rx lines */
-> >                  spi-tx-bus-width = <1>; /* 1 SPI Tx line */
-> >
-> >                  partitions {
-> >                          compatible = "binman", "fixed-partitions";
-> >                          #address-cells = <1>;
-> >                          #size-cells = <1>;
-> > [..]
-> >                          partition@210000 {
-> >                                  reg = <0x210000 0x1d0000>;
-> >                                  label = "u-boot"; /* or "u-boot+atf" ?
-> > */
-> >                          };
-> >
-> >                          partition@3e0000 {
-> >                                  reg = <0x3e0000 0x020000>;
-> >                                  label = "bootloader environment";
-> >                          };
-> >                  };
-> >          };
-> > };
-> >
-> > I'm still not sure why that compatible is needed. Also I'd need to
-> > change
-> > the label which might break user space apps looking for that specific
-> > name.
-> >
-> > Also, our board might have u-boot/spl or u-boot/spl/bl31/bl32, right now
-> > that's something which depends on an u-boot configuration variable,
-> > which
-> > then enables or disables binman nodes in the -u-boot.dtsi. So in linux
-> > we only have that "bootloader" partition, but there might be either
-> > u-boot+spl or u-boot+spl+bl31+bl32.
-> >
-> > Honestly, I'm really not sure this should go into a device tree.
->
-> I think we might be getting a bit ahead of ourselves here. I thought
-> that the decision was that the label should indicate the contents. If
-> you have multiple things in a partition then it would become a
-> 'section' in Binman's terminology. Either the label programmatically
-> describes what is inside or it doesn't. We can't have it both ways.
-> What do you suggest?
->
-> At present it seems you have the image described in two places - one
-> is the binman node and the other is the partitions node. I would like
-> to unify these.
+You should never include a signed-off-by from the person you're
+sending the patch *to*; this "Signed-off-by: Krzysztof Wilczyński
+<kwilczynski@kernel.org>" should be added by Krzysztof when he applies
+it.
 
-I should also mention that I originally proposed a binman in the
-/firmware node, but Rob indicated that the /firmware node is not for
-that sort of purpose.
+Whoever applies this, please s/PCI: dwc:/PCI:/ in this subject and the
+"Add endpoint mode support" patch.  No need to include *both* "dwc:"
+and "rcar-gen4".
 
->
-> What does user space do with the partition labels?
->
-> >
-> > >> What if a board uses eMMC to store the firmware binaries? Will that
-> > >> then
-> > >> be a subnode to the eMMC device?
-> > >
-> > > I thought there was a way to link the partition nodes and the device
-> > > using a property, without having the partition info as a subnode of
-> > > the device. But I may have imagined it as I cannot find it now. So
-> > > yes, it will be a subnode of the eMMC device.
-> >
-> > Not sure if that will fly.
->
-> I can't find it anyway. There is somelike like that in
-> simple-framebuffer with the 'display' property.
+> +config PCIE_RCAR_GEN4_HOST
+> +	tristate "Renesas R-Car Gen4 PCIe controller (host mode)"
+> +	depends on ARCH_RENESAS || COMPILE_TEST
+> +	depends on PCI_MSI
+> +	select PCIE_DW_HOST
+> +	select PCIE_RCAR_GEN4
+> +	help
+> +	  Say Y here if you want PCIe controller (host mode) on R-Car Gen4 SoCs.
+> +	  To compile this driver as a module, choose M here: the module will be
+> +	  called pcie-rcar-gen4.ko. This uses the DesignWare core.
 
-Regards,
-Simon
+This should be sorted so the menuconfig prompts are in alpha order.
+
+> + * Manually initiate the speed change. Return true if the change succeeded,
+> + * false if the change didn't finish within certain periods.
+
+"Return 0 if change succeeded; otherwise -ETIMEDOUT".
+
+No need to repost unless somebody suggests more significant rework;
+these can be tweaked when merging.
+
+Thanks a lot for squashing into a single file; that's a major
+simplification.
+
+Bjorn
 
