@@ -1,150 +1,138 @@
-Return-Path: <devicetree+bounces-6125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D4727B9E88
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:08:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7F7E7BA0BF
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:43:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id E02311C2093B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 14:08:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id C86911C2099D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 14:43:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02CE127EEE;
-	Thu,  5 Oct 2023 14:08:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F9072AB59;
+	Thu,  5 Oct 2023 14:43:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="F4FE1PjJ"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="0fcywv3o"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4917227726
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 14:08:46 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5903C63EFE;
-	Thu,  5 Oct 2023 07:08:44 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 395BJ7DL114262;
-	Thu, 5 Oct 2023 06:19:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1696504747;
-	bh=O3H9updDdRZA1n9r7jo5xac1dzx6YqsbyUPWoem2bi0=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=F4FE1PjJyNXeVo5vS5nYLlEjPCgoMzZB0fZgXYnwEzzveDo6GFhwZI972eUp8mZMa
-	 cY+PSWWN52Cyfp2F1fa36KCEjG3A2zRRfb1dolG4rzP8ZK52WspFONbokepOoD96bo
-	 FmRdi58lXtE9dGFBR5rsnUnASOZM6mE23nNjKX5c=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 395BJ7ip073088
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 5 Oct 2023 06:19:07 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 5
- Oct 2023 06:19:07 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 5 Oct 2023 06:19:07 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 395BJ70q073832;
-	Thu, 5 Oct 2023 06:19:07 -0500
-Date: Thu, 5 Oct 2023 06:19:07 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Ayush Singh <ayushdevel1325@gmail.com>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <greybus-dev@lists.linaro.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <gregkh@linuxfoundation.org>,
-        <vaishnav@beagleboard.org>, <jkridner@beagleboard.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v7 1/3] dt-bindings: net: Add ti,cc1352p7
-Message-ID: <20231005111907.ck6rhmuhicrjkifr@elderly>
-References: <20231004184639.462510-1-ayushdevel1325@gmail.com>
- <20231004184639.462510-2-ayushdevel1325@gmail.com>
- <a171cc72-98cf-4f7f-ba86-6da2ac45ea22@linaro.org>
- <aa63918f-3a95-5e86-d61d-91a59cf643ad@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87FD02AB44;
+	Thu,  5 Oct 2023 14:43:37 +0000 (UTC)
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EED518C17;
+	Thu,  5 Oct 2023 07:41:22 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3959P2ic025839;
+	Thu, 5 Oct 2023 13:21:43 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=oOAMUa8QHt1EayBhxponDpCbVvi1SUCV24Wc/HHeOKY=; b=0f
+	cywv3obWAgJQBYEXI4/dgQLqEjH1oy533VfjoI+gYBgTLtAf6qFRJVxNNKjFKepR
+	8zzC8g/Y9YI/KFHVM5G6vxtuYZz4V4S1Q8t6GRCzrtvc0nK5XTR4giRrvrsqHR7I
+	EI3F+rNwk1bq353Ky6z4CkrgW0h8eWolja6fQm4hQ+ABqyXKw+MJwLj4JihHcGKx
+	KrG+2lVhytLQNUjcpZT1Eg4n6FkpEv0tH1OoLvMDEVig9Up2v+fKZejUBs30BABs
+	a7/KYwl4PqvPl7fvK4DvTu9mp5TipcT9JuOIPYDZz3YsYl8cYvMwullXtOyEEyrQ
+	G9TgL9qXzaRhvIALSGLg==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3thtg7gg7j-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 05 Oct 2023 13:21:43 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 21D3510005C;
+	Thu,  5 Oct 2023 13:21:41 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CBA6423C695;
+	Thu,  5 Oct 2023 13:21:41 +0200 (CEST)
+Received: from [10.252.31.76] (10.252.31.76) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 5 Oct
+ 2023 13:21:38 +0200
+Message-ID: <c8bc893c-cb86-6de5-4346-fe48be6ebe86@foss.st.com>
+Date: Thu, 5 Oct 2023 13:21:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <aa63918f-3a95-5e86-d61d-91a59cf643ad@gmail.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_NONE,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2 08/12] net: ethernet: stmmac: stm32: support the
+ phy-supply regulator binding
+Content-Language: en-US
+To: Andrew Lunn <andrew@lunn.ch>
+CC: "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark
+ Brown <broonie@kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20230928122427.313271-1-christophe.roullier@foss.st.com>
+ <20230928122427.313271-9-christophe.roullier@foss.st.com>
+ <12332a87-e8c3-4cf3-849a-080e4e3f4521@lunn.ch>
+From: Christophe ROULLIER <christophe.roullier@foss.st.com>
+In-Reply-To: <12332a87-e8c3-4cf3-849a-080e4e3f4521@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.252.31.76]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-05_08,2023-10-05_01,2023-05-22_02
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 13:51-20231005, Ayush Singh wrote:
-> > > Signed-off-by: Ayush Singh <ayushdevel1325@gmail.com>
-> > > ---
-> > >   .../devicetree/bindings/net/ti,cc1352p7.yaml  | 51 +++++++++++++++++++
-> > >   MAINTAINERS                                   |  6 +++
-> > >   2 files changed, 57 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
-> > > new file mode 100644
-> > > index 000000000000..291ba34c389b
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
-> > > @@ -0,0 +1,51 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/net/ti,cc1352p7.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Texas Instruments Simplelink CC1352P7 wireless MCU
-> > > +
-> > > +description:
-> > > +  The cc1352p7 mcu can be connected via SPI or UART.
-> > > +
-> > > +maintainers:
-> > > +  - Ayush Singh <ayushdevel1325@gmail.com>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: ti,cc1352p7
-> > > +
-> > > +  clocks:
-> > > +    maxItems: 2
-> > > +
-> > > +  clock-names:
-> > > +    description:
-> > > +      sclk_hf is the main system (mcu and peripherals) clock
-> > > +      sclk_lf is low-frequency system clock
-> > This does no go here, but to clocks. I wrote how it should be done.
-> > Don't ignore the feedback.
-> It was suggested to use `clock-names` by Nishanth Menon in the previous
-> email, so I thought this was what it meant. I will remove clock-names if
-> that's better.
 
-Krzysztof was mentioning that the description should be with clocks.
-clock-names would allow for more descriptive dts
+On 9/28/23 19:53, Andrew Lunn wrote:
+>> +static int phy_power_on(struct stm32_dwmac *bsp_priv, bool enable)
+> I find this function name confusing, since 50% of the time it does not
+> actually power the PHY on. You never call it with anything other than
+> a static true/false value. So it might was well be two functions,
+> phy_power_on() and phy_power_off().
 
-> > > +    items:
-> > > +      - const: sclk_hf
-> > > +      - const: sclk_lf
-> > > +
-> > > +  reset-gpios: true
-> > 
-> > No, really, why do you change correct code into incorrect one? Who asked
-> > you to drop maxItems?
-> I found that many bindings (`display/ilitek,ili9486.yaml`,
-> `iio/dac/adi,ad5758.yaml`) use this pattern instead of `maxItems` for
-> `reset-gpios`. So I assumed it was some sort of convention. I will change it
-> back to `maxItems`.
+Hi,
 
-maxItems restrict the number of GPIOs to the ones that are actually
-needed for the peripheral.
+I wanted to keep same implementation of all others Ethernet glues 
+(dwmac-rk.c ...) to be consistent.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+>> +{
+>> +	int ret;
+>> +	struct device *dev = bsp_priv->dev;
+>> +
+>> +	if (!bsp_priv->regulator)
+>> +		return 0;
+>> +
+>> +	if (enable) {
+>> +		ret = regulator_enable(bsp_priv->regulator);
+>> +		if (ret)
+>> +			dev_err(dev, "fail to enable phy-supply\n");
+> Not all PHYs are usable in 0 picoseconds. You probably want a delay
+> here. Otherwise the first few accesses to it might not work.
+>
+>        Andrew
+
+You're right I will add a delay.
+
+Thanks
+
+Christophe
+
 
