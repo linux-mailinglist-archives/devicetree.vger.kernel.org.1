@@ -1,137 +1,106 @@
-Return-Path: <devicetree+bounces-6165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5F357BA0CB
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:52:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 704697BA1A6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:54:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 731361C20998
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 14:52:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 21056281DEE
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 14:54:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A33C42AB52;
-	Thu,  5 Oct 2023 14:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C8E2101E9;
+	Thu,  5 Oct 2023 14:54:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uv6KEnn8"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="lY3vUzcE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F1592AB4A;
-	Thu,  5 Oct 2023 14:52:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C6ABC43391;
-	Thu,  5 Oct 2023 14:52:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696517528;
-	bh=UWSMwZTut3ulgdkrQlViyt+e9WAmg8wzX3BDkFVh4Fk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=uv6KEnn88kGqvoYCqaxameFBk/0fMjMdvTUk1fXSuCnAlcj8ae8RF3vM7Ar3kzzCp
-	 n6/MkMtWBfbU4ChNRsWTZjr5Xj1iw5oIGa1pK35iskZTyJ7dyz0E35k1ITwnK49Nui
-	 HTZ0g8I7FCDOIyBlaD8N+j0vo0xBn0f89BZNZjYZFwr+izDD8zxOdhO87K8tH3e4YU
-	 hALtCR3/253I66T56mVGqgpMxWgrBvedcjK+FE22aO/N4tlZ2ywcpzM6wltgDWwROT
-	 9swgT9aojZhsZOjPnOFDWCH+FnSPE5qNbcNGA0f9yJvgXzXgJX+kDkxA0CseIm/UGa
-	 ipR7MghYIfDZg==
-Date: Thu, 5 Oct 2023 15:52:11 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-staging@lists.linux.dev, David Lechner <david@lechnology.com>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Michael Hennerich <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Axel Haslam <ahaslam@baylibre.com>, Philip Molloy
- <pmolloy@baylibre.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 26/27] staging: iio: resolver: ad2s1210: implement
- fault events
-Message-ID: <20231005155211.102a4292@jic23-huawei>
-In-Reply-To: <CAMknhBH4+cUSX_j3-Y0xuTEiZHd3Ke4Zm8FdxLZJwn5gr_d-ug@mail.gmail.com>
-References: <20230929-ad2s1210-mainline-v3-0-fa4364281745@baylibre.com>
-	<20230929-ad2s1210-mainline-v3-26-fa4364281745@baylibre.com>
-	<20230930170046.36637e9c@jic23-huawei>
-	<CAMknhBH4+cUSX_j3-Y0xuTEiZHd3Ke4Zm8FdxLZJwn5gr_d-ug@mail.gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22A962AB53
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 14:54:46 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6802E344B6;
+	Thu,  5 Oct 2023 07:54:25 -0700 (PDT)
+Received: from benjamin-XPS-13-9310.. (unknown [IPv6:2a01:e0a:120:3210:4c53:5fd0:f25b:b0dd])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: benjamin.gaignard)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id C73D66607331;
+	Thu,  5 Oct 2023 15:54:23 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1696517664;
+	bh=F9sFnhe+57/E8C+QJ0cI/glDDOJt5cWzzhvbcEd44Ns=;
+	h=From:To:Cc:Subject:Date:From;
+	b=lY3vUzcEyIqRx98mguxeDEJLRoc2xL7klMc1LBGuC653yii12PciBPF5PEimHUnbR
+	 MKPLkJEtS9ccGR1SKXhg0b2dfyzqozJ89GR5vozII0IcelwEKmVHWAM9jsDfP3NglF
+	 Cw6pv4hSEb6fWn+yZKJs3VeB4WChmm1l9iXCb7qcarQddV7tMhMP9ncnYQ1S66tKH6
+	 FLPSaD6ze4mLAQGVHrW/yadqJJ5KxrmrYU9Bo+RizCH7Yz9NlRvQMBUa41czZFGZ7r
+	 K1bxll2ZGNLL3Skd7+h6FMCW9AqXSwgcSGRrCyG7KBpHcGKdSpCdZ+eHnr49y1EpOn
+	 w12VoIzIUY0zg==
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	kernel@collabora.com,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: [PATCH] arm64: dts: rockchip: rk3588is: Add AV1 decoder node
+Date: Thu,  5 Oct 2023 16:54:20 +0200
+Message-Id: <20231005145420.169594-1-benjamin.gaignard@collabora.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Mon, 2 Oct 2023 11:58:17 -0500
-David Lechner <dlechner@baylibre.com> wrote:
+Add node for AV1 video decoder.
 
-> On Sat, Sep 30, 2023 at 11:00=E2=80=AFAM Jonathan Cameron <jic23@kernel.o=
-rg> wrote:
-> >
-> > On Fri, 29 Sep 2023 12:23:31 -0500
-> > David Lechner <dlechner@baylibre.com> wrote:
-> > =20
-> > > From: David Lechner <david@lechnology.com>
-> > >
-> > > From: David Lechner <dlechner@baylibre.com>
-> > >
-> > > When reading the position and velocity on the AD2S1210, there is also=
- a
-> > > 3rd byte following the two data bytes that contains the fault flag bi=
-ts.
-> > > This patch adds support for reading this byte and generating events w=
-hen
-> > > faults occur.
-> > >
-> > > The faults are mapped to various channels and event types in order to
-> > > have a unique event for each fault.
-> > >
-> > > Signed-off-by: David Lechner <dlechner@baylibre.com> =20
-> >
-> > Use of x and y modifiers is a little odd.  What was your reasoning?
-> > Was it just that there was a X_OR_Y modifier?  If so, don't use that!
-> > It seemed like a good idea at the time, but it's not nice to deal with
-> > and requires a channel with that modifier to hang the controls off
-> > + make sure userspace expects that event code. =20
->=20
->=20
-> Regarding the point about "requires a channel with that modifier to
-> hang the controls off...". Although that comment was about modifiers,
-> does it also apply in general.
->=20
-> There are several fault events that don't have any configurable
-> parameters, namely _sine/cosine inputs clipping_ and _velocity exceeds
-> max tracking rate_. So there won't be any attributes that contain the
-> event specification for those (e.g. no `events/in_angl0_*`
-> attributes). It sounds like this would be a problem as well?
+Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-It's fine to have a channel that doesn't have controls or the ability
-to be read.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+index 5544f66c6ff4..835e66d85d5f 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+@@ -2304,6 +2304,20 @@ gpio4: gpio@fec50000 {
+ 			#interrupt-cells = <2>;
+ 		};
+ 	};
++
++	av1d: av1d@fdc70000 {
++		compatible = "rockchip,rk3588-av1-vpu";
++		reg = <0x0 0xfdc70000 0x0 0x800>;
++		interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH 0>;
++		interrupt-names = "vdpu";
++		clocks = <&cru ACLK_AV1>, <&cru PCLK_AV1>;
++		clock-names = "aclk", "hclk";
++		assigned-clocks = <&cru ACLK_AV1>, <&cru PCLK_AV1>;
++		assigned-clock-rates = <400000000>, <400000000>;
++		resets = <&cru SRST_A_AV1>, <&cru SRST_P_AV1>, <&cru SRST_A_AV1_BIU>, <&cru SRST_P_AV1_BIU>;
++		power-domains = <&power RK3588_PD_AV1>;
++		status = "okay";
++	};
+ };
+ 
+ #include "rk3588s-pinctrl.dtsi"
+-- 
+2.39.2
 
-We do have history of doing what you have here (a couple
-of accelerometers do it) but it's esoteric and rather hard for userspace
-to comprehend so I'd rather not introduce it for other types of devices.
-
-I think we should go with the most flexible option of allowing
-events to trigger when they 'may be true' to incorporate this case.
-Unfortunately I can't see another option that would scale to all the
-random combinations of events that might occur.  There are all sorts
-of extensions we could make to the event descriptions, but only at the
-cost of breaking backwards compatibility and simplicity.
-
-SWith hindsight the whole IIO_MOD_X_OR_Y_OR_Z mess was a design error :(
-We can teach userspace code about that quirk for accelerations where
-the one that would be hard to handle is the AND case used for
-freefall detectors (you detect that the signal magnitude is near 0 for
-all axes).  I can't think of another option for that one other than
-the weird modifier (unlike this case)
-
->=20
-> Should we consider a IIO_EV_INFO_LABEL so that we can have some sort
-> of attribute (namely `events/<dir>_<channel spec>_label`) so that
-> userspace can enumerate expected events for non-configurable events?
-
-Probably needs something similar to channel labelling, so a separate
-callback given we don't handle strings, but sure something like this
-would be useful and provide 'hints' along the lines of what the
-datasheet calls a particular event.  Not however for what event is sent
-as such info should be apparent from the event naming.
-
-Jonathan
 
