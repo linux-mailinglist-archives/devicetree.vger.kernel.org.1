@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-6058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87D0D7B9C6E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 12:13:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DD377B9C6F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 12:13:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3A3A1281D0D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 10:13:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id B58BCB20973
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 10:13:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2177811CBB;
-	Thu,  5 Oct 2023 10:13:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 983E0125A7;
+	Thu,  5 Oct 2023 10:13:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="AOSkNsIq"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="sTj/yEgr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61F0211CB4
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 10:13:09 +0000 (UTC)
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02on20609.outbound.protection.outlook.com [IPv6:2a01:111:f400:7eb2::609])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7A9F1FEFF;
-	Thu,  5 Oct 2023 03:13:07 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09A3211CB4
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 10:13:16 +0000 (UTC)
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on20630.outbound.protection.outlook.com [IPv6:2a01:111:f400:7e8d::630])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3952021D03;
+	Thu,  5 Oct 2023 03:13:14 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BhlL5y714dGS8lW2WEd6uLP0NwHPRjV+2ZaZe6I0Gy/tQTA09KHe+bKO1tiWx52L9IJiC0ZOeUVz6YwtwAUWwPBXB5zH5Sx9WRTr4Efwqg0PC7FhgvhvTSG+VnJqtcYoY2gI14ZerRRtW2XB+TipZLdn+tdGp/bJICgXEznO+hvdPxQ1NRe9XtCuqOC4YzGNM4TuDbrI1tVThlwm/5VxHkuFEbySaT0xRuLezXNrD2CZMw7ETt1GmJlpPQ5qddXlX6xK4rTE+0bwHqYIkoRP+8HqkBWjet8ifAHMPKK0oVHx6XzySWIz7k82pitsBUz/bAwPy07Axd51Ak8EkPyPXQ==
+ b=meMVXrH73P8aCY3AMwAtLj4hb09AGkpTdsdRdl8NFWnqLUn0POMHh49IAQAdiWatjJxKCBGoDuuUOuDQ/Oaw3rTlMMt/DzIPFvuvVhGvknq+crKdq6Z6h+QjxfT/fXgXoKnbAlh0RpZMkzDqfVZMjeqF2L60wK/jE9zvf1+CWNG7KdhsaEkHmLaRSwLoirfFb+cigkZSPreDmjHqE2dSnLFEj1KCDSw59d6sJ6VUYEJgtXzm7e19AEkApfYB2qUi/FsTirbYTlVzR7VjCLaag+VZhxSRqdpPWE1zpoPGyF+9MT/Al3wHCeIxNrEIGiwky0n3HI0sG6UeSFtwbruXpQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vAdPP6AGOMVIHpt6SpOq9y5zuWl/2/h364Ql4ng3v1U=;
- b=Hsqi0agJP3+SjTMYrNC7QK0ShNVVDGelTZWj/IU9wl7I+Di62mgmMYoLcxL099H5Ianq08DMtJnOzzMr/Na+yTaHvpQc8MRA2rYV6EkjZE7mrFi4wT6JPp7ORSDr3GkONPc01zkddqgRvg++UQjdiG8P/0R2NJxxsoC+AZlhVHb1rUkS8Adx0Sa18qLA5w8JHIxQ7N8s7wfi349JlRZ1t3yxF5GhGlMkZjxBhTZGuf22ywW4p9+THpznyN03JdWW+6S0syAK5PWDtuUTJYGPe3e/1EVaTNbtDOlDHPi6M5XpHSbY5CLPIMxRX05jtMLF9ehugyc0dca35CzRoH4XyQ==
+ bh=crF9syLzrsh29YMf9SO5rhjeVWlnX4EhIXqYmU66Ko0=;
+ b=UcudvmUVyjzv48vNGg8Qrdkp72ISpDuFhQKW+nL51QKrdZvdmek8KXfAFANHNqD6KZmQEXH11BZ/VSHz/BogXQTGlWVKAs4f9rnAnI3jma2De2HcbkUbV/p2cqtwUUe4490cm/dhHzVVMWYWF41sVxouYmzmhobd8nsSrCYOiuDg+IEAkEiDCXoiVxKbXZiA3vAgjDt4AQhhuMlGQJQqkLX38fdAsOcDVl5GA7X1NbkoCpA/nChrihdsQrC6N3v+/F6+pdH7FAHobqXCexfu+eruEFHOuoycfdNFtZZOxfIfeWCzHEbJqulbRnuABOea9hpcrN5lImImY9oSPbseBg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vAdPP6AGOMVIHpt6SpOq9y5zuWl/2/h364Ql4ng3v1U=;
- b=AOSkNsIqYO4D7ZM2qJe82K8Wz9Y+Xq0exwPeSJ0EDHleWxGDKIFjrfXydad3bNK4RYeSFZNUWcmxnw42X3dMLiFqBWrz0mjvjdO2pRVCuN58l8l2zoHSRe7TB/k+f6OkUPW0UOJlgEYYSl8oGC0g8wQv7uWLLS+JxvKQ3bMLLXE=
-Received: from BL0PR05CA0029.namprd05.prod.outlook.com (2603:10b6:208:91::39)
- by LV2PR12MB5895.namprd12.prod.outlook.com (2603:10b6:408:173::14) with
+ bh=crF9syLzrsh29YMf9SO5rhjeVWlnX4EhIXqYmU66Ko0=;
+ b=sTj/yEgrphvHiw8mKMmd0Blj+H5pcSoYfEOsR3kexhLz0cUYlU7tkXe8vvHxMsHfk7J3DYONuupaijd/S3TL0nyv7TWGDhDEsirdNVOJ/LeTyOBdZVO2bEogeGPGQ4YzZ0V47tjsBcBY7ijgebwkTBQkEOI7xdORZ1MZAjKkQOo=
+Received: from MN2PR04CA0022.namprd04.prod.outlook.com (2603:10b6:208:d4::35)
+ by CH2PR12MB4232.namprd12.prod.outlook.com (2603:10b6:610:a4::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.25; Thu, 5 Oct
- 2023 10:12:52 +0000
-Received: from MN1PEPF0000F0E1.namprd04.prod.outlook.com
- (2603:10b6:208:91:cafe::9e) by BL0PR05CA0029.outlook.office365.com
- (2603:10b6:208:91::39) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.26 via Frontend
- Transport; Thu, 5 Oct 2023 10:12:52 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.27; Thu, 5 Oct
+ 2023 10:12:55 +0000
+Received: from MN1PEPF0000F0DF.namprd04.prod.outlook.com
+ (2603:10b6:208:d4:cafe::5f) by MN2PR04CA0022.outlook.office365.com
+ (2603:10b6:208:d4::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.33 via Frontend
+ Transport; Thu, 5 Oct 2023 10:12:55 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -53,16 +53,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
- MN1PEPF0000F0E1.mail.protection.outlook.com (10.167.242.39) with Microsoft
+ MN1PEPF0000F0DF.mail.protection.outlook.com (10.167.242.37) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6838.21 via Frontend Transport; Thu, 5 Oct 2023 10:12:52 +0000
+ 15.20.6838.22 via Frontend Transport; Thu, 5 Oct 2023 10:12:55 +0000
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 5 Oct
- 2023 05:12:51 -0500
+ 2023 05:12:54 -0500
 Received: from xhdshubhraj40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Thu, 5 Oct 2023 05:12:48 -0500
+ Transport; Thu, 5 Oct 2023 05:12:51 -0500
 From: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
 To: <linux-edac@vger.kernel.org>
 CC: <git@amd.com>, <devicetree@vger.kernel.org>,
@@ -70,10 +70,12 @@ CC: <git@amd.com>, <devicetree@vger.kernel.org>,
 	<robh+dt@kernel.org>, <conor+dt@kernel.org>, <bp@alien8.de>,
 	<tony.luck@intel.com>, <james.morse@arm.com>, <mchehab@kernel.org>,
 	<rric@kernel.org>, <michal.simek@amd.com>
-Subject: [PATCH v9 0/2] edac: xilinx: Added EDAC support for Xilinx DDR controller
-Date: Thu, 5 Oct 2023 15:42:40 +0530
-Message-ID: <20231005101242.14621-1-shubhrajyoti.datta@amd.com>
+Subject: [PATCH v9 1/2] dt-bindings: memory-controllers: Add support for Xilinx Versal EDAC for DDRMC
+Date: Thu, 5 Oct 2023 15:42:41 +0530
+Message-ID: <20231005101242.14621-2-shubhrajyoti.datta@amd.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20231005101242.14621-1-shubhrajyoti.datta@amd.com>
+References: <20231005101242.14621-1-shubhrajyoti.datta@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,102 +85,123 @@ MIME-Version: 1.0
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0E1:EE_|LV2PR12MB5895:EE_
-X-MS-Office365-Filtering-Correlation-Id: c26fe05d-a57b-4a9d-bd26-08dbc58ba288
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0DF:EE_|CH2PR12MB4232:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2d1baaac-eab7-431b-78d2-08dbc58ba4a5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	7JwftEMjinYYs+RPIbHRny9NeCXMbkLiPNnSpM+Z9P9T7hZbgqR50V4ZwXN0U93xpicooWS8ruTcmd2H4tB4qgUa1QoLJrx4qpjyJ8IW+/MO5ohdKrGdV679vopEvJVc+Nl4B1rgj3ZLl3IiZWwFQQIHPjNUzIvVx6lSkUedHz4gJHXqjzu5IGm18Rxb086C978gq+/wD5xKqQkZMivheKUZasrxnaCP7ipcBIuPLT4l02zW+FUcAZVIEO4T4rKm2mCbVBQMLxkXhiMRqy6ghNtd0dKqdGN/jI+rX/QcrKK9QSLmMZsQ0R0X1A3wIbrkzIzLxBDX0FjYhHWXUBOBxDdBkpmk2jErRkGeVbSBsVBA8iGGGrY5wYbXsytIX9Acuw5bcNsTqAGFMO5GAWdUgLmbTiLLdUe/m9Iu1BrYiYoNEaOTy8hzVsduXrLYUFfajUNQ0Z//DqafHSv/t+j53bP6dwQZnOK8DPaDiIRrMb+vqUxydhDo/mMNHPqNbNU3bvDERUBn+EM9HyAkTKVRTHNxjPnfXvpDmBSXnaU2/f1tTCtZVQKq7Uy8nHfvjg6nvuNJAG9YLbFQkQLvhoRrCpv5I4mhZGdFUuTCXmlVDVDrtrelEORWz4pzy9N2Au8Q/RPiTEOrMMy4taJm21fBEY94OWJzz/UrqRDgi/52IpZCDC8fUTIVPLY9ZPsYPaT7whEfvax0v/fODRa+4DSdXuuRd0MxgubCAXYrjpXo1PWoNTXb/q/ick7GVTFI7LQgK/SJnGrwwNnghBLHWuAZDA==
+	xylfc26VBkcv6adMwkydl3mbS1wX4Y488AekF/tnaA6bzmGJsckU7mdFQzKuA7XOtlV6EWW8IlBXabcWE50CxyMnoVuVK3OElVxteCYvFjGpiQUkZtVZlMwrG2K3PSXLIc4yBPL8RJlAu6WnIze3BmZ1iKgqVlfGn2nosgD8J2h4r4lutq9vQZkQ75ZFo246mcafpMJ4+31kNSF9/t3Zd+cC0CH+p57sDxGF/MI0xhaa49rB6GLjvlbfytQai7PsgOSfMOsOW8of0+olyWgTe2K6SrzvSAQ7PfYezxdaE8ZDhvy/jX/dnlqQN/SbLDbR23L26EItVtqDglSYudC3ysU3lMpgolmRmBCNAUJuWR9olPndYfyouRSNpDtDGlaaRAkzL0tpOIhU9kxYrlpzKrnR6Zop20mBRT1piYsCfVUfgYaNfnCh1FswOgiyVWcp81jVZMS4sFtcu0O2W4QpGzOlDR/jXqlsiQl192xmI3vwj6GzwHy545uvxqf0iyefuH2HtJ11mvEIXR9JYUdV+Z4YdLj5k6bIMYdeJqvMAOxQb6We3Yv8vCPG8CCsvb1KXZRgN+uCKgqevpQFWxYb3GehwZdmztcB2EMee4Axlsqjl7tQa4JX+AlHER+oxZTpgTU2XFTrRLX59xnngQ7ZuG92XfS0slFre92vCjpvrhwxVp3ppkAm0WTVBALRzzDVxM3+aCJ7QAHR7esopbAwzYIOO8jgDGurKHkoZvYM7265x6DQ/kG35ofj3Od9vQWgCNNdE/+hpA5xasLkHlQj4YAqwqoXrp3bu+U7lDbPwQE=
 X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(136003)(346002)(376002)(396003)(39860400002)(230922051799003)(451199024)(186009)(82310400011)(1800799009)(64100799003)(40470700004)(36840700001)(46966006)(83380400001)(356005)(40480700001)(26005)(1076003)(336012)(426003)(81166007)(82740400003)(44832011)(8936002)(41300700001)(70206006)(5660300002)(2906002)(8676002)(316002)(86362001)(4326008)(6916009)(2616005)(7416002)(36756003)(54906003)(70586007)(6666004)(478600001)(47076005)(40460700003)(36860700001)(36900700001);DIR:OUT;SFP:1101;
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(39860400002)(346002)(136003)(396003)(376002)(230922051799003)(64100799003)(451199024)(1800799009)(82310400011)(186009)(36840700001)(40470700004)(46966006)(2906002)(44832011)(7416002)(4326008)(5660300002)(8936002)(8676002)(41300700001)(70586007)(70206006)(2616005)(40460700003)(316002)(6916009)(54906003)(36860700001)(40480700001)(26005)(336012)(426003)(36756003)(6666004)(1076003)(356005)(81166007)(82740400003)(83380400001)(86362001)(47076005)(478600001)(966005)(36900700001);DIR:OUT;SFP:1101;
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Oct 2023 10:12:52.0740
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Oct 2023 10:12:55.6022
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c26fe05d-a57b-4a9d-bd26-08dbc58ba288
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2d1baaac-eab7-431b-78d2-08dbc58ba4a5
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	MN1PEPF0000F0E1.namprd04.prod.outlook.com
+	MN1PEPF0000F0DF.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5895
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4232
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_NONE,URIBL_BLOCKED
-	autolearn=no autolearn_force=no version=3.4.6
+	SPF_HELO_PASS,SPF_NONE,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Add device tree bindings for Xilinx Versal EDAC for DDR
+controller.
 
-The integrated DDR Memory Controllers (DDRMCs) support both DDR4 and
-LPDDR4/4X memory interfaces. It has four programmable NoC interface
-ports and is designed to handle multiple streams of traffic.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Co-developed-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
 
-Optional external interface reliability include ECC error
-detection/correction and command address parity.
+---
 
-Adding edac support for DDR Memory controller.
-
-
-Changes in v9:
-Update put the disable_irq out of DEBUG flag.
-Make the union packed
-Update the wording in the Kconfig
-
-Changes in v8:
-remove disabling all interrupts
+(no changes since v7)
 
 Changes in v7:
 Update the subject to add memory-controllers instead of edac
-Update the message
-Clear status after handling the error
-At probe disable all the unrequested interrupts.
-Alphabetically sorted diff
-Rename unCorrectable to uncorrectable
-Use mask0 for  GENMASK(0,5)
-Add a processbit function
-
-Changes in v6:
-Fix the warn.
-
-Changes in v5:
-Update subject
 
 Changes in v4:
 Update the reviewed by tag
-Update the subject
-rename the driver file.
-fix the debugfs file.
-fix unneeded capitalisation.
-refactor code
-
-Changes in v3:
-Rebased and resent.
 
 Changes in v2:
 remove edac from compatible
 Update the description
 update the ddrmc_base and ddrmc_noc_base names
-Update a missed out file
-remove edac from compatible name
-rename ddrmc_noc_base and ddrmc_base
 
-Shubhrajyoti Datta (2):
-  dt-bindings: memory-controllers: Add support for Xilinx Versal EDAC
-    for DDRMC
-  EDAC/versal: Add a Xilinx Versal memory controller driver
-
- .../xlnx,versal-ddrmc-edac.yaml               |   57 +
- MAINTAINERS                                   |    7 +
- drivers/edac/Kconfig                          |   12 +
- drivers/edac/Makefile                         |    1 +
- drivers/edac/versal_edac.c                    | 1065 +++++++++++++++++
- include/linux/firmware/xlnx-zynqmp.h          |   12 +
- 6 files changed, 1154 insertions(+)
+ .../xlnx,versal-ddrmc-edac.yaml               | 57 +++++++++++++++++++
+ 1 file changed, 57 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/memory-controllers/xlnx,versal-ddrmc-edac.yaml
- create mode 100644 drivers/edac/versal_edac.c
 
+diff --git a/Documentation/devicetree/bindings/memory-controllers/xlnx,versal-ddrmc-edac.yaml b/Documentation/devicetree/bindings/memory-controllers/xlnx,versal-ddrmc-edac.yaml
+new file mode 100644
+index 000000000000..12f8e9f350bc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/memory-controllers/xlnx,versal-ddrmc-edac.yaml
+@@ -0,0 +1,57 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/memory-controllers/xlnx,versal-ddrmc-edac.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Xilinx Versal DDRMC (Integrated DDR Memory Controller)
++
++maintainers:
++  - Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
++  - Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
++
++description:
++  The integrated DDR Memory Controllers (DDRMCs) support both DDR4 and LPDDR4/
++  4X memory interfaces. Versal DDR memory controller has an optional ECC support
++  which correct single bit ECC errors and detect double bit ECC errors.
++
++properties:
++  compatible:
++    const: xlnx,versal-ddrmc
++
++  reg:
++    items:
++      - description: DDR Memory Controller registers
++      - description: NOC registers corresponding to DDR Memory Controller
++
++  reg-names:
++    items:
++      - const: base
++      - const: noc
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    bus {
++      #address-cells = <2>;
++      #size-cells = <2>;
++      memory-controller@f6150000 {
++        compatible = "xlnx,versal-ddrmc";
++        reg = <0x0 0xf6150000 0x0 0x2000>, <0x0 0xf6070000 0x0 0x20000>;
++        reg-names = "base", "noc";
++        interrupt-parent = <&gic>;
++        interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>;
++      };
++    };
 -- 
 2.17.1
 
