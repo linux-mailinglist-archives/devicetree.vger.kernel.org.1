@@ -1,64 +1,63 @@
-Return-Path: <devicetree+bounces-6034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A0BD7B9BD5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 10:37:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD83C7B9BDC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 10:41:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 4CB97281ADA
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 08:37:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 6D9F0281A51
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 08:41:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E922B6134;
-	Thu,  5 Oct 2023 08:37:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C859569D;
+	Thu,  5 Oct 2023 08:41:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cSrToVw8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UBwc19S9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 941734A33
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 08:37:55 +0000 (UTC)
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EC05900A
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 01:37:54 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-5334d78c5f6so1154705a12.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 01:37:54 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C44E815C5
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 08:41:51 +0000 (UTC)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFDAF900A
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 01:41:49 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9ae7383b7ecso413431666b.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 01:41:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696495073; x=1697099873; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=PZ2IAXs+NV4UqqHw7Jy4ZwXsLt2VDmjomIfgtc4vYSk=;
-        b=cSrToVw8auCrxGNdGW+/jyxlhp7/rQdKljhkUetkeiJ+ojNKmG0GdnqnzstBiMXUY3
-         AlAr3hWuNScBfFDDTuCVb4isK8E8W5qtCfCru0Lag4V/zGBUegrkDymJDo7zCb3bEd3L
-         lmv7wS6ncFShXnEfYMpIh4vo7EtAr9HHaquE+Qkn8qEz5uUGbub6RzjDKrjWEsdqpHsY
-         KPbwEF6kjuXXY9JJIuGrwCvMwr/3Of4x8WngLnKtzD5WoRwzN/G2TnSFaiMrfe+vkfKM
-         HsyP4cHV4/A7gjHy1lmXVBCE1aQVAqCZHV2BDThxGcaTB0GDBooYGbktIXWKZJwB821V
-         N7ww==
+        d=linaro.org; s=google; t=1696495308; x=1697100108; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mpMZ8XCn+ne5cCWmvcGYC0wPtJ0fj1zQmLPj/s0ZDIo=;
+        b=UBwc19S9LPRkL2+Qasmh6U7/85lx5FlK4xYBs1I/Ltyxw9gJXXisRM0hD+nMu1JWgi
+         pq6VAUq9s7Np2ei58mdoW8e0QNXSLTMe8I0WzR0/pgutoV5q2FCcYcsTeIqGMNSoXEg0
+         msEXyTd0WBy5kgP4bwkApBTZk6fLYEakU1V2b1azsmURi6UEtx2Fg4Hppq21//DTZMbu
+         yADrlcIPgttIVEqbn5q7/Cjd/2Imu6bObXZFV2MkEd/11EWlnGGE+aRwn/pHfMfDAdtT
+         Qo7HtKeWz16T7Z5jKnspo4QmmLikg6MyljqmtQA7ikyQAymSHnaHcAihXyky/n6EcEdA
+         ipPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696495073; x=1697099873;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PZ2IAXs+NV4UqqHw7Jy4ZwXsLt2VDmjomIfgtc4vYSk=;
-        b=wFmy042JHANJEsIfCwLhIwLpNnvfNWh1PY83tkZQH5J4H9FBit3tvJJyvDpPaSNjoc
-         9i2CBE98oJpuuiFsZymU5ba6Y+fttt/6HcvCGcayP2efdKZsn1mSPdxREEs7SeDK769J
-         uZ+gj/5IiMsOR1ll09BShP4YZZQ20mURzsJjTksDg8alu4KbBmnR7X57a5KrSnxPAgPc
-         kAqFH8R745RKAd8osZ85T6wH+Kr5MKcI2faa88v7Y1rbLyNdK6LmUJbykSQhjRTXeslB
-         4Q/7QeSbaVzB0lRGN0OA+AZG3eFki92+zEdt4GmmFyoD4Yhfn7/8orjCJ5Ijs1wtVkfX
-         u9qg==
-X-Gm-Message-State: AOJu0YxfR7EzwfD5WKobWxqRK31iMy6PWAMqyYCxbHVhx7SIzORD3N8q
-	tCg6rl+/rkoeK4/XPKMmWxYTwA==
-X-Google-Smtp-Source: AGHT+IGgvBPzV67ZC91AlRSfp41TBMp3YzMUaUIlSKiKStVyuWyqxi89IpsHLgKTWj2SuewXAVmphg==
-X-Received: by 2002:a17:906:32c5:b0:9ae:4d6d:ba5b with SMTP id k5-20020a17090632c500b009ae4d6dba5bmr4891807ejk.40.1696495072942;
-        Thu, 05 Oct 2023 01:37:52 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1696495308; x=1697100108;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mpMZ8XCn+ne5cCWmvcGYC0wPtJ0fj1zQmLPj/s0ZDIo=;
+        b=I/0zB3cAV2ujnVQGQWFgKnugrwemcTOS8ANz45D/DD+dYyU/pPY/kUlwClguDUI6S8
+         gcw9LctXZK5JFkLzKq9Do/qbioeilDT4zaMuv8WYsvoxEC7w3CflCFvm+P951Jb2T5uL
+         7IQSpkeacDk62XLsHNjuydF8hH1jGSTknHrUdHSOUA72F6Fza8Pl3bVdHVbphM6eH/Ru
+         j72PSOO0YxdwdtohZkQ40VCclyOJYSkZee6JticH5KYpBC9IBGpfiyZuQHlyInSNXjZk
+         FeGztK2hsWG5gOetEtCqwrTqg1kFWNKxc6CbTa0w1Gey4BtqLV8zaU7LPsR2U5hWAxwL
+         /uwA==
+X-Gm-Message-State: AOJu0Yz16fB6qcahg8LFJ3Ua3oggpU3395XN1NYSFDg5TVS8cKHGie3q
+	yRLvRgX1Teh679dkcT1LrX4/gw==
+X-Google-Smtp-Source: AGHT+IEqiO2d/C02JbBC8s678a5N2GA5Anp+2xpQjHmtznYDpmS779F87xnOUT2mkxIJ+Ats3hMIGA==
+X-Received: by 2002:a17:907:5c1:b0:9b2:b80d:da87 with SMTP id wg1-20020a17090705c100b009b2b80dda87mr686284ejb.16.1696495308326;
+        Thu, 05 Oct 2023 01:41:48 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id i8-20020a17090671c800b009a198078c53sm782060ejk.214.2023.10.05.01.37.51
+        by smtp.gmail.com with ESMTPSA id o23-20020a17090611d700b009887f4e0291sm803932eja.27.2023.10.05.01.41.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Oct 2023 01:37:52 -0700 (PDT)
-Message-ID: <00e6e500-bf34-44fd-8f6c-f93bed1b1892@linaro.org>
-Date: Thu, 5 Oct 2023 10:37:50 +0200
+        Thu, 05 Oct 2023 01:41:47 -0700 (PDT)
+Message-ID: <3e0d9d61-43ab-448a-9c28-59b5d710a151@linaro.org>
+Date: Thu, 5 Oct 2023 10:41:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,18 +65,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/3] dt-bindings: net: Add ti,cc1352p7
-To: Ayush Singh <ayushdevel1325@gmail.com>, greybus-dev@lists.linaro.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- gregkh@linuxfoundation.org, vaishnav@beagleboard.org,
- jkridner@beagleboard.org, nm@ti.com, krzysztof.kozlowski+dt@linaro.org,
- vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20231004184639.462510-1-ayushdevel1325@gmail.com>
- <20231004184639.462510-2-ayushdevel1325@gmail.com>
- <a171cc72-98cf-4f7f-ba86-6da2ac45ea22@linaro.org>
- <aa63918f-3a95-5e86-d61d-91a59cf643ad@gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: regulator: regulator-output: Multiple
+ supplies
 Content-Language: en-US
+To: Naresh Solanki <naresh.solanki@9elements.com>,
+ Rob Herring <robh@kernel.org>
+Cc: broonie@kernel.org, zev@bewilderbeest.net,
+ Liam Girdwood <lgirdwood@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20231004120529.1155700-1-naresh.solanki@9elements.com>
+ <20231004151433.GA3145438-robh@kernel.org>
+ <CABqG17in=LKwsDoPRmN5NMNiZ3wU=bbWiyPdunpwph7hgPSxEw@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,50 +123,39 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <aa63918f-3a95-5e86-d61d-91a59cf643ad@gmail.com>
+In-Reply-To: <CABqG17in=LKwsDoPRmN5NMNiZ3wU=bbWiyPdunpwph7hgPSxEw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 05/10/2023 10:21, Ayush Singh wrote:
-
->>> +  clocks:
->>> +    maxItems: 2
->>> +
->>> +  clock-names:
->>> +    description:
->>> +      sclk_hf is the main system (mcu and peripherals) clock
->>> +      sclk_lf is low-frequency system clock
->> This does no go here, but to clocks. I wrote how it should be done.
->> Don't ignore the feedback.
-> It was suggested to use `clock-names` by Nishanth Menon in the previous 
-> email, so I thought this was what it meant. I will remove clock-names if 
-> that's better.
-
-clock-names could stay, but this description belongs to "clocks:" how I
-wrote last time.
-
->>> +    items:
->>> +      - const: sclk_hf
->>> +      - const: sclk_lf
->>> +
->>> +  reset-gpios: true
+On 05/10/2023 09:46, Naresh Solanki wrote:
+> Hi Rob,
+> 
+> 
+> On Wed, 4 Oct 2023 at 20:44, Rob Herring <robh@kernel.org> wrote:
 >>
->> No, really, why do you change correct code into incorrect one? Who asked
->> you to drop maxItems?
-> I found that many bindings (`display/ilitek,ili9486.yaml`, 
+>> On Wed, Oct 04, 2023 at 02:05:26PM +0200, Naresh Solanki wrote:
+>>> Add support for multiple supplies.
+>>
+>> Why?
+> 1. Driver is already capable of that using platform data. Hence added
+> support to read DT property & initialize the same for multiple
+> supplies instead of being limited to one.
 
-Panels are constrained by panel-common.
+I am not sure that's a valid reason. Bindings focus on the hardware. We
+do not describe here driver capabilities.
 
-> `iio/dac/adi,ad5758.yaml`) use this pattern instead of `maxItems` for 
+> 2. This is particularly useful in cases wherein 2 or more regulators
+> are coupled together, for example in a PCIe connector having 3.3V &
+> 12V.
 
-This I fixed now.
-
+Commit message should explain this. Each commit, when not obvious,
+should say why you are doing things.
 
 Best regards,
 Krzysztof
