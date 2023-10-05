@@ -1,170 +1,226 @@
-Return-Path: <devicetree+bounces-6287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFB017BA9FC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 21:22:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8B997BAA0B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 21:25:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 8EF86281B54
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 19:22:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id DA48BB20957
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 19:25:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 425FC4123B;
-	Thu,  5 Oct 2023 19:22:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAC3E4174E;
+	Thu,  5 Oct 2023 19:25:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Lza5/yCd"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="CP+wsGlV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1A3C405FE
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 19:22:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A9A1266D5
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 19:25:23 +0000 (UTC)
 Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D18298
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 12:22:44 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-99de884ad25so246836066b.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 12:22:44 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45B98D4A
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 12:25:15 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9b96c3b4be4so241819066b.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 12:25:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696533763; x=1697138563; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=H2RLmB7g+8qx4harkihCsHRe2Jxdu/epelEM4mwXVSM=;
-        b=Lza5/yCd8OlmWY4bmAEdxNSACxV7Sfm/gDo/KMK/IeDo/WAL7qDWFckzBowjTcgZDH
-         rfhfR5JyIsLKPMjBDRAiN6AMKvPgkkAL1RbzdBHzZfq1yCjuf0SKowYnoxiMNfmbb9us
-         Z12aUNDS42Fqmg+hARkFV58NMhdV016+28FY/nn4gWdKNcoP4qGh9Ds8Irh2WnDzkEtK
-         TZX2B9odY+dGfyn9Bc6yK9O/DjPz6A/boiKfB3BPOCrP/FvGUgdHTD1UM8J+v9MtVOW/
-         IeLlARuDHgI1TUjc8LrDDMqY9407J7vbObOZ1PWg8imBfmfdkVRHQISMHx+H4fPdG7v9
-         g5Og==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1696533913; x=1697138713; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QAIuNzRqeVKL4UBHwUYQTQv/MFOTl6dEpbXD6CCqo5M=;
+        b=CP+wsGlVZz+ZBWwKajzI5e//MDd4smfNBVfr7IWfyq0+QnepCbUxNgZEccvXVHMBZp
+         SJOje4LpCysyu932xIZpREMKVnEPC8KH5viEu01HeG4u8jsPdQ/V0xPRzXXtWZu9X7R+
+         mK28RFL3xFRUho+P+s8qJGLqt19rUgKSsdOF9OCmW5zlLMUVtZyLbZ8od7QeTvK2lMLI
+         mO4ZnejzbzuBvRFR+MtxVO+roPVXOWjHrJPZRn/04VWl3m9L06kCwzgInRmynmB2xZvr
+         4Yn9H5BrMo8A5LjmeFTLJJbIxKwq8TQ3Iz9dvtTFy5HTbrOj+FHfa3fXbQk0qmVIj1bI
+         fnlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696533763; x=1697138563;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=H2RLmB7g+8qx4harkihCsHRe2Jxdu/epelEM4mwXVSM=;
-        b=HejHr76v6h6L7xMHBsWaD22IGQdOna5u4FodVNyAbYnRTFxVWLqYVbAyGxpdH5Tn6P
-         GpD4kQbmou+ca+L5SUVs0LQolAP+f2zsNCxNApzZParzfjoiXelXkzIuZ2TuYaF8cpkx
-         h8Wy/iWUkfQuRe1PkH1YIHU2qCC5TQn91vEkiRReyrYCxjMyenzlAF0aNOXeY6/MkZxP
-         jifghLv/5QvP1ifC+CY3ZlAlxuf5dLrfeXe0zDTyxmyAUVncq7SZ+93dDisiA0RA/koU
-         H/X8SawnKQz/+sDG4VF4ksc87XdQKDApOopRFmjVKu6Me2LgKrNaJBr7ff46vBtxj4k1
-         uajw==
-X-Gm-Message-State: AOJu0Yznr6TP3o32KIZqL6PDWoxsM4BpaViHiN6bd4huwvQo5I8G5WeQ
-	UR/xNot3e4McHWHT39T2QU/jMg==
-X-Google-Smtp-Source: AGHT+IHzCMPH6GCYxav68JKuM4RFSuedz3bF6GTUfGGj4Q7LE6xtvJ+89OJMdsC5nnk7tPBAuRv26A==
-X-Received: by 2002:a17:906:2da:b0:9b7:1e26:e2ea with SMTP id 26-20020a17090602da00b009b71e26e2eamr5297358ejk.41.1696533762679;
-        Thu, 05 Oct 2023 12:22:42 -0700 (PDT)
-Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id rn4-20020a170906d92400b0099bc038eb2bsm1613889ejb.58.2023.10.05.12.22.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Oct 2023 12:22:42 -0700 (PDT)
-Message-ID: <db02684f-c32b-4e09-8752-8d07dcb518c3@linaro.org>
-Date: Thu, 5 Oct 2023 21:22:40 +0200
+        d=1e100.net; s=20230601; t=1696533913; x=1697138713;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QAIuNzRqeVKL4UBHwUYQTQv/MFOTl6dEpbXD6CCqo5M=;
+        b=D0UW5O21ecWcFJz6xy4y3UF51S6C6863VV2773uCdo+slgkHmN+T5xCpAiv3S748f5
+         Zkv12RFLjTD9diYe6SlJlGC1nk0rTPs7tW819NLrN+iJ7TeqvBsc9szC9ss0f6m2rQwi
+         WzWQQxjNO7dLg5SeiPDW4VR7EwRkEUmrr0WjNqjyoDTO4dyRXYO+qfQEUl7dkECpdG01
+         3WeHiFhHGPRJTaZDa3qVGDyoHHt5Kp1Di6Q5+1EP4jw/jzshZa+FuG0/9gQ20ANRaMjm
+         iVox1Ii67bpCNXpGq5YnSDGsrukLmw6W03wi1FM70R7HFxQTiQkwmGJ1xRKFi9oFewkK
+         +MGg==
+X-Gm-Message-State: AOJu0YyUUiXGvXNpmHOy4Ux0gEFn4pljlUYAjF9OA8PDs/ZosqyBuZvr
+	jzTjlUB4MxXwnUXjcHrOq1orp3P7833zRJfv6dsvSg==
+X-Google-Smtp-Source: AGHT+IE/lNkGrp8J2WkjY7FP16+AvJpLMZkj9ptYmYvBvpsK946+tDKXzby/+pwCKElpnR04kI+486BfdcMim4oAt3U=
+X-Received: by 2002:a17:906:3048:b0:9ae:37d9:803e with SMTP id
+ d8-20020a170906304800b009ae37d9803emr5549553ejd.8.1696533913393; Thu, 05 Oct
+ 2023 12:25:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 18/21] arm64: dts: google: Add initial Google gs101 SoC
- support
-Content-Language: en-US
-To: William McVicker <willmcvicker@google.com>,
- Peter Griffin <peter.griffin@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org,
- tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org,
- wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com,
- will@kernel.org, arnd@arndb.de, olof@lixom.net, cw00.choi@samsung.com,
- tudor.ambarus@linaro.org, andre.draszik@linaro.org,
- semen.protsenko@linaro.org, soc@kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-watchdog@vger.kernel.org, gregkh@linuxfoundation.org,
- kernel-team@google.com
-References: <20231005155618.700312-1-peter.griffin@linaro.org>
- <20231005155618.700312-19-peter.griffin@linaro.org>
- <ZR75cIvnQS2cqTT3@google.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZR75cIvnQS2cqTT3@google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+References: <20230929-ad2s1210-mainline-v3-0-fa4364281745@baylibre.com>
+ <20230929-ad2s1210-mainline-v3-22-fa4364281745@baylibre.com>
+ <20230930164251.5c07723c@jic23-huawei> <CAMknhBFKSqXvgOeRjGAOfURzndmxmCffdU6MUirEmfzKqwM_Kg@mail.gmail.com>
+ <20231005153736.2603dbbf@jic23-huawei>
+In-Reply-To: <20231005153736.2603dbbf@jic23-huawei>
+From: David Lechner <dlechner@baylibre.com>
+Date: Thu, 5 Oct 2023 14:25:02 -0500
+Message-ID: <CAMknhBEuX9sA_eHM2xqjGkDDtq-hDMtmmYyqYbER3B42TqWRmw@mail.gmail.com>
+Subject: Re: [PATCH v3 22/27] staging: iio: resolver: ad2s1210: convert LOS
+ threshold to event attr
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-staging@lists.linux.dev, David Lechner <david@lechnology.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Axel Haslam <ahaslam@baylibre.com>, Philip Molloy <pmolloy@baylibre.com>, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 05/10/2023 19:59, William McVicker wrote:
-> On 10/05/2023, Peter Griffin wrote:
->> Google gs101 SoC is ARMv8 mobile SoC found in the Pixel 6,
->> (oriole) Pixel 6a (bluejay) and Pixel 6 pro (raven) mobile
->> phones. It features:
->> * 4xA55 little cluster
->> * 2xA76 Mid cluster
->> * 2xX1 Big cluster
->>
->> This commit adds the basic device tree for gs101 (SoC) and oriole
->> (pixel 6). Further platform support will be added over time.
->>
->> It has been tested with a minimal busybox initramfs and boots to
->> a shell.
->>
+On Thu, Oct 5, 2023 at 9:37=E2=80=AFAM Jonathan Cameron <jic23@kernel.org> =
+wrote:
+>
+> On Mon, 2 Oct 2023 11:09:11 -0500
+> David Lechner <dlechner@baylibre.com> wrote:
+>
+> > On Sat, Sep 30, 2023 at 10:42=E2=80=AFAM Jonathan Cameron <jic23@kernel=
+.org> wrote:
+> > >
+> > > On Fri, 29 Sep 2023 12:23:27 -0500
+> > > David Lechner <dlechner@baylibre.com> wrote:
+> > >
+> > > > From: David Lechner <david@lechnology.com>
+> > > >
+> > > > From: David Lechner <dlechner@baylibre.com>
+> > > >
+> > > > The AD2S1210 has a programmable threshold for the loss of signal (L=
+OS)
+> > > > fault. This fault is triggered when either the sine or cosine input
+> > > > falls below the threshold voltage.
+> > > >
+> > > > This patch converts the custom device LOS threshold attribute to an
+> > > > event falling edge threshold attribute on a new monitor signal chan=
+nel.
+> > > > The monitor signal is an internal signal that combines the amplitud=
+es
+> > > > of the sine and cosine inputs as well as the current angle and posi=
+tion
+> > > > output. This signal is used to detect faults in the input signals.
+> > >
+> > > Hmm. Looking forwards, I'm less sure that we should be shoving all th=
+ese
+> > > error conditions onto one channel. Fundamentally we have
+> > > sine and cosine inputs. I think we should treat those as separate cha=
+nnels
+> > > and include a third differential channel between them.
+> >
+> > At first, I did consider a differential channel as you suggested in
+> > v2. However, the datasheet is quite clear that the LOS and DOS faults
+> > (and only those faults) come from a signal it calls the "monitor
+> > signal". This signal is defined as:
+> >
+> >     Monitor =3D A1 * sin(theta)  * sin(phi) + A2 * cos(theta) * cos(phi=
+)
+> >
+> > where A1 * sin(theta) is the the sine input, A2 * cos(theta) is the
+> > cosine input and phi is the position output. So mathematically
+> > speaking, there is no signal that is the difference between the two
+> > inputs. (See "Theory of Operation" section in the datasheet.)
+>
+> Hmm. That's certainly a bit more complex than I expected.
+> Relying on the brief description led me astray.
+>
+> It's related to the differences in the measured and  as if
+> theta =3D=3D phi and A1 =3D=3D A2 (ideal) then it will be A1.
+>
+> I can see it's relevant to DOS, but not LOS.  The description of LOS
+> seems to overlap a number of different things unfortunately.
+>
 
-William,
+One thing to watch out for in the datasheet is the difference between
+the fault output pins and the fault bits read over the bus. The LOS
+output pin does indicate one or more of multiple faults, but we are
+not currently using that. We are only looking at the fault bits which
+are more granular.
 
-Please do not Cc non-existing mailboxes. You added Cc kernel-team and we
-all got awesome bounces now:
+>
+>
+> >
+> > But if we want to hide these internal details and don't care about a
+> > strict definition of "differential", then what is suggested below
+> > seems fine.
+>
+> Probably best to introduce that monitor signal though we'll have
+> to be a bit vague about what it is which has the side effect that
+> anyone trying to understand what on earth these faults are is going
+> to be confused (having read the datasheet section a couple of times
+> I'm not 100% sure...)
+>
+> >
+> > >
+> > > So this one becomes a double event (you need to signal it on both
+> > > cosine and sine channels).  The DOS overange is similar.
+> > > The DOS mismatch is a threshold on the differential channel giving
+> > >
+> > > events/in_altvoltage0_thresh_falling_value
+> > > events/in_altvoltage1_thresh_falling_value (these match)
+> > > events/in_altvoltage0_thresh_rising_value
+> > > events/in_altvoltage1_thresh_rising_value (matches previous which is =
+fine)
+> > > events/in_altvoltage1-altvoltage0_mag_rising_value
+> > >
+> > > Does that work here?  Avoids smashing different types of signals toge=
+ther.
+> > > We could even do the LOT as differential between two angle channels
+> > > (tracking one and measured one) but meh that's getting complex.>
+> > > Note this will rely on channel labels to make the above make any sens=
+e at all.
+> >
+> > I think this could be OK - I think what matters most is having some
+> > documentation that maps the faults and registers on the chip to the
+> > iio names. Where would the sine/cosine clipping fault fit in though? I
+> > got a bit too creative and used X_OR_Y to differentiate it (see
+> > discussion in "staging: iio: resolver: ad2s1210: implement fault
+> > events"). Strictly speaking, it should probably be a type: threshold,
+> > direction: either event on both the sine and cosine input channels
+> > (another double event) since it occurs if either of the signal exceeds
+> > the power or ground rail voltage. But we already have threshold rising
+> > and threshold falling on these channels with a different meaning. I
+> > guess it could call it magnitude instead of a threshold?
+>
+> Tricky indeed.  Though I guess we only hit the clipping case after
+> LOS or DOS fires or if their thresholds are set too wide (is that
+> even possible?).
 
-"We're writing to let you know that the group you tried to contact
-(kernel-team) may not exist, or you may not have permission to post
-messages to the group. A few more details on why you weren't able to post:"
+I suppose it _could_ be possible on the high side if the AVDD voltage
+supply was selected to be less than the 4.4V max of the threshold
+voltage registers.
 
-Best regards,
-Krzysztof
+> So it is useful to report it as we are already in
+> error? Or can we combine the cases by treating it as a cap on the
+> threshold controls for LOS and DOS?
 
+I found the clipping error useful while developing this driver since
+it help identify that we had a gain setting wrong on the excitation
+output (on the circuit board) which in turn caused the inputs to be
+overdriven. But, yes when this happened, it also always triggered at
+least one or more of the LOS and DOS faults as well.
+
+>
+> Even when they aren't just there for error reporting, designers
+> seem to always come up with new create signals to use for event
+> detection and sometimes it's a real struggle to map them to
+> something general.
+>
+> Jonathan
+>
+>
 
