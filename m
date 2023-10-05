@@ -1,94 +1,135 @@
-Return-Path: <devicetree+bounces-5975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B58DF7B98F6
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 01:55:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF0927B9909
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 02:04:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 663E52814BB
-	for <lists+devicetree@lfdr.de>; Wed,  4 Oct 2023 23:55:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 8A96628196C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 00:04:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BCA7374E1;
-	Wed,  4 Oct 2023 23:55:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27B89173;
+	Thu,  5 Oct 2023 00:04:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YYd4n2yn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BgHKVhAU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD7F9328D4
-	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 23:55:27 +0000 (UTC)
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8DE8FF;
-	Wed,  4 Oct 2023 16:55:21 -0700 (PDT)
-Received: by mail-ot1-x32b.google.com with SMTP id 46e09a7af769-6c6591642f2so70354a34.1;
-        Wed, 04 Oct 2023 16:55:21 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 762637F
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 00:04:12 +0000 (UTC)
+Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE5F4D8;
+	Wed,  4 Oct 2023 17:04:10 -0700 (PDT)
+Received: by mail-io1-xd30.google.com with SMTP id ca18e2360f4ac-79faf4210b2so19620239f.2;
+        Wed, 04 Oct 2023 17:04:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696463721; x=1697068521; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jdaw17TPVHGyiD6Tf0no/oLm7Yt30YHHY3DBw59SSIQ=;
-        b=YYd4n2ynZn5qBiLgpNmfFY1UGdWB5gWI/eURgD+2VQ7o/a8F9fL75IFzYIdx/q6llX
-         94r3xcmB9qQUuJssNwKkcZbFgSfHtFppaUH3MMfyUGLi+X3/vRkEz1nicPhb5Q4/8Xdg
-         nH4BP5s1Zu8ChyLu0x/3ADtVoUMu0h8WyvhQ+ev27tXhs5kNEir1SCFXkDC+QT9lcXtK
-         r6gMZxq/sBahBWMYWcr/PcWA8+sEX+m5f/GuOUloMwH1RD5ZB6wDFpGGnikT6peLdhvh
-         /+EWB7bWY+A6aBQkyLBQDifRqZ0WC4NvAECtUDHC6+9QoRof4dQ37e2sTUWISjL8lAaS
-         0AVg==
+        d=gmail.com; s=20230601; t=1696464249; x=1697069049; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HGDDpzqsvW7aOeRzDYWTlcuECFrpOSpEIaC/TB+7ynk=;
+        b=BgHKVhAUGBrVl9agIOKNnfthmVpQDQZ1mH0B1KqBKc1Ax2v6FvmtuGb/WHwM6XXiag
+         JHXS1OlwcdR2MMBw8yhSDONpBqys/X4h0gOfRoRorP2HM+mQqXeGl3hc+ETWHyB/dneN
+         tPy9fgifXkJoWtEhZmVtBGMvZe3U8MfFjBrK9y4aoFvUiFhn1beOVbSad4uDAsUsBD/3
+         PakHBusnpSj9v0/aXY+8g6+pW5V+USAlosArlcH9jQfLolY9RYLJxV9mDp51Ka8t38De
+         uN+ywsEnqaHyQYNcKbwNBjfJqoF7lf3gzzUDhpb8vC/KhT3cqU0B9arAlbPA74aoPtLt
+         jA+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696463721; x=1697068521;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jdaw17TPVHGyiD6Tf0no/oLm7Yt30YHHY3DBw59SSIQ=;
-        b=n4Zv84plgZgQN5R7rfBjKe9j6wjYaOGNSK7jx1rQSyDUuY4TV6n7er6qWE9HGUXMBq
-         E6iMFEvinx3lUKqIYzWy6Zc2BPxyqwcCf011gq1VdHvbKl3Lax4oNCSYvBwkExiNRuY1
-         7JxmWG3117d4+uK58clfUaIS556O/28r8PqVhlG4qmJc5eYX/a3FHLTr3kp+oYiE+EDS
-         zLJ1OXwTk7t+CrjRRRlTNhAzo9BW/V6ssv5fcTmCjLjD/FXUUN3WjZmSm8rz5mBb2ypT
-         TVt4F9BFZB+Qx0/8fopNIOyABmZPhOTK97fjOjjL4thrgorkIidwxWpHqgdjvWmshTUi
-         Qf9w==
-X-Gm-Message-State: AOJu0YwGBQJjB4cF9XDCuxKOxDr3bb7/RO9UKnRxOgnCr9EvzmXI4e3x
-	+KWSureXaTtzTaToWenC4TM6oDxJ4ENcOF1TYVZgYirsq8Q=
-X-Google-Smtp-Source: AGHT+IGu+C6bXd32JPd8K3bHik/ZwSwKR6Kd0CF97BR3ckZJlN+4uKlr1OG6TaNIANLEdoYDeQTdNIzlsAe0ZuO4BgE=
-X-Received: by 2002:a05:6359:639d:b0:14d:2d2a:97f9 with SMTP id
- sg29-20020a056359639d00b0014d2d2a97f9mr3653612rwb.1.1696463720943; Wed, 04
- Oct 2023 16:55:20 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1696464249; x=1697069049;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HGDDpzqsvW7aOeRzDYWTlcuECFrpOSpEIaC/TB+7ynk=;
+        b=mEGzrf3Z2SoM35T7L29tq5OqWSmvBDpSR36p1nV3+QJRDAzqFkNqT4vxyX2A/PrATa
+         sgfUF1haFFwa1VUC+tMUlLXOUhP9O0YSWLFBk6PHPG4iScUV+7o5gUOxu/vJcaFYNc8f
+         m4vy6j3DAaM8yXMCfwRiAg9E/dY4NvtVj1wdFwQ3zc3ILGd5JjgxDsM7zlKckgScvpNS
+         jO/yEICFrEh5b1/kAlh3gWWerHFje3+iwimPw11fc9uA8bRXZVNwm0QTd/QZG4MSjpMV
+         qTa9WmvVnkuEBB/F67kgjp4SSANPrEgjF2wWII/NYdQwV+aXTdyZaLKP3OitUjbNgF/r
+         BqXw==
+X-Gm-Message-State: AOJu0YxOdzD/p35dCJ5wjBA5mZ7J3xAIQ0Qlc/ESj3CE/690Klfe9b+C
+	5FSobWJ01JWUgCUy8N16t9czm1TdnuM0hA==
+X-Google-Smtp-Source: AGHT+IHwwtYO6TvyCdx9Peqr4gYUFiN1LWR9IJlByaOKxfxPSvI3ifyR2TuGn1lSyJO46a8TxB4zdQ==
+X-Received: by 2002:a6b:dd0d:0:b0:791:1b1c:b758 with SMTP id f13-20020a6bdd0d000000b007911b1cb758mr3785561ioc.19.1696464248186;
+        Wed, 04 Oct 2023 17:04:08 -0700 (PDT)
+Received: from aford-System-Version.lan (c-75-72-166-104.hsd1.mn.comcast.net. [75.72.166.104])
+        by smtp.gmail.com with ESMTPSA id h3-20020a5ecb43000000b0079fdeed3ab6sm56895iok.40.2023.10.04.17.04.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Oct 2023 17:04:07 -0700 (PDT)
+From: Adam Ford <aford173@gmail.com>
+To: linux-omap@vger.kernel.org
+Cc: aford@beaconembedded.com,
+	Adam Ford <aford173@gmail.com>,
+	=?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+	Tony Lindgren <tony@atomide.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"Derald D. Woods" <woods.technical@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH V3 1/2] arm:dts: am3517-evm: Fix LED3/4 pinmux
+Date: Wed,  4 Oct 2023 19:04:01 -0500
+Message-Id: <20231005000402.50879-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231004230159.33527-1-aford173@gmail.com> <20231004230159.33527-2-aford173@gmail.com>
-In-Reply-To: <20231004230159.33527-2-aford173@gmail.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Wed, 4 Oct 2023 20:55:09 -0300
-Message-ID: <CAOMZO5BaxoQ9YcFyzVuhoUsLO=wXpMtZDwrGd-XoCaH9-rj3hg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: imx8mn: Add sound-dai-cells to micfil node
-To: Adam Ford <aford173@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, Oct 4, 2023 at 8:02=E2=80=AFPM Adam Ford <aford173@gmail.com> wrote=
-:
->
-> Per the DT bindings, the micfil node should have a sound-dai-cells
-> entry.
->
-> Fixes: cca69ef6eba5 ("arm64: dts: imx8mn: Add support for micfil")
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+The pinmux for LED3 and LED4 are incorrectly attached to the
+omap3_pmx_core when they should be connected to the omap3_pmx_wkup
+pin mux.  This was likely masked by the fact that the bootloader
+used to do all the pinmuxing.
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+Fixes: 0dbf99542caf ("ARM: dts: am3517-evm: Add User LEDs and Pushbutton")
+Signed-off-by: Adam Ford <aford173@gmail.com>
+---
+V3:  No Change
+V2:  Use current device tree naming convention for led-pins
+
+This likely will require a separate patch to apply to previous file location.
+
+diff --git a/arch/arm/boot/dts/ti/omap/am3517-evm.dts b/arch/arm/boot/dts/ti/omap/am3517-evm.dts
+index af9df15274be..866f68c5b504 100644
+--- a/arch/arm/boot/dts/ti/omap/am3517-evm.dts
++++ b/arch/arm/boot/dts/ti/omap/am3517-evm.dts
+@@ -271,13 +271,6 @@ OMAP3_CORE1_IOPAD(0x21c4, PIN_INPUT_PULLUP | MUX_MODE0)  /* i2c3_sda */
+ 		>;
+ 	};
+ 
+-	leds_pins: leds-pins {
+-		pinctrl-single,pins = <
+-			OMAP3_WKUP_IOPAD(0x2a24, PIN_OUTPUT_PULLUP | MUX_MODE4)	/* jtag_emu0.gpio_11 */
+-			OMAP3_WKUP_IOPAD(0x2a26, PIN_OUTPUT_PULLUP | MUX_MODE4)	/* jtag_emu1.gpio_31 */
+-		>;
+-	};
+-
+ 	mmc1_pins: mmc1-pins {
+ 		pinctrl-single,pins = <
+ 			OMAP3_CORE1_IOPAD(0x2144, PIN_INPUT_PULLUP | MUX_MODE0)	/* sdmmc1_clk.sdmmc1_clk */
+@@ -355,3 +348,12 @@ OMAP3430_CORE2_IOPAD(0x25e2, PIN_INPUT | MUX_MODE3)	/* etk_d3.hsusb1_data7 */
+ 		>;
+ 	};
+ };
++
++&omap3_pmx_wkup {
++	leds_pins: leds-pins {
++		pinctrl-single,pins = <
++			OMAP3_WKUP_IOPAD(0x2a24, PIN_OUTPUT_PULLUP | MUX_MODE4)	/* jtag_emu0.gpio_11 */
++			OMAP3_WKUP_IOPAD(0x2a26, PIN_OUTPUT_PULLUP | MUX_MODE4)	/* jtag_emu1.gpio_31 */
++		>;
++	};
++};
+-- 
+2.40.1
+
 
