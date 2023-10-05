@@ -1,168 +1,148 @@
-Return-Path: <devicetree+bounces-6095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C56F7B9D7A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:45:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86F527B9D89
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:49:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2C010281B26
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 13:45:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 36CCB281CAA
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 13:49:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DDC320B04;
-	Thu,  5 Oct 2023 13:45:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4458F25109;
+	Thu,  5 Oct 2023 13:49:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="HIg40lnU"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iJITAnVa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79D8E20B31
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 13:45:48 +0000 (UTC)
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BEEF28127
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 06:45:46 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-32615eaa312so960286f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 06:45:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1696513545; x=1697118345; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Uj31+jd3gJyWsP/fXObaBtCToRppFqlJAWU3kN9VEy4=;
-        b=HIg40lnUX5e90HGrA4vwjqPCKtO4IC/mgmrds6ldtAHEly9MNugKxNzhiN4rQqJz13
-         BS7eAqfNdiGeydyyQxAtgT9fci2gCfEWDTjxBFcF5cSiRNZbCsyiWss4fWeya6I0fZ6J
-         lITc8xqPOsRCjOKzH64ByCCu81rdvOpvWQ+6RovhE8/ZxTDEcJVoTxkYJSc2wQzz+JRa
-         3eRB8VcZLzwrXx2HAKcltWeStfYDY/crUVxYytWQW0onuIz2OJp1gjMbufnySEfQVYww
-         s5Hvh2g6IelUonIY7uwxi9LaaJ6r6cvGEXUJpbpLBaBCtCqGPUpKQda8luOqJgqXXrqU
-         hpKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696513545; x=1697118345;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Uj31+jd3gJyWsP/fXObaBtCToRppFqlJAWU3kN9VEy4=;
-        b=VfmG1rIaOfsAVcL/XuU6mWgYEEUtjlbu1WyhldgpvfR9hQBXfWttCnkrn3aU7VisHr
-         mzKR6KkUrm8NOJLxx0J3p86DR6cEEbSb6NT2ekDul5wD1Z2WdILNzfmvDEQQKCCKgYWr
-         scUlS2pX1UuuJZL4tH/t+QhN50zCmhlw6RKDQIFxBngWeRtCBTHyZPVSER9qxBQZLBfR
-         f4RXj6hDqY9MtuP8hnSxLVedQvFO+r5vgiC0Nwo5S24CmKZZoSefZJWB/pVLCDWtsWAj
-         vsQ2zJ2MuCBY/SuTa148CA1Ee7wdUt349eoqGNVuA/7L0Ry4EtFkxDBi2I/nhATlxguE
-         bgZA==
-X-Gm-Message-State: AOJu0YyGRsJOw2Tkw/kmB3UO81jcgeOhBQHGyWdobsPr8ltArY4SbaYT
-	pC+B4Y2zghjDg4+j5cUkqjn2sA==
-X-Google-Smtp-Source: AGHT+IGIa4hFNy4A2lBJFQR6ZScq4AlE/Kv0eDGiWp0ZqH/0d7ic1apKJTRq01geLIFmqizzM3U4Kg==
-X-Received: by 2002:a5d:4049:0:b0:319:74d5:a2d7 with SMTP id w9-20020a5d4049000000b0031974d5a2d7mr4227088wrp.32.1696513544908;
-        Thu, 05 Oct 2023 06:45:44 -0700 (PDT)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id d7-20020adfef87000000b0032326908972sm1840961wro.17.2023.10.05.06.45.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Oct 2023 06:45:44 -0700 (PDT)
-From: Naresh Solanki <naresh.solanki@9elements.com>
-To: Peter Rosin <peda@axentia.se>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Patrick Rudolph <patrick.rudolph@9elements.com>,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 1/2] dt-bindings: i2c: pca954x: Add custom properties for MAX7357
-Date: Thu,  5 Oct 2023 15:45:39 +0200
-Message-ID: <20231005134541.947727-1-naresh.solanki@9elements.com>
-X-Mailer: git-send-email 2.41.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C0F223760
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 13:49:16 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55C021997;
+	Thu,  5 Oct 2023 06:49:15 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 395Crnot016177;
+	Thu, 5 Oct 2023 13:49:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Pz0GqpDqSZMui6KOWNYOmZIs7ZEVaF6iscVwRiqliXA=;
+ b=iJITAnVaZUWj4t8T56dL9G/LdGucJ2le8tQwLL2wEWjmWGhloq6uYFbH5at060lk84bh
+ WHDG4s9D510adfvAlTJPtjKoGD0BVMvmM9Jl7cQH3cWQqOH4qnL1MdoyLfKMVtRkZ56+
+ bYIUP7Mqi9VolBzhUt3NbqYpSNmXfGhxQT3uaXB/qkQnX4e6NuFzD3X/cbWjPCdpNoUV
+ eERLbihFnCoRMuxtxsocdORaN8CVe+I/kSpaO64ybMLIQKkR0lISayIRCj/g4jSHNFoC
+ bbsyAWC0Wj+HVxcQSVXRMhlOyxFlGPEUnKFY9CyRrJeKHCx/sqj9f62UgHz+LhU79Bu/ fw== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3thj6ghe3t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 05 Oct 2023 13:49:04 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 395Dn3x4022628
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 5 Oct 2023 13:49:03 GMT
+Received: from [10.216.12.172] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Thu, 5 Oct
+ 2023 06:48:59 -0700
+Message-ID: <6dcb61f6-9be4-4feb-a7dd-44d606fcc480@quicinc.com>
+Date: Thu, 5 Oct 2023 19:18:45 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: ipq5018: add QUP1 SPI controller
+Content-Language: en-US
+To: Robert Marko <robimarko@gmail.com>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20231004191303.331055-1-robimarko@gmail.com>
+From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+In-Reply-To: <20231004191303.331055-1-robimarko@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: iJwaZZ0vxw8Y6w8cw_rERT9pYza4loj8
+X-Proofpoint-ORIG-GUID: iJwaZZ0vxw8Y6w8cw_rERT9pYza4loj8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-05_08,2023-10-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
+ lowpriorityscore=0 suspectscore=0 spamscore=0 malwarescore=0 adultscore=0
+ priorityscore=1501 clxscore=1011 mlxlogscore=916 impostorscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310050108
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Patrick Rudolph <patrick.rudolph@9elements.com>
 
-Maxim Max7357 has a configuration register to enable additional
-features. These features aren't enabled by default & its up to
-board designer to enable the same as it may have unexpected side effects.
+On 10/5/2023 12:42 AM, Robert Marko wrote:
+> Add the required BAM and QUP nodes for the QUP1 SPI controller on IPQ5018.
+>
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> ---
+>   arch/arm64/boot/dts/qcom/ipq5018.dtsi | 24 ++++++++++++++++++++++++
+>   1 file changed, 24 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> index 38ffdc3cbdcd..484034e65f4f 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> @@ -146,6 +146,16 @@ sdhc_1: mmc@7804000 {
+>   			status = "disabled";
+>   		};
+>   
+> +		blsp_dma: dma-controller@7884000 {
+> +			compatible = "qcom,bam-v1.7.0";
+> +			reg = <0x07884000 0x1d000>;
+> +			interrupts = <GIC_SPI 238 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&gcc GCC_BLSP1_AHB_CLK>;
+> +			clock-names = "bam_clk";
+> +			#dma-cells = <1>;
+> +			qcom,ee = <0>;
+> +		};
+> +
+>   		blsp1_uart1: serial@78af000 {
+>   			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
+>   			reg = <0x078af000 0x200>;
+> @@ -156,6 +166,20 @@ blsp1_uart1: serial@78af000 {
+>   			status = "disabled";
+>   		};
+>   
+> +		blsp1_spi1: spi@78b5000 {
+> +			compatible = "qcom,spi-qup-v2.2.1";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0x78b5000 0x600>;
 
-These should be validated for proper functioning & detection of devices
-in secondary bus as sometimes it can cause secondary bus being disabled.
 
-Add booleans for:
- - maxim,isolate-stuck-channel
- - maxim,send-flush-out-sequence
- - maxim,preconnection-wiggle-test-enable
+Please pad the address part to 8 hex digits with leading zeroes. With that,
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
----
-Changes in V4:
-- Drop max7358.
-Changes in V3:
-- Update commit message
-Changes in V2:
-- Update properties.
----
- .../bindings/i2c/i2c-mux-pca954x.yaml         | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
+Reviewed-by: Kathiravan T <quic_kathirav@quicinc.com>
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-index 2d7bb998b0e9..9aa0585200c9 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-+++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-@@ -71,6 +71,23 @@ properties:
-     description: A voltage regulator supplying power to the chip. On PCA9846
-       the regulator supplies power to VDD2 (core logic) and optionally to VDD1.
- 
-+  maxim,isolate-stuck-channel:
-+    type: boolean
-+    description: Allows to use non faulty channels while a stuck channel is
-+      isolated from the upstream bus. If not set all channels are isolated from
-+      the upstream bus until the fault is cleared.
-+
-+  maxim,send-flush-out-sequence:
-+    type: boolean
-+    description: Send a flush-out sequence to stuck auxiliary buses
-+      automatically after a stuck channel is being detected.
-+
-+  maxim,preconnection-wiggle-test-enable:
-+    type: boolean
-+    description: Send a STOP condition to the auxiliary buses when the switch
-+      register activates a channel to detect a stuck high fault. On fault the
-+      channel is isolated from the upstream bus.
-+
- required:
-   - compatible
-   - reg
-@@ -95,6 +112,19 @@ allOf:
-         "#interrupt-cells": false
-         interrupt-controller: false
- 
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - maxim,max7357
-+    then:
-+      properties:
-+        maxim,isolate-stuck-channel: false
-+        maxim,send-flush-out-sequence: false
-+        maxim,preconnection-wiggle-test-enable: false
-+
- unevaluatedProperties: false
- 
- examples:
 
-base-commit: b5d463c0eecb4a690e631fa38cb6771a906f7620
--- 
-2.41.0
-
+> +			interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&gcc GCC_BLSP1_QUP1_SPI_APPS_CLK>,
+> +				 <&gcc GCC_BLSP1_AHB_CLK>;
+> +			clock-names = "core", "iface";
+> +			dmas = <&blsp_dma 4>, <&blsp_dma 5>;
+> +			dma-names = "tx", "rx";
+> +			status = "disabled";
+> +		};
+> +
+>   		intc: interrupt-controller@b000000 {
+>   			compatible = "qcom,msm-qgic2";
+>   			reg = <0x0b000000 0x1000>,  /* GICD */
 
