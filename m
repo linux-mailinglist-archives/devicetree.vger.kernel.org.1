@@ -1,192 +1,166 @@
-Return-Path: <devicetree+bounces-6257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6258-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63DAC7BA804
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 19:29:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CE1B7BA82B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 19:37:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 0505C281BD5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:29:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 4E21C281BBB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:37:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBB5B3AC0D;
-	Thu,  5 Oct 2023 17:29:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE8DF3AC2F;
+	Thu,  5 Oct 2023 17:37:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ds8YQk5/"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="0pFLbdRO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B339A374FB
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 17:29:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7367AC433C7;
-	Thu,  5 Oct 2023 17:29:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696526984;
-	bh=FyXNFVi5CAq39lBW7w8maSA1eY/8EaOCy5ttuydLmCM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Ds8YQk5/xez5u1KauINRgynZyOgf80NTTtJh1qqiPBbDvRFux1ZQnlaBTP5chrBQd
-	 exDjt5+4uqPRusA/K2F3qIOduWbFpLddjB91KU5N8HhXQekn/W0YH5AN6MkwQbwI8W
-	 qB252x35bs7CFghi8zsQmMpaVPB9zpGESJbGl5mcdDOWOzOw/RAb7GRnv4hgHYskit
-	 n2+sDR2PZvZH3av34ZQgrAITukd7xxdr6ELXhK/hiydebaFWifoUew48f4TWJz7Kal
-	 PpMwbX5Yn+2ZNR5rFTrPZ9m/96gEfRo8WeG80cozfHzhsHwVOVydQQN2x3TAmSVmKl
-	 otUuAY5LnVuIw==
-Date: Thu, 5 Oct 2023 18:29:49 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Ivan Mikhaylov <fr0st61te@gmail.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] iio: adc: Add driver support for MAX34408/9
-Message-ID: <20231005182949.1ac6eef0@jic23-huawei>
-In-Reply-To: <20231005160930.14665-3-fr0st61te@gmail.com>
-References: <20231005160930.14665-1-fr0st61te@gmail.com>
-	<20231005160930.14665-3-fr0st61te@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BF0738FBD
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 17:37:20 +0000 (UTC)
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DFC11701
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 10:37:18 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1c6052422acso12195ad.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 10:37:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1696527437; x=1697132237; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=C4e9Kg23SHZu+vjVtfxzHNoF3HFL3xTDkE0f1jaHYfI=;
+        b=0pFLbdROommXT53KDHjRurRM2SDehRRvqr7HGcchXkyFXTdApFrKtwZcAcxLJFPgzK
+         R+vcP8W/2ZGcTixOY417Qr7K+X5dLU33HleHt/o0g1ZhEORUE//9hZNL//OwMeNXTXQP
+         qeWdmS4hCBNq34aV2FtjtQrt050JZETj01/SZb83GzrzeZU4NSt0RhbP6oqGMfQnCKey
+         ZogYPX9hzMV3dRywzruCPBnWMdux2IT5Eymsh+M7joRGabGD1QouW7l0cR+C3fljaJXL
+         qixpq23HX6pCb2RmNugLJ8BS8aowdmBtaHga+aJg1e0f+jSB77IjqPHbRwbDjBHhyPGp
+         GHig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696527437; x=1697132237;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=C4e9Kg23SHZu+vjVtfxzHNoF3HFL3xTDkE0f1jaHYfI=;
+        b=RnkoLNXqfMtNHDioXo+00LW9XrC7P0nbmVOL9hIvQysghpZb0LCKYq6c/r96VYLkt0
+         RQViS6P6S+rlyvA5yx82Dvpk4N0xIXAEFw5BvMv+0p9QDhvZGwmGf7ljTyqt8+UPCYaA
+         g34zZmms+1wlRiBu5FNEKUD9KnIo4+GoVvpXU5hirSIU4RVEx9SY+s4tGGDd0kJ5keGx
+         z9zAzmHuzAlZRbnvB4U8aIU6F5pKl+UN2kqnt8i7ZyTPR8ArUiw5cijhyXw3PuEkGjwb
+         9QpH7fSucAwVPvJ6UMh7UZJXy2KODu+0wnIz+Sbg6pYl2MWfKr1RdIBAzlpMavU1fK/p
+         7n3w==
+X-Gm-Message-State: AOJu0YxOWxkUnBlDW2jG6O7F7IzAUhDGOfDOtXy8wh+YKLIwt9wFxLvv
+	fYga8u+u0Tc75cGaI9wMO7NlJA==
+X-Google-Smtp-Source: AGHT+IGQkqtkzOoEy8CUfeYOTGtNX1HN2CAYrTFP+QCLuLZnKQCDyDPhpX/WLtfxTO55ITdGr9wWng==
+X-Received: by 2002:a17:903:18c:b0:1c7:5627:2053 with SMTP id z12-20020a170903018c00b001c756272053mr158309plg.18.1696527437142;
+        Thu, 05 Oct 2023 10:37:17 -0700 (PDT)
+Received: from google.com (13.65.82.34.bc.googleusercontent.com. [34.82.65.13])
+        by smtp.gmail.com with ESMTPSA id bo4-20020a17090b090400b0026971450601sm1890158pjb.7.2023.10.05.10.37.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Oct 2023 10:37:16 -0700 (PDT)
+Date: Thu, 5 Oct 2023 10:37:13 -0700
+From: William McVicker <willmcvicker@google.com>
+To: Peter Griffin <peter.griffin@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org,
+	tomasz.figa@gmail.com, s.nawrocki@samsung.com,
+	linus.walleij@linaro.org, wim@linux-watchdog.org,
+	linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org,
+	arnd@arndb.de, olof@lixom.net, cw00.choi@samsung.com,
+	tudor.ambarus@linaro.org, andre.draszik@linaro.org,
+	semen.protsenko@linaro.org, soc@kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org,
+	kernel-team@android.com
+Subject: Re: [PATCH 05/21] dt-bindings: watchdog: Document Google gs101 &
+ gs201 watchdog bindings
+Message-ID: <ZR70SdvjY6JskvWD@google.com>
+References: <20231005155618.700312-1-peter.griffin@linaro.org>
+ <20231005155618.700312-6-peter.griffin@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231005155618.700312-6-peter.griffin@linaro.org>
+X-Spam-Status: No, score=-15.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	ENV_AND_HDR_SPF_MATCH,HK_RANDOM_ENVFROM,HK_RANDOM_FROM,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL,
+	USER_IN_DEF_SPF_WL autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Thu,  5 Oct 2023 19:09:30 +0300
-Ivan Mikhaylov <fr0st61te@gmail.com> wrote:
-
-> The MAX34408/MAX34409 are two- and four-channel current monitors that are
-> configured and monitored with a standard I2C/SMBus serial interface. Each
-> unidirectional current sensor offers precision high-side operation with a
-> low full-scale sense voltage. The devices automatically sequence through
-> two or four channels and collect the current-sense samples and average them
-> to reduce the effect of impulse noise. The raw ADC samples are compared to
-> user-programmable digital thresholds to indicate overcurrent conditions.
-> Overcurrent conditions trigger a hardware output to provide an immediate
-> indication to shut down any necessary external circuitry.
+On 10/05/2023, Peter Griffin wrote:
+> Add the "google,gs101-wdt" and "google,gs201-wdt" compatibles to the
+> dt-schema documentation.
 > 
-> Add as ADC driver which only supports current monitoring for now.
+> gs101 SoC has two CPU clusters and each cluster has its own dedicated
+> watchdog timer (similar to exynos850 and exynosautov9 SoCs).
 > 
-> Link: https://www.analog.com/media/en/technical-documentation/data-sheets/MAX34408-MAX34409.pdf
+> These WDT instances are controlled using different bits in PMU
+> registers.
 > 
-> Signed-off-by: Ivan Mikhaylov <fr0st61te@gmail.com>
-Hi Ivan,
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
+>  .../devicetree/bindings/watchdog/samsung-wdt.yaml      | 10 ++++++++--
+>  1 file changed, 8 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+> index 8fb6656ba0c2..30f5949037fc 100644
+> --- a/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+> @@ -24,6 +24,8 @@ properties:
+>        - samsung,exynos7-wdt                   # for Exynos7
+>        - samsung,exynos850-wdt                 # for Exynos850
+>        - samsung,exynosautov9-wdt              # for Exynosautov9
+> +      - google,gs101-wdt                      # for Google gs101
+> +      - google,gs201-wdt                      # for Google gs101
 
-Biggest thing remaining that I noticed on this read through is that for
-new drivers in IIO I am asking people to only use generic firmware property
-accessors from property.h instead of the of specific ones.
-I rarely makes things less readable or more complex, and leaves us
-ready for other options in future.
+For "google,gs201-wdt the comment should be "for Google gs201".
 
-Thanks,
+Regards,
+Will
 
-Jonathan
-
-> --- /dev/null
-> +++ b/drivers/iio/adc/max34408.c
-> @@ -0,0 +1,270 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * IIO driver for Maxim MAX34409/34408 ADC, 4-Channels/2-Channels, 8bits, I2C
-> + *
-> + * Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/MAX34408-MAX34409.pdf
-> + *
-> + * TODO: ALERT interrupt, Overcurrent delay, Shutdown delay
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/init.h>
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-
-mod_devicetable.h for the various firmware match table definitions
-
-> +#include <linux/mutex.h>
-> +#include <linux/of_device.h>
-
-Should be include <linux/property.h>
-and use the accessors in there instead of of specific ones.
-
-
-> +
-> +static int max34408_probe(struct i2c_client *client)
-> +{
-> +	const struct max34408_adc_model_data *model_data;
-> +	struct device *dev = &client->dev;
-> +	const struct of_device_id *match;
-> +	struct max34408_data *max34408;
-> +	struct device_node *child;
-> +	struct iio_dev *indio_dev;
-> +	struct regmap *regmap;
-> +	int rc, i;
-> +
-> +	match = of_match_device(max34408_of_match, dev);
-> +	if (!match)
-> +		return -EINVAL;
-> +	model_data = match->data;
-
-	match = i2c_get_match_data() 
-as that will cope with all forms of firmware and i2c_device_id tables.
-
-
-> +
-> +	regmap = devm_regmap_init_i2c(client, &max34408_regmap_config);
-> +	if (IS_ERR(regmap)) {
-> +		dev_err_probe(dev, PTR_ERR(regmap),
-> +			      "regmap_init failed\n");
-> +		return PTR_ERR(regmap);
-> +	}
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*max34408));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	max34408 = iio_priv(indio_dev);
-> +	max34408->regmap = regmap;
-> +	max34408->dev = dev;
-> +	mutex_init(&max34408->lock);
-> +
-> +	for_each_available_child_of_node(dev->of_node, child) {
-> +		of_property_read_u32(child, "maxim,rsense-val-micro-ohms",
-
-Use the stuff in property.h so that we are ready for other firmware
-types.  We are still pushing this (slowly) throughout IIO drivers
-that are already in tree.
-
-
-> +				     &max34408->input_rsense[i]);
-> +		i++;
-> +	}
-> +
-> +	/* disable ALERT and averaging */
-> +	rc = regmap_write(max34408->regmap, MAX34408_CONTROL_REG, 0x0);
-> +	if (rc)
-> +		return rc;
-> +
-> +	indio_dev->channels = model_data->channels;
-> +	indio_dev->num_channels = model_data->num_channels;
-> +	indio_dev->name = model_data->model_name;
-> +
-> +	indio_dev->info = &max34408_info;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +
-> +	return devm_iio_device_register(dev, indio_dev);
-> +}
-> +
-> +static struct i2c_driver max34408_driver = {
-> +	.driver = {
-> +		.name   = "max34408",
-> +		.of_match_table = max34408_of_match,
-> +	},
-Provide the i2c_device_id table as well as you never know what route
-people will use to probe this.
-
-> +	.probe = max34408_probe,
-> +};
-> +module_i2c_driver(max34408_driver);
-> +
-> +MODULE_AUTHOR("Ivan Mikhaylov <fr0st61te@gmail.com>");
-> +MODULE_DESCRIPTION("Maxim MAX34408/34409 ADC driver");
-> +MODULE_LICENSE("GPL");
-
+>  
+>    reg:
+>      maxItems: 1
+> @@ -42,13 +44,13 @@ properties:
+>    samsung,cluster-index:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description:
+> -      Index of CPU cluster on which watchdog is running (in case of Exynos850)
+> +      Index of CPU cluster on which watchdog is running (in case of Exynos850 or Google gsx01)
+>  
+>    samsung,syscon-phandle:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description:
+>        Phandle to the PMU system controller node (in case of Exynos5250,
+> -      Exynos5420, Exynos7 and Exynos850).
+> +      Exynos5420, Exynos7, Exynos850 and gsx01).
+>  
+>  required:
+>    - compatible
+> @@ -69,6 +71,8 @@ allOf:
+>                - samsung,exynos7-wdt
+>                - samsung,exynos850-wdt
+>                - samsung,exynosautov9-wdt
+> +              - google,gs101-wdt
+> +              - google,gs201-wdt
+>      then:
+>        required:
+>          - samsung,syscon-phandle
+> @@ -79,6 +83,8 @@ allOf:
+>              enum:
+>                - samsung,exynos850-wdt
+>                - samsung,exynosautov9-wdt
+> +              - google,gs101-wdt
+> +              - google,gs201-wdt
+>      then:
+>        properties:
+>          clocks:
+> -- 
+> 2.42.0.582.g8ccd20d70d-goog
+> 
 
