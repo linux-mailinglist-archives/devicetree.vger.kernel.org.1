@@ -1,148 +1,68 @@
-Return-Path: <devicetree+bounces-6127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B9C87B9E91
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:09:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC9FE7B9E63
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:06:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 46CF82820DC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 14:09:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 74E7A2812A5
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 14:06:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF7432869E;
-	Thu,  5 Oct 2023 14:09:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE318286BB;
+	Thu,  5 Oct 2023 14:05:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=6tel.net header.i=@6tel.net header.b="mxjIvrbW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q0UghGfv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 111DC2773F
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 14:09:29 +0000 (UTC)
-X-Greylist: delayed 878 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 05 Oct 2023 07:09:27 PDT
-Received: from forward203c.mail.yandex.net (forward203c.mail.yandex.net [178.154.239.218])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C568B47B5;
-	Thu,  5 Oct 2023 07:09:27 -0700 (PDT)
-Received: from forward103c.mail.yandex.net (forward103c.mail.yandex.net [IPv6:2a02:6b8:c03:500:1:45:d181:d103])
-	by forward203c.mail.yandex.net (Yandex) with ESMTP id DCDB465257;
-	Thu,  5 Oct 2023 16:54:49 +0300 (MSK)
-Received: from mail-nwsmtp-smtp-production-main-63.sas.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-63.sas.yp-c.yandex.net [IPv6:2a02:6b8:c14:6e01:0:640:627f:0])
-	by forward103c.mail.yandex.net (Yandex) with ESMTP id 4C57E60118;
-	Thu,  5 Oct 2023 16:54:17 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-63.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id 5sYS4WpDR8c0-c59Uhkbc;
-	Thu, 05 Oct 2023 16:54:16 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=6tel.net; s=mail;
-	t=1696514056; bh=djv/zTCmEEO0N9ZJ0kPB68viw9nxhWIGHqi+5kw6/nk=;
-	h=Cc:Message-ID:References:Date:In-Reply-To:Subject:To:From;
-	b=mxjIvrbWDeQZsZfQoZxIAayHgrDIZBpf/35k7buCmGNqzgA1wms/0ZYX33Ym9XHmP
-	 TYWEQzWj9cfX6nPeiV05eP2L6h263aubX3vkAPPjLbCCyb5l5GR4fMWGml3EujhLZm
-	 iMN34tW9If/TvZtdJMXz4R80jSIM4Rq43htSKp0w=
-Authentication-Results: mail-nwsmtp-smtp-production-main-63.sas.yp-c.yandex.net; dkim=pass header.i=@6tel.net
-From: Muhammed Efe Cetin <efectn@6tel.net>
-To: d-gole@ti.com
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	efectn@6tel.net,
-	heiko@sntech.de,
-	jonas@kwiboo.se,
-	krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	megi@xff.cz,
-	robh+dt@kernel.org,
-	sebastian.reichel@collabora.com
-Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: Add Orange Pi 5
-Date: Thu,  5 Oct 2023 16:54:04 +0300
-Message-ID: <20231005135405.257495-1-efectn@6tel.net>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230928105137.5ljhuoxjc7et5thw@dhruva>
-References: <20230928105137.5ljhuoxjc7et5thw@dhruva>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDD4B2770A;
+	Thu,  5 Oct 2023 14:05:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29FA9C433B7;
+	Thu,  5 Oct 2023 14:05:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696514739;
+	bh=uEs+c2evdAN1gGRELIzgOPEmlANziGZN9NaBywOLzVk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Q0UghGfvomUGJjKVgB7EPISuwTzykstgzqZoQQoyr1v4jQFCR2YiSIB2j4OvDki4Y
+	 DykfvZLOqqbKJsswerJN1NM8sWOTOKX7ppC9EVGJXh9kT745ExQgPZPu2v7NM48vYA
+	 bTDW5iMCXK/+i3lYYCA9KwS1U6hlunEHWLralA412S2zKG3KpYjoKgphJDRBmlUxnP
+	 ZwimK57Z2PrNOXkSErMA1MGAG80jh6aIHOfq64IsKTAPPjOPYOtat6/eCI3KHtYbr1
+	 oPXp5YVb0/1sZqrFlYetYso8MY+qeIX7enuC+TK2J94fUe8XMHBHpq8C4gWSb5owmI
+	 W90baIp4KOXAw==
+Date: Thu, 5 Oct 2023 07:05:38 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Rohan G Thomas <rohan.g.thomas@intel.com>
+Cc: alexandre.torgue@foss.st.com, andriy.shevchenko@linux.intel.com,
+ davem@davemloft.net, devicetree@vger.kernel.org, edumazet@google.com,
+ fancer.lancer@gmail.com, joabreu@synopsys.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, mcoquelin.stm32@gmail.com,
+ netdev@vger.kernel.org, pabeni@redhat.com
+Subject: Re: [PATCH net-next 1/1] net: stmmac: xgmac: EST interrupts
+ handling
+Message-ID: <20231005070538.0826bf9d@kernel.org>
+In-Reply-To: <20231005121441.22916-1-rohan.g.thomas@intel.com>
+References: <20231004092613.07cb393f@kernel.org>
+	<20231005121441.22916-1-rohan.g.thomas@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_VALIDITY_RPBL,SPF_HELO_NONE,T_SPF_PERMERROR,URIBL_BLOCKED
-	autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hello,
+On Thu,  5 Oct 2023 20:14:41 +0800 Rohan G Thomas wrote:
+> > So the question now is whether we want Rohan to do this conversion _first_,
+> > in DW QoS 5, and then add xgmac part. Or the patch should go in as is and
+> > you'll follow up with the conversion?  
+> 
+> If agreed, this commit can go in. I can submit another patch with the
+> refactoring suggested by Serge.
 
-On 28.09.2023 13:51, Dhruva Gole wrote:
-> Hi,
-> 
-> On Aug 21, 2023 at 18:47:59 +0300, Muhammed Efe Cetin wrote:
->> Add initial support for OPi5 that includes support for USB2, PCIe2, Sata,
->> Sdmmc, SPI Flash, PMIC.
->>
->> Signed-off-by: Muhammed Efe Cetin <efectn@6tel.net>
->> Reviewed-by: Ondřej Jirman <megi@xff.cz>
->> ---
->>   arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->>   .../boot/dts/rockchip/rk3588s-orangepi-5.dts  | 673 ++++++++++++++++++
->>   2 files changed, 674 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
->>
-> ...
-> 
-> Can you provide some sort of documentation on how I can build and boot
-> the kernel on this board? I was unable to use the upstream arm64
-> defconfig with this exact series applied to boot the board.
-
-What was wrong when you tried to compile & boot the board? Can you provide some logs?
-
-> 
->> +
->> +&i2c6 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&i2c6m3_xfer>;
->> +	status = "okay";
->> +
->> +	hym8563: rtc@51 {
->> +		compatible = "haoyu,hym8563";
->> +		reg = <0x51>;
->> +		#clock-cells = <0>;
->> +		clock-output-names = "hym8563";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&hym8563_int>;
->> +		interrupt-parent = <&gpio0>;
->> +		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
->> +		wakeup-source;
-> 
-> Are you able to actually use rtc as a wakeup source? I tried this
-> on a downstream kernel that I mention below..
-> 
-> rtcwake -s 10 -m mem
-> 
-> didn't actually seem to wake the device from deepsleep after 10 seconds.
-> Do you know what other pins I can use as wakeup sources?
-
-No, i've not tried it before.
-
-> 
->> +	};
->> +};
->> +
->> +&mdio1 {
->> +	rgmii_phy1: ethernet-phy@1 {
->> +		compatible = "ethernet-phy-ieee802.3-c22";
-> 
-> Just wondering, can you please give some logs of the board with eth
-> working? The image that I have from opi seems to fail eth? As in I am
-> not able to see any ip address. here are the logs:
-> 
-> https://gist.github.com/DhruvaG2000/eda2762e35013c8d5ac9f37e818103a3
-
-Unfortunately the board is not near me currently. However, i was able to use GMAC ethernet in both the upstreram and downstream kernels. Did you try any images other than Orange Pi ones?
-
-> 
-> ...
-> 
+Did you miss the emphasis I put on the word "first" in my reply?
+Cleanup first, nobody will be keeping track whether your fulfilled 
+your promises or not :|
 
