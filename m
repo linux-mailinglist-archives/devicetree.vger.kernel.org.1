@@ -1,144 +1,180 @@
-Return-Path: <devicetree+bounces-6057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACF647B9C6D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 12:12:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFCC97B9C68
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 12:07:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 4D941281D05
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 10:12:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 6FE5B281CA6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 10:07:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6A7611CBB;
-	Thu,  5 Oct 2023 10:12:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD26811CB5;
+	Thu,  5 Oct 2023 10:07:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UcLbykxS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFBB85690
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 10:12:26 +0000 (UTC)
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04CDD1FEFD;
-	Thu,  5 Oct 2023 03:12:25 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id 98e67ed59e1d1-27740ce6c76so518566a91.0;
-        Thu, 05 Oct 2023 03:12:24 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343FE5690
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 10:07:05 +0000 (UTC)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76BC01FED9;
+	Thu,  5 Oct 2023 03:07:01 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9b6559cbd74so148899466b.1;
+        Thu, 05 Oct 2023 03:07:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696500420; x=1697105220; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZhNCejINv/rvRMnwXFbkozy89uWTZdk6L4MDx6KXZ3M=;
+        b=UcLbykxScrw5D1eskgwDNWoREKFPtLji+FLIErYXo/MJhBbqqT4w3QmjfNXztdREbj
+         D1qPOVeU6KsJYOcjsaoKRVgWMEC3bzh0RAL5k89Gqh/RoWVAad/DZGtIgnh+OlwLrpzL
+         imqtDXfLy3HkPlw/AizBUfJFzekL4WkZDnDwjxDTI0nzd9ryDVRT16X0EHPhnEbBKD41
+         AjLu0F2i7kDdWWIPrHLorxmmqcRVrbP4sK7EUCmWTfry7odd0Z0Kc0KovYRKPJcCjCrq
+         arQoitlwglF90Zo0zgVUJ8SGWGf7rddrywMHIryGCT0eSrMRJtbLbmiHStfbMr+DpVye
+         x5tA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696500743; x=1697105543;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fv9CC0NKV/kDN0XcdNF3KHHTr6xmrbhe/ImONu1Cags=;
-        b=Giw1I3Ju1d6hfOmKdKuo6YszAyThE9paLeypz1rTzFMw+0yjYZJYrQcVSeO64vqx5V
-         yVyH9GA3VCnRxseyPAjSwprImt3vlWHOE6w4GMntjxHjUP9q10Jl3q/suxBs9x5NagX9
-         nUHK3H9HxrhUr/54hRVqc4u7mBiTUsJiIimOAWJ8bYrNTH7uSqL2wVVkReDVeTUqmsNH
-         SZXSTUa5WQ/ODVC+3Q28VlvtCRgWrSJr3MvLvABQ+tXjsRaoSndM3FMWqttZH31WulAn
-         qdLcbIEahdwCxqJDBs9u+tLKA3FyTdX9G2FTzLCWwi2wI1Su/DVeSb6v8XKTBLVEw58C
-         luiA==
-X-Gm-Message-State: AOJu0YyJ1PUSfOvSV9FW4efGARc72ububnFdvIEKW1RqMnQsrHvSuR/9
-	xGZwoclbkycn/qsestKQzOsHZNEiNS2hHQ==
-X-Google-Smtp-Source: AGHT+IF0FJerdb2vdfKFEdkJKe+kuKwgXZU30X1yZibd2zAGh2N/1/yTzojGTleMwimkCtz8klao0g==
-X-Received: by 2002:a17:90a:43c7:b0:268:2543:723 with SMTP id r65-20020a17090a43c700b0026825430723mr4741800pjg.5.1696500743345;
-        Thu, 05 Oct 2023 03:12:23 -0700 (PDT)
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com. [209.85.214.178])
-        by smtp.gmail.com with ESMTPSA id b10-20020a170903228a00b001b03a1a3151sm1256766plh.70.2023.10.05.03.12.22
+        d=1e100.net; s=20230601; t=1696500420; x=1697105220;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZhNCejINv/rvRMnwXFbkozy89uWTZdk6L4MDx6KXZ3M=;
+        b=v0x1ygP28Sz8BdM108Z/O693PM7ApwzNDpkbIA7RXhNDGELJdb1dKrZMjjOT3SB3N3
+         7g2TwM5m6baYkrpM1MXI++lLFzgUsQPMMkAxPfKzZyNNnMPt18CaMUKVHKDmVNAYlmUA
+         fWSzPPgsXzxU93e6Xnr+gvUsEX5+s6kr8+RbqEVykogyDCXCKHF2hIJYDFT5uQcIaNEa
+         jbqoTgoqwZxFXVuS2ZswelaaHf+3KZhrKpLTelEnGlOEH7gtGbu3eHLsG+X96PT0Lbp9
+         ga/xj8bIhiUCUkV/IP/lPsNETmUexqH76z7SdrpN8ml18jlAOF0V5lwdVQcLT15wMSjc
+         BExQ==
+X-Gm-Message-State: AOJu0YyeqiM6dTuGRwoN01SwKS6w7Zp9JiloL+C+wrW4o8IPsewdfT+f
+	SbhjJspD9Is940bc/aQRhuQUMD3elg==
+X-Google-Smtp-Source: AGHT+IGtUzYRQnJzanS5pJVO4ZNw7dC55MP4rIku1b1FoShJe1HuVaSF4EtOHELw98Bx/KD+mJHU+g==
+X-Received: by 2002:a17:906:220c:b0:9b8:a556:87a5 with SMTP id s12-20020a170906220c00b009b8a55687a5mr3963317ejs.22.1696500419691;
+        Thu, 05 Oct 2023 03:06:59 -0700 (PDT)
+Received: from ?IPV6:2a02:810b:f40:4300:8342:fd16:599d:c630? ([2a02:810b:f40:4300:8342:fd16:599d:c630])
+        by smtp.gmail.com with ESMTPSA id q23-20020a17090622d700b009930308425csm915447eja.31.2023.10.05.03.06.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Oct 2023 03:12:23 -0700 (PDT)
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1c3d8fb23d9so5368785ad.0;
-        Thu, 05 Oct 2023 03:12:22 -0700 (PDT)
-X-Received: by 2002:a81:a089:0:b0:5a2:47bf:88ec with SMTP id
- x131-20020a81a089000000b005a247bf88ecmr5134243ywg.19.1696500261276; Thu, 05
- Oct 2023 03:04:21 -0700 (PDT)
+        Thu, 05 Oct 2023 03:06:59 -0700 (PDT)
+Message-ID: <db6476ad-361c-427e-8f57-1ad51861b2ed@gmail.com>
+Date: Thu, 5 Oct 2023 12:06:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230929053915.1530607-1-claudiu.beznea@bp.renesas.com>
- <20230929053915.1530607-19-claudiu.beznea@bp.renesas.com> <CAMuHMdWQVtroKntVamANrWiheDYa6+=L8K53__1WUZg3bF8EFQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdWQVtroKntVamANrWiheDYa6+=L8K53__1WUZg3bF8EFQ@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 5 Oct 2023 12:04:09 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXsvs886VaKsVgG-h-0iBAhueunUBBcYW0L48GTHApUbA@mail.gmail.com>
-Message-ID: <CAMuHMdXsvs886VaKsVgG-h-0iBAhueunUBBcYW0L48GTHApUbA@mail.gmail.com>
-Subject: Re: [PATCH v2 18/28] pinctrl: renesas: rzg2l: add support for
- different ds values on different groups
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linus.walleij@linaro.org, gregkh@linuxfoundation.org, jirislaby@kernel.org, 
-	magnus.damm@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
-	quic_bjorande@quicinc.com, konrad.dybcio@linaro.org, arnd@arndb.de, 
-	neil.armstrong@linaro.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	biju.das.jz@bp.renesas.com, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/5] ARM: dts: rockchip: Disable non-required timers
+ for RK3128
+To: Robin Murphy <robin.murphy@arm.com>, Heiko Stuebner <heiko@sntech.de>
+Cc: Johan Jonker <jbx6244@gmail.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20230829203721.281455-4-knaerzche@gmail.com>
+ <20230829203721.281455-14-knaerzche@gmail.com>
+ <101f3b88-7151-af5c-3bd4-feb13763228b@arm.com>
+Content-Language: en-US
+From: Alex Bee <knaerzche@gmail.com>
+In-Reply-To: <101f3b88-7151-af5c-3bd4-feb13763228b@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Wed, Oct 4, 2023 at 3:17=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68k=
-.org> wrote:
-> On Fri, Sep 29, 2023 at 7:39=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev=
-> wrote:
-> > From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >
-> > RZ/G3S supports different drive strength values for different power sou=
-rces
-> > and pin groups (A, B, C). On each group there could be up to 4 drive
-> > strength values per power source. Available power sources are 1v8, 2v5,
-> > 3v3. Drive strength values are fine tuned than what was previously
-> > available on the driver thus the necessity of having micro-amp support.
-> > As drive strength and power source values are linked together the
-> > hardware setup for these was moved at the end of
-> > rzg2l_pinctrl_pinconf_set() to ensure proper validation of the new
-> > values.
-> >
-> > The drive strength values are expected to be initialized though SoC
-> > specific hardware configuration data structure.
-> >
-> > Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> > ---
-> >
-> > Changes in v2:
-> > - s/strenght/strength, s/togheter/together in commit description
-> > - got rid of RZG2L_INVALID_IOLH_VAL macro and consider zero as invalid
-> >   value for entries in struct rzg2l_hwcfg::iolh_group[abc]_ua[] arrays
-> > - removed spinlock in rzg2l_[sg]et_power_source()
-> > - introduced caps_to_pwr_reg() and simplified the code in
-> >   rzg2l_[sg]et_power_source()
-> > - changed return type of rzg2l_iolh_ua_to_val() to int and return
-> >   -EINVAL on failure cases
-> > - s/rzg2l_ds_supported/rzg2l_ds_is_supported
-> > - inverted the logic in rzg2l_pinctrl_pinconf_set() when applying drive
-> >   strength and power source to hardware registers and thus simplified t=
-he
-> >   code
-> > - used devm_kcalloc() instead of devm_kzalloc()
-> > - adderessed the rest of the review comments
+Hi Robin, Hi Heiko,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Am 30.08.23 um 20:17 schrieb Robin Murphy:
+> On 2023-08-29 21:37, Alex Bee wrote:
+>> The Rockchip timer linux driver can handle a maximum of 2 timers and 
+>> will
+>> get confused if more of them exist.
+>
+> Wouldn't it be better to fix that? It looks trivial to do, and frankly 
+> it's a behaviour that doesn't make sense anyway. Of course a system 
+> can have more hardware available than Linux wants to use; that's not 
+> an error, it's just Linux's choice to not use it! See commit 
+> a98399cbc1e0 ("clocksource/drivers/sp804: Avoid error on multiple 
+> instances") for example.
+>
+> DTs shouldn't be treated like Linux board files, so curating them 
+> around Linux-specific driver behaviour is inappropriate; FreeBSD or 
+> U-Boot or whatever are perfectly entitled to make use of 5 timers at 
+> once if they can.
 
-> Thanks, will queue in renesas-pinctrl-for-v6.7, with Paul's comment
-> addresses.
+That's fully true, thanks for the hint.
 
-Gr{oetje,eeting}s,
+The common Rockchip workaround currently seems to be to just expose the 
+timer(s) in the DT which can be handled by the linux driver.  RK3288, 
+for instance, has 7 timers but there's a single one present in the SoC 
+DT ... and another one is enabled in the common RK mach-code, .... ups
 
-                        Geert
+Anyway: I'll have a look in the RK timer driver and try to fix it. 
+Though, I'm not sure if just ignoring the others like sp804 driver does 
+is sufficient, as we still will have to add workarounds to the clock 
+driver in order to keep the clocks enabled for those timers which are 
+not used by linux, but are required (as source for the arm timer, for 
+instance).
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+The dw_apb_timer driver seems to register the second timer as 
+clocksource- and all others as clockevent-timers .... that looks like 
+the "better" approach around that issue.
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Regards,
+
+Alex
+
+>
+> Thanks,
+> Robin.
+>
+>> RK3128 only needs timer0, timer1 and timer5. The latter is the source
+>> for the arm-timer and it's clock is prevented from being disabled in the
+>> clock driver so it can get disabled in the device tree, too.
+>>
+>> Fixes: a0201bff6259 ("ARM: dts: rockchip: add rk3128 soc dtsi")
+>> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+>> ---
+>>   arch/arm/boot/dts/rockchip/rk3128.dtsi | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/rockchip/rk3128.dtsi 
+>> b/arch/arm/boot/dts/rockchip/rk3128.dtsi
+>> index 88a4b0d6d928..f3f0788195d2 100644
+>> --- a/arch/arm/boot/dts/rockchip/rk3128.dtsi
+>> +++ b/arch/arm/boot/dts/rockchip/rk3128.dtsi
+>> @@ -252,6 +252,7 @@ timer2: timer@20044040 {
+>>           interrupts = <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
+>>           clocks = <&cru PCLK_TIMER>, <&cru SCLK_TIMER2>;
+>>           clock-names = "pclk", "timer";
+>> +        status = "disabled";
+>>       };
+>>         timer3: timer@20044060 {
+>> @@ -260,6 +261,7 @@ timer3: timer@20044060 {
+>>           interrupts = <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>;
+>>           clocks = <&cru PCLK_TIMER>, <&cru SCLK_TIMER3>;
+>>           clock-names = "pclk", "timer";
+>> +        status = "disabled";
+>>       };
+>>         timer4: timer@20044080 {
+>> @@ -268,6 +270,7 @@ timer4: timer@20044080 {
+>>           interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
+>>           clocks = <&cru PCLK_TIMER>, <&cru SCLK_TIMER4>;
+>>           clock-names = "pclk", "timer";
+>> +        status = "disabled";
+>>       };
+>>         timer5: timer@200440a0 {
+>> @@ -276,6 +279,7 @@ timer5: timer@200440a0 {
+>>           interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
+>>           clocks = <&cru PCLK_TIMER>, <&cru SCLK_TIMER5>;
+>>           clock-names = "pclk", "timer";
+>> +        status = "disabled";
+>>       };
+>>         watchdog: watchdog@2004c000 {
 
