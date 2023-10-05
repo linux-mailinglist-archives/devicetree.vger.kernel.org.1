@@ -1,249 +1,153 @@
-Return-Path: <devicetree+bounces-6181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAAB17BA229
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:17:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 177B47BA241
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:24:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 34F19281CB8
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:17:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id B3362281973
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:24:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC05E30CF0;
-	Thu,  5 Oct 2023 15:17:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE1D130CF0;
+	Thu,  5 Oct 2023 15:24:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iuj2Hf/o"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mD+2cadW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFD8326E12
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 15:17:52 +0000 (UTC)
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86FBA4695;
-	Thu,  5 Oct 2023 08:17:49 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3EE6BE0010;
-	Thu,  5 Oct 2023 15:17:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1696519067;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nvH8TojWLX5PBOVWWWtrIYBix9PjUxHjvbmCvPQRWkE=;
-	b=iuj2Hf/o0T6P92uvZ0fWwcbUtAvIpStnI6H/7KBQEoGLMSa1VL4jOjF+/UvE1MfEYUy/CW
-	77vDVJjOyLBExgbxDHtiDz84KzSrxp3OnDH+RvgMWW+PaKOR0N+Sjkdqcu+LDW2WeSyKBh
-	bF2Z1+LMcDuCzLOuc9adjddmWhISxGvg3ZxBXv0r72M42BjJrjumsUd+hiXqfC5FJe+nyP
-	XBviODz8fWkbFSsvFRLMsF1gul/fpCcTg8JKUzTmPzq++AkUeUwpynPlDGhFJ28rZKMIwJ
-	AvUgu8nqDCysAe5zC98Kc/DYZ0G255+S9tRU5m/hfK5DZ5tT849KxdSphJZFfA==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Rob Herring <robh+dt@kernel.org>
-Cc: Paul Burton <paulburton@kernel.org>, Thomas Bogendoerfer
- <tsbogend@alpha.franken.de>, linux-mips@vger.kernel.org, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Vladimir Kondratiev
- <vladimir.kondratiev@intel.com>, Tawfik Bayouk
- <tawfik.bayouk@mobileye.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
- <theo.lebrun@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 08/11] MIPS: mobileye: Add EyeQ5 dtsi
-In-Reply-To: <CAL_Jsq+Pn=kWFL32Cit-vnyJg2pnap2TMn4LPVr9nTmyK-FrZw@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CF64273FC
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 15:24:03 +0000 (UTC)
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 880C513B75;
+	Thu,  5 Oct 2023 08:24:01 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2c007d6159aso13028671fa.3;
+        Thu, 05 Oct 2023 08:24:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696519439; x=1697124239; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+J+a00kO012Mx5a121MCNe5VDW7fPYb1FirqG31nHBU=;
+        b=mD+2cadWaPWtxxlYOumhe99SN7YZqMJPjQkrC5BX86Ea1z63WrMa6sLR8jBKrAPQAl
+         fM+EP+Ifjen+iXpmlwHBLH2m8Oe6JhcNQKvAvBQuwx1Q2Z9MepyTQQoo0L2l+tvwVEYb
+         SoDS22+hnKxOwbGYFxaF2nr3a3P7+fWpAlzx8kG4IIasTniYumYyRLh8MnIx+2zmHiin
+         7ejHeEW6h4AbaJfAooXgPAy/qrUrFN/yf7EVL6f4xYOqjv611SpTjoMNjnkg///q+n5Y
+         aUfmIrU7l0p2VYS4prVY2Tlre+3ypLfnKw7+pFqS99/Z/ggrnjiZGilMTwUE3xuWfA+5
+         VG/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696519439; x=1697124239;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+J+a00kO012Mx5a121MCNe5VDW7fPYb1FirqG31nHBU=;
+        b=a3joramQJzffD8Jhb8CWTz2TTW/zjatlhRUGBNLB3JTh4qcoW2YpjnW2Y23q4x6CEG
+         bOIJk11towMqFlVCtY0hcHdx8P4eZL533tvnX9mirUzACLaECfeFnD4Ck0Uxiup10iwD
+         TEMwC8rSjM3T0BCGfxevgR6eyWhLHWEvx1YD9WaaZPW9pusW/PYMYMsNr/N+sQd33Blj
+         Rc6Z98F77kZh7moU4+TN3RHFFkv9cEgAe6zPTUn2ZBvtX6/bNc5khCKtc5uxPyJ4fJKF
+         +a5bDd0irykxAX/qzxF0pgsHAgfMX4ibKrkBmmnbXzV4gvXAGMmNGm/zyTrZ9FKjPrUM
+         x1Aw==
+X-Gm-Message-State: AOJu0Yx6y3Q6Kyeg8hIc9jScOkGuoM9tbSF72L4d/LclwBEaTEIRZJs/
+	Sa0ljzJNoGeAxHlNl+4G4XI=
+X-Google-Smtp-Source: AGHT+IHf+Q4L5AI5yo6154StviwwuGxNEU2iyw5xYFFIAXimxL1dh0wkqaiS25mJpQNKEzO2bSNvCA==
+X-Received: by 2002:a05:6512:b99:b0:503:2623:7cfa with SMTP id b25-20020a0565120b9900b0050326237cfamr5901658lfv.35.1696519438734;
+        Thu, 05 Oct 2023 08:23:58 -0700 (PDT)
+Received: from mobilestation ([95.79.192.17])
+        by smtp.gmail.com with ESMTPSA id y9-20020ac255a9000000b004fba82dde47sm336909lfg.123.2023.10.05.08.23.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Oct 2023 08:23:58 -0700 (PDT)
+Date: Thu, 5 Oct 2023 18:23:56 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>, 
+	Rob Herring <robh@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc: Philippe =?utf-8?Q?Mathieu-Daud=C3=A9?= <philmd@linaro.org>, 
+	Paul Burton <paulburton@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	linux-mips@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Vladimir Kondratiev <vladimir.kondratiev@intel.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 05/11] dt-bindings: mips: cpu: Add I-Class I6500
+ Multiprocessor Core
+Message-ID: <iq4t7uyi4jw4j5kymaolgstzjdlgw6y4ncptt4nsrd4gktwomc@t7ujciysz6q6>
 References: <20231004161038.2818327-1-gregory.clement@bootlin.com>
- <20231004161038.2818327-9-gregory.clement@bootlin.com>
- <CAL_Jsq+Pn=kWFL32Cit-vnyJg2pnap2TMn4LPVr9nTmyK-FrZw@mail.gmail.com>
-Date: Thu, 05 Oct 2023 17:17:45 +0200
-Message-ID: <87mswxcd46.fsf@BL-laptop>
+ <20231004161038.2818327-6-gregory.clement@bootlin.com>
+ <hu5ksk2gw7zbbeiwi4unfo242qm2wfn36bpgea5inlamn4kqrf@magwi4w7gp3x>
+ <87sf6pcebd.fsf@BL-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: gregory.clement@bootlin.com
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87sf6pcebd.fsf@BL-laptop>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hello Rob,
+On Thu, Oct 05, 2023 at 04:51:50PM +0200, Gregory CLEMENT wrote:
+> Hello Serge(y),
+> 
+> > On Wed, Oct 04, 2023 at 06:10:32PM +0200, Gregory CLEMENT wrote:
+> >> The MIPS Warrior I-class I6500 was announced by Imagination
+> >> Technologies in 2016 and is used in the Mobileye SoC EyeQ5.
+> >> 
+> >> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+> >> ---
+> >>  Documentation/devicetree/bindings/mips/cpus.yaml | 1 +
+> >>  1 file changed, 1 insertion(+)
+> >> 
+> >> diff --git a/Documentation/devicetree/bindings/mips/cpus.yaml b/Documentation/devicetree/bindings/mips/cpus.yaml
+> >> index cf382dea3922..87fd2842ba68 100644
+> >> --- a/Documentation/devicetree/bindings/mips/cpus.yaml
+> >> +++ b/Documentation/devicetree/bindings/mips/cpus.yaml
+> >> @@ -39,6 +39,7 @@ properties:
+> >>        - mti,mips24KEc
+> >>        - mti,mips14KEc
+> >>        - mti,mips14Kc
+> >
+> >> +      - mti,i6500
+> >
+> > Since the CPU core vendor is Imagination Technologies thus it would
+> > be more appropriate to have the "img," prefix. Wouldn't it?
 
-> On Wed, Oct 4, 2023 at 11:11=E2=80=AFAM Gregory CLEMENT
-> <gregory.clement@bootlin.com> wrote:
->>
->> Add a device tree include file for the Mobileye EyeQ5 SoC.
->>
->> Based on the work of Slava Samsonov <stanislav.samsonov@intel.com>
->>
->> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
->> ---
->>  arch/mips/boot/dts/Makefile                   |   1 +
->>  arch/mips/boot/dts/mobileye/Makefile          |   4 +
->>  .../boot/dts/mobileye/eyeq5-fixed-clocks.dtsi | 315 ++++++++++++++++++
->>  arch/mips/boot/dts/mobileye/eyeq5.dtsi        | 138 ++++++++
->>  4 files changed, 458 insertions(+)
->>  create mode 100644 arch/mips/boot/dts/mobileye/Makefile
->>  create mode 100644 arch/mips/boot/dts/mobileye/eyeq5-fixed-clocks.dtsi
->>  create mode 100644 arch/mips/boot/dts/mobileye/eyeq5.dtsi
->>
->> diff --git a/arch/mips/boot/dts/Makefile b/arch/mips/boot/dts/Makefile
->> index 928f38a79dff..edb8e8dee758 100644
->> --- a/arch/mips/boot/dts/Makefile
->> +++ b/arch/mips/boot/dts/Makefile
->> @@ -8,6 +8,7 @@ subdir-$(CONFIG_LANTIQ)                 +=3D lantiq
->>  subdir-$(CONFIG_MACH_LOONGSON64)       +=3D loongson
->>  subdir-$(CONFIG_SOC_VCOREIII)          +=3D mscc
->>  subdir-$(CONFIG_MIPS_MALTA)            +=3D mti
->> +subdir-$(CONFIG_SOC_EYEQ5)             +=3D mobileye
->>  subdir-$(CONFIG_LEGACY_BOARD_SEAD3)    +=3D mti
->>  subdir-$(CONFIG_FIT_IMAGE_FDT_NI169445)        +=3D ni
->>  subdir-$(CONFIG_MACH_PIC32)            +=3D pic32
->> diff --git a/arch/mips/boot/dts/mobileye/Makefile b/arch/mips/boot/dts/m=
-obileye/Makefile
->> new file mode 100644
->> index 000000000000..99c4124fd4c0
->> --- /dev/null
->> +++ b/arch/mips/boot/dts/mobileye/Makefile
->> @@ -0,0 +1,4 @@
->> +# SPDX-License-Identifier: GPL-2.0-only
->> +# Copyright 2023 Mobileye Vision Technologies Ltd.
->> +
->> +obj-$(CONFIG_BUILTIN_DTB)      +=3D $(addsuffix .o, $(dtb-y))
->
-> You didn't add anything to 'dtb-y'. Did you test this?
+> 
+> According to Documentation/devicetree/bindings/vendor-prefixes.yaml
+> 
+> "^mti,.*":
+>     description: Imagination Technologies Ltd. (formerly MIPS
+>     Technologies Inc.)
 
-Initially yes, and finally we switch on the FIT image generation, so we
-don't use it anymore
+Yes, "mti" is also marked as Imagination Technologies Ltd, but I
+doubt we should use "mti" prefix for something what has been developed
+after Image Tech acquired MIPS Tech. What is the point in having the
+"img," prefix then?
 
->
-> Also, CONFIG_BUILTIN_DTB is supposed to be for legacy bootloaders
-> which don't understand DT. For a new SoC, fix the bootloader.
+Rob, your opinion?
 
-I can remove it
+-Serge(y)
 
->
->> diff --git a/arch/mips/boot/dts/mobileye/eyeq5-fixed-clocks.dtsi b/arch/=
-mips/boot/dts/mobileye/eyeq5-fixed-clocks.dtsi
->> new file mode 100644
->> index 000000000000..a0066465ac8b
->> --- /dev/null
->> +++ b/arch/mips/boot/dts/mobileye/eyeq5-fixed-clocks.dtsi
->> @@ -0,0 +1,315 @@
->> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +/*
->> + * Copyright 2023 Mobileye Vision Technologies Ltd.
->> + */
->
-> I assume these aren't all really fixed, but just 'I don't have a clock
-> driver yet'. That creates an ABI issue when you add the clock
-> driver(s). Just FYI.
-
-Indeed they aren't all fixed. The plan is to replace the relevant ones by a
-real clock driver when ready.
-
-In this case some part of the dts file will be modified. But is it a
-real issue ?
-
-Booting with a new kernel with an old dtb will still continue to work in
-the same way. it's only new tdb with old kernel that won't work, but we
-are not supposed to support this case.
-
-
->
->> +
->> +/ {
->> +       /* Fixed clock */
->> +       pll_cpu: pll_cpu {
->
-> Don't use _ in node names.
-
-OK
-[...]
-
->> +/* PLL_CPU derivatives */
->> +       occ_cpu: occ_cpu {
->> +               compatible =3D "fixed-factor-clock";
->> +               clocks =3D <&pll_cpu>;
->> +               #clock-cells =3D <0>;
->> +               clock-div =3D <1>;
->> +               clock-mult =3D <1>;
->> +               clock-output-names =3D "occ_cpu";
->
-> Isn't the default name the node name? Drop these unless you really
-> have a need and they aren't redundant.
-
-indeed it's not used, I remove them too.
-[...]
-
->> --- /dev/null
->> +++ b/arch/mips/boot/dts/mobileye/eyeq5.dtsi
->> @@ -0,0 +1,138 @@
->> +// SPDX-License-Identifier: GPL-2.0
->
-> Doesn't match eyeq5-fixed-clocks.dtsi
-
-OK
-
->
->> +/*
->> + * Copyright 2023 Mobileye Vision Technologies Ltd.
->> + */
->> +
->> +#include <dt-bindings/interrupt-controller/mips-gic.h>
->> +#include <dt-bindings/soc/mobileye,eyeq5.h>
->> +
->> +/memreserve/ 0x40000000 0xc0000000; /* DDR32 */
->> +/memreserve/ 0x08000000 0x08000000; /* DDR_LOW */
->> +
->> +#include "eyeq5-fixed-clocks.dtsi"
->> +
->> +/* almost all GIC IRQs has the same characteristics. provide short form=
- */
->
-> Maybe so, but I prefer not having 2 levels of lookup to figure out values.
->
->> +#define GIC_IRQ(x) GIC_SHARED (x) IRQ_TYPE_LEVEL_HIGH
-
-OK I remove it.
-
->> +
->> +/ {
->> +       #address-cells =3D <2>;
->> +       #size-cells =3D <2>;
->> +       cpus {
->> +               #address-cells =3D <1>;
->> +               #size-cells =3D <0>;
->> +               cpu@0 {
->> +                       device_type =3D "cpu";
->> +                       compatible =3D "mti,i6500";
->> +                       reg =3D <0>;
->> +                       clocks =3D <&core0_clk>;
->> +               };
->> +       };
->> +
->> +       reserved-memory {
->> +               #address-cells =3D <2>;
->> +               #size-cells =3D <2>;
->> +               ranges;
->> +
->> +/* These reserved memory regions are also defined in bootmanager
->> + * for configuring inbound translation for BARS, don't change
->> + * these without syncing with bootmanager
->> + */
->
-> Indent with the rest of the node.
-
-OK
-
-Thanks,
-
-Gregory
-
---=20
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+> 
+> So I think it's OK.
+> 
+> Gregory
+> 
+> >
+> > -Serge(y)
+> >
+> >>  
+> >>    reg:
+> >>      maxItems: 1
+> >> -- 
+> >> 2.40.1
+> >> 
+> 
+> -- 
+> Gregory Clement, Bootlin
+> Embedded Linux and Kernel engineering
+> http://bootlin.com
 
