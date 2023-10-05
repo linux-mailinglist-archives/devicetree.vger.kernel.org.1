@@ -1,150 +1,444 @@
-Return-Path: <devicetree+bounces-6251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A18F87BA6CE
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 18:42:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 869A77BA737
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 19:01:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id BABC31F234A9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:42:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 3789A28188D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:01:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D15A374C1;
-	Thu,  5 Oct 2023 16:42:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A046C374FB;
+	Thu,  5 Oct 2023 17:01:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="p2GpoHoA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WhAcT0gK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97D3337178
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 16:42:13 +0000 (UTC)
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2068.outbound.protection.outlook.com [40.107.94.68])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C9B01FE3;
-	Thu,  5 Oct 2023 09:42:11 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AkbgIy1AlsVPGa33BXORZjnVO6+SJ8RVtXjbZ9UWeq6vFGpxExVrWm2SmQHluflds1JkAtBW56WLGWrve39zUVrFOTnB5TvOKNChqiRpzxGqYhDFxMk5GV5fGYfloyBG9vEeETjsusK9fb4rr9+dTZvqKxurUq7Mr6BSzNS80jD5R9AFZDH3KiLFGaLWNqOBG/2e6qXF5MMy2FzoeTvcR+oYCj/OE95isOCK0vB8t1/rIY50JUpGqe1kThJSECd5vow9PGio69UJiik/4L6Xw/oGT0YA0LB00+tW9s4T2+yIkE65ZOS+xHKpZE+oc2P68k5H9QEH/T9pkyIDwsHK2Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EBJZOK/3Sd/hkz9852w+GyNxaltQ9eMs0gDMLPobpgA=;
- b=nJHSqq2TdFEkEz/7JTo7YS8I8N60c2hRjah8CR6QZx/w1ZSiNXuwPuGQAtpeu4C/bXaSGwP79xCjec1KJA2tfcWqnNqKAhw6wliUTUtK/JbxN4roTopwu0nSx/krQA6zQkD+0OxetQJvgMpZkRZBSVJk+FkMmfDNt1ErAUabn4Yws2QRcMt4RQe5aUaJJ241cHtqQQDo3O25G9/YRAU+gEwbQuSMZ6WexYCAWTEo2B6eGOGjzVKZ3osAgHmOqRejHD4CkmGHvWNAoryam5Wvu3Z8pfYQfaayMGa4cuuuzyyAZtyUB5EMcffh4hOv7eo09/gaMXVzScBwALR5z8Vy6A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EBJZOK/3Sd/hkz9852w+GyNxaltQ9eMs0gDMLPobpgA=;
- b=p2GpoHoAUWk0VOrFCmGm6xWabUtXbCjTQFlie0ap3CkUJrZkL3DrUcArsex3BMhrmwWjnxmsJ7Kl4xDihp0TBe6U8Xuvgu6BCyKJSl2RKE4orfkTXC7bBW7Ax7q+TaVpyKobAzg3TetI6TFJHdkoqHc4A8t168t0jU8ecqe0SkE=
-Received: from CH0PR04CA0109.namprd04.prod.outlook.com (2603:10b6:610:75::24)
- by IA1PR12MB7566.namprd12.prod.outlook.com (2603:10b6:208:42e::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.24; Thu, 5 Oct
- 2023 16:42:08 +0000
-Received: from CY4PEPF0000E9D5.namprd05.prod.outlook.com
- (2603:10b6:610:75:cafe::39) by CH0PR04CA0109.outlook.office365.com
- (2603:10b6:610:75::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.29 via Frontend
- Transport; Thu, 5 Oct 2023 16:42:08 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000E9D5.mail.protection.outlook.com (10.167.241.76) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6838.22 via Frontend Transport; Thu, 5 Oct 2023 16:42:07 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 5 Oct
- 2023 11:42:07 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB08.amd.com
- (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 5 Oct
- 2023 09:42:06 -0700
-Received: from xhdthippesw40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Thu, 5 Oct 2023 11:42:03 -0500
-From: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-To: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-CC: <lpieralisi@kernel.org>, <kw@linux.com>, <robh@kernel.org>,
-	<bhelgaas@google.com>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <michal.simek@amd.com>, <bharat.kumar.gogada@amd.com>,
-	Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-Subject: [PATCH v5 RESEND 4/4] PCI: xilinx-nwl: Increase ECAM size to accommodate 256 buses
-Date: Thu, 5 Oct 2023 22:10:51 +0530
-Message-ID: <20231005164051.984254-5-thippeswamy.havalige@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231005164051.984254-1-thippeswamy.havalige@amd.com>
-References: <20231005164051.984254-1-thippeswamy.havalige@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F935374EC
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 17:01:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C3ECC433C8;
+	Thu,  5 Oct 2023 17:01:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696525291;
+	bh=/yWYHiHjPRMphg2rFhP1rzHAhfL881K0RkUaaFEJJpw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=WhAcT0gKqgdGjvVMqP1HqFuLUxHmpeR75lFrzRBzryHeMQYDte5RKo9Zr8y2om/An
+	 NUQDOGHaWkEnBmQI0dQ9RPyUN0aP47zpCP2nCJQN+Hp8T9cBxbpQdX1ISWe+pfJOXZ
+	 INcKTELK+yrzWLNavITSOGhjI5LmnzIETTpEoReV5TogipYwCK5O+TV2LhWHCQGQ+d
+	 /pNwR+NP8oDQK9PJGoq/gOvs9gWYAVLcKusHBKdOgqE2flh1jMJ6r73AB8qMErKB6N
+	 JxA0jUVuSO364yLcUryTNsgVF0Eb14OwZC8yGF10wJsWOye1uUsolXDKrq/WhhPrQC
+	 51bZ3us5UVWAA==
+Date: Thu, 5 Oct 2023 18:01:31 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
+ linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Michael Walle <michael@walle.cc>, Andy Shevchenko
+ <andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu
+ <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>, Leonard
+ =?UTF-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>, Mike Looijmans
+ <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, Hugo Villeneuve
+ <hvilleneuve@dimonoff.com>, Ceclan Dumitru <dumitru.ceclan@analog.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] iio: adc: ad7173: add AD7173 driver
+Message-ID: <20231005180131.0518f46c@jic23-huawei>
+In-Reply-To: <20231005105921.460657-2-mitrutzceclan@gmail.com>
+References: <20231005105921.460657-1-mitrutzceclan@gmail.com>
+	<20231005105921.460657-2-mitrutzceclan@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D5:EE_|IA1PR12MB7566:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0c90cb71-aaed-4b09-56b7-08dbc5c203cf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	9or5TypMO1/wkJGnRZopMkM4ubMavyraMdKunyT4VCs0jMZa1+r19CUhq77IkTBg4xcFKLT8bCLOnPSLbCj6IJPMcdnR7XylOLAfx2f/pPHOVm7RFNJxBVLfG5CGJi/5t5kYYU1NiHDOisXAbQ/X2ioqfcx832u5SgV6ELJi0lmCU0iiKdqi1BAfv8waXyTZnL0FpcuW1thKu2noxQzxHLURern9qTzuPl7dS4N+q/JVKVYw6xf5m2fgTWrbKPPEHp99XT1DP5yR73kmSaM2n6qbvyns6D4+Gh2VjBAlGarmPkU0SLCn5pGTEkPCGLbbFW9Xma43SmSIz1JprPfX9OTSPrjj8EXV+teYjD4H3ub6nczLMk/4p2PoTkUkHi48XWj2D8G4GDY7FHJdxtxA3U6rj5wYluVogjLFpRFWQTFicTj+1wIxo7ODBPrxS79cf/shi1+Qh/CHwPsMzkRtuUFQcigJhC7PPBBodkdpBueTDgXnMXFviMnqac9N5+xVitEfwoTMuN03y1fJC9FyoEzlqEqqG6gWIIHpRIvpBQUfQ1FJCCRtzw1pF3y1OX9LrENZL6JZ5pcKE7S7Q8puX8P47jk75wbt3+JI3SMfsexc0aX209ik6ApNOOB7ca/afWwhiMBejGchocGDOICMIxdBiLAje/ooHTHaijpkaHP/aBS7VYGlMo25vIQa1KV3EPJkGWNY5GlXN0SgcFGeSPoFV5dVAzOhv3knz6YnEOQTta86EdbfbvUBFqNsgmCXdNeB644MloLnBppfe6rqHfb+XY3dTuLIJuNIEmwXJL0=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(136003)(376002)(39860400002)(346002)(396003)(230922051799003)(1800799009)(186009)(451199024)(82310400011)(64100799003)(40470700004)(46966006)(36840700001)(40480700001)(40460700003)(2906002)(316002)(26005)(54906003)(426003)(83380400001)(44832011)(7416002)(1076003)(478600001)(336012)(2616005)(5660300002)(4326008)(70206006)(8676002)(6666004)(110136005)(47076005)(70586007)(8936002)(356005)(36860700001)(86362001)(4744005)(81166007)(41300700001)(36756003)(82740400003)(36900700001)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Oct 2023 16:42:07.9429
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0c90cb71-aaed-4b09-56b7-08dbc5c203cf
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CY4PEPF0000E9D5.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7566
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Our controller is expecting ECAM size to be programmed by software. By
-programming "NWL_ECAM_VALUE_DEFAULT  12" controller can access up to 16MB
-ECAM region which is used to detect 16 buses, so by updating
-"NWL_ECAM_VALUE_DEFAULT" to 16 so that controller can access up to 256MB
-ECAM region to detect 256 buses.
+On Thu,  5 Oct 2023 13:59:22 +0300
+Dumitru Ceclan <mitrutzceclan@gmail.com> wrote:
 
-Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
----
-changes in v5:
-None.
----
- drivers/pci/controller/pcie-xilinx-nwl.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
+> which can be used in high precision, low noise single channel
+> applications or higher speed multiplexed applications. The Sigma-Delta
+> ADC is intended primarily for measurement of signals close to DC but also
+> delivers outstanding performance with input bandwidths out to ~10kHz.
+> 
+> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
 
-diff --git a/drivers/pci/controller/pcie-xilinx-nwl.c b/drivers/pci/controller/pcie-xilinx-nwl.c
-index 8fe0e8a325b0..e307aceba5c9 100644
---- a/drivers/pci/controller/pcie-xilinx-nwl.c
-+++ b/drivers/pci/controller/pcie-xilinx-nwl.c
-@@ -126,7 +126,7 @@
- #define E_ECAM_CR_ENABLE		BIT(0)
- #define E_ECAM_SIZE_LOC			GENMASK(20, 16)
- #define E_ECAM_SIZE_SHIFT		16
--#define NWL_ECAM_MAX_SIZE		12
-+#define NWL_ECAM_MAX_SIZE		16
- 
- #define CFG_DMA_REG_BAR			GENMASK(2, 0)
- #define CFG_PCIE_CACHE			GENMASK(7, 0)
--- 
-2.25.1
+Hi Dumitru,
+
+Getting close, but a few more comments on things I noticed this time
+around.
+
+Thanks,
+
+Jonathan
+
+
+> diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
+> new file mode 100644
+> index 000000000000..5f9ab6023b09
+> --- /dev/null
+> +++ b/drivers/iio/adc/ad7173.c
+> @@ -0,0 +1,843 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * AD7172-2/AD7173-8/AD7175-2/AD7176-2 SPI ADC driver
+> + * Copyright (C) 2015-2023 Analog Devices, Inc.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bitmap.h>
+> +#include <linux/bits.h>
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/gpio/driver.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/property.h>
+> +#include <linux/regmap.h>
+> +#include <linux/gpio/regmap.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/slab.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/units.h>
+> +
+> +#include <linux/iio/buffer.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+
+Needed?  It's pretty rare that it is these days as the IIO core handles
+most attrs.
+
+> +#include <linux/iio/trigger_consumer.h>
+> +#include <linux/iio/triggered_buffer.h>
+> +
+> +#include <linux/iio/adc/ad_sigma_delta.h>
+
+
+...
+
+> +
+> +struct ad7173_state {
+> +	const struct ad7173_device_info *info;
+> +	struct ad_sigma_delta sd;
+> +	struct ad7173_channel *channels;
+> +	struct regulator *reg;
+
+Here but not used.. (it should be!)
+
+> +	unsigned int adc_mode;
+> +	unsigned int interface_mode;
+> +	unsigned int num_channels;
+> +	DECLARE_BITMAP(cfg_slots_status, AD7173_MAX_CONFIGS); /* slots usage status */
+> +	unsigned long long config_usage_counter;
+> +	unsigned long long *config_cnts;
+> +#if IS_ENABLED(CONFIG_GPIOLIB)
+> +	struct regmap *reg_gpiocon_regmap;
+> +	struct gpio_regmap *gpio_regmap;
+> +#endif
+> +};
+
+> +#if IS_ENABLED(CONFIG_GPIOLIB)
+
+...
+
+> +
+> +static int ad7173_gpio_init(struct ad7173_state *st)
+> +{
+> +	struct gpio_regmap_config gpio_regmap = {};
+> +	struct device *dev = &st->sd.spi->dev;
+> +	unsigned int mask;
+> +
+> +	st->reg_gpiocon_regmap = devm_regmap_init_spi(st->sd.spi, &ad7173_regmap_config);
+> +	if (IS_ERR(st->reg_gpiocon_regmap)) {
+> +		return dev_err_probe(dev, PTR_ERR(st->reg_gpiocon_regmap),
+> +				     "Unable to init regmap\n");
+> +	}
+> +
+> +	mask = AD7173_GPIO_OP_EN0 | AD7173_GPIO_OP_EN1 | AD7173_GPIO_OP_EN2_3;
+> +	regmap_update_bits(st->reg_gpiocon_regmap, AD7173_REG_GPIO, mask, mask);
+
+Does this get 'undone' anywhere? I'd imagine there is power cost to setting these
+bits that we want to stop in remove.
+Perhaps a devm_add_action_or_reset() needed here.
+
+> +
+> +	gpio_regmap.parent = dev;
+> +	gpio_regmap.regmap = st->reg_gpiocon_regmap;
+> +	gpio_regmap.ngpio = st->info->num_gpios;
+> +	gpio_regmap.reg_set_base = AD7173_REG_GPIO;
+> +	gpio_regmap.reg_mask_xlate = ad7173_mask_xlate;
+> +
+> +	st->gpio_regmap = devm_gpio_regmap_register(dev, &gpio_regmap);
+> +	if (IS_ERR(st->gpio_regmap)) {
+> +		return dev_err_probe(dev, PTR_ERR(st->gpio_regmap),
+> +				     "Unable to init gpio-regmap\n");
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +#endif /* CONFIG_GPIOLIB */
+
+...
+
+
+> +static int ad7173_read_raw(struct iio_dev *indio_dev,
+> +			   struct iio_chan_spec const *chan,
+> +			   int *val, int *val2, long info)
+> +{
+> +	struct ad7173_state *st = iio_priv(indio_dev);
+> +	unsigned int reg;
+> +	int ret;
+> +
+> +	switch (info) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		ret = ad_sigma_delta_single_conversion(indio_dev, chan, val);
+
+It's fairly usual for it to be safe to grab a single conversion when the
+buffered mode might be enabled.  Do you need an iio_device_claim_direct_mode()
+here?
+
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		/* disable channel after single conversion */
+> +		ret = ad_sd_write_reg(&st->sd, AD7173_REG_CH(chan->address), 2, 0);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		return IIO_VAL_INT;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		if (chan->type == IIO_TEMP) {
+> +			*val = 250000000;
+> +			*val2 = 800273203; /* (2^24 * 477) / 10 */
+> +			return IIO_VAL_FRACTIONAL;
+> +		} else {
+> +			*val = 2500;
+> +			if (chan->differential)
+> +				*val2 = 23;
+> +			else
+> +				*val2 = 24;
+> +			return IIO_VAL_FRACTIONAL_LOG2;
+> +		}
+> +	case IIO_CHAN_INFO_OFFSET:
+> +		if (chan->type == IIO_TEMP) {
+> +			*val = -874379;
+> +		} else {
+> +			if (chan->differential)
+> +				/* (1<<31) is UB for a 32bit channel*/
+> +				*val = (chan->scan_type.realbits == 32) ?
+> +					-(1 << (chan->scan_type.realbits - 1)) :
+> +					INT_MIN;
+> +			else
+> +				*val = 0;
+> +		}
+> +		return IIO_VAL_INT;
+> +	case IIO_CHAN_INFO_SAMP_FREQ:
+> +		reg = st->channels[chan->address].cfg.odr;
+> +
+> +		*val = st->info->sinc5_data_rates[reg] / (MICRO/MILLI);
+> +		*val2 = (st->info->sinc5_data_rates[reg] % MILLI) * (MICRO/MILLI);
+> +
+> +		return IIO_VAL_INT_PLUS_MICRO;
+> +	}
+> +	return -EINVAL;
+> +}
+> +
+
+> +
+> +static int ad7173_update_scan_mode(struct iio_dev *indio_dev,
+> +				   const unsigned long *scan_mask)
+> +{
+> +	struct ad7173_state *st = iio_priv(indio_dev);
+> +	int i, ret = 0;
+> +
+> +	iio_device_claim_direct_mode(indio_dev);
+
+This looks wrong.
+Firstly iio_device_claim_direct_mode() can fail so you always have
+to check the return value. If it does fail and you then call
+iio_release_direct_mode() it is unbalanced release of a mutex.
+
+Secondly update_scan_mode is only called as part of buffer setup
+and there should be no races around that (and the mutex this
+tries to grab is already held.
+https://elixir.bootlin.com/linux/latest/source/drivers/iio/industrialio-buffer.c#L1265
+)
+
+If you are protecting something device specific (rather than
+the mode) then a device specific lock should be taken.
+
+
+> +	for (i = 0; i < indio_dev->num_channels; i++) {
+> +		if (test_bit(i, scan_mask))
+> +			ret = ad7173_set_channel(&st->sd, i);
+> +		else
+> +			ret = ad_sd_write_reg(&st->sd, AD7173_REG_CH(i), 2, 0);
+> +
+> +		if (ret < 0)
+> +			goto out;
+> +	}
+> +
+> +out:
+> +	iio_device_release_direct_mode(indio_dev);
+> +	return ret;
+> +}
+
+> +
+> +static int ad7173_fw_parse_channel_config(struct iio_dev *indio_dev)
+> +{
+> +	struct ad7173_state *st = iio_priv(indio_dev);
+> +	struct ad7173_channel *channels_st_priv;
+> +	struct fwnode_handle *child;
+> +	struct device *dev = indio_dev->dev.parent;
+> +	struct iio_chan_spec *chan;
+> +	unsigned int num_channels;
+> +	unsigned int ain[2], chan_index = 0;
+> +	int ret;
+> +
+> +	num_channels = device_get_child_node_count(dev);
+> +
+> +	if (st->info->has_temp)
+> +		num_channels++;
+> +
+> +	if (num_channels == 0)
+> +		return 0;
+> +	st->num_channels = num_channels;
+> +
+> +	chan = devm_kcalloc(dev, sizeof(*chan), num_channels,
+> +			    GFP_KERNEL);
+> +	if (!chan)
+> +		return -ENOMEM;
+> +
+> +	channels_st_priv = devm_kcalloc(dev, num_channels,
+> +					sizeof(*channels_st_priv), GFP_KERNEL);
+> +	if (!channels_st_priv)
+> +		return -ENOMEM;
+> +
+> +	indio_dev->channels = chan;
+> +	indio_dev->num_channels = num_channels;
+> +	st->channels = channels_st_priv;
+> +
+> +	if (st->info->has_temp) {
+> +		chan[chan_index] = ad7173_temp_iio_channel_template;
+> +		channels_st_priv[chan_index].ain =
+> +			AD7173_CH_ADDRESS(chan[chan_index].channel, chan[chan_index].channel2);
+> +		channels_st_priv[chan_index].cfg.bipolar = false;
+> +		channels_st_priv[chan_index].cfg.input_buf = true;
+> +		chan_index++;
+> +	}
+> +
+> +	device_for_each_child_node(dev, child) {
+> +		ret = fwnode_property_read_u32_array(child, "diff-channels",
+> +						     ain, ARRAY_SIZE(ain));
+> +		if (ret) {
+> +			fwnode_handle_put(child);
+> +			return ret;
+> +		}
+> +
+> +		if (ain[0] >= st->info->num_inputs ||
+> +		    ain[1] >= st->info->num_inputs) {
+> +			fwnode_handle_put(child);
+> +			return dev_err_probe(dev, -EINVAL,
+> +				"Input pin number out of range for pair (%d %d).", ain[0], ain[1]);
+> +		}
+> +
+> +		chan[chan_index] = ad7173_channel_template;
+> +		chan[chan_index].address = chan_index;
+> +		chan[chan_index].scan_index = chan_index;
+> +		chan[chan_index].channel = ain[0];
+> +		chan[chan_index].channel2 = ain[1];
+> +
+> +		channels_st_priv[chan_index].ain = AD7173_CH_ADDRESS(ain[0], ain[1]);
+> +		channels_st_priv[chan_index].chan_reg = chan_index;
+> +		channels_st_priv[chan_index].cfg.input_buf = true;
+> +		channels_st_priv[chan_index].cfg.odr = 0;
+> +
+> +		chan[chan_index].differential = fwnode_property_read_bool(child, "bipolar");
+
+bipolar doesn't normally == differential. 
+You can have unipolar differential (just that you can't get a negative answer)
+Perhaps just a terminology thing?
+
+> +		if (chan[chan_index].differential) {
+> +			chan[chan_index].info_mask_separate |= BIT(IIO_CHAN_INFO_OFFSET);
+> +			channels_st_priv[chan_index].cfg.bipolar = true;
+> +		}
+> +
+> +		chan_index++;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int ad7173_probe(struct spi_device *spi)
+> +{
+> +	struct ad7173_state *st;
+> +	struct iio_dev *indio_dev;
+> +	struct device *dev = &spi->dev;
+> +	int ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	st = iio_priv(indio_dev);
+> +	st->info = device_get_match_data(dev);
+> +	if (!st->info)
+> +		return -ENODEV;
+This works for the cases of DT and ACPI but not for anyone just
+using the spi_device_id table. 
+There is spi_device_get_match_data() to cover all options.
+
+> +
+> +	indio_dev->name = spi_get_device_id(spi)->name;
+
+I'd avoid mixing and matching across different access methods for
+firmware type info.  Just embed the name in the st->info structure.
+
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->info = &ad7173_info;
+> +
+> +	spi->mode = SPI_MODE_3;
+> +
+> +	ad7173_sigma_delta_info.num_slots = st->info->num_configs;
+> +	ret = ad_sd_init(&st->sd, indio_dev, spi, &ad7173_sigma_delta_info);
+> +	if (ret)
+> +		return ret;
+> +
+> +	spi_set_drvdata(spi, indio_dev);
+> +
+> +	ret = ad7173_fw_parse_channel_config(indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = devm_ad_sd_setup_buffer_and_trigger(dev, indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ad7173_setup(indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = devm_iio_device_register(dev, indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (IS_ENABLED(CONFIG_GPIOLIB))
+> +		return ad7173_gpio_init(st);
+> +
+> +	return 0;
+> +}
 
 
