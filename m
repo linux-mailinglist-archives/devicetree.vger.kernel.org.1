@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-6304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2AF77BAAC2
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 21:56:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44FD87BAAC3
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 21:56:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 142121C208C5
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 8BBF0281E72
 	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 19:56:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FED241770;
-	Thu,  5 Oct 2023 19:56:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 749DF41777;
+	Thu,  5 Oct 2023 19:56:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="lQwgJXoe"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="o4DfG3OI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47A4F4122E
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 19:56:02 +0000 (UTC)
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD338126;
-	Thu,  5 Oct 2023 12:56:00 -0700 (PDT)
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id E38F6100004;
-	Thu,  5 Oct 2023 22:55:58 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru E38F6100004
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D977941766
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 19:56:03 +0000 (UTC)
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBC03EE;
+	Thu,  5 Oct 2023 12:56:01 -0700 (PDT)
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 5F4B7120003;
+	Thu,  5 Oct 2023 22:56:00 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 5F4B7120003
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1696535758;
-	bh=zo/sNzc/dG5eUQxSK5eEp9sui2QCDHTpqSqmdqaMwdk=;
+	s=mail; t=1696535760;
+	bh=eGJG4I3xUhHTbnwlGsEN7C+PpfbV4uxkjDt0RvR9dAs=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=lQwgJXoeDwWqBOgHtcDSkH+oNP8R6+fiiErYDvJ5SSKgSMOPvsrU7cdCdNJP/aEqt
-	 5aSVrzBVpMpKnPlvouQiTen/xvqRtrXsB52G3qsjDPtxS1w3vUcHAPqtR/NFMncYwE
-	 SC7JynKnc4dEybpiHR2pQFkaM4FvLVrbZErlaWJTillnqvKpfq5OFM3ZDQsDWvlPnc
-	 EmoZwCK7eondFpt2zzbo7ejB6mwPFDg9R/3aF+fsf9p4NMlW38OlW0QwqzOC2bBrJd
-	 iBtLPozYqs/dS1PzH2dDiD1wH+pKgW/uLZtlWAW3GrVkd0zyf7dpilAIY8CZ9IhdhE
-	 XLshAZ39PY73A==
+	b=o4DfG3OIZdPTgLgO46SKURLcIcfoVQ1ozjR5pGcXnbI98qyNmFglc3JsErwd/JZA0
+	 0VIAyutD+YHJYIqdkLOWpbWu7NHlfbm84iSghbM3QsKmSlixWx3AYkP2ZakLl7eUE+
+	 lbbLOR+kRHDC0by/A8bOsKIh/YwHaYUWLyMnXvrvbyubj/mW4JL8C3PODAhbgFNibW
+	 QRIYkVtc62J8C1rZSzED4P56fyY0XtdNh3s7Gj8QQ0OnZp4DmEaiwmeXV905xPl6i7
+	 9RKMMOttCM0yrZDBmFln8YR9HYR5zOY7pbQniA91YMoq3UZL8VuxF351sKt+yeAFCc
+	 b0R313s1bLxuQ==
 Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Thu,  5 Oct 2023 22:55:58 +0300 (MSK)
+	Thu,  5 Oct 2023 22:56:00 +0300 (MSK)
 Received: from localhost.localdomain (100.64.160.123) by
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Thu, 5 Oct 2023 22:55:58 +0300
+ 15.2.1118.30; Thu, 5 Oct 2023 22:55:59 +0300
 From: Igor Prusov <ivprusov@salutedevices.com>
 To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
 	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Neil
@@ -53,9 +53,9 @@ CC: <prusovigor@gmail.com>, <kernel@sberdevices.ru>, Igor Prusov
  Blumenstingl <martin.blumenstingl@googlemail.com>,
 	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v1 1/2] arm64: dts: meson: a1: Add SPIFC mux pins
-Date: Thu, 5 Oct 2023 22:55:42 +0300
-Message-ID: <20231005195543.380273-2-ivprusov@salutedevices.com>
+Subject: [PATCH v1 2/2] arm64: dts: meson-a1-ad402: set SPIFC pins
+Date: Thu, 5 Oct 2023 22:55:43 +0300
+Message-ID: <20231005195543.380273-3-ivprusov@salutedevices.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231005195543.380273-1-ivprusov@salutedevices.com>
 References: <20231005195543.380273-1-ivprusov@salutedevices.com>
@@ -79,7 +79,7 @@ X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 535 535 da804c0ea8918f802fc60e7a20ba49783d957ba2, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;127.0.0.199:7.1.2;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 535 535 da804c0ea8918f802fc60e7a20ba49783d957ba2, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
 X-KSMG-AntiPhishing: Clean
@@ -93,37 +93,26 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-SPI Flash Controller uses multi-function pins, so add missing mux
-definition.
+SPIFC uses muxed GPIO pins, so they should be properly configured.
 
 Signed-off-by: Igor Prusov <ivprusov@salutedevices.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index 5c6f93ddf7b4..6cd50187896a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -168,6 +168,18 @@ mux {
- 						bias-pull-down;
- 					};
- 				};
-+
-+				spifc_pins: spifc {
-+					mux {
-+						groups = "spif_mo",
-+							 "spif_mi",
-+							 "spif_clk",
-+							 "spif_cs",
-+							 "spif_hold_n",
-+							 "spif_wp_n";
-+						function = "spif";
-+					};
-+				};
- 			};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts b/arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts
+index 8a6a7791839e..1c20516fa653 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts
+@@ -103,6 +103,8 @@ &saradc {
  
- 			gpio_intc: interrupt-controller@440 {
+ &spifc {
+ 	status = "okay";
++	pinctrl-0 = <&spifc_pins>;
++	pinctrl-names = "default";
+ 
+ 	spi_nand@0 {
+ 		compatible = "spi-nand";
 -- 
 2.34.1
 
