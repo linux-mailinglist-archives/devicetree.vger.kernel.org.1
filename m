@@ -1,153 +1,159 @@
-Return-Path: <devicetree+bounces-6032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D6B37B9BC9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 10:21:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F4157B9BD4
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 10:37:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by am.mirrors.kernel.org (Postfix) with ESMTP id 9E54C1F22D92
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 08:21:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 88241281AF1
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 08:37:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C04663C9;
-	Thu,  5 Oct 2023 08:21:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 129324A33;
+	Thu,  5 Oct 2023 08:37:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nQCum2bf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qNOw5QDq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADEFE569D
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 08:21:42 +0000 (UTC)
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAD5586B9;
-	Thu,  5 Oct 2023 01:21:40 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-690bccb0d8aso584321b3a.0;
-        Thu, 05 Oct 2023 01:21:40 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF3B115C5
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 08:36:58 +0000 (UTC)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00C089009
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 01:36:55 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso134856766b.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 01:36:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696494100; x=1697098900; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6xF4VcmjAf7zdGNHFHYPdHCqEwDNHCYpzit/ZJRYbdY=;
-        b=nQCum2bf1WuahhSloLrn+5CETzLT6bCJ39ky3i3Ju5kCNcILwmVDsAzUhrLV7UUQeT
-         W/zSEOqej7Wg6LBWTw40QqqwSOV10A3dIt5r+6d5iMraJlHQLNU/eTSOWOF792oKvEV+
-         n4fy5mYY1E3foUVO/Jae36FuQV1jfppD/L60dz2WrMZeuR77Rgt0bvwa/BmjwE3kTaBW
-         J03LrM82kvjszBxrecLnLwXDOYVzGEgDuWl/mDTlgCoQ9yAbR3DCaEIN8A9q+YoGn0FZ
-         yQEBVj48kbR0EecMMg+Zu6xPauvZPW93hogohpoAztxJcUveTDj6KHSXpQ/JwL2yFhC1
-         vLZw==
+        d=linaro.org; s=google; t=1696495014; x=1697099814; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=b8UTzhAdpyBQxIe5FDho0E0NnDq18CgBro9Bv3TILXw=;
+        b=qNOw5QDqz1U7dhoRI5x1OY260qBxXhNrZq/lh/fw/x31GjTF/jvl0uZW8yoZM3VP8p
+         QwMsR7CIXTjRAsnLzkUraqwaiKKyiDBm8AiA7PRqmAhSbPGEYWuQ7hT2EPkhINP2GeFl
+         tmZqon3Sxw+793p0kZk1YS4iKcO5dAWvVBkPo29NfWRjhpttlTj8jxJ7HcAc8KufHAFS
+         ZZ6Rwf/7eww6mgQAHXXcdAZYQnd18Enz/+o5NF51s10SvPas17wd5TtLPWFXAKVNGPrJ
+         SqpLGmlQbm3sIN52B44CJHbfURII70opAUYFme5nVej9+T1FKhx0bKzSYB0et52LkDvm
+         JesQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696494100; x=1697098900;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6xF4VcmjAf7zdGNHFHYPdHCqEwDNHCYpzit/ZJRYbdY=;
-        b=desiblIG1zP9+vC8OhJ0Go3tJrJWlDqm4JjMltCFlUo8CcMWoOPYj1sAIJgLuySyik
-         f0mg1DOU5ABgrPzpUCAijByJ+NM96+W7p5rwH0CjJKxOHuM7pwtP7LCo+Hcx59WQJFw1
-         LWnUS/ilFbBKGfNN3yfaqBOM3gky4MoMjlfQil3eCmVsruhx+yshbdyl+kQ8UT1v/lP6
-         jlQK8BqNvQG5hBLOFYmSC24jOS9N5jY+idNF9Qh/LqRx8DXI228xZa5xWpzmBdIL63g3
-         blCPWrgMg6V0WuM5s/jl8qGRjF1BLAuxXQgEpsbNmaGyzVTDLkv7xqucJfycSeWkecqc
-         obNQ==
-X-Gm-Message-State: AOJu0YxrMPeZIruqO9B9M1oHHyMnUBdMiO4hbX6BwWEOsqpwna7u6kxJ
-	fQxzJFVT/KpTPH5LCTn8Rv8=
-X-Google-Smtp-Source: AGHT+IFKBdwGGId/1JAn0eJrQXX5wPVt+NoaMAx1n6nayA0VFCwN8qF7d/i7qqYCoj4hKXcATdIsBg==
-X-Received: by 2002:a05:6a20:3d95:b0:159:b7dc:2295 with SMTP id s21-20020a056a203d9500b00159b7dc2295mr4774516pzi.9.1696494100161;
-        Thu, 05 Oct 2023 01:21:40 -0700 (PDT)
-Received: from [172.16.116.58] ([103.15.228.93])
-        by smtp.gmail.com with ESMTPSA id du6-20020a056a002b4600b0068a13b0b300sm842288pfb.11.2023.10.05.01.21.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Oct 2023 01:21:39 -0700 (PDT)
-Message-ID: <aa63918f-3a95-5e86-d61d-91a59cf643ad@gmail.com>
-Date: Thu, 5 Oct 2023 13:51:34 +0530
+        d=1e100.net; s=20230601; t=1696495014; x=1697099814;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=b8UTzhAdpyBQxIe5FDho0E0NnDq18CgBro9Bv3TILXw=;
+        b=lDpVbiojWfGSZiealpzKgJaFActep7bmU8IGAgYShbi0isLYqinHcYkX8MO9VBbWWW
+         7D2z2aQDFePLCWIgME2MV450N5LN/W7fpnO8R+pZ6fd7caPXZL4weElcxRv7VeMxYlNo
+         s1AC1Y0ol26465oZTykhhyWMK9wSB9cHIxdb+FiIwnkXtD4fZxKEm83sbA+LKS6W07vG
+         Tzf5NAo1kr7+QWVoeSpZS29mRdtLmqQAKCKgZYi6MmjOAM/6eYVSbku9wsviGjFjORrU
+         4bFyOuZgnUzP22uHCjki5i1chCVJeO9yjjTnrHcwA/bIBaO/xxvt4KbulVDWlNqF8dU5
+         qaaw==
+X-Gm-Message-State: AOJu0Yz50HtkClozBEUv1nX5ItAmhIHPZAi8MWsqZmEu67CG88HbNJ3y
+	/Ml8NTsHlJAHJgZvVO6xkYUEDHApM5mwWl5bT0FPxQ==
+X-Google-Smtp-Source: AGHT+IFj3x7hP+Xsklyuu9mY6jxW5m7RoNCenO2OgtzW5rQJ1pySLYfpomU4uGapvb3bWcxfehQX9A==
+X-Received: by 2002:a17:906:2da:b0:9b2:ccd8:2d2b with SMTP id 26-20020a17090602da00b009b2ccd82d2bmr4134279ejk.77.1696495014255;
+        Thu, 05 Oct 2023 01:36:54 -0700 (PDT)
+Received: from krzk-bin.. (5-157-101-10.dyn.eolo.it. [5.157.101.10])
+        by smtp.gmail.com with ESMTPSA id i8-20020a17090671c800b009a198078c53sm780677ejk.214.2023.10.05.01.36.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Oct 2023 01:36:53 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Cosmin Tanislav <cosmin.tanislav@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: iio: add missing reset-gpios constrain
+Date: Thu,  5 Oct 2023 10:36:50 +0200
+Message-Id: <20231005083650.92222-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v7 1/3] dt-bindings: net: Add ti,cc1352p7
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- greybus-dev@lists.linaro.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- gregkh@linuxfoundation.org, vaishnav@beagleboard.org,
- jkridner@beagleboard.org, nm@ti.com, krzysztof.kozlowski+dt@linaro.org,
- vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20231004184639.462510-1-ayushdevel1325@gmail.com>
- <20231004184639.462510-2-ayushdevel1325@gmail.com>
- <a171cc72-98cf-4f7f-ba86-6da2ac45ea22@linaro.org>
-Content-Language: en-US
-From: Ayush Singh <ayushdevel1325@gmail.com>
-In-Reply-To: <a171cc72-98cf-4f7f-ba86-6da2ac45ea22@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
->> Signed-off-by: Ayush Singh <ayushdevel1325@gmail.com>
->> ---
->>   .../devicetree/bindings/net/ti,cc1352p7.yaml  | 51 +++++++++++++++++++
->>   MAINTAINERS                                   |  6 +++
->>   2 files changed, 57 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
->> new file mode 100644
->> index 000000000000..291ba34c389b
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
->> @@ -0,0 +1,51 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/net/ti,cc1352p7.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Texas Instruments Simplelink CC1352P7 wireless MCU
->> +
->> +description:
->> +  The cc1352p7 mcu can be connected via SPI or UART.
->> +
->> +maintainers:
->> +  - Ayush Singh <ayushdevel1325@gmail.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: ti,cc1352p7
->> +
->> +  clocks:
->> +    maxItems: 2
->> +
->> +  clock-names:
->> +    description:
->> +      sclk_hf is the main system (mcu and peripherals) clock
->> +      sclk_lf is low-frequency system clock
-> This does no go here, but to clocks. I wrote how it should be done.
-> Don't ignore the feedback.
-It was suggested to use `clock-names` by Nishanth Menon in the previous 
-email, so I thought this was what it meant. I will remove clock-names if 
-that's better.
->> +    items:
->> +      - const: sclk_hf
->> +      - const: sclk_lf
->> +
->> +  reset-gpios: true
->
-> No, really, why do you change correct code into incorrect one? Who asked
-> you to drop maxItems?
-I found that many bindings (`display/ilitek,ili9486.yaml`, 
-`iio/dac/adi,ad5758.yaml`) use this pattern instead of `maxItems` for 
-`reset-gpios`. So I assumed it was some sort of convention. I will 
-change it back to `maxItems`.
+The Documentation/devicetree/bindings/gpio/gpio-consumer-common.yaml
+schema does not enforce number of reset GPIOs, thus each device binding
+must do it.
 
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml | 3 ++-
+ Documentation/devicetree/bindings/iio/dac/adi,ad5758.yaml    | 3 ++-
+ Documentation/devicetree/bindings/iio/health/ti,afe4403.yaml | 3 ++-
+ Documentation/devicetree/bindings/iio/health/ti,afe4404.yaml | 3 ++-
+ 4 files changed, 8 insertions(+), 4 deletions(-)
 
-Sincerely,
-
-Ayush Singh
+diff --git a/Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml b/Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml
+index 2594fa192f93..2a04906531fb 100644
+--- a/Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml
++++ b/Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml
+@@ -32,7 +32,8 @@ properties:
+ 
+   spi-cpol: true
+ 
+-  reset-gpios: true
++  reset-gpios:
++    maxItems: 1
+ 
+   interrupts:
+     minItems: 1
+diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5758.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5758.yaml
+index 4e508bfcc9d8..5121685337b5 100644
+--- a/Documentation/devicetree/bindings/iio/dac/adi,ad5758.yaml
++++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5758.yaml
+@@ -78,7 +78,8 @@ properties:
+           - const: -1000
+           - const: 22000
+ 
+-  reset-gpios: true
++  reset-gpios:
++    maxItems: 1
+ 
+   adi,dc-dc-ilim-microamp:
+     enum: [150000, 200000, 250000, 300000, 350000, 400000]
+diff --git a/Documentation/devicetree/bindings/iio/health/ti,afe4403.yaml b/Documentation/devicetree/bindings/iio/health/ti,afe4403.yaml
+index b9b5beac33b2..5b6cde86b5a5 100644
+--- a/Documentation/devicetree/bindings/iio/health/ti,afe4403.yaml
++++ b/Documentation/devicetree/bindings/iio/health/ti,afe4403.yaml
+@@ -23,7 +23,8 @@ properties:
+     maxItems: 1
+     description: Connected to ADC_RDY pin.
+ 
+-  reset-gpios: true
++  reset-gpios:
++    maxItems: 1
+ 
+ required:
+   - compatible
+diff --git a/Documentation/devicetree/bindings/iio/health/ti,afe4404.yaml b/Documentation/devicetree/bindings/iio/health/ti,afe4404.yaml
+index 2958c4ca75b4..167d10bd60af 100644
+--- a/Documentation/devicetree/bindings/iio/health/ti,afe4404.yaml
++++ b/Documentation/devicetree/bindings/iio/health/ti,afe4404.yaml
+@@ -23,7 +23,8 @@ properties:
+     maxItems: 1
+     description: Connected to ADC_RDY pin.
+ 
+-  reset-gpios: true
++  reset-gpios:
++    maxItems: 1
+ 
+ additionalProperties: false
+ 
+-- 
+2.34.1
 
 
