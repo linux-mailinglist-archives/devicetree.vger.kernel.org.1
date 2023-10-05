@@ -1,204 +1,249 @@
-Return-Path: <devicetree+bounces-6179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6181-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A79367BA218
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:13:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAAB17BA229
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:17:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 556AC281E77
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:13:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 34F19281CB8
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:17:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBE5E30CF8;
-	Thu,  5 Oct 2023 15:13:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC05E30CF0;
+	Thu,  5 Oct 2023 15:17:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="aeSA0m5E"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iuj2Hf/o"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3077030CEA
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 15:13:25 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B39B16AEF;
-	Thu,  5 Oct 2023 08:13:22 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 395FDHSP044789;
-	Thu, 5 Oct 2023 10:13:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1696518797;
-	bh=b1Dvr4R9HnYlFE02nirGE3AGCpjxT5zBa+4cfDfFjyU=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=aeSA0m5E/o7sAyQ0bustpyp7df/NBIcdVV5C11+79yCbO2hM2CAuwkMlJaNd6ozyP
-	 wNEQ7Jr56hTSNcK0JE3dCMYPz23eeEQ6gZFXGfVkzkF91IWC/XpAQ+KV1mZzGmquXy
-	 VoFfZHUwfF13OMeaKD1CE7CUqDrcj9BO6IQfnYxw=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 395FDHJ5105410
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 5 Oct 2023 10:13:17 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 5
- Oct 2023 10:13:17 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 5 Oct 2023 10:13:17 -0500
-Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 395FD7Pd027216;
-	Thu, 5 Oct 2023 10:13:14 -0500
-From: Vignesh Raghavendra <vigneshr@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-*: Convert NAVSS to simple-bus
-Date: Thu, 5 Oct 2023 20:43:02 +0530
-Message-ID: <20231005151302.1290363-3-vigneshr@ti.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231005151302.1290363-1-vigneshr@ti.com>
-References: <20231005151302.1290363-1-vigneshr@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFD8326E12
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 15:17:52 +0000 (UTC)
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86FBA4695;
+	Thu,  5 Oct 2023 08:17:49 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 3EE6BE0010;
+	Thu,  5 Oct 2023 15:17:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1696519067;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nvH8TojWLX5PBOVWWWtrIYBix9PjUxHjvbmCvPQRWkE=;
+	b=iuj2Hf/o0T6P92uvZ0fWwcbUtAvIpStnI6H/7KBQEoGLMSa1VL4jOjF+/UvE1MfEYUy/CW
+	77vDVJjOyLBExgbxDHtiDz84KzSrxp3OnDH+RvgMWW+PaKOR0N+Sjkdqcu+LDW2WeSyKBh
+	bF2Z1+LMcDuCzLOuc9adjddmWhISxGvg3ZxBXv0r72M42BjJrjumsUd+hiXqfC5FJe+nyP
+	XBviODz8fWkbFSsvFRLMsF1gul/fpCcTg8JKUzTmPzq++AkUeUwpynPlDGhFJ28rZKMIwJ
+	AvUgu8nqDCysAe5zC98Kc/DYZ0G255+S9tRU5m/hfK5DZ5tT849KxdSphJZFfA==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Rob Herring <robh+dt@kernel.org>
+Cc: Paul Burton <paulburton@kernel.org>, Thomas Bogendoerfer
+ <tsbogend@alpha.franken.de>, linux-mips@vger.kernel.org, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Vladimir Kondratiev
+ <vladimir.kondratiev@intel.com>, Tawfik Bayouk
+ <tawfik.bayouk@mobileye.com>, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
+ <theo.lebrun@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 08/11] MIPS: mobileye: Add EyeQ5 dtsi
+In-Reply-To: <CAL_Jsq+Pn=kWFL32Cit-vnyJg2pnap2TMn4LPVr9nTmyK-FrZw@mail.gmail.com>
+References: <20231004161038.2818327-1-gregory.clement@bootlin.com>
+ <20231004161038.2818327-9-gregory.clement@bootlin.com>
+ <CAL_Jsq+Pn=kWFL32Cit-vnyJg2pnap2TMn4LPVr9nTmyK-FrZw@mail.gmail.com>
+Date: Thu, 05 Oct 2023 17:17:45 +0200
+Message-ID: <87mswxcd46.fsf@BL-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: gregory.clement@bootlin.com
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
 	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-"simple-mfd" as standalone compatible is frowned upon, so model main and
-MCU NAVSS (Navigator SubSystem) nodes as simple-bus as there is really
-no need for these nodes to be MFD.
+Hello Rob,
 
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi         | 2 +-
- arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi          | 2 +-
- arch/arm64/boot/dts/ti/k3-j7200-main.dtsi        | 2 +-
- arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi  | 2 +-
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi        | 2 +-
- arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi  | 2 +-
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi       | 2 +-
- arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi | 2 +-
- 8 files changed, 8 insertions(+), 8 deletions(-)
+> On Wed, Oct 4, 2023 at 11:11=E2=80=AFAM Gregory CLEMENT
+> <gregory.clement@bootlin.com> wrote:
+>>
+>> Add a device tree include file for the Mobileye EyeQ5 SoC.
+>>
+>> Based on the work of Slava Samsonov <stanislav.samsonov@intel.com>
+>>
+>> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+>> ---
+>>  arch/mips/boot/dts/Makefile                   |   1 +
+>>  arch/mips/boot/dts/mobileye/Makefile          |   4 +
+>>  .../boot/dts/mobileye/eyeq5-fixed-clocks.dtsi | 315 ++++++++++++++++++
+>>  arch/mips/boot/dts/mobileye/eyeq5.dtsi        | 138 ++++++++
+>>  4 files changed, 458 insertions(+)
+>>  create mode 100644 arch/mips/boot/dts/mobileye/Makefile
+>>  create mode 100644 arch/mips/boot/dts/mobileye/eyeq5-fixed-clocks.dtsi
+>>  create mode 100644 arch/mips/boot/dts/mobileye/eyeq5.dtsi
+>>
+>> diff --git a/arch/mips/boot/dts/Makefile b/arch/mips/boot/dts/Makefile
+>> index 928f38a79dff..edb8e8dee758 100644
+>> --- a/arch/mips/boot/dts/Makefile
+>> +++ b/arch/mips/boot/dts/Makefile
+>> @@ -8,6 +8,7 @@ subdir-$(CONFIG_LANTIQ)                 +=3D lantiq
+>>  subdir-$(CONFIG_MACH_LOONGSON64)       +=3D loongson
+>>  subdir-$(CONFIG_SOC_VCOREIII)          +=3D mscc
+>>  subdir-$(CONFIG_MIPS_MALTA)            +=3D mti
+>> +subdir-$(CONFIG_SOC_EYEQ5)             +=3D mobileye
+>>  subdir-$(CONFIG_LEGACY_BOARD_SEAD3)    +=3D mti
+>>  subdir-$(CONFIG_FIT_IMAGE_FDT_NI169445)        +=3D ni
+>>  subdir-$(CONFIG_MACH_PIC32)            +=3D pic32
+>> diff --git a/arch/mips/boot/dts/mobileye/Makefile b/arch/mips/boot/dts/m=
+obileye/Makefile
+>> new file mode 100644
+>> index 000000000000..99c4124fd4c0
+>> --- /dev/null
+>> +++ b/arch/mips/boot/dts/mobileye/Makefile
+>> @@ -0,0 +1,4 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only
+>> +# Copyright 2023 Mobileye Vision Technologies Ltd.
+>> +
+>> +obj-$(CONFIG_BUILTIN_DTB)      +=3D $(addsuffix .o, $(dtb-y))
+>
+> You didn't add anything to 'dtb-y'. Did you test this?
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-index bc460033a37a..d0c85eb3bb04 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-@@ -600,7 +600,7 @@ intr_main_gpio: interrupt-controller@a00000 {
- 	};
- 
- 	main_navss: bus@30800000 {
--		compatible = "simple-mfd";
-+		compatible = "simple-bus";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges = <0x0 0x30800000 0x0 0x30800000 0x0 0xbc00000>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-index 1e536dc41f61..edd5cfbec40e 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-@@ -185,7 +185,7 @@ mcu_timer3: timer@40430000 {
- 	};
- 
- 	mcu_navss: bus@28380000 {
--		compatible = "simple-mfd";
-+		compatible = "simple-bus";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges = <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-index cdb1d6b2a982..264913f83287 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-@@ -91,7 +91,7 @@ main_gpio_intr: interrupt-controller@a00000 {
- 	};
- 
- 	main_navss: bus@30000000 {
--		compatible = "simple-mfd";
-+		compatible = "simple-bus";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges = <0x00 0x30000000 0x00 0x30000000 0x00 0x0c400000>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-index 6ffaf85fa63f..ef13d64961ef 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-@@ -318,7 +318,7 @@ wkup_gpio1: gpio@42100000 {
- 	};
- 
- 	mcu_navss: bus@28380000 {
--		compatible = "simple-mfd";
-+		compatible = "simple-bus";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges = <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index f6c7e1614521..746b9f8b1c64 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -181,7 +181,7 @@ main_gpio_intr: interrupt-controller@a00000 {
- 	};
- 
- 	main_navss: bus@30000000 {
--		compatible = "simple-mfd";
-+		compatible = "simple-bus";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges = <0x00 0x30000000 0x00 0x30000000 0x00 0x0c400000>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-index fa8af20c7818..f7ab7719fc07 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-@@ -440,7 +440,7 @@ adc {
- 	};
- 
- 	mcu_navss: bus@28380000 {
--		compatible = "simple-mfd";
-+		compatible = "simple-bus";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges = <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-index 6d32544c8881..bbb4b7f81039 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-@@ -775,7 +775,7 @@ main_sdhci1: mmc@4fb0000 {
- 	};
- 
- 	main_navss: bus@30000000 {
--		compatible = "simple-mfd";
-+		compatible = "simple-bus";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges = <0x00 0x30000000 0x00 0x30000000 0x00 0x0c400000>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-index 56504578c464..20a6a35ad61a 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-@@ -443,7 +443,7 @@ mcu_spi2: spi@40320000 {
- 	};
- 
- 	mcu_navss: bus@28380000 {
--		compatible = "simple-mfd";
-+		compatible = "simple-bus";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges = <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>;
--- 
-2.42.0
+Initially yes, and finally we switch on the FIT image generation, so we
+don't use it anymore
 
+>
+> Also, CONFIG_BUILTIN_DTB is supposed to be for legacy bootloaders
+> which don't understand DT. For a new SoC, fix the bootloader.
+
+I can remove it
+
+>
+>> diff --git a/arch/mips/boot/dts/mobileye/eyeq5-fixed-clocks.dtsi b/arch/=
+mips/boot/dts/mobileye/eyeq5-fixed-clocks.dtsi
+>> new file mode 100644
+>> index 000000000000..a0066465ac8b
+>> --- /dev/null
+>> +++ b/arch/mips/boot/dts/mobileye/eyeq5-fixed-clocks.dtsi
+>> @@ -0,0 +1,315 @@
+>> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +/*
+>> + * Copyright 2023 Mobileye Vision Technologies Ltd.
+>> + */
+>
+> I assume these aren't all really fixed, but just 'I don't have a clock
+> driver yet'. That creates an ABI issue when you add the clock
+> driver(s). Just FYI.
+
+Indeed they aren't all fixed. The plan is to replace the relevant ones by a
+real clock driver when ready.
+
+In this case some part of the dts file will be modified. But is it a
+real issue ?
+
+Booting with a new kernel with an old dtb will still continue to work in
+the same way. it's only new tdb with old kernel that won't work, but we
+are not supposed to support this case.
+
+
+>
+>> +
+>> +/ {
+>> +       /* Fixed clock */
+>> +       pll_cpu: pll_cpu {
+>
+> Don't use _ in node names.
+
+OK
+[...]
+
+>> +/* PLL_CPU derivatives */
+>> +       occ_cpu: occ_cpu {
+>> +               compatible =3D "fixed-factor-clock";
+>> +               clocks =3D <&pll_cpu>;
+>> +               #clock-cells =3D <0>;
+>> +               clock-div =3D <1>;
+>> +               clock-mult =3D <1>;
+>> +               clock-output-names =3D "occ_cpu";
+>
+> Isn't the default name the node name? Drop these unless you really
+> have a need and they aren't redundant.
+
+indeed it's not used, I remove them too.
+[...]
+
+>> --- /dev/null
+>> +++ b/arch/mips/boot/dts/mobileye/eyeq5.dtsi
+>> @@ -0,0 +1,138 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>
+> Doesn't match eyeq5-fixed-clocks.dtsi
+
+OK
+
+>
+>> +/*
+>> + * Copyright 2023 Mobileye Vision Technologies Ltd.
+>> + */
+>> +
+>> +#include <dt-bindings/interrupt-controller/mips-gic.h>
+>> +#include <dt-bindings/soc/mobileye,eyeq5.h>
+>> +
+>> +/memreserve/ 0x40000000 0xc0000000; /* DDR32 */
+>> +/memreserve/ 0x08000000 0x08000000; /* DDR_LOW */
+>> +
+>> +#include "eyeq5-fixed-clocks.dtsi"
+>> +
+>> +/* almost all GIC IRQs has the same characteristics. provide short form=
+ */
+>
+> Maybe so, but I prefer not having 2 levels of lookup to figure out values.
+>
+>> +#define GIC_IRQ(x) GIC_SHARED (x) IRQ_TYPE_LEVEL_HIGH
+
+OK I remove it.
+
+>> +
+>> +/ {
+>> +       #address-cells =3D <2>;
+>> +       #size-cells =3D <2>;
+>> +       cpus {
+>> +               #address-cells =3D <1>;
+>> +               #size-cells =3D <0>;
+>> +               cpu@0 {
+>> +                       device_type =3D "cpu";
+>> +                       compatible =3D "mti,i6500";
+>> +                       reg =3D <0>;
+>> +                       clocks =3D <&core0_clk>;
+>> +               };
+>> +       };
+>> +
+>> +       reserved-memory {
+>> +               #address-cells =3D <2>;
+>> +               #size-cells =3D <2>;
+>> +               ranges;
+>> +
+>> +/* These reserved memory regions are also defined in bootmanager
+>> + * for configuring inbound translation for BARS, don't change
+>> + * these without syncing with bootmanager
+>> + */
+>
+> Indent with the rest of the node.
+
+OK
+
+Thanks,
+
+Gregory
+
+--=20
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
 
