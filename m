@@ -1,1056 +1,1335 @@
-Return-Path: <devicetree+bounces-6241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1CF07BA5F4
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 18:22:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68CD67BA631
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 18:30:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 3551FB20972
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:22:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 08CEC281A63
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:30:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8903634CE2;
-	Thu,  5 Oct 2023 16:22:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94C6523DF;
+	Thu,  5 Oct 2023 16:30:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ygl3XzA/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TC1hcX4u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 363F434CD9
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 16:22:03 +0000 (UTC)
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C295C272B
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 09:21:57 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-99c3d3c3db9so201538666b.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 09:21:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696522916; x=1697127716; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ryeiRAJWRcTX5Wsj4grROtdEuKHEqx2ACBXyAOJg74M=;
-        b=Ygl3XzA/dZ1j7vTxQjyCfERdmY+5k+qhup2VVZiLCw9EFr3p/4HzrVsMip8cqkOxSS
-         QfGbPBxXpuu9dTDihlllNohX6sTfbd8z5UH6uUI2vUON7oExlNbxhor0moGuhWdf5UUU
-         pQKZ7ms+wwZfCxi4iVsU9kd2GBBX3Gncz4Pfp+pIQH+eSsvPyUmIl2l92j3LLYQBTII1
-         wmyRZDh5XHe7e1Fu/ZXJmcQ0NCNepHjLtwAdBW7NSqEd/XZw7Gubb99JN5kwqhmcoE9p
-         xHoj4QIxARoGvDGMb3yHtOssYXBbEH465zsMinlFBmfAnivdwRDT6iHr6Y+AJgA1LsgO
-         mAig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696522916; x=1697127716;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ryeiRAJWRcTX5Wsj4grROtdEuKHEqx2ACBXyAOJg74M=;
-        b=sQE2sLWwPOycnmaEl4P/ppottwfQgllWEPzax4OtwGKb7qToowD/DeYtml9vLNKH3l
-         dpNIDx20ijcYCCqIecLevVVyJiTtNRxgWw02ZWMdxxAqAlsog4j1shvZw7zUKtGcKMDW
-         EhSxeNuZDocZZ0BxSIOz4MX5tjZaFmgpdWGFcf7hvRyZ4hlv1WGXKxF4JjBreLrRUFG3
-         S4ndOegn/i9fM/OxV2HwgctykAwqnGKB2v3dkYV7KMRcmkq4hNx4MGH/yPCISWJdt/DH
-         5mB2By3lWxhofd56l4R7lpw3t5KEalOH+OSJOYioh01vSa7J+kHFBZckYisOJGbTlDSu
-         90ww==
-X-Gm-Message-State: AOJu0Yx2Mgd/VeX8r0AoLMfQHwC/dPGu55GuTQRWsLe5PAnIEJWD0u4a
-	Kos5+IZbnx6IRM3w6h+oDo11sw==
-X-Google-Smtp-Source: AGHT+IF3uib9NG9znNKabhc2jCI8WCi4PU5AA0P9TduEu7uZ+YtY6L2wBL7GIK9WufE2fouM8dJTNw==
-X-Received: by 2002:a17:907:7809:b0:9ae:5be8:ff90 with SMTP id la9-20020a170907780900b009ae5be8ff90mr5303281ejc.68.1696522915728;
-        Thu, 05 Oct 2023 09:21:55 -0700 (PDT)
-Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id w13-20020a170906480d00b0098d2d219649sm1426542ejq.174.2023.10.05.09.21.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Oct 2023 09:21:55 -0700 (PDT)
-Message-ID: <2ea8f7d6-efbb-4791-b06e-090f8ef5750d@linaro.org>
-Date: Thu, 5 Oct 2023 18:21:52 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77DDC3588C
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 16:30:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19DB1C433CC;
+	Thu,  5 Oct 2023 16:30:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696523423;
+	bh=CHMuKE0iY2YEepWHPT8EvZ5I2ZpDVMASJfkhab6YW08=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=TC1hcX4uSC1rkiBsna+o4ppl14DFND4Obm9IPkS087khyWQjFtahkmM1zq5nFi8K6
+	 tmMTkilkessDxKsGNtXrmJUXkQHhe1hZwCaLfrIcqSxX3RXhWkMCFjCXXfupfFXsJu
+	 OgXUjI5A0LnJtEZ9FJP1JPhxryelY07N4TLl3bLTNUPNzHYn1I/Hn57HMWxVlSxfh3
+	 Vwqx9qdjk6GDhcH8KSc9s+31nYxLw3sOMSjsprEej2fO6u7AKAyzeeEqRIaq4lm5Mt
+	 lRzvOJvKS5bUmc2HGAvBBGY5bUMN9oY2WrJfbUp1nTsQjcV/U8sFAqY2maJSA0rjZ/
+	 LOcPlrEQohzfw==
+Date: Thu, 5 Oct 2023 17:30:26 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: werneazc@gmail.com
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, lars@metafoo.de, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, Andre Werner
+ <andre.werner@systec-electronic.com>
+Subject: Re: [PATCH v2 2/2] iio: adc: ads7038: Add driver support for 12bit
+ ADC
+Message-ID: <20231005173026.605055c4@jic23-huawei>
+In-Reply-To: <20231005035933.31016-2-andre.werner@systec-electronic.com>
+References: <20231005035933.31016-1-andre.werner@systec-electronic.com>
+	<20231005035933.31016-2-andre.werner@systec-electronic.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 18/21] arm64: dts: google: Add initial Google gs101 SoC
- support
-Content-Language: en-US
-To: Peter Griffin <peter.griffin@linaro.org>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
- conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com,
- s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org,
- linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
- olof@lixom.net, cw00.choi@samsung.com
-Cc: tudor.ambarus@linaro.org, andre.draszik@linaro.org,
- semen.protsenko@linaro.org, soc@kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-watchdog@vger.kernel.org
-References: <20231005155618.700312-1-peter.griffin@linaro.org>
- <20231005155618.700312-19-peter.griffin@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231005155618.700312-19-peter.griffin@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On 05/10/2023 17:56, Peter Griffin wrote:
-> Google gs101 SoC is ARMv8 mobile SoC found in the Pixel 6,
-> (oriole) Pixel 6a (bluejay) and Pixel 6 pro (raven) mobile
-> phones. It features:
-> * 4xA55 little cluster
-> * 2xA76 Mid cluster
-> * 2xX1 Big cluster
+On Thu,  5 Oct 2023 05:54:55 +0200
+werneazc@gmail.com wrote:
+
+> From: Andre Werner <andre.werner@systec-electronic.com>
 > 
-> This commit adds the basic device tree for gs101 (SoC) and oriole
-> (pixel 6). Further platform support will be added over time.
+> The driver is designed to support both, ADS7038 and ADS7138, but the
+> implementation of the device access is limited to ADS7038 (SPI). The
+> ADS7138 is accessed via I2C.
 > 
-> It has been tested with a minimal busybox initramfs and boots to
-> a shell.
+> The driver has a regmap and a core file that abstracts device access.
+> Currently, the driver does support manual mode only.
 > 
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
+
+Hi Andre,
+
+Thanks for your driver.
+
+Some comments inline.  Main one is that I'm not that keen to see the
+complexity to support the additional part in here, without the support for
+that part being in the same patch series.   We have a long history of
+people proposing generic layers then only ending up with one upstream
+user of them! I'm sure that doesn't apply here, but it does govern the policy
+which is that we add complexity and abstraction when it's useful and generally
+not before.
+
+Thanks,
+
+Jonathan
 > ---
->  arch/arm64/Kconfig.platforms                  |    6 +
->  arch/arm64/boot/dts/Makefile                  |    1 +
->  arch/arm64/boot/dts/google/Makefile           |    6 +
->  arch/arm64/boot/dts/google/gs101-oriole.dts   |   68 +
->  arch/arm64/boot/dts/google/gs101-pinctrl.dtsi | 1134 +++++++++++++++++
->  arch/arm64/boot/dts/google/gs101-pinctrl.h    |   17 +
->  arch/arm64/boot/dts/google/gs101.dtsi         |  501 ++++++++
-
-Please split adding DTSI from adding DTS into two patches.
-
->  7 files changed, 1733 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/google/Makefile
->  create mode 100644 arch/arm64/boot/dts/google/gs101-oriole.dts
->  create mode 100644 arch/arm64/boot/dts/google/gs101-pinctrl.dtsi
->  create mode 100644 arch/arm64/boot/dts/google/gs101-pinctrl.h
->  create mode 100644 arch/arm64/boot/dts/google/gs101.dtsi
+> -v2: Correct "-Wmissing-prototypes" warning for 'ads7038_read_raw' (add
+> missing static).
+> ---
+>  MAINTAINERS                         |  10 +
+>  drivers/iio/adc/Kconfig             |  22 ++
+>  drivers/iio/adc/Makefile            |   3 +
+>  drivers/iio/adc/ti-ads7038-core.c   | 137 +++++++
+>  drivers/iio/adc/ti-ads7038-regmap.c |  91 +++++
+>  drivers/iio/adc/ti-ads7038-spi.c    | 375 +++++++++++++++++++
+>  drivers/iio/adc/ti-ads7038.h        | 551 ++++++++++++++++++++++++++++
+>  7 files changed, 1189 insertions(+)
+>  create mode 100644 drivers/iio/adc/ti-ads7038-core.c
+>  create mode 100644 drivers/iio/adc/ti-ads7038-regmap.c
+>  create mode 100644 drivers/iio/adc/ti-ads7038-spi.c
+>  create mode 100644 drivers/iio/adc/ti-ads7038.h
 > 
-> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-> index 6069120199bb..a5ed1b719488 100644
-> --- a/arch/arm64/Kconfig.platforms
-> +++ b/arch/arm64/Kconfig.platforms
-> @@ -107,6 +107,12 @@ config ARCH_EXYNOS
->  	help
->  	  This enables support for ARMv8 based Samsung Exynos SoC family.
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 35977b269d5e..dace0a03987e 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -21252,6 +21252,16 @@ T:	git https://github.com/jcmvbkbc/linux-xtensa.git
+>  F:	arch/xtensa/
+>  F:	drivers/irqchip/irq-xtensa-*
 >  
-> +config ARCH_GOOGLE_TENSOR
-> +	bool "Google Tensor SoC fmaily"
-> +	depends on ARCH_EXYNOS
+> +TEXAS INSTRUMENT'S ADS7038 ADC DRIVER
+> +M:	Andre Werner <andre.werner@systec-electronic.com>
+> +L:	linux-iio@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml
+> +F:	drivers/iio/adc/ti-ads7038.h
+> +F:	drivers/iio/adc/ti-ads7038-core.c
+> +F:	drivers/iio/adc/ti-ads7038-regmap.c
+> +F:	drivers/iio/adc/ti-ads7038-spi.c
+> +
+>  TEXAS INSTRUMENTS ASoC DRIVERS
+>  M:	Peter Ujfalusi <peter.ujfalusi@gmail.com>
+>  L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
+> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> index 517b3db114b8..b3a2f27ecd69 100644
+> --- a/drivers/iio/adc/Kconfig
+> +++ b/drivers/iio/adc/Kconfig
+> @@ -1239,6 +1239,28 @@ config TI_ADS1015
+>  	  This driver can also be built as a module. If so, the module will be
+>  	  called ti-ads1015.
+>  
+> +config TI_ADS7038
+> +	tristate "Texas Instruments ADS7038 ADC driver"
+> +	depends on (I2C || SPI_MASTER)
+> +	select REGMAP
+> +	select TI_ADS7038_SPI if (SPI_MASTER)
+
+No need for brackets. Whilst I don't care strongly - in many cases
+we flip the logic and it makes particular sense here as the part numbers
+are different.
+
+So I'd have this module as a hidden option (drop the text after tristate)
+and select it from the SPI and I2C device specific modules.  That way
+they can be picked by their actual part numbers.
+
+
 > +	help
-> +	  Support for ARMv8 based Google Tensor platforms.
+> +	  Say yes here to build support for TI ADS7038 12BIT ADC.
 > +
->  config ARCH_SPARX5
->  	bool "Microchip Sparx5 SoC family"
->  	select PINCTRL
-> diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
-> index 30dd6347a929..a4ee7b628114 100644
-> --- a/arch/arm64/boot/dts/Makefile
-> +++ b/arch/arm64/boot/dts/Makefile
-> @@ -13,6 +13,7 @@ subdir-y += broadcom
->  subdir-y += cavium
->  subdir-y += exynos
->  subdir-y += freescale
-> +subdir-y += google
->  subdir-y += hisilicon
->  subdir-y += intel
->  subdir-y += lg
-> diff --git a/arch/arm64/boot/dts/google/Makefile b/arch/arm64/boot/dts/google/Makefile
+> +	  To compile this driver as a module, choose M here: the core module
+> +	  will be called ti-ads7038 and you will also get ti-ads7038-spi for SPI support.
+> +
+> +config TI_ADS7038_SPI
+> +	tristate
+> +	depends on TI_ADS7038
+> +	depends on SPI_MASTER
+> +	select REGMAP
+> +	help
+> +	  Say yes here to build support for TI ADS7038 12BIT ADC (SPI connected).
+> +
+> +	  To compile this driver as a module, choose M here: the core module
+> +	  will be called ti-ads7038 and you will also get ti-ads7038-spi for SPI support.
+> +
+>  config TI_ADS7924
+>  	tristate "Texas Instruments ADS7924 ADC"
+>  	depends on I2C
+> diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
+> index 2facf979327d..6aa355ab24de 100644
+> --- a/drivers/iio/adc/Makefile
+> +++ b/drivers/iio/adc/Makefile
+> @@ -111,6 +111,9 @@ obj-$(CONFIG_TI_ADC128S052) += ti-adc128s052.o
+>  obj-$(CONFIG_TI_ADC161S626) += ti-adc161s626.o
+>  obj-$(CONFIG_TI_ADS1015) += ti-ads1015.o
+>  obj-$(CONFIG_TI_ADS1100) += ti-ads1100.o
+> +obj-$(CONFIG_TI_ADS7038) += ti-ads7038.o
+> +ti-ads7038-objs := ti-ads7038-core.o ti-ads7038-regmap.o
+> +obj-$(CONFIG_TI_ADS7038_SPI) += ti-ads7038-spi.o
+>  obj-$(CONFIG_TI_ADS7924) += ti-ads7924.o
+>  obj-$(CONFIG_TI_ADS7950) += ti-ads7950.o
+>  obj-$(CONFIG_TI_ADS8344) += ti-ads8344.o
+> diff --git a/drivers/iio/adc/ti-ads7038-core.c b/drivers/iio/adc/ti-ads7038-core.c
 > new file mode 100644
-> index 000000000000..6d2026a767d4
+> index 000000000000..345ecb4e33d8
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/google/Makefile
-> @@ -0,0 +1,6 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +
-> +dtb-$(CONFIG_ARCH_GOOGLE_TENSOR) += \
-> +	gs101-oriole.dtb \
-> +
-> +
-
-Too many blank lines
-
-> diff --git a/arch/arm64/boot/dts/google/gs101-oriole.dts b/arch/arm64/boot/dts/google/gs101-oriole.dts
-> new file mode 100644
-> index 000000000000..e531a39a76a4
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/google/gs101-oriole.dts
-> @@ -0,0 +1,68 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Oriole DVT Device Tree
+> +++ b/drivers/iio/adc/ti-ads7038-core.c
+> @@ -0,0 +1,137 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/* This driver supports TI 12Bit ADC devices
 > + *
-> + * Copyright 2021-2023 Google,LLC
+> + *	 - ADS7038 with SPI interface
+> + *	 - ADS7138 with I2C interface (future)
+> + *
+> + * Copyright (C) 2023 SYS TEC electronic AG
+> + * Author: Andre Werner <andre.werner@systec-electronic.com>
 > + */
+> +#include <linux/device.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+
+I doubt you use anything from in here...
+
+> +#include <linux/iio/types.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +#include "linux/regulator/consumer.h"
 > +
-> +/dts-v1/;
-> +/plugin/;
+> +#include "ti-ads7038.h"
 > +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include "gs101-pinctrl.h"
-> +#include "gs101.dtsi"
+> +#define ADS7038_V_CHAN(_chan, _addr)				\
+> +	{							\
+> +	.type = IIO_VOLTAGE,					\
+> +	.indexed = 1,						\
+> +	.address = _addr,					\
+> +	.channel = _chan,					\
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |		\
+> +			      BIT(IIO_CHAN_INFO_SCALE),		\
+> +	.scan_index = _addr,					\
+> +	.scan_type = {						\
+> +		.sign = 's',					\
+> +		.realbits = 12,					\
+> +		.storagebits = 16,				\
+> +		.shift = 4,					\
+> +		.endianness = IIO_CPU,				\
+
+You haven't done buffered mode yet so don't add this info yet.
+However, whilst here we rarely do endian conversion in the driver
+for the buffered flow - instead just set this to IIO_BE and pass
+the raw reads through.
+
+> +	},							\
+> +	.datasheet_name = "AIN"#_chan,				\
+> +	}
 > +
-> +/ {
-> +	model = "Oriole DVT";
-> +	compatible = "google,gs101-oriole", "google,gs101";
+> +static const struct iio_chan_spec ads7038_channels[] = {
+> +	ADS7038_V_CHAN(0, AIN0), ADS7038_V_CHAN(1, AIN1),
+> +	ADS7038_V_CHAN(2, AIN2), ADS7038_V_CHAN(3, AIN3),
+> +	ADS7038_V_CHAN(4, AIN4), ADS7038_V_CHAN(5, AIN5),
+> +	ADS7038_V_CHAN(6, AIN6), ADS7038_V_CHAN(7, AIN7),
 > +};
 > +
-> +&pinctrl_1 {
-> +	key_voldown: key-voldown-pins {
-> +		samsung,pins = "gpa7-3";
-> +		samsung,pin-function = <0xf>;
-> +		samsung,pin-pud = <0>;
-> +		samsung,pin-drv = <GS101_PIN_DRV_2_5_MA>;
-> +	};
+> +static int ads7038_read_raw(struct iio_dev *indio_dev,
+> +		     struct iio_chan_spec const *chan,
+> +		     int *val, int *val2,
+> +		     long mask)
+> +{
+> +	unsigned int ret;
+> +	struct ads7038_ch_meas_result tmp_val;
+> +	struct ads7038_data *const data = (struct ads7038_data *)iio_priv(indio_dev);
+
+No need for cast, also const doesn't do anything terribly useful beyond
+make the line longer so drop it.
+
+> +	struct ads7038_info *const info = (struct ads7038_info *)data->info;
 > +
-> +	key_volup: key-volup-pins {
-> +		samsung,pins = "gpa8-1";
-> +		samsung,pin-function = <0xf>;
-> +		samsung,pin-pud = <0>;
-> +		samsung,pin-drv = <GS101_PIN_DRV_2_5_MA>;
-> +	};
+> +	ret = info->read_channel(indio_dev, chan->channel, &tmp_val);
+> +
+> +	if (ret < 0) {
+> +		dev_err(&indio_dev->dev, "Read channel returned with error %d", ret);
+> +		return ret;
+> +	}
+
+Only read the channel if you actually use the value...
+
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		*val = tmp_val.raw;
+> +
+> +		ret = IIO_VAL_INT;
+		return IIO_VAL_INT; 
+
+as nothing to do after the switch.
+
+> +		break;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		ret = regulator_get_voltage(data->reg);
+> +		if (ret < 0)
+> +			break;
+> +
+> +		*val = ret / 1000;	/* uV -> mV */
+> +		*val2 = (1 << chan->scan_type.realbits) - 1;
+> +
+> +		ret = IIO_VAL_FRACTIONAL;
+> +		break;
+> +	default:
+> +		ret = -EINVAL;
+> +		break;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct iio_info ads7038_iio_info = {
+> +	.read_raw = ads7038_read_raw,
 > +};
 > +
-> +&pinctrl_0 {
-> +	key_power: key-power-pins {
-> +		samsung,pins = "gpa10-1";
-> +		samsung,pin-function = <0xf>;
-> +		samsung,pin-pud = <0>;
-> +		samsung,pin-drv = <GS101_PIN_DRV_2_5_MA>;
-> +	};
-> +};
+> +int ads7038_common_probe(struct device *parent, const struct ads7038_info *info,
+> +			 struct regmap *const regmap,
+> +			 struct regulator *const ref_voltage_reg,
+> +			 const char *name, int irq)
+> +{
+> +	struct ads7038_data *data;
+> +	struct iio_dev *indio_dev;
 > +
-> +&gpio_keys {
+> +	indio_dev = devm_iio_device_alloc(parent, sizeof(struct ads7038_data));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	indio_dev->name = name;
+> +	indio_dev->channels = ads7038_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(ads7038_channels);
+> +	indio_dev->info = &ads7038_iio_info;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +
+> +	data = (struct ads7038_data *)iio_priv(indio_dev);
 
-SoC does not have gpio-keys. That's entirely a property of the board.
+iio_priv() returns a void *, not cast should be needed.
 
-> +	status = "okay";
+> +	mutex_init(&data->lock);
+> +	data->dev = parent;
+> +	data->info = info;
+> +	data->regmap = regmap;
+> +	data->reg = ref_voltage_reg;
+> +
+> +	/* Link general device driver with IIO device driver data */
+> +	dev_set_drvdata(parent, indio_dev);
+> +
+> +	iio_device_register(indio_dev);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(ads7038_common_probe);
+> +
+> +int ads7038_common_remove(struct device *parent)
+> +{
+> +	struct iio_dev *indio_dev = (struct iio_dev *)dev_get_drvdata(parent);
+> +
+> +	iio_device_unregister(indio_dev);
 
-Drop
+Use devm_iio_device_register() and get rid of this remove function.
 
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&key_voldown &key_volup &key_power>;
-
-Blank line
-
-> +	button-vol-down {
-> +		label = "KEY_VOLUMEDOWN";
-> +		linux,code = <114>;
-> +		gpios = <&gpa7 3 0xf>;
-> +		wakeup-source;
-> +	};
-
-Blank line
-
-> +	button-vol-up {
-> +		label = "KEY_VOLUMEUP";
-> +		linux,code = <115>;
-> +		gpios = <&gpa8 1 0xf>;
-> +		wakeup-source;
-> +	};
-
-Blank line
-
-
-> +	button-power {
-> +		label = "KEY_POWER";
-> +		linux,code = <116>;
-> +		gpios = <&gpa10 1 0xf>;
-> +		wakeup-source;
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/google/gs101-pinctrl.dtsi b/arch/arm64/boot/dts/google/gs101-pinctrl.dtsi
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(ads7038_common_remove);
+> +
+> +MODULE_AUTHOR("Andre Werner <andre.werner@systec-electronic.com>");
+> +MODULE_DESCRIPTION("ADS7038 and ADS7138 core driver");
+> +MODULE_LICENSE("GPL");
+> diff --git a/drivers/iio/adc/ti-ads7038-regmap.c b/drivers/iio/adc/ti-ads7038-regmap.c
 > new file mode 100644
-> index 000000000000..24825205ede8
+> index 000000000000..d10ca3122681
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/google/gs101-pinctrl.dtsi
-> @@ -0,0 +1,1134 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * GS101 SoC pin-mux and pin-config device tree source
+> +++ b/drivers/iio/adc/ti-ads7038-regmap.c
+> @@ -0,0 +1,91 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/* This driver supports TI 12Bit ADC devices
 > + *
-> + * Copyright 2019-2023 Google LLC
+> + *	 - ADS7038 with SPI interface
+> + *	 - ADS7138 with I2C interface (future)
+
+I'm not sure why this deserves it's own file.  If it's
+specific to the SPI part then put it in the SPI file. If general,
+put it in the common file.
+
 > + *
+> + * Copyright (C) 2023 SYS TEC electronic AG
+> + * Author: Andre Werner <andre.werner@systec-electronic.com>
 > + */
+> +#include <linux/bitops.h>
+> +#include <linux/device.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
 > +
-> +#include <dt-bindings/interrupt-controller/gs101.h>
-> +#include <arm64/exynos/exynos-pinctrl.h>
-> +#include "gs101-pinctrl.h"
+> +#include "ti-ads7038.h"
 > +
-> +/ {
-> +	/* GPIO_ALIVE */
-> +	pinctrl@174d0000 {
-> +		gpa0: gpa0-gpio-bank {
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +			interrupt-parent = <&gic>;
-> +			interrupts = <GIC_SPI IRQ_ALIVE_EINT0 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT1 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT2 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT3 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT4 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT5 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT6 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT7 ITLH>;
-> +		};
-
-Blank line
-
-
-> +		gpa1: gpa1-gpio-bank {
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +			interrupt-parent = <&gic>;
-> +			interrupts = <GIC_SPI IRQ_ALIVE_EINT8 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT9 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT10 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT11 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT12 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT13 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT14 ITLH>;
-> +		};
-> +		gpa2: gpa2-gpio-bank {
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +			interrupt-parent = <&gic>;
-> +			interrupts = <GIC_SPI IRQ_ALIVE_EINT15 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT16 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT17 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT18 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT19 ITLH>;
-> +		};
-> +		gpa3: gpa3-gpio-bank {
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +			interrupt-parent = <&gic>;
-> +			interrupts = <GIC_SPI IRQ_ALIVE_EINT20 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT21 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT22 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT23 ITLH>;
-> +		};
-> +		gpa4: gpa4-gpio-bank {
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +			interrupt-parent = <&gic>;
-> +			interrupts = <GIC_SPI IRQ_ALIVE_EINT24 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT25 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT26 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT27 ITLH>;
-> +		};
-> +		gpa5: gpa5-gpio-bank  {
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +			interrupts = <GIC_SPI IRQ_ALIVE_EINT28 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT29 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT30 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT31 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT32 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT33 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT34 ITLH>;
-> +		};
-> +		gpa9: gpa9-gpio-bank  {
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +			interrupts = <GIC_SPI IRQ_ALIVE_EINT35 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT36 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT37 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT38 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT39 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT40 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT41 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT42 ITLH>;
-> +		};
-> +		gpa10: gpa10-gpio-bank  {
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +			interrupts = <GIC_SPI IRQ_ALIVE_EINT43 ITLH>,
-> +				   <GIC_SPI IRQ_ALIVE_EINT44 ITLH>;
-> +		};
+> +static const struct regmap_range ads7038_noaccess_ranges[] = {
+> +	regmap_reg_range(0x06, 0x06), regmap_reg_range(0x08, 0x08),
+> +	regmap_reg_range(0x0A, 0x0A), regmap_reg_range(0x0C, 0x0C),
+> +	regmap_reg_range(0x0E, 0x0F), regmap_reg_range(0x15, 0x15),
+> +	regmap_reg_range(0x19, 0x19), regmap_reg_range(0x1B, 0x1B),
+> +	regmap_reg_range(0x1D, 0x1D), regmap_reg_range(0x1F, 0x1F),
+> +	regmap_reg_range(0x40, 0x5F), regmap_reg_range(0x70, 0x7F),
+> +	regmap_reg_range(0xB0, 0xC2), regmap_reg_range(0xC4, 0xC4),
+> +	regmap_reg_range(0xC6, 0xC6), regmap_reg_range(0xC8, 0xC8),
+> +	regmap_reg_range(0xCA, 0xCA), regmap_reg_range(0xCC, 0xCC),
+> +	regmap_reg_range(0xCE, 0xCE), regmap_reg_range(0xD0, 0xD0),
+> +	regmap_reg_range(0xD2, 0xE8), regmap_reg_range(0xEA, 0xEA),
+> +};
 > +
-> +		uart15_bus: uart15-bus-pins {
-> +		       samsung,pins = "gpa2-3", "gpa2-4";
-> +		       samsung,pin-function = <2>;
-> +		       samsung,pin-pud = <0>;
-> +		};
+> +static const struct regmap_range ads7038_readable_ranges[] = {
+> +	regmap_reg_range(0x00, 0x00),	/*This is a dummy entry to provide a valid access pointer */
+Space after /* 
+
+What doesn't work if you don't provide anything at all for yes_ranges?
+I assume it's not accessed by regmap if n_yes_ranges = 0.
+
+> +};
 > +
-> +		uart16_bus: uart16-bus-pins {
-> +		       samsung,pins = "gpa3-0", "gpa3-1", "gpa3-2", "gpa3-3";
-> +		       samsung,pin-function = <EXYNOS_PIN_FUNC_2>;
-> +		       samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
+> +static const struct regmap_access_table ads7038_readable_table = {
+> +	.yes_ranges = ads7038_readable_ranges,
+> +	.n_yes_ranges = 0,	/* regmap.c: In case zero "yes ranges" are supplied, any reg is OK */
+> +	.no_ranges = ads7038_noaccess_ranges,
+> +	.n_no_ranges = ARRAY_SIZE(ads7038_noaccess_ranges),
+> +};
+> +
+> +static const struct regmap_range ads7038_volatile_ranges[] = {
+> +	regmap_reg_range(ADS7038_SYSTEM_STATUS_REG, ADS7038_SYSTEM_STATUS_REG),
+> +	regmap_reg_range(ADS7038_GPI_VALUE_REG, ADS7038_GPI_VALUE_REG),
+> +	regmap_reg_range(ADS7038_EVENT_FLAG_REG, ADS7038_EVENT_FLAG_REG),
+> +	regmap_reg_range(ADS7038_MAX_CH0_LSB_REG, ADS7038_MAX_CH7_MSB_REG),
+> +	regmap_reg_range(ADS7038_MIN_CH0_LSB_REG, ADS7038_MIN_CH7_MSB_REG),
+> +	regmap_reg_range(ADS7038_RECENT_CH0_LSB_REG,
+> +			 ADS7038_RECENT_CH7_MSB_REG),
+> +};
+> +
+> +static const struct regmap_access_table ads7038_volatile_table = {
+> +	.yes_ranges = ads7038_volatile_ranges,
+> +	.n_yes_ranges = ARRAY_SIZE(ads7038_volatile_ranges),
+> +	.no_ranges = ads7038_noaccess_ranges,
+> +	.n_no_ranges = ARRAY_SIZE(ads7038_noaccess_ranges),
+> +};
+> +
+> +/* It is okay to include noaccess registers in range, because they have been proven at first. */
+> +static const struct regmap_range ads7038_writable_range[] = {
+> +	regmap_reg_range(ADS7038_SYSTEM_STATUS_REG, ADS7038_GPO_VALUE_REG),
+> +	regmap_reg_range(ADS7038_SEQUENCE_CFG_REG, ADS7038_ALERT_PIN_CFG_REG),
+> +	regmap_reg_range(ADS7038_EVENT_HIGH_FLAG_REG, ADS7038_LOW_TH_CH7_REG),
+> +	regmap_reg_range(ADS7038_GPO0_TRIG_EVENT_SEL_REG,
+> +			 ADS7038_GPO_VALUE_TRIG_REG),
+> +};
+> +
+> +static const struct regmap_access_table ads7038_writable_table = {
+> +	.yes_ranges = ads7038_writable_range,
+> +	.n_yes_ranges = ARRAY_SIZE(ads7038_writable_range),
+> +	.no_ranges = ads7038_noaccess_ranges,
+> +	.n_no_ranges = ARRAY_SIZE(ads7038_noaccess_ranges),
+> +};
+> +
+> +const struct regmap_config ads7038_regmap_config = {
+> +	.name = "ads7038",
+> +	.reg_bits = ADS7038_REGISTER_SIZE,
+> +	.val_bits = ADS7038_REGISTER_SIZE,
+> +
+> +	.wr_table = &ads7038_writable_table,
+> +	.rd_table = &ads7038_readable_table,
+> +	.volatile_table = &ads7038_volatile_table,
+> +
+> +	.max_register = ADS7038_REG_ADDRESS_MAX,
+> +	.cache_type = REGCACHE_RBTREE,
+> +};
+> +EXPORT_SYMBOL(ads7038_regmap_config);
+Exports in IIO are all namespaced. Almost all GPL as well.
 
-You should rather create macros for your SoC... unless you are 100% sure
-this matches Exynos arm64 pinctrl.
+EXPORT_SYMBOL_NS_GPL(ads7038_regmap_config, IIO_ADS7038);
 
+> +
+> +MODULE_AUTHOR("Andre Werner <andre.werner@systec-electronic.com>");
+> +MODULE_DESCRIPTION("ADS7038 SPI bus driver");
+> +MODULE_LICENSE("GPL");
+> diff --git a/drivers/iio/adc/ti-ads7038-spi.c b/drivers/iio/adc/ti-ads7038-spi.c
+> new file mode 100644
+> index 000000000000..e26884afb9c6
+> --- /dev/null
+> +++ b/drivers/iio/adc/ti-ads7038-spi.c
+> @@ -0,0 +1,375 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * This driver supports TI 12Bit ADC devices
+> + *
+> + *	 - ADS7038 with SPI interface
+> + *
+> + * Copyright (C) 2023 SYS TEC electronic AG
+> + * Author: Andre Werner <andre.werner@systec-electronic.com>
+> + */
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/types.h>
+> +
+> +#include "ti-ads7038.h"
+> +
+> +#define ADS7038_OPCODE_NOOP		0x00
+> +#define ADS7038_OPCODE_REGREAD		0x10
+> +#define ADS7038_OPCODE_REGWRITE		0x08
+> +#define ADS7038_OPCODE_SETBIT		0x18
+> +#define ADS7038_OPCODE_CLEATBIT		0x20
+> +
+> +/*
+> + * The bitwidth for ADC channel results differ
+> + * by setting average and status
+> + * in the dedicated configuration registers.
+> + */
+> +#define ADS7038_NO_AVG_NO_STAT		12	/* bits */
+> +#define ADS7038_NO_AVG_STAT		16	/* bits */
+> +#define ADS7038_AVG_NO_STAT		16	/* bits */
+> +#define ADS7038_AVG_STAT		20	/* bits */
+> +
+> +#define ADS7038_SPI_FRAME_SIZE_REG		3	/* bytes */
+> +#define ADS7038_SPI_FRAME_SIZE_CHAN_MAX		2	/* elements */
+> +
+> +static int ads7038_regmap_spi_read(void *context, unsigned int reg,
+> +				   unsigned int *val)
+> +{
+> +	struct device *const dev = (struct device *)context;
+context is void * so you shouldn't need to cast it.
+Unlikely we care locally about the const
+
+	struct device *dev = context;
+
+> +	struct spi_device *const spi = to_spi_device(dev);
+
+Likewise, const is probably fine but it's hurting readablity a bit
+here so I'd not bother.
+
+> +	int ret;
+> +	const u8 tx_buf[ADS7038_SPI_FRAME_SIZE_REG] = {
+> +		[0] = ADS7038_OPCODE_REGREAD,
+> +		[1] = (u8)(reg & GENMASK(7, 0)),
+> +		[2] = 0,	/* dummy data */
+> +	};
+> +	u8 rx_buf[ADS7038_SPI_FRAME_SIZE_REG] = { 0 };
+> +
+> +	/* Data contains 8bit address and 8bit register data */
+> +	struct spi_transfer xfer[] = {
+> +		{
+> +		 .tx_buf = tx_buf,
+Indent these another tab.
+			.tx_buf = tx_buf,
+etc to make it easier to read.
+
+> +		 .rx_buf = NULL,
+> +		 .len = ADS7038_SPI_FRAME_SIZE_REG,
+> +		 .bits_per_word = ADS7038_REGISTER_SIZE,
+> +		 .cs_change = 1,
+> +		  },
+> +		{
+> +		 .tx_buf = NULL,
+> +		 .rx_buf = rx_buf,
+> +		 .len = ADS7038_SPI_FRAME_SIZE_REG,
+> +		 .bits_per_word = ADS7038_REGISTER_SIZE,
+> +		  },
+> +	};
+> +
+> +	if (!val)
+> +		return -EINVAL;
+> +
+> +	ret = spi_sync_transfer(spi, xfer, ARRAY_SIZE(xfer));
+> +
+> +	if (ret != 0)
+> +		return ret;
+> +
+> +	*val = (unsigned int)rx_buf[0];
+Do you need the cast?
+
+> +
+> +	return ret;
+return 0;
+as we know it's 0 here so good to make that clear.
+
+> +}
+> +
+> +static int ads7038_regmap_spi_write(void *context, unsigned int reg,
+> +				    unsigned int val)
+> +{
+> +	unsigned int ret;
+> +	unsigned int regval;
+> +	struct device *const dev = (struct device *)context;
+> +	struct spi_device *const spi = to_spi_device(dev);
+> +	struct iio_dev *const indio_dev =
+> +	    (struct iio_dev *)dev_get_drvdata(dev);
+> +	struct ads7038_data *const data =
+> +	    (struct ads7038_data *)iio_priv(indio_dev);
+> +	const u8 buf[ADS7038_SPI_FRAME_SIZE_REG] = {
+> +		[0] = ADS7038_OPCODE_REGWRITE,
+> +		[1] = (u8)(reg & GENMASK(7, 0)),
+> +		[2] = (u8)(val & GENMASK(7, 0)),
+> +	};
+> +
+> +	struct spi_transfer xfer[] = {
+> +		{.tx_buf = buf,
+> +		 .rx_buf = NULL,
+> +		 .len = ARRAY_SIZE(buf) },
+> +	};
+> +
+> +	ret = spi_sync_transfer(spi, xfer, ARRAY_SIZE(xfer));
+> +
+> +	if (ret != 0)
+> +		goto error;
+> +
+> +	/* If status or avaraging is used, the length for the spi output frame changes. */
+> +	if (reg == ADS7038_DATA_CFG_REG || reg == ADS7038_OSR_CFG_REG) {
+> +		ret = ads7038_regmap_spi_read(context, ADS7038_DATA_CFG_REG, &regval);
+> +		if (ret != 0)
+> +			goto error;
+> +
+> +		data->faverage = (regval & ADS7038_DATA_CFG_APPEND_STATUS) ? 1 : 0;
+
+This is done at wrong level.  If you want to stash these flags then do it at the caller
+who will know that reg was one of these two and can check the value.
+
+It has nothing to do with regmap that I can see.
+
+
+> +
+> +		ret = ads7038_regmap_spi_read(context, ADS7038_OSR_CFG_REG, &regval);
+> +		if (ret != 0)
+> +			goto error;
+> +
+> +		data->fstatus = (regval & ADS7038_OSR_CFG_OSR) ? 1 : 0;
+> +	}
+> +
+> +error:
+> +	return ret;
+> +}
+> +
+> +static int ads7038_read_reg(struct device *dev, const unsigned int reg,
+> +			    unsigned int *val)
+> +{
+> +	int ret;
+> +	struct iio_dev *const indio_dev = (struct iio_dev *)dev_get_drvdata(dev);
+> +	struct ads7038_data *const data = (struct ads7038_data *)iio_priv(indio_dev);
+> +	struct regmap *const map = data->regmap;
+> +
+> +	ret = regmap_read(map, reg, val);
+
+I don't see why you need this callback.  The core driver code should have the regmap
+available - so it can use it without jumping through these hoops.
+
+> +
+> +	return ret;
+> +}
+> +
+> +static int ads7038_write_reg(struct device *dev, const unsigned int reg,
+> +			     unsigned int val)
+> +{
+> +	struct iio_dev *const indio_dev = (struct iio_dev *)dev_get_drvdata(dev);
+> +	struct ads7038_data *const data = (struct ads7038_data *)iio_priv(indio_dev);
+> +	struct regmap *const map = data->regmap;
+> +	int ret;
+> +
+> +	ret = regmap_write(map, reg, val);
+
+Same for this.
+
+> +
+> +	return ret;
+> +}
+> +
+> +static int ads7038_set_mode_manual(struct spi_device *dev,
+> +				   struct ads7038_data *const data)
+
+> +{
+> +	int ret;
+> +	struct regmap *const map = data->regmap;
+> +	const unsigned int regs[] = { ADS7038_OPMODE_CFG_REG,
+> +		ADS7038_SEQUENCE_CFG_REG
+> +	};
+> +	unsigned int reg_values[2] = { 0 };
+> +	unsigned int idx;
+> +
+> +	/* Registers need to be read first to adapt configuration bits. */
+> +	for (idx = 0; idx < ARRAY_SIZE(regs); ++idx) {
+> +		ret = regmap_read(map, regs[idx], &reg_values[idx]);
+> +		if (ret != 0) {
+> +			dev_dbg(&dev->dev,
+> +				"Cannot read value from register %02X.\n",
+> +				regs[idx]);
+> +			break;
+> +		}
+> +	}
+> +
+> +	if (ret != 0)
+> +		goto out;
+> +
+> +	reg_values[0] &= ~ADS7038_OPMODE_CFG_CONV_MODE;
+> +	reg_values[0] |= ADS7038_OPMODE_CFG_CONV_MODE_MANUAL;
+> +	reg_values[0] &= ~ADS7038_SEQUENCE_CFG_SEQ_MODE;
+> +	reg_values[0] |= ADS7038_SEQUENCE_CFG_SEQ_MODE_MANUAL;
+> +
+> +	for (idx = 0; idx < ARRAY_SIZE(regs); ++idx) {
+> +		ret = regmap_write(map, regs[idx], reg_values[idx]);
+> +		if (ret != 0) {
+> +			dev_dbg(&dev->dev,
+> +				"Cannot write value to register %02X.\n",
+> +				regs[idx]);
+> +			break;
+> +		}
+> +	}
+> +
+> +out:
+> +	return ret;
+> +}
+> +
+> +static int ads7038_read_channel(struct iio_dev *indio_dev,
+> +				const enum MANUAL_CHID chan,
+> +				struct ads7038_ch_meas_result *const res)
+> +{
+> +	int ret;
+> +	struct ads7038_data *const data = (struct ads7038_data *)iio_priv(indio_dev);
+> +	struct spi_device *const spi_dev = to_spi_device(data->dev);
+> +	enum FUNC_MODE *const current_mode = &data->func_mode;
+> +	const u8 chan_buf[ADS7038_SPI_FRAME_SIZE_REG] = {
+> +		[0] = ADS7038_OPCODE_REGWRITE,
+> +		[1] = ADS7038_CHANNEL_SEL_REG,
+> +		[2] = chan,
+> +	};
+> +	u16 rx_buf[ADS7038_SPI_FRAME_SIZE_CHAN_MAX] = { 0 };
+> +
+> +	/*
+> +	 * Fixup: If the channel not changes between sequential reads, the first
+> +	 * SPI frame is not necessary. This can be handled separately.
+> +	 */
+> +	struct spi_transfer xfer[] = {
+> +		{
+> +		 .tx_buf = chan_buf,
+> +		 .rx_buf = NULL,
+> +		 .len = ARRAY_SIZE(chan_buf),
+> +		 .bits_per_word = ADS7038_REGISTER_SIZE,
+> +		 .tx_nbits = SPI_NBITS_SINGLE,
+> +		 .cs_change = 1,
+> +		  },
+> +		{
+> +		 .tx_buf = NULL,
+> +		 .rx_buf = rx_buf,
+> +		 .len = sizeof(rx_buf),
+> +		 .tx_nbits = SPI_NBITS_SINGLE,
+> +		 .cs_change = 1,
+> +		  },
+> +		{.tx_buf = NULL,
+> +		 .rx_buf = rx_buf,
+> +		 .len = sizeof(rx_buf),
+> +		 .tx_nbits = SPI_NBITS_SINGLE },
+> +	};
+So this looks like a simple normal register write followed by a dummy read (as still looking
+at previous channel) then the real one?
+That's not particularly nice.  You could break it into a regmap_write() followed by
+separate handling of the reads.  On the plus side this scheme does allow for efficient
+capture of lots of channels when you add that.
+
+The second case rather shows this isn't really a device where the regmap
+abstraction fully covers it...
+
+
+> +
+> +	if (chan > AIN_MAX)
+> +		return -EINVAL;
+> +
+> +	mutex_lock(&data->lock);
+> +
+> +	/* Configure read manual mode for single read of channel value */
+> +	if (*current_mode != MAN) {
+> +		dev_dbg(&spi_dev->dev, "Set manual mode for reading data.\n");
+> +		ret = ads7038_set_mode_manual(spi_dev, data);
+> +		if (ret != 0)
+> +			goto out;
+> +
+> +		*current_mode = MAN;
+> +	}
+> +
+> +	ret = spi_sync_transfer(spi_dev, xfer, ARRAY_SIZE(xfer));
+> +
+> +	if (ret != 0)
+> +		goto out;
+> +
+> +	if (!!data->faverage) {
+In gneeral !! does nothing here, but make it a a bool and that will be more obvious.
+
+> +		res->raw = be16_to_cpup((__be16 *)&rx_buf[0]);
+> +		res->faverage = 1;
+> +		if (!!data->fstatus) {
+> +			res->status = (be16_to_cpup((__be16 *)&rx_buf[1]) & GENMASK(15, 11)) >> 11;
+
+Make rx_buf an array of __be16 so that you don't have to cast here plus correctly
+represent the type.#
+
+FIELD_GET() with appropriate defines might work well here.
+
+
+> +			res->fstatus = 1;
+> +		}
+> +	} else {
+> +		res->raw = be16_to_cpup((__be16 *)&rx_buf[0]);
+> +		res->raw >>= 4;
+> +		if (!!data->fstatus) {
+> +			res->status = (be16_to_cpup((__be16 *)&rx_buf[0]) & GENMASK(3, 0));
+> +			res->fstatus = 1;
+> +		}
+> +	}
+> +
+> +out:
+> +	mutex_unlock(&data->lock);
+> +	return ret;
+> +}
+> +
+> +static struct regmap_bus ads7038_regmap_bus = {
+> +	.reg_write = ads7038_regmap_spi_write,
+> +	.reg_read = ads7038_regmap_spi_read,
+> +	.reg_format_endian_default = REGMAP_ENDIAN_LITTLE,
+> +	.val_format_endian_default = REGMAP_ENDIAN_LITTLE,
+> +};
+> +
+> +static const struct ads7038_info ads7038_info = {
+> +	.read_reg = ads7038_read_reg,
+> +	.write_reg = ads7038_write_reg,
+> +	.read_channel = ads7038_read_channel,
+> +};
+> +
+> +static int ads7038_spi_probe(struct spi_device *spi)
+> +{
+> +	const struct spi_device_id *id = spi_get_device_id(spi);
+> +	struct regmap *regmap;
+> +	const struct regmap_config *regmap_config = &ads7038_regmap_config;
+
+Just use this inline instead of adding local variable.
+
+
+> +	int ret;
+> +	struct regulator *reg;
+> +
+> +	ret = spi_setup(spi);
+> +	if (ret < 0) {
+> +		dev_dbg(&spi->dev, "Spi_setup failed!\n");
+> +		goto error_spi;
+> +	}
+> +
+> +	regmap = devm_regmap_init(&spi->dev, &ads7038_regmap_bus, &spi->dev,
+> +				  regmap_config);
+> +	if (IS_ERR(regmap)) {
+> +		dev_dbg(&spi->dev, "Failed to allocate register map\n");
+> +		ret = PTR_ERR(regmap);
+> +		goto error_spi;
+> +	}
+> +
+> +	reg = devm_regulator_get(&spi->dev, "vref");
+Get the regulator inside the common probe - it's not SPI specific and you
+have the dev available to retrieve it.
+
+> +	if (IS_ERR(reg)) {
+> +		dev_dbg(&spi->dev, "Failed to get regulator \"vref\"\n");
+> +		ret = PTR_ERR(reg);
+> +		goto error_spi;
+> +	}
+> +
+> +	ret = regulator_enable(reg);
+> +	if (ret) {
+> +		dev_dbg(&spi->dev, "Failed to enable regulator \"vref\"\n");
+> +		goto error_spi;
+> +	}
+> +
+> +	return ads7038_common_probe(&spi->dev, &ads7038_info, regmap,
+> +				    reg, id->name, spi->irq);
+> +
+> +error_spi:
+> +	dev_err(&spi->dev, "Probe failed\n");
+> +	return ret;
+> +}
+> +
+> +static void ads7038_spi_remove(struct spi_device *spi)
+> +{
+> +	int ret;
+> +
+> +	ret = ads7038_common_remove(&spi->dev);
+
+Seems likely you can easily make everything in common_probe() devm managed
+so no need to call common_remove() in here and hence nothing to do.
+
+> +	if (ret != 0)
+> +		dev_err(&spi->dev, "Error while removing general driver\n.");
+
+Report any errors in the common code or you will have to duplicate this which
+doesn't add anything.
+
+> +}
+> +
+> +static const struct of_device_id ads7038_of_spi_match[] = {
+> +	{.compatible = "ti,ads7038" },
+> +	{ },
+
+No need for comma on a terminating entry as we will never add anything after it!
+
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, ads7038_of_spi_match);
+> +
+> +const struct spi_device_id ads7038_spi_id[] = {
+> +	{.name = "ads7038" },
+> +	{ },
+> +};
+> +
+> +MODULE_DEVICE_TABLE(spi, ads7038_spi_id);
+> +
+> +static struct spi_driver ads7038_spi_driver = {
+> +	.driver = {
+> +		   .name = "ads7038-spi",
+> +		   .of_match_table = ads7038_of_spi_match,
+> +		    },
+Indent should be
+	},
+> +	.id_table = ads7038_spi_id,
+> +	.probe = ads7038_spi_probe,
+> +	.remove = ads7038_spi_remove,
+> +};
+> +
+> +module_spi_driver(ads7038_spi_driver);
+> +
+> +MODULE_AUTHOR("Andre Werner <andre.werner@systec-electronic.com>");
+> +MODULE_DESCRIPTION("ADS7038 SPI bus driver");
+> +MODULE_LICENSE("GPL");
+> diff --git a/drivers/iio/adc/ti-ads7038.h b/drivers/iio/adc/ti-ads7038.h
+> new file mode 100644
+> index 000000000000..7df41425d7d3
+> --- /dev/null
+> +++ b/drivers/iio/adc/ti-ads7038.h
+> @@ -0,0 +1,551 @@
+> +/* SPDX-License-Identifier: GPL-2.0-or-later */
+> +/*
+> + * This driver supports TI 12Bit ADC devices
+> + *
+> + *	 - ADS7038 with SPI interface
+> + *	 - ADS7138 with I2C interface (future)
+
+Add this comment when it does support the I2C part...
+
+> + *
+> + * Copyright (C) 2023 SYS TEC electronic AG
+> + * Author: Andre Werner <andre.werner@systec-electronic.com>
+> + */
+> +#include <linux/bitops.h>
+> +#include <linux/mutex.h>
+> +#include <linux/types.h>
+> +
+> +#ifndef IIO_TI_ADS7038_H_
+> +#define IIO_TI_ADS7038_H_
+> +
+> +#define ADS7038_REGISTER_SIZE	8	/* bits */
+Name it so that's obviously
+
+	ADS7038_REGISTER_NUM_BITS 8
+
+> +
+> +/* Opcodes for commands */
+> +#define ADS7038_OP_NOOP		0x00
+> +#define ADS7038_OP_REG_READ	0x10
+> +#define ADS7038_OP_REG_WRITE	0x08
+> +#define ADS7038_OP_SET_BIT	0x18
+> +#define ADS7038_OP_CLEAR_BIT	0x20
+> +
+> +/* ADS7038 System Status Register */
+Naming makes that obvious, so drop the comment.
+Same for other obvious ones...
+
+> +#define ADS7038_SYSTEM_STATUS_REG		0x00
+> +#define ADS7038_SYSTEM_STATUS_BOR		BIT(0)
+> +#define ADS7038_SYSTEM_STATUS_CRC_ERROR_IN	BIT(1)
+> +#define ADS7038_SYSTEM_STATUS_CRC_ERROR_FUSE	BIT(2)
+> +#define ADS7038_SYSTEM_STATUS_OSR_DONE		BIT(3)
+> +#define ADS7038_SYSTEM_STATUS_OSR_SEQ_STATUS	BIT(6)
+> +
+> +/* ADS7038 General Configuration Register */
+> +#define ADS7038_GENERAL_CFG_REG		0x01
+> +#define ADS7038_GENERAL_CFG_RST		BIT(0)
+> +#define ADS7038_GENERAL_CFG_CAL		BIT(1)
+> +#define ADS7038_GENERAL_CFG_CH_RST	BIT(2)
+> +#define ADS7038_GENERAL_CFG_DWC_EN	BIT(4)
+> +#define ADS7038_GENERAL_CFG_STATS_EN	BIT(5)
+> +#define ADS7038_GENERAL_CFG_CRC_EN	BIT(6)
+> +
+> +/* ADS7038 Data Configuration Register */
+> +#define ADS7038_DATA_CFG_REG			0x02
+> +#define ADS7038_DATA_CFG_CPOL_CPHA		GENMASK(1, 0)
+> +#define ADS7038_DATA_CFG_CPOL_CPHA_SPI00	0x00	/* solely ADS7038 */
+> +#define ADS7038_DATA_CFG_CPOL_CPHA_SPI01	0x01	/* solely ADS7038 */
+> +#define ADS7038_DATA_CFG_CPOL_CPHA_SPI10	0x02	/* solely ADS7038 */
+> +#define ADS7038_DATA_CFG_CPOL_CPHA_SPI11	0x03	/* solely ADS7038 */
+> +#define ADS7038_DATA_CFG_APPEND_STATUS		GENMASK(5, 4)
+> +#define ADS7038_DATA_CFG_APPEND_STATUS_NO	0x00
+> +#define ADS7038_DATA_CFG_APPEND_STATUS_CHID	BIT(4)
+> +#define ADS7038_DATA_CFG_APPEND_STATUS_STATUS	BIT(5)
+> +#define ADS7038_DATA_CFG_FIX_PAT		BIT(7)
+> +
+> +/* ADS7038 Oversampling Configuration Register */
+> +#define ADS7038_OSR_CFG_REG	0x03
+> +#define ADS7038_OSR_CFG_OSR	GENMASK(2, 0)
+> +#define ADS7038_OSR_CFG_OSR_NO	0x00
+> +#define ADS7038_OSR_CFG_OSR_2	0x01
+> +#define ADS7038_OSR_CFG_OSR_4	0x02
+> +#define ADS7038_OSR_CFG_OSR_8	0x03
+> +#define ADS7038_OSR_CFG_OSR_16	0x04
+> +#define ADS7038_OSR_CFG_OSR_32	0x05
+> +#define ADS7038_OSR_CFG_OSR_64	0x06
+> +#define ADS7038_OSR_CFG_OSR_128	0x07
+> +
+> +/* ADS7038 Operation Mode Configuration Register */
+> +#define ADS7038_OPMODE_CFG_REG			0x04
+> +#define ADS7038_OPMODE_CFG_CLK_DIV		GENMASK(3, 0)
+> +#define ADS7038_OPMODE_CFG_CLK_DIV_FTIME_1US0	0x00
+> +#define ADS7038_OPMODE_CFG_CLK_DIV_FTIME_1US5	0x01
+> +#define ADS7038_OPMODE_CFG_CLK_DIV_FTIME_2US0	0x02
+> +#define ADS7038_OPMODE_CFG_CLK_DIV_FTIME_3US0	0x03
+> +#define ADS7038_OPMODE_CFG_CLK_DIV_FTIME_4US0	0x04
+> +#define ADS7038_OPMODE_CFG_CLK_DIV_FTIME_6US0	0x05
+> +#define ADS7038_OPMODE_CFG_CLK_DIV_FTIME_8US0	0x06
+> +#define ADS7038_OPMODE_CFG_CLK_DIV_FTIME_12US0	0x07
+> +#define ADS7038_OPMODE_CFG_CLK_DIV_FTIME_16US0	0x08
+> +#define ADS7038_OPMODE_CFG_CLK_DIV_FTIME_24US0	0x09
+> +#define ADS7038_OPMODE_CFG_CLK_DIV_FTIME_32US0	0x0A
+> +#define ADS7038_OPMODE_CFG_CLK_DIV_FTIME_48US0	0x0B
+> +#define ADS7038_OPMODE_CFG_CLK_DIV_FTIME_64US0	0x0C
+> +#define ADS7038_OPMODE_CFG_CLK_DIV_FTIME_96US0	0x0D
+> +#define ADS7038_OPMODE_CFG_CLK_DIV_FTIME_128US0	0x0E
+> +#define ADS7038_OPMODE_CFG_CLK_DIV_FTIME_192US0	0x0F
+> +#define ADS7038_OPMODE_CFG_OSC_SEL		BIT(4)
+> +#define ADS7038_OPMODE_CFG_OSC_SEL_HIGHSPEED	0x00
+> +#define ADS7038_OPMODE_CFG_OSC_SEL_LOWSPEED	0x01
+> +#define ADS7038_OPMODE_CFG_CONV_MODE		GENMASK(6, 5)
+> +#define ADS7038_OPMODE_CFG_CONV_MODE_MANUAL	0x00
+> +#define ADS7038_OPMODE_CFG_CONV_MODE_AUTONOMOUS	BIT(5)
+> +#define ADS7038_OPMODE_CFG_CONV_ON_ERR		BIT(7)
+> +#define ADS7038_OPMODE_CFG_CONV_ON_ERR_CONTINUE	0x00
+> +#define ADS7038_OPMODE_CFG_CONV_ON_ERR_PAUSE	BIT(7)
+> +
+> +/* ADS7038 Pin Mode Configuration Register */
+> +#define ADS7038_PIN_CFG_REG		0x05
+> +#define ADS7038_PIN_CFG_ALL_AIN		0x00
+> +#define ADS7038_PIN_CFG_ALL_GPIO	GENMASK(7, 0)
+> +
+> +/* ADS7038 GPIO Mode Configuration Register */
+> +#define ADS7038_GPIO_CFG_REG		0x07
+> +#define ADS7038_GPIO_CFG_ALL_IN		0x00
+> +#define ADS7038_GPIO_CFG_ALL_OUT	GENMASK(7, 0)
+> +
+> +/* ADS7038 GPO Drive Strengh Configuration Register */
+> +#define ADS7038_GPO_DRIVE_CFG_REG		0x09
+> +#define ADS7038_GPO_DRIVE_CFG_ALL_OPEN_DRAIN	0x00
+> +#define ADS7038_GPO_DRIVE_CFG_ALL_PP		GENMASK(7, 0)
+> +
+> +/* ADS7038 GPO Value Register */
+> +#define ADS7038_GPO_VALUE_REG		0x0B
+> +#define ADS7038_GPO_VALUE_ALL_LOW	0x00
+> +#define ADS7038_GPO_VALUE_ALL_HIGH	GENMASK(7, 0)
+> +
+> +/* ADS7038 GPI Value Register */
+> +#define ADS7038_GPI_VALUE_REG		0x0D
+> +
+> +/* ADS7038 Sequence Configuration Register */
+> +#define ADS7038_SEQUENCE_CFG_REG			0x10
+> +#define ADS7038_SEQUENCE_CFG_SEQ_MODE			GENMASK(1, 0)
+> +#define ADS7038_SEQUENCE_CFG_SEQ_MODE_MANUAL		0x00
+> +#define ADS7038_SEQUENCE_CFG_SEQ_MODE_AUTO_SEQ		0x01
+> +#define ADS7038_SEQUENCE_CFG_SEQ_MODE_ON_THE_FLY	0x02	/* solely ADS7038 */
+> +#define ADS7038_SEQUENCE_CFG_SEQ_START BIT(4)
+> +
+> +/* ADS7038 Channel Selection Register */
+> +#define ADS7038_CHANNEL_SEL_REG			0x11
+> +#define ADS7038_CHANNEL_SEL_MCHILDID		GENMASK(3, 0)
+> +#define ADS7038_CHANNEL_SEL_MCHILDID_AIN0	0x00
+> +#define ADS7038_CHANNEL_SEL_MCHILDID_AIN1	0x01
+> +#define ADS7038_CHANNEL_SEL_MCHILDID_AIN2	0x02
+> +#define ADS7038_CHANNEL_SEL_MCHILDID_AIN3	0x03
+> +#define ADS7038_CHANNEL_SEL_MCHILDID_AIN4	0x04
+> +#define ADS7038_CHANNEL_SEL_MCHILDID_AIN5	0x05
+> +#define ADS7038_CHANNEL_SEL_MCHILDID_AIN6	0x06
+> +#define ADS7038_CHANNEL_SEL_MCHILDID_AIN7	0x07
+> +
+> +/* ADS7038 Auto Sequence Channel Selection Register */
+> +#define ADS7038_AUTO_SEQ_CH_SEL_REG	0x12
+> +#define ADS7038_AUTO_SEQ_CH_SEL_ALL	GENMASK(7, 0)
+> +
+> +/* ADS7038 Alert Channel Selection Register */
+> +#define ADS7038_ALERT_CH_SEL_REG	0x14
+> +#define ADS7038_ALERT_CH_SEL_ALL	GENMASK(7, 0)
+> +
+> +/* ADS7038 Alert Map Register */
+> +#define ADS7038_ALERT_MAP_REG		0x16
+> +#define ADS7038_ALERT_MAP_ALERT_CRCIN	BIT(0)
+> +
+> +/* ADS7038 Alert Pin Configuration Register */
+> +#define ADS7038_ALERT_PIN_CFG_REG			0x17
+> +#define ADS7038_ALERT_PIN_CFG_ALERT_LOGIC		GENMASK(1, 0)
+> +#define ADS7038_ALERT_PIN_CFG_ALERT_LOGIC_ACTIVE_LOW	0x00
+> +#define ADS7038_ALERT_PIN_CFG_ALERT_LOGIC_ACTIVE_HIGH	BIT(0)
+> +#define ADS7038_ALERT_PIN_CFG_ALERT_LOGIC_PULSED_LOW	BIT(1)
+> +#define ADS7038_ALERT_PIN_CFG_ALERT_LOGIC_PULSED_HIGH	GENMASK(1, 0)
+> +#define ADS7138_ALERT_PIN_CFG_ALERT_DRIVE		BIT(2)	/* solely ADS7138 */
+> +#define ADS7038_ALERT_PIN_CFG_ALERT_PIN			0xF0	/* solely ADS7038 */
+> +
+> +/* ADS7038 Event Flag Register */
+> +#define ADS7038_EVENT_FLAG_REG	0x18
+> +
+> +/* ADS7038 Event High Flag Register */
+> +#define ADS7038_EVENT_HIGH_FLAG_REG	0x1A
+> +
+> +/* ADS7038 Event Low Flag Register */
+> +#define ADS7038_EVENT_LOW_FLAG_REG	0x1C
+> +
+> +/* ADS7038 Event Region Register */
+> +#define ADS7038_EVENT_RGN_REG	0x1E
+> +
+> +/* ADS7038 HYSTERESIS CH0 Register */
+> +#define ADS7038_HYSTERESIS_CH0_REG			0x20
+> +#define ADS7038_HYSTERESIS_CH0_HYSTERESIS_CH0		GENMASK(3, 0)
+> +#define ADS7038_HYSTERESIS_CH0_HIGH_THRESHOLD_CH0_LSB	GENMASK(7, 4)
+> +
+> +/* ADS7038 High Threshold CH0 Register */
+> +#define ADS7038_HIGH_TH_CH0_REG		0x21
+> +
+> +/* ADS7038 Event Count CH0 Register */
+> +#define ADS7038_EVENT_CNT_CH0_REG			0x22
+> +#define ADS7038_EVENT_CNT_CH0_EVENT_CNT_CH0		GENMASK(3, 0)
+> +#define ADS7038_EVENT_CNT_CH0_LOW_THRESHOLD_CH0_LSB	GENMASK(7, 4)
+> +
+> +/* ADS7038 High Threshold CH0 Register */
+> +#define ADS7038_LOW_TH_CH0_REG	0x23
+> +
+> +/* ADS7038 HYSTERESIS CH1 Register */
+> +#define ADS7038_HYSTERESIS_CH1_REG			0x24
+> +#define ADS7038_HYSTERESIS_CH1_HYSTERESIS_CH0		GENMASK(3, 0)
+> +#define ADS7038_HYSTERESIS_CH1_HIGH_THRESHOLD_CH0_LSB	GENMASK(7, 4)
+> +
+> +/* ADS7038 High Threshold CH1 Register */
+> +#define ADS7038_HIGH_TH_CH1_REG	0x25
+> +
+> +/* ADS7038 Event Count CH1 Register */
+> +#define ADS7038_EVENT_CNT_CH1_REG			0x26
+> +#define ADS7038_EVENT_CNT_CH1_EVENT_CNT_CH0		GENMASK(3, 0)
+> +#define ADS7038_EVENT_CNT_CH1_LOW_THRESHOLD_CH0_LSB	GENMASK(7, 4)
+> +
+> +/* ADS7038 High Threshold CH1 Register */
+> +#define ADS7038_LOW_TH_CH1_REG	0x27
+> +
+> +/* ADS7038 HYSTERESIS CH2 Register */
+> +#define ADS7038_HYSTERESIS_CH2_REG			0x28
+> +#define ADS7038_HYSTERESIS_CH2_HYSTERESIS_CH0		GENMASK(3, 0)
+> +#define ADS7038_HYSTERESIS_CH2_HIGH_THRESHOLD_CH0_LSB	GENMASK(7, 4)
+> +
+> +/* ADS7038 High Threshold CH2 Register */
+> +#define ADS7038_HIGH_TH_CH2_REG				0x29
+> +
+> +/* ADS7038 Event Count CH2 Register */
+> +#define ADS7038_EVENT_CNT_CH2_REG			0x2A
+> +#define ADS7038_EVENT_CNT_CH2_EVENT_CNT_CH0		GENMASK(3, 0)
+> +#define ADS7038_EVENT_CNT_CH2_LOW_THRESHOLD_CH0_LSB	GENMASK(7, 4)
+> +
+> +/* ADS7038 High Threshold CH2 Register */
+> +#define ADS7038_LOW_TH_CH2_REG	0x2B
+> +
+> +/* ADS7038 HYSTERESIS CH3 Register */
+> +#define ADS7038_HYSTERESIS_CH3_REG			0x2C
+> +#define ADS7038_HYSTERESIS_CH3_HYSTERESIS_CH0		GENMASK(3, 0)
+> +#define ADS7038_HYSTERESIS_CH3_HIGH_THRESHOLD_CH0_LSB	GENMASK(7, 4)
+> +
+> +/* ADS7038 High Threshold CH3 Register */
+> +#define ADS7038_HIGH_TH_CH3_REG				0x2D
+> +
+> +/* ADS7038 Event Count CH3 Register */
+> +#define ADS7038_EVENT_CNT_CH3_REG			0x2E
+> +#define ADS7038_EVENT_CNT_CH3_EVENT_CNT_CH0		GENMASK(3, 0)
+> +#define ADS7038_EVENT_CNT_CH3_LOW_THRESHOLD_CH0_LSB	GENMASK(7, 4)
+> +
+> +/* ADS7038 High Threshold CH3 Register */
+> +#define ADS7038_LOW_TH_CH3_REG 0x2F
+> +
+> +/* ADS7038 HYSTERESIS CH4 Register */
+> +#define ADS7038_HYSTERESIS_CH4_REG			0x30
+> +#define ADS7038_HYSTERESIS_CH4_HYSTERESIS_CH0		GENMASK(3, 0)
+> +#define ADS7038_HYSTERESIS_CH4_HIGH_THRESHOLD_CH0_LSB	GENMASK(7, 4)
+> +
+> +/* ADS7038 High Threshold CH4 Register */
+> +#define ADS7038_HIGH_TH_CH4_REG				0x31
+> +
+> +/* ADS7038 Event Count CH4 Register */
+> +#define ADS7038_EVENT_CNT_CH4_REG			0x32
+> +#define ADS7038_EVENT_CNT_CH4_EVENT_CNT_CH0		GENMASK(3, 0)
+> +#define ADS7038_EVENT_CNT_CH4_LOW_THRESHOLD_CH0_LSB	GENMASK(7, 4)
+> +
+> +/* ADS7038 High Threshold CH4 Register */
+> +#define ADS7038_LOW_TH_CH4_REG				0x33
+> +
+> +/* ADS7038 HYSTERESIS CH5 Register */
+> +#define ADS7038_HYSTERESIS_CH5_REG			0x34
+> +#define ADS7038_HYSTERESIS_CH5_HYSTERESIS_CH0		GENMASK(3, 0)
+> +#define ADS7038_HYSTERESIS_CH5_HIGH_THRESHOLD_CH0_LSB	GENMASK(7, 4)
+> +
+> +/* ADS7038 High Threshold CH5 Register */
+> +#define ADS7038_HIGH_TH_CH5_REG				0x35
+> +
+> +/* ADS7038 Event Count CH5 Register */
+> +#define ADS7038_EVENT_CNT_CH5_REG			0x36
+> +#define ADS7038_EVENT_CNT_CH5_EVENT_CNT_CH0		GENMASK(3, 0)
+> +#define ADS7038_EVENT_CNT_CH5_LOW_THRESHOLD_CH0_LSB	GENMASK(7, 4)
+> +
+> +/* ADS7038 High Threshold CH5 Register */
+> +#define ADS7038_LOW_TH_CH5_REG				0x37
+> +
+> +/* ADS7038 HYSTERESIS CH6 Register */
+> +#define ADS7038_HYSTERESIS_CH6_REG			0x38
+> +#define ADS7038_HYSTERESIS_CH6_HYSTERESIS_CH0		GENMASK(3, 0)
+> +#define ADS7038_HYSTERESIS_CH6_HIGH_THRESHOLD_CH0_LSB	GENMASK(7, 4)
+> +
+> +/* ADS7038 High Threshold CH6 Register */
+> +#define ADS7038_HIGH_TH_CH6_REG 0x39
+> +
+> +/* ADS7038 Event Count CH6 Register */
+> +#define ADS7038_EVENT_CNT_CH6_REG			0x3A
+> +#define ADS7038_EVENT_CNT_CH6_EVENT_CNT_CH0		GENMASK(3, 0)
+> +#define ADS7038_EVENT_CNT_CH6_LOW_THRESHOLD_CH0_LSB	GENMASK(7, 4)
+> +
+> +/* ADS7038 High Threshold CH6 Register */
+> +#define ADS7038_LOW_TH_CH6_REG				0x3B
+> +
+> +/* ADS7038 HYSTERESIS CH7 Register */
+> +#define ADS7038_HYSTERESIS_CH7_REG			0x3C
+> +#define ADS7038_HYSTERESIS_CH7_HYSTERESIS_CH0		GENMASK(3, 0)
+> +#define ADS7038_HYSTERESIS_CH7_HIGH_THRESHOLD_CH0_LSB	GENMASK(7, 4)
+> +
+> +/* ADS7038 High Threshold CH7 Register */
+> +#define ADS7038_HIGH_TH_CH7_REG				0x3D
+> +
+> +/* ADS7038 Event Count CH7 Register */
+> +#define ADS7038_EVENT_CNT_CH7_REG			0x3E
+> +#define ADS7038_EVENT_CNT_CH7_EVENT_CNT_CH0		GENMASK(3, 0)
+> +#define ADS7038_EVENT_CNT_CH7_LOW_THRESHOLD_CH0_LSB	GENMASK(7, 4)
+> +
+> +/* ADS7038 High Threshold CH7 Register */
+> +#define ADS7038_LOW_TH_CH7_REG		0x3F
+> +
+> +/* ADS7038 MAX CH0 LSB Register */
+> +#define ADS7038_MAX_CH0_LSB_REG		0x60
+The define provides the same information as the comment (which is
+good btw) Comments that add no value, should not be there. Hence
+delete all these register descriptions unless they add some additional
+significant information.
 
 ...
 
-> diff --git a/arch/arm64/boot/dts/google/gs101-pinctrl.h b/arch/arm64/boot/dts/google/gs101-pinctrl.h
-> new file mode 100644
-> index 000000000000..acc77c684f0d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/google/gs101-pinctrl.h
-> @@ -0,0 +1,17 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Pinctrl binding constants for GS101
-> + *
-> + * Copyright (c) 2020-2023 Google, LLC.
-> + */
+> +/* Channel IDs to use for manual mode */
+> +enum MANUAL_CHID {
+> +	AIN0 = ADS7038_CHANNEL_SEL_MCHILDID_AIN0,
+> +	AIN1 = ADS7038_CHANNEL_SEL_MCHILDID_AIN1,
+> +	AIN2 = ADS7038_CHANNEL_SEL_MCHILDID_AIN2,
+> +	AIN3 = ADS7038_CHANNEL_SEL_MCHILDID_AIN3,
+> +	AIN4 = ADS7038_CHANNEL_SEL_MCHILDID_AIN4,
+> +	AIN5 = ADS7038_CHANNEL_SEL_MCHILDID_AIN5,
+> +	AIN6 = ADS7038_CHANNEL_SEL_MCHILDID_AIN6,
+> +	AIN7 = ADS7038_CHANNEL_SEL_MCHILDID_AIN7,
+> +	AIN_MAX,
+> +};
 > +
-> +#ifndef __DT_BINDINGS_PINCTRL_GS101_H__
-> +#define __DT_BINDINGS_PINCTRL_GS101_H__
+> +/* Functional Modes */
+> +enum FUNC_MODE {
+> +	MAN = 0,
+> +	ON_THE_FLY,
+> +	AUTO_SEQ,
+> +	AUTO,
+> +};
 > +
-> +/* GS101 drive strengths */
-> +#define GS101_PIN_DRV_2_5_MA		0
-> +#define GS101_PIN_DRV_5_MA		1
-> +#define GS101_PIN_DRV_7_5_MA		2
-> +#define GS101_PIN_DRV_10_MA		3
-> +
-> +#endif /* __DT_BINDINGS_PINCTRL_GS101_H__ */
-> diff --git a/arch/arm64/boot/dts/google/gs101.dtsi b/arch/arm64/boot/dts/google/gs101.dtsi
-> new file mode 100644
-> index 000000000000..0bd43745f6fa
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/google/gs101.dtsi
-> @@ -0,0 +1,501 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * GS101 SoC
-> + *
-> + * Copyright 2019-2023 Google LLC
-> + *
-> + */
-> +
-> +#include <dt-bindings/clock/gs101.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/interrupt-controller/gs101.h>
-> +
-> +#include "gs101-pinctrl.dtsi"
-> +
-> +/ {
-> +	compatible = "google,gs101";
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <1>;
-> +
-> +	aliases {
-> +		pinctrl0 = &pinctrl_0;
-> +		pinctrl1 = &pinctrl_1;
-> +		pinctrl2 = &pinctrl_2;
-> +		pinctrl3 = &pinctrl_3;
-> +		pinctrl4 = &pinctrl_4;
-> +		pinctrl5 = &pinctrl_5;
-> +		pinctrl6 = &pinctrl_6;
-> +		pinctrl7 = &pinctrl_7;
-> +
+> +struct ads7038_ch_meas_result {
+> +	unsigned int raw;
+> +	unsigned int status;
+> +	u8 faverage;		/* Flag indicates average result */
+> +	u8 fstatus;		/* Flag indicated if status is appended */
+bool for flags and name them so the comments aren't needed.  Given status is
+above and my guess for the meaning of faverage.
 
-Stray blank line
+	bool status_valid;
+	bool raw_is_an_average;
 
-> +	};
-> +
-> +	cpus {
-> +		#address-cells = <2>;
-> +		#size-cells = <0>;
-> +
-> +		cpu-map {
-> +			cluster0 {
-> +				core0 {
-> +					cpu = <&cpu0>;
-> +				};
-> +				core1 {
-> +					cpu = <&cpu1>;
-> +				};
-> +				core2 {
-> +					cpu = <&cpu2>;
-> +				};
-> +				core3 {
-> +					cpu = <&cpu3>;
-> +				};
-> +			};
-
-Blank line
-
-> +			cluster1 {
-> +				core0 {
-> +					cpu = <&cpu4>;
-> +				};
-> +				core1 {
-> +					cpu = <&cpu5>;
-> +				};
-> +			};
-
-Blank line
-
-
-> +			cluster2 {
-> +				core0 {
-> +					cpu = <&cpu6>;
-> +				};
-> +				core1 {
-> +					cpu = <&cpu7>;
-> +				};
-> +			};
-> +		};
-> +
-> +		cpu0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,armv8";
-> +			reg = <0x0 0x0000>;
-> +			enable-method = "psci";
-> +			cpu-idle-states =  <&ANANKE_CPU_SLEEP>;
-> +			capacity-dmips-mhz = <250>;
-> +			dynamic-power-coefficient = <70>;
-> +		};
-
-Blank line
-
-
-> +		cpu1: cpu@100 {
-> +			device_type = "cpu";
-> +			compatible = "arm,armv8";
-> +			reg = <0x0 0x0100>;
-> +			enable-method = "psci";
-> +			cpu-idle-states =  <&ANANKE_CPU_SLEEP>;
-> +			capacity-dmips-mhz = <250>;
-> +			dynamic-power-coefficient = <70>;
-> +		};
-> +		cpu2: cpu@200 {
-> +			device_type = "cpu";
-> +			compatible = "arm,armv8";
-> +			reg = <0x0 0x0200>;
-> +			enable-method = "psci";
-> +			cpu-idle-states =  <&ANANKE_CPU_SLEEP>;
-> +			capacity-dmips-mhz = <250>;
-> +			dynamic-power-coefficient = <70>;
-> +		};
-> +		cpu3: cpu@300 {
-> +			device_type = "cpu";
-> +			compatible = "arm,armv8";
-> +			reg = <0x0 0x0300>;
-> +			enable-method = "psci";
-> +			cpu-idle-states =  <&ANANKE_CPU_SLEEP>;
-> +			capacity-dmips-mhz = <250>;
-> +			dynamic-power-coefficient = <70>;
-> +		};
-> +		cpu4: cpu@400 {
-> +			device_type = "cpu";
-> +			compatible = "arm,armv8";
-> +			reg = <0x0 0x0400>;
-> +			enable-method = "psci";
-> +			cpu-idle-states =  <&ENYO_CPU_SLEEP>;
-> +			capacity-dmips-mhz = <620>;
-> +			dynamic-power-coefficient = <284>;
-> +		};
-> +		cpu5: cpu@500 {
-> +			device_type = "cpu";
-> +			compatible = "arm,armv8";
-> +			reg = <0x0 0x0500>;
-> +			enable-method = "psci";
-> +			cpu-idle-states =  <&ENYO_CPU_SLEEP>;
-> +			capacity-dmips-mhz = <620>;
-> +			dynamic-power-coefficient = <284>;
-> +		};
-> +		cpu6: cpu@600 {
-> +			device_type = "cpu";
-> +			compatible = "arm,armv8";
-> +			reg = <0x0 0x0600>;
-> +			enable-method = "psci";
-> +			cpu-idle-states =  <&HERA_CPU_SLEEP>;
-> +			capacity-dmips-mhz = <1024>;
-> +			dynamic-power-coefficient = <650>;
-> +		};
-> +		cpu7: cpu@700 {
-> +			device_type = "cpu";
-> +			compatible = "arm,armv8";
-> +			reg = <0x0 0x0700>;
-> +			enable-method = "psci";
-> +			cpu-idle-states =  <&HERA_CPU_SLEEP>;
-> +			capacity-dmips-mhz = <1024>;
-> +			dynamic-power-coefficient = <650>;
-> +		};
-> +
-> +		idle-states {
-> +			entry-method = "psci";
-> +
-> +			ANANKE_CPU_SLEEP: cpu-ananke-sleep {
-> +				idle-state-name = "c2";
-> +				compatible = "arm,idle-state";
-> +				arm,psci-suspend-param = <0x0010000>;
-> +				entry-latency-us = <70>;
-> +				exit-latency-us = <160>;
-> +				min-residency-us = <2000>;
-> +				status = "okay";
-
-Drop status. Okay is by default.
-
-> +			};
-> +
-> +			ENYO_CPU_SLEEP: cpu-enyo-sleep {
-> +				idle-state-name = "c2";
-> +				compatible = "arm,idle-state";
-> +				arm,psci-suspend-param = <0x0010000>;
-> +				entry-latency-us = <150>;
-> +				exit-latency-us = <190>;
-> +				min-residency-us = <2500>;
-> +				status = "okay";
-
-
-Drop status. Okay is by default.
-
-
-> +			};
-> +
-> +			HERA_CPU_SLEEP: cpu-hera-sleep {
-> +				idle-state-name = "c2";
-> +				compatible = "arm,idle-state";
-> +				arm,psci-suspend-param = <0x0010000>;
-> +				entry-latency-us = <235>;
-> +				exit-latency-us = <220>;
-> +				min-residency-us = <3500>;
-> +				status = "okay";
-
-Drop status. Okay is by default.
-
-
-> +			};
-> +		};
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-1.0";
-> +		method = "smc";
-> +	};
-> +
-> +	reserved_memory: reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		tpu_fw_reserved: tpu_fw@93000000 {
-
-No underscores in node names. Use hyphens.
-
-
-> +			reg = <0x0 0x93000000 0x1000000>;
-> +			no-map;
-> +		};
-> +
-> +		gsa_reserved_protected: gsa@90200000 {
-> +			reg = <0x0 0x90200000 0x400000>;
-> +			no-map;
-> +		};
-> +
-> +		aoc_reserve: aoc@94000000 {
-> +			reg = <0x0 0x94000000 0x03000000>;
-> +			no-map;
-> +		};
-> +
-> +		abl_reserved: abl@f8800000 {
-> +			reg = <0x0 0xf8800000 0x02000000>;
-> +			no-map;
-> +		};
-> +
-> +		dss_log_reserved: dss_log_reserved@fd3f0000 {
-> +			reg = <0 0xfd3f0000 0x0000e000>;
-> +			no-map;
-> +		};
-> +
-> +		debug_kinfo_reserved: debug_kinfo_reserved@fd3fe000 {
-> +			reg = <0 0xfd3fe000 0x00001000>;
-> +			no-map;
-> +		};
-> +
-> +		bldr_log_reserved: bldr_log_reserved@fd800000 {
-> +			reg = <0 0xfd800000 0x00100000>;
-> +			no-map;
-> +		};
-> +
-> +		bldr_log_hist_reserved: bldr_log_hist_reserved@fd900000 {
-> +			reg = <0 0xfd900000 0x00002000>;
-> +			no-map;
-> +		};
-> +	};
-> +
-> +	/* bootloader requires ect node */
-> +	ect {
-> +		parameter_address = <0x90000000>;
-> +		parameter_size = <0x53000>;
-> +	};
-> +
-> +	chosen {
-
-Please order the nodes by name.
-
-> +		bootargs = "earlycon=exynos4210,mmio32,0x10A00000 clk_ignore_unused";
-
-None of these bootargs are suitable for wide, mainline use. Please drop.
-
-> +	};
-> +
-> +	gic: interrupt-controller@10400000 {
-
-This cannot be outside of SoC.
-
-> +		compatible = "arm,gic-v3";
-> +		#interrupt-cells = <3>;
-> +		interrupt-controller;
-> +		reg = <0x0 0x10400000 0x10000>,		/* GICD */
-> +		      <0x0 0x10440000 0x100000>;	/* GICR * 8 */
-> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
-> +		clock-frequency = <24576000>;
-> +	};
-> +
-> +	ext_24_5m: ext_24_5m {
-
-
-clock-1
-
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <24576000>;
-> +		clock-output-names = "oscclk";
-> +	};
-> +
-> +	ext_200m: ext_200m {
-
-clock-2
-
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <200000000>;
-> +		clock-output-names = "ext-200m";
-> +	};
-> +
-> +	/* GPIO_ALIVE */
-> +	pinctrl_0: pinctrl@174d0000 {
-> +		compatible = "google,gs101-pinctrl";
-> +		reg = <0x00000000 0x174d0000 0x00001000>;
-
-0x0
-
-Please open Tesla FSD or Exynos850 for examples.
-
-Also, this cannot be outside of SoC. There is no way this passes
-dtbs_check W=1.
-
-Nodes in MMIO-bus should be ordered by unit address.
-
-
-> +		interrupts = <GIC_SPI IRQ_ALIVE_EINT0 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT1 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT2 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT3 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT4 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT5 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT6 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT7 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT8 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT9 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT10 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT11 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT12 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT13 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT14 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT15 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT16 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT17 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT18 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT19 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT20 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT21 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT22 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT23 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT24 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT25 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT26 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT27 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT28 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT29 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT30 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT31 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT32 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT33 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT34 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT35 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT36 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT37 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT38 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT39 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT40 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT41 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT42 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT43 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT44 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +		wakeup-interrupt-controller {
-> +			compatible = "google,gs101-wakeup-eint";
-> +		};
-> +	};
-> +
-> +	/* GPIO_FAR_ALIVE */
-> +	pinctrl_1: pinctrl@174e0000 {
-> +		compatible = "google,gs101-pinctrl";
-> +		reg = <0x00000000 0x174e0000 0x00001000>;
-> +		interrupts = <GIC_SPI IRQ_ALIVE_EINT45 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT46 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT47 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT48 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT49 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT50 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT51 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT52 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT53 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT54 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT55 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT56 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT57 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT58 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT59 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT60 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT61 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT62 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT63 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT64 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT65 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI IRQ_ALIVE_EINT66 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +		wakeup-interrupt-controller {
-> +			compatible = "google,gs101-wakeup-eint";
-> +		};
-> +	};
-> +
-> +	/* GPIO_GSACORE */
-> +	pinctrl_2: pinctrl@17a80000 {
-> +		compatible = "google,gs101-pinctrl";
-> +		reg = <0x00000000 0x17a80000 0x00001000>;
-> +	};
-> +	/* GPIO_GSACTRL */
-> +	pinctrl_3: pinctrl@17940000 {
-> +		compatible = "google,gs101-pinctrl";
-> +		reg = <0x00000000 0x17940000 0x00001000>;
-> +	};
-> +	/* GPIO_PERIC0 */
-> +	pinctrl_4: pinctrl@10840000 {
-> +		compatible = "google,gs101-pinctrl";
-> +		reg = <0x00000000 0x10840000 0x00001000>;
-> +		interrupts = <GIC_SPI IRQ_GPIO_PERIC0_PERIC0 IRQ_TYPE_LEVEL_HIGH>;
-> +	};
-> +	/* GPIO_PERIC1 */
-> +	pinctrl_5: pinctrl@10c40000 {
-> +		compatible = "google,gs101-pinctrl";
-> +		reg = <0x00000000 0x10C40000 0x00001000>;
-> +		interrupts = <GIC_SPI IRQ_GPIO_PERIC1_PERIC1 IRQ_TYPE_LEVEL_HIGH>;
-> +	};
-> +	/* GPIO_HSI1 */
-> +	pinctrl_6: pinctrl@11840000 {
-> +		compatible = "google,gs101-pinctrl";
-> +		reg = <0x00000000 0x11840000 0x00001000>;
-> +		interrupts = <GIC_SPI IRQ_GPIO_HSI1_HSI1 IRQ_TYPE_LEVEL_HIGH>;
-> +	};
-> +	/* GPIO_HSI2 */
-> +	pinctrl_7: pinctrl@14440000 {
-> +		compatible = "google,gs101-pinctrl";
-> +		reg = <0x00000000 0x14440000 0x00001000>;
-> +		interrupts = <GIC_SPI IRQ_GPIO_HSI2_HSI2 IRQ_TYPE_LEVEL_HIGH>;
-> +	};
-> +
-> +	arm-pmu {
-> +		compatible = "arm,armv8-pmuv3";
-> +		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_HIGH)>;
-> +	};
-> +
-> +	sysreg_apm: syscon@174204e0 {
-> +		compatible = "google,gs101-apm-sysreg",
-> +			     "google,gs101-sysreg", "syscon";
-> +		reg = <0x0 0x174204e0 0x1000>;
-> +	};
-> +
-> +	sysreg_peric0: syscon@10821000 {
-> +		compatible = "google,gs101-peric0-sysreg",
-> +			     "google,gs101-sysreg", "syscon";
-> +		reg = <0x0 0x10821000 0x40000>;
-> +	};
-> +
-> +	sysreg_peric1: syscon@10c21000 {
-> +		compatible = "google,gs101-peric1-sysreg",
-> +			     "google,gs101-sysreg", "syscon";
-> +		reg = <0x0 0x10C21000 0x40000>;
-> +	};
-> +
-> +	/* TODO replace with CCF clock */
-> +	dummy_clk: oscillator {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency  = <12345>;
-
-One space before =
-
-> +		clock-output-names = "pclk";
-> +	};
-> +
-> +	serial_0: serial@10a00000 {
-> +		compatible = "samsung,exynos850-uart";
-
-You need also specific compatible for GS. Fallback can stay.
-
-> +		reg = <0x0 0x10a00000 0xc0>;
-> +		reg-io-width = <4>;
-> +		samsung,uart-fifosize = <256>;
-> +		interrupts = <GIC_SPI IRQ_USI0_UART_PERIC0 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&dummy_clk 0>, <&dummy_clk 0>;
-> +		clock-names = "uart", "clk_uart_baud0";
-> +		status = "okay";
-
-Drop, it's default.
-
-> +	};
-> +
-> +	pmu_system_controller: system-controller@17460000 {
-> +		compatible = "google,gs101-pmu", "syscon";
-> +		reg = <0x0 0x17460000 0x10000>;
-> +	};
-> +
-> +	watchdog_cl0: watchdog@10060000 {
-> +		compatible = "google,gs101-wdt";
-> +		reg = <0x0 0x10060000 0x100>;
-> +		interrupts = <GIC_SPI IRQ_WDT_CLUSTER0_MISC IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&cmu_misc CLK_GOUT_MISC_WDT_CLUSTER0>, <&ext_24_5m>;
-> +		clock-names = "watchdog", "watchdog_src";
-> +		timeout-sec = <30>;
-
-This is rather property of the board.
-
-> +		samsung,syscon-phandle = <&pmu_system_controller>;
-> +		samsung,cluster-index = <0>;
-> +	};
-> +
-> +	watchdog_cl1: watchdog@10070000 {
-> +		compatible = "google,gs101-wdt";
-> +		reg = <0x0 0x10070000 0x100>;
-> +		interrupts = <GIC_SPI IRQ_WDT_CLUSTER1_MISC IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&cmu_misc CLK_GOUT_MISC_WDT_CLUSTER1>, <&ext_24_5m>;
-> +		clock-names = "watchdog", "watchdog_src";
-> +		timeout-sec = <30>;
-> +		samsung,syscon-phandle = <&pmu_system_controller>;
-> +		samsung,cluster-index = <1>;
-> +		status = "disabled";
-> +	};
-> +
-> +	cmu_top: clock-controller@1e080000 {
-> +		compatible = "google,gs101-cmu-top";
-> +		reg = <0x0 0x1e080000 0x8000>;
-> +		#clock-cells = <1>;
-> +
-> +		clocks = <&ext_24_5m>;
-> +		clock-names = "oscclk";
-> +	};
-> +
-> +	cmu_apm: clock-controller@17400000 {
-> +		compatible = "google,gs101-cmu-apm";
-> +		reg = <0x0 0x17400000 0x8000>;
-> +		#clock-cells = <1>;
-> +
-> +		clocks = <&ext_24_5m>;
-> +		clock-names = "oscclk";
-> +	};
-> +
-> +	cmu_misc: clock-controller@10010000 {
-> +		compatible = "google,gs101-cmu-misc";
-> +		reg = <0x0 0x10010000 0x8000>;
-> +		#clock-cells = <1>;
-> +
-> +		clocks =  <&ext_24_5m>, <&cmu_top CLK_DOUT_MISC_BUS>;
-> +		clock-names = "oscclk", "dout_cmu_misc_bus";
-> +	};
-> +
-> +	dsu-pmu-0 {
-> +		compatible = "arm,dsu-pmu";
-> +		interrupts = <GIC_SPI IRQ_CPUCL0_CLUSTERPMUIRQ_CPUCL0 IRQ_TYPE_LEVEL_HIGH>;
-> +		cpus = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>, <&cpu4>, <&cpu5>, <&cpu6>, <&cpu7>;
-> +	};
-> +
-> +	gpio_keys: gpio_keys {
-> +		compatible = "gpio-keys";
-
-That's not a property of the SoC.
-
-> +	};
-> +
-
-Stray blank line.
 
 > +};
+> +
+> +struct device;
+> +struct iio_dev;
+> +struct regmap;
+> +struct regulator;
+> +
+> +/* Functions to address registers and */
+> +struct ads7038_info {
 
-Best regards,
-Krzysztof
+Using regmap and still needing callbacks for read_reg etc seems decidely
+odd..  Those should be handled via the regmap configuration.
+
+At the moment you have abstraction in here to support the i2c device
+but I'd like to either see that code added as part of this patch series,
+or the abstraction removed for now so we get one clean driver.
+The complexity can then be brought in as a precursor patch for the
+i2c driver.
+
+
+> +	/* Address configuration registers of IC */
+> +	int (*read_reg)(struct device *dev, const unsigned int reg,
+> +			unsigned int *val);
+> +	int (*write_reg)(struct device *dev, const unsigned int reg,
+> +			 unsigned int val);
+> +	/* Perform a single read of a channel */
+> +	int (*read_channel)(struct iio_dev *indio_dev,
+> +			    const enum MANUAL_CHID chan,
+> +			    struct ads7038_ch_meas_result *const res);
+> +};
+> +
+> +struct ads7038_data {
+> +	struct device *dev;
+> +	const struct ads7038_info *info;
+> +	struct regmap *regmap;
+> +
+> +	enum FUNC_MODE func_mode;	/* actual measure mode */
+> +	u8 faverage;		/* flag indicates averaging enabled */
+> +	u8 fstatus;		/* flag indicates status appended */
+> +
+> +	struct mutex lock;	/* Mutex for single communication resource */
+> +
+> +	struct regulator *reg;	/* Regulator that controls ADC reference voltage */
+> +};
+> +
+> +/* Regmap configurations */
+
+Obvious so drop comment.
+
+> +extern const struct regmap_config ads7038_regmap_config;
+> +
+> +/* Probe called from different transports */
+This is fairly obvious, so I'd drop the comment.
+> +int ads7038_common_probe(struct device *parent, const struct ads7038_info *info,
+> +			 struct regmap *const regmap,
+> +			 struct regulator *const ref_voltage_reg,
+> +			 const char *name, const int irq);
+> +
+> +int ads7038_common_remove(struct device *parent);
+> +
+> +#endif
 
 
