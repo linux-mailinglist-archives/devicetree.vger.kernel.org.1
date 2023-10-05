@@ -1,445 +1,146 @@
-Return-Path: <devicetree+bounces-6113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 039737B9DFB
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:59:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DF017B9E4E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:04:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id B95921C2093F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 13:59:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 12B46B209F6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 14:04:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14B5826E36;
-	Thu,  5 Oct 2023 13:59:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB4E027722;
+	Thu,  5 Oct 2023 14:04:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OCXcwZuy"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="edDpNhoH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB633266D0
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 13:59:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75C7BC193E8;
-	Thu,  5 Oct 2023 13:59:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696514396;
-	bh=QezRFtV2Aw1Hfuxh5YdjvxwdGdfkr+IUCZmhAtxooIw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OCXcwZuysxGmmq5zAuIlNqo45wuNOE3VZyUOY4gsOrnlIhotNy0zuryypMA/YkXH6
-	 dQHf2pyfcYPbZpn/jf6++W1wTUAzTcFtKn/qBE6SqQQgiM+q/E1FwzdR5QJKVZJU34
-	 DcXeYjc/aUka2JZbpA7kU3JxJIC2LV3zlBPGbbQYQszBi5Cd8tx2lbNdwI4hHH6vSn
-	 kSXLbi0olvILWM3NKKcwQ4u3uwDzxztFXZptPTQHn3E9CUsWVTkJQ+g35R2W+9pKnf
-	 rarPiNnvAKqLrr0DwMTE7hXCbiS4Q6xXJSmEh1eAZRVLIw8OVSKJEAMAO9y1fCMbqY
-	 srm6k7x24MAGw==
-Date: Thu, 5 Oct 2023 15:59:51 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Marc Zyngier <maz@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Fang Xiang <fangxiang3@xiaomi.com>
-Subject: Re: [PATCH 2/2] irqchip/gic-v3: Enable non-coherent
- redistributors/ITSes probing
-Message-ID: <ZR7BV1gmWlEae+gq@lpieralisi>
-References: <20230905104721.52199-1-lpieralisi@kernel.org>
- <20230905104721.52199-3-lpieralisi@kernel.org>
- <86msy0etul.wl-maz@kernel.org>
- <ZRwonK+01HKJkKXa@lpieralisi>
- <86r0mboduc.wl-maz@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D23417F5
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 14:04:25 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 883834F077;
+	Thu,  5 Oct 2023 07:02:49 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3952obcM020199;
+	Thu, 5 Oct 2023 02:52:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=dFUWap6jlVEo0/FWKF6ZbuQBL/+MeVOOJ+8zsML8Umo=;
+ b=edDpNhoHl+kWZPg5qVWs2Gzi7Y81akUnBumc1EpagtG3tiiGNE/zIMkzrpwP8D3wtJOJ
+ q7LEHVmd6ww7Q6IjqC3NoaGxWO0fp7Xmfcyw5cMFrukL2REFE6UP1jED3rgj0Re84fdW
+ FfHaiRIcSCEQ3m0tlDQ6WBoVNTIjEm5kZp0pc+Oh61L3SAQEN/WlG1ikGJEaYEwNTp5E
+ BTKXlK330LmGV6+LQYcelciZH+Pv6YQzvSal9US7e/UBPtWuIieteax0GbZVQzx4qFDK
+ 0dm0wRa0dkZde2v8rKkeiq2a5S1i02Ynl7TXW4n68w4AdxIpq47RFApBxmXOcqH2H7TX LQ== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3thj6gg9hp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 05 Oct 2023 02:52:08 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3952q7YM016314
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 5 Oct 2023 02:52:07 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Wed, 4 Oct 2023 19:52:07 -0700
+Date: Wed, 4 Oct 2023 19:52:06 -0700
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+To: Manivannan Sadhasivam <mani@kernel.org>
+CC: Caleb Connolly <caleb.connolly@linaro.org>,
+        Andy Gross
+	<agross@kernel.org>,
+        Bhupesh Sharma <bhupesh.linux@gmail.com>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano
+	<daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>, Zhang Rui
+	<rui.zhang@intel.com>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Thara Gopinath
+	<thara.gopinath@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-pm@vger.kernel.org>
+Subject: Re: [PATCH 0/4] thermal: Introduce Qualcomm Thermal Mitigation
+ Device support
+Message-ID: <20231005025206.GF3553829@hu-bjorande-lv.qualcomm.com>
+References: <20230905-caleb-qmi_cooling-v1-0-5aa39d4164a7@linaro.org>
+ <20231001155701.GA53767@thinkpad>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <86r0mboduc.wl-maz@kernel.org>
+In-Reply-To: <20231001155701.GA53767@thinkpad>
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: FrSBzj2ulkS9SaY4CyHpLk6gx13PtlDB
+X-Proofpoint-ORIG-GUID: FrSBzj2ulkS9SaY4CyHpLk6gx13PtlDB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-04_13,2023-10-02_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
+ lowpriorityscore=0 suspectscore=0 spamscore=0 malwarescore=0 adultscore=0
+ priorityscore=1501 clxscore=1015 mlxlogscore=999 impostorscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310050023
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Tue, Oct 03, 2023 at 05:44:27PM +0100, Marc Zyngier wrote:
-> On Tue, 03 Oct 2023 15:43:40 +0100,
-> Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+On Sun, Oct 01, 2023 at 09:27:01PM +0530, Manivannan Sadhasivam wrote:
+> On Fri, Sep 29, 2023 at 05:16:16PM +0100, Caleb Connolly wrote:
+> > The Thermal Mitigation Device (TMD) Service is a QMI service that runs
+> > on remote subsystems (the modem and DSPs) on Qualcomm SoCs.
+> > It exposes various mitigations including passive thermal controls and
+> > rail voltage restrictions.
 > > 
-> > On Tue, Sep 05, 2023 at 12:34:58PM +0100, Marc Zyngier wrote:
+> > This series introduces support for exposing TMDs as cooling devices
+> > in the kernel through the thermal framework, using the QMI interface.
 > > 
-> > [...]
+> > Each TMD client is described as a child of the remoteproc node in
+> > devicetree. With subnodes for each control.
 > > 
-> > > >  	 * Make sure *all* the ITS are reset before we probe any, as
-> > > >  	 * they may be sharing memory. If any of the ITS fails to
-> > > > @@ -5396,7 +5405,8 @@ static int __init its_of_probe(struct device_node *node)
-> > > >  			continue;
-> > > >  		}
-> > > >  
-> > > > -		its_probe_one(&res, &np->fwnode, of_node_to_nid(np));
-> > > > +		its_probe_one(&res, &np->fwnode, of_node_to_nid(np),
-> > > > +			      of_property_read_bool(np, "dma-noncoherent"));
-> > > >  	}
-> > > >  	return 0;
-> > > >  }
-> > > > @@ -5533,7 +5543,8 @@ static int __init gic_acpi_parse_madt_its(union acpi_subtable_headers *header,
-> > > >  	}
-> > > >  
-> > > >  	err = its_probe_one(&res, dom_handle,
-> > > > -			acpi_get_its_numa_node(its_entry->translation_id));
-> > > > +			acpi_get_its_numa_node(its_entry->translation_id),
-> > > > +			false);
-> > > 
-> > > I came up with the following alternative approach, which is as usual
-> > > completely untested. It is entirely based on the quirk infrastructure,
-> > > and doesn't touch the ACPI path at all.
-> > 
-> > Writing the ACPI bits. We can't use the quirks framework for ACPI (we
-> > don't have "properties" and I don't think we want to attach any to the
-> > fwnode_handle) that's why I generalized its_probe_one() above with an
-> > extra param, that would have simplified ACPI parsing:
-> > 
-> > - we alloc struct its_node in its_probe_one() but at that stage
-> >   ACPI parsing was already done. If we have to parse the MADT(ITS) again
-> >   just to scan for non-coherent we then have to match the MADT entries
-> >   to the *current* struct its_node* we are handling (MADT parsing
-> >   callbacks don't even take a param - we have to resort to global
-> >   variables - definitely doable but it is a bit ugly).
 > 
-> Well, a more acceptable approach would be for its_probe_one() to take
-> an allocated and possibly pre-populated its_node structure (crucially,
-> with the quirk flags set), which itself results in a bunch of low
-> hanging cleanups, see the patch below.
+> Daniel expressed concerns in the past aganist representing TMD driver as a
+> cooling device since it is not tied to thermal zones and the governors cannot
+> use it. Instead he suggested to represent it as a powercap device with thermal
+> constraints.
 > 
-> I have boot tested it in a DT guest, so it is obviously perfect.
+> So please look into that approach.
+> 
 
-If you don't mind I will post it together with the resulting series.
+The powercap framework revolves around the idea that we have some amount
+of power (micro-watt) being available to the system, which can be split
+across a range of devices.
 
-I have just removed:
+Say that we implement this as a powercap thing, what current consumption
+would you attribute these entires? How would you map a given uW value to
+the mitigation levels provided by the qmi-cooling instances?
 
-/* Stick ACPI quirk handling here */
 
-point taken :)
+Beyond that, I'm still not sure how we would plug this in. We don't have
+a picture of the power consumption/flow through the system at any point
+in time - as the control of the power grid is distributed across the
+various subsystems.
 
-Thanks,
-Lorenzo
-
-> 	M.
-> 
-> From 978f654d4459adf0b8f3f8e896ca37035b3b114c Mon Sep 17 00:00:00 2001
-> From: Marc Zyngier <maz@kernel.org>
-> Date: Tue, 3 Oct 2023 17:35:27 +0100
-> Subject: [PATCH] irqchip/gic-v3-its: Split allocation from initialisation of
->  its_node
-> 
-> In order to pave the way for more fancy quirk handling without making
-> more of a mess of this terrible driver, split the allocation of the
-> ITS descriptor (its_node) from the actual probing.
-> 
-> This will allow firmware-specific hooks to be added between these
-> two points.
-> 
-> Signed-off-by: Marc Zyngier <maz@kernel.org>
-> ---
->  drivers/irqchip/irq-gic-v3-its.c | 151 +++++++++++++++++++------------
->  1 file changed, 91 insertions(+), 60 deletions(-)
-> 
-> diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
-> index e0c2b10d154d..bf21383b714e 100644
-> --- a/drivers/irqchip/irq-gic-v3-its.c
-> +++ b/drivers/irqchip/irq-gic-v3-its.c
-> @@ -4952,7 +4952,7 @@ static void __init __iomem *its_map_one(struct resource *res, int *err)
->  	return NULL;
->  }
->  
-> -static int its_init_domain(struct fwnode_handle *handle, struct its_node *its)
-> +static int its_init_domain(struct its_node *its)
->  {
->  	struct irq_domain *inner_domain;
->  	struct msi_domain_info *info;
-> @@ -4966,7 +4966,7 @@ static int its_init_domain(struct fwnode_handle *handle, struct its_node *its)
->  
->  	inner_domain = irq_domain_create_hierarchy(its_parent,
->  						   its->msi_domain_flags, 0,
-> -						   handle, &its_domain_ops,
-> +						   its->fwnode_handle, &its_domain_ops,
->  						   info);
->  	if (!inner_domain) {
->  		kfree(info);
-> @@ -5017,8 +5017,7 @@ static int its_init_vpe_domain(void)
->  	return 0;
->  }
->  
-> -static int __init its_compute_its_list_map(struct resource *res,
-> -					   void __iomem *its_base)
-> +static int __init its_compute_its_list_map(struct its_node *its)
->  {
->  	int its_number;
->  	u32 ctlr;
-> @@ -5032,15 +5031,15 @@ static int __init its_compute_its_list_map(struct resource *res,
->  	its_number = find_first_zero_bit(&its_list_map, GICv4_ITS_LIST_MAX);
->  	if (its_number >= GICv4_ITS_LIST_MAX) {
->  		pr_err("ITS@%pa: No ITSList entry available!\n",
-> -		       &res->start);
-> +		       &its->phys_base);
->  		return -EINVAL;
->  	}
->  
-> -	ctlr = readl_relaxed(its_base + GITS_CTLR);
-> +	ctlr = readl_relaxed(its->base + GITS_CTLR);
->  	ctlr &= ~GITS_CTLR_ITS_NUMBER;
->  	ctlr |= its_number << GITS_CTLR_ITS_NUMBER_SHIFT;
-> -	writel_relaxed(ctlr, its_base + GITS_CTLR);
-> -	ctlr = readl_relaxed(its_base + GITS_CTLR);
-> +	writel_relaxed(ctlr, its->base + GITS_CTLR);
-> +	ctlr = readl_relaxed(its->base + GITS_CTLR);
->  	if ((ctlr & GITS_CTLR_ITS_NUMBER) != (its_number << GITS_CTLR_ITS_NUMBER_SHIFT)) {
->  		its_number = ctlr & GITS_CTLR_ITS_NUMBER;
->  		its_number >>= GITS_CTLR_ITS_NUMBER_SHIFT;
-> @@ -5048,75 +5047,50 @@ static int __init its_compute_its_list_map(struct resource *res,
->  
->  	if (test_and_set_bit(its_number, &its_list_map)) {
->  		pr_err("ITS@%pa: Duplicate ITSList entry %d\n",
-> -		       &res->start, its_number);
-> +		       &its->phys_base, its_number);
->  		return -EINVAL;
->  	}
->  
->  	return its_number;
->  }
->  
-> -static int __init its_probe_one(struct resource *res,
-> -				struct fwnode_handle *handle, int numa_node)
-> +static int __init its_probe_one(struct its_node *its)
->  {
-> -	struct its_node *its;
-> -	void __iomem *its_base;
-> -	u64 baser, tmp, typer;
-> +	u64 baser, tmp;
->  	struct page *page;
->  	u32 ctlr;
->  	int err;
->  
-> -	its_base = its_map_one(res, &err);
-> -	if (!its_base)
-> -		return err;
-> -
-> -	pr_info("ITS %pR\n", res);
-> -
-> -	its = kzalloc(sizeof(*its), GFP_KERNEL);
-> -	if (!its) {
-> -		err = -ENOMEM;
-> -		goto out_unmap;
-> -	}
-> -
-> -	raw_spin_lock_init(&its->lock);
-> -	mutex_init(&its->dev_alloc_lock);
-> -	INIT_LIST_HEAD(&its->entry);
-> -	INIT_LIST_HEAD(&its->its_device_list);
-> -	typer = gic_read_typer(its_base + GITS_TYPER);
-> -	its->typer = typer;
-> -	its->base = its_base;
-> -	its->phys_base = res->start;
->  	if (is_v4(its)) {
-> -		if (!(typer & GITS_TYPER_VMOVP)) {
-> -			err = its_compute_its_list_map(res, its_base);
-> +		if (!(its->typer & GITS_TYPER_VMOVP)) {
-> +			err = its_compute_its_list_map(its);
->  			if (err < 0)
-> -				goto out_free_its;
-> +				goto out;
->  
->  			its->list_nr = err;
->  
->  			pr_info("ITS@%pa: Using ITS number %d\n",
-> -				&res->start, err);
-> +				&its->phys_base, err);
->  		} else {
-> -			pr_info("ITS@%pa: Single VMOVP capable\n", &res->start);
-> +			pr_info("ITS@%pa: Single VMOVP capable\n", &its->phys_base);
->  		}
->  
->  		if (is_v4_1(its)) {
-> -			u32 svpet = FIELD_GET(GITS_TYPER_SVPET, typer);
-> +			u32 svpet = FIELD_GET(GITS_TYPER_SVPET, its->typer);
->  
-> -			its->sgir_base = ioremap(res->start + SZ_128K, SZ_64K);
-> +			its->sgir_base = ioremap(its->phys_base + SZ_128K, SZ_64K);
->  			if (!its->sgir_base) {
->  				err = -ENOMEM;
-> -				goto out_free_its;
-> +				goto out;
->  			}
->  
-> -			its->mpidr = readl_relaxed(its_base + GITS_MPIDR);
-> +			its->mpidr = readl_relaxed(its->base + GITS_MPIDR);
->  
->  			pr_info("ITS@%pa: Using GICv4.1 mode %08x %08x\n",
-> -				&res->start, its->mpidr, svpet);
-> +				&its->phys_base, its->mpidr, svpet);
->  		}
->  	}
->  
-> -	its->numa_node = numa_node;
-> -
->  	page = alloc_pages_node(its->numa_node, GFP_KERNEL | __GFP_ZERO,
->  				get_order(ITS_CMD_QUEUE_SZ));
->  	if (!page) {
-> @@ -5125,12 +5099,9 @@ static int __init its_probe_one(struct resource *res,
->  	}
->  	its->cmd_base = (void *)page_address(page);
->  	its->cmd_write = its->cmd_base;
-> -	its->fwnode_handle = handle;
->  	its->get_msi_base = its_irq_get_msi_base;
->  	its->msi_domain_flags = IRQ_DOMAIN_FLAG_ISOLATED_MSI;
->  
-> -	its_enable_quirks(its);
-> -
->  	err = its_alloc_tables(its);
->  	if (err)
->  		goto out_free_cmd;
-> @@ -5174,7 +5145,7 @@ static int __init its_probe_one(struct resource *res,
->  		ctlr |= GITS_CTLR_ImDe;
->  	writel_relaxed(ctlr, its->base + GITS_CTLR);
->  
-> -	err = its_init_domain(handle, its);
-> +	err = its_init_domain(its);
->  	if (err)
->  		goto out_free_tables;
->  
-> @@ -5191,11 +5162,8 @@ static int __init its_probe_one(struct resource *res,
->  out_unmap_sgir:
->  	if (its->sgir_base)
->  		iounmap(its->sgir_base);
-> -out_free_its:
-> -	kfree(its);
-> -out_unmap:
-> -	iounmap(its_base);
-> -	pr_err("ITS@%pa: failed probing (%d)\n", &res->start, err);
-> +out:
-> +	pr_err("ITS@%pa: failed probing (%d)\n", &its->phys_base, err);
->  	return err;
->  }
->  
-> @@ -5356,10 +5324,53 @@ static const struct of_device_id its_device_id[] = {
->  	{},
->  };
->  
-> +static struct its_node __init *its_node_init(struct resource *res,
-> +					     struct fwnode_handle *handle, int numa_node)
-> +{
-> +	void __iomem *its_base;
-> +	struct its_node *its;
-> +	int err;
-> +
-> +	its_base = its_map_one(res, &err);
-> +	if (!its_base)
-> +		return NULL;
-> +
-> +	pr_info("ITS %pR\n", res);
-> +
-> +	its = kzalloc(sizeof(*its), GFP_KERNEL);
-> +	if (!its)
-> +		goto out_unmap;
-> +
-> +	raw_spin_lock_init(&its->lock);
-> +	mutex_init(&its->dev_alloc_lock);
-> +	INIT_LIST_HEAD(&its->entry);
-> +	INIT_LIST_HEAD(&its->its_device_list);
-> +
-> +	its->typer = gic_read_typer(its_base + GITS_TYPER);
-> +	its->base = its_base;
-> +	its->phys_base = res->start;
-> +
-> +	its->numa_node = numa_node;
-> +	its->fwnode_handle = handle;
-> +
-> +	return its;
-> +
-> +out_unmap:
-> +	iounmap(its_base);
-> +	return NULL;
-> +}
-> +
-> +static void its_node_destroy(struct its_node *its)
-> +{
-> +	iounmap(its->base);
-> +	kfree(its);
-> +}
-> +
->  static int __init its_of_probe(struct device_node *node)
->  {
->  	struct device_node *np;
->  	struct resource res;
-> +	int err;
->  
->  	/*
->  	 * Make sure *all* the ITS are reset before we probe any, as
-> @@ -5369,8 +5380,6 @@ static int __init its_of_probe(struct device_node *node)
->  	 */
->  	for (np = of_find_matching_node(node, its_device_id); np;
->  	     np = of_find_matching_node(np, its_device_id)) {
-> -		int err;
-> -
->  		if (!of_device_is_available(np) ||
->  		    !of_property_read_bool(np, "msi-controller") ||
->  		    of_address_to_resource(np, 0, &res))
-> @@ -5383,6 +5392,8 @@ static int __init its_of_probe(struct device_node *node)
->  
->  	for (np = of_find_matching_node(node, its_device_id); np;
->  	     np = of_find_matching_node(np, its_device_id)) {
-> +		struct its_node *its;
-> +
->  		if (!of_device_is_available(np))
->  			continue;
->  		if (!of_property_read_bool(np, "msi-controller")) {
-> @@ -5396,7 +5407,17 @@ static int __init its_of_probe(struct device_node *node)
->  			continue;
->  		}
->  
-> -		its_probe_one(&res, &np->fwnode, of_node_to_nid(np));
-> +
-> +		its = its_node_init(&res, &np->fwnode, of_node_to_nid(np));
-> +		if (!its)
-> +			return -ENOMEM;
-> +
-> +		its_enable_quirks(its);
-> +		err = its_probe_one(its);
-> +		if (err)  {
-> +			its_node_destroy(its);
-> +			return err;
-> +		}
->  	}
->  	return 0;
->  }
-> @@ -5508,6 +5529,7 @@ static int __init gic_acpi_parse_madt_its(union acpi_subtable_headers *header,
->  {
->  	struct acpi_madt_generic_translator *its_entry;
->  	struct fwnode_handle *dom_handle;
-> +	struct its_node *its;
->  	struct resource res;
->  	int err;
->  
-> @@ -5532,11 +5554,20 @@ static int __init gic_acpi_parse_madt_its(union acpi_subtable_headers *header,
->  		goto dom_err;
->  	}
->  
-> -	err = its_probe_one(&res, dom_handle,
-> -			acpi_get_its_numa_node(its_entry->translation_id));
-> +	its = its_node_init(&res, dom_handle,
-> +			    acpi_get_its_numa_node(its_entry->translation_id));
-> +	if (!its) {
-> +		err = -ENOMEM;
-> +		goto node_err;
-> +	}
-> +
-> +	/* Stick ACPI quirk handling here */
-> +
-> +	err = its_probe_one(its);
->  	if (!err)
->  		return 0;
->  
-> +node_err:
->  	iort_deregister_domain_token(its_entry->translation_id);
->  dom_err:
->  	irq_domain_free_fwnode(dom_handle);
-> -- 
-> 2.34.1
-> 
-> -- 
-> Without deviation from the norm, progress is not possible.
+Regards,
+Bjorn
 
