@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-6300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E2717BAA9E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 21:47:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8B2A7BAAAB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 21:48:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 49D09B208DA
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 19:47:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 75692281C74
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 19:48:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1578F41766;
-	Thu,  5 Oct 2023 19:47:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15C3C41775;
+	Thu,  5 Oct 2023 19:48:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r2LrDtF7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kookpJBl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 774DB266D5
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 19:47:02 +0000 (UTC)
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 773BAEE
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 12:47:00 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9b64b98656bso246918466b.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 12:47:00 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AADA4174F
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 19:48:14 +0000 (UTC)
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85156FB
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 12:48:12 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-534659061afso2341024a12.3
+        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 12:48:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696535219; x=1697140019; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696535291; x=1697140091; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3Dt9k8PRGqt54iiTeBVK6B2nTooRkAx1cay9o3WY25Q=;
-        b=r2LrDtF7dg5/8ZRrSk1CaLoXN/QH7ce9ZZNFuOxitWNpYMGHlhyrS83xrFtZmN7XmD
-         iLfpxxg8h63SkCG/KICtJB5NINLEvakUZbaO751+wV3gSjKhQHmKzrnrmRsK41VS+fVa
-         zct12oSF/UeWqDvAiDTvPR7ZH/ScQuLgq/57QsBTpAXPVK9mEqSQSi0SNQGRvKhNdP33
-         eURZyQzKPf+1Ek9OVlWaFXUzu/HYBsCjnAnEU63mXcEsZhnFKKkEs128v1TmRF4xRHhF
-         o39aeSaJoY7BWChGwf4XKVqLASpRmW+DoysVNM5uDwHeXCJxdbNWDkcrQsLzh9k57YX/
-         lLkg==
+        bh=fx8Fz/0lyiGSr+PU8NVEjUz0QkqFU5udG1VuqQ/XuWw=;
+        b=kookpJBlDxXQoKVHcGiTWYEYH9b58EfqEsTX2/rWpZHIY6wkUGXcl7mTR9ZOEs+r+0
+         DMYlqHCoz419V6RJ+mGCGtwiIm18WFtB2PCPGd6eQYvArh5oUkNSsKgWKldyUa8HYAPg
+         fBz/5M75TRrUm5Su33GIIgRFWKH0x9xorvwKDkMerLMm121u3M63GfKTf9+YHjkAUx9f
+         gdELEXPtpfCYhPL1t4NjRaxojTiAQcX5D8E2b3chSjLeqIS1sfP6cx2XsvQl349FRtQE
+         qrJfl3Y7fYlq6AlKIadraZjhsj1hoqkBX2QEYudpI3K4dya6OVpYUuz5rJ1j3wmhAPqy
+         aV6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696535219; x=1697140019;
+        d=1e100.net; s=20230601; t=1696535291; x=1697140091;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3Dt9k8PRGqt54iiTeBVK6B2nTooRkAx1cay9o3WY25Q=;
-        b=crdoUT7IRflA4BgY9EZE8NkUjADqLA571RAwv6u7Y9TqXyY34GRtODxCuXYy5RSHLD
-         201Txxw9KR9ZxJP80aN8nuqcNtfss1+NOZEU8w/7FdT+Acyb6fvUPWqoGxjo2gmkxu/H
-         w3Q35Gx4Q5g6lU5EbuYOfplJ9OXqXKz3zQg6qFLL3V0XatTgoeZpJK/lgm73oB5vSU1j
-         nHNQuom9tfPJf7FTa+fBpq1wlEDM0Jp7H0bgBMwhyrRBG4jdBK2ZW8CRm/+uBqoEG3++
-         jFOYlfuwvW0T68v4xa3WG7e8G9FHoZTXuxFhwad3JFpSVqCshtB6xBA2qXdjlDugnUNz
-         NB0A==
-X-Gm-Message-State: AOJu0Ywz3UCtzo2P1Dg0goo4tUm1woSo4ruZGNRK7jZ33JPipUJMrCRq
-	Dn7vA8WNZp9ULLAG5JOSzvBqfw==
-X-Google-Smtp-Source: AGHT+IExuH8kOzj/dTZpci/l66+zbVuI1Q4ansN6TEuNcT5VkMIxS+P4Zhp6GYS72DXTGfUPCsQq5A==
-X-Received: by 2002:a17:907:780d:b0:9b6:4df9:e5b5 with SMTP id la13-20020a170907780d00b009b64df9e5b5mr5792518ejc.61.1696535218928;
-        Thu, 05 Oct 2023 12:46:58 -0700 (PDT)
+        bh=fx8Fz/0lyiGSr+PU8NVEjUz0QkqFU5udG1VuqQ/XuWw=;
+        b=qqDKFLgIAr42wfjKug6UbCpqV/LdmpXHHFcLsg7RGGcUQG3aC7xx1KDgUdAZz7zyP0
+         ZY3QgqvgKfecUR1aB6RpPRxQMvDbJJxkwJUWrrrkIhNyxXjNiSueA7Km+TAagvr8tAbf
+         GIX5305v2sxfK3atGhAxLZSOyq0D2AePPICOnhYoWz6dOWvLNbc8Qq4ZeEn+CXJ53UP+
+         y4OMWU70i8E++xfFmxCx8TVevBF4rRHHjfifyPfT8uO009WP9riAbVFohZYNgOXtQ1Pr
+         Kc/uD0Vjw9pYQGNyX7sFz6ObyRvyKZa3GbvRDVQI7usfR1IedmCy1lUWeERlBrvXpwcy
+         7GEg==
+X-Gm-Message-State: AOJu0YzI7VYOQIKgDA/2RkpBT+N0bYMvyHa9Pd3Yb4OB8vXoXIz0ttdU
+	ZrjsnFLYUAoKKw94kU19ITSqPA==
+X-Google-Smtp-Source: AGHT+IFdHDziO4Cy3Y/RCvHiCOxki5B3tN3HRkr7Sas3Oe7RRSmcfJSjD299HDC3NaowcZ3PJrUBXQ==
+X-Received: by 2002:a17:906:31d7:b0:9b2:ccd8:2d49 with SMTP id f23-20020a17090631d700b009b2ccd82d49mr4873244ejf.0.1696535291015;
+        Thu, 05 Oct 2023 12:48:11 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id jw5-20020a170906e94500b009ae6a6451fdsm1651578ejb.35.2023.10.05.12.46.57
+        by smtp.gmail.com with ESMTPSA id jw5-20020a170906e94500b009ae6a6451fdsm1651578ejb.35.2023.10.05.12.48.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Oct 2023 12:46:58 -0700 (PDT)
-Message-ID: <86886ecb-dd39-49fb-a575-9e9bf303a8b1@linaro.org>
-Date: Thu, 5 Oct 2023 21:46:57 +0200
+        Thu, 05 Oct 2023 12:48:10 -0700 (PDT)
+Message-ID: <a8d31c42-1248-4738-b01a-3abeedfd49eb@linaro.org>
+Date: Thu, 5 Oct 2023 21:48:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,24 +65,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/7] arm64: dts: st: add soc & rifsc structure to
- stm32mp255
+Subject: Re: [RFC v2 5/5] dt-bindings: gpio: Add bindings for pinctrl based
+ generic gpio driver
 Content-Language: en-US
-To: Hugues Fruchet <hugues.fruchet@foss.st.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil
- <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- linux-stm32@st-md-mailman.stormreply.com, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-Cc: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
-References: <20231004091552.3531659-1-hugues.fruchet@foss.st.com>
- <20231004091552.3531659-6-hugues.fruchet@foss.st.com>
+To: AKASHI Takahiro <takahiro.akashi@linaro.org>, sudeep.holla@arm.com,
+ cristian.marussi@arm.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linus.walleij@linaro.org
+Cc: Oleksii_Moisieiev@epam.com, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+References: <20231005025843.508689-1-takahiro.akashi@linaro.org>
+ <20231005025843.508689-6-takahiro.akashi@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -128,7 +122,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231004091552.3531659-6-hugues.fruchet@foss.st.com>
+In-Reply-To: <20231005025843.508689-6-takahiro.akashi@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -138,29 +132,32 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 04/10/2023 11:15, Hugues Fruchet wrote:
-> Add soc & rifsc structure to stm32mp255.
+On 05/10/2023 04:58, AKASHI Takahiro wrote:
+> A dt binding for pin controller based generic gpio driver is defined in
+> this commit. One usable device is Arm's SCMI.
 > 
-> Signed-off-by: Hugues Fruchet <hugues.fruchet@foss.st.com>
-> ---
->  arch/arm64/boot/dts/st/stm32mp255.dtsi | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/st/stm32mp255.dtsi b/arch/arm64/boot/dts/st/stm32mp255.dtsi
-> index e6fa596211f5..4f2b224fe077 100644
-> --- a/arch/arm64/boot/dts/st/stm32mp255.dtsi
-> +++ b/arch/arm64/boot/dts/st/stm32mp255.dtsi
-> @@ -6,4 +6,8 @@
->  #include "stm32mp253.dtsi"
->  
->  / {
-> +	soc@0 {
-> +		rifsc: rifsc-bus@42080000 {
+> Signed-off-by: AKASHI Takahiro <takahiro.akashi@linaro.org>
+
+> +
+> +required:
+> +  - compatible
+> +  - gpio-controller
+> +  - "#gpio-cells"
+> +  - gpio-ranges
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    gpio0: gpio@0 {
+
+No reg, so no unit address.
+
+Drop also unused label.
 
 
-This change on its own makes little sense. We do not add empty
-placeholders...
-
+> +        compatible = "pin-control-gpio";
+> +        gpio-controller;
 
 Best regards,
 Krzysztof
