@@ -1,142 +1,261 @@
-Return-Path: <devicetree+bounces-6009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A32217B9AA6
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 06:10:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BC1C7B9AAB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 06:24:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id E1CE0B207DF
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 04:10:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id A45C9B207E9
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 04:24:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 617801871;
-	Thu,  5 Oct 2023 04:10:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B81B1877;
+	Thu,  5 Oct 2023 04:24:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cUGQPMVm"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="hX0m0Bam"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F2481863
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 04:10:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1BB1C433CB;
-	Thu,  5 Oct 2023 04:10:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696479019;
-	bh=tvQ6HmqskzVwBQufXqWAzijK9xLx9i/yIFRHr3dsOjg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cUGQPMVmdNnKQ0RoWKzH79W5T8AWaX52R5iZQaBiaKi+e773J54Ahe6zZ3s7p6pzB
-	 WtHdPYGr1LFupPbB+ZUJHOVLwqBeJcNuVaAgf2Vvwwy1uSv28lE6HX9NRGq87B6o7a
-	 Zab4J1b51rBp2Dz+Z5xRryrrFhRn5XE6a9VBlk/YCHq2OrREr9bBjDnTIpO2cfd0XP
-	 CXadHlD2fzWFoS+FrMbrYO/ncV/jrXyO+QQ354YZO2Bl0VdsYTI7n3L+UO3wc6FAWf
-	 F3ZgLzlbZwKm1ej4WRH/RHNWsUY2mPVvDBLyXar3PUyTQ8rrqsg+EQnloOmdkoJbhH
-	 +DN+dx1Jhy6Fw==
-Date: Thu, 5 Oct 2023 09:40:14 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Jai Luthra <j-luthra@ti.com>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	niklas.soderlund+renesas@ragnatech.se,
-	Benoit Parrot <bparrot@ti.com>, Vaishnav Achath <vaishnav.a@ti.com>,
-	nm@ti.com, devarsht@ti.com, a-bhatia1@ti.com,
-	Martyn Welch <martyn.welch@collabora.com>,
-	Julien Massot <julien.massot@collabora.com>
-Subject: Re: [PATCH v9 13/13] media: ti: Add CSI2RX support for J721E
-Message-ID: <ZR43Jre2j51j0mFk@matsya>
-References: <20230811-upstream_csi-v9-0-8943f7a68a81@ti.com>
- <20230811-upstream_csi-v9-13-8943f7a68a81@ti.com>
- <ad042065-33a2-d42e-ce2e-628464102fc3@ideasonboard.com>
- <wgkjek77bolf5wabki7uhm6cxjy5g5z2ncoc6urr7dv5y6wnaw@yfh7ccogxfea>
- <20230829155513.GG6477@pendragon.ideasonboard.com>
- <ZR1txMVk+4oHLEKU@matsya>
- <20231004200312.GE30342@pendragon.ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 826951863
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 04:24:39 +0000 (UTC)
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 748BF3586
+	for <devicetree@vger.kernel.org>; Wed,  4 Oct 2023 21:24:35 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-52fe27898e9so902632a12.0
+        for <devicetree@vger.kernel.org>; Wed, 04 Oct 2023 21:24:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1696479874; x=1697084674; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1FDosmr4pTB4y3KlQsf5VlEUdTtkvwPO8SEeca8pbEI=;
+        b=hX0m0BamELUggdQn39+7vtvWTGBxZchWqIskXYXn0EsJhWiMfZG57nQmTBttxulXPY
+         Xp9GzqCPQRHEHQFrus/zUMu0smuaM4t7G5UDobUNAgHoZUpvQN7S7UFluwh367KmRreo
+         DqT8hXm9WcmWoysGWdYnzJaKgSuu3hGmQQeOvEdijxo1Naa3DOsZEXk8s8TxHmPIsEnP
+         ugJPDN4Fc3n8ceZW0Ko8UWenQn82/RHit9ogb2jacfS1BnaysYHyrwrWLEVKLHObJvMP
+         UWtgKtpPaAJgRiPZtcjXOae2bJDRFAwUYEHyfjwZlQ6YzRtDv+fcB6lltK0jxowXi4k0
+         k61A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696479874; x=1697084674;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1FDosmr4pTB4y3KlQsf5VlEUdTtkvwPO8SEeca8pbEI=;
+        b=SF+3BgrV/trIhm2mny8GBRtau91DpCS1bm46pIIgiefYGL73V8z/xxZYiWBYN2Hzlp
+         kgaSthaVinvY4J4U8lQO1OwX+63c/TCgpFy3ERZTKL5XSTpglD3vpPBZg8RJLCs/IYF9
+         uARDs3HuBertJ2EtesgwX4jwYEAWxe8oSa+ZqJubeEQfCwGZtGBJudrguU/lHfQnw+FR
+         MrLWsGXTGHAwwMmmvnruPt/2LX/c34uvAN4f0qdKLnBgczOkW6nHaASLAkI+wV8GcTtW
+         rCS7lcvoqL8wiT7ytvl9U9aR/o8ur17ZIDoKroXk6vGVSkgYZ62q0H/XczqHDtLPYp7s
+         5a6A==
+X-Gm-Message-State: AOJu0YxwlwaYT4Um/W8qyigOCQ4aB38s6p7Cz2XU+oAmjTkOD8i6BQar
+	srfGN8XPihm5C/b8BR28hPcW7g==
+X-Google-Smtp-Source: AGHT+IHa/5RZ0/NvxslXh1L0yV6vSI7aQFJL/Ac85bcm5Do80CLgawrfw75osdtTrQOTg2Bt7hM+iQ==
+X-Received: by 2002:aa7:da83:0:b0:533:d81b:36d5 with SMTP id q3-20020aa7da83000000b00533d81b36d5mr3553479eds.15.1696479873654;
+        Wed, 04 Oct 2023 21:24:33 -0700 (PDT)
+Received: from [192.168.32.2] ([147.161.130.252])
+        by smtp.gmail.com with ESMTPSA id w25-20020a056402071900b00537fd4abdc5sm388339edx.54.2023.10.04.21.24.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Oct 2023 21:24:33 -0700 (PDT)
+Message-ID: <0d0448c7-c33b-8960-d2ed-0a22e2f7fb3d@tuxon.dev>
+Date: Thu, 5 Oct 2023 07:24:30 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231004200312.GE30342@pendragon.ideasonboard.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2 10/28] clk: renesas: rzg2l: refactor sd mux driver
+Content-Language: en-US
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linus.walleij@linaro.org, gregkh@linuxfoundation.org, jirislaby@kernel.org,
+ magnus.damm@gmail.com, catalin.marinas@arm.com, will@kernel.org,
+ quic_bjorande@quicinc.com, konrad.dybcio@linaro.org, arnd@arndb.de,
+ neil.armstrong@linaro.org, prabhakar.mahadev-lad.rj@bp.renesas.com,
+ biju.das.jz@bp.renesas.com, linux-renesas-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230929053915.1530607-1-claudiu.beznea@bp.renesas.com>
+ <20230929053915.1530607-11-claudiu.beznea@bp.renesas.com>
+ <CAMuHMdUJj+h5LfhQXTNkN3Cp2wP62SX6fY3frzytJQBcKXDJJQ@mail.gmail.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <CAMuHMdUJj+h5LfhQXTNkN3Cp2wP62SX6fY3frzytJQBcKXDJJQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On 04-10-23, 23:03, Laurent Pinchart wrote:
-> On Wed, Oct 04, 2023 at 07:21:00PM +0530, Vinod Koul wrote:
-> > On 29-08-23, 18:55, Laurent Pinchart wrote:
-> > > Hi Jai,
-> > > 
-> > > (CC'ing Vinod, the maintainer of the DMA engine subsystem, for a
-> > > question below)
-> > 
-> > Sorry this got lost
-> 
-> No worries.
-> 
-> > > On Fri, Aug 18, 2023 at 03:55:06PM +0530, Jai Luthra wrote:
-> > > > On Aug 15, 2023 at 16:00:51 +0300, Tomi Valkeinen wrote:
-> > > > > On 11/08/2023 13:47, Jai Luthra wrote:
-> > > > > > From: Pratyush Yadav <p.yadav@ti.com>
-> > > 
-> > > [snip]
-> > > 
-> > > > > > +static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
-> > > > > > +{
-> > > > > > +	struct ti_csi2rx_dev *csi = vb2_get_drv_priv(vq);
-> > > > > > +	struct ti_csi2rx_dma *dma = &csi->dma;
-> > > > > > +	struct ti_csi2rx_buffer *buf;
-> > > > > > +	unsigned long flags;
-> > > > > > +	int ret = 0;
-> > > > > > +
-> > > > > > +	spin_lock_irqsave(&dma->lock, flags);
-> > > > > > +	if (list_empty(&dma->queue))
-> > > > > > +		ret = -EIO;
-> > > > > > +	spin_unlock_irqrestore(&dma->lock, flags);
-> > > > > > +	if (ret)
-> > > > > > +		return ret;
-> > > > > > +
-> > > > > > +	dma->drain.len = csi->v_fmt.fmt.pix.sizeimage;
-> > > > > > +	dma->drain.vaddr = dma_alloc_coherent(csi->dev, dma->drain.len,
-> > > > > > +					      &dma->drain.paddr, GFP_KERNEL);
-> > > > > > +	if (!dma->drain.vaddr)
-> > > > > > +		return -ENOMEM;
-> > > > > 
-> > > > > This is still allocating a large buffer every time streaming is started (and
-> > > > > with streams support, a separate buffer for each stream?).
-> > > > > 
-> > > > > Did you check if the TI DMA can do writes to a constant address? That would
-> > > > > be the best option, as then the whole buffer allocation problem goes away.
-> > > > 
-> > > > I checked with Vignesh, the hardware can support a scenario where we 
-> > > > flush out all the data without allocating a buffer, but I couldn't find 
-> > > > a way to signal that via the current dmaengine framework APIs. Will look 
-> > > > into it further as it will be important for multi-stream support.
-> > > 
-> > > That would be the best option. It's not immediately apparent to me if
-> > > the DMA engine API supports such a use case.
-> > > dmaengine_prep_interleaved_dma() gives you finer grain control on the
-> > > source and destination increments, but I haven't seen a way to instruct
-> > > the DMA engine to direct writes to /dev/null (so to speak). Vinod, is
-> > > this something that is supported, or could be supported ?
-> > 
-> > Write to a dummy buffer could have the same behaviour, no?
-> 
-> Yes, but if the DMA engine can write to /dev/null, that avoids
-> allocating a dummy buffer, which is nicer. For video use cases, dummy
-> buffers are often large.
+Hi, Geert,
 
-hmmm maybe I haven't comprehended it full, would you mind explaining the
-details on how such a potential interleaved transfer would look like so
-that we can model it or change apis to model this
+On 04.10.2023 14:30, Geert Uytterhoeven wrote:
+> Hi Claudiu,
+> 
+> On Fri, Sep 29, 2023 at 7:39 AM Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> Refactor SD MUX driver to be able to reuse the same code on RZ/G3S.
+>> RZ/G2{L, UL} has a limitation with regards to switching the clock source
+>> for SD MUX (MUX clock source has to be switched to 266MHz before switching
+>> b/w 533MHz and 400MHz). This limitation has been introduced as a clock
+>> notifier that is registered on platform based initialization data thus the
+>> SD MUX code could be reused on RZ/G3S.
+>>
+>> As both RZ/G2{L, UL} and RZ/G3S has specific bits in specific registers
+>> to check if the clock switching has been done, this configuration (register
+>> offset, register bits and bits width) is now passed though
+>> struct cpg_core_clk::sconf (status configuration) from platform specific
+>> initialization code.
+>>
+>> Along with struct cpg_core_clk::sconf the mux table indices are also
+>> passed from platform specific initialization code.
+>>
+>> Also, mux flags are now passed to DEF_SD_MUX() as they will be later
+>> used by RZ/G3S.
+>>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>> ---
+>>
+>> Changes in v2:
+>> - s/indexes/indices in commit description
+>> - mentioned in commit description that mux flags can now be passed to
+>>   driver though DEF_SD_MUX() macro
+>> - removed SoC specific names from macros' names
+>> - added spaces after { and before } when initializing arrays
+>> - preserved the order of .[gs]set_parent() API definitions for simpler
+>>   diff b/w versions
+>> - removed SD_MUX_NOTIF macro
+> 
+> Thanks for the update!
+> 
+>> --- a/drivers/clk/renesas/rzg2l-cpg.c
+>> +++ b/drivers/clk/renesas/rzg2l-cpg.c
+> 
+>> @@ -142,6 +146,77 @@ static void rzg2l_cpg_del_clk_provider(void *data)
+>>         of_clk_del_provider(data);
+>>  }
+>>
+>> +/* Must be called in atomic context. */
+>> +static int rzg2l_cpg_wait_clk_update_done(void __iomem *base, u32 conf)
+>> +{
+>> +       u32 bitmask = GENMASK(GET_WIDTH(conf) - 1, 0) << GET_SHIFT(conf);
+>> +       u32 off = GET_REG_OFFSET(conf);
+>> +       u32 val;
+>> +
+>> +       return readl_poll_timeout_atomic(base + off, val, !(val & bitmask), 10, 200);
+>> +}
+>> +
+>> +int rzg2l_cpg_sd_mux_clk_notifier(struct notifier_block *nb, unsigned long event,
+>> +                                 void *data)
+>> +{
+>> +       struct clk_notifier_data *cnd = data;
+>> +       struct clk_hw *hw = __clk_get_hw(cnd->clk);
+>> +       struct clk_hw_data *clk_hw_data = to_clk_hw_data(hw);
+>> +       struct rzg2l_cpg_priv *priv = clk_hw_data->priv;
+>> +       u32 off = GET_REG_OFFSET(clk_hw_data->conf);
+>> +       u32 shift = GET_SHIFT(clk_hw_data->conf);
+>> +       const u32 clk_src_266 = 3;
+>> +       unsigned long flags;
+>> +       u32 bitmask;
+>> +       int ret;
+>> +
+>> +       if (event != PRE_RATE_CHANGE || (cnd->new_rate / MEGA == 266))
+>> +               return 0;
+> 
+> include/linux/clk.h:
+> 
+>  * PRE_RATE_CHANGE - called immediately before the clk rate is changed,
+>  *     to indicate that the rate change will proceed.  Drivers must
+>  *     immediately terminate any operations that will be affected by the
+>  *     rate change.  Callbacks may either return NOTIFY_DONE, NOTIFY_OK,
+>  *     NOTIFY_STOP or NOTIFY_BAD.
 
--- 
-~Vinod
+Indeed I missed these.
+
+> 
+>> +
+>> +       spin_lock_irqsave(&priv->rmw_lock, flags);
+>> +
+>> +       /*
+>> +        * As per the HW manual, we should not directly switch from 533 MHz to
+>> +        * 400 MHz and vice versa. To change the setting from 2’b01 (533 MHz)
+>> +        * to 2’b10 (400 MHz) or vice versa, Switch to 2’b11 (266 MHz) first,
+>> +        * and then switch to the target setting (2’b01 (533 MHz) or 2’b10
+>> +        * (400 MHz)).
+>> +        * Setting a value of '0' to the SEL_SDHI0_SET or SEL_SDHI1_SET clock
+>> +        * switching register is prohibited.
+>> +        * The clock mux has 3 input clocks(533 MHz, 400 MHz, and 266 MHz), and
+>> +        * the index to value mapping is done by adding 1 to the index.
+>> +        */
+>> +       bitmask = (GENMASK(GET_WIDTH(clk_hw_data->conf) - 1, 0) << shift) << 16;
+>> +       writel(bitmask | (clk_src_266 << shift), priv->base + off);
+>> +
+>> +       /* Wait for the update done. */
+>> +       ret = rzg2l_cpg_wait_clk_update_done(priv->base, clk_hw_data->sconf);
+>> +
+>> +       spin_unlock_irqrestore(&priv->rmw_lock, flags);
+>> +
+>> +       if (ret)
+>> +               dev_err(priv->dev, "failed to switch to safe clk source\n");
+>> +
+>> +       return ret;
+> 
+> Likewise.
+> 
+>> +}
+> 
+>>
+>>  static const struct clk_ops rzg2l_cpg_sd_clk_mux_ops = {
+>>         .determine_rate = __clk_mux_determine_rate_closest,
+>> -       .set_parent     = rzg2l_cpg_sd_clk_mux_set_parent,
+>> -       .get_parent     = rzg2l_cpg_sd_clk_mux_get_parent,
+>> +       .set_parent     = rzg2l_cpg_sd_mux_clk_set_parent,
+>> +       .get_parent     = rzg2l_cpg_sd_mux_clk_get_parent,
+> 
+> Please keep the old names, for consistency with
+> __clk_mux_determine_rate_closest() and drivers/clk/clk-mux.c, and to
+> reduce the diff.
+> 
+> Any existing inconsistent use of "clk_mux" vs. "mux_clk" can be resolved
+> later with a separate patch, if anyone cares.
+
+ok
+
+> 
+>> --- a/drivers/clk/renesas/rzg2l-cpg.h
+>> +++ b/drivers/clk/renesas/rzg2l-cpg.h
+> 
+>> @@ -272,4 +276,6 @@ extern const struct rzg2l_cpg_info r9a07g044_cpg_info;
+>>  extern const struct rzg2l_cpg_info r9a07g054_cpg_info;
+>>  extern const struct rzg2l_cpg_info r9a09g011_cpg_info;
+>>
+>> +int rzg2l_cpg_sd_mux_clk_notifier(struct notifier_block *nb, unsigned long event, void *data);
+> 
+> rzg2l_cpg_sd_clk_mux_notifier()?
+
+ok
+
+> 
+>> +
+>>  #endif
+> 
+> The rest LGTM.
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
 
