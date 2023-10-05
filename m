@@ -1,145 +1,158 @@
-Return-Path: <devicetree+bounces-5977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A35EA7B990A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 02:04:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FC327B9920
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 02:09:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 72FAE281B66
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 00:04:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 6A51A1C208FB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 00:09:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 558A7366;
-	Thu,  5 Oct 2023 00:04:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F78819F;
+	Thu,  5 Oct 2023 00:09:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kG64eVOq"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cbrtMiQa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B70A310EE
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 00:04:12 +0000 (UTC)
-Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1960CE;
-	Wed,  4 Oct 2023 17:04:10 -0700 (PDT)
-Received: by mail-io1-xd2d.google.com with SMTP id ca18e2360f4ac-7a2cc9ee64cso18396239f.1;
-        Wed, 04 Oct 2023 17:04:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696464249; x=1697069049; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xHepvuDvDnHmuTSCWiPic5GpIEisZ00JylNY2qD1gZ4=;
-        b=kG64eVOqYT7srvclvU6HA1/qAmIpVFoufCQQ4hthYqUIjwVamwZiH1wSCb7pUP2Nab
-         4oui0/EqK/w74MOsJKvXhRF/4mFHdMMD+tkDT1tCwt4sgUvNJTs5tM5BGrOQWtgtlAJB
-         kHjKmM5HctGP1zKiaCpuXmtmTiLry+/jqzXtfouxkXl3+xo80IXcSs7aPPWoeThfQnNL
-         jyolHtWILxxUj93H6jGV8OibsFkX60pXKpIN5E4vyBsPH3jhTO+lkIVs2A2g1GFaD2pd
-         +X3i3WJ/oeTnGutY1aWSzKvu9mJQzcd4kbLzHTjz78vsXT5EX727Ziuvy7OFfyHQxJAd
-         0Vuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696464249; x=1697069049;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xHepvuDvDnHmuTSCWiPic5GpIEisZ00JylNY2qD1gZ4=;
-        b=c1DRW3xNrdwbz7HNlgQifPVZvKqp03ynRFC4J7jaLrtgHwz+TZGN/TNZ16juc4sqwE
-         2aNQkvhyrNwTSJRp8XMwQzFqDhnCTYOKs+h36OL5EhH/nAsLPJvBA7W7iHOuEiUZGSqb
-         YWMou+6bFPBEo2OYIdfAV3Pm7fG95WTPdEAwaYOG+BpUkPemZn/jNVz3BpH2a36U/FO2
-         XxfOwPsOxEUUdtcoEM0hjolcm4MI4llk2iJRmwDrnY46FazH+4fXIzVr0mhXQxxnaDph
-         hv3YWmZ9lSlfvKNEcArRLObT95bsqXR/RRVLlZowlj97BaI+qqZfXHKa1T99cSB46j/2
-         MTuA==
-X-Gm-Message-State: AOJu0Yy3FlIJUxf2/JAZFARrrhf1GIxlLqR6YaeaCGc1AYflRwIUbn2K
-	Q1X54w0mObXQtT79yeWFTGD1RUw2baZ2aw==
-X-Google-Smtp-Source: AGHT+IFO3eAUYPtMwyaWQxEAv8UyDyRrouwbdaXoULyX47Tx6bmZsg/kFcYqtUUPVyFzmKrOq/n2fA==
-X-Received: by 2002:a5e:8d10:0:b0:792:8c52:b3b8 with SMTP id m16-20020a5e8d10000000b007928c52b3b8mr3951032ioj.14.1696464249358;
-        Wed, 04 Oct 2023 17:04:09 -0700 (PDT)
-Received: from aford-System-Version.lan (c-75-72-166-104.hsd1.mn.comcast.net. [75.72.166.104])
-        by smtp.gmail.com with ESMTPSA id h3-20020a5ecb43000000b0079fdeed3ab6sm56895iok.40.2023.10.04.17.04.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Oct 2023 17:04:08 -0700 (PDT)
-From: Adam Ford <aford173@gmail.com>
-To: linux-omap@vger.kernel.org
-Cc: aford@beaconembedded.com,
-	Adam Ford <aford173@gmail.com>,
-	=?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-	Tony Lindgren <tony@atomide.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Derald D. Woods" <woods.technical@gmail.com>,
-	devicetree@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD01D7F
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 00:09:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF7EC95;
+	Wed,  4 Oct 2023 17:09:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1696464585; x=1728000585;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=vD9VEolBkptu3ld3JXFL+7vX77/UDE2BMoEaEvzGOjk=;
+  b=cbrtMiQalejOiuXysqp7G2hc5/BesTnJ1JLcLd3TuAHGU4ZuA2SM/app
+   +TIh33WOIpKYIU7Obw9TCPaVpnbTyppnZ2EXIgW4W+NCk/+ccFCBLulKH
+   bwnzvmRmC1E+VnQEJD4DojP2/1MCerk5DfsCNZHDCxK/vhmC7o89v9RRA
+   lkHwqnubIRQOvAHNr4nHO9bFRevCIp9iiL7kjrg49kBft6CLDjqGjwYx1
+   BM0rsVw2y76sUzWR6537S7oTr6GxFweiJyI0h01r+qX0A+xRSt93sVhi8
+   XVpXMWXQS4jr9hR7BcdTNZfSp+ONPbXvlhh/GXdiNXcXSGk12ffrfCrBv
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="383252183"
+X-IronPort-AV: E=Sophos;i="6.03,201,1694761200"; 
+   d="scan'208";a="383252183"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Oct 2023 17:09:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10853"; a="875327203"
+X-IronPort-AV: E=Sophos;i="6.03,201,1694761200"; 
+   d="scan'208";a="875327203"
+Received: from lkp-server02.sh.intel.com (HELO c3b01524d57c) ([10.239.97.151])
+  by orsmga004.jf.intel.com with ESMTP; 04 Oct 2023 17:09:39 -0700
+Received: from kbuild by c3b01524d57c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qoBvf-000Kn6-0S;
+	Thu, 05 Oct 2023 00:09:36 +0000
+Date: Thu, 5 Oct 2023 08:08:30 +0800
+From: kernel test robot <lkp@intel.com>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Paul Burton <paulburton@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	linux-mips@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH V3 2/2] arm: dts: am3517-evm: Enable Ethernet PHY Interrupt
-Date: Wed,  4 Oct 2023 19:04:02 -0500
-Message-Id: <20231005000402.50879-2-aford173@gmail.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20231005000402.50879-1-aford173@gmail.com>
-References: <20231005000402.50879-1-aford173@gmail.com>
+Cc: oe-kbuild-all@lists.linux.dev,
+	Vladimir Kondratiev <vladimir.kondratiev@intel.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>
+Subject: Re: [PATCH 10/11] MIPS: generic: Add support for Mobileye EyeQ5
+Message-ID: <202310050726.GDpZbMDO-lkp@intel.com>
+References: <20231004161038.2818327-11-gregory.clement@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231004161038.2818327-11-gregory.clement@bootlin.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+	SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-The Ethernet PHY interrupt pin is routed to GPIO_58.  Create a
-PHY node to configure this GPIO for the interrupt to avoid polling.
+Hi Gregory,
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
----
-V3:  Fix issue where V2 wasn't properly properly commit-ammended, so V2 patch didn't properly generate
+kernel test robot noticed the following build errors:
 
-V2:  Attempted (but failed) to fix ethernet-phy-pins naming
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on lee-mfd/for-mfd-next linus/master v6.6-rc4 next-20231004]
+[cannot apply to lee-mfd/for-mfd-fixes]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/arch/arm/boot/dts/ti/omap/am3517-evm.dts b/arch/arm/boot/dts/ti/omap/am3517-evm.dts
-index 866f68c5b504..40f15da81043 100644
---- a/arch/arm/boot/dts/ti/omap/am3517-evm.dts
-+++ b/arch/arm/boot/dts/ti/omap/am3517-evm.dts
-@@ -172,11 +172,24 @@ hsusb1_phy: hsusb1_phy {
- &davinci_emac {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&ethernet_pins>;
-+	phy-mode = "rmii";
-+	phy-handle = <&ethphy0>;
- 	status = "okay";
- };
- 
- &davinci_mdio {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
- 	status = "okay";
-+
-+	ethphy0: ethernet-phy@0 {
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&enet_phy_pins>;
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0>;
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;	/* gpio_58 */
-+	};
- };
- 
- &dss {
-@@ -257,6 +270,12 @@ OMAP3_CORE1_IOPAD(0x2210, PIN_INPUT_PULLDOWN | MUX_MODE0) /* rmii_50mhz_clk */
- 		>;
- 	};
- 
-+	enet_phy_pins: ethernet-phy-pins {
-+		pinctrl-single,pins = <
-+			OMAP3_CORE1_IOPAD(0x20bc, PIN_INPUT | MUX_MODE4)	/* gpmc_ncs7.gpio_57 */
-+		>;
-+	};
-+
- 	i2c2_pins: i2c2-pins {
- 		pinctrl-single,pins = <
- 			OMAP3_CORE1_IOPAD(0x21be, PIN_INPUT_PULLUP | MUX_MODE0)  /* i2c2_scl */
+url:    https://github.com/intel-lab-lkp/linux/commits/Gregory-CLEMENT/MIPS-compressed-Use-correct-instruction-for-64-bit-code/20231005-001314
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20231004161038.2818327-11-gregory.clement%40bootlin.com
+patch subject: [PATCH 10/11] MIPS: generic: Add support for Mobileye EyeQ5
+config: mips-allmodconfig (https://download.01.org/0day-ci/archive/20231005/202310050726.GDpZbMDO-lkp@intel.com/config)
+compiler: mips-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231005/202310050726.GDpZbMDO-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202310050726.GDpZbMDO-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   drivers/tty/serial/amba-pl011.c: In function 'pl011_sgbuf_init':
+>> drivers/tty/serial/amba-pl011.c:380:30: error: implicit declaration of function 'phys_to_page'; did you mean 'pfn_to_page'? [-Werror=implicit-function-declaration]
+     380 |         sg_set_page(&sg->sg, phys_to_page(dma_addr),
+         |                              ^~~~~~~~~~~~
+         |                              pfn_to_page
+>> drivers/tty/serial/amba-pl011.c:380:30: warning: passing argument 2 of 'sg_set_page' makes pointer from integer without a cast [-Wint-conversion]
+     380 |         sg_set_page(&sg->sg, phys_to_page(dma_addr),
+         |                              ^~~~~~~~~~~~~~~~~~~~~~
+         |                              |
+         |                              int
+   In file included from include/linux/kfifo.h:42,
+                    from include/linux/tty_port.h:5,
+                    from include/linux/tty.h:12,
+                    from drivers/tty/serial/amba-pl011.c:26:
+   include/linux/scatterlist.h:136:69: note: expected 'struct page *' but argument is of type 'int'
+     136 | static inline void sg_set_page(struct scatterlist *sg, struct page *page,
+         |                                                        ~~~~~~~~~~~~~^~~~
+   cc1: some warnings being treated as errors
+
+
+vim +380 drivers/tty/serial/amba-pl011.c
+
+68b65f7305e54b drivers/serial/amba-pl011.c     Russell King   2010-12-22  368  
+ead76f329f777c drivers/tty/serial/amba-pl011.c Linus Walleij  2011-02-24  369  static int pl011_sgbuf_init(struct dma_chan *chan, struct pl011_sgbuf *sg,
+ead76f329f777c drivers/tty/serial/amba-pl011.c Linus Walleij  2011-02-24  370  	enum dma_data_direction dir)
+ead76f329f777c drivers/tty/serial/amba-pl011.c Linus Walleij  2011-02-24  371  {
+cb06ff102e2d79 drivers/tty/serial/amba-pl011.c Chanho Min     2013-03-27  372  	dma_addr_t dma_addr;
+cb06ff102e2d79 drivers/tty/serial/amba-pl011.c Chanho Min     2013-03-27  373  
+cb06ff102e2d79 drivers/tty/serial/amba-pl011.c Chanho Min     2013-03-27  374  	sg->buf = dma_alloc_coherent(chan->device->dev,
+cb06ff102e2d79 drivers/tty/serial/amba-pl011.c Chanho Min     2013-03-27  375  		PL011_DMA_BUFFER_SIZE, &dma_addr, GFP_KERNEL);
+ead76f329f777c drivers/tty/serial/amba-pl011.c Linus Walleij  2011-02-24  376  	if (!sg->buf)
+ead76f329f777c drivers/tty/serial/amba-pl011.c Linus Walleij  2011-02-24  377  		return -ENOMEM;
+ead76f329f777c drivers/tty/serial/amba-pl011.c Linus Walleij  2011-02-24  378  
+cb06ff102e2d79 drivers/tty/serial/amba-pl011.c Chanho Min     2013-03-27  379  	sg_init_table(&sg->sg, 1);
+cb06ff102e2d79 drivers/tty/serial/amba-pl011.c Chanho Min     2013-03-27 @380  	sg_set_page(&sg->sg, phys_to_page(dma_addr),
+cb06ff102e2d79 drivers/tty/serial/amba-pl011.c Chanho Min     2013-03-27  381  		PL011_DMA_BUFFER_SIZE, offset_in_page(dma_addr));
+cb06ff102e2d79 drivers/tty/serial/amba-pl011.c Chanho Min     2013-03-27  382  	sg_dma_address(&sg->sg) = dma_addr;
+c64be9231e0893 drivers/tty/serial/amba-pl011.c Andrew Jackson 2014-11-07  383  	sg_dma_len(&sg->sg) = PL011_DMA_BUFFER_SIZE;
+ead76f329f777c drivers/tty/serial/amba-pl011.c Linus Walleij  2011-02-24  384  
+ead76f329f777c drivers/tty/serial/amba-pl011.c Linus Walleij  2011-02-24  385  	return 0;
+ead76f329f777c drivers/tty/serial/amba-pl011.c Linus Walleij  2011-02-24  386  }
+ead76f329f777c drivers/tty/serial/amba-pl011.c Linus Walleij  2011-02-24  387  
+
 -- 
-2.40.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
