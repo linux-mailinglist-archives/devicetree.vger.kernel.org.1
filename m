@@ -1,106 +1,187 @@
-Return-Path: <devicetree+bounces-6166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 704697BA1A6
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:54:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71AFB7BA1AA
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:55:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 21056281DEE
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 14:54:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 241A628204F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 14:55:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C8E2101E9;
-	Thu,  5 Oct 2023 14:54:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83FFD2AB4A;
+	Thu,  5 Oct 2023 14:55:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="lY3vUzcE"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Fcc6hcRq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22A962AB53
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 14:54:46 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6802E344B6;
-	Thu,  5 Oct 2023 07:54:25 -0700 (PDT)
-Received: from benjamin-XPS-13-9310.. (unknown [IPv6:2a01:e0a:120:3210:4c53:5fd0:f25b:b0dd])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: benjamin.gaignard)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id C73D66607331;
-	Thu,  5 Oct 2023 15:54:23 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1696517664;
-	bh=F9sFnhe+57/E8C+QJ0cI/glDDOJt5cWzzhvbcEd44Ns=;
-	h=From:To:Cc:Subject:Date:From;
-	b=lY3vUzcEyIqRx98mguxeDEJLRoc2xL7klMc1LBGuC653yii12PciBPF5PEimHUnbR
-	 MKPLkJEtS9ccGR1SKXhg0b2dfyzqozJ89GR5vozII0IcelwEKmVHWAM9jsDfP3NglF
-	 Cw6pv4hSEb6fWn+yZKJs3VeB4WChmm1l9iXCb7qcarQddV7tMhMP9ncnYQ1S66tKH6
-	 FLPSaD6ze4mLAQGVHrW/yadqJJ5KxrmrYU9Bo+RizCH7Yz9NlRvQMBUa41czZFGZ7r
-	 K1bxll2ZGNLL3Skd7+h6FMCW9AqXSwgcSGRrCyG7KBpHcGKdSpCdZ+eHnr49y1EpOn
-	 w12VoIzIUY0zg==
-From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-To: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	kernel@collabora.com,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: [PATCH] arm64: dts: rockchip: rk3588is: Add AV1 decoder node
-Date: Thu,  5 Oct 2023 16:54:20 +0200
-Message-Id: <20231005145420.169594-1-benjamin.gaignard@collabora.com>
-X-Mailer: git-send-email 2.39.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD74228DB7
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 14:55:26 +0000 (UTC)
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C290545A2;
+	Thu,  5 Oct 2023 07:55:11 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 69804C000E;
+	Thu,  5 Oct 2023 14:55:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1696517709;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=SvI9F4vpIQD7DGUds/vKMgxKyvlPUyCYmEns2PApKAM=;
+	b=Fcc6hcRqta8x25TA7UMjiq2gKaY+Q0us1KsJDE/UkN+k0KIcdLxomfknYlV9sp58coRJtE
+	4VwtTbzPhf8EXROYr+gVTy688geKbr5i0ujDTwWT8Yt0HJYsPWfT2TxWTM9D6AaJiHodRm
+	nVt8DH8DGnXS1RLIx6XzvCs01V1XhsFYQ1TovqYlI7OYD0wfLFo/Zu2rzwfbt2N2OvH/PK
+	XwAXKhrfmDR8QHw3Px6XENUOZA8ZL4KX7yTd18QkZcwVDF6X2pcE20zK1GXSrvB9hMTICH
+	VRUVB4+IvyAJc+bGMSlHXjBphHnQCFmNBAN8KzeRW3TG3UtE17eu/OjkcKb9zw==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Rob Herring <robh+dt@kernel.org>
+Cc: Paul Burton <paulburton@kernel.org>, Thomas Bogendoerfer
+ <tsbogend@alpha.franken.de>, linux-mips@vger.kernel.org, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Vladimir Kondratiev
+ <vladimir.kondratiev@intel.com>, Tawfik Bayouk
+ <tawfik.bayouk@mobileye.com>, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
+ <theo.lebrun@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 06/11] dt-bindings: mips: Add bindings for Mobileye SoCs
+In-Reply-To: <CAL_Jsq+NkRM07U8enKSVvpOg+9qtDdnkqs2Pc0X8LgjVVo7Vhg@mail.gmail.com>
+References: <20231004161038.2818327-1-gregory.clement@bootlin.com>
+ <20231004161038.2818327-7-gregory.clement@bootlin.com>
+ <CAL_Jsq+NkRM07U8enKSVvpOg+9qtDdnkqs2Pc0X8LgjVVo7Vhg@mail.gmail.com>
+Date: Thu, 05 Oct 2023 16:55:08 +0200
+Message-ID: <87pm1tce5v.fsf@BL-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: gregory.clement@bootlin.com
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add node for AV1 video decoder.
+Hello Rob,
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+> On Wed, Oct 4, 2023 at 11:11=E2=80=AFAM Gregory CLEMENT
+> <gregory.clement@bootlin.com> wrote:
+>>
+>> Add the yaml bindings for Mobileye SoCs. Currently only EyeQ5 is
+>> supported
+>>
+>> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+>> ---
+>>  .../devicetree/bindings/mips/mobileye.yaml    | 36 +++++++++
+>>  include/dt-bindings/soc/mobileye,eyeq5.h      | 77 +++++++++++++++++++
+>>  2 files changed, 113 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/mips/mobileye.yaml
+>>  create mode 100644 include/dt-bindings/soc/mobileye,eyeq5.h
+>>
+>> diff --git a/Documentation/devicetree/bindings/mips/mobileye.yaml b/Docu=
+mentation/devicetree/bindings/mips/mobileye.yaml
+>> new file mode 100644
+>> index 000000000000..f47767bc2c8f
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mips/mobileye.yaml
+>> @@ -0,0 +1,36 @@
+>> +# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
+>
+> Use what checkpatch tells you.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-index 5544f66c6ff4..835e66d85d5f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-@@ -2304,6 +2304,20 @@ gpio4: gpio@fec50000 {
- 			#interrupt-cells = <2>;
- 		};
- 	};
-+
-+	av1d: av1d@fdc70000 {
-+		compatible = "rockchip,rk3588-av1-vpu";
-+		reg = <0x0 0xfdc70000 0x0 0x800>;
-+		interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH 0>;
-+		interrupt-names = "vdpu";
-+		clocks = <&cru ACLK_AV1>, <&cru PCLK_AV1>;
-+		clock-names = "aclk", "hclk";
-+		assigned-clocks = <&cru ACLK_AV1>, <&cru PCLK_AV1>;
-+		assigned-clock-rates = <400000000>, <400000000>;
-+		resets = <&cru SRST_A_AV1>, <&cru SRST_P_AV1>, <&cru SRST_A_AV1_BIU>, <&cru SRST_P_AV1_BIU>;
-+		power-domains = <&power RK3588_PD_AV1>;
-+		status = "okay";
-+	};
- };
- 
- #include "rk3588s-pinctrl.dtsi"
--- 
-2.39.2
+From my point of view GPL-2.0-or-later is compatible with GPL-2.0-only,
+but OK I will do this.
 
+>
+>> +# Copyright 2023 Mobileye Vision Technologies Ltd.
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mips/mobileye.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Mobileye SoC series
+>> +
+>> +maintainers:
+>> +  - Vladimir Kondratiev <vladimir.kondratiev@intel.com>
+>> +  - Gregory CLEMENT <gregory.clement@bootlin.com>
+>> +  - Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+>> +
+>> +description: |
+>
+> Don't need '|'.
+
+OK
+
+>
+>> +    Boards with a Mobileye SoC shall have the following properties.
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    const: '/'
+>> +
+>> +  compatible:
+>> +    oneOf:
+>> +      - description: Boards with Mobileye EyeQ5 SoC
+>> +        items:
+>> +          - enum:
+>> +              - mobileye,eyeq5-epm5
+>> +          - const: mobileye,eyeq5
+>> +
+>> +      - description: Boards with Mobileye EyeQ6 SoC
+>> +        items:
+>> +          - const: mobileye,eyeq6
+>
+> Not valid to have only SoC compatible. Add this when you have a user.
+
+OK
+
+>
+>> +
+>> +additionalProperties: true
+>> +
+>> +...
+>> diff --git a/include/dt-bindings/soc/mobileye,eyeq5.h b/include/dt-bindi=
+ngs/soc/mobileye,eyeq5.h
+>> new file mode 100644
+>> index 000000000000..7d8cb97b45bf
+>> --- /dev/null
+>> +++ b/include/dt-bindings/soc/mobileye,eyeq5.h
+>> @@ -0,0 +1,77 @@
+>> +/* SPDX-License-Identifier: GPL-2.0 */
+>> +/*
+>> + * Copyright 2023 Mobileye Vision Technologies Ltd.
+>> + */
+>> +#ifndef _DT_BINDINGS_SOC_MOBILEYE_EYEQ5_H
+>> +#define _DT_BINDINGS_SOC_MOBILEYE_EYEQ5_H
+>> +
+>> +/* EQ5 interrupts */
+>> +#define NUM_INT_I2C_A                  1
+>> +#define NUM_INT_I2C_B                  2
+>> +#define NUM_INT_I2C_C                  3
+>> +#define NUM_INT_I2C_D                  4
+>> +#define NUM_INT_I2C_E                  5
+>
+> These are interrupt numbers? Note that we never do headers for
+> interrupt numbers, so drop this.
+
+OK
+
+Thanks for the review the changesrequested will be part of the next
+version.
+
+Gregory
+
+>
+> Rob
+
+--=20
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
 
