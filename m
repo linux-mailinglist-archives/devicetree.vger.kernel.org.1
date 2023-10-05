@@ -1,242 +1,173 @@
-Return-Path: <devicetree+bounces-6263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 162837BA859
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 19:45:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB2F77BA87E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 19:55:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id B9E7F281C59
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:45:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 8FCAA1C2037C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:55:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 247B23B28B;
-	Thu,  5 Oct 2023 17:45:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04CBE3B795;
+	Thu,  5 Oct 2023 17:54:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fRQIVIUU"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="suyWDfAN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FA2B374FB
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 17:45:27 +0000 (UTC)
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB4AEBF
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 10:45:23 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-991c786369cso219508766b.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 10:45:23 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C81A38F97
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 17:54:22 +0000 (UTC)
+Received: from mail-vk1-xa36.google.com (mail-vk1-xa36.google.com [IPv6:2607:f8b0:4864:20::a36])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 959C310E
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 10:54:20 -0700 (PDT)
+Received: by mail-vk1-xa36.google.com with SMTP id 71dfb90a1353d-49dc95be8c3so510947e0c.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 10:54:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696527922; x=1697132722; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SGUUS+KuIC/R/OpZVR0+PCbOqzTbMUm5ZvPC9hwTTM8=;
-        b=fRQIVIUUkGiCySLyqSeMUKeH/XLhawcmGYISB3f/tOCbmSWxjP4pNrrbjn96L0PnZ7
-         LDzsJ6KggvjTLMqtFKD/pb+CjYgmaLPHqpZe6RamSOkVykTgKgcYVK52382IrfIYxmQc
-         sidYF718Lz3unAqd0kPzx3Ca8Xgsdi9Hfwg/zk6KgDNABkluc4441a683eyN6qfd15aa
-         JQmvETthU5S//Ww0zfExyfCuLkZyhnE6rECVQeuC8pitebVO7+ZcEEgFb/H3tYsKVsYQ
-         uxUCkZG/yAG5J+nU+doszcrRz7d6vAMJnlgDAngMT9j8xfQ3cH0EJGm2RggoVl/YPlXo
-         e1Eg==
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1696528459; x=1697133259; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=D76EeSMgKi6+9rAoLhvu8+kB+2vM8hIpa0TeocCPFcs=;
+        b=suyWDfANo2frFGih4DlCAmyOTNKXpa/vMIOvukgPrT0z1TV6CAdAwibYSKyh4Yf+9x
+         APqMZUbYeqgaFPzMJCMI8wL+5ivAGLQFhLG2oFxKdYaHpwdpfdy0e46JQPohf6mIALO3
+         2a8QvVpdIVtzZuFExywRt1ey8Fn1JwAti/AkeeX0jmwSzz6eRKEGI5k60potyYNFh36t
+         sZHyBGz1ox7a5mcdNUtSMmlbxfXQsVLLctc/4MCHZFxWStQ/QCnBEX4rHl6zZeFeE8Gm
+         tYdDb9UaofGwEUvARYZwD6DbC2D4CQek49f8iroJ/ff6mVxmTp2RnJWRC7PTb6DSU1iF
+         oyOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696527922; x=1697132722;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SGUUS+KuIC/R/OpZVR0+PCbOqzTbMUm5ZvPC9hwTTM8=;
-        b=sqE9eUGfNQ3Im3jv51p2ekepmqMbfzQVfR5F1744EAmyVpOIN1x6gsgGea7VIh2HIN
-         OyyF08nInwcotsKzPU8iLCyKddQfy0WaWymKbQ0pPu5966xBzHBJxTd/TPOl5dx/eZ0f
-         t+M4pXdS/ZlCpBRxzyJKT50GTIZTIFJgvA3rTPCJbAL6oEQoG3g3Ew1mIPkISNCSlOVP
-         4Gq5iGzOX/Hd/KgX48rNRMwXHz6Ms7WrCFuPYT9RfYLjPvrp2wXcYkVbrse9xXEFTZHH
-         P7teSkIRtG4NLP41QOdIC7z/1Im/Rh34rP9m0mL2QCnmZS0mf0KzI0wABj0ZRuGwLQa1
-         eLRQ==
-X-Gm-Message-State: AOJu0Yy+LIMVDr4/8Kp4sWD/z/d+v+xmTypyzB3+JX1AFmPqTtZRvKtw
-	PSoK1PtqtmVP1GcuY8PsBYt5Cg==
-X-Google-Smtp-Source: AGHT+IHTP2r2FCskCMVq1LAM76doZetevDtu/KDcESulLmSZgnERHOgMWZQ28BM1DejOmc5Glp+E1A==
-X-Received: by 2002:a17:907:2cef:b0:9ae:3d17:d5d0 with SMTP id hz15-20020a1709072cef00b009ae3d17d5d0mr4976166ejc.31.1696527922220;
-        Thu, 05 Oct 2023 10:45:22 -0700 (PDT)
-Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id a6-20020a170906190600b009ad89697c86sm1523634eje.144.2023.10.05.10.45.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Oct 2023 10:45:21 -0700 (PDT)
-Message-ID: <a690edeb-47fc-4525-aa63-1b1524462d91@linaro.org>
-Date: Thu, 5 Oct 2023 19:45:19 +0200
+        d=1e100.net; s=20230601; t=1696528459; x=1697133259;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=D76EeSMgKi6+9rAoLhvu8+kB+2vM8hIpa0TeocCPFcs=;
+        b=IONkDwzadUZ5rCmwZM9Y1qGov74mXtLfP0kshH+L3gaNpZswJ491AW+vqbcH1UrqgX
+         UyXaN4rRPZtjgb1EIlonCht7ap4w7HBESV52JNrwP/borchNVrSAEJDij2EP/P9k6gZh
+         Ky49TXVIv9zBachCEu7zUNIIXbi5Bx5dQz4lM53wF62IcHXG62vXuYNm3rsp3MyObNC5
+         yGqEHlFYbK9qhjdgwqPfhYIAzAubB1t3CWMSLsy8eSA5D7IHsxfwpumnK49eVbcm9ykB
+         JxjE1hY8XAethu/9HcoWbFrRIQmcId2ZmdIfFopDwbAdCz16Y0u1SsaFeclY0DVN9n94
+         LUQA==
+X-Gm-Message-State: AOJu0YxjedUCVijVVXIsdgToT4e0WdM30VLnQfcsOB3a9WzXCHRQCxfN
+	2a0bFZvaW3E1Q1BfbSGeO1bAXDMB4H/g3/28lI3KIg==
+X-Google-Smtp-Source: AGHT+IGqd7cRywJrqAx7tLdWplGQ/cpV/JZJxibRe7Uc/F7Xm33Lo6i42WYHIC4HVau1Ml+H0YEATejuGsARVRTWRu0=
+X-Received: by 2002:a05:6122:ca8:b0:49d:120c:3c2a with SMTP id
+ ba40-20020a0561220ca800b0049d120c3c2amr5902899vkb.11.1696528459613; Thu, 05
+ Oct 2023 10:54:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 13/21] clk: samsung: clk-gs101: Add cmu_top registers,
- plls, mux and gates
-Content-Language: en-US
-To: Peter Griffin <peter.griffin@linaro.org>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
- conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com,
- s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org,
- linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
- olof@lixom.net, cw00.choi@samsung.com
-Cc: tudor.ambarus@linaro.org, andre.draszik@linaro.org,
- semen.protsenko@linaro.org, soc@kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-watchdog@vger.kernel.org
-References: <20231005155618.700312-1-peter.griffin@linaro.org>
- <20231005155618.700312-14-peter.griffin@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231005155618.700312-14-peter.griffin@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+References: <20231001-vf610-gpio-v5-0-8d873a8f224a@nxp.com>
+In-Reply-To: <20231001-vf610-gpio-v5-0-8d873a8f224a@nxp.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Thu, 5 Oct 2023 19:54:08 +0200
+Message-ID: <CAMRc=MeNmEuXNgyw9eWCBoVLyo59UTB+45rMUY1uUk+0K_bYUw@mail.gmail.com>
+Subject: Re: [PATCH v5 0/7] gpio: update i.MX93/8ULP and support i.MX95
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Andy Shevchenko <andy@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Stefan Agner <stefan@agner.ch>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+	Marco Felsch <m.felsch@pengutronix.de>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+	autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 05/10/2023 17:56, Peter Griffin wrote:
-> CMU_TOP is the top level clock management unit which contains PLLs, muxes
-> and gates that feed the other clock management units.
-> 
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+On Sun, Oct 1, 2023 at 10:23=E2=80=AFAM Peng Fan (OSS) <peng.fan@oss.nxp.co=
+m> wrote:
+>
+> From hardware perspective:
+> - i.MX8ULP/93 GPIO supports two interrupts, 1st for Trustzone non-secure =
+irq,
+>   2nd for Trustzone secure irq.
+> - i.MX8ULP/93 only has one register base
+>
+> The current linux gpio-vf610.c could work with i.MX8ULP/i.MX93, it is
+> because some trick did in device tree node with offset added to base:
+>   reg =3D <0x2d010080 0x1000>, <0x2d010040 0x40>;
+> But actually the register base should be 0x2d010000.
+>
+> So i.MX8ULP/93 is not HW compatible with i.MX7ULP.
+>
+> i.MX93 GPIO is directly derived from i.MX8ULP, so make i.MX93 compatible
+> with i.MX8ULP. i.MX95 GPIO is same as i.MX93, so also compatible with
+> i.MX8ULP
+>
+> There maybe dtbs_check failure if only test the 1st patch. After
+> the patchset applied, no failure.
+>
+> To make avoid break old bindings from work, update the driver
+> to support both old/new bindings.
+>
 > ---
->  drivers/clk/samsung/Kconfig     |    9 +
->  drivers/clk/samsung/Makefile    |    1 +
->  drivers/clk/samsung/clk-gs101.c | 1558 +++++++++++++++++++++++++++++++
->  3 files changed, 1568 insertions(+)
->  create mode 100644 drivers/clk/samsung/clk-gs101.c
-> 
-> diff --git a/drivers/clk/samsung/Kconfig b/drivers/clk/samsung/Kconfig
-> index 76a494e95027..4c8f173c4dec 100644
-> --- a/drivers/clk/samsung/Kconfig
-> +++ b/drivers/clk/samsung/Kconfig
-> @@ -13,6 +13,7 @@ config COMMON_CLK_SAMSUNG
->  	select EXYNOS_5420_COMMON_CLK if ARM && SOC_EXYNOS5420
->  	select EXYNOS_ARM64_COMMON_CLK if ARM64 && ARCH_EXYNOS
->  	select TESLA_FSD_COMMON_CLK if ARM64 && ARCH_TESLA_FSD
-> +	select GOOGLE_GS101_COMMON_CLK if ARM64 && ARCH_GOOGLE_TENSOR
+> Changes in v5:
+> - Add R-b for patch 1, 2
+> - Simplify code a bit more in patch 4 pPer Marco's comments
+> - Update patch 5 to only drop port->sdata check, since patch 4 is changed=
+.
+> - Link to v4: https://lore.kernel.org/r/20230926-vf610-gpio-v4-0-b57b7f6e=
+8368@nxp.com
+>
+> Changes in v4:
+>  Change to minItems for allOf: else: interrupts
+>  Update commit log for patch 4/6
+>  Follow Marco's comments for patch 4/6
+>  Add a new patch 5/6 Per Marco's comments.
+>
+> Changes in v3:
+> Update patch v2 2/6
+> Update commit log in patch v2 5/6
+> Add A-b from DT maintainer for patch v2 1/6, 3/6
+> - Link to v2: https://lore.kernel.org/r/20230916-vf610-gpio-v2-0-40823da7=
+88d7@nxp.com
+>
+> Changes in v2:
+> - Update bindings with describe items, add one reg base for i.MX8ULP/93
+> - Update driver to support one reg base, support both new/old bindings
+> - Add a new patch 1 to update gpio-ranges found in dtbs_check
+> - Link to v1: https://lore.kernel.org/r/20230914-vf610-gpio-v1-0-3ed41818=
+2a6a@nxp.com
+>
+> ---
+> Peng Fan (7):
+>       dt-bindings: gpio: vf610: update gpio-ranges
+>       dt-bindings: gpio: vf610: correct i.MX8ULP and i.MX93
+>       dt-bindings: gpio: vf610: add i.MX95 compatible
+>       gpio: vf610: add i.MX8ULP of_device_id entry
+>       gpio: vf610: simplify code by dropping data check
+>       arm64: dts: imx8ulp: update gpio node
+>       arm64: dts: imx93: update gpio node
+>
+>  .../devicetree/bindings/gpio/gpio-vf610.yaml       | 40 +++++++++++++---
+>  arch/arm64/boot/dts/freescale/imx8ulp.dtsi         | 21 +++++----
+>  arch/arm64/boot/dts/freescale/imx93.dtsi           | 28 +++++++-----
+>  drivers/gpio/gpio-vf610.c                          | 53 ++++++++++++++++=
+++----
+>  4 files changed, 105 insertions(+), 37 deletions(-)
+> ---
+> base-commit: e143016b56ecb0fcda5bb6026b0a25fe55274f56
+> change-id: 20230914-vf610-gpio-46edacd2b513
+>
+> Best regards,
+> --
+> Peng Fan <peng.fan@nxp.com>
+>
 
-Let's put it before Tesla. There's not much order, but maybe one day we
-will fix it.
+This looks good enough. I applied patches 1-5. If you could send a
+follow-up with a comment clarification for patch 4/5, that would be
+great.
 
->  
->  config S3C64XX_COMMON_CLK
->  	bool "Samsung S3C64xx clock controller support" if COMPILE_TEST
-> @@ -102,3 +103,11 @@ config TESLA_FSD_COMMON_CLK
->  	help
->  	  Support for the clock controller present on the Tesla FSD SoC.
->  	  Choose Y here only if you build for this SoC.
-> +
-> +config GOOGLE_GS101_COMMON_CLK
-
-Let's put it before Tesla.
-
-> +	bool "Google gs101 clock controller support" if COMPILE_TEST
-> +	depends on COMMON_CLK_SAMSUNG
-> +	depends on EXYNOS_ARM64_COMMON_CLK
-> +	help
-> +	  Support for the clock controller present on the Google gs101 SoC.
-> +	  Choose Y here only if you build for this SoC.
-> \ No newline at end of file
-
-Missing newline
-
-> diff --git a/drivers/clk/samsung/Makefile b/drivers/clk/samsung/Makefile
-> index ebbeacabe88f..1e69b8e14324 100644
-> --- a/drivers/clk/samsung/Makefile
-> +++ b/drivers/clk/samsung/Makefile
-> @@ -24,3 +24,4 @@ obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynosautov9.o
->  obj-$(CONFIG_S3C64XX_COMMON_CLK)	+= clk-s3c64xx.o
->  obj-$(CONFIG_S5PV210_COMMON_CLK)	+= clk-s5pv210.o clk-s5pv210-audss.o
->  obj-$(CONFIG_TESLA_FSD_COMMON_CLK)	+= clk-fsd.o
-> +obj-$(CONFIG_GOOGLE_GS101_COMMON_CLK)	+= clk-gs101.o
-
-
-Before S3C64xx
-
-> diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-gs101.c
-> new file mode 100644
-> index 000000000000..4c58fcc899be
-> --- /dev/null
-> +++ b/drivers/clk/samsung/clk-gs101.c
-> @@ -0,0 +1,1558 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2023 Linaro Ltd.
-> + * Author: Peter Griffin <peter.griffin@linaro.org>
-> + *
-> + * Common Clock Framework support for GS101.
-> + */
-> +
-
-...
-
-> +	/* PERI1 */
-> +	GATE(CLK_GOUT_PERIC1_BUS, "gout_cmu_peric1_bus", "mout_cmu_peric1_bus",
-> +	     CLK_CON_GAT_GATE_CLKCMU_PERIC1_BUS, 21, 0, 0),
-> +	GATE(CLK_GOUT_PERIC1_IP, "gout_cmu_peric1_ip", "mout_cmu_peric1_ip",
-> +	     CLK_CON_GAT_GATE_CLKCMU_PERIC1_IP, 21, 0, 0),
-> +
-> +	/* TPU */
-> +	GATE(CLK_GOUT_TPU_TPU, "gout_cmu_tpu_tpu", "mout_cmu_tpu_tpu",
-> +	     CLK_CON_GAT_GATE_CLKCMU_TPU_TPU, 21, 0, 0),
-> +	GATE(CLK_GOUT_TPU_TPUCTL, "gout_cmu_tpu_tpuctl", "mout_cmu_tpu_tpuctl",
-> +	     CLK_CON_GAT_GATE_CLKCMU_TPU_TPUCTL, 21, 0, 0),
-> +	GATE(CLK_GOUT_TPU_BUS, "gout_cmu_tpu_bus", "mout_cmu_tpu_bus",
-> +	     CLK_CON_GAT_GATE_CLKCMU_TPU_BUS, 21, 0, 0),
-> +	GATE(CLK_GOUT_TPU_UART, "gout_cmu_tpu_uart", "mout_cmu_tpu_uart",
-> +	     CLK_CON_GAT_GATE_CLKCMU_TPU_UART, 21, 0, 0),
-> +
-> +	/* BO */
-> +	GATE(CLK_GOUT_BO_BUS, "gout_cmu_bo_bus", "mout_cmu_bo_bus",
-> +	     CLK_CON_GAT_GATE_CLKCMU_BO_BUS, 21, 0, 0),
-> +
-
-stray blank line
-
-Best regards,
-Krzysztof
-
+Thanks,
+Bart
 
