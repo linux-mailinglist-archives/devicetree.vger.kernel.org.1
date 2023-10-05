@@ -1,127 +1,193 @@
-Return-Path: <devicetree+bounces-6327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BD0D7BAF5C
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 01:36:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16F0C7BAF8D
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 02:23:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 2D917281FDC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 23:36:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id AA1B9281FE1
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 00:23:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD2CF43AB8;
-	Thu,  5 Oct 2023 23:36:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04EA7620;
+	Fri,  6 Oct 2023 00:23:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nUcWtuye"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kCcS7Jkl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C6DE43A91
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 23:36:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB365C433C7;
-	Thu,  5 Oct 2023 23:36:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696548996;
-	bh=jM/w3fzfVHdmadDXFozFx6NFKuTnREVwExPWlfdgFgc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nUcWtuyeYhbG07u6HpTAvW7DOS7G42XnmLKPctw9KA5fA7aKTjvKyKRAyWtmTUAQ0
-	 Szi4wmKMm8XKxe4YfpLFwtXgKjj9Pc4uCHAeZOLMwzngDZ9rQQ9oJTko1XtWa0fSXn
-	 7PyMBndfHG799/tObcqH35jZBPOWOyCyjlmIo64FZMwCsNs4aKV0IRU4SjNv40tsra
-	 Y06D0H2PIHB0Xaxl8t8w9upqskBQH3vAHCHylSPya38VP7cBy8tPkmNkTPTKSKHlv4
-	 0FP/FVMx56J+3Y/rl3LCXkyvdE/erFhPPVhPx+D8dh84tYl4d3C4ZoXdOLDOGpU4+n
-	 5pSr3IZIZGfEg==
-Date: Fri, 6 Oct 2023 00:36:30 +0100
-From: Conor Dooley <conor@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: mchehab@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	matthias.bgg@gmail.com, moudy.ho@mediatek.com,
-	hverkuil-cisco@xs4all.nl, sakari.ailus@linux.intel.com,
-	u.kleine-koenig@pengutronix.de, linqiheng@huawei.com,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com,
-	wenst@chromium.org
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: mediatek: Add phandle to
- mediatek,scp on MDP3 RDMA
-Message-ID: <20231006-jinx-playing-261e5f41ff7f@spud>
-References: <20231005104905.120544-1-angelogioacchino.delregno@collabora.com>
- <20231005104905.120544-2-angelogioacchino.delregno@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECC91197
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 00:23:08 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39A7AD6;
+	Thu,  5 Oct 2023 17:23:06 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 395A0Tob100282;
+	Thu, 5 Oct 2023 05:00:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1696500029;
+	bh=IQ4+7/ENgJsfdg6282wpLTkp9VO2hoZ8JiSjdo/MfWU=;
+	h=From:To:CC:Subject:Date;
+	b=kCcS7JklxVJlNCWWtlLyFHQ9189GldQW63Z0wCiHxT83VU8u2SriNRF7cxCeKiOH6
+	 DKPEa8e2V2GU2xqmzXlECT/gT966wEYZqFS0F1XCkFpjonag3dDp3recOudtU4DPAB
+	 +Ic0FRClXrkfIbNSlNaaxdUYsnGl4ZM0izFcLKVo=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 395A0TmI031096
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 5 Oct 2023 05:00:29 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 5
+ Oct 2023 05:00:28 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 5 Oct 2023 05:00:28 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 395A0R4F007034;
+	Thu, 5 Oct 2023 05:00:28 -0500
+From: Jayesh Choudhary <j-choudhary@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <a-bhatia1@ti.com>
+CC: <afd@ti.com>, <rogerq@kernel.org>, <s-vadapalli@ti.com>,
+        <conor+dt@kernel.org>, <r-ravikumar@ti.com>, <sabiya.d@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <j-choudhary@ti.com>
+Subject: [PATCH v11 0/5] Enable Display for J784S4 and AM69-SK platform
+Date: Thu, 5 Oct 2023 15:30:22 +0530
+Message-ID: <20231005100027.228806-1-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="gIB/z/xC+ykFsm7t"
-Content-Disposition: inline
-In-Reply-To: <20231005104905.120544-2-angelogioacchino.delregno@collabora.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
+
+This series adds support for:
+- DisplayPort for J784S4-EVM
+- Displayport and HDMI for AM69-SK platform
+
+NOTE: Patch 4/5 introduces the following dtc warning which can be ignored
+since its behind W=1 check:
+Warning (graph_child_address): /bus@100000/dss@4a00000/ports: graph node
+has single child node 'port@0', #address-cells/#size-cells are not
+necessary
+
+(This is more accurate description for port and the dtc check should not
+differentiate between port@0 and port@1.[0])
+
+Changelog v10->v11:
+- Added comment for disabling serdes-refclk (according to comments of v5)
+- Update commit message to document why serdes, wiz nodes (2/5) and mhdp-
+  bridge, tidss nodes (3/5) are disabled.
+- Keep only ports in board files and move common properties to main file
+  and document why ports are kept empty.
+
+v10: https://lore.kernel.org/all/20230927121157.278592-1-j-choudhary@ti.com/
+
+Changelog v9->v10:
+- Remove duplicate properties from dp0_ports node in main file.
+- Add reg for the port even though there is only single port in dss_port
+  since its more accurate description for the port.
+- Carry the R-by tags from v9.
+
+v9: https://lore.kernel.org/all/20230803080441.367341-1-j-choudhary@ti.com/
+
+Changelog v8->v9:
+- Fix compatible of serdes_ln_ctrl node
+- Fix extra new lines across nodes
+- Fix node-names to keep them generic
+
+v8: https://lore.kernel.org/all/20230801070019.219660-1-j-choudhary@ti.com/
+
+Changelog v7->v8:
+- rebase on tag next-20230731
+- add AM69 display support
+- fix commit heading for patch [2/5]
+
+v7: https://lore.kernel.org/all/20230728050859.7370-1-j-choudhary@ti.com/
+
+Changelog v6->v7:
+- change compatible for scm_conf to 'simple-bus'
+- drop main_cpsw node due to driver dependency on [1]
+
+v6: https://lore.kernel.org/all/20230721132029.123881-1-j-choudhary@ti.com/
+
+Changelog v5->v6:
+- Change header file according to [2].
+- Add idle-state property in serdes_ln_ctrl node.
+- Fix dtbs_check warning due to clock-frequency property in serdes_refclk
+  node by disabling the node in main.dtsi and enabling it in board file
+  when the clock-frequency node is actually added.
+
+v5: https://lore.kernel.org/all/20230710101705.154119-1-j-choudhary@ti.com/
+
+Changelog v4->v5:
+- rebased the patches on linux-next tip.
+
+v4: https://lore.kernel.org/all/20230425131607.290707-1-j-choudhary@ti.com/
+
+Changelog v3->v4:
+- add reg property to serdes_ln_ctrl and fix the node name again to
+  get rid of dtbs_check error.
+- reorder reg, reg-names and ranges property for main_cpsw1.
+- correct the order for clocks in serdes_wiz nodes to fix dtbs_check
+  warnings.
+- fix indentation in reg, reg-names and clock property for dss node.
+- add comments for the reg type in dss registers.
+
+v3: https://lore.kernel.org/all/20230419061710.290068-1-j-choudhary@ti.com/
+
+Changelog v3->v2:
+- fix dtc warnings for 'scm_conf' and 'serdes_ln_ctrl' nodes
+  (Checked all the changes of the series with W=12 option during build)
+- added clock-frequency for serdes_refclk along with other EVM changes
+  This refclk is being used by all the instances of serdes_wiz which
+  are disabled by default. So configuring refclk when the serdes nodes
+  are used for the first time is okay.
+
+v2: https://lore.kernel.org/all/20230414151553.339599-1-j-choudhary@ti.com/
+
+Changelog v1->v2:
+- Moved J784S4 EVM changes together to the last patch
+  (Suggested by Andrew)
+
+v1: https://lore.kernel.org/all/20230405111412.151192-1-j-choudhary@ti.com/
 
 
---gIB/z/xC+ykFsm7t
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+[0]: <https://lore.kernel.org/all/570903b6-8239-d44a-5fac-71700804cb5d@ti.com/>
+[1]: <https://lore.kernel.org/all/20230605154153.24025-1-afd@ti.com/>
+[2]: <https://lore.kernel.org/all/20230721125732.122421-1-j-choudhary@ti.com/>
 
-On Thu, Oct 05, 2023 at 12:49:04PM +0200, AngeloGioacchino Del Regno wrote:
-> The MDP3 RDMA needs to communicate with the SCP remote processor: allow
-> specifying a phandle to a SCP core.
->=20
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> ---
->=20
-> v2: I've dropped Conor and Chen-Yu's Reviewed-by tags because I have chan=
-ged
->     the description (so, the patch actually changed a bit).
+Dasnavis Sabiya (1):
+  arm64: dts: ti: k3-am69-sk: Add DP and HDMI support
 
-I dunno, you made it more informative so you could probably have kept
-mine at least.
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Rahul T R (2):
+  arm64: dts: ti: k3-j784s4-main: Add DSS and DP-bridge node
+  arm64: dts: ti: k3-j784s4-evm: Enable DisplayPort-0
 
-Thanks,
-Conor.
+Siddharth Vadapalli (2):
+  arm64: dts: ti: k3-j784s4-main: Add system controller and SERDES lane
+    mux
+  arm64: dts: ti: k3-j784s4-main: Add WIZ and SERDES PHY nodes
 
->=20
->  .../devicetree/bindings/media/mediatek,mdp3-rdma.yaml     | 8 ++++++++
->  1 file changed, 8 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.y=
-aml b/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
-> index 7032c7e15039..59dcea797b71 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
-> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
-> @@ -45,6 +45,14 @@ properties:
->        include/dt-bindings/gce/<chip>-gce.h of each chips.
->      $ref: /schemas/types.yaml#/definitions/uint32-array
-> =20
-> +  mediatek,scp:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to the System Control Processor (SCP) used for initializing
-> +      and stopping the MDP3, for sending frame data locations to the MDP=
-3's
-> +      VPU and to install Inter-Processor Interrupt handlers to control
-> +      processing states.
-> +
->    power-domains:
->      maxItems: 1
-> =20
-> --=20
-> 2.42.0
->=20
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts      | 229 +++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts   | 119 +++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 276 +++++++++++++++++++++
+ 3 files changed, 624 insertions(+)
 
---gIB/z/xC+ykFsm7t
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.25.1
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZR9IfgAKCRB4tDGHoIJi
-0mYNAP94jJiEEICc5tNh0nDrkI4gQqpKlFv0/+qx4Ml3g4MyRwD/bq/qU6AsenA0
-urxwY3sdNT0Qa5qIFRnbeDawGz/Y9gE=
-=bidF
------END PGP SIGNATURE-----
-
---gIB/z/xC+ykFsm7t--
 
