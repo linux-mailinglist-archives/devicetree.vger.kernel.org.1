@@ -1,47 +1,81 @@
-Return-Path: <devicetree+bounces-6282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FF547BA991
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 20:57:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08AB17BA99E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 20:58:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id E56A5281BC4
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 18:57:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id 13EB5B20997
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 18:58:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCCB1405F5;
-	Thu,  5 Oct 2023 18:57:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E154D405FB;
+	Thu,  5 Oct 2023 18:58:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="B31dv1Ow"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R4YzguL/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ADB4405EE
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 18:57:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 848FCC433CA;
-	Thu,  5 Oct 2023 18:57:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1696532223;
-	bh=gizQqh1m+4W+weyiowQQxLoR5ACpd0WvekMq4t9ZbJ0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B31dv1Ow/PkeVGqh25lYleAADB7Ut8jocSfbrUqZPHTdnwIaORG0Gk7A/xL/4ef5q
-	 wRSo/qIEbk2Dewt/rEMKRmPyl0jnwcCgsF3E6OV+zFncxXb5Z27cp1QjI6eDybI9xY
-	 Fc4b7a+lq16Bx8Si3GQXqm+Yn4YdkFfSZ9WBgWbw=
-Date: Thu, 5 Oct 2023 20:57:00 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Max Filippov <jcmvbkbc@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org, Jiri Slaby <jirislaby@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Subject: Re: [PATCH v4 5/5] drivers/tty/serial: add ESP32S3 ACM device driver
-Message-ID: <2023100544-rendering-identify-e0ad@gregkh>
-References: <20230928151631.149333-1-jcmvbkbc@gmail.com>
- <20230928151631.149333-6-jcmvbkbc@gmail.com>
- <2023100326-crushing-septic-4856@gregkh>
- <CAMo8BfJgpP-=tNEChcyR3z6i_QeJ9Ywq7EOjjC5i7Uq4OrgXNA@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 366F4262A7
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 18:58:45 +0000 (UTC)
+Received: from mail-il1-x134.google.com (mail-il1-x134.google.com [IPv6:2607:f8b0:4864:20::134])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B3599F;
+	Thu,  5 Oct 2023 11:58:43 -0700 (PDT)
+Received: by mail-il1-x134.google.com with SMTP id e9e14a558f8ab-351365e47f6so4992075ab.1;
+        Thu, 05 Oct 2023 11:58:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696532322; x=1697137122; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wDGfCRiOqj5Z3HHraurJSyCxNUD1/PMGQpNoTkQdn4g=;
+        b=R4YzguL/WPWy6YUkcwJxq0uZhGuIwOFJzLWWRscxavrMQcAJohI1SFHmPtiTmlCCeT
+         RUbAjxqER861ulWsDokxnprQtMu8XtI4Cv8uRn1+ZHPd0vSomm9MbrLo1JuePu6llGdY
+         nuPqunTXw5BG/b5vUXnhgznk6/lyVSrmhdf0adPMNpdAAZrMr/PBfQq1oHi5CTvVt/Oc
+         mwqGyff7udlPJaZMzLafGH/8bJm0CeB8W6mmfNeNaRjfl2VJAwIj/Q/ej1ry2QdS2ODx
+         o6PDv2qiCUI3kr8zbpKzz7Rkd6JRPQmZocyKg6leZwLtrIBOB2mK2xwP8wzxITv0ezHJ
+         aqzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696532322; x=1697137122;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wDGfCRiOqj5Z3HHraurJSyCxNUD1/PMGQpNoTkQdn4g=;
+        b=rcUSNF3lLTQZTFCcUJjQnDIXe2bP8YFgoyXD24J/gy/sIM9duq5a1CvbA9aSEShmAt
+         p4lV3mI+TNXikrRYHJ0diqMsJR39mz7m1ytsvWpqV5E1tvFTbn+duJg6FSnlsQN2SbZt
+         LCzNHMiV8KXxWKdZkuitLYVgP4snqPdVkaNWQHWVZf+meeYMMiNZ6nHtUV2UKbONjBV+
+         68bM/yWxKYRvRFxKvySjPOpQfoGGyncbncoNMGURgMIxm7KeqlWOv9S818cCEEHyWcxO
+         WlEtdclVoxIMKYB3pCvTGQjypCIk21A+wLKLnxphvCwV9WST6Mm0krB/WkOZi/7MgJTQ
+         Skag==
+X-Gm-Message-State: AOJu0YzRDz9wdymnvEKTN7VG9GB6NeFaEjgdgvG9ZLligPi1lnmexecL
+	Ym4+GA4uIJv98tFKg7JZMNI=
+X-Google-Smtp-Source: AGHT+IH518BnH3XJmrVAOFzUNXyM2b6plwyvIDQm/MiW25fxONr6jJ0igjF7adeyGEuevyATk1JMRQ==
+X-Received: by 2002:a05:6e02:1a2e:b0:351:4f0c:b95d with SMTP id g14-20020a056e021a2e00b003514f0cb95dmr7192153ile.22.1696532322151;
+        Thu, 05 Oct 2023 11:58:42 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id t14-20020a02ab8e000000b004290f6c15bfsm107409jan.145.2023.10.05.11.58.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Oct 2023 11:58:41 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Thu, 5 Oct 2023 11:58:40 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Peter Griffin <peter.griffin@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org,
+	tomasz.figa@gmail.com, s.nawrocki@samsung.com,
+	linus.walleij@linaro.org, wim@linux-watchdog.org,
+	catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
+	olof@lixom.net, cw00.choi@samsung.com, tudor.ambarus@linaro.org,
+	andre.draszik@linaro.org, semen.protsenko@linaro.org,
+	soc@kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH 17/21] watchdog: s3c2410_wdt: Add support for Google
+ tensor SoCs
+Message-ID: <734eb901-84cc-4a47-a3f6-2313273f79b2@roeck-us.net>
+References: <20231005155618.700312-1-peter.griffin@linaro.org>
+ <20231005155618.700312-18-peter.griffin@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,109 +84,251 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMo8BfJgpP-=tNEChcyR3z6i_QeJ9Ywq7EOjjC5i7Uq4OrgXNA@mail.gmail.com>
+In-Reply-To: <20231005155618.700312-18-peter.griffin@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Tue, Oct 03, 2023 at 12:46:46PM -0700, Max Filippov wrote:
-> > > Hardware specification is available at the following URL:
-> > >
-> > >   https://www.espressif.com/sites/default/files/documentation/esp32-s3_technical_reference_manual_en.pdf
-> > >   (Chapter 33 USB Serial/JTAG Controller)
-> >
-> > I don't understand this driver, "ACM" is a USB host <-> gadget protocol,
-> > why do you need a platform serial driver for this?
+On Thu, Oct 05, 2023 at 04:56:14PM +0100, Peter Griffin wrote:
+> This patch adds the compatibles and drvdata for the Google
+> gs101 & gs201 SoCs found in Pixel 6 and Pixel 7 phones. Similar
+> to Exynos850 it has two watchdog instances, one for each cluster
+> and has some control bits in PMU registers.
 > 
-> The USB part of this piece of hardware is fixed and not controllable, so
-> all we have is a very limited UART interface. But to the outside world
-> it's a USB device with the CDC-ACM interface.
-
-Where is the "outside world" here?  The other end of the tty connection?
-So this is a "ACM gadget"?  If so, please try to use that term as that's
-what we use in the kernel to keep things straight.
-
-> > > diff --git a/drivers/tty/serial/esp32_acm.c b/drivers/tty/serial/esp32_acm.c
-> > > new file mode 100644
-> > > index 000000000000..f02abd2ac65e
-> > > --- /dev/null
-> > > +++ b/drivers/tty/serial/esp32_acm.c
-> > > @@ -0,0 +1,459 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-or-later
-> >
-> > Why "or later"?  I have to ask, sorry.
+> The watchdog IP found in gs101 SoCs also supports a few
+> additional bits/features in the WTCON register which we add
+> support for and an additional register detailed below.
 > 
-> I don't really have a preference here. Is there a reason to choose
-> GPL-2.0 only for a new code?
-
-It's your call, you need to pick that, but I can provide recommendations
-if you want :)
-
-> > And no copyright information?  That's fine, but be sure your company's
-> > lawyers are ok with it...
+> dbgack-mask - Enables masking WDT interrupt and reset request
+> according to asserted DBGACK input
 > 
-> There's no company behind this, just myself.
-
-Great, it's your copyright, be proud, put it on there!
-
-> > > +
-> > > +#include <linux/bitfield.h>
-> > > +#include <linux/bits.h>
-> > > +#include <linux/console.h>
-> > > +#include <linux/delay.h>
-> > > +#include <linux/io.h>
-> > > +#include <linux/irq.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/of.h>
-> > > +#include <linux/of_device.h>
-> > > +#include <linux/serial_core.h>
-> > > +#include <linux/slab.h>
-> > > +#include <linux/tty_flip.h>
-> > > +#include <asm/serial.h>
-> > > +
-> > > +#define DRIVER_NAME  "esp32s3-acm"
-> > > +#define DEV_NAME     "ttyACM"
-> >
-> > There is already a ttyACM driver in the kernel, will this conflict with
-> > that one?  And are you using the same major/minor numbers for it as
-> > well?  If so, how is this going to work?
+> windowed-mode - Enabled Windowed watchdog mode
 > 
-> I'll rename it to ttyS. I see that it coexists with the other driver that calls
-> its devices ttyS just fine.
-
-Great.  But if you are going to be like a ACM gadget, use ttyGS like
-that driver does?
-
-> > > +static void esp32s3_acm_set_mctrl(struct uart_port *port, unsigned int mctrl)
-> > > +{
-> > > +}
-> >
-> > Do you have to have empty functions for callbacks that do nothing?
+> Windowed watchdog mode also has an additional register WTMINCNT.
+> If windowed watchdog is enabled and you reload WTCNT when the
+> value is greater than WTMINCNT, it prompts interrupt or reset
+> request as if the watchdog time has expired.
 > 
-> The serial core has unconditional calls to these callbacks.
-
-Ah, good catch, maybe we should fix up the serial core.
-
-> > > --- a/include/uapi/linux/serial_core.h
-> > > +++ b/include/uapi/linux/serial_core.h
-> > > @@ -248,4 +248,7 @@
-> > >  /* Espressif ESP32 UART */
-> > >  #define PORT_ESP32UART       124
-> > >
-> > > +/* Espressif ESP32 ACM */
-> > > +#define PORT_ESP32ACM        125
-> >
-> > Why are these defines needed?  What in userspace is going to require
-> > them?  If nothing, please do not add them.
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
+>  drivers/watchdog/s3c2410_wdt.c | 116 +++++++++++++++++++++++++++++----
+>  1 file changed, 105 insertions(+), 11 deletions(-)
 > 
-> I don't understand what the alternatives are. The comment for the
-> uart_ops::config_port() callback says that port->type should be set
-> to the type of the port found, and I see that almost every serial driver
-> defines a unique PORT_* for that.
+> diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
+> index 0b4bd883ff28..4c23c7e6a3f1 100644
+> --- a/drivers/watchdog/s3c2410_wdt.c
+> +++ b/drivers/watchdog/s3c2410_wdt.c
+> @@ -31,12 +31,14 @@
+>  #define S3C2410_WTDAT		0x04
+>  #define S3C2410_WTCNT		0x08
+>  #define S3C2410_WTCLRINT	0x0c
+> -
+> +#define S3C2410_WTMINCNT	0x10
+>  #define S3C2410_WTCNT_MAXCNT	0xffff
+>  
+> -#define S3C2410_WTCON_RSTEN	(1 << 0)
+> -#define S3C2410_WTCON_INTEN	(1 << 2)
+> -#define S3C2410_WTCON_ENABLE	(1 << 5)
+> +#define S3C2410_WTCON_RSTEN		(1 << 0)
+> +#define S3C2410_WTCON_INTEN		(1 << 2)
+> +#define S3C2410_WTCON_ENABLE		(1 << 5)
+> +#define S3C2410_WTCON_DBGACK_MASK	(1 << 16)
+> +#define S3C2410_WTCON_WINDOWED_WD	(1 << 20)
+>  
+>  #define S3C2410_WTCON_DIV16	(0 << 3)
+>  #define S3C2410_WTCON_DIV32	(1 << 3)
+> @@ -61,12 +63,16 @@
+>  #define EXYNOS850_CLUSTER1_NONCPU_INT_EN	0x1644
+>  #define EXYNOSAUTOV9_CLUSTER1_NONCPU_OUT	0x1520
+>  #define EXYNOSAUTOV9_CLUSTER1_NONCPU_INT_EN	0x1544
+> -
+>  #define EXYNOS850_CLUSTER0_WDTRESET_BIT		24
+>  #define EXYNOS850_CLUSTER1_WDTRESET_BIT		23
+>  #define EXYNOSAUTOV9_CLUSTER0_WDTRESET_BIT	25
+>  #define EXYNOSAUTOV9_CLUSTER1_WDTRESET_BIT	24
+> -
+> +#define GS_CLUSTER0_NONCPU_OUT			0x1220
+> +#define GS_CLUSTER1_NONCPU_OUT			0x1420
+> +#define GS_CLUSTER0_NONCPU_INT_EN		0x1244
+> +#define GS_CLUSTER1_NONCPU_INT_EN		0x1444
+> +#define GS_CLUSTER2_NONCPU_INT_EN		0x1644
+> +#define GS_RST_STAT_REG_OFFSET			0x3B44
+>  /**
+>   * DOC: Quirk flags for different Samsung watchdog IP-cores
+>   *
+> @@ -106,6 +112,8 @@
+>  #define QUIRK_HAS_PMU_RST_STAT			(1 << 2)
+>  #define QUIRK_HAS_PMU_AUTO_DISABLE		(1 << 3)
+>  #define QUIRK_HAS_PMU_CNT_EN			(1 << 4)
+> +#define QUIRK_HAS_DBGACK_BIT			(1 << 5)
+> +#define QUIRK_HAS_WTMINCNT_REG			(1 << 6)
+>  
+>  /* These quirks require that we have a PMU register map */
+>  #define QUIRKS_HAVE_PMUREG \
+> @@ -263,6 +271,54 @@ static const struct s3c2410_wdt_variant drv_data_exynosautov9_cl1 = {
+>  		  QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN,
+>  };
+>  
+> +static const struct s3c2410_wdt_variant drv_data_gs101_cl0 = {
+> +	.mask_reset_reg = GS_CLUSTER0_NONCPU_INT_EN,
+> +	.mask_bit = 2,
+> +	.mask_reset_inv = true,
+> +	.rst_stat_reg = GS_RST_STAT_REG_OFFSET,
+> +	.rst_stat_bit = 0,
+> +	.cnt_en_reg = GS_CLUSTER0_NONCPU_OUT,
+> +	.cnt_en_bit = 8,
+> +	.quirks = QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_MASK_RESET | QUIRK_HAS_PMU_CNT_EN |
+> +		  QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_DBGACK_BIT | QUIRK_HAS_WTMINCNT_REG,
+> +};
+> +
+> +static const struct s3c2410_wdt_variant drv_data_gs101_cl1 = {
+> +	.mask_reset_reg = GS_CLUSTER1_NONCPU_INT_EN,
+> +	.mask_bit = 2,
+> +	.mask_reset_inv = true,
+> +	.rst_stat_reg = GS_RST_STAT_REG_OFFSET,
+> +	.rst_stat_bit = 1,
+> +	.cnt_en_reg = GS_CLUSTER1_NONCPU_OUT,
+> +	.cnt_en_bit = 7,
+> +	.quirks = QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_MASK_RESET | QUIRK_HAS_PMU_CNT_EN |
+> +		  QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_DBGACK_BIT | QUIRK_HAS_WTMINCNT_REG,
+> +};
+> +
+> +static const struct s3c2410_wdt_variant drv_data_gs201_cl0 = {
+> +	.mask_reset_reg = GS_CLUSTER0_NONCPU_INT_EN,
+> +	.mask_bit = 2,
+> +	.mask_reset_inv = true,
+> +	.rst_stat_reg = GS_RST_STAT_REG_OFFSET,
+> +	.rst_stat_bit = 0,
+> +	.cnt_en_reg = GS_CLUSTER0_NONCPU_OUT,
+> +	.cnt_en_bit = 8,
+> +	.quirks = QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_MASK_RESET | QUIRK_HAS_PMU_CNT_EN |
+> +		  QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_DBGACK_BIT | QUIRK_HAS_WTMINCNT_REG,
+> +};
+> +
+> +static const struct s3c2410_wdt_variant drv_data_gs201_cl1 = {
+> +	.mask_reset_reg = GS_CLUSTER1_NONCPU_INT_EN,
+> +	.mask_bit = 2,
+> +	.mask_reset_inv = true,
+> +	.rst_stat_reg = GS_RST_STAT_REG_OFFSET,
+> +	.rst_stat_bit = 1,
+> +	.cnt_en_reg = GS_CLUSTER1_NONCPU_OUT,
+> +	.cnt_en_bit = 7,
+> +	.quirks = QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_MASK_RESET | QUIRK_HAS_PMU_CNT_EN |
+> +		  QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_DBGACK_BIT | QUIRK_HAS_WTMINCNT_REG,
+> +};
+> +
+>  static const struct of_device_id s3c2410_wdt_match[] = {
+>  	{ .compatible = "samsung,s3c2410-wdt",
+>  	  .data = &drv_data_s3c2410 },
+> @@ -278,6 +334,10 @@ static const struct of_device_id s3c2410_wdt_match[] = {
+>  	  .data = &drv_data_exynos850_cl0 },
+>  	{ .compatible = "samsung,exynosautov9-wdt",
+>  	  .data = &drv_data_exynosautov9_cl0 },
+> +	{ .compatible = "google,gs101-wdt",
+> +	  .data = &drv_data_gs101_cl0 },
+> +	{ .compatible = "google,gs201-wdt",
+> +	  .data = &drv_data_gs201_cl0 },
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, s3c2410_wdt_match);
+> @@ -375,6 +435,21 @@ static int s3c2410wdt_enable(struct s3c2410_wdt *wdt, bool en)
+>  	return 0;
+>  }
+>  
+> +static void s3c2410wdt_mask_dbgack(struct s3c2410_wdt *wdt, bool mask)
+> +{
+> +	unsigned long wtcon;
+> +
+> +	if (!(wdt->drv_data->quirks & QUIRK_HAS_DBGACK_BIT))
+> +		return;
+> +
+> +	wtcon = readl(wdt->reg_base + S3C2410_WTCON);
+> +	if (mask)
+> +		wtcon |= S3C2410_WTCON_DBGACK_MASK;
+> +	else
+> +		wtcon &= ~S3C2410_WTCON_DBGACK_MASK;
+> +	writel(wtcon, wdt->reg_base + S3C2410_WTCON);
+> +}
+> +
+>  static int s3c2410wdt_keepalive(struct watchdog_device *wdd)
+>  {
+>  	struct s3c2410_wdt *wdt = watchdog_get_drvdata(wdd);
+> @@ -585,9 +660,11 @@ s3c2410_get_wdt_drv_data(struct platform_device *pdev, struct s3c2410_wdt *wdt)
+>  	}
+>  
+>  #ifdef CONFIG_OF
+> -	/* Choose Exynos850/ExynosAutov9 driver data w.r.t. cluster index */
+> +	/* Choose Exynos850/ExynosAutov9/gsx01 driver data w.r.t. cluster index */
+>  	if (variant == &drv_data_exynos850_cl0 ||
+> -	    variant == &drv_data_exynosautov9_cl0) {
+> +	    variant == &drv_data_exynosautov9_cl0 ||
+> +	    variant == &drv_data_gs101_cl0 ||
+> +	    variant == &drv_data_gs201_cl0) {
+>  		u32 index;
+>  		int err;
+>  
+> @@ -600,9 +677,14 @@ s3c2410_get_wdt_drv_data(struct platform_device *pdev, struct s3c2410_wdt *wdt)
+>  		case 0:
+>  			break;
+>  		case 1:
+> -			variant = (variant == &drv_data_exynos850_cl0) ?
+> -				&drv_data_exynos850_cl1 :
+> -				&drv_data_exynosautov9_cl1;
+> +			if (variant == &drv_data_exynos850_cl0)
+> +				variant = &drv_data_exynos850_cl1;
+> +			else if (variant == &drv_data_exynosautov9_cl0)
+> +				variant = &drv_data_exynosautov9_cl1;
+> +			else if (variant == &drv_data_gs101_cl0)
+> +				variant = &drv_data_gs101_cl1;
+> +			else if (variant == &drv_data_gs201_cl0)
+> +				variant = &drv_data_gs201_cl1;
+>  			break;
+>  		default:
+>  			return dev_err_probe(dev, -EINVAL, "wrong cluster index: %u\n", index);
+> @@ -700,6 +782,8 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
+>  	wdt->wdt_device.bootstatus = s3c2410wdt_get_bootstatus(wdt);
+>  	wdt->wdt_device.parent = dev;
+>  
+> +	s3c2410wdt_mask_dbgack(wdt, true);
+> +
+>  	/*
+>  	 * If "tmr_atboot" param is non-zero, start the watchdog right now. Also
+>  	 * set WDOG_HW_RUNNING bit, so that watchdog core can kick the watchdog.
+> @@ -712,6 +796,7 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
+>  		s3c2410wdt_start(&wdt->wdt_device);
+>  		set_bit(WDOG_HW_RUNNING, &wdt->wdt_device.status);
+>  	} else {
+> +		dev_info(dev, "stopping watchdog timer\n");
 
-Yes, but not all do.  If you don't need to do anything special, it can
-just claim to be a normal device, we've had threads about this on the
-list before.  If you don't need to determine in userspace from the tty
-connection what device it is, just use the default one instead.
+I am not inclined to accept patches adding such noise.
 
-thanks,
+>  		s3c2410wdt_stop(&wdt->wdt_device);
+>  	}
+>  
+> @@ -738,6 +823,15 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
+>  		 (wtcon & S3C2410_WTCON_RSTEN) ? "en" : "dis",
+>  		 (wtcon & S3C2410_WTCON_INTEN) ? "en" : "dis");
+>  
+> +	if (wdt->drv_data->quirks & QUIRK_HAS_DBGACK_BIT)
+> +		dev_info(dev, "DBGACK %sabled\n",
+> +			 (wtcon & S3C2410_WTCON_DBGACK_MASK) ? "en" : "dis");
+> +
+> +	if (wdt->drv_data->quirks & QUIRK_HAS_WTMINCNT_REG)
+> +		dev_info(dev, "windowed watchdog %sabled, wtmincnt=%x\n",
+> +			 (wtcon & S3C2410_WTCON_WINDOWED_WD) ? "en" : "dis",
+> +			 readl(wdt->reg_base + S3C2410_WTMINCNT));
 
-greg k-h
+... and I really don't see its value.
+
+> +
+>  	return 0;
+>  }
+>  
+> -- 
+> 2.42.0.582.g8ccd20d70d-goog
+> 
 
