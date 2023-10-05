@@ -1,119 +1,217 @@
-Return-Path: <devicetree+bounces-6117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80E127B9E45
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:04:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FCAE7B9EEA
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:16:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 32583281B26
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 14:04:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id E74F2281B42
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 14:16:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1EB527734;
-	Thu,  5 Oct 2023 14:04:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7381B28DAE;
+	Thu,  5 Oct 2023 14:16:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="X75GR4wz"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="pXq0UHCc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AE8627726
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 14:04:02 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2AC783E5;
-	Thu,  5 Oct 2023 07:03:23 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3955buOu012274;
-	Thu, 5 Oct 2023 07:36:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=D8BC3BO3azckk+Ehrf8XzxN2xBK3e06fHyqblWk1k/I=;
- b=X75GR4wzkbqXeGM0oJnfHW2IK106HRJRgI3R5yrGLPC2NhseK4QLVKpMiy+LirA+JNXF
- QdzgRTJQqMEz1KLtFRJ1UxEoDHuV2ZxM0uOoetbuDIBUOQH9Ai/wZ8hmkXaWJPPO+4oI
- HQxgIZBnXOfltTtgPz7NsFGrUpmEFbxhNBYWZxl9ncsZNwVRH2ECBc+mFVbuw9eQxU21
- 1CoUjteGyYxq1STjhmsz5SHQ3NUugZeignhMoWWAE1Dv68NML1VP2qikdGNEoiH0bCAW
- QBKs9CQqlpuTRkoIBkFHmCNxJxpPfDZou5qRcSqwffj/1S9NcnIqdIjqN5wciL0RodKP uQ== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3thn058c5s-1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F246821105
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 14:16:05 +0000 (UTC)
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AD4E22E0F;
+	Thu,  5 Oct 2023 07:15:43 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 394NxwVc016445;
+	Thu, 5 Oct 2023 09:44:50 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=uPeJe/ujiHjKK9NWuZX2rXwLdsc4nIHY6JTK7vpJxH4=; b=pX
+	q0UHCc1ado2QV7WtnmdeB804HXe3FijBSoA9psMDkYnF0uIh0WKNYRPoWZIB+rsh
+	gReFnz5YcLFnD6seqZ1iaNsRJsypo6VayiyWgAw49j0rMEOz/lF7ws/vAag7QQYd
+	oT68cFTQ8EQPTpkb14dR3TU1g4bS9zRIwJYYUE1EFMJPI+pUDhIH88dUyHiSC2TZ
+	EJUsOHYuDlLMspH1Fx3gkPDTAWzvCcXJNwlmGf6n21I7hwX4CR+mMO3/djlZZ9ad
+	OC7oVV1Fujd0O48ZVoWOidNBEDF1cHl6v6l1y4F93HSueEETu7Uon+Oud4tChzC7
+	mJiJhrVj2VzEZI1GnBPg==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3thj7e9ehw-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 05 Oct 2023 07:36:40 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3957adOs003567
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 5 Oct 2023 07:36:39 GMT
-Received: from [10.216.40.132] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Thu, 5 Oct
- 2023 00:36:32 -0700
-Message-ID: <cc5fef7a-d4d1-d725-36a5-86183bacc5a0@quicinc.com>
-Date: Thu, 5 Oct 2023 13:06:27 +0530
+	Thu, 05 Oct 2023 09:44:50 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4D859100053;
+	Thu,  5 Oct 2023 09:44:49 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 406DD21ED32;
+	Thu,  5 Oct 2023 09:44:49 +0200 (CEST)
+Received: from [10.201.20.120] (10.201.20.120) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 5 Oct
+ 2023 09:44:48 +0200
+Message-ID: <866fd143-a290-63ec-103c-b49368d9dc03@foss.st.com>
+Date: Thu, 5 Oct 2023 09:44:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH V14 3/4] dt-bindings: mfd: qcom,tcsr: Add simple-mfd
- support for IPQ6018
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 3/7] dt-bindings: media: Document STM32MP25 VENC video
+ encoder
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <lee@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <thierry.reding@gmail.com>,
-        <ndesaulniers@google.com>, <trix@redhat.com>, <baruch@tkos.co.il>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <llvm@lists.linux.dev>
-CC: <linux-pwm@vger.kernel.org>, <u.kleine-koenig@pengutronix.de>,
-        <nathan@kernel.org>
-References: <20231005033053.2626465-1-quic_devipriy@quicinc.com>
- <20231005033053.2626465-4-quic_devipriy@quicinc.com>
- <cfbc4805-c2e8-4dee-92bc-14d805dc2320@linaro.org>
-From: Devi Priya <quic_devipriy@quicinc.com>
-In-Reply-To: <cfbc4805-c2e8-4dee-92bc-14d805dc2320@linaro.org>
+To: Adam Ford <aford173@gmail.com>
+CC: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans
+ Verkuil <hverkuil@xs4all.nl>, <linux-media@vger.kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-rockchip@lists.infradead.org>,
+        Andrzej Pietrasiewicz
+	<andrzej.p@collabora.com>
+References: <20231004091552.3531659-1-hugues.fruchet@foss.st.com>
+ <20231004091552.3531659-4-hugues.fruchet@foss.st.com>
+ <CAHCN7xKrriTPaRMJ-r86cSgFDUUP1At08imLBr_zEP0g3fga_g@mail.gmail.com>
+From: Hugues FRUCHET <hugues.fruchet@foss.st.com>
+In-Reply-To: <CAHCN7xKrriTPaRMJ-r86cSgFDUUP1At08imLBr_zEP0g3fga_g@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 6-_sl-_tzVzavNW99DG16uhxP881mC0P
-X-Proofpoint-GUID: 6-_sl-_tzVzavNW99DG16uhxP881mC0P
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.201.20.120]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
 X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2023-10-05_04,2023-10-02_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
- impostorscore=0 bulkscore=0 spamscore=0 mlxlogscore=644 priorityscore=1501
- mlxscore=0 malwarescore=0 lowpriorityscore=0 phishscore=0 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
- definitions=main-2310050057
-X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hi Adam,
 
+Thanks for review,
 
-On 10/5/2023 1:04 PM, Krzysztof Kozlowski wrote:
-> On 05/10/2023 05:30, Devi Priya wrote:
->> Update the binding to include pwm as the child node to TCSR block and
->> add simple-mfd support for IPQ6018.
+On 10/5/23 01:41, Adam Ford wrote:
+> On Wed, Oct 4, 2023 at 4:16 AM Hugues Fruchet
+> <hugues.fruchet@foss.st.com> wrote:
 >>
->> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+>> Add STM32MP25 VENC video encoder bindings.
+>>
+>> Signed-off-by: Hugues Fruchet <hugues.fruchet@foss.st.com>
+>> ---
+>>   .../bindings/media/st,stm32mp25-venc.yaml     | 56 +++++++++++++++++++
+>>   1 file changed, 56 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/media/st,stm32mp25-venc.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/st,stm32mp25-venc.yaml b/Documentation/devicetree/bindings/media/st,stm32mp25-venc.yaml
+>> new file mode 100644
+>> index 000000000000..c69e0a34f675
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/st,stm32mp25-venc.yaml
+>> @@ -0,0 +1,56 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/st,stm32mp25-venc.yaml#
 > 
-> Why did you send it twice? It's just brings confusion...
+> Can this dt-binding be made more generic, like something like
+> hantro-h1 or VC8000NanoE?
+> 
+> I think there will be more boards that may incorporate the Hantro-H1
+> or a VC8000 in the future, because I don't think this IP is unique to
+> the STM32MP25.
 
-Sorry, kindly ignore. As the patches were not delivered to the list,
-tried sending it again.
+This is already the case, check variants in hantro_drv.c.
+Several SoCs are sharing this IP but each IP slightly differs because of
+supported resolution, codec, preprocessing features, ...
+There are also some differences on how clock, interrupt, reset are 
+hardware mapped: shared or not by decoder and encoder for ex.
 
-Regards,
-Devi priya
 > 
-> Best regards,
-> Krzysztof
+> adam
 > 
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: STMicroelectronics STM32MP25 VENC video encoder
+>> +
+>> +maintainers:
+>> +  - Hugues Fruchet <hugues.fruchet@foss.st.com>
+>> +
+>> +description:
+>> +  The STMicroelectronics STM32MP25 SOCs embeds a VENC video hardware encoder
+>> +  peripheral based on Verisilicon VC8000NanoE IP (former Hantro H1).
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: st,stm32mp25-venc
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  interrupt-names:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  clock-names:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - interrupt-names
+>> +  - clocks
+>> +  - clock-names
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    venc: venc@580e0000 {
+>> +        compatible = "st,stm32mp25-venc";
+>> +        reg = <0x580e0000 0x800>;
+>> +        interrupts = <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>;
+>> +        interrupt-names = "venc";
+> 
+> 
+> Is the interrupt-names needed if there is only one?
+> 
+
+Not really, could be dropped.
+
+>> +        clocks = <&ck_icn_p_venc>;
+>> +        clock-names = "venc-clk";
+> 
+> Same thing for the clock.  if there is only one clock, doe they need names?
+> 
+Not really, could be dropped.
+
+> adam
+>> +    };
+>> --
+>> 2.25.1
+>>
+
+BR,
+Hugues.
 
