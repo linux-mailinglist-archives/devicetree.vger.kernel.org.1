@@ -1,40 +1,40 @@
-Return-Path: <devicetree+bounces-6217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67E2C7BA3CF
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 888B17BA3D0
 	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:59:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 999E2B20A0E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:59:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id 20A001F22CB5
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:59:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46515339A6;
-	Thu,  5 Oct 2023 15:59:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F86C339A9;
+	Thu,  5 Oct 2023 15:59:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="kThq2dA9"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LM5De+Ri"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4E11328D2
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 15:59:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93E16328D2
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 15:59:23 +0000 (UTC)
 Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01D251FC2;
-	Thu,  5 Oct 2023 08:59:17 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id F08F71BF212;
-	Thu,  5 Oct 2023 15:59:14 +0000 (UTC)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 543D23C3A;
+	Thu,  5 Oct 2023 08:59:19 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 8FAAE1BF207;
+	Thu,  5 Oct 2023 15:59:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1696521556;
+	t=1696521558;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=aGKTwONKSfoZzpn2n3JSkVgAv7XwGFmEAvr55ZBB+Go=;
-	b=kThq2dA9mg6lXKkMVJK+SStPNlI+PSaAURbLkfhnE7QiJGX6Fdtn3qEPUp4K48j0lUvhAd
-	w6Zq4TiANeUnV1YI3jWKyP03QGAuAWir3N9sIKN5eJV1Mwn2QgJ7Pof75WvzSh5XJKJOGk
-	LWf0op/24SDiJ7wRbwEgs9FYHJNTTSnWZT0ehK23okOMaUma+2KOKZoRoMjh9S3hFHgJqr
-	QqA4y0Gyht9/MY88Rb6JCJDjj9ZtFyGyjrzXpVH3UR+byy86F6//LuWJ4b95pqW0sWfqhj
-	N2szJGoGyy0ga7cl+9O7nC2nLQaYIR26c++KrDRmH5fw3CzlMpzCm3aYCkZ0Aw==
+	bh=/WtKn/Tb4sVAlce85oVAG5zntlgbWadZVDUoXswIydw=;
+	b=LM5De+RiQX+nTg+ib49/YUIVzd9DAeclp5XZnovNXjakXB0AegN3UHBdGFH7ho5anJUPoB
+	gsQpXZxIrsM8EcyAe35ohIMbcSAKMw2R94fP4XR2qaJTWMnUrAp7ISJ7/qVEU5PeNXZUWB
+	NeVDRmajCs1Tw65WQu5jQgNY55M0anL3RMFDiY1PbKfDuHcNNGjSiyQg77NbPl8SdxkrWS
+	HrjmIzpZYJo3TsaF2hQp2BlgsQL4Q03RAYiU92fOhWX4J8F9CxPvi6sviNfjoBBmO6qwyW
+	veHxHLj93pJaKo/wFpXGhonCy2Z+sJ7+WmtU+gVdAiMbVsNZqoLcPz4MBV981w==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
 To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
 	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
@@ -51,9 +51,9 @@ Cc: Michael Walle <michael@walle.cc>,
 	Chen-Yu Tsai <wenst@chromium.org>,
 	Daniel Golle <daniel@makrotopia.org>,
 	Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v12 3/7] nvmem: Move of_nvmem_layout_get_container() in another header
-Date: Thu,  5 Oct 2023 17:59:03 +0200
-Message-Id: <20231005155907.2701706-4-miquel.raynal@bootlin.com>
+Subject: [PATCH v12 4/7] nvmem: Create a header for internal sharing
+Date: Thu,  5 Oct 2023 17:59:04 +0200
+Message-Id: <20231005155907.2701706-5-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231005155907.2701706-1-miquel.raynal@bootlin.com>
 References: <20231005155907.2701706-1-miquel.raynal@bootlin.com>
@@ -72,99 +72,94 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-nvmem-consumer.h is included by consumer devices, extracting data from
-NVMEM devices whereas nvmem-provider.h is included by devices providing
-NVMEM content.
-
-The only users of of_nvmem_layout_get_container() outside of the core
-are layout drivers, so better move its prototype to nvmem-provider.h.
-
-While we do so, we also move the kdoc associated with the function to
-the header rather than the .c file.
+Before adding all the NVMEM layout bus infrastructure to the core, let's
+move the main nvmem_device structure in an internal header, only
+available to the core. This way all the additional code can be added in
+a dedicated file in order to keep the current core file tidy.
 
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- drivers/nvmem/core.c           |  8 --------
- include/linux/nvmem-consumer.h |  7 -------
- include/linux/nvmem-provider.h | 14 ++++++++++++++
- 3 files changed, 14 insertions(+), 15 deletions(-)
+ drivers/nvmem/core.c      | 24 +-----------------------
+ drivers/nvmem/internals.h | 35 +++++++++++++++++++++++++++++++++++
+ 2 files changed, 36 insertions(+), 23 deletions(-)
+ create mode 100644 drivers/nvmem/internals.h
 
 diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-index 286efd3f5a31..c63057a7a3b8 100644
+index c63057a7a3b8..073fe4a73e37 100644
 --- a/drivers/nvmem/core.c
 +++ b/drivers/nvmem/core.c
-@@ -844,14 +844,6 @@ static int nvmem_add_cells_from_layout(struct nvmem_device *nvmem)
- }
+@@ -19,29 +19,7 @@
+ #include <linux/of.h>
+ #include <linux/slab.h>
  
- #if IS_ENABLED(CONFIG_OF)
--/**
-- * of_nvmem_layout_get_container() - Get OF node to layout container.
-- *
-- * @nvmem: nvmem device.
-- *
-- * Return: a node pointer with refcount incremented or NULL if no
-- * container exists. Use of_node_put() on it when done.
-- */
- struct device_node *of_nvmem_layout_get_container(struct nvmem_device *nvmem)
- {
- 	return of_get_child_by_name(nvmem->dev.of_node, "nvmem-layout");
-diff --git a/include/linux/nvmem-consumer.h b/include/linux/nvmem-consumer.h
-index 4523e4e83319..960728b10a11 100644
---- a/include/linux/nvmem-consumer.h
-+++ b/include/linux/nvmem-consumer.h
-@@ -241,7 +241,6 @@ struct nvmem_cell *of_nvmem_cell_get(struct device_node *np,
- 				     const char *id);
- struct nvmem_device *of_nvmem_device_get(struct device_node *np,
- 					 const char *name);
--struct device_node *of_nvmem_layout_get_container(struct nvmem_device *nvmem);
- #else
- static inline struct nvmem_cell *of_nvmem_cell_get(struct device_node *np,
- 						   const char *id)
-@@ -254,12 +253,6 @@ static inline struct nvmem_device *of_nvmem_device_get(struct device_node *np,
- {
- 	return ERR_PTR(-EOPNOTSUPP);
- }
--
--static inline struct device_node *
--of_nvmem_layout_get_container(struct nvmem_device *nvmem)
--{
--	return NULL;
--}
- #endif /* CONFIG_NVMEM && CONFIG_OF */
+-struct nvmem_device {
+-	struct module		*owner;
+-	struct device		dev;
+-	int			stride;
+-	int			word_size;
+-	int			id;
+-	struct kref		refcnt;
+-	size_t			size;
+-	bool			read_only;
+-	bool			root_only;
+-	int			flags;
+-	enum nvmem_type		type;
+-	struct bin_attribute	eeprom;
+-	struct device		*base_dev;
+-	struct list_head	cells;
+-	const struct nvmem_keepout *keepout;
+-	unsigned int		nkeepout;
+-	nvmem_reg_read_t	reg_read;
+-	nvmem_reg_write_t	reg_write;
+-	struct gpio_desc	*wp_gpio;
+-	struct nvmem_layout	*layout;
+-	void *priv;
+-};
++#include "internals.h"
  
- #endif  /* ifndef _LINUX_NVMEM_CONSUMER_H */
-diff --git a/include/linux/nvmem-provider.h b/include/linux/nvmem-provider.h
-index dae26295e6be..2905f9e6fc2a 100644
---- a/include/linux/nvmem-provider.h
-+++ b/include/linux/nvmem-provider.h
-@@ -205,6 +205,16 @@ void nvmem_layout_unregister(struct nvmem_layout *layout);
- const void *nvmem_layout_get_match_data(struct nvmem_device *nvmem,
- 					struct nvmem_layout *layout);
+ #define to_nvmem_device(d) container_of(d, struct nvmem_device, dev)
  
-+/**
-+ * of_nvmem_layout_get_container() - Get OF node of layout container
-+ *
-+ * @nvmem: nvmem device
-+ *
-+ * Return: a node pointer with refcount incremented or NULL if no
-+ * container exists. Use of_node_put() on it when done.
-+ */
-+struct device_node *of_nvmem_layout_get_container(struct nvmem_device *nvmem);
+diff --git a/drivers/nvmem/internals.h b/drivers/nvmem/internals.h
+new file mode 100644
+index 000000000000..ce353831cd65
+--- /dev/null
++++ b/drivers/nvmem/internals.h
+@@ -0,0 +1,35 @@
++/* SPDX-License-Identifier: GPL-2.0 */
 +
- #else
- 
- static inline struct nvmem_device *nvmem_register(const struct nvmem_config *c)
-@@ -242,6 +252,10 @@ nvmem_layout_get_match_data(struct nvmem_device *nvmem,
- 	return NULL;
- }
- 
-+static inline struct device_node *of_nvmem_layout_get_container(struct nvmem_device *nvmem)
-+{
-+	return NULL;
-+}
- #endif /* CONFIG_NVMEM */
- 
- #define module_nvmem_layout_driver(__layout_driver)		\
++#ifndef _LINUX_NVMEM_INTERNALS_H
++#define _LINUX_NVMEM_INTERNALS_H
++
++#include <linux/device.h>
++#include <linux/nvmem-consumer.h>
++#include <linux/nvmem-provider.h>
++
++struct nvmem_device {
++	struct module		*owner;
++	struct device		dev;
++	struct list_head	node;
++	int			stride;
++	int			word_size;
++	int			id;
++	struct kref		refcnt;
++	size_t			size;
++	bool			read_only;
++	bool			root_only;
++	int			flags;
++	enum nvmem_type		type;
++	struct bin_attribute	eeprom;
++	struct device		*base_dev;
++	struct list_head	cells;
++	const struct nvmem_keepout *keepout;
++	unsigned int		nkeepout;
++	nvmem_reg_read_t	reg_read;
++	nvmem_reg_write_t	reg_write;
++	struct gpio_desc	*wp_gpio;
++	struct nvmem_layout	*layout;
++	void *priv;
++};
++
++#endif  /* ifndef _LINUX_NVMEM_INTERNALS_H */
 -- 
 2.34.1
 
