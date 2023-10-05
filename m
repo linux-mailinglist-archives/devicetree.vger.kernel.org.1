@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-6118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9075C7B9E49
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:04:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC4BE7B9E44
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:04:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 20FAD281A31
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 14:04:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 5AA37281EAB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 14:04:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC2E927738;
-	Thu,  5 Oct 2023 14:04:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0BCC27722;
+	Thu,  5 Oct 2023 14:04:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="wLRTr23x"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="ihYJGuao"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A6D27722;
-	Thu,  5 Oct 2023 14:04:12 +0000 (UTC)
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44AA147886;
-	Thu,  5 Oct 2023 07:02:59 -0700 (PDT)
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3959Elmm006036;
-	Thu, 5 Oct 2023 13:27:21 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79F70125C6
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 14:03:58 +0000 (UTC)
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE00D47858;
+	Thu,  5 Oct 2023 07:02:55 -0700 (PDT)
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 395AZB2Z025382;
+	Thu, 5 Oct 2023 13:46:34 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
 	message-id:date:mime-version:subject:to:cc:references:from
 	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=vPDJqlOkcYsv+9E6fFIpFrHnKzbiUCA3RfHCCwQImm4=; b=wL
-	RTr23xKY7IlRigOfwIllM/hLW5K9GUXkc/7FSGDPEn5YXwseGCyQ/UKylHdKNSuO
-	bfP1lheXVsK7D7iQ3dleD2h9+5XOp3LGEB33YQCTPT591qrNYamX19LfD/KdYqIH
-	YNg9AorRRHs1+eudFpgYutNUJyZkJVLVwE9kEJ/30sxoLaALrpJWghb5UDQu5ovm
-	fI5Ju8eQwkSDDr/dFuvh7DVlz5pFROmhHyBb9sJyLT8t4i7rAj+4QYaPqC0BJ61Y
-	3Omq6DOM1nxZoJF3swy7hDQf+Ckf1Hq3U3NyONDtSkf1dpXzrAzmr9FvJQptpPYN
-	rvV5RUf4NkD1GEwrgWqQ==
+	selector1; bh=4xkLY2sFZ6bAzP0C1Okvtq5k6MsL61eKVQtjQb/uCzI=; b=ih
+	YJGuaoo6cj7jDjv8uH+x/yHLAIAYkgZMQObGOUiuNk1/TqYdrHiovCWuZw64s+rh
+	x/a9xMB1yUcVzidue2x3rz3sAPaSSscGSZw8nOQj+SkUtnTf6J91iUPeE5JhqVyH
+	8AdXjupa7lH5IgiQ9sUDFQZXT/5SdNstWBZAHRsmnHnQKhekScWINLECzhgc6oA9
+	twXbm+xtMTeT3Bn7rdsh8zklNFhgyItrygbhaXLqkU/nN6QBJzsXTFOOxXWy1X0d
+	vBvWEgUvR5mbwWhNEi4BwNCu3syuhstUFx2AiuuUi/kEADr9kLJnMQ3hoAFwgNZf
+	2s6m4Xb/hrFLoh0IBW9w==
 Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3thtbbrk16-1
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3thuh409b3-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 05 Oct 2023 13:27:21 +0200 (MEST)
+	Thu, 05 Oct 2023 13:46:34 +0200 (MEST)
 Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5A34010005C;
-	Thu,  5 Oct 2023 13:27:20 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4C59F23D3E2;
-	Thu,  5 Oct 2023 13:27:20 +0200 (CEST)
-Received: from [10.252.31.76] (10.252.31.76) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id BF7D010005C;
+	Thu,  5 Oct 2023 13:46:32 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B19E124AAD8;
+	Thu,  5 Oct 2023 13:46:32 +0200 (CEST)
+Received: from [10.201.20.120] (10.201.20.120) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 5 Oct
- 2023 13:27:18 +0200
-Message-ID: <c8804fbe-46e7-2771-e503-4e786df2f97c@foss.st.com>
-Date: Thu, 5 Oct 2023 13:27:18 +0200
+ 2023 13:46:31 +0200
+Message-ID: <a4ae0d0a-2a80-45d7-9527-928e26fef4ef@foss.st.com>
+Date: Thu, 5 Oct 2023 13:46:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,40 +58,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.1
-Subject: Re: [PATCH v3 08/12] net: ethernet: stmmac: stm32: support the
- phy-supply regulator binding
+Subject: Re: [RFC 0/6] VP8 H1 stateless encoding
 Content-Language: en-US
-To: Ben Wolsieffer <ben.wolsieffer@hefring.com>
-CC: "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
+To: Conor Dooley <conor@kernel.org>
+CC: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>,
+        Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
+        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        Sakari Ailus
+	<sakari.ailus@linux.intel.com>,
+        Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>,
+        Laurent Pinchart
+	<laurent.pinchart+renesas@ideasonboard.com>,
+        Daniel Almeida
+	<daniel.almeida@collabora.com>,
+        Benjamin Mugnier
+	<benjamin.mugnier@foss.st.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Mauro
+ Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>, <linux-media@vger.kernel.org>,
         Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark
- Brown <broonie@kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
         <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20230928151512.322016-1-christophe.roullier@foss.st.com>
- <20230928151512.322016-9-christophe.roullier@foss.st.com>
- <ZRWfhk0aEDwytGv5@dell-precision-5540>
-From: Christophe ROULLIER <christophe.roullier@foss.st.com>
-In-Reply-To: <ZRWfhk0aEDwytGv5@dell-precision-5540>
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-rockchip@lists.infradead.org>,
+        Marco Felsch <m.felsch@pengutronix.de>, Adam Ford <aford173@gmail.com>
+References: <20231004103720.3540436-1-hugues.fruchet@foss.st.com>
+ <20231005-bleach-unknotted-9b11443959b1@spud>
+From: Hugues FRUCHET <hugues.fruchet@foss.st.com>
+In-Reply-To: <20231005-bleach-unknotted-9b11443959b1@spud>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.252.31.76]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
- (10.75.129.70)
+X-Originating-IP: [10.201.20.120]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
 X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2023-10-05_08,2023-10-05_01,2023-05-22_02
 X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
@@ -100,64 +109,86 @@ X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Hi Conor,
 
-On 9/28/23 17:45, Ben Wolsieffer wrote:
-> Hello,
->
-> On Thu, Sep 28, 2023 at 05:15:08PM +0200, Christophe Roullier wrote:
->> From: Christophe Roullier <christophe.roullier@st.com>
+My fault, mistake on "to" when sending mail, please ignore this serie 
+there are no bindings/DT in it.
+Sorry for disturbance.
+
+Best regards,
+Hugues.
+
+On 10/5/23 12:59, Conor Dooley wrote:
+> On Wed, Oct 04, 2023 at 12:37:14PM +0200, Hugues Fruchet wrote:
+>> Hi all,
 >>
->> Configure the phy regulator if defined by the "phy-supply" DT phandle.
+>> Here is an RFC to support VP8 encoding using Hantro H1 hardware
+>> of STM32MP25 SoCs (Verisilicon VC8000NanoE IP).
+>> This work is derived from work done to support Rockchip RK3399
+>> VPU2 in RFC [1] with a reshuffling of registers to match H1
+>> register set.
 >>
->> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
->> ---
->>   .../net/ethernet/stmicro/stmmac/dwmac-stm32.c | 51 ++++++++++++++++++-
->>   1 file changed, 50 insertions(+), 1 deletion(-)
+>> This has been tested on STM32MP257F-EV1 evaluation board using
+>> GStreamer userspace [2]:
+>> gst-launch-1.0 videotestsrc num-buffers=500 ! video/x-raw,width=640,height=480 \
+>> ! v4l2slvp8enc ! queue ! matroskamux ! filesink location=test_vp8.mkv
 >>
->> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
->> index 72dda71850d75..31e3abd2caeaa 100644
->> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
->> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
-> ... snip ...
->>   static int stm32mp1_suspend(struct stm32_dwmac *dwmac)
->> @@ -455,12 +496,20 @@ static int stm32mp1_suspend(struct stm32_dwmac *dwmac)
->>   	if (dwmac->enable_eth_ck)
->>   		clk_disable_unprepare(dwmac->clk_eth_ck);
->>   
->> +	/* Keep the PHY up if we use Wake-on-Lan. */
->> +	if (!device_may_wakeup(dwmac->dev))
->> +		phy_power_on(dwmac, false);
->> +
->>   	return ret;
->>   }
->>   
->>   static void stm32mp1_resume(struct stm32_dwmac *dwmac)
->>   {
->>   	clk_disable_unprepare(dwmac->clk_ethstp);
->> +
->> +	/* The PHY was up for Wake-on-Lan. */
->> +	if (!device_may_wakeup(dwmac->dev))
->> +		phy_power_on(dwmac, true);
->>   }
->>   
->>   static int stm32mcu_suspend(struct stm32_dwmac *dwmac)
-> Why only turn off the regulator in suspend on the STM32MP1 and not STM32
-> MCUs? It seems like this could just go in stm32_dwmac_suspend/resume().
->
-> Selfishly, I have a use case for this on an STM32F746 platform, so I
-> would like to see support for it and would test an updated version.
->
-Hi,
-
-I'm working on MPU boards, I do not have MCU board, so feel free to 
-contribute on MCU part ;-)
-
-Thanks
-
-Christophe
-
+>> For the sake of simplicity I have embedded here the RFC [1] before the
+>> changes related to this exact RFC, all rebased on v6.6 + STM32MP25
+>> hardware codecs support [3].
+> 
+> I don't see any bindings etc here, what is it that you think I would
+> care about looking at in this RFC series?
+> 
+> Thanks,
+> Conor.
+> 
+>>
+>> [1] https://lwn.net/ml/linux-media/20230309125651.23911-1-andrzej.p@collabora.com/
+>> [2] https://gitlab.freedesktop.org/gstreamer/gstreamer/-/merge_requests/3736
+>> [3] https://patchwork.kernel.org/project/linux-media/list/?series=789861
+>>
+>> Best regards,
+>> Hugues.
+>>
+>>
+>> Andrzej Pietrasiewicz (2):
+>>    media: uapi: Add VP8 stateless encoder controls
+>>    media: hantro: add VP8 encode support for Rockchip RK3399 VPU2
+>>
+>> Hugues Fruchet (4):
+>>    media: hantro: add h1 vp8 encode support
+>>    media: hantro: add VP8 encode support for STM32MP25 VENC
+>>    media: hantro: h1: NV12 single-plane support
+>>    media: hantro: add NV12 single-plane support for STM32MP25 VENC
+>>
+>>   drivers/media/platform/verisilicon/Makefile   |    3 +
+>>   drivers/media/platform/verisilicon/hantro.h   |   10 +
+>>   .../platform/verisilicon/hantro_boolenc.c     |   69 +
+>>   .../platform/verisilicon/hantro_boolenc.h     |   21 +
+>>   .../media/platform/verisilicon/hantro_drv.c   |   15 +-
+>>   .../platform/verisilicon/hantro_h1_jpeg_enc.c |   42 +-
+>>   .../platform/verisilicon/hantro_h1_regs.h     |   71 +-
+>>   .../platform/verisilicon/hantro_h1_vp8_enc.c  | 1589 +++++++++++++++++
+>>   .../media/platform/verisilicon/hantro_hw.h    |   93 +
+>>   .../media/platform/verisilicon/hantro_v4l2.c  |    5 +-
+>>   .../media/platform/verisilicon/hantro_vp8.c   |  118 ++
+>>   .../verisilicon/rockchip_vpu2_hw_vp8_enc.c    | 1574 ++++++++++++++++
+>>   .../platform/verisilicon/rockchip_vpu2_regs.h |    1 +
+>>   .../platform/verisilicon/rockchip_vpu_hw.c    |   23 +-
+>>   .../platform/verisilicon/stm32mp25_venc_hw.c  |   35 +-
+>>   drivers/media/v4l2-core/v4l2-ctrls-core.c     |   13 +
+>>   drivers/media/v4l2-core/v4l2-ctrls-defs.c     |    5 +
+>>   include/media/v4l2-ctrls.h                    |    2 +
+>>   include/uapi/linux/v4l2-controls.h            |   91 +
+>>   include/uapi/linux/videodev2.h                |    3 +
+>>   20 files changed, 3755 insertions(+), 28 deletions(-)
+>>   create mode 100644 drivers/media/platform/verisilicon/hantro_boolenc.c
+>>   create mode 100644 drivers/media/platform/verisilicon/hantro_boolenc.h
+>>   create mode 100644 drivers/media/platform/verisilicon/hantro_h1_vp8_enc.c
+>>   create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu2_hw_vp8_enc.c
+>>
 >> -- 
 >> 2.25.1
 >>
-> Thanks, Ben
 
