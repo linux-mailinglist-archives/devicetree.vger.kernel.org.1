@@ -1,108 +1,191 @@
-Return-Path: <devicetree+bounces-6314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A86747BAB9A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 22:46:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78E737BABE2
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 23:22:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id E6A52B20585
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 20:46:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 28D6A281F33
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 21:22:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4648938FAC;
-	Thu,  5 Oct 2023 20:46:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E57E041E35;
+	Thu,  5 Oct 2023 21:22:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="icUJFlz+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BF3A37165
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 20:46:46 +0000 (UTC)
-Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8302B93;
-	Thu,  5 Oct 2023 13:46:44 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by lithops.sigma-star.at (Postfix) with ESMTP id 3C9B06340DEC;
-	Thu,  5 Oct 2023 22:46:42 +0200 (CEST)
-Received: from lithops.sigma-star.at ([127.0.0.1])
-	by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10032)
-	with ESMTP id pxjMnQh4blOb; Thu,  5 Oct 2023 22:46:41 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by lithops.sigma-star.at (Postfix) with ESMTP id BEEE46340DF3;
-	Thu,  5 Oct 2023 22:46:41 +0200 (CEST)
-Received: from lithops.sigma-star.at ([127.0.0.1])
-	by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id 4Jkbwh50XZ7F; Thu,  5 Oct 2023 22:46:41 +0200 (CEST)
-Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
-	by lithops.sigma-star.at (Postfix) with ESMTP id 895696340DEC;
-	Thu,  5 Oct 2023 22:46:41 +0200 (CEST)
-Date: Thu, 5 Oct 2023 22:46:41 +0200 (CEST)
-From: Richard Weinberger <richard@nod.at>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Randy Dunlap <rdunlap@infradead.org>, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	linux-mtd <linux-mtd@lists.infradead.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>
-Message-ID: <1863543078.49676.1696538801349.JavaMail.zimbra@nod.at>
-In-Reply-To: <226381209.31782.1696362327615.JavaMail.zimbra@nod.at>
-References: <cover.1691717480.git.daniel@makrotopia.org> <df8cfc16a0047c1041a8f8d0069c6312bb83da0d.1691717480.git.daniel@makrotopia.org> <226381209.31782.1696362327615.JavaMail.zimbra@nod.at>
-Subject: Re: [PATCH v4 5/8] mtd: ubi: attach MTD partition from device-tree
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35BA73B2B9
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 21:22:08 +0000 (UTC)
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABAFA95;
+	Thu,  5 Oct 2023 14:22:07 -0700 (PDT)
+Received: by mail-pg1-x534.google.com with SMTP id 41be03b00d2f7-564af0ac494so1044440a12.0;
+        Thu, 05 Oct 2023 14:22:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696540927; x=1697145727; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vR11VcSycWMnF0G38upGXhqs80RNqCoLM8Yc54IYpxM=;
+        b=icUJFlz+hlDPbQRDi9Y7LpKpZsbSFdcvcrCn56mgif0nqZ8oWeJqmrz7nSzCFrZjPf
+         3rskEpVjIDxpSRo4XpmouFdWJ+f+5yZKh6J7VpsekAtIx6IY1eQi9wul2+AuDoknfS8D
+         2NdHuO3+FQWhE4XBhOIF7Qb57HfVy7r0FmY1GfQmWv1nZrLTnd/NlZ+1xwSVL+V/cEo3
+         s7cogLvJ/3SQVOFV0LRMnQ1JlAutPuya576D60rCpXkR5kWagaqCNZDZoPK2+ToN1ean
+         BvCdq3BrWwTRT1jpGzzG+BTPCTzyCrmGgpC1zAjqoWP0MM4kn/oYsbMDr2haiNokR81d
+         Ca0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696540927; x=1697145727;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vR11VcSycWMnF0G38upGXhqs80RNqCoLM8Yc54IYpxM=;
+        b=hkky4JpOyXrt/R+xzJWi9CqGPqr9iHVEL/VjwIz1bpp/tCe8cn8skpTJ9SSW6alcmk
+         AuqOn/2Sjf2pUN73dPZrHhHz2UElhT4L1Fgj3J1XwQ75fOlFeJ3PEkC8mQewZniHnEci
+         bPLR7F7DO3jfHpp3TVCdAxgo9/av0PhLOcZ7Ro3B5KmjBHCg5CEeSuUX1+DFE+1kArdr
+         CnhtVEfm5SgDv+VtxDr9bxty6FHKakciZJOLSqYLK3YA8IN2yZV/7hnX0Iq1ZFuGZQf9
+         G6uRrt0krQ89z/UaSX7lxHLp7Pxiibwa3XRszlWrh3FovQf0N9LImOeOMFN5ak7fXQiE
+         SVkw==
+X-Gm-Message-State: AOJu0Yyrynq2dHj/hzKHPbogIjJXDxBu2ipxTvHwYWAmS8zJW4cPIq1M
+	AZY2xbcu5H8rrQRH4tX2zCyawE7rugZKBlpKveA=
+X-Google-Smtp-Source: AGHT+IHc1YIkEdrWv9pd8ej0GQX+FpVlMxW7+nXw9UjdRsbCf+sNBIGRA5zww4B+Y8OATKMaVI/94oHaJrS7fqo5fEY=
+X-Received: by 2002:a17:90b:30cb:b0:279:cea:cfa9 with SMTP id
+ hi11-20020a17090b30cb00b002790ceacfa9mr6310042pjb.21.1696540927028; Thu, 05
+ Oct 2023 14:22:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <20230928151631.149333-1-jcmvbkbc@gmail.com> <20230928151631.149333-6-jcmvbkbc@gmail.com>
+ <2023100326-crushing-septic-4856@gregkh> <CAMo8BfJgpP-=tNEChcyR3z6i_QeJ9Ywq7EOjjC5i7Uq4OrgXNA@mail.gmail.com>
+ <2023100544-rendering-identify-e0ad@gregkh>
+In-Reply-To: <2023100544-rendering-identify-e0ad@gregkh>
+From: Max Filippov <jcmvbkbc@gmail.com>
+Date: Thu, 5 Oct 2023 14:21:55 -0700
+Message-ID: <CAMo8Bf+wS+qiX2mMZm0i8dt7xkDO8RvroP8RF=78zxgFj-zwaA@mail.gmail.com>
+Subject: Re: [PATCH v4 5/5] drivers/tty/serial: add ESP32S3 ACM device driver
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+	devicetree@vger.kernel.org, Jiri Slaby <jirislaby@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Originating-IP: [195.201.40.130]
-X-Mailer: Zimbra 8.8.12_GA_3807 (ZimbraWebClient - FF97 (Linux)/8.8.12_GA_3809)
-Thread-Topic: attach MTD partition from device-tree
-Thread-Index: kqr0xqm+jR+lBv0FwDpbk9UYfLM3MSkaKwBk
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,T_SPF_PERMERROR autolearn=ham
-	autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	FROM_LOCAL_NOVOWEL,HK_RANDOM_ENVFROM,HK_RANDOM_FROM,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
------ Urspr=C3=BCngliche Mail -----
-> Von: "richard" <richard@nod.at>
-> ----- Urspr=C3=BCngliche Mail -----
->> diff --git a/drivers/mtd/ubi/block.c b/drivers/mtd/ubi/block.c
->> index e0618bbde3613..99b5f502c9dbc 100644
->> --- a/drivers/mtd/ubi/block.c
->> +++ b/drivers/mtd/ubi/block.c
->> @@ -470,7 +470,7 @@ int ubiblock_remove(struct ubi_volume_info *vi, bool=
- force)
->> =09}
->>=20
->> =09/* Found a device, let's lock it so we can check if it's busy */
->> -=09mutex_lock(&dev->dev_mutex);
->> +=09mutex_lock_nested(&dev->dev_mutex, SINGLE_DEPTH_NESTING);
->=20
-> The usage of mutex_lock_nested() in this patch looks fishy.
-> Can you please elaborate a bit more why all these mutexes can be taken tw=
-ice?
-> (Any why not more often).
+On Thu, Oct 5, 2023 at 11:57=E2=80=AFAM Greg Kroah-Hartman
+<gregkh@linuxfoundation.org> wrote:
+> On Tue, Oct 03, 2023 at 12:46:46PM -0700, Max Filippov wrote:
+> > > > Hardware specification is available at the following URL:
+> > > >
+> > > >   https://www.espressif.com/sites/default/files/documentation/esp32=
+-s3_technical_reference_manual_en.pdf
+> > > >   (Chapter 33 USB Serial/JTAG Controller)
+> > >
+> > > I don't understand this driver, "ACM" is a USB host <-> gadget protoc=
+ol,
+> > > why do you need a platform serial driver for this?
+> >
+> > The USB part of this piece of hardware is fixed and not controllable, s=
+o
+> > all we have is a very limited UART interface. But to the outside world
+> > it's a USB device with the CDC-ACM interface.
+>
+> Where is the "outside world" here?  The other end of the tty connection?
 
-I think I figured myself.
-ubiblock_ops->open() and ->release() are both called with disk->open_mutex =
-held.
-ubiblock_open() and ubiblock_release() take dev->dev_mutex.
-So, the locking order is open_mutex, followed by dev_mutex.
+Yes.
 
-On the other hand, ubiblock_remove() is called via UBI notify.
-It takes first dev_mutex and then calls del_gendisk() which will trigger ub=
-iblock_ops->release()
-under disk->open_mutex but takes dev_mutex again.
-So, we this not only takes a lock twice but also in reverse order.
-mutex_lock_nested() might silence lockdep but I'm not sure whether this is =
-safe at all.
+> So this is a "ACM gadget"?  If so, please try to use that term as that's
+> what we use in the kernel to keep things straight.
 
-Thanks,
-//richard
+Ok.
+
+> > > > diff --git a/drivers/tty/serial/esp32_acm.c b/drivers/tty/serial/es=
+p32_acm.c
+> > > > new file mode 100644
+> > > > index 000000000000..f02abd2ac65e
+> > > > --- /dev/null
+> > > > +++ b/drivers/tty/serial/esp32_acm.c
+> > > > @@ -0,0 +1,459 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0-or-later
+> > >
+> > > Why "or later"?  I have to ask, sorry.
+> >
+> > I don't really have a preference here. Is there a reason to choose
+> > GPL-2.0 only for a new code?
+>
+> It's your call, you need to pick that, but I can provide recommendations
+> if you want :)
+
+Please do?
+
+> > > And no copyright information?  That's fine, but be sure your company'=
+s
+> > > lawyers are ok with it...
+> >
+> > There's no company behind this, just myself.
+>
+> Great, it's your copyright, be proud, put it on there!
+
+If I don't have to I'd rather not. This is just a piece of meaningless nois=
+e.
+
+> > > > +#define DEV_NAME     "ttyACM"
+> > >
+> > > There is already a ttyACM driver in the kernel, will this conflict wi=
+th
+> > > that one?  And are you using the same major/minor numbers for it as
+> > > well?  If so, how is this going to work?
+> >
+> > I'll rename it to ttyS. I see that it coexists with the other driver th=
+at calls
+> > its devices ttyS just fine.
+>
+> Great.  But if you are going to be like a ACM gadget, use ttyGS like
+> that driver does?
+
+Ok.
+
+> > > > --- a/include/uapi/linux/serial_core.h
+> > > > +++ b/include/uapi/linux/serial_core.h
+> > > > @@ -248,4 +248,7 @@
+> > > >  /* Espressif ESP32 UART */
+> > > >  #define PORT_ESP32UART       124
+> > > >
+> > > > +/* Espressif ESP32 ACM */
+> > > > +#define PORT_ESP32ACM        125
+> > >
+> > > Why are these defines needed?  What in userspace is going to require
+> > > them?  If nothing, please do not add them.
+> >
+> > I don't understand what the alternatives are. The comment for the
+> > uart_ops::config_port() callback says that port->type should be set
+> > to the type of the port found, and I see that almost every serial drive=
+r
+> > defines a unique PORT_* for that.
+>
+> Yes, but not all do.  If you don't need to do anything special, it can
+> just claim to be a normal device, we've had threads about this on the
+> list before.  If you don't need to determine in userspace from the tty
+> connection what device it is, just use the default one instead.
+
+Ok, it looks like having
+
+#define PORT_ESP32ACM (-1)
+
+in the driver source should be ok? I've tested that it works.
+
+--=20
+Thanks.
+-- Max
 
