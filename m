@@ -1,183 +1,99 @@
-Return-Path: <devicetree+bounces-6144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A5287B9F22
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:19:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 241277B9ED3
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:13:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 537C01C20910
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 14:19:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTP id AC5F2B20A1F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 14:13:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA73528E21;
-	Thu,  5 Oct 2023 14:18:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B596D28DCA;
+	Thu,  5 Oct 2023 14:13:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FZq+rtBH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mY+hJD0M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D7F328E1A
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 14:18:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E33CC43395;
-	Thu,  5 Oct 2023 14:18:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 919A46FD0;
+	Thu,  5 Oct 2023 14:13:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C7E2C43397;
+	Thu,  5 Oct 2023 14:13:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696515539;
-	bh=+5giS8dCDEB9SSIrIST7R8CXKZKXlmVab1T0e3RZ980=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FZq+rtBHFgu7hUs9WU6oYZctlBrd8N8B6gpDD6vXr/eRZuuDq5yhSI/zvykHn5bDG
-	 FxdBPitqVLrJMSY2mQ5UEB8SQR+q42ZA328/UwbpxuQg8xFE4s8cHoyPLZyCFlaJm2
-	 T8oZPiVBbWLi7I528nPlTqYqOiYM4XSlFSJe6B5tMJpFlK9QpdxD+TldHQwf7bibC2
-	 sU0eKnKWL9hjEdZ4CKwA+7bpCQwxA/GxAj6ro2nfoSowaAJb9MLyufNioMejjt0SV6
-	 GvMsnjHqOYXyPXDbzQ4TO6ni2SPaiSB2w3FFb523TufPFH1DyA58ff5TAH+ONFDlVh
-	 j/hSOIbqc4dUg==
-Date: Thu, 5 Oct 2023 22:06:50 +0800
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Thierry Reding <thierry.reding@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] pwm: add T-HEAD PWM driver
-Message-ID: <ZR7C+hrisF0lsAg1@xhacker>
-References: <20231004092731.1362-1-jszhang@kernel.org>
- <20231004092731.1362-3-jszhang@kernel.org>
- <20231004140130.ljsfpn4axmsmszwm@pengutronix.de>
+	s=k20201202; t=1696515221;
+	bh=QpGmCqU0pUYx3+Z24KLDIJS/wI6gYoTWqGYIY7fYRaI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=mY+hJD0MBcdzVOEqUF+5VxIfvCUs8WK+NVgBaobb0A3SFm+PSIpJe3nucjLjrRBox
+	 Uzk/ZeufQph9nYnqcJmeoojK+igOxPidJaeE6+kURBSE3summTGVE2+Oat3ooLJt/j
+	 BMurimxaWy8lznH4RROlLimfOtbvvHPz76/OEgU2evc284gz4IuzFpRR8FJlpw1Ts1
+	 LGyjBfr8O1X9pvG3nqoQogDuRnLh6I77H6urjQ0r59Za/h32mFof/GqjDqkRWZCKpX
+	 tziMOwrhYIJpdYTaSFkLx4EmBARfdbftBEgxpql5AlpBiVnrX8GCBmad9vuezakvyJ
+	 YUrgiywq7fx5g==
+Date: Thu, 5 Oct 2023 15:13:43 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: David Lechner <dlechner@baylibre.com>, Philip Molloy
+ <pmolloy@baylibre.com>, linux-staging@lists.linux.dev, Axel Haslam
+ <ahaslam@baylibre.com>, Apelete Seketeli <aseketeli@baylibre.com>, Rob
+ Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-iio@vger.kernel.org, Michael Hennerich
+ <Michael.Hennerich@analog.com>, linux-kernel@vger.kernel.org, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org, David
+ Lechner <david@lechnology.com>
+Subject: Re: [PATCH v3 01/27] dt-bindings: iio: resolver: add devicetree
+ bindings for ad2s1210
+Message-ID: <20231005151343.6703ad69@jic23-huawei>
+In-Reply-To: <169625993628.1746950.6393858750841663279.robh@kernel.org>
+References: <20230929-ad2s1210-mainline-v3-0-fa4364281745@baylibre.com>
+	<20230929-ad2s1210-mainline-v3-1-fa4364281745@baylibre.com>
+	<169625993628.1746950.6393858750841663279.robh@kernel.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231004140130.ljsfpn4axmsmszwm@pengutronix.de>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Wed, Oct 04, 2023 at 04:01:30PM +0200, Uwe Kleine-König wrote:
-> On Wed, Oct 04, 2023 at 05:27:31PM +0800, Jisheng Zhang wrote:
-> > T-HEAD SoCs such as the TH1520 contain a PWM controller used
-> > to control the LCD backlight, fan and so on. Add driver for it.
+On Mon, 2 Oct 2023 10:18:56 -0500
+Rob Herring <robh@kernel.org> wrote:
+
+> On Fri, 29 Sep 2023 12:23:06 -0500, David Lechner wrote:
+> > From: David Lechner <david@lechnology.com>
 > > 
-> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> > From: David Lechner <dlechner@baylibre.com>
+> > 
+> > This adds new DeviceTree bindings for the Analog Devices, Inc. AD2S1210
+> > resolver-to-digital converter.
+> > 
+> > Co-developed-by: Apelete Seketeli <aseketeli@baylibre.com>
+> > Signed-off-by: Apelete Seketeli <aseketeli@baylibre.com>
+> > Signed-off-by: David Lechner <dlechner@baylibre.com>
 > > ---
-
-...
-
-Hi Uwe,
-
-Thanks a lot for your review and nice suggestions. v3 has been sent out.
-And I want to add more comments to your questions here.
-
-> > +
-> > +static int thead_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> > +			   const struct pwm_state *state)
-> > +{
-> > +	struct thead_pwm_chip *priv = thead_pwm_from_chip(chip);
-> > +	u64 period_cycle, duty_cycle, rate;
-> > +	u32 val;
-> > +
-> > +	/* if ever started, can't change the polarity */
-> > +	if (priv->ever_started && state->polarity != pwm->state.polarity)
-> > +		return -EINVAL;
-
-This is the polority check[1] for ever started channel.
-
-> > +
-> > +	if (!state->enabled) {
-> > +		if (pwm->state.enabled) {
-> > +			val = readl(priv->mmio_base + THEAD_PWM_CTRL(pwm->hwpwm));
-> > +			val &= ~THEAD_PWM_CFG_UPDATE;
-> > +			writel(val, priv->mmio_base + THEAD_PWM_CTRL(pwm->hwpwm));
-> > +
-> > +			writel(0, priv->mmio_base + THEAD_PWM_FP(pwm->hwpwm));
-> > +
-> > +			val |= THEAD_PWM_CFG_UPDATE;
-> > +			writel(val, priv->mmio_base + THEAD_PWM_CTRL(pwm->hwpwm));
-> > +		}
-> > +		return 0;
-> > +	}
-> > +
-> > +	if (!pwm->state.enabled)
-> > +		pm_runtime_get_sync(chip->dev);
-
+> > 
+> > v3 changes:
+> > * Expanded top-level description of A0/A1 lines.
+> > * Added required voltage -supply properties. (I did not pick up Rob's
+> >   Reviewed-by since I wasn't sure if this was trivial enough.)
+> > 
+> > v2 changes:
+> > * Add Co-developed-by:
+> > * Remove extraneous quotes on strings
+> > * Remove extraneous pipe on some multi-line descriptions
+> > 
+> >  .../bindings/iio/resolver/adi,ad2s1210.yaml        | 177 +++++++++++++++++++++
+> >  1 file changed, 177 insertions(+)
+> >   
 > 
-> pm_runtime_get_sync() returns an int that you shouldn't ignore.
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> 
 
-In v3 I switch to pm_runtime_resume_and_get() because it can simplify
-the error handling code.
+Applied to the togreg branch of iio.git and pushed out as testing for
+all the normal reasons.
 
-> 
-> > +	val = readl(priv->mmio_base + THEAD_PWM_CTRL(pwm->hwpwm));
-> > +	val &= ~THEAD_PWM_CFG_UPDATE;
-> > +
-> > +	if (state->polarity == PWM_POLARITY_INVERSED)
-> > +		val &= ~THEAD_PWM_FPOUT;
-> > +	else
-> > +		val |= THEAD_PWM_FPOUT;
-> 
-> What happens here if the bootloader already touched that flag? Or the
-> driver is reloaded/rebound?
-
-Only polarity can't be changed once started, so if bootloader already
-configured polarity and started the pwm channel, and we want to change
-to a different polarity, the check[1] in the beginning of this function
-will fail so return -EINVAL.
-
-> 
-> > +	writel(val, priv->mmio_base + THEAD_PWM_CTRL(pwm->hwpwm));
-> > +
-> > +	rate = clk_get_rate(priv->clk);
-> > +	/*
-> > +	 * The following calculations might overflow if clk is bigger
-> > +	 * than 1 GHz. In practise it's 24MHz, so this limitation
-> > +	 * is only theoretic.
-> > +	 */
-> > +	if (rate > (u64)NSEC_PER_SEC)
-> 
-> this cast isn't needed.
-> 
-> > +		return -EINVAL;
-> > +
-> > +	period_cycle = mul_u64_u64_div_u64(rate, state->period, NSEC_PER_SEC);
-> > +	if (period_cycle > THEAD_PWM_MAX_PERIOD)
-> > +		period_cycle = THEAD_PWM_MAX_PERIOD;
-> > +	/*
-> > +	 * With limitation above we have period_cycle <= THEAD_PWM_MAX_PERIOD,
-> > +	 * so this cannot overflow.
-> > +	 */
-> > +	writel((u32)period_cycle, priv->mmio_base + THEAD_PWM_PER(pwm->hwpwm));
-> 
-> This cast can also be dropped.
-> 
-> > +
-> > +	duty_cycle = mul_u64_u64_div_u64(rate, state->duty_cycle, NSEC_PER_SEC);
-> > +	if (duty_cycle > THEAD_PWM_MAX_DUTY)
-> > +		duty_cycle = THEAD_PWM_MAX_DUTY;
-> > +	/*
-> > +	 * With limitation above we have duty_cycle <= THEAD_PWM_MAX_PERIOD,
-> > +	 * so this cannot overflow.
-> > +	 */
-> > +	writel((u32)duty_cycle, priv->mmio_base + THEAD_PWM_FP(pwm->hwpwm));
-> 
-> ...
-> 
-> > +
-> > +	val |= THEAD_PWM_CFG_UPDATE;
-> > +	writel(val, priv->mmio_base + THEAD_PWM_CTRL(pwm->hwpwm));
-> > +
-> > +	if (!pwm->state.enabled) {
-> > +		val |= THEAD_PWM_START;
-> > +		writel(val, priv->mmio_base + THEAD_PWM_CTRL(pwm->hwpwm));
-> > +		priv->ever_started = true;
-> > +	}
-> 
-> Further above you conditionally call pm_runtime_get_sync(), there should
-> be a matching pm_runtime_put().
-
-In v3, I call pm_runtime_put_sync() when pwm channel is disabled.
-
-
-Thanks
+Jonathan
 
