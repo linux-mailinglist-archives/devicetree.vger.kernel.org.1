@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-6041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBD517B9BE4
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 10:46:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36C0E7B9BE9
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 10:46:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 6BCE5281AC3
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 08:46:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id DCD10281AA4
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 08:46:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2283015C5;
-	Thu,  5 Oct 2023 08:46:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 705086FDB;
+	Thu,  5 Oct 2023 08:46:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="awPOzOf2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="afKepIY8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E0596ADC
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 08:46:24 +0000 (UTC)
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C5699029
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 01:46:23 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-533c5d10dc7so1154429a12.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 01:46:23 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21A3E63C9
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 08:46:49 +0000 (UTC)
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C876B902D
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 01:46:43 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-533d31a8523so1243221a12.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 01:46:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696495581; x=1697100381; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696495602; x=1697100402; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xx6pMX6vajCGGHVYJARjc1sv92OuBp5xlvWEy/mgjJ0=;
-        b=awPOzOf2HgzBuYqBkPwRBZQWHYr+5GakHm6FhZQ/cWdJRj0veLDoicSu9MT5nmqNLE
-         i2Ex+hsACBjtIVYB5J24IPGli6czYPQNdLEKIVpmVQEKYR5Bu+L7nzLazfd22M+RKT3N
-         1szNBFAHa8YMyW+8l04UcXpXT8nJHKgaoTZU/cfsFf6YQxNVfQnI0EctYG46ThMNDi7D
-         EVKiLCu6Yz30nxS2AdYruzDy0sL39+i4VZYoPV7F0cnpTUCfG807ZYVqvc0cBiTT0Vj9
-         nGgKMJkfm/lX4q95aNPdes8tkNewJv4TuRvw0dVNaIIgxilslCz5dtYHkG6brPuPYWAJ
-         lWIw==
+        bh=0nyIvbFflBK7dDTk3DAm+L6H3Nw9v1atRiGVXX/kVj4=;
+        b=afKepIY8+7oz+Qc5LGPizvA+bqHXRrASaueXPtwB63Y4CysoYxOd13WviH/pv9z0vz
+         TRNYV1dfl2LU7JEPVAdWoHqM3Uhwa7UH3ubF/Ww7p0S0SsIFpbcVUxghEaqZeoFu/RzF
+         1Li4+Ey5+0z5WvP1NjtEgcs8tUYvtOq4ik5lh5YXF57xkRoIBKEsLela1Tsiva4XzJow
+         wxKTtZi/koLTrKPF4b9h2H/hGRfr7Fb+bW4n3RGnccyishyoA/g2J0uW6cWJvJU0b92V
+         kiplXsYPb6tiwqghW3Ofdjm0/sIMEfmROzMwSo2C+bX2yGjm0kY6JkWMah0vFMapvElm
+         4Y3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696495581; x=1697100381;
+        d=1e100.net; s=20230601; t=1696495602; x=1697100402;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xx6pMX6vajCGGHVYJARjc1sv92OuBp5xlvWEy/mgjJ0=;
-        b=NkgO8L+aRXG9I9aUs2yoEUPrHZrQ5+v3EjchubsXgpEQOowHMcpR9hqWupprVhEbpi
-         WWV+9mGJfRUjIruopaHrTArlWrYFKRBet7iyLqYXBCaSCaZuA76MOuvCEiMFTTIxsta7
-         hsRQyz0cA9lZHPv5n8hFOJapObEKibNOFzCqiclP5lZSfgf9g94qosavNjQmJ++XOR/A
-         4rVrEQLdmVqF8uDzp2xZYcRzcSPo0kk5I3foHOc7VoCDMGccScGpiXo1m6p6rCzuw7/p
-         d/Pz2D7FE9/hPHHesR9IbxPvln3OSu+Xr3OTF4em68cNf8IER111bmlmuMS/gcSR/sMs
-         lI6w==
-X-Gm-Message-State: AOJu0YwuUbIREpXw0XpzQRcPIkit0Dw9/i1aH9bIzV7KWVKGmSfkr9r9
-	pPrOOwEJi7WxW5VMStWiYh8dtg==
-X-Google-Smtp-Source: AGHT+IG8qofcD5TDLoKWwiNBio+VXhOka5r86036+jdAUKyFw2HeYKfsnfYmm0WeaiVu13BoEuqmtQ==
-X-Received: by 2002:a17:906:535e:b0:9ad:7471:7374 with SMTP id j30-20020a170906535e00b009ad74717374mr3500535ejo.77.1696495581459;
-        Thu, 05 Oct 2023 01:46:21 -0700 (PDT)
+        bh=0nyIvbFflBK7dDTk3DAm+L6H3Nw9v1atRiGVXX/kVj4=;
+        b=Ix6EWSECrU9G40vpLapwhG1TUle48ycpltkwoQKg+jDhqFUrUGYhWBQ9DdCNsIu3sx
+         uWtS9gKZDxqox+lFELhiffOfc53Vamy8sf5fEyAw9P/cA+C6yzYovJljJqSFmIDwPdtb
+         uD5qd9DKAegndfNB8/apomEW5wKRXQuT3xkhVPZWSLcIPoOHZwuOe6Hok1fG0bl9juM4
+         FBY6vEO7K4p1gb4I8jHvFYN6duOXzkv6gP5VjDqSRDriO29O3B4TT5V5NFLP+gaLjAwG
+         N2nig+bl7ArhYDNBs9SNj9mYx2tU1PLJ4dSBrv7rJ5WGiavGUlDvjYqk11CUNKcJcAxu
+         RzIw==
+X-Gm-Message-State: AOJu0YxtqaZQ6pqev3t/giSqsCyo1gZJHTFDEZA8ggKEyHszR4SNlcnH
+	foT1+H6HVpTscQl27yo2A1rYUA==
+X-Google-Smtp-Source: AGHT+IF8ci2GbVdbSryu4l0b197rHPAynt/HopFOKnfXezpREucBtdwtxt/eQu+zv7Ve8Bf9l7iuaw==
+X-Received: by 2002:a17:907:7603:b0:9ae:381a:6c55 with SMTP id jx3-20020a170907760300b009ae381a6c55mr4385292ejc.15.1696495602340;
+        Thu, 05 Oct 2023 01:46:42 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id a1-20020a1709064a4100b009b65a698c5csm815655ejv.57.2023.10.05.01.46.19
+        by smtp.gmail.com with ESMTPSA id a1-20020a1709064a4100b009b65a698c5csm815655ejv.57.2023.10.05.01.46.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Oct 2023 01:46:21 -0700 (PDT)
-Message-ID: <7bbf281f-33b0-44c3-9006-43397d6186b0@linaro.org>
-Date: Thu, 5 Oct 2023 10:46:19 +0200
+        Thu, 05 Oct 2023 01:46:41 -0700 (PDT)
+Message-ID: <c569f808-cdaa-4470-9a80-93714651a5b7@linaro.org>
+Date: Thu, 5 Oct 2023 10:46:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,7 +65,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] dt-bindings: clock: Add SC8280XP CAMCC
+Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: sc8280xp: Add in CAMCC for
+ sc8280xp
 Content-Language: en-US
 To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, andersson@kernel.org,
  agross@kernel.org, konrad.dybcio@linaro.org, mturquette@baylibre.com,
@@ -75,7 +76,7 @@ To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, andersson@kernel.org,
 Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20231004161853.86382-1-bryan.odonoghue@linaro.org>
- <20231004161853.86382-3-bryan.odonoghue@linaro.org>
+ <20231004161853.86382-5-bryan.odonoghue@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,21 +122,22 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231004161853.86382-3-bryan.odonoghue@linaro.org>
+In-Reply-To: <20231004161853.86382-5-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 04/10/2023 18:18, Bryan O'Donoghue wrote:
-> Add device tree bindings for the camera clock controller on
-> Qualcomm SC8280XP platform.
+> Add in CAMCC for sc8280xp. The sc8280xp Camera Clock Controller looks
+> similar to most of the sdmX, smX and now scX controllers.
 > 
 > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
 
 
