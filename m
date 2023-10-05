@@ -1,159 +1,288 @@
-Return-Path: <devicetree+bounces-6064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9450C7B9C89
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 12:41:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 321257B9C8D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 12:43:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 4BFBD281A99
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 10:41:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id D7582281AE4
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 10:43:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4DB910786;
-	Thu,  5 Oct 2023 10:41:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55546125BD;
+	Thu,  5 Oct 2023 10:43:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TY0lOBAN"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="AOa420kL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B63EA8821
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 10:41:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5929C3277D;
-	Thu,  5 Oct 2023 10:41:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696502472;
-	bh=H7QsAgn7LBwCWmNPERn7PZ2ivqiRzZN2vcLos6zUMnQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TY0lOBANpSJ4TxeMou7VuKThItJptvQjXX0Y0Xu3mm8YmwEPszlJJ/MErAikK+n+i
-	 6RDZ256+EU1mMXcXp+m0dIfqL0OhbR2Kl4eSWJZGU/vt4mQLO2voPdAxoPvhU3Xt5L
-	 1Hr2NsE2qLzE5QIYoRf5V/Y5ZEtMkoiLYz5xxe5Jf3GWZ4EKntLhjh579aBa2g4mHV
-	 cS6078ZODgR38pDzNZBBxUF05eOIKvqcKLTjWxGoG7VC8UvTIDaE2KMl7FuGA+dxGL
-	 R02VNMyywG036Phd8x3Hzc+UGj+99bvQBe9Ro+c5p2xcrAbgGU+zo+LRkbIOw5yR7f
-	 NLNUy1TO7x6fg==
-Date: Thu, 5 Oct 2023 11:41:07 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Cosmin Tanislav <cosmin.tanislav@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: add missing reset-gpios constrain
-Message-ID: <20231005-thrift-backer-d2f58a1bd441@spud>
-References: <20231005083650.92222-1-krzysztof.kozlowski@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A06ED125AD
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 10:43:09 +0000 (UTC)
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E24D22C84
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 03:43:06 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-5042bfb4fe9so1040572e87.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 03:43:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1696502585; x=1697107385; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YVObFCNLlwBPipdK3H8KmPs3z72Q3xYU1AFPpgt6DIU=;
+        b=AOa420kLUB0ARHlS9yJpUptTHxVGNbSzGIgOS7VLxaQIF8KBR3laYErI29O7I9olPk
+         ZXDBaN38om7wMOQKSGJ2hTWLYVlqHFT77j1CRFxVa1JX2kcxTYOB2KucfF5Ihs6N17EE
+         EmuCk9fyRAi9UqeV88/vaeXUdquTwq8OBtwVI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696502585; x=1697107385;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YVObFCNLlwBPipdK3H8KmPs3z72Q3xYU1AFPpgt6DIU=;
+        b=hfzcMqVsdbP2Vlip9uoCigc/8vOowzGKPwL/9ERXesc/I24dNVZgNlhhPLnYEHuq9S
+         34EXJ80GyUakE51g9+Un8JShtZvB8AyB/+/MAMv1rxIn6rjAkS9vSvn8C0aU457xpp/+
+         ohutovRaX3i2YY47SIcK3EpCAH7My6TqpnTcdIC5erwm/BlH5ByyhXE5NvqTgtpIAF2J
+         wIzJm3ii1p9WKICHnzFxIeG2br0sqGIFM6j3O2nTKRnzAjUvu/9kBNbfJD5hBXo4oxyB
+         86DCEfKSc0e1Q5ESmJNQ8IsMMsm8vYF8KNnDnLbUe03bGGRXPdXAmHtOtodM3AYpMogJ
+         gCfQ==
+X-Gm-Message-State: AOJu0Yz1VtCBUEZtRIAT8G0ddgDYK09M2ncqGZnrBnHurl5dTFIkQ6wk
+	2YRaXOLhg188tSwEbkbCLI2zH50tt4DHpH2LlgW67Q==
+X-Google-Smtp-Source: AGHT+IHq9DTTPcqEv9hIoZgRG2eMrgjishCCWpwEDsoQWepchJMVarAVpJnzNCiyrgnB7Vjj2+qg9uOeeeYiBZ0Vpnw=
+X-Received: by 2002:a19:4f4d:0:b0:500:bff5:54ec with SMTP id
+ a13-20020a194f4d000000b00500bff554ecmr3807702lfk.3.1696502584574; Thu, 05 Oct
+ 2023 03:43:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="IP8sdSnYW24Jv8+L"
-Content-Disposition: inline
-In-Reply-To: <20231005083650.92222-1-krzysztof.kozlowski@linaro.org>
-
-
---IP8sdSnYW24Jv8+L
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20231005103041.352478-1-eugen.hristev@collabora.com>
+In-Reply-To: <20231005103041.352478-1-eugen.hristev@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Thu, 5 Oct 2023 18:42:53 +0800
+Message-ID: <CAGXv+5GRhqC98=PARwbD4ueaWqdWZiYwSPS4F8TEUF57dnH2WQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8186: fix clock names for power domains
+To: Eugen Hristev <eugen.hristev@collabora.com>
+Cc: matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
+	allen-kh.cheng@mediatek.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Thu, Oct 05, 2023 at 10:36:50AM +0200, Krzysztof Kozlowski wrote:
-> The Documentation/devicetree/bindings/gpio/gpio-consumer-common.yaml
-> schema does not enforce number of reset GPIOs, thus each device binding
-> must do it.
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Thu, Oct 5, 2023 at 6:31=E2=80=AFPM Eugen Hristev
+<eugen.hristev@collabora.com> wrote:
+>
+> Clocks for each power domain are split into big categories: pd clocks
+> and subsys clocks.
+> According to the binding, all clocks which have a dash '-' in their name
+> are treated as subsys clocks, and must be placed at the end of the list.
+> The other clocks which are pd clocks must come first.
+> Fixed the naming and the placing of all clocks in the power domains.
+> For the avoidance of doubt, prefixed all subsys clocks with the 'subsys'
+> prefix. The binding does not enforce strict clock names, the driver
+> uses them in bulk, only making a difference for pd clocks vs subsys clock=
+s.
+>
+> The above problem appears to be trivial, however, it leads to incorrect
+> power up and power down sequence of the power domains, because some
+> clocks will be mistakenly taken for subsys clocks and viceversa.
+> One consequence is the fact that if the DIS power domain goes power down
+> and power back up during the boot process, when it comes back up, there
+> are still transactions left on the bus which makes the display inoperable=
+.
+>
+> Some of the clocks for the DIS power domain were wrongly using '_' instea=
+d
+> of '-', which again made these clocks being treated as pd clocks instead =
+of
+> subsys clocks.
+>
+> Fixes: d9e43c1e7a38 ("arm64: dts: mt8186: Add power domains controller")
+> Signed-off-by: Eugen Hristev <eugen.hristev@collabora.com>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Tested-by: Chen-Yu Tsai <wenst@chromium.org>
 
-Thanks,
-Conor.
+This brings the display back to life on my MT8186 device. :D
+Thank you for tracking down the issue!
 
 > ---
->  Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml | 3 ++-
->  Documentation/devicetree/bindings/iio/dac/adi,ad5758.yaml    | 3 ++-
->  Documentation/devicetree/bindings/iio/health/ti,afe4403.yaml | 3 ++-
->  Documentation/devicetree/bindings/iio/health/ti,afe4404.yaml | 3 ++-
->  4 files changed, 8 insertions(+), 4 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml=
- b/Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml
-> index 2594fa192f93..2a04906531fb 100644
-> --- a/Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml
-> +++ b/Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml
-> @@ -32,7 +32,8 @@ properties:
-> =20
->    spi-cpol: true
-> =20
-> -  reset-gpios: true
-> +  reset-gpios:
-> +    maxItems: 1
-> =20
->    interrupts:
->      minItems: 1
-> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5758.yaml b/=
-Documentation/devicetree/bindings/iio/dac/adi,ad5758.yaml
-> index 4e508bfcc9d8..5121685337b5 100644
-> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad5758.yaml
-> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5758.yaml
-> @@ -78,7 +78,8 @@ properties:
->            - const: -1000
->            - const: 22000
-> =20
-> -  reset-gpios: true
-> +  reset-gpios:
-> +    maxItems: 1
-> =20
->    adi,dc-dc-ilim-microamp:
->      enum: [150000, 200000, 250000, 300000, 350000, 400000]
-> diff --git a/Documentation/devicetree/bindings/iio/health/ti,afe4403.yaml=
- b/Documentation/devicetree/bindings/iio/health/ti,afe4403.yaml
-> index b9b5beac33b2..5b6cde86b5a5 100644
-> --- a/Documentation/devicetree/bindings/iio/health/ti,afe4403.yaml
-> +++ b/Documentation/devicetree/bindings/iio/health/ti,afe4403.yaml
-> @@ -23,7 +23,8 @@ properties:
->      maxItems: 1
->      description: Connected to ADC_RDY pin.
-> =20
-> -  reset-gpios: true
-> +  reset-gpios:
-> +    maxItems: 1
-> =20
->  required:
->    - compatible
-> diff --git a/Documentation/devicetree/bindings/iio/health/ti,afe4404.yaml=
- b/Documentation/devicetree/bindings/iio/health/ti,afe4404.yaml
-> index 2958c4ca75b4..167d10bd60af 100644
-> --- a/Documentation/devicetree/bindings/iio/health/ti,afe4404.yaml
-> +++ b/Documentation/devicetree/bindings/iio/health/ti,afe4404.yaml
-> @@ -23,7 +23,8 @@ properties:
->      maxItems: 1
->      description: Connected to ADC_RDY pin.
-> =20
-> -  reset-gpios: true
-> +  reset-gpios:
-> +    maxItems: 1
-> =20
->  additionalProperties: false
-> =20
-> --=20
+>  arch/arm64/boot/dts/mediatek/mt8186.dtsi | 42 +++++++++++++++---------
+>  1 file changed, 27 insertions(+), 15 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/d=
+ts/mediatek/mt8186.dtsi
+> index af6f6687de35..7121d4312bee 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+> @@ -924,7 +924,8 @@ power-domain@MT8186_POWER_DOMAIN_CSIRX_TOP {
+>                                         reg =3D <MT8186_POWER_DOMAIN_CSIR=
+X_TOP>;
+>                                         clocks =3D <&topckgen CLK_TOP_SEN=
+INF>,
+>                                                  <&topckgen CLK_TOP_SENIN=
+F1>;
+> -                                       clock-names =3D "csirx_top0", "cs=
+irx_top1";
+> +                                       clock-names =3D "subsys-csirx-top=
+0",
+> +                                                     "subsys-csirx-top1"=
+;
+>                                         #power-domain-cells =3D <0>;
+>                                 };
+>
+> @@ -942,7 +943,8 @@ power-domain@MT8186_POWER_DOMAIN_ADSP_AO {
+>                                         reg =3D <MT8186_POWER_DOMAIN_ADSP=
+_AO>;
+>                                         clocks =3D <&topckgen CLK_TOP_AUD=
+IODSP>,
+>                                                  <&topckgen CLK_TOP_ADSP_=
+BUS>;
+> -                                       clock-names =3D "audioadsp", "ads=
+p_bus";
+> +                                       clock-names =3D "audioadsp",
+> +                                                     "subsys-adsp-bus";
+>                                         #address-cells =3D <1>;
+>                                         #size-cells =3D <0>;
+>                                         #power-domain-cells =3D <1>;
+> @@ -975,8 +977,11 @@ power-domain@MT8186_POWER_DOMAIN_DIS {
+>                                                  <&mmsys CLK_MM_SMI_COMMO=
+N>,
+>                                                  <&mmsys CLK_MM_SMI_GALS>=
+,
+>                                                  <&mmsys CLK_MM_SMI_IOMMU=
+>;
+> -                                       clock-names =3D "disp", "mdp", "s=
+mi_infra", "smi_common",
+> -                                                    "smi_gals", "smi_iom=
+mu";
+> +                                       clock-names =3D "disp", "mdp",
+> +                                                     "subsys-smi-infra",
+> +                                                     "subsys-smi-common"=
+,
+> +                                                     "subsys-smi-gals",
+> +                                                     "subsys-smi-iommu";
+>                                         mediatek,infracfg =3D <&infracfg_=
+ao>;
+>                                         #address-cells =3D <1>;
+>                                         #size-cells =3D <0>;
+> @@ -993,15 +998,17 @@ power-domain@MT8186_POWER_DOMAIN_VDEC {
+>
+>                                         power-domain@MT8186_POWER_DOMAIN_=
+CAM {
+>                                                 reg =3D <MT8186_POWER_DOM=
+AIN_CAM>;
+> -                                               clocks =3D <&topckgen CLK=
+_TOP_CAM>,
+> -                                                        <&topckgen CLK_T=
+OP_SENINF>,
+> +                                               clocks =3D <&topckgen CLK=
+_TOP_SENINF>,
+>                                                          <&topckgen CLK_T=
+OP_SENINF1>,
+>                                                          <&topckgen CLK_T=
+OP_SENINF2>,
+>                                                          <&topckgen CLK_T=
+OP_SENINF3>,
+> +                                                        <&camsys CLK_CAM=
+2MM_GALS>,
+>                                                          <&topckgen CLK_T=
+OP_CAMTM>,
+> -                                                        <&camsys CLK_CAM=
+2MM_GALS>;
+> -                                               clock-names =3D "cam-top"=
+, "cam0", "cam1", "cam2",
+> -                                                            "cam3", "cam=
+-tm", "gals";
+> +                                                        <&topckgen CLK_T=
+OP_CAM>;
+> +                                               clock-names =3D "cam0", "=
+cam1", "cam2",
+> +                                                             "cam3", "ga=
+ls",
+> +                                                             "subsys-cam=
+-tm",
+> +                                                             "subsys-cam=
+-top";
+>                                                 mediatek,infracfg =3D <&i=
+nfracfg_ao>;
+>                                                 #address-cells =3D <1>;
+>                                                 #size-cells =3D <0>;
+> @@ -1020,9 +1027,9 @@ power-domain@MT8186_POWER_DOMAIN_CAM_RAWA {
+>
+>                                         power-domain@MT8186_POWER_DOMAIN_=
+IMG {
+>                                                 reg =3D <MT8186_POWER_DOM=
+AIN_IMG>;
+> -                                               clocks =3D <&topckgen CLK=
+_TOP_IMG1>,
+> -                                                        <&imgsys1 CLK_IM=
+G1_GALS_IMG1>;
+> -                                               clock-names =3D "img-top"=
+, "gals";
+> +                                               clocks =3D <&imgsys1 CLK_=
+IMG1_GALS_IMG1>,
+> +                                                        <&topckgen CLK_T=
+OP_IMG1>;
+> +                                               clock-names =3D "gals", "=
+subsys-img-top";
+>                                                 mediatek,infracfg =3D <&i=
+nfracfg_ao>;
+>                                                 #address-cells =3D <1>;
+>                                                 #size-cells =3D <0>;
+> @@ -1041,8 +1048,11 @@ power-domain@MT8186_POWER_DOMAIN_IPE {
+>                                                          <&ipesys CLK_IPE=
+_LARB20>,
+>                                                          <&ipesys CLK_IPE=
+_SMI_SUBCOM>,
+>                                                          <&ipesys CLK_IPE=
+_GALS_IPE>;
+> -                                               clock-names =3D "ipe-top"=
+, "ipe-larb0", "ipe-larb1",
+> -                                                             "ipe-smi", =
+"ipe-gals";
+> +                                               clock-names =3D "subsys-i=
+pe-top",
+> +                                                             "subsys-ipe=
+-larb0",
+> +                                                             "subsys-ipe=
+-larb1",
+> +                                                             "subsys-ipe=
+-smi",
+> +                                                             "subsys-ipe=
+-gals";
+>                                                 mediatek,infracfg =3D <&i=
+nfracfg_ao>;
+>                                                 #power-domain-cells =3D <=
+0>;
+>                                         };
+> @@ -1061,7 +1071,9 @@ power-domain@MT8186_POWER_DOMAIN_WPE {
+>                                                 clocks =3D <&topckgen CLK=
+_TOP_WPE>,
+>                                                          <&wpesys CLK_WPE=
+_SMI_LARB8_CK_EN>,
+>                                                          <&wpesys CLK_WPE=
+_SMI_LARB8_PCLK_EN>;
+> -                                               clock-names =3D "wpe0", "=
+larb-ck", "larb-pclk";
+> +                                               clock-names =3D "wpe0",
+> +                                                             "subsys-lar=
+b-ck",
+> +                                                             "subsys-lar=
+b-pclk";
+>                                                 mediatek,infracfg =3D <&i=
+nfracfg_ao>;
+>                                                 #power-domain-cells =3D <=
+0>;
+>                                         };
+> --
 > 2.34.1
->=20
-
---IP8sdSnYW24Jv8+L
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZR6SwwAKCRB4tDGHoIJi
-0gJnAQCE6henlUKuR+rKeIPonoiRNWu9XupZ7JL5eHFos8uHxgEAsfvRvMaMcYu6
-ZlvDaY0cp2AXNAKJL00y4ydHUa3tSgM=
-=Kzfj
------END PGP SIGNATURE-----
-
---IP8sdSnYW24Jv8+L--
+>
+>
 
