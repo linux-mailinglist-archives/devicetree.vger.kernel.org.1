@@ -1,124 +1,137 @@
-Return-Path: <devicetree+bounces-6070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87C707B9C9C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 12:49:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 063267B9CA0
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 12:54:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 538DD281ECB
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 10:49:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 9C490281B2E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 10:54:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2092D12B87;
-	Thu,  5 Oct 2023 10:49:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02A47125D2;
+	Thu,  5 Oct 2023 10:54:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="W3YxRc7t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jylTMHbv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 169C0125DB
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 10:49:19 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54E3122CAB;
-	Thu,  5 Oct 2023 03:49:18 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 22BFA660731F;
-	Thu,  5 Oct 2023 11:49:16 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1696502957;
-	bh=vtwN7TZUfuKOOcpUTbUvCztJdBqkeLPF1yo8/uXzBpM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=W3YxRc7t98bDLGOsh8Hk+Bwwp3AQiR6xwxpd3UpfwbkcqiPyyKSiTwGm68YDx8Vh+
-	 2TFobSL5JSEWtS6T5+ZkpZPtwt7wt3Tdile43De8AEk3w9i7r2AcYJ0bifjoD/AXCL
-	 qtKMpJuhxsxdrT1ME/EQ0+Iv0AvrYyLPut8kjX4527UpbUXn+0Ji5ueUHm4zMWe1HS
-	 yAu9oyUCBY1hsFc18+FPWXt/Ab3JmPcvnRcg+2jTPOxV0hOkKX3AdLUgwU+KfAYb+G
-	 E3GITamvK5Hg7AZ/N22dk2qse6r01DcQhpCOxSg/UuF4ihqeXhG3AEIhaVy579dvYN
-	 XERMItaZXgiIw==
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: mchehab@kernel.org
-Cc: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	moudy.ho@mediatek.com,
-	hverkuil-cisco@xs4all.nl,
-	sakari.ailus@linux.intel.com,
-	u.kleine-koenig@pengutronix.de,
-	linqiheng@huawei.com,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	kernel@collabora.com,
-	wenst@chromium.org
-Subject: [PATCH v2 2/2] media: platform: mtk-mdp3: Use devicetree phandle to retrieve SCP
-Date: Thu,  5 Oct 2023 12:49:05 +0200
-Message-ID: <20231005104905.120544-3-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231005104905.120544-1-angelogioacchino.delregno@collabora.com>
-References: <20231005104905.120544-1-angelogioacchino.delregno@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D56871C3D
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 10:54:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5903BC32782;
+	Thu,  5 Oct 2023 10:54:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696503274;
+	bh=r9QAN25ECg8YV7rovLkgwPyjjglMxbc27XwhgPj0p2k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jylTMHbvJxFAMVfEx+/VTWJ5qLSXYONVK3QwgUliTNxTLcVa8fp1LiFRhv8pXAEiG
+	 c6IiyFrR/PMIZPxfaWHGeiEjHY7WqILh+Dz+ukbT78vExFr+jS34I+5LH3isMfZ44S
+	 qJKlRR8+urhiXnx8GpuqU0JHlw2ssmvVraMs/zIj7WyVlj3504YyoTfBlXUEIySbmG
+	 7SRdbQEUn0OJ7UxE9O9zzI0SzobLyNc1nPSIQU4xE3oVxKEOkYDjFgN/iuu3G0Cxqh
+	 H/3Q+LOeLDOYEiQ3Jx6lKEWtH40Fo7GS0K4LLz7c4KaAka3U16sUdq0wM80Xwsg+9q
+	 9RYFeYnWmN0Zw==
+Date: Thu, 5 Oct 2023 11:54:29 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: shravan chippa <shravan.chippa@microchip.com>, green.wan@sifive.com,
+	vkoul@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	palmer@dabbelt.com, paul.walmsley@sifive.com, conor+dt@kernel.org,
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	nagasuresh.relli@microchip.com, praveen.kumar@microchip.com,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v2 2/4] dt-bindings: dma: sf-pdma: add new compatible name
+Message-ID: <20231005-wanted-plausible-71dae05ccc7b@spud>
+References: <20231003042215.142678-1-shravan.chippa@microchip.com>
+ <20231003042215.142678-3-shravan.chippa@microchip.com>
+ <20231004133021.GB2743005-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="FXxfjJNs6siMoTeZ"
+Content-Disposition: inline
+In-Reply-To: <20231004133021.GB2743005-robh@kernel.org>
 
-Instead of walking the entire parent node for something that has the
-right compatible, use the scp_get() function provided by the MediaTek
-SCP remoteproc driver to retrieve a handle to mtk_scp through the
-devicetree "mediatek,scp" (phandle) property.
 
-In case of multi-core SCP, this also allows to select a specific core.
+--FXxfjJNs6siMoTeZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../media/platform/mediatek/mdp3/mtk-mdp3-core.c | 16 ++++++++++------
- 1 file changed, 10 insertions(+), 6 deletions(-)
+On Wed, Oct 04, 2023 at 08:30:21AM -0500, Rob Herring wrote:
+> On Tue, Oct 03, 2023 at 09:52:13AM +0530, shravan chippa wrote:
+> > From: Shravan Chippa <shravan.chippa@microchip.com>
+> >=20
+> > Add new compatible name microchip,mpfs-pdma to support
+> > out of order dma transfers
+> >=20
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > Signed-off-by: Shravan Chippa <shravan.chippa@microchip.com>
+> > ---
+> >  .../bindings/dma/sifive,fu540-c000-pdma.yaml         | 12 ++++++++----
+> >  1 file changed, 8 insertions(+), 4 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pd=
+ma.yaml b/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
+> > index a1af0b906365..974467c4bacb 100644
+> > --- a/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
+> > +++ b/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
+> > @@ -27,10 +27,14 @@ allOf:
+> > =20
+> >  properties:
+> >    compatible:
+> > -    items:
+> > -      - enum:
+> > -          - sifive,fu540-c000-pdma
+> > -      - const: sifive,pdma0
+> > +    oneOf:
+> > +      - items:
+> > +          - const: microchip,mpfs-pdma # Microchip out of order DMA tr=
+ansfer
+> > +          - const: sifive,fu540-c000-pdma # Sifive in-order DMA transf=
+er
 
-diff --git a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c
-index cc44be10fdb7..94f4ed78523b 100644
---- a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c
-+++ b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c
-@@ -208,13 +208,17 @@ static int mdp_probe(struct platform_device *pdev)
- 		goto err_destroy_job_wq;
- 	}
- 
--	mm_pdev = __get_pdev_by_id(pdev, MDP_INFRA_SCP);
--	if (WARN_ON(!mm_pdev)) {
--		dev_err(&pdev->dev, "Could not get scp device\n");
--		ret = -ENODEV;
--		goto err_destroy_clock_wq;
-+	mdp->scp = scp_get(pdev);
-+	if (!mdp->scp) {
-+		mm_pdev = __get_pdev_by_id(pdev, MDP_INFRA_SCP);
-+		if (WARN_ON(!mm_pdev)) {
-+			dev_err(&pdev->dev, "Could not get scp device\n");
-+			ret = -ENODEV;
-+			goto err_destroy_clock_wq;
-+		}
-+		mdp->scp = platform_get_drvdata(mm_pdev);
- 	}
--	mdp->scp = platform_get_drvdata(mm_pdev);
-+
- 	mdp->rproc_handle = scp_get_rproc(mdp->scp);
- 	dev_dbg(&pdev->dev, "MDP rproc_handle: %pK", mdp->rproc_handle);
- 
--- 
-2.42.0
+IIRC I asked for the comments here to be removed on the previous
+version, and my r-b was conditional on that.
+The device specific compatible has merit outside of the ordering, which
+may just be a software policy decision.
 
+> This doesn't really make sense. microchip,mpfs-pdma is compatible with=20
+> sifive,fu540-c000-pdma and sifive,fu540-c000-pdma is compatible with=20
+> sifive,pdma0, but microchip,mpfs-pdma is not compatible with=20
+> sifive,pdma0? (Or replace "compatible with" with "a superset of")
+
+TBH, I am not sure why it was done this way. Probably because the driver
+contains both sifive,pdma0 and sifive,fu540-c000-pdma. Doing
+compatible =3D "microchip,mpfs-pdma", "sifive,fu540-c000-pdma", "sifive,pdm=
+a0";
+thing would be fine.
+
+> Any fallback is only useful if an OS only understanding the fallback=20
+> will work with the h/w. Does this h/w work without the driver changes?
+
+Yes.=20
+I've been hoping that someone from SiFive would come along, and in
+response to this patchset, tell us _why_ the driver does not make use of
+out-of-order transfers to begin with.
+
+Thanks,
+Conor.
+
+--FXxfjJNs6siMoTeZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZR6V5AAKCRB4tDGHoIJi
+0oX1AP4gvbx/YYM63FggUSYmU1/62CsJzHKn0+mB5T85IMCFwgD/cOxS4ARE5fEz
+L4ddVpARkl5OfnTsKxySy+l9cZjbFgc=
+=hzTR
+-----END PGP SIGNATURE-----
+
+--FXxfjJNs6siMoTeZ--
 
