@@ -1,65 +1,67 @@
-Return-Path: <devicetree+bounces-6126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AEEF7B9E89
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:08:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D4727B9E88
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:08:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id AD5AD2821AA
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 14:08:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id E02311C2093B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 14:08:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B74B28694;
-	Thu,  5 Oct 2023 14:08:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02CE127EEE;
+	Thu,  5 Oct 2023 14:08:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JEu6WQvK"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="F4FE1PjJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94C8527722
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 14:08:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4917227726
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 14:08:46 +0000 (UTC)
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 967C963EF5;
-	Thu,  5 Oct 2023 07:08:41 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 395BFtwW113496;
-	Thu, 5 Oct 2023 06:15:55 -0500
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5903C63EFE;
+	Thu,  5 Oct 2023 07:08:44 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 395BJ7DL114262;
+	Thu, 5 Oct 2023 06:19:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1696504555;
-	bh=uM+Jae/KsDO60KLh7i4asx8qWU4wCJFbP5sgHLbd4rY=;
+	s=ti-com-17Q1; t=1696504747;
+	bh=O3H9updDdRZA1n9r7jo5xac1dzx6YqsbyUPWoem2bi0=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=JEu6WQvKTIGcsP2Im/8InGeeNNLUiJI40IT7slkpHmdfVgKZwtQAHFruoOX3/6X4E
-	 6Fss6uLBg7LCmPDap3GKAX2LADypWn7b05lxQ/6Pl4g6EIQWAZMikc8bowo1QKHhGt
-	 00BPqTPcEWJr1x00JAPJYRnGoNTczqnxxmBYOIEQ=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 395BFtGd012019
+	b=F4FE1PjJyNXeVo5vS5nYLlEjPCgoMzZB0fZgXYnwEzzveDo6GFhwZI972eUp8mZMa
+	 cY+PSWWN52Cyfp2F1fa36KCEjG3A2zRRfb1dolG4rzP8ZK52WspFONbokepOoD96bo
+	 FmRdi58lXtE9dGFBR5rsnUnASOZM6mE23nNjKX5c=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 395BJ7ip073088
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 5 Oct 2023 06:15:55 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 5 Oct 2023 06:19:07 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 5
- Oct 2023 06:15:55 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2023 06:19:07 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 5 Oct 2023 06:15:55 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 395BFttr007999;
-	Thu, 5 Oct 2023 06:15:55 -0500
-Date: Thu, 5 Oct 2023 06:15:55 -0500
+ Frontend Transport; Thu, 5 Oct 2023 06:19:07 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 395BJ70q073832;
+	Thu, 5 Oct 2023 06:19:07 -0500
+Date: Thu, 5 Oct 2023 06:19:07 -0500
 From: Nishanth Menon <nm@ti.com>
-To: "J, KEERTHY" <j-keerthy@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, <robh+dt@kernel.org>,
-        <conor+dt@kernel.org>, <kristo@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <u-kumar1@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v6 2/7] arm64: dts: ti: k3-j784s4: Add ESM instances
-Message-ID: <20231005111554.ol4vu4oxlensmx6m@booth>
-References: <20230927023357.9883-1-j-keerthy@ti.com>
- <20230927023357.9883-3-j-keerthy@ti.com>
- <4eb50f24-b6c8-790e-91b0-5646ebbb2d10@ti.com>
- <c7c32ec5-d0c1-443d-9851-3bb8e772c8fc@ti.com>
+To: Ayush Singh <ayushdevel1325@gmail.com>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <greybus-dev@lists.linaro.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <gregkh@linuxfoundation.org>,
+        <vaishnav@beagleboard.org>, <jkridner@beagleboard.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v7 1/3] dt-bindings: net: Add ti,cc1352p7
+Message-ID: <20231005111907.ck6rhmuhicrjkifr@elderly>
+References: <20231004184639.462510-1-ayushdevel1325@gmail.com>
+ <20231004184639.462510-2-ayushdevel1325@gmail.com>
+ <a171cc72-98cf-4f7f-ba86-6da2ac45ea22@linaro.org>
+ <aa63918f-3a95-5e86-d61d-91a59cf643ad@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,7 +70,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <c7c32ec5-d0c1-443d-9851-3bb8e772c8fc@ti.com>
+In-Reply-To: <aa63918f-3a95-5e86-d61d-91a59cf643ad@gmail.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
@@ -77,74 +79,69 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 06:45-20231005, J, KEERTHY wrote:
-> 
-> 
-> On 10/3/2023 12:20 PM, Vignesh Raghavendra wrote:
-> > 
-> > 
-> > On 27/09/23 08:03, Keerthy wrote:
-> > > Patch adds the ESM instances for j784s4. It has 3 instances.
-> > > One in the main domain and two in the mcu-wakeup domian.
-> > > 
-> > > Signed-off-by: Keerthy <j-keerthy@ti.com>
+On 13:51-20231005, Ayush Singh wrote:
+> > > Signed-off-by: Ayush Singh <ayushdevel1325@gmail.com>
 > > > ---
-> > >   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi       |  8 ++++++++
-> > >   arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi | 14 ++++++++++++++
-> > >   2 files changed, 22 insertions(+)
+> > >   .../devicetree/bindings/net/ti,cc1352p7.yaml  | 51 +++++++++++++++++++
+> > >   MAINTAINERS                                   |  6 +++
+> > >   2 files changed, 57 insertions(+)
+> > >   create mode 100644 Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
 > > > 
-> > > diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> > > index efed2d683f63..26dc3776f911 100644
-> > > --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> > > +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> > > @@ -1568,4 +1568,12 @@
-> > >   		firmware-name = "j784s4-c71_3-fw";
-> > >   		status = "disabled";
-> > >   	};
+> > > diff --git a/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
+> > > new file mode 100644
+> > > index 000000000000..291ba34c389b
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
+> > > @@ -0,0 +1,51 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/net/ti,cc1352p7.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > > > +
-> > > +	main_esm: esm@700000 {
-> > > +		compatible = "ti,j721e-esm";
-> > > +		reg = <0x00 0x700000 0x00 0x1000>;
-> > > +		ti,esm-pins = <688>, <689>, <690>, <691>, <692>, <693>, <694>,
-> > > +			      <695>;
-> > > +		bootph-pre-ram;
-> > 
-> > Similar to other nodes in this file, here and elsewhere use
-> > 		bootph-all
-> 
-> Okay. I will switch to bootph-all
+> > > +title: Texas Instruments Simplelink CC1352P7 wireless MCU
+> > > +
+> > > +description:
+> > > +  The cc1352p7 mcu can be connected via SPI or UART.
+> > > +
+> > > +maintainers:
+> > > +  - Ayush Singh <ayushdevel1325@gmail.com>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: ti,cc1352p7
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 2
+> > > +
+> > > +  clock-names:
+> > > +    description:
+> > > +      sclk_hf is the main system (mcu and peripherals) clock
+> > > +      sclk_lf is low-frequency system clock
+> > This does no go here, but to clocks. I wrote how it should be done.
+> > Don't ignore the feedback.
+> It was suggested to use `clock-names` by Nishanth Menon in the previous
+> email, so I thought this was what it meant. I will remove clock-names if
+> that's better.
 
-Is'nt esm configuration just needed during pre-ram?
+Krzysztof was mentioning that the description should be with clocks.
+clock-names would allow for more descriptive dts
 
-> 
-> > 
-> > 
-> > > +	};
-> > >   };
-> > > diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-> > > index 4ab4018d3695..a7b5c4cb7d3e 100644
-> > > --- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-> > > +++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-> > > @@ -700,4 +700,18 @@
-> > >   			status = "disabled";
-> > >   		};
-> > >   	};
+> > > +    items:
+> > > +      - const: sclk_hf
+> > > +      - const: sclk_lf
 > > > +
-> > > +	mcu_esm: esm@40800000 {
-> > > +		compatible = "ti,j721e-esm";
-> > > +		reg = <0x00 0x40800000 0x00 0x1000>;
-> > > +		ti,esm-pins = <95>;
-> > > +		bootph-pre-ram;
-> > > +	};
-> > > +
-> > > +	wkup_esm: esm@42080000 {
-> > > +		compatible = "ti,j721e-esm";
-> > > +		reg = <0x00 0x42080000 0x00 0x1000>;
-> > > +		ti,esm-pins = <63>;
-> > > +		bootph-pre-ram;
-> > > +	};
-> > >   };
+> > > +  reset-gpios: true
 > > 
+> > No, really, why do you change correct code into incorrect one? Who asked
+> > you to drop maxItems?
+> I found that many bindings (`display/ilitek,ili9486.yaml`,
+> `iio/dac/adi,ad5758.yaml`) use this pattern instead of `maxItems` for
+> `reset-gpios`. So I assumed it was some sort of convention. I will change it
+> back to `maxItems`.
+
+maxItems restrict the number of GPIOs to the ones that are actually
+needed for the peripheral.
 
 -- 
 Regards,
