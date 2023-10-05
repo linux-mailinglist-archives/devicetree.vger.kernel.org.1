@@ -1,191 +1,153 @@
-Return-Path: <devicetree+bounces-6317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78E737BABE2
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 23:22:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 172F77BAE30
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 23:52:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 28D6A281F33
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 21:22:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id BB768281ECF
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 21:52:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E57E041E35;
-	Thu,  5 Oct 2023 21:22:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A94642BE5;
+	Thu,  5 Oct 2023 21:52:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="icUJFlz+"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="S4R2zfLx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35BA73B2B9
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 21:22:08 +0000 (UTC)
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABAFA95;
-	Thu,  5 Oct 2023 14:22:07 -0700 (PDT)
-Received: by mail-pg1-x534.google.com with SMTP id 41be03b00d2f7-564af0ac494so1044440a12.0;
-        Thu, 05 Oct 2023 14:22:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696540927; x=1697145727; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vR11VcSycWMnF0G38upGXhqs80RNqCoLM8Yc54IYpxM=;
-        b=icUJFlz+hlDPbQRDi9Y7LpKpZsbSFdcvcrCn56mgif0nqZ8oWeJqmrz7nSzCFrZjPf
-         3rskEpVjIDxpSRo4XpmouFdWJ+f+5yZKh6J7VpsekAtIx6IY1eQi9wul2+AuDoknfS8D
-         2NdHuO3+FQWhE4XBhOIF7Qb57HfVy7r0FmY1GfQmWv1nZrLTnd/NlZ+1xwSVL+V/cEo3
-         s7cogLvJ/3SQVOFV0LRMnQ1JlAutPuya576D60rCpXkR5kWagaqCNZDZoPK2+ToN1ean
-         BvCdq3BrWwTRT1jpGzzG+BTPCTzyCrmGgpC1zAjqoWP0MM4kn/oYsbMDr2haiNokR81d
-         Ca0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696540927; x=1697145727;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vR11VcSycWMnF0G38upGXhqs80RNqCoLM8Yc54IYpxM=;
-        b=hkky4JpOyXrt/R+xzJWi9CqGPqr9iHVEL/VjwIz1bpp/tCe8cn8skpTJ9SSW6alcmk
-         AuqOn/2Sjf2pUN73dPZrHhHz2UElhT4L1Fgj3J1XwQ75fOlFeJ3PEkC8mQewZniHnEci
-         bPLR7F7DO3jfHpp3TVCdAxgo9/av0PhLOcZ7Ro3B5KmjBHCg5CEeSuUX1+DFE+1kArdr
-         CnhtVEfm5SgDv+VtxDr9bxty6FHKakciZJOLSqYLK3YA8IN2yZV/7hnX0Iq1ZFuGZQf9
-         G6uRrt0krQ89z/UaSX7lxHLp7Pxiibwa3XRszlWrh3FovQf0N9LImOeOMFN5ak7fXQiE
-         SVkw==
-X-Gm-Message-State: AOJu0Yyrynq2dHj/hzKHPbogIjJXDxBu2ipxTvHwYWAmS8zJW4cPIq1M
-	AZY2xbcu5H8rrQRH4tX2zCyawE7rugZKBlpKveA=
-X-Google-Smtp-Source: AGHT+IHc1YIkEdrWv9pd8ej0GQX+FpVlMxW7+nXw9UjdRsbCf+sNBIGRA5zww4B+Y8OATKMaVI/94oHaJrS7fqo5fEY=
-X-Received: by 2002:a17:90b:30cb:b0:279:cea:cfa9 with SMTP id
- hi11-20020a17090b30cb00b002790ceacfa9mr6310042pjb.21.1696540927028; Thu, 05
- Oct 2023 14:22:07 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BDE942BE0
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 21:51:58 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF80E9E;
+	Thu,  5 Oct 2023 14:51:54 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 395Lk9ID008481;
+	Thu, 5 Oct 2023 21:51:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Viu3LjCg+nNUsV+HufaTsTHKmI5wxtsYvzyN9kVT2XI=;
+ b=S4R2zfLxczirmvgMYFY1qLQ8rFmAj1CsN0x0FWPYn52yfthFC4ake9hYYs+p6eHQQRyI
+ XdDCDdStD/OrgADASq3qrrCsH+4aGu7X59sXv7y3Cgut1Kx8N/iUxb24Yoc6L/uphqAx
+ xJ8B0molGCpUBxpH7urvtehuO+IWkDPTtMQFWPthA9w2bqSHwO4IPD+aTBjsQludXR8F
+ rD88RzCeFKe21yVrr2449DGD0OiltX8Ewa5qVvf9i6VM+JkeDZ12BBrIvm0mN0zs/dRW
+ h1x2tX1kXC5YDI2pqJrwXxRYaoDYjrUglqCB/+MCcjCQ/HgFKxWJospG3ad8043Zz/eF iw== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3th8e1v0hu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 05 Oct 2023 21:51:30 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 395LpT2R011848
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 5 Oct 2023 21:51:29 GMT
+Received: from [10.110.20.163] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 5 Oct
+ 2023 14:51:29 -0700
+Message-ID: <2c196f9a-b61e-914b-1999-e9e82d16dc6e@quicinc.com>
+Date: Thu, 5 Oct 2023 14:51:28 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230928151631.149333-1-jcmvbkbc@gmail.com> <20230928151631.149333-6-jcmvbkbc@gmail.com>
- <2023100326-crushing-septic-4856@gregkh> <CAMo8BfJgpP-=tNEChcyR3z6i_QeJ9Ywq7EOjjC5i7Uq4OrgXNA@mail.gmail.com>
- <2023100544-rendering-identify-e0ad@gregkh>
-In-Reply-To: <2023100544-rendering-identify-e0ad@gregkh>
-From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Thu, 5 Oct 2023 14:21:55 -0700
-Message-ID: <CAMo8Bf+wS+qiX2mMZm0i8dt7xkDO8RvroP8RF=78zxgFj-zwaA@mail.gmail.com>
-Subject: Re: [PATCH v4 5/5] drivers/tty/serial: add ESP32S3 ACM device driver
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
-	devicetree@vger.kernel.org, Jiri Slaby <jirislaby@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	FROM_LOCAL_NOVOWEL,HK_RANDOM_ENVFROM,HK_RANDOM_FROM,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v4 3/4] dt-bindings: arm: Add new compatible for smc/hvc
+ transport for SCMI
+To: Sudeep Holla <sudeep.holla@arm.com>
+CC: <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20230718160833.36397-1-quic_nkela@quicinc.com>
+ <20230911194359.27547-1-quic_nkela@quicinc.com>
+ <20230911194359.27547-4-quic_nkela@quicinc.com>
+ <20231003104404.o7yxg3y7dn7uhrq4@bogus>
+ <7c871b23-5544-6604-257d-f0c8fd5afd06@quicinc.com>
+ <20231004155310.zqwlj6boy65atoyq@bogus>
+Content-Language: en-US
+From: Nikunj Kela <quic_nkela@quicinc.com>
+In-Reply-To: <20231004155310.zqwlj6boy65atoyq@bogus>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 3IJBeV3tF0Is9MaS0KLzcGoF_PMa2-QG
+X-Proofpoint-ORIG-GUID: 3IJBeV3tF0Is9MaS0KLzcGoF_PMa2-QG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-05_16,2023-10-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
+ adultscore=0 priorityscore=1501 mlxscore=0 lowpriorityscore=0 spamscore=0
+ bulkscore=0 mlxlogscore=999 malwarescore=0 impostorscore=0 clxscore=1015
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2309180000
+ definitions=main-2310050166
+X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Thu, Oct 5, 2023 at 11:57=E2=80=AFAM Greg Kroah-Hartman
-<gregkh@linuxfoundation.org> wrote:
-> On Tue, Oct 03, 2023 at 12:46:46PM -0700, Max Filippov wrote:
-> > > > Hardware specification is available at the following URL:
-> > > >
-> > > >   https://www.espressif.com/sites/default/files/documentation/esp32=
--s3_technical_reference_manual_en.pdf
-> > > >   (Chapter 33 USB Serial/JTAG Controller)
-> > >
-> > > I don't understand this driver, "ACM" is a USB host <-> gadget protoc=
-ol,
-> > > why do you need a platform serial driver for this?
-> >
-> > The USB part of this piece of hardware is fixed and not controllable, s=
-o
-> > all we have is a very limited UART interface. But to the outside world
-> > it's a USB device with the CDC-ACM interface.
+
+On 10/4/2023 8:53 AM, Sudeep Holla wrote:
+> On Tue, Oct 03, 2023 at 08:59:45AM -0700, Nikunj Kela wrote:
+>> On 10/3/2023 3:44 AM, Sudeep Holla wrote:
+>>> On Mon, Sep 11, 2023 at 12:43:58PM -0700, Nikunj Kela wrote:
+>>>> Introduce compatible "qcom,scmi-hvc-shmem" for SCMI smc/hvc
+>>>> transport channel for Qualcomm virtual platforms.
+>>>> The compatible mandates a shared memory channel.
+>>>>
+>>>> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> ---
+>>>>    .../devicetree/bindings/firmware/arm,scmi.yaml       | 12 ++++++++++++
+>>>>    1 file changed, 12 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+>>>> index 8d54ea768d38..4090240f45b1 100644
+>>>> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+>>>> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+>>>> @@ -45,6 +45,9 @@ properties:
+>>>>          - description: SCMI compliant firmware with OP-TEE transport
+>>>>            items:
+>>>>              - const: linaro,scmi-optee
+>>>> +      - description: SCMI compliant firmware with Qualcomm hvc/shmem transport
+>>>> +        items:
+>>>> +          - const: qcom,scmi-hvc-shmem
+>>> Can it be simply "qcom,scmi-smc" for 2 reasons ?
+>>> 1. We don't support SMC/HVC without shmem, so what is your argument to add
+>>>      '-shmem' in the compatible here ?
+>> In our platforms, there are multiple ways to allocate memory. One is
+>> preallocated shmem as used here, another is dynamically by hypervisor APIs.
+>> shmem was to just to indicate it is preallocated.
+>>
+> Let us keep it without shmem. If it is dynamically allocated, you must not
+> need another compatible as you can check it at the runtime.
 >
-> Where is the "outside world" here?  The other end of the tty connection?
+>>> 2. The exact conduit(SMC/HVC) used is detected runtime, so I prefer to keep
+>>>     '-smc' instead of '-hvc' in the compatible just to avoid giving an illusion
+>>>     that HVC is the conduit chosen here based on the compatible. It can be true
+>>>     for other reason but I don't want to mislead here by using HVC.
+>> IUUC, currently, conduit comes from PSCI dt node. We have been using smc for
+>> PSCI but want to use hvc here. That being said, I am fine to explore if we
+>> can change PSCI to use hvc too.
+>>
+> I think only OPTEE has explicit conduit other than PSCI and it is continued
+> for legacy/compatibility reasons IIUC and IIRC. Anything else depends on
+> the conduit used by PSCI to be consistent. So yes you need to use what the
+> PSCI conduit is and you don't need the extra information from the DT either
+> as new property or in the compatible.
 
-Yes.
+Ok, will use conduit then. Thanks!
 
-> So this is a "ACM gadget"?  If so, please try to use that term as that's
-> what we use in the kernel to keep things straight.
 
-Ok.
-
-> > > > diff --git a/drivers/tty/serial/esp32_acm.c b/drivers/tty/serial/es=
-p32_acm.c
-> > > > new file mode 100644
-> > > > index 000000000000..f02abd2ac65e
-> > > > --- /dev/null
-> > > > +++ b/drivers/tty/serial/esp32_acm.c
-> > > > @@ -0,0 +1,459 @@
-> > > > +// SPDX-License-Identifier: GPL-2.0-or-later
-> > >
-> > > Why "or later"?  I have to ask, sorry.
-> >
-> > I don't really have a preference here. Is there a reason to choose
-> > GPL-2.0 only for a new code?
 >
-> It's your call, you need to pick that, but I can provide recommendations
-> if you want :)
-
-Please do?
-
-> > > And no copyright information?  That's fine, but be sure your company'=
-s
-> > > lawyers are ok with it...
-> >
-> > There's no company behind this, just myself.
->
-> Great, it's your copyright, be proud, put it on there!
-
-If I don't have to I'd rather not. This is just a piece of meaningless nois=
-e.
-
-> > > > +#define DEV_NAME     "ttyACM"
-> > >
-> > > There is already a ttyACM driver in the kernel, will this conflict wi=
-th
-> > > that one?  And are you using the same major/minor numbers for it as
-> > > well?  If so, how is this going to work?
-> >
-> > I'll rename it to ttyS. I see that it coexists with the other driver th=
-at calls
-> > its devices ttyS just fine.
->
-> Great.  But if you are going to be like a ACM gadget, use ttyGS like
-> that driver does?
-
-Ok.
-
-> > > > --- a/include/uapi/linux/serial_core.h
-> > > > +++ b/include/uapi/linux/serial_core.h
-> > > > @@ -248,4 +248,7 @@
-> > > >  /* Espressif ESP32 UART */
-> > > >  #define PORT_ESP32UART       124
-> > > >
-> > > > +/* Espressif ESP32 ACM */
-> > > > +#define PORT_ESP32ACM        125
-> > >
-> > > Why are these defines needed?  What in userspace is going to require
-> > > them?  If nothing, please do not add them.
-> >
-> > I don't understand what the alternatives are. The comment for the
-> > uart_ops::config_port() callback says that port->type should be set
-> > to the type of the port found, and I see that almost every serial drive=
-r
-> > defines a unique PORT_* for that.
->
-> Yes, but not all do.  If you don't need to do anything special, it can
-> just claim to be a normal device, we've had threads about this on the
-> list before.  If you don't need to determine in userspace from the tty
-> connection what device it is, just use the default one instead.
-
-Ok, it looks like having
-
-#define PORT_ESP32ACM (-1)
-
-in the driver source should be ok? I've tested that it works.
-
---=20
-Thanks.
--- Max
 
