@@ -1,137 +1,148 @@
-Return-Path: <devicetree+bounces-6129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 612BA7B9EB5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:11:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B9C87B9E91
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 16:09:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 2680FB209A3
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 14:11:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 46CF82820DC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 14:09:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F090C286AD;
-	Thu,  5 Oct 2023 14:11:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF7432869E;
+	Thu,  5 Oct 2023 14:09:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kWMhQIrL"
+	dkim=pass (1024-bit key) header.d=6tel.net header.i=@6tel.net header.b="mxjIvrbW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E4827EE1
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 14:11:25 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D545771299;
-	Thu,  5 Oct 2023 07:11:01 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 395DTLwU018466;
-	Thu, 5 Oct 2023 08:29:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1696512561;
-	bh=dVZ/oX4gmdQ7oMdeoiY0ZTmy74eTe12SQx5ysletSRI=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=kWMhQIrLPXh7kyX+YVvoMGsKc1ZUERWjry/SoCJmbHOdneCvAtd+iLbR0Bb6RgiJ0
-	 4507NzhDcMA/J/cGyvwhsoQp26PWD2sxY6/wqxVel6/Lp7O7x15J3+RVeUY2lgMQy1
-	 gBqMvxVLiP1W1Y88ALez67l6mAsMzuxaS1y06/6Q=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 395DTLtw051139
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 5 Oct 2023 08:29:21 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 5
- Oct 2023 08:29:21 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 5 Oct 2023 08:29:21 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 395DTLYR127845;
-	Thu, 5 Oct 2023 08:29:21 -0500
-Date: Thu, 5 Oct 2023 08:29:21 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Roger Quadros <rogerq@kernel.org>
-CC: "Raghavendra, Vignesh" <vigneshr@ti.com>,
-        Stephen Rothwell
-	<sfr@canb.auug.org.au>,
-        Tero Kristo <kristo@kernel.org>,
-        Santosh Shilimkar
-	<ssantosh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN
- FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux Next Mailing
- List <linux-next@vger.kernel.org>
-Subject: Re: linux-next: build warnings after merge of the ti tree
-Message-ID: <20231005132921.2vg6kdcr273bh7et@cabbage>
-References: <20231005141536.77538147@canb.auug.org.au>
- <f70dec2a-dbdf-479c-af5b-a70db02b27b4@ti.com>
- <2905cfc2-912f-4620-9455-2e91586a2839@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 111DC2773F
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 14:09:29 +0000 (UTC)
+X-Greylist: delayed 878 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 05 Oct 2023 07:09:27 PDT
+Received: from forward203c.mail.yandex.net (forward203c.mail.yandex.net [178.154.239.218])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C568B47B5;
+	Thu,  5 Oct 2023 07:09:27 -0700 (PDT)
+Received: from forward103c.mail.yandex.net (forward103c.mail.yandex.net [IPv6:2a02:6b8:c03:500:1:45:d181:d103])
+	by forward203c.mail.yandex.net (Yandex) with ESMTP id DCDB465257;
+	Thu,  5 Oct 2023 16:54:49 +0300 (MSK)
+Received: from mail-nwsmtp-smtp-production-main-63.sas.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-63.sas.yp-c.yandex.net [IPv6:2a02:6b8:c14:6e01:0:640:627f:0])
+	by forward103c.mail.yandex.net (Yandex) with ESMTP id 4C57E60118;
+	Thu,  5 Oct 2023 16:54:17 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-63.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id 5sYS4WpDR8c0-c59Uhkbc;
+	Thu, 05 Oct 2023 16:54:16 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=6tel.net; s=mail;
+	t=1696514056; bh=djv/zTCmEEO0N9ZJ0kPB68viw9nxhWIGHqi+5kw6/nk=;
+	h=Cc:Message-ID:References:Date:In-Reply-To:Subject:To:From;
+	b=mxjIvrbWDeQZsZfQoZxIAayHgrDIZBpf/35k7buCmGNqzgA1wms/0ZYX33Ym9XHmP
+	 TYWEQzWj9cfX6nPeiV05eP2L6h263aubX3vkAPPjLbCCyb5l5GR4fMWGml3EujhLZm
+	 iMN34tW9If/TvZtdJMXz4R80jSIM4Rq43htSKp0w=
+Authentication-Results: mail-nwsmtp-smtp-production-main-63.sas.yp-c.yandex.net; dkim=pass header.i=@6tel.net
+From: Muhammed Efe Cetin <efectn@6tel.net>
+To: d-gole@ti.com
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	efectn@6tel.net,
+	heiko@sntech.de,
+	jonas@kwiboo.se,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	megi@xff.cz,
+	robh+dt@kernel.org,
+	sebastian.reichel@collabora.com
+Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: Add Orange Pi 5
+Date: Thu,  5 Oct 2023 16:54:04 +0300
+Message-ID: <20231005135405.257495-1-efectn@6tel.net>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20230928105137.5ljhuoxjc7et5thw@dhruva>
+References: <20230928105137.5ljhuoxjc7et5thw@dhruva>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <2905cfc2-912f-4620-9455-2e91586a2839@kernel.org>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_VALIDITY_RPBL,SPF_HELO_NONE,T_SPF_PERMERROR,URIBL_BLOCKED
+	autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 16:12-20231005, Roger Quadros wrote:
+Hello,
+
+On 28.09.2023 13:51, Dhruva Gole wrote:
 > Hi,
 > 
-> On 05/10/2023 11:25, Raghavendra, Vignesh wrote:
-> > + Rob and DT list
-> > 
-> > Hi Stephen
-> > 
-> > On 10/5/2023 8:45 AM, Stephen Rothwell wrote:
-> >> Hi all,
-> >>
-> >> [I may have missed this yesterday, sorry]
-> >>
-> >> After merging the ti tree, today's linux-next build (arm64 defconfig)
-> >> produced these warnings:
-> >>
-> >> arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso:65.8-140.3: Warning (avoid_default_addr_size): /fragment@3/__overlay__: Relying on default #address-cells value
-> >> arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso:65.8-140.3: Warning (avoid_default_addr_size): /fragment@3/__overlay__: Relying on default #size-cells value
-> >>
-> >> Introduced by commit
-> >>
-> >>   45a0c06571e1 ("arm64: dts: ti: am642-evm: Add overlay for NAND expansion card")
-> >>
-> > 
-> > Thanks for the report. I will drop the offending comment.
-> > 
-> > Roger,
-> > 
-> > Sorry, this would need to be fixed in dtc or need exception from DT
-> > maintainers to ignore the warnings.
+> On Aug 21, 2023 at 18:47:59 +0300, Muhammed Efe Cetin wrote:
+>> Add initial support for OPi5 that includes support for USB2, PCIe2, Sata,
+>> Sdmmc, SPI Flash, PMIC.
+>>
+>> Signed-off-by: Muhammed Efe Cetin <efectn@6tel.net>
+>> Reviewed-by: Ondřej Jirman <megi@xff.cz>
+>> ---
+>>   arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>>   .../boot/dts/rockchip/rk3588s-orangepi-5.dts  | 673 ++++++++++++++++++
+>>   2 files changed, 674 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
+>>
+> ...
 > 
-> Please don't drop this patch as the issue is not with the patch but with
-> the dtc tool itself.
-> 
-> As this is a DT overlay there is no way to specify address-cells/size-cells
-> of parent here. This will be resolved only after merge with base tree.
-> 
-> This will be fixed in next dtc sync.
-> https://www.spinics.net/lists/devicetree-compiler/msg04036.html
-> 
-> See further discussion here
-> https://lore.kernel.org/all/CAL_JsqLmv904+_2EOmsQ__y1yLDvsT+_02i85phuh0cpe7X8NQ@mail.gmail.com/
-> 
+> Can you provide some sort of documentation on how I can build and boot
+> the kernel on this board? I was unable to use the upstream arm64
+> defconfig with this exact series applied to boot the board.
 
-Roger, build warnings are a strict NO,NO for kernel. Lets bring in the
-series *after* the dtc sync is complete.
+What was wrong when you tried to compile & boot the board? Can you provide some logs?
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> 
+>> +
+>> +&i2c6 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&i2c6m3_xfer>;
+>> +	status = "okay";
+>> +
+>> +	hym8563: rtc@51 {
+>> +		compatible = "haoyu,hym8563";
+>> +		reg = <0x51>;
+>> +		#clock-cells = <0>;
+>> +		clock-output-names = "hym8563";
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&hym8563_int>;
+>> +		interrupt-parent = <&gpio0>;
+>> +		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
+>> +		wakeup-source;
+> 
+> Are you able to actually use rtc as a wakeup source? I tried this
+> on a downstream kernel that I mention below..
+> 
+> rtcwake -s 10 -m mem
+> 
+> didn't actually seem to wake the device from deepsleep after 10 seconds.
+> Do you know what other pins I can use as wakeup sources?
+
+No, i've not tried it before.
+
+> 
+>> +	};
+>> +};
+>> +
+>> +&mdio1 {
+>> +	rgmii_phy1: ethernet-phy@1 {
+>> +		compatible = "ethernet-phy-ieee802.3-c22";
+> 
+> Just wondering, can you please give some logs of the board with eth
+> working? The image that I have from opi seems to fail eth? As in I am
+> not able to see any ip address. here are the logs:
+> 
+> https://gist.github.com/DhruvaG2000/eda2762e35013c8d5ac9f37e818103a3
+
+Unfortunately the board is not near me currently. However, i was able to use GMAC ethernet in both the upstreram and downstream kernels. Did you try any images other than Orange Pi ones?
+
+> 
+> ...
+> 
 
