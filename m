@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-6307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C908A7BAB44
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 22:10:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C01A07BAB47
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 22:12:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 6EF0F1C20823
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 20:09:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 4EF231C2090C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 20:10:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4A1341AA3;
-	Thu,  5 Oct 2023 20:09:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1189641E28;
+	Thu,  5 Oct 2023 20:09:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uQrewXGH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rNK75f4m"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C7F541776
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 20:09:05 +0000 (UTC)
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66C5CDB
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 13:09:03 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9b9faf05f51so21070566b.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 13:09:03 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AF3541768
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 20:09:39 +0000 (UTC)
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 127B3EA
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 13:09:37 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-522bd411679so2340557a12.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 13:09:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696536542; x=1697141342; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696536575; x=1697141375; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zB+mV+loa+IjFsnqD3i+tWsK9lbENMpsCap2Dmlw6Gg=;
-        b=uQrewXGH7UgtLILs4upcec0za83YjMHtD0w8dNE8bXQGQ+Wl+BCRArTmAi2qKauL3u
-         8NjEDnibR5MNAsAPQvzOTTqKrzNtA4H0qMVxlWq/sjr3FGOZzeGJFfmQcRVFZyDsRDgI
-         cxTjlS8QeVWWgx/jJHbNljn4kkkjDTG0Orky7c0xkub/deFcXsr3rKRChytBzn+Xwzjb
-         H2aun8cNFCFzhj8SSmnR31m/YkwFbAlgOL3pAzdfpD27mr0jWwrXjuudN/1XhVoLaD4p
-         i1nMs2580Hhb2KI0LaH1uadJOsOA9zU70Dtzgd/WNcqoB1l/PFEGMLMI7SC3t6PYNZox
-         ltqg==
+        bh=vAeRSRJO5eHpdi8nHp3on7+8mkRTQ6PiCtIT8IE7aYA=;
+        b=rNK75f4mDnCBeuXVKpjWW6UUVsik6bTJcADe0YVAyOoFatJlRZFfIvC39Lprn2ZbrA
+         vPfvt01ZMmTbCWg8ENd2u7aX4gFgbP4eG794t+ETZmQsYd7y1ENi0hHGugZX16QQPqlG
+         lZmyTVtXQCAo+HbpT2XTjYE9IOPWvQ5Q01Yjqetzx6UsMN8QJrsmG9U+qFLtySJN7yy4
+         7ZzHKo2UvECT4uRAQlm/R2nEVfN/1xoLal7pnwStBlO+66cwtzhIJ5Q3qrV9NXQhVvQv
+         RpU//3EO+wJ3N4bb+9hAJj7/bUQ8Z/GHdjhROsh2WS7EviS6WkXtGk4uF19N7eS4PoTM
+         aqxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696536542; x=1697141342;
+        d=1e100.net; s=20230601; t=1696536575; x=1697141375;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zB+mV+loa+IjFsnqD3i+tWsK9lbENMpsCap2Dmlw6Gg=;
-        b=rRzAJpqRcuAly/pgUusQrI4XwoDX8qRuM4GSrNIzN89JXWiD1GQ7/SNHumLk6QgkLK
-         4CqeJcdeaZsjVIdTZlWh/XT395TKCicsCCm8bX2hn50u4ge6P0WGo8dgEXBSQcuzyvyR
-         Z5sbC0v87LsqoDSRdcqGwMSNyxocs/iPsONVl/nJJ4nVUagBOWDKYu0Ba3eSXdqCTTKu
-         K7Du7mjGsmv2feuzuaVTB8cL7ngRYESxbXnCGq+gzEERZ1ZKfs3PCTfAsYzWdmS4qkYz
-         2erLr82M6AITDGUVrMkDTJv3wpkFqHLX6lVcXGLKQP/2IzCCH91zzA5rdj0OwMvwVC2e
-         38Kw==
-X-Gm-Message-State: AOJu0YyMyuCd5+au5dlkgSV8P7geDQqD89oAbewU0dKdvqFXGISENIj+
-	9UPPguQzq0qBoVXFRdYmGH7tBg==
-X-Google-Smtp-Source: AGHT+IG2KxKuD4R2zSJqWCajGGhFkMA91xza5FNxup7W6+zdFVp0fmYQeZjUFfroNg8FuNjnRDA9pg==
-X-Received: by 2002:a17:906:3156:b0:9b2:b71f:83be with SMTP id e22-20020a170906315600b009b2b71f83bemr5444688eje.1.1696536541806;
-        Thu, 05 Oct 2023 13:09:01 -0700 (PDT)
+        bh=vAeRSRJO5eHpdi8nHp3on7+8mkRTQ6PiCtIT8IE7aYA=;
+        b=T6vEWyHLQaY2+Nr8A8RgU8dpJP80De8AdSNEcFoDKHO9h39h+o+J4mYQcZlJOr4118
+         jJVa/e+03LozjHmHFcSZ9TTLdNx9jc/CBCHaqDmSReutmP9OIXI5WM0q+Tf917rHDD2d
+         oy5uCA7zgH3B7cpjSU1cV8XEOt2uhu9vD+LkTlKOYbBB3Q0scmE+D5kF4QsUJcemGdla
+         zXRXsKHBJzsYBPYCAQnHjT8xrfSH5i3utOgR7doYjUHpTnOtrqU++QF947JEkhI23h+p
+         Mzxs+N74wYfvZjp/JL5RzMMbpd0mezm00wxGffeq+l6ICZmAn4Bk2j0hGRu3DxI47htg
+         H2lg==
+X-Gm-Message-State: AOJu0YwuYVPL6dcBvEw8IbHvIcL+PUezCRNjUWzW3uhtl5Aweab6CzUf
+	F0sZqibShtFt+VNCiLLuL/mrKw==
+X-Google-Smtp-Source: AGHT+IEujxnwo+96SBI5xhydwgPVabkVZjbFH2S1iScffuuKk0AepoayPt5mUPHNMWZADvHEkjQrtQ==
+X-Received: by 2002:aa7:d158:0:b0:537:fb3e:222e with SMTP id r24-20020aa7d158000000b00537fb3e222emr5979270edo.18.1696536575486;
+        Thu, 05 Oct 2023 13:09:35 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id i13-20020a056402054d00b005231e3d89efsm1549705edx.31.2023.10.05.13.09.00
+        by smtp.gmail.com with ESMTPSA id i13-20020a056402054d00b005231e3d89efsm1549705edx.31.2023.10.05.13.09.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Oct 2023 13:09:01 -0700 (PDT)
-Message-ID: <90746214-d091-464f-a889-bc4353caa362@linaro.org>
-Date: Thu, 5 Oct 2023 22:08:54 +0200
+        Thu, 05 Oct 2023 13:09:35 -0700 (PDT)
+Message-ID: <d7e049bf-4a85-479d-b6cf-78e7545ded61@linaro.org>
+Date: Thu, 5 Oct 2023 22:09:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,17 +65,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: media: rockchip: Add resets property into
- decoder node
+Subject: Re: [PATCH v2] arm64: dts: rockchip: rk3588s: Add AV1 decoder node
 Content-Language: en-US
-To: Benjamin Gaignard <benjamin.gaignard@collabora.com>,
- ezequiel@vanguardiasur.com.ar, p.zabel@pengutronix.de, mchehab@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- heiko@sntech.de
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20231005161107.269303-1-benjamin.gaignard@collabora.com>
+To: Benjamin Gaignard <benjamin.gaignard@collabora.com>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, heiko@sntech.de
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ kernel@collabora.com, Sebastian Reichel <sebastian.reichel@collabora.com>
+References: <20231005160957.269202-1-benjamin.gaignard@collabora.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,25 +118,52 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231005161107.269303-1-benjamin.gaignard@collabora.com>
+In-Reply-To: <20231005160957.269202-1-benjamin.gaignard@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 05/10/2023 18:11, Benjamin Gaignard wrote:
-> RK3588 AV1 decoder hardware block have resets lines and driver code
-> already suppport it.
-> Update yaml file to be aligned with this feature.
+On 05/10/2023 18:09, Benjamin Gaignard wrote:
+> Add node for AV1 video decoder.
 > 
 > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+> version 2:
+> - change node name to video-codec
+> - fix typo in commit header
+> 
+>  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> index 5544f66c6ff4..1a50da77c7c6 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> @@ -2304,6 +2304,20 @@ gpio4: gpio@fec50000 {
+>  			#interrupt-cells = <2>;
+>  		};
+>  	};
+> +
+> +	av1d: video-codec@fdc70000 {
+> +		compatible = "rockchip,rk3588-av1-vpu";
+> +		reg = <0x0 0xfdc70000 0x0 0x800>;
+> +		interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH 0>;
+> +		interrupt-names = "vdpu";
+> +		clocks = <&cru ACLK_AV1>, <&cru PCLK_AV1>;
+> +		clock-names = "aclk", "hclk";
+> +		assigned-clocks = <&cru ACLK_AV1>, <&cru PCLK_AV1>;
+> +		assigned-clock-rates = <400000000>, <400000000>;
+> +		resets = <&cru SRST_A_AV1>, <&cru SRST_P_AV1>, <&cru SRST_A_AV1_BIU>, <&cru SRST_P_AV1_BIU>;
+> +		power-domains = <&power RK3588_PD_AV1>;
+> +		status = "okay";
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Drop, it's by default.
 
 Best regards,
 Krzysztof
