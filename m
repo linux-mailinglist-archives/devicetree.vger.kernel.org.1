@@ -1,157 +1,105 @@
-Return-Path: <devicetree+bounces-6177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1EE87BA209
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:12:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A64F7BA21F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:15:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id DFF0F1C208DE
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:12:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id AA9841C20852
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:13:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BE5930CEB;
-	Thu,  5 Oct 2023 15:12:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20E3930CF4;
+	Thu,  5 Oct 2023 15:13:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TYndyPL+"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Pd1xVOjX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD76B26E12
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 15:12:15 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED9116A78;
-	Thu,  5 Oct 2023 08:12:13 -0700 (PDT)
-Received: from mercury (dyndsl-091-248-132-024.ewe-ip-backbone.de [91.248.132.24])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id BD63F660732E;
-	Thu,  5 Oct 2023 16:12:12 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1696518732;
-	bh=7HcjV56Wdx2jVQo6+tXHe5Jd8Cre7FRGtAeizbopYJM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TYndyPL+Ng1u7wjEJau3B+Q4BS0YIB3UgoXrE5AEDcaSWWziEOoC2H2ZUN3wKBV+a
-	 yUYI3bBjgk+9ZypyfVsm/zj3SEdxWIMTtvbkusSi88kQpyCF+84XYvAJat5tvLWRfT
-	 dr3tt0WEeK/QQeWtoVLudG13HPG/7CJrOgOTpP4VRJsp9KW/z2WuYO3pco49iNa4aP
-	 8G3uT7IPDRTeNhAnTEuEqa+06TGlcuzb1rnhLwgeEhXwjpdC0cTUtwsNuqClqfAFII
-	 xUKw2kb81rjuoFD0arxMkxF2OXev/l6rUG/km44eS6Scn1bE3hnX65wClseBSV9rGe
-	 yen69inaH2wzQ==
-Received: by mercury (Postfix, from userid 1000)
-	id 7B5F6106045C; Thu,  5 Oct 2023 17:12:10 +0200 (CEST)
-Date: Thu, 5 Oct 2023 17:12:10 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, heiko@sntech.de, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	kernel@collabora.com
-Subject: Re: [PATCH] arm64: dts: rockchip: rk3588is: Add AV1 decoder node
-Message-ID: <20231005151210.nqdx2uoixqjhrtrx@mercury.elektranox.org>
-References: <20231005145420.169594-1-benjamin.gaignard@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93AA430CE5
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 15:13:25 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30E951687E;
+	Thu,  5 Oct 2023 08:13:23 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 395FDBQx044781;
+	Thu, 5 Oct 2023 10:13:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1696518791;
+	bh=O9FhfvATundeGpAaMYwp4zaxW3D2P8Zjw0rWxeEZ63A=;
+	h=From:To:CC:Subject:Date;
+	b=Pd1xVOjXLqSJs10Mv/iPGrmQuDlTBj1p+RllitBUFUN7F3it0rB8HCf8IdExuStgN
+	 i19juVbEZTpoiaB5F9p8CcWh4SZ1JRF3FNQSWvMMUKNbBWg/PT4ukPv/TC5BPuC1UO
+	 01u2dV0OmzCbd8R+XwrBoXqw95Zv8g44vTvRfiIY=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 395FDBxc105345
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 5 Oct 2023 10:13:11 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 5
+ Oct 2023 10:13:11 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 5 Oct 2023 10:13:11 -0500
+Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 395FD7Pb027216;
+	Thu, 5 Oct 2023 10:13:08 -0500
+From: Vignesh Raghavendra <vigneshr@ti.com>
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/2] arm64: dts: ti: Use simple-bus wherever possible
+Date: Thu, 5 Oct 2023 20:43:00 +0530
+Message-ID: <20231005151302.1290363-1-vigneshr@ti.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ceanalih5k4ck3c7"
-Content-Disposition: inline
-In-Reply-To: <20231005145420.169594-1-benjamin.gaignard@collabora.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
 	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+This series coverts simple-mfd to simple-bus for segments housing Data
+movement related IPs (DMASS on AM64/AM62 and AM62A), NAVSS on the rest)
 
---ceanalih5k4ck3c7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Boot tested on all K3 SoCs. excerised DMA by using ethernet and OSPI for
+sanity.
 
-Hi,
+Vignesh Raghavendra (2):
+  arm64: dts: ti: k3-*: Convert DMSS to simple-bus
+  arm64: dts: ti: k3-*: Convert NAVSS to simple-bus
 
-On Thu, Oct 05, 2023 at 04:54:20PM +0200, Benjamin Gaignard wrote:
-> Add node for AV1 video decoder.
->=20
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi         | 2 +-
+ arch/arm64/boot/dts/ti/k3-am62p-main.dtsi        | 2 +-
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi         | 2 +-
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi         | 2 +-
+ arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi          | 2 +-
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi        | 2 +-
+ arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi  | 2 +-
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi        | 2 +-
+ arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi  | 2 +-
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi       | 2 +-
+ arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi | 2 +-
+ 11 files changed, 11 insertions(+), 11 deletions(-)
 
-No need for my SoB. Instead have this one:
+-- 
+2.42.0
 
-Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-
-Also worth mentioning, that this Patch needs one small fix in the DT
-binding (adding "resets") and one small fix in the driver for out of
-the box AV1 support:
-
-https://lore.kernel.org/all/20231005144934.169356-1-benjamin.gaignard@colla=
-bora.com/
-https://lore.kernel.org/all/20231005145116.169411-1-benjamin.gaignard@colla=
-bora.com/
-
-Greetings,
-
--- Sebastian
-
-> ---
->  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/=
-dts/rockchip/rk3588s.dtsi
-> index 5544f66c6ff4..835e66d85d5f 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> @@ -2304,6 +2304,20 @@ gpio4: gpio@fec50000 {
->  			#interrupt-cells =3D <2>;
->  		};
->  	};
-> +
-> +	av1d: av1d@fdc70000 {
-> +		compatible =3D "rockchip,rk3588-av1-vpu";
-> +		reg =3D <0x0 0xfdc70000 0x0 0x800>;
-> +		interrupts =3D <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		interrupt-names =3D "vdpu";
-> +		clocks =3D <&cru ACLK_AV1>, <&cru PCLK_AV1>;
-> +		clock-names =3D "aclk", "hclk";
-> +		assigned-clocks =3D <&cru ACLK_AV1>, <&cru PCLK_AV1>;
-> +		assigned-clock-rates =3D <400000000>, <400000000>;
-> +		resets =3D <&cru SRST_A_AV1>, <&cru SRST_P_AV1>, <&cru SRST_A_AV1_BIU>=
-, <&cru SRST_P_AV1_BIU>;
-> +		power-domains =3D <&power RK3588_PD_AV1>;
-> +		status =3D "okay";
-> +	};
->  };
-> =20
->  #include "rk3588s-pinctrl.dtsi"
-> --=20
-> 2.39.2
->=20
-
---ceanalih5k4ck3c7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmUe0j0ACgkQ2O7X88g7
-+po6gA//Wb0enkCVGQ9jtP43nB3ooBioMqf6NhopmzyPxzdF59vsIcVnW3Qh/jsP
-5UQq2N9Kx+xXWbGnqpsOxIRqkQi3I6D4LavSPkU1PhO97VIX6VucCR6rRQ9ZyTEo
-/MhIOziVQ3Nb71q9EIN7t+1losh4WwT3aP48oXq/igPgpYnYfeCPPkGF3W61McqK
-U4ifjucb0EZ9wF6nLTpCBqrODSpzJxdAjc15wFQGM2srZTsVTLQGq/xVfkXe/fH8
-s8WFgwi9DwM1Kv2tZe4QuW80rmklW85f9HVf1aPTS9yOX8RqvxMbKih7GcJYe+v/
-SnlCpxfZl8b+74+9yHAs6ZwT6yD25vY8IArtKyuyw6gRexJHcqkRiGGX6JRbimT3
-P35OfmAO41PjZTm+Xiwtj/DJ/8LQvXp0TWIWSYq4lPc0yNvT8XlgDwJt5GFgZyZI
-gQjNx4z2F4airWowri0EUPzkiW+BdSRIvZ53/n4qmR0HpfZGtM1wYlkHnTJYE2yA
-Qhyfp+bujHDcMnSicFZyUwB7Y+774XdGJrcKiaY5E5mrboBDwiQJpMvnpcWn+CkJ
-6/Gv+5Q18CLj3JB1xyexvVNr8nWRbhbtVZOPkgxILGfoyLZ1h9FnqfDXT+bCIEqP
-5HiVa3OCcD5e+uVaVga71Vdc0LIk0D14XRXxEtqkHIASZtx0NnI=
-=Kfpg
------END PGP SIGNATURE-----
-
---ceanalih5k4ck3c7--
 
