@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-6198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEAC47BA373
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:57:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F8D57BA375
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 17:57:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 69B85282B39
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:57:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id BBE18282A6A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:57:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E3B8328B5;
-	Thu,  5 Oct 2023 15:57:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 837A031A84;
+	Thu,  5 Oct 2023 15:57:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fKN0FNxZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KiKTGGxB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BD7231A6A
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 15:57:33 +0000 (UTC)
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8592386832
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 08:57:31 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-32157c8e4c7so1155115f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 08:57:31 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D57D0328A8
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 15:57:34 +0000 (UTC)
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C668386837
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 08:57:32 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-32488a22810so1039865f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 08:57:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696521449; x=1697126249; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696521451; x=1697126251; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+WotVRIx4IfQWLl7bsIqhgSrhHJCYtM2efkzCcXjlJ0=;
-        b=fKN0FNxZQsnaKhU8KpZohEQIexiyaLjkt2O8JHVuY7/rXBtmgp3DFt7ZxA0wRpyq5b
-         AuEruZGCxhuOFpECFlxMjvVYAxLQfeUWE/RB86KG13uiKAQYpWJ76kTIVA2MytD/TlnV
-         1nRdb/Y9JepnHmfTfIxzx9TJlhQRXRoq11GNI1fK59ETXEI4RIzTHSG9PSH6GS5K+ekz
-         u0YLO8grA92CM82ZjQ4HEfd0Hw0ArC28hrC9XdFCkqR2t3OQuMCJfyvFs9ZsQu3RH9n6
-         U6LSF1g+6XbMis2C9W7lVPCGzxoOrTEsVEL0CX80rtx/5ctxE/LPwqra+9vOh9w7EDLA
-         C1EQ==
+        bh=ylH3r2N4huNUb7il+GAvao+h0OGeqDeAdkjyqYnsGYw=;
+        b=KiKTGGxBP6ZDFcKpuUl9/FXoOpG6W9/PCwrOD8gEpkVDDVnNjIQpMqIemF7mvLN4mi
+         3bdUQFYAEkMxpCCEcdvgaJCSCFw0wEcwMNBL6DShp0JfirJZIAgMsnd35mk7Xqsme7sy
+         RJxn8gA7UtpZ1RyX/V18ofP4e3XksSjmTq/IW6CcLKrlT5MpgA2y1QuJl2+4sXI85MuI
+         LK8t9iiM8jT0LXv3jHPD89pilNQM64ilkqUdraBLQB2iqaf7prTGe9EHhFfg9hKcCocF
+         zqfUBjHrkMgPyMvsy+jQ5kTWJCybS0AlFloapCly/g1pJI1wi6S6p6eYC0GO+LpFObg/
+         m1bA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696521449; x=1697126249;
+        d=1e100.net; s=20230601; t=1696521451; x=1697126251;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+WotVRIx4IfQWLl7bsIqhgSrhHJCYtM2efkzCcXjlJ0=;
-        b=rCVQ8M0rBvbheVTTP+BYAhqfOrVSoWtXFMTmZiPcvS9O+U4ZR+WGIsFnuY24fhKNcl
-         c1y1CzcekuFVOUY1LHreVlg6NuKW/nkemDz97nYhymq78UpvY4ue5dA4CUQATj9PYTIY
-         omAJRgIwblaJhu1kL0CCpIzASUDF8sMJ/VI2TggIyQxOFK2rz8s0Ehi+Viv4n8E954FI
-         T7G1ZhtZ8jITQMtMK/ic8FjxTZvmzOnSa0slxi6JpUGIqjEvTBcL1gR0/I4jJ8xdwOyQ
-         zCIVaEDvmovcrI4v+QkenbOaxqQjPkXkxyJjsTONkybl3xFAG8iIXQ+AvPBgd/bXqBPN
-         Hu2w==
-X-Gm-Message-State: AOJu0YwtBJZwSKplJY//3OZo1fh9AAYmsMq5qA2xWF7hHQcR2kSq6ivA
-	oD8ra/gGe/zSU/DDWUe0p6um+Q==
-X-Google-Smtp-Source: AGHT+IHb0s500PrFGOrLeuuBwpGQ7OFg+clB+5dsL7CoXu4v4IuKDCuex94QNDTzGTMDp0JcDuLSUg==
-X-Received: by 2002:adf:cc81:0:b0:321:5971:23a5 with SMTP id p1-20020adfcc81000000b00321597123a5mr5355332wrj.20.1696521449677;
-        Thu, 05 Oct 2023 08:57:29 -0700 (PDT)
+        bh=ylH3r2N4huNUb7il+GAvao+h0OGeqDeAdkjyqYnsGYw=;
+        b=akkpIbC1/U5Cs4f1zTFI9sd0n2q0vKzSa0A0dUIq61LSdiI7aVAu98bPFSL3JxMIb1
+         qDNPJ5j5cNtns8W8mZh0qNzFkN+y6U5OE2I16xnVkv3FNxSwIPuHqDWPN+V7cJI0WJtm
+         LUszUW87P2wuCSoV8IfcavwC9MXZA20RXr+F0/KCqC1i2wrFh81+S2tVMHRn2oTSNGRl
+         qSwhD2phvxGUyCzEGQyRDZHhSP3KgcY/GA4Lys1IqFvkWVvgHa2STUGsrx71gPAK//LF
+         63k9rNEpjzYC2+Z7Cfo5jmR/Bt3/0nMS0dwy3ioBCvLqKflN27R1MK51GoJ253jYB+8E
+         ac0w==
+X-Gm-Message-State: AOJu0Yyy7a3oIaRrzGVuWEtDrhaqJ3YH4A3MkfEJ1Bg7vtTu5JVAGJ9K
+	OUcUyZPQNFCOpVQ2DaZhRdNriw==
+X-Google-Smtp-Source: AGHT+IEPYyyM2IMYe/RJ0phQWyT/Pm8leTRtBdwsfcRau9xe1hKp1zxU0tWr3ekNb0EMRyzrKcPhlA==
+X-Received: by 2002:a5d:4d12:0:b0:323:16c0:9531 with SMTP id z18-20020a5d4d12000000b0032316c09531mr5128395wrt.13.1696521451269;
+        Thu, 05 Oct 2023 08:57:31 -0700 (PDT)
 Received: from gpeter-l.lan (host-92-12-225-146.as13285.net. [92.12.225.146])
-        by smtp.gmail.com with ESMTPSA id t9-20020a5d4609000000b0031f8a59dbeasm2084336wrq.62.2023.10.05.08.57.28
+        by smtp.gmail.com with ESMTPSA id t9-20020a5d4609000000b0031f8a59dbeasm2084336wrq.62.2023.10.05.08.57.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Oct 2023 08:57:29 -0700 (PDT)
+        Thu, 05 Oct 2023 08:57:30 -0700 (PDT)
 From: Peter Griffin <peter.griffin@linaro.org>
 To: robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
@@ -83,9 +83,9 @@ Cc: peter.griffin@linaro.org,
 	linux-clk@vger.kernel.org,
 	linux-gpio@vger.kernel.org,
 	linux-watchdog@vger.kernel.org
-Subject: [PATCH 07/21] dt-bindings: pinctrl: samsung: add google,gs101-pinctrl compatible
-Date: Thu,  5 Oct 2023 16:56:04 +0100
-Message-ID: <20231005155618.700312-8-peter.griffin@linaro.org>
+Subject: [PATCH 08/21] dt-bindings: pinctrl: samsung: add gs101-wakeup-eint compatible
+Date: Thu,  5 Oct 2023 16:56:05 +0100
+Message-ID: <20231005155618.700312-9-peter.griffin@linaro.org>
 X-Mailer: git-send-email 2.42.0.582.g8ccd20d70d-goog
 In-Reply-To: <20231005155618.700312-1-peter.griffin@linaro.org>
 References: <20231005155618.700312-1-peter.griffin@linaro.org>
@@ -98,41 +98,40 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add the "google,gs101-pinctrl" compatible to the dt-schema bindings
-documentation.
-
-Add maxItems of 50 for the interrupts property as gs101 can have
-multiple irqs.
+gs101 is similar to newer Exynos SoCs like Exynos850 and ExynosAutov9
+where more than one pin controller can do external wake-up interrupt.
+So add a dedicated compatible for it.
 
 Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 ---
- .../devicetree/bindings/pinctrl/samsung,pinctrl.yaml          | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ .../bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml      | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
-index 26614621774a..e0f37f8ae8e7 100644
---- a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
-@@ -54,11 +54,13 @@ properties:
-       - samsung,exynos850-pinctrl
-       - samsung,exynosautov9-pinctrl
-       - tesla,fsd-pinctrl
-+      - google,gs101-pinctrl
+diff --git a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
+index 1de91a51234d..668fd903d06f 100644
+--- a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
+@@ -37,6 +37,7 @@ properties:
+       - samsung,exynos7-wakeup-eint
+       - samsung,exynos850-wakeup-eint
+       - samsung,exynosautov9-wakeup-eint
++      - google,gs101-wakeup-eint
  
    interrupts:
      description:
-       Required for GPIO banks supporting external GPIO interrupts.
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 50
- 
-   power-domains:
-     maxItems: 1
+@@ -99,6 +100,7 @@ allOf:
+             enum:
+               - samsung,exynos850-wakeup-eint
+               - samsung,exynosautov9-wakeup-eint
++              - google,gs101-wakeup-eint
+     then:
+       properties:
+         interrupts: false
 -- 
 2.42.0.582.g8ccd20d70d-goog
 
