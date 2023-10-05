@@ -1,110 +1,116 @@
-Return-Path: <devicetree+bounces-6047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85CD47B9C0F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 11:08:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C5127B9C33
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 11:32:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 19037281B69
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 09:08:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTP id A9E0A1F22E8D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 09:32:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21DBA101E5;
-	Thu,  5 Oct 2023 09:08:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8E5A10796;
+	Thu,  5 Oct 2023 09:32:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Hl0nRPjT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V4REbNl/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04F767F
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 09:08:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDC6DC4160E;
-	Thu,  5 Oct 2023 09:08:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1696496915;
-	bh=DKlHct01eZZdgFFxoFSnHEvWjamH4HVMNYorMvqVhcM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Hl0nRPjTCgvdFsoN+K40ZjBXi7s0IGP49FjOYJUblKJzn2o2mixa+kCOtZsGQUnmh
-	 9LCPyBFwDazPYxVpByMCpGSndjCRgc2eks0Ssi/G/hL+/pETpx3iNIofV+7U4GfhvO
-	 TKvIS8e0xn6oPJzFpOWsU+8tcb1iqg1IEdQDtGhc=
-Date: Thu, 5 Oct 2023 11:08:32 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Ayush Singh <ayushdevel1325@gmail.com>
-Cc: greybus-dev@lists.linaro.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, vaishnav@beagleboard.org,
-	jkridner@beagleboard.org, nm@ti.com,
-	krzysztof.kozlowski+dt@linaro.org, johan@kernel.org,
-	elder@kernel.org
-Subject: Re: [PATCH v7 2/3] greybus: Add BeaglePlay Linux Driver
-Message-ID: <2023100501-siesta-dictate-132e@gregkh>
-References: <20231004184639.462510-1-ayushdevel1325@gmail.com>
- <20231004184639.462510-3-ayushdevel1325@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 560E25690
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 09:32:53 +0000 (UTC)
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6DF7A5E7
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 02:32:51 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-533edb5ac54so1290727a12.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 02:32:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696498370; x=1697103170; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qNwLLYEchjqrT8u4dds+22/hvzzwVkXCbPu7CyE+3Mk=;
+        b=V4REbNl/YAk00RXPG9rZxg5pwJCWIBFL6E5x0WAlIICbPHdhHu2STeD/ZWKy739zw0
+         vkfNqbtr7nun1bxGzAJMLOzce40sjFpy3nJoo+lkuG7rAKzsVGkVPMpG9TpBE8/7f9+F
+         K73Dq2cz4suXtGGUuAJWN5jpwJDATKp3RJU3GdLFSYdK4WK6G/+4Bx7Z1N6dgi8nkxdL
+         kkDfq8pWYK8KkIQ3X4j6fNKKFrp3pN09WSkbjd0ci+2H/7sA/EY16yplSwsIC4lUVSQZ
+         m1LBONZfdebCqNX1+FKtzMmqkvaXg+jjzBmuh5hx0N/XYvuiqNG/9dc8calhLVhl3WM7
+         ORxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696498370; x=1697103170;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qNwLLYEchjqrT8u4dds+22/hvzzwVkXCbPu7CyE+3Mk=;
+        b=MuFchKDba3EYr4X+z8rGaBeDzb3v2h3lQ7Re25FKbcY7vQ+ENoZc/lHwMepAKH0861
+         +yXsCNXflbovphFuOrPahX0swvcPq89pB6Xqa7+WalmbBcI8if55u98NSgtkpLkt2QP2
+         gr1WLCU/iYEfSnTDnFqISnQEttySDg/RPdQAkbZc0+lyvTzPrDy6ffxU0L4sr8XyVjoN
+         MBbpvecbE//oClHPIze2Wj1B0dvwGkZi4/b/lA2TM150QIpNMgBKi7hRmpN4cTRUOUbr
+         PtBGZKU2ks95aK+cISqToiGGvmvLt9xijN5P3s5Ygxpv7eHFZ3YH1AJP7BWibL8O8Kj8
+         qgyg==
+X-Gm-Message-State: AOJu0YychF8C1EeeqUCmi3Kt2GcrTTxiDzGsVa2NyMGXO+0PKAhV/bLF
+	UNWoC4iqi/UI0kGLpE70CdUv0pMv9UigVEp5idAUAA==
+X-Google-Smtp-Source: AGHT+IGGASEELZoOzZ6BfyTzvlBZV9PBihNgej7jZay1gXGRYHNhNO+WGFiREWZMmxKPAgpv4B/eZA==
+X-Received: by 2002:a17:906:310b:b0:9ae:5765:c134 with SMTP id 11-20020a170906310b00b009ae5765c134mr4869914ejx.15.1696498370178;
+        Thu, 05 Oct 2023 02:32:50 -0700 (PDT)
+Received: from krzk-bin.. (5-157-101-10.dyn.eolo.it. [5.157.101.10])
+        by smtp.gmail.com with ESMTPSA id rn4-20020a170906d92400b0099bc038eb2bsm863893ejb.58.2023.10.05.02.32.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Oct 2023 02:32:49 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	linux-serial@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH 1/2] dt-bindings: serial: fix regex pattern for matching serial node children
+Date: Thu,  5 Oct 2023 11:32:46 +0200
+Message-Id: <20231005093247.128166-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231004184639.462510-3-ayushdevel1325@gmail.com>
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Thu, Oct 05, 2023 at 12:16:37AM +0530, Ayush Singh wrote:
-> Add the Greybus host driver for BeaglePlay board by BeagleBoard.org.
-> 
-> The current greybus setup involves running SVC in a user-space
-> application (GBridge) and using netlink to communicate with kernel
-> space. GBridge itself uses wpanusb kernel driver, so the greybus messages
-> travel from kernel space (gb_netlink) to user-space (GBridge) and then
-> back to kernel space (wpanusb) before reaching CC1352.
-> 
-> This driver directly communicates with CC1352 (running SVC Zephyr
-> application). Thus, it simplifies the complete greybus setup eliminating
-> user-space GBridge.
-> 
-> This driver is responsible for the following:
-> - Start SVC (CC1352) on driver load.
-> - Send/Receive Greybus messages to/from CC1352 using HDLC over UART.
-> - Print Logs from CC1352.
-> - Stop SVC (CC1352) on driver load.
-> 
-> Signed-off-by: Ayush Singh <ayushdevel1325@gmail.com>
-> ---
->  MAINTAINERS                     |   1 +
->  drivers/greybus/Kconfig         |  10 +
->  drivers/greybus/Makefile        |   2 +
->  drivers/greybus/gb-beagleplay.c | 501 ++++++++++++++++++++++++++++++++
->  4 files changed, 514 insertions(+)
->  create mode 100644 drivers/greybus/gb-beagleplay.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 5467669d7963..d87e30626a6a 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8974,6 +8974,7 @@ M:	Ayush Singh <ayushdevel1325@gmail.com>
->  L:	greybus-dev@lists.linaro.org (moderated for non-subscribers)
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
-> +F:	drivers/greybus/gb-beagleplay.c
->  
->  GREYBUS SUBSYSTEM
->  M:	Johan Hovold <johan@kernel.org>
-> diff --git a/drivers/greybus/Kconfig b/drivers/greybus/Kconfig
-> index 78ba3c3083d5..fd4f26d09c53 100644
-> --- a/drivers/greybus/Kconfig
-> +++ b/drivers/greybus/Kconfig
-> @@ -17,6 +17,16 @@ menuconfig GREYBUS
->  
->  if GREYBUS
->  
-> +config GREYBUS_BEAGLEPLAY
-> +	tristate "Greybus BeaglePlay driver"
-> +	depends on TTY
+The regular expression pattern for matching serial node children should
+accept only nodes starting and ending with the set of words: bluetooth,
+gnss, gps or mcu.  Add missing brackets to enforce such matching.
 
-What you want to depend on here is serdev, not tty, right?  Or am I
-mis-reading the code requirements?
+Fixes: 0c559bc8abfb ("dt-bindings: serial: restrict possible child node names")
+Reported-by: Andreas Kemnade <andreas@kemnade.info>
+Closes: https://lore.kernel.org/all/20231004170021.36b32465@aktux/
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/serial/serial.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-thanks,
+diff --git a/Documentation/devicetree/bindings/serial/serial.yaml b/Documentation/devicetree/bindings/serial/serial.yaml
+index ea277560a596..5727bd549dec 100644
+--- a/Documentation/devicetree/bindings/serial/serial.yaml
++++ b/Documentation/devicetree/bindings/serial/serial.yaml
+@@ -96,7 +96,7 @@ then:
+     rts-gpios: false
+ 
+ patternProperties:
+-  "^bluetooth|gnss|gps|mcu$":
++  "^(bluetooth|gnss|gps|mcu)$":
+     if:
+       type: object
+     then:
+-- 
+2.34.1
 
-greg k-h
 
