@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-6024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91DDA7B9B65
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 09:31:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21EA77B9B69
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 09:33:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 411512817BB
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 07:31:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 95DD4281771
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 07:33:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D812553B9;
-	Thu,  5 Oct 2023 07:31:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC3F2567F;
+	Thu,  5 Oct 2023 07:33:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kWGL4SJL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OsnfmHUD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 482EE63A
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 07:31:28 +0000 (UTC)
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD4837ABD
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 00:31:26 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-99c3d3c3db9so104748466b.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 00:31:26 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F8B453B9
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 07:33:31 +0000 (UTC)
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACB4E7D82
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 00:33:29 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-5335725cf84so1042093a12.2
+        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 00:33:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696491085; x=1697095885; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1696491208; x=1697096008; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=c3wgPnof1xW5WnzXcdpPZtD7yE+iEfi3mzplGT2Sn8Y=;
-        b=kWGL4SJL86OArxmCuWF5dit74ErgIljf2Krrsy+42czCshIhBOptpMqdjh2BShUx1S
-         X8Rmt0qFi22N3ih3kApcnd8ZBjDWutj7GdiOI7z8xXG/UPTcf5DSwOAYw62NJvvW5lRD
-         tIvfHNxrRMT6UtudGoLvKyVskrj8Q8nvCAuurVBuZBwwT5XkPkkLGFdOjUQ2Eg0aSsZY
-         vPkR00WZNOM4Tl9PELm90kZRuCeFLgr9A6XKsiaOYrkXM8VDAuuShzoxfR0lLq5Lhvwo
-         MvMkhWc4635RLNCR7Y1KcCjz1F0B9V6n4DVCeHJ9WjDhx2QLd34YH1RxSACW810X6u3b
-         GTNA==
+        bh=lL8prhvxG/JPr8NZHgbw2u9XcnkP9uX9xfVESPlK83A=;
+        b=OsnfmHUD7yQ6QlNWQyPgwx8t61pJKhuaiHZgU50PQLfzdvvceYcBBib+3Hvtc5uW7y
+         jBMJOtvLSZ2SST4VbDBBb9/PTxvsgMvay4m1ACtAYVnWr90WcowsrLBGd3aretfymZYx
+         5zksAkS/C1aPlwJLcxFj+XEg569jH/KeBvFlC+X8bfmEixvsGohe0TZrDRHL2SRGv3ft
+         +gWzFETuj95uS0+5eInwISL9HOcqv8bk4v7fs+3UNYRl1PMljvKCltiiJPOpbV926n3D
+         iX0yJzGakz9gzimtGIGQbq6rFGb4CRtHseGrQaOv7qAZZySDczmznhF/6HXYUZ/xQEe6
+         oFww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696491085; x=1697095885;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1696491208; x=1697096008;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c3wgPnof1xW5WnzXcdpPZtD7yE+iEfi3mzplGT2Sn8Y=;
-        b=sNzdo/bLMkgONvzHOW/8y4jAKKjZADIUfAO5fjddor+4YrOOq1+ARlEDxuIgfyh3+l
-         lRW5yuEqg8o8FeRy3DKP6P0aL0gHJjVQETvTPpt+xYGZeMZsZgqTzCLRYSlHJOHZZLJV
-         Nh+ehE2yetaZzHiVz9t0urAKE0iNf8KjtVX6KauNfILayxlJ/YnzlqHQTymGhzkHIjYz
-         ETf6GVdOkzXEHWIsLUWHWIrt2RTFb2PMO4IjLSTadPzO6NQj+dLAMXwvGSwySZbsN/Of
-         6WaYY8A2LNw/PKAT3RW2h0FVJYX/XQf/QSrwvxVFAmbhGGerlHU5aXbs2DocWvGcGydT
-         TYTw==
-X-Gm-Message-State: AOJu0YzBADsXOWYPpRlV6R9+b0POI9X63o5TghbTnelOMnKO1lGlzVj3
-	e9OokGFv+VtF86YS7OmvunTo9w==
-X-Google-Smtp-Source: AGHT+IHGUK6uCijTJyg0xJE5Osr66rPsjFDs1uBMhgmT3CMErKEexD8lBXNo64g5BvxBSGRKXYO+qw==
-X-Received: by 2002:a17:907:6c14:b0:9b6:f0e2:3c00 with SMTP id rl20-20020a1709076c1400b009b6f0e23c00mr3268487ejc.71.1696491085352;
-        Thu, 05 Oct 2023 00:31:25 -0700 (PDT)
+        bh=lL8prhvxG/JPr8NZHgbw2u9XcnkP9uX9xfVESPlK83A=;
+        b=oFFuhme47KPGX3PJ91qBeao/KftAyW5h+hzwKpmJE4PjkSl0EiNe876fcnrSytkgG0
+         iF+Iz2FU09OlfiHbwAaJj5wfNc7rXiokkcIaWg6wLy8uk9n/Pttf7BgOs1q22jUuYPwT
+         c6sT4nqtCJYySOvNfyd1WvvAHFCA7l3mbw6FL0Xnj25Bbvk+a/iMZnQTtIr1k7ZYug8i
+         RY3lkGSMhzWFUD7ukraBwH0r/0hRHFK7bugoO1NFQwy/j2F7Bs7fdsZjCoRfMCMdI2tA
+         7xvTSAtW7XtAnTb9jaMQx1SXg+HKTsijnJGU8/PpvmdVMwZUVGI2E9mQwRLKZLyPz8Km
+         aGMA==
+X-Gm-Message-State: AOJu0YxnF91P99luJ7qdXCwR4a1Ckg6bd88i8CWqSj0ZDr+WfUkM3O3i
+	0fn/zCtqz7z2XwX6hBmmiWANCg==
+X-Google-Smtp-Source: AGHT+IEasJoNT19fu5fgHC4TK9D6ZW34FlCUE+tewrFKlbqXqs9FJRNHSEOBmkfNK71LnNyE5QJk7w==
+X-Received: by 2002:aa7:d151:0:b0:530:db58:61c8 with SMTP id r17-20020aa7d151000000b00530db5861c8mr3936950edo.23.1696491208150;
+        Thu, 05 Oct 2023 00:33:28 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id gt26-20020a170906f21a00b0099bcf9c2ec6sm692972ejb.75.2023.10.05.00.31.23
+        by smtp.gmail.com with ESMTPSA id f26-20020a056402005a00b00530bc7cf377sm616810edu.12.2023.10.05.00.33.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Oct 2023 00:31:24 -0700 (PDT)
-Message-ID: <65a610df-5030-4dd0-9f04-2089dfe09a3d@linaro.org>
-Date: Thu, 5 Oct 2023 09:31:23 +0200
+        Thu, 05 Oct 2023 00:33:27 -0700 (PDT)
+Message-ID: <f2e2d122-f5a7-401e-a429-0a86c2c0b3ab@linaro.org>
+Date: Thu, 5 Oct 2023 09:33:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,17 +65,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/7] ARM: dts: aspeed: mtmitchell: Add LEDs
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: ti,ads7038: Add description
+ for ADS7038
 Content-Language: en-US
-To: Chanh Nguyen <chanh@os.amperecomputing.com>,
- OpenBMC Maillist <openbmc@lists.ozlabs.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20231005035525.19036-1-chanh@os.amperecomputing.com>
- <20231005035525.19036-5-chanh@os.amperecomputing.com>
+To: werneazc@gmail.com, jic23@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, lars@metafoo.de
+Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Andre Werner <andre.werner@systec-electronic.com>
+References: <20231005035933.31016-1-andre.werner@systec-electronic.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,7 +119,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231005035525.19036-5-chanh@os.amperecomputing.com>
+In-Reply-To: <20231005035933.31016-1-andre.werner@systec-electronic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -131,38 +129,62 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 05/10/2023 05:55, Chanh Nguyen wrote:
-> Use gpio-leds to configure GPIOW5 to GPIO_ACTIVE_HIGH and
-> GPIO_TRANSITORY flags as a bmc ready led. The GPIOW5 pin
-> is reset when watchdog timeout occurs.
+On 05/10/2023 05:54, werneazc@gmail.com wrote:
+> From: Andre Werner <andre.werner@systec-electronic.com>
 > 
-> Configure the GPIOS3 to GPIO_ACTIVE_HIGH as an identify led.
+> Add basic description for ADS7x38 ADC devices. The driver does only
+> support a very basic set of functionalities provided by the chip.
+> Also, the example in the description covers only a setup for ADS7038 devices
+> while the driver structure will support both ADS7038 (SPI) and ADS7138 (I2C) devices.
 > 
-> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
+> Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
 > ---
->  .../dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts     | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
+> - v2: Add commit message and correct vref-description copy-paste-error.
+> ---
+>  .../bindings/iio/adc/ti,ads7038.yaml          | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml
 > 
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
-> index b7c4f7cfad07..88693c2b2dbe 100644
-> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dts
-> @@ -51,6 +51,19 @@
->  		};
->  	};
->  
-> +	leds {
-> +		compatible = "gpio-leds";
+> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml
+> new file mode 100644
+> index 000000000000..d40869b9a604
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/ti,ads7038.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +		bmc-ready {
+> +title: Texas Instruments ADS7038 and similar ADCs
+> +
+> +maintainers:
+> +  - Andre Werner <andre.werner@systec-electronic.com>
+> +
+> +description: |
+> +  Family of 7 channel, 12 bit ADCs with SPI/I2C interface.
+> +
+> +  Datasheet: https://www.ti.com/lit/gpn/ads7038
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,ads7038
+> +      - ti,ads7138
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 60000000
+> +
+> +  vref-supply:
+> +    description: Supplies the reference voltage AVDD
 
-Missing led name.
+Didn't you already get a comment that there is no vref but avdd, so
+avdd-supply?
 
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
 
 Best regards,
 Krzysztof
