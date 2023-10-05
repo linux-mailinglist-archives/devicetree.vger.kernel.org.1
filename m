@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-6025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21EA77B9B69
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 09:33:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 487E77B9B6A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 09:34:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 95DD4281771
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 07:33:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id EBD412817AC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 07:34:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC3F2567F;
-	Thu,  5 Oct 2023 07:33:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 481D95680;
+	Thu,  5 Oct 2023 07:34:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OsnfmHUD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f23amMM/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F8B453B9
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 07:33:31 +0000 (UTC)
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACB4E7D82
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 00:33:29 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-5335725cf84so1042093a12.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 00:33:29 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D994563A
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 07:34:37 +0000 (UTC)
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C29147D86
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 00:34:35 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-538e8eca9c1so1059877a12.3
+        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 00:34:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696491208; x=1697096008; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696491274; x=1697096074; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lL8prhvxG/JPr8NZHgbw2u9XcnkP9uX9xfVESPlK83A=;
-        b=OsnfmHUD7yQ6QlNWQyPgwx8t61pJKhuaiHZgU50PQLfzdvvceYcBBib+3Hvtc5uW7y
-         jBMJOtvLSZ2SST4VbDBBb9/PTxvsgMvay4m1ACtAYVnWr90WcowsrLBGd3aretfymZYx
-         5zksAkS/C1aPlwJLcxFj+XEg569jH/KeBvFlC+X8bfmEixvsGohe0TZrDRHL2SRGv3ft
-         +gWzFETuj95uS0+5eInwISL9HOcqv8bk4v7fs+3UNYRl1PMljvKCltiiJPOpbV926n3D
-         iX0yJzGakz9gzimtGIGQbq6rFGb4CRtHseGrQaOv7qAZZySDczmznhF/6HXYUZ/xQEe6
-         oFww==
+        bh=RemQ+kO5LWbk4kqvMyW1M9bpjQKJ4AawmNqARJCw5+Y=;
+        b=f23amMM/4IlpXckXjl5Kn1zm7CavESsTOx+3pLt5WoyhYqnB5P+0GF46gnOBl3sqN+
+         mmvn4gfjf/H58atwSXE9dIeWf5dTIso2ynvOi8RnLTfHd7ctw5Z/pyej+8vUaAr2Pf94
+         YoA61NG7Y5Nyfs5BKjq5EoZ259hmyl0YJUi6TV3RD1klJMiiLiYFIDhHaG7uvFXQMbF8
+         iHcPqfWvOGeOWMnw9Rz04fa2CUL+ngErmnGmWFfhG3c2YUpJArMQcB4Fl8pHyPv5BPl/
+         f1BNEYwf4M2C0y4ykZaoA2gvgkoeg1TPqp4wKk9wEwOcc7RHeyDonBoWJwJC0w7BEKtf
+         MAJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696491208; x=1697096008;
+        d=1e100.net; s=20230601; t=1696491274; x=1697096074;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lL8prhvxG/JPr8NZHgbw2u9XcnkP9uX9xfVESPlK83A=;
-        b=oFFuhme47KPGX3PJ91qBeao/KftAyW5h+hzwKpmJE4PjkSl0EiNe876fcnrSytkgG0
-         iF+Iz2FU09OlfiHbwAaJj5wfNc7rXiokkcIaWg6wLy8uk9n/Pttf7BgOs1q22jUuYPwT
-         c6sT4nqtCJYySOvNfyd1WvvAHFCA7l3mbw6FL0Xnj25Bbvk+a/iMZnQTtIr1k7ZYug8i
-         RY3lkGSMhzWFUD7ukraBwH0r/0hRHFK7bugoO1NFQwy/j2F7Bs7fdsZjCoRfMCMdI2tA
-         7xvTSAtW7XtAnTb9jaMQx1SXg+HKTsijnJGU8/PpvmdVMwZUVGI2E9mQwRLKZLyPz8Km
-         aGMA==
-X-Gm-Message-State: AOJu0YxnF91P99luJ7qdXCwR4a1Ckg6bd88i8CWqSj0ZDr+WfUkM3O3i
-	0fn/zCtqz7z2XwX6hBmmiWANCg==
-X-Google-Smtp-Source: AGHT+IEasJoNT19fu5fgHC4TK9D6ZW34FlCUE+tewrFKlbqXqs9FJRNHSEOBmkfNK71LnNyE5QJk7w==
-X-Received: by 2002:aa7:d151:0:b0:530:db58:61c8 with SMTP id r17-20020aa7d151000000b00530db5861c8mr3936950edo.23.1696491208150;
-        Thu, 05 Oct 2023 00:33:28 -0700 (PDT)
+        bh=RemQ+kO5LWbk4kqvMyW1M9bpjQKJ4AawmNqARJCw5+Y=;
+        b=nABl1RLbbjFqloU0S1WJeH0iZUFJVcRs1R9Hso34By9uPZEZbppJP2P4mtX/Z4/b6X
+         uxXTVCj9/iz8UXoggJ73r0q788oHrX4CNY3dfyyFoh/C4Scz/Dga8CerjXa08Ed5Tic9
+         SmuiE5t9FnqJrDqWsf+vEExHRhk3rtSi914baT6ARj+eyAW4zKYVwgiP4yPkpT4KDyXJ
+         q1enUI86zqEQBRAlH2KiuSY8XKwrUxQUMO3FsfkzhV/m3t/shKGTEfNxqjJSvVzrWw+N
+         CfXvvZXL6uH3Bsi5HIfgiUKdFGfziGT9EzYW/OXrjhrYKd//Va1V/peicyVwn3PkMYMX
+         sdAQ==
+X-Gm-Message-State: AOJu0YwIgFUNW/AyIjZPUimMAK+Kod0Y4xAMl9vyxTuBiZkUqwT27ib9
+	fllzP4zWtlBNFCPYlzP8syHtyA==
+X-Google-Smtp-Source: AGHT+IEO3B7Z233MtcQfx2cBYuFG2/dqEew6/1P7hOXhNe/qdINPPgOU6yCt3Ug/CZyde69oE+fQfA==
+X-Received: by 2002:a50:ed15:0:b0:533:780f:f016 with SMTP id j21-20020a50ed15000000b00533780ff016mr3981422eds.14.1696491274275;
+        Thu, 05 Oct 2023 00:34:34 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id f26-20020a056402005a00b00530bc7cf377sm616810edu.12.2023.10.05.00.33.26
+        by smtp.gmail.com with ESMTPSA id f26-20020a056402005a00b00530bc7cf377sm616810edu.12.2023.10.05.00.34.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Oct 2023 00:33:27 -0700 (PDT)
-Message-ID: <f2e2d122-f5a7-401e-a429-0a86c2c0b3ab@linaro.org>
-Date: Thu, 5 Oct 2023 09:33:26 +0200
+        Thu, 05 Oct 2023 00:34:33 -0700 (PDT)
+Message-ID: <cfbc4805-c2e8-4dee-92bc-14d805dc2320@linaro.org>
+Date: Thu, 5 Oct 2023 09:34:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,15 +65,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: ti,ads7038: Add description
- for ADS7038
+Subject: Re: [PATCH V14 3/4] dt-bindings: mfd: qcom,tcsr: Add simple-mfd
+ support for IPQ6018
 Content-Language: en-US
-To: werneazc@gmail.com, jic23@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, lars@metafoo.de
-Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Andre Werner <andre.werner@systec-electronic.com>
-References: <20231005035933.31016-1-andre.werner@systec-electronic.com>
+To: Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, lee@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ thierry.reding@gmail.com, ndesaulniers@google.com, trix@redhat.com,
+ baruch@tkos.co.il, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ llvm@lists.linux.dev
+Cc: linux-pwm@vger.kernel.org, u.kleine-koenig@pengutronix.de,
+ nathan@kernel.org
+References: <20231005033053.2626465-1-quic_devipriy@quicinc.com>
+ <20231005033053.2626465-4-quic_devipriy@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -119,7 +124,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231005035933.31016-1-andre.werner@systec-electronic.com>
+In-Reply-To: <20231005033053.2626465-4-quic_devipriy@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -129,62 +134,13 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 05/10/2023 05:54, werneazc@gmail.com wrote:
-> From: Andre Werner <andre.werner@systec-electronic.com>
+On 05/10/2023 05:30, Devi Priya wrote:
+> Update the binding to include pwm as the child node to TCSR block and
+> add simple-mfd support for IPQ6018.
 > 
-> Add basic description for ADS7x38 ADC devices. The driver does only
-> support a very basic set of functionalities provided by the chip.
-> Also, the example in the description covers only a setup for ADS7038 devices
-> while the driver structure will support both ADS7038 (SPI) and ADS7138 (I2C) devices.
-> 
-> Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
-> ---
-> - v2: Add commit message and correct vref-description copy-paste-error.
-> ---
->  .../bindings/iio/adc/ti,ads7038.yaml          | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml
-> new file mode 100644
-> index 000000000000..d40869b9a604
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads7038.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/ti,ads7038.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments ADS7038 and similar ADCs
-> +
-> +maintainers:
-> +  - Andre Werner <andre.werner@systec-electronic.com>
-> +
-> +description: |
-> +  Family of 7 channel, 12 bit ADCs with SPI/I2C interface.
-> +
-> +  Datasheet: https://www.ti.com/lit/gpn/ads7038
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,ads7038
-> +      - ti,ads7138
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 60000000
-> +
-> +  vref-supply:
-> +    description: Supplies the reference voltage AVDD
+> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
 
-Didn't you already get a comment that there is no vref but avdd, so
-avdd-supply?
-
+Why did you send it twice? It's just brings confusion...
 
 Best regards,
 Krzysztof
