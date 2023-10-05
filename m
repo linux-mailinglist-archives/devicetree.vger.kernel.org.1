@@ -1,294 +1,603 @@
-Return-Path: <devicetree+bounces-6086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 337B97B9D51
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:28:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44BF37B9D5F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:37:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id D9258281A94
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 13:28:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 3B0611C20852
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 13:37:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EDE61B28D;
-	Thu,  5 Oct 2023 13:28:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE91A1C284;
+	Thu,  5 Oct 2023 13:37:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="f15GbZD8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nsMLk3v9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D2F7125A3
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 13:28:37 +0000 (UTC)
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57CA427572
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 06:28:35 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso190229366b.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 06:28:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1696512514; x=1697117314; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Uttje9H76CjAHqDi0nb3p+4z8+RlBcA4fdin0GblyOs=;
-        b=f15GbZD89XPjr4ZKplrmoQgnDHVGSwTs4ag/dxw/7ORMPwEGrvYsh7bco2rqy+2jpv
-         dSTPPiisWdCgr40SRwuKoqWiZbtdU3z/8cJy1MdULbrZ6sqPzZad6/v9J1VpiMCYUUST
-         94D33/pMcgPsNCAm55tBXEauYiOaZDBy//IkA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696512514; x=1697117314;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Uttje9H76CjAHqDi0nb3p+4z8+RlBcA4fdin0GblyOs=;
-        b=FE3DCtkPeFL07qzzx+ULXa09gwoI3VuFf0sUjSUroexMGOqz+J6ap0rDj26wjRxIYz
-         /d418yshnMSaY8ga7se7GQvRhpPcGSv/9+CtCRcvLhaVpW3UphwAu7tA8VV5czXY4Cuk
-         izGoKQ7hGFaj+WaHhlsCJ8cahokxXSMGYqQPw9DFfqIS2/wps9NzTp0pEEJ14Mmj63jZ
-         lkiM0colCVLXX6iuo/z2jGdUuC/zQub/PVbK5e89mk8TyfwCIOk3CtGNGaEhcTv+vXtw
-         wGBMs8oWeqJxbB57u8PgJf+b9KHsHkueagSr/qOASfpA2ZA6g04WhPTlqqh3XPTOssRW
-         /uUA==
-X-Gm-Message-State: AOJu0YyfKWWiG0XzdF3VC/vq+VDpvYRyQaQe0jlBK9cz8BqZBXVOiljp
-	Vr4E3nZCyVrTqtASrnyL2l3zdIbP4JBjlrhywvbSCA==
-X-Google-Smtp-Source: AGHT+IGEm5wF2Q+BhWlWTvL7ZYsdruoCPmp9Uy47bElz9kCchf+LdIy88b0VQuw88Imfh5qH6nm1g3tJn7WJrqlN0EQ=
-X-Received: by 2002:a17:906:224c:b0:9ae:3c2f:5a99 with SMTP id
- 12-20020a170906224c00b009ae3c2f5a99mr5697789ejr.51.1696512513425; Thu, 05 Oct
- 2023 06:28:33 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EF1B125A3
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 13:37:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 651F2C4AF74;
+	Thu,  5 Oct 2023 13:37:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696513053;
+	bh=gQO8gzEGdkAvnIig++YIzdt2XSzjnK/sMCovAlXVcec=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nsMLk3v9sa0Le4rZCkVPgBBMlnc4tFWpH62qc39eH2N15SCHzvCAvn0vmaUv3/wJB
+	 Qyw0rIk9li58oSFclEaRxPe3ynG0NXqU02/w+nt03qU3LdwghdjKZYXRlDMf3sVTgK
+	 cfDR049tas6X8DDlAbVSyeePDD+i2PTC1A8gglM5tor1YawSY9TYGGpXm8Zi781UyN
+	 NSMkDCoPwlADzc81V9SbuSpDS0FXZTyySoI6MlgZaaEhcQukEbx0aFSA6nILZDikcc
+	 Ld8CKaa47X100eCxKqIGJ2Z8ZcGV+bozjHnmpK3mUg0ZrBWoWRfSNg6KgcX+GByLTY
+	 0q5vT+j2514DQ==
+Date: Thu, 5 Oct 2023 14:37:26 +0100
+From: Lee Jones <lee@kernel.org>
+To: Anjelique Melendez <quic_amelende@quicinc.com>
+Cc: pavel@ucw.cz, thierry.reding@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	agross@kernel.org, andersson@kernel.org, luca.weiss@fairphone.com,
+	konrad.dybcio@linaro.org, u.kleine-koenig@pengutronix.de,
+	quic_subbaram@quicinc.com, quic_gurus@quicinc.com,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-pwm@vger.kernel.org, kernel@quicinc.com
+Subject: Re: [PATCH v5 4/7] leds: rgb: leds-qcom-lpg: Add support for single
+ SDAM PPG
+Message-ID: <20231005133726.GD681678@google.com>
+References: <20230929003901.15086-1-quic_amelende@quicinc.com>
+ <20230929003901.15086-5-quic_amelende@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231004093620.2b1d6917@xps-13> <20231004113458.531124-1-mwalle@kernel.org>
- <CAPnjgZ2hWE6Sc=rg55W=-r-TnoWP7Y5gSpn41kwoyja-AMVw+w@mail.gmail.com>
- <9e588e3ec8c0c321a2861723d0d42b9a@kernel.org> <CAPnjgZ20ezipPWAj6bUM9_oCTcX1XzuLqQ7b7-nKjXf1t4p9-Q@mail.gmail.com>
- <a581ef73fa09c6ffeb83a1c1780053bd@kernel.org>
-In-Reply-To: <a581ef73fa09c6ffeb83a1c1780053bd@kernel.org>
-From: Simon Glass <sjg@chromium.org>
-Date: Thu, 5 Oct 2023 07:28:15 -0600
-Message-ID: <CAPnjgZ2PnKD5m0EgTdEAf-gcK3wuBZvWw_AO2iehb1dmfdoz3A@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: mtd: fixed-partitions: Add binman compatible
-To: Michael Walle <mwalle@kernel.org>
-Cc: miquel.raynal@bootlin.com, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org, 
-	linux-mtd@lists.infradead.org, ptyadav@amazon.de, rafal@milecki.pl, 
-	richard@nod.at, robh+dt@kernel.org, robh@kernel.org, trini@konsulko.com, 
-	u-boot@lists.denx.de, vigneshr@ti.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_IN_DEF_SPF_WL autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230929003901.15086-5-quic_amelende@quicinc.com>
 
-Hi Michael,
+On Thu, 28 Sep 2023, Anjelique Melendez wrote:
 
-On Thu, 5 Oct 2023 at 02:54, Michael Walle <mwalle@kernel.org> wrote:
->
-> Hi,
->
-> >> >> >> Add a compatible string for binman, so we can extend fixed-partitions
-> >> >> >> in various ways.
-> >> >> >
-> >> >> > I've been thinking at the proper way to describe the binman partitions.
-> >> >> > I am wondering if we should really extend the fixed-partitions
-> >> >> > schema. This description is really basic and kind of supposed to remain
-> >> >> > like that. Instead, I wonder if we should not just keep the binman
-> >> >> > compatible alone, like many others already. This way it would be very clear
-> >> >> > what is expected and allowed in both cases. I am thinking about
-> >> >> > something like that:
-> >> >> >
-> >> >> >       Documentation/devicetree/bindings/mtd/partitions/brcm,bcm4908-partitions.yaml
-> >> >> >
-> >> >> > this file is also referenced there (but this patch does the same, which
-> >> >> > is what I'd expect):
-> >> >> >
-> >> >> >       Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
-> >> >> >
-> >> >> > I'll let the binding maintainers judge whether they think it's
-> >> >> > relevant, it's not a strong opposition.
-> >> >>
-> >> >> What is the overall goal here? To replace the current binman node
-> >> >> which is
-> >> >> usually contained in the -u-boot.dtsi files? If one is using binman to
-> >> >> create an image, is it expected that one needs to adapt the DT in
-> >> >> linux?
-> >> >> Or will it still be a seperate -u-boot.dtsi? > Because in the latter
-> >> >> case
-> >> >> I see that there will be conflicts because you have to overwrite the
-> >> >> flash node. Or will it be a seperate node with all the information
-> >> >> duplicated?
-> >> >
-> >> > The goal is simply to have a full binding for firmware layout, such
-> >> > that firmware images can be created, examined and updated. The
-> >> > -u-boot.dtsi files are a stopgap while we sort out a real binding.
-> >> > They should eventually go away.
-> >>
-> >> You haven't answered whether this node should be a seperate binman
-> >> node - or if you'll reuse the existing flash (partitions) node(s) and
-> >> add any missing property there. If it's the latter, I don't think
-> >> compatible = "binman", "fixed-partitions"; is correct.
-> >
-> > My intent is to make it compatible, so wouldn't it make sense to have
-> > binman as the first compatible, then falling back to fixed-partitions
-> > as the second?
->
-> As far as I know, the compatibles should get more specific with each
-> string.
+> In some PMICs like pmi632, the pattern look up table (LUT) and LPG
+> configuration is stored in a single SDAM module instead of LUT
+> peripheral. Currently, PMICs without LUT peripheral will not be
+> able to produce LED patterns.
+> 
+> Add support for PBS Pattern Generation (PPG), which is the feature
+> that allows PMICs without LUT peripherals to produce LED patterns
+> from SDAM module. PPG uses the Qualcomm Programmable Boot
+> Sequencer (PBS) to trigger LED pattern sequences.
+> 
+> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
+> ---
+>  drivers/leds/rgb/leds-qcom-lpg.c | 282 ++++++++++++++++++++++++++++---
+>  1 file changed, 261 insertions(+), 21 deletions(-)
 
-That's the opposite to what I understood.
+Looking good.  Just a couple of nits and throughts.
 
-> But "binman" seems to be used as a kind of tag which could be
-> added to any compatible under the flash node. What if one wants to build
-> an image which isn't compatible = "fixed-partitions"? E.g.
-> "linksys,ns-partitions", will it then have
-> compatible = "binman", "linksys,ns-partitions"?
+> diff --git a/drivers/leds/rgb/leds-qcom-lpg.c b/drivers/leds/rgb/leds-qcom-lpg.c
+> index df469aaa7e6e..4d87686f916c 100644
+> --- a/drivers/leds/rgb/leds-qcom-lpg.c
+> +++ b/drivers/leds/rgb/leds-qcom-lpg.c
+> @@ -8,11 +8,13 @@
+>  #include <linux/bitfield.h>
+>  #include <linux/led-class-multicolor.h>
+>  #include <linux/module.h>
+> +#include <linux/nvmem-consumer.h>
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pwm.h>
+>  #include <linux/regmap.h>
+>  #include <linux/slab.h>
+> +#include <linux/soc/qcom/qcom-pbs.h>
+>  
+>  #define LPG_SUBTYPE_REG		0x05
+>  #define  LPG_SUBTYPE_LPG	0x2
+> @@ -39,6 +41,8 @@
+>  #define PWM_SEC_ACCESS_REG	0xd0
+>  #define PWM_DTEST_REG(x)	(0xe2 + (x) - 1)
+>  
+> +#define SDAM_REG_PBS_SEQ_EN		0x42
+> +
+>  #define TRI_LED_SRC_SEL		0x45
+>  #define TRI_LED_EN_CTL		0x46
+>  #define TRI_LED_ATC_CTL		0x47
+> @@ -48,9 +52,25 @@
+>  
+>  #define LPG_RESOLUTION_9BIT	BIT(9)
+>  #define LPG_RESOLUTION_15BIT	BIT(15)
+> +#define PPG_MAX_LED_BRIGHTNESS	255
+> +
+>  #define LPG_MAX_M		7
+>  #define LPG_MAX_PREDIV		6
+>  
+> +#define DEFAULT_TICK_DURATION_US	7800
+> +#define RAMP_STEP_DURATION(x)		(((x) * 1000 / DEFAULT_TICK_DURATION_US) & 0xff)
+> +
+> +/* LPG common config settings for PPG */
+> +#define SDAM_REG_RAMP_STEP_DURATION		0x47
+> +#define SDAM_LPG_SDAM_LUT_PATTERN_OFFSET	0x80
+> +
+> +/* LPG per channel config settings for PPG */
+> +#define SDAM_LUT_EN_OFFSET			0x0
+> +#define SDAM_PATTERN_CONFIG_OFFSET		0x1
+> +#define SDAM_END_INDEX_OFFSET			0x3
+> +#define SDAM_START_INDEX_OFFSET		0x4
+> +#define SDAM_PBS_SCRATCH_LUT_COUNTER_OFFSET	0x6
+> +
+>  struct lpg_channel;
+>  struct lpg_data;
+>  
+> @@ -64,7 +84,10 @@ struct lpg_data;
+>   * @lut_base:	base address of the LUT block (optional)
+>   * @lut_size:	number of entries in the LUT block
+>   * @lut_bitmap:	allocation bitmap for LUT entries
+> - * @triled_base: base address of the TRILED block (optional)
+> + * @pbs_dev:	PBS device
+> + * @lpg_chan_sdam:	LPG SDAM peripheral device
+> + * @pbs_en_bitmap:	bitmap for tracking PBS triggers
+> + * @triled_base:	base address of the TRILED block (optional)
+>   * @triled_src:	power-source for the TRILED
+>   * @triled_has_atc_ctl:	true if there is TRI_LED_ATC_CTL register
+>   * @triled_has_src_sel:	true if there is TRI_LED_SRC_SEL register
+> @@ -85,6 +108,10 @@ struct lpg {
+>  	u32 lut_size;
+>  	unsigned long *lut_bitmap;
+>  
+> +	struct pbs_dev *pbs_dev;
+> +	struct nvmem_device *lpg_chan_sdam;
+> +	unsigned long pbs_en_bitmap;
+> +
+>  	u32 triled_base;
+>  	u32 triled_src;
+>  	bool triled_has_atc_ctl;
+> @@ -101,6 +128,8 @@ struct lpg {
+>   * @triled_mask: mask in TRILED to enable this channel
+>   * @lut_mask:	mask in LUT to start pattern generator for this channel
+>   * @subtype:	PMIC hardware block subtype
+> + * @sdam_offset:	Channel offset in LPG SDAM
 
-I suppose so.
+Nit: De-capitalise Channel.
 
->
->
-> >> >> Maybe (a more complete) example would be helpful.
-> >> >
-> >> > Can you please be a bit more specific? What is missing from the
-> >> > example?
-> >>
-> >> Like a complete (stripped) DTS. Right now I just see how the
-> >> individual
-> >> node looks like. But with a complete example DTS, my question from
-> >> above
-> >> would have been answered.
->
-> So to give an example myself, please correct it if it's wrong. From
-> our board (kontron-sl28):
->
-> &fspi {
->          status = "okay";
->
->          flash@0 {
->                  compatible = "jedec,spi-nor";
->                  m25p,fast-read;
->                  spi-max-frequency = <133000000>;
->                  reg = <0>;
->                  /* The following setting enables 1-1-2 (CMD-ADDR-DATA)
-> mode */
->                  spi-rx-bus-width = <2>; /* 2 SPI Rx lines */
->                  spi-tx-bus-width = <1>; /* 1 SPI Tx line */
->
->                  partitions {
->                          compatible = "fixed-partitions";
->                          #address-cells = <1>;
->                          #size-cells = <1>;
->
->                          partition@0 {
->                                  reg = <0x000000 0x010000>;
->                                  label = "rcw";
->                                  read-only;
->                          };
->
->                          partition@10000 {
->                                  reg = <0x010000 0x1d0000>;
->                                  label = "failsafe bootloader";
->                                  read-only;
->                          };
->
->                          partition@200000 {
->                                  reg = <0x200000 0x010000>;
->                                  label = "configuration store";
->                          };
->
->                          partition@210000 {
->                                  reg = <0x210000 0x1d0000>;
->                                  label = "bootloader";
->                          };
->
->                          partition@3e0000 {
->                                  reg = <0x3e0000 0x020000>;
->                                  label = "bootloader environment";
->                          };
->                  };
->          };
-> };
->
-> In u-boot we use binman, see
-> arch/arm/dts/fsl-ls1028a-kontron-sl28-u-boot.dtsi
-> in the u-boot repository.
->
-> Now to use the new method, am I expected to adapt the dts in the
-> linux kernel? As far as I understand that is the case. So that node
-> from above would look something like the following:
->
-> &fspi {
->          status = "okay";
->
->          flash@0 {
->                  compatible = "jedec,spi-nor";
->                  m25p,fast-read;
->                  spi-max-frequency = <133000000>;
->                  reg = <0>;
->                  /* The following setting enables 1-1-2 (CMD-ADDR-DATA)
-> mode */
->                  spi-rx-bus-width = <2>; /* 2 SPI Rx lines */
->                  spi-tx-bus-width = <1>; /* 1 SPI Tx line */
->
->                  partitions {
->                          compatible = "binman", "fixed-partitions";
->                          #address-cells = <1>;
->                          #size-cells = <1>;
-> [..]
->                          partition@210000 {
->                                  reg = <0x210000 0x1d0000>;
->                                  label = "u-boot"; /* or "u-boot+atf" ?
-> */
->                          };
->
->                          partition@3e0000 {
->                                  reg = <0x3e0000 0x020000>;
->                                  label = "bootloader environment";
->                          };
->                  };
->          };
-> };
->
-> I'm still not sure why that compatible is needed. Also I'd need to
-> change
-> the label which might break user space apps looking for that specific
-> name.
->
-> Also, our board might have u-boot/spl or u-boot/spl/bl31/bl32, right now
-> that's something which depends on an u-boot configuration variable,
-> which
-> then enables or disables binman nodes in the -u-boot.dtsi. So in linux
-> we only have that "bootloader" partition, but there might be either
-> u-boot+spl or u-boot+spl+bl31+bl32.
->
-> Honestly, I'm really not sure this should go into a device tree.
+> + * @lpg_idx:	index of the channel
+>   * @in_use:	channel is exposed to LED framework
+>   * @color:	color of the LED attached to this channel
+>   * @dtest_line:	DTEST line for output, or 0 if disabled
+> @@ -112,6 +141,7 @@ struct lpg {
+>   * @pre_div_sel: divider selector of the reference clock
+>   * @pre_div_exp: exponential divider of the reference clock
+>   * @pwm_resolution_sel:	pwm resolution selector
+> + * @pattern_set: true when setting pattern
+>   * @ramp_enabled: duty cycle is driven by iterating over lookup table
+>   * @ramp_ping_pong: reverse through pattern, rather than wrapping to start
+>   * @ramp_oneshot: perform only a single pass over the pattern
+> @@ -129,6 +159,8 @@ struct lpg_channel {
+>  	unsigned int triled_mask;
+>  	unsigned int lut_mask;
+>  	unsigned int subtype;
+> +	u32 sdam_offset;
+> +	u32 lpg_idx;
+>  
+>  	bool in_use;
+>  
+> @@ -146,6 +178,7 @@ struct lpg_channel {
+>  	unsigned int pre_div_exp;
+>  	unsigned int pwm_resolution_sel;
+>  
+> +	bool pattern_set;
+>  	bool ramp_enabled;
+>  	bool ramp_ping_pong;
+>  	bool ramp_oneshot;
+> @@ -180,8 +213,10 @@ struct lpg_led {
+>   * struct lpg_channel_data - per channel initialization data
+>   * @base:		base address for PWM channel registers
+>   * @triled_mask:	bitmask for controlling this channel in TRILED
+> + * @sdam_offset:	Channel offset in LPG SDAM
 
-I think we might be getting a bit ahead of ourselves here. I thought
-that the decision was that the label should indicate the contents. If
-you have multiple things in a partition then it would become a
-'section' in Binman's terminology. Either the label programmatically
-describes what is inside or it doesn't. We can't have it both ways.
-What do you suggest?
+Nit: Please keep these ordered.
 
-At present it seems you have the image described in two places - one
-is the binman node and the other is the partitions node. I would like
-to unify these.
+>   */
+>  struct lpg_channel_data {
+> +	unsigned int sdam_offset;
+>  	unsigned int base;
+>  	u8 triled_mask;
+>  };
+> @@ -206,6 +241,75 @@ struct lpg_data {
+>  	const struct lpg_channel_data *channels;
+>  };
+>  
+> +#define PBS_SW_TRIG_BIT		BIT(0)
+> +
+> +static int lpg_clear_pbs_trigger(struct lpg_channel *chan)
+> +{
+> +	u8 val = 0;
+> +	int rc;
+> +
+> +	clear_bit(chan->lpg_idx, &chan->lpg->pbs_en_bitmap);
+> +	if (!chan->lpg->pbs_en_bitmap) {
+> +		rc = nvmem_device_write(chan->lpg->lpg_chan_sdam, SDAM_REG_PBS_SEQ_EN, 1, &val);
+> +		if (rc < 0)
+> +			return rc;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int lpg_set_pbs_trigger(struct lpg_channel *chan)
+> +{
+> +	u8 val = PBS_SW_TRIG_BIT;
+> +	int rc;
+> +
+> +	if (!chan->lpg->pbs_en_bitmap) {
+> +		rc = nvmem_device_write(chan->lpg->lpg_chan_sdam, SDAM_REG_PBS_SEQ_EN, 1, &val);
+> +		if (rc < 0)
+> +			return rc;
+> +
+> +		rc = qcom_pbs_trigger_event(chan->lpg->pbs_dev, val);
+> +		if (rc < 0)
+> +			return rc;
+> +	}
+> +	set_bit(chan->lpg_idx, &chan->lpg->pbs_en_bitmap);
+> +
+> +	return 0;
+> +}
+> +
+> +static int lpg_sdam_configure_triggers(struct lpg_channel *chan, bool set_trig)
+> +{
+> +	u32 addr = SDAM_LUT_EN_OFFSET + chan->sdam_offset;
+> +	u8 val;
+> +	int rc;
+> +
+> +	if (chan->lpg->lut_base)
 
-What does user space do with the partition labels?
+Because?  I think I comment here would be handy.
 
->
-> >> What if a board uses eMMC to store the firmware binaries? Will that
-> >> then
-> >> be a subnode to the eMMC device?
-> >
-> > I thought there was a way to link the partition nodes and the device
-> > using a property, without having the partition info as a subnode of
-> > the device. But I may have imagined it as I cannot find it now. So
-> > yes, it will be a subnode of the eMMC device.
->
-> Not sure if that will fly.
+> +		return 0;
+> +
+> +	if (set_trig) {
+> +		val = 1;
+> +		rc = nvmem_device_write(chan->lpg->lpg_chan_sdam, addr, 1, &val);
+> +		if (rc < 0)
+> +			return rc;
+> +
+> +		rc = lpg_set_pbs_trigger(chan);
+> +		if (rc < 0)
+> +			return rc;
+> +		chan->pattern_set = false;
+> +	} else {
+> +		val = 0;
+> +		rc = nvmem_device_write(chan->lpg->lpg_chan_sdam, addr, 1, &val);
+> +		if (rc < 0)
+> +			return rc;
+> +
+> +		rc = lpg_clear_pbs_trigger(chan);
+> +		if (rc < 0)
+> +			return rc;
 
-I can't find it anyway. There is somelike like that in
-simple-framebuffer with the 'display' property.
+Nothing to be done for pattern_set?
 
-Regards,
-SImon
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int triled_set(struct lpg *lpg, unsigned int mask, unsigned int enable)
+>  {
+>  	/* Skip if we don't have a triled block */
+> @@ -216,6 +320,41 @@ static int triled_set(struct lpg *lpg, unsigned int mask, unsigned int enable)
+>  				  mask, enable);
+>  }
+>  
+> +static int lpg_lut_store_sdam(struct lpg *lpg, struct led_pattern *pattern,
+> +			 size_t len, unsigned int *lo_idx, unsigned int *hi_idx)
+> +{
+> +	unsigned int idx;
+> +	u8 brightness;
+> +	int i, rc;
+> +	u16 addr;
+> +
+> +	if (len > lpg->lut_size) {
+> +		dev_err(lpg->dev, "Pattern length (%zu) exceeds maximum pattern length (%d)\n",
+> +			len, lpg->lut_size);
+> +		return -EINVAL;
+> +	}
+> +
+> +	idx = bitmap_find_next_zero_area(lpg->lut_bitmap, lpg->lut_size,
+> +					 0, len, 0);
+
+These line wraps are inconsistent with some others.
+
+Pick 80 or 100, but be consistent throughout.
+
+> +	if (idx >= lpg->lut_size)
+> +		return -ENOSPC;
+> +
+> +	for (i = 0; i < len; i++) {
+> +		brightness = pattern[i].brightness;
+> +		addr = SDAM_LPG_SDAM_LUT_PATTERN_OFFSET + i + idx;
+> +		rc = nvmem_device_write(lpg->lpg_chan_sdam, addr, 1, &brightness);
+> +		if (rc < 0)
+> +			return rc;
+> +	}
+> +
+> +	bitmap_set(lpg->lut_bitmap, idx, len);
+> +
+> +	*lo_idx = idx;
+> +	*hi_idx = idx + len - 1;
+> +
+> +	return 0;
+> +}
+> +
+>  static int lpg_lut_store(struct lpg *lpg, struct led_pattern *pattern,
+>  			 size_t len, unsigned int *lo_idx, unsigned int *hi_idx)
+>  {
+> @@ -462,6 +601,28 @@ static void lpg_apply_pwm_value(struct lpg_channel *chan)
+>  #define LPG_PATTERN_CONFIG_PAUSE_HI	BIT(1)
+>  #define LPG_PATTERN_CONFIG_PAUSE_LO	BIT(0)
+>  
+> +static void lpg_sdam_apply_lut_control(struct lpg_channel *chan)
+> +{
+> +	struct nvmem_device *lpg_chan_sdam = chan->lpg->lpg_chan_sdam;
+> +	unsigned int lo_idx = chan->pattern_lo_idx;
+> +	unsigned int hi_idx = chan->pattern_hi_idx;
+> +	u8 val = 0, conf = 0;
+> +
+> +	if (!chan->ramp_enabled || chan->pattern_lo_idx == chan->pattern_hi_idx)
+> +		return;
+> +
+> +	if (!chan->ramp_oneshot)
+> +		conf |= LPG_PATTERN_CONFIG_REPEAT;
+> +
+> +	nvmem_device_write(lpg_chan_sdam, SDAM_PBS_SCRATCH_LUT_COUNTER_OFFSET + chan->sdam_offset, 1, &val);
+> +	nvmem_device_write(lpg_chan_sdam, SDAM_PATTERN_CONFIG_OFFSET + chan->sdam_offset, 1, &conf);
+> +	nvmem_device_write(lpg_chan_sdam, SDAM_END_INDEX_OFFSET + chan->sdam_offset, 1, &hi_idx);
+> +	nvmem_device_write(lpg_chan_sdam, SDAM_START_INDEX_OFFSET + chan->sdam_offset, 1, &lo_idx);
+> +
+> +	val = RAMP_STEP_DURATION(chan->ramp_tick_ms);
+> +	nvmem_device_write(lpg_chan_sdam, SDAM_REG_RAMP_STEP_DURATION, 1, &val);
+> +}
+> +
+>  static void lpg_apply_lut_control(struct lpg_channel *chan)
+>  {
+>  	struct lpg *lpg = chan->lpg;
+> @@ -597,7 +758,10 @@ static void lpg_apply(struct lpg_channel *chan)
+>  	lpg_apply_pwm_value(chan);
+>  	lpg_apply_control(chan);
+>  	lpg_apply_sync(chan);
+> -	lpg_apply_lut_control(chan);
+> +	if (chan->lpg->lpg_chan_sdam)
+> +		lpg_sdam_apply_lut_control(chan);
+> +	else
+> +		lpg_apply_lut_control(chan);
+>  	lpg_enable_glitch(chan);
+>  }
+>  
+> @@ -642,6 +806,9 @@ static void lpg_brightness_set(struct lpg_led *led, struct led_classdev *cdev,
+>  		triled_mask |= chan->triled_mask;
+>  
+>  		lpg_apply(chan);
+> +
+> +		if (chan->pattern_set)
+> +			lpg_sdam_configure_triggers(chan, true);
+>  	}
+>  
+>  	/* Toggle triled lines */
+> @@ -836,18 +1003,24 @@ static int lpg_pattern_set(struct lpg_led *led, struct led_pattern *led_pattern,
+>  	 * If the specified pattern is a palindrome the ping pong mode is
+>  	 * enabled. In this scenario the delta_t of the middle entry (i.e. the
+>  	 * last in the programmed pattern) determines the "high pause".
+> +	 *
+> +	 * SDAM devices supporting LUT do not support "low pause", "high pause"
+> +	 * or "ping pong"
+>  	 */
+>  
+>  	/* Detect palindromes and use "ping pong" to reduce LUT usage */
+> -	for (i = 0; i < len / 2; i++) {
+> -		brightness_a = pattern[i].brightness;
+> -		brightness_b = pattern[len - i - 1].brightness;
+> -
+> -		if (brightness_a != brightness_b) {
+> -			ping_pong = false;
+> -			break;
+> +	if (lpg->lut_base) {
+> +		for (i = 0; i < len / 2; i++) {
+> +			brightness_a = pattern[i].brightness;
+> +			brightness_b = pattern[len - i - 1].brightness;
+> +
+> +			if (brightness_a != brightness_b) {
+> +				ping_pong = false;
+> +				break;
+> +			}
+>  		}
+> -	}
+> +	} else
+> +		ping_pong = false;
+>  
+>  	/* The pattern length to be written to the LUT */
+>  	if (ping_pong)
+> @@ -875,12 +1048,27 @@ static int lpg_pattern_set(struct lpg_led *led, struct led_pattern *led_pattern,
+>  	if (delta_t >= BIT(9))
+>  		goto out_free_pattern;
+>  
+> -	/* Find "low pause" and "high pause" in the pattern */
+> -	lo_pause = pattern[0].delta_t;
+> -	hi_pause = pattern[actual_len - 1].delta_t;
+> +	/*
+> +	 * Find "low pause" and "high pause" in the pattern in the LUT case.
+> +	 * LPGs using SDAM for pattern require equal duration of all steps
+> +	 */
+> +	if (lpg->lut_base) {
+> +		lo_pause = pattern[0].delta_t;
+> +		hi_pause = pattern[actual_len - 1].delta_t;
+> +	} else {
+> +		if (delta_t != pattern[0].delta_t ||
+> +		    delta_t != pattern[actual_len - 1].delta_t)
+> +			goto out_free_pattern;
+> +	}
+> +
+>  
+>  	mutex_lock(&lpg->lock);
+> -	ret = lpg_lut_store(lpg, pattern, actual_len, &lo_idx, &hi_idx);
+> +
+> +	if (lpg->lpg_chan_sdam)
+> +		ret = lpg_lut_store_sdam(lpg, pattern, actual_len, &lo_idx, &hi_idx);
+> +	else
+> +		ret = lpg_lut_store(lpg, pattern, actual_len, &lo_idx, &hi_idx);
+> +
+>  	if (ret < 0)
+>  		goto out_unlock;
+>  
+> @@ -896,6 +1084,8 @@ static int lpg_pattern_set(struct lpg_led *led, struct led_pattern *led_pattern,
+>  
+>  		chan->pattern_lo_idx = lo_idx;
+>  		chan->pattern_hi_idx = hi_idx;
+> +
+
+Why are we spacing them out?  They look related?
+
+> +		chan->pattern_set = true;
+>  	}
+>  
+>  out_unlock:
+> @@ -953,6 +1143,7 @@ static int lpg_pattern_clear(struct lpg_led *led)
+>  
+>  	for (i = 0; i < led->num_channels; i++) {
+>  		chan = led->channels[i];
+> +		lpg_sdam_configure_triggers(chan, false);
+>  		chan->pattern_lo_idx = 0;
+>  		chan->pattern_hi_idx = 0;
+>  	}
+> @@ -1188,8 +1379,8 @@ static int lpg_add_led(struct lpg *lpg, struct device_node *np)
+>  		cdev->brightness_set_blocking = lpg_brightness_mc_set;
+>  		cdev->blink_set = lpg_blink_mc_set;
+>  
+> -		/* Register pattern accessors only if we have a LUT block */
+> -		if (lpg->lut_base) {
+> +		/* Register pattern accessors if we have a LUT block or when using PPG */
+> +		if (lpg->lut_base || lpg->lpg_chan_sdam) {
+>  			cdev->pattern_set = lpg_pattern_mc_set;
+>  			cdev->pattern_clear = lpg_pattern_mc_clear;
+>  		}
+> @@ -1202,15 +1393,19 @@ static int lpg_add_led(struct lpg *lpg, struct device_node *np)
+>  		cdev->brightness_set_blocking = lpg_brightness_single_set;
+>  		cdev->blink_set = lpg_blink_single_set;
+>  
+> -		/* Register pattern accessors only if we have a LUT block */
+> -		if (lpg->lut_base) {
+> +		/* Register pattern accessors if we have a LUT block or when using PPG */
+> +		if (lpg->lut_base || lpg->lpg_chan_sdam) {
+>  			cdev->pattern_set = lpg_pattern_single_set;
+>  			cdev->pattern_clear = lpg_pattern_single_clear;
+>  		}
+>  	}
+>  
+>  	cdev->default_trigger = of_get_property(np, "linux,default-trigger", NULL);
+> -	cdev->max_brightness = LPG_RESOLUTION_9BIT - 1;
+> +
+> +	if (lpg->lpg_chan_sdam)
+> +		cdev->max_brightness = PPG_MAX_LED_BRIGHTNESS;
+> +	else
+> +		cdev->max_brightness = LPG_RESOLUTION_9BIT - 1;
+
+Are these not both 0xff (255)?
+
+>  	if (!of_property_read_string(np, "default-state", &state) &&
+>  	    !strcmp(state, "on"))
+> @@ -1251,6 +1446,8 @@ static int lpg_init_channels(struct lpg *lpg)
+>  		chan->base = data->channels[i].base;
+>  		chan->triled_mask = data->channels[i].triled_mask;
+>  		chan->lut_mask = BIT(i);
+> +		chan->sdam_offset = data->channels[i].sdam_offset;
+> +		chan->lpg_idx = i;
+>  
+>  		regmap_read(lpg->map, chan->base + LPG_SUBTYPE_REG, &chan->subtype);
+>  	}
+> @@ -1297,11 +1494,12 @@ static int lpg_init_lut(struct lpg *lpg)
+>  {
+>  	const struct lpg_data *data = lpg->data;
+>  
+> -	if (!data->lut_base)
+> +	if (!data->lut_size)
+>  		return 0;
+>  
+> -	lpg->lut_base = data->lut_base;
+>  	lpg->lut_size = data->lut_size;
+> +	if (data->lut_base)
+> +		lpg->lut_base = data->lut_base;
+>  
+>  	lpg->lut_bitmap = devm_bitmap_zalloc(lpg->dev, lpg->lut_size, GFP_KERNEL);
+>  	if (!lpg->lut_bitmap)
+> @@ -1310,6 +1508,44 @@ static int lpg_init_lut(struct lpg *lpg)
+>  	return 0;
+>  }
+>  
+> +static int lpg_init_sdam(struct lpg *lpg)
+> +{
+> +	struct lpg_channel *chan;
+> +	int i, sdam_count, rc;
+> +	u8 val = 0;
+> +
+> +	sdam_count = of_property_count_strings(lpg->dev->of_node, "nvmem-names");
+> +	if (sdam_count <= 0)
+> +		return 0;
+> +
+> +	/* get the SDAM device for LPG/LUT config */
+
+Nit: Start comments with an uppercase char.
+
+> +	lpg->lpg_chan_sdam = devm_nvmem_device_get(lpg->dev, "lpg_chan_sdam");
+> +	if (IS_ERR(lpg->lpg_chan_sdam))
+> +		return dev_err_probe(lpg->dev, PTR_ERR(lpg->lpg_chan_sdam),
+> +				"Failed to get lpg sdam device\n");
+
+Should these abbreviations be capitalised?
+
+> +	lpg->pbs_dev = get_pbs_client_device(lpg->dev);
+> +	if (IS_ERR(lpg->pbs_dev))
+> +		return dev_err_probe(lpg->dev, PTR_ERR(lpg->pbs_dev),
+> +				"Failed to get PBS client device\n");
+> +
+> +	for (i = 0; i < lpg->num_channels; i++) {
+> +		chan = &lpg->channels[i];
+
+Is 'chan' used outside of this for loop?
+
+If not, move the declaration into here.
+
+> +		if (chan->sdam_offset) {
+> +			rc = nvmem_device_write(lpg->lpg_chan_sdam,
+> +				SDAM_PBS_SCRATCH_LUT_COUNTER_OFFSET + chan->sdam_offset, 1, &val);
+> +			if (rc < 0)
+> +				return rc;
+> +
+> +			rc = lpg_sdam_configure_triggers(chan, false);
+> +			if (rc < 0)
+> +				return rc;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int lpg_probe(struct platform_device *pdev)
+>  {
+>  	struct device_node *np;
+> @@ -1346,6 +1582,10 @@ static int lpg_probe(struct platform_device *pdev)
+>  	if (ret < 0)
+>  		return ret;
+>  
+> +	ret = lpg_init_sdam(lpg);
+> +	if (ret < 0)
+> +		return ret;
+> +
+>  	ret = lpg_init_lut(lpg);
+>  	if (ret < 0)
+>  		return ret;
+> -- 
+> 2.41.0
+> 
+
+-- 
+Lee Jones [李琼斯]
 
