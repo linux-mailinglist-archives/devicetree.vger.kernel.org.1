@@ -1,80 +1,103 @@
-Return-Path: <devicetree+bounces-6109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EC0E7B9DB3
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:55:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1047E7B9DCA
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 15:56:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sy.mirrors.kernel.org (Postfix) with ESMTP id 11AFDB209C6
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 13:55:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTP id 14E931C20863
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 13:56:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1A2B26E1E;
-	Thu,  5 Oct 2023 13:55:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD4F526E30;
+	Thu,  5 Oct 2023 13:56:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WQz4G4yY"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="UnAH0sPk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4085266C8
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 13:55:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1FF0C43215;
-	Thu,  5 Oct 2023 13:55:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696514104;
-	bh=ruPafLxqiqN5GVxCe5nkJ2euYsptGUelC3r4B7yxjts=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=WQz4G4yYnAdDDEo1AaWaMUeq+Ut8JXdSfJlNQcrG0O9WNOg2EptQ/FY/ZcdWUvTMG
-	 i3Fngj/gkp6CClxwXXLKWH+0xKI/IGpm3cg8WCvtLWM5xwmNt7wx0TAOKFJOzC/928
-	 VoNPrNPKCDAoqctzmVPhaRbjgre0dB7d0bpKvb/u3rDa+5EfIF1vSjUzFCthlVqHQz
-	 bdPlYV7e1P2sDeS7IAYcqyxA3hUL7NH1diuUHIAM/xis2VRjtNvljpYzVTwnjkzSC5
-	 IVmC/vjFvY+q0nmbauREp932iuThtGgzHx/YVkUKsQqFHfF6R2y3+FtDwQG6DrKYlZ
-	 on2FyWwL/MOmw==
-From: Lee Jones <lee@kernel.org>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
- Luca Weiss <luca.weiss@fairphone.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20231002-pm7250b-gpio-fixup-v2-1-debb8b599989@fairphone.com>
-References: <20231002-pm7250b-gpio-fixup-v2-0-debb8b599989@fairphone.com>
- <20231002-pm7250b-gpio-fixup-v2-1-debb8b599989@fairphone.com>
-Subject: Re: (subset) [PATCH v2 1/2] dt-bindings: mfd: qcom,spmi-pmic: Drop
- unused labels from examples
-Message-Id: <169651410138.777767.3255528451615557124.b4-ty@kernel.org>
-Date: Thu, 05 Oct 2023 14:55:01 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3794E26E20
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 13:56:23 +0000 (UTC)
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 941D97EEF
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 06:56:21 -0700 (PDT)
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3951p8YT007187;
+	Thu, 5 Oct 2023 08:56:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=PODMain02222019; bh=w
+	sRzsqS86v9R2io/BREZgZukOLd/Xh+KnitIp3oeSoM=; b=UnAH0sPkSxTewImPI
+	ixdmOh80k1bZYcAT7i9LUIK/BRFw3zr/i7bjvZahlSxQj72B2LrQog6reIXgYkHs
+	JBIYaDbhE4gaf3nwEq7RlHVcT6Y52IyC+ymumGlgbZr56Q430OceZQm+ZsyVGmPH
+	T5TjdVwRXJ3DE6AtongtGXwPmxFMUbqQ52LP4q8iNCsif0OJALKwIJ4SGHLSumFH
+	9Vz2tIkv6Kz1e7DfeMtFGppP06NlPJIz24Y4/rMuoFm+I+s9Vp6AeRJYArrjU3j4
+	dI8cDLPtW5989WrRn6qTHr5pv46h3gw2woFBI9a/SxqvMXHsFQhYqhDdWnLCrJ5C
+	9sjsw==
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3th2dta81a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 05 Oct 2023 08:56:02 -0500 (CDT)
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.37; Thu, 5 Oct
+ 2023 14:55:59 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1118.37 via Frontend Transport; Thu, 5 Oct 2023 14:55:59 +0100
+Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
+	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id D056B15B9;
+	Thu,  5 Oct 2023 13:55:59 +0000 (UTC)
+From: Charles Keepax <ckeepax@opensource.cirrus.com>
+To: <broonie@kernel.org>
+CC: <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <patches@opensource.cirrus.com>
+Subject: [PATCH 1/2] ASoC: dt-bindings: cirrus,cs42l43: Update values for bias sense
+Date: Thu, 5 Oct 2023 14:55:58 +0100
+Message-ID: <20231005135559.3117994-1-ckeepax@opensource.cirrus.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.12.2
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: 6bYxe0ZonFxfqaawcLpN3SzVYUHHu6Id
+X-Proofpoint-GUID: 6bYxe0ZonFxfqaawcLpN3SzVYUHHu6Id
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Mon, 02 Oct 2023 09:00:11 +0200, Luca Weiss wrote:
-> There's not much point in having unused labels in the binding example,
-> so drop them.
-> 
-> This patch was originally motivated by ea25d61b448a ("arm64: dts: qcom:
-> Use plural _gpios node label for PMIC gpios") updating all dts files to
-> use the plural _gpios label instead of the singular _gpio as label but
-> this example wasn't updated. But since we should just drop the label
-> alltogether, do that.
-> 
-> [...]
+Due to an error in the datasheet the bias sense values currently don't
+match the hardware. Whilst this is a change to the binding no devices
+have yet shipped so updating the binding will not cause any issues.
 
-Applied, thanks!
+Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+---
+ Documentation/devicetree/bindings/sound/cirrus,cs42l43.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-[1/2] dt-bindings: mfd: qcom,spmi-pmic: Drop unused labels from examples
-      commit: cac94656ff2b16827d7cd455f0d3746280cf3138
-
---
-Lee Jones [李琼斯]
+diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs42l43.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs42l43.yaml
+index 4fa22fa70ace5..7f9d8c7a635a6 100644
+--- a/Documentation/devicetree/bindings/sound/cirrus,cs42l43.yaml
++++ b/Documentation/devicetree/bindings/sound/cirrus,cs42l43.yaml
+@@ -82,7 +82,7 @@ properties:
+     description:
+       Current at which the headset micbias sense clamp will engage, 0 to
+       disable.
+-    enum: [ 0, 14, 23, 41, 50, 60, 68, 86, 95 ]
++    enum: [ 0, 14, 24, 43, 52, 61, 71, 90, 99 ]
+     default: 14
+ 
+   cirrus,bias-ramp-ms:
+-- 
+2.39.2
 
 
