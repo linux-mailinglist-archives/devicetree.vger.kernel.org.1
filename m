@@ -1,126 +1,100 @@
-Return-Path: <devicetree+bounces-6067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 190337B9C92
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 12:46:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E21007B9C9B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 12:49:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sv.mirrors.kernel.org (Postfix) with ESMTP id 8CA5D281ACB
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 10:46:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 08C08281E54
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 10:49:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23666125C6;
-	Thu,  5 Oct 2023 10:46:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8459C12B83;
+	Thu,  5 Oct 2023 10:49:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GC9kMnuU"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="K9wZ35Fl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4C08125AD;
-	Thu,  5 Oct 2023 10:46:17 +0000 (UTC)
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A868222C9A;
-	Thu,  5 Oct 2023 03:46:15 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2c12ae20a5cso9758871fa.2;
-        Thu, 05 Oct 2023 03:46:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696502774; x=1697107574; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tD4m0iMVb4bl/p6r/AX6bYY/PolPxwjEJ+dZDSZwBHQ=;
-        b=GC9kMnuUoMy7iKlaeGE/ul+ghEz/ntWBcFdY0pOlQXy7+DcqkgOF5IgYrn071Dx0jx
-         ODON18gPYqIXgR1Hj8h8CFtDeRiyCKTfkGDqj+rUgZihIHTVKvInxCg24wZfpwG7khyk
-         KRFYGQsR8eZPS/ouu+6Kk1Pd2vzBEjTNXnnU7bV7ProGNlnGYSWTD39YjLmGCmTbBQbU
-         rifmustdlP/8d2U6xD4jCkqLZWHFtECJnZLFP1Tn0XO2X+TtveI6evB+daeQ9uTLJuTx
-         0U39uiMa4KYqOf7Ms2uPyQzvQURhOk7sJpEh1HEeM5p6Jxqag+jcv8rWjpAuW89ZYiWm
-         c5hA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696502774; x=1697107574;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tD4m0iMVb4bl/p6r/AX6bYY/PolPxwjEJ+dZDSZwBHQ=;
-        b=wWiXnEKD1qGdshAET/vURgdAoaLAU4MAxKFAzquSZ24c/qF5+FhRssfXWbYjxbOe7W
-         rXBQ6hnY9I/aUkYU1b46GzUueTP34xNbr/XxLAwIyo5SepA9biP+Z/9cZZPMA8ZXR+QI
-         /nBOhaITXU5vVKkxfdDZdyLPjlMHtIFKXzM4X22Amtw5XwSMkOmiABK7Y26m9UfCPVC+
-         y56saNiEFMEgk6Uu5/RLHNC86kpavm3JI/NzrQLQZ2NU78FZnOgHLi95mU6t2oXiEoy4
-         EjL1NQkPAQlv6vqhfd5pvHUpbkJe4zp1DinVyPLF+XSOCyiw+r/lj3tzxbv04QH7YFNP
-         Xfbw==
-X-Gm-Message-State: AOJu0YwBNm+TimJ6/+/tQijioAv3nrBAgsC9izdtYvW9wm3GdTATlAOJ
-	OOh/i/Y0oig4nOu2zs5riptTeAUkaO582U02cb0=
-X-Google-Smtp-Source: AGHT+IEStT65q1wnfYcU7aKZf01nOo1p1LQWPYHAgwHMmL8hEGmDyGD/+zh/g1iKp/Mz0aAqs1/CD+KqWZXYU8bZAMM=
-X-Received: by 2002:a2e:9794:0:b0:2b9:e1dd:5756 with SMTP id
- y20-20020a2e9794000000b002b9e1dd5756mr4574929lji.45.1696502773682; Thu, 05
- Oct 2023 03:46:13 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0CEA125D3
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 10:49:18 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DB7822CAA;
+	Thu,  5 Oct 2023 03:49:17 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id DDFC4660731C;
+	Thu,  5 Oct 2023 11:49:13 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1696502954;
+	bh=lFr30I+Cr7avNK4wzwGybpTkaEAtq/uM7VOwFYqZwUs=;
+	h=From:To:Cc:Subject:Date:From;
+	b=K9wZ35FlCGgxB/NKW138gQiIJYWnO/3EuMst1hxKCbXMEHzVpGsaRfzYehABqODKK
+	 9nf/PW+08IxV+ID1qM2N5A6tAlXn9ciXWA9/py4ikoRRwxcFyv70fQ04Fdv1rVIvLY
+	 z4YwXjyPfUlajcNrgK9AmXm8Zma8fBA8mKZMkP/LwfE++uE4KbMXkmqYXzaDyFwOFr
+	 B3ZiDYY6ZZrUIXdaNCj3khhqlltii5P3FfxM++96SZyummWHIu8V3uTYqB30hW4LZY
+	 QLM1CRCluC4KeS8YHe7ve/gcKguhEg9AfU/0zXMFiQvgPEK9i0ssyhry4wZRm/fCqd
+	 QzzY24bkIgOyg==
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: mchehab@kernel.org
+Cc: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	moudy.ho@mediatek.com,
+	hverkuil-cisco@xs4all.nl,
+	sakari.ailus@linux.intel.com,
+	u.kleine-koenig@pengutronix.de,
+	linqiheng@huawei.com,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	kernel@collabora.com,
+	wenst@chromium.org
+Subject: [PATCH v2 0/2] MediaTek MDP3: use devicetree to retrieve SCP
+Date: Thu,  5 Oct 2023 12:49:03 +0200
+Message-ID: <20231005104905.120544-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231003110130.229711-1-tmaimon77@gmail.com> <20231003110130.229711-3-tmaimon77@gmail.com>
- <25e8c953-8bf1-4107-9531-263d68c41128@linaro.org>
-In-Reply-To: <25e8c953-8bf1-4107-9531-263d68c41128@linaro.org>
-From: Tomer Maimon <tmaimon77@gmail.com>
-Date: Thu, 5 Oct 2023 13:46:02 +0300
-Message-ID: <CAP6Zq1gwbYfE4xg0-TCC+Wfoo_1omdsWukupJqpZekMem0xeMA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] dt-bindings: usb: ci-hdrc-usb2: add npcm750 and
- npcm845 compatible
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: peter.chen@kernel.org, gregkh@linuxfoundation.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, xu.yang_2@nxp.com, peng.fan@nxp.com, 
-	avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au, 
-	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
-	j.neuschaefer@gmx.net, openbmc@lists.ozlabs.org, linux-usb@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-	FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Krzysztof,
+Changes in v2:
+ - Rebased over media_stage master as of 05/10/2023
+ - Reworked description of mediatek,scp property in bindings
+   - Dropped Conor's and Chen-Yu's R-b tags from bindings patch due
+     to the description rework.
 
-Thanks for your comment
+Especially now that Multi-Core SCP support has landed, it makes sense to
+retrieve the SCP handle by using the "mediatek,scp" property (as already
+done in MediaTek VCODEC), both to select one specific SCP core for MDP3
+and to avoid walking the parent node to find a SCP node.
 
-On Wed, 4 Oct 2023 at 11:03, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 03/10/2023 13:01, Tomer Maimon wrote:
-> > Add a compatible string for Nuvoton BMC NPCM750 and Nuvoton BMC NPCM845.
-> >
-> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-> > index 1394557517b1..a9e173432002 100644
-> > --- a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-> > @@ -16,6 +16,8 @@ properties:
-> >        - enum:
-> >            - chipidea,usb2
-> >            - lsi,zevio-usb
-> > +          - nuvoton,npcm750-udc
-> > +          - nuvoton,npcm845-udc
->
-> Your driver clearly suggests these are compatible. If they are not, why
-> commit msg does no explain anything here?
-Do you mean to add nuvoton,npcmxxx-udc as described below to the end
-of the compatible property?
-      - items:
-          - enum:
-              - nuvoton,npcm845-udc
-          - const: nuvoton,npcm750-udc
->
-> Best regards,
-> Krzysztof
->
+AngeloGioacchino Del Regno (2):
+  media: dt-bindings: mediatek: Add phandle to mediatek,scp on MDP3 RDMA
+  media: platform: mtk-mdp3: Use devicetree phandle to retrieve SCP
 
-Best regards,
+ .../bindings/media/mediatek,mdp3-rdma.yaml       |  8 ++++++++
+ .../media/platform/mediatek/mdp3/mtk-mdp3-core.c | 16 ++++++++++------
+ 2 files changed, 18 insertions(+), 6 deletions(-)
 
-Tomer
+-- 
+2.42.0
+
 
