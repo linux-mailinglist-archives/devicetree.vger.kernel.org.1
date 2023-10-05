@@ -1,215 +1,265 @@
-Return-Path: <devicetree+bounces-5983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-5984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 409A27B9988
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 03:18:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C25D7B9993
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 03:27:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by ny.mirrors.kernel.org (Postfix) with ESMTP id 571A91C208F5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 01:18:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTP id 0E456281C7E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Oct 2023 01:27:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DE6110EE;
-	Thu,  5 Oct 2023 01:17:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A3D0EA9;
+	Thu,  5 Oct 2023 01:26:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dAAk877H"
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="bQzuYddD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2970EA9
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 01:17:56 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DA0AC0;
-	Wed,  4 Oct 2023 18:17:55 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3951Hlbm116088;
-	Wed, 4 Oct 2023 20:17:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1696468667;
-	bh=IkVYO0CsC8EwgKF38pl+cqHfyQnDQ6Xtd1ZTQ39EZMY=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=dAAk877H6sEjKdMnm+YuwB6MGOflWCsaiv/3HuxrxEjFyz9/FoyVQYrWof2W3yfTX
-	 NL71tHXI8cq/nmuqzzRxSeN+ACz8+ZUzQ3Ng4SyDpxR1WlgID4ad5eXemzau/9U8ZA
-	 WODjiIdOISy9IHQJdx5Xpzp9gsPWdmOcV4o8BamM=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3951Hlt1125810
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 4 Oct 2023 20:17:47 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 4
- Oct 2023 20:17:47 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 4 Oct 2023 20:17:47 -0500
-Received: from [10.249.131.134] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3951FQMc058551;
-	Wed, 4 Oct 2023 20:17:43 -0500
-Message-ID: <82902754-7a01-4c96-9201-3d1413ff376a@ti.com>
-Date: Thu, 5 Oct 2023 06:47:42 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B3321112
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 01:26:56 +0000 (UTC)
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2093.outbound.protection.outlook.com [40.107.255.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C994D8;
+	Wed,  4 Oct 2023 18:26:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KieloMr7msAi/kRXM10L0MakpZ3NJS4olFuwNCV+oY47f8cEmZLMIuEzam9AsNUM+k+eVbAh4RYNm/tzioCQ+j2riwRQGEupP2T3OOAnEVubHEjF7hov5KXxQ4AkTcu/9bjDfM4zVGLpks7hezo/RsdUOgCV+bxEgyqlO7FHJjlK2en3+R//lmS5mAnXAq7oFjCXsE12C7ANiap+O2xBfIIwsb6Fuscz5pSuoVmEel+3RyH/xszl0mkS8D8qzdZ/SqhTK5czXKBkwLsJ6ykr4Y0p7Ev8tB/4wvMXiz46pV5y6orsU9590kfIgxcVogtOEL4ln/4XdGG5UmB/dMfvtw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=noo/fEzBt1fE2C1J8OnDvTdtPkofJlbXwvy1xaBOZic=;
+ b=kELIoEHfKYiLpyfiUHiuB0YmuTirVm9tF1LEIsAyJueBSbZc1wZSKbdL2c0cfiUmuSFMPHEeQv15JnNuZ+JfSI94k7+QW680GIGdZr8AWkq216jPFCLTfvCVQHxOWVtcxFtuhMxAxCN309b8cVHq76U+7MulRxJOEEw2ZAYop9kF9z+g4wIx6e5r4an0K+09IbJq3B9Y6KndbHJI1uCh5rzi+FtEY4L/xqDvGcynyVU6K2bM8YxpUtOGuFOx3wDJXR2wmgnzDDew1f8//aNZSbU7Os6EHqgNGQ6FqisBTeE9OGxBO2ES+kkb+jmTqB2nMEGJe94dEVTscK7x3cRMVA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=noo/fEzBt1fE2C1J8OnDvTdtPkofJlbXwvy1xaBOZic=;
+ b=bQzuYddDZedRVxiouZy+LdPJpbhjtor8CmxuwR71r6qkonygoSbky/m2wb81++EtNaTzwnYjp9LmJbaxwLcOz0E8hBOQxuCPCBoqoQ83IMMeTGwzp81UW9bTuIH5QxIGJ+NPaqls1DdGiWLpgfLySr7PZUovYo0aT2VFQ52bIilnTRnNg0bKVk/XynS8DOea8FRTNEtGmS7bcwE0sqr0KZyDCJ5gYkqkjMmx/lwHfc1OlG10/GPdXZyFgEavxs/YXNShOZSR/QkpvPEMNurMGa6ipJeILx2/cvtzzPfbjpjWAZ8op0+wwPCnUcwPLrFWneZUcVXOocHUqbN5nJJ3vQ==
+Received: from SG2PR06MB3365.apcprd06.prod.outlook.com (2603:1096:4:69::12) by
+ SEYPR06MB5648.apcprd06.prod.outlook.com (2603:1096:101:c0::14) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6838.30; Thu, 5 Oct 2023 01:26:46 +0000
+Received: from SG2PR06MB3365.apcprd06.prod.outlook.com
+ ([fe80::956c:2f06:be93:fc3e]) by SG2PR06MB3365.apcprd06.prod.outlook.com
+ ([fe80::956c:2f06:be93:fc3e%5]) with mapi id 15.20.6838.033; Thu, 5 Oct 2023
+ 01:26:46 +0000
+From: Billy Tsai <billy_tsai@aspeedtech.com>
+To: Rob Herring <robh@kernel.org>
+CC: "jdelvare@suse.com" <jdelvare@suse.com>, "linux@roeck-us.net"
+	<linux@roeck-us.net>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, "joel@jms.id.au" <joel@jms.id.au>,
+	"andrew@aj.id.au" <andrew@aj.id.au>, "corbet@lwn.net" <corbet@lwn.net>,
+	"thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+	"u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"naresh.solanki@9elements.com" <naresh.solanki@9elements.com>,
+	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-doc@vger.kernel.org"
+	<linux-doc@vger.kernel.org>, "linux-pwm@vger.kernel.org"
+	<linux-pwm@vger.kernel.org>, BMC-SW <BMC-SW@aspeedtech.com>,
+	"patrick@stwcx.xyz" <patrick@stwcx.xyz>
+Subject: Re: [PATCH v9 2/3] dt-bindings: hwmon: Support Aspeed g6 PWM TACH
+ Control
+Thread-Topic: [PATCH v9 2/3] dt-bindings: hwmon: Support Aspeed g6 PWM TACH
+ Control
+Thread-Index: AQHZ6fsiTLYVIVnDjUKnszXE1xHHwrA2ti6AgAPFqCE=
+Date: Thu, 5 Oct 2023 01:26:45 +0000
+Message-ID:
+ <SG2PR06MB33650A58039DF915E4E868E68BCAA@SG2PR06MB3365.apcprd06.prod.outlook.com>
+References: <20230918064111.2221594-1-billy_tsai@aspeedtech.com>
+ <20230918064111.2221594-3-billy_tsai@aspeedtech.com>
+ <20231002152819.GB1747496-robh@kernel.org>
+In-Reply-To: <20231002152819.GB1747496-robh@kernel.org>
+Accept-Language: en-US, zh-TW
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SG2PR06MB3365:EE_|SEYPR06MB5648:EE_
+x-ms-office365-filtering-correlation-id: fd25256c-f524-46dd-0e0f-08dbc54223aa
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ FD25v1BddKoQXWF4XhVSoYWiaftdubRg3vIAQCC3GpJZgxAlw6oiInMz1VxFDyPzk04f3xqmu3crsnL4ShJn1hlujo1DRLEltsOULngJwiuGj++AJnGuMyv7imEA6pitzDLdNbiuA+uW9N7++6ULH0/ZbQeKRn52LPZJFAdku8SlI2VQIexhObj4C0KZ6EUJVpnJFTZOApuLp1uvIYH8/DHC/YKC04ycpFbNQ+etdybFSZgdAXKPhTwWC4pCryxpDYBQAfUmE7dTGXyFhLMkeRnpzgKuWLGHZO/piPDu0oa/D5c8tgWS75vH2Ci3WPmDaOo4M5iwlPhhPZ3g3exs3B/TQoAfGHgp11zU/EmaALllrC5Loq6HNieIsBK2Qnf9X967XI6+XhyA9XZRb/ogmdcosmiN3ILWuoesGMCllbl9u57EL3CNojS0MBTbuRDzNa3r7YBUmM4+wqzdESENCn9mhVCvw/dP0CxiubeNyZTC20q8sX4+rOfT/NdX77Lqwk4hBJ/Z4SeUelVIDYES0ZmXS01Wosuua9olyi3+x/ZMkQnTH3sd1zc9UVVHcGgxXxP8QHh/r4PdWcet96uNRaoT2X0SdhZJX5ukcvENFYk=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SG2PR06MB3365.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(376002)(346002)(39850400004)(396003)(136003)(230922051799003)(451199024)(186009)(64100799003)(1800799009)(9686003)(55016003)(6506007)(478600001)(966005)(7696005)(71200400001)(86362001)(122000001)(38070700005)(38100700002)(2906002)(7416002)(91956017)(41300700001)(6916009)(316002)(83380400001)(26005)(54906003)(66946007)(66476007)(76116006)(66556008)(52536014)(33656002)(8936002)(8676002)(5660300002)(4326008)(64756008)(66446008);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?0gqIfTS5scHL7t1hTYG3Y4L2aCvp27cZrdnOyXg4lxjP5RBL+5qh3/AWb+?=
+ =?iso-8859-1?Q?iavrfKPgRKapcyXgYMNzjcFy33IWij1gpmftcrHzS7ZIR4ejK+La/5ZWi6?=
+ =?iso-8859-1?Q?67j1eShZw8lx6Mcmqgj/75xKOcmatzDUsQWMrs1WMdiTPTI7B8rFCf8+LD?=
+ =?iso-8859-1?Q?+UBrLM7HGgY8KJBmQyKjVG4ZMtL4OOs6/H1gqp88IvzhXOunAAyfeOMpaO?=
+ =?iso-8859-1?Q?vrRgj93UKUZ22U5VILhAc0mr1jlcURGmo+NU3NsuaoKs9V93LMNlmDY+/d?=
+ =?iso-8859-1?Q?0RNOZmTK3tpHf/YtgobDh0CVOoCElY/Xum8uc74DVFAEtQQPtmRXCyIxXg?=
+ =?iso-8859-1?Q?onzMRHRYz/ZTpIDaogM9VaWeNuTJjKtnGPHHUCIUY9MMFmRT46nEIIuypp?=
+ =?iso-8859-1?Q?o2X5OkmLUiFw68K6L5skXBib48XxzWUKCFWsQJRu2YQ/PxJ73eSgd3nvX4?=
+ =?iso-8859-1?Q?EM8HFIzXAQA47ur+HcUorcpwdc49aZLC+tSuhF9LwDs8Pzs4BzcD4EbDiY?=
+ =?iso-8859-1?Q?+VNph5FLBhbgAtR7LBGCY5TXFmnnDCLX1Ly8e2kX8y+HCFGClF8Fj22zwJ?=
+ =?iso-8859-1?Q?fOAetJay7bOj+tKBynMTrVx47SHkq1hYwThcq7oZruxxq4oHV6YztnBeVk?=
+ =?iso-8859-1?Q?Ku2eliS4Bu6P3KgWFRKazz7SFdwsh52GtRCISfRU01pDZim+x508C+p48z?=
+ =?iso-8859-1?Q?pnfcbA0PWHBtBuHo/bUnjWgxCrV717gHQ2Edrw2YnZuvdNz9dynfWVGlrt?=
+ =?iso-8859-1?Q?TrRQxELSAUFRV9kv4C4kDuG+VPeE9q9AOT9gpxDIRmwRQW0FJ5bD5elXJc?=
+ =?iso-8859-1?Q?umAsq4jYx89r3kWnkwtYLpPYC4vl0pM4P3uU/Mzj0I2fyVOFdIdyfn+yrc?=
+ =?iso-8859-1?Q?Ph8hEomKmAL1yrNWC2hv1Zlul271BzWT9qtPq6204vS3JhtRJ577OH/at7?=
+ =?iso-8859-1?Q?07GVXRMlPiBzgY75cQZ4VHrEdCzgAyLBU2Gw3wGgLh9sYzStYqDofyOsKx?=
+ =?iso-8859-1?Q?bOdcYC40E949Y67HNPt7MgSWtZJKztnkwq6mHCUo2bEIOVYxJtRh2r5y59?=
+ =?iso-8859-1?Q?A1UpkcuLSBXkKDdLCp1C25FaVsn8pn7A7KO2ePwUxDjcXT7l45r8uVueUG?=
+ =?iso-8859-1?Q?jUeDrDJzJnT1HNp8JmG67rf1n4qICTgBjGjzqYdjrS5RPqtutis/lXEL5K?=
+ =?iso-8859-1?Q?IRZkb8+uYPyzhCtkC2WMUoS/dA/yal7/PWFbSp9H1ZmCe3JTexTGhZsO3u?=
+ =?iso-8859-1?Q?B95YqXz+ITuwunnTpf5zU5kc5znd19ofgbpIPYtTdSROPB4gAjqzl90apx?=
+ =?iso-8859-1?Q?6eVcjFhudE4/IODXjaOC9WJg9KQdZJUndz8BoIWArjGxMtyrA93aRvmP6o?=
+ =?iso-8859-1?Q?JkpYfvc8zNh2D7DRi/FYUzcE+3PfsaXjX5FUmrynIrPLvVsmlzgCOcDldF?=
+ =?iso-8859-1?Q?BHNn97z+OdLsl+/fbJ1DSMI888aPC9K9RpcNkpWJUO9OPcDJIWaJ9Ka6ND?=
+ =?iso-8859-1?Q?dFhFjBcoXZZcyuBOqhLT9F9lgkt9YfY/io2tKMULb5GMWmBwbcCHUwY7FA?=
+ =?iso-8859-1?Q?7Q42DB0uhnmItQ3CiohobOFLlCGajFCc4U5pHQRiNATQk7K6jDFCxO2fAD?=
+ =?iso-8859-1?Q?TXIfJJu7+zg7+xu1g+yU0VxRhEBCXGcknM?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/7] arm64: dts: ti: k3-j784s4-main: Add the main
- domain watchdog instances
-Content-Language: en-US
-To: Vignesh Raghavendra <vigneshr@ti.com>, <robh+dt@kernel.org>, <nm@ti.com>,
-        <conor+dt@kernel.org>, <kristo@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC: <u-kumar1@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230927023357.9883-1-j-keerthy@ti.com>
- <20230927023357.9883-5-j-keerthy@ti.com>
- <a8749e98-7ead-939e-6fa6-35779593a5f4@ti.com>
-From: "J, KEERTHY" <j-keerthy@ti.com>
-In-Reply-To: <a8749e98-7ead-939e-6fa6-35779593a5f4@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,URIBL_BLOCKED autolearn=ham
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SG2PR06MB3365.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fd25256c-f524-46dd-0e0f-08dbc54223aa
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Oct 2023 01:26:45.9544
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Iy8IpYEJzb+RPXwDTe2T5MorytOpwspc8bezfasxT4J0mk+GX1QkAehqQTXRCdhMF14Bsfk/cvDpIiwlLHWMTZ8lc6TqgexCBNUVOKDvstY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB5648
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
 	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-
-
-On 10/3/2023 12:18 PM, Vignesh Raghavendra wrote:
-> 
-> 
-> On 27/09/23 08:03, Keerthy wrote:
->> +	/*
->> +	 * The following RTI instances are coupled with MCU R5Fs, c7x and
->> +	 * GPU so keeping them disabled as these will be used by their
->> +	 * respective firmware
->> +	 */
->> +	watchdog16: watchdog@2300000 {
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x2300000 0x00 0x100>;
->> +		clocks = <&k3_clks 356 1>;
->> +		power-domains = <&k3_pds 356 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 356 0>;
->> +		assigned-clock-parents = <&k3_clks 356 4>;
->> +		status = "disabled";
->> +	};
->> +
->> +	watchdog17: watchdog@2310000 {
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x2310000 0x00 0x100>;
->> +		clocks = <&k3_clks 357 1>;
->> +		power-domains = <&k3_pds 357 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 357 0>;
->> +		assigned-clock-parents = <&k3_clks 357 4>;
->> +		status = "disabled";
->> +	};
->> +
->> +	watchdog18: watchdog@2320000 {
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x2320000 0x00 0x100>;
->> +		clocks = <&k3_clks 358 1>;
->> +		power-domains = <&k3_pds 358 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 358 0>;
->> +		assigned-clock-parents = <&k3_clks 358 4>;
->> +		status = "disabled";
->> +	};
->> +
->> +	watchdog19: watchdog@2330000 {
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x2330000 0x00 0x100>;
->> +		clocks = <&k3_clks 359 1>;
->> +		power-domains = <&k3_pds 359 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 359 0>;
->> +		assigned-clock-parents = <&k3_clks 359 4>;
->> +		status = "disabled";
->> +	};
->> +
->> +	watchdog15: watchdog@22f0000 {
-> 
-> 
-> I understand you are arranging based on Firmware Device ID. But these
-> numbers don't have much meaning when user maps to TRM. So, I suggest
-> nodes to be arranged by TRM numbering or ascending order of register
-> address so that its easier for end user to map the nodes to IP  instance
-> in TRM.
-> 
-
-Okay. I will arrange them by the order of register addresses.
-
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x22f0000 0x00 0x100>;
->> +		clocks = <&k3_clks 360 1>;
->> +		power-domains = <&k3_pds 360 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 360 0>;
->> +		assigned-clock-parents = <&k3_clks 360 4>;
->> +		status = "disabled";
->> +	};
->> +
->> +	watchdog28: watchdog@23c0000 {
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x23c0000 0x00 0x100>;
->> +		clocks = <&k3_clks 361 1>;
->> +		power-domains = <&k3_pds 361 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 361 0>;
->> +		assigned-clock-parents = <&k3_clks 361 4>;
->> +		status = "disabled";
->> +	};
->> +
->> +	watchdog29: watchdog@23d0000 {
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x23d0000 0x00 0x100>;
->> +		clocks = <&k3_clks 362 1>;
->> +		power-domains = <&k3_pds 362 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 362 0>;
->> +		assigned-clock-parents = <&k3_clks 362 4>;
->> +		status = "disabled";
->> +	};
->> +
->> +	watchdog30: watchdog@23e0000 {
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x23e0000 0x00 0x100>;
->> +		clocks = <&k3_clks 363 1>;
->> +		power-domains = <&k3_pds 363 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 363 0>;
->> +		assigned-clock-parents = <&k3_clks 363 4>;
->> +		status = "disabled";
->> +	};
->> +
->> +	watchdog31: watchdog@23f0000 {
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x23f0000 0x00 0x100>;
->> +		clocks = <&k3_clks 364 1>;
->> +		power-domains = <&k3_pds 364 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 364 0>;
->> +		assigned-clock-parents = <&k3_clks 364 4>;
->> +		status = "disabled";
->> +	};
->> +
->> +	watchdog32: watchdog@2540000 {
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x2540000 0x00 0x100>;
->> +		clocks = <&k3_clks 365 1>;
->> +		power-domains = <&k3_pds 365 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 365 0>;
->> +		assigned-clock-parents = <&k3_clks 366 4>;
->> +		status = "disabled";
->> +	};
->> +
->> +	watchdog33: watchdog@2550000 {
->> +		compatible = "ti,j7-rti-wdt";
->> +		reg = <0x00 0x2550000 0x00 0x100>;
->> +		clocks = <&k3_clks 366 1>;
->> +		power-domains = <&k3_pds 366 TI_SCI_PD_EXCLUSIVE>;
->> +		assigned-clocks = <&k3_clks 366 0>;
->> +		assigned-clock-parents = <&k3_clks 366 4>;
->> +		status = "disabled";
->> +	};
->>   };
->> -- 2.17.1
-> 
+>> Document the compatible for aspeed,ast2600-pwm-tach device, which can=0A=
+>> support up to 16 PWM outputs and 16 fan tach input.=0A=
+>>=0A=
+>> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>=0A=
+>> ---=0A=
+>>  .../bindings/hwmon/aspeed,g6-pwm-tach.yaml    | 69 +++++++++++++++++++=
+=0A=
+>>  1 file changed, 69 insertions(+)=0A=
+>>  create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,g6-pw=
+m-tach.yaml=0A=
+>>=0A=
+>> diff --git a/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.=
+yaml b/Documentation/devicetree/>bindings/hwmon/aspeed,g6-pwm-tach.yaml=0A=
+>> new file mode 100644=0A=
+>> index 000000000000..5a679f4ad2fa=0A=
+>> --- /dev/null=0A=
+>> +++ b/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml=0A=
+>> @@ -0,0 +1,69 @@=0A=
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)=0A=
+>> +# Copyright (C) 2023 Aspeed, Inc.=0A=
+>> +%YAML 1.2=0A=
+>> +---=0A=
+>> +$id: http://devicetree.org/schemas/hwmon/aspeed,g6-pwm-tach.yaml#=0A=
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#=0A=
+>> +=0A=
+>> +title: ASPEED G6 PWM and Fan Tach controller device driver=0A=
+=0A=
+> This is binding for the h/w, not a 'device driver'.=0A=
+=0A=
+Okay, I will remove the 'device driver'.=0A=
+=0A=
+>> +=0A=
+>> +maintainers:=0A=
+>> +  - Billy Tsai <billy_tsai@aspeedtech.com>=0A=
+>> +=0A=
+>> +description: |=0A=
+>> +  The ASPEED PWM controller can support up to 16 PWM outputs.=0A=
+>> +  The ASPEED Fan Tacho controller can support up to 16 fan tach input.=
+=0A=
+>> +  They are independent hardware blocks, which are different from the=0A=
+>> +  previous version of the ASPEED chip.=0A=
+>> +=0A=
+>> +properties:=0A=
+>> +  compatible:=0A=
+>> +    enum:=0A=
+>> +      - aspeed,ast2600-pwm-tach=0A=
+>> +=0A=
+>> +  reg:=0A=
+>> +    maxItems: 1=0A=
+>> +=0A=
+>> +  clocks:=0A=
+>> +    maxItems: 1=0A=
+>> +=0A=
+>> +  resets:=0A=
+>> +    maxItems: 1=0A=
+>> +=0A=
+>> +  "#pwm-cells":=0A=
+>> +    const: 3=0A=
+>> +=0A=
+>> +patternProperties:=0A=
+>> +  "^fan-[0-9a-f]+$":=0A=
+=0A=
+> foo-<index> naming is decimal, not hex. (unit-addresses are hex)=0A=
+=0A=
+Okay, I will change it to the decimal.=0A=
+=0A=
+> But if 0 and 1 correspond to something in the h/w, then you should=0A=
+> probably be using 'reg' instead (which means a unit-address too).=0A=
+=0A=
+The number doesn't unrelate to the hardware.=0A=
+=0A=
+>> +    $ref: fan-common.yaml#=0A=
+>> +    unevaluatedProperties: false=0A=
+>> +    required:=0A=
+>> +      - tach-ch=0A=
+>> +=0A=
+>> +required:=0A=
+>> +  - reg=0A=
+>> +  - clocks=0A=
+>> +  - resets=0A=
+>> +  - "#pwm-cells"=0A=
+>> +  - compatible=0A=
+>> +=0A=
+>> +additionalProperties: false=0A=
+>> +=0A=
+>> +examples:=0A=
+>> +  - |=0A=
+>> +    #include <dt-bindings/clock/aspeed-clock.h>=0A=
+>> +    pwm_tach: pwm-tach-controller@1e610000 {=0A=
+>> +      compatible =3D "aspeed,ast2600-pwm-tach";=0A=
+>> +      reg =3D <0x1e610000 0x100>;=0A=
+>> +      clocks =3D <&syscon ASPEED_CLK_AHB>;=0A=
+>> +      resets =3D <&syscon ASPEED_RESET_PWM>;=0A=
+>> +      #pwm-cells =3D <3>;=0A=
+>> +=0A=
+>> +      fan-0 {=0A=
+>> +        tach-ch =3D /bits/ 8 <0x0>;=0A=
+=0A=
+> What about the PWM connection?=0A=
+=0A=
+I only want to create the fan monitor without fan control.=0A=
+So, the PWM connection is unnecessary.=0A=
+=0A=
+Thanks=0A=
+=0A=
+>> +      };=0A=
+>> +=0A=
+>> +      fan-1 {=0A=
+>> +        tach-ch =3D /bits/ 8 <0x1 0x2>;=0A=
+>> +      };=0A=
+>> +    };=0A=
+>> --=0A=
+>> 2.25.1=0A=
+>>=0A=
 
