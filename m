@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-6448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF3937BB695
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 13:39:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55F327BB6A0
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 13:40:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5FAC282230
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 11:39:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85EBA1C203AB
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 11:40:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D810B1C6A4;
-	Fri,  6 Oct 2023 11:39:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9490B1C6AB;
+	Fri,  6 Oct 2023 11:40:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xTt+yRkc"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XTzBvQ0H"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C1FA1C68F
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 11:39:26 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEC8BDB;
-	Fri,  6 Oct 2023 04:39:24 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF7A01C68F
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 11:40:12 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F677CE;
+	Fri,  6 Oct 2023 04:40:11 -0700 (PDT)
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 396Bd6On066274;
-	Fri, 6 Oct 2023 06:39:06 -0500
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 396Be2Nn068407;
+	Fri, 6 Oct 2023 06:40:02 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1696592346;
-	bh=RShf9vWYlA28WSj9vvaz773dgfGwV29iK3mMXjvsR14=;
+	s=ti-com-17Q1; t=1696592402;
+	bh=SYR+FJnxDTeTJXoAKcUnoHUqRZqvUPXO1UdO50un8No=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=xTt+yRkcNvnmZzk6xcZ0qa3KOBCt0VlW+m5sDVE3fzZAc7cFXmccg9UoNOW47qGj9
-	 7a96KCSgflQcBi3qlUb4SS+d/bzIRWd0G2m75oMfJaFalywtZv3edIj7zKouFWU6Ei
-	 +Do0xVMe35wP1iAE6xRduMUaKr8e8LZgIOvSuEm0=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 396Bd6Iu003541
+	b=XTzBvQ0HcdNlT9b5HKfzoO+avrUYBauEVhCqAHIAvH5wrQNufGWTE2848lerkTPC+
+	 YQdB3DjzjnK32zvDem6MpcTA/UFulfrUIODS6VQfwB2nb2slhrONFVwe27I5wX3Drz
+	 CiMHWdivdWKyNWU+FLWCqW7RzZWBXZ1JFzjrVpGM=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 396Be2Hu003975
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 6 Oct 2023 06:39:06 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 6 Oct 2023 06:40:02 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 6
- Oct 2023 06:39:05 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2023 06:40:02 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 6 Oct 2023 06:39:05 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 396Bd506028492;
-	Fri, 6 Oct 2023 06:39:05 -0500
-Date: Fri, 6 Oct 2023 06:39:05 -0500
+ Frontend Transport; Fri, 6 Oct 2023 06:40:02 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 396Be2fK029335;
+	Fri, 6 Oct 2023 06:40:02 -0500
+Date: Fri, 6 Oct 2023 06:40:02 -0500
 From: Nishanth Menon <nm@ti.com>
 To: Ayush Singh <ayushdevel1325@gmail.com>
 CC: <greybus-dev@lists.linaro.org>, <devicetree@vger.kernel.org>,
@@ -57,10 +57,10 @@ CC: <greybus-dev@lists.linaro.org>, <devicetree@vger.kernel.org>,
         <krzysztof.kozlowski+dt@linaro.org>, <vigneshr@ti.com>,
         <kristo@kernel.org>, <robh+dt@kernel.org>, <conor+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v8 1/3] dt-bindings: net: Add ti,cc1352p7
-Message-ID: <20231006113905.a7xhcjisgomfj7dk@banknote>
+Subject: Re: [PATCH v8 3/3] dts: ti: k3-am625-beagleplay: Add beaglecc1352
+Message-ID: <20231006114002.w2ed6i5ksaibu4sx@shrimp>
 References: <20231006041035.652841-1-ayushdevel1325@gmail.com>
- <20231006041035.652841-2-ayushdevel1325@gmail.com>
+ <20231006041035.652841-4-ayushdevel1325@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,121 +69,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20231006041035.652841-2-ayushdevel1325@gmail.com>
+In-Reply-To: <20231006041035.652841-4-ayushdevel1325@gmail.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-	autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+	SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
 On 09:40-20231006, Ayush Singh wrote:
-> Add DT bindings for Texas Instruments Simplelink CC1352P7 wireless MCU
+> The BeaglePlay board by BeagleBoard.org has a CC1352P7 co-processor
+> connected to the main AM62 (running Linux) over UART. In the BeagleConnect
+> Technology, CC1352 is responsible for handling 6LoWPAN communication with
+> beagleconnect freedom nodes as well as their discovery.
 > 
-> BeaglePlay has CC1352P7 co-processor connected to the main AM62 (running
-> Linux) over UART. In the BeagleConnect Technology, CC1352 is responsible
-> for handling 6LoWPAN communication with beagleconnect freedom nodes as
-> well as their discovery.
+> This mcu is used by gb-beagleplay, a Greybus driver for BeaglePlay.
 > 
 > Signed-off-by: Ayush Singh <ayushdevel1325@gmail.com>
 > ---
-
-very minor comments follow:
-
->  .../devicetree/bindings/net/ti,cc1352p7.yaml  | 51 +++++++++++++++++++
->  MAINTAINERS                                   |  6 +++
->  2 files changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
+>  arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
-> new file mode 100644
-> index 000000000000..742763e04543
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/ti,cc1352p7.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+> index 7cfdf562b53b..5160923b4dc2 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+> @@ -870,6 +870,10 @@ &main_uart6 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&wifi_debug_uart_pins_default>;
+>  	status = "okay";
 > +
-> +title: Texas Instruments Simplelink CC1352P7 wireless MCU
-> +
-> +description:
-> +  The cc1352p7 mcu can be connected via SPI or UART.
- s/cc1352p7/CC1352P7
- s/mcu/MCU
+> +	mcu {
+> +		compatible = "ti,cc1352p7";
 
-> +
-> +maintainers:
-> +  - Ayush Singh <ayushdevel1325@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,cc1352p7
-> +
-> +  clocks:
-> +    items:
-> +      - description: main system (mcu and peripherals) clock
-s/mcu/MCU
-also I'd call it high-frequency clock to give explanation of what "hf"
-means.
+I suggest to go ahead and describe the fixed regulator and clocks as in
+the beagleplay schematics as well.
 
-> +      - description: low-frequency system clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: sclk_hf
-> +      - const: sclk_lf
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  vdds-supply: true
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    serial {
-> +      mcu {
-> +        compatible = "ti,cc1352p7";
-> +        clocks = <&sclk_hf 0>, <&sclk_lf 25>;
-> +        clock-names = "sclk_hf", "sclk_lf";
-> +        reset-gpios = <&pio 35 GPIO_ACTIVE_LOW>;
-> +        vdds-supply = <&vdds>;
-> +      };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 37b9626ee654..5467669d7963 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8969,6 +8969,12 @@ F:	drivers/staging/greybus/sdio.c
->  F:	drivers/staging/greybus/spi.c
->  F:	drivers/staging/greybus/spilib.c
+> +	};
+>  };
 >  
-> +GREYBUS BEAGLEPLAY DRIVERS
-> +M:	Ayush Singh <ayushdevel1325@gmail.com>
-> +L:	greybus-dev@lists.linaro.org (moderated for non-subscribers)
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/net/ti,cc1352p7.yaml
-> +
->  GREYBUS SUBSYSTEM
->  M:	Johan Hovold <johan@kernel.org>
->  M:	Alex Elder <elder@kernel.org>
+>  &dss {
 > -- 
 > 2.41.0
 > 
-
-With those minor comments (if there is a need for a respin):
-
-Reviewed-by: Nishanth Menon <nm@ti.com>
 
 -- 
 Regards,
