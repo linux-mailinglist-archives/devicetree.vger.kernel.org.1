@@ -1,82 +1,79 @@
-Return-Path: <devicetree+bounces-6367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 652877BB1CF
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 08:58:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12D787BB1F0
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 09:09:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E87F1C20955
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 06:58:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA6F4282067
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 07:09:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9972253B4;
-	Fri,  6 Oct 2023 06:58:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6565A5CB5;
+	Fri,  6 Oct 2023 07:09:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63F68EBB
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 06:57:59 +0000 (UTC)
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90099CA;
-	Thu,  5 Oct 2023 23:57:57 -0700 (PDT)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-5a21ea6baccso22057157b3.1;
-        Thu, 05 Oct 2023 23:57:57 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A52054414
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 07:08:58 +0000 (UTC)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD3D7EB;
+	Fri,  6 Oct 2023 00:08:55 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-59f82ad1e09so21831857b3.0;
+        Fri, 06 Oct 2023 00:08:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696575476; x=1697180276;
+        d=1e100.net; s=20230601; t=1696576135; x=1697180935;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gwH34nAKT/9gJP0Nz0nWG6ojc2t+JiQa+bhA5w8EoOU=;
-        b=JZJrhj2CSxjx94rGuFqYzXFXCxTfOtOSEbwQJUzJS+icM7eCeEyuRCRpqjJPzQm93t
-         +6eh4M1dTL9AR0M8CiUOsb/orusLgBNz7i63YNU7T85gfqW8Z+kIOY6PdqHYwOj4XwV/
-         shwNKtmuQY8nA8ds2ZeCYPaGD9asFFHXqTxXX0V3E7AfsREXlfOOWeWgOZlFnRh9VAt6
-         lcc49bpZuiiNMmHqKevCt1HkIfOOXfIkiQuUw60h9fjvWfMkM8zhRX68WwxHqgiUuqMW
-         5kAyL/jIyKbI8i7+hq2K5I1IjlyMl6tGV7Y9patx5zkHXCE6Ylx/9PZPmc8U9x6A5P6L
-         VOhg==
-X-Gm-Message-State: AOJu0YwYUb9BmQbqKyP3vBRQMj2Y/ZRcWOUyeMQFAZxBJ4W5YxVHwouD
-	yz3xk1M2bPt816knSFGaHtWLVeuMrrHfzQ==
-X-Google-Smtp-Source: AGHT+IGhu6JArA9cHaP9r9i2HcIvm9k6frV9bXDtZLv2ovBOUJVekyOSi0HKYflebjNQQ/dN5nvj+w==
-X-Received: by 2002:a05:6902:1024:b0:d55:cf49:9144 with SMTP id x4-20020a056902102400b00d55cf499144mr8274974ybt.15.1696575476571;
-        Thu, 05 Oct 2023 23:57:56 -0700 (PDT)
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
-        by smtp.gmail.com with ESMTPSA id i84-20020a25d157000000b00d81479172f8sm906344ybg.5.2023.10.05.23.57.56
+        bh=bDvOGTbwmYKB4yj3dggVQge2NMSHumJx3EfGcewWqNg=;
+        b=P8PqJC3G4xGo2+ilG1ft2/Fvof8Lb9RvotJJWcCR3e3+cfi+17OQFjLia0vWd8OGqP
+         veIej9+m/+D1C+r63oFOplgNuVO/zw0sXdBVAdenYsYb6m02Eg/OwGZCLQb+zPvTRk4O
+         2ysBmddfNkWTWe1Zfz6PJhkSGVlFKY1b45BF59lLwUy+0NDp7J/5xEOMCzIcO/83sRym
+         QZo5wiPKaoZMnWJYYSqXSpYFzrsAzIKfoazD6nSEoJa4+5OBOaH93WUEFQAyOVpQf/HR
+         s/OriPE924HzA3N8s33ZtMew23Fidj2N2Z3cR8H/9NlRs2mcmq5f4ujeLenGzX3iY9BY
+         Vobw==
+X-Gm-Message-State: AOJu0YzmlpjW4rnsDfxKejp16M6y1Vz2gByJMyZbaTZp1lnYw8OFV2cM
+	bz7BWBgztb6VviPOGNt8Af7y0hxoWkh4iQ==
+X-Google-Smtp-Source: AGHT+IEzHd2u+JyGUA1VxiF3B0cNwRjyZsMoyah2KMOfTfFEXGCZr9IfDNYyZvfkFLKQKb+xtrobBg==
+X-Received: by 2002:a81:9289:0:b0:5a2:4409:2124 with SMTP id j131-20020a819289000000b005a244092124mr7760070ywg.35.1696576134761;
+        Fri, 06 Oct 2023 00:08:54 -0700 (PDT)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id u195-20020a8184cc000000b0059f4f30a32bsm1086046ywf.24.2023.10.06.00.08.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Oct 2023 23:57:56 -0700 (PDT)
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-5a2536adaf3so21893897b3.2;
-        Thu, 05 Oct 2023 23:57:56 -0700 (PDT)
-X-Received: by 2002:a0d:dfc6:0:b0:57a:2e83:4daf with SMTP id
- i189-20020a0ddfc6000000b0057a2e834dafmr7696369ywe.32.1696575475803; Thu, 05
- Oct 2023 23:57:55 -0700 (PDT)
+        Fri, 06 Oct 2023 00:08:53 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-59f55c276c3so21557857b3.2;
+        Fri, 06 Oct 2023 00:08:53 -0700 (PDT)
+X-Received: by 2002:a81:4a55:0:b0:599:8bd:5bdf with SMTP id
+ x82-20020a814a55000000b0059908bd5bdfmr7486809ywa.50.1696576133283; Fri, 06
+ Oct 2023 00:08:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1694767208.git.geert+renesas@glider.be> <CAMuHMdWfBTKdXvZutg4LvWqBjuz-X=ZjzX0LKPqD=JxYuLoPRw@mail.gmail.com>
- <20230919152428.GB18426@pendragon.ideasonboard.com> <CAMuHMdUwBXQ2X6hOm+kcZOteDLMau8x5xUcRJr2zy9dXyVf9Xw@mail.gmail.com>
-In-Reply-To: <CAMuHMdUwBXQ2X6hOm+kcZOteDLMau8x5xUcRJr2zy9dXyVf9Xw@mail.gmail.com>
+References: <20231005155618.700312-1-peter.griffin@linaro.org> <20231005155618.700312-20-peter.griffin@linaro.org>
+In-Reply-To: <20231005155618.700312-20-peter.griffin@linaro.org>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 6 Oct 2023 08:57:43 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUnQx82bzJ7XyzCo6MuDHNhDviZigJOyuYvtUOCkogxqQ@mail.gmail.com>
-Message-ID: <CAMuHMdUnQx82bzJ7XyzCo6MuDHNhDviZigJOyuYvtUOCkogxqQ@mail.gmail.com>
-Subject: Re: [GIT PULL] drm: renesas: shmobile: Atomic conversion + DT support
- (was: Re: [PATCH v4 00/41] drm: renesas: shmobile: Atomic conversion + DT support)
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>
-Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Magnus Damm <magnus.damm@gmail.com>, 
-	DRI Development <dri-devel@lists.freedesktop.org>, 
-	Linux-Renesas <linux-renesas-soc@vger.kernel.org>, 
-	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	Linux Media Mailing List <linux-media@vger.kernel.org>, 
-	Linux Fbdev development list <linux-fbdev@vger.kernel.org>, Linux-sh list <linux-sh@vger.kernel.org>
+Date: Fri, 6 Oct 2023 09:08:41 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUgW1qx-7ADh89BRE4Hhk7-+R7o5VrswcBMymxh7zWUnQ@mail.gmail.com>
+Message-ID: <CAMuHMdUgW1qx-7ADh89BRE4Hhk7-+R7o5VrswcBMymxh7zWUnQ@mail.gmail.com>
+Subject: Re: [PATCH 19/21] google/gs101: Add dt overlay for oriole board
+To: Peter Griffin <peter.griffin@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
+	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
+	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
+	will@kernel.org, arnd@arndb.de, olof@lixom.net, cw00.choi@samsung.com, 
+	tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
+	semen.protsenko@linaro.org, soc@kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
@@ -86,72 +83,67 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi all,
+Hi Peter,
 
-On Tue, Sep 26, 2023 at 4:51=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
-> On Tue, Sep 19, 2023 at 5:24=E2=80=AFPM Laurent Pinchart
-> <laurent.pinchart@ideasonboard.com> wrote:
-> > On Tue, Sep 19, 2023 at 04:28:40PM +0200, Geert Uytterhoeven wrote:
-> > > The following changes since commit 0663e1da5ba8e6459e3555ac12c6274166=
-8c0d30:
-> > >
-> > >   drm/dp_mst: Tune down error message during payload addition
-> > > (2023-09-18 16:38:21 +0300)
-> > >
-> > > are available in the Git repository at:
-> > >
-> > >   git://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers=
-.git
-> > > tags/shmob-drm-atomic-dt-tag1
-> > >
-> > > for you to fetch changes up to bfea0fa9052aa8d235b24957eb84d9ff20cb87=
-b7:
-> > >
-> > >   drm: renesas: shmobile: Add DT support (2023-09-19 15:58:04 +0200)
-> > >
-> > > ----------------------------------------------------------------
-> > > drm: renesas: shmobile: Atomic conversion + DT support
-> > >
-> > > Currently, there are two drivers for the LCD controller on Renesas
-> > > SuperH-based and ARM-based SH-Mobile and R-Mobile SoCs:
-> > >   1. sh_mobile_lcdcfb, using the fbdev framework,
-> > >   2. shmob_drm, using the DRM framework.
-> > > However, only the former driver is used, as all platform support
-> > > integrates the former.  None of these drivers support DT-based system=
-s.
-> > >
-> > > Convert the SH-Mobile DRM driver to atomic modesetting, and add DT
-> > > support, complemented by the customary set of fixes and improvements.
-> > >
-> > > Link: https://lore.kernel.org/r/cover.1694767208.git.geert+renesas@gl=
-ider.be/
-> > >
-> > > This PR is based on today's drm-misc/for-linux-next, to avoid a
-> > > conflict with commit 775b0669e19f2e4a ("drm/shmobile: Convert to
-> > > platform remove callback returning void") in drm-misc/for-linux-next
+On Thu, Oct 5, 2023 at 5:58=E2=80=AFPM Peter Griffin <peter.griffin@linaro.=
+org> wrote:
+> The LK bootloader on Pixel6 searches for a dt overlay in the
+> dtbo partition with a board_id and board_rev that matches
+> what is baked into the device. If this overlay is not present
+> then the phone will bootloop in fastboot and you can't boot
+> the upstream kernel.
 >
-> Now drm-misc/for-linux-next (which is still at v6.5-rc2) has been
-> merged into drm/drm-next (which is at v6.6-rc2), do you want me to
-> rebase my branch to current drm/drm-next, or any other commit?
+> This commit adds a dtbo for the production oriole variant.
+> The other pre-production board overlays are not included
+> at this time.
+>
+> Adding the dtbo here allows for a better experience when
+> building/booting the upstream kernel on Pixel devices
+> as all the DT required to boot the device will be created
+> as part of the kernel build process. Rather than having to
+> fetch the dtbo from some other repo.
+>
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 
-Please advise me what needs to be done to move this forward.
-Thanks!
+Thanks for your patch!
 
-> > > Thanks for pulling!
-> > > ----------------------------------------------------------------
-> > > Geert Uytterhoeven (36):
-> > >       MAINTAINER: Create entry for Renesas SH-Mobile DRM drivers
-> >
-> > I'm technically listed as the maintainer for this driver until Geert
-> > takes over, so for this pull request,
-> >
-> > Acked-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> >
-> > And after that, shmobile won't need my ack to merge further changes :-)
-> >
-> > This is very nice work Geert. I'm looking forward to dropping the
-> > sh_mobile_lcdcfb driver.
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/google/gs101-oriole.dtso
+> @@ -0,0 +1,21 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Oriole DVT Device Tree
+> + *
+> + * Copyright 2021-2023 Google,LLC
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +/ {
+> +       board_id =3D <0x20304>;
+> +       board_rev =3D <0x10000>;
+> +       fragment@boardbase {
+> +               target-path=3D"/";
+> +               __overlay__ {
+> +                       model =3D "Oriole DVT";
+> +                       compatible =3D "google,gs101-oriole";
+> +               };
+> +       };
+
+Please use sugar-syntax instead of manually defining
+fragment/target-path/__overlay__ constructs.
+You can override these properties in the root node of the base DTS
+using the much simpler:
+
+    &{/} {
+            model =3D "Oriole DVT";
+            compatible =3D "google,gs101-oriole";
+    };
+
+The generated DTBO should be identical (modulo naming).
+
+> +};
 
 Gr{oetje,eeting}s,
 
