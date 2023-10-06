@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-6356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1B517BB158
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 08:06:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB0747BB15F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 08:08:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D44A282041
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 06:06:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B6831C20904
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 06:08:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 748C85223;
-	Fri,  6 Oct 2023 06:06:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EB5F522A;
+	Fri,  6 Oct 2023 06:08:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XnAMoq0G"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZXem6kZL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFAD946B3
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 06:06:37 +0000 (UTC)
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF89BE4
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 23:06:35 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9b9faf05f51so80131766b.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 23:06:35 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D31D4414
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 06:08:42 +0000 (UTC)
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2327CA
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 23:08:39 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-533cbbd0153so3120340a12.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 23:08:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696572394; x=1697177194; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=lShvcR5QOmRSXlFwQBNfqNwjJAm5BLtn8YJ+QgRN3Xs=;
-        b=XnAMoq0Gj8bqqWeG4BF9bknTpJGMk/15D/BUDw2Gv35JB/ZJESfyRRWs/D8FqG7mev
-         C73BiHVG0tM0kq42gbSmbRl4CsYyLctNGdIFjkIuR4Nr3w+LEw+RNHeEbitu4IVXlCeU
-         mXqomPgJIVrOg+MY+SyMoB+zJ71aJlVLaLOvj+hMmfe5k7RyExteu5N/+1YsFTC2s1v0
-         FNPE2z+GYs5y1wxOFK9prVZzP6pSEa0N7pj9LUG/ZZnFkdqaSoVfN43Z8JybZRmMCSyH
-         glxslbwzZ6vomKFtR7+Ug6LTuguCV1TNKfofsAlxixjdjz/CN/fTISMhovVosZFsF7O4
-         AFVg==
+        d=linaro.org; s=google; t=1696572518; x=1697177318; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5vFbwc3aQvK87jpuWY7pm+1nX5E8U1Ytf/nqIz1BPRk=;
+        b=ZXem6kZLCn0cUMeT9Igrf2lLGjp3B3t8PDIwKy7Pk0Kjd5QVbCALfs7/D89qnTkz90
+         M92zOTc62QcLAFh2YCkAXc90NB2djBXNht9XXKuKLzV1ptAi7iEst014zcEoVKINagU4
+         N0TsfqTdYA7WRljUV9S5K/UqnW7UgZ+gmwn0fsXRjJNF8/lmle5UcVvZUx0KNREnWMBq
+         aAj2P49IhOrFoh4q1bK/dwPaBs8Epez+kj9g+k1aJCSmUOGr4sjUBXT2XBNXeaw5BHnY
+         uK9TES5na0HEzuPVcqIct20w6LQ3kCkqK9JIG+ydKLXdgA6P23rbZ1tJ8qSbrBiPRDmB
+         fbUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696572394; x=1697177194;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lShvcR5QOmRSXlFwQBNfqNwjJAm5BLtn8YJ+QgRN3Xs=;
-        b=gEHtCvEwWH9uiLwma0DlDeTvxxnKMOw8Q3chVoIxaoJtVQjaf5XanOcImtJbJAahso
-         HfiObS/OorA3/v/hGhKeId//zezwkqHQS6o94lsT9hxLbbRu6s8wca4N2OkEFNZE/ulb
-         EafaAGPo5aSGDl20iNKOX0JI+uCNu1I8EXxRBlaiQYR+fANg9HX5/pjAGY0E1+aep7m4
-         ayfT3DhBR/52vonUYHqvIAAA3TlMJRKzriRMmg7mw4OUmtGYC32cqzR0BPep38BWsP0x
-         tai+ii9L0aWOCvHBTUYD8hATQc9xDiQDKPP3GA0X8VaUf0kcDSm7XhkBgHB1pC+MRQgD
-         y2CA==
-X-Gm-Message-State: AOJu0YweNHfcTGmO6SmnWm9L+qNWwa2ZyzYSyLoIh5KfO/cmEmn77QVb
-	3WS5q/JWRyPw1EqxEuIImKSVpQ==
-X-Google-Smtp-Source: AGHT+IFy5QxeJOdvxZ9bKyosWcf+cPbAwd3FQFIqZG5rrU7HD2syWP0UoL4XnvOvjztvf7sUUIlKWg==
-X-Received: by 2002:a17:906:31c5:b0:9a2:5bf:8b14 with SMTP id f5-20020a17090631c500b009a205bf8b14mr6981823ejf.22.1696572394205;
-        Thu, 05 Oct 2023 23:06:34 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1696572518; x=1697177318;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5vFbwc3aQvK87jpuWY7pm+1nX5E8U1Ytf/nqIz1BPRk=;
+        b=HtOW1kqYMssv+jyjFdH5bqg8kAxEPA9D2l4/+glle6mAM94wuzSpcqg/JwdyBSdNJQ
+         iLBabLHp9QgDSHFoqy6VsjkHylck1sV9qH5y53ZmKyYfOz8CurBCnQ44kxG3DmDduJzs
+         7qAPkY6vhzWVbgmqUiIKVTZw1CzDBM9NShYOjFwllWSN/4qwwY25cYXqHADBFzKswhOY
+         eVr8oWXaXeX9NeF4fY+QzD52J239BuTZ0l3iXp35Lna541miP8/r+uXzu5+1xnFsLiR5
+         s4S0A4a6kegg1PRhZwu/lrFID4d8FjurKJOsiwPP2yMZrgRQYMLfaBN0P8C3GJxQmWba
+         c8jQ==
+X-Gm-Message-State: AOJu0YwfRoq6lV3QGensm+3Dakj53BwjI6Ry8wcXSPflA8Ty5HE3Bk0p
+	nLN9hI5MNK9EqDM/kH3RtPtQhg==
+X-Google-Smtp-Source: AGHT+IGcty9PiVMfqIU+kz1AY7veqhcY/IYvF3GpU4CCu4sropeldCGUgE353T3cXn3LB0IE3hOP5A==
+X-Received: by 2002:a17:906:301a:b0:9a5:b814:8254 with SMTP id 26-20020a170906301a00b009a5b8148254mr6631924ejz.24.1696572517800;
+        Thu, 05 Oct 2023 23:08:37 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id x20-20020a170906299400b0098951bb4dc3sm2280807eje.184.2023.10.05.23.06.31
+        by smtp.gmail.com with ESMTPSA id z11-20020a170906074b00b00988f168811bsm2336410ejb.135.2023.10.05.23.08.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Oct 2023 23:06:33 -0700 (PDT)
-Message-ID: <44816879-a3a7-4bd0-bb20-19a645107b4b@linaro.org>
-Date: Fri, 6 Oct 2023 08:06:30 +0200
+        Thu, 05 Oct 2023 23:08:37 -0700 (PDT)
+Message-ID: <f5c0563b-65a3-4e1d-b840-188410764490@linaro.org>
+Date: Fri, 6 Oct 2023 08:08:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,29 +67,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 18/21] arm64: dts: google: Add initial Google gs101 SoC
- support
-To: William McVicker <willmcvicker@google.com>
-Cc: Greg KH <gregkh@linuxfoundation.org>,
- Peter Griffin <peter.griffin@linaro.org>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
- conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com,
- s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org,
- linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
- olof@lixom.net, cw00.choi@samsung.com, tudor.ambarus@linaro.org,
- andre.draszik@linaro.org, semen.protsenko@linaro.org, soc@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org,
- kernel-team@android.com
-References: <20231005155618.700312-1-peter.griffin@linaro.org>
- <20231005155618.700312-19-peter.griffin@linaro.org>
- <ZR75cIvnQS2cqTT3@google.com> <2023100520-cleaver-sinless-fbae@gregkh>
- <99419159-cab0-4c79-a4a0-12229bfad3c0@linaro.org>
- <2023100513-mashing-scrubber-ea59@gregkh>
- <efc9f099-9c97-460b-b0c8-9891aa3b772a@linaro.org>
- <ZR9EnFw3vB92vlYM@google.com>
+Subject: Re: [PATCH 1/4] dt-bindings: pwm: Document the pwm compatible for
+ ipq5332 & ipq9574
 Content-Language: en-US
+To: Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, lee@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ thierry.reding@gmail.com, baruch@tkos.co.il, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ u.kleine-koenig@pengutronix.de, linux-pwm@vger.kernel.org
+References: <20231006045317.1056625-1-quic_devipriy@quicinc.com>
+ <20231006045317.1056625-2-quic_devipriy@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -136,78 +123,26 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZR9EnFw3vB92vlYM@google.com>
+In-Reply-To: <20231006045317.1056625-2-quic_devipriy@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 06/10/2023 01:19, William McVicker wrote:
-> On 10/05/2023, Krzysztof Kozlowski wrote:
->> On 05/10/2023 21:23, Greg KH wrote:
->>> On Thu, Oct 05, 2023 at 09:18:48PM +0200, Krzysztof Kozlowski wrote:
->>>>>> I'd like to bring up this thread and discuss the option of not introducing
->>>>>> another ARCH_* config:
->>>>>>
->>>>>>   https://lore.kernel.org/all/20200306103652.GA3634389@kroah.com/
->>>>>
->>>>> I agree, PLEASE don't add platform config options as that makes it
->>>>> impossible to make a unified kernel image that works for more than one
->>>>> platform at the same time.
->>>>
->>>> There is no single problem in making unified image as we were doing
->>>> since beginning of ARM64. The ARCH_* is not a obstacle for this.
->>>
->>> Then why are the ARCH_* options needed at all?  What does this help out
->>> with?
->>
->> It helps all the people and distros who do not want to build/package
->> drivers or modules for unrelated hardware or architectures.
->>
->> Let's take Samsung Exynos UART driver. It will never, 100% never, work
->> on x86, x86_64. There is no single need to package it for kernels build
->> for these products. It will not work on nVidia Tegra ARM64, Qualcomm
->> ARM64 SoC, so if you do not want to run on Exynos, then you do no select
->> ARCH_EXYNOS and have significantly smaller image.
->>
->> Now, there is no problem to have one kernel for nVidia Tegra + Qualcomm
->> + Samsung Exynos with everything you need. The ARCH_EXYNOS or SOC_EXYNOS
->> or SOC_GOOGLE serves only the purpose to allow distros and people
->> customize build for specific hardware.
->>
->> It does not limit anyone on anything.
+On 06/10/2023 06:53, Devi Priya wrote:
+> Use ipq6018 as the fallback for ipq5332 & ipq9574 and document its compatibles.
 > 
-> I'm glad you brought up Exynos UART because this is where one of the
-> limitations is introduced. For example, if you want to modularize out all the
-> vendor specific drivers from the core kernel to create a common arm64 kernel
-> binary that works on all ARM64 devices, you will not be able to build in the
-> early console UART drivers without enabling the respective ARCH_* configs.
-
-When you build single kernel there is never need to NOT ENABLE
-respective ARCH configs. Please describe me upstream case for such need
-to NOT ENABLE.
-
-> Being able to include SERIAL_SAMSUNG and SERIAL_MSM without all the vendor> specific drivers that ARCH_EXYNOS and ARCH_QCOM select is very
-valuable for
-> debugging early boot issues.
-
-Really? How related? The drivers are independent. You describe some
-out-of-tree development process which we never needed for upstream work.
-And we did here quite a lot of upstream, specially if you look at ARCH_QCOM.
-
+> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+> ---
+>  .../devicetree/bindings/pwm/qcom,ipq6018-pwm.yaml        | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
 > 
-> I understand that ARCH_* configs are used to selectively pick which device tree
-> blobs are built, but forcing developers to pick all or nothing is where I have
-> a problem.
 
-No one forces you to pick up everything or nothing. You select
-ARCH_EXYNOS and still can drop all optional drivers. It's true you
-cannot drop mandatory drivers, but you are upstreaming Exynos platform,
-right? We do not talk about your out-of-tree Google work because it does
-not matter.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
