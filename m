@@ -1,137 +1,137 @@
-Return-Path: <devicetree+bounces-6363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 426877BB19B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 08:39:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E93BB7BB1AA
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 08:43:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 309841C2094C
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 06:39:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25BC91C2096D
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 06:43:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1767D5226;
-	Fri,  6 Oct 2023 06:39:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2011A5250;
+	Fri,  6 Oct 2023 06:43:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bKUhhjIZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t9QcH4qB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84A8DEBB
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 06:39:17 +0000 (UTC)
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36008E4
-	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 23:39:14 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-50573e85ee0so2158658e87.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 23:39:14 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85ECC440E
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 06:43:25 +0000 (UTC)
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 665BEE4
+	for <devicetree@vger.kernel.org>; Thu,  5 Oct 2023 23:43:23 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-40566f8a093so16083545e9.3
+        for <devicetree@vger.kernel.org>; Thu, 05 Oct 2023 23:43:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696574352; x=1697179152; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=W/Oe20eq5hm/+Em5p9d3iI+mb2ITB6meerwxw35smVY=;
-        b=bKUhhjIZ3JvKQ6ynZei8EwOLUguXajBjKNTXfmPXMWk/SwDP/3fxYWSi+CnZhn4GaS
-         hnBoZ8AJB2OzHylMSnHUhNjIeU9C5aKyNuiqI4JmplwfHG6ztrbO/EJoVDTuvEszF4Mu
-         xIMRib0jxKPXxmIBgAwkEXvtaYRuA9ZIHHu5Mg1LmXXvkHIhZKMo0XJ5o6ruaEYB+5bX
-         1mRmVQQWWrA3UZNeJ23BaBpvp8Irh3zbxEKfq233S4S9jdAb4lwfoc98FLPAcnPoZJdk
-         V/jSV4tcyYlbl0P3MPnck24KEfgVfy9z1J8UrPdNlyhbLFLIsn1LU57VlBZuWg107H/p
-         skbg==
+        d=linaro.org; s=google; t=1696574602; x=1697179402; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tHZrwWZAfNjVWk4/AUcfESVqIawgSpGdGoZyI+1qlJk=;
+        b=t9QcH4qBdqtSq3VV6Ja74dYsDOzK0D3mF/7SGn2FoA+3rVrWJcMu+5FHLdlYApr8DW
+         6TT6qYyj39ktkWH7zPzYipvar42vXzs0Spk6DC86gqiyhvIqJ6a7ARoVWd4g36yJkCPl
+         2/gvjntMgaUFG8VWpAUDJy9CwMMtU1MS8D8nX2ZFzezYGOnJrAFOdLxKXyAH+DcQNLJ6
+         0FUpiEqjCEfnVwe/O48KwTXsn9MkQqgfaH3P2HZKfxrgYGEVaBfkSQY8Tet4Vv8Rn0y/
+         SUJs+MKRPJm6URmATHoowVDplayNIpTi0eveK0s8xUD+yWinULtPPnB85RL5CJmNwyoB
+         1KmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696574352; x=1697179152;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=W/Oe20eq5hm/+Em5p9d3iI+mb2ITB6meerwxw35smVY=;
-        b=gEY5tt4dSfMEH1XoGC/ekWC/rpePcOXyLulMWzLOBd5nVS3utj4jOeit2i/iH2c19i
-         oBuJl44ONcx6biWYhSdDroxjFD+fktw7Tjo+N3LaEV3iLnQue4TEQNFpe4QkTUdEIDq3
-         KR7dP9lQ/pKxnJUwQvIlA9aF0LCNFux90loy4xNsopALEzM3obeUXnO2Vf9HIPe45967
-         Ze18PTrkzNMPEXiNiRvB7vWYPZyjUCkhw2htigfwf7HJjZgA4QIq53UvE6tSV2NH39DE
-         HGeKQSVZMhCuerl+aUqgi0n+YdTlyNQyOGduRa8Ul5Y11LYdvAiA04UcmdaQrNI/3F6S
-         BJbQ==
-X-Gm-Message-State: AOJu0YxkEhU86E1sbApu/82+EQC2eTpofTvI4d6MoAQx+lxO32+10gZn
-	Cp1hqh4cfEB8xC4Ui74KP42rFw==
-X-Google-Smtp-Source: AGHT+IGDgHi+Dqi7dzq19URpX2w0CDyuB/8q2REgQRlKgwGayqgeuRpXDzX5nux46VGVeMRQQgdWjw==
-X-Received: by 2002:ac2:43cf:0:b0:503:655:12e0 with SMTP id u15-20020ac243cf000000b00503065512e0mr5995373lfl.50.1696574352377;
-        Thu, 05 Oct 2023 23:39:12 -0700 (PDT)
-Received: from [192.168.7.189] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id u20-20020a05600c211400b0040642a1df1csm3042793wml.25.2023.10.05.23.39.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Oct 2023 23:39:11 -0700 (PDT)
-Message-ID: <bbca1c2f-2b7e-4132-a23e-12bd41abfec5@linaro.org>
-Date: Fri, 6 Oct 2023 08:39:11 +0200
+        d=1e100.net; s=20230601; t=1696574602; x=1697179402;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tHZrwWZAfNjVWk4/AUcfESVqIawgSpGdGoZyI+1qlJk=;
+        b=LCl3m8ujKkIQPMJl4/MRX07alPG9+ToWsXRnarUPkTnSrwvOiZjgoHdwH/yR1jwMwM
+         SuIQ+8Wh30umGrA2r4t3DJ2MMGTFovLaI1lif9vhtD4Y4WEr1vXEd6fEO+oxFybFSjU5
+         w4MESxxrSV6eohzS2MYVC8RkAkUVW6W/hS8vvBuTpFTlN1OCLlebogM0NgzVKnbkIKry
+         seLkcGvm3+WSeuH4cAxBWMiOgAuylqEfLx3NX+s7sJr2900slCE8Y9h0ENK0y44Eohhd
+         MBKPYOvF4ZP5SBHDdb/ltxMVlFVeiHUONEVtdax6mAbxZ4WaDz0hgoVOwYc4hM7CqhZX
+         fRuQ==
+X-Gm-Message-State: AOJu0YysPIM2VhSTC/UWeNvt58OnlMMinL5dFboHHBMygeNFjrByGVLd
+	q6wao7T4e2TZmEOKFmB5/iaJ/w==
+X-Google-Smtp-Source: AGHT+IEa9D6UEg8Kim6Z9RKpbqTF6yPxbwX33SKhKAYQuYTwCSxIBRvJ5CVQJEe4sosIQ6eGaegeiA==
+X-Received: by 2002:a05:600c:b41:b0:405:499a:7fc1 with SMTP id k1-20020a05600c0b4100b00405499a7fc1mr6767148wmr.40.1696574601638;
+        Thu, 05 Oct 2023 23:43:21 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id y24-20020a7bcd98000000b004064741f855sm3002073wmj.47.2023.10.05.23.43.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Oct 2023 23:43:21 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: olivia@selenic.com, herbert@gondor.apana.org.au, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, conor@kernel.org, 
+ khilman@baylibre.com, jbrunet@baylibre.com, 
+ martin.blumenstingl@googlemail.com, f.fainelli@gmail.com, 
+ hkallweit1@gmail.com, lists@kaiser.cx, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Alexey Romanov <avromanov@salutedevices.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-crypto@vger.kernel.org, kernel@sberdevices.ru
+In-Reply-To: <20230929102942.67985-1-avromanov@salutedevices.com>
+References: <20230929102942.67985-1-avromanov@salutedevices.com>
+Subject: Re: [PATCH v5 0/3] Meson S4 HW RNG Support
+Message-Id: <169657460045.2128575.14990345978498318753.b4-ty@linaro.org>
+Date: Fri, 06 Oct 2023 08:43:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v1 0/2] arm64: dts: meson-a1-ad402: Add SPIFC pins
-Content-Language: en-US, fr
-To: Igor Prusov <ivprusov@salutedevices.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>
-Cc: prusovigor@gmail.com, kernel@sberdevices.ru,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20231005195543.380273-1-ivprusov@salutedevices.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20231005195543.380273-1-ivprusov@salutedevices.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.3
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 05/10/2023 21:55, Igor Prusov wrote:
-> This series adds SPIFC pins description to A1 pinctrl node and selects
-> them in AD402's SPIFC node to make sure that muxed GPIO is properly
-> configured.
-> 
-> Igor Prusov (2):
->    arm64: dts: meson: a1: Add SPIFC mux pins
->    arm64: dts: meson-a1-ad402: set SPIFC pins
-> 
->   arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts |  2 ++
->   arch/arm64/boot/dts/amlogic/meson-a1.dtsi      | 12 ++++++++++++
->   2 files changed, 14 insertions(+)
-> 
+Hi,
 
-For the 2 patches:
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+On Fri, 29 Sep 2023 13:29:35 +0300, Alexey Romanov wrote:
+> This patch series adds hwrng support for Amlogic S4-series.
+> Now, S4 uses a new random number generation algorithm.
+> This changes implemnents new algo and also adds description
+> to meson-s4.dtsi.
+> 
+> V2:
+> 
+> [...]
+
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.7/arm64-dt)
+
+[1/3] drivers: rng: meson: add support for S4
+      (no commit info)
+[2/3] dt-bindings: rng: meson: add meson-rng-s4 compatible
+      (no commit info)
+[3/3] arch/arm64: dts: meson-s4: add hwrng node
+      https://git.kernel.org/amlogic/c/1e3dbe8006247386592a2fdce3a52cca15625997
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.7/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
+
 
