@@ -1,299 +1,161 @@
-Return-Path: <devicetree+bounces-6420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1135B7BB49A
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 11:55:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A28A97BB4D2
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 12:08:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 401901C2097C
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 09:55:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 475BB282192
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 10:08:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E70514288;
-	Fri,  6 Oct 2023 09:55:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DA8214AB8;
+	Fri,  6 Oct 2023 10:08:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LZnfMslZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cghMRjk7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0575FF9D9
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 09:55:10 +0000 (UTC)
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEFF2AD
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 02:55:08 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-1c735473d1aso15085595ad.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 02:55:08 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5B0114A98;
+	Fri,  6 Oct 2023 10:08:42 +0000 (UTC)
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4453FC;
+	Fri,  6 Oct 2023 03:08:38 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-503f39d3236so2408284e87.0;
+        Fri, 06 Oct 2023 03:08:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696586108; x=1697190908; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=va6279LqB/seoOCOHbdXG67T3Sqj31GhP8cK9knO7lQ=;
-        b=LZnfMslZotV92c5PlQ0A5N0WIv9zbDDWmUlX4qMNCiqR8Kcys/ygvcB3cAk1knt+qC
-         EaGRZyX9rzZSrZr6ciYMitFfYuzAiUkxGTaSue53PXkOpWyoNOnqOoJBzmCBXqNfEq/f
-         +4IydxWml0PMdDZ9/Zps3KEvmAJ5f5ItfqPAauA4QdnHl9k0unSbfXFVlPU8KMezHGbv
-         KyBBsltr+sQuoeEUo+q/AOG8GgWwifnVAPYCuygYSSgCUafmYAW1syOQ9cD+1lDO4QXD
-         tQDFlKC0LPhjY7L4rzHAcWXmnZ9qbMa3UzUb3M5sLdogmqGkhMhesUbqn4z6Dfj+lEyO
-         wvpA==
+        d=gmail.com; s=20230601; t=1696586917; x=1697191717; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=osJYzTdN8E4ajBT02BHqBdC7TAGRf8KWAino8TfH2Do=;
+        b=cghMRjk7/T9KUEEN1nWJdAdXuwzOm8D7RS2XTv06BdXdO9M0c6vDALkhcFA9Xl53qO
+         3jXs7XdEgqoHkqoPY1nIAbRcYWf+K7g2CkpG6Pbnt3K+46fpo+E8QjrLSposdTyLCy20
+         XZC0pl5VgzeYcOahU4v+rBe7nug5zdhJMVaq8jVjcwLQZMpXVt1M2LNMWbsWJfKzrS73
+         abSFtiAzVxKWqfde5ap9CbdFmXmMDMrnwXRoQoQO/wAZ8pw1NsqBvBDsZE+NThYjirJa
+         R0xfKqQNnMFOAljhGNckdug9GYMXddduIhXSxkLayP9aVS7KlBWiQoWQPt7bDbzJ8W94
+         9b7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696586108; x=1697190908;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=va6279LqB/seoOCOHbdXG67T3Sqj31GhP8cK9knO7lQ=;
-        b=geP+p6XQVr5v5rsbz/blHvZCHpcrRg4aixkDyPiPGGumAdaAmPhbrVeGzMosa+OgMM
-         THGimZ1NFGHR4AQP4Q84wOsz/+L6Mjs6Kaoj7nYBWLi26wLrO+DRIkBMbNHb79VpSSkB
-         5OWpQ+ncZlIiXidxzzNOQ0tAB/udqLZimqYMwb+FbODj2S0jCArgjbhHi+au8/sJ4awn
-         dxVlmDrsXEZRBSOg7i+JIfyU1v1mvz2/VeXEM5ILDBr1cqxsbJ13m/AADdh7VOmMIcjk
-         9juA4t+7A2fLwqYAn38rsUlURsyfM2cp7rQTf76nnj8ABMn6K93Mx62wPwS3jE35lucv
-         SpQA==
-X-Gm-Message-State: AOJu0YztKpJkBGjVkiffS8yzPMj/vRVK9ED/CVFj6Q2K2xOzjiG18P6Z
-	ByAtuO2F3cWOeHc+HThXcb6d+A==
-X-Google-Smtp-Source: AGHT+IFcNrFSTODFX+dGgwWocT0UzAFWNQzLB1H3jlWLEy7tDCtTRcn8etVzAnGEe7SIBHS8vPII1Q==
-X-Received: by 2002:a17:903:110d:b0:1c1:fe97:bf34 with SMTP id n13-20020a170903110d00b001c1fe97bf34mr9060380plh.24.1696586108092;
-        Fri, 06 Oct 2023 02:55:08 -0700 (PDT)
-Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id a12-20020a170902ee8c00b001bde65894c8sm3372472pld.268.2023.10.06.02.55.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Oct 2023 02:55:07 -0700 (PDT)
-Message-ID: <1006be55-85be-4f13-90c3-ec9c06996534@linaro.org>
-Date: Fri, 6 Oct 2023 11:55:03 +0200
+        d=1e100.net; s=20230601; t=1696586917; x=1697191717;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=osJYzTdN8E4ajBT02BHqBdC7TAGRf8KWAino8TfH2Do=;
+        b=UCMX9yagNpLDo1M4ty8lVJgGEaAhQbNBd+r4Au6dYL9YZHJ9gptptzeAPmGNfGsLWg
+         JRmw+s/xocG9+4gz6cRzXGLO9MZpV0m086XnCKXkrI/Fpz8iuH6/5TCYOIpdZLhjeECj
+         Sug04s7bVmed8oh+OSm0jvv84P8RRfvQMx/ZungOMwi2757t+x0zJT+IXIgqw6XJJmsH
+         QEiWk2P3I/+8hKBXzJYARXsGtTn0j8nzESCbO8cnyJE5yTFgKjfr91lqBQhJi09UF7VY
+         ejbXASxCFSd8s6NjM7zYoUEj9eBsvTi4OWg//zEh4gMRDW51LuqtTB6pFzSWk0B63M0k
+         dBbw==
+X-Gm-Message-State: AOJu0YzOrpL52zFoRT0lpaOmV7eavMz3U7OmExiL8rrmUIlGW1egYL6d
+	NvV8H3dkca1iZh42AV7PZcM=
+X-Google-Smtp-Source: AGHT+IED9GQikXczfKT0cS5GMmyEBz/AdHxccg6OjFgXOMmxPrn1cm+Z3Q6ubL10fyYOPOdv4cLdvQ==
+X-Received: by 2002:ac2:5b83:0:b0:503:3787:f75a with SMTP id o3-20020ac25b83000000b005033787f75amr6234875lfn.62.1696586916355;
+        Fri, 06 Oct 2023 03:08:36 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id u7-20020a056512040700b00501ce0cacb6sm243567lfk.188.2023.10.06.03.08.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Oct 2023 03:08:35 -0700 (PDT)
+Date: Fri, 6 Oct 2023 13:08:33 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Rohan G Thomas <rohan.g.thomas@intel.com>, 
+	Jakub Kicinski <kuba@kernel.org>
+Cc: alexandre.torgue@foss.st.com, andriy.shevchenko@linux.intel.com, 
+	davem@davemloft.net, devicetree@vger.kernel.org, edumazet@google.com, 
+	joabreu@synopsys.com, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	mcoquelin.stm32@gmail.com, netdev@vger.kernel.org, pabeni@redhat.com
+Subject: Re: [PATCH net-next 1/1] net: stmmac: xgmac: EST interrupts handling
+Message-ID: <cjgx6e3agc6gpvs75nhkf6wlztk73epmct6tcuooyqvk2nx2o2@vr5buyk637t3>
+References: <20231005070538.0826bf9d@kernel.org>
+ <20231006072319.22441-1-rohan.g.thomas@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: adc: provide max34408/9 device tree
- binding document
-Content-Language: en-US
-To: Ivan Mikhaylov <fr0st61te@gmail.com>, Jonathan Cameron
- <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20231005185537.32267-1-fr0st61te@gmail.com>
- <20231005185537.32267-2-fr0st61te@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231005185537.32267-2-fr0st61te@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231006072319.22441-1-rohan.g.thomas@intel.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 05/10/2023 20:55, Ivan Mikhaylov wrote:
-> The hardware binding for i2c current monitoring device with overcurrent
-> control.
+Hi Rohan, Jakub
+
+On Fri, Oct 06, 2023 at 03:23:19PM +0800, Rohan G Thomas wrote:
+> On Thu, 5 Oct 2023 07:05:38 -0700 Jakub Kicinski wrote:
+> > On Thu, 5 Oct 2023 20:14:41 +0800 Rohan G Thomas wrote:
+> > > > So the question now is whether we want Rohan to do this conversion
+> > > > _first_, in DW QoS 5, and then add xgmac part. Or the patch should
+> > > > go in as is and you'll follow up with the conversion?
+
+Jakub, this was my intention if Rohan wouldn't have agreed to perform
+the cleanup. Though I couldn't promise to do that in an instant.
+I would have needed a month or two to find a free time-spot for that.
+
+> > >
+> > > If agreed, this commit can go in. I can submit another patch with the
+> > > refactoring suggested by Serge.
+> > 
+> > Did you miss the emphasis I put on the word "first" in my reply?
+> > Cleanup first, nobody will be keeping track whether your fulfilled your
+> > promises or not :|
 > 
-> Signed-off-by: Ivan Mikhaylov <fr0st61te@gmail.com>
-> ---
->  .../bindings/iio/adc/maxim,max34408.yaml      | 137 ++++++++++++++++++
->  1 file changed, 137 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/maxim,max34408.yaml
+> Hi Jakub,
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/maxim,max34408.yaml b/Documentation/devicetree/bindings/iio/adc/maxim,max34408.yaml
-> new file mode 100644
-> index 000000000000..4262bedb4bfa
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/maxim,max34408.yaml
-> @@ -0,0 +1,137 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/maxim,max34408.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Two- and four-channel current monitors with overcurrent control
-> +
-> +maintainers:
-> +  - Ivan Mikhaylov <fr0st61te@gmail.com>
-> +
-> +description: |
-> +  The MAX34408/MAX34409 are two- and four-channel current monitors that are
-> +  configured and monitored with a standard I2C/SMBus serial interface. Each
-> +  unidirectional current sensor offers precision high-side operation with a
-> +  low full-scale sense voltage. The devices automatically sequence through
-> +  two or four channels and collect the current-sense samples and average them
-> +  to reduce the effect of impulse noise. The raw ADC samples are compared to
-> +  user-programmable digital thresholds to indicate overcurrent conditions.
-> +  Overcurrent conditions trigger a hardware output to provide an immediate
-> +  indication to shut down any necessary external circuitry.
-> +
-> +  Specifications about the devices can be found at:
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/MAX34408-MAX34409.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - maxim,max34408
-> +      - maxim,max34409
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  shutdown-gpios:
-> +    description:
-> +      Shutdown Output. Open-drain output. This output transitions to high impedance
-> +      when any of the digital comparator thresholds are exceeded as long as the ENA
-> +      pin is high.
-> +    maxItems: 1
-> +
-> +  shtdn-enable-gpios:
+> Agreed. I'll do the cleanup first.
 
-Are these both GPIOs different than standard powerdown-gpios? I suspect
-one is different, but the other should be the same. If both are
-different, use different names. shutdown gpios is the same as powerdown
-gpios....
+Rohan, thanks in advance. Although I don't see why it's required to be
+done in the prescribed order only as long as the update comes in a
+_single_ patchset. Adding EST IRS-status support to XGMAC core module
+first, then factoring out both XGMAC and QoS (note both 4.x and 5.x
+seems to support that) EST code would be also acceptable. Seeing you
+have already done the first part, it would have taken less work in
+general.
 
-> +    description:
-> +      SHTDN Enable Input. CMOS digital input. Connect to GND to clear the latch and
-> +      unconditionally deassert (force low) the SHTDN output and reset the shutdown
-> +      delay. Connect to VDD to enable normal latch operation of the SHTDN output.
-> +    maxItems: 1
-> +
-> +  vdd-supply: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
+Jakub, what do you say if Rohan will just re-submit v2 with the
+addition cleanup patch and let him to decided whether the cleanup
+should be done first or after his XGMAC-EST IRQ update?
 
-required goes after patternProperties.
+> > > Again, thanks Serge for the prompt response. Regarding the below point in your
+> > > earlier response,
 
-> +
-> +patternProperties:
-> +  "^channel@[0-3]$":
-> +    $ref: adc.yaml
-> +    type: object
-> +    description:
-> +      Represents the internal channels of the ADC.
-> +
-> +    properties:
-> +      reg:
-> +        items:
-> +          minimum: 0
-> +          maximum: 3
-> +
-> +      maxim,rsense-val-micro-ohms:
-> +        description:
-> +          Adjust the Rsense value to monitor higher or lower current levels for
-> +          input.
-> +        enum: [250, 500, 1000, 5000, 10000, 50000, 100000, 200000, 500000]
-> +        default: 1000
-> +
-> +    required:
-> +      - reg
-> +      - maxim,rsense-val-micro-ohms
-> +
-> +    unevaluatedProperties: false
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: maxim,max34408
-> +    then:
-> +      patternProperties:
-> +        "^channel@[2-3]$": false
-> +        "^channel@[0-1]$":
-> +          properties:
-> +            reg:
-> +              minimum: 0
-> +              maximum: 1
-> +    else:
-> +      patternProperties:
-> +        "^channel@[0-3]$":
-> +          properties:
-> +            reg:
-> +              minimum: 0
-> +              maximum: 3
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +
+> > > > > 2. PTP time offset setup performed by means of the
+> > > > > MTL_EST_CONTROL.PTOV field. DW QoS Eth v5.x HW manual claims it's "The
+> > > > > value of PTP Clock period multiplied by 6 in nanoseconds." So either Jose got
+> > > > > mistaken by using _9_ for DW XGMAC v3.x or the DW XGMAC indeed is
+> > > > > different in that aspect.
+> > > 
+> > > This is a little confusing...
+> > > I referred databooks for DW QoS Eth v5.30a and DW XGMAC v3.10a. In both this is
+> > > mentioned as "The value of PTP Clock period multiplied by 9 in nanoseconds".
 
-Stray blank line.
+Interesting thing. My DW QoS Eth _v5.10a_ HW manual explicitly states
+that it's multiplied by _6_ in nanoseconds (just rechecked). So either
+there is a difference between the minor DW QoS Eth IP-core releases or
+the older HW-manuals have had a typo in the MTL_EST_CONTROL.PTOV field
+description. Synopsys normally describes such changes (whether it was
+a mistake or a functional change) in the IP-core release notes. The
+release notes document is supplied as a separate pdf file. Alas I
+don't have one.( Even if I had it it would have been useless since the
+change was introduced in the newer QoS IP-cores. Rohan, do you happen
+to have the release notes for DW QoS Eth IP-core v5.30 at hands?
+Something like DWC_ether_qos_rc_relnotes.pdf?
 
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        adc@1e {
-> +              compatible = "maxim,max34409";
-> +              reg = <0x1e>;
-> +
-> +              #address-cells = <1>;
-> +              #size-cells = <0>;
+Also please double check that your DW QoS Eth v5.30a for sure states
+that MTL_EST_CONTROL.PTOV contains value multiplied by _6_. So we
+wouldn't be wasting time trying to workaround a more complex problem
+than we already have.
 
-Missing blank line
+-Serge(y)
 
-
-Extend example with GPIOs to make it as complete as reasonable/possible.
-
-Best regards,
-Krzysztof
-
+> 
+> Best Regards,
+> Rohan
 
