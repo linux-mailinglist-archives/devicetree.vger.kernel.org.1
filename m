@@ -1,61 +1,57 @@
-Return-Path: <devicetree+bounces-6606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F7927BBF18
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 20:53:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE1717BBF72
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 21:01:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E7AB1C20A1B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 18:53:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A10BC282125
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 19:01:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC04138F98;
-	Fri,  6 Oct 2023 18:53:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45F4238FBC;
+	Fri,  6 Oct 2023 19:01:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 588D438FB9
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 18:53:45 +0000 (UTC)
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E9FF1A7;
-	Fri,  6 Oct 2023 11:53:44 -0700 (PDT)
-Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3ae2ec1a222so1548883b6e.2;
-        Fri, 06 Oct 2023 11:53:44 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0708B38FAE
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 19:01:10 +0000 (UTC)
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC7D495;
+	Fri,  6 Oct 2023 12:01:08 -0700 (PDT)
+Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-6c4cbab83aaso1550344a34.1;
+        Fri, 06 Oct 2023 12:01:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696618423; x=1697223223;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=feah5QusWcQ8cEA5UJQD4nS/oFg2thDfiS4QD6JMFv8=;
-        b=qguJozxMzY6UKaiAhV6C0zHEyKh4+3Ug12JMf8+mAfftRgH/k709WYkRQlx/tLy9HA
-         3hdnylYvO1pDKtCgd0YNLJpWBFuP42pOszTvWOePYoAA+Igme4VU3uRSuF7uUDHbfdzP
-         xBFujsxrlo+pvxSCRqpAOUnEQl/TVXbhGkIpcTfVtYXrhrm8TKMWAImdtJTH8hLFYkWM
-         vKyLuJMELWbPPjvxYCURiJYPaQwkkrf/wwx7zLxHv2qr9WQGSF26eqkplNwMXD5NuoP9
-         4AwtFGthKx2B+NjgZFzTFbWbqm/FsysDtbHGrQiZm8dZTl80eRt7MRk0GXXECCxLcfkT
-         hSgA==
-X-Gm-Message-State: AOJu0YzA5BCYbhTqK7yq+Z7cK8oWHrvr+vYFB/Jr2kQexGRvtrAKgl5A
-	V/asDyAuL7nz3VTMaD4szw==
-X-Google-Smtp-Source: AGHT+IGELyapSHj1VizNNvS/YwtM5zgb5RsFu/FKqJpifefHTY74QVkVCbVjOlrStVFouHfMyaRZNQ==
-X-Received: by 2002:a05:6870:14c1:b0:1b0:89e0:114f with SMTP id l1-20020a05687014c100b001b089e0114fmr9831968oab.31.1696618422888;
-        Fri, 06 Oct 2023 11:53:42 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1696618868; x=1697223668;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NQPfNCUG/HzQo9Fb1PaZQ4iG1oWkBwwHEdqzoS77ZME=;
+        b=cPLrd0GrWzFXiIGfkvQxG54OPcXOXLvbsRgPKyTlmm93pfQRMh97sONqx/MgCpFJrX
+         1c0T18r8JCQ7XV88WOO309QZDa9s0sYcrnPzc/VUfnGCqmcCUNiOdOP2GosujPBOaudg
+         jjmW3YNKCTXDNqHOjb1VlBol2TNr4FLaN2VR8cjJ42WKENfgFYcx74kjJ8LHpNEZM+Ey
+         n+fdBSNAVN/k0z9TzlVLhSAPVuqs/WjeT48qTcP4hD4LRPoIUhA7fDp3mX/dlEY+2CUx
+         31GneYUmsgHwcTZcVn5zIxx8QIeILeAdqeVo7R09pAm5WcBR7r6flUVALcZf/MfD9bM9
+         yZhQ==
+X-Gm-Message-State: AOJu0Yyar9tysrV53JJ1rTHaibuB+23TG5ne8oBSxQ9TCBteSMhDcfhf
+	EtGBgTCv6gNdSf19+mtL1A==
+X-Google-Smtp-Source: AGHT+IHhTuC+dn/OXrN95UVzcrVXD+InpPJ6j31I7cOc6glAgIzqtbSBJmzcdjlHwUJIp6HIW8+P7g==
+X-Received: by 2002:a05:6830:d6:b0:6be:fc8b:40fc with SMTP id x22-20020a05683000d600b006befc8b40fcmr8906952oto.36.1696618867997;
+        Fri, 06 Oct 2023 12:01:07 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id zt2-20020a056871aec200b001e169e7268csm848838oab.53.2023.10.06.11.53.41
+        by smtp.gmail.com with ESMTPSA id h19-20020a9d61d3000000b006b9e872c0a0sm653765otk.68.2023.10.06.12.01.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Oct 2023 11:53:42 -0700 (PDT)
-Received: (nullmailer pid 137560 invoked by uid 1000);
-	Fri, 06 Oct 2023 18:53:41 -0000
-Date: Fri, 6 Oct 2023 13:53:41 -0500
+        Fri, 06 Oct 2023 12:01:07 -0700 (PDT)
+Received: (nullmailer pid 145696 invoked by uid 1000);
+	Fri, 06 Oct 2023 19:01:06 -0000
+Date: Fri, 6 Oct 2023 14:01:06 -0500
 From: Rob Herring <robh@kernel.org>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Jonathan Cameron <jic23@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: trivial-devices: Fix MEMSIC MXC4005
- compatible string
-Message-ID: <169661842021.137494.16133513040675510249.robh@kernel.org>
-References: <20231004-mxc4005-device-tree-support-v1-0-e7c0faea72e4@bootlin.com>
- <20231004-mxc4005-device-tree-support-v1-1-e7c0faea72e4@bootlin.com>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Frank Rowand <frowand.list@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [GIT PULL] Devicetree fixes for v6.6, take 2
+Message-ID: <20231006190106.GA143694-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,33 +60,89 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231004-mxc4005-device-tree-support-v1-1-e7c0faea72e4@bootlin.com>
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
 	FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+	HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+	RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+Linus,
 
-On Wed, 04 Oct 2023 18:39:27 +0200, Luca Ceresoli wrote:
-> The correct name of this chip is MXC4005, not MX4005. This is confirmed
-> both by the manufacturer website and by the title of the original commit,
-> which added other MXCxxxx devices as well but only this one misses a "c" in
-> the compatible string.
-> 
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> Fixes: d9bf5d37fd58 ("dt-bindings:trivial-devices: Add memsic,mxc4005/mxc6255/mxc6655 entries")
-> 
-> ---
-> 
-> The original commit date being April 1st is possibly clarifying the origin
-> of the issue! :)
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+Please pull some DT fixes for 6.6.
 
-Applied, thanks!
+Rob
 
+
+The following changes since commit 0bb80ecc33a8fb5a682236443c1e740d5c917d1d:
+
+  Linux 6.6-rc1 (2023-09-10 16:28:41 -0700)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.6-2
+
+for you to fetch changes up to 19007c629c63c76ae0f8adee9dc076bda4788b46:
+
+  dt-bindings: trivial-devices: Fix MEMSIC MXC4005 compatible string (2023-10-06 13:54:14 -0500)
+
+----------------------------------------------------------------
+Devicetree fixes for v6.6, part 2:
+
+- Fix potential memory leak in of_changeset_action()
+
+- Fix some i.MX binding warnings
+
+- Fix typo in renesas,vin binding field-even-active property
+
+- Fix andestech,ax45mp-cache example unit-address
+
+- Add missing additionalProperties on RiscV CPU interrupt-controller
+  node
+
+- Add missing unevaluatedProperties on media bindings
+
+- Fix brcm,iproc-pcie binding 'msi' child node schema
+
+- Fix MEMSIC MXC4005 compatible string
+
+----------------------------------------------------------------
+Dan Carpenter (1):
+      of: dynamic: Fix potential memory leak in of_changeset_action()
+
+Fabio Estevam (2):
+      dt-bindings: display: fsl,imx6-hdmi: Change to 'unevaluatedProperties: false'
+      media: dt-bindings: imx7-csi: Make power-domains not required for imx8mq
+
+Geert Uytterhoeven (3):
+      of: overlay: Reorder struct fragment fields kerneldoc
+      dt-bindings: cache: andestech,ax45mp-cache: Fix unit address in example
+      dt-bindings: media: renesas,vin: Fix field-even-active spelling
+
+Luca Ceresoli (1):
+      dt-bindings: trivial-devices: Fix MEMSIC MXC4005 compatible string
+
+Rob Herring (6):
+      dt-bindings: riscv: cpus: Add missing additionalProperties on interrupt-controller node
+      dt-bindings: bus: fsl,imx8qxp-pixel-link-msi-bus: Drop child 'reg' property
+      media: dt-bindings: Add missing unevaluatedProperties on child node schemas
+      dt-bindings: PCI: brcm,iproc-pcie: Fix example indentation
+      dt-bindings: PCI: brcm,iproc-pcie: Drop common pci-bus properties
+      dt-bindings: PCI: brcm,iproc-pcie: Fix 'msi' child node schema
+
+ .../bus/fsl,imx8qxp-pixel-link-msi-bus.yaml        |   3 -
+ .../bindings/cache/andestech,ax45mp-cache.yaml     |   2 +-
+ .../bindings/display/imx/fsl,imx6-hdmi.yaml        |   2 +-
+ .../devicetree/bindings/media/i2c/sony,imx415.yaml |   1 +
+ .../bindings/media/i2c/toshiba,tc358746.yaml       |   2 +
+ .../devicetree/bindings/media/nxp,imx7-csi.yaml    |   1 -
+ .../devicetree/bindings/media/renesas,vin.yaml     |   4 +-
+ .../devicetree/bindings/media/samsung,fimc.yaml    |   1 +
+ .../devicetree/bindings/pci/brcm,iproc-pcie.yaml   | 163 ++++++++++-----------
+ Documentation/devicetree/bindings/riscv/cpus.yaml  |   1 +
+ .../devicetree/bindings/trivial-devices.yaml       |   2 +-
+ drivers/of/dynamic.c                               |   6 +-
+ drivers/of/overlay.c                               |   2 +-
+ 13 files changed, 90 insertions(+), 100 deletions(-)
 
