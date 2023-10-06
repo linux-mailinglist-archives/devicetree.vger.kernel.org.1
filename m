@@ -1,104 +1,134 @@
-Return-Path: <devicetree+bounces-6508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56DC07BB9E0
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 15:59:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B7B77BB9F7
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 16:10:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A19E9282265
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 13:59:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C7261C20969
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 14:10:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1E9D2377B;
-	Fri,  6 Oct 2023 13:58:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k04UhtoG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81495241F8;
+	Fri,  6 Oct 2023 14:10:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6A0679C3
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 13:58:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D68CC433B6;
-	Fri,  6 Oct 2023 13:58:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696600739;
-	bh=B+nSMcPQ6Dfl5BlciIkViTGxDzdj1bYUxQNg0HS+Vlw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=k04UhtoGjZnMPVLw1q7zv7NSaXAEqjNHtEAZ6QQwW/wQXu3UXIRE53/OhcfRygQFj
-	 8cfsn5qYN4SUe7gTGM6NtQ62xmxxbk7ejeFoTRi0UcOK+hVT4hbRAI5F+EgOUNlATV
-	 JHD0CgF5uFi8/RCs+vAvITjxJq8Skzhm0jKgIJxAgi6w4sucOptQ+o+ISnCw7H27n4
-	 imMHSuXHOAZGEn5xUkU9kPd9xFmqJaM0XhfLbaIKlmszJmQP3IPgSCx0F+k8/zBZ5S
-	 Zq0GKUfvRS/g1WPl1/rrZ7qJgDt2JWQUNrEI6SK33mpZ1g7xoyM/qT7lEyIR461a5k
-	 BzNlNQjyw1sAA==
-Received: (nullmailer pid 3776809 invoked by uid 1000);
-	Fri, 06 Oct 2023 13:58:51 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FC2123778
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 14:10:47 +0000 (UTC)
+X-Greylist: delayed 4200 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 06 Oct 2023 07:10:45 PDT
+Received: from 8.mo583.mail-out.ovh.net (8.mo583.mail-out.ovh.net [178.32.116.78])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79B5795
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 07:10:45 -0700 (PDT)
+Received: from director5.ghost.mail-out.ovh.net (unknown [10.108.20.85])
+	by mo583.mail-out.ovh.net (Postfix) with ESMTP id 96A0529697
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 11:41:54 +0000 (UTC)
+Received: from ghost-submission-6684bf9d7b-9dvr6 (unknown [10.110.115.40])
+	by director5.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 895271FE57;
+	Fri,  6 Oct 2023 11:41:52 +0000 (UTC)
+Received: from RCM-web7.webmail.mail.ovh.net ([151.80.29.19])
+	by ghost-submission-6684bf9d7b-9dvr6 with ESMTPSA
+	id oZtWH4DyH2Xt2T8A6QqK6A
+	(envelope-from <rafal@milecki.pl>); Fri, 06 Oct 2023 11:41:52 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: konrad.dybcio@linaro.org, andi.shyti@kernel.org, mchehab@kernel.org, conor+dt@kernel.org, linux-i2c@vger.kernel.org, andersson@kernel.org, linux-media@vger.kernel.org, rfoss@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, loic.poulain@linaro.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, todor.too@gmail.com, agross@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20231006120159.3413789-5-bryan.odonoghue@linaro.org>
-References: <20231006120159.3413789-1-bryan.odonoghue@linaro.org>
- <20231006120159.3413789-5-bryan.odonoghue@linaro.org>
-Message-Id: <169660073123.3776792.1207909917818505118.robh@kernel.org>
-Subject: Re: [PATCH 4/5] media: dt-bindings: media: camss: Add
- qcom,sc8280xp-camss binding
-Date: Fri, 06 Oct 2023 08:58:51 -0500
+Date: Fri, 06 Oct 2023 13:41:52 +0200
+From: =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Michael Walle <michael@walle.cc>, Rob Herring
+ <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Robert Marko
+ <robert.marko@sartura.hr>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Luka Perkov <luka.perkov@sartura.hr>, Randy Dunlap <rdunlap@infradead.org>,
+ Chen-Yu Tsai <wenst@chromium.org>, Daniel Golle <daniel@makrotopia.org>
+Subject: Re: [PATCH v12 2/7] nvmem: Clarify the situation when there is no DT
+ node available
+In-Reply-To: <20231005155907.2701706-3-miquel.raynal@bootlin.com>
+References: <20231005155907.2701706-1-miquel.raynal@bootlin.com>
+ <20231005155907.2701706-3-miquel.raynal@bootlin.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <05cd4592d0cfe0fb86aeb24db01de547@milecki.pl>
+X-Sender: rafal@milecki.pl
+X-Originating-IP: 31.11.218.106
+X-Webmail-UserID: rafal@milecki.pl
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 17474529506700995485
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvkedrgeeigdegvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeggfffhvfevufgjfhgfkfigihgtgfesthekjhdttderjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepgffhueeihfeitdettdehfefhieefffevkedvgeetteekteejtdeivddvhffgffffnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucfkphepuddvjedrtddrtddruddpfedurdduuddrvddukedruddtiedpudehuddrkedtrddvledrudelnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpeeorhgrfhgrlhesmhhilhgvtghkihdrphhlqedpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheekfedpmhhouggvpehsmhhtphhouhht
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
+
+On 2023-10-05 17:59, Miquel Raynal wrote:
+> At a first look it might seem that the presence of the of_node pointer
+> in the nvmem device does not matter much, but in practice, after 
+> looking
+> deep into the DT core, nvmem_add_cells_from_dt() will simply and always
+> return NULL if this field is not provided. As most mtd devices don't
+> populate this field (this could evolve later), it means none of their
+> children cells will be populated unless no_of_node is explicitly set to
+> false. In order to clarify the logic, let's add clear check at the
+> beginning of this helper.
+
+I'm somehow confused by above explanation and code too. I read it
+carefully 5 times but I can't see what exactly this change helps with.
+
+At first look at nvmem_add_cells_from_legacy_of() I can see it uses
+"of_node" so I don't really agree with "it might seem that the presence
+of the of_node pointer in the nvmem device does not matter much".
+
+You really don't need to look deep into DT core (actually you don't have
+to look into it at all) to understand that nvmem_add_cells_from_dt()
+will return 0 (nitpicking: not NULL) for a NULL pointer. It's all made
+of for_each_child_of_node(). Obviously it does nothing if there is
+nothing to loop over.
+
+Given that for_each_child_of_node() is NULL-safe I think code from this
+patch is redundant.
+
+Later you mention "no_of_node" which I agree to be a very non-intuitive
+config option. As pointed in another thread I already sent:
+[PATCH] Revert "nvmem: add new config option"
+https://lore.kernel.org/lkml/ba3c419a-6511-480a-b5f2-6c418f9c02e7@gmail.com/t/
+
+Maybe with above patch finally things will get more clear and we don't
+need this PATCH after all?
 
 
-On Fri, 06 Oct 2023 13:01:58 +0100, Bryan O'Donoghue wrote:
-> Add bindings for qcom,sc8280xp-camss in order to support the camera
-> subsystem for sc8280xp as found in the Lenovo x13s Laptop.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
->  .../bindings/media/qcom,sc8280xp-camss.yaml   | 598 ++++++++++++++++++
->  1 file changed, 598 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml
+>  drivers/nvmem/core.c | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
+> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
+> index eaf6a3fe8ca6..286efd3f5a31 100644
+> --- a/drivers/nvmem/core.c
+> +++ b/drivers/nvmem/core.c
+> @@ -743,6 +743,9 @@ static int nvmem_add_cells_from_dt(struct
+> nvmem_device *nvmem, struct device_nod
+> 
+>  static int nvmem_add_cells_from_legacy_of(struct nvmem_device *nvmem)
+>  {
+> +	if (!nvmem->dev.of_node)
+> +		return 0;
+> +
+>  	return nvmem_add_cells_from_dt(nvmem, nvmem->dev.of_node);
+>  }
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml: properties:power-domain-names:items: 'oneOf' conditional failed, one must be fixed:
-	[{'description': 'ife0'}, {'description': 'ife1'}, {'description': 'ife2'}, {'description': 'ife3'}, {'description': 'top'}] is not of type 'object'
-	Additional properties are not allowed ('description' was unexpected)
-	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
-Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.example.dts:26:18: fatal error: dt-bindings/clock/qcom,sc8280xp-camcc.h: No such file or directory
-   26 |         #include <dt-bindings/clock/qcom,sc8280xp-camcc.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1427: dt_binding_check] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231006120159.3413789-5-bryan.odonoghue@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+Rafał Miłecki
 
