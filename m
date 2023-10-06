@@ -1,161 +1,109 @@
-Return-Path: <devicetree+bounces-6368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12D787BB1F0
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 09:09:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04CEF7BB210
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 09:18:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA6F4282067
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 07:09:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24C6A1C20969
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 07:18:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6565A5CB5;
-	Fri,  6 Oct 2023 07:09:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C506763C6;
+	Fri,  6 Oct 2023 07:18:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YNtZ87UF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A52054414
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 07:08:58 +0000 (UTC)
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD3D7EB;
-	Fri,  6 Oct 2023 00:08:55 -0700 (PDT)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-59f82ad1e09so21831857b3.0;
-        Fri, 06 Oct 2023 00:08:55 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A2AEEA1
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 07:18:43 +0000 (UTC)
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BA58CA
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 00:18:42 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id 98e67ed59e1d1-27752a1e184so1425728a91.3
+        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 00:18:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696576721; x=1697181521; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=EKpCyHWOeoDq3mhuWwEc3nzpzJID0E8GreD4OlWUF7Y=;
+        b=YNtZ87UFM5xdXgzAw/UIK9xinlJV/jmoK/hxm7MdhDHrH9yWownYEksr0G/2SQzXiX
+         G8ixRsXkLTdIaOSo/YQhzeK5vEfQTLGyZ/v2UZ36WK5Zcu5d6UvnhwNXRe3y8u1RmHOE
+         cAoVHTbIiZZNDDR6U1/71i8ULswCD9TR4N4ZzpC+sXSlWAOFtzUhdFW7x6z9FF8vm+yM
+         Ie9WL89bFeXAjKAAUxLgbxp2L3dkCxM8wDEyKHEmlE4DyWxH4FMiNs7Y+LBqyoUFPYBW
+         /QrioZSoZkRoLaOgfNYp8d2K1ocsi3EauPAanOq/xGuSYXp/+QXKK2LsBtSIN1+EOc8F
+         Ya3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696576135; x=1697180935;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bDvOGTbwmYKB4yj3dggVQge2NMSHumJx3EfGcewWqNg=;
-        b=P8PqJC3G4xGo2+ilG1ft2/Fvof8Lb9RvotJJWcCR3e3+cfi+17OQFjLia0vWd8OGqP
-         veIej9+m/+D1C+r63oFOplgNuVO/zw0sXdBVAdenYsYb6m02Eg/OwGZCLQb+zPvTRk4O
-         2ysBmddfNkWTWe1Zfz6PJhkSGVlFKY1b45BF59lLwUy+0NDp7J/5xEOMCzIcO/83sRym
-         QZo5wiPKaoZMnWJYYSqXSpYFzrsAzIKfoazD6nSEoJa4+5OBOaH93WUEFQAyOVpQf/HR
-         s/OriPE924HzA3N8s33ZtMew23Fidj2N2Z3cR8H/9NlRs2mcmq5f4ujeLenGzX3iY9BY
-         Vobw==
-X-Gm-Message-State: AOJu0YzmlpjW4rnsDfxKejp16M6y1Vz2gByJMyZbaTZp1lnYw8OFV2cM
-	bz7BWBgztb6VviPOGNt8Af7y0hxoWkh4iQ==
-X-Google-Smtp-Source: AGHT+IEzHd2u+JyGUA1VxiF3B0cNwRjyZsMoyah2KMOfTfFEXGCZr9IfDNYyZvfkFLKQKb+xtrobBg==
-X-Received: by 2002:a81:9289:0:b0:5a2:4409:2124 with SMTP id j131-20020a819289000000b005a244092124mr7760070ywg.35.1696576134761;
-        Fri, 06 Oct 2023 00:08:54 -0700 (PDT)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id u195-20020a8184cc000000b0059f4f30a32bsm1086046ywf.24.2023.10.06.00.08.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Oct 2023 00:08:53 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-59f55c276c3so21557857b3.2;
-        Fri, 06 Oct 2023 00:08:53 -0700 (PDT)
-X-Received: by 2002:a81:4a55:0:b0:599:8bd:5bdf with SMTP id
- x82-20020a814a55000000b0059908bd5bdfmr7486809ywa.50.1696576133283; Fri, 06
- Oct 2023 00:08:53 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1696576721; x=1697181521;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EKpCyHWOeoDq3mhuWwEc3nzpzJID0E8GreD4OlWUF7Y=;
+        b=woFcOilRlyTCAkRBJ6wKIKWAAa/e3qQoVuVFKfcnX06naRS+iKL4MfahgtSrbirTCk
+         1KBixkAJxa5H1AE+uVZVsByL0b0o8C6r19Ir/AFwD80obh0QZCaqZ5peMJOOqV69Ei1P
+         zjCA9zQJS1y199naA2byzRIWGCyiHtOqtD1sOvRsYrInuZ75Os9hPy+Ro9XpdL7BneVX
+         ui0xbC6HINq1MY7Eyw+VQq4iqqX4Vycw4yc0xIXSw104duQV0xAL3PXMCvCvccQcJ4cp
+         E6Xt9I9TbFbxJTNm0Ch+j3nGoknGYYE9fIHwZbydq2TdAQFeGAEfCWNiaDxVloeVFB+b
+         OaXQ==
+X-Gm-Message-State: AOJu0Yxv39JquCJSN3kKWDrMRCuYtVko8KAqGnUXQaAdAyIcNzVJ93wt
+	NORY3XjOhhk3PtxRbCVCt/B9AIz9jpPX7N4szzI=
+X-Google-Smtp-Source: AGHT+IFKDAahXWKqY7tYZ0QihyHM/jksHYk53NNXue6zODq0zpstVmqGE3sjOong6uwzQRE15B2DebyDFq1LsPtCQ1c=
+X-Received: by 2002:a17:90a:ce83:b0:26b:c3f:1503 with SMTP id
+ g3-20020a17090ace8300b0026b0c3f1503mr7580409pju.17.1696576721568; Fri, 06 Oct
+ 2023 00:18:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231005155618.700312-1-peter.griffin@linaro.org> <20231005155618.700312-20-peter.griffin@linaro.org>
-In-Reply-To: <20231005155618.700312-20-peter.griffin@linaro.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 6 Oct 2023 09:08:41 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUgW1qx-7ADh89BRE4Hhk7-+R7o5VrswcBMymxh7zWUnQ@mail.gmail.com>
-Message-ID: <CAMuHMdUgW1qx-7ADh89BRE4Hhk7-+R7o5VrswcBMymxh7zWUnQ@mail.gmail.com>
-Subject: Re: [PATCH 19/21] google/gs101: Add dt overlay for oriole board
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
-	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
-	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
-	will@kernel.org, arnd@arndb.de, olof@lixom.net, cw00.choi@samsung.com, 
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
-	semen.protsenko@linaro.org, soc@kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org
+References: <20230919083553.35981-1-eagle.alexander923@gmail.com> <20230919-98b276afdbc85d62815da0b9@fedora>
+In-Reply-To: <20230919-98b276afdbc85d62815da0b9@fedora>
+From: Alexander Shiyan <eagle.alexander923@gmail.com>
+Date: Fri, 6 Oct 2023 10:18:30 +0300
+Message-ID: <CAP1tNvS8KsEjs_KhimD6X4CPe7vQ3LKikoz3yU3w2z7pKE9G0A@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: stm32: document MYD-YA151C-T
+ development board
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, 
+	linux-stm32@st-md-mailman.stormreply.com, devicetree@vger.kernel.org, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+	FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
 	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Hi Peter,
+Hello.
 
-On Thu, Oct 5, 2023 at 5:58=E2=80=AFPM Peter Griffin <peter.griffin@linaro.=
-org> wrote:
-> The LK bootloader on Pixel6 searches for a dt overlay in the
-> dtbo partition with a board_id and board_rev that matches
-> what is baked into the device. If this overlay is not present
-> then the phone will bootloop in fastboot and you can't boot
-> the upstream kernel.
+I looked through the entire file and saw that the entries were
+sorted by board name and by SOC part number within the board option.
+
+> On Tue, Sep 19, 2023 at 11:35:52AM +0300, Alexander Shiyan wrote:
+> > Add new entry for MYD-YA151C-T development board.
+...
+> > diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> > index 4bf28e717a56..5252b9108ddc 100644
+> > --- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> > @@ -140,6 +140,11 @@ properties:
+> >            - const: engicam,microgea-stm32mp1
+> >            - const: st,stm32mp157
+> >
+> > +      - description: MyirTech MYD-YA15XC-T SoM based Boards
+> > +        items:
+> > +          - const: myir,myd-ya151c-t   # MYIR MYD-YA151C-T STM32MP151C
+> > +          - const: st,stm32mp151
 >
-> This commit adds a dtbo for the production oriole variant.
-> The other pre-production board overlays are not included
-> at this time.
->
-> Adding the dtbo here allows for a better experience when
-> building/booting the upstream kernel on Pixel devices
-> as all the DT required to boot the device will be created
-> as part of the kernel build process. Rather than having to
-> fetch the dtbo from some other repo.
->
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-
-Thanks for your patch!
-
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/google/gs101-oriole.dtso
-> @@ -0,0 +1,21 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Oriole DVT Device Tree
-> + *
-> + * Copyright 2021-2023 Google,LLC
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +/ {
-> +       board_id =3D <0x20304>;
-> +       board_rev =3D <0x10000>;
-> +       fragment@boardbase {
-> +               target-path=3D"/";
-> +               __overlay__ {
-> +                       model =3D "Oriole DVT";
-> +                       compatible =3D "google,gs101-oriole";
-> +               };
-> +       };
-
-Please use sugar-syntax instead of manually defining
-fragment/target-path/__overlay__ constructs.
-You can override these properties in the root node of the base DTS
-using the much simpler:
-
-    &{/} {
-            model =3D "Oriole DVT";
-            compatible =3D "google,gs101-oriole";
-    };
-
-The generated DTBO should be identical (modulo naming).
-
-> +};
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> It appears that this file is sorted by soc part number, which would put
+> this entry now in the wrong location.
+> With that changed,
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
