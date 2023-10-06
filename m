@@ -1,156 +1,173 @@
-Return-Path: <devicetree+bounces-6435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B54007BB5A1
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 12:48:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E5527BB5B3
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 12:55:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D6BB282218
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 10:48:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78D941C209A3
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 10:55:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9930A1642F;
-	Fri,  6 Oct 2023 10:48:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B9FB1865C;
+	Fri,  6 Oct 2023 10:55:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="ZpK7ASyH";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="cqpH9J5u"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YGtYwH+d"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65093156E5
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 10:48:52 +0000 (UTC)
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98F97CE;
-	Fri,  6 Oct 2023 03:48:50 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailout.west.internal (Postfix) with ESMTP id 46D433200A9D;
-	Fri,  6 Oct 2023 06:48:46 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute5.internal (MEProxy); Fri, 06 Oct 2023 06:48:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:sender
-	:subject:subject:to:to; s=fm2; t=1696589325; x=1696675725; bh=le
-	yFjl8HS70GWzN5CT67TcqvaCI0kPyY068isyY4OnY=; b=ZpK7ASyHutJAVMo+u4
-	ZPGe9MPqhFWhEm32ALLsXHRWeWO3qHQqrX1KSJt2dzfFZZylzd0G+WekMZayYgGK
-	YjOxdW0NJFpPtq/6USwI+Wi92Kz632j+eM62wHFKaIs2py1Y2MqBTZBg/uvWU+Gm
-	lvowDYUFkt2/rYvQ7aMkqLu0G4PuTehws1uaaY5ZmuG9VFbY1sLh08vgU6l4KHfZ
-	mfkXwEyXRA6oaEM2dCwuKRHapu1FoTATr56yHY4yDofrQX8Q6S2QZUyFU7GwnYoC
-	V1r79cb/UprMDcjqBKxzW9rsDxQgk/hTS+TLzp7ITTInSko6kVmqWXouzB8sgmYa
-	TzJg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:sender:subject
-	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-	:x-sasl-enc; s=fm2; t=1696589325; x=1696675725; bh=leyFjl8HS70GW
-	zN5CT67TcqvaCI0kPyY068isyY4OnY=; b=cqpH9J5ux2sLwhmOTde1ABpq289EL
-	289XreMdwlJ7MNgHmmRLOcw1zlNk7TWpDLWKWVnuiMlSk94yHcEQ9BApOnBaAlBp
-	ct1RC8W2Zi7+6tPwZ1nFkwNokUz2/ggRKUIe5VUg2JblkNFVNdvCXY6WR5q5QukK
-	mUsSnfBqNPDd8Pbqe7EouBUAhHuz3ke237l0X7WAErw8J8HrOwXDYq2KWPRh0o0J
-	+aGRFS8mjzW5BXl5kcjrzb8/Fw/rdtntuDlJQ0bLcKIlEnOGWyWw+tMoTIBS6DI7
-	8fxJur0qkaGXSHVnDmH4fIhxI3wbwi5ltRJVLeCLbAizOhf1v2Z3GCesw==
-X-ME-Sender: <xms:DOYfZfpCxTrUuBUFqm1Ku1nBlj7vrGMaJIg8wW3zzDNX6lQ6JJEJTA>
-    <xme:DOYfZZo8mBISdAOCKw8Lsy5QGyj_5IR2ghXJGrTENreLJDc9P8b2YrU_XVr-lw6xH
-    VNEknUseaPQ_8lzyKg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrgeeigdefudcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
-    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
-    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
-    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
-    hnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:DeYfZcOBnBLXRjS0QEM81DIuGU9x2FmDvsflXlepFR97_JxK6jF9_Q>
-    <xmx:DeYfZS7e34dC7rm3TBFmJ6rxQZS0jc5l4Uu_UTk-X5xzAw4e7_9_8w>
-    <xmx:DeYfZe6xmu6SSfKDPUD1BqcjFUYVxYNgn2-et_F0p7g_OI6hBQOy9A>
-    <xmx:DeYfZezyLNuK8LieZiRh_YMVEvL-syL89bDDQ9ud25kFDe6PFRzKyg>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id D564FB6008D; Fri,  6 Oct 2023 06:48:44 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-958-g1b1b911df8-fm-20230927.002-g1b1b911d
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB55C1C3F
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 10:55:52 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B392583;
+	Fri,  6 Oct 2023 03:55:50 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3969brZF000871;
+	Fri, 6 Oct 2023 10:55:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=16WOAwcA//F2X32qWbJ0h5M8hDxQBzrHlKiLEKtagog=;
+ b=YGtYwH+dCXSTCb2WZIehATyp3Cw4AM95fmjA8UxvHNexAq0pnUCVZUKSnjVNspKor2Vg
+ 15e0F2BptnB+FZyESSQ52stIPHOiazavjs/YZxLl0APjjh/VU7mIeSg5l47pVNFAfSTm
+ kO4ebQVQP0c5UsCqjmT8srbz8tWkjB+8x5GCoQubnAsHk3PgnGHvX9Sf98KJigTQAexN
+ LPt4Fu+2dMaw2Y+0ceKMK3deUMPlqcYo3SilnTU3LxCSKfoI6b4YBWzdhNuqGMUeOCzO
+ 48zgNsJmtH50KXo030AWYcc4faIjphOCPNHwY29PTl3CFT+JofHmIGXJ1gQDhemLEBqY ng== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tj0fphyp9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 06 Oct 2023 10:55:18 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 396AtHK3032401
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 6 Oct 2023 10:55:17 GMT
+Received: from [10.217.217.202] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Fri, 6 Oct
+ 2023 03:55:10 -0700
+Message-ID: <28bf111f-b965-4d38-884b-bc3a0b68a6cc@quicinc.com>
+Date: Fri, 6 Oct 2023 16:24:59 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <53050bbd-6a46-470d-9764-c83b8588698e@app.fastmail.com>
-In-Reply-To: <87sf6pcebd.fsf@BL-laptop>
-References: <20231004161038.2818327-1-gregory.clement@bootlin.com>
- <20231004161038.2818327-6-gregory.clement@bootlin.com>
- <hu5ksk2gw7zbbeiwi4unfo242qm2wfn36bpgea5inlamn4kqrf@magwi4w7gp3x>
- <87sf6pcebd.fsf@BL-laptop>
-Date: Fri, 06 Oct 2023 12:48:03 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Gregory Clement" <gregory.clement@bootlin.com>,
- "Serge Semin" <fancer.lancer@gmail.com>
-Cc: =?UTF-8?Q?Phil_Mathieu-Daud=C3=A9?= <philmd@linaro.org>,
- "Paul Burton" <paulburton@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- linux-mips@vger.kernel.org, "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- "Vladimir Kondratiev" <vladimir.kondratiev@intel.com>,
- "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
- "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 05/11] dt-bindings: mips: cpu: Add I-Class I6500 Multiprocessor
- Core
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/5] dt-bindings: PCI: qcom-ep: Add support for SA8775P
+ SoC
+To: Rob Herring <robh@kernel.org>, Mrinmay Sarkar <quic_msarkar@quicinc.com>
+CC: <agross@kernel.org>, <andersson@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <konrad.dybcio@linaro.org>, <mani@kernel.org>,
+        <quic_nitegupt@quicinc.com>, <quic_ramkri@quicinc.com>,
+        <quic_nayiluri@quicinc.com>, <quic_krichai@quicinc.com>,
+        <quic_vbadigan@quicinc.com>, <quic_parass@quicinc.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        "Lorenzo
+ Pieralisi" <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+	<kw@linux.com>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Vinod Koul
+	<vkoul@kernel.org>, <linux-pci@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <mhi@lists.linux.dev>,
+        <linux-phy@lists.infradead.org>
+References: <1695218113-31198-1-git-send-email-quic_msarkar@quicinc.com>
+ <1695218113-31198-2-git-send-email-quic_msarkar@quicinc.com>
+ <20230921183850.GA762694-robh@kernel.org>
+Content-Language: en-US
+From: Shazad Hussain <quic_shazhuss@quicinc.com>
+In-Reply-To: <20230921183850.GA762694-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: XJETY3Fy8CUSuy_YoKF88CqC2RiHzOzy
+X-Proofpoint-GUID: XJETY3Fy8CUSuy_YoKF88CqC2RiHzOzy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-06_08,2023-10-06_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ priorityscore=1501 impostorscore=0 spamscore=0 clxscore=1011
+ lowpriorityscore=0 adultscore=0 mlxscore=0 mlxlogscore=934 phishscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2309180000 definitions=main-2310060080
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Thu, Oct 5, 2023, at 16:51, Gregory CLEMENT wrote:
->> On Wed, Oct 04, 2023 at 06:10:32PM +0200, Gregory CLEMENT wrote:
->>> The MIPS Warrior I-class I6500 was announced by Imagination
->>> Technologies in 2016 and is used in the Mobileye SoC EyeQ5.
->>> 
->>> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
->>> ---
->>>  Documentation/devicetree/bindings/mips/cpus.yaml | 1 +
->>>  1 file changed, 1 insertion(+)
->>> 
->>> diff --git a/Documentation/devicetree/bindings/mips/cpus.yaml b/Documentation/devicetree/bindings/mips/cpus.yaml
->>> index cf382dea3922..87fd2842ba68 100644
->>> --- a/Documentation/devicetree/bindings/mips/cpus.yaml
->>> +++ b/Documentation/devicetree/bindings/mips/cpus.yaml
->>> @@ -39,6 +39,7 @@ properties:
->>>        - mti,mips24KEc
->>>        - mti,mips14KEc
->>>        - mti,mips14Kc
+
+
+On 9/22/2023 12:08 AM, Rob Herring wrote:
+> On Wed, Sep 20, 2023 at 07:25:08PM +0530, Mrinmay Sarkar wrote:
+>> Add devicetree bindings support for SA8775P SoC.
+>> Define reg and interrupt per platform.
 >>
->>> +      - mti,i6500
+>> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/pci/qcom,pcie-ep.yaml      | 130 +++++++++++++++++----
+>>   1 file changed, 108 insertions(+), 22 deletions(-)
 >>
->> Since the CPU core vendor is Imagination Technologies thus it would
->> be more appropriate to have the "img," prefix. Wouldn't it?
->
-> According to Documentation/devicetree/bindings/vendor-prefixes.yaml
->
-> "^mti,.*":
->     description: Imagination Technologies Ltd. (formerly MIPS
->     Technologies Inc.)
->
-> So I think it's OK.
+>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+>> index a223ce0..e860e8f 100644
+>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+>> @@ -13,6 +13,7 @@ properties:
+>>     compatible:
+>>       oneOf:
+>>         - enum:
+>> +          - qcom,sa8775p-pcie-ep
+>>             - qcom,sdx55-pcie-ep
+>>             - qcom,sm8450-pcie-ep
+>>         - items:
+>> @@ -20,29 +21,19 @@ properties:
+>>             - const: qcom,sdx55-pcie-ep
+>>   
+>>     reg:
+>> -    items:
+>> -      - description: Qualcomm-specific PARF configuration registers
+>> -      - description: DesignWare PCIe registers
+>> -      - description: External local bus interface registers
+>> -      - description: Address Translation Unit (ATU) registers
+>> -      - description: Memory region used to map remote RC address space
+>> -      - description: BAR memory region
+>> +    minItems: 6
+>> +    maxItems: 7
+>>   
+>>     reg-names:
+>> -    items:
+>> -      - const: parf
+>> -      - const: dbi
+>> -      - const: elbi
+>> -      - const: atu
+>> -      - const: addr_space
+>> -      - const: mmio
+>> +    minItems: 6
+>> +    maxItems: 7
+> 
+> Don't move these into if/then schemas. Then we are duplicating the
+> names, and there is no reason to keep them aligned for new compatibles.
+> 
+> Rob
 
-I don't see any good solution, they changed their name and
-ownership too many times. I would actually revert back the
-description here to "MIPS Technologies Inc" instead of trying
-to keep track of what they currently call themselves.
+Hi Rob,
+As we have one extra reg property (dma) required for sa8775p-pcie-ep,
+isn't it expected to be moved in if/then as per number of regs
+required. Anyways we would have duplication of some properties for new
+compatibles where the member numbers differs for a property.
 
-Since we already have both the 'mips,' and 'mti,' vendow
-names for the 14Kc, 14KEc and 24KEc parts, maybe we can
-just go back to 'mips,' for all cores past the mti era
-rather than trying to date and geolocate each of the
-classic cores as one of 'mti', 'img', 'wavecomp', 'tallwood',
-'mips' 'cipunited' etc.
+Are you suggesting to add the extra reg property (dma) in the existing 
+reg and reg-names list, and add minItems/maxItems for all compatibles 
+present in this file ?
 
-   Arnd
+-Shazad
 
