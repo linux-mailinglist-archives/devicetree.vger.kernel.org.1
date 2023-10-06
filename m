@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-6626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFC297BC2F8
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 01:33:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0B657BC312
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 01:47:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB608281F61
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 23:33:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5F36282176
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 23:47:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61CEE47346;
-	Fri,  6 Oct 2023 23:33:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED8D347355;
+	Fri,  6 Oct 2023 23:47:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZPXNbm60"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r8pQsvcs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D93AD44487
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 23:33:52 +0000 (UTC)
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8C1693
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 16:33:50 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2bff936e10fso45037461fa.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 16:33:50 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB91845F7C
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 23:47:49 +0000 (UTC)
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21155BF
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 16:47:47 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-31fa15f4cc6so2585932f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 16:47:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696635229; x=1697240029; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696636065; x=1697240865; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=pa72JkqvdyerMIx4i9hSaFdLukU2v6g8BtUv9GryEdY=;
-        b=ZPXNbm60u0GwujtnY2wW3g41q8NStWmU4WHzOPZ8wqkyE1RwkUpt1i4SrhIfWAEVP8
-         zlQ9bu7u8BPBGe5pVVfJ6Xz7d3D9UeL0woG5JUOB8aYO9sUm3J1ds5CX4FhC9TwOQBqi
-         x0rt1dvh0pLq+ia/+8I0uwvg6/aP0SOGko6jX0VNGjMO2AT1ArpqoQqrsGkRsix4FWeH
-         Ua1t6hPBRvgRwpjFOzMya05UksjSD19rhBkOOHjGCwG6cVWWuuHf4lD9VT5//Xa0ceoL
-         lX8Cl7fJKpKAB7wvcbsyo8cT590M/XpEziLJ8zQu9J/ra9Hujy0PCXyqi+Tf+mEvWeW0
-         gbpA==
+        bh=XjGK0/6qgtKOqmSnRUWSkBW57qXKO6wGZP23q42Isck=;
+        b=r8pQsvcsmW4f41SJoVGoUtvSUSw0AXMUb8bx1Vw1g5ABYgP7bXY6nD1Lxcoq/0XqwQ
+         uFUVvmmiatFINpp4Cuf4oSTZdjjyqT6ftsbkUrw8GkonqaMLBr53fl+oE5NgIKc8NcfI
+         bZ2hS7HPsPCR68PwiiD8ik/XJb5lscLaYyAQzBfcCC+6x60Ipj6ZUHrj+zVHvOz83Aoo
+         p3HEDhWcudX91eLU6GQMEFaBckBFDccmOvVz/O/3D6vZ4cmG+bCXyXhdiwCtLNIo0QQe
+         TmGFBlu0t3gDIvYV6j2NElYD8hluO97NBJJB0GIxndXFWx5cyamV5cjLRSuOIDobmCpK
+         8edw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696635229; x=1697240029;
+        d=1e100.net; s=20230601; t=1696636065; x=1697240865;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pa72JkqvdyerMIx4i9hSaFdLukU2v6g8BtUv9GryEdY=;
-        b=LwpDUjbA0ClCI3lasblf1UA610dPCO089nEp653obJqtTtrqAZkLfB3S7IQ9DLnjgQ
-         2Aboc0JXKWnI5SablV1AdpYnP9tSVsUFLV63f83NWfwF909p7qjaxLIaQvt6o7CXKQQK
-         VmrVJVDgmod7zAVaPOwh1PRC5kDW16YYWCEpwSR9ap4bEHEIiy3EROdIyYg1Ub/l4gBr
-         1Kia+51I7G1swmxndY8KvJeIR8pLnDWGZlw1WL4/dFPGzRbA/Nv+vDWPJdsw4/3zSMqh
-         g/SdP62DB+QNCH7chavO5ZugpU3tLTdMKh8TBnDOPTOtmR0/e6DA7lKkqEzjGdkYS2eJ
-         bn/A==
-X-Gm-Message-State: AOJu0YzB/eztI3jMSrV7trCtp614j+1aXDfg+3pTOdHJn/6+p+FewtHZ
-	+AfrG30sb5Uqk0xFSb/U6eZeGQ==
-X-Google-Smtp-Source: AGHT+IF9yMic69bNVAU3zyM2RZxOUpl5UsHxffjScvMW0oCIDfjL0U7HFi+W2ibgjl8JHSS6o8L/pQ==
-X-Received: by 2002:a05:6512:202d:b0:4fb:8938:48ab with SMTP id s13-20020a056512202d00b004fb893848abmr5210895lfs.16.1696635229012;
-        Fri, 06 Oct 2023 16:33:49 -0700 (PDT)
+        bh=XjGK0/6qgtKOqmSnRUWSkBW57qXKO6wGZP23q42Isck=;
+        b=SCV2kiQ5bHSsFPtch99eCEhZaE3XOoTipvqAB+mujAP+YoJbaB/8nj1XTEX2n0ao6O
+         B0gGO1KuGu1bsiKnjWoZIXID2kcyApNZBuLp+YtzR1iaOvUX6WlA6bd+Z7fKwtOgcD49
+         ZLC1nWh8+JWzLMyCqCQRh3QpCTA+BATDwLNRaS3+bbn5v/Y/0oLeXZ13t/VvQEqjvY8m
+         xfeJxyJCfsZmDpADr7jVpEmZDdr12OcpnKbOkz5lxzA5MShBfiG7mkW9bWkifqvl+dLg
+         7mexyLC0J1PiVMK6UCvGaQmQH3uI0hdn8TUQvJ1gAgiYxPvzPNBoSa6kpCOjJBmj+85h
+         iClg==
+X-Gm-Message-State: AOJu0YzT/+LqCJbY4EHTTPj4R1499yvsjEqSvEJxQg8yzZur58PpK6q5
+	zDtxVdh/cI2PRm15GNQC0HXi5w==
+X-Google-Smtp-Source: AGHT+IGClN/2krp5lfgxqpF0EZe557a6/RY6T3XZ1telHabNqYg3yLAf1JuScCUqZ/MwBWu6WQdkMw==
+X-Received: by 2002:a5d:6311:0:b0:320:4cf:5b50 with SMTP id i17-20020a5d6311000000b0032004cf5b50mr8499282wru.5.1696636064916;
+        Fri, 06 Oct 2023 16:47:44 -0700 (PDT)
 Received: from [192.168.200.173] (178235177147.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.147])
-        by smtp.gmail.com with ESMTPSA id z6-20020ac24186000000b00502e2ab7118sm473280lfh.50.2023.10.06.16.33.47
+        by smtp.gmail.com with ESMTPSA id 1-20020a05651c00c100b002bfec05a693sm981733ljr.22.2023.10.06.16.47.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Oct 2023 16:33:48 -0700 (PDT)
-Message-ID: <e846215b-faba-4af6-a108-bae9b1deb2be@linaro.org>
-Date: Sat, 7 Oct 2023 01:33:47 +0200
+        Fri, 06 Oct 2023 16:47:44 -0700 (PDT)
+Message-ID: <56db233f-1488-4725-9253-b4d6246fd5b7@linaro.org>
+Date: Sat, 7 Oct 2023 01:47:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,15 +67,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcm6490: Add qcm6490 dts file
+Subject: Re: [PATCH v3 3/3] clk: qcom: add SM8550 DISPCC driver
 Content-Language: en-US
-To: Komal Bajaj <quic_kbajaj@quicinc.com>, agross@kernel.org,
- andersson@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, luca.weiss@fairphone.com
-References: <20231003175456.14774-1-quic_kbajaj@quicinc.com>
- <20231003175456.14774-3-quic_kbajaj@quicinc.com>
+To: neil.armstrong@linaro.org, Sophon Wu <wuxilin123@gmail.com>
+Cc: Andy Gross <agross@kernel.org>, andersson@kernel.org,
+ devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, mturquette@baylibre.com,
+ Rob Herring <robh+dt@kernel.org>, sboyd@kernel.org
+References: <CAEPPPKu=yxS6SgdLZiuhbF2DRURKVUBNgNbUQ96LxHHbtsJ6Sg@mail.gmail.com>
+ <c6a974ce-511c-47f8-b6cb-baeec5283af9@linaro.org>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -112,67 +114,44 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20231003175456.14774-3-quic_kbajaj@quicinc.com>
+In-Reply-To: <c6a974ce-511c-47f8-b6cb-baeec5283af9@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 3.10.2023 19:54, Komal Bajaj wrote:
-> Add qcm6490 devicetree file for QCM6490 SoC and QCM6490 IDP
-> platform. QCM6490 is derived from SC7280 meant for various
-> form factor including IoT.
+On 3.10.2023 09:16, neil.armstrong@linaro.org wrote:
+> Hi,
 > 
-> Supported features are, as of now:
-> * Debug UART
-> * eMMC
-> * USB
+> On 03/10/2023 04:17, Sophon Wu wrote:
+>> On 09/01/2023 16:47, Neil Armstrong wrote:
+>>
+>>> Add support for the display clock controller found in SM8550
+>>> based devices.
+>>
+>>> This clock controller feeds the Multimedia Display SubSystem (MDSS).
+>>> This driver is based on the SM8450 support.
+>>
+>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>> ---
+>>
+>> Hi Neil,
+>>
+>> I'm trying to enable display on SM8550 but having trouble with clocks. Do you
+>> have any idea on this maybe? Full dmesg here: https://bpa.st/7E6Q
 > 
-> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile        |   1 +
->  arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 333 +++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/qcm6490.dtsi    |  94 +++++++
->  3 files changed, 428 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/qcm6490-idp.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/qcm6490.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 73c3be0f8872..3a2d9dbaacce 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -82,6 +82,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-sony-xperia-yoshino-maple.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-sony-xperia-yoshino-poplar.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-xiaomi-sagit.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-fairphone-fp5.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-idp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> new file mode 100644
-> index 000000000000..d81a7810fd5a
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> @@ -0,0 +1,333 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
-> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +#include "pm7325.dtsi"
-> +#include "pm8350c.dtsi"
-> +#include "pmk8350.dtsi"
-> +#include "qcm6490.dtsi"
-As the kernel robot pointed out, this has clearly not even been
-compile-tested..
+> You may need to remove the cont-splash memory zone and the simple-framebuffer,
+> if you leave the cont-splash the bootloader will leave the MDSS on and Linux
+> will fail to take over and initialize the clocks.
+Huh???
+
+Does the bootloader poke at the devicetree to check for its presence
+on this board!?
 
 Konrad
 
