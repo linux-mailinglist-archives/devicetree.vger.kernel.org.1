@@ -1,275 +1,139 @@
-Return-Path: <devicetree+bounces-6401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 192337BB347
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 10:33:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75F8A7BB357
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 10:37:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A9CE1C20972
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 08:33:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A305D1C2097C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 08:37:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65B3E1118;
-	Fri,  6 Oct 2023 08:33:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A19931C3F;
+	Fri,  6 Oct 2023 08:37:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JyMF+5T1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iH3wJagT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42A174C94
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 08:32:59 +0000 (UTC)
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 879D295
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 01:32:57 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-40572aeb73cso16344795e9.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 01:32:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696581176; x=1697185976; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fCb9D1FjS4+NDKYTdM8qk2zeUHNmgn7rdqdfEVBXslw=;
-        b=JyMF+5T18MkzJXVdBBIIRH3x08bvj+vAatBEelKNL6ZC6b+GYC1ZxDzoLhrm+xu2e1
-         BkCoMWp557rzGzje/wReEnk+D3MCrxalFbwCXCe18rdtOuFUQ+gWYh95X3IVo4mRrQQH
-         WzF3E/TkaI9+BWMMO5tVGqKKCPUC2iXwdNV2gNWaTQNi4EP9q3nXHWA43a7xKVw4NDeA
-         4enXifVcixsskSjXgpQV4vB14DxDWgEaJyAtFmLCnunteOHRoVwemlTNdXH2toJzbLbi
-         QGQ+HB4a2b13cikGUWOdvDzEzKnSUJgDlZMy1a/hocbu4HeAshvz6eKD20oFakz6RMJv
-         oCjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696581176; x=1697185976;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=fCb9D1FjS4+NDKYTdM8qk2zeUHNmgn7rdqdfEVBXslw=;
-        b=k1WigRr8tN0C5j7LyVoXg896+bM3SIdjZNBiGRyfih5+gbrsoqWOkPwBknf2nQoln9
-         cV90ZN4sIuDjerCr/n1f3rD3BZ3QuFzOgxexH2+obCP+XNARRk1hY8W63Od3g03soJT7
-         qvh2XHBUa9yK8RHPRAp1Mazugzzk1/JZJFKeg48726dtx5B7kl8IZ8rYaVMwk3Z4RyY3
-         a2pMeGz1bQJjlgRYj3Rq5o5E93BimoigZnlNp78L+GSbjW3NBCjkn2lLf+H/mQmBdZCB
-         usqg+S4ECmSDMkwJZfEPOOn1yPnr92XiT4lfMLyUmttzMxpmeX5DsBWTlYaT0uJetwfT
-         rMxQ==
-X-Gm-Message-State: AOJu0Yzvj/7LoAHFBNAYt5TqsBKk00R+7kFeuwQRMpEA+u+OUulLuH9a
-	TG0deDHE50kGIbJtTWPE/xlpOw==
-X-Google-Smtp-Source: AGHT+IHiTVR3OKeX7kUy9Hg4DdtYO7T8hiHWacTptZHC0AdvMu0LZxFN2/s3GsA8SB24cs7KPjSvcw==
-X-Received: by 2002:a1c:720c:0:b0:3fe:4cbc:c345 with SMTP id n12-20020a1c720c000000b003fe4cbcc345mr7031719wmc.41.1696581175812;
-        Fri, 06 Oct 2023 01:32:55 -0700 (PDT)
-Received: from [192.168.7.189] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id o13-20020a05600c378d00b004063cd8105csm5430421wmr.22.2023.10.06.01.32.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Oct 2023 01:32:55 -0700 (PDT)
-Message-ID: <78c8d21f-99b1-40ed-a76f-fdf3cbb42274@linaro.org>
-Date: Fri, 6 Oct 2023 10:32:54 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8501C386
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 08:37:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23CC7C433C7;
+	Fri,  6 Oct 2023 08:37:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696581467;
+	bh=FgJYm01/N7btQ6Qz+G8RgkTRmDSNcZ+Y3gfxNpLK3Tg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=iH3wJagTAe22K+Ho9b7VGPb4l4lwixmsS4OrGinVrtNjm56X8TWlcag3S4Pe0akve
+	 GMwvi2ADg93Sb0+A/dIQFcv+QWfjRof7It7afH70n+Zc/SHU1tNrI8cv4O0YPv/S5Y
+	 vfBrwcAP5o2I7/khzmM5esD2aO+XNle5mqK0pUMIRf+SGmzDAOaPpS8Al/gmwrbsB8
+	 LNJVySamIQ6vTUofquyw5J+5/NzthSkN0pXcO0zTj3QY1SMC3Xom7VwBa2rWa2uFN2
+	 QBLgX31TpeS0lfMQ116AnrP4EKQ3wHQqMVZq+YCz5kpLXJLsze3Rqin2tnaPlq8BEr
+	 QcqJ5gPkLtD/A==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/2] arm64: dts: amlogic: add libretech cottonwood support
-Content-Language: en-US, fr
-To: Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Kevin Hilman <khilman@baylibre.com>, Da Xue <da.xue@libretech.co>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org
-References: <20231002141020.2403652-1-jbrunet@baylibre.com>
- <20231002141020.2403652-3-jbrunet@baylibre.com>
- <b81a296d-0640-4b2e-aab6-c9de37d10206@linaro.org>
- <1j5y3ozvmk.fsf@starbuckisacylon.baylibre.com>
- <3e69ae4b-5d9e-42ee-a21e-151de8fbb996@linaro.org>
- <1j8r8hxutt.fsf@starbuckisacylon.baylibre.com>
- <036a9fef-02fd-4bfd-afb5-50724f15176c@linaro.org>
- <1j4jj4xik6.fsf@starbuckisacylon.baylibre.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <1j4jj4xik6.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Date: Fri, 06 Oct 2023 10:37:41 +0200
+From: Michael Walle <mwalle@kernel.org>
+To: Simon Glass <sjg@chromium.org>
+Cc: miquel.raynal@bootlin.com, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+ ptyadav@amazon.de, rafal@milecki.pl, richard@nod.at, robh+dt@kernel.org,
+ robh@kernel.org, trini@konsulko.com, u-boot@lists.denx.de, vigneshr@ti.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: mtd: fixed-partitions: Add binman
+ compatible
+In-Reply-To: <CAPnjgZ2PnKD5m0EgTdEAf-gcK3wuBZvWw_AO2iehb1dmfdoz3A@mail.gmail.com>
+References: <20231004093620.2b1d6917@xps-13>
+ <20231004113458.531124-1-mwalle@kernel.org>
+ <CAPnjgZ2hWE6Sc=rg55W=-r-TnoWP7Y5gSpn41kwoyja-AMVw+w@mail.gmail.com>
+ <9e588e3ec8c0c321a2861723d0d42b9a@kernel.org>
+ <CAPnjgZ20ezipPWAj6bUM9_oCTcX1XzuLqQ7b7-nKjXf1t4p9-Q@mail.gmail.com>
+ <a581ef73fa09c6ffeb83a1c1780053bd@kernel.org>
+ <CAPnjgZ2PnKD5m0EgTdEAf-gcK3wuBZvWw_AO2iehb1dmfdoz3A@mail.gmail.com>
+Message-ID: <27d37d4c7cf353d99737a1e7a450f9f7@kernel.org>
+X-Sender: mwalle@kernel.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
 
-On 06/10/2023 10:21, Jerome Brunet wrote:
-> 
-> On Thu 05 Oct 2023 at 12:04, Neil Armstrong <neil.armstrong@linaro.org> wrote:
-> 
->> On 05/10/2023 11:42, Jerome Brunet wrote:
->>> On Tue 03 Oct 2023 at 09:35, Neil Armstrong <neil.armstrong@linaro.org>
->>> wrote:
->>>
->>>> On 02/10/2023 20:57, Jerome Brunet wrote:
->>>>> On Mon 02 Oct 2023 at 18:45, Neil Armstrong <neil.armstrong@linaro.org>
->>>>> wrote:
->>>>>
->>>>
->>>> <snip>
->>>>
->>>>>>> +&usb3_pcie_phy {
->>>>>>> +	#address-cells = <1>;
->>>>>>> +	#size-cells = <0>;
->>>>>>> +	phy-supply = <&vcc_5v>;
->>>>>>> +
->>>>>>> +	hub: hub@1 {
->>>>>>> +		compatible = "usb5e3,626";
->>>>>>> +		reg = <1>;
->>>>>>> +		reset-gpios = <&gpio GPIOC_7 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
->>>>>>> +	};
->>>>>>
->>>>>> Not sure the PHY is the right place to put the USB HUB,
->>>>>> and it's probable the HUB is connected to both the USB2 and USB3 lines
->>>>> It is connected to the USB3.0 only
->>>>>
->>>>>> so you should have both USB IDs in DT like it'd done for the Odroid-C4:
->>>>>>
->>>>>> / {
->>>>>> ...
->>>>>>             /* USB hub supports both USB 2.0 and USB 3.0 root hub */
->>>>>>             usb-hub {
->>>>>>                     dr_mode = "host";
->>>>>>                     #address-cells = <1>;
->>>>>>                     #size-cells = <0>;
->>>>>>
->>>>>>                     /* 2.0 hub on port 1 */
->>>>>>                     hub_2_0: hub@1 {
->>>>>>                             compatible = "usb2109,2817";
->>>>>>                             reg = <1>;
->>>>>>                             peer-hub = <&hub_3_0>;
->>>>>>                             reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
->>>>>>                             vdd-supply = <&vcc_5v>;
->>>>>>                     };
->>>>>>
->>>>>>                     /* 3.1 hub on port 4 */
->>>>>>                     hub_3_0: hub@2 {
->>>>>>                             compatible = "usb2109,817";
->>>>>>                             reg = <2>;
->>>>>>                             peer-hub = <&hub_2_0>;
->>>>>>                             reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
->>>>>>                             vdd-supply = <&vcc_5v>;
->>>>>>                     };
->>>>>>             };
->>>>>> ...
->>>>>> };
->>>>>>
->>>>>> if it only has a single USB ID, then it should go under the dwc3 node.
->>>>> The usb controller is connected to the PHY and what's coming out of the
->>>>> PHY
->>>>> goes to the hub. It seems logical to hub the hub under it.
->>>>> Why bypass the PHY ?
->>>>
->>>> The USB bindings the USB devices nodes should be under the controller's node,
->>>> not the PHY, see:
->>>>
->>>> Documentation/devicetree/bindings/usb/usb-hcd.yaml
->>>> ...
->>>> patternProperties:
->>>>     "^.*@[0-9a-f]{1,2}$":
->>>>       description: The hard wired USB devices
->>>>       type: object
->>>>       $ref: /schemas/usb/usb-device.yaml
->>>> ...
->>>> and the example.
->>>>
->>>> Subnodes aren't allowed in the PHY node.
->>> Ok, that is what schema says.
->>> HW wise there is possible problem though.
->>> The phy node has the power supply to the bus.
->>> In that case it is a controllable one.
->>> If fixed USB devices go under the controller instead of the PHY, isn't
->>> it possible that the kernel may attempt to probe them before the bus is
->>> powered ? For this particular board, it would make the reset we are
->>> trying to apply useless.
->>
->> The usb core has a special handling for those usb hubs doing the power
->> up at the right time during the USB setup, including the PHY powering up.
->> So the power sequence should be fine.
->>
->> This has been done on Odroid-C2 and Odroid-N2 already.
-> 
-> Tried it. Unfortunately something is off with the hub under the dwc3 node
-> I often get this error (like once in 3 boots):
-> 
-> [    0.419301] usbcore: registered new interface driver usbfs
-> [    0.424434] usbcore: registered new interface driver hub
-> [    0.429696] usbcore: registered new device driver usb
-> [    0.921460] usbcore: registered new interface driver usb-storage
-> [    0.968157] usbcore: registered new interface driver usbhid
-> [    0.972114] usbhid: USB HID core driver
-> [    1.132529] dwc3-meson-g12a ffe09000.usb: USB2 ports: 2
-> [    1.134897] dwc3-meson-g12a ffe09000.usb: USB3 ports: 1
-> [    1.144451] dwc2 ff400000.usb: supply vusb_d not found, using dummy regulator
-> [    1.147231] dwc2 ff400000.usb: supply vusb_a not found, using dummy regulator
-> [    1.154464] dwc2 ff400000.usb: EPs: 7, dedicated fifos, 712 entries in SPRAM
-> [    1.219515] usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
-> [    1.469260] usb 1-1: new high-speed USB device number 2 using xhci-hcd
-> [    1.745395] usb 2-1: new SuperSpeed USB device number 2 using xhci-hcd
-> [    9.794777] usbcore: registered new device driver onboard-usb-hub
-> [   10.255484] onboard-usb-hub 1-1: Failed to suspend device, error -32
-> [   10.261699] onboard-usb-hub 1-1: can't set config #1, error -71
-> [   10.287500] onboard-usb-hub 1-1: Failed to suspend device, error -32
-> [   10.287844] onboard-usb-hub 1-1: USB disconnect, device number 2
-> [   10.573277] usb 1-1: new high-speed USB device number 3 using xhci-hcd
-> [   10.921468] usb 2-1: reset SuperSpeed USB device number 2 using xhci-hcd
-> [   11.193453] usb 2-1: reset SuperSpeed USB device number 2 using xhci-hcd
-> 
-> While it works reliably when the onboard-usb-hub is under the phy node.
-> 
-> I added the 5v supply as vdd under the hub for good measure.
+Hi,
 
-The .reset_us you used from genesys_gl852g is probably too low, you may need to use a bigger one then.
-
-Neil
-
+>> I'm still not sure why that compatible is needed. Also I'd need to
+>> change
+>> the label which might break user space apps looking for that specific
+>> name.
+>> 
+>> Also, our board might have u-boot/spl or u-boot/spl/bl31/bl32, right 
+>> now
+>> that's something which depends on an u-boot configuration variable,
+>> which
+>> then enables or disables binman nodes in the -u-boot.dtsi. So in linux
+>> we only have that "bootloader" partition, but there might be either
+>> u-boot+spl or u-boot+spl+bl31+bl32.
+>> 
+>> Honestly, I'm really not sure this should go into a device tree.
 > 
->>
->> Neil
->>
->>>
->>>>
->>>> Neil
->>>>
->>>>>
->>>>>>
->>>>>>> +};
->>>>>>> +
->>>>>>> +&usb {
->>>>>>> +	status = "okay";
->>>>>>> +};
->>>>
->>>> <snip>
->>>
-> 
+> I think we might be getting a bit ahead of ourselves here. I thought
+> that the decision was that the label should indicate the contents.
+> If you have multiple things in a partition then it would become a
+> 'section' in Binman's terminology. Either the label programmatically
+> describes what is inside or it doesn't. We can't have it both ways.
+> What do you suggest?
 
+As Rob pointed out earlier, it's just a user-facing string. I'm a bit
+reluctant to use it programatically.
+Taking my example again, the string "bootloader" is sufficient for a
+user. He doesn't care if it's u-boot with spl or u-boot with tfa, or
+even coreboot. It just says, "in this partition is the bootloader".
+If you have an "bootloader" image you can flash it there.
+
+If it has a label "u-boot" and I want to switch to coreboot, will
+it have to change to "coreboot"? I really don't think this is practical,
+you are really putting software configuration into the device tree.
+
+> At present it seems you have the image described in two places - one
+> is the binman node and the other is the partitions node. I would like
+> to unify these.
+
+And I'm not sure that will work for all the corner cases :/
+
+If you keep the binman section seperate from the flash partition
+definition you don't have any of these problems, although there is
+some redundancy:
+  - you only have compatible = "binman", "fixed-partition", no further
+    compatibles are required
+  - you don't have any conflicts with the current partition descriptions
+  - you could even use the labels, because binman is the (only?) user
+
+But of course you need to find a place where to put your node.
+
+> What does user space do with the partition labels?
+
+I'm not sure. Also I'm not sure if it really matters, I just wanted to
+point out, that you'll force users to change it.
+
+-michael
+
+>> >> What if a board uses eMMC to store the firmware binaries? Will that
+>> >> then
+>> >> be a subnode to the eMMC device?
+>> >
+>> > I thought there was a way to link the partition nodes and the device
+>> > using a property, without having the partition info as a subnode of
+>> > the device. But I may have imagined it as I cannot find it now. So
+>> > yes, it will be a subnode of the eMMC device.
+>> 
+>> Not sure if that will fly.
+> 
+> I can't find it anyway. There is somelike like that in
+> simple-framebuffer with the 'display' property.
+> 
+> Regards,
+> SImon
 
