@@ -1,145 +1,128 @@
-Return-Path: <devicetree+bounces-6533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1802D7BBBEA
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 17:42:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC6107BBC11
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 17:46:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 492991C209C7
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 15:42:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 850A1282168
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 15:46:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B4E927EFF;
-	Fri,  6 Oct 2023 15:42:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 003922868A;
+	Fri,  6 Oct 2023 15:46:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q+fTlW4A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TJcW5fQI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C193273C8
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 15:42:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CF61C433C7;
-	Fri,  6 Oct 2023 15:42:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D78F4273C8
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 15:46:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C885EC433C8;
+	Fri,  6 Oct 2023 15:46:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696606924;
-	bh=tbHnpOTYGNIXcPamnhQXfo0iLGWFbnd+Sut1PridISA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=q+fTlW4AFWVXdVUVxU0JJ1SpniY5IUKGTvCJtdjQ584qPnp9muQwgqKjOelOIzOcI
-	 vop9zPdKs7uo3bxTD5KwUf7HmNAmzG0Kb8lJRHEQLfxEsLiUW9LdXunFkxk5DL7IrL
-	 Ff0FOtaKPav+LEhYajiYOCXqBU/14jzEHcMkKK9N/ep1/tsvdpHgtw36KagNttva5r
-	 yJgTofHb2BYs/Sk2xGVzHbbAiZhpRg25HPGCJ2LfNTlr9Ji2z7oI3EJ6JJeAFrBtWO
-	 zwIwWdab1BW486GeEcVA30KdOWSHFxcsZjvakG014uRuV40neergrHPV4DIHQ/3iPi
-	 evMeT2+EqiyOQ==
-Message-ID: <4ec509f6-698d-4a58-a49b-8dbb247edb88@kernel.org>
-Date: Fri, 6 Oct 2023 18:41:59 +0300
+	s=k20201202; t=1696607170;
+	bh=RqPT1sAX+CTz+LW7FuFBdj/iCoI5RcSD8+uIrgrjRII=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TJcW5fQIHClkSNCykvIXtff2T4paynN6ON2HHsJur23X/V+AytMrdMa8Z+YSrMKg7
+	 wLoYz3k3KY1Aihi0JnyZ0KWWwEyN5hrypUPCfKfqeWiKNrAB/E8y19+9Nu3LqTGaxk
+	 +HPtFku6IVKUm7vlWyAJYeSDkQTXn3/DMiBsY478ifOr440NNBFjs+X/2ufi9wA+dA
+	 MTOIP4mB1+OvXOmOhEdBP7zpQfcmuQz55tkVx7xQjc4yUwILkfjoog+sTRlc9dtH/w
+	 t81RK79s4fmnJhoySGDTNJKsT/illXeqAOUK490U0lrbZa2wa4n4eXXCfapsk9xF7X
+	 zzzJBk3wtxSiA==
+Date: Fri, 6 Oct 2023 16:46:05 +0100
+From: Conor Dooley <conor@kernel.org>
+To: "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Cc: Linux PM <linux-pm@vger.kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	LKML <linux-kernel@vger.kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	devicetree@vger.kernel.org, Lukasz Luba <lukasz.luba@arm.com>,
+	Amit Kucheria <amitk@kernel.org>
+Subject: Re: [PATCH v2] thermal: Remove Amit Kucheria from MAINTAINERS
+Message-ID: <20231006-earthly-equal-dd5d82312add@spud>
+References: <2702191.mvXUDI8C0e@kreacher>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: linux-next: build warnings after merge of the ti tree
-Content-Language: en-US
-To: Rob Herring <robh+dt@kernel.org>
-Cc: Nishanth Menon <nm@ti.com>, "Raghavendra, Vignesh" <vigneshr@ti.com>,
- Stephen Rothwell <sfr@canb.auug.org.au>, Tero Kristo <kristo@kernel.org>,
- Santosh Shilimkar <ssantosh@kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- "Yadav, Nitin" <n-yadav@ti.com>
-References: <20231005141536.77538147@canb.auug.org.au>
- <f70dec2a-dbdf-479c-af5b-a70db02b27b4@ti.com>
- <2905cfc2-912f-4620-9455-2e91586a2839@kernel.org>
- <20231005132921.2vg6kdcr273bh7et@cabbage>
- <fde87d28-ee5d-4e02-b824-27c1cb7c1e38@kernel.org>
- <CAL_Jsq+NXp_d1g507G=G+_cJ1s0GrM099JMNAj2MU4Dpaw=c8g@mail.gmail.com>
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <CAL_Jsq+NXp_d1g507G=G+_cJ1s0GrM099JMNAj2MU4Dpaw=c8g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="aL7ZvF+92viwC5jJ"
+Content-Disposition: inline
+In-Reply-To: <2702191.mvXUDI8C0e@kreacher>
 
 
+--aL7ZvF+92viwC5jJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 06/10/2023 16:55, Rob Herring wrote:
-> On Fri, Oct 6, 2023 at 7:03 AM Roger Quadros <rogerq@kernel.org> wrote:
->>
->>
->>
->> On 05/10/2023 16:29, Nishanth Menon wrote:
->>> On 16:12-20231005, Roger Quadros wrote:
->>>> Hi,
->>>>
->>>> On 05/10/2023 11:25, Raghavendra, Vignesh wrote:
->>>>> + Rob and DT list
->>>>>
->>>>> Hi Stephen
->>>>>
->>>>> On 10/5/2023 8:45 AM, Stephen Rothwell wrote:
->>>>>> Hi all,
->>>>>>
->>>>>> [I may have missed this yesterday, sorry]
->>>>>>
->>>>>> After merging the ti tree, today's linux-next build (arm64 defconfig)
->>>>>> produced these warnings:
->>>>>>
->>>>>> arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso:65.8-140.3: Warning (avoid_default_addr_size): /fragment@3/__overlay__: Relying on default #address-cells value
->>>>>> arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso:65.8-140.3: Warning (avoid_default_addr_size): /fragment@3/__overlay__: Relying on default #size-cells value
->>>>>>
->>>>>> Introduced by commit
->>>>>>
->>>>>>   45a0c06571e1 ("arm64: dts: ti: am642-evm: Add overlay for NAND expansion card")
->>>>>>
->>>>>
->>>>> Thanks for the report. I will drop the offending comment.
->>>>>
->>>>> Roger,
->>>>>
->>>>> Sorry, this would need to be fixed in dtc or need exception from DT
->>>>> maintainers to ignore the warnings.
->>>>
->>>> Please don't drop this patch as the issue is not with the patch but with
->>>> the dtc tool itself.
->>>>
->>>> As this is a DT overlay there is no way to specify address-cells/size-cells
->>>> of parent here. This will be resolved only after merge with base tree.
->>>>
->>>> This will be fixed in next dtc sync.
->>>> https://www.spinics.net/lists/devicetree-compiler/msg04036.html
->>>>
->>>> See further discussion here
->>>> https://lore.kernel.org/all/CAL_JsqLmv904+_2EOmsQ__y1yLDvsT+_02i85phuh0cpe7X8NQ@mail.gmail.com/
->>>>
->>>
->>> Roger, build warnings are a strict NO,NO for kernel. Lets bring in the
->>> series *after* the dtc sync is complete.
->>>
->>
->> Hi Rob,
->>
->> Following commit from dtc is required to resolve this issue.
->>
->> afbddcd418fb ("Suppress warnings on overlay fragments")
-> 
-> That is from 2018, so it's been in the kernel's dtc for a long time.
+On Fri, Oct 06, 2023 at 05:04:42PM +0200, Rafael J. Wysocki wrote:
+> From: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+>=20
+> Amit Kucheria has not been participating in kernel development in any
+> way or form for quite some time, so it is not useful to list him as a
+> designated reviewer for the thermal subsystem.
+>=20
+> Remove him from the THERMAL entry in MAINTAINERS.
+>=20
+> Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+> ---
+>=20
+> v1 -> v2: Drop the DT binding change
+>=20
+> I'm really not inclined to fight over stuff that doesn't make any sense t=
+o me.
 
-Oh, my bad. I saw your Reviewed-by tag and assumed the patch was already upstream.
+I don't understand what you mean by this. All that was required was
+putting __someone__ down as a maintainer in the dt-binding, as Rob's bot
+told you:
+https://lore.kernel.org/linux-devicetree/CAJZ5v0gwvo_CriNwz_g-oQ8EZUqdp4ymi=
+uamU-KkrmQ87RhZyA@mail.gmail.com/T/#m56a9b1616477566e2976044c11b58dccbd3be0=
+fb
 
-> 
-> I believe what you need is the patch I referenced which hasn't been
-> applied upstream.
-> 
->> FYI. Another patch of similar nature is on its way and will also require the
->> above commit to DTC.
->> https://lore.kernel.org/all/20231005093739.4071934-3-n-yadav@ti.com/
-> 
-> You'll need to fix dtc first.
+>=20
+> ---
+>  Documentation/devicetree/bindings/thermal/thermal-zones.yaml |    3 ---
+>  MAINTAINERS                                                  |    1 -
+>  2 files changed, 4 deletions(-)
+>=20
+> Index: linux-pm/MAINTAINERS
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> --- linux-pm.orig/MAINTAINERS
+> +++ linux-pm/MAINTAINERS
+> @@ -21363,7 +21363,6 @@ F:	drivers/media/radio/radio-raremono.c
+>  THERMAL
+>  M:	Rafael J. Wysocki <rafael@kernel.org>
+>  M:	Daniel Lezcano <daniel.lezcano@linaro.org>
+> -R:	Amit Kucheria <amitk@kernel.org>
+>  R:	Zhang Rui <rui.zhang@intel.com>
+>  L:	linux-pm@vger.kernel.org
+>  S:	Supported
+>=20
+>=20
+>=20
 
--- 
-cheers,
--roger
+--aL7ZvF+92viwC5jJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZSArvQAKCRB4tDGHoIJi
+0tJOAP0RchSWseK6p2cPyt+7A6+5M4M5Z7+A4KOKtDbdtWVzGQD7B25vFO7lmNDy
+xfpFomW8uCMUMr0q7VBHLhYrNVBW3g4=
+=dNGo
+-----END PGP SIGNATURE-----
+
+--aL7ZvF+92viwC5jJ--
 
