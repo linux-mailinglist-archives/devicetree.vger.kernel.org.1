@@ -1,215 +1,102 @@
-Return-Path: <devicetree+bounces-6567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5A127BBD18
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 18:43:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE72A7BBD3B
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 18:50:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F431281FE9
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 16:43:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D3C6282463
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 16:50:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DADC8273C5;
-	Fri,  6 Oct 2023 16:43:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D3A428E23;
+	Fri,  6 Oct 2023 16:50:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iVTJOX+0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jKKIYCm1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08885262A1
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 16:43:22 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E4C41B4;
-	Fri,  6 Oct 2023 09:42:49 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 396DNswK011104;
-	Fri, 6 Oct 2023 16:42:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=kB8eOZJBMvny52vQeYnm+Wv5EpaqlsdgYlz93kNPdOw=;
- b=iVTJOX+0DQZv/ghNbI/p5AAFznz6zmJ8QQaCQgIYKZl1tRzqk8EIOGSJt3eNVICdqTCQ
- Zwb/aTMmNBBKLY2YZQDiWac/zu+yHeSnEW9nRFY8YB3SrcsUJLdYo6FkxHLV0SBSw3Qe
- OuHCAIMZF6t/Rvjiy3WZU/bGwIISRkt1oZEQF2BVtS7fBxuXxYp3sU5nwX+S7NHUYfop
- +/DVPPOz0j95pH9pkWFZ2gFJf864/RO7SSIqajAsetSgzt2+dpcjJEqEUBXGADrnRC2j
- v60T/7yXJ60zI1r2/BWvtwvuRH5meQ76zOBGeYXgRDUQCqqtuaWOAZIspRW6Os0QRr0M 1A== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3thrjduv17-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 06 Oct 2023 16:42:26 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 396GgOd2017744
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 6 Oct 2023 16:42:25 GMT
-Received: from car-linux11.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Fri, 6 Oct 2023 09:42:24 -0700
-From: Nikunj Kela <quic_nkela@quicinc.com>
-To: <sudeep.holla@arm.com>
-CC: <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        Nikunj Kela
-	<quic_nkela@quicinc.com>
-Subject: [PATCH v5 2/2] firmware: arm_scmi: Add qcom smc/hvc transport support
-Date: Fri, 6 Oct 2023 09:42:06 -0700
-Message-ID: <20231006164206.40710-3-quic_nkela@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20231006164206.40710-1-quic_nkela@quicinc.com>
-References: <20230718160833.36397-1-quic_nkela@quicinc.com>
- <20231006164206.40710-1-quic_nkela@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C92B28E1B
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 16:50:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD7F4C433C7;
+	Fri,  6 Oct 2023 16:50:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696611037;
+	bh=2aaZimPgHTbIm4nYbzzNMap4dmH7kQIVxsi+EmgVXzk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jKKIYCm1cbYRcvcQLLOlTTHe4wq6pp/CzXSjhvdRhLGlAx18oEMTQ3LXm0QGUDH6n
+	 hyBpwuP6H2nthJm8hWhPbuI6flcwWfj8S99rHoqyr6XrhT13dbmtyvKmRIQ0Hysbac
+	 rOp3JM5Do7cSOFUAIUjp60ozaH83GE2prLw34lZGQhmUSVFFd8SdzX4h4LGetDOk7K
+	 KagfRn5BhO4epM9lNg3RetFKlPZT4nQeHqcdX6WDymgXsal8z+kmZzj+zm0mc7DCxR
+	 pDkjaaY1VRWxMCrqBCc6xS3DWszOI3vvmCqSGeSWPIsRzngH5syTqScpSguAwrQ7B9
+	 lyGPSxZHyqQhg==
+Received: (nullmailer pid 4059854 invoked by uid 1000);
+	Fri, 06 Oct 2023 16:50:35 -0000
+Date: Fri, 6 Oct 2023 11:50:35 -0500
+From: Rob Herring <robh@kernel.org>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc: Paul Burton <paulburton@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, linux-mips@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Vladimir Kondratiev <vladimir.kondratiev@intel.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 06/11] dt-bindings: mips: Add bindings for Mobileye SoCs
+Message-ID: <20231006165035.GA4049125-robh@kernel.org>
+References: <20231004161038.2818327-1-gregory.clement@bootlin.com>
+ <20231004161038.2818327-7-gregory.clement@bootlin.com>
+ <CAL_Jsq+NkRM07U8enKSVvpOg+9qtDdnkqs2Pc0X8LgjVVo7Vhg@mail.gmail.com>
+ <87pm1tce5v.fsf@BL-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: FOxYL3WpXLFpz8jxYFS1weZUFJ0vQZzL
-X-Proofpoint-GUID: FOxYL3WpXLFpz8jxYFS1weZUFJ0vQZzL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-06_12,2023-10-06_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 spamscore=0
- clxscore=1015 lowpriorityscore=0 priorityscore=1501 phishscore=0
- mlxscore=0 mlxlogscore=999 impostorscore=0 bulkscore=0 suspectscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310060125
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87pm1tce5v.fsf@BL-laptop>
 
-This change adds the support for SCMI message exchange on Qualcomm
-virtual platforms.
+On Thu, Oct 05, 2023 at 04:55:08PM +0200, Gregory CLEMENT wrote:
+> Hello Rob,
+> 
+> > On Wed, Oct 4, 2023 at 11:11 AM Gregory CLEMENT
+> > <gregory.clement@bootlin.com> wrote:
+> >>
+> >> Add the yaml bindings for Mobileye SoCs. Currently only EyeQ5 is
+> >> supported
+> >>
+> >> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+> >> ---
+> >>  .../devicetree/bindings/mips/mobileye.yaml    | 36 +++++++++
+> >>  include/dt-bindings/soc/mobileye,eyeq5.h      | 77 +++++++++++++++++++
+> >>  2 files changed, 113 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/mips/mobileye.yaml
+> >>  create mode 100644 include/dt-bindings/soc/mobileye,eyeq5.h
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/mips/mobileye.yaml b/Documentation/devicetree/bindings/mips/mobileye.yaml
+> >> new file mode 100644
+> >> index 000000000000..f47767bc2c8f
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/mips/mobileye.yaml
+> >> @@ -0,0 +1,36 @@
+> >> +# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
+> >
+> > Use what checkpatch tells you.
+> 
+> >From my point of view GPL-2.0-or-later is compatible with GPL-2.0-only,
+> but OK I will do this.
 
-The hypervisor associates an object-id also known as capability-id
-with each smc/hvc doorbell object. The capability-id is used to
-identify the doorbell from the VM's capability namespace, similar
-to a file-descriptor.
+GPL-2.0-only is compatible with GPL3, so why does that matter? And MIT 
+is compatible with BSD-2-Clause, but we don't include that. 
 
-The hypervisor, in addition to the function-id, expects the capability-id
-to be passed in x1 register when SMC/HVC call is invoked.
+Are we okay with GPLv4, v5, ...?
 
-The capability-id is allocated by the hypervisor on bootup and is stored in
-the shmem region by the firmware before starting Linux.
+What I really care about is having a free-for-all and having a 
+proliferation of different licenses and combinations of licenses under 
+bindings. If everyone paid attention, then I wouldn't care. But they 
+don't and just copy code around. We already have a license mess with DT 
+headers and .dts files. Besides the copying problem, it is not hard to 
+find GPL only license included in dual or BSD/MIT only licensed .dts 
+files. Seems like an issue to me.
 
-Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
----
- drivers/firmware/arm_scmi/driver.c |  1 +
- drivers/firmware/arm_scmi/smc.c    | 33 ++++++++++++++++++++++++++++--
- 2 files changed, 32 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
-index 87383c05424b..09371f40d61f 100644
---- a/drivers/firmware/arm_scmi/driver.c
-+++ b/drivers/firmware/arm_scmi/driver.c
-@@ -2915,6 +2915,7 @@ static const struct of_device_id scmi_of_match[] = {
- #ifdef CONFIG_ARM_SCMI_TRANSPORT_SMC
- 	{ .compatible = "arm,scmi-smc", .data = &scmi_smc_desc},
- 	{ .compatible = "arm,scmi-smc-param", .data = &scmi_smc_desc},
-+	{ .compatible = "qcom,scmi-smc", .data = &scmi_smc_desc},
- #endif
- #ifdef CONFIG_ARM_SCMI_TRANSPORT_VIRTIO
- 	{ .compatible = "arm,scmi-virtio", .data = &scmi_virtio_desc},
-diff --git a/drivers/firmware/arm_scmi/smc.c b/drivers/firmware/arm_scmi/smc.c
-index c193516a254d..3d594d65ab14 100644
---- a/drivers/firmware/arm_scmi/smc.c
-+++ b/drivers/firmware/arm_scmi/smc.c
-@@ -50,6 +50,8 @@
-  * @func_id: smc/hvc call function id
-  * @param_page: 4K page number of the shmem channel
-  * @param_offset: Offset within the 4K page of the shmem channel
-+ * @cap_id: smc/hvc doorbell's capability id to be used on Qualcomm virtual
-+ *	    platforms
-  */
- 
- struct scmi_smc {
-@@ -63,6 +65,7 @@ struct scmi_smc {
- 	u32 func_id;
- 	u32 param_page;
- 	u32 param_offset;
-+	s64 cap_id;
- };
- 
- static irqreturn_t smc_msg_done_isr(int irq, void *data)
-@@ -128,6 +131,7 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
- 	resource_size_t size;
- 	struct resource res;
- 	struct device_node *np;
-+	s64 cap_id = -EINVAL;
- 	u32 func_id;
- 	int ret;
- 
-@@ -162,6 +166,25 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
- 	if (ret < 0)
- 		return ret;
- 
-+	if (of_device_is_compatible(dev->of_node, "qcom,scmi-smc")) {
-+		/* The capability-id is kept in last 8 bytes of shmem.
-+		 *     +-------+
-+		 *     |       |
-+		 *     | shmem |
-+		 *     |       |
-+		 *     |       |
-+		 *     +-------+ <-- (size - 8)
-+		 *     | capId |
-+		 *     +-------+ <-- size
-+		 */
-+
-+#ifdef CONFIG_64BIT
-+		cap_id = ioread64((void *)scmi_info->shmem + size - 8);
-+#else
-+		cap_id = ioread32((void *)scmi_info->shmem + size - 8);
-+#endif
-+	}
-+
- 	if (of_device_is_compatible(dev->of_node, "arm,scmi-smc-param")) {
- 		scmi_info->param_page = SHMEM_PAGE(res.start);
- 		scmi_info->param_offset = SHMEM_OFFSET(res.start);
-@@ -184,6 +207,7 @@ static int smc_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
- 	}
- 
- 	scmi_info->func_id = func_id;
-+	scmi_info->cap_id = cap_id;
- 	scmi_info->cinfo = cinfo;
- 	smc_channel_lock_init(scmi_info);
- 	cinfo->transport_info = scmi_info;
-@@ -213,6 +237,7 @@ static int smc_send_message(struct scmi_chan_info *cinfo,
- 	struct arm_smccc_res res;
- 	unsigned long page = scmi_info->param_page;
- 	unsigned long offset = scmi_info->param_offset;
-+	long cap_id = (long)scmi_info->cap_id;
- 
- 	/*
- 	 * Channel will be released only once response has been
-@@ -222,8 +247,12 @@ static int smc_send_message(struct scmi_chan_info *cinfo,
- 
- 	shmem_tx_prepare(scmi_info->shmem, xfer, cinfo);
- 
--	arm_smccc_1_1_invoke(scmi_info->func_id, page, offset, 0, 0, 0, 0, 0,
--			     &res);
-+	if (cap_id >= 0)
-+		arm_smccc_1_1_invoke(scmi_info->func_id, cap_id, 0, 0, 0, 0, 0,
-+				     0, &res);
-+	else
-+		arm_smccc_1_1_invoke(scmi_info->func_id, page, offset, 0, 0, 0,
-+				     0, 0, &res);
- 
- 	/* Only SMCCC_RET_NOT_SUPPORTED is valid error code */
- 	if (res.a0) {
--- 
-2.17.1
-
+Rob
 
