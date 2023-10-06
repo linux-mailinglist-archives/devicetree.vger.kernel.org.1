@@ -1,66 +1,157 @@
-Return-Path: <devicetree+bounces-6502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50C0C7BB925
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 15:35:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABE897BB95F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 15:42:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C74F82823A5
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 13:35:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 351A428224B
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 13:42:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7D2F21102;
-	Fri,  6 Oct 2023 13:35:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71D242110E;
+	Fri,  6 Oct 2023 13:42:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gj2NXk61"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YQClspXl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99BF54414;
-	Fri,  6 Oct 2023 13:35:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3EACC433C7;
-	Fri,  6 Oct 2023 13:35:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696599302;
-	bh=WKO6RcQqAG8IX5IcPTGrGweYu9Qjx2yG0cnrvA8Gkd4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Gj2NXk61K87JY0oX6au3+Ysj6IhCgw3YMqHreFXxuH3eq2QqFWc3/5/ZTKYgi/8a9
-	 hVfC5oJv63xCu5zYPoRcLJ23MMNVMESIgLmMBsSlFXuHS1R+mFIupWPvEplDjPZMiI
-	 a6gyqSCLjnJsfB0fhXVy9Ia8qWzXE+VN3/5du1rfUEEE+CIyaqDitasrFzQxC61lhe
-	 Z60QmQnIionHURo01fqBf47eVJEKImRVeX5Zhu3TFHPoSRc54xIyF2e2j/HRB2jhFa
-	 87qYVmtbjuehh1Une71VwddZIH/RaOq1f7Rj2W++MFvFJzpgB7h+EOi1gksX7zJwvk
-	 yBywdNK8XiLUA==
-Date: Fri, 6 Oct 2023 06:35:00 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Serge Semin <fancer.lancer@gmail.com>
-Cc: Rohan G Thomas <rohan.g.thomas@intel.com>, alexandre.torgue@foss.st.com,
- andriy.shevchenko@linux.intel.com, davem@davemloft.net,
- devicetree@vger.kernel.org, edumazet@google.com, joabreu@synopsys.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, mcoquelin.stm32@gmail.com,
- netdev@vger.kernel.org, pabeni@redhat.com
-Subject: Re: [PATCH net-next 1/1] net: stmmac: xgmac: EST interrupts
- handling
-Message-ID: <20231006063500.035f3604@kernel.org>
-In-Reply-To: <cjgx6e3agc6gpvs75nhkf6wlztk73epmct6tcuooyqvk2nx2o2@vr5buyk637t3>
-References: <20231005070538.0826bf9d@kernel.org>
-	<20231006072319.22441-1-rohan.g.thomas@intel.com>
-	<cjgx6e3agc6gpvs75nhkf6wlztk73epmct6tcuooyqvk2nx2o2@vr5buyk637t3>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15EFF1F959
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 13:42:24 +0000 (UTC)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D43DA6
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 06:42:22 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-9b2cee55056so397738866b.3
+        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 06:42:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696599741; x=1697204541; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wuMy4S0ru4zLGZOBtXvG1IdjCKVMmCKYDZxiqYoNrug=;
+        b=YQClspXlKIbT+K11tG6T22Cvp6ZWH313lJ47uwP/Z6caZilcnAtxaRHPINtwDvx+/B
+         q8eRf31Hpo+BuywTepN8qNLbm0p0RsCkFv//4Bw1m75AvbRafWbLP/WxVamshCPIjmk2
+         GAmqu5yMEJZAcZ1Hsj/k/9JYKaxFzY0Tp8+ayDopBLbLsbS/Le838wp8B3dB2bxu9EqW
+         DsoFqr8XY7OOa1X0LvQMsYNoyYMb+a7L6L3x/xwsLvngudAJTDUlHuyk6nYFZIv8AvgL
+         mSZLagw9YTFQlE6woRAtTsrhDi8adu4q9Jcguj2tw54aPSzQVXjg1jfndwwj2Iky+Hns
+         ugjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696599741; x=1697204541;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wuMy4S0ru4zLGZOBtXvG1IdjCKVMmCKYDZxiqYoNrug=;
+        b=S7oIVtbCpI46q6/WnVJEBV8b5w+bpxX2weZp/vuKXbPbMZVA2vyr/riQ8Km0hVupm1
+         GU82ETd36mJj3xVEsWvDEy+kRsX0+pbQVCUyxWMvtijlWSTGuJLZ/C5VxA5JNqjAVWt/
+         +tNsDRoesJX/Vj5yyCx04mSrpRrQysahJuzZp9pDRv4xiMaAjM4QQ6pIWlz4qu43XUON
+         pIGRq8fP6razUZF0P3FPt5oVtJpCyvFb2YDbzgUQzEP+lSP9cse/gRHRpfTF5g6A+iSJ
+         caFc2xC1EuJst8FIQr44McrXg/Vkk1q2JZPhbLIMdpwt1KL34Kr+vf2q+ut16/pQgFwR
+         K1eA==
+X-Gm-Message-State: AOJu0Yx8GrPjyC0jTg+qrjmDmNtHFHoAvTDwdkjnU1XoKQwUpQNq7i3r
+	e9iLOlkcJaQRGjKWe4heon0+sQ==
+X-Google-Smtp-Source: AGHT+IEu4MjYlRNDFM6oFK7NgRNN3wh+E7Cl+Rl50272RJjELQYz17Ku8sxhJDD1aiQyeuI+GQRM5w==
+X-Received: by 2002:a17:906:253:b0:9b8:9b4f:1cc2 with SMTP id 19-20020a170906025300b009b89b4f1cc2mr6988445ejl.43.1696599740631;
+        Fri, 06 Oct 2023 06:42:20 -0700 (PDT)
+Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
+        by smtp.gmail.com with ESMTPSA id ci24-20020a170906c35800b009a2235ed496sm2953812ejb.141.2023.10.06.06.42.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Oct 2023 06:42:20 -0700 (PDT)
+Message-ID: <b4b8b73b-847c-4292-b6a3-a5d409eb51cd@linaro.org>
+Date: Fri, 6 Oct 2023 15:42:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] media: dt-bindings: media: camss: Add
+ qcom,sc8280xp-camss binding
+Content-Language: en-US
+To: Bryan O'Donoghue <pure.logic@nexus-software.ie>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, loic.poulain@linaro.org,
+ rfoss@kernel.org, andi.shyti@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, todor.too@gmail.com,
+ mchehab@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231006120159.3413789-1-bryan.odonoghue@linaro.org>
+ <20231006120159.3413789-5-bryan.odonoghue@linaro.org>
+ <ace84d7f-d332-4598-a95d-634c1d17f852@linaro.org>
+ <661e3701-9a26-451a-8851-f1d1b2355f80@nexus-software.ie>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <661e3701-9a26-451a-8851-f1d1b2355f80@nexus-software.ie>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Fri, 6 Oct 2023 13:08:33 +0300 Serge Semin wrote:
-> Jakub, what do you say if Rohan will just re-submit v2 with the
-> addition cleanup patch and let him to decided whether the cleanup
-> should be done first or after his XGMAC-EST IRQ update?
+On 06/10/2023 14:52, Bryan O'Donoghue wrote:
+> On 06/10/2023 13:33, Krzysztof Kozlowski wrote:
+>>> +      port@3:
+>>> +        $ref: /schemas/graph.yaml#/$defs/port-base
+>>> +        unevaluatedProperties: false
+>>> +        description:
+>>> +          Input port for receiving CSI data.
+>> No output ports to some ISP?
+> 
+> Not for the moment anyway. Its a raw dump of bayer data to userspace.
 
-Sure thing, whatever is more readable for the reviewer.
+The best would be if bindings were complete, but I understand.
+
+Best regards,
+Krzysztof
+
 
