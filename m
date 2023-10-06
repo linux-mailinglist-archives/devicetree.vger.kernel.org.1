@@ -1,48 +1,49 @@
-Return-Path: <devicetree+bounces-6497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A52757BB89B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 15:09:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 396F07BB8A7
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 15:12:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C77ED1C209B3
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 13:08:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEC952821DB
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 13:12:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7D9C20B01;
-	Fri,  6 Oct 2023 13:08:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03D6D20B09;
+	Fri,  6 Oct 2023 13:12:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC2281D55B
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 13:08:55 +0000 (UTC)
-Received: from mx.skole.hr (mx2.hosting.skole.hr [161.53.165.186])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 343D583;
-	Fri,  6 Oct 2023 06:08:53 -0700 (PDT)
-Received: from mx2.hosting.skole.hr (localhost.localdomain [127.0.0.1])
-	by mx.skole.hr (mx.skole.hr) with ESMTP id 84AE982D45;
-	Fri,  6 Oct 2023 15:08:50 +0200 (CEST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6983B1F959
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 13:12:10 +0000 (UTC)
+Received: from mx.skole.hr (mx1.hosting.skole.hr [161.53.165.185])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6573C93;
+	Fri,  6 Oct 2023 06:12:08 -0700 (PDT)
+Received: from mx1.hosting.skole.hr (localhost.localdomain [127.0.0.1])
+	by mx.skole.hr (mx.skole.hr) with ESMTP id 6C52B82B94;
+	Fri,  6 Oct 2023 15:12:06 +0200 (CEST)
 From: Duje =?utf-8?B?TWloYW5vdmnEhw==?= <duje.mihanovic@skole.hr>
-To: Daniel Thompson <daniel.thompson@linaro.org>
-Cc: Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
- Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+To: Lee Jones <lee@kernel.org>, Daniel Thompson <daniel.thompson@linaro.org>,
+ Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
- Karel Balej <balejk@matfyz.cz>, dri-devel@lists.freedesktop.org,
+ Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Karel Balej <balejk@matfyz.cz>, dri-devel@lists.freedesktop.org,
  linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
  ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 1/2] dt-bindings: backlight: add Kinetic KTD2801 binding
-Date: Fri, 06 Oct 2023 15:08:42 +0200
-Message-ID: <5984411.lOV4Wx5bFT@radijator>
-In-Reply-To: <20231006123014.GA96854@aspen.lan>
+Subject: Re: [PATCH 2/2] backlight: Add Kinetic KTD2801 driver
+Date: Fri, 06 Oct 2023 15:11:58 +0200
+Message-ID: <2306278.ElGaqSPkdT@radijator>
+In-Reply-To: <d7f6edd4-d797-4a6f-8df5-d25bc557c9bb@kernel.org>
 References:
  <20231005-ktd2801-v1-0-43cd85b0629a@skole.hr>
- <20231005-ktd2801-v1-1-43cd85b0629a@skole.hr>
- <20231006123014.GA96854@aspen.lan>
+ <20231005-ktd2801-v1-2-43cd85b0629a@skole.hr>
+ <d7f6edd4-d797-4a6f-8df5-d25bc557c9bb@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -142,21 +143,27 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On Friday, October 6, 2023 2:30:14 PM CEST Daniel Thompson wrote:
-> On Thu, Oct 05, 2023 at 08:49:08PM +0200, Duje Mihanovi=C4=87 wrote:
-> > +  enable-gpios:
-> > +    maxItems: 1
+On Thursday, October 5, 2023 10:40:41 PM CEST Krzysztof Kozlowski wrote:
+> On 05/10/2023 20:49, Duje Mihanovi=C4=87 wrote:
+> > +	gpiod_set_value(ktd2801->desc, 0);
+> > +	udelay(EOD_H);
 >=20
-> Why "enable"? This is the line we are going to us to bitbang the
-> ExpressWire protocol. Doesn't that make it a control or data pin?
+> Hm, why device is kept off after this? Setting 0 means enable GPIO is
+> logical 0.
+=2E..
+> > +	ktd2801->desc =3D devm_gpiod_get(dev, "enable", GPIOD_OUT_LOW);
+>=20
+> OUT_LOW is keep it disabled, so is this intentional?
 
-I named it "enable" because the KTD253 driver does so too, but also because=
+I initially wrote the driver to expect GPIO_ACTIVE_LOW, a decision which in=
 =20
-that pin is also used to power down the IC. If "enable" isn't right=20
-regardless, is just "gpios" fine for this?
+retrospect indeed makes no sense. If you have no objections, I'll change it=
+ to=20
+expect GPIO_ACTIVE_HIGH.
 
 Regards,
 Duje
+
 
 
 
