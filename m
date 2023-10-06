@@ -1,425 +1,156 @@
-Return-Path: <devicetree+bounces-6434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02B937BB575
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 12:40:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B54007BB5A1
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 12:48:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD2112823D7
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 10:40:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D6BB282218
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 10:48:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4284815AD6;
-	Fri,  6 Oct 2023 10:40:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9930A1642F;
+	Fri,  6 Oct 2023 10:48:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="hK/o5Dci"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="ZpK7ASyH";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="cqpH9J5u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E394B15AE5
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 10:40:32 +0000 (UTC)
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F4DD107
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 03:40:29 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9adca291f99so341543466b.2
-        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 03:40:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1696588828; x=1697193628; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PsvlUk0I/Jmqgi7UvERQUiTfmds5yfl9psPydolMUvs=;
-        b=hK/o5DciXYAwDg9A406+q0Z8g7m7yhGnBumj2vZS/fls9ilc7iPGsGYTb64IdUNdZy
-         R6dXnzcUySo9A93ofIVrtuL9ZRlz405zIzSUWwY9nMdmikwqLy9YxdB92O5t5u/zhY2D
-         6IoOjJy/d1fPIwwF9fb6kNNmuskNPiXGvAhCB6FJnflY5/geiKnkDu5O+A71THuGgNj7
-         DP9jonMEf0fFHE0xGDync/Zi4KTsAa2N6LeDrhFBmWFXoSwbQ3wrMQYeH8+Xjw54g4Sc
-         RFNlUS8BqGV+Td8JRafpZ2p5TuXRNgUBz8ri03u9FNff5stb/GvUcLDK1UlGl+n4DpQb
-         dpLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696588828; x=1697193628;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PsvlUk0I/Jmqgi7UvERQUiTfmds5yfl9psPydolMUvs=;
-        b=wgBhUB2XI7ecE/b6dECkJIXQShLqV2+5ZBtlmaRr7pFLb9Cgef7gjvUeDXja+NoGvT
-         uTnYB3fNplxI1TA+4/tsEaOOJu933B2CsOhnY6ywD/ohUybQGKHaCOUekU5eBt4O13E0
-         Jubr3p4QkcKYM42iGT87UBNv2iJ0wapcrhrOWTzLz5HmZCSl0YclisRcJdCh1yU/T7e2
-         qsvSmWNHwUqo8+yWnomonxCoUbE8YMMdBEofkfK2dz+YdxQVjeUMBEXwhUT1ikfNT6g1
-         qpJGADMCxjy5z2+5x9D9poEtWx64538oy4GzPlHiQORL8h2xL5PiPigNrEL1mEzYSBSM
-         Xp1A==
-X-Gm-Message-State: AOJu0YwH2MeGp/RqKaDU8ZMxgdrTlAFg6+CfnIRyZrR/ev8jtzm4S4zq
-	NAs0Zvlhfj/Fyek9DQuuFCZkZAc4yyWs7rGWYes=
-X-Google-Smtp-Source: AGHT+IGmn6jc7KSAoJv7k+t4PYqtTDHM3ZC5bvEOwDH+LSoqrYhZi8jRFY2Q2LvBMEjKEGh0YK8Cyw==
-X-Received: by 2002:a17:906:1ba1:b0:9b6:5d6f:cef8 with SMTP id r1-20020a1709061ba100b009b65d6fcef8mr7039253ejg.47.1696588827890;
-        Fri, 06 Oct 2023 03:40:27 -0700 (PDT)
-Received: from claudiu-X670E-Pro-RS.. ([82.78.167.24])
-        by smtp.gmail.com with ESMTPSA id br13-20020a170906d14d00b0099cb349d570sm2642490ejb.185.2023.10.06.03.40.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Oct 2023 03:40:27 -0700 (PDT)
-From: Claudiu <claudiu.beznea@tuxon.dev>
-X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
-To: geert+renesas@glider.be,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	gregkh@linuxfoundation.org,
-	jirislaby@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	magnus.damm@gmail.com
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH v3 4/4] clk: renesas: add minimal boot support for RZ/G3S SoC
-Date: Fri,  6 Oct 2023 13:39:59 +0300
-Message-Id: <20231006103959.197485-5-claudiu.beznea.uj@bp.renesas.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231006103959.197485-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20231006103959.197485-1-claudiu.beznea.uj@bp.renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65093156E5
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 10:48:52 +0000 (UTC)
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98F97CE;
+	Fri,  6 Oct 2023 03:48:50 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailout.west.internal (Postfix) with ESMTP id 46D433200A9D;
+	Fri,  6 Oct 2023 06:48:46 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute5.internal (MEProxy); Fri, 06 Oct 2023 06:48:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:sender
+	:subject:subject:to:to; s=fm2; t=1696589325; x=1696675725; bh=le
+	yFjl8HS70GWzN5CT67TcqvaCI0kPyY068isyY4OnY=; b=ZpK7ASyHutJAVMo+u4
+	ZPGe9MPqhFWhEm32ALLsXHRWeWO3qHQqrX1KSJt2dzfFZZylzd0G+WekMZayYgGK
+	YjOxdW0NJFpPtq/6USwI+Wi92Kz632j+eM62wHFKaIs2py1Y2MqBTZBg/uvWU+Gm
+	lvowDYUFkt2/rYvQ7aMkqLu0G4PuTehws1uaaY5ZmuG9VFbY1sLh08vgU6l4KHfZ
+	mfkXwEyXRA6oaEM2dCwuKRHapu1FoTATr56yHY4yDofrQX8Q6S2QZUyFU7GwnYoC
+	V1r79cb/UprMDcjqBKxzW9rsDxQgk/hTS+TLzp7ITTInSko6kVmqWXouzB8sgmYa
+	TzJg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:sender:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm2; t=1696589325; x=1696675725; bh=leyFjl8HS70GW
+	zN5CT67TcqvaCI0kPyY068isyY4OnY=; b=cqpH9J5ux2sLwhmOTde1ABpq289EL
+	289XreMdwlJ7MNgHmmRLOcw1zlNk7TWpDLWKWVnuiMlSk94yHcEQ9BApOnBaAlBp
+	ct1RC8W2Zi7+6tPwZ1nFkwNokUz2/ggRKUIe5VUg2JblkNFVNdvCXY6WR5q5QukK
+	mUsSnfBqNPDd8Pbqe7EouBUAhHuz3ke237l0X7WAErw8J8HrOwXDYq2KWPRh0o0J
+	+aGRFS8mjzW5BXl5kcjrzb8/Fw/rdtntuDlJQ0bLcKIlEnOGWyWw+tMoTIBS6DI7
+	8fxJur0qkaGXSHVnDmH4fIhxI3wbwi5ltRJVLeCLbAizOhf1v2Z3GCesw==
+X-ME-Sender: <xms:DOYfZfpCxTrUuBUFqm1Ku1nBlj7vrGMaJIg8wW3zzDNX6lQ6JJEJTA>
+    <xme:DOYfZZo8mBISdAOCKw8Lsy5QGyj_5IR2ghXJGrTENreLJDc9P8b2YrU_XVr-lw6xH
+    VNEknUseaPQ_8lzyKg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrgeeigdefudcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
+    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
+    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
+    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
+    hnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:DeYfZcOBnBLXRjS0QEM81DIuGU9x2FmDvsflXlepFR97_JxK6jF9_Q>
+    <xmx:DeYfZS7e34dC7rm3TBFmJ6rxQZS0jc5l4Uu_UTk-X5xzAw4e7_9_8w>
+    <xmx:DeYfZe6xmu6SSfKDPUD1BqcjFUYVxYNgn2-et_F0p7g_OI6hBQOy9A>
+    <xmx:DeYfZezyLNuK8LieZiRh_YMVEvL-syL89bDDQ9ud25kFDe6PFRzKyg>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id D564FB6008D; Fri,  6 Oct 2023 06:48:44 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-958-g1b1b911df8-fm-20230927.002-g1b1b911d
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Message-Id: <53050bbd-6a46-470d-9764-c83b8588698e@app.fastmail.com>
+In-Reply-To: <87sf6pcebd.fsf@BL-laptop>
+References: <20231004161038.2818327-1-gregory.clement@bootlin.com>
+ <20231004161038.2818327-6-gregory.clement@bootlin.com>
+ <hu5ksk2gw7zbbeiwi4unfo242qm2wfn36bpgea5inlamn4kqrf@magwi4w7gp3x>
+ <87sf6pcebd.fsf@BL-laptop>
+Date: Fri, 06 Oct 2023 12:48:03 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Gregory Clement" <gregory.clement@bootlin.com>,
+ "Serge Semin" <fancer.lancer@gmail.com>
+Cc: =?UTF-8?Q?Phil_Mathieu-Daud=C3=A9?= <philmd@linaro.org>,
+ "Paul Burton" <paulburton@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ linux-mips@vger.kernel.org, "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ "Vladimir Kondratiev" <vladimir.kondratiev@intel.com>,
+ "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
+ "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 05/11] dt-bindings: mips: cpu: Add I-Class I6500 Multiprocessor
+ Core
+Content-Type: text/plain
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On Thu, Oct 5, 2023, at 16:51, Gregory CLEMENT wrote:
+>> On Wed, Oct 04, 2023 at 06:10:32PM +0200, Gregory CLEMENT wrote:
+>>> The MIPS Warrior I-class I6500 was announced by Imagination
+>>> Technologies in 2016 and is used in the Mobileye SoC EyeQ5.
+>>> 
+>>> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/mips/cpus.yaml | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>> 
+>>> diff --git a/Documentation/devicetree/bindings/mips/cpus.yaml b/Documentation/devicetree/bindings/mips/cpus.yaml
+>>> index cf382dea3922..87fd2842ba68 100644
+>>> --- a/Documentation/devicetree/bindings/mips/cpus.yaml
+>>> +++ b/Documentation/devicetree/bindings/mips/cpus.yaml
+>>> @@ -39,6 +39,7 @@ properties:
+>>>        - mti,mips24KEc
+>>>        - mti,mips14KEc
+>>>        - mti,mips14Kc
+>>
+>>> +      - mti,i6500
+>>
+>> Since the CPU core vendor is Imagination Technologies thus it would
+>> be more appropriate to have the "img," prefix. Wouldn't it?
+>
+> According to Documentation/devicetree/bindings/vendor-prefixes.yaml
+>
+> "^mti,.*":
+>     description: Imagination Technologies Ltd. (formerly MIPS
+>     Technologies Inc.)
+>
+> So I think it's OK.
 
-Add minimal clock and reset support for RZ/G3S SoC to be able to boot
-Linux from SD Card/eMMC. This includes necessary core clocks for booting
-and GIC, SCIF, GPIO, SD0 mod clocks and resets.
+I don't see any good solution, they changed their name and
+ownership too many times. I would actually revert back the
+description here to "MIPS Technologies Inc" instead of trying
+to keep track of what they currently call themselves.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
----
+Since we already have both the 'mips,' and 'mti,' vendow
+names for the 14Kc, 14KEc and 24KEc parts, maybe we can
+just go back to 'mips,' for all cores past the mti era
+rather than trying to date and geolocate each of the
+classic cores as one of 'mti', 'img', 'wavecomp', 'tallwood',
+'mips' 'cipunited' etc.
 
-Changes in v3:
-- collected Rb tag
-- passed max rate to DEF_G3S_DIV()
-
-Changes in v2:
-- used RZ/G3S specific definition for CPG_CLKDIVSTATUS register
-- removed CLK_PLL3_DIV2_2, CLK_SD0_DIV, CLK_S0_DIV2
-- added space after { and before } in array initializations
-- s/indexes/indices/g
-- s/.osc/OSC and moved it in core output clocks section
-- s/.osc2/OSC2 and moved it in core output clock section
-- s/SD0_DIV4/.sd0_div4
-
- drivers/clk/renesas/Kconfig         |   7 +-
- drivers/clk/renesas/Makefile        |   1 +
- drivers/clk/renesas/r9a08g045-cpg.c | 214 ++++++++++++++++++++++++++++
- drivers/clk/renesas/rzg2l-cpg.c     |   6 +
- drivers/clk/renesas/rzg2l-cpg.h     |   1 +
- 5 files changed, 228 insertions(+), 1 deletion(-)
- create mode 100644 drivers/clk/renesas/r9a08g045-cpg.c
-
-diff --git a/drivers/clk/renesas/Kconfig b/drivers/clk/renesas/Kconfig
-index 37632a0659d8..69396e197959 100644
---- a/drivers/clk/renesas/Kconfig
-+++ b/drivers/clk/renesas/Kconfig
-@@ -37,6 +37,7 @@ config CLK_RENESAS
- 	select CLK_R9A07G043 if ARCH_R9A07G043
- 	select CLK_R9A07G044 if ARCH_R9A07G044
- 	select CLK_R9A07G054 if ARCH_R9A07G054
-+	select CLK_R9A08G045 if ARCH_R9A08G045
- 	select CLK_R9A09G011 if ARCH_R9A09G011
- 	select CLK_SH73A0 if ARCH_SH73A0
- 
-@@ -179,6 +180,10 @@ config CLK_R9A07G054
- 	bool "RZ/V2L clock support" if COMPILE_TEST
- 	select CLK_RZG2L
- 
-+config CLK_R9A08G045
-+	bool "RZ/G3S clock support" if COMPILE_TEST
-+	select CLK_RZG2L
-+
- config CLK_R9A09G011
- 	bool "RZ/V2M clock support" if COMPILE_TEST
- 	select CLK_RZG2L
-@@ -215,7 +220,7 @@ config CLK_RCAR_USB2_CLOCK_SEL
- 	  This is a driver for R-Car USB2 clock selector
- 
- config CLK_RZG2L
--	bool "Renesas RZ/{G2L,G2UL,V2L} family clock support" if COMPILE_TEST
-+	bool "Renesas RZ/{G2L,G2UL,G3S,V2L} family clock support" if COMPILE_TEST
- 	select RESET_CONTROLLER
- 
- # Generic
-diff --git a/drivers/clk/renesas/Makefile b/drivers/clk/renesas/Makefile
-index de907623fe3f..879a07d445f9 100644
---- a/drivers/clk/renesas/Makefile
-+++ b/drivers/clk/renesas/Makefile
-@@ -34,6 +34,7 @@ obj-$(CONFIG_CLK_R9A06G032)		+= r9a06g032-clocks.o
- obj-$(CONFIG_CLK_R9A07G043)		+= r9a07g043-cpg.o
- obj-$(CONFIG_CLK_R9A07G044)		+= r9a07g044-cpg.o
- obj-$(CONFIG_CLK_R9A07G054)		+= r9a07g044-cpg.o
-+obj-$(CONFIG_CLK_R9A08G045)		+= r9a08g045-cpg.o
- obj-$(CONFIG_CLK_R9A09G011)		+= r9a09g011-cpg.o
- obj-$(CONFIG_CLK_SH73A0)		+= clk-sh73a0.o
- 
-diff --git a/drivers/clk/renesas/r9a08g045-cpg.c b/drivers/clk/renesas/r9a08g045-cpg.c
-new file mode 100644
-index 000000000000..389d32b32168
---- /dev/null
-+++ b/drivers/clk/renesas/r9a08g045-cpg.c
-@@ -0,0 +1,214 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * RZ/G3S CPG driver
-+ *
-+ * Copyright (C) 2023 Renesas Electronics Corp.
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/device.h>
-+#include <linux/init.h>
-+#include <linux/kernel.h>
-+
-+#include <dt-bindings/clock/r9a08g045-cpg.h>
-+
-+#include "rzg2l-cpg.h"
-+
-+/* RZ/G3S Specific registers. */
-+#define G3S_CPG_PL2_DDIV		(0x204)
-+#define G3S_CPG_SDHI_DDIV		(0x218)
-+#define G3S_CPG_PLL_DSEL		(0x240)
-+#define G3S_CPG_SDHI_DSEL		(0x244)
-+#define G3S_CLKDIVSTATUS		(0x280)
-+#define G3S_CLKSELSTATUS		(0x284)
-+
-+/* RZ/G3S Specific division configuration.  */
-+#define G3S_DIVPL2B		DDIV_PACK(G3S_CPG_PL2_DDIV, 4, 3)
-+#define G3S_DIV_SDHI0		DDIV_PACK(G3S_CPG_SDHI_DDIV, 0, 1)
-+
-+/* RZ/G3S Clock status configuration. */
-+#define G3S_DIVPL1A_STS		DDIV_PACK(G3S_CLKDIVSTATUS, 0, 1)
-+#define G3S_DIVPL2B_STS		DDIV_PACK(G3S_CLKDIVSTATUS, 5, 1)
-+#define G3S_DIVPL3A_STS		DDIV_PACK(G3S_CLKDIVSTATUS, 8, 1)
-+#define G3S_DIVPL3B_STS		DDIV_PACK(G3S_CLKDIVSTATUS, 9, 1)
-+#define G3S_DIVPL3C_STS		DDIV_PACK(G3S_CLKDIVSTATUS, 10, 1)
-+#define G3S_DIV_SDHI0_STS	DDIV_PACK(G3S_CLKDIVSTATUS, 24, 1)
-+
-+#define G3S_SEL_PLL4_STS	SEL_PLL_PACK(G3S_CLKSELSTATUS, 6, 1)
-+#define G3S_SEL_SDHI0_STS	SEL_PLL_PACK(G3S_CLKSELSTATUS, 16, 1)
-+
-+/* RZ/G3S Specific clocks select. */
-+#define G3S_SEL_PLL4		SEL_PLL_PACK(G3S_CPG_PLL_DSEL, 6, 1)
-+#define G3S_SEL_SDHI0		SEL_PLL_PACK(G3S_CPG_SDHI_DSEL, 0, 2)
-+
-+/* PLL 1/4/6 configuration registers macro. */
-+#define G3S_PLL146_CONF(clk1, clk2)	((clk1) << 22 | (clk2) << 12)
-+
-+#define DEF_G3S_MUX(_name, _id, _conf, _parent_names, _mux_flags, _clk_flags) \
-+	DEF_TYPE(_name, _id, CLK_TYPE_MUX, .conf = (_conf), \
-+		 .parent_names = (_parent_names), \
-+		 .num_parents = ARRAY_SIZE((_parent_names)), \
-+		 .mux_flags = CLK_MUX_HIWORD_MASK | (_mux_flags), \
-+		 .flag = (_clk_flags))
-+
-+enum clk_ids {
-+	/* Core Clock Outputs exported to DT */
-+	LAST_DT_CORE_CLK = R9A08G045_SWD,
-+
-+	/* External Input Clocks */
-+	CLK_EXTAL,
-+
-+	/* Internal Core Clocks */
-+	CLK_OSC_DIV1000,
-+	CLK_PLL1,
-+	CLK_PLL2,
-+	CLK_PLL2_DIV2,
-+	CLK_PLL2_DIV2_8,
-+	CLK_PLL2_DIV6,
-+	CLK_PLL3,
-+	CLK_PLL3_DIV2,
-+	CLK_PLL3_DIV2_4,
-+	CLK_PLL3_DIV2_8,
-+	CLK_PLL3_DIV6,
-+	CLK_PLL4,
-+	CLK_PLL6,
-+	CLK_PLL6_DIV2,
-+	CLK_SEL_SDHI0,
-+	CLK_SEL_PLL4,
-+	CLK_P1_DIV2,
-+	CLK_P3_DIV2,
-+	CLK_SD0_DIV4,
-+
-+	/* Module Clocks */
-+	MOD_CLK_BASE,
-+};
-+
-+/* Divider tables */
-+static const struct clk_div_table dtable_1_2[] = {
-+	{ 0, 1 },
-+	{ 1, 2 },
-+	{ 0, 0 },
-+};
-+
-+static const struct clk_div_table dtable_1_8[] = {
-+	{ 0, 1 },
-+	{ 1, 2 },
-+	{ 2, 4 },
-+	{ 3, 8 },
-+	{ 0, 0 },
-+};
-+
-+static const struct clk_div_table dtable_1_32[] = {
-+	{ 0, 1 },
-+	{ 1, 2 },
-+	{ 2, 4 },
-+	{ 3, 8 },
-+	{ 4, 32 },
-+	{ 0, 0 },
-+};
-+
-+/* Mux clock names tables. */
-+static const char * const sel_sdhi[] = { ".pll2_div2", ".pll6", ".pll2_div6" };
-+static const char * const sel_pll4[] = { ".osc_div1000", ".pll4" };
-+
-+/* Mux clock indices tables. */
-+static const u32 mtable_sd[] = { 0, 2, 3 };
-+static const u32 mtable_pll4[] = { 0, 1 };
-+
-+static const struct cpg_core_clk r9a08g045_core_clks[] __initconst = {
-+	/* External Clock Inputs */
-+	DEF_INPUT("extal", CLK_EXTAL),
-+
-+	/* Internal Core Clocks */
-+	DEF_FIXED(".osc_div1000", CLK_OSC_DIV1000, CLK_EXTAL, 1, 1000),
-+	DEF_G3S_PLL(".pll1", CLK_PLL1, CLK_EXTAL, G3S_PLL146_CONF(0x4, 0x8)),
-+	DEF_FIXED(".pll2", CLK_PLL2, CLK_EXTAL, 200, 3),
-+	DEF_FIXED(".pll3", CLK_PLL3, CLK_EXTAL, 200, 3),
-+	DEF_FIXED(".pll4", CLK_PLL4, CLK_EXTAL, 100, 3),
-+	DEF_FIXED(".pll6", CLK_PLL6, CLK_EXTAL, 125, 6),
-+	DEF_FIXED(".pll2_div2", CLK_PLL2_DIV2, CLK_PLL2, 1, 2),
-+	DEF_FIXED(".pll2_div2_8", CLK_PLL2_DIV2_8, CLK_PLL2_DIV2, 1, 8),
-+	DEF_FIXED(".pll2_div6", CLK_PLL2_DIV6, CLK_PLL2, 1, 6),
-+	DEF_FIXED(".pll3_div2", CLK_PLL3_DIV2, CLK_PLL3, 1, 2),
-+	DEF_FIXED(".pll3_div2_4", CLK_PLL3_DIV2_4, CLK_PLL3_DIV2, 1, 4),
-+	DEF_FIXED(".pll3_div2_8", CLK_PLL3_DIV2_8, CLK_PLL3_DIV2, 1, 8),
-+	DEF_FIXED(".pll3_div6", CLK_PLL3_DIV6, CLK_PLL3, 1, 6),
-+	DEF_FIXED(".pll6_div2", CLK_PLL6_DIV2, CLK_PLL6, 1, 2),
-+	DEF_SD_MUX(".sel_sd0", CLK_SEL_SDHI0, G3S_SEL_SDHI0, G3S_SEL_SDHI0_STS, sel_sdhi,
-+		   mtable_sd, 0, NULL),
-+	DEF_SD_MUX(".sel_pll4", CLK_SEL_PLL4, G3S_SEL_PLL4, G3S_SEL_PLL4_STS, sel_pll4,
-+		   mtable_pll4, CLK_SET_PARENT_GATE, NULL),
-+
-+	/* Core output clk */
-+	DEF_G3S_DIV("I", R9A08G045_CLK_I, CLK_PLL1, DIVPL1A, G3S_DIVPL1A_STS, dtable_1_8,
-+		    0, 0, 0, NULL),
-+	DEF_G3S_DIV("P0", R9A08G045_CLK_P0, CLK_PLL2_DIV2_8, G3S_DIVPL2B, G3S_DIVPL2B_STS,
-+		    dtable_1_32, 0, 0, 0, NULL),
-+	DEF_G3S_DIV("SD0", R9A08G045_CLK_SD0, CLK_SEL_SDHI0, G3S_DIV_SDHI0, G3S_DIV_SDHI0_STS,
-+		    dtable_1_2, 800000000UL, 500000000UL, CLK_SET_RATE_PARENT,
-+		    rzg3s_cpg_div_clk_notifier),
-+	DEF_FIXED(".sd0_div4", CLK_SD0_DIV4, R9A08G045_CLK_SD0, 1, 4),
-+	DEF_FIXED("M0", R9A08G045_CLK_M0, CLK_PLL3_DIV2_4, 1, 1),
-+	DEF_G3S_DIV("P1", R9A08G045_CLK_P1, CLK_PLL3_DIV2_4, DIVPL3A, G3S_DIVPL3A_STS,
-+		    dtable_1_32, 0, 0, 0, NULL),
-+	DEF_FIXED("P1_DIV2", CLK_P1_DIV2, R9A08G045_CLK_P1, 1, 2),
-+	DEF_G3S_DIV("P2", R9A08G045_CLK_P2, CLK_PLL3_DIV2_8, DIVPL3B, G3S_DIVPL3B_STS,
-+		    dtable_1_32, 0, 0, 0, NULL),
-+	DEF_G3S_DIV("P3", R9A08G045_CLK_P3, CLK_PLL3_DIV2_4, DIVPL3C, G3S_DIVPL3C_STS,
-+		    dtable_1_32, 0, 0, 0, NULL),
-+	DEF_FIXED("P3_DIV2", CLK_P3_DIV2, R9A08G045_CLK_P3, 1, 2),
-+	DEF_FIXED("S0", R9A08G045_CLK_S0, CLK_SEL_PLL4, 1, 2),
-+	DEF_FIXED("OSC", R9A08G045_OSCCLK, CLK_EXTAL, 1, 1),
-+	DEF_FIXED("OSC2", R9A08G045_OSCCLK2, CLK_EXTAL, 1, 3),
-+};
-+
-+static const struct rzg2l_mod_clk r9a08g045_mod_clks[] = {
-+	DEF_MOD("gic_gicclk",		R9A08G045_GIC600_GICCLK, R9A08G045_CLK_P1, 0x514, 0),
-+	DEF_MOD("ia55_clk",		R9A08G045_IA55_CLK, R9A08G045_CLK_P1, 0x518, 1),
-+	DEF_MOD("dmac_aclk",		R9A08G045_DMAC_ACLK, R9A08G045_CLK_P3, 0x52c, 0),
-+	DEF_MOD("sdhi0_imclk",		R9A08G045_SDHI0_IMCLK, CLK_SD0_DIV4, 0x554, 0),
-+	DEF_MOD("sdhi0_imclk2",		R9A08G045_SDHI0_IMCLK2, CLK_SD0_DIV4, 0x554, 1),
-+	DEF_MOD("sdhi0_clk_hs",		R9A08G045_SDHI0_CLK_HS, R9A08G045_CLK_SD0, 0x554, 2),
-+	DEF_MOD("sdhi0_aclk",		R9A08G045_SDHI0_ACLK, R9A08G045_CLK_P1, 0x554, 3),
-+	DEF_MOD("scif0_clk_pck",	R9A08G045_SCIF0_CLK_PCK, R9A08G045_CLK_P0, 0x584, 0),
-+	DEF_MOD("gpio_hclk",		R9A08G045_GPIO_HCLK, R9A08G045_OSCCLK, 0x598, 0),
-+};
-+
-+static const struct rzg2l_reset r9a08g045_resets[] = {
-+	DEF_RST(R9A08G045_GIC600_GICRESET_N, 0x814, 0),
-+	DEF_RST(R9A08G045_GIC600_DBG_GICRESET_N, 0x814, 1),
-+	DEF_RST(R9A08G045_SDHI0_IXRST, 0x854, 0),
-+	DEF_RST(R9A08G045_SCIF0_RST_SYSTEM_N, 0x884, 0),
-+	DEF_RST(R9A08G045_GPIO_RSTN, 0x898, 0),
-+	DEF_RST(R9A08G045_GPIO_PORT_RESETN, 0x898, 1),
-+	DEF_RST(R9A08G045_GPIO_SPARE_RESETN, 0x898, 2),
-+};
-+
-+static const unsigned int r9a08g045_crit_mod_clks[] __initconst = {
-+	MOD_CLK_BASE + R9A08G045_GIC600_GICCLK,
-+	MOD_CLK_BASE + R9A08G045_IA55_CLK,
-+	MOD_CLK_BASE + R9A08G045_DMAC_ACLK,
-+};
-+
-+const struct rzg2l_cpg_info r9a08g045_cpg_info = {
-+	/* Core Clocks */
-+	.core_clks = r9a08g045_core_clks,
-+	.num_core_clks = ARRAY_SIZE(r9a08g045_core_clks),
-+	.last_dt_core_clk = LAST_DT_CORE_CLK,
-+	.num_total_core_clks = MOD_CLK_BASE,
-+
-+	/* Critical Module Clocks */
-+	.crit_mod_clks = r9a08g045_crit_mod_clks,
-+	.num_crit_mod_clks = ARRAY_SIZE(r9a08g045_crit_mod_clks),
-+
-+	/* Module Clocks */
-+	.mod_clks = r9a08g045_mod_clks,
-+	.num_mod_clks = ARRAY_SIZE(r9a08g045_mod_clks),
-+	.num_hw_mod_clks = R9A08G045_VBAT_BCLK + 1,
-+
-+	/* Resets */
-+	.resets = r9a08g045_resets,
-+	.num_resets = R9A08G045_VBAT_BRESETN + 1, /* Last reset ID + 1 */
-+
-+	.has_clk_mon_regs = true,
-+};
-diff --git a/drivers/clk/renesas/rzg2l-cpg.c b/drivers/clk/renesas/rzg2l-cpg.c
-index 49dc6c5c0b0c..d62f1bc1f60e 100644
---- a/drivers/clk/renesas/rzg2l-cpg.c
-+++ b/drivers/clk/renesas/rzg2l-cpg.c
-@@ -1706,6 +1706,12 @@ static const struct of_device_id rzg2l_cpg_match[] = {
- 		.data = &r9a07g054_cpg_info,
- 	},
- #endif
-+#ifdef CONFIG_CLK_R9A08G045
-+	{
-+		.compatible = "renesas,r9a08g045-cpg",
-+		.data = &r9a08g045_cpg_info,
-+	},
-+#endif
- #ifdef CONFIG_CLK_R9A09G011
- 	{
- 		.compatible = "renesas,r9a09g011-cpg",
-diff --git a/drivers/clk/renesas/rzg2l-cpg.h b/drivers/clk/renesas/rzg2l-cpg.h
-index 4755befaf38e..6e38c8fc888c 100644
---- a/drivers/clk/renesas/rzg2l-cpg.h
-+++ b/drivers/clk/renesas/rzg2l-cpg.h
-@@ -284,6 +284,7 @@ struct rzg2l_cpg_info {
- extern const struct rzg2l_cpg_info r9a07g043_cpg_info;
- extern const struct rzg2l_cpg_info r9a07g044_cpg_info;
- extern const struct rzg2l_cpg_info r9a07g054_cpg_info;
-+extern const struct rzg2l_cpg_info r9a08g045_cpg_info;
- extern const struct rzg2l_cpg_info r9a09g011_cpg_info;
- 
- int rzg2l_cpg_sd_clk_mux_notifier(struct notifier_block *nb, unsigned long event, void *data);
--- 
-2.39.2
-
+   Arnd
 
