@@ -1,300 +1,339 @@
-Return-Path: <devicetree+bounces-6517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53A697BBAAF
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 16:46:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FE047BBABC
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 16:48:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 107372822F8
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 14:46:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31CA71C20AAD
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 14:48:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84E7B200D1;
-	Fri,  6 Oct 2023 14:46:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B69FA262AD;
+	Fri,  6 Oct 2023 14:48:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KYTzsdMv"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="oZAe9P1E";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="gfUpGBl4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A9CC19458
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 14:46:53 +0000 (UTC)
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7E02CA
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 07:46:51 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4054f790190so21189445e9.2
-        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 07:46:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696603610; x=1697208410; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zMY6Oywu9+xD9eu/3FX3tlRBq0A2AjLLPkWOIrzo07w=;
-        b=KYTzsdMvCT7lTijZ0+RyL25Dd7z9DVlC+kJhgS4+Gl8G0DjQE+SyyME8NRFwi3DsnQ
-         5aI4zXdmqWc+aVM0s5EXbfYt9BRMfdEsmDT1Vkm3Z2EpeZCb4Gzwe3X17Vx5ISrFUdpY
-         JDzQG3jBG4zOidgrVzew4I473DDwutUc9MDBn0BmnjeH8GgvPdD+6Op7hGBxRVKCLXK/
-         IE5jzJrCBHaEtpTC+3dW9PJFNZQDAbKLH10/Wzq0hpDaCCUF/xLj4QnCAISEbuvM9En8
-         u5FPrCso1/bUqPVkj6t9AjIq7cH50zb9x2D2a2HJma8EsuHTk3FI440BKvEVBEWm2OYY
-         mhUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696603610; x=1697208410;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=zMY6Oywu9+xD9eu/3FX3tlRBq0A2AjLLPkWOIrzo07w=;
-        b=duzBaRMQqmQ/WtsGQhFfmVpJN8enH2j1WIyM9DBmFQjcsK6wHIff+AkGSXE85QDo7P
-         mjT6vpKqax+hwLmD4T0Dku4HcpsVIBOLjnnr976DMZxnmRDf4X8hYzCbwdhTsWRvBLQM
-         C1NQ6YolaJw0RAYi67mFPGu3Q8456WwmLW1MjBXgEBKVz5uwIjYnoTGsQJVll/N2GLPJ
-         KmXLNc85VpcIdCLI86m0Fz9Fi5HbHcrRP7PE5hTxZ8hZ2T9Q7Kh82yJFlibSqk51q2j7
-         UVK2DY/jXPPcZyIPPNwxFPldoZsGWFq1uuWjXZvBLT/CPw+uJ+QkwrWDYNz2O75nhGfJ
-         xfQQ==
-X-Gm-Message-State: AOJu0YydgsYSn/GYpbh+EDWShmAFSuAgKbXzgDzJe1jHJxQRVdnGGDPZ
-	2jnYo6BHMp6raXdlZYxBxvsiQA==
-X-Google-Smtp-Source: AGHT+IEs8p5YrMMkbRPAukUwPzYqqFBywIqnknUGZ1/mKgg5n7mfYi2FPs0LeWV2gUT14L7JIx8BSg==
-X-Received: by 2002:a05:600c:22d5:b0:406:52e4:cd23 with SMTP id 21-20020a05600c22d500b0040652e4cd23mr7724633wmg.0.1696603610039;
-        Fri, 06 Oct 2023 07:46:50 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:c8f7:4bc7:2e11:c133? ([2a01:e0a:982:cbb0:c8f7:4bc7:2e11:c133])
-        by smtp.gmail.com with ESMTPSA id m7-20020a7bce07000000b003fc16ee2864sm3896804wmc.48.2023.10.06.07.46.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Oct 2023 07:46:49 -0700 (PDT)
-Message-ID: <00bb552d-be6f-464f-9ca9-03a6d4ea26b7@linaro.org>
-Date: Fri, 6 Oct 2023 16:46:48 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DC5C20B15
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 14:48:18 +0000 (UTC)
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D2EFA6;
+	Fri,  6 Oct 2023 07:48:16 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailout.nyi.internal (Postfix) with ESMTP id 88F625C0227;
+	Fri,  6 Oct 2023 10:48:12 -0400 (EDT)
+Received: from imap50 ([10.202.2.100])
+  by compute5.internal (MEProxy); Fri, 06 Oct 2023 10:48:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:sender
+	:subject:subject:to:to; s=fm2; t=1696603692; x=1696690092; bh=4V
+	blRyotvtaEmuGZNgu/850TJH7a2cu9QgvqPV238h8=; b=oZAe9P1EB6qokdFhcr
+	q7tE3kHXokqn3ELOG5/NmYUllULo4EDJXwbAf4wIznJcqfDAlSZCaBbU6aLiE/8T
+	dj/GWDKdKYodg/4bZVVWfH6fY5cGIISOXdVDL6DBB1aFj7QDgi1ZocapWj84Kwo5
+	Pb8Ews2MbwPOJlMf0VZklP9yg3Xiuofzs/vaFL1k9rg8myMWh/e8bPeF6rghASJa
+	poKfM/WCCRdHJYXSLI2Lj1xF80EhjKrCSgOdTBQ9Zj9Kd0fk2L2m7BSQpKjWV1Vw
+	oV79d2sh1pDRkr2C/r+0u1TwHxjqtXdIJ4r53uZcXu37JRVpKIIsWdC2i42tmN2T
+	MdyQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:sender:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm2; t=1696603692; x=1696690092; bh=4VblRyotvtaEm
+	uGZNgu/850TJH7a2cu9QgvqPV238h8=; b=gfUpGBl4rKLaXY4o42RoM+S1fZ/VP
+	hB8UZM/7afg8gZg78RCR+7kgME3Zp4JypfnICLc8QXRfgdLQXSbYhhZe8yMD4ntG
+	EkRaZujeKXfzzRKkRItiIhKu2NEKmpQIieilOM+77BDWIgdAMfSMoXr7ENnGy5ug
+	dkhnhLEVbfPjlx6WWYbTSAjYez3CB83UM8Xmz5jRipbcYhkq1QgKlWHtE0jOQnyk
+	IFxUfLB2XU7JHZ5uQvhnn/4LKv8sUWIDXP5xiL2hL478f5GRKSMpujajdVsng8Yq
+	cRvuaOB79nrH1VRoGwWiTYEfWEfAesLC7oOwGvgSvdHbIFkhqamfSoqTw==
+X-ME-Sender: <xms:Kh4gZf6AoVsAH9KX8TnlnySp1kIUvlCw5-CrFNrwOm5EykNkZRKxRg>
+    <xme:Kh4gZU48xpOMbkTYo8UCnc7U1GVsYvlRMs6VrqRave0FxmDmOtbgPGhv8FCszla2X
+    RX42VZaCui57p5e3V8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrgeeigdejlecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
+    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
+    gvrhhnpeeliedvtefgudfffeekkedtvdellefffeeviedvudektdekudehvdfgkeefkedt
+    veenucffohhmrghinhepghhithdqshgtmhdrtghomhdpkhgvrhhnvghlrdhorhhgnecuve
+    hluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnhgusegr
+    rhhnuggsrdguvg
+X-ME-Proxy: <xmx:Kh4gZWcZ3jhXV02iU4h8C-oqwmQehrUAMhkBAIoeShO9e9NdlWGdXA>
+    <xmx:Kh4gZQLHOsNoW-Qv64eDUZgQA8YiCt3B6X0Nf5EEI7w4W8lYi4cdbw>
+    <xmx:Kh4gZTJM7lx4Z4WVjMcYZAo9o8BqTmyy151Kgv9jprbBezoZlEmVUg>
+    <xmx:LB4gZU55HvHgA7OIddAgjSQkTYFgYw823Wb79sDop0lzKPpaVc_PvQ>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 96C451700090; Fri,  6 Oct 2023 10:48:10 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-958-g1b1b911df8-fm-20230927.002-g1b1b911d
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v1] arm64: dts: amlogic: a1: support all i2c masters and
- their muxes
-Content-Language: en-US, fr
-To: Dmitry Rokosov <ddrokosov@salutedevices.com>, jbrunet@baylibre.com,
- mturquette@baylibre.com, khilman@baylibre.com,
- martin.blumenstingl@googlemail.com
-Cc: kernel@sberdevices.ru, rockosov@gmail.com,
- linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- George Stark <gnstark@salutedevices.com>
-References: <20231006114145.18718-1-ddrokosov@salutedevices.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20231006114145.18718-1-ddrokosov@salutedevices.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Message-Id: <86db0fe5-930d-4cbb-bd7d-03367da38951@app.fastmail.com>
+In-Reply-To: <202310050726.GDpZbMDO-lkp@intel.com>
+References: <20231004161038.2818327-11-gregory.clement@bootlin.com>
+ <202310050726.GDpZbMDO-lkp@intel.com>
+Date: Fri, 06 Oct 2023 16:47:50 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "kernel test robot" <lkp@intel.com>,
+ "Gregory Clement" <gregory.clement@bootlin.com>,
+ "Paul Burton" <paulburton@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ linux-mips@vger.kernel.org, "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzk@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev,
+ "Vladimir Kondratiev" <vladimir.kondratiev@intel.com>,
+ "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
+ "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
+ "Chanho Min" <chanho.min@lge.com>,
+ "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Russell King" <linux@armlinux.org.uk>
+Subject: Re: [PATCH 10/11] MIPS: generic: Add support for Mobileye EyeQ5
+Content-Type: text/plain
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 06/10/2023 13:41, Dmitry Rokosov wrote:
-> A1 SoC family has four i2c masters: i2c0 (I2CM_A), i2c1 (I2CM_B), i2c2
-> (I2CM_C) and i2c3 (I2CM_D).
-> 
-> Signed-off-by: George Stark <gnstark@salutedevices.com>
-> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> ---
->   arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 144 ++++++++++++++++++++++
->   1 file changed, 144 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> index 823714bcb7a0..f53000a5d0cc 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> @@ -126,6 +126,106 @@ gpio: bank@400 {
->   					gpio-ranges = <&periphs_pinctrl 0 0 62>;
->   				};
->   
-> +				i2c0_f11_pins: i2c0-f11 {
-> +					mux {
-> +						groups = "i2c0_sck_f11",
-> +							 "i2c0_sda_f12";
-> +						function = "i2c0";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <3000>;
-> +					};
-> +				};
-> +
-> +				i2c0_f9_pins: i2c0-f9 {
-> +					mux {
-> +						groups = "i2c0_sck_f9",
-> +							 "i2c0_sda_f10";
-> +						function = "i2c0";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <3000>;
-> +					};
-> +				};
-> +
-> +				i2c1_x_pins: i2c1-x {
-> +					mux {
-> +						groups = "i2c1_sck_x",
-> +							 "i2c1_sda_x";
-> +						function = "i2c1";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <3000>;
-> +					};
-> +				};
-> +
-> +				i2c1_a_pins: i2c1-a {
-> +					mux {
-> +						groups = "i2c1_sck_a",
-> +							 "i2c1_sda_a";
-> +						function = "i2c1";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <3000>;
-> +					};
-> +				};
-> +
-> +				i2c2_x0_pins: i2c2-x0 {
-> +					mux {
-> +						groups = "i2c2_sck_x0",
-> +							 "i2c2_sda_x1";
-> +						function = "i2c2";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <3000>;
-> +					};
-> +				};
-> +
-> +				i2c2_x15_pins: i2c2-x15 {
-> +					mux {
-> +						groups = "i2c2_sck_x15",
-> +							 "i2c2_sda_x16";
-> +						function = "i2c2";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <3000>;
-> +					};
-> +				};
-> +
-> +				i2c2_a4_pins: i2c2-a4 {
-> +					mux {
-> +						groups = "i2c2_sck_a4",
-> +							 "i2c2_sda_a5";
-> +						function = "i2c2";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <3000>;
-> +					};
-> +				};
-> +
-> +				i2c2_a8_pins: i2c2-a8 {
-> +					mux {
-> +						groups = "i2c2_sck_a8",
-> +							 "i2c2_sda_a9";
-> +						function = "i2c2";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <3000>;
-> +					};
-> +				};
-> +
-> +				i2c3_x_pins: i2c3-x {
-> +					mux {
-> +						groups = "i2c3_sck_x",
-> +							 "i2c3_sda_x";
-> +						function = "i2c3";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <3000>;
-> +					};
-> +				};
-> +
-> +				i2c3_f_pins: i2c3-f {
-> +					mux {
-> +						groups = "i2c3_sck_f",
-> +							 "i2c3_sda_f";
-> +						function = "i2c3";
-> +						bias-pull-up;
-> +						drive-strength-microamp = <3000>;
-> +					};
-> +				};
-> +
->   				uart_a_pins: uart-a {
->   					mux {
->   						groups = "uart_a_tx",
-> @@ -377,6 +477,17 @@ clkc_periphs: clock-controller@800 {
->   					      "hifi_pll", "xtal";
->   			};
->   
-> +			i2c0: i2c@1400 {
-> +				compatible = "amlogic,meson-axg-i2c";
-> +				status = "disabled";
-> +				reg = <0x0 0x1400 0x0 0x20>;
-> +				interrupts = <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				clocks = <&clkc_periphs CLKID_I2C_M_A>;
-> +				power-domains = <&pwrc PWRC_I2C_ID>;
-> +			};
-> +
->   			uart_AO: serial@1c00 {
->   				compatible = "amlogic,meson-a1-uart",
->   					     "amlogic,meson-ao-uart";
-> @@ -437,6 +548,39 @@ saradc: adc@2c00 {
->   				status = "disabled";
->   			};
->   
-> +			i2c1: i2c@5c00 {
-> +				compatible = "amlogic,meson-axg-i2c";
-> +				status = "disabled";
-> +				reg = <0x0 0x5c00 0x0 0x20>;
-> +				interrupts = <GIC_SPI 68 IRQ_TYPE_EDGE_RISING>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				clocks = <&clkc_periphs CLKID_I2C_M_B>;
-> +				power-domains = <&pwrc PWRC_I2C_ID>;
-> +			};
-> +
-> +			i2c2: i2c@6800 {
-> +				compatible = "amlogic,meson-axg-i2c";
-> +				status = "disabled";
-> +				reg = <0x0 0x6800 0x0 0x20>;
-> +				interrupts = <GIC_SPI 76 IRQ_TYPE_EDGE_RISING>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				clocks = <&clkc_periphs CLKID_I2C_M_C>;
-> +				power-domains = <&pwrc PWRC_I2C_ID>;
-> +			};
-> +
-> +			i2c3: i2c@6c00 {
-> +				compatible = "amlogic,meson-axg-i2c";
-> +				status = "disabled";
-> +				reg = <0x0 0x6c00 0x0 0x20>;
-> +				interrupts = <GIC_SPI 78 IRQ_TYPE_EDGE_RISING>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				clocks = <&clkc_periphs CLKID_I2C_M_D>;
-> +				power-domains = <&pwrc PWRC_I2C_ID>;
-> +			};
-> +
->   			usb2_phy1: phy@4000 {
->   				compatible = "amlogic,a1-usb2-phy";
->   				clocks = <&clkc_periphs CLKID_USB_PHY_IN>;
+On Thu, Oct 5, 2023, at 02:08, kernel test robot wrote:
+> Hi Gregory,
+>
+> kernel test robot noticed the following build errors:
+>
+> [auto build test ERROR on robh/for-next]
+> [also build test ERROR on lee-mfd/for-mfd-next linus/master v6.6-rc4 
+> next-20231004]
+> [cannot apply to lee-mfd/for-mfd-fixes]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+> If you fix the issue in a separate patch/commit (i.e. not just a new 
+> version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: 
+> https://lore.kernel.org/oe-kbuild-all/202310050726.GDpZbMDO-lkp@intel.com/
+>
+> All error/warnings (new ones prefixed by >>):
+>
+>    drivers/tty/serial/amba-pl011.c: In function 'pl011_sgbuf_init':
+>>> drivers/tty/serial/amba-pl011.c:380:30: error: implicit declaration of function 'phys_to_page'; did you mean 'pfn_to_page'? [-Werror=implicit-function-declaration]
+>      380 |         sg_set_page(&sg->sg, phys_to_page(dma_addr),
+>          |                              ^~~~~~~~~~~~
+>          |                              pfn_to_page
+
+I discussed this with Gregory on IRC, and prototyped a
+possible fix. The issue was caused by the use of coherent memory
+for the buffer and passing that into a scatterlist structure.
+
+Since there is no guarantee that the memory returned by
+dma_alloc_coherent() is associated with a 'struct page', using
+the architecture specific phys_to_page() is wrong, but using
+virt_to_page() would be as well.
+
+An easy workaround is to stop using sg lists altogether and
+just use the *_single() functions instead. This also simplifies
+the code a bit since the scatterlists in this driver always have
+only one entry anyway.
+
+Fixes: cb06ff102e2d7 ("ARM: PL011: Add support for Rx DMA buffer polling.")
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+
+diff --git a/drivers/tty/serial/amba-pl011.c b/drivers/tty/serial/amba-pl011.c
+index 0667e045ccb31..a3d92a91ff17d 100644
+--- a/drivers/tty/serial/amba-pl011.c
++++ b/drivers/tty/serial/amba-pl011.c
+@@ -219,8 +219,9 @@ static struct vendor_data vendor_st = {
+ /* Deals with DMA transactions */
+ 
+ struct pl011_sgbuf {
+-	struct scatterlist sg;
+-	char *buf;
++	dma_addr_t		dma;
++	size_t			len;
++	char			*buf;
+ };
+ 
+ struct pl011_dmarx_data {
+@@ -241,7 +242,8 @@ struct pl011_dmarx_data {
+ 
+ struct pl011_dmatx_data {
+ 	struct dma_chan		*chan;
+-	struct scatterlist	sg;
++	dma_addr_t		dma;
++	size_t			len;
+ 	char			*buf;
+ 	bool			queued;
+ };
+@@ -369,18 +371,11 @@ static int pl011_fifo_to_tty(struct uart_amba_port *uap)
+ static int pl011_sgbuf_init(struct dma_chan *chan, struct pl011_sgbuf *sg,
+ 	enum dma_data_direction dir)
+ {
+-	dma_addr_t dma_addr;
+-
+-	sg->buf = dma_alloc_coherent(chan->device->dev,
+-		PL011_DMA_BUFFER_SIZE, &dma_addr, GFP_KERNEL);
++	sg->buf = dma_alloc_coherent(chan->device->dev, PL011_DMA_BUFFER_SIZE,
++				     &sg->dma, GFP_KERNEL);
+ 	if (!sg->buf)
+ 		return -ENOMEM;
+-
+-	sg_init_table(&sg->sg, 1);
+-	sg_set_page(&sg->sg, phys_to_page(dma_addr),
+-		PL011_DMA_BUFFER_SIZE, offset_in_page(dma_addr));
+-	sg_dma_address(&sg->sg) = dma_addr;
+-	sg_dma_len(&sg->sg) = PL011_DMA_BUFFER_SIZE;
++	sg->len = PL011_DMA_BUFFER_SIZE;
+ 
+ 	return 0;
+ }
+@@ -390,8 +385,7 @@ static void pl011_sgbuf_free(struct dma_chan *chan, struct pl011_sgbuf *sg,
+ {
+ 	if (sg->buf) {
+ 		dma_free_coherent(chan->device->dev,
+-			PL011_DMA_BUFFER_SIZE, sg->buf,
+-			sg_dma_address(&sg->sg));
++				  PL011_DMA_BUFFER_SIZE, sg->buf, sg->dma);
+ 	}
+ }
+ 
+@@ -552,8 +546,8 @@ static void pl011_dma_tx_callback(void *data)
+ 
+ 	uart_port_lock_irqsave(&uap->port, &flags);
+ 	if (uap->dmatx.queued)
+-		dma_unmap_sg(dmatx->chan->device->dev, &dmatx->sg, 1,
+-			     DMA_TO_DEVICE);
++		dma_unmap_single(dmatx->chan->device->dev, dmatx->dma,
++				dmatx->len, DMA_TO_DEVICE);
+ 
+ 	dmacr = uap->dmacr;
+ 	uap->dmacr = dmacr & ~UART011_TXDMAE;
+@@ -639,18 +633,19 @@ static int pl011_dma_tx_refill(struct uart_amba_port *uap)
+ 			memcpy(&dmatx->buf[first], &xmit->buf[0], second);
+ 	}
+ 
+-	dmatx->sg.length = count;
+-
+-	if (dma_map_sg(dma_dev->dev, &dmatx->sg, 1, DMA_TO_DEVICE) != 1) {
++	dmatx->len = count;
++	dmatx->dma = dma_map_single(dma_dev->dev, dmatx->buf, count,
++				    DMA_TO_DEVICE);
++	if (dmatx->dma == DMA_MAPPING_ERROR) {
+ 		uap->dmatx.queued = false;
+ 		dev_dbg(uap->port.dev, "unable to map TX DMA\n");
+ 		return -EBUSY;
+ 	}
+ 
+-	desc = dmaengine_prep_slave_sg(chan, &dmatx->sg, 1, DMA_MEM_TO_DEV,
++	desc = dmaengine_prep_slave_single(chan, dmatx->dma, dmatx->len, DMA_MEM_TO_DEV,
+ 					     DMA_PREP_INTERRUPT | DMA_CTRL_ACK);
+ 	if (!desc) {
+-		dma_unmap_sg(dma_dev->dev, &dmatx->sg, 1, DMA_TO_DEVICE);
++		dma_unmap_single(dma_dev->dev, dmatx->dma, dmatx->len, DMA_TO_DEVICE);
+ 		uap->dmatx.queued = false;
+ 		/*
+ 		 * If DMA cannot be used right now, we complete this
+@@ -813,8 +808,8 @@ __acquires(&uap->port.lock)
+ 	dmaengine_terminate_async(uap->dmatx.chan);
+ 
+ 	if (uap->dmatx.queued) {
+-		dma_unmap_sg(uap->dmatx.chan->device->dev, &uap->dmatx.sg, 1,
+-			     DMA_TO_DEVICE);
++		dma_unmap_single(uap->dmatx.chan->device->dev, uap->dmatx.dma,
++				 uap->dmatx.len, DMA_TO_DEVICE);
+ 		uap->dmatx.queued = false;
+ 		uap->dmacr &= ~UART011_TXDMAE;
+ 		pl011_write(uap->dmacr, uap, REG_DMACR);
+@@ -836,7 +831,7 @@ static int pl011_dma_rx_trigger_dma(struct uart_amba_port *uap)
+ 	/* Start the RX DMA job */
+ 	sgbuf = uap->dmarx.use_buf_b ?
+ 		&uap->dmarx.sgbuf_b : &uap->dmarx.sgbuf_a;
+-	desc = dmaengine_prep_slave_sg(rxchan, &sgbuf->sg, 1,
++	desc = dmaengine_prep_slave_single(rxchan, sgbuf->dma, sgbuf->len,
+ 					DMA_DEV_TO_MEM,
+ 					DMA_PREP_INTERRUPT | DMA_CTRL_ACK);
+ 	/*
+@@ -886,7 +881,7 @@ static void pl011_dma_rx_chars(struct uart_amba_port *uap,
+ 
+ 	if (uap->dmarx.poll_rate) {
+ 		/* The data can be taken by polling */
+-		dmataken = sgbuf->sg.length - dmarx->last_residue;
++		dmataken = sgbuf->len - dmarx->last_residue;
+ 		/* Recalculate the pending size */
+ 		if (pending >= dmataken)
+ 			pending -= dmataken;
+@@ -911,7 +906,7 @@ static void pl011_dma_rx_chars(struct uart_amba_port *uap,
+ 
+ 	/* Reset the last_residue for Rx DMA poll */
+ 	if (uap->dmarx.poll_rate)
+-		dmarx->last_residue = sgbuf->sg.length;
++		dmarx->last_residue = sgbuf->len;
+ 
+ 	/*
+ 	 * Only continue with trying to read the FIFO if all DMA chars have
+@@ -969,7 +964,7 @@ static void pl011_dma_rx_irq(struct uart_amba_port *uap)
+ 	pl011_write(uap->dmacr, uap, REG_DMACR);
+ 	uap->dmarx.running = false;
+ 
+-	pending = sgbuf->sg.length - state.residue;
++	pending = sgbuf->len - state.residue;
+ 	BUG_ON(pending > PL011_DMA_BUFFER_SIZE);
+ 	/* Then we terminate the transfer - we now know our residue */
+ 	dmaengine_terminate_all(rxchan);
+@@ -1015,7 +1010,7 @@ static void pl011_dma_rx_callback(void *data)
+ 	 * the DMA irq handler. So we check the residue here.
+ 	 */
+ 	rxchan->device->device_tx_status(rxchan, dmarx->cookie, &state);
+-	pending = sgbuf->sg.length - state.residue;
++	pending = sgbuf->len - state.residue;
+ 	BUG_ON(pending > PL011_DMA_BUFFER_SIZE);
+ 	/* Then we terminate the transfer - we now know our residue */
+ 	dmaengine_terminate_all(rxchan);
+@@ -1074,7 +1069,7 @@ static void pl011_dma_rx_poll(struct timer_list *t)
+ 	sgbuf = dmarx->use_buf_b ? &uap->dmarx.sgbuf_b : &uap->dmarx.sgbuf_a;
+ 	rxchan->device->device_tx_status(rxchan, dmarx->cookie, &state);
+ 	if (likely(state.residue < dmarx->last_residue)) {
+-		dmataken = sgbuf->sg.length - dmarx->last_residue;
++		dmataken = sgbuf->len - dmarx->last_residue;
+ 		size = dmarx->last_residue - state.residue;
+ 		dma_count = tty_insert_flip_string(port, sgbuf->buf + dmataken,
+ 				size);
+@@ -1123,7 +1118,7 @@ static void pl011_dma_startup(struct uart_amba_port *uap)
+ 		return;
+ 	}
+ 
+-	sg_init_one(&uap->dmatx.sg, uap->dmatx.buf, PL011_DMA_BUFFER_SIZE);
++	uap->dmatx.len = PL011_DMA_BUFFER_SIZE;
+ 
+ 	/* The DMA buffer is now the FIFO the TTY subsystem can use */
+ 	uap->port.fifosize = PL011_DMA_BUFFER_SIZE;
+@@ -1200,8 +1195,9 @@ static void pl011_dma_shutdown(struct uart_amba_port *uap)
+ 		/* In theory, this should already be done by pl011_dma_flush_buffer */
+ 		dmaengine_terminate_all(uap->dmatx.chan);
+ 		if (uap->dmatx.queued) {
+-			dma_unmap_sg(uap->dmatx.chan->device->dev, &uap->dmatx.sg, 1,
+-				     DMA_TO_DEVICE);
++			dma_unmap_single(uap->dmatx.chan->device->dev,
++					 uap->dmatx.dma, uap->dmatx.len,
++					 DMA_TO_DEVICE);
+ 			uap->dmatx.queued = false;
+ 		}
+ 
 
