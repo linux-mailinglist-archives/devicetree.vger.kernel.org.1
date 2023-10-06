@@ -1,202 +1,218 @@
-Return-Path: <devicetree+bounces-6578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77F437BBD97
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 19:21:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC88A7BBDD7
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 19:33:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A38691C2085B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 17:21:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B4951C209F8
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 17:33:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4E402E624;
-	Fri,  6 Oct 2023 17:21:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1299D31A98;
+	Fri,  6 Oct 2023 17:33:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JcjrsC2d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JLgw/UkC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 977A22AB3B
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 17:21:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01861C433C7;
-	Fri,  6 Oct 2023 17:21:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E11ED31A6F;
+	Fri,  6 Oct 2023 17:33:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EC23C433C9;
+	Fri,  6 Oct 2023 17:33:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696612913;
-	bh=I9kMV6YHHWl7kEzLyCCZBt1jRmjIHEwtjspZslV57tE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JcjrsC2dHORytaoLa4PuqRfJkkPcEDYbk5hMKa8qvFKPlZsALYXEa+d+vqkda2pwE
-	 LPe8PoyenxpLGZrRRkNtZS1jwXwUpYqVf3cWuwJIEZsrsC26QwK06yDT52R8LO9RKZ
-	 iFN2VHL4Dy/qdcGbLukJSa7OQq3MG3LCyI55mAj25Cr5+zRIMBIJ8lgELKiEEkGgNL
-	 4Cd6CJU4AdMWEcvuJk1PGE0RoV+VaC+ZtykGLAP7+MD3gwPJOoLkNGvAAqVat6DSU4
-	 Ou2S8Sf7o9oDF9aKW+axRBvoJnDZI5f4avR3RlN+YpULsvkGSB2rqutYX4xP+BCwRP
-	 xSJ44589zhzfQ==
-Message-ID: <6c66fa8b-9810-ceee-37cf-1881ab1ffb77@kernel.org>
-Date: Sat, 7 Oct 2023 02:21:48 +0900
+	s=k20201202; t=1696613613;
+	bh=4IY5wvH6Tu8PjK8sB+KMGi/o7CRamiSkVLdDByB8yd8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=JLgw/UkCyfmsvFHkORbsNApmlFxfQIWwAspg7Fgtj7uPVIWdvAhtw04GGiTbDYQgU
+	 1NcRUUKEdX98ooHi0UShUy8PN3FdMPPaykMmKqJK+nG7EdgTbceY7vSGy9qCM1QQvi
+	 RkkVLS9B7Kv445176PYUUham34401aZOlX6CwIKbjTM1DmC8nNUKjLfabxIW1VcsMF
+	 id2cn/dFAO1AG1GG+6/5eS2voYp3c+sXJEDLrfjeWZvg42g2KtTaAdrhU8+EOIOswF
+	 uvVTpmOpUNHgJrjWPfo/NvPCdZb55r9VdDBIIOpd8W4TUMwcV4GxQxdf92GByJiWNL
+	 CsSL1voPt3ONQ==
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5044dd5b561so2928579e87.1;
+        Fri, 06 Oct 2023 10:33:33 -0700 (PDT)
+X-Gm-Message-State: AOJu0YyWyIlen5VyOrw6TrBzNXgv4ZDiAm3PF1iwGmb1vJSFasUWWHU8
+	GBNm6QwZFY/pfEgS1FuTTAr5ZOY6CmTXMFyy/u0=
+X-Google-Smtp-Source: AGHT+IG2WFsPGJcnl4fQlvIDX23yxE4FYGH11uyJoLwu4bJYLZExy/cAZV6tzSxf3TqK4KzjOHM+0kg+tpgnDaQV7yU=
+X-Received: by 2002:a19:c217:0:b0:504:7e12:4846 with SMTP id
+ l23-20020a19c217000000b005047e124846mr7273243lfc.30.1696613611592; Fri, 06
+ Oct 2023 10:33:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v7 06/26] PM / devfreq: rockchip-dfi: Use free running
- counter
-Content-Language: en-US
-To: Sascha Hauer <s.hauer@pengutronix.de>, linux-rockchip@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- MyungJoo Ham <myungjoo.ham@samsung.com>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
- Michael Riesch <michael.riesch@wolfvision.net>,
- Robin Murphy <robin.murphy@arm.com>,
- Vincent Legoll <vincent.legoll@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- Sebastian Reichel <sebastian.reichel@collabora.com>
-References: <20230704093242.583575-1-s.hauer@pengutronix.de>
- <20230704093242.583575-7-s.hauer@pengutronix.de>
-From: Chanwoo Choi <chanwoo@kernel.org>
-In-Reply-To: <20230704093242.583575-7-s.hauer@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20230926194242.2732127-1-sjg@chromium.org> <20230926194242.2732127-2-sjg@chromium.org>
+ <CAPnjgZ0Xf3U1aj32LbU-xiU1AqwnM3JL1F8xX-wZ18oEmg+irw@mail.gmail.com>
+In-Reply-To: <CAPnjgZ0Xf3U1aj32LbU-xiU1AqwnM3JL1F8xX-wZ18oEmg+irw@mail.gmail.com>
+From: Ard Biesheuvel <ardb@kernel.org>
+Date: Fri, 6 Oct 2023 19:33:20 +0200
+X-Gmail-Original-Message-ID: <CAMj1kXEXcX7BkDyfy-6_5Vnch=N+onza-yfWfsVaGLE93h2c+Q@mail.gmail.com>
+Message-ID: <CAMj1kXEXcX7BkDyfy-6_5Vnch=N+onza-yfWfsVaGLE93h2c+Q@mail.gmail.com>
+Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory usages
+To: Simon Glass <sjg@chromium.org>
+Cc: devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>, 
+	Rob Herring <robh@kernel.org>, Lean Sheng Tan <sheng.tan@9elements.com>, 
+	lkml <linux-kernel@vger.kernel.org>, Dhaval Sharma <dhaval@rivosinc.com>, 
+	Maximilian Brune <maximilian.brune@9elements.com>, Yunhui Cui <cuiyunhui@bytedance.com>, 
+	Guo Dong <guo.dong@intel.com>, Tom Rini <trini@konsulko.com>, 
+	ron minnich <rminnich@gmail.com>, Gua Guo <gua.guo@intel.com>, 
+	Chiu Chasel <chasel.chiu@intel.com>, linux-acpi@vger.kernel.org, 
+	U-Boot Mailing List <u-boot@lists.denx.de>
+Content-Type: text/plain; charset="UTF-8"
 
-On 23. 7. 4. 18:32, Sascha Hauer wrote:
-> The DDR_MON counters are free running counters. These are resetted to 0
-> when starting them over like currently done when reading the current
-> counter values.
-> 
-> Resetting the counters becomes a problem with perf support we want to
-> add later, because perf needs counters that are not modified elsewhere.
-> 
-> This patch removes resetting the counters and keeps them running
-> instead. That means we no longer use the absolute counter values but
-> instead compare them with the counter values we read last time. Not
-> stopping the counters also has the impact that they are running while
-> we are reading them. We cannot read multiple timers atomically, so
-> the values do not exactly fit together. The effect should be negligible
-> though as the time between two measurements is some orders of magnitude
-> bigger than the time we need to read multiple registers.
-> 
-> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
-> 
-> Notes:
->     Changes since v4:
->     - rephrase commit message
->     - Drop unused variable
-> 
->  drivers/devfreq/event/rockchip-dfi.c | 52 ++++++++++++++++------------
->  1 file changed, 30 insertions(+), 22 deletions(-)
-> 
-> diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
-> index 680f629da64fc..126bb744645b6 100644
-> --- a/drivers/devfreq/event/rockchip-dfi.c
-> +++ b/drivers/devfreq/event/rockchip-dfi.c
-> @@ -38,11 +38,15 @@
->  #define DDRMON_CH1_COUNT_NUM		0x3c
->  #define DDRMON_CH1_DFI_ACCESS_NUM	0x40
->  
-> -struct dmc_usage {
-> +struct dmc_count_channel {
->  	u32 access;
->  	u32 total;
->  };
->  
-> +struct dmc_count {
-> +	struct dmc_count_channel c[RK3399_DMC_NUM_CH];
-> +};
-> +
->  /*
->   * The dfi controller can monitor DDR load. It has an upper and lower threshold
->   * for the operating points. Whenever the usage leaves these bounds an event is
-> @@ -51,7 +55,7 @@ struct dmc_usage {
->  struct rockchip_dfi {
->  	struct devfreq_event_dev *edev;
->  	struct devfreq_event_desc desc;
-> -	struct dmc_usage ch_usage[RK3399_DMC_NUM_CH];
-> +	struct dmc_count last_event_count;
->  	struct device *dev;
->  	void __iomem *regs;
->  	struct regmap *regmap_pmu;
-> @@ -85,30 +89,18 @@ static void rockchip_dfi_stop_hardware_counter(struct devfreq_event_dev *edev)
->  	writel_relaxed(SOFTWARE_DIS, dfi_regs + DDRMON_CTRL);
->  }
->  
-> -static int rockchip_dfi_get_busier_ch(struct devfreq_event_dev *edev)
-> +static void rockchip_dfi_read_counters(struct devfreq_event_dev *edev, struct dmc_count *count)
->  {
->  	struct rockchip_dfi *dfi = devfreq_event_get_drvdata(edev);
-> -	u32 tmp, max = 0;
-> -	u32 i, busier_ch = 0;
-> +	u32 i;
->  	void __iomem *dfi_regs = dfi->regs;
->  
-> -	rockchip_dfi_stop_hardware_counter(edev);
-> -
-> -	/* Find out which channel is busier */
->  	for (i = 0; i < RK3399_DMC_NUM_CH; i++) {
-> -		dfi->ch_usage[i].access = readl_relaxed(dfi_regs +
-> +		count->c[i].access = readl_relaxed(dfi_regs +
->  				DDRMON_CH0_DFI_ACCESS_NUM + i * 20);
-> -		dfi->ch_usage[i].total = readl_relaxed(dfi_regs +
-> +		count->c[i].total = readl_relaxed(dfi_regs +
->  				DDRMON_CH0_COUNT_NUM + i * 20);
-> -		tmp = dfi->ch_usage[i].access;
-> -		if (tmp > max) {
-> -			busier_ch = i;
-> -			max = tmp;
-> -		}
->  	}
-> -	rockchip_dfi_start_hardware_counter(edev);
-> -
-> -	return busier_ch;
->  }
->  
->  static int rockchip_dfi_disable(struct devfreq_event_dev *edev)
-> @@ -145,12 +137,28 @@ static int rockchip_dfi_get_event(struct devfreq_event_dev *edev,
->  				  struct devfreq_event_data *edata)
->  {
->  	struct rockchip_dfi *dfi = devfreq_event_get_drvdata(edev);
-> -	int busier_ch;
-> +	struct dmc_count count;
-> +	struct dmc_count *last = &dfi->last_event_count;
-> +	u32 access = 0, total = 0;
-> +	int i;
-> +
-> +	rockchip_dfi_read_counters(edev, &count);
-> +
-> +	/* We can only report one channel, so find the busiest one */
-> +	for (i = 0; i < RK3399_DMC_NUM_CH; i++) {
-> +		u32 a = count.c[i].access - last->c[i].access;
-> +		u32 t = count.c[i].total - last->c[i].total;
-> +
-> +		if (a > access) {
-> +			access = a;
-> +			total = t;
-> +		}
-> +	}
->  
-> -	busier_ch = rockchip_dfi_get_busier_ch(edev);
-> +	edata->load_count = access * 4;
-> +	edata->total_count = total;
->  
-> -	edata->load_count = dfi->ch_usage[busier_ch].access * 4;
-> -	edata->total_count = dfi->ch_usage[busier_ch].total;
-> +	dfi->last_event_count = count;
->  
->  	return 0;
->  }
+On Mon, 2 Oct 2023 at 19:54, Simon Glass <sjg@chromium.org> wrote:
+>
+> Hi Rob,
+>
+> On Tue, 26 Sept 2023 at 13:42, Simon Glass <sjg@chromium.org> wrote:
+> >
+> > It is common to split firmware into 'Platform Init', which does the
+> > initial hardware setup and a "Payload" which selects the OS to be booted.
+> > Thus an handover interface is required between these two pieces.
+> >
+> > Where UEFI boot-time services are not available, but UEFI firmware is
+> > present on either side of this interface, information about memory usage
+> > and attributes must be presented to the "Payload" in some form.
+> >
+> > This aims to provide an small schema addition for the memory mapping
+> > needed to keep these two pieces working together well.
+> >
+> > Signed-off-by: Simon Glass <sjg@chromium.org>
+> > ---
+> >
+> > Changes in v7:
+> > - Rename acpi-reclaim to acpi
+> > - Drop individual mention of when memory can be reclaimed
+> > - Rewrite the item descriptions
+> > - Add back the UEFI text (with trepidation)
+>
+> I am again checking on this series. Can it be applied, please?
+>
 
-Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+Apologies for the delay in response. I have been away.
 
--- 
-Best Regards,
-Samsung Electronics
-Chanwoo Choi
+>
+> >
+> > Changes in v6:
+> > - Drop mention of UEFI
+> > - Use compatible strings instead of node names
+> >
+> > Changes in v5:
+> > - Drop the memory-map node (should have done that in v4)
+> > - Tidy up schema a bit
+> >
+> > Changes in v4:
+> > - Make use of the reserved-memory node instead of creating a new one
+> >
+> > Changes in v3:
+> > - Reword commit message again
+> > - cc a lot more people, from the FFI patch
+> > - Split out the attributes into the /memory nodes
+> >
+> > Changes in v2:
+> > - Reword commit message
+> >
+> >  .../reserved-memory/common-reserved.yaml      | 71 +++++++++++++++++++
+> >  1 file changed, 71 insertions(+)
+> >  create mode 100644 dtschema/schemas/reserved-memory/common-reserved.yaml
+> >
+> > diff --git a/dtschema/schemas/reserved-memory/common-reserved.yaml b/dtschema/schemas/reserved-memory/common-reserved.yaml
+> > new file mode 100644
+> > index 0000000..f7fbdfd
+> > --- /dev/null
+> > +++ b/dtschema/schemas/reserved-memory/common-reserved.yaml
+> > @@ -0,0 +1,71 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/reserved-memory/common-reserved.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Common memory reservations
+> > +
+> > +description: |
+> > +  Specifies that the reserved memory region can be used for the purpose
+> > +  indicated by its compatible string.
+> > +
+> > +  Clients may reuse this reserved memory if they understand what it is for,
+> > +  subject to the notes below.
+> > +
+> > +maintainers:
+> > +  - Simon Glass <sjg@chromium.org>
+> > +
+> > +allOf:
+> > +  - $ref: reserved-memory.yaml
+> > +
+> > +properties:
+> > +  compatible:
+> > +    description: |
+> > +      This describes some common memory reservations, with the compatible
+> > +      string indicating what it is used for:
+> > +
+> > +         acpi: Advanced Configuration and Power Interface (ACPI) tables
+> > +         acpi-nvs: ACPI Non-Volatile-Sleeping Memory (NVS). This is reserved by
+> > +           the firmware for its use and is required to be saved and restored
+> > +           across an NVS sleep
+> > +         boot-code: Contains code used for booting which is not needed by the OS
+> > +         boot-code: Contains data used for booting which is not needed by the OS
+> > +         runtime-code: Contains code used for interacting with the system when
+> > +           running the OS
+> > +         runtime-data: Contains data used for interacting with the system when
+> > +           running the OS
+> > +
+> > +    enum:
+> > +      - acpi
+> > +      - acpi-nvs
+> > +      - boot-code
+> > +      - boot-data
+> > +      - runtime-code
+> > +      - runtime-data
+> > +
 
+As I mentioned a few times already, I don't think these compatibles
+should be introduced here.
+
+A reserved region has a specific purpose, and the compatible should be
+more descriptive than the enum above. If the consumer does not
+understand this purpose, it should simply treat the memory as reserved
+and not touch it. Alternatively, these regions can be referenced from
+other DT nodes using phandles if needed.
+
+
+> > +  reg:
+> > +    description: region of memory that is reserved for the purpose indicated
+> > +      by the compatible string.
+> > +
+> > +required:
+> > +  - reg
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    reserved-memory {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <1>;
+> > +
+> > +        reserved@12340000 {
+> > +            compatible = "boot-code";
+> > +            reg = <0x12340000 0x00800000>;
+> > +        };
+> > +
+> > +        reserved@43210000 {
+> > +            compatible = "boot-data";
+> > +            reg = <0x43210000 0x00800000>;
+> > +        };
+> > +    };
+> > --
+> > 2.42.0.515.g380fc7ccd1-goog
+> >
+>
+> Regards,
+> Simon
 
