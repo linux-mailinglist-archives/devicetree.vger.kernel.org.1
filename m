@@ -1,267 +1,135 @@
-Return-Path: <devicetree+bounces-6623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50CCA7BC2B3
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 01:00:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A3387BC2E3
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 01:22:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 740BB1C2094D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 23:00:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 112FD281F48
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 23:22:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FC5745F54;
-	Fri,  6 Oct 2023 23:00:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F03A45F77;
+	Fri,  6 Oct 2023 23:21:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k5/VSAnW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VJlfwBt6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 336E3405CC;
-	Fri,  6 Oct 2023 23:00:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC67DC43395;
-	Fri,  6 Oct 2023 23:00:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696633210;
-	bh=k8j0XLQXjQQJNDui+0jlFZl+AAfuXhuCpn9vIwWl/cE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=k5/VSAnWHKDBM+aIaW9QONktl0tgBQMkfEMqxBot4G6+wPYt1Z4J99Em95YUTDseY
-	 jGYDjY/mNJfz3h6IDzruMe+TCkQuBvsV+78ssBXvhZDthyjlPQaQJC4AanULx4jJsm
-	 udEBGn5mwgluyt40Cb0H4b9Rt4EoHlwr/4tKhZJkwAG5M6AooiUM+qPWQNcq/S02L0
-	 uXRCHgIoYf95seef8oUkwVjkIy8c3hxlqxiu5kjtgdkWQ1JPziVj7jT/CkmoWqv7dB
-	 MpKq3AWdGdLHCySq4EF227rhl/LTJuItrLWjF986UZOQrfH6sQpospQwPwBkhWTC0/
-	 ohcKg3tNSgdvg==
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-50567477b29so3403234e87.3;
-        Fri, 06 Oct 2023 16:00:10 -0700 (PDT)
-X-Gm-Message-State: AOJu0YwLlFCsgFLgCJ0fV+PBHkvECAuehejBgdT5oHVklyGQScRjd3+F
-	6mLcB3EVHZhoXbEzvgqos0W2APpysc9qvqRPCTU=
-X-Google-Smtp-Source: AGHT+IGUwIsnV63UDRYG6J0ZqF0iXQaqHVFbYxtJQSuymsUOMmUxtPl2e5FaMeYVFq286z0ldqJng0iURsW6bIABAWg=
-X-Received: by 2002:a05:6512:68a:b0:502:d743:9fc4 with SMTP id
- t10-20020a056512068a00b00502d7439fc4mr9541254lfe.37.1696633208839; Fri, 06
- Oct 2023 16:00:08 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD48444487
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 23:21:57 +0000 (UTC)
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E24B9B6
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 16:21:53 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2c00e1d4c08so33101601fa.3
+        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 16:21:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1696634512; x=1697239312; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Y2hTgynvyU8HD1veXrLbrqbx40e596jXkVNUJT4I/tk=;
+        b=VJlfwBt6d7x9HD2eclYA3JZzQfK9R04HJQZKIe1d8wFEZqHIUypU2/4ZokqttIJL7p
+         LtkLk1fLiutbZcdk9BC2PL1OytXoXSAh/zeQVtPIf2AArAXUsxC0B6x2LtHYIpvBzUsV
+         3SKT1xxuScwseUNzkNNBM/gg3f/O1vbE7t3GwHQC4nhIH4E+6oXN43YqMuaGXCzKQJHk
+         z5MNZ64HtOtrIyEjh7S1ZEkbyvXcOnAFZT5jpSR4brKf5GT/07igFipLlF564wEwTvaE
+         rwKYYkkW3gjtXkGBows84g+6sd76N2zYrmRhdjmNzRvxT8Zu40wf6DNVp0+QDl9Ov2Yw
+         YKoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696634512; x=1697239312;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y2hTgynvyU8HD1veXrLbrqbx40e596jXkVNUJT4I/tk=;
+        b=Ltf6z/MuuNPpBuIzU4tZmse3b96EhpbgdRypI5MsyPpGvlRVACZSai/+IAOdNx/5lO
+         SfqOwGakZB/Ou6Qd9jokpWm/LuPgAtYDpYq7yO/1TQrcHi1uNljiUgtlpj9kUyyvjvdg
+         IuC4/idwd/OZOivr+m9BWcsm7UQCOxdT1Lur0sOVI0yFAo7slflQtHwOJjy8bd8o5VXJ
+         v3xabFx+NmJ+I5hIt3IPqdT490t0zUGBIJ8uc4hL85JAeFIH6xli/n9R8kKSxwvpm2or
+         7AMSJv7ihlGUXhgbi93msvBEwlnHwAxXhSlw+b/WAkqwOm2JCXxC6R4WmnyZ4Dea+Cqe
+         31UA==
+X-Gm-Message-State: AOJu0YyUZcStCifwabzPiqXOTPPGdbvGrXM/UVNj4vSoZo+hWCEVz/ZG
+	YdTlYCt+NxlHmLxsnYvbh8jLeQ==
+X-Google-Smtp-Source: AGHT+IHvlqzcq38thoX3PZn34o6zqZkwWj8ZiJlIwZnWxtg1XOZmelZD9GDdYV04RWUkP0T3ij0O7g==
+X-Received: by 2002:a2e:9a89:0:b0:2c1:7a96:c770 with SMTP id p9-20020a2e9a89000000b002c17a96c770mr8335693lji.19.1696634512183;
+        Fri, 06 Oct 2023 16:21:52 -0700 (PDT)
+Received: from [192.168.200.173] (178235177147.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.147])
+        by smtp.gmail.com with ESMTPSA id w11-20020a2e998b000000b002bffbe767cbsm973514lji.85.2023.10.06.16.21.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Oct 2023 16:21:51 -0700 (PDT)
+Message-ID: <b8f2d7f1-16e2-4e6a-9c84-37da393f74a3@linaro.org>
+Date: Sat, 7 Oct 2023 01:21:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230926194242.2732127-1-sjg@chromium.org> <20230926194242.2732127-2-sjg@chromium.org>
- <CAPnjgZ0Xf3U1aj32LbU-xiU1AqwnM3JL1F8xX-wZ18oEmg+irw@mail.gmail.com>
- <CAMj1kXEXcX7BkDyfy-6_5Vnch=N+onza-yfWfsVaGLE93h2c+Q@mail.gmail.com> <CAPnjgZ2SEby-ndrs=W_afBJH56eqc=-mhp1F1nwkvWks+=B54Q@mail.gmail.com>
-In-Reply-To: <CAPnjgZ2SEby-ndrs=W_afBJH56eqc=-mhp1F1nwkvWks+=B54Q@mail.gmail.com>
-From: Ard Biesheuvel <ardb@kernel.org>
-Date: Sat, 7 Oct 2023 00:59:57 +0200
-X-Gmail-Original-Message-ID: <CAMj1kXED3S+0cq+VT7naBrmWrUwT=HZAaZOBRMv8Ui1Pey1QNQ@mail.gmail.com>
-Message-ID: <CAMj1kXED3S+0cq+VT7naBrmWrUwT=HZAaZOBRMv8Ui1Pey1QNQ@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory usages
-To: Simon Glass <sjg@chromium.org>
-Cc: devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>, 
-	Rob Herring <robh@kernel.org>, Lean Sheng Tan <sheng.tan@9elements.com>, 
-	lkml <linux-kernel@vger.kernel.org>, Dhaval Sharma <dhaval@rivosinc.com>, 
-	Maximilian Brune <maximilian.brune@9elements.com>, Yunhui Cui <cuiyunhui@bytedance.com>, 
-	Guo Dong <guo.dong@intel.com>, Tom Rini <trini@konsulko.com>, 
-	ron minnich <rminnich@gmail.com>, Gua Guo <gua.guo@intel.com>, 
-	Chiu Chasel <chasel.chiu@intel.com>, linux-acpi@vger.kernel.org, 
-	U-Boot Mailing List <u-boot@lists.denx.de>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] i2c: qcom-cci: Add sc8280xp compatible
+Content-Language: en-US
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
+ andersson@kernel.org, loic.poulain@linaro.org, rfoss@kernel.org,
+ andi.shyti@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, todor.too@gmail.com,
+ mchehab@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231006120159.3413789-1-bryan.odonoghue@linaro.org>
+ <20231006120159.3413789-3-bryan.odonoghue@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20231006120159.3413789-3-bryan.odonoghue@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+	lindbergh.monkeyblade.net
 
-On Fri, 6 Oct 2023 at 20:17, Simon Glass <sjg@chromium.org> wrote:
->
-> Hi Ard,
->
-> On Fri, 6 Oct 2023 at 11:33, Ard Biesheuvel <ardb@kernel.org> wrote:
-> >
-> > On Mon, 2 Oct 2023 at 19:54, Simon Glass <sjg@chromium.org> wrote:
-> > >
-> > > Hi Rob,
-> > >
-> > > On Tue, 26 Sept 2023 at 13:42, Simon Glass <sjg@chromium.org> wrote:
-> > > >
-> > > > It is common to split firmware into 'Platform Init', which does the
-> > > > initial hardware setup and a "Payload" which selects the OS to be booted.
-> > > > Thus an handover interface is required between these two pieces.
-> > > >
-> > > > Where UEFI boot-time services are not available, but UEFI firmware is
-> > > > present on either side of this interface, information about memory usage
-> > > > and attributes must be presented to the "Payload" in some form.
-> > > >
-> > > > This aims to provide an small schema addition for the memory mapping
-> > > > needed to keep these two pieces working together well.
-> > > >
-> > > > Signed-off-by: Simon Glass <sjg@chromium.org>
-> > > > ---
-> > > >
-> > > > Changes in v7:
-> > > > - Rename acpi-reclaim to acpi
-> > > > - Drop individual mention of when memory can be reclaimed
-> > > > - Rewrite the item descriptions
-> > > > - Add back the UEFI text (with trepidation)
-> > >
-> > > I am again checking on this series. Can it be applied, please?
-> > >
-> >
-> > Apologies for the delay in response. I have been away.
->
-> OK, I hope you had a nice trip.
->
+On 6.10.2023 14:01, Bryan O'Donoghue wrote:
+> Add sc8280xp compatible with cci_v2_data parameters.
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+Drop this patch, it adds nothing useful
 
-Thanks, it was wonderful!
-
-> >
-> > >
-> > > >
-> > > > Changes in v6:
-> > > > - Drop mention of UEFI
-> > > > - Use compatible strings instead of node names
-> > > >
-> > > > Changes in v5:
-> > > > - Drop the memory-map node (should have done that in v4)
-> > > > - Tidy up schema a bit
-> > > >
-> > > > Changes in v4:
-> > > > - Make use of the reserved-memory node instead of creating a new one
-> > > >
-> > > > Changes in v3:
-> > > > - Reword commit message again
-> > > > - cc a lot more people, from the FFI patch
-> > > > - Split out the attributes into the /memory nodes
-> > > >
-> > > > Changes in v2:
-> > > > - Reword commit message
-> > > >
-> > > >  .../reserved-memory/common-reserved.yaml      | 71 +++++++++++++++++++
-> > > >  1 file changed, 71 insertions(+)
-> > > >  create mode 100644 dtschema/schemas/reserved-memory/common-reserved.yaml
-> > > >
-> > > > diff --git a/dtschema/schemas/reserved-memory/common-reserved.yaml b/dtschema/schemas/reserved-memory/common-reserved.yaml
-> > > > new file mode 100644
-> > > > index 0000000..f7fbdfd
-> > > > --- /dev/null
-> > > > +++ b/dtschema/schemas/reserved-memory/common-reserved.yaml
-> > > > @@ -0,0 +1,71 @@
-> > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/reserved-memory/common-reserved.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Common memory reservations
-> > > > +
-> > > > +description: |
-> > > > +  Specifies that the reserved memory region can be used for the purpose
-> > > > +  indicated by its compatible string.
-> > > > +
-> > > > +  Clients may reuse this reserved memory if they understand what it is for,
-> > > > +  subject to the notes below.
-> > > > +
-> > > > +maintainers:
-> > > > +  - Simon Glass <sjg@chromium.org>
-> > > > +
-> > > > +allOf:
-> > > > +  - $ref: reserved-memory.yaml
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    description: |
-> > > > +      This describes some common memory reservations, with the compatible
-> > > > +      string indicating what it is used for:
-> > > > +
-> > > > +         acpi: Advanced Configuration and Power Interface (ACPI) tables
-> > > > +         acpi-nvs: ACPI Non-Volatile-Sleeping Memory (NVS). This is reserved by
-> > > > +           the firmware for its use and is required to be saved and restored
-> > > > +           across an NVS sleep
-> > > > +         boot-code: Contains code used for booting which is not needed by the OS
-> > > > +         boot-code: Contains data used for booting which is not needed by the OS
-> > > > +         runtime-code: Contains code used for interacting with the system when
-> > > > +           running the OS
-> > > > +         runtime-data: Contains data used for interacting with the system when
-> > > > +           running the OS
-> > > > +
-> > > > +    enum:
-> > > > +      - acpi
-> > > > +      - acpi-nvs
-> > > > +      - boot-code
-> > > > +      - boot-data
-> > > > +      - runtime-code
-> > > > +      - runtime-data
-> > > > +
-> >
-> > As I mentioned a few times already, I don't think these compatibles
-> > should be introduced here.
-> >
-> > A reserved region has a specific purpose, and the compatible should be
-> > more descriptive than the enum above. If the consumer does not
-> > understand this purpose, it should simply treat the memory as reserved
-> > and not touch it. Alternatively, these regions can be referenced from
-> > other DT nodes using phandles if needed.
->
-> We still need some description of what these regions are used for, so
-> that the payload can use the correct regions. I do not have any other
-> solution to this problem. We are in v7 at present. At least explain
-> where you want the compatible strings to be introduced.
->
-
-My point is really that by themselves, these regions are not usable by
-either a payload or an OS that consumes this information. Unless there
-is some other information being provided (via DT I imagine) that
-describes how these things are supposed to be used, they are nothing
-more than memory reservations that should be honored, and providing
-this arbitrary set of labels is unnecessary.
-
-> What sort of extra detail are you looking for? Please be specific and
-> preferably add some suggestions so I can close this out ASAP.
->
-
-A payload or OS can do nothing with a memory reservation called
-'runtime-code' it it doesn't know what is inside. So there is another
-DT node somewhere that describes this, and that can simply point to
-this region (via a phandle) if it needs to describe the
-correspondence. This is more idiomatic for DT afaik (but I am not the
-expert).  But more importantly, it avoids overloading some vague
-labels with behavior (e.g., executable permissions for code regions)
-that should only be displayed for regions with a particular use,
-rather than for a ill defined class of reservations the purpose of
-which is not clear.
-
-What I am trying to avoid is the OS ending up being forced to consume
-this information in parallel to the EFI memory map, and having to
-reconcile them. I'd be much happier if this gets contributed to a spec
-that only covers firmware-to-firmware, and is prevented from leaking
-into the OS facing interface.
-
-
-
-> >
-> >
-> > > > +  reg:
-> > > > +    description: region of memory that is reserved for the purpose indicated
-> > > > +      by the compatible string.
-> > > > +
-> > > > +required:
-> > > > +  - reg
-> > > > +
-> > > > +unevaluatedProperties: false
-> > > > +
-> > > > +examples:
-> > > > +  - |
-> > > > +    reserved-memory {
-> > > > +        #address-cells = <1>;
-> > > > +        #size-cells = <1>;
-> > > > +
-> > > > +        reserved@12340000 {
-> > > > +            compatible = "boot-code";
-> > > > +            reg = <0x12340000 0x00800000>;
-> > > > +        };
-> > > > +
-> > > > +        reserved@43210000 {
-> > > > +            compatible = "boot-data";
-> > > > +            reg = <0x43210000 0x00800000>;
-> > > > +        };
-> > > > +    };
-> > > > --
-> > > > 2.42.0.515.g380fc7ccd1-goog
->
-> Regards,
-> Simon
+Konrad
 
