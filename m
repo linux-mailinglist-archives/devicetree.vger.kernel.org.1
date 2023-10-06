@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-6504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 893DC7BB962
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 15:43:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D16C7BB970
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 15:44:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34D0B282243
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 13:43:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 779531C209A9
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 13:44:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90395219F3;
-	Fri,  6 Oct 2023 13:43:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F64224DC;
+	Fri,  6 Oct 2023 13:44:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qo5Iue4p"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LrC2gUc2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F16A4414
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 13:43:27 +0000 (UTC)
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC42783
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 06:43:25 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-53829312d12so7100959a12.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 06:43:25 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 140D61F959
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 13:44:04 +0000 (UTC)
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E76B483
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 06:44:01 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9b29186e20aso376642266b.2
+        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 06:44:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696599804; x=1697204604; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=feVfn+SZyMB58Ty0SE1O7fQ7qhvVrdu6Dzc/t3U1hF4=;
-        b=qo5Iue4p9pjk05SA5dVpsBgrwe/IJZZO19nGjlaBqD3teL59mDpXeIsu1nvKO6wKxF
-         JRlajzvc0T0GV9rpdXBzHdyJEj7VPBCRtomS9hAT5P69lhRUa6Lbq6/F7giEYOK2WtVy
-         O93O+JvBc8D9jMrMNexe4TRkfkJ7nMJgtPghzc+PcW/IvjPpn5tg2NzbY4VNPjIr3BpS
-         oq43VEJ1dDrFmFH62B42iiSpxiT/3kKelnHBKHe0IxZVMdMylGFjmOU9RNFl49f7FzDD
-         BZs0KPDk4dstWMtg69hYIY2yQZ0HxFuvDUApSngbj5HVpo+U9YuIJgME2m1BHYaoLTtl
-         GqCA==
+        d=linaro.org; s=google; t=1696599840; x=1697204640; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=o/482iIQ0XArVytmo8xbmsJqHQYRFMNdB71uSJ1qK7k=;
+        b=LrC2gUc2WkHLJFVyuYDy0cq1yBvkRRRoS4n5ZOd+MYIkLVsJU7WkP1VtSnAABty+dS
+         x4D7z5M5YWGXIzItVy5FFNw4CzGzgL18TN6n7o6B5S8zv68IPrksd1CuJD8gQShUWP8w
+         eyI+kbg3YI8Btj1XLVcAN5iWSfvWR1w7rTwHQQz+68mgFpdEdr+jfopLFuS91mTualYR
+         s8QYJYpVf8DCvdZrrWX3eTqvCzKxQKvXgOQ7NW6WxaDjz9DOdAe2f6TFK9TQ0nYk0msr
+         iRSQPG1LdpHwMFq3JEjNRrp2QoaiM/my1oXubQ7DR/ihpvrAoUCaCFKKj2AH1H5GSEp5
+         W87A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696599804; x=1697204604;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=feVfn+SZyMB58Ty0SE1O7fQ7qhvVrdu6Dzc/t3U1hF4=;
-        b=tMTrzHmz2XW4V2jdlvLzKhYigfrTQkrZWNjDXPvmts9uM2tGASi7m1wD3bdYy8qL2h
-         TcIDQhb5p2C5AA8wewMpWJxZMxVoiFQHpA/ZhKW97MG8zwph3UPLX/ruUtHHVpXUHnGw
-         rrS1LIN7ggkriwD7T2oNa4i/73RzwQFqbqVUz3isz4yFioJQUdFFitBkWZobOYJ42Hhy
-         9kfOQPFr3PrQNwTkMiusZM9s/cHNIIUYc29L373x58ekOVeoCooqjPuq3DgOinQaHb13
-         j/nSPeQB7etfWEh6sB0DoQtMgiUARpPjyli3cgZPwnOufLBOVoLhAToz+3lPonCgvirx
-         O2qQ==
-X-Gm-Message-State: AOJu0YyK5RYvqz8CvJo7lVY3ybHjl9dudzAX7G03tcCTVMiErj4lELFY
-	cnCoBCwg9Tpw1wQqm2GLsaQPJQ==
-X-Google-Smtp-Source: AGHT+IFKu91vRH+wRnE4uGKKSd4b30effv5woJU+nB2j5FJ8e+H3XswzXk6wzAY8SuPy9jnbisH6oA==
-X-Received: by 2002:a17:906:c106:b0:9b8:df8e:cbd0 with SMTP id do6-20020a170906c10600b009b8df8ecbd0mr3138828ejc.37.1696599804350;
-        Fri, 06 Oct 2023 06:43:24 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1696599840; x=1697204640;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=o/482iIQ0XArVytmo8xbmsJqHQYRFMNdB71uSJ1qK7k=;
+        b=JZ53EwsGkKpROO47F4ZGb7pitgxkVIsGKbL6BpSn67qLwlm2/ioDLu9KF1jd/ygEoz
+         wYkRY/ot4BqIMlIP85ORvzmCDb6jNgkV9EdMYAU85vXSxyMPxiiR5h7h5A+Au9LSvRt9
+         nhHDaSUVi8+tFlmhRVrGj0rY5bTf7o37wsXfAQJl/pPuvxDTVzsD+P/HhidAUTbIOnMz
+         W2vRMjTG3aZ0F8jbctkNNrpFInP8od6HYmjQ+VgKRnSQKvpfMCHmytQaquTIDtObHqtc
+         Pn28JO6ewYPsDJrC6z6uugqiW9WjnDMpJUaJW7smIrfm5PqHmWi6E64Ihcc/QBAewbMB
+         9xbA==
+X-Gm-Message-State: AOJu0YwZrsQlVpjSr5YhZ2RrrKI1skb2sCpXd+Gi9OCmgRZPnjrJarFI
+	3W8hJbEABqqeIm3ddJJyPsQf8g==
+X-Google-Smtp-Source: AGHT+IE+GhcYxp6UTo3YVYb51vzGMEpMb8RkdaQKfwdGSZ1TnUKSjlHVF3w3C3AKdzfyij+SjW7ypQ==
+X-Received: by 2002:a17:906:32c5:b0:9ae:4d6d:ba5b with SMTP id k5-20020a17090632c500b009ae4d6dba5bmr8363339ejk.40.1696599840440;
+        Fri, 06 Oct 2023 06:44:00 -0700 (PDT)
 Received: from [192.168.1.197] (5-157-101-10.dyn.eolo.it. [5.157.101.10])
-        by smtp.gmail.com with ESMTPSA id ci24-20020a170906c35800b009a2235ed496sm2953812ejb.141.2023.10.06.06.43.22
+        by smtp.gmail.com with ESMTPSA id ci24-20020a170906c35800b009a2235ed496sm2953812ejb.141.2023.10.06.06.43.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Oct 2023 06:43:23 -0700 (PDT)
-Message-ID: <f0daa859-f9eb-4631-b2f9-6ee3ce5b691f@linaro.org>
-Date: Fri, 6 Oct 2023 15:43:22 +0200
+        Fri, 06 Oct 2023 06:43:59 -0700 (PDT)
+Message-ID: <9833cebf-e951-47c6-97b7-458ae1a5b747@linaro.org>
+Date: Fri, 6 Oct 2023 15:43:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,6 +70,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v1] thermal: Remove Amit Kucheria from MAINTAINERS
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: "Rafael J. Wysocki" <rjw@rjwysocki.net>,
  Linux PM <linux-pm@vger.kernel.org>
 Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
@@ -79,7 +81,7 @@ Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
  devicetree@vger.kernel.org, Lukasz Luba <lukasz.luba@arm.com>,
  Amit Kucheria <amitk@kernel.org>
 References: <5716404.DvuYhMxLoT@kreacher>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ <f0daa859-f9eb-4631-b2f9-6ee3ce5b691f@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -124,30 +126,35 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <5716404.DvuYhMxLoT@kreacher>
+In-Reply-To: <f0daa859-f9eb-4631-b2f9-6ee3ce5b691f@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 06/10/2023 13:21, Rafael J. Wysocki wrote:
-> From: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+On 06/10/2023 15:43, Krzysztof Kozlowski wrote:
+> On 06/10/2023 13:21, Rafael J. Wysocki wrote:
+>> From: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+>>
+>> Amit Kucheria has not been participating in kernel development in any
+>> way or form for quite some time, so it is not useful to list him as a
+>> designated reviewer for the thermal subsystem or as the maintainer of
+>> the thermal zone device bindings.
+>>
+>> Remove him from those two places accordingly.
+>>
+>> Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+>> ---
+>>  Documentation/devicetree/bindings/thermal/thermal-zones.yaml |    3 ---
 > 
-> Amit Kucheria has not been participating in kernel development in any
-> way or form for quite some time, so it is not useful to list him as a
-> designated reviewer for the thermal subsystem or as the maintainer of
-> the thermal zone device bindings.
-> 
-> Remove him from those two places accordingly.
-> 
-> Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
-> ---
->  Documentation/devicetree/bindings/thermal/thermal-zones.yaml |    3 ---
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+and unAcked. We need a maintainer for the bindings. Someone else from
+thermal?
 
 Best regards,
 Krzysztof
