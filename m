@@ -1,131 +1,152 @@
-Return-Path: <devicetree+bounces-6353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A44E47BB106
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 06:54:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E4DA7BB131
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 07:21:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F9BF282014
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 04:54:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18202282057
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 05:21:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FCD02107;
-	Fri,  6 Oct 2023 04:54:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF0084414;
+	Fri,  6 Oct 2023 05:21:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CmsrXYNN"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NDhO9Vqa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BB6AEA1
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 04:54:10 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDB58100;
-	Thu,  5 Oct 2023 21:54:08 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3963dqlg000939;
-	Fri, 6 Oct 2023 04:53:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=Y57dG8ltw7MucdbZ+M3Satn38fEJHaAh5pACALJTxQA=;
- b=CmsrXYNNMKkiryQRDSG9KT9oDcJNZRqIpNgFWhXLOSV5B7Zg4j6C5XOwzYHFbhLXax/D
- RBn5sf1T9eYRWsM7nhRO9BNkgzvl6gWV8kAxA20Es9uPYIhqWwJKHM5LqLNzYLZLDr/M
- s+iwZSiDk79SoB1oVG/Ui6mFI/drozRiqzBdXq4b61EiDUXPIDomhVuePp2Y7q2rfsV4
- gcq8ZHNnITpXDG04OtlU7a4ojIKXcEyintKCArf+iPm4xr+pGJosIBjVtw10Tou/OO4s
- lvx3isVkInEfEDkDeMmflfKORNDHrmZ/e9QoEm8fkOO56sMOwFHuFBrurLmAL1ocuI5a bA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3thnfaajjk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 06 Oct 2023 04:53:57 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3964ruLF005160
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 6 Oct 2023 04:53:56 GMT
-Received: from hu-devipriy-blr.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Thu, 5 Oct 2023 21:53:51 -0700
-From: Devi Priya <quic_devipriy@quicinc.com>
-To: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <thierry.reding@gmail.com>, <baruch@tkos.co.il>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <u.kleine-koenig@pengutronix.de>,
-        <linux-pwm@vger.kernel.org>
-Subject: [PATCH 4/4] arm64: dts: qcom: ipq5332: Add pwm support
-Date: Fri, 6 Oct 2023 10:23:17 +0530
-Message-ID: <20231006045317.1056625-5-quic_devipriy@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231006045317.1056625-1-quic_devipriy@quicinc.com>
-References: <20231006045317.1056625-1-quic_devipriy@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29E2E4432
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 05:21:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 535A8B6;
+	Thu,  5 Oct 2023 22:21:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1696569692; x=1728105692;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=kTezNlXjIvleKEn+KNJaXcoyrpYTmoUt9fJbdVMLQBs=;
+  b=NDhO9VqagmNqot9eYZyu/k8qySdDK3DH6x9is3WD+sXGWNTKAa+nQorx
+   Xjs7HaiHp0Fdzg0blIa0GypI0mw5hy/x/LnySioK+xAI71hJFLNqIOITP
+   o/+Bh+rMByhekad5rl4Uyu+gkj4kfu81MoJL3HVpoyfTNHehj3wwKuUxS
+   1bsJ/CIW5Lz1+FsWCRCpTxR5yUgStpPe67WP+PcC15QPyfskwDxhzjKDn
+   c8W0Y9hTVruAvieeXdeWF4nE6ILbCClV1YracmzbKn33RO4AkAeGKwRVA
+   KZT0z+UZ2v9lnnoP4nsvp1GpcC6YDXchA54KjnOC+lthCh6qxvn46SwNa
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="363958930"
+X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; 
+   d="scan'208";a="363958930"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Oct 2023 22:21:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="787263452"
+X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; 
+   d="scan'208";a="787263452"
+Received: from lkp-server02.sh.intel.com (HELO c3b01524d57c) ([10.239.97.151])
+  by orsmga001.jf.intel.com with ESMTP; 05 Oct 2023 22:21:25 -0700
+Received: from kbuild by c3b01524d57c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qodH7-000MI2-2b;
+	Fri, 06 Oct 2023 05:21:22 +0000
+Date: Fri, 6 Oct 2023 13:20:32 +0800
+From: kernel test robot <lkp@intel.com>
+To: Peter Griffin <peter.griffin@linaro.org>, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+	conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com,
+	s.nawrocki@samsung.com, linus.walleij@linaro.org,
+	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com,
+	will@kernel.org, arnd@arndb.de, olof@lixom.net,
+	cw00.choi@samsung.com
+Cc: oe-kbuild-all@lists.linux.dev, peter.griffin@linaro.org,
+	tudor.ambarus@linaro.org, andre.draszik@linaro.org,
+	semen.protsenko@linaro.org, soc@kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH 15/21] clk: google: gs101: Add support for CMU_MISC clock
+ unit
+Message-ID: <202310061359.5WMm9C9Y-lkp@intel.com>
+References: <20231005155618.700312-16-peter.griffin@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: DgdSN-ND56AvD-Zj2k5_JEHKD7l0FYxu
-X-Proofpoint-ORIG-GUID: DgdSN-ND56AvD-Zj2k5_JEHKD7l0FYxu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-06_01,2023-10-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- lowpriorityscore=0 mlxlogscore=783 malwarescore=0 bulkscore=0 spamscore=0
- impostorscore=0 clxscore=1015 adultscore=0 phishscore=0 mlxscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2309180000 definitions=main-2310060036
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231005155618.700312-16-peter.griffin@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+	SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add PWM support in ipq5332. The PWM is in the TCSR area. Make tcsr
-"simple-mfd" compatible, and add pwm as a child of &tcsr.
+Hi Peter,
 
-Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
----
- arch/arm64/boot/dts/qcom/ipq5332.dtsi | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
+kernel test robot noticed the following build warnings:
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-index d3fef2f80a81..7620f1ccd324 100644
---- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-@@ -210,8 +210,21 @@ tcsr_mutex: hwlock@1905000 {
- 		};
- 
- 		tcsr: syscon@1937000 {
--			compatible = "qcom,tcsr-ipq5332", "syscon";
-+			compatible = "qcom,tcsr-ipq5332", "syscon", "simple-mfd";
- 			reg = <0x01937000 0x21000>;
-+			ranges = <0x0 0x01937000 0x21000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			pwm: pwm@a010 {
-+				compatible = "qcom,ipq5332-pwm", "qcom,ipq6018-pwm";
-+				reg = <0xa010 0x20>;
-+				clocks = <&gcc GCC_ADSS_PWM_CLK>;
-+				assigned-clocks = <&gcc GCC_ADSS_PWM_CLK>;
-+				assigned-clock-rates = <100000000>;
-+				#pwm-cells = <2>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		sdhc: mmc@7804000 {
+[auto build test WARNING on krzk/for-next]
+[also build test WARNING on robh/for-next linus/master v6.6-rc4 next-20231005]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Peter-Griffin/dt-bindings-interrupt-controller-Add-gs101-interrupt-controller/20231005-235922
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git for-next
+patch link:    https://lore.kernel.org/r/20231005155618.700312-16-peter.griffin%40linaro.org
+patch subject: [PATCH 15/21] clk: google: gs101: Add support for CMU_MISC clock unit
+config: nios2-allyesconfig (https://download.01.org/0day-ci/archive/20231006/202310061359.5WMm9C9Y-lkp@intel.com/config)
+compiler: nios2-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231006/202310061359.5WMm9C9Y-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202310061359.5WMm9C9Y-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from drivers/clk/samsung/clk-gs101.c:17:
+>> drivers/clk/samsung/clk-gs101.c:2087:7: warning: 'mout_misc_gic_p' defined but not used [-Wunused-const-variable=]
+    2087 | PNAME(mout_misc_gic_p)                  = { "oscclk", "dout_cmu_misc_sss" };
+         |       ^~~~~~~~~~~~~~~
+   drivers/clk/samsung/clk.h:226:44: note: in definition of macro 'PNAME'
+     226 | #define PNAME(x) static const char * const x[] __initconst
+         |                                            ^
+   drivers/clk/samsung/clk-gs101.c:937:7: warning: 'mout_cmu_g2d_p' defined but not used [-Wunused-const-variable=]
+     937 | PNAME(mout_cmu_g2d_p)           = { "dout_shared0_div3", "fout_shared3_pll",
+         |       ^~~~~~~~~~~~~~
+   drivers/clk/samsung/clk.h:226:44: note: in definition of macro 'PNAME'
+     226 | #define PNAME(x) static const char * const x[] __initconst
+         |                                            ^
+   drivers/clk/samsung/clk-gs101.c:890:7: warning: 'mout_cmu_boost_p' defined but not used [-Wunused-const-variable=]
+     890 | PNAME(mout_cmu_boost_p)         = { "dout_shared0_div4", "dout_shared1_div4",
+         |       ^~~~~~~~~~~~~~~~
+   drivers/clk/samsung/clk.h:226:44: note: in definition of macro 'PNAME'
+     226 | #define PNAME(x) static const char * const x[] __initconst
+         |                                            ^
+   drivers/clk/samsung/clk-gs101.c:811:7: warning: 'mout_cmu_pdp_vra_p' defined but not used [-Wunused-const-variable=]
+     811 | PNAME(mout_cmu_pdp_vra_p)       = { "fout_shared2_pll", "dout_shared0_div3",
+         |       ^~~~~~~~~~~~~~~~~~
+   drivers/clk/samsung/clk.h:226:44: note: in definition of macro 'PNAME'
+     226 | #define PNAME(x) static const char * const x[] __initconst
+         |                                            ^
+
+
+vim +/mout_misc_gic_p +2087 drivers/clk/samsung/clk-gs101.c
+
+  2083	
+  2084	/* List of parent clocks for Muxes in CMU_MISC */
+  2085	PNAME(mout_misc_bus_user_p)		= { "oscclk", "dout_cmu_misc_bus" };
+  2086	PNAME(mout_misc_sss_user_p)		= { "oscclk", "dout_cmu_misc_sss" };
+> 2087	PNAME(mout_misc_gic_p)			= { "oscclk", "dout_cmu_misc_sss" };
+  2088	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
