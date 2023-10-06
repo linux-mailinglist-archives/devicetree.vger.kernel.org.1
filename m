@@ -1,255 +1,135 @@
-Return-Path: <devicetree+bounces-6550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65ED17BBC74
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 18:06:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74DFD7BBC7C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 18:11:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B345282216
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 16:06:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 284412820D9
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 16:11:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 686B328DA0;
-	Fri,  6 Oct 2023 16:06:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53F2828DA5;
+	Fri,  6 Oct 2023 16:11:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XvURkYyp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ndf7M6I2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CCF826E0D
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 16:06:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D6D8C433C7;
-	Fri,  6 Oct 2023 16:06:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35D7626E0D
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 16:11:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11A9BC433C7;
+	Fri,  6 Oct 2023 16:11:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696608412;
-	bh=GWaM8xnuoLmMEmGVN4yEJutUhLeAptLIbj6d/aZecRQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XvURkYyp+vFwfxOmTfjnGChVG49yDk07Q/bLtjFPEmVCdLdbKDleBzSLzEDFZYYDD
-	 yFEe1UC91xzRvQrR8RgfmvtxeSK+u8uo49wEXGI7Q9gvFWUnex0hQZd+kTW7UsnWTG
-	 8NHCNahcG2/AayVtnxmKCOmx9GjAp5Wrl7mBEENGHzXmMuajGiSDpGSKroF7oUpSSC
-	 5U6G2rQW/C3EUnZEeBO3G+EXuZXjki0vd+F3usGqPHf1gXgGRJu/n6ejqqBQ33dwDy
-	 jmSx1zvvn9HDunquJnlpHOiI4fUcm+yXMtr/q1noMLFNKH3+I203wyHf0s61grtfSM
-	 naazDZmlmOjyg==
-Message-ID: <3352fa1a-185b-34d6-078a-6ebb7fb60cc1@kernel.org>
-Date: Sat, 7 Oct 2023 01:06:46 +0900
+	s=k20201202; t=1696608676;
+	bh=2E1MNctTSxoG5VE50oJM9yMY/dfSLIM7MkC8uY5n6I8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ndf7M6I2Ha7XUsr7BbDTNhDj9gLpk/Iui5kN6/CI4DaL7NubEIq2KjsGCtRLhiBBw
+	 JCCJ+sJpzASxFIRjx1xBGpWYjcBxJEa8RxYiWPbzuN1jNQQJpLxmYwIj5b5lTWmY5m
+	 NYeU1AIPn0Fa8GZitrh4ihWmaaCagI0N9FjMcCf+JYqzjbN5X0kcmpGoewd9ppxw3F
+	 +9D+uOGyJeaZT4JKaU+LezQ/Mci/Yy99M0NC899FUn473ikndsKYOoG9Ow2WXSRzGJ
+	 +T1m1tm19vjw5DsACRmWo5GMxyDJWd0xidAsGiZfNT0bJWNUd4oX4CNB5xonhPgWJw
+	 WrkAcKEk28Hsw==
+Received: (nullmailer pid 4016330 invoked by uid 1000);
+	Fri, 06 Oct 2023 16:11:13 -0000
+Date: Fri, 6 Oct 2023 11:11:13 -0500
+From: Rob Herring <robh@kernel.org>
+To: Michael Walle <mwalle@kernel.org>
+Cc: Simon Glass <sjg@chromium.org>, miquel.raynal@bootlin.com, conor+dt@kernel.org, devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org, ptyadav@amazon.de, rafal@milecki.pl, richard@nod.at, trini@konsulko.com, u-boot@lists.denx.de, vigneshr@ti.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: mtd: fixed-partitions: Add binman
+ compatible
+Message-ID: <20231006161113.GA3983739-robh@kernel.org>
+References: <20231004093620.2b1d6917@xps-13>
+ <20231004113458.531124-1-mwalle@kernel.org>
+ <CAPnjgZ2hWE6Sc=rg55W=-r-TnoWP7Y5gSpn41kwoyja-AMVw+w@mail.gmail.com>
+ <9e588e3ec8c0c321a2861723d0d42b9a@kernel.org>
+ <CAPnjgZ20ezipPWAj6bUM9_oCTcX1XzuLqQ7b7-nKjXf1t4p9-Q@mail.gmail.com>
+ <a581ef73fa09c6ffeb83a1c1780053bd@kernel.org>
+ <CAPnjgZ2PnKD5m0EgTdEAf-gcK3wuBZvWw_AO2iehb1dmfdoz3A@mail.gmail.com>
+ <27d37d4c7cf353d99737a1e7a450f9f7@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v7 03/26] PM / devfreq: rockchip-dfi: use consistent name
- for private data struct
-Content-Language: en-US
-To: Sascha Hauer <s.hauer@pengutronix.de>, linux-rockchip@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- MyungJoo Ham <myungjoo.ham@samsung.com>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
- Michael Riesch <michael.riesch@wolfvision.net>,
- Robin Murphy <robin.murphy@arm.com>,
- Vincent Legoll <vincent.legoll@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>
-References: <20230704093242.583575-1-s.hauer@pengutronix.de>
- <20230704093242.583575-4-s.hauer@pengutronix.de>
-From: Chanwoo Choi <chanwoo@kernel.org>
-In-Reply-To: <20230704093242.583575-4-s.hauer@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <27d37d4c7cf353d99737a1e7a450f9f7@kernel.org>
 
-On 23. 7. 4. 18:32, Sascha Hauer wrote:
-> The variable name for the private data struct is 'info' in some
-> functions and 'data' in others. Both names do not give a clue what
-> type the variable has, so consistently use 'dfi'.
+On Fri, Oct 06, 2023 at 10:37:41AM +0200, Michael Walle wrote:
+> Hi,
 > 
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
->  drivers/devfreq/event/rockchip-dfi.c | 72 ++++++++++++++--------------
->  1 file changed, 36 insertions(+), 36 deletions(-)
+> > > I'm still not sure why that compatible is needed. Also I'd need to
+> > > change
+> > > the label which might break user space apps looking for that specific
+> > > name.
+> > > 
+> > > Also, our board might have u-boot/spl or u-boot/spl/bl31/bl32, right
+> > > now
+> > > that's something which depends on an u-boot configuration variable,
+> > > which
+> > > then enables or disables binman nodes in the -u-boot.dtsi. So in linux
+> > > we only have that "bootloader" partition, but there might be either
+> > > u-boot+spl or u-boot+spl+bl31+bl32.
+> > > 
+> > > Honestly, I'm really not sure this should go into a device tree.
+> > 
+> > I think we might be getting a bit ahead of ourselves here. I thought
+> > that the decision was that the label should indicate the contents.
+> > If you have multiple things in a partition then it would become a
+> > 'section' in Binman's terminology. Either the label programmatically
+> > describes what is inside or it doesn't. We can't have it both ways.
+> > What do you suggest?
 > 
-> diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
-> index 467f9f42d38f7..e19e5acaa362c 100644
-> --- a/drivers/devfreq/event/rockchip-dfi.c
-> +++ b/drivers/devfreq/event/rockchip-dfi.c
-> @@ -59,13 +59,13 @@ struct rockchip_dfi {
->  
->  static void rockchip_dfi_start_hardware_counter(struct devfreq_event_dev *edev)
->  {
-> -	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
-> -	void __iomem *dfi_regs = info->regs;
-> +	struct rockchip_dfi *dfi = devfreq_event_get_drvdata(edev);
-> +	void __iomem *dfi_regs = dfi->regs;
->  	u32 val;
->  	u32 ddr_type;
->  
->  	/* get ddr type */
-> -	regmap_read(info->regmap_pmu, RK3399_PMUGRF_OS_REG2, &val);
-> +	regmap_read(dfi->regmap_pmu, RK3399_PMUGRF_OS_REG2, &val);
->  	ddr_type = (val >> RK3399_PMUGRF_DDRTYPE_SHIFT) &
->  		    RK3399_PMUGRF_DDRTYPE_MASK;
->  
-> @@ -84,28 +84,28 @@ static void rockchip_dfi_start_hardware_counter(struct devfreq_event_dev *edev)
->  
->  static void rockchip_dfi_stop_hardware_counter(struct devfreq_event_dev *edev)
->  {
-> -	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
-> -	void __iomem *dfi_regs = info->regs;
-> +	struct rockchip_dfi *dfi = devfreq_event_get_drvdata(edev);
-> +	void __iomem *dfi_regs = dfi->regs;
->  
->  	writel_relaxed(SOFTWARE_DIS, dfi_regs + DDRMON_CTRL);
->  }
->  
->  static int rockchip_dfi_get_busier_ch(struct devfreq_event_dev *edev)
->  {
-> -	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
-> +	struct rockchip_dfi *dfi = devfreq_event_get_drvdata(edev);
->  	u32 tmp, max = 0;
->  	u32 i, busier_ch = 0;
-> -	void __iomem *dfi_regs = info->regs;
-> +	void __iomem *dfi_regs = dfi->regs;
->  
->  	rockchip_dfi_stop_hardware_counter(edev);
->  
->  	/* Find out which channel is busier */
->  	for (i = 0; i < RK3399_DMC_NUM_CH; i++) {
-> -		info->ch_usage[i].access = readl_relaxed(dfi_regs +
-> +		dfi->ch_usage[i].access = readl_relaxed(dfi_regs +
->  				DDRMON_CH0_DFI_ACCESS_NUM + i * 20) * 4;
-> -		info->ch_usage[i].total = readl_relaxed(dfi_regs +
-> +		dfi->ch_usage[i].total = readl_relaxed(dfi_regs +
->  				DDRMON_CH0_COUNT_NUM + i * 20);
-> -		tmp = info->ch_usage[i].access;
-> +		tmp = dfi->ch_usage[i].access;
->  		if (tmp > max) {
->  			busier_ch = i;
->  			max = tmp;
-> @@ -118,20 +118,20 @@ static int rockchip_dfi_get_busier_ch(struct devfreq_event_dev *edev)
->  
->  static int rockchip_dfi_disable(struct devfreq_event_dev *edev)
->  {
-> -	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
-> +	struct rockchip_dfi *dfi = devfreq_event_get_drvdata(edev);
->  
->  	rockchip_dfi_stop_hardware_counter(edev);
-> -	clk_disable_unprepare(info->clk);
-> +	clk_disable_unprepare(dfi->clk);
->  
->  	return 0;
->  }
->  
->  static int rockchip_dfi_enable(struct devfreq_event_dev *edev)
->  {
-> -	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
-> +	struct rockchip_dfi *dfi = devfreq_event_get_drvdata(edev);
->  	int ret;
->  
-> -	ret = clk_prepare_enable(info->clk);
-> +	ret = clk_prepare_enable(dfi->clk);
->  	if (ret) {
->  		dev_err(&edev->dev, "failed to enable dfi clk: %d\n", ret);
->  		return ret;
-> @@ -149,13 +149,13 @@ static int rockchip_dfi_set_event(struct devfreq_event_dev *edev)
->  static int rockchip_dfi_get_event(struct devfreq_event_dev *edev,
->  				  struct devfreq_event_data *edata)
->  {
-> -	struct rockchip_dfi *info = devfreq_event_get_drvdata(edev);
-> +	struct rockchip_dfi *dfi = devfreq_event_get_drvdata(edev);
->  	int busier_ch;
->  
->  	busier_ch = rockchip_dfi_get_busier_ch(edev);
->  
-> -	edata->load_count = info->ch_usage[busier_ch].access;
-> -	edata->total_count = info->ch_usage[busier_ch].total;
-> +	edata->load_count = dfi->ch_usage[busier_ch].access;
-> +	edata->total_count = dfi->ch_usage[busier_ch].total;
->  
->  	return 0;
->  }
-> @@ -176,47 +176,47 @@ MODULE_DEVICE_TABLE(of, rockchip_dfi_id_match);
->  static int rockchip_dfi_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
-> -	struct rockchip_dfi *data;
-> +	struct rockchip_dfi *dfi;
->  	struct devfreq_event_desc *desc;
->  	struct device_node *np = pdev->dev.of_node, *node;
->  
-> -	data = devm_kzalloc(dev, sizeof(struct rockchip_dfi), GFP_KERNEL);
-> -	if (!data)
-> +	dfi = devm_kzalloc(dev, sizeof(*dfi), GFP_KERNEL);
-> +	if (!dfi)
->  		return -ENOMEM;
->  
-> -	data->regs = devm_platform_ioremap_resource(pdev, 0);
-> -	if (IS_ERR(data->regs))
-> -		return PTR_ERR(data->regs);
-> +	dfi->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(dfi->regs))
-> +		return PTR_ERR(dfi->regs);
->  
-> -	data->clk = devm_clk_get(dev, "pclk_ddr_mon");
-> -	if (IS_ERR(data->clk))
-> -		return dev_err_probe(dev, PTR_ERR(data->clk),
-> +	dfi->clk = devm_clk_get(dev, "pclk_ddr_mon");
-> +	if (IS_ERR(dfi->clk))
-> +		return dev_err_probe(dev, PTR_ERR(dfi->clk),
->  				     "Cannot get the clk pclk_ddr_mon\n");
->  
->  	node = of_parse_phandle(np, "rockchip,pmu", 0);
->  	if (!node)
->  		return dev_err_probe(&pdev->dev, -ENODEV, "Can't find pmu_grf registers\n");
->  
-> -	data->regmap_pmu = syscon_node_to_regmap(node);
-> +	dfi->regmap_pmu = syscon_node_to_regmap(node);
->  	of_node_put(node);
-> -	if (IS_ERR(data->regmap_pmu))
-> -		return PTR_ERR(data->regmap_pmu);
-> +	if (IS_ERR(dfi->regmap_pmu))
-> +		return PTR_ERR(dfi->regmap_pmu);
->  
-> -	data->dev = dev;
-> +	dfi->dev = dev;
->  
-> -	desc = &data->desc;
-> +	desc = &dfi->desc;
->  	desc->ops = &rockchip_dfi_ops;
-> -	desc->driver_data = data;
-> +	desc->driver_data = dfi;
->  	desc->name = np->name;
->  
-> -	data->edev = devm_devfreq_event_add_edev(&pdev->dev, desc);
-> -	if (IS_ERR(data->edev)) {
-> +	dfi->edev = devm_devfreq_event_add_edev(&pdev->dev, desc);
-> +	if (IS_ERR(dfi->edev)) {
->  		dev_err(&pdev->dev,
->  			"failed to add devfreq-event device\n");
-> -		return PTR_ERR(data->edev);
-> +		return PTR_ERR(dfi->edev);
->  	}
->  
-> -	platform_set_drvdata(pdev, data);
-> +	platform_set_drvdata(pdev, dfi);
->  
->  	return 0;
->  }
+> As Rob pointed out earlier, it's just a user-facing string. I'm a bit
+> reluctant to use it programatically.
 
-Applied it. Thanks.
+In general, yes, but the partition stuff has long (and still) uses 
+label. As long as the values the tools understand are documented (which 
+we don't normally do for label), I don't care so much. That's my 
+opinion as long as this is shared with fixed-partitions. If it is not 
+and there's little reason to use label, then absolutely, I think 
+'compatible' makes more sense. 
 
--- 
-Best Regards,
-Samsung Electronics
-Chanwoo Choi
+> Taking my example again, the string "bootloader" is sufficient for a
+> user. He doesn't care if it's u-boot with spl or u-boot with tfa, or
+> even coreboot. It just says, "in this partition is the bootloader".
+> If you have an "bootloader" image you can flash it there.
 
+These days, there's generally not just 1 bootloader in the boot flow. 
+Maybe there's 1 image, maybe not. Being more specific is hardly ever a 
+bad thing. Only when the number of specific things becomes multiple 10s 
+or 100s of them does it become a problem.
+
+
+> If it has a label "u-boot" and I want to switch to coreboot, will
+> it have to change to "coreboot"? I really don't think this is practical,
+> you are really putting software configuration into the device tree.
+
+On the input side (to binman), yes it is config, but on the output side 
+(to the running system) we are saying what's there.
+
+
+> > At present it seems you have the image described in two places - one
+> > is the binman node and the other is the partitions node. I would like
+> > to unify these.
+> 
+> And I'm not sure that will work for all the corner cases :/
+> 
+> If you keep the binman section seperate from the flash partition
+> definition you don't have any of these problems, although there is
+> some redundancy:
+>  - you only have compatible = "binman", "fixed-partition", no further
+>    compatibles are required
+>  - you don't have any conflicts with the current partition descriptions
+>  - you could even use the labels, because binman is the (only?) user
+> 
+> But of course you need to find a place where to put your node.
+
+And remove it. We don't need 2 sources of truth in the DTB.
+
+Rob
 
