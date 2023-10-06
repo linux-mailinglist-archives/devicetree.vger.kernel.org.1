@@ -1,161 +1,178 @@
-Return-Path: <devicetree+bounces-6421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A28A97BB4D2
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 12:08:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC15F7BB4F9
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 12:20:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 475BB282192
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 10:08:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9CCB1C209B7
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 10:20:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DA8214AB8;
-	Fri,  6 Oct 2023 10:08:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CDDF154AB;
+	Fri,  6 Oct 2023 10:20:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cghMRjk7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TaJU+oGp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5B0114A98;
-	Fri,  6 Oct 2023 10:08:42 +0000 (UTC)
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4453FC;
-	Fri,  6 Oct 2023 03:08:38 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-503f39d3236so2408284e87.0;
-        Fri, 06 Oct 2023 03:08:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696586917; x=1697191717; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=osJYzTdN8E4ajBT02BHqBdC7TAGRf8KWAino8TfH2Do=;
-        b=cghMRjk7/T9KUEEN1nWJdAdXuwzOm8D7RS2XTv06BdXdO9M0c6vDALkhcFA9Xl53qO
-         3jXs7XdEgqoHkqoPY1nIAbRcYWf+K7g2CkpG6Pbnt3K+46fpo+E8QjrLSposdTyLCy20
-         XZC0pl5VgzeYcOahU4v+rBe7nug5zdhJMVaq8jVjcwLQZMpXVt1M2LNMWbsWJfKzrS73
-         abSFtiAzVxKWqfde5ap9CbdFmXmMDMrnwXRoQoQO/wAZ8pw1NsqBvBDsZE+NThYjirJa
-         R0xfKqQNnMFOAljhGNckdug9GYMXddduIhXSxkLayP9aVS7KlBWiQoWQPt7bDbzJ8W94
-         9b7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696586917; x=1697191717;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=osJYzTdN8E4ajBT02BHqBdC7TAGRf8KWAino8TfH2Do=;
-        b=UCMX9yagNpLDo1M4ty8lVJgGEaAhQbNBd+r4Au6dYL9YZHJ9gptptzeAPmGNfGsLWg
-         JRmw+s/xocG9+4gz6cRzXGLO9MZpV0m086XnCKXkrI/Fpz8iuH6/5TCYOIpdZLhjeECj
-         Sug04s7bVmed8oh+OSm0jvv84P8RRfvQMx/ZungOMwi2757t+x0zJT+IXIgqw6XJJmsH
-         QEiWk2P3I/+8hKBXzJYARXsGtTn0j8nzESCbO8cnyJE5yTFgKjfr91lqBQhJi09UF7VY
-         ejbXASxCFSd8s6NjM7zYoUEj9eBsvTi4OWg//zEh4gMRDW51LuqtTB6pFzSWk0B63M0k
-         dBbw==
-X-Gm-Message-State: AOJu0YzOrpL52zFoRT0lpaOmV7eavMz3U7OmExiL8rrmUIlGW1egYL6d
-	NvV8H3dkca1iZh42AV7PZcM=
-X-Google-Smtp-Source: AGHT+IED9GQikXczfKT0cS5GMmyEBz/AdHxccg6OjFgXOMmxPrn1cm+Z3Q6ubL10fyYOPOdv4cLdvQ==
-X-Received: by 2002:ac2:5b83:0:b0:503:3787:f75a with SMTP id o3-20020ac25b83000000b005033787f75amr6234875lfn.62.1696586916355;
-        Fri, 06 Oct 2023 03:08:36 -0700 (PDT)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id u7-20020a056512040700b00501ce0cacb6sm243567lfk.188.2023.10.06.03.08.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Oct 2023 03:08:35 -0700 (PDT)
-Date: Fri, 6 Oct 2023 13:08:33 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Rohan G Thomas <rohan.g.thomas@intel.com>, 
-	Jakub Kicinski <kuba@kernel.org>
-Cc: alexandre.torgue@foss.st.com, andriy.shevchenko@linux.intel.com, 
-	davem@davemloft.net, devicetree@vger.kernel.org, edumazet@google.com, 
-	joabreu@synopsys.com, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	mcoquelin.stm32@gmail.com, netdev@vger.kernel.org, pabeni@redhat.com
-Subject: Re: [PATCH net-next 1/1] net: stmmac: xgmac: EST interrupts handling
-Message-ID: <cjgx6e3agc6gpvs75nhkf6wlztk73epmct6tcuooyqvk2nx2o2@vr5buyk637t3>
-References: <20231005070538.0826bf9d@kernel.org>
- <20231006072319.22441-1-rohan.g.thomas@intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EAFB15C2
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 10:20:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32291C433C8;
+	Fri,  6 Oct 2023 10:20:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696587628;
+	bh=HROclaK6r3y0yFk9TokwoZ6XEm64wKXtyBPv2Q10kRk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=TaJU+oGpsACxrifb0h7idG4NDC0Pc24/PbaP2YXLUWYcAgF92r48mzx8QM/MN4OER
+	 vqhszv9aw9nzdpk+XzM7NuVTXDu+4Oc0cVCUuI/LMkjvfQ/NYT6n/MEWnVre1BzX9c
+	 qPiIOCFjSK1YF9uj1z4Wr5RJCRxO3Ax5RxXXT15dmtAz1jUqOtw+3CQ/q0UEwStAHb
+	 sO4AfPro61clSUUO8czL4NjPfyVCQZo8EbgZHVrn82K4n7aU83esQpBcvajY+Y3sMp
+	 5Pem0OHvIXgDI9LhPThnWqyroSL7sO/UN6Wq5j3O2tRdkb2BnWTSakQzkaIBV0afjt
+	 A8sbigVEFEAHw==
+Message-ID: <77701023-7bd1-4e04-aa44-0e46aa087c4f@kernel.org>
+Date: Fri, 6 Oct 2023 13:20:22 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231006072319.22441-1-rohan.g.thomas@intel.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v11 0/5] Enable Display for J784S4 and AM69-SK
+ platform
+Content-Language: en-US
+To: Jayesh Choudhary <j-choudhary@ti.com>, nm@ti.com, vigneshr@ti.com,
+ a-bhatia1@ti.com
+Cc: afd@ti.com, s-vadapalli@ti.com, conor+dt@kernel.org, r-ravikumar@ti.com,
+ sabiya.d@ti.com, kristo@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20231005132732.7462-1-j-choudhary@ti.com>
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20231005132732.7462-1-j-choudhary@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Rohan, Jakub
 
-On Fri, Oct 06, 2023 at 03:23:19PM +0800, Rohan G Thomas wrote:
-> On Thu, 5 Oct 2023 07:05:38 -0700 Jakub Kicinski wrote:
-> > On Thu, 5 Oct 2023 20:14:41 +0800 Rohan G Thomas wrote:
-> > > > So the question now is whether we want Rohan to do this conversion
-> > > > _first_, in DW QoS 5, and then add xgmac part. Or the patch should
-> > > > go in as is and you'll follow up with the conversion?
-
-Jakub, this was my intention if Rohan wouldn't have agreed to perform
-the cleanup. Though I couldn't promise to do that in an instant.
-I would have needed a month or two to find a free time-spot for that.
-
-> > >
-> > > If agreed, this commit can go in. I can submit another patch with the
-> > > refactoring suggested by Serge.
-> > 
-> > Did you miss the emphasis I put on the word "first" in my reply?
-> > Cleanup first, nobody will be keeping track whether your fulfilled your
-> > promises or not :|
+On 05/10/2023 16:27, Jayesh Choudhary wrote:
+> This series adds support for:
+> - DisplayPort for J784S4-EVM
+> - Displayport and HDMI for AM69-SK platform
 > 
-> Hi Jakub,
+> NOTE: Patch 4/5 introduces the following dtc warning which can be ignored
+> since its behind W=1 check:
+> Warning (graph_child_address): /bus@100000/dss@4a00000/ports: graph node
+> has single child node 'port@0', #address-cells/#size-cells are not
+> necessary
 > 
-> Agreed. I'll do the cleanup first.
-
-Rohan, thanks in advance. Although I don't see why it's required to be
-done in the prescribed order only as long as the update comes in a
-_single_ patchset. Adding EST IRS-status support to XGMAC core module
-first, then factoring out both XGMAC and QoS (note both 4.x and 5.x
-seems to support that) EST code would be also acceptable. Seeing you
-have already done the first part, it would have taken less work in
-general.
-
-Jakub, what do you say if Rohan will just re-submit v2 with the
-addition cleanup patch and let him to decided whether the cleanup
-should be done first or after his XGMAC-EST IRQ update?
-
-> > > Again, thanks Serge for the prompt response. Regarding the below point in your
-> > > earlier response,
-
-> > > > > 2. PTP time offset setup performed by means of the
-> > > > > MTL_EST_CONTROL.PTOV field. DW QoS Eth v5.x HW manual claims it's "The
-> > > > > value of PTP Clock period multiplied by 6 in nanoseconds." So either Jose got
-> > > > > mistaken by using _9_ for DW XGMAC v3.x or the DW XGMAC indeed is
-> > > > > different in that aspect.
-> > > 
-> > > This is a little confusing...
-> > > I referred databooks for DW QoS Eth v5.30a and DW XGMAC v3.10a. In both this is
-> > > mentioned as "The value of PTP Clock period multiplied by 9 in nanoseconds".
-
-Interesting thing. My DW QoS Eth _v5.10a_ HW manual explicitly states
-that it's multiplied by _6_ in nanoseconds (just rechecked). So either
-there is a difference between the minor DW QoS Eth IP-core releases or
-the older HW-manuals have had a typo in the MTL_EST_CONTROL.PTOV field
-description. Synopsys normally describes such changes (whether it was
-a mistake or a functional change) in the IP-core release notes. The
-release notes document is supplied as a separate pdf file. Alas I
-don't have one.( Even if I had it it would have been useless since the
-change was introduced in the newer QoS IP-cores. Rohan, do you happen
-to have the release notes for DW QoS Eth IP-core v5.30 at hands?
-Something like DWC_ether_qos_rc_relnotes.pdf?
-
-Also please double check that your DW QoS Eth v5.30a for sure states
-that MTL_EST_CONTROL.PTOV contains value multiplied by _6_. So we
-wouldn't be wasting time trying to workaround a more complex problem
-than we already have.
-
--Serge(y)
-
+> (This is more accurate description for port and the dtc check should not
+> differentiate between port@0 and port@1.[0])
 > 
-> Best Regards,
-> Rohan
+> Changelog v10->v11:
+> - Added comment for disabling serdes-refclk (according to comments of v5)
+> - Update commit message to document why serdes, wiz nodes (2/5) and mhdp-
+>   bridge, tidss nodes (3/5) are disabled.
+> - Keep only ports in board files and move common properties to main file
+>   and document why ports are kept empty.
+> 
+> v10: https://lore.kernel.org/all/20230927121157.278592-1-j-choudhary@ti.com/
+> 
+> Changelog v9->v10:
+> - Remove duplicate properties from dp0_ports node in main file.
+> - Add reg for the port even though there is only single port in dss_port
+>   since its more accurate description for the port.
+> - Carry the R-by tags from v9.
+> 
+> v9: https://lore.kernel.org/all/20230803080441.367341-1-j-choudhary@ti.com/
+> 
+> Changelog v8->v9:
+> - Fix compatible of serdes_ln_ctrl node
+> - Fix extra new lines across nodes
+> - Fix node-names to keep them generic
+> 
+> v8: https://lore.kernel.org/all/20230801070019.219660-1-j-choudhary@ti.com/
+> 
+> Changelog v7->v8:
+> - rebase on tag next-20230731
+> - add AM69 display support
+> - fix commit heading for patch [2/5]
+> 
+> v7: https://lore.kernel.org/all/20230728050859.7370-1-j-choudhary@ti.com/
+> 
+> Changelog v6->v7:
+> - change compatible for scm_conf to 'simple-bus'
+> - drop main_cpsw node due to driver dependency on [1]
+> 
+> v6: https://lore.kernel.org/all/20230721132029.123881-1-j-choudhary@ti.com/
+> 
+> Changelog v5->v6:
+> - Change header file according to [2].
+> - Add idle-state property in serdes_ln_ctrl node.
+> - Fix dtbs_check warning due to clock-frequency property in serdes_refclk
+>   node by disabling the node in main.dtsi and enabling it in board file
+>   when the clock-frequency node is actually added.
+> 
+> v5: https://lore.kernel.org/all/20230710101705.154119-1-j-choudhary@ti.com/
+> 
+> Changelog v4->v5:
+> - rebased the patches on linux-next tip.
+> 
+> v4: https://lore.kernel.org/all/20230425131607.290707-1-j-choudhary@ti.com/
+> 
+> Changelog v3->v4:
+> - add reg property to serdes_ln_ctrl and fix the node name again to
+>   get rid of dtbs_check error.
+> - reorder reg, reg-names and ranges property for main_cpsw1.
+> - correct the order for clocks in serdes_wiz nodes to fix dtbs_check
+>   warnings.
+> - fix indentation in reg, reg-names and clock property for dss node.
+> - add comments for the reg type in dss registers.
+> 
+> v3: https://lore.kernel.org/all/20230419061710.290068-1-j-choudhary@ti.com/
+> 
+> Changelog v3->v2:
+> - fix dtc warnings for 'scm_conf' and 'serdes_ln_ctrl' nodes
+>   (Checked all the changes of the series with W=12 option during build)
+> - added clock-frequency for serdes_refclk along with other EVM changes
+>   This refclk is being used by all the instances of serdes_wiz which
+>   are disabled by default. So configuring refclk when the serdes nodes
+>   are used for the first time is okay.
+> 
+> v2: https://lore.kernel.org/all/20230414151553.339599-1-j-choudhary@ti.com/
+> 
+> Changelog v1->v2:
+> - Moved J784S4 EVM changes together to the last patch
+>   (Suggested by Andrew)
+> 
+> v1: https://lore.kernel.org/all/20230405111412.151192-1-j-choudhary@ti.com/
+> 
+> 
+> [0]: <https://lore.kernel.org/all/570903b6-8239-d44a-5fac-71700804cb5d@ti.com/>
+> [1]: <https://lore.kernel.org/all/20230605154153.24025-1-afd@ti.com/>
+> [2]: <https://lore.kernel.org/all/20230721125732.122421-1-j-choudhary@ti.com/>
+> 
+> Dasnavis Sabiya (1):
+>   arm64: dts: ti: k3-am69-sk: Add DP and HDMI support
+> 
+> Rahul T R (2):
+>   arm64: dts: ti: k3-j784s4-main: Add DSS and DP-bridge node
+>   arm64: dts: ti: k3-j784s4-evm: Enable DisplayPort-0
+> 
+> Siddharth Vadapalli (2):
+>   arm64: dts: ti: k3-j784s4-main: Add system controller and SERDES lane
+>     mux
+>   arm64: dts: ti: k3-j784s4-main: Add WIZ and SERDES PHY nodes
+> 
+>  arch/arm64/boot/dts/ti/k3-am69-sk.dts      | 229 +++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-j784s4-evm.dts   | 119 +++++++++
+>  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 276 +++++++++++++++++++++
+>  3 files changed, 624 insertions(+)
+> 
+
+For this series:
+
+Reviewed-by: Roger Quadros <rogerq@kernel.org>
 
