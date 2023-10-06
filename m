@@ -1,120 +1,230 @@
-Return-Path: <devicetree+bounces-6412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 921457BB3C2
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 11:03:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C238F7BB3B9
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 11:02:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA00B1C20983
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 09:03:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75FAF282162
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 09:02:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03F1F10969;
-	Fri,  6 Oct 2023 09:03:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEC29F9DF;
+	Fri,  6 Oct 2023 09:02:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.de header.i=julian.ribbeck@gmx.de header.b="XfDhbIpW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mHu/1UtQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2B4A1078B
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 09:03:20 +0000 (UTC)
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDB0FBB;
-	Fri,  6 Oct 2023 02:03:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.de; s=s31663417;
- t=1696582973; x=1697187773; i=julian.ribbeck@gmx.de;
- bh=bC983lG28ckhgdb284kkMkUVerGEcXzknlNmQS+eYBg=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
- b=XfDhbIpW5JYb4trxmD0YkwwQqSDSzjx46WleaP2EpMfyWtRAmdUbrA2saVaREH4uPTBOTBSwGc9
- G+SGT1ffOSVJ3Wp4dPeUjTh8OlJVd0pAURobWZhDkyqlT83cUPdF7g1vUc5rGj4qdq1KnnWNj/3C/
- lpdApfqwpaOnjVzNpvcUG9Fjgq6qHyb3TPOHKazpm3jT7lkFV1NkBNQgJcxyAgrAwz9KIOIoaKuTm
- AjaT8W/UyPQwlhJKrliB5GpbZFIGSH2gt86W9PA59UchSUJ04hBa6ETyvrLamhW8Nhq1nyJF9wbWR
- 3TbNIo5MqY8HNHxnQ5kyDwIHEtY4lg0T9QvQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from localhost.localdomain ([95.90.255.242]) by mail.gmx.net
- (mrgmx004 [212.227.17.190]) with ESMTPSA (Nemesis) id
- 1MLi8g-1r6DcL1Yqe-00HbLY; Fri, 06 Oct 2023 11:02:53 +0200
-From: Julian Ribbeck <julian.ribbeck@gmx.de>
-To: conor@kernel.org
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	jernej.skrabec@gmail.com,
-	julian.ribbeck@gmx.de,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	robh+dt@kernel.org,
-	samuel@sholland.org,
-	wens@csie.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4 2/2] dt-bindings: arm: sunxi: Add itead,iteaduino-plus-a20
-Date: Fri,  6 Oct 2023 11:01:31 +0200
-Message-ID: <20231006090154.9289-2-julian.ribbeck@gmx.de>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231006090154.9289-1-julian.ribbeck@gmx.de>
-References: <20230929-given-making-f3fac6afb176@spud>
- <20231006090154.9289-1-julian.ribbeck@gmx.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2993320F7
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 09:02:34 +0000 (UTC)
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39DDCAB;
+	Fri,  6 Oct 2023 02:02:32 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40651a726acso16984875e9.1;
+        Fri, 06 Oct 2023 02:02:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1696582950; x=1697187750; darn=vger.kernel.org;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AekrZMIN+BPe5vd5X22JkiYTiDkXtnH2g16+z44L6lA=;
+        b=mHu/1UtQUBFUOwVLJm+vXk4pjtsji8qyYl/+VqRa4a+GE5807hEBFDb5/lZa9Y0dCS
+         Xln+Nx0c0vtSDl6cjRZpGvkd7u5QUgW/bSdEQ6YJlQ62LqmF4QA1niIDJKeLIlEZATTA
+         9fUuodf8i6I+e4CUPyFsqMfzuwjwe+0VVara8WicTTnKjJROAAtSWrImsKhkLQ44TZoh
+         7fWDSFiKrfjjDeLYqiR9iu7rmSfr44TmzbiUgAmq034XWwIu5sUyQfnrdbeK49P+NSNN
+         HvQWP+xqeL23spzZdyT0RWv082fEh6hzIPFoZEDYLV3AhfWbFYBM+plCGL6e2D4RYWv0
+         Osnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1696582950; x=1697187750;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AekrZMIN+BPe5vd5X22JkiYTiDkXtnH2g16+z44L6lA=;
+        b=Ye2nCcYfjA9AOSdpBO9OFGGQZN7am61VIpFZg+S7mOpnJ868GTzcFk4xVchY4Wf7VV
+         tsa+ZKFkP7Wl04VEVoKNlOrDyNafxDAsRgAHnC507D9UbLlBbvrz7mEkfKfcHBuRPEGL
+         uaKEbWajNWozCKSyt2jPAWfbY93+xK56eEgcAh11buSCWyadAmgopV2HFB5cWROylU8V
+         Uupi9xYdqI3jFQm9I0H/2Ff2LUJoakEbtW0aqxtwbWe8sUkEQDmLwhpXomRU6l5sn/Kt
+         +ODGpDdYAMLCRqrI5jhXVtZFlhZOcmiXP5sgZjCsGVMb8FUhGM6VoJIU87/Dxk6gjGuK
+         Jmjw==
+X-Gm-Message-State: AOJu0Yy3bUquI3EaYiqQcLomcF/OE3tjyE9bWiwPqwuLStiAG+lQIDJK
+	81Y9rHUtrLOxOFd2FM+byhI=
+X-Google-Smtp-Source: AGHT+IE4OR2jYadxCC90pm47th9ABHmPSukjCkHmkQrN3b9DO/ig7J0InFKRSj164iTrxy8RC3/jOQ==
+X-Received: by 2002:a5d:474f:0:b0:31f:d5db:a13 with SMTP id o15-20020a5d474f000000b0031fd5db0a13mr7060019wrs.61.1696582950133;
+        Fri, 06 Oct 2023 02:02:30 -0700 (PDT)
+Received: from orome.fritz.box (p200300e41f3f4900f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f3f:4900:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id t11-20020a5d534b000000b003232380ffd5sm1149279wrv.106.2023.10.06.02.02.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Oct 2023 02:02:29 -0700 (PDT)
+Date: Fri, 6 Oct 2023 11:02:27 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: William Qiu <william.qiu@starfivetech.com>
+Cc: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-pwm@vger.kernel.org,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Rob Herring <robh+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	Hal Feng <hal.feng@starfivetech.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Subject: Re: [PATCH v5 2/4] pwm: starfive: Add PWM driver support
+Message-ID: <ZR_NIya611D9LyeB@orome.fritz.box>
+References: <20230922092848.72664-1-william.qiu@starfivetech.com>
+ <20230922092848.72664-3-william.qiu@starfivetech.com>
+ <CAJM55Z8d368MAQPpnRO8giKmasN5XETP40i3JVdW_0gTF3Ktqg@mail.gmail.com>
+ <ade1c061-63d8-8b48-b8e2-69416cd8aa48@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:dX2ZJgQWe26HNpJA/KGMMbuOxe7MXG13tvQ9iSk6256OqXMTlS3
- d/0OSTiROIYwi0ShmvUmzSglQqE8uHF6UX4wEYi5WxI3G/AHneiKTqJPPqerccDCpDhX8L4
- lffpKdH6pky1918durRXMdQ5QXTsSzzCOBuuXVQ0ZnbEi9CmZzvfSwC2XW/vpR17n8zRS9V
- +X9Z6sl/TSUZpLaab53RQ==
-UI-OutboundReport: notjunk:1;M01:P0:jtEReDhd39k=;UK3jrypDENnCB6ecceHBAsrajL7
- hkAnp3SVw7b1d2VjbHgf4/CChLg7EkCinuuPpk2Iy5XYjBK3fBP8zOShvd/dZ1dXcK2udRufR
- 2en+Q0NdAGIHBhbWGMe5CQBUmO/jhRSkqFP+SmoK3z2aPNYIz4vtMNBiEYpR3Ko8B6cnLSUKa
- Yg+jMxyrUjRkaQzFrYctNzFlJ2mrKYx0q3KRUqJ1WhDSso7j0wBdHjR/1vjaVeeYHvuk7kjJ+
- mtUy0nxGjkcQHEOTlbzapDxolm1L4pP9mcXpu6svSVXL2CZGHIP57Eg39NuQXszxRw66N9TTI
- pnNZoLenCyfwiYf42Kws+F6guSkjJjmFHujQbaSXlb01SNp3ZnRftPz+R6WS2D3x2icZVaA/U
- qqrZzcxTRZSrNd9gXr14B3QHQ6wQGeZ0HT0sq3c9eHE+9ogsEkdQtt5U9oUQoprK8hWzLSkuR
- fnRXcMOy/cSNB42BL37VIZypZonTD6S9hEQJUfPNxrIB2yrJOLkqalnBzZFL6/o8HPJqL/7vy
- T3yF7e+e2CX+u/SOtrY59CiRw6FJ5UY1e3B3arYJUNIpzJ897A9YWYuxbaTHfWmdJrk7iiU9p
- ljv8WCUMRE5HlUWnaLzg2DFptLkjyJL9IcivUxxYRlP71O/CWAEBTvEfdPyHKvRA6J90xSywo
- 5tzvhdQPdZqW+ixIEj4UvjAQLJXa5FP0euoKXAqCEK+2hQCqyw0Lda2PRTVfWrvEjb2cE48vf
- RE63Dmw6IijxNYQvXgE+Nkc1S/pvms3E6KfM5ghI0JFurmSQfZseVUWkWbcHKS+g5FaRmFLDh
- ZWPhP9BfrROKVuUmi99mikdqeCEOiP/ERIX7GeAp2igN3yJO6rRhJXhmeKpoGGmNbSgok1C0t
- mJKGjL7hTHrkIkmgs+3Z34mw6WApFN5hZ4QTsUZrT/ckAcAhArkSX5wggEOdoHs+a9DiKVuAs
- RvM1gw9xbHDCFr+Qc8lA2QYAH5o=
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Jla5kCtQoKWTa8Ob"
+Content-Disposition: inline
+In-Reply-To: <ade1c061-63d8-8b48-b8e2-69416cd8aa48@starfivetech.com>
+User-Agent: Mutt/2.2.12 (2023-09-09)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-Add itead,iteaduino-plus-a20 bindings
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Julian Ribbeck <julian.ribbeck@gmx.de>
-=2D--
- Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+--Jla5kCtQoKWTa8Ob
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentat=
-ion/devicetree/bindings/arm/sunxi.yaml
-index e4dd678f4212..25251ce4b60d 100644
-=2D-- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-+++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-@@ -362,6 +362,11 @@ properties:
-           - const: itead,iteaduino-plus-a10
-           - const: allwinner,sun4i-a10
+On Mon, Sep 25, 2023 at 06:27:16PM +0800, William Qiu wrote:
+>=20
+>=20
+> On 2023/9/23 20:08, Emil Renner Berthing wrote:
+> > William Qiu wrote:
+> >> Add Pulse Width Modulation driver support for StarFive
+> >> JH7100 and JH7110 SoC.
+> >>
+> >> Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
+> >> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> >> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> >> ---
+> >>  MAINTAINERS                |   7 ++
+> >>  drivers/pwm/Kconfig        |   9 ++
+> >>  drivers/pwm/Makefile       |   1 +
+> >>  drivers/pwm/pwm-starfive.c | 190 +++++++++++++++++++++++++++++++++++++
+> >>  4 files changed, 207 insertions(+)
+> >>  create mode 100644 drivers/pwm/pwm-starfive.c
+> >>
+> >> diff --git a/MAINTAINERS b/MAINTAINERS
+> >> index bf0f54c24f81..bc2155bd2712 100644
+> >> --- a/MAINTAINERS
+> >> +++ b/MAINTAINERS
+> >> @@ -20495,6 +20495,13 @@ F:	drivers/pinctrl/starfive/pinctrl-starfive-=
+jh71*
+> >>  F:	include/dt-bindings/pinctrl/pinctrl-starfive-jh7100.h
+> >>  F:	include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h
+> >>
+> >> +STARFIVE JH71X0 PWM DRIVERS
+> >> +M:	William Qiu <william.qiu@starfivetech.com>
+> >> +M:	Hal Feng <hal.feng@starfivetech.com>
+> >> +S:	Supported
+> >> +F:	Documentation/devicetree/bindings/pwm/starfive,jh7100-pwm.yaml
+> >> +F:	drivers/pwm/pwm-starfive-ptc.c
+> >> +
+> >>  STARFIVE JH71X0 RESET CONTROLLER DRIVERS
+> >>  M:	Emil Renner Berthing <kernel@esmil.dk>
+> >>  M:	Hal Feng <hal.feng@starfivetech.com>
+> >> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> >> index 8ebcddf91f7b..e2ee0169f6e4 100644
+> >> --- a/drivers/pwm/Kconfig
+> >> +++ b/drivers/pwm/Kconfig
+> >> @@ -569,6 +569,15 @@ config PWM_SPRD
+> >>  	  To compile this driver as a module, choose M here: the module
+> >>  	  will be called pwm-sprd.
+> >>
+> >> +config PWM_STARFIVE
+> >> +	tristate "StarFive PWM support"
+> >> +	depends on ARCH_STARFIVE || COMPILE_TEST
+> >> +	help
+> >> +	  Generic PWM framework driver for StarFive SoCs.
+> >> +
+> >> +	  To compile this driver as a module, choose M here: the module
+> >> +	  will be called pwm-starfive.
+> >> +
+> >>  config PWM_STI
+> >>  	tristate "STiH4xx PWM support"
+> >>  	depends on ARCH_STI || COMPILE_TEST
+> >> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> >> index c822389c2a24..93b954376873 100644
+> >> --- a/drivers/pwm/Makefile
+> >> +++ b/drivers/pwm/Makefile
+> >> @@ -52,6 +52,7 @@ obj-$(CONFIG_PWM_SIFIVE)	+=3D pwm-sifive.o
+> >>  obj-$(CONFIG_PWM_SL28CPLD)	+=3D pwm-sl28cpld.o
+> >>  obj-$(CONFIG_PWM_SPEAR)		+=3D pwm-spear.o
+> >>  obj-$(CONFIG_PWM_SPRD)		+=3D pwm-sprd.o
+> >> +obj-$(CONFIG_PWM_STARFIVE)	+=3D pwm-starfive.o
+> >>  obj-$(CONFIG_PWM_STI)		+=3D pwm-sti.o
+> >>  obj-$(CONFIG_PWM_STM32)		+=3D pwm-stm32.o
+> >>  obj-$(CONFIG_PWM_STM32_LP)	+=3D pwm-stm32-lp.o
+> >> diff --git a/drivers/pwm/pwm-starfive.c b/drivers/pwm/pwm-starfive.c
+> >=20
+> > Hi William,
+> >=20
+> > You never answered my questions about what PTC is short for and if ther=
+e are
+> > other PWMs on the JH7110. You just removed -ptc from the name of this f=
+ile..
+> >=20
+> Hi Emil,
+>=20
+> The PTC, short for PWM/TIMER/CONUTER, comes from OpenCore's ip, but only =
+PWM
+> mode is used in the JH7110. So the register still has the word "PTC".
+> s the best way to change all the prefix to STARFIVE?
 
-+      - description: Itead Iteaduino Plus A20
-+        items:
-+          - const: itead,iteaduino-plus-a20
-+          - const: allwinner,sun7i-a20
-+
-       - description: Jesurun Q5
-         items:
-           - const: jesurun,q5
-=2D-
-2.42.0
+This is the first time I see mentioned that this is based on an Open-
+Cores IP. It's definitely something you want to note somewhere so that
+others can reuse this driver if they've incorporated the same IP into
+their device.
 
+Given the above it might be better to name this something different
+entirely. The original OpenCores PTC IP seems to be single-instance,
+but that's about the only difference here (i.e. the OpenCores IP lists
+one clock and one reset, which this driver supports).
+
+So it'd be easy to turn this into a generic OpenCores driver and then
+use the starfive compatible string(s) to parameterize (number of
+instances, register stride, etc.).
+
+Thierry
+
+--Jla5kCtQoKWTa8Ob
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmUfzSAACgkQ3SOs138+
+s6GkoBAAo2YnFbKw9yRSCrbScmBZIjuZSwCQpBTVxFz/3x1RBRFl3Huq/xWwguHc
+DrPkU0/N6t6X/f9zJMAwrwsG6K2U5zZhNNW63llxB1FYAydKz+DAJP05s9R4e2/H
+QqVsUzmwH/lYND9/+uQQviS1dBik4Gr7chyRibP2kABPwINuYkPYcsaVBPFz2S4v
+5WCxuQ98rRL2PqJszkhzWPP8SjYlxt2VIZ8INAiBZiU63YRRSScVE34721/kTzpn
+jX2jGHJLJLnFp3AR+T/JAyGyLv6UJT4QhAKebJOu9IMk2u4Xyw4epVhUT13j5sLs
+JMXQivDhnmnD+ESYcg0MHlyZzyezSoEse19XVd7mEwHb7+5WnVw6HCVfSQfNgEJR
+KAj7EqAWD3mwzqDpjsAZz/zv8XZcWqtqkE365Aj0Z6PiIo1g4hE3lNOtOVyufhGz
+O2NvJrEnjl8pxX51IzBJU9hQ0DdT9QANc5WYy7hYWSKkNtclEn/GruwYjJWHhYjm
+hw6gXIikdKo5QkRTDJAgc/enjEM1jRZFg6B9HoGXMAwuupnM7ApHN2wdvJ378jaC
+MsIaP4648VTF8ohlysQbtX+wsq7SSOUvUw+e1lMoEgVfmaBMkkRcq2s58qgAD8/Y
+SB6msvcOBpkEbSOm2/q3XFz+Rg2LxdEyN46jHp5BF4640xMbROs=
+=k6bZ
+-----END PGP SIGNATURE-----
+
+--Jla5kCtQoKWTa8Ob--
 
