@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-6627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0B657BC312
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 01:47:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD44C7BC324
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 01:58:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5F36282176
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 23:47:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 38AC42820D7
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 23:58:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED8D347355;
-	Fri,  6 Oct 2023 23:47:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C0DF4735C;
+	Fri,  6 Oct 2023 23:58:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r8pQsvcs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zpskxg21"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB91845F7C
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 23:47:49 +0000 (UTC)
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21155BF
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 16:47:47 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-31fa15f4cc6so2585932f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 16:47:47 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D21E84735A
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 23:58:02 +0000 (UTC)
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB5A6BE
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 16:58:00 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-5068dab8c00so699314e87.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 16:58:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696636065; x=1697240865; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696636679; x=1697241479; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XjGK0/6qgtKOqmSnRUWSkBW57qXKO6wGZP23q42Isck=;
-        b=r8pQsvcsmW4f41SJoVGoUtvSUSw0AXMUb8bx1Vw1g5ABYgP7bXY6nD1Lxcoq/0XqwQ
-         uFUVvmmiatFINpp4Cuf4oSTZdjjyqT6ftsbkUrw8GkonqaMLBr53fl+oE5NgIKc8NcfI
-         bZ2hS7HPsPCR68PwiiD8ik/XJb5lscLaYyAQzBfcCC+6x60Ipj6ZUHrj+zVHvOz83Aoo
-         p3HEDhWcudX91eLU6GQMEFaBckBFDccmOvVz/O/3D6vZ4cmG+bCXyXhdiwCtLNIo0QQe
-         TmGFBlu0t3gDIvYV6j2NElYD8hluO97NBJJB0GIxndXFWx5cyamV5cjLRSuOIDobmCpK
-         8edw==
+        bh=QYPUh/Q1TeqvQIJLjORqLOAktxS2uLnBNCEX1Cyn064=;
+        b=zpskxg21IQAXhF7HFise0OMsHUIE7755v9Y8ch0X8YtGraz3sHDIkV4bBNTTSQu4AY
+         zOHA/v2ph+iWUjNJwmHG5OW7lD73V0ghqnjJsTRROYGS78ZvYDAzuA/bp3qgHTw9yUEB
+         K6xkYQ1ne+YPJLhmDnFx6+VRF7TArbQ7V+eAgu879P/f0Pymp/ki9yteRzwk6gT6FihD
+         xd70meDFT4l/pdWToH52pu3ZEZG8sh+VRYEuEDqnpDX3vuefDJjBkjP+WfeZtt82hWxk
+         QxgdL9OUzJODr6j5RlPKWRgedKiCqUl/9lnAZsBlqaxqYNiqGmvkRBsKVJlyJbEcISLd
+         KjRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696636065; x=1697240865;
+        d=1e100.net; s=20230601; t=1696636679; x=1697241479;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XjGK0/6qgtKOqmSnRUWSkBW57qXKO6wGZP23q42Isck=;
-        b=SCV2kiQ5bHSsFPtch99eCEhZaE3XOoTipvqAB+mujAP+YoJbaB/8nj1XTEX2n0ao6O
-         B0gGO1KuGu1bsiKnjWoZIXID2kcyApNZBuLp+YtzR1iaOvUX6WlA6bd+Z7fKwtOgcD49
-         ZLC1nWh8+JWzLMyCqCQRh3QpCTA+BATDwLNRaS3+bbn5v/Y/0oLeXZ13t/VvQEqjvY8m
-         xfeJxyJCfsZmDpADr7jVpEmZDdr12OcpnKbOkz5lxzA5MShBfiG7mkW9bWkifqvl+dLg
-         7mexyLC0J1PiVMK6UCvGaQmQH3uI0hdn8TUQvJ1gAgiYxPvzPNBoSa6kpCOjJBmj+85h
-         iClg==
-X-Gm-Message-State: AOJu0YzT/+LqCJbY4EHTTPj4R1499yvsjEqSvEJxQg8yzZur58PpK6q5
-	zDtxVdh/cI2PRm15GNQC0HXi5w==
-X-Google-Smtp-Source: AGHT+IGClN/2krp5lfgxqpF0EZe557a6/RY6T3XZ1telHabNqYg3yLAf1JuScCUqZ/MwBWu6WQdkMw==
-X-Received: by 2002:a5d:6311:0:b0:320:4cf:5b50 with SMTP id i17-20020a5d6311000000b0032004cf5b50mr8499282wru.5.1696636064916;
-        Fri, 06 Oct 2023 16:47:44 -0700 (PDT)
+        bh=QYPUh/Q1TeqvQIJLjORqLOAktxS2uLnBNCEX1Cyn064=;
+        b=o3SYAX5yY/ujt52R7iDhKQQoTG2PrqY8SHI69Yq7jQ20FwKsFpEj2DwTewvjuAxFxP
+         a7z3km5QV7ChfplaSlIj12riVpmdADMEqDHwYLVJ7dSCs77qchzQEZwx83/CiN2QlJTy
+         sBNjpA5CgGkubbjVerjLqRSORjo/AYGogcXTAHkXPNEPDyue3FsFWFyY0QDW6ihpZZuI
+         JffSl+Ha+OCsi/dDTb3IqtZFyINeGJ6PFKAseeqBkkM5oUMkK+TsLbm4er4p0ozrO/cK
+         yo2zD0/JoRnC9sSdaUHZYC3qRKp5kjUuOL09dFjQM3uczehE/i63gvNgjuFe1pUFN7W6
+         LzrQ==
+X-Gm-Message-State: AOJu0Yw97YAIiCRyLDFrfn02Y590Qk0J886Qc+VH5VTxdBsPIQuWX2DZ
+	XIh32AXq/RXrN265aHdjrendTQ==
+X-Google-Smtp-Source: AGHT+IHOhwlTfxO0gtbu5R3YxSSzux1ir1D0+XV9LoycquxOEKv33Uk9S1akXB8MDf7rtMqWeM4CXg==
+X-Received: by 2002:a05:6512:39c8:b0:4f8:7513:8cac with SMTP id k8-20020a05651239c800b004f875138cacmr11087219lfu.48.1696636679204;
+        Fri, 06 Oct 2023 16:57:59 -0700 (PDT)
 Received: from [192.168.200.173] (178235177147.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.147])
-        by smtp.gmail.com with ESMTPSA id 1-20020a05651c00c100b002bfec05a693sm981733ljr.22.2023.10.06.16.47.43
+        by smtp.gmail.com with ESMTPSA id w21-20020a19c515000000b00502e0ea7174sm479791lfe.186.2023.10.06.16.57.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Oct 2023 16:47:44 -0700 (PDT)
-Message-ID: <56db233f-1488-4725-9253-b4d6246fd5b7@linaro.org>
-Date: Sat, 7 Oct 2023 01:47:42 +0200
+        Fri, 06 Oct 2023 16:57:58 -0700 (PDT)
+Message-ID: <0007b5ff-34d4-44c0-80bd-8277d5842c01@linaro.org>
+Date: Sat, 7 Oct 2023 01:57:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,17 +67,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] clk: qcom: add SM8550 DISPCC driver
+Subject: Re: [PATCH 2/8] phy: qcom: Introduce Super-Speed USB UNIPHY driver
 Content-Language: en-US
-To: neil.armstrong@linaro.org, Sophon Wu <wuxilin123@gmail.com>
-Cc: Andy Gross <agross@kernel.org>, andersson@kernel.org,
- devicetree@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, mturquette@baylibre.com,
- Rob Herring <robh+dt@kernel.org>, sboyd@kernel.org
-References: <CAEPPPKu=yxS6SgdLZiuhbF2DRURKVUBNgNbUQ96LxHHbtsJ6Sg@mail.gmail.com>
- <c6a974ce-511c-47f8-b6cb-baeec5283af9@linaro.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Praveenkumar I <quic_ipkumar@quicinc.com>
+Cc: agross@kernel.org, andersson@kernel.org, vkoul@kernel.org,
+ kishon@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, gregkh@linuxfoundation.org, catalin.marinas@arm.com,
+ will@kernel.org, p.zabel@pengutronix.de, geert+renesas@glider.be,
+ arnd@arndb.de, neil.armstrong@linaro.org, nfraprado@collabora.com,
+ u-kumar1@ti.com, peng.fan@nxp.com, quic_wcheng@quicinc.com,
+ quic_varada@quicinc.com, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, quic_kathirav@quicinc.com,
+ quic_nsekar@quicinc.com, quic_srichara@quicinc.com
+References: <20230929084209.3033093-1-quic_ipkumar@quicinc.com>
+ <20230929084209.3033093-3-quic_ipkumar@quicinc.com>
+ <412492d1-fcc9-481c-9d28-b208a644ba1d@linaro.org>
+ <7975c638-29cf-45ce-9d76-b8a93d750eb7@quicinc.com>
+ <CAA8EJprhQz_Tj0Bhv6zhGa7h37Ug-Fp6Tof9tNscTFyZzkbJvw@mail.gmail.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -114,7 +123,7 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <c6a974ce-511c-47f8-b6cb-baeec5283af9@linaro.org>
+In-Reply-To: <CAA8EJprhQz_Tj0Bhv6zhGa7h37Ug-Fp6Tof9tNscTFyZzkbJvw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -124,34 +133,55 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
-On 3.10.2023 09:16, neil.armstrong@linaro.org wrote:
-> Hi,
+On 3.10.2023 16:54, Dmitry Baryshkov wrote:
+> On Tue, 3 Oct 2023 at 17:22, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
+>>
+>>
+>>
+>> On 9/30/2023 10:48 PM, Dmitry Baryshkov wrote:
+>>> On 29/09/2023 11:42, Praveenkumar I wrote:
+>>>> Adds Qualcomm 22ull Super-Speed USB UNIPHY driver support which
+>>>> is present in Qualcomm IPQ5332 SoC. This PHY is interfaced with
+>>>> SNPS DWC3 USB and SNPS DWC PCIe. Either one of the interface
+>>>> can use the it and selection is done via mux present in TCSR
+>>>> register. This driver selects the PHY for DWC3 USB and handles
+>>>> the reset, clocks and regulator.
+>>>>
+>>>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+>>>> ---
+>>>>   drivers/phy/qualcomm/Kconfig               |  11 +
+>>>>   drivers/phy/qualcomm/Makefile              |   1 +
+>>>>   drivers/phy/qualcomm/phy-qcom-uniphy-usb.c | 322 +++++++++++++++++++++
+>>>>   3 files changed, 334 insertions(+)
+>>>>   create mode 100644 drivers/phy/qualcomm/phy-qcom-uniphy-usb.c
+>>>>
+>>>> diff --git a/drivers/phy/qualcomm/Kconfig b/drivers/phy/qualcomm/Kconfig
+>>>> index d891058b7c39..7257c8455c53 100644
+>>>> --- a/drivers/phy/qualcomm/Kconfig
+>>>> +++ b/drivers/phy/qualcomm/Kconfig
+>>>> @@ -154,6 +154,17 @@ config PHY_QCOM_M31_USB
+>>>>         management. This driver is required even for peripheral only or
+>>>>         host only mode configurations.
+>>>>   +config PHY_QCOM_UNIPHY_USB
+>>>> +    tristate "Qualcomm USB Super-Speed UNIPHY driver"
+>>>
+>>> Can we please have more specific driver name? As I wrote earlier,
+>>> there are two other (different) kinds of Qualcomm UNI PHY devices:
+>>> - DSI / HDMI UNIPHY on apq8064 / msm8974 / msm8960 (?)
+>>> - USB QMP UNI PHY drivers
+>>>
+>>> Adding a driver called UNIPHY, which is not related to those two kinds
+>>> sounds pretty confusing to me.
+>> This UNIPHY is different from above mentioned ones. This a custom
+>> version for 22nm on Qualcomm IPQ5332.
+>> Can we name the driver as phy-qcom-uniphy-usb-ss-22ull.c /
+>> phy-qcom-usb-ss-22ull.c ?
 > 
-> On 03/10/2023 04:17, Sophon Wu wrote:
->> On 09/01/2023 16:47, Neil Armstrong wrote:
->>
->>> Add support for the display clock controller found in SM8550
->>> based devices.
->>
->>> This clock controller feeds the Multimedia Display SubSystem (MDSS).
->>> This driver is based on the SM8450 support.
->>
->>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>> ---
->>
->> Hi Neil,
->>
->> I'm trying to enable display on SM8550 but having trouble with clocks. Do you
->> have any idea on this maybe? Full dmesg here: https://bpa.st/7E6Q
-> 
-> You may need to remove the cont-splash memory zone and the simple-framebuffer,
-> if you leave the cont-splash the bootloader will leave the MDSS on and Linux
-> will fail to take over and initialize the clocks.
-Huh???
+> usb-ss-22ull sounds better. Or maybe usb-ipq-ss
+usb-ipq-ss is as safe as usb-msm-ss
 
-Does the bootloader poke at the devicetree to check for its presence
-on this board!?
+We can not rely on the hardware never ever changing down the
+product line :D
 
 Konrad
 
