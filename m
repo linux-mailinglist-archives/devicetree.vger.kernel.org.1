@@ -1,110 +1,172 @@
-Return-Path: <devicetree+bounces-6404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F6677BB36E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 10:45:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1D887BB37E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 10:49:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8C48281F60
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 08:45:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67905281F46
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 08:49:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11E2F1FDF;
-	Fri,  6 Oct 2023 08:45:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 859D76D3F;
+	Fri,  6 Oct 2023 08:49:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Kp5+Uha7"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="kBZzKMgJ";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Z9wduYnb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99026386
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 08:45:07 +0000 (UTC)
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F89B83;
-	Fri,  6 Oct 2023 01:45:05 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9ae75ece209so352471666b.3;
-        Fri, 06 Oct 2023 01:45:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696581904; x=1697186704; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PiQG9eB+81jnnKh5yBXb7DYjjmAPfSYQYgGlMxFuycQ=;
-        b=Kp5+Uha7qWwlKpAiIeTeA0zBoHwgd2BmOHRaCFW+WwCP+1lADq/WweqfkH9Cics/fK
-         8MEo/z7TABDt/edznmniuSZ+ao11TkYUSbdEHwa6oTOiA46ygrecH25FffRb6xG6Lg7B
-         iJ3zwHZZm5Dwj8gQSpg7pr7TX3H+bOXOuL98E5A7oxY2xNd/n1Wvj693akD5/Kf0DevU
-         OyaJQcMtYYVVi8TKsQx7AG2WWJKiKq669ftpmi8Gv1nMe5T9tMC3adN/KAiLRZ1aZQ+8
-         krMCb0qj7LigwBH1WnNsmrrpphLZkJ9AqkGjeYFz3EnqeUI8BRQmMQ0hJvOWFXNoyJmJ
-         byqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696581904; x=1697186704;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PiQG9eB+81jnnKh5yBXb7DYjjmAPfSYQYgGlMxFuycQ=;
-        b=ef3xPd1XMm2RiNI0eijP5CGcMjbtSal24QYvDJYk0EASvuDQPkFoQt8tWJeLaF07DU
-         Nbelih9qLtRi/u9QnU7u6sVFikGLVMaTOa+grwubJ1QdsLAWVRbMUqGJ762ph3Q9VHu/
-         A1qC+87XeCGimR0cmtrBthVgcI5DRAvAVPXe/JDwsWGHIFPqIo2glECoPkpTneob8QdK
-         UxmP7Ap9XDsxjPpdj8RbYUJ+bGYrrpZ1xRk56C4z3XfkOZL9eIhIwvgj/+gd7eO2U2XH
-         fyokOcg83Tm0fm3e/TPaz9qcBwad41lugp9Jws+bj8diQA3A3hVxVPM8rc6DGJ9VdXYz
-         BVFg==
-X-Gm-Message-State: AOJu0YzpgpYIY+nYmS503Oj471rkY3mZrwl2xkertcATtxmAjtWbOYB9
-	JrQgAT/feyUtoQY/gNgnlDk=
-X-Google-Smtp-Source: AGHT+IG7gav62CWXqgxy3Oc+Bt9zEBpNR9pS09uNaXeA3kHMd6ruw2I+CKCVmI2UXUURkmYPneMOlw==
-X-Received: by 2002:a17:906:8a71:b0:9ae:3d75:4c83 with SMTP id hy17-20020a1709068a7100b009ae3d754c83mr5879512ejc.0.1696581903844;
-        Fri, 06 Oct 2023 01:45:03 -0700 (PDT)
-Received: from localhost (p200300e41f3f4900f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f3f:4900:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id gr22-20020a170906e2d600b009b2ba067b37sm2467713ejb.202.2023.10.06.01.45.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Oct 2023 01:45:03 -0700 (PDT)
-From: Thierry Reding <thierry.reding@gmail.com>
-To: shawnguo@kernel.org,
-	Fabio Estevam <festevam@gmail.com>
-Cc: u.kleine-koenig@pengutronix.de,
-	linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: Re: (subset) [PATCH v2 1/3] dt-bindings: pwm: mxs: Document fsl,imx28-pwm
-Date: Fri,  6 Oct 2023 10:45:01 +0200
-Message-ID: <169658188181.78451.16194002929003687751.b4-ty@gmail.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230922124229.359543-1-festevam@gmail.com>
-References: <20230922124229.359543-1-festevam@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7311C4C94
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 08:49:29 +0000 (UTC)
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E142B83;
+	Fri,  6 Oct 2023 01:49:27 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailout.west.internal (Postfix) with ESMTP id 553463200B27;
+	Fri,  6 Oct 2023 04:49:22 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute5.internal (MEProxy); Fri, 06 Oct 2023 04:49:24 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:sender
+	:subject:subject:to:to; s=fm2; t=1696582161; x=1696668561; bh=fq
+	7jUTQDYY98nWZgnWeYl6Cagk6XWBLFE67pLot1gWo=; b=kBZzKMgJZsyJhJ4jkw
+	jQU20dAsOX6gV5+9PEwOC6EDKw7Yrab03w7x2jeKDOi5U8sb/zmQ8Do9RTmngNC8
+	yW1XTJd1bUm/rTmNlB9F9TExc3icsyP1glN07DJTwfqW+FzA7E339NrTeU5sRc/L
+	n3VnfG7n+yfSNcSvAHPhilUJEguUWvbqXhCccmjZaMBvxEY4yFK+ZSL9Gp0LtFha
+	cZ0A9UoKYcf32ekNsano2pLPsmc54RzW/g3tPBuRro7L3uPt90fH3hIN8BzDhNze
+	p9rH9D8bX843QRBOTm7lQAd41lszXDeeJikGphg72AEiyROyBJHPvmCE3IgtC1B8
+	I8xw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:sender:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm2; t=1696582161; x=1696668561; bh=fq7jUTQDYY98n
+	WZgnWeYl6Cagk6XWBLFE67pLot1gWo=; b=Z9wduYnbaSjO4hO9z4ThmB4lkJ+ww
+	qv48JvZetC68Oy7Cwu1FZTuWCiNrKWgPVlC3WfLZq9CQAtRwtR+Hgmm5hm7ogHvR
+	g0HhACHoO4MLD7fxHHWj2C3pZU6RASeeLf/9XyNP46PxJ9+Wl/0D6WC9DBYJNVUx
+	mtNhY7IAXC9PqRSim+iZ7rzPLHV0BIft9I6alaUUj3XxUqUv5l7FauuYS80Rf78F
+	T7iw5HeL/xcklmoBHAfAZMLxvFOyUulgeZzpl67xGf0yowfKAw8nWtTXzHAQ8HCE
+	psBkN+QRkt9PJmeDlBFt3h9VAeNTcJJeZFH8l8liepztop+DKATVvf2XQ==
+X-ME-Sender: <xms:EMofZT2i-9GISWVnjxgMhlfr_K0J1DDCikeZffdfaxxvS-c9ZvWmTA>
+    <xme:EMofZSH-GDrTlbKrOc09JAu6xzst-K08JW-bRaweoc7LuQJp4GgEj665KOBjFQo1J
+    Ga257VUxycRUUCsOyk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrgeeigddtjecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
+    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
+    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
+    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
+    hnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:EMofZT4ywgzN7LkzmXzXPySCJeAKjukN8v43qGhqwxizLsQRUilCXg>
+    <xmx:EMofZY2E3kF4qLgYpdHd4RbTBZENJnE3pcBjp3j1fIuAPC4cUrEcNA>
+    <xmx:EMofZWHiFKv5E0Dvozm7fdb71mAiOQ7Sue59rxI-niu4_MbVJRdtNw>
+    <xmx:EcofZZYKcoYBWJfaMLlaG0rL0xmTDuYDJQLE8dL3BH9l1IWy6uP6mQ>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id ABDB6B60089; Fri,  6 Oct 2023 04:49:20 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-958-g1b1b911df8-fm-20230927.002-g1b1b911d
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Message-Id: <e8b23683-36ac-4547-9386-935a1b211d7d@app.fastmail.com>
+In-Reply-To: <44816879-a3a7-4bd0-bb20-19a645107b4b@linaro.org>
+References: <20231005155618.700312-1-peter.griffin@linaro.org>
+ <20231005155618.700312-19-peter.griffin@linaro.org>
+ <ZR75cIvnQS2cqTT3@google.com> <2023100520-cleaver-sinless-fbae@gregkh>
+ <99419159-cab0-4c79-a4a0-12229bfad3c0@linaro.org>
+ <2023100513-mashing-scrubber-ea59@gregkh>
+ <efc9f099-9c97-460b-b0c8-9891aa3b772a@linaro.org>
+ <ZR9EnFw3vB92vlYM@google.com>
+ <44816879-a3a7-4bd0-bb20-19a645107b4b@linaro.org>
+Date: Fri, 06 Oct 2023 10:48:58 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+ "William McVicker" <willmcvicker@google.com>
+Cc: "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Peter Griffin" <peter.griffin@linaro.org>,
+ "Rob Herring" <robh+dt@kernel.org>, krzysztof.kozlowski+dt@linaro.org,
+ "Michael Turquette" <mturquette@baylibre.com>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Stephen Boyd" <sboyd@kernel.org>,
+ "Tomasz Figa" <tomasz.figa@gmail.com>,
+ "Sylwester Nawrocki" <s.nawrocki@samsung.com>,
+ "Linus Walleij" <linus.walleij@linaro.org>,
+ "Wim Van Sebroeck" <wim@linux-watchdog.org>,
+ "Guenter Roeck" <linux@roeck-us.net>,
+ "Catalin Marinas" <catalin.marinas@arm.com>,
+ "Will Deacon" <will@kernel.org>, "Olof Johansson" <olof@lixom.net>,
+ "Chanwoo Choi" <cw00.choi@samsung.com>,
+ "Tudor Ambarus" <tudor.ambarus@linaro.org>, andre.draszik@linaro.org,
+ semen.protsenko@linaro.org, soc@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org,
+ "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+ linux-watchdog@vger.kernel.org, kernel-team@android.com
+Subject: Re: [PATCH 18/21] arm64: dts: google: Add initial Google gs101 SoC support
+Content-Type: text/plain
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+	SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+On Fri, Oct 6, 2023, at 08:06, Krzysztof Kozlowski wrote:
+> On 06/10/2023 01:19, William McVicker wrote:
+>> On 10/05/2023, Krzysztof Kozlowski wrote:
+>>> On 05/10/2023 21:23, Greg KH wrote:
+>>
+>> Being able to include SERIAL_SAMSUNG and SERIAL_MSM without all the vendor> specific drivers that ARCH_EXYNOS and ARCH_QCOM select is very
+> valuable for
+>> debugging early boot issues.
+>
+> Really? How related? The drivers are independent. You describe some
+> out-of-tree development process which we never needed for upstream work.
+> And we did here quite a lot of upstream, specially if you look at ARCH_QCOM.
 
-On Fri, 22 Sep 2023 09:42:27 -0300, Fabio Estevam wrote:
-> imx28 uses the same PWM block that is found on imx23.
-> 
-> Add an entry for fsl,imx28-pwm.
-> 
-> 
+Right: in general, all drivers are independent of the platform
+besides the typical 'depends on ARCH_FOO || COMPILE_TEST' dependency,
+but I think it's worth mentioning the known exceptions, so Greg and
+Will can take that fight to the respective places rather than
+discussing it in the platform submission:
 
-Applied, thanks!
+- Some subsystems are considered 'special' and the maintainers
+  prefer the drivers to be automatically selected based on the
+  ARCH_* settings instead of having user-visible options. This is
+  traditionally true for large chunks of drivers/irqchip,
+  drivers/clocksource and drivers/pinctrl, though it has gotten
+  better over time on all of them.
 
-[1/3] dt-bindings: pwm: mxs: Document fsl,imx28-pwm
-      commit: c3c653422a265a3b5dfdf8567eebd5116311c36d
-[2/3] dt-bindings: pwm: mxs: Document the clocks property
-      commit: 42b9116ce12579692ec18ad9446ea5ad832ea0ef
+- Some older 32-bit platforms are still not as modular as we'd
+  like them to be, especially the StrongARM (ARMv4) platforms that
+  require a custom kernel build, and some of ARMv4T and ARMv5
+  boards that are still missing DT support. These tend to require
+  drivers they directly link to from board code, so disabling
+  the drivers would cause a link failure until this gets
+  cleaned up.
 
-Best regards,
--- 
-Thierry Reding <thierry.reding@gmail.com>
+- A couple of drivers are force-enabled based on the ARCH_*
+  options because booting without these drivers would risk
+  permanent damage to hardware, e.g. in overtemp or overcurrent
+  scenarios.
+
+- ACPI based platforms require the PCI host bridge driver to
+  be built-in rather than a loadable module because ACPI
+  needs to probe PCI devices during early boot.
+
+- Some subsystems (notably drivers/gpu/, but others as well)
+  have an excessive number of 'select' statements, so you
+  end up surprise-enabling a number of additional drivers
+  and subsystems by enabling certain less important platform
+  specific drivers.
+
+      Arnd
 
