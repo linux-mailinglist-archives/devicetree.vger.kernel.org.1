@@ -1,230 +1,420 @@
-Return-Path: <devicetree+bounces-6409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C238F7BB3B9
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 11:02:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A93577BB3C0
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 11:03:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75FAF282162
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 09:02:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F522281FF6
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 09:03:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEC29F9DF;
-	Fri,  6 Oct 2023 09:02:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71733F9EB;
+	Fri,  6 Oct 2023 09:03:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mHu/1UtQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uiL0L/ez"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2993320F7
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 09:02:34 +0000 (UTC)
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39DDCAB;
-	Fri,  6 Oct 2023 02:02:32 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40651a726acso16984875e9.1;
-        Fri, 06 Oct 2023 02:02:32 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F07020F7
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 09:03:06 +0000 (UTC)
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21433DE
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 02:03:04 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-533f193fc8dso3250722a12.2
+        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 02:03:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1696582950; x=1697187750; darn=vger.kernel.org;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AekrZMIN+BPe5vd5X22JkiYTiDkXtnH2g16+z44L6lA=;
-        b=mHu/1UtQUBFUOwVLJm+vXk4pjtsji8qyYl/+VqRa4a+GE5807hEBFDb5/lZa9Y0dCS
-         Xln+Nx0c0vtSDl6cjRZpGvkd7u5QUgW/bSdEQ6YJlQ62LqmF4QA1niIDJKeLIlEZATTA
-         9fUuodf8i6I+e4CUPyFsqMfzuwjwe+0VVara8WicTTnKjJROAAtSWrImsKhkLQ44TZoh
-         7fWDSFiKrfjjDeLYqiR9iu7rmSfr44TmzbiUgAmq034XWwIu5sUyQfnrdbeK49P+NSNN
-         HvQWP+xqeL23spzZdyT0RWv082fEh6hzIPFoZEDYLV3AhfWbFYBM+plCGL6e2D4RYWv0
-         Osnw==
+        d=linaro.org; s=google; t=1696582982; x=1697187782; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FZwC3GB6k52kbCUUG9Ix1b8EAEchE7aYZwBVKYjR4XA=;
+        b=uiL0L/ezXdt8TqcFVna0gJA15pZ3yx/BmSfYEIZfaZNflfyqi8tQrQhrrVjn1zw3st
+         iwYQIVK/K/GfiDUCco86wrvn92RnThu6dLyCONeB1HshadrUxLjGxhYty3t4bnwMAqJF
+         3w90cPoWLS/9RYzUZN8vQBGWtueet0lOurC5QRuqiwbsvA4l5yPM5w2dswRvqGDRvQQ/
+         q4tg3KangOHIYr8IeDaNkJul4BVXPLAs7hPCLtB4uWuay86uULqb7Lll3YBanIAafls+
+         tt+9cV2wD2nAMcnyMNsGi2eXwUAZyawEwg2qrGKMAHJwfGmE9zfu/HVypxKk/GaQn53J
+         gUsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696582950; x=1697187750;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AekrZMIN+BPe5vd5X22JkiYTiDkXtnH2g16+z44L6lA=;
-        b=Ye2nCcYfjA9AOSdpBO9OFGGQZN7am61VIpFZg+S7mOpnJ868GTzcFk4xVchY4Wf7VV
-         tsa+ZKFkP7Wl04VEVoKNlOrDyNafxDAsRgAHnC507D9UbLlBbvrz7mEkfKfcHBuRPEGL
-         uaKEbWajNWozCKSyt2jPAWfbY93+xK56eEgcAh11buSCWyadAmgopV2HFB5cWROylU8V
-         Uupi9xYdqI3jFQm9I0H/2Ff2LUJoakEbtW0aqxtwbWe8sUkEQDmLwhpXomRU6l5sn/Kt
-         +ODGpDdYAMLCRqrI5jhXVtZFlhZOcmiXP5sgZjCsGVMb8FUhGM6VoJIU87/Dxk6gjGuK
-         Jmjw==
-X-Gm-Message-State: AOJu0Yy3bUquI3EaYiqQcLomcF/OE3tjyE9bWiwPqwuLStiAG+lQIDJK
-	81Y9rHUtrLOxOFd2FM+byhI=
-X-Google-Smtp-Source: AGHT+IE4OR2jYadxCC90pm47th9ABHmPSukjCkHmkQrN3b9DO/ig7J0InFKRSj164iTrxy8RC3/jOQ==
-X-Received: by 2002:a5d:474f:0:b0:31f:d5db:a13 with SMTP id o15-20020a5d474f000000b0031fd5db0a13mr7060019wrs.61.1696582950133;
-        Fri, 06 Oct 2023 02:02:30 -0700 (PDT)
-Received: from orome.fritz.box (p200300e41f3f4900f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f3f:4900:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id t11-20020a5d534b000000b003232380ffd5sm1149279wrv.106.2023.10.06.02.02.28
+        d=1e100.net; s=20230601; t=1696582982; x=1697187782;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FZwC3GB6k52kbCUUG9Ix1b8EAEchE7aYZwBVKYjR4XA=;
+        b=tiOOuSEZaQCN0MGJvqgvphGa2VrVSlrAnRmqNxQpe/ZOQd9zrrDYMXgNRVe+b6DHrh
+         sjEjFC7l7xI1SaKlD77tUkeN0wlFoiDMAzAaRsfLle00zROzu4cQ1iFLsbagxZkJCjRp
+         ReiuwCSX8xUoZQJjE6AGMgx1Dk2cTHOOYax96lyrbB/gG9GMbAySlR93YkEOshuXKGxK
+         27TL4fvc7TbRB+DEAStqWEuPYXZ5LYvcpAQEhjIuXvsA4JIyP0HrBMxwePQce+65joid
+         uTc5dQoK42C2gArbcLxPsu6fOr4QF/rMAmQtfUShScZOLbDmTmTRDzxEtt+WlttT72Xw
+         h26g==
+X-Gm-Message-State: AOJu0YyYmhRtorYZquePcVYsGtbabQVMWTsFPlSTLevrh/Z9Uud186lu
+	mX8goq89HpF6wP3JQsT/9BgTu3yNqT3ROeP2svQ=
+X-Google-Smtp-Source: AGHT+IFgjvKWajihYoYVd4S6stcnv/3r5UDUv8WzSGycctPSMtIc+S8OOAMWOy8pTIYna42MU/fWTg==
+X-Received: by 2002:a17:907:6c14:b0:9ae:5c99:f2e2 with SMTP id rl20-20020a1709076c1400b009ae5c99f2e2mr5796258ejc.43.1696582982431;
+        Fri, 06 Oct 2023 02:03:02 -0700 (PDT)
+Received: from tudordana.roam.corp.google.com ([79.115.63.123])
+        by smtp.gmail.com with ESMTPSA id i16-20020a1709064ed000b0099bd0b5a2bcsm2536884ejv.101.2023.10.06.02.03.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Oct 2023 02:02:29 -0700 (PDT)
-Date: Fri, 6 Oct 2023 11:02:27 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: William Qiu <william.qiu@starfivetech.com>
-Cc: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-pwm@vger.kernel.org,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>
-Subject: Re: [PATCH v5 2/4] pwm: starfive: Add PWM driver support
-Message-ID: <ZR_NIya611D9LyeB@orome.fritz.box>
-References: <20230922092848.72664-1-william.qiu@starfivetech.com>
- <20230922092848.72664-3-william.qiu@starfivetech.com>
- <CAJM55Z8d368MAQPpnRO8giKmasN5XETP40i3JVdW_0gTF3Ktqg@mail.gmail.com>
- <ade1c061-63d8-8b48-b8e2-69416cd8aa48@starfivetech.com>
+        Fri, 06 Oct 2023 02:03:01 -0700 (PDT)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowski@linaro.org,
+	conor+dt@kernel.org,
+	alim.akhtar@samsung.com
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	semen.protsenko@linaro.org,
+	peter.griffin@linaro.org,
+	Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH] arm64: dts: exynos: set USI mode in board dts
+Date: Fri,  6 Oct 2023 10:02:58 +0100
+Message-ID: <20231006090258.278369-1-tudor.ambarus@linaro.org>
+X-Mailer: git-send-email 2.42.0.609.gbb76f46606-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Jla5kCtQoKWTa8Ob"
-Content-Disposition: inline
-In-Reply-To: <ade1c061-63d8-8b48-b8e2-69416cd8aa48@starfivetech.com>
-User-Agent: Mutt/2.2.12 (2023-09-09)
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.6
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
+The Universal Serial Interface (USI) provides selectable serial protocol
+(UART, SPI, I2C). Only one function can be used at a time. The SoC
+provides flexibility for boards to choose the protocol desired. Instead
+of selecting the USI protocol mode in the SoC dtsi file, select the mode
+in the board dts file as the USI IP can work in either of the 3 modes,
+but the board uses just one. Where the USI node was not enabled in the
+board dts file, just remove the samsung,mode specified in dtsi.
 
---Jla5kCtQoKWTa8Ob
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+---
+ .../boot/dts/exynos/exynos850-e850-96.dts     |  2 ++
+ arch/arm64/boot/dts/exynos/exynos850.dtsi     |  8 ------
+ .../boot/dts/exynos/exynosautov9-sadk.dts     |  2 ++
+ arch/arm64/boot/dts/exynos/exynosautov9.dtsi  | 25 -------------------
+ 4 files changed, 4 insertions(+), 33 deletions(-)
 
-On Mon, Sep 25, 2023 at 06:27:16PM +0800, William Qiu wrote:
->=20
->=20
-> On 2023/9/23 20:08, Emil Renner Berthing wrote:
-> > William Qiu wrote:
-> >> Add Pulse Width Modulation driver support for StarFive
-> >> JH7100 and JH7110 SoC.
-> >>
-> >> Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
-> >> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> >> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> >> ---
-> >>  MAINTAINERS                |   7 ++
-> >>  drivers/pwm/Kconfig        |   9 ++
-> >>  drivers/pwm/Makefile       |   1 +
-> >>  drivers/pwm/pwm-starfive.c | 190 +++++++++++++++++++++++++++++++++++++
-> >>  4 files changed, 207 insertions(+)
-> >>  create mode 100644 drivers/pwm/pwm-starfive.c
-> >>
-> >> diff --git a/MAINTAINERS b/MAINTAINERS
-> >> index bf0f54c24f81..bc2155bd2712 100644
-> >> --- a/MAINTAINERS
-> >> +++ b/MAINTAINERS
-> >> @@ -20495,6 +20495,13 @@ F:	drivers/pinctrl/starfive/pinctrl-starfive-=
-jh71*
-> >>  F:	include/dt-bindings/pinctrl/pinctrl-starfive-jh7100.h
-> >>  F:	include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h
-> >>
-> >> +STARFIVE JH71X0 PWM DRIVERS
-> >> +M:	William Qiu <william.qiu@starfivetech.com>
-> >> +M:	Hal Feng <hal.feng@starfivetech.com>
-> >> +S:	Supported
-> >> +F:	Documentation/devicetree/bindings/pwm/starfive,jh7100-pwm.yaml
-> >> +F:	drivers/pwm/pwm-starfive-ptc.c
-> >> +
-> >>  STARFIVE JH71X0 RESET CONTROLLER DRIVERS
-> >>  M:	Emil Renner Berthing <kernel@esmil.dk>
-> >>  M:	Hal Feng <hal.feng@starfivetech.com>
-> >> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> >> index 8ebcddf91f7b..e2ee0169f6e4 100644
-> >> --- a/drivers/pwm/Kconfig
-> >> +++ b/drivers/pwm/Kconfig
-> >> @@ -569,6 +569,15 @@ config PWM_SPRD
-> >>  	  To compile this driver as a module, choose M here: the module
-> >>  	  will be called pwm-sprd.
-> >>
-> >> +config PWM_STARFIVE
-> >> +	tristate "StarFive PWM support"
-> >> +	depends on ARCH_STARFIVE || COMPILE_TEST
-> >> +	help
-> >> +	  Generic PWM framework driver for StarFive SoCs.
-> >> +
-> >> +	  To compile this driver as a module, choose M here: the module
-> >> +	  will be called pwm-starfive.
-> >> +
-> >>  config PWM_STI
-> >>  	tristate "STiH4xx PWM support"
-> >>  	depends on ARCH_STI || COMPILE_TEST
-> >> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> >> index c822389c2a24..93b954376873 100644
-> >> --- a/drivers/pwm/Makefile
-> >> +++ b/drivers/pwm/Makefile
-> >> @@ -52,6 +52,7 @@ obj-$(CONFIG_PWM_SIFIVE)	+=3D pwm-sifive.o
-> >>  obj-$(CONFIG_PWM_SL28CPLD)	+=3D pwm-sl28cpld.o
-> >>  obj-$(CONFIG_PWM_SPEAR)		+=3D pwm-spear.o
-> >>  obj-$(CONFIG_PWM_SPRD)		+=3D pwm-sprd.o
-> >> +obj-$(CONFIG_PWM_STARFIVE)	+=3D pwm-starfive.o
-> >>  obj-$(CONFIG_PWM_STI)		+=3D pwm-sti.o
-> >>  obj-$(CONFIG_PWM_STM32)		+=3D pwm-stm32.o
-> >>  obj-$(CONFIG_PWM_STM32_LP)	+=3D pwm-stm32-lp.o
-> >> diff --git a/drivers/pwm/pwm-starfive.c b/drivers/pwm/pwm-starfive.c
-> >=20
-> > Hi William,
-> >=20
-> > You never answered my questions about what PTC is short for and if ther=
-e are
-> > other PWMs on the JH7110. You just removed -ptc from the name of this f=
-ile..
-> >=20
-> Hi Emil,
->=20
-> The PTC, short for PWM/TIMER/CONUTER, comes from OpenCore's ip, but only =
-PWM
-> mode is used in the JH7110. So the register still has the word "PTC".
-> s the best way to change all the prefix to STARFIVE?
+diff --git a/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts b/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
+index 6ed38912507f..615c1d6647ea 100644
+--- a/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
++++ b/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
+@@ -15,6 +15,7 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/leds/common.h>
++#include <dt-bindings/soc/samsung,exynos-usi.h>
+ 
+ / {
+ 	model = "WinLink E850-96 board";
+@@ -187,6 +188,7 @@ &serial_0 {
+ };
+ 
+ &usi_uart {
++	samsung,mode = <USI_V2_UART>;
+ 	samsung,clkreq-on; /* needed for UART mode */
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/exynos/exynos850.dtsi b/arch/arm64/boot/dts/exynos/exynos850.dtsi
+index aa077008b3be..db35ee742a27 100644
+--- a/arch/arm64/boot/dts/exynos/exynos850.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos850.dtsi
+@@ -12,7 +12,6 @@
+ 
+ #include <dt-bindings/clock/exynos850.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+-#include <dt-bindings/soc/samsung,exynos-usi.h>
+ 
+ / {
+ 	/* Also known under engineering name Exynos3830 */
+@@ -574,7 +573,6 @@ usi_uart: usi@138200c0 {
+ 			compatible = "samsung,exynos850-usi";
+ 			reg = <0x138200c0 0x20>;
+ 			samsung,sysreg = <&sysreg_peri 0x1010>;
+-			samsung,mode = <USI_V2_UART>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -600,7 +598,6 @@ usi_hsi2c_0: usi@138a00c0 {
+ 			compatible = "samsung,exynos850-usi";
+ 			reg = <0x138a00c0 0x20>;
+ 			samsung,sysreg = <&sysreg_peri 0x1020>;
+-			samsung,mode = <USI_V2_I2C>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -628,7 +625,6 @@ usi_hsi2c_1: usi@138b00c0 {
+ 			compatible = "samsung,exynos850-usi";
+ 			reg = <0x138b00c0 0x20>;
+ 			samsung,sysreg = <&sysreg_peri 0x1030>;
+-			samsung,mode = <USI_V2_I2C>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -656,7 +652,6 @@ usi_hsi2c_2: usi@138c00c0 {
+ 			compatible = "samsung,exynos850-usi";
+ 			reg = <0x138c00c0 0x20>;
+ 			samsung,sysreg = <&sysreg_peri 0x1040>;
+-			samsung,mode = <USI_V2_I2C>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -684,7 +679,6 @@ usi_spi_0: usi@139400c0 {
+ 			compatible = "samsung,exynos850-usi";
+ 			reg = <0x139400c0 0x20>;
+ 			samsung,sysreg = <&sysreg_peri 0x1050>;
+-			samsung,mode = <USI_V2_SPI>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -698,7 +692,6 @@ usi_cmgp0: usi@11d000c0 {
+ 			compatible = "samsung,exynos850-usi";
+ 			reg = <0x11d000c0 0x20>;
+ 			samsung,sysreg = <&sysreg_cmgp 0x2000>;
+-			samsung,mode = <USI_V2_I2C>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -738,7 +731,6 @@ usi_cmgp1: usi@11d200c0 {
+ 			compatible = "samsung,exynos850-usi";
+ 			reg = <0x11d200c0 0x20>;
+ 			samsung,sysreg = <&sysreg_cmgp 0x2010>;
+-			samsung,mode = <USI_V2_I2C>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
+index bc1815f6ada2..91d302703366 100644
+--- a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
++++ b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
+@@ -9,6 +9,7 @@
+ /dts-v1/;
+ #include "exynosautov9.dtsi"
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/soc/samsung,exynos-usi.h>
+ 
+ / {
+ 	model = "Samsung ExynosAuto v9 SADK board";
+@@ -79,6 +80,7 @@ &ufs_1 {
+ };
+ 
+ &usi_0 {
++	samsung,mode = <USI_V2_UART>;
+ 	samsung,clkreq-on; /* needed for UART mode */
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+index b228cd7e351e..92f4b738834a 100644
+--- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+@@ -9,7 +9,6 @@
+ #include <dt-bindings/clock/samsung,exynosautov9.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/soc/samsung,boot-mode.h>
+-#include <dt-bindings/soc/samsung,exynos-usi.h>
+ 
+ / {
+ 	compatible = "samsung,exynosautov9";
+@@ -392,7 +391,6 @@ usi_0: usi@103000c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x103000c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric0 0x1000>;
+-			samsung,mode = <USI_V2_UART>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -454,7 +452,6 @@ usi_i2c_0: usi@103100c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x103100c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric0 0x1004>;
+-			samsung,mode = <USI_V2_I2C>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -483,7 +480,6 @@ usi_1: usi@103200c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x103200c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric0 0x1008>;
+-			samsung,mode = <USI_V2_UART>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -545,7 +541,6 @@ usi_i2c_1: usi@103300c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x103300c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric0 0x100c>;
+-			samsung,mode = <USI_V2_I2C>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -574,7 +569,6 @@ usi_2: usi@103400c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x103400c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric0 0x1010>;
+-			samsung,mode = <USI_V2_UART>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -636,7 +630,6 @@ usi_i2c_2: usi@103500c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x103500c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric0 0x1014>;
+-			samsung,mode = <USI_V2_I2C>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -665,7 +658,6 @@ usi_3: usi@103600c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x103600c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric0 0x1018>;
+-			samsung,mode = <USI_V2_UART>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -727,7 +719,6 @@ usi_i2c_3: usi@103700c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x103700c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric0 0x101c>;
+-			samsung,mode = <USI_V2_I2C>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -756,7 +747,6 @@ usi_4: usi@103800c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x103800c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric0 0x1020>;
+-			samsung,mode = <USI_V2_UART>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -818,7 +808,6 @@ usi_i2c_4: usi@103900c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x103900c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric0 0x1024>;
+-			samsung,mode = <USI_V2_I2C>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -847,7 +836,6 @@ usi_5: usi@103a00c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x103a00c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric0 0x1028>;
+-			samsung,mode = <USI_V2_UART>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -909,7 +897,6 @@ usi_i2c_5: usi@103b00c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x103b00c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric0 0x102c>;
+-			samsung,mode = <USI_V2_I2C>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -938,7 +925,6 @@ usi_6: usi@109000c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x109000c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric1 0x1000>;
+-			samsung,mode = <USI_V2_UART>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -1000,7 +986,6 @@ usi_i2c_6: usi@109100c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x109100c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric1 0x1004>;
+-			samsung,mode = <USI_V2_I2C>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -1029,7 +1014,6 @@ usi_7: usi@109200c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x109200c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric1 0x1008>;
+-			samsung,mode = <USI_V2_UART>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -1091,7 +1075,6 @@ usi_i2c_7: usi@109300c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x109300c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric1 0x100c>;
+-			samsung,mode = <USI_V2_I2C>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -1120,7 +1103,6 @@ usi_8: usi@109400c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x109400c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric1 0x1010>;
+-			samsung,mode = <USI_V2_UART>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -1182,7 +1164,6 @@ usi_i2c_8: usi@109500c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x109500c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric1 0x1014>;
+-			samsung,mode = <USI_V2_I2C>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -1211,7 +1192,6 @@ usi_9: usi@109600c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x109600c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric1 0x1018>;
+-			samsung,mode = <USI_V2_UART>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -1273,7 +1253,6 @@ usi_i2c_9: usi@109700c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x109700c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric1 0x101c>;
+-			samsung,mode = <USI_V2_I2C>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -1302,7 +1281,6 @@ usi_10: usi@109800c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x109800c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric1 0x1020>;
+-			samsung,mode = <USI_V2_UART>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -1364,7 +1342,6 @@ usi_i2c_10: usi@109900c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x109900c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric1 0x1024>;
+-			samsung,mode = <USI_V2_I2C>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -1393,7 +1370,6 @@ usi_11: usi@109a00c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x109a00c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric1 0x1028>;
+-			samsung,mode = <USI_V2_UART>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -1453,7 +1429,6 @@ usi_i2c_11: usi@109b00c0 {
+ 				     "samsung,exynos850-usi";
+ 			reg = <0x109b00c0 0x20>;
+ 			samsung,sysreg = <&syscon_peric1 0x102c>;
+-			samsung,mode = <USI_V2_I2C>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+-- 
+2.42.0.609.gbb76f46606-goog
 
-This is the first time I see mentioned that this is based on an Open-
-Cores IP. It's definitely something you want to note somewhere so that
-others can reuse this driver if they've incorporated the same IP into
-their device.
-
-Given the above it might be better to name this something different
-entirely. The original OpenCores PTC IP seems to be single-instance,
-but that's about the only difference here (i.e. the OpenCores IP lists
-one clock and one reset, which this driver supports).
-
-So it'd be easy to turn this into a generic OpenCores driver and then
-use the starfive compatible string(s) to parameterize (number of
-instances, register stride, etc.).
-
-Thierry
-
---Jla5kCtQoKWTa8Ob
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmUfzSAACgkQ3SOs138+
-s6GkoBAAo2YnFbKw9yRSCrbScmBZIjuZSwCQpBTVxFz/3x1RBRFl3Huq/xWwguHc
-DrPkU0/N6t6X/f9zJMAwrwsG6K2U5zZhNNW63llxB1FYAydKz+DAJP05s9R4e2/H
-QqVsUzmwH/lYND9/+uQQviS1dBik4Gr7chyRibP2kABPwINuYkPYcsaVBPFz2S4v
-5WCxuQ98rRL2PqJszkhzWPP8SjYlxt2VIZ8INAiBZiU63YRRSScVE34721/kTzpn
-jX2jGHJLJLnFp3AR+T/JAyGyLv6UJT4QhAKebJOu9IMk2u4Xyw4epVhUT13j5sLs
-JMXQivDhnmnD+ESYcg0MHlyZzyezSoEse19XVd7mEwHb7+5WnVw6HCVfSQfNgEJR
-KAj7EqAWD3mwzqDpjsAZz/zv8XZcWqtqkE365Aj0Z6PiIo1g4hE3lNOtOVyufhGz
-O2NvJrEnjl8pxX51IzBJU9hQ0DdT9QANc5WYy7hYWSKkNtclEn/GruwYjJWHhYjm
-hw6gXIikdKo5QkRTDJAgc/enjEM1jRZFg6B9HoGXMAwuupnM7ApHN2wdvJ378jaC
-MsIaP4648VTF8ohlysQbtX+wsq7SSOUvUw+e1lMoEgVfmaBMkkRcq2s58qgAD8/Y
-SB6msvcOBpkEbSOm2/q3XFz+Rg2LxdEyN46jHp5BF4640xMbROs=
-=k6bZ
------END PGP SIGNATURE-----
-
---Jla5kCtQoKWTa8Ob--
 
