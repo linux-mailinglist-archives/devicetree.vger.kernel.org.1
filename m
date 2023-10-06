@@ -1,98 +1,117 @@
-Return-Path: <devicetree+bounces-6576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B7D37BBD8F
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 19:19:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72F9A7BBC4A
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 18:04:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4648C28207F
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 17:19:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A2AA01C20953
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 16:04:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 675882E624;
-	Fri,  6 Oct 2023 17:19:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C99C8286B2;
+	Fri,  6 Oct 2023 16:04:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FtnsFQAC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D6F01F5FE
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 17:19:30 +0000 (UTC)
-X-Greylist: delayed 17926 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 06 Oct 2023 10:19:29 PDT
-Received: from 5.mo550.mail-out.ovh.net (5.mo550.mail-out.ovh.net [178.33.45.107])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A40CAD
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 10:19:29 -0700 (PDT)
-Received: from director6.ghost.mail-out.ovh.net (unknown [10.109.156.105])
-	by mo550.mail-out.ovh.net (Postfix) with ESMTP id 27E7D2A317
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 11:49:52 +0000 (UTC)
-Received: from ghost-submission-6684bf9d7b-8w4bk (unknown [10.110.115.151])
-	by director6.ghost.mail-out.ovh.net (Postfix) with ESMTPS id CF0061FEB2;
-	Fri,  6 Oct 2023 11:49:49 +0000 (UTC)
-Received: from RCM-web7.webmail.mail.ovh.net ([151.80.29.19])
-	by ghost-submission-6684bf9d7b-8w4bk with ESMTPSA
-	id ToM7MF30H2X07Q0AgIPZcA
-	(envelope-from <rafal@milecki.pl>); Fri, 06 Oct 2023 11:49:49 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A703726E0D
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 16:04:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A72BC433C8;
+	Fri,  6 Oct 2023 16:04:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696608268;
+	bh=JIca2rNF7pnZk1VDUltU0QafLhtvatujIWLbLfgLEJ0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FtnsFQACjd5d5AS+BffoAu44TRMwoBbkzz9y/AQuHZO1jWYXeA0rAkSzHQEaz72pk
+	 oIq5Af/Z4jnFY/vgaOYZbCC+Il1ACSFwgzVvGgkfcl0HIpiWnk7zC/7OdyHUuSxGTD
+	 vtuz8a6Iv1tyCl6WSPql5PRbFHL4Muq91AXhmCak+eh2MVf0B0vqrcbvZICOxLtPhW
+	 ZhIPOfsFu976YcxTUG8bEqM0SEOHOaotW3e2bjJFYsOr1Vf7jmHVa/XoKn2FzmiLAJ
+	 1wbItfg1AqkKrQK6yJi0mSYAFAFAC33mwWPqYDi2SezreOkVbeAG9dRAWqa1iZ6hIA
+	 cV/DNGulBD9qg==
+Message-ID: <0b2741dd-a524-dde1-7aa3-520ce076e3c6@kernel.org>
+Date: Sat, 7 Oct 2023 01:04:22 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Fri, 06 Oct 2023 13:49:49 +0200
-From: =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Michael Walle <michael@walle.cc>, Rob Herring
- <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Robert Marko
- <robert.marko@sartura.hr>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Luka Perkov <luka.perkov@sartura.hr>, Randy Dunlap <rdunlap@infradead.org>,
- Chen-Yu Tsai <wenst@chromium.org>, Daniel Golle <daniel@makrotopia.org>
-Subject: Re: [PATCH v12 5/7] nvmem: core: Rework layouts to become regular
- devices
-In-Reply-To: <20231005155907.2701706-6-miquel.raynal@bootlin.com>
-References: <20231005155907.2701706-1-miquel.raynal@bootlin.com>
- <20231005155907.2701706-6-miquel.raynal@bootlin.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <f2ac55b6361264a6a4b0dbb1b4af11a6@milecki.pl>
-X-Sender: rafal@milecki.pl
-X-Originating-IP: 31.11.218.106
-X-Webmail-UserID: rafal@milecki.pl
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 17609074545689144221
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvkedrgeeigdeggecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeggfffhvfevufgjfhgfkfigihgtgfesthekjhdttderjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepjedvlefguedthfefleehgeeftdeludeluedvgfeffeevhfevtdehteejteefheegnecukfhppeduvdejrddtrddtrddupdefuddruddurddvudekrddutdeipdduhedurdektddrvdelrdduleenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomhepoehrrghfrghlsehmihhlvggtkhhirdhplheqpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehhedtpdhmohguvgepshhmthhpohhuth
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v7 02/26] PM / devfreq: rockchip-dfi: Embed desc into
+ private data struct
+Content-Language: en-US
+To: Sascha Hauer <s.hauer@pengutronix.de>, linux-rockchip@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ MyungJoo Ham <myungjoo.ham@samsung.com>, Will Deacon <will@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
+ Michael Riesch <michael.riesch@wolfvision.net>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Vincent Legoll <vincent.legoll@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>
+References: <20230704093242.583575-1-s.hauer@pengutronix.de>
+ <20230704093242.583575-3-s.hauer@pengutronix.de>
+From: Chanwoo Choi <chanwoo@kernel.org>
+In-Reply-To: <20230704093242.583575-3-s.hauer@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 2023-10-05 17:59, Miquel Raynal wrote:
-> +static struct bus_type nvmem_layout_bus_type = {
-> +	.name		= "nvmem-layouts",
-> +	.match		= nvmem_layout_bus_match,
-> +};
-> +
-> +static struct device nvmem_layout_bus = {
-> +	.init_name	= "nvmem-layouts",
-> +};
+On 23. 7. 4. 18:32, Sascha Hauer wrote:
+> No need for an extra allocation, just embed the struct
+> devfreq_event_desc into the private data struct.
+> 
+> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> ---
+>  drivers/devfreq/event/rockchip-dfi.c | 8 ++------
+>  1 file changed, 2 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
+> index 74893c06aa087..467f9f42d38f7 100644
+> --- a/drivers/devfreq/event/rockchip-dfi.c
+> +++ b/drivers/devfreq/event/rockchip-dfi.c
+> @@ -49,7 +49,7 @@ struct dmc_usage {
+>   */
+>  struct rockchip_dfi {
+>  	struct devfreq_event_dev *edev;
+> -	struct devfreq_event_desc *desc;
+> +	struct devfreq_event_desc desc;
+>  	struct dmc_usage ch_usage[RK3399_DMC_NUM_CH];
+>  	struct device *dev;
+>  	void __iomem *regs;
+> @@ -204,14 +204,10 @@ static int rockchip_dfi_probe(struct platform_device *pdev)
+>  
+>  	data->dev = dev;
+>  
+> -	desc = devm_kzalloc(dev, sizeof(*desc), GFP_KERNEL);
+> -	if (!desc)
+> -		return -ENOMEM;
+> -
+> +	desc = &data->desc;
+>  	desc->ops = &rockchip_dfi_ops;
+>  	desc->driver_data = data;
+>  	desc->name = np->name;
+> -	data->desc = desc;
+>  
+>  	data->edev = devm_devfreq_event_add_edev(&pdev->dev, desc);
+>  	if (IS_ERR(data->edev)) {
 
-Nitpicking: would it be more consistent and still make sense to use
-singular form "nvmem-layout"?
-
-By looking at my /sys/bus/ I can see there:
-1. cpu (not cpus)
-2. gpio (not gpios)
-3. node (not nodes)
-4. nvmem (not nvmems)
-etc.
+Applied it. Thanks.
 
 -- 
-Rafał Miłecki
+Best Regards,
+Samsung Electronics
+Chanwoo Choi
+
 
