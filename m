@@ -1,93 +1,149 @@
-Return-Path: <devicetree+bounces-6506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A6C47BB9B2
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 15:47:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EF417BB9D6
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 15:56:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3E191C209B1
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 13:47:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0B0D1C209B3
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 13:56:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CB312374D;
-	Fri,  6 Oct 2023 13:47:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 833B32376B;
+	Fri,  6 Oct 2023 13:56:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OjcW8Oki"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 464521F959
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 13:47:44 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 673751BCC;
-	Fri,  6 Oct 2023 06:47:32 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 178B711FB;
-	Fri,  6 Oct 2023 06:48:11 -0700 (PDT)
-Received: from [10.57.94.224] (unknown [10.57.94.224])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EDDAD3F641;
-	Fri,  6 Oct 2023 06:47:29 -0700 (PDT)
-Message-ID: <908fc8d6-10d2-51f9-fd70-171522c7e67d@arm.com>
-Date: Fri, 6 Oct 2023 14:48:12 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67FA979C3
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 13:56:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E32A4C433CB;
+	Fri,  6 Oct 2023 13:56:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1696600568;
+	bh=rHD7QFG1kuyuEljxQvjPFr0ePIJUMMrr1bntIfI05Gg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=OjcW8OkikAqoEu7Ge4PRuqARoche7a6osnDj40O6zJee/ypFSFieAe9bf4aNqMC7T
+	 0oVgZyqTkZkX7iOXnMvKSRZ0sN8XWj85Eu9yJQZaBTXl/VG99pIFLuzCYZDjgGFiqp
+	 z2GUTG16Nio8qnO7bZUW9tjp+Qgcm9tUtmDeqIshhmh/2eArNK6aQX8r0/MYYPeGzL
+	 gxnmjjjNA/SdZcfGcuO+Um0lIu7tdcIZW6SBUQG9LNfQbjBtt/oW4ntfS+QcISa0xQ
+	 2LTU/rQCUTHo8RlHckKNQ2cJN18aITETMwzQ330aem7lNh6pE697Thb9rogg08u0S0
+	 0+s71RsW2IzFA==
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-503056c8195so2811442e87.1;
+        Fri, 06 Oct 2023 06:56:08 -0700 (PDT)
+X-Gm-Message-State: AOJu0YwHZ5lRwGCX+r7Vg3ggoqRHe7MXALroDnsnEflaJzwaHq6k9xWz
+	oBv3nRcNQZM2gJJJYElcZI+t9tjRSrSF0uQ1gQ==
+X-Google-Smtp-Source: AGHT+IHHpu2L8oueJ5Di8HVuQHaHL4IovRt6CYy8zm2UeHKSG0tXMObD3JP+hyOmT9qvUcuWlTLhYFU2BBg6lMeKwRg=
+X-Received: by 2002:a05:6512:34c6:b0:500:9a45:63b with SMTP id
+ w6-20020a05651234c600b005009a45063bmr5713999lfr.13.1696600567071; Fri, 06 Oct
+ 2023 06:56:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v1] thermal: Remove Amit Kucheria from MAINTAINERS
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- "Rafael J. Wysocki" <rjw@rjwysocki.net>, Linux PM
- <linux-pm@vger.kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
- Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
- Zhang Rui <rui.zhang@intel.com>, LKML <linux-kernel@vger.kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- devicetree@vger.kernel.org, Amit Kucheria <amitk@kernel.org>
-References: <5716404.DvuYhMxLoT@kreacher>
- <f0daa859-f9eb-4631-b2f9-6ee3ce5b691f@linaro.org>
- <9833cebf-e951-47c6-97b7-458ae1a5b747@linaro.org>
-From: Lukasz Luba <lukasz.luba@arm.com>
-In-Reply-To: <9833cebf-e951-47c6-97b7-458ae1a5b747@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-	RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-	autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-	lindbergh.monkeyblade.net
+References: <20231005141536.77538147@canb.auug.org.au> <f70dec2a-dbdf-479c-af5b-a70db02b27b4@ti.com>
+ <2905cfc2-912f-4620-9455-2e91586a2839@kernel.org> <20231005132921.2vg6kdcr273bh7et@cabbage>
+ <fde87d28-ee5d-4e02-b824-27c1cb7c1e38@kernel.org>
+In-Reply-To: <fde87d28-ee5d-4e02-b824-27c1cb7c1e38@kernel.org>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Fri, 6 Oct 2023 08:55:54 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+NXp_d1g507G=G+_cJ1s0GrM099JMNAj2MU4Dpaw=c8g@mail.gmail.com>
+Message-ID: <CAL_Jsq+NXp_d1g507G=G+_cJ1s0GrM099JMNAj2MU4Dpaw=c8g@mail.gmail.com>
+Subject: Re: linux-next: build warnings after merge of the ti tree
+To: Roger Quadros <rogerq@kernel.org>
+Cc: Nishanth Menon <nm@ti.com>, "Raghavendra, Vignesh" <vigneshr@ti.com>, Stephen Rothwell <sfr@canb.auug.org.au>, 
+	Tero Kristo <kristo@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, 
+	Linux Next Mailing List <linux-next@vger.kernel.org>, "Yadav, Nitin" <n-yadav@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, Oct 6, 2023 at 7:03=E2=80=AFAM Roger Quadros <rogerq@kernel.org> wr=
+ote:
+>
+>
+>
+> On 05/10/2023 16:29, Nishanth Menon wrote:
+> > On 16:12-20231005, Roger Quadros wrote:
+> >> Hi,
+> >>
+> >> On 05/10/2023 11:25, Raghavendra, Vignesh wrote:
+> >>> + Rob and DT list
+> >>>
+> >>> Hi Stephen
+> >>>
+> >>> On 10/5/2023 8:45 AM, Stephen Rothwell wrote:
+> >>>> Hi all,
+> >>>>
+> >>>> [I may have missed this yesterday, sorry]
+> >>>>
+> >>>> After merging the ti tree, today's linux-next build (arm64 defconfig=
+)
+> >>>> produced these warnings:
+> >>>>
+> >>>> arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso:65.8-140.3: Warning (a=
+void_default_addr_size): /fragment@3/__overlay__: Relying on default #addre=
+ss-cells value
+> >>>> arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso:65.8-140.3: Warning (a=
+void_default_addr_size): /fragment@3/__overlay__: Relying on default #size-=
+cells value
+> >>>>
+> >>>> Introduced by commit
+> >>>>
+> >>>>   45a0c06571e1 ("arm64: dts: ti: am642-evm: Add overlay for NAND exp=
+ansion card")
+> >>>>
+> >>>
+> >>> Thanks for the report. I will drop the offending comment.
+> >>>
+> >>> Roger,
+> >>>
+> >>> Sorry, this would need to be fixed in dtc or need exception from DT
+> >>> maintainers to ignore the warnings.
+> >>
+> >> Please don't drop this patch as the issue is not with the patch but wi=
+th
+> >> the dtc tool itself.
+> >>
+> >> As this is a DT overlay there is no way to specify address-cells/size-=
+cells
+> >> of parent here. This will be resolved only after merge with base tree.
+> >>
+> >> This will be fixed in next dtc sync.
+> >> https://www.spinics.net/lists/devicetree-compiler/msg04036.html
+> >>
+> >> See further discussion here
+> >> https://lore.kernel.org/all/CAL_JsqLmv904+_2EOmsQ__y1yLDvsT+_02i85phuh=
+0cpe7X8NQ@mail.gmail.com/
+> >>
+> >
+> > Roger, build warnings are a strict NO,NO for kernel. Lets bring in the
+> > series *after* the dtc sync is complete.
+> >
+>
+> Hi Rob,
+>
+> Following commit from dtc is required to resolve this issue.
+>
+> afbddcd418fb ("Suppress warnings on overlay fragments")
 
+That is from 2018, so it's been in the kernel's dtc for a long time.
 
-On 10/6/23 14:43, Krzysztof Kozlowski wrote:
-> On 06/10/2023 15:43, Krzysztof Kozlowski wrote:
->> On 06/10/2023 13:21, Rafael J. Wysocki wrote:
->>> From: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
->>>
->>> Amit Kucheria has not been participating in kernel development in any
->>> way or form for quite some time, so it is not useful to list him as a
->>> designated reviewer for the thermal subsystem or as the maintainer of
->>> the thermal zone device bindings.
->>>
->>> Remove him from those two places accordingly.
->>>
->>> Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
->>> ---
->>>   Documentation/devicetree/bindings/thermal/thermal-zones.yaml |    3 ---
->>
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> and unAcked. We need a maintainer for the bindings. Someone else from
-> thermal?
-> 
+I believe what you need is the patch I referenced which hasn't been
+applied upstream.
 
-I'm going to handle the review in thermal subsystem. Although,
-I forgot about this 'binding' thing...
+> FYI. Another patch of similar nature is on its way and will also require =
+the
+> above commit to DTC.
+> https://lore.kernel.org/all/20231005093739.4071934-3-n-yadav@ti.com/
 
-Daniel, what do you think?
+You'll need to fix dtc first.
+
+Rob
 
