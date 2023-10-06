@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-6625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44FF47BC2F5
-	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 01:32:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFC297BC2F8
+	for <lists+devicetree@lfdr.de>; Sat,  7 Oct 2023 01:33:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63BB61C20975
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 23:32:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB608281F61
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 23:33:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B2D947345;
-	Fri,  6 Oct 2023 23:32:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61CEE47346;
+	Fri,  6 Oct 2023 23:33:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y0PIMkCN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZPXNbm60"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 778E044487
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 23:32:53 +0000 (UTC)
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5606193
-	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 16:32:51 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-5045cb9c091so3469989e87.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 16:32:51 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D93AD44487
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 23:33:52 +0000 (UTC)
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8C1693
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 16:33:50 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2bff936e10fso45037461fa.1
+        for <devicetree@vger.kernel.org>; Fri, 06 Oct 2023 16:33:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1696635169; x=1697239969; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1696635229; x=1697240029; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=CBdkACARktQj/BUAzO0d3dZU3fqLQe8rUQ2Y7YM0Idc=;
-        b=y0PIMkCN+7+HKA70URuZZ6T/ZZ/z3uIJV6arqlQDaaoBRbrIG/JVyKtEpYSheuWeHh
-         oPyLMYXnfO21hwiOSs2T+64vSfmdGAMmEN0KfOHcGgM4QbwqErD3upMvicabchLSp3+s
-         ny3AszBr2RZu7RrSqZGaohvyJqgnjvE5jEa39HgbCOXNFJBYcB3Msqr4228jHXsP1fDr
-         r/D0Q3pyKmbbRY5D5SUxbd4u9j0MpIApzUsWQ6WHkb4JrDD0ozHYIjToh01I4ihs2ik/
-         sNK+O6DGD/uKWaHe5QIH3W5wBuENs0bQk+FvqNKYRF0PnDAD+G6FIz6sElUBvITThmMm
-         5EEw==
+        bh=pa72JkqvdyerMIx4i9hSaFdLukU2v6g8BtUv9GryEdY=;
+        b=ZPXNbm60u0GwujtnY2wW3g41q8NStWmU4WHzOPZ8wqkyE1RwkUpt1i4SrhIfWAEVP8
+         zlQ9bu7u8BPBGe5pVVfJ6Xz7d3D9UeL0woG5JUOB8aYO9sUm3J1ds5CX4FhC9TwOQBqi
+         x0rt1dvh0pLq+ia/+8I0uwvg6/aP0SOGko6jX0VNGjMO2AT1ArpqoQqrsGkRsix4FWeH
+         Ua1t6hPBRvgRwpjFOzMya05UksjSD19rhBkOOHjGCwG6cVWWuuHf4lD9VT5//Xa0ceoL
+         lX8Cl7fJKpKAB7wvcbsyo8cT590M/XpEziLJ8zQu9J/ra9Hujy0PCXyqi+Tf+mEvWeW0
+         gbpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1696635169; x=1697239969;
+        d=1e100.net; s=20230601; t=1696635229; x=1697240029;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CBdkACARktQj/BUAzO0d3dZU3fqLQe8rUQ2Y7YM0Idc=;
-        b=DL4e+d1uTSrEndnVxSO2IrfBzv8co10vNS0lwCl+tBV5TYi+M4d42gTrD/CwRUvSMR
-         IvIexpitMls9XUq9SR7e7i413RP7tGNyRZ/MqurTePCUJBjyZLLS+s3vywuabBjNYq/A
-         PO6Lbt+UJ893dKREh1kStWBABmvX+QG9FJIR9ZGeCaw9k5EphxYxh1ihcbRj9T1R9wpG
-         GicX6xHoKjnt/MJuzwjiSUJjPzdXvJxC0g7q1vRgNMuNhqCRVJr+pS30V1Bfq6ZVWcLI
-         idkZd6kHoH6pqU517MVwe9trQ9Jcyryh6RSnHXB1Y8TeqmdsHaYT1vd/0DqWVr0KoVux
-         ZERg==
-X-Gm-Message-State: AOJu0Yxc48zUxmf74AjvDvRnHPhnoyIlwaO58389qfU29zi4j7MvivRi
-	BTkO7l/XcrmcGSV/YkcgZq7cxw==
-X-Google-Smtp-Source: AGHT+IHwU4sYwr94MWkFEDLPbT+iSK4FSvWZfKmUnM6f2jkur0QlNvIi+BqqPl6MnY+NtVY6Q/1T0g==
-X-Received: by 2002:a05:6512:473:b0:4fb:8948:2b28 with SMTP id x19-20020a056512047300b004fb89482b28mr7632978lfd.63.1696635168835;
-        Fri, 06 Oct 2023 16:32:48 -0700 (PDT)
+        bh=pa72JkqvdyerMIx4i9hSaFdLukU2v6g8BtUv9GryEdY=;
+        b=LwpDUjbA0ClCI3lasblf1UA610dPCO089nEp653obJqtTtrqAZkLfB3S7IQ9DLnjgQ
+         2Aboc0JXKWnI5SablV1AdpYnP9tSVsUFLV63f83NWfwF909p7qjaxLIaQvt6o7CXKQQK
+         VmrVJVDgmod7zAVaPOwh1PRC5kDW16YYWCEpwSR9ap4bEHEIiy3EROdIyYg1Ub/l4gBr
+         1Kia+51I7G1swmxndY8KvJeIR8pLnDWGZlw1WL4/dFPGzRbA/Nv+vDWPJdsw4/3zSMqh
+         g/SdP62DB+QNCH7chavO5ZugpU3tLTdMKh8TBnDOPTOtmR0/e6DA7lKkqEzjGdkYS2eJ
+         bn/A==
+X-Gm-Message-State: AOJu0YzB/eztI3jMSrV7trCtp614j+1aXDfg+3pTOdHJn/6+p+FewtHZ
+	+AfrG30sb5Uqk0xFSb/U6eZeGQ==
+X-Google-Smtp-Source: AGHT+IF9yMic69bNVAU3zyM2RZxOUpl5UsHxffjScvMW0oCIDfjL0U7HFi+W2ibgjl8JHSS6o8L/pQ==
+X-Received: by 2002:a05:6512:202d:b0:4fb:8938:48ab with SMTP id s13-20020a056512202d00b004fb893848abmr5210895lfs.16.1696635229012;
+        Fri, 06 Oct 2023 16:33:49 -0700 (PDT)
 Received: from [192.168.200.173] (178235177147.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.147])
-        by smtp.gmail.com with ESMTPSA id z6-20020ac24186000000b00502e2ab7118sm473280lfh.50.2023.10.06.16.32.47
+        by smtp.gmail.com with ESMTPSA id z6-20020ac24186000000b00502e2ab7118sm473280lfh.50.2023.10.06.16.33.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Oct 2023 16:32:48 -0700 (PDT)
-Message-ID: <5da2ba4f-5bf7-46ff-8204-0c169042dbfa@linaro.org>
-Date: Sat, 7 Oct 2023 01:32:46 +0200
+        Fri, 06 Oct 2023 16:33:48 -0700 (PDT)
+Message-ID: <e846215b-faba-4af6-a108-bae9b1deb2be@linaro.org>
+Date: Sat, 7 Oct 2023 01:33:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -117,8 +117,7 @@ Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.6
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 	lindbergh.monkeyblade.net
 
@@ -134,49 +133,46 @@ On 3.10.2023 19:54, Komal Bajaj wrote:
 > 
 > Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
 > ---
-[...]
-
-> diff --git a/arch/arm64/boot/dts/qcom/qcm6490.dtsi b/arch/arm64/boot/dts/qcom/qcm6490.dtsi
+>  arch/arm64/boot/dts/qcom/Makefile        |   1 +
+>  arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 333 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/qcm6490.dtsi    |  94 +++++++
+>  3 files changed, 428 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/qcm6490.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 73c3be0f8872..3a2d9dbaacce 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -82,6 +82,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-sony-xperia-yoshino-maple.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-sony-xperia-yoshino-poplar.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-xiaomi-sagit.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-fairphone-fp5.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-idp.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
 > new file mode 100644
-> index 000000000000..b93270cae9ae
+> index 000000000000..d81a7810fd5a
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/qcm6490.dtsi
-> @@ -0,0 +1,94 @@
+> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+> @@ -0,0 +1,333 @@
 > +// SPDX-License-Identifier: BSD-3-Clause
 > +/*
 > + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
 > + */
 > +
-> +#include "sc7280.dtsi"
+> +/dts-v1/;
 > +
-> +/*
-> + * Delete unused sc7280 memory nodes and define the memory regions
-> + * required by qcm6490
-> + */
-> +/delete-node/ &rmtfs_mem;
-> +/delete-node/ &wlan_ce_mem;
-> +
-> +/{
-> +	reserved-memory {
-> +		cdsp_secure_heap_mem: cdsp-secure-heap@81800000 {
-> +			reg = <0x0 0x81800000 0x0 0x1e00000>;
-> +			no-map;
-> +		};
-> +
-> +		camera_mem: camera@84300000 {
-Uhh.. this is totally not the same memory map that I have on a
-random msm-5.4 source+devicetree drop (which does in turn align
-with the one on QCM6490 Fairphone 5, as it should because it's
-a rebadged reference device for the most part)..
-
-Did you guys *really* redo it between software releases?
-
-This SoC family has been on the market for quite some time,
-breaking software expectations like that is not cool, especially
-on a product with a promised lifespan of 10 years or whatever!
-
-With that, this really seems more of a change that would belong
-in the IDP dts than the 6490-common one..
+> +#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
+> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> +#include "pm7325.dtsi"
+> +#include "pm8350c.dtsi"
+> +#include "pmk8350.dtsi"
+> +#include "qcm6490.dtsi"
+As the kernel robot pointed out, this has clearly not even been
+compile-tested..
 
 Konrad
 
