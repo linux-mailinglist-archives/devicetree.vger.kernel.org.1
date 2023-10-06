@@ -1,97 +1,198 @@
-Return-Path: <devicetree+bounces-6552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-6553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06F537BBC88
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 18:16:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6A547BBC98
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 18:22:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32E011C209C8
-	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 16:16:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D84AA1C209B9
+	for <lists+devicetree@lfdr.de>; Fri,  6 Oct 2023 16:22:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE2AD28DB3;
-	Fri,  6 Oct 2023 16:16:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D856528DC0;
+	Fri,  6 Oct 2023 16:22:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lFkTvMoc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ExHkbbyk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CFC4273F9;
-	Fri,  6 Oct 2023 16:16:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89291C433C7;
-	Fri,  6 Oct 2023 16:16:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B954E28685
+	for <devicetree@vger.kernel.org>; Fri,  6 Oct 2023 16:22:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24B26C433C7;
+	Fri,  6 Oct 2023 16:22:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1696608982;
-	bh=nn2PakBIGbgtsjEPpxAO4jVlLqjVjHADYSnUr1qUXew=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lFkTvMoc5xPxQnjGQFbbukgR7nGvQnaMUmIi8cIFrTDFwzZVKr9iEZ8kf9UwtmkqS
-	 JjVmj8vB0ZE3TTOhwWGNB1o+JGF1B090dzJEdIgroxf4E0ngIgy808gaNyUPH5DIJl
-	 J26870g4clx/9i8PyhovxrsBJET6ud3yGuLTEpzfK6WP1sXVcDOKmAYFwmPgx7Hx42
-	 TgUnvqo/j6K5BNN2TivJ1Z+rTg5nraUATk/swrNf592B9syT+5kdlaHuidRWPb9A8x
-	 eVXAhvs+zO1q6xgZPse0VgS1i3yG6J3XpznXuO3teSMIwX7oX5V6lQddll6CHRjwHj
-	 1rUD3xOytS4kg==
-Received: (nullmailer pid 4022504 invoked by uid 1000);
-	Fri, 06 Oct 2023 16:16:16 -0000
-Date: Fri, 6 Oct 2023 11:16:16 -0500
-From: Rob Herring <robh@kernel.org>
-To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Komal Bajaj <quic_kbajaj@quicinc.com>, Miquel Raynal <miquel.raynal@bootlin.com>, Sascha Hauer <s.hauer@pengutronix.de>, Matthias Brugger <matthias.bgg@gmail.com>, Kevin Hilman <khilman@baylibre.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, Alexandre Belloni <alexandre.belloni@bootlin.com>, Andy Gross <agross@kernel.org>, Hector Martin <marcan@marcan.st>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, NXP Linux Team <linux-imx@nxp.com>, linux-rockchip@lists.infradead.org, linux-rtc@vger.kernel.org, linux-mtd@lists.infradead.org, Vincent Shih <vincent.sunplus@gmail.com>, Christian Marangi <ansuelsmth@gmail.com>, Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Masami Hiramatsu <mhiramat@kernel.org>, Kumar Thella <sthella@codeaurora.org>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, Anson Huang <Anson.Huang@nxp.com>, linux-kernel@vger.kernel.org, A
- ndrew-CT Chen <andrew-ct.chen@mediatek.com>, linux-arm-msm@vger.kernel.org, Fabio Estevam <festevam@gmail.com>, Konrad Dybcio <konrad.dybcio@linaro.org>, Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev, Keiji Hayashibara <hayashibara.keiji@socionext.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Alessandro Zummo <a.zummo@towertech.it>, Lala Lin <lala.lin@mediatek.com>, linux-arm-kernel@lists.infradead.org, Vignesh Raghavendra <vigneshr@ti.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, linux-mediatek@lists.infradead.org, Shawn Guo <shawnguo@kernel.org>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, Richard Weinberger <richard@nod.at>, Sven Peter <sven@svenpeter.dev>, Rob Herring <robh+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Neil Armstrong <neil.armstrong@linaro.org>, Heiko Stuebner <heiko@sntech.de>
-Subject: Re: [PATCH V2] dt-bindings: nvmem: move deprecated cells binding to
- its own file
-Message-ID: <169660897594.4022464.17777045780008018792.robh@kernel.org>
-References: <20231003064018.7502-1-zajec5@gmail.com>
+	s=k20201202; t=1696609358;
+	bh=uBFklTtcxYYolSP1xeVJ+qDQ45NL1scnT8mlqYObgng=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ExHkbbykJhmkAWEtl2xsVh5Yo76a3FDW+JZz3ZIG02s8kMluIsuN/5EDTF69w5f8k
+	 66sHcHImRQUNpqNfybn/aiRGQS8aO4zRJX11icoKdY3G0vxf1hGUmIB7J8jJwP1VFW
+	 J6RiMlpSsUOx+ytr+9vCml3UXM0NvAao8T9JsK5CSOR4Q+qNmXZJ3c7IfNmw8288iB
+	 aeE88wuvk5vpHH+LglqINv0iQp0pnoWfcbeU8rq5q+WVm9smsAHRCS71nL1TVXcz/z
+	 N23QkA+PvjNxHgMIzx4U04r8DscZ47VUothGEX7AwvH9FvwxIfskAGSdCYI3Sr6tqb
+	 Faua7ZQwTeMqg==
+Message-ID: <5f4dec5b-88a6-ee72-78a9-71c6b20b8da2@kernel.org>
+Date: Sat, 7 Oct 2023 01:22:33 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231003064018.7502-1-zajec5@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v7 04/26] PM / devfreq: rockchip-dfi: Add SoC specific
+ init function
+Content-Language: en-US
+To: Sascha Hauer <s.hauer@pengutronix.de>, linux-rockchip@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ MyungJoo Ham <myungjoo.ham@samsung.com>, Will Deacon <will@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
+ Michael Riesch <michael.riesch@wolfvision.net>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Vincent Legoll <vincent.legoll@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+References: <20230704093242.583575-1-s.hauer@pengutronix.de>
+ <20230704093242.583575-5-s.hauer@pengutronix.de>
+From: Chanwoo Choi <chanwoo@kernel.org>
+In-Reply-To: <20230704093242.583575-5-s.hauer@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On Tue, 03 Oct 2023 08:40:18 +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On 23. 7. 4. 18:32, Sascha Hauer wrote:
+> Move the RK3399 specifics to a SoC specific init function to make
+> the way free for supporting other SoCs later.
 > 
-> Support for old NVMEM fixed cells was deprecated in favour of
-> "fixed-layout". It's still part of the nvmem.yaml though and may be
-> unknowingly used by new bindings added without much of analyze.
-> 
-> To make it more difficult to accidentally support old syntax move its
-> binding to separated file with "deprecated" in its name.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 > ---
-> V2: Fix path to nvmem-deprecated-cells.yaml in amlogic,meson6-rtc.yaml
 > 
->  .../devicetree/bindings/mtd/mtd.yaml          |  7 ++++-
->  .../bindings/mtd/partitions/nvmem-cells.yaml  |  1 +
->  .../nvmem/amlogic,meson-gxbb-efuse.yaml       |  1 +
->  .../bindings/nvmem/amlogic,meson6-efuse.yaml  |  1 +
->  .../bindings/nvmem/apple,efuses.yaml          |  1 +
->  .../devicetree/bindings/nvmem/imx-ocotp.yaml  |  1 +
->  .../bindings/nvmem/mediatek,efuse.yaml        |  1 +
->  .../nvmem/microchip,sama7g5-otpc.yaml         |  1 +
->  .../devicetree/bindings/nvmem/mxs-ocotp.yaml  |  1 +
->  .../nvmem/nvmem-deprecated-cells.yaml         | 28 +++++++++++++++++++
->  .../devicetree/bindings/nvmem/nvmem.yaml      |  9 ------
->  .../bindings/nvmem/qcom,qfprom.yaml           |  1 +
->  .../bindings/nvmem/qcom,sec-qfprom.yaml       |  1 +
->  .../bindings/nvmem/qcom,spmi-sdam.yaml        |  1 +
->  .../bindings/nvmem/rockchip,otp.yaml          |  1 +
->  .../bindings/nvmem/rockchip-efuse.yaml        |  1 +
->  .../nvmem/socionext,uniphier-efuse.yaml       |  1 +
->  .../bindings/nvmem/sunplus,sp7021-ocotp.yaml  |  1 +
->  .../bindings/rtc/amlogic,meson6-rtc.yaml      |  1 +
->  19 files changed, 50 insertions(+), 10 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/nvmem-deprecated-cells.yaml
+> Notes:
+>     Changes since v4:
+>     - use of_device_get_match_data()
+>     - use a callback rather than a struct type as driver data
 > 
+>  drivers/devfreq/event/rockchip-dfi.c | 48 +++++++++++++++++++---------
+>  1 file changed, 33 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
+> index e19e5acaa362c..6b1ef29df7048 100644
+> --- a/drivers/devfreq/event/rockchip-dfi.c
+> +++ b/drivers/devfreq/event/rockchip-dfi.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/slab.h>
+>  #include <linux/list.h>
+>  #include <linux/of.h>
+> +#include <linux/of_device.h>
+>  
+>  #include <soc/rockchip/rk3399_grf.h>
+>  
+> @@ -55,27 +56,21 @@ struct rockchip_dfi {
+>  	void __iomem *regs;
+>  	struct regmap *regmap_pmu;
+>  	struct clk *clk;
+> +	u32 ddr_type;
+>  };
+>  
+>  static void rockchip_dfi_start_hardware_counter(struct devfreq_event_dev *edev)
+>  {
+>  	struct rockchip_dfi *dfi = devfreq_event_get_drvdata(edev);
+>  	void __iomem *dfi_regs = dfi->regs;
+> -	u32 val;
+> -	u32 ddr_type;
+> -
+> -	/* get ddr type */
+> -	regmap_read(dfi->regmap_pmu, RK3399_PMUGRF_OS_REG2, &val);
+> -	ddr_type = (val >> RK3399_PMUGRF_DDRTYPE_SHIFT) &
+> -		    RK3399_PMUGRF_DDRTYPE_MASK;
+>  
+>  	/* clear DDRMON_CTRL setting */
+>  	writel_relaxed(CLR_DDRMON_CTRL, dfi_regs + DDRMON_CTRL);
+>  
+>  	/* set ddr type to dfi */
+> -	if (ddr_type == RK3399_PMUGRF_DDRTYPE_LPDDR3)
+> +	if (dfi->ddr_type == RK3399_PMUGRF_DDRTYPE_LPDDR3)
+>  		writel_relaxed(LPDDR3_EN, dfi_regs + DDRMON_CTRL);
+> -	else if (ddr_type == RK3399_PMUGRF_DDRTYPE_LPDDR4)
+> +	else if (dfi->ddr_type == RK3399_PMUGRF_DDRTYPE_LPDDR4)
+>  		writel_relaxed(LPDDR4_EN, dfi_regs + DDRMON_CTRL);
+>  
+>  	/* enable count, use software mode */
+> @@ -167,8 +162,26 @@ static const struct devfreq_event_ops rockchip_dfi_ops = {
+>  	.set_event = rockchip_dfi_set_event,
+>  };
+>  
+> +static int rk3399_dfi_init(struct rockchip_dfi *dfi)
+> +{
+> +	struct regmap *regmap_pmu = dfi->regmap_pmu;
+> +	u32 val;
+> +
+> +	dfi->clk = devm_clk_get(dfi->dev, "pclk_ddr_mon");
+> +	if (IS_ERR(dfi->clk))
+> +		return dev_err_probe(dfi->dev, PTR_ERR(dfi->clk),
+> +				     "Cannot get the clk pclk_ddr_mon\n");
+> +
+> +	/* get ddr type */
+> +	regmap_read(regmap_pmu, RK3399_PMUGRF_OS_REG2, &val);
+> +	dfi->ddr_type = (val >> RK3399_PMUGRF_DDRTYPE_SHIFT) &
+> +			RK3399_PMUGRF_DDRTYPE_MASK;
+> +
+> +	return 0;
+> +};
+> +
+>  static const struct of_device_id rockchip_dfi_id_match[] = {
+> -	{ .compatible = "rockchip,rk3399-dfi" },
+> +	{ .compatible = "rockchip,rk3399-dfi", .data = rk3399_dfi_init },
+>  	{ },
+>  };
+>  MODULE_DEVICE_TABLE(of, rockchip_dfi_id_match);
+> @@ -179,6 +192,12 @@ static int rockchip_dfi_probe(struct platform_device *pdev)
+>  	struct rockchip_dfi *dfi;
+>  	struct devfreq_event_desc *desc;
+>  	struct device_node *np = pdev->dev.of_node, *node;
+> +	int (*soc_init)(struct rockchip_dfi *dfi);
+> +	int ret;
+> +
+> +	soc_init = of_device_get_match_data(&pdev->dev);
+> +	if (!soc_init)
+> +		return -EINVAL;
+>  
+>  	dfi = devm_kzalloc(dev, sizeof(*dfi), GFP_KERNEL);
+>  	if (!dfi)
+> @@ -188,11 +207,6 @@ static int rockchip_dfi_probe(struct platform_device *pdev)
+>  	if (IS_ERR(dfi->regs))
+>  		return PTR_ERR(dfi->regs);
+>  
+> -	dfi->clk = devm_clk_get(dev, "pclk_ddr_mon");
+> -	if (IS_ERR(dfi->clk))
+> -		return dev_err_probe(dev, PTR_ERR(dfi->clk),
+> -				     "Cannot get the clk pclk_ddr_mon\n");
+> -
+>  	node = of_parse_phandle(np, "rockchip,pmu", 0);
+>  	if (!node)
+>  		return dev_err_probe(&pdev->dev, -ENODEV, "Can't find pmu_grf registers\n");
+> @@ -209,6 +223,10 @@ static int rockchip_dfi_probe(struct platform_device *pdev)
+>  	desc->driver_data = dfi;
+>  	desc->name = np->name;
+>  
+> +	ret = soc_init(dfi);
+> +	if (ret)
+> +		return ret;
+> +
+>  	dfi->edev = devm_devfreq_event_add_edev(&pdev->dev, desc);
+>  	if (IS_ERR(dfi->edev)) {
+>  		dev_err(&pdev->dev,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+
+Applied it. Thanks.
+-- 
+Best Regards,
+Samsung Electronics
+Chanwoo Choi
 
 
